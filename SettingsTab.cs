@@ -15,9 +15,9 @@ using System.Xml;
 [assembly: AssemblyCompany("Aditu of Permafrost")]
 [assembly: AssemblyVersion("1.0.0.1")]
 
-namespace ACT_Plugin
+namespace ACTBossTime
 {
-	public class PluginSample : UserControl, IActPluginV1
+	public class SettingsTab : UserControl
 	{
 		#region Designer Created Code (Avoid editing)
 		/// <summary> 
@@ -88,7 +88,7 @@ namespace ACT_Plugin
 		private System.Windows.Forms.Label label1;
 		
 		#endregion
-		public PluginSample()
+        public SettingsTab()
 		{
 			InitializeComponent();
 		}
@@ -97,33 +97,19 @@ namespace ACT_Plugin
 		string settingsFile = Path.Combine(ActGlobals.oFormActMain.AppDataFolder.FullName, "Config\\PluginSample.config.xml");
 		SettingsSerializer xmlSettings;
 
-		#region IActPluginV1 Members
-		public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
+		public void Initialize(Label pluginStatusText)
 		{
 			lblStatus = pluginStatusText;	// Hand the status label's reference to our local var
-			pluginScreenSpace.Controls.Add(this);	// Add this UserControl to the tab ACT provides
 			this.Dock = DockStyle.Fill;	// Expand the UserControl to fill the tab's client space
 			xmlSettings = new SettingsSerializer(this);	// Create a new settings serializer and pass it this instance
 			LoadSettings();
 
-			// Create some sort of parsing event handler.  After the "+=" hit TAB twice and the code will be generated for you.
-			ActGlobals.oFormActMain.AfterCombatAction += new CombatActionDelegate(oFormActMain_AfterCombatAction);
-
 			lblStatus.Text = "Plugin Started";
 		}
-		public void DeInitPlugin()
+		public void Shutdown()
 		{
-			// Unsubscribe from any events you listen to when exiting!
-			ActGlobals.oFormActMain.AfterCombatAction -= oFormActMain_AfterCombatAction;
-
 			SaveSettings();
 			lblStatus.Text = "Plugin Exited";
-		}
-		#endregion
-
-		void oFormActMain_AfterCombatAction(bool isImport, CombatActionEventArgs actionInfo)
-		{
-			throw new NotImplementedException();
 		}
 
 		void LoadSettings()
