@@ -44,8 +44,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <StartAction>Program</StartAction>
-    <StartProgram>C:\Program Files\Advanced Combat Tracker\Advanced Combat Tracker.exe</StartProgram>
-    <StartWorkingDirectory>C:\Program Files\Advanced Combat Tracker\</StartWorkingDirectory>
+    <StartProgram>C:\Program Files (x86)\Advanced Combat Tracker\Advanced Combat Tracker.exe</StartProgram>
+    <StartWorkingDirectory>C:\Program Files (x86)\Advanced Combat Tracker\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
