@@ -8,11 +8,11 @@ namespace ACTBossTime
     {
         SettingsTab settingsTab = new SettingsTab();
         RotationViewer rotationViewer = new RotationViewer();
+        ZonePoller zonePoller = new ZonePoller(pollTimeInMs: 5000);
 
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
         {
-            rotationViewer.SetContent("Stuff");
             rotationViewer.Show();
             settingsTab.Initialize(pluginStatusText);
             pluginScreenSpace.Controls.Add(settingsTab);
@@ -31,7 +31,7 @@ namespace ACTBossTime
 
         private void OnLogLineRead(bool isImport, LogLineEventArgs logInfo)
         {
-            rotationViewer.SetContent(logInfo.logLine);
+            rotationViewer.SetContent(logInfo.logLine, zonePoller.CurrentZone);
         }
     }
 }

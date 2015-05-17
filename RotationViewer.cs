@@ -19,9 +19,10 @@ namespace ACTBossTime
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
-        public void SetContent(string content)
+        public void SetContent(string content, string zone)
         {
             label1.Text = content;
+            label2.Text = zone;
         }
 
         private enum WS_EX

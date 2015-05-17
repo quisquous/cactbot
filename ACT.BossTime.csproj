@@ -86,6 +86,7 @@
     <Compile Include="SettingsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ZonePoller.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="RotationViewer.resx">
