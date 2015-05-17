@@ -80,11 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ACTPlugin.cs" />
+    <Compile Include="RotationViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SettingsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="RotationViewer.resx">
+      <DependentUpon>RotationViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingsTab.resx">
       <DependentUpon>SettingsTab.cs</DependentUpon>
     </EmbeddedResource>

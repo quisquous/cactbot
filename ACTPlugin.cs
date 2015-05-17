@@ -7,29 +7,31 @@ namespace ACTBossTime
     public class ACTPlugin : IActPluginV1
     {
         SettingsTab settingsTab = new SettingsTab();
+        RotationViewer rotationViewer = new RotationViewer();
 
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
         {
+            rotationViewer.SetContent("Stuff");
+            rotationViewer.Show();
             settingsTab.Initialize(pluginStatusText);
             pluginScreenSpace.Controls.Add(settingsTab);
 
-            // Create some sort of parsing event handler.  After the "+=" hit TAB twice and the code will be generated for you.
-            ActGlobals.oFormActMain.AfterCombatAction += new CombatActionDelegate(oFormActMain_AfterCombatAction);
+            ActGlobals.oFormActMain.OnLogLineRead += this.OnLogLineRead;
         }
 
         public void DeInitPlugin()
         {
+            rotationViewer.Hide();
             settingsTab.Shutdown();
 
-            // Unsubscribe from any events you listen to when exiting!
-            ActGlobals.oFormActMain.AfterCombatAction -= oFormActMain_AfterCombatAction;
+            ActGlobals.oFormActMain.OnLogLineRead -= this.OnLogLineRead;
         }
         #endregion
 
-        void oFormActMain_AfterCombatAction(bool isImport, CombatActionEventArgs actionInfo)
+        private void OnLogLineRead(bool isImport, LogLineEventArgs logInfo)
         {
-            throw new NotImplementedException();
+            rotationViewer.SetContent(logInfo.logLine);
         }
     }
 }
