@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\CefSharp.Wpf.39.0.1\build\CefSharp.Wpf.props" Condition="Exists('packages\CefSharp.Wpf.39.0.1\build\CefSharp.Wpf.props')" />
+  <Import Project="packages\CefSharp.Common.39.0.1\build\CefSharp.Common.props" Condition="Exists('packages\CefSharp.Common.39.0.1\build\CefSharp.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -34,6 +36,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <NuGetPackageImportStamp>f64a1ec9</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,4 +99,20 @@
       <DependentUpon>SettingsTab.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="packages\cef.redist.x64.3.2171.2069\build\cef.redist.x64.targets" Condition="Exists('packages\cef.redist.x64.3.2171.2069\build\cef.redist.x64.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\cef.redist.x64.3.2171.2069\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x64.3.2171.2069\build\cef.redist.x64.targets'))" />
+    <Error Condition="!Exists('packages\cef.redist.x86.3.2171.2069\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\cef.redist.x86.3.2171.2069\build\cef.redist.x86.targets'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.39.0.1\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.39.0.1\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('packages\CefSharp.Common.39.0.1\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Common.39.0.1\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('packages\CefSharp.Wpf.39.0.1\build\CefSharp.Wpf.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\CefSharp.Wpf.39.0.1\build\CefSharp.Wpf.props'))" />
+  </Target>
+  <Import Project="packages\cef.redist.x86.3.2171.2069\build\cef.redist.x86.targets" Condition="Exists('packages\cef.redist.x86.3.2171.2069\build\cef.redist.x86.targets')" />
+  <Import Project="packages\CefSharp.Common.39.0.1\build\CefSharp.Common.targets" Condition="Exists('packages\CefSharp.Common.39.0.1\build\CefSharp.Common.targets')" />
 </Project>
