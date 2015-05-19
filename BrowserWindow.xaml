@@ -1,0 +1,13 @@
+﻿<Window x:Class="ACTBossTime.BrowserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:main="clr-namespace:ACTBossTime"
+        WindowState="Normal"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Opacity="1.0"
+        WindowStyle="None"
+        Topmost="True"
+        Activated="Window_Activated">
+    <main:BrowserControl x:Name="BrowserControl"/>
+</Window>

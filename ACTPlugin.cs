@@ -1,4 +1,5 @@
 using Advanced_Combat_Tracker;
+using CefSharp;
 using System;
 using System.Windows.Forms;
 
@@ -7,31 +8,26 @@ namespace ACTBossTime
     public class ACTPlugin : IActPluginV1
     {
         SettingsTab settingsTab = new SettingsTab();
-        RotationViewer rotationViewer = new RotationViewer();
+        BrowserWindow browserWindow = new BrowserWindow();
         ZonePoller zonePoller = new ZonePoller(pollTimeInMs: 5000);
 
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
         {
-            rotationViewer.Show();
+            browserWindow.Show();
             settingsTab.Initialize(pluginStatusText);
             pluginScreenSpace.Controls.Add(settingsTab);
-
-            ActGlobals.oFormActMain.OnLogLineRead += this.OnLogLineRead;
         }
 
         public void DeInitPlugin()
         {
-            rotationViewer.Hide();
+            browserWindow.Hide();
             settingsTab.Shutdown();
 
-            ActGlobals.oFormActMain.OnLogLineRead -= this.OnLogLineRead;
+            // FIXME: This needs to be called from the right thread, so it can't happen automatically.
+            // However, calling it here means the plugin can never be reinitialized, oops.
+            Cef.Shutdown();
         }
         #endregion
-
-        private void OnLogLineRead(bool isImport, LogLineEventArgs logInfo)
-        {
-            rotationViewer.SetContent(logInfo.logLine, zonePoller.CurrentZone);
-        }
     }
 }
