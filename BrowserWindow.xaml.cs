@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CefSharp.Wpf;
+using System.Windows;
 using System.Windows.Interop;
 
 namespace ACTBossTime
@@ -7,8 +8,12 @@ namespace ACTBossTime
     {
         public BrowserWindow()
         {
+            ReadyHandler = delegate {};
             InitializeComponent();
         }
+
+        public delegate void OnBrowserReady(object sender, IWpfWebBrowser browser);
+        public OnBrowserReady ReadyHandler { get; set; }
 
         private void Window_Activated(object sender, System.EventArgs e)
         {
@@ -17,7 +22,7 @@ namespace ACTBossTime
             this.Width++;
             this.Width--;
 
-            BrowserControl.Browser.LoadHtml("<html><body><div style='background-color:white; opacity:0.5;width:500px;height:500px;'>Hello world</div></html>", "http://example.com/");
+            ReadyHandler(this, BrowserControl.Browser);
         }
     }
 }
