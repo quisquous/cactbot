@@ -1,0 +1,90 @@
+<html>
+<head>
+<style>
+body {
+  margin: 0px;
+  border: black solid 1px;
+}
+
+#outercontainer {
+  width: 100%;
+  height: 100%;
+  background: grey;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#titlebar {
+  display: flex;
+}
+
+#bosstitle {
+  margin-right: auto;
+  font-weight: bold;
+}
+
+#enrage {
+  margin-left: auto;
+}
+
+#rotation {
+}
+
+#rotation > .rotitem:first-child {
+  font-size: 40px;
+}
+
+.rotitem {
+  display: flex;
+  flex-direction: row;
+}
+
+.countdown {
+  margin-left: auto;
+  margin-right: 2%;
+}
+
+.move {
+  margin-right: auto;
+  margin-left: 2%;
+}
+
+#nextphase {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#nextphasetitle {
+  margin-right: auto;
+}
+
+#nextphasecond {
+  margin-left: auto;
+}
+
+</style>
+</head>
+<body>
+
+<div id="outercontainer">
+  <div id="titlebar">
+    <div id="bosstitle">Angry Bees: 0%</div>
+    <div id="enrage">Enrage: 12m10s</div>
+  </div>
+  <div id="rotation">
+    <div class="rotitem"><div class="move">next thing</div><div class="countdown">1m24s</div></div>
+    <div class="rotitem"><div class="move">one thing</div><div class="countdown">1m24s</div></div>
+    <div class="rotitem"><div class="move">that thing</div><div class="countdown">2m24s</div></div>
+    <div class="rotitem"><div class="move">whoa whoa whoa</div><div class="countdown">3m24s</div></div>
+  </div>
+  <div id="nextphase">
+    <div id="nextphasetitle">Phase 2 (dem adds)</div>
+    <div id="nextphasecond">HP: 61%, 1m25s</div>
+  </div>
+</div>
+
+</body>
+</html>
