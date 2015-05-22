@@ -1,6 +1,6 @@
 var i = 0;
 
-var fakeRotation = {
+var fakeBoss = {
     bossName: "Angry Bees",
     zone: "Xanadu",
     enrageSeconds: 720,
@@ -43,22 +43,25 @@ var fakeRotation = {
     ],
 };
 
-var RotationManager = function(phaseCallback) {
-    this.rotations = [];
-    this.phaseCallback = phaseCallback;
+var RotationManager = function(updateCallback) {
+    this.bosses = [];
+    this.updateCallback = updateCallback;
 
-    this.currentRotation = null;
+    this.currentBoss = null;
+    this.currentBossStartTime = null
     this.currentPhase = null;
     this.currentPhaseStartTime = null;
 };
 
-RotationManager.prototype.register = function(rotation) {
-    this.rotations.push(rotation);
+RotationManager.prototype.register = function(boss) {
+    this.bosses.push(boss);
 };
 
-RotationManager.prototype.startRotation = function(rotation) {
-    this.currentRotation = rotation;
-    this.startPhase(0, new Date());
+RotationManager.prototype.startBoss = function(boss) {
+    var currentTime = new Date();
+    this.currentBoss = boss;
+    this.currentBossStartTime = currentTime;
+    this.startPhase(0, currentTime);
 }
 
 RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
@@ -69,16 +72,12 @@ RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
 }
 
 RotationManager.prototype.tick = function(currentTime) {
-    function addTime(date, seconds) {
-        return new Date(date.getTime() + seconds * 1000);
-    }
-
-    // Is rotation still valid
+    // Is boss still valid
     // Is current phase still happening
     // tick current phase
 
     var rotation = [];
-    var phase = this.currentRotation.phases[this.currentPhase];
+    var phase = this.currentBoss.phases[this.currentPhase];
     var seconds = (currentTime.getTime() - this.currentPhaseStartTime.getTime()) / 1000;
     if (phase.loop) {
         seconds = seconds % phase.loopSeconds;
@@ -86,7 +85,7 @@ RotationManager.prototype.tick = function(currentTime) {
     for (var startIdx = 0; startIdx < phase.rotation.length; ++startIdx) {
         var item = phase.rotation[startIdx];
         // Start back 1, so it hangs around on screen for a second.
-        if (item.time > seconds - 1)
+        if (item.time > seconds - 0.5)
             break;
     }
     // assert startIdx is valid here
@@ -110,50 +109,78 @@ RotationManager.prototype.tick = function(currentTime) {
         }
     }
 
-    this.phaseCallback(rotation);
+    var updateInfo = {
+        boss: this.currentBoss,
+        bossStartTime: this.currentBossStartTime,
+        phase: this.currentBoss[this.currentPhase],
+        rotation: rotation,
+    };
+    this.updateCallback(updateInfo);
 }
 
 RotationManager.prototype.processLogLine = function(logLine) {
 }
 
-function updatePhase(phase) {
+function addTime(date, seconds) {
+    return new Date(date.getTime() + seconds * 1000);
+}
+
+function formatTimeDiff(futureTime, currentTime) {
+    var total = (futureTime.getTime() - currentTime.getTime()) / 1000;
+    return formatTime(total);
+}
+
+function formatTime(totalSeconds) {
+    var str = "";
+    var total = Math.max(0, totalSeconds);
+    var minutes = Math.floor(total / 60 + 0.5);
+    var seconds = Math.floor(total % 60);
+    var tenthseconds = Math.floor((10 * (total % 60)) % 10);
+    str = "";
+    if (minutes > 0)
+        str += minutes + "m";
+    str += seconds + "." + tenthseconds + "s";
+
+    return str;
+}
+
+function updateFunc(updateInfo) {
     var currentTime = new Date();
+
+    var enrageDiv = document.getElementById("enrage");
+    var enrageSeconds = updateInfo.boss.enrageSeconds;
+    if (enrageSeconds) {
+        var enrage = addTime(updateInfo.bossStartTime, enrageSeconds);
+        enrageDiv.innerText = "Enrage: " + formatTimeDiff(enrage, currentTime);
+    }
 
     var rotationDiv = document.getElementById("rotation");
     rotationDiv.innerHTML = "";
 
     // Limit by height? Or by count?
-    for (var i = 0; i < phase.length; ++i) {
+    var rotation = updateInfo.rotation;
+    for (var i = 0; i < rotation.length; ++i) {
         var rotItem = document.createElement("div");
         rotItem.className = "rotitem";
 
         var moveItem = document.createElement("div");
         moveItem.className = "move";
-        moveItem.innerText = phase[i].name;
+        moveItem.innerText = rotation[i].name;
         rotItem.appendChild(moveItem);
 
         var countdownItem = document.createElement("div");
         countdownItem.className = "countdown";
-        var total = (phase[i].time.getTime() - currentTime.getTime()) / 1000;
-        total = Math.max(0, total);
-        var minutes = Math.floor(total / 60 + 0.5);
-        var seconds = Math.floor(total % 60);
-        var tenthseconds = Math.floor((10 * (total % 60)) % 10);
-        countdownItem.innerText = "";
-        if (minutes > 0)
-            countdownItem.innerText += minutes + "m";
-        countdownItem.innerText += seconds + "." + tenthseconds + "s";
-
+        countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime);
         rotItem.appendChild(countdownItem);
 
         rotationDiv.appendChild(rotItem);
     }
 }
 
-var rotationManager = new RotationManager(updatePhase);
+var rotationManager = new RotationManager(updateFunc);
 function testingInit() {
-    rotationManager.register(fakeRotation);
-    rotationManager.startRotation(fakeRotation);
+    rotationManager.register(fakeBoss);
+    rotationManager.startBoss(fakeBoss);
 }
 testingInit();
 
