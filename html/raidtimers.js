@@ -1,5 +1,3 @@
-var i = 0;
-
 var fakeBoss = {
     bossName: "Angry Bees",
     zone: "Xanadu",
@@ -93,9 +91,12 @@ RotationManager.prototype.tick = function(currentTime) {
         }
     }
 
-    // Is current phase still happening
-
-    // tick current phase
+    if (phase.endHpPercent) {
+        var percent = act.hpPercentByName(this.currentBoss);
+        if (percent < phase.endHpPercent) {
+            this.startPhase(this.currentPhase + 1, currentTime);
+        }
+    }
 
     var rotation = [];
     var seconds = (currentTime.getTime() - this.currentPhaseStartTime.getTime()) / 1000;
@@ -106,8 +107,7 @@ RotationManager.prototype.tick = function(currentTime) {
     }
     for (var startIdx = 0; startIdx < phase.rotation.length; ++startIdx) {
         var item = phase.rotation[startIdx];
-        // Start back 1, so it hangs around on screen for a second.
-        if (item.time > seconds - 0.5)
+        if (item.time > seconds)
             break;
     }
     // assert startIdx is valid here
@@ -173,7 +173,15 @@ function formatTime(totalSeconds) {
     return str;
 }
 
+// TODO: too much logic in here, add RotationManager helpers?
 function updateFunc(updateInfo) {
+    // Has the fight started?
+
+    var bossTitleDiv = document.getElementById("bosstitle");
+    var percent = act.hpPercentByName(updateInfo.boss.bossName);
+    percent = Math.floor(percent); // TODO: add one decimal point
+    bossTitleDiv.innerText = updateInfo.boss.bossName + ": " + percent + "%";
+
     var currentTime = new Date();
 
     var enrageDiv = document.getElementById("enrage");

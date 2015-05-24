@@ -29,4 +29,9 @@ FakeACT.prototype.mobs = function() {
 FakeACT.prototype.mobById = function(id) {
 }
 
+var fakeBossPercent = 100.0;
+FakeACT.prototype.hpPercentByName = function(mobName) {
+  return fakeBossPercent;
+}
+
 window.act = new FakeACT();
