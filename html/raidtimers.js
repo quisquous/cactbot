@@ -24,7 +24,7 @@ var fakeBoss = {
             loopSeconds: 10,
             endHp: { "Angry Bees": "61%" },
             rotation: [
-                { name: "Buzz", time: 0.5},
+                { name: "Buzz", time: 2.5},
                 { name: "Fizz", time: 4},
                 { name: "Buzzzzzzzz", time: 5},
                 { name: "Blink About", time: 8},
@@ -72,15 +72,37 @@ RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
 }
 
 RotationManager.prototype.tick = function(currentTime) {
-    // Is boss still valid
+    if (!this.currentBoss) {
+        // TODO: show likely boss given current zone
+        return;
+    }
+
+    if (this.currentBoss.enrageSeconds) {
+        var enrage = addTime(currentTime, this.currentBoss.enrageSeconds);
+        if (enrage < currentTime) {
+            // TODO: enrage
+            return;
+        }
+    }
+
+    var phase = this.currentBoss.phases[this.currentPhase];
+    if (phase.endSeconds) {
+        var endPhase = addTime(this.currentPhaseStartTime, phase.endSeconds);
+        if (endPhase < currentTime) {
+            this.startPhase(this.currentPhase + 1, currentTime);
+        }
+    }
+
     // Is current phase still happening
+
     // tick current phase
 
     var rotation = [];
-    var phase = this.currentBoss.phases[this.currentPhase];
     var seconds = (currentTime.getTime() - this.currentPhaseStartTime.getTime()) / 1000;
+    var adjustedStartTime = this.currentPhaseStartTime;
     if (phase.loop) {
         seconds = seconds % phase.loopSeconds;
+        adjustedStartTime = addTime(currentTime, -seconds);
     }
     for (var startIdx = 0; startIdx < phase.rotation.length; ++startIdx) {
         var item = phase.rotation[startIdx];
@@ -93,13 +115,13 @@ RotationManager.prototype.tick = function(currentTime) {
     for (var i = startIdx; i < phase.rotation.length; ++i) {
         adjustedItem = {
             name: phase.rotation[i].name,
-            time: addTime(this.currentPhaseStartTime, phase.rotation[i].time),
+            time: addTime(adjustedStartTime, phase.rotation[i].time),
         };
         rotation.push(adjustedItem);
     }
 
     if (phase.loop) {
-        var nextLoop = addTime(this.currentPhaseStartTime, phase.loopSeconds);
+        var nextLoop = addTime(adjustedStartTime, phase.loopSeconds);
         for (var i = 0; i < startIdx; ++i) {
             adjustedItem = {
                 name: phase.rotation[i].name,
@@ -197,7 +219,7 @@ function rafLoop() {
 
     rotationManager.tick(currentTime);
 
-    if (i < 800)
+    if (i < 2000)
     window.requestAnimationFrame(rafLoop);
 
 }
