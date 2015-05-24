@@ -155,13 +155,16 @@ function formatTimeDiff(futureTime, currentTime) {
 function formatTime(totalSeconds) {
     var str = "";
     var total = Math.max(0, totalSeconds);
-    var minutes = Math.floor(total / 60 + 0.5);
+    var minutes = Math.floor(total / 60);
     var seconds = Math.floor(total % 60);
     var tenthseconds = Math.floor((10 * (total % 60)) % 10);
     str = "";
     if (minutes > 0)
         str += minutes + "m";
-    str += seconds + "." + tenthseconds + "s";
+    str += seconds;
+    if (!minutes)
+        str += "." + tenthseconds;
+    str += "s";
 
     return str;
 }
