@@ -22,7 +22,7 @@ var fakeBoss = {
             title: "Phase 2 (angry buzzing)",
             loop: true,
             loopSeconds: 10,
-            endHp: { "Angry Bees": "61%" },
+            endHpPercent: 61,
             rotation: [
                 { name: "Buzz", time: 2.5},
                 { name: "Fizz", time: 4},
@@ -131,11 +131,15 @@ RotationManager.prototype.tick = function(currentTime) {
         }
     }
 
+    // TODO: Maybe just access this off rotation manager.
+    // Passing it seemed like a cleaner way to test, but this is out of hand.
     var updateInfo = {
         boss: this.currentBoss,
         bossStartTime: this.currentBossStartTime,
-        phase: this.currentBoss[this.currentPhase],
+        phase: this.currentBoss.phases[this.currentPhase],
+        nextPhase: this.currentBoss.phases[this.currentPhase + 1],
         rotation: rotation,
+        phaseStartTime: this.currentPhaseStartTime,
     };
     this.updateCallback(updateInfo);
 }
@@ -177,7 +181,27 @@ function updateFunc(updateInfo) {
     if (enrageSeconds) {
         var enrage = addTime(updateInfo.bossStartTime, enrageSeconds);
         enrageDiv.innerText = "Enrage: " + formatTimeDiff(enrage, currentTime);
+    } else {
+        enrageDiv.innerText = "";
     }
+
+    // TODO: Add one rotation from next phase as well when it gets
+    // close in time or percentage? Or always?
+    var nextPhaseTitle = "";
+    var nextPhaseTime = "";
+    if (updateInfo.nextPhase) {
+        nextPhaseTitle = updateInfo.nextPhase.title;
+        if (updateInfo.phase.endSeconds) {
+            var phaseEndTime = addTime(updateInfo.phaseStartTime, updateInfo.phase.endSeconds);
+            nextPhaseTime = formatTimeDiff(phaseEndTime, currentTime);
+        } else if (updateInfo.phase.endHpPercent) {
+            nextPhaseTime = updateInfo.phase.endHpPercent + "%";
+        }
+    }
+    var nextPhaseTitleDiv = document.getElementById("nextphasetitle");
+    nextPhaseTitleDiv.innerText = nextPhaseTitle;
+    var nextPhaseCondDiv = document.getElementById("nextphasecondition");
+    nextPhaseCondDiv.innerText = nextPhaseTime;
 
     var rotationDiv = document.getElementById("rotation");
     rotationDiv.innerHTML = "";
@@ -209,20 +233,18 @@ function testingInit() {
 }
 testingInit();
 
+var i = 0;
 function rafLoop() {
     if (!window.act) {
         window.requestAnimationFrame(rafLoop);
         return;
     }
 
-    var temp = document.getElementById("nextphasecond");
-    temp.innerText = window.act.currentZone() + i++;
-
     var currentTime = new Date();
 
     rotationManager.tick(currentTime);
 
-    if (i < 2000)
+    if (i++ < 2000)
     window.requestAnimationFrame(rafLoop);
 
 }
