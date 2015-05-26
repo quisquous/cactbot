@@ -62,6 +62,14 @@ RotationManager.prototype.startBoss = function(boss) {
     this.startPhase(0, currentTime);
 }
 
+RotationManager.prototype.endBoss = function() {
+    // TODO: record final time, etc
+    this.currentBoss = null;
+    this.currentBossStartTime = null
+    this.currentPhase = null;
+    this.currentPhaseStartTime = null;
+};
+
 RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
     if (this.currentPhase === phaseNumber)
         return;
@@ -91,9 +99,14 @@ RotationManager.prototype.tick = function(currentTime) {
         }
     }
 
+    var bossPercent = act.hpPercentByName(this.currentBoss);
+    if (bossPercent <= 0) {
+        this.endBoss();
+        return;
+    }
+
     if (phase.endHpPercent) {
-        var percent = act.hpPercentByName(this.currentBoss);
-        if (percent < phase.endHpPercent) {
+        if (bossPercent < phase.endHpPercent) {
             this.startPhase(this.currentPhase + 1, currentTime);
         }
     }
@@ -147,6 +160,77 @@ RotationManager.prototype.tick = function(currentTime) {
 RotationManager.prototype.processLogLine = function(logLine) {
 }
 
+var RaidTimersBinding = function() {
+    this.boundData = {};
+    this.boundElementNames = {};
+    this.boundFuncs = {};
+    this.initialValues = {};
+
+    this.register('title', 'bosstitle', this.updateInnerText, '');
+    this.register('enrage', 'enrage', this.updateInnerText, '');
+    this.register('nextTitle', 'nextphasetitle', this.updateInnerText, '');
+    this.register('nextCondition', 'nextphasecondition', this.updateInnerText, '');
+    this.register('rotation', 'rotation', this.updateRotation, []);
+};
+
+RaidTimersBinding.prototype.clear = function() {
+    // TODO
+};
+
+RaidTimersBinding.prototype.register = function(id, elementName, func, initial) {
+    var setterName = "set" + id[0].toUpperCase() + id.substring(1);
+    this[setterName] = function(value) {
+        return this.setterInner(id, value);
+    };
+    this.boundElementNames[id] = elementName;
+    this.boundFuncs[id] = func;
+    this.initialValues[id] = initial;
+
+    // TODO: let caller call initial clear?
+    this.setterInner(id, initial);
+};
+
+RaidTimersBinding.prototype.setterInner = function(id, value) {
+    if (this.boundData[id] === value)
+        return;
+    this.boundData[id] = value;
+
+    var element = document.getElementById(this.boundElementNames[id]);
+    if (!element) {
+        // TODO: warning
+        return;
+    }
+    this.boundFuncs[id](element, value);
+};
+
+RaidTimersBinding.prototype.updateInnerText = function(element, value) {
+    element.innerText = value;
+};
+
+RaidTimersBinding.prototype.updateRotation = function(rotationDiv, rotation) {
+    var currentTime = new Date();
+
+    rotationDiv.innerHTML = "";
+
+    // Limit by height? Or by count?
+    for (var i = 0; i < rotation.length; ++i) {
+        var rotItem = document.createElement("div");
+        rotItem.className = "rotitem";
+
+        var moveItem = document.createElement("div");
+        moveItem.className = "move";
+        moveItem.innerText = rotation[i].name;
+        rotItem.appendChild(moveItem);
+
+        var countdownItem = document.createElement("div");
+        countdownItem.className = "countdown";
+        countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime);
+        rotItem.appendChild(countdownItem);
+
+        rotationDiv.appendChild(rotItem);
+    }
+};
+
 function addTime(date, seconds) {
     return new Date(date.getTime() + seconds * 1000);
 }
@@ -173,24 +257,23 @@ function formatTime(totalSeconds) {
     return str;
 }
 
-// TODO: too much logic in here, add RotationManager helpers?
+var bindings = new RaidTimersBinding();
+
 function updateFunc(updateInfo) {
     // Has the fight started?
 
-    var bossTitleDiv = document.getElementById("bosstitle");
     var percent = act.hpPercentByName(updateInfo.boss.bossName);
     percent = Math.floor(percent); // TODO: add one decimal point
-    bossTitleDiv.innerText = updateInfo.boss.bossName + ": " + percent + "%";
+    bindings.setTitle(updateInfo.boss.bossName + ": " + percent + "%");
 
     var currentTime = new Date();
 
-    var enrageDiv = document.getElementById("enrage");
     var enrageSeconds = updateInfo.boss.enrageSeconds;
     if (enrageSeconds) {
         var enrage = addTime(updateInfo.bossStartTime, enrageSeconds);
-        enrageDiv.innerText = "Enrage: " + formatTimeDiff(enrage, currentTime);
+        bindings.setEnrage("Enrage: " + formatTimeDiff(enrage, currentTime));
     } else {
-        enrageDiv.innerText = "";
+        bindings.setEnrage('');
     }
 
     // TODO: Add one rotation from next phase as well when it gets
@@ -206,32 +289,10 @@ function updateFunc(updateInfo) {
             nextPhaseTime = updateInfo.phase.endHpPercent + "%";
         }
     }
-    var nextPhaseTitleDiv = document.getElementById("nextphasetitle");
-    nextPhaseTitleDiv.innerText = nextPhaseTitle;
-    var nextPhaseCondDiv = document.getElementById("nextphasecondition");
-    nextPhaseCondDiv.innerText = nextPhaseTime;
+    bindings.setNextTitle(nextPhaseTitle);
+    bindings.setNextCondition(nextPhaseTime);
 
-    var rotationDiv = document.getElementById("rotation");
-    rotationDiv.innerHTML = "";
-
-    // Limit by height? Or by count?
-    var rotation = updateInfo.rotation;
-    for (var i = 0; i < rotation.length; ++i) {
-        var rotItem = document.createElement("div");
-        rotItem.className = "rotitem";
-
-        var moveItem = document.createElement("div");
-        moveItem.className = "move";
-        moveItem.innerText = rotation[i].name;
-        rotItem.appendChild(moveItem);
-
-        var countdownItem = document.createElement("div");
-        countdownItem.className = "countdown";
-        countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime);
-        rotItem.appendChild(countdownItem);
-
-        rotationDiv.appendChild(rotItem);
-    }
+    bindings.setRotation(updateInfo.rotation);
 }
 
 var rotationManager = new RotationManager(updateFunc);
@@ -252,7 +313,7 @@ function rafLoop() {
 
     rotationManager.tick(currentTime);
 
-    if (i++ < 2000)
+    if (i++ < 200)
     window.requestAnimationFrame(rafLoop);
 
 }
