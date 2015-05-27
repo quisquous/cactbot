@@ -2,5 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf">
-    <cefSharp:ChromiumWebBrowser x:Name="Browser"/>
+    <cefSharp:ChromiumWebBrowser x:Name="Browser"
+                                 WebBrowser="{Binding WebBrowser, Mode=OneWayToSource}"/>
 </UserControl>

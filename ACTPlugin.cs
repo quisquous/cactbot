@@ -9,16 +9,17 @@ namespace ACTBossTime
     public class ACTPlugin : IActPluginV1
     {
         SettingsTab settingsTab = new SettingsTab();
-        BrowserWindow browserWindow = new BrowserWindow();
-        ZonePoller zonePoller = new ZonePoller(pollTimeInMs: 5000);
+        BrowserWindow browserWindow;
 
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
         {
-            browserWindow.ReadyHandler += OnBrowserReady;
+            settingsTab.Initialize(pluginStatusText);
+
+            browserWindow = new BrowserWindow();
+            browserWindow.BrowserControl.CreationHandlers += OnBrowserCreated;
             browserWindow.Show();
 
-            settingsTab.Initialize(pluginStatusText);
             pluginScreenSpace.Controls.Add(settingsTab);
         }
 
@@ -33,9 +34,13 @@ namespace ACTBossTime
         }
         #endregion
 
-        private void OnBrowserReady(object sender, IWpfWebBrowser browser)
+        private void OnBrowserCreated(object sender, IWpfWebBrowser browser)
         {
-            browser.Load("C:\\Users\\enne\\ACT.BossTime\\html\\binding_test.html");
+            browser.RegisterJsObject("act", new BrowserBindings());
+            // FIXME: Make it possible to create more than one window.
+            // Tie loading html to the browser window creation and bindings to the
+            // browser creation.
+            browser.Load(settingsTab.HTMLFile());
         }
     }
 }

@@ -8,12 +8,8 @@ namespace ACTBossTime
     {
         public BrowserWindow()
         {
-            ReadyHandler = delegate {};
             InitializeComponent();
         }
-
-        public delegate void OnBrowserReady(object sender, IWpfWebBrowser browser);
-        public OnBrowserReady ReadyHandler { get; set; }
 
         private void Window_Activated(object sender, System.EventArgs e)
         {
@@ -21,8 +17,6 @@ namespace ACTBossTime
             // This is the source of the delay before the window appears.
             this.Width++;
             this.Width--;
-
-            ReadyHandler(this, BrowserControl.Browser);
         }
     }
 }

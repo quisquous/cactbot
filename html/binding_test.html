@@ -2,13 +2,52 @@
 <head>
 <style>
 .box {
-    background-color: blue;
-    opacity: 0.5;
-    width: 500px;
-    height:500px;
+    width: 1000px;
+    height: 500px;
+}
+div {
+    color: white;
+    text-shadow: 2px 2px black;
 }
 </style>
+<script>
+    var lastLine = "(unknown log)";
+    var zone = "(unknown zone)";
+    var rafCount = 0;
+
+    function updateLoop()
+    {
+        if (!window.act) {
+            var zoneDiv = document.getElementById("zone");
+            zoneDiv.innerText = "NOT BOUND";
+            return;
+        }
+
+        while (window.act.hasLogLines())
+            lastLine = window.act.nextLogLine();
+
+        var lineDiv = document.getElementById("logline");
+        lineDiv.innerText = lastLine;
+
+        zone = window.act.currentZone();
+
+        var zoneDiv = document.getElementById("zone");
+        zoneDiv.innerText = zone;
+
+        var counterDiv = document.getElementById("counter");
+        counterDiv.innerText = rafCount++;
+
+        window.requestAnimationFrame(updateLoop);
+    }
+
+    window.requestAnimationFrame(updateLoop);
+</script>
+</head>
 <body>
-<div class="box">Hello world</div>
+<div class="box">
+    <div id="logline"></div>
+    <div id="zone"></div>
+    <div id="counter"></div>
+</div>
 </body>
 </html>

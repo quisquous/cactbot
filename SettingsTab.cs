@@ -47,34 +47,32 @@ namespace ACTBossTime
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.htmlFile = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(434, 13);
+            this.label1.Size = new System.Drawing.Size(127, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "This is the user interface that appears as a new tab under the Plugins tab.  [REP" +
-                "LACE ME]";
-            //
-            // textBox1
-            //
-            this.textBox1.Location = new System.Drawing.Point(6, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(431, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Sample TextBox that has its value stored to the settings file automatically.";
-            //
-            // PluginSample
-            //
+            this.label1.Text = "Add filename to load here";
+            // 
+            // htmlFile
+            // 
+            this.htmlFile.Location = new System.Drawing.Point(6, 16);
+            this.htmlFile.Name = "htmlFile";
+            this.htmlFile.Size = new System.Drawing.Size(431, 20);
+            this.htmlFile.TabIndex = 1;
+            // 
+            // SettingsTab
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.htmlFile);
             this.Controls.Add(this.label1);
-            this.Name = "PluginSample";
+            this.Name = "SettingsTab";
             this.Size = new System.Drawing.Size(686, 384);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -83,7 +81,8 @@ namespace ACTBossTime
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox htmlFile;
+
 
         private System.Windows.Forms.Label label1;
 
@@ -96,6 +95,10 @@ namespace ACTBossTime
         Label lblStatus;    // The status label that appears in ACT's Plugin tab
         string settingsFile = Path.Combine(ActGlobals.oFormActMain.AppDataFolder.FullName, "Config\\PluginSample.config.xml");
         SettingsSerializer xmlSettings;
+
+        public string HTMLFile() {
+            return htmlFile.Text;
+        }
 
         public void Initialize(Label pluginStatusText)
         {
@@ -114,7 +117,7 @@ namespace ACTBossTime
 
         void LoadSettings()
         {
-            xmlSettings.AddControlSetting(textBox1.Name, textBox1);
+            xmlSettings.AddControlSetting(htmlFile.Name, htmlFile);
 
             if (File.Exists(settingsFile))
             {
