@@ -24,6 +24,17 @@ namespace ACTBossTime
             return FFXIV_ACT_Plugin.ACTWrapper.CurrentZone;
         }
 
+        public bool InCombat()
+        {
+            return FFXIV_ACT_Plugin.ACTWrapper.InCombat;
+        }
+
+        public void TextToSpeech(string speechText)
+        {
+            // FIXME: This appears to be synchronous.  Maybe kick the task to a thread?
+            Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(speechText);
+        }
+
         public bool HasLogLines()
         {
             return logLines.Count > 0;
