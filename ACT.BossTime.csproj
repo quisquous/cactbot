@@ -112,6 +112,7 @@
     <Compile Include="BrowserWindow.xaml.cs">
       <DependentUpon>BrowserWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FFXIVPluginHelper.cs" />
     <Compile Include="SettingsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
