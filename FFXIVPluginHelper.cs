@@ -118,6 +118,13 @@ namespace Cactbot
             return scanCombatants;
         }
 
+        private static void SetCombatantInfo(Combatant combatant, string propertyName, object obj, string fieldName)
+        {
+            FieldInfo fi = obj.GetType().GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo propertyInfo = combatant.GetType().GetProperty(propertyName);
+            propertyInfo.SetValue(combatant, Convert.ChangeType(fi.GetValue(obj), propertyInfo.PropertyType), null);
+        }
+
         public static List<Combatant> GetCombatantList()
         {
             List<Combatant> result = new List<Combatant>();
@@ -135,24 +142,24 @@ namespace Cactbot
                 {
                     foreach (object temp in (Array)tmp)
                     {
-                        if (temp == null) break;
+                        if (temp == null)
+                            break;
 
                         Combatant combatant = new Combatant();
 
-                        fi = temp.GetType().GetField("ID", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.ID = (uint)fi.GetValue(temp);
-                        fi = temp.GetType().GetField("OwnerID", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.OwnerID = (uint)fi.GetValue(temp);
-                        fi = temp.GetType().GetField("Job", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.Job = (int)fi.GetValue(temp);
-                        fi = temp.GetType().GetField("Name", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.Name = (string)fi.GetValue(temp);
-                        fi = temp.GetType().GetField("CurrentTP", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.CurrentTP = (int)fi.GetValue(temp);
-                        fi = temp.GetType().GetField("CurrentHP", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.CurrentHP = (int)fi.GetValue(temp);
-                        fi = temp.GetType().GetField("MaxHP", BindingFlags.Public | BindingFlags.Instance);
-                        combatant.MaxHP = (int)fi.GetValue(temp);
+                        SetCombatantInfo(combatant, "ID", temp, "ID");
+                        SetCombatantInfo(combatant, "OwnerID", temp, "OwnerID");
+                        SetCombatantInfo(combatant, "Job", temp, "Job");
+                        SetCombatantInfo(combatant, "Name", temp, "Name");
+                        SetCombatantInfo(combatant, "CurrentHP", temp, "CurrentHP");
+                        SetCombatantInfo(combatant, "CurrentMP", temp, "CurrentMP");
+                        SetCombatantInfo(combatant, "CurrentTP", temp, "CurrentTP");
+                        SetCombatantInfo(combatant, "MaxHP", temp, "MaxHP");
+                        SetCombatantInfo(combatant, "MaxMP", temp, "MaxMP");
+                        SetCombatantInfo(combatant, "MaxTP", temp, "MaxTP");
+                        SetCombatantInfo(combatant, "PosX", temp, "PosX");
+                        SetCombatantInfo(combatant, "PosY", temp, "PosY");
+                        SetCombatantInfo(combatant, "PosZ", temp, "PosZ");
 
                         result.Add(combatant);
                     }
@@ -411,5 +418,9 @@ namespace Cactbot
         public int CurrentMP { get; set; }
         public int MaxMP { get; set; }
         public int CurrentTP { get; set; }
+        public int MaxTP { get; set; }
+        public float PosX { get; set; }
+        public float PosY { get; set; }
+        public float PosZ { get; set; }
     }
 }
