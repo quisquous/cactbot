@@ -2,7 +2,7 @@ using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin;
 using System.Collections.Generic;
 
-namespace ACTBossTime
+namespace Cactbot
 {
     public class BrowserBindings
     {

@@ -29,7 +29,7 @@ using Advanced_Combat_Tracker;
 using System.Runtime.InteropServices;
 
 
-namespace ACTBossTime
+namespace Cactbot
 {
     public static class FFXIVPluginHelper
     {

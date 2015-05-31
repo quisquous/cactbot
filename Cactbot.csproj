@@ -9,8 +9,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ACT.BossTime</RootNamespace>
-    <AssemblyName>ACT.BossTime</AssemblyName>
+    <RootNamespace>Cactbot</RootNamespace>
+    <AssemblyName>Cactbot</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>

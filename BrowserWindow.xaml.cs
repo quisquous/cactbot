@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Interop;
 
-namespace ACTBossTime
+namespace Cactbot
 {
     public partial class BrowserWindow : Window
     {

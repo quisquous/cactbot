@@ -4,7 +4,7 @@ using CefSharp.Wpf;
 using System;
 using System.Windows.Forms;
 
-namespace ACTBossTime
+namespace Cactbot
 {
     public class ACTPlugin : IActPluginV1
     {

@@ -1,7 +1,7 @@
 ﻿using CefSharp.Wpf;
 using System.Windows.Controls;
 
-namespace ACTBossTime
+namespace Cactbot
 {
     public partial class BrowserControl : UserControl
     {

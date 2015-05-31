@@ -15,7 +15,7 @@ using System.Xml;
 [assembly: AssemblyCompany("Aditu of Permafrost")]
 [assembly: AssemblyVersion("1.0.0.1")]
 
-namespace ACTBossTime
+namespace Cactbot
 {
     public class SettingsTab : UserControl
     {
