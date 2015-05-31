@@ -15,8 +15,7 @@ div {
     var zone = "(unknown zone)";
     var rafCount = 0;
 
-    function updateLoop()
-    {
+    function updateLoop() {
         if (!window.act) {
             var zoneDiv = document.getElementById("zone");
             zoneDiv.innerText = "NOT BOUND";
@@ -41,6 +40,19 @@ div {
     }
 
     window.requestAnimationFrame(updateLoop);
+
+    function combatantMap() {
+        var map = {};
+
+        var count = window.act.numCombatants();
+        for (var i = 0; i < count; ++i) {
+            var combatant = window.act.getCombatant(i);
+            // FIXME: "iD" camelcase is very odd.
+            map[combatant.iD] = combatant;
+        }
+
+        return map;
+    }
 </script>
 </head>
 <body>

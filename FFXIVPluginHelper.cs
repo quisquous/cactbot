@@ -103,8 +103,8 @@ namespace ACTBossTime
 
         private static object GetScanCombatants()
         {
-            FieldInfo fi = _plugin.pluginObj.GetType().GetField("_Memory", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
-            var memory = fi.GetValue(_plugin.pluginObj);
+            FieldInfo fi = Instance.pluginObj.GetType().GetField("_Memory", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+            var memory = fi.GetValue(Instance.pluginObj);
             if (memory == null) return null;
 
             fi = memory.GetType().GetField("_config", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
@@ -399,17 +399,17 @@ namespace ACTBossTime
 
     public class Combatant
     {
-        public uint ID;
-        public uint OwnerID;
-        public int Order;
-        public byte type;
-        public int Job;
-        public int Level;
-        public string Name;
-        public int CurrentHP;
-        public int MaxHP;
-        public int CurrentMP;
-        public int MaxMP;
-        public int CurrentTP;
+        public uint ID { get; set; }
+        public uint OwnerID { get; set; }
+        public int Order { get; set; }
+        public byte type { get; set; }
+        public int Job { get; set; }
+        public int Level { get; set; }
+        public string Name { get; set; }
+        public int CurrentHP { get; set; }
+        public int MaxHP { get; set; }
+        public int CurrentMP { get; set; }
+        public int MaxMP { get; set; }
+        public int CurrentTP { get; set; }
     }
 }
