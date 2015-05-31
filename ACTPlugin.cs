@@ -41,6 +41,7 @@ namespace Cactbot
             // Tie loading html to the browser window creation and bindings to the
             // browser creation.
             browser.Load(settingsTab.HTMLFile());
+            browser.ShowDevTools();
         }
     }
 }
