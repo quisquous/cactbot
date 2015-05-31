@@ -58,6 +58,13 @@ namespace Cactbot
             return combatants[idx];
         }
 
+        // Provided as a helper function as GetCombatant(0) is a total hack and
+        // maybe something more reliable can be found.
+        public Combatant GetPlayer()
+        {
+            UpdateCombatants();
+            return GetCombatant(0);
+        }
 
         // FIXME: javascript should probably register for loglines it cares about?
         // This is a hella awkward interface.
