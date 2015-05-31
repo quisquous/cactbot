@@ -10,10 +10,9 @@ using System.IO;
 using System.Reflection;
 using System.Xml;
 
-[assembly: AssemblyTitle("Sample Plugin")]
-[assembly: AssemblyDescription("A sample of an ACT plugin that is a UserControl and uses a settings file")]
-[assembly: AssemblyCompany("Aditu of Permafrost")]
-[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyTitle("Cactbot")]
+[assembly: AssemblyDescription("Chromium ACT Bindings Overlay")]
+[assembly: AssemblyVersion("0.0.0.1")]
 
 namespace Cactbot
 {
