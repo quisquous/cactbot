@@ -15,11 +15,6 @@ namespace Cactbot
         public delegate void OnBrowserCreation(object sender, IWpfWebBrowser browser);
         public OnBrowserCreation CreationHandlers { get; set; }
 
-        public class BoundObject
-        {
-            public string MyProperty { get; set; }
-        }
-
         private IWpfWebBrowser webBrowser;
         public IWpfWebBrowser WebBrowser
         {
@@ -29,9 +24,6 @@ namespace Cactbot
             }
             set
             {
-                if (value != null)
-                    value.RegisterJsObject("bound", new BoundObject());
-
                 if (webBrowser == value)
                     return;
                 
