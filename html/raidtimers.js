@@ -1,58 +1,16 @@
-var fakeBoss = {
-    bossName: "Angry Bees",
-    zone: "Xanadu",
-    enrageSeconds: 720,
-    triggerPhrase: "The hive will be closed off",
-    phases: [
-        {
-            title: "Phase 1 (stinging)",
-            loop: false,
-            endSeconds: 15,
-            rotation: [
-                { name: "Poke", time: 3},
-                { name: "Prod", time: 5},
-                { name: "Slam", time: 8},
-                { name: "Poke", time: 10},
-                { name: "Prod", time: 12},
-            ],
-        },
-        {
-            title: "Phase 2 (angry buzzing)",
-            loop: true,
-            loopSeconds: 10,
-            endHpPercent: 61,
-            rotation: [
-                { name: "Buzz", time: 2.5},
-                { name: "Fizz", time: 4},
-                { name: "Buzzzzzzzz", time: 5},
-                { name: "Blink About", time: 8},
-            ],
-        },
-        {
-            title: "Phase 3 (enrage)",
-            loop: true,
-            loopSeconds: 5,
-            // TODO: for hp-based transitions, probably need a calibrating log
-            rotation: [
-                { name: "BEES", time: 0 },
-                { name: "BEES!!!", time: 4 }
-            ],
-        },
-    ],
-};
+var RotationManager = function() {
+    this.filters = [];
 
-var RotationManager = function(updateCallback) {
-    this.bosses = [];
-    this.updateCallback = updateCallback;
-
+    this.currentZone = null;
     this.currentBoss = null;
     this.currentBossStartTime = null
     this.currentPhase = null;
     this.currentPhaseStartTime = null;
+    this.currentRotation = [];
 };
 
-RotationManager.prototype.register = function(boss) {
-    this.bosses.push(boss);
+RotationManager.prototype.register = function(filter) {
+    this.filters.push(filter);
 };
 
 RotationManager.prototype.startBoss = function(boss) {
@@ -64,10 +22,12 @@ RotationManager.prototype.startBoss = function(boss) {
 
 RotationManager.prototype.endBoss = function() {
     // TODO: record final time, etc
+    this.currentZone = null;
     this.currentBoss = null;
     this.currentBossStartTime = null
     this.currentPhase = null;
     this.currentPhaseStartTime = null;
+    this.currentRotation = [];
 };
 
 RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
@@ -77,9 +37,45 @@ RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
     this.currentPhaseStartTime = currentTime;
 }
 
-RotationManager.prototype.tick = function(currentTime) {
+RotationManager.prototype.tick = function (currentTime) {
+    var currentZone = window.act.currentZone();
+    if (!this.currentZone) {
+        this.currentZone = currentZone;
+    }
+    if (this.currentZone != currentZone) {
+        this.currentZone = currentZone;
+        this.endBoss();
+    }
+
+    // Log entries before ticking.
+    var activeFilters = [];
+
+    for (var i = 0; i < this.filters.length; ++i) {
+        if (this.filters[i].filtersZone(currentZone)) {
+            activeFilters.push(this.filters[i]);
+        }
+    }
+
+    while (window.act.hasLogLines()) {
+        var line = window.act.nextLogLine();
+        for (var i = 0; i < activeFilters.length; ++i) {
+            activeFilters[i].processLog(line);
+        }
+    }
+
+    for (var i = 0; i < activeFilters.length; ++i) {
+        activeFilters[i].tick(currentTime);
+    }
+
+    // FIXME: Separate out bosses from RotationManager.
+    // Make each area do it itself.
     if (!this.currentBoss) {
         // TODO: show likely boss given current zone
+        return;
+    }
+
+    if (!window.act.inCombat()) {
+        this.endBoss();
         return;
     }
 
@@ -99,13 +95,9 @@ RotationManager.prototype.tick = function(currentTime) {
         }
     }
 
-    var bossPercent = act.hpPercentByName(this.currentBoss);
-    if (bossPercent <= 0) {
-        this.endBoss();
-        return;
-    }
-
-    if (phase.endHpPercent) {
+    // FIXME: check if the boss exists, as this currently returns 0 if not.
+    var bossPercent = hpPercentByName(this.currentBoss.bossName);
+    if (phase.endHpPercent && bossPercent) {
         if (bossPercent < phase.endHpPercent) {
             this.startPhase(this.currentPhase + 1, currentTime);
         }
@@ -115,6 +107,7 @@ RotationManager.prototype.tick = function(currentTime) {
     var seconds = (currentTime.getTime() - this.currentPhaseStartTime.getTime()) / 1000;
     var adjustedStartTime = this.currentPhaseStartTime;
     if (phase.loop) {
+        // FIXME: assert if no loopSeconds.
         seconds = seconds % phase.loopSeconds;
         adjustedStartTime = addTime(currentTime, -seconds);
     }
@@ -144,17 +137,7 @@ RotationManager.prototype.tick = function(currentTime) {
         }
     }
 
-    // TODO: Maybe just access this off rotation manager.
-    // Passing it seemed like a cleaner way to test, but this is out of hand.
-    var updateInfo = {
-        boss: this.currentBoss,
-        bossStartTime: this.currentBossStartTime,
-        phase: this.currentBoss.phases[this.currentPhase],
-        nextPhase: this.currentBoss.phases[this.currentPhase + 1],
-        rotation: rotation,
-        phaseStartTime: this.currentPhaseStartTime,
-    };
-    this.updateCallback(updateInfo);
+    this.currentRotation = rotation;
 }
 
 RotationManager.prototype.processLogLine = function(logLine) {
@@ -171,10 +154,14 @@ var RaidTimersBinding = function() {
     this.register('nextTitle', 'nextphasetitle', this.updateInnerText, '');
     this.register('nextCondition', 'nextphasecondition', this.updateInnerText, '');
     this.register('rotation', 'rotation', this.updateRotation, []);
+
+    this.clear();
 };
 
 RaidTimersBinding.prototype.clear = function() {
-    // TODO
+    for (var id in this.initialValues) {
+        this.setterInner(id, this.initialValues[id]);
+    }
 };
 
 RaidTimersBinding.prototype.register = function(id, elementName, func, initial) {
@@ -185,9 +172,6 @@ RaidTimersBinding.prototype.register = function(id, elementName, func, initial) 
     this.boundElementNames[id] = elementName;
     this.boundFuncs[id] = func;
     this.initialValues[id] = initial;
-
-    // TODO: let caller call initial clear?
-    this.setterInner(id, initial);
 };
 
 RaidTimersBinding.prototype.setterInner = function(id, value) {
@@ -257,63 +241,265 @@ function formatTime(totalSeconds) {
     return str;
 }
 
-var bindings = new RaidTimersBinding();
+var bindings;
 
-function updateFunc(updateInfo) {
-    // Has the fight started?
+function hpPercentByName(name) {
+    var combatant = window.combatantByName[name];
+    if (!combatant)
+        return 0;
+    return 100 * combatant.currentHP / combatant.maxHP;
+}
 
-    var percent = act.hpPercentByName(updateInfo.boss.bossName);
+function updateFunc() {
+    var boss = rotationManager.currentBoss;
+    if (!boss)
+        return;
+
+    var percent = hpPercentByName(boss.bossName);
     percent = Math.floor(percent); // TODO: add one decimal point
-    bindings.setTitle(updateInfo.boss.bossName + ": " + percent + "%");
+    bindings.setTitle(boss.bossName + ": " + percent + "%");
 
     var currentTime = new Date();
 
-    var enrageSeconds = updateInfo.boss.enrageSeconds;
+    var enrageSeconds = boss.enrageSeconds;
     if (enrageSeconds) {
-        var enrage = addTime(updateInfo.bossStartTime, enrageSeconds);
+        var enrage = addTime(rotationManager.currentBossStartTime, enrageSeconds);
         bindings.setEnrage("Enrage: " + formatTimeDiff(enrage, currentTime));
     } else {
         bindings.setEnrage('');
     }
 
+    var currentPhase = boss.phases[rotationManager.currentPhase];
+    var nextPhase = boss.phases[rotationManager.currentPhase + 1];
+
     // TODO: Add one rotation from next phase as well when it gets
     // close in time or percentage? Or always?
     var nextPhaseTitle = "";
     var nextPhaseTime = "";
-    if (updateInfo.nextPhase) {
-        nextPhaseTitle = updateInfo.nextPhase.title;
-        if (updateInfo.phase.endSeconds) {
-            var phaseEndTime = addTime(updateInfo.phaseStartTime, updateInfo.phase.endSeconds);
+    if (nextPhase) {
+        nextPhaseTitle = nextPhase.title;
+        if (currentPhase.endSeconds) {
+            var phaseEndTime = addTime(rotationManager.currentPhaseStartTime, currentPhase.endSeconds);
             nextPhaseTime = formatTimeDiff(phaseEndTime, currentTime);
-        } else if (updateInfo.phase.endHpPercent) {
-            nextPhaseTime = updateInfo.phase.endHpPercent + "%";
+        } else if (currentPhase.endHpPercent) {
+            nextPhaseTime = currentPhase.endHpPercent + "%";
         }
     }
     bindings.setNextTitle(nextPhaseTitle);
     bindings.setNextCondition(nextPhaseTime);
 
-    bindings.setRotation(updateInfo.rotation);
+    bindings.setRotation(rotationManager.currentRotation);
 }
 
-var rotationManager = new RotationManager(updateFunc);
+var BaseTickable = function (rotationManager) {
+    this.rotationManager = rotationManager;
+};
+BaseTickable.prototype.filtersZone = function (zone) {
+    if (!this.zoneFilter)
+        return true;
+    return this.zoneFilter === zone;
+};
+BaseTickable.prototype.tick = function (currentTime) { };
+
+BaseTickable.prototype.processLog = function (log) {
+    if (log.indexOf("will be sealed off") != -1) {
+        for (var i = 0; i < this.bosses.length; ++i) {
+            if (log.indexOf(this.bosses[i].areaSeal) == -1)
+                continue;
+            // FIXME: Use log entry time to start?
+            this.rotationManager.startBoss(this.bosses[i]);
+            break;
+        }
+    } else if (log.indexOf("is no longer sealed") != -1) {
+        for (var i = 0; i < this.bosses.length; ++i) {
+            if (log.indexOf(this.bosses[i].areaSeal) == -1)
+                continue;
+            this.rotationManager.endBoss();
+            break;
+        }
+    }
+};
+
+var einhander = {
+    bossName: "Einhander",
+    areaSeal: "The agrius",
+    phases: [
+        {
+            title: "Phase 1, maybe",
+            loop: true,
+            loopSeconds: 70,
+            rotation: [
+                { name: "Flamethrower", time: 7 },
+                { name: "Flamethrower", time: 18 },
+                // I think there's a jump, percentage, phase shift before heavy swing?
+                { name: "Heavy Swing", time: 31 },
+                { name: "Flamethrower", time: 35 },
+                { name: "Heavy Swing", time: 46 },
+                { name: "Flamethrower", time: 50 },
+                { name: "Heavy Swing", time: 63 },
+            ],
+            postrotation: [
+                // FIXME: do something with this.
+                { text: "Some more adds" },
+            ],
+        },
+    ],
+};
+
+var gunship = {
+    bossName: "The magitek gunship",
+    areaSeal: "The ceruleum spill",
+    phases: [
+        {
+            title: "Phase 1",
+            loop: true,
+            loopSeconds: 70,
+            rotation: [
+            ],
+            postrotation: [
+                { text: "Even more adds" },
+            ],
+        },
+    ],
+};
+
+var midgardsormr = {
+    bossName: "Midgardsormr",
+    areaSeal: "The Forsworn Promise",
+    phases: [
+        {
+            title: "Phase 1",
+            loop: true,
+            loopSeconds: 70,
+            rotation: [
+            ],
+        },
+    ],
+};
+
+var KeeperOfTheLake = function () {
+    BaseTickable.apply(this, arguments);
+    this.zoneFilter = "The Keeper Of The Lake";
+    this.bosses = [einhander, gunship, midgardsormr];
+};
+KeeperOfTheLake.prototype = new BaseTickable;
+
+var fakeBoss = {
+    bossName: "Angry Bees",
+    zone: "Xanadu",
+    enrageSeconds: 720,
+    areaSeal: "The hive",
+    phases: [
+        {
+            title: "Phase 1 (stinging)",
+            loop: false,
+            endSeconds: 15,
+            rotation: [
+                { name: "Poke", time: 3 },
+                { name: "Prod", time: 5 },
+                { name: "Slam", time: 8 },
+                { name: "Poke", time: 10 },
+                { name: "Prod", time: 12 },
+            ],
+        },
+        {
+            title: "Phase 2 (angry buzzing)",
+            loop: true,
+            loopSeconds: 10,
+            endHpPercent: 61,
+            rotation: [
+                { name: "Buzz", time: 2.5 },
+                { name: "Fizz", time: 4 },
+                { name: "Buzzzzzzzz", time: 5 },
+                { name: "Blink About", time: 8 },
+            ],
+        },
+        {
+            title: "Phase 3 (enrage)",
+            loop: true,
+            loopSeconds: 5,
+            // TODO: for hp-based transitions, probably need a calibrating log
+            rotation: [
+                { name: "BEES", time: 0 },
+                { name: "BEES!!!", time: 4 }
+            ],
+        },
+    ],
+};
+
+var TestArea = function () {
+    BaseTickable.apply(this, arguments);
+    this.zoneFilter = "Xanadu";
+    this.bosses = [fakeBoss];
+};
+TestArea.prototype = new BaseTickable;
+
+var rotationManager = new RotationManager();
 function testingInit() {
-    rotationManager.register(fakeBoss);
-    rotationManager.startBoss(fakeBoss);
+    if (window.fakeact) {
+        var testArea = new TestArea(rotationManager);
+        rotationManager.register(testArea);
+        rotationManager.startBoss(testArea.bosses[0]);
+    }
+    rotationManager.register(new KeeperOfTheLake(rotationManager));
 }
 testingInit();
 
+// FIXME: Move these out to an act helper.
+function makeCombatantByIdMap() {
+    var map = {};
+
+    var count = window.act.numCombatants();
+    for (var i = 0; i < count; ++i) {
+        var combatant = window.act.getCombatant(i);
+        // FIXME: "iD" camelcase is very odd.
+        map[combatant.iD] = combatant;
+    }
+
+    return map;
+}
+
+function makeCombatantByNameMap() {
+    var map = {};
+    var collisions = [];
+
+    var count = window.act.numCombatants();
+    for (var i = 0; i < count; ++i) {
+        var combatant = window.act.getCombatant(i);
+        if (map[combatant.name]) {
+            collisions.push(combatant.name);
+            continue;
+        }
+        map[combatant.name] = combatant;
+    }
+
+    for (var i = 0; i < collisions.length; ++i) {
+        delete map[collisions[i]];
+    }
+
+    return map;
+}
+
 var i = 0;
 function rafLoop() {
+    if (!window.bindings) {
+        window.bindings = new RaidTimersBinding();
+    }
+
     if (!window.act) {
         window.requestAnimationFrame(rafLoop);
         return;
     }
 
+    window.combatantById = makeCombatantByIdMap();
+    window.combatantByName = makeCombatantByNameMap();
+
     var currentTime = new Date();
 
     rotationManager.tick(currentTime);
+    // FIXME: These bindings are weird.
+    updateFunc();
 
-    if (i++ < 200)
     window.requestAnimationFrame(rafLoop);
 
 }
