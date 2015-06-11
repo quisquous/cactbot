@@ -1,4 +1,4 @@
-var RotationManager = function() {
+var UpdateRegistrar = function() {
     this.filters = [];
 
     this.currentZone = null;
@@ -9,18 +9,18 @@ var RotationManager = function() {
     this.currentRotation = [];
 };
 
-RotationManager.prototype.register = function(filter) {
+UpdateRegistrar.prototype.register = function(filter) {
     this.filters.push(filter);
 };
 
-RotationManager.prototype.startBoss = function(boss) {
+UpdateRegistrar.prototype.startBoss = function(boss) {
     var currentTime = new Date();
     this.currentBoss = boss;
     this.currentBossStartTime = currentTime;
     this.startPhase(0, currentTime);
 }
 
-RotationManager.prototype.endBoss = function() {
+UpdateRegistrar.prototype.endBoss = function() {
     // TODO: record final time, etc
     this.currentZone = null;
     this.currentBoss = null;
@@ -30,14 +30,14 @@ RotationManager.prototype.endBoss = function() {
     this.currentRotation = [];
 };
 
-RotationManager.prototype.startPhase = function(phaseNumber, currentTime) {
+UpdateRegistrar.prototype.startPhase = function(phaseNumber, currentTime) {
     if (this.currentPhase === phaseNumber)
         return;
     this.currentPhase = phaseNumber;
     this.currentPhaseStartTime = currentTime;
 }
 
-RotationManager.prototype.tick = function (currentTime) {
+UpdateRegistrar.prototype.tick = function (currentTime) {
     var currentZone = window.act.currentZone();
     if (!this.currentZone) {
         this.currentZone = currentZone;
@@ -67,7 +67,7 @@ RotationManager.prototype.tick = function (currentTime) {
         activeFilters[i].tick(currentTime);
     }
 
-    // FIXME: Separate out bosses from RotationManager.
+    // FIXME: Separate out bosses from UpdateRegistrar.
     // Make each area do it itself.
     if (!this.currentBoss) {
         // TODO: show likely boss given current zone
@@ -140,7 +140,7 @@ RotationManager.prototype.tick = function (currentTime) {
     this.currentRotation = rotation;
 }
 
-RotationManager.prototype.processLogLine = function(logLine) {
+UpdateRegistrar.prototype.processLogLine = function(logLine) {
 }
 
 var RaidTimersBinding = function() {
@@ -251,7 +251,7 @@ function hpPercentByName(name) {
 }
 
 function updateFunc() {
-    var boss = rotationManager.currentBoss;
+    var boss = updateRegistrar.currentBoss;
     if (!boss)
         return;
 
@@ -263,14 +263,14 @@ function updateFunc() {
 
     var enrageSeconds = boss.enrageSeconds;
     if (enrageSeconds) {
-        var enrage = addTime(rotationManager.currentBossStartTime, enrageSeconds);
+        var enrage = addTime(updateRegistrar.currentBossStartTime, enrageSeconds);
         bindings.setEnrage("Enrage: " + formatTimeDiff(enrage, currentTime));
     } else {
         bindings.setEnrage('');
     }
 
-    var currentPhase = boss.phases[rotationManager.currentPhase];
-    var nextPhase = boss.phases[rotationManager.currentPhase + 1];
+    var currentPhase = boss.phases[updateRegistrar.currentPhase];
+    var nextPhase = boss.phases[updateRegistrar.currentPhase + 1];
 
     // TODO: Add one rotation from next phase as well when it gets
     // close in time or percentage? Or always?
@@ -279,7 +279,7 @@ function updateFunc() {
     if (nextPhase) {
         nextPhaseTitle = nextPhase.title;
         if (currentPhase.endSeconds) {
-            var phaseEndTime = addTime(rotationManager.currentPhaseStartTime, currentPhase.endSeconds);
+            var phaseEndTime = addTime(updateRegistrar.currentPhaseStartTime, currentPhase.endSeconds);
             nextPhaseTime = formatTimeDiff(phaseEndTime, currentTime);
         } else if (currentPhase.endHpPercent) {
             nextPhaseTime = currentPhase.endHpPercent + "%";
@@ -288,11 +288,11 @@ function updateFunc() {
     bindings.setNextTitle(nextPhaseTitle);
     bindings.setNextCondition(nextPhaseTime);
 
-    bindings.setRotation(rotationManager.currentRotation);
+    bindings.setRotation(updateRegistrar.currentRotation);
 }
 
-var BaseTickable = function (rotationManager) {
-    this.rotationManager = rotationManager;
+var BaseTickable = function (updateRegistrar) {
+    this.updateRegistrar = updateRegistrar;
 };
 BaseTickable.prototype.filtersZone = function (zone) {
     if (!this.zoneFilter)
@@ -307,14 +307,14 @@ BaseTickable.prototype.processLog = function (log) {
             if (log.indexOf(this.bosses[i].areaSeal) == -1)
                 continue;
             // FIXME: Use log entry time to start?
-            this.rotationManager.startBoss(this.bosses[i]);
+            this.updateRegistrar.startBoss(this.bosses[i]);
             break;
         }
     } else if (log.indexOf("is no longer sealed") != -1) {
         for (var i = 0; i < this.bosses.length; ++i) {
             if (log.indexOf(this.bosses[i].areaSeal) == -1)
                 continue;
-            this.rotationManager.endBoss();
+            this.updateRegistrar.endBoss();
             break;
         }
     }
@@ -434,14 +434,14 @@ var TestArea = function () {
 };
 TestArea.prototype = new BaseTickable;
 
-var rotationManager = new RotationManager();
+var updateRegistrar = new UpdateRegistrar();
 function testingInit() {
     if (window.fakeact) {
-        var testArea = new TestArea(rotationManager);
-        rotationManager.register(testArea);
-        rotationManager.startBoss(testArea.bosses[0]);
+        var testArea = new TestArea(updateRegistrar);
+        updateRegistrar.register(testArea);
+        updateRegistrar.startBoss(testArea.bosses[0]);
     }
-    rotationManager.register(new KeeperOfTheLake(rotationManager));
+    updateRegistrar.register(new KeeperOfTheLake(updateRegistrar));
 }
 testingInit();
 
@@ -496,7 +496,7 @@ function rafLoop() {
 
     var currentTime = new Date();
 
-    rotationManager.tick(currentTime);
+    updateRegistrar.tick(currentTime);
     // FIXME: These bindings are weird.
     updateFunc();
 
