@@ -1,83 +1,32 @@
-var UpdateRegistrar = function() {
-    this.filters = [];
-
-    this.currentZone = null;
-    this.currentBoss = null;
-    this.currentBossStartTime = null
-    this.currentPhase = null;
-    this.currentPhaseStartTime = null;
-    this.currentRotation = [];
+var BossStateMachine = function () {
+    this.end();
 };
 
-UpdateRegistrar.prototype.register = function(filter) {
-    this.filters.push(filter);
-};
-
-UpdateRegistrar.prototype.startBoss = function(boss) {
+BossStateMachine.prototype.startBoss = function (boss) {
     var currentTime = new Date();
     this.currentBoss = boss;
     this.currentBossStartTime = currentTime;
     this.startPhase(0, currentTime);
-}
+};
 
-UpdateRegistrar.prototype.endBoss = function() {
-    // TODO: record final time, etc
-    this.currentZone = null;
+BossStateMachine.prototype.end = function () {
     this.currentBoss = null;
-    this.currentBossStartTime = null
     this.currentPhase = null;
+    this.currentBossStartTime = null;
     this.currentPhaseStartTime = null;
     this.currentRotation = [];
 };
 
-UpdateRegistrar.prototype.startPhase = function(phaseNumber, currentTime) {
+BossStateMachine.prototype.startPhase = function (phaseNumber, currentTime) {
     if (this.currentPhase === phaseNumber)
         return;
     this.currentPhase = phaseNumber;
     this.currentPhaseStartTime = currentTime;
-}
+};
 
-UpdateRegistrar.prototype.tick = function (currentTime) {
-    var currentZone = window.act.currentZone();
-    if (!this.currentZone) {
-        this.currentZone = currentZone;
-    }
-    if (this.currentZone != currentZone) {
-        this.currentZone = currentZone;
-        this.endBoss();
-    }
-
-    // Log entries before ticking.
-    var activeFilters = [];
-
-    for (var i = 0; i < this.filters.length; ++i) {
-        if (this.filters[i].filtersZone(currentZone)) {
-            activeFilters.push(this.filters[i]);
-        }
-    }
-
-    while (window.act.hasLogLines()) {
-        var line = window.act.nextLogLine();
-        for (var i = 0; i < activeFilters.length; ++i) {
-            activeFilters[i].processLog(line);
-        }
-    }
-
-    for (var i = 0; i < activeFilters.length; ++i) {
-        activeFilters[i].tick(currentTime);
-    }
-
-    // FIXME: Separate out bosses from UpdateRegistrar.
-    // Make each area do it itself.
-    if (!this.currentBoss) {
-        // TODO: show likely boss given current zone
+BossStateMachine.prototype.tick = function (currentTime) {
+    if (!this.currentBoss)
         return;
-    }
-
-    if (!window.act.inCombat()) {
-        this.endBoss();
-        return;
-    }
 
     if (this.currentBoss.enrageSeconds) {
         var enrage = addTime(currentTime, this.currentBoss.enrageSeconds);
@@ -138,6 +87,58 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
     }
 
     this.currentRotation = rotation;
+};
+
+var UpdateRegistrar = function () {
+    this.filters = [];
+    this.currentZone = window.act.currentZone();
+};
+
+UpdateRegistrar.prototype.register = function(filter) {
+    this.filters.push(filter);
+    var currentZone = window.act.currentZone();
+    if (filter.filtersZone(currentZone)) {
+        filter.enterZone(currentZone);
+    }
+};
+
+UpdateRegistrar.prototype.tick = function (currentTime) {
+    var currentZone = window.act.currentZone();
+    if (this.currentZone != currentZone) {
+        for (var i = 0; i < this.filters.length; ++i) {
+            if (this.filters[i].filtersZone(this.currentZone)) {
+                this.filters[i].leaveZone(this.currentZone);
+            }
+        }
+
+        this.currentZone = currentZone;
+
+        for (var i = 0; i < this.filters.length; ++i) {
+            if (this.filters[i].filtersZone(this.currentZone)) {
+                this.filters[i].enterZone(this.currentZone);
+            }
+        }
+    }
+
+    // Log entries before ticking.
+    var activeFilters = [];
+
+    for (var i = 0; i < this.filters.length; ++i) {
+        if (this.filters[i].filtersZone(currentZone)) {
+            activeFilters.push(this.filters[i]);
+        }
+    }
+
+    while (window.act.hasLogLines()) {
+        var line = window.act.nextLogLine();
+        for (var i = 0; i < activeFilters.length; ++i) {
+            activeFilters[i].processLog(line);
+        }
+    }
+
+    for (var i = 0; i < activeFilters.length; ++i) {
+        activeFilters[i].tick(currentTime);
+    }
 }
 
 UpdateRegistrar.prototype.processLogLine = function(logLine) {
@@ -250,8 +251,8 @@ function hpPercentByName(name) {
     return 100 * combatant.currentHP / combatant.maxHP;
 }
 
-function updateFunc() {
-    var boss = updateRegistrar.currentBoss;
+function updateFunc(bossStateMachine) {
+    var boss = bossStateMachine.currentBoss;
     if (!boss)
         return;
 
@@ -263,14 +264,14 @@ function updateFunc() {
 
     var enrageSeconds = boss.enrageSeconds;
     if (enrageSeconds) {
-        var enrage = addTime(updateRegistrar.currentBossStartTime, enrageSeconds);
+        var enrage = addTime(bossStateMachine.currentBossStartTime, enrageSeconds);
         bindings.setEnrage("Enrage: " + formatTimeDiff(enrage, currentTime));
     } else {
         bindings.setEnrage('');
     }
 
-    var currentPhase = boss.phases[updateRegistrar.currentPhase];
-    var nextPhase = boss.phases[updateRegistrar.currentPhase + 1];
+    var currentPhase = boss.phases[bossStateMachine.currentPhase];
+    var nextPhase = boss.phases[bossStateMachine.currentPhase + 1];
 
     // TODO: Add one rotation from next phase as well when it gets
     // close in time or percentage? Or always?
@@ -279,7 +280,7 @@ function updateFunc() {
     if (nextPhase) {
         nextPhaseTitle = nextPhase.title;
         if (currentPhase.endSeconds) {
-            var phaseEndTime = addTime(updateRegistrar.currentPhaseStartTime, currentPhase.endSeconds);
+            var phaseEndTime = addTime(bossStateMachine.currentPhaseStartTime, currentPhase.endSeconds);
             nextPhaseTime = formatTimeDiff(phaseEndTime, currentTime);
         } else if (currentPhase.endHpPercent) {
             nextPhaseTime = currentPhase.endHpPercent + "%";
@@ -288,18 +289,29 @@ function updateFunc() {
     bindings.setNextTitle(nextPhaseTitle);
     bindings.setNextCondition(nextPhaseTime);
 
-    bindings.setRotation(updateRegistrar.currentRotation);
+    bindings.setRotation(bossStateMachine.currentRotation);
 }
 
-var BaseTickable = function (updateRegistrar) {
-    this.updateRegistrar = updateRegistrar;
+var BaseTickable = function () {
+    this.boss = new BossStateMachine();
 };
+
+BaseTickable.prototype.enterZone = function (zone) {
+};
+
+BaseTickable.prototype.leaveZone = function (zone) {
+};
+
 BaseTickable.prototype.filtersZone = function (zone) {
     if (!this.zoneFilter)
         return true;
     return this.zoneFilter === zone;
 };
-BaseTickable.prototype.tick = function (currentTime) { };
+BaseTickable.prototype.tick = function (currentTime) {
+    this.boss.tick(currentTime);
+    // FIXME: This isn't a great place to glue a state machine to bindings.
+    updateFunc(this.boss);
+};
 
 BaseTickable.prototype.processLog = function (log) {
     if (log.indexOf("will be sealed off") != -1) {
@@ -307,14 +319,14 @@ BaseTickable.prototype.processLog = function (log) {
             if (log.indexOf(this.bosses[i].areaSeal) == -1)
                 continue;
             // FIXME: Use log entry time to start?
-            this.updateRegistrar.startBoss(this.bosses[i]);
+            this.boss.startBoss(this.bosses[i]);
             break;
         }
     } else if (log.indexOf("is no longer sealed") != -1) {
         for (var i = 0; i < this.bosses.length; ++i) {
             if (log.indexOf(this.bosses[i].areaSeal) == -1)
                 continue;
-            this.updateRegistrar.endBoss();
+            this.boss.stop();
             break;
         }
     }
@@ -437,11 +449,10 @@ TestArea.prototype = new BaseTickable;
 var updateRegistrar = new UpdateRegistrar();
 function testingInit() {
     if (window.fakeact) {
-        var testArea = new TestArea(updateRegistrar);
+        var testArea = new TestArea();
         updateRegistrar.register(testArea);
-        updateRegistrar.startBoss(testArea.bosses[0]);
     }
-    updateRegistrar.register(new KeeperOfTheLake(updateRegistrar));
+    updateRegistrar.register(new KeeperOfTheLake());
 }
 testingInit();
 
@@ -497,8 +508,6 @@ function rafLoop() {
     var currentTime = new Date();
 
     updateRegistrar.tick(currentTime);
-    // FIXME: These bindings are weird.
-    updateFunc();
 
     window.requestAnimationFrame(rafLoop);
 
