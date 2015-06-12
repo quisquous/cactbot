@@ -24,6 +24,20 @@ BossStateMachine.prototype.startPhase = function (phaseNumber, currentTime) {
     this.currentPhaseStartTime = currentTime;
 };
 
+BossStateMachine.prototype.processLog = function (logLine) {
+    if (!this.currentBoss) {
+        return;
+    }
+    var phase = this.currentBoss.phases[this.currentPhase];
+    if (!phase.endLog) {
+        return;
+    }
+    if (logLine.indexOf(phase.endLog) != -1) {
+        var currentTime = new Date();
+        this.startPhase(this.currentPhase + 1, currentTime);
+    }
+};
+
 BossStateMachine.prototype.tick = function (currentTime) {
     if (!this.currentBoss)
         return;
@@ -44,13 +58,7 @@ BossStateMachine.prototype.tick = function (currentTime) {
         }
     }
 
-    // FIXME: check if the boss exists, as this currently returns 0 if not.
-    var bossPercent = hpPercentByName(this.currentBoss.bossName);
-    if (phase.endHpPercent && bossPercent) {
-        if (bossPercent < phase.endHpPercent) {
-            this.startPhase(this.currentPhase + 1, currentTime);
-        }
-    }
+    // Note: boss percent never changes phase, it's just currently there for status.
 
     var rotation = [];
     var seconds = (currentTime.getTime() - this.currentPhaseStartTime.getTime()) / 1000;
@@ -139,9 +147,6 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
     for (var i = 0; i < activeFilters.length; ++i) {
         activeFilters[i].tick(currentTime);
     }
-}
-
-UpdateRegistrar.prototype.processLogLine = function(logLine) {
 }
 
 var RaidTimersBinding = function() {
@@ -329,6 +334,10 @@ BaseTickable.prototype.processLog = function (log) {
             this.boss.stop();
             break;
         }
+    }
+
+    if (this.boss) {
+        this.boss.processLog(log);
     }
 };
 
