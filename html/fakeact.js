@@ -36,6 +36,15 @@ FakeACT.prototype.testEinhander = function () {
     };
 };
 
+FakeACT.prototype.testTurn10 = function () {
+    window.fakeact = {
+        zone: "The Final Coil Of Bahamut - Turn (1)",
+        incombat: true,
+        combatants: [makeCombatant("Imdugud")],
+        logs: ["The Alpha Concourse will be sealed off in"]
+    };
+};
+
 FakeACT.prototype.testBees = function () {
     window.fakeact = {
         zone: "Xanadu",
