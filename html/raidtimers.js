@@ -3,6 +3,9 @@ var BossStateMachine = function () {
 };
 
 BossStateMachine.prototype.startBoss = function (boss) {
+    if (this.currentBoss === boss) {
+        return;
+    }
     var currentTime = new Date();
     this.currentBoss = boss;
     this.currentBossStartTime = currentTime;
@@ -331,8 +334,9 @@ BaseTickable.prototype.tick = function (currentTime) {
 BaseTickable.prototype.processLog = function (log) {
     if (log.indexOf("will be sealed off") != -1) {
         for (var i = 0; i < this.bosses.length; ++i) {
-            if (log.indexOf(this.bosses[i].areaSeal) == -1)
+            if (log.indexOf(this.bosses[i].areaSeal) == -1) {
                 continue;
+            }
             // FIXME: Use log entry time to start?
             this.boss.startBoss(this.bosses[i]);
             break;
@@ -344,6 +348,17 @@ BaseTickable.prototype.processLog = function (log) {
             this.boss.stop();
             break;
         }
+    }
+
+    for (var i = 0; i < this.bosses.length; ++i) {
+        if (!this.bosses[i].startLog) {
+            continue;
+        }
+        if (log.indexOf(this.bosses[i].startLog) == -1) {
+            continue;
+        }
+        this.boss.startBoss(this.bosses[i]);
+        break;
     }
 
     if (this.boss) {
