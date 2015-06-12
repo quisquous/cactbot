@@ -22,6 +22,13 @@ BossStateMachine.prototype.startPhase = function (phaseNumber, currentTime) {
         return;
     this.currentPhase = phaseNumber;
     this.currentPhaseStartTime = currentTime;
+
+    // Some loops have a "one time" part of the loop that happens in negative
+    // time, so move time=0 into the future.
+    var phase = this.currentBoss.phases[this.currentPhase];
+    if (typeof phase.loopOffset === 'number') {
+        this.currentPhaseStartTime = addTime(currentTime, -phase.loopOffset);
+    }
 };
 
 BossStateMachine.prototype.processLog = function (logLine) {
