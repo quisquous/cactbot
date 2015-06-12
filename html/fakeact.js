@@ -45,6 +45,16 @@ FakeACT.prototype.testTurn10 = function () {
     };
 };
 
+FakeACT.prototype.testTurn13 = function () {
+    window.fakeact = {
+        zone: "The Final Coil Of Bahamut - Turn (4)",
+        incombat: true,
+        combatants: [makeCombatant("Bahamut Prime")],
+        logs: ["Bahamut Prime uses Flare Breath"]
+    };
+};
+
+
 FakeACT.prototype.testBees = function () {
     window.fakeact = {
         zone: "Xanadu",
