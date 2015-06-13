@@ -17,6 +17,7 @@ namespace Cactbot
             settingsTab.Initialize(pluginStatusText);
 
             browserWindow = new BrowserWindow();
+            browserWindow.ShowInTaskbar = false;
             browserWindow.BrowserControl.CreationHandlers += OnBrowserCreated;
             browserWindow.Show();
 
