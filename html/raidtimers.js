@@ -368,7 +368,7 @@ BaseTickable.prototype.processLog = function (log) {
 
 var einhander = {
     bossName: "Einhander",
-    areaSeal: "The agrius",
+    areaSeal: "The Agrius hull",
     phases: [
         {
             title: "Phase 1, maybe",
