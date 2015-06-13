@@ -13,7 +13,6 @@ div {
 <script>
     var lastLine = "(unknown log)";
     var zone = "(unknown zone)";
-    var rafCount = 0;
 
     function updateLoop() {
         if (!window.act) {
@@ -33,8 +32,8 @@ div {
         var zoneDiv = document.getElementById("zone");
         zoneDiv.innerText = zone;
 
-        var counterDiv = document.getElementById("counter");
-        counterDiv.innerText = rafCount++;
+        var combatDiv = document.getElementById("incombat");
+        combatDiv.innerText = window.act.inCombat();
 
         window.requestAnimationFrame(updateLoop);
     }
@@ -57,9 +56,9 @@ div {
 </head>
 <body>
 <div class="box">
-    <div id="logline"></div>
-    <div id="zone"></div>
-    <div id="counter"></div>
+    <div id="logline">asdf</div>
+    <div id="zone">asdf</div>
+    <div id="incombat">asdf</div>
 </div>
 </body>
 </html>
