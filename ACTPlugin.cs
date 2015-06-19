@@ -22,16 +22,14 @@ namespace Cactbot
             browserWindow.Show();
 
             pluginScreenSpace.Controls.Add(settingsTab);
+
+            Application.ApplicationExit += OnACTShutdown;
         }
 
         public void DeInitPlugin()
         {
             browserWindow.Hide();
             settingsTab.Shutdown();
-
-            // FIXME: This needs to be called from the right thread, so it can't happen automatically.
-            // However, calling it here means the plugin can never be reinitialized, oops.
-            Cef.Shutdown();
         }
         #endregion
 
@@ -43,6 +41,13 @@ namespace Cactbot
             // browser creation.
             browser.Load(settingsTab.HTMLFile());
             browser.ShowDevTools();
+        }
+
+        private void OnACTShutdown(object sender, EventArgs args)
+        {
+            // Cef has to be manually shutdown on this thread, but can only be
+            // shutdown once.
+            Cef.Shutdown();
         }
     }
 }
