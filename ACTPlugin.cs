@@ -16,6 +16,10 @@ namespace Cactbot
         {
             // This needs to happen first.
             settingsTab.Initialize(pluginStatusText);
+            settingsTab.OnButtonShowDevTools += (o, e) =>
+            {
+                browserWindow.BrowserControl.Browser.ShowDevTools();
+            };
 
             CefSettings cefSettings = new CefSettings();
             cefSettings.CachePath = settingsTab.BrowserCacheDir();
@@ -45,7 +49,6 @@ namespace Cactbot
             // Tie loading html to the browser window creation and bindings to the
             // browser creation.
             browser.Load(settingsTab.HTMLFile());
-            browser.ShowDevTools();
         }
 
         private void OnACTShutdown(object sender, EventArgs args)
