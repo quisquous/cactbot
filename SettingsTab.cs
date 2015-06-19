@@ -47,6 +47,8 @@ namespace Cactbot
         {
             this.label1 = new System.Windows.Forms.Label();
             this.htmlFile = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.storageDirectory = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -65,10 +67,28 @@ namespace Cactbot
             this.htmlFile.Size = new System.Drawing.Size(431, 20);
             this.htmlFile.TabIndex = 1;
             // 
+            // label2
+            //
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Browser storage directory (restart ACT after changing)";
+            //
+            // storageDirectory
+            //
+            this.storageDirectory.Location = new System.Drawing.Point(6, 55);
+            this.storageDirectory.Name = "storageDirectory";
+            this.storageDirectory.Size = new System.Drawing.Size(431, 20);
+            this.storageDirectory.TabIndex = 3;
+            //
             // SettingsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.storageDirectory);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.htmlFile);
             this.Controls.Add(this.label1);
             this.Name = "SettingsTab";
@@ -81,6 +101,8 @@ namespace Cactbot
         #endregion
 
         private TextBox htmlFile;
+        private Label label2;
+        private TextBox storageDirectory;
 
 
         private System.Windows.Forms.Label label1;
@@ -97,6 +119,11 @@ namespace Cactbot
 
         public string HTMLFile() {
             return htmlFile.Text;
+        }
+
+        public string BrowserCacheDir()
+        {
+            return storageDirectory.Text;
         }
 
         public void Initialize(Label pluginStatusText)
@@ -117,6 +144,7 @@ namespace Cactbot
         void LoadSettings()
         {
             xmlSettings.AddControlSetting(htmlFile.Name, htmlFile);
+            xmlSettings.AddControlSetting(storageDirectory.Name, storageDirectory);
 
             if (File.Exists(settingsFile))
             {

@@ -14,7 +14,12 @@ namespace Cactbot
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
         {
+            // This needs to happen first.
             settingsTab.Initialize(pluginStatusText);
+
+            CefSettings cefSettings = new CefSettings();
+            cefSettings.CachePath = settingsTab.BrowserCacheDir();
+            Cef.Initialize(cefSettings);
 
             browserWindow = new BrowserWindow();
             browserWindow.ShowInTaskbar = false;
