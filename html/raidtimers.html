@@ -5,6 +5,7 @@
 <style>
 body {
   margin: 0px;
+  overflow: hidden;
 }
 
 div {
@@ -71,11 +72,16 @@ div {
   margin-left: auto;
 }
 
+.cactbotwindow.layoutmode {
+    resize: both;
+    border: blue solid 10px !important;
+    margin: -10px;
+}
 </style>
 </head>
 <body>
 
-<div id="outercontainer">
+<div id="outercontainer" class="cactbotwindow">
   <div id="titlebar">
     <div id="bosstitle">Angry Bees: 0%</div>
     <div id="enrage">Enrage: 12m10s</div>

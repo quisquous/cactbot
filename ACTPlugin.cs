@@ -25,6 +25,23 @@ namespace Cactbot
             {
                 browserWindow.Clickable = !((CheckBox)o).Checked;
             };
+            settingsTab.OnCheckboxLayoutModeChanged += (o, e) =>
+            {
+                const string enableLayoutModeStr =
+                    @"
+                        if (window.enableLayoutMode)
+                            window.enableLayoutMode();
+                    ";
+                const string disableLayoutModeStr =
+                    @"
+                        if (window.disableLayoutMode)
+                            window.disableLayoutMode();
+                    ";
+
+                bool layoutModeEnabled = ((CheckBox)o).Checked;
+                browserWindow.BrowserControl.Browser.ExecuteScriptAsync(
+                    layoutModeEnabled ? enableLayoutModeStr : disableLayoutModeStr);
+            };
 
             CefSettings cefSettings = new CefSettings();
             cefSettings.CachePath = settingsTab.BrowserCacheDir();

@@ -51,6 +51,7 @@ namespace Cactbot
             this.storageDirectory = new System.Windows.Forms.TextBox();
             this.showDevToolsButton = new System.Windows.Forms.Button();
             this.ignoreMouseEventsCheckBox = new System.Windows.Forms.CheckBox();
+            this.layoutCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             //
             // label1
@@ -108,10 +109,22 @@ namespace Cactbot
             this.ignoreMouseEventsCheckBox.UseVisualStyleBackColor = true;
             this.ignoreMouseEventsCheckBox.CheckedChanged += new System.EventHandler(this.clickableCheckBox_CheckedChanged);
             //
+            // layoutCheckbox
+            //
+            this.layoutCheckbox.AutoSize = true;
+            this.layoutCheckbox.Location = new System.Drawing.Point(549, 79);
+            this.layoutCheckbox.Name = "layoutCheckbox";
+            this.layoutCheckbox.Size = new System.Drawing.Size(97, 17);
+            this.layoutCheckbox.TabIndex = 6;
+            this.layoutCheckbox.Text = "UI layout mode";
+            this.layoutCheckbox.UseVisualStyleBackColor = true;
+            this.layoutCheckbox.CheckedChanged += new System.EventHandler(this.layoutCheckbox_CheckedChanged);
+            //
             // SettingsTab
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.layoutCheckbox);
             this.Controls.Add(this.ignoreMouseEventsCheckBox);
             this.Controls.Add(this.showDevToolsButton);
             this.Controls.Add(this.storageDirectory);
@@ -132,6 +145,7 @@ namespace Cactbot
         private TextBox storageDirectory;
         private Button showDevToolsButton;
         private CheckBox ignoreMouseEventsCheckBox;
+        private CheckBox layoutCheckbox;
 
 
         private System.Windows.Forms.Label label1;
@@ -236,6 +250,13 @@ namespace Cactbot
         {
             if (this.OnCheckboxIgnoresMouseChanged != null)
                 this.OnCheckboxIgnoresMouseChanged(sender, e);
+        }
+
+        public event EventHandler OnCheckboxLayoutModeChanged;
+        private void layoutCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.OnCheckboxLayoutModeChanged != null)
+                this.OnCheckboxLayoutModeChanged(sender, e);
         }
     }
 }

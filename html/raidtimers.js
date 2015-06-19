@@ -957,6 +957,17 @@ function makeCombatantByNameMap() {
     return map;
 }
 
+window.enableLayoutMode = function () {
+    var windows = document.getElementsByClassName("cactbotwindow");
+    for (var i = 0; i < windows.length; ++i)
+        windows[i].classList.add("layoutmode");
+}
+window.disableLayoutMode = function () {
+    var windows = document.getElementsByClassName("cactbotwindow");
+    for (var i = 0; i < windows.length; ++i)
+        windows[i].classList.remove("layoutmode");
+}
+
 var i = 0;
 function rafLoop() {
     if (!window.bindings) {
