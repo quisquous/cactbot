@@ -28,9 +28,7 @@ namespace Cactbot
                 if (clickable == value)
                     return;
 
-                IntPtr handle = new WindowInteropHelper(this).Handle;
-                if (handle == IntPtr.Zero)
-                    return;
+                IntPtr handle = new WindowInteropHelper(this).EnsureHandle();
 
                 clickable = value;
 
@@ -49,9 +47,6 @@ namespace Cactbot
 
         private void Window_Activated(object sender, System.EventArgs e)
         {
-            // Delay until window has a handle.
-            Clickable = false;
-
             // Terrible hack to fix missing content: http://stackoverflow.com/a/597055
             // This is the source of the delay before the window appears.
             this.Width++;

@@ -50,6 +50,7 @@ namespace Cactbot
             this.label2 = new System.Windows.Forms.Label();
             this.storageDirectory = new System.Windows.Forms.TextBox();
             this.showDevToolsButton = new System.Windows.Forms.Button();
+            this.ignoreMouseEventsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             //
             // label1
@@ -94,10 +95,24 @@ namespace Cactbot
             this.showDevToolsButton.UseVisualStyleBackColor = true;
             this.showDevToolsButton.Click += new System.EventHandler(this.showDevToolsButton_Click);
             //
+            // ignoreMouseEventsCheckBox
+            //
+            this.ignoreMouseEventsCheckBox.AutoSize = true;
+            this.ignoreMouseEventsCheckBox.Checked = true;
+            this.ignoreMouseEventsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ignoreMouseEventsCheckBox.Location = new System.Drawing.Point(549, 55);
+            this.ignoreMouseEventsCheckBox.Name = "ignoreMouseEventsCheckBox";
+            this.ignoreMouseEventsCheckBox.Size = new System.Drawing.Size(125, 17);
+            this.ignoreMouseEventsCheckBox.TabIndex = 5;
+            this.ignoreMouseEventsCheckBox.Text = "Ignore mouse events";
+            this.ignoreMouseEventsCheckBox.UseVisualStyleBackColor = true;
+            this.ignoreMouseEventsCheckBox.CheckedChanged += new System.EventHandler(this.clickableCheckBox_CheckedChanged);
+            //
             // SettingsTab
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ignoreMouseEventsCheckBox);
             this.Controls.Add(this.showDevToolsButton);
             this.Controls.Add(this.storageDirectory);
             this.Controls.Add(this.label2);
@@ -116,6 +131,7 @@ namespace Cactbot
         private Label label2;
         private TextBox storageDirectory;
         private Button showDevToolsButton;
+        private CheckBox ignoreMouseEventsCheckBox;
 
 
         private System.Windows.Forms.Label label1;
@@ -139,6 +155,11 @@ namespace Cactbot
             return storageDirectory.Text;
         }
 
+        public bool WindowIgnoresMouseEvents()
+        {
+            return ignoreMouseEventsCheckBox.Checked;
+        }
+
         public void Initialize(Label pluginStatusText)
         {
             lblStatus = pluginStatusText;    // Hand the status label's reference to our local var
@@ -158,6 +179,7 @@ namespace Cactbot
         {
             xmlSettings.AddControlSetting(htmlFile.Name, htmlFile);
             xmlSettings.AddControlSetting(storageDirectory.Name, storageDirectory);
+            xmlSettings.AddControlSetting(ignoreMouseEventsCheckBox.Name, ignoreMouseEventsCheckBox);
 
             if (File.Exists(settingsFile))
             {
@@ -203,11 +225,17 @@ namespace Cactbot
         }
 
         public event EventHandler OnButtonShowDevTools;
-
         private void showDevToolsButton_Click(object sender, EventArgs e)
         {
             if (this.OnButtonShowDevTools != null)
                 this.OnButtonShowDevTools(sender, e);
+        }
+
+        public event EventHandler OnCheckboxIgnoresMouseChanged;
+        private void clickableCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.OnCheckboxIgnoresMouseChanged != null)
+                this.OnCheckboxIgnoresMouseChanged(sender, e);
         }
     }
 }

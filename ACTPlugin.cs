@@ -16,9 +16,14 @@ namespace Cactbot
         {
             // This needs to happen first.
             settingsTab.Initialize(pluginStatusText);
+
             settingsTab.OnButtonShowDevTools += (o, e) =>
             {
                 browserWindow.BrowserControl.Browser.ShowDevTools();
+            };
+            settingsTab.OnCheckboxIgnoresMouseChanged += (o, e) =>
+            {
+                browserWindow.Clickable = !((CheckBox)o).Checked;
             };
 
             CefSettings cefSettings = new CefSettings();
@@ -28,6 +33,7 @@ namespace Cactbot
             browserWindow = new BrowserWindow();
             browserWindow.ShowInTaskbar = false;
             browserWindow.BrowserControl.CreationHandlers += OnBrowserCreated;
+            browserWindow.Clickable = !settingsTab.WindowIgnoresMouseEvents();
             browserWindow.Show();
 
             pluginScreenSpace.Controls.Add(settingsTab);
