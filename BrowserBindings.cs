@@ -47,12 +47,14 @@ namespace Cactbot
         public int NumCombatants()
         {
             UpdateCombatants();
+            if (combatants == null)
+                return 0;
             return combatants.Count;
         }
 
         public Combatant GetCombatant(int idx)
         {
-            if (idx < 0 || idx > combatants.Count)
+            if (idx < 0 || idx >= combatants.Count)
                 return null;
             return combatants[idx];
         }
