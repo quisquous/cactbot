@@ -968,6 +968,7 @@ WindowManager.prototype.add = function (name, element) {
         dragger: new Draggabilly(element),
     };
     this.windows[name].dragger.disable();
+    this.loadLayout(name, element);
 };
 WindowManager.prototype.remove = function (name) {
     delete this.windows[name];
@@ -982,7 +983,31 @@ WindowManager.prototype.disableLayoutMode = function () {
     for (var name in this.windows) {
         this.windows[name].element.classList.remove("layoutmode");
         this.windows[name].dragger.disable();
+        this.saveLayout(name, this.windows[name].element);
     }
+};
+WindowManager.prototype.storageKey = function (name) {
+    return "geom." + name;
+};
+
+WindowManager.prototype.saveLayout = function (name, element) {
+    var info = {
+        top: element.style.top,
+        left: element.style.left,
+        width: element.style.width,
+        height: element.style.height,
+    };
+    window.localStorage.setItem(this.storageKey(name), JSON.stringify(info));
+};
+WindowManager.prototype.loadLayout = function (name, element) {
+    var infoStr = window.localStorage.getItem(this.storageKey(name));
+    if (!infoStr)
+        return;
+    var info = JSON.parse(infoStr);
+    element.style.top = info.top;
+    element.style.left = info.left;
+    element.style.width = info.width;
+    element.style.height = info.height;
 };
 
 var windowManager = new WindowManager();
