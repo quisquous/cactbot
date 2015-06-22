@@ -147,6 +147,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="html\binding_test.html" />
+    <Content Include="html\draggabilly.pkgd.min.js" />
     <Content Include="html\fakeact.js" />
     <Content Include="html\raidtimers.html" />
     <Content Include="html\raidtimers.js" />

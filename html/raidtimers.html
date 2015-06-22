@@ -1,5 +1,6 @@
 <html>
 <head>
+<script type="text/javascript" src="draggabilly.pkgd.min.js"></script>
 <script type="text/javascript" src="fakeact.js"></script>
 <script type="text/javascript" src="raidtimers.js"></script>
 <style>
@@ -13,12 +14,16 @@ div {
     text-shadow: 2px 2px black;
 }
 
-#outercontainer {
-  position: absolute;
+.cactbotwindow {
+    position: absolute;
+    overflow: hidden;
+}
+
+#bosstimers {
   width: 350px;
   height: 300px;
-  overflow: hidden;
   border: black solid 1px;
+  margin: -1px;
 
   display: flex;
   flex-direction: column;
@@ -79,6 +84,10 @@ div {
     margin: -10px;
 }
 
+.is-dragging > .cactbotwindowname {
+    background:rgba(87, 176, 100, 0.90);
+}
+
 .cactbotwindowname {
     visibility: hidden;
     position: absolute;
@@ -87,7 +96,7 @@ div {
     width: 100%;
     height: 100%;
     font-size: 60px;
-    background:rgba(28, 28, 196, 0.50);
+    background:rgba(28, 28, 196, 0.5);
     display: flex;
     align-items: center;
     pointer-events: none;
@@ -103,11 +112,16 @@ div {
     text-align: center;
 }
 
+#testwindow {
+    width: 200px;
+    height: 200px;
+}
+
 </style>
 </head>
 <body>
 
-<div id="outercontainer" class="cactbotwindow">
+<div id="bosstimers" class="cactbotwindow">
   <div id="titlebar">
     <div id="bosstitle">Angry Bees: 0%</div>
     <div id="enrage">Enrage: 12m10s</div>
@@ -123,6 +137,10 @@ div {
     <div id="nextphasecondition">HP: 61%, 1m25s</div>
   </div>
   <div class="cactbotwindowname"><div>rotation</div></div>
+</div>
+
+<div id="testwindow" class="cactbotwindow">
+    <div class="cactbotwindowname"><div>test</div></div>
 </div>
 
 </body>

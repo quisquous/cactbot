@@ -957,21 +957,47 @@ function makeCombatantByNameMap() {
     return map;
 }
 
+var WindowManager = function () {
+    this.windows = [];
+};
+WindowManager.prototype.add = function (name, element) {
+    // FIXME: at this point, add a window name element
+    this.windows[name] = {
+        name: name,
+        element: element,
+        dragger: new Draggabilly(element),
+    };
+    this.windows[name].dragger.disable();
+};
+WindowManager.prototype.remove = function (name) {
+    delete this.windows[name];
+};
+WindowManager.prototype.enableLayoutMode = function () {
+    for (var name in this.windows) {
+        this.windows[name].element.classList.add("layoutmode");
+        this.windows[name].dragger.enable();
+    }
+};
+WindowManager.prototype.disableLayoutMode = function () {
+    for (var name in this.windows) {
+        this.windows[name].element.classList.remove("layoutmode");
+        this.windows[name].dragger.disable();
+    }
+};
+
+var windowManager = new WindowManager();
 window.enableLayoutMode = function () {
-    var windows = document.getElementsByClassName("cactbotwindow");
-    for (var i = 0; i < windows.length; ++i)
-        windows[i].classList.add("layoutmode");
+    windowManager.enableLayoutMode();
 }
 window.disableLayoutMode = function () {
-    var windows = document.getElementsByClassName("cactbotwindow");
-    for (var i = 0; i < windows.length; ++i)
-        windows[i].classList.remove("layoutmode");
+    windowManager.disableLayoutMode();
 }
 
-var i = 0;
 function rafLoop() {
     if (!window.bindings) {
         window.bindings = new RaidTimersBinding();
+        windowManager.add("rotation", document.getElementById("bosstimers"));
+        windowManager.add("test", document.getElementById("testwindow"));
     }
 
     if (!window.act) {
