@@ -965,26 +965,30 @@ WindowManager.prototype.add = function (name, element) {
     this.windows[name] = {
         name: name,
         element: element,
-        dragger: new Draggabilly(element),
     };
-    this.windows[name].dragger.disable();
     this.loadLayout(name, element);
+
+    $(element).draggable({ disabled: true });
+    $(element).resizable({ handles: 'all', disabled: true});
 };
 WindowManager.prototype.remove = function (name) {
     delete this.windows[name];
 };
 WindowManager.prototype.enableLayoutMode = function () {
     for (var name in this.windows) {
-        this.windows[name].element.classList.add("layoutmode");
-        this.windows[name].dragger.enable();
+        var element = this.windows[name].element;
+        element.classList.add("layoutmode");
     }
+    $(".cactbotwindow").draggable("enable");
+    $(".cactbotwindow").resizable("enable");
 };
 WindowManager.prototype.disableLayoutMode = function () {
     for (var name in this.windows) {
         this.windows[name].element.classList.remove("layoutmode");
-        this.windows[name].dragger.disable();
         this.saveLayout(name, this.windows[name].element);
     }
+    $(".cactbotwindow").draggable("disable");
+    $(".cactbotwindow").resizable("disable");
 };
 WindowManager.prototype.storageKey = function (name) {
     return "geom." + name;

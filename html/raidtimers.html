@@ -1,6 +1,8 @@
 <html>
 <head>
-<script type="text/javascript" src="draggabilly.pkgd.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery-ui.min.css" />
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-ui.min.js"></script>
 <script type="text/javascript" src="fakeact.js"></script>
 <script type="text/javascript" src="raidtimers.js"></script>
 <style>
@@ -79,12 +81,11 @@ div {
 }
 
 .cactbotwindow.layoutmode {
-    resize: both;
     border: blue solid 10px !important;
-    margin: -10px;
+    margin: -10px !important;
 }
 
-.is-dragging > .cactbotwindowname {
+.ui-draggable-dragging > .cactbotwindowname {
     background:rgba(87, 176, 100, 0.90);
 }
 
