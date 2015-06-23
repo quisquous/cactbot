@@ -148,9 +148,6 @@
   <ItemGroup>
     <Content Include="html\binding_test.html" />
     <Content Include="html\fakeact.js" />
-    <Content Include="html\jquery-1.11.3.min.js" />
-    <Content Include="html\jquery-ui.min.css" />
-    <Content Include="html\jquery-ui.min.js" />
     <Content Include="html\raidtimers.html" />
     <Content Include="html\raidtimers.js" />
   </ItemGroup>
