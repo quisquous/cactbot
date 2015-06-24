@@ -36,7 +36,7 @@ namespace Cactbot
             Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(speechText);
         }
 
-        private void UpdateCombatants()
+        public void UpdateCombatants()
         {
             // FIXME: Don't bother doing this on every call to GetCombatant
             // Maybe the presence of additional loglines being read could
@@ -46,7 +46,6 @@ namespace Cactbot
 
         public int NumCombatants()
         {
-            UpdateCombatants();
             if (combatants == null)
                 return 0;
             return combatants.Count;
@@ -59,11 +58,35 @@ namespace Cactbot
             return combatants[idx];
         }
 
+        private static bool CombatantIsMob(Combatant c)
+        {
+            // Not a pet, not a player.
+            return c.OwnerID == 0 && c.Job == 0;
+        }
+
+        public Combatant GetMobByName(string name)
+        {
+            Combatant found = null;
+            foreach (Combatant c in combatants) {
+                if (!CombatantIsMob(c))
+                    continue;
+                if (c.Name != name)
+                    continue;
+                // Multiple mobs with the same name.
+                if (found != null)
+                    return null;
+                found = c;
+            }
+            return found;
+        }
+
+        // FIXME: Add GetPartyIds.
+        // FIXME: Add GetMobIdsByName.
+
         // Provided as a helper function as GetCombatant(0) is a total hack and
         // maybe something more reliable can be found.
         public Combatant GetPlayer()
         {
-            UpdateCombatants();
             return GetCombatant(0);
         }
 

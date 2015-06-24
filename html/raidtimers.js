@@ -263,7 +263,7 @@ function formatTime(totalSeconds) {
 var bindings;
 
 function hpPercentByName(name) {
-    var combatant = window.combatantByName[name];
+    var combatant = window.act.getMobByName(name);
     if (!combatant)
         return 0;
     return 100 * combatant.currentHP / combatant.maxHP;
@@ -922,41 +922,6 @@ function testingInit() {
 }
 testingInit();
 
-// FIXME: Move these out to an act helper.
-function makeCombatantByIdMap() {
-    var map = {};
-
-    var count = window.act.numCombatants();
-    for (var i = 0; i < count; ++i) {
-        var combatant = window.act.getCombatant(i);
-        // FIXME: "iD" camelcase is very odd.
-        map[combatant.iD] = combatant;
-    }
-
-    return map;
-}
-
-function makeCombatantByNameMap() {
-    var map = {};
-    var collisions = [];
-
-    var count = window.act.numCombatants();
-    for (var i = 0; i < count; ++i) {
-        var combatant = window.act.getCombatant(i);
-        if (map[combatant.name]) {
-            collisions.push(combatant.name);
-            continue;
-        }
-        map[combatant.name] = combatant;
-    }
-
-    for (var i = 0; i < collisions.length; ++i) {
-        delete map[collisions[i]];
-    }
-
-    return map;
-}
-
 var WindowManager = function () {
     this.windows = [];
 };
@@ -1033,9 +998,7 @@ function rafLoop() {
         window.requestAnimationFrame(rafLoop);
         return;
     }
-
-    window.combatantById = makeCombatantByIdMap();
-    window.combatantByName = makeCombatantByNameMap();
+    window.act.updateCombatants();
 
     var currentTime = new Date();
 

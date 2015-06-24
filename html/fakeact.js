@@ -19,6 +19,22 @@ FakeACT.prototype.getCombatant = function (idx) {
     return window.fakeact["combatants"][idx];
 };
 
+FakeACT.prototype.updateCombatants = function () { }
+
+FakeACT.prototype.getMobByName = function (name) {
+    var found = null;
+    for (var i = 0; i < window.fakeact["combatants"].length; ++i) {
+        if (window.fakeact["combatants"][i].name !== name) {
+            continue;
+        }
+        if (found != null) {
+            return null;
+        }
+        found = window.fakeact["combatants"][i];
+    }
+    return found;
+}
+
 FakeACT.prototype.hasLogLines = function () {
     return window.fakeact["logs"].length;
 }
