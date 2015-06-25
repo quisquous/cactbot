@@ -4,6 +4,7 @@
 <script type="text/javascript" src="jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
 <script type="text/javascript" src="fakeact.js"></script>
+<script type="text/javascript" src="huntlist.js"></script>
 <script type="text/javascript" src="raidtimers.js"></script>
 <style>
 body {
@@ -118,6 +119,11 @@ div {
     height: 200px;
 }
 
+.huntlist {
+    display: flex;
+    flex-direction: column;
+}
+
 </style>
 </head>
 <body>
@@ -142,6 +148,11 @@ div {
 
 <div id="testwindow" class="cactbotwindow">
     <div class="cactbotwindowname"><div>test</div></div>
+</div>
+
+<div id="huntwindow" class="cactbotwindow">
+    <div class="huntlist"></div>
+    <div class="cactbotwindowname"><div>hunts</div></div>
 </div>
 
 </body>

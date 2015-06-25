@@ -909,6 +909,144 @@ var TestArea = function () {
 };
 TestArea.prototype = new BaseTickable;
 
+var HuntManager = function (windowElement) {
+    this.huntWindowElement = windowElement;
+    this.huntListElement = windowElement.getElementsByClassName("huntlist")[0];
+    this.currentHunts = [];
+    this.huntList = window.huntList;
+
+    this.leaveZone();
+}
+
+HuntManager.prototype.enterZone = function (zone) {
+    this.currentHunts = [];
+    var mobs = this.huntList[zone];
+    for (var i = 0; i < mobs.length; ++i) {
+        var mob = mobs[i];
+        var element = document.createElement("div");
+        this.huntListElement.appendChild(element);
+        var hunt = {
+            name: mob.name,
+            rank: mob.rank,
+            lastSeen: null,
+            lastPos: null,
+            distance: null,
+            element: element,
+        };
+        this.currentHunts.push(hunt);
+    }
+};
+
+HuntManager.prototype.leaveZone = function (zone) {
+    // FIXME: maybe remember these in case of death?
+    this.currentHunts = [];
+    this.huntListElement.innerHTML = '';
+};
+
+HuntManager.prototype.filtersZone = function (zone) {
+    return this.huntList[zone];
+};
+
+HuntManager.prototype.tick = function (currentTime) {
+    var minYalms = 20;
+    var minSecondsToDisplay = 10;
+    var maxSeconds = 300;
+    var minZYalms = 30;
+
+    var player = window.act.getPlayer();
+    var changedAnything = false;
+
+    for (var i = 0; i < this.currentHunts.length; ++i) {
+        var hunt = this.currentHunts[i];
+        var combatant = window.act.getMobByName(hunt.name);
+        if (!combatant && !hunt.lastSeen) {
+            continue;
+        }
+
+        var hpPercent = 100;
+        var seconds = 0;
+        if (combatant) {
+            hunt.lastSeen = currentTime;
+            hunt.lastPos = [combatant.posX, combatant.posY, combatant.posZ];
+            hpPercent = Math.ceil(100 * combatant.currentHP / combatant.maxHP);
+        } else {
+            seconds = (currentTime.getTime() - hunt.lastSeen.getTime()) / 1000;
+            if (seconds > maxSeconds) {
+                hunt.lastPos = null;
+                hunt.lastSeen = null;
+                hunt.distance = null;
+                hunt.element.innerHTML = '';
+                changedAnything = true;
+                continue;
+            }
+        }
+
+        // Example output:
+        // A Hunt [A] 50 yalms S
+        // Some Hunt [B] 220 yalms NW (3m old)
+        // That Hunt [S] 40 yalms NNW, 22 up (55%)
+
+        // FIXME: Maybe add an "up" or "down" if diffZ > 20 or something?
+        var diffX = player.posX - hunt.lastPos[0];
+        var diffY = player.posY - hunt.lastPos[1];
+        var diffZ = player.posZ - hunt.lastPos[2];
+        hunt.distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+        var mobText = hunt.name + ' [' + hunt.rank + ']';
+        var absDiffZ = Math.abs(diffZ);
+        if (hunt.distance > minYalms || absDiffZ > minZYalms) {
+            // FIXME: Make 'dir' be NW or NE or somesuch.
+            var dir = '';
+            mobText += ' ' + Math.floor(hunt.distance) + ' yalms' + dir;
+
+            if (absDiffZ > minZYalms) {
+                mobText += (diffZ < 0 ? ' &uarr;' : ' &darr;');
+            }
+        }
+        if (seconds > minSecondsToDisplay) {
+            var minutes = Math.floor(seconds / 60);
+            if (minutes === 0) {
+                mobText += ' (<1m stale)';
+            } else {
+                mobText += ' (' + minutes + 'm stale)';
+            }
+        } else if (seconds === 0) {
+            mobText += ' (' + hpPercent + '%)';
+        }
+
+        // Use innerHTML instead of text because of HTML entities above.
+        if (hunt.element.innerHTML !== mobText) {
+            hunt.element.innerHTML = mobText;
+            changedAnything = true;
+        }
+    }
+
+    if (!changedAnything) {
+        return;
+    }
+
+    this.currentHunts.sort(function (a, b) {
+        if (a.distance === b.distance) {
+            return 0;
+        }
+        if (a.distance === null) {
+            return 1;
+        }
+        if (b.distance === null) {
+            return -1;
+        }
+        return a.distance - b.distance;
+    });
+
+    for (var i = 0; i < this.currentHunts.length; ++i) {
+        this.currentHunts[i].element.style.order = i;
+    }
+};
+
+HuntManager.prototype.processLog = function (log) {
+    // FIXME: notice when a mob dies.
+};
+
 var updateRegistrar = new UpdateRegistrar();
 function testingInit() {
     if (window.fakeact) {
@@ -992,6 +1130,9 @@ function rafLoop() {
         window.bindings = new RaidTimersBinding();
         windowManager.add("rotation", document.getElementById("bosstimers"));
         windowManager.add("test", document.getElementById("testwindow"));
+        windowManager.add("hunts", document.getElementById("huntwindow"));
+        window.huntManager = new HuntManager(document.getElementById("huntwindow"));
+        updateRegistrar.register(window.huntManager);
     }
 
     if (!window.act) {

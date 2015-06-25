@@ -21,6 +21,14 @@ FakeACT.prototype.getCombatant = function (idx) {
 
 FakeACT.prototype.updateCombatants = function () { }
 
+FakeACT.prototype.getPlayer = function () {
+    if (window.fakeact.combatants.length === 0) {
+        return makeCombatant("The Player");
+    } else {
+        return window.fakeact.combatants[0];
+    }
+}
+
 FakeACT.prototype.getMobByName = function (name) {
     var found = null;
     for (var i = 0; i < window.fakeact["combatants"].length; ++i) {
@@ -77,6 +85,25 @@ FakeACT.prototype.testBees = function () {
         incombat: true,
         combatants: [makeCombatant("Angry Bees")],
         logs: ["The hive will be sealed off in"]
+    };
+};
+
+FakeACT.prototype.testHunt = function () {
+    var the_player = makeCombatant("The Player");
+    the_player.posX = 50;
+    the_player.posY = -20;
+    var alteci = makeCombatant("Alteci");
+    alteci.posZ = 50;
+    var kaiser = makeCombatant("Kaiser Behemoth");
+    kaiser.posY = 30;
+    var mirka = makeCombatant("Mirka");
+    mirka.posX = 40;
+    mirka.posY = -10;
+    window.fakeact = {
+        zone: "Coerthas Western Highlands",
+        incombat: true,
+        combatants: [the_player, alteci, kaiser, mirka],
+        logs: [],
     };
 };
 
