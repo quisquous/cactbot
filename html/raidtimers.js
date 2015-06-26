@@ -920,6 +920,7 @@ var HuntManager = function (windowElement) {
 
 HuntManager.prototype.enterZone = function (zone) {
     this.currentHunts = [];
+    this.huntListElement.innerHTML = '';
     var mobs = this.huntList[zone];
     for (var i = 0; i < mobs.length; ++i) {
         var mob = mobs[i];
@@ -956,6 +957,10 @@ HuntManager.prototype.tick = function (currentTime) {
     var player = window.act.getPlayer();
     var changedAnything = false;
 
+    if (!player) {
+        return;
+    }
+
     for (var i = 0; i < this.currentHunts.length; ++i) {
         var hunt = this.currentHunts[i];
         var combatant = window.act.getMobByName(hunt.name);
@@ -969,6 +974,14 @@ HuntManager.prototype.tick = function (currentTime) {
             hunt.lastSeen = currentTime;
             hunt.lastPos = [combatant.posX, combatant.posY, combatant.posZ];
             hpPercent = Math.ceil(100 * combatant.currentHP / combatant.maxHP);
+            if (hpPercent == 0) {
+                hunt.lastPos = null;
+                hunt.lastSeen = null;
+                hunt.distance = null;
+                hunt.element.innerHTML = '';
+                changedAnything = true;
+                continue;
+            }
         } else {
             seconds = (currentTime.getTime() - hunt.lastSeen.getTime()) / 1000;
             if (seconds > maxSeconds) {
@@ -995,12 +1008,13 @@ HuntManager.prototype.tick = function (currentTime) {
         var mobText = hunt.name + ' [' + hunt.rank + ']';
         var absDiffZ = Math.abs(diffZ);
         if (hunt.distance > minYalms || absDiffZ > minZYalms) {
-            // FIXME: Make 'dir' be NW or NE or somesuch.
-            var dir = '';
-            mobText += ' ' + Math.floor(hunt.distance) + ' yalms' + dir;
-
+            var dirArr = ['S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW', 'W', 'WSW', 'SW', 'SSW', 'S'];
+            var dir = dirArr[Math.round(Math.atan2(diffX, diffY) / 0.392699082) + 8];
+            mobText += ' ' + Math.floor(hunt.distance) + ' yalms ' + dir;
             if (absDiffZ > minZYalms) {
-                mobText += (diffZ < 0 ? ' &uarr;' : ' &darr;');
+                mobText += (diffZ < 0 ? ' &uArr;' : ' &dArr;');
+            } else {
+                mobText += ' &hArr;';
             }
         }
         if (seconds > minSecondsToDisplay) {
