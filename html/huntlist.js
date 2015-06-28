@@ -55,8 +55,8 @@ var huntList = {
 		{ name: "Minhocao", rank: "S" },
 	],
 	"Outer La Noscea": [
-		{ name: "Cornu", rank: "B" },
-		{ name: "Vuokho", rank: "A" },
+		{ name: "Vuokho", rank: "B" },
+		{ name: "Cornu", rank: "A" },
 		{ name: "Mahisha", rank: "S" },
 	],
 	"South Shroud": [
