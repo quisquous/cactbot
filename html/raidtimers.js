@@ -1011,7 +1011,6 @@ function rafLoop() {
     if (!window.bindings) {
         window.bindings = new RaidTimersBinding();
         windowManager.add("rotation", document.getElementById("bosstimers"), "rotation");
-        windowManager.add("test", document.getElementById("testwindow"), "test");
     }
 
     if (!window.act) {
