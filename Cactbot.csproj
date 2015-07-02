@@ -148,7 +148,9 @@
   <ItemGroup>
     <Content Include="html\binding_test.html" />
     <Content Include="html\fakeact.js" />
-    <Content Include="html\huntlist.js" />
+    <Content Include="html\hunts\huntlist.js" />
+    <Content Include="html\hunts\hunts.css" />
+    <Content Include="html\hunts\hunts.js" />
     <Content Include="html\raidtimers.html" />
     <Content Include="html\raidtimers.js" />
   </ItemGroup>
