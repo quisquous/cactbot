@@ -3,6 +3,7 @@ var huntList = {
         { name: "White Joker", rank: "B" },
         { name: "Forneus", rank: "A" },
         { name: "Laideronnette", rank: "S" },
+        { name: "Odin", rank: "F" },
     ],
     "Central Thanalan": [
         { name: "Ovjang", rank: "B" },
@@ -13,11 +14,13 @@ var huntList = {
         { name: "Naul", rank: "B" },
         { name: "Marraco", rank: "A" },
         { name: "Safat", rank: "S" },
+        { name: "Behemoth", rank: "F" },
     ],
     "East Shroud": [
         { name: "Stinging Sophie", rank: "B" },
         { name: "Melt", rank: "A" },
         { name: "Wulgaru", rank: "S" },
+        { name: "Odin", rank: "F" },
     ],
     "Eastern La Noscea": [
         { name: "Bloody Mary", rank: "B" },
@@ -48,6 +51,7 @@ var huntList = {
         { name: "Phecda", rank: "B" },
         { name: "Girtab", rank: "A" },
         { name: "Thousand-cast Theda", rank: "S" },
+        { name: "Odin", rank: "F" },
     ],
     "Northern Thanalan": [
         { name: "Flame Sergeant Dalvag", rank: "B" },
@@ -63,6 +67,7 @@ var huntList = {
         { name: "Monarch Ogrefly", rank: "B" },
         { name: "Ghede Ti Malice", rank: "A" },
         { name: "Mindflayer", rank: "S" },
+        { name: "Odin", rank: "F" },
     ],
     "Southern Thanalan": [
         { name: "Albin the Ashen", rank: "B" },
@@ -97,6 +102,7 @@ var huntList = {
         { name: "Pylraster", rank: "A" },
         { name: "Lord of the Wyverns", rank: "A" },
         { name: "Senmurb", rank: "S" },
+        { name: "Coeurlregina", rank: "F" },
     ],
     "The Dravanian Hinterlands": [
         { name: "Pterygotus", rank: "B" },
@@ -125,6 +131,7 @@ var huntList = {
         { name: "Campacti", rank: "A" },
         { name: "Stench Blossom", rank: "A" },
         { name: "Leucrotta", rank: "S" },
+        { name: "Noctilucale", rank: "F" },
     ]
 };
 huntList["The Dravinian Forelands"] = huntList["The Dravanian Forelands"];
