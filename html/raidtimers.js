@@ -1077,13 +1077,23 @@ testingInit();
 var WindowManager = function () {
     this.windows = [];
 };
-WindowManager.prototype.add = function (name, element) {
-    // FIXME: at this point, add a window name element
+WindowManager.prototype.add = function (name, element, title) {
     this.windows[name] = {
         name: name,
         element: element,
     };
+    // FIXME: Add default layouts for elements.
     this.loadLayout(name, element);
+
+    element.classList.add("cactbotwindow");
+
+    // Add title for layout mode.
+    var titleDiv = document.createElement("div");
+    titleDiv.classList.add("cactbotwindowname");
+    var titleText = document.createElement("div");
+    titleText.innerHTML = title;
+    titleDiv.appendChild(titleText);
+    element.appendChild(titleDiv);
 
     $(element).draggable({ disabled: true });
     $(element).resizable({ handles: 'all', disabled: true});
@@ -1142,9 +1152,10 @@ window.disableLayoutMode = function () {
 function rafLoop() {
     if (!window.bindings) {
         window.bindings = new RaidTimersBinding();
-        windowManager.add("rotation", document.getElementById("bosstimers"));
-        windowManager.add("test", document.getElementById("testwindow"));
-        windowManager.add("hunts", document.getElementById("huntwindow"));
+        windowManager.add("rotation", document.getElementById("bosstimers"), "rotation");
+        windowManager.add("test", document.getElementById("testwindow"), "test");
+        windowManager.add("hunts", document.getElementById("huntwindow"), "hunts");
+
         window.huntManager = new HuntManager(document.getElementById("huntwindow"));
         updateRegistrar.register(window.huntManager);
     }
