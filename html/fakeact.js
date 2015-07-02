@@ -136,4 +136,11 @@ if (!window.act) {
     window.fakeact["logs"] = [];
 
     window.act = new FakeACT();
+
+    // FIXME: fake act should come first so that no code anywhere attempts to
+    // read from the plugin when it's not there, but that also means that
+    // debugging logic isn't there yet.
+    window.addEventListener("load", function () {
+        cactbot.debug('Using fake act');
+    });
 }

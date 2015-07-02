@@ -6,6 +6,7 @@ BossStateMachine.prototype.startBoss = function (boss) {
     if (this.currentBoss === boss) {
         return;
     }
+    cactbot.debug('Boss fight: ' + boss.bossName);
     var currentTime = new Date();
     this.currentBoss = boss;
     this.currentBossStartTime = currentTime;
