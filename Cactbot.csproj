@@ -146,11 +146,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="html\binding_test.html" />
+    <Content Include="html\debug\debug.js" />
     <Content Include="html\fakeact.js" />
-    <Content Include="html\huntlist.js" />
+    <Content Include="html\hunts\huntlist.js" />
+    <Content Include="html\hunts\hunts.css" />
+    <Content Include="html\hunts\hunts.js" />
     <Content Include="html\raidtimers.html" />
     <Content Include="html\raidtimers.js" />
+    <Content Include="html\rotation\rotation.css" />
+    <Content Include="html\rotation\rotation.js" />
   </ItemGroup>
   <Import Project="packages\cef.redist.x64.3.2171.2069\build\cef.redist.x64.targets" Condition="Exists('packages\cef.redist.x64.3.2171.2069\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

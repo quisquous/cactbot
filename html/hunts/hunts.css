@@ -1,0 +1,4 @@
+.huntlist {
+    display: flex;
+    flex-direction: column;
+}

@@ -110,58 +110,6 @@ BossStateMachine.prototype.tick = function (currentTime) {
     this.currentRotation = rotation;
 };
 
-var UpdateRegistrar = function () {
-    this.filters = [];
-    this.currentZone = window.act.currentZone();
-};
-
-UpdateRegistrar.prototype.register = function(filter) {
-    this.filters.push(filter);
-    var currentZone = window.act.currentZone();
-    if (filter.filtersZone(currentZone)) {
-        filter.enterZone(currentZone);
-    }
-};
-
-UpdateRegistrar.prototype.tick = function (currentTime) {
-    var currentZone = window.act.currentZone();
-    if (this.currentZone != currentZone) {
-        for (var i = 0; i < this.filters.length; ++i) {
-            if (this.filters[i].filtersZone(this.currentZone)) {
-                this.filters[i].leaveZone(this.currentZone);
-            }
-        }
-
-        this.currentZone = currentZone;
-
-        for (var i = 0; i < this.filters.length; ++i) {
-            if (this.filters[i].filtersZone(this.currentZone)) {
-                this.filters[i].enterZone(this.currentZone);
-            }
-        }
-    }
-
-    // Log entries before ticking.
-    var activeFilters = [];
-
-    for (var i = 0; i < this.filters.length; ++i) {
-        if (this.filters[i].filtersZone(currentZone)) {
-            activeFilters.push(this.filters[i]);
-        }
-    }
-
-    while (window.act.hasLogLines()) {
-        var line = window.act.nextLogLine();
-        for (var i = 0; i < activeFilters.length; ++i) {
-            activeFilters[i].processLog(line);
-        }
-    }
-
-    for (var i = 0; i < activeFilters.length; ++i) {
-        activeFilters[i].tick(currentTime);
-    }
-}
-
 var RaidTimersBinding = function() {
     this.boundData = {};
     this.boundElementNames = {};
@@ -909,159 +857,6 @@ var TestArea = function () {
 };
 TestArea.prototype = new BaseTickable;
 
-var HuntManager = function (windowElement) {
-    this.huntWindowElement = windowElement;
-    this.huntListElement = windowElement.getElementsByClassName("huntlist")[0];
-    this.currentHunts = [];
-    this.huntList = window.huntList;
-
-    this.leaveZone();
-}
-
-HuntManager.prototype.enterZone = function (zone) {
-    this.currentHunts = [];
-    this.huntListElement.innerHTML = '';
-    var mobs = this.huntList[zone];
-    for (var i = 0; i < mobs.length; ++i) {
-        var mob = mobs[i];
-        var element = document.createElement("div");
-        this.huntListElement.appendChild(element);
-        var hunt = {
-            name: mob.name,
-            rank: mob.rank,
-            lastSeen: null,
-            lastPos: null,
-            distance: null,
-            element: element,
-        };
-        this.currentHunts.push(hunt);
-    }
-};
-
-HuntManager.prototype.leaveZone = function (zone) {
-    // FIXME: maybe remember these in case of death?
-    this.currentHunts = [];
-    this.huntListElement.innerHTML = '';
-};
-
-HuntManager.prototype.filtersZone = function (zone) {
-    return this.huntList[zone];
-};
-
-HuntManager.prototype.tick = function (currentTime) {
-    var minYalms = 20;
-    var minSecondsToDisplay = 10;
-    var maxSeconds = 300;
-    var minZYalms = 30;
-
-    var player = window.act.getPlayer();
-    var changedAnything = false;
-
-    if (!player) {
-        return;
-    }
-
-    for (var i = 0; i < this.currentHunts.length; ++i) {
-        var hunt = this.currentHunts[i];
-        var combatant = window.act.getMobByName(hunt.name);
-        if (!combatant && !hunt.lastSeen) {
-            continue;
-        }
-
-        var hpPercent = 100;
-        var seconds = 0;
-        if (combatant) {
-            hunt.lastSeen = currentTime;
-            hunt.lastPos = [combatant.posX, combatant.posY, combatant.posZ];
-            hpPercent = Math.ceil(100 * combatant.currentHP / combatant.maxHP);
-            if (hpPercent == 0) {
-                hunt.lastPos = null;
-                hunt.lastSeen = null;
-                hunt.distance = null;
-                hunt.element.innerHTML = '';
-                changedAnything = true;
-                continue;
-            }
-        } else {
-            seconds = (currentTime.getTime() - hunt.lastSeen.getTime()) / 1000;
-            if (seconds > maxSeconds) {
-                hunt.lastPos = null;
-                hunt.lastSeen = null;
-                hunt.distance = null;
-                hunt.element.innerHTML = '';
-                changedAnything = true;
-                continue;
-            }
-        }
-
-        // Example output:
-        // A Hunt [A] 50 yalms S
-        // Some Hunt [B] 220 yalms NW (3m old)
-        // That Hunt [S] 40 yalms NNW, 22 up (55%)
-
-        // FIXME: Maybe add an "up" or "down" if diffZ > 20 or something?
-        var diffX = player.posX - hunt.lastPos[0];
-        var diffY = player.posY - hunt.lastPos[1];
-        var diffZ = player.posZ - hunt.lastPos[2];
-        hunt.distance = Math.sqrt(diffX * diffX + diffY * diffY);
-
-        var mobText = hunt.name + ' [' + hunt.rank + ']';
-        var absDiffZ = Math.abs(diffZ);
-        if (hunt.distance > minYalms || absDiffZ > minZYalms) {
-            var dirArr = ['S', 'SSE', 'SE', 'ESE', 'E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW', 'W', 'WSW', 'SW', 'SSW', 'S'];
-            var dir = dirArr[Math.round(Math.atan2(diffX, diffY) / 0.392699082) + 8];
-            mobText += ' ' + Math.floor(hunt.distance) + ' yalms ' + dir;
-            if (absDiffZ > minZYalms) {
-                mobText += (diffZ < 0 ? ' &uArr;' : ' &dArr;');
-            } else {
-                mobText += ' &hArr;';
-            }
-        }
-        if (seconds > minSecondsToDisplay) {
-            var minutes = Math.floor(seconds / 60);
-            if (minutes === 0) {
-                mobText += ' (<1m stale)';
-            } else {
-                mobText += ' (' + minutes + 'm stale)';
-            }
-        } else if (seconds === 0) {
-            mobText += ' (' + hpPercent + '%)';
-        }
-
-        // Use innerHTML instead of text because of HTML entities above.
-        if (hunt.element.innerHTML !== mobText) {
-            hunt.element.innerHTML = mobText;
-            changedAnything = true;
-        }
-    }
-
-    if (!changedAnything) {
-        return;
-    }
-
-    this.currentHunts.sort(function (a, b) {
-        if (a.distance === b.distance) {
-            return 0;
-        }
-        if (a.distance === null) {
-            return 1;
-        }
-        if (b.distance === null) {
-            return -1;
-        }
-        return a.distance - b.distance;
-    });
-
-    for (var i = 0; i < this.currentHunts.length; ++i) {
-        this.currentHunts[i].element.style.order = i;
-    }
-};
-
-HuntManager.prototype.processLog = function (log) {
-    // FIXME: notice when a mob dies.
-};
-
-var updateRegistrar = new UpdateRegistrar();
 function testingInit() {
     if (window.fakeact) {
         var testArea = new TestArea();
@@ -1074,93 +869,38 @@ function testingInit() {
 }
 testingInit();
 
-var WindowManager = function () {
-    this.windows = [];
-};
-WindowManager.prototype.add = function (name, element) {
-    // FIXME: at this point, add a window name element
-    this.windows[name] = {
-        name: name,
-        element: element,
-    };
-    this.loadLayout(name, element);
+window.addEventListener("load", function () {
+    window.loadCSS("rotation/rotation.css");
+    
+    // FIXME: This can't get loaded from a file via Javascript, because of
+    // cross-origin issues.  This isn't an issue at runtime (cef can cheat
+    // the sandbox with some flags), but it will make developing a pain if
+    // it's required to run a proxy or pass sandbox-clobbering flags to
+    // the browser.  Punt on adding more developer hurdles for now.  <_<
+    var element = document.createElement("div");
+    element.innerHTML =
+        '<div id="bosstimers">' +
+        '  <div id="titlebar">' +
+        '    <div id="bosstitle">Angry Bees: 0%</div>' +
+        '    <div id="enrage">Enrage: 12m10s</div>' +
+        '  </div>' +
+        '  <div id="rotation">' +
+        '    <div class="rotitem"><div class="move">next thing</div><div class="countdown">1m24s</div></div>' +
+        '    <div class="rotitem"><div class="move">one thing</div><div class="countdown">1m24s</div></div>' +
+        '    <div class="rotitem"><div class="move">that thing</div><div class="countdown">2m24s</div></div>' +
+        '    <div class="rotitem"><div class="move">whoa whoa whoa</div><div class="countdown">3m24s</div></div>' +
+        '  </div>' +
+        '  <div id="nextphase">' +
+        '    <div id="nextphasetitle">Phase 2 (dem adds)</div>' +
+        '    <div id="nextphasecondition">HP: 61%, 1m25s</div>' +
+        '  </div>' +
+        '</div>';
 
-    $(element).draggable({ disabled: true });
-    $(element).resizable({ handles: 'all', disabled: true});
-};
-WindowManager.prototype.remove = function (name) {
-    delete this.windows[name];
-};
-WindowManager.prototype.enableLayoutMode = function () {
-    for (var name in this.windows) {
-        var element = this.windows[name].element;
-        element.classList.add("layoutmode");
-    }
-    $(".cactbotwindow").draggable("enable");
-    $(".cactbotwindow").resizable("enable");
-};
-WindowManager.prototype.disableLayoutMode = function () {
-    for (var name in this.windows) {
-        this.windows[name].element.classList.remove("layoutmode");
-        this.saveLayout(name, this.windows[name].element);
-    }
-    $(".cactbotwindow").draggable("disable");
-    $(".cactbotwindow").resizable("disable");
-};
-WindowManager.prototype.storageKey = function (name) {
-    return "geom." + name;
-};
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(element);
 
-WindowManager.prototype.saveLayout = function (name, element) {
-    var info = {
-        top: element.style.top,
-        left: element.style.left,
-        width: element.style.width,
-        height: element.style.height,
-    };
-    window.localStorage.setItem(this.storageKey(name), JSON.stringify(info));
-};
-WindowManager.prototype.loadLayout = function (name, element) {
-    var infoStr = window.localStorage.getItem(this.storageKey(name));
-    if (!infoStr)
-        return;
-    var info = JSON.parse(infoStr);
-    element.style.top = info.top;
-    element.style.left = info.left;
-    element.style.width = info.width;
-    element.style.height = info.height;
-};
+    windowManager.add("rotation", element, "rotation");
 
-var windowManager = new WindowManager();
-window.enableLayoutMode = function () {
-    windowManager.enableLayoutMode();
-}
-window.disableLayoutMode = function () {
-    windowManager.disableLayoutMode();
-}
-
-function rafLoop() {
-    if (!window.bindings) {
-        window.bindings = new RaidTimersBinding();
-        windowManager.add("rotation", document.getElementById("bosstimers"));
-        windowManager.add("test", document.getElementById("testwindow"));
-        windowManager.add("hunts", document.getElementById("huntwindow"));
-        window.huntManager = new HuntManager(document.getElementById("huntwindow"));
-        updateRegistrar.register(window.huntManager);
-    }
-
-    if (!window.act) {
-        window.requestAnimationFrame(rafLoop);
-        return;
-    }
-    window.act.updateCombatants();
-
-    var currentTime = new Date();
-
-    updateRegistrar.tick(currentTime);
-
-    window.requestAnimationFrame(rafLoop);
-
-}
-
-window.requestAnimationFrame(rafLoop);
+    // FIXME: This is such a clumsy binding.
+    window.bindings = new RaidTimersBinding();
+});
