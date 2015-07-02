@@ -162,7 +162,12 @@ window.addEventListener("load", function () {
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(element);
 
-    window.windowManager.add("hunts", element, "hunts");
+    var defaultGeometry = {
+        width: "400px",
+        height: "100px",
+    };
+
+    window.windowManager.add("hunts", element, "hunts", defaultGeometry);
 
     // FIXME: This probably shouldn't be global.
     window.huntManager = new HuntManager(element);

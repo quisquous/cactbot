@@ -935,13 +935,12 @@ testingInit();
 var WindowManager = function () {
     this.windows = [];
 };
-WindowManager.prototype.add = function (name, element, title) {
+WindowManager.prototype.add = function (name, element, title, geometry) {
     this.windows[name] = {
         name: name,
         element: element,
     };
-    // FIXME: Add default layouts for elements.
-    this.loadLayout(name, element);
+    this.loadLayout(name, element, geometry);
 
     element.classList.add("cactbotwindow");
 
@@ -988,10 +987,15 @@ WindowManager.prototype.saveLayout = function (name, element) {
     };
     window.localStorage.setItem(this.storageKey(name), JSON.stringify(info));
 };
-WindowManager.prototype.loadLayout = function (name, element) {
+WindowManager.prototype.loadLayout = function (name, element, geometry) {
     var infoStr = window.localStorage.getItem(this.storageKey(name));
-    if (!infoStr)
+    if (!infoStr) {
+        for (var key in geometry) {
+            console.assert(geometry.hasOwnProperty(key));
+            element.style[key] = geometry[key];
+        }
         return;
+    }
     var info = JSON.parse(infoStr);
     element.style.top = info.top;
     element.style.left = info.left;
