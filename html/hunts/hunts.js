@@ -153,9 +153,6 @@ window.addEventListener("load", function () {
     // FIXME: this should happen automatically via cactbot.
     loadCSS("hunts/hunts.css");
 
-    // FIXME: This can't get loaded from a file via Javascript, because of
-    // cross-origin issues.  This isn't an issue at runtime (cef can cheat
-    // the sandbox with some flags), but it will make developing a pain.
     var element = document.createElement("div");
     element.innerHTML = '<div id="huntwindow"><div class="huntlist"></div></div>';
 
