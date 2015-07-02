@@ -146,7 +146,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="html\binding_test.html" />
     <Content Include="html\debug\debug.js" />
     <Content Include="html\fakeact.js" />
     <Content Include="html\hunts\huntlist.js" />
