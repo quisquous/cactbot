@@ -27,7 +27,6 @@ UpdateRegistrar.prototype.register = function(filter) {
 UpdateRegistrar.prototype.tick = function (currentTime) {
     var currentZone = window.act.currentZone();
     if (this.currentZone != currentZone) {
-        cactbot.debug('Leaving zone: ' + this.currentZone);
         for (var i = 0; i < this.filters.length; ++i) {
             if (this.filters[i].filtersZone(this.currentZone)) {
                 this.filters[i].leaveZone(this.currentZone);
