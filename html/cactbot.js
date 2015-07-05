@@ -1,3 +1,6 @@
+window.cactbot = {};
+window.cactbot.debug = function () { };
+
 function loadCSS(filename) {
     var link = document.createElement("link");
     link.setAttribute("rel", "stylesheet");
@@ -32,6 +35,7 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
 
         this.currentZone = currentZone;
 
+        cactbot.debug('Entering zone: ' + this.currentZone);
         for (var i = 0; i < this.filters.length; ++i) {
             if (this.filters[i].filtersZone(this.currentZone)) {
                 this.filters[i].enterZone(this.currentZone);
@@ -65,6 +69,8 @@ var WindowManager = function () {
     this.windows = [];
 };
 WindowManager.prototype.add = function (name, element, title, geometry) {
+    cactbot.debug('Added window: ' + title);
+
     this.windows[name] = {
         name: name,
         element: element,
@@ -82,7 +88,7 @@ WindowManager.prototype.add = function (name, element, title, geometry) {
     element.appendChild(titleDiv);
 
     $(element).draggable({ disabled: true });
-    $(element).resizable({ handles: 'all', disabled: true});
+    $(element).resizable({ handles: 'all', disabled: true });
 };
 WindowManager.prototype.remove = function (name) {
     delete this.windows[name];

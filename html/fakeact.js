@@ -51,6 +51,7 @@ FakeACT.prototype.nextLogLine = function () {
     return window.fakeact["logs"].shift();
 }
 
+// FIXME: move each fake testing function into the rotation that provides it
 FakeACT.prototype.testEinhander = function () {
     window.fakeact = {
         zone: "The Keeper Of The Lake",
@@ -78,6 +79,14 @@ FakeACT.prototype.testTurn13 = function () {
     };
 };
 
+FakeACT.prototype.testRavana = function () {
+    window.fakeact = {
+        zone: "Thok Ast Thok (extreme)",
+        incombat: true,
+        combatants: [makeCombatant("Ravana")],
+        logs: ["Dance to the song of ringing steel"]
+    };
+};
 
 FakeACT.prototype.testBees = function () {
     window.fakeact = {
@@ -136,4 +145,11 @@ if (!window.act) {
     window.fakeact["logs"] = [];
 
     window.act = new FakeACT();
+
+    // FIXME: fake act should come first so that no code anywhere attempts to
+    // read from the plugin when it's not there, but that also means that
+    // debugging logic isn't there yet.
+    window.addEventListener("load", function () {
+        cactbot.debug('Using fake act');
+    });
 }
