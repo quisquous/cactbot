@@ -69,6 +69,11 @@ BossStateMachine.prototype.tick = function (currentTime) {
         }
     }
 
+    if (phase.justText) {
+        this.currentRotation = phase.rotation;
+        return;
+    }
+
     // Note: boss percent never changes phase, it's just currently there for status.
 
     var rotation = [];
@@ -176,7 +181,9 @@ RaidTimersBinding.prototype.updateRotation = function(rotationDiv, rotation) {
 
         var countdownItem = document.createElement("div");
         countdownItem.className = "countdown";
-        countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime);
+        if (rotation[i].time) {
+            countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime);
+        }
         rotItem.appendChild(countdownItem);
 
         rotationDiv.appendChild(rotItem);

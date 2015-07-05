@@ -51,6 +51,7 @@ FakeACT.prototype.nextLogLine = function () {
     return window.fakeact["logs"].shift();
 }
 
+// FIXME: move each fake testing function into the rotation that provides it
 FakeACT.prototype.testEinhander = function () {
     window.fakeact = {
         zone: "The Keeper Of The Lake",
@@ -78,6 +79,14 @@ FakeACT.prototype.testTurn13 = function () {
     };
 };
 
+FakeACT.prototype.testRavana = function () {
+    window.fakeact = {
+        zone: "Thok Ast Thok (extreme)",
+        incombat: true,
+        combatants: [makeCombatant("Ravana")],
+        logs: ["Dance to the song of ringing steel"]
+    };
+};
 
 FakeACT.prototype.testBees = function () {
     window.fakeact = {
