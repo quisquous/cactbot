@@ -2,6 +2,7 @@ using Advanced_Combat_Tracker;
 using CefSharp;
 using CefSharp.Wpf;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Cactbot
@@ -44,7 +45,7 @@ namespace Cactbot
             };
 
             CefSettings cefSettings = new CefSettings();
-            cefSettings.CachePath = settingsTab.BrowserCacheDir();
+            cefSettings.CachePath = BrowserCacheDir();
             Cef.Initialize(cefSettings);
 
             browserWindow = new BrowserWindow();
@@ -65,6 +66,12 @@ namespace Cactbot
             settingsTab.Shutdown();
         }
         #endregion
+
+        private string BrowserCacheDir()
+        {
+            string actDir = Advanced_Combat_Tracker.ActGlobals.oFormActMain.AppDataFolder.FullName;
+            return Path.Combine(actDir, "cactbot_profile");
+        }
 
         private void OnBrowserCreated(object sender, IWpfWebBrowser browser)
         {
