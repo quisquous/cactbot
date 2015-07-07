@@ -48,7 +48,6 @@ namespace Cactbot
             this.label1 = new System.Windows.Forms.Label();
             this.htmlFile = new System.Windows.Forms.TextBox();
             this.showDevToolsButton = new System.Windows.Forms.Button();
-            this.ignoreMouseEventsCheckBox = new System.Windows.Forms.CheckBox();
             this.layoutCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -78,23 +77,10 @@ namespace Cactbot
             this.showDevToolsButton.UseVisualStyleBackColor = true;
             this.showDevToolsButton.Click += new System.EventHandler(this.showDevToolsButton_Click);
             // 
-            // ignoreMouseEventsCheckBox
-            // 
-            this.ignoreMouseEventsCheckBox.AutoSize = true;
-            this.ignoreMouseEventsCheckBox.Checked = true;
-            this.ignoreMouseEventsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ignoreMouseEventsCheckBox.Location = new System.Drawing.Point(549, 55);
-            this.ignoreMouseEventsCheckBox.Name = "ignoreMouseEventsCheckBox";
-            this.ignoreMouseEventsCheckBox.Size = new System.Drawing.Size(125, 17);
-            this.ignoreMouseEventsCheckBox.TabIndex = 5;
-            this.ignoreMouseEventsCheckBox.Text = "Ignore mouse events";
-            this.ignoreMouseEventsCheckBox.UseVisualStyleBackColor = true;
-            this.ignoreMouseEventsCheckBox.CheckedChanged += new System.EventHandler(this.clickableCheckBox_CheckedChanged);
-            // 
             // layoutCheckbox
             // 
             this.layoutCheckbox.AutoSize = true;
-            this.layoutCheckbox.Location = new System.Drawing.Point(549, 79);
+            this.layoutCheckbox.Location = new System.Drawing.Point(563, 80);
             this.layoutCheckbox.Name = "layoutCheckbox";
             this.layoutCheckbox.Size = new System.Drawing.Size(97, 17);
             this.layoutCheckbox.TabIndex = 6;
@@ -107,7 +93,6 @@ namespace Cactbot
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutCheckbox);
-            this.Controls.Add(this.ignoreMouseEventsCheckBox);
             this.Controls.Add(this.showDevToolsButton);
             this.Controls.Add(this.htmlFile);
             this.Controls.Add(this.label1);
@@ -122,7 +107,6 @@ namespace Cactbot
 
         private TextBox htmlFile;
         private Button showDevToolsButton;
-        private CheckBox ignoreMouseEventsCheckBox;
         private CheckBox layoutCheckbox;
 
 
@@ -140,11 +124,6 @@ namespace Cactbot
 
         public string HTMLFile() {
             return htmlFile.Text;
-        }
-
-        public bool WindowIgnoresMouseEvents()
-        {
-            return ignoreMouseEventsCheckBox.Checked;
         }
 
         public void Initialize(Label pluginStatusText)
@@ -165,7 +144,6 @@ namespace Cactbot
         void LoadSettings()
         {
             xmlSettings.AddControlSetting(htmlFile.Name, htmlFile);
-            xmlSettings.AddControlSetting(ignoreMouseEventsCheckBox.Name, ignoreMouseEventsCheckBox);
 
             if (File.Exists(settingsFile))
             {

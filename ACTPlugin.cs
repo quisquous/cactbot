@@ -42,6 +42,7 @@ namespace Cactbot
                 bool layoutModeEnabled = ((CheckBox)o).Checked;
                 browserWindow.BrowserControl.Browser.ExecuteScriptAsync(
                     layoutModeEnabled ? enableLayoutModeStr : disableLayoutModeStr);
+                browserWindow.Clickable = layoutModeEnabled;
             };
 
             CefSettings cefSettings = new CefSettings();
@@ -51,7 +52,7 @@ namespace Cactbot
             browserWindow = new BrowserWindow();
             browserWindow.ShowInTaskbar = false;
             browserWindow.BrowserControl.CreationHandlers += OnBrowserCreated;
-            browserWindow.Clickable = !settingsTab.WindowIgnoresMouseEvents();
+            browserWindow.Clickable = false;
             browserWindow.Show();
 
             pluginScreenSpace.Text = "Cactbot";
