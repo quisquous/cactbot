@@ -132,7 +132,7 @@ namespace Cactbot
         }
 
         Label lblStatus;    // The status label that appears in ACT's Plugin tab
-        string settingsFile = Path.Combine(ActGlobals.oFormActMain.AppDataFolder.FullName, "Config\\PluginSample.config.xml");
+        string settingsFile = Path.Combine(ActGlobals.oFormActMain.AppDataFolder.FullName, "Config\\Cactbot.config.xml");
         SettingsSerializer xmlSettings;
 
         public string HTMLFile() {
