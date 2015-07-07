@@ -352,7 +352,12 @@ window.addEventListener("load", function () {
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(element);
 
-    windowManager.add("rotation", element, "rotation");
+    var defaultGeometry = {
+        width: "400px",
+        height: "400px",
+    };
+
+    windowManager.add("rotation", element, "rotation", defaultGeometry);
 
     // FIXME: This is such a clumsy binding.
     window.bindings = new RaidTimersBinding();

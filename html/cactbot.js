@@ -54,6 +54,11 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
 
     while (window.act.hasLogLines()) {
         var line = window.act.nextLogLine();
+        // FIXME: remove once the source of the null log lines is discovered.
+        console.assert(line, "false line (more: " + window.act.hasLogLines() + ")");
+        if (!line) {
+            continue;
+        }
         for (var i = 0; i < activeFilters.length; ++i) {
             activeFilters[i].processLog(line);
         }
@@ -89,6 +94,10 @@ WindowManager.prototype.add = function (name, element, title, geometry) {
 
     $(element).draggable({ disabled: true });
     $(element).resizable({ handles: 'all', disabled: true });
+
+    // This should have a default, always.
+    console.assert(element.style.height, "Missing default height: " + name);
+    console.assert(element.style.width, "Missing default width: " + name);
 };
 WindowManager.prototype.remove = function (name) {
     delete this.windows[name];
@@ -147,17 +156,14 @@ window.disableLayoutMode = function () {
 }
 
 function rafLoop() {
+    window.requestAnimationFrame(rafLoop);
     if (!window.act) {
-        window.requestAnimationFrame(rafLoop);
         return;
     }
     window.act.updateCombatants();
 
     var currentTime = new Date();
-
     updateRegistrar.tick(currentTime);
-
-    window.requestAnimationFrame(rafLoop);
 
 }
 
