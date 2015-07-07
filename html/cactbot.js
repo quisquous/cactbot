@@ -94,6 +94,10 @@ WindowManager.prototype.add = function (name, element, title, geometry) {
 
     $(element).draggable({ disabled: true });
     $(element).resizable({ handles: 'all', disabled: true });
+
+    // This should have a default, always.
+    console.assert(element.style.height, "Missing default height: " + name);
+    console.assert(element.style.width, "Missing default width: " + name);
 };
 WindowManager.prototype.remove = function (name) {
     delete this.windows[name];
