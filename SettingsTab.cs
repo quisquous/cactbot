@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Advanced_Combat_Tracker;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using Advanced_Combat_Tracker;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Text;
+using System.Windows.Forms;
 using System.Xml;
 
 [assembly: AssemblyTitle("Cactbot")]
@@ -45,21 +46,24 @@ namespace Cactbot
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelFilename = new System.Windows.Forms.Label();
             this.htmlFile = new System.Windows.Forms.TextBox();
             this.showDevToolsButton = new System.Windows.Forms.Button();
             this.layoutCheckbox = new System.Windows.Forms.CheckBox();
             this.reloadButton = new System.Windows.Forms.Button();
+            this.labelShowKey = new System.Windows.Forms.Label();
+            this.showHotkeyText = new System.Windows.Forms.TextBox();
+            this.clearVisibilityKeyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // labelFilename
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Add filename to load here";
+            this.labelFilename.AutoSize = true;
+            this.labelFilename.Location = new System.Drawing.Point(3, 0);
+            this.labelFilename.Name = "labelFilename";
+            this.labelFilename.Size = new System.Drawing.Size(127, 13);
+            this.labelFilename.TabIndex = 0;
+            this.labelFilename.Text = "Add filename to load here";
             // 
             // htmlFile
             // 
@@ -99,15 +103,46 @@ namespace Cactbot
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
             // 
+            // labelShowKey
+            // 
+            this.labelShowKey.AutoSize = true;
+            this.labelShowKey.Location = new System.Drawing.Point(3, 86);
+            this.labelShowKey.Name = "labelShowKey";
+            this.labelShowKey.Size = new System.Drawing.Size(116, 13);
+            this.labelShowKey.TabIndex = 8;
+            this.labelShowKey.Text = "Overlay visibility hotkey";
+            // 
+            // showHotkeyText
+            // 
+            this.showHotkeyText.Location = new System.Drawing.Point(125, 83);
+            this.showHotkeyText.Name = "showHotkeyText";
+            this.showHotkeyText.Size = new System.Drawing.Size(64, 20);
+            this.showHotkeyText.TabIndex = 9;
+            this.showHotkeyText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.showHotkeyText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.showHotkey_KeyDown);
+            // 
+            // clearVisibilityKeyButton
+            // 
+            this.clearVisibilityKeyButton.Location = new System.Drawing.Point(195, 83);
+            this.clearVisibilityKeyButton.Name = "clearVisibilityKeyButton";
+            this.clearVisibilityKeyButton.Size = new System.Drawing.Size(42, 20);
+            this.clearVisibilityKeyButton.TabIndex = 10;
+            this.clearVisibilityKeyButton.Text = "clear";
+            this.clearVisibilityKeyButton.UseVisualStyleBackColor = true;
+            this.clearVisibilityKeyButton.Click += new System.EventHandler(this.clearVisibilityKeyButton_Click);
+            // 
             // SettingsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.clearVisibilityKeyButton);
+            this.Controls.Add(this.showHotkeyText);
+            this.Controls.Add(this.labelShowKey);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.layoutCheckbox);
             this.Controls.Add(this.showDevToolsButton);
             this.Controls.Add(this.htmlFile);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelFilename);
             this.Name = "SettingsTab";
             this.Size = new System.Drawing.Size(686, 384);
             this.ResumeLayout(false);
@@ -121,9 +156,12 @@ namespace Cactbot
         private Button showDevToolsButton;
         private CheckBox layoutCheckbox;
         private Button reloadButton;
+        private Label labelShowKey;
+        private TextBox showHotkeyText;
+        private Button clearVisibilityKeyButton;
 
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelFilename;
 
         #endregion
         public SettingsTab()
@@ -144,7 +182,10 @@ namespace Cactbot
             lblStatus = pluginStatusText;    // Hand the status label's reference to our local var
             this.Dock = DockStyle.Fill;    // Expand the UserControl to fill the tab's client space
             xmlSettings = new SettingsSerializer(this);    // Create a new settings serializer and pass it this instance
+
+            showHotkeyText.Text = "None";
             LoadSettings();
+            RegisterVisibilityHotKey(showHotkeyText.Text);
 
             lblStatus.Text = "Plugin Started";
         }
@@ -157,6 +198,7 @@ namespace Cactbot
         void LoadSettings()
         {
             xmlSettings.AddControlSetting(htmlFile.Name, htmlFile);
+            xmlSettings.AddControlSetting(showHotkeyText.Name, showHotkeyText);
 
             if (File.Exists(settingsFile))
             {
@@ -227,6 +269,72 @@ namespace Cactbot
         {
             if (this.OnButtonReload != null)
                 this.OnButtonReload(sender, e);
+        }
+
+        private void showHotkey_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+            e.Handled = true;
+
+            if (e.KeyCode == Keys.ControlKey ||
+                e.KeyCode == Keys.LControlKey ||
+                e.KeyCode == Keys.RControlKey ||
+                e.KeyCode == Keys.LWin ||
+                e.KeyCode == Keys.RWin ||
+                e.KeyCode == Keys.ShiftKey ||
+                e.KeyCode == Keys.LShiftKey ||
+                e.KeyCode == Keys.RShiftKey ||
+                e.KeyCode == Keys.Menu ||
+                e.KeyCode == Keys.LMenu ||
+                e.KeyCode == Keys.RMenu)
+            {
+                return;
+            }
+
+            RegisterVisibilityHotKey(e.KeyCode, e.Modifiers);
+        }
+
+        public event EventHandler OnToggleWindowVisibility;
+        private GlobalHotKey globalToggleVisibilityKey;
+        private void RegisterVisibilityHotKey(Keys keyCode, Keys modifiers)
+        {
+            KeysConverter converter = new KeysConverter();
+            showHotkeyText.Text = converter.ConvertToString(keyCode | modifiers);
+
+            if (globalToggleVisibilityKey != null)
+                globalToggleVisibilityKey.Unregister();
+            globalToggleVisibilityKey = new GlobalHotKey(this, keyCode, modifiers);
+            globalToggleVisibilityKey.OnPressed += (o, e) =>
+            {
+                if (OnToggleWindowVisibility == null)
+                    return;
+                e.Handled = true;
+                OnToggleWindowVisibility(o, e);
+            };
+        }
+
+        private void RegisterVisibilityHotKey(string keyValueStr)
+        {
+            KeysConverter converter = new KeysConverter();
+            Keys keyValue;
+            try
+            {
+                keyValue = (Keys)converter.ConvertFromString(keyValueStr);
+            }
+            catch (Exception)
+            {
+                keyValue = Keys.None;
+            }
+
+            Keys modifierMask = Keys.Alt | Keys.Shift | Keys.Control;
+            Keys keyCode = keyValue & ~modifierMask;
+            Keys modifiers = keyValue & modifierMask;
+            RegisterVisibilityHotKey(keyCode, modifiers);
+        }
+
+        private void clearVisibilityKeyButton_Click(object sender, EventArgs e)
+        {
+            RegisterVisibilityHotKey(Keys.None, Keys.None);
         }
     }
 }

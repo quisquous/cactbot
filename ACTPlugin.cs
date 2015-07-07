@@ -49,6 +49,13 @@ namespace Cactbot
                 bool ignoreCache = true;
                 browserWindow.BrowserControl.Browser.Reload(ignoreCache);
             };
+            settingsTab.OnToggleWindowVisibility += (o, e) =>
+            {
+                if (browserWindow.IsVisible)
+                    browserWindow.Hide();
+                else
+                    browserWindow.Show();
+            };
 
             CefSettings cefSettings = new CefSettings();
             cefSettings.CachePath = BrowserCacheDir();
