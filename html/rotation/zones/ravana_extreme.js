@@ -217,7 +217,7 @@
 
     var ThokAstThokExtreme = function () {
         BaseTickable.apply(this, arguments);
-        this.zoneFilter = "Thok Ast Thok (extreme)";
+        this.zoneFilter = "Thok Ast Thok (Extreme)";
         this.bosses = [ravana];
     };
     ThokAstThokExtreme.prototype = new BaseTickable;

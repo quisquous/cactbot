@@ -53,6 +53,7 @@ namespace Cactbot
             browserWindow.Clickable = !settingsTab.WindowIgnoresMouseEvents();
             browserWindow.Show();
 
+            pluginScreenSpace.Text = "Cactbot";
             pluginScreenSpace.Controls.Add(settingsTab);
 
             Application.ApplicationExit += OnACTShutdown;
