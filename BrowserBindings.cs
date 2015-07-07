@@ -1,6 +1,7 @@
 using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Cactbot
 {
@@ -106,7 +107,12 @@ namespace Cactbot
         {
             if (isImport)
                 return;
-            logLines.Enqueue(args.logLine);
+            Debug.Assert(args.logLine != null);
+            // FIXME: Remove this check once the source of the null log lines is found.
+            if (args.logLine != null)
+            {
+                logLines.Enqueue(args.logLine);
+            }
 
             // FIXME: expose this error to the browser.
             if (logLines.Count > MaxLogLinesRetained)
