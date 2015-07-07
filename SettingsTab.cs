@@ -49,6 +49,7 @@ namespace Cactbot
             this.htmlFile = new System.Windows.Forms.TextBox();
             this.showDevToolsButton = new System.Windows.Forms.Button();
             this.layoutCheckbox = new System.Windows.Forms.CheckBox();
+            this.reloadButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +81,7 @@ namespace Cactbot
             // layoutCheckbox
             // 
             this.layoutCheckbox.AutoSize = true;
-            this.layoutCheckbox.Location = new System.Drawing.Point(563, 80);
+            this.layoutCheckbox.Location = new System.Drawing.Point(563, 71);
             this.layoutCheckbox.Name = "layoutCheckbox";
             this.layoutCheckbox.Size = new System.Drawing.Size(97, 17);
             this.layoutCheckbox.TabIndex = 6;
@@ -88,10 +89,21 @@ namespace Cactbot
             this.layoutCheckbox.UseVisualStyleBackColor = true;
             this.layoutCheckbox.CheckedChanged += new System.EventHandler(this.layoutCheckbox_CheckedChanged);
             // 
+            // reloadButton
+            // 
+            this.reloadButton.Location = new System.Drawing.Point(563, 42);
+            this.reloadButton.Name = "reloadButton";
+            this.reloadButton.Size = new System.Drawing.Size(111, 23);
+            this.reloadButton.TabIndex = 7;
+            this.reloadButton.Text = "Reload Page";
+            this.reloadButton.UseVisualStyleBackColor = true;
+            this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
+            // 
             // SettingsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.layoutCheckbox);
             this.Controls.Add(this.showDevToolsButton);
             this.Controls.Add(this.htmlFile);
@@ -108,6 +120,7 @@ namespace Cactbot
         private TextBox htmlFile;
         private Button showDevToolsButton;
         private CheckBox layoutCheckbox;
+        private Button reloadButton;
 
 
         private System.Windows.Forms.Label label1;
@@ -207,6 +220,13 @@ namespace Cactbot
         {
             if (this.OnCheckboxLayoutModeChanged != null)
                 this.OnCheckboxLayoutModeChanged(sender, e);
+        }
+
+        public event EventHandler OnButtonReload;
+        private void reloadButton_Click(object sender, EventArgs e)
+        {
+            if (this.OnButtonReload != null)
+                this.OnButtonReload(sender, e);
         }
     }
 }

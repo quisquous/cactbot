@@ -44,6 +44,11 @@ namespace Cactbot
                     layoutModeEnabled ? enableLayoutModeStr : disableLayoutModeStr);
                 browserWindow.Clickable = layoutModeEnabled;
             };
+            settingsTab.OnButtonReload += (o, e) =>
+            {
+                bool ignoreCache = true;
+                browserWindow.BrowserControl.Browser.Reload(ignoreCache);
+            };
 
             CefSettings cefSettings = new CefSettings();
             cefSettings.CachePath = BrowserCacheDir();
