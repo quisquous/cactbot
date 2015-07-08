@@ -11,15 +11,22 @@ div {
 .cactbotwindow {
     position: absolute;
     overflow: hidden;
+    visibility: visible;
+}
+
+.cactbotwindow.hidden {
+    visibility: hidden;
 }
 
 .cactbotwindow.layoutmode {
-    border: blue solid 10px !important;
-    margin: -10px !important;
+    border: blue solid 10px;
+    margin: -10px;
 }
 
-.ui-draggable-dragging > .cactbotwindowname {
-    background:rgba(87, 176, 100, 0.90);
+.cactbotwindow.layoutmode.hidden {
+    border: green dashed 5px;
+    margin: -5px;
+    visibility: visible;
 }
 
 .cactbotwindowname {
@@ -37,8 +44,16 @@ div {
     -webkit-user-select: none;
 }
 
+.cactbotwindow.hidden > .cactbotwindowname {
+    background:rgba(28, 28, 196, 0.1);
+}
+
+.ui-draggable-dragging > .cactbotwindowname {
+    background:rgba(87, 176, 100, 0.90);
+}
+
 .layoutmode > .cactbotwindowname {
-    visibility: visible !important;
+    visibility: visible;
 }
 
 .cactbotwindowname > div {

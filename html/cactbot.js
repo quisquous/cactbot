@@ -72,6 +72,12 @@ var updateRegistrar = new UpdateRegistrar();
 
 var WindowManager = function () {
     this.windows = [];
+    this.layoutMode = false;
+
+    document.addEventListener("contextmenu", function(e){
+        if (this.onRightClick(e.target))
+            e.preventDefault();
+    }.bind(this), false);
 };
 WindowManager.prototype.add = function (name, element, title, geometry) {
     cactbot.debug('Added window: ' + title);
@@ -79,8 +85,10 @@ WindowManager.prototype.add = function (name, element, title, geometry) {
     this.windows[name] = {
         name: name,
         element: element,
+        visible: true,
     };
     this.loadLayout(name, element, geometry);
+    this.SetWindowVisible(name, this.windows[name].visible);
 
     element.classList.add("cactbotwindow");
 
@@ -103,6 +111,10 @@ WindowManager.prototype.remove = function (name) {
     delete this.windows[name];
 };
 WindowManager.prototype.enableLayoutMode = function () {
+    if (this.layoutMode) {
+        return;
+    }
+    this.layoutMode = true;
     for (var name in this.windows) {
         var element = this.windows[name].element;
         element.classList.add("layoutmode");
@@ -111,6 +123,10 @@ WindowManager.prototype.enableLayoutMode = function () {
     $(".cactbotwindow").resizable("enable");
 };
 WindowManager.prototype.disableLayoutMode = function () {
+    if (!this.layoutMode) {
+        return;
+    }
+    this.layoutMode = false;
     for (var name in this.windows) {
         this.windows[name].element.classList.remove("layoutmode");
         this.saveLayout(name, this.windows[name].element);
@@ -121,31 +137,67 @@ WindowManager.prototype.disableLayoutMode = function () {
 WindowManager.prototype.storageKey = function (name) {
     return "geom." + name;
 };
-
 WindowManager.prototype.saveLayout = function (name, element) {
     var info = {
         top: element.style.top,
         left: element.style.left,
         width: element.style.width,
         height: element.style.height,
+        visible: this.windows[name].visible,
     };
     window.localStorage.setItem(this.storageKey(name), JSON.stringify(info));
 };
 WindowManager.prototype.loadLayout = function (name, element, geometry) {
     var infoStr = window.localStorage.getItem(this.storageKey(name));
-    if (!infoStr) {
-        for (var key in geometry) {
-            console.assert(geometry.hasOwnProperty(key));
-            element.style[key] = geometry[key];
+    var info = infoStr ? JSON.parse(infoStr) : geometry;
+
+    for (var key in info) {
+        console.assert(info.hasOwnProperty(key));
+        if (key === "visible") {
+            this.windows[name].visible = info[key];
+            continue;
         }
-        return;
+        element.style[key] = info[key];
     }
-    var info = JSON.parse(infoStr);
-    element.style.top = info.top;
-    element.style.left = info.left;
-    element.style.width = info.width;
-    element.style.height = info.height;
 };
+WindowManager.prototype.onRightClick = function(element) {
+    if (!this.layoutMode)
+        return false;
+
+    var originalElement = element;
+    while (!element.classList.contains("cactbotwindow")) {
+        element = element.parentNode;
+        if (!element) {
+            console.log("Element not in tree of window", originalElement);
+            return false;
+        }
+    }
+
+    var windowName;
+    for (var name in this.windows) {
+        if (element == this.windows[name].element) {
+            windowName = name;
+            break;
+        }
+    }
+    if (!windowName) {
+        console.log("No window associated with element", element);
+        return false;
+    }
+
+    this.SetWindowVisible(name, !this.windows[name].visible);
+    return true;
+};
+ WindowManager.prototype.SetWindowVisible = function(name, visible) {
+     this.windows[name].visible = visible;
+     var element = this.windows[name].element;
+
+     if (visible) {
+         element.classList.remove("hidden");
+     } else {
+         element.classList.add("hidden");
+     }
+ };
 
 var windowManager = new WindowManager();
 window.enableLayoutMode = function () {
