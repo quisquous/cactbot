@@ -12,6 +12,12 @@ namespace Cactbot
         SettingsTab settingsTab = new SettingsTab();
         BrowserWindow browserWindow;
 
+        bool overlayFocused = false;
+        bool overlayEnabled = true;
+
+        public delegate void VisibilityChecker();
+        public event VisibilityChecker visCheck;
+
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
         {
@@ -49,13 +55,51 @@ namespace Cactbot
                 bool ignoreCache = true;
                 browserWindow.BrowserControl.Browser.Reload(ignoreCache);
             };
+            visCheck += () =>
+            {
+                if (overlayFocused == true && overlayEnabled == true)
+                {
+                    if (browserWindow.IsVisible == false)
+                    {
+                        browserWindow.Show();
+                    }
+                }
+                else
+                {
+                    browserWindow.Hide();
+                }
+            };
+            var currentDispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
             settingsTab.OnToggleWindowVisibility += (o, e) =>
             {
-                if (browserWindow.IsVisible)
-                    browserWindow.Hide();
-                else
-                    browserWindow.Show();
+                overlayEnabled = !overlayEnabled;
+                currentDispatcher.Invoke(visCheck);
             };
+            System.Windows.Automation.AutomationFocusChangedEventHandler afceh = (sender, o) =>
+            {
+                System.Windows.Automation.AutomationElement focusedElement = sender as System.Windows.Automation.AutomationElement;
+                if (focusedElement != null)
+                {
+                    int processId = focusedElement.Current.ProcessId;
+                    using (System.Diagnostics.Process process = System.Diagnostics.Process.GetProcessById(processId))
+                    {
+                        string pname = process.ProcessName;
+                        switch (pname)
+                        {
+                            case "ffxiv":
+                            case "ffxiv_dx11":
+                            case "Advanced Combat Tracker":
+                                overlayFocused = true;
+                                break;
+                            default:
+                                overlayFocused = false;
+                                break;
+                        }
+                        currentDispatcher.Invoke(visCheck);
+                    }
+                }
+            };
+            System.Windows.Automation.Automation.AddAutomationFocusChangedEventHandler(afceh);
 
             CefSettings cefSettings = new CefSettings();
             cefSettings.CachePath = BrowserCacheDir();
