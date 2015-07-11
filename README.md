@@ -9,6 +9,10 @@ It depends on [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discus
 To make it easier to develop arbitrary overlays for FFXIV,
 this project provides Javascript bindings to ACT values as well as a transparent Chromium window overlay for displaying output.
 
+![Rotation Window](https://raw.githubusercontent.com/quisquous/cactbot/master/screenshots/rotation.png)
+
+![Hunt Window](https://raw.githubusercontent.com/quisquous/cactbot/master/screenshots/hunt.png)
+
 ## Installing
 
 ### Install dependencies
