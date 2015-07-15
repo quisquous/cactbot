@@ -14,6 +14,10 @@ BossStateMachine.prototype.startBoss = function (boss) {
 };
 
 BossStateMachine.prototype.end = function () {
+    if (!this.currentBoss) {
+        return;
+    }
+    cactbot.debug('End boss fight');
     this.currentBoss = null;
     this.currentPhase = null;
     this.currentBossStartTime = null;
@@ -46,6 +50,10 @@ BossStateMachine.prototype.processLog = function (logLine) {
     if (logLine.indexOf(phase.endLog) != -1) {
         var currentTime = new Date();
         this.startPhase(this.currentPhase + 1, currentTime);
+    }
+    // FIXME: only allow echos to do this vs jerks saying this in chat.
+    if (logLine.indexOf("cactbot wipe") != -1) {
+        this.end();
     }
 };
 
@@ -227,8 +235,10 @@ function hpPercentByName(name) {
 
 function updateFunc(bossStateMachine) {
     var boss = bossStateMachine.currentBoss;
-    if (!boss)
+    if (!boss) {
+        bindings.clear();
         return;
+    }
 
     var percent = hpPercentByName(boss.bossName);
     percent = Math.floor(percent); // TODO: add one decimal point
@@ -283,6 +293,7 @@ BaseTickable.prototype.filtersZone = function (zone) {
 };
 BaseTickable.prototype.tick = function (currentTime) {
     this.boss.tick(currentTime);
+
     // FIXME: This isn't a great place to glue a state machine to bindings.
     updateFunc(this.boss);
 };
