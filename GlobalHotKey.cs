@@ -112,6 +112,7 @@ namespace Cactbot
                 if (GlobalHotKey.UnregisterHotKey(this.windowControl.Handle, id) == 0)
                     throw new Win32Exception();
             }
+            windowControl = null;
         }
 
         public bool PreFilterMessage(ref Message message)

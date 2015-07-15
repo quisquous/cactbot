@@ -191,6 +191,7 @@ namespace Cactbot
         }
         public void Shutdown()
         {
+            globalToggleVisibilityKey.Unregister();
             SaveSettings();
             lblStatus.Text = "Plugin Exited";
         }
