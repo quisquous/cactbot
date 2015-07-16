@@ -20,7 +20,9 @@ namespace Cactbot
         private BrowserWindow browserWindow;
         private System.Timers.Timer timer;
 
-        private bool visible = false;
+        private bool visibleViaFocus = false;
+        public bool visibleViaHotkey { get; set; }
+
         private string lastProcessName;
 
         const double timerInterval = 200.0; // miliseconds
@@ -42,6 +44,26 @@ namespace Cactbot
 
         private void CheckVisibility()
         {
+            bool visible = CheckVisibilityViaHotkey() && CheckVisibilityViaFocus();
+            
+            // We use a visibility flag instead and compare "expected" vs "actual" here in order to avoid calling
+            // Show all the time, which will potentially kick ACT to the foreground.
+            // TODO: Figure out why switching to FFXIV from something other than ACT doesn't secretly steal focus
+            //       away from FFXIV and immediately give it to ACT. It's good that it works, but I'm not exactly
+            //       sure why it works which is troubling
+            if (browserWindow.IsVisible == false && visible == true)
+                browserWindow.Show();
+            else if (browserWindow.IsVisible == true && visible == false)
+                browserWindow.Hide();
+        }
+        
+        private bool CheckVisibilityViaHotkey()
+        {
+            return visibleViaHotkey;
+        }
+
+        private bool CheckVisibilityViaFocus()
+        {
             string processName;
 
             // Attempt to grab the process name of the current active window, if there is one
@@ -56,33 +78,26 @@ namespace Cactbot
             }
             catch
             {
-                return;
+                visibleViaFocus = false;
+                return visibleViaFocus;
             }
 
             // Evidently nothing's changed, so we're done
             if (processName == lastProcessName)
-                return;
+                return visibleViaFocus;
 
             // Catches both DX9 and DX11 clients, as well as ACT (which happens to also be our parent process)
             // Including ACT is important not only for debugging, but also because calling Show will usually kick
             // ACT to the foreground
             if (processName.StartsWith("ffxiv") || processName.StartsWith("Advanced Combat Tracker"))
-                visible = true;
+                visibleViaFocus = true;
             else
-                visible = false;
+                visibleViaFocus = false;
 
             // Store the last active process name to save ourselves time next go-around
             lastProcessName = processName;
 
-            // We use a visibility flag instead and compare "expected" vs "actual" here in order to avoid calling
-            // Show all the time, which will potentially kick ACT to the foreground.
-            // TODO: Figure out why switching to FFXIV from something other than ACT doesn't secretly steal focus
-            //       away from FFXIV and immediately give it to ACT. It's good that it works, but I'm not exactly
-            //       sure why it works which is troubling
-            if (browserWindow.IsVisible == false && visible == true)
-                browserWindow.Show();
-            else if (browserWindow.IsVisible == true && visible == false)
-                browserWindow.Hide();
+            return visibleViaFocus;
         }
     }
 }

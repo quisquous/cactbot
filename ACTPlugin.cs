@@ -11,6 +11,7 @@ namespace Cactbot
     {
         SettingsTab settingsTab = new SettingsTab();
         BrowserWindow browserWindow;
+        VisibilityControl visibilityControl;
 
         #region IActPluginV1 Members
         public void InitPlugin(TabPage pluginScreenSpace, Label pluginStatusText)
@@ -51,10 +52,7 @@ namespace Cactbot
             };
             settingsTab.OnToggleWindowVisibility += (o, e) =>
             {
-                if (browserWindow.IsVisible)
-                    browserWindow.Hide();
-                else
-                    browserWindow.Show();
+                visibilityControl.visibleViaHotkey = !(visibilityControl.visibleViaHotkey);
             };
 
             CefSettings cefSettings = new CefSettings();
@@ -66,6 +64,8 @@ namespace Cactbot
             browserWindow.BrowserControl.CreationHandlers += OnBrowserCreated;
             browserWindow.Clickable = false;
             browserWindow.Show();
+
+            visibilityControl = new VisibilityControl(browserWindow);
 
             pluginScreenSpace.Text = "Cactbot";
             pluginScreenSpace.Controls.Add(settingsTab);
