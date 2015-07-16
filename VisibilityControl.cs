@@ -20,7 +20,7 @@ namespace Cactbot
         private BrowserWindow browserWindow;
         private System.Timers.Timer timer;
 
-        private bool visibleViaFocus = false;
+        private bool visibleViaFocus;
         public bool visibleViaHotkey { get; set; }
 
         private string lastProcessName;
@@ -31,6 +31,9 @@ namespace Cactbot
         {
             // Grab a handle to the browser window so we can control it
             browserWindow = bw;
+
+            visibleViaFocus = false;
+            visibleViaHotkey = true;
 
             // Glue to avoid interop exceptions from calling Show/Hide directly
             VisibilityChecker myChecker = CheckVisibility;
