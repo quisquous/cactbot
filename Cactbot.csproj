@@ -124,6 +124,7 @@
     <Compile Include="SettingsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="VisibilityControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SettingsTab.resx">
