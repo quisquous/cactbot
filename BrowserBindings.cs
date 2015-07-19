@@ -54,6 +54,8 @@ namespace Cactbot
 
         public Combatant GetCombatant(int idx)
         {
+            if (combatants == null)
+                return null;
             if (idx < 0 || idx >= combatants.Count)
                 return null;
             return combatants[idx];
