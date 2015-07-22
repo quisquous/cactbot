@@ -20,6 +20,7 @@
                     { name: "Gunnery Pod", time: 47 },
                     { name: "Royal Fount", time: 49 },
                     { name: "Emergency Deployment", time: 52 },
+                    { name: "Prey", time: 57 },
                     //{ name: "Hydrothermal Missile", time: 60 },
                     { name: "Gunnery Pod", time: 64 },
                     { name: "Royal Fount", time: 67 },
