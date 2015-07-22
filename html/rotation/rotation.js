@@ -100,6 +100,9 @@ BossStateMachine.prototype.tick = function (currentTime) {
     // assert startIdx is valid here
     var adjustedItem;
     for (var i = startIdx; i < phase.rotation.length; ++i) {
+        if (phase.rotation[i].skipFirst) {
+            continue;
+        }
         adjustedItem = {
             name: phase.rotation[i].name,
             time: addTime(adjustedStartTime, phase.rotation[i].time),

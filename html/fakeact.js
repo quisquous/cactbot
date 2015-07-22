@@ -97,6 +97,15 @@ FakeACT.prototype.testBees = function () {
     };
 };
 
+FakeACT.prototype.testA1Savage = function () {
+    window.fakeact = {
+        zone: "Alexander - The Fist of the Father (Savage)",
+        incombat: true,
+        combatants: [makeCombatant("Oppressor")],
+        logs: ["Hangar 8 will be sealed off in"]
+    };
+};
+
 FakeACT.prototype.testHunt = function () {
     var the_player = makeCombatant("The Player");
     the_player.posX = 50;
