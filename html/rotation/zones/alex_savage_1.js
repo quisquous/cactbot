@@ -66,4 +66,8 @@
     AlexanderSavageTurn1.prototype = new BaseTickable;
 
     updateRegistrar.register(new AlexanderSavageTurn1());
+
+    var alex1_unknown = new AlexanderSavageTurn1();
+    alex1_unknown.zoneFilter = "Unknown Zone (1C1)";
+    updateRegistrar.register(alex1_unknown);
 })();
