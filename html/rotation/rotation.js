@@ -284,6 +284,9 @@ var BaseTickable = function () {
 };
 
 BaseTickable.prototype.enterZone = function (zone) {
+    for (var i = 0; i < this.bosses.length; ++i) {
+        cactbot.debug('Added boss: ' + this.bosses[i].bossName);
+    }
 };
 
 BaseTickable.prototype.leaveZone = function (zone) {
