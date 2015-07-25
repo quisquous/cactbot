@@ -52,13 +52,16 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
         }
     }
 
+    var logLineCount = 0;
     while (window.act.hasLogLines()) {
         var line = window.act.nextLogLine();
         // FIXME: remove once the source of the null log lines is discovered.
         console.assert(line, "false line (more: " + window.act.hasLogLines() + ")");
         if (!line) {
+            cactbot.debug("ERROR: null log line, total: " + logLineCount);
             continue;
         }
+        logLineCount++;
         for (var i = 0; i < activeFilters.length; ++i) {
             activeFilters[i].processLog(line);
         }
