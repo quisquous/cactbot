@@ -291,6 +291,7 @@ BaseTickable.prototype.enterZone = function (zone) {
 };
 
 BaseTickable.prototype.leaveZone = function (zone) {
+    bindings.clear();
 };
 
 BaseTickable.prototype.filtersZone = function (zone) {
