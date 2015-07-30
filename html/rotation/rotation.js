@@ -43,6 +43,11 @@ BossStateMachine.prototype.processLog = function (logLine) {
     if (!this.currentBoss) {
         return;
     }
+    // FIXME: only allow echos to do this vs jerks saying this in chat.
+    if (logLine.indexOf("cactbot wipe") != -1) {
+        this.end();
+	return;
+    }
     var phase = this.currentBoss.phases[this.currentPhase];
     if (!phase.endLog) {
         return;
@@ -50,10 +55,6 @@ BossStateMachine.prototype.processLog = function (logLine) {
     if (logLine.indexOf(phase.endLog) != -1) {
         var currentTime = new Date();
         this.startPhase(this.currentPhase + 1, currentTime);
-    }
-    // FIXME: only allow echos to do this vs jerks saying this in chat.
-    if (logLine.indexOf("cactbot wipe") != -1) {
-        this.end();
     }
 };
 
