@@ -69,6 +69,9 @@ namespace Cactbot
 
         public Combatant GetMobByName(string name)
         {
+            if (combatants == null)
+                return null;
+
             Combatant found = null;
             foreach (Combatant c in combatants) {
                 if (!CombatantIsMob(c))
