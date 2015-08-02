@@ -101,7 +101,7 @@ FakeACT.prototype.testA1Savage = function () {
     window.fakeact = {
         zone: "Alexander - The Fist of the Father (Savage)",
         incombat: true,
-        combatants: [makeCombatant("Oppressor")],
+        combatants: [makeCombatant("The Player"), makeCombatant("Oppressor")],
         logs: ["Hangar 8 will be sealed off in"]
     };
 };

@@ -16,6 +16,8 @@
     // FIXME: maybe make this relative to how big the window is?
     var maxLogEntries = 50;
     window.cactbot.debug = function (text) {
+        window.console.log(text);
+
         var logLine = document.createElement("div");
         logLine.classList.add("cactbotlog");
 

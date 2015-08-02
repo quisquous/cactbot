@@ -282,6 +282,9 @@ function updateFunc(bossStateMachine) {
 
 var BaseTickable = function () {
     this.boss = new BossStateMachine();
+    document.addEventListener("cactbot.wipe", (function () {
+        this.boss.end();
+    }).bind(this));
 };
 
 BaseTickable.prototype.enterZone = function (zone) {
@@ -305,7 +308,6 @@ BaseTickable.prototype.tick = function (currentTime) {
     // FIXME: This isn't a great place to glue a state machine to bindings.
     updateFunc(this.boss);
 };
-
 BaseTickable.prototype.processLog = function (log) {
     if (log.indexOf("will be sealed off") != -1) {
         for (var i = 0; i < this.bosses.length; ++i) {
@@ -320,7 +322,7 @@ BaseTickable.prototype.processLog = function (log) {
         for (var i = 0; i < this.bosses.length; ++i) {
             if (log.indexOf(this.bosses[i].areaSeal) == -1)
                 continue;
-            this.boss.stop();
+            this.boss.end();
             break;
         }
     }
@@ -340,6 +342,73 @@ BaseTickable.prototype.processLog = function (log) {
         this.boss.processLog(log);
     }
 };
+
+// WipeChecker works by detecting when a player goes from 0 HP to >0 HP
+// without weakness.  It sends a cactbot.wipe event.
+WipeChecker = function() {
+    this.reset();
+};
+WipeChecker.prototype.wipe = function () {
+    cactbot.debug("Wipe detected.");
+    var event = new CustomEvent("cactbot.wipe", {
+        bubbles: true,
+        cancelable: true,
+	});
+    document.dispatchEvent(event);
+    this.reset();
+}
+WipeChecker.prototype.reset = function () {
+    this.playerDead = false;
+    // If this is !null, then it's a potential wipe that's being determined.
+    this.lastRevivedTime = null;
+}
+
+WipeChecker.prototype.enterZone = function (zone) {
+    this.reset();
+};
+WipeChecker.prototype.leaveZone = function (zone) {
+    this.reset();
+};
+WipeChecker.prototype.filtersZone = function (zone) {
+    return true;
+};
+WipeChecker.prototype.tick = function (currentTime) {
+    var player = window.act.getPlayer();
+    if (!player) {
+        return;
+    }
+    // Note: can't use "You were revived" from log, as it doesn't happen for
+    // fights that auto-restart when everybody is defeated.
+    if (!this.playerDead && player.currentHP == 0) {
+        cactbot.debug("You were defeated.");
+        this.playerDead = true;
+    } else if (this.playerDead && player.currentHP > 0) {
+        cactbot.debug("You were revived.");
+        this.playerDead = false;
+        this.lastRevivedTime = currentTime;
+    }
+
+    // Heuristic: if a player is revived and a second passes without
+    // a weakness message, then it was a wipe.
+    if (this.lastRevivedTime) {
+        if (currentTime.getTime() - this.lastRevivedTime.getTime() > 1000) {
+            this.wipe();
+        }
+    }
+};
+WipeChecker.prototype.processLog = function (log) {
+    // Players come back to life before weakness is applied.
+    if (this.playerDead || !this.lastRevivedTime) {
+        return;
+    }
+    // FIXME: Filter by log category.
+    if (log.indexOf("You suffer the effect of Weakness") != -1) {
+        cactbot.debug("You were raised.");
+        // This is a raise of some sort, and not a wipe.
+        this.lastRevivedTime = null;
+    }
+};
+
 
 window.addEventListener("load", function () {
     window.loadCSS("rotation/rotation.css");
@@ -377,6 +446,7 @@ window.addEventListener("load", function () {
     };
 
     windowManager.add("rotation", element, "rotation", defaultGeometry);
+    updateRegistrar.register(new WipeChecker());
 
     // FIXME: This is such a clumsy binding.
     window.bindings = new RaidTimersBinding();
