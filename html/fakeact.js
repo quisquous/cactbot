@@ -27,7 +27,31 @@ FakeACT.prototype.getPlayer = function () {
     } else {
         return window.fakeact.combatants[0];
     }
-}
+};
+
+FakeACT.prototype.getCurrentPartyList = function () {
+    if (window.fakeact.partyList) {
+        return window.fakeact.partyList.map(function(combatant) {
+            return combatant.iD;
+        });
+    } else {
+        return [window.act.getPlayer().iD];
+    }
+};
+
+FakeACT.prototype.getPlayerByName = function (name) {
+    if (window.fakeact.partyList) {
+        for (var i = 0; i < window.fakeact.partyList.length; ++i) {
+            var player = window.fakeact.partyList[i];
+            if (player.name === name) {
+                return player;
+            }
+        }
+        return null;
+    } else {
+        return [window.act.getPlayer().name];
+    }
+};
 
 FakeACT.prototype.getMobByName = function (name) {
     var found = null;
@@ -41,15 +65,15 @@ FakeACT.prototype.getMobByName = function (name) {
         found = window.fakeact["combatants"][i];
     }
     return found;
-}
+};
 
 FakeACT.prototype.hasLogLines = function () {
     return window.fakeact["logs"].length;
-}
+};
 
 FakeACT.prototype.nextLogLine = function () {
     return window.fakeact["logs"].shift();
-}
+};
 
 // FIXME: move each fake testing function into the rotation that provides it
 FakeACT.prototype.testEinhander = function () {
@@ -104,6 +128,28 @@ FakeACT.prototype.testA1Savage = function () {
         combatants: [makeCombatant("The Player"), makeCombatant("Oppressor")],
         logs: ["Hangar 8 will be sealed off in"]
     };
+};
+
+FakeACT.prototype.testTPViewer = function () {
+    window.fakeact.partyList = [
+        makeCombatant("Frozen Spirits"),
+        makeCombatant("Birch Syrup"),
+        makeCombatant("Kaiser Roll"),
+        makeCombatant("Fig Bavarois"),
+        makeCombatant("Marron Glace"),
+    ];
+    var logs = [];
+    for (var i = 0; i < window.fakeact.partyList.length; ++i) {
+        var player = window.fakeact.partyList[i];
+        window.fakeact.combatants.push(player);
+        logs.push("cactbot:tp:" + (i+1) + ":" + player.name);
+    }
+
+    window.setTimeout(function() {
+        for (var i = 0; i < logs.length; ++i) {
+            window.fakeact.logs.push(logs[i]);
+        }
+    }, 1000);
 };
 
 FakeACT.prototype.testHunt = function () {

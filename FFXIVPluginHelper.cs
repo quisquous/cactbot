@@ -125,6 +125,41 @@ namespace Cactbot
             propertyInfo.SetValue(combatant, Convert.ChangeType(fi.GetValue(obj), propertyInfo.PropertyType), null);
         }
 
+        public static List<uint> GetCurrentPartyList() {
+            List<uint> result = new List<uint>();
+            try
+            {
+                var scanCombatants = GetScanCombatants();
+                if (scanCombatants == null)
+                    return null;
+
+                object[] args = new object[] { 0 };
+                var item = scanCombatants.GetType().InvokeMember("GetCurrentPartyList", BindingFlags.Public | BindingFlags.Instance | BindingFlags.InvokeMethod, null, scanCombatants, args);
+                FieldInfo fi = item.GetType().GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetField);
+
+                Type[] nestedType = item.GetType().GetNestedTypes(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public);
+                object tmp = fi.GetValue(item);
+                if (!tmp.GetType().IsArray) {
+                    return null;
+                }
+
+                // Oddly, this function appears to return a list that is
+                // larger than the number of players, so trim to the
+                // length given in the out param.
+                int numPlayers = (int)args[0];
+                int count = 0;
+
+                foreach (object obj in (Array)tmp) {
+                    result.Add((uint)obj);
+                    count++;
+                    if (count >= numPlayers)
+                        break;
+                }
+            }
+            catch {}
+            return result;
+        }
+
         public static List<Combatant> GetCombatantList()
         {
             List<Combatant> result = new List<Combatant>();
@@ -149,6 +184,7 @@ namespace Cactbot
 
                         SetCombatantInfo(combatant, "ID", temp, "ID");
                         SetCombatantInfo(combatant, "OwnerID", temp, "OwnerID");
+                        SetCombatantInfo(combatant, "Order", temp, "Order");
                         SetCombatantInfo(combatant, "Job", temp, "Job");
                         SetCombatantInfo(combatant, "Name", temp, "Name");
                         SetCombatantInfo(combatant, "CurrentHP", temp, "CurrentHP");

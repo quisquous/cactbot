@@ -67,6 +67,11 @@ namespace Cactbot
             return c.OwnerID == 0 && c.Job == 0;
         }
 
+        private static bool CombatantIsPlayer(Combatant c)
+        {
+            return c.Job != 0;
+        }
+
         public Combatant GetMobByName(string name)
         {
             if (combatants == null)
@@ -86,7 +91,33 @@ namespace Cactbot
             return found;
         }
 
-        // FIXME: Add GetPartyIds.
+        public Combatant GetPlayerByName(string name)
+        {
+            // FIXME: maybe should have a hash here to make this not O(n^2).
+            if (combatants == null)
+                return null;
+
+            Combatant found = null;
+            foreach (Combatant c in combatants)
+            {
+                if (!CombatantIsPlayer(c))
+                    continue;
+                if (c.Name != name)
+                    continue;
+                // Multiple players with the same name
+                // could happen in a dungeon T_T.
+                if (found != null)
+                    return null;
+                found = c;
+            }
+            return found;
+        }
+
+        public uint[] GetCurrentPartyList()
+        {
+            return FFXIVPluginHelper.GetCurrentPartyList().ToArray();
+        }
+
         // FIXME: Add GetMobIdsByName.
 
         // Provided as a helper function as GetCombatant(0) is a total hack and

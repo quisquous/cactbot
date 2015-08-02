@@ -44,10 +44,27 @@ When layout mode is enabled, cactbot windows are highlighted.
 The left mouse button can be used to move and resize windows.
 Right-clicking a window will toggle visibility for that window after layout mode is disabled.
 
+### TP viewer
+
+To use the TP viewer, you need to manually position the TP window over your
+party window in layout mode.
+
+Whenever the party changes, you need to run this macro in game:
+
+    /echo cactbot:tp:1<1>
+    /echo cactbot:tp:2<2>
+    /echo cactbot:tp:3<3>
+    /echo cactbot:tp:4<4>
+    /echo cactbot:tp:5<5>
+    /echo cactbot:tp:6<6>
+    /echo cactbot:tp:7<7>
+    /echo cactbot:tp:8<8>
+
+This is because there's currently no way to understand the ordering of
+the party list without manually telling cactbot about it.
+
 ## Future Goals
 
 * compatibility with custom RainbowMage html
-* boss rotations
-* hunt radar
-* TP viewer
 * enmity viewer
+* gathering nodes
