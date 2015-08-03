@@ -84,7 +84,7 @@ TPViewer.prototype.updatePlayerCount = function(numPlayers) {
     // If number of players has changed, then suddenly the party list order is
     // unknown.  Clear all ids.
     for (var i = 0; i < this.players.length; ++i) {
-        this.players[i].id = null;
+        this.players[i].name = null;
         this.clearPlayer(this.players[i]);
     }
 };
