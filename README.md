@@ -51,14 +51,14 @@ party window in layout mode.
 
 Whenever the party changes, you need to run this macro in game:
 
-    /echo cactbot:tp:1<1>
-    /echo cactbot:tp:2<2>
-    /echo cactbot:tp:3<3>
-    /echo cactbot:tp:4<4>
-    /echo cactbot:tp:5<5>
-    /echo cactbot:tp:6<6>
-    /echo cactbot:tp:7<7>
-    /echo cactbot:tp:8<8>
+    /echo cactbot:tp:1:<1>
+    /echo cactbot:tp:2:<2>
+    /echo cactbot:tp:3:<3>
+    /echo cactbot:tp:4:<4>
+    /echo cactbot:tp:5:<5>
+    /echo cactbot:tp:6:<6>
+    /echo cactbot:tp:7:<7>
+    /echo cactbot:tp:8:<8>
 
 This is because there's currently no way to understand the ordering of
 the party list without manually telling cactbot about it.
