@@ -15,8 +15,12 @@ TPViewer.prototype.tick = function (currentTime) {
     if (!players) {
         return;
     }
-    if (players.length != this.players.length) {
-        this.updatePlayerCount(players.length);
+
+    // Hide everything when the player is not in a party.
+    var numPlayers = players.length > 1 ? players.length : 0;
+
+    if (numPlayers != this.players.length) {
+        this.updatePlayerCount(numPlayers);
     }
 
     for (var i = 0; i < this.players.length; ++i) {
@@ -25,7 +29,7 @@ TPViewer.prototype.tick = function (currentTime) {
 };
 TPViewer.prototype.processLog = function (log) {
     // Don't bother processing logs without a party.
-    if (this.players.length < 1) {
+    if (this.players.length < 2) {
         return;
     }
 
@@ -54,7 +58,6 @@ TPViewer.prototype.processLog = function (log) {
     this.players[playerId - 1].name = name;
 };
 TPViewer.prototype.updatePlayerCount = function(numPlayers) {
-    cactbot.debug("Update num players: " + numPlayers);
     while (numPlayers < this.players.length) {
         var last = this.players.pop();
         last.container.parentNode.removeChild(last.container);
