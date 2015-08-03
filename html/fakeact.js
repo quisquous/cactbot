@@ -22,7 +22,9 @@ FakeACT.prototype.getCombatant = function (idx) {
 FakeACT.prototype.updateCombatants = function () { }
 
 FakeACT.prototype.getPlayer = function () {
-    if (window.fakeact.combatants.length === 0) {
+    if (window.fakeact.partyList && window.fakeact.partyList.length > 0) {
+        return window.fakeact.partyList[0];
+    } else if (window.fakeact.combatants.length === 0) {
         return makeCombatant("The Player");
     } else {
         return window.fakeact.combatants[0];
@@ -196,7 +198,7 @@ if (!window.act) {
     window.fakeact = {};
     window.fakeact["zone"] = "Xanadu";
     window.fakeact["incombat"] = false;
-    window.fakeact["combatants"] = [makeCombatant("Angry Bees")];
+    window.fakeact["combatants"] = [];
     window.fakeact["logs"] = [];
 
     window.act = new FakeACT();

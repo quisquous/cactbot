@@ -23,6 +23,15 @@ TPViewer.prototype.tick = function (currentTime) {
         this.updatePlayerCount(numPlayers);
     }
 
+    // Note: player may not exist right at login time, so
+    // this condition may be hit repeatedly until a player
+    // name is found.
+    if (this.players.length > 0 && this.players[0].name == null) {
+        var thePlayer = window.act.getPlayer();
+        var playerName = thePlayer ? thePlayer.name : null;
+        this.players[0].name = playerName;
+    }
+
     for (var i = 0; i < this.players.length; ++i) {
         this.update(this.players[i]);
     }
