@@ -115,7 +115,11 @@ namespace Cactbot
 
         public uint[] GetCurrentPartyList()
         {
-            return FFXIVPluginHelper.GetCurrentPartyList().ToArray();
+            List<uint> partyList = FFXIVPluginHelper.GetCurrentPartyList();
+            if (partyList == null) {
+                return null;
+            }
+            return partyList.ToArray();
         }
 
         // FIXME: Add GetMobIdsByName.
