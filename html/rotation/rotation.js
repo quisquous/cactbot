@@ -181,7 +181,9 @@ RaidTimersBinding.prototype.updateRotation = function(rotationDiv, rotation) {
 
     rotationDiv.innerHTML = "";
 
-    // Limit by height? Or by count?
+    // Don't display anything farther ahead in the future than 1 minute.
+    var maxDiffSeconds = 60;
+
     for (var i = 0; i < rotation.length; ++i) {
         var rotItem = document.createElement("div");
         rotItem.className = "rotitem";
@@ -194,7 +196,12 @@ RaidTimersBinding.prototype.updateRotation = function(rotationDiv, rotation) {
         var countdownItem = document.createElement("div");
         countdownItem.className = "countdown";
         if (rotation[i].time) {
-            countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime);
+            var diffSeconds = (rotation[i].time.getTime() - currentTime.getTime()) / 1000;
+            if (diffSeconds > maxDiffSeconds) {
+                continue;
+            }
+            var displayTenths = diffSeconds < 10 || i == 0;
+            countdownItem.innerText = formatTimeDiff(rotation[i].time, currentTime, displayTenths);
         }
         rotItem.appendChild(countdownItem);
 
@@ -206,12 +213,12 @@ function addTime(date, seconds) {
     return new Date(date.getTime() + seconds * 1000);
 }
 
-function formatTimeDiff(futureTime, currentTime) {
+function formatTimeDiff(futureTime, currentTime, displayTenths) {
     var total = (futureTime.getTime() - currentTime.getTime()) / 1000;
-    return formatTime(total);
+    return formatTime(total, displayTenths);
 }
 
-function formatTime(totalSeconds) {
+function formatTime(totalSeconds, displayTenths) {
     var str = "";
     var total = Math.max(0, totalSeconds);
     var minutes = Math.floor(total / 60);
@@ -221,7 +228,7 @@ function formatTime(totalSeconds) {
     if (minutes > 0)
         str += minutes + "m";
     str += seconds;
-    if (!minutes)
+    if (displayTenths)
         str += "." + tenthseconds;
     str += "s";
 
