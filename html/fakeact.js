@@ -132,6 +132,15 @@ FakeACT.prototype.testA1Savage = function () {
     };
 };
 
+FakeACT.prototype.testA3Savage = function () {
+    window.fakeact = {
+        zone: "Alexander - The Arm of the Father (Savage)",
+        incombat: true,
+        combatants: [makeCombatant("The Player"), makeCombatant("Living Liquid")],
+        logs: ["Condensate Demineralizer #9 will be sealed off in"]
+    };
+};
+
 FakeACT.prototype.testTPViewer = function () {
     window.fakeact.partyList = [
         makeCombatant("Frozen Spirits"),

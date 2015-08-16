@@ -160,6 +160,8 @@
     <Content Include="html\cactbot.js" />
     <Content Include="html\rotation\rotation.css" />
     <Content Include="html\rotation\rotation.js" />
+    <Content Include="html\rotation\zones\alex_savage_1.js" />
+    <Content Include="html\rotation\zones\alex_savage_3.js" />
     <Content Include="html\rotation\zones\coil_turn_10.js" />
     <Content Include="html\rotation\zones\coil_turn_11.js" />
     <Content Include="html\rotation\zones\coil_turn_13.js" />

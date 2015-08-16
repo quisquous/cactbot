@@ -114,7 +114,7 @@ BossStateMachine.prototype.tick = function (currentTime) {
     if (phase.loop) {
         var nextLoop = addTime(adjustedStartTime, phase.loopSeconds);
         for (var i = 0; i < startIdx; ++i) {
-            if (phase.rotation[i].justOnce) {
+            if (phase.rotation[i].justOnce || phase.rotation[i].time < 0) {
                 continue;
             }
             adjustedItem = {
