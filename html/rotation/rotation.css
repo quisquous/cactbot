@@ -3,51 +3,48 @@
   flex-direction: column;
 }
 
-#titlebar {
+#bosstimers #titlebar {
   display: flex;
 }
 
-#bosstitle {
+#bosstimers #bosstitle {
   margin-right: auto;
   font-weight: bold;
 }
 
-#enrage {
+#bosstimers #enrage {
   margin-left: auto;
 }
 
-#rotation {
-}
-
-#rotation > .rotitem:first-child {
+#bosstimers #rotation > .rotitem:first-child {
   font-size: 40px;
 }
 
-.rotitem {
+#bosstimers .rotitem {
   display: flex;
   flex-direction: row;
 }
 
-.countdown {
+#bosstimers .countdown {
   margin-left: auto;
   margin-right: 2%;
 }
 
-.move {
+#bosstimers .move {
   margin-right: auto;
   margin-left: 2%;
 }
 
-#nextphase {
+#bosstimers #nextphase {
   margin-top: auto;
   display: flex;
   flex-direction: row;
 }
 
-#nextphasetitle {
+#bosstimers #nextphasetitle {
   margin-right: auto;
 }
 
-#nextphasecondition {
+#bosstimers #nextphasecondition {
   margin-left: auto;
 }

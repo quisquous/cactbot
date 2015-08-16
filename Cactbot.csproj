@@ -153,6 +153,9 @@
     <Content Include="html\debug\debug.css" />
     <Content Include="html\debug\debug.js" />
     <Content Include="html\fakeact.js" />
+    <Content Include="html\gathering\gathering.css" />
+    <Content Include="html\gathering\gathering.js" />
+    <Content Include="html\gathering\nodes.js" />
     <Content Include="html\hunts\huntlist.js" />
     <Content Include="html\hunts\hunts.css" />
     <Content Include="html\hunts\hunts.js" />

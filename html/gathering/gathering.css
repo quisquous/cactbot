@@ -1,0 +1,78 @@
+.NodeViewer.hide {
+    display: none;
+}
+
+.NodeViewer {
+    display: flex;
+    flex-direction: column;
+}
+
+.NodeViewer .node {
+    display: flex;
+    flex-direction: row;
+    opacity: 0.8;
+}
+
+.NodeViewer .node.open {
+    opacity: 1;
+    margin-bottom: 8px;
+}
+
+.NodeViewer .node.first {
+    opacity: 1;
+    margin-bottom: 8px;
+}
+
+.NodeViewer .details {
+    width: 100%;
+}
+
+.NodeViewer .item {
+    margin-left: 30px;
+    margin-right: -30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.NodeViewer .countdown {
+    width: 50px;
+    text-align: right;
+}
+.NodeViewer .node.open .countdown {
+    color: #66FF66;
+}
+
+.NodeViewer .details {
+    display: none;
+}
+
+.NodeViewer .summary {
+    display: block;
+    width: 100%;
+}
+
+.NodeViewer .node.first .details {
+    display: block;
+}
+.NodeViewer .node.first .summary {
+    display: none;
+}
+.NodeViewer .node.open .details {
+    display: block;
+}
+.NodeViewer .node.open .summary {
+    display: none;
+}
+
+.NodeViewer .summary {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.NodeViewer .location {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
