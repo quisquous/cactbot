@@ -1,0 +1,3 @@
+[submodule "html/third_party/OverlayPlugin-themes"]
+	path = html/third_party/OverlayPlugin-themes
+	url = https://github.com/billyvg/OverlayPlugin-themes.git

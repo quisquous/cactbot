@@ -1,7 +1,9 @@
 using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Web.Script.Serialization;
 
 namespace Cactbot
 {
@@ -157,6 +159,78 @@ namespace Cactbot
             // FIXME: expose this error to the browser.
             if (logLines.Count > MaxLogLinesRetained)
                 logLines.Dequeue();
+        }
+
+        // Dictionary, as JSON string.
+        public string EncounterDPSInfo()
+        {
+            if (ActGlobals.oFormActMain.ActiveZone.ActiveEncounter == null)
+                return null;
+
+            var dict = new Dictionary<string, string>();
+
+            List<CombatantData> allies = ActGlobals.oFormActMain.ActiveZone.ActiveEncounter.GetAllies();
+            foreach (var export in EncounterData.ExportVariables)
+            {
+                try
+                {
+                    string value = export.Value.GetExportString(ActGlobals.oFormActMain.ActiveZone.ActiveEncounter, allies, "");
+                    dict[export.Key] = value;
+                }
+                catch (KeyNotFoundException)
+                {
+                    // This appears to sometimes happen with 10ENCDPS and friends.
+                }
+                catch (InvalidOperationException)
+                {
+                    // "Collection was modified; enumeration operation may not execute"
+                }
+            }
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(dict);
+        }
+
+        // List of dictionaries, as JSON string.
+        public string CombatantDPSInfo()
+        {
+            if (ActGlobals.oFormActMain.ActiveZone.ActiveEncounter == null)
+                return null;
+
+            var combatantList = new List<Dictionary<string, string>>();
+
+            List<CombatantData> allies = ActGlobals.oFormActMain.ActiveZone.ActiveEncounter.GetAllies();
+            foreach (CombatantData ally in allies)
+            {
+                var dict = new Dictionary<string, string>();
+                foreach (var export in CombatantData.ExportVariables)
+                {
+                    // This causes a FormatException.
+                    if (export.Key == "NAME")
+                        continue;
+
+                    try
+                    {
+                        string value = export.Value.GetExportString(ally, "");
+                        dict[export.Key] = value;
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        // This appears to sometimes happen with 10ENCDPS and friends.
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        // "Collection was modified; enumeration operation may not execute"
+                    }
+                }
+
+                if (!dict.ContainsKey("name"))
+                    continue;
+                combatantList.Add(dict);
+            }
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(combatantList);
         }
     }
 }

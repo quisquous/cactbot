@@ -1,0 +1,10 @@
+.dpsoverlay iframe.hide {
+    display: none;
+}
+
+.dpsoverlay iframe {
+    display: block;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
