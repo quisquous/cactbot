@@ -309,6 +309,7 @@ BaseTickable.prototype.filtersZone = function (zone) {
         return true;
     return this.zoneFilter === zone;
 };
+BaseTickable.prototype.throttleTickMs = 100;
 BaseTickable.prototype.tick = function (currentTime) {
     this.boss.tick(currentTime);
 

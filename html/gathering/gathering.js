@@ -129,16 +129,8 @@ NodeViewer.prototype.leaveZone = function (zone) {
 NodeViewer.prototype.filtersZone = function (zone) {
     return this.nodes[zone];
 };
+NodeViewer.prototype.throttleTickMs = 1000;
 NodeViewer.prototype.tick = function (currentTime) {
-    // Throttle updates to once per second.
-    // This also makes updates look better, since not every timer
-    // is aligned on the second boundary due to Eorzean time conversion.
-    var throttleMs = 60 * 1000;
-    if (this.lastTick && currentTime.getTime() - this.lastTick.getTime() > throttleMs) {
-        return;
-    }
-    this.lastTick = currentTime;
-
     var player = act.getPlayer();
     if (!player) {
         return;

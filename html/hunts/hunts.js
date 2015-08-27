@@ -37,6 +37,8 @@ HuntManager.prototype.filtersZone = function (zone) {
     return this.huntList[zone];
 };
 
+HuntManager.prototype.throttleTickMs = 3000;
+
 HuntManager.prototype.tick = function (currentTime) {
     var minYalms = 20;
     var minSecondsToDisplay = 10;

@@ -107,7 +107,15 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
     }
 
     for (var i = 0; i < activeFilters.length; ++i) {
-        activeFilters[i].tick(currentTime);
+        var filter = activeFilters[i];
+        if (filter.lastTick && filter.throttleTickMs) {
+            var elapsed = currentTime.getTime() - filter.lastTick.getTime();
+            if (elapsed < filter.throttleTickMs) {
+                continue;
+            }
+        }
+        filter.tick(currentTime);
+        filter.lastTick = currentTime;
     }
 }
 var updateRegistrar = new UpdateRegistrar();

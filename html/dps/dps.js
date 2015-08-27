@@ -8,15 +8,8 @@ DPSOverlayBridge.prototype.leaveZone = function (zone) {
 DPSOverlayBridge.prototype.filtersZone = function (zone) {
     return true;
 };
+DPSOverlayBridge.prototype.throttleTickMs = 1000;
 DPSOverlayBridge.prototype.tick = function (currentTime) {
-    // Throttle updates to once per second.
-    // FIXME: Let updaters just expose a throttle time and make the manager handle this.
-    var throttleMs = 1000;
-    if (this.lastTick && currentTime.getTime() - this.lastTick.getTime() < throttleMs) {
-        return;
-    }
-    this.lastTick = currentTime;
-
     if (!act.inCombat()) {
         return;
     }
