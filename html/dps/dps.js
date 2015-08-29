@@ -1,7 +1,6 @@
 DPSOverlayBridge = function(iframe) {
     this.iframe = iframe;
 };
-DPSOverlayBridge.prototype.enterZone = function (zone) {};
 DPSOverlayBridge.prototype.leaveZone = function (zone) {
     this.iframe.classList.add("hide");
 };

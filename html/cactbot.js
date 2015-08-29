@@ -57,6 +57,21 @@ var UpdateRegistrar = function () {
 
 UpdateRegistrar.prototype.register = function(filter) {
     this.filters.push(filter);
+
+    var defaultFunctions = [
+        'enterZone',
+        'filtersZone',
+        'leaveZone',
+        'processLogs',
+        'tick',
+    ];
+    for (var i = 0; i < defaultFunctions.length; ++i) {
+        var func = defaultFunctions[i];
+        if (!filter[func]) {
+            filter[func] = function() { return false; }
+        }
+    }
+
     var currentZone = window.act.currentZone();
     if (filter.filtersZone(currentZone)) {
         filter.enterZone(currentZone);
@@ -93,9 +108,7 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
     var logs = window.act.getLogLines();
     if (logs) {
         for (var i = 0; i < activeFilters.length; ++i) {
-            if (activeFilters[i].processLogs) {
-                activeFilters[i].processLogs(logs);
-            }
+            activeFilters[i].processLogs(logs);
         }
     }
 
