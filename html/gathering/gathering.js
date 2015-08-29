@@ -50,6 +50,30 @@ gt.util = {
         return val;
     }
 };
+cb.time = gt.time;
+cb.time.nextTime = function(eorzeaTime, hoursList, minutesOffset) {
+    var twentyFourHours = 1000 * 60 * 60 * 24;
+    var least = null;
+    for (var i = 0; i < hoursList.length; ++i) {
+        var date = new Date(eorzeaTime);
+        date.setUTCHours(hoursList[i]);
+        if (minutesOffset) {
+            date.setUTCMinutes(minutesOffset);
+        } else {
+            date.setUTCMinutes(0);
+        }
+        date.setTime(date.getTime() - twentyFourHours);
+        while (date.getTime() < eorzeaTime.getTime()) {
+            date.setTime(date.getTime() + twentyFourHours);
+        }
+        console.assert(date.getTime() >= eorzeaTime.getTime());
+        if (!least || least.getTime() > date.getTime()) {
+            least = date;
+        }
+    }
+    console.assert(least.getTime() >= eorzeaTime.getTime());
+    return least;
+};
 
 function updateCactbotNodes() {
     var cacNodes = cactbot.nodes.nodesByZone;
@@ -142,26 +166,6 @@ NodeViewer.prototype.tick = function (currentTime) {
     }
     this.topElement.classList.remove('hide');
 
-    var twentyFourHours = 1000 * 60 * 60 * 24;
-    var nextTime = function(hours, eorzeaTime) {
-        var least = null;
-        for (var i = 0; i < hours.length; ++i) {
-            var date = new Date(eorzeaTime);
-            date.setUTCHours(hours[i]);
-            date.setUTCMinutes(0);
-            date.setTime(date.getTime() - twentyFourHours);
-            while (date.getTime() < eorzeaTime.getTime()) {
-                date.setTime(date.getTime() + twentyFourHours);
-            }
-            console.assert(date.getTime() >= eorzeaTime.getTime());
-            if (!least || least.getTime() > date.getTime()) {
-                least = date;
-            }
-        }
-        console.assert(least.getTime() >= eorzeaTime.getTime());
-        return least;
-    }
-
     if (!this.currentNodes.length) {
         return;
     }
@@ -176,22 +180,12 @@ NodeViewer.prototype.tick = function (currentTime) {
         var endTime = this.currentNodes[i].endTime;
 
         if (!startTime || startTime.getTime() < eorzeaTime.getTime()) {
-            startTime = nextTime(node.time, eorzeaTime);
+            startTime = cb.time.nextTime(eorzeaTime, node.time);
             this.currentNodes[i].startTime = startTime;
             changed = true;
         }
         if (!endTime || endTime.getTime() < eorzeaTime.getTime()) {
-            var uptimeMs = node.uptime * 1000 * 60;
-            endTime = new Date(startTime);
-            endTime.setTime(endTime.getTime() + uptimeMs);
-
-            // Node may already be open.
-            var alreadyOpenTime = new Date(endTime);
-            alreadyOpenTime.setTime(alreadyOpenTime.getTime() - twentyFourHours);
-            if (alreadyOpenTime.getTime() > eorzeaTime.getTime()) {
-                endTime = alreadyOpenTime;
-            }
-
+            endTime = cb.time.nextTime(eorzeaTime, node.time, node.uptime);
             this.currentNodes[i].endTime = endTime;
             changed = true;
         }
