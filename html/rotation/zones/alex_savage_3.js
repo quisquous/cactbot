@@ -125,9 +125,9 @@
     };
     AlexanderSavageTurn3.prototype = new BaseTickable;
 
-    updateRegistrar.register(new AlexanderSavageTurn3());
+    cb.updateRegistrar.register(new AlexanderSavageTurn3());
 
     var alex3_unknown = new AlexanderSavageTurn3();
     alex3_unknown.zoneFilter = "Unknown Zone (1C3)";
-    updateRegistrar.register(alex3_unknown);
+    cb.updateRegistrar.register(alex3_unknown);
 })();

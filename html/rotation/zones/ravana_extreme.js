@@ -222,5 +222,5 @@
     };
     ThokAstThokExtreme.prototype = new BaseTickable;
 
-    updateRegistrar.register(new ThokAstThokExtreme());
+    cb.updateRegistrar.register(new ThokAstThokExtreme());
 })();

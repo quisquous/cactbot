@@ -1,54 +1,5 @@
-window.cactbot = {};
-window.cactbot.debug = function () { };
-
-// FIXME: move this elsewhere
-cb = {};
-cb.util = {};
-cb.util.jobIdToName = {
-    1: 'gld',
-    2: 'pgl',
-    3: 'mrd',
-    4: 'lnc',
-    5: 'arc',
-    6: 'cnj',
-    7: 'thm',
-    8: 'crp',
-    9: 'bsm',
-    10: 'arm',
-    11: 'gsm',
-    12: 'ltw',
-    13: 'wvr',
-    14: 'alc',
-    15: 'cul',
-    16: 'min',
-    17: 'btn',
-    18: 'fsh',
-    19: 'pld',
-    20: 'mnk',
-    21: 'war',
-    22: 'drg',
-    23: 'brd',
-    24: 'whm',
-    25: 'blm',
-    26: 'acn',
-    27: 'smn',
-    28: 'sch',
-    29: 'rog',
-    30: 'nin',
-    31: 'mch',
-    32: 'drk',
-    33: 'ast',
-};
-
-function loadCSS(filename) {
-    var link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("type", "text/css");
-    link.setAttribute("href", filename);
-
-    var head = document.getElementsByTagName("head")[0];
-    head.appendChild(link)
-}
+cb = window.cb || {};
+cb.debug = window.cb.debug || function () {};
 
 var UpdateRegistrar = function () {
     this.filters = [];
@@ -89,7 +40,7 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
 
         this.currentZone = currentZone;
 
-        cactbot.debug('Entering zone: ' + this.currentZone);
+        cb.debug('Entering zone: ' + this.currentZone);
         for (var i = 0; i < this.filters.length; ++i) {
             if (this.filters[i].filtersZone(this.currentZone)) {
                 this.filters[i].enterZone(this.currentZone);
@@ -124,7 +75,7 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
         filter.lastTick = currentTime;
     }
 }
-var updateRegistrar = new UpdateRegistrar();
+cb.updateRegistrar = new UpdateRegistrar();
 
 var WindowManager = function () {
     this.windows = [];
@@ -136,7 +87,7 @@ var WindowManager = function () {
     }.bind(this), false);
 };
 WindowManager.prototype.add = function (name, element, title, geometry) {
-    cactbot.debug('Added window: ' + title);
+    cb.debug('Added window: ' + title);
 
     this.windows[name] = {
         name: name,
@@ -255,12 +206,12 @@ WindowManager.prototype.onRightClick = function(element) {
      }
  };
 
-var windowManager = new WindowManager();
-window.enableLayoutMode = function () {
-    windowManager.enableLayoutMode();
+cb.windowManager = new WindowManager();
+cb.enableLayoutMode = function () {
+    cb.windowManager.enableLayoutMode();
 }
-window.disableLayoutMode = function () {
-    windowManager.disableLayoutMode();
+cb.disableLayoutMode = function () {
+    cb.windowManager.disableLayoutMode();
 }
 
 function rafLoop() {
@@ -271,7 +222,7 @@ function rafLoop() {
     window.act.updateCombatants();
 
     var currentTime = new Date();
-    updateRegistrar.tick(currentTime);
+    cb.updateRegistrar.tick(currentTime);
 
 }
 

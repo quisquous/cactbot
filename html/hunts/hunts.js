@@ -1,3 +1,5 @@
+cb.hunts = {};
+
 var HuntManager = function (windowElement) {
     this.huntWindowElement = windowElement;
     this.huntListElement = windowElement.getElementsByClassName("huntlist")[0];
@@ -149,7 +151,7 @@ HuntManager.prototype.tick = function (currentTime) {
 
 window.addEventListener("load", function () {
     // FIXME: this should happen automatically via cactbot.
-    loadCSS("hunts/hunts.css");
+    cb.util.loadCSS("hunts/hunts.css");
 
     var element = document.createElement("div");
     element.innerHTML = '<div id="huntwindow"><div class="huntlist"></div></div>';
@@ -162,9 +164,7 @@ window.addEventListener("load", function () {
         height: "100px",
     };
 
-    window.windowManager.add("hunts", element, "hunts", defaultGeometry);
-
-    // FIXME: This probably shouldn't be global.
-    window.huntManager = new HuntManager(element);
-    window.updateRegistrar.register(window.huntManager);
+    cb.hunts.huntManager = new HuntManager(element);
+    cb.windowManager.add("hunts", element, "hunts", defaultGeometry);
+    cb.updateRegistrar.register(cb.hunts.huntManager);
 });

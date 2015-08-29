@@ -152,5 +152,5 @@
     };
     FinalCoilOfBahamutTurn1.prototype = new BaseTickable;
 
-    updateRegistrar.register(new FinalCoilOfBahamutTurn1());
+    cb.updateRegistrar.register(new FinalCoilOfBahamutTurn1());
 })();

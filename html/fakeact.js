@@ -222,6 +222,6 @@ if (!window.act) {
     // read from the plugin when it's not there, but that also means that
     // debugging logic isn't there yet.
     window.addEventListener("load", function () {
-        cactbot.debug('Using fake act');
+        cb.debug('Using fake act');
     });
 }

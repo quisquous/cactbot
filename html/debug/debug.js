@@ -1,5 +1,7 @@
+cb = cb || {};
+
 (function () {
-    window.loadCSS("debug/debug.css");
+    cb.util.loadCSS("debug/debug.css");
 
     var console = document.createElement("div");
     window.addEventListener("load", function () {
@@ -10,12 +12,12 @@
             width: "500px",
             height: "100px",
         };
-        window.windowManager.add("debug", console, "console", defaultGeometry);
+        cb.windowManager.add("debug", console, "console", defaultGeometry);
     });
 
     // FIXME: maybe make this relative to how big the window is?
     var maxLogEntries = 50;
-    window.cactbot.debug = function (text) {
+    cb.debug = function (text) {
         window.console.log(text);
 
         var logLine = document.createElement("div");
@@ -48,5 +50,5 @@
             }
             console.removeChild(console.childNodes[i]);
         }
-    }
+    };
 })();

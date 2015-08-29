@@ -1,3 +1,5 @@
+cb.rotation = {};
+
 var BossStateMachine = function () {
     this.end();
 };
@@ -6,7 +8,7 @@ BossStateMachine.prototype.startBoss = function (boss) {
     if (this.currentBoss === boss) {
         return;
     }
-    cactbot.debug('Boss fight: ' + boss.bossName);
+    cb.debug('Boss fight: ' + boss.bossName);
     var currentTime = new Date();
     this.currentBoss = boss;
     this.currentBossStartTime = currentTime;
@@ -17,7 +19,7 @@ BossStateMachine.prototype.end = function () {
     if (!this.currentBoss) {
         return;
     }
-    cactbot.debug('End boss fight');
+    cb.debug('End boss fight');
     this.currentBoss = null;
     this.currentPhase = null;
     this.currentBossStartTime = null;
@@ -296,7 +298,7 @@ var BaseTickable = function () {
 
 BaseTickable.prototype.enterZone = function (zone) {
     for (var i = 0; i < this.bosses.length; ++i) {
-        cactbot.debug('Added boss: ' + this.bosses[i].bossName);
+        cb.debug('Added boss: ' + this.bosses[i].bossName);
     }
 };
 
@@ -360,7 +362,7 @@ WipeChecker = function() {
     this.reset();
 };
 WipeChecker.prototype.wipe = function () {
-    cactbot.debug("Wipe detected.");
+    cb.debug("Wipe detected.");
     var event = new CustomEvent("cactbot.wipe", {
         bubbles: true,
         cancelable: true,
@@ -422,7 +424,7 @@ WipeChecker.prototype.processLogs = function (logs) {
 
 
 window.addEventListener("load", function () {
-    window.loadCSS("rotation/rotation.css");
+    cb.util.loadCSS("rotation/rotation.css");
     
     // FIXME: This can't get loaded from a file via Javascript, because of
     // cross-origin issues.  This isn't an issue at runtime (cef can cheat
@@ -456,8 +458,8 @@ window.addEventListener("load", function () {
         height: "400px",
     };
 
-    windowManager.add("rotation", element, "rotation", defaultGeometry);
-    updateRegistrar.register(new WipeChecker());
+    cb.windowManager.add("rotation", element, "rotation", defaultGeometry);
+    cb.updateRegistrar.register(new WipeChecker());
 
     // FIXME: This is such a clumsy binding.
     window.bindings = new RaidTimersBinding();

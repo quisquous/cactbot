@@ -53,5 +53,5 @@
     };
     TestArea.prototype = new BaseTickable;
 
-    updateRegistrar.register(new TestArea());
+    cb.updateRegistrar.register(new TestArea());
 })();

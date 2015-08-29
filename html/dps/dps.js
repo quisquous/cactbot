@@ -55,7 +55,7 @@ DPSOverlayBridge.prototype.tick = function (currentTime) {
 };
 
 window.addEventListener("load", function () {
-    loadCSS("dps/dps.css");
+    cb.util.loadCSS("dps/dps.css");
 
     var element = document.createElement("div");
     element.classList.add("dpsoverlay");
@@ -73,6 +73,6 @@ window.addEventListener("load", function () {
         width: "300px",
         height: "400px",
     };
-    window.windowManager.add("dps", element, "dps", defaultGeometry);
-    window.updateRegistrar.register(new DPSOverlayBridge(iframe));
+    cb.windowManager.add("dps", element, "dps", defaultGeometry);
+    cb.updateRegistrar.register(new DPSOverlayBridge(iframe));
 });

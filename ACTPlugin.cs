@@ -31,13 +31,13 @@ namespace Cactbot
             {
                 const string enableLayoutModeStr =
                     @"
-                        if (window.enableLayoutMode)
-                            window.enableLayoutMode();
+                        if (window.cb.enableLayoutMode)
+                            cb.enableLayoutMode();
                     ";
                 const string disableLayoutModeStr =
                     @"
-                        if (window.disableLayoutMode)
-                            window.disableLayoutMode();
+                        if (window.cb.disableLayoutMode)
+                            cb.disableLayoutMode();
                     ";
 
                 bool layoutModeEnabled = ((CheckBox)o).Checked;
