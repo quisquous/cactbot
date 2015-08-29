@@ -391,10 +391,8 @@ WipeChecker.prototype.tick = function (currentTime) {
     // Note: can't use "You were revived" from log, as it doesn't happen for
     // fights that auto-restart when everybody is defeated.
     if (!this.playerDead && player.currentHP == 0) {
-        cactbot.debug("You were defeated.");
         this.playerDead = true;
     } else if (this.playerDead && player.currentHP > 0) {
-        cactbot.debug("You were revived.");
         this.playerDead = false;
         this.lastRevivedTime = currentTime;
     }
@@ -416,7 +414,6 @@ WipeChecker.prototype.processLogs = function (logs) {
     for (var i = 0; i < logs.length; ++i) {
         // FIXME: Filter by log category.
         if (logs[i].indexOf("You suffer the effect of Weakness") != -1) {
-             cactbot.debug("You were raised.");
             // This is a raise of some sort, and not a wipe.
             this.lastRevivedTime = null;
         }
