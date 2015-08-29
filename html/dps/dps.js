@@ -64,7 +64,7 @@ window.addEventListener('load', function () {
     // FIXME: figure out how to make this more easily configurable.
     var iframe = document.createElement('iframe');
     iframe.classList.add('hide');
-    iframe.src = 'third_party/OverlayPlugin-themes/xephero.html';
+    iframe.src = 'dps/xephero-cactbot.html';
     element.appendChild(iframe);
 
     var body = document.getElementsByTagName('body')[0];

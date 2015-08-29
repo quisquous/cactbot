@@ -5,7 +5,6 @@
     <title></title>
     <style>
         html {
-            /*background-image: url(images/handle.png);*/
             background-position: bottom right;
             background-repeat: no-repeat;
             box-sizing: border-box;
@@ -73,7 +72,7 @@
             background-color: #5d5125;
         }
     </style>
-    <script type="text/javascript" src="lib/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../jquery/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
         $(function() {
             "use strict";
@@ -150,10 +149,10 @@
                 update(e.originalEvent);
             });
             window.addEventListener('message', function(e) {
-		if (e.data.type === 'onOverlayDataUpdate') {
-		    update(e.data);
-		}
-	    });
+                if (e.data.type === 'onOverlayDataUpdate') {
+                    update(e.data);
+                }
+            });
         });
     </script>
 </head>
@@ -165,13 +164,12 @@
             <span class="title">
                 <span class="name"></span>
                 <span class="number"></span>
+                <span class="misses"></span>
             </span>
             <span class="bar"></span>
         </div>
     </li>
 </ol>
-<ol id="overlay">
-    <li>Awaiting data.</li>
-</ol>
+<ol id="overlay"></ol>
 </body>
 </html>
