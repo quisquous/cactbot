@@ -157,6 +157,7 @@ NodeViewer.prototype.throttleTickMs = 1000;
 NodeViewer.prototype.tick = function (currentTime) {
     var player = act.getPlayer();
     if (!player) {
+        this.topElement.classList.add('hide');
         return;
     }
     var job = cb.util.jobIdToName[player.job];
