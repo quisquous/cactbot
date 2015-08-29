@@ -54,7 +54,6 @@ DPSOverlayBridge.prototype.tick = function (currentTime) {
 
     this.iframe.classList.remove("hide");
 };
-DPSOverlayBridge.prototype.processLog = function (log) {};
 
 window.addEventListener("load", function () {
     loadCSS("dps/dps.css");

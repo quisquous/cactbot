@@ -69,12 +69,18 @@ FakeACT.prototype.getMobByName = function (name) {
     return found;
 };
 
-FakeACT.prototype.hasLogLines = function () {
-    return window.fakeact["logs"].length;
+FakeACT.prototype.getLogLines = function() {
+    var ret = window.fakeact.logs;
+    window.fakeact.logs = [];
+    return ret;
 };
 
-FakeACT.prototype.nextLogLine = function () {
-    return window.fakeact["logs"].shift();
+FakeACT.prototype.encounterDPSInfo = function() {
+    return null;
+};
+
+FakeACT.prototype.combatantDPSInfo = function() {
+    return null;
 };
 
 // FIXME: move each fake testing function into the rotation that provides it

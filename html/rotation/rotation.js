@@ -316,38 +316,41 @@ BaseTickable.prototype.tick = function (currentTime) {
     // FIXME: This isn't a great place to glue a state machine to bindings.
     updateFunc(this.boss);
 };
-BaseTickable.prototype.processLog = function (log) {
-    if (log.indexOf("will be sealed off") != -1) {
+BaseTickable.prototype.processLogs = function (logs) {
+    for (var l = 0; l < logs.length; ++l) {
+        var log = logs[l];
+        if (log.indexOf("will be sealed off") != -1) {
+            for (var i = 0; i < this.bosses.length; ++i) {
+                if (log.indexOf(this.bosses[i].areaSeal) == -1) {
+                    continue;
+                }
+                // FIXME: Use log entry time to start?
+                this.boss.startBoss(this.bosses[i]);
+                break;
+            }
+        } else if (log.indexOf("is no longer sealed") != -1) {
+            for (var i = 0; i < this.bosses.length; ++i) {
+                if (log.indexOf(this.bosses[i].areaSeal) == -1)
+                    continue;
+                this.boss.end();
+                break;
+            }
+        }
+
         for (var i = 0; i < this.bosses.length; ++i) {
-            if (log.indexOf(this.bosses[i].areaSeal) == -1) {
+            if (!this.bosses[i].startLog) {
                 continue;
             }
-            // FIXME: Use log entry time to start?
+            if (log.indexOf(this.bosses[i].startLog) == -1) {
+                continue;
+            }
             this.boss.startBoss(this.bosses[i]);
             break;
         }
-    } else if (log.indexOf("is no longer sealed") != -1) {
-        for (var i = 0; i < this.bosses.length; ++i) {
-            if (log.indexOf(this.bosses[i].areaSeal) == -1)
-                continue;
-            this.boss.end();
-            break;
-        }
-    }
 
-    for (var i = 0; i < this.bosses.length; ++i) {
-        if (!this.bosses[i].startLog) {
-            continue;
+        if (this.boss) {
+            this.boss.processLog(log);
         }
-        if (log.indexOf(this.bosses[i].startLog) == -1) {
-            continue;
-        }
-        this.boss.startBoss(this.bosses[i]);
-        break;
-    }
-
-    if (this.boss) {
-        this.boss.processLog(log);
     }
 };
 
@@ -404,16 +407,19 @@ WipeChecker.prototype.tick = function (currentTime) {
         }
     }
 };
-WipeChecker.prototype.processLog = function (log) {
+WipeChecker.prototype.processLogs = function (logs) {
     // Players come back to life before weakness is applied.
     if (this.playerDead || !this.lastRevivedTime) {
         return;
     }
-    // FIXME: Filter by log category.
-    if (log.indexOf("You suffer the effect of Weakness") != -1) {
-        cactbot.debug("You were raised.");
-        // This is a raise of some sort, and not a wipe.
-        this.lastRevivedTime = null;
+
+    for (var i = 0; i < logs.length; ++i) {
+        // FIXME: Filter by log category.
+        if (logs[i].indexOf("You suffer the effect of Weakness") != -1) {
+             cactbot.debug("You were raised.");
+            // This is a raise of some sort, and not a wipe.
+            this.lastRevivedTime = null;
+        }
     }
 };
 

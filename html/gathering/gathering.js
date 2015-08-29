@@ -231,7 +231,6 @@ NodeViewer.prototype.tick = function (currentTime) {
         }
     }
 };
-NodeViewer.prototype.processLog = function (log) {};
 
 window.addEventListener("load", function () {
     loadCSS("gathering/gathering.css");

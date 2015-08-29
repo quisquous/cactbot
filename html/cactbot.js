@@ -82,27 +82,20 @@ UpdateRegistrar.prototype.tick = function (currentTime) {
         }
     }
 
-    // Log entries before ticking.
     var activeFilters = [];
-
     for (var i = 0; i < this.filters.length; ++i) {
         if (this.filters[i].filtersZone(currentZone)) {
             activeFilters.push(this.filters[i]);
         }
     }
 
-    var logLineCount = 0;
-    while (window.act.hasLogLines()) {
-        var line = window.act.nextLogLine();
-        // FIXME: remove once the source of the null log lines is discovered.
-        console.assert(line, "false line (more: " + window.act.hasLogLines() + ")");
-        if (!line) {
-            cactbot.debug("ERROR: null log line, total: " + logLineCount);
-            continue;
-        }
-        logLineCount++;
+    // Log entries before ticking.
+    var logs = window.act.getLogLines();
+    if (logs) {
         for (var i = 0; i < activeFilters.length; ++i) {
-            activeFilters[i].processLog(line);
+            if (activeFilters[i].processLogs) {
+                activeFilters[i].processLogs(logs);
+            }
         }
     }
 

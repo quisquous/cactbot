@@ -147,10 +147,6 @@ HuntManager.prototype.tick = function (currentTime) {
     }
 };
 
-HuntManager.prototype.processLog = function (log) {
-    // FIXME: notice when a mob dies.
-};
-
 window.addEventListener("load", function () {
     // FIXME: this should happen automatically via cactbot.
     loadCSS("hunts/hunts.css");

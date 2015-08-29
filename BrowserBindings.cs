@@ -3,14 +3,16 @@ using FFXIV_ACT_Plugin;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using System.Web.Script.Serialization;
 
 namespace Cactbot
 {
     public class BrowserBindings
     {
-        const int MaxLogLinesRetained = 2000;
-        Queue<string> logLines = new Queue<string>();
+        // Not thread-safe, as OnLogLineRead may happen at any time.
+        List<string> logLines = new List<string>();
+
         List<Combatant> combatants = new List<Combatant>();
 
         public BrowserBindings()
@@ -133,16 +135,10 @@ namespace Cactbot
             return GetCombatant(0);
         }
 
-        // FIXME: javascript should probably register for loglines it cares about?
-        // This is a hella awkward interface.
-        public bool HasLogLines()
+        public string[] GetLogLines()
         {
-            return logLines.Count > 0;
-        }
-
-        public string NextLogLine()
-        {
-            return logLines.Dequeue();
+            List<string> ret = Interlocked.Exchange(ref logLines, new List<string>());
+            return ret.ToArray();
         }
 
         private void OnLogLineRead(bool isImport, LogLineEventArgs args)
@@ -153,12 +149,8 @@ namespace Cactbot
             // FIXME: Remove this check once the source of the null log lines is found.
             if (args.logLine != null)
             {
-                logLines.Enqueue(args.logLine);
+                logLines.Add(args.logLine);
             }
-
-            // FIXME: expose this error to the browser.
-            if (logLines.Count > MaxLogLinesRetained)
-                logLines.Dequeue();
         }
 
         // Dictionary, as JSON string.
