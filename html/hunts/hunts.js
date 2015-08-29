@@ -54,7 +54,7 @@ HuntManager.prototype.tick = function (currentTime) {
 
     for (var i = 0; i < this.currentHunts.length; ++i) {
         var hunt = this.currentHunts[i];
-        var combatant = window.act.getMobByName(hunt.name);
+        var combatant = window.act.getMobByName(hunt.name, 0);
         if (!combatant && !hunt.lastSeen) {
             continue;
         }

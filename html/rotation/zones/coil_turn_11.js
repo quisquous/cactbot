@@ -1,6 +1,7 @@
 (function () {
     var kaliya = {
         bossName: "Kaliya",
+        minHP: 10000,
         enrageSeconds: 720,
         areaSeal: "The Core Override",
         phases: [

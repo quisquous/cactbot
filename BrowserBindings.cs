@@ -76,7 +76,7 @@ namespace Cactbot
             return c.Job != 0;
         }
 
-        public Combatant GetMobByName(string name)
+        public Combatant GetMobByName(string name, int minHP)
         {
             if (combatants == null)
                 return null;
@@ -86,6 +86,11 @@ namespace Cactbot
                 if (!CombatantIsMob(c))
                     continue;
                 if (c.Name != name)
+                    continue;
+                // Most raids have multiple bosses with the same name,
+                // i.e. the 20 Bahamut Primes in turn 13.  HP seems like
+                // the only way to differentiate.
+                if (c.MaxHP < minHP)
                     continue;
                 // Multiple mobs with the same name.
                 if (found != null)

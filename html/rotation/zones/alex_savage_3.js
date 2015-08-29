@@ -1,6 +1,7 @@
 (function () {
     var livingLiquid = {
         bossName: "Living Liquid",
+        minHP: 10000,
         areaSeal: "Condensate Demineralizer #9",
         phases: [
             {

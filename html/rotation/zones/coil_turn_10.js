@@ -1,6 +1,7 @@
 (function () {
     var imdugud = {
         bossName: "Imdugud",
+        minHP: 10000,
         areaSeal: "The Alpha Concourse",
         phases: [
             {

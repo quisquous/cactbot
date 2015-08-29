@@ -1,6 +1,7 @@
 (function () {
     var bahamutPrime = {
         bossName: "Bahamut Prime",
+        minHP: 10000,
         enrageSeconds: 840,
         // This happens about 7 seconds in, but no area seal to start this fight off.
         // FIXME: test if incombat:true is enough to determine this.

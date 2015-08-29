@@ -2,6 +2,7 @@
     var oppressor = {
         // FIXME: need both boss HPs
         bossName: "Oppressor",
+        minHP: 10000,
         areaSeal: "Hangar 8",
         phases: [
             {

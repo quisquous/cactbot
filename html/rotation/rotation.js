@@ -237,8 +237,8 @@ function formatTime(totalSeconds, displayTenths) {
 
 var bindings;
 
-function hpPercentByName(name) {
-    var combatant = window.act.getMobByName(name);
+function hpPercentByName(name, minHP) {
+    var combatant = window.act.getMobByName(name, minHP);
     if (!combatant)
         return 0;
     return 100 * combatant.currentHP / combatant.maxHP;
@@ -251,7 +251,7 @@ function updateFunc(bossStateMachine) {
         return;
     }
 
-    var percent = hpPercentByName(boss.bossName);
+    var percent = hpPercentByName(boss.bossName, boss.minHP);
     percent = Math.floor(percent); // TODO: add one decimal point
     bindings.setTitle(boss.bossName + ": " + percent + "%");
 
