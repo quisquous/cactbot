@@ -32,10 +32,10 @@ cb.dps.tick = function (currentTime) {
 
     // Javascript maintains that its objects are unsorted, but overlays
     // assume that the plugin has pre-sorted them, whatever that means.
-    // So, insert keys into combatants in the order of ENCDPS descending,
+    // So, insert keys into combatants in the order of encdps descending,
     // and hope this keeps working in the future.  :C
     combatantList.sort(function(a, b) {
-        return b.ENCDPS - a.ENCDPS;
+        return b.encdps - a.encdps;
     });
     var combatants = {};
     for (var i = 0; i < combatantList.length; ++i) {
