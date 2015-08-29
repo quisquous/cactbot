@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        html {
+            /*background-image: url(images/handle.png);*/
+            background-position: bottom right;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            height: 100%;
+        }
+        #overlay {
+            font-family: Tahoma;
+            color: #ded7be;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        #source {
+            display: none;
+        }
+
+        ol {
+            list-style-type: none;
+            margin: 0;
+            padding: 5px;
+        }
+
+        li .dps {
+            display: inline-block;
+            color: #ded7be;
+            width: 28%;
+            max-width: 70px;
+            text-align: right;
+            font-size: 19px;
+        }
+
+        li .name {
+            display: inline-block;
+            width: 75%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        li .detail {
+            display: inline-block;
+            vertical-align: top;
+            color: #ded7be;
+            font-size: 12px;
+            width: 69%;
+        }
+
+        li .detail .number {
+            display: inline-block;
+            color: #ded7be;
+            float: right;
+        }
+
+        li .bar {
+            display: block;
+            height: 5px;
+            background-color: #9d9165;
+        }
+
+        .inactive li .bar {
+            background-color: #d8dadb;
+        }
+
+        li.you {
+            background-color: #5d5125;
+        }
+    </style>
+    <script type="text/javascript" src="lib/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            "use strict";
+
+            var rows = 10;
+            var rdps_max = 0;
+
+            function update(e) {
+                var encounter = e.detail.Encounter;
+                var combatants = e.detail.Combatant;
+                var template = $('#source li');
+                var container = $('#overlay').clone();
+
+                // todo: animate changes while combat is active?
+                // for now, always just fully replace the content
+
+                container.html('');
+
+                var rdps = parseFloat(encounter.encdps);
+
+                // sanity check
+                if (!isNaN(rdps) && rdps != Infinity) {
+                    rdps_max = Math.max(rdps_max, rdps);
+                }
+
+                var header = template.clone();
+                if (encounter.encdps.length <= 7) {
+                    header.find('.dps').text(encounter.encdps);
+                } else {
+                    header.find('.dps').text(encounter.ENCDPS);
+                }
+                header.find('.name').text(encounter.title);
+                header.find('.number').text(encounter.duration);
+                header.find('.bar').css('width', ((rdps / rdps_max) * 100) + '%');
+
+                // set inactive
+                if (!e.detail.isActive) {
+                    rdps_max = 0;
+                    $('body').addClass('inactive');
+                } else {
+                    $('body').removeClass('inactive');
+                }
+
+                container.append(header);
+
+                var limit = Math.max(combatants.length, rows);
+                var names = Object.keys(combatants).slice(0,rows-1);
+                var maxdps = false;
+
+                for (var i = 0; i < names.length; i++) {
+                    var combatant = combatants[names[i]];
+                    var row = template.clone();
+
+                    if (!maxdps) {
+                        maxdps = parseFloat(combatant.encdps);
+                    }
+
+                    if (combatant.name == 'YOU') {
+                        row.addClass('you');
+                    }
+
+                    row.find('.dps').text(combatant.encdps);
+                    row.find('.name').text(combatant.Job.toUpperCase() + ' ' + combatant.name);
+                    row.find('.number').text(combatant.damage);
+                    row.find('.bar').css('width', ((parseFloat(combatant.encdps) / maxdps) * 100) + '%');
+
+                    container.append(row);
+                }
+
+                $('#overlay').replaceWith(container);
+            }
+
+            $(document).on('onOverlayDataUpdate', function(e) {
+                update(e.originalEvent);
+            });
+            window.addEventListener('message', function(e) {
+		if (e.data.type === 'onOverlayDataUpdate') {
+		    update(e.data);
+		}
+	    });
+        });
+    </script>
+</head>
+<body>
+<ol id="source">
+    <li>
+        <span class="dps"></span>
+        <div class="detail">
+            <span class="title">
+                <span class="name"></span>
+                <span class="number"></span>
+            </span>
+            <span class="bar"></span>
+        </div>
+    </li>
+</ol>
+<ol id="overlay">
+    <li>Awaiting data.</li>
+</ol>
+</body>
+</html>

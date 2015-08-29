@@ -156,6 +156,7 @@
     <Content Include="html\debug\debug.js" />
     <Content Include="html\dps\dps.css" />
     <Content Include="html\dps\dps.js" />
+    <Content Include="html\dps\xephero-cactbot.html" />
     <Content Include="html\fakeact.js" />
     <Content Include="html\gathering\gathering.css" />
     <Content Include="html\gathering\gathering.js" />
