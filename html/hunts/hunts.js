@@ -1,18 +1,25 @@
-cb.hunts = {};
+cb.hunts = window.cb.hunts || {};
+cb.hunts = {
+    currentHunts: [],
+    throttleTickMs: 1000,
+    initialize: function(windowElement) {
+        this.huntListElement = windowElement.getElementsByClassName("huntlist")[0];
+        this.leaveZone();
+    },
+    leaveZone: function(zone) {
+        // FIXME: maybe remember these in case of death?
+        this.currentHunts = [];
+        this.huntListElement.innerHTML = '';
+    },
+    filtersZone: function(zone) {
+        return cb.huntList[zone];
+    },
+};
 
-var HuntManager = function (windowElement) {
-    this.huntWindowElement = windowElement;
-    this.huntListElement = windowElement.getElementsByClassName("huntlist")[0];
-    this.currentHunts = [];
-    this.huntList = window.huntList;
-
-    this.leaveZone();
-}
-
-HuntManager.prototype.enterZone = function (zone) {
+cb.hunts.enterZone = function (zone) {
     this.currentHunts = [];
     this.huntListElement.innerHTML = '';
-    var mobs = this.huntList[zone];
+    var mobs = cb.huntList[zone];
     for (var i = 0; i < mobs.length; ++i) {
         var mob = mobs[i];
         var element = document.createElement("div");
@@ -29,19 +36,7 @@ HuntManager.prototype.enterZone = function (zone) {
     }
 };
 
-HuntManager.prototype.leaveZone = function (zone) {
-    // FIXME: maybe remember these in case of death?
-    this.currentHunts = [];
-    this.huntListElement.innerHTML = '';
-};
-
-HuntManager.prototype.filtersZone = function (zone) {
-    return this.huntList[zone];
-};
-
-HuntManager.prototype.throttleTickMs = 3000;
-
-HuntManager.prototype.tick = function (currentTime) {
+cb.hunts.tick = function (currentTime) {
     var minYalms = 20;
     var minSecondsToDisplay = 10;
     var maxSeconds = 300;
@@ -164,7 +159,7 @@ window.addEventListener("load", function () {
         height: "100px",
     };
 
-    cb.hunts.huntManager = new HuntManager(element);
+    cb.hunts.initialize(element);
     cb.windowManager.add("hunts", element, "hunts", defaultGeometry);
-    cb.updateRegistrar.register(cb.hunts.huntManager);
+    cb.updateRegistrar.register(cb.hunts);
 });

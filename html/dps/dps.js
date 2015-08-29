@@ -1,14 +1,15 @@
-DPSOverlayBridge = function(iframe) {
-    this.iframe = iframe;
+cb.dps = {
+    initialize: function(iframe) {
+        this.iframe = iframe;
+    },
+    leaveZone: function(zone) {
+        this.iframe.classList.add("hide");
+    },
+    filtersZone: function() { return true; },
+    throttleTickMs: 1000,
 };
-DPSOverlayBridge.prototype.leaveZone = function (zone) {
-    this.iframe.classList.add("hide");
-};
-DPSOverlayBridge.prototype.filtersZone = function (zone) {
-    return true;
-};
-DPSOverlayBridge.prototype.throttleTickMs = 1000;
-DPSOverlayBridge.prototype.tick = function (currentTime) {
+
+cb.dps.tick = function (currentTime) {
     if (!act.inCombat()) {
         return;
     }
@@ -73,6 +74,7 @@ window.addEventListener("load", function () {
         width: "300px",
         height: "400px",
     };
+    cb.dps.initialize(iframe);
     cb.windowManager.add("dps", element, "dps", defaultGeometry);
-    cb.updateRegistrar.register(new DPSOverlayBridge(iframe));
+    cb.updateRegistrar.register(cb.dps);
 });

@@ -2,8 +2,9 @@
 gt = window.gt || {};
 gt.bell = window.gt.bell || {};
 
-cb.gathering = {};
-cb.gathering.nodesByZone = {};
+cb.gathering = {
+    nodesByZone: {},
+};
 cb.gathering.updateCactbotNodes = function() {
     var cacNodes = cb.gathering.nodesByZone;
     for (var i = 0; i < gt.bell.nodes.length; ++i) {
@@ -15,13 +16,24 @@ cb.gathering.updateCactbotNodes = function() {
     }
 }
 
-NodeViewer = function(element) {
-    this.topElement = element;
-    this.nodes = cb.gathering.nodesByZone;
-    this.currentNodes = [];
-    this.lastTick = null;
+cb.gathering.nodeViewer = {
+    nodes: cb.gathering.nodesByZone,
+    currentNodes: [],
+    throttleTickMs: 1000,
+
+    initialize: function(element) {
+        this.topElement = element;
+    },
+    leaveZone: function() {
+        this.topElement.innerHTML = "";
+        this.currentNodes = [];
+    },
+    filtersZone: function(zone) {
+        return this.nodes[zone];
+    },
 };
-NodeViewer.prototype.enterZone = function (zone) {
+
+cb.gathering.nodeViewer.enterZone = function (zone) {
     if (!this.nodes[zone]) {
         return;
     }
@@ -75,15 +87,8 @@ NodeViewer.prototype.enterZone = function (zone) {
         };
     }).bind(this));
 };
-NodeViewer.prototype.leaveZone = function (zone) {
-    this.topElement.innerHTML = "";
-    this.currentNodes = [];
-};
-NodeViewer.prototype.filtersZone = function (zone) {
-    return this.nodes[zone];
-};
-NodeViewer.prototype.throttleTickMs = 1000;
-NodeViewer.prototype.tick = function (currentTime) {
+
+cb.gathering.nodeViewer.tick = function (currentTime) {
     var player = act.getPlayer();
     if (!player) {
         this.topElement.classList.add('hide');
@@ -179,5 +184,6 @@ window.addEventListener("load", function () {
         height: "300px",
     };
     cb.windowManager.add("gathering", element, "gathering", defaultGeometry);
-    cb.updateRegistrar.register(new NodeViewer(nodeContainer));
+    cb.gathering.nodeViewer.initialize(nodeContainer);
+    cb.updateRegistrar.register(cb.gathering.nodeViewer);
 });

@@ -358,34 +358,34 @@ BaseTickable.prototype.processLogs = function (logs) {
 
 // WipeChecker works by detecting when a player goes from 0 HP to >0 HP
 // without weakness.  It sends a cactbot.wipe event.
-WipeChecker = function() {
-    this.reset();
-};
-WipeChecker.prototype.wipe = function () {
-    cb.debug("Wipe detected.");
-    var event = new CustomEvent("cactbot.wipe", {
-        bubbles: true,
-        cancelable: true,
-	});
-    document.dispatchEvent(event);
-    this.reset();
-}
-WipeChecker.prototype.reset = function () {
-    this.playerDead = false;
-    // If this is !null, then it's a potential wipe that's being determined.
-    this.lastRevivedTime = null;
-}
+cb.rotation.wipeChecker = {
+    playerDead: false,
+    lastRevivedTime: null,
 
-WipeChecker.prototype.enterZone = function (zone) {
-    this.reset();
+    wipe: function() {
+        cb.debug("Wipe detected.");
+        var event = new CustomEvent("cactbot.wipe", {
+            bubbles: true,
+            cancelable: true,
+	    });
+        document.dispatchEvent(event);
+        this.reset();
+    },
+    reset: function() {
+        this.playerDead = false;
+        // If this is !null, then it's a potential wipe that's being determined.
+        this.lastRevivedTime = null;
+    },
+    enterZone: function(zone) {
+        this.reset();
+    },
+    leaveZone: function(zone) {
+        this.reset();
+    },
+    filtersZone: function() { return true; },
 };
-WipeChecker.prototype.leaveZone = function (zone) {
-    this.reset();
-};
-WipeChecker.prototype.filtersZone = function (zone) {
-    return true;
-};
-WipeChecker.prototype.tick = function (currentTime) {
+
+cb.rotation.wipeChecker.tick = function (currentTime) {
     var player = window.act.getPlayer();
     if (!player) {
         return;
@@ -407,7 +407,7 @@ WipeChecker.prototype.tick = function (currentTime) {
         }
     }
 };
-WipeChecker.prototype.processLogs = function (logs) {
+cb.rotation.wipeChecker.processLogs = function (logs) {
     // Players come back to life before weakness is applied.
     if (this.playerDead || !this.lastRevivedTime) {
         return;
@@ -421,7 +421,6 @@ WipeChecker.prototype.processLogs = function (logs) {
         }
     }
 };
-
 
 window.addEventListener("load", function () {
     cb.util.loadCSS("rotation/rotation.css");
@@ -459,7 +458,7 @@ window.addEventListener("load", function () {
     };
 
     cb.windowManager.add("rotation", element, "rotation", defaultGeometry);
-    cb.updateRegistrar.register(new WipeChecker());
+    cb.updateRegistrar.register(cb.rotation.wipeChecker);
 
     // FIXME: This is such a clumsy binding.
     window.bindings = new RaidTimersBinding();

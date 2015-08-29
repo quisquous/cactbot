@@ -1,4 +1,4 @@
-var huntList = {
+cb.huntList = {
     "Central Shroud": [
         { name: "White Joker", rank: "B" },
         { name: "Forneus", rank: "A" },
@@ -134,7 +134,7 @@ var huntList = {
         { name: "Noctilucale", rank: "F" },
     ]
 };
-huntList["The Dravinian Forelands"] = huntList["The Dravanian Forelands"];
-huntList["The Dravinian Hinterlands"] = huntList["The Dravanian Hinterlands"];
-huntList["Abalathia's Spine: The Sea Of Clouds"] = huntList["The Sea of Clouds"];
 
+cb.huntList["The Dravinian Forelands"] = cb.huntList["The Dravanian Forelands"];
+cb.huntList["The Dravinian Hinterlands"] = cb.huntList["The Dravanian Hinterlands"];
+cb.huntList["Abalathia's Spine: The Sea Of Clouds"] = cb.huntList["The Sea of Clouds"];
