@@ -3,7 +3,7 @@ cb.dps = {
         this.iframe = iframe;
     },
     leaveZone: function(zone) {
-        this.iframe.classList.add("hide");
+        this.iframe.classList.add('hide');
     },
     filtersZone: function() { return true; },
     throttleTickMs: 1000,
@@ -26,7 +26,7 @@ cb.dps.tick = function (currentTime) {
         var encounter = JSON.parse(encounterStr);
         var combatantList = JSON.parse(combatantStr);
     } catch (e) {
-        console.error(["Failed to parse dps json", e, encounterStr, combatantStr]);
+        console.error(['Failed to parse dps json', e, encounterStr, combatantStr]);
         return;
     }
 
@@ -50,31 +50,31 @@ cb.dps.tick = function (currentTime) {
             Combatant: combatants,
         },
     };
-    this.iframe.contentWindow.postMessage(actUpdate, "*");
+    this.iframe.contentWindow.postMessage(actUpdate, '*');
 
-    this.iframe.classList.remove("hide");
+    this.iframe.classList.remove('hide');
 };
 
-window.addEventListener("load", function () {
-    cb.util.loadCSS("dps/dps.css");
+window.addEventListener('load', function () {
+    cb.util.loadCSS('dps/dps.css');
 
-    var element = document.createElement("div");
-    element.classList.add("dpsoverlay");
+    var element = document.createElement('div');
+    element.classList.add('dpsoverlay');
 
     // FIXME: figure out how to make this more easily configurable.
-    var iframe = document.createElement("iframe");
-    iframe.classList.add("hide");
-    iframe.src = "third_party/OverlayPlugin-themes/xephero.html";
+    var iframe = document.createElement('iframe');
+    iframe.classList.add('hide');
+    iframe.src = 'third_party/OverlayPlugin-themes/xephero.html';
     element.appendChild(iframe);
 
-    var body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName('body')[0];
     body.appendChild(element);
 
     var defaultGeometry = {
-        width: "300px",
-        height: "400px",
+        width: '300px',
+        height: '400px',
     };
     cb.dps.initialize(iframe);
-    cb.windowManager.add("dps", element, "dps", defaultGeometry);
+    cb.windowManager.add('dps', element, 'dps', defaultGeometry);
     cb.updateRegistrar.register(cb.dps);
 });

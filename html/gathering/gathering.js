@@ -25,7 +25,7 @@ cb.gathering.nodeViewer = {
         this.topElement = element;
     },
     leaveZone: function() {
-        this.topElement.innerHTML = "";
+        this.topElement.innerHTML = '';
         this.currentNodes = [];
     },
     filtersZone: function(zone) {
@@ -48,8 +48,8 @@ cb.gathering.nodeViewer.enterZone = function (zone) {
 
         var location = document.createElement('div');
         location.classList.add('location');
-        var coords = "(" + node.coords[0] + ", " + node.coords[1] + ")";
-        location.innerText = coords + " " + node.area;
+        var coords = '(' + node.coords[0] + ', ' + node.coords[1] + ')';
+        location.innerText = coords + ' ' + node.area;
         details.appendChild(location);
 
         for (var i = 0; i < node.items.length; ++i) {
@@ -71,7 +71,7 @@ cb.gathering.nodeViewer.enterZone = function (zone) {
         for (var i = 0; i < node.items.length; ++i) {
             summaryText += node.items[i].item;
             if (i != node.items.length - 1) {
-                summaryText += ", ";
+                summaryText += ', ';
             }
         }
         summary.innerText = summaryText;
@@ -154,36 +154,36 @@ cb.gathering.nodeViewer.tick = function (currentTime) {
         var node = this.currentNodes[i];
         node.element.style.order = i;
         if (node.endTime.getTime() < node.startTime.getTime()) {
-            node.element.classList.add("open");
+            node.element.classList.add('open');
         } else {
-            node.element.classList.remove("open");
+            node.element.classList.remove('open');
         }
         if (i == 0) {
-            node.element.classList.add("first");
+            node.element.classList.add('first');
         } else {
-            node.element.classList.remove("first");
+            node.element.classList.remove('first');
         }
     }
 };
 
-window.addEventListener("load", function () {
-    cb.util.loadCSS("gathering/gathering.css");
+window.addEventListener('load', function () {
+    cb.util.loadCSS('gathering/gathering.css');
 
     cb.gathering.updateCactbotNodes();
 
-    var element = document.createElement("div");
-    var nodeContainer = document.createElement("div");
-    nodeContainer.classList.add("NodeViewer");
+    var element = document.createElement('div');
+    var nodeContainer = document.createElement('div');
+    nodeContainer.classList.add('NodeViewer');
     element.appendChild(nodeContainer);
 
-    var body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName('body')[0];
     body.appendChild(element);
 
     var defaultGeometry = {
-        width: "500px",
-        height: "300px",
+        width: '500px',
+        height: '300px',
     };
-    cb.windowManager.add("gathering", element, "gathering", defaultGeometry);
+    cb.windowManager.add('gathering', element, 'gathering', defaultGeometry);
     cb.gathering.nodeViewer.initialize(nodeContainer);
     cb.updateRegistrar.register(cb.gathering.nodeViewer);
 });

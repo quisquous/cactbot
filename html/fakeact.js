@@ -2,21 +2,21 @@ FakeACT = function () {
 };
 
 FakeACT.prototype.currentZone = function () {
-    return window.fakeact["zone"];
+    return window.fakeact['zone'];
 };
 
 FakeACT.prototype.inCombat = function () {
-    return window.fakeact["incombat"];
+    return window.fakeact['incombat'];
 };
 
 FakeACT.prototype.textToSpeech = function () {};
 
 FakeACT.prototype.numCombatants = function () {
-    return window.fakeact["combatants"].length;
+    return window.fakeact['combatants'].length;
 };
 
 FakeACT.prototype.getCombatant = function (idx) {
-    return window.fakeact["combatants"][idx];
+    return window.fakeact['combatants'][idx];
 };
 
 FakeACT.prototype.updateCombatants = function () { }
@@ -25,7 +25,7 @@ FakeACT.prototype.getPlayer = function () {
     if (window.fakeact.partyList && window.fakeact.partyList.length > 0) {
         return window.fakeact.partyList[0];
     } else if (window.fakeact.combatants.length === 0) {
-        return makeCombatant("The Player");
+        return makeCombatant('The Player');
     } else {
         return window.fakeact.combatants[0];
     }
@@ -57,14 +57,14 @@ FakeACT.prototype.getPlayerByName = function (name) {
 
 FakeACT.prototype.getMobByName = function (name) {
     var found = null;
-    for (var i = 0; i < window.fakeact["combatants"].length; ++i) {
-        if (window.fakeact["combatants"][i].name !== name) {
+    for (var i = 0; i < window.fakeact['combatants'].length; ++i) {
+        if (window.fakeact['combatants'][i].name !== name) {
             continue;
         }
         if (found != null) {
             return null;
         }
-        found = window.fakeact["combatants"][i];
+        found = window.fakeact['combatants'][i];
     }
     return found;
 };
@@ -86,80 +86,80 @@ FakeACT.prototype.combatantDPSInfo = function() {
 // FIXME: move each fake testing function into the rotation that provides it
 FakeACT.prototype.testEinhander = function () {
     window.fakeact = {
-        zone: "The Keeper Of The Lake",
+        zone: 'The Keeper Of The Lake',
         incombat: true,
-        combatants: [makeCombatant("Einhander")],
-        logs: ["The agrius will be sealed off in"]
+        combatants: [makeCombatant('Einhander')],
+        logs: ['The agrius will be sealed off in']
     };
 };
 
 FakeACT.prototype.testTurn10 = function () {
     window.fakeact = {
-        zone: "The Final Coil Of Bahamut - Turn (1)",
+        zone: 'The Final Coil Of Bahamut - Turn (1)',
         incombat: true,
-        combatants: [makeCombatant("Imdugud")],
-        logs: ["The Alpha Concourse will be sealed off in"]
+        combatants: [makeCombatant('Imdugud')],
+        logs: ['The Alpha Concourse will be sealed off in']
     };
 };
 
 FakeACT.prototype.testTurn13 = function () {
     window.fakeact = {
-        zone: "The Final Coil Of Bahamut - Turn (4)",
+        zone: 'The Final Coil Of Bahamut - Turn (4)',
         incombat: true,
-        combatants: [makeCombatant("Bahamut Prime")],
-        logs: ["Bahamut Prime uses Flare Breath"]
+        combatants: [makeCombatant('Bahamut Prime')],
+        logs: ['Bahamut Prime uses Flare Breath']
     };
 };
 
 FakeACT.prototype.testRavana = function () {
     window.fakeact = {
-        zone: "Thok Ast Thok (extreme)",
+        zone: 'Thok Ast Thok (extreme)',
         incombat: true,
-        combatants: [makeCombatant("Ravana")],
-        logs: ["Dance to the song of ringing steel"]
+        combatants: [makeCombatant('Ravana')],
+        logs: ['Dance to the song of ringing steel']
     };
 };
 
 FakeACT.prototype.testBees = function () {
     window.fakeact = {
-        zone: "Xanadu",
+        zone: 'Xanadu',
         incombat: true,
-        combatants: [makeCombatant("Angry Bees")],
-        logs: ["The hive will be sealed off in"]
+        combatants: [makeCombatant('Angry Bees')],
+        logs: ['The hive will be sealed off in']
     };
 };
 
 FakeACT.prototype.testA1Savage = function () {
     window.fakeact = {
-        zone: "Alexander - The Fist of the Father (Savage)",
+        zone: 'Alexander - The Fist of the Father (Savage)',
         incombat: true,
-        combatants: [makeCombatant("The Player"), makeCombatant("Oppressor")],
-        logs: ["Hangar 8 will be sealed off in"]
+        combatants: [makeCombatant('The Player'), makeCombatant('Oppressor')],
+        logs: ['Hangar 8 will be sealed off in']
     };
 };
 
 FakeACT.prototype.testA3Savage = function () {
     window.fakeact = {
-        zone: "Alexander - The Arm of the Father (Savage)",
+        zone: 'Alexander - The Arm of the Father (Savage)',
         incombat: true,
-        combatants: [makeCombatant("The Player"), makeCombatant("Living Liquid")],
-        logs: ["Condensate Demineralizer #9 will be sealed off in"]
+        combatants: [makeCombatant('The Player'), makeCombatant('Living Liquid')],
+        logs: ['Condensate Demineralizer #9 will be sealed off in']
     };
 };
 
 FakeACT.prototype.testTPViewer = function () {
     window.fakeact.partyList = [
-        makeCombatant("Frozen Spirits"),
-        makeCombatant("Birch Syrup"),
-        makeCombatant("Kaiser Roll"),
-        makeCombatant("Fig Bavarois"),
-        makeCombatant("Marron Glace"),
+        makeCombatant('Frozen Spirits'),
+        makeCombatant('Birch Syrup'),
+        makeCombatant('Kaiser Roll'),
+        makeCombatant('Fig Bavarois'),
+        makeCombatant('Marron Glace'),
     ];
     var logs = [];
     for (var i = 0; i < window.fakeact.partyList.length; ++i) {
         var player = window.fakeact.partyList[i];
         window.fakeact.combatants.push(player);
-        logs.push("cactbot:tp:" + (i+1) + ":" + player.name);
+        logs.push('cactbot:tp:' + (i+1) + ':' + player.name);
     }
 
     window.setTimeout(function() {
@@ -170,18 +170,18 @@ FakeACT.prototype.testTPViewer = function () {
 };
 
 FakeACT.prototype.testHunt = function () {
-    var the_player = makeCombatant("The Player");
+    var the_player = makeCombatant('The Player');
     the_player.posX = 50;
     the_player.posY = -20;
-    var alteci = makeCombatant("Alteci");
+    var alteci = makeCombatant('Alteci');
     alteci.posZ = 50;
-    var kaiser = makeCombatant("Kaiser Behemoth");
+    var kaiser = makeCombatant('Kaiser Behemoth');
     kaiser.posY = 30;
-    var mirka = makeCombatant("Mirka");
+    var mirka = makeCombatant('Mirka');
     mirka.posX = 40;
     mirka.posY = -10;
     window.fakeact = {
-        zone: "Coerthas Western Highlands",
+        zone: 'Coerthas Western Highlands',
         incombat: true,
         combatants: [the_player, alteci, kaiser, mirka],
         logs: [],
@@ -211,17 +211,17 @@ if (!window.act) {
     }
 
     window.fakeact = {};
-    window.fakeact["zone"] = "Xanadu";
-    window.fakeact["incombat"] = false;
-    window.fakeact["combatants"] = [];
-    window.fakeact["logs"] = [];
+    window.fakeact['zone'] = 'Xanadu';
+    window.fakeact['incombat'] = false;
+    window.fakeact['combatants'] = [];
+    window.fakeact['logs'] = [];
 
     window.act = new FakeACT();
 
     // FIXME: fake act should come first so that no code anywhere attempts to
     // read from the plugin when it's not there, but that also means that
     // debugging logic isn't there yet.
-    window.addEventListener("load", function () {
+    window.addEventListener('load', function () {
         cb.debug('Using fake act');
     });
 }

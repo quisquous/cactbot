@@ -46,7 +46,7 @@ BossStateMachine.prototype.processLog = function (logLine) {
         return;
     }
     // FIXME: only allow echos to do this vs jerks saying this in chat.
-    if (logLine.indexOf("cactbot wipe") != -1) {
+    if (logLine.indexOf('cactbot wipe') != -1) {
         this.end();
 	return;
     }
@@ -152,7 +152,7 @@ RaidTimersBinding.prototype.clear = function() {
 };
 
 RaidTimersBinding.prototype.register = function(id, elementName, func, initial) {
-    var setterName = "set" + id[0].toUpperCase() + id.substring(1);
+    var setterName = 'set' + id[0].toUpperCase() + id.substring(1);
     this[setterName] = function(value) {
         return this.setterInner(id, value);
     };
@@ -181,22 +181,22 @@ RaidTimersBinding.prototype.updateInnerText = function(element, value) {
 RaidTimersBinding.prototype.updateRotation = function(rotationDiv, rotation) {
     var currentTime = new Date();
 
-    rotationDiv.innerHTML = "";
+    rotationDiv.innerHTML = '';
 
     // Don't display anything farther ahead in the future than 1 minute.
     var maxDiffSeconds = 60;
 
     for (var i = 0; i < rotation.length; ++i) {
-        var rotItem = document.createElement("div");
-        rotItem.className = "rotitem";
+        var rotItem = document.createElement('div');
+        rotItem.className = 'rotitem';
 
-        var moveItem = document.createElement("div");
-        moveItem.className = "move";
+        var moveItem = document.createElement('div');
+        moveItem.className = 'move';
         moveItem.innerText = rotation[i].name;
         rotItem.appendChild(moveItem);
 
-        var countdownItem = document.createElement("div");
-        countdownItem.className = "countdown";
+        var countdownItem = document.createElement('div');
+        countdownItem.className = 'countdown';
         if (rotation[i].time) {
             var diffSeconds = (rotation[i].time.getTime() - currentTime.getTime()) / 1000;
             if (diffSeconds > maxDiffSeconds) {
@@ -221,18 +221,18 @@ function formatTimeDiff(futureTime, currentTime, displayTenths) {
 }
 
 function formatTime(totalSeconds, displayTenths) {
-    var str = "";
+    var str = '';
     var total = Math.max(0, totalSeconds);
     var minutes = Math.floor(total / 60);
     var seconds = Math.floor(total % 60);
     var tenthseconds = Math.floor((10 * (total % 60)) % 10);
-    str = "";
+    str = '';
     if (minutes > 0)
-        str += minutes + "m";
+        str += minutes + 'm';
     str += seconds;
     if (displayTenths)
-        str += "." + tenthseconds;
-    str += "s";
+        str += '.' + tenthseconds;
+    str += 's';
 
     return str;
 }
@@ -255,14 +255,14 @@ function updateFunc(bossStateMachine) {
 
     var percent = hpPercentByName(boss.bossName, boss.minHP);
     percent = Math.floor(percent); // TODO: add one decimal point
-    bindings.setTitle(boss.bossName + ": " + percent + "%");
+    bindings.setTitle(boss.bossName + ': ' + percent + '%');
 
     var currentTime = new Date();
 
     var enrageSeconds = boss.enrageSeconds;
     if (enrageSeconds) {
         var enrage = addTime(bossStateMachine.currentBossStartTime, enrageSeconds);
-        bindings.setEnrage("Enrage: " + formatTimeDiff(enrage, currentTime));
+        bindings.setEnrage('Enrage: ' + formatTimeDiff(enrage, currentTime));
     } else {
         bindings.setEnrage('');
     }
@@ -272,15 +272,15 @@ function updateFunc(bossStateMachine) {
 
     // TODO: Add one rotation from next phase as well when it gets
     // close in time or percentage? Or always?
-    var nextPhaseTitle = "";
-    var nextPhaseTime = "";
+    var nextPhaseTitle = '';
+    var nextPhaseTime = '';
     if (nextPhase) {
         nextPhaseTitle = nextPhase.title;
         if (currentPhase.endSeconds) {
             var phaseEndTime = addTime(bossStateMachine.currentPhaseStartTime, currentPhase.endSeconds);
             nextPhaseTime = formatTimeDiff(phaseEndTime, currentTime);
         } else if (currentPhase.endHpPercent) {
-            nextPhaseTime = currentPhase.endHpPercent + "%";
+            nextPhaseTime = currentPhase.endHpPercent + '%';
         }
     }
     bindings.setNextTitle(nextPhaseTitle);
@@ -291,7 +291,7 @@ function updateFunc(bossStateMachine) {
 
 var BaseTickable = function () {
     this.boss = new BossStateMachine();
-    document.addEventListener("cactbot.wipe", (function () {
+    document.addEventListener('cactbot.wipe', (function () {
         this.boss.end();
     }).bind(this));
 };
@@ -321,7 +321,7 @@ BaseTickable.prototype.tick = function (currentTime) {
 BaseTickable.prototype.processLogs = function (logs) {
     for (var l = 0; l < logs.length; ++l) {
         var log = logs[l];
-        if (log.indexOf("will be sealed off") != -1) {
+        if (log.indexOf('will be sealed off') != -1) {
             for (var i = 0; i < this.bosses.length; ++i) {
                 if (log.indexOf(this.bosses[i].areaSeal) == -1) {
                     continue;
@@ -330,7 +330,7 @@ BaseTickable.prototype.processLogs = function (logs) {
                 this.boss.startBoss(this.bosses[i]);
                 break;
             }
-        } else if (log.indexOf("is no longer sealed") != -1) {
+        } else if (log.indexOf('is no longer sealed') != -1) {
             for (var i = 0; i < this.bosses.length; ++i) {
                 if (log.indexOf(this.bosses[i].areaSeal) == -1)
                     continue;
@@ -363,8 +363,8 @@ cb.rotation.wipeChecker = {
     lastRevivedTime: null,
 
     wipe: function() {
-        cb.debug("Wipe detected.");
-        var event = new CustomEvent("cactbot.wipe", {
+        cb.debug('Wipe detected.');
+        var event = new CustomEvent('cactbot.wipe', {
             bubbles: true,
             cancelable: true,
 	    });
@@ -415,22 +415,22 @@ cb.rotation.wipeChecker.processLogs = function (logs) {
 
     for (var i = 0; i < logs.length; ++i) {
         // FIXME: Filter by log category.
-        if (logs[i].indexOf("You suffer the effect of Weakness") != -1) {
+        if (logs[i].indexOf('You suffer the effect of Weakness') != -1) {
             // This is a raise of some sort, and not a wipe.
             this.lastRevivedTime = null;
         }
     }
 };
 
-window.addEventListener("load", function () {
-    cb.util.loadCSS("rotation/rotation.css");
+window.addEventListener('load', function () {
+    cb.util.loadCSS('rotation/rotation.css');
     
     // FIXME: This can't get loaded from a file via Javascript, because of
     // cross-origin issues.  This isn't an issue at runtime (cef can cheat
     // the sandbox with some flags), but it will make developing a pain if
     // it's required to run a proxy or pass sandbox-clobbering flags to
     // the browser.  Punt on adding more developer hurdles for now.  <_<
-    var element = document.createElement("div");
+    var element = document.createElement('div');
     element.innerHTML =
         '<div id="bosstimers">' +
         '  <div id="titlebar">' +
@@ -449,15 +449,15 @@ window.addEventListener("load", function () {
         '  </div>' +
         '</div>';
 
-    var body = document.getElementsByTagName("body")[0];
+    var body = document.getElementsByTagName('body')[0];
     body.appendChild(element);
 
     var defaultGeometry = {
-        width: "400px",
-        height: "400px",
+        width: '400px',
+        height: '400px',
     };
 
-    cb.windowManager.add("rotation", element, "rotation", defaultGeometry);
+    cb.windowManager.add('rotation', element, 'rotation', defaultGeometry);
     cb.updateRegistrar.register(cb.rotation.wipeChecker);
 
     // FIXME: This is such a clumsy binding.

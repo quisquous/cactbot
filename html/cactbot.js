@@ -81,7 +81,7 @@ var WindowManager = function () {
     this.windows = [];
     this.layoutMode = false;
 
-    document.addEventListener("contextmenu", function(e){
+    document.addEventListener('contextmenu', function(e){
         if (this.onRightClick(e.target))
             e.preventDefault();
     }.bind(this), false);
@@ -97,12 +97,12 @@ WindowManager.prototype.add = function (name, element, title, geometry) {
     this.loadLayout(name, element, geometry);
     this.SetWindowVisible(name, this.windows[name].visible);
 
-    element.classList.add("cactbotwindow");
+    element.classList.add('cactbotwindow');
 
     // Add title for layout mode.
-    var titleDiv = document.createElement("div");
-    titleDiv.classList.add("cactbotwindowname");
-    var titleText = document.createElement("div");
+    var titleDiv = document.createElement('div');
+    titleDiv.classList.add('cactbotwindowname');
+    var titleText = document.createElement('div');
     titleText.innerHTML = title;
     titleDiv.appendChild(titleText);
     element.appendChild(titleDiv);
@@ -111,8 +111,8 @@ WindowManager.prototype.add = function (name, element, title, geometry) {
     $(element).resizable({ handles: 'all', disabled: true });
 
     // This should have a default, always.
-    console.assert(element.style.height, "Missing default height: " + name);
-    console.assert(element.style.width, "Missing default width: " + name);
+    console.assert(element.style.height, 'Missing default height: ' + name);
+    console.assert(element.style.width, 'Missing default width: ' + name);
 };
 WindowManager.prototype.remove = function (name) {
     delete this.windows[name];
@@ -124,10 +124,10 @@ WindowManager.prototype.enableLayoutMode = function () {
     this.layoutMode = true;
     for (var name in this.windows) {
         var element = this.windows[name].element;
-        element.classList.add("layoutmode");
+        element.classList.add('layoutmode');
     }
-    $(".cactbotwindow").draggable("enable");
-    $(".cactbotwindow").resizable("enable");
+    $('.cactbotwindow').draggable('enable');
+    $('.cactbotwindow').resizable('enable');
 };
 WindowManager.prototype.disableLayoutMode = function () {
     if (!this.layoutMode) {
@@ -135,14 +135,14 @@ WindowManager.prototype.disableLayoutMode = function () {
     }
     this.layoutMode = false;
     for (var name in this.windows) {
-        this.windows[name].element.classList.remove("layoutmode");
+        this.windows[name].element.classList.remove('layoutmode');
         this.saveLayout(name, this.windows[name].element);
     }
-    $(".cactbotwindow").draggable("disable");
-    $(".cactbotwindow").resizable("disable");
+    $('.cactbotwindow').draggable('disable');
+    $('.cactbotwindow').resizable('disable');
 };
 WindowManager.prototype.storageKey = function (name) {
-    return "geom." + name;
+    return 'geom.' + name;
 };
 WindowManager.prototype.saveLayout = function (name, element) {
     var info = {
@@ -160,7 +160,7 @@ WindowManager.prototype.loadLayout = function (name, element, geometry) {
 
     for (var key in info) {
         console.assert(info.hasOwnProperty(key));
-        if (key === "visible") {
+        if (key === 'visible') {
             this.windows[name].visible = info[key];
             continue;
         }
@@ -172,10 +172,10 @@ WindowManager.prototype.onRightClick = function(element) {
         return false;
 
     var originalElement = element;
-    while (!element.classList.contains("cactbotwindow")) {
+    while (!element.classList.contains('cactbotwindow')) {
         element = element.parentNode;
         if (!element) {
-            console.log("Element not in tree of window", originalElement);
+            console.log('Element not in tree of window', originalElement);
             return false;
         }
     }
@@ -188,7 +188,7 @@ WindowManager.prototype.onRightClick = function(element) {
         }
     }
     if (!windowName) {
-        console.log("No window associated with element", element);
+        console.log('No window associated with element', element);
         return false;
     }
 
@@ -200,9 +200,9 @@ WindowManager.prototype.onRightClick = function(element) {
      var element = this.windows[name].element;
 
      if (visible) {
-         element.classList.remove("hidden");
+         element.classList.remove('hidden');
      } else {
-         element.classList.add("hidden");
+         element.classList.add('hidden');
      }
  };
 
