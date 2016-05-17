@@ -1,11 +1,14 @@
 (function () {
     var ravana = {
+        fightId: "RavanaEx",
         bossName: "Ravana",
         enrageSeconds: 600,
         startLog: "Dance to the song of ringing steel",
         phases: [
             {
                 title: "Phase 1 (warmup)",
+                shortName: "P1",
+                phaseIdx: 1,
                 loop: true,
                 // FIXME: guessing on loop
                 loopSeconds: 45,
@@ -30,6 +33,8 @@
             },
             {
                 title: "Phase 2 (ifrit charges)",
+                shortName: "P2",
+                phaseIdx: 2,
                 endLog: "Ravana uses Dragonfly Avatar",
                 rotation: [
                     //[23:49:00.000] 00:282b:Ravana uses Scorpion Avatar.
@@ -58,6 +63,8 @@
             },
             {
                 title: "Phase 3 (ganas)",
+                shortName: "P3",
+                phaseIdx: 3,
                 endLog: "Ravana uses Beetle Avatar",
                 rotation: [
                     //[23:50:27.000] 00:282b:Ravana uses Dragonfly Avatar.
@@ -109,6 +116,8 @@
             },
             {
                 title: "Phase 4 (orbs)",
+                shortName: "P4",
+                phaseIdx: 4,
                 endLog: "Ravana uses Scorpion Avatar",
                 rotation: [
                     //[23:52:29.000] 00:282b:Ravana uses Beetle Avatar.
@@ -153,6 +162,8 @@
             },
             {
                 title: "Phase 5 (double prey swords)",
+                shortName: "P5",
+                phaseIdx: 5,
                 justText: true,
                 endLog: "Ravana uses Dragonfly Avatar",
                 rotation: [
@@ -183,6 +194,8 @@
             },
             {
                 title: "Phase 6 (shell redux)",
+                shortName: "P6",
+                phaseIdx: 6,
                 endLog: "Ravana uses Scorpion Avatar",
                 justText: true,
                 rotation: [
@@ -207,6 +220,8 @@
             },
             {
                 title: "Phase 7 (random liberaton)",
+                shortName: "P7",
+                phaseIdx: 7,
                 loop: false,
                 rotation: [
                     { name : "Random liberations", time: 600 }

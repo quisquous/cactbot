@@ -1,5 +1,6 @@
 (function () {
     var bahamutPrime = {
+        fightId: "turn13",
         bossName: "Bahamut Prime",
         minHP: 10000,
         enrageSeconds: 840,
@@ -9,6 +10,8 @@
         phases: [
             {
                 title: "Phase 1 (warmup)",
+                shortName: "P1",
+                phaseIdx: 1,
                 endHpPercent: 76,
                 loop: true,
                 loopSeconds: 49,
@@ -37,6 +40,8 @@
             },
             {
                 title: "Phase 2 (flare stars, shadows)",
+                shortName: "P2",
+                phaseIdx: 2,
                 loop: true,
                 loopSeconds: 65,
                 loopOffset: -10,
@@ -73,6 +78,8 @@
             },
             {
                 title: "Phase 3 (divebombs)",
+                shortName: "P3",
+                phaseIdx: 3,
                 endSeconds: 240,
                 endLog: "Bahamut Prime starts using Teraflare on Bahamut Prime",
                 rotation: [
@@ -113,6 +120,8 @@
             },
             {
                 title: "Phase 4 (akh morns)",
+                shortName: "P4",
+                phaseIdx: 4,
                 loopOffset: -35,
                 loopSeconds: 60,
                 rotation: [

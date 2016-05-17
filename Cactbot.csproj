@@ -170,11 +170,17 @@
     <Content Include="html\rotation\rotation.js" />
     <Content Include="html\rotation\zones\alex_savage_1.js" />
     <Content Include="html\rotation\zones\alex_savage_3.js" />
+    <Content Include="html\rotation\zones\alex_savage_4.js" />
+    <Content Include="html\rotation\zones\alex_savage_5.js" />
+    <Content Include="html\rotation\zones\alex_savage_6.js" />
+    <Content Include="html\rotation\zones\alex_savage_7.js" />
+    <Content Include="html\rotation\zones\alex_savage_8.js" />
     <Content Include="html\rotation\zones\coil_turn_10.js" />
     <Content Include="html\rotation\zones\coil_turn_11.js" />
     <Content Include="html\rotation\zones\coil_turn_13.js" />
     <Content Include="html\rotation\zones\ravana_extreme.js" />
     <Content Include="html\rotation\zones\test.js" />
+    <Content Include="html\rotation\zones\thordan_extreme.js" />
     <Content Include="html\time.js" />
     <Content Include="html\util.js" />
   </ItemGroup>

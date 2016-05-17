@@ -1,11 +1,14 @@
 (function () {
     var livingLiquid = {
+        fightId: "A3S",
         bossName: "Living Liquid",
         minHP: 10000,
         areaSeal: "Condensate Demineralizer #9",
         phases: [
             {
                 title: "Phase 1 (humanoid)",
+                shortName: "P1",
+                phaseIdx: 1,
                 loop: false,
                 endSeconds: 60,
                 rotation: [
@@ -22,6 +25,8 @@
             },
             {
                 title: "Phase 2 (hand)",
+                shortName: "P2",
+                phaseIdx: 2,
                 loop: false,
                 endSeconds: 130,
                 rotation: [
@@ -39,8 +44,8 @@
                     { name: "Hand of Prayer/Parting", time: 67.5 },
                     { name: "Digititis", time: 72.5 },
                     // { name: Digititis (end)", time: 77.5 },
-                    { name: "(HP transfer)", time: 77.5 },
-                    { name: "Hand of Pain", time: 102.5, cast: 2.5},
+                    { name: "(HP transfer)", time: 77.5, startMiniPhase: "H" },
+                    { name: "Hand of Pain", time: 102.5, cast: 2.5, endMiniPhase: "H" },
                     { name: "(hand glow)", time: 110 },
                     { name: "Hand of Prayer/Parting", time: 115 },
                     { name: "Fluid Swing", time: 120 },
@@ -49,6 +54,8 @@
             },
             {
                 title: "Phase 3 (tornado)",
+                shortName: "P3",
+                phaseIdx: 3,
                 loop: false,
                 // FIXME: this is not what http://imgur.com/EJXEalr says,
                 // but phase 4 timings are a little iffy and this makes
@@ -69,6 +76,8 @@
             },
             {
                 title: "Phase 4 (humanoid)",
+                shortName: "P4",
+                phaseIdx: 4,
                 loop: true,
                 loopOffset: -15,
                 loopSeconds: 222.5,
@@ -120,7 +129,7 @@
 
     var AlexanderSavageTurn3 = function () {
         BaseTickable.apply(this, arguments);
-        this.zoneFilter = "Alexander - The Arm of the Father (Savage)";
+        this.zoneFilter = "The Arm Of The Father (Savage)";
         this.bosses = [livingLiquid];
     };
     AlexanderSavageTurn3.prototype = new BaseTickable;

@@ -1,11 +1,14 @@
 (function () {
     var imdugud = {
+        fightId: "turn10",
         bossName: "Imdugud",
         minHP: 10000,
         areaSeal: "The Alpha Concourse",
         phases: [
             {
                 title: "Phase 1 (warmup)",
+                shortName: "P1",
+                phaseIdx: 1,
                 loop: true,
                 // FIXME: wild guess
                 loopSeconds: 65,
@@ -40,6 +43,8 @@
             },
             {
                 title: "Phase 2 (adds)",
+                shortName: "P2",
+                phaseIdx: 2,
                 endLog: "Imdugud readies Electric Burst",
                 rotation: [
                     // [19:10:17.000] 00:282b:Imdugud uses Electrocharge.
@@ -49,6 +54,8 @@
             },
             {
                 title: "Phase 3 (heat lightning)",
+                shortName: "P3",
+                phaseIdx: 3,
                 loop: true,
                 loopSeconds: 65,
                 endLog: "Imdugud readies Electrocharge",
@@ -88,6 +95,8 @@
             },
             {
                 title: "Phase 4 (more adds)",
+                shortName: "P4",
+                phaseIdx: 4,
                 endLog: "Imdugud readies Electric Burst",
                 rotation: [
                     //[19:13:01.000] 00:2aab:Imdugud readies Electrocharge.
@@ -98,6 +107,8 @@
             },
             {
                 title: "Phase 5 (chaos)",
+                shortName: "P5",
+                phaseIdx: 5,
                 loop: true,
                 loopSeconds: 65,
                 rotation: [

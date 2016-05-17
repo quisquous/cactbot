@@ -1,5 +1,6 @@
 (function () {
     var kaliya = {
+        fightId: "turn11",
         bossName: "Kaliya",
         minHP: 10000,
         enrageSeconds: 720,
@@ -7,6 +8,8 @@
         phases: [
             {
                 title: "Phase 1 (warmup)",
+                shortName: "P1",
+                phaseIdx: 1,
                 endHpPercent: 90,
                 endLog: "Kaliya readies Barofield",
                 rotation: [
@@ -32,6 +35,8 @@
             },
             {
                 title: "Phase 1.5 (barofield)",
+                shortName: "P1.5",
+                phaseIdx: 2,
                 loop: true,
                 loopSeconds: 49,
                 endHpPercent: 60,
@@ -70,6 +75,8 @@
             },
             {
                 title: "Phase 2 (geometry)",
+                shortName: "P2",
+                phaseIdx: 3,
                 endSeconds: 150,
                 endLog: "Kaliya readies Emergency Mode",
                 // FIXME: handle adds
@@ -77,6 +84,8 @@
             },
             {
                 title: "Phase 3 (tethers)",
+                shortName: "P3",
+                phaseIdx: 4,
                 loop: true,
                 loopSeconds: 5,
                 // TODO: for hp-based transitions, probably need a calibrating log
