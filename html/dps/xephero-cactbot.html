@@ -5,40 +5,99 @@
     <title></title>
     <style>
         html {
-            background-position: bottom right;
-            background-repeat: no-repeat;
-            box-sizing: border-box;
+            width: 100%;
             height: 100%;
         }
-        #overlay {
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+        .box {
             font-family: Tahoma;
             color: #ded7be;
             background-color: rgba(0,0,0,0.3);
             border-radius: 10px;
+            padding: 0px;
+        }
+        #overlay {
+            margin-top: auto;
+        }
+        .title {
+            display: flex;
+            flex-direction: row;
+        }
+        .title .name {
+            order: 1;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+        .title .misses {
+            flex-shrink: 0;
+            order: 2;
+            align-self: flex-end;
+        }
+        .title .number {
+            flex-shrink: 0;
+            order: 3;
+            align-self: flex-end;
+        }
+        .phase {
+            border-radius: 10px;
+            font-size: 19px;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        .phasename {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            order: -100;
+        }
+        .phasetotal {
+            order: -99;
+        }
+        .number {
+            margin-left: 3px;
+            margin-right: 3px;
         }
 
-        #source {
+        #topcontainer {
+            width: 100%;
+            display: flex;
+        }
+
+        #overlaysource {
+            display: none;
+        }
+        #phasesource {
+            display: none;
+        }
+        #phasenumbersource {
             display: none;
         }
 
         ol {
             list-style-type: none;
-            margin: 0;
-            padding: 5px;
+            margin: 0px;
+        }
+
+        li {
+            height: 23px;
         }
 
         li .dps {
             display: inline-block;
             color: #ded7be;
-            width: 28%;
-            max-width: 70px;
+            width: 75px;
             text-align: right;
             font-size: 19px;
         }
 
         li .name {
             display: inline-block;
-            width: 60%;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -49,20 +108,18 @@
             vertical-align: top;
             color: #ded7be;
             font-size: 12px;
-            width: 69%;
+            width: calc(100% - 80px);
         }
 
         li .detail .number {
-            display: inline-block;
             color: #ded7be;
-            float: right;
         }
 
         li .detail .misses {
-            display: inline-block;
-            color: red;
-            float: right;
-            margin-right: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 5px;
+            margin-left: 5px;
         }
 
         li .bar {
@@ -71,12 +128,12 @@
             background-color: #9d9165;
         }
 
-        .inactive li .bar {
-            background-color: #d8dadb;
-        }
-
         li.you {
             background-color: #5d5125;
+        }
+
+        .hide {
+            display: none;
         }
     </style>
     <script type="text/javascript" src="../jquery/jquery-1.11.3.min.js"></script>
@@ -87,11 +144,19 @@
             var rows = 10;
             var rdps_max = 0;
 
+            var cbData = {
+                phases: [],
+                phaseUpdates: [],
+            };
+
             function update(e) {
                 var encounter = e.detail.Encounter;
                 var combatants = e.detail.Combatant;
-                var template = $('#source li');
-                var container = $('#overlay').clone();
+                var template = $('#overlaysource li');
+                var overlay = $('#overlay');
+                var container = overlay.clone();
+                // Reserve one row for the phase titles.
+                var rows = Math.floor($(window).height() / template.height()) - 1;
 
                 // todo: animate changes while combat is active?
                 // for now, always just fully replace the content
@@ -111,17 +176,10 @@
                 } else {
                     header.find('.dps').text(encounter.ENCDPS);
                 }
+
                 header.find('.name').text(encounter.title);
                 header.find('.number').text(encounter.duration);
                 header.find('.bar').css('width', ((rdps / rdps_max) * 100) + '%');
-
-                // set inactive
-                if (!e.detail.isActive) {
-                    rdps_max = 0;
-                    $('body').addClass('inactive');
-                } else {
-                    $('body').removeClass('inactive');
-                }
 
                 container.append(header);
 
@@ -144,13 +202,122 @@
                     row.find('.dps').text(combatant.encdps);
                     row.find('.name').text(combatant.Job.toUpperCase() + ' ' + combatant.name);
                     row.find('.number').text(combatant.damage);
-                    row.find('.misses').text(combatant.misses > 0 ? combatant.misses : '');
+                    row.find('.misses').text(combatant.misses > 0 ? '(' + combatant.misses + ')' : '');
                     row.find('.bar').css('width', ((parseFloat(combatant.encdps) / maxdps) * 100) + '%');
 
                     container.append(row);
                 }
 
-                $('#overlay').replaceWith(container);
+                overlay.replaceWith(container);
+
+                var dpsOrder = {};
+                for (var i = 0; i < names.length; ++i) {
+                    dpsOrder[names[i]] = i;
+                }
+
+                for (var u = 0; u < cbData.phaseUpdates.length; ++u) {
+                    var newPhase = cbData.phaseUpdates[u];
+                    var found = false;
+                    for (var p = 0; p < cbData.phases.length; ++p) {
+                        var oldPhase = cbData.phases[p];
+                        if (oldPhase.Phase.name === newPhase.Phase.name) {
+                            // Update of existing phase, so remove old one and replace in place.
+                            if (oldPhase.element) {
+                                oldPhase.element.remove();
+                            }
+                            cbData.phases[p] = newPhase;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        cbData.phases.push(newPhase);
+                    }
+                }
+                cbData.phaseUpdates = [];
+
+                for (var i = 0; i < cbData.phases.length; ++i) {
+                    updatePhase(cbData.phases[i], dpsOrder);
+                }
+            }
+
+            function updatePhase(phase, dpsOrder) {
+                 var makeRow = function(name, dps) {
+                    var row = $('#phasenumbersource li').clone();
+                    row.find('.number').text(dps);
+                    if (name == 'YOU') {
+                        row.addClass('you');
+                    }
+                    return row;
+                }
+
+                if (!phase.element) {
+                    var container = $('#phasesource ol').clone();
+                    phase.element = container;
+
+                    var phasename = container.find('.phasename');
+                    phasename.text(phase.Phase.name);
+                    var phasetotal = container.find('.phasetotal');
+                    phasetotal.text(phase.Encounter.ENCDPS);
+                    $('#topcontainer').append(container);
+
+                    phase.elemMap = {};
+
+                    var maxPhaseDPS = null;
+                    for (var name in phase.Combatant) {
+                        var combatant = phase.Combatant[name];
+                        var row = makeRow(name, combatant.ENCDPS);
+                        container.append(row);
+                        phase.elemMap[name] = row;
+
+                        if (!maxPhaseDPS || combatant.ENCDPS > maxPhaseDPS.dps) {
+                            maxPhaseDPS = {
+                                dps: combatant.ENCDPS,
+                                row: row,
+                            }
+                        }
+                    }
+                    if (maxPhaseDPS) {
+                        var element = maxPhaseDPS.row.find('.number');
+                        element.css('text-decoration', 'underline');
+                    }
+                }
+
+                // Sometimes new combatants get added (e.g. Limit Break)
+                for (var name in dpsOrder) {
+                    var element = phase.elemMap[name];
+                    if (element !== undefined) {
+                        continue;
+                    }
+                    var row = makeRow(name, 0);
+                    phase.element.append(row);
+                    phase.elemMap[name] = row;
+                    console.error('adding late combatant: ' + name)
+                }
+
+                // Reorder phase numbers based on current (visible) dps order.
+                for (var name in phase.elemMap) {
+                    var element = phase.elemMap[name];
+                    var order = dpsOrder[name];
+                    if (order === undefined) {
+                        element.addClass('hide');
+                    } else {
+                        element.removeClass('hide');
+                        element.css('order', dpsOrder[name]);
+                    }
+                }
+            }
+
+            function clearPhases() {
+                for (var i = 0; i < cbData.phases.length; ++i) {
+                    var element = cbData.phases[i].element;
+                    if (!element) {
+                        continue;
+                    }
+                    element.remove();
+                }
+                cbData.phases = [];
+                cbData.phaseUpdates = [];
             }
 
             $(document).on('onOverlayDataUpdate', function(e) {
@@ -158,14 +325,29 @@
             });
             window.addEventListener('message', function(e) {
                 if (e.data.type === 'onOverlayDataUpdate') {
+                    var currentDuration = e.data.detail.Encounter.DURATION;
                     update(e.data);
+                } else if (e.data.type === 'onFightStart') {
+                    console.log(['XonFightStart', e]);
+                    clearPhases();
+                } else if (e.data.type === 'onFightEnd') {
+                    console.log(['XonFightEnd', e]);
+                } else if (e.data.type === 'onOverlayPhaseUpdate') {
+                    console.log(['XonOverlayPhaseUpdate', e]);
+                    var phase = e.data.detail;
+                    // Until we get a complete first phase, drop everything else on the ground.
+                    if (cbData.phases.length != 0 || phase.complete) {
+                        cbData.phaseUpdates.push(phase);
+                    }
+                } else if (e.data.type === 'onClearPhaseInfo') {
+                    clearPhases();
                 }
             });
         });
     </script>
 </head>
 <body>
-<ol id="source">
+<ol id="overlaysource">
     <li>
         <span class="dps"></span>
         <div class="detail">
@@ -178,6 +360,18 @@
         </div>
     </li>
 </ol>
-<ol id="overlay"></ol>
+<div id="phasesource">
+    <ol class="phase box">
+        <li><span class="phasename"></span></li>
+        <li><span class="phasetotal number"></span></li>
+    </ol>
+</div>
+<ol id="phasenumbersource">
+    <li><span class="number"></span></li>
+</ol>
+
+<div id="topcontainer">
+    <ol id="overlay" class="box"></ol>
+</div>
 </body>
 </html>

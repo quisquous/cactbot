@@ -4,14 +4,39 @@ var BossStateMachine = function () {
     this.end();
 };
 
+BossStateMachine.prototype.storageKey = function (name) {
+    console.assert(name);
+    return "cb.dps." + name;
+};
+
 BossStateMachine.prototype.startBoss = function (boss) {
     if (this.currentBoss === boss) {
         return;
     }
-    cb.debug('Boss fight: ' + boss.bossName);
     var currentTime = new Date();
     this.currentBoss = boss;
     this.currentBossStartTime = currentTime;
+
+    var key = this.storageKey(boss.bossName);
+    var infoStr = window.localStorage.getItem(key);
+    var info = infoStr ? JSON.parse(infoStr) : {
+        attemptId: 0,
+    };
+    info.lastAttempt = currentTime.getTime();
+    info.attemptId++;
+    window.localStorage.setItem(key, JSON.stringify(info));
+    cb.debug('Boss fight: ' + boss.bossName + '(' + info.attemptId + ')');
+
+    this.currentAttemptId = info.attemptId;
+
+    document.dispatchEvent(new CustomEvent('cactbot.rotation.startfight', {
+        detail: {
+            fightId: this.currentBoss.fightId,
+            attempt: this.currentAttemptId,
+            time: currentTime,
+        },
+    }));
+
     this.startPhase(0, currentTime);
 };
 
@@ -19,6 +44,22 @@ BossStateMachine.prototype.end = function () {
     if (!this.currentBoss) {
         return;
     }
+
+    var currentTime = new Date();
+    if (this.currentPhase != null) {
+        var phase = this.currentBoss.phases[this.currentPhase];
+        this.postEndPhaseMessage(currentTime, phase);
+    }
+
+    document.dispatchEvent(new CustomEvent('cactbot.rotation.endfight', {
+        detail: {
+            fightId: this.currentBoss.fightId,
+            attempt: this.currentAttemptId,
+            time: currentTime,
+            startTime: this.currentBossStartTime,
+        },
+    }));
+
     cb.debug('End boss fight');
     this.currentBoss = null;
     this.currentPhase = null;
@@ -27,11 +68,46 @@ BossStateMachine.prototype.end = function () {
     this.currentRotation = [];
 };
 
+BossStateMachine.prototype.postStartPhaseMessage = function(currentTime, phase) {
+    document.dispatchEvent(new CustomEvent('cactbot.rotation.startphase', {
+        detail: {
+            fightId: this.currentBoss.fightId,
+            attempt: this.currentAttemptId,
+            time: currentTime,
+            startTime: this.currentBossStartTime,
+            title: phase.title,
+            name: phase.shortName,
+            phaseIdx: phase.phaseIdx,
+        },
+    }));
+};
+
+BossStateMachine.prototype.postEndPhaseMessage = function(currentTime, phase) {
+    document.dispatchEvent(new CustomEvent('cactbot.rotation.endphase', {
+        detail: {
+            fightId: this.currentBoss.fightId,
+            attempt: this.currentAttemptId,
+            time: currentTime,
+            startTime: this.currentBossStartTime,
+            title: phase.title,
+            name: phase.shortName,
+            phaseIdx: phase.phaseIdx,
+        },
+    }));
+};
+
 BossStateMachine.prototype.startPhase = function (phaseNumber, currentTime) {
     if (this.currentPhase === phaseNumber)
         return;
+    var currentTime = new Date();
+    if (this.currentPhase != null) {
+        var phase = this.currentBoss.phases[this.currentPhase];
+        this.postEndPhaseMessage(currentTime, phase);
+    }
+
     this.currentPhase = phaseNumber;
     this.currentPhaseStartTime = currentTime;
+    this.lastRotationItemIdx = 0;
 
     // Some loops have a "one time" part of the loop that happens in negative
     // time, so move time=0 into the future.
@@ -39,6 +115,8 @@ BossStateMachine.prototype.startPhase = function (phaseNumber, currentTime) {
     if (typeof phase.loopOffset === 'number') {
         this.currentPhaseStartTime = addTime(currentTime, -phase.loopOffset);
     }
+
+    this.postStartPhaseMessage(currentTime, phase);
 };
 
 BossStateMachine.prototype.processLog = function (logLine) {
@@ -48,7 +126,14 @@ BossStateMachine.prototype.processLog = function (logLine) {
     // FIXME: only allow echos to do this vs jerks saying this in chat.
     if (logLine.indexOf('cactbot wipe') != -1) {
         this.end();
-	return;
+        return;
+    }
+    var endFightLog = this.currentBoss.endLog;
+    if (endFightLog) {
+        if (logLine.indexOf(endFightLog) != -1) {
+            this.end();
+            return;
+        }
     }
     var phase = this.currentBoss.phases[this.currentPhase];
     if (!phase.endLog) {
@@ -100,6 +185,7 @@ BossStateMachine.prototype.tick = function (currentTime) {
         if (item.time > seconds)
             break;
     }
+
     // assert startIdx is valid here
     var adjustedItem;
     for (var i = startIdx; i < phase.rotation.length; ++i) {
@@ -126,6 +212,37 @@ BossStateMachine.prototype.tick = function (currentTime) {
             rotation.push(adjustedItem);
         }
     }
+
+    // Process completed events since last tick.
+    // FIXME: this won't work if tick times are so long that an entire loop
+    // goes by since the last tick.
+    var didFinishItem = (function(item) {
+        // FIXME: mini phases don't work with loops.
+        if (item.startMiniPhase) {
+            var phase = {
+                title: item.startMiniPhase,
+                shortName: item.startMiniPhase,
+            };
+            this.postStartPhaseMessage(currentTime, phase);
+        }
+        if (item.endMiniPhase) {
+            var phase = {
+                title: item.endMiniPhase,
+                shortName: item.endMiniPhase,
+            };
+            this.postEndPhaseMessage(currentTime, phase);
+        }
+    }).bind(this);
+    if (this.lastRotationItemIdx > startIdx) {
+        for (var i = this.lastRotationItemIdx; i < phase.rotation.length; ++i) {
+            didFinishItem(phase.rotation[i]);
+        }
+        this.lastRotationItemIdx = 0;
+    }
+    for (var i = this.lastRotationItemIdx; i < startIdx; ++i) {
+        didFinishItem(phase.rotation[i]);
+    }
+    this.lastRotationItemIdx = startIdx;
 
     this.currentRotation = rotation;
 };
@@ -303,6 +420,7 @@ BaseTickable.prototype.enterZone = function (zone) {
 };
 
 BaseTickable.prototype.leaveZone = function (zone) {
+    this.boss.end();
     bindings.clear();
 };
 
@@ -364,11 +482,7 @@ cb.rotation.wipeChecker = {
 
     wipe: function() {
         cb.debug('Wipe detected.');
-        var event = new CustomEvent('cactbot.wipe', {
-            bubbles: true,
-            cancelable: true,
-	    });
-        document.dispatchEvent(event);
+        document.dispatchEvent(new CustomEvent('cactbot.wipe'));
         this.reset();
     },
     reset: function() {
