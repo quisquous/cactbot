@@ -1,0 +1,7 @@
+.pullcount {
+    font-size: 50px;
+}
+
+.pullcount.wipe {
+    text-decoration: line-through;
+}

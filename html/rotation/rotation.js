@@ -123,11 +123,6 @@ BossStateMachine.prototype.processLog = function (logLine) {
     if (!this.currentBoss) {
         return;
     }
-    // FIXME: only allow echos to do this vs jerks saying this in chat.
-    if (logLine.indexOf('cactbot wipe') != -1) {
-        this.end();
-        return;
-    }
     var endFightLog = this.currentBoss.endLog;
     if (endFightLog) {
         if (logLine.indexOf(endFightLog) != -1) {
@@ -522,16 +517,17 @@ cb.rotation.wipeChecker.tick = function (currentTime) {
     }
 };
 cb.rotation.wipeChecker.processLogs = function (logs) {
-    // Players come back to life before weakness is applied.
-    if (this.playerDead || !this.lastRevivedTime) {
-        return;
-    }
-
     for (var i = 0; i < logs.length; ++i) {
         // FIXME: Filter by log category.
         if (logs[i].indexOf('You suffer the effect of Weakness') != -1) {
-            // This is a raise of some sort, and not a wipe.
-            this.lastRevivedTime = null;
+            // Players come back to life before weakness is applied.
+            if (!this.playerDead && this.lastRevivedTime) {
+                // This is a raise of some sort, and not a wipe.
+                this.lastRevivedTime = null;
+            }
+        } else if (logs[i].indexOf('cactbot wipe') != -1) {
+            // FIXME: only allow echos to do this vs jerks saying this in chat.
+            this.wipe();
         }
     }
 };
