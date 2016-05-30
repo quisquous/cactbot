@@ -240,6 +240,10 @@ FakeACT.prototype.testHunt = function () {
     };
 };
 
+FakeACT.prototype.wipe = function() {
+    window.fakeact.logs.push('cactbot wipe');
+};
+
 if (!window.act) {
     var combatantId = 0;
     function makeCombatant(name) {
