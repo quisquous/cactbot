@@ -1,5 +1,7 @@
 .pullcount {
-    font-size: 50px;
+    font-size: 80px;
+    text-align: center;
+    text-shadow: 0 2px black,0 -2px black,2px 0 black,-2px 0 black,1px 1px black,-1px -1px black,-1px 1px black,1px -1px black
 }
 
 .pullcount.wipe {

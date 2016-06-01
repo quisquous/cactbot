@@ -39,8 +39,8 @@ window.addEventListener('load', function () {
     body.appendChild(element);
 
     var defaultGeometry = {
-        width: '150px',
-        height: '50px',
+        width: '180px',
+        height: '100px',
     };
     cb.windowManager.add('pullcounter', element, 'pullcounter', defaultGeometry);
     cb.pullcounter.initialize(nodeContainer);
