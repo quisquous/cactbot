@@ -2,7 +2,7 @@ cb.countdown = {
     endTime: null,
     lastCount: null,
 
-    throttleTickMs: 100,
+    throttleTickMs: 16,
 
     initialize: function(element) {
         this.topElement = element;
@@ -20,9 +20,15 @@ cb.countdown = {
         if (act.inCombat()) {
             return;
         }
+	var abort = "*** ABORT ***";
         var search = 'Pulling in ';
+	// FIXME lol
+        search = 'Pulling in 20';
         var found = null;
         for (var i = 0; i < logs.length; ++i) {
+            if (logs[i].indexOf(abort) != -1) {
+	        this.reset(); 
+	    }
             var idx = logs[i].indexOf(search);
             if (idx == -1) {
                 continue;
@@ -43,6 +49,11 @@ cb.countdown = {
 
         this.endTime= new Date();
         this.endTime.setSeconds(this.endTime.getSeconds() + total);
+
+
+	var offset = 250;
+	//offset = 200;
+	this.endTime.setMilliseconds(this.endTime.getMilliseconds() - offset);
         this.lastCount = total;
         this.setCount(total);
     },
