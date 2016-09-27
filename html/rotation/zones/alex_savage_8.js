@@ -70,7 +70,7 @@
                 shortName: "I1",
                 phaseIdx: 4,
                 loop: false,
-		endTime: 40,
+		        endTime: 40,
                 rotation: [
                     { name: "Mirage drop", time: 5 },
                     { name: "Stack Laser", time: 13 },
@@ -84,7 +84,7 @@
                 shortName: "P3",
                 phaseIdx: 5,
                 loop: true,
-		endTime: 78,
+		        endTime: 78,
                 rotation: [
                     { name: "Flarethrower", time: 9 },
                     { name: "Double Rocket Punch", time: 16 },
@@ -104,7 +104,7 @@
                 shortName: "I2",
                 phaseIdx: 6,
                 loop: false,
-		endTime: 39,
+		        endTime: 39,
                 rotation: [
                     { name: "Mines", time: 6 },
                     { name: "Double Drill", time: 10 },
