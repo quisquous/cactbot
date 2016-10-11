@@ -248,7 +248,6 @@ var RaidTimersBinding = function() {
     this.boundFuncs = {};
     this.initialValues = {};
 
-    this.register('title', 'bosstitle', this.updateInnerText, '');
     this.register('enrage', 'enrage', this.updateInnerText, '');
     this.register('nextTitle', 'nextphasetitle', this.updateInnerText, '');
     this.register('nextCondition', 'nextphasecondition', this.updateInnerText, '');
@@ -367,7 +366,6 @@ function updateFunc(bossStateMachine) {
 
     var percent = hpPercentByName(boss.bossName, boss.minHP);
     percent = Math.floor(percent); // TODO: add one decimal point
-    bindings.setTitle(boss.bossName + ': ' + percent + '%');
 
     var currentTime = new Date();
 
@@ -544,7 +542,6 @@ window.addEventListener('load', function () {
     element.innerHTML =
         '<div id="bosstimers">' +
         '  <div id="titlebar">' +
-        '    <div id="bosstitle">Angry Bees: 0%</div>' +
         '    <div id="enrage">Enrage: 12m10s</div>' +
         '  </div>' +
         '  <div id="rotation">' +
