@@ -20,7 +20,8 @@
                 shortName: "P2",
                 phaseIdx: 2,
                 loop: false,
-                endSeconds: 571,
+                endSeconds: 100000,
+                endLog: "Alexander uses Divine Judgment",
                 rotation: [
                 ],
             },
@@ -30,7 +31,7 @@
                 phaseIdx: 3,
                 loop: false,
                 endSeconds: 100000,
-		endLog: "readies Chronofoil",
+                endLog: "Alexander Prime starts using Timegate",
                 rotation: [
                 ],
             },
@@ -40,7 +41,7 @@
                 phaseIdx: 4,
                 loop: false,
                 endSeconds: 100000,
-		endLog: "Alexander Prime uses Inception",
+                endLog: "Alexander Prime uses Inception",
                 rotation: [
                 ],
             },
@@ -50,7 +51,7 @@
                 phaseIdx: 5,
                 loop: false,
                 endSeconds: 100000,
-		endLog: "casts Summon Alexander",
+                endLog: "Alexander Prime uses Summon Alexander",
                 rotation: [
                 ],
             },
