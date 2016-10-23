@@ -19,7 +19,7 @@
 
     var AlexanderSavageTurn10 = function () {
         BaseTickable.apply(this, arguments);
-        this.zoneFilter = "The Breath Of The Creator (Savage)";
+        this.zoneFilter = "Alexander - The Breath Of The Creator (Savage)";
         this.bosses = [refurbisher];
     };
     AlexanderSavageTurn10.prototype = new BaseTickable;

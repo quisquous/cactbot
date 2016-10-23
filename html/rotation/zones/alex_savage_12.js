@@ -68,7 +68,7 @@
 
     var AlexanderSavageTurn12 = function () {
         BaseTickable.apply(this, arguments);
-        this.zoneFilter = "The Soul Of The Creator (Savage)";
+        this.zoneFilter = "Alexander - The Soul Of The Creator (Savage)";
         this.bosses = [alex_prime];
     };
     AlexanderSavageTurn12.prototype = new BaseTickable;
