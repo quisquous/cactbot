@@ -57,6 +57,12 @@ namespace Cactbot
             return serializer.Serialize(data);
         }
 
+        private string CreateEventDispatcherScript()
+        {
+            return "var ActXiv = " + CreateJson() + ";\n" +
+               "document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', { detail: ActXiv }));";
+        }
+
         protected override void Update()
         {
             // MESSAGES
@@ -88,9 +94,7 @@ namespace Cactbot
             if (this.Overlay.Renderer.Browser == null)
                 return;
 
-            string data = CreateJson();
-            string javascript = "document.dispatchEvent(new CustomEvent('cactbot.tick', {detail: " + data + "}));";
-            this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(javascript, null, 0);
+            this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(CreateEventDispatcherScript(), null, 0);
         }
     }
 }
