@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AddonExample
+namespace Cactbot
 {
-    public partial class AddonExampleOverlayConfigPanel : UserControl
+    public partial class CactbotOverlayConfigPanel : UserControl
     {
-        public AddonExampleOverlayConfigPanel()
+        public CactbotOverlayConfigPanel()
         {
             InitializeComponent();
         }

@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddonExample
+namespace Cactbot
 {
-    public class AddonExampleOverlay : OverlayBase<AddonExampleOverlayConfig>
+    public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>
     {
-        public AddonExampleOverlay(AddonExampleOverlayConfig config)
+        public CactbotOverlay(CactbotOverlayConfig config)
             : base(config, config.Name)
         {
-            Navigate("http://www.yahoo.com/");
+
         }
 
         protected override void Update()

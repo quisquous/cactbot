@@ -5,24 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddonExample
+namespace Cactbot
 {
-    public class AddonExampleOverlayConfig : OverlayConfigBase
+    public class CactbotOverlayConfig : OverlayConfigBase
     {
-        public AddonExampleOverlayConfig(string name)
+        public CactbotOverlayConfig(string name)
             : base(name)
         {
 
         }
 
-        private AddonExampleOverlayConfig() : base(null)
+        private CactbotOverlayConfig() : base(null)
         {
 
         }
 
         public override Type OverlayType
         {
-            get { return typeof(AddonExampleOverlay); }
+            get { return typeof(CactbotOverlay); }
         }
     }
 }

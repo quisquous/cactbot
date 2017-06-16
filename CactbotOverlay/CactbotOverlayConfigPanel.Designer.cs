@@ -1,6 +1,6 @@
-﻿namespace AddonExample
+﻿namespace Cactbot
 {
-    partial class AddonExampleOverlayConfigPanel
+    partial class CactbotOverlayConfigPanel
     {
         /// <summary> 
         /// 必要なデザイナー変数です。

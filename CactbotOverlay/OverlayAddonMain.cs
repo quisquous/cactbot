@@ -5,48 +5,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddonExample
+namespace Cactbot
 {
-    public class AddonExample : IOverlayAddon
+    public class OverlayAddonMain : IOverlayAddon
     {
         public string Name
         {
-            get { return "Addon Example"; }
+            get { return "Cactbot"; }
         }
 
         public string Description
         {
-            get { return "Just displays www.yahoo.com."; }
+            get { return "A hodgepodge of bindings"; }
         }
 
         public Type OverlayType
         {
-            get { return typeof(AddonExampleOverlay); }
+            get { return typeof(CactbotOverlay); }
         }
 
         public Type OverlayConfigType
         {
-            get { return typeof(AddonExampleOverlayConfig); }
+            get { return typeof(CactbotOverlayConfig); }
         }
 
         public Type OverlayConfigControlType
         {
-            get { return typeof(AddonExampleOverlayConfigPanel); }
+            get { return typeof(CactbotOverlayConfigPanel); }
         }
 
         public IOverlay CreateOverlayInstance(IOverlayConfig config)
         {
-            return new AddonExampleOverlay((AddonExampleOverlayConfig)config);
+            return new CactbotOverlay((CactbotOverlayConfig)config);
         }
 
         public IOverlayConfig CreateOverlayConfigInstance(string name)
         {
-            return new AddonExampleOverlayConfig(name);
+            return new CactbotOverlayConfig(name);
         }
 
         public System.Windows.Forms.Control CreateOverlayConfigControlInstance(IOverlay overlay)
         {
-            return new AddonExampleOverlayConfigPanel();
+            return new CactbotOverlayConfigPanel();
         }
 
         public void Dispose()

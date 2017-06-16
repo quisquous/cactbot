@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cactbot", "Cactbot.csproj", "{AEAB0CDA-C488-4FA8-B9BC-B628A389554B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddonExample", "AddonExample\AddonExample.csproj", "{B9BBE478-8FD7-43D9-BD50-C806B1EC672F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CactbotOverlay", "CactbotOverlay\CactbotOverlay.csproj", "{B9BBE478-8FD7-43D9-BD50-C806B1EC672F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

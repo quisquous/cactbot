@@ -7,8 +7,8 @@
     <ProjectGuid>{B9BBE478-8FD7-43D9-BD50-C806B1EC672F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AddonExample</RootNamespace>
-    <AssemblyName>AddonExample</AssemblyName>
+    <RootNamespace>Cactbot</RootNamespace>
+    <AssemblyName>CactbotOverlay</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -75,20 +75,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddonExampleOverlay.cs" />
-    <Compile Include="AddonExampleOverlayConfig.cs" />
-    <Compile Include="AddonExampleOverlayConfigPanel.cs">
+    <Compile Include="CactbotOverlay.cs" />
+    <Compile Include="CactbotOverlayConfig.cs" />
+    <Compile Include="CactbotOverlayConfigPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddonExampleOverlayConfigPanel.Designer.cs">
-      <DependentUpon>AddonExampleOverlayConfigPanel.cs</DependentUpon>
+    <Compile Include="CactbotOverlayConfigPanel.Designer.cs">
+      <DependentUpon>CactbotOverlayConfigPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddonExample.cs" />
+    <Compile Include="OverlayAddonMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddonExampleOverlayConfigPanel.resx">
-      <DependentUpon>AddonExampleOverlayConfigPanel.cs</DependentUpon>
+    <EmbeddedResource Include="CactbotOverlayConfigPanel.resx">
+      <DependentUpon>CactbotOverlayConfigPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
