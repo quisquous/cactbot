@@ -55,6 +55,10 @@
     <Reference Include="FFXIV_ACT_Plugin">
       <HintPath>..\..\..\..\Program Files (x86)\Advanced Combat Tracker\FFXIV_ACT_Plugin.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlRenderer, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OverlayPlugin\BuildX64\HtmlRenderer.dll</HintPath>
+    </Reference>
     <Reference Include="OverlayPlugin">
       <HintPath>..\..\OverlayPlugin\BuildX64\OverlayPlugin.dll</HintPath>
     </Reference>
@@ -73,6 +77,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Xilium.CefGlue, Version=3.2272.2035.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\OverlayPlugin\BuildX64\Xilium.CefGlue.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CactbotOverlay.cs" />
