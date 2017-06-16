@@ -46,7 +46,7 @@ namespace Cactbot
 
         public System.Windows.Forms.Control CreateOverlayConfigControlInstance(IOverlay overlay)
         {
-            return new CactbotOverlayConfigPanel();
+            return new CactbotOverlayConfigPanel((CactbotOverlay)overlay);
         }
 
         public void Dispose()

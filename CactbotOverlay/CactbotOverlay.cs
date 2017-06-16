@@ -14,6 +14,11 @@ namespace Cactbot
         {
         }
 
+        public string CreateJson()
+        {
+            return "{}";
+        }
+
         protected override void Update()
         {
             // MESSAGES
@@ -45,7 +50,7 @@ namespace Cactbot
             if (this.Overlay.Renderer.Browser == null)
                 return;
 
-            string data = "{}";
+            string data = CreateJson();
             string javascript = "document.dispatchEvent(new CustomEvent('cactbot.tick', {detail: " + data + "}));";
             this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(javascript, null, 0);
         }
