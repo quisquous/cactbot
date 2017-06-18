@@ -93,6 +93,7 @@
     <Compile Include="CactbotOverlayConfigPanel.Designer.cs">
       <DependentUpon>CactbotOverlayConfigPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="JSEvents.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="OverlayAddonMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

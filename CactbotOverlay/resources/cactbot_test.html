@@ -30,25 +30,23 @@
     }
   </style>
   <script>
-    document.addEventListener("onOverlayDataUpdate", function (e) {
-      update(e.detail);
+    document.addEventListener("onLogEvent", function (e) {
+      if (e.detail.logs.length > 0) {
+        document.getElementById("oneLog").innerText = "log: " + e.detail.logs[0];
+      } else {
+        document.getElementById("oneLog").innerText = "log: (none)";
+      }
     });
 
-    function update(data) {
+    document.addEventListener("onOverlayDataUpdate", function (e) {
+      var data = e.detail;
       if (typeof data.currentZone != "undefined") {
         document.getElementById("currentZone").innerText = "currentZone: " + data.currentZone;
       }
       if (typeof data.inCombat != "undefined") {
         document.getElementById("inCombat").innerText = "inCombat: " + data.inCombat;
       }
-      if (typeof data.logs != "undefined") {
-        if (data.logs.length > 0) {
-          document.getElementById("oneLog").innerText = "log: " + data.logs[0];
-        } else {
-          document.getElementById("oneLog").innerText = "log: (none)";
-        }
-      }
-    }
+    });
   </script>
 </head>
 <body>

@@ -13,7 +13,7 @@ namespace Cactbot {
 
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig> {
     // Not thread-safe, as OnLogLineRead may happen at any time.
-    private List<string> logLines = new List<string>();
+    private List<string> log_lines_ = new List<string>();
     private System.Timers.Timer update_timer_;
     private JavaScriptSerializer serializer_;
 
@@ -26,7 +26,7 @@ namespace Cactbot {
       update_timer_ = new System.Timers.Timer();
       update_timer_.Interval = 16;
       update_timer_.Elapsed += (o, e) => {
-        UpdateToJS();
+        SendFastRateEvents();
       };
       update_timer_.Start();
 
@@ -44,12 +44,13 @@ namespace Cactbot {
       // Don't need to send all of these to the overlay.
       if (isImport)
         return;
-      logLines.Add(args.logLine);
+      log_lines_.Add(args.logLine);
     }
 
     // This is called by the OverlayPlugin every 1s which is not often enough for us, so we
-    // do our own update mechanism.
+    // do our own update mechanism as well.
     protected override void Update() {
+      SendSlowRateEvents();
     }
 
     // Sends an event called |event_name| to javascript, with an event.detail that contains
@@ -64,22 +65,15 @@ namespace Cactbot {
       this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(sb.ToString(), null, 0);
     }
 
-    private class EventDetails {
-      public List<string> logs { get; set; }
-      public bool inCombat;
-      public string currentZone;
+    // Events that we want to update less often because they aren't are critical.
+    private void SendSlowRateEvents() {
+      // Handle startup and shutdown.
+      //if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null)
+      //  return;
     }
 
-    private EventDetails GenerateEventDetails() {
-      return new EventDetails() {
-        logs = Interlocked.Exchange(ref logLines, new List<string>()),
-        inCombat = FFXIV_ACT_Plugin.ACTWrapper.InCombat,
-        currentZone = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone,
-      };
-    }
-
-    // We call this on a timer frequently and it turns log lines into JS events.
-    private void UpdateToJS() {
+    // Events that we want to update as soon as possible.
+    private void SendFastRateEvents() {
       // Handle startup and shutdown.
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null)
         return;
@@ -101,12 +95,21 @@ namespace Cactbot {
       // getPlayer -> combatant (posX, posY, posZ, currentHP)
       // getMobByName -> combatant
       // inCombat (is this necessary??)
-      // getLogLines
       // getCurrentPartyList
       // encounterDPSInfo
       // combatantDPSInfo
 
-      DispatchToJS("onOverlayDataUpdate", GenerateEventDetails());
+      // onLogEvent: Fires when new combat log events from FFXIV are available.
+      var logs = Interlocked.Exchange(ref log_lines_, new List<string>());
+      if (logs.Count > 0) {
+        DispatchToJS("onLogEvent", new JSEvents.LogEvent(logs));
+      }
+
+      var deets = new JSEvents.EventDetails() {
+        inCombat = FFXIV_ACT_Plugin.ACTWrapper.InCombat,
+        currentZone = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone,
+      };
+      DispatchToJS("onOverlayDataUpdate", deets);
     }
   }
 
