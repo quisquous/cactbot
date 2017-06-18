@@ -13,14 +13,28 @@ namespace Cactbot {
 
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig> {
     // Not thread-safe, as OnLogLineRead may happen at any time.
-    List<string> logLines = new List<string>();
+    private List<string> logLines = new List<string>();
+    private System.Timers.Timer update_timer_;
+    private JavaScriptSerializer serializer_;
 
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
+      serializer_ = new JavaScriptSerializer();
+
+      // Our own timer with a higher frequency than OverlayPlugin since we want to see
+      // the effect of log messages quickly.
+      update_timer_ = new System.Timers.Timer();
+      update_timer_.Interval = 16;
+      update_timer_.Elapsed += (o, e) => {
+        UpdateToJS();
+      };
+      update_timer_.Start();
+
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
     }
 
     public override void Dispose() {
+      update_timer_.Stop();
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
       base.Dispose();
     }
@@ -33,24 +47,42 @@ namespace Cactbot {
       logLines.Add(args.logLine);
     }
 
-    private class JsonData {
+    // This is called by the OverlayPlugin every 1s which is not often enough for us, so we
+    // do our own update mechanism.
+    protected override void Update() {
+    }
+
+    // Sends an event called |event_name| to javascript, with an event.detail that contains
+    // the fields and values of the |detail| structure.
+    private void DispatchToJS<T>(string event_name, T detail) {
+      string detail_str = serializer_.Serialize(detail);
+      string jsdispatch = "{\n" +
+        "  var detailStr = " + detail_str + ";\n" +
+        "  document.dispatchEvent(new CustomEvent('" + event_name + "', { detail: detailStr }));\n" +
+        "}";
+      this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(jsdispatch, null, 0);
+    }
+
+    public class EventDetails {
       public List<string> logs { get; set; }
       public bool inCombat;
       public string currentZone;
     }
 
-    public string CreateJson() {
-      JsonData data = new JsonData() {
+    public EventDetails GenerateEventDetails() {
+      return new EventDetails() {
         logs = Interlocked.Exchange(ref logLines, new List<string>()),
         inCombat = FFXIV_ACT_Plugin.ACTWrapper.InCombat,
         currentZone = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone,
       };
-
-      JavaScriptSerializer serializer = new JavaScriptSerializer();
-      return serializer.Serialize(data);
     }
 
-    protected override void Update() {
+    // We call this on a timer frequently and it turns log lines into JS events.
+    private void UpdateToJS() {
+      // Handle startup and shutdown.
+      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null)
+        return;
+
       // MESSAGES
       // browser -> overlay
       // cactbot.enterZone(str)
@@ -73,18 +105,8 @@ namespace Cactbot {
       // encounterDPSInfo
       // combatantDPSInfo
 
-      if (this.Overlay == null)
-        return;
-      if (this.Overlay.Renderer == null)
-        return;
-      if (this.Overlay.Renderer.Browser == null)
-        return;
-
-      string jsdispatch = "var ActXiv = " + CreateJson() + ";\n" +
-        "document.dispatchEvent(new CustomEvent('onOverlayDataUpdate', { detail: ActXiv }));";
-
-      this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(jsdispatch, null, 0);
+      DispatchToJS("onOverlayDataUpdate", GenerateEventDetails());
     }
   }
-}
 
+}  // namespace Cactbot
