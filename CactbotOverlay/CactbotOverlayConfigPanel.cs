@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Web.Script.Serialization;
 
 namespace Cactbot {
   public partial class CactbotOverlayConfigPanel : UserControl {
@@ -96,13 +95,6 @@ namespace Cactbot {
 
     private void buttonReloadBrowser_Click(object sender, EventArgs e) {
       this.overlay.Navigate(this.config.Url);
-    }
-
-    private void buttonCopyActXiv_Click(object sender, EventArgs e) {
-      JavaScriptSerializer serializer = new JavaScriptSerializer();
-      string json_string = serializer.Serialize(overlay.GenerateEventDetails());
-      if (!string.IsNullOrWhiteSpace(json_string))
-        Clipboard.SetText(json_string);
     }
 
     private void checkBoxEnableGlobalHotkey_CheckedChanged(object sender, EventArgs e) {
