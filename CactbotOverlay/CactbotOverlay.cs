@@ -63,13 +63,13 @@ namespace Cactbot {
       this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(jsdispatch, null, 0);
     }
 
-    public class EventDetails {
+    private class EventDetails {
       public List<string> logs { get; set; }
       public bool inCombat;
       public string currentZone;
     }
 
-    public EventDetails GenerateEventDetails() {
+    private EventDetails GenerateEventDetails() {
       return new EventDetails() {
         logs = Interlocked.Exchange(ref logLines, new List<string>()),
         inCombat = FFXIV_ACT_Plugin.ACTWrapper.InCombat,
