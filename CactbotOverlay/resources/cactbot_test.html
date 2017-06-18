@@ -31,11 +31,7 @@
   </style>
   <script>
     document.addEventListener("onLogEvent", function (e) {
-      if (e.detail.logs.length > 0) {
-        document.getElementById("oneLog").innerText = "log: " + e.detail.logs[0];
-      } else {
-        document.getElementById("oneLog").innerText = "log: (none)";
-      }
+      document.getElementById("oneLog").innerText = "log: " + e.detail.logs[0];
     });
 
     document.addEventListener("onOverlayDataUpdate", function (e) {
