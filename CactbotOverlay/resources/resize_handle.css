@@ -1,0 +1,8 @@
+.resizeHandle {
+	background-image: url(handle.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	/* not fully transparent to make it easier to move */
+	background-color: rgba(0, 0, 0, 0.01);
+}
