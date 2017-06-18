@@ -56,10 +56,8 @@ namespace Cactbot {
     // the fields and values of the |detail| structure.
     private void DispatchToJS<T>(string event_name, T detail) {
       string detail_str = serializer_.Serialize(detail);
-      string jsdispatch = "{\n" +
-        "  var detailStr = " + detail_str + ";\n" +
-        "  document.dispatchEvent(new CustomEvent('" + event_name + "', { detail: detailStr }));\n" +
-        "}";
+      string jsdispatch =
+        "document.dispatchEvent(new CustomEvent('" + event_name + "', { detail: " + detail_str + "}));";
       this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(jsdispatch, null, 0);
     }
 
