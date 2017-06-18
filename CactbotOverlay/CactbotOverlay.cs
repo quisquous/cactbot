@@ -39,6 +39,13 @@ namespace Cactbot {
       base.Dispose();
     }
 
+    public override void Navigate(string url) {
+      base.Navigate(url);
+      // Reset to defaults so on load the plugin gets notified about any non-defaults
+      // consistently.
+      this.notify_state_ = new NotifyState();
+    }
+
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
       // isImport happens when somebody is importing old encounters and all the log lines are processed.
       // Don't need to send all of these to the overlay.
@@ -67,15 +74,17 @@ namespace Cactbot {
 
     // Events that we want to update less often because they aren't are critical.
     private void SendSlowRateEvents() {
-      // Handle startup and shutdown.
-      //if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null)
+      // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
+      // register its event handlers.
+      //if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
       //  return;
     }
 
     // Events that we want to update as soon as possible.
     private void SendFastRateEvents() {
-      // Handle startup and shutdown.
-      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null)
+      // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
+      // register its event handlers.
+      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
         return;
 
       // MESSAGES
@@ -99,18 +108,40 @@ namespace Cactbot {
       // encounterDPSInfo
       // combatantDPSInfo
 
+      // onCombat{Started,Ended}Event: Fires when entering or leaving combat.
+      bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
+      if (in_combat != notify_state_.in_combat) {
+        notify_state_.in_combat = in_combat;
+        if (in_combat) {
+          DispatchToJS("onCombatStartedEvent", new JSEvents.CombatStartedEvent());
+        } else {
+          // TODO: determine if this was a wipe!
+          bool wipe = false;
+          DispatchToJS("onCombatEndedEvent", new JSEvents.CombatEndedEvent(wipe));
+        }
+      }
+
+      // onZoneChangedEvent: Fires when the player changes their current zone.
+      string zone_name = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone;
+      if (!zone_name.Equals(notify_state_.zone_name)) {
+        notify_state_.zone_name = zone_name;
+        DispatchToJS("onZoneChangedEvent", new JSEvents.ZoneChangedEvent(zone_name));
+      }
+
       // onLogEvent: Fires when new combat log events from FFXIV are available.
       var logs = Interlocked.Exchange(ref log_lines_, new List<string>());
       if (logs.Count > 0) {
         DispatchToJS("onLogEvent", new JSEvents.LogEvent(logs));
       }
-
-      var deets = new JSEvents.EventDetails() {
-        inCombat = FFXIV_ACT_Plugin.ACTWrapper.InCombat,
-        currentZone = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone,
-      };
-      DispatchToJS("onOverlayDataUpdate", deets);
     }
+
+    // State that is tracked and sent to JS when it changes.
+    private class NotifyState {
+      public bool in_combat = false;
+      public string zone_name = "";
+    }
+
+    private NotifyState notify_state_ = new NotifyState();
   }
 
 }  // namespace Cactbot
