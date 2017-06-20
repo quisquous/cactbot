@@ -1,1 +1,1 @@
-Put your FFXIV_ACT_Plugin.dll here for building.
+Put your Advanced Combat Tracker.exe and FFXIV_ACT_Plugin.dll here for building.

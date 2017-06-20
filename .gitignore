@@ -2,4 +2,5 @@
 bin/
 obj/
 packages/
-CactbotOverlay/ThirdParty/ACT/FFXIV_ACT_Plugin.dll
+CactbotOverlay/ThirdParty/*/*.dll
+CactbotOverlay/ThirdParty/*/*.exe

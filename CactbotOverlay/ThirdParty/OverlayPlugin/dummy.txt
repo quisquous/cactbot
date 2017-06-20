@@ -1,0 +1,12 @@
+This directory is for DLLs from RainbowMage OverlayPlugin.
+
+Download from: https://github.com/RainbowMage/OverlayPlugin
+Then run build.bat.
+
+Put the following DLLs in this directory:
+
+  HTMLRenderer.dll
+  OverlayPlugin.dll
+  OverlayPlugin.Core.dll
+  OverlayPlugin.Common.dll
+  Xilium.CefGlue.dll
