@@ -215,7 +215,7 @@ class TimerBox extends HTMLElement {
   }
 
   reset() {
-    clearTimeout(this.timer);
+    clearTimeout(this._timer);
     this._timer = null;
 
     this._value = this._duration;
