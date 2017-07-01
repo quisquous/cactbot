@@ -16,6 +16,7 @@ namespace Cactbot {
     private List<string> log_lines_ = new List<string>();
     private System.Timers.Timer update_timer_;
     private JavaScriptSerializer serializer_;
+    private FFXIVProcess ffxiv_ = new FFXIVProcess();
 
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
@@ -107,6 +108,10 @@ namespace Cactbot {
       // getCurrentPartyList
       // encounterDPSInfo
       // combatantDPSInfo
+
+      if (ffxiv_.FindProcess()) {
+        // Use the process.
+      }
 
       // onCombat{Started,Ended}Event: Fires when entering or leaving combat.
       bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
