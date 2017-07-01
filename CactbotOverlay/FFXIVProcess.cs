@@ -13,7 +13,7 @@ public class FFXIVProcess {
                        where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv_dx11.exe"
                        select x).FirstOrDefault<Process>();
     int id = 0;
-    if (process != null)
+    if (process != null && !process.HasExited)
       id = process.Id;
     if (ffxiv_pid_ != id) {
       ffxiv_pid_ = id;
