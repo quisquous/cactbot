@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
 
@@ -31,6 +32,12 @@ namespace Cactbot {
       public ZoneChangedEvent(string name) { this.zoneName = name; }
 
       public string zoneName;
+    }
+
+    public class SelfChangedEvent {
+      public SelfChangedEvent(Combatant self) { this.self = self; }
+
+      public Combatant self;
     }
   }
 }

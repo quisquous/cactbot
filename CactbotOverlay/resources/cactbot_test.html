@@ -45,11 +45,16 @@
     document.addEventListener("onCombatEndedEvent", function (e) {
       document.getElementById("inCombat").innerText = "inCombat: no (wiped: " + e.detail.wipe + ")";
     });
+
+    document.addEventListener("onSelfChangedEvent", function (e) {
+      document.getElementById("myHP").innerText = "myHP: " + e.detail.self.CurrentHP;
+    });
   </script>
 </head>
 <body>
     <div id="currentZone">currentZone: --</div>
     <div id="inCombat">inCombat: no</div>
+    <div id="myHP">myHP: --</div>
     <div id="oneLog">log: --</div>
 </body>
 </html>

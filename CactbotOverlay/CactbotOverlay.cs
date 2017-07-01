@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
 
@@ -109,8 +110,9 @@ namespace Cactbot {
       // encounterDPSInfo
       // combatantDPSInfo
 
-      if (ffxiv_.FindProcess()) {
-        // Use the process.
+      // Silently stop sending messages if the ffxiv process isn't around.
+      if (!ffxiv_.FindProcess()) {
+        return;
       }
 
       // onCombat{Started,Ended}Event: Fires when entering or leaving combat.
@@ -138,12 +140,20 @@ namespace Cactbot {
       if (logs.Count > 0) {
         DispatchToJS("onLogEvent", new JSEvents.LogEvent(logs));
       }
+
+      // onSelfChangedEvent: Fires when current player combatant data changes.
+      Combatant self = ffxiv_.GetSelfCombatant();
+      if (self != notify_state_.self) {
+        notify_state_.self = self;
+        DispatchToJS("onSelfChangedEvent", new JSEvents.SelfChangedEvent(self));
+      }
     }
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {
       public bool in_combat = false;
       public string zone_name = "";
+      public Combatant self = new Combatant();
     }
 
     private NotifyState notify_state_ = new NotifyState();
