@@ -1,6 +1,8 @@
 This directory is for DLLs from ACT_EnmityPlugin.
 
-Download from: https://github.com/xtuaok/ACT_EnmityPlugin
+Download from: https://github.com/quisquous/ACT_EnmityPlugin/tree/memory_without_overlay
+
+This branch has modifications to EnmityPlugin that are needed.
 
 After building OverlayPlugin:
 - Copy from OverlayPlugin/BuildX64/ the OverlayPlugin*.dll and HtmlRenderer*.dll to ThirdParty/OverlayPlugin
