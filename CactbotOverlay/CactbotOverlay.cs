@@ -12,7 +12,7 @@ using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
 
-  public class CactbotOverlay : OverlayBase<CactbotOverlayConfig> {
+  public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
     // Not thread-safe, as OnLogLineRead may happen at any time.
     private List<string> log_lines_ = new List<string>();
     private System.Timers.Timer update_timer_;
@@ -110,8 +110,8 @@ namespace Cactbot {
       // encounterDPSInfo
       // combatantDPSInfo
 
-      // Silently stop sending messages if the ffxiv process isn't around.
-      if (!ffxiv_.FindProcess()) {
+      if (!ffxiv_.FindProcess(this)) {
+        // Silently stop sending messages if the ffxiv process isn't around.
         return;
       }
 
@@ -148,6 +148,12 @@ namespace Cactbot {
         DispatchToJS("onSelfChangedEvent", new JSEvents.SelfChangedEvent(self));
       }
     }
+
+    // Tamagawa.EnmityPlugin.Logger implementation.
+    public void LogDebug(string format, params object[] args) { this.Log(LogLevel.Debug, format, args); }
+    public void LogError(string format, params object[] args) { this.Log(LogLevel.Error, format, args); }
+    public void LogWarning(string format, params object[] args) { this.Log(LogLevel.Warning, format, args); }
+    public void LogInfo(string format, params object[] args) { this.Log(LogLevel.Info, format, args); }
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {

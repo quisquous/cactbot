@@ -3,22 +3,13 @@ using System.Diagnostics;
 using System.Linq;
 using Tamagawa.EnmityPlugin;
 
-public class CactbotLogger : Logger
-{
-  public void LogDebug(string format, params object[] args) { }
-  public void LogError(string format, params object[] args) { }
-  public void LogWarning(string format, params object[] args) { }
-  public void LogInfo(string format, params object[] args) { }
-}
-
 // Exposes the FFXIV game directly. Call FindProcess() regularly to update memory
 // addresses when FFXIV is run or closed.
 public class FFXIVProcess {
   private int ffxiv_pid_ = 0;
   private FFXIVMemory enmity_memory_;
-  private CactbotLogger logger_ = new CactbotLogger();
 
-  public bool FindProcess() {
+  public bool FindProcess(Tamagawa.EnmityPlugin.Logger logger) {
     // Only support the DirectX 11 binary. The DirectX 9 one has different addresses.
     Process process = (from x in Process.GetProcessesByName("ffxiv_dx11")
                        where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv_dx11.exe"
@@ -28,7 +19,7 @@ public class FFXIVProcess {
       id = process.Id;
     if (ffxiv_pid_ != id) {
       ffxiv_pid_ = id;
-      OnProcessChange(process);
+      OnProcessChange(logger, process);
     }
     return ffxiv_pid_ != 0;
   }
@@ -41,12 +32,13 @@ public class FFXIVProcess {
     return enmity_memory_.GetSelfCombatant();
   }
 
-  private void OnProcessChange(Process process)
+  private void OnProcessChange(Tamagawa.EnmityPlugin.Logger logger, Process process)
   {
     if (process == null) {
+      enmity_memory_.Dispose();
       enmity_memory_ = null;
       return;
     }
-    enmity_memory_ = new FFXIVMemory(logger_, process);
+    enmity_memory_ = new FFXIVMemory(logger, process);
   }
 }
