@@ -19,6 +19,18 @@ namespace Cactbot {
     private JavaScriptSerializer serializer_;
     private FFXIVProcess ffxiv_ = new FFXIVProcess();
 
+    public delegate void ZoneChangedHandler(string zone);
+    public event ZoneChangedHandler OnZoneChanged;
+
+    public delegate void SelfChangedHandler(Combatant player);
+    public event SelfChangedHandler OnSelfChanged;
+
+    public delegate void LogHandler(List<string> logs);
+    public event LogHandler OnLogsChanged;
+
+    public delegate void InCombatChangedHandler(bool inCombat);
+    public event InCombatChangedHandler OnInCombatChanged;
+
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
       serializer_ = new JavaScriptSerializer();
@@ -32,7 +44,14 @@ namespace Cactbot {
       };
       update_timer_.Start();
 
+      // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
+
+      // Outgoing JS events.
+      OnZoneChanged += (zone) => DispatchToJS("onZoneChangedEvent", new JSEvents.ZoneChangedEvent(zone));
+      OnLogsChanged += (logs) => DispatchToJS("onLogEvent", new JSEvents.LogEvent(logs));
+      OnSelfChanged += (self) => DispatchToJS("onSelfChangedEvent", new JSEvents.SelfChangedEvent(self));
+      OnInCombatChanged += (inCombat) => DispatchToJS("onInCombatChangedEvent", new JSEvents.InCombatChangedEvent(inCombat));
     }
 
     public override void Dispose() {
@@ -89,63 +108,36 @@ namespace Cactbot {
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
         return;
 
-      // MESSAGES
-      // browser -> overlay
-      // cactbot.enterZone(str)
-      // cactbot.leaveZone(str)
-      // cactbot.wipe
-      // cactbot.tick(dataJsonMess)
-
-      // overlay -> broadcast (uhh could just do this in c#, but loading json?)
-      // cactbot.rotation.startfight
-      // cactbot.rotation.endfight
-      // cactbot.rotation.startphase
-      // cactbot.rotation.endPhase
-
-      // DATA JSON MESS
-      // getPlayer -> combatant (posX, posY, posZ, currentHP)
-      // getMobByName -> combatant
-      // inCombat (is this necessary??)
-      // getCurrentPartyList
-      // encounterDPSInfo
-      // combatantDPSInfo
-
       if (!ffxiv_.FindProcess(this)) {
         // Silently stop sending messages if the ffxiv process isn't around.
         return;
       }
 
-      // onCombat{Started,Ended}Event: Fires when entering or leaving combat.
+      // onInCombatChangedEvent: Fires when entering or leaving combat.
       bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
       if (in_combat != notify_state_.in_combat) {
         notify_state_.in_combat = in_combat;
-        if (in_combat) {
-          DispatchToJS("onCombatStartedEvent", new JSEvents.CombatStartedEvent());
-        } else {
-          // TODO: determine if this was a wipe!
-          bool wipe = false;
-          DispatchToJS("onCombatEndedEvent", new JSEvents.CombatEndedEvent(wipe));
-        }
+        OnInCombatChanged(in_combat);
       }
 
       // onZoneChangedEvent: Fires when the player changes their current zone.
       string zone_name = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone;
       if (!zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
-        DispatchToJS("onZoneChangedEvent", new JSEvents.ZoneChangedEvent(zone_name));
+        OnZoneChanged(zone_name);
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available.
-      var logs = Interlocked.Exchange(ref log_lines_, new List<string>());
-      if (logs.Count > 0) {
-        DispatchToJS("onLogEvent", new JSEvents.LogEvent(logs));
+      notify_state_.logs = Interlocked.Exchange(ref log_lines_, new List<string>());
+      if (notify_state_.logs.Count > 0) {
+        OnLogsChanged(notify_state_.logs);
       }
 
       // onSelfChangedEvent: Fires when current player combatant data changes.
       Combatant self = ffxiv_.GetSelfCombatant();
       if (self != notify_state_.self) {
         notify_state_.self = self;
-        DispatchToJS("onSelfChangedEvent", new JSEvents.SelfChangedEvent(self));
+        OnSelfChanged(self);
       }
     }
 
@@ -160,6 +152,7 @@ namespace Cactbot {
       public bool in_combat = false;
       public string zone_name = "";
       public Combatant self = new Combatant();
+      public List<string> logs;
     }
 
     private NotifyState notify_state_ = new NotifyState();
