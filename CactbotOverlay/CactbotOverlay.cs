@@ -18,6 +18,7 @@ namespace Cactbot {
     private System.Timers.Timer update_timer_;
     private JavaScriptSerializer serializer_;
     private FFXIVProcess ffxiv_ = new FFXIVProcess();
+    private FightTracker fight_tracker_;
 
     public delegate void ZoneChangedHandler(JSEvents.ZoneChangedEvent e);
     public event ZoneChangedHandler OnZoneChanged;
@@ -37,6 +38,10 @@ namespace Cactbot {
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
       serializer_ = new JavaScriptSerializer();
+      fight_tracker_ = new FightTracker(DispatchToJS);
+      // TODO: should these be passed to fight tracker?
+      OnZoneChanged += fight_tracker_.OnZoneChange;
+      OnLogsChanged += fight_tracker_.OnLogsChanged;
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
@@ -87,7 +92,7 @@ namespace Cactbot {
 
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
-    private void DispatchToJS<T>(string event_name, T detail) {
+    public void DispatchToJS(string event_name, object detail) {
       StringBuilder sb = new StringBuilder(100);
       sb.Append("document.dispatchEvent(new CustomEvent('");
       sb.Append(event_name);
@@ -167,6 +172,8 @@ namespace Cactbot {
       List<string> logs = Interlocked.Exchange(ref log_lines_, new List<string>());
       if (logs.Count > 0)
         OnLogsChanged(new JSEvents.LogEvent(logs));
+
+      fight_tracker_.Tick(DateTime.Now);
     }
 
     // Tamagawa.EnmityPlugin.Logger implementation.

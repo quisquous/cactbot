@@ -100,5 +100,16 @@ namespace Cactbot {
       public Point3F pos;
       public int distance;
     }
+
+    public class DPSOverlayUpdateEvent {
+      public DPSOverlayUpdateEvent(Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
+        this.Encounter = encounter;
+        this.Combatant = combatant;
+      }
+
+      // This capitalization doesn't match other events, but is consistent with what dps overlays expect.  :C
+      public Dictionary<string, string> Encounter;
+      public List<Dictionary<string, string>> Combatant;
+    }
   }
 }
