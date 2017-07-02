@@ -42,8 +42,12 @@
       document.getElementById("inCombat").innerText = "inCombat: " + (e.detail.inCombat ? "yes" : "no");
     });
 
-    document.addEventListener("onSelfChangedEvent", function (e) {
-      document.getElementById("myHP").innerText = "myHP: " + e.detail.self.CurrentHP;
+    document.addEventListener("onPlayerChangedEvent", function (e) {
+      document.getElementById("myHP").innerText = "myHP: " + e.detail.currentHP;
+      document.getElementById("job").innerText = e.detail.job;
+      if (e.detail.job == "RDM") {
+        document.getElementById("jobinfo").innerText = e.detail.jobDetail.whiteMana + " | " + e.detail.jobDetail.blackMana;
+      }
     });
   </script>
 </head>
@@ -51,6 +55,7 @@
     <div id="currentZone">currentZone: --</div>
     <div id="inCombat">inCombat: no</div>
     <div id="myHP">myHP: --</div>
+    <div>job: <span id="job"></span> <span id="jobinfo"></span></div>
     <div id="oneLog">log: --</div>
 </body>
 </html>

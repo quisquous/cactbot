@@ -7,6 +7,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
+namespace Cactbot {
+  public class NativeMethods {
+    // ReadProcessMemory
+    [DllImport("kernel32.dll")]
+    public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, IntPtr nSize, ref IntPtr lpNumberOfBytesRead);
+  }
+}
+
 namespace RainbowMage.OverlayPlugin {
   /// <summary>
   /// ネイティブ関数を提供します。

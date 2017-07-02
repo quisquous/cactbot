@@ -19,16 +19,16 @@ namespace Cactbot {
     private JavaScriptSerializer serializer_;
     private FFXIVProcess ffxiv_ = new FFXIVProcess();
 
-    public delegate void ZoneChangedHandler(string zone);
+    public delegate void ZoneChangedHandler(JSEvents.ZoneChangedEvent e);
     public event ZoneChangedHandler OnZoneChanged;
 
-    public delegate void SelfChangedHandler(Combatant player);
-    public event SelfChangedHandler OnSelfChanged;
+    public delegate void PlayerChangedHandler(JSEvents.PlayerChangedEvent e);
+    public event PlayerChangedHandler OnPlayerChanged;
 
-    public delegate void LogHandler(List<string> logs);
+    public delegate void LogHandler(JSEvents.LogEvent e);
     public event LogHandler OnLogsChanged;
 
-    public delegate void InCombatChangedHandler(bool inCombat);
+    public delegate void InCombatChangedHandler(JSEvents.InCombatChangedEvent e);
     public event InCombatChangedHandler OnInCombatChanged;
 
     public CactbotOverlay(CactbotOverlayConfig config)
@@ -48,10 +48,10 @@ namespace Cactbot {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
 
       // Outgoing JS events.
-      OnZoneChanged += (zone) => DispatchToJS("onZoneChangedEvent", new JSEvents.ZoneChangedEvent(zone));
-      OnLogsChanged += (logs) => DispatchToJS("onLogEvent", new JSEvents.LogEvent(logs));
-      OnSelfChanged += (self) => DispatchToJS("onSelfChangedEvent", new JSEvents.SelfChangedEvent(self));
-      OnInCombatChanged += (inCombat) => DispatchToJS("onInCombatChangedEvent", new JSEvents.InCombatChangedEvent(inCombat));
+      OnZoneChanged += (e) => DispatchToJS("onZoneChangedEvent", e);
+      OnLogsChanged += (e) => DispatchToJS("onLogEvent", e);
+      OnPlayerChanged += (e) => DispatchToJS("onPlayerChangedEvent", e);
+      OnInCombatChanged += (e) => DispatchToJS("onInCombatChangedEvent", e);
     }
 
     public override void Dispose() {
@@ -117,30 +117,40 @@ namespace Cactbot {
       bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
       if (in_combat != notify_state_.in_combat) {
         notify_state_.in_combat = in_combat;
-        OnInCombatChanged(in_combat);
+        OnInCombatChanged(new JSEvents.InCombatChangedEvent(in_combat));
       }
 
       // onZoneChangedEvent: Fires when the player changes their current zone.
       string zone_name = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone;
       if (!zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
-        OnZoneChanged(zone_name);
+        OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
 
-      // onLogEvent: Fires when new combat log events from FFXIV are available.
-      notify_state_.logs = Interlocked.Exchange(ref log_lines_, new List<string>());
-      if (notify_state_.logs.Count > 0) {
-        OnLogsChanged(notify_state_.logs);
-      }
-
-      // onSelfChangedEvent: Fires when current player combatant data changes.
-      Combatant self = ffxiv_.GetSelfCombatant();
-      if (self != notify_state_.self) {
-        notify_state_.self = self;
-        if (self != null) {
-          OnSelfChanged(self);
+      // onSelfChangedEvent: Fires when current player data changes.
+      Combatant player = ffxiv_.GetSelfCombatant();
+      if (player != notify_state_.player) {
+        notify_state_.player = player;
+        if (player != null) {
+          if ((JobEnum)player.Job == JobEnum.RDM) {
+            var rdm = ffxiv_.GetRedMage();
+            if (rdm != null) {
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(rdm.white, rdm.black);
+              OnPlayerChanged(e);
+            }
+          } else {
+            // No job-specific data.
+            OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
+          }
         }
       }
+
+      // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
+      // more specific events, some of which may involve parsing the logs as well.
+      List<string> logs = Interlocked.Exchange(ref log_lines_, new List<string>());
+      if (logs.Count > 0)
+        OnLogsChanged(new JSEvents.LogEvent(logs));
     }
 
     // Tamagawa.EnmityPlugin.Logger implementation.
@@ -153,10 +163,8 @@ namespace Cactbot {
     private class NotifyState {
       public bool in_combat = false;
       public string zone_name = "";
-      public Combatant self = new Combatant();
-      public List<string> logs;
+      public Combatant player = null;
     }
-
     private NotifyState notify_state_ = new NotifyState();
   }
 
