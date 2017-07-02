@@ -15,11 +15,6 @@ namespace Cactbot {
     // byte, and Black mana the second.
     private static long kRedMageManaAddr = 0x7FF6D382ADB0;
 
-    public class RedMageJobData {
-      public int white;
-      public int black;
-    }
-
     public bool FindProcess(Tamagawa.EnmityPlugin.Logger logger) {
       // Only support the DirectX 11 binary. The DirectX 9 one has different addresses.
       Process found_process = (from x in Process.GetProcessesByName("ffxiv_dx11")
@@ -49,6 +44,11 @@ namespace Cactbot {
       if (enmity_memory_ == null)
         return null;
       return enmity_memory_.GetSelfCombatant();
+    }
+
+    public class RedMageJobData {
+      public int white;
+      public int black;
     }
 
     public RedMageJobData GetRedMage() {
