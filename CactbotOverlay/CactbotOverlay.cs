@@ -25,6 +25,9 @@ namespace Cactbot {
     public delegate void PlayerChangedHandler(JSEvents.PlayerChangedEvent e);
     public event PlayerChangedHandler OnPlayerChanged;
 
+    public delegate void TargetChangedHandler(JSEvents.TargetChangedEvent e);
+    public event TargetChangedHandler OnTargetChanged;
+
     public delegate void LogHandler(JSEvents.LogEvent e);
     public event LogHandler OnLogsChanged;
 
@@ -51,6 +54,7 @@ namespace Cactbot {
       OnZoneChanged += (e) => DispatchToJS("onZoneChangedEvent", e);
       OnLogsChanged += (e) => DispatchToJS("onLogEvent", e);
       OnPlayerChanged += (e) => DispatchToJS("onPlayerChangedEvent", e);
+      OnTargetChanged += (e) => DispatchToJS("onTargetChangedEvent", e);
       OnInCombatChanged += (e) => DispatchToJS("onInCombatChangedEvent", e);
     }
 
@@ -127,8 +131,9 @@ namespace Cactbot {
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
 
-      // onSelfChangedEvent: Fires when current player data changes.
+      // onPlayerChangedEvent: Fires when current player data changes.
       Combatant player = ffxiv_.GetSelfCombatant();
+      // TODO: Is this always true cuz it's only doing pointer comparison?
       if (player != notify_state_.player) {
         notify_state_.player = player;
         if (player != null) {
@@ -144,6 +149,17 @@ namespace Cactbot {
             OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
           }
         }
+      }
+
+      // onTargetChangedEvent: Fires when current target or their state changes.
+      Combatant target = ffxiv_.GetTargetCombatant();
+      // TODO: Is this always true cuz it's only doing pointer comparison?
+      if (target != notify_state_.target) {
+        notify_state_.target = target;
+        if (target != null)
+          OnTargetChanged(new JSEvents.TargetChangedEvent(target));
+        else
+          OnTargetChanged(null);
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
@@ -164,6 +180,7 @@ namespace Cactbot {
       public bool in_combat = false;
       public string zone_name = "";
       public Combatant player = null;
+      public Combatant target = null;
     }
     private NotifyState notify_state_ = new NotifyState();
   }

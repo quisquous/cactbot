@@ -49,6 +49,16 @@
         document.getElementById("jobinfo").innerText = e.detail.jobDetail.whiteMana + " | " + e.detail.jobDetail.blackMana;
       }
     });
+
+    document.addEventListener("onTargetChangedEvent", function (e) {
+      if (!e.detail) {
+        document.getElementById("target").innerText = "--";
+        document.getElementById("tdistance").innerText = "";
+      } else {
+        document.getElementById("target").innerText = e.detail.name;
+        document.getElementById("tdistance").innerText = e.detail.distance;
+      }
+    });
   </script>
 </head>
 <body>
@@ -56,6 +66,7 @@
     <div id="inCombat">inCombat: no</div>
     <div id="myHP">myHP: --</div>
     <div>job: <span id="job"></span> <span id="jobinfo"></span></div>
+    <div>target: <span id="target">--</span> distance: <span id="tdistance"></span></span></div>
     <div id="oneLog">log: --</div>
 </body>
 </html>

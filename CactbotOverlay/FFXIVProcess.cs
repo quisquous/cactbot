@@ -46,6 +46,12 @@ namespace Cactbot {
       return enmity_memory_.GetSelfCombatant();
     }
 
+    public Combatant GetTargetCombatant() {
+      if (enmity_memory_ == null)
+        return null;
+      return enmity_memory_.GetTargetCombatant();
+    }
+
     public class RedMageJobData {
       public int white;
       public int black;

@@ -70,5 +70,33 @@ namespace Cactbot {
         public int blackMana;
       }
     }
+
+    public class TargetChangedEvent {
+      public TargetChangedEvent(Combatant c) {
+        level = c.Level;
+        name = c.Name;
+        currentHP = c.CurrentHP;
+        maxHP = c.MaxHP;
+        currentMP = c.CurrentMP;
+        maxMP = c.MaxMP;
+        currentTP = c.CurrentTP;
+        maxTP = c.MaxTP;
+        pos = new Point3F(c.PosX, c.PosY, c.PosZ);
+        distance = c.EffectiveDistance;
+      }
+
+      public int level;
+      public string name;
+
+      public int currentHP;
+      public int maxHP;
+      public int currentMP;
+      public int maxMP;
+      public int currentTP;
+      public int maxTP;
+
+      public Point3F pos;
+      public int distance;
+    }
   }
 }
