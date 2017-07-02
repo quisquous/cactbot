@@ -73,6 +73,7 @@ namespace Cactbot {
 
     public class TargetChangedEvent {
       public TargetChangedEvent(Combatant c) {
+        id = c.ID;
         level = c.Level;
         name = c.Name;
         currentHP = c.CurrentHP;
@@ -85,6 +86,7 @@ namespace Cactbot {
         distance = c.EffectiveDistance;
       }
 
+      public uint id;
       public int level;
       public string name;
 
