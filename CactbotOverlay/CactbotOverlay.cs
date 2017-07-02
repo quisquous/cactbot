@@ -137,7 +137,9 @@ namespace Cactbot {
       Combatant self = ffxiv_.GetSelfCombatant();
       if (self != notify_state_.self) {
         notify_state_.self = self;
-        OnSelfChanged(self);
+        if (self != null) {
+          OnSelfChanged(self);
+        }
       }
     }
 
