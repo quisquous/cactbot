@@ -107,7 +107,7 @@ namespace Cactbot {
       if (ActGlobals.oFormActMain.ActiveZone.ActiveEncounter == null)
         return null;
 
-      var combatantList = new List<Dictionary<string, string>>();
+      var combatant_list = new List<Dictionary<string, string>>();
       List<CombatantData> allies = ActGlobals.oFormActMain.ActiveZone.ActiveEncounter.GetAllies();
       foreach (CombatantData ally in allies) {
         var dict = new Dictionary<string, string>();
@@ -129,13 +129,13 @@ namespace Cactbot {
 
         if (!dict.ContainsKey("name"))
           continue;
-        combatantList.Add(dict);
+        combatant_list.Add(dict);
       }
 
       // Sort by encdps descending.  OverlayPlugin has options for different ways to sort, but
       // html can do this itself if it wants something different.  This is what most folks expect.
       const string kSortKey = "encdps";
-      combatantList.Sort((x, y) => {
+      combatant_list.Sort((x, y) => {
         if (x.ContainsKey(kSortKey) && y.ContainsKey(kSortKey)) {
           double x_value, y_value;
           if (double.TryParse(x[kSortKey], out x_value) && double.TryParse(y[kSortKey], out y_value)) {
@@ -145,7 +145,7 @@ namespace Cactbot {
         return 0;
       });
 
-      return combatantList;
+      return combatant_list;
     }
   }
 }
