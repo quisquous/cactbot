@@ -113,11 +113,15 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="resources\cactbot_test.html" />
-    <Content Include="resources\jquery\jquery-1.11.3.min.js" />
-    <Content Include="resources\jquery\jquery-ui.min.css" />
-    <Content Include="resources\jquery\jquery-ui.min.js" />
+    <Content Include="resources\lib\jquery\jquery-1.11.3.min.js" />
+    <Content Include="resources\lib\jquery\jquery-ui.min.css" />
+    <Content Include="resources\lib\jquery\jquery-ui.min.js" />
     <Content Include="resources\resize_handle.css" />
     <Content Include="resources\resize_handle.js" />
+    <Content Include="resources\resourcebar.js" />
+    <Content Include="resources\timerbar.js" />
+    <Content Include="resources\timerbox.js" />
+    <Content Include="resources\timericon.js" />
     <Content Include="resources\dps\xephero-cactbot.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
