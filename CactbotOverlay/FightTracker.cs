@@ -7,6 +7,7 @@ namespace Cactbot {
   public class FightTracker {
     private DateTime last_update_;
     private DispatchToJS update_func_;
+    private int last_encounter_seconds_ = 0;
     private const float kUpdateIntervalInSeconds = 1;
 
     public delegate void DispatchToJS(string event_name, object detail);
@@ -23,7 +24,42 @@ namespace Cactbot {
         return;
       }
       last_update_ = time;
-      update_func_("onOverlayDataUpdate", new JSEvents.DPSOverlayUpdateEvent(EncounterDPSInfo(), CombatantDPSInfo()));
+
+      if (!FFXIV_ACT_Plugin.ACTWrapper.InCombat) {
+        return;
+      }
+
+      var encounter = EncounterDPSInfo();
+      if (encounter == null) {
+        return;
+      }
+      var combatant = CombatantDPSInfo();
+      if (combatant == null) {
+        return;
+      }
+
+      const string kTimeKey = "DURATION";
+      if (!encounter.ContainsKey(kTimeKey)) {
+        return;
+      }
+      int encounter_seconds;
+      if (!Int32.TryParse(encounter[kTimeKey], out encounter_seconds)) {
+        return;
+      }
+      if (encounter_seconds <= 0) {
+        return;
+      }
+      if (encounter_seconds == last_encounter_seconds_) {
+        // Deliberately don't do an update when the duration hasn't changed.
+        // This is the way that phases and encounter titles don't disappear.
+        return;
+      }
+
+      last_encounter_seconds_ = encounter_seconds;
+
+      // TODO: if encounter seconds goes back in time, clear phases, as it's a new fight.
+      // This should maybe get done in JS instead of sending a clear phases event?
+      update_func_("onOverlayDataUpdate", new JSEvents.DPSOverlayUpdateEvent(encounter, combatant));
     }
 
     public void OnZoneChange(JSEvents.ZoneChangedEvent e) {
