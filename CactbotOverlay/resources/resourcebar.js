@@ -152,6 +152,62 @@ class ResourceBar extends HTMLElement {
     if (this.centertext != null) { this._center_text = this.centertext; }
     if (this.righttext != null) { this._right_text = this.righttext; }
     
+    this.layout();
+  
+    this._connected = true;
+    this.updateText();
+    this.draw();
+  }
+  
+  disconnectedCallback() {
+    this._connected = false;
+  }
+  
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name == "value")
+      this._value = Math.max(parseFloat(newValue), 0);
+    else if (name == "maxvalue")
+      this._maxvalue = Math.max(parseFloat(newValue), 0);
+    else if (name == "width") {
+      this._width = Math.max(parseInt(newValue), 1);
+      this.layout();
+    }
+    else if (name == "height") {
+      this._height = Math.max(parseInt(newValue), 1);
+      this.layout();
+    }
+    else if (name == "bg") {
+      this._bg = newValue;
+      this.layout();
+    }
+    else if (name == "fg") {
+      this._fg = newValue;
+      this.layout();
+    }
+    else if (name == "lefttext") {
+      if (newValue != this._left_text && this._connected) {
+        this._left_text = newValue;
+        this.updateText();
+      }
+    }
+    else if (name == "centertext") {
+      if (newValue != this._center_text && this._connected) {
+        this._center_text = newValue;
+        this.updateText();
+      }
+    }
+    else if (name == "righttext") {
+      if (newValue != this._right_text && this._connected) {
+        this._right_text = newValue;
+        this.updateText();
+      }
+    }
+
+    if (this._connected)
+      this.draw();
+  }
+  
+  layout() {
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
     if (!this._style_fill)
@@ -192,50 +248,6 @@ class ResourceBar extends HTMLElement {
       foregroundStyle.transformOrigin = "0% 0%";
     else
       foregroundStyle.transformOrigin = "100% 0%";
-  
-    this._connected = true;
-    this.updateText();
-    this.draw();
-  }
-  
-  disconnectedCallback() {
-    this._connected = false;
-  }
-  
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name == "value")
-      this._value = Math.max(parseFloat(newValue), 0);
-    else if (name == "maxvalue")
-      this._maxvalue = Math.max(parseFloat(newValue), 0);
-    else if (name == "width")
-      this._width = Math.max(parseInt(newValue), 1);
-    else if (name == "height")
-      this._height = Math.max(parseInt(newValue), 1);
-    else if (name == "bg")
-      this._bg = newValue;
-    else if (name == "fg")
-      this._fg = newValue;
-    else if (name == "lefttext") {
-      if (newValue != this._left_text && this._connected) {
-        this._left_text = newValue;
-        this.updateText();
-      }
-    }
-    else if (name == "centertext") {
-      if (newValue != this._center_text && this._connected) {
-        this._center_text = newValue;
-        this.updateText();
-      }
-    }
-    else if (name == "righttext") {
-      if (newValue != this._right_text && this._connected) {
-        this._right_text = newValue;
-        this.updateText();
-      }
-    }
-
-    if (this._connected)
-      this.draw();
   }
   
   updateText() {
