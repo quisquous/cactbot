@@ -37,7 +37,11 @@ namespace Cactbot {
       if (combatant == null) {
         return;
       }
+      if (combatant.Count <= 0) {
+        return;
+      }
 
+      // Note: capitalized fields from ACT are the raw number, but lowercase are formatted.
       const string kTimeKey = "DURATION";
       if (!encounter.ContainsKey(kTimeKey)) {
         return;
@@ -52,6 +56,18 @@ namespace Cactbot {
       if (encounter_seconds == last_encounter_seconds_) {
         // Deliberately don't do an update when the duration hasn't changed.
         // This is the way that phases and encounter titles don't disappear.
+        return;
+      }
+
+      const string kTotalDPS = "ENCDPS";
+      if (!encounter.ContainsKey(kTotalDPS)) {
+        return;
+      }
+      int encounter_dps;
+      if (!Int32.TryParse(encounter[kTotalDPS], out encounter_dps)) {
+        return;
+      }
+      if (encounter_dps <= 0) {
         return;
       }
 
