@@ -155,7 +155,17 @@
                 phaseUpdates: [],
             };
 
+            function hideOverlay() {
+                $('#overlay').addClass('hide');
+            }
+
+            function showOverlay() {
+                $('#overlay').removeClass('hide');
+            }
+
             function update(e) {
+                showOverlay();
+
                 var encounter = e.detail.Encounter;
                 var combatants = e.detail.Combatant;
                 var template = $('#overlaysource li');
@@ -326,28 +336,44 @@
                 cbData.phaseUpdates = [];
             }
 
-            $(document).on('onOverlayDataUpdate', function(e) {
-                update(e.originalEvent);
-            });
-            window.addEventListener('message', function(e) {
-                if (e.data.type === 'onOverlayDataUpdate') {
-                    var currentDuration = e.data.detail.Encounter.DURATION;
-                    update(e.data);
-                } else if (e.data.type === 'onFightStart') {
-                    console.log(['XonFightStart', e]);
+            function handleEvent(type, e) {
+                if (type === 'onOverlayDataUpdate') {
+                    // TODO: if duration goes back in time, clear phases
+                    // Or potentially send "onFightStart" in those cases?
+                    update(e);
+                } else if (type === 'onFightStart') {
                     clearPhases();
-                } else if (e.data.type === 'onFightEnd') {
-                    console.log(['XonFightEnd', e]);
-                } else if (e.data.type === 'onOverlayPhaseUpdate') {
-                    console.log(['XonOverlayPhaseUpdate', e]);
-                    var phase = e.data.detail;
+                } else if (type === 'onFightEnd') {
+                } else if (type === 'onOverlayPhaseUpdate') {
+                    var phase = e.detail;
                     // Until we get a complete first phase, drop everything else on the ground.
                     if (cbData.phases.length != 0 || phase.complete) {
                         cbData.phaseUpdates.push(phase);
                     }
-                } else if (e.data.type === 'onClearPhaseInfo') {
+                } else if (type == 'onZoneChangedEvent') {
                     clearPhases();
+                    hideOverlay();
                 }
+            }
+
+            $(document).on('onOverlayDataUpdate', function(e) {
+                handleEvent('onOverlayDataUpdate', e.originalEvent);
+            });
+            $(document).on('onZoneChangedEvent', function (e) {
+                handleEvent('onZoneChangedEvent', e.originalEvent);
+            });
+            $(document).on('onFightStart', function (e) {
+                handleEvent('onFightStart', e.originalEvent);
+            });
+            $(document).on('onFightEnd', function (e) {
+                handleEvent('onFightEnd', e.originalEvent);
+            });
+            $(document).on('onOverlayPhaseUpdate', function (e) {
+                handleEvent('onOverlayPhaseUpdate', e.originalEvent);
+            });
+
+            window.addEventListener('message', function(e) {
+                handleEvent(e.data.type, e.data);
             });
         });
     </script>
