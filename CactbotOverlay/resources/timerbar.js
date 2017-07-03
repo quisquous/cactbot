@@ -136,7 +136,7 @@ class TimerBar extends HTMLElement {
     
     // Default values.
     this._value = 0;
-    this._duration = 1;
+    this._duration = 0;
     this._width = 200;
     this._height = 20;
     this._bg = "black";

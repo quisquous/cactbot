@@ -106,7 +106,7 @@ class TimerIcon extends HTMLElement {
     
     // Default values.
     this._value = 0;
-    this._duration = 1;
+    this._duration = 0;
     this._width = 64;
     this._height = 64;
     this._border_bg = "black";
