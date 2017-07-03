@@ -40,6 +40,15 @@ namespace Cactbot {
       return enmity_memory_ != null;
     }
 
+    public bool IsActive() {
+      if (enmity_memory_ == null)
+        return false;
+      IntPtr active_hwnd = NativeMethods.GetForegroundWindow();
+      int active_process_id;
+      NativeMethods.GetWindowThreadProcessId(active_hwnd, out active_process_id);
+      return active_process_id == process_.Id;
+    }
+
     public Combatant GetSelfCombatant() {
       if (enmity_memory_ == null)
         return null;

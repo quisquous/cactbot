@@ -59,6 +59,14 @@
         document.getElementById("tdistance").innerText = e.detail.distance;
       }
     });
+
+    document.addEventListener("onGameExistsEvent", function (e) {
+      //console.log("Game exists: " + e.detail.exists);
+    });
+
+    document.addEventListener("onGameActiveChangedEvent", function (e) {
+      //console.log("Game active: " + e.detail.active);
+    });
   </script>
 </head>
 <body>

@@ -15,6 +15,18 @@ namespace Cactbot {
       public float z;
     }
 
+    public class GameExistsEvent {
+      public GameExistsEvent(bool exists) { this.exists = exists; }
+
+      public bool exists;
+    }
+
+    public class GameActiveChangedEvent {
+      public GameActiveChangedEvent(bool active) { this.active = active; }
+
+      public bool active;
+    }
+
     public class LogEvent {
       public LogEvent(List<String> logs) { this.logs = logs; }
 

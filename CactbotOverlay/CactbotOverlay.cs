@@ -20,6 +20,12 @@ namespace Cactbot {
     private FFXIVProcess ffxiv_ = new FFXIVProcess();
     private FightTracker fight_tracker_;
 
+    public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
+    public event GameExistsHandler OnGameExists;
+
+    public delegate void GameActiveChangedHandler(JSEvents.GameActiveChangedEvent e);
+    public event GameActiveChangedHandler OnGameActiveChanged;
+
     public delegate void ZoneChangedHandler(JSEvents.ZoneChangedEvent e);
     public event ZoneChangedHandler OnZoneChanged;
 
@@ -56,6 +62,8 @@ namespace Cactbot {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
 
       // Outgoing JS events.
+      OnGameExists += (e) => DispatchToJS("onGameExistsEvent", e);
+      OnGameActiveChanged += (e) => DispatchToJS("onGameActiveChangedEvent", e);
       OnZoneChanged += (e) => DispatchToJS("onZoneChangedEvent", e);
       OnLogsChanged += (e) => DispatchToJS("onLogEvent", e);
       OnPlayerChanged += (e) => DispatchToJS("onPlayerChangedEvent", e);
@@ -117,10 +125,20 @@ namespace Cactbot {
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
         return;
 
-      if (!ffxiv_.FindProcess(this)) {
-        // Silently stop sending messages if the ffxiv process isn't around.
-        return;
+      bool game_exists = ffxiv_.FindProcess(this);
+      bool game_active = game_active = game_exists && ffxiv_.IsActive();
+      if (game_exists != notify_state_.game_exists) {
+        notify_state_.game_exists = game_exists;
+        OnGameExists(new JSEvents.GameExistsEvent(game_exists));
       }
+      if (game_active != notify_state_.game_active) {
+        notify_state_.game_active = game_active;
+        OnGameActiveChanged(new JSEvents.GameActiveChangedEvent(game_active));
+      }
+
+      // Silently stop sending other messages if the ffxiv process isn't around.
+      if (!game_exists)
+        return;
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
       bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
@@ -184,6 +202,8 @@ namespace Cactbot {
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {
+      public bool game_exists = false;
+      public bool game_active = false;
       public bool in_combat = false;
       public string zone_name = "";
       public Combatant player = null;
