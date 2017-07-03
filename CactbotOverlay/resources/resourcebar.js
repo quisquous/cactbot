@@ -152,9 +152,8 @@ class ResourceBar extends HTMLElement {
     if (this.centertext != null) { this._center_text = this.centertext; }
     if (this.righttext != null) { this._right_text = this.righttext; }
     
-    this.layout();
-  
     this._connected = true;
+    this.layout();
     this.updateText();
     this.draw();
   }
@@ -171,36 +170,30 @@ class ResourceBar extends HTMLElement {
     else if (name == "width") {
       this._width = Math.max(parseInt(newValue), 1);
       this.layout();
-    }
-    else if (name == "height") {
+    } else if (name == "height") {
       this._height = Math.max(parseInt(newValue), 1);
       this.layout();
-    }
-    else if (name == "bg") {
+    } else if (name == "bg") {
       this._bg = newValue;
       this.layout();
-    }
-    else if (name == "fg") {
+    } else if (name == "fg") {
       this._fg = newValue;
       this.layout();
-    }
-    else if (name == "lefttext") {
-      if (newValue != this._left_text && this._connected) {
-        this._left_text = newValue;
+    } else if (name == "lefttext") {
+      var update = newValue != this._left_text && this._connected;
+      this._left_text = newValue;
+      if (update)
         this.updateText();
-      }
-    }
-    else if (name == "centertext") {
-      if (newValue != this._center_text && this._connected) {
-        this._center_text = newValue;
+    } else if (name == "centertext") {
+      var update = newValue != this._center_text && this._connected;
+      this._center_text = newValue;
+      if (update)
         this.updateText();
-      }
-    }
-    else if (name == "righttext") {
-      if (newValue != this._right_text && this._connected) {
-        this._right_text = newValue;
+    } else if (name == "righttext") {
+      var update = newValue != this._right_text && this._connected;
+      this._right_text = newValue;
+      if (update)
         this.updateText();
-      }
     }
 
     if (this._connected)
@@ -208,6 +201,9 @@ class ResourceBar extends HTMLElement {
   }
   
   layout() {
+    if (!this._connected)
+      return;
+
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
     if (!this._style_fill)

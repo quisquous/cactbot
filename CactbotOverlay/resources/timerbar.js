@@ -164,6 +164,59 @@ class TimerBar extends HTMLElement {
     if (this.hideafter != null && this.hideafter != "") { this._hideafter = Math.max(parseFloat(this.hideafter), 0); }
     if (typeof(this.onhide) != null) { this._onhide = this.onhide; }
     
+    this._connected = true;
+    this.layout();
+    this.updateText();
+    this.reset();
+  }
+  
+  disconnectedCallback() {
+    this._connected = false;
+  }
+  
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name == "duration") {
+      this._duration = Math.max(parseFloat(newValue), 0);
+      this.reset();
+    } else if (name == "width") {
+      this._width = Math.max(parseInt(newValue), 1);
+      this.layout();
+    } else if (name == "height") {
+      this._height = Math.max(parseInt(newValue), 1);
+      this.layout();
+    } else if (name == "bg") {
+      this._bg = newValue;
+      this.layout();
+    } else if (name == "fg") {
+      this._fg = newValue;
+      this.layout();
+    } else if (name == "lefttext") {
+      var update = newValue != this._left_text && this._connected;
+      this._left_text = newValue;
+      if (update)
+        this.updateText();
+    } else if (name == "centertext") {
+      var update = newValue != this._center_text && this._connected;
+      this._center_text = newValue;
+      if (update)
+        this.updateText();
+    } else if (name == "righttext") {
+      var update = newValue != this._right_text && this._connected;
+      this._right_text = newValue;
+      if (update)
+        this.updateText();
+    } else if (name == "onhide") {
+      this._onhide = newValue;
+    }
+
+    if (this._connected)
+      this.draw();
+  }
+  
+  layout() {
+    if (!this._connected)
+      return;
+
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
     if (this._style_fill)
@@ -204,53 +257,8 @@ class TimerBar extends HTMLElement {
       foregroundStyle.transformOrigin = "100% 0%";
     else
       foregroundStyle.transformOrigin = "0% 0%";
-  
-    this._connected = true;
-    this.updateText();
-    this.reset();
   }
-  
-  disconnectedCallback() {
-    this._connected = false;
-  }
-  
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name == "duration") {
-      this._duration = Math.max(parseFloat(newValue), 0);
-      this.reset();
-    } else if (name == "width")
-      this._width = Math.max(parseInt(newValue), 1);
-    else if (name == "height")
-      this._height = Math.max(parseInt(newValue), 1);
-    else if (name == "bg")
-      this._bg = newValue;
-    else if (name == "fg")
-      this._fg = newValue;
-    else if (name == "lefttext") {
-      if (newValue != this._left_text && this._connected) {
-        this._left_text = newValue;
-        this.updateText();
-      }
-    }
-    else if (name == "centertext") {
-      if (newValue != this._center_text && this._connected) {
-        this._center_text = newValue;
-        this.updateText();
-      }
-    }
-    else if (name == "righttext") {
-      if (newValue != this._right_text && this._connected) {
-        this._right_text = newValue;
-        this.updateText();
-      }
-    } else if (name == "onhide") {
-      this._onhide = newValue;
-    }
 
-    if (this._connected)
-      this.draw();
-  }
-  
   updateText() {
     // These values are filled in during draw() when the values change.
     if (this._left_text != "value" && this._left_text != "duration" &&
@@ -317,14 +325,16 @@ class TimerBar extends HTMLElement {
     if (this._value <= 0) {
       this._value = 0;
       var that = this;
-      this._hide_timer = setTimeout(function() {
-        that.rootElement.style.display = "none";
-        try {
-          eval(that._onhide);
-        } catch (e) {
-          console.log("error evaluating onhide: " + that._onhide);
-        }
-      }, this._hideafter);
+      if (this._hideafter >= 0) {
+        this._hide_timer = setTimeout(function() {
+          that.rootElement.style.display = "none";
+          try {
+            eval(that._onhide);
+          } catch (e) {
+            console.log("error evaluating onhide: " + that._onhide);
+          }
+        }, this._hideafter);
+      }
     } else {
       var that = this;
       this._timer = setTimeout(function() {
