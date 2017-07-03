@@ -17,15 +17,14 @@ namespace Cactbot {
     }
 
     public void Tick(DateTime time) {
+      if (!FFXIV_ACT_Plugin.ACTWrapper.InCombat) {
+        return;
+      }
+
       // TODO: This could just use the slower time for now, but in the future this will watch rotations
       // and log entries.  Because of that, it could send updates more quickly and so it will just stay
       // on the "fast" tick instead.
       if ((time - last_update_).TotalSeconds < kUpdateIntervalInSeconds) {
-        return;
-      }
-      last_update_ = time;
-
-      if (!FFXIV_ACT_Plugin.ACTWrapper.InCombat) {
         return;
       }
 
@@ -50,10 +49,7 @@ namespace Cactbot {
       if (!Int32.TryParse(encounter[kTimeKey], out encounter_seconds)) {
         return;
       }
-      if (encounter_seconds <= 0) {
-        return;
-      }
-      if (encounter_seconds == last_encounter_seconds_) {
+      if (encounter_seconds == last_encounter_seconds_ && encounter_seconds > 0) {
         // Deliberately don't do an update when the duration hasn't changed.
         // This is the way that phases and encounter titles don't disappear.
         return;
@@ -71,6 +67,7 @@ namespace Cactbot {
         return;
       }
 
+      last_update_ = time;
       last_encounter_seconds_ = encounter_seconds;
 
       // TODO: if encounter seconds goes back in time, clear phases, as it's a new fight.
