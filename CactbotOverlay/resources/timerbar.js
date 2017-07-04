@@ -311,6 +311,8 @@ class TimerBar extends HTMLElement {
   }
 
   reset() {
+    if (!this._connected) return;
+
     this.rootElement.style.display = "block";
     clearTimeout(this._hide_timer);
     this._hide_timer = null;
