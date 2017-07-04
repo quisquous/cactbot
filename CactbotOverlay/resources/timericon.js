@@ -119,7 +119,7 @@ class TimerIcon extends HTMLElement {
 
     if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
     if (this.width != null) { this._width = Math.max(parseInt(this.width), 1); }
-    if (this.barheight != null) { this._barheight = Math.max(parseInt(this.barheight), 1); }
+    if (this.height != null) { this._height = Math.max(parseInt(this.height), 1); }
     if (this.bordercolor != null) { this._border_fg = this.bordercolor; }
     if (this.scale != null) { this._scale = Math.max(parseFloat(this.scale), 0.01); }
     if (this.hideafter != null && this.hideafter != "") { this._hideafter = Math.max(parseFloat(this.hideafter), 0); }
@@ -189,7 +189,7 @@ class TimerIcon extends HTMLElement {
     var icon_left = (this.kOuterBorderSize * 2 + this.kColorBorderSize) * this._scale;
     var icon_top = (this.kOuterBorderSize * 2 + this.kColorBorderSize) * this._scale;
     var icon_width = (this._width - this.kOuterBorderSize * 4 - this.kColorBorderSize * 2) * this._scale;
-    var icon_height = (this._height - this.kOuterBorderSize * 4 - this.kColorBorderSize * 2) * this._scale
+    var icon_height = (this._height - this.kOuterBorderSize * 4 - this.kColorBorderSize * 2) * this._scale;
     var text_height = Math.min(icon_width, icon_height) / 2;
     iconStyle.width = icon_width;
     iconStyle.height = icon_height;

@@ -55,11 +55,11 @@ class WidgetList extends HTMLElement {
     this._name_to_id = {};
     this._elements = {};
     this._sorted = [];
+
+    this.rootElement = this.shadowRoot.getElementById("root");
   }
 
   connectedCallback() {
-    this.rootElement = this.shadowRoot.getElementById("root");
-
     // Default values.
     this._scale = 1;
     this._elementwidth = 100;
@@ -83,6 +83,7 @@ class WidgetList extends HTMLElement {
     if (this.toward != null) { this.parseToward(this.toward); }
 
     this._connected = true;
+    this.layout();
   }
 
   disconnectedCallback() {
@@ -214,7 +215,7 @@ class WidgetList extends HTMLElement {
     var element = container.childNodes[0];
     this.rootElement.removeChild(container);
 
-    delete this._name_to_id[id];
+    delete this._name_to_id[name];
     delete this._elements[id];
     for (var i in this._sorted) {
       if (this._sorted[i] == id) {
