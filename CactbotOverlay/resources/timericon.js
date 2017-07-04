@@ -196,7 +196,7 @@ class TimerIcon extends HTMLElement {
     iconStyle.left = icon_left;
     iconStyle.top = icon_top;
     iconStyle.backgroundImage = "url('" + this._icon + "')";
-    iconStyle.backgroundSize = (Math.max(icon_width, icon_height) + this._zoom) + "px";
+    iconStyle.backgroundSize = (Math.max(icon_width, icon_height) + this._zoom * this._scale) + "px";
     iconStyle.backgroundPosition = "center center";
     
     textStyle.top = icon_top + (icon_height - text_height) / 2;
