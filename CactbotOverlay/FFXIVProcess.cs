@@ -11,9 +11,9 @@ namespace Cactbot {
     private Process process_ = null;
     private FFXIVMemory enmity_memory_;
 
-    // A static variable address for red mage mana. White mana is the first
-    // byte, and Black mana the second.
-    private static long kRedMageManaAddr = 0x7FF6D382ADB0;
+    // A static variable address offset, from the FFXIV process base address, for
+    // red mage mana. White mana is the first byte, and Black mana the second.
+    private static int kRedMageManaAddrOffset = 0x178ADB0;
 
     public bool FindProcess(Tamagawa.EnmityPlugin.Logger logger) {
       // Only support the DirectX 11 binary. The DirectX 9 one has different addresses.
@@ -71,8 +71,9 @@ namespace Cactbot {
         return null;
       int kBufferLen = 2;
       byte[] buffer = new byte[kBufferLen];
+      IntPtr addr = IntPtr.Add(process_.MainModule.BaseAddress, kRedMageManaAddrOffset);
       IntPtr bytes_read = IntPtr.Zero;
-      bool ok = NativeMethods.ReadProcessMemory(process_.Handle, new IntPtr(kRedMageManaAddr), buffer, new IntPtr(kBufferLen), ref bytes_read);
+      bool ok = NativeMethods.ReadProcessMemory(process_.Handle, addr, buffer, new IntPtr(kBufferLen), ref bytes_read);
       if (!ok)
         return null;
 
