@@ -41,6 +41,9 @@ namespace Cactbot {
     public delegate void InCombatChangedHandler(JSEvents.InCombatChangedEvent e);
     public event InCombatChangedHandler OnInCombatChanged;
 
+    public delegate void PlayerDiedHandler();
+    public event PlayerDiedHandler OnPlayerDied;
+
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
       serializer_ = new JavaScriptSerializer();
@@ -69,6 +72,7 @@ namespace Cactbot {
       OnPlayerChanged += (e) => DispatchToJS("onPlayerChangedEvent", e);
       OnTargetChanged += (e) => DispatchToJS("onTargetChangedEvent", e);
       OnInCombatChanged += (e) => DispatchToJS("onInCombatChangedEvent", e);
+      OnPlayerDied += () => DispatchToJS("onPlayerDied", null);
     }
 
     public override void Dispose() {
@@ -154,8 +158,18 @@ namespace Cactbot {
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
 
-      // onPlayerChangedEvent: Fires when current player data changes.
       Combatant player = ffxiv_.GetSelfCombatant();
+
+      // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
+      // lost.
+      bool dead = player.CurrentHP == 0;
+      if (dead != notify_state_.dead) {
+        notify_state_.dead = dead;
+        if (dead)
+          OnPlayerDied();
+      }
+
+      // onPlayerChangedEvent: Fires when current player data changes.
       // TODO: Is this always true cuz it's only doing pointer comparison?
       if (player != notify_state_.player) {
         notify_state_.player = player;
@@ -205,6 +219,7 @@ namespace Cactbot {
       public bool game_exists = false;
       public bool game_active = false;
       public bool in_combat = false;
+      public bool dead = false;
       public string zone_name = "";
       public Combatant player = null;
       public Combatant target = null;
