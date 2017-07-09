@@ -209,9 +209,7 @@ class BuffsUI extends HTMLElement {
     icon.duration = bar.duration = 0;
     
     // TODO: Get icon name from json.
-    icon.icon = this._settings["resources folder"] + "icon/action/assassinate_48.png";
-    if (name == "debuff6")
-      icon.icon = this._settings["resources folder"] + "icon/action/aero_iii_48.png";
+    icon.icon = this._settings["resources folder"] + "icon/action/white_mage/58/aero_iii.png";
     
     this.listElement.addElement(name, div, function() { return icon.duration; });
     console.log("gain " + name);
