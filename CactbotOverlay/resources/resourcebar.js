@@ -1,7 +1,7 @@
 "use strict";
 
 class ResourceBar extends HTMLElement {
-  static get observedAttributes() { return [ "value", "maxvalue", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg" ]; }
+  static get observedAttributes() { return [ "value", "maxvalue", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "toward" ]; }
 
   // All visual dimensions are scaled by this.
   set scale(s) { this.setAttribute("scale", s); }
@@ -76,7 +76,6 @@ class ResourceBar extends HTMLElement {
     root.innerHTML = `
       <style>
         #bg {
-          opacity: 0.5;
           position: absolute;
         }
         #fg {
@@ -130,7 +129,7 @@ class ResourceBar extends HTMLElement {
     this._maxvalue = 1;
     this._width = 200;
     this._height = 20;
-    this._bg = "black";
+    this._bg = "rgba(0, 0, 0, 0.7)";
     this._fg = "green";
     this._scale = 1;
     this._toward_right = true;
@@ -178,6 +177,9 @@ class ResourceBar extends HTMLElement {
       this.layout();
     } else if (name == "fg") {
       this._fg = newValue;
+      this.layout();
+    } else if (name == "toward") {
+      this._toward_right = newValue != "left";
       this.layout();
     } else if (name == "lefttext") {
       var update = newValue != this._left_text && this._connected;
