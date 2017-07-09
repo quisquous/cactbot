@@ -118,8 +118,20 @@ namespace Cactbot {
     private void SendSlowRateEvents() {
       // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
       // register its event handlers.
-      //if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
-      //  return;
+      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
+        return;
+
+      bool game_exists = ffxiv_.FindProcess(this);
+      if (game_exists != notify_state_.game_exists) {
+        notify_state_.game_exists = game_exists;
+        OnGameExists(new JSEvents.GameExistsEvent(game_exists));
+        if (!game_exists) {
+          // Stop the fast updates timer, save some cpu.
+          update_timer_.Stop();
+        } else {
+          update_timer_.Start();
+        }
+      }
     }
 
     // Events that we want to update as soon as possible.
@@ -129,19 +141,14 @@ namespace Cactbot {
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
         return;
 
-      bool game_exists = ffxiv_.FindProcess(this);
-      bool game_active = game_active = game_exists && ffxiv_.IsActive();
-      if (game_exists != notify_state_.game_exists) {
-        notify_state_.game_exists = game_exists;
-        OnGameExists(new JSEvents.GameExistsEvent(game_exists));
-      }
+      bool game_active = game_active = ffxiv_.IsActive();
       if (game_active != notify_state_.game_active) {
         notify_state_.game_active = game_active;
         OnGameActiveChanged(new JSEvents.GameActiveChangedEvent(game_active));
       }
 
       // Silently stop sending other messages if the ffxiv process isn't around.
-      if (!game_exists)
+      if (!ffxiv_.HasProcess())
         return;
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.

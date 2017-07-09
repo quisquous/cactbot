@@ -37,6 +37,12 @@ namespace Cactbot {
     private static int kRedMageManaDataOuterStructureOffset = 0;
     private static int kRedMageManaDataInnerStructureOffset = 8;
 
+    public bool HasProcess() {
+      // If FindProcess failed, return false. But also return false if
+      // FindProcess succeeded but the process has since exited.
+      return enmity_memory_ != null && !process_.HasExited;
+    }
+
     public bool FindProcess(Tamagawa.EnmityPlugin.Logger logger) {
       // Only support the DirectX 11 binary. The DirectX 9 one has different addresses.
       Process found_process = (from x in Process.GetProcessesByName("ffxiv_dx11")
@@ -79,7 +85,7 @@ namespace Cactbot {
     }
 
     public bool IsActive() {
-      if (enmity_memory_ == null)
+      if (!HasProcess())
         return false;
       IntPtr active_hwnd = NativeMethods.GetForegroundWindow();
       int active_process_id;
@@ -88,13 +94,13 @@ namespace Cactbot {
     }
 
     public Combatant GetSelfCombatant() {
-      if (enmity_memory_ == null)
+      if (!HasProcess())
         return null;
       return enmity_memory_.GetSelfCombatant();
     }
 
     public Combatant GetTargetCombatant() {
-      if (enmity_memory_ == null)
+      if (!HasProcess())
         return null;
       return enmity_memory_.GetTargetCombatant();
     }
