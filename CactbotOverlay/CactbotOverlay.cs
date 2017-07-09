@@ -15,9 +15,9 @@ namespace Cactbot {
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
     // Not thread-safe, as OnLogLineRead may happen at any time.
     private List<string> log_lines_ = new List<string>();
-    private System.Timers.Timer update_timer_;
+    private System.Timers.Timer fast_update_timer_;
     private JavaScriptSerializer serializer_;
-    private FFXIVProcess ffxiv_ = new FFXIVProcess();
+    private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
@@ -46,6 +46,7 @@ namespace Cactbot {
 
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
+      ffxiv_ = new FFXIVProcess(this);
       serializer_ = new JavaScriptSerializer();
       fight_tracker_ = new FightTracker(DispatchToJS);
       // TODO: should these be passed to fight tracker?
@@ -54,12 +55,11 @@ namespace Cactbot {
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
-      update_timer_ = new System.Timers.Timer();
-      update_timer_.Interval = 16;
-      update_timer_.Elapsed += (o, e) => {
+      fast_update_timer_ = new System.Timers.Timer();
+      fast_update_timer_.Interval = 16;
+      fast_update_timer_.Elapsed += (o, e) => {
         SendFastRateEvents();
       };
-      update_timer_.Start();
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
@@ -76,7 +76,7 @@ namespace Cactbot {
     }
 
     public override void Dispose() {
-      update_timer_.Stop();
+      fast_update_timer_.Stop();
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
       base.Dispose();
     }
@@ -121,15 +121,15 @@ namespace Cactbot {
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
         return;
 
-      bool game_exists = ffxiv_.FindProcess(this);
+      bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
         notify_state_.game_exists = game_exists;
         OnGameExists(new JSEvents.GameExistsEvent(game_exists));
         if (!game_exists) {
           // Stop the fast updates timer, save some cpu.
-          update_timer_.Stop();
+          fast_update_timer_.Stop();
         } else {
-          update_timer_.Start();
+          fast_update_timer_.Start();
         }
       }
     }

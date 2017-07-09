@@ -9,9 +9,10 @@ namespace Cactbot {
   // Exposes the FFXIV game directly. Call FindProcess() regularly to update
   // memory addresses when FFXIV is run or closed.
   public class FFXIVProcess {
+    private Logger logger_ = null;
     private Process process_ = null;
-    private FFXIVMemory enmity_memory_;
-    private IntPtr rdm_mana_addr_ = IntPtr.Zero;
+    private FFXIVMemory enmity_memory_ = null;
+    private IntPtr rdm_mana_outer_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
     // in July 7, 2017 update. The lines that actually read are:
@@ -37,13 +38,18 @@ namespace Cactbot {
     private static int kRedMageManaDataOuterStructureOffset = 0;
     private static int kRedMageManaDataInnerStructureOffset = 8;
 
+    public FFXIVProcess(Tamagawa.EnmityPlugin.Logger logger) { logger_ = logger;  }
+
     public bool HasProcess() {
       // If FindProcess failed, return false. But also return false if
       // FindProcess succeeded but the process has since exited.
-      return enmity_memory_ != null && !process_.HasExited;
+      return process_ != null && !process_.HasExited;
     }
 
-    public bool FindProcess(Tamagawa.EnmityPlugin.Logger logger) {
+    public bool FindProcess() {
+      if (HasProcess())
+        return true;
+
       // Only support the DirectX 11 binary. The DirectX 9 one has different addresses.
       Process found_process = (from x in Process.GetProcessesByName("ffxiv_dx11")
                                where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv_dx11.exe"
@@ -57,31 +63,34 @@ namespace Cactbot {
           enmity_memory_.Dispose();
           enmity_memory_ = null;
         }
-        rdm_mana_addr_ = IntPtr.Zero;
+        rdm_mana_outer_addr_ = IntPtr.Zero;
 
         process_ = found_process;
-        enmity_memory_ = new FFXIVMemory(logger, process_);
-        if (!enmity_memory_.validateProcess()) {
-          enmity_memory_.Dispose();
-          enmity_memory_ = null;
+        try {
+          enmity_memory_ = new FFXIVMemory(logger_, process_);
+          if (!enmity_memory_.validateProcess()) {
+            process_ = null;
+          }
+        } catch (Exception) {
+          process_ = null;
         }
 
-        if (enmity_memory_ != null) {
-          List<IntPtr> p = SigScan(logger, kRedMageManaSignature, kRedMageManaSignatureOffset, kRedMageManaSignatureRIP);
+        if (process_ != null) {
+          List<IntPtr> p = SigScan(kRedMageManaSignature, kRedMageManaSignatureOffset, kRedMageManaSignatureRIP);
           if (p.Count != 1) {
-            logger.LogError("RedMage signature found " + p.Count + " matches");
+            logger_.LogError("RedMage signature found " + p.Count + " matches");
           } else {
-            IntPtr rdm_outer_ptr = p[0];
-            IntPtr rdm_inner_ptr = ReadIntPtr(IntPtr.Add(rdm_outer_ptr, kRedMageManaDataOuterStructureOffset));
-            if (rdm_inner_ptr == IntPtr.Zero) {
-              logger.LogError("RedMage inner pointer not read");
-            } else {
-              rdm_mana_addr_ = IntPtr.Add(rdm_inner_ptr, kRedMageManaDataInnerStructureOffset);
-            }
+            // Store the outer pointer. Deref it dynamically when reading mana as it can change.
+            rdm_mana_outer_addr_ = IntPtr.Add(p[0], kRedMageManaDataOuterStructureOffset);
           }
         }
       }
-      return enmity_memory_ != null;
+
+      if (process_ == null && enmity_memory_ != null) {
+        enmity_memory_.Dispose();
+        enmity_memory_ = null;
+      }
+      return process_ != null;
     }
 
     public bool IsActive() {
@@ -111,9 +120,17 @@ namespace Cactbot {
     }
 
     public RedMageJobData GetRedMage() {
-      if (enmity_memory_ == null || rdm_mana_addr_ == IntPtr.Zero)
+      if (!HasProcess())
         return null;
-      byte[] mana = Read8(rdm_mana_addr_, 2);
+
+      IntPtr rdm_inner_ptr = ReadIntPtr(rdm_mana_outer_addr_);
+      if (rdm_inner_ptr == IntPtr.Zero) {
+        // The pointer can be null when not logged in.
+        return null;
+      }
+
+      IntPtr rdm_mana_addr = IntPtr.Add(rdm_inner_ptr, kRedMageManaDataInnerStructureOffset);
+      byte[] mana = Read8(rdm_mana_addr, 2);
       if (mana == null)
         return null;
 
@@ -125,11 +142,11 @@ namespace Cactbot {
 
     /// Reads |count| bytes at |addr| in the |process_|. Returns null on error.
     private byte[] Read8(IntPtr addr, int count) {
-      int kBufferLen = 1 * count;
-      var buffer = new byte[kBufferLen];
+      int buffer_len = 1 * count;
+      var buffer = new byte[buffer_len];
       var bytes_read = IntPtr.Zero;
-      bool ok = NativeMethods.ReadProcessMemory(process_.Handle, addr, buffer, new IntPtr(kBufferLen), ref bytes_read);
-      if (!ok || bytes_read.ToInt32() != kBufferLen)
+      bool ok = NativeMethods.ReadProcessMemory(process_.Handle, addr, buffer, new IntPtr(buffer_len), ref bytes_read);
+      if (!ok || bytes_read.ToInt32() != buffer_len)
         return null;
       return buffer;
     }
@@ -178,11 +195,11 @@ namespace Cactbot {
     /// <param name="offset">The offset from the end of the found pattern to read a pointer from the process memory.</param>
     /// <param name="rip_addressing">Uses x64 RIP relative addressing mode</param>
     /// <returns>A list of pointers read relative to the end of strings in the process memory matching the |pattern|.</returns>
-    private List<IntPtr> SigScan(Logger logger, string pattern, int offset, bool rip_addressing) {
+    private List<IntPtr> SigScan(string pattern, int offset, bool rip_addressing) {
       List<IntPtr> matches_list = new List<IntPtr>();
 
       if (pattern == null || pattern.Length % 2 != 0) {
-        logger.LogError("Invalid signature pattern: " + pattern);
+        logger_.LogError("Invalid signature pattern: " + pattern);
         return matches_list;
       }
 
