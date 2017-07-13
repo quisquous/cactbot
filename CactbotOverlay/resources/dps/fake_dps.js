@@ -6,22 +6,39 @@ function generateDpsEvent() {
   }
 
   currentDps.Encounter.DURATION++;
-  var combatants = []
 
   for (var key in currentDps.Combatant) {
     currentDps.Combatant[key].damage =
       parseFloat(currentDps.Combatant[key].damage) +
       Math.floor(Math.random() * 10000);
-    combatants.push(currentDps.Combatant[key]);
+    currentDps.Combatant[key].DURATION++;
   }
 
   return {
-    detail: {
-      Encounter: currentDps.Encounter,
-      Combatant: combatants,
-    },
+    detail: currentDps,
     type: 'onOverlayDataUpdate',
   };
+}
+
+function generateStartPhaseEvent(name) {
+  var dps = generateDpsEvent().detail;
+  var e = {
+    "type": "onFightPhaseStart",
+    "detail": {
+      "name": name,
+      "dps": {
+        "Encounter": dps.Encounter,
+        "Combatant": dps.Combatant,
+      },
+    },
+  };
+  return e;
+}
+
+function generateEndPhaseEvent(name) {
+  var e = generateStartPhaseEvent(name);
+  e.type = 'onFightPhaseEnd';
+  return e;
 }
 
 function resetDps() {
