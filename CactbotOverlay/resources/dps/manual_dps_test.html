@@ -1,0 +1,21 @@
+<html>
+<head>
+<script src="fake_dps.js"></script>
+<script type="text/javascript">
+  function raf() {
+    var e = generateDpsEvent();
+    postDpsMessage(e);
+    window.requestAnimationFrame(raf);
+  }
+  window.requestAnimationFrame(raf);
+
+  function postDpsMessage(message) {
+    var iframe = document.getElementById('dps');
+    iframe.contentWindow.postMessage(message, '*');
+  }
+</script>
+</head>
+<body>
+<iframe id="dps" width="800px" height="500px" src="xephero-cactbot.html">
+</body>
+</html>
