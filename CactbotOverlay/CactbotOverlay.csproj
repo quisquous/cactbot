@@ -113,6 +113,9 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="resources\cactbot_test.html" />
+    <Content Include="resources\dps\dps_phase_tracker.js" />
+    <Content Include="resources\dps\fake_dps.js" />
+    <Content Include="resources\dps\manual_dps_test.html" />
     <Content Include="resources\lib\jquery\jquery-1.11.3.min.js" />
     <Content Include="resources\lib\jquery\jquery-ui.min.css" />
     <Content Include="resources\lib\jquery\jquery-ui.min.js" />

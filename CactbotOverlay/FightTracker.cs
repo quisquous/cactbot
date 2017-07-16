@@ -4,16 +4,77 @@ using System.Collections.Generic;
 
 
 namespace Cactbot {
-  public class FightTracker {
+  interface ZoneFightListener {
+    void OnLogsChanged(JSEvents.LogEvent e);
+  }
+
+  public class GenericDungeonListener : ZoneFightListener {
+    private PhaseController controller_ = null;
+
+    public GenericDungeonListener(PhaseController controller) {
+      this.controller_ = controller;
+    }
+
+    // Listen for zone closing log messages and emit phases so that bosses
+    // are separate from the rest of the dungeon.  DPS in dungeons, true endgame.
+    // e.g.
+    // [19:31:18.000] 00:0839:The Quire will be sealed off in 15 seconds!
+    // [19:31:33.000] 00:0839:The Quire is sealed off!
+    // [19:32:54.000] 00:0839:The Quire is no longer sealed!
+
+    // TODO: Is there enough information in logs to disallow /p triggering this?
+    private string kBeginPhaseLog = "will be sealed off in 15 seconds";
+    private string kEndPhaseLog = "is no longer sealed";
+
+    private string kTestBeginPhaseLog = "cactbot phase start";
+    private string kTestEndPhaseLog = "cactbot phase end";
+
+    // For simplicity, don't bother to track names of zones.  If there's a seal
+    // message, the boss starts.  If there's another, the boss ends.  Et voila.
+    private string current_boss_ = null;
+
+    // Generate phases with numbers (B1, B2, B3, &c)
+    private int boss_idx_ = 0;
+
+    public void OnLogsChanged(JSEvents.LogEvent e) {
+      foreach (var log in e.logs) {
+        if (log.IndexOf(kBeginPhaseLog) >= 0 || log.IndexOf(kTestBeginPhaseLog) >= 0) {
+          if (current_boss_ != null) {
+            // Already fighting a boss? This shouldn't happen.
+            controller_.OnPhaseEnd(current_boss_);
+          }
+          boss_idx_++;
+          current_boss_ = "B" + boss_idx_;
+          controller_.OnPhaseStart(current_boss_);
+        } else if (log.IndexOf(kEndPhaseLog) >= 0 || log.IndexOf(kTestEndPhaseLog) >= 0) {
+          controller_.OnPhaseEnd(current_boss_);
+          current_boss_ = null;
+        }
+      }
+    }
+  }
+
+  public interface PhaseController {
+    void OnPhaseStart(string name);
+    void OnPhaseEnd(string name);
+  };
+
+  public class FightTracker : PhaseController {
     private DateTime last_update_;
     private DispatchToJS update_func_;
     private int last_encounter_seconds_ = 0;
     private const float kUpdateIntervalInSeconds = 1;
+    private ZoneFightListener zone_listener_;
 
     public delegate void DispatchToJS(JSEvent detail);
 
     public FightTracker(DispatchToJS updateFunc) {
       update_func_ = updateFunc;
+      SetZoneListener(new GenericDungeonListener(this));
+    }
+
+    private void SetZoneListener(ZoneFightListener listener) {
+      zone_listener_ = listener;
     }
 
     public void Tick(DateTime time) {
@@ -73,12 +134,27 @@ namespace Cactbot {
       update_func_(new JSEvents.DPSOverlayUpdateEvent(encounter, combatant));
     }
 
+    public void OnPhaseStart(string phase_id) {
+      var encounter = EncounterDPSInfo();
+      var combatant = CombatantDPSInfo();
+      update_func_(new JSEvents.FightPhaseStart(phase_id, encounter, combatant));
+    }
+
+    public void OnPhaseEnd(string phase_id) {
+      var encounter = EncounterDPSInfo();
+      var combatant = CombatantDPSInfo();
+      update_func_(new JSEvents.FightPhaseEnd(phase_id, encounter, combatant));
+    }
+
     public void OnZoneChange(JSEvents.ZoneChangedEvent e) {
-      // TODO
+      // TODO: pick listener based on zone name
+      SetZoneListener(new GenericDungeonListener(this));
     }
 
     public void OnLogsChanged(JSEvents.LogEvent e) {
-      // TODO
+      if (zone_listener_ != null) {
+        zone_listener_.OnLogsChanged(e);
+      }
     }
 
     public Dictionary<string, string> EncounterDPSInfo() {
