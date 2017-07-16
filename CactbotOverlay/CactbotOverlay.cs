@@ -109,7 +109,7 @@ namespace Cactbot {
       sb.Append("document.dispatchEvent(new CustomEvent('");
       sb.Append(e.EventName());
       sb.Append("', { detail: ");
-      sb.Append(e.Serialize(serializer_));
+      e.Serialize(sb, serializer_);
       sb.Append(" }));");
       this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(sb.ToString(), null, 0);
     }

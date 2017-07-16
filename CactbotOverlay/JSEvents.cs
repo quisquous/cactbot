@@ -6,15 +6,15 @@ using System.Web.Script.Serialization;
 
 namespace Cactbot {
   public interface JSEvent {
-    string Serialize(JavaScriptSerializer serializer);
+    void Serialize(StringBuilder builder, JavaScriptSerializer serializer);
     string EventName();
   };
 
   // This class defines all the event |details| structures that go to each event type.
   public class JSEvents {
     public abstract class BaseEvent : JSEvent {
-      public string Serialize(JavaScriptSerializer serializer) {
-        return serializer.Serialize(this);
+      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
+        builder.Append(serializer.Serialize(this));
       }
       public abstract string EventName();
     };
@@ -136,16 +136,73 @@ namespace Cactbot {
       public int distance;
     }
 
-    public class DPSOverlayUpdateEvent : BaseEvent {
-      public DPSOverlayUpdateEvent(Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
-        this.Encounter = encounter;
-        this.Combatant = combatant;
-      }
-      public override string EventName() { return "onOverlayDataUpdate"; }
-
-      // This capitalization doesn't match other events, but is consistent with what dps overlays expect.  :C
+    public struct DPSDetail {
       public Dictionary<string, string> Encounter;
       public List<Dictionary<string, string>> Combatant;
+
+      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
+        // This capitalization doesn't match other events, but is consistent with what dps overlays expect.  :C
+        builder.Append("{");
+        builder.Append("'Encounter':");
+        builder.Append(serializer.Serialize(this.Encounter));
+        // DPS overlays expect a "sorted dictionary" of combatants, with the key of the dictionary being the name.
+        // Sorting here appears to be the order of insertion for dictionaries, but C# dicts don't be have like that.
+        // So do some custom serialization here to make this appear as overlays expect.
+        builder.Append(",'Combatant':(function(x){var d={};for(var i=0;i<x.length; ++i){d[x[i].name]=x[i];}return d;})(");
+        builder.Append(serializer.Serialize(this.Combatant));
+        builder.Append(")}");
+      }
+    }
+
+    public class DPSOverlayUpdateEvent : JSEvent {
+      public DPSOverlayUpdateEvent(Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
+        this.dps.Encounter = encounter;
+        this.dps.Combatant = combatant;
+      }
+      public string EventName() { return "onOverlayDataUpdate"; }
+      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
+        dps.Serialize(builder, serializer);
+      }
+
+      DPSDetail dps;
+    }
+
+    public class FightPhaseStart : JSEvent {
+      public FightPhaseStart(string phase_id, Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
+        this.name = phase_id;
+        this.dps.Encounter = encounter;
+        this.dps.Combatant = combatant;
+      }
+      public string EventName() { return "onFightPhaseStart"; }
+      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
+        builder.Append("{'name':'");
+        builder.Append(this.name);
+        builder.Append("','dps':");
+        dps.Serialize(builder, serializer);
+        builder.Append('}');
+      }
+
+      public string name;
+      public DPSDetail dps;
+    }
+
+    public class FightPhaseEnd : JSEvent {
+      public FightPhaseEnd(string phase_id, Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
+        this.name = phase_id;
+        this.dps.Encounter = encounter;
+        this.dps.Combatant = combatant;
+      }
+      public string EventName() { return "onFightPhaseEnd"; }
+      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
+        builder.Append("{'name':'");
+        builder.Append(this.name);
+        builder.Append("','dps':");
+        dps.Serialize(builder, serializer);
+        builder.Append('}');
+      }
+
+      public string name;
+      public DPSDetail dps;
     }
   }
 }
