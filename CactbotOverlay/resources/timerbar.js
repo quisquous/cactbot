@@ -1,7 +1,7 @@
 "use strict";
 
 class TimerBar extends HTMLElement {
-  static get observedAttributes() { return [ "duration", "onhide", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg" ]; }
+  static get observedAttributes() { return [ "duration", "hideafter", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "style" ]; }
 
   // All visual dimensions are scaled by this.
   set scale(s) { this.setAttribute("scale", s); }
@@ -25,7 +25,7 @@ class TimerBar extends HTMLElement {
 
   // The length of time to count down.
   set duration(s) { this.setAttribute("duration", s); }
-  get duration() { return this.getAttribute("duration"); }
+  get duration() { return this._duration; }
   
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
@@ -42,10 +42,6 @@ class TimerBar extends HTMLElement {
   set hideafter(h) { this.setAttribute("hideafter", h); }
   get hideafter() { return this.getAttribute("hideafter"); }
 
-  // When the bar hides after completing, this string is evaluated.
-  set onhide(c) { this.setAttribute("onhide", c); }
-  get onhide() { return this.getAttribute("onhide"); }
-  
   // Chooses what should be shown in the text field in each area of
   // the bar. Can be one of:
   // empty - nothing is shown.
@@ -148,7 +144,6 @@ class TimerBar extends HTMLElement {
     this._center_text = "";
     this._right_text = "";
     this._hideafter = -1;
-    this._onhide = "";
 
     if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
     if (this.width != null) { this._width = Math.max(parseInt(this.width), 1); }
@@ -162,7 +157,6 @@ class TimerBar extends HTMLElement {
     if (this.centertext != null) { this._center_text = this.centertext; }
     if (this.righttext != null) { this._right_text = this.righttext; }
     if (this.hideafter != null && this.hideafter != "") { this._hideafter = Math.max(parseFloat(this.hideafter), 0); }
-    if (typeof(this.onhide) != null) { this._onhide = this.onhide; }
     
     this._connected = true;
     this.layout();
@@ -190,6 +184,9 @@ class TimerBar extends HTMLElement {
     } else if (name == "fg") {
       this._fg = newValue;
       this.layout();
+    } else if (name == "style") {
+      this._style_fill = this.style == "fill";
+      this.layout();
     } else if (name == "lefttext") {
       var update = newValue != this._left_text && this._connected;
       this._left_text = newValue;
@@ -205,8 +202,12 @@ class TimerBar extends HTMLElement {
       this._right_text = newValue;
       if (update)
         this.updateText();
-    } else if (name == "onhide") {
-      this._onhide = newValue;
+    } else if (name == "hideafter") {
+      this._hideafter = Math.max(parseFloat(this.hideafter), 0);
+      if (this._value == 0 && this._hideafter >= 0)
+        this.hide();
+      else if (this._hideafter < 0)
+        this.show();
     }
 
     if (this._connected)
@@ -313,7 +314,7 @@ class TimerBar extends HTMLElement {
   reset() {
     if (!this._connected) return;
 
-    this.rootElement.style.display = "block";
+    this.show();
     clearTimeout(this._hide_timer);
     this._hide_timer = null;
     clearTimeout(this._timer);
@@ -325,17 +326,14 @@ class TimerBar extends HTMLElement {
   
   advance() {
     if (this._value <= 0) {
+      // Sets the attribute to 0 so users can see the counter is done, and
+      // if they set the same duration again it will count.
+      this.duration = 0;
+
       this._value = 0;
       var that = this;
       if (this._hideafter >= 0) {
-        this._hide_timer = setTimeout(function() {
-          that.rootElement.style.display = "none";
-          try {
-            eval(that._onhide);
-          } catch (e) {
-            console.log("error evaluating onhide: " + that._onhide);
-          }
-        }, this._hideafter);
+        this._hide_timer = setTimeout(this.hide(), this._hideafter);
       }
     } else {
       var that = this;
@@ -345,6 +343,14 @@ class TimerBar extends HTMLElement {
       }, this.kAnimateMS);
     }
     this.draw();
+  }
+
+  show() {
+    this.rootElement.style.display = "block";
+  }
+
+  hide() {
+    this.rootElement.style.display = "none";
   }
 }
 

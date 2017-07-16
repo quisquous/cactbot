@@ -224,6 +224,10 @@ class TimerBox extends HTMLElement {
   
   advance() {
     if (this._value <= 0) {
+      // Sets the attribute to 0 so users can see the counter is done, and
+      // if they set the same duration again it will count.
+      this.duration = 0;
+
       this._value = 0;
     } else {
       var that = this;
