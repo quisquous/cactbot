@@ -1,10 +1,11 @@
 "use strict";
 
-var kMe = null;
 var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
   '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
   '|((Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet))' +
   '|Limit Break';
+
+var g_me = null;
 
 class Bars {
   constructor() {
@@ -389,8 +390,8 @@ var g_data = new TrackingData();
 var g_bars = new Bars();
 
 document.addEventListener("onPlayerChangedEvent", function (e) {
-  if (kMe == null)
-    kMe = e.detail.name;
+  if (g_me == null)
+    g_me = e.detail.name;
   
   var update_job = false;
   var update_hp = false;
@@ -472,7 +473,7 @@ document.addEventListener("onInCombatChangedEvent", function (e) {
 });
 
 document.addEventListener("onLogEvent", function(e) {
-  if (kMe == null)
+  if (g_me == null)
     return;
   
   for (var i = 0; i < e.detail.logs.length; i++) {
@@ -494,11 +495,11 @@ document.addEventListener("onLogEvent", function(e) {
       // var kReCombo3 = 'You use Enchanted Redoublement\.';
       // var kReEndCombo1 = 'You use (Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)\.';
       // var kReEndCombo2 = 'You (cast|begin casting) ';
-      var kReCombo1 = ':' + kMe + ':....:Enchanted Riposte:';
-      var kReCombo2 = ':' + kMe + ':....:Enchanted Zwerchhau:';
-      var kReCombo3 = ':' + kMe + ':....:Enchanted Redoublement:';
+      var kReCombo1 = ':' + g_me + ':....:Enchanted Riposte:';
+      var kReCombo2 = ':' + g_me + ':....:Enchanted Zwerchhau:';
+      var kReCombo3 = ':' + g_me + ':....:Enchanted Redoublement:';
       // Spending any GCD ends the combo, be they spells or abilities.
-      var kReEndCombo = ':' + kMe + '( starts using |:....:)(' + kRdmGcdAbilties + ')( |:)';
+      var kReEndCombo = ':' + g_me + '( starts using |:....:)(' + kRdmGcdAbilties + ')( |:)';
             
       if (log.search(kReCombo1) >= 0 && g_data.combo == 0) {
         SetComboWithTimeout(1, 11600);  // It's something like 11.7 to 11.75s or so.
