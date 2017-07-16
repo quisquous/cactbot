@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 using Tamagawa.EnmityPlugin;
+using System.Web.Script.Serialization;
 
 namespace Cactbot {
+  public interface JSEvent {
+    string Serialize(JavaScriptSerializer serializer);
+    string EventName();
+  };
 
   // This class defines all the event |details| structures that go to each event type.
   public class JSEvents {
+    public abstract class BaseEvent : JSEvent {
+      public string Serialize(JavaScriptSerializer serializer) {
+        return serializer.Serialize(this);
+      }
+      public abstract string EventName();
+    };
+
     public struct Point3F {
       public Point3F(float x, float y, float z) { this.x = x; this.y = y; this.z = z; }
 
@@ -15,37 +27,46 @@ namespace Cactbot {
       public float z;
     }
 
-    public class GameExistsEvent {
+    public class GameExistsEvent : BaseEvent {
       public GameExistsEvent(bool exists) { this.exists = exists; }
+      public override string EventName() { return "onGameExistsEvent"; }
 
       public bool exists;
     }
 
-    public class GameActiveChangedEvent {
+    public class GameActiveChangedEvent : BaseEvent {
       public GameActiveChangedEvent(bool active) { this.active = active; }
+      public override string EventName() { return "onGameActiveChangedEvent"; }
 
       public bool active;
     }
 
-    public class LogEvent {
+    public class LogEvent : BaseEvent {
       public LogEvent(List<String> logs) { this.logs = logs; }
+      public override string EventName() { return "onLogEvent"; }
 
       public List<string> logs;
     }
 
-    public class InCombatChangedEvent {
+    public class InCombatChangedEvent : BaseEvent {
       public InCombatChangedEvent(bool in_combat) { this.inCombat = in_combat; }
+      public override string EventName() { return "onInCombatChangedEvent"; }
 
       public bool inCombat;
     }
 
-    public class ZoneChangedEvent {
+    public class ZoneChangedEvent : BaseEvent {
       public ZoneChangedEvent(string name) { this.zoneName = name; }
+      public override string EventName() { return "onZoneChangedEvent"; }
 
       public string zoneName;
     }
 
-    public class PlayerChangedEvent {
+    public class PlayerDiedEvent : BaseEvent {
+      public override string EventName() { return "onPlayerDied"; }
+    }
+
+    public class PlayerChangedEvent : BaseEvent {
       public PlayerChangedEvent(Combatant c) {
         job = ((JobEnum)c.Job).ToString();
         level = c.Level;
@@ -59,6 +80,7 @@ namespace Cactbot {
         pos = new Point3F(c.PosX, c.PosY, c.PosZ);
         jobDetail = null;
       }
+      public override string EventName() { return "onPlayerChangedEvent"; }
 
       public string job;
       public int level;
@@ -83,7 +105,7 @@ namespace Cactbot {
       }
     }
 
-    public class TargetChangedEvent {
+    public class TargetChangedEvent : BaseEvent {
       public TargetChangedEvent(Combatant c) {
         id = c.ID;
         level = c.Level;
@@ -97,6 +119,7 @@ namespace Cactbot {
         pos = new Point3F(c.PosX, c.PosY, c.PosZ);
         distance = c.EffectiveDistance;
       }
+      public override string EventName() { return "onTargetChangedEvent"; }
 
       public uint id;
       public int level;
@@ -113,11 +136,12 @@ namespace Cactbot {
       public int distance;
     }
 
-    public class DPSOverlayUpdateEvent {
+    public class DPSOverlayUpdateEvent : BaseEvent {
       public DPSOverlayUpdateEvent(Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
         this.Encounter = encounter;
         this.Combatant = combatant;
       }
+      public override string EventName() { return "onOverlayDataUpdate"; }
 
       // This capitalization doesn't match other events, but is consistent with what dps overlays expect.  :C
       public Dictionary<string, string> Encounter;

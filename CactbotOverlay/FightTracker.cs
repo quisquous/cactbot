@@ -10,7 +10,7 @@ namespace Cactbot {
     private int last_encounter_seconds_ = 0;
     private const float kUpdateIntervalInSeconds = 1;
 
-    public delegate void DispatchToJS(string event_name, object detail);
+    public delegate void DispatchToJS(JSEvent detail);
 
     public FightTracker(DispatchToJS updateFunc) {
       update_func_ = updateFunc;
@@ -70,9 +70,7 @@ namespace Cactbot {
       last_update_ = time;
       last_encounter_seconds_ = encounter_seconds;
 
-      // TODO: if encounter seconds goes back in time, clear phases, as it's a new fight.
-      // This should maybe get done in JS instead of sending a clear phases event?
-      update_func_("onOverlayDataUpdate", new JSEvents.DPSOverlayUpdateEvent(encounter, combatant));
+      update_func_(new JSEvents.DPSOverlayUpdateEvent(encounter, combatant));
     }
 
     public void OnZoneChange(JSEvents.ZoneChangedEvent e) {

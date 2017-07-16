@@ -41,7 +41,7 @@ namespace Cactbot {
     public delegate void InCombatChangedHandler(JSEvents.InCombatChangedEvent e);
     public event InCombatChangedHandler OnInCombatChanged;
 
-    public delegate void PlayerDiedHandler();
+    public delegate void PlayerDiedHandler(JSEvents.PlayerDiedEvent e);
     public event PlayerDiedHandler OnPlayerDied;
 
     public CactbotOverlay(CactbotOverlayConfig config)
@@ -65,14 +65,14 @@ namespace Cactbot {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
 
       // Outgoing JS events.
-      OnGameExists += (e) => DispatchToJS("onGameExistsEvent", e);
-      OnGameActiveChanged += (e) => DispatchToJS("onGameActiveChangedEvent", e);
-      OnZoneChanged += (e) => DispatchToJS("onZoneChangedEvent", e);
-      OnLogsChanged += (e) => DispatchToJS("onLogEvent", e);
-      OnPlayerChanged += (e) => DispatchToJS("onPlayerChangedEvent", e);
-      OnTargetChanged += (e) => DispatchToJS("onTargetChangedEvent", e);
-      OnInCombatChanged += (e) => DispatchToJS("onInCombatChangedEvent", e);
-      OnPlayerDied += () => DispatchToJS("onPlayerDied", null);
+      OnGameExists += (e) => DispatchToJS(e);
+      OnGameActiveChanged += (e) => DispatchToJS(e);
+      OnZoneChanged += (e) => DispatchToJS(e);
+      OnLogsChanged += (e) => DispatchToJS(e);
+      OnPlayerChanged += (e) => DispatchToJS(e);
+      OnTargetChanged += (e) => DispatchToJS(e);
+      OnInCombatChanged += (e) => DispatchToJS(e);
+      OnPlayerDied += (e) => DispatchToJS(e);
     }
 
     public override void Dispose() {
@@ -104,12 +104,12 @@ namespace Cactbot {
 
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
-    public void DispatchToJS(string event_name, object detail) {
+    public void DispatchToJS(JSEvent e) {
       StringBuilder sb = new StringBuilder(100);
       sb.Append("document.dispatchEvent(new CustomEvent('");
-      sb.Append(event_name);
+      sb.Append(e.EventName());
       sb.Append("', { detail: ");
-      sb.Append(serializer_.Serialize(detail));
+      sb.Append(e.Serialize(serializer_));
       sb.Append(" }));");
       this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(sb.ToString(), null, 0);
     }
@@ -173,7 +173,7 @@ namespace Cactbot {
       if (dead != notify_state_.dead) {
         notify_state_.dead = dead;
         if (dead)
-          OnPlayerDied();
+          OnPlayerDied(new JSEvents.PlayerDiedEvent());
       }
 
       // onPlayerChangedEvent: Fires when current player data changes.
