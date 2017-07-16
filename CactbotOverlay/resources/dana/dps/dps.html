@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="../../resize_handle.css">
+  <script src="../../resize_handle.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="dps.css">
+  <script src="../lib/react.min.js"></script>
+  <script src="../lib/lodash.min.js"></script>
+  <script src="dps.js"></script>
+  <script>
+    function onOverlayDataUpdate(e) {
+      var start = new Date().getTime();
+      var details = e.detail;
+
+      React.render(
+        React.createElement(DamageMeter, {
+          parseData: e.detail
+        }),
+        document.getElementById('container')
+      );
+      //console.log('rendered in ' + (+new Date() - start) + 'ms');
+    }
+    document.addEventListener('onOverlayDataUpdate', onOverlayDataUpdate);
+    window.addEventListener('message', function (e) {
+      if (e.data.type === 'onOverlayDataUpdate') {
+        onOverlayDataUpdate(e.data);
+      }
+    });
+  </script>
+</head>
+<body>
+  <div id="container">
+    <h3>Awaiting data.</h3>
+  </div>
+</body>
+</html>

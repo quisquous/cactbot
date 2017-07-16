@@ -1,0 +1,51 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="../../resize_handle.css">
+  <script src="../../resize_handle.js"></script>
+
+  <script src="../../resourcebar.js"></script>
+  <script src="../../timerbar.js"></script>
+
+  <!-- Include boss mod stuff in here if it doesn't need visuals elsewhere. -->
+  <script src="../bossmod/bossmod.js"></script>
+
+  <!--<link rel="stylesheet" type="text/css" href="bars.css">-->
+  <script src="bars.js"></script>
+  
+  <style>
+    body, html {
+      margin: 0;
+    }
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+    .text {
+      font-family: arial;
+      font-weight: bold;
+      color: white;
+      text-shadow: -1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black;
+      will-change: content;
+    }
+  </style>
+</head>
+<body>
+<div id="container" class="hide"></div>
+</body>
+
+<script>
+  function hide(h) {
+    var hideWhenInactive = false;
+    if (h && hideWhenInactive)
+      document.getElementById("container").style.display = "none";
+    else
+      document.getElementById("container").style.display = "block";
+  }
+  document.addEventListener("onGameActiveChangedEvent", function(e) {
+      hide(!e.detail.active);
+  });
+  hide(true);
+</script>
+</html>
