@@ -502,13 +502,13 @@ document.addEventListener("onLogEvent", function(e) {
       var kReEndCombo = ':' + g_me + '( starts using |:....:)(' + kRdmGcdAbilties + ')( |:)';
             
       if (log.search(kReCombo1) >= 0 && g_data.combo == 0) {
-        SetComboWithTimeout(1, 11600);  // It's something like 11.7 to 11.75s or so.
+        SetComboWithTimeout(1, 12000);
         g_bars.OnComboChange(g_data.job, g_data.combo);
       } else if (log.search(kReCombo2) >= 0 && g_data.combo == 1) {
-        SetComboWithTimeout(2, 11600);  // It's something like 11.7 to 11.75s or so.
+        SetComboWithTimeout(2, 12000);
         g_bars.OnComboChange(g_data.job, g_data.combo);
       } else if (log.search(kReCombo3) >= 0 && g_data.combo == 2) {
-        SetComboWithTimeout(3, 11600);  // It's something like 11.7 to 11.75s or so.
+        SetComboWithTimeout(3, 12000);
         g_bars.OnComboChange(g_data.job, g_data.combo);
       } else if (log.search(kReEndCombo) >= 0) {
         if (g_data.combo > 0) {
