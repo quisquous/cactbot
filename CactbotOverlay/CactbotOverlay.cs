@@ -19,6 +19,7 @@ namespace Cactbot {
     private JavaScriptSerializer serializer_;
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
+    private WipeDetector wipe_detector_;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
     public event GameExistsHandler OnGameExists;
@@ -44,6 +45,13 @@ namespace Cactbot {
     public delegate void PlayerDiedHandler(JSEvents.PlayerDiedEvent e);
     public event PlayerDiedHandler OnPlayerDied;
 
+    public delegate void PartyWipeHandler(JSEvents.PartyWipeEvent e);
+    public event PartyWipeHandler OnPartyWipe;
+    public void Wipe() {
+      Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
+      OnPartyWipe(new JSEvents.PartyWipeEvent());
+    }
+
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
       ffxiv_ = new FFXIVProcess(this);
@@ -52,6 +60,7 @@ namespace Cactbot {
       // TODO: should these be passed to fight tracker?
       OnZoneChanged += fight_tracker_.OnZoneChange;
       OnLogsChanged += fight_tracker_.OnLogsChanged;
+      wipe_detector_ = new WipeDetector(this);
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
@@ -73,6 +82,7 @@ namespace Cactbot {
       OnTargetChanged += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
+      OnPartyWipe += (e) => DispatchToJS(e);
     }
 
     public override void Dispose() {

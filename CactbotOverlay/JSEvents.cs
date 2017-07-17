@@ -66,6 +66,10 @@ namespace Cactbot {
       public override string EventName() { return "onPlayerDied"; }
     }
 
+    public class PartyWipeEvent : BaseEvent {
+      public override string EventName() { return "onPartyWipe"; }
+    }
+
     public class PlayerChangedEvent : BaseEvent {
       public PlayerChangedEvent(Combatant c) {
         job = ((JobEnum)c.Job).ToString();
