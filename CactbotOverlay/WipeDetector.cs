@@ -15,6 +15,12 @@ namespace Cactbot {
     private string player_name_ = "";
     private DateTime? last_revived_time_;
 
+    private void WipeIt() {
+      this.player_dead_ = false;
+      this.last_revived_time_ = null;
+      client_.Wipe();
+    }
+
     public void OnPlayerChanged(JSEvents.PlayerChangedEvent player) {
       player_name_ = player.name;
 
@@ -34,7 +40,7 @@ namespace Cactbot {
       if (last_revived_time_.HasValue) {
         if ((DateTime.Now - last_revived_time_.GetValueOrDefault()).TotalSeconds > 1) {
           client_.LogInfo("Wipe: actual wipe");
-          client_.Wipe();
+          WipeIt();
         }
       }
     }
@@ -52,7 +58,7 @@ namespace Cactbot {
         } else if (log.IndexOf("cactbot wipe") != -1) {
           // FIXME: only allow echos to do this vs jerks saying this in chat.
           client_.LogInfo("Wipe: test wipe");
-          client_.Wipe();
+          WipeIt();
         } else {
           // TODO: Remove debugging info once it's clear whether pulse of life happens before or after
           // player hp becomes non-zero.  If it's before, then a timer will need to be added (similar
