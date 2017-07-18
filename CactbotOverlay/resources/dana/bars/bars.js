@@ -51,21 +51,21 @@ class Bars {
     var mpY = hpY + 8;
     var hpW = 202;  // 2px per percent + 1px border on each side.
     
-    var battleCountdownContainer = document.createElement("div");
-    container.appendChild(battleCountdownContainer);
-    this.o.battleCountdown = document.createElement("timer-bar");
-    battleCountdownContainer.appendChild(this.o.battleCountdown);
+    var pullCountdownContainer = document.createElement("div");
+    container.appendChild(pullCountdownContainer);
+    this.o.pullCountdown = document.createElement("timer-bar");
+    pullCountdownContainer.appendChild(this.o.pullCountdown);
 
-    battleCountdownContainer.style.position = "absolute";
-    battleCountdownContainer.style.top = hpY - 20;
-    battleCountdownContainer.style.left = hpX;
-    this.o.battleCountdown.width = hpW;
-    this.o.battleCountdown.height = 18;
-    this.o.battleCountdown.lefttext = "Pull";
-    this.o.battleCountdown.righttext = "remain";
-    this.o.battleCountdown.style = "empty";
-    this.o.battleCountdown.hideafter = 0;    
-    this.o.battleCountdown.fg = "rgb(255, 160, 160)";
+    pullCountdownContainer.style.position = "absolute";
+    pullCountdownContainer.style.top = hpY - 20;
+    pullCountdownContainer.style.left = hpX;
+    this.o.pullCountdown.width = hpW;
+    this.o.pullCountdown.height = 18;
+    this.o.pullCountdown.lefttext = "Pull";
+    this.o.pullCountdown.righttext = "remain";
+    this.o.pullCountdown.style = "empty";
+    this.o.pullCountdown.hideafter = 0;
+    this.o.pullCountdown.fg = "rgb(255, 160, 160)";
     
     if (job == "RDM" || job == "BLM" || job == "WHM" ||
         job == "SCH" || job == "SMN" || job == "ACN" ||
@@ -349,7 +349,7 @@ class Bars {
   
   OnInCombatChanged(inCombat) {
     if (inCombat)
-      this.OnBattleCountdown(0);
+      this.OnPullCountdown(0);
 
     var container = document.getElementById("container");
     if (inCombat)
@@ -358,13 +358,19 @@ class Bars {
       container.style.opacity = 0.5;
   }
   
-  OnBattleCountdown(seconds) {
-    if (this.o.battleCountdown == null) return;
+  OnPullCountdown(seconds) {
+    if (this.o.pullCountdown == null) return;
 
     var in_countdown = seconds > 0;
-    var showing_countdown = this.o.battleCountdown.duration > 0;
-    if (in_countdown != showing_countdown)
-      this.o.battleCountdown.duration = seconds;
+    var showing_countdown = this.o.pullCountdown.duration > 0;
+    if (in_countdown != showing_countdown) {
+      this.o.pullCountdown.duration = seconds;
+      if (in_countdown) {
+        var audio = new Audio('../../sounds/PowerAuras/sonar.ogg');
+        audio.volume = 0.3;
+        audio.play();
+      }
+    }
   }
 }
 
@@ -481,9 +487,9 @@ document.addEventListener("onLogEvent", function(e) {
     
     var r = log.match(/:Battle commencing in ([0-9]+) seconds!/);
     if (r != null)
-      g_bars.OnBattleCountdown(parseInt(r[1]));
+      g_bars.OnPullCountdown(parseInt(r[1]));
     if (log.search(/Countdown canceled by /) >= 0)
-      g_bars.OnBattleCountdown(0);
+      g_bars.OnPullCountdown(0);
     
     if (g_data.job == "RDM") {
       // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100

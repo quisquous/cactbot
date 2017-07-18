@@ -1,7 +1,7 @@
 "use strict";
 
 var kHideWellFedAboveSeconds = 15 * 60;  // N mins warning.
-var kWellFedZoneRegex = '(The Lavender Beds|Unknown Zone|Deltascape.*Savage.*)';
+var kWellFedZoneRegex = /^(Unknown Zone|Deltascape.*Savage.*)$/;
 
 var g_me = null;
 var g_in_combat = false;
@@ -47,7 +47,7 @@ document.addEventListener("onZoneChangedEvent", function (e) {
 function CanShowWellFedWarning() {
   if (g_in_combat)
     return false;
-  if (g_zone.search('^' + kWellFedZoneRegex + '$') < 0)
+  if (g_zone.search(kWellFedZoneRegex) < 0)
     return false;
   return true;
 }
