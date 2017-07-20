@@ -19,12 +19,12 @@ namespace Cactbot {
       public abstract string EventName();
     };
 
-    public struct Point3F {
+    public class Point3F {
       public Point3F(float x, float y, float z) { this.x = x; this.y = y; this.z = z; }
 
-      public float x;
-      public float y;
-      public float z;
+      public float x = 0;
+      public float y = 0;
+      public float z = 0;
     }
 
     public class GameExistsEvent : BaseEvent {
@@ -111,33 +111,35 @@ namespace Cactbot {
 
     public class TargetChangedEvent : BaseEvent {
       public TargetChangedEvent(Combatant c) {
-        id = c.ID;
-        level = c.Level;
-        name = c.Name;
-        currentHP = c.CurrentHP;
-        maxHP = c.MaxHP;
-        currentMP = c.CurrentMP;
-        maxMP = c.MaxMP;
-        currentTP = c.CurrentTP;
-        maxTP = c.MaxTP;
-        pos = new Point3F(c.PosX, c.PosY, c.PosZ);
-        distance = c.EffectiveDistance;
+        if (c != null) {
+          id = c.ID;
+          level = c.Level;
+          name = c.Name;
+          currentHP = c.CurrentHP;
+          maxHP = c.MaxHP;
+          currentMP = c.CurrentMP;
+          maxMP = c.MaxMP;
+          currentTP = c.CurrentTP;
+          maxTP = c.MaxTP;
+          pos = new Point3F(c.PosX, c.PosY, c.PosZ);
+          distance = c.EffectiveDistance;
+        }
       }
       public override string EventName() { return "onTargetChangedEvent"; }
 
-      public uint id;
-      public int level;
-      public string name;
+      public uint id = 0;
+      public int level = 0;
+      public string name = null;
 
-      public int currentHP;
-      public int maxHP;
-      public int currentMP;
-      public int maxMP;
-      public int currentTP;
-      public int maxTP;
+      public int currentHP = 0;
+      public int maxHP = 0;
+      public int currentMP = 0;
+      public int maxMP = 0;
+      public int currentTP = 0;
+      public int maxTP = 0;
 
       public Point3F pos;
-      public int distance;
+      public int distance = 0;
     }
 
     public struct DPSDetail {

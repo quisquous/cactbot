@@ -457,7 +457,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
 
 document.addEventListener("onTargetChangedEvent", function (e) {
   var update = false;
-  if (e.detail == null) {
+  if (e.detail.name == null) {
     if (g_data.distance != -1) {
       g_data.distance = -1;
       update = true;

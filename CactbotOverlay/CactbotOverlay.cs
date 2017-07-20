@@ -213,7 +213,7 @@ namespace Cactbot {
         if (target != null)
           OnTargetChanged(new JSEvents.TargetChangedEvent(target));
         else
-          OnTargetChanged(null);
+          OnTargetChanged(new JSEvents.TargetChangedEvent(null));
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
