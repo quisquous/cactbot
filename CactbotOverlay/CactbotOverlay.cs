@@ -180,7 +180,7 @@ namespace Cactbot {
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
-      bool dead = player.CurrentHP == 0;
+      bool dead = player != null && player.CurrentHP == 0;
       if (dead != notify_state_.dead) {
         notify_state_.dead = dead;
         if (dead)
