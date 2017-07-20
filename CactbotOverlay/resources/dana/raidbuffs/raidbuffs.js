@@ -1,18 +1,26 @@
 "use strict";
 
 var kHideWellFedAboveSeconds = 15 * 60;  // N mins warning.
-var kWellFedZoneRegex = /^(Unknown Zone|Deltascape.*Savage.*)$/;
+var kWellFedZoneRegex = /^(Unknown Zone \([0-9A-F]+\)|Deltascape.*Savage.*)$/;
 
 var g_me = null;
 var g_in_combat = false;
 var g_zone = '';
+var g_hp = 0;
 
+var g_fed_regex = null;
 var g_fed_expires_time_ms = null;
 var g_fed_timer = null;
 
 document.addEventListener("onPlayerChangedEvent", function (e) {
-  if (g_me == null)
+  if (g_me == null) {
     g_me = e.detail.name;
+    g_fed_regex = new RegExp(':' + g_me + ' gains the effect of Well Fed from ' + g_me + ' for ([0-9.]+) Seconds\.');
+  }
+  if (g_hp != e.detail.currentHP) {
+    g_hp = e.detail.currentHP;
+    Draw();
+  }
 });
 
 document.addEventListener("onLogEvent", function(e) {
@@ -23,7 +31,7 @@ document.addEventListener("onLogEvent", function(e) {
   for (var i = 0; i < logs.length; i++) {
     var line = logs[i];
     
-    var r = line.match(':' + g_me + ' gains the effect of Well Fed from ' + g_me + ' for ([0-9.]+) Seconds\.');
+    var r = line.match(g_fed_regex);
     if (r != null) {
       var seconds = parseFloat(r[1]);
       var now = Date.now();  // This is in ms.
@@ -43,7 +51,6 @@ document.addEventListener("onZoneChangedEvent", function (e) {
   Draw();
 });
 
-// Returns the number of ms until it should be shown. If <= 0, show it.
 function CanShowWellFedWarning() {
   if (g_in_combat)
     return false;
