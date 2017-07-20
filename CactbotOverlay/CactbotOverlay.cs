@@ -176,38 +176,40 @@ namespace Cactbot {
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
 
+      // The |player| can be null, such as during a zone change.
       Combatant player = ffxiv_.GetSelfCombatant();
+      // The |target| can be null when no target is selected.
+      Combatant target = ffxiv_.GetTargetCombatant();
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
-      bool dead = player != null && player.CurrentHP == 0;
-      if (dead != notify_state_.dead) {
-        notify_state_.dead = dead;
-        if (dead)
-          OnPlayerDied(new JSEvents.PlayerDiedEvent());
+      if (player != null) {
+        bool dead = player.CurrentHP == 0;
+        if (dead != notify_state_.dead) {
+          notify_state_.dead = dead;
+          if (dead)
+            OnPlayerDied(new JSEvents.PlayerDiedEvent());
+        }
       }
 
       // onPlayerChangedEvent: Fires when current player data changes.
       // TODO: Is this always true cuz it's only doing pointer comparison?
-      if (player != notify_state_.player) {
+      if (player != null && player != notify_state_.player) {
         notify_state_.player = player;
-        if (player != null) {
-          if ((JobEnum)player.Job == JobEnum.RDM) {
-            var rdm = ffxiv_.GetRedMage();
-            if (rdm != null) {
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(rdm.white, rdm.black);
-              OnPlayerChanged(e);
-            }
-          } else {
-            // No job-specific data.
-            OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
+        if ((JobEnum)player.Job == JobEnum.RDM) {
+          var rdm = ffxiv_.GetRedMage();
+          if (rdm != null) {
+            var e = new JSEvents.PlayerChangedEvent(player);
+            e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(rdm.white, rdm.black);
+            OnPlayerChanged(e);
           }
+        } else {
+          // No job-specific data.
+          OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
         }
       }
 
       // onTargetChangedEvent: Fires when current target or their state changes.
-      Combatant target = ffxiv_.GetTargetCombatant();
       // TODO: Is this always true cuz it's only doing pointer comparison?
       if (target != notify_state_.target) {
         notify_state_.target = target;
