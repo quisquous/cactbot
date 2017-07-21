@@ -20,6 +20,7 @@ namespace Cactbot {
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
+    private System.Threading.SynchronizationContext main_thread_sync_;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
     public event GameExistsHandler OnGameExists;
@@ -54,6 +55,7 @@ namespace Cactbot {
 
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
+      main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
       ffxiv_ = new FFXIVProcess(this);
       serializer_ = new JavaScriptSerializer();
       fight_tracker_ = new FightTracker(DispatchToJS);
@@ -228,10 +230,34 @@ namespace Cactbot {
     }
 
     // Tamagawa.EnmityPlugin.Logger implementation.
-    public void LogDebug(string format, params object[] args) { this.Log(LogLevel.Debug, format, args); }
-    public void LogError(string format, params object[] args) { this.Log(LogLevel.Error, format, args); }
-    public void LogWarning(string format, params object[] args) { this.Log(LogLevel.Warning, format, args); }
-    public void LogInfo(string format, params object[] args) { this.Log(LogLevel.Info, format, args); }
+    public void LogDebug(string format, params object[] args) {
+      // The Log() method is not threadsafe. Since this is called from Timer threads,
+      // it must post the task to the plugin main thread.
+      main_thread_sync_.Post(
+        (state) => { this.Log(LogLevel.Debug, format, args); },
+        null);
+    }
+    public void LogError(string format, params object[] args) {
+      // The Log() method is not threadsafe. Since this is called from Timer threads,
+      // it must post the task to the plugin main thread.
+      main_thread_sync_.Post(
+        (state) => { this.Log(LogLevel.Error, format, args); },
+        null);
+    }
+    public void LogWarning(string format, params object[] args) {
+      // The Log() method is not threadsafe. Since this is called from Timer threads,
+      // it must post the task to the plugin main thread.
+      main_thread_sync_.Post(
+        (state) => { this.Log(LogLevel.Warning, format, args); },
+        null);
+    }
+    public void LogInfo(string format, params object[] args) {
+      // The Log() method is not threadsafe. Since this is called from Timer threads,
+      // it must post the task to the plugin main thread.
+      main_thread_sync_.Post(
+        (state) => { this.Log(LogLevel.Info, format, args); },
+        null);
+    }
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {
