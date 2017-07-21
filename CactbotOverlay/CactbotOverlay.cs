@@ -65,7 +65,6 @@ namespace Cactbot {
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
-      fast_update_timer_.SynchronizingObject = Advanced_Combat_Tracker.ActGlobals.oFormActMain;
       fast_update_timer_.Interval = 16;
       fast_update_timer_.Elapsed += (o, e) => {
         SendFastRateEvents();
