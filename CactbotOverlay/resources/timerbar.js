@@ -25,7 +25,7 @@ class TimerBar extends HTMLElement {
 
   // The length of time to count down.
   set duration(s) { this.setAttribute("duration", s); }
-  get duration() { return this._duration; }
+  get duration() { return this.getAttribute("duration"); }
   
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
@@ -331,7 +331,6 @@ class TimerBar extends HTMLElement {
       this.duration = 0;
 
       this._value = 0;
-      var that = this;
       if (this._hideafter >= 0) {
         this._hide_timer = setTimeout(this.hide(), this._hideafter);
       }
