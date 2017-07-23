@@ -13,12 +13,13 @@ using Tamagawa.EnmityPlugin;
 namespace Cactbot {
 
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
-    System.Threading.SemaphoreSlim log_lines_semaphore_ = new System.Threading.SemaphoreSlim(1);
+    private System.Threading.SemaphoreSlim log_lines_semaphore_ = new System.Threading.SemaphoreSlim(1);
     // Not thread-safe, as OnLogLineRead may happen at any time. Use |log_lines_semaphore_| to access it.
     private List<string> log_lines_ = new List<string>(40);
     // Used on the fast timer to avoid allocing List every time.
     private List<string> last_log_lines_ = new List<string>(40);
     private System.Timers.Timer fast_update_timer_;
+    private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
     private JavaScriptSerializer serializer_;
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
@@ -122,13 +123,13 @@ namespace Cactbot {
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
     public void DispatchToJS(JSEvent e) {
-      StringBuilder sb = new StringBuilder(1000);
-      sb.Append("document.dispatchEvent(new CustomEvent('");
-      sb.Append(e.EventName());
-      sb.Append("', { detail: ");
-      e.Serialize(sb, serializer_);
-      sb.Append(" }));");
-      this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(sb.ToString(), null, 0);
+      dispatch_string_builder_.Append("document.dispatchEvent(new CustomEvent('");
+      dispatch_string_builder_.Append(e.EventName());
+      dispatch_string_builder_.Append("', { detail: ");
+      e.Serialize(dispatch_string_builder_, serializer_);
+      dispatch_string_builder_.Append(" }));");
+      this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(dispatch_string_builder_.ToString(), null, 0);
+      dispatch_string_builder_.Clear();
     }
 
     // Events that we want to update less often because they aren't are critical.
