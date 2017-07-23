@@ -14,7 +14,7 @@ namespace Cactbot {
   public class JSEvents {
     public abstract class BaseEvent : JSEvent {
       public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
-        builder.Append(serializer.Serialize(this));
+        serializer.Serialize(this, builder);
       }
       public abstract string EventName();
     };
@@ -148,14 +148,13 @@ namespace Cactbot {
 
       public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
         // This capitalization doesn't match other events, but is consistent with what dps overlays expect.  :C
-        builder.Append("{");
-        builder.Append("'Encounter':");
-        builder.Append(serializer.Serialize(this.Encounter));
+        builder.Append("{'Encounter':");
+        serializer.Serialize(this.Encounter, builder);
         // DPS overlays expect a "sorted dictionary" of combatants, with the key of the dictionary being the name.
         // Sorting here appears to be the order of insertion for dictionaries, but C# dicts don't be have like that.
         // So do some custom serialization here to make this appear as overlays expect.
         builder.Append(",'Combatant':(function(x){var d={};for(var i=0;i<x.length; ++i){d[x[i].name]=x[i];}return d;})(");
-        builder.Append(serializer.Serialize(this.Combatant));
+        serializer.Serialize(this.Combatant, builder);
         builder.Append(")}");
       }
     }
