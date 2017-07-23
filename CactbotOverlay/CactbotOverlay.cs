@@ -261,7 +261,7 @@ namespace Cactbot {
 
       fight_tracker_.Tick(DateTime.Now);
 
-      fast_update_timer_.Interval = kFastTimerMilli;
+      fast_update_timer_.Interval = game_active ? kFastTimerMilli : kSlowTimerMilli;
       fast_update_timer_.Start();
     }
 
