@@ -38,7 +38,7 @@ namespace Cactbot {
 
     public void OnLogsChanged(JSEvents.LogEvent e) {
       foreach (var log in e.logs) {
-        if (log.IndexOf(kBeginPhaseLog) >= 0 || log.IndexOf(kTestBeginPhaseLog) >= 0) {
+        if (log.IndexOf(kBeginPhaseLog, StringComparison.Ordinal) >= 0 || log.IndexOf(kTestBeginPhaseLog, StringComparison.Ordinal) >= 0) {
           if (current_boss_ != null) {
             // Already fighting a boss? This shouldn't happen.
             controller_.OnPhaseEnd(current_boss_);
@@ -46,7 +46,7 @@ namespace Cactbot {
           boss_idx_++;
           current_boss_ = "B" + boss_idx_;
           controller_.OnPhaseStart(current_boss_);
-        } else if (log.IndexOf(kEndPhaseLog) >= 0 || log.IndexOf(kTestEndPhaseLog) >= 0) {
+        } else if (log.IndexOf(kEndPhaseLog, StringComparison.Ordinal) >= 0 || log.IndexOf(kTestEndPhaseLog, StringComparison.Ordinal) >= 0) {
           controller_.OnPhaseEnd(current_boss_);
           current_boss_ = null;
         }
