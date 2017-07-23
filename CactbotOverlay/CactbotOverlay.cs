@@ -122,7 +122,7 @@ namespace Cactbot {
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
     public void DispatchToJS(JSEvent e) {
-      StringBuilder sb = new StringBuilder(100);
+      StringBuilder sb = new StringBuilder(1000);
       sb.Append("document.dispatchEvent(new CustomEvent('");
       sb.Append(e.EventName());
       sb.Append("', { detail: ");
