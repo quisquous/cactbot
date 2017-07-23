@@ -91,10 +91,11 @@ class BuffsUI extends HTMLElement {
       else
         document.getElementById("root").classList.add("hide");
     });
-    {
-      var that = this;
-      document.addEventListener("onLogEvent", function (e) { that.onLogEvent(e.detail.logs); });
-    }
+    
+    this._me = null;
+    document.addEventListener("onPlayerChangedEvent", this.onPlayerChanged);
+    
+    this._buffs = {};
 
     var icon_width = this._settings["icon width"];
     var icon_height = this._settings["icon width"];
@@ -140,32 +141,75 @@ class BuffsUI extends HTMLElement {
     
   disconnectedCallback() {
   }
+  
+  onPlayerChanged(e) {
+    this._me = e.detail.name;
+    this._buff_regex = new RegExp(':' + this.me + ' gains the effect of (.+) from (.*) for ([0-9.]+) Seconds\.$');
+    document.removeEventListener("onPlayerChangedEvent", this.onPlayerChanged);
+    document.addEventListener("onLogEvent", this.onLogEvent);
+  }
 
-  onLogEvent(logs) {
+  onLogEvent(e) {
+    var logs = e.detail.logs;
     for (var i in logs) {
       var line = logs[i];
       var res;
-      if (this._settings["debuffs"])
-        res = line.match(/You suffer the effect of ([^A-Za-z0-9]+)?(.*)\.$/);
-      else
-        res = line.match(/You gain the effect of ([^A-Za-z0-9]+)?(.*)\.$/);
+      
+      res = line.match(this._buff_regex);
       if (res) {
-        this.addDebuff(res[2]);
+        var name = res[1];
+        var seconds = parseFloat(res[3]);
+        var now = Date.now();  // This is in ms.
+        this.setBuffExpiry(name, now + seconds * 1000);
+        continue;
+      }
+      
+      if (this._settings["debuffs"])
+        res = line.match(/You suffer the effect of (....)?([A-Z].+)\.$/);
+      else
+        res = line.match(/You suffer the effect of (....)?([A-Z].+)\.$/);
+      if (res) {
+        this.addBuff(res[2]);
         continue;
       }
 
       if (this._settings["debuffs"])
-        res = line.match(/You recover from the effect of ([^A-Za-z0-9]+)?(.*)\.$/);
+        res = line.match(/You recover from the effect of (....)?([A-Z].+)\.$/);
       else
-        res = line.match(/You lose the effect of ([^A-Za-z0-9]+)?(.*)\.$/);
+        res = line.match(/You lose the effect of (....)?([A-Z].+)\.$/);
       if (res) {
-        this.removeDebuff(res[2]);
+        this.removeBuff(res[2]);
         continue;
       }
     }
   }
 
-  addDebuff(name) {
+  addBuff(name) {
+    this.initBuffIfNeeded(name);
+    this._buffs[name].active = true;
+    if (this._buffs[name].expiry >= 0)
+      showBuff(name);
+  }
+  
+  removeBuff(name) {
+    delete this._buffs[name];
+    hideBuff(name);
+  }
+  
+  setBuffExpiry(name, exp_ms) {
+    this.initBuffIfNeeded(name);
+    this._buffs[name] = exp_ms;
+    if (this._buffs[name].active)
+      showBuff(name);
+  }
+  
+  initBuffIfNeeded(name) {
+    if (name in this._buffs)
+      return;
+    this._buffs[name] = { expiry: -1, active: false };
+  }
+
+  showBuff(name) {
     var icon_width = this._settings["icon width"];
     var icon_height = this._settings["icon width"];
     var bar_height = this._settings["bar height"];
@@ -214,12 +258,12 @@ class BuffsUI extends HTMLElement {
     this.listElement.addElement(name, div, function() { return icon.duration; });
     console.log("gain " + name);
   }
-
-  removeDebuff(name) {
+  
+  hideBuff(name) {
     this.listElement.removeElement(name);
     console.log("lose " + name);
   }
-  
+
   test() {
     this.rootElement.style.backgroundColor = "#333";
     this.addDebuff("Impactful");
