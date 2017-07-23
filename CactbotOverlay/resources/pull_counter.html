@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="stylesheet" href="resize_handle.css">
+<script src="resize_handle.js"></script>
+
+<script>
+    document.addEventListener("onZoneChangedEvent", function (e) {
+        document.getElementById('pullcount').innerText = '';
+    });
+    document.addEventListener("onBossFightStart", function (e) {
+        var element = document.getElementById('pullcount');
+        element.innerText = e.detail.pullCount;
+        element.classList.remove('wipe');
+    });
+    document.addEventListener("onBossFightEnd", function () {
+    });
+    document.addEventListener("onPartyWipe", function () {
+        document.getElementById('pullcount').classList.add('wipe');
+    });
+</script>
+<style>
+
+#pullcount {
+    color: white;
+    font-size: 80px;
+    text-align: center;
+    text-shadow: 0 2px black,0 -2px black,2px 0 black,-2px 0 black,1px 1px black,-1px -1px black,-1px 1px black,1px -1px black
+}
+
+.wipe {
+    text-decoration: line-through;
+}
+</style>
+</head>
+<body>
+    <div id="pullcount"></div>
+</body>
+</html>

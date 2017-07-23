@@ -172,6 +172,21 @@ namespace Cactbot {
       DPSDetail dps;
     }
 
+    public class BossFightStart : BaseEvent {
+      public BossFightStart(string name, int pull_count) {
+        this.name = name;
+        this.pullCount = pull_count;
+      }
+      public override string EventName() { return "onBossFightStart"; }
+
+      public string name;
+      public int pullCount;
+    };
+
+    public class BossFightEnd : BaseEvent {
+      public override string EventName() { return "onBossFightEnd"; }
+    };
+
     public class FightPhaseStart : JSEvent {
       public FightPhaseStart(string phase_id, Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
         this.name = phase_id;

@@ -62,10 +62,7 @@ namespace Cactbot {
       main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
       ffxiv_ = new FFXIVProcess(this);
       serializer_ = new JavaScriptSerializer();
-      fight_tracker_ = new FightTracker(DispatchToJS);
-      // TODO: should these be passed to fight tracker?
-      OnZoneChanged += fight_tracker_.OnZoneChange;
-      OnLogsChanged += fight_tracker_.OnLogsChanged;
+      fight_tracker_ = new FightTracker(this);
       wipe_detector_ = new WipeDetector(this);
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
@@ -240,6 +237,18 @@ namespace Cactbot {
       last_log_lines_ = logs;
 
       fight_tracker_.Tick(DateTime.Now);
+    }
+
+    public int IncrementAndGetPullCount(string boss_id) {
+      for (int i = 0; i < Config.BossInfoList.Count; ++i) {
+        if (Config.BossInfoList[i].id == boss_id) {
+          int pull_count = Config.BossInfoList[i].pull_count + 1;
+          Config.BossInfoList[i] = new BossInfo(boss_id, pull_count);
+          return pull_count;
+        }
+      }
+      Config.BossInfoList.Add(new BossInfo(boss_id, 1));
+      return 1;
     }
 
     // Tamagawa.EnmityPlugin.Logger implementation.

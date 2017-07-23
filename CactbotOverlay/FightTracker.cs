@@ -6,13 +6,81 @@ using System.Collections.Generic;
 namespace Cactbot {
   interface ZoneFightListener {
     void OnLogsChanged(JSEvents.LogEvent e);
+    void OnPartyWipe(JSEvents.PartyWipeEvent e);
   }
 
-  public class GenericDungeonListener : ZoneFightListener {
-    private PhaseController controller_ = null;
+  public class BossFightPhaseDetails {
+    public string boss_id;
+    public string seal_string;
 
-    public GenericDungeonListener(PhaseController controller) {
-      this.controller_ = controller;
+    // TODO phases
+  };
+
+  public class BossFightListener : ZoneFightListener {
+    private FightTracker tracker_;
+    private BossFightPhaseDetails current_boss_ = null;
+    private List<BossFightPhaseDetails> fight_details_;
+
+    private string kSealLog = " will be sealed off in 15 seconds";
+    private string kUnsealLog = " is no longer sealed";
+    private string kCountdown = "Engage!";
+
+    public BossFightListener(FightTracker tracker, List<BossFightPhaseDetails> fight_details) {
+      tracker_ = tracker;
+      fight_details_ = fight_details;
+
+      foreach (var fight in fight_details) {
+        tracker_.LogInfo("Adding fight: " + fight.boss_id);
+      }
+    }
+
+    public void OnLogsChanged(JSEvents.LogEvent e) {
+      foreach (var log in e.logs) {
+        if (current_boss_ == null) {
+          foreach (var boss in fight_details_) {
+            if (boss.seal_string != null && log.IndexOf(boss.seal_string + kSealLog) >= 0) {
+              StartFight(boss);
+            }
+          }
+          if (current_boss_ == null && log.IndexOf(kCountdown) >= 0 && fight_details_.Count == 1) {
+            StartFight(fight_details_[0]);
+          }
+        } else {
+          foreach (var boss in fight_details_) {
+            if (log.IndexOf(boss.seal_string + kUnsealLog) >= 0) {
+              EndFight();
+            }
+          }
+        }
+      }
+    }
+
+    public void OnPartyWipe(JSEvents.PartyWipeEvent e) {
+      EndFight();
+    }
+
+    private void StartFight(BossFightPhaseDetails boss) {
+      if (current_boss_ != null) {
+        EndFight();
+      }
+      current_boss_ = boss;
+      tracker_.OnBossFightStart(boss.boss_id);
+    }
+
+    private void EndFight() {
+      if (current_boss_ == null) {
+        return;
+      }
+      tracker_.OnBossFightEnd();
+      current_boss_ = null;
+    }
+  };
+
+  public class GenericDungeonListener : ZoneFightListener {
+    private FightTracker tracker_;
+
+    public GenericDungeonListener(FightTracker tracker) {
+      this.tracker_ = tracker;
     }
 
     // Listen for zone closing log messages and emit phases so that bosses
@@ -41,36 +109,63 @@ namespace Cactbot {
         if (log.IndexOf(kBeginPhaseLog, StringComparison.Ordinal) >= 0 || log.IndexOf(kTestBeginPhaseLog, StringComparison.Ordinal) >= 0) {
           if (current_boss_ != null) {
             // Already fighting a boss? This shouldn't happen.
-            controller_.OnPhaseEnd(current_boss_);
+            tracker_.OnPhaseEnd(current_boss_);
           }
           boss_idx_++;
           current_boss_ = "B" + boss_idx_;
-          controller_.OnPhaseStart(current_boss_);
+          tracker_.OnPhaseStart(current_boss_);
         } else if (log.IndexOf(kEndPhaseLog, StringComparison.Ordinal) >= 0 || log.IndexOf(kTestEndPhaseLog, StringComparison.Ordinal) >= 0) {
-          controller_.OnPhaseEnd(current_boss_);
+          tracker_.OnPhaseEnd(current_boss_);
           current_boss_ = null;
         }
       }
     }
+
+    public void OnPartyWipe(JSEvents.PartyWipeEvent e) {}
   }
 
-  public interface PhaseController {
-    void OnPhaseStart(string name);
-    void OnPhaseEnd(string name);
-  };
-
-  public class FightTracker : PhaseController {
+  public class FightTracker {
     private DateTime last_update_;
-    private DispatchToJS update_func_;
+    private CactbotOverlay overlay_;
     private int last_encounter_seconds_ = 0;
     private const float kUpdateIntervalInSeconds = 1;
     private ZoneFightListener zone_listener_;
 
+    // zone name => boss fights
+    private Dictionary<string, List<BossFightPhaseDetails>> boss_fights_;
+
     public delegate void DispatchToJS(JSEvent detail);
 
-    public FightTracker(DispatchToJS updateFunc) {
-      update_func_ = updateFunc;
+    public FightTracker(CactbotOverlay overlay) {
+      this.overlay_ = overlay;
+
+      overlay_.OnZoneChanged += OnZoneChange;
+      overlay_.OnLogsChanged += OnLogsChanged;
+      overlay_.OnPartyWipe += OnPartyWipe;
+
       SetZoneListener(new GenericDungeonListener(this));
+
+      // TODO: serialize this to JSON somewhere and download it at the start of the plugin loading, caching it locally.
+      var o1s = new BossFightPhaseDetails { boss_id = "o1s" };
+      var o2s = new BossFightPhaseDetails { boss_id = "o2s" };
+      var o3s = new BossFightPhaseDetails { boss_id = "o3s" };
+      var o4s = new BossFightPhaseDetails { boss_id = "o4s" };
+
+      var test_boss = new BossFightPhaseDetails { boss_id = "savage_test", seal_string = "The Thinger" };
+
+      boss_fights_ = new Dictionary<string, List<BossFightPhaseDetails>>() {
+        { "Mist", new List<BossFightPhaseDetails>{ test_boss } },
+
+        { "Deltascape V1.0 (Savage)", new List<BossFightPhaseDetails>{ o1s } },
+        { "Deltascape V2.0 (Savage)", new List<BossFightPhaseDetails>{ o2s } },
+        { "Deltascape V3.0 (Savage)", new List<BossFightPhaseDetails>{ o3s } },
+        { "Deltascape V4.0 (Savage)", new List<BossFightPhaseDetails>{ o4s } },
+
+        { "Unknown Zone (2B7)", new List<BossFightPhaseDetails>{ o1s } },
+        { "Unknown Zone (2B8)", new List<BossFightPhaseDetails>{ o2s } },
+        { "Unknown Zone (2B9)", new List<BossFightPhaseDetails>{ o3s } },
+        { "Unknown Zone (2BA)", new List<BossFightPhaseDetails>{ o4s } },
+      };
     }
 
     private void SetZoneListener(ZoneFightListener listener) {
@@ -131,30 +226,54 @@ namespace Cactbot {
       last_update_ = time;
       last_encounter_seconds_ = encounter_seconds;
 
-      update_func_(new JSEvents.DPSOverlayUpdateEvent(encounter, combatant));
+      overlay_.DispatchToJS(new JSEvents.DPSOverlayUpdateEvent(encounter, combatant));
     }
 
     public void OnPhaseStart(string phase_id) {
       var encounter = EncounterDPSInfo();
       var combatant = CombatantDPSInfo();
-      update_func_(new JSEvents.FightPhaseStart(phase_id, encounter, combatant));
+      overlay_.DispatchToJS(new JSEvents.FightPhaseStart(phase_id, encounter, combatant));
     }
 
     public void OnPhaseEnd(string phase_id) {
       var encounter = EncounterDPSInfo();
       var combatant = CombatantDPSInfo();
-      update_func_(new JSEvents.FightPhaseEnd(phase_id, encounter, combatant));
+      overlay_.DispatchToJS(new JSEvents.FightPhaseEnd(phase_id, encounter, combatant));
+    }
+
+    public void OnBossFightStart(string boss_id) {
+      int pull_count = overlay_.IncrementAndGetPullCount(boss_id);
+      overlay_.DispatchToJS(new JSEvents.BossFightStart(boss_id, pull_count));
+      LogInfo("Starting fight: " + boss_id + ": " + pull_count);
+    }
+
+    public void OnBossFightEnd() {
+      overlay_.DispatchToJS(new JSEvents.BossFightEnd());
+      LogInfo("Ending fight");
     }
 
     public void OnZoneChange(JSEvents.ZoneChangedEvent e) {
-      // TODO: pick listener based on zone name
-      SetZoneListener(new GenericDungeonListener(this));
+      if (boss_fights_.ContainsKey(e.zoneName)) {
+        SetZoneListener(new BossFightListener(this, boss_fights_[e.zoneName]));
+      } else {
+        SetZoneListener(new GenericDungeonListener(this));
+      }
     }
 
     public void OnLogsChanged(JSEvents.LogEvent e) {
       if (zone_listener_ != null) {
         zone_listener_.OnLogsChanged(e);
       }
+    }
+
+    public void OnPartyWipe(JSEvents.PartyWipeEvent e) {
+      if (zone_listener_ != null) {
+        zone_listener_.OnPartyWipe(e);
+      }
+    }
+
+    public void LogInfo(string log) {
+      overlay_.LogInfo(log);
     }
 
     public Dictionary<string, string> EncounterDPSInfo() {

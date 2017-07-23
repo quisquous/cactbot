@@ -120,6 +120,7 @@
     <Content Include="resources\lib\jquery\jquery-1.11.3.min.js" />
     <Content Include="resources\lib\jquery\jquery-ui.min.css" />
     <Content Include="resources\lib\jquery\jquery-ui.min.js" />
+    <Content Include="resources\pull_counter.html" />
     <Content Include="resources\resize_handle.css" />
     <Content Include="resources\resize_handle.js" />
     <Content Include="resources\resourcebar.js" />

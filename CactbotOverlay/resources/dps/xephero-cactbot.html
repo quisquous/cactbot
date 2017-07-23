@@ -307,9 +307,9 @@
                 if (type === 'onOverlayDataUpdate') {
                     tracker.onOverlayDataUpdate(e.detail);
                     update(e.detail);
-                } else if (type === 'onFightStart') {
+                } else if (type === 'onBossFightStart') {
                     tracker.onFightStart();
-                } else if (type === 'onFightEnd') {
+                } else if (type === 'onBossFightEnd') {
                     tracker.onFightEnd();
                 } else if (type === 'onFightPhaseStart') {
                     var d = e.detail;
@@ -329,11 +329,11 @@
             $(document).on('onZoneChangedEvent', function (e) {
                 handleEvent('onZoneChangedEvent', e.originalEvent);
             });
-            $(document).on('onFightStart', function (e) {
-                handleEvent('onFightStart', e.originalEvent);
+            $(document).on('onBossFightStart', function (e) {
+                handleEvent('onBossFightStart', e.originalEvent);
             });
-            $(document).on('onFightEnd', function (e) {
-                handleEvent('onFightEnd', e.originalEvent);
+            $(document).on('onBossFightEnd', function (e) {
+                handleEvent('onBossFightEnd', e.originalEvent);
             });
             $(document).on('onFightPhaseStart', function (e) {
                 handleEvent('onFightPhaseStart', e.originalEvent);
