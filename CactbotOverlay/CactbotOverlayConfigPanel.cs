@@ -1,12 +1,6 @@
 ﻿using RainbowMage.OverlayPlugin;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Cactbot {
@@ -32,6 +26,8 @@ namespace Cactbot {
       this.checkEnableGlobalHotkey.Checked = config.GlobalHotkeyEnabled;
       this.textGlobalHotkey.Enabled = this.checkEnableGlobalHotkey.Checked;
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
+      this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
+      this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
     }
 
     private void SetupConfigEventHandlers() {
@@ -123,6 +119,27 @@ namespace Cactbot {
 
     private void textUrl_Leave(object sender, EventArgs e) {
       this.config.Url = textUrl.Text;
+    }
+
+    private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
+      try {
+        Convert.ToDouble(dpsUpdateRate.Text, CultureInfo.InvariantCulture);
+      } catch {
+        e.Cancel = true;
+        dpsUpdateRate.Select(0, dpsUpdateRate.Text.Length);
+      }
+    }
+
+    private void dpsUpdateRate_Validated(object sender, EventArgs e) {
+      this.config.DpsUpdatesPerSecond = Convert.ToDouble(dpsUpdateRate.Text, CultureInfo.InvariantCulture);
+    }
+
+    private void logUpdateCheckBox_CheckedChanged(object sender, EventArgs e) {
+      this.config.LogUpdatesEnabled = logUpdateCheckBox.Checked;
+    }
+
+    private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {
+
     }
   }
 }

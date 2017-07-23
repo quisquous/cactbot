@@ -172,7 +172,15 @@ namespace Cactbot {
       zone_listener_ = listener;
     }
 
+    private bool ShouldSendDpsUpdates() {
+      return overlay_.Config.DpsUpdatesPerSecond > 0;
+    }
+
     public void Tick(DateTime time) {
+      if (!ShouldSendDpsUpdates()) {
+        return;
+      }
+
       if (!FFXIV_ACT_Plugin.ACTWrapper.InCombat) {
         return;
       }
@@ -180,7 +188,7 @@ namespace Cactbot {
       // TODO: This could just use the slower time for now, but in the future this will watch rotations
       // and log entries.  Because of that, it could send updates more quickly and so it will just stay
       // on the "fast" tick instead.
-      if ((time - last_update_).TotalSeconds < kUpdateIntervalInSeconds) {
+      if ((time - last_update_).TotalSeconds < overlay_.Config.DpsUpdatesPerSecond) {
         return;
       }
 
@@ -277,6 +285,9 @@ namespace Cactbot {
     }
 
     public Dictionary<string, string> EncounterDPSInfo() {
+      if (!ShouldSendDpsUpdates())
+        return null;
+
       if (ActGlobals.oFormActMain.ActiveZone.ActiveEncounter == null)
         return null;
 
@@ -297,6 +308,9 @@ namespace Cactbot {
     }
 
     public List<Dictionary<string, string>> CombatantDPSInfo() {
+      if (!ShouldSendDpsUpdates())
+        return null;
+
       if (ActGlobals.oFormActMain.ActiveZone.ActiveEncounter == null)
         return null;
 

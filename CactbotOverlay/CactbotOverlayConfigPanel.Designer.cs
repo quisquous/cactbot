@@ -24,18 +24,22 @@
       this.checkMiniParseVisible = new System.Windows.Forms.CheckBox();
       this.checkMiniParseClickthru = new System.Windows.Forms.CheckBox();
       this.label7 = new System.Windows.Forms.Label();
-      this.label8 = new System.Windows.Forms.Label();
       this.checkEnableGlobalHotkey = new System.Windows.Forms.CheckBox();
       this.textGlobalHotkey = new System.Windows.Forms.TextBox();
       this.label9 = new System.Windows.Forms.Label();
       this.checkLock = new System.Windows.Forms.CheckBox();
-      this.label13 = new System.Windows.Forms.Label();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.buttonReloadBrowser = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.textUrl = new System.Windows.Forms.TextBox();
       this.buttonSelectFile = new System.Windows.Forms.Button();
+      this.label8 = new System.Windows.Forms.Label();
+      this.dpsUpdateRateLabel = new System.Windows.Forms.Label();
+      this.dpsUpdateRate = new System.Windows.Forms.TextBox();
+      this.logUpdateLabel = new System.Windows.Forms.Label();
+      this.logUpdateCheckBox = new System.Windows.Forms.CheckBox();
+      this.restartMessageLabel = new System.Windows.Forms.Label();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
@@ -49,16 +53,21 @@
       this.tableLayoutPanel1.Controls.Add(this.checkMiniParseVisible, 1, 0);
       this.tableLayoutPanel1.Controls.Add(this.checkMiniParseClickthru, 1, 1);
       this.tableLayoutPanel1.Controls.Add(this.label7, 0, 4);
-      this.tableLayoutPanel1.Controls.Add(this.label8, 0, 5);
       this.tableLayoutPanel1.Controls.Add(this.checkEnableGlobalHotkey, 1, 4);
       this.tableLayoutPanel1.Controls.Add(this.textGlobalHotkey, 1, 5);
       this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
       this.tableLayoutPanel1.Controls.Add(this.checkLock, 1, 2);
-      this.tableLayoutPanel1.Controls.Add(this.label13, 1, 6);
-      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 9);
+      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 10);
       this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
       this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
+      this.tableLayoutPanel1.Controls.Add(this.label8, 0, 5);
+      this.tableLayoutPanel1.Controls.Add(this.dpsUpdateRateLabel, 0, 7);
+      this.tableLayoutPanel1.Controls.Add(this.dpsUpdateRate, 1, 7);
+      this.tableLayoutPanel1.Controls.Add(this.logUpdateLabel, 0, 8);
+      this.tableLayoutPanel1.Controls.Add(this.logUpdateCheckBox, 1, 8);
+      this.tableLayoutPanel1.Controls.Add(this.restartMessageLabel, 1, 9);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+      this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
       // 
       // label2
       // 
@@ -89,11 +98,6 @@
       resources.ApplyResources(this.label7, "label7");
       this.label7.Name = "label7";
       // 
-      // label8
-      // 
-      resources.ApplyResources(this.label8, "label8");
-      this.label8.Name = "label8";
-      // 
       // checkEnableGlobalHotkey
       // 
       resources.ApplyResources(this.checkEnableGlobalHotkey, "checkEnableGlobalHotkey");
@@ -117,11 +121,6 @@
       this.checkLock.Name = "checkLock";
       this.checkLock.UseVisualStyleBackColor = true;
       this.checkLock.CheckedChanged += new System.EventHandler(this.checkLock_CheckedChanged);
-      // 
-      // label13
-      // 
-      resources.ApplyResources(this.label13, "label13");
-      this.label13.Name = "label13";
       // 
       // tableLayoutPanel3
       // 
@@ -161,6 +160,40 @@
       this.buttonSelectFile.UseVisualStyleBackColor = true;
       this.buttonSelectFile.Click += new System.EventHandler(this.buttonSelectFile_Click);
       // 
+      // label8
+      // 
+      resources.ApplyResources(this.label8, "label8");
+      this.label8.Name = "label8";
+      // 
+      // dpsUpdateRateLabel
+      // 
+      resources.ApplyResources(this.dpsUpdateRateLabel, "dpsUpdateRateLabel");
+      this.dpsUpdateRateLabel.Name = "dpsUpdateRateLabel";
+      // 
+      // dpsUpdateRate
+      // 
+      resources.ApplyResources(this.dpsUpdateRate, "dpsUpdateRate");
+      this.dpsUpdateRate.Name = "dpsUpdateRate";
+      this.dpsUpdateRate.Validating += new System.ComponentModel.CancelEventHandler(this.dpsUpdateRate_Validating);
+      this.dpsUpdateRate.Validated += new System.EventHandler(this.dpsUpdateRate_Validated);
+      // 
+      // logUpdateLabel
+      // 
+      resources.ApplyResources(this.logUpdateLabel, "logUpdateLabel");
+      this.logUpdateLabel.Name = "logUpdateLabel";
+      // 
+      // logUpdateCheckBox
+      // 
+      resources.ApplyResources(this.logUpdateCheckBox, "logUpdateCheckBox");
+      this.logUpdateCheckBox.Name = "logUpdateCheckBox";
+      this.logUpdateCheckBox.UseVisualStyleBackColor = true;
+      this.logUpdateCheckBox.CheckedChanged += new System.EventHandler(this.logUpdateCheckBox_CheckedChanged);
+      // 
+      // restartMessageLabel
+      // 
+      resources.ApplyResources(this.restartMessageLabel, "restartMessageLabel");
+      this.restartMessageLabel.Name = "restartMessageLabel";
+      // 
       // CactbotOverlayConfigPanel
       // 
       resources.ApplyResources(this, "$this");
@@ -189,12 +222,16 @@
         private System.Windows.Forms.TextBox textGlobalHotkey;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkLock;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button buttonReloadBrowser;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox textUrl;
         private System.Windows.Forms.Button buttonSelectFile;
+    private System.Windows.Forms.Label dpsUpdateRateLabel;
+    private System.Windows.Forms.TextBox dpsUpdateRate;
+    private System.Windows.Forms.Label logUpdateLabel;
+    private System.Windows.Forms.CheckBox logUpdateCheckBox;
+    private System.Windows.Forms.Label restartMessageLabel;
   }
 }

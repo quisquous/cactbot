@@ -32,6 +32,9 @@ namespace Cactbot {
       get { return typeof(CactbotOverlay); }
     }
 
+    public bool LogUpdatesEnabled = true;
+    public double DpsUpdatesPerSecond = 3;
+
     // Can't use a Dictionary or List<KeyValuePair> because XmlSerializer T_T.
     public List<BossInfo> BossInfoList { get; set; }
   }
