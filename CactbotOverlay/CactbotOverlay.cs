@@ -13,8 +13,11 @@ using Tamagawa.EnmityPlugin;
 namespace Cactbot {
 
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
-    // Not thread-safe, as OnLogLineRead may happen at any time.
-    private List<string> log_lines_ = new List<string>();
+    System.Threading.SemaphoreSlim log_lines_semaphore_ = new System.Threading.SemaphoreSlim(1);
+    // Not thread-safe, as OnLogLineRead may happen at any time. Use |log_lines_semaphore_| to access it.
+    private List<string> log_lines_ = new List<string>(40);
+    // Used on the fast timer to avoid allocing List every time.
+    private List<string> last_log_lines_ = new List<string>(40);
     private System.Timers.Timer fast_update_timer_;
     private JavaScriptSerializer serializer_;
     private FFXIVProcess ffxiv_;
@@ -105,7 +108,9 @@ namespace Cactbot {
       // Don't need to send all of these to the overlay.
       if (isImport)
         return;
+      log_lines_semaphore_.Wait();
       log_lines_.Add(args.logLine);
+      log_lines_semaphore_.Release();
     }
 
     // This is called by the OverlayPlugin every 1s which is not often enough for us, so we
@@ -222,9 +227,16 @@ namespace Cactbot {
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
       // more specific events, some of which may involve parsing the logs as well.
-      List<string> logs = Interlocked.Exchange(ref log_lines_, new List<string>());
-      if (logs.Count > 0)
+      List<string> logs;
+      log_lines_semaphore_.Wait();
+      logs = log_lines_;
+      log_lines_ = last_log_lines_;
+      log_lines_semaphore_.Release();
+      if (logs.Count > 0) {
         OnLogsChanged(new JSEvents.LogEvent(logs));
+        logs.Clear();
+      }
+      last_log_lines_ = logs;
 
       fight_tracker_.Tick(DateTime.Now);
     }
