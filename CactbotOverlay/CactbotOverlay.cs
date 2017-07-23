@@ -13,11 +13,19 @@ using Tamagawa.EnmityPlugin;
 namespace Cactbot {
 
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
-    private System.Threading.SemaphoreSlim log_lines_semaphore_ = new System.Threading.SemaphoreSlim(1);
+    private static int kFastTimerMilli = 16;
+    private static int kSlowTimerMilli = 300;
+
+    private SemaphoreSlim log_lines_semaphore_ = new SemaphoreSlim(1);
     // Not thread-safe, as OnLogLineRead may happen at any time. Use |log_lines_semaphore_| to access it.
     private List<string> log_lines_ = new List<string>(40);
     // Used on the fast timer to avoid allocing List every time.
     private List<string> last_log_lines_ = new List<string>(40);
+
+    private SemaphoreSlim reset_notify_state_semaphore_ = new SemaphoreSlim(1);
+    // When true, the update function should reset notify state back to defaults.
+    bool reset_notify_state_ = false;
+
     private System.Timers.Timer fast_update_timer_;
     private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
     private JavaScriptSerializer serializer_;
@@ -68,10 +76,10 @@ namespace Cactbot {
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
-      fast_update_timer_.Interval = 16;
       fast_update_timer_.Elapsed += (o, e) => {
         SendFastRateEvents();
       };
+      fast_update_timer_.AutoReset = false;
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
@@ -86,6 +94,9 @@ namespace Cactbot {
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
+
+      fast_update_timer_.Interval = kFastTimerMilli;
+      fast_update_timer_.Start();
     }
 
     public override void Dispose() {
@@ -98,7 +109,9 @@ namespace Cactbot {
       base.Navigate(url);
       // Reset to defaults so on load the plugin gets notified about any non-defaults
       // consistently.
-      this.notify_state_ = new NotifyState();
+      this.reset_notify_state_semaphore_.Wait();
+      this.reset_notify_state_ = true;
+      this.reset_notify_state_semaphore_.Release();
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
@@ -133,28 +146,35 @@ namespace Cactbot {
     private void SendSlowRateEvents() {
       // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
       // register its event handlers.
-      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
-        return;
+      //if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
+      //  return;
 
-      bool game_exists = ffxiv_.FindProcess();
-      if (game_exists != notify_state_.game_exists) {
-        notify_state_.game_exists = game_exists;
-        OnGameExists(new JSEvents.GameExistsEvent(game_exists));
-        if (!game_exists) {
-          // Stop the fast updates timer, save some cpu.
-          fast_update_timer_.Stop();
-        } else {
-          fast_update_timer_.Start();
-        }
-      }
+      // NOTE: This function runs on a different thread that SendFastRateEvents(), so anything it calls needs to be thread-safe!
     }
 
     // Events that we want to update as soon as possible.
     private void SendFastRateEvents() {
       // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
       // register its event handlers.
-      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
+      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading) {
+        fast_update_timer_.Interval = kSlowTimerMilli;
+        fast_update_timer_.Start();
         return;
+      }
+
+      bool reset = false;
+      this.reset_notify_state_semaphore_.Wait();
+      reset = this.reset_notify_state_;
+      this.reset_notify_state_ = false;
+      this.reset_notify_state_semaphore_.Release();
+      if (reset)
+        this.notify_state_ = new NotifyState();
+
+      bool game_exists = ffxiv_.FindProcess();
+      if (game_exists != notify_state_.game_exists) {
+        notify_state_.game_exists = game_exists;
+        OnGameExists(new JSEvents.GameExistsEvent(game_exists));
+      }
 
       bool game_active = game_active = ffxiv_.IsActive();
       if (game_active != notify_state_.game_active) {
@@ -163,8 +183,11 @@ namespace Cactbot {
       }
 
       // Silently stop sending other messages if the ffxiv process isn't around.
-      if (!ffxiv_.HasProcess())
+      if (!game_exists) {
+        fast_update_timer_.Interval = kSlowTimerMilli;
+        fast_update_timer_.Start();
         return;
+      }
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
       bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
@@ -237,6 +260,9 @@ namespace Cactbot {
       last_log_lines_ = logs;
 
       fight_tracker_.Tick(DateTime.Now);
+
+      fast_update_timer_.Interval = kFastTimerMilli;
+      fast_update_timer_.Start();
     }
 
     public int IncrementAndGetPullCount(string boss_id) {
