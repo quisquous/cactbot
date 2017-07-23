@@ -1,7 +1,7 @@
 "use strict";
 
 class WidgetList extends HTMLElement {
-  static get observedAttributes() { return [ "toward", "elementwidth", "elementheight", "rowcolsize" ]; }
+  static get observedAttributes() { return [ "toward", "elementwidth", "elementheight", "rowcolsize", "maxnumber" ]; }
 
   // All visual dimensions are scaled by this.
   set scale(s) { this.setAttribute("scale", s); }
@@ -28,6 +28,10 @@ class WidgetList extends HTMLElement {
   // row/column.
   set rowcolsize(w) { this.setAttribute("rowcolsize", w); }
   get rowcolsize() { return this.getAttribute("rowcolsize"); }
+
+  // The maximum number of widgets to show at a time.
+  set maxnumber(w) { this.setAttribute("maxnumber", w); }
+  get maxnumber() { return this.getAttribute("maxnumber"); }
 
   // This would be used with window.customElements.
   constructor() {
@@ -65,6 +69,7 @@ class WidgetList extends HTMLElement {
     this._elementwidth = 100;
     this._elementheight = 100;
     this._rowcolsize = 5;
+    this._maxnumber = 1000;
     // Multiplier how far to move X for each item.
     this._xinc1 = 1;
     // Multiplier how far to move Y for each item.
@@ -81,6 +86,7 @@ class WidgetList extends HTMLElement {
     if (this.elementheight != null) { this._elementheight = Math.max(parseInt(this.elementheight), 1); }
     if (this.rowcolsize != null) { this._rowcolsize = Math.max(parseInt(this.rowcolsize), 1); }
     if (this.toward != null) { this.parseToward(this.toward); }
+    if (this.maxnumber != null) { this._maxnumber = Math.max(parseInt(this.maxnumber), 1); }
 
     this._connected = true;
     this.layout();
@@ -170,6 +176,9 @@ class WidgetList extends HTMLElement {
     } else if (name == "rowcolsize") {
       this._rowcolsize = Math.max(parseInt(newValue), 1);
       this.layout();
+    } else if (name == "maxnumber") {
+      this._maxnumber = Math.max(parseInt(newValue), 1);
+      this.layout();
     }
   }
 
@@ -238,12 +247,21 @@ class WidgetList extends HTMLElement {
     var x = 0;
     var y = 0;
     var rowcolindex = 0;
-
+    var count = 0;
+    
     for (var i in this._sorted) {
       var id = this._sorted[i];
       console.assert(id != 0, "An id in _sorted isn't in _elements?");
       var container = this.shadowRoot.getElementById("child" + id);
       console.assert(container != null, "Element with id child" + id + " is missing?");
+
+      if (count >= this._maxnumber) {
+        container.style.display = "none";
+        continue;
+      } else {
+        container.style.display = "block";
+      }
+      count++;
 
       container.style.position = "absolute";
       container.style.left = x;
