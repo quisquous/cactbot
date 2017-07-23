@@ -1,5 +1,6 @@
 ﻿using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin;
+using Newtonsoft.Json;
 using RainbowMage.OverlayPlugin;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,11 @@ namespace Cactbot {
     // When true, the update function should reset notify state back to defaults.
     bool reset_notify_state_ = false;
 
-    private System.Timers.Timer fast_update_timer_;
     private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
-    private JavaScriptSerializer serializer_;
+    JsonTextWriter dispatch_json_writer_;
+    JsonSerializer dispatch_serializer_;
+
+    private System.Timers.Timer fast_update_timer_;
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
@@ -69,9 +72,11 @@ namespace Cactbot {
         : base(config, config.Name) {
       main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
       ffxiv_ = new FFXIVProcess(this);
-      serializer_ = new JavaScriptSerializer();
       fight_tracker_ = new FightTracker(this);
       wipe_detector_ = new WipeDetector(this);
+      dispatch_json_writer_ = new JsonTextWriter(new System.IO.StringWriter(dispatch_string_builder_));
+      dispatch_serializer_ = JsonSerializer.CreateDefault();
+
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
@@ -138,7 +143,7 @@ namespace Cactbot {
       dispatch_string_builder_.Append("document.dispatchEvent(new CustomEvent('");
       dispatch_string_builder_.Append(e.EventName());
       dispatch_string_builder_.Append("', { detail: ");
-      e.Serialize(dispatch_string_builder_, serializer_);
+      dispatch_serializer_.Serialize(dispatch_json_writer_, e);
       dispatch_string_builder_.Append(" }));");
       this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(dispatch_string_builder_.ToString(), null, 0);
       dispatch_string_builder_.Clear();

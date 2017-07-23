@@ -3,22 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using Tamagawa.EnmityPlugin;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
   public interface JSEvent {
-    void Serialize(StringBuilder builder, JavaScriptSerializer serializer);
     string EventName();
   };
 
   // This class defines all the event |details| structures that go to each event type.
   public class JSEvents {
-    public abstract class BaseEvent : JSEvent {
-      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
-        serializer.Serialize(this, builder);
-      }
-      public abstract string EventName();
-    };
-
     public class Point3F {
       public Point3F(float x, float y, float z) { this.x = x; this.y = y; this.z = z; }
 
@@ -27,50 +21,50 @@ namespace Cactbot {
       public float z = 0;
     }
 
-    public class GameExistsEvent : BaseEvent {
+    public class GameExistsEvent : JSEvent {
       public GameExistsEvent(bool exists) { this.exists = exists; }
-      public override string EventName() { return "onGameExistsEvent"; }
+      public string EventName() { return "onGameExistsEvent"; }
 
       public bool exists;
     }
 
-    public class GameActiveChangedEvent : BaseEvent {
+    public class GameActiveChangedEvent : JSEvent {
       public GameActiveChangedEvent(bool active) { this.active = active; }
-      public override string EventName() { return "onGameActiveChangedEvent"; }
+      public string EventName() { return "onGameActiveChangedEvent"; }
 
       public bool active;
     }
 
-    public class LogEvent : BaseEvent {
+    public class LogEvent : JSEvent {
       public LogEvent(List<String> logs) { this.logs = logs; }
-      public override string EventName() { return "onLogEvent"; }
+      public string EventName() { return "onLogEvent"; }
 
       public List<string> logs;
     }
 
-    public class InCombatChangedEvent : BaseEvent {
+    public class InCombatChangedEvent : JSEvent {
       public InCombatChangedEvent(bool in_combat) { this.inCombat = in_combat; }
-      public override string EventName() { return "onInCombatChangedEvent"; }
+      public string EventName() { return "onInCombatChangedEvent"; }
 
       public bool inCombat;
     }
 
-    public class ZoneChangedEvent : BaseEvent {
+    public class ZoneChangedEvent : JSEvent {
       public ZoneChangedEvent(string name) { this.zoneName = name; }
-      public override string EventName() { return "onZoneChangedEvent"; }
+      public string EventName() { return "onZoneChangedEvent"; }
 
       public string zoneName;
     }
 
-    public class PlayerDiedEvent : BaseEvent {
-      public override string EventName() { return "onPlayerDied"; }
+    public class PlayerDiedEvent : JSEvent {
+      public string EventName() { return "onPlayerDied"; }
     }
 
-    public class PartyWipeEvent : BaseEvent {
-      public override string EventName() { return "onPartyWipe"; }
+    public class PartyWipeEvent : JSEvent {
+      public string EventName() { return "onPartyWipe"; }
     }
 
-    public class PlayerChangedEvent : BaseEvent {
+    public class PlayerChangedEvent : JSEvent {
       public PlayerChangedEvent(Combatant c) {
         job = ((JobEnum)c.Job).ToString();
         level = c.Level;
@@ -84,7 +78,7 @@ namespace Cactbot {
         pos = new Point3F(c.PosX, c.PosY, c.PosZ);
         jobDetail = null;
       }
-      public override string EventName() { return "onPlayerChangedEvent"; }
+      public string EventName() { return "onPlayerChangedEvent"; }
 
       public string job;
       public int level;
@@ -109,7 +103,7 @@ namespace Cactbot {
       }
     }
 
-    public class TargetChangedEvent : BaseEvent {
+    public class TargetChangedEvent : JSEvent {
       public TargetChangedEvent(Combatant c) {
         if (c != null) {
           id = c.ID;
@@ -125,7 +119,7 @@ namespace Cactbot {
           distance = c.EffectiveDistance;
         }
       }
-      public override string EventName() { return "onTargetChangedEvent"; }
+      public string EventName() { return "onTargetChangedEvent"; }
 
       public uint id = 0;
       public int level = 0;
@@ -144,47 +138,91 @@ namespace Cactbot {
 
     public struct DPSDetail {
       public Dictionary<string, string> Encounter;
+      [JsonConverter(typeof(CombatantConverter))]
       public List<Dictionary<string, string>> Combatant;
 
-      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
-        // This capitalization doesn't match other events, but is consistent with what dps overlays expect.  :C
-        builder.Append("{'Encounter':");
-        serializer.Serialize(this.Encounter, builder);
-        // DPS overlays expect a "sorted dictionary" of combatants, with the key of the dictionary being the name.
-        // Sorting here appears to be the order of insertion for dictionaries, but C# dicts don't be have like that.
-        // So do some custom serialization here to make this appear as overlays expect.
-        builder.Append(",'Combatant':(function(x){var d={};for(var i=0;i<x.length; ++i){d[x[i].name]=x[i];}return d;})(");
-        serializer.Serialize(this.Combatant, builder);
-        builder.Append(")}");
+      public class CombatantConverter : JsonConverter {
+        public override bool CanConvert(Type t) {
+          return (t == typeof(List<Dictionary<string, string>>));
+        }
+        public override bool CanRead { get { return false; } }
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
+          // Not used, we only serialize.
+          throw new NotImplementedException();
+        }
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
+          var combatant_list = (List<Dictionary<string, string>>)value;
+
+          // Sort by encdps descending.  OverlayPlugin has options for different ways to sort, but
+          // html can do this itself if it wants something different.  This is what most folks expect.
+          const string kSortKey = "encdps";
+          combatant_list.Sort((x, y) => {
+            if (x.ContainsKey(kSortKey) && y.ContainsKey(kSortKey)) {
+              double x_value, y_value;
+              if (double.TryParse(x[kSortKey], out x_value) && double.TryParse(y[kSortKey], out y_value)) {
+                return y_value.CompareTo(x_value);
+              }
+            }
+            return 0;
+          });
+
+          // DPS overlays expect a "sorted dictionary" of combatants, so we build the dictionary ourselves in
+          // order.
+          var o = new JObject();
+          foreach (var c in combatant_list)
+            o.Add(c["name"], JObject.FromObject(c, serializer));
+          o.WriteTo(writer);
+        }
       }
     }
 
+    [JsonConverter(typeof(DPSOverlayUpdateEventConverter))]
     public class DPSOverlayUpdateEvent : JSEvent {
       public DPSOverlayUpdateEvent(Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
         this.dps.Encounter = encounter;
         this.dps.Combatant = combatant;
       }
       public string EventName() { return "onOverlayDataUpdate"; }
-      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
-        dps.Serialize(builder, serializer);
-      }
 
-      DPSDetail dps;
+      public DPSDetail dps;
+
+      // The DPSOverlayUpdateEvent expects the members of DPSDetail to be top level
+      // members of the event instead.
+      public class DPSOverlayUpdateEventConverter : JsonConverter {
+        public override bool CanConvert(Type t) {
+          return (t == typeof(DPSOverlayUpdateEvent));
+        }
+        public override bool CanRead { get { return false; } }
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
+          // Not used, we only serialize.
+          throw new NotImplementedException();
+        }
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
+          var detail = (DPSOverlayUpdateEvent)value;
+
+          var dps = JObject.FromObject(detail.dps, serializer);
+
+          var o = new JObject();
+          o.Add("Encounter", dps["Encounter"]);
+          o.Add("Combatant", dps["Combatant"]);
+          o.WriteTo(writer);
+        }
+      }
     }
 
-    public class BossFightStart : BaseEvent {
+    public class BossFightStart : JSEvent {
       public BossFightStart(string name, int pull_count) {
         this.name = name;
         this.pullCount = pull_count;
       }
-      public override string EventName() { return "onBossFightStart"; }
+      public string EventName() { return "onBossFightStart"; }
 
       public string name;
       public int pullCount;
     };
 
-    public class BossFightEnd : BaseEvent {
-      public override string EventName() { return "onBossFightEnd"; }
+    public class BossFightEnd : JSEvent {
+      public string EventName() { return "onBossFightEnd"; }
     };
 
     public class FightPhaseStart : JSEvent {
@@ -194,13 +232,6 @@ namespace Cactbot {
         this.dps.Combatant = combatant;
       }
       public string EventName() { return "onFightPhaseStart"; }
-      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
-        builder.Append("{'name':'");
-        builder.Append(this.name);
-        builder.Append("','dps':");
-        dps.Serialize(builder, serializer);
-        builder.Append('}');
-      }
 
       public string name;
       public DPSDetail dps;
@@ -213,13 +244,6 @@ namespace Cactbot {
         this.dps.Combatant = combatant;
       }
       public string EventName() { return "onFightPhaseEnd"; }
-      public void Serialize(StringBuilder builder, JavaScriptSerializer serializer) {
-        builder.Append("{'name':'");
-        builder.Append(this.name);
-        builder.Append("','dps':");
-        dps.Serialize(builder, serializer);
-        builder.Append('}');
-      }
 
       public string name;
       public DPSDetail dps;

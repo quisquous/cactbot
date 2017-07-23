@@ -339,19 +339,6 @@ namespace Cactbot {
         combatant_list.Add(dict);
       }
 
-      // Sort by encdps descending.  OverlayPlugin has options for different ways to sort, but
-      // html can do this itself if it wants something different.  This is what most folks expect.
-      const string kSortKey = "encdps";
-      combatant_list.Sort((x, y) => {
-        if (x.ContainsKey(kSortKey) && y.ContainsKey(kSortKey)) {
-          double x_value, y_value;
-          if (double.TryParse(x[kSortKey], out x_value) && double.TryParse(y[kSortKey], out y_value)) {
-            return y_value.CompareTo(x_value);
-          }
-        }
-        return 0;
-      });
-
       return combatant_list;
     }
   }

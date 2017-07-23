@@ -63,6 +63,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ThirdParty\OverlayPlugin\HtmlRenderer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>ThirdParty\JsonNET\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="OverlayPlugin">
       <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.dll</HintPath>
     </Reference>
