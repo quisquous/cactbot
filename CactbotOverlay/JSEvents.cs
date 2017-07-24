@@ -101,6 +101,11 @@ namespace Cactbot {
         public int whiteMana;
         public int blackMana;
       }
+
+      public struct WarriorDetail {
+        public WarriorDetail(int beast) { this.beast = beast; }
+        public int beast;
+      }
     }
 
     public class TargetChangedEvent : JSEvent {

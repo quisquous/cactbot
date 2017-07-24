@@ -13,6 +13,7 @@ namespace Cactbot {
     private Process process_ = null;
     private FFXIVMemory enmity_memory_ = null;
     private IntPtr rdm_mana_outer_addr_ = IntPtr.Zero;
+    private IntPtr warrior_outer_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
     // in July 7, 2017 update. The lines that actually read are:
@@ -37,6 +38,16 @@ namespace Cactbot {
     // }
     private static int kRedMageManaDataOuterStructureOffset = 0;
     private static int kRedMageManaDataInnerStructureOffset = 8;
+
+    // ffxiv_dx11.exe+77B600: mov rcx,[???]
+    // ffxiv_dx11.exe+77B61B: mov ebx, [rcx+08]
+    private static String kWarriorSignature = "488B0D????????4885C974B8488B05";
+    // TODO: If need more signature, prepend "B83C020000E9????????"
+    // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
+    private static int kWarriorSignatureOffset = -12;
+    private static bool kWarriorSignatureRIP = true;
+    private static int kWarriorOuterDataStructureOffset = 0;
+    private static int kWarriorInnerDataStructureOffset = 8;
 
     public FFXIVProcess(Tamagawa.EnmityPlugin.Logger logger) { logger_ = logger;  }
 
@@ -82,6 +93,15 @@ namespace Cactbot {
           } else {
             // Store the outer pointer. Deref it dynamically when reading mana as it can change.
             rdm_mana_outer_addr_ = IntPtr.Add(p[0], kRedMageManaDataOuterStructureOffset);
+          }
+        }
+
+        if (process_ != null) {
+          List<IntPtr> p = SigScan(kWarriorSignature, kWarriorSignatureOffset, kWarriorSignatureRIP);
+          if (p.Count != 1) {
+            logger_.LogError("Warrior signature found " + p.Count + " matches");
+          } else {
+            warrior_outer_addr_ = IntPtr.Add(p[0], kWarriorOuterDataStructureOffset);
           }
         }
       }
@@ -138,6 +158,28 @@ namespace Cactbot {
       r.white = mana[0];
       r.black = mana[1];
       return r;
+    }
+
+    public class WarriorJobData {
+      public int beast;
+    }
+
+    public WarriorJobData GetWarrior() {
+      if (!HasProcess())
+        return null;
+
+      IntPtr warrior_inner_ptr  = ReadIntPtr(warrior_outer_addr_);
+      if (warrior_inner_ptr == IntPtr.Zero)
+        return null;
+
+      IntPtr beast_addr = IntPtr.Add(warrior_inner_ptr, kWarriorInnerDataStructureOffset);
+      byte[] beast = Read8(beast_addr, 1);
+      if (beast == null)
+        return null;
+
+      var j = new WarriorJobData();
+      j.beast = beast[0];
+      return j;
     }
 
     /// Reads |count| bytes at |addr| in the |process_|. Returns null on error.

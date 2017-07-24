@@ -237,6 +237,13 @@ namespace Cactbot {
             e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(rdm.white, rdm.black);
             OnPlayerChanged(e);
           }
+        } else if ((JobEnum)player.Job == JobEnum.WAR) {
+          var job = ffxiv_.GetWarrior();
+          var e = new JSEvents.PlayerChangedEvent(player);
+          if (job != null) {
+            e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job.beast);
+            OnPlayerChanged(e);
+          }
         } else {
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));

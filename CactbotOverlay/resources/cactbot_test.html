@@ -47,6 +47,8 @@
       document.getElementById("job").innerText = e.detail.job;
       if (e.detail.job == "RDM") {
         document.getElementById("jobinfo").innerText = e.detail.jobDetail.whiteMana + " | " + e.detail.jobDetail.blackMana;
+      } else if (e.detail.job == "WAR") {
+          document.getElementById("jobinfo").innerText = e.detail.jobDetail.beast;
       }
     });
 
