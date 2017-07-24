@@ -1,14 +1,15 @@
 "use strict";
 
 var kLowerOpacityOutOfCombat = true;
-var kRdmCastTime = 1.88 + 0.5;  // 0.5 for my reaction time.
+var kRdmCastTime = 1.88 + 0.5;  // 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+var kShowRdmProcs = true;
 
 var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
   '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
   '|((Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet))' +
   '|Limit Break';
-var kName = '[A-Za-z0-9 \']+'
-var kAbilityCode = '.{2,4}';
+var kReName = '[A-Za-z0-9 \']+'
+var kReAbilityCode = '.{2,4}';
 
 // Regexes to be filled out once we know the player's name.
 var kReRdmCombo1 = null;
@@ -76,30 +77,30 @@ function setupRegexes(me) {
   // var kReCombo3 = 'You use Enchanted Redoublement\.';
   // var kReEndCombo1 = 'You use (Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)\.';
   // var kReEndCombo2 = 'You (cast|begin casting) ';
-  kReRdmCombo1 = new RegExp(':' + me + ':' + kAbilityCode + ':Enchanted Riposte:');
-  kReRdmCombo2 = new RegExp(':' + me + ':' + kAbilityCode + ':Enchanted Zwerchhau:');
-  kReRdmCombo3 = new RegExp(':' + me + ':' + kAbilityCode + ':Enchanted Redoublement:');
+  kReRdmCombo1 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Riposte:');
+  kReRdmCombo2 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Zwerchhau:');
+  kReRdmCombo3 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Redoublement:');
   // Spending any GCD ends the combo, be they spells or abilities.
-  kReRdmEndCombo = new RegExp(':' + me + '( starts using |:' + kAbilityCode + ':)(' + kRdmGcdAbilties + ')( |:)');
+  kReRdmEndCombo = new RegExp(':' + me + '( starts using |:' + kReAbilityCode + ':)(' + kRdmGcdAbilties + ')( |:)');
 
   kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + kAbilityCode + ':Verstone:)')
+  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verstone:)')
   kReRdmWhiteManaProcEnd = new RegExp(':' + me + ' loses the effect of Verstone Ready from ' + me + '.')
   kReRdmBlackManaProc = new RegExp(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kAbilityCode + ':Verfire:)')
+  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verfire:)')
   kReRdmBlackManaProcEnd = new RegExp(':' + me + ' loses the effect of Verfire Ready from ' + me + '.')
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kAbilityCode + ':Impact:)')
+  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)')
   kReRdmImpactProcEnd = new RegExp(':' + me + ' loses the effect of Impactful from ' + me + '.')
   
   kRePotion = new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds\.');
   kReEmbolden = new RegExp(':' + me + ' gains the effect of Embolden from (.*) for ([0-9.]+) Seconds\.');
-  kReBattleLitany = new RegExp(':' + kName + ' gains the effect of Battle Litany from (.*) for ([0-9.]+) Seconds\.');
-  kReTheBalance = new RegExp(':' + kName + ' gains the effect of The Balance from (.*) for ([0-9.]+) Seconds\.');
-  kReDragonSight = new RegExp(':' + kName + ':' + kAbilityCode + ':Dragon Sight:');
-  kReChainStrategem = new RegExp(':' + kName + ':' + kAbilityCode + ':Chain Strategem:');
-  kReTrickAttack = new RegExp(':' + kName + ':' + kAbilityCode + ':Trick Attack:');
-  kReHypercharge = new RegExp(':' + kName + ':' + kAbilityCode + ':Hypercharge:');
+  kReBattleLitany = new RegExp(':' + kReName + ' gains the effect of Battle Litany from (.*) for ([0-9.]+) Seconds\.');
+  kReTheBalance = new RegExp(':' + kReName + ' gains the effect of The Balance from (.*) for ([0-9.]+) Seconds\.');
+  kReDragonSight = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Dragon Sight:');
+  kReChainStrategem = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Chain Strategem:');
+  kReTrickAttack = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Trick Attack:');
+  kReHypercharge = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:');
 }
 
 var kBigBuffTracker = null;
@@ -374,7 +375,7 @@ class Bars {
       this.o.rdmCombo1.style.top = hpY - 9;
       this.o.rdmCombo1.style.width = 50;
       this.o.rdmCombo1.style.height = 6;
-      this.o.rdmCombo1.style.backgroundColor = "#800";
+      this.o.rdmCombo1.style.backgroundColor = "#990";
       this.o.rdmCombo1.style.border = "1px solid black";
       this.o.rdmCombo1.style.display = "none";
 
@@ -392,7 +393,7 @@ class Bars {
       this.o.rdmCombo3.style.top = hpY - 9;
       this.o.rdmCombo3.style.width = 50;
       this.o.rdmCombo3.style.height = 6;
-      this.o.rdmCombo3.style.backgroundColor = "#070";
+      this.o.rdmCombo3.style.backgroundColor = "#A00";
       this.o.rdmCombo3.style.border = "1px solid black";
       this.o.rdmCombo3.style.display = "none";
       
@@ -453,7 +454,7 @@ class Bars {
       this.o.blackManaText.style.position = "relative";
       this.o.blackManaText.style.top = innerTextY;
       
-      if (false) {
+      if (kShowRdmProcs) {
         /*
         var procMargin = (hpW - (procW * 3)) / 2;
         var procW = 64;
@@ -464,6 +465,9 @@ class Bars {
         var whiteProcContainer = document.createElement("div");
         var blackProcContainer = document.createElement("div");
         var impactProcContainer = document.createElement("div");
+        var rdmNoProcWhite = document.createElement("div");
+        var rdmNoProcBlack = document.createElement("div");
+        var rdmNoProcImpact = document.createElement("div");
         this.o.rdmProcWhite = document.createElement("timer-box");
         this.o.rdmProcBlack = document.createElement("timer-box");
         this.o.rdmProcImpact = document.createElement("timer-box");
@@ -472,6 +476,9 @@ class Bars {
         procsContainer.appendChild(whiteProcContainer);
         procsContainer.appendChild(blackProcContainer);
         procsContainer.appendChild(impactProcContainer);
+        whiteProcContainer.appendChild(rdmNoProcWhite);
+        blackProcContainer.appendChild(rdmNoProcBlack);
+        impactProcContainer.appendChild(rdmNoProcImpact);
         whiteProcContainer.appendChild(this.o.rdmProcWhite);
         blackProcContainer.appendChild(this.o.rdmProcBlack);
         impactProcContainer.appendChild(this.o.rdmProcImpact);
@@ -487,6 +494,33 @@ class Bars {
         whiteProcContainer.style.left = 10;
         blackProcContainer.style.left = 152 / 2;
         impactProcContainer.style.left = 142;
+        
+        rdmNoProcWhite.style.backgroundColor = this.kWhiteManaBarColor;
+        rdmNoProcWhite.style.opacity = 0.6;
+        rdmNoProcWhite.style.border = "1px solid black";
+        rdmNoProcWhite.style.width = 20;
+        rdmNoProcWhite.style.height = 20;
+        rdmNoProcWhite.style.position = "absolute";
+        rdmNoProcWhite.style.left = 14;
+        rdmNoProcWhite.style.top = 14;
+
+        rdmNoProcBlack.style.backgroundColor = this.kBlackManaBarColor;
+        rdmNoProcBlack.style.opacity = 0.6;
+        rdmNoProcBlack.style.border = "1px solid black";
+        rdmNoProcBlack.style.width = 20;
+        rdmNoProcBlack.style.height = 20;
+        rdmNoProcBlack.style.position = "absolute";
+        rdmNoProcBlack.style.left = 14;
+        rdmNoProcBlack.style.top = 14;
+
+        rdmNoProcImpact.style.backgroundColor = this.kImpactProcColor;
+        rdmNoProcImpact.style.opacity = 0.6;
+        rdmNoProcImpact.style.border = "1px solid black";
+        rdmNoProcImpact.style.width = 20;
+        rdmNoProcImpact.style.height = 20;
+        rdmNoProcImpact.style.position = "absolute";
+        rdmNoProcImpact.style.left = 14;
+        rdmNoProcImpact.style.top = 14;
 
         this.o.rdmProcWhite.style = "empty";
         this.o.rdmProcWhite.toward = "bottom";
@@ -899,7 +933,7 @@ function OnLogEvent(e) {
       }
     }
 
-    if (log.search(":test:") >= 0)
+    if (log.search(/::test::/) >= 0)
       Test();
   }
 }

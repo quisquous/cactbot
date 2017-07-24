@@ -2,11 +2,13 @@
 
 var kHideWellFedAboveSeconds = 15 * 60;  // N mins warning.
 var kWellFedZoneRegex = /^(Unknown Zone \([0-9A-F]+\)|Deltascape.*Savage.*)$/;
+var kMaxLevel = 70;
 
 var g_me = null;
 var g_in_combat = false;
 var g_zone = '';
 var g_hp = 0;
+var g_level = 0;
 
 var g_fed_regex = null;
 var g_fed_expires_time_ms = null;
@@ -19,6 +21,10 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
   }
   if (g_hp != e.detail.currentHP) {
     g_hp = e.detail.currentHP;
+    Draw();
+  }
+  if (g_level != e.detail.level) {
+    g_level = e.detail.level;
     Draw();
   }
 });
@@ -38,6 +44,13 @@ document.addEventListener("onLogEvent", function(e) {
       g_fed_expires_time_ms = now + (seconds * 1000);
       Draw();
     }
+    
+    if (line.search(/::test::/) >= 0) {
+      g_zone = 'Unknown Zone (1234)';
+      g_fed_expires_time_ms = Date.now() + 30 * 1000;
+      g_in_combat = false;
+      Draw();
+    }
   }
 });
 
@@ -54,6 +67,8 @@ document.addEventListener("onZoneChangedEvent", function (e) {
 function CanShowWellFedWarning() {
   if (g_in_combat)
     return false;
+  if (g_level < kMaxLevel)
+    return true;
   if (g_zone.search(kWellFedZoneRegex) < 0)
     return false;
   return true;
@@ -72,7 +87,7 @@ function Draw() {
 
   var can_show_fed = CanShowWellFedWarning();
   var show_fed_ms = TimeToShowWellFedWarning();
-  
+
   if (!can_show_fed || show_fed_ms > 0) {
     document.getElementById('well-fed-container').classList.add("hide");
     if (can_show_fed)
