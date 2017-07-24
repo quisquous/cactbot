@@ -38,16 +38,16 @@ namespace Cactbot {
       foreach (var log in e.logs) {
         if (current_boss_ == null) {
           foreach (var boss in fight_details_) {
-            if (boss.seal_string != null && log.IndexOf(boss.seal_string + kSealLog) >= 0) {
+            if (boss.seal_string != null && log.IndexOf(boss.seal_string + kSealLog, StringComparison.Ordinal) >= 0) {
               StartFight(boss);
             }
           }
-          if (current_boss_ == null && log.IndexOf(kCountdown) >= 0 && fight_details_.Count == 1) {
+          if (current_boss_ == null && log.IndexOf(kCountdown, StringComparison.Ordinal) >= 0 && fight_details_.Count == 1) {
             StartFight(fight_details_[0]);
           }
         } else {
           foreach (var boss in fight_details_) {
-            if (log.IndexOf(boss.seal_string + kUnsealLog) >= 0) {
+            if (log.IndexOf(boss.seal_string + kUnsealLog, StringComparison.Ordinal) >= 0) {
               EndFight();
             }
           }
