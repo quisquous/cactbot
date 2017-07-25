@@ -16,6 +16,7 @@ namespace Cactbot {
   public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
     private static int kFastTimerMilli = 16;
     private static int kSlowTimerMilli = 300;
+    private static int kUberSlowTimerMilli = 3000;
 
     private SemaphoreSlim log_lines_semaphore_ = new SemaphoreSlim(1);
     // Not thread-safe, as OnLogLineRead may happen at any time. Use |log_lines_semaphore_| to access it.
@@ -191,7 +192,7 @@ namespace Cactbot {
 
       // Silently stop sending other messages if the ffxiv process isn't around.
       if (!game_exists) {
-        fast_update_timer_.Interval = kSlowTimerMilli;
+        fast_update_timer_.Interval = kUberSlowTimerMilli;
         fast_update_timer_.Start();
         return;
       }
