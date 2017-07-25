@@ -1,7 +1,7 @@
 "use strict";
 
 var kHideWellFedAboveSeconds = 15 * 60;  // N mins warning.
-var kWellFedZoneRegex = /^(Unknown Zone \([0-9A-F]+\)|Deltascape.*Savage.*)$/;
+var kWellFedZoneRegex = /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/;
 var kMaxLevel = 70;
 
 var g_me = null;
