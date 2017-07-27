@@ -527,16 +527,19 @@ class Bars {
         this.o.rdmProcWhite.threshold = 1000;
         this.o.rdmProcWhite.hideafter = 0;
         this.o.rdmProcWhite.fg = this.kWhiteManaBarColor;
+        this.o.rdmProcWhite.bg = 'black';
         this.o.rdmProcBlack.style = "empty";
         this.o.rdmProcBlack.toward = "bottom";
         this.o.rdmProcBlack.threshold = 1000;
         this.o.rdmProcBlack.hideafter = 0;
         this.o.rdmProcBlack.fg = this.kBlackManaBarColor;
+        this.o.rdmProcBlack.bg = 'black';
         this.o.rdmProcImpact.style = "empty";
         this.o.rdmProcImpact.toward = "bottom";
         this.o.rdmProcImpact.threshold = 1000;
         this.o.rdmProcImpact.hideafter = 0;
         this.o.rdmProcImpact.fg = this.kImpactProcColor;
+        this.o.rdmProcImpact.bg = 'black';
       }
     }
     
@@ -693,10 +696,12 @@ class Bars {
       this.OnPullCountdown(0);
 
     var opacityContainer = document.getElementById("opacity-container");
-    if (inCombat || !kLowerOpacityOutOfCombat)
-      opacityContainer.style.opacity = 1.0;
-    else
-      opacityContainer.style.opacity = 0.5;
+    if (opacityContainer != null) {
+      if (inCombat || !kLowerOpacityOutOfCombat)
+        opacityContainer.style.opacity = 1.0;
+      else
+        opacityContainer.style.opacity = 0.5;
+    }
   }
   
   OnPullCountdown(seconds) {
@@ -932,6 +937,10 @@ function OnLogEvent(e) {
         continue;
       }
     }
+
+    // For learning boss ability codes.
+    //if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
+    //  console.log(log);
 
     if (log.search(/::test::/) >= 0)
       Test();

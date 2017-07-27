@@ -61,11 +61,9 @@ class TimerBox extends HTMLElement {
     root.innerHTML = `
       <style>
         .bg {
-          opacity: 0.5;
           position: absolute;
         }
         .fg {
-          opacity: 1.0;
           position: absolute;
         }
         #timer {
@@ -105,7 +103,6 @@ class TimerBox extends HTMLElement {
     this.timerElement = this.shadowRoot.getElementById("timer");
 
     // Constants.
-    this.kBackgroundOpacity = 0.8;
     this.kLargeSize = 50;
     this.kSmallSize = 30;
     this.kBorderSize = 2;
@@ -116,7 +113,7 @@ class TimerBox extends HTMLElement {
     this._value = 0;
     this._duration = 0;
     this._threshold = 7;
-    this._bg = "black";
+    this._bg = "rgba(0, 0, 0, 0.8)";
     this._fg = "red";
     this._scale = 1;
     this._toward_top = true;
@@ -191,9 +188,6 @@ class TimerBox extends HTMLElement {
     smallForegroundStyle.backgroundColor = this._fg;
     largeForegroundStyle.backgroundColor = this._fg;
 
-    largeBackgroundStyle.opacity = this.kBackgroundOpacity;
-    smallBackgroundStyle.opacity = this.kBackgroundOpacity;
-    
     largeBackgroundStyle.width = largeBackgroundStyle.height = this.kLargeSize * this._scale;
     smallBackgroundStyle.width = smallBackgroundStyle.height = this.kSmallSize * this._scale;
     largeForegroundStyle.width = largeForegroundStyle.height = (this.kLargeSize - this.kBorderSize * 2) * this._scale;
