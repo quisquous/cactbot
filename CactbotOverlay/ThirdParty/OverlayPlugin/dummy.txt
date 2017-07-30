@@ -1,11 +1,12 @@
-This directory is for DLLs from RainbowMage OverlayPlugin.
+This directory is for DLLs from hibiyasleep OverlayPlugin.
 
-Download from: https://github.com/RainbowMage/OverlayPlugin
+Download from: https://github.com/hibiyasleep/OverlayPlugin
 Then run build.bat.
 
 Put the following DLLs in this directory:
 
   HTMLRenderer.dll
+  Newtonsoft.Json.dll
   OverlayPlugin.dll
   OverlayPlugin.Core.dll
   OverlayPlugin.Common.dll
