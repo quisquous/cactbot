@@ -65,6 +65,8 @@ document.addEventListener("onZoneChangedEvent", function (e) {
 });
 
 function CanShowWellFedWarning() {
+  if (g_hp == 0)
+    return false;
   if (g_in_combat)
     return false;
   if (g_level < kMaxLevel)
