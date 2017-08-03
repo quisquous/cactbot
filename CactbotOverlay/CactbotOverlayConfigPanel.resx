@@ -451,13 +451,13 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 229</value>
+    <value>208, 225</value>
   </data>
   <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 132</value>
+    <value>353, 136</value>
   </data>
   <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -655,7 +655,7 @@
     <value>3, 162</value>
   </data>
   <data name="dpsUpdateRateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 26</value>
+    <value>190, 22</value>
   </data>
   <data name="dpsUpdateRateLabel.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
@@ -678,14 +678,17 @@
   <data name="&gt;&gt;dpsUpdateRateLabel.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="dpsUpdateRate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
+  <data name="dpsUpdateRate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="dpsUpdateRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 165</value>
+    <value>206, 163</value>
+  </data>
+  <data name="dpsUpdateRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
   </data>
   <data name="dpsUpdateRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 20</value>
+    <value>357, 20</value>
   </data>
   <data name="dpsUpdateRate.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -709,7 +712,7 @@
     <value>True</value>
   </data>
   <data name="logUpdateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 188</value>
+    <value>3, 184</value>
   </data>
   <data name="logUpdateLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 22</value>
@@ -742,7 +745,7 @@
     <value>True</value>
   </data>
   <data name="logUpdateCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 191</value>
+    <value>208, 187</value>
   </data>
   <data name="logUpdateCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>15, 16</value>
@@ -769,10 +772,10 @@
     <value>True</value>
   </data>
   <data name="restartMessageLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 210</value>
+    <value>208, 206</value>
   </data>
   <data name="restartMessageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 16</value>
+    <value>282, 16</value>
   </data>
   <data name="restartMessageLabel.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
