@@ -3,7 +3,7 @@
 var kLowerOpacityOutOfCombat = true;
 var kRdmCastTime = 1.88 + 0.5;  // 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 var kShowRdmProcs = true;
-var kShowTargetCastbar = false;
+var kShowTargetCastbar = true;
 
 var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
   '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
@@ -38,7 +38,7 @@ var kSpellNames = {
   8968: "The Queen's Waltz (Tether)",
   8977: 'White Wind',
   8970: "The Queen's Waltz (Crystal)",
-  8974: "The Queen's Waltz (Book)",\
+  8974: "The Queen's Waltz (Book)",
   
   // O4S1
   //9202: "Unknown_23F2",
@@ -330,7 +330,7 @@ class Bars {
     container.appendChild(opacityContainer);
     
     var targetCastX = 210;
-    var targetCastY = 10;
+    var targetCastY = 0;
     var targetCastW = 300;
     var targetCastH = 24;
     
