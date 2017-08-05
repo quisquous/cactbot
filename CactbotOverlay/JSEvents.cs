@@ -108,6 +108,21 @@ namespace Cactbot {
       }
     }
 
+    public class TargetCastingEvent : JSEvent {
+      public TargetCastingEvent(FFXIVProcess.SpellCastingData s) {
+        if (s != null) {
+          castId = s.cast_id;
+          timeProgress = s.casting_time_progress;
+          castLength = s.casting_time_length;
+        }
+      }
+      public string EventName() { return "onTargetCastingEvent"; }
+
+      public int castId = 0;
+      public float timeProgress = 0;
+      public float castLength = 0;
+    }
+
     public class TargetChangedEvent : JSEvent {
       public TargetChangedEvent(Combatant c) {
         if (c != null) {

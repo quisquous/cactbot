@@ -3,13 +3,114 @@
 var kLowerOpacityOutOfCombat = true;
 var kRdmCastTime = 1.88 + 0.5;  // 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 var kShowRdmProcs = true;
+var kShowTargetCastbar = false;
 
 var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
   '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
   '|((Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet))' +
   '|Limit Break';
 var kReName = '[A-Za-z0-9 \']+'
-var kReAbilityCode = '.{2,4}';
+var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
+
+var kSpellNames = {
+  0xbe: 'Physick',
+  0x1d94: 'Protect',
+  
+  // O3S
+  8939: "Critical Hit",
+  8940: 'Spellblade Fire III',
+  8941: 'Spellblade Blizzard III',
+  8942: 'Spellblade Thunder III',
+  8943: "Spellblade Holy",
+  8946: "Pole Shift",
+  8948: 'Haste',
+  8950: 'Dimensional Wave',
+  8951: "Ribbit",
+  8952: "Squelch",
+  8953: 'Oink',
+  8954: 'Mindjack',
+  8955: 'Place Token',
+  8956: 'Place Dark Token',
+  8960: 'The Playing Field',
+  8961: 'The Game',
+  8964: 'Panel Swap',
+  8966: "The Queen's Waltz (Clock)",
+  8968: "The Queen's Waltz (Tether)",
+  8977: 'White Wind',
+  8970: "The Queen's Waltz (Crystal)",
+  8974: "The Queen's Waltz (Book)",\
+  
+  // O4S1
+  //9202: "Unknown_23F2",
+  9204: "Dualcast",
+  9205: "Fire III",
+  9206: "Fire III",
+  9207: "Blizzard III",
+  9208: "Blizzard III",
+  9209: "Thunder III",
+  9210: "Thunder III",
+  9211: "Fire III",
+  9212: "Blizzard III",
+  9213: "Thunder III",
+  9214: "Vacuum Wave",
+  9215: "White Hole",
+  9216: "Flare",
+  9217: "Flare",
+  9218: "Holy",
+  9219: "Holy",
+  9220: "Meteor",
+  9221: "Meteor",
+  9222: "Black Hole",
+  9223: "Black Spark",
+  9224: "The Decisive Battle",
+  9225: "Collision",
+  //9226: "Unknown_240A"
+  9227: "Zombie Breath",
+  
+  // O4S2
+  9241: "Aero III",
+  9239: "Almagest",
+  9240: "Almagest",
+  9236: "Black Antilight",
+  9208: "Blizzard III",
+  9251: "Charybdis",
+  9266: "Death Surge",
+  9263: "Death Wave",
+  9246: "Delta Attack",
+  9244: "Double Attack",
+  9436: "Double Attack",
+  9310: "Double Attack",
+  9242: "Earth Shaker",
+  9243: "Earth Shaker",
+  9237: "Edge Of Death",
+  9248: "Emptiness (1)",
+  9249: "Emptiness (2)",
+  9250: "Emptiness (3)",
+  9206: "Fire III"
+  9217: "Flare",
+  9230: "Flood Of Naught (1)",
+  9231: "Flood Of Naught (2)",
+  9233: "Flood Of Naught (3)",
+  9234: "Flood Of Naught (4)",
+  9238: "Flood Of Naught (5)",
+  9255: "Flying Frenzy",
+  9256: "Frenzied Fist",
+  9257: "Frenzied Sphere",
+  9259: "Grand Cross Alpha",
+  9260: "Grand Cross Delta",
+  9261: "Grand Cross Omega",
+  9219: "Holy",
+  9292: "Inner Antilight",
+  9247: "Light And Darkness",
+  9252: "Meteor",
+  9254: "Neverwhere",
+  9232: "Outer Antilight",
+  9293: "Terminal Antilight",
+  9258: "The Final Battle",
+  9210: "Thunder III",
+  9245: "Vacuum Wave",
+  9235: "White Antilight",
+}
 
 // Regexes to be filled out once we know the player's name.
 var kReRdmCombo1 = null;
@@ -30,6 +131,7 @@ var kReDragonSight = null;
 var kReChainStrategem = null;
 var kReTrickAttack = null;
 var kReHypercharge = null;
+var kReAbilitySpellStart = null;
 
 /*
 // To build a data URL
@@ -101,6 +203,10 @@ function setupRegexes(me) {
   kReChainStrategem = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Chain Strategem:');
   kReTrickAttack = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Trick Attack:');
   kReHypercharge = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:');
+  
+  // The format for FFXIV plugin-injected lines. These lines have different
+  // Ids than the game provided lines for abilities for some reason.
+  kReAbilitySpellStart = new RegExp('\[[0-9:.]\] [0-9A-Fa-f]{2}:(' + kReAbilityCode + '):' + kReName + ' starts using (' + kReName + ') on ' + kReName + '\.');
 }
 
 var kBigBuffTracker = null;
@@ -199,6 +305,8 @@ class Bars {
     this.kWhiteBlackIndicator80 = "rgba(0, 0, 0, 0.7)";
     this.kWhiteBlackIndicator = "rgba(100, 100, 100, 0.7)";
     
+    this.kTargetCastbarColor = "rgba(250, 70, 100, 0.8)";
+    
     this.kBigBuffIconWidth = 44;
     this.kBigBuffIconHeight = 32;
     this.kBigBuffBarHeight = 5;
@@ -207,6 +315,7 @@ class Bars {
 
     this.o = {};
     this.bugBuffs = {};
+    this.casting = {};
   }
   
   OnJobChange(job) {
@@ -220,10 +329,16 @@ class Bars {
     opacityContainer.id = "opacity-container";
     container.appendChild(opacityContainer);
     
-    var hpX = 50;
-    var hpY = 20;
-    var mpX = 50;
+    var targetCastX = 210;
+    var targetCastY = 10;
+    var targetCastW = 300;
+    var targetCastH = 24;
+    
+    var hpX = 250;
+    var hpY = 120;
+    var mpX = hpX;
     var mpY = hpY + 8;
+
     var hpW = 202;  // 2px per percent + 1px border on each side.
     
     var pullCountdownContainer = document.createElement("div");
@@ -241,6 +356,22 @@ class Bars {
     this.o.pullCountdown.style = "empty";
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
+
+    if (kShowTargetCastbar) {
+    this.o.targetCastbarContainer = document.createElement("div");
+    container.appendChild(this.o.targetCastbarContainer);
+    this.o.targetCastbar = document.createElement("resource-bar");
+    this.o.targetCastbarContainer.appendChild(this.o.targetCastbar);
+    
+    this.o.targetCastbarContainer.style.display = "none";
+    this.o.targetCastbarContainer.style.position = "absolute";
+    this.o.targetCastbarContainer.style.left = targetCastX;
+    this.o.targetCastbarContainer.style.top = targetCastY;
+    
+    this.o.targetCastbar.width = targetCastW;
+    this.o.targetCastbar.height = targetCastH;
+    this.o.targetCastbar.fg = this.kTargetCastbarColor;
+    }
 
     this.o.bigBuffsContainer = document.createElement("div");
     this.o.bigBuffsList = document.createElement('widget-list');
@@ -307,7 +438,7 @@ class Bars {
       var barX = hpX;
       var barY = hpY + 17;// + 228;
       var barHeight = 8;  // Rogue energy was 12.
-      var belowTargetY = 163;
+      var belowTargetY = hpY + 146;
       
       var fontSize = 16;
       var fontWidth = fontSize * 1.8;
@@ -718,7 +849,34 @@ class Bars {
       }
     }
   }
-  
+
+  OnTargetCasting(spell_names, cast_id, progress, length) {
+    if (cast_id == 0 || length == 0) {
+      if (this.o.targetCastbarContainer != null)
+        this.o.targetCastbarContainer.style.display = "none";
+      delete this.casting['target'];
+      return;
+    }
+    this.casting['target'] = {
+      code: cast_id,
+      progress: progress,
+      length: length,
+    };
+    if (this.o.targetCastbarContainer != null)
+      this.o.targetCastbarContainer.style.display = "block";
+    if (this.o.targetCastbar != null) {
+      if (cast_id in spell_names)
+        this.o.targetCastbar.lefttext = spell_names[cast_id];
+      else
+        this.o.targetCastbar.lefttext = "";
+      //  this.o.targetCastbar.lefttext = '0x' + cast_id.toString(16);
+      this.o.targetCastbar.maxvalue = length;
+      this.o.targetCastbar.value = progress;
+      
+      this.o.targetCastbar.righttext = (length - progress).toFixed(1);
+    }
+}
+
   OnBigBuff(name, seconds, settings) {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
@@ -757,6 +915,7 @@ class TrackingData {
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
+    this.spellNames = kSpellNames;
   }
 }
 
@@ -845,6 +1004,10 @@ document.addEventListener("onTargetChangedEvent", function (e) {
   }
 });
 
+document.addEventListener("onTargetCastingEvent", function (e) {
+  g_bars.OnTargetCasting(g_data.spellNames, e.detail.castId, e.detail.timeProgress, e.detail.castLength);
+});
+
 document.addEventListener("onInCombatChangedEvent", function (e) {
   g_data.inCombat = e.detail.inCombat;
   g_bars.OnInCombatChanged(g_data.inCombat);
@@ -882,6 +1045,16 @@ function OnLogEvent(e) {
           seconds = r[settings.durationPosition];
         }
         g_bars.OnBigBuff(name, seconds, settings);
+      }
+    }
+
+    r = log.match(kReAbilitySpellStart);
+    if (r != null) {
+      var code = parseInt(r[1], 16);
+      var name = r[2];
+      if (!(code in g_data.spellNames)) {
+        //console.log("FOUND ABILITY " + code.toString(16) + " (" + code + ") : " + name);
+        g_data.spellNames[code] = name;
       }
     }
 
@@ -976,4 +1149,4 @@ function Test() {
   logs.push(':' + kMe + ':00:Hypercharge:');
   var e = { detail: { logs: logs } };
   OnLogEvent(e);
-}
+}1

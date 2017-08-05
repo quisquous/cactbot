@@ -53,6 +53,9 @@ namespace Cactbot {
     public delegate void TargetChangedHandler(JSEvents.TargetChangedEvent e);
     public event TargetChangedHandler OnTargetChanged;
 
+    public delegate void TargetCastingHandler(JSEvents.TargetCastingEvent e);
+    public event TargetCastingHandler OnTargetCasting;
+
     public delegate void LogHandler(JSEvents.LogEvent e);
     public event LogHandler OnLogsChanged;
 
@@ -99,6 +102,7 @@ namespace Cactbot {
       }
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnTargetChanged += (e) => DispatchToJS(e);
+      OnTargetCasting += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
@@ -215,6 +219,8 @@ namespace Cactbot {
       Combatant player = ffxiv_.GetSelfCombatant();
       // The |target| can be null when no target is selected.
       Combatant target = ffxiv_.GetTargetCombatant();
+      // The |target_casting| can be null when no target is selected.
+      var target_casting = ffxiv_.GetTargetCastingData();
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
@@ -259,6 +265,17 @@ namespace Cactbot {
           OnTargetChanged(new JSEvents.TargetChangedEvent(target));
         else
           OnTargetChanged(new JSEvents.TargetChangedEvent(null));
+      }
+
+      // onTargetCastingEvent: Fires each tick while the target is casting, and once
+      // with null when not casting.
+      bool is_target_casting = target_casting != null && target_casting.cast_id != 0;
+      if (is_target_casting || is_target_casting != notify_state_.is_target_casting) {
+        notify_state_.is_target_casting = is_target_casting;
+        if (is_target_casting)
+          OnTargetCasting(new JSEvents.TargetCastingEvent(target_casting));
+        else
+          OnTargetCasting(new JSEvents.TargetCastingEvent(null));
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
@@ -331,6 +348,7 @@ namespace Cactbot {
       public string zone_name = "";
       public Combatant player = null;
       public Combatant target = null;
+      public bool is_target_casting = false;
     }
     private NotifyState notify_state_ = new NotifyState();
   }
