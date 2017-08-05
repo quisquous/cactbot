@@ -86,7 +86,7 @@ var kSpellNames = {
   9248: "Emptiness (1)",
   9249: "Emptiness (2)",
   9250: "Emptiness (3)",
-  9206: "Fire III"
+  9206: "Fire III",
   9217: "Flare",
   9230: "Flood Of Naught (1)",
   9231: "Flood Of Naught (2)",
