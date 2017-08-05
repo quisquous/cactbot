@@ -16,6 +16,28 @@ var kSpellNames = {
   0xbe: 'Physick',
   0x1d94: 'Protect',
   
+  // O1S
+  7901: "Blaze",
+  7894: "Breath Wing",
+  7891: "Charybdis",
+  7902: "Clamp",
+  7896: "Downburst",
+  7889: "Levinbolt",
+  7892: "Roar",
+  7900: "The Classical Elements",
+  7887: "Twin Bolt",
+
+  // O2S
+  9054: "-100 Gs",
+  9057: "Antilight",
+  9071: "Death's Gaze",
+  9076: "Earthquake",
+  9047: "Epicenter",
+  9073: "Evilsphere",
+  9059: "Gravitational Manipulation",
+  9074: "Gravitational Wave",
+  9050: "Maniacal Probe",
+
   // O3S
   8939: "Critical Hit",
   8940: 'Spellblade Fire III',
@@ -41,75 +63,41 @@ var kSpellNames = {
   8974: "The Queen's Waltz (Book)",
   
   // O4S1
-  //9202: "Unknown_23F2",
   9204: "Dualcast",
   9205: "Fire III",
-  9206: "Fire III",
   9207: "Blizzard III",
-  9208: "Blizzard III",
   9209: "Thunder III",
-  9210: "Thunder III",
-  9211: "Fire III",
-  9212: "Blizzard III",
-  9213: "Thunder III",
+  9211: "Fire III (Stop)",
+  9212: "Blizzard III (Move)",
+  9213: "Thunder III (AOE)",
   9214: "Vacuum Wave",
   9215: "White Hole",
   9216: "Flare",
-  9217: "Flare",
   9218: "Holy",
-  9219: "Holy",
   9220: "Meteor",
-  9221: "Meteor",
   9222: "Black Hole",
-  9223: "Black Spark",
   9224: "The Decisive Battle",
-  9225: "Collision",
-  //9226: "Unknown_240A"
-  9227: "Zombie Breath",
   
   // O4S2
   9241: "Aero III",
   9239: "Almagest",
-  9240: "Almagest",
-  9236: "Black Antilight",
-  9208: "Blizzard III",
   9251: "Charybdis",
-  9266: "Death Surge",
-  9263: "Death Wave",
   9246: "Delta Attack",
   9244: "Double Attack",
-  9436: "Double Attack",
-  9310: "Double Attack",
   9242: "Earth Shaker",
-  9243: "Earth Shaker",
-  9237: "Edge Of Death",
-  9248: "Emptiness (1)",
-  9249: "Emptiness (2)",
-  9250: "Emptiness (3)",
-  9206: "Fire III",
-  9217: "Flare",
-  9230: "Flood Of Naught (1)",
-  9231: "Flood Of Naught (2)",
-  9233: "Flood Of Naught (3)",
-  9234: "Flood Of Naught (4)",
-  9238: "Flood Of Naught (5)",
-  9255: "Flying Frenzy",
-  9256: "Frenzied Fist",
-  9257: "Frenzied Sphere",
+  9248: "Emptiness",
+  9230: "Flood Of Naught (Inner)",
+  9231: "Flood Of Naught (Outer)",
+  9233: "Flood Of Naught (Black White)",
+  9234: "Flood Of Naught (White Black)",
+  9238: "Flood Of Naught (Charge)",
   9259: "Grand Cross Alpha",
   9260: "Grand Cross Delta",
   9261: "Grand Cross Omega",
-  9219: "Holy",
-  9292: "Inner Antilight",
   9247: "Light And Darkness",
   9252: "Meteor",
-  9254: "Neverwhere",
-  9232: "Outer Antilight",
-  9293: "Terminal Antilight",
   9258: "The Final Battle",
-  9210: "Thunder III",
   9245: "Vacuum Wave",
-  9235: "White Antilight",
 }
 
 // Regexes to be filled out once we know the player's name.
@@ -358,20 +346,20 @@ class Bars {
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
 
     if (kShowTargetCastbar) {
-    this.o.targetCastbarContainer = document.createElement("div");
-    container.appendChild(this.o.targetCastbarContainer);
-    this.o.targetCastbar = document.createElement("resource-bar");
-    this.o.targetCastbarContainer.appendChild(this.o.targetCastbar);
-    
-    this.o.targetCastbarContainer.style.display = "none";
-    this.o.targetCastbarContainer.style.position = "absolute";
-    this.o.targetCastbarContainer.style.left = targetCastX;
-    this.o.targetCastbarContainer.style.top = targetCastY;
-    
-    this.o.targetCastbar.width = targetCastW;
-    this.o.targetCastbar.height = targetCastH;
-    this.o.targetCastbar.fg = this.kTargetCastbarColor;
-    }
+      this.o.targetCastbarContainer = document.createElement("div");
+      container.appendChild(this.o.targetCastbarContainer);
+      this.o.targetCastbar = document.createElement("resource-bar");
+      this.o.targetCastbarContainer.appendChild(this.o.targetCastbar);
+      
+      this.o.targetCastbarContainer.style.display = "none";
+      this.o.targetCastbarContainer.style.position = "absolute";
+      this.o.targetCastbarContainer.style.left = targetCastX;
+      this.o.targetCastbarContainer.style.top = targetCastY;
+      
+      this.o.targetCastbar.width = targetCastW;
+      this.o.targetCastbar.height = targetCastH;
+      this.o.targetCastbar.fg = this.kTargetCastbarColor;
+      }
 
     this.o.bigBuffsContainer = document.createElement("div");
     this.o.bigBuffsList = document.createElement('widget-list');
@@ -868,8 +856,7 @@ class Bars {
       if (cast_id in spell_names)
         this.o.targetCastbar.lefttext = spell_names[cast_id];
       else
-        this.o.targetCastbar.lefttext = "";
-      //  this.o.targetCastbar.lefttext = '0x' + cast_id.toString(16);
+        this.o.targetCastbar.lefttext = cast_id.toString();
       this.o.targetCastbar.maxvalue = length;
       this.o.targetCastbar.value = progress;
       
