@@ -56,6 +56,9 @@ namespace Cactbot {
     public delegate void TargetCastingHandler(JSEvents.TargetCastingEvent e);
     public event TargetCastingHandler OnTargetCasting;
 
+    public delegate void FocusCastingHandler(JSEvents.FocusCastingEvent e);
+    public event FocusCastingHandler OnFocusCasting;
+
     public delegate void LogHandler(JSEvents.LogEvent e);
     public event LogHandler OnLogsChanged;
 
@@ -103,6 +106,7 @@ namespace Cactbot {
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnTargetChanged += (e) => DispatchToJS(e);
       OnTargetCasting += (e) => DispatchToJS(e);
+      OnFocusCasting += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
@@ -221,6 +225,8 @@ namespace Cactbot {
       Combatant target = ffxiv_.GetTargetCombatant();
       // The |target_casting| can be null when no target is selected.
       var target_casting = ffxiv_.GetTargetCastingData();
+      // The |focus_casting| can be null when no focus is selected.
+      var focus_casting = ffxiv_.GetFocusCastingData();
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
@@ -276,6 +282,17 @@ namespace Cactbot {
           OnTargetCasting(new JSEvents.TargetCastingEvent(target_casting));
         else
           OnTargetCasting(new JSEvents.TargetCastingEvent(null));
+      }
+
+      // onFocusCastingEvent: Fires each tick while the focus target is casting, and
+      // once with null when not casting.
+      bool is_focus_casting = focus_casting != null && focus_casting.cast_id != 0;
+      if (is_focus_casting || is_focus_casting != notify_state_.is_focus_casting) {
+        notify_state_.is_focus_casting = is_focus_casting;
+        if (is_focus_casting)
+          OnFocusCasting(new JSEvents.FocusCastingEvent(focus_casting));
+        else
+          OnFocusCasting(new JSEvents.FocusCastingEvent(null));
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
@@ -349,6 +366,7 @@ namespace Cactbot {
       public Combatant player = null;
       public Combatant target = null;
       public bool is_target_casting = false;
+      public bool is_focus_casting = false;
     }
     private NotifyState notify_state_ = new NotifyState();
   }

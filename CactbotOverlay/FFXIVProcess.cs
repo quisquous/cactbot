@@ -13,6 +13,7 @@ namespace Cactbot {
     private Process process_ = null;
     private FFXIVMemory enmity_memory_ = null;
     private IntPtr target_ptr_addr_ = IntPtr.Zero;
+    private IntPtr focus_ptr_addr_ = IntPtr.Zero;
     private IntPtr rdm_mana_outer_addr_ = IntPtr.Zero;
     private IntPtr warrior_outer_addr_ = IntPtr.Zero;
 
@@ -25,7 +26,12 @@ namespace Cactbot {
     private static bool kTargetSignatureRIP = true;
     // The pointer is to an entity structure:
     //
-    // EntityStruct* target;  // This pointer found from the signature.
+    // OuterStruct* outer;  // This pointer found from the signature.
+    // OuterStruct {
+    //   EntityStruct* target;
+    //   0x70 bytes..
+    //   EntityStruct* focus;
+    // }
     // EntityStruct {
     //   0x30 bytes..
     //   string name;  // 0x30 bytes (maybe more?)
@@ -39,6 +45,8 @@ namespace Cactbot {
     //private static int kTargetInnerStructureOffsetName = 0x30;
     private static int kTargetInnerStructureOffsetCastingId = 0x18B4;
     private static int kTargetInnerStructureOffsetCastingTimeProgress = 0x18E4;
+    // The focus pointer is in the same outer structure
+    private static int kFocusOuterStructureOffset = 0x78;
 
     // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
     // in July 7, 2017 update. The lines that actually read are:
@@ -116,8 +124,9 @@ namespace Cactbot {
           if (p.Count != 1) {
             logger_.LogError("Target signature found " + p.Count + " matches");
           } else {
-            // Store the outer pointer. It's value changes each time the target changes.
+            // Store the outer pointer. It's value changes each time the selected entity changes.
             target_ptr_addr_ = IntPtr.Add(p[0], kTargetOuterStructureOffset);
+            focus_ptr_addr_ = IntPtr.Add(p[0], kFocusOuterStructureOffset);
           }
         }
 
@@ -180,6 +189,31 @@ namespace Cactbot {
         return null;
 
       IntPtr entity_ptr = ReadIntPtr(target_ptr_addr_);
+      if (entity_ptr == IntPtr.Zero)
+        return null;
+
+      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kTargetInnerStructureOffsetCastingId);
+      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kTargetInnerStructureOffsetCastingTimeProgress);
+
+      Int32[] id = Read32(spell_id_addr, 1);
+      if (id == null)
+        return null;
+      float[] times = ReadSingle(spell_times_addr, 2);
+      if (times == null)
+        return null;
+
+      var r = new SpellCastingData();
+      r.cast_id = id[0];
+      r.casting_time_progress = times[0];
+      r.casting_time_length = times[1];
+      return r;
+    }
+
+    public SpellCastingData GetFocusCastingData() {
+      if (!HasProcess())
+        return null;
+
+      IntPtr entity_ptr = ReadIntPtr(focus_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
 
