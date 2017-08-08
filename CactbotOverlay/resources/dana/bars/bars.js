@@ -4,7 +4,8 @@
 var kLowerOpacityOutOfCombat = true;
 var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 var kShowRdmProcs = true;
-var kShowTargetCastbar = true;
+var kShowTargetCastbar = false;
+var kShowFocusCastbar = true;
 var kFarThresholdOffence = 24;  // The distance that offensive spells such as VerAreo, etc are castable.
 
 // Layout.
@@ -69,7 +70,7 @@ var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
 var kSpellNames = {
   0xbe: 'Physick',
   0x1d94: 'Protect',
-  
+
   // O1S
   7901: "Blaze",
   7894: "Breath Wing",
@@ -116,7 +117,7 @@ var kSpellNames = {
   8977: 'White Wind',
   8970: "The Queen's Waltz (Crystal)",
   8974: "The Queen's Waltz (Book)",
-  
+
   // O4S-1
   9204: "Dualcast",
   9205: "Fire III",
@@ -132,7 +133,7 @@ var kSpellNames = {
   9220: "Meteor",
   9222: "Black Hole",
   9224: "The Decisive Battle",
-  
+
   // O4S-2
   9241: "Aero III",
   9239: "Almagest",
@@ -237,7 +238,7 @@ function setupRegexes(me) {
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)')
   kReRdmImpactProcEnd = new RegExp(':' + me + ' loses the effect of Impactful from ' + me + '.')
-  
+
   kRePotion = new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds\.');
   kReEmbolden = new RegExp(':' + me + ' gains the effect of Embolden from (.*) for ([0-9.]+) Seconds\.');
   kReBattleLitany = new RegExp(':' + kReName + ' gains the effect of Battle Litany from (.*) for ([0-9.]+) Seconds\.');
@@ -246,7 +247,7 @@ function setupRegexes(me) {
   kReChainStrategem = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Chain Strategem:');
   kReTrickAttack = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Trick Attack:');
   kReHypercharge = new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:');
-  
+
   // The format for FFXIV plugin-injected lines. These lines have different
   // Ids than the game provided lines for abilities for some reason.
   kReAbilitySpellStart = new RegExp('\[[0-9:.]\] [0-9A-Fa-f]{2}:(' + kReAbilityCode + '):' + kReName + ' starts using (' + kReName + ') on ' + kReName + '\.');
@@ -325,18 +326,18 @@ class Bars {
     this.bugBuffs = {};
     this.casting = {};
   }
-  
+
   OnJobChange(job) {
     var container = document.getElementById("container");
     while (container.childNodes.length)
       container.removeChild(container.childNodes[0]);
-    
+
     this.o = {};
-    
+
     var opacityContainer = document.createElement("div");
     opacityContainer.id = "opacity-container";
     container.appendChild(opacityContainer);
-    
+
     var pullCountdownContainer = document.createElement("div");
     container.appendChild(pullCountdownContainer);
     this.o.pullCountdown = document.createElement("timer-bar");
@@ -358,15 +359,30 @@ class Bars {
       container.appendChild(this.o.targetCastbarContainer);
       this.o.targetCastbar = document.createElement("timer-bar");
       this.o.targetCastbarContainer.appendChild(this.o.targetCastbar);
-      
+
       this.o.targetCastbarContainer.style.display = "none";
       this.o.targetCastbarContainer.style.position = "absolute";
       this.o.targetCastbarContainer.style.left = kTargetCastBarPosX;
       this.o.targetCastbarContainer.style.top = kTargetCastBarPosY;
-      
+
       this.o.targetCastbar.width = kTargetCastBarSizeW;
       this.o.targetCastbar.height = kTargetCastBarSizeH;
       this.o.targetCastbar.fg = kTargetCastbarColor;
+    }
+    if (kShowFocusCastbar) {
+      this.o.focusCastbarContainer = document.createElement("div");
+      container.appendChild(this.o.focusCastbarContainer);
+      this.o.focusCastbar = document.createElement("timer-bar");
+      this.o.focusCastbarContainer.appendChild(this.o.focusCastbar);
+
+      this.o.focusCastbarContainer.style.display = "none";
+      this.o.focusCastbarContainer.style.position = "absolute";
+      this.o.focusCastbarContainer.style.left = kFocusCastBarPosX;
+      this.o.focusCastbarContainer.style.top = kFocusCastBarPosY;
+
+      this.o.focusCastbar.width = kFocusCastBarSizeW;
+      this.o.focusCastbar.height = kFocusCastBarSizeH;
+      this.o.focusCastbar.fg = kFocusCastbarColor;
     }
 
     this.o.bigBuffsContainer = document.createElement("div");
@@ -429,7 +445,7 @@ class Bars {
       this.o.tpBar.width = kHealthBarSizeW;
       this.o.tpBar.height = 9;  // Rogue energy was 12.
     }
-    
+
     if (job == "RDM") {
       var fontSize = 16;
       var fontWidth = fontSize * 1.8;
@@ -441,7 +457,7 @@ class Bars {
 
       // Move over the big buffs.
       this.o.bigBuffsContainer.style.left = kRedMageManaBarPosX + blackX + fontWidth + 5;
-      
+
       var rdmContainer = document.createElement("div");
       opacityContainer.appendChild(rdmContainer);
       rdmContainer.style.position = "absolute";
@@ -487,11 +503,11 @@ class Bars {
       this.o.rdmBackground.style.height = kRedMageManaBarSizeH * 2 - 4;
       this.o.rdmBackground.style.border = "1px solid black";
       this.o.rdmBackground.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-      
+
       this.o.rdmCombo1 = document.createElement("div");
       this.o.rdmCombo2 = document.createElement("div");
       this.o.rdmCombo3 = document.createElement("div");
-      
+
       this.o.rdmCombo1.style.position = "absolute";
       this.o.rdmCombo1.style.left = kHealthBarPosX;
       this.o.rdmCombo1.style.top = kHealthBarPosY - 9;
@@ -518,11 +534,11 @@ class Bars {
       this.o.rdmCombo3.style.backgroundColor = "#A00";
       this.o.rdmCombo3.style.border = "1px solid black";
       this.o.rdmCombo3.style.display = "none";
-      
+
       opacityContainer.appendChild(this.o.rdmCombo1);
       opacityContainer.appendChild(this.o.rdmCombo2);
       opacityContainer.appendChild(this.o.rdmCombo3);
-      
+
       var incs = 20;
       for (var i = 2 * incs; i <= 100; i = i + 2 * incs) {
         var marker = document.createElement("div");
@@ -539,9 +555,8 @@ class Bars {
           marker.style.backgroundColor = kWhiteBlackIndicator80;
         else
           marker.style.backgroundColor = kWhiteBlackIndicator;
-        
       }
-      
+
       this.o.whiteManaTextBox = document.createElement("div");
       rdmContainer.appendChild(this.o.whiteManaTextBox);
       this.o.whiteManaTextBox.classList.add("text");
@@ -553,7 +568,7 @@ class Bars {
       this.o.whiteManaTextBox.style.width = fontWidth;
       this.o.whiteManaTextBox.style.height = fontWidth;
       this.o.whiteManaTextBox.style.border = "1px solid rgba(0,0,0,0.7)";
-            
+
       this.o.blackManaTextBox = document.createElement("div");
       rdmContainer.appendChild(this.o.blackManaTextBox);
       this.o.blackManaTextBox.classList.add("text");
@@ -575,7 +590,7 @@ class Bars {
       this.o.blackManaTextBox.appendChild(this.o.blackManaText);
       this.o.blackManaText.style.position = "relative";
       this.o.blackManaText.style.top = innerTextY;
-      
+
       if (kShowRdmProcs) {
         /*
         var procMargin = (kHealthBarSizeW - (procW * 3)) / 2;
@@ -604,11 +619,11 @@ class Bars {
         whiteProcContainer.appendChild(this.o.rdmProcWhite);
         blackProcContainer.appendChild(this.o.rdmProcBlack);
         impactProcContainer.appendChild(this.o.rdmProcImpact);
-        
+
         procsContainer.style.position = "absolute";
         procsContainer.style.top = kRedMageProcsPosY;
         procsContainer.style.left = kRedMageProcsPosX;
-        
+
         whiteProcContainer.style.position = "absolute";
         blackProcContainer.style.position = "absolute";
         impactProcContainer.style.position = "absolute";
@@ -616,7 +631,7 @@ class Bars {
         whiteProcContainer.style.left = 10;
         blackProcContainer.style.left = 152 / 2;
         impactProcContainer.style.left = 142;
-        
+
         rdmNoProcWhite.style.backgroundColor = kWhiteManaBarColor;
         rdmNoProcWhite.style.opacity = 0.6;
         rdmNoProcWhite.style.border = "1px solid black";
@@ -664,7 +679,7 @@ class Bars {
         this.o.rdmProcImpact.bg = 'black';
       }
     }
-    
+
     if (this.o.healthBar) {
       this.o.healthBar.fg = kHealthColor;
       this.o.healthBar.bg = kBackgroundColor;
@@ -678,10 +693,10 @@ class Bars {
       this.o.tpBar.bg = kBackgroundColor;
     }
   }
-  
+
   MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
     var div = document.createElement("div");
-    
+
     var icon = document.createElement("timer-icon");
     icon.width = iconWidth;
     icon.height = iconHeight;
@@ -692,12 +707,12 @@ class Bars {
     barDiv.style.position = "relative";
     barDiv.style.top = iconHeight;
     div.appendChild(barDiv);
-    
+
     var bar = document.createElement("timer-bar");
     bar.width = iconWidth;
     bar.height = barHeight;
     barDiv.appendChild(bar);
-    
+
     if (textHeight > 0) {
       var text = document.createElement("div");
       text.classList.add('text');
@@ -724,10 +739,10 @@ class Bars {
     icon.icon = auraIcon;
     icon.duration = seconds;
     bar.duration = seconds;
-    
+
     return div;
   }
-  
+
   OnRedMageUpdate(white, black) {
     if (this.o.whiteManaBar == null || this.o.blackManaBar == null)
       return;
@@ -746,7 +761,7 @@ class Bars {
     else
       this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarColor; //"rgba(50,50,50,0.7)";
   }
-  
+
   OnRedMageProcBlack(seconds) {
     if (this.o.rdmProcBlack != null)
       this.o.rdmProcBlack.duration = Math.max(0, seconds - kRdmCastTime);
@@ -761,7 +776,7 @@ class Bars {
     if (this.o.rdmProcImpact != null)
       this.o.rdmProcImpact.duration = Math.max(0, seconds - kRdmCastTime);
   }
-  
+
   OnComboChange(job, stage) {
     if (job == "RDM") {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
@@ -771,7 +786,7 @@ class Bars {
       this.o.rdmCombo3.style.display = stage == 3 ? "block" : "none";
     }
   }
-  
+
   OnHealthChange(job, distance, current, max) {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = current;
@@ -788,7 +803,7 @@ class Bars {
     if (!this.o.manaBar) return;
     this.o.manaBar.value = current;
     this.o.manaBar.maxvalue = max;
-    
+
     var far = -1;
     if (job == "RDM")
       far = kFarThresholdOffence;
@@ -806,7 +821,7 @@ class Bars {
     this.o.tpBar.value = current;
     this.o.tpBar.maxvalue = max;
   }
-  
+
   OnInCombatChanged(inCombat) {
     if (inCombat)
       this.OnPullCountdown(0);
@@ -819,7 +834,7 @@ class Bars {
         opacityContainer.style.opacity = 0.5;
     }
   }
-  
+
   OnPullCountdown(seconds) {
     if (this.o.pullCountdown == null) return;
 
@@ -856,10 +871,36 @@ class Bars {
         this.o.targetCastbar.lefttext = cast_id.toString();
       this.o.targetCastbar.duration = length;
       this.o.targetCastbar.value = progress;
-      
+
       this.o.targetCastbar.righttext = (length - progress).toFixed(1);
     }
-}
+  }
+
+  OnFocusCasting(spell_names, cast_id, progress, length) {
+    if (cast_id == 0 || length == 0) {
+      if (this.o.focusCastbarContainer != null)
+        this.o.focusCastbarContainer.style.display = "none";
+      delete this.casting['focus'];
+      return;
+    }
+    this.casting['focus'] = {
+      code: cast_id,
+      progress: progress,
+      length: length,
+    };
+    if (this.o.focusCastbarContainer != null)
+      this.o.focusCastbarContainer.style.display = "block";
+    if (this.o.focusCastbar != null) {
+      if (cast_id in spell_names)
+        this.o.focusCastbar.lefttext = spell_names[cast_id];
+      else
+        this.o.focusCastbar.lefttext = cast_id.toString();
+      this.o.focusCastbar.duration = length;
+      this.o.focusCastbar.value = progress;
+
+      this.o.focusCastbar.righttext = (length - progress).toFixed(1);
+    }
+  }
 
   OnBigBuff(name, seconds, settings) {
     var aura = this.MakeAuraTimerIcon(
@@ -913,7 +954,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     setupBuffTracker();
     g_init = true;
   }
-  
+
   var update_job = false;
   var update_hp = false;
   var update_mp = false;
@@ -928,7 +969,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     g_data.hp = e.detail.currentHP;
     g_data.maxHP = e.detail.maxHP;
     update_hp = true;
-    
+
     if (g_data.hp == 0) {
       AbortCombo();  // Death resets combos.
       update_combo = true;
@@ -958,7 +999,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     g_bars.OnTPChange(g_data.job, g_data.distance, g_data.tp, g_data.maxTP);
   if (update_combo)
     g_bars.OnComboChange(g_data.job, g_data.combo);
-  
+
   if (g_data.job == "RDM") {
     if (update_job ||
         e.detail.jobDetail.whiteMana != g_data.whiteMana ||
@@ -992,6 +1033,10 @@ document.addEventListener("onTargetCastingEvent", function (e) {
   g_bars.OnTargetCasting(g_data.spellNames, e.detail.castId, e.detail.timeProgress, e.detail.castLength);
 });
 
+document.addEventListener("onFocusCastingEvent", function (e) {
+  g_bars.OnFocusCasting(g_data.spellNames, e.detail.castId, e.detail.timeProgress, e.detail.castLength);
+});
+
 document.addEventListener("onInCombatChangedEvent", function (e) {
   g_data.inCombat = e.detail.inCombat;
   g_bars.OnInCombatChanged(g_data.inCombat);
@@ -1002,10 +1047,10 @@ document.addEventListener("onLogEvent", OnLogEvent);
 function OnLogEvent(e) {
   if (!g_init)
     return;
-  
+
   for (var i = 0; i < e.detail.logs.length; i++) {
     var log = e.detail.logs[i];
-    
+
     var r = log.match(/:Battle commencing in ([0-9]+) seconds!/);
     if (r != null) {
       var seconds = parseInt(r[1]);
