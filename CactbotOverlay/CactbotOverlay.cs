@@ -279,7 +279,10 @@ namespace Cactbot {
       int target_cast_id = target_casting != null ? target_casting.cast_id : 0;
       if (target_cast_id != 0 || target_cast_id != notify_state_.target_cast_id) {
         notify_state_.target_cast_id = target_cast_id;
-        if (target_cast_id != 0) {
+        // The game considers things to be casting once progress reaches the end for a while, as the server is
+        // resolving lag or something. That breaks our start time tracking, so we just don't consider them to
+        // be casting anymore once it reaches the end.
+        if (target_cast_id != 0 && target_casting.casting_time_progress < target_casting.casting_time_length) {
           DateTime start = now.AddSeconds(-target_casting.casting_time_progress);
           // If the start is within the timer interval, assume it's the same cast. Since we sample the game
           // at a different rate than it ticks, there will be some jitter in the progress that we see, and this
@@ -300,7 +303,10 @@ namespace Cactbot {
       int focus_cast_id = focus_casting != null ? focus_casting.cast_id : 0;
       if (focus_cast_id != 0 || focus_cast_id != notify_state_.focus_cast_id) {
         notify_state_.focus_cast_id = focus_cast_id;
-        if (focus_cast_id != 0) {
+        // The game considers things to be casting once progress reaches the end for a while, as the server is
+        // resolving lag or something. That breaks our start time tracking, so we just don't consider them to
+        // be casting anymore once it reaches the end.
+        if (focus_cast_id != 0 && focus_casting.casting_time_progress < focus_casting.casting_time_length) {
           DateTime start = now.AddSeconds(-focus_casting.casting_time_progress);
           // If the start is within the timer interval, assume it's the same cast. Since we sample the game
           // at a different rate than it ticks, there will be some jitter in the progress that we see, and this
