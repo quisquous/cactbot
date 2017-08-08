@@ -1,9 +1,63 @@
 "use strict";
 
+// Options.
 var kLowerOpacityOutOfCombat = true;
-var kRdmCastTime = 1.88 + 0.5;  // 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 var kShowRdmProcs = true;
 var kShowTargetCastbar = true;
+var kFarThresholdOffence = 24;  // The distance that offensive spells such as VerAreo, etc are castable.
+
+// Layout.
+var kTargetCastBarPosX = 210;
+var kTargetCastBarPosY = 0;
+var kTargetCastBarSizeW = 300;
+var kTargetCastBarSizeH = 24;
+var kFocusCastBarPosX = 210;
+var kFocusCastBarPosY = 0;
+var kFocusCastBarSizeW = 300;
+var kFocusCastBarSizeH = 24;
+var kHealthBarPosX = 250;
+var kHealthBarPosY = 120;
+var kManaBarPosX = kHealthBarPosX;
+var kManaBarPosY = kHealthBarPosY + 8;
+var kHealthBarSizeW = 202;  // 2px per percent + 1px border on each side.
+var kHealthBarSizeH = 7;  // Rogue energy was 12.
+var kManaBarSizeH = 7;
+var kPullCounterBarSizeH = 18;
+var kBigBuffIconWidth = 44;
+var kBigBuffIconHeight = 32;
+var kBigBuffBarHeight = 5;
+var kBigBuffTextHeight = 12;
+var kBigBuffBorderSize = 1;
+// RDM layout.
+var kRedMageManaBarPosX = kHealthBarPosX;
+var kRedMageManaBarPosY = kHealthBarPosY + 17;// + 228;
+var kRedMageManaBarSizeH = 8;  // Rogue energy was 12.
+var kRedMageProcsPosX = kHealthBarPosX;
+var kRedMageProcsPosY = kHealthBarPosY + 146;
+
+// Colours.
+var kHealthColor = "rgb(59, 133, 4)";
+var kManaColor = "rgb(188, 55, 147)"; //"rgb(57, 120, 167)";
+var kTPColor = "rgb(180, 180, 0)";
+var kBackgroundColor = "rgb(30, 30, 30)";
+var kLowManaColor = "rgb(218, 69, 177)";
+var kFarManaColor = "rgb(215, 120, 0)";
+var kLowHealthThresholdPercent = 0.2;
+var kLowHealthColor = "rgb(190, 43, 30)"
+var kMidHealthThresholdPercent = 0.8;
+var kMidHealthColor = "rgb(127, 185, 29)"
+var kTargetCastbarColor = "rgba(250, 70, 100, 0.8)";
+var kFocusCastbarColor = "rgba(250, 70, 100, 0.8)";
+// RDM colours.
+var kWhiteManaBarColor = "rgb(220, 220, 240)";
+var kWhiteManaBarDimColor = "rgb(90, 90, 100)";
+var kBlackManaBarColor = "rgb(47, 176, 208)";
+var kImpactProcColor = "rgb(242, 114, 147)";
+var kBlackManaBarDimColor = "rgb(13, 76, 80)";
+var kWhiteBlackIndicator40 = "rgba(0, 0, 0, 0.7)";
+var kWhiteBlackIndicator80 = "rgba(0, 0, 0, 0.7)";
+var kWhiteBlackIndicator = "rgba(100, 100, 100, 0.7)";
 
 var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
   '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
@@ -46,6 +100,7 @@ var kSpellNames = {
   8943: "Spellblade Holy",
   8946: "Pole Shift",
   8948: 'Haste',
+  8949: 'Haste III',
   8950: 'Dimensional Wave',
   8951: "Ribbit",
   8952: "Squelch",
@@ -62,7 +117,7 @@ var kSpellNames = {
   8970: "The Queen's Waltz (Crystal)",
   8974: "The Queen's Waltz (Book)",
   
-  // O4S1
+  // O4S-1
   9204: "Dualcast",
   9205: "Fire III",
   9207: "Blizzard III",
@@ -78,7 +133,7 @@ var kSpellNames = {
   9222: "Black Hole",
   9224: "The Decisive Battle",
   
-  // O4S2
+  // O4S-2
   9241: "Aero III",
   9239: "Almagest",
   9251: "Charybdis",
@@ -266,41 +321,6 @@ function setupBuffTracker() {
 
 class Bars {
   constructor() {
-    this.kHealthColor = "rgb(59, 133, 4)";
-    this.kManaColor = "rgb(188, 55, 147)"; //"rgb(57, 120, 167)";
-    this.kTPColor = "rgb(180, 180, 0)";
-    this.kBackgroundColor = "rgb(30, 30, 30)";
-    
-    this.kLowManaThresholdRdm = -1; // 3600;  // The cost of VerRaise.
-    this.kLowManaThresholdBlm = -1; // 2634;  // The cost of Fire1 in flame stance.
-    this.kFarThresholdRdm = 24;  // The distance that VerAreo, etc is castable.
-    this.kFarThresholdBlm = 24;  // The distance that Fire, etc is castable.
-
-    this.kLowManaColor = "rgb(218, 69, 177)";
-    this.kFarManaColor = "rgb(215, 120, 0)";
-    
-    this.kLowHealthThresholdPercent = 0.2;
-    this.kLowHealthColor = "rgb(190, 43, 30)"
-    this.kMidHealthThresholdPercent = 0.8;
-    this.kMidHealthColor = "rgb(127, 185, 29)"
-    
-    this.kWhiteManaBarColor = "rgb(220, 220, 240)";
-    this.kWhiteManaBarDimColor = "rgb(90, 90, 100)";
-    this.kBlackManaBarColor = "rgb(47, 176, 208)";
-    this.kImpactProcColor = "rgb(242, 114, 147)";
-    this.kBlackManaBarDimColor = "rgb(13, 76, 80)";
-    this.kWhiteBlackIndicator40 = "rgba(0, 0, 0, 0.7)";
-    this.kWhiteBlackIndicator80 = "rgba(0, 0, 0, 0.7)";
-    this.kWhiteBlackIndicator = "rgba(100, 100, 100, 0.7)";
-    
-    this.kTargetCastbarColor = "rgba(250, 70, 100, 0.8)";
-    
-    this.kBigBuffIconWidth = 44;
-    this.kBigBuffIconHeight = 32;
-    this.kBigBuffBarHeight = 5;
-    this.kBigBuffTextHeight = 12;
-    this.kBigBuffBorderSize = 1;
-
     this.o = {};
     this.bugBuffs = {};
     this.casting = {};
@@ -317,28 +337,16 @@ class Bars {
     opacityContainer.id = "opacity-container";
     container.appendChild(opacityContainer);
     
-    var targetCastX = 210;
-    var targetCastY = 0;
-    var targetCastW = 300;
-    var targetCastH = 24;
-    
-    var hpX = 250;
-    var hpY = 120;
-    var mpX = hpX;
-    var mpY = hpY + 8;
-
-    var hpW = 202;  // 2px per percent + 1px border on each side.
-    
     var pullCountdownContainer = document.createElement("div");
     container.appendChild(pullCountdownContainer);
     this.o.pullCountdown = document.createElement("timer-bar");
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
     pullCountdownContainer.style.position = "absolute";
-    pullCountdownContainer.style.top = hpY - 20;
-    pullCountdownContainer.style.left = hpX;
-    this.o.pullCountdown.width = hpW;
-    this.o.pullCountdown.height = 18;
+    pullCountdownContainer.style.top = kHealthBarPosY - kPullCounterBarSizeH - 2;
+    pullCountdownContainer.style.left = kHealthBarPosX;
+    this.o.pullCountdown.width = kHealthBarSizeW;
+    this.o.pullCountdown.height = kPullCounterBarSizeH;
     this.o.pullCountdown.lefttext = "Pull";
     this.o.pullCountdown.righttext = "remain";
     this.o.pullCountdown.style = "empty";
@@ -348,18 +356,18 @@ class Bars {
     if (kShowTargetCastbar) {
       this.o.targetCastbarContainer = document.createElement("div");
       container.appendChild(this.o.targetCastbarContainer);
-      this.o.targetCastbar = document.createElement("resource-bar");
+      this.o.targetCastbar = document.createElement("timer-bar");
       this.o.targetCastbarContainer.appendChild(this.o.targetCastbar);
       
       this.o.targetCastbarContainer.style.display = "none";
       this.o.targetCastbarContainer.style.position = "absolute";
-      this.o.targetCastbarContainer.style.left = targetCastX;
-      this.o.targetCastbarContainer.style.top = targetCastY;
+      this.o.targetCastbarContainer.style.left = kTargetCastBarPosX;
+      this.o.targetCastbarContainer.style.top = kTargetCastBarPosY;
       
-      this.o.targetCastbar.width = targetCastW;
-      this.o.targetCastbar.height = targetCastH;
-      this.o.targetCastbar.fg = this.kTargetCastbarColor;
-      }
+      this.o.targetCastbar.width = kTargetCastBarSizeW;
+      this.o.targetCastbar.height = kTargetCastBarSizeH;
+      this.o.targetCastbar.fg = kTargetCastbarColor;
+    }
 
     this.o.bigBuffsContainer = document.createElement("div");
     this.o.bigBuffsList = document.createElement('widget-list');
@@ -367,12 +375,12 @@ class Bars {
     opacityContainer.appendChild(this.o.bigBuffsContainer);
 
     this.o.bigBuffsContainer.style.position = "absolute";
-    this.o.bigBuffsContainer.style.top = hpY;
-    this.o.bigBuffsContainer.style.left = hpX + hpW + 3;
+    this.o.bigBuffsContainer.style.top = kHealthBarPosY;
+    this.o.bigBuffsContainer.style.left = kHealthBarPosX + kHealthBarSizeW + 3;
     this.o.bigBuffsList.rowcolsize = 7;
     this.o.bigBuffsList.maxnumber = 7;
     this.o.bigBuffsList.toward = "right down";
-    this.o.bigBuffsList.elementwidth = this.kBigBuffIconWidth + 2;
+    this.o.bigBuffsList.elementwidth = kBigBuffIconWidth + 2;
 
     if (job == "RDM" || job == "BLM" || job == "WHM" ||
         job == "SCH" || job == "SMN" || job == "ACN" ||
@@ -383,10 +391,10 @@ class Bars {
       opacityContainer.appendChild(this.o.healthContainer);
 
       this.o.healthContainer.style.position = "absolute";
-      this.o.healthContainer.style.top = hpY;
-      this.o.healthContainer.style.left = hpX;
-      this.o.healthBar.width = hpW;
-      this.o.healthBar.height = 7;
+      this.o.healthContainer.style.top = kHealthBarPosY;
+      this.o.healthContainer.style.left = kHealthBarPosX;
+      this.o.healthBar.width = kHealthBarSizeW;
+      this.o.healthBar.height = kHealthBarSizeH;
 
       this.o.manaContainer = document.createElement("div");
       this.o.manaBar = document.createElement("resource-bar");
@@ -394,10 +402,10 @@ class Bars {
       opacityContainer.appendChild(this.o.manaContainer);
 
       this.o.manaContainer.style.position = "absolute";
-      this.o.manaContainer.style.top = mpY;
-      this.o.manaContainer.style.left = mpX;
-      this.o.manaBar.width = hpW;
-      this.o.manaBar.height = 7;  // Rogue energy was 12.
+      this.o.manaContainer.style.top = kManaBarPosY;
+      this.o.manaContainer.style.left = kManaBarPosX;
+      this.o.manaBar.width = kHealthBarSizeW;
+      this.o.manaBar.height = kManaBarSizeH;
     } else {
       this.o.healthContainer = document.createElement("div");
       this.o.healthBar = document.createElement("resource-bar");
@@ -405,9 +413,9 @@ class Bars {
       opacityContainer.appendChild(this.o.healthContainer);
 
       this.o.healthContainer.style.position = "relative";
-      this.o.healthContainer.style.top = hpY;
-      this.o.healthContainer.style.left = hpX;
-      this.o.healthBar.width = hpW;
+      this.o.healthContainer.style.top = kHealthBarPosY;
+      this.o.healthContainer.style.left = kHealthBarPosX;
+      this.o.healthBar.width = kHealthBarSizeW;
       this.o.healthBar.height = 7;
 
       this.o.tpContainer = document.createElement("div");
@@ -416,34 +424,29 @@ class Bars {
       opacityContainer.appendChild(this.o.tpContainer);
 
       this.o.tpContainer.style.position = "relative";
-      this.o.tpContainer.style.top = mpY;
-      this.o.tpContainer.style.left = mpX;
-      this.o.tpBar.width = hpW;
+      this.o.tpContainer.style.top = kManaBarPosY;
+      this.o.tpContainer.style.left = kManaBarPosX;
+      this.o.tpBar.width = kHealthBarSizeW;
       this.o.tpBar.height = 9;  // Rogue energy was 12.
     }
     
     if (job == "RDM") {
-      var barX = hpX;
-      var barY = hpY + 17;// + 228;
-      var barHeight = 8;  // Rogue energy was 12.
-      var belowTargetY = hpY + 146;
-      
       var fontSize = 16;
       var fontWidth = fontSize * 1.8;
-      var whiteX = hpW + 3;
+      var whiteX = kHealthBarSizeW + 3;
       var whiteY = -17;
-      var blackX = hpW + 3 + fontWidth + 5;
+      var blackX = kHealthBarSizeW + 3 + fontWidth + 5;
       var blackY = -17;
       var innerTextY = 6;
 
       // Move over the big buffs.
-      this.o.bigBuffsContainer.style.left = barX + blackX + fontWidth + 5;
+      this.o.bigBuffsContainer.style.left = kRedMageManaBarPosX + blackX + fontWidth + 5;
       
       var rdmContainer = document.createElement("div");
       opacityContainer.appendChild(rdmContainer);
       rdmContainer.style.position = "absolute";
-      rdmContainer.style.top = barY;
-      rdmContainer.style.left = barX;
+      rdmContainer.style.top = kRedMageManaBarPosY;
+      rdmContainer.style.left = kRedMageManaBarPosX;
 
       this.o.whiteManaBarContainer = document.createElement("div");
       this.o.whiteManaBar = document.createElement("resource-bar");
@@ -455,9 +458,9 @@ class Bars {
       this.o.whiteManaBarContainer.style.left = 0;
 
       this.o.whiteManaBar.bg = "rgba(0, 0, 0, 0)";
-      this.o.whiteManaBar.fg = this.kWhiteManaBarColor;
-      this.o.whiteManaBar.width = hpW;
-      this.o.whiteManaBar.height = barHeight;
+      this.o.whiteManaBar.fg = kWhiteManaBarColor;
+      this.o.whiteManaBar.width = kHealthBarSizeW;
+      this.o.whiteManaBar.height = kRedMageManaBarSizeH;
       this.o.whiteManaBar.maxvalue = 100;
 
       this.o.blackManaBarContainer = document.createElement("div");
@@ -466,12 +469,12 @@ class Bars {
       this.o.blackManaBarContainer.appendChild(this.o.blackManaBar);
 
       this.o.blackManaBarContainer.style.position = "absolute";
-      this.o.blackManaBarContainer.style.top = barHeight - 2;
+      this.o.blackManaBarContainer.style.top = kRedMageManaBarSizeH - 2;
       this.o.blackManaBarContainer.style.left = 0;
       this.o.blackManaBar.bg = "rgba(0, 0, 0, 0)";
-      this.o.blackManaBar.fg = this.kBlackManaBarColor;
-      this.o.blackManaBar.width = hpW;
-      this.o.blackManaBar.height = barHeight;
+      this.o.blackManaBar.fg = kBlackManaBarColor;
+      this.o.blackManaBar.width = kHealthBarSizeW;
+      this.o.blackManaBar.height = kRedMageManaBarSizeH;
       this.o.blackManaBar.maxvalue = 100;
 
       this.o.rdmBackground = document.createElement("div");
@@ -480,8 +483,8 @@ class Bars {
       this.o.rdmBackground.style.position = "absolute";
       this.o.rdmBackground.style.left = 0;
       this.o.rdmBackground.style.top = 0;
-      this.o.rdmBackground.style.width = hpW - 2;
-      this.o.rdmBackground.style.height = barHeight * 2 - 4;
+      this.o.rdmBackground.style.width = kHealthBarSizeW - 2;
+      this.o.rdmBackground.style.height = kRedMageManaBarSizeH * 2 - 4;
       this.o.rdmBackground.style.border = "1px solid black";
       this.o.rdmBackground.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
       
@@ -490,8 +493,8 @@ class Bars {
       this.o.rdmCombo3 = document.createElement("div");
       
       this.o.rdmCombo1.style.position = "absolute";
-      this.o.rdmCombo1.style.left = hpX;
-      this.o.rdmCombo1.style.top = hpY - 9;
+      this.o.rdmCombo1.style.left = kHealthBarPosX;
+      this.o.rdmCombo1.style.top = kHealthBarPosY - 9;
       this.o.rdmCombo1.style.width = 50;
       this.o.rdmCombo1.style.height = 6;
       this.o.rdmCombo1.style.backgroundColor = "#990";
@@ -499,8 +502,8 @@ class Bars {
       this.o.rdmCombo1.style.display = "none";
 
       this.o.rdmCombo2.style.position = "absolute";
-      this.o.rdmCombo2.style.left = hpX + hpW / 2 - 52 / 2;
-      this.o.rdmCombo2.style.top = hpY - 9;
+      this.o.rdmCombo2.style.left = kHealthBarPosX + kHealthBarSizeW / 2 - 52 / 2;
+      this.o.rdmCombo2.style.top = kHealthBarPosY - 9;
       this.o.rdmCombo2.style.width = 50;
       this.o.rdmCombo2.style.height = 6;
       this.o.rdmCombo2.style.backgroundColor = "#990";
@@ -508,8 +511,8 @@ class Bars {
       this.o.rdmCombo2.style.display = "none";
 
       this.o.rdmCombo3.style.position = "absolute";
-      this.o.rdmCombo3.style.left = hpX + hpW - 52;
-      this.o.rdmCombo3.style.top = hpY - 9;
+      this.o.rdmCombo3.style.left = kHealthBarPosX + kHealthBarSizeW - 52;
+      this.o.rdmCombo3.style.top = kHealthBarPosY - 9;
       this.o.rdmCombo3.style.width = 50;
       this.o.rdmCombo3.style.height = 6;
       this.o.rdmCombo3.style.backgroundColor = "#A00";
@@ -529,13 +532,13 @@ class Bars {
         marker.style.left = 1 + 2 * (i - incs);
         marker.style.top = 1;
         marker.style.width = 2 * incs;
-        marker.style.height = barHeight * 2 - 4;
+        marker.style.height = kRedMageManaBarSizeH * 2 - 4;
         if (i == 40)
-          marker.style.backgroundColor = this.kWhiteBlackIndicator40;
+          marker.style.backgroundColor = kWhiteBlackIndicator40;
         else if (i == 80)
-          marker.style.backgroundColor = this.kWhiteBlackIndicator80;
+          marker.style.backgroundColor = kWhiteBlackIndicator80;
         else
-          marker.style.backgroundColor = this.kWhiteBlackIndicator;
+          marker.style.backgroundColor = kWhiteBlackIndicator;
         
       }
       
@@ -575,7 +578,7 @@ class Bars {
       
       if (kShowRdmProcs) {
         /*
-        var procMargin = (hpW - (procW * 3)) / 2;
+        var procMargin = (kHealthBarSizeW - (procW * 3)) / 2;
         var procW = 64;
         var procH = 64;
         */
@@ -603,8 +606,8 @@ class Bars {
         impactProcContainer.appendChild(this.o.rdmProcImpact);
         
         procsContainer.style.position = "absolute";
-        procsContainer.style.top = belowTargetY;
-        procsContainer.style.left = hpX;
+        procsContainer.style.top = kRedMageProcsPosY;
+        procsContainer.style.left = kRedMageProcsPosX;
         
         whiteProcContainer.style.position = "absolute";
         blackProcContainer.style.position = "absolute";
@@ -614,7 +617,7 @@ class Bars {
         blackProcContainer.style.left = 152 / 2;
         impactProcContainer.style.left = 142;
         
-        rdmNoProcWhite.style.backgroundColor = this.kWhiteManaBarColor;
+        rdmNoProcWhite.style.backgroundColor = kWhiteManaBarColor;
         rdmNoProcWhite.style.opacity = 0.6;
         rdmNoProcWhite.style.border = "1px solid black";
         rdmNoProcWhite.style.width = 20;
@@ -623,7 +626,7 @@ class Bars {
         rdmNoProcWhite.style.left = 14;
         rdmNoProcWhite.style.top = 14;
 
-        rdmNoProcBlack.style.backgroundColor = this.kBlackManaBarColor;
+        rdmNoProcBlack.style.backgroundColor = kBlackManaBarColor;
         rdmNoProcBlack.style.opacity = 0.6;
         rdmNoProcBlack.style.border = "1px solid black";
         rdmNoProcBlack.style.width = 20;
@@ -632,7 +635,7 @@ class Bars {
         rdmNoProcBlack.style.left = 14;
         rdmNoProcBlack.style.top = 14;
 
-        rdmNoProcImpact.style.backgroundColor = this.kImpactProcColor;
+        rdmNoProcImpact.style.backgroundColor = kImpactProcColor;
         rdmNoProcImpact.style.opacity = 0.6;
         rdmNoProcImpact.style.border = "1px solid black";
         rdmNoProcImpact.style.width = 20;
@@ -645,34 +648,34 @@ class Bars {
         this.o.rdmProcWhite.toward = "bottom";
         this.o.rdmProcWhite.threshold = 1000;
         this.o.rdmProcWhite.hideafter = 0;
-        this.o.rdmProcWhite.fg = this.kWhiteManaBarColor;
+        this.o.rdmProcWhite.fg = kWhiteManaBarColor;
         this.o.rdmProcWhite.bg = 'black';
         this.o.rdmProcBlack.style = "empty";
         this.o.rdmProcBlack.toward = "bottom";
         this.o.rdmProcBlack.threshold = 1000;
         this.o.rdmProcBlack.hideafter = 0;
-        this.o.rdmProcBlack.fg = this.kBlackManaBarColor;
+        this.o.rdmProcBlack.fg = kBlackManaBarColor;
         this.o.rdmProcBlack.bg = 'black';
         this.o.rdmProcImpact.style = "empty";
         this.o.rdmProcImpact.toward = "bottom";
         this.o.rdmProcImpact.threshold = 1000;
         this.o.rdmProcImpact.hideafter = 0;
-        this.o.rdmProcImpact.fg = this.kImpactProcColor;
+        this.o.rdmProcImpact.fg = kImpactProcColor;
         this.o.rdmProcImpact.bg = 'black';
       }
     }
     
     if (this.o.healthBar) {
-      this.o.healthBar.fg = this.kHealthColor;
-      this.o.healthBar.bg = this.kBackgroundColor;
+      this.o.healthBar.fg = kHealthColor;
+      this.o.healthBar.bg = kBackgroundColor;
     }
     if (this.o.manaBar) {
-      this.o.manaBar.fg = this.kManaColor;
-      this.o.manaBar.bg = this.kBackgroundColor;
+      this.o.manaBar.fg = kManaColor;
+      this.o.manaBar.bg = kBackgroundColor;
     }
     if (this.o.tpBar) {
-      this.o.tpBar.fg = this.kTPColor;
-      this.o.tpBar.bg = this.kBackgroundColor;
+      this.o.tpBar.fg = kTPColor;
+      this.o.tpBar.bg = kBackgroundColor;
     }
   }
   
@@ -737,11 +740,11 @@ class Bars {
     if (white < 80)
       this.o.whiteManaTextBox.style.backgroundColor = "rgba(100,100,100,0.7)";
     else
-      this.o.whiteManaTextBox.style.backgroundColor = this.kWhiteManaBarColor; //"rgba(200,200,200,0.7)";
+      this.o.whiteManaTextBox.style.backgroundColor = kWhiteManaBarColor; //"rgba(200,200,200,0.7)";
     if (black < 80)
-      this.o.blackManaTextBox.style.backgroundColor = this.kBlackManaBarDimColor; //"rgba(0,0,0,0.7)";
+      this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarDimColor; //"rgba(0,0,0,0.7)";
     else
-      this.o.blackManaTextBox.style.backgroundColor = this.kBlackManaBarColor; //"rgba(50,50,50,0.7)";
+      this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarColor; //"rgba(50,50,50,0.7)";
   }
   
   OnRedMageProcBlack(seconds) {
@@ -773,12 +776,12 @@ class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = current;
     this.o.healthBar.maxvalue = max;
-    if (max > 0 && (current / max) < this.kLowHealthThresholdPercent)
-      this.o.healthBar.fg = this.kLowHealthColor;
-    else if (max > 0 && (current / max) < this.kMidHealthThresholdPercent)
-      this.o.healthBar.fg = this.kMidHealthColor;
+    if (max > 0 && (current / max) < kLowHealthThresholdPercent)
+      this.o.healthBar.fg = kLowHealthColor;
+    else if (max > 0 && (current / max) < kMidHealthThresholdPercent)
+      this.o.healthBar.fg = kMidHealthColor;
     else
-      this.o.healthBar.fg = this.kHealthColor;
+      this.o.healthBar.fg = kHealthColor;
   }
 
   OnManaChange(job, distance, current, max) {
@@ -787,21 +790,15 @@ class Bars {
     this.o.manaBar.maxvalue = max;
     
     var far = -1;
-    var low = -1;
-    if (job == "RDM") {
-      far = this.kFarThresholdRdm;
-      low = this.kLowManaThresholdRdm;
-    } else if (job == "BLM") {
-      far = this.kFarThresholdBlm;
-      low = this.kLowManaThresholdBlm;
-    }
+    if (job == "RDM")
+      far = kFarThresholdOffence;
+    else if (job == "BLM")
+      far = kFarThresholdOffence;
 
     if (far >= 0 && distance > far)
-      this.o.manaBar.fg = this.kFarManaColor;
-    else if (low >= 0 && current < low)
-      this.o.manaBar.fg = this.kLowManaColor;
+      this.o.manaBar.fg = kFarManaColor;
     else
-      this.o.manaBar.fg = this.kManaColor;
+      this.o.manaBar.fg = kManaColor;
   }
 
   OnTPChange(job, distance, current, max) {
@@ -857,7 +854,7 @@ class Bars {
         this.o.targetCastbar.lefttext = spell_names[cast_id];
       else
         this.o.targetCastbar.lefttext = cast_id.toString();
-      this.o.targetCastbar.maxvalue = length;
+      this.o.targetCastbar.duration = length;
       this.o.targetCastbar.value = progress;
       
       this.o.targetCastbar.righttext = (length - progress).toFixed(1);
@@ -867,9 +864,9 @@ class Bars {
   OnBigBuff(name, seconds, settings) {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
-        this.kBigBuffIconWidth, this.kBigBuffIconHeight,
-        this.kBigBuffBarHeight, this.kBigBuffTextHeight,
-        this.kBigBuffBorderSize,
+        kBigBuffIconWidth, kBigBuffIconHeight,
+        kBigBuffBarHeight, kBigBuffTextHeight,
+        kBigBuffBorderSize,
         settings.color, settings.color,
         settings.icon);
     this.o.bigBuffsList.addElement(name, aura, settings.sortKey);
@@ -1136,4 +1133,4 @@ function Test() {
   logs.push(':' + kMe + ':00:Hypercharge:');
   var e = { detail: { logs: logs } };
   OnLogEvent(e);
-}1
+}
