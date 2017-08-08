@@ -219,6 +219,7 @@ namespace Cactbot {
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
 
+      DateTime now = DateTime.Now;
       // The |player| can be null, such as during a zone change.
       Combatant player = ffxiv_.GetSelfCombatant();
       // The |target| can be null when no target is selected.
@@ -275,24 +276,44 @@ namespace Cactbot {
 
       // onTargetCastingEvent: Fires each tick while the target is casting, and once
       // with null when not casting.
-      bool is_target_casting = target_casting != null && target_casting.cast_id != 0;
-      if (is_target_casting || is_target_casting != notify_state_.is_target_casting) {
-        notify_state_.is_target_casting = is_target_casting;
-        if (is_target_casting)
-          OnTargetCasting(new JSEvents.TargetCastingEvent(target_casting));
-        else
-          OnTargetCasting(new JSEvents.TargetCastingEvent(null));
+      int target_cast_id = target_casting != null ? target_casting.cast_id : 0;
+      if (target_cast_id != 0 || target_cast_id != notify_state_.target_cast_id) {
+        notify_state_.target_cast_id = target_cast_id;
+        if (target_cast_id != 0) {
+          DateTime start = now.AddSeconds(-target_casting.casting_time_progress);
+          // If the start is within the timer interval, assume it's the same cast. Since we sample the game
+          // at a different rate than it ticks, there will be some jitter in the progress that we see, and this
+          // helps avoid it.
+          TimeSpan range = new TimeSpan(0, 0, 0, 0, kFastTimerMilli);
+          if (start + range < notify_state_.target_cast_start || start - range > notify_state_.target_cast_start)
+            notify_state_.target_cast_start = start;
+          TimeSpan progress = now - notify_state_.target_cast_start;
+          OnTargetCasting(new JSEvents.TargetCastingEvent(target_casting.cast_id, progress.TotalSeconds, target_casting.casting_time_length));
+        } else {
+          notify_state_.target_cast_start = new DateTime();
+          OnTargetCasting(new JSEvents.TargetCastingEvent(0, 0, 0));
+        }
       }
 
       // onFocusCastingEvent: Fires each tick while the focus target is casting, and
       // once with null when not casting.
-      bool is_focus_casting = focus_casting != null && focus_casting.cast_id != 0;
-      if (is_focus_casting || is_focus_casting != notify_state_.is_focus_casting) {
-        notify_state_.is_focus_casting = is_focus_casting;
-        if (is_focus_casting)
-          OnFocusCasting(new JSEvents.FocusCastingEvent(focus_casting));
-        else
-          OnFocusCasting(new JSEvents.FocusCastingEvent(null));
+      int focus_cast_id = focus_casting != null ? focus_casting.cast_id : 0;
+      if (focus_cast_id != 0 || focus_cast_id != notify_state_.focus_cast_id) {
+        notify_state_.focus_cast_id = focus_cast_id;
+        if (focus_cast_id != 0) {
+          DateTime start = now.AddSeconds(-focus_casting.casting_time_progress);
+          // If the start is within the timer interval, assume it's the same cast. Since we sample the game
+          // at a different rate than it ticks, there will be some jitter in the progress that we see, and this
+          // helps avoid it.
+          TimeSpan range = new TimeSpan(0, 0, 0, 0, kFastTimerMilli);
+          if (start + range < notify_state_.focus_cast_start || start - range > notify_state_.focus_cast_start)
+            notify_state_.focus_cast_start = start;
+          TimeSpan progress = now - notify_state_.focus_cast_start;
+          OnFocusCasting(new JSEvents.FocusCastingEvent(focus_casting.cast_id, progress.TotalSeconds, focus_casting.casting_time_length));
+        } else {
+          notify_state_.focus_cast_start = new DateTime();
+          OnFocusCasting(new JSEvents.FocusCastingEvent(0, 0, 0));
+        }
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
@@ -365,8 +386,10 @@ namespace Cactbot {
       public string zone_name = "";
       public Combatant player = null;
       public Combatant target = null;
-      public bool is_target_casting = false;
-      public bool is_focus_casting = false;
+      public int target_cast_id = 0;
+      public DateTime target_cast_start = new DateTime();
+      public int focus_cast_id = 0;
+      public DateTime focus_cast_start = new DateTime();
     }
     private NotifyState notify_state_ = new NotifyState();
   }

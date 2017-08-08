@@ -109,33 +109,29 @@ namespace Cactbot {
     }
 
     public class TargetCastingEvent : JSEvent {
-      public TargetCastingEvent(FFXIVProcess.SpellCastingData s) {
-        if (s != null) {
-          castId = s.cast_id;
-          timeProgress = s.casting_time_progress;
-          castLength = s.casting_time_length;
-        }
+      public TargetCastingEvent(int id, double progress, double length) {
+        castId = id;
+        timeProgress = progress;
+        castLength = length;
       }
       public string EventName() { return "onTargetCastingEvent"; }
 
       public int castId = 0;
-      public float timeProgress = 0;
-      public float castLength = 0;
+      public double timeProgress = 0;
+      public double castLength = 0;
     }
 
     public class FocusCastingEvent : JSEvent {
-      public FocusCastingEvent(FFXIVProcess.SpellCastingData s) {
-        if (s != null) {
-          castId = s.cast_id;
-          timeProgress = s.casting_time_progress;
-          castLength = s.casting_time_length;
-        }
+      public FocusCastingEvent(int id, double progress, double length) {
+        castId = id;
+        timeProgress = progress;
+        castLength = length;
       }
       public string EventName() { return "onFocusCastingEvent"; }
 
       public int castId = 0;
-      public float timeProgress = 0;
-      public float castLength = 0;
+      public double timeProgress = 0;
+      public double castLength = 0;
     }
 
     public class TargetChangedEvent : JSEvent {
