@@ -1,7 +1,7 @@
 "use strict";
 
 class TimerBar extends HTMLElement {
-  static get observedAttributes() { return [ "duration", "hideafter", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "style" ]; }
+  static get observedAttributes() { return [ "duration", "value", "hideafter", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "style" ]; }
 
   // All visual dimensions are scaled by this.
   set scale(s) { this.setAttribute("scale", s); }
@@ -26,6 +26,10 @@ class TimerBar extends HTMLElement {
   // The length of time to count down.
   set duration(s) { this.setAttribute("duration", s); }
   get duration() { return this.getAttribute("duration"); }
+
+  // The length of time to count down.
+  set value(s) { this.setAttribute("value", s); }
+  get value() { return this._value.toString(); }
   
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
@@ -161,7 +165,7 @@ class TimerBar extends HTMLElement {
     this._connected = true;
     this.layout();
     this.updateText();
-    this.reset();
+    this.setvalue(this._duration);
   }
   
   disconnectedCallback() {
@@ -171,7 +175,9 @@ class TimerBar extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     if (name == "duration") {
       this._duration = Math.max(parseFloat(newValue), 0);
-      this.reset();
+      this.setvalue(this._duration);
+    } else if (name == "value") {
+      this.setvalue(Math.max(parseFloat(newValue), 0));
     } else if (name == "width") {
       this._width = Math.max(parseInt(newValue), 1);
       this.layout();
@@ -311,7 +317,9 @@ class TimerBar extends HTMLElement {
     }
   }
 
-  reset() {
+  setvalue(v) {
+    this._value = v;
+
     if (!this._connected) return;
 
     this.show();
@@ -320,7 +328,6 @@ class TimerBar extends HTMLElement {
     clearTimeout(this._timer);
     this._timer = null;
 
-    this._value = this._duration;
     this.advance();
   }
   
