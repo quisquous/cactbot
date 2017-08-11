@@ -200,8 +200,10 @@ document.addEventListener("onLogEvent", function(e) {
 });
 
 // Testing...
+/*
 window.onload = function() {  
   gBossMod.OnPlayerChange({ detail: { name : 'ME' } });
   gBossMod.OnZoneChange({ detail: { zoneName: 'Unknown Zone (2Ba)' } });
   gBossMod.OnLog({ detail: { logs : [':240E:Neo Exdeath starts using', ]}});
 };
+*/
