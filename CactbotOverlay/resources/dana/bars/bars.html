@@ -11,10 +11,14 @@
   <script src="../../timericon.js"></script>
   <script src="../../widgetlist.js"></script>
 
-  <!-- Include boss mod stuff in here if it doesn't need visuals elsewhere. -->
-  <script src="../bossmod/bossmod.js"></script>
+  <!-- Shared icon definitions -->
+  <script src="icons.js"></script>
+
+  <!-- Included here to run a single instance though this is independent from bars.js -->
+  <script src="bossmod.js"></script>
 
   <!--<link rel="stylesheet" type="text/css" href="bars.css">-->
+  <script src="spellnames.js"></script>
   <script src="bars.js"></script>
   
   <style>
@@ -31,6 +35,7 @@
       color: white;
       text-shadow: -1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black;
       will-change: content;
+      padding-left: 2px;
     }
   </style>
 </head>
