@@ -182,6 +182,12 @@ class BossMod {
         trigger.run();
     }, delay * 1000);
   }
+  
+  Test(zone, log) {
+    this.OnPlayerChange({ detail: { name : 'ME' } });
+    this.OnZoneChange({ detail: { zoneName: zone } });
+    this.OnLog({ detail: { logs : ['abcdefgh', log, 'hgfedcba']}});
+  }
 };
 
 var gBossMod = new BossMod();
@@ -200,10 +206,6 @@ document.addEventListener("onLogEvent", function(e) {
 });
 
 // Testing...
-/*
 window.onload = function() {
-  gBossMod.OnPlayerChange({ detail: { name : 'ME' } });
-  gBossMod.OnZoneChange({ detail: { zoneName: 'Unknown Zone (2Ba)' } });
-  gBossMod.OnLog({ detail: { logs : [':240E:Neo Exdeath starts using', ]}});
+  if (false) gBossMod.Test('Unknown Zone (2Ba)', ':240E:Neo Exdeath starts using');
 };
-*/
