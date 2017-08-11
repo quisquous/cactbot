@@ -1,36 +1,37 @@
 "use strict";
 
+/* 
+{ // Example trigger.
+  // Regular expression to match against.
+  regex: /trigger-regex-here/,
+  // Either seconds or position is specified. Seconds is fixed. Position is parsed as a float from the regex.
+  durationSeconds: 3,
+  durationPosition: 2,
+  // Time to wait before showing it once the regex is seen.
+  delaySeconds: 0,
+  // Icon to show.
+  icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhE',
+  // How to scale the icon. fill = fill box on both axes, scale = fill box on one axis
+  iconScale: 'fill',
+  // Color of border.
+  borderColor: '#000',
+  // Text to show below the icon.
+  test: 'DO STUFF',
+  // Color of the text.
+  textColor: '#000',
+  // Sound file to play.
+  sound: '',
+  // Volume between 0 and 1 to play |sound|.
+  soundVolume: 1,
+  // Function to run.
+  run: function() { do stuff.. },
+},
+*/
+
 // Triggers.
 var kBossModTriggers = {
   // Global zone
   '.' : [
-    /* 
-    { // Example trigger.
-      // Regular expression to match against.
-      regex: /trigger-regex-here/,
-      // Either seconds or position is specified. Seconds is fixed. Position is parsed as a float from the regex.
-      durationSeconds: 3,
-      durationPosition: 2,
-      // Time to wait before showing it once the regex is seen.
-      delaySeconds: 0,
-      // Icon to show.
-      icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhE',
-      // How to scale the icon. fill = fill box on both axes, scale = fill box on one axis
-      iconScale: 'fill',
-      // Color of border.
-      borderColor: '#000',
-      // Text to show below the icon.
-      test: 'DO STUFF',
-      // Color of the text.
-      textColor: '#000',
-      // Sound file to play.
-      sound: '',
-      // Volume between 0 and 1 to play |sound|.
-      soundVolume: 1,
-      // Function to run.
-      run: function() { do stuff.. },
-    },
-    */
   ],
   // O4S
   'Unknown Zone \\(2Ba\\)' : [
