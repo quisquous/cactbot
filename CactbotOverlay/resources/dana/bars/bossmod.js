@@ -4,10 +4,10 @@
 var kBossModTriggers = {
   // Global zone
   '.' : [
-    /* Example
-    {
+    /* 
+    { // Example trigger.
       // Regular expression to match against.
-      regex: /'trigger-regex-here/,
+      regex: /trigger-regex-here/,
       // Either seconds or position is specified. Seconds is fixed. Position is parsed as a float from the regex.
       durationSeconds: 3,
       durationPosition: 2,
@@ -35,13 +35,13 @@ var kBossModTriggers = {
   // O4S
   'Unknown Zone \\(2Ba\\)' : [
     { // Inner Flood (move out).
-      regex: ':240E:Neo Exdeath starts using',
+      regex: /:240E:Neo Exdeath starts using/,
       durationSeconds: 3,
       icon: kIconMoveOut,
       text: 'OUTSIDE',
     },
     { // Outer Flood (move in).
-      regex: ':240F:Neo Exdeath starts using',
+      regex: /:240F:Neo Exdeath starts using/,
       durationSeconds: 3,
       icon: kIconMoveIn,
       text: 'INSIDE',
