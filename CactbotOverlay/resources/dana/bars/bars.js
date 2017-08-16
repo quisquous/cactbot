@@ -774,7 +774,7 @@ class Bars {
         kBigBuffIconWidth, kBigBuffIconHeight,
         kBigBuffBarHeight, kBigBuffTextHeight,
         kBigBuffBorderSize,
-        settings.color, settings.borderColor,
+        settings.borderColor, settings.borderColor,
         settings.icon);
     this.o.bigBuffsList.addElement(name, aura, settings.sortKey);
     var that = this;
