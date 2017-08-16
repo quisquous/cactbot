@@ -116,7 +116,7 @@ function setupRegexes(me) {
 
 var kBigBuffTracker = null;
 
-function setupBuffTracker() {
+function setupBuffTracker(me) {
   kBigBuffTracker = {
     potion: {
       regex: new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds\.'),
@@ -190,7 +190,12 @@ class Bars {
   }
 
   OnJobChange(job) {
-    var container = document.getElementById("container");
+    var container = document.getElementById("bars-container");
+    if (container == null) {
+      var root = document.getElementById("container");
+      container = document.createElement("div");
+      root.appendChild(container);
+    }
     while (container.childNodes.length)
       container.removeChild(container.childNodes[0]);
 
@@ -812,8 +817,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
   if (!g_init) {
     kMe = e.detail.name;
     setupRegexes(e.detail.name);
-    setupBuffTracker();
-    setupBossMod(e.detail.name);
+    setupBuffTracker(e.detail.name);
     g_init = true;
   }
 
