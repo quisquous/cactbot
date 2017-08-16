@@ -28,6 +28,7 @@ namespace Cactbot {
     }
 
     public IOverlay CreateOverlayInstance(IOverlayConfig config) {
+      config.MaxFrameRate = 60;  // The maximum allowed by CEF, sadly: http://cefsharp.github.io/api/51.0.0/html/P_CefSharp_BrowserSettings_WindowlessFrameRate.htm
       return new CactbotOverlay((CactbotOverlayConfig)config);
     }
 
