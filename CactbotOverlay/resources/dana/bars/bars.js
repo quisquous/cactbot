@@ -194,6 +194,7 @@ class Bars {
     if (container == null) {
       var root = document.getElementById("container");
       container = document.createElement("div");
+      container.id = "bars-container";
       root.appendChild(container);
     }
     while (container.childNodes.length)
