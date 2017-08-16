@@ -8,7 +8,7 @@ var g_me = null;
 var g_in_combat = false;
 var g_zone = '';
 var g_hp = 0;
-var g_level = 0;
+var g_level = kMaxLevel;
 
 var g_fed_regex = null;
 var g_fed_expires_time_ms = null;
