@@ -24,7 +24,6 @@ namespace Cactbot {
     // Used on the fast timer to avoid allocing List every time.
     private List<string> last_log_lines_ = new List<string>(40);
 
-    private SemaphoreSlim reset_notify_state_semaphore_ = new SemaphoreSlim(1);
     // When true, the update function should reset notify state back to defaults.
     bool reset_notify_state_ = false;
 
@@ -33,6 +32,8 @@ namespace Cactbot {
     JsonSerializer dispatch_serializer_;
 
     private System.Timers.Timer fast_update_timer_;
+    // Held while the |fast_update_timer_| is running.
+    private SemaphoreSlim fast_update_timer_semaphore_ = new SemaphoreSlim(1);
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
@@ -88,8 +89,12 @@ namespace Cactbot {
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
-      fast_update_timer_.Elapsed += (o, e) => {
-        SendFastRateEvents();
+      fast_update_timer_.Elapsed += (o, args) => {
+        try {
+          SendFastRateEvents();
+        } catch (Exception e) {
+          LogError("Exception in SendFastRateEvents: " + e.Message + " \n" + e.StackTrace);
+        }
       };
       fast_update_timer_.AutoReset = false;
 
@@ -122,12 +127,17 @@ namespace Cactbot {
     }
 
     public override void Navigate(string url) {
+      // Wait for the fast timer to end before we proceed.
+      fast_update_timer_semaphore_.Wait();
+
+      // When we navigate, reset all state so that the newly loaded page can receive all updates.
+      reset_notify_state_ = true;
+
+      // We navigate only when the timer isn't running, as the browser window will disappear out
+      // from under it. Once the navigation is done, the Browser is gone and we can run the timer
+      // again.
       base.Navigate(url);
-      // Reset to defaults so on load the plugin gets notified about any non-defaults
-      // consistently.
-      this.reset_notify_state_semaphore_.Wait();
-      this.reset_notify_state_ = true;
-      this.reset_notify_state_semaphore_.Release();
+      fast_update_timer_semaphore_.Release();
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
@@ -170,21 +180,21 @@ namespace Cactbot {
 
     // Events that we want to update as soon as possible.
     private void SendFastRateEvents() {
+      // Hold this while we're in here to prevent the Renderer or Browser from disappearing from under us.
+      fast_update_timer_semaphore_.Wait();
+
       // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
       // register its event handlers.
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading) {
+        fast_update_timer_semaphore_.Release();
         fast_update_timer_.Interval = kSlowTimerMilli;
         fast_update_timer_.Start();
         return;
       }
 
-      bool reset = false;
-      this.reset_notify_state_semaphore_.Wait();
-      reset = this.reset_notify_state_;
-      this.reset_notify_state_ = false;
-      this.reset_notify_state_semaphore_.Release();
-      if (reset)
+      if (reset_notify_state_)
         this.notify_state_ = new NotifyState();
+      reset_notify_state_ = false;
 
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
@@ -200,6 +210,7 @@ namespace Cactbot {
 
       // Silently stop sending other messages if the ffxiv process isn't around.
       if (!game_exists) {
+        fast_update_timer_semaphore_.Release();
         fast_update_timer_.Interval = kUberSlowTimerMilli;
         fast_update_timer_.Start();
         return;
@@ -336,6 +347,8 @@ namespace Cactbot {
       last_log_lines_ = logs;
 
       fight_tracker_.Tick(DateTime.Now);
+
+      fast_update_timer_semaphore_.Release();
 
       fast_update_timer_.Interval = game_active ? kFastTimerMilli : kSlowTimerMilli;
       fast_update_timer_.Start();
