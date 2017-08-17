@@ -128,7 +128,7 @@ class Auras {
         if (text) {
           that.alertText.classList.remove('hide');
           that.alertText.innerText = text;
-          textSound = 'sound' in trigger ? '' : gAurasSounds.Info;
+          textSound = 'sound' in trigger ? '' : gAurasSounds.Alert;
 
           window.clearTimeout(that.alertTextTimer);
           that.alertTextTimer = window.setTimeout(function() {
@@ -141,7 +141,7 @@ class Auras {
         if (text) {
           that.alarmText.classList.remove('hide');
           that.alarmText.innerText = text;
-          textSound = 'sound' in trigger ? '' : gAurasSounds.Info;
+          textSound = 'sound' in trigger ? '' : gAurasSounds.Alarm;
 
           window.clearTimeout(that.alarmTextTimer);
           that.alarmTextTimer = window.setTimeout(function() {
@@ -193,10 +193,7 @@ document.addEventListener("onLogEvent", function(e) {
 });
 
 // Testing...
-/*
 window.onload = function() {
-  window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Neo Exdeath:2401:Unknown_2401:328AD123:Asada Fireclaw:') }, 0);
-  window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Neo Exdeath:2401:Unknown_2401:328AD123:Ryythe Larke:') }, 0);
-  window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Neo Exdeath:2401:Unknown_2401:328AD123:Test Name:') }, 0);
+  //window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Exdeath uses The Decisive Battle.') }, 0);
+  //window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Exdeath begins casting Fire III.') }, 0);
 };
-*/
