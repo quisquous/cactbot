@@ -164,7 +164,7 @@ namespace Cactbot {
       dispatch_string_builder_.Append("', { detail: ");
       dispatch_serializer_.Serialize(dispatch_json_writer_, e);
       dispatch_string_builder_.Append(" }));");
-      this.Overlay.Renderer.Browser.GetMainFrame().ExecuteJavaScript(dispatch_string_builder_.ToString(), null, 0);
+      this.Overlay.Renderer.ExecuteScript(dispatch_string_builder_.ToString());
       dispatch_string_builder_.Clear();
     }
 
