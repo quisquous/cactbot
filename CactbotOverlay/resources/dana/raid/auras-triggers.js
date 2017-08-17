@@ -50,6 +50,30 @@ kAurasTriggers['.'] = [
 // O4S - Deltascape 4.0 Savage
 kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   // Part 1
+  { // Decisive Battle means next elemental cast is scary.
+    regex: /:Exdeath uses The Decisive Battle\./,
+    run: function(data) { data.postDecisive = true; },
+  },
+  { // Fire III after Decisive Battle.
+    regex: /:Exdeath begins casting Fire III\./,
+    infoText: function(data) { if (!data.postDecisive) return 'Fire' },
+    alarmText: function(data) { if (data.postDecisive) return 'Stop' },
+    //sound: '../../sounds/PowerAuras/Gasp.ogg',
+    run: function(data) { data.postDecisive = false; },
+  },
+  { // Blizzard III after Decisive Battle.
+    regex: /:Exdeath begins casting Blizzard III\./,
+    infoText: function(data) { if (!data.postDecisive) return 'Blizzard' },
+    alertText: function(data) { if (data.postDecisive) return 'Keep moving' },
+    run: function(data) { data.postDecisive = false; },
+  },
+  { // Thunder III after Decisive Battle.
+    regex: /:Exdeath begins casting Thunder III\./,
+    infoText: function(data) { if (!data.postDecisive) return 'Thunder' },
+    alertText: function(data) { if (data.postDecisive) return 'Get Out' },
+    //sound: '../../sounds/PowerAuras/ESPARK1.ogg',
+    run: function(data) { data.postDecisive = false; },
+  },
   { // Flare.
     regex: /:Exdeath:2401:[A-Za-z0-9_ ']+:[0-9A-Fa-f]+:([A-Za-z0-9_ ']+):/,
     infoText: function(data) {
