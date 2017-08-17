@@ -1,11 +1,11 @@
-.hide {
-  display: none !important;
-}
-
-#well-fed-container {
+#buffs-container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
 }
 
 #well-fed-icon {
+  display: inline-block;
   border: 1px solid black;
   width: 36px;
   height: 36px;

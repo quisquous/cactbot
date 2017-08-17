@@ -3,10 +3,6 @@
 class TimerBar extends HTMLElement {
   static get observedAttributes() { return [ "duration", "value", "hideafter", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "style" ]; }
 
-  // All visual dimensions are scaled by this.
-  set scale(s) { this.setAttribute("scale", s); }
-  get scale() { return this.getAttribute("scale"); }
-
   // Background color.
   set bg(c) { this.setAttribute("bg", c); }
   get bg() { return this.getAttribute("bg"); }
@@ -15,11 +11,11 @@ class TimerBar extends HTMLElement {
   set fg(c) { this.setAttribute("fg", c); }
   get fg() { return this.getAttribute("fg"); }
 
-  // The width of the bar, in pixels (before |scale|).
+  // The width of the bar.
   set width(w) { this.setAttribute("width", w); }
   get width() { return this.getAttribute("width"); }
 
-  // The height of the bar, in pixels (before |scale|).
+  // The height of the bar.
   set height(w) { this.setAttribute("height", w); }
   get height() { return this.getAttribute("height"); }
 
@@ -82,13 +78,22 @@ class TimerBar extends HTMLElement {
   init(root) {
     root.innerHTML = `
       <style>
+        #root {
+          position: relative;
+        }
         #bg {
-          opacity: 0.5;
           position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0.8;
         }
         #fg {
-          opacity: 1.0;
           position: absolute;
+          left: 1px;
+          top: 1px;
+          width: calc(100% - 2px);
+          height: calc(100% - 2px);
+          opacity: 1.0;
           will-change: transform;
         }
         .text {
@@ -99,22 +104,33 @@ class TimerBar extends HTMLElement {
           text-shadow: -1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black;
           will-change: content;
         }
+        .text-container {
+          position: absolute;
+          left: 5px;
+          top: calc(50% - 1.2ex);
+          width: calc(100% - 10px);
+          height: calc(100% - 2px);
+          overflow: hidden;
+        }
         #lefttext {
+          position: relative;
           text-align: left;
         }
         #centertext {
+          position: relative;
           text-align: center;
         }
         #righttext {
+          position: relative;
           text-align: right;
         }
       </style>
-      <div id="root" style="position: relative">
+      <div id="root">
         <div id="bg"></div>
         <div id="fg"></div>
-        <div id="righttext" class="text"></div>
-        <div id="centertext" class="text"></div>
-        <div id="lefttext" class="text"></div>
+        <div class="text-container"><div id="righttext" class="text"></div></div>
+        <div class="text-container"><div id="centertext" class="text"></div></div>
+        <div class="text-container"><div id="lefttext" class="text"></div></div>
       </div>
     `
   }
@@ -128,20 +144,15 @@ class TimerBar extends HTMLElement {
     this.rightTextElement = this.shadowRoot.getElementById("righttext");
 
     // Constants.
-    this.kBackgroundOpacity = 0.8;
-    this.kBorderSize = 1;
-    this.kTextLeftRightEdgePadding = this.kBorderSize * 3;
-    this.kTextTopBottomEdgePadding = this.kBorderSize * 2;
     this.kAnimateMS = 100;
     
     // Default values.
     this._value = 0;
     this._duration = 0;
-    this._width = 200;
-    this._height = 20;
+    this._width = '100%';
+    this._height = '100%';
     this._bg = "black";
     this._fg = "yellow";
-    this._scale = 1;
     this._toward_right = false;
     this._style_fill = false;
     this._left_text = "";
@@ -150,11 +161,10 @@ class TimerBar extends HTMLElement {
     this._hideafter = -1;
 
     if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
-    if (this.width != null) { this._width = Math.max(parseInt(this.width), 1); }
-    if (this.height != null) { this._height = Math.max(parseInt(this.height), 1); }
+    if (this.width != null) { this._width = this.width; }
+    if (this.height != null) { this._height = this.height; }
     if (this.bg != null) { this._bg = this.bg; }
     if (this.fg != null) { this._fg = this.fg; }
-    if (this.scale != null) { this._scale = Math.max(parseFloat(this.scale), 0.01); }
     if (this.toward != null) { this._toward_right = this.toward == "right"; }
     if (this.style != null) { this._style_fill = this.style == "fill"; }
     if (this.lefttext != null) { this._left_text = this.lefttext; }
@@ -179,10 +189,10 @@ class TimerBar extends HTMLElement {
     } else if (name == "value") {
       this.setvalue(Math.max(parseFloat(newValue), 0));
     } else if (name == "width") {
-      this._width = Math.max(parseInt(newValue), 1);
+      this._width = newValue;
       this.layout();
     } else if (name == "height") {
-      this._height = Math.max(parseInt(newValue), 1);
+      this._height = newValue;
       this.layout();
     } else if (name == "bg") {
       this._bg = newValue;
@@ -224,46 +234,20 @@ class TimerBar extends HTMLElement {
     if (!this._connected)
       return;
 
+    this.backgroundElement.style.backgroundColor = this._bg;
+    this.foregroundElement.style.backgroundColor = this._fg;
+    this.rootElement.style.width = this._width;
+    this.rootElement.style.height = this._height;
+
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
     if (this._style_fill)
       this._toward_right = !this._toward_right;
     
-    var backgroundStyle = this.backgroundElement.style;
-    var foregroundStyle = this.foregroundElement.style;
-    var lTextStyle = this.leftTextElement.style;
-    var cTextStyle = this.centerTextElement.style;
-    var rTextStyle = this.rightTextElement.style;
-    
-    backgroundStyle.backgroundColor = this._bg;
-    foregroundStyle.backgroundColor = this._fg;
-
-    backgroundStyle.opacity = this.kBackgroundOpacity;
-    
-    backgroundStyle.width = this._width * this._scale;
-    backgroundStyle.height = this._height * this._scale;
-    
-    foregroundStyle.width = (this._width - this.kBorderSize * 2) * this._scale;
-    foregroundStyle.height = (this._height - this.kBorderSize * 2) * this._scale;
-    foregroundStyle.left = this.kBorderSize * this._scale;
-    foregroundStyle.top = this.kBorderSize * this._scale;
-
-    lTextStyle.width = (this._width - this.kBorderSize * 4 - this.kTextLeftRightEdgePadding * 2) * this._scale;
-    lTextStyle.height = (this._height - this.kBorderSize * 4 - this.kTextTopBottomEdgePadding * 2) * this._scale;
-    lTextStyle.left = (this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale;
-    lTextStyle.top = (this.kBorderSize + this.kTextTopBottomEdgePadding) * this._scale;
-    lTextStyle.fontSize = lTextStyle.height;
-    
-    cTextStyle.width = rTextStyle.width = lTextStyle.width;
-    cTextStyle.height = rTextStyle.height = lTextStyle.height;
-    cTextStyle.left = rTextStyle.left = lTextStyle.left;
-    cTextStyle.top = rTextStyle.top = lTextStyle.top;
-    cTextStyle.fontSize = rTextStyle.fontSize = lTextStyle.fontSize;
-    
     if (this._toward_right)
-      foregroundStyle.transformOrigin = "100% 0%";
+      this.foregroundElement.style.transformOrigin = "100% 0%";
     else
-      foregroundStyle.transformOrigin = "0% 0%";
+      this.foregroundElement.style.transformOrigin = "0% 0%";
   }
 
   updateText() {

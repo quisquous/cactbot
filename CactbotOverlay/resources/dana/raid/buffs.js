@@ -89,12 +89,10 @@ function Draw() {
   var show_fed_ms = TimeToShowWellFedWarning();
 
   if (!can_show_fed || show_fed_ms > 0) {
-    document.getElementById('well-fed-container').classList.add("hide");
+    document.getElementById('well-fed-icon').classList.add("hide");
     if (can_show_fed)
       g_fed_timer = window.setTimeout(Draw, show_fed_ms);
   } else {
-    document.getElementById('well-fed-container').classList.remove("hide");
+    document.getElementById('well-fed-icon').classList.remove("hide");
   }
 }
-
-window.onload = Draw;

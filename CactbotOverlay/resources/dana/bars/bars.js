@@ -4,26 +4,18 @@
 var kLowerOpacityOutOfCombat = true;
 var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 var kShowRdmProcs = true;
-var kShowTargetCastbar = false;
-var kShowFocusCastbar = true;
 var kFarThresholdOffence = 24;  // The distance that offensive spells such as VerAreo, etc are castable.
 
 // Layout.
-var kTargetCastBarPosX = 210;
-var kTargetCastBarPosY = 0;
-var kTargetCastBarSizeW = 300;
-var kTargetCastBarSizeH = 24;
-var kFocusCastBarPosX = 210;
-var kFocusCastBarPosY = 0;
-var kFocusCastBarSizeW = 300;
-var kFocusCastBarSizeH = 24;
-var kHealthBarPosX = 250;
-var kHealthBarPosY = 120;
+var kHealthBarPosX = 0;
+var kHealthBarPosY = 20;
 var kManaBarPosX = kHealthBarPosX;
 var kManaBarPosY = kHealthBarPosY + 8;
 var kHealthBarSizeW = 202;  // 2px per percent + 1px border on each side.
 var kHealthBarSizeH = 7;  // Rogue energy was 12.
 var kManaBarSizeH = 7;
+var kPullTimerPosX = kHealthBarPosX;
+var kPullTimerPosY = kHealthBarPosY - 20;
 var kPullCounterBarSizeH = 18;
 var kBigBuffIconWidth = 44;
 var kBigBuffIconHeight = 32;
@@ -48,8 +40,6 @@ var kLowHealthThresholdPercent = 0.2;
 var kLowHealthColor = "rgb(190, 43, 30)"
 var kMidHealthThresholdPercent = 0.8;
 var kMidHealthColor = "rgb(127, 185, 29)"
-var kTargetCastbarColor = "rgba(250, 70, 100, 0.8)";
-var kFocusCastbarColor = "rgba(250, 70, 100, 0.8)";
 // RDM colours.
 var kWhiteManaBarColor = "rgb(220, 220, 240)";
 var kWhiteManaBarDimColor = "rgb(90, 90, 100)";
@@ -64,11 +54,8 @@ var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
   '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
   '|((Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet))' +
   '|Limit Break';
-var kReName = '[A-Za-z0-9 \']+'
+var kReName = '[A-Za-z0-9 \']+';
 var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
-// The format for FFXIV plugin-injected lines. These lines have different
-// ids than the game provided lines for abilities for some reason.
-var kReAbilitySpellStart = new RegExp('\[[0-9:.]\] [0-9A-Fa-f]{2}:(' + kReAbilityCode + '):' + kReName + ' starts using (' + kReName + ') on ' + kReName + '\.');
 
 // Regexes to be filled out once we know the player's name.
 var kReRdmCombo1 = null;
@@ -186,7 +173,6 @@ class Bars {
     this.o = {};
     this.bugBuffs = {};
     this.casting = {};
-    this.bossModTimer = null;
   }
 
   OnJobChange(job) {
@@ -212,8 +198,11 @@ class Bars {
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
     pullCountdownContainer.style.position = "absolute";
-    pullCountdownContainer.style.top = kHealthBarPosY - kPullCounterBarSizeH - 2;
-    pullCountdownContainer.style.left = kHealthBarPosX;
+    pullCountdownContainer.style.top = kPullTimerPosY;
+    pullCountdownContainer.style.left = kPullTimerPosX;
+    pullCountdownContainer.style.width = kHealthBarSizeW;
+    pullCountdownContainer.style.height = kPullCounterBarSizeH;
+    pullCountdownContainer.style.fontSize = kPullCounterBarSizeH - 4;
     this.o.pullCountdown.width = kHealthBarSizeW;
     this.o.pullCountdown.height = kPullCounterBarSizeH;
     this.o.pullCountdown.lefttext = "Pull";
@@ -221,37 +210,6 @@ class Bars {
     this.o.pullCountdown.style = "empty";
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
-
-    if (kShowTargetCastbar) {
-      this.o.targetCastbarContainer = document.createElement("div");
-      container.appendChild(this.o.targetCastbarContainer);
-      this.o.targetCastbar = document.createElement("timer-bar");
-      this.o.targetCastbarContainer.appendChild(this.o.targetCastbar);
-
-      this.o.targetCastbarContainer.style.display = "none";
-      this.o.targetCastbarContainer.style.position = "absolute";
-      this.o.targetCastbarContainer.style.left = kTargetCastBarPosX;
-      this.o.targetCastbarContainer.style.top = kTargetCastBarPosY;
-
-      this.o.targetCastbar.width = kTargetCastBarSizeW;
-      this.o.targetCastbar.height = kTargetCastBarSizeH;
-      this.o.targetCastbar.fg = kTargetCastbarColor;
-    }
-    if (kShowFocusCastbar) {
-      this.o.focusCastbarContainer = document.createElement("div");
-      container.appendChild(this.o.focusCastbarContainer);
-      this.o.focusCastbar = document.createElement("timer-bar");
-      this.o.focusCastbarContainer.appendChild(this.o.focusCastbar);
-
-      this.o.focusCastbarContainer.style.display = "none";
-      this.o.focusCastbarContainer.style.position = "absolute";
-      this.o.focusCastbarContainer.style.left = kFocusCastBarPosX;
-      this.o.focusCastbarContainer.style.top = kFocusCastBarPosY;
-
-      this.o.focusCastbar.width = kFocusCastBarSizeW;
-      this.o.focusCastbar.height = kFocusCastBarSizeH;
-      this.o.focusCastbar.fg = kFocusCastbarColor;
-    }
 
     this.o.bigBuffsContainer = document.createElement("div");
     this.o.bigBuffsList = document.createElement('widget-list');
@@ -717,58 +675,6 @@ class Bars {
     }
   }
 
-  OnTargetCasting(spell_names, cast_id, progress, length) {
-    if (cast_id == 0 || length == 0) {
-      if (this.o.targetCastbarContainer != null)
-        this.o.targetCastbarContainer.style.display = "none";
-      delete this.casting['target'];
-      return;
-    }
-    this.casting['target'] = {
-      code: cast_id,
-      progress: progress,
-      length: length,
-    };
-    if (this.o.targetCastbarContainer != null)
-      this.o.targetCastbarContainer.style.display = "block";
-    if (this.o.targetCastbar != null) {
-      if (cast_id in spell_names)
-        this.o.targetCastbar.lefttext = spell_names[cast_id];
-      else
-        this.o.targetCastbar.lefttext = cast_id.toString();
-      this.o.targetCastbar.duration = length;
-      this.o.targetCastbar.value = progress;
-
-      this.o.targetCastbar.righttext = (length - progress).toFixed(1);
-    }
-  }
-
-  OnFocusCasting(spell_names, cast_id, progress, length) {
-    if (cast_id == 0 || length == 0) {
-      if (this.o.focusCastbarContainer != null)
-        this.o.focusCastbarContainer.style.display = "none";
-      delete this.casting['focus'];
-      return;
-    }
-    this.casting['focus'] = {
-      code: cast_id,
-      progress: progress,
-      length: length,
-    };
-    if (this.o.focusCastbarContainer != null)
-      this.o.focusCastbarContainer.style.display = "block";
-    if (this.o.focusCastbar != null) {
-      if (cast_id in spell_names)
-        this.o.focusCastbar.lefttext = spell_names[cast_id];
-      else
-        this.o.focusCastbar.lefttext = cast_id.toString();
-      this.o.focusCastbar.duration = length;
-      this.o.focusCastbar.value = progress;
-
-      this.o.focusCastbar.righttext = (length - progress).toFixed(1);
-    }
-  }
-
   OnBigBuff(name, seconds, settings) {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
@@ -807,7 +713,6 @@ class TrackingData {
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
-    this.spellNames = kSpellNames;
   }
 }
 
@@ -896,14 +801,6 @@ document.addEventListener("onTargetChangedEvent", function (e) {
   }
 });
 
-document.addEventListener("onTargetCastingEvent", function (e) {
-  g_bars.OnTargetCasting(g_data.spellNames, e.detail.castId, e.detail.timeProgress, e.detail.castLength);
-});
-
-document.addEventListener("onFocusCastingEvent", function (e) {
-  g_bars.OnFocusCasting(g_data.spellNames, e.detail.castId, e.detail.timeProgress, e.detail.castLength);
-});
-
 document.addEventListener("onInCombatChangedEvent", function (e) {
   g_data.inCombat = e.detail.inCombat;
   g_bars.OnInCombatChanged(g_data.inCombat);
@@ -941,16 +838,6 @@ function OnLogEvent(e) {
           seconds = r[settings.durationPosition];
         }
         g_bars.OnBigBuff(name, seconds, settings);
-      }
-    }
-
-    r = log.match(kReAbilitySpellStart);
-    if (r != null) {
-      var code = parseInt(r[1], 16);
-      var name = r[2];
-      if (!(code in g_data.spellNames)) {
-        //console.log("FOUND ABILITY " + code.toString(16) + " (" + code + ") : " + name);
-        g_data.spellNames[code] = name;
       }
     }
 

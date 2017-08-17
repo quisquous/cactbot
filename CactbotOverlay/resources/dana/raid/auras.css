@@ -1,0 +1,60 @@
+#auras-icon-container {
+  position: absolute;
+  left: 130px;
+  top: 350px;
+  text-align: center;
+}
+
+#auras-icon {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 44px 44px;
+  background-position: center;
+  opacity: 0.8;
+  left: 28px; /* (100 - 44) / 2 */
+}
+
+#auras-text-bottom {
+  display: block;
+  width: 100px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+#auras-text-container {
+  position: absolute;
+  top: 180px;
+  width: 100%;
+  text-align: center;
+}
+
+#auras-text-info {
+  position: absolute;
+  width: 100%;
+  top: 0em;
+  color: #2b2;
+  font-size: 120%;
+}
+
+#auras-text-alert {
+  position: absolute;
+  width: 100%;
+  top: 2ex;
+  color: #fb0;
+  font-size: 150%;
+  text-transform: uppercase;
+}
+
+#auras-text-alarm {
+  position: absolute;
+  width: 100%;
+  top: 4ex;
+  color: #f30;
+  font-size: 200%;
+  text-transform: uppercase;
+}

@@ -1,0 +1,82 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="../../resize_handle.css">
+  <script src="../../resize_handle.js"></script>
+
+  <!-- Global database of id to spell names -->
+  <script src="../db/db-spellnames.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="raid.css">
+
+  <!-- Warnings/info for raid buffs (eg. food buffs) -->
+  <link rel="stylesheet" type="text/css" href="buffs.css">
+  <script src="buffs.js"></script>
+
+  <!-- Castbars for enemies -->
+  <link rel="stylesheet" type="text/css" href="castbars.css">
+  <script src="../../timerbar.js"></script>
+  <script src="castbars.js"></script>
+
+  <!-- Icon and text trigger alerts -->
+  <link rel="stylesheet" type="text/css" href="auras.css">
+  <script src="auras-icons.js"></script>
+  <script src="auras-sounds.js"></script>
+  <script src="auras-triggers.js"></script>
+  <script src="auras.js"></script>
+  
+  <style>
+    body, html {
+      margin: 0;
+    }
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+    .text {
+      font-family: arial;
+      font-weight: bold;
+      color: white;
+      text-shadow: -1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black;
+      will-change: content;
+    }
+  </style>
+</head>
+<body>
+<div id="container" class="hide"></div>
+  <div id="buffs-container">
+    <div id="well-fed-icon" class="hide"></div>
+  </div>
+
+  <div id="target-castbar-container">
+  </div>
+  <div id="focus-castbar-container">
+  </div>
+
+  <div id="auras-text-container">
+    <div id="auras-text-info" class="text"></div>
+    <div id="auras-text-alert" class="text"></div>
+    <div id="auras-text-alarm" class="text"></div>
+  </div>
+  
+  <div id="auras-icon-container">
+    <div id="auras-icon" class="hide"></div>
+    <div id="auras-text-bottom" class="hide text"></div>
+  </div>
+</body>
+
+<script>
+  function hide(h) {
+    var hideWhenInactive = false;
+    if (h && hideWhenInactive)
+      document.getElementById("container").style.display = "none";
+    else
+      document.getElementById("container").style.display = "block";
+  }
+  document.addEventListener("onGameActiveChangedEvent", function(e) {
+      hide(!e.detail.active);
+  });
+  hide(true);
+</script>
+</html>
