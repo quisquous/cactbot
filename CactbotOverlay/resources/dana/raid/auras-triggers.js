@@ -118,13 +118,17 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /:2416:Neo Exdeath starts using/,
     infoText: 'Charge',
   },
+  {  // Double attack.
+    regex: /:Neo Exdeath readies Double Attack\./,
+    alertText: 'Double Attack: Get out',
+  },
   { // Grand Cross Alpha.
     regex: /:242B:Neo Exdeath starts using/,
     infoText: 'Alpha:  Go to middle',
     run: function(data) { data.alpha = true; data.delta = false; data.omega = false; },
   },
   { // Grand Cross Alpha finished cast - Use Apoc.
-    regex: ':Neo Exdeath readies Grand Cross Alpha\.',
+    regex: ':Neo Exdeath uses Grand Cross Alpha\.',
     alertText: 'Apocatastasis on tank',
     condition: function(data) {
       data.alphaCount = (data.alphaCount || 0) + 1;
@@ -182,12 +186,6 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
     condition: function(data) { return data.omega; },
   },
-  /*
-  {
-    regex: /Battle commencing in 5 seconds/,
-    run: function(data) { data.almagestCount = 0; }
-  },
-  */
   { // Almagest
     regex: /Exdeath readies Almagest/,
     alertText: 'Almagest',
@@ -210,7 +208,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /gains the effect of Reprisal from .*? for ([0-9.]+) Seconds/,
     durationPosition: 1,
     infoText: 'Reprisal active',
-    condition: function(data) { return data.almagestCount == 6 && !data.reprisal; },
+    condition: function(data) { return data.alphaCount == 3 && !data.reprisal; },
     run: function(data) { data.reprisal = true; },
   },
   { // Final phase Addle warning when Reprisal is ending.
