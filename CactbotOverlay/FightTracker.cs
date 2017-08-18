@@ -164,7 +164,7 @@ namespace Cactbot {
         { "Unknown Zone (2B7)", new List<BossFightPhaseDetails>{ o1s } },
         { "Unknown Zone (2B8)", new List<BossFightPhaseDetails>{ o2s } },
         { "Unknown Zone (2B9)", new List<BossFightPhaseDetails>{ o3s } },
-        { "Unknown Zone (2BA)", new List<BossFightPhaseDetails>{ o4s } },
+        { "Unknown Zone (2Ba)", new List<BossFightPhaseDetails>{ o4s } },
       };
     }
 
