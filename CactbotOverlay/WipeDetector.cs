@@ -4,6 +4,10 @@ using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
   class WipeDetector {
+    // How long to wait for subsequent logs to know if an event was alone
+    // or not.
+    private const int kLogWaitSeconds = 2;
+
     public WipeDetector(CactbotOverlay client) {
       this.client_ = client;
       client_.OnPlayerChanged += OnPlayerChanged;
@@ -44,13 +48,15 @@ namespace Cactbot {
 
         // If an LB3 hit the player recently, then it wasn't a wipe so just
         // forget that they were revived.
-        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= 2)
+        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= kLogWaitSeconds) {
+          client_.LogInfo("Wipe: lb3 raise");
           last_revived_time_ = null;
+        }
       }
 
       // Heuristic: if a player is revived and a weakness message doesn't happen
       // soon after, then it was a wipe.
-      if (last_revived_time_.HasValue && (now - last_revived_time_.Value).TotalSeconds > 2) {
+      if (last_revived_time_.HasValue && (now - last_revived_time_.Value).TotalSeconds > kLogWaitSeconds) {
         client_.LogInfo("Wipe: actual wipe");
         WipeIt();
       }
