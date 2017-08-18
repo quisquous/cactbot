@@ -43,7 +43,9 @@ var kAurasTriggers = {};
 kAurasTriggers['.'] = [
   { // Inner Flood (move out).
     regex: /:test:trigger:/,
-    infoText: 'Charge',
+    infoText: 'This in info',
+    alertText: 'Alert is like this',
+    alarmText: 'Alarm is here',
   },
 ];
 
@@ -74,6 +76,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     //sound: '../../sounds/PowerAuras/ESPARK1.ogg',
     run: function(data) { data.postDecisive = false; },
   },
+  /*
   { // Flare.
     regex: /:Exdeath:2401:[A-Za-z0-9_ ']+:[0-9A-Fa-f]+:([A-Za-z0-9_ ']+):/,
     infoText: function(data) {
@@ -92,6 +95,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
       delete data.flareTargets;
     }
   },
+  */
 
   // Part 2
   { // Inner Flood (move out).
@@ -114,41 +118,53 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /:2416:Neo Exdeath starts using/,
     infoText: 'Charge',
   },
-  { // Grand Cross Alpha
+  { // Grand Cross Alpha.
     regex: /:242B:Neo Exdeath starts using/,
     infoText: 'Alpha:  Go to middle',
     run: function(data) { data.alpha = true; data.delta = false; data.omega = false; },
   },
-  { // Grand Cross Delta
+  { // Grand Cross Alpha finished cast - Use Apoc.
+    regex: ':Neo Exdeath readies Grand Cross Alpha\.',
+    alertText: 'Apocatastasis on tank',
+    condition: function(data) {
+      data.alphaCount = (data.alphaCount || 0) + 1;
+      return data.alphaCount == 1 || data.alphaCount == 3;
+    },
+  },
+  { // Grand Cross Omega finished cast - Use Apoc.
+    regex: ':Neo Exdeath readies The Final Battle\.',
+    alertText: 'Apocatastasis on healer',
+  },
+  { // Grand Cross Delta.
     regex: /:242C:Neo Exdeath starts using/,
     infoText: 'Delta:  Inside boss',
     run: function(data) { data.alpha = false; data.delta = true; data.omega = false; },
   },
-  { // Grand Cross Omega
+  { // Grand Cross Omega.
     regex: /:242D:Neo Exdeath starts using/,
     infoText: 'Omega:  Go to middle',
     run: function(data) { data.alpha = false; data.delta = false; data.omega = true; },
   },
-  { // Forked Lightning - Get out
+  { // Forked Lightning - Get out.
     regex: /You suffer the effect of Forked Lightning/,
     delaySeconds: 1,
     alertText: 'Get out',
   },
-  { // Acceleration Bomb (Alpha)
+  { // Acceleration Bomb (Alpha).
     regex: /You suffer the effect of .*Acceleration Bomb/,
     alarmText: 'Stop',
-    delaySeconds: 9,
+    delaySeconds: 10,
     condition: function(data) { return data.alpha; },
   },
-  { // Acceleration Bomb (Delta)
+  { // Acceleration Bomb (Delta).
     regex: /You suffer the effect of .*Acceleration Bomb/,
-    delaySeconds: 4,
+    delaySeconds: 5,
     alarmText: 'Stop',
     condition: function(data) { return data.delta; },
   },
-  { // Acceleration Bomb (Omega)
+  { // Acceleration Bomb (Omega).
     regex: /You suffer the effect of .*Acceleration Bomb/,
-    delaySeconds: 25,
+    delaySeconds: 26,
     alarmText: 'Stop',
     condition: function(data) { return data.omega; },
   },
@@ -166,6 +182,12 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
     condition: function(data) { return data.omega; },
   },
+  /*
+  {
+    regex: /Battle commencing in 5 seconds/,
+    run: function(data) { data.almagestCount = 0; }
+  },
+  */
   { // Almagest
     regex: /Exdeath readies Almagest/,
     alertText: 'Almagest',
@@ -188,14 +210,17 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /gains the effect of Reprisal from .*? for ([0-9.]+) Seconds/,
     durationPosition: 1,
     infoText: 'Reprisal active',
-    condition: function(data) { return data.almagestCount == 6; },
+    condition: function(data) { return data.almagestCount == 6 && !data.reprisal; },
+    run: function(data) { data.reprisal = true; },
   },
   { // Final phase Addle warning when Reprisal is ending.
     regex: /loses the effect of Reprisal from/,
     alertText: 'Reprisal ended',
     //sound: '../../sounds/PowerAuras/throwknife.ogg',
-    condition: function(data) { return data.almagestCount == 6; },
+    condition: function(data) { return data.almagestCount == 6 && data.reprisal; },
+    run: function(data) { data.reprisal = false; },
   },
+  /*
   { // Flare.
     regex: /:Neo Exdeath:2401:[A-Za-z0-9_ ']+:[0-9A-Fa-f]+:([A-Za-z0-9_ ']+):/,
     infoText: function(data) {
@@ -214,4 +239,5 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
       delete data.flareTargets;
     }
   },
+  */
 ];

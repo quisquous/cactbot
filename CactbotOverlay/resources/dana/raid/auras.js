@@ -185,9 +185,14 @@ document.addEventListener("onPlayerChangedEvent", function(e) {
 document.addEventListener("onZoneChangedEvent", function(e) {
   gAuras.OnZoneChange(e);
 });
-document.addEventListener("onBossFightEnd", function(e) {
+document.addEventListener("onInCombatChangedEvent", function (e) {
+  console.log("in combat ! " + e.detail.inCombat);
   gAuras.OnBossFightEnd(e);
 });
+//document.addEventListener("onPartyWipe", function(e) {
+//  console.log("fight end !");
+//  gAuras.OnBossFightEnd(e);
+//});
 document.addEventListener("onLogEvent", function(e) {
   gAuras.OnLog(e);
 });
