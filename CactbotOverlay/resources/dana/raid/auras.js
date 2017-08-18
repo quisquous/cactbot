@@ -11,6 +11,7 @@ var kAurasIconTextW = 100;
 class Auras {
   constructor() {
     this.init = false;
+    this.inBossFight = false;
     this.icon = null;
     this.iconText = null;
     this.infoText = null;
@@ -41,7 +42,21 @@ class Auras {
     }
   }
 
+  OnInCombat(e) {
+    // If we're in a boss fight and combat ends, ignore that.
+    // Otherwise consider it a fight reset.
+    if (!e.detail.inCombat && !this.inBossFight)
+      this.data = {};
+  }
+
+  OnBossFightStart(e) {
+    console.log("fight start !");
+    this.inBossFight = true;
+  }
+
   OnBossFightEnd(e) {
+    console.log("fight end !");
+    this.inBossFight = false;
     this.data = {};
   }
 
@@ -186,13 +201,14 @@ document.addEventListener("onZoneChangedEvent", function(e) {
   gAuras.OnZoneChange(e);
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
-  console.log("in combat ! " + e.detail.inCombat);
+  gAuras.OnInCombat(e);
+});
+document.addEventListener("onBossFightStart", function(e) {
+  gAuras.OnBossFightStart(e);
+});
+document.addEventListener("onBossFightEnd", function(e) {
   gAuras.OnBossFightEnd(e);
 });
-//document.addEventListener("onPartyWipe", function(e) {
-//  console.log("fight end !");
-//  gAuras.OnBossFightEnd(e);
-//});
 document.addEventListener("onLogEvent", function(e) {
   gAuras.OnLog(e);
 });
