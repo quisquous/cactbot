@@ -39,7 +39,8 @@
   top: 5ex;
   color: #2b2;
   font-size: 140%;
-  text-shadow: -2px 0 6px black, 0 2px 6px black, 2px 0 6px black, 0 -2px 6px black;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
 }
 
 #auras-text-alert {
@@ -48,8 +49,9 @@
   top: 2ex;
   color: #fb0;
   font-size: 170%;
-  text-shadow: -2px 0 6px black, 0 2px 6px black, 2px 0 6px black, 0 -2px 6px black;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   text-transform: uppercase;
+  will-change: transform;
 }
 
 #auras-text-alarm {
@@ -58,6 +60,13 @@
   top: -0.7ex;
   color: #f30;
   font-size: 230%;
-  text-shadow: -2px 0 6px black, 0 2px 6px black, 2px 0 6px black, 0 -2px 6px black;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   text-transform: uppercase;
+  will-change: transform;
+}
+
+@keyframes zoom-in-out {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1.0); }
 }

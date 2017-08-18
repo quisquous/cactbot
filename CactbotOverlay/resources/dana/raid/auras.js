@@ -129,6 +129,9 @@ class Auras {
         var text = TextOrFunction(trigger.infoText);
         if (text) {
           that.infoText.classList.remove('hide');
+          that.infoText.style.animationName = 'zoom-in-out';
+          that.infoText.style.animationDuration = '300ms';
+          that.infoText.style.animationTimingFunction = 'linear';
           that.infoText.innerText = text;
           textSound = 'sound' in trigger ? '' : gAurasSounds.Info;
 
@@ -142,6 +145,9 @@ class Auras {
         var text = TextOrFunction(trigger.alertText);
         if (text) {
           that.alertText.classList.remove('hide');
+          that.alertText.style.animationName = 'zoom-in-out';
+          that.alertText.style.animationDuration = '300ms';
+          that.alertText.style.animationTimingFunction = 'linear';
           that.alertText.innerText = text;
           textSound = 'sound' in trigger ? '' : gAurasSounds.Alert;
 
@@ -155,6 +161,9 @@ class Auras {
         var text = TextOrFunction(trigger.alarmText);
         if (text) {
           that.alarmText.classList.remove('hide');
+          that.alarmText.style.animationName = 'zoom-in-out';
+          that.alarmText.style.animationDuration = '300ms';
+          that.infoText.style.animationTimingFunction = 'linear';
           that.alarmText.innerText = text;
           textSound = 'sound' in trigger ? '' : gAurasSounds.Alarm;
 
@@ -217,4 +226,5 @@ document.addEventListener("onLogEvent", function(e) {
 window.onload = function() {
   //window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Exdeath uses The Decisive Battle.') }, 0);
   //window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':Exdeath begins casting Fire III.') }, 0);
+  //window.setTimeout(function() { gAuras.Test('Unknown Zone (2Ba)', ':test:trigger:') }, 1000);
 };
