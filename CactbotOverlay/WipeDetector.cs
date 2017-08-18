@@ -15,6 +15,7 @@ namespace Cactbot {
     private string player_name_ = null;
     private string player_name_with_colons_ = null;
     private DateTime? last_revived_time_;
+    private DateTime? last_lb3_time_;
 
     private void WipeIt() {
       this.player_dead_ = false;
@@ -28,24 +29,30 @@ namespace Cactbot {
         player_name_with_colons_ = ":" + player.name + ":";
       }
 
+      var now = DateTime.Now;
+
       // Note: can't use "You were revived" from log, as it doesn't happen for
       // fights that auto-restart when everybody is defeated.
       if (!player_dead_ && player.currentHP == 0) {
         client_.LogInfo("Wipe: player dead");
         player_dead_ = true;
+        last_lb3_time_ = null;
       } else if (player_dead_ && player.currentHP > 0) {
         client_.LogInfo("Wipe: player revived");
         player_dead_ = false;
-        last_revived_time_ = DateTime.Now;
+        last_revived_time_ = now;
+
+        // If an LB3 hit the player recently, then it wasn't a wipe so just
+        // forget that they were revived.
+        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= 1)
+          last_revived_time_ = null;
       }
 
       // Heuristic: if a player is revived and a second passes without
       // a weakness message, then it was a wipe.
-      if (last_revived_time_.HasValue) {
-        if ((DateTime.Now - last_revived_time_.GetValueOrDefault()).TotalSeconds > 1) {
-          client_.LogInfo("Wipe: actual wipe");
-          WipeIt();
-        }
+      if (last_revived_time_.HasValue && (now - last_revived_time_.Value).TotalSeconds > 1) {
+        client_.LogInfo("Wipe: actual wipe");
+        WipeIt();
       }
     }
 
@@ -79,6 +86,7 @@ namespace Cactbot {
           if (healer_lb3 >= 0) {
             if (log.IndexOf(player_name_with_colons_, StringComparison.Ordinal) > healer_lb3) {
               client_.LogInfo("Wipe: player hit by lb3");
+              last_lb3_time_ = DateTime.Now;
             } else {
               client_.LogInfo("Wipe: player not hit by lb3");
             }
