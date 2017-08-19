@@ -124,7 +124,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Grand Cross Alpha.
     regex: /:242B:Neo Exdeath starts using/,
-    infoText: 'Alpha:  Go to middle',
+    infoText: 'Grand Cross Alpha:  Go to middle',
     run: function(data) { data.alpha = true; data.delta = false; data.omega = false; },
   },
   { // Grand Cross Alpha finished cast - Use Apoc.
@@ -141,18 +141,18 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Grand Cross Delta.
     regex: /:242C:Neo Exdeath starts using/,
-    infoText: 'Delta:  Inside boss',
+    infoText: 'Grand Cross Delta:  Inside boss',
     run: function(data) { data.alpha = false; data.delta = true; data.omega = false; },
   },
   { // Grand Cross Omega.
     regex: /:242D:Neo Exdeath starts using/,
-    infoText: 'Omega:  Go to middle',
+    infoText: 'Grand Cross Omega:  Go to middle',
     run: function(data) { data.alpha = false; data.delta = false; data.omega = true; },
   },
   { // Forked Lightning - Get out.
     regex: /You suffer the effect of Forked Lightning/,
     delaySeconds: 1,
-    alertText: 'Get out',
+    alertText: 'Forked Lightning: Get out',
   },
   { // Acceleration Bomb (Alpha).
     regex: /You suffer the effect of .*Acceleration Bomb/,
@@ -175,14 +175,14 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   { // Beyond Death (Delta)
     regex: /You suffer the effect of .*Beyond Death/,
     delaySeconds: 7,
-    alarmText: 'Die',
+    alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
     condition: function(data) { return data.delta; },
   },
   { // Beyond Death (Omega)
     regex: /You suffer the effect of .*Beyond Death/,
     delaySeconds: 20,
-    alarmText: 'Die',
+    alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
     condition: function(data) { return data.omega; },
   },
@@ -215,7 +215,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /loses the effect of Reprisal from/,
     alertText: 'Reprisal ended',
     //sound: '../../sounds/PowerAuras/throwknife.ogg',
-    condition: function(data) { return data.almagestCount == 6 && data.reprisal; },
+    condition: function(data) { return data.alphaCount == 3 && data.reprisal; },
     run: function(data) { data.reprisal = false; },
   },
   /*
