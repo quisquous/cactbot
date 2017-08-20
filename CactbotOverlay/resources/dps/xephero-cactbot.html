@@ -153,6 +153,13 @@
         $(function() {
             "use strict";
 
+            var g_current_zone = null;
+            var g_ignore_zones = [
+                'Seal Rock (Seize)',
+                'The Borderland Ruins (Secure)',
+                'The Fields Of Glory (Shatter)',
+            ];
+
             var rows = 10;
             var rdps_max = 0;
 
@@ -304,6 +311,19 @@
             }
 
             function handleEvent(type, e) {
+                 if (type == 'onZoneChangedEvent') {
+                     g_current_zone = e.detail.zoneName;
+                     if (g_ignore_zones.indexOf(g_current_zone) >= 0) {
+                         console.log('ignoring zone');
+                     }
+                    tracker.clearPhases();
+                    hideOverlay();
+                    return;
+                }
+                // DPS numbers in large pvp is not useful and hella noisy.
+                if (g_ignore_zones.indexOf(g_current_zone) >= 0) {
+                    return;
+                }
                 if (type === 'onOverlayDataUpdate') {
                     tracker.onOverlayDataUpdate(e.detail);
                     update(e.detail);
@@ -317,9 +337,6 @@
                 } else if (type === 'onFightPhaseEnd') {
                     var d = e.detail;
                     tracker.onFightPhaseEnd(d.name, d.dps);
-                } else if (type == 'onZoneChangedEvent') {
-                    tracker.clearPhases();
-                    hideOverlay();
                 }
             }
 
