@@ -10,9 +10,10 @@ var kFarThresholdOffence = 24;  // The distance that offensive spells such as Ve
 var kHealthBarPosX = 0;
 var kHealthBarPosY = 20;
 var kManaBarPosX = kHealthBarPosX;
-var kManaBarPosY = kHealthBarPosY + 8;
+var kManaBarMarginY = 1;
 var kHealthBarSizeW = 202;  // 2px per percent + 1px border on each side.
 var kHealthBarSizeH = 7;  // Rogue energy was 12.
+var kTankHealthBarSizeH = 18;
 var kManaBarSizeH = 7;
 var kPullTimerPosX = kHealthBarPosX;
 var kPullTimerPosY = kHealthBarPosY - 20;
@@ -99,6 +100,17 @@ function setupRegexes(me) {
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)')
   kReRdmImpactProcEnd = new RegExp(':' + me + ' loses the effect of Impactful from ' + me + '.')
+}
+
+var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
+var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
+
+function isCasterJob(job) {
+  return kCasterJobs.indexOf(job) >= 0;
+}
+
+function isTankJob(job) {
+  return kTankJobs.indexOf(job) >= 0;
 }
 
 var kBigBuffTracker = null;
@@ -224,52 +236,45 @@ class Bars {
     this.o.bigBuffsList.toward = "right down";
     this.o.bigBuffsList.elementwidth = kBigBuffIconWidth + 2;
 
-    if (job == "RDM" || job == "BLM" || job == "WHM" ||
-        job == "SCH" || job == "SMN" || job == "ACN" ||
-        job == "AST" || job == "CNJ" || job == "THM") {
-      this.o.healthContainer = document.createElement("div");
-      this.o.healthBar = document.createElement("resource-bar");
-      this.o.healthContainer.appendChild(this.o.healthBar);
-      opacityContainer.appendChild(this.o.healthContainer);
+    this.o.healthContainer = document.createElement("div");
+    this.o.healthBar = document.createElement("resource-bar");
+    this.o.healthContainer.appendChild(this.o.healthBar);
+    opacityContainer.appendChild(this.o.healthContainer);
 
-      this.o.healthContainer.style.position = "absolute";
-      this.o.healthContainer.style.top = kHealthBarPosY;
-      this.o.healthContainer.style.left = kHealthBarPosX;
-      this.o.healthBar.width = kHealthBarSizeW;
-      this.o.healthBar.height = kHealthBarSizeH;
+    this.o.healthContainer.style.position = "absolute";
+    this.o.healthContainer.style.top = kHealthBarPosY;
+    this.o.healthContainer.style.left = kHealthBarPosX;
+    this.o.healthBar.width = kHealthBarSizeW;
+    this.o.healthBar.height = kHealthBarSizeH;
 
+    if (isTankJob(job)) {
+      this.o.healthBar.height = kTankHealthBarSizeH;
+      this.o.healthBar.lefttext = "value";
+    }
+
+    var secondBarTop = kHealthBarPosY + parseInt(this.o.healthBar.height) + kManaBarMarginY;
+    if (isCasterJob(job)) {
       this.o.manaContainer = document.createElement("div");
       this.o.manaBar = document.createElement("resource-bar");
       this.o.manaContainer.appendChild(this.o.manaBar);
       opacityContainer.appendChild(this.o.manaContainer);
 
       this.o.manaContainer.style.position = "absolute";
-      this.o.manaContainer.style.top = kManaBarPosY;
+      this.o.manaContainer.style.top = secondBarTop;
       this.o.manaContainer.style.left = kManaBarPosX;
       this.o.manaBar.width = kHealthBarSizeW;
       this.o.manaBar.height = kManaBarSizeH;
     } else {
-      this.o.healthContainer = document.createElement("div");
-      this.o.healthBar = document.createElement("resource-bar");
-      this.o.healthContainer.appendChild(this.o.healthBar);
-      opacityContainer.appendChild(this.o.healthContainer);
-
-      this.o.healthContainer.style.position = "relative";
-      this.o.healthContainer.style.top = kHealthBarPosY;
-      this.o.healthContainer.style.left = kHealthBarPosX;
-      this.o.healthBar.width = kHealthBarSizeW;
-      this.o.healthBar.height = 7;
-
       this.o.tpContainer = document.createElement("div");
       this.o.tpBar = document.createElement("resource-bar");
       this.o.tpContainer.appendChild(this.o.tpBar);
       opacityContainer.appendChild(this.o.tpContainer);
 
-      this.o.tpContainer.style.position = "relative";
-      this.o.tpContainer.style.top = kManaBarPosY;
+      this.o.tpContainer.style.position = "absolute";
+      this.o.tpContainer.style.top = secondBarTop;
       this.o.tpContainer.style.left = kManaBarPosX;
       this.o.tpBar.width = kHealthBarSizeW;
-      this.o.tpBar.height = 9;  // Rogue energy was 12.
+      this.o.tpBar.height = kHealthBarSizeH;
     }
 
     if (job == "RDM") {
