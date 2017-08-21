@@ -54,10 +54,6 @@ var kWhiteBlackIndicator40 = "rgba(0, 0, 0, 0.7)";
 var kWhiteBlackIndicator80 = "rgba(0, 0, 0, 0.7)";
 var kWhiteBlackIndicator = "rgba(100, 100, 100, 0.7)";
 
-var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
-  '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
-  '|((Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet))' +
-  '|Limit Break';
 var kReName = '[A-Za-z0-9 \']+';
 var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
 
@@ -78,22 +74,131 @@ var g_init = false;
 
 var kMe = null;
 
-function setupRegexes(me) {
-  // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
-  // We can not look for log messages from FFXIV "You use X" here. Instead we
-  // look for the actual ability usage provided by the XIV plugin.
-  // Also, the plugin lines are given much quicker than the lines from the game.
-  // var kReCombo1 = 'You use Enchanted Riposte\.';
-  // var kReCombo2 = 'You use Enchanted Zwerchhau\.';
-  // var kReCombo3 = 'You use Enchanted Redoublement\.';
-  // var kReEndCombo1 = 'You use (Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)\.';
-  // var kReEndCombo2 = 'You (cast|begin casting) ';
-  kReRdmCombo1 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Riposte:');
-  kReRdmCombo2 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Zwerchhau:');
-  kReRdmCombo3 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Redoublement:');
-  // Spending any GCD ends the combo, be they spells or abilities.
-  kReRdmEndCombo = new RegExp(':' + me + '( starts using |:' + kReAbilityCode + ':)(' + kRdmGcdAbilties + ')( |:)');
+// Full skill names (regex ok) of abilities that break combos.
+// TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
+var kComboBreakers = Object.freeze([
+  // rdm
+  'Verstone',
+  'Verfire',
+  'Verareo',
+  'Verthunder',
+  'Verholy',
+  'Verflare',
+  'Jolt II',
+  'Jolt',
+  'Impact',
+  'Scatter',
+  'Vercure',
+  'Verraise',
+  '(Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)',
+  // war
+  'Tomahawk',
+  'Overpower',
+  'Skull Sunder',
+  "Butcher's Block",
+  'Maim',
+  "Storm's Eye",
+  "Storm's Path",
+  // general (TODO: is this true?)
+  'Limit Break',
+]);
 
+class ComboTracker {
+  constructor(me, comboBreakers, callback) {
+    this.me = me;
+    this.comboTimer = null;
+    this.kReEndCombo = new RegExp(':' + me + '( starts using |:' + kReAbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
+    this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
+    this.startList = [];
+    this.callback = callback;
+    this.current = null;
+    this.considerNext = this.startList;
+  }
+
+  AddCombo(skillList) {
+    // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
+    // We can not look for log messages from FFXIV "You use X" here. Instead we
+    // look for the actual ability usage provided by the XIV plugin.
+    // Also, the networked parse info is given much quicker than the lines from the game.
+    if (this.startList.indexOf(skillList[0]) == -1) {
+      this.startList.push(skillList[0]);
+    }
+    for (var i = 0; i < skillList.length; ++i) {
+      var node = this.comboNodes[skillList[i]];
+      if (node == undefined) {
+        node = {
+          re: new RegExp(':' + this.me + ':' + kReAbilityCode + ':' + skillList[i] + ':'),
+          next: []
+        };
+        this.comboNodes[skillList[i]] = node;
+      }
+      if (i != skillList.length - 1) {
+        node.next.push(skillList[i + 1]);
+      } else {
+        node.last = true;
+      }
+    }
+  }
+
+  ParseLog(log) {
+    for (var i = 0; i < this.considerNext.length; ++i) {
+      var next = this.considerNext[i];
+      if (log.search(this.comboNodes[next].re) >= 0) {
+        this.StateTransition(next);
+        return true;
+      }
+    }
+    for (var i = 0; i < this.startList.length; ++i) {
+      var next = this.startList[i];
+      if (log.search(this.comboNodes[next].re) >= 0) {
+        this.StateTransition(next);
+        return true;
+      }
+    }
+    if (log.search(this.kReEndCombo) >= 0) {
+      this.AbortCombo();
+      return true;
+    }
+    return false;
+  }
+
+  StateTransition(nextState) {
+    if (this.current == nextState)
+      return;
+
+    window.clearTimeout(this.comboTimer);
+    this.comboTimer = null;
+    this.current = nextState;
+    this.comboTimer = null;
+
+    if (nextState == null) {
+      this.considerNext = [];
+    } else {
+      this.considerNext = this.comboNodes[nextState].next;
+      if (!this.comboNodes[nextState].last) {
+        var kComboDelayMs = 12000;
+        this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
+      }
+    }
+    this.callback(nextState);
+  }
+
+  AbortCombo() {
+    this.StateTransition(null);
+  }
+}
+
+function setupComboTracker(me, callback) {
+  var comboTracker = new ComboTracker(me, kComboBreakers, callback);
+  comboTracker.AddCombo(['(Enchanted )?Riposte', '(Enchanted )?Zwerchhau', '(Enchanted )?Redoublement']);
+  comboTracker.AddCombo(['Heavy Swing', 'Skull Sunder', "Butcher's Block"]);
+  comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Eye"]);
+  comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Path"]);
+
+  return comboTracker;
+}
+
+function setupRegexes(me) {
   kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verstone:)')
   kReRdmWhiteManaProcEnd = new RegExp(':' + me + ' loses the effect of Verstone Ready from ' + me + '.')
@@ -651,13 +756,16 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - kRdmCastTime);
   }
 
-  OnComboChange(job, stage) {
-    if (job == "RDM") {
+  OnComboChange(skill) {
+    if (g_data.job == "RDM") {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
-      this.o.rdmCombo1.style.display = stage == 1 ? "block" : "none";
-      this.o.rdmCombo2.style.display = stage == 2 ? "block" : "none";
-      this.o.rdmCombo3.style.display = stage == 3 ? "block" : "none";
+
+      if (!skill)
+        skill = "";
+      this.o.rdmCombo1.style.display = skill.indexOf('Riposte') >= 0 ? "block" : "none";
+      this.o.rdmCombo2.style.display = skill.indexOf('Zwerchhau') >= 0 ? "block" : "none";
+      this.o.rdmCombo3.style.display = skill.indexOf('Redoublement') >= 0 ? "block" : "none";
     }
   }
 
@@ -768,12 +876,14 @@ class TrackingData {
 
 var g_data = new TrackingData();
 var g_bars = new Bars();
+var g_combo = null;
 
 document.addEventListener("onPlayerChangedEvent", function (e) {
   if (!g_init) {
     kMe = e.detail.name;
-    setupRegexes(e.detail.name);
-    setupBuffTracker(e.detail.name);
+    setupRegexes(kMe);
+    setupBuffTracker(kMe);
+    g_combo = setupComboTracker(kMe, g_bars.OnComboChange.bind(g_bars));
     g_init = true;
   }
 
@@ -781,11 +891,10 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
   var update_hp = false;
   var update_mp = false;
   var update_tp = false;
-  var update_combo = false;
   if (e.detail.job != g_data.job) {
     g_data.job = e.detail.job;
-    AbortCombo();  // Combos are job specific.
-    update_job = update_hp = update_mp = update_tp = update_combo = true;
+    g_combo.AbortCombo();  // Combos are job specific.
+    update_job = update_hp = update_mp = update_tp = true;
   }
   if (e.detail.currentHP != g_data.hp || e.detail.maxHP != g_data.maxHP) {
     g_data.hp = e.detail.currentHP;
@@ -793,8 +902,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     update_hp = true;
 
     if (g_data.hp == 0) {
-      AbortCombo();  // Death resets combos.
-      update_combo = true;
+      g_combo.AbortCombo();  // Death resets combos.
     }
   }
   if (e.detail.currentMP != g_data.mp || e.detail.maxMP != g_data.maxMP) {
@@ -819,8 +927,6 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     g_bars.OnManaChange(g_data.job, g_data.distance, g_data.mp, g_data.maxMP);
   if (update_tp)
     g_bars.OnTPChange(g_data.job, g_data.distance, g_data.tp, g_data.maxTP);
-  if (update_combo)
-    g_bars.OnComboChange(g_data.job, g_data.combo);
 
   if (g_data.job == "RDM") {
       if (update_job ||
@@ -896,27 +1002,10 @@ function OnLogEvent(e) {
       }
     }
 
+    if (g_combo.ParseLog(log))
+      continue;
+
     if (g_data.job == "RDM") {
-      if (log.search(kReRdmCombo1) >= 0 && g_data.combo == 0) {
-        SetComboWithTimeout(1, 12000);
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
-      if (log.search(kReRdmCombo2) >= 0 && g_data.combo == 1) {
-        SetComboWithTimeout(2, 12000);
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
-      if (log.search(kReRdmCombo3) >= 0 && g_data.combo == 2) {
-        SetComboWithTimeout(3, 12000);
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
-      if (log.search(kReRdmEndCombo) >= 0 && g_data.combo > 0) {
-        AbortCombo();
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
       var r = log.match(kReRdmBlackManaProc);
       if (r != null) {
         var seconds = parseFloat(r[1]);
@@ -956,23 +1045,6 @@ function OnLogEvent(e) {
     if (log.search(/::test::/) >= 0)
       Test();
   }
-}
-
-function SetComboWithTimeout(stage, delay) {
-  g_data.combo = stage;
-  window.clearTimeout(g_data.comboTimer);
-  g_data.comboTimer = window.setTimeout(OnComboTimeOut, delay);
-}
-
-function AbortCombo() {
-  g_data.combo = 0;
-  window.clearTimeout(g_data.comboTimer);
-  g_data.comboTimer = null;
-}
-
-function OnComboTimeOut() {
-  AbortCombo();
-  g_bars.OnComboChange(g_data.job, g_data.combo);
 }
 
 function Test() {
