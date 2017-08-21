@@ -38,9 +38,12 @@ var kBackgroundColor = "rgb(30, 30, 30)";
 var kLowManaColor = "rgb(218, 69, 177)";
 var kFarManaColor = "rgb(215, 120, 0)";
 var kLowHealthThresholdPercent = 0.2;
-var kLowHealthColor = "rgb(190, 43, 30)"
+var kLowHealthColor = "rgb(190, 43, 30)";
 var kMidHealthThresholdPercent = 0.8;
-var kMidHealthColor = "rgb(127, 185, 29)"
+var kMidHealthColor = "rgb(127, 185, 29)";
+var kLowBeastColor = "rgb(255, 235, 153)";
+var kMidBeastColor = "rgb(255, 153, 0)";
+var kFullBeastColor = "rgb(230, 20, 20)";
 // RDM colours.
 var kWhiteManaBarColor = "rgb(220, 220, 240)";
 var kWhiteManaBarDimColor = "rgb(90, 90, 100)";
@@ -509,6 +512,32 @@ class Bars {
         this.o.rdmProcImpact.fg = kImpactProcColor;
         this.o.rdmProcImpact.bg = 'black';
       }
+    } else if (job == "WAR") {
+      var fontSize = 16;
+      var fontWidth = fontSize * 1.8;
+      var beastX = kHealthBarPosX + kHealthBarSizeW + 3;
+      var beastY = kHealthBarPosY;
+
+      // Move over the big buffs.
+      // TODO: these should probably just float?
+      this.o.bigBuffsContainer.style.left = beastX + fontWidth + 7;
+
+      this.o.beastTextBox = document.createElement("div");
+      opacityContainer.appendChild(this.o.beastTextBox);
+      this.o.beastTextBox.classList.add("text");
+      this.o.beastTextBox.style.position = "absolute";
+      this.o.beastTextBox.style.left = beastX;
+      this.o.beastTextBox.style.top = beastY;
+      this.o.beastTextBox.style.fontSize = fontSize;
+      this.o.beastTextBox.style.textAlign = "center";
+      this.o.beastTextBox.style.width = fontWidth;
+      this.o.beastTextBox.style.height = fontWidth;
+      this.o.beastTextBox.style.border = "1px solid rgba(0,0,0,0.7)";
+
+      this.o.beastText = document.createElement("div");
+      this.o.beastTextBox.appendChild(this.o.beastText);
+      this.o.beastText.style.position = "relative";
+      this.o.beastText.style.top = "6";
     }
 
     if (this.o.healthBar) {
@@ -590,6 +619,21 @@ class Bars {
       this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarDimColor; //"rgba(0,0,0,0.7)";
     else
       this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarColor; //"rgba(50,50,50,0.7)";
+  }
+
+  OnWarUpdate(beast) {
+    if (this.o.beastTextBox == null) {
+        return;
+    }
+    this.o.beastText.innerText = beast;
+
+    if (beast < 50) {
+        this.o.beastTextBox.style.backgroundColor = kLowBeastColor;
+    } else if (beast < 100) {
+        this.o.beastTextBox.style.backgroundColor = kMidBeastColor;
+    } else {
+        this.o.beastTextBox.style.backgroundColor = kFullBeastColor;
+    }
   }
 
   OnRedMageProcBlack(seconds) {
@@ -715,6 +759,7 @@ class TrackingData {
     this.distance = -1;
     this.whiteMana = -1;
     this.blackMana = -1;
+    this.beast = -1;
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
@@ -778,12 +823,17 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     g_bars.OnComboChange(g_data.job, g_data.combo);
 
   if (g_data.job == "RDM") {
-    if (update_job ||
-        e.detail.jobDetail.whiteMana != g_data.whiteMana ||
-        e.detail.jobDetail.blackMana != g_data.blackMana) {
-      g_data.whiteMana = e.detail.jobDetail.whiteMana;
-      g_data.blackMana = e.detail.jobDetail.blackMana;
-      g_bars.OnRedMageUpdate(g_data.whiteMana, g_data.blackMana);
+      if (update_job ||
+          e.detail.jobDetail.whiteMana != g_data.whiteMana ||
+          e.detail.jobDetail.blackMana != g_data.blackMana) {
+          g_data.whiteMana = e.detail.jobDetail.whiteMana;
+          g_data.blackMana = e.detail.jobDetail.blackMana;
+          g_bars.OnRedMageUpdate(g_data.whiteMana, g_data.blackMana);
+      }
+  } else if (g_data.job == "WAR") {
+    if (update_job || e.detail.jobDetail.beast != g_data.beast) {
+        g_data.beast = e.detail.jobDetail.beast;
+        g_bars.OnWarUpdate(g_data.beast);
     }
   }
 });
