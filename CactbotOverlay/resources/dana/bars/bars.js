@@ -171,10 +171,9 @@ class ComboTracker {
       Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
       Array.prototype.push.apply(this.considerNext, this.startList);
 
-      if (!this.comboNodes[nextState].last) {
-        var kComboDelayMs = 12000;
-        this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
-      }
+      // Always set the combo timer even on the final one so that it will eventually hide.
+      var kComboDelayMs = 12000;
+      this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
     }
     this.callback(nextState);
   }
