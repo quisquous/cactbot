@@ -148,13 +148,6 @@ class ComboTracker {
         return true;
       }
     }
-    for (var i = 0; i < this.startList.length; ++i) {
-      var next = this.startList[i];
-      if (log.search(this.comboNodes[next].re) >= 0) {
-        this.StateTransition(next);
-        return true;
-      }
-    }
     if (log.search(this.kReEndCombo) >= 0) {
       this.AbortCombo();
       return true;
@@ -172,9 +165,12 @@ class ComboTracker {
     this.comboTimer = null;
 
     if (nextState == null) {
-      this.considerNext = [];
+      this.considerNext = this.startList;
     } else {
-      this.considerNext = this.comboNodes[nextState].next;
+      this.considerNext = [];
+      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
+      Array.prototype.push.apply(this.considerNext, this.startList);
+
       if (!this.comboNodes[nextState].last) {
         var kComboDelayMs = 12000;
         this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
