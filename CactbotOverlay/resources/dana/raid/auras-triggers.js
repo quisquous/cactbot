@@ -1,3 +1,13 @@
+// TODO: Untargettable in 20s for:
+// Exdeath decisive battles
+// Catastrophe -100 Gs
+// Neo Exdeath GC Omega
+
+// Also:
+// Troubadour for Almagest #5 if you're a bard.
+// Dismantle for Almagest all except #4 if you're a machinist.
+
+
 var kAurasTriggers = {};
 
 /*
@@ -334,14 +344,21 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 9; },  // 9 second warning.
     condition: function(data, matches) { return matches[1] == data.me; },
   },
-  { // Almagest
-    regex: /:2417:Neo Exdeath starts using/,
-    alertText: 'Almagest',
-    run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
-  },
   { // Delta Attack
     regex: /:241E:Neo Exdeath starts using/,
     infoText: 'Delta Attack: Stack',
+  },
+  { // Almagest
+    regex: /:2417:Neo Exdeath starts using/,
+    alertText: function(data) {
+      // 4th almagest skips Dismantle but get Addle.
+      // 5th almagest skips Addle but gets Troubadour/Dismantle.
+      if (data.job == 'MCH' && data.almagestCount != 3) return 'Almagest: Dismantle';
+      if (data.role == 'dps-caster' && data.almagestCount != 4) return 'Almagest: Addle';
+      if (data.job == 'BRD' && data.almagestCount == 4) return 'Almagest: Troubadour';
+      return 'Almagest';
+    },
+    run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
   },
   { // Vacuum Wave warning after Almagest
     regex: /:2417:Neo Exdeath starts using/,
