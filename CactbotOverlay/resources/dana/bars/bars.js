@@ -92,13 +92,10 @@ function setupRegexes(me) {
 
   kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verstone:)')
-  kReRdmWhiteManaProcEnd = new RegExp(':' + me + ' loses the effect of Verstone Ready from ' + me + '.')
   kReRdmBlackManaProc = new RegExp(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verfire:)')
-  kReRdmBlackManaProcEnd = new RegExp(':' + me + ' loses the effect of Verfire Ready from ' + me + '.')
+  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verfire:)');
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)')
-  kReRdmImpactProcEnd = new RegExp(':' + me + ' loses the effect of Impactful from ' + me + '.')
+  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)');
 }
 
 var kBigBuffTracker = null;
