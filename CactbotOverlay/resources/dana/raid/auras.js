@@ -26,7 +26,7 @@ class Auras {
       return;
     this.init = true;
     this.me = e.detail.name;
-    
+
     this.icon = document.getElementById('auras-icon');
     this.iconText = document.getElementById('auras-text-bottom');
     this.infoText = document.getElementById('auras-text-info');
@@ -80,21 +80,14 @@ class Auras {
       if (!trigger.condition(this.data, matches))
         return;
     }
-    
-    var delay = 'delaySeconds' in trigger ? trigger.delaySeconds : 0;
-    var duration = 0;
-    if ('durationSeconds' in trigger)
-      duration = trigger.durationSeconds;
-    else if ('durationPosition' in trigger)
-      duration = matches[trigger.durationPosition];
-    else
-      duration = 3;
 
     var that = this;
-
-    var TextOrFunction = function(f) {
+    var ValueOrFunction = function(f) {
       return (typeof(f) == "function") ? f(that.data, matches) : f;
     }
+
+    var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
+    var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
 
     var f = function() {
       if ('icon' in trigger) {
@@ -107,7 +100,7 @@ class Auras {
         else
           that.icon.style.borderColor = 'rgb(0, 0, 0)';
         if ('iconText' in trigger) {
-          that.iconText.innerText = TextOrFunction(trigger.iconText);
+          that.iconText.innerText = ValueOrFunction(trigger.iconText);
         } else {
           that.iconText.innerText = '';
         }
@@ -126,7 +119,7 @@ class Auras {
       var textSound = '';
 
       if ('infoText' in trigger) {
-        var text = TextOrFunction(trigger.infoText);
+        var text = ValueOrFunction(trigger.infoText);
         if (text) {
           that.infoText.classList.remove('hide');
           that.infoText.style.animationName = 'zoom-in-out';
@@ -142,7 +135,7 @@ class Auras {
         }
       }
       if ('alertText' in trigger) {
-        var text = TextOrFunction(trigger.alertText);
+        var text = ValueOrFunction(trigger.alertText);
         if (text) {
           that.alertText.classList.remove('hide');
           that.alertText.style.animationName = 'zoom-in-out';
@@ -158,7 +151,7 @@ class Auras {
         }
       }
       if ('alarmText' in trigger) {
-        var text = TextOrFunction(trigger.alarmText);
+        var text = ValueOrFunction(trigger.alarmText);
         if (text) {
           that.alarmText.classList.remove('hide');
           that.alarmText.style.animationName = 'zoom-in-out';
@@ -193,7 +186,7 @@ class Auras {
     else
       window.setTimeout(f, delay * 1000);
   }
-  
+
   Test(zone, log) {
     this.OnPlayerChange({ detail: { name : 'ME' } });
     this.OnZoneChange({ detail: { zoneName: zone } });
