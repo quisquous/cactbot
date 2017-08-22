@@ -7,24 +7,23 @@ var kAurasTriggers = {};
 { // Example trigger.
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
-  // Either seconds or position can be specified. Seconds is fixed. Position is parsed as a float from the regex.
+  // Number of seconds to show the icon and/or text for. Either seconds or a function(data, matches).
   durationSeconds: 3,
-  durationPosition: 2,
-  // Time to wait before showing it once the regex is seen.
+  // Time to wait before showing it once the regex is seen. Can be a number or a function(data, matches).
   delaySeconds: 0,
   // Icon to show, a key into gAurasIcons in auras-icons.js, or a literal url.
   icon: 'iconName or data:image/png;base64,iVBORw0KGgoAAAANSUhE',
   // Color of icon border.
   iconBorderColor: '#000',
-  // Text to show below the icon. May be a function like run() that returns a string.
+  // Text to show below the icon. May be a function(data, matches) that returns a string.
   iconText: 'DO STUFF',
   // Color of the text.
   iconTextColor: '#000',
-  // Text to show with info importance. May be a function like run() that returns a string.
+  // Text to show with info importance. May be a function(data, matches) that returns a string.
   infoText = 'Info',
-  // Text to show with alert importance. May be a function like run() that returns a string.
+  // Text to show with alert importance. May be a function(data, matches) that returns a string.
   alertText = 'Info',
-  // Text to show with alarm importance. May be a function like run() that returns a string.
+  // Text to show with alarm importance. May be a function(data, matches) that returns a string.
   alarmText = 'Info',
   // Sound file to play, a key into gAurasSounds in auras-sounds.js, or a literal url.
   sound: '',
@@ -52,29 +51,29 @@ kAurasTriggers['.'] = [
 // O1S - Deltascape 1.0 Savage
 kAurasTriggers['Unknown Zone \\(2B7\\)'] = [
   {
-    regex: /Alte Roite readies Blaze/,
+    regex: /:1EDD:Alte Roite starts using/,
     infoText: 'Blaze: Stack up',
   },
   {
-    regex: /Alte Roite readies Breath Wing/,
+    regex: /:1ED6:Alte Roite starts using/,
     infoText: 'Breath Wing: Be beside boss',
   },
   {
-    regex: /Alte Roite readies Clamp/,
+    regex: /:1EDE:Alte Roite starts using/,
     infoText: 'Clamp: Get out of front',
   },
   {
-    regex: /Alte Roite readies Downburst/,
+    regex: /:1ED8:Alte Roite starts using/,
     infoText: 'Downburst: Knockback',
   },
   {
     condition: function() { return false },
-    regex: /Alte Roite readies Roar/,
+    regex: /:1ED4:Alte Roite starts using/,
     infoText: 'Roar: AOE damage',
   },
   {
     condition: function() { return false },
-    regex: /Alte Roite readies Charybdis/,
+    regex: /:1ED3:Alte Roite starts using/,
     infoText: 'Charybdis: AOE damage',
   },
 ];
@@ -83,30 +82,32 @@ kAurasTriggers['Unknown Zone \\(2B7\\)'] = [
 kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
  // 2nd Maniacal Probe => South
   {
-    regex: /You gain the effect of .{0,4}Levitation/,
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_556|Levitation) from/,
     run: function(data) { data.levitating = true; },
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   {
-    regex: /You lose the effect of .{0,4}Levitation/,
+    regex: /:([A-Za-z ']+) loses the effect of (Unknown_556|Levitation)/,
     run: function(data) { data.levitating = false; },
   },
   {
-    regex: /Catastrophe readies -100 Gs/,
-    infoText: '-100Gs: Go north/south and look away',
+    regex: /:235E:Catastrophe starts using/,
+    infoText: '-100 Gs: Go north/south and look away',
   },
   {
-    regex: /Catastrophe readies Death's Gaze/,
+    regex: /:236F:Catastrophe starts using/,
     alarmText: 'Death\'s Gaze: Look away',
   },
   {
-    regex: /Catastrophe readies Earthquake/,
-    alertText: 'Earthquake: Levitate',
+    regex: /:2374:Catastrophe starts using/,
+    infoText: function(data) { if (data.levitating) return 'Earthquake'; },
+    alertText: function(data) { if (!data.levitating) return 'Earthquake: Levitate'; },
   },
   {
-    regex: /Catastrophe readies Maniacal Probe/,
+    regex: /:235A:Catastrophe starts using/,
     infoText: function(data) {
       if (data.probeCount == 0 || data.probeCount == 2)
-        return 'Maniacal Probe: Healers';
+        return 'Maniacal Probe: Tanks & Healers';
     },
     alertText: function(data) {
       if (data.probeCount == 1 || data.probeCount == 3)
@@ -115,44 +116,28 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
     run: function(data) { data.probeCount = (data.probeCount || 0) + 1; },
   },
   {
-    regex: /Catastrophe readies Maniacal Probe/,
-    condition: function(data) { data.probeCount == 1 || data.probeCount == 2; }
+    regex: /:([A-Za-z ']+) gains the effect of 6 Fulms Under from/,
+    delaySeconds: 5,
+    infoText: function(data) { if (data.levitating) return '6 Fulms Under'; },
+    alertText: function(data) { if (!data.levitating) return '6 Fulms Under: Levitate'; },
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
-  /*
   {
-    regex: /Catastrophe readies Earthquake/,
-    delaySeconds: 2,
-    alertText: 'Levitate',
-    //condition: function(data) { return !data.levitating; },
-  },
-  */
-  {
-    regex: /You suffer the effect of 6 Fulms Under/,
-    alertText: '6 Fulms Under: Levitate',
-  },
-  /*
-  {
-    regex: /You suffer the effect of 6 Fulms Under/,
-    delaySeconds: 2,
-    alertText: 'Levitate',
-    //condition: function(data) { return !data.levitating; },
-  },
-  */
-  {
-    regex: /suffers? the effect of Elevated/,
-    alertText: 'Elevated: DPS up, Tanks/Healers down',
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_54E|Elevated) from/,
+    alertText: 'Elevated: DPS up, Tanks & Healers down',
   },
   {
     condition: function() { return false; },
-    regex: /Catastrophe readies Gravitational Wave/,
+    regex: /:2372:Catastrophe starts usinge/,
     infoText: 'Gravitational Wave: AOE damage',
   },
   {
-    regex: /You suffer the effect of Unstable Gravity/,
+    regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
     infoText: 'Unstable Gravity',
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   {
-    regex: /You suffer the effect of Unstable Gravity/,
+    regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
     delaySeconds: 9,
     alertText: 'Elevate and outside stack',
   },
@@ -161,35 +146,35 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
 // O3S - Deltascape 3.0 Savage
 kAurasTriggers['Unknown Zone \\(2B9\\)'] = [
   {
-    regex: /([A-Za-z ']+) gains the effect of (Unknown_510|Right Face)/,
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_510|Right Face) from/,
     infoText: 'Mindjack: Right',
     condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   {
-    regex: /([A-Za-z ']+) gains the effect of (Unknown_50D|Forward March)/,
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_50D|Forward March) from/,
     infoText: 'Mindjack: Forward',
     condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   {
-    regex: /([A-Za-z ']+) gains the effect of (Unknown_50F|Left Face)/,
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_50F|Left Face) from/,
     infoText: 'Mindjack: Left',
     condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   {
-    regex: /([A-Za-z ']+) gains the effect of (Unknown_50E|About Face)/,
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_50E|About Face) from/,
     infoText: 'Mindjack: Back',
     condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   {
-    regex: /Halicarnassus readies Ribbit/,
+    regex: /:22F7:Halicarnassus starts using/,
     alertText: 'Ribbit: Get behind',
   },
   {
-    regex: /Halicarnassus readies Oink/,
+    regex: /:22F9:Halicarnassus starts using/,
     infoText: 'Oink: Stack',
   },
   {
-    regex: /Halicarnassus readies Squelch/,
+    regex: /:22F8:Halicarnassus starts using/,
     alarmText: 'Squelch: Look away',
   },
   {
@@ -213,38 +198,37 @@ kAurasTriggers['Unknown Zone \\(2B9\\)'] = [
 // O4S - Deltascape 4.0 Savage
 kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   // Part 1
-  { // Decisive Battle means next elemental cast is scary.
-    regex: /:Exdeath uses The Decisive Battle\./,
-    run: function(data) { data.postDecisive = true; },
+  { // Fire III not after Decisive Battle.
+    regex: /:23F5:Exdeath starts using/,
+    infoText: 'Fire III',
+  },
+  { // Blizzard III not after Decisive Battle.
+    regex: /:23F7:Exdeath starts using/,
+    infoText: 'Blizzard III' ,
+  },
+  { // Thunder III not after Decisive Battle.
+    regex: /:23F9:Exdeath starts using/,
+    infoText: function(data) { if (!data.thunderCount) return 'Thunder III'; },
+    alertText: function(data) {
+      if (data.thunderCount == 1) return 'Thunder III: Addle during';
+      if (data.thunderCount == 2) return 'Thunder III: Addle after';
+    },
+    run: function(data) { data.thunderCount = (data.thunderCount || 0) + 1; },
   },
   { // Fire III after Decisive Battle.
-    regex: /:Exdeath begins casting Fire III\./,
-    infoText: function(data) { if (!data.postDecisive) return 'Fire' },
-    alarmText: function(data) { if (data.postDecisive) return 'Stop' },
-    //sound: '../../sounds/PowerAuras/Gasp.ogg',
-    run: function(data) { data.postDecisive = false; },
+    regex: /:23FB:Exdeath starts using/,
+    alarmText: 'Fire III: Stop',
   },
   { // Blizzard III after Decisive Battle.
-    regex: /:Exdeath begins casting Blizzard III\./,
-    infoText: function(data) { if (!data.postDecisive) return 'Blizzard' },
-    alertText: function(data) { if (data.postDecisive) return 'Keep moving' },
-    run: function(data) { data.postDecisive = false; },
+    regex: /:23FC:Exdeath starts using/,
+    alertText: 'Blizzard III: Keep moving',
   },
   { // Thunder III after Decisive Battle.
-    regex: /:Exdeath begins casting Thunder III\./,
-    infoText: function(data) {
-      if (!data.postDecisive && data.thunderCount != 2) return 'Thunder';
-    },
-    alertText: function(data) {
-      if (data.postDecisive) return 'Get Out';
-      else if (data.thunderCount == 2) return 'Thunder: Addle';
-    },
-    //sound: '../../sounds/PowerAuras/ESPARK1.ogg',
-    run: function(data) { data.postDecisive = false; data.thunderCount = (data.thunderCount || 0) + 1; },
+    regex: /:23FD:Exdeath starts using/,
+    alertText: 'Thunder III: Get out',
   },
-  /*
-  { // Flare.
-    regex: /:Exdeath:2401:[A-Za-z0-9_ ']+:[0-9A-Fa-f]+:([A-Za-z0-9_ ']+):/,
+  { // Flare
+    regex: /2401:Exdeath starts using (Unknown_2401|Flare) on ([A-Za-z ']+)/,
     infoText: function(data) {
       //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
     },
@@ -254,14 +238,13 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     },
     condition: function(data, matches) {
       data.flareTargets = data.flareTargets || [];
-      data.flareTargets.push(matches[1]);
+      data.flareTargets.push(matches[2]);
       return data.flareTargets.length == 3;
     },
     run: function(data) {
       delete data.flareTargets;
     }
   },
-  */
 
   // Part 2
   { // Inner Flood (move out).
@@ -285,97 +268,76 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     infoText: 'Flood of Naught: Charge',
   },
   {  // Double attack.
-    regex: /:Neo Exdeath readies Double Attack\./,
+    regex: /:241C:Neo Exdeath starts using/,
     alertText: 'Double Attack: Get out',
   },
   { // Grand Cross Alpha.
     regex: /:242B:Neo Exdeath starts using/,
     infoText: 'Grand Cross Alpha: Go to middle',
-    run: function(data) { data.alpha = true; data.delta = false; data.omega = false; },
+    run: function(data) { data.alphaCount = (data.alphaCount || 0) + 1; },
   },
-  { // Grand Cross Alpha finished cast - Use Apoc.
-    regex: ':Neo Exdeath uses Grand Cross Alpha\.',
+  { // Grand Cross Alpha finished cast - Use Apoc on tank except before Omega.
+    regex: /:242B:Neo Exdeath starts using/,
+    delaySeconds: 5,
     alertText: 'Apocatastasis on tank',
-    condition: function(data) {
-      data.alphaCount = (data.alphaCount || 0) + 1;
-      return data.alphaCount == 1 || data.alphaCount == 3;
-    },
-  },
-  { // Grand Cross Omega finished cast - Use Apoc.
-    regex: ':Neo Exdeath readies The Final Battle\.',
-    alertText: 'Apocatastasis on healer',
+    condition: function(data, matches) { return data.alphaCount == 1 || data.alphaCount == 3; },
   },
   { // Grand Cross Delta.
     regex: /:242C:Neo Exdeath starts using/,
-    infoText: 'Grand Cross Delta:  Inside boss',
-    run: function(data) { data.alpha = false; data.delta = true; data.omega = false; },
+    infoText: 'Grand Cross Delta: Inside boss',
   },
   { // Grand Cross Omega.
     regex: /:242D:Neo Exdeath starts using/,
     infoText: 'Grand Cross Omega: Go to middle',
-    run: function(data) { data.alpha = false; data.delta = false; data.omega = true; },
+  },
+  { // Grand Cross Omega finished cast - Use Apoc on healer.
+    regex: /:242D:Neo Exdeath starts using/,
+    delaySeconds: 8,
+    alertText: 'Apocatastasis on healer',
   },
   { // Forked Lightning - Get out.
-    regex: /You suffer the effect of Forked Lightning/,
+    regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
     delaySeconds: 1,
     alertText: 'Forked Lightning: Get out',
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
-  { // Acceleration Bomb (Alpha).
-    regex: /You suffer the effect of .*Acceleration Bomb/,
+  { // Acceleration Bomb
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_568|Acceleration Bomb) from .*? for ([0-9.]+) Seconds/,
     alarmText: 'Stop',
-    delaySeconds: 10,
-    condition: function(data) { return data.alpha; },
+    delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 4; },  // 4 second warning.
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
-  { // Acceleration Bomb (Delta).
-    regex: /You suffer the effect of .*Acceleration Bomb/,
-    delaySeconds: 5,
-    alarmText: 'Stop',
-    condition: function(data) { return data.delta; },
-  },
-  { // Acceleration Bomb (Omega).
-    regex: /You suffer the effect of .*Acceleration Bomb/,
-    delaySeconds: 26,
-    alarmText: 'Stop',
-    condition: function(data) { return data.omega; },
-  },
-  { // Beyond Death (Delta)
-    regex: /You suffer the effect of .*Beyond Death/,
-    delaySeconds: 7,
+  { // Beyond Death
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_568|Beyond Death) from .*? for ([0-9.]+) Seconds/,
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    condition: function(data) { return data.delta; },
-  },
-  { // Beyond Death (Omega)
-    regex: /You suffer the effect of .*Beyond Death/,
-    delaySeconds: 20,
-    alarmText: 'Beyond Death: Die',
-    sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    condition: function(data) { return data.omega; },
+    delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 9; },  // 9 second warning.
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
   },
   { // Almagest
-    regex: /Exdeath readies Almagest/,
+    regex: /:2417:Neo Exdeath starts using/,
     alertText: 'Almagest',
     run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
   },
   { // Delta Attack
-    regex: /Exdeath readies Delta Attack/,
+    regex: /:241E:Neo Exdeath starts using/,
     infoText: 'Delta Attack: Stack',
   },
-  { // Vacuum Wave warning
-    regex: /Exdeath readies Almagest/,
+  { // Vacuum Wave warning after Almagest
+    regex: /:2417:Neo Exdeath starts using/,
     delaySeconds: 25,
     infoText: 'Vacuum Wave soon',
     condition: function(data) { return data.almagestCount == 2 || data.almagestCount == 5; },
   },
-  { // Vacuum Wave warning
-    regex: /Exdeath readies Almagest/,
+  { // Vacuum Wave warning after Almagest
+    regex: /:2417:Neo Exdeath starts using/,
     delaySeconds: 5,
     infoText: 'Vacuum Wave soon',
     condition: function(data) { return data.almagestCount == 3 || data.almagestCount == 6; },
   },
   { // Final phase Addle warning when Reprisal is ending.
     regex: /gains the effect of Reprisal from .*? for ([0-9.]+) Seconds/,
-    durationPosition: 1,
+    durationSeconds: function(data, matches) { return parseFloat(matches[1]); },
     infoText: 'Reprisal active',
     condition: function(data) { return data.alphaCount == 3 && !data.reprisal; },
     run: function(data) { data.reprisal = true; },
@@ -387,11 +349,13 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     condition: function(data) { return data.alphaCount == 3 && data.reprisal; },
     run: function(data) { data.reprisal = false; },
   },
-  /*
-  { // Flare.
-    regex: /:Neo Exdeath:2401:[A-Za-z0-9_ ']+:[0-9A-Fa-f]+:([A-Za-z0-9_ ']+):/,
+  { // Flare
+    regex: /2401:Neo Exdeath starts using (Unknown_2401|Flare) on ([A-Za-z ']+)/,
     infoText: function(data) {
-      //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
+      if (data.flareTargets.indexOf(kAurasTriggersMe) < 0) {
+        //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
+        return "Light and Darkness: Stack"
+      }
     },
     alarmText: function(data) {
       if (data.flareTargets.indexOf(kAurasTriggersMe) >= 0)
@@ -399,12 +363,11 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     },
     condition: function(data, matches) {
       data.flareTargets = data.flareTargets || [];
-      data.flareTargets.push(matches[1]);
+      data.flareTargets.push(matches[2]);
       return data.flareTargets.length == 3;
     },
     run: function(data) {
       delete data.flareTargets;
     }
   },
-  */
 ];
