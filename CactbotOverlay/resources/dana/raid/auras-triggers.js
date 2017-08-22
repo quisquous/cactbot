@@ -232,10 +232,15 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Thunder III after Decisive Battle.
     regex: /:Exdeath begins casting Thunder III\./,
-    infoText: function(data) { if (!data.postDecisive) return 'Thunder' },
-    alertText: function(data) { if (data.postDecisive) return 'Get Out' },
+    infoText: function(data) {
+      if (!data.postDecisive && data.thunderCount != 2) return 'Thunder';
+    },
+    alertText: function(data) {
+      if (data.postDecisive) return 'Get Out';
+      else if (data.thunderCount == 2) return 'Thunder: Addle';
+    },
     //sound: '../../sounds/PowerAuras/ESPARK1.ogg',
-    run: function(data) { data.postDecisive = false; },
+    run: function(data) { data.postDecisive = false; data.thunderCount = (data.thunderCount || 0) + 1; },
   },
   /*
   { // Flare.
@@ -261,23 +266,23 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   // Part 2
   { // Inner Flood (move out).
     regex: /:240E:Neo Exdeath starts using/,
-    alertText: 'Outside',
+    alertText: 'Flood of Naught: Go Outside',
   },
   { // Outer Flood (move in).
     regex: /:240F:Neo Exdeath starts using/,
-    alertText: 'Inside',
+    alertText: 'Flood of Naught: Go Inside',
   },
   { // Purple/Blue Flood.
     regex: /:2411:Neo Exdeath starts using/,
-    alertText: 'Colors',
+    alertText: 'Flood of Naught: Color sides',
   },
   { // Blue/Purple Flood.
     regex: /:2412:Neo Exdeath starts using/,
-    alertText: 'Colors',
+    alertText: 'Flood of Naught: Color sides',
   },
   { // Charge Flood.
     regex: /:2416:Neo Exdeath starts using/,
-    infoText: 'Charge',
+    infoText: 'Flood of Naught: Charge',
   },
   {  // Double attack.
     regex: /:Neo Exdeath readies Double Attack\./,
@@ -285,7 +290,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Grand Cross Alpha.
     regex: /:242B:Neo Exdeath starts using/,
-    infoText: 'Grand Cross Alpha:  Go to middle',
+    infoText: 'Grand Cross Alpha: Go to middle',
     run: function(data) { data.alpha = true; data.delta = false; data.omega = false; },
   },
   { // Grand Cross Alpha finished cast - Use Apoc.
@@ -307,7 +312,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Grand Cross Omega.
     regex: /:242D:Neo Exdeath starts using/,
-    infoText: 'Grand Cross Omega:  Go to middle',
+    infoText: 'Grand Cross Omega: Go to middle',
     run: function(data) { data.alpha = false; data.delta = false; data.omega = true; },
   },
   { // Forked Lightning - Get out.
@@ -350,7 +355,6 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   { // Almagest
     regex: /Exdeath readies Almagest/,
     alertText: 'Almagest',
-    //sound: '../../sounds/PowerAuras/throwknife.ogg',
     run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
   },
   { // Delta Attack
