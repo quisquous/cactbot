@@ -49,6 +49,167 @@ kAurasTriggers['.'] = [
   },
 ];
 
+// O1S - Deltascape 1.0 Savage
+kAurasTriggers['Unknown Zone \\(2B7\\)'] = [
+  {
+    regex: /Alte Roite readies Blaze/,
+    infoText: 'Blaze: Stack up',
+  },
+  {
+    regex: /Alte Roite readies Breath Wing/,
+    infoText: 'Breath Wing: Be beside boss',
+  },
+  {
+    regex: /Alte Roite readies Clamp/,
+    infoText: 'Clamp: Get out of front',
+  },
+  {
+    regex: /Alte Roite readies Downburst/,
+    infoText: 'Downburst: Knockback',
+  },
+  {
+    condition: function() { return false },
+    regex: /Alte Roite readies Roar/,
+    infoText: 'Roar: AOE damage',
+  },
+  {
+    condition: function() { return false },
+    regex: /Alte Roite readies Charybdis/,
+    infoText: 'Charybdis: AOE damage',
+  },
+];
+
+// O2S - Deltascape 2.0 Savage
+kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
+ // 2nd Maniacal Probe => South
+  {
+    regex: /You gain the effect of .{0,4}Levitation/,
+    run: function(data) { data.levitating = true; },
+  },
+  {
+    regex: /You lose the effect of .{0,4}Levitation/,
+    run: function(data) { data.levitating = false; },
+  },
+  {
+    regex: /Catastrophe readies -100 Gs/,
+    infoText: '-100Gs: Go north/south and look away',
+  },
+  {
+    regex: /Catastrophe readies Death's Gaze/,
+    alarmText: 'Death\'s Gaze: Look away',
+  },
+  {
+    regex: /Catastrophe readies Earthquake/,
+    alertText: 'Earthquake: Levitate',
+  },
+  {
+    regex: /Catastrophe readies Maniacal Probe/,
+    infoText: function(data) {
+      if (data.probeCount == 0 || data.probeCount == 2)
+        return 'Maniacal Probe: Healers';
+    },
+    alertText: function(data) {
+      if (data.probeCount == 1 || data.probeCount == 3)
+        return 'Maniacal Probe: DPS';
+    },
+    run: function(data) { data.probeCount = (data.probeCount || 0) + 1; },
+  },
+  {
+    regex: /Catastrophe readies Maniacal Probe/,
+    condition: function(data) { data.probeCount == 1 || data.probeCount == 2; }
+  },
+  /*
+  {
+    regex: /Catastrophe readies Earthquake/,
+    delaySeconds: 2,
+    alertText: 'Levitate',
+    //condition: function(data) { return !data.levitating; },
+  },
+  */
+  {
+    regex: /You suffer the effect of 6 Fulms Under/,
+    alertText: '6 Fulms Under: Levitate',
+  },
+  /*
+  {
+    regex: /You suffer the effect of 6 Fulms Under/,
+    delaySeconds: 2,
+    alertText: 'Levitate',
+    //condition: function(data) { return !data.levitating; },
+  },
+  */
+  {
+    regex: /suffers? the effect of Elevated/,
+    alertText: 'Elevated: DPS up, Tanks/Healers down',
+  },
+  {
+    condition: function() { return false; },
+    regex: /Catastrophe readies Gravitational Wave/,
+    infoText: 'Gravitational Wave: AOE damage',
+  },
+  {
+    regex: /You suffer the effect of Unstable Gravity/,
+    infoText: 'Unstable Gravity',
+  },
+  {
+    regex: /You suffer the effect of Unstable Gravity/,
+    delaySeconds: 9,
+    alertText: 'Elevate and outside stack',
+  },
+];
+
+// O3S - Deltascape 3.0 Savage
+kAurasTriggers['Unknown Zone \\(2B9\\)'] = [
+  {
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_510|Right Face)/,
+    infoText: 'Mindjack: Right',
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+  },
+  {
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_50D|Forward March)/,
+    infoText: 'Mindjack: Forward',
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+  },
+  {
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_50F|Left Face)/,
+    infoText: 'Mindjack: Left',
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+  },
+  {
+    regex: /([A-Za-z ']+) gains the effect of (Unknown_50E|About Face)/,
+    infoText: 'Mindjack: Back',
+    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+  },
+  {
+    regex: /Halicarnassus readies Ribbit/,
+    alertText: 'Ribbit: Get behind',
+  },
+  {
+    regex: /Halicarnassus readies Oink/,
+    infoText: 'Oink: Stack',
+  },
+  {
+    regex: /Halicarnassus readies Squelch/,
+    alarmText: 'Squelch: Look away',
+  },
+  {
+    regex: /:230E:Halicarnassus starts using/,
+    alertText: 'The Queen\'s Waltz: Books',
+  },
+  {
+    regex: /:2306:Halicarnassus starts using/,
+    infoText: 'The Queen\'s Waltz: Clock',
+  },
+  {
+    regex: /:230A:Halicarnassus starts using/,
+    infoText: 'The Queen\'s Waltz: Crystal Square',
+  },
+  {
+    regex: /:2308:Halicarnassus starts using/,
+    infoText: 'The Queen\'s Waltz: Tethers',
+  },
+];
+
 // O4S - Deltascape 4.0 Savage
 kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   // Part 1
@@ -191,6 +352,10 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     alertText: 'Almagest',
     //sound: '../../sounds/PowerAuras/throwknife.ogg',
     run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
+  },
+  { // Delta Attack
+    regex: /Exdeath readies Delta Attack/,
+    infoText: 'Delta Attack: Stack',
   },
   { // Vacuum Wave warning
     regex: /Exdeath readies Almagest/,
