@@ -10,9 +10,10 @@ var kFarThresholdOffence = 24;  // The distance that offensive spells such as Ve
 var kHealthBarPosX = 0;
 var kHealthBarPosY = 20;
 var kManaBarPosX = kHealthBarPosX;
-var kManaBarPosY = kHealthBarPosY + 8;
+var kManaBarMarginY = 1;
 var kHealthBarSizeW = 202;  // 2px per percent + 1px border on each side.
 var kHealthBarSizeH = 7;  // Rogue energy was 12.
+var kTankHealthBarSizeH = 18;
 var kManaBarSizeH = 7;
 var kPullTimerPosX = kHealthBarPosX;
 var kPullTimerPosY = kHealthBarPosY - 20;
@@ -37,9 +38,12 @@ var kBackgroundColor = "rgb(30, 30, 30)";
 var kLowManaColor = "rgb(218, 69, 177)";
 var kFarManaColor = "rgb(215, 120, 0)";
 var kLowHealthThresholdPercent = 0.2;
-var kLowHealthColor = "rgb(190, 43, 30)"
+var kLowHealthColor = "rgb(190, 43, 30)";
 var kMidHealthThresholdPercent = 0.8;
-var kMidHealthColor = "rgb(127, 185, 29)"
+var kMidHealthColor = "rgb(127, 185, 29)";
+var kLowBeastColor = "rgb(255, 235, 153)";
+var kMidBeastColor = "rgb(255, 153, 0)";
+var kFullBeastColor = "rgb(230, 20, 20)";
 // RDM colours.
 var kWhiteManaBarColor = "rgb(220, 220, 240)";
 var kWhiteManaBarDimColor = "rgb(90, 90, 100)";
@@ -50,10 +54,6 @@ var kWhiteBlackIndicator40 = "rgba(0, 0, 0, 0.7)";
 var kWhiteBlackIndicator80 = "rgba(0, 0, 0, 0.7)";
 var kWhiteBlackIndicator = "rgba(100, 100, 100, 0.7)";
 
-var kRdmGcdAbilties = 'Verstone|Verfire|Verareo|Verthunder|Verholy|Verflare' +
-  '|Jolt II|Jolt|Impact|Scatter|Vercure|Verraise' +
-  '|((Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet))' +
-  '|Limit Break';
 var kReName = '[A-Za-z0-9 \']+';
 var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
 
@@ -74,28 +74,142 @@ var g_init = false;
 
 var kMe = null;
 
-function setupRegexes(me) {
-  // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
-  // We can not look for log messages from FFXIV "You use X" here. Instead we
-  // look for the actual ability usage provided by the XIV plugin.
-  // Also, the plugin lines are given much quicker than the lines from the game.
-  // var kReCombo1 = 'You use Enchanted Riposte\.';
-  // var kReCombo2 = 'You use Enchanted Zwerchhau\.';
-  // var kReCombo3 = 'You use Enchanted Redoublement\.';
-  // var kReEndCombo1 = 'You use (Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)\.';
-  // var kReEndCombo2 = 'You (cast|begin casting) ';
-  kReRdmCombo1 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Riposte:');
-  kReRdmCombo2 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Zwerchhau:');
-  kReRdmCombo3 = new RegExp(':' + me + ':' + kReAbilityCode + ':Enchanted Redoublement:');
-  // Spending any GCD ends the combo, be they spells or abilities.
-  kReRdmEndCombo = new RegExp(':' + me + '( starts using |:' + kReAbilityCode + ':)(' + kRdmGcdAbilties + ')( |:)');
+// Full skill names (regex ok) of abilities that break combos.
+// TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
+var kComboBreakers = Object.freeze([
+  // rdm
+  'Verstone',
+  'Verfire',
+  'Verareo',
+  'Verthunder',
+  'Verholy',
+  'Verflare',
+  'Jolt II',
+  'Jolt',
+  'Impact',
+  'Scatter',
+  'Vercure',
+  'Verraise',
+  '(Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)',
+  // war
+  'Tomahawk',
+  'Overpower',
+  'Skull Sunder',
+  "Butcher's Block",
+  'Maim',
+  "Storm's Eye",
+  "Storm's Path",
+  // general (TODO: is this true?)
+  'Limit Break',
+]);
 
+class ComboTracker {
+  constructor(me, comboBreakers, callback) {
+    this.me = me;
+    this.comboTimer = null;
+    this.kReEndCombo = new RegExp(':' + me + '( starts using |:' + kReAbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
+    this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
+    this.startList = [];
+    this.callback = callback;
+    this.current = null;
+    this.considerNext = this.startList;
+  }
+
+  AddCombo(skillList) {
+    // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
+    // We can not look for log messages from FFXIV "You use X" here. Instead we
+    // look for the actual ability usage provided by the XIV plugin.
+    // Also, the networked parse info is given much quicker than the lines from the game.
+    if (this.startList.indexOf(skillList[0]) == -1) {
+      this.startList.push(skillList[0]);
+    }
+    for (var i = 0; i < skillList.length; ++i) {
+      var node = this.comboNodes[skillList[i]];
+      if (node == undefined) {
+        node = {
+          re: new RegExp(':' + this.me + ':' + kReAbilityCode + ':' + skillList[i] + ':'),
+          next: []
+        };
+        this.comboNodes[skillList[i]] = node;
+      }
+      if (i != skillList.length - 1) {
+        node.next.push(skillList[i + 1]);
+      } else {
+        node.last = true;
+      }
+    }
+  }
+
+  ParseLog(log) {
+    for (var i = 0; i < this.considerNext.length; ++i) {
+      var next = this.considerNext[i];
+      if (log.search(this.comboNodes[next].re) >= 0) {
+        this.StateTransition(next);
+        return true;
+      }
+    }
+    if (log.search(this.kReEndCombo) >= 0) {
+      this.AbortCombo();
+      return true;
+    }
+    return false;
+  }
+
+  StateTransition(nextState) {
+    if (this.current == null && nextState == null)
+      return;
+
+    window.clearTimeout(this.comboTimer);
+    this.comboTimer = null;
+    this.current = nextState;
+
+    if (nextState == null) {
+      this.considerNext = this.startList;
+    } else {
+      this.considerNext = [];
+      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
+      Array.prototype.push.apply(this.considerNext, this.startList);
+
+      // Always set the combo timer even on the final one so that it will eventually hide.
+      var kComboDelayMs = 12000;
+      this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
+    }
+    this.callback(nextState);
+  }
+
+  AbortCombo() {
+    this.StateTransition(null);
+  }
+}
+
+function setupComboTracker(me, callback) {
+  var comboTracker = new ComboTracker(me, kComboBreakers, callback);
+  comboTracker.AddCombo(['(Enchanted )?Riposte', '(Enchanted )?Zwerchhau', '(Enchanted )?Redoublement']);
+  comboTracker.AddCombo(['Heavy Swing', 'Skull Sunder', "Butcher's Block"]);
+  comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Eye"]);
+  comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Path"]);
+
+  return comboTracker;
+}
+
+function setupRegexes(me) {
   kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verstone:)')
   kReRdmBlackManaProc = new RegExp(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verfire:)');
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)');
+}
+
+var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
+var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
+
+function isCasterJob(job) {
+  return kCasterJobs.indexOf(job) >= 0;
+}
+
+function isTankJob(job) {
+  return kTankJobs.indexOf(job) >= 0;
 }
 
 var kBigBuffTracker = null;
@@ -221,52 +335,45 @@ class Bars {
     this.o.bigBuffsList.toward = "right down";
     this.o.bigBuffsList.elementwidth = kBigBuffIconWidth + 2;
 
-    if (job == "RDM" || job == "BLM" || job == "WHM" ||
-        job == "SCH" || job == "SMN" || job == "ACN" ||
-        job == "AST" || job == "CNJ" || job == "THM") {
-      this.o.healthContainer = document.createElement("div");
-      this.o.healthBar = document.createElement("resource-bar");
-      this.o.healthContainer.appendChild(this.o.healthBar);
-      opacityContainer.appendChild(this.o.healthContainer);
+    this.o.healthContainer = document.createElement("div");
+    this.o.healthBar = document.createElement("resource-bar");
+    this.o.healthContainer.appendChild(this.o.healthBar);
+    opacityContainer.appendChild(this.o.healthContainer);
 
-      this.o.healthContainer.style.position = "absolute";
-      this.o.healthContainer.style.top = kHealthBarPosY;
-      this.o.healthContainer.style.left = kHealthBarPosX;
-      this.o.healthBar.width = kHealthBarSizeW;
-      this.o.healthBar.height = kHealthBarSizeH;
+    this.o.healthContainer.style.position = "absolute";
+    this.o.healthContainer.style.top = kHealthBarPosY;
+    this.o.healthContainer.style.left = kHealthBarPosX;
+    this.o.healthBar.width = kHealthBarSizeW;
+    this.o.healthBar.height = kHealthBarSizeH;
 
+    if (isTankJob(job)) {
+      this.o.healthBar.height = kTankHealthBarSizeH;
+      this.o.healthBar.lefttext = "value";
+    }
+
+    var secondBarTop = kHealthBarPosY + parseInt(this.o.healthBar.height) + kManaBarMarginY;
+    if (isCasterJob(job)) {
       this.o.manaContainer = document.createElement("div");
       this.o.manaBar = document.createElement("resource-bar");
       this.o.manaContainer.appendChild(this.o.manaBar);
       opacityContainer.appendChild(this.o.manaContainer);
 
       this.o.manaContainer.style.position = "absolute";
-      this.o.manaContainer.style.top = kManaBarPosY;
+      this.o.manaContainer.style.top = secondBarTop;
       this.o.manaContainer.style.left = kManaBarPosX;
       this.o.manaBar.width = kHealthBarSizeW;
       this.o.manaBar.height = kManaBarSizeH;
     } else {
-      this.o.healthContainer = document.createElement("div");
-      this.o.healthBar = document.createElement("resource-bar");
-      this.o.healthContainer.appendChild(this.o.healthBar);
-      opacityContainer.appendChild(this.o.healthContainer);
-
-      this.o.healthContainer.style.position = "relative";
-      this.o.healthContainer.style.top = kHealthBarPosY;
-      this.o.healthContainer.style.left = kHealthBarPosX;
-      this.o.healthBar.width = kHealthBarSizeW;
-      this.o.healthBar.height = 7;
-
       this.o.tpContainer = document.createElement("div");
       this.o.tpBar = document.createElement("resource-bar");
       this.o.tpContainer.appendChild(this.o.tpBar);
       opacityContainer.appendChild(this.o.tpContainer);
 
-      this.o.tpContainer.style.position = "relative";
-      this.o.tpContainer.style.top = kManaBarPosY;
+      this.o.tpContainer.style.position = "absolute";
+      this.o.tpContainer.style.top = secondBarTop;
       this.o.tpContainer.style.left = kManaBarPosX;
       this.o.tpBar.width = kHealthBarSizeW;
-      this.o.tpBar.height = 9;  // Rogue energy was 12.
+      this.o.tpBar.height = kHealthBarSizeH;
     }
 
     if (job == "RDM") {
@@ -501,6 +608,32 @@ class Bars {
         this.o.rdmProcImpact.fg = kImpactProcColor;
         this.o.rdmProcImpact.bg = 'black';
       }
+    } else if (job == "WAR") {
+      var fontSize = 16;
+      var fontWidth = fontSize * 1.8;
+      var beastX = kHealthBarPosX + kHealthBarSizeW + 3;
+      var beastY = kHealthBarPosY;
+
+      // Move over the big buffs.
+      // TODO: these should probably just float?
+      this.o.bigBuffsContainer.style.left = beastX + fontWidth + 7;
+
+      this.o.beastTextBox = document.createElement("div");
+      opacityContainer.appendChild(this.o.beastTextBox);
+      this.o.beastTextBox.classList.add("text");
+      this.o.beastTextBox.style.position = "absolute";
+      this.o.beastTextBox.style.left = beastX;
+      this.o.beastTextBox.style.top = beastY;
+      this.o.beastTextBox.style.fontSize = fontSize;
+      this.o.beastTextBox.style.textAlign = "center";
+      this.o.beastTextBox.style.width = fontWidth;
+      this.o.beastTextBox.style.height = fontWidth;
+      this.o.beastTextBox.style.border = "1px solid rgba(0,0,0,0.7)";
+
+      this.o.beastText = document.createElement("div");
+      this.o.beastTextBox.appendChild(this.o.beastText);
+      this.o.beastText.style.position = "relative";
+      this.o.beastText.style.top = "6";
     }
 
     if (this.o.healthBar) {
@@ -584,6 +717,21 @@ class Bars {
       this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarColor; //"rgba(50,50,50,0.7)";
   }
 
+  OnWarUpdate(beast) {
+    if (this.o.beastTextBox == null) {
+        return;
+    }
+    this.o.beastText.innerText = beast;
+
+    if (beast < 50) {
+        this.o.beastTextBox.style.backgroundColor = kLowBeastColor;
+    } else if (beast < 100) {
+        this.o.beastTextBox.style.backgroundColor = kMidBeastColor;
+    } else {
+        this.o.beastTextBox.style.backgroundColor = kFullBeastColor;
+    }
+  }
+
   OnRedMageProcBlack(seconds) {
     if (this.o.rdmProcBlack != null)
       this.o.rdmProcBlack.duration = Math.max(0, seconds - kRdmCastTime);
@@ -599,13 +747,16 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - kRdmCastTime);
   }
 
-  OnComboChange(job, stage) {
-    if (job == "RDM") {
+  OnComboChange(skill) {
+    if (g_data.job == "RDM") {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
-      this.o.rdmCombo1.style.display = stage == 1 ? "block" : "none";
-      this.o.rdmCombo2.style.display = stage == 2 ? "block" : "none";
-      this.o.rdmCombo3.style.display = stage == 3 ? "block" : "none";
+
+      if (!skill)
+        skill = "";
+      this.o.rdmCombo1.style.display = skill.indexOf('Riposte') >= 0 ? "block" : "none";
+      this.o.rdmCombo2.style.display = skill.indexOf('Zwerchhau') >= 0 ? "block" : "none";
+      this.o.rdmCombo3.style.display = skill.indexOf('Redoublement') >= 0 ? "block" : "none";
     }
   }
 
@@ -707,6 +858,7 @@ class TrackingData {
     this.distance = -1;
     this.whiteMana = -1;
     this.blackMana = -1;
+    this.beast = -1;
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
@@ -715,12 +867,14 @@ class TrackingData {
 
 var g_data = new TrackingData();
 var g_bars = new Bars();
+var g_combo = null;
 
 document.addEventListener("onPlayerChangedEvent", function (e) {
   if (!g_init) {
     kMe = e.detail.name;
-    setupRegexes(e.detail.name);
-    setupBuffTracker(e.detail.name);
+    setupRegexes(kMe);
+    setupBuffTracker(kMe);
+    g_combo = setupComboTracker(kMe, g_bars.OnComboChange.bind(g_bars));
     g_init = true;
   }
 
@@ -728,11 +882,10 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
   var update_hp = false;
   var update_mp = false;
   var update_tp = false;
-  var update_combo = false;
   if (e.detail.job != g_data.job) {
     g_data.job = e.detail.job;
-    AbortCombo();  // Combos are job specific.
-    update_job = update_hp = update_mp = update_tp = update_combo = true;
+    g_combo.AbortCombo();  // Combos are job specific.
+    update_job = update_hp = update_mp = update_tp = true;
   }
   if (e.detail.currentHP != g_data.hp || e.detail.maxHP != g_data.maxHP) {
     g_data.hp = e.detail.currentHP;
@@ -740,8 +893,7 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     update_hp = true;
 
     if (g_data.hp == 0) {
-      AbortCombo();  // Death resets combos.
-      update_combo = true;
+      g_combo.AbortCombo();  // Death resets combos.
     }
   }
   if (e.detail.currentMP != g_data.mp || e.detail.maxMP != g_data.maxMP) {
@@ -766,16 +918,19 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
     g_bars.OnManaChange(g_data.job, g_data.distance, g_data.mp, g_data.maxMP);
   if (update_tp)
     g_bars.OnTPChange(g_data.job, g_data.distance, g_data.tp, g_data.maxTP);
-  if (update_combo)
-    g_bars.OnComboChange(g_data.job, g_data.combo);
 
   if (g_data.job == "RDM") {
-    if (update_job ||
-        e.detail.jobDetail.whiteMana != g_data.whiteMana ||
-        e.detail.jobDetail.blackMana != g_data.blackMana) {
-      g_data.whiteMana = e.detail.jobDetail.whiteMana;
-      g_data.blackMana = e.detail.jobDetail.blackMana;
-      g_bars.OnRedMageUpdate(g_data.whiteMana, g_data.blackMana);
+      if (update_job ||
+          e.detail.jobDetail.whiteMana != g_data.whiteMana ||
+          e.detail.jobDetail.blackMana != g_data.blackMana) {
+          g_data.whiteMana = e.detail.jobDetail.whiteMana;
+          g_data.blackMana = e.detail.jobDetail.blackMana;
+          g_bars.OnRedMageUpdate(g_data.whiteMana, g_data.blackMana);
+      }
+  } else if (g_data.job == "WAR") {
+    if (update_job || e.detail.jobDetail.beast != g_data.beast) {
+        g_data.beast = e.detail.jobDetail.beast;
+        g_bars.OnWarUpdate(g_data.beast);
     }
   }
 });
@@ -838,27 +993,10 @@ function OnLogEvent(e) {
       }
     }
 
+    if (g_combo.ParseLog(log))
+      continue;
+
     if (g_data.job == "RDM") {
-      if (log.search(kReRdmCombo1) >= 0 && g_data.combo == 0) {
-        SetComboWithTimeout(1, 12000);
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
-      if (log.search(kReRdmCombo2) >= 0 && g_data.combo == 1) {
-        SetComboWithTimeout(2, 12000);
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
-      if (log.search(kReRdmCombo3) >= 0 && g_data.combo == 2) {
-        SetComboWithTimeout(3, 12000);
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
-      if (log.search(kReRdmEndCombo) >= 0 && g_data.combo > 0) {
-        AbortCombo();
-        g_bars.OnComboChange(g_data.job, g_data.combo);
-        continue;
-      }
       var r = log.match(kReRdmBlackManaProc);
       if (r != null) {
         var seconds = parseFloat(r[1]);
@@ -898,23 +1036,6 @@ function OnLogEvent(e) {
     if (log.search(/::test::/) >= 0)
       Test();
   }
-}
-
-function SetComboWithTimeout(stage, delay) {
-  g_data.combo = stage;
-  window.clearTimeout(g_data.comboTimer);
-  g_data.comboTimer = window.setTimeout(OnComboTimeOut, delay);
-}
-
-function AbortCombo() {
-  g_data.combo = 0;
-  window.clearTimeout(g_data.comboTimer);
-  g_data.comboTimer = null;
-}
-
-function OnComboTimeOut() {
-  AbortCombo();
-  g_bars.OnComboChange(g_data.job, g_data.combo);
 }
 
 function Test() {
