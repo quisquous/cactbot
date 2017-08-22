@@ -1,10 +1,18 @@
-var kAurasTriggersMe = 'Test Name';
-document.addEventListener("onPlayerChangedEvent", function(e) { kAurasTriggersMe = e.detail.name });
-
 var kAurasTriggers = {};
 
 /* 
 { // Example trigger.
+  //
+  // Fields that can be a function will receive the following arguments:
+  // data: An object that triggers may store state on. It is reset when combat ends.
+  //       It comes with the following fields pre-set:
+  //       me: The player's character name.
+  //       job: The player's job.
+  //       role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster).
+  // matches: The regex match result of the trigger's regex to the log line it matched.
+  //          matches[0] will be the entire match, and matches[1] will be the first group
+  //          in the regex, etc. This can be used to pull data out of the log line.
+  //
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
   // Number of seconds to show the icon and/or text for. Either seconds or a function(data, matches).
@@ -29,11 +37,10 @@ var kAurasTriggers = {};
   sound: '',
   // Volume between 0 and 1 to play |sound|.
   soundVolume: 1,
-  // A function to test if the trigger should fire or not. Passed the same data object as |run|. If it
-  // does not return true, nothing is shown/sounded/run.
+  // A function(data, matches) to test if the trigger should fire or not. If it does not return
+  // true, nothing is shown/sounded/run. This is the first thing that is run on the trigger.
   condition: function(data, matches) { return true if it should run }
-  // Function to run. Passed an object that data can be stored/read, which is reset when the fight ends.
-  // This runs after any text functions.
+  // A function(data, matches) to run. This runs as the last step when the trigger fires.
   run: function(data, matches) { do stuff.. },
 },
 */
@@ -45,6 +52,7 @@ kAurasTriggers['.'] = [
     infoText: 'This in info',
     alertText: 'Alert is like this',
     alarmText: 'Alarm is here',
+    run: function(data) { console.log('me: ' + data.me + ' / job: ' + data.job + ' / role :' + data.role); }
   },
 ];
 
@@ -84,7 +92,7 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
   {
     regex: /:([A-Za-z ']+) gains the effect of (Unknown_556|Levitation) from/,
     run: function(data) { data.levitating = true; },
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /:([A-Za-z ']+) loses the effect of (Unknown_556|Levitation)/,
@@ -120,7 +128,7 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
     delaySeconds: 5,
     infoText: function(data) { if (data.levitating) return '6 Fulms Under'; },
     alertText: function(data) { if (!data.levitating) return '6 Fulms Under: Levitate'; },
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /:([A-Za-z ']+) gains the effect of (Unknown_54E|Elevated) from/,
@@ -134,7 +142,7 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
   {
     regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
     infoText: 'Unstable Gravity',
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
@@ -148,22 +156,22 @@ kAurasTriggers['Unknown Zone \\(2B9\\)'] = [
   {
     regex: /([A-Za-z ']+) gains the effect of (Unknown_510|Right Face) from/,
     infoText: 'Mindjack: Right',
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /([A-Za-z ']+) gains the effect of (Unknown_50D|Forward March) from/,
     infoText: 'Mindjack: Forward',
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /([A-Za-z ']+) gains the effect of (Unknown_50F|Left Face) from/,
     infoText: 'Mindjack: Left',
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /([A-Za-z ']+) gains the effect of (Unknown_50E|About Face) from/,
     infoText: 'Mindjack: Back',
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   {
     regex: /:22F7:Halicarnassus starts using/,
@@ -233,7 +241,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
       //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
     },
     alarmText: function(data) {
-      if (data.flareTargets.indexOf(kAurasTriggersMe) >= 0)
+      if (data.flareTargets.indexOf(data.me) >= 0)
         return "Flare on you";
     },
     condition: function(data, matches) {
@@ -299,20 +307,20 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
     delaySeconds: 1,
     alertText: 'Forked Lightning: Get out',
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   { // Acceleration Bomb
     regex: /:([A-Za-z ']+) gains the effect of (Unknown_568|Acceleration Bomb) from .*? for ([0-9.]+) Seconds/,
     alarmText: 'Stop',
     delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 4; },  // 4 second warning.
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   { // Beyond Death
     regex: /:([A-Za-z ']+) gains the effect of (Unknown_568|Beyond Death) from .*? for ([0-9.]+) Seconds/,
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
     delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 9; },  // 9 second warning.
-    condition: function(data, matches) { return matches[1] == kAurasTriggersMe; },
+    condition: function(data, matches) { return matches[1] == data.me; },
   },
   { // Almagest
     regex: /:2417:Neo Exdeath starts using/,
@@ -352,13 +360,13 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   { // Flare
     regex: /2401:Neo Exdeath starts using (Unknown_2401|Flare) on ([A-Za-z ']+)/,
     infoText: function(data) {
-      if (data.flareTargets.indexOf(kAurasTriggersMe) < 0) {
+      if (data.flareTargets.indexOf(data.me) < 0) {
         //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
         return "Light and Darkness: Stack"
       }
     },
     alarmText: function(data) {
-      if (data.flareTargets.indexOf(kAurasTriggersMe) >= 0)
+      if (data.flareTargets.indexOf(data.me) >= 0)
         return "Flare on you";
     },
     condition: function(data, matches) {

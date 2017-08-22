@@ -11,27 +11,21 @@ var kAurasIconTextW = 100;
 class Auras {
   constructor() {
     this.init = false;
-    this.inBossFight = false;
-    this.icon = null;
-    this.iconText = null;
-    this.infoText = null;
-    this.alertText = null;
-    this.alarmText = null;
-    this.data = {};
     this.triggers = [];
   }
 
   OnPlayerChange(e) {
-    if (this.init)
-      return;
-    this.init = true;
-    this.me = e.detail.name;
+    if (!this.init) {
+      this.init = true;
+      this.icon = document.getElementById('auras-icon');
+      this.iconText = document.getElementById('auras-text-bottom');
+      this.infoText = document.getElementById('auras-text-info');
+      this.alertText = document.getElementById('auras-text-alert');
+      this.alarmText = document.getElementById('auras-text-alarm');
+    }
 
-    this.icon = document.getElementById('auras-icon');
-    this.iconText = document.getElementById('auras-text-bottom');
-    this.infoText = document.getElementById('auras-text-info');
-    this.alertText = document.getElementById('auras-text-alert');
-    this.alarmText = document.getElementById('auras-text-alarm');
+    if (this.job != e.detail.job || this.me != e.detail.name)
+      this.OnJobChange(e);
   }
 
   OnZoneChange(e) {
@@ -42,11 +36,33 @@ class Auras {
     }
   }
 
+  OnJobChange(e) {
+    this.me = e.detail.name;
+    this.job = e.detail.job;
+    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLD)$/) >= 0)
+      this.role = 'tank';
+    else if (this.job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0)
+      this.role = 'healer';
+    else if (this.job.search(/^(MNK|NIN|DRG|SAM|ROG|LNC|PUG)$/) >= 0)
+      this.role = 'dps-melee';
+    else if (this.job.search(/^(BLM|SMN|RDM|THM|ACN)$/) >= 0)
+      this.role = 'dps-caster';
+    else if (this.job.search(/^(BRD|MCH|ARC)$/) >= 0)
+      this.role = 'dps-ranged';
+    else {
+      this.role = '';
+      console.log("Unknown job role")
+    }
+
+    // Jobs/names can't change in combat, so reset the data now.
+    this.data = { me: this.me, job: this.job, role: this.role };
+  }
+
   OnInCombat(e) {
     // If we're in a boss fight and combat ends, ignore that.
     // Otherwise consider it a fight reset.
     if (!e.detail.inCombat && !this.inBossFight)
-      this.data = {};
+      this.data = { me: this.me, job: this.job, role: this.role };
   }
 
   OnBossFightStart(e) {
@@ -57,7 +73,7 @@ class Auras {
   OnBossFightEnd(e) {
     console.log("fight end !");
     this.inBossFight = false;
-    this.data = {};
+    this.data = { me: this.me, job: this.job, role: this.role };
   }
 
   OnLog(e) {
