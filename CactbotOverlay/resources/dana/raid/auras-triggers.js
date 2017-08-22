@@ -15,18 +15,10 @@ var kAurasTriggers = {};
   //
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
-  // Number of seconds to show the icon and/or text for. Either seconds or a function(data, matches).
+  // Number of seconds to show the trigger for. Either seconds or a function(data, matches).
   durationSeconds: 3,
   // Time to wait before showing it once the regex is seen. Can be a number or a function(data, matches).
   delaySeconds: 0,
-  // Icon to show, a key into gAurasIcons in auras-icons.js, or a literal url.
-  icon: 'iconName or data:image/png;base64,iVBORw0KGgoAAAANSUhE',
-  // Color of icon border.
-  iconBorderColor: '#000',
-  // Text to show below the icon. May be a function(data, matches) that returns a string.
-  iconText: 'DO STUFF',
-  // Color of the text.
-  iconTextColor: '#000',
   // Text to show with info importance. May be a function(data, matches) that returns a string.
   infoText = 'Info',
   // Text to show with alert importance. May be a function(data, matches) that returns a string.
