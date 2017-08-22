@@ -1,13 +1,5 @@
 "use strict";
 
-// Layout.
-var kAurasIconPosX = 150;
-var kAurasIconPosY = 0;
-var kAurasIconSizeW = 40;
-var kAurasIconSizeH = 40;
-var kAurasIconBorderWidth = 1;
-var kAurasIconTextW = 100;
-
 class Auras {
   constructor() {
     this.init = false;
@@ -17,8 +9,6 @@ class Auras {
   OnPlayerChange(e) {
     if (!this.init) {
       this.init = true;
-      this.icon = document.getElementById('auras-icon');
-      this.iconText = document.getElementById('auras-text-bottom');
       this.infoText = document.getElementById('auras-text-info');
       this.alertText = document.getElementById('auras-text-alert');
       this.alarmText = document.getElementById('auras-text-alarm');
@@ -108,32 +98,6 @@ class Auras {
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
 
     var f = function() {
-      if ('icon' in trigger) {
-        that.icon.classList.remove('hide');
-        that.iconText.classList.remove('hide');
-        var url = trigger.icon in gAurasIcons ? gAurasIcons[trigger.icon] : trigger.icon;
-        that.icon.style.backgroundImage = 'url("' + url + '")';
-        if ('iconBorderColor' in trigger)
-          that.icon.style.borderColor = trigger.iconBorderColor;
-        else
-          that.icon.style.borderColor = 'rgb(0, 0, 0)';
-        if ('iconText' in trigger) {
-          that.iconText.innerText = ValueOrFunction(trigger.iconText);
-        } else {
-          that.iconText.innerText = '';
-        }
-        if ('iconTextColor' in trigger)
-          that.iconText.style.color = trigger.iconTextColor;
-        else
-          that.iconText.style.color = 'rba(255, 255, 255)';
-
-        window.clearTimeout(that.iconTimer);
-        that.iconTimer = window.setTimeout(function() {
-          that.icon.classList.add('hide');
-          that.iconText.classList.add('hide');
-        }, duration * 1000);
-      }
-
       var textSound = '';
 
       if ('infoText' in trigger) {
