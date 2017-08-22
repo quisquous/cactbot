@@ -58,9 +58,6 @@ var kReName = '[A-Za-z0-9 \']+';
 var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
 
 // Regexes to be filled out once we know the player's name.
-var kReRdmCombo1 = null;
-var kReRdmCombo2 = null;
-var kReRdmCombo3 = null;
 var kReRdmWhiteManaProc = null;
 var kReRdmBlackManaProc = null;
 var kReRdmImpactProc = null;
@@ -184,7 +181,7 @@ class ComboTracker {
 
 function setupComboTracker(me, callback) {
   var comboTracker = new ComboTracker(me, kComboBreakers, callback);
-  comboTracker.AddCombo(['(Enchanted )?Riposte', '(Enchanted )?Zwerchhau', '(Enchanted )?Redoublement']);
+  comboTracker.AddCombo(['Enchanted Riposte', 'Enchanted Zwerchhau', 'Enchanted Redoublement', 'Verflare\Verholy']);
   comboTracker.AddCombo(['Heavy Swing', 'Skull Sunder', "Butcher's Block"]);
   comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Eye"]);
   comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Path"]);
