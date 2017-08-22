@@ -22,7 +22,7 @@ through Cactbot's additional Javascript APIs.
 
 The `CactbotOverlay/resources/dana/` directory has UI building blocks as well as full UI components.
 
-![dana ui screenshot](Screenshot-Data.png =1024x)
+![dana ui screenshot](Screenshot-Dana.png =1024x)
 
 In this screenshot, there are 3 cactbots:
 - [`CactbotOverlay/resources/dana/bars/bars.html`](blob/master/CactbotOverlay/resources/dana/bars/bars.html) is circled in red, showing RDM resources and raid buffs.
