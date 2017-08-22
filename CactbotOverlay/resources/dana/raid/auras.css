@@ -15,12 +15,13 @@
   will-change: transform;
 }
 
+#auras-text-info .resize-helper {
+  display: none;
+}
+
 .resizeHandle #auras-text-info .resize-helper {
   /* When unlocked for move/resize. */
   display: inline-block;
-  border: 1px solid #2b2;
-  height: 2ex;
-  width: 15em;
 }
 
 #auras-text-alert {
@@ -34,12 +35,13 @@
   will-change: transform;
 }
 
+#auras-text-alert .resize-helper {
+  display: none;
+}
+
 .resizeHandle #auras-text-alert .resize-helper {
   /* When unlocked for move/resize. */
   display: inline-block;
-  border: 2px solid #fb0;
-  height: 2ex;
-  width: 15em;
 }
 
 #auras-text-alarm {
@@ -53,12 +55,13 @@
   will-change: transform;
 }
 
+#auras-text-alarm .resize-helper {
+  display: none;
+}
+
 .resizeHandle #auras-text-alarm .resize-helper {
   /* When unlocked for move/resize. */
   display: inline-block;
-  border: 3px solid #f30;
-  height: 2ex;
-  width: 15em;
 }
 
 @keyframes zoom-in-out {
