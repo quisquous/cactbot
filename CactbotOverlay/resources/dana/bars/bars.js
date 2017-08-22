@@ -156,13 +156,12 @@ class ComboTracker {
   }
 
   StateTransition(nextState) {
-    if (this.current == nextState)
+    if (this.current == null && nextState == null)
       return;
 
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
     this.current = nextState;
-    this.comboTimer = null;
 
     if (nextState == null) {
       this.considerNext = this.startList;
