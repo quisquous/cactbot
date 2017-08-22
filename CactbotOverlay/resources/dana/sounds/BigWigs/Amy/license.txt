@@ -1,0 +1,8 @@
+License: https://creativecommons.org/licenses/by-nc/3.0/
+
+Author: Timbre
+Source: http://www.freesound.org/people/Timbre/sounds/83033/
+Modifications: Sound cut into separate sound files, converted to Ogg format.
+
+Original Author: Corsica_S
+Voice Actress: Amy
