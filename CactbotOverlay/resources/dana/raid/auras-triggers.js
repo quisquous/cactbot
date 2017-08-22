@@ -1,6 +1,6 @@
 var kAurasTriggers = {};
 
-/* 
+/*
 { // Example trigger.
   //
   // Fields that can be a function will receive the following arguments:
@@ -42,6 +42,8 @@ var kAurasTriggers = {};
   condition: function(data, matches) { return true if it should run }
   // A function(data, matches) to run. This runs as the last step when the trigger fires.
   run: function(data, matches) { do stuff.. },
+  // If this is true, the trigger is completely disabled and ignored.
+  disabled: true,
 },
 */
 
@@ -75,14 +77,14 @@ kAurasTriggers['Unknown Zone \\(2B7\\)'] = [
     infoText: 'Downburst: Knockback',
   },
   {
-    condition: function() { return false },
     regex: /:1ED4:Alte Roite starts using/,
     infoText: 'Roar: AOE damage',
+    condition: function(data) { return data.role == 'healer' },
   },
   {
-    condition: function() { return false },
     regex: /:1ED3:Alte Roite starts using/,
     infoText: 'Charybdis: AOE damage',
+    condition: function(data) { return data.role == 'healer' },
   },
 ];
 
@@ -114,12 +116,18 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
   {
     regex: /:235A:Catastrophe starts using/,
     infoText: function(data) {
-      if (data.probeCount == 0 || data.probeCount == 2)
-        return 'Maniacal Probe: Tanks & Healers';
+      var dpsProbe = data.probeCount == 1 || data.probeCount == 3;
+      if (dpsProbe != data.role.startsWith('dps')) {
+        if (!dpsProbe) return 'Maniacal Probe: Tanks & Healers';
+        else return 'Maniacal Probe: DPS';
+      }
     },
     alertText: function(data) {
-      if (data.probeCount == 1 || data.probeCount == 3)
-        return 'Maniacal Probe: DPS';
+      var dpsProbe = data.probeCount == 1 || data.probeCount == 3;
+      if (dpsProbe == data.role.startsWith('dps')) {
+        if (!dpsProbe) return 'Maniacal Probe: Tanks & Healers';
+        else return 'Maniacal Probe: DPS';
+      }
     },
     run: function(data) { data.probeCount = (data.probeCount || 0) + 1; },
   },
@@ -216,8 +224,19 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Thunder III not after Decisive Battle.
     regex: /:23F9:Exdeath starts using/,
-    infoText: function(data) { if (!data.thunderCount) return 'Thunder III'; },
+    infoText: function(data) {
+      // Tanks/healers always get an alert.
+      if (data.role == 'tank' || data.role == 'healer') return false;
+      // Only the first for casters, other dps always get an info.
+      if (data.role == 'dps-caster' && data.thunderCount) return false;
+      return 'Thunder III';
+    },
     alertText: function(data) {
+      // Tanks/healers always get an alert.
+      if (data.role == 'tank' || data.role == 'healer') return 'Thunder III: Tank buster';
+      // Non-casters always get an info.
+      if (data.role != 'dps-caster') return false;
+      // Casters get an alert after the first.
       if (data.thunderCount == 1) return 'Thunder III: Addle during';
       if (data.thunderCount == 2) return 'Thunder III: Addle after';
     },
@@ -288,7 +307,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /:242B:Neo Exdeath starts using/,
     delaySeconds: 5,
     alertText: 'Apocatastasis on tank',
-    condition: function(data, matches) { return data.alphaCount == 1 || data.alphaCount == 3; },
+    condition: function(data, matches) { return data.role == 'dps-caster' && (data.alphaCount == 1 || data.alphaCount == 3); },
   },
   { // Grand Cross Delta.
     regex: /:242C:Neo Exdeath starts using/,
@@ -302,6 +321,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     regex: /:242D:Neo Exdeath starts using/,
     delaySeconds: 8,
     alertText: 'Apocatastasis on healer',
+    condition: function(data, matches) { return data.role == 'dps-caster'; },
   },
   { // Forked Lightning - Get out.
     regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
@@ -353,7 +373,6 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   { // Final phase Addle warning when Reprisal is ending.
     regex: /loses the effect of Reprisal from/,
     alertText: 'Reprisal ended',
-    //sound: '../../sounds/PowerAuras/throwknife.ogg',
     condition: function(data) { return data.alphaCount == 3 && data.reprisal; },
     run: function(data) { data.reprisal = false; },
   },

@@ -92,6 +92,8 @@ class Auras {
   }
 
   OnTrigger(trigger, matches) {
+    if ('disabled' in trigger && trigger.disabled)
+      return;
     if ('condition' in trigger) {
       if (!trigger.condition(this.data, matches))
         return;
