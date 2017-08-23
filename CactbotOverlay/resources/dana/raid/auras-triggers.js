@@ -116,6 +116,15 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
     alertText: function(data) { if (!data.levitating) return 'Earthquake: Levitate'; },
   },
   {
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_54E|Elevated) from/,
+    alertText: 'Elevated: DPS up, Tanks & Healers down',
+  },
+  {
+    regex: /:2372:Catastrophe starts usinge/,
+    infoText: 'Gravitational Wave: AOE damage',
+    condition: function(data) { return data.role == 'healer'; },
+  },
+  {
     regex: /:235A:Catastrophe starts using/,
     infoText: function(data) {
       var dpsProbe = data.probeCount == 1 || data.probeCount == 3;
@@ -127,6 +136,7 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
     alertText: function(data) {
       var dpsProbe = data.probeCount == 1 || data.probeCount == 3;
       if (dpsProbe == data.role.startsWith('dps')) {
+        data.myProbe = true;
         if (!dpsProbe) return 'Maniacal Probe: Tanks & Healers';
         else return 'Maniacal Probe: DPS';
       }
@@ -134,30 +144,19 @@ kAurasTriggers['Unknown Zone \\(2B8\\)'] = [
     run: function(data) { data.probeCount = (data.probeCount || 0) + 1; },
   },
   {
+    regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
+    delaySeconds: 9,
+    infoText: function(data) { if (!data.myProbe) return 'Unstable Gravity: Stack'; },
+    alarmText: function(data) { if (data.myProbe) return 'Unstable Gravity: Elevate and outside stack'; },
+    run: function(data) { data.myProbe = false; },
+    condition: function(data, matches) { return matches[1] == data.me && data.myProbe; },
+  },
+  {
     regex: /:([A-Za-z ']+) gains the effect of 6 Fulms Under from/,
     delaySeconds: 5,
     infoText: function(data) { if (data.levitating) return '6 Fulms Under'; },
     alertText: function(data) { if (!data.levitating) return '6 Fulms Under: Levitate'; },
     condition: function(data, matches) { return matches[1] == data.me; },
-  },
-  {
-    regex: /:([A-Za-z ']+) gains the effect of (Unknown_54E|Elevated) from/,
-    alertText: 'Elevated: DPS up, Tanks & Healers down',
-  },
-  {
-    condition: function() { return false; },
-    regex: /:2372:Catastrophe starts usinge/,
-    infoText: 'Gravitational Wave: AOE damage',
-  },
-  {
-    regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
-    infoText: 'Unstable Gravity',
-    condition: function(data, matches) { return matches[1] == data.me; },
-  },
-  {
-    regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
-    delaySeconds: 9,
-    alertText: 'Elevate and outside stack',
   },
 ];
 
