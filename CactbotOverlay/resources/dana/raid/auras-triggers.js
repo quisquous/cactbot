@@ -277,19 +277,19 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   // Part 2
   { // Inner Flood (move out).
     regex: /:240E:Neo Exdeath starts using/,
-    alertText: 'Flood of Naught: Go Outside',
+    alertText: 'Go Outside',
   },
   { // Outer Flood (move in).
     regex: /:240F:Neo Exdeath starts using/,
-    alertText: 'Flood of Naught: Go Inside',
+    alertText: 'Go Inside',
   },
   { // Purple/Blue Flood.
     regex: /:2411:Neo Exdeath starts using/,
-    alertText: 'Flood of Naught: Color sides',
+    alertText: 'Color sides',
   },
   { // Blue/Purple Flood.
     regex: /:2412:Neo Exdeath starts using/,
-    alertText: 'Flood of Naught: Color sides',
+    alertText: 'Color sides',
   },
   { // Charge Flood.
     regex: /:2416:Neo Exdeath starts using/,
@@ -339,18 +339,18 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     condition: function(data, matches) { return matches[1] == data.me; },
   },
   { // Beyond Death (Delta)
-    regex: /You suffer the effect of .*Beyond Death/,
-    delaySeconds: 7,
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+    delaySeconds: 6,
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    condition: function(data) { return data.phase == 'delta'; },
+    condition: function(data) { return data.phase == 'delta' && matches[1] == data.me; },
   },
   { // Beyond Death (Omega)
-    regex: /You suffer the effect of .*Beyond Death/,
-    delaySeconds: 5,
+    regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+    delaySeconds: 8,  // 20 seconds if you want the third flood cast, 8 for the first.
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    condition: function(data) { return data.phase == 'omega'; },
+    condition: function(data) { return data.phase == 'omega' && matches[1] == data.me; },
   },
   { // Delta Attack
     regex: /:241E:Neo Exdeath starts using/,
