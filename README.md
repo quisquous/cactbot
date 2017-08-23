@@ -31,21 +31,36 @@ In this screenshot, there are 3 cactbots:
 
 Here is a video of the dana UI in action on [Exdeath and Neo Exdeath](https://www.youtube.com/watch?v=Ot_GMEcwv94).
 
-## Install
+## Building
 
-1. Find the OverlayPlugin installation with Advanced Combat Tracker.
-2. Make an OverlayPlugin/addons sub-directory.
-3. Build, then copy the CactbotOverlay.dll file to the addons directory.
-4. If you haven't installed it separately, also copy the EnmityOverlay.dll file to the addons directory.
+You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in ACT.
 
-The directory structure should look like this:
-- C:\\...\\Advanced Combat Tracker
-  - Advanced Combat Tracker.exe
-- C:\\...\\Advanced Combat Tracker\\OverlayPlugin
-  - OverlayPlugin.dll etc
-- C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons
-  - CactbotOverlay.dll
-  - EnmityOverlay.dll
+1. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/OverlayPlugin`](CactbotOverlay/ThirdParty/OverlayPlugin).
+2. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/ACT`](CactbotOverlay/ThirdParty/ACT).
+3. Open the solution in Visual Studio (tested with Visual Studio 2017).
+4. Build for "Release" and "x64".
+5. The plugin will be built as `bin/x64/Release/CactbotOverlay.dll`.
+
+## Installing
+
+You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in Advanced Combat Tracker.
+
+1. Find the OverlayPlugin installation, make an `addons` sub-directory inside it (looks like `OverlayPlugin\addons`.
+2. Copy the `CactbotOverlay.dll` file to the addons directory.
+3. Make sure to unblock the CactbotOverlay.dll (right click -> properties -> unblock) if you downloaded it, instead of building it.
+4. If you get an error that it can't find `FFXIV_ACT_Plugin.dll`, make sure it is in the same directory as `Advanced Combat Tracker.exe`.
+
+   The directory structure should look something like this:
+   - C:\\...\\Advanced Combat Tracker
+     - Advanced Combat Tracker.exe
+     - FFXIV_ACT_Plugin.dll
+   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin
+     - OverlayPlugin.dll etc
+   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons
+     - CactbotOverlay.dll
+
+5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
+6. In the URL field, browse to an html file to load as a UI element. For example to `CactbotOverlay/resources/dana/raid/raid.html`.
 
 ## Sounds
 
@@ -53,7 +68,7 @@ Triggers in [`CactbotOverlay/resources/dana/raid/raid.html`](CactbotOverlay/reso
 use sound effects from BigWigs which are not licensed for redistribution. To use the sounds:
 1. Download [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) from curse.com.
 2. Open the .zip file.
-3. Extract the .ogg files `BigWigs/Sounds` to `CactbotOverlay/resource/dana/sounds/BigWigs`.
+3. Extract the .ogg files `BigWigs/Sounds` to `CactbotOverlay/resources/dana/sounds/BigWigs`.
 
 You should have:
 - `CactbotOverlay/resources/dana/sounds/BigWigs/Alarm.ogg`

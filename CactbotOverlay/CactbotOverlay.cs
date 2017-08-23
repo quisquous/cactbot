@@ -9,11 +9,18 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
-using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
 
-  public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, Tamagawa.EnmityPlugin.Logger {
+  public interface ILogger {
+    void LogDebug(string format, params object[] args);
+    void LogError(string format, params object[] args);
+    void LogWarning(string format, params object[] args);
+    void LogInfo(string format, params object[] args);
+  }
+
+
+  public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, ILogger {
     private static int kFastTimerMilli = 16;
     private static int kSlowTimerMilli = 300;
     private static int kUberSlowTimerMilli = 3000;
@@ -232,9 +239,9 @@ namespace Cactbot {
 
       DateTime now = DateTime.Now;
       // The |player| can be null, such as during a zone change.
-      Combatant player = ffxiv_.GetSelfCombatant();
+      FFXIVProcess.EntityData player = ffxiv_.GetSelfData();
       // The |target| can be null when no target is selected.
-      Combatant target = ffxiv_.GetTargetCombatant();
+      FFXIVProcess.EntityData target = ffxiv_.GetTargetData();
       // The |target_casting| can be null when no target is selected.
       var target_casting = ffxiv_.GetTargetCastingData();
       // The |focus_casting| can be null when no focus is selected.
@@ -243,7 +250,7 @@ namespace Cactbot {
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
       if (player != null) {
-        bool dead = player.CurrentHP == 0;
+        bool dead = player.hp == 0;
         if (dead != notify_state_.dead) {
           notify_state_.dead = dead;
           if (dead)
@@ -255,14 +262,14 @@ namespace Cactbot {
       // TODO: Is this always true cuz it's only doing pointer comparison?
       if (player != null && player != notify_state_.player) {
         notify_state_.player = player;
-        if ((JobEnum)player.Job == JobEnum.RDM) {
+        if (player.job == FFXIVProcess.EntityJob.RDM) {
           var rdm = ffxiv_.GetRedMage();
           if (rdm != null) {
             var e = new JSEvents.PlayerChangedEvent(player);
             e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(rdm.white, rdm.black);
             OnPlayerChanged(e);
           }
-        } else if ((JobEnum)player.Job == JobEnum.WAR) {
+        } else if (player.job == FFXIVProcess.EntityJob.WAR) {
           var job = ffxiv_.GetWarrior();
           var e = new JSEvents.PlayerChangedEvent(player);
           if (job != null) {
@@ -366,7 +373,7 @@ namespace Cactbot {
       return 1;
     }
 
-    // Tamagawa.EnmityPlugin.Logger implementation.
+    // ILogger implementation.
     public void LogDebug(string format, params object[] args) {
       // The Log() method is not threadsafe. Since this is called from Timer threads,
       // it must post the task to the plugin main thread.
@@ -403,8 +410,8 @@ namespace Cactbot {
       public bool in_combat = false;
       public bool dead = false;
       public string zone_name = "";
-      public Combatant player = null;
-      public Combatant target = null;
+      public FFXIVProcess.EntityData player = null;
+      public FFXIVProcess.EntityData target = null;
       public int target_cast_id = 0;
       public DateTime target_cast_start = new DateTime();
       public int focus_cast_id = 0;

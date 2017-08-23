@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Tamagawa.EnmityPlugin;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -65,24 +64,26 @@ namespace Cactbot {
     }
 
     public class PlayerChangedEvent : JSEvent {
-      public PlayerChangedEvent(Combatant c) {
-        job = ((JobEnum)c.Job).ToString();
-        level = c.Level;
-        name = c.Name;
-        currentHP = c.CurrentHP;
-        maxHP = c.MaxHP;
-        currentMP = c.CurrentMP;
-        maxMP = c.MaxMP;
-        currentTP = c.CurrentTP;
-        maxTP = c.MaxTP;
-        pos = new Point3F(c.PosX, c.PosY, c.PosZ);
+      public PlayerChangedEvent(FFXIVProcess.EntityData e) {
+        id = e.id;
+        level = e.level;
+        name = e.name;
+        job = e.job.ToString();
+        currentHP = e.hp;
+        maxHP = e.max_hp;
+        currentMP = e.mp;
+        maxMP = e.max_mp;
+        currentTP = e.tp;
+        maxTP = 1000;
+        pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
         jobDetail = null;
       }
       public string EventName() { return "onPlayerChangedEvent"; }
 
-      public string job;
+      public uint id;
       public int level;
       public string name;
+      public string job;
 
       public int currentHP;
       public int maxHP;
@@ -135,19 +136,20 @@ namespace Cactbot {
     }
 
     public class TargetChangedEvent : JSEvent {
-      public TargetChangedEvent(Combatant c) {
-        if (c != null) {
-          id = c.ID;
-          level = c.Level;
-          name = c.Name;
-          currentHP = c.CurrentHP;
-          maxHP = c.MaxHP;
-          currentMP = c.CurrentMP;
-          maxMP = c.MaxMP;
-          currentTP = c.CurrentTP;
-          maxTP = c.MaxTP;
-          pos = new Point3F(c.PosX, c.PosY, c.PosZ);
-          distance = c.EffectiveDistance;
+      public TargetChangedEvent(FFXIVProcess.EntityData e) {
+        if (e != null) {
+          id = e.id;
+          level = e.level;
+          name = e.name;
+          job = e.job.ToString();
+          currentHP = e.hp;
+          maxHP = e.max_hp;
+          currentMP = e.mp;
+          maxMP = e.max_mp;
+          currentTP = e.tp;
+          maxTP = 1000;
+          pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
+          distance = e.distance;
         }
       }
       public string EventName() { return "onTargetChangedEvent"; }
@@ -155,6 +157,7 @@ namespace Cactbot {
       public uint id = 0;
       public int level = 0;
       public string name = null;
+      public string job = null;
 
       public int currentHP = 0;
       public int maxHP = 0;

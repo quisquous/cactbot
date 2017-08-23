@@ -43,13 +43,17 @@
     });
 
     document.addEventListener("onPlayerChangedEvent", function (e) {
-      document.getElementById("myHP").innerText = "myHP: " + e.detail.currentHP;
-      document.getElementById("job").innerText = e.detail.job;
+      document.getElementById("id").innerText = e.detail.id;
+      document.getElementById("hp").innerText = e.detail.currentHP + '/' + e.detail.maxHP;
+      document.getElementById("mp").innerText = e.detail.currentMP + '/' + e.detail.maxMP;
+      document.getElementById("tp").innerText = e.detail.currentTP + '/' + e.detail.maxTP;
+      document.getElementById("job").innerText = e.detail.level + ' ' + e.detail.job;
       if (e.detail.job == "RDM") {
         document.getElementById("jobinfo").innerText = e.detail.jobDetail.whiteMana + " | " + e.detail.jobDetail.blackMana;
       } else if (e.detail.job == "WAR") {
           document.getElementById("jobinfo").innerText = e.detail.jobDetail.beast;
       }
+      document.getElementById("pos").innerText = e.detail.pos.x + "," + e.detail.pos.y + "," + e.detail.pos.z;
     });
 
     document.addEventListener("onTargetChangedEvent", function (e) {
@@ -74,8 +78,10 @@
 <body>
     <div id="currentZone">currentZone: --</div>
     <div id="inCombat">inCombat: no</div>
-    <div id="myHP">myHP: --</div>
+    <div>hp: <span id="hp"></span> mp: <span id="mp"></span> tp: <span id="tp"></span></div>
+    <div>id: <span id="id"></span></div>
     <div>job: <span id="job"></span> <span id="jobinfo"></span></div>
+    <div>pos: <span id="pos"></span></div>
     <div>target: <span id="target">--</span> distance: <span id="tdistance"></span></div>
     <div id="oneLog">log: --</div>
 </body>

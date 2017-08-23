@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
   class WipeDetector {

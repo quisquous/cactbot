@@ -2,20 +2,34 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Tamagawa.EnmityPlugin;
 
 namespace Cactbot {
 
   // Exposes the FFXIV game directly. Call FindProcess() regularly to update
   // memory addresses when FFXIV is run or closed.
   public class FFXIVProcess {
-    private Logger logger_ = null;
+    private ILogger logger_ = null;
     private Process process_ = null;
-    private FFXIVMemory enmity_memory_ = null;
+    private IntPtr player_ptr_addr_ = IntPtr.Zero;
     private IntPtr target_ptr_addr_ = IntPtr.Zero;
     private IntPtr focus_ptr_addr_ = IntPtr.Zero;
     private IntPtr rdm_mana_outer_addr_ = IntPtr.Zero;
     private IntPtr warrior_outer_addr_ = IntPtr.Zero;
+
+    // A piece of code that reads the pointer to the list of all entities, that we
+    // refer to as the charmap. The pointer is at the end of the signature.
+    private static String kCharmapSignature = "488b03488bcbff90a0000000888391000000488d0d";
+    private static int kCharmapSignatureOffset = 0;
+    // The signature finds a pointer in the executable code which uses RIP addressing.
+    private static bool kCharmapSignatureRIP = true;
+    // The pointer is to a structure as:
+    //
+    // CharmapStruct* outer;  // The pointer found from the signature.
+    // CharmapStruct {
+    //   0x10 bytes...
+    //   EntityStruct* player;
+    // }
+    private static int kCharmapStructOffsetPlayer = 0x10;
 
     // A piece of code that reads the pointer to the target entity structure.
     // The pointer is the second ???????? in the signature. At address
@@ -26,27 +40,106 @@ namespace Cactbot {
     private static bool kTargetSignatureRIP = true;
     // The pointer is to an entity structure:
     //
-    // OuterStruct* outer;  // This pointer found from the signature.
-    // OuterStruct {
-    //   EntityStruct* target;
-    //   0x70 bytes..
-    //   EntityStruct* focus;
+    // TargetStruct* outer;  // This pointer found from the signature.
+    // TargetStruct {
+    //   0x00 bytes in: EntityStruct* target;
+    //   ...
+    //   0x78 bytes in: EntityStruct* focus;
     // }
+    private static int kTargetStructOffsetTarget = 0;
+    private static int kTargetStructOffsetFocus = 0x78;
+
+    // Values found in the EntityStruct's type field.
+    public enum EntityType {
+      None = 0,
+      PC = 1,
+      Monster = 2,
+      NPC = 3,
+      Aetherite = 5,
+      GatheringNode = 6,
+      ClickableObject = 7,
+      Minion = 9,
+      Mailbox = 12,
+    };
+    // Values found in the EntityStruct's job field.
+    public enum EntityJob {
+      None = 0,
+      GLD = 1,
+      PGL = 2,
+      MRD = 3,
+      LNC = 4,
+      ARC = 5,
+      CNJ = 6,
+      THM = 7,
+      CRP = 8,
+      BSM = 9,
+      ARM = 10,
+      GSM = 11,
+      LTW = 12,
+      WVR = 13,
+      ALC = 14,
+      CUL = 15,
+      MIN = 15,
+      BTN = 17,
+      FSH = 18,
+      PLD = 19,
+      MNK = 20,
+      WAR = 21,
+      DRG = 22,
+      BRD = 23,
+      WHM = 24,
+      BLM = 25,
+      ACN = 26,
+      SMN = 27,
+      SCH = 28,
+      ROG = 29,
+      NIN = 30,
+      MCH = 31,
+      DRK = 32,
+      AST = 33,
+      SAM = 34,
+      RDM = 35,
+    };
+
     // EntityStruct {
-    //   0x30 bytes..
-    //   string name;  // 0x30 bytes (maybe more?)
-    //   0x1854 bytes..
-    //   int casting_spell_id;  // 4 bytes (maybe 2?)
-    //   0x8C bytes..
-    //   float casting_spell_time_spent;  // 4 bytes
-    //   float casting_spell_length;      // 4 bytes
+    //   ...
+    //   0x30 bytes in: string name;  // 0x44 bytes.
+    //   ...
+    //   0x74 bytes in: uint32 id;
+    //   ...
+    //   0x8C bytes in: EntityType type;  // 1 byte.
+    //   ...
+    //   0x92 bytes in: byte distance;
+    //   ...
+    //   0xA0 bytes in: float32 pos_x;
+    //   0xA4 bytes in: float32 pos_y;
+    //   0xA8 bytes in: float32 pos_z;
+    //   ...
+    //   0x168C bytes in: int32 hp;
+    //   0x1690 bytes in: int32 maxhp;
+    //   0x1694 bytes in: int32 mp;
+    //   0x1698 bytes in: int32 maxmp;
+    //   0x169C bytes in: int16 tp;
+    //   ...
+    //   0x16C2 bytes in: EntityJob job;  // 2 bytes.
+    //   0x16C4 bytes in: int16 level;
+    //   ...
+    //   0x18B4 bytes in: int casting_spell_id;  // 4 bytes (maybe 2?)
+    //   ...
+    //   0x18E4 bytes in: float32 casting_spell_time_spent;  // 4 bytes
+    //   0x18E8 bytes in: float32 casting_spell_length;      // 4 bytes
     // }
-    private static int kTargetOuterStructureOffset = 0;
-    //private static int kTargetInnerStructureOffsetName = 0x30;
-    private static int kTargetInnerStructureOffsetCastingId = 0x18B4;
-    private static int kTargetInnerStructureOffsetCastingTimeProgress = 0x18E4;
-    // The focus pointer is in the same outer structure
-    private static int kFocusOuterStructureOffset = 0x78;
+    private static int kEntityStructureOffsetName = 0x30;
+    private static int kEntityStructureOffsetId = 0x74;
+    private static int kEntityStructureOffsetType = 0x8C;
+    private static int kEntityStructureOffsetDistance = 0x92;
+    private static int kEntityStructureOffsetPos = 0xA0;
+    private static int kEntityStructureOffsetHpMp = 0x168C;
+    private static int kEntityStructureOffsetTp = 0x169C;
+    private static int kEntityStructureOffsetJob = 0x16C2;
+    private static int kEntityStructureOffsetLevel = 0x16C4;
+    private static int kEntityStructureOffsetCastingId = 0x18B4;
+    private static int kEntityStructureOffsetCastingTimeProgress = 0x18E4;
 
     // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
     // in July 7, 2017 update. The lines that actually read are:
@@ -82,7 +175,7 @@ namespace Cactbot {
     private static int kWarriorOuterDataStructureOffset = 0;
     private static int kWarriorInnerDataStructureOffset = 8;
 
-    public FFXIVProcess(Tamagawa.EnmityPlugin.Logger logger) { logger_ = logger;  }
+    public FFXIVProcess(ILogger logger) { logger_ = logger; }
 
     public bool HasProcess() {
       // If FindProcess failed, return false. But also return false if
@@ -103,45 +196,37 @@ namespace Cactbot {
       bool changed_existance = (process_ == null) != (found_process == null);
       bool changed_pid = process_ != null && found_process != null && process_.Id != found_process.Id;
       if (changed_existance || changed_pid) {
-        if (enmity_memory_ != null) {
-          enmity_memory_.Dispose();
-          enmity_memory_ = null;
-        }
+        player_ptr_addr_ = IntPtr.Zero;
+        target_ptr_addr_ = IntPtr.Zero;
+        focus_ptr_addr_ = IntPtr.Zero;
         rdm_mana_outer_addr_ = IntPtr.Zero;
-
+        warrior_outer_addr_ = IntPtr.Zero;
         process_ = found_process;
-        try {
-          enmity_memory_ = new FFXIVMemory(logger_, process_);
-          if (!enmity_memory_.validateProcess()) {
-            process_ = null;
-          }
-        } catch (Exception) {
-          process_ = null;
-        }
 
         if (process_ != null) {
-          List<IntPtr> p = SigScan(kTargetSignature, kTargetSignatureOffset, kTargetSignatureRIP);
+          List<IntPtr> p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
+          if (p.Count != 1) {
+            logger_.LogError("Charmap signature found " + p.Count + " matches");
+          } else {
+            player_ptr_addr_ = IntPtr.Add(p[0], kCharmapStructOffsetPlayer);
+          }
+
+          p = SigScan(kTargetSignature, kTargetSignatureOffset, kTargetSignatureRIP);
           if (p.Count != 1) {
             logger_.LogError("Target signature found " + p.Count + " matches");
           } else {
-            // Store the outer pointer. It's value changes each time the selected entity changes.
-            target_ptr_addr_ = IntPtr.Add(p[0], kTargetOuterStructureOffset);
-            focus_ptr_addr_ = IntPtr.Add(p[0], kFocusOuterStructureOffset);
+            target_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetTarget);
+            focus_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetFocus);
           }
-        }
 
-        if (process_ != null) {
-          List<IntPtr> p = SigScan(kRedMageManaSignature, kRedMageManaSignatureOffset, kRedMageManaSignatureRIP);
+          p = SigScan(kRedMageManaSignature, kRedMageManaSignatureOffset, kRedMageManaSignatureRIP);
           if (p.Count != 1) {
             logger_.LogError("RedMage signature found " + p.Count + " matches");
           } else {
-            // Store the outer pointer. Deref it dynamically when reading mana as it can change.
             rdm_mana_outer_addr_ = IntPtr.Add(p[0], kRedMageManaDataOuterStructureOffset);
           }
-        }
 
-        if (process_ != null) {
-          List<IntPtr> p = SigScan(kWarriorSignature, kWarriorSignatureOffset, kWarriorSignatureRIP);
+          p = SigScan(kWarriorSignature, kWarriorSignatureOffset, kWarriorSignatureRIP);
           if (p.Count != 1) {
             logger_.LogError("Warrior signature found " + p.Count + " matches");
           } else {
@@ -150,10 +235,6 @@ namespace Cactbot {
         }
       }
 
-      if (process_ == null && enmity_memory_ != null) {
-        enmity_memory_.Dispose();
-        enmity_memory_ = null;
-      }
       return process_ != null;
     }
 
@@ -166,16 +247,108 @@ namespace Cactbot {
       return active_process_id == process_.Id;
     }
 
-    public Combatant GetSelfCombatant() {
-      if (!HasProcess())
-        return null;
-      return enmity_memory_.GetSelfCombatant();
+    public class EntityData {
+      public string name;
+      public uint id = 0;
+      public EntityType type = EntityType.None;
+      public ushort distance = 0;
+      public float pos_x = 0;
+      public float pos_y = 0;
+      public float pos_z = 0;
+      public int hp = 0;
+      public int max_hp = 0;
+      public int mp = 0;
+      public int max_mp = 0;
+      public short tp = 0;
+      public EntityJob job = EntityJob.None;
+      public short level = 0;
     }
 
-    public Combatant GetTargetCombatant() {
-      if (!HasProcess())
+    private EntityData GetEntityData(IntPtr entity_ptr) {
+      var data = new EntityData();
+
+      byte[] name_bytes = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetName), 0x44);
+      if (name_bytes == null)
         return null;
-      return enmity_memory_.GetTargetCombatant();
+      int null_pos = name_bytes.Length;
+      for (int i = 0; i < name_bytes.Length; ++i) {
+        if (name_bytes[i] == '\0') {
+          null_pos = i;
+          break;
+        }
+      }
+      data.name = System.Text.Encoding.UTF8.GetString(name_bytes, 0, null_pos);
+
+      uint[] id = Read32U(IntPtr.Add(entity_ptr, kEntityStructureOffsetId), 1);
+      if (id == null)
+        return null;
+      data.id = id[0];
+
+      byte[] type = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetType), 1);
+      if (type == null)
+        return null;
+      data.type = (EntityType)type[0];
+
+      byte[] distance = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetDistance), 1);
+      if (distance == null)
+        return null;
+      data.distance = distance[0];
+
+      float[] pos = ReadSingle(IntPtr.Add(entity_ptr, kEntityStructureOffsetPos), 3);
+      if (pos == null)
+        return null;
+      data.pos_x = pos[0];
+      data.pos_y = pos[2];
+      data.pos_z = pos[1];
+
+      if (data.type == EntityType.PC || data.type == EntityType.Monster) {
+        int[] hpmp = Read32(IntPtr.Add(entity_ptr, kEntityStructureOffsetHpMp), 4);
+        if (hpmp == null)
+          return null;
+        data.hp = hpmp[0];
+        data.max_hp = hpmp[1];
+        data.mp = hpmp[2];
+        data.max_mp = hpmp[3];
+
+        short[] tp = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetTp), 1);
+        if (tp == null)
+          return null;
+        data.tp = tp[0];
+
+        short[] job = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetJob), 1);
+        if (job == null) {
+          logger_.LogInfo("job");
+          return null;
+        }
+        data.job = (EntityJob)job[0];
+
+        short[] level = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetLevel), 1);
+        if (level == null)
+          return null;
+        data.level = level[0];
+      }
+
+      return data;
+    }
+
+    public EntityData GetSelfData() {
+      if (!HasProcess() || player_ptr_addr_ == IntPtr.Zero)
+        return null;
+
+      IntPtr entity_ptr = ReadIntPtr(player_ptr_addr_);
+      if (entity_ptr == IntPtr.Zero)
+        return null;
+      return GetEntityData(entity_ptr);
+    }
+
+    public EntityData GetTargetData() {
+      if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
+        return null;
+
+      IntPtr entity_ptr = ReadIntPtr(target_ptr_addr_);
+      if (entity_ptr == IntPtr.Zero)
+        return null;
+      return GetEntityData(entity_ptr);
     }
 
     public class SpellCastingData {
@@ -185,15 +358,15 @@ namespace Cactbot {
     }
 
     public SpellCastingData GetTargetCastingData() {
-      if (!HasProcess())
+      if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
         return null;
 
       IntPtr entity_ptr = ReadIntPtr(target_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
 
-      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kTargetInnerStructureOffsetCastingId);
-      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kTargetInnerStructureOffsetCastingTimeProgress);
+      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingId);
+      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingTimeProgress);
 
       Int32[] id = Read32(spell_id_addr, 1);
       if (id == null)
@@ -210,15 +383,15 @@ namespace Cactbot {
     }
 
     public SpellCastingData GetFocusCastingData() {
-      if (!HasProcess())
+      if (!HasProcess() || focus_ptr_addr_ == IntPtr.Zero)
         return null;
 
       IntPtr entity_ptr = ReadIntPtr(focus_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
 
-      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kTargetInnerStructureOffsetCastingId);
-      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kTargetInnerStructureOffsetCastingTimeProgress);
+      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingId);
+      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingTimeProgress);
 
       Int32[] id = Read32(spell_id_addr, 1);
       if (id == null)
@@ -240,7 +413,7 @@ namespace Cactbot {
     }
 
     public RedMageJobData GetRedMage() {
-      if (!HasProcess())
+      if (!HasProcess() || rdm_mana_outer_addr_ == IntPtr.Zero)
         return null;
 
       IntPtr rdm_inner_ptr = ReadIntPtr(rdm_mana_outer_addr_);
@@ -265,10 +438,10 @@ namespace Cactbot {
     }
 
     public WarriorJobData GetWarrior() {
-      if (!HasProcess())
+      if (!HasProcess() || warrior_outer_addr_ == IntPtr.Zero)
         return null;
 
-      IntPtr warrior_inner_ptr  = ReadIntPtr(warrior_outer_addr_);
+      IntPtr warrior_inner_ptr = ReadIntPtr(warrior_outer_addr_);
       if (warrior_inner_ptr == IntPtr.Zero)
         return null;
 
@@ -312,6 +485,17 @@ namespace Cactbot {
       var out_buffer = new Int32[count];
       for (int i = 0; i < count; ++i)
         out_buffer[i] = BitConverter.ToInt32(buffer, 4 * i);
+      return out_buffer;
+    }
+
+    /// Reads |addr| in the |process_| and returns it as a 32bit uints. Returns null on error.
+    private UInt32[] Read32U(IntPtr addr, int count) {
+      var buffer = Read8(addr, count * 4);
+      if (buffer == null)
+        return null;
+      var out_buffer = new UInt32[count];
+      for (int i = 0; i < count; ++i)
+        out_buffer[i] = BitConverter.ToUInt32(buffer, 4 * i);
       return out_buffer;
     }
 
