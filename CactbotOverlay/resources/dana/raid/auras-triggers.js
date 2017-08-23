@@ -302,7 +302,7 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   { // Grand Cross Alpha.
     regex: /:242B:Neo Exdeath starts using/,
     infoText: 'Grand Cross Alpha: Go to middle',
-    run: function(data) { data.alphaCount = (data.alphaCount || 0) + 1; },
+    run: function(data) { data.phase = 'alpha'; data.alphaCount = (data.alphaCount || 0) + 1; },
   },
   { // Grand Cross Alpha finished cast - Use Apoc on tank except before Omega.
     regex: /:242B:Neo Exdeath starts using/,
@@ -313,10 +313,12 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   { // Grand Cross Delta.
     regex: /:242C:Neo Exdeath starts using/,
     infoText: 'Grand Cross Delta: Inside boss',
+    run: function(data) { data.phase = 'delta'; },
   },
   { // Grand Cross Omega.
     regex: /:242D:Neo Exdeath starts using/,
     infoText: 'Grand Cross Omega: Go to middle',
+    run: function(data) { data.phase = 'omega'; },
   },
   { // Grand Cross Omega finished cast - Use Apoc on healer.
     regex: /:242D:Neo Exdeath starts using/,
@@ -336,12 +338,19 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 4; },  // 4 second warning.
     condition: function(data, matches) { return matches[1] == data.me; },
   },
-  { // Beyond Death
-    regex: /:([A-Za-z ']+) gains the effect of (Unknown_568|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+  { // Beyond Death (Delta)
+    regex: /You suffer the effect of .*Beyond Death/,
+    delaySeconds: 7,
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 9; },  // 9 second warning.
-    condition: function(data, matches) { return matches[1] == data.me; },
+    condition: function(data) { return data.phase == 'delta'; },
+  },
+  { // Beyond Death (Omega)
+    regex: /You suffer the effect of .*Beyond Death/,
+    delaySeconds: 5,
+    alarmText: 'Beyond Death: Die',
+    sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
+    condition: function(data) { return data.phase == 'omega'; },
   },
   { // Delta Attack
     regex: /:241E:Neo Exdeath starts using/,
