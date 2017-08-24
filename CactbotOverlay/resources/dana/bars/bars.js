@@ -929,7 +929,7 @@ class Bars {
     var that = this;
     window.clearTimeout(settings.timeout);
     settings.timeout = window.setTimeout(function() {
-      that.o.leftBuffsList.removeElement(name);
+      that.o.rightBuffsList.removeElement(name);
     }, seconds * 1000);
     if ('sound' in settings) {
       var audio = new Audio(settings.sound);
