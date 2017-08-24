@@ -7,8 +7,7 @@ This project is an overlay plugin for
 which itself is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/)
 
-It depends on [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html) and
-on [xtuaok's ACT_EnmityPlugin](https://github.com/xtuaok/ACT_EnmityPlugin).
+It depends on [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html).
 
 Its goal is to provide log lines, combatant info, dps info, etc.  Everything
 that anybody would need to write a good Javascript UI for
