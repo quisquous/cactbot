@@ -1,3 +1,4 @@
+
 "use strict";
 
 class WidgetList extends HTMLElement {
@@ -244,8 +245,8 @@ class WidgetList extends HTMLElement {
     this.rootElement.style.width = this._rowcolsize * this._elementwidth;
     this.rootElement.style.height = this._rowcolsize * this._elementheight;
 
-    var x = 0;
-    var y = 0;
+    var x = this._xinc1 < 0 ? -this._elementwidth : 0;
+    var y = this._yinc1 < 0 ? -this._elementheight : 0;
     var rowcolindex = 0;
     var count = 0;
     

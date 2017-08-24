@@ -2,12 +2,17 @@
 
 // Options.
 var kLowerOpacityOutOfCombat = true;
-var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+var kHideWellFedAboveSeconds = 15 * 60;  // N mins warning.
+var kWellFedZoneRegex = /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/;
 var kShowRdmProcs = true;
+
+// Constants.
+var kMaxLevel = 70;  // Update this when new expansion happens.
 var kFarThresholdOffence = 24;  // The distance that offensive spells such as VerAreo, etc are castable.
+var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 
 // Layout.
-var kHealthBarPosX = 0;
+var kHealthBarPosX = 100;
 var kHealthBarPosY = 20;
 var kManaBarPosX = kHealthBarPosX;
 var kManaBarMarginY = 1;
@@ -65,11 +70,7 @@ var kReRdmWhiteManaProcEnd = null;
 var kReRdmBlackManaProcEnd = null;
 var kReRdmImpactProcEnd = null;
 var kReRdmEndCombo = null;
-
-// Set to true when all setup is complete, including setupRegexes and setupBuffTracker.
-var g_init = false;
-
-var kMe = null;
+var kReFoodBuff = null;
 
 // Full skill names (regex ok) of abilities that break combos.
 // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -197,6 +198,7 @@ function setupRegexes(me) {
   kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verfire:)');
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)');
+  kReFoodBuff = new RegExp(':' + me + ' gains the effect of Well Fed from ' + me + ' for ([0-9.]+) Seconds\.')
 }
 
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
@@ -279,12 +281,28 @@ function setupBuffTracker(me) {
 
 class Bars {
   constructor() {
+    this.init = false;
+    this.me = null;
     this.o = {};
-    this.bugBuffs = {};
     this.casting = {};
+    this.job = '';
+    this.hp = 0;
+    this.maxHP = 0;
+    this.mp = 0;
+    this.maxMP = 0;
+    this.tp = 0;
+    this.maxTP = 0;
+    this.level = 0;
+    this.distance = -1;
+    this.whiteMana = -1;
+    this.blackMana = -1;
+    this.beast = -1;
+    this.inCombat = false;
+    this.combo = 0;
+    this.comboTimer = null;
   }
 
-  OnJobChange(job) {
+  UpdateJob() {
     var container = document.getElementById("bars-container");
     if (container == null) {
       var root = document.getElementById("container");
@@ -320,18 +338,31 @@ class Bars {
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
 
-    this.o.bigBuffsContainer = document.createElement("div");
-    this.o.bigBuffsList = document.createElement('widget-list');
-    this.o.bigBuffsContainer.appendChild(this.o.bigBuffsList);
-    opacityContainer.appendChild(this.o.bigBuffsContainer);
+    this.o.rightBuffsContainer = document.createElement("div");
+    this.o.rightBuffsList = document.createElement('widget-list');
+    this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
+    opacityContainer.appendChild(this.o.rightBuffsContainer);
 
-    this.o.bigBuffsContainer.style.position = "absolute";
-    this.o.bigBuffsContainer.style.top = kHealthBarPosY;
-    this.o.bigBuffsContainer.style.left = kHealthBarPosX + kHealthBarSizeW + 3;
-    this.o.bigBuffsList.rowcolsize = 7;
-    this.o.bigBuffsList.maxnumber = 7;
-    this.o.bigBuffsList.toward = "right down";
-    this.o.bigBuffsList.elementwidth = kBigBuffIconWidth + 2;
+    this.o.rightBuffsContainer.style.position = "absolute";
+    this.o.rightBuffsContainer.style.top = kHealthBarPosY;
+    this.o.rightBuffsContainer.style.left = kHealthBarPosX + kHealthBarSizeW + 3;
+    this.o.rightBuffsList.rowcolsize = 7;
+    this.o.rightBuffsList.maxnumber = 7;
+    this.o.rightBuffsList.toward = "right down";
+    this.o.rightBuffsList.elementwidth = kBigBuffIconWidth + 2;
+
+    this.o.leftBuffsContainer = document.createElement("div");
+    this.o.leftBuffsList = document.createElement('widget-list');
+    this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
+    opacityContainer.appendChild(this.o.leftBuffsContainer);
+
+    this.o.leftBuffsContainer.style.position = "absolute";
+    this.o.leftBuffsContainer.style.top = kHealthBarPosY;
+    this.o.leftBuffsContainer.style.left = kHealthBarPosX - 3;
+    this.o.leftBuffsList.rowcolsize = 7;
+    this.o.leftBuffsList.maxnumber = 7;
+    this.o.leftBuffsList.toward = "left down";
+    this.o.leftBuffsList.elementwidth = kBigBuffIconWidth + 2;
 
     this.o.healthContainer = document.createElement("div");
     this.o.healthBar = document.createElement("resource-bar");
@@ -344,13 +375,13 @@ class Bars {
     this.o.healthBar.width = kHealthBarSizeW;
     this.o.healthBar.height = kHealthBarSizeH;
 
-    if (isTankJob(job)) {
+    if (isTankJob(this.job)) {
       this.o.healthBar.height = kTankHealthBarSizeH;
       this.o.healthBar.lefttext = "value";
     }
 
     var secondBarTop = kHealthBarPosY + parseInt(this.o.healthBar.height) + kManaBarMarginY;
-    if (isCasterJob(job)) {
+    if (isCasterJob(this.job)) {
       this.o.manaContainer = document.createElement("div");
       this.o.manaBar = document.createElement("resource-bar");
       this.o.manaContainer.appendChild(this.o.manaBar);
@@ -374,7 +405,7 @@ class Bars {
       this.o.tpBar.height = kHealthBarSizeH;
     }
 
-    if (job == "RDM") {
+    if (this.job == "RDM") {
       var fontSize = 16;
       var fontWidth = fontSize * 1.8;
       var whiteX = kHealthBarSizeW + 3;
@@ -383,8 +414,8 @@ class Bars {
       var blackY = -17;
       var innerTextY = 6;
 
-      // Move over the big buffs.
-      this.o.bigBuffsContainer.style.left = kRedMageManaBarPosX + blackX + fontWidth + 5;
+      // Move over the right buffs.
+      this.o.rightBuffsContainer.style.left = kRedMageManaBarPosX + blackX + fontWidth + 5;
 
       var rdmContainer = document.createElement("div");
       opacityContainer.appendChild(rdmContainer);
@@ -606,15 +637,15 @@ class Bars {
         this.o.rdmProcImpact.fg = kImpactProcColor;
         this.o.rdmProcImpact.bg = 'black';
       }
-    } else if (job == "WAR") {
+    } else if (this.job == "WAR") {
       var fontSize = 16;
       var fontWidth = fontSize * 1.8;
       var beastX = kHealthBarPosX + kHealthBarSizeW + 3;
       var beastY = kHealthBarPosY;
 
-      // Move over the big buffs.
+      // Move over the right buffs.
       // TODO: these should probably just float?
-      this.o.bigBuffsContainer.style.left = beastX + fontWidth + 7;
+      this.o.rightBuffsContainer.style.left = beastX + fontWidth + 7;
 
       this.o.beastTextBox = document.createElement("div");
       opacityContainer.appendChild(this.o.beastTextBox);
@@ -746,7 +777,7 @@ class Bars {
   }
 
   OnComboChange(skill) {
-    if (g_data.job == "RDM") {
+    if (this.job == "RDM") {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
 
@@ -758,55 +789,120 @@ class Bars {
     }
   }
 
-  OnHealthChange(job, distance, current, max) {
+  UpdateHealth() {
     if (!this.o.healthBar) return;
-    this.o.healthBar.value = current;
-    this.o.healthBar.maxvalue = max;
-    if (max > 0 && (current / max) < kLowHealthThresholdPercent)
+    this.o.healthBar.value = this.hp;
+    this.o.healthBar.maxvalue = this.maxHP;
+    if (this.maxHP > 0 && (this.hp / this.maxHP) < kLowHealthThresholdPercent)
       this.o.healthBar.fg = kLowHealthColor;
-    else if (max > 0 && (current / max) < kMidHealthThresholdPercent)
+    else if (this.maxHP > 0 && (this.hp / this.maxHP) < kMidHealthThresholdPercent)
       this.o.healthBar.fg = kMidHealthColor;
     else
       this.o.healthBar.fg = kHealthColor;
   }
 
-  OnManaChange(job, distance, current, max) {
+  UpdateMana() {
     if (!this.o.manaBar) return;
-    this.o.manaBar.value = current;
-    this.o.manaBar.maxvalue = max;
+    this.o.manaBar.value = this.mp;
+    this.o.manaBar.maxvalue = this.maxMP;
 
     var far = -1;
-    if (job == "RDM")
+    if (this.job == "RDM")
       far = kFarThresholdOffence;
-    else if (job == "BLM")
+    else if (this.job == "BLM")
       far = kFarThresholdOffence;
 
-    if (far >= 0 && distance > far)
+    if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = kFarManaColor;
     else
       this.o.manaBar.fg = kManaColor;
   }
 
-  OnTPChange(job, distance, current, max) {
+  UpdateTP() {
     if (!this.o.tpBar) return;
-    this.o.tpBar.value = current;
-    this.o.tpBar.maxvalue = max;
+    this.o.tpBar.value = this.tp;
+    this.o.tpBar.maxvalue = this.maxTP;
+  }
+  
+  UpdateFoodBuff() {
+    if (!this.init)
+      return;
+
+    var CanShowWellFedWarning = function() {
+      if (this.inCombat)
+        return false;
+      if (this.level < kMaxLevel)
+        return true;
+      return this.zone.search(kReFoodBuff) >= 0;
+    }
+    
+    // Returns the number of ms until it should be shown. If <= 0, show it.
+    var TimeToShowWellFedWarning = function() {
+      var now_ms = Date.now();
+      var show_at_ms = this.foodBuffExpiresTimeMs - (kHideWellFedAboveSeconds * 1000);
+      return show_at_ms - now_ms;
+    }
+
+    window.clearTimeout(this.foodBuffTimer);
+    this.foodBuffTimer = null;
+
+    var canShow = CanShowWellFedWarning.bind(this)();
+    var showAfterMs = TimeToShowWellFedWarning.bind(this)();
+
+    if (!canShow || showAfterMs > 0) {
+      this.o.leftBuffsList.removeElement('foodbuff');
+      if (canShow)
+        this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
+    } else {
+      var outer = document.createElement('div');
+      outer.style.borderStyle = 'solid';
+      outer.style.borderColor = '#000';
+      outer.style.borderWidth = kBigBuffBorderSize;
+      outer.style.width = kBigBuffIconWidth - kBigBuffBorderSize * 2;
+      outer.style.height = kBigBuffIconHeight - kBigBuffBorderSize * 2;
+      outer.style.backgroundColor = 'yellow';
+      var inner = document.createElement('div');
+      outer.appendChild(inner);
+      inner.style.borderWidth = kBigBuffBorderSize;
+      inner.style.left = kBigBuffBorderSize;
+      inner.style.top = kBigBuffBorderSize;
+      inner.style.position = 'relative';
+      inner.style.borderStyle = 'solid';
+      inner.style.borderColor = '#000';
+      inner.style.width = kBigBuffIconWidth - kBigBuffBorderSize * 6;
+      inner.style.height = kBigBuffIconHeight - kBigBuffBorderSize * 6;
+      inner.style.backgroundImage = 'url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAA4ADgDASIAAhEBAxEB/8QAHQAAAQQDAQEAAAAAAAAAAAAAAAUGBwgBAgQJA//EADEQAAEDAwIEBAUDBQAAAAAAAAECAwQABREGIQcSMUEIEyJhFDJRcYGRobEWI0PB4f/EABsBAAICAwEAAAAAAAAAAAAAAAQFAwYAAQIH/8QAJxEAAQMDAwQBBQAAAAAAAAAAAQACAwQRIQUSQRMiMZFxBlGhwfD/2gAMAwEAAhEDEQA/AKaY6A9TRtgDrg1gbGuiAy1Inx47shMdp51KFur6NgkAqPsOtaKxPSy8IeI14s8G9QdJXNdsnuttR5PkHlVzqCUqx83Jkj14x71POjPB2CtStX6zYS62AVw7Y1zqTncBSlY/YfY96s7A+H07oa2x7U62qHAtqUsrbWFIcShscq+boQcZz3zmmToB19PEdpuO07L86Cp2fN5yQc7pCuw36D3NVOp1qYv2MwmcdEC0uKqV4o+F1j4dXyKjTPx6recsPqluBR84ZV6cduX6/SoZVjAAG9XD8TKI+odD6jSl8plRHhcvLQgqCkhQSd+mMEnNU7zTfR6t1TAS83IJH7H4Q9ZCIngDkLYYyB37kUVhs+r3opshFrUjeH7h1H4ma4XZJ9yft0CJDdmy32WudaW0YG3YbqTuf5xUdJ3UBVpPAFMsNvv1/ck3Rpq+S2URokZzPrbB5lK+h3CRjY0JWzGGBzxwpImb3hqszoB61f0Ha4Fmt8li1xGjEYbmHLi20ZRk/XOM/nGK6NQXTTujLLJXzR4C3kK8ppDZKnVnp03wP0FK8RpfKS4jlI+VOKjbjBE1Bbb8NQ26I3LiPIbYcBSCWyCcA5GwOetUDe43eclPwxpIaMBIlz0/50GUuK2zInT7b8GwFnLSs46/qN/YfXIopfLXMsl5l2i4thuXDdU08lKgoBQODuOtehdljSE22PDdWGn1KyQk5CSSDyj7VSbxC3aNeeLd7kRoCYYZcEZzA3dW2OVSz064/IApv9MTP60kfkWvf4wELqbG7Gu5TBR8+worLZwoEUVc0mQg+nGNx096uh4bvD83pi5WPXeobwF3kxvjGbOlASpkrQcFSubJICjtjG3fpVa/D9o1euuLNjsWSGDID0khQSQ0361EZ9k4233q+Grk2Z3XMDUMnVlriRIeMMpeCnTyj5AAdkk7kfakGtVhiAiYfPn4RlHEHm54ShxDi6huOmnY+mJSo1yckN5dCuUpb5gVYJO3f79O9ba9WpOmoVveWXFvuttuOd8pAKj/ANpIv/FvS1u8wwm5V3cz8scBA33G68DG+/2pk3ziK1qWfFQxFajiKlZEZL4WtwrABKT8pIxnGaqjz2Juxji4Ywl2RKfacgwYSI65khavJS6opTyp67gHfpUb+JHQca/cOZV4tUMpulvdMxxLf+VABDiSkDdQGVZ9vens0/Z5Jt1wZvUGPPiNqaDUxJQBzdzncEfXpvSlJuFjgw2mn73DcaLfLKT5oUl3IPNnB6Hf7UNTyup3slYMg+1NIwSAtPK88WzjtvRTl4mx9NxteXVvSMtcqxl8mI4tPLsQCoAYHpCioA43AFFenxv6jA4C11WHN2mxTehSJcSQHokh6M8MgLbWUKH13FO+z8QbrEaDcuOzLx0czyue+/T9qKK4npopxaRt13HM+M9psl9viBY3m8y4sxlfYAhY/wBV0N6700kDyvjkKSchaWwFA+xzRRS86PTEc+0SK+UG2PS+svi6y2wBHjyJ7mMH4nlx+uCf5pjaq1vfdR/2pS0MRh0YYHKn8ncn8nHtRRU1PpdLA7c1mfuc/wB6UclbPKNpdhNlCT5iRylWTjA3JooopihV/9k=)';
+      inner.style.backgroundColor = '#888';
+      inner.style.backgroundRepeat = 'no-repeat';
+      inner.style.backgroundSize = Math.max(kBigBuffIconWidth, kBigBuffIconHeight) - kBigBuffBorderSize * 2 + 'px';
+      inner.style.backgroundPosition = 'center';
+      this.o.leftBuffsList.addElement('foodbuff', outer, -1);
+    }
+    
   }
 
-  OnInCombatChanged(inCombat) {
-    if (inCombat)
-      this.OnPullCountdown(0);
+  OnInCombatChanged(e) {
+    this.inCombat = e.detail.inCombat;
+    if (this.inCombat)
+      this.SetPullCountdown(0);
 
     var opacityContainer = document.getElementById("opacity-container");
     if (opacityContainer != null) {
-      if (inCombat || !kLowerOpacityOutOfCombat)
+      if (this.inCombat || !kLowerOpacityOutOfCombat)
         opacityContainer.style.opacity = 1.0;
       else
         opacityContainer.style.opacity = 0.5;
     }
+
+    this.UpdateFoodBuff();
   }
 
-  OnPullCountdown(seconds) {
+  OnZoneChanged(e) {
+    this.zone = e.detail.zoneName;
+    this.UpdateFoodBuff();
+  }
+
+  SetPullCountdown(seconds) {
     if (this.o.pullCountdown == null) return;
 
     var in_countdown = seconds > 0;
@@ -829,11 +925,11 @@ class Bars {
         kBigBuffBorderSize,
         settings.borderColor, settings.borderColor,
         settings.icon);
-    this.o.bigBuffsList.addElement(name, aura, settings.sortKey);
+    this.o.rightBuffsList.addElement(name, aura, settings.sortKey);
     var that = this;
     window.clearTimeout(settings.timeout);
     settings.timeout = window.setTimeout(function() {
-      that.o.bigBuffsList.removeElement(name);
+      that.o.leftBuffsList.removeElement(name);
     }, seconds * 1000);
     if ('sound' in settings) {
       var audio = new Audio(settings.sound);
@@ -842,210 +938,205 @@ class Bars {
       audio.play();
     }
   }
-}
-
-class TrackingData {
-  constructor() {
-    this.job = "";
-    this.hp = 0;
-    this.maxHP = 0;
-    this.mp = 0;
-    this.maxMP = 0;
-    this.tp = 0;
-    this.maxTP = 0;
-    this.distance = -1;
-    this.whiteMana = -1;
-    this.blackMana = -1;
-    this.beast = -1;
-    this.inCombat = false;
-    this.combo = 0;
-    this.comboTimer = null;
-  }
-}
-
-var g_data = new TrackingData();
-var g_bars = new Bars();
-var g_combo = null;
-
-document.addEventListener("onPlayerChangedEvent", function (e) {
-  if (!g_init) {
-    kMe = e.detail.name;
-    setupRegexes(kMe);
-    setupBuffTracker(kMe);
-    g_combo = setupComboTracker(kMe, g_bars.OnComboChange.bind(g_bars));
-    g_init = true;
-  }
-
-  var update_job = false;
-  var update_hp = false;
-  var update_mp = false;
-  var update_tp = false;
-  if (e.detail.job != g_data.job) {
-    g_data.job = e.detail.job;
-    g_combo.AbortCombo();  // Combos are job specific.
-    update_job = update_hp = update_mp = update_tp = true;
-  }
-  if (e.detail.currentHP != g_data.hp || e.detail.maxHP != g_data.maxHP) {
-    g_data.hp = e.detail.currentHP;
-    g_data.maxHP = e.detail.maxHP;
-    update_hp = true;
-
-    if (g_data.hp == 0) {
-      g_combo.AbortCombo();  // Death resets combos.
+  
+  OnPlayerChanged(e) {
+    if (!this.init) {
+      this.me = e.detail.name;
+      setupRegexes(this.me);
+      setupBuffTracker(this.me);
+      this.combo = setupComboTracker(this.me, this.OnComboChange.bind(this));
+      this.init = true;
     }
-  }
-  if (e.detail.currentMP != g_data.mp || e.detail.maxMP != g_data.maxMP) {
-    g_data.mp = e.detail.currentMP;
-    g_data.maxMP = e.detail.maxMP;
-    update_mp = true;
-  }
-  if (e.detail.currentTP != g_data.tp || e.detail.maxTP != g_data.maxTP) {
-    g_data.tp = e.detail.currentTP;
-    g_data.maxTP = e.detail.maxTP;
-    update_tp = true;
-  }
-  if (update_job) {
-    g_bars.OnJobChange(g_data.job);
-    // When reloading, we don't hear about combat state if out
-    // of combat. So use this to set things up.
-    g_bars.OnInCombatChanged(g_data.inCombat);
-  }
-  if (update_hp)
-    g_bars.OnHealthChange(g_data.job, g_data.distance, g_data.hp, g_data.maxHP);
-  if (update_mp)
-    g_bars.OnManaChange(g_data.job, g_data.distance, g_data.mp, g_data.maxMP);
-  if (update_tp)
-    g_bars.OnTPChange(g_data.job, g_data.distance, g_data.tp, g_data.maxTP);
 
-  if (g_data.job == "RDM") {
-      if (update_job ||
-          e.detail.jobDetail.whiteMana != g_data.whiteMana ||
-          e.detail.jobDetail.blackMana != g_data.blackMana) {
-          g_data.whiteMana = e.detail.jobDetail.whiteMana;
-          g_data.blackMana = e.detail.jobDetail.blackMana;
-          g_bars.OnRedMageUpdate(g_data.whiteMana, g_data.blackMana);
+    var update_job = false;
+    var update_hp = false;
+    var update_mp = false;
+    var update_tp = false;
+    var update_level = false;
+    if (e.detail.job != this.job) {
+      this.job = e.detail.job;
+      this.combo.AbortCombo();  // Combos are job specific.
+      update_job = update_hp = update_mp = update_tp = true;
+    }
+    if (e.detail.level != this.level) {
+      this.level = e.detail.level;
+      update_level = true;
+    }
+    if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP) {
+      this.hp = e.detail.currentHP;
+      this.maxHP = e.detail.maxHP;
+      update_hp = true;
+
+      if (this.hp == 0) {
+        g_combo.AbortCombo();  // Death resets combos.
       }
-  } else if (g_data.job == "WAR") {
-    if (update_job || e.detail.jobDetail.beast != g_data.beast) {
-        g_data.beast = e.detail.jobDetail.beast;
-        g_bars.OnWarUpdate(g_data.beast);
+    }
+    if (e.detail.currentMP != this.mp || e.detail.maxMP != this.maxMP) {
+      this.mp = e.detail.currentMP;
+      this.maxMP = e.detail.maxMP;
+      update_mp = true;
+    }
+    if (e.detail.currentTP != this.tp || e.detail.maxTP != this.maxTP) {
+      this.tp = e.detail.currentTP;
+      this.maxTP = e.detail.maxTP;
+      update_tp = true;
+    }
+    if (update_job) {
+      this.UpdateJob();
+      // When reloading, we don't hear about combat state if out
+      // of combat. So use this to set things up.
+      this.OnInCombatChanged({ detail: false });
+    }
+    if (update_hp)
+      this.UpdateHealth();
+    if (update_mp)
+      this.UpdateMana();
+    if (update_tp)
+      this.UpdateTP();
+    if (update_level)
+      this.UpdateFoodBuff();
+
+    if (this.job == "RDM") {
+        if (update_job ||
+            e.detail.jobDetail.whiteMana != this.whiteMana ||
+            e.detail.jobDetail.blackMana != this.blackMana) {
+            this.whiteMana = e.detail.jobDetail.whiteMana;
+            this.blackMana = e.detail.jobDetail.blackMana;
+            this.OnRedMageUpdate(this.whiteMana, this.blackMana);
+        }
+    } else if (this.job == "WAR") {
+      if (update_job || e.detail.jobDetail.beast != this.beast) {
+          this.beast = e.detail.jobDetail.beast;
+          this.OnWarUpdate(this.beast);
+      }
     }
   }
-});
-
-document.addEventListener("onTargetChangedEvent", function (e) {
-  var update = false;
-  if (e.detail.name == null) {
-    if (g_data.distance != -1) {
-      g_data.distance = -1;
+  
+  OnTargetChanged(e) {
+    var update = false;
+    if (e.detail.name == null) {
+      if (this.distance != -1) {
+        this.distance = -1;
+        update = true;
+      }
+    } else if (e.detail.distance != this.distance, this.job) {
+      this.distance = e.detail.distance;
       update = true;
     }
-  } else if (e.detail.distance != g_data.distance, g_data.job) {
-    g_data.distance = e.detail.distance;
-    update = true;
-  }
-  if (update) {
-    g_bars.OnHealthChange(g_data.job, g_data.distance, g_data.hp, g_data.maxHP);
-    g_bars.OnManaChange(g_data.job, g_data.distance, g_data.mp, g_data.maxMP);
-    g_bars.OnTPChange(g_data.job, g_data.distance, g_data.tp, g_data.maxTP);
-  }
-});
-
-document.addEventListener("onInCombatChangedEvent", function (e) {
-  g_data.inCombat = e.detail.inCombat;
-  g_bars.OnInCombatChanged(g_data.inCombat);
-});
-
-document.addEventListener("onLogEvent", OnLogEvent);
-
-function OnLogEvent(e) {
-  if (!g_init)
-    return;
-
-  for (var i = 0; i < e.detail.logs.length; i++) {
-    var log = e.detail.logs[i];
-    
-    var r = log.match(/:Battle commencing in ([0-9]+) seconds!/);
-    if (r != null) {
-      var seconds = parseInt(r[1]);
-      g_bars.OnPullCountdown(seconds);
-      continue;
+    if (update) {
+      this.UpdateHealth();
+      this.UpdateMana();
+      this.UpdateTP();
     }
-    if (log.search(/Countdown canceled by /) >= 0) {
-      g_bars.OnPullCountdown(0);
-      continue;
-    }
+  }
 
-    for (var name in kBigBuffTracker) {
-      var settings = kBigBuffTracker[name];
-      var r = log.match(settings.regex);
+  OnLogEvent(e) {
+    if (!this.init)
+      return;
+
+    for (var i = 0; i < e.detail.logs.length; i++) {
+      var log = e.detail.logs[i];
+      
+      var r = log.match(/:Battle commencing in ([0-9]+) seconds!/);
       if (r != null) {
-        var seconds = 0;
-        if ('durationSeconds' in settings) {
-          seconds = settings.durationSeconds;
-        } else {
-          console.assert('durationPosition' in settings, "Either durationSeconds or durationPosition must be present for " + name);
-          seconds = r[settings.durationPosition];
+        var seconds = parseInt(r[1]);
+        this.SetPullCountdown(seconds);
+        continue;
+      }
+      if (log.search(/Countdown canceled by /) >= 0) {
+        this.SetPullCountdown(0);
+        continue;
+      }
+
+      for (var name in kBigBuffTracker) {
+        var settings = kBigBuffTracker[name];
+        var r = log.match(settings.regex);
+        if (r != null) {
+          var seconds = 0;
+          if ('durationSeconds' in settings) {
+            seconds = settings.durationSeconds;
+          } else {
+            console.assert('durationPosition' in settings, "Either durationSeconds or durationPosition must be present for " + name);
+            seconds = r[settings.durationPosition];
+          }
+          this.OnBigBuff(name, seconds, settings);
         }
-        g_bars.OnBigBuff(name, seconds, settings);
       }
+
+      if (this.combo.ParseLog(log))
+        continue;
+
+      if (this.job == "RDM") {
+        var r = log.match(kReRdmBlackManaProc);
+        if (r != null) {
+          var seconds = parseFloat(r[1]);
+          this.OnRedMageProcBlack(seconds);
+          continue;
+        }
+        r = log.match(kReRdmWhiteManaProc);
+        if (r != null) {
+          var seconds = parseFloat(r[1]);
+          this.OnRedMageProcWhite(seconds);
+          continue;
+        }
+        r = log.match(kReRdmImpactProc);
+        if (r != null) {
+          var seconds = parseFloat(r[1]);
+          this.OnRedMageProcImpact(seconds);
+          continue;
+        }
+        if (log.search(kReRdmBlackManaProcEnd) >= 0) {
+          this.OnRedMageProcBlack(0);
+          continue;
+        }
+        if (log.search(kReRdmWhiteManaProcEnd) >= 0) {
+          this.OnRedMageProcWhite(0);
+          continue;
+        }
+        if (log.search(kReRdmImpactProcEnd) >= 0) {
+          this.OnRedMageProcImpact(0);
+          continue;
+        }
+      }
+
+      // For learning boss ability codes.
+      //if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
+      //  console.log(log);
+
+      if (log.search(/::test::/) >= 0)
+        this.Test();
     }
+  }
 
-    if (g_combo.ParseLog(log))
-      continue;
-
-    if (g_data.job == "RDM") {
-      var r = log.match(kReRdmBlackManaProc);
-      if (r != null) {
-        var seconds = parseFloat(r[1]);
-        g_bars.OnRedMageProcBlack(seconds);
-        continue;
-      }
-      r = log.match(kReRdmWhiteManaProc);
-      if (r != null) {
-        var seconds = parseFloat(r[1]);
-        g_bars.OnRedMageProcWhite(seconds);
-        continue;
-      }
-      r = log.match(kReRdmImpactProc);
-      if (r != null) {
-        var seconds = parseFloat(r[1]);
-        g_bars.OnRedMageProcImpact(seconds);
-        continue;
-      }
-      if (log.search(kReRdmBlackManaProcEnd) >= 0) {
-        g_bars.OnRedMageProcBlack(0);
-        continue;
-      }
-      if (log.search(kReRdmWhiteManaProcEnd) >= 0) {
-        g_bars.OnRedMageProcWhite(0);
-        continue;
-      }
-      if (log.search(kReRdmImpactProcEnd) >= 0) {
-        g_bars.OnRedMageProcImpact(0);
-        continue;
-      }
-    }
-
-    // For learning boss ability codes.
-    //if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
-    //  console.log(log);
-
-    if (log.search(/::test::/) >= 0)
-      Test();
+  Test() {
+    var logs = [];
+    logs.push(':' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30 Seconds\.');
+    logs.push(':' + this.me + ' gains the effect of Embolden from  for 20 Seconds\.');
+    logs.push(':' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds\.');
+    logs.push(':' + this.me + ' gains the effect of The Balance from  for 12 Seconds\.');
+    logs.push(':' + this.me + ':00:Dragon Sight:');
+    logs.push(':' + this.me + ':00:Chain Strategem:');
+    logs.push(':' + this.me + ':00:Trick Attack:');
+    logs.push(':' + this.me + ':00:Hypercharge:');
+    var e = { detail: { logs: logs } };
+    this.OnLogEvent(e);
   }
 }
 
-function Test() {
-  var logs = [];
-  logs.push(':' + kMe + ' gains the effect of Medicated from ' + kMe + ' for 30 Seconds\.');
-  logs.push(':' + kMe + ' gains the effect of Embolden from  for 20 Seconds\.');
-  logs.push(':' + kMe + ' gains the effect of Battle Litany from  for 25 Seconds\.');
-  logs.push(':' + kMe + ' gains the effect of The Balance from  for 12 Seconds\.');
-  logs.push(':' + kMe + ':00:Dragon Sight:');
-  logs.push(':' + kMe + ':00:Chain Strategem:');
-  logs.push(':' + kMe + ':00:Trick Attack:');
-  logs.push(':' + kMe + ':00:Hypercharge:');
-  var e = { detail: { logs: logs } };
-  OnLogEvent(e);
-}
+var g_bars = new Bars();
+
+document.addEventListener("onPlayerChangedEvent", function (e) {
+  g_bars.OnPlayerChanged(e);
+});
+document.addEventListener("onTargetChangedEvent", function (e) {
+  g_bars.OnTargetChanged(e);
+});
+document.addEventListener("onInCombatChangedEvent", function (e) {
+  g_bars.OnInCombatChanged(e);
+});
+document.addEventListener("onZoneChangedEvent", function (e) {
+  g_bars.OnZoneChanged(e);
+});
+document.addEventListener("onLogEvent", function (e) {
+  g_bars.OnLogEvent(e);
+});
