@@ -238,6 +238,11 @@ class WidgetList extends HTMLElement {
     return element;
   }
 
+  clear() {
+    for (var name in this._name_to_id)
+      removeElement(name);
+  }
+
   layout() {
     if (!this._connected)
       return;
