@@ -340,17 +340,17 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
   },
   { // Beyond Death (Delta)
     regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
-    delaySeconds: 6,
+    delaySeconds: 7,
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    condition: function(data) { return data.phase == 'delta' && matches[1] == data.me; },
+    condition: function(data, matches) { return data.phase == 'delta' && matches[1] == data.me; },
   },
   { // Beyond Death (Omega)
     regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
     delaySeconds: 8,  // 20 seconds if you want the third flood cast, 8 for the first.
     alarmText: 'Beyond Death: Die',
     sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
-    condition: function(data) { return data.phase == 'omega' && matches[1] == data.me; },
+    condition: function(data, matches) { return data.phase == 'omega' && matches[1] == data.me; },
   },
   { // Delta Attack
     regex: /:241E:Neo Exdeath starts using/,
@@ -380,17 +380,21 @@ kAurasTriggers['Unknown Zone \\(2Ba\\)'] = [
     infoText: 'Vacuum Wave soon',
     condition: function(data) { return data.almagestCount == 3 || data.almagestCount == 6; },
   },
+  { // Neverwhere.
+    regex: /:2426:Neo Exdeath starts using/,
+    run: function(data) { data.finalphase = true; },
+  },
   { // Final phase Addle warning when Reprisal is ending.
     regex: /gains the effect of Reprisal from .*? for ([0-9.]+) Seconds/,
     durationSeconds: function(data, matches) { return parseFloat(matches[1]); },
     infoText: 'Reprisal active',
-    condition: function(data) { return data.alphaCount == 3 && !data.reprisal; },
+    condition: function(data) { return data.finalphase && !data.reprisal; },
     run: function(data) { data.reprisal = true; },
   },
   { // Final phase Addle warning when Reprisal is ending.
     regex: /loses the effect of Reprisal from/,
     alertText: 'Reprisal ended',
-    condition: function(data) { return data.alphaCount == 3 && data.reprisal; },
+    condition: function(data) { return data.finalphase && data.reprisal; },
     run: function(data) { data.reprisal = false; },
   },
   { // Flare
