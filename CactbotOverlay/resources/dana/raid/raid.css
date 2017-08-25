@@ -73,3 +73,12 @@
   50% { transform: scale(1.4); }
   100% { transform: scale(1.0); }
 }
+
+#timeline-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 240px;
+  height: 120px;
+  /*border: 2px solid blue;*/
+}
