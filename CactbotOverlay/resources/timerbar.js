@@ -106,23 +106,26 @@ class TimerBar extends HTMLElement {
         }
         .text-container {
           position: absolute;
-          left: 5px;
+          left: 0px;
           top: calc(50% - 1.2ex);
-          width: calc(100% - 10px);
+          width: calc(100% - 0px);
           height: calc(100% - 2px);
           overflow: hidden;
         }
         #lefttext {
           position: relative;
           text-align: left;
+          padding: 0px 0.4em 0px 0.4em;
         }
         #centertext {
           position: relative;
           text-align: center;
+          padding: 0px 0.4em 0px 0.4em;
         }
         #righttext {
           position: relative;
           text-align: right;
+          padding: 0px 0.4em 0px 0.4em;
         }
       </style>
       <div id="root">
@@ -241,10 +244,7 @@ class TimerBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (this._style_fill)
-      this._toward_right = !this._toward_right;
-    
-    if (this._toward_right)
+    if (this._toward_right ^ this._style_fill)
       this.foregroundElement.style.transformOrigin = "100% 0%";
     else
       this.foregroundElement.style.transformOrigin = "0% 0%";
@@ -268,7 +268,7 @@ class TimerBar extends HTMLElement {
   }
 
   draw() {
-    var percent = this._duration <= 0 ? 1 : this._value / this._duration;
+    var percent = this._duration <= 0 ? 0 : this._value / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
     var intvalue = parseInt(this._value + 0.99999999999);
