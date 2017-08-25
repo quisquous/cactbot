@@ -1,3 +1,75 @@
 .hide {
   display: none !important;
 }
+
+#auras-text-container {
+  position: absolute;
+  top: 310px;
+  width: 100%;
+  text-align: center;
+}
+
+#auras-text-info {
+  position: absolute;
+  width: 100%;
+  top: 5ex;
+  color: #2b2;
+  font-size: 140%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
+}
+
+#auras-text-info .resize-helper {
+  display: none;
+}
+
+.resizeHandle #auras-text-info .resize-helper {
+  /* When unlocked for move/resize. */
+  display: inline-block;
+}
+
+#auras-text-alert {
+  position: absolute;
+  width: 100%;
+  top: 2ex;
+  color: #fb0;
+  font-size: 170%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+#auras-text-alert .resize-helper {
+  display: none;
+}
+
+.resizeHandle #auras-text-alert .resize-helper {
+  /* When unlocked for move/resize. */
+  display: inline-block;
+}
+
+#auras-text-alarm {
+  position: absolute;
+  width: 100%;
+  top: -0.7ex;
+  color: #f30;
+  font-size: 230%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+#auras-text-alarm .resize-helper {
+  display: none;
+}
+
+.resizeHandle #auras-text-alarm .resize-helper {
+  /* When unlocked for move/resize. */
+  display: inline-block;
+}
+
+@keyframes zoom-in-out {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1.0); }
+}
