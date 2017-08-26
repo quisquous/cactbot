@@ -386,7 +386,6 @@ class TimelineUI {
   }
   
   OnTimerExpiresSoon(id) {
-    delete this.expireTimers[e.id];
     if (id in this.activeBars)
       this.activeBars[id].fg = kBarExpiresSoonColor;
   }
