@@ -338,6 +338,7 @@ class TimelineUI {
     this.timerlist.elementheight = kBarHeight + 2;
     this.timerlist.toward = "down right";
     this.activeBars = {};
+    this.expireTimers = {};
   }
 
   SetTimeline(timeline) {
@@ -378,17 +379,25 @@ class TimelineUI {
 
     this.timerlist.addElement(e.id, div, e.sortTime);
     this.activeBars[e.id] = bar;
+    if (e.id in this.expireTimers) {
+      window.clearTimeout(this.expireTimers[e.id])
+      delete this.expireTimers[e.id];
+    }
   }
   
   OnTimerExpiresSoon(id) {
+    delete this.expireTimers[e.id];
     if (id in this.activeBars)
       this.activeBars[id].fg = kBarExpiresSoonColor;
   }
   
   OnRemoveTimer(e, expired) {
     if (expired && kKeepExpiredTimerBarsForSeconds) {
-      window.setTimeout(this.OnRemoveTimer.bind(this, e, false), kKeepExpiredTimerBarsForSeconds * 1000);
+      this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), kKeepExpiredTimerBarsForSeconds * 1000);
       return;
+    } else if (e.id in this.expireTimers) {
+      window.clearTimeout(this.expireTimers[e.id])
+      delete this.expireTimers[e.id];
     }
     this.timerlist.removeElement(e.id);
     delete this.activeBars[e.id];
