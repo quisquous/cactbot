@@ -282,5 +282,15 @@ namespace Cactbot {
       public string name;
       public DPSDetail dps;
     }
+
+    public class DataFilesRead : JSEvent {
+      public DataFilesRead(Dictionary<string, string> files) {
+        this.files = files;
+      }
+
+      public string EventName() { return "onDataFilesRead"; }
+
+      public Dictionary<string, string> files;
+    }
   }
 }

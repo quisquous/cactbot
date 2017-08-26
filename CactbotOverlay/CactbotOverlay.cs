@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using RainbowMage.OverlayPlugin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -83,6 +84,9 @@ namespace Cactbot {
       OnPartyWipe(new JSEvents.PartyWipeEvent());
     }
 
+    public delegate void DataFilesReadHandler(JSEvents.DataFilesRead e);
+    public event DataFilesReadHandler OnDataFilesRead;
+
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
       main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
@@ -122,6 +126,7 @@ namespace Cactbot {
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
+      OnDataFilesRead += (e) => DispatchToJS(e);
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
@@ -200,8 +205,33 @@ namespace Cactbot {
       }
 
       if (reset_notify_state_)
-        this.notify_state_ = new NotifyState();
+        notify_state_ = new NotifyState();
       reset_notify_state_ = false;
+
+      if (!notify_state_.sent_data_dir) {
+        notify_state_.sent_data_dir = true;
+
+        string[] data_filenames = null;
+        if (Config.DataDir.Length > 0) {
+          try {
+            data_filenames = Directory.GetFiles(Config.DataDir);
+          } catch (Exception e) {
+            LogError("Unable to load the data files directory: " + e.Message);
+          }
+        }
+        if (data_filenames != null) {
+          var file_data = new Dictionary<string, string>();
+          foreach (string filename in data_filenames) {
+            try {
+              var file = File.OpenText(filename);
+              file_data[Path.GetFileName(filename)] = file.ReadToEnd();
+            } catch (Exception e) {
+              LogError("Unable to read data file: " + e.Message);
+            }
+          }
+          OnDataFilesRead(new JSEvents.DataFilesRead(file_data));
+        }
+      }
 
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
@@ -405,6 +435,7 @@ namespace Cactbot {
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {
+      public bool sent_data_dir = false;
       public bool game_exists = false;
       public bool game_active = false;
       public bool in_combat = false;
