@@ -204,6 +204,7 @@ function setupRegexes(me) {
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
 var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
 var kNonCombatJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL", "MIN", "BTN", "FSH"];
+var kMeleeWithMpJobs = ["BRD", "DRK"];
 
 function isCasterJob(job) {
   return kCasterJobs.indexOf(job) >= 0;
@@ -215,6 +216,10 @@ function isTankJob(job) {
 
 function isCombatJob(job) {
   return kNonCombatJobs.indexOf(job) == -1;
+}
+
+function doesJobNeedMPBar(job) {
+  return isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
 }
 
 var kBigBuffTracker = null;
@@ -389,26 +394,30 @@ class Bars {
       this.o.healthBar.lefttext = "value";
     }
 
-    var secondBarTop = kHealthBarPosY + parseInt(this.o.healthBar.height) + kManaBarMarginY;
-    if (isCasterJob(this.job)) {
+    var nextBarTop = kHealthBarPosY + parseInt(this.o.healthBar.height) + kManaBarMarginY;
+    if (doesJobNeedMPBar(this.job)) {
       this.o.manaContainer = document.createElement("div");
       this.o.manaBar = document.createElement("resource-bar");
       this.o.manaContainer.appendChild(this.o.manaBar);
       opacityContainer.appendChild(this.o.manaContainer);
 
       this.o.manaContainer.style.position = "absolute";
-      this.o.manaContainer.style.top = secondBarTop;
+      this.o.manaContainer.style.top = nextBarTop;
       this.o.manaContainer.style.left = kManaBarPosX;
       this.o.manaBar.width = kHealthBarSizeW;
       this.o.manaBar.height = kManaBarSizeH;
-    } else {
+
+      nextBarTop += parseInt(this.o.manaBar.height) + kManaBarMarginY;
+    }
+
+    if (!isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement("div");
       this.o.tpBar = document.createElement("resource-bar");
       this.o.tpContainer.appendChild(this.o.tpBar);
       opacityContainer.appendChild(this.o.tpContainer);
 
       this.o.tpContainer.style.position = "absolute";
-      this.o.tpContainer.style.top = secondBarTop;
+      this.o.tpContainer.style.top = nextBarTop;
       this.o.tpContainer.style.left = kManaBarPosX;
       this.o.tpBar.width = kHealthBarSizeW;
       this.o.tpBar.height = kHealthBarSizeH;
