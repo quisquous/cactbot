@@ -987,7 +987,7 @@ class Bars {
       update_hp = true;
 
       if (this.hp == 0) {
-        g_combo.AbortCombo();  // Death resets combos.
+        this.combo.AbortCombo();  // Death resets combos.
       }
     }
     if (e.detail.currentMP != this.mp || e.detail.maxMP != this.maxMP) {
