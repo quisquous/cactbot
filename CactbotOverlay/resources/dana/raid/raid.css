@@ -4,7 +4,7 @@
 
 #auras-text-container {
   position: absolute;
-  top: 310px;
+  top: 296px;
   width: 100%;
   text-align: center;
 }
@@ -12,7 +12,7 @@
 #auras-text-info {
   position: absolute;
   width: 100%;
-  top: 5ex;
+  top: 74px;
   color: #2b2;
   font-size: 140%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
@@ -31,7 +31,7 @@
 #auras-text-alert {
   position: absolute;
   width: 100%;
-  top: 2ex;
+  top: 44px;
   color: #fb0;
   font-size: 170%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
@@ -51,7 +51,7 @@
 #auras-text-alarm {
   position: absolute;
   width: 100%;
-  top: -0.7ex;
+  top: 0px;
   color: #f30;
   font-size: 230%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
