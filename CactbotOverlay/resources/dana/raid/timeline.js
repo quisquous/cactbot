@@ -20,7 +20,7 @@ var kBarExpiresSoonColor = '#f88';
 // # arbitrary one will be used (don't do that). This is useful when the FFXIV plugin
 // # does not know the name of the zone yet, but you want to specify the name for once
 // # it becomes known. If this isn't specified, the name of the file (excluding the
-// # extention) will be used as a regular expression instead.
+// # extention) will be used instead, and must fully match the zone name.
 // zone "zone-regex"
 class Timeline {
   constructor(zoneRegex, text) {
@@ -446,7 +446,7 @@ class TimelineController {
     this.timelines = [];
     for (var f in files) {
       var nameWithoutExtension = f.split('.').slice(0, -1).join('.');
-      this.timelines.push(new Timeline(nameWithoutExtension, files[f]));
+      this.timelines.push(new Timeline('^' + nameWithoutExtension + '$', files[f]));
     }
   }
 }
