@@ -302,6 +302,11 @@ namespace Cactbot {
         } catch (InvalidOperationException) {
           // TODO: maybe this needs to be locked?
           // "Collection was modified; enumeration operation may not execute"
+        } catch (ArgumentException e) {
+          // TODO: testing, attempting to ignore an exception inside of GetExportString where
+          // an Array.Copy occurs into the allies array but ACT thinks there are more allies than
+          // entries in the allies list.
+          LogInfo("Argument exception: " + e.ToString());
         }
       }
       return dict;
