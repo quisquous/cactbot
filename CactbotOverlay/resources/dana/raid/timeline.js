@@ -116,8 +116,11 @@ class Timeline {
             if (argMatch) {
               if (argMatch[2]) {
                 sync.start = seconds - parseFloat(argMatch[2]);
+                sync.end = seconds + parseFloat(argMatch[3]);
+              } else {
+                sync.start = seconds - (parseFloat(argMatch[3]) / 2);
+                sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
-              sync.end = seconds + parseFloat(argMatch[3]);
             }
             argMatch = commandMatch[2].match(/jump ([0-9]+)(\s.*)?$/);
             if (argMatch)
