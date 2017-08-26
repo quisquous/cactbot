@@ -11,6 +11,17 @@ var kBarFontSize = 14;
 var kBarColor = '#88f';
 var kBarExpiresSoonColor = '#f88';
 
+// This class reads the format of ACT Timeline plugin, described here:
+// http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin
+// There are a some extensions to the original format:
+//
+// # Allows you to specify a regular expression, which when matched the timeline file
+// # will be used.  If more than one file has a matching regex for the current zone, an
+// # arbitrary one will be used (don't do that). This is useful when the FFXIV plugin
+// # does not know the name of the zone yet, but you want to specify the name for once
+// # it becomes known. If this isn't specified, the name of the file (excluding the
+// # extention) will be used as a regular expression instead.
+// zone "zone-regex"
 class Timeline {
   constructor(zoneRegex, text) {
     /*
