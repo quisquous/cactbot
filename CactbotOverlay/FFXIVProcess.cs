@@ -121,7 +121,8 @@ namespace Cactbot {
     //   0x1698 bytes in: int32 maxmp;
     //   0x169C bytes in: int16 tp;
     //   ...
-    //   0x16C2 bytes in: EntityJob job;  // 2 bytes.
+    //   0x16C2 bytes in: EntityJob job;  // 1 byte.
+    //   ...
     //   0x16C4 bytes in: int16 level;
     //   ...
     //   0x18B4 bytes in: int casting_spell_id;  // 4 bytes (maybe 2?)
