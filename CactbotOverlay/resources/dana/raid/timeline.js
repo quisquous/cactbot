@@ -86,7 +86,7 @@ class Timeline {
         continue;
       }
       
-      match = line.match(/^([0-9]+)\s+"(.*?)"(\s+(.*))?/);
+      match = line.match(/^([0-9]+(?:\.[0-9]+)?)\s+"(.*?)"(\s+(.*))?/);
       if (match == null) continue;
       
       var seconds = parseFloat(match[1]);
@@ -99,7 +99,7 @@ class Timeline {
       };
       var commands = match[3];
       if (commands) {
-        var commandMatch = commands.match(/duration ([0-9]+)(\s.*)?$/);
+        var commandMatch = commands.match(/duration ([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
         if (commandMatch)
           o.duration = parseFloat(commandMatch[1]);
         commandMatch = commands.match(/sync \/(.*)\/(\s.*)?$/);
@@ -112,7 +112,7 @@ class Timeline {
             time: seconds,
           }
           if (commandMatch[2]) {
-            var argMatch = commandMatch[2].match(/window (([0-9]+),)?([0-9]+)(\s.*)?$/);
+            var argMatch = commandMatch[2].match(/window (([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
             if (argMatch) {
               if (argMatch[2]) {
                 sync.start = seconds - parseFloat(argMatch[2]);
@@ -122,7 +122,7 @@ class Timeline {
                 sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
             }
-            argMatch = commandMatch[2].match(/jump ([0-9]+)(\s.*)?$/);
+            argMatch = commandMatch[2].match(/jump ([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
             if (argMatch)
               sync.jump = parseFloat(argMatch[1]);
           }
@@ -172,7 +172,7 @@ class Timeline {
   _CollectActiveSyncs(fightNow) {
     this.activeSyncs = [];
     for (var i = this.nextSyncEnd; i < this.syncEnds.length; ++i) {
-      if (this.syncEnds[i].start < fightNow)
+      if (this.syncEnds[i].start <= fightNow)
         this.activeSyncs.push(this.syncEnds[i]);
     }
   }
