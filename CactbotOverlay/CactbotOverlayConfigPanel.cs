@@ -23,7 +23,6 @@ namespace Cactbot {
       this.checkMiniParseClickthru.Checked = config.IsClickThru;
       this.checkLock.Checked = config.IsLocked;
       this.textUrl.Text = config.Url;
-      this.textDataDir.Text = config.DataDir;
       this.checkEnableGlobalHotkey.Checked = config.GlobalHotkeyEnabled;
       this.textGlobalHotkey.Enabled = this.checkEnableGlobalHotkey.Checked;
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
@@ -117,28 +116,8 @@ namespace Cactbot {
       }
     }
 
-    private void buttonSelectDataDir_Click(object sender, EventArgs e) {
-      var dialog = new FolderBrowserDialog();
-      if (config.DataDir.Length > 0)
-        dialog.SelectedPath = config.DataDir;
-      else {
-        try {
-          dialog.SelectedPath = System.IO.Path.GetDirectoryName(config.Url);
-        } catch (Exception) { }
-      }
-
-      if (dialog.ShowDialog() == DialogResult.OK) {
-        this.config.DataDir = dialog.SelectedPath;
-        this.textDataDir.Text = this.config.DataDir;
-      }
-    }
-
     private void textUrl_Leave(object sender, EventArgs e) {
       this.config.Url = textUrl.Text;
-    }
-
-    private void textDataDir_Leave(object sender, EventArgs e) {
-      this.config.DataDir = textDataDir.Text;
     }
 
     private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {

@@ -32,7 +32,6 @@ namespace Cactbot {
       get { return typeof(CactbotOverlay); }
     }
 
-    public string DataDir = "";
     public bool LogUpdatesEnabled = true;
     public double DpsUpdatesPerSecond = 3;
 

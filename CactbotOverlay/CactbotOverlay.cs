@@ -211,10 +211,17 @@ namespace Cactbot {
       if (!notify_state_.sent_data_dir) {
         notify_state_.sent_data_dir = true;
 
+        string data_dir = null;
         string[] data_filenames = null;
-        if (Config.DataDir.Length > 0) {
+        try {
+          data_dir = new Uri(new Uri(Config.Url), "data").LocalPath;
+        } catch (Exception e) {
+          LogError("Unable to build data path: " + e.Message);
+        }
+        if (data_dir != null) {
           try {
-            data_filenames = Directory.GetFiles(Config.DataDir);
+            if (Directory.Exists(data_dir))
+              data_filenames = Directory.GetFiles(data_dir);
           } catch (Exception e) {
             LogError("Unable to load the data files directory: " + e.Message);
           }
