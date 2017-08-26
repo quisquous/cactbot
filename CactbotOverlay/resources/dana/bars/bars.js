@@ -40,6 +40,8 @@ var kHealthColor = "rgb(59, 133, 4)";
 var kManaColor = "rgb(188, 55, 147)"; //"rgb(57, 120, 167)";
 var kTPColor = "rgb(180, 180, 0)";
 var kBackgroundColor = "rgb(30, 30, 30)";
+var kMidTPColor = "rgb(200, 70, 15)";
+var kTPInvigorateThreshold = 600;
 var kLowManaColor = "rgb(218, 69, 177)";
 var kFarManaColor = "rgb(215, 120, 0)";
 var kLowHealthThresholdPercent = 0.2;
@@ -838,6 +840,12 @@ class Bars {
 
   UpdateTP() {
     if (!this.o.tpBar) return;
+
+    if (this.tp <= kTPInvigorateThreshold)
+      this.o.tpBar.fg = kMidTPColor;
+    else
+      this.o.tpBar.fg = kTPColor;
+
     this.o.tpBar.value = this.tp;
     this.o.tpBar.maxvalue = this.maxTP;
   }
