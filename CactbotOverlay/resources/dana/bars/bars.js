@@ -203,6 +203,7 @@ function setupRegexes(me) {
 
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
 var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
+var kNonCombatJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL", "MIN", "BTN", "FSH"];
 
 function isCasterJob(job) {
   return kCasterJobs.indexOf(job) >= 0;
@@ -210,6 +211,10 @@ function isCasterJob(job) {
 
 function isTankJob(job) {
   return kTankJobs.indexOf(job) >= 0;
+}
+
+function isCombatJob(job) {
+  return kNonCombatJobs.indexOf(job) == -1;
 }
 
 var kBigBuffTracker = null;
@@ -314,6 +319,10 @@ class Bars {
       container.removeChild(container.childNodes[0]);
 
     this.o = {};
+
+    if (!isCombatJob(this.job)) {
+      return;
+    }
 
     var opacityContainer = document.createElement("div");
     opacityContainer.id = "opacity-container";
