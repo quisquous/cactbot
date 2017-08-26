@@ -79,7 +79,7 @@ namespace Cactbot {
       WVR = 13,
       ALC = 14,
       CUL = 15,
-      MIN = 15,
+      MIN = 16,
       BTN = 17,
       FSH = 18,
       PLD = 19,
