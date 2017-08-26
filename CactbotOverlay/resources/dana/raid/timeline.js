@@ -301,7 +301,6 @@ class Timeline {
 class TimelineUI {
   constructor() {
     this.init = false;
-    this.numBarsVisible = 0;
   }
   
   Init() {
@@ -317,8 +316,9 @@ class TimelineUI {
     this.timerlist.toward = "down right";
     this.activeBars = {};
   }
-  
+
   SetTimeline(timeline) {
+    this.Init();
     if (this.timeline) {
       this.timeline.SetAddTimer(null);
       this.timeline.SetRemoveTimer(null);
@@ -327,22 +327,10 @@ class TimelineUI {
     }
 
     this.timeline = timeline;
-    this.timeline.SetAddTimer(this.OnAddTimer.bind(this));
-    this.timeline.SetRemoveTimer(this.OnRemoveTimer.bind(this));
-  }
-  
-  OnInCombat(e) {
-    if (!e.detail.inCombat && !this.inBossFight)
-      this.OnBossFightStop();
-  }
-  
-  OnBossFightStart() {
-    this.inBossFight = true;
-  }
-
-  OnBossFightStop() {
-    this.inBossFight = false;
-    this.timeline.Stop();
+    if (this.timeline) {
+      this.timeline.SetAddTimer(this.OnAddTimer.bind(this));
+      this.timeline.SetRemoveTimer(this.OnRemoveTimer.bind(this));
+    }
   }
   
   OnAddTimer(fightNow, e, channeling) {
@@ -382,30 +370,65 @@ class TimelineUI {
     this.timerlist.removeElement(e.id);
     delete this.activeBars[e.id];
   }
-  
-  OnLogEvent(e) {
-    if (!this.timeline) return;
-    for (var i = 0; i < e.detail.logs.length; ++i)
-      this.timeline.OnLogLine(e.detail.logs[i]);
-  }
 };
 
-var gTimelineUI = new TimelineUI();
+class TimelineController {
+  constructor(ui) {
+    this.ui = ui;
+    this.dataFiles = {};
+  }
+
+  OnInCombat(e) {
+    if (!e.detail.inCombat && !this.inBossFight)
+      this.OnBossFightStop();
+  }
+  
+  OnBossFightStart() {
+    this.inBossFight = true;
+  }
+
+  OnBossFightStop() {
+    this.inBossFight = false;
+    if (this.timeline)
+      this.activeTimeline.Stop();
+  }
+
+  OnLogEvent(e) {
+    if (!this.activeTimeline)
+      return;
+    for (var i = 0; i < e.detail.logs.length; ++i)
+      this.activeTimeline.OnLogLine(e.detail.logs[i]);
+  }
+
+  OnZoneChanged(e) {
+    //this.activeTimeline = new Timeline(this.dataFiles['timeline-o4s.txt']);
+    //this.ui.SetTimeline(this.activeTimeline);
+  }
+
+  SetDataFiles(files) {
+    this.dataFiles = files;
+    for (var v in files)
+      console.log(v);
+  }
+}
+
+var gTimelineController = new TimelineController(new TimelineUI());
 
 document.addEventListener("onZoneChangedEvent", function(e) {
-  gTimelineUI.Init();
-  //gTimelineUI.SetTimeline(new Timeline(timelineo4s));
+  gTimelineController.OnZoneChanged(e);
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
-  gTimelineUI.OnInCombat(e);
+  gTimelineController.OnInCombat(e);
 });
 document.addEventListener("onBossFightStart", function(e) {
-  gTimelineUI.OnBossFightStart();
+  gTimelineController.OnBossFightStart();
 });
 document.addEventListener("onBossFightEnd", function(e) {
-  gTimelineUI.OnBossFightStop();
+  gTimelineController.OnBossFightStop();
 });
-
 document.addEventListener("onLogEvent", function(e) {
-  gTimelineUI.OnLogEvent(e);
+  gTimelineController.OnLogEvent(e);
+});
+document.addEventListener("onDataFilesRead", function(e) {
+  gTimelineController.SetDataFiles(e.detail.files);
 });
