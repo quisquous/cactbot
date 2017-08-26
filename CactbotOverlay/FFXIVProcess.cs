@@ -315,7 +315,7 @@ namespace Cactbot {
           return null;
         data.tp = tp[0];
 
-        short[] job = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetJob), 1);
+        byte[] job = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetJob), 1);
         if (job == null) {
           logger_.LogInfo("job");
           return null;
