@@ -2,14 +2,14 @@
   display: none !important;
 }
 
-#auras-text-container {
+#popup-text-container {
   position: absolute;
   top: 296px;
   width: 100%;
   text-align: center;
 }
 
-#auras-text-info {
+#popup-text-info {
   position: absolute;
   width: 100%;
   top: 74px;
@@ -19,16 +19,16 @@
   will-change: transform;
 }
 
-#auras-text-info .resize-helper {
+#popup-text-info .resize-helper {
   display: none;
 }
 
-.resizeHandle #auras-text-info .resize-helper {
+.resizeHandle #popup-text-info .resize-helper {
   /* When unlocked for move/resize. */
   display: inline-block;
 }
 
-#auras-text-alert {
+#popup-text-alert {
   position: absolute;
   width: 100%;
   top: 44px;
@@ -39,16 +39,16 @@
   will-change: transform;
 }
 
-#auras-text-alert .resize-helper {
+#popup-text-alert .resize-helper {
   display: none;
 }
 
-.resizeHandle #auras-text-alert .resize-helper {
+.resizeHandle #popup-text-alert .resize-helper {
   /* When unlocked for move/resize. */
   display: inline-block;
 }
 
-#auras-text-alarm {
+#popup-text-alarm {
   position: absolute;
   width: 100%;
   top: 0px;
@@ -59,11 +59,11 @@
   will-change: transform;
 }
 
-#auras-text-alarm .resize-helper {
+#popup-text-alarm .resize-helper {
   display: none;
 }
 
-.resizeHandle #auras-text-alarm .resize-helper {
+.resizeHandle #popup-text-alarm .resize-helper {
   /* When unlocked for move/resize. */
   display: inline-block;
 }

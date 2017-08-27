@@ -41,7 +41,7 @@
   alertText = 'Info',
   // Text to show with alarm importance. May be a function(data, matches) that returns a string.
   alarmText = 'Info',
-  // Sound file to play, a key into gAurasSounds in auras-sounds.js, or a literal url.
+  // Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'.
   sound: '',
   // Volume between 0 and 1 to play |sound|.
   soundVolume: 1,
