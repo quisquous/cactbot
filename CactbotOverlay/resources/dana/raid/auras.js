@@ -18,11 +18,49 @@ class Auras {
       this.OnJobChange(e);
   }
 
+  OnDataFilesRead(e) {
+    this.triggerSets = [];
+    for (var filename in e.detail.files) {
+      // Reads from the data/triggers/ directory.
+      if (!filename.startsWith('triggers/'))
+        continue;
+
+      var text = e.detail.files[filename];
+      var json;
+      try {
+        json = eval(text);
+      } catch (exception) {
+        console.log('Error parsing JSON from ' + filename + ': ' + exception);
+        continue;
+      }
+      if (typeof json != "object" || !(json.length >= 0)) {
+        console.log('Unexpected JSON from ' + filename + ', expected an array');
+        continue;
+      }
+      for (var i = 0; i < json.length; ++i) {
+        if (!('zoneRegex' in json[i])) {
+          console.log('Unexpected JSON from ' + filename + ', expected a zoneRegex');
+          continue;
+        }
+        if (!('triggers' in json[i])) {
+          console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+          continue;
+        }
+        if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
+          console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+          continue;
+        }
+      }
+      Array.prototype.push.apply(this.triggerSets, json);
+    }
+  }
+
   OnZoneChange(e) {
     this.triggers = [];
-    for (var zone in kAurasTriggers) {
-      if (e.detail.zoneName.search(zone) >= 0)
-        this.triggers = this.triggers.concat(kAurasTriggers[zone]);
+    for (var i = 0; i < this.triggerSets.length; ++i) {
+      var set = this.triggerSets[i];
+      if (e.detail.zoneName.search(set.zoneRegex) >= 0)
+        Array.prototype.push.apply(this.triggers, set.triggers);
     }
   }
 
@@ -195,6 +233,9 @@ document.addEventListener("onBossFightEnd", function(e) {
 });
 document.addEventListener("onLogEvent", function(e) {
   gAuras.OnLog(e);
+});
+document.addEventListener("onDataFilesRead", function(e) {
+  gAuras.OnDataFilesRead(e);
 });
 
 // Testing...
