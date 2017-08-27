@@ -24,7 +24,7 @@ var kBarExpiresSoonColor = '#f88';
 // # name.
 // zone "zone-regex"
 class Timeline {
-  constructor(zoneRegex, text) {
+  constructor(text) {
     /*
     // This needs CefBrowserSettings.web_security_disabled = true.
     var file = new XMLHttpRequest();
@@ -40,9 +40,6 @@ class Timeline {
     }
     file.send(null);
     */
-    // A regex for what zone(s) to use the timeline for. Can be overridden
-    // inside the text data.
-    this.zoneRegex = zoneRegex;
     // A set of names which will not be notified about.
     this.ignores = {};
     // Sorted by event occurance time.
@@ -75,13 +72,7 @@ class Timeline {
         line = line.substring(0, comment);
       line = line.trim();
 
-      var match = line.match(/^zone \"([^"]+)\"$/);
-      if (match != null) {
-        this.zoneRegex = match[1];
-        continue;
-      }
-      
-      match = line.match(/^hideall \"([^"]+)\"$/);
+      var match = line.match(/^hideall \"([^"]+)\"$/);
       if (match != null) {
         this.ignores[match[1]] = true;
         continue;
@@ -454,7 +445,7 @@ class TimelineController {
     this.activeTimeline = null;
     for (var i = 0; i < this.timelines.length; ++i) {
       if (e.detail.zoneName.search(this.timelines[i].zoneRegex) >= 0) {
-        this.activeTimeline = this.timelines[i];
+        this.activeTimeline = new Timeline(this.timelines[i].text);
         break;
       }
     }
@@ -464,10 +455,22 @@ class TimelineController {
   SetDataFiles(files) {
     this.timelines = [];
     for (var f in files) {
-      var nameWithoutExtension = f.split('.').slice(0, -1).join('.');
+      var zoneRegex = f.split('.').slice(0, -1).join('.');
       // Escape regex special characters.
-      nameWithoutExtension.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
-      this.timelines.push(new Timeline('^' + nameWithoutExtension + '$', files[f]));
+      zoneRegex.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+
+      var lines = files[f].split('\n');
+      for (var i = 0; i < lines.length; ++i) {
+        var line = lines[i].trim();
+        var match = line.match(/^zone \"([^"]+)\"(?:\s+#.*)?$/);
+        if (match != null)
+          zoneRegex = match[1];
+      }
+
+      this.timelines.push({
+        zoneRegex: new RegExp(zoneRegex),
+        text: files[f],
+      });
     }
   }
 }
