@@ -455,6 +455,10 @@ class TimelineController {
   SetDataFiles(files) {
     this.timelines = [];
     for (var f in files) {
+      // Reads from the data/timelines/ directory.
+      if (!f.startsWith('timelines/'))
+        continue;
+
       var zoneRegex = f;
       // Drop the file extension.
       if (zoneRegex.indexOf('.') >= 0)
