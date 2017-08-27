@@ -1,7 +1,7 @@
 "use strict";
 
 class TimerBox extends HTMLElement {
-  static get observedAttributes() { return [ "duration", "threshold", "bg", "fg", "toward", "style", "hideafter" ]; }
+  static get observedAttributes() { return [ "duration", "threshold", "bg", "fg", "toward", "style", "hideafter", "roundupthreshold"]; }
 
   // The full duration of the current countdown. When this is changed,
   // the countdown restarts at the new value. If set to 0 then countdowns
@@ -39,6 +39,13 @@ class TimerBox extends HTMLElement {
   // then it is not hidden.
   set hideafter(h) { this.setAttribute("hideafter", h); }
   get hideafter() { return this.getAttribute("hideafter"); }
+
+  // Current value.
+  get value() { return this._value; }
+
+  // Whether to round up the value to the nearest integer before thresholding.
+  set roundupthreshold(r) { this.setAttribute("roundupthreshold", r); }
+  get roundupthreshold() { return this.getAttribute("roundupthreshold"); }
 
   // This would be used with window.customElements.
   constructor() {
@@ -119,6 +126,7 @@ class TimerBox extends HTMLElement {
     this._toward_top = true;
     this._style_fill = true;
     this._hideafter = -1;
+    this._round_up_threshold = true;
 
     if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
     if (this.threshold != null) { this._threshold = Math.max(parseFloat(this.threshold), 0); }
@@ -166,6 +174,8 @@ class TimerBox extends HTMLElement {
         this.hide();
       else if (this._hideafter < 0)
         this.show();
+    } else if (name == "roundupthreshold") {
+      this._round_up_threshold = newValue;
     }
 
     this.draw();
@@ -211,12 +221,19 @@ class TimerBox extends HTMLElement {
     if (!this._connected) return;
 
     var intvalue = parseInt(this._value + 0.99999999999);
-    if (intvalue <= 0.000000001 || this._duration == 0) {
+    var rounded;
+    if (this._round_up_threshold) {
+      rounded = intvalue;
+    } else {
+      rounded = this._value;
+    }
+
+    if (rounded <= 0.000000001 || this._duration == 0) {
       this.largeBoxElement.style.display = "block";
       this.smallBoxElement.style.display = "none";
       this.timerElement.style.display = "none";
       this.largeBoxForegroundElement.style.transform = "";
-    } else if (intvalue > this._threshold) {
+    } else if (rounded > this._threshold) {
       this.largeBoxElement.style.display = "none";
       this.smallBoxElement.style.display = "block";
       this.timerElement.style.display = "block";

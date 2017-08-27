@@ -10,6 +10,7 @@ var kShowRdmProcs = true;
 var kMaxLevel = 70;  // Update this when new expansion happens.
 var kFarThresholdOffence = 24;  // The distance that offensive spells such as VerAreo, etc are castable.
 var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+var kWarGcd = 2.38;
 
 // Layout.
 var kHealthBarPosX = 100;
@@ -34,6 +35,9 @@ var kRedMageManaBarPosY = kHealthBarPosY + 17;// + 228;
 var kRedMageManaBarSizeH = 8;  // Rogue energy was 12.
 var kRedMageProcsPosX = kHealthBarPosX;
 var kRedMageProcsPosY = kHealthBarPosY + 146;
+// WAR layout.
+var kWarProcsPosX = kHealthBarPosX;
+var kWarProcsPosY = kHealthBarPosY + 160;
 
 // Colours.
 var kHealthColor = "rgb(59, 133, 4)";
@@ -51,6 +55,7 @@ var kMidHealthColor = "rgb(127, 185, 29)";
 var kLowBeastColor = "rgb(255, 235, 153)";
 var kMidBeastColor = "rgb(255, 153, 0)";
 var kFullBeastColor = "rgb(230, 20, 20)";
+var kEyeBoxColor = "rgb(60, 100, 210)";
 // RDM colours.
 var kWhiteManaBarColor = "rgb(220, 220, 240)";
 var kWhiteManaBarDimColor = "rgb(90, 90, 100)";
@@ -683,6 +688,24 @@ class Bars {
       this.o.beastTextBox.appendChild(this.o.beastText);
       this.o.beastText.style.position = "relative";
       this.o.beastText.style.top = "6";
+
+      var eyeContainer = document.createElement("div");
+      eyeContainer.style.position = "absolute";
+      eyeContainer.style.left = kWarProcsPosX;
+      eyeContainer.style.top = kWarProcsPosY;
+      eyeContainer.style.width = fontWidth;
+      eyeContainer.style.height = fontWidth;
+      opacityContainer.appendChild(eyeContainer);
+
+      this.o.eyeBox = document.createElement("timer-box");
+      eyeContainer.appendChild(this.o.eyeBox);
+      this.o.eyeBox.style = "empty";
+      this.o.eyeBox.fg = kEyeBoxColor;
+      this.o.eyeBox.bg = 'black';
+      this.o.eyeBox.toward = "bottom";
+      this.o.eyeBox.threshold = 0;
+      this.o.eyeBox.hideafter = "";
+      this.o.eyeBox.roundupthreshold = false;
     }
 
     if (this.o.healthBar) {
@@ -806,6 +829,46 @@ class Bars {
       this.o.rdmCombo1.style.display = skill.indexOf('Riposte') >= 0 ? "block" : "none";
       this.o.rdmCombo2.style.display = skill.indexOf('Zwerchhau') >= 0 ? "block" : "none";
       this.o.rdmCombo3.style.display = skill.indexOf('Redoublement') >= 0 ? "block" : "none";
+    } else if (this.job == "WAR") {
+      if (skill == "Storm's Eye") {
+        // Storm's eye applies after a small animation delay.
+        // 0.5s appears to lineup the countdown roughly with the in game buff.
+        this.o.eyeBox.duration = 0;
+        this.o.eyeBox.duration = 30.5;
+      }
+
+      // Min number of skills until eye without breaking combo.
+      var minSkillsUntilEye;
+      if (skill == "Heavy Swing") {
+        minSkillsUntilEye = 2;
+      } else if (skill == "Skull Sunder") {
+        minSkillsUntilEye = 4;
+      } else if (skill == "Maim") {
+        minSkillsUntilEye = 1;
+      } else {
+        // End of combo, or broken combo.
+        minSkillsUntilEye = 3;
+      }
+
+      // The new threshold is "can I finish the current combo and still
+      // have time to do a Storm's Eye".
+      var oldThreshold = this.o.eyeBox.threshold;
+      var newThreshold = (minSkillsUntilEye + 3) * kWarGcd;
+
+      // Because thresholds are nonmonotonic (when finishing a combo)
+      // be careful about setting them in ways that are visually poor.
+      if (this.o.eyeBox.value >= newThreshold) {
+        // Haven't past the current threshold, so small.
+        this.o.eyeBox.threshold = newThreshold;
+      } else if (this.o.eyeBox.value >= oldThreshold) {
+        // Past the current one, but not the last one, so this is
+        // the first real threshold crossed.
+        this.o.eyeBox.threshold = newThreshold;
+      } else {
+        // Past both the current one and the old one, so preserve
+        // the old one to avoid wiggling the denominator.
+        this.o.eyeBox.threshold = oldThreshold;
+      }
     }
   }
 
