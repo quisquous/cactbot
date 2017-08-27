@@ -1,0 +1,181 @@
+# Omega - Deltascape V3.0 (Savage) - O3S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 07/31/2017
+
+zone "^(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))$"
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#hideall "--Reset--"
+#########DPS CAN HIDE THESE
+#hideall "Tank Buster"
+#hideall "Haste"
+#hideall "Raid AoE"
+#hideall "The Playing Field"
+#hideall "The Game"
+#hideall "Place Token"
+#hideall "Place Dark Token"
+
+#########HEALERS CAN HIDE THESE
+#hideall "Haste"
+#hideall "Raid AoE"
+#hideall "The Playing Field"
+#hideall "The Game"
+#hideall "Place Token"
+#hideall "Place Dark Token"
+
+#########TANKS CAN HIDE THESE
+#hideall "Haste"
+#hideall "The Playing Field"
+#hideall "The Game"
+#hideall "Place Token"
+#hideall "Place Dark Token"
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Raid AoE" before 3 speak "voice" "AoE"
+#alertall "Tank Buster" before 3 speak "voice" "Tank Buster"
+#alertall "Queen's Waltz (Saber Dance)" before 3 speak "voice" "Surround Boss"
+#alertall "Queen's Waltz (Earthly Dance)" before 5 speak "voice" "Go Blue Tile"
+#alertall "Queen's Waltz (Folio)" before 5 speak "voice" "Individual Tiles"
+#alertall "Oink" before 3 speak "voice" "stack"
+#alertall "Ribbit" before 1 speak "voice" "ribbit cone"
+#alertall "Squelch" before 3 speak "voice" "look away"
+#alertall "Mindjack Debuff" before 0 speak "voice" "look at your debuff"
+#alertall "Mindjack Execute" before 2 speak "voice" "mindjack"
+#alertall "Magic Hammer" before 5 speak "voice" "stack on individual tiles"
+#alertall "Tanks Morph" before 3 speak "voice" "tanks morph"
+#alertall "Healers Morph" before 3 speak "voice" "healers morph"
+#alertall "DPS Morph" before 3 speak "voice" "DPS morph"
+#alertall "Place Token" before 3 speak "voice" "add spawn"
+
+##############################################################
+0	"--Reset--"	sync /Removing combatant Halicarnassus/ window 1000 jump 0	
+
+########Phase 1
+0	"Tank Buster"	sync /uses Critical Hit/ window 9	#Critical Hit
+9	"Spellblade Holy"	#4 players spread/stack
+15	"Pole Shift"	#Swap Places
+27	"Queen's Waltz (Saber Dance)"	#Spread around boss
+31	"Haste"
+34	"Spellblade Random III" #Fire, Blizz, or Thunder
+40	"Raid AoE"	#AoE
+49	"The Playing Field"
+55	"Oink"	#Stack with another player
+62	"The Game"	#Stand on role tiles
+
+########Phase 2
+71	"Panel Swap"	sync /uses Panel Swap/ window 30	#Arena changes
+80	"Queen's Waltz (Thorns)"	#Applies thorny tethers
+83	"Tethers"	#Run from partner Healer/Tank always tethered to a DPS. Never Healer-Healer, tank-tank, tank-healer, dps-dps.
+85	"Fire Donut"	#Spellblade Fire III
+89	"Haste"
+93	"Line AoE"	#Spellblade Thunder III
+98	"Tank Buster"	#Critical Hit
+105	"Raid AoE"	#Dimensional Wave
+111	"Place Token"	#Spawns add
+112	"--White Flame Spawns--"
+122	"Haste"
+126	"Circle AoE"	#Spellblade Blizzard III
+133	"Mindjack Debuff"	#Applies 13s facing debuffs
+145	"Queen's Waltz (Thorns)"	#Applies thorny tethers
+146	"Mindjack Execute"
+147	"Tethers"	#Run from partner
+150	"Fire Donut"	#Spellblade Fire III
+157	"Raid AoE"	#Dimensional Wave
+
+########Phase 3
+164	"Panel Swap"	sync /uses Panel Swap/ window 30	#Arena changes
+170	"Place Token"	#spawns add
+171	"--Great Dragon Spawns--"	#Spawns add
+181	"Queen's Waltz (Earthly Dance)"	#AoE + Stand on blue tiles
+187	"Ribbit"
+193	"Raid AoE"	#Dimensional Wave
+193	"Dragon Conal AoE" #Frostbite
+207	"Tank Buster"	#Critical Hit
+218	"Place Dark Token"	#spawns 5 untargetable adds
+230	"Queen's Waltz (Earthly Dance)"	#AoE + Stand on blue tiles
+232	"Cross Reaper/Gusting Gouge"	#Middle AoE + knockback on edge tiles
+238	"Spellblade Random III" #Fire, Blizz, or Thunder
+243	"Raid AoE"	#Dimensional Wave
+
+########Phase 4
+250	"Panel Swap"	sync /uses Panel Swap/ window 30	#Arena changes
+257	"Queen's Waltz (Folio)"	#Spread, one person per tile (Folio)
+264	"Oink"	#Stack with another player
+269	"Place Token"	#Spawns add
+270	"--Apanda Spawns--"
+282	"Queen's Waltz (Folio)"	#Spread, one person per tile (Folio)
+285	"Magic Hammer"	#Requires delay of spread for Queen's Waltz for middle 4 players
+289	"Squelch"	#Look away from boss
+295	"Raid AoE"	#Dimensional Wave
+301	"Tank Buster"	#Critical Hit
+313	"Raid AoE"	#Dimensional Wave
+318	"Spellblade Holy"	#5 players; 3 spreads, 2 stacks. Get book buffs.
+326	"Queen's Waltz (Folio)"	#Spread, one person per tile (Folio)
+337	"Raid AoE"	#Dimensional Wave
+
+########Phase 5
+345	"Panel Swap"	sync /uses Panel Swap/ window 30
+350	"The Playing Field"
+361	"Tanks Morph"	#Ribbit, Squelch, or Oink
+367	"Healers Morph"	#Ribbit, Squelch, or Oink
+373	"DPS Morph"	#Ribbit, Squelch, or Oink
+380	"The Game"	#Get on square by role
+392	"Queen's Waltz"	#Spread, one person per tile (Folio)
+402	"Spellblade Holy"	#Stack/spread, only 2 people this time
+408	"Pole Shift"
+418	"Tank Buster"	#Critical Hit
+427	"Mindjack Debuff"	#Applies 13s facing debuffs
+432	"Place Dark Token"	#Spawns 9 untargetable adds
+440 "Mindjack Execute"
+447	"Stench of Death/Gusting Gouge"	#Middle AoE + lengthen tethers
+453	"Queen's Waltz (Earthly Dance)"	#AoE + stand on blue tiles
+467	"Raid AoE"	#Dimensional Wave
+475	"Haste"
+479	"Spellblade Random III" #Fire, Blizz, or Thunder
+483	"Spellblade Random III" #Fire, Blizz, or Thunder
+490	"Raid AoE"	#Dimensional Wave
+500	"Place Token"	#Spawns ninja adds + iron giant
+501	"--Ninjas + Giant Spawn--"
+510	"Haste III"	sync /casts Haste III/ window 100
+514	"Raid AoE"	#Dimensional Wave
+520	"Raid AoE"	#Dimensional Wave
+525	"Raid AoE"	#Dimensional Wave
+531	"Raid AoE"	#Dimensional Wave
+538	"The Queen's Waltz (Saber Dance)"	#Spread around boss
+543	"Circle AoE"	#Spellblade Blizzard III
+553	"Raid AoE"	#Dimensional Wave
+559	"Tank Buster"	#Critical Hit
+570	"The Queen's Waltz (Folio)"	#Spread, one person per tile (Folio)
+579	"Spellblade Holy"	#4 players spread/stack
+585	"Pole Shift"
+595	"Tank Buster"	#Critical Hit
+604	"Mindjack Debuff"	#Applies 13s facing debuffs
+609	"Place Dark Token"	#Spawns 9 untargetable adds
+617 "Mindjack Execute"
+623	"Stench of Death/Cross Reaper/Gusting Gouge"	#Middle AoE + knockback on edge tiles + lengthen tethers
+631	"Queen's Waltz (Thorns)"	#Applies thorny tethers
+633	"Tethers"	#Run from partner
+644	"Raid AoE"	#Dimensional Wave
+652	"Haste"
+655	"Line AoE"	#Spellblade Thunder III
+660	"Fire Donut"	#Spellblade Fire III
+666	"Raid AoE"	#Dimensional Wave
+676	"The Playing Field"
+683	"The Game"	#Enrage
+693 "--Enrage--"
