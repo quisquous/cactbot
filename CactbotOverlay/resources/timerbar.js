@@ -271,33 +271,33 @@ class TimerBar extends HTMLElement {
     var percent = this._duration <= 0 ? 0 : this._value / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    var intvalue = parseInt(this._value + 0.99999999999);
+    var displayvalue = this._value.toFixed(1); //parseInt(this._value + 0.99999999999);
     if (this._style_fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = "scale(" + percent + ",1)";
     if (this._left_text != "") {
       if (this._left_text == "remain")
-        this.leftTextElement.innerHTML = intvalue;
+        this.leftTextElement.innerHTML = displayvalue;
       else if (this._left_text == "duration")
-        this.leftTextElement.innerHTML = intvalue + " / " + this._duration;
+        this.leftTextElement.innerHTML = displayvalue + " / " + this._duration;
       else if (this._left_text == "percent")
-        this.leftTextElement.innerHTML = parseInt(percent * 100) + " %";
+        this.leftTextElement.innerHTML = (percent * 100).toFixed(1) + " %";
     }
     if (this._center_text != "") {
       if (this._center_text == "value")
-        this.centerTextElement.innerHTML = intvalue;
+        this.centerTextElement.innerHTML = displayvalue;
       else if (this._center_text == "duration")
-        this.centerTextElement.innerHTML = intvalue + " / " + this._duration;
+        this.centerTextElement.innerHTML = displayvalue + " / " + this._duration;
       else if (this._center_text == "percent")
-        this.centerTextElement.innerHTML = parseInt(percent * 100) + " %";
+        this.centerTextElement.innerHTML = (percent * 100).toFixed(1) + " %";
     }
     if (this._right_text != "") {
       if (this._right_text == "remain")
-        this.rightTextElement.innerHTML = intvalue;
+        this.rightTextElement.innerHTML = displayvalue;
       else if (this._right_text == "duration")
-        this.rightTextElement.innerHTML = intvalue + " / " + this._duration;
+        this.rightTextElement.innerHTML = displayvalue + " / " + this._duration;
       else if (this._right_text == "percent")
-        this.rightTextElement.innerHTML = parseInt(percent * 100) + " %";
+        this.rightTextElement.innerHTML = (percent * 100).toFixed(1) + " %";
     }
   }
 
