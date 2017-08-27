@@ -23,27 +23,26 @@ var kBarExpiresSoonColor = '#f88';
 // # extention) will be used as a string match instead, and must exactly match the zone
 // # name.
 // zone "zone-regex"
+//
+// # Show a info-priority text popup on screen before an event will occur. The
+// # |event name| matches a timed event in the file and will be shown before each
+// # occurance of events with that name. By default the name of the event will be shown,
+// # but you may specify the text to be shown at the end of the line if it should be
+// # different. The |before| parameter must be present, but can be 0 if the text should
+// # be shown at the same time the event happens.
+// #
+// # Example which shows the event name 1s before the event happens.
+// infotext "event name" before 1
+// # Example which specifies different text to be shown earlier.
+// infotext "event name" before 2.3 "alternate text"
 class Timeline {
   constructor(text) {
-    /*
-    // This needs CefBrowserSettings.web_security_disabled = true.
-    var file = new XMLHttpRequest();
-    file.open("GET", filename, false);
-    file.onreadystatechange = function() {
-      console.log("readyState " + file.readyState + " status " + file.status);
-      if(file.readyState === 4) {
-        if(file.status === 200 || file.status == 0) {
-          var text = file.responseText;
-          LoadFile(text);
-        }
-      }
-    }
-    file.send(null);
-    */
     // A set of names which will not be notified about.
     this.ignores = {};
     // Sorted by event occurance time.
     this.events = [];
+    // Sorted by event occurance time.
+    this.texts = [];
     // Sorted by sync.start time.
     this.syncStarts = [];
     // Sorted by sync.end time.
@@ -62,6 +61,7 @@ class Timeline {
     this.syncEnds = [];
     
     var uniqueid = 1;
+    var texts = {};
     
     var lines = text.split('\n');
     for (var i = 0; i < lines.length; ++i) {
@@ -77,12 +77,23 @@ class Timeline {
         this.ignores[match[1]] = true;
         continue;
       }
+
+      match = line.match(/^infotext \"([^"]+)\" +before +([0-9]+(?:\.[0-9]+)?)(?: +\"([^"]+)\")?$/)
+      if (match != null) {
+        texts[match[1]] = texts[match[1]] || [];
+        texts[match[1]].push({
+          type: 'info',
+          secondsBefore: parseFloat(match[2]),
+          text: match[3] ? match[3] : match[1],
+        });
+        continue;
+      }
       
       match = line.match(/^([0-9]+(?:\.[0-9]+)?)\s+"(.*?)"(\s+(.*))?/);
       if (match == null) continue;
       
       var seconds = parseFloat(match[1]);
-      var o = {
+      var e = {
         id: uniqueid++,
         time: seconds,
         sortTime: seconds,
@@ -91,10 +102,10 @@ class Timeline {
       };
       var commands = match[3];
       if (commands) {
-        var commandMatch = commands.match(/duration ([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+        var commandMatch = commands.match(/duration +([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
         if (commandMatch)
-          o.duration = parseFloat(commandMatch[1]);
-        commandMatch = commands.match(/sync \/(.*)\/(\s.*)?$/);
+          e.duration = parseFloat(commandMatch[1]);
+        commandMatch = commands.match(/sync +\/(.*)\/(\s.*)?$/);
         if (commandMatch) {
           var sync = {
             id: uniqueid,
@@ -104,7 +115,7 @@ class Timeline {
             time: seconds,
           }
           if (commandMatch[2]) {
-            var argMatch = commandMatch[2].match(/window (([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+            var argMatch = commandMatch[2].match(/window +(([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
             if (argMatch) {
               if (argMatch[2]) {
                 sync.start = seconds - parseFloat(argMatch[2]);
@@ -114,7 +125,7 @@ class Timeline {
                 sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
             }
-            argMatch = commandMatch[2].match(/jump ([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+            argMatch = commandMatch[2].match(/jump +([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
             if (argMatch)
               sync.jump = parseFloat(argMatch[1]);
           }
@@ -122,10 +133,26 @@ class Timeline {
           this.syncEnds.push(sync);
         }
       }
-      this.events.push(o);
+      this.events.push(e);
+    }
+
+    for (var i = 0; i < this.events.length; ++i) {
+      var e = this.events[i];
+      if (e.name in texts) {
+        for (var j = 0; j < texts[e.name].length; ++j) {
+          var matchedTextEvent = texts[e.name][j];
+          var t = {
+            type: matchedTextEvent.type,
+            time: e.time - matchedTextEvent.secondsBefore,
+            text: matchedTextEvent.text,
+          };
+          this.texts.push(t);
+        }
+      }
     }
     
     this.events.sort(function(a, b) { return a.time - b.time });
+    this.texts.sort(function(a, b) { return a.time - b.time });
     this.syncStarts.sort(function(a, b) { return a.start - b.start });
     this.syncEnds.sort(function(a, b) { return a.end - b.end });
   }
@@ -134,6 +161,7 @@ class Timeline {
     this.timebase = null;
 
     this.nextEvent = 0;
+    this.nextText = 0;
     this.nextSyncStart = 0;
     this.nextSyncEnd = 0;
 
@@ -150,9 +178,11 @@ class Timeline {
     this.timebase = new Date(new Date() - fightNow * 1000);
     
     this.nextEvent = 0;
+    this.nextText = 0;
     this.nextSyncStart = 0;
     this.nextSyncEnd = 0;
-    
+
+    // This will skip text events without running them.
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
@@ -189,6 +219,8 @@ class Timeline {
   _AdvanceTimeTo(fightNow) {
     while (this.nextEvent < this.events.length && this.events[this.nextEvent].time <= fightNow)
       ++this.nextEvent;
+    while (this.nextText < this.texts.length && this.texts[this.nextText].time <= fightNow)
+      ++this.nextText;
     while (this.nextSyncStart < this.syncStarts.length && this.syncStarts[this.nextSyncStart].start <= fightNow)
       ++this.nextSyncStart;
     while (this.nextSyncEnd < this.syncEnds.length && this.syncEnds[this.nextSyncEnd].end <= fightNow)
@@ -250,6 +282,17 @@ class Timeline {
     }
   }
 
+  _AddPassedTexts(fightNow) {
+    while (this.nextText < this.texts.length) {
+      var t = this.texts[this.nextText];
+      if (t.time > fightNow)
+        break;
+      if (t.type == 'info' && this.showInfoTextCallback)
+        this.showInfoTextCallback(t.text);
+      ++this.nextText;
+    }
+  }
+
   _CancelUpdate() {
     if (this.updateTimer) {
       window.clearTimeout(this.updateTimer);
@@ -262,6 +305,7 @@ class Timeline {
 
     var kBig = 1000000000; // Something bigger than any fight length in seconds.
     var nextEventStarting = kBig;
+    var nextTextOccurs = kBig;
     var nextEventEnding = kBig;
     var nextSyncStarting = kBig;
     var nextSyncEnding = kBig;
@@ -274,6 +318,10 @@ class Timeline {
       var showNextEventAt = nextEventEndsAt - kShowTimerBarsAtSeconds;
       if (showNextEventAt > fightNow)
         nextEventStarting = showNextEventAt;
+    }
+    if (this.nextText < this.texts.length) {
+      nextTextOccurs = this.texts[this.nextText].time;
+      console.assert(nextTextOccurs > fightNow, "nextText wasn't updated before calling _ScheduleUpdate")
     }
     if (this.activeEvents.length > 0) {
       nextEventEnding = this.activeEvents[0].time;
@@ -288,7 +336,7 @@ class Timeline {
       console.assert(nextSyncEnding > fightNow, "nextSyncEnd wasn't updated before calling _ScheduleUpdate")
     }
     
-    var nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding, Math.min(nextSyncStarting, nextSyncEnding)));
+    var nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding, Math.min(nextTextOccurs, Math.min(nextSyncStarting, nextSyncEnding))));
     if (nextTime != kBig) {
       console.assert(nextTime > fightNow, "nextTime is in the past")
       this.updateTimer = window.setTimeout(this._OnUpdateTimer.bind(this), (nextTime - fightNow) * 1000);
@@ -300,6 +348,8 @@ class Timeline {
 
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
     var fightNow = (new Date() - this.timebase) / 1000;
+    // Send text events now or they'd be skipped by _AdvanceTimeTo().
+    this._AddPassedTexts(fightNow, true);
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
