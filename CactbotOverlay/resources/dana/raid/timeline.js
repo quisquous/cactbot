@@ -35,6 +35,14 @@ var kBarExpiresSoonColor = '#f88';
 // infotext "event name" before 1
 // # Example which specifies different text to be shown earlier.
 // infotext "event name" before 2.3 "alternate text"
+//
+// # Similar to infotext but uses alert priority.
+// alerttext "event name" before 1
+// alerttext "event name" before 2.3 "alternate text"
+//
+// # Similar to infotext but uses alarm priority.
+// alarmtext "event name" before 1
+// alarmtext "event name" before 2.3 "alternate text"
 class Timeline {
   constructor(text) {
     // A set of names which will not be notified about.
@@ -78,13 +86,13 @@ class Timeline {
         continue;
       }
 
-      match = line.match(/^infotext \"([^"]+)\" +before +([0-9]+(?:\.[0-9]+)?)(?: +\"([^"]+)\")?$/)
+      match = line.match(/^(info|alert|alarm)text \"([^"]+)\" +before +([0-9]+(?:\.[0-9]+)?)(?: +\"([^"]+)\")?$/)
       if (match != null) {
-        texts[match[1]] = texts[match[1]] || [];
-        texts[match[1]].push({
-          type: 'info',
-          secondsBefore: parseFloat(match[2]),
-          text: match[3] ? match[3] : match[1],
+        texts[match[2]] = texts[match[2]] || [];
+        texts[match[2]].push({
+          type: match[1],
+          secondsBefore: parseFloat(match[3]),
+          text: match[4] ? match[4] : match[2],
         });
         continue;
       }
@@ -287,8 +295,16 @@ class Timeline {
       var t = this.texts[this.nextText];
       if (t.time > fightNow)
         break;
-      if (t.type == 'info' && this.showInfoTextCallback)
-        this.showInfoTextCallback(t.text);
+      if (t.type == 'info') {
+        if (this.showInfoTextCallback)
+          this.showInfoTextCallback(t.text);
+      } else if (t.type == 'alert') {
+        if (this.showAlertTextCallback)
+          this.showAlertTextCallback(t.text);
+      } else if (t.type == 'alarm') {
+        if (this.showAlarmTextCallback)
+          this.showAlarmTextCallback(t.text);
+      }
       ++this.nextText;
     }
   }
@@ -362,6 +378,8 @@ class Timeline {
   SetAddTimer(c) { this.addTimerCallback = c; }
   SetRemoveTimer(c) { this.removeTimerCallback = c; }
   SetShowInfoText(c) { this.showInfoTextCallback = c; }
+  SetShowAlertText(c) { this.showAlertTextCallback = c; }
+  SetShowAlarmText(c) { this.showAlarmTextCallback = c; }
 };
 
 class TimelineUI {
@@ -411,6 +429,8 @@ class TimelineUI {
       this.timeline.SetAddTimer(null);
       this.timeline.SetRemoveTimer(null);
       this.timeline.SetShowInfoText(null);
+      this.timeline.SetShowAlertText(null);
+      this.timeline.SetShowAlarmText(null);
       this.timerlist.clear();
       this.activeBars = {};
     }
@@ -420,6 +440,8 @@ class TimelineUI {
       this.timeline.SetAddTimer(this.OnAddTimer.bind(this));
       this.timeline.SetRemoveTimer(this.OnRemoveTimer.bind(this));
       this.timeline.SetShowInfoText(this.OnShowInfoText.bind(this));
+      this.timeline.SetShowAlertText(this.OnShowAlertText.bind(this));
+      this.timeline.SetShowAlarmText(this.OnShowAlarmText.bind(this));
     }
   }
   
@@ -471,6 +493,16 @@ class TimelineUI {
   OnShowInfoText(text) {
     if (this.popupText)
       this.popupText.Info(text);
+  }
+
+  OnShowAlertText(text) {
+    if (this.popupText)
+      this.popupText.Alert(text);
+  }
+
+  OnShowAlarmText(text) {
+    if (this.popupText)
+      this.popupText.Alarm(text);
   }
 };
 
