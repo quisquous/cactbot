@@ -455,7 +455,13 @@ class TimelineController {
   SetDataFiles(files) {
     this.timelines = [];
     for (var f in files) {
-      var zoneRegex = f.split('.').slice(0, -1).join('.');
+      var zoneRegex = f;
+      // Drop the file extension.
+      if (zoneRegex.indexOf('.') >= 0)
+        zoneRegex = zoneRegex.split('.').slice(0, -1).join('.');
+      // Drop leading directory names.
+      if (zoneRegex.indexOf('/') >= 0)
+        zoneRegex = zoneRegex.split('/').slice(-1)[0];
       // Escape regex special characters.
       zoneRegex.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 
