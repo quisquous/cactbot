@@ -82,3 +82,15 @@
   height: 120px;
   /*border: 2px solid blue;*/
 }
+
+#timeline-container .resize-helper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+
+.resizeHandle #timeline-container .resize-helper {
+  /* When unlocked for move/resize. */
+  display: inline-block;
+}

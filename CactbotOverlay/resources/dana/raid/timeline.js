@@ -338,6 +338,23 @@ class TimelineUI {
     this.timerlist.elementwidth = kBarWidth;
     this.timerlist.elementheight = kBarHeight + 2;
     this.timerlist.toward = "down right";
+
+    // Helper for positioning/resizing when locked.
+    var helper = document.getElementById('timeline-resize-helper');
+    for (var i = 0; i < kMaxNumberOfTimerBars; ++i) {
+      var helperBar = document.createElement('div');
+      helperBar.style.backgroundColor = kBarColor;
+      helperBar.style.border = '1px solid black';
+      helperBar.style.marginBottom = 2;
+      helperBar.style.fontSize = kBarFontSize;
+      helperBar.style.width = kBarWidth;
+      helperBar.style.height = kBarHeight - 2;  // Border adds to the height.
+      helperBar.style.verticalAlign = 'middle';
+      helperBar.innerText = 'Test bar ' + (i + 1);
+      helperBar.classList.add('text');
+      helper.appendChild(helperBar);
+    }
+
     this.activeBars = {};
     this.expireTimers = {};
   }
