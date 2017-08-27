@@ -211,27 +211,39 @@ namespace Cactbot {
       if (!notify_state_.sent_data_dir) {
         notify_state_.sent_data_dir = true;
 
-        string data_dir = null;
-        string[] data_filenames = null;
+        var web = new System.Net.WebClient();
+
+        var data_file_paths = new List<string>();
         try {
-          data_dir = new Uri(new Uri(Config.Url), "data").LocalPath;
-        } catch (Exception e) {
-          LogError("Unable to build data path: " + e.Message);
-        }
-        if (data_dir != null) {
-          try {
-            if (Directory.Exists(data_dir))
-              data_filenames = Directory.GetFiles(data_dir);
-          } catch (Exception e) {
-            LogError("Unable to load the data files directory: " + e.Message);
+          var data_dir_manifest = new Uri(new Uri(Config.Url), "data/manifest.txt");
+          var manifest_reader = new StringReader(web.DownloadString(data_dir_manifest));
+          for (var line = manifest_reader.ReadLine(); line != null; line = manifest_reader.ReadLine())
+            data_file_paths.Add(line);
+        } catch (System.Net.WebException e) {
+          if (e.Status == System.Net.WebExceptionStatus.ProtocolError &&
+              e.Response is System.Net.HttpWebResponse &&
+              ((System.Net.HttpWebResponse)e.Response).StatusCode == System.Net.HttpStatusCode.NotFound) {
+            // Ignore file not found.
+          } else if (e.InnerException != null &&
+            (e.InnerException is FileNotFoundException || e.InnerException is DirectoryNotFoundException)) {
+            // Ignore file not found.
+          } else if (e.InnerException != null && e.InnerException.InnerException != null &&
+            (e.InnerException.InnerException is FileNotFoundException || e.InnerException.InnerException is DirectoryNotFoundException)) {
+            // Ignore file not found.
+          } else {
+            LogError("Unable to read manifest file: " + e.Message);
           }
+        } catch (Exception e) {
+          LogError("Unable to read manifest file: " + e.Message);
         }
-        if (data_filenames != null) {
+
+        if (data_file_paths.Count > 0) {
           var file_data = new Dictionary<string, string>();
-          foreach (string filename in data_filenames) {
+          foreach (string data_filename in data_file_paths) {
             try {
-              var file = File.OpenText(filename);
-              file_data[Path.GetFileName(filename)] = file.ReadToEnd();
+              var file_path = new Uri(new Uri(Config.Url), "data/" + data_filename);
+              var file_reader = new StringReader(web.DownloadString(file_path));
+              file_data[data_filename] = file_reader.ReadToEnd();
             } catch (Exception e) {
               LogError("Unable to read data file: " + e.Message);
             }
