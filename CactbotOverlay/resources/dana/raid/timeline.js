@@ -407,6 +407,7 @@ class TimelineController {
   constructor(ui) {
     this.ui = ui;
     this.dataFiles = {};
+    this.timelines = [];
   }
 
   OnInCombat(e) {
@@ -445,6 +446,7 @@ class TimelineController {
   SetDataFiles(files) {
     this.timelines = [];
     for (var f in files) {
+      console.log("file " + f);
       var nameWithoutExtension = f.split('.').slice(0, -1).join('.');
       this.timelines.push(new Timeline('^' + nameWithoutExtension + '$', files[f]));
     }
