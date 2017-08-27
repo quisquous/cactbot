@@ -208,7 +208,7 @@ namespace Cactbot {
         notify_state_ = new NotifyState();
       reset_notify_state_ = false;
 
-      if (!notify_state_.sent_data_dir) {
+      if (!notify_state_.sent_data_dir && Config.Url.Length > 0) {
         notify_state_.sent_data_dir = true;
 
         var web = new System.Net.WebClient();
