@@ -221,6 +221,29 @@ class PopupText {
   }
 };
 
+class PopupTextGenerator {
+  constructor(popupText) { this.popupText = popupText; }
+
+  Info(text) {
+    this.popupText.OnTrigger({
+      infoText: text,
+    });
+  }
+
+  Alert(text) {
+    this.popupText.OnTrigger({
+      alertText: text,
+    });
+  }
+
+  Alarm(text) {
+    this.popupText.OnTrigger({
+      alarmText: text,
+    });
+  }
+
+}
+
 var gPopupText = new PopupText();
 
 document.addEventListener("onPlayerChangedEvent", function(e) {

@@ -311,6 +311,7 @@ class Timeline {
 
   SetAddTimer(c) { this.addTimerCallback = c; }
   SetRemoveTimer(c) { this.removeTimerCallback = c; }
+  SetShowInfoText(c) { this.showInfoTextCallback = c; }
 };
 
 class TimelineUI {
@@ -350,11 +351,16 @@ class TimelineUI {
     this.expireTimers = {};
   }
 
+  SetPopupTextInterface(popupText) {
+    this.popupText = popupText;
+  }
+
   SetTimeline(timeline) {
     this.Init();
     if (this.timeline) {
       this.timeline.SetAddTimer(null);
       this.timeline.SetRemoveTimer(null);
+      this.timeline.SetShowInfoText(null);
       this.timerlist.clear();
       this.activeBars = {};
     }
@@ -363,6 +369,7 @@ class TimelineUI {
     if (this.timeline) {
       this.timeline.SetAddTimer(this.OnAddTimer.bind(this));
       this.timeline.SetRemoveTimer(this.OnRemoveTimer.bind(this));
+      this.timeline.SetShowInfoText(this.OnShowInfoText.bind(this));
     }
   }
   
@@ -410,6 +417,11 @@ class TimelineUI {
     this.timerlist.removeElement(e.id);
     delete this.activeBars[e.id];
   }
+
+  OnShowInfoText(text) {
+    if (this.popupText)
+      this.popupText.Info(text);
+  }
 };
 
 class TimelineController {
@@ -417,6 +429,10 @@ class TimelineController {
     this.ui = ui;
     this.dataFiles = {};
     this.timelines = [];
+  }
+
+  SetPopupTextInterface(popupText) {
+    this.ui.SetPopupTextInterface(popupText);
   }
 
   OnInCombat(e) {
