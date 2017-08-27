@@ -217,8 +217,11 @@ namespace Cactbot {
         try {
           var data_dir_manifest = new Uri(new Uri(Config.Url), "data/manifest.txt");
           var manifest_reader = new StringReader(web.DownloadString(data_dir_manifest));
-          for (var line = manifest_reader.ReadLine(); line != null; line = manifest_reader.ReadLine())
-            data_file_paths.Add(line);
+          for (var line = manifest_reader.ReadLine(); line != null; line = manifest_reader.ReadLine()) {
+            line = line.Trim();
+            if (line.Length > 0)
+              data_file_paths.Add(line);
+          }
         } catch (System.Net.WebException e) {
           if (e.Status == System.Net.WebExceptionStatus.ProtocolError &&
               e.Response is System.Net.HttpWebResponse &&
