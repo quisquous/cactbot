@@ -1,7 +1,7 @@
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
 
-var IMAGE_PATH = '../../icon';
+var IMAGE_PATH = '../../../resources/icon';
 var EncountersArray = [];
 
 var React = window.React;

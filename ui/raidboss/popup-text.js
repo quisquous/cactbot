@@ -14,10 +14,10 @@ class PopupText {
       this.alarmText = document.getElementById('popup-text-alarm');
 
       this.namedSounds = {
-        Info: '../sounds/BigWigs/Info.ogg',
-        Alert: '../sounds/BigWigs/Alert.ogg',
-        Alarm: '../sounds/BigWigs/Alarm.ogg',
-        Long: '../sounds/BigWigs/Long.ogg',
+        Info: '../../resources/sounds/BigWigs/Info.ogg',
+        Alert: '../../resources/sounds/BigWigs/Alert.ogg',
+        Alarm: '../../resources/sounds/BigWigs/Alarm.ogg',
+        Long: '../../resources/sounds/BigWigs/Long.ogg',
       };
     }
 

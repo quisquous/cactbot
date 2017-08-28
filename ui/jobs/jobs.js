@@ -1193,7 +1193,7 @@ class Bars {
       //if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
       //  console.log(log);
 
-      if (log.search(/:test:bars:/) >= 0)
+      if (log.search(/:test:jobs:/) >= 0)
         this.Test();
     }
   }
