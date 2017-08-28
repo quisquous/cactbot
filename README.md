@@ -17,16 +17,16 @@ Cactbot is backwards compatible with OverlayPlugin's miniparse addon. This lets 
 dps meters built for OverlayPlugin in Cactbot, with the option to build out more features
 through Cactbot's additional Javascript APIs.
 
-## Example - dana UI
+## UIs
 
-The [`CactbotOverlay/resources/dana/`](CactbotOverlay/resources/dana/) directory has UI building blocks as well as full UI components.
+The [`ui/`](ui/) directory has some prebuilt UIs, and [`resources/`](resources/) has building blocks for building your own UIs.
 
-![dana ui screenshot](Screenshot-Dana.png)
+![ui screenshot](Screenshot-Dana.png)
 
 In this screenshot, there are 3 cactbots:
-- [`CactbotOverlay/resources/dana/bars/bars.html`](CactbotOverlay/resources/dana/bars/bars.html) is circled in red, showing RDM resources and raid buffs.
-- [`CactbotOverlay/resources/dana/dps/dps.html`](CactbotOverlay/resources/dana/dps/dps.html) is circled in purple, which is a dps meter built for OverlayPlugin's miniparse, with some minor modifications including 4.0 jobs and colors.
-- [`CactbotOverlay/resources/dana/raid/raid.html`](CactbotOverlay/resources/dana/raid/raid.html) is circled in teal, showing alerts for combat triggers. This module is built to be similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft. Triggers are found in [`CactbotOverlay/resources/dana/raid/data/triggers`](CactbotOverlay/resources/dana/raid/data/triggers)
+- [`ui/jobs/jobs.html`](ui/jobs/jobs.html) is circled in red, showing RDM resources and raid buffs.
+- [`ui/raidboss/raidboss.html`](CactbotOverlay/resources/dana/raid/raid.html) is circled in teal, showing alerts for combat triggers. It can also show timelines of upcoming fight events, similar to the ACT Timeline addon. This module is built to be similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft. Triggers are found in [`ui/raidboss/data/triggers`](ui/raidboss/data/triggers).
+- [`ui/dps/rdmty/dps.html`](ui/dps/rdmty/dps.html) is circled in purple, which is a dps meter built for OverlayPlugin's miniparse, with some minor modifications including 4.0 jobs and colors.
 
 Here is a video of the dana UI in action on [Exdeath and Neo Exdeath](https://www.youtube.com/watch?v=Ot_GMEcwv94).
 
@@ -63,14 +63,13 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 
 ## Sounds
 
-Triggers in [`CactbotOverlay/resources/dana/raid/raid.html`](CactbotOverlay/resources/dana/raid/raid.html)
-use sound effects from BigWigs which are not licensed for redistribution. To use the sounds:
+Triggers in [`ui/raidboss`](ui/raidboss) use sound effects from BigWigs which are notlicensed for redistribution. To use the sounds:
 1. Download [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) from curse.com.
 2. Open the .zip file.
-3. Extract the .ogg files `BigWigs/Sounds` to `CactbotOverlay/resources/dana/sounds/BigWigs`.
+3. Extract the .ogg files `BigWigs/Sounds` to `resources/sounds/BigWigs`.
 
 You should have:
-- `CactbotOverlay/resources/dana/sounds/BigWigs/Alarm.ogg`
-- `CactbotOverlay/resources/dana/sounds/BigWigs/Alert.ogg`
-- `CactbotOverlay/resources/dana/sounds/BigWigs/Info.ogg`
-- `CactbotOverlay/resources/dana/sounds/BigWigs/Long.ogg`
+- `resources/sounds/BigWigs/Alarm.ogg`
+- `resources/sounds/BigWigs/Alert.ogg`
+- `resources/sounds/BigWigs/Info.ogg`
+- `resources/sounds/BigWigs/Long.ogg`
