@@ -1,7 +1,7 @@
 // fiddle: http://jsfiddle.net/v1ddnsvh/8/
 /* global window */
 
-var IMAGE_PATH = 'file://C:/Program Files (x86)/Advanced Combat Tracker/resources/icon';
+var IMAGE_PATH = '.';
 var EncountersArray = [];
 
 var React = window.React;
