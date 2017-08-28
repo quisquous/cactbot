@@ -45,8 +45,8 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
 1. Find the OverlayPlugin installation, make an `addons` sub-directory inside it (looks like `...\OverlayPlugin\addons`).
-2. Copy the `CactbotOverlay.dll` file to the addons directory.
-3. Make sure to unblock the CactbotOverlay.dll (right click -> properties -> unblock) if you downloaded it, instead of building it.
+2. Copy the `CactbotOverlay.dll` file to the `addons` directory.
+3. Make sure to unblock the `CactbotOverlay.dll` (right click -> properties -> unblock) if you downloaded it, instead of building it.
 4. If you get an error that it can't find `FFXIV_ACT_Plugin.dll`, make sure it is in the same directory as `Advanced Combat Tracker.exe`.
 
    The directory structure should look something like this:
@@ -59,11 +59,11 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
      - CactbotOverlay.dll
 
 5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
-6. In the URL field, browse to an html file to load as a UI element. For example to `CactbotOverlay/resources/dana/raid/raid.html`.
+6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
 
 ## Sounds
 
-Triggers in [`ui/raidboss`](ui/raidboss) use sound effects from BigWigs which are notlicensed for redistribution. To use the sounds:
+Triggers in [`ui/raidboss`](ui/raidboss) use sound effects from BigWigs which are not licensed for redistribution. To use the sounds:
 1. Download [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) from curse.com.
 2. Open the .zip file.
 3. Extract the .ogg files `BigWigs/Sounds` to `resources/sounds/BigWigs`.
