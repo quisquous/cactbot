@@ -25,7 +25,7 @@ The [`ui/`](ui/) directory has some prebuilt UIs, and [`resources/`](resources/)
 
 In this screenshot, there are 3 cactbots:
 - [`ui/jobs/jobs.html`](ui/jobs/jobs.html) is circled in red, showing RDM resources and raid buffs.
-- [`ui/raidboss/raidboss.html`](CactbotOverlay/resources/dana/raid/raid.html) is circled in teal, showing alerts for combat triggers. It can also show timelines of upcoming fight events, similar to the ACT Timeline addon. This module is built to be similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft. Triggers are found in [`ui/raidboss/data/triggers`](ui/raidboss/data/triggers).
+- [`ui/raidboss/raidboss.html`](ui/raidboss/raidboss.html) is circled in teal, showing alerts for combat triggers. It can also show timelines of upcoming fight events, similar to the ACT Timeline addon. This module is built to be similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft. Triggers are found in [`ui/raidboss/data/triggers`](ui/raidboss/data/triggers).
 - [`ui/dps/rdmty/dps.html`](ui/dps/rdmty/dps.html) is circled in purple, which is a dps meter built for OverlayPlugin's miniparse, with some minor modifications including 4.0 jobs and colors.
 
 Here is a video of the dana UI in action on [Exdeath and Neo Exdeath](https://www.youtube.com/watch?v=Ot_GMEcwv94).
