@@ -342,9 +342,14 @@ class Bars {
     opacityContainer.id = "opacity-container";
     barsLayoutContainer.appendChild(opacityContainer);
 
+    // Holds health/mana/tp.
+    var barsContainer = document.createElement('div');
+    barsContainer.id = 'bars';
+    opacityContainer.appendChild(barsContainer);
+
     var pullCountdownContainer = document.createElement("div");
     pullCountdownContainer.id = 'pull-bar';
-    barsLayoutContainer.appendChild(pullCountdownContainer);
+    barsContainer.appendChild(pullCountdownContainer);
     this.o.pullCountdown = document.createElement("timer-bar");
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
@@ -358,7 +363,7 @@ class Bars {
 
     this.o.rightBuffsContainer = document.createElement("div");
     this.o.rightBuffsContainer.id = 'right-side-icons';
-    opacityContainer.appendChild(this.o.rightBuffsContainer);
+    barsContainer.appendChild(this.o.rightBuffsContainer);
     
     this.o.rightBuffsList = document.createElement('widget-list');
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
@@ -370,7 +375,7 @@ class Bars {
 
     this.o.leftBuffsContainer = document.createElement("div");
     this.o.leftBuffsContainer.id = 'left-side-icons';
-    opacityContainer.appendChild(this.o.leftBuffsContainer);
+    barsContainer.appendChild(this.o.leftBuffsContainer);
 
     this.o.leftBuffsList = document.createElement('widget-list');
     this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
@@ -379,11 +384,6 @@ class Bars {
     this.o.leftBuffsList.maxnumber = 7;
     this.o.leftBuffsList.toward = "left down";
     this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
-
-    // Holds health/mana/tp.
-    var barsContainer = document.createElement('div');
-    barsContainer.id = 'bars';
-    opacityContainer.appendChild(barsContainer);
 
     var healthText = isTankJob(this.job) ? 'value' : '';
     
