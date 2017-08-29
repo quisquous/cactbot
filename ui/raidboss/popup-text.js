@@ -1,7 +1,8 @@
 "use strict";
 
 class PopupText {
-  constructor() {
+  constructor(options) {
+    this.options = options;
     this.init = false;
     this.triggers = [];
   }
@@ -12,13 +13,6 @@ class PopupText {
       this.infoText = document.getElementById('popup-text-info');
       this.alertText = document.getElementById('popup-text-alert');
       this.alarmText = document.getElementById('popup-text-alarm');
-
-      this.namedSounds = {
-        Info: '../../resources/sounds/BigWigs/Info.ogg',
-        Alert: '../../resources/sounds/BigWigs/Alert.ogg',
-        Alarm: '../../resources/sounds/BigWigs/Alarm.ogg',
-        Long: '../../resources/sounds/BigWigs/Long.ogg',
-      };
     }
 
     if (this.job != e.detail.job || this.me != e.detail.name)
@@ -146,6 +140,7 @@ class PopupText {
 
     var f = function() {
       var textSound = '';
+      var textVol = 1;
 
       if ('infoText' in trigger) {
         var text = ValueOrFunction(trigger.infoText);
@@ -155,7 +150,10 @@ class PopupText {
           that.infoText.style.animationDuration = '300ms';
           that.infoText.style.animationTimingFunction = 'linear';
           that.infoText.innerText = text;
-          textSound = 'sound' in trigger ? '' : that.namedSounds.Info;
+          if (!('sound' in trigger)) {
+            textSound = that.options.InfoSound;
+            textVol = that.options.InfoSoundVolume;
+          }
 
           window.clearTimeout(that.infoTextTimer);
           that.infoTextTimer = window.setTimeout(function() {
@@ -171,7 +169,10 @@ class PopupText {
           that.alertText.style.animationDuration = '300ms';
           that.alertText.style.animationTimingFunction = 'linear';
           that.alertText.innerText = text;
-          textSound = 'sound' in trigger ? '' : that.namedSounds.Alert;
+          if (!('sound' in trigger)) {
+            textSound = that.options.AlertSound;
+            textVol = that.options.AlertSoundVolume;
+          }
 
           window.clearTimeout(that.alertTextTimer);
           that.alertTextTimer = window.setTimeout(function() {
@@ -187,7 +188,10 @@ class PopupText {
           that.alarmText.style.animationDuration = '300ms';
           that.infoText.style.animationTimingFunction = 'linear';
           that.alarmText.innerText = text;
-          textSound = 'sound' in trigger ? '' : that.namedSounds.Alarm;
+          if (!('sound' in trigger)) {
+            textSound = that.options.AlarmSound;
+            textVol = that.options.AlarmSoundVolume;
+          }
 
           window.clearTimeout(that.alarmTextTimer);
           that.alarmTextTimer = window.setTimeout(function() {
@@ -200,10 +204,21 @@ class PopupText {
         new Audio(textSound).play();
 
       if ('sound' in trigger && trigger.sound) {
-        var url = trigger.sound in this.namedSounds ? this.namedSounds[trigger.sound] : trigger.sound;
-        var audio = new Audio(url);
+        var url = trigger.sound;
+        var volume = 1;
+
+        var namedSound = trigger.sound + 'Sound';
+        var namedSoundVolume = trigger.sound + 'SoundVolume';
+        if (namedSound in that.options) {
+          url = that.options[namedSound];
+          if (namedSoundVolume in that.options)
+            volume = that.options[namedSoundVolume];
+        }
         if ('soundVolume' in trigger)
-          audio.volume = trigger.soundVolume;
+          volume = trigger.soundVolume;
+
+        var audio = new Audio(url);
+        audio.volume = volume;
         audio.play();
       }
 
@@ -246,7 +261,7 @@ class PopupTextGenerator {
 
 }
 
-var gPopupText = new PopupText();
+var gPopupText;
 
 document.addEventListener("onPlayerChangedEvent", function(e) {
   gPopupText.OnPlayerChange(e);
@@ -272,6 +287,7 @@ document.addEventListener("onDataFilesRead", function(e) {
 
 // Testing...
 //window.onload = function() {
+  //document.dispatchEvent(new CustomEvent('onGameExistsEvent', { detail: { exists: true } }));
   //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':Exdeath uses The Decisive Battle.') }, 0);
   //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':Exdeath begins casting Fire III.') }, 0);
   //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':test:trigger:') }, 1000);
