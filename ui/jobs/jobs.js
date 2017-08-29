@@ -801,7 +801,7 @@ class Bars {
         return false;
       if (this.level < this.options.MaxLevel)
         return true;
-      return this.zone.search(kReFoodBuff) >= 0;
+      return this.zone.search(this.options.WellFedZoneRegex) >= 0;
     }
     
     // Returns the number of ms until it should be shown. If <= 0, show it.
@@ -1012,6 +1012,14 @@ class Bars {
       if (log.search(/Countdown canceled by /) >= 0) {
         this.SetPullCountdown(0);
         continue;
+      }
+
+      r = log.match(kReFoodBuff);
+      if (r != null) {
+        var seconds = parseFloat(r[1]);
+        var now = Date.now();  // This is in ms.
+        this.foodBuffExpiresTimeMs = now + (seconds * 1000);
+        this.UpdateFoodBuff();
       }
 
       for (var name in kBigBuffTracker) {
