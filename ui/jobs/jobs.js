@@ -1,70 +1,30 @@
 "use strict";
 
-// Options.
-var kLowerOpacityOutOfCombat = true;
-var kHideWellFedAboveSeconds = 15 * 60;  // N mins warning.
-var kWellFedZoneRegex = /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/;
-var kShowRdmProcs = true;
+var kOptions = {
+  // Options.
+  kLowerOpacityOutOfCombat: true,
+  kHideWellFedAboveSeconds: 15 * 60,  // N mins warning.
+  kWellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/,
+  kShowRdmProcs: true,
 
-// Constants.
-var kMaxLevel = 70;  // Update this when new expansion happens.
-var kFarThresholdOffence = 24;  // The distance that offensive spells such as VerAreo, etc are castable.
-var kRdmCastTime = 1.94 + 0.5;  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
-var kWarGcd = 2.38;
+  // Constants.
+  kMaxLevel: 70,  // Update this when new expansion happens.
+  kFarThresholdOffence: 24,  // The distance that offensive spells such as VerAreo, etc are castable.
+  kRdmCastTime: 1.94 + 0.5,  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+  kWarGcd: 2.38,
 
-// Layout.
-var kHealthBarPosX = 100;
-var kHealthBarPosY = 20;
-var kManaBarPosX = kHealthBarPosX;
-var kManaBarMarginY = 1;
-var kHealthBarSizeW = 202;  // 2px per percent + 1px border on each side.
-var kHealthBarSizeH = 7;  // Rogue energy was 12.
-var kTankHealthBarSizeH = 18;
-var kManaBarSizeH = 7;
-var kPullTimerPosX = kHealthBarPosX;
-var kPullTimerPosY = kHealthBarPosY - 20;
-var kPullCounterBarSizeH = 18;
-var kBigBuffIconWidth = 44;
-var kBigBuffIconHeight = 32;
-var kBigBuffBarHeight = 5;
-var kBigBuffTextHeight = 12;
-var kBigBuffBorderSize = 1;
-// RDM layout.
-var kRedMageManaBarPosX = kHealthBarPosX;
-var kRedMageManaBarPosY = kHealthBarPosY + 17;// + 228;
-var kRedMageManaBarSizeH = 8;  // Rogue energy was 12.
-var kRedMageProcsPosX = kHealthBarPosX;
-var kRedMageProcsPosY = kHealthBarPosY + 146;
-// WAR layout.
-var kWarProcsPosX = kHealthBarPosX;
-var kWarProcsPosY = kHealthBarPosY + 160;
+  // Big buff icons.
+  kBigBuffIconWidth: 44,
+  kBigBuffIconHeight: 32,
+  kBigBuffBarHeight: 5,
+  kBigBuffTextHeight: 12,
+  kBigBuffBorderSize: 1,
 
-// Colours.
-var kHealthColor = "rgb(59, 133, 4)";
-var kManaColor = "rgb(188, 55, 147)"; //"rgb(57, 120, 167)";
-var kTPColor = "rgb(180, 180, 0)";
-var kBackgroundColor = "rgb(30, 30, 30)";
-var kMidTPColor = "rgb(200, 70, 15)";
-var kTPInvigorateThreshold = 600;
-var kLowManaColor = "rgb(218, 69, 177)";
-var kFarManaColor = "rgb(215, 120, 0)";
-var kLowHealthThresholdPercent = 0.2;
-var kLowHealthColor = "rgb(190, 43, 30)";
-var kMidHealthThresholdPercent = 0.8;
-var kMidHealthColor = "rgb(127, 185, 29)";
-var kLowBeastColor = "rgb(255, 235, 153)";
-var kMidBeastColor = "rgb(255, 153, 0)";
-var kFullBeastColor = "rgb(230, 20, 20)";
-var kEyeBoxColor = "rgb(60, 100, 210)";
-// RDM colours.
-var kWhiteManaBarColor = "rgb(220, 220, 240)";
-var kWhiteManaBarDimColor = "rgb(90, 90, 100)";
-var kBlackManaBarColor = "rgb(47, 176, 208)";
-var kImpactProcColor = "rgb(242, 114, 147)";
-var kBlackManaBarDimColor = "rgb(13, 76, 80)";
-var kWhiteBlackIndicator40 = "rgba(0, 0, 0, 0.7)";
-var kWhiteBlackIndicator80 = "rgba(0, 0, 0, 0.7)";
-var kWhiteBlackIndicator = "rgba(100, 100, 100, 0.7)";
+  // Colours.
+  kTPInvigorateThreshold: 600,
+  kLowHealthThresholdPercent: 0.2,
+  kMidHealthThresholdPercent: 0.8,
+}
 
 var kReName = '[A-Za-z0-9 \']+';
 var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
@@ -210,6 +170,7 @@ function setupRegexes(me) {
 
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
 var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
+var kHealerJobs = ["CNJ", "WHM", "SCH", "AST"];
 var kNonCombatJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL", "MIN", "BTN", "FSH"];
 var kMeleeWithMpJobs = ["BRD", "DRK"];
 
@@ -221,12 +182,27 @@ function isTankJob(job) {
   return kTankJobs.indexOf(job) >= 0;
 }
 
+function isHealerJob(job) {
+  return kHealerJobs.indexOf(job) >= 0;
+}
+
 function isCombatJob(job) {
   return kNonCombatJobs.indexOf(job) == -1;
 }
 
 function doesJobNeedMPBar(job) {
   return isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
+}
+
+function computeBackgroundColorFrom(element, classList) {
+  var div = document.createElement('div');
+  var classes = classList.split('.');
+  for (var i = 0; i < classes.length; ++i)
+    div.classList.add(classes[i]);
+  element.appendChild(div);
+  var color = window.getComputedStyle(div).backgroundColor;
+  element.removeChild(div);
+  return color;
 }
 
 var kBigBuffTracker = null;
@@ -320,11 +296,11 @@ class Bars {
   }
 
   UpdateJob() {
-    var container = document.getElementById("bars-container");
+    var container = document.getElementById("jobs-container");
     if (container == null) {
       var root = document.getElementById("container");
       container = document.createElement("div");
-      container.id = "bars-container";
+      container.id = "jobs-container";
       root.appendChild(container);
     }
     while (container.childNodes.length)
@@ -335,24 +311,33 @@ class Bars {
     if (!isCombatJob(this.job)) {
       return;
     }
+    
+    var barsLayoutContainer = document.createElement("div");
+    barsLayoutContainer.id = 'jobs';
+    container.appendChild(barsLayoutContainer);
+    
+    barsLayoutContainer.classList.add(this.job.toLowerCase());
+    if (isTankJob(this.job))
+      barsLayoutContainer.classList.add('tank');
+    else if (isHealerJob(this.job))
+      barsLayoutContainer.classList.add('tank');
+    else if (isCombatJob(this.job))
+      barsLayoutContainer.classList.add('dps');
+    else
+      barsLayoutContainer.classList.add('noncombat');
 
     var opacityContainer = document.createElement("div");
     opacityContainer.id = "opacity-container";
-    container.appendChild(opacityContainer);
+    barsLayoutContainer.appendChild(opacityContainer);
 
     var pullCountdownContainer = document.createElement("div");
-    container.appendChild(pullCountdownContainer);
+    pullCountdownContainer.id = 'pull-bar';
+    barsLayoutContainer.appendChild(pullCountdownContainer);
     this.o.pullCountdown = document.createElement("timer-bar");
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
-    pullCountdownContainer.style.position = "absolute";
-    pullCountdownContainer.style.top = kPullTimerPosY;
-    pullCountdownContainer.style.left = kPullTimerPosX;
-    pullCountdownContainer.style.width = kHealthBarSizeW;
-    pullCountdownContainer.style.height = kPullCounterBarSizeH;
-    pullCountdownContainer.style.fontSize = kPullCounterBarSizeH - 4;
-    this.o.pullCountdown.width = kHealthBarSizeW;
-    this.o.pullCountdown.height = kPullCounterBarSizeH;
+    this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
+    this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
     this.o.pullCountdown.lefttext = "Pull";
     this.o.pullCountdown.righttext = "remain";
     this.o.pullCountdown.style = "empty";
@@ -360,235 +345,170 @@ class Bars {
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
 
     this.o.rightBuffsContainer = document.createElement("div");
+    this.o.rightBuffsContainer.id = 'right-side-icons';
+    opacityContainer.appendChild(this.o.rightBuffsContainer);
+    
     this.o.rightBuffsList = document.createElement('widget-list');
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
-    opacityContainer.appendChild(this.o.rightBuffsContainer);
 
-    this.o.rightBuffsContainer.style.position = "absolute";
-    this.o.rightBuffsContainer.style.top = kHealthBarPosY;
-    this.o.rightBuffsContainer.style.left = kHealthBarPosX + kHealthBarSizeW + 3;
     this.o.rightBuffsList.rowcolsize = 7;
     this.o.rightBuffsList.maxnumber = 7;
     this.o.rightBuffsList.toward = "right down";
-    this.o.rightBuffsList.elementwidth = kBigBuffIconWidth + 2;
+    this.o.rightBuffsList.elementwidth = kOptions.kBigBuffIconWidth + 2;
 
     this.o.leftBuffsContainer = document.createElement("div");
-    this.o.leftBuffsList = document.createElement('widget-list');
-    this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
+    this.o.leftBuffsContainer.id = 'left-side-icons';
     opacityContainer.appendChild(this.o.leftBuffsContainer);
 
-    this.o.leftBuffsContainer.style.position = "absolute";
-    this.o.leftBuffsContainer.style.top = kHealthBarPosY;
-    this.o.leftBuffsContainer.style.left = kHealthBarPosX - 3;
+    this.o.leftBuffsList = document.createElement('widget-list');
+    this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
+
     this.o.leftBuffsList.rowcolsize = 7;
     this.o.leftBuffsList.maxnumber = 7;
     this.o.leftBuffsList.toward = "left down";
-    this.o.leftBuffsList.elementwidth = kBigBuffIconWidth + 2;
+    this.o.leftBuffsList.elementwidth = kOptions.kBigBuffIconWidth + 2;
 
+    // Holds health/mana/tp.
+    var barsContainer = document.createElement('div');
+    barsContainer.id = 'bars';
+    opacityContainer.appendChild(barsContainer);
+
+    var healthText = isTankJob(this.job) ? 'value' : '';
+    
     this.o.healthContainer = document.createElement("div");
+    this.o.healthContainer.id = 'hp-bar';
+    barsContainer.appendChild(this.o.healthContainer);
+
     this.o.healthBar = document.createElement("resource-bar");
     this.o.healthContainer.appendChild(this.o.healthBar);
-    opacityContainer.appendChild(this.o.healthContainer);
+      // TODO: Let the component do this dynamically.
+    this.o.healthBar.width = window.getComputedStyle(this.o.healthContainer).width;
+    this.o.healthBar.height = window.getComputedStyle(this.o.healthContainer).height;
+    this.o.healthBar.lefttext = healthText;
+    this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
 
-    this.o.healthContainer.style.position = "absolute";
-    this.o.healthContainer.style.top = kHealthBarPosY;
-    this.o.healthContainer.style.left = kHealthBarPosX;
-    this.o.healthBar.width = kHealthBarSizeW;
-    this.o.healthBar.height = kHealthBarSizeH;
-
-    if (isTankJob(this.job)) {
-      this.o.healthBar.height = kTankHealthBarSizeH;
-      this.o.healthBar.lefttext = "value";
-    }
-
-    var nextBarTop = kHealthBarPosY + parseInt(this.o.healthBar.height) + kManaBarMarginY;
     if (doesJobNeedMPBar(this.job)) {
       this.o.manaContainer = document.createElement("div");
+      this.o.manaContainer.id = 'mp-bar';
+      barsContainer.appendChild(this.o.manaContainer);
+
       this.o.manaBar = document.createElement("resource-bar");
       this.o.manaContainer.appendChild(this.o.manaBar);
-      opacityContainer.appendChild(this.o.manaContainer);
-
-      this.o.manaContainer.style.position = "absolute";
-      this.o.manaContainer.style.top = nextBarTop;
-      this.o.manaContainer.style.left = kManaBarPosX;
-      this.o.manaBar.width = kHealthBarSizeW;
-      this.o.manaBar.height = kManaBarSizeH;
-
-      nextBarTop += parseInt(this.o.manaBar.height) + kManaBarMarginY;
+      // TODO: Let the component do this dynamically.
+      this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
+      this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
+      this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');;
     }
 
     if (!isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement("div");
+      this.o.tpContainer.id = 'tp-bar';
+      barsContainer.appendChild(this.o.tpContainer);
+
       this.o.tpBar = document.createElement("resource-bar");
       this.o.tpContainer.appendChild(this.o.tpBar);
-      opacityContainer.appendChild(this.o.tpContainer);
-
-      this.o.tpContainer.style.position = "absolute";
-      this.o.tpContainer.style.top = nextBarTop;
-      this.o.tpContainer.style.left = kManaBarPosX;
-      this.o.tpBar.width = kHealthBarSizeW;
-      this.o.tpBar.height = kHealthBarSizeH;
+      // TODO: Let the component do this dynamically.
+      this.o.tpBar.width = window.getComputedStyle(this.o.tpContainer).width;
+      this.o.tpBar.height = window.getComputedStyle(this.o.tpContainer).height;
+      this.o.tpBar.bg = computeBackgroundColorFrom(this.o.tpBar, 'bar-border-color');;
     }
 
     if (this.job == "RDM") {
       var fontSize = 16;
-      var fontWidth = fontSize * 1.8;
-      var whiteX = kHealthBarSizeW + 3;
-      var whiteY = -17;
-      var blackX = kHealthBarSizeW + 3 + fontWidth + 5;
-      var blackY = -17;
       var innerTextY = 6;
 
-      // Move over the right buffs.
-      this.o.rightBuffsContainer.style.left = kRedMageManaBarPosX + blackX + fontWidth + 5;
+      var rdmBars = document.createElement("div");
+      rdmBars.id = 'rdm-bar';
+      barsContainer.appendChild(rdmBars);
 
-      var rdmContainer = document.createElement("div");
-      opacityContainer.appendChild(rdmContainer);
-      rdmContainer.style.position = "absolute";
-      rdmContainer.style.top = kRedMageManaBarPosY;
-      rdmContainer.style.left = kRedMageManaBarPosX;
+      var incs = 20;
+      for (var i = 0; i < 100; i += incs) {
+        var marker = document.createElement("div");
+        marker.classList.add('marker');
+        marker.classList.add((i % 40 == 0) ? 'odd' : 'even');
+        rdmBars.appendChild(marker);
+        marker.style.left = i + '%';
+        marker.style.width = incs + '%';
+      }
 
       this.o.whiteManaBarContainer = document.createElement("div");
+      this.o.whiteManaBarContainer.id = 'rdm-white-bar';
       this.o.whiteManaBar = document.createElement("resource-bar");
-      rdmContainer.appendChild(this.o.whiteManaBarContainer);
+      rdmBars.appendChild(this.o.whiteManaBarContainer);
       this.o.whiteManaBarContainer.appendChild(this.o.whiteManaBar);
 
-      this.o.whiteManaBarContainer.style.position = "absolute";
-      this.o.whiteManaBarContainer.style.top = 0;
-      this.o.whiteManaBarContainer.style.left = 0;
-
       this.o.whiteManaBar.bg = "rgba(0, 0, 0, 0)";
-      this.o.whiteManaBar.fg = kWhiteManaBarColor;
-      this.o.whiteManaBar.width = kHealthBarSizeW;
-      this.o.whiteManaBar.height = kRedMageManaBarSizeH;
+      this.o.whiteManaBar.fg = computeBackgroundColorFrom(this.o.whiteManaBar, 'rdm-color-white-mana');
+      this.o.whiteManaBar.width = window.getComputedStyle(this.o.whiteManaBarContainer).width;
+      this.o.whiteManaBar.height = window.getComputedStyle(this.o.whiteManaBarContainer).height;
       this.o.whiteManaBar.maxvalue = 100;
 
       this.o.blackManaBarContainer = document.createElement("div");
+      this.o.blackManaBarContainer.id = 'rdm-black-bar';
       this.o.blackManaBar = document.createElement("resource-bar");
-      rdmContainer.appendChild(this.o.blackManaBarContainer);
+      rdmBars.appendChild(this.o.blackManaBarContainer);
       this.o.blackManaBarContainer.appendChild(this.o.blackManaBar);
 
-      this.o.blackManaBarContainer.style.position = "absolute";
-      this.o.blackManaBarContainer.style.top = kRedMageManaBarSizeH - 2;
-      this.o.blackManaBarContainer.style.left = 0;
       this.o.blackManaBar.bg = "rgba(0, 0, 0, 0)";
-      this.o.blackManaBar.fg = kBlackManaBarColor;
-      this.o.blackManaBar.width = kHealthBarSizeW;
-      this.o.blackManaBar.height = kRedMageManaBarSizeH;
+      this.o.blackManaBar.fg = computeBackgroundColorFrom(this.o.blackManaBar, 'rdm-color-black-mana');
+      this.o.blackManaBar.width = window.getComputedStyle(this.o.blackManaBarContainer).width;
+      this.o.blackManaBar.height = window.getComputedStyle(this.o.blackManaBarContainer).height;
       this.o.blackManaBar.maxvalue = 100;
 
-      this.o.rdmBackground = document.createElement("div");
-      rdmContainer.appendChild(this.o.rdmBackground);
-      this.o.rdmBackground.style.zIndex = -1;
-      this.o.rdmBackground.style.position = "absolute";
-      this.o.rdmBackground.style.left = 0;
-      this.o.rdmBackground.style.top = 0;
-      this.o.rdmBackground.style.width = kHealthBarSizeW - 2;
-      this.o.rdmBackground.style.height = kRedMageManaBarSizeH * 2 - 4;
-      this.o.rdmBackground.style.border = "1px solid black";
-      this.o.rdmBackground.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-
       this.o.rdmCombo1 = document.createElement("div");
+      this.o.rdmCombo1.id = 'rdm-combo-1';
+      this.o.rdmCombo1.classList.add('rdm-combo');
       this.o.rdmCombo2 = document.createElement("div");
+      this.o.rdmCombo2.id = 'rdm-combo-2';
+      this.o.rdmCombo2.classList.add('rdm-combo');
       this.o.rdmCombo3 = document.createElement("div");
+      this.o.rdmCombo3.id = 'rdm-combo-3';
+      this.o.rdmCombo3.classList.add('rdm-combo');
 
-      this.o.rdmCombo1.style.position = "absolute";
-      this.o.rdmCombo1.style.left = kHealthBarPosX;
-      this.o.rdmCombo1.style.top = kHealthBarPosY - 9;
-      this.o.rdmCombo1.style.width = 50;
-      this.o.rdmCombo1.style.height = 6;
-      this.o.rdmCombo1.style.backgroundColor = "#990";
-      this.o.rdmCombo1.style.border = "1px solid black";
-      this.o.rdmCombo1.style.display = "none";
-
-      this.o.rdmCombo2.style.position = "absolute";
-      this.o.rdmCombo2.style.left = kHealthBarPosX + kHealthBarSizeW / 2 - 52 / 2;
-      this.o.rdmCombo2.style.top = kHealthBarPosY - 9;
-      this.o.rdmCombo2.style.width = 50;
-      this.o.rdmCombo2.style.height = 6;
-      this.o.rdmCombo2.style.backgroundColor = "#990";
-      this.o.rdmCombo2.style.border = "1px solid black";
-      this.o.rdmCombo2.style.display = "none";
-
-      this.o.rdmCombo3.style.position = "absolute";
-      this.o.rdmCombo3.style.left = kHealthBarPosX + kHealthBarSizeW - 52;
-      this.o.rdmCombo3.style.top = kHealthBarPosY - 9;
-      this.o.rdmCombo3.style.width = 50;
-      this.o.rdmCombo3.style.height = 6;
-      this.o.rdmCombo3.style.backgroundColor = "#A00";
-      this.o.rdmCombo3.style.border = "1px solid black";
-      this.o.rdmCombo3.style.display = "none";
-
+      // XXX: barsContainer?
       opacityContainer.appendChild(this.o.rdmCombo1);
       opacityContainer.appendChild(this.o.rdmCombo2);
       opacityContainer.appendChild(this.o.rdmCombo3);
 
-      var incs = 20;
-      for (var i = 2 * incs; i <= 100; i = i + 2 * incs) {
-        var marker = document.createElement("div");
-        rdmContainer.appendChild(marker);
-        marker.style.zIndex = -1;
-        marker.style.position = "absolute";
-        marker.style.left = 1 + 2 * (i - incs);
-        marker.style.top = 1;
-        marker.style.width = 2 * incs;
-        marker.style.height = kRedMageManaBarSizeH * 2 - 4;
-        if (i == 40)
-          marker.style.backgroundColor = kWhiteBlackIndicator40;
-        else if (i == 80)
-          marker.style.backgroundColor = kWhiteBlackIndicator80;
-        else
-          marker.style.backgroundColor = kWhiteBlackIndicator;
-      }
+      var rdmBoxesContainer = document.createElement("div");
+      rdmBoxesContainer.id = 'rdm-boxes';
+      barsContainer.appendChild(rdmBoxesContainer);
 
       this.o.whiteManaTextBox = document.createElement("div");
-      rdmContainer.appendChild(this.o.whiteManaTextBox);
-      this.o.whiteManaTextBox.classList.add("text");
-      this.o.whiteManaTextBox.style.position = "absolute";
-      this.o.whiteManaTextBox.style.left = whiteX;
-      this.o.whiteManaTextBox.style.top = whiteY;
-      this.o.whiteManaTextBox.style.fontSize = fontSize;
-      this.o.whiteManaTextBox.style.textAlign = "center";
-      this.o.whiteManaTextBox.style.width = fontWidth;
-      this.o.whiteManaTextBox.style.height = fontWidth;
-      this.o.whiteManaTextBox.style.border = "1px solid rgba(0,0,0,0.7)";
+      this.o.whiteManaTextBox.classList.add('rdm-color-white-mana');
+      rdmBoxesContainer.appendChild(this.o.whiteManaTextBox);
 
       this.o.blackManaTextBox = document.createElement("div");
-      rdmContainer.appendChild(this.o.blackManaTextBox);
-      this.o.blackManaTextBox.classList.add("text");
-      this.o.blackManaTextBox.style.position = "absolute";
-      this.o.blackManaTextBox.style.left = blackX;
-      this.o.blackManaTextBox.style.top = blackY;
-      this.o.blackManaTextBox.style.fontSize = fontSize;
-      this.o.blackManaTextBox.style.textAlign = "center";
-      this.o.blackManaTextBox.style.width = fontWidth;
-      this.o.blackManaTextBox.style.height = fontWidth;
-      this.o.blackManaTextBox.style.border = "1px solid rgba(0,0,0,0.7)";
+      this.o.blackManaTextBox.classList.add('rdm-color-black-mana');
+      rdmBoxesContainer.appendChild(this.o.blackManaTextBox);
 
       this.o.whiteManaText = document.createElement("div");
       this.o.whiteManaTextBox.appendChild(this.o.whiteManaText);
-      this.o.whiteManaText.style.position = "relative";
-      this.o.whiteManaText.style.top = innerTextY;
+      this.o.whiteManaText.classList.add("text");
 
       this.o.blackManaText = document.createElement("div");
       this.o.blackManaTextBox.appendChild(this.o.blackManaText);
-      this.o.blackManaText.style.position = "relative";
-      this.o.blackManaText.style.top = innerTextY;
+      this.o.blackManaText.classList.add("text");
 
-      if (kShowRdmProcs) {
-        /*
-        var procMargin = (kHealthBarSizeW - (procW * 3)) / 2;
-        var procW = 64;
-        var procH = 64;
-        */
-
+      if (kOptions.kShowRdmProcs) {
         var procsContainer = document.createElement("div");
+        procsContainer.id = 'rdm-procs';
+
         var whiteProcContainer = document.createElement("div");
+        whiteProcContainer.id = 'rdm-procs-white';
         var blackProcContainer = document.createElement("div");
+        blackProcContainer.id = 'rdm-procs-black';
         var impactProcContainer = document.createElement("div");
+        impactProcContainer.id = 'rdm-procs-impact';
         var rdmNoProcWhite = document.createElement("div");
+        rdmNoProcWhite.classList.add('inactive');
+        rdmNoProcWhite.classList.add('rdm-color-white-mana');
         var rdmNoProcBlack = document.createElement("div");
+        rdmNoProcBlack.classList.add('inactive');
+        rdmNoProcBlack.classList.add('rdm-color-black-mana');
         var rdmNoProcImpact = document.createElement("div");
+        rdmNoProcImpact.classList.add('inactive');
+        rdmNoProcImpact.classList.add('rdm-color-impact');
         this.o.rdmProcWhite = document.createElement("timer-box");
         this.o.rdmProcBlack = document.createElement("timer-box");
         this.o.rdmProcImpact = document.createElement("timer-box");
@@ -604,121 +524,54 @@ class Bars {
         blackProcContainer.appendChild(this.o.rdmProcBlack);
         impactProcContainer.appendChild(this.o.rdmProcImpact);
 
-        procsContainer.style.position = "absolute";
-        procsContainer.style.top = kRedMageProcsPosY;
-        procsContainer.style.left = kRedMageProcsPosX;
-
-        whiteProcContainer.style.position = "absolute";
-        blackProcContainer.style.position = "absolute";
-        impactProcContainer.style.position = "absolute";
-
-        whiteProcContainer.style.left = 10;
-        blackProcContainer.style.left = 152 / 2;
-        impactProcContainer.style.left = 142;
-
-        rdmNoProcWhite.style.backgroundColor = kWhiteManaBarColor;
-        rdmNoProcWhite.style.opacity = 0.6;
-        rdmNoProcWhite.style.border = "1px solid black";
-        rdmNoProcWhite.style.width = 20;
-        rdmNoProcWhite.style.height = 20;
-        rdmNoProcWhite.style.position = "absolute";
-        rdmNoProcWhite.style.left = 14;
-        rdmNoProcWhite.style.top = 14;
-
-        rdmNoProcBlack.style.backgroundColor = kBlackManaBarColor;
-        rdmNoProcBlack.style.opacity = 0.6;
-        rdmNoProcBlack.style.border = "1px solid black";
-        rdmNoProcBlack.style.width = 20;
-        rdmNoProcBlack.style.height = 20;
-        rdmNoProcBlack.style.position = "absolute";
-        rdmNoProcBlack.style.left = 14;
-        rdmNoProcBlack.style.top = 14;
-
-        rdmNoProcImpact.style.backgroundColor = kImpactProcColor;
-        rdmNoProcImpact.style.opacity = 0.6;
-        rdmNoProcImpact.style.border = "1px solid black";
-        rdmNoProcImpact.style.width = 20;
-        rdmNoProcImpact.style.height = 20;
-        rdmNoProcImpact.style.position = "absolute";
-        rdmNoProcImpact.style.left = 14;
-        rdmNoProcImpact.style.top = 14;
-
         this.o.rdmProcWhite.style = "empty";
         this.o.rdmProcWhite.toward = "bottom";
         this.o.rdmProcWhite.threshold = 1000;
         this.o.rdmProcWhite.hideafter = 0;
-        this.o.rdmProcWhite.fg = kWhiteManaBarColor;
+        this.o.rdmProcWhite.fg = window.getComputedStyle(rdmNoProcWhite).backgroundColor;
         this.o.rdmProcWhite.bg = 'black';
         this.o.rdmProcBlack.style = "empty";
         this.o.rdmProcBlack.toward = "bottom";
         this.o.rdmProcBlack.threshold = 1000;
         this.o.rdmProcBlack.hideafter = 0;
-        this.o.rdmProcBlack.fg = kBlackManaBarColor;
+        this.o.rdmProcBlack.fg = window.getComputedStyle(rdmNoProcBlack).backgroundColor;
         this.o.rdmProcBlack.bg = 'black';
         this.o.rdmProcImpact.style = "empty";
         this.o.rdmProcImpact.toward = "bottom";
         this.o.rdmProcImpact.threshold = 1000;
         this.o.rdmProcImpact.hideafter = 0;
-        this.o.rdmProcImpact.fg = kImpactProcColor;
+        this.o.rdmProcImpact.fg = window.getComputedStyle(rdmNoProcImpact).backgroundColor;
         this.o.rdmProcImpact.bg = 'black';
       }
     } else if (this.job == "WAR") {
       var fontSize = 16;
       var fontWidth = fontSize * 1.8;
-      var beastX = kHealthBarPosX + kHealthBarSizeW + 3;
-      var beastY = kHealthBarPosY;
 
-      // Move over the right buffs.
-      // TODO: these should probably just float?
-      this.o.rightBuffsContainer.style.left = beastX + fontWidth + 7;
-
+      var beastBoxesContainer = document.createElement("div");
+      beastBoxesContainer.id = 'war-boxes';
+      barsContainer.appendChild(beastBoxesContainer);
+      
       this.o.beastTextBox = document.createElement("div");
-      opacityContainer.appendChild(this.o.beastTextBox);
-      this.o.beastTextBox.classList.add("text");
-      this.o.beastTextBox.style.position = "absolute";
-      this.o.beastTextBox.style.left = beastX;
-      this.o.beastTextBox.style.top = beastY;
-      this.o.beastTextBox.style.fontSize = fontSize;
-      this.o.beastTextBox.style.textAlign = "center";
-      this.o.beastTextBox.style.width = fontWidth;
-      this.o.beastTextBox.style.height = fontWidth;
-      this.o.beastTextBox.style.border = "1px solid rgba(0,0,0,0.7)";
+      this.o.beastTextBox.classList.add('war-color-beast');
+      beastBoxesContainer.appendChild(this.o.beastTextBox);
 
       this.o.beastText = document.createElement("div");
       this.o.beastTextBox.appendChild(this.o.beastText);
-      this.o.beastText.style.position = "relative";
-      this.o.beastText.style.top = "6";
+      this.o.beastText.classList.add("text");
 
       var eyeContainer = document.createElement("div");
-      eyeContainer.style.position = "absolute";
-      eyeContainer.style.left = kWarProcsPosX;
-      eyeContainer.style.top = kWarProcsPosY;
-      eyeContainer.style.width = fontWidth;
-      eyeContainer.style.height = fontWidth;
-      opacityContainer.appendChild(eyeContainer);
+      eyeContainer.id = 'war-procs';
+      barsContainer.appendChild(eyeContainer);
 
       this.o.eyeBox = document.createElement("timer-box");
       eyeContainer.appendChild(this.o.eyeBox);
       this.o.eyeBox.style = "empty";
-      this.o.eyeBox.fg = kEyeBoxColor;
+      this.o.eyeBox.fg = computeBackgroundColorFrom(this.o.eyeBox, 'war-color-eye');
       this.o.eyeBox.bg = 'black';
       this.o.eyeBox.toward = "bottom";
       this.o.eyeBox.threshold = 0;
       this.o.eyeBox.hideafter = "";
       this.o.eyeBox.roundupthreshold = false;
-    }
-
-    if (this.o.healthBar) {
-      this.o.healthBar.fg = kHealthColor;
-      this.o.healthBar.bg = kBackgroundColor;
-    }
-    if (this.o.manaBar) {
-      this.o.manaBar.fg = kManaColor;
-      this.o.manaBar.bg = kBackgroundColor;
-    }
-    if (this.o.tpBar) {
-      this.o.tpBar.fg = kTPColor;
-      this.o.tpBar.bg = kBackgroundColor;
     }
   }
 
@@ -780,43 +633,46 @@ class Bars {
     this.o.blackManaText.innerText = black;
 
     if (white < 80)
-      this.o.whiteManaTextBox.style.backgroundColor = "rgba(100,100,100,0.7)";
+      this.o.whiteManaTextBox.classList.add('dim');
     else
-      this.o.whiteManaTextBox.style.backgroundColor = kWhiteManaBarColor; //"rgba(200,200,200,0.7)";
+      this.o.whiteManaTextBox.classList.remove('dim');
     if (black < 80)
-      this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarDimColor; //"rgba(0,0,0,0.7)";
+      this.o.blackManaTextBox.classList.add('dim');
     else
-      this.o.blackManaTextBox.style.backgroundColor = kBlackManaBarColor; //"rgba(50,50,50,0.7)";
+      this.o.blackManaTextBox.classList.remove('dim');
   }
 
   OnWarUpdate(beast) {
     if (this.o.beastTextBox == null) {
-        return;
+      return;
     }
     this.o.beastText.innerText = beast;
 
     if (beast < 50) {
-        this.o.beastTextBox.style.backgroundColor = kLowBeastColor;
+      this.o.beastTextBox.classList.add('low');
+      this.o.beastTextBox.classList.remove('mid');
     } else if (beast < 100) {
-        this.o.beastTextBox.style.backgroundColor = kMidBeastColor;
+      this.o.beastTextBox.classList.remove('low');
+      this.o.beastTextBox.classList.add('mid');
     } else {
-        this.o.beastTextBox.style.backgroundColor = kFullBeastColor;
+      this.o.beastTextBox.classList.remove('low');
+      this.o.beastTextBox.classList.remove('mid');
     }
   }
 
   OnRedMageProcBlack(seconds) {
     if (this.o.rdmProcBlack != null)
-      this.o.rdmProcBlack.duration = Math.max(0, seconds - kRdmCastTime);
+      this.o.rdmProcBlack.duration = Math.max(0, seconds - kOptions.kRdmCastTime);
   }
 
   OnRedMageProcWhite(seconds) {
     if (this.o.rdmProcWhite != null)
-      this.o.rdmProcWhite.duration = Math.max(0, seconds - kRdmCastTime);
+      this.o.rdmProcWhite.duration = Math.max(0, seconds - kOptions.kRdmCastTime);
   }
 
   OnRedMageProcImpact(seconds) {
     if (this.o.rdmProcImpact != null)
-      this.o.rdmProcImpact.duration = Math.max(0, seconds - kRdmCastTime);
+      this.o.rdmProcImpact.duration = Math.max(0, seconds - kOptions.kRdmCastTime);
   }
 
   OnComboChange(skill) {
@@ -826,9 +682,18 @@ class Bars {
 
       if (!skill)
         skill = "";
-      this.o.rdmCombo1.style.display = skill.indexOf('Riposte') >= 0 ? "block" : "none";
-      this.o.rdmCombo2.style.display = skill.indexOf('Zwerchhau') >= 0 ? "block" : "none";
-      this.o.rdmCombo3.style.display = skill.indexOf('Redoublement') >= 0 ? "block" : "none";
+      if (skill.indexOf('Riposte') >= 0)
+        this.o.rdmCombo1.classList.add('active');
+      else
+        this.o.rdmCombo1.classList.remove('active');
+      if (skill.indexOf('Zwerchhau') >= 0)
+        this.o.rdmCombo2.classList.add('active');
+      else
+        this.o.rdmCombo2.classList.remove('active');
+      if (skill.indexOf('Redoublement') >= 0)
+        this.o.rdmCombo3.classList.add('active');
+      else
+        this.o.rdmCombo3.classList.remove('active');
     } else if (this.job == "WAR") {
       if (skill == "Storm's Eye") {
         // Storm's eye applies after a small animation delay.
@@ -853,7 +718,7 @@ class Bars {
       // The new threshold is "can I finish the current combo and still
       // have time to do a Storm's Eye".
       var oldThreshold = this.o.eyeBox.threshold;
-      var newThreshold = (minSkillsUntilEye + 3) * kWarGcd;
+      var newThreshold = (minSkillsUntilEye + 3) * kOptions.kWarGcd;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
@@ -876,12 +741,13 @@ class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
-    if (this.maxHP > 0 && (this.hp / this.maxHP) < kLowHealthThresholdPercent)
-      this.o.healthBar.fg = kLowHealthColor;
-    else if (this.maxHP > 0 && (this.hp / this.maxHP) < kMidHealthThresholdPercent)
-      this.o.healthBar.fg = kMidHealthColor;
+    
+    if (this.maxHP > 0 && (this.hp / this.maxHP) < kOptions.kLowHealthThresholdPercent)
+      this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
+    else if (this.maxHP > 0 && (this.hp / this.maxHP) < kOptions.kMidHealthThresholdPercent)
+      this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
     else
-      this.o.healthBar.fg = kHealthColor;
+      this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
   UpdateMana() {
@@ -891,23 +757,23 @@ class Bars {
 
     var far = -1;
     if (this.job == "RDM")
-      far = kFarThresholdOffence;
+      far = kOptions.kFarThresholdOffence;
     else if (this.job == "BLM")
-      far = kFarThresholdOffence;
+      far = kOptions.kFarThresholdOffence;
 
     if (far >= 0 && this.distance > far)
-      this.o.manaBar.fg = kFarManaColor;
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
     else
-      this.o.manaBar.fg = kManaColor;
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color')
   }
 
   UpdateTP() {
     if (!this.o.tpBar) return;
 
-    if (this.tp <= kTPInvigorateThreshold)
-      this.o.tpBar.fg = kMidTPColor;
+    if (this.tp <= kOptions.kTPInvigorateThreshold)
+      this.o.tpBar.fg = computeBackgroundColorFrom(this.o.tpBar, 'tp-color.low');
     else
-      this.o.tpBar.fg = kTPColor;
+      this.o.tpBar.fg = computeBackgroundColorFrom(this.o.tpBar, 'tp-color');
 
     this.o.tpBar.value = this.tp;
     this.o.tpBar.maxvalue = this.maxTP;
@@ -921,7 +787,7 @@ class Bars {
     var CanShowWellFedWarning = function() {
       if (this.inCombat)
         return false;
-      if (this.level < kMaxLevel)
+      if (this.level < kOptions.kMaxLevel)
         return true;
       return this.zone.search(kReFoodBuff) >= 0;
     }
@@ -929,7 +795,7 @@ class Bars {
     // Returns the number of ms until it should be shown. If <= 0, show it.
     var TimeToShowWellFedWarning = function() {
       var now_ms = Date.now();
-      var show_at_ms = this.foodBuffExpiresTimeMs - (kHideWellFedAboveSeconds * 1000);
+      var show_at_ms = this.foodBuffExpiresTimeMs - (kOptions.kHideWellFedAboveSeconds * 1000);
       return show_at_ms - now_ms;
     }
 
@@ -945,26 +811,24 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
       var outer = document.createElement('div');
-      outer.style.borderStyle = 'solid';
-      outer.style.borderColor = '#000';
-      outer.style.borderWidth = kBigBuffBorderSize;
-      outer.style.width = kBigBuffIconWidth - kBigBuffBorderSize * 2;
-      outer.style.height = kBigBuffIconHeight - kBigBuffBorderSize * 2;
+      outer.style.border = '1px solid black';
+      outer.style.width = kOptions.kBigBuffIconWidth - kOptions.kBigBuffBorderSize * 2;
+      outer.style.height = kOptions.kBigBuffIconHeight - kOptions.kBigBuffBorderSize * 2;
       outer.style.backgroundColor = 'yellow';
       var inner = document.createElement('div');
       outer.appendChild(inner);
-      inner.style.borderWidth = kBigBuffBorderSize;
-      inner.style.left = kBigBuffBorderSize;
-      inner.style.top = kBigBuffBorderSize;
+      inner.style.borderWidth = kOptions.kBigBuffBorderSize;
+      inner.style.left = kOptions.kBigBuffBorderSize;
+      inner.style.top = kOptions.kBigBuffBorderSize;
       inner.style.position = 'relative';
       inner.style.borderStyle = 'solid';
       inner.style.borderColor = '#000';
-      inner.style.width = kBigBuffIconWidth - kBigBuffBorderSize * 6;
-      inner.style.height = kBigBuffIconHeight - kBigBuffBorderSize * 6;
+      inner.style.width = kOptions.kBigBuffIconWidth - kOptions.kBigBuffBorderSize * 6;
+      inner.style.height = kOptions.kBigBuffIconHeight - kOptions.kBigBuffBorderSize * 6;
       inner.style.backgroundImage = 'url(data:image/jpeg;base64,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)';
       inner.style.backgroundColor = '#888';
       inner.style.backgroundRepeat = 'no-repeat';
-      inner.style.backgroundSize = Math.max(kBigBuffIconWidth, kBigBuffIconHeight) - kBigBuffBorderSize * 2 + 'px';
+      inner.style.backgroundSize = Math.max(kOptions.kBigBuffIconWidth, kOptions.kBigBuffIconHeight) - kOptions.kBigBuffBorderSize * 2 + 'px';
       inner.style.backgroundPosition = 'center';
       this.o.leftBuffsList.addElement('foodbuff', outer, -1);
     }
@@ -978,7 +842,7 @@ class Bars {
 
     var opacityContainer = document.getElementById("opacity-container");
     if (opacityContainer != null) {
-      if (this.inCombat || !kLowerOpacityOutOfCombat)
+      if (this.inCombat || !kOptions.kLowerOpacityOutOfCombat)
         opacityContainer.style.opacity = 1.0;
       else
         opacityContainer.style.opacity = 0.5;
@@ -1010,9 +874,9 @@ class Bars {
   OnBigBuff(name, seconds, settings) {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
-        kBigBuffIconWidth, kBigBuffIconHeight,
-        kBigBuffBarHeight, kBigBuffTextHeight,
-        kBigBuffBorderSize,
+        kOptions.kBigBuffIconWidth, kOptions.kBigBuffIconHeight,
+        kOptions.kBigBuffBarHeight, kOptions.kBigBuffTextHeight,
+        kOptions.kBigBuffBorderSize,
         settings.borderColor, settings.borderColor,
         settings.icon);
     this.o.rightBuffsList.addElement(name, aura, settings.sortKey);

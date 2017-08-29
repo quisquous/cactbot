@@ -1,0 +1,216 @@
+#jobs {
+  position: relative;
+  left: 100px;
+  top: 20px;
+}
+
+.big-buff {
+  border: 1px solid black;
+  width: 44px;
+  height: 32px;
+}
+
+/* Relative to #bars */
+#left-side-icons {
+  position: absolute;
+  left: -2px;
+}
+
+/* Relative to #bars */
+#right-side-icons {
+  position: absolute;
+  left: 206px;
+}
+
+.rdm #right-side-icons {
+  left: 278px;
+}
+
+.war #right-side-icons {
+  left: 241px;
+}
+
+/* Relative to #bars */
+#pull-bar, #hp-bar, #mp-bar, #tp-bar {
+  width: 202px;
+  height: 7px;
+}
+
+#pull-bar {
+  position: absolute;
+  top: -20px;
+  height: 18px;
+  font-size: 12px;
+}
+
+#mp-bar, #tp-bar, #rdm-bar {
+  margin-top: 1px;
+}
+
+.tank #hp-bar {
+  height: 18px;
+}
+
+/* Relative to #bars */
+#rdm-bar {
+  position: relative;
+  border: 1px solid black;
+  width: 200px;  /* 202 minus borders */
+  height: calc(8px * 2 - 4px);
+  background: rgba(30, 30, 30, 0.7);
+}
+
+#rdm-bar .marker {
+  position: absolute;
+  height: 100%;
+}
+
+#rdm-bar .marker.even {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Relative to #rdm-bar */
+#rdm-white-bar, #rdm-black-bar {
+  display: block;
+  position: relative;
+  margin: -1px -1px -2px -1px;
+  width: 100%;
+  height: calc(100% - 4px);
+}
+
+/* Relative to #bars */
+#rdm-boxes, #war-boxes {
+  position: absolute;
+  left: 202px;
+  top: 0px;
+}
+
+#rdm-boxes>div, #war-boxes>div {
+  display: inline-block;
+  margin-left: 4;
+  width: 30px;
+  height: 28px;
+  border: 1px solid rgba(0,0,0,0.7);
+}
+
+#rdm-boxes .text, #war-boxes .text {
+  text-align: center;
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+}
+
+/* Relative to #bars */
+#rdm-procs {
+  position: absolute;
+  top: 146px;
+}
+#rdm-procs-white {
+  position: relative;
+  display: inline-block;
+  left: 10px;
+}
+#rdm-procs-black {
+  position: relative;
+  display: inline-block;
+  left: calc(152px / 2);
+}
+#rdm-procs-impact {
+  position: relative;
+  display: inline-block;
+  left: 142px;
+}
+#rdm-procs .inactive {
+  position: absolute;
+  display: inline-block;
+  opacity: 0.6;
+  border: 1px solid black;
+  left: 14px;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Relative to #bars */
+#war-procs {
+  position: absolute;
+  top: 160;
+}
+
+/* Relative to #bars */
+.rdm-combo {
+  display: none;
+  position: absolute;
+  top: -9px;
+  width: 50px;
+  height: 6px;
+  backgroundColor: #990;
+  border: 1px solid black;
+}
+.rdm-combo.active {
+  display: block;
+}
+#rdm-combo-1 {
+  left: 0px;
+  background: #990;
+}
+#rdm-combo-2 {
+  left: calc((202px - 52px) / 2);
+  background: #990;
+}
+#rdm-combo-3 {
+  left: calc(202px - 52px);
+  background: #AA0;
+}
+
+.bar-border-color {
+  background-color: rgb(30, 30, 30);
+}
+.hp-color {
+  background-color: rgb(59, 133, 4);
+}
+.hp-color.low {
+  background-color: rgb(190, 43, 30);
+}
+.hp-color.mid {
+  background-color: rgb(127, 185, 29);
+}
+.mp-color {
+  background-color: rgb(188, 55, 147);
+}
+.mp-color.far {
+  background-color: rgb(215, 120, 0);
+}
+.tp-color {
+  background-color: rgb(180, 180, 0);
+}
+.tp-color.low {
+  background-color: rgb(200, 70, 15);
+}
+.rdm-color-white-mana {
+  background-color: rgb(220, 220, 240);
+}
+.rdm-color-black-mana {
+  background-color: rgb(47, 176, 208);
+}
+.rdm-color-impact {
+  background-color: rgb(242, 114, 147);
+}
+.rdm-color-white-mana.dim {
+  background-color: rgb(100, 100, 100);
+}
+.rdm-color-black-mana.dim {
+  background-color: rgb(13, 76, 80);
+}
+.war-color-beast {
+  background-color: rgb(230, 20, 20);
+}
+.war-color-beast.low {
+  background-color: rgb(255, 235, 153);
+}
+.war-color-beast.mid {
+  background-color: rgb(255, 153, 0);
+}
+.war-color-eye {
+  background-color: rgb(60, 100, 210);
+}
