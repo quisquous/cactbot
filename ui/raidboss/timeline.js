@@ -278,9 +278,9 @@ class Timeline {
   }
   
   _AddUpcomingTimers(fightNow) {
-    while (this.nextEvent < this.events.length && this.activeEvents.length < this.options.kMaxNumberOfTimerBars) {
+    while (this.nextEvent < this.events.length && this.activeEvents.length < this.options.MaxNumberOfTimerBars) {
       var e = this.events[this.nextEvent];
-      if (e.time - fightNow > this.options.kShowTimerBarsAtSeconds)
+      if (e.time - fightNow > this.options.ShowTimerBarsAtSeconds)
         break;
       if (fightNow < e.time && !(e.name in this.ignores)) {
         this.activeEvents.push(e);
@@ -332,7 +332,7 @@ class Timeline {
       console.assert(nextEventStarting > fightNow, "nextEvent wasn't updated before calling _ScheduleUpdate")
       // There might be more events than we can show, so the next event might be in
       // the past. If that happens, then ignore it, as we can't use that for our timer.
-      var showNextEventAt = nextEventEndsAt - this.options.kShowTimerBarsAtSeconds;
+      var showNextEventAt = nextEventEndsAt - this.options.ShowTimerBarsAtSeconds;
       if (showNextEventAt > fightNow)
         nextEventStarting = showNextEventAt;
     }
@@ -396,21 +396,21 @@ class TimelineUI {
     this.root = document.getElementById('timeline-container');
 
     var windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
-    this.barHeight = windowHeight / this.options.kMaxNumberOfTimerBars - 2;
+    this.barHeight = windowHeight / this.options.MaxNumberOfTimerBars - 2;
 
     this.barColor =  computeBackgroundColorFrom(this.root, 'timeline-bar-color');
     this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
 
     this.timerlist = document.getElementById('timeline');
-    this.timerlist.maxnumber = this.options.kMaxNumberOfTimerBars;
-    this.timerlist.rowcolsize = this.options.kMaxNumberOfTimerBars;
+    this.timerlist.maxnumber = this.options.MaxNumberOfTimerBars;
+    this.timerlist.rowcolsize = this.options.MaxNumberOfTimerBars;
     this.timerlist.elementwidth = window.getComputedStyle(this.root).width;
     this.timerlist.elementheight = this.barHeight + 2;
     this.timerlist.toward = "down right";
 
     // Helper for positioning/resizing when locked.
     var helper = document.getElementById('timeline-resize-helper');
-    for (var i = 0; i < this.options.kMaxNumberOfTimerBars; ++i) {
+    for (var i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
       var helperBar = document.createElement('div');
       helperBar.classList.add('text');
       helperBar.classList.add('resize-helper-bar');
@@ -463,9 +463,9 @@ class TimelineUI {
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
 
-    if (!channeling && e.time - fightNow > this.options.kBarExpiresSoonSeconds) {
+    if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
       bar.fg = this.barColor;
-      window.setTimeout(this.OnTimerExpiresSoon.bind(this, e.id), (e.time - fightNow - this.options.kBarExpiresSoonSeconds) * 1000);
+      window.setTimeout(this.OnTimerExpiresSoon.bind(this, e.id), (e.time - fightNow - this.options.BarExpiresSoonSeconds) * 1000);
     } else {
       bar.fg = this.barExpiresSoonColor;
     }
@@ -484,8 +484,8 @@ class TimelineUI {
   }
   
   OnRemoveTimer(e, expired) {
-    if (expired && this.options.kKeepExpiredTimerBarsForSeconds) {
-      this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), this.options.kKeepExpiredTimerBarsForSeconds * 1000);
+    if (expired && this.options.KeepExpiredTimerBarsForSeconds) {
+      this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), this.options.KeepExpiredTimerBarsForSeconds * 1000);
       return;
     } else if (e.id in this.expireTimers) {
       window.clearTimeout(this.expireTimers[e.id])

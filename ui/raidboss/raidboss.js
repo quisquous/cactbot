@@ -1,19 +1,19 @@
 "use strict";
 
 // Each option here can be changed in user/raidboss.js with a line such as
-// Options.kBarExpiresSoonSeconds = 2
+// Options.BarExpiresSoonSeconds = 2
 // or
 // Options.InfoSound = 'file://C:/path/to/info/sound.ogg'
 var Options = {
   // Show timer bars for events that will happen in this many seconds or less.
-  kShowTimerBarsAtSeconds: 30,
+  ShowTimerBarsAtSeconds: 30,
   // Once a timer bar reaches 0, keep it around this long after.
-  kKeepExpiredTimerBarsForSeconds: 0.7,
+  KeepExpiredTimerBarsForSeconds: 0.7,
   // Change the bar color to highlight it is coming up when this many seconds
   // are left on it.
-  kBarExpiresSoonSeconds: 8,
+  BarExpiresSoonSeconds: 8,
   // Number of bars to show in the space given to the UI by css.
-  kMaxNumberOfTimerBars: 6,
+  MaxNumberOfTimerBars: 6,
 
   // Path to sound played for info-priority text popups, or when "Info" is specified as the sound name.
   InfoSound: '../../resources/sounds/BigWigs/Info.ogg',

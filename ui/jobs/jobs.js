@@ -1,40 +1,40 @@
 "use strict";
 
 // Each option here can be changed in user/jobs.js with a line such as
-// Options.kShowRdmProcs = false
+// Options.ShowRdmProcs = false
 // or
-// Options.kTPInvigorateThreshold = 400
+// Options.TPInvigorateThreshold = 400
 var Options = {
   // If true, the bars are all made translucent when out of combat.
-  kLowerOpacityOutOfCombat: true,
+  LowerOpacityOutOfCombat: true,
   // The number of seconds before food expires to start showing the food buff warning.
-  kHideWellFedAboveSeconds: 15 * 60,
+  HideWellFedAboveSeconds: 15 * 60,
   // Zones to show food buff warning (when at max level).
-  kWellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/,
+  WellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/,
   // Option to show the stone/fire/impact procs.
-  kShowRdmProcs: true,
+  ShowRdmProcs: true,
 
   // The food buff warning is shown when you're below this level. Update this when new expansion happens. 
-  kMaxLevel: 70,
+  MaxLevel: 70,
   // The distance that offensive spells such as VerAreo, etc are castable.
-  kFarThresholdOffence: 24,
+  FarThresholdOffence: 24,
   // Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
   // Jolt cast time + 0.5 for my reaction time.
-  kRdmCastTime: 1.94 + 0.5,
+  RdmCastTime: 1.94 + 0.5,
   // GCD on warrior.
-  kWarGcd: 2.38,
+  WarGcd: 2.38,
 
   // Big buff icons.
-  kBigBuffIconWidth: 44,
-  kBigBuffIconHeight: 32,
-  kBigBuffBarHeight: 5,
-  kBigBuffTextHeight: 12,
-  kBigBuffBorderSize: 1,
+  BigBuffIconWidth: 44,
+  BigBuffIconHeight: 32,
+  BigBuffBarHeight: 5,
+  BigBuffTextHeight: 12,
+  BigBuffBorderSize: 1,
 
   // Colours.
-  kTPInvigorateThreshold: 600,
-  kLowHealthThresholdPercent: 0.2,
-  kMidHealthThresholdPercent: 0.8,
+  TPInvigorateThreshold: 600,
+  LowHealthThresholdPercent: 0.2,
+  MidHealthThresholdPercent: 0.8,
 }
 
 var kReName = '[A-Za-z0-9 \']+';
@@ -366,7 +366,7 @@ class Bars {
     this.o.rightBuffsList.rowcolsize = 7;
     this.o.rightBuffsList.maxnumber = 7;
     this.o.rightBuffsList.toward = "right down";
-    this.o.rightBuffsList.elementwidth = this.options.kBigBuffIconWidth + 2;
+    this.o.rightBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
 
     this.o.leftBuffsContainer = document.createElement("div");
     this.o.leftBuffsContainer.id = 'left-side-icons';
@@ -378,7 +378,7 @@ class Bars {
     this.o.leftBuffsList.rowcolsize = 7;
     this.o.leftBuffsList.maxnumber = 7;
     this.o.leftBuffsList.toward = "left down";
-    this.o.leftBuffsList.elementwidth = this.options.kBigBuffIconWidth + 2;
+    this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
 
     // Holds health/mana/tp.
     var barsContainer = document.createElement('div');
@@ -502,7 +502,7 @@ class Bars {
       this.o.blackManaTextBox.appendChild(this.o.blackManaText);
       this.o.blackManaText.classList.add("text");
 
-      if (this.options.kShowRdmProcs) {
+      if (this.options.ShowRdmProcs) {
         var procsContainer = document.createElement("div");
         procsContainer.id = 'rdm-procs';
 
@@ -674,17 +674,17 @@ class Bars {
 
   OnRedMageProcBlack(seconds) {
     if (this.o.rdmProcBlack != null)
-      this.o.rdmProcBlack.duration = Math.max(0, seconds - this.options.kRdmCastTime);
+      this.o.rdmProcBlack.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
   OnRedMageProcWhite(seconds) {
     if (this.o.rdmProcWhite != null)
-      this.o.rdmProcWhite.duration = Math.max(0, seconds - this.options.kRdmCastTime);
+      this.o.rdmProcWhite.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
   OnRedMageProcImpact(seconds) {
     if (this.o.rdmProcImpact != null)
-      this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.kRdmCastTime);
+      this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
   OnComboChange(skill) {
@@ -730,7 +730,7 @@ class Bars {
       // The new threshold is "can I finish the current combo and still
       // have time to do a Storm's Eye".
       var oldThreshold = this.o.eyeBox.threshold;
-      var newThreshold = (minSkillsUntilEye + 3) * this.options.kWarGcd;
+      var newThreshold = (minSkillsUntilEye + 3) * this.options.WarGcd;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
@@ -754,9 +754,9 @@ class Bars {
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
     
-    if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.kLowHealthThresholdPercent)
+    if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
-    else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.kMidHealthThresholdPercent)
+    else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.MidHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
     else
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
@@ -769,9 +769,9 @@ class Bars {
 
     var far = -1;
     if (this.job == "RDM")
-      far = this.options.kFarThresholdOffence;
+      far = this.options.FarThresholdOffence;
     else if (this.job == "BLM")
-      far = this.options.kFarThresholdOffence;
+      far = this.options.FarThresholdOffence;
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
@@ -782,7 +782,7 @@ class Bars {
   UpdateTP() {
     if (!this.o.tpBar) return;
 
-    if (this.tp <= this.options.kTPInvigorateThreshold)
+    if (this.tp <= this.options.TPInvigorateThreshold)
       this.o.tpBar.fg = computeBackgroundColorFrom(this.o.tpBar, 'tp-color.low');
     else
       this.o.tpBar.fg = computeBackgroundColorFrom(this.o.tpBar, 'tp-color');
@@ -799,7 +799,7 @@ class Bars {
     var CanShowWellFedWarning = function() {
       if (this.inCombat)
         return false;
-      if (this.level < this.options.kMaxLevel)
+      if (this.level < this.options.MaxLevel)
         return true;
       return this.zone.search(kReFoodBuff) >= 0;
     }
@@ -807,7 +807,7 @@ class Bars {
     // Returns the number of ms until it should be shown. If <= 0, show it.
     var TimeToShowWellFedWarning = function() {
       var now_ms = Date.now();
-      var show_at_ms = this.foodBuffExpiresTimeMs - (this.options.kHideWellFedAboveSeconds * 1000);
+      var show_at_ms = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
       return show_at_ms - now_ms;
     }
 
@@ -824,23 +824,23 @@ class Bars {
     } else {
       var outer = document.createElement('div');
       outer.style.border = '1px solid black';
-      outer.style.width = this.options.kBigBuffIconWidth - this.options.kBigBuffBorderSize * 2;
-      outer.style.height = this.options.kBigBuffIconHeight - this.options.kBigBuffBorderSize * 2;
+      outer.style.width = this.options.BigBuffIconWidth - this.options.BigBuffBorderSize * 2;
+      outer.style.height = this.options.BigBuffIconHeight - this.options.BigBuffBorderSize * 2;
       outer.style.backgroundColor = 'yellow';
       var inner = document.createElement('div');
       outer.appendChild(inner);
-      inner.style.borderWidth = this.options.kBigBuffBorderSize;
-      inner.style.left = this.options.kBigBuffBorderSize;
-      inner.style.top = this.options.kBigBuffBorderSize;
+      inner.style.borderWidth = this.options.BigBuffBorderSize;
+      inner.style.left = this.options.BigBuffBorderSize;
+      inner.style.top = this.options.BigBuffBorderSize;
       inner.style.position = 'relative';
       inner.style.borderStyle = 'solid';
       inner.style.borderColor = '#000';
-      inner.style.width = this.options.kBigBuffIconWidth - this.options.kBigBuffBorderSize * 6;
-      inner.style.height = this.options.kBigBuffIconHeight - this.options.kBigBuffBorderSize * 6;
+      inner.style.width = this.options.BigBuffIconWidth - this.options.BigBuffBorderSize * 6;
+      inner.style.height = this.options.BigBuffIconHeight - this.options.BigBuffBorderSize * 6;
       inner.style.backgroundImage = 'url(data:image/jpeg;base64,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)';
       inner.style.backgroundColor = '#888';
       inner.style.backgroundRepeat = 'no-repeat';
-      inner.style.backgroundSize = Math.max(this.options.kBigBuffIconWidth, this.options.kBigBuffIconHeight) - this.options.kBigBuffBorderSize * 2 + 'px';
+      inner.style.backgroundSize = Math.max(this.options.BigBuffIconWidth, this.options.BigBuffIconHeight) - this.options.BigBuffBorderSize * 2 + 'px';
       inner.style.backgroundPosition = 'center';
       this.o.leftBuffsList.addElement('foodbuff', outer, -1);
     }
@@ -854,7 +854,7 @@ class Bars {
 
     var opacityContainer = document.getElementById("opacity-container");
     if (opacityContainer != null) {
-      if (this.inCombat || !this.options.kLowerOpacityOutOfCombat)
+      if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
         opacityContainer.style.opacity = 1.0;
       else
         opacityContainer.style.opacity = 0.5;
@@ -886,9 +886,9 @@ class Bars {
   OnBigBuff(name, seconds, settings) {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
-        this.options.kBigBuffIconWidth, this.options.kBigBuffIconHeight,
-        this.options.kBigBuffBarHeight, this.options.kBigBuffTextHeight,
-        this.options.kBigBuffBorderSize,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        this.options.BigBuffBorderSize,
         settings.borderColor, settings.borderColor,
         settings.icon);
     this.o.rightBuffsList.addElement(name, aura, settings.sortKey);
