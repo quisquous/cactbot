@@ -63,6 +63,8 @@ class PopupText {
   }
 
   OnZoneChange(e) {
+    if (!this.triggerSets) return;  // No data files were loaded.
+
     this.triggers = [];
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
@@ -269,8 +271,8 @@ document.addEventListener("onDataFilesRead", function(e) {
 });
 
 // Testing...
-window.onload = function() {
+//window.onload = function() {
   //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':Exdeath uses The Decisive Battle.') }, 0);
   //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':Exdeath begins casting Fire III.') }, 0);
   //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':test:trigger:') }, 1000);
-};
+//};
