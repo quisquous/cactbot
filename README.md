@@ -60,16 +60,3 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 
 5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
 6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
-
-## Sounds
-
-Triggers in [`ui/raidboss`](ui/raidboss) use sound effects from BigWigs which are not licensed for redistribution. To use the sounds:
-1. Download [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) from curse.com.
-2. Open the .zip file.
-3. Extract the .ogg files `BigWigs/Sounds` to `resources/sounds/BigWigs`.
-
-You should have:
-- `resources/sounds/BigWigs/Alarm.ogg`
-- `resources/sounds/BigWigs/Alert.ogg`
-- `resources/sounds/BigWigs/Info.ogg`
-- `resources/sounds/BigWigs/Long.ogg`
