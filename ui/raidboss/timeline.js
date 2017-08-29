@@ -5,11 +5,17 @@ var kShowTimerBarsAtSeconds = 30;
 var kKeepExpiredTimerBarsForSeconds = 0.7;
 var kBarExpiresSoonSeconds = 8;
 var kMaxNumberOfTimerBars = 6;
-var kBarWidth = 220;
-var kBarHeight = 20;
-var kBarFontSize = 14;
-var kBarColor = '#88f';
-var kBarExpiresSoonColor = '#f88';
+
+function computeBackgroundColorFrom(element, classList) {
+  var div = document.createElement('div');
+  var classes = classList.split('.');
+  for (var i = 0; i < classes.length; ++i)
+    div.classList.add(classes[i]);
+  element.appendChild(div);
+  var color = window.getComputedStyle(div).backgroundColor;
+  element.removeChild(div);
+  return color;
+}
 
 // This class reads the format of ACT Timeline plugin, described here:
 // http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin
@@ -390,29 +396,30 @@ class TimelineUI {
   Init() {
     if (this.init) return;
     this.init = true;
-    
+
     this.root = document.getElementById('timeline-container');
+
+    var windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
+    this.barHeight = windowHeight / kMaxNumberOfTimerBars - 2;
+
     this.timerlist = document.getElementById('timeline');
     this.timerlist.maxnumber = kMaxNumberOfTimerBars;
     this.timerlist.rowcolsize = kMaxNumberOfTimerBars;
-    this.timerlist.elementwidth = kBarWidth;
-    this.timerlist.elementheight = kBarHeight + 2;
+    this.timerlist.elementwidth = window.getComputedStyle(this.root).width;
+    this.timerlist.elementheight = this.barHeight + 2;
     this.timerlist.toward = "down right";
 
     // Helper for positioning/resizing when locked.
     var helper = document.getElementById('timeline-resize-helper');
     for (var i = 0; i < kMaxNumberOfTimerBars; ++i) {
       var helperBar = document.createElement('div');
-      helperBar.style.backgroundColor = kBarColor;
-      helperBar.style.border = '1px solid black';
-      helperBar.style.marginBottom = 2;
-      helperBar.style.fontSize = kBarFontSize;
-      helperBar.style.width = kBarWidth;
-      helperBar.style.height = kBarHeight - 2;  // Border adds to the height.
-      helperBar.style.verticalAlign = 'middle';
-      helperBar.innerText = 'Test bar ' + (i + 1);
       helperBar.classList.add('text');
+      helperBar.classList.add('resize-helper-bar');
+      helperBar.classList.add('timeline-bar-color');
+      helperBar.innerText = 'Test bar ' + (i + 1);
       helper.appendChild(helperBar);
+      var borderWidth = parseFloat(window.getComputedStyle(helperBar).borderWidth.match(/([0-9.]+)px/)[1]);
+      helperBar.style.height = this.barHeight - borderWidth * 2;
     }
 
     this.activeBars = {};
@@ -449,9 +456,8 @@ class TimelineUI {
     var div = document.createElement('div');
     var bar = document.createElement('timer-bar');
     div.appendChild(bar);
-    div.style.fontSize = kBarFontSize;
-    bar.width = kBarWidth;
-    bar.height = kBarHeight;
+    bar.width = window.getComputedStyle(this.root).width;
+    bar.height = this.barHeight;
     bar.duration = e.time - fightNow;
     bar.righttext = 'remain';
     bar.lefttext = e.name;
@@ -459,10 +465,10 @@ class TimelineUI {
     bar.style = !channeling ? 'fill' : 'empty';
 
     if (!channeling && e.time - fightNow > kBarExpiresSoonSeconds) {
-      bar.fg = kBarColor;
+      bar.fg = computeBackgroundColorFrom(bar, 'timeline-bar-color');
       window.setTimeout(this.OnTimerExpiresSoon.bind(this, e.id), (e.time - fightNow - kBarExpiresSoonSeconds) * 1000);
     } else {
-      bar.fg = kBarExpiresSoonColor;
+      bar.fg = computeBackgroundColorFrom(bar, 'timeline-bar-color.soon');
     }
 
     this.timerlist.addElement(e.id, div, e.sortTime);
@@ -603,3 +609,8 @@ document.addEventListener("onLogEvent", function(e) {
 document.addEventListener("onDataFilesRead", function(e) {
   gTimelineController.SetDataFiles(e.detail.files);
 });
+
+//window.onload = function() {
+//  document.dispatchEvent(new CustomEvent('onZoneChangedEvent', { detail: { zoneName: "Somewhere" } }));
+//  document.dispatchEvent(new CustomEvent('onLogEvent', { detail: { logs: ["uses Dualcast", ] } }));
+//}
