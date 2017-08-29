@@ -1,10 +1,12 @@
 "use strict";
 
-// Options
-var kShowTimerBarsAtSeconds = 30;
-var kKeepExpiredTimerBarsForSeconds = 0.7;
-var kBarExpiresSoonSeconds = 8;
-var kMaxNumberOfTimerBars = 6;
+var kOptions = {
+  // Show timer bars for events that will happen in this many seconds or less.
+  kShowTimerBarsAtSeconds: 30,
+  kKeepExpiredTimerBarsForSeconds: 0.7,
+  kBarExpiresSoonSeconds: 8,
+  kMaxNumberOfTimerBars: 6,
+};
 
 function computeBackgroundColorFrom(element, classList) {
   var div = document.createElement('div');
@@ -283,9 +285,9 @@ class Timeline {
   }
   
   _AddUpcomingTimers(fightNow) {
-    while (this.nextEvent < this.events.length && this.activeEvents.length < kMaxNumberOfTimerBars) {
+    while (this.nextEvent < this.events.length && this.activeEvents.length < kOptions.kMaxNumberOfTimerBars) {
       var e = this.events[this.nextEvent];
-      if (e.time - fightNow > kShowTimerBarsAtSeconds)
+      if (e.time - fightNow > kOptions.kShowTimerBarsAtSeconds)
         break;
       if (fightNow < e.time && !(e.name in this.ignores)) {
         this.activeEvents.push(e);
@@ -337,7 +339,7 @@ class Timeline {
       console.assert(nextEventStarting > fightNow, "nextEvent wasn't updated before calling _ScheduleUpdate")
       // There might be more events than we can show, so the next event might be in
       // the past. If that happens, then ignore it, as we can't use that for our timer.
-      var showNextEventAt = nextEventEndsAt - kShowTimerBarsAtSeconds;
+      var showNextEventAt = nextEventEndsAt - kOptions.kShowTimerBarsAtSeconds;
       if (showNextEventAt > fightNow)
         nextEventStarting = showNextEventAt;
     }
@@ -400,18 +402,21 @@ class TimelineUI {
     this.root = document.getElementById('timeline-container');
 
     var windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
-    this.barHeight = windowHeight / kMaxNumberOfTimerBars - 2;
+    this.barHeight = windowHeight / kOptions.kMaxNumberOfTimerBars - 2;
+
+    this.barColor =  computeBackgroundColorFrom(this.root, 'timeline-bar-color');
+    this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
 
     this.timerlist = document.getElementById('timeline');
-    this.timerlist.maxnumber = kMaxNumberOfTimerBars;
-    this.timerlist.rowcolsize = kMaxNumberOfTimerBars;
+    this.timerlist.maxnumber = kOptions.kMaxNumberOfTimerBars;
+    this.timerlist.rowcolsize = kOptions.kMaxNumberOfTimerBars;
     this.timerlist.elementwidth = window.getComputedStyle(this.root).width;
     this.timerlist.elementheight = this.barHeight + 2;
     this.timerlist.toward = "down right";
 
     // Helper for positioning/resizing when locked.
     var helper = document.getElementById('timeline-resize-helper');
-    for (var i = 0; i < kMaxNumberOfTimerBars; ++i) {
+    for (var i = 0; i < kOptions.kMaxNumberOfTimerBars; ++i) {
       var helperBar = document.createElement('div');
       helperBar.classList.add('text');
       helperBar.classList.add('resize-helper-bar');
@@ -464,11 +469,11 @@ class TimelineUI {
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
 
-    if (!channeling && e.time - fightNow > kBarExpiresSoonSeconds) {
-      bar.fg = computeBackgroundColorFrom(bar, 'timeline-bar-color');
-      window.setTimeout(this.OnTimerExpiresSoon.bind(this, e.id), (e.time - fightNow - kBarExpiresSoonSeconds) * 1000);
+    if (!channeling && e.time - fightNow > kOptions.kBarExpiresSoonSeconds) {
+      bar.fg = this.barColor;
+      window.setTimeout(this.OnTimerExpiresSoon.bind(this, e.id), (e.time - fightNow - kOptions.kBarExpiresSoonSeconds) * 1000);
     } else {
-      bar.fg = computeBackgroundColorFrom(bar, 'timeline-bar-color.soon');
+      bar.fg = this.barExpiresSoonColor;
     }
 
     this.timerlist.addElement(e.id, div, e.sortTime);
@@ -481,12 +486,12 @@ class TimelineUI {
   
   OnTimerExpiresSoon(id) {
     if (id in this.activeBars)
-      this.activeBars[id].fg = kBarExpiresSoonColor;
+      this.activeBars[id].fg = this.barExpiresSoonColor;
   }
   
   OnRemoveTimer(e, expired) {
-    if (expired && kKeepExpiredTimerBarsForSeconds) {
-      this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), kKeepExpiredTimerBarsForSeconds * 1000);
+    if (expired && kOptions.kKeepExpiredTimerBarsForSeconds) {
+      this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), kOptions.kKeepExpiredTimerBarsForSeconds * 1000);
       return;
     } else if (e.id in this.expireTimers) {
       window.clearTimeout(this.expireTimers[e.id])
