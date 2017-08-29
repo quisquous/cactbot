@@ -40,6 +40,7 @@
       this.logUpdateLabel = new System.Windows.Forms.Label();
       this.logUpdateCheckBox = new System.Windows.Forms.CheckBox();
       this.restartMessageLabel = new System.Windows.Forms.Label();
+      this.buttonShowDevtools = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
@@ -125,6 +126,7 @@
       // tableLayoutPanel3
       // 
       resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+      this.tableLayoutPanel3.Controls.Add(this.buttonShowDevtools, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.buttonReloadBrowser, 1, 0);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       // 
@@ -194,6 +196,13 @@
       resources.ApplyResources(this.restartMessageLabel, "restartMessageLabel");
       this.restartMessageLabel.Name = "restartMessageLabel";
       // 
+      // buttonShowDevtools
+      // 
+      resources.ApplyResources(this.buttonShowDevtools, "buttonShowDevtools");
+      this.buttonShowDevtools.Name = "buttonShowDevtools";
+      this.buttonShowDevtools.UseVisualStyleBackColor = true;
+      this.buttonShowDevtools.Click += new System.EventHandler(this.buttonShowDevtools_Click);
+      // 
       // CactbotOverlayConfigPanel
       // 
       resources.ApplyResources(this, "$this");
@@ -233,5 +242,6 @@
     private System.Windows.Forms.Label logUpdateLabel;
     private System.Windows.Forms.CheckBox logUpdateCheckBox;
     private System.Windows.Forms.Label restartMessageLabel;
+    private System.Windows.Forms.Button buttonShowDevtools;
   }
 }
