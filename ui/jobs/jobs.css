@@ -1,7 +1,11 @@
 #jobs {
   position: relative;
-  left: 100px;
-  top: 20px;
+}
+
+#bars {
+  position: relative;
+  top: 20px;  /* Space for pull counter */
+  left: 100px;  /* Space for some left buffs */
 }
 
 .big-buff {
@@ -103,7 +107,8 @@
 /* Relative to #bars */
 #rdm-procs {
   position: absolute;
-  top: 146px;
+  top: 166px;
+  left: 100px;
 }
 #rdm-procs-white {
   position: relative;
@@ -134,7 +139,8 @@
 /* Relative to #bars */
 #war-procs {
   position: absolute;
-  top: 160;
+  top: 180px;
+  left: 100px;
 }
 
 /* Relative to #bars */
