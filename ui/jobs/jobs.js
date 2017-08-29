@@ -320,7 +320,7 @@ class Bars {
     if (isTankJob(this.job))
       barsLayoutContainer.classList.add('tank');
     else if (isHealerJob(this.job))
-      barsLayoutContainer.classList.add('tank');
+      barsLayoutContainer.classList.add('healer');
     else if (isCombatJob(this.job))
       barsLayoutContainer.classList.add('dps');
     else
