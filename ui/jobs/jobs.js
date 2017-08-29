@@ -1,16 +1,23 @@
 "use strict";
 
 var kOptions = {
-  // Options.
+  // If true, the bars are all made translucent when out of combat.
   kLowerOpacityOutOfCombat: true,
-  kHideWellFedAboveSeconds: 15 * 60,  // N mins warning.
+  // The number of seconds before food expires to start showing the food buff warning.
+  kHideWellFedAboveSeconds: 15 * 60,
+  // Zones to show food buff warning (when at max level).
   kWellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/,
+  // Option to show the stone/fire/impact procs.
   kShowRdmProcs: true,
 
-  // Constants.
-  kMaxLevel: 70,  // Update this when new expansion happens.
-  kFarThresholdOffence: 24,  // The distance that offensive spells such as VerAreo, etc are castable.
-  kRdmCastTime: 1.94 + 0.5,  // Jolt cast time + 0.5 for my reaction time. Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+  // The food buff warning is shown when you're below this level. Update this when new expansion happens. 
+  kMaxLevel: 70,
+  // The distance that offensive spells such as VerAreo, etc are castable.
+  kFarThresholdOffence: 24,
+  // Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
+  // Jolt cast time + 0.5 for my reaction time.
+  kRdmCastTime: 1.94 + 0.5,
+  // GCD on warrior.
   kWarGcd: 2.38,
 
   // Big buff icons.
