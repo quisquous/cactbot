@@ -261,7 +261,7 @@ function setupBuffTracker(me) {
       icon: kIconBuffTrickAttack,
       borderColor: '#FC4AE6',
       sortKey: 6,
-      sound: '../../sounds/WeakAuras/RoaringLion.ogg',
+      sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
       soundVolume: 1,
     },
     hyper: {
@@ -277,7 +277,7 @@ function setupBuffTracker(me) {
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
       sortKey: 4,
-      sound: '../../sounds/WeakAuras/RoaringLion.ogg',
+      sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
       soundVolume: 1,
     },
   }
@@ -338,6 +338,13 @@ class Bars {
     else
       barsLayoutContainer.classList.add('noncombat');
 
+    var pullCountdownContainer = document.createElement("div");
+    pullCountdownContainer.id = 'pull-bar';
+    // Pull counter not affected by opacity option.
+    barsLayoutContainer.appendChild(pullCountdownContainer);
+    this.o.pullCountdown = document.createElement("timer-bar");
+    pullCountdownContainer.appendChild(this.o.pullCountdown);
+
     var opacityContainer = document.createElement("div");
     opacityContainer.id = "opacity-container";
     barsLayoutContainer.appendChild(opacityContainer);
@@ -346,12 +353,6 @@ class Bars {
     var barsContainer = document.createElement('div');
     barsContainer.id = 'bars';
     opacityContainer.appendChild(barsContainer);
-
-    var pullCountdownContainer = document.createElement("div");
-    pullCountdownContainer.id = 'pull-bar';
-    barsContainer.appendChild(pullCountdownContainer);
-    this.o.pullCountdown = document.createElement("timer-bar");
-    pullCountdownContainer.appendChild(this.o.pullCountdown);
 
     this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
@@ -478,9 +479,9 @@ class Bars {
       this.o.rdmCombo3.classList.add('rdm-combo');
 
       // XXX: barsContainer?
-      opacityContainer.appendChild(this.o.rdmCombo1);
-      opacityContainer.appendChild(this.o.rdmCombo2);
-      opacityContainer.appendChild(this.o.rdmCombo3);
+      barsContainer.appendChild(this.o.rdmCombo1);
+      barsContainer.appendChild(this.o.rdmCombo2);
+      barsContainer.appendChild(this.o.rdmCombo3);
 
       var rdmBoxesContainer = document.createElement("div");
       rdmBoxesContainer.id = 'rdm-boxes';

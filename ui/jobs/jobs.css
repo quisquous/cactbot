@@ -42,7 +42,8 @@
 
 #pull-bar {
   position: absolute;
-  top: -20px;
+  left: 100px;
+  top: 0px;
   height: 18px;
   font-size: 12px;
 }
@@ -166,7 +167,7 @@
 }
 #rdm-combo-3 {
   left: calc(202px - 52px);
-  background: #AA0;
+  background: #A00;
 }
 
 .bar-border-color {
