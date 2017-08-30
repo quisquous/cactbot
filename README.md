@@ -98,5 +98,25 @@ Options.Triggers = [
       },
     ],
   },
+
+  // .. other triggers here ..
+]
+```
+
+A more sophisticated example that triggers with a 1 second delay, but only when the player's
+character name appears in the log message:
+
+```
+Options.Triggers = [
+  // .. other triggers here ..
+
+  { // Forked Lightning - Get out.
+    regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
+    delaySeconds: 1,
+    alertText: 'Forked Lightning: Get out',
+    condition: function(data, matches) { return matches[1] == data.me; },
+  },
+
+  // .. other triggers here ..
 ]
 ```
