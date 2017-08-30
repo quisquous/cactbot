@@ -265,8 +265,6 @@ function setupBuffTracker(me) {
       icon: kIconBuffTrickAttack,
       borderColor: '#FC4AE6',
       sortKey: 6,
-      sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
-      soundVolume: 1,
     },
     hyper: {
       gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:'),
@@ -281,8 +279,6 @@ function setupBuffTracker(me) {
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
       sortKey: 4,
-      sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
-      soundVolume: 1,
     },
   }
 }
@@ -902,12 +898,6 @@ class Bars {
     settings.timeout = window.setTimeout(function() {
       that.o.rightBuffsList.removeElement(name);
     }, seconds * 1000);
-    if ('sound' in settings) {
-      var audio = new Audio(settings.sound);
-      if ('soundVolume' in settings)
-        audio.volume = settings.soundVolume;
-      audio.play();
-    }
   }
   
   OnLoseBigBuff(name, settings) {
