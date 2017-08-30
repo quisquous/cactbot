@@ -130,14 +130,14 @@
       regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
       delaySeconds: 7,
       alarmText: 'Beyond Death: Die',
-      sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
+      sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
       condition: function(data, matches) { return data.phase == 'delta' && matches[1] == data.me; },
     },
     { // Beyond Death (Omega)
       regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
       delaySeconds: 8,  // 20 seconds if you want the third flood cast, 8 for the first.
       alarmText: 'Beyond Death: Die',
-      sound: '../sounds/Overwatch/Reaper_-_Die_die_die.ogg',
+      sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
       condition: function(data, matches) { return data.phase == 'omega' && matches[1] == data.me; },
     },
     { // Delta Attack
