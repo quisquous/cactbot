@@ -99,12 +99,10 @@ class PopupText {
   }
 
   OnBossFightStart(e) {
-    console.log("fight start !");
     this.inBossFight = true;
   }
 
   OnBossFightEnd(e) {
-    console.log("fight end !");
     this.inBossFight = false;
     this.data = { me: this.me, job: this.job, role: this.role };
   }
@@ -112,6 +110,7 @@ class PopupText {
   OnLog(e) {
     if (!this.init)
       return;
+
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
 
@@ -125,6 +124,8 @@ class PopupText {
   }
 
   OnTrigger(trigger, matches) {
+    if (!this.options.PopupTextEnabled)
+      return;
     if ('disabled' in trigger && trigger.disabled)
       return;
     if ('condition' in trigger) {

@@ -523,6 +523,9 @@ class TimelineController {
   OnZoneChanged(e) {
     this.activeTimeline = null;
 
+    if (!this.options.TimelineEnabled)
+      return;
+
     var text = '';
     // Get the first matching timeline file.
     for (var i = 0; i < this.timelines.length; ++i) {

@@ -5,6 +5,11 @@
 // or
 // Options.InfoSound = 'file://C:/path/to/info/sound.ogg'
 var Options = {
+  // If false, no timeline will be displayed during fights of upcoming events.
+  TimelineEnabled: true,
+  // If false, no text will be shown for triggers and timeline events.
+  PopupTextEnabled: true,
+
   // Show timer bars for events that will happen in this many seconds or less.
   ShowTimerBarsAtSeconds: 30,
   // Once a timer bar reaches 0, keep it around this long after.
