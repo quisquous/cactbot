@@ -109,7 +109,7 @@ zone "^(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))$"
 207	"Critical Hit"	#Tank Buster
 218	"Place Dark Token"	#spawns 5 untargetable adds
 230	"Queen's Waltz (Crystals)"	#AoE + Stand on blue tiles
-232	"Cross Reaper/Gusting Gouge"	#Middle AoE + knockback on edge tiles
+#232	"Cross Reaper/Gusting Gouge"	#Middle AoE + knockback on edge tiles
 238	"Random Elemental" #Fire, Blizz, or Thunder
 243	"Dimensional Wave"	#AoE
 
