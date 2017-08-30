@@ -397,6 +397,7 @@ class TimelineUI {
 
     this.root = document.getElementById('timeline-container');
 
+    this.barWidth = window.getComputedStyle(this.root).width;
     var windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
     this.barHeight = windowHeight / this.options.MaxNumberOfTimerBars - 2;
 
@@ -406,7 +407,7 @@ class TimelineUI {
     this.timerlist = document.getElementById('timeline');
     this.timerlist.maxnumber = this.options.MaxNumberOfTimerBars;
     this.timerlist.rowcolsize = this.options.MaxNumberOfTimerBars;
-    this.timerlist.elementwidth = window.getComputedStyle(this.root).width;
+    this.timerlist.elementwidth = this.barWidth;
     this.timerlist.elementheight = this.barHeight + 2;
     this.timerlist.toward = "down right";
 
@@ -417,9 +418,12 @@ class TimelineUI {
       helperBar.classList.add('text');
       helperBar.classList.add('resize-helper-bar');
       helperBar.classList.add('timeline-bar-color');
+      if (i < 1)
+        helperBar.classList.add('soon');
       helperBar.innerText = 'Test bar ' + (i + 1);
       helper.appendChild(helperBar);
       var borderWidth = parseFloat(window.getComputedStyle(helperBar).borderWidth.match(/([0-9.]+)px/)[1]);
+      helperBar.style.width = this.barWidth - borderWidth * 2;
       helperBar.style.height = this.barHeight - borderWidth * 2;
     }
 
@@ -457,7 +461,7 @@ class TimelineUI {
     var div = document.createElement('div');
     var bar = document.createElement('timer-bar');
     div.appendChild(bar);
-    bar.width = window.getComputedStyle(this.root).width;
+    bar.width = this.barWidth;
     bar.height = this.barHeight;
     bar.duration = e.time - fightNow;
     bar.righttext = 'remain';
