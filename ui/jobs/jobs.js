@@ -221,42 +221,46 @@ var kBigBuffTracker = null;
 function setupBuffTracker(me) {
   kBigBuffTracker = {
     potion: {
-      regex: new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds\.'),
+      loseRegex: new RegExp(':' + me + ' loses the effect of Medicated from '),
       durationPosition: 1,
       icon: kIconBuffPotion,
       borderColor: '#AA41B2',
       sortKey: 0,
     },
     embolden: {
-      regex: new RegExp(':' + me + ' gains the effect of Embolden from (.*) for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of Embolden from (.*) for ([0-9.]+) Seconds\.'),
+      loseRegex: new RegExp(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 2,
       icon: kIconBuffEmbolden,
       borderColor: '#57FC4A',
       sortKey: 1,
     },
     litany: {
-      regex: new RegExp(':' + kReName + ' gains the effect of Battle Litany from (.*) for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of Battle Litany from (.*) for ([0-9.]+) Seconds\.'),
+      loseRegex: new RegExp(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffLitany,
       borderColor: '#099',
       sortKey: 2,
     },
     balance: {
-      regex: new RegExp(':' + kReName + ' gains the effect of The Balance from (.*) for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of The Balance from (.*) for ([0-9.]+) Seconds\.'),
+      loseRegex: new RegExp(':' + me + ' loses the effect of The Balance from '),
       durationPosition: 2,
       icon: kIconBuffBalance,
       borderColor: '#C5C943',
       sortKey: 3,
     },
     chain: {
-      regex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Chain Strategem:'),
+      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Chain Strategem:'),
       durationSeconds: 15,
       icon: kIconBuffChainStrategem,
       borderColor: '#4674E5',
       sortKey: 5,
     },
     trick: {
-      regex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Trick Attack:'),
+      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Trick Attack:'),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       borderColor: '#FC4AE6',
@@ -265,14 +269,14 @@ function setupBuffTracker(me) {
       soundVolume: 1,
     },
     hyper: {
-      regex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:'),
+      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:'),
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
       borderColor: '#099',
       sortKey: 7,
     },
     sight: {
-      regex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Dragon Sight:'),
+      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Dragon Sight:'),
       durationSeconds: 20,
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
@@ -906,6 +910,11 @@ class Bars {
     }
   }
   
+  OnLoseBigBuff(name, settings) {
+    window.clearTimeout(settings.timeout);
+    this.o.rightBuffsList.removeElement(name);
+  }
+
   OnPlayerChanged(e) {
     if (!this.init) {
       this.me = e.detail.name;
@@ -1025,7 +1034,7 @@ class Bars {
 
       for (var name in kBigBuffTracker) {
         var settings = kBigBuffTracker[name];
-        var r = log.match(settings.regex);
+        var r = log.match(settings.gainRegex);
         if (r != null) {
           var seconds = 0;
           if ('durationSeconds' in settings) {
@@ -1036,6 +1045,9 @@ class Bars {
           }
           this.OnBigBuff(name, seconds, settings);
         }
+        r = log.match(settings.loseRegex);
+        if (r != null)
+          this.OnLoseBigBuff(name, settings);
       }
 
       if (this.combo.ParseLog(log))
