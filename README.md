@@ -72,9 +72,9 @@ support user settings.
 The **user/\<name\>.css** file can override positions, sizes, colors, etc. for the visual
 appearance. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
 For example in [`ui/raidboss/raidboss.css`](ui/raidboss/raidboss.css), you see the
-`#popup-text-container` which can be moved in **user/raidboss.css** to a different position
-as desired. Or the size and color of info text alerts can be changed via the `.info-text`
-class.
+`#popup-text-container` and `#timeline-container` which can be moved in **user/raidboss.css**
+to different positions as desired. Or the size and color of info text alerts can be changed via
+the `.info-text` class.
 
 The **user/\<name\>.js** file can set options to change the behaviour of the UI module. The
 options that can be changed are documented as the `Options` structure at the top of the

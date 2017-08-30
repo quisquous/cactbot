@@ -4,6 +4,15 @@
   text-align: center;
 }
 
+#timeline-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 220px;
+  height: 120px;
+  font-size: 14px;
+}
+
 /* Relative to popup-text-container */
 #popup-text-info {
   position: absolute;
@@ -56,15 +65,6 @@
 }
 .resizeHandle .resize-helper {
   display: inline-block;
-}
-
-#timeline-container {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 220px;
-  height: 120px;
-  font-size: 14px;
 }
 
 /* Fake bars for helping with move/resize. */
