@@ -41,7 +41,8 @@
   alertText = 'Info',
   // Text to show with alarm importance. May be a function(data, matches) that returns a string.
   alarmText = 'Info',
-  // Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'.
+  // Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'. Paths to sound files are
+  // relative to the ui/raidboss/ directory.
   sound: '',
   // Volume between 0 and 1 to play |sound|.
   soundVolume: 1,
