@@ -881,7 +881,7 @@ class Bars {
     if (in_countdown != showing_countdown) {
       this.o.pullCountdown.duration = seconds;
       if (in_countdown) {
-        var audio = new Audio('../../sounds/PowerAuras/sonar.ogg');
+        var audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();
       }
