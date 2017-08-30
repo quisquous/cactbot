@@ -86,13 +86,13 @@ highlighted. You would change that option to 5 seconds by editing **user/raidbos
 
 To add a global trigger alert, for example, add to **user/raidboss.js**:
 
-> `Options.Triggers = [`
-> `  { zoneRegex: /./,`
-> `    triggers: [`
-> `      // Trick Attack used.`
-> `      { regex: /:.*?:[0-9A-Fa-f]+:Trick Attack:/,`
-> `        sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',`
-> `      },`
-> `    ],`
-> `  },`
-> `]`
+> `Options.Triggers = [
+  { zoneRegex: /./,
+    triggers: [
+      // Trick Attack used.
+      { regex: /:.*?:[0-9A-Fa-f]+:Trick Attack:/,
+        sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
+      },
+    ],
+  },
+]`
