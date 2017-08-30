@@ -83,3 +83,16 @@ you see the `BarExpiresSoonSeconds` option which can change when timeline bars s
 highlighted. You would change that option to 5 seconds by editing **user/raidboss.js** to say:
 
 > Options.BarExpiresSoonSeconds = 5
+
+To add a global trigger alert, for example, add to **user/raidboss.js**:
+
+> Options.Triggers = [
+>   { zoneRegex: /./,
+>     triggers: [
+>       // Trick Attack used.
+>       { regex: /:.*?:[0-9A-Fa-f]+:Trick Attack:/,
+>         sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
+>       },
+>     ],
+>   },
+> ]
