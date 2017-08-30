@@ -294,26 +294,3 @@ document.addEventListener("onLogEvent", function(e) {
 document.addEventListener("onDataFilesRead", function(e) {
   gPopupText.OnDataFilesRead(e);
 });
-
-// Testing...
-(function() {
-  var t = 0;
-  var setup = function(e) {
-    document.dispatchEvent(new CustomEvent('onPlayerChangedEvent', { detail: { name: 'me', job: 'RDM' } }));
-    document.dispatchEvent(new CustomEvent('onZoneChangedEvent', { detail: { zoneName: 'zone' } }));
-    inject();
-  }
-  var inject = function(e) {
-    var s = [ ':test:trigger:' ]
-    document.dispatchEvent(new CustomEvent('onLogEvent', { detail: { logs: s} }));
-  };
-  var delayedInject = function(e) {
-    if (t < 3) {
-      window.setTimeout(inject, 1000)
-      window.setTimeout(delayedInject, 1000)
-      ++t;
-    }
-  }
-  //document.addEventListener("onDataFilesRead", setup);
-  //document.addEventListener("onDataFilesRead", delayedInject);
-})();

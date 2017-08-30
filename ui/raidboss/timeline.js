@@ -11,39 +11,8 @@ function computeBackgroundColorFrom(element, classList) {
   return color;
 }
 
-// This class reads the format of ACT Timeline plugin, described here:
-// http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin
-// There are a some extensions to the original format:
-//
-// # Allows you to specify a regular expression, which when matched the timeline file
-// # will be used.  If more than one file has a matching regex for the current zone, an
-// # arbitrary one will be used (don't do that). This is useful when the FFXIV plugin
-// # does not know the name of the zone yet, but you want to specify the name for once
-// # it becomes known. If this isn't specified, the name of the file (excluding the
-// # extention) will be used as a string match instead, and must exactly match the zone
-// # name.
-// zone "zone-regex"
-//
-// # Show a info-priority text popup on screen before an event will occur. The
-// # |event name| matches a timed event in the file and will be shown before each
-// # occurance of events with that name. By default the name of the event will be shown,
-// # but you may specify the text to be shown at the end of the line if it should be
-// # different. The |before| parameter must be present, but can be 0 if the text should
-// # be shown at the same time the event happens. Negative values can be used to show
-// # the text after the event.
-// #
-// # Example which shows the event name 1s before the event happens.
-// infotext "event name" before 1
-// # Example which specifies different text to be shown earlier.
-// infotext "event name" before 2.3 "alternate text"
-//
-// # Similar to infotext but uses alert priority.
-// alerttext "event name" before 1
-// alerttext "event name" before 2.3 "alternate text"
-//
-// # Similar to infotext but uses alarm priority.
-// alarmtext "event name" before 1
-// alarmtext "event name" before 2.3 "alternate text"
+// This class reads the format of ACT Timeline plugin, described in
+// data/timelines/README.txt.
 class Timeline {
   constructor(text, options) {
     this.options = options;
@@ -553,12 +522,27 @@ class TimelineController {
 
   OnZoneChanged(e) {
     this.activeTimeline = null;
+
+    var text = '';
+    // Get the first matching timeline file.
     for (var i = 0; i < this.timelines.length; ++i) {
       if (e.detail.zoneName.search(this.timelines[i].zoneRegex) >= 0) {
-        this.activeTimeline = new Timeline(this.timelines[i].text, this.options);
+        text = this.timelines[i].text;
         break;
       }
     }
+    // Append text from user-defined timelines.
+    for (var i = 0; i < this.options.Timelines.length; ++i) {
+      if (e.detail.zoneName.search(this.options.Timelines[i].zoneRegex) >= 0) {
+        if (!this.options.Timelines[i].timeline)
+          console.log("Missing 'timeline' in user-defined timeline for " + this.options.Timelines[i].zoneRegex);
+        else
+          text = text + '\n' + this.options.Timelines[i].timeline;
+      }
+    }
+
+    if (text)
+      this.activeTimeline = new Timeline(text, this.options);
     this.ui.SetTimeline(this.activeTimeline);
   }
 
@@ -615,8 +599,3 @@ document.addEventListener("onLogEvent", function(e) {
 document.addEventListener("onDataFilesRead", function(e) {
   gTimelineController.SetDataFiles(e.detail.files);
 });
-
-//window.onload = function() {
-//  document.dispatchEvent(new CustomEvent('onZoneChangedEvent', { detail: { zoneName: "Somewhere" } }));
-//  document.dispatchEvent(new CustomEvent('onLogEvent', { detail: { logs: ["uses Dualcast", ] } }));
-//}
