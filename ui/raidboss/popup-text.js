@@ -5,6 +5,8 @@ class PopupText {
     this.options = options;
     this.init = false;
     this.triggers = [];
+
+    this.kMaxRowsOfText = 2;
   }
 
   OnPlayerChange(e) {
@@ -142,61 +144,69 @@ class PopupText {
       var textSound = '';
       var textVol = 1;
 
+      var addText = function(container, e) {
+        container.appendChild(e);
+        if (container.children.length > this.kMaxRowsOfText)
+          container.removeChild(container.children[0]);
+      }
+      var removeText = function(container, e) {
+        for (var i = 0; i < container.children.length; ++i) {
+          if (container.children[i] == e) {
+            container.removeChild(e);
+            break;
+          }
+        }
+      }
+      var makeTextElement = function(text, className) {
+        var div = document.createElement('div');
+        div.classList.add(className);
+        div.style.animationName = 'zoom-in-out';
+        div.style.animationDuration = '300ms';
+        div.style.animationTimingFunction = 'linear';
+        div.innerText = text;
+        return div;
+      }
+
       if ('infoText' in trigger) {
         var text = ValueOrFunction(trigger.infoText);
         if (text) {
-          that.infoText.classList.remove('hide');
-          that.infoText.style.animationName = 'zoom-in-out';
-          that.infoText.style.animationDuration = '300ms';
-          that.infoText.style.animationTimingFunction = 'linear';
-          that.infoText.innerText = text;
+          var holder = that.infoText.getElementsByClassName('holder')[0];
+          var div = makeTextElement(text, 'info-text');
+          addText.bind(that)(holder, div);
+          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+
           if (!('sound' in trigger)) {
             textSound = that.options.InfoSound;
             textVol = that.options.InfoSoundVolume;
           }
-
-          window.clearTimeout(that.infoTextTimer);
-          that.infoTextTimer = window.setTimeout(function() {
-            that.infoText.classList.add('hide');
-          }, duration * 1000);
         }
       }
       if ('alertText' in trigger) {
         var text = ValueOrFunction(trigger.alertText);
         if (text) {
-          that.alertText.classList.remove('hide');
-          that.alertText.style.animationName = 'zoom-in-out';
-          that.alertText.style.animationDuration = '300ms';
-          that.alertText.style.animationTimingFunction = 'linear';
-          that.alertText.innerText = text;
+          var holder = that.alertText.getElementsByClassName('holder')[0];
+          var div = makeTextElement(text, 'alert-text');
+          addText.bind(that)(holder, div);
+          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+
           if (!('sound' in trigger)) {
             textSound = that.options.AlertSound;
             textVol = that.options.AlertSoundVolume;
           }
-
-          window.clearTimeout(that.alertTextTimer);
-          that.alertTextTimer = window.setTimeout(function() {
-            that.alertText.classList.add('hide');
-          }, duration * 1000);
         }
       }
       if ('alarmText' in trigger) {
         var text = ValueOrFunction(trigger.alarmText);
         if (text) {
-          that.alarmText.classList.remove('hide');
-          that.alarmText.style.animationName = 'zoom-in-out';
-          that.alarmText.style.animationDuration = '300ms';
-          that.infoText.style.animationTimingFunction = 'linear';
-          that.alarmText.innerText = text;
+          var holder = that.alarmText.getElementsByClassName('holder')[0];
+          var div = makeTextElement(text, 'alarm-text');
+          addText.bind(that)(holder, div);
+          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+
           if (!('sound' in trigger)) {
             textSound = that.options.AlarmSound;
             textVol = that.options.AlarmSoundVolume;
           }
-
-          window.clearTimeout(that.alarmTextTimer);
-          that.alarmTextTimer = window.setTimeout(function() {
-            that.alarmText.classList.add('hide');
-          }, duration * 1000);
         }
       }
 
@@ -286,9 +296,24 @@ document.addEventListener("onDataFilesRead", function(e) {
 });
 
 // Testing...
-//window.onload = function() {
-  //document.dispatchEvent(new CustomEvent('onGameExistsEvent', { detail: { exists: true } }));
-  //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':Exdeath uses The Decisive Battle.') }, 0);
-  //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':Exdeath begins casting Fire III.') }, 0);
-  //window.setTimeout(function() { gPopupText.Test('Unknown Zone (2Ba)', ':test:trigger:') }, 1000);
-//};
+(function() {
+  var t = 0;
+  var setup = function(e) {
+    document.dispatchEvent(new CustomEvent('onPlayerChangedEvent', { detail: { name: 'me', job: 'RDM' } }));
+    document.dispatchEvent(new CustomEvent('onZoneChangedEvent', { detail: { zoneName: 'zone' } }));
+    inject();
+  }
+  var inject = function(e) {
+    var s = [ ':test:trigger:' ]
+    document.dispatchEvent(new CustomEvent('onLogEvent', { detail: { logs: s} }));
+  };
+  var delayedInject = function(e) {
+    if (t < 3) {
+      window.setTimeout(inject, 1000)
+      window.setTimeout(delayedInject, 1000)
+      ++t;
+    }
+  }
+  //document.addEventListener("onDataFilesRead", setup);
+  //document.addEventListener("onDataFilesRead", delayedInject);
+})();

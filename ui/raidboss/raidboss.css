@@ -12,62 +12,54 @@
 #popup-text-info {
   position: absolute;
   width: 100%;
-  top: 74px;
-  color: #2b2;
-  font-size: 140%;
-  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
-  will-change: transform;
+  top: 155px;
 }
-#popup-text-info .resize-helper {
-  display: none;
-}
-.resizeHandle #popup-text-info .resize-helper {
-  /* When unlocked for move/resize. */
-  display: inline-block;
-}
-
 /* Relative to popup-text-container */
 #popup-text-alert {
   position: absolute;
   width: 100%;
-  top: 44px;
-  color: #fb0;
-  font-size: 170%;
-  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
-  text-transform: uppercase;
-  will-change: transform;
+  top: 90px;
 }
-#popup-text-alert .resize-helper {
-  display: none;
-}
-.resizeHandle #popup-text-alert .resize-helper {
-  /* When unlocked for move/resize. */
-  display: inline-block;
-}
-
 /* Relative to popup-text-container */
 #popup-text-alarm {
   position: absolute;
   width: 100%;
   top: 0px;
+}
+
+.info-text {
+  color: #2b2;
+  font-size: 140%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
+}
+.alert-text {
+  color: #fb0;
+  font-size: 170%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
+  text-transform: uppercase;
+}
+.alarm-text {
   color: #f30;
   font-size: 230%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
-  text-transform: uppercase;
   will-change: transform;
-}
-#popup-text-alarm .resize-helper {
-  display: none;
-}
-.resizeHandle #popup-text-alarm .resize-helper {
-  /* When unlocked for move/resize. */
-  display: inline-block;
+  text-transform: uppercase;
 }
 
 @keyframes zoom-in-out {
   0% { transform: scale(1.0); }
   50% { transform: scale(1.4); }
   100% { transform: scale(1.0); }
+}
+
+/* Show only when unlocked for move/resize. */
+.resize-helper {
+  display: none;
+}
+.resizeHandle .resize-helper {
+  display: inline-block;
 }
 
 #timeline-container {
@@ -78,23 +70,14 @@
   height: 120px;
   font-size: 14px;
 }
-#timeline-container .resize-helper {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  display: none;
-}
-.resizeHandle #timeline-container .resize-helper {
-  /* When unlocked for move/resize. */
-  display: inline-block;
-}
+
+/* Fake bars for helping with move/resize. */
 #timeline-resize-helper {
   width: 100%;
 }
-.resizeHandle .resize-helper-bar {
+#timeline-resize-helper .resize-helper-bar {
   border: 1px solid black;
   margin-bottom: 2;
-  width: 100%;
   padding: 0 0.2em 0 0.2em;
   vertical-align: middle;
 }
