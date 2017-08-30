@@ -63,11 +63,10 @@ infotext "Vacuum Wave" before 8 "Vacuum Wave soon"
 97	"Vacuum Wave (1)"
 107	"White Hole"
 119	"Black Hole"	#Black Holes tether to Tanks & Healers + AoE dmg + HP Down Debuff
-119	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
+119.01	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
 128	"Fire III (DPS)"	#Fire III on DPS
 132	"Fire III (T/H)"	#Fire III on Tanks & Healers
 135	"Holy"	#Stack Mechanic
-135	"--Black Holes Despawn--"
 144	"White Hole"
 159	"Thunder III"
 167	"Meteor"
@@ -83,7 +82,7 @@ infotext "Vacuum Wave" before 8 "Vacuum Wave soon"
 210	"Vacuum Wave (1)"	#Vacuum Wave
 220	"White Hole"	#Need full HP
 232	"Black Hole"	#Black Holes tether to Tanks & Healers + AoE dmg + HP Down Debuff
-232	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
+232.01	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
 241	"Blizzard III"	#Healers + DPS
 243	"Blizzard III"	#Healers + DPS
 243	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
