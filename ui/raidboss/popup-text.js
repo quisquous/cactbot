@@ -22,7 +22,7 @@ class PopupText {
   }
 
   OnDataFilesRead(e) {
-    this.triggerSets = [];
+    this.triggerSets = Options.Triggers;
     for (var filename in e.detail.files) {
       // Reads from the data/triggers/ directory.
       if (!filename.startsWith('triggers/'))

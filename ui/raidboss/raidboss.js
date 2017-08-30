@@ -32,6 +32,9 @@ var Options = {
   AlarmSoundVolume: 1,
   // Volume between 0 and 1 to play the LongSound at.
   LongSoundVolume: 1,
+
+  // An array of user-defined triggers, in the format defined in data/triggers/README.txt.
+  Triggers: [],
 };
 
 
