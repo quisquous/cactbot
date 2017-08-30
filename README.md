@@ -17,9 +17,10 @@ Cactbot is backwards compatible with OverlayPlugin's miniparse addon. This lets 
 dps meters built for OverlayPlugin in Cactbot, with the option to build out more features
 through Cactbot's additional Javascript APIs.
 
-## UIs
+## UI modules
 
-The [`ui/`](ui/) directory has some prebuilt UIs, and [`resources/`](resources/) has building blocks for building your own UIs.
+The [`ui/`](ui/) directory has some prebuilt UI modules, and [`resources/`](resources/) has
+building blocks for building your own modules.
 
 ![ui screenshot](Screenshot-Dana.png)
 
@@ -60,3 +61,24 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 
 5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
 6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
+
+## Configuring UI modules.
+
+Cactbot UI modules can load user settings from the [`user/`](user/) directory. Simply add
+a `user/<name>.css` or a `user/<name>.js` file, where `<name>` is the name of the UI module,
+such as `jobs` or `raidboss`. Currently these 2 UI modules both support user settings.
+
+The `user/<name>.css` file can override positions, sizes, colors, etc for the visual
+appearance. See the `ui/<name>/<name>.css` to find the names of things you can modify.
+For example in [`ui/raidboss/raidboss.css`](ui/raidboss/raidboss.css), you see the
+`#popup-text-container` which can be moved in `user/raidboss.css` to a different position
+as desired. Or the size and color of info text alerts can be changed via the `.info-text`
+class.
+
+The `user/<name>.js` file can set options to change the behaviour of the UI module. The
+options that can be changed are documented as the `Options` structure at the top of the
+`ui/<name>/<name>.js` file. For example in [`ui/raidboss/raidboss.js`](ui/raidboss/raidboss.js),
+you see the `BarExpiresSoonSeconds` option which can change when timeline bars should be
+highlighted. You would change that option to 5 seconds by editing `user/raidboss.js` to say:
+
+> Options.BarExpiresSoonSeconds = 5;
