@@ -198,6 +198,7 @@ class Timeline {
 
     this._ClearTimers();
     this._AddUpcomingTimers(fightNow);
+    this._CancelUpdate();
     this._ScheduleUpdate(fightNow);
   }
   
