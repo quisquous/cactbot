@@ -31,15 +31,15 @@
 {
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
-  // Number of seconds to show the trigger for. Either seconds or a function(data, matches).
-  durationSeconds: 3,
-  // Time to wait before showing it once the regex is seen. Can be a number or a function(data, matches).
+  // Time to wait before showing it once the regex is seen. May be a number or a function(data, matches) that returns a number.
   delaySeconds: 0,
-  // Text to show with info importance. May be a function(data, matches) that returns a string.
+  // Number of seconds to show the trigger for. May be a number or a function(data, matches) that returns a number.
+  durationSeconds: 3,
+  // Text to show with info importance. May be a string or a function(data, matches) that returns a string.
   infoText = 'Info',
-  // Text to show with alert importance. May be a function(data, matches) that returns a string.
+  // Text to show with alert importance. May be a string or a function(data, matches) that returns a string.
   alertText = 'Info',
-  // Text to show with alarm importance. May be a function(data, matches) that returns a string.
+  // Text to show with alarm importance. May be a string or a function(data, matches) that returns a string.
   alarmText = 'Info',
   // Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'. Paths to sound files are
   // relative to the ui/raidboss/ directory.
@@ -54,3 +54,13 @@
   // If this is true, the trigger is completely disabled and ignored.
   disabled: true,
 },
+
+
+The full order of evaluation of functions in a trigger is:
+1. condition
+2. delaySeconds
+3. durationSeconds
+4. infoText
+5. alertText
+6. alarmText
+7. run
