@@ -156,18 +156,6 @@
       },
       run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
     },
-    { // Vacuum Wave warning after Almagest
-      regex: /:2417:Neo Exdeath starts using/,
-      delaySeconds: 25,
-      infoText: 'Vacuum Wave soon',
-      condition: function(data) { return data.almagestCount == 2 || data.almagestCount == 5; },
-    },
-    { // Vacuum Wave warning after Almagest
-      regex: /:2417:Neo Exdeath starts using/,
-      delaySeconds: 5,
-      infoText: 'Vacuum Wave soon',
-      condition: function(data) { return data.almagestCount == 3 || data.almagestCount == 6; },
-    },
     { // Neverwhere.
       regex: /:2426:Neo Exdeath starts using/,
       run: function(data) { data.finalphase = true; },

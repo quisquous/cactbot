@@ -19,6 +19,7 @@ zone "^(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))$"
 
 #########TANKS CAN HIDE THESE
 
+infotext "Vacuum Wave" before 8 "Vacuum Wave soon"
 
 ##############################################################
 ################## Windows 8 & 10 Voices ##################
