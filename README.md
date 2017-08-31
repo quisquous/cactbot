@@ -22,9 +22,7 @@ that anybody would need to write a good Javascript UI for
 ## UI modules
 
 The [ui/](ui/) directory has some prebuilt UI modules, and the [resources/](resources/) directory has
-building blocks for building your own modules.
-
-The modules in [ui/](ui/) are:
+building blocks for building your own modules. The modules in [ui/](ui/) are:
 
 ### [raidboss](ui/raidboss)
 
@@ -32,7 +30,7 @@ To use this module, point cactbot at **ui/raidboss/raidboss.html**.
 
 This module provides a visual timeline of upcoming events in a fight, as well as text and audio
 notifications to help increase raid awareness. Text and sound alerts can be based on the fight
-timeline, or come from log events that occur in the game. The module is designed to look and feel
+timeline, or come from log messages that occur in the game. The module is designed to look and feel
 similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of
 Warcraft.
 
@@ -96,7 +94,7 @@ The **user/\<name\>.css** file can change positions, sizes, colors, etc. for com
 the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
 For example in [ui/raidboss/raidboss.css](ui/raidboss/raidboss.css), you see the
 `#popup-text-container` and `#timeline-container` which can be changed via **user/raidboss.css**
-to different positions as desired. Also the size and color of info text alerts can be changed by
+to different positions as desired. The size and color of info text alerts can also be changed by
 making a CSS rule for the `.info-text` class such as below:
 
 ```
@@ -106,17 +104,18 @@ making a CSS rule for the `.info-text` class such as below:
 }
 ```
 
-The **user/\<name\>.js** file can set options to change the behaviour of the UI module. The
-options that can be changed are documented as the `Options` structure at the top of the
+The **user/\<name\>.js** file can set options to customize how the UI module works. The
+options that can be changed are documented in the `Options` section at the top of the
 **ui/\<name\>/\<name\>.js** file. For example in [ui/raidboss/raidboss.js](ui/raidboss/raidboss.js),
-you see the `BarExpiresSoonSeconds` option which can change when timeline bars should be
-highlighted. You would change that option to 5 seconds by editing **user/raidboss.js** to say:
+you see the `BarExpiresSoonSeconds` option which controls when timeline bars should be
+highlighted. You can change that option from the default value to 5 seconds by editing
+**user/raidboss.js** to say:
 
 ```
 Options.BarExpiresSoonSeconds = 5
 ```
 
-To add a global trigger alert, for example, add to **user/raidboss.js**:
+To add a sound alert that can be activated in any zone, for example, add the following to **user/raidboss.js**:
 
 ```
 Options.Triggers = [
@@ -133,8 +132,8 @@ Options.Triggers = [
 ]
 ```
 
-A more sophisticated example that triggers with a 1 second delay, but only when the player's
-character name appears in the log message:
+A more sophisticated example that fires after a 1 second delay, but only when the player's
+character name appears in the FFXIV log message:
 
 ```
 Options.Triggers = [
@@ -155,29 +154,29 @@ Options.Triggers = [
 
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
-1. Find the OverlayPlugin installation, make an `addons` sub-directory inside it (looks like `...\OverlayPlugin\addons`).
-2. Copy the `CactbotOverlay.dll` file to the `addons` directory.
-3. Make sure to unblock the `CactbotOverlay.dll` (right click -> properties -> unblock) if you downloaded it, instead of building it.
-4. If you get an error that it can't find `FFXIV_ACT_Plugin.dll`, make sure it is in the same directory as `Advanced Combat Tracker.exe`.
+1. Find the OverlayPlugin installation, make an **addons** sub-directory inside it (looks like **...\OverlayPlugin\addons**).
+2. Copy the **CactbotOverlay.dll** file to the **addons** directory.
+3. Make sure to unblock the **CactbotOverlay.dll** (right click -> properties -> unblock) if you downloaded it, instead of building it.
+4. If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
 
    The directory structure should look something like this:
-   - C:\\...\\Advanced Combat Tracker
+   - C:\\...\\Advanced Combat Tracker\\
      - Advanced Combat Tracker.exe
      - FFXIV_ACT_Plugin.dll
-   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin
+   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\
      - OverlayPlugin.dll etc
-   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons
+   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons\\
      - CactbotOverlay.dll
 
 5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
-6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
+6. In the URL field, browse to an html file to load. For example to **/path/to/cactbot/ui/raidboss/raidboss.html**.
 
 ## Building from source
 
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
-1. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/OverlayPlugin`](CactbotOverlay/ThirdParty/OverlayPlugin).
-2. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/ACT`](CactbotOverlay/ThirdParty/ACT).
+1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/OverlayPlugin](CactbotOverlay/ThirdParty/OverlayPlugin).
+2. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/ACT](CactbotOverlay/ThirdParty/ACT).
 3. Open the solution in Visual Studio (tested with Visual Studio 2017).
 4. Build for "Release" and "x64".
-5. The plugin will be built as `bin/x64/Release/CactbotOverlay.dll`.
+5. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
