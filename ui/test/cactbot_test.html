@@ -48,6 +48,8 @@
         document.getElementById("jobinfo").innerText = e.detail.jobDetail.whiteMana + " | " + e.detail.jobDetail.blackMana;
       } else if (e.detail.job == "WAR") {
           document.getElementById("jobinfo").innerText = e.detail.jobDetail.beast;
+      } else {
+        document.getElementById("jobinfo").innerText = "";
       }
       document.getElementById("pos").innerText = e.detail.pos.x + "," + e.detail.pos.y + "," + e.detail.pos.z;
     });
