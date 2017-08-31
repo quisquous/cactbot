@@ -1,6 +1,6 @@
 # cactbot (Chromium ACT Bindings Overlay for Things)
 
-1. [About](#About)
+1. [About](#about)
 2. [UI modules](#ui-modules)
 3. [Configuring UI modules](#configuring-ui-modules)
 4. [Installing](#installing)
