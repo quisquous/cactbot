@@ -51,13 +51,13 @@ class Timeline {
         line = line.substring(0, comment);
       line = line.trim();
 
-      var match = line.match(/^hideall \"([^"]+)\"$/);
+      var match = line.match(/^hideall\s+\"([^"]+)\"$/);
       if (match != null) {
         this.ignores[match[1]] = true;
         continue;
       }
 
-      match = line.match(/^(info|alert|alarm)text \"([^"]+)\" +before +(-?[0-9]+(?:\.[0-9]+)?)(?: +\"([^"]+)\")?$/)
+      match = line.match(/^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/)
       if (match != null) {
         texts[match[2]] = texts[match[2]] || [];
         texts[match[2]].push({
@@ -81,10 +81,10 @@ class Timeline {
       };
       var commands = match[3];
       if (commands) {
-        var commandMatch = commands.match(/duration +([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+        var commandMatch = commands.match(/duration\s+([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
         if (commandMatch)
           e.duration = parseFloat(commandMatch[1]);
-        commandMatch = commands.match(/sync +\/(.*)\/(\s.*)?$/);
+        commandMatch = commands.match(/sync\s+\/(.*)\/(\s.*)?$/);
         if (commandMatch) {
           var sync = {
             id: uniqueid,
@@ -94,7 +94,7 @@ class Timeline {
             time: seconds,
           }
           if (commandMatch[2]) {
-            var argMatch = commandMatch[2].match(/window +(([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+            var argMatch = commandMatch[2].match(/window\s+(([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
             if (argMatch) {
               if (argMatch[2]) {
                 sync.start = seconds - parseFloat(argMatch[2]);
@@ -104,7 +104,7 @@ class Timeline {
                 sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
             }
-            argMatch = commandMatch[2].match(/jump +([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+            argMatch = commandMatch[2].match(/jump\s+([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
             if (argMatch)
               sync.jump = parseFloat(argMatch[1]);
           }
