@@ -108,8 +108,8 @@
 /* Relative to #bars */
 #rdm-procs {
   position: absolute;
-  top: 166px;
-  left: 100px;
+  top: 146px;
+  left: 0px;
 }
 #rdm-procs-white {
   position: relative;
@@ -140,8 +140,8 @@
 /* Relative to #bars */
 #war-procs {
   position: absolute;
-  top: 180px;
-  left: 100px;
+  top: 146px;
+  left: 10px;
 }
 
 /* Relative to #bars */

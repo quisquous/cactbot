@@ -526,7 +526,7 @@ class Bars {
         this.o.rdmProcBlack = document.createElement("timer-box");
         this.o.rdmProcImpact = document.createElement("timer-box");
 
-        opacityContainer.appendChild(procsContainer);
+        barsContainer.appendChild(procsContainer);
         procsContainer.appendChild(whiteProcContainer);
         procsContainer.appendChild(blackProcContainer);
         procsContainer.appendChild(impactProcContainer);
