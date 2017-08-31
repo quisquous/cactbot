@@ -78,7 +78,7 @@ In the screenshot below the phases are named B1, B2, B3.
 ![xephero screenshot](Screenshot-xephero.png)
 
 The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
-for Stormblood jobs and recolored to match [fflogs](fflogs.com).
+for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
 
 ![xephero screenshot](Screenshot-rdmty.png)
 
