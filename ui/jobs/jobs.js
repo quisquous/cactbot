@@ -1035,9 +1035,13 @@ class Bars {
           }
           this.OnBigBuff(name, seconds, settings);
         }
-        r = log.match(settings.loseRegex);
-        if (r != null)
-          this.OnLoseBigBuff(name, settings);
+        if (settings.loseRegex) {
+          r = log.match(settings.loseRegex);
+          if (r != null) {
+            console.log(name);
+            this.OnLoseBigBuff(name, settings);
+          }
+        }
       }
 
       if (this.combo.ParseLog(log))
