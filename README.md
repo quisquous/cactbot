@@ -82,7 +82,10 @@ for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
 
 ![xephero screenshot](Screenshot-rdmty.png)
 
-Here is a video of some of these UI modules in action on [Exdeath and Neo Exdeath](https://www.youtube.com/watch?v=Ot_GMEcwv94), before the timelines were added to raidboss.
+Here is a video of some of these UI modules in action on Exdeath and Neo Exdeath, from before
+the timelines were added to raidboss:
+
+[![Exdeath video](Screenshot-ExdeathVideo.png)](https://www.youtube.com/watch?v=Ot_GMEcwv94)
 
 ## Configuring UI modules
 
