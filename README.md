@@ -30,9 +30,9 @@ To use this module, point cactbot at **ui/raidboss/raidboss.html**.
 
 This module provides a visual timeline of upcoming events in a fight, as well as text and audio
 notifications to help increase raid awareness. Text and sound alerts can be based on the fight
-timeline, or come from log messages that occur in the game. The module is designed to look and feel
-similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of
-Warcraft.
+timeline, or come from log messages that occur in the game, similar to ACT's "Custom Triggers".
+The module is designed to look and feel similar to the
+[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
 
 Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
 plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
