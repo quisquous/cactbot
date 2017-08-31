@@ -168,13 +168,13 @@ Options.Triggers = [
 If you're familiar with regular expressions you'll note the the `\y{Name}` and
 `\y{AbilityCode}` are unfamiliar. These are extensions provided by cactbot for
 convenience to avoid having to match against all possible unicode characters
-or to know the details of how the FFXIV plugin writes things.
+or to know the details of how the FFXIV ACT plugin writes things.
 
 The set of extensions are:
-- `\y{Name}`: Matches any character or ability name (including empty strings which the FFXIV plugin can generate when unknown).
-- `\y{AbilityCode}`: Matches the FFXIV plugin's format for the number code of a spell or ability.
+- `\y{Name}`: Matches any character or ability name (including empty strings which the FFXIV ACT plugin can generate when unknown).
+- `\y{AbilityCode}`: Matches the FFXIV ACT plugin's format for the number code of a spell or ability.
 - `\y{TimeStamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
-- `\y{LogType}`: Matches the FFXIV plugin's format for the number code describing the type of log event, found near the front of each log event.
+- `\y{LogType}`: Matches the FFXIV ACT plugin's format for the number code describing the type of log event, found near the front of each log event.
 
 ## Installing
 
@@ -237,7 +237,7 @@ listening to and using the Javascript events.
 
 ## Languages
 
-Cactbot is tested and works with the English version of the game.
+Cactbot is tested and works with the English version of Final Fantasy XIV.
 
 Unicode characters are supported thoughout, through the use of the helpers in the
 [resources/regexes.js](resources/regexes.js) file. However timelines and log event
