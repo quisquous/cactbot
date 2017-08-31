@@ -11,7 +11,7 @@
 This project is an overlay plugin for
 [hibiyasleep's OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin)
 which itself is a plugin for
-[Advanced Combat Tracker](http://advancedcombattracker.com/)
+[Advanced Combat Tracker](http://advancedcombattracker.com/).
 
 It depends on [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html).
 
@@ -21,65 +21,65 @@ that anybody would need to write a good Javascript UI for
 
 ## UI modules
 
-The [`ui/`](ui/) directory has some prebuilt UI modules, and [`resources/`](resources/) has
+The [ui/](ui/) directory has some prebuilt UI modules, and the [resources/](resources/) directory has
 building blocks for building your own modules.
 
-The modules in [`ui/`](ui/) are:
+The modules in [ui/](ui/) are:
 
-1. [raidboss](ui/raidboss)
+### [raidboss](ui/raidboss)
 
-Point cactbot at **ui/raidboss/raidboss.html**.
+To use this module, point cactbot at **ui/raidboss/raidboss.html**.
 
-This module provides a timeline of upcoming events in a fight, as well as text and audio
-notifications. It is designed to look and feel similar to the
-[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
+This module provides a visual timeline of upcoming events in a fight, as well as text and audio
+notifications to help increase raid awareness. Text and sound alerts can be based on the fight
+timeline, or come from log events that occur in the game. The module is designed to look and feel
+similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of
+Warcraft.
 
-The timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
+Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
 plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
-with [some extensions](ui/raidboss/data/timelines/README.txt). It shows a timer bar for each upcoming event,
-and can give text alerts before/after/during an event. Timeline files are found in
-[ui/raidboss/data/timelines](ui/raidboss/data/timelines).
+with [some extensions](ui/raidboss/data/timelines/README.txt).
 
-Text and sounds alerts can be generated from timelines, or from triggers on log lines in ACT. The triggers
-that come with the addon are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
+Timeline files are found in [ui/raidboss/data/timelines](ui/raidboss/data/timelines). Triggers
+for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
 
 In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
 text alerts circled in yellow.
 
 ![raidboss screenshot](Screenshot-Raidboss.png)
 
-2. [jobs](ui/jobs)
+### [jobs](ui/jobs)
 
-Point cactbot at **ui/jobs/jobs.html**
+To use this module, point cactbot at **ui/jobs/jobs.html**
 
 This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
 The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
-or raiding, and a pull countdown timer bar.
+or raiding, and a visual pull countdown.
 
-It has more fleshed out support for some jobs but is strongly a Work In Progress for others:
+It has more fleshed out support for some jobs but is strongly a Work In Progress for others.
 - Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
 - Warrior: Shows the beast amount, and tracks how many GCDs before Storm's Eye will fall off.
 
-In this screenshot, the jobs module is highlighted for the Red Mage job. The main health and mana, as well
+In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
 beside it in orange. The proc tracking is circles below in green.
 
 ![jobs screenshot](Screenshot-Jobs.png)
 
-3. [dps meters](ui/dps)
+### [dps meters](ui/dps)
 
-Cactbot is backwards compatible with OverlayPlugin's miniparse addon. This lets you use
-dps meters built for OverlayPlugin in Cactbot, with the option to build out more features
-through Cactbot's additional Javascript APIs.
+Cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
+addon, with the option to build out more features through cactbot's additional Javascript
+APIs.
 
-The xephero dps meter is based on the same dps meter built for miniparse, with the additional
-ability to do per-phase dps tracking, displayed in additional columns. In the screenshot below
-the phases are named B1, B2, B3.
+The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
+with the additional ability to do per-phase dps tracking, displayed in additional columns.
+In the screenshot below the phases are named B1, B2, B3.
 
 ![xephero screenshot](Screenshot-xephero.png)
 
-The rdmty dps meter is based on the same dps meter, and updated for Stormblood jobs and
-recolors to match [fflogs](fflogs.com).
+The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
+for Stormblood jobs and recolored to match [fflogs](fflogs.com).
 
 ![xephero screenshot](Screenshot-rdmty.png)
 
@@ -87,21 +87,21 @@ Here is a video of some of these UI modules in action on [Exdeath and Neo Exdeat
 
 ## Configuring UI modules
 
-Cactbot UI modules can load user settings from the [`user/`](user/) directory. Simply add
+Cactbot UI modules can load user settings from the [user/](user/) directory. Simply create
 a **user/\<name\>.css** or a **user/\<name\>.js** file, where **\<name\>** is the name of
-the UI module, such as [jobs](ui/jobs) or [raidboss](ui/raidboss). These 2 UI modules both
+the UI module, such as [raidboss](ui/raidboss) or [jobs](ui/jobs). These 2 UI modules both
 support user settings.
 
-The **user/\<name\>.css** file can override positions, sizes, colors, etc. for the visual
-appearance. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
-For example in [`ui/raidboss/raidboss.css`](ui/raidboss/raidboss.css), you see the
-`#popup-text-container` and `#timeline-container` which can be moved in **user/raidboss.css**
-to different positions as desired. Or the size and color of info text alerts can be changed via
-the `.info-text` class.
+The **user/\<name\>.css** file can change positions, sizes, colors, etc. for components of
+the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
+For example in [ui/raidboss/raidboss.css](ui/raidboss/raidboss.css), you see the
+`#popup-text-container` and `#timeline-container` which can be changed via **user/raidboss.css**
+to different positions as desired. Or the size and color of info text alerts can be changed by
+making a rule for `.info-text` class.
 
 The **user/\<name\>.js** file can set options to change the behaviour of the UI module. The
 options that can be changed are documented as the `Options` structure at the top of the
-**ui/\<name\>/\<name\>.js** file. For example in [`ui/raidboss/raidboss.js`](ui/raidboss/raidboss.js),
+**ui/\<name\>/\<name\>.js** file. For example in [ui/raidboss/raidboss.js](ui/raidboss/raidboss.js),
 you see the `BarExpiresSoonSeconds` option which can change when timeline bars should be
 highlighted. You would change that option to 5 seconds by editing **user/raidboss.js** to say:
 
@@ -162,7 +162,7 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
    - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons
      - CactbotOverlay.dll
 
-5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
+5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
 6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
 
 ## Building from source
