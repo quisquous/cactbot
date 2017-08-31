@@ -240,5 +240,6 @@ listening to and using the Javascript events.
 Cactbot is tested and works with the English version of Final Fantasy XIV.
 
 Unicode characters are supported thoughout, through the use of the helpers in the
-[resources/regexes.js](resources/regexes.js) file. However timelines and log event
-triggers may be incorrect if names that appear in the ACT log events are different.
+[resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
+and log event [triggers](ui/raidboss/data/triggers) may be incorrect if names that appear in the
+ACT log events are different.
