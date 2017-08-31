@@ -5,6 +5,7 @@
 3. [Configuring UI modules](#configuring-ui-modules)
 4. [Installing](#installing)
 5. [Building from source](#building-from-source)
+7. [Writing a cactbot UI module](#writing-a-cactbot-ui-module)
 
 ## About
 
@@ -193,3 +194,28 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 3. Open the solution in Visual Studio (tested with Visual Studio 2017).
 4. Build for "Release" and "x64".
 5. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
+
+## Writing a cactbot UI module
+
+To build a cactbot ui, you need to make a **.html** file and point cactbot at it. There are a
+number of helpful things in the [resources/](resources/) directory.
+
+Include the [resources/defaults.css](resources/defaults.css) file to get some of the default
+look and feel of other cactbot uis, then use the `.text` class on any HTML elements which contain
+text. You may add the `.hide` class to elements you do not want shown, and remove it when they
+should be visible.
+
+Include the [resources/resize_handle.css](resources/resize_handle.js) and
+[resources/resize_handle.js](resources/resize_handle.js) files to give visual feedback to the
+user when the module is unlocked for moving and resizing.
+
+There are a number of web components that provide widgets for building your ui, including the
+[timerbar](resources/timerbar.js), [timerbox](resources/timerbox.js) or
+[resourcebar](resources/resourcebar.js). Include the file and then instatiate it by making an
+element of that type, such as `<timer-bar></timer-bar>` or `<resource-bar></resource-bar>`.
+
+The set of Javascript events that can be listened for via `document.addEventListener` is found
+in [CactbotOverlay/JSEvents.cs](CactbotOverlay/JSEvents.cs). The public fields of each event
+type will be members of the event's `detail`. See the
+(ui/test/cactbot_test.html)[ui/test/cactbot_test.html] ui module for a simple example of
+listening to and using the Javascript events.
