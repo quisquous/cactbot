@@ -88,7 +88,7 @@ class Timeline {
         if (commandMatch) {
           var sync = {
             id: uniqueid,
-            regex: new RegExp(commandMatch[1]),
+            regex: Regexes.Parse(commandMatch[1]),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
