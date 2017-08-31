@@ -96,8 +96,15 @@ The **user/\<name\>.css** file can change positions, sizes, colors, etc. for com
 the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
 For example in [ui/raidboss/raidboss.css](ui/raidboss/raidboss.css), you see the
 `#popup-text-container` and `#timeline-container` which can be changed via **user/raidboss.css**
-to different positions as desired. Or the size and color of info text alerts can be changed by
-making a rule for `.info-text` class.
+to different positions as desired. Also the size and color of info text alerts can be changed by
+making a CSS rule for the `.info-text` class such as below:
+
+```
+.info-text {
+  font-size: 200%;
+  color: rgb(50, 100, 50);
+}
+```
 
 The **user/\<name\>.js** file can set options to change the behaviour of the UI module. The
 options that can be changed are documented as the `Options` structure at the top of the
