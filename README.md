@@ -129,28 +129,37 @@ Options.Triggers = [
       { regex: /:.*?:[0-9A-Fa-f]+:Trick Attack:/,
         sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
       },
+
+      .. other triggers here ..
     ],
   },
 
-  // .. other triggers here ..
+  // .. other zones here ..
 ]
 ```
 
-A more sophisticated example that fires after a 1 second delay, but only when the player's
-character name appears in the FFXIV log message:
+A more sophisticated example that shows an alert message after a 1 second delay, but
+only when the player's character name appears in the FFXIV log message:
 
 ```
 Options.Triggers = [
-  // .. other triggers here ..
+  // .. other zones here ..
 
-  { // Forked Lightning - Get out.
-    regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
-    delaySeconds: 1,
-    alertText: 'Forked Lightning: Get out',
-    condition: function(data, matches) { return matches[1] == data.me; },
+  { zoneRegex: /./,
+    triggers: [
+      // .. other triggers here ..
+
+      { regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
+        delaySeconds: 1,
+        alertText: 'Forked Lightning: Get out',
+        condition: function(data, matches) { return matches[1] == data.me; },
+      },
+
+      // .. other triggers here ..
+    ],
   },
 
-  // .. other triggers here ..
+  // .. other zones here ..
 ]
 ```
 
