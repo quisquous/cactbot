@@ -24,7 +24,7 @@ that anybody would need to write a good Javascript UI for
 The [ui/](ui/) directory has some prebuilt UI modules, and the [resources/](resources/) directory has
 building blocks for building your own modules. The modules in [ui/](ui/) are:
 
-### [raidboss](ui/raidboss)
+### [raidboss](ui/raidboss) module
 
 To use this module, point cactbot at **ui/raidboss/raidboss.html**.
 
@@ -46,7 +46,7 @@ text alerts circled in yellow.
 
 ![raidboss screenshot](Screenshot-Raidboss.png)
 
-### [jobs](ui/jobs)
+### [jobs](ui/jobs) module
 
 To use this module, point cactbot at **ui/jobs/jobs.html**
 
@@ -64,7 +64,7 @@ beside it in orange. The proc tracking is circles below in green.
 
 ![jobs screenshot](Screenshot-Jobs.png)
 
-### [dps meters](ui/dps)
+### [dps](ui/dps) meters
 
 Cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
 addon, with the option to build out more features through cactbot's additional Javascript
