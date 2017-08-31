@@ -32,13 +32,11 @@ var Options = {
   BigBuffBorderSize: 1,
 
   // Colours.
+  // Colours.
   TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
 }
-
-var kReName = '[A-Za-z0-9 \']+';
-var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
 
 // Regexes to be filled out once we know the player's name.
 var kReRdmWhiteManaProc = null;
@@ -83,7 +81,7 @@ class ComboTracker {
   constructor(me, comboBreakers, callback) {
     this.me = me;
     this.comboTimer = null;
-    this.kReEndCombo = new RegExp(':' + me + '( starts using |:' + kReAbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
+    this.kReEndCombo = new RegExp(':' + me + '( starts using |:' + Regexes.AbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
     this.callback = callback;
@@ -103,7 +101,7 @@ class ComboTracker {
       var node = this.comboNodes[skillList[i]];
       if (node == undefined) {
         node = {
-          re: new RegExp(':' + this.me + ':' + kReAbilityCode + ':' + skillList[i] + ':'),
+          re: Regexes.Parse(':' + this.me + ':\\y{AbilityCode}:' + skillList[i] + ':'),
           next: []
         };
         this.comboNodes[skillList[i]] = node;
@@ -161,7 +159,7 @@ class ComboTracker {
 
 function setupComboTracker(me, callback) {
   var comboTracker = new ComboTracker(me, kComboBreakers, callback);
-  comboTracker.AddCombo(['Enchanted Riposte', 'Enchanted Zwerchhau', 'Enchanted Redoublement', 'Verflare\Verholy']);
+  comboTracker.AddCombo(['Enchanted Riposte', 'Enchanted Zwerchhau', 'Enchanted Redoublement', 'Ver(?:flare|holy)']);
   comboTracker.AddCombo(['Heavy Swing', 'Skull Sunder', "Butcher's Block"]);
   comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Eye"]);
   comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Path"]);
@@ -171,11 +169,11 @@ function setupComboTracker(me, callback) {
 
 function setupRegexes(me) {
   kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verstone:)')
+  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Verstone:)')
   kReRdmBlackManaProc = new RegExp(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Verfire:)');
+  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Verfire:)');
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + kReAbilityCode + ':Impact:)');
+  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Impact:)');
   kReFoodBuff = new RegExp(':' + me + ' gains the effect of Well Fed from ' + me + ' for ([0-9.]+) Seconds\.')
 }
 
@@ -221,7 +219,7 @@ var kBigBuffTracker = null;
 function setupBuffTracker(me) {
   kBigBuffTracker = {
     potion: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds'),
       loseRegex: new RegExp(':' + me + ' loses the effect of Medicated from '),
       durationPosition: 1,
       icon: kIconBuffPotion,
@@ -229,15 +227,15 @@ function setupBuffTracker(me) {
       sortKey: 0,
     },
     embolden: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of Embolden from (.*) for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of Embolden from \\y{Name} for ([0-9.]+) Seconds'),
       loseRegex: new RegExp(':' + me + ' loses the effect of Embolden from '),
-      durationPosition: 2,
+      durationPosition: 1,
       icon: kIconBuffEmbolden,
       borderColor: '#57FC4A',
       sortKey: 1,
     },
     litany: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of Battle Litany from (.*) for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of Battle Litany from \\y{Name} for ([0-9.]+) Seconds'),
       loseRegex: new RegExp(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffLitany,
@@ -245,36 +243,36 @@ function setupBuffTracker(me) {
       sortKey: 2,
     },
     balance: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of The Balance from (.*) for ([0-9.]+) Seconds\.'),
+      gainRegex: new RegExp(':' + me + ' gains the effect of The Balance from \\y{Name} for ([0-9.]+) Seconds'),
       loseRegex: new RegExp(':' + me + ' loses the effect of The Balance from '),
-      durationPosition: 2,
+      durationPosition: 1,
       icon: kIconBuffBalance,
       borderColor: '#C5C943',
       sortKey: 3,
     },
     chain: {
-      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Chain Strategem:'),
+      gainRegex: /:\y{Name}:\y{AbilityCode}:Chain Strategem:/,
       durationSeconds: 15,
       icon: kIconBuffChainStrategem,
       borderColor: '#4674E5',
       sortKey: 5,
     },
     trick: {
-      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Trick Attack:'),
+      gainRegex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       borderColor: '#FC4AE6',
       sortKey: 6,
     },
     hyper: {
-      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Hypercharge:'),
+      gainRegex: /:\y{Name}:\y{AbilityCode}:Hypercharge:/,
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
       borderColor: '#099',
       sortKey: 7,
     },
     sight: {
-      gainRegex: new RegExp(':' + kReName + ':' + kReAbilityCode + ':Dragon Sight:'),
+      gainRegex: /:\y{Name}:\y{AbilityCode}:Dragon Sight:/,
       durationSeconds: 20,
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
@@ -1024,7 +1022,7 @@ class Bars {
 
       for (var name in kBigBuffTracker) {
         var settings = kBigBuffTracker[name];
-        var r = log.match(settings.gainRegex);
+        var r = log.match(Regexes.Parse(settings.gainRegex));
         if (r != null) {
           var seconds = 0;
           if ('durationSeconds' in settings) {
@@ -1036,7 +1034,7 @@ class Bars {
           this.OnBigBuff(name, seconds, settings);
         }
         if (settings.loseRegex) {
-          r = log.match(settings.loseRegex);
+          r = log.match(Regexes.Parse(settings.loseRegex));
           if (r != null) {
             console.log(name);
             this.OnLoseBigBuff(name, settings);

@@ -116,7 +116,7 @@ class PopupText {
 
       for (var j = 0; j < this.triggers.length; ++j) {
         var trigger = this.triggers[j];
-        var r = log.match(trigger.regex);
+        var r = log.match(Regexes.Parse(trigger.regex));
         if (r != null)
           this.OnTrigger(trigger, r);
       }

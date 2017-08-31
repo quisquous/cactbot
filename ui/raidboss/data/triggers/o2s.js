@@ -3,12 +3,12 @@
   zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2B8\))/,
   triggers: [
     {
-      regex: /:([A-Za-z ']+) gains the effect of (Unknown_556|Levitation) from/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_556|Levitation) from/,
       run: function(data) { data.levitating = true; },
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
-      regex: /:([A-Za-z ']+) loses the effect of (Unknown_556|Levitation)/,
+      regex: /:(\y{Name}) loses the effect of (?:Unknown_556|Levitation)/,
       run: function(data) { data.levitating = false; },
     },
     {
@@ -25,7 +25,7 @@
       alertText: function(data) { if (!data.levitating) return 'Earthquake: Levitate'; },
     },
     {
-      regex: /:([A-Za-z ']+) gains the effect of (Unknown_54E|Elevated) from/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_54E|Elevated) from/,
       alertText: 'Elevated: DPS up, Tanks & Healers down',
     },
     {
@@ -53,7 +53,7 @@
       run: function(data) { data.probeCount = (data.probeCount || 0) + 1; },
     },
     {
-      regex: /:([A-Za-z ']+) gains the effect of Unstable Gravity from/,
+      regex: /:(\y{Name}) gains the effect of Unstable Gravity from/,
       delaySeconds: 9,
       infoText: function(data) { if (!data.myProbe) return 'Unstable Gravity: Stack'; },
       alarmText: function(data) { if (data.myProbe) return 'Unstable Gravity: Elevate and outside stack'; },
@@ -61,7 +61,7 @@
       condition: function(data, matches) { return matches[1] == data.me && data.myProbe; },
     },
     {
-      regex: /:([A-Za-z ']+) gains the effect of 6 Fulms Under from/,
+      regex: /:(\y{Name}) gains the effect of 6 Fulms Under from/,
       delaySeconds: 5,
       infoText: function(data) { if (data.levitating) return '6 Fulms Under'; },
       alertText: function(data) { if (!data.levitating) return '6 Fulms Under: Levitate'; },

@@ -44,7 +44,7 @@
       alertText: 'Thunder III: Get out',
     },
     { // Flare
-      regex: /2401:Exdeath starts using (Unknown_2401|Flare) on ([A-Za-z ']+)/,
+      regex: /2401:Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
       infoText: function(data) {
         //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
       },
@@ -54,7 +54,7 @@
       },
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
-        data.flareTargets.push(matches[2]);
+        data.flareTargets.push(matches[1]);
         return data.flareTargets.length == 3;
       },
       run: function(data) {
@@ -115,26 +115,26 @@
       condition: function(data, matches) { return data.role == 'dps-caster'; },
     },
     { // Forked Lightning - Get out.
-      regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
+      regex: /:(\y{Name}) gains the effect of Forked Lightning from/,
       delaySeconds: 1,
       alertText: 'Forked Lightning: Get out',
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     { // Acceleration Bomb
-      regex: /:([A-Za-z ']+) gains the effect of (Unknown_568|Acceleration Bomb) from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_568|Acceleration Bomb) from .*? for ([0-9.]+) Seconds/,
       alarmText: 'Stop',
-      delaySeconds: function(data, matches) { return parseFloat(matches[3]) - 4; },  // 4 second warning.
+      delaySeconds: function(data, matches) { return parseFloat(matches[2]) - 4; },  // 4 second warning.
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     { // Beyond Death (Delta)
-      regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
       delaySeconds: 7,
       alarmText: 'Beyond Death: Die',
       sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
       condition: function(data, matches) { return data.phase == 'delta' && matches[1] == data.me; },
     },
     { // Beyond Death (Omega)
-      regex: /:([A-Za-z ']+) gains the effect of (Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
       delaySeconds: 8,  // 20 seconds if you want the third flood cast, 8 for the first.
       alarmText: 'Beyond Death: Die',
       sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
@@ -174,7 +174,7 @@
       run: function(data) { data.reprisal = false; },
     },
     { // Flare
-      regex: /2401:Neo Exdeath starts using (Unknown_2401|Flare) on ([A-Za-z ']+)/,
+      regex: /2401:Neo Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
       infoText: function(data) {
         if (data.flareTargets.indexOf(data.me) < 0) {
           //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
@@ -187,7 +187,7 @@
       },
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
-        data.flareTargets.push(matches[2]);
+        data.flareTargets.push(matches[1]);
         return data.flareTargets.length == 3;
       },
       run: function(data) {

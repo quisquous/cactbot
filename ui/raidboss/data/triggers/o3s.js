@@ -3,22 +3,22 @@
   zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2B9\))/,
   triggers: [
     {
-      regex: /([A-Za-z ']+) gains the effect of (Unknown_510|Right Face) from/,
+      regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
       infoText: 'Mindjack: Right',
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
-      regex: /([A-Za-z ']+) gains the effect of (Unknown_50D|Forward March) from/,
+      regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
       infoText: 'Mindjack: Forward',
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
-      regex: /([A-Za-z ']+) gains the effect of (Unknown_50F|Left Face) from/,
+      regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
       infoText: 'Mindjack: Left',
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
-      regex: /([A-Za-z ']+) gains the effect of (Unknown_50E|About Face) from/,
+      regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
       infoText: 'Mindjack: Back',
       condition: function(data, matches) { return matches[1] == data.me; },
     },

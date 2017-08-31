@@ -1,3 +1,5 @@
+// Requires resources/regexes.js
+
  var gDbSpellNames = {
   0xbe: 'Physick',
   0x1d94: 'Protect',
@@ -86,14 +88,10 @@
 }
 
 document.addEventListener("onLogEvent", function(e) {
-  var kReTimeStamp = '\[[0-9:.]\]';
-  var kReLogType = '[0-9A-Fa-f]{2}';
-  var kReName = '[A-Za-z0-9_ \']+';
-  var kReAbilityCode = '[0-9A-Fa-f]{1,4}';
   // The format for FFXIV plugin-injected lines. These lines have different
   // ids than the game provided lines for abilities for some reason.
   // "{time} {logtype}:ability:Person starts using Thing on Person."
-  var kReAbilitySpellStart = new RegExp(kReTimeStamp + ' ' + kReLogType + ':(' + kReAbilityCode + '):' + kReName + ' starts using (' + kReName + ') on ' + kReName + '\.');
+  var kReAbilitySpellStart = Regexes.Parse('\y{TimeStamp} \y{LogType}:(\y{AbilityCode}):\y{Name} starts using (\y{Name}) on \y{Name}\.');
 
   for (var i = 0; i < e.detail.logs.length; i++) {
     var log = e.detail.logs[i];

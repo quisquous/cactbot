@@ -3,6 +3,7 @@
 // Requires includes:
 // <script src="timerbar.js"></script>
 // <script src="timericon.js"></script>
+// <script src="unicode.js"></script>
 // <script src="widgetlist.js"></script>
 
 class BuffsUI extends HTMLElement {
@@ -165,18 +166,18 @@ class BuffsUI extends HTMLElement {
       }
       
       if (this._settings["debuffs"])
-        res = line.match(/You suffer the effect of (....)?([A-Z].+)\.$/);
+        res = line.match(Regexes.Parse('You suffer the effect of (....)?(\y{Name})\.$'));
       else
-        res = line.match(/You suffer the effect of (....)?([A-Z].+)\.$/);
+        res = line.match(Regexes.Parse('You gain the effect of (....)?(\y{Name})\.$/'));
       if (res) {
         this.addBuff(res[2]);
         continue;
       }
 
       if (this._settings["debuffs"])
-        res = line.match(/You recover from the effect of (....)?([A-Z].+)\.$/);
+        res = line.match(Regexes.Parse('You recover from the effect of (....)?(\y{Name})\.$'));
       else
-        res = line.match(/You lose the effect of (....)?([A-Z].+)\.$/);
+        res = line.match(Regexes.Parse('You lose the effect of (....)?(\y{Name})\.$'));
       if (res) {
         this.removeBuff(res[2]);
         continue;

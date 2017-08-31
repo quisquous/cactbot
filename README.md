@@ -5,7 +5,8 @@
 3. [Configuring UI modules](#configuring-ui-modules)
 4. [Installing](#installing)
 5. [Building from source](#building-from-source)
-7. [Writing a cactbot UI module](#writing-a-cactbot-ui-module)
+6. [Writing a cactbot UI module](#writing-a-cactbot-ui-module)
+7. [Languages](#languages)
 
 ## About
 
@@ -127,7 +128,7 @@ Options.Triggers = [
   { zoneRegex: /./,
     triggers: [
       // Trick Attack used.
-      { regex: /:.*?:[0-9A-Fa-f]+:Trick Attack:/,
+      { regex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
         sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
       },
 
@@ -150,7 +151,7 @@ Options.Triggers = [
     triggers: [
       // .. other triggers here ..
 
-      { regex: /:([A-Za-z ']+) gains the effect of Forked Lightning from/,
+      { regex: /:(\y{Name}) gains the effect of Forked Lightning from/,
         delaySeconds: 1,
         alertText: 'Forked Lightning: Get out',
         condition: function(data, matches) { return matches[1] == data.me; },
@@ -163,6 +164,17 @@ Options.Triggers = [
   // .. other zones here ..
 ]
 ```
+
+If you're familiar with regular expressions you'll note the the `\y{Name}` and
+`\y{AbilityCode}` are unfamiliar. These are extensions provided by cactbot for
+convenience to avoid having to match against all possible unicode characters
+or to know the details of how the FFXIV plugin writes things.
+
+The set of extensions are:
+- `\y{Name}`: Matches any character or ability name (including empty strings which the FFXIV plugin can generate when unknown).
+- `\y{AbilityCode}`: Matches the FFXIV plugin's format for the number code of a spell or ability.
+- `\y{TimeStamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
+- `\y{LogType}`: Matches the FFXIV plugin's format for the number code describing the type of log event, found near the front of each log event.
 
 ## Installing
 
@@ -209,6 +221,9 @@ Include the [resources/resize_handle.css](resources/resize_handle.js) and
 [resources/resize_handle.js](resources/resize_handle.js) files to give visual feedback to the
 user when the module is unlocked for moving and resizing.
 
+Include the [resources/unicode.js](resources/unicode.js) file to use unicode categories in
+regular expressions in order to support non-english characters.
+
 There are a number of web components that provide widgets for building your ui, including the
 [timerbar](resources/timerbar.js), [timerbox](resources/timerbox.js) or
 [resourcebar](resources/resourcebar.js). Include the file and then instatiate it by making an
@@ -219,3 +234,11 @@ in [CactbotOverlay/JSEvents.cs](CactbotOverlay/JSEvents.cs). The public fields o
 type will be members of the event's `detail`. See the
 [ui/test/cactbot_test.html](ui/test/cactbot_test.html) ui module for a simple example of
 listening to and using the Javascript events.
+
+## Languages
+
+Cactbot is tested and works with the English version of the game.
+
+Unicode characters are supported thoughout, through the use of the helpers in the
+[resources/regexes.js](resources/regexes.js) file. However timelines and log event
+triggers may be incorrect if names that appear in the ACT log events are different.
