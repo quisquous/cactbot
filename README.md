@@ -1,5 +1,11 @@
 # cactbot (Chromium ACT Bindings Overlay for Things)
 
+1. [About](#About)
+2. [UI modules](#UI-modules)
+3. [Configuring UI modules](#Configuring-UI-modules)
+4. [Installing](#Installing)
+5. [Building from source](#Building-from-source)
+
 ## About
 
 This project is an overlay plugin for
@@ -13,56 +19,73 @@ Its goal is to provide log lines, combatant info, dps info, etc.  Everything
 that anybody would need to write a good Javascript UI for
 [Final Fantasy XIV](http://www.finalfantasyxiv.com/).
 
-Cactbot is backwards compatible with OverlayPlugin's miniparse addon. This lets you use
-dps meters built for OverlayPlugin in Cactbot, with the option to build out more features
-through Cactbot's additional Javascript APIs.
-
 ## UI modules
 
 The [`ui/`](ui/) directory has some prebuilt UI modules, and [`resources/`](resources/) has
 building blocks for building your own modules.
 
-![ui screenshot](Screenshot-Dana.png)
+The modules in [`ui/`](ui/) are:
 
-In this screenshot, there are 3 cactbots:
-- [`ui/jobs/jobs.html`](ui/jobs/jobs.html) is circled in red, showing RDM resources and raid buffs.
-- [`ui/raidboss/raidboss.html`](ui/raidboss/raidboss.html) is circled in teal, showing alerts for combat triggers. It can also show timelines of upcoming fight events, similar to the ACT Timeline addon. This module is built to be similar to the [BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft. Triggers are found in [`ui/raidboss/data/triggers`](ui/raidboss/data/triggers). Timelines are found in [`ui/raidboss/data/timelines`](ui/raidboss/data/timelines).
-- [`ui/dps/rdmty/dps.html`](ui/dps/rdmty/dps.html) is circled in purple, which is a dps meter built for OverlayPlugin's miniparse, with some minor modifications including 4.0 jobs and colors.
+1. [raidboss](ui/raidboss)
 
-Here is a video of these UI components in action on [Exdeath and Neo Exdeath](https://www.youtube.com/watch?v=Ot_GMEcwv94), before the timelines were added to raidboss.
+Point cactbot at **ui/raidboss/raidboss.html**.
 
-## Building
+This module provides a timeline of upcoming events in a fight, as well as text and audio
+notifications. It is designed to look and feel similar to the
+[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
 
-You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
+The timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
+plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
+with [some extensions](ui/raidboss/data/timelines/README.txt). It shows a timer bar for each upcoming event,
+and can give text alerts before/after/during an event. Timeline files are found in
+[ui/raidboss/data/timelines](ui/raidboss/data/timelines).
 
-1. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/OverlayPlugin`](CactbotOverlay/ThirdParty/OverlayPlugin).
-2. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/ACT`](CactbotOverlay/ThirdParty/ACT).
-3. Open the solution in Visual Studio (tested with Visual Studio 2017).
-4. Build for "Release" and "x64".
-5. The plugin will be built as `bin/x64/Release/CactbotOverlay.dll`.
+Text and sounds alerts can be generated from timelines, or from triggers on log lines in ACT. The triggers
+that come with the addon are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
 
-## Installing
+In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
+text alerts circled in yellow.
 
-You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
+![raidboss screenshot](Screenshot-Raidboss.png)
 
-1. Find the OverlayPlugin installation, make an `addons` sub-directory inside it (looks like `...\OverlayPlugin\addons`).
-2. Copy the `CactbotOverlay.dll` file to the `addons` directory.
-3. Make sure to unblock the `CactbotOverlay.dll` (right click -> properties -> unblock) if you downloaded it, instead of building it.
-4. If you get an error that it can't find `FFXIV_ACT_Plugin.dll`, make sure it is in the same directory as `Advanced Combat Tracker.exe`.
+2. [jobs](ui/jobs)
 
-   The directory structure should look something like this:
-   - C:\\...\\Advanced Combat Tracker
-     - Advanced Combat Tracker.exe
-     - FFXIV_ACT_Plugin.dll
-   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin
-     - OverlayPlugin.dll etc
-   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons
-     - CactbotOverlay.dll
+Point cactbot at **ui/jobs/jobs.html**
 
-5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
-6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
+This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
+The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
+or raiding, and a pull countdown timer bar.
 
-## Configuring UI modules.
+It has more fleshed out support for some jobs but is strongly a Work In Progress for others:
+- Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
+- Warrior: Shows the beast amount, and tracks how many GCDs before Storm's Eye will fall off.
+
+In this screenshot, the jobs module is highlighted for the Red Mage job. The main health and mana, as well
+as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
+beside it in orange. The proc tracking is circles below in green.
+
+![jobs screenshot](Screenshot-Jobs.png)
+
+3. [dps meters](ui/dps)
+
+Cactbot is backwards compatible with OverlayPlugin's miniparse addon. This lets you use
+dps meters built for OverlayPlugin in Cactbot, with the option to build out more features
+through Cactbot's additional Javascript APIs.
+
+The xephero dps meter is based on the same dps meter built for miniparse, with the additional
+ability to do per-phase dps tracking, displayed in additional columns. In the screenshot below
+the phases are named B1, B2, B3.
+
+![xephero screenshot](Screenshot-xephero.png)
+
+The rdmty dps meter is based on the same dps meter, and updated for Stormblood jobs and
+recolors to match [fflogs](fflogs.com).
+
+![xephero screenshot](Screenshot-rdmty.png)
+
+Here is a video of some of these UI modules in action on [Exdeath and Neo Exdeath](https://www.youtube.com/watch?v=Ot_GMEcwv94), before the timelines were added to raidboss.
+
+## Configuring UI modules
 
 Cactbot UI modules can load user settings from the [`user/`](user/) directory. Simply add
 a **user/\<name\>.css** or a **user/\<name\>.js** file, where **\<name\>** is the name of
@@ -120,3 +143,34 @@ Options.Triggers = [
   // .. other triggers here ..
 ]
 ```
+
+## Installing
+
+You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
+
+1. Find the OverlayPlugin installation, make an `addons` sub-directory inside it (looks like `...\OverlayPlugin\addons`).
+2. Copy the `CactbotOverlay.dll` file to the `addons` directory.
+3. Make sure to unblock the `CactbotOverlay.dll` (right click -> properties -> unblock) if you downloaded it, instead of building it.
+4. If you get an error that it can't find `FFXIV_ACT_Plugin.dll`, make sure it is in the same directory as `Advanced Combat Tracker.exe`.
+
+   The directory structure should look something like this:
+   - C:\\...\\Advanced Combat Tracker
+     - Advanced Combat Tracker.exe
+     - FFXIV_ACT_Plugin.dll
+   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin
+     - OverlayPlugin.dll etc
+   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons
+     - CactbotOverlay.dll
+
+5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `Cactbot` as the type.
+6. In the URL field, browse to an html file to load as a UI element. For example to `/path/to/cactbot/ui/raidboss/raidboss.html`.
+
+## Building from source
+
+You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
+
+1. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/OverlayPlugin`](CactbotOverlay/ThirdParty/OverlayPlugin).
+2. Follow the instructions in the `dummy.txt` file in [`CactbotOverlay/ThirdParty/ACT`](CactbotOverlay/ThirdParty/ACT).
+3. Open the solution in Visual Studio (tested with Visual Studio 2017).
+4. Build for "Release" and "x64".
+5. The plugin will be built as `bin/x64/Release/CactbotOverlay.dll`.
