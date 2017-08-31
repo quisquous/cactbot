@@ -55,6 +55,7 @@
     document.addEventListener("onTargetChangedEvent", function (e) {
       if (!e.detail) {
         document.getElementById("target").innerText = "--";
+        document.getElementById("tid").innerText = "";
         document.getElementById("tdistance").innerText = "";
       } else {
         document.getElementById("target").innerText = e.detail.name;
