@@ -60,7 +60,8 @@ It has more fleshed out support for some jobs but is strongly a Work In Progress
 
 In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. The proc tracking is circles below in green.
+beside it in orange. The first step of the melee combo has been executed, which is displayed as the yellow
+box above the health bar. The proc tracking is circles below in green.
 
 ![jobs screenshot](Screenshot-Jobs.png)
 
