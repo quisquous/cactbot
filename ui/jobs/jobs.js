@@ -1035,10 +1035,8 @@ class Bars {
         }
         if (settings.loseRegex) {
           r = log.match(Regexes.Parse(settings.loseRegex));
-          if (r != null) {
-            console.log(name);
+          if (r != null)
             this.OnLoseBigBuff(name, settings);
-          }
         }
       }
 
