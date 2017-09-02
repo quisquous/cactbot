@@ -40,11 +40,14 @@ Fight timelines are provided in files designed for the [ACT Timeline](https://gi
 plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
 with [some extensions](ui/raidboss/data/timelines/README.txt).
 
+There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
+Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.
+
 Timeline files are found in [ui/raidboss/data/timelines](ui/raidboss/data/timelines). Triggers
 for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
 
 In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
-text alerts circled in yellow.
+text alerts circled in yellow, with an `alert`-level text message visible.
 
 ![raidboss screenshot](Screenshot-Raidboss.png)
 
@@ -94,7 +97,8 @@ the timelines were added to raidboss:
 Cactbot UI modules can load user settings from the [user/](user/) directory. Simply create
 a **user/\<name\>.css** or a **user/\<name\>.js** file, where **\<name\>** is the name of
 the UI module, such as [raidboss](ui/raidboss) or [jobs](ui/jobs). These 2 UI modules both
-support user settings.
+support user settings. After making any changes to these files, pressing the "Reload overlay"
+button for the appropriate cactbot in ACT's OverlayPlugin settings will apply the changes.
 
 The **user/\<name\>.css** file can change positions, sizes, colors, etc. for components of
 the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
