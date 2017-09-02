@@ -37,26 +37,21 @@ namespace Cactbot {
       // Note: can't use "You were revived" from log, as it doesn't happen for
       // fights that auto-restart when everybody is defeated.
       if (!player_dead_ && player.currentHP == 0) {
-        client_.LogInfo("Wipe: player dead");
         player_dead_ = true;
         last_lb3_time_ = null;
       } else if (player_dead_ && player.currentHP > 0) {
-        client_.LogInfo("Wipe: player revived");
         player_dead_ = false;
         last_revived_time_ = now;
 
         // If an LB3 hit the player recently, then it wasn't a wipe so just
         // forget that they were revived.
-        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= kLogWaitSeconds) {
-          client_.LogInfo("Wipe: lb3 raise");
+        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= kLogWaitSeconds)
           last_revived_time_ = null;
-        }
       }
 
       // Heuristic: if a player is revived and a weakness message doesn't happen
       // soon after, then it was a wipe.
       if (last_revived_time_.HasValue && (now - last_revived_time_.Value).TotalSeconds > kLogWaitSeconds) {
-        client_.LogInfo("Wipe: actual wipe");
         WipeIt();
       }
     }
@@ -71,12 +66,10 @@ namespace Cactbot {
           // Players come back to life before weakness is applied.
           if (!player_dead_ && last_revived_time_.HasValue) {
             // This is a raise of some sort, and not a wipe.
-            client_.LogInfo("Wipe: raise");
             last_revived_time_ = null;
           }
         } else if (log.IndexOf("cactbot wipe", StringComparison.Ordinal) != -1) {
           // FIXME: only allow echos to do this vs jerks saying this in chat.
-          client_.LogInfo("Wipe: test wipe");
           WipeIt();
         } else {
           // TODO: Remove debugging info once it's clear whether pulse of life happens before or after
@@ -90,10 +83,7 @@ namespace Cactbot {
                      log.IndexOf(":Astral Stasis:", StringComparison.Ordinal)));
           if (healer_lb3 >= 0) {
             if (log.IndexOf(player_name_with_colons_, StringComparison.Ordinal) > healer_lb3) {
-              client_.LogInfo("Wipe: player hit by lb3");
               last_lb3_time_ = DateTime.Now;
-            } else {
-              client_.LogInfo("Wipe: player not hit by lb3");
             }
           }
         }
