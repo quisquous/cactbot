@@ -1,21 +1,22 @@
 <html>
 <head>
-<link rel="stylesheet" href="resize_handle.css">
-<script src="resize_handle.js"></script>
+<link rel="stylesheet" href="../../resources/defaults.css">
+<link rel="stylesheet" href="../../resources/resize_handle.css">
+<script src="../../resources/resize_handle.js"></script>
 
 <script>
     document.addEventListener("onZoneChangedEvent", function (e) {
-        document.getElementById('pullcount').innerText = '';
+        document.getElementById('pullcounttext').innerText = '';
     });
     document.addEventListener("onBossFightStart", function (e) {
-        var element = document.getElementById('pullcount');
+        var element = document.getElementById('pullcounttext');
         element.innerText = e.detail.pullCount;
         element.classList.remove('wipe');
     });
     document.addEventListener("onBossFightEnd", function () {
     });
     document.addEventListener("onPartyWipe", function () {
-        document.getElementById('pullcount').classList.add('wipe');
+        document.getElementById('pullcounttext').classList.add('wipe');
     });
 </script>
 <style>
@@ -30,9 +31,30 @@
 .wipe {
     text-decoration: line-through;
 }
+
+.resize-helper-inline {
+  display: none;
+}
+.resizeHandle .resize-helper-inline {
+  display: inline;
+}
+
+.resizeHandle .hide-if-resizing {
+  display:none;
+}
+
 </style>
+
+
+<!-- User config -->
+<link rel="stylesheet" href="../../user/pullcounter.css">
+<script src="../../user/pullcounter.js"></script>
+
 </head>
 <body>
-    <div id="pullcount"></div>
+    <div id="pullcount">
+	  <span id="pullcounttext" class="hide-if-resizing"></span>
+	  <span id="fakeresizetext" class="resize-helper-inline">123</span>
+	</div>
 </body>
 </html>
