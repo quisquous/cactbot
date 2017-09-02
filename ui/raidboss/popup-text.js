@@ -82,6 +82,10 @@ class PopupText {
       this.role = 'dps-caster';
     else if (this.job.search(/^(BRD|MCH|ARC)$/) >= 0)
       this.role = 'dps-ranged';
+    else if (this.job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0)
+      this.role = 'crafting';
+    else if (this.job.search(/^(MIN|BOT|FSH)$/) >= 0)
+      this.role = 'gathering';
     else {
       this.role = '';
       console.log("Unknown job role")
