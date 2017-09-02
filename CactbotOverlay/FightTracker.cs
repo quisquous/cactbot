@@ -252,12 +252,10 @@ namespace Cactbot {
     public void OnBossFightStart(string boss_id) {
       int pull_count = overlay_.IncrementAndGetPullCount(boss_id);
       overlay_.DispatchToJS(new JSEvents.BossFightStart(boss_id, pull_count));
-      LogInfo("Starting fight: " + boss_id + ": " + pull_count);
     }
 
     public void OnBossFightEnd() {
       overlay_.DispatchToJS(new JSEvents.BossFightEnd());
-      LogInfo("Ending fight");
     }
 
     public void OnZoneChange(JSEvents.ZoneChangedEvent e) {
