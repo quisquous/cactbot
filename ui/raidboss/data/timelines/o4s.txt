@@ -198,19 +198,19 @@ infotext "Vacuum Wave" before 8 "Vacuum Wave soon"
 1164	"Neverwhere"	#Starts soft enrage
 1173	"Charybdis"	#Everyone to low HP
 1176	"Frenzied Fist x9"	#Small Raid AoEs
-1183	"Frenzied Sphere"	#Big Raid AoE
+1183	"Frenzied Sphere (1)"	#Big Raid AoE
 1186	"Frenzied Fist x9"	#Small Raid AoEs
-1193	"Frenzied Sphere"	#Big Raid AoE
+1193	"Frenzied Sphere (2)"	#Big Raid AoE
 1196	"Frenzied Fist x9"	#Small Raid AoEs
-1203	"Frenzied Sphere"	#Big Raid AoE
+1203	"Frenzied Sphere (3)"	#Big Raid AoE
 1206	"Frenzied Fist x9"	#Small Raid AoEs
-1213	"Frenzied Sphere"	#Big Raid AoE
+1213	"Frenzied Sphere (4)"	#Big Raid AoE
 1216	"Frenzied Fist x9"	#Small Raid AoEs
-1223	"Frenzied Sphere"	#Big Raid AoE
+1223	"Frenzied Sphere (5)"	#Big Raid AoE
 1226	"Frenzied Fist x9"	#Small Raid AoEs
-1233	"Frenzied Sphere"	#Big Raid AoE
+1233	"Frenzied Sphere (6)"	#Big Raid AoE
 1236	"Frenzied Fist x9"	#Small Raid AoEs
-1243	"Frenzied Sphere"	#Big Raid AoE
+1243	"Frenzied Sphere (7)"	#Big Raid AoE
 1246	"Frenzied Fist x9"	#Small Raid AoEs
-1253	"Frenzied Sphere"	#Big Raid AoE
+1253	"Frenzied Sphere (8)"	#Big Raid AoE
 1266	"Enrage"	#Long Almagest
