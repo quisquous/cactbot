@@ -474,7 +474,7 @@ namespace Cactbot {
         return null;
       var out_buffer = new Int16[count];
       for (int i = 0; i < count; ++i)
-        out_buffer[i] = BitConverter.ToInt16(buffer, 4 * i);
+        out_buffer[i] = BitConverter.ToInt16(buffer, 2 * i);
       return out_buffer;
     }
 
