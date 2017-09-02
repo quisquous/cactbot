@@ -75,6 +75,8 @@ namespace Cactbot {
         maxMP = e.max_mp;
         currentTP = e.tp;
         maxTP = 1000;
+        currentCP = e.cp;
+        maxCP = e.max_cp;
         pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
         jobDetail = null;
       }
@@ -91,6 +93,8 @@ namespace Cactbot {
       public int maxMP;
       public int currentTP;
       public int maxTP;
+      public int currentCP;
+      public int maxCP;
 
       public Point3F pos;
 
