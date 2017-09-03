@@ -386,6 +386,25 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+          // TODO: WHM eveything
+          // TODO: CNJ like WHM
+          // TODO: AST eveything
+          // TODO: THM like BLM for umbral stacks/timer
+          // TODO: SMN level 70 stuff
+          // TODO: SCH level 70 stuff
+          // TODO: ACN like SMN/SCH for aetherflow
+          // TODO: PLD everything
+          // TODO: GLD like PLD
+          // TODO: MRD like WAR
+          // TODO: DRK everything
+          // TODO: MNK everything
+          // TODO: PGL like MNK
+          // TODO: DRG everything
+          // TODO: LNC like DRG
+          // TODO: NIN level 70 stuff
+          // TODO: SAM everything
+          // TODO: BRD level 70 stuff
+          // TODO: MCH everything
         } else if (send) {
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
