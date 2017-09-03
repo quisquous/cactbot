@@ -123,13 +123,13 @@ namespace Cactbot {
           songProcs = d.song_procs;
         }
         public string songName;
-        public int songMilliseconds;
+        public uint songMilliseconds;
         public int songProcs;
       }
 
       public struct NinjaDetail {
         public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; }
-        public int hutonMilliseconds;
+        public uint hutonMilliseconds;
       }
 
       public struct BlackMageDetail {
@@ -142,11 +142,11 @@ namespace Cactbot {
           nextPolygotMilliseconds = d.polygot_time_ms;
         }
         public int umbralStacks;  // Positive = Fire, Negative = Ice.
-        public int umbralMilliseconds;
+        public uint umbralMilliseconds;
         public int umbralHearts;
         public bool enochian;
         public bool polygot;
-        public int nextPolygotMilliseconds;
+        public uint nextPolygotMilliseconds;
       }
     }
 

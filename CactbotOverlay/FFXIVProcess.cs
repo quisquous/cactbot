@@ -496,7 +496,7 @@ namespace Cactbot {
     }
 
     public class BardJobData {
-      public int song_ms = 0;
+      public uint song_ms = 0;
       public int song_procs = 0;
 
       public enum Song {
@@ -544,7 +544,7 @@ namespace Cactbot {
     }
 
     public class NinjaJobData {
-      public int huton_ms = 0;
+      public uint huton_ms = 0;
 
       public override bool Equals(object obj) {
         var o = obj as NinjaJobData;
@@ -570,8 +570,8 @@ namespace Cactbot {
     }
 
     public class BlackMageJobData {
-      public int polygot_time_ms = 0;
-      public int umbral_time_ms = 0;
+      public uint polygot_time_ms = 0;
+      public uint umbral_time_ms = 0;
       public int umbral_stacks = 0;
       public int umbral_hearts = 0;
       public bool enochian_active = false;
