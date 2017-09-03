@@ -834,6 +834,15 @@ class Bars {
     this.o.gpBar.value = this.gp;
     this.o.gpBar.maxvalue = this.maxGP;
   }
+
+  UpdateOpacity() {
+    var opacityContainer = document.getElementById("opacity-container");
+    if (!opacityContainer) return;
+    if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
+      opacityContainer.style.opacity = 1.0;
+    else
+      opacityContainer.style.opacity = 0.5;
+  }
   
   UpdateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
@@ -896,14 +905,7 @@ class Bars {
     if (this.inCombat)
       this.SetPullCountdown(0);
 
-    var opacityContainer = document.getElementById("opacity-container");
-    if (opacityContainer != null) {
-      if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
-        opacityContainer.style.opacity = 1.0;
-      else
-        opacityContainer.style.opacity = 0.5;
-    }
-
+    this.UpdateOpacity();
     this.UpdateFoodBuff();
   }
 
@@ -1004,9 +1006,8 @@ class Bars {
     }
     if (update_job) {
       this.UpdateJob();
-      // When reloading, we don't hear about combat state if out
-      // of combat. So use this to set things up.
-      this.OnInCombatChanged({ detail: false });
+      // On reload, we need to set the opacity after setting up the job bars.
+      this.UpdateOpacity();
     }
     if (update_hp)
       this.UpdateHealth();

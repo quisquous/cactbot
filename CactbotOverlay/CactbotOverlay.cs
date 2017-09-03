@@ -281,7 +281,7 @@ namespace Cactbot {
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
       bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
-      if (in_combat != notify_state_.in_combat) {
+      if (!notify_state_.in_combat.HasValue || in_combat != notify_state_.in_combat) {
         notify_state_.in_combat = in_combat;
         OnInCombatChanged(new JSEvents.InCombatChangedEvent(in_combat));
       }
@@ -516,7 +516,7 @@ namespace Cactbot {
       public bool sent_data_dir = false;
       public bool game_exists = false;
       public bool game_active = false;
-      public bool in_combat = false;
+      public bool? in_combat;
       public bool dead = false;
       public string zone_name = "";
       public FFXIVProcess.EntityData player = null;
