@@ -13,8 +13,7 @@ namespace Cactbot {
     private IntPtr player_ptr_addr_ = IntPtr.Zero;
     private IntPtr target_ptr_addr_ = IntPtr.Zero;
     private IntPtr focus_ptr_addr_ = IntPtr.Zero;
-    private IntPtr rdm_mana_outer_addr_ = IntPtr.Zero;
-    private IntPtr warrior_outer_addr_ = IntPtr.Zero;
+    private IntPtr job_data_outer_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
     // refer to as the charmap. The pointer is at the end of the signature.
@@ -158,30 +157,36 @@ namespace Cactbot {
     private static int kRedMageManaSignatureOffset = -14;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kRedMageManaSignatureRIP = true;
-    // The op before the pointer wildcard in the signature reads a pointer-to-a-pointer
-    // to the White-Black mana structure. We call it |outer| below:
-    //
-    // WhiteBlackOuterStruct* outer;  // This pointer found from the signature.
-    // WhiteBlackOuterStruct {
-    //   WhiteBlackInnerStruct* inner;  // This points to the address after it currently.
-    //   WhiteBlackInnerStruct {
-    //      0x8 bytes..
-    //      byte white_mana;
-    //      byte black_mana;
-    //   }
-    // }
-    private static int kRedMageManaDataOuterStructureOffset = 0;
-    private static int kRedMageManaDataInnerStructureOffset = 8;
 
+    // For reference, the warrior job points to the same structure at this signature.
     // ffxiv_dx11.exe+77B600: mov rcx,[???]
     // ffxiv_dx11.exe+77B61B: mov ebx, [rcx+08]
-    private static String kWarriorSignature = "488B0D????????4885C974B8488B05";
+    // private static String kWarriorSignature = "488B0D????????4885C974B8488B05";
     // TODO: If need more signature, prepend "B83C020000E9????????"
     // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
-    private static int kWarriorSignatureOffset = -12;
-    private static bool kWarriorSignatureRIP = true;
-    private static int kWarriorOuterDataStructureOffset = 0;
-    private static int kWarriorInnerDataStructureOffset = 8;
+
+    // The op before the pointer wildcard in the signature reads a pointer-to-a-pointer
+    // to the job-specific data structure. We call it |outer| below:
+    //
+    // JobDataOuterStruct* outer;  // This pointer found from the signature.
+    // JobDataOuterStruct {
+    //   JobDataInnerStruct* inner;  // This points to the address after it currently.
+    //   JobDataInnerStruct {
+    //      SomeJobSpecificStruct* struct;  // This is a pointer that changes when you change job, and points to a lot of other pointers.
+    //      union JobSpecificData {
+    //        struct RedMage {
+    //          0x8 bytes in: byte white_mana;
+    //          0x9 bytes in: byte black_mana;
+    //        }
+    //        struct Warrior {
+    //          0x8 bytes in: byte beast;
+    //        }
+    //      }
+    //   }
+    // }
+    private static int kJobDataOuterStructOffset = 0;
+    private static int kJobDataInnerStructSize = 8 + 2;
+    private static int kJobDataInnerStructOffsetJobSpecificData = 8;
 
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
 
@@ -207,8 +212,7 @@ namespace Cactbot {
         player_ptr_addr_ = IntPtr.Zero;
         target_ptr_addr_ = IntPtr.Zero;
         focus_ptr_addr_ = IntPtr.Zero;
-        rdm_mana_outer_addr_ = IntPtr.Zero;
-        warrior_outer_addr_ = IntPtr.Zero;
+        job_data_outer_addr_ = IntPtr.Zero;
         process_ = found_process;
 
         if (process_ != null) {
@@ -231,14 +235,7 @@ namespace Cactbot {
           if (p.Count != 1) {
             logger_.LogError("RedMage signature found " + p.Count + " matches");
           } else {
-            rdm_mana_outer_addr_ = IntPtr.Add(p[0], kRedMageManaDataOuterStructureOffset);
-          }
-
-          p = SigScan(kWarriorSignature, kWarriorSignatureOffset, kWarriorSignatureRIP);
-          if (p.Count != 1) {
-            logger_.LogError("Warrior signature found " + p.Count + " matches");
-          } else {
-            warrior_outer_addr_ = IntPtr.Add(p[0], kWarriorOuterDataStructureOffset);
+            job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
           }
         }
       }
@@ -419,25 +416,28 @@ namespace Cactbot {
       public int black;
     }
 
-    public RedMageJobData GetRedMage() {
-      if (!HasProcess() || rdm_mana_outer_addr_ == IntPtr.Zero)
+    private byte[] GetJobSpecificData() {
+      if (!HasProcess() || job_data_outer_addr_ == IntPtr.Zero)
         return null;
 
-      IntPtr rdm_inner_ptr = ReadIntPtr(rdm_mana_outer_addr_);
-      if (rdm_inner_ptr == IntPtr.Zero) {
+      IntPtr job_inner_ptr = ReadIntPtr(job_data_outer_addr_);
+      if (job_inner_ptr == IntPtr.Zero) {
         // The pointer can be null when not logged in.
         return null;
       }
 
-      IntPtr rdm_mana_addr = IntPtr.Add(rdm_inner_ptr, kRedMageManaDataInnerStructureOffset);
-      byte[] mana = Read8(rdm_mana_addr, 2);
-      if (mana == null)
+      return Read8(job_inner_ptr, kJobDataInnerStructSize);
+    }
+
+    public RedMageJobData GetRedMage() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
         return null;
 
-      var r = new RedMageJobData();
-      r.white = mana[0];
-      r.black = mana[1];
-      return r;
+      var j = new RedMageJobData();
+      j.white = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      j.black = bytes[kJobDataInnerStructOffsetJobSpecificData + 1];
+      return j;
     }
 
     public class WarriorJobData {
@@ -445,20 +445,12 @@ namespace Cactbot {
     }
 
     public WarriorJobData GetWarrior() {
-      if (!HasProcess() || warrior_outer_addr_ == IntPtr.Zero)
-        return null;
-
-      IntPtr warrior_inner_ptr = ReadIntPtr(warrior_outer_addr_);
-      if (warrior_inner_ptr == IntPtr.Zero)
-        return null;
-
-      IntPtr beast_addr = IntPtr.Add(warrior_inner_ptr, kWarriorInnerDataStructureOffset);
-      byte[] beast = Read8(beast_addr, 1);
-      if (beast == null)
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
         return null;
 
       var j = new WarriorJobData();
-      j.beast = beast[0];
+      j.beast = bytes[kJobDataInnerStructOffsetJobSpecificData];
       return j;
     }
 
