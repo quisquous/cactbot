@@ -533,14 +533,11 @@ namespace Cactbot {
       if (bytes == null)
         return null;
 
-      // Note: When the song time is 0, the other fields are not well defined and may be left
-      // in an incorrect state.
       var j = new BardJobData();
       j.song_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
-      if (j.song_ms == 0) {
-        j.song_procs = 0;
-        j.song_type = BardJobData.Song.None;
-      } else {
+      // When the song time is 0, the other fields are not well defined and may be left
+      // in an incorrect state.
+      if (j.song_ms > 0) {
         j.song_procs = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
         j.song_type = (BardJobData.Song)bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       }
@@ -610,16 +607,19 @@ namespace Cactbot {
         return null;
 
       var j = new BlackMageJobData();
-      j.polygot_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
-      j.umbral_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
       byte stacks = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       if (stacks <= 0x80)
         j.umbral_stacks = stacks;
       else
         j.umbral_stacks = -(0xff + 1 - stacks);
+      // Note: When the umbral stacks is 0, the timer may still run though it isn't relevant.
+      if (j.umbral_stacks != 0)
+        j.umbral_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
       j.umbral_hearts = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
       j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 0)) != 0;
       j.polygot_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 1)) != 0;
+      if (j.enochian_active)
+        j.polygot_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
       return j;
     }
 

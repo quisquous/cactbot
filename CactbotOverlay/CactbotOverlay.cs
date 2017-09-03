@@ -366,7 +366,7 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
-        } else if (player.job == FFXIVProcess.EntityJob.BLM) {
+        } else if (player.job == FFXIVProcess.EntityJob.BLM || player.job == FFXIVProcess.EntityJob.THM) {
           var job = ffxiv_.GetBlackMage();
           if (job != null) {
             if (send || !job.Equals(notify_state_.blm)) {
@@ -389,7 +389,6 @@ namespace Cactbot {
           // TODO: WHM eveything
           // TODO: CNJ like WHM
           // TODO: AST eveything
-          // TODO: THM like BLM for umbral stacks/timer
           // TODO: SMN level 70 stuff
           // TODO: SCH level 70 stuff
           // TODO: PLD everything
