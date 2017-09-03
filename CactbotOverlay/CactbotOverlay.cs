@@ -329,40 +329,40 @@ namespace Cactbot {
         if (player.job == FFXIVProcess.EntityJob.RDM) {
           var job = ffxiv_.GetRedMage();
           if (job != null) {
-            if (send || job.white != notify_state_.rdm.white || job.black != notify_state_.rdm.black) {
+            if (send || !job.Equals(notify_state_.rdm)) {
               notify_state_.rdm = job;
               var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(job.white, job.black);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(job);
               OnPlayerChanged(e);
             }
           }
         } else if (player.job == FFXIVProcess.EntityJob.WAR) {
           var job = ffxiv_.GetWarrior();
           if (job != null) {
-            if (send || job.beast != notify_state_.war.beast) {
+            if (send || !job.Equals(notify_state_.war)) {
               notify_state_.war = job;
               var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job.beast);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job);
               OnPlayerChanged(e);
             }
           }
         } else if (player.job == FFXIVProcess.EntityJob.BRD) {
           var job = ffxiv_.GetBard();
           if (job != null) {
-            if (send || job.song_ms != notify_state_.brd.song_ms || job.song_procs != notify_state_.brd.song_procs || job.song_type != notify_state_.brd.song_type) {
+            if (send || !job.Equals(notify_state_.brd)) {
               notify_state_.brd = job;
               var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job.song_type, job.song_ms, job.song_procs);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job);
               OnPlayerChanged(e);
             }
           }
         } else if (player.job == FFXIVProcess.EntityJob.NIN) {
           var job = ffxiv_.GetNinja();
           if (job != null) {
-            if (send || job.huton_ms != notify_state_.nin.huton_ms) {
+            if (send || !job.Equals(notify_state_.nin)) {
               notify_state_.nin = job;
               var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.NinjaDetail(job.huton_ms);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.NinjaDetail(job);
               OnPlayerChanged(e);
             }
           }

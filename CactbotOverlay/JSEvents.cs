@@ -106,21 +106,21 @@ namespace Cactbot {
       public object jobDetail;
 
       public struct RedMageDetail {
-        public RedMageDetail(int white, int black) { whiteMana = white; blackMana = black; }
+        public RedMageDetail(FFXIVProcess.RedMageJobData d) { whiteMana = d.white; blackMana = d.black; }
         public int whiteMana;
         public int blackMana;
       }
 
       public struct WarriorDetail {
-        public WarriorDetail(int beast) { this.beast = beast; }
+        public WarriorDetail(FFXIVProcess.WarriorJobData d) { beast = d.beast; }
         public int beast;
       }
 
       public struct BardDetail {
-        public BardDetail(FFXIVProcess.BardJobData.Song song_type, int song_ms, int song_procs) {
-          songName = song_type == FFXIVProcess.BardJobData.Song.None ? "" : song_type.ToString();
-          songMilliseconds = song_ms;
-          songProcs = song_procs;
+        public BardDetail(FFXIVProcess.BardJobData d) {
+          songName = d.song_type == FFXIVProcess.BardJobData.Song.None ? "" : d.song_type.ToString();
+          songMilliseconds = d.song_ms;
+          songProcs = d.song_procs;
         }
         public string songName;
         public int songMilliseconds;
@@ -128,7 +128,7 @@ namespace Cactbot {
       }
 
       public struct NinjaDetail {
-        public NinjaDetail(int huton_ms) { hutonMilliseconds = huton_ms; }
+        public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; }
         public int hutonMilliseconds;
       }
 

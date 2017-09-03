@@ -426,11 +426,6 @@ namespace Cactbot {
       return GetEntityData(entity_ptr);
     }
 
-    public class RedMageJobData {
-      public int white = 0;
-      public int black = 0;
-    }
-
     private byte[] GetJobSpecificData() {
       if (!HasProcess() || job_data_outer_addr_ == IntPtr.Zero)
         return null;
@@ -442,6 +437,25 @@ namespace Cactbot {
       }
 
       return Read8(job_inner_ptr, kJobDataInnerStructSize);
+    }
+
+    public class RedMageJobData {
+      public int white = 0;
+      public int black = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as RedMageJobData;
+        return o != null &&
+          white == o.white &&
+          black == o.black;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + white.GetHashCode();
+        hash = hash * 31 + black.GetHashCode();
+        return hash;
+      }
     }
 
     public RedMageJobData GetRedMage() {
@@ -457,6 +471,18 @@ namespace Cactbot {
 
     public class WarriorJobData {
       public int beast = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as WarriorJobData;
+        return o != null &&
+          beast == o.beast;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + beast.GetHashCode();
+        return hash;
+      }
     }
 
     public WarriorJobData GetWarrior() {
@@ -480,6 +506,22 @@ namespace Cactbot {
         Minuet = 15,  // The Wanderer's Minuet.
       }
       public Song song_type = Song.None;
+
+      public override bool Equals(object obj) {
+        var o = obj as BardJobData;
+        return o != null &&
+          song_ms == o.song_ms &&
+          song_procs == o.song_procs &&
+          song_type == o.song_type;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + song_ms.GetHashCode();
+        hash = hash * 31 + song_procs.GetHashCode();
+        hash = hash * 31 + song_type.GetHashCode();
+        return hash;
+      }
     }
 
     public BardJobData GetBard() {
@@ -503,6 +545,18 @@ namespace Cactbot {
 
     public class NinjaJobData {
       public int huton_ms = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as NinjaJobData;
+        return o != null &&
+          huton_ms == o.huton_ms;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + huton_ms.GetHashCode();
+        return hash;
+      }
     }
 
     public NinjaJobData GetNinja() {
@@ -524,7 +578,7 @@ namespace Cactbot {
       public bool polygot_active = false;
 
       public override bool Equals(Object obj) {
-        BlackMageJobData o = obj as BlackMageJobData;
+        var o = obj as BlackMageJobData;
         return o != null &&
           polygot_time_ms == o.polygot_time_ms &&
           umbral_time_ms == o.umbral_time_ms &&
