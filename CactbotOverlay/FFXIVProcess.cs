@@ -182,12 +182,12 @@ namespace Cactbot {
     //          0x8 bytes in: byte beast;
     //        }
     //        struct Bard {
-    //          0x8 bytes in: int16 song_ms;  // Number of ms left in current song.
+    //          0x8 bytes in: uint16 song_ms;  // Number of ms left in current song.
     //          0xA bytes in: byte song_procs_count;
     //          0xB bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
     //        }
     //        struct Ninja {
-    //          0x8 bytes in: int32 huton_ms;  // Number of ms left in huton.
+    //          0x8 bytes in: uint32 huton_ms;  // Number of ms left in huton.
     //        }
     //        struct BlackMage {
     //          0x8 bytes in: uint16 polygot_time_ms;  // Number of ms left before polygot proc.
@@ -532,7 +532,7 @@ namespace Cactbot {
       // Note: When the song time is 0, the other fields are not well defined and may be left
       // in an incorrect state.
       var j = new BardJobData();
-      j.song_ms = BitConverter.ToInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      j.song_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
       if (j.song_ms == 0) {
         j.song_procs = 0;
         j.song_type = BardJobData.Song.None;
@@ -565,7 +565,7 @@ namespace Cactbot {
         return null;
 
       var j = new NinjaJobData();
-      j.huton_ms = BitConverter.ToInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      j.huton_ms = BitConverter.ToUInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
       return j;
     }
 
