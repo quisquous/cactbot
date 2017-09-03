@@ -107,6 +107,8 @@ namespace Cactbot {
         try {
           SendFastRateEvents();
         } catch (Exception e) {
+          // SendFastRateEvents holds this semaphore until it exits.
+          fast_update_timer_semaphore_.Release();
           LogError("Exception in SendFastRateEvents: " + e.Message);
           LogError("Stack: " + e.StackTrace);
           LogError("Source: " + e.Source);
