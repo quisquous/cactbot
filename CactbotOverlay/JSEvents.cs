@@ -148,6 +148,11 @@ namespace Cactbot {
         public bool polygot;
         public uint nextPolygotMilliseconds;
       }
+
+      public struct SummonerAndScholarDetail {
+        public SummonerAndScholarDetail(FFXIVProcess.SummonerAndScholarJobData d) { aetherflowStacks = d.aetherflow_stacks; }
+        public int aetherflowStacks;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {

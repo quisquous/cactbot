@@ -196,6 +196,10 @@ namespace Cactbot {
     //          0xD bytes in: uchar umbral_hearts_count;
     //          0xE bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
     //        }
+    //        struct SummonerAndScholar {
+    //          0x8 bytes in: 4 bytes ???
+    //          0xC bytes in: uchar aetherflow_stacks;
+    //        }
     //      }
     //   }
     // }
@@ -616,6 +620,32 @@ namespace Cactbot {
       j.umbral_hearts = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
       j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 0)) != 0;
       j.polygot_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 1)) != 0;
+      return j;
+    }
+
+    public class SummonerAndScholarJobData {
+      public int aetherflow_stacks = 0;
+
+      public override bool Equals(Object obj) {
+        var o = obj as SummonerAndScholarJobData;
+        return o != null &&
+          aetherflow_stacks == o.aetherflow_stacks;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + aetherflow_stacks.GetHashCode();
+        return hash;
+      }
+    }
+
+    public SummonerAndScholarJobData GetSummonerAndScholar() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new SummonerAndScholarJobData();
+      j.aetherflow_stacks = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       return j;
     }
 
