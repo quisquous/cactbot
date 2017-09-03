@@ -180,7 +180,8 @@ function setupRegexes(me) {
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
 var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
 var kHealerJobs = ["CNJ", "WHM", "SCH", "AST"];
-var kNonCombatJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL", "MIN", "BTN", "FSH"];
+var kCraftingJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL"];
+var kGatheringJobs = ["MIN", "BTN", "FSH"];
 var kMeleeWithMpJobs = ["BRD", "DRK"];
 
 function isCasterJob(job) {
@@ -195,8 +196,16 @@ function isHealerJob(job) {
   return kHealerJobs.indexOf(job) >= 0;
 }
 
+function isCraftingJob(job) {
+  return kCraftingJobs.indexOf(job) >= 0;
+}
+
+function isGatheringJob(job) {
+  return kGatheringJobs.indexOf(job) >= 0;
+}
+
 function isCombatJob(job) {
-  return kNonCombatJobs.indexOf(job) == -1;
+  return !isCraftingJob(job) && !isGatheringJob(job);
 }
 
 function doesJobNeedMPBar(job) {
@@ -317,10 +326,6 @@ class Bars {
       container.removeChild(container.childNodes[0]);
 
     this.o = {};
-
-    if (!isCombatJob(this.job)) {
-      return;
-    }
     
     var barsLayoutContainer = document.createElement("div");
     barsLayoutContainer.id = 'jobs';
@@ -333,8 +338,10 @@ class Bars {
       barsLayoutContainer.classList.add('healer');
     else if (isCombatJob(this.job))
       barsLayoutContainer.classList.add('dps');
-    else
-      barsLayoutContainer.classList.add('noncombat');
+    else if (isCraftingJob(this.job))
+      barsLayoutContainer.classList.add('crafting');
+    else if (isGatheringJob(this.job))
+      barsLayoutContainer.classList.add('gathering');
 
     var pullCountdownContainer = document.createElement("div");
     pullCountdownContainer.id = 'pull-bar';
@@ -383,6 +390,32 @@ class Bars {
     this.o.leftBuffsList.maxnumber = 7;
     this.o.leftBuffsList.toward = "left down";
     this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
+
+    if (isCraftingJob(this.job)) {
+      this.o.cpContainer = document.createElement("div");
+      this.o.cpContainer.id = 'cp-bar';
+      barsContainer.appendChild(this.o.cpContainer);
+      this.o.cpBar = document.createElement("resource-bar");
+      this.o.cpContainer.appendChild(this.o.cpBar);
+      this.o.cpBar.width = window.getComputedStyle(this.o.cpContainer).width;
+      this.o.cpBar.height = window.getComputedStyle(this.o.cpContainer).height;
+      this.o.cpBar.centertext = "maxvalue";
+      this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
+      this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
+      return;
+    } else if (isGatheringJob(this.job)) {
+      this.o.gpContainer = document.createElement("div");
+      this.o.gpContainer.id = 'gp-bar';
+      barsContainer.appendChild(this.o.gpContainer);
+      this.o.gpBar = document.createElement("resource-bar");
+      this.o.gpContainer.appendChild(this.o.gpBar);
+      this.o.gpBar.width = window.getComputedStyle(this.o.gpContainer).width;
+      this.o.gpBar.height = window.getComputedStyle(this.o.gpContainer).height;
+      this.o.gpBar.centertext = "maxvalue";
+      this.o.gpBar.bg = computeBackgroundColorFrom(this.o.gpBar, 'bar-border-color');
+      this.o.gpBar.fg = computeBackgroundColorFrom(this.o.gpBar, 'gp-color');
+      return;
+    }
 
     var healthText = isTankJob(this.job) ? 'value' : '';
     
@@ -789,6 +822,18 @@ class Bars {
     this.o.tpBar.value = this.tp;
     this.o.tpBar.maxvalue = this.maxTP;
   }
+
+  UpdateCP() {
+    if (!this.o.cpBar) return;
+    this.o.cpBar.value = this.cp;
+    this.o.cpBar.maxvalue = this.maxCP;
+  }
+
+  UpdateGP() {
+    if (!this.o.gpBar) return;
+    this.o.gpBar.value = this.gp;
+    this.o.gpBar.maxvalue = this.maxGP;
+  }
   
   UpdateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
@@ -916,6 +961,8 @@ class Bars {
     var update_hp = false;
     var update_mp = false;
     var update_tp = false;
+    var update_cp = false;
+    var update_gp = false;
     var update_level = false;
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
@@ -945,6 +992,16 @@ class Bars {
       this.maxTP = e.detail.maxTP;
       update_tp = true;
     }
+    if (e.detail.currentCP != this.cp || e.detail.maxCP != this.maxCP) {
+      this.cp = e.detail.currentCP;
+      this.maxCP = e.detail.maxCP;
+      update_cp = true;
+    }
+    if (e.detail.currentGP != this.gp || e.detail.maxGP != this.maxGP) {
+      this.gp = e.detail.currentGP;
+      this.maxGP = e.detail.maxGP;
+      update_gp = true;
+    }
     if (update_job) {
       this.UpdateJob();
       // When reloading, we don't hear about combat state if out
@@ -957,6 +1014,10 @@ class Bars {
       this.UpdateMana();
     if (update_tp)
       this.UpdateTP();
+    if (update_cp)
+      this.UpdateCP();
+    if (update_gp)
+      this.UpdateGP();
     if (update_level)
       this.UpdateFoodBuff();
 

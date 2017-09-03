@@ -35,7 +35,7 @@
 }
 
 /* Relative to #bars */
-#pull-bar, #hp-bar, #mp-bar, #tp-bar {
+#pull-bar, #hp-bar, #mp-bar, #tp-bar, #cp-bar, #gp-bar {
   width: 202px;
   height: 7px;
 }
@@ -53,6 +53,14 @@
 }
 
 .tank #hp-bar {
+  height: 18px;
+}
+
+#cp-bar {
+  height: 18px;
+}
+
+#gp-bar {
   height: 18px;
 }
 
@@ -193,6 +201,12 @@
 }
 .tp-color.low {
   background-color: rgb(200, 70, 15);
+}
+.cp-color {
+  background-color: rgb(75, 135, 230);
+}
+.gp-color {
+  background-color: rgb(20, 50, 20);
 }
 .rdm-color-white-mana {
   background-color: rgb(220, 220, 240);
