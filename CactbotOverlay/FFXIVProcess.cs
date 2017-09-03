@@ -181,11 +181,16 @@ namespace Cactbot {
     //        struct Warrior {
     //          0x8 bytes in: byte beast;
     //        }
+    //        struct Bard {
+    //          0x8 bytes in: int16 song_ms;  // Number of ms left in current song.
+    //          0xA bytes in: byte song_procs_count;
+    //          0xB bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
+    //        }
     //      }
     //   }
     // }
     private static int kJobDataOuterStructOffset = 0;
-    private static int kJobDataInnerStructSize = 8 + 2;
+    private static int kJobDataInnerStructSize = 8 + 4;
     private static int kJobDataInnerStructOffsetJobSpecificData = 8;
 
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
@@ -412,8 +417,8 @@ namespace Cactbot {
     }
 
     public class RedMageJobData {
-      public int white;
-      public int black;
+      public int white = 0;
+      public int black = 0;
     }
 
     private byte[] GetJobSpecificData() {
@@ -441,7 +446,7 @@ namespace Cactbot {
     }
 
     public class WarriorJobData {
-      public int beast;
+      public int beast = 0;
     }
 
     public WarriorJobData GetWarrior() {
@@ -451,6 +456,38 @@ namespace Cactbot {
 
       var j = new WarriorJobData();
       j.beast = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      return j;
+    }
+
+    public class BardJobData {
+      public int song_ms = 0;
+      public int song_procs = 0;
+
+      public enum Song {
+        None = 0,
+        Ballad = 5,  // Mage's Ballad.
+        Paeon = 10,  // Army's Paeon.
+        Minuet = 15,  // The Wanderer's Minuet.
+      }
+      public Song song_type = Song.None;
+    }
+
+    public BardJobData GetBard() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      // Note: When the song time is 0, the other fields are not well defined and may be left
+      // in an incorrect state.
+      var j = new BardJobData();
+      j.song_ms = BitConverter.ToInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      if (j.song_ms == 0) {
+        j.song_procs = 0;
+        j.song_type = BardJobData.Song.None;
+      } else {
+        j.song_procs = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
+        j.song_type = (BardJobData.Song)bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
+      }
       return j;
     }
 

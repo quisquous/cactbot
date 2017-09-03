@@ -115,6 +115,17 @@ namespace Cactbot {
         public WarriorDetail(int beast) { this.beast = beast; }
         public int beast;
       }
+
+      public struct BardDetail {
+        public BardDetail(FFXIVProcess.BardJobData.Song song_type, int song_ms, int song_procs) {
+          songName = song_type == FFXIVProcess.BardJobData.Song.None ? "" : song_type.ToString();
+          songMilliseconds = song_ms;
+          songProcs = song_procs;
+        }
+        public string songName;
+        public int songMilliseconds;
+        public int songProcs;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {

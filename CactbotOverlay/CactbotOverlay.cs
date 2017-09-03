@@ -319,23 +319,44 @@ namespace Cactbot {
       }
 
       // onPlayerChangedEvent: Fires when current player data changes.
-      if (player != null && player != notify_state_.player) {
-        notify_state_.player = player;
+      if (player != null) {
+        bool send = false;
+        if (player != notify_state_.player) {
+          notify_state_.player = player;
+          send = true;
+        }
+
         if (player.job == FFXIVProcess.EntityJob.RDM) {
-          var rdm = ffxiv_.GetRedMage();
-          if (rdm != null) {
-            var e = new JSEvents.PlayerChangedEvent(player);
-            e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(rdm.white, rdm.black);
-            OnPlayerChanged(e);
+          var job = ffxiv_.GetRedMage();
+          if (job != null) {
+            if (send || job.white != notify_state_.rdm.white || job.black != notify_state_.rdm.black) {
+              notify_state_.rdm = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(job.white, job.black);
+              OnPlayerChanged(e);
+            }
           }
         } else if (player.job == FFXIVProcess.EntityJob.WAR) {
           var job = ffxiv_.GetWarrior();
-          var e = new JSEvents.PlayerChangedEvent(player);
           if (job != null) {
-            e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job.beast);
-            OnPlayerChanged(e);
+            if (send || job.beast != notify_state_.war.beast) {
+              notify_state_.war = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job.beast);
+              OnPlayerChanged(e);
+            }
           }
-        } else {
+        } else if (player.job == FFXIVProcess.EntityJob.BRD) {
+          var job = ffxiv_.GetBard();
+          if (job != null) {
+            if (send || job.song_ms != notify_state_.brd.song_ms || job.song_procs != notify_state_.brd.song_procs || job.song_type != notify_state_.brd.song_type) {
+              notify_state_.brd = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job.song_type, job.song_ms, job.song_procs);
+              OnPlayerChanged(e);
+            }
+          }
+        } else if (send) {
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
         }
@@ -479,6 +500,9 @@ namespace Cactbot {
       public bool dead = false;
       public string zone_name = "";
       public FFXIVProcess.EntityData player = null;
+      public FFXIVProcess.RedMageJobData rdm = new FFXIVProcess.RedMageJobData();
+      public FFXIVProcess.WarriorJobData war = new FFXIVProcess.WarriorJobData();
+      public FFXIVProcess.BardJobData brd = new FFXIVProcess.BardJobData();
       public FFXIVProcess.EntityData target = null;
       public FFXIVProcess.EntityData focus = null;
       public int target_cast_id = 0;
