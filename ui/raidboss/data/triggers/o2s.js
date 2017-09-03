@@ -2,6 +2,14 @@
 [{
   zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2B8\))/,
   triggers: [
+    { // Phase Tracker: Maniacal Probe.
+      regex: /:235A:Catastrophe starts using/,
+      run: function(data) {
+        data.probeCount = (data.probeCount || 0) + 1;
+        data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
+        data.myProbe = dpsProbe == data.role.startsWith('dps');
+      },
+    },
     {
       id: 'O2S Levitation',
       regex: /:(\y{Name}) gains the effect of (?:Unknown_556|Levitation) from/,
@@ -44,30 +52,25 @@
       id: 'O2S Maniacal Probe',
       regex: /:235A:Catastrophe starts using/,
       infoText: function(data) {
-        var dpsProbe = data.probeCount == 1 || data.probeCount == 3;
-        if (dpsProbe != data.role.startsWith('dps')) {
-          if (!dpsProbe) return 'Maniacal Probe: Tanks & Healers';
+        if (!data.myProbe) {
+          if (!data.dpsProbe) return 'Maniacal Probe: Tanks & Healers';
           else return 'Maniacal Probe: DPS';
         }
       },
       alertText: function(data) {
-        var dpsProbe = data.probeCount == 1 || data.probeCount == 3;
-        if (dpsProbe == data.role.startsWith('dps')) {
-          data.myProbe = true;
-          if (!dpsProbe) return 'Maniacal Probe: Tanks & Healers';
+        if (data.myProbe) {
+          if (!data.dpsProbe) return 'Maniacal Probe: Tanks & Healers';
           else return 'Maniacal Probe: DPS';
         }
       },
-      run: function(data) { data.probeCount = (data.probeCount || 0) + 1; },
     },
     {
       id: 'O2S Unstable Gravity',
       regex: /:(\y{Name}) gains the effect of Unstable Gravity from/,
       delaySeconds: 9,
-      infoText: function(data) { if (!data.myProbe) return 'Unstable Gravity: Stack'; },
+      //infoText: function(data) { if (!data.myProbe) return 'Unstable Gravity: Stack'; },
       alarmText: function(data) { if (data.myProbe) return 'Unstable Gravity: Elevate and outside stack'; },
-      run: function(data) { data.myProbe = false; },
-      condition: function(data, matches) { return matches[1] == data.me && data.myProbe; },
+      condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
       id: 'O2S 6 Fulms Under',

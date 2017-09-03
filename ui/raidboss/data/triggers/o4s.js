@@ -3,6 +3,10 @@
   zoneRegex: /.|(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
   triggers: [
     // Part 1
+    { // Phase Tracker: Thunder III not after Decisive Battle.
+      regex: /:23F9:Exdeath starts using/,
+      run: function(data) { data.thunderCount = (data.thunderCount || 0) + 1; },
+    }
     { // Fire III not after Decisive Battle.
       id: 'O4S1 Fire III',
       regex: /:23F5:Exdeath starts using/,
@@ -29,10 +33,9 @@
         // Non-casters always get an info.
         if (data.role != 'dps-caster') return false;
         // Casters get an alert after the first.
-        if (data.thunderCount == 1) return 'Thunder III: Addle during';
-        if (data.thunderCount == 2) return 'Thunder III: Addle after';
+        if (data.thunderCount == 2) return 'Thunder III: Addle during';
+        if (data.thunderCount == 3) return 'Thunder III: Addle after';
       },
-      run: function(data) { data.thunderCount = (data.thunderCount || 0) + 1; },
     },
     { // Fire III after Decisive Battle.
       id: 'O4S1 Ultimate Fire III',
@@ -70,6 +73,22 @@
     },
 
     // Part 2
+    { // Phase Tracker: Grand Cross Alpha.
+      regex: /:242B:Neo Exdeath starts using/,
+      run: function(data) { data.phase = 'alpha'; data.alphaCount = (data.alphaCount || 0) + 1; },
+    },
+    { // Phase Tracker: Grand Cross Delta.
+      regex: /:242C:Neo Exdeath starts using/,
+      run: function(data) { data.phase = 'delta'; },
+    },
+    { // Phase Tracker: Grand Cross Omega.
+      regex: /:242D:Neo Exdeath starts using/,
+      run: function(data) { data.phase = 'omega'; },
+    },
+    { // Phase Tracker: Neverwhere.
+      regex: /:2426:Neo Exdeath starts using/,
+      run: function(data) { data.finalphase = true; },
+    },
     { // Inner Flood (move out).
       id: 'O4S2 Flood of Naught: Inside',
       regex: /:240E:Neo Exdeath starts using/,
@@ -104,7 +123,6 @@
       id: 'O4S2 Grand Cross Alpha',
       regex: /:242B:Neo Exdeath starts using/,
       infoText: 'Grand Cross Alpha: Go to middle',
-      run: function(data) { data.phase = 'alpha'; data.alphaCount = (data.alphaCount || 0) + 1; },
     },
     { // Grand Cross Alpha finished cast - Use Apoc on tank except before Omega.
       id: 'O4S2 Apocatastasis',
@@ -117,13 +135,11 @@
       id: 'O4S2 Grand Cross Delta',
       regex: /:242C:Neo Exdeath starts using/,
       infoText: 'Grand Cross Delta: Inside boss',
-      run: function(data) { data.phase = 'delta'; },
     },
     { // Grand Cross Omega.
       id: 'O4S2 Grand Cross Omega',
       regex: /:242D:Neo Exdeath starts using/,
       infoText: 'Grand Cross Omega: Go to middle',
-      run: function(data) { data.phase = 'omega'; },
     },
     { // Grand Cross Omega finished cast - Use Apoc on healer.
       id: 'O4S2 Apocatastasis',
@@ -179,10 +195,6 @@
         return 'Almagest';
       },
       run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
-    },
-    { // Neverwhere.
-      regex: /:2426:Neo Exdeath starts using/,
-      run: function(data) { data.finalphase = true; },
     },
     { // Final phase Addle warning when Reprisal is ending.
       id: 'O4S2 Reprisal',
