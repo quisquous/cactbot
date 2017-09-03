@@ -29,6 +29,9 @@
 //          in the regex, etc. This can be used to pull data out of the log line.
 //
 {
+  // An id string for the trigger, used to disable triggers. Every built-in trigger that has a text/sound
+  // output should have an id so it can be disabled. User-defined triggers need not have one.
+  id: 'id string'
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
   // Time to wait before showing it once the regex is seen. May be a number or a function(data, matches) that returns a number.

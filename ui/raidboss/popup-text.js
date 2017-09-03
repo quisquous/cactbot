@@ -142,6 +142,7 @@ class PopupText {
       return (typeof(f) == "function") ? f(that.data, matches) : f;
     }
 
+    var userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
 
@@ -174,7 +175,7 @@ class PopupText {
 
       if ('infoText' in trigger) {
         var text = ValueOrFunction(trigger.infoText);
-        if (text) {
+        if (text && !userDisabled) {
           var holder = that.infoText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
@@ -188,7 +189,7 @@ class PopupText {
       }
       if ('alertText' in trigger) {
         var text = ValueOrFunction(trigger.alertText);
-        if (text) {
+        if (text && !userDisabled) {
           var holder = that.alertText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
@@ -202,7 +203,7 @@ class PopupText {
       }
       if ('alarmText' in trigger) {
         var text = ValueOrFunction(trigger.alarmText);
-        if (text) {
+        if (text && !userDisabled) {
           var holder = that.alarmText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
@@ -218,7 +219,7 @@ class PopupText {
       if (textSound)
         new Audio(textSound).play();
 
-      if ('sound' in trigger && trigger.sound) {
+      if (trigger.sound && !userDisabled) {
         var url = trigger.sound;
         var volume = 1;
 

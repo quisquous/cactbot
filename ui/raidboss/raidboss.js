@@ -38,6 +38,16 @@ var Options = {
   // Volume between 0 and 1 to play the LongSound at.
   LongSoundVolume: 1,
 
+  // A set of triggers to be ignored. The key is the 'id' of the trigger, and the value
+  // should be true if the trigger is to be ignored, whereas false will have no effect.
+  // The trigger ids can be found in the trigger files for each fight in data/triggers/.
+  //
+  // Example:
+  // Options.DisabledTriggers = {
+  //   'O4S1 Fire III': true,
+  // }
+  DisabledTriggers: {},
+
   // An array of user-defined triggers, in the format defined in data/triggers/README.txt.
   //
   // Example:
