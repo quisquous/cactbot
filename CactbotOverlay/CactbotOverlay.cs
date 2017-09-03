@@ -411,16 +411,13 @@ namespace Cactbot {
           // TODO: AST eveything
           // TODO: SMN level 70 stuff
           // TODO: SCH level 70 stuff
-          // TODO: PLD everything
+          // TODO: PLD everything (level 70 stuff?)
           // TODO: GLD like PLD
-          // TODO: MRD like WAR
           // TODO: DRK everything
           // TODO: MNK level 70 stuff
           // TODO: DRG everything
-          // TODO: LNC like DRG
           // TODO: NIN level 70 stuff
           // TODO: SAM everything
-          // TODO: BRD level 70 stuff
           // TODO: MCH level 70 stuff
         } else if (send) {
           // No job-specific data.
