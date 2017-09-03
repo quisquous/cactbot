@@ -125,6 +125,16 @@ highlighted. You can change that option from the default value to 5 seconds by e
 Options.BarExpiresSoonSeconds = 5
 ```
 
+To disable a text/sound alert that comes built-in for a fight, find the trigger's `id` in the files in
+[ui/raidboss/data/triggers](ui/raidboss/data/triggers). Then add the `id` to the `Options.DisabledTriggers`
+in the **user/raidboss.js** file, such as:
+
+```
+Options.DisabledTriggers = {
+  'O4S1 Fire III': true,
+}
+```
+
 To add a sound alert that can be activated in any zone, for example, add the following to **user/raidboss.js**:
 
 ```
