@@ -53,6 +53,12 @@
   text-transform: uppercase;
 }
 
+.animate-text {
+  animation-name: zoom-in-out;
+  animation-duration: 300ms;
+  animation-timing-function: linear;
+}
+
 @keyframes zoom-in-out {
   0% { transform: scale(1.0); }
   50% { transform: scale(1.4); }

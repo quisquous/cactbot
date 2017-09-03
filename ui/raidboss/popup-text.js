@@ -166,9 +166,7 @@ class PopupText {
       var makeTextElement = function(text, className) {
         var div = document.createElement('div');
         div.classList.add(className);
-        div.style.animationName = 'zoom-in-out';
-        div.style.animationDuration = '300ms';
-        div.style.animationTimingFunction = 'linear';
+        div.classList.add('animate-text');
         div.innerText = text;
         return div;
       }
