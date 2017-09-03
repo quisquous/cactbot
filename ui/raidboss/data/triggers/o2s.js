@@ -7,7 +7,7 @@
       run: function(data) {
         data.probeCount = (data.probeCount || 0) + 1;
         data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
-        data.myProbe = dpsProbe == data.role.startsWith('dps');
+        data.myProbe = data.dpsProbe == data.role.startsWith('dps');
       },
     },
     {
