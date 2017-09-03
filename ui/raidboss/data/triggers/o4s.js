@@ -6,7 +6,7 @@
     { // Phase Tracker: Thunder III not after Decisive Battle.
       regex: /:23F9:Exdeath starts using/,
       run: function(data) { data.thunderCount = (data.thunderCount || 0) + 1; },
-    }
+    },
     { // Fire III not after Decisive Battle.
       id: 'O4S1 Fire III',
       regex: /:23F5:Exdeath starts using/,
