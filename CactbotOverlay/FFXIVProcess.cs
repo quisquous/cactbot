@@ -189,11 +189,18 @@ namespace Cactbot {
     //        struct Ninja {
     //          0x8 bytes in: int32 huton_ms;  // Number of ms left in huton.
     //        }
+    //        struct BlackMage {
+    //          0x8 bytes in: uint16 polygot_time_ms;  // Number of ms left before polygot proc.
+    //          0xA bytes in: uint16 umbral_time_ms;  // Number of ms left in umbral fire/ice.
+    //          0xC bytes in: uchar umbral_state;  // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
+    //          0xD bytes in: uchar umbral_hearts_count;
+    //          0xE bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
+    //        }
     //      }
     //   }
     // }
     private static int kJobDataOuterStructOffset = 0;
-    private static int kJobDataInnerStructSize = 8 + 4;
+    private static int kJobDataInnerStructSize = 8 + 7;
     private static int kJobDataInnerStructOffsetJobSpecificData = 8;
 
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
@@ -505,6 +512,56 @@ namespace Cactbot {
 
       var j = new NinjaJobData();
       j.huton_ms = BitConverter.ToInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      return j;
+    }
+
+    public class BlackMageJobData {
+      public int polygot_time_ms = 0;
+      public int umbral_time_ms = 0;
+      public int umbral_stacks = 0;
+      public int umbral_hearts = 0;
+      public bool enochian_active = false;
+      public bool polygot_active = false;
+
+      public override bool Equals(Object obj) {
+        BlackMageJobData o = obj as BlackMageJobData;
+        return o != null &&
+          polygot_time_ms == o.polygot_time_ms &&
+          umbral_time_ms == o.umbral_time_ms &&
+          umbral_stacks == o.umbral_stacks &&
+          umbral_hearts == o.umbral_hearts &&
+          enochian_active == o.enochian_active &&
+          polygot_active == o.polygot_active;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + polygot_time_ms.GetHashCode();
+        hash = hash * 31 + umbral_time_ms.GetHashCode();
+        hash = hash * 31 + umbral_stacks.GetHashCode();
+        hash = hash * 31 + umbral_hearts.GetHashCode();
+        hash = hash * 31 + enochian_active.GetHashCode();
+        hash = hash * 31 + polygot_active.GetHashCode();
+        return hash;
+      }
+    }
+
+    public BlackMageJobData GetBlackMage() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new BlackMageJobData();
+      j.polygot_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      j.umbral_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
+      byte stacks = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
+      if (stacks <= 0x80)
+        j.umbral_stacks = stacks;
+      else
+        j.umbral_stacks = -(0xff + 1 - stacks);
+      j.umbral_hearts = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
+      j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 0)) != 0;
+      j.polygot_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 1)) != 0;
       return j;
     }
 

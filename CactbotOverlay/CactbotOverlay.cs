@@ -366,6 +366,16 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+        } else if (player.job == FFXIVProcess.EntityJob.BLM) {
+          var job = ffxiv_.GetBlackMage();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.blm)) {
+              notify_state_.blm = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.BlackMageDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
         } else if (send) {
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
@@ -514,6 +524,7 @@ namespace Cactbot {
       public FFXIVProcess.WarriorJobData war = new FFXIVProcess.WarriorJobData();
       public FFXIVProcess.BardJobData brd = new FFXIVProcess.BardJobData();
       public FFXIVProcess.NinjaJobData nin = new FFXIVProcess.NinjaJobData();
+      public FFXIVProcess.BlackMageJobData blm = new FFXIVProcess.BlackMageJobData();
       public FFXIVProcess.EntityData target = null;
       public FFXIVProcess.EntityData focus = null;
       public int target_cast_id = 0;
