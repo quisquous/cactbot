@@ -135,13 +135,14 @@ namespace Cactbot {
     //   0x18E4 bytes in: float32 casting_spell_time_spent;  // 4 bytes
     //   0x18E8 bytes in: float32 casting_spell_length;      // 4 bytes
     // }
+    private static int kEntityStructureSize = 0x18E8 + 4;
+    private static int kEntityStructureSizeName = 0x44;
     private static int kEntityStructureOffsetName = 0x30;
     private static int kEntityStructureOffsetId = 0x74;
     private static int kEntityStructureOffsetType = 0x8C;
     private static int kEntityStructureOffsetDistance = 0x92;
     private static int kEntityStructureOffsetPos = 0xA0;
-    private static int kEntityStructureOffsetHpMp = 0x168C;
-    private static int kEntityStructureOffsetTp = 0x169C;
+    private static int kEntityStructureOffsetHpMpTp = 0x168C;
     private static int kEntityStructureOffsetGpCp = 0x169E;
     private static int kEntityStructureOffsetJob = 0x16C2;
     private static int kEntityStructureOffsetLevel = 0x16C4;
@@ -330,85 +331,60 @@ namespace Cactbot {
       public static bool operator !=(EntityData a, EntityData b) {
         return !(a == b);
       }
-
     }
 
-    private EntityData GetEntityData(IntPtr entity_ptr) {
-      var data = new EntityData();
+    public class SpellCastingData {
+      public int casting_id = 0;
+      public float casting_time_progress = 0;
+      public float casting_time_length = 0;
+    }
 
-      byte[] name_bytes = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetName), 0x44);
-      if (name_bytes == null)
+    private Tuple<EntityData, SpellCastingData> GetEntityData(IntPtr entity_ptr) {
+      byte[] bytes = Read8(entity_ptr, kEntityStructureSize);
+      if (bytes == null)
         return null;
-      int null_pos = name_bytes.Length;
-      for (int i = 0; i < name_bytes.Length; ++i) {
-        if (name_bytes[i] == '\0') {
-          null_pos = i;
+
+      EntityData data = new EntityData();
+      SpellCastingData casting_data = null;
+
+      int name_length = kEntityStructureSizeName;
+      for (int i = 0; i < kEntityStructureSizeName; ++i) {
+        if (bytes[kEntityStructureOffsetName + i] == '\0') {
+          name_length = i;
           break;
         }
       }
-      data.name = System.Text.Encoding.UTF8.GetString(name_bytes, 0, null_pos);
-
-      uint[] id = Read32U(IntPtr.Add(entity_ptr, kEntityStructureOffsetId), 1);
-      if (id == null)
-        return null;
-      data.id = id[0];
-
-      byte[] type = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetType), 1);
-      if (type == null)
-        return null;
-      data.type = (EntityType)type[0];
-
-      byte[] distance = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetDistance), 1);
-      if (distance == null)
-        return null;
-      data.distance = distance[0];
-
-      float[] pos = ReadSingle(IntPtr.Add(entity_ptr, kEntityStructureOffsetPos), 3);
-      if (pos == null)
-        return null;
-      data.pos_x = pos[0];
-      data.pos_y = pos[2];
-      data.pos_z = pos[1];
+      data.name = System.Text.Encoding.UTF8.GetString(bytes, kEntityStructureOffsetName, name_length);
+      data.id = BitConverter.ToUInt32(bytes, kEntityStructureOffsetId);
+      data.type = (EntityType)bytes[kEntityStructureOffsetType];
+      data.distance = bytes[kEntityStructureOffsetDistance];
+      data.pos_x = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos);
+      data.pos_z = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos + 4);
+      data.pos_y = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos + 8);
 
       if (data.type == EntityType.PC || data.type == EntityType.Monster) {
-        int[] hpmp = Read32(IntPtr.Add(entity_ptr, kEntityStructureOffsetHpMp), 4);
-        if (hpmp == null)
-          return null;
-        data.hp = hpmp[0];
-        data.max_hp = hpmp[1];
-        data.mp = hpmp[2];
-        data.max_mp = hpmp[3];
+        data.hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp);
+        data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp + 4);
+        data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp + 8);
+        data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp + 12);
+        data.tp = BitConverter.ToInt16(bytes, kEntityStructureOffsetHpMpTp + 16);
+        data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp);
+        data.max_gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 2);
+        data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 4);
+        data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 6);
+        data.job = (EntityJob)bytes[kEntityStructureOffsetJob];
+        data.level = BitConverter.ToInt16(bytes, kEntityStructureOffsetLevel);
 
-        short[] tp = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetTp), 1);
-        if (tp == null)
-          return null;
-        data.tp = tp[0];
-
-        short[] gpcp = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetGpCp), 4);
-        if (gpcp == null)
-          return null;
-        data.gp = gpcp[0];
-        data.max_gp = gpcp[1];
-        data.cp = gpcp[2];
-        data.max_cp = gpcp[3];
-
-        byte[] job = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetJob), 1);
-        if (job == null) {
-          logger_.LogInfo("job");
-          return null;
-        }
-        data.job = (EntityJob)job[0];
-
-        short[] level = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetLevel), 1);
-        if (level == null)
-          return null;
-        data.level = level[0];
+        casting_data = new SpellCastingData();
+        casting_data.casting_id = BitConverter.ToInt32(bytes, kEntityStructureOffsetCastingId);
+        casting_data.casting_time_progress = BitConverter.ToSingle(bytes, kEntityStructureOffsetCastingTimeProgress);
+        casting_data.casting_time_length = BitConverter.ToSingle(bytes, kEntityStructureOffsetCastingTimeProgress + 4);
       }
 
-      return data;
+      return Tuple.Create(data, casting_data);
     }
 
-    public EntityData GetSelfData() {
+    public Tuple<EntityData, SpellCastingData> GetSelfData() {
       if (!HasProcess() || player_ptr_addr_ == IntPtr.Zero)
         return null;
 
@@ -418,7 +394,7 @@ namespace Cactbot {
       return GetEntityData(entity_ptr);
     }
 
-    public EntityData GetTargetData() {
+    public Tuple<EntityData, SpellCastingData> GetTargetData() {
       if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
         return null;
 
@@ -428,60 +404,14 @@ namespace Cactbot {
       return GetEntityData(entity_ptr);
     }
 
-    public class SpellCastingData {
-      public int cast_id;
-      public float casting_time_progress;
-      public float casting_time_length;
-    }
-
-    public SpellCastingData GetTargetCastingData() {
-      if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
-        return null;
-
-      IntPtr entity_ptr = ReadIntPtr(target_ptr_addr_);
-      if (entity_ptr == IntPtr.Zero)
-        return null;
-
-      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingId);
-      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingTimeProgress);
-
-      Int32[] id = Read32(spell_id_addr, 1);
-      if (id == null)
-        return null;
-      float[] times = ReadSingle(spell_times_addr, 2);
-      if (times == null)
-        return null;
-
-      var r = new SpellCastingData();
-      r.cast_id = id[0];
-      r.casting_time_progress = times[0];
-      r.casting_time_length = times[1];
-      return r;
-    }
-
-    public SpellCastingData GetFocusCastingData() {
+    public Tuple<EntityData, SpellCastingData> GetFocusData() {
       if (!HasProcess() || focus_ptr_addr_ == IntPtr.Zero)
         return null;
 
       IntPtr entity_ptr = ReadIntPtr(focus_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
-
-      IntPtr spell_id_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingId);
-      IntPtr spell_times_addr = IntPtr.Add(entity_ptr, kEntityStructureOffsetCastingTimeProgress);
-
-      Int32[] id = Read32(spell_id_addr, 1);
-      if (id == null)
-        return null;
-      float[] times = ReadSingle(spell_times_addr, 2);
-      if (times == null)
-        return null;
-
-      var r = new SpellCastingData();
-      r.cast_id = id[0];
-      r.casting_time_progress = times[0];
-      r.casting_time_length = times[1];
-      return r;
+      return GetEntityData(entity_ptr);
     }
 
     public class RedMageJobData {

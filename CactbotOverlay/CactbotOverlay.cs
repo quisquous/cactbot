@@ -65,6 +65,9 @@ namespace Cactbot {
     public delegate void TargetCastingHandler(JSEvents.TargetCastingEvent e);
     public event TargetCastingHandler OnTargetCasting;
 
+    public delegate void FocusChangedHandler(JSEvents.FocusChangedEvent e);
+    public event FocusChangedHandler OnFocusChanged;
+
     public delegate void FocusCastingHandler(JSEvents.FocusCastingEvent e);
     public event FocusCastingHandler OnFocusCasting;
 
@@ -122,6 +125,7 @@ namespace Cactbot {
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnTargetChanged += (e) => DispatchToJS(e);
       OnTargetCasting += (e) => DispatchToJS(e);
+      OnFocusChanged += (e) => DispatchToJS(e);
       OnFocusCasting += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
@@ -291,13 +295,17 @@ namespace Cactbot {
 
       DateTime now = DateTime.Now;
       // The |player| can be null, such as during a zone change.
-      FFXIVProcess.EntityData player = ffxiv_.GetSelfData();
+      Tuple<FFXIVProcess.EntityData, FFXIVProcess.SpellCastingData> player_data = ffxiv_.GetSelfData();
+      var player = player_data != null ? player_data.Item1 : null;
+      var player_cast = player_data != null ? player_data.Item2 : null;
       // The |target| can be null when no target is selected.
-      FFXIVProcess.EntityData target = ffxiv_.GetTargetData();
-      // The |target_casting| can be null when no target is selected.
-      var target_casting = ffxiv_.GetTargetCastingData();
-      // The |focus_casting| can be null when no focus is selected.
-      var focus_casting = ffxiv_.GetFocusCastingData();
+      Tuple<FFXIVProcess.EntityData, FFXIVProcess.SpellCastingData> target_data = ffxiv_.GetTargetData();
+      var target = target_data != null ? target_data.Item1 : null;
+      var target_cast = target_data != null ? target_data.Item2 : null;
+      // The |focus| can be null when no focus target is selected.
+      Tuple<FFXIVProcess.EntityData, FFXIVProcess.SpellCastingData> focus_data = ffxiv_.GetFocusData();
+      var focus = focus_data != null ? focus_data.Item1 : null;
+      var focus_cast = focus_data != null ? focus_data.Item2 : null;
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
@@ -311,7 +319,6 @@ namespace Cactbot {
       }
 
       // onPlayerChangedEvent: Fires when current player data changes.
-      // TODO: Is this always true cuz it's only doing pointer comparison?
       if (player != null && player != notify_state_.player) {
         notify_state_.player = player;
         if (player.job == FFXIVProcess.EntityJob.RDM) {
@@ -335,7 +342,6 @@ namespace Cactbot {
       }
 
       // onTargetChangedEvent: Fires when current target or their state changes.
-      // TODO: Is this always true cuz it's only doing pointer comparison?
       if (target != notify_state_.target) {
         notify_state_.target = target;
         if (target != null)
@@ -346,14 +352,14 @@ namespace Cactbot {
 
       // onTargetCastingEvent: Fires each tick while the target is casting, and once
       // with null when not casting.
-      int target_cast_id = target_casting != null ? target_casting.cast_id : 0;
+      int target_cast_id = target != null ? target_cast.casting_id : 0;
       if (target_cast_id != 0 || target_cast_id != notify_state_.target_cast_id) {
         notify_state_.target_cast_id = target_cast_id;
         // The game considers things to be casting once progress reaches the end for a while, as the server is
         // resolving lag or something. That breaks our start time tracking, so we just don't consider them to
         // be casting anymore once it reaches the end.
-        if (target_cast_id != 0 && target_casting.casting_time_progress < target_casting.casting_time_length) {
-          DateTime start = now.AddSeconds(-target_casting.casting_time_progress);
+        if (target_cast_id != 0 && target_cast.casting_time_progress < target_cast.casting_time_length) {
+          DateTime start = now.AddSeconds(-target_cast.casting_time_progress);
           // If the start is within the timer interval, assume it's the same cast. Since we sample the game
           // at a different rate than it ticks, there will be some jitter in the progress that we see, and this
           // helps avoid it.
@@ -361,23 +367,32 @@ namespace Cactbot {
           if (start + range < notify_state_.target_cast_start || start - range > notify_state_.target_cast_start)
             notify_state_.target_cast_start = start;
           TimeSpan progress = now - notify_state_.target_cast_start;
-          OnTargetCasting(new JSEvents.TargetCastingEvent(target_casting.cast_id, progress.TotalSeconds, target_casting.casting_time_length));
+          OnTargetCasting(new JSEvents.TargetCastingEvent(target_cast.casting_id, progress.TotalSeconds, target_cast.casting_time_length));
         } else {
           notify_state_.target_cast_start = new DateTime();
           OnTargetCasting(new JSEvents.TargetCastingEvent(0, 0, 0));
         }
       }
 
+      // onFocusChangedEvent: Fires when current focus target or their state changes.
+      if (focus != notify_state_.focus) {
+        notify_state_.focus = focus;
+        if (target != null)
+          OnFocusChanged(new JSEvents.FocusChangedEvent(focus));
+        else
+          OnFocusChanged(new JSEvents.FocusChangedEvent(null));
+      }
+
       // onFocusCastingEvent: Fires each tick while the focus target is casting, and
       // once with null when not casting.
-      int focus_cast_id = focus_casting != null ? focus_casting.cast_id : 0;
+      int focus_cast_id = focus != null ? focus_cast.casting_id : 0;
       if (focus_cast_id != 0 || focus_cast_id != notify_state_.focus_cast_id) {
         notify_state_.focus_cast_id = focus_cast_id;
         // The game considers things to be casting once progress reaches the end for a while, as the server is
         // resolving lag or something. That breaks our start time tracking, so we just don't consider them to
         // be casting anymore once it reaches the end.
-        if (focus_cast_id != 0 && focus_casting.casting_time_progress < focus_casting.casting_time_length) {
-          DateTime start = now.AddSeconds(-focus_casting.casting_time_progress);
+        if (focus_cast_id != 0 && focus_cast.casting_time_progress < focus_cast.casting_time_length) {
+          DateTime start = now.AddSeconds(-focus_cast.casting_time_progress);
           // If the start is within the timer interval, assume it's the same cast. Since we sample the game
           // at a different rate than it ticks, there will be some jitter in the progress that we see, and this
           // helps avoid it.
@@ -385,7 +400,7 @@ namespace Cactbot {
           if (start + range < notify_state_.focus_cast_start || start - range > notify_state_.focus_cast_start)
             notify_state_.focus_cast_start = start;
           TimeSpan progress = now - notify_state_.focus_cast_start;
-          OnFocusCasting(new JSEvents.FocusCastingEvent(focus_casting.cast_id, progress.TotalSeconds, focus_casting.casting_time_length));
+          OnFocusCasting(new JSEvents.FocusCastingEvent(focus_cast.casting_id, progress.TotalSeconds, focus_cast.casting_time_length));
         } else {
           notify_state_.focus_cast_start = new DateTime();
           OnFocusCasting(new JSEvents.FocusCastingEvent(0, 0, 0));
@@ -465,6 +480,7 @@ namespace Cactbot {
       public string zone_name = "";
       public FFXIVProcess.EntityData player = null;
       public FFXIVProcess.EntityData target = null;
+      public FFXIVProcess.EntityData focus = null;
       public int target_cast_id = 0;
       public DateTime target_cast_start = new DateTime();
       public int focus_cast_id = 0;

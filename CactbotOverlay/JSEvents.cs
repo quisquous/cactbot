@@ -143,8 +143,8 @@ namespace Cactbot {
       public double castLength = 0;
     }
 
-    public class TargetChangedEvent : JSEvent {
-      public TargetChangedEvent(FFXIVProcess.EntityData e) {
+    public abstract class EntityChangedEvent {
+      public EntityChangedEvent(FFXIVProcess.EntityData e) {
         if (e != null) {
           id = e.id;
           level = e.level;
@@ -160,7 +160,6 @@ namespace Cactbot {
           distance = e.distance;
         }
       }
-      public string EventName() { return "onTargetChangedEvent"; }
 
       public uint id = 0;
       public int level = 0;
@@ -176,6 +175,16 @@ namespace Cactbot {
 
       public Point3F pos;
       public int distance = 0;
+    }
+
+    public class TargetChangedEvent : EntityChangedEvent, JSEvent {
+      public TargetChangedEvent(FFXIVProcess.EntityData e) : base(e) { }
+      public string EventName() { return "onTargetChangedEvent"; }
+    }
+
+    public class FocusChangedEvent : EntityChangedEvent, JSEvent {
+      public FocusChangedEvent(FFXIVProcess.EntityData e) : base(e) { }
+      public string EventName() { return "onFocusChangedEvent"; }
     }
 
     public struct DPSDetail {
