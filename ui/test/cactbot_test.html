@@ -54,6 +54,8 @@
         document.getElementById("jobinfo").innerText = jobDetail.beast;
       } else if (e.detail.job == "BRD") {
         document.getElementById("jobinfo").innerText = jobDetail.songName + " | " + jobDetail.songProcs + " | " + jobDetail.songMilliseconds;
+      } else if (e.detail.job == "NIN") {
+        document.getElementById("jobinfo").innerText = jobDetail.hutonMilliseconds;
       } else {
         document.getElementById("jobinfo").innerText = "";
       }

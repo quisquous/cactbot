@@ -126,6 +126,11 @@ namespace Cactbot {
         public int songMilliseconds;
         public int songProcs;
       }
+
+      public struct NinjaDetail {
+        public NinjaDetail(int huton_ms) { hutonMilliseconds = huton_ms; }
+        public int hutonMilliseconds;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {

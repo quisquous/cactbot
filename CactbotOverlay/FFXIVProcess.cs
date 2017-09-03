@@ -186,6 +186,9 @@ namespace Cactbot {
     //          0xA bytes in: byte song_procs_count;
     //          0xB bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
     //        }
+    //        struct Ninja {
+    //          0x8 bytes in: int32 huton_ms;  // Number of ms left in huton.
+    //        }
     //      }
     //   }
     // }
@@ -488,6 +491,20 @@ namespace Cactbot {
         j.song_procs = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
         j.song_type = (BardJobData.Song)bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       }
+      return j;
+    }
+
+    public class NinjaJobData {
+      public int huton_ms = 0;
+    }
+
+    public NinjaJobData GetNinja() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new NinjaJobData();
+      j.huton_ms = BitConverter.ToInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
       return j;
     }
 
