@@ -70,6 +70,8 @@
         document.getElementById("jobinfo").innerText = jobDetail.lightningStacks + " (" + jobDetail.lightningMilliseconds + ")";
       } else if (e.detail.job == "PGL") {
         document.getElementById("jobinfo").innerText = jobDetail.lightningStacks + " (" + jobDetail.lightningMilliseconds + ")";
+      } else if (e.detail.job == "MCH") {
+        document.getElementById("jobinfo").innerText = jobDetail.ammunition;
       } else {
         document.getElementById("jobinfo").innerText = "";
       }

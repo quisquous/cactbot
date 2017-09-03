@@ -204,6 +204,10 @@ namespace Cactbot {
     //          0x8 bytes in: uint16 greased_lightning_time_ms;
     //          0xA bytes in: uchar greased_lightning_stacks;
     //        }
+    //        struct Machinist {
+    //          0x8 bytes in: 3 bytes ???
+    //          0xB bytes in: uchar ammunition;
+    //        }
     //      }
     //   }
     // }
@@ -680,6 +684,32 @@ namespace Cactbot {
       var j = new MonkJobData();
       j.lightning_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
       j.lightning_stacks = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
+      return j;
+    }
+
+    public class MachinistJobData {
+      public int ammunition = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as MachinistJobData;
+        return o != null &&
+          ammunition == o.ammunition;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + ammunition.GetHashCode();
+        return hash;
+      }
+    }
+
+    public MachinistJobData GetMachinist() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new MachinistJobData();
+      j.ammunition = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       return j;
     }
 

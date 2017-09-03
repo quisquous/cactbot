@@ -159,6 +159,11 @@ namespace Cactbot {
         public uint lightningMilliseconds;
         public int lightningStacks;
       }
+
+      public struct MachinistDetail {
+        public MachinistDetail(FFXIVProcess.MachinistJobData d) { ammunition = d.ammunition; }
+        public int ammunition;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {
