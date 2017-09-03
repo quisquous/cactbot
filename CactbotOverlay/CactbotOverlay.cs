@@ -107,7 +107,9 @@ namespace Cactbot {
         try {
           SendFastRateEvents();
         } catch (Exception e) {
-          LogError("Exception in SendFastRateEvents: " + e.Message + " \n" + e.StackTrace);
+          LogError("Exception in SendFastRateEvents: " + e.Message);
+          LogError("Stack: " + e.StackTrace);
+          LogError("Source: " + e.Source);
         }
       };
       fast_update_timer_.AutoReset = false;
