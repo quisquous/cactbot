@@ -66,6 +66,10 @@
         document.getElementById("jobinfo").innerText = jobDetail.aetherflowStacks;
       } else if (e.detail.job == "ACN") {
         document.getElementById("jobinfo").innerText = jobDetail.aetherflowStacks;
+      } else if (e.detail.job == "MNK") {
+        document.getElementById("jobinfo").innerText = jobDetail.lightningStacks + " (" + jobDetail.lightningMilliseconds + ")";
+      } else if (e.detail.job == "PGL") {
+        document.getElementById("jobinfo").innerText = jobDetail.lightningStacks + " (" + jobDetail.lightningMilliseconds + ")";
       } else {
         document.getElementById("jobinfo").innerText = "";
       }

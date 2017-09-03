@@ -386,6 +386,16 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+        } else if (player.job == FFXIVProcess.EntityJob.MNK || player.job == FFXIVProcess.EntityJob.PGL) {
+          var job = ffxiv_.GetMonk();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.mnk)) {
+              notify_state_.mnk = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.MonkDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
           // TODO: WHM eveything
           // TODO: CNJ like WHM
           // TODO: AST eveything
@@ -395,8 +405,7 @@ namespace Cactbot {
           // TODO: GLD like PLD
           // TODO: MRD like WAR
           // TODO: DRK everything
-          // TODO: MNK everything
-          // TODO: PGL like MNK
+          // TODO: MNK level 70 stuff
           // TODO: DRG everything
           // TODO: LNC like DRG
           // TODO: NIN level 70 stuff
@@ -553,6 +562,7 @@ namespace Cactbot {
       public FFXIVProcess.NinjaJobData nin = new FFXIVProcess.NinjaJobData();
       public FFXIVProcess.BlackMageJobData blm = new FFXIVProcess.BlackMageJobData();
       public FFXIVProcess.SummonerAndScholarJobData smn_sch = new FFXIVProcess.SummonerAndScholarJobData();
+      public FFXIVProcess.MonkJobData mnk = new FFXIVProcess.MonkJobData();
       public FFXIVProcess.EntityData target = null;
       public FFXIVProcess.EntityData focus = null;
       public int target_cast_id = 0;

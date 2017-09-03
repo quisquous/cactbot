@@ -153,6 +153,12 @@ namespace Cactbot {
         public SummonerAndScholarDetail(FFXIVProcess.SummonerAndScholarJobData d) { aetherflowStacks = d.aetherflow_stacks; }
         public int aetherflowStacks;
       }
+
+      public struct MonkDetail {
+        public MonkDetail(FFXIVProcess.MonkJobData d) { lightningMilliseconds = d.lightning_ms; lightningStacks = d.lightning_stacks; }
+        public uint lightningMilliseconds;
+        public int lightningStacks;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {
