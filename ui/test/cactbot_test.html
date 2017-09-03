@@ -45,6 +45,7 @@
       document.getElementById("mp").innerText = e.detail.currentMP + '/' + e.detail.maxMP;
       document.getElementById("tp").innerText = e.detail.currentTP + '/' + e.detail.maxTP;
       document.getElementById("cp").innerText = e.detail.currentCP + '/' + e.detail.maxCP;
+      document.getElementById("gp").innerText = e.detail.currentGP + '/' + e.detail.maxGP;
       document.getElementById("job").innerText = e.detail.level + ' ' + e.detail.job;
       if (e.detail.job == "RDM") {
         document.getElementById("jobinfo").innerText = e.detail.jobDetail.whiteMana + " | " + e.detail.jobDetail.blackMana;
@@ -80,7 +81,7 @@
 <body>
     <div id="currentZone">currentZone: --</div>
     <div id="inCombat">inCombat: no</div>
-    <div>hp: <span id="hp"></span> mp: <span id="mp"></span> tp: <span id="tp"></span> cp: <span id="cp"></span></div>
+    <div>hp: <span id="hp"></span> mp: <span id="mp"></span> tp: <span id="tp"></span> cp: <span id="cp"></span> gp: <span id="gp"></span></div>
     <div>id: <span id="id"></span></div>
     <div>job: <span id="job"></span> <span id="jobinfo"></span></div>
     <div>pos: <span id="pos"></span></div>

@@ -121,6 +121,8 @@ namespace Cactbot {
     //   0x1698 bytes in: int32 maxmp;
     //   0x169C bytes in: int16 tp;
     //   ...
+    //   0x169E bytes in: int16 gp;
+    //   0x16A0 bytes in: int16 maxgp;
     //   0x16A2 bytes in: int16 cp;
     //   0x16A4 bytes in: int16 maxcp;
     //   ...
@@ -140,7 +142,7 @@ namespace Cactbot {
     private static int kEntityStructureOffsetPos = 0xA0;
     private static int kEntityStructureOffsetHpMp = 0x168C;
     private static int kEntityStructureOffsetTp = 0x169C;
-    private static int kEntityStructureOffsetCp = 0x16A2;
+    private static int kEntityStructureOffsetGpCp = 0x169E;
     private static int kEntityStructureOffsetJob = 0x16C2;
     private static int kEntityStructureOffsetLevel = 0x16C4;
     private static int kEntityStructureOffsetCastingId = 0x18B4;
@@ -265,6 +267,8 @@ namespace Cactbot {
       public int mp = 0;
       public int max_mp = 0;
       public short tp = 0;
+      public short gp = 0;
+      public short max_gp = 0;
       public short cp = 0;
       public short max_cp = 0;
       public EntityJob job = EntityJob.None;
@@ -322,11 +326,13 @@ namespace Cactbot {
           return null;
         data.tp = tp[0];
 
-        short[] cp = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetCp), 2);
-        if (cp == null)
+        short[] gpcp = Read16(IntPtr.Add(entity_ptr, kEntityStructureOffsetGpCp), 4);
+        if (gpcp == null)
           return null;
-        data.cp = cp[0];
-        data.max_cp = cp[1];
+        data.gp = gpcp[0];
+        data.max_gp = gpcp[1];
+        data.cp = gpcp[2];
+        data.max_cp = gpcp[3];
 
         byte[] job = Read8(IntPtr.Add(entity_ptr, kEntityStructureOffsetJob), 1);
         if (job == null) {
