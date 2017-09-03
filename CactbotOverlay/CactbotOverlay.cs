@@ -440,7 +440,7 @@ namespace Cactbot {
 
       // onTargetCastingEvent: Fires each tick while the target is casting, and once
       // with null when not casting.
-      int target_cast_id = target != null ? target_cast.casting_id : 0;
+      int target_cast_id = target_cast != null ? target_cast.casting_id : 0;
       if (target_cast_id != 0 || target_cast_id != notify_state_.target_cast_id) {
         notify_state_.target_cast_id = target_cast_id;
         // The game considers things to be casting once progress reaches the end for a while, as the server is
@@ -473,7 +473,7 @@ namespace Cactbot {
 
       // onFocusCastingEvent: Fires each tick while the focus target is casting, and
       // once with null when not casting.
-      int focus_cast_id = focus != null ? focus_cast.casting_id : 0;
+      int focus_cast_id = focus_cast != null ? focus_cast.casting_id : 0;
       if (focus_cast_id != 0 || focus_cast_id != notify_state_.focus_cast_id) {
         notify_state_.focus_cast_id = focus_cast_id;
         // The game considers things to be casting once progress reaches the end for a while, as the server is
@@ -511,7 +511,6 @@ namespace Cactbot {
       fight_tracker_.Tick(DateTime.Now);
 
       fast_update_timer_semaphore_.Release();
-
       fast_update_timer_.Interval = game_active ? kFastTimerMilli : kSlowTimerMilli;
       fast_update_timer_.Start();
     }
