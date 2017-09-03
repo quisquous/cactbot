@@ -110,6 +110,8 @@ namespace Cactbot {
           LogError("Exception in SendFastRateEvents: " + e.Message);
           LogError("Stack: " + e.StackTrace);
           LogError("Source: " + e.Source);
+          fast_update_timer_.Interval = kSlowTimerMilli;
+          fast_update_timer_.Start();
         }
       };
       fast_update_timer_.AutoReset = false;
