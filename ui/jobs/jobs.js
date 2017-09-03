@@ -967,7 +967,7 @@ class Bars {
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
       this.combo.AbortCombo();  // Combos are job specific.
-      update_job = update_hp = update_mp = update_tp = true;
+      update_job = update_hp = update_mp = update_tp = update_cp = update_gp = true;
     }
     if (e.detail.level != this.level) {
       this.level = e.detail.level;
