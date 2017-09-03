@@ -376,7 +376,7 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
-        } else if (player.job == FFXIVProcess.EntityJob.SMN || player.job == FFXIVProcess.EntityJob.SCH) {
+        } else if (player.job == FFXIVProcess.EntityJob.SMN || player.job == FFXIVProcess.EntityJob.SCH || player.job == FFXIVProcess.EntityJob.ACN) {
           var job = ffxiv_.GetSummonerAndScholar();
           if (job != null) {
             if (send || !job.Equals(notify_state_.smn_sch)) {
@@ -392,7 +392,6 @@ namespace Cactbot {
           // TODO: THM like BLM for umbral stacks/timer
           // TODO: SMN level 70 stuff
           // TODO: SCH level 70 stuff
-          // TODO: ACN like SMN/SCH for aetherflow
           // TODO: PLD everything
           // TODO: GLD like PLD
           // TODO: MRD like WAR
