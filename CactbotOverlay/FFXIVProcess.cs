@@ -273,6 +273,64 @@ namespace Cactbot {
       public short max_cp = 0;
       public EntityJob job = EntityJob.None;
       public short level = 0;
+
+      public override bool Equals(object obj) {
+        return obj is EntityData && (EntityData)obj == this;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + name.GetHashCode();
+        hash = hash * 31 + id.GetHashCode();
+        hash = hash * 31 + type.GetHashCode();
+        hash = hash * 31 + distance.GetHashCode();
+        hash = hash * 31 + pos_x.GetHashCode();
+        hash = hash * 31 + pos_y.GetHashCode();
+        hash = hash * 31 + pos_z.GetHashCode();
+        hash = hash * 31 + hp.GetHashCode();
+        hash = hash * 31 + max_hp.GetHashCode();
+        hash = hash * 31 + mp.GetHashCode();
+        hash = hash * 31 + max_mp.GetHashCode();
+        hash = hash * 31 + tp.GetHashCode();
+        hash = hash * 31 + gp.GetHashCode();
+        hash = hash * 31 + max_gp.GetHashCode();
+        hash = hash * 31 + cp.GetHashCode();
+        hash = hash * 31 + max_cp.GetHashCode();
+        hash = hash * 31 + job.GetHashCode();
+        hash = hash * 31 + level.GetHashCode();
+        return hash;
+      }
+
+      public static bool operator ==(EntityData a, EntityData b) {
+        bool a_null = object.ReferenceEquals(a, null);
+        bool b_null = object.ReferenceEquals(b, null);
+        if (a_null && b_null) return true;
+        if (a_null || b_null) return false;
+        return
+          a.name == b.name &&
+          a.id == b.id &&
+          a.type == b.type &&
+          a.distance == b.distance &&
+          a.pos_x == b.pos_x &&
+          a.pos_y == b.pos_y &&
+          a.pos_z == b.pos_z &&
+          a.hp == b.hp &&
+          a.max_hp == b.max_hp &&
+          a.mp == b.mp &&
+          a.max_mp == b.max_mp &&
+          a.tp == b.tp &&
+          a.gp == b.gp &&
+          a.max_gp == b.max_gp &&
+          a.cp == b.cp &&
+          a.max_cp == b.max_cp &&
+          a.job == b.job &&
+          a.level == b.level;
+      }
+
+      public static bool operator !=(EntityData a, EntityData b) {
+        return !(a == b);
+      }
+
     }
 
     private EntityData GetEntityData(IntPtr entity_ptr) {
