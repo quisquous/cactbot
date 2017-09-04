@@ -267,7 +267,9 @@
                 for (var name in dpsOrder) {
                     var combatant = phase.diff.Combatant[name];
                     if (!combatant) {
-                        continue;
+                        phase.diff.Combatant[name] = combatant = {
+                            ENCDPS: '',
+                        };
                     }
                     var row = phase.rowMap[name];
                     if (!row) {
