@@ -28,10 +28,6 @@ namespace Cactbot {
     public BossFightListener(FightTracker tracker, List<BossFightPhaseDetails> fight_details) {
       tracker_ = tracker;
       fight_details_ = fight_details;
-
-      foreach (var fight in fight_details) {
-        tracker_.LogInfo("Adding fight: " + fight.boss_id);
-      }
     }
 
     public void OnLogsChanged(JSEvents.LogEvent e) {
