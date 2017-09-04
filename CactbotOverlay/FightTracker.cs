@@ -7,6 +7,8 @@ namespace Cactbot {
   interface ZoneFightListener {
     void OnLogsChanged(JSEvents.LogEvent e);
     void OnPartyWipe(JSEvents.PartyWipeEvent e);
+    // If non-null, replaces the title of the current encounter.
+    string GetEncounterName();
   }
 
   public class BossFightPhaseDetails {
@@ -49,6 +51,12 @@ namespace Cactbot {
 
     public void OnPartyWipe(JSEvents.PartyWipeEvent e) {
       EndFight();
+    }
+
+    public string GetEncounterName() {
+      if (current_boss_ == null)
+        return null;
+      return current_boss_.boss_id;
     }
 
     private void StartFight(BossFightPhaseDetails boss) {
@@ -114,6 +122,8 @@ namespace Cactbot {
     }
 
     public void OnPartyWipe(JSEvents.PartyWipeEvent e) {}
+
+    public string GetEncounterName() { return null; }
   }
 
   public class FightTracker {
@@ -335,6 +345,13 @@ namespace Cactbot {
           LogInfo("Argument exception: " + e.ToString());
         }
       }
+
+      // Clobber current title with the boss name.
+      string title = zone_listener_.GetEncounterName();
+      if (title != null) {
+        dict["title"] = title;
+      }
+
       return dict;
     }
 
