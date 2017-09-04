@@ -1,5 +1,11 @@
 var fakeEncounter;
 
+function addCombatant() {
+  if (!fakeEncounter)
+	return;
+  fakeEncounter.combatants.push(new FakeCombatant('Extra Combatant ' + fakeEncounter.combatants.length, ''));
+}
+
 function generateDpsEvent() {
   if (!fakeEncounter) {
     fakeEncounter = new FakeEncounter();
