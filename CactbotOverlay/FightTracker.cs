@@ -11,7 +11,8 @@ namespace Cactbot {
 
   public class BossFightPhaseDetails {
     public string boss_id;
-    public string seal_string;
+    public List<string> start_strings = new List<string>();
+    public List<string> end_strings = new List<string>();
 
     // TODO phases
   };
@@ -19,31 +20,26 @@ namespace Cactbot {
   public class BossFightListener : ZoneFightListener {
     private FightTracker tracker_;
     private BossFightPhaseDetails current_boss_ = null;
-    private List<BossFightPhaseDetails> fight_details_;
+    private List<BossFightPhaseDetails> fights_;
 
-    private string kSealLog = " will be sealed off in 15 seconds";
-    private string kUnsealLog = " is no longer sealed";
-    private string kCountdown = "Engage!";
-
-    public BossFightListener(FightTracker tracker, List<BossFightPhaseDetails> fight_details) {
+    public BossFightListener(FightTracker tracker, List<BossFightPhaseDetails> fights) {
       tracker_ = tracker;
-      fight_details_ = fight_details;
+      fights_ = fights;
     }
 
     public void OnLogsChanged(JSEvents.LogEvent e) {
       foreach (var log in e.logs) {
         if (current_boss_ == null) {
-          foreach (var boss in fight_details_) {
-            if (boss.seal_string != null && log.IndexOf(boss.seal_string + kSealLog, StringComparison.Ordinal) >= 0) {
-              StartFight(boss);
+          foreach (var boss in fights_) {
+            foreach (var str in boss.start_strings) {
+              if (log.IndexOf(str, StringComparison.Ordinal) >= 0) {
+                StartFight(boss);
+              }
             }
           }
-          if (current_boss_ == null && log.IndexOf(kCountdown, StringComparison.Ordinal) >= 0 && fight_details_.Count == 1) {
-            StartFight(fight_details_[0]);
-          }
         } else {
-          foreach (var boss in fight_details_) {
-            if (log.IndexOf(boss.seal_string + kUnsealLog, StringComparison.Ordinal) >= 0) {
+          foreach (var str in current_boss_.end_strings) {
+            if (log.IndexOf(str, StringComparison.Ordinal) >= 0) {
               EndFight();
             }
           }
@@ -141,13 +137,37 @@ namespace Cactbot {
 
       SetZoneListener(new GenericDungeonListener(this));
 
-      // TODO: serialize this to JSON somewhere and download it at the start of the plugin loading, caching it locally.
-      var o1s = new BossFightPhaseDetails { boss_id = "o1s" };
-      var o2s = new BossFightPhaseDetails { boss_id = "o2s" };
-      var o3s = new BossFightPhaseDetails { boss_id = "o3s" };
-      var o4s = new BossFightPhaseDetails { boss_id = "o4s" };
+      var o1s = new BossFightPhaseDetails {
+        boss_id = "o1s",
+        start_strings = { MakeCountdownString(), ":Alte Roite uses Wyrm Tail" },
+        end_strings = { ":Alte Roite was defeated by" },
+      };
+      var o2s = new BossFightPhaseDetails {
+        boss_id = "o2s",
+        start_strings = { MakeCountdownString(), ":Catastrophe uses Earthquake" },
+        end_strings = { ":Catastrophe was defeated by" },
+      };
+      var o3s = new BossFightPhaseDetails {
+        boss_id = "o3s",
+        start_strings = { MakeCountdownString(), ":Halicarnassus uses Critical Hit" },
+        end_strings = { ":Halicarnassus was defeated by" },
+      };
+      var o4s = new BossFightPhaseDetails {
+        boss_id = "o4s-exdeath",
+        start_strings = { ":Exdeath uses Dualcast" },
+        end_strings = { ":The limit gauge resets!" },
+      };
+      var o4s_neo = new BossFightPhaseDetails {
+        boss_id = "o4s-neo",
+        start_strings = { ":Neo Exdeath uses Almagest" },
+        end_strings = { ":Neo Exdeath is defeated" },
+      };
 
-      var test_boss = new BossFightPhaseDetails { boss_id = "savage_test", seal_string = "The Thinger" };
+      var test_boss = new BossFightPhaseDetails {
+        boss_id = "savage_test",
+        start_strings = { MakeSealString("The Thinger") },
+        end_strings = { MakeSealString("The Thinger") },
+      };
 
       boss_fights_ = new Dictionary<string, List<BossFightPhaseDetails>>() {
         { "Mist", new List<BossFightPhaseDetails>{ test_boss } },
@@ -155,13 +175,25 @@ namespace Cactbot {
         { "Deltascape V1.0 (Savage)", new List<BossFightPhaseDetails>{ o1s } },
         { "Deltascape V2.0 (Savage)", new List<BossFightPhaseDetails>{ o2s } },
         { "Deltascape V3.0 (Savage)", new List<BossFightPhaseDetails>{ o3s } },
-        { "Deltascape V4.0 (Savage)", new List<BossFightPhaseDetails>{ o4s } },
+        { "Deltascape V4.0 (Savage)", new List<BossFightPhaseDetails>{ o4s, o4s_neo } },
 
         { "Unknown Zone (2B7)", new List<BossFightPhaseDetails>{ o1s } },
         { "Unknown Zone (2B8)", new List<BossFightPhaseDetails>{ o2s } },
         { "Unknown Zone (2B9)", new List<BossFightPhaseDetails>{ o3s } },
-        { "Unknown Zone (2Ba)", new List<BossFightPhaseDetails>{ o4s } },
+        { "Unknown Zone (2Ba)", new List<BossFightPhaseDetails>{ o4s, o4s_neo } },
       };
+    }
+
+    public static string MakeSealString(string zone_name) {
+      return zone_name + " will be sealed off in 15 seconds";
+    }
+
+    public static string MakeUnsealString(string zone_name) {
+      return zone_name + " is no longer sealed";
+    }
+
+    public static string MakeCountdownString() {
+      return ":Engage!";
     }
 
     private void SetZoneListener(ZoneFightListener listener) {
