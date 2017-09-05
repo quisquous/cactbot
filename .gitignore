@@ -2,7 +2,7 @@
 bin/
 obj/
 packages/
-user/*.css
-user/*.js
+user/
+!user/README.txt
 CactbotOverlay/ThirdParty/*/*.dll
 CactbotOverlay/ThirdParty/*/*.exe
