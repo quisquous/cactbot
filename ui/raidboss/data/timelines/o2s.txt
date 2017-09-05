@@ -1,0 +1,88 @@
+# Omega - Deltascape V2.0 (Savage) - O2S
+# Created by Paprika Rika on Balmung
+# Last Updated: 2017-09-02
+# Times from: http://i.imgur.com/UlfKRPW.png
+
+zone "^(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))$"
+
+##############################################################
+0	"--Reset--" sync /Removing combatant Catastrophe/ window 10000 jump 0
+
+0 "Start" sync /:Engage!/ sync 0,1
+13 "Earthquake" sync /:Catastrophe readies Earthquake/ window 13,5
+26 "100 Gs" # blue floaties
+31 "Antilight (center)"
+48 "Grav Wave"
+56 "Grav Manipulation"
+65 "Grav Distortion"
+75 "Paranormal Wave"
+80 "Paranormal Wave"
+85 "Evilsphere"
+97 "Paranormal Wave"
+102 "Probes (tank/heal)"
+113 "Death's Gaze"
+120 "Epicenter"
+127 "Grav Wave"
+138 "100 Gs" # blue floaties
+143 "Grav Wave"
+151 "Paranormal Wave"
+156 "Grav Manipulation"
+177 "Paranormal Wave"
+181 "Evilsphere"
+194 "Paranormal Wave"
+201 "-100 Gs"
+
+# up in the air mid section
+230 "100 Gs" # blue floaties
+234 "Antilight (center)"
+241 "Unstable Grav (tank/heal)"
+242 "Grav Wave"
+257 "Long Drop"
+268 "100 Gs" # blue floaties
+272 "Antilight"
+287 "Earthquake"
+302 "100 Gs" # blue floaties
+312 "Probes (dps)"
+323 "Death's Gaze"
+330 "Epicenter"
+337 "Grav Manipulation"
+350 "Antilight (center)
+356 "Unstable Gravity (dps)"
+361 "100 Gs" # blue floaties
+372 "Long Drop"
+382 "Paranormal Wave"
+388 "Paranormal Wave"
+392 "Evilsphere"
+405 "Paranormal Wave"
+412 "Antilight (troll)"
+422 "100 Gs" # blue floaties
+
+## rinse repeat
+427 "Probes (tank/heal)"
+439 "Death's Gaze"
+446 "Epicenter"
+453 "Grav Manipulation"
+465 "Antilight"
+472 "Unstable Gravity (dps)"
+477 "100 Gs" # blue floaties
+488 "Long Drop"
+489 "Grav Distortion"
+490 "Death's Gaze"
+500 "Grav Wave"
+506 "Paranormal Wave"
+510 "Antilight"
+521 "100 Gs" # blue floaties
+526 "Paranormal Wave"
+532 "Evilsphere"
+545 "Paranormal Wave"
+549 "Grav Manipulation"
+557 "Grav Distortion"
+565 "Antilight"
+575 "100 Gs" # blue floaties
+580 "Earthquake"
+590 "Grav Wave"
+595 "Antilight"
+605 "100 Gs" # blue floaties
+610 "Earthquake"
+617 "Grav Wave (enrage)"
+630 "Enrage"

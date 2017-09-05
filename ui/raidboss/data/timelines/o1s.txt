@@ -1,0 +1,102 @@
+# Omega - Deltascape V1.0 (Savage) - O1S
+# Created by Paprika Rika on Balmung
+# Last Updated: 2017-09-02
+# Times from http://i.imgur.com/PF21Fnh.png
+
+zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
+
+##############################################################
+0	"--Reset--" sync /Removing combatant Alte Roite/ window 10000 jump 0
+
+###### 1st Classical Elements
+0 "Start" sync /:Engage!/ sync 0,1
+3 "Wyrm Tail" sync /uses Wyrm Tail/ window 4,4
+9 "Wyrm Tail"
+16 "Twin Bolt"
+# spread: knockback => in => spread+lightning
+31 "Classical Elements (1)" sync /readies The Classical Elements/ window 10, 10
+47 "Thin Ice"
+48 "Downburst"
+53 "Outer Fireballs"
+56 "Levinbolt"
+62 "Roar"
+68 "Wyrm Tail"
+74 "Wyrm Tail"
+85 "Twin Bolt"
+91 "Clamp"
+104 "Wyrm Tail"
+112 "Outer Fireballs"
+116 "Levinbolt"
+118 "Inner Fireballs"
+123 "Blaze"
+130 "Wyrm Tail"
+136 "Wyrm Tail"
+143 "Twin Bolt"
+153 "Roar"
+159 "Roar"
+165 "Wyrm Tail"
+172 "Charybdis"
+180 "Roar"
+
+###### 2nd Classical Elements
+# safe: knockback safe spot => spread+lightning
+190 "Classical Elements (2)" sync /readies The Classical Elements/ window 10, 10
+207 "Thin Ice"
+208 "Downburst"
+212 "Outer Fireballs"
+217 "Levinbolt"
+233 "Thin Ice"
+234 "Breath Wing"
+238 "Fireballs"
+242 "Clamp"
+250 "Blaze"
+257 "Roar"
+263 "Wyrm Tail"
+269 "Wyrm Tail"
+280 "Charybdis"
+288 "Twin Bolt"
+312 "Levinbolt"
+314 "Outer Fireballs"
+321 "Clamp"
+322 "Inner Fireballs"
+328 "Roar"
+334 "Roar"
+
+###### 3rd Classical Elements
+# stack: knockback => in => blaze stack
+344 "Classical Elements (3)" sync /readies The Classical Elements/ window 10, 10
+364 "Thin Ice"
+365 "Downburst"
+366 "Outer Fireballs"
+369 "Outer Fireballs"
+374 "Blaze"
+381 "Roar"
+387 "Wyrm Tail"
+393 "Wyrm Tail"
+404 "Twin Bolt"
+410 "Clamp"
+423 "Wyrm Tail"
+431 "Outer Fireballs"
+434 "Levinbolt"
+436 "Inner Fireballs"
+444 "Blaze"
+
+##### 4th Classical Elements
+# spread: knockback => in => spread+lightning
+453 "Classical Elements (4)" sync /readies The Classical Elements/ window 10, 10
+469 "Thin Ice"
+470 "Downburst"
+475 "Outer Fireballs"
+478 "Levinbolt"
+484 "Roar"
+490 "Wyrm Tail"
+496 "Wyrm Tail"
+507 "Charybdis"
+515 "Twin Bolt"
+538 "Levinbolt"
+540 "Inner Fireballs"
+547 "Clamp"
+548 "Outer Fireballs"
+554 "Roar"
+560 "Roar"
+579 "Enrage
