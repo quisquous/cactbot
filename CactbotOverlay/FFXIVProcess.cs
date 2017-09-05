@@ -181,6 +181,12 @@ namespace Cactbot {
     //        struct Warrior {
     //          0x8 bytes in: byte beast;
     //        }
+    //        struct DarkKnight {
+    //          0x8 bytes in: byte beast;
+    //        }
+    //        struct Paladin {
+    //          0x8 bytes in: byte beast;
+    //        }
     //        struct Bard {
     //          0x8 bytes in: uint16 song_ms;  // Number of ms left in current song.
     //          0xA bytes in: byte song_procs_count;
