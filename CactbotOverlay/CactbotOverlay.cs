@@ -402,6 +402,16 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+        } else if (player.job == FFXIVProcess.EntityJob.WHM) {
+          var job = ffxiv_.GetWhiteMage();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.whm)) {
+              notify_state_.whm = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.WhiteMageDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
         } else if (player.job == FFXIVProcess.EntityJob.SMN || player.job == FFXIVProcess.EntityJob.SCH || player.job == FFXIVProcess.EntityJob.ACN) {
           var job = ffxiv_.GetSummonerAndScholar();
           if (job != null) {
@@ -595,6 +605,7 @@ namespace Cactbot {
       public FFXIVProcess.BardJobData brd = new FFXIVProcess.BardJobData();
       public FFXIVProcess.NinjaJobData nin = new FFXIVProcess.NinjaJobData();
       public FFXIVProcess.BlackMageJobData blm = new FFXIVProcess.BlackMageJobData();
+      public FFXIVProcess.WhiteMageJobData whm = new FFXIVProcess.WhiteMageJobData();
       public FFXIVProcess.SummonerAndScholarJobData smn_sch = new FFXIVProcess.SummonerAndScholarJobData();
       public FFXIVProcess.MonkJobData mnk = new FFXIVProcess.MonkJobData();
       public FFXIVProcess.MachinistJobData mch = new FFXIVProcess.MachinistJobData();

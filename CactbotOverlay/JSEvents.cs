@@ -161,6 +161,11 @@ namespace Cactbot {
         public uint nextPolygotMilliseconds;
       }
 
+      public struct WhiteMageDetail {
+        public WhiteMageDetail(FFXIVProcess.WhiteMageJobData d) { lilies = d.lilies; }
+        public int lilies;
+      }
+
       public struct SummonerAndScholarDetail {
         public SummonerAndScholarDetail(FFXIVProcess.SummonerAndScholarJobData d) { aetherflowStacks = d.aetherflow_stacks; }
         public int aetherflowStacks;

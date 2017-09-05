@@ -202,6 +202,9 @@ namespace Cactbot {
     //          0xD bytes in: uchar umbral_hearts_count;
     //          0xE bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
     //        }
+    //        struct WhiteMage {
+    //          0xA bytes in: byte lilies;
+    //        }
     //        struct SummonerAndScholar {
     //          0x8 bytes in: 4 bytes ???
     //          0xC bytes in: uchar aetherflow_stacks;
@@ -698,6 +701,32 @@ namespace Cactbot {
       j.polygot_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 1)) != 0;
       if (j.enochian_active)
         j.polygot_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      return j;
+    }
+
+    public class WhiteMageJobData {
+      public int lilies = 0;
+
+      public override bool Equals(Object obj) {
+        var o = obj as WhiteMageJobData;
+        return o != null &&
+          lilies == o.lilies;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + lilies.GetHashCode();
+        return hash;
+      }
+    }
+
+    public WhiteMageJobData GetWhiteMage() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new WhiteMageJobData();
+      j.lilies = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
       return j;
     }
 
