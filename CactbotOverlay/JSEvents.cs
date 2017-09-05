@@ -81,6 +81,7 @@ namespace Cactbot {
         maxCP = e.max_cp;
         pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
         jobDetail = null;
+        debugJob = e.debugJob;
       }
       public string EventName() { return "onPlayerChangedEvent"; }
 
@@ -99,6 +100,7 @@ namespace Cactbot {
       public int maxGP;
       public int currentCP;
       public int maxCP;
+      public string debugJob;
 
       public Point3F pos;
 

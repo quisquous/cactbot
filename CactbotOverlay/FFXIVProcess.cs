@@ -299,6 +299,7 @@ namespace Cactbot {
       public short max_cp = 0;
       public EntityJob job = EntityJob.None;
       public short level = 0;
+      public string debugJob;
 
       public override bool Equals(object obj) {
         return obj is EntityData && (EntityData)obj == this;
@@ -324,6 +325,7 @@ namespace Cactbot {
         hash = hash * 31 + max_cp.GetHashCode();
         hash = hash * 31 + job.GetHashCode();
         hash = hash * 31 + level.GetHashCode();
+        hash = hash * 31 + debugJob.GetHashCode();
         return hash;
       }
 
@@ -350,7 +352,8 @@ namespace Cactbot {
           a.cp == b.cp &&
           a.max_cp == b.max_cp &&
           a.job == b.job &&
-          a.level == b.level;
+          a.level == b.level &&
+          a.debugJob == b.debugJob;
       }
 
       public static bool operator !=(EntityData a, EntityData b) {
@@ -399,6 +402,14 @@ namespace Cactbot {
         data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 6);
         data.job = (EntityJob)bytes[kEntityStructureOffsetJob];
         data.level = BitConverter.ToInt16(bytes, kEntityStructureOffsetLevel);
+
+        byte[] job_bytes = GetJobSpecificData();
+        data.debugJob = "";
+        foreach (var b in job_bytes) {
+          if (data.debugJob != "")
+            data.debugJob += " ";
+          data.debugJob += string.Format("{0:x2}", b);
+        }
 
         casting_data = new SpellCastingData();
         casting_data.casting_id = BitConverter.ToInt32(bytes, kEntityStructureOffsetCastingId);
