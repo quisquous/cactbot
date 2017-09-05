@@ -182,7 +182,7 @@ var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
 var kHealerJobs = ["CNJ", "WHM", "SCH", "AST"];
 var kCraftingJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL"];
 var kGatheringJobs = ["MIN", "BTN", "FSH"];
-var kMeleeWithMpJobs = ["BRD", "DRK"];
+var kMeleeWithMpJobs = ["BRD", "DRK", "PLD"];
 
 function isCasterJob(job) {
   return kCasterJobs.indexOf(job) >= 0;
