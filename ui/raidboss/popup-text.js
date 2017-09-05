@@ -214,8 +214,11 @@ class PopupText {
         }
       }
 
-      if (textSound)
-        new Audio(textSound).play();
+      if (textSound) {
+        var audio = new Audio(textSound);
+        audio.volume = textVol;
+        audio.play();
+      }
 
       if (trigger.sound && !userDisabled) {
         var url = trigger.sound;
