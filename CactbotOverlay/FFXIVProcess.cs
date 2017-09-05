@@ -545,6 +545,32 @@ namespace Cactbot {
       return j;
     }
 
+    public class PaladinJobData {
+      public int oath = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as PaladinJobData;
+        return o != null &&
+          oath == o.oath;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + oath.GetHashCode();
+        return hash;
+      }
+    }
+
+    public PaladinJobData GetPaladin() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new PaladinJobData();
+      j.oath = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      return j;
+    }
+
     public class BardJobData {
       public uint song_ms = 0;
       public int song_procs = 0;

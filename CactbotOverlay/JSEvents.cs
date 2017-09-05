@@ -123,6 +123,11 @@ namespace Cactbot {
         public int blood;
       }
 
+      public struct PaladinDetail {
+        public PaladinDetail(FFXIVProcess.PaladinJobData d) { oath = d.oath; }
+        public int oath;
+      }
+
       public struct BardDetail {
         public BardDetail(FFXIVProcess.BardJobData d) {
           songName = d.song_type == FFXIVProcess.BardJobData.Song.None ? "" : d.song_type.ToString();
