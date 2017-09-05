@@ -352,6 +352,16 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+        } else if (player.job == FFXIVProcess.EntityJob.DRK) {
+          var job = ffxiv_.GetDarkKnight();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.drk)) {
+              notify_state_.drk = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.DarkKnightDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
         } else if (player.job == FFXIVProcess.EntityJob.BRD) {
           var job = ffxiv_.GetBard();
           if (job != null) {
@@ -570,6 +580,7 @@ namespace Cactbot {
       public FFXIVProcess.EntityData player = null;
       public FFXIVProcess.RedMageJobData rdm = new FFXIVProcess.RedMageJobData();
       public FFXIVProcess.WarriorJobData war = new FFXIVProcess.WarriorJobData();
+      public FFXIVProcess.DarkKnightJobData drk = new FFXIVProcess.DarkKnightJobData();
       public FFXIVProcess.BardJobData brd = new FFXIVProcess.BardJobData();
       public FFXIVProcess.NinjaJobData nin = new FFXIVProcess.NinjaJobData();
       public FFXIVProcess.BlackMageJobData blm = new FFXIVProcess.BlackMageJobData();

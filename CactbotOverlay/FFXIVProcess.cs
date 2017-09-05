@@ -519,6 +519,32 @@ namespace Cactbot {
       return j;
     }
 
+    public class DarkKnightJobData {
+      public int blood = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as DarkKnightJobData;
+        return o != null &&
+          blood == o.blood;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + blood.GetHashCode();
+        return hash;
+      }
+    }
+
+    public DarkKnightJobData GetDarkKnight() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new DarkKnightJobData();
+      j.blood = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      return j;
+    }
+
     public class BardJobData {
       public uint song_ms = 0;
       public int song_procs = 0;

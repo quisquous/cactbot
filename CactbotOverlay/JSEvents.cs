@@ -118,6 +118,11 @@ namespace Cactbot {
         public int beast;
       }
 
+      public struct DarkKnightDetail {
+        public DarkKnightDetail(FFXIVProcess.DarkKnightJobData d) { blood = d.blood; }
+        public int blood;
+      }
+
       public struct BardDetail {
         public BardDetail(FFXIVProcess.BardJobData d) {
           songName = d.song_type == FFXIVProcess.BardJobData.Song.None ? "" : d.song_type.ToString();
