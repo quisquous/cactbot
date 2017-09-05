@@ -155,9 +155,10 @@ namespace Cactbot {
       }
 
       public struct MonkDetail {
-        public MonkDetail(FFXIVProcess.MonkJobData d) { lightningMilliseconds = d.lightning_ms; lightningStacks = d.lightning_stacks; }
+        public MonkDetail(FFXIVProcess.MonkJobData d) { lightningMilliseconds = d.lightning_ms; lightningStacks = d.lightning_stacks; chakraStacks = d.chakra_stacks; }
         public uint lightningMilliseconds;
         public int lightningStacks;
+        public int chakraStacks;
       }
 
       public struct MachinistDetail {
