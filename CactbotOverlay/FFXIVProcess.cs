@@ -414,10 +414,11 @@ namespace Cactbot {
 
         byte[] job_bytes = GetJobSpecificData();
         data.debugJob = "";
-        foreach (var b in job_bytes) {
+        // Start at 8 to skip past the initial pointer.
+        for (var i = 8; i < job_bytes.Length; ++i) {
           if (data.debugJob != "")
             data.debugJob += " ";
-          data.debugJob += string.Format("{0:x2}", b);
+          data.debugJob += string.Format("{0:x2}", job_bytes[i]);
         }
 
         casting_data = new SpellCastingData();
