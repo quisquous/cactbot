@@ -1,6 +1,6 @@
 // O2S - Deltascape 2.0 Savage
 [{
-  zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2B8\))/,
+  zoneRegex: /(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))/,
   triggers: [
     { // Phase Tracker: Maniacal Probe.
       regex: /:235A:Catastrophe starts using/,

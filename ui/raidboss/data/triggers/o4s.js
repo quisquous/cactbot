@@ -1,6 +1,6 @@
 // O4S - Deltascape 4.0 Savage
 [{
-  zoneRegex: /.|(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
+  zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
   triggers: [
     // Part 1
     { // Phase Tracker: Thunder III not after Decisive Battle.
