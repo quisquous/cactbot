@@ -1,7 +1,6 @@
 # Omega - Deltascape V1.0 (Savage) - O1S
 # Created by Paprika Rika on Balmung
-# Last Updated: 2017-09-02
-# Times from http://i.imgur.com/PF21Fnh.png
+# Times originally from http://i.imgur.com/PF21Fnh.png
 
 zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 
@@ -10,7 +9,7 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 
 ###### 1st Classical Elements
 0 "Start" sync /:Engage!/ sync 0,1
-3 "Wyrm Tail" sync /uses Wyrm Tail/ window 4,4
+3 "Wyrm Tail" sync /uses Wyrm Tail/ window 3, 0
 9 "Wyrm Tail"
 16 "Twin Bolt"
 # spread: knockback => in => spread+lightning
@@ -45,7 +44,7 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 208 "Downburst"
 212 "Outer Fireballs"
 217 "Levinbolt"
-233 "Thin Ice"
+233 "Thin Ice + Teleport"
 234 "Breath Wing"
 238 "Fireballs"
 242 "Clamp"
@@ -56,9 +55,9 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 280 "Charybdis"
 288 "Twin Bolt"
 312 "Levinbolt"
-314 "Outer Fireballs"
+314 "Inner Fireballs"
 321 "Clamp"
-322 "Inner Fireballs"
+322 "Outer Fireballs"
 328 "Roar"
 334 "Roar"
 
