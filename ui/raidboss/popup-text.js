@@ -5,6 +5,7 @@ class PopupText {
     this.options = options;
     this.init = false;
     this.triggers = [];
+    this.timers = [];
 
     this.kMaxRowsOfText = 2;
   }
@@ -92,14 +93,14 @@ class PopupText {
     }
 
     // Jobs/names can't change in combat, so reset the data now.
-    this.data = { me: this.me, job: this.job, role: this.role };
+    this.Reset();
   }
 
   OnInCombat(e) {
     // If we're in a boss fight and combat ends, ignore that.
     // Otherwise consider it a fight reset.
     if (!e.detail.inCombat && !this.inBossFight)
-      this.data = { me: this.me, job: this.job, role: this.role };
+      this.Reset();
   }
 
   OnBossFightStart(e) {
@@ -108,7 +109,14 @@ class PopupText {
 
   OnBossFightEnd(e) {
     this.inBossFight = false;
+    this.Reset();
+  }
+
+  Reset() {
     this.data = { me: this.me, job: this.job, role: this.role };
+    for (var i = 0; i < this.timers.length; ++i)
+      window.clearTimeout(this.timers[i]);
+    this.timers = [];
   }
 
   OnLog(e) {
@@ -245,7 +253,7 @@ class PopupText {
     if (!delay)
       f();
     else
-      window.setTimeout(f, delay * 1000);
+      this.timers.push(window.setTimeout(f, delay * 1000));
   }
 
   Test(zone, log) {
