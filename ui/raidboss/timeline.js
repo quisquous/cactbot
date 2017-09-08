@@ -153,7 +153,7 @@ class Timeline {
   }
 
   SyncTo(fightNow) {
-   // This records the actual time which aligns with "0" in the timeline.
+    // This records the actual time which aligns with "0" in the timeline.
     this.timebase = new Date(new Date() - fightNow * 1000);
     
     this.nextEvent = 0;
@@ -169,6 +169,9 @@ class Timeline {
     this._AddUpcomingTimers(fightNow);
     this._CancelUpdate();
     this._ScheduleUpdate(fightNow);
+
+    if (this.syncTimeCallback)
+      this.syncTimeCallback(fightNow);
   }
   
   _CollectActiveSyncs(fightNow) {
@@ -352,6 +355,7 @@ class Timeline {
   SetShowInfoText(c) { this.showInfoTextCallback = c; }
   SetShowAlertText(c) { this.showAlertTextCallback = c; }
   SetShowAlarmText(c) { this.showAlarmTextCallback = c; }
+  SetSyncTime(c) { this.syncTimeCallback = c; }
 };
 
 class TimelineUI {
@@ -396,6 +400,8 @@ class TimelineUI {
       helperBar.style.height = this.barHeight - borderWidth * 2;
     }
 
+    this.debugElement = document.getElementById('timeline-debug');
+
     this.activeBars = {};
     this.expireTimers = {};
   }
@@ -412,7 +418,10 @@ class TimelineUI {
       this.timeline.SetShowInfoText(null);
       this.timeline.SetShowAlertText(null);
       this.timeline.SetShowAlarmText(null);
+      this.timeline.SetSyncTime(null);
       this.timerlist.clear();
+      this.debugElement.innerHTML = '';
+      this.debugFightTimer = null;
       this.activeBars = {};
     }
 
@@ -423,6 +432,7 @@ class TimelineUI {
       this.timeline.SetShowInfoText(this.OnShowInfoText.bind(this));
       this.timeline.SetShowAlertText(this.OnShowAlertText.bind(this));
       this.timeline.SetShowAlarmText(this.OnShowAlarmText.bind(this));
+      this.timeline.SetSyncTime(this.OnSyncTime.bind(this));
     }
   }
   
@@ -483,6 +493,32 @@ class TimelineUI {
   OnShowAlarmText(text) {
     if (this.popupText)
       this.popupText.Alarm(text);
+  }
+
+  OnSyncTime(fightNow) {
+    if (!this.options.Debug)
+      return;
+
+    if (!this.debugFightTimer) {
+      this.debugFightTimer = document.createElement('timer-bar');
+      this.debugFightTimer.width = this.barWidth;
+      this.debugFightTimer.height = this.barHeight;
+      this.debugFightTimer.duration = 1000000; // anything big
+      this.debugFightTimer.lefttext = 'elapsed';
+      this.debugFightTimer.toward = 'right';
+      this.debugFightTimer.style = 'fill';
+      this.debugFightTimer.bg = 'transparent';
+      this.debugFightTimer.fg = 'transparent';
+      this.debugElement.appendChild(this.debugFightTimer);
+      console.log('OnSync: ' + fightNow + ' (init)');
+    } else {
+      console.log('OnSync: ' + fightNow +
+          ' (prev: ' + this.debugFightTimer.elapsed + ')');
+    }
+
+    // Force this to be reset.
+    this.debugFightTimer.elapsed = 0;
+    this.debugFightTimer.elapsed = fightNow;
   }
 };
 
