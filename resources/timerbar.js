@@ -26,7 +26,11 @@ class TimerBar extends HTMLElement {
   // The length of time to count down.
   set value(s) { this.setAttribute("value", s); }
   get value() { return this._value.toString(); }
-  
+
+  // The elapsed time.
+  set elapsed(s) { this.setAttribute("elapsed", s); }
+  get elapsed() { return (this._duration - this._value).toString(); }
+
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
   set toward(t) { this.setAttribute("toward", t); }
@@ -50,6 +54,7 @@ class TimerBar extends HTMLElement {
   //              of the bar.
   // "percent" - shows the percentage of remaining time to
   //             the duration.
+  // "elapsed"   - shows the elapsed time
   // anything else - the given text is shown literally.
   set lefttext(p) { this.setAttribute("lefttext", p); }
   get lefttext() { return this.getAttribute("lefttext"); }
@@ -191,6 +196,8 @@ class TimerBar extends HTMLElement {
       this.setvalue(this._duration);
     } else if (name == "value") {
       this.setvalue(Math.max(parseFloat(newValue), 0));
+    } else if (name == "elapsed") {
+      this.setvalue(this._duration - Math.max(parseFloat(newValue), 0));
     } else if (name == "width") {
       this._width = newValue;
       this.layout();
@@ -251,18 +258,16 @@ class TimerBar extends HTMLElement {
   }
 
   updateText() {
+    var varying_texts = ["elapsed", "duration", "percent", "remain"];
     // These values are filled in during draw() when the values change.
-    if (this._left_text != "value" && this._left_text != "duration" &&
-        this._left_text != "percent") {
+    if (varying_texts.indexOf(this._left_text) == -1) {
       // Otherwise the value is fixed so it can be set here.
       this.leftTextElement.innerText = this._left_text;
     }
-    if (this._center_text != "value" && this._center_text != "duration" &&
-        this._center_text != "percent") {
+    if (varying_texts.indexOf(this._center_text) == -1) {
       this.centerTextElement.innerText = this._center_text;
     }
-    if (this._right_text != "value" && this._right_text != "duration" &&
-        this._right_text != "percent") {
+    if (varying_texts.indexOf(this._right_text) == -1) {
       this.rightTextElement.innerText = this._right_text;
     }
   }
@@ -271,33 +276,40 @@ class TimerBar extends HTMLElement {
     var percent = this._duration <= 0 ? 0 : this._value / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    var displayvalue = this._value.toFixed(1); //parseInt(this._value + 0.99999999999);
+    var display_remain = this._value.toFixed(1); //parseInt(this._value + 0.99999999999);
+    var display_elapsed = (this._duration - this._value).toFixed(1);
     if (this._style_fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = "scale(" + percent + ",1)";
     if (this._left_text != "") {
       if (this._left_text == "remain")
-        this.leftTextElement.innerHTML = displayvalue;
+        this.leftTextElement.innerHTML = display_remain;
       else if (this._left_text == "duration")
-        this.leftTextElement.innerHTML = displayvalue + " / " + this._duration;
+        this.leftTextElement.innerHTML = display_remain + " / " + this._duration;
       else if (this._left_text == "percent")
         this.leftTextElement.innerHTML = (percent * 100).toFixed(1) + " %";
+      else if (this._left_text == "elapsed")
+        this.leftTextElement.innerHTML = display_elapsed;
     }
     if (this._center_text != "") {
-      if (this._center_text == "value")
-        this.centerTextElement.innerHTML = displayvalue;
+      if (this._center_text == "remain")
+        this.centerTextElement.innerHTML = display_remain;
       else if (this._center_text == "duration")
-        this.centerTextElement.innerHTML = displayvalue + " / " + this._duration;
+        this.centerTextElement.innerHTML = display_remain + " / " + this._duration;
       else if (this._center_text == "percent")
         this.centerTextElement.innerHTML = (percent * 100).toFixed(1) + " %";
+      else if (this._center_text == "elapsed")
+        this.centerTextElement.innerHTML = display_elapsed;
     }
     if (this._right_text != "") {
       if (this._right_text == "remain")
-        this.rightTextElement.innerHTML = displayvalue;
+        this.rightTextElement.innerHTML = display_remain;
       else if (this._right_text == "duration")
-        this.rightTextElement.innerHTML = displayvalue + " / " + this._duration;
+        this.rightTextElement.innerHTML = display_remain + " / " + this._duration;
       else if (this._right_text == "percent")
         this.rightTextElement.innerHTML = (percent * 100).toFixed(1) + " %";
+      else if (this._right_text == "elapsed")
+        this.rightTextElement.innerHTML = display_elapsed;
     }
   }
 
