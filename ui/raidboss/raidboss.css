@@ -89,3 +89,9 @@
 .timeline-bar-color.soon {
   background-color: #f88;
 }
+
+#timeline-debug {
+  position: absolute;
+  top: -20px;
+  left: 0px;
+}
