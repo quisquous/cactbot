@@ -92,6 +92,6 @@
 
 #timeline-debug {
   position: absolute;
-  top: -20px;
-  left: 0px;
+  top: 0px;
+  left: calc(100%);
 }
