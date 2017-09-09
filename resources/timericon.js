@@ -1,7 +1,7 @@
 "use strict";
 
 class TimerIcon extends HTMLElement {
-  static get observedAttributes() { return [ "icon", "name", "zoom", "duration", "onhide", "width", "height", "bordercolor", "bordersize" ]; }
+  static get observedAttributes() { return [ "icon", "name", "zoom", "duration", "onhide", "width", "height", "bordercolor", "bordersize", "text" ]; }
 
   // All visual dimensions are scaled by this.
   set scale(s) { this.setAttribute("scale", s); }
@@ -45,6 +45,13 @@ class TimerIcon extends HTMLElement {
   set zoom(p) { this.setAttribute("zoom", p); }
   get zoom() { return this.getAttribute("zoom"); }
   
+  // Sets what text should be shown in the icon. If empty, no text.
+  // If 'remain', the number of seconds left, if 'elapsed', the number
+  // of seconds active. If 'percent', the percentage of time remaining.
+  // Otherwise, the literal text is shown.
+  set text(p) { this.setAttribute("text", p); }
+  get text() { return this.getAttribute("text"); }
+
   // This would be used with window.customElements.
   constructor() {
     super();
@@ -119,6 +126,7 @@ class TimerIcon extends HTMLElement {
     this._onhide = "";
     this._icon = "";
     this._zoom = 20;
+    this._text = 'remain';
     this._color_border_size = 2;
 
     if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
@@ -131,6 +139,7 @@ class TimerIcon extends HTMLElement {
     if (typeof(this.onhide) != null) { this._onhide = this.onhide; }
     if (this.icon != null) { this._icon = this.icon; }
     if (this.zoom != null) { this._zoom = Math.max(parseInt(this.zoom), 0); }
+    if (this.text != null) { this._text = this.text; }
     
     this._connected = true;
     this.layout();
@@ -165,6 +174,8 @@ class TimerIcon extends HTMLElement {
     } else if (name == "zoom") {
       this._zoom = Math.max(parseInt(newValue), 0);
       this.layout();
+    } else if (name == "text") {
+      this._text = newValue;
     }
 
     if (this._connected)
@@ -217,16 +228,23 @@ class TimerIcon extends HTMLElement {
   }
 
   draw() {
-    var percent = this._duration <= 0 ? 1 : this._value / this._duration;
-    // Keep it between 0 and 1.
-    percent = Math.min(1, Math.max(0, percent));
-
-    var intvalue = parseInt(this._value + 0.99999999999);
-    
-    if (intvalue > 0)
-      this.textElement.innerText = intvalue;
-    else
-      this.textElement.innerText = "";
+    if (this._text == 'remain') {
+      var intremain = parseInt(this._value + 0.99999999999);
+      if (intremain > 0)
+        this.textElement.innerText = intremain;
+      else
+        this.textElement.innerText = "";
+    } else if (this._text == 'percent') {
+      var percent = this._duration <= 0 ? 1 : this._value / this._duration;
+      // Keep it between 0 and 1.
+      percent = Math.min(1, Math.max(0, percent));
+      this.textElement.innerText = (percent * 100).toFixed(0);
+    } else if (this._text == 'elapsed') {
+      var intelapsed = (this._duration - this._value).toFixed(0);
+      this.textElement.innerText = intelapsed;
+    } else {
+      this.textElement.innerText = this._text;
+    }
   }
 
   reset() {
