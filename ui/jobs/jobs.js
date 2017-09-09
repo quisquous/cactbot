@@ -24,17 +24,21 @@ var Options = {
   // GCD on warrior.
   WarGcd: 2.38,
 
-  // Big buff icons.
+  // Size of big buff icons.
   BigBuffIconWidth: 44,
   BigBuffIconHeight: 32,
+  // Height of the timer bar for big buff icons.
   BigBuffBarHeight: 5,
-  BigBuffTextHeight: 12,
+  // If non-zero, the size of the text showing the big buff icon's name.
+  BigBuffTextHeight: 0,
+  // Size of the big buff icon's colour border.
   BigBuffBorderSize: 1,
 
-  // Colours.
-  // Colours.
+  // When TP falls below this, the TP bar is highlighted with the .low CSS class.
   TPInvigorateThreshold: 600,
+  // When health falls below this, the health bar is highlighted with the .low CSS class.
   LowHealthThresholdPercent: 0.2,
+  // When health falls below this, the health bar is highlighted with the .mid CSS class.
   MidHealthThresholdPercent: 0.8,
 }
 
@@ -286,6 +290,17 @@ function setupBuffTracker(me) {
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
       sortKey: 4,
+    },
+
+    requiem: {
+      gainRegex: /:(\y{Name}) gains the effect of Foe Requiem from \1 for ([0-9.]+) Seconds/,
+      loseRegex: /:(\y{Name}) loses the effect of Foe Requiem from \1/,
+      durationPosition: 2,
+      icon: kIconBuffFoes,
+      borderColor: '#F272F2',
+      sortKey: 1,
+      side: 'left',
+      text: 'elapsed',
     },
   }
 }
@@ -619,8 +634,34 @@ class Bars {
     }
   }
 
-  MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
+  MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
     var div = document.createElement("div");
+
+    if (seconds < 0) {
+      div.style.borderWidth = 1;
+      div.style.borderStyle = 'solid';
+      div.style.borderColor = '#000';
+      div.style.width = iconWidth - borderSize * 2;
+      div.style.height = iconHeight - borderSize * 2;
+      div.style.backgroundColor = borderColor;
+      var inner = document.createElement('div');
+      div.appendChild(inner);
+      inner.style.position = 'relative';
+      inner.style.left = borderSize;
+      inner.style.top = borderSize;
+      inner.style.borderWidth = borderSize;
+      inner.style.borderStyle = 'solid';
+      inner.style.borderColor = '#000';
+      inner.style.width = iconWidth - borderSize * 6;
+      inner.style.height = iconHeight - borderSize * 6;
+      inner.style.backgroundImage = 'url(' + auraIcon + ')';
+      inner.style.backgroundColor = '#888';
+      inner.style.backgroundRepeat = 'no-repeat';
+      inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
+      inner.style.backgroundPosition = 'center';
+      return div;
+    }
+
 
     var icon = document.createElement("timer-icon");
     icon.width = iconWidth;
@@ -647,7 +688,7 @@ class Bars {
       text.style.fontSize = textHeight - 1;
       text.style.whiteSpace = "pre";
       text.style.position = "relative";
-      text.style.top = iconHeight + barHeight;
+      text.style.top = iconHeight;
       text.style.fontFamily = "arial";
       text.style.fontWeight = "bold";
       text.style.color = "white";
@@ -658,6 +699,7 @@ class Bars {
       div.appendChild(text);
     }
 
+    icon.text = iconText;
     icon.bordercolor = borderColor;
     bar.fg = barColor;
     icon.icon = auraIcon;
@@ -875,27 +917,15 @@ class Bars {
       if (canShow)
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
-      var outer = document.createElement('div');
-      outer.style.border = '1px solid black';
-      outer.style.width = this.options.BigBuffIconWidth - this.options.BigBuffBorderSize * 2;
-      outer.style.height = this.options.BigBuffIconHeight - this.options.BigBuffBorderSize * 2;
-      outer.style.backgroundColor = 'yellow';
-      var inner = document.createElement('div');
-      outer.appendChild(inner);
-      inner.style.borderWidth = this.options.BigBuffBorderSize;
-      inner.style.left = this.options.BigBuffBorderSize;
-      inner.style.top = this.options.BigBuffBorderSize;
-      inner.style.position = 'relative';
-      inner.style.borderStyle = 'solid';
-      inner.style.borderColor = '#000';
-      inner.style.width = this.options.BigBuffIconWidth - this.options.BigBuffBorderSize * 6;
-      inner.style.height = this.options.BigBuffIconHeight - this.options.BigBuffBorderSize * 6;
-      inner.style.backgroundImage = 'url(data:image/jpeg;base64,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)';
-      inner.style.backgroundColor = '#888';
-      inner.style.backgroundRepeat = 'no-repeat';
-      inner.style.backgroundSize = Math.max(this.options.BigBuffIconWidth, this.options.BigBuffIconHeight) - this.options.BigBuffBorderSize * 2 + 'px';
-      inner.style.backgroundPosition = 'center';
-      this.o.leftBuffsList.addElement('foodbuff', outer, -1);
+      var div = this.MakeAuraTimerIcon(
+          'foodbuff', -1,
+          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+          '',
+          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          this.options.BigBuffBorderSize,
+          'yellow', 'yellow',
+          kIconBuffFood);
+      this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
     
   }
@@ -933,21 +963,30 @@ class Bars {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
         this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        settings.text ? settings.text : '',
         this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
         this.options.BigBuffBorderSize,
         settings.borderColor, settings.borderColor,
         settings.icon);
-    this.o.rightBuffsList.addElement(name, aura, settings.sortKey);
+    var list = this.o.rightBuffsList;
+    if (settings.side && settings.side == 'left' && this.o.leftBuffsList)
+      list = this.o.leftBuffsList;
+    list.addElement(name, aura, settings.sortKey);
     var that = this;
     window.clearTimeout(settings.timeout);
-    settings.timeout = window.setTimeout(function() {
-      that.o.rightBuffsList.removeElement(name);
-    }, seconds * 1000);
+    if (seconds >= 0) {
+      settings.timeout = window.setTimeout(function() {
+        that.o.rightBuffsList.removeElement(name);
+      }, seconds * 1000);
+    }
   }
   
   OnLoseBigBuff(name, settings) {
     window.clearTimeout(settings.timeout);
-    this.o.rightBuffsList.removeElement(name);
+    var list = this.o.rightBuffsList;
+    if (settings.side && settings.side == 'left' && this.o.leftBuffsList)
+      list = this.o.leftBuffsList;
+    list.removeElement(name);
   }
 
   OnPlayerChanged(e) {
@@ -1086,11 +1125,10 @@ class Bars {
         var settings = kBigBuffTracker[name];
         var r = log.match(Regexes.Parse(settings.gainRegex));
         if (r != null) {
-          var seconds = 0;
+          var seconds = -1;
           if ('durationSeconds' in settings) {
             seconds = settings.durationSeconds;
-          } else {
-            console.assert('durationPosition' in settings, "Either durationSeconds or durationPosition must be present for " + name);
+          } else if ('durationPosition' in settings) {
             seconds = r[settings.durationPosition];
           }
           this.OnBigBuff(name, seconds, settings);
