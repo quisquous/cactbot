@@ -150,6 +150,9 @@ class Timeline {
 
     this._ClearTimers();
     this._CancelUpdate();
+
+    if (this.syncTimeCallback)
+      this.syncTimeCallback(fightNow, false);
   }
 
   SyncTo(fightNow) {
@@ -171,7 +174,7 @@ class Timeline {
     this._ScheduleUpdate(fightNow);
 
     if (this.syncTimeCallback)
-      this.syncTimeCallback(fightNow);
+      this.syncTimeCallback(fightNow, true);
   }
   
   _CollectActiveSyncs(fightNow) {
@@ -495,9 +498,16 @@ class TimelineUI {
       this.popupText.Alarm(text);
   }
 
-  OnSyncTime(fightNow) {
+  OnSyncTime(fightNow, running) {
     if (!this.options.Debug)
       return;
+
+    if (!running) {
+      if (this.debugFightTimer)
+        this.debugElement.removeChild(this.debugFightTimer);
+      delete this.debugFightTimer;
+      return;
+    }
 
     if (!this.debugFightTimer) {
       this.debugFightTimer = document.createElement('timer-bar');
