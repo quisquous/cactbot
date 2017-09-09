@@ -298,7 +298,7 @@ function setupBuffTracker(me) {
       durationPosition: 2,
       icon: kIconBuffFoes,
       borderColor: '#F272F2',
-      sortKey: 1,
+      sortKey: 0.5,
       side: 'left',
       text: 'elapsed',
     },
