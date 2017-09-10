@@ -6,3 +6,4 @@ user/
 !user/README.txt
 CactbotOverlay/ThirdParty/*/*.dll
 CactbotOverlay/ThirdParty/*/*.exe
+publish/
