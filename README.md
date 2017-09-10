@@ -192,7 +192,7 @@ The set of extensions are:
 
 ## Installing
 
-You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed. You must have *DirectX 11* enabled for Final Fantasy XIV.
+You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed. You must have [DirectX 11](http://imgur.com/TjcnjmG) enabled for Final Fantasy XIV.
 
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
