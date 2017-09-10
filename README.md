@@ -61,7 +61,7 @@ or raiding, and a visual pull countdown.
 
 It has more fleshed out support for some jobs but is strongly a Work In Progress for others.
 - Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
-- Warrior: Shows the beast amount, and tracks how many GCDs before Storm's Eye will fall off.
+- Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time.
 
 In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
@@ -78,7 +78,7 @@ APIs.
 
 The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
 with the additional ability to do per-phase dps tracking, displayed in additional columns.
-In the screenshot below the phases are named B1, B2, B3.
+In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
 
 ![xephero screenshot](Screenshot-xephero.png)
 
@@ -190,38 +190,70 @@ The set of extensions are:
 - `\y{TimeStamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
 - `\y{LogType}`: Matches the FFXIV ACT plugin's format for the number code describing the type of log event, found near the front of each log event.
 
+See this [cactbot-user git repo](https://github.com/quisquous/cactbot-user) for more examples.
+
 ## Installing
 
 You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed. You must have [DirectX 11](http://imgur.com/TjcnjmG) enabled for Final Fantasy XIV.
 
-You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
+You should already have
+[OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases)
+installed and working in
+[Advanced Combat Tracker](http://advancedcombattracker.com/).
+We recommend using specifically the
+[hibiyasleep](https://github.com/hibiyasleep) version of OverlayPlugin
+as the original RainbowMage version does not seem to be maintained any
+more.
 
-1. Find the OverlayPlugin installation, make an **addons** sub-directory inside it (looks like **...\OverlayPlugin\addons**).
-2. Copy the **CactbotOverlay.dll** file to the **addons** directory.
-3. Make sure to unblock the **CactbotOverlay.dll** (right click -> properties -> unblock) if you downloaded it, instead of building it.
-4. If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
+1. Download the release zip file.
+2. Right click on the zip file, and click "Unblock", and then "OK".
+3. Unzip the release zip file.
+4. Copy the **OverlayPlugin\\** folder from inside of the unzipped
+folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\** folder.
 
-   The directory structure should look something like this:
+   The final directory structure should look something like this:
    - C:\\...\\Advanced Combat Tracker\\
      - Advanced Combat Tracker.exe
      - FFXIV_ACT_Plugin.dll
-   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\
-     - OverlayPlugin.dll etc
-   - C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\addons\\
-     - CactbotOverlay.dll
+     - OverlayPlugin\\
+       - OverlayPlugin.dll
+       - OverlayPlugin.Common.dll
+       - OverlayPlugin.Core.dll
+       - etc etc OverlayPlugin files
+       - addons\\
+         - CactbotOverlay.dll
+       - cactbot\\
+       - ui\\
+	 - resources\\
+	 - user\\
+	 - README.md
 
-5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
-6. In the URL field, browse to an html file to load. For example to **/path/to/cactbot/ui/raidboss/raidboss.html**.
+Note: The cactbot\\ folder does not have to be located inside of the
+OverlayPlugin directory, but that is where it comes by default as part
+of a cactbot release zip file.
+
+5. If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
+6. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
+7. In the URL field, browse to an html file to load.
+[ui/test/cactbot_test.html](ui/test/cactbot_test.html) is a good place to
+to start to make sure everything is set up properly.
 
 ## Building from source
 
-You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
+You should already have
+[OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases)
+installed and working in [Advanced Combat
+Tracker](http://advancedcombattracker.com/).
+
+Follow the additional installation steps for the .NET framework and
+DirectX 11 dependencies above.
 
 1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/OverlayPlugin](CactbotOverlay/ThirdParty/OverlayPlugin).
 2. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/ACT](CactbotOverlay/ThirdParty/ACT).
 3. Open the solution in Visual Studio (tested with Visual Studio 2017).
 4. Build for "Release" and "x64".
 5. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
+6. Copy the plugin to the Advanced Combat Tracker\\OverlayPlugin\\addons\\ directory
 
 ## Writing a cactbot UI module
 
