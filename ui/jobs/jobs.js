@@ -699,7 +699,8 @@ class Bars {
       div.appendChild(text);
     }
 
-    icon.text = iconText;
+    if (iconText)
+      icon.text = iconText;
     icon.bordercolor = borderColor;
     bar.fg = barColor;
     icon.icon = auraIcon;
@@ -963,7 +964,7 @@ class Bars {
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
         this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        settings.text ? settings.text : '',
+        settings.text,
         this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
         this.options.BigBuffBorderSize,
         settings.borderColor, settings.borderColor,
