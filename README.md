@@ -213,6 +213,8 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
 6. In the URL field, browse to an html file to load. For example to **/path/to/cactbot/ui/raidboss/raidboss.html**.
 
+Note that Cactbot only works with Final Fantasy XIV when running it for **DirectX11**.
+
 ## Building from source
 
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
