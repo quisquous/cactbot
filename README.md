@@ -223,9 +223,8 @@ folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin
          - CactbotOverlay.dll
        - cactbot\\
          - ui\\
-	 - resources\\
-	 - user\\
-	 - README.md
+         - resources\\
+         - user\\
 
 Note: The cactbot\\ folder does not have to be located inside of the
 OverlayPlugin directory, but that is where it comes by default as part
