@@ -200,10 +200,9 @@ You should already have
 [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases)
 installed and working in
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
-We recommend using specifically the
-[hibiyasleep](https://github.com/hibiyasleep) version of OverlayPlugin
-as the original RainbowMage version does not seem to be maintained any
-more.
+You must use the [hibiyasleep](https://github.com/hibiyasleep) version of
+OverlayPlugin and not the original RainbowMage version, as cactbot depends
+on several features of that version.
 
 1. Download the release zip file.
 2. Right click on the zip file, and click "Unblock", and then "OK".
@@ -237,6 +236,7 @@ of a cactbot release zip file.
 7. In the URL field, browse to an html file to load.
 [ui/test/cactbot_test.html](ui/test/cactbot_test.html) is a good place to
 to start to make sure everything is set up properly.
+8. If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin and need to upgrade to the [hibiyasleep](https://github.com/hibiyasleep/OverlayPlugin/releases) version instead.
 
 ## Building from source
 
