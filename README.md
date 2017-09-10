@@ -192,7 +192,7 @@ The set of extensions are:
 
 ## Installing
 
-You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed.
+You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed. You must have *DirectX 11* enabled for Final Fantasy XIV.
 
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
@@ -212,8 +212,6 @@ You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPl
 
 5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
 6. In the URL field, browse to an html file to load. For example to **/path/to/cactbot/ui/raidboss/raidboss.html**.
-
-Note that Cactbot only works with Final Fantasy XIV when running it for **DirectX11**.
 
 ## Building from source
 
