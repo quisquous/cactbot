@@ -9,6 +9,7 @@ namespace Cactbot {
   // memory addresses when FFXIV is run or closed.
   public class FFXIVProcess {
     private ILogger logger_ = null;
+    bool showed_dx9_error_ = false;
     private Process process_ = null;
     private IntPtr player_ptr_addr_ = IntPtr.Zero;
     private IntPtr target_ptr_addr_ = IntPtr.Zero;
@@ -274,6 +275,16 @@ namespace Cactbot {
           } else {
             job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
           }
+        }
+      }
+
+      if (process_ == null && !showed_dx9_error_) {
+        int found_32bit = (from x in Process.GetProcessesByName("ffxiv")
+                           where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv.exe"
+                           select x).Count();
+        if (found_32bit > 0) {
+          logger_.LogError("Found DirectX9 FFXIV process. Requires DirectX11.");
+          showed_dx9_error_ = true;
         }
       }
 
