@@ -192,6 +192,8 @@ The set of extensions are:
 
 ## Installing
 
+You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed.
+
 You should already have [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases) installed and working in [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
 1. Find the OverlayPlugin installation, make an **addons** sub-directory inside it (looks like **...\OverlayPlugin\addons**).
