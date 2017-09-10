@@ -25,6 +25,8 @@ namespace Cactbot {
     private static int kFastTimerMilli = 16;
     private static int kSlowTimerMilli = 300;
     private static int kUberSlowTimerMilli = 3000;
+    private static int kRequiredNETVersionMajor = 4;
+    private static int kRequiredNETVersionMinor = 6;
 
     private SemaphoreSlim log_lines_semaphore_ = new SemaphoreSlim(1);
     // Not thread-safe, as OnLogLineRead may happen at any time. Use |log_lines_semaphore_| to access it.
@@ -149,6 +151,11 @@ namespace Cactbot {
     }
 
     public override void Navigate(string url) {
+      string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
+      string[] net_version = net_version_str.Split('.');
+      if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
+        this.Log(LogLevel.Error, "Requires .NET 4.6 or above. Using " + net_version_str);
+
       // Wait for the fast timer to end before we proceed.
       fast_update_timer_semaphore_.Wait();
 
