@@ -223,7 +223,7 @@ folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin
        - addons\\
          - CactbotOverlay.dll
        - cactbot\\
-       - ui\\
+         - ui\\
 	 - resources\\
 	 - user\\
 	 - README.md
