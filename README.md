@@ -205,9 +205,10 @@ OverlayPlugin and not the original RainbowMage version, as cactbot depends
 on several features of that version.
 
 1. Download the release zip file.
-2. Right click on the zip file, and click "Unblock", and then "OK".
+2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
 3. Unzip the release zip file.
-4. Copy the **OverlayPlugin\\** folder from inside of the unzipped
+4. Close ACT, if it's still running.
+5. Copy the **OverlayPlugin\\** folder from inside of the unzipped
 folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\** folder.
 
    The final directory structure should look something like this:
@@ -230,8 +231,11 @@ Note: The cactbot\\ folder does not have to be located inside of the
 OverlayPlugin directory, but that is where it comes by default as part
 of a cactbot release zip file.
 
-5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
-6. In the URL field, browse to an html file to load.
+Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
+
+6. Restart ACT.
+7. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
+8. In the URL field, browse to an html file to load.
 [ui/test/cactbot_test.html](ui/test/cactbot_test.html) is a good place to
 to start to make sure everything is set up properly.
 
