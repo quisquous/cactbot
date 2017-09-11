@@ -230,12 +230,18 @@ Note: The cactbot\\ folder does not have to be located inside of the
 OverlayPlugin directory, but that is where it comes by default as part
 of a cactbot release zip file.
 
-5. If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
-6. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
-7. In the URL field, browse to an html file to load.
+5. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
+6. In the URL field, browse to an html file to load.
 [ui/test/cactbot_test.html](ui/test/cactbot_test.html) is a good place to
 to start to make sure everything is set up properly.
-8. If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin and need to upgrade to the [hibiyasleep](https://github.com/hibiyasleep/OverlayPlugin/releases) version instead.
+
+### Potential errors and workarounds
+
+If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
+
+If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin and need to upgrade to the [hibiyasleep](https://github.com/hibiyasleep/OverlayPlugin/releases) version instead.
+
+If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit-and-td-net-fixing-the-attempt-was-made-to-load-an-assembly-from-a-network-location-problem/) error on starting the OverlayPlugin, such as "An attempt was made to load an assemboly from a network location which would have caused the assembly to be sandboxed in previous version of the .NET Framework." then this means that you have forgotten to unblock some/all of your DLLs (either hibiyasleep or cactbot).  Stop ACT.  Unblock everything; the easiest way is to unblock the original zip file and re-extract rather than unblocking every file individually.  Restart ACT again.
 
 ## Building from source
 
