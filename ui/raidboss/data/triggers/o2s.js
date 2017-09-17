@@ -78,7 +78,14 @@
       delaySeconds: 5,
       infoText: function(data) { if (data.levitating) return '6 Fulms Under'; },
       alertText: function(data) { if (!data.levitating) return '6 Fulms Under: Levitate'; },
+      condition: function(data, matches) { return !data.under && matches[1] == data.me; },
+      run: function(data) { data.under = true; }
+    },
+    {
+      id: 'O2S 6 Fulms Under',
+      regex: /:(\y{Name}) loses the effect of 6 Fulms Under from/,
       condition: function(data, matches) { return matches[1] == data.me; },
+      run: function(data) { data.under = false; }
     },
   ]
 }]
