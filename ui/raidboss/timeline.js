@@ -445,7 +445,8 @@ class TimelineUI {
     div.appendChild(bar);
     bar.width = this.barWidth;
     bar.height = this.barHeight;
-    bar.duration = e.time - fightNow;
+    bar.duration = this.options.ShowTimerBarsAtSeconds;
+    bar.value = e.time - fightNow;
     bar.righttext = 'remain';
     bar.lefttext = e.name;
     bar.toward = 'right';
