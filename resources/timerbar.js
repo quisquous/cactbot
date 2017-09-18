@@ -1,7 +1,7 @@
 "use strict";
 
 class TimerBar extends HTMLElement {
-  static get observedAttributes() { return [ "duration", "value", "hideafter", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "style" ]; }
+  static get observedAttributes() { return [ "duration", "value", "elapsed", "hideafter", "lefttext", "centertext", "righttext", "width", "height", "bg", "fg", "style", "toward" ]; }
 
   // Background color.
   set bg(c) { this.setAttribute("bg", c); }
@@ -19,17 +19,24 @@ class TimerBar extends HTMLElement {
   set height(w) { this.setAttribute("height", w); }
   get height() { return this.getAttribute("height"); }
 
-  // The length of time to count down.
+  // The total length of time to count down.
   set duration(s) { this.setAttribute("duration", s); }
-  get duration() { return this.getAttribute("duration"); }
+  get duration() { return this._duration.toString(); }
 
-  // The length of time to count down.
+  // The length remaining in the count down.
   set value(s) { this.setAttribute("value", s); }
-  get value() { return this._value.toString(); }
+  get value() {
+    if (!this._start) return this._duration.toString();
+    var elapsedMs = new Date() - this._start;
+    return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
+  }
 
   // The elapsed time.
   set elapsed(s) { this.setAttribute("elapsed", s); }
-  get elapsed() { return (this._duration - this._value).toString(); }
+  get elapsed() {
+    if (!this._start) return '0';
+    return (new Date() - this._start).toString();
+  }
 
   // If "right" then animates left-to-right (the default). If "left"
   // then animates right-to-left.
@@ -81,6 +88,19 @@ class TimerBar extends HTMLElement {
   detachedCallback() { this.disconnectedCallback(); }
 
   init(root) {
+    // Default values.
+    this._duration = 0;
+    this._width = '100%';
+    this._height = '100%';
+    this._bg = "black";
+    this._fg = "yellow";
+    this._toward_right = false;
+    this._style_fill = false;
+    this._left_text = "";
+    this._center_text = "";
+    this._right_text = "";
+    this._hideafter = -1;
+
     root.innerHTML = `
       <style>
         #root {
@@ -151,39 +171,13 @@ class TimerBar extends HTMLElement {
     this.centerTextElement = this.shadowRoot.getElementById("centertext");
     this.rightTextElement = this.shadowRoot.getElementById("righttext");
 
-    // Constants.
-    this.kAnimateMS = 100;
-    
-    // Default values.
-    this._value = 0;
-    this._duration = 0;
-    this._width = '100%';
-    this._height = '100%';
-    this._bg = "black";
-    this._fg = "yellow";
-    this._toward_right = false;
-    this._style_fill = false;
-    this._left_text = "";
-    this._center_text = "";
-    this._right_text = "";
-    this._hideafter = -1;
-
-    if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
-    if (this.width != null) { this._width = this.width; }
-    if (this.height != null) { this._height = this.height; }
-    if (this.bg != null) { this._bg = this.bg; }
-    if (this.fg != null) { this._fg = this.fg; }
-    if (this.toward != null) { this._toward_right = this.toward == "right"; }
-    if (this.style != null) { this._style_fill = this.style == "fill"; }
-    if (this.lefttext != null) { this._left_text = this.lefttext; }
-    if (this.centertext != null) { this._center_text = this.centertext; }
-    if (this.righttext != null) { this._right_text = this.righttext; }
-    if (this.hideafter != null && this.hideafter != "") { this._hideafter = Math.max(parseFloat(this.hideafter), 0); }
-    
     this._connected = true;
     this.layout();
     this.updateText();
-    this.setvalue(this._duration);
+    if (this._start == null)
+      this.setvalue(this._duration);
+    else
+      this.advance();
   }
   
   disconnectedCallback() {
@@ -211,7 +205,10 @@ class TimerBar extends HTMLElement {
       this._fg = newValue;
       this.layout();
     } else if (name == "style") {
-      this._style_fill = this.style == "fill";
+      this._style_fill = newValue == "fill";
+      this.layout();
+    } else if (name == "toward") {
+      this._toward_right = newValue == "right";
       this.layout();
     } else if (name == "lefttext") {
       var update = newValue != this._left_text && this._connected;
@@ -230,10 +227,12 @@ class TimerBar extends HTMLElement {
         this.updateText();
     } else if (name == "hideafter") {
       this._hideafter = Math.max(parseFloat(this.hideafter), 0);
-      if (this._value == 0 && this._hideafter >= 0)
-        this.hide();
-      else if (this._hideafter < 0)
-        this.show();
+      if (this.value == '0') {
+        if (this._hideafter >= 0)
+          this.hide();
+        else
+          this.show();
+      }
     }
 
     if (this._connected)
@@ -273,11 +272,13 @@ class TimerBar extends HTMLElement {
   }
 
   draw() {
-    var percent = this._duration <= 0 ? 0 : this._value / this._duration;
+    var elapsedSec = (new Date() - this._start) / 1000;
+    var remainSec = Math.max(0, this._duration - elapsedSec);
+    var percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    var display_remain = this._value.toFixed(1); //parseInt(this._value + 0.99999999999);
-    var display_elapsed = (this._duration - this._value).toFixed(1);
+    var display_remain = remainSec ? remainSec.toFixed(1) : ''; //parseInt(this._value + 0.99999999999);
+    var display_elapsed = elapsedSec.toFixed(1);
     if (this._style_fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = "scale(" + percent + ",1)";
@@ -314,45 +315,46 @@ class TimerBar extends HTMLElement {
   }
 
   setvalue(v) {
-    this._value = v;
+    var elapsed = Math.max(0, this._duration - v);
+    this._start = new Date();
+    this._start.setSeconds(this._start.getSeconds() - elapsed);
 
     if (!this._connected) return;
 
     this.show();
     clearTimeout(this._hide_timer);
     this._hide_timer = null;
-    clearTimeout(this._timer);
-    this._timer = null;
 
     this.advance();
   }
   
   advance() {
-    if (this._value <= 0) {
+    var elapsedSec = (new Date() - this._start) / 1000;
+    if (elapsedSec >= this._duration) {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
-      this.duration = 0;
+      this._duration = 0;
+      if (this._hideafter > 0)
+        this._hide_timer = setTimeout(this.hide.bind(this), this._hideafter * 1000);
+      else if (this._hideafter == 0)
+        this.hide();
 
-      this._value = 0;
-      if (this._hideafter >= 0) {
-        this._hide_timer = setTimeout(this.hide(), this._hideafter);
-      }
+      window.cancelAnimationFrame(this._animationFrame);
+      this._animationFrame = null;
     } else {
-      var that = this;
-      this._timer = setTimeout(function() {
-        that._value = that._value - (that.kAnimateMS / 1000);
-        that.advance();
-      }, this.kAnimateMS);
+      this._animationFrame = window.requestAnimationFrame(this.advance.bind(this));
     }
     this.draw();
   }
 
   show() {
-    this.rootElement.style.display = "block";
+    if (this._connected)
+      this.rootElement.style.display = "block";
   }
 
   hide() {
-    this.rootElement.style.display = "none";
+    if (this._connected)
+      this.rootElement.style.display = "none";
   }
 }
 

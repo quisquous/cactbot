@@ -378,7 +378,6 @@ class Bars {
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
     this.o.pullCountdown.lefttext = "Pull";
     this.o.pullCountdown.righttext = "remain";
-    this.o.pullCountdown.style = "empty";
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
 
