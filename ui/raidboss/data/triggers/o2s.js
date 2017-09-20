@@ -40,7 +40,8 @@
     {
       id: 'O2S Elevated',
       regex: /:(\y{Name}) gains the effect of (?:Unknown_54E|Elevated) from/,
-      alertText: 'Elevated: DPS up, Tanks & Healers down',
+      infoText: function(data) { if (!data.role.startsWith('dps')) return 'DPS up, T/H down' },
+      alarmText: function(data) { if (data.role.startsWith('dps') && !data.levitating) return 'DPS: Levitate' },
     },
     {
       id: 'O2S Gravitational Wave',
