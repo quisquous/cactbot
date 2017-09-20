@@ -11,73 +11,78 @@ alerttext "Double Stack" before 6 "DPS: Levitate"
 0	"--Reset--" sync /Removing combatant Catastrophe/ window 10000 jump 0
 
 0 "Start" sync /:Engage!/ window 0,1
-13 "Earthquake" sync /:Catastrophe readies Earthquake/ window 13,5
+13 "Earthquake" sync /:Catastrophe starts using Earthquake/ window 13,5
 26 "100 Gs" # blue floaties
-31 "Antilight (center)"
-48 "Grav Wave"
-56 "Double Stack"
-65 "Grav Distortion"
-75 "Paranormal Wave"
-80 "Paranormal Wave"
-85 "Evilsphere"
+30 "Antilight (center)" duration 16.5
+50 "Grav Wave"
+60 "Double Stack"
+74 "Grav Distortion"
+74.5 "Paranormal Wave"
+79.5 "Paranormal Wave"
+88.6 "Evilsphere"
 97 "Paranormal Wave"
-102 "Probes (T/H)"
-113 "Death's Gaze"
-120 "Epicenter"
-127 "Grav Wave"
-138 "100 Gs" # blue floaties
-143 "Grav Wave"
-151 "Paranormal Wave"
-156 "Double Stack"
-177 "Paranormal Wave"
-181 "Evilsphere"
-194 "Paranormal Wave"
-201 "-100 Gs"
+101.5 "Probes (T/H)" # appearing
+112.6 "Death's Gaze" duration 6
+120 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
+129.7 "Grav Wave"
+138.3 "100 Gs" # blue floaties
+144.9 "Grav Wave"
+151.1 "Paranormal Wave"
+160.1 "Double Stack"
+176.4 "Paranormal Wave"
+185.6 "Evilsphere"
+193.8 "Paranormal Wave"
+208 "-100 Gs"
 
 # up in the air mid section
-230 "100 Gs" # blue floaties
-234 "Antilight (center)"
-241 "Unstable Grav (T/H)"
-242 "Grav Wave"
-257 "Long Drop"
-268 "100 Gs" # blue floaties
-272 "Antilight"
-287 "Earthquake"
-302 "100 Gs" # blue floaties
-312 "Probes (DPS)"
-323 "Death's Gaze"
-330 "Epicenter"
-337 "Double Stack"
-350 "Antilight (center)"
-356 "Unstable Gravity (DPS)"
-361 "100 Gs" # blue floaties
-372 "Long Drop"
-382 "Paranormal Wave"
-388 "Paranormal Wave"
-392 "Evilsphere"
-405 "Paranormal Wave"
-412 "Antilight (troll)"
-422 "100 Gs" # blue floaties
+213.7 "Death's Gaze" duration 6
+229.4 "100 Gs" # blue floaties
+240 "Unstable Grav (T/H)"
+244 "Grav Wave"
+233 "Antilight (center)" duration 16.5
+256 "Long Drop"
+267 "100 Gs" # blue floaties
+271 "Antilight" duration 16.5
+290 "Earthquake"
+301 "100 Gs" # blue floaties
+317.4 "Probes (DPS)"
+321.5 "Death's Gaze" duration 6
+328.3 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
+340 "Double Stack"
+347 "Antilight (center)" duration 16.5
+353.8 "Unstable Gravity (DPS)"
+359 "100 Gs" # blue floaties
+370 "Long Drop"
+379.5 "Paranormal Wave"
+384.5 "Paranormal Wave"
+393.5 "Evilsphere"
+401.4 "Paranormal Wave"
+407.5 "Antilight (troll)" duration 16.5
+418.5 "100 Gs" # blue floaties
 
 ## rinse repeat
-427 "Probes (T/H)"
-439 "Death's Gaze"
-446 "Epicenter"
-453 "Double Stack"
-465 "Antilight"
-472 "Unstable Gravity (T/H)"
-477 "100 Gs" # blue floaties
-488 "Long Drop"
-489 "Grav Distortion"
-490 "Death's Gaze"
-500 "Grav Wave"
-506 "Paranormal Wave"
-510 "Antilight"
-521 "100 Gs" # blue floaties
-526 "Paranormal Wave"
+431 "Probes (T/H)"
+434.9 "Death's Gaze" duration 6
+441.9 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
+453.5 "Double Stack"
+462 "Antilight" duration 16.5
+467.5 "Unstable Gravity (T/H)"
+473 "100 Gs" # blue floaties
+483.1 "Long Drop"
+485.3 "Death's Gaze" duration 6
+496 "Grav Distortion"
+498 "Grav Wave"
+501 "Paranormal Wave"
+505 "Antilight" duration 16.5
+516.3 "100 Gs" # blue floaties
+521 "Paranormal Wave"
 532 "Evilsphere"
-545 "Paranormal Wave"
+540 "Paranormal Wave"
 549 "Double Stack"
+
+### NOTE: times past here haven't been adjusted from video.
+### Kind of embarrassed to admit I've seen to here.  <_<
+
 557 "Grav Distortion"
 565 "Antilight"
 575 "100 Gs" # blue floaties
