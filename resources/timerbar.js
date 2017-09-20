@@ -20,11 +20,11 @@ class TimerBar extends HTMLElement {
   get height() { return this.getAttribute("height"); }
 
   // The total length of time to count down.
-  set duration(s) { this.setAttribute("duration", s); }
+  set duration(s) { this.attributeChangedCallback("duration" , this.duration, s); }
   get duration() { return this._duration.toString(); }
 
   // The length remaining in the count down.
-  set value(s) { this.setAttribute("value", s); }
+  set value(s) { this.attributeChangedCallback("value" , this.value, s); }
   get value() {
     if (!this._start) return this._duration.toString();
     var elapsedMs = new Date() - this._start;
@@ -32,7 +32,7 @@ class TimerBar extends HTMLElement {
   }
 
   // The elapsed time.
-  set elapsed(s) { this.setAttribute("elapsed", s); }
+  set elapsed(s) { this.attributeChangedCallback("elapsed" , this.elapsed, s); }
   get elapsed() {
     if (!this._start) return '0';
     return (new Date() - this._start).toString();
