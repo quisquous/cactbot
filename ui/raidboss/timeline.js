@@ -556,7 +556,7 @@ class TimelineController {
 
   OnBossFightStop() {
     this.inBossFight = false;
-    if (this.timeline)
+    if (this.activeTimeline)
       this.activeTimeline.Stop();
   }
 
