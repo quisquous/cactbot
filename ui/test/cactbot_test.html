@@ -104,6 +104,13 @@
     document.addEventListener("onGameActiveChangedEvent", function (e) {
       //console.log("Game active: " + e.detail.active);
     });
+
+    document.addEventListener("onBossFightStart", function(e) {
+      document.getElementById('event').innerText = "BossFight Start: " + e.detail.name + " : " + e.detail.pullCount;
+    });
+    document.addEventListener("onBossFightEnd", function(e) {
+      document.getElementById('event').innerText = "BossFight End";
+    });
   </script>
 </head>
 <body>
@@ -115,5 +122,6 @@
     <div>pos: <span id="pos"></span></div>
     <div>debug: <span id="debug"></span></div>
     <div>target: <span id="target">--</span> id: <span id="tid"></span> distance: <span id="tdistance"></span></div>
+    <div id="event">--</event>
 </body>
 </html>
