@@ -8,7 +8,7 @@ zone "^(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))$"
 ##############################################################
 0	"--Reset--" sync /Removing combatant Catastrophe/ window 10000 jump 0
 
-0 "Start" sync /:Engage!/ sync 0,1
+0 "Start" sync /:Engage!/ window 0,1
 13 "Earthquake" sync /:Catastrophe readies Earthquake/ window 13,5
 26 "100 Gs" # blue floaties
 31 "Antilight (center)"
@@ -46,7 +46,7 @@ zone "^(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))$"
 323 "Death's Gaze"
 330 "Epicenter"
 337 "Grav Manipulation"
-350 "Antilight (center)
+350 "Antilight (center)"
 356 "Unstable Gravity (dps)"
 361 "100 Gs" # blue floaties
 372 "Long Drop"
