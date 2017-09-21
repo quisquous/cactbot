@@ -14,7 +14,7 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 14.5 "Twin Bolt" duration 5
 
 # spread: knockback => in => spread+lightning
-28.7 "Classical Elements (1)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+28.7 "Classical (spread)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
 50.5 "Thin Ice"
 51.7 "Downburst"
 55.4 "Outer Fireballs"
@@ -40,7 +40,7 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 
 ###### 2nd Classical Elements
 # safe: knockback safe spot => spread+lightning
-186.0 "Classical Elements (2)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+186.0 "Classical (safe)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
 210.1 "Downburst"
 212.7 "Outer Fireballs"
 212.9 "Thin Ice"
@@ -65,7 +65,7 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 
 ###### 3rd Classical Elements
 # stack: knockback => in => blaze stack
-337.4 "Classical Elements (3)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+337.4 "Classical (stack)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
 363.7 "Outer Fireballs"
 363.8 "Thin Ice"
 364.2 "Downburst"
@@ -88,7 +88,7 @@ zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
 
 ##### 4th Classical Elements
 # spread: knockback => in => spread+lightning
-446.3 "Classical Elements (4)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+446.3 "Classical (spread)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
 462.3 "Thin Ice"
 463.3 "Downburst"
 468.3 "Outer Fireballs"
