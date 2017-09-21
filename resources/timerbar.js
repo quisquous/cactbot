@@ -35,7 +35,7 @@ class TimerBar extends HTMLElement {
   set elapsed(s) { this.attributeChangedCallback("elapsed" , this.elapsed, s); }
   get elapsed() {
     if (!this._start) return '0';
-    return ((new Date() - this._start / 1000)).toString();
+    return ((new Date() - this._start) / 1000).toString();
   }
 
   // If "right" then animates left-to-right (the default). If "left"
