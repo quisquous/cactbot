@@ -514,7 +514,7 @@ class TimelineUI {
       this.debugFightTimer = document.createElement('timer-bar');
       this.debugFightTimer.width = this.barWidth;
       this.debugFightTimer.height = this.barHeight;
-      this.debugFightTimer.duration = 1000000; // anything big
+      this.debugFightTimer.duration = 10000; // anything big
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';
       this.debugFightTimer.style = 'fill';

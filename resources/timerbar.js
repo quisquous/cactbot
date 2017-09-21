@@ -314,10 +314,9 @@ class TimerBar extends HTMLElement {
     }
   }
 
-  setvalue(v) {
-    var elapsed = Math.max(0, this._duration - v);
-    this._start = new Date();
-    this._start.setSeconds(this._start.getSeconds() - elapsed);
+  setvalue(remainSec) {
+    var elapsedSec = Math.max(0, this._duration - remainSec);
+    this._start = new Date() - (elapsedSec * 1000);
 
     if (!this._connected) return;
 
