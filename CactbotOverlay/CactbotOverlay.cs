@@ -35,7 +35,11 @@ namespace Cactbot {
     private List<string> last_log_lines_ = new List<string>(40);
 
     // When true, the update function should reset notify state back to defaults.
-    bool reset_notify_state_ = false;
+    private bool reset_notify_state_ = false;
+    // When true, check for the latest version on the next Navigate. Used to only check once.
+    private static bool check_version_ = true;
+    // Set to true when the constructor is run, to prevent premature navigation before we're able to log.
+    private bool init_ = false;
 
     private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
     JsonTextWriter dispatch_json_writer_;
@@ -142,6 +146,8 @@ namespace Cactbot {
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
+
+      init_ = true;
     }
 
     public override void Dispose() {
@@ -151,6 +157,37 @@ namespace Cactbot {
     }
 
     public override void Navigate(string url) {
+      if (!init_)
+        return;
+
+      if (check_version_) {
+        check_version_ = false;
+        var versions = new VersionChecker(this);
+        Version local = versions.GetLocalVersion();
+        Version remote = versions.GetRemoteVersion();
+        if (local < remote) {
+          Version remote_seen_before = new Version(Config.RemoteVersionSeen);
+          Config.RemoteVersionSeen = remote.ToString();
+
+          string update_message = "There is a new version of Cactbot is available at: \n" +
+            VersionChecker.kReleaseUrl + " \n\n" +
+            "New version " + remote + " \n" +
+            "Current version " + local;
+          if (remote == remote_seen_before) {
+            this.Log(LogLevel.Error, update_message);
+          } else {
+            var result = System.Windows.Forms.MessageBox.Show(Overlay,
+              update_message + "\n\n" +
+              "Get it now?",
+              "Cactbot update available",
+              System.Windows.Forms.MessageBoxButtons.YesNo);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+              System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
+          }
+          Config.RemoteVersionSeen = remote.ToString();
+        }
+      }
+
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)

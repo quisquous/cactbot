@@ -37,5 +37,7 @@ namespace Cactbot {
 
     // Can't use a Dictionary or List<KeyValuePair> because XmlSerializer T_T.
     public List<BossInfo> BossInfoList { get; set; }
+
+    public string RemoteVersionSeen = "0.0";
   }
 }
