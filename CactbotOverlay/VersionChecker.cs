@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace Cactbot {
 
+  // This class can determine the current plugin version, as well as the latest version
+  // released of the plugin on GitHub. It is inspired by the work of anoyetta in
+  // https://github.com/anoyetta/ACT.SpecialSpellTimer/blob/master/ACT.SpecialSpellTimer.Core/UpdateChecker.cs
   class VersionChecker {
     private ILogger logger_ = null;
 
