@@ -150,24 +150,6 @@ namespace Cactbot {
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
 
-      init_ = true;
-      if (deferred_navigate_ != null) {
-        this.Navigate(deferred_navigate_);
-      }
-    }
-
-    public override void Dispose() {
-      fast_update_timer_.Stop();
-      Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
-      base.Dispose();
-    }
-
-    public override void Navigate(string url) {
-      if (!init_) {
-        deferred_navigate_ = url;
-        return;
-      }
-
       if (check_version_) {
         check_version_ = false;
         var versions = new VersionChecker(this);
@@ -200,6 +182,24 @@ namespace Cactbot {
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
+
+      init_ = true;
+      if (deferred_navigate_ != null) {
+        this.Navigate(deferred_navigate_);
+      }
+    }
+
+    public override void Dispose() {
+      fast_update_timer_.Stop();
+      Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
+      base.Dispose();
+    }
+
+    public override void Navigate(string url) {
+      if (!init_) {
+        deferred_navigate_ = url;
+        return;
+      }
 
       // Wait for the fast timer to end before we proceed.
       fast_update_timer_semaphore_.Wait();
