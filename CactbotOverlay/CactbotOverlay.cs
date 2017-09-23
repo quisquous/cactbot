@@ -182,7 +182,7 @@ namespace Cactbot {
             "New version " + remote + " \n" +
             "Current version " + local;
           if (remote == remote_seen_before) {
-            this.Log(LogLevel.Error, update_message);
+            LogError(update_message);
           } else {
             var result = System.Windows.Forms.MessageBox.Show(Overlay,
               update_message + "\n\n" +
@@ -199,7 +199,7 @@ namespace Cactbot {
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
-        this.Log(LogLevel.Error, "Requires .NET 4.6 or above. Using " + net_version_str);
+        LogError("Requires .NET 4.6 or above. Using " + net_version_str);
 
       // Wait for the fast timer to end before we proceed.
       fast_update_timer_semaphore_.Wait();
