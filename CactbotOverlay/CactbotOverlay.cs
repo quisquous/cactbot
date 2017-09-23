@@ -41,6 +41,9 @@ namespace Cactbot {
     // Set to true when the constructor is run, to prevent premature navigation before we're able to log.
     private bool init_ = false;
 
+    // Temporarily hold any navigations that occur during construction
+    private string deferred_navigate_;
+
     private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
     JsonTextWriter dispatch_json_writer_;
     JsonSerializer dispatch_serializer_;
@@ -148,6 +151,9 @@ namespace Cactbot {
       fast_update_timer_.Start();
 
       init_ = true;
+      if (deferred_navigate_ != null) {
+        this.Navigate(deferred_navigate_);
+      }
     }
 
     public override void Dispose() {
@@ -157,8 +163,10 @@ namespace Cactbot {
     }
 
     public override void Navigate(string url) {
-      if (!init_)
+      if (!init_) {
+        deferred_navigate_ = url;
         return;
+      }
 
       if (check_version_) {
         check_version_ = false;
