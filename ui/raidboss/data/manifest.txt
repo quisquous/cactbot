@@ -13,6 +13,7 @@ timelines/a12s.txt
 timelines/ravana-ex.txt
 timelines/sephirot-ex.txt
 timelines/sophia-ex.txt
+timelines/susano-ex.txt
 timelines/o1s.txt
 timelines/o2s.txt
 timelines/o3s.txt
@@ -23,3 +24,4 @@ triggers/o2s.js
 triggers/o3s.js
 triggers/o4s.js
 triggers/shatter.js
+triggers/susano-ex.js
