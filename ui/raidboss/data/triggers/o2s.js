@@ -88,31 +88,5 @@
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data) { data.under = false; }
     },
-
-    // Gravitational Waves
-    {
-      regex: /:2372:Catastrophe starts using/,
-      run: function(data) { data.gravWaves = (data.gravWaves || 0) + 1; }
-    },
-    // Gravitational Wave (Raid AOE followed by Paranormal Wave (Cleave))
-    {
-      id: 'O2S Addle 1',
-      regex: /:2372:Catastrophe starts using/,
-      alertText: 'Addle',
-      condition: function(data) { return data.role == 'dps-caster' && data.gravWaves == 3 },
-    },
-    // Long Drops
-    {
-      regex: /:Catastrophe:236B:/,
-      run: function(data) { data.longDrops = (data.longDrops || 0) + 1; }
-    },
-    // Gravitational Wave (Raid AOE followed by Tank Cleave)
-    {
-      id: 'O2S Addle 2',
-      regex: /:Catastrophe:236B:/,
-      dedelaySeconds: 7,
-      alertText: 'Addle',
-      condition: function(data) { return data.role == 'dps-caster' && data.longDrops == 2 },
-    },
   ]
 }]
