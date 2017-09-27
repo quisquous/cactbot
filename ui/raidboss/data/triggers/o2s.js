@@ -20,6 +20,7 @@
       id: 'O2S Levitation',
       regex: /:(\y{Name}) loses the effect of (?:Unknown_556|Levitation)/,
       run: function(data) { data.levitating = false; },
+      condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
       id: 'O2S -100Gs',
