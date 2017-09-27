@@ -21,7 +21,7 @@ var Options = {
   MaxNumberOfTimerBars: 6,
 
   // Path to sound played for info-priority text popups, or when "Info" is specified as the sound name.
-  InfoSound: '../../resources/sounds/freesound/percussion_hit.wav',
+  InfoSound: '../../resources/sounds/freesound/percussion_hit.ogg',
   // Path to sound played for alert-priority text popups, or when "Alert" is specified as the sound name.
   AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
   // Path to sound played for alarm-priority text popups, or when "Alarm" is specified as the sound name.
