@@ -1,7 +1,34 @@
 // O3S - Deltascape 3.0 Savage
 [{
-  zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
+  //zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
+  zoneRegex: /./,
   triggers: [
+    {
+      id: 'O3S Spellblade Holy',
+      regex: /1B:........:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
+      alarmText: function(data) {
+        if (data.holyTargets[1] != data.me)
+          return "";
+        return "Stack on YOU";
+      },
+      alertText: function(data) {
+        if (data.holyTargets[1] == data.me)
+          return;
+        for (var i = 0; i < 4; ++i) {
+          if (data.holyTargets[i] == data.me)
+            return "Get out";
+        }
+        return "Stack on " + data.holyTargets[1];
+      },
+      condition: function(data, matches) {
+        data.holyTargets = data.holyTargets || [];
+        data.holyTargets.push(matches[1]);
+        return data.holyTargets.length == 4;
+      },
+      run: function(data) {
+        delete data.holyTargets;
+      }
+    },
     {
       id: 'O3S Right Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
