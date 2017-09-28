@@ -1,7 +1,6 @@
 // O3S - Deltascape 3.0 Savage
 [{
-  //zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
-  zoneRegex: /./,
+  zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
   triggers: [
     {
       id: 'O3S Spellblade Holy',
