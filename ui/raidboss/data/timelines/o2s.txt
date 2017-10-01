@@ -1,7 +1,6 @@
 # Omega - Deltascape V2.0 (Savage) - O2S
 # Created by Paprika Rika on Balmung
-# Last Updated: 2017-09-02
-# Times from: http://i.imgur.com/UlfKRPW.png
+# Times originally from: http://i.imgur.com/UlfKRPW.png
 
 zone "^(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))$"
 
@@ -11,85 +10,84 @@ alerttext "Double Stack" before 6 "DPS: Levitate"
 0	"--Reset--" sync /Removing combatant Catastrophe/ window 10000 jump 0
 
 0 "Start" sync /:Engage!/ window 0,1
-13 "Earthquake" sync /:Catastrophe starts using Earthquake/ window 13,5
-26 "100 Gs" # blue floaties
-30 "Antilight (center)" duration 16.5
-50 "Grav Wave"
-60 "Double Stack"
-74 "Grav Distortion"
-74.5 "Paranormal Wave"
-79.5 "Paranormal Wave"
-88.6 "Evilsphere"
-97 "Paranormal Wave"
-101.5 "Probes (T/H)" # appearing
-112.6 "Death's Gaze" duration 6
-120 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
-129.7 "Grav Wave"
-138.3 "100 Gs" # blue floaties
-144.9 "Grav Wave"
-151.1 "Paranormal Wave"
-160.1 "Double Stack"
-176.4 "Paranormal Wave"
-185.6 "Evilsphere"
-193.8 "Paranormal Wave"
-208 "-100 Gs"
+12.7 "Earthquake" sync /:Catastrophe starts using Earthquake/ window 13,5
+25.2 "100 Gs" # blue floaties
+29.6 "Antilight (center)" duration 17
+49.3 "Grav Wave"
+59.2 "Double Stack"
+73.4 "Paranormal Wave"
+75.7 "Grav Distortion"
+78.4 "Paranormal Wave"
+87.4 "Evilsphere"
+95.4 "Paranormal Wave"
+107.0 "Probes (T/H)" # appearing
+110.7 "Death's Gaze" duration 6
+117.7 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
+129.2 "Grav Wave"
+137.2 "100 Gs" # blue floaties
+145.2 "Grav Wave"
+150.4 "Paranormal Wave"
+159.2 "Double Stack"
+175.4 "Paranormal Wave"
+184.3 "Evilsphere" sync /:Catastrophe:2371:Evilsphere:/ window 3,3
+191.8 "Paranormal Wave"
+206.7 "-100 Gs"
 
 # up in the air mid section
-213.7 "Death's Gaze" duration 6
-229.4 "100 Gs" # blue floaties
-240 "Unstable Grav (T/H)"
-244 "Grav Wave"
-233 "Antilight (center)" duration 16.5
-256 "Long Drop"
-267 "100 Gs" # blue floaties
-271 "Antilight" duration 16.5
-290 "Earthquake"
-301 "100 Gs" # blue floaties
-317.4 "Probes (DPS)"
-321.5 "Death's Gaze" duration 6
-328.3 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
-340 "Double Stack"
-347 "Antilight (center)" duration 16.5
-353.8 "Unstable Gravity (DPS)"
-359 "100 Gs" # blue floaties
-370 "Long Drop"
-379.5 "Paranormal Wave"
-384.5 "Paranormal Wave"
-393.5 "Evilsphere"
-401.4 "Paranormal Wave"
-407.5 "Antilight (troll)" duration 16.5
-418.5 "100 Gs" # blue floaties
+211.4 "Death's Gaze" duration 6
+227.3 "100 Gs" # blue floaties
+231.2 "Antilight (center)" duration 17
+237.7 "Unstable Grav (T/H)"
+241.6 "Grav Wave"
+253.7 "Long Drop"
+264.7 "100 Gs" # blue floaties
+268.7 "Antilight" duration 17
+282.7 "Earthquake"
+298.7 "100 Gs" # blue floaties
+315.1 "Probes (DPS)"
+318.9 "Death's Gaze" duration 6
+325.9 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
+337.6 "Double Stack"
+344.7 "Antilight (center)" duration 17
+351.2 "Unstable Gravity (DPS)"
+356.6 "100 Gs" # blue floaties
+367.9 "Long Drop"
+377.1 "Paranormal Wave"
+382.1 "Paranormal Wave"
+390.9 "Evilsphere" sync /:Catastrophe:2371:Evilsphere:/ window 3,3
+400.1 "Paranormal Wave"
+406.3 "Antilight (troll)" duration 16.5
+417.6 "100 Gs" # blue floaties
 
 ## rinse repeat
-431 "Probes (T/H)"
-434.9 "Death's Gaze" duration 6
-441.9 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
-453.5 "Double Stack"
-462 "Antilight" duration 16.5
-467.5 "Unstable Gravity (T/H)"
-473 "100 Gs" # blue floaties
-483.1 "Long Drop"
-485.3 "Death's Gaze" duration 6
-496 "Grav Distortion"
-498 "Grav Wave"
-501 "Paranormal Wave"
-505 "Antilight" duration 16.5
-516.3 "100 Gs" # blue floaties
-521 "Paranormal Wave"
-532 "Evilsphere"
-540 "Paranormal Wave"
-549 "Double Stack"
+428.6 "Probes (T/H)"
+432.5 "Death's Gaze" duration 6
+439.5 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
+451.1 "Double Stack"
+459.6 "Antilight" duration 17
+465.1 "Unstable Gravity (T/H)"
+470.6 "100 Gs" # blue floaties
+480.7 "Long Drop"
+482.9 "Death's Gaze" duration 6
+493.6 "Grav Distortion"
+495.6 "Grav Wave"
+498.6 "Paranormal Wave"
+502.6 "Antilight" duration 17
+513.9 "100 Gs" # blue floaties
+518.6 "Paranormal Wave"
+529.6 "Evilsphere" sync /:Catastrophe:2371:Evilsphere:/ window 3,3
+537.6 "Paranormal Wave"
+546.6 "Double Stack"
 
 ### NOTE: times past here haven't been adjusted from video.
-### Kind of embarrassed to admit I've seen to here.  <_<
 
-557 "Grav Distortion"
-565 "Antilight"
-575 "100 Gs" # blue floaties
-580 "Earthquake"
-590 "Grav Wave"
-595 "Antilight"
-605 "100 Gs" # blue floaties
-610 "Earthquake"
-617 "Grav Wave (Enrage)"
-630 "Enrage"
+554.9 "Grav Distortion"
+562.9 "Antilight" duration 17
+572.9 "100 Gs" # blue floaties
+577.9 "Earthquake"
+587.9 "Grav Wave"
+592.9 "Antilight" duration 17
+602.9 "100 Gs" # blue floaties
+607.9 "Earthquake"
+614.9 "Grav Wave (Enrage)"
+627.9 "Enrage"
