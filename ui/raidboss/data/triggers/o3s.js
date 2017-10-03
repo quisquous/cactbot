@@ -7,10 +7,19 @@
       regex: /:Halicarnassus starts using Panel Swap/,
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
-
+        delete data.seenHolyThisPhase;
+      },
+    },
+    {
+      // Look for spellblade holy so that the last noisy waltz
+      // books message in the library phase can be ignored.
+      id: 'Spellblade holy counter',
+      regex: /:Halicarnassus:22EF:Spellblade Holy:/,
+      run: function(data) {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
         delete data.holyTargets;
+        data.seenHolyThisPhase = true;
       },
     },
     {
@@ -122,6 +131,11 @@
     {
       id: 'O3S The Queen\'s Waltz: Books',
       regex: /:230E:Halicarnassus starts using/,
+      condition: function(data) {
+        // Deliberately skip printing the waltz message for the
+        // spellblade holy -> waltz that ends the library phase.
+        return data.phase != 3 || !data.seenHolyThisPhase;
+      },
       alertText: 'The Queen\'s Waltz: Books',
     },
     {
