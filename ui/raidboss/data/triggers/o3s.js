@@ -59,10 +59,10 @@
           return;
         data.librarySpellbladePrinted = true;
         if (data.librarySpellbladeMe == "0064")
-          return "outside south (stack)";
+          return "go south: stack on you";
         if (data.librarySpellbladeMe == "0065")
           return "go north";
-        return "inside south (unmarked stack)";
+        return "go south: stack on friend";
       },
       // Because people can be dead and there are eight marks, delay to
       // accumulate logs instead of counting marks.  Instantly print if
