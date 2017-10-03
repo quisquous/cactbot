@@ -4,7 +4,7 @@
   triggers: [
     {
       id: 'O3S Phase Counter',
-      regex: /:Halicarnassus starts Panel Swap/,
+      regex: /:Halicarnassus starts using Panel Swap/,
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
 
@@ -41,7 +41,7 @@
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
         if (data.phase == 3)
-          return;
+          return false;
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches[1]);
         return data.holyTargets.length == 4;
@@ -74,7 +74,7 @@
       condition: function(data, matches) {
         // This is only for library phase.
         if (data.phase != 3)
-          return;
+          return false;
         if (matches[1] == data.me)
           data.librarySpellbladeMe = matches[2];
         return true;
