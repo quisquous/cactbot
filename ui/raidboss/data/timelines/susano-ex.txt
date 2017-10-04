@@ -1,5 +1,5 @@
 # Susano Extreme
-# Created by Paprika Rika on Balmung
+# Original timeline from: https://www.reddit.com/r/ffxiv/comments/6lh5gu/act_timeline_kaizoban_for_susanolakshmi_ex/
 
 zone "^The Pool Of Tribute \(Extreme\)$"
 
