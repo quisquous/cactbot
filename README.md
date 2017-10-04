@@ -26,37 +26,6 @@ that anybody would need to write a good Javascript UI for
 The [ui/](ui/) directory has some prebuilt UI modules, and the [resources/](resources/) directory has
 building blocks for building your own modules.
 
-### Adding overlay modules (example: raidboss)
-
-To add a cactbot module is the same as adding any overlay plugin.
-1. Open ACT.
-2. Navigate to the Plugins tab of ACT and then the OverlayPlugin.dll tab inside it.
-
-![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
-
-3. Click the "New" button and then select Cactbot in the "Type" dropdown.
-
-![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
-
-4. Type in any name you'd like as the name of this overlay, e.g. `raidbossy`.
-5. A good example to start with is the raidboss module.  Set the filename to be **ui/raidboss/raidboss.html**.  Your config should look like this.
-
-![raidboss plugin config](screenshots/OverlayPluginRaidbossConfig.png)
-
-6. At this point, you should see some bunched up test UI appear on screen.
-
-![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
-
-7. Click the **Enable Clickthru** button on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](#configuring-ui-modules) if you want even more control.  It should look something like this:
-
-![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
-
-8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.  Now you're ready for [cactbot magic](https://clips.twitch.tv/StrangeHungryGarageShadyLulu).
-
-9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
-
-The modules in [ui/](ui/) are:
-
 ### [raidboss](ui/raidboss) module
 
 To use this module, point cactbot at **ui/raidboss/raidboss.html**.
@@ -122,6 +91,35 @@ Here is a video of some of these UI modules in action on Exdeath and Neo Exdeath
 the timelines were added to raidboss:
 
 [![Exdeath video](screenshots/ExdeathVideo.png)](https://www.youtube.com/watch?v=Ot_GMEcwv94)
+
+### Adding overlay modules (example: raidboss)
+
+To add a cactbot module is the same as adding any overlay plugin.
+1. Open ACT.
+2. Navigate to the Plugins tab of ACT and then the OverlayPlugin.dll tab inside it.
+
+![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
+
+3. Click the "New" button and then select Cactbot in the "Type" dropdown.
+
+![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
+
+4. Type in any name you'd like as the name of this overlay, e.g. `raidbossy`.
+5. A good example to start with is the raidboss module.  Set the filename to be **ui/raidboss/raidboss.html**.  Your config should look like this.
+
+![raidboss plugin config](screenshots/OverlayPluginRaidbossConfig.png)
+
+6. At this point, you should see some bunched up test UI appear on screen.
+
+![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
+
+7. Click the **Enable Clickthru** button on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](#configuring-ui-modules) if you want even more control.  It should look something like this:
+
+![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
+
+8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.  Now you're ready for [cactbot magic](https://clips.twitch.tv/StrangeHungryGarageShadyLulu).
+
+9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
 
 ## Configuring UI modules
 
