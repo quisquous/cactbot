@@ -49,7 +49,7 @@ for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/d
 In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
 text alerts circled in yellow, with an `alert`-level text message visible.
 
-![raidboss screenshot](Screenshot-Raidboss.png)
+![raidboss screenshot](screenshots/Raidboss.png)
 
 ### [jobs](ui/jobs) module
 
@@ -68,7 +68,7 @@ as Red Mage white/black mana tracking is circled in purple, with the large raid 
 beside it in orange. The first step of the melee combo has been executed, which is displayed as the yellow
 box above the health bar. The proc tracking is circles below in green.
 
-![jobs screenshot](Screenshot-Jobs.png)
+![jobs screenshot](screenshots/Jobs.png)
 
 ### [dps](ui/dps) meters
 
@@ -80,17 +80,17 @@ The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for
 with the additional ability to do per-phase dps tracking, displayed in additional columns.
 In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
 
-![xephero screenshot](Screenshot-xephero.png)
+![xephero screenshot](screenshots/xephero.png)
 
 The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
 for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
 
-![xephero screenshot](Screenshot-rdmty.png)
+![xephero screenshot](screenshots/rdmty.png)
 
 Here is a video of some of these UI modules in action on Exdeath and Neo Exdeath, from before
 the timelines were added to raidboss:
 
-[![Exdeath video](Screenshot-ExdeathVideo.png)](https://www.youtube.com/watch?v=Ot_GMEcwv94)
+[![Exdeath video](screenshots/ExdeathVideo.png)](https://www.youtube.com/watch?v=Ot_GMEcwv94)
 
 ## Configuring UI modules
 
