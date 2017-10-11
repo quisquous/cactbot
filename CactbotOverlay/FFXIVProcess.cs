@@ -112,42 +112,44 @@ namespace Cactbot {
     //   0x92 bytes in: byte distance;
     //   ...
     //   0xA0 bytes in: float32 pos_x;
-    //   0xA4 bytes in: float32 pos_y;
-    //   0xA8 bytes in: float32 pos_z;
+    //   0xA4 bytes in: float32 pos_z;
+    //   0xA8 bytes in: float32 pos_y;
     //   ...
-    //   0x168C bytes in: int32 hp;
-    //   0x1690 bytes in: int32 maxhp;
-    //   0x1694 bytes in: int32 mp;
-    //   0x1698 bytes in: int32 maxmp;
-    //   0x169C bytes in: int16 tp;
-    //   ...
-    //   0x169E bytes in: int16 gp;
-    //   0x16A0 bytes in: int16 maxgp;
-    //   0x16A2 bytes in: int16 cp;
-    //   0x16A4 bytes in: int16 maxcp;
-    //   ...
-    //   0x16C2 bytes in: EntityJob job;  // 1 byte.
-    //   ...
-    //   0x16C4 bytes in: int16 level;
-    //   ...
-    //   0x18B4 bytes in: int casting_spell_id;  // 4 bytes (maybe 2?)
-    //   ...
-    //   0x18E4 bytes in: float32 casting_spell_time_spent;  // 4 bytes
-    //   0x18E8 bytes in: float32 casting_spell_length;      // 4 bytes
+    //   0x16A8 bytes in:
+    //     0x000 bytes in: int32 hp;
+    //     0x004 bytes in: int32 maxhp;
+    //     0x008 bytes in: int32 mp;
+    //     0x00C bytes in: int32 maxmp;
+    //     0x010 bytes in: int16 tp;
+    //     0x012 bytes in: int16 gp;
+    //     0x014 bytes in: int16 maxgp;
+    //     0x016 bytes in: int16 cp;
+    //     0x018 bytes in: int16 maxcp;
+    //     ...
+    //     0x036 bytes in: EntityJob job;  // 1 byte.
+    //     ...
+    //     0x038 bytes in: int16 level;
+    //     ...
+    //     0x22C bytes in: int casting_spell_id;  // 4 bytes (maybe 2?)
+    //     ...
+    //     0x25C bytes in: float32 casting_spell_time_spent;  // 4 bytes
+    //     0x260 bytes in: float32 casting_spell_length;      // 4 bytes
     // }
-    private static int kEntityStructureSize = 0x18E8 + 4;
+    private static int kEntityStructureSize = 0x16A8 + 0x260 + 4;
     private static int kEntityStructureSizeName = 0x44;
     private static int kEntityStructureOffsetName = 0x30;
     private static int kEntityStructureOffsetId = 0x74;
     private static int kEntityStructureOffsetType = 0x8C;
     private static int kEntityStructureOffsetDistance = 0x92;
     private static int kEntityStructureOffsetPos = 0xA0;
-    private static int kEntityStructureOffsetHpMpTp = 0x168C;
-    private static int kEntityStructureOffsetGpCp = 0x169E;
-    private static int kEntityStructureOffsetJob = 0x16C2;
-    private static int kEntityStructureOffsetLevel = 0x16C4;
-    private static int kEntityStructureOffsetCastingId = 0x18B4;
-    private static int kEntityStructureOffsetCastingTimeProgress = 0x18E4;
+    // Base offset for the things below.
+    private static int kEntityStructureOffsetCharacterDetails = 0x16A8;
+    private static int kEntityStructureOffsetHpMpTp = 0x0;
+    private static int kEntityStructureOffsetGpCp = 0x12;
+    private static int kEntityStructureOffsetJob = 0x36;
+    private static int kEntityStructureOffsetLevel = 0x38;
+    private static int kEntityStructureOffsetCastingId = 0x22C;
+    private static int kEntityStructureOffsetCastingTimeProgress = 0x25C;
 
     // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
     // in July 7, 2017 update. The lines that actually read are:
@@ -411,17 +413,17 @@ namespace Cactbot {
       data.pos_y = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos + 8);
 
       if (data.type == EntityType.PC || data.type == EntityType.Monster) {
-        data.hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp);
-        data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp + 4);
-        data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp + 8);
-        data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetHpMpTp + 12);
-        data.tp = BitConverter.ToInt16(bytes, kEntityStructureOffsetHpMpTp + 16);
-        data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp);
-        data.max_gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 2);
-        data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 4);
-        data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetGpCp + 6);
-        data.job = (EntityJob)bytes[kEntityStructureOffsetJob];
-        data.level = BitConverter.ToInt16(bytes, kEntityStructureOffsetLevel);
+        data.hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp);
+        data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 4);
+        data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 8);
+        data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 12);
+        data.tp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 16);
+        data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp);
+        data.max_gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 2);
+        data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 4);
+        data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 6);
+        data.job = (EntityJob)bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetJob];
+        data.level = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel);
 
         byte[] job_bytes = GetJobSpecificData();
         data.debugJob = "";
@@ -436,9 +438,9 @@ namespace Cactbot {
         }
 
         casting_data = new SpellCastingData();
-        casting_data.casting_id = BitConverter.ToInt32(bytes, kEntityStructureOffsetCastingId);
-        casting_data.casting_time_progress = BitConverter.ToSingle(bytes, kEntityStructureOffsetCastingTimeProgress);
-        casting_data.casting_time_length = BitConverter.ToSingle(bytes, kEntityStructureOffsetCastingTimeProgress + 4);
+        casting_data.casting_id = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingId);
+        casting_data.casting_time_progress = BitConverter.ToSingle(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingTimeProgress);
+        casting_data.casting_time_length = BitConverter.ToSingle(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingTimeProgress + 4);
       }
 
       return Tuple.Create(data, casting_data);
