@@ -25,6 +25,7 @@ triggers/o2s.js
 triggers/o3s.js
 triggers/o4s.js
 triggers/shatter.js
+triggers/shinryu-ex.js
 triggers/susano-ex.js
 triggers/test.js
 triggers/temple_of_the_fist.js
