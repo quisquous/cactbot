@@ -20,6 +20,7 @@ timelines/o3s.txt
 timelines/o4s.txt
 timelines/test.txt
 
+triggers/drowned_city_of_skalla.js
 triggers/o1s.js
 triggers/o2s.js
 triggers/o3s.js
