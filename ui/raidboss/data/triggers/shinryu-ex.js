@@ -2,71 +2,73 @@
 [{
   zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
   triggers: [
-    {
-      regex: /starts using Akh Morn/,
-      alertText: function(data) {
-        return "akh morn";
-      },
+    { regex: /starts using Akh Morn/,
+      infoText: function(data) { return "Akh morn: Spread and move"; },
+    },
+    { regex: /Shinryu starts using Diamond Dust/,
+      infoText: function(data) { return "Ice: Stack and Stop"; },
+      run: function(data) { data.ice = true },
+      condition: function(data) { return !data.ice },
+    },
+    { regex: /:Shinryu:....:Diamond Dust:/,
+      run: function(data) { data.ice = false },
+    },
+    { regex: /starts using Dragonfist/,
+      infoText: function(data) { return "Out of middle"; },
+    },
+    { regex: /starts using Earth Breath/,
+      alertText: function(data) { return "Shakers"; },
+    },
+    { regex: /starts using Hellfire/,
+      durationSeconds: 7,
+      alertText: function(data) { return "Get in water"; },
+      run: function(data) { data.hellfire = true },
+      condition: function(data) { return !data.hellfire },
+    },
+    { regex: /:Shinryu:....:Hellfire:/,
+      run: function(data) { data.hellfire = false },
+    },
+    { regex: /Wing starts using Hypernova/,  // Right Wing only?
+      durationSeconds: 7,
+      alertText: function(data) { return "Stack in water"; },
+      //run: function(data) { data.water2 = true },
+      //condition: function(data) { return !data.water2 },
+    },
+    //{ regex: /:Shinryu:....:Hypernova:/,
+    //  run: function(data) { data.water2 = false },
+    //},
+    { regex: /Shinryu starts using Judgment Bolt/,
+      durationSeconds: 7,
+      alertText: function(data) { return "Stack, no water"; },
+      run: function(data) { data.judgement = true },
+      condition: function(data) { return !data.judgement },
+    },
+    { regex: /:Shinryu:....:Judgment Bolt:/,
+      run: function(data) { data.judgement = false },
+    },
+    { regex: /starts using Levinbolt/,
+      durationSeconds: 7,
+      alertText: function(data) { return "Spread out, no water"; },
+    },
+    { regex: /Left Wing starts using Summon Icicle/,
+      alarmText: function(data) { return "look back at icicles"; },
     },
     {
-      regex: /starts using Diamond Dust/,
-      alertText: function(data) {
-        return "floor ice";
-      },
+      regex: /Shinryu starts using Tidal Wave/,
+      delaySeconds: 3,
+      durationSeconds: 5,//7,
+      infoText: function(data) { return "Knockback: look for water"; },
+      condition: function(data) { var run = !data.water; data.water = true; return run; },
     },
-    {
-      regex: /starts using Dragonfist/,
-      alertText: function(data) {
-        return "middle fist";
-      },
+    { regex: /:Shinryu:....:Tidal Wave:/,
+      run: function(data) { data.water = false },
     },
-    {
-      regex: /starts using Earth Breath/,
-      alertText: function(data) {
-        return "shakers";
-      },
+    { regex: /starts using Tail Slap/,
+      delaySeconds: 2,
+      infoText: function(data) { return "Tail: Switch targets"; },
     },
-    {
-      regex: /starts using Hellfire/,
-      alertText: function(data) {
-        return "get in any water";
-      },
-    },
-    {
-      regex: /starts using Hypernova/,
-      alertText: function(data) {
-        return "get in shared water";
-      },
-    },
-    {
-      regex: /starts using Judgement Bolt/,
-      alertText: function(data) {
-        return "get out of water";
-      },
-    },
-    {
-      regex: /starts using Levinbolt/,
-      alertText: function(data) {
-        return "spread out, out of water";
-      },
-    },
-    {
-      regex: /starts using Summon Icicle/,
-      alertText: function(data) {
-        return "look back at icicles";
-      },
-    },
-    {
-      regex: /starts using Tail Slap/,
-      alertText: function(data) {
-        return "kill tail";
-      },
-    },
-    {
-      regex: /starts using Tidal Wave/,
-      alertText: function(data) {
-        return "look for water";
-      },
+    { regex: /:Added new combatant The Worm's Heart/,
+      infoText: function(data) { return "Heart: Switch targets"; },
     },
   ]
 }]
