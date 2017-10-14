@@ -1,0 +1,65 @@
+# Shinryu Ex
+# Text Guide: http://clees.me/guides/shinryu-ex/
+
+zone "^The Minstrel's Ballad: Shinryu's Domain$"
+
+hideall "--sync--"
+
+# There's a lot of "Shinryu" combatants, some of which get removed during
+# the phase transition, so only care about the real one.  Hopefully this
+# HP never changes.
+0 "--Reset--" sync /Removing combatant Shinryu\.  Max HP: 17167557\./ window 10000 jump 0
+
+#### PHASE 1: Elemental carousel
+
+0.0 "Start" sync /:Engage!/ window 0,1
+11.0 "--sync--" sync /:Shinryu starts using Earthen Fury/ window 11,5
+20.5 "Earthen Fury" # castbar end
+35.8 "Tethers" # debuff appearance
+44.5 "Tidal Wave" # movement
+49.5 "Tail Marker (healer)" duration 8 # marker -> disappearance
+62.5 "Summon Icicle" duration 4 # appearance -> divebombs
+67.5 "Tail Slap" # targetable # TODO: check
+70.5 "Hypernova / Levinbolt" duration 8 # castbar -> damage
+85.0 "Heart Add" # appearance
+89.8 "Dragonfist" # appearance
+93.5 "Ice Storm" # castbar end
+103.0 "Akh Morn / Rhai (1)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar # TODO: maybe 103.5 from logs
+112.5 "Judgment Bolt / Hellfire" duration 7.5
+117.5 "Summon Icicle" duration 4 # appearance -> divebombs
+138.0 "Tail Marker (dps)" duration 8 # marker -> disappearance
+140.8 "Levinbolt" duration 8 # castbar -> damage
+155.8 "Tail Slap" # targetable # TODO: check
+163.5 "Ice Storm" # castbar end
+166.8 "Heart Add" # appearance
+171.8 "Tethers (T/H)" # debuff appearance
+175.0 "Earth Breath" duration 6 # mark -> damage
+183.5 "Akh Morn / Rhai (2)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar
+193.0 "Ice Storm" # castbar end
+206.8 "Tethers (healers)" # debuff appearance
+207.5 "Diamond Dust" # castbar end
+226.0 "Reiyu Adds" # appearance
+233.0 "Tail Marker (tank)" duration 8 # marker -> disappearance
+251.1 "Tail Slap" # targetable
+253.0 "Heart Add (after tail)" # appearance
+267.0 "Akh Morn / Rhai (3)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar # TODO: maybe 267.5 from logs?
+269.0 "Summon Icicle" duration 4 # appearance -> divebombs
+283.0 "Aerial Blast" duration 11 sync /:Shinryu starts using Aerial Blast/ window 10 # castbar start -> last knockback
+294.0 "Tethers (dps)" # debuff appearance
+296.5 "Heart Add" # apperance
+315.0 "Earth Breath" duration 6 # mark -> damage
+323.0 "Ice Storm" # castbar end
+327.0 "--untargetable--"
+332.0 "Gyre Charge" duration 5.5
+343.0 "--targetable--"
+344.5 "Hypernova / Levinbolt" duration 8 # castbar
+360.0 "Akh Morn / Rhai (4)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar
+372.0 "Levinbolt" duration 8 # castbar
+386.5 "Tidal Wave" # movement
+392.0 "Dark Matter" # TODO: this time is wrong
+
+### PHASE 2: Adds, explosions, dramatic tail climbing
+
+500.0 "--Phase 2--" sync /:Shinryu starts using Dark Matter/ window 500,500
+513.0 "TAP BUTTON OR ELSE" duration 5 # castbar
+
