@@ -2,6 +2,16 @@
 [{
   zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
   triggers: [
+    { regex: /:25DE:Shinryu starts using Earthen Fury/,
+      run: function(data) {
+        data.phase = 1;
+      },
+    },
+    { regex: /:Shinryu starts using Dark Matter/,
+      run: function(data) {
+        data.phase = 2;
+      },
+    },
     { id: 'ShinryuEx Akh Morn',
       regex: /:Shinryu starts using Akh Morn on (\y{Name})/,
       alertText: function(data, matches) {
@@ -62,11 +72,15 @@
     },
     { id: 'ShinryuEx Heart',
       regex: /:Added new combatant The Worm's Heart/,
+      condition: function(data) {
+        // Prevent ugly heart message on wipe.
+        return data.phase == 1;
+      },
       infoText: function(data) { return 'Heart: Switch targets'; },
     },
     { id: 'ShinryuEx Divebomb',
       regex: /:Shinryu starts using Gyre Charge/,
-      alarmText: function(data) { return 'move away from divebomb'; },
+      alarmText: function(data) { return 'avoid divebomb'; },
     },
     { id: 'ShinryuEx Tera Slash',
       regex: /:25DA:Shinryu starts using Tera Slash/,

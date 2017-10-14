@@ -3,6 +3,7 @@
 
 zone "^The Minstrel's Ballad: Shinryu's Domain$"
 
+hideall "--Reset--"
 hideall "--sync--"
 
 # There's a lot of "Shinryu" combatants, some of which get removed during
