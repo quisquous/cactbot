@@ -64,3 +64,5 @@ hideall "--sync--"
 500.0 "--Phase 2--" sync /:Shinryu starts using Dark Matter/ window 500,500
 513.0 "TAP BUTTON OR ELSE" duration 5 # castbar
 
+### PHASE 3
+800.0 "--Phase 3--" sync /:Shinryu starts using Protostar/ window 500,500
