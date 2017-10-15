@@ -172,6 +172,16 @@ namespace Cactbot {
         start_strings = { ":Neo Exdeath uses Almagest" },
         end_strings = { ":Neo Exdeath is defeated" },
       };
+      var shinryu_ex = new BossFightPhaseDetails {
+        boss_id = "Shinryu Ex",
+        start_strings = { MakeCountdownString(), ":Shinryu starts using Earthen Fury" },
+        end_strings = { "Removing combatant Shinryu.  Max HP: 17167557." },
+        // TODO: implement phase triggers here
+        // Phase 1 starts with combat, ends with dark matter cast
+        // Phase 2 starts with "Added new Combatant Hakkinryu", ends with protostar cast
+        // Phase 3 starts with protostar cast??, ends
+        // Phase 4 starts with tidal wave
+      };
 
       var test_boss = new BossFightPhaseDetails {
         boss_id = "savage_test",
@@ -191,6 +201,8 @@ namespace Cactbot {
         { "Unknown Zone (2B8)", new List<BossFightPhaseDetails>{ o2s } },
         { "Unknown Zone (2B9)", new List<BossFightPhaseDetails>{ o3s } },
         { "Unknown Zone (2Ba)", new List<BossFightPhaseDetails>{ o4s, o4s_neo } },
+
+        { "The Minstrel's Ballad: Shinryu's Domain", new List<BossFightPhaseDetails>{shinryu_ex } },
       };
     }
 
