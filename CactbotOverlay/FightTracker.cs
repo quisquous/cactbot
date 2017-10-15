@@ -91,7 +91,7 @@ namespace Cactbot {
     // [19:32:54.000] 00:0839:The Quire is no longer sealed!
 
     // TODO: Is there enough information in logs to disallow /p triggering this?
-    private string kBeginPhaseLog = "will be sealed off in 15 seconds";
+    private string kBeginPhaseLog = "will be sealed off in ";
     private string kEndPhaseLog = "is no longer sealed";
 
     private string kTestBeginPhaseLog = "cactbot phase start";
