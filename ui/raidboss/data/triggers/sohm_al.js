@@ -23,7 +23,7 @@
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: /:Added new combatant Chyme Of The Mountain/
+      regex: /:Added new combatant Chyme Of The Mountain/,
       alertText: function(data) { return 'Kill Chyme Add'; },
     },
     {
