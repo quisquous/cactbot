@@ -1,7 +1,7 @@
 // Sohm Al (normal)
 // Nobody remembers what to do here, so here's triggers.
 [{
-  zoneRegex: /^Sohm Al$/
+  zoneRegex: /^Sohm Al$/,
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
