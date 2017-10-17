@@ -1,7 +1,7 @@
 // Sohm Al (normal)
 // Nobody remembers what to do here, so here's triggers.
 [{
-  zoneRegex: /^Sohm Al$/
+  zoneRegex: /^Sohm Al$/,
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
@@ -23,7 +23,7 @@
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: /:Added new combatant Chyme Of The Mountain/
+      regex: /:Added new combatant Chyme Of The Mountain/,
       alertText: function(data) { return 'Kill Chyme Add'; },
     },
     {
