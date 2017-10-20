@@ -93,24 +93,28 @@
       id: 'O3S Right Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
       infoText: 'Mindjack: Right',
+      durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
       id: 'O3S Forward March',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
       infoText: 'Mindjack: Forward',
+      durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
       id: 'O3S Left Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
       infoText: 'Mindjack: Left',
+      durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
       id: 'O3S About Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
       infoText: 'Mindjack: Back',
+      durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
