@@ -23,6 +23,11 @@
         data.phase = 3;
       },
     },
+    { regex: /:264E:Shinryu starts using Tidal Wave/,
+      run: function(data) {
+        data.phase = 4;
+      },
+    },
     { id: 'ShinryuEx Akh Morn',
       regex: /:Shinryu starts using Akh Morn on (\y{Name})/,
       alertText: function(data, matches) {
@@ -65,12 +70,20 @@
       alertText: function(data) { return 'Stack, no water'; },
     },
     { id: 'ShinryuEx Levinbolt',
-      regex: /:Right Wing starts using Levinbolt/,
+      regex: /:Right Wing starts using Levinbolt on Right Wing/,
       durationSeconds: 7,
       alertText: function(data) {
         if (data.phase == 3)
           return 'bait bolt, keep moving';
         return 'Spread out, no water';
+      },
+    },
+    { id: 'ShinryuEx Levinbolt Phase 3',
+      regex: /:Right Wing starts using Levinbolt on Right Wing/,
+      delaySeconds: 9.5,
+      alarmText: function(data) {
+        if (data.phase == 3)
+          return 'move away';
       },
     },
     { id: 'ShinryuEx Icicle Left',
@@ -86,6 +99,13 @@
       delaySeconds: 3,
       durationSeconds: 5,
       infoText: function(data) { return 'Knockback: look for water'; },
+    },
+    { id: 'ShinryuEx Final Tidal Wave',
+      regex: /:264E:Shinryu starts using Tidal Wave/,
+      infoText: function(data) {
+        if (data.role == 'healer')
+          return 'no more heals needed';
+      },
     },
     { id: 'ShinryuEx Tail Slap',
       regex: /:Tail starts using Tail Slap/,
@@ -105,13 +125,28 @@
       regex: /:Shinryu starts using Gyre Charge/,
       alarmText: function(data) { return 'avoid divebomb'; },
     },
-    { id: 'ShinryuEx Tera Slash',
-      regex: /:25DA:Shinryu starts using Tera Slash/,
-      alarmText: function(data) {
-        if (data.role == 'tank')
-          return 'Tank Buster / Swap';
+    { id: 'ShinryuEx Death Sentence',
+      regex: /:Hakkinryu starts using Death Sentence on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me)
+          return 'Death Sentence on YOU';
         if (data.role == 'healer')
-          return 'Tank Buster';
+          return 'Death Sentence on ' + matches[1];
+      },
+      infoText: function(data, matches) {
+        if (matches[1] != data.me && data.role == 'tank')
+          return 'Death Sentence on ' + matches[1];
+      },
+    },
+    { id: 'ShinryuEx Tera Slash',
+      regex: /:264B:Shinryu starts using Tera Slash on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me)
+          return 'Tank Buster on YOU';
+        if (data.role == 'tank')
+          return 'Tank Swap';
+        if (data.role == 'healer')
+          return 'Tank Buster on ' + matches[1];
       },
     },
     { id: 'ShinryuEx Wyrmwail',
@@ -119,13 +154,13 @@
       alertText: function(data) { return 'be inside hitbox'; },
     },
     { id: 'ShinryuEx Breath',
-      regex: /:Shinryu starts using Benighting Breath/,
+      regex: /:264A:Shinryu starts using Benighting Breath/,
       alertText: function(data) { return 'front cleave'; },
     },
     { id: 'ShinryuEx Final Left Wing',
       regex: /:Left Wing starts using Judgment Bolt/,
       condition: function(data) { return !data.finalWing; },
-      infoText: function(data) {
+      alertText: function(data) {
         data.finalWing = true;
         return 'kill left first';
       },
@@ -133,7 +168,7 @@
     { id: 'ShinryuEx Final Right Wing',
       regex: /:Right Wing starts using Hellfire/,
       condition: function(data) { return !data.finalWing; },
-      infoText: function(data) {
+      alertText: function(data) {
         data.finalWing = true;
         return 'kill right first';
       },
@@ -176,6 +211,15 @@
       },
       run: function(data) {
         delete data.shakerTargets;
+      },
+    },
+    { id: 'ShinryuEx Cocoon Marker',
+      regex: /1B:........:(\y{Name}):....:....:0039:0000:0000:0000:/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      alarmText: function(data) {
+        return 'spread out';
       },
     },
   ]
