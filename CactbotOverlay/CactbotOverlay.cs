@@ -346,7 +346,7 @@ namespace Cactbot {
 
       // onZoneChangedEvent: Fires when the player changes their current zone.
       string zone_name = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone;
-      if (!zone_name.Equals(notify_state_.zone_name)) {
+      if (notify_state_.zone_name == null || !zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
@@ -648,7 +648,7 @@ namespace Cactbot {
       public bool game_active = false;
       public bool? in_combat;
       public bool dead = false;
-      public string zone_name = "";
+      public string zone_name = null;
       public FFXIVProcess.EntityData player = null;
       public FFXIVProcess.RedMageJobData rdm = new FFXIVProcess.RedMageJobData();
       public FFXIVProcess.WarriorJobData war = new FFXIVProcess.WarriorJobData();
