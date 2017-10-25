@@ -40,12 +40,14 @@
     },
     { id: 'UCU Twintania P2',
       regex: /:Twintania HP at 74%/,
+      sound: 'Long',
       infoText: function(data, matches) {
         return "Phase 2 Push";
       },
     },
     { id: 'UCU Twintania P3',
       regex: /:Twintania HP at 44%/,
+      sound: 'Long',
       infoText: function(data, matches) {
         return "Phase 3 Push";
       },
