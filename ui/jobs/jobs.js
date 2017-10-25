@@ -10,7 +10,7 @@ var Options = {
   // The number of seconds before food expires to start showing the food buff warning.
   HideWellFedAboveSeconds: 15 * 60,
   // Zones to show food buff warning (when at max level).
-  WellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)$/,
+  WellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*Savage.*)|$/,
   // Option to show the stone/fire/impact procs.
   ShowRdmProcs: true,
 
