@@ -45,7 +45,7 @@
       },
     },
     { id: 'UCU Twintania P3',
-      regex: /:Twintania HP at 43%/,
+      regex: /:Twintania HP at 44%/,
       infoText: function(data, matches) {
         return "Phase 3 Push";
       },
