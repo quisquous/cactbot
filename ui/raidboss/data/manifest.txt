@@ -20,6 +20,7 @@ timelines/o2s.txt
 timelines/o3s.txt
 timelines/o4s.txt
 timelines/test.txt
+timelines/unending_coil_ultimate.txt
 
 triggers/drowned_city_of_skalla.js
 triggers/o1s.js

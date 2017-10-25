@@ -1,0 +1,11 @@
+# Unending Coil of Bahamut
+
+zone "."
+
+hideall "--Reset--"
+hideall "--sync--"
+
+# TODO: probably need max hp here
+0 "--Reset--" sync /Removing combatant Twintania/ window 10000 jump 0
+
+0.0 "Start" sync /:Engage!/ window 0,1
