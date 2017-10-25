@@ -182,6 +182,11 @@ namespace Cactbot {
         // Phase 3 starts with protostar cast??, ends
         // Phase 4 starts with tidal wave
       };
+      var ucu_twintania = new BossFightPhaseDetails {
+        boss_id = "ucu-twintania",
+        start_strings = { MakeCountdownString(), ":Twintania:26A7:Unknown_26A7:" },
+        end_strings = { ":Something happens" },
+      };
 
       var test_boss = new BossFightPhaseDetails {
         boss_id = "savage_test",
@@ -201,6 +206,8 @@ namespace Cactbot {
         { "Unknown Zone (2B8)", new List<BossFightPhaseDetails>{ o2s } },
         { "Unknown Zone (2B9)", new List<BossFightPhaseDetails>{ o3s } },
         { "Unknown Zone (2Ba)", new List<BossFightPhaseDetails>{ o4s, o4s_neo } },
+
+        { "", new List<BossFightPhaseDetails>{ ucu_twintania } },
 
         { "The Minstrel's Ballad: Shinryu's Domain", new List<BossFightPhaseDetails>{shinryu_ex } },
       };
