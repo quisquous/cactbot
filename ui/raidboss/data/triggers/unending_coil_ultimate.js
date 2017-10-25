@@ -3,7 +3,8 @@
   zoneRegex: /(The Unending Coil Of Bahamut \(Ultimate\)|Unknown Zone \(.*?\))|/,
   triggers: [
     { id: 'UCU Twisters',
-      regex: /:Twintania starts using Twisters/,
+      regex: /:26AA:Twintania starts using/,
+      //regex: /:Twintania readies Twister/,
       alertText: function(data) {
         return 'Twisters';
       },
