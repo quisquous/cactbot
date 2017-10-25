@@ -1,11 +1,51 @@
-# Unending Coil of Bahamut
+# Unending Coil of Bahamut (Ultimate)
 
-zone "."
+# TODO: Zone name is empty string for now lol?
+zone "(The Unending Coil Of Bahamut \(Ultimate\)|^$)"
 
 hideall "--Reset--"
 hideall "--sync--"
 
-# TODO: probably need max hp here
-0 "--Reset--" sync /Removing combatant Twintania/ window 10000 jump 0
+0 "--Reset--" sync /Removing combatant Phoenix/ window 10000 jump 0
 
-0.0 "Start" sync /:Engage!/ window 0,1
+##### TWINTANIA #####
+### Twintania P1: 100% -> 75%
+0.0 "Start" sync /:Engage/ window 0,1
+7.0 "Plummet" sync /:Twintania:26A8:/ window 12,12 # damage
+11.0 "Twister" # start of cast bar
+17.5 "Fireball" # damage, 6.5s after marker
+24.0 "Death Sentence" # end of cast bar
+28.5 "Plummet"  # damage
+30.5 "Twister" # start of cast bar
+37.0 "Fireball" # damage, 6.5s after marker
+40.0 "--push--"
+# TODO: Make this loop back to 24?
+# 43.5 "You're Slow Death Sentence"
+
+### Twintania P2: 75% -> 45%
+48.5 "Liquid Fire x5" duration 5
+53.0 "Generate" sync /:Twintania:26AE:/ window 30,15 # start of cast bar
+60.5 "Liquid Fire x5" duration 5
+71.0 "Death Sentence" # end of cast bar
+75.5 "Generate" # start of cast bar
+79.5 "Twister" # start of cast bar
+89.0 "Plummet" # damage
+94.5 "Liquid Fire x5" duration 5
+98.0 "--push--"
+# TODO: Make this loop back to 53?
+# 98.5 "You're Slow Generate"
+
+### Twintania P3: 45% -> 0%
+110.0 "Liquid Fire x5" duration 5
+114.5 "Generate x2" sync /:Twintania:26AE:/ window 30,20 # start of cast bar
+121.5 "Targeted Fire x5" duration 5
+129.0 "Fireball" # damage
+136.5 "Death Sentence" # end of cast bar
+144.0 "Generate x2" # start of cast bar
+148.5 "Twister" # start of cast bar
+157.0 "Plummet" # damage
+158.5 "Liquid Fire x5" duration 5
+164.0 "Generate x2" sync /:Twintania:26AE:/ window 30,0 jump 114.5 # start of cast bar 
+171.0 "Targeted Fire x5" duration 5
+178.5 "Fireball" # damage
+186.0 "Death Sentence" # end of cast bar
