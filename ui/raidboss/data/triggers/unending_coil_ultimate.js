@@ -1,10 +1,12 @@
-// O3S - Deltascape 3.0 Savage
+// UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
-  zoneRegex: /(The Unending Coil Of Bahamut \(Ultimate\)|Unknown Zone \(xyz\))/,
+  zoneRegex: /(The Unending Coil Of Bahamut \(Ultimate\)|Unknown Zone \(.*?\))/,
   triggers: [
-    {
-      id: 'UCU Something',
-      regex: /:Boss starts using Thing/,
+    { id: 'UCU Twisters',
+      regex: /:Twintania starts using Twisters/,
+      alertText: function(data) {
+        return 'Twisters';
+      },
     },
   ]
 }]
