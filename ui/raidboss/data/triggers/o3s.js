@@ -47,6 +47,12 @@
         }
         return "Stack on " + data.holyTargets[1];
       },
+      infoText: function(data) {
+        for (var i = 0; i < 4; ++i) {
+          if (data.holyTargets[i] == data.me)
+            return "others stack on" + data.holyTargets[1];
+        }
+      },
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
         if (data.phase == 3)
