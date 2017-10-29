@@ -45,7 +45,50 @@ hideall "--sync--"
 148.5 "Twister" # start of cast bar
 157.0 "Plummet" # damage
 158.5 "Liquid Fire x5" duration 5
-164.0 "Generate x2" sync /:Twintania:26AE:/ window 30,0 jump 114.5 # start of cast bar 
+164.0 "Generate x2" sync /:Twintania:26AE:/ window 30,0 jump 114.5 # start of cast bar
 171.0 "Targeted Fire x5" duration 5
 178.5 "Fireball" # damage
 186.0 "Death Sentence" # end of cast bar
+
+
+##### NAEL #####
+200.0 "Heavensfall" sync /:Ragnarok:26B8:/ window 200,0
+205.5 "Meteor Stream x4"
+208.5 "Meteor Stream x4"
+211.4 "Dalamud Dive"
+213.5 "Bahamut's Claw" duration 3
+234.9 "Thunderstruck x2"
+235.0 "Dynamo + Beam/Chariot"
+240.3 "Doom x2"
+242.3 "Fireball"
+242.3 "Wings of Salvation x2"
+249.3 "Bahamut's Claw" duration 3
+
+257.0 "Fireball"
+261.0 "Thunderstruck x2"
+261.0 "Thermionic + Dynamo/Chariot"
+270.0 "Doom x3"
+272.0 "Wings of Salvation x3"
+279.0 "Thunderstruck x2"
+284.0 "Fireball"
+289.0 "Bahamut's Claw"
+292.0 "Dive + Dynamo/Chariot"
+305.0 "Fireball"
+305.0 "Doom x3"
+307.0 "Thunderstruck x2"
+315.0 "Wings of Salvation x3"
+324.0 "Ravensbeak"
+
+333.0 "Cauterize markers x3"
+335.0 "Supernova x4" duration 10
+341.0 "Divebomb #1"
+343.0 "Meteor/Dive or Dive/Beam"
+345.0 "Divebomb #2"
+349.0 "Divebomb #3"
+
+350.0 "Bahamut's Claw"
+363.0 "Random Combo Attack"
+374.0 "Random Combo Attack"
+389.0 "Ravensbeak"
+398.0 "Bahamut's Claw"
+403.0 "Mega Flare Enrage"
