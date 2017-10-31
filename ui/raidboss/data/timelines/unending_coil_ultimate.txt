@@ -11,11 +11,12 @@ hideall "--sync--"
 ##### TWINTANIA #####
 ### Twintania P1: 100% -> 75%
 0.0 "Start" sync /:Engage/ window 0,1
-7.0 "Plummet" sync /:Twintania:26A8:/ window 12,12 # damage
+7.0 "--sync--" sync /:Twintania:26A8:/ window 12,12 # plummet cast
+8.0 "Plummet" # damage
 11.0 "Twister" # start of cast bar
 17.5 "Fireball" # damage, 6.5s after marker
 24.0 "Death Sentence" # end of cast bar
-28.5 "Plummet"  # damage
+28.5 "Plummet" # damage
 30.5 "Twister" # start of cast bar
 37.0 "Fireball" # damage, 6.5s after marker
 40.0 "--push--"
@@ -24,32 +25,35 @@ hideall "--sync--"
 
 ### Twintania P2: 75% -> 45%
 48.5 "Liquid Fire x5" duration 5
-53.0 "Generate" sync /:Twintania:26AE:/ window 30,15 # start of cast bar
-60.5 "Liquid Fire x5" duration 5
-71.0 "Death Sentence" # end of cast bar
-75.5 "Generate" # start of cast bar
-79.5 "Twister" # start of cast bar
-89.0 "Plummet" # damage
-94.5 "Liquid Fire x5" duration 5
-98.0 "--push--"
+53.0 "Generate" # start of cast bar
+56.0 "--sync--" sync /:Twintania:26AE:/ window 30,15 # end of cast bar
+60.0 "Liquid Fire x5" duration 5
+70.5 "Death Sentence" # end of cast bar
+74.5 "Generate" # start of cast bar
+79.0 "Twister" # start of cast bar
+88.0 "Plummet" # damage
+93.0 "Liquid Fire x5" duration 5
+101.0 "--push--"
 # TODO: Make this loop back to 53?
-# 98.5 "You're Slow Generate"
+# 101.5 "You're Slow Generate"
 
 ### Twintania P3: 45% -> 0%
-110.0 "Liquid Fire x5" duration 5
-114.5 "Generate x2" sync /:Twintania:26AE:/ window 30,20 # start of cast bar
-121.5 "Targeted Fire x5" duration 5
-129.0 "Fireball" # damage
-136.5 "Death Sentence" # end of cast bar
-144.0 "Generate x2" # start of cast bar
-148.5 "Twister" # start of cast bar
-157.0 "Plummet" # damage
-158.5 "Liquid Fire x5" duration 5
-164.0 "Generate x2" sync /:Twintania:26AE:/ window 30,0 jump 114.5 # start of cast bar
-171.0 "Targeted Fire x5" duration 5
-178.5 "Fireball" # damage
-186.0 "Death Sentence" # end of cast bar
-
+113.0 "Liquid Fire x5" duration 5
+113.5 "Generate x2"
+116.5 "--sync--" sync /:Twintania:26AE:/ window 13,20 # end of cast bar
+121.0 "Targeted Fire x5" duration 4.5
+128.0 "Fireball" # damage
+135.0 "Death Sentence" # end of cast bar
+140.0 "Plummet" # damage
+143.0 "Generate x2" # start of cast bar
+147.2 "Twister" # start of cast bar
+155.5 "Plummet" # damage
+157.5 "Liquid Fire x5" duration 5
+162.5 "Generate x2" # start of cast bar
+170.0 "Targeted Fire x5" duration 4.5
+177.0 "Fireball" # damage
+184.0 "Death Sentence" # end of cast bar
+186.0 "Aetheric Profusion Enrage"
 
 ##### NAEL #####
 200.0 "Heavensfall" sync /:Ragnarok:26B8:/ window 200,0
