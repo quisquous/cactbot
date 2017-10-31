@@ -39,17 +39,6 @@
           return 'Death Sentence';
       },
     },
-    { id: 'UCU Fireball Marker',
-      regex: /1B:........:(\y{Name}):....:....:0075:0000:0000:0000:/,
-      infoText: function(data, matches) {
-        if (data.me != matches[1])
-          return 'fireball on ' + matches[1];
-      },
-      alertText: function(data, matches) {
-        if (data.me == matches[1])
-          return 'fireball on YOU';
-      },
-    },
     { id: 'UCU Hatch Marker',
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
       infoText: function(data, matches) {
