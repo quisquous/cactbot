@@ -122,10 +122,68 @@
         // TODO: reminder to clear at the right time
       },
     },
+    // TODO: sync fireball tether appearance to the heavensfall for now.
+    { id: 'UCU Nael Fireball 1',
+      regex: /:Ragnarok:26B8:/,
+      delaySeconds: 35,
+      alertText: function(data) {
+        if (data.iceDebuff)
+          return "fire in (stack!)";
+        return "fire in";
+      },
+    },
+    { id: 'UCU Nael Fireball 2',
+      regex: /:Ragnarok:26B8:/,
+      delaySeconds: 51,
+      alertText: function(data) {
+        if (data.fireDebuff)
+          return "fire out; you in";
+        if (!data.iceDebuff)
+          return "fire out";
+      },
+      alarmText: function(data) {
+        // All players should be neutral by the time fire #2 happens.
+        // If you have ice at this point, it means you missed the first
+        // stack.  Therefore, make sure you stack.  It's possible you
+        // can survive until fire 3 happens, but it's not 100%.
+        // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
+        if (data.iceDebuff)
+          return "fire out (stack!)";
+      },
+    },
+    { id: 'UCU Nael Fireball 3',
+      regex: /:Ragnarok:26B8:/,
+      delaySeconds: 77,
+      alertText: function(data) {
+        if (data.iceDebuff)
+          return "fire in (stack!)";
+        if (!data.fireDebuff)
+          return "fire in";
+      },
+      alarmText: function(data) {
+        // If you were the person with fire tether #2, then you could
+        // have fire debuff here and need to no stack.
+        if (data.fireDebuff)
+          return "fire in; YOU OUT!";
+      },
+    },
+    { id: 'UCU Nael Fireball 4',
+      regex: /:Ragnarok:26B8:/,
+      delaySeconds: 98,
+      alertText: function(data) {
+        if (data.iceDebuff)
+          return "fire in (stack!)";
+        if (!data.fireDebuff)
+          return "fire in";
+      },
+      alarmText: function(data) {
+        // Not sure this is possible.
+        if (data.fireDebuff)
+          return "fire in; YOU OUT!";
+      },
+    },
 
-    // TODO: fire callouts
-    //   (1) if you have tether (is there a 1B mark??)< whether in or out
-    //   (2) if you have fire (to stay out), if you have ice (to get in)
+    // TODO: fire callouts if you have tether? Is there a 1B marker?
     // TODO: cauterize markers
     // TODO: cauterize placement from dragons
   ]
