@@ -126,10 +126,11 @@
         // TODO: reminder to clear at the right time
       },
     },
-    // TODO: sync fireball tether appearance to the heavensfall for now.
     { id: 'UCU Nael Fireball 1',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 35,
+      condition: function(data) { return !data.fireball1; },
+      run: function(data) { data.fireball1 = true; },
       alertText: function(data) {
         if (data.iceDebuff)
           return "fire in (stack!)";
@@ -139,7 +140,10 @@
     { id: 'UCU Nael Fireball 2',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 51,
+      condition: function(data) { return !data.fireball2; },
+      run: function(data) { data.fireball2 = true; },
       alertText: function(data) {
+        data.fireball2 = true;
         if (data.fireDebuff)
           return "fire out; you in";
         if (!data.iceDebuff)
@@ -158,6 +162,8 @@
     { id: 'UCU Nael Fireball 3',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 77,
+      condition: function(data) { return !data.fireball3; },
+      run: function(data) { data.fireball3 = true; },
       alertText: function(data) {
         if (data.iceDebuff)
           return "fire in (stack!)";
@@ -173,6 +179,8 @@
     },
     { id: 'UCU Nael Fireball 4',
       regex: /:Ragnarok:26B8:/,
+      condition: function(data) { return !data.fireball4; },
+      run: function(data) { data.fireball4 = true; },
       delaySeconds: 98,
       alertText: function(data) {
         if (data.iceDebuff)
