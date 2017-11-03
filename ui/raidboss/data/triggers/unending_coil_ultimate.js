@@ -196,7 +196,7 @@
     },
     { id: 'UCU Nael Dragon Placement',
       regex: /(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(-?[0-9.]+):(-?[0-9.]+):-?[0-9.]+:$/,
-      condition: function(data, matches) { return matches[1] in data.seenDragon; },
+      condition: function(data, matches) { return !(matches[1] in data.seenDragon); },
       run: function(data, matches) {
         data.seenDragon[matches[1]] = true;
 
