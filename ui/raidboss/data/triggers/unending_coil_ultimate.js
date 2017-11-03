@@ -111,11 +111,15 @@
       alarmText: function(data) {
         if (parseFloat(matches[2]) == 6)
           return "Doom #1 on YOU";
-        if (parseFloat(matches[2]) == 11)
+        if (parseFloat(matches[2]) == 10)
           return "Doom #2 on YOU";
+        // TODO: remove this catchall once times are better known.
+        if (parseFloat(matches[2]) == 14)
+          return "Doom #3 on YOU";
+        if (parseFloat(matches[2]) == 15)
+          return "Doom #3 on YOU";
         if (parseFloat(matches[2]) == 16)
           return "Doom #3 on YOU";
-        // TODO: remove this catchall once times are better known.
         return "Doom: " + parseFloat(matches[2]) + " seconds on you";
 
         // TODO: call out all doom people
