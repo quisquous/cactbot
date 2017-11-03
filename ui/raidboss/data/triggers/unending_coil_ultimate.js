@@ -5,22 +5,22 @@
   triggers: [
     // --- State ---
     {
-      regex: /:(y{Name}) gains the effect of Firescorched/,
+      regex: /:(\y{Name}) gains the effect of Firescorched/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.fireDebuff = true; },
     },
     {
-      regex: /:(y{Name}) loses the effect of Firescorched/,
+      regex: /:(\y{Name}) loses the effect of Firescorched/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.fireDebuff = false; },
     },
     {
-      regex: /:(y{Name}) gains the effect of Icebitten/,
+      regex: /:(\y{Name}) gains the effect of Icebitten/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.iceDebuff = true; },
     },
     {
-      regex: /:(y{Name}) loses the effect of Icebitten/,
+      regex: /:(\y{Name}) loses the effect of Icebitten/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.iceDebuff = false; },
     },
