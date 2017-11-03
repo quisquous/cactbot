@@ -194,6 +194,23 @@
           return "fire in; YOU OUT!";
       },
     },
+    { id: 'UCU Nael Dragon Placement',
+      regex: /(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(-?[0-9.]+):(-?[0-9.]+):-?[0-9.]+:$/,
+      condition: function(data, matches) { return matches[1] in data.seenDragon; },
+      run: function(data, matches) {
+        data.seenDragon[matches[1]] = true;
+
+        var x = parseFloat(matches[2]);
+        var y = parseFloat(matches[3]);
+        // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
+        // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
+        // Map N = 0, NE = 1, ..., NW = 7
+        var dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI);
+
+        // TODO: do more than temp logging
+        console.log('Dragon: ' + matches[1] + ": " + matches[2] + ", " + matches[3] + ": " + dir);
+      },
+    },
 
     // TODO: fire callouts if you have tether? Is there a 1B marker?
     // TODO: cauterize markers
