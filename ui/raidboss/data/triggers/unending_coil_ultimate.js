@@ -108,13 +108,12 @@
     { id: 'UCU Nael Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for ([0-9.]+) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: function(data) {
+      alarmText: function(data, matches) {
         if (parseFloat(matches[2]) < 9)
           return "Doom #1 on YOU";
         if (parseFloat(matches[2]) < 14)
           return "Doom #2 on YOU";
         return "Doom #3 on YOU";
-        //return "Doom: " + parseFloat(matches[2]) + " seconds on you";
 
         // TODO: call out all doom people
         // TODO: reminder to clear at the right time
