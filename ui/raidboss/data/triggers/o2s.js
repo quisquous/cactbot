@@ -82,9 +82,8 @@
       id: 'O2S Unstable Gravity',
       regex: /:(\y{Name}) gains the effect of Unstable Gravity from/,
       delaySeconds: 9,
-      //infoText: function(data) { if (!data.myProbe) return 'Unstable Gravity: Stack'; },
-      alarmText: function(data) { if (data.myProbe) return 'Unstable Gravity: Elevate and outside stack'; },
       condition: function(data, matches) { return matches[1] == data.me; },
+      alarmText: 'Unstable Gravity: Elevate and outside stack',
       tts: 'float for bomb',
     },
     {
