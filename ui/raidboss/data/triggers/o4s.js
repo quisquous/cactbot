@@ -241,8 +241,8 @@
     { // Final phase Addle warning when Reprisal is ending.
       id: 'O4S2 Reprisal',
       regex: /loses the effect of Reprisal from/,
-      alertText: 'Reprisal ended',
       condition: function(data) { return data.finalphase && data.reprisal; },
+      alertText: 'Reprisal ended',
       run: function(data) { data.reprisal = false; },
     },
     { // Flare
@@ -270,7 +270,7 @@
       },
       run: function(data) {
         delete data.flareTargets;
-      }
+      },
     },
   ]
 }]

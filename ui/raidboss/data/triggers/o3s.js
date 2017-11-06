@@ -61,9 +61,6 @@
         data.holyTargets.push(matches[1]);
         return data.holyTargets.length == 4;
       },
-      run: function(data) {
-        delete data.holyTargets;
-      },
       tts: function(data) {
         if (data.holyTargets[1] == data.me)
           return 'stack on you';
@@ -72,6 +69,9 @@
             return 'get out';
         }
         return 'stack on ' + data.holyTargets[i];
+      },
+      run: function(data) {
+        delete data.holyTargets;
       },
     },
     {

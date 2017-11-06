@@ -16,16 +16,16 @@
     },
     { // Churning tracker
       regex: /:\y{Name} gains the effect of Churning from Susano/,
-      run: function(data) { data.churning = true; },
       condition: function(data) { return !data.churning; },
+      run: function(data) { data.churning = true; },
     },
     { // Churning tracker
       // We could track the number of people with churning here, but
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
       regex: /:\y{Name} loses the effect of Churning from Susano\./,
-      run: function(data) { data.churning = false; },
       condition: function(data) { return data.churning; },
+      run: function(data) { data.churning = false; },
     },
     {
       id: 'SusEx Tankbuster',
