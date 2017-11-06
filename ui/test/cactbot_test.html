@@ -115,6 +115,14 @@
     document.addEventListener("onBossFightEnd", function(e) {
       document.getElementById('event').innerText = "BossFight End";
     });
+    document.addEventListener("onLogEvent", function(e) {
+      for (var i = 0; i < e.detail.logs.length; i++) {
+        // Match "/echo tts:<stuff>"
+        var r = e.detail.logs[i].match('00:0038:tts:(.*)');
+        if (r)
+          OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({ 'say': r[1] }));
+      }
+    });
   </script>
 </head>
 <body>
