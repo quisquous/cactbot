@@ -183,9 +183,9 @@ namespace Cactbot {
         // Phase 4 starts with tidal wave
       };
       var ucu_twintania = new BossFightPhaseDetails {
-        boss_id = "ucu-twintania",
-        start_strings = { MakeCountdownString(), ":Twintania:26A7:Unknown_26A7:" },
-        end_strings = { ":Something happens" },
+        boss_id = "Unending Coil",
+        start_strings = { MakeCountdownString(), ":Twintania:26A7:" },
+        end_strings = { "Removing combatant Bahamut Prime.  Max HP: 13751450." },
       };
 
       var test_boss = new BossFightPhaseDetails {
