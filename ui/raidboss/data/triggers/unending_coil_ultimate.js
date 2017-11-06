@@ -122,9 +122,10 @@
     { id: 'UCU Nael Fireball 1',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 35,
-      condition: function(data) { return !data.fireball1; },
       run: function(data) { data.fireball1 = true; },
       infoText: function(data) {
+        if (data.fireball1)
+	  return;
         if (data.iceDebuff)
           return "fire in (stack!)";
         return "fire in";
@@ -133,10 +134,10 @@
     { id: 'UCU Nael Fireball 2',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 51,
-      condition: function(data) { return !data.fireball2; },
       run: function(data) { data.fireball2 = true; },
       infoText: function(data) {
-        data.fireball2 = true;
+        if (data.fireball2)
+	  return;
         if (data.fireDebuff)
           return "fire out; you in";
         if (!data.iceDebuff)
@@ -148,6 +149,8 @@
         // stack.  Therefore, make sure you stack.  It's possible you
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
+        if (data.fireball2)
+	  return;
         if (data.iceDebuff)
           return "fire out (stack!)";
       },
@@ -155,15 +158,18 @@
     { id: 'UCU Nael Fireball 3',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 77,
-      condition: function(data) { return !data.fireball3; },
       run: function(data) { data.fireball3 = true; },
       infoText: function(data) {
+        if (data.fireball3)
+	  return;
         if (data.iceDebuff)
           return "fire in (stack!)";
         if (!data.fireDebuff)
           return "fire in";
       },
       alarmText: function(data) {
+        if (data.fireball3)
+	  return;
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to no stack.
         if (data.fireDebuff)
@@ -172,16 +178,19 @@
     },
     { id: 'UCU Nael Fireball 4',
       regex: /:Ragnarok:26B8:/,
-      condition: function(data) { return !data.fireball4; },
       run: function(data) { data.fireball4 = true; },
       delaySeconds: 98,
       infoText: function(data) {
+        if (data.fireball4)
+	  return;
         if (data.iceDebuff)
           return "fire in (stack!)";
         if (!data.fireDebuff)
           return "fire in";
       },
       alarmText: function(data) {
+        if (data.fireball4)
+	  return;
         // Not sure this is possible.
         if (data.fireDebuff)
           return "fire in; YOU OUT!";
