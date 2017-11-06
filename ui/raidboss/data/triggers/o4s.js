@@ -36,36 +36,44 @@
         if (data.thunderCount == 2) return 'Thunder III: Addle during';
         if (data.thunderCount == 3) return 'Thunder III: Addle after';
       },
+      tts: function(data) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return 'thunder';
+      },
     },
     { // Fire III after Decisive Battle.
       id: 'O4S1 Ultimate Fire III',
       regex: /:23FB:Exdeath starts using/,
       alarmText: 'Fire III: Stop',
+      tts: 'fire stop moving',
     },
     { // Blizzard III after Decisive Battle.
       id: 'O4S1 Ultimate Blizzard III',
       regex: /:23FC:Exdeath starts using/,
       alertText: 'Blizzard III: Keep moving',
+      tts: 'blizzard keep moving',
     },
     { // Thunder III after Decisive Battle.
       id: 'O4S1 Ultimate Thunder III',
       regex: /:23FD:Exdeath starts using/,
       alertText: 'Thunder III: Get out',
+      tts: 'thunder get out',
     },
     { // Flare
       id: 'O4S1 Flare',
       regex: /2401:Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
-      infoText: function(data) {
-        //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
-      },
       alarmText: function(data) {
         if (data.flareTargets.indexOf(data.me) >= 0)
-          return "Flare on you";
+          return 'Flare on you';
       },
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches[1]);
         return data.flareTargets.length == 3;
+      },
+      tts: function(data) {
+        if (data.flareTargets.indexOf(data.me) >= 0)
+          return 'Flare on you';
       },
       run: function(data) {
         delete data.flareTargets;
@@ -93,21 +101,25 @@
       id: 'O4S2 Flood of Naught: Inside',
       regex: /:240E:Neo Exdeath starts using/,
       alertText: 'Go Outside',
+      tts: 'out out out',
     },
     { // Outer Flood (move in).
       id: 'O4S2 Flood of Naught: Outside',
       regex: /:240F:Neo Exdeath starts using/,
       alertText: 'Go Inside',
+      tts: 'in in in',
     },
     { // Purple/Blue Flood.
       id: 'O4S2 Flood of Naught: Colors',
       regex: /:2411:Neo Exdeath starts using/,
       alertText: 'Color sides',
+      tts: 'colors',
     },
     { // Blue/Purple Flood.
       id: 'O4S2 Flood of Naught: Colors',
       regex: /:2412:Neo Exdeath starts using/,
       alertText: 'Color sides',
+      tts: 'colors',
     },
     { // Charge Flood.
       id: 'O4S2 Flood of Naught: Charge',
@@ -118,11 +130,13 @@
       id: 'O4S2 Double Attack',
       regex: /:241C:Neo Exdeath starts using/,
       alertText: 'Double Attack: Get out',
+      tts: 'double attack',
     },
     { // Grand Cross Alpha.
       id: 'O4S2 Grand Cross Alpha',
       regex: /:242B:Neo Exdeath starts using/,
       infoText: 'Grand Cross Alpha: Go to middle',
+      tts: 'go to middle',
     },
     { // Grand Cross Alpha finished cast - Use Apoc on tank except before Omega.
       id: 'O4S2 Apocatastasis',
@@ -134,12 +148,26 @@
     { // Grand Cross Delta.
       id: 'O4S2 Grand Cross Delta',
       regex: /:242C:Neo Exdeath starts using/,
-      infoText: 'Grand Cross Delta: Inside boss',
+      infoText: function(data) {
+        if (data.role == 'tank')
+          return 'Grand Cross Delta: Be in front of boss';
+        if (data.role == 'healer')
+          return 'Grand Cross Delta: Be on sides of boss';
+        return 'Grand Cross Delta: Inside boss';
+      },
+      tts: function(data) {
+        if (data.role == 'tank')
+          return 'delta: be in front';
+        if (data.role == 'healer')
+          return 'delta: be on sides';
+        return 'delta: be inside boss';
+      },
     },
     { // Grand Cross Omega.
       id: 'O4S2 Grand Cross Omega',
       regex: /:242D:Neo Exdeath starts using/,
       infoText: 'Grand Cross Omega: Go to middle',
+      tts: 'go to middle',
     },
     { // Grand Cross Omega finished cast - Use Apoc on healer.
       id: 'O4S2 Apocatastasis',
@@ -154,6 +182,7 @@
       delaySeconds: 1,
       alertText: 'Forked Lightning: Get out',
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'lightning get out',
     },
     { // Acceleration Bomb
       id: 'O4S2 Acceleration Bomb',
@@ -161,6 +190,7 @@
       alarmText: 'Stop',
       delaySeconds: function(data, matches) { return parseFloat(matches[2]) - 4; },  // 4 second warning.
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'stop',
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death',
@@ -169,6 +199,7 @@
       alarmText: 'Beyond Death: Die',
       sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
       condition: function(data, matches) { return data.phase == 'delta' && matches[1] == data.me; },
+      tts: 'die die die',
     },
     { // Beyond Death (Omega)
       id: 'O4S2 Beyond Death',
@@ -177,11 +208,13 @@
       alarmText: 'Beyond Death: Die',
       sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
       condition: function(data, matches) { return data.phase == 'omega' && matches[1] == data.me; },
+      tts: 'die die die',
     },
     { // Delta Attack
       id: 'O4S2 Delta Attack',
       regex: /:241E:Neo Exdeath starts using/,
       infoText: 'Delta Attack: Stack',
+      tts: 'stack for delta',
     },
     { // Almagest
       id: 'O4S2 Almagest',
@@ -194,6 +227,7 @@
         if (data.job == 'BRD' && data.almagestCount == 4) return 'Almagest: Troubadour';
         return 'Almagest';
       },
+      tts: 'almagest',
       run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
     },
     { // Final phase Addle warning when Reprisal is ending.
@@ -216,18 +250,23 @@
       regex: /2401:Neo Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
       infoText: function(data) {
         if (data.flareTargets.indexOf(data.me) < 0) {
-          //return "Flare on " + data.flareTargets[0] + ", " + data.flareTargets[1] + ", " + data.flareTargets[2]
-          return "Light and Darkness: Stack"
+          return 'Light and Darkness: Stack';
         }
       },
       alarmText: function(data) {
         if (data.flareTargets.indexOf(data.me) >= 0)
-          return "Flare on you";
+          return 'Flare on you';
       },
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches[1]);
         return data.flareTargets.length == 3;
+      },
+      tts: function(data) {
+        if (data.flareTargets.indexOf(data.me) >= 0)
+          return 'flare on you';
+        else
+          return 'stack';
       },
       run: function(data) {
         delete data.flareTargets;

@@ -26,29 +26,37 @@
       id: 'O2S -100Gs',
       regex: /:235E:Catastrophe starts using/,
       infoText: '-100 Gs: Go north/south and look away',
+      tts: '100 gs',
     },
     {
       id: 'O2S Death\'s Gaze',
       regex: /:236F:Catastrophe starts using/,
       alarmText: 'Death\'s Gaze: Look away',
+      tts: 'look away',
     },
     {
       id: 'O2S Earthquake',
       regex: /:2374:Catastrophe starts using/,
       infoText: function(data) { if (data.levitating) return 'Earthquake'; },
       alertText: function(data) { if (!data.levitating) return 'Earthquake: Levitate'; },
+      tts: function(data) {
+        if (!data.levitating)
+          return 'levitate';
+      },
     },
     {
       id: 'O2S Elevated',
       regex: /:(\y{Name}) gains the effect of (?:Unknown_54E|Elevated) from/,
       infoText: function(data) { if (!data.role.startsWith('dps')) return 'DPS up, T/H down' },
       alarmText: function(data) { if (data.role.startsWith('dps') && !data.levitating) return 'DPS: Levitate' },
+      tts: 'dps up',
     },
     {
       id: 'O2S Gravitational Wave',
       regex: /:2372:Catastrophe starts usinge/,
       infoText: 'Gravitational Wave: AOE damage',
       condition: function(data) { return data.role == 'healer'; },
+      tts: 'wave',
     },
     {
       id: 'O2S Maniacal Probe',
@@ -65,6 +73,10 @@
           else return 'Maniacal Probe: DPS';
         }
       },
+      tts: function(data) {
+        if (data.dpsProbe) return 'tank probe';
+        else return 'dps probe';
+      },
     },
     {
       id: 'O2S Unstable Gravity',
@@ -73,6 +85,7 @@
       //infoText: function(data) { if (!data.myProbe) return 'Unstable Gravity: Stack'; },
       alarmText: function(data) { if (data.myProbe) return 'Unstable Gravity: Elevate and outside stack'; },
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'float for bomb',
     },
     {
       id: 'O2S 6 Fulms Under',
@@ -81,7 +94,8 @@
       infoText: function(data) { if (data.levitating) return '6 Fulms Under'; },
       alertText: function(data) { if (!data.levitating) return '6 Fulms Under: Levitate'; },
       condition: function(data, matches) { return !data.under && matches[1] == data.me; },
-      run: function(data) { data.under = true; }
+      run: function(data) { data.under = true; },
+      tts: 'float',
     },
     {
       id: 'O2S 6 Fulms Under',

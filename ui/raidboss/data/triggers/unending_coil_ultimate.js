@@ -31,12 +31,17 @@
       alertText: function(data) {
         return 'Twisters';
       },
+      tts: 'twisters',
     },
     { id: 'UCU Death Sentence',
       regex: /:Twintania readies Death Sentence/,
       alertText: function(data, matches) {
         if (data.role == 'tank' || data.role == 'healer')
           return 'Death Sentence';
+      },
+      tts: function(data, matches) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return 'buster';
       },
     },
     { id: 'UCU Hatch Marker',
@@ -49,99 +54,127 @@
         if (data.me == matches[1])
           return 'hatch on YOU';
       },
+      tts: function(data, matches) {
+        if (data.me == matches[1])
+          return 'hatch on you';
+      },
     },
     { id: 'UCU Twintania P2',
       regex: /:Twintania HP at 75%/,
       sound: 'Long',
       infoText: function(data, matches) {
-        return "Phase 2 Push";
+        return 'Phase 2 Push';
       },
+      tts: 'phase 2',
     },
     { id: 'UCU Twintania P3',
       regex: /:Twintania HP at 45%/,
       sound: 'Long',
       infoText: function(data, matches) {
-        return "Phase 3 Push";
+        return 'Phase 3 Push';
       },
+      tts: 'phase 3',
     },
 
     // --- Nael ---
     { id: 'UCU Nael Quote 1',
       regex: /From on high I descend, in blessed light to bask/,
-      infoText: function(data) { return "spread => in"; },
+      infoText: function(data) { return 'spread => in'; },
+      tts: 'spread then in',
     },
     { id: 'UCU Nael Quote 2',
       regex: /From on high I descend, mine enemies to smite/,
-      infoText: function(data) { return "spread => out"; },
+      infoText: function(data) { return 'spread => out'; },
+      tts: 'spread then out',
     },
     { id: 'UCU Nael Quote 3',
       regex: /refulgent moon, shine down your light/,
-      infoText: function(data) { return "stack => in"; },
+      infoText: function(data) { return 'stack => in'; },
+      tts: 'stack then in',
     },
     { id: 'UCU Nael Quote 4',
       regex: /Blazing path, lead me to conquest/,
-      infoText: function(data) { return "stack => out"; },
+      infoText: function(data) { return 'stack => out'; },
+      tts: 'stack then out',
     },
     { id: 'UCU Nael Quote 5',
       regex: /red moon, scorch mine enemies/,
-      infoText: function(data) { return "in => stack"; },
+      infoText: function(data) { return 'in => stack'; },
+      tts: 'in then stack',
     },
     { id: 'UCU Nael Quote 6',
       regex: /red moon, shine the path to conquest/,
-      infoText: function(data) { return "in => out"; },
+      infoText: function(data) { return 'in => out'; },
+      tts: 'in then out',
     },
     { id: 'UCU Nael Quote 7',
       regex: /Fleeting light, score the earth with a fiery kiss/,
-      infoText: function(data) { return "away from MT => stack"; },
+      infoText: function(data) { return 'away from MT => stack'; },
+      tts: 'away from tank then stack',
     },
     { id: 'UCU Nael Quote 8',
       regex: /Fleeting light, outshine the starts for the moon/,
-      infoText: function(data) { return "spread => away from MT"; },
+      infoText: function(data) { return 'spread => away from MT'; },
+      tts: 'spread then away from tank',
     },
     { id: 'UCU Nael Thunderstruck',
-      // Note: The 0A event happens before "gains the effect" and "starts
-      // casting on" only includes one person.
+      // Note: The 0A event happens before 'gains the effect' and 'starts
+      // casting on' only includes one person.
       regex: /:Thunderwing:26C7:.*?:........:(\y{Name}):/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: function(data) { return "Thunder on YOU"; },
+      alarmText: function(data) { return 'Thunder on YOU'; },
+      tts: 'thunder on you',
     },
     { id: 'UCU Nael Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for ([0-9.]+) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: function(data, matches) {
         if (parseFloat(matches[2]) < 9)
-          return "Doom #1 on YOU";
+          return 'Doom #1 on YOU';
         if (parseFloat(matches[2]) < 14)
-          return "Doom #2 on YOU";
-        return "Doom #3 on YOU";
+          return 'Doom #2 on YOU';
+        return 'Doom #3 on YOU';
 
         // TODO: call out all doom people
         // TODO: reminder to clear at the right time
+      },
+      tts: function(data, matches) {
+        if (parseFloat(matches[2]) < 9)
+          return 'doom 1';
+        if (parseFloat(matches[2]) < 14)
+          return 'doom 2';
+        return 'doom 3';
       },
     },
     { id: 'UCU Nael Fireball 1',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 35,
-      run: function(data) { data.fireball1 = true; },
       infoText: function(data) {
         if (data.fireball1)
-	  return;
+          return;
         if (data.iceDebuff)
-          return "fire in (stack!)";
-        return "fire in";
+          return 'fire in (stack!)';
+        return 'fire in';
       },
+      tts: function(data) {
+        if (data.fireball1)
+          return;
+        if (data.iceDebuff)
+          return 'fire in (stack!)';
+        return 'fire in';
+      },
+      run: function(data) { data.fireball1 = true; },
     },
     { id: 'UCU Nael Fireball 2',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 51,
-      run: function(data) { data.fireball2 = true; },
       infoText: function(data) {
         if (data.fireball2)
-	  return;
+          return;
         if (data.fireDebuff)
-          return "fire out; you in";
+          return 'fire out; you in';
         if (!data.iceDebuff)
-          return "fire out";
+          return 'fire out';
       },
       alarmText: function(data) {
         // All players should be neutral by the time fire #2 happens.
@@ -150,51 +183,79 @@
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
         if (data.fireball2)
-	  return;
+          return;
         if (data.iceDebuff)
-          return "fire out (stack!)";
+          return 'fire out (stack!)';
       },
+      tts: function(data) {
+        if (data.fireball2)
+          return;
+        if (data.fireDebuff)
+          return 'fire out; you in';
+        if (data.iceDebuff)
+          return 'fire out stack';
+        return 'fire out'
+      },
+      run: function(data) { data.fireball2 = true; },
     },
     { id: 'UCU Nael Fireball 3',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 77,
-      run: function(data) { data.fireball3 = true; },
       infoText: function(data) {
         if (data.fireball3)
-	  return;
+          return;
         if (data.iceDebuff)
-          return "fire in (stack!)";
+          return 'fire in (stack!)';
         if (!data.fireDebuff)
-          return "fire in";
+          return 'fire in';
       },
       alarmText: function(data) {
         if (data.fireball3)
-	  return;
+          return;
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to no stack.
         if (data.fireDebuff)
-          return "fire in; YOU OUT!";
+          return 'fire in; YOU OUT!';
       },
+      tts: function(data) {
+        if (data.fireball3)
+          return;
+        if (data.fireDebuff)
+          return 'fire in; you out';
+        if (data.iceDebuff)
+          return 'fire in stack';
+        return 'fire in'
+      },
+      run: function(data) { data.fireball3 = true; },
     },
     { id: 'UCU Nael Fireball 4',
       regex: /:Ragnarok:26B8:/,
-      run: function(data) { data.fireball4 = true; },
       delaySeconds: 98,
       infoText: function(data) {
         if (data.fireball4)
-	  return;
+          return;
         if (data.iceDebuff)
-          return "fire in (stack!)";
+          return 'fire in (stack!)';
         if (!data.fireDebuff)
-          return "fire in";
+          return 'fire in';
       },
       alarmText: function(data) {
         if (data.fireball4)
-	  return;
+          return;
         // Not sure this is possible.
         if (data.fireDebuff)
-          return "fire in; YOU OUT!";
+          return 'fire in; YOU OUT!';
       },
+      tts: function(data) {
+        if (data.fireball4)
+          return;
+        if (data.fireDebuff)
+          return 'fire in; you out';
+        if (data.iceDebuff)
+          return 'fire in stack';
+        return 'fire in'
+      },
+      run: function(data) { data.fireball4 = true; },
     },
     { id: 'UCU Nael Dragon Placement',
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:([-0-9.E]+):([-0-9.E]+):[-0-9.E]+:$/,
@@ -211,7 +272,7 @@
         var dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI);
 
         // TODO: do more than temp logging
-        console.log('Dragon: ' + matches[1] + ": " + matches[2] + ", " + matches[3] + ": " + dir);
+        console.log('Dragon: ' + matches[1] + ': ' + matches[2] + ', ' + matches[3] + ': ' + dir);
       },
     },
 

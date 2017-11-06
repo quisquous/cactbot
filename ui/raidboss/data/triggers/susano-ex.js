@@ -32,13 +32,17 @@
       regex: /:Susano readies Stormsplitter\./,
       alertText: function(data) {
         if (data.role == 'tank')
-          return "Tank Swap";
+          return 'Tank Swap';
         return false;
       },
       infoText: function(data) {
         if (data.role == 'healer')
-          return "Tank Buster";
+          return 'Tank Buster';
         return false;
+      },
+      tts: function(data) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return 'tank buster';
       },
     },
     { // Red knockback marker indicator
@@ -47,11 +51,19 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: function(data) {
         if (data.cloud)
-          return "Knockback on you (cloud)";
+          return 'Knockback on you (cloud)';
         else if (data.churning)
-          return "Knockback + dice (STOP)";
+          return 'Knockback + dice (STOP)';
         else
-          return "Knockback on you";
+          return 'Knockback on you';
+      },
+      tts: function(data) {
+        if (data.cloud)
+          return 'knockback with cloud'
+        else if (data.churning)
+          return 'Knockback with dice';
+        else
+          return 'Knockback';
       },
     },
     { // Levinbolt indicator
@@ -60,9 +72,15 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: function(data) {
         if (data.cloud)
-          return "Levinbolt on you (cloud)";
+          return 'Levinbolt on you (cloud)';
         else
-          return "Levinbolt on you";
+          return 'Levinbolt on you';
+      },
+      tts: function(data) {
+        if (data.cloud)
+          return 'bolt with cloud';
+        else
+          return 'bolt';
       },
     },
     { // Levinbolt indicator debug
@@ -72,9 +90,6 @@
       data.levinbolt = matches[1];
         return (matches[1] != data.me);
       },
-      infoText: function(data) {
-        //return "LB: " + data.levinbolt + (data.cloud ? " (cloud)" : "");
-      },
     },
     { // Stunning levinbolt indicator
       id: 'SusEx Levinbolt Stun',
@@ -83,7 +98,7 @@
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
         if (data.role == 'tank')
-          return "Stun: " + matches[1];
+          return 'Stun: ' + matches[1];
       },
     },
     { // Churning (dice)
@@ -92,6 +107,7 @@
       delaySeconds: function(data, matches) { return parseFloat(matches[2]) - 3; },
       alertText: 'Stop',
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'stop',
     },
   ]
 }]

@@ -6,17 +6,30 @@
       id: 'Big Ice',
       regex: /The icebound tomelith A([1-4]) activates and begins to emit heat/,
       alertText: function(data, matches) {
-	var big_ice_dir = {
-	  "1": "Center",
-	  "2": "North",
-	  "3": "Southeast",
-	  "4": "Southwest",
-	}
+        var big_ice_dir = {
+          '1': 'Center',
+          '2': 'North',
+          '3': 'Southeast',
+          '4': 'Southwest',
+        };
 
-	if (!(matches[1] in big_ice_dir))
-	  return "";
-	return "Big Ice: " + big_ice_dir[matches[1]];
-      }
+        if (!(matches[1] in big_ice_dir))
+          return '';
+        return 'Big Ice: ' + big_ice_dir[matches[1]];
+      },
+      tts: function(data, matches) {
+        // TODO: figure out how to not duplicate this? or store func in data?
+        var big_ice_dir = {
+          '1': 'Center',
+          '2': 'North',
+          '3': 'Southeast',
+          '4': 'Southwest',
+        };
+
+        if (!(matches[1] in big_ice_dir))
+          return '';
+        return big_ice_dir[matches[1]] + ' big ice';
+      },
     },
   ],
 }]

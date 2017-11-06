@@ -41,19 +41,23 @@
           return;
         return 'Akh Rhai: spread and move';
       },
+      tts: 'akh morn',
     },
     { id: 'ShinryuEx Diamond Dust',
       regex: /:25DD:Shinryu starts using Diamond Dust/,
       infoText: function(data) { return 'Ice: Stack and Stop'; },
+      tts: 'stop',
     },
     { id: 'ShinryuEx Dragonfist',
       regex: /:Shinryu starts using Dragonfist/,
       infoText: function(data) { return 'Out of middle'; },
+      tts: 'out of middle',
     },
     { id: 'ShinryuEx Hellfire',
       regex: /:25DB:Shinryu starts using Hellfire/,
       durationSeconds: 7,
       alertText: function(data) { return 'Get in water'; },
+      tts: 'water',
     },
     { id: 'ShinryuEx Hypernova',
       regex: /:Right Wing starts using Hypernova/,
@@ -63,11 +67,17 @@
           return 'stop to get frozen';
         return 'Stack in water';
       },
+      tts: function(data) {
+        if (data.phase == 3)
+          return 'stop get frozen';
+        return 'water';
+      },
     },
     { id: 'ShinryuEx Judgement Bolt',
       regex: /:25DC:Shinryu starts using Judgment Bolt/,
       durationSeconds: 7,
-      alertText: function(data) { return 'Stack, no water'; },
+      alertText: function(data) { return 'out of water'; },
+      tts: 'out of water',
     },
     { id: 'ShinryuEx Levinbolt',
       regex: /:Right Wing starts using Levinbolt on Right Wing/,
@@ -77,6 +87,11 @@
           return 'bait bolt, keep moving';
         return 'Spread out, no water';
       },
+      tts: function(data) {
+        if (data.phase == 3)
+          return 'bait bolt, keep moving';
+        return 'levinbolt';
+      },
     },
     { id: 'ShinryuEx Levinbolt Phase 3',
       regex: /:Right Wing starts using Levinbolt on Right Wing/,
@@ -85,20 +100,27 @@
         if (data.phase == 3)
           return 'move away';
       },
+      tts: function(data) {
+        if (data.phase == 3)
+          return 'move away';
+      },
     },
     { id: 'ShinryuEx Icicle Left',
       regex: /:Icicle Impact:.*:-29\.99:-15:/,
       alarmText: function(data) { return 'icicle, lean west'; },
+      tts: 'icicle lean west',
     },
     { id: 'ShinryuEx Icicle Right',
       regex: /:Icicle Impact:.*:-29\.99:-25:/,
       alarmText: function(data) { return 'icicle, lean east'; },
+      tts: 'icicle lean east',
     },
     { id: 'ShinryuEx Tidal Wave',
       regex: /:25DA:Shinryu starts using Tidal Wave/,
       delaySeconds: 3,
       durationSeconds: 5,
       infoText: function(data) { return 'Knockback: look for water'; },
+      tts: 'knockback',
     },
     { id: 'ShinryuEx Final Tidal Wave',
       regex: /:264E:Shinryu starts using Tidal Wave/,
@@ -106,11 +128,16 @@
         if (data.role == 'healer')
           return 'no more heals needed';
       },
+      tts: function(data) {
+        if (data.role == 'healer')
+          return 'stop healing';
+      },
     },
     { id: 'ShinryuEx Tail Slap',
       regex: /:Tail starts using Tail Slap/,
       delaySeconds: 2,
       infoText: function(data) { return 'Tail: Switch targets'; },
+      tts: 'tail',
     },
     { id: 'ShinryuEx Heart',
       regex: /:Added new combatant The Worm's Heart/,
@@ -119,11 +146,13 @@
         return data.phase == 1;
       },
       // TODO: If tail is alive, delay this message?
-      infoText: function(data) { return 'Heart: Switch targets'; },
+      infoText: 'Heart: Switch targets',
+      tts: 'heart',
     },
     { id: 'ShinryuEx Divebomb',
       regex: /:Shinryu starts using Gyre Charge/,
       alarmText: function(data) { return 'avoid divebomb'; },
+      tts: 'divebombs',
     },
     { id: 'ShinryuEx Death Sentence',
       regex: /:Hakkinryu starts using Death Sentence on (\y{Name})/,
@@ -137,6 +166,10 @@
         if (matches[1] != data.me && data.role == 'tank')
           return 'Death Sentence on ' + matches[1];
       },
+      tts: function(data) {
+        if (data.role == 'healer' || data.role == 'tank')
+          return 'death sentence';
+      },
     },
     { id: 'ShinryuEx Tera Slash',
       regex: /:264B:Shinryu starts using Tera Slash on (\y{Name})/,
@@ -148,30 +181,36 @@
         if (data.role == 'healer')
           return 'Tank Buster on ' + matches[1];
       },
+      tts: function(data, matches) {
+        if (matches[1] == data.me || data.role == 'healer')
+          return 'Tank Buster';
+        if (data.role == 'tank')
+          return 'Tank Swap';
+      },
     },
     { id: 'ShinryuEx Wyrmwail',
       regex: /:Shinryu starts using Wyrmwail/,
       alertText: function(data) { return 'be inside hitbox'; },
+      tts: 'get inside',
     },
     { id: 'ShinryuEx Breath',
       regex: /:264A:Shinryu starts using Benighting Breath/,
       alertText: function(data) { return 'front cleave'; },
+      tts: 'cleave',
     },
     { id: 'ShinryuEx Final Left Wing',
       regex: /:Left Wing starts using Judgment Bolt/,
       condition: function(data) { return !data.finalWing; },
-      alertText: function(data) {
-        data.finalWing = true;
-        return 'kill left first';
-      },
+      alertText: 'kill left first',
+      tts: 'left first',
+      run: function(data) { data.finalWing = true; }
     },
     { id: 'ShinryuEx Final Right Wing',
       regex: /:Right Wing starts using Hellfire/,
       condition: function(data) { return !data.finalWing; },
-      alertText: function(data) {
-        data.finalWing = true;
-        return 'kill right first';
-      },
+      alertText: 'kill right first',
+      tts: 'right first',
+      run: function(data) { data.finalWing = true; }
     },
     { id: 'ShinryuEx Tethers',
       regex: /1B:........:(\y{Name}):....:....:0061:0000:0000:0000:/,
@@ -184,15 +223,19 @@
           return 'break tethers then stack';
         return 'break tethers';
       },
+      tts: function(data) {
+        if (data.phase == 3)
+          return 'break tethers then stack';
+        return 'break tethers';
+      },
     },
     { id: 'ShinryuEx Tail Marker',
       regex: /1B:........:(\y{Name}):....:....:007E:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      alarmText: function(data) {
-        return 'tail marker on you';
-      },
+      alarmText: 'tail marker on you',
+      tts: 'tail on you',
     },
     { id: 'ShinryuEx Shakers',
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
@@ -209,6 +252,12 @@
         if (data.shakerTargets.indexOf(data.me) == -1)
           return 'avoid earthshakers';
       },
+      tts: function(data) {
+        if (data.shakerTargets.indexOf(data.me) == -1)
+          return 'avoid shakers';
+        else
+          return 'earthshaker on you';
+      },
       run: function(data) {
         delete data.shakerTargets;
       },
@@ -218,9 +267,8 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      alarmText: function(data) {
-        return 'spread out';
-      },
+      alarmText: 'spread out',
+      tts: 'spread out',
     },
   ]
 }]

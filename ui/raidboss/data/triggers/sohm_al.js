@@ -11,6 +11,7 @@
           return 'Stack on YOU';
         return 'Stack on ' + matches[1];
       },
+      tts: 'stack',
     },
     {
       id: 'Sohm Al Myath Spread',
@@ -20,11 +21,13 @@
           return 'Move away from others';
         return 'Move away from ' + matches[1];
       },
+      tts: "don't stack",
     },
     {
       id: 'Sohm Al Myath Chyme',
       regex: /:Added new combatant Chyme Of The Mountain/,
       alertText: function(data) { return 'Kill Chyme Add'; },
+      tts: 'kill chyme',
     },
     {
       id: 'Sohm Al Tioman Meteor',
@@ -32,6 +35,10 @@
       alertText: function(data) {
         if (data.matches[1] == data.me)
           return 'place meteor on edge';
+      },
+      tts: function(data) {
+        if (data.matches[1] == data.me)
+          return 'meteor';
       },
     },
   ]

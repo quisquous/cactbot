@@ -5,11 +5,12 @@
       id: 'Hrodric Tank',
       regex: /:Hrodric Poisontongue starts using Rusting Claw/,
       infoText: function(data) {
-        return data.role != 'tank' ? "tank cleave" : "";
+        return data.role != 'tank' ? 'tank cleave' : '';
       },
       alertText: function(data) {
-        return data.role == 'tank' ? "tank cleave" : "";
+        return data.role == 'tank' ? 'tank cleave' : '';
       },
+      tts: 'tank cleave',
     },
     {
       id: 'Hrodric Tail',
@@ -20,6 +21,7 @@
       alertText: function(data) {
         return data.role != 'tank' ? "tail cleave" : "";
       },
+      tts: 'tail attack',
     },
     {
       id: 'Hrodric Eye',
@@ -27,6 +29,7 @@
       alertText: function(data) {
         return "look away";
       },
+      tts: 'look away',
     },
     {
       id: 'Hrodric Words',
@@ -34,6 +37,7 @@
       infoText: function(data) {
         return "avoid eye lasers";
       },
+      tts: 'eye laser',
     },
   ]
 }]

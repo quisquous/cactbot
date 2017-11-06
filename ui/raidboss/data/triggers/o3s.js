@@ -35,22 +35,22 @@
       regex: /1B:........:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
-          return "";
-        return "Stack on YOU";
+          return '';
+        return 'Stack on YOU';
       },
       alertText: function(data) {
         if (data.holyTargets[1] == data.me)
           return;
         for (var i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return "Get out";
+            return 'Get out';
         }
-        return "Stack on " + data.holyTargets[1];
+        return 'Stack on ' + data.holyTargets[1];
       },
       infoText: function(data) {
         for (var i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return "others stack on" + data.holyTargets[1];
+            return 'others stack on' + data.holyTargets[1];
         }
       },
       condition: function(data, matches) {
@@ -63,7 +63,16 @@
       },
       run: function(data) {
         delete data.holyTargets;
-      }
+      },
+      tts: function(data) {
+        if (data.holyTargets[1] == data.me)
+          return 'stack on you';
+        for (var i = 0; i < 4; ++i) {
+          if (data.holyTargets[i] == data.me)
+            return 'get out';
+        }
+        return 'stack on ' + data.holyTargets[i];
+      },
     },
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
@@ -73,11 +82,11 @@
         if (data.librarySpellbladePrinted)
           return;
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == "0064")
-          return "go south: stack on you";
-        if (data.librarySpellbladeMe == "0065")
-          return "go north";
-        return "go south: stack on friend";
+        if (data.librarySpellbladeMe == '0064')
+          return 'go south: stack on you';
+        if (data.librarySpellbladeMe == '0065')
+          return 'go north';
+        return 'go south: stack on friend';
       },
       // Because people can be dead and there are eight marks, delay to
       // accumulate logs instead of counting marks.  Instantly print if
@@ -94,6 +103,16 @@
           data.librarySpellbladeMe = matches[2];
         return true;
       },
+      tts: function(data) {
+        if (data.librarySpellbladePrinted)
+          return;
+        data.librarySpellbladePrinted = true;
+        if (data.librarySpellbladeMe == '0064')
+          return 'stack outside';
+        if (data.librarySpellbladeMe == '0065')
+          return 'go north';
+        return 'stack inside';
+      }
     },
     {
       id: 'O3S Right Face',
@@ -101,6 +120,7 @@
       infoText: 'Mindjack: Right',
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'mindjack right',
     },
     {
       id: 'O3S Forward March',
@@ -108,6 +128,7 @@
       infoText: 'Mindjack: Forward',
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'mindjack forward',
     },
     {
       id: 'O3S Left Face',
@@ -115,6 +136,7 @@
       infoText: 'Mindjack: Left',
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'mindjack left',
     },
     {
       id: 'O3S About Face',
@@ -122,21 +144,25 @@
       infoText: 'Mindjack: Back',
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
+      tts: 'mindjack back',
     },
     {
       id: 'O3S Ribbit',
       regex: /:22F7:Halicarnassus starts using/,
       alertText: 'Ribbit: Get behind',
+      tts: 'ribbit',
     },
     {
       id: 'O3S Oink',
       regex: /:22F9:Halicarnassus starts using/,
       infoText: 'Oink: Stack',
+      tts: 'oink',
     },
     {
       id: 'O3S Squelch',
       regex: /:22F8:Halicarnassus starts using/,
       alarmText: 'Squelch: Look away',
+      tts: 'look away',
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
@@ -147,21 +173,25 @@
         return data.phase != 3 || !data.seenHolyThisPhase;
       },
       alertText: 'The Queen\'s Waltz: Books',
+      tts: 'books',
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
       regex: /:2306:Halicarnassus starts using/,
       infoText: 'The Queen\'s Waltz: Clock',
+      tts: 'clock',
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
       regex: /:230A:Halicarnassus starts using/,
       infoText: 'The Queen\'s Waltz: Crystal Square',
+      tts: 'blue square',
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
       regex: /:2308:Halicarnassus starts using/,
       infoText: 'The Queen\'s Waltz: Tethers',
+      tts: 'tethers',
     },
   ]
 }]
