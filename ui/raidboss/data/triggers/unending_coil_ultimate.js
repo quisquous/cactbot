@@ -56,7 +56,7 @@
       },
       tts: function(data, matches) {
         if (data.me == matches[1])
-          return 'hatch on you';
+          return 'hatch';
       },
     },
     { id: 'UCU Twintania P2',
@@ -65,7 +65,6 @@
       infoText: function(data, matches) {
         return 'Phase 2 Push';
       },
-      tts: 'phase 2',
     },
     { id: 'UCU Twintania P3',
       regex: /:Twintania HP at 45%/,
@@ -73,7 +72,6 @@
       infoText: function(data, matches) {
         return 'Phase 3 Push';
       },
-      tts: 'phase 3',
     },
 
     // --- Nael ---
@@ -123,7 +121,7 @@
       regex: /:Thunderwing:26C7:.*?:........:(\y{Name}):/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: function(data) { return 'Thunder on YOU'; },
-      tts: 'thunder on you',
+      tts: 'thunder',
     },
     { id: 'UCU Nael Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for ([0-9.]+) Seconds/,
@@ -140,10 +138,10 @@
       },
       tts: function(data, matches) {
         if (parseFloat(matches[2]) < 9)
-          return 'doom 1';
+          return '1';
         if (parseFloat(matches[2]) < 14)
-          return 'doom 2';
-        return 'doom 3';
+          return '2';
+        return '3';
       },
     },
     { id: 'UCU Nael Fireball 1',
@@ -159,8 +157,6 @@
       tts: function(data) {
         if (data.fireball1)
           return;
-        if (data.iceDebuff)
-          return 'fire in (stack!)';
         return 'fire in';
       },
       run: function(data) { data.fireball1 = true; },
@@ -185,15 +181,13 @@
         if (data.fireball2)
           return;
         if (data.iceDebuff)
-          return 'fire out (stack!)';
+          return 'fire out (be in fire!)';
       },
       tts: function(data) {
         if (data.fireball2)
           return;
-        if (data.fireDebuff)
-          return 'fire out; you in';
         if (data.iceDebuff)
-          return 'fire out stack';
+          return 'fire out; go with';
         return 'fire out'
       },
       run: function(data) { data.fireball2 = true; },
@@ -205,7 +199,7 @@
         if (data.fireball3)
           return;
         if (data.iceDebuff)
-          return 'fire in (stack!)';
+          return 'fire in (stack in!)';
         if (!data.fireDebuff)
           return 'fire in';
       },
@@ -222,8 +216,6 @@
           return;
         if (data.fireDebuff)
           return 'fire in; you out';
-        if (data.iceDebuff)
-          return 'fire in stack';
         return 'fire in'
       },
       run: function(data) { data.fireball3 = true; },
@@ -251,9 +243,7 @@
           return;
         if (data.fireDebuff)
           return 'fire in; you out';
-        if (data.iceDebuff)
-          return 'fire in stack';
-        return 'fire in'
+        return 'fire in';
       },
       run: function(data) { data.fireball4 = true; },
     },

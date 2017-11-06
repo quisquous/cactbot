@@ -235,7 +235,7 @@
         return matches[1] == data.me;
       },
       alarmText: 'tail marker on you',
-      tts: 'tail on you',
+      tts: 'tail marker',
     },
     { id: 'ShinryuEx Shakers',
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
@@ -256,7 +256,7 @@
         if (data.shakerTargets.indexOf(data.me) == -1)
           return 'avoid shakers';
         else
-          return 'earthshaker on you';
+          return 'earthshaker';
       },
       run: function(data) {
         delete data.shakerTargets;
