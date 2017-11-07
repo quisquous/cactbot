@@ -42,20 +42,20 @@ hideall "--sync--"
 226.5 "Reiyu Adds" # appearance
 233.5 "Tail Marker (tank)" duration 8 # marker -> disappearance
 251.6 "Tail Slap" # targetable
-268.0 "Akh Morn / Rhai (3)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar
-270.0 "Summon Icicle" duration 4 # appearance -> divebombs
-281.5 "Aerial Blast" duration 11 sync /:Shinryu starts using Aerial Blast/ window 10 # castbar start -> last knockback
-294.5 "Tethers (dps)" # debuff appearance
-313.5 "Earth Breath" duration 6 # mark -> damage
-321.5 "Ice Storm" # castbar end
-325.5 "--untargetable--"
-330.5 "Gyre Charge" duration 5.5
-341.5 "--targetable--"
-343.0 "Hypernova / Levinbolt" duration 8 # castbar
-358.5 "Akh Morn / Rhai (4)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar
-370.5 "Levinbolt" duration 8 # castbar
-385.0 "Tidal Wave" # movement
-391.5 "Dark Matter"
+269.0 "Akh Morn / Rhai (3)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar
+271.0 "Summon Icicle" duration 4 # appearance -> divebombs
+282.5 "Aerial Blast" duration 11 sync /:Shinryu starts using Aerial Blast/ window 10 # castbar start -> last knockback
+295.5 "Tethers (dps)" # debuff appearance
+314.5 "Earth Breath" duration 6 # mark -> damage
+322.5 "Ice Storm" # castbar end
+326.5 "--untargetable--"
+331.5 "Gyre Charge" duration 5.5
+342.5 "--targetable--"
+344.0 "Hypernova / Levinbolt" duration 8 # castbar
+360.0 "Akh Morn / Rhai (4)" duration 3.5 sync /:Shinryu starts using Akh Morn/ window 10 # castbar
+372.0 "Levinbolt" duration 8 # castbar
+386.5 "Tidal Wave" # movement
+393.0 "Dark Matter"
 
 ### PHASE 2: Adds, explosions, dramatic tail climbing
 ###
