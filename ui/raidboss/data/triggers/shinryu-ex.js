@@ -188,8 +188,8 @@
           return 'Tank Swap';
       },
     },
-    { id: 'ShinryuEx Wyrmwail',
-      regex: /:Shinryu starts using Wyrmwail/,
+    { id: 'ShinryuEx Wormwail',
+      regex: /:Shinryu starts using Wormwail/,
       alertText: function(data) { return 'be inside hitbox'; },
       tts: 'get inside',
     },

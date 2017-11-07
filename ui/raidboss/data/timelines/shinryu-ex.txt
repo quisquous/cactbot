@@ -83,7 +83,7 @@ hideall "--sync--"
 885.5 "Ice Storm" # end of castbar
 889.5 "Hypernova / Levinbolt" # end of castbar
 # TODO: also seen benighting 898 + tera 908
-893.0 "Benighting / Wyrmwail" # start of cast
+893.0 "Benighting / Wormwail" # start of cast
 903.0 "--sync--" sync /:Shinryu starts using Tera Slash/ window 15,15
 906.5 "Tera Slash" # end of castbar
 919.0 "Reiyu Adds" # appearance
@@ -94,7 +94,7 @@ hideall "--sync--"
 963.0 "Atomic Ray + Tethers" duration 6.5 # atomic ray cast -> damage
 983.0 "Ice Storm" # end of castbar
 987.0 "Hypernova / Levinbolt" # end of castbar
-991.0 "Benighting / Wyrmwail" # start of cast
+991.0 "Benighting / Wormwail" # start of cast
 1001.0 "--sync--" sync /:Shinryu starts using Tera Slash/ window 10,10
 1004.5 "Tera Slash" # end of castbar
 1015.0 "Reiyu Adds" # appearance
