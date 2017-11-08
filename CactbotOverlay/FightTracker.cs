@@ -182,7 +182,7 @@ namespace Cactbot {
         // Phase 3 starts with protostar cast??, ends
         // Phase 4 starts with tidal wave
       };
-      var ucu_twintania = new BossFightPhaseDetails {
+      var unending_coil = new BossFightPhaseDetails {
         boss_id = "Unending Coil",
         start_strings = { MakeCountdownString(), ":Twintania:26A7:" },
         end_strings = { "Removing combatant Bahamut Prime.  Max HP: 13751450." },
@@ -207,7 +207,7 @@ namespace Cactbot {
         { "Unknown Zone (2B9)", new List<BossFightPhaseDetails>{ o3s } },
         { "Unknown Zone (2Ba)", new List<BossFightPhaseDetails>{ o4s, o4s_neo } },
 
-        { "", new List<BossFightPhaseDetails>{ ucu_twintania } },
+        { "The Unending Coil Of Bahamut (Ultimate)", new List<BossFightPhaseDetails>{ unending_coil } },
 
         { "The Minstrel's Ballad: Shinryu's Domain", new List<BossFightPhaseDetails>{shinryu_ex } },
       };

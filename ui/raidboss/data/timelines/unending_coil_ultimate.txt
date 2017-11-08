@@ -1,7 +1,6 @@
 # Unending Coil of Bahamut (Ultimate)
 
-# TODO: Zone name is empty string for now lol?
-zone "(The Unending Coil Of Bahamut \(Ultimate\)|^$)"
+zone "The Unending Coil Of Bahamut \(Ultimate\)"
 
 hideall "--Reset--"
 hideall "--sync--"
