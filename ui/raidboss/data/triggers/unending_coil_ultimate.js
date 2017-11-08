@@ -180,8 +180,6 @@
       infoText: function(data) {
         if (data.fireball1)
           return;
-        if (data.iceDebuff)
-          return 'fire in (stack!)';
         return 'fire in';
       },
       tts: function(data) {
@@ -197,8 +195,6 @@
       infoText: function(data) {
         if (data.fireball2)
           return;
-        if (data.fireDebuff)
-          return 'fire out; you in';
         if (!data.iceDebuff)
           return 'fire out';
       },
@@ -211,7 +207,7 @@
         if (data.fireball2)
           return;
         if (data.iceDebuff)
-          return 'fire out (be in fire!)';
+          return 'Fire out: Be in it';
       },
       tts: function(data) {
         if (data.fireball2)
@@ -228,8 +224,6 @@
       infoText: function(data) {
         if (data.fireball3)
           return;
-        if (data.iceDebuff)
-          return 'fire in (stack in!)';
         if (!data.fireDebuff)
           return 'fire in';
       },
@@ -239,13 +233,13 @@
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to no stack.
         if (data.fireDebuff)
-          return 'fire in; YOU OUT!';
+          return 'Fire in: AVOID!';
       },
       tts: function(data) {
         if (data.fireball3)
           return;
         if (data.fireDebuff)
-          return 'fire in; you out';
+          return 'avoid fire in';
         return 'fire in'
       },
       run: function(data) { data.fireball3 = true; },
@@ -256,8 +250,6 @@
       infoText: function(data) {
         if (data.fireball4)
           return;
-        if (data.iceDebuff)
-          return 'fire in (stack!)';
         if (!data.fireDebuff)
           return 'fire in';
       },
@@ -266,13 +258,13 @@
           return;
         // Not sure this is possible.
         if (data.fireDebuff)
-          return 'fire in; YOU OUT!';
+          return 'Fire in: AVOID!';
       },
       tts: function(data) {
         if (data.fireball4)
           return;
         if (data.fireDebuff)
-          return 'fire in; you out';
+          return 'avoid fire in';
         return 'fire in';
       },
       run: function(data) { data.fireball4 = true; },
