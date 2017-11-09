@@ -14,19 +14,19 @@
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
         if (data.breathless >= 6)
-	  return 'Breathless: ' + data.breathless;
+          return 'Breathless: ' + data.breathless;
       },
       alarmText: function(data) {
         if (data.breathless == 5)
-	  return 'Get In Bubble';
+          return 'Get In Bubble';
       },
       tts: function(data) {
         if (data.breathless == 5)
-	  return 'bubble';
+          return 'bubble';
       },
       run: function(data) {
         data.breathless = data.breathless | 0;
-	data.breathless++;
+        data.breathless++;
       },
     },
     {
@@ -88,15 +88,15 @@
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
         if (data.mask)
-	  return 'Move';
-	else
-	  return 'Stop';
+          return 'Move';
+        else
+          return 'Stop';
       },
       tts: function(data) {
         if (data.mask)
-	  return 'Move';
-	else
-	  return 'Stop';
+          return 'Move';
+        else
+          return 'Stop';
       },
     },
     {
@@ -105,15 +105,15 @@
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
         if (data.mask)
-	  return 'Look Away';
-	else
-	  return 'Look Towards';
+          return 'Look Away';
+        else
+          return 'Look Towards';
       },
       tts: function(data) {
         if (data.mask)
-	  return 'Look Away';
-	else
-	  return 'Look Towards';
+          return 'Look Away';
+       else
+          return 'Look Towards';
       },
     },
   ],
