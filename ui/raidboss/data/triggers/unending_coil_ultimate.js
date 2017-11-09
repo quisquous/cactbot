@@ -48,11 +48,11 @@
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
       infoText: function(data, matches) {
         if (data.me != matches[1])
-          return 'hatch on ' + matches[1];
+          return 'Hatch on ' + matches[1];
       },
       alarmText: function(data, matches) {
         if (data.me == matches[1])
-          return 'hatch on YOU';
+          return 'Hatch on YOU';
       },
       tts: function(data, matches) {
         if (data.me == matches[1])
@@ -77,72 +77,78 @@
     // --- Nael ---
     { id: 'UCU Nael Quote 1',
       regex: /From on high I descend, in blessed light to bask/,
-      infoText: function(data) { return 'spread => in'; },
+      infoText: function(data) { return 'Spread => In'; },
       tts: 'spread then in',
     },
     { id: 'UCU Nael Quote 2',
       regex: /From on high I descend, mine enemies to smite/,
-      infoText: function(data) { return 'spread => out'; },
+      infoText: function(data) { return 'Spread => Out'; },
       tts: 'spread then out',
     },
     { id: 'UCU Nael Quote 3',
       regex: /O refulgent moon, shine down your light/,
-      infoText: function(data) { return 'stack => in'; },
+      infoText: function(data) { return 'Stack => In'; },
       tts: 'stack then in',
     },
     { id: 'UCU Nael Quote 4',
       regex: /Blazing path, lead me to conquest/,
-      infoText: function(data) { return 'stack => out'; },
+      infoText: function(data) { return 'Stack => Out'; },
       tts: 'stack then out',
     },
     { id: 'UCU Nael Quote 5',
       regex: /O red moon, scorch mine enemies/,
-      infoText: function(data) { return 'in => stack'; },
+      infoText: function(data) { return 'In => Stack'; },
       tts: 'in then stack',
     },
     { id: 'UCU Nael Quote 6',
       regex: /O red moon, shine the path to conquest/,
-      infoText: function(data) { return 'in => out'; },
+      infoText: function(data) { return 'In => Out'; },
       tts: 'in then out',
     },
     { id: 'UCU Nael Quote 7',
       regex: /Fleeting light, score the earth with a fiery kiss/,
-      infoText: function(data) { return 'away from MT => stack'; },
+      infoText: function(data) { return 'Away from Tank => Stack'; },
       tts: 'away from tank then stack',
     },
     { id: 'UCU Nael Quote 8',
       regex: /Fleeting light, outshine the starts for the moon/,
-      infoText: function(data) { return 'spread => away from MT'; },
+      infoText: function(data) { return 'Spread => Away from Tank'; },
       tts: 'spread then away from tank',
     },
     { id: 'UCU Nael Quote 9',
       regex: /From on high I descend, a hail of stars to bring/,
-      infoText: function(data) { return 'spread => in => spread'; },
+      durationSeconds: 6,
+      infoText: function(data) { return 'Spread => In => Spread'; },
       tts: 'spread then in then spread',
     },
     { id: 'UCU Nael Quote 10',
       regex: /From red moon I descend, a hail of stars to bring/,
-      infoText: function(data) { return 'in => spread => spread'; },
+      durationSeconds: 6,
+      infoText: function(data) { return 'In => Spread => Spread'; },
       tts: 'in then spread then spread',
     },
     { id: 'UCU Nael Quote 11',
       regex: /From red moon I draw steel, in my descent to bare/,
-      infoText: function(data) { return 'in => out => stack'; },
+      durationSeconds: 6,
+      infoText: function(data) { return 'In => Out => Stack'; },
       tts: 'in then out then stack',
     },
     { id: 'UCU Nael Quote 12',
       regex: /From red moon I descend, upon burning earth to tread/,
-      infoText: function(data) { return 'in => spread => stack'; },
+      durationSeconds: 6,
+      infoText: function(data) { return 'In => Spread => Stack'; },
       tts: 'in then spread then stack',
     },
     { id: 'UCU Nael Quote 13',
       regex: /Gleaming steel, take fire and descend/,
-      infoText: function(data) { return 'out => stack => spread'; },
+      durationSeconds: 6,
+      infoText: function(data) { return 'Out => Stack => Spread'; },
       tts: 'out then stack then spread',
     },
     { id: 'UCU Nael Quote 14',
       regex: /Gleaming steel, plunge and take fiery edge/,
-      infoText: function(data) { return 'out => spread => stack'; },
+      durationSeconds: 6,
+      infoText: function(data) { return 'Out => Spread => Stack'; },
       tts: 'out then spread then stack',
     },
     { id: 'UCU Nael Thunderstruck',
@@ -180,7 +186,7 @@
       infoText: function(data) {
         if (data.fireball1)
           return;
-        return 'fire in';
+        return 'Fire IN';
       },
       tts: function(data) {
         if (data.fireball1)
@@ -196,9 +202,9 @@
         if (data.fireball2)
           return;
         if (!data.iceDebuff)
-          return 'fire out';
+          return 'Fire OUT';
       },
-      alarmText: function(data) {
+      alertText: function(data) {
         // All players should be neutral by the time fire #2 happens.
         // If you have ice at this point, it means you missed the first
         // stack.  Therefore, make sure you stack.  It's possible you
@@ -207,7 +213,7 @@
         if (data.fireball2)
           return;
         if (data.iceDebuff)
-          return 'Fire out: Be in it';
+          return 'Fire OUT: Be in it';
       },
       tts: function(data) {
         if (data.fireball2)
@@ -225,15 +231,15 @@
         if (data.fireball3)
           return;
         if (!data.fireDebuff)
-          return 'fire in';
+          return 'Fire IN';
       },
-      alarmText: function(data) {
+      alertText: function(data) {
         if (data.fireball3)
           return;
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to no stack.
         if (data.fireDebuff)
-          return 'Fire in: AVOID!';
+          return 'Fire IN: AVOID!';
       },
       tts: function(data) {
         if (data.fireball3)
@@ -251,14 +257,14 @@
         if (data.fireball4)
           return;
         if (!data.fireDebuff)
-          return 'fire in';
+          return 'Fire IN';
       },
-      alarmText: function(data) {
+      alertText: function(data) {
         if (data.fireball4)
           return;
         // Not sure this is possible.
         if (data.fireDebuff)
-          return 'Fire in: AVOID!';
+          return 'Fire IN: AVOID!';
       },
       tts: function(data) {
         if (data.fireball4)
