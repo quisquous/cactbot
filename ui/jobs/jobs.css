@@ -146,6 +146,29 @@
 }
 
 /* Relative to #bars */
+#smn-timers {
+  position: absolute;
+  top: 146px;
+  left: 0px;
+}
+#smn-timers-ruin {
+  position: relative;
+  display: inline-block;
+  /*left: 10px;*/
+  left: calc(152px / 2);
+}
+#smn-timers .inactive {
+  position: absolute;
+  display: inline-block;
+  opacity: 0.6;
+  border: 1px solid black;
+  left: 14px;
+  top: 14px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Relative to #bars */
 #war-procs {
   position: absolute;
   top: 146px;
@@ -234,4 +257,7 @@
 }
 .war-color-eye {
   background-color: rgb(60, 100, 210);
+}
+.smn-color-ruin {
+  background-color: rgb(150, 233, 140);
 }

@@ -14,7 +14,7 @@ var Options = {
   // Option to show the stone/fire/impact procs.
   ShowRdmProcs: true,
 
-  // The food buff warning is shown when you're below this level. Update this when new expansion happens. 
+  // The food buff warning is shown when you're below this level. Update this when new expansion happens.
   MaxLevel: 70,
   // The distance that offensive spells such as VerAreo, etc are castable.
   FarThresholdOffence: 24,
@@ -50,6 +50,8 @@ var kReRdmWhiteManaProcEnd = null;
 var kReRdmBlackManaProcEnd = null;
 var kReRdmImpactProcEnd = null;
 var kReRdmEndCombo = null;
+var kReSmnRuinProc = null;
+var kReSmnRuinProcEnd = null;
 var kReFoodBuff = null;
 
 // Full skill names (regex ok) of abilities that break combos.
@@ -173,11 +175,13 @@ function setupComboTracker(me, callback) {
 
 function setupRegexes(me) {
   kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Verstone:)')
+  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verstone:)')
   kReRdmBlackManaProc = new RegExp(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Verfire:)');
+  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verfire:)');
   kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
   kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Impact:)');
+  kReSmnRuinProc = new RegExp(':' + me + ' gains the effect of Further Ruin from ' + me + ' for ([0-9.]+) Seconds\.');
+  kReSmnRuinProcEnd = new RegExp(':' + me + ' loses the effect of Further Ruin from ' + me + '\.');
   kReFoodBuff = new RegExp(':' + me + ' gains the effect of Well Fed from ' + me + ' for ([0-9.]+) Seconds\.')
 }
 
@@ -341,11 +345,11 @@ class Bars {
       container.removeChild(container.childNodes[0]);
 
     this.o = {};
-    
+
     var barsLayoutContainer = document.createElement("div");
     barsLayoutContainer.id = 'jobs';
     container.appendChild(barsLayoutContainer);
-    
+
     barsLayoutContainer.classList.add(this.job.toLowerCase());
     if (isTankJob(this.job))
       barsLayoutContainer.classList.add('tank');
@@ -384,7 +388,7 @@ class Bars {
     this.o.rightBuffsContainer = document.createElement("div");
     this.o.rightBuffsContainer.id = 'right-side-icons';
     barsContainer.appendChild(this.o.rightBuffsContainer);
-    
+
     this.o.rightBuffsList = document.createElement('widget-list');
     this.o.rightBuffsContainer.appendChild(this.o.rightBuffsList);
 
@@ -432,7 +436,7 @@ class Bars {
     }
 
     var healthText = isTankJob(this.job) ? 'value' : '';
-    
+
     this.o.healthContainer = document.createElement("div");
     this.o.healthContainer.id = 'hp-bar';
     barsContainer.appendChild(this.o.healthContainer);
@@ -471,10 +475,32 @@ class Bars {
       this.o.tpBar.bg = computeBackgroundColorFrom(this.o.tpBar, 'bar-border-color');;
     }
 
-    if (this.job == "RDM") {
-      var fontSize = 16;
-      var innerTextY = 6;
+    if (this.job == 'SMN') {
+      var timersContainer = document.createElement("div");
+      timersContainer.id = 'smn-timers';
+      barsContainer.appendChild(timersContainer);
 
+      var ruinTimerContainer = document.createElement("div");
+      ruinTimerContainer.id = 'smn-timers-ruin';
+      timersContainer.appendChild(ruinTimerContainer);
+
+      var noRuinTimer = document.createElement("div");
+      noRuinTimer.classList.add('inactive');
+      noRuinTimer.classList.add('smn-color-ruin');
+      ruinTimerContainer.appendChild(noRuinTimer);
+
+      this.o.smnRuinTimer = document.createElement("timer-box");
+      ruinTimerContainer.appendChild(this.o.smnRuinTimer);
+
+      this.o.smnRuinTimer.style = "empty";
+      this.o.smnRuinTimer.toward = "bottom";
+      this.o.smnRuinTimer.threshold = 1000;
+      this.o.smnRuinTimer.hideafter = 0;
+      this.o.smnRuinTimer.fg = window.getComputedStyle(noRuinTimer).backgroundColor;
+      this.o.smnRuinTimer.bg = 'black';
+    }
+
+    if (this.job == 'RDM') {
       var rdmBars = document.createElement("div");
       rdmBars.id = 'rdm-bar';
       barsContainer.appendChild(rdmBars);
@@ -523,7 +549,6 @@ class Bars {
       this.o.rdmCombo3.id = 'rdm-combo-3';
       this.o.rdmCombo3.classList.add('rdm-combo');
 
-      // XXX: barsContainer?
       barsContainer.appendChild(this.o.rdmCombo1);
       barsContainer.appendChild(this.o.rdmCombo2);
       barsContainer.appendChild(this.o.rdmCombo3);
@@ -602,13 +627,10 @@ class Bars {
         this.o.rdmProcImpact.bg = 'black';
       }
     } else if (this.job == "WAR") {
-      var fontSize = 16;
-      var fontWidth = fontSize * 1.8;
-
       var beastBoxesContainer = document.createElement("div");
       beastBoxesContainer.id = 'war-boxes';
       barsContainer.appendChild(beastBoxesContainer);
-      
+
       this.o.beastTextBox = document.createElement("div");
       this.o.beastTextBox.classList.add('war-color-beast');
       beastBoxesContainer.appendChild(this.o.beastTextBox);
@@ -746,6 +768,14 @@ class Bars {
     }
   }
 
+  OnSummonerRuinProc(seconds) {
+    if (this.o.smnRuinTimer != null) {
+      // Reset to 0 first to make sure the timer starts over.
+      this.o.smnRuinTimer.duration = 0;
+      this.o.smnRuinTimer.duration = Math.max(0, seconds);
+    }
+  }
+
   OnRedMageProcBlack(seconds) {
     if (this.o.rdmProcBlack != null)
       this.o.rdmProcBlack.duration = Math.max(0, seconds - this.options.RdmCastTime);
@@ -827,7 +857,7 @@ class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
-    
+
     if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
     else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.MidHealthThresholdPercent)
@@ -883,7 +913,7 @@ class Bars {
     else
       opacityContainer.style.opacity = 0.5;
   }
-  
+
   UpdateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
     if (!this.init || !this.o.leftBuffsList)
@@ -896,7 +926,7 @@ class Bars {
         return true;
       return this.zone.search(this.options.WellFedZoneRegex) >= 0;
     }
-    
+
     // Returns the number of ms until it should be shown. If <= 0, show it.
     var TimeToShowWellFedWarning = function() {
       var now_ms = Date.now();
@@ -925,7 +955,6 @@ class Bars {
           kIconBuffFood);
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
-    
   }
 
   OnInCombatChanged(e) {
@@ -978,7 +1007,7 @@ class Bars {
       }, seconds * 1000);
     }
   }
-  
+
   OnLoseBigBuff(name, settings) {
     window.clearTimeout(settings.timeout);
     var list = this.o.rightBuffsList;
@@ -1074,7 +1103,7 @@ class Bars {
       }
     }
   }
-  
+
   OnTargetChanged(e) {
     var update = false;
     if (e.detail.name == null) {
@@ -1099,7 +1128,7 @@ class Bars {
 
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
-      
+
       var r = log.match(/:Battle commencing in ([0-9]+) seconds!/);
       if (r != null) {
         var seconds = parseInt(r[1]);
@@ -1141,7 +1170,20 @@ class Bars {
       if (this.combo.ParseLog(log))
         continue;
 
-      if (this.job == "RDM") {
+      if (this.job == 'SMN') {
+        var r = log.match(kReSmnRuinProc);
+        if (r != null) {
+          var seconds = parseFloat(r[1]);
+          this.OnSummonerRuinProc(seconds);
+          continue;
+        }
+        if (log.search(kReSmnRuinProcEnd) >= 0) {
+          this.OnSummonerRuinProc(0);
+          continue;
+        }
+      }
+
+      if (this.job == 'RDM') {
         var r = log.match(kReRdmBlackManaProc);
         if (r != null) {
           var seconds = parseFloat(r[1]);
