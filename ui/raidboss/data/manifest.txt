@@ -27,6 +27,7 @@ triggers/o1s.js
 triggers/o2s.js
 triggers/o3s.js
 triggers/o4s.js
+triggers/royal_city_of_rabanastre.js
 triggers/shatter.js
 triggers/shinryu-ex.js
 triggers/sohm_al.js
