@@ -167,8 +167,18 @@ namespace Cactbot {
       }
 
       public struct SummonerAndScholarDetail {
-        public SummonerAndScholarDetail(FFXIVProcess.SummonerAndScholarJobData d) { aetherflowStacks = d.aetherflow_stacks; }
-        public int aetherflowStacks;
+        public SummonerAndScholarDetail(FFXIVProcess.SummonerAndScholarJobData d) {
+          aetherflowStacks = d.aetherflow_stacks;
+          dreadwyrmStacks = d.dreadwyrm_stacks;
+          bahamutStacks = d.bahamut_stacks;
+          dreadwyrmMilliseconds = d.dreadwyrm_ms;
+          bahamutMilliseconds = d.bahamut_ms;
+        }
+        public int aetherflowStacks;  // Stacks to spend on fester, etc.
+        public int dreadwyrmStacks;  // Stacks to get into dreadwyrm trance.
+        public int bahamutStacks;  // Stacks to summon bahamut.
+        public uint dreadwyrmMilliseconds;  // Time left for dreadwyrm trance.
+        public uint bahamutMilliseconds;  // Time left for bahamut summon.
       }
 
       public struct MonkDetail {

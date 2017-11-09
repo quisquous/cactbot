@@ -749,16 +749,28 @@ namespace Cactbot {
 
     public class SummonerAndScholarJobData {
       public int aetherflow_stacks = 0;
+      public int dreadwyrm_stacks = 0;
+      public int bahamut_stacks = 0;
+      public uint dreadwyrm_ms = 0;
+      public uint bahamut_ms = 0;
 
       public override bool Equals(Object obj) {
         var o = obj as SummonerAndScholarJobData;
         return o != null &&
-          aetherflow_stacks == o.aetherflow_stacks;
+          aetherflow_stacks == o.aetherflow_stacks &&
+          dreadwyrm_stacks == o.dreadwyrm_stacks &&
+          bahamut_stacks == o.bahamut_stacks &&
+          dreadwyrm_ms == o.dreadwyrm_ms &&
+          bahamut_ms == o.bahamut_ms;
       }
 
       public override int GetHashCode() {
         int hash = 17;
         hash = hash * 31 + aetherflow_stacks.GetHashCode();
+        hash = hash * 31 + dreadwyrm_stacks.GetHashCode();
+        hash = hash * 31 + bahamut_stacks.GetHashCode();
+        hash = hash * 31 + dreadwyrm_ms.GetHashCode();
+        hash = hash * 31 + bahamut_ms.GetHashCode();
         return hash;
       }
     }
@@ -769,7 +781,19 @@ namespace Cactbot {
         return null;
 
       var j = new SummonerAndScholarJobData();
-      j.aetherflow_stacks = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
+      byte stacks = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
+      j.aetherflow_stacks = (stacks >> 0) & 0x3;  // Bottom 2 bits.
+      j.dreadwyrm_stacks = (stacks >> 2) & 0x3;  // Next 2 bits.
+      j.bahamut_stacks = (stacks >> 4) & 0x3;  // Next 2 bits.
+      uint stance_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      byte bahamut_stance = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
+      if (bahamut_stance == 0x3) {
+        j.dreadwyrm_ms = 0;
+        j.bahamut_ms = stance_ms;
+      } else {
+        j.dreadwyrm_ms = stance_ms;
+        j.bahamut_ms = 0;
+      }
       return j;
     }
 
