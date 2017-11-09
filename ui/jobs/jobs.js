@@ -842,9 +842,7 @@ class Bars {
     this.o.manaBar.maxvalue = this.maxMP;
 
     var far = -1;
-    if (this.job == "RDM")
-      far = this.options.FarThresholdOffence;
-    else if (this.job == "BLM")
+    if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
 
     if (far >= 0 && this.distance > far)
