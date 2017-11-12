@@ -186,15 +186,15 @@
     },
     { // Acceleration Bomb
       id: 'O4S2 Acceleration Bomb',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_568|Acceleration Bomb) from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_568|Acceleration Bomb) from .*? for (\y{Float}) Seconds/,
       alarmText: 'Stop',
-      delaySeconds: function(data, matches) { return parseFloat(matches[2]) - 4; },  // 4 second warning.
+      delaySeconds: function(data, matches) { return data.ParseLocaleFloat(matches[2]) - 4; },  // 4 second warning.
       condition: function(data, matches) { return matches[1] == data.me; },
       tts: 'stop',
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_566|Beyond Death) from .*? for (\y{Float}) Seconds/,
       delaySeconds: 7,
       alarmText: 'Beyond Death: Die',
       sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
@@ -203,7 +203,7 @@
     },
     { // Beyond Death (Omega)
       id: 'O4S2 Beyond Death',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_566|Beyond Death) from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_566|Beyond Death) from .*? for (\y{Float}) Seconds/,
       delaySeconds: 8,  // 20 seconds if you want the third flood cast, 8 for the first.
       alarmText: 'Beyond Death: Die',
       sound: '../../resources/sounds/Overwatch/Reaper_-_Die_die_die.ogg',
@@ -232,8 +232,8 @@
     },
     { // Final phase Addle warning when Reprisal is ending.
       id: 'O4S2 Reprisal',
-      regex: /gains the effect of Reprisal from .*? for ([0-9.]+) Seconds/,
-      durationSeconds: function(data, matches) { return parseFloat(matches[1]); },
+      regex: /gains the effect of Reprisal from .*? for (\y{Float}) Seconds/,
+      durationSeconds: function(data, matches) { return data.ParseLocaleFloat(matches[1]); },
       infoText: 'Reprisal active',
       condition: function(data) { return data.finalphase && !data.reprisal; },
       run: function(data) { data.reprisal = true; },

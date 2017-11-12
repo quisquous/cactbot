@@ -1,10 +1,20 @@
 var Regexes = {
-  Parse: function(regexpString) {    
+  // Can parse a float matched by \y{Float} and returns it as a number.
+  ParseLocaleFloat: function(s) {
+    var m = s.match(/(-?[0-9]+)(?:([.,])([0-9]+))?(E-?[0-9]+)?/);
+    if (!m)
+      return parseFloat(s);
+    return parseFloat(m[1] + (m[2] ? '.' : '') + (m[3] ? m[3] : '') + (m[4] ? m[4] : ""));
+  },
+
+  Parse: function(regexpString) {
     var kCactbotCategories = {
       TimeStamp: '\[[0-9:.]+\]',
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,4}',
       Name: '(?:\\p{L}\\p{M}*|\\p{N}|\\p{Z}|[-_\'])*',
+      // Floats can have comma as separator in FFXIV plugin output: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/137
+      Float: '-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?',
     }
 
     var modifiers = "";
@@ -19,7 +29,7 @@ var Regexes = {
     });
     return new RegExp(Regexes.WithUnicodeClasses(regexpString), modifiers);
   },
-  
+
   /*! This method is from https://stackoverflow.com/a/8933546
     Copyright (C) 2010-2012,2014  Marcelo Gibson de Castro Gonçalves. All rights reserved.
     

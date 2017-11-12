@@ -21,9 +21,10 @@
 // Fields that can be a function will receive the following arguments:
 // data: An object that triggers may store state on. It is reset when combat ends.
 //       It comes with the following fields pre-set:
-//       me: The player's character name.
-//       job: The player's job.
-//       role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster/crafting/gathering).
+//         me: The player's character name.
+//         job: The player's job.
+//         role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster/crafting/gathering).
+//         ParseLocaleFloat: A function that can parse \y{Float} matches from the regex.
 // matches: The regex match result of the trigger's regex to the log line it matched.
 //          matches[0] will be the entire match, and matches[1] will be the first group
 //          in the regex, etc. This can be used to pull data out of the log line.

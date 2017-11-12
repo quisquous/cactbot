@@ -87,7 +87,7 @@ class ComboTracker {
   constructor(me, comboBreakers, callback) {
     this.me = me;
     this.comboTimer = null;
-    this.kReEndCombo = new RegExp(':' + me + '( starts using |:' + Regexes.AbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
+    this.kReEndCombo = Regexes.Parse(':' + me + '( starts using |:' + Regexes.AbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
     this.callback = callback;
@@ -174,15 +174,15 @@ function setupComboTracker(me, callback) {
 }
 
 function setupRegexes(me) {
-  kReRdmWhiteManaProc = new RegExp(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmWhiteManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verstone Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verstone:)')
-  kReRdmBlackManaProc = new RegExp(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmBlackManaProcEnd = new RegExp('(:' + me + ' loses the effect of Verfire Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verfire:)');
-  kReRdmImpactProc = new RegExp(':' + me + ' gains the effect of Impactful from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReRdmImpactProcEnd = new RegExp('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Impact:)');
-  kReSmnRuinProc = new RegExp(':' + me + ' gains the effect of Further Ruin from ' + me + ' for ([0-9.]+) Seconds\.');
-  kReSmnRuinProcEnd = new RegExp(':' + me + ' loses the effect of Further Ruin from ' + me + '\.');
-  kReFoodBuff = new RegExp(':' + me + ' gains the effect of Well Fed from ' + me + ' for ([0-9.]+) Seconds\.')
+  kReRdmWhiteManaProc = Regexes.Parse(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for (\\y{Float}) Seconds\.');
+  kReRdmWhiteManaProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Verstone Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verstone:)')
+  kReRdmBlackManaProc = Regexes.Parse(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for (\\y{Float}) Seconds\.');
+  kReRdmBlackManaProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Verfire Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verfire:)');
+  kReRdmImpactProc = Regexes.Parse(':' + me + ' gains the effect of Impactful from ' + me + ' for (\\y{Float}) Seconds\.');
+  kReRdmImpactProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Impact:)');
+  kReSmnRuinProc = Regexes.Parse(':' + me + ' gains the effect of Further Ruin from ' + me + ' for (\\y{Float}) Seconds\.');
+  kReSmnRuinProcEnd = Regexes.Parse(':' + me + ' loses the effect of Further Ruin from ' + me + '\.');
+  kReFoodBuff = Regexes.Parse(':' + me + ' gains the effect of Well Fed from ' + me + ' for (\\y{Float}) Seconds\.')
 }
 
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
@@ -236,60 +236,60 @@ var kBigBuffTracker = null;
 function setupBuffTracker(me) {
   kBigBuffTracker = {
     potion: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of Medicated from ' + me + ' for ([0-9.]+) Seconds'),
-      loseRegex: new RegExp(':' + me + ' loses the effect of Medicated from '),
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Medicated from ' + me + ' for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Medicated from '),
       durationPosition: 1,
       icon: kIconBuffPotion,
       borderColor: '#AA41B2',
       sortKey: 0,
     },
     embolden: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of Embolden from \\y{Name} for ([0-9.]+) Seconds'),
-      loseRegex: new RegExp(':' + me + ' loses the effect of Embolden from '),
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Embolden from \\y{Name} for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffEmbolden,
       borderColor: '#57FC4A',
       sortKey: 1,
     },
     litany: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of Battle Litany from \\y{Name} for ([0-9.]+) Seconds'),
-      loseRegex: new RegExp(':' + me + ' loses the effect of Embolden from '),
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Battle Litany from \\y{Name} for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffLitany,
       borderColor: '#099',
       sortKey: 2,
     },
     balance: {
-      gainRegex: new RegExp(':' + me + ' gains the effect of The Balance from \\y{Name} for ([0-9.]+) Seconds'),
-      loseRegex: new RegExp(':' + me + ' loses the effect of The Balance from '),
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of The Balance from \\y{Name} for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of The Balance from '),
       durationPosition: 1,
       icon: kIconBuffBalance,
       borderColor: '#C5C943',
       sortKey: 3,
     },
     chain: {
-      gainRegex: /:\y{Name}:\y{AbilityCode}:Chain Strategem:/,
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Chain Strategem:/),
       durationSeconds: 15,
       icon: kIconBuffChainStrategem,
       borderColor: '#4674E5',
       sortKey: 5,
     },
     trick: {
-      gainRegex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:/),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       borderColor: '#FC4AE6',
       sortKey: 6,
     },
     hyper: {
-      gainRegex: /:\y{Name}:\y{AbilityCode}:Hypercharge:/,
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Hypercharge:/),
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
       borderColor: '#099',
       sortKey: 7,
     },
     sight: {
-      gainRegex: /:\y{Name}:\y{AbilityCode}:Dragon Sight:/,
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Dragon Sight:/),
       durationSeconds: 20,
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
@@ -297,8 +297,8 @@ function setupBuffTracker(me) {
     },
 
     requiem: {
-      gainRegex: /:(\y{Name}) gains the effect of Foe Requiem from \1 for ([0-9.]+) Seconds/,
-      loseRegex: /:(\y{Name}) loses the effect of Foe Requiem from \1/,
+      gainRegex: Regexes.Parse(/:(\y{Name}) gains the effect of Foe Requiem from \1 for (\y{Float}) Seconds/),
+      loseRegex: Regexes.Parse(/:(\y{Name}) loses the effect of Foe Requiem from \1/),
       durationPosition: 2,
       icon: kIconBuffFoes,
       borderColor: '#F272F2',
@@ -1245,9 +1245,9 @@ class Bars {
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
 
-      var r = log.match(/:Battle commencing in ([0-9]+) seconds!/);
+      var r = log.match(/:Battle commencing in (\y{Float}) seconds!/);
       if (r != null) {
-        var seconds = parseInt(r[1]);
+        var seconds = Regexes.ParseLocaleFloat(r[1]);
         this.SetPullCountdown(seconds);
         continue;
       }
@@ -1258,7 +1258,7 @@ class Bars {
 
       r = log.match(kReFoodBuff);
       if (r != null) {
-        var seconds = parseFloat(r[1]);
+        var seconds = Regexes.ParseLocaleFloat(r[1]);
         var now = Date.now();  // This is in ms.
         this.foodBuffExpiresTimeMs = now + (seconds * 1000);
         this.UpdateFoodBuff();
@@ -1266,18 +1266,18 @@ class Bars {
 
       for (var name in kBigBuffTracker) {
         var settings = kBigBuffTracker[name];
-        var r = log.match(Regexes.Parse(settings.gainRegex));
+        var r = log.match(settings.gainRegex);
         if (r != null) {
           var seconds = -1;
           if ('durationSeconds' in settings) {
             seconds = settings.durationSeconds;
           } else if ('durationPosition' in settings) {
-            seconds = r[settings.durationPosition];
+            seconds = Regexes.ParseLocaleFloat(r[settings.durationPosition]);
           }
           this.OnBigBuff(name, seconds, settings);
         }
         if (settings.loseRegex) {
-          r = log.match(Regexes.Parse(settings.loseRegex));
+          r = log.match(settings.loseRegex);
           if (r != null)
             this.OnLoseBigBuff(name, settings);
         }
@@ -1289,7 +1289,7 @@ class Bars {
       if (this.job == 'SMN') {
         var r = log.match(kReSmnRuinProc);
         if (r != null) {
-          var seconds = parseFloat(r[1]);
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
           this.OnSummonerRuinProc(seconds);
           continue;
         }
@@ -1302,19 +1302,19 @@ class Bars {
       if (this.job == 'RDM') {
         var r = log.match(kReRdmBlackManaProc);
         if (r != null) {
-          var seconds = parseFloat(r[1]);
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
           this.OnRedMageProcBlack(seconds);
           continue;
         }
         r = log.match(kReRdmWhiteManaProc);
         if (r != null) {
-          var seconds = parseFloat(r[1]);
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
           this.OnRedMageProcWhite(seconds);
           continue;
         }
         r = log.match(kReRdmImpactProc);
         if (r != null) {
-          var seconds = parseFloat(r[1]);
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
           this.OnRedMageProcImpact(seconds);
           continue;
         }
@@ -1343,7 +1343,7 @@ class Bars {
 
   Test() {
     var logs = [];
-    logs.push(':' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30 Seconds\.');
+    logs.push(':' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds\.');
     logs.push(':' + this.me + ' gains the effect of Embolden from  for 20 Seconds\.');
     logs.push(':' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds\.');
     logs.push(':' + this.me + ' gains the effect of The Balance from  for 12 Seconds\.');

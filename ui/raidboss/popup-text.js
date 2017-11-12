@@ -113,7 +113,12 @@ class PopupText {
   }
 
   Reset() {
-    this.data = { me: this.me, job: this.job, role: this.role };
+    this.data = {
+      me: this.me,
+      job: this.job,
+      role: this.role,
+      ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
+    };
     for (var i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];

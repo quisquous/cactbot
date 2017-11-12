@@ -160,12 +160,12 @@
       tts: 'thunder',
     },
     { id: 'UCU Nael Doom',
-      regex: /:(\y{Name}) gains the effect of Doom from .*? for ([0-9.]+) Seconds/,
+      regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: function(data, matches) {
-        if (parseFloat(matches[2]) < 9)
+        if (data.ParseLocaleFloat(matches[2]) < 9)
           return 'Doom #1 on YOU';
-        if (parseFloat(matches[2]) < 14)
+        if (data.ParseLocaleFloat(matches[2]) < 14)
           return 'Doom #2 on YOU';
         return 'Doom #3 on YOU';
 
@@ -173,9 +173,9 @@
         // TODO: reminder to clear at the right time
       },
       tts: function(data, matches) {
-        if (parseFloat(matches[2]) < 9)
+        if (data.ParseLocaleFloat(matches[2]) < 9)
           return '1';
-        if (parseFloat(matches[2]) < 14)
+        if (data.ParseLocaleFloat(matches[2]) < 14)
           return '2';
         return '3';
       },
@@ -276,14 +276,14 @@
       run: function(data) { data.fireball4 = true; },
     },
     { id: 'UCU Nael Dragon Placement',
-      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:([-0-9.E]+):([-0-9.E]+):[-0-9.E]+:$/,
+      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       condition: function(data, matches) { return !data.seenDragon || !(matches[1] in data.seenDragon); },
       run: function(data, matches) {
         data.seenDragon = data.seenDragon || [];
         data.seenDragon[matches[1]] = true;
 
-        var x = parseFloat(matches[2]);
-        var y = parseFloat(matches[3]);
+        var x = data.ParseLocaleFloat(matches[2]);
+        var y = data.ParseLocaleFloat(matches[3]);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7

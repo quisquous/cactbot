@@ -103,8 +103,8 @@
     },
     { // Churning (dice)
       id: 'SusEx Churning',
-      regex: /:(\y{Name}) gains the effect of Churning from .*? for ([0-9.]+) Seconds/,
-      delaySeconds: function(data, matches) { return parseFloat(matches[2]) - 3; },
+      regex: /:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
+      delaySeconds: function(data, matches) { return data.ParseLocaleFloat(matches[2]) - 3; },
       alertText: 'Stop',
       condition: function(data, matches) { return matches[1] == data.me; },
       tts: 'stop',
