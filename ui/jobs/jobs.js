@@ -331,6 +331,7 @@ class Bars {
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
+    this.smnChanneling = false;
   }
 
   UpdateJob() {
@@ -476,6 +477,53 @@ class Bars {
     }
 
     if (this.job == 'SMN') {
+      var stacksContainer = document.createElement('div');
+      stacksContainer.id = 'smn-stacks';
+      barsContainer.appendChild(stacksContainer);
+      var bahaStacks = document.createElement('div');
+      bahaStacks.id = 'smn-stacks-bahamut';
+      stacksContainer.appendChild(bahaStacks);
+      var dreadStacks = document.createElement('div');
+      dreadStacks.id = 'smn-stacks-aetherflow';
+      stacksContainer.appendChild(dreadStacks);
+
+      this.o.smnBahamutStacks = [];
+      for (var i = 0; i < 2; ++i) {
+        var d = document.createElement('div');
+        d.classList.add('bahamut');
+        d.classList.add('stack' + (i+1));
+        bahaStacks.appendChild(d);
+        this.o.smnBahamutStacks.push(d);
+      }
+      this.o.smnAetherflowStacks = [];
+      for (var i = 0; i < 3; ++i) {
+        var d = document.createElement('div');
+        d.classList.add('aetherflow');
+        d.classList.add('stack' + (i+1));
+        dreadStacks.appendChild(d);
+        this.o.smnAetherflowStacks.push(d);
+      }
+
+      this.o.smnBahamutTimerContainer = document.createElement('div');
+      this.o.smnBahamutTimerContainer.id = 'smn-timer-bahamut';
+      bahaStacks.appendChild(this.o.smnBahamutTimerContainer);
+      this.o.smnBahamutTimer = document.createElement('timer-bar');
+      this.o.smnBahamutTimerContainer.appendChild(this.o.smnBahamutTimer);
+      this.o.smnBahamutTimer.width = window.getComputedStyle(this.o.smnBahamutTimerContainer).width;
+      this.o.smnBahamutTimer.height = window.getComputedStyle(this.o.smnBahamutTimerContainer).height;
+      //this.o.smnBahamutTimer.centertext = "remain";
+      this.o.smnBahamutTimer.fg = window.getComputedStyle(this.o.smnBahamutTimerContainer).backgroundColor;
+
+      this.o.smnDreadwyrmTimerContainer = document.createElement('div');
+      this.o.smnDreadwyrmTimerContainer.id = 'smn-timer-aetherflow';
+      dreadStacks.appendChild(this.o.smnDreadwyrmTimerContainer);
+      this.o.smnDreadwyrmTimer = document.createElement('timer-bar');
+      this.o.smnDreadwyrmTimerContainer.appendChild(this.o.smnDreadwyrmTimer);
+      this.o.smnDreadwyrmTimer.width = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).width;
+      this.o.smnDreadwyrmTimer.height = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).height;
+      //this.o.smnDreadwyrmTimer.centertext = "remain";
+      this.o.smnDreadwyrmTimer.fg = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).backgroundColor;
+
       var timersContainer = document.createElement("div");
       timersContainer.id = 'smn-timers';
       barsContainer.appendChild(timersContainer);
@@ -729,6 +777,60 @@ class Bars {
     bar.duration = seconds;
 
     return div;
+  }
+
+  OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks, dreadwyrmMilliseconds, bahamutMilliseconds) {
+    if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
+      return;
+
+    for (var i = 0; i < this.o.smnBahamutStacks.length; ++i) {
+      if (bahamutStacks > i)
+        this.o.smnBahamutStacks[i].classList.add('active');
+      else
+        this.o.smnBahamutStacks[i].classList.remove('active');
+
+      if (bahamutMilliseconds > 0)
+        this.o.smnBahamutStacks[i].classList.add('channeling');
+      else
+        this.o.smnBahamutStacks[i].classList.remove('channeling');
+    }
+    for (var i = 0, n = this.o.smnAetherflowStacks.length; i < n; ++i) {
+      if (aetherflowStacks > i)
+        this.o.smnAetherflowStacks[i].classList.add('active');
+      else
+        this.o.smnAetherflowStacks[i].classList.remove('active');
+      if (dreadwyrmStacks > i)
+        this.o.smnAetherflowStacks[n - 1 - i].classList.add('dreadwyrm');
+      else
+        this.o.smnAetherflowStacks[n - 1 - i].classList.remove('dreadwyrm');
+
+      if (dreadwyrmMilliseconds > 0)
+        this.o.smnAetherflowStacks[i].classList.add('channeling');
+      else
+        this.o.smnAetherflowStacks[i].classList.remove('channeling');
+    }
+
+    if (dreadwyrmMilliseconds > 0) {
+      this.o.smnDreadwyrmTimerContainer.classList.add('channeling');
+      if (this.smnChanneling != 1) {
+        this.smnChanneling = 1;
+        this.o.smnDreadwyrmTimer.duration = dreadwyrmMilliseconds / 1000;
+      }
+    } else {
+      this.o.smnDreadwyrmTimerContainer.classList.remove('channeling');
+    }
+    if (bahamutMilliseconds > 0) {
+      this.o.smnBahamutTimerContainer.classList.add('channeling');
+      if (this.smnChanneling != 2) {
+        this.smnChanneling = 2;
+        this.o.smnBahamutTimer.duration = bahamutMilliseconds / 1000;
+      }
+    }
+    else {
+      this.o.smnBahamutTimerContainer.classList.remove('channeling');
+    }
+    if (dreadwyrmMilliseconds == 0 && bahamutMilliseconds == 0)
+      this.smnChanneling = 0;
   }
 
   OnRedMageUpdate(white, black) {
@@ -1092,14 +1194,28 @@ class Bars {
         if (update_job ||
             e.detail.jobDetail.whiteMana != this.whiteMana ||
             e.detail.jobDetail.blackMana != this.blackMana) {
-            this.whiteMana = e.detail.jobDetail.whiteMana;
-            this.blackMana = e.detail.jobDetail.blackMana;
-            this.OnRedMageUpdate(this.whiteMana, this.blackMana);
+          this.whiteMana = e.detail.jobDetail.whiteMana;
+          this.blackMana = e.detail.jobDetail.blackMana;
+          this.OnRedMageUpdate(this.whiteMana, this.blackMana);
         }
     } else if (this.job == "WAR") {
       if (update_job || e.detail.jobDetail.beast != this.beast) {
-          this.beast = e.detail.jobDetail.beast;
-          this.OnWarUpdate(this.beast);
+        this.beast = e.detail.jobDetail.beast;
+        this.OnWarUpdate(this.beast);
+      }
+    } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
+      if (update_job ||
+          e.detail.jobDetail.aetherflowStacks != this.aetherflowStacks ||
+          e.detail.jobDetail.dreadwyrmStacks != this.dreadwyrmStacks ||
+          e.detail.jobDetail.bahamutStacks != this.bahamutStacks ||
+          e.detail.jobDetail.dreadwyrmMilliseconds != this.dreadwyrmMilliseconds ||
+          e.detail.jobDetail.bahamutMilliseconds != this.bahamutMilliseconds) {
+        this.aetherflowStacks = e.detail.jobDetail.aetherflowStacks;
+        this.dreadwyrmStacks = e.detail.jobDetail.dreadwyrmStacks;
+        this.bahamutStacks = e.detail.jobDetail.bahamutStacks;
+        this.dreadwyrmMilliseconds = e.detail.jobDetail.dreadwyrmMilliseconds;
+        this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
+        this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks, this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
     }
   }
