@@ -1,9 +1,13 @@
+.vs
 **/*.suo
 bin/
 obj/
 packages/
 user/
 !user/README.txt
+CactbotOverlay/CactbotOverlay.csproj.user
+CactbotOverlay/ThirdParty/*/*.pdb
 CactbotOverlay/ThirdParty/*/*.dll
 CactbotOverlay/ThirdParty/*/*.exe
+CactbotOverlay/ThirdParty/*/*.xml
 publish/
