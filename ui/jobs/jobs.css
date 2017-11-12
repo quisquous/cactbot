@@ -244,10 +244,10 @@
   display: inline-block;
 }
 #smn-timer-bahamut {
-  background: #ff0066;
+  color: #ff0066;
 }
 #smn-timer-aetherflow {
-  background: #99ff33;
+  color: #99ff33;
 }
 
 /* Relative to #bars */

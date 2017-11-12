@@ -512,7 +512,7 @@ class Bars {
       this.o.smnBahamutTimer.width = window.getComputedStyle(this.o.smnBahamutTimerContainer).width;
       this.o.smnBahamutTimer.height = window.getComputedStyle(this.o.smnBahamutTimerContainer).height;
       //this.o.smnBahamutTimer.centertext = "remain";
-      this.o.smnBahamutTimer.fg = window.getComputedStyle(this.o.smnBahamutTimerContainer).backgroundColor;
+      this.o.smnBahamutTimer.fg = window.getComputedStyle(this.o.smnBahamutTimerContainer).color;
 
       this.o.smnDreadwyrmTimerContainer = document.createElement('div');
       this.o.smnDreadwyrmTimerContainer.id = 'smn-timer-aetherflow';
@@ -522,7 +522,7 @@ class Bars {
       this.o.smnDreadwyrmTimer.width = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).width;
       this.o.smnDreadwyrmTimer.height = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).height;
       //this.o.smnDreadwyrmTimer.centertext = "remain";
-      this.o.smnDreadwyrmTimer.fg = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).backgroundColor;
+      this.o.smnDreadwyrmTimer.fg = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).color;
 
       var timersContainer = document.createElement("div");
       timersContainer.id = 'smn-timers';
