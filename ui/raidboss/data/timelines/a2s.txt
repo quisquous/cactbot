@@ -2,8 +2,6 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-zone "^Alexander - The Cuff Of The Father \(Savage\)$"
-
 0 "--STOP--" sync /Hangar 12 is no longer sealed/ window 10000 jump 0
 
 # Wave 1 - Soldier x2

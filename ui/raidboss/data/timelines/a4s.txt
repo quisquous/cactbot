@@ -2,8 +2,6 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-zone "^Alexander - The Burden Of The Father \(Savage\)$"
-
 #The reset line is not working. Timeline will need to be restarted manually every attempt
 #0 "--Stop--" sync /Removing combatant King Thordan/ window 10000 jump 0
 

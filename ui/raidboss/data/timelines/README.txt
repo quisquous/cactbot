@@ -2,16 +2,11 @@ This directory holds timeline files in the format defined by ACT Timeline plugin
 which described in here:
 http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin
 
-There are a some extensions to the original format:
+The files are loaded from the triggers in ui/raidboss/data/triggers. There the file
+name for a file here can be specified to be loaded for any zone.
 
-# Allows you to specify a regular expression, which when matched the timeline file
-# will be used.  If more than one file has a matching regex for the current zone, an
-# arbitrary one will be used (don't do that). This is useful when the FFXIV plugin
-# does not know the name of the zone yet, but you want to specify the name for once
-# it becomes known. If this isn't specified, the name of the file (excluding the
-# extention) will be used as a string match instead, and must exactly match the zone
-# name.
-zone "zone-regex"
+There are a some extensions to the original format, that can appear in the file
+itself, or in the |timeline| field in the triggers:
 
 # Show a info-priority text popup on screen before an event will occur. The
 # |event name| matches a timed event in the file and will be shown before each

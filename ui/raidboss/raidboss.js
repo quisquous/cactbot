@@ -53,6 +53,10 @@ var Options = {
   // Example:
   // Options.Triggers = [
   //   { zoneRegex: /./,
+  //     timelines: `
+  //       10.2 "My special event"
+  //       hideall "EventName"
+  //     `
   //     triggers: [
   //       { regex: /regex to match aginst here/,
   //         infoText: 'text to show when it matches',
@@ -62,23 +66,6 @@ var Options = {
   //   },
   // ]
   Triggers: [],
-
-  // An array of pairs of 'zoneRegex' and 'timeline', where:
-  // - 'zoneRegex' is matched against the current zone name
-  // - 'timeline' is a multi-line string of text defining lines to add to the timeline
-  //   for the current zone if 'zoneRegex' matches. The string should match the format
-  //   of the timeline files, described in data/timelines/README.txt.
-  //
-  // Example:
-  // Options.Timelines = [
-  //   {  zoneRegex: /regex here, timeline text will be used when it matches/,
-  //      timeline: `
-  //        text to insert here
-  //        use newlines to separate statements
-  //        `,
-  //   },
-  // ]
-  Timelines: [],
 };
 
 
@@ -88,5 +75,6 @@ window.setTimeout(function() {
     gPopupText = new PopupText(Options);
     // Connect the timelines to the popup text.
     gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
+    gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
   }
 }, 0);

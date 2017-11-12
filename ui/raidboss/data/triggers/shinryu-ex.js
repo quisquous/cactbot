@@ -1,6 +1,7 @@
 // Shinryu Extreme
 [{
   zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
+  timelineFile: 'shinryu-ex.txt',
   triggers: [
     { regex: /Removing combatant Shinryu\.  Max HP: 17167557\./,
       run: function(data) {

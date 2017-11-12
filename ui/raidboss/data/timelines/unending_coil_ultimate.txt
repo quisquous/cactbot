@@ -1,7 +1,5 @@
 # Unending Coil of Bahamut (Ultimate)
 
-zone "The Unending Coil Of Bahamut \(Ultimate\)"
-
 hideall "--Reset--"
 hideall "--sync--"
 

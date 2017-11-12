@@ -1,6 +1,10 @@
 // O2S - Deltascape 2.0 Savage
 [{
   zoneRegex: /(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))/,
+  timelineFile: 'o2s.txt',
+  timeline: `
+    alerttext "Double Stack" before 6 "DPS: Levitate"
+    `,
   triggers: [
     { // Phase Tracker: Maniacal Probe.
       regex: /:235A:Catastrophe starts using/,

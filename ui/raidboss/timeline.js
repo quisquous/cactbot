@@ -545,7 +545,7 @@ class TimelineController {
     this.options = options;
     this.ui = ui;
     this.dataFiles = {};
-    this.timelines = [];
+    this.timelines = {};
   }
 
   SetPopupTextInterface(popupText) {
@@ -574,29 +574,25 @@ class TimelineController {
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
   }
 
-  OnZoneChanged(e) {
+  SetActiveTimeline(timelineFiles, timelines) {
     this.activeTimeline = null;
 
     if (!this.options.TimelineEnabled)
       return;
 
     var text = '';
-    // Get the first matching timeline file.
-    for (var i = 0; i < this.timelines.length; ++i) {
-      if (e.detail.zoneName.search(this.timelines[i].zoneRegex) >= 0) {
-        text = this.timelines[i].text;
-        break;
-      }
+
+    // Get the text from each file in |timelineFiles|.
+    for (var i = 0; i < timelineFiles.length; ++i) {
+      var name = timelineFiles[i];
+      if (name in this.timelines)
+        text = text + '\n' + this.timelines[name];
+      else
+        console.log('Timeline file not found: ' + name);
     }
-    // Append text from user-defined timelines.
-    for (var i = 0; i < this.options.Timelines.length; ++i) {
-      if (e.detail.zoneName.search(this.options.Timelines[i].zoneRegex) >= 0) {
-        if (!this.options.Timelines[i].timeline)
-          console.log("Missing 'timeline' in user-defined timeline for " + this.options.Timelines[i].zoneRegex);
-        else
-          text = text + '\n' + this.options.Timelines[i].timeline;
-      }
-    }
+    // Append text from each block in |timelines|.
+    for (var i = 0; i < timelines.length; ++i)
+      text = text + '\n' + timelines[i];
 
     if (text)
       this.activeTimeline = new Timeline(text, this.options);
@@ -604,43 +600,32 @@ class TimelineController {
   }
 
   SetDataFiles(files) {
-    this.timelines = [];
+    this.timelines = {};
     for (var f in files) {
       // Reads from the data/timelines/ directory.
       if (!f.startsWith('timelines/'))
         continue;
 
-      var zoneRegex = f;
-      // Drop the file extension.
-      if (zoneRegex.indexOf('.') >= 0)
-        zoneRegex = zoneRegex.split('.').slice(0, -1).join('.');
+      var name = f;
       // Drop leading directory names.
-      if (zoneRegex.indexOf('/') >= 0)
-        zoneRegex = zoneRegex.split('/').slice(-1)[0];
-      // Escape regex special characters.
-      zoneRegex.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+      if (name.indexOf('/') >= 0)
+        name = name.split('/').slice(-1)[0];
 
-      var lines = files[f].split('\n');
-      for (var i = 0; i < lines.length; ++i) {
-        var line = lines[i].trim();
-        var match = line.match(/^zone \"([^"]+)\"(?:\s+#.*)?$/);
-        if (match != null)
-          zoneRegex = match[1];
-      }
-
-      this.timelines.push({
-        zoneRegex: new RegExp(zoneRegex),
-        text: files[f],
-      });
+      this.timelines[name] = files[f];
     }
+  }
+}
+
+class TimelineLoader {
+  constructor(timelineController) { this.timelineController = timelineController; }
+
+  SetTimelines(timelineFiles, timelines) {
+    this.timelineController.SetActiveTimeline(timelineFiles, timelines);
   }
 }
 
 var gTimelineController;
 
-document.addEventListener("onZoneChangedEvent", function(e) {
-  gTimelineController.OnZoneChanged(e);
-});
 document.addEventListener("onInCombatChangedEvent", function (e) {
   gTimelineController.OnInCombat(e);
 });

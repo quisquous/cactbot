@@ -1,7 +1,7 @@
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
-  // TODO: Zone name is empty string for now lol?
   zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
+  timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
     // --- State ---
     {

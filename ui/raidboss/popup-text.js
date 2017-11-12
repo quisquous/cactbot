@@ -10,6 +10,10 @@ class PopupText {
     this.kMaxRowsOfText = 2;
   }
 
+  SetTimelineLoader(timelineLoader) {
+    this.timelineLoader = timelineLoader;
+  }
+
   OnPlayerChange(e) {
     if (!this.init) {
       this.init = true;
@@ -62,12 +66,25 @@ class PopupText {
   OnZoneChange(e) {
     if (!this.triggerSets) return;  // No data files were loaded.
 
+    // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
+    var timelineFiles = [];
+    var timelines = [];
+
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
-      if (e.detail.zoneName.search(set.zoneRegex) >= 0)
+      if (e.detail.zoneName.search(set.zoneRegex) >= 0) {
+        // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
+        // And set the timeline files/timelines from each set that matches.
+        if (set.timelineFile)
+          timelineFiles.push(set.timelineFile);
+        if (set.timeline)
+          timelines.push(set.timeline);
+      }
     }
+
+    this.timelineLoader.SetTimelines(timelineFiles, timelines);
   }
 
   OnJobChange(e) {

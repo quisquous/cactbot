@@ -1,6 +1,10 @@
 // Susano Extreme
 [{
   zoneRegex: /^The Pool Of Tribute \(Extreme\)$/,
+  timelineFile: 'susano-ex.txt',
+  timeline: `
+    infotext "Knockback (cloud)" before 1.5 "look for cloud"
+    `,
   triggers: [
     { // Thundercloud tracker
       regex: /:Added new combatant Thunderhead\./,

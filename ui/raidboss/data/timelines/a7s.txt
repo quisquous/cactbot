@@ -3,8 +3,6 @@
 # Shasta's reddit: /u/shastaxc
 # Last Updated: 5/19/2016
 
-zone "^Alexander - The Arm Of The Son \(Savage\)$"
-
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from 
 ########the beginning of the following lines to prevent 

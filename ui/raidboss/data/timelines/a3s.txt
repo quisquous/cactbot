@@ -2,8 +2,6 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-zone "^Alexander - The Arm Of The Father \(Savage\)$"
-
 0 "--Stop--" sync /Condensate Demineralizer #9 is no longer sealed/ window 10000 jump 0
 
 # Phase 1 - Living Liquid (man) - First Protean Wave

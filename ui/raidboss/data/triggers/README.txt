@@ -1,6 +1,10 @@
 // File format.
 [{
   zoneRegex: /match for the zone/,
+  timelineFile: 'filename.txt', /* An optional timeline file to load for this zone (refers to files in the timelines/ folder). */
+  timeline: `
+    hideall "Optionally, more lines to treat as part of the timeline"
+    `,
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },

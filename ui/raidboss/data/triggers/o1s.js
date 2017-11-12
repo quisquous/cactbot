@@ -1,6 +1,7 @@
 // O1S - Deltascape 1.0 Savage
 [{
   zoneRegex: /(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))/,
+  timelineFile: 'o1s.txt',
   triggers: [
     {
       id: 'O1S Blaze',

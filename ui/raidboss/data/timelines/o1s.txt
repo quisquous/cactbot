@@ -2,8 +2,6 @@
 # Created by Paprika Rika on Balmung
 # Times originally from http://i.imgur.com/PF21Fnh.png
 
-zone "^(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))$"
-
 ##############################################################
 0	"--Reset--" sync /Removing combatant Alte Roite/ window 10000 jump 0
 

@@ -1,10 +1,6 @@
 # Susano Extreme
 # Original timeline from: https://www.reddit.com/r/ffxiv/comments/6lh5gu/act_timeline_kaizoban_for_susanolakshmi_ex/
 
-zone "^The Pool Of Tribute \(Extreme\)$"
-
-infotext "Knockback (cloud)" before 1.5 "look for cloud"
-
 0 "--Reset--" sync /Removing combatant Susano/ window 10000 jump 0
 
 ### Phase 1 ###

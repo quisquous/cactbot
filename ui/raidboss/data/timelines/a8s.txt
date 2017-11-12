@@ -3,8 +3,6 @@
 # Shasta's reddit: /u/shastaxc
 # Last Updated: 6/28/2016
 
-zone "^Alexander - The Burden Of The Son \(Savage\)$"
-
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from 
 ########the beginning of the following lines to prevent 

@@ -2,8 +2,6 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-zone "^Alexander - The Cuff Of The Son \(Savage\)$"
-
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from 
 ########the beginning of the following lines to prevent 

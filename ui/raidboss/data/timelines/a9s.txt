@@ -3,8 +3,6 @@
 # Shasta's reddit: /u/shastaxc
 # Last Updated: 10/5/2016
 
-zone "^Alexander - The Eyes Of The Creator \(Savage\)$"
-
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from 
 ########the beginning of the following lines to prevent 

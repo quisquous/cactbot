@@ -1,6 +1,7 @@
 // O3S - Deltascape 3.0 Savage
 [{
   zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
+  timelineFile: 'o3s.txt',
   triggers: [
     {
       id: 'O3S Phase Counter',

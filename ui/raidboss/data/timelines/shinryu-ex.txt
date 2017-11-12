@@ -1,8 +1,6 @@
 # Shinryu Ex
 # Text Guide: http://clees.me/guides/shinryu-ex/
 
-zone "^The Minstrel's Ballad: Shinryu's Domain$"
-
 hideall "--Reset--"
 hideall "--sync--"
 

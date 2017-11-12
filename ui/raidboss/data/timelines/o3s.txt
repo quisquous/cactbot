@@ -3,8 +3,6 @@
 # Shasta's reddit: /u/shastaxc
 # Last Updated: 07/31/2017
 
-zone "^(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))$"
-
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from 
 ########the beginning of the following lines to prevent 

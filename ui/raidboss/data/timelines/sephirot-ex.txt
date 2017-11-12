@@ -2,8 +2,6 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-zone "^Containment Bay S1T7 \(Extreme\)$"
-
 #############################################################
 ########CUSTOMIZE your timeline. Remove the hashtag from 
 ########the beginning of the following lines to prevent 

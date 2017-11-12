@@ -2,8 +2,6 @@
 # Script for act_timeline. https://github.com/anoyetta/act_timeline
 # Compiled by Maki Kurisu (Excalibur), Reddit: /u/bunnykun
 
-zone "^Thok Ast Thok \(Extreme\)$"
-
 # Opening Phase
  
 0.00 "Encounter Start" sync /Dance to the song of ringing steel/ window 100000

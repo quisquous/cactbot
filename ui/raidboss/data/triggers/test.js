@@ -1,5 +1,11 @@
 [{
   zoneRegex: /^Middle La Noscea$/,
+  timelineFile: 'test.txt',
+  timeline: `
+    infotext "Angry Dummy" before 2 "stack for angry dummy"
+    alerttext "Final Sting" before 4 "oh no final sting in 4"
+    alarmtext "Death" before 3
+  `,
   triggers: [
     {
       regex: /:You poke the striking dummy/,

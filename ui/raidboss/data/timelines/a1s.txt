@@ -2,8 +2,6 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-zone "^Alexander - The Fist of the Father \(Savage\)$"
-
 ######Windows 8 & 10 Sound Triggers#######
 #define speaker "voice" "Microsoft Zira Desktop" 0 100
 #define speaker "voice" "Microsoft David Desktop" 0 100
