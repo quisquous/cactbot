@@ -75,7 +75,6 @@ class Timeline {
       var e = {
         id: uniqueid++,
         time: seconds,
-        sortTime: seconds,
         name: match[2],
         activeTime: 0,
       };
@@ -130,7 +129,15 @@ class Timeline {
       }
     }
     
-    this.events.sort(function(a, b) { return a.time - b.time });
+    // Sort by time, but when the time is the same, sort by file order.
+    // Then assign a sortKey to each event so that we can maintain that order.
+    this.events.sort(function(a, b) {
+      if (a.time == b.time) return a.id - b.id;
+      return a.time - b.time;
+    });
+    for (var i = 0; i < this.events.length; ++i)
+      this.events[i].sortKey = i;
+
     this.texts.sort(function(a, b) { return a.time - b.time });
     this.syncStarts.sort(function(a, b) { return a.start - b.start });
     this.syncEnds.sort(function(a, b) { return a.end - b.end });
@@ -238,7 +245,7 @@ class Timeline {
         var durationEvent = {
           id: e.id,
           time: e.time + e.duration,
-          sortTime: e.time,
+          sortKey: e.sortKey,
           name: 'Active: ' + e.name,
         };
         events.push(durationEvent);
@@ -459,7 +466,7 @@ class TimelineUI {
       bar.fg = this.barExpiresSoonColor;
     }
 
-    this.timerlist.addElement(e.id, div, e.sortTime);
+    this.timerlist.addElement(e.id, div, e.sortKey);
     this.activeBars[e.id] = bar;
     if (e.id in this.expireTimers) {
       window.clearTimeout(this.expireTimers[e.id])
