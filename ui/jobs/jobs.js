@@ -244,7 +244,7 @@ function setupBuffTracker(me) {
       sortKey: 0,
     },
     embolden: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Embolden from \\y{Name} for (\\y{Float}) Seconds'),
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Embolden from \\y{Name} for (\\y{Float}) Seconds\\. \\(5\\)'),
       loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffEmbolden,
@@ -1343,10 +1343,10 @@ class Bars {
 
   Test() {
     var logs = [];
-    logs.push(':' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds\.');
-    logs.push(':' + this.me + ' gains the effect of Embolden from  for 20 Seconds\.');
-    logs.push(':' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds\.');
-    logs.push(':' + this.me + ' gains the effect of The Balance from  for 12 Seconds\.');
+    logs.push(':' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(':' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(':' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(':' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
     logs.push(':' + this.me + ':00:Dragon Sight:');
     logs.push(':' + this.me + ':00:Chain Strategem:');
     logs.push(':' + this.me + ':00:Trick Attack:');
