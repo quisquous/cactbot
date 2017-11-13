@@ -9,8 +9,19 @@
 // If false, no timeline of upcoming events will be displayed during fights.
 Options.TimelineEnabled = true
 
-// If false, no text will be shown or spoken, or sounds played, for triggers and timeline events.
-Options.PopupTextEnabled = true
+// If false, triggers and timelines will not show or speak text, nor play
+// sounds.
+Options.AlertsEnabled = true
+
+// If false, then visual text alerts are not shown for triggers.
+Options.TextAlertsEnabled = true
+
+// If false, then sound alerts are not played.
+Options.SoundAlertsEnabled = true,
+
+// If false, then text-to-speech (tts) alerts are not read aloud.
+Options.SpokenAlertsEnabled = false
+
 
 // Show timer bars for events that will happen in this many seconds or less.
 Options.ShowTimerBarsAtSeconds = 30
