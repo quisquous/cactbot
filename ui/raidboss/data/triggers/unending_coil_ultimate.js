@@ -275,10 +275,11 @@
       },
       run: function(data) { data.fireball4 = true; },
     },
-    { id: 'UCU Nael Dragon Placement',
+    {
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       condition: function(data, matches) { return !data.seenDragon || !(matches[1] in data.seenDragon); },
       run: function(data, matches) {
+        // seenDragon[dragon name] => boolean
         data.seenDragon = data.seenDragon || [];
         data.seenDragon[matches[1]] = true;
 
@@ -289,13 +290,159 @@
         // Map N = 0, NE = 1, ..., NW = 7
         var dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI);
 
-        // TODO: do more than temp logging
-        console.log('Dragon: ' + matches[1] + ': ' + matches[2] + ', ' + matches[3] + ': ' + dir);
+        // naelDragons[direction 0-7 (N-NW)] => boolean
+        data.naelDragons = data.naelDragons || [0,0,0,0,0,0,0,0];
+        data.naelDragons[dir] = 1;
       },
     },
+    { id: 'UCU Nael Dragon Placement',
+      regex: /:Iceclaw:26C6/,
+      condition: function(data) {
+        return Object.keys(data.seenDragon).length == 5 && data.naelDragons;
+      },
+      durationSeconds: 8,
+      infoText: function(data) {
+        var output = data.findDragonMarks(data.naelDragons);
+        data.naelMarks = output.marks;
+        data.wideThirdDive = output.wideThirdDive;
+        data.unsafeThirdMark = output.unsafeThirdMark;
+        delete data.naelDragons;
+        return 'Marks: ' + data.naelMarks.join(', ');
+      },
+    },
+    {
+      // One time setup.
+      regex: /:26AA:Twintania starts using/,
+      run: function(data) {
+        if (data.oneTimeSetup)
+          return;
+        data.oneTimeSetup = true;
 
-    // TODO: fire callouts if you have tether? Is there a 1B marker?
-    // TODO: cauterize markers
-    // TODO: cauterize placement from dragons
+        // Begin copy and paste from dragon_test.js.
+        var modDistance = function(mark, dragon) {
+          var oneWay = (dragon - mark + 8) % 8;
+          var otherWay = (mark - dragon + 8) % 8;
+          var distance = Math.min(oneWay, otherWay);
+          console.assert(distance >= 0);
+          return distance;
+        };
+
+        var badSpots = function(mark, dragon) {
+          // All spots between mark and dragon are bad.  If distance == 1,
+          // then the dragon hits the spot behind the mark too.  e.g. N
+          // mark, NE dragon will also hit NW.
+          var bad = [];
+          var distance = modDistance(mark, dragon);
+          console.assert(distance > 0);
+          console.assert(distance <= 2);
+          if ((mark + distance + 8) % 8 == dragon) {
+            // Clockwise.
+            for (var i = 0; i <= distance; ++i)
+              bad.push((mark + i) % 8);
+            if (distance == 1)
+              bad.push((mark - 1 + 8) % 8);
+          } else {
+            // Widdershins.
+            for (var i = 0; i <= distance; ++i)
+              bad.push((mark - i + 8) % 8);
+            if (distance == 1)
+              bad.push((mark + 1) % 8);
+          }
+          return bad;
+        };
+
+        var findDragonMarks = function(array) {
+          var marks = [-1, -1, -1];
+          var ret = {
+            // Third drive is on a dragon three squares away and will cover
+            // more of the middle than usual, e.g. SE dragon, SW dragon,
+            // mark W (because S is unsafe from 2nd dive).
+            wideThirdDive:  false,
+            // Third mark spot is covered by the first dive so needs to be
+            // patient.  Third mark should always be patient, but you never
+            // know.
+            unsafeThirdMark: false,
+            marks: ['error', 'error', 'error'],
+          };
+
+          var dragons = [];
+          for (var i = 0; i < 8; ++i) {
+            if (array[i])
+              dragons.push(i);
+          }
+
+          if (dragons.length != 5)
+            return ret;
+
+          // MARK 1: counterclockwise of #1 if adjacent, clockwise if not.
+          if (dragons[0] + 1 == dragons[1]) {
+            // If the first two dragons are adjacent, they *must* go CCW.
+            // In the scenario of N, NE, SE, S, W dragons, the first marker
+            // could be E, but that forces the second mark to be S (instead
+            // of E), making SW unsafe for putting the mark between S and W.
+            // Arguably, NW could be used here for the third mark, but then
+            // the S dragon would cut off more of the middle of the arena
+            // than desired.  This still could happen anyway in the
+            // "tricksy" edge case below, but should be avoided if possible.
+            marks[0] = (dragons[0] - 1 + 8) % 8;
+          } else {
+            // Split dragons.  Bias towards first dragon.
+            marks[0] = Math.floor((dragons[0] + dragons[1]) / 2);
+          }
+
+          // MARK 2: go counterclockwise, unless dragon 2 is adjacent to 3.
+          if (dragons[1] == dragons[2] - 1) {
+            // Go clockwise.
+            marks[1] = dragons[2] + 1;
+          } else {
+            // Go counterclockwise.
+            marks[1] = dragons[2] - 1;
+          }
+
+          // MARK 3: if split, between 4 & 5.  If adjacent, clockwise of 5.
+          if (dragons[3] + 1 == dragons[4]) {
+            // Adjacent dragons.
+            // Clockwise is always ok.
+            marks[2] = (dragons[4] + 1) % 8;
+
+            // Minor optimization:
+            // See if counterclockwise is an option to avoid having mark 3
+            // in a place that the first pair covers.
+            //
+            // If dragon 3 is going counterclockwise, then only need one
+            // hole between #3 and #4, otherwise need all three holes.
+            // e.g. N, NE, E, W, NW dragon pattern should prefer third
+            // mark SW instead of N.
+            var distance = marks[1] == dragons[2] - 1 ? 2 : 4;
+            if (dragons[3] >= dragons[2] + distance) {
+              marks[2] = dragons[3] - 1;
+            }
+          } else {
+            // Split dragons.  Common case: bias towards last dragon, in case
+            // 2nd charge is going towards this pair.
+            marks[2] = Math.ceil((dragons[3] + dragons[4]) / 2);
+            if (marks[1] == dragons[3] && marks[2] == marks[1] + 1) {
+              // Tricksy edge case, e.g. N, NE, E, SE, SW.  S not safe for
+              // third mark because second mark is at SE, and E dragon will
+              // clip S.  Send all dragons CW even if this means eating more
+              // arena space.
+              marks[2] = (dragons[4] + 1) % 8;
+              ret.wideThirdDive = true;
+            }
+          }
+
+          var bad = badSpots(marks[0], dragons[0]);
+          bad.concat(badSpots(marks[0], dragons[1]));
+          ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
+
+          var dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+          ret.marks = marks.map(function(i) { return dir_names[i]; });
+          return ret;
+        };
+        // End copy and paste.
+
+        data.findDragonMarks = findDragonMarks;
+      },
+    },
   ]
 }]
