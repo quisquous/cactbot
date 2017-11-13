@@ -133,7 +133,7 @@ alertall "J Storm" before 5 speak "voice" "Burn Baby Burn"
 
 
 ################# Phase 2
-300 "Phase 2" sync /Added new combatant Blaster/ window 300, 0
+300 "Phase 2" sync /Added new combatant Blaster/ window 300,0
 301 "--Reset--" sync /Removing combatant Brawler/ window 2,50 jump 0
 302 "--Reset--" sync /Removing combatant Vortexer/ window 0,300 jump 0
 311 "Aux Power (Brawler)"
