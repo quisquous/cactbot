@@ -45,17 +45,28 @@ class Timeline {
     var lines = text.split('\n');
     for (var i = 0; i < lines.length; ++i) {
       var line = lines[i];
-      // Drop comments.
-      var comment = line.indexOf('#');
-      if (comment >= 0)
-        line = line.substring(0, comment);
       line = line.trim();
+      // Drop comments and empty lines.
+      if (!line || line.match(/^\s*#/))
+        continue;
+      var originalLine = line;
 
       var match = line.match(/^hideall\s+\"([^"]+)\"$/);
       if (match != null) {
         this.ignores[match[1]] = true;
         continue;
       }
+
+      // TODO: Support alert sounds and TTS?
+      match = line.match(/^alertall\s+"[^"]*"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound\s+"[^"]*"|speak\s+"[^"]*"\s+"[^"]*")$/)
+      if (match)
+        continue;
+      match = line.match(/^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/);
+      if (match)
+        continue;
+      match = line.match(/define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/);
+      if (match)
+        continue;
 
       match = line.match(/^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/)
       if (match != null) {
@@ -68,33 +79,40 @@ class Timeline {
         continue;
       }
       
-      match = line.match(/^([0-9]+(?:\.[0-9]+)?)\s+"(.*?)"(\s+(.*))?/);
-      if (match == null) continue;
+      match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
+      if (match == null) {
+        console.log("Unknown timeline: " + originalLine);
+        continue;
+      }
+      line = line.replace(match[1], '').trim();
       
-      var seconds = parseFloat(match[1]);
+      var seconds = parseFloat(match[2]);
       var e = {
         id: uniqueid++,
         time: seconds,
-        name: match[2],
+        name: match[3],
         activeTime: 0,
       };
-      var commands = match[3];
-      if (commands) {
-        var commandMatch = commands.match(/duration\s+([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
-        if (commandMatch)
-          e.duration = parseFloat(commandMatch[1]);
-        commandMatch = commands.match(/sync\s+\/(.*)\/(\s.*)?$/);
+      if (line) {
+        var commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
         if (commandMatch) {
+          line = line.replace(commandMatch[1], '').trim();
+          e.duration = parseFloat(commandMatch[2]);
+        }
+        commandMatch = line.match(/(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/);
+        if (commandMatch) {
+          line = line.replace(commandMatch[1], '').trim();
           var sync = {
             id: uniqueid,
-            regex: Regexes.Parse(commandMatch[1]),
+            regex: Regexes.Parse(commandMatch[2]),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
           }
-          if (commandMatch[2]) {
-            var argMatch = commandMatch[2].match(/window\s+(([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
+          if (commandMatch[3]) {
+            var argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
             if (argMatch) {
+              line = line.replace(argMatch[1], '').trim();
               if (argMatch[2]) {
                 sync.start = seconds - parseFloat(argMatch[2]);
                 sync.end = seconds + parseFloat(argMatch[3]);
@@ -103,15 +121,21 @@ class Timeline {
                 sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
             }
-            argMatch = commandMatch[2].match(/jump\s+([0-9]+(?:\.[0-9]+)?)(\s.*)?$/);
-            if (argMatch)
-              sync.jump = parseFloat(argMatch[1]);
+            argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(jump\s+([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
+            if (argMatch) {
+              line = line.replace(argMatch[1], '').trim();
+              sync.jump = parseFloat(argMatch[2]);
+            }
           }
           this.syncStarts.push(sync);
           this.syncEnds.push(sync);
         }
       }
-      this.events.push(e);
+      // If there's text left that isn't a comment then we didn't parse that text so report it.
+      if (line && !line.match(/^\s*#/))
+        console.log("Unknown content '" + line + "' in timeline: " + originalLine);
+      else
+        this.events.push(e);
     }
 
     for (var i = 0; i < this.events.length; ++i) {
