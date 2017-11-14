@@ -1245,7 +1245,7 @@ class Bars {
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
 
-      var r = log.match(/:Battle commencing in (\y{Float}) seconds!/);
+      var r = log.match(Regexes.Parse(/:Battle commencing in (\y{Float}) seconds!/));
       if (r != null) {
         var seconds = Regexes.ParseLocaleFloat(r[1]);
         this.SetPullCountdown(seconds);
