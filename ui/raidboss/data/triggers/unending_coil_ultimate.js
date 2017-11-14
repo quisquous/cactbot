@@ -159,7 +159,7 @@
       alarmText: function(data) { return 'Thunder on YOU'; },
       tts: 'thunder',
     },
-    { id: 'UCU Nael Doom',
+    { id: 'UCU Nael Your Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: function(data, matches) {
@@ -168,9 +168,6 @@
         if (data.ParseLocaleFloat(matches[2]) < 14)
           return 'Doom #2 on YOU';
         return 'Doom #3 on YOU';
-
-        // TODO: call out all doom people
-        // TODO: reminder to clear at the right time
       },
       tts: function(data, matches) {
         if (data.ParseLocaleFloat(matches[2]) < 9)
@@ -178,6 +175,40 @@
         if (data.ParseLocaleFloat(matches[2]) < 14)
           return '2';
         return '3';
+      },
+    },
+    {
+      // Doom tracking init.
+      regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      run: function(data, matches) {
+        data.dooms = data.dooms || [null, null, null];
+        var order = null;
+        if (data.ParseLocaleFloat(matches[2]) < 9)
+          order = 0;
+        else if (data.ParseLocaleFloat(matches[2]) < 14)
+          order = 1;
+        else
+          order = 2;
+        data.dooms[order] = matches[1];
+      },
+    },
+    {
+      // Doom tracking cleanup.
+      regex: /gains the effect of Doom/,
+      delaySeconds: 20,
+      run: function(data) {
+        delete data.dooms;
+        delete data.doomCount;
+      },
+    },
+    {
+      id: 'UCU Nael Cleanse Callout',
+      regex: /:Fang of Light:26CA:/,
+      infoText: function(data) {
+        data.doomCount = data.doomCount || 0;
+        var name = data.dooms[data.doomCount];
+        data.doomCount++;
+        return 'Cleanse #' + data.doomCount + ': ' + name;
       },
     },
     { id: 'UCU Nael Fireball 1',
