@@ -351,6 +351,33 @@
         return 'Marks: ' + data.naelMarks.join(', ');
       },
     },
+    { id: 'UCU Nael Dragon Dive Markers',
+      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      infoText: function(data, matches) {
+        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
+        if (matches[1] == data.me)
+          return;
+        var num = data.naelDiveMarkerCount + 1;
+        return 'Dive #' + num + ': ' + matches[1];
+      },
+      alarmText: function(data, matches) {
+        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
+        if (matches[1] != data.me)
+          return;
+        var marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
+        var dir = data.naelMarks[data.naelDiveMarkerCount];
+        return 'Go To ' + marker + ' (in ' + dir + ')';
+      },
+      tts: function(data, matches) {
+        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
+        if (matches[1] != data.me)
+          return;
+        return 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount];
+      },
+      run: function(data) {
+        data.naelDiveMarkerCount++;
+      },
+    },
     {
       // One time setup.
       regex: /:26AA:Twintania starts using/,
