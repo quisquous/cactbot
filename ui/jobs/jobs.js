@@ -243,12 +243,11 @@ function setupBuffTracker(me) {
       borderColor: '#AA41B2',
       sortKey: 0,
     },
-    embolden: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Embolden from \\y{Name} for (\\y{Float}) Seconds\\. \\(5\\)'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
-      durationPosition: 1,
-      icon: kIconBuffEmbolden,
-      borderColor: '#57FC4A',
+    trick: {
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:/),
+      durationSeconds: 10,
+      icon: kIconBuffTrickAttack,
+      borderColor: '#FC4AE6',
       sortKey: 1,
     },
     litany: {
@@ -259,13 +258,21 @@ function setupBuffTracker(me) {
       borderColor: '#099',
       sortKey: 2,
     },
+    embolden: {
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Embolden from \\y{Name} for (\\y{Float}) Seconds\\. \\(5\\)'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
+      durationPosition: 1,
+      icon: kIconBuffEmbolden,
+      borderColor: '#57FC4A',
+      sortKey: 3,
+    },
     balance: {
       gainRegex: Regexes.Parse(':' + me + ' gains the effect of The Balance from \\y{Name} for (\\y{Float}) Seconds'),
       loseRegex: Regexes.Parse(':' + me + ' loses the effect of The Balance from '),
       durationPosition: 1,
       icon: kIconBuffBalance,
       borderColor: '#C5C943',
-      sortKey: 3,
+      sortKey: 4,
     },
     chain: {
       gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Chain Strategem:/),
@@ -274,26 +281,19 @@ function setupBuffTracker(me) {
       borderColor: '#4674E5',
       sortKey: 5,
     },
-    trick: {
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:/),
-      durationSeconds: 10,
-      icon: kIconBuffTrickAttack,
-      borderColor: '#FC4AE6',
-      sortKey: 6,
-    },
     hyper: {
       gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Hypercharge:/),
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
       borderColor: '#099',
-      sortKey: 7,
+      sortKey: 6,
     },
     sight: {
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Dragon Sight:/),
+      gainRegex: Regexes.Parse(':\\y{Name}:\\y{AbilityCode}:Dragon Sight:[0-9A-F]{8}:' + me + ':'),
       durationSeconds: 20,
       icon: kIconBuffDragonSight,
       borderColor: '#FA8737',
-      sortKey: 4,
+      sortKey: 7,
     },
 
     requiem: {
