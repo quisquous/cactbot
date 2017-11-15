@@ -327,7 +327,7 @@
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7
-        var dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI);
+        var dir = Math.round(4 - 4 * Math.atan2(x, y) / Math.PI) % 8;
 
         // naelDragons[direction 0-7 (N-NW)] => boolean
         data.naelDragons = data.naelDragons || [0,0,0,0,0,0,0,0];
@@ -339,7 +339,7 @@
       condition: function(data) {
         return Object.keys(data.seenDragon).length == 5 && data.naelDragons;
       },
-      durationSeconds: 8,
+      durationSeconds: 12,
       infoText: function(data) {
         var output = data.findDragonMarks(data.naelDragons);
         data.naelMarks = output.marks;
