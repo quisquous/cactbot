@@ -140,8 +140,9 @@ namespace Cactbot {
       }
 
       public struct NinjaDetail {
-        public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; }
+        public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; ninkiAmount = d.ninki_amount; }
         public uint hutonMilliseconds;
+        public uint ninkiAmount;
       }
 
       public struct BlackMageDetail {

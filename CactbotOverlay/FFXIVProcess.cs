@@ -197,6 +197,7 @@ namespace Cactbot {
     //        }
     //        struct Ninja {
     //          0x8 bytes in: uint32 huton_ms;  // Number of ms left in huton.
+    //          0xE bytes in: uchar ninki_amount;
     //        }
     //        struct BlackMage {
     //          0x8 bytes in: uint16 polygot_time_ms;  // Number of ms left before polygot proc.
@@ -644,16 +645,19 @@ namespace Cactbot {
 
     public class NinjaJobData {
       public uint huton_ms = 0;
+      public uint ninki_amount = 0;
 
       public override bool Equals(object obj) {
         var o = obj as NinjaJobData;
         return o != null &&
-          huton_ms == o.huton_ms;
+          huton_ms == o.huton_ms &&
+          ninki_amount == o.ninki_amount;
       }
 
       public override int GetHashCode() {
         int hash = 17;
         hash = hash * 31 + huton_ms.GetHashCode();
+        hash = hash * 31 + ninki_amount.GetHashCode();
         return hash;
       }
     }
@@ -665,6 +669,7 @@ namespace Cactbot {
 
       var j = new NinjaJobData();
       j.huton_ms = BitConverter.ToUInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 7];
       return j;
     }
 
