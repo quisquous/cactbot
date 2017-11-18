@@ -669,7 +669,7 @@ namespace Cactbot {
 
       var j = new NinjaJobData();
       j.huton_ms = BitConverter.ToUInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
-      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 7];
+      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 6];
       return j;
     }
 
