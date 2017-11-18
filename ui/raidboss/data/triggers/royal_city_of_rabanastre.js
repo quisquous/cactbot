@@ -50,6 +50,13 @@
       tts: 'move away',
     },
     {
+      id: 'Rab Hashmal Golems',
+      regex: /:Hashmal, Bringer Of Order starts using Summon/,
+      delaySeconds: 5,
+      infoText: 'Kill Golems',
+      tts: 'adds',
+    },
+    {
       id: 'Rab Trash Dragon Voice',
       regex: /:Archaeolion starts using The Dragon's Voice/,
       alertText: 'Dragon Voice: Move In',
@@ -75,28 +82,41 @@
       tts: 'trample',
     },
     {
+      // The first two masks are known and have rp text.
       regex: /:0044:I am the truth from which you run/,
-      run: function(data) { data.mask = true; },
+      run: function(data) {
+        data.maskValue = true;
+        data.maskKnown = true;
+      },
     },
     {
       regex: /:0044:I am the lies upon which you sup/,
-      run: function(data) { data.mask = false; },
+      run: function(data) {
+        data.maskValue = false;
+        data.maskKnown = true;
+      },
+    },
+    {
+      regex: /:0044:I am Revelation/,
+      run: function(data) { data.maskKnown = false; },
     },
     {
       id: 'Rab Argath Command Scatter',
       regex: /1B:........:(\y{Name}):....:....:007B:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (data.mask)
+        if (!data.maskKnown)
+          return 'Move or Stop?';
+        if (data.maskValue)
           return 'Move';
-        else
-          return 'Stop';
+        return 'Stop';
       },
       tts: function(data) {
-        if (data.mask)
+        if (!data.maskKnown)
+          return 'Move or Stop?';
+        if (data.maskValue)
           return 'Move';
-        else
-          return 'Stop';
+        return 'Stop';
       },
     },
     {
@@ -104,16 +124,18 @@
       regex: /1B:........:(\y{Name}):....:....:007C:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (data.mask)
+        if (!data.maskKnown)
+          return 'Look Away or Towards?';
+        if (data.maskValue)
           return 'Look Away';
-        else
-          return 'Look Towards';
+        return 'Look Towards';
       },
       tts: function(data) {
-        if (data.mask)
+        if (!data.maskKnown)
+          return 'Look Away or Towards?';
+        if (data.maskValue)
           return 'Look Away';
-       else
-          return 'Look Towards';
+        return 'Look Towards';
       },
     },
   ],
