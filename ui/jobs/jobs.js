@@ -244,9 +244,13 @@ function setupBuffTracker(me) {
       sortKey: 0,
     },
     trick: {
+      // TODO: This is 'Target gains the effect of Vulnerability Up' but
+      // hypercharge also gives vulnerability up, so can't use that.
+      // This will still apply if somebody misses the positional.
       gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:/),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
+      // Magenta.
       borderColor: '#FC4AE6',
       sortKey: 1,
     },
@@ -255,6 +259,7 @@ function setupBuffTracker(me) {
       loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffLitany,
+      // Cyan.
       borderColor: '#099',
       sortKey: 2,
     },
@@ -263,6 +268,7 @@ function setupBuffTracker(me) {
       loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
       durationPosition: 1,
       icon: kIconBuffEmbolden,
+      // Lime.
       borderColor: '#57FC4A',
       sortKey: 3,
     },
@@ -271,13 +277,15 @@ function setupBuffTracker(me) {
       loseRegex: Regexes.Parse(':' + me + ' loses the effect of The Balance from '),
       durationPosition: 1,
       icon: kIconBuffBalance,
-      borderColor: '#C5C943',
+      // Orange.
+      borderColor: '#ff9900',
       sortKey: 4,
     },
     chain: {
       gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Chain Strategem:/),
       durationSeconds: 15,
       icon: kIconBuffChainStrategem,
+      // Blue.
       borderColor: '#4674E5',
       sortKey: 5,
     },
@@ -285,22 +293,43 @@ function setupBuffTracker(me) {
       gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Hypercharge:/),
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
-      borderColor: '#099',
+      // Aqua.
+      borderColor: '#006b99',
       sortKey: 6,
     },
     sight: {
-      gainRegex: Regexes.Parse(':\\y{Name}:\\y{AbilityCode}:Dragon Sight:[0-9A-F]{8}:' + me + ':'),
-      durationSeconds: 20,
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of (?:Left|Right) Eye from \\y{Name} for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of (?:Left|Right) Eye from '),
+      durationPosition: 1,
       icon: kIconBuffDragonSight,
+      // Orange.
       borderColor: '#FA8737',
       sortKey: 7,
     },
-
+    brotherhood: {
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Brotherhood from \\y{Name} for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Brotherhood from '),
+      durationPosition: 1,
+      icon: kIconBuffBrotherhood,
+      // Dark Orange.
+      borderColor: '#994200',
+      sortKey: 8,
+    },
+    devotion: {
+      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Devotion from \\y{Name} for (\\y{Float}) Seconds'),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Devotion from '),
+      durationPosition: 1,
+      icon: kIconBuffDevotion,
+      // Yellow.
+      borderColor: '#ffbf00',
+      sortKey: 9,
+    },
     requiem: {
       gainRegex: Regexes.Parse(/:(\y{Name}) gains the effect of Foe Requiem from \1 for (\y{Float}) Seconds/),
       loseRegex: Regexes.Parse(/:(\y{Name}) loses the effect of Foe Requiem from \1/),
       durationPosition: 2,
       icon: kIconBuffFoes,
+      // Light Purple.
       borderColor: '#F272F2',
       sortKey: 0.5,
       side: 'left',
