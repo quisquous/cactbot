@@ -214,9 +214,14 @@ namespace Cactbot {
     //        struct WhiteMage {
     //          0xA bytes in: byte lilies;
     //        }
-    //        struct SummonerAndScholar {
-    //          0x8 bytes in: 4 bytes ???
+    //        struct Summoner {
+    //          0x8 bytes in: uint16 stance_ms;  // Dreadwyrm or Bahamut time left.
+    //          0xA bytes in: uchar bahamut_stance;  // 3 = Bahamut summoned, else 0.
+    //          0xC bytes in: uchar stacks;  // Bottom 2 bits: Aetherflow. Next 2 bits: Dreadwyrm. Next 2 bits: Bahamut.
+    //        }
+    //        struct Scholar {
     //          0xC bytes in: uchar aetherflow_stacks;
+    //          0xD bytes in: uchar fairy_amount;
     //        }
     //        struct Monk {
     //          0x8 bytes in: uint16 greased_lightning_time_ms;
