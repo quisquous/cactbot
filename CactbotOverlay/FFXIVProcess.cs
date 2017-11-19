@@ -229,8 +229,10 @@ namespace Cactbot {
     //          0xB bytes in: uchar chakra_stacks;
     //        }
     //        struct Machinist {
-    //          0x8 bytes in: 3 bytes ???
+    //          0x8 bytes in: uint16 overheated_time_ms;
+    //          0xA bytes in: uchar heat;
     //          0xB bytes in: uchar ammunition;
+    //          0xC bytes in: uchar gauss_barrel;
     //        }
     //      }
     //   }
