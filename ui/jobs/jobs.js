@@ -4,6 +4,7 @@
 // Options.ShowRdmProcs = false
 // or
 // Options.TPInvigorateThreshold = 400
+// See user/jobs-example.js for documentation.
 var Options = {
   // If true, the bars are all made translucent when out of combat.
   LowerOpacityOutOfCombat: true,
