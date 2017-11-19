@@ -6,40 +6,27 @@
 // Options.TPInvigorateThreshold = 400
 // See user/jobs-example.js for documentation.
 var Options = {
-  // If true, the bars are all made translucent when out of combat.
   LowerOpacityOutOfCombat: true,
-  // The number of seconds before food expires to start showing the food buff warning.
+
   HideWellFedAboveSeconds: 15 * 60,
-  // Zones to show food buff warning (when at max level).
   WellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*(Ultimate|Savage).*|.* Coil Of Bahamut.*(Ultimate|Savage).*)|Alexander.*(Ultimate|Savage).*$/,
-  // Option to show the stone/fire/impact procs.
+  MaxLevel: 70,
+
   ShowRdmProcs: true,
 
-  // The food buff warning is shown when you're below this level. Update this when new expansion happens.
-  MaxLevel: 70,
-  // The distance that offensive spells such as VerAreo, etc are castable.
-  FarThresholdOffence: 24,
-  // Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
-  // Jolt cast time + 0.5 for my reaction time.
   RdmCastTime: 1.94 + 0.5,
-  // GCD on warrior.
   WarGcd: 2.38,
 
-  // Size of big buff icons.
   BigBuffIconWidth: 44,
   BigBuffIconHeight: 32,
-  // Height of the timer bar for big buff icons.
   BigBuffBarHeight: 5,
-  // If non-zero, the size of the text showing the big buff icon's name.
   BigBuffTextHeight: 0,
-  // Size of the big buff icon's colour border.
   BigBuffBorderSize: 1,
 
-  // When TP falls below this, the TP bar is highlighted with the .low CSS class.
+  FarThresholdOffence: 24,
+
   TPInvigorateThreshold: 600,
-  // When health falls below this, the health bar is highlighted with the .low CSS class.
   LowHealthThresholdPercent: 0.2,
-  // When health falls below this, the health bar is highlighted with the .mid CSS class.
   MidHealthThresholdPercent: 0.8,
 }
 
