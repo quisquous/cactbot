@@ -123,11 +123,17 @@ To add a cactbot module is the same as adding any overlay plugin.
 
 ## Configuring UI modules
 
-Cactbot UI modules can load user settings from the [user/](user/) directory. Simply create
-a **user/\<name\>.css** or a **user/\<name\>.js** file, where **\<name\>** is the name of
-the UI module, such as [raidboss](ui/raidboss) or [jobs](ui/jobs). These 2 UI modules both
-support user settings. After making any changes to these files, pressing the "Reload overlay"
-button for the appropriate cactbot in ACT's OverlayPlugin settings will apply the changes.
+Cactbot UI modules can load user settings from the [user/](user/) directory. The user/
+directory already includes some example configuration files, which you can rename and use.
+For example the **user/raidboss-example.js** can be renamed to **user/raidboss.js**
+and edited to change the behaviour of the **raidboss** module.
+
+If you want to do it yourself, then create a **user/\<name\>.css** or a **user/\<name\>.js**
+file, where **\<name\>** is the name of the UI module, such as [raidboss](ui/raidboss) or
+[jobs](ui/jobs).
+
+After making any changes to these files, pressing the "Reload overlay" button for the
+appropriate cactbot in ACT's OverlayPlugin settings will apply the changes.
 
 The **user/\<name\>.css** file can change positions, sizes, colors, etc. for components of
 the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
