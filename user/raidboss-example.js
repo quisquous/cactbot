@@ -19,7 +19,9 @@ Options.TextAlertsEnabled = true
 // If false, then sound alerts are not played.
 Options.SoundAlertsEnabled = true,
 
-// If false, then text-to-speech (tts) alerts are not read aloud.
+// If true, then text-to-speech alerts are read aloud.  Text-to-speech takes
+// priority over custom sounds and text noises.  If a trigger does not have
+// a tts entry then it will fall back on text and sound (if turned on).
 Options.SpokenAlertsEnabled = false
 
 

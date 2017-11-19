@@ -303,7 +303,12 @@ class PopupText {
         soundVol = triggerOptions.VolumeOverride || soundVol;
       }
 
-      if (soundUrl && playSounds && !userDisabled) {
+      // Text to speech overrides all other sounds.  This is so
+      // that a user who prefers tts can still get the benefit
+      // of infoText triggers without tts entries by turning
+      // on (speech=true, text=true, sound=true) but this will
+      // not cause tts to play over top of sounds or noises.
+      if (soundUrl && playSounds && !userDisabled && !ttsText) {
         var audio = new Audio(soundUrl);
         audio.volume = soundVol;
         audio.play();
