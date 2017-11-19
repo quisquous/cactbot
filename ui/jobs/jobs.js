@@ -282,9 +282,9 @@ function setupBuffTracker(me) {
       sortKey: 4,
     },
     chain: {
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Chain Strategem:/),
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Chain Stratagem:/),
       durationSeconds: 15,
-      icon: kIconBuffChainStrategem,
+      icon: kIconBuffChainStratagem,
       // Blue.
       borderColor: '#4674E5',
       sortKey: 5,
@@ -1377,7 +1377,7 @@ class Bars {
     logs.push(':' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
     logs.push(':' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
     logs.push(':' + this.me + ':00:Dragon Sight:');
-    logs.push(':' + this.me + ':00:Chain Strategem:');
+    logs.push(':' + this.me + ':00:Chain Stratagem:');
     logs.push(':' + this.me + ':00:Trick Attack:');
     logs.push(':' + this.me + ':00:Hypercharge:');
     var e = { detail: { logs: logs } };
