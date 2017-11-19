@@ -802,6 +802,7 @@ namespace Cactbot {
       public int bahamut_stacks = 0;
       public uint dreadwyrm_ms = 0;
       public uint bahamut_ms = 0;
+      public int fairy_gauge = 0;
 
       public override bool Equals(Object obj) {
         var o = obj as SummonerAndScholarJobData;
@@ -810,7 +811,8 @@ namespace Cactbot {
           dreadwyrm_stacks == o.dreadwyrm_stacks &&
           bahamut_stacks == o.bahamut_stacks &&
           dreadwyrm_ms == o.dreadwyrm_ms &&
-          bahamut_ms == o.bahamut_ms;
+          bahamut_ms == o.bahamut_ms &&
+          fairy_gauge == o.fairy_gauge;
       }
 
       public override int GetHashCode() {
@@ -820,6 +822,7 @@ namespace Cactbot {
         hash = hash * 31 + bahamut_stacks.GetHashCode();
         hash = hash * 31 + dreadwyrm_ms.GetHashCode();
         hash = hash * 31 + bahamut_ms.GetHashCode();
+        hash = hash * 31 + fairy_gauge.GetHashCode();
         return hash;
       }
     }
@@ -843,6 +846,7 @@ namespace Cactbot {
         j.dreadwyrm_ms = stance_ms;
         j.bahamut_ms = 0;
       }
+      j.fairy_gauge = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
       return j;
     }
 

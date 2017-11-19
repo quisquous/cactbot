@@ -185,12 +185,14 @@ namespace Cactbot {
           bahamutStacks = d.bahamut_stacks;
           dreadwyrmMilliseconds = d.dreadwyrm_ms;
           bahamutMilliseconds = d.bahamut_ms;
+          fairyGauge = d.fairy_gauge;
         }
         public int aetherflowStacks;  // Stacks to spend on fester, etc.
         public int dreadwyrmStacks;  // Stacks to get into dreadwyrm trance.
         public int bahamutStacks;  // Stacks to summon bahamut.
         public uint dreadwyrmMilliseconds;  // Time left for dreadwyrm trance.
         public uint bahamutMilliseconds;  // Time left for bahamut summon.
+        public int fairyGauge;
       }
 
       public struct MonkDetail {
