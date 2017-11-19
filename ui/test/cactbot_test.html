@@ -60,7 +60,9 @@
       } else if (e.detail.job == "BRD") {
         document.getElementById("jobinfo").innerText = jobDetail.songName + " | " + jobDetail.songProcs + " | " + jobDetail.songMilliseconds;
       } else if (e.detail.job == "NIN") {
-        document.getElementById("jobinfo").innerText = jobDetail.hutonMilliseconds;
+        document.getElementById("jobinfo").innerText = jobDetail.hutonMilliseconds + " | " + jobDetail.ninkiAmount;
+      } else if (e.detail.job == "DRG") {
+        document.getElementById("jobinfo").innerText = jobDetail.bloodMilliseconds + " | " + jobDetail.lifeMilliseconds + " | " + jobDetail.eyesAmount;
       } else if (e.detail.job == "BLM") {
         document.getElementById("jobinfo").innerText = jobDetail.umbralStacks + " (" + jobDetail.umbralMilliseconds + ") | " + jobDetail.umbralHearts + " | " + jobDetail.enochian + " " + jobDetail.polygot + " (" + jobDetail.nextPolygotMilliseconds + ")";
       } else if (e.detail.job == "THM") {
