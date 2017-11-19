@@ -164,3 +164,46 @@ Options.Triggers = [
   },
 
 ]
+
+// Per trigger options.  By default, each trigger uses the global options
+// of TextAlertsEnabled, SoundAlertsEnabled, and SpokenAlertsEnabled.
+// These global options are set up top in this file.
+//
+// If a per trigger entry is present (regardless if true/false), it will
+// override whatever the global option is set to.
+//
+// SoundOverride (if present) behaves like 'sound' on an individual trigger, in
+// that it will take the place of the info/alert/alarm noise if no sound has
+// been specified.  SoundAlert (or SoundAlertsEnabled) must still be true for
+// that override to be played.
+//
+// Here's some example per trigger options that modify the test triggers
+// in Summerford Farms:
+// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/test.js
+
+Options.PerTriggerOptions = {
+  // Just like Options.DisabledTriggers, this is the trigger id to apply to.
+  // This overrides the settings for the "/laugh" trigger from the test
+  // triggers.  You can try this out by teleporting to Summerford Farms
+  // and /laugh at a striking dummy.  It will use these settings and moo.
+  'Test Laugh': {
+    // Play the text to speech.
+    SpeechAlert: false,
+    // Play the sound alert.
+    SoundAlert: true,
+    // Show the info/alert/alarm text on screen.
+    TextAlert: false,
+    // Play this sound (replacing any sound from the original).
+    SoundOverride: '../../resources/sounds/WeakAuras/CowMooing.ogg',
+    // Play the sound (if any) at this volume.
+    VolumeOverride: 0.3,
+  },
+
+  // This makes /poke-ing a striking dummy in Summerford Farms only
+  // use text to speech with no visual text indicator or other sound.
+  'Test Poke': {
+    SpeechAlert: true,
+    SoundAlert: false,
+    TextAlert: false,
+  },
+}

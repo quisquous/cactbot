@@ -195,10 +195,20 @@ class PopupText {
 
     var showText = this.options.TextAlertsEnabled;
     var playSounds = this.options.SoundAlertsEnabled;
-    var playSpeach = this.options.SpokenAlertsEnabled;
+    var playSpeech = this.options.SpokenAlertsEnabled;
     var userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
+
+    var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id];
+    if (triggerOptions) {
+      if ('SpeechAlert' in triggerOptions)
+        playSpeech = triggerOptions.SpeechAlert;
+      if ('SoundAlert' in triggerOptions)
+        playSounds = triggerOptions.SoundAlert;
+      if ('TextAlert' in triggerOptions)
+        showText = triggerOptions.TextAlert;
+    }
 
     var f = function() {
       var soundUrl = '';
@@ -268,13 +278,13 @@ class PopupText {
           }
         }
       }
-      if ('tts' in trigger && playSpeach) {
+      if ('tts' in trigger && playSpeech) {
         var text = ValueOrFunction(trigger.tts);
         if (text && !userDisabled)
           ttsText = text;
       }
 
-      if (trigger.sound && !userDisabled && playSounds) {
+      if (trigger.sound) {
         soundUrl = trigger.sound;
 
         var namedSound = trigger.sound + 'Sound';
@@ -288,13 +298,18 @@ class PopupText {
           soundVol = trigger.soundVolume;
       }
 
-      if (soundUrl) {
+      if (triggerOptions) {
+        soundUrl = triggerOptions.SoundOverride || soundUrl;
+        soundVol = triggerOptions.VolumeOverride || soundVol;
+      }
+
+      if (soundUrl && playSounds && !userDisabled) {
         var audio = new Audio(soundUrl);
         audio.volume = soundVol;
         audio.play();
       }
 
-      if (ttsText) {
+      if (ttsText && !userDisabled) {
         var cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       }

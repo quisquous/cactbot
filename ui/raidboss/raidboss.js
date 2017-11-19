@@ -28,6 +28,9 @@ var Options = {
   LongSoundVolume: 1,
 
   DisabledTriggers: {},
+
+  PerTriggerOptions: {},
+
   Triggers: [],
 };
 
