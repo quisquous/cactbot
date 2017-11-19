@@ -145,6 +145,17 @@ namespace Cactbot {
         public uint ninkiAmount;
       }
 
+      public struct DragoonDetail {
+        public DragoonDetail(FFXIVProcess.DragoonJobData d) {
+          bloodMilliseconds = d.blood_ms;
+          lifeMilliseconds = d.life_ms;
+          eyesAmount = d.eyes_amount;
+        }
+        public uint bloodMilliseconds;
+        public uint lifeMilliseconds;
+        public uint eyesAmount;
+      }
+
       public struct BlackMageDetail {
         public BlackMageDetail(FFXIVProcess.BlackMageJobData d) {
           umbralStacks = d.umbral_stacks;

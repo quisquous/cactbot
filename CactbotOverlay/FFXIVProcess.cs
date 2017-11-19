@@ -195,6 +195,11 @@ namespace Cactbot {
     //          0xA bytes in: byte song_procs_count;
     //          0xB bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
     //        }
+    //        struct Dragoon {
+    //          0x8 bytes in: uint16 blood_or_life_ms;  // Number of ms left in Blood/Life of the Dragon.
+    //          0xA bytes in: uchar stance;  // 0 = None, 1 = Blood, 2 = Life
+    //          0xB bytes in: uchar eyes_amount;
+    //        }
     //        struct Ninja {
     //          0x8 bytes in: uint32 huton_ms;  // Number of ms left in huton.
     //          0xE bytes in: uchar ninki_amount;
@@ -640,6 +645,45 @@ namespace Cactbot {
         j.song_procs = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
         j.song_type = (BardJobData.Song)bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       }
+      return j;
+    }
+
+    public class DragoonJobData {
+      public uint blood_ms = 0;
+      public uint life_ms = 0;
+      public uint eyes_amount = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as DragoonJobData;
+        return o != null &&
+          blood_ms == o.blood_ms &&
+          life_ms == o.life_ms &&
+          eyes_amount == o.eyes_amount;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + blood_ms.GetHashCode();
+        hash = hash * 31 + life_ms.GetHashCode();
+        hash = hash * 31 + eyes_amount.GetHashCode();
+        return hash;
+      }
+    }
+
+    public DragoonJobData GetDragoon() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new DragoonJobData();
+      j.blood_ms = j.life_ms = 0;
+      byte stance = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
+      if (stance == 1) {
+        j.blood_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      } else if (stance == 2) {
+        j.life_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData); ;
+      }
+      j.eyes_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       return j;
     }
 
