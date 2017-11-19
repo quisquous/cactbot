@@ -494,19 +494,10 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
-          // TODO: WHM eveything
-          // TODO: CNJ like WHM
           // TODO: AST eveything
-          // TODO: SMN level 70 stuff
           // TODO: SCH level 70 stuff
-          // TODO: PLD everything (level 70 stuff?)
-          // TODO: GLD like PLD
-          // TODO: DRK everything
-          // TODO: MNK level 70 stuff
           // TODO: DRG everything
-          // TODO: NIN level 70 stuff
           // TODO: SAM everything
-          // TODO: MCH level 70 stuff
         } else if (send) {
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));

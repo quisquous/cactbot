@@ -881,17 +881,26 @@ namespace Cactbot {
     }
 
     public class MachinistJobData {
+      public uint overheat_ms = 0;
+      public int heat = 0;
       public int ammunition = 0;
+      public bool gauss = false;
 
       public override bool Equals(object obj) {
         var o = obj as MachinistJobData;
         return o != null &&
-          ammunition == o.ammunition;
+          overheat_ms != o.overheat_ms &&
+          heat != o.heat &&
+          ammunition != o.ammunition &&
+          gauss != o.gauss;
       }
 
       public override int GetHashCode() {
         int hash = 17;
+        hash = hash * 31 + overheat_ms.GetHashCode();
+        hash = hash * 31 + heat.GetHashCode();
         hash = hash * 31 + ammunition.GetHashCode();
+        hash = hash * 31 + gauss.GetHashCode();
         return hash;
       }
     }
@@ -902,7 +911,10 @@ namespace Cactbot {
         return null;
 
       var j = new MachinistJobData();
+      j.overheat_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      j.heat = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
       j.ammunition = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
+      j.gauss = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] == 1;
       return j;
     }
 

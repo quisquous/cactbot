@@ -80,7 +80,7 @@
       } else if (e.detail.job == "PGL") {
         document.getElementById("jobinfo").innerText = jobDetail.lightningStacks + " (" + jobDetail.lightningMilliseconds + ")";
       } else if (e.detail.job == "MCH") {
-        document.getElementById("jobinfo").innerText = jobDetail.ammunition;
+        document.getElementById("jobinfo").innerText = jobDetail.overheatMilliseconds + " | " + jobDetail.heat + " | " + jobDetail.ammunition + " | " + jobDetail.gauss;
       } else {
         document.getElementById("jobinfo").innerText = "";
       }

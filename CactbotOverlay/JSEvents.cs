@@ -201,8 +201,11 @@ namespace Cactbot {
       }
 
       public struct MachinistDetail {
-        public MachinistDetail(FFXIVProcess.MachinistJobData d) { ammunition = d.ammunition; }
+        public MachinistDetail(FFXIVProcess.MachinistJobData d) { overheatMilliseconds = d.overheat_ms; heat = d.heat; ammunition = d.ammunition; gauss = d.gauss; }
+        public uint overheatMilliseconds;
+        public int heat;
         public int ammunition;
+        public bool gauss;
       }
     }
 
