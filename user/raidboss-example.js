@@ -1,3 +1,5 @@
+// Rename this file to `raidboss.js` and edit it to change the raidboss ui.
+
 // If false, no timeline of upcoming events will be displayed during fights.
 Options.TimelineEnabled = true
 // If false, no text will be shown or spoken, or sounds played, for triggers and timeline events.
