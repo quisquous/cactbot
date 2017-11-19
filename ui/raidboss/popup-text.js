@@ -64,23 +64,45 @@ class PopupText {
   }
 
   OnZoneChange(e) {
-    if (!this.triggerSets) return;  // No data files were loaded.
+    this.zoneName = e.detail.zoneName;
+    this.ReloadTimelines();
+  }
+
+  ReloadTimelines() {
+    // Datafiles, job, and zone must be loaded.
+    if (!this.triggerSets || !this.me || !this.zoneName)
+      return;
+
+    this.Reset();
 
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
     var timelineFiles = [];
     var timelines = [];
 
+    // Recursively/iteratively process timeline entries for triggers.
+    // Functions get called with data, arrays get iterated, strings get appended.
+    var addTimeline = (function(obj) {
+      if (Array.isArray(obj)) {
+        for (var i = 0; i < obj.length; ++i)
+          addTimeline(obj[i]);
+      } else if (typeof(obj) == 'function') {
+        addTimeline(obj(this.data));
+      } else if (obj) {
+        timelines.push(obj);
+      }
+    }).bind(this);
+
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
-      if (e.detail.zoneName.search(set.zoneRegex) >= 0) {
+      if (this.zoneName.search(set.zoneRegex) >= 0) {
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
         // And set the timeline files/timelines from each set that matches.
         if (set.timelineFile)
           timelineFiles.push(set.timelineFile);
         if (set.timeline)
-          timelines.push(set.timeline);
+          addTimeline(set.timeline);
       }
     }
 
@@ -109,8 +131,7 @@ class PopupText {
       console.log("Unknown job role")
     }
 
-    // Jobs/names can't change in combat, so reset the data now.
-    this.Reset();
+    this.ReloadTimelines();
   }
 
   OnInCombat(e) {
