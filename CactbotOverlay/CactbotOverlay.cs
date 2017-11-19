@@ -494,11 +494,18 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
-          // TODO: AST eveything
-          // TODO: SCH level 70 stuff
-          // TODO: DRG everything
-          // TODO: SAM everything
+        } else if (player.job == FFXIVProcess.EntityJob.AST) {
+          var job = ffxiv_.GetAstrologian();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.ast)) {
+              notify_state_.ast = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.AstrologianDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
         } else if (send) {
+          // TODO: SAM everything
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
         }
@@ -652,6 +659,7 @@ namespace Cactbot {
       public FFXIVProcess.SummonerAndScholarJobData smn_sch = new FFXIVProcess.SummonerAndScholarJobData();
       public FFXIVProcess.MonkJobData mnk = new FFXIVProcess.MonkJobData();
       public FFXIVProcess.MachinistJobData mch = new FFXIVProcess.MachinistJobData();
+      public FFXIVProcess.AstrologianJobData ast = new FFXIVProcess.AstrologianJobData();
       public FFXIVProcess.EntityData target = null;
       public FFXIVProcess.EntityData focus = null;
       public int target_cast_id = 0;

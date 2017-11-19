@@ -209,6 +209,15 @@ namespace Cactbot {
         public int ammunition;
         public bool gauss;
       }
+
+      public struct AstrologianDetail {
+        public AstrologianDetail(FFXIVProcess.AstrologianJobData d) { drawMilliseconds = d.draw_ms; drawnCard = d.drawn_card; spreadCard = d.spread_card; roadCard = d.road_card; arcanumCard = d.arcanum_card; }
+        public uint drawMilliseconds;
+        public int drawnCard;
+        public int spreadCard;
+        public int roadCard;
+        public int arcanumCard;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {

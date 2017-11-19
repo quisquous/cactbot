@@ -234,6 +234,18 @@ namespace Cactbot {
     //          0xB bytes in: uchar ammunition;
     //          0xC bytes in: uchar gauss_barrel;
     //        }
+    //        struct Astrologian {
+    //          0x8 bytes in: uint16 card_draw_time_ms; // time remaining on currently drawn card
+    //          // drawn_spread_cards = spread_card << 4 | drawn_card;
+    //          // cards[] = {0, balance, bole, arrow, spear, ewer, spire};
+    //          // e.g. balance in spread + drawn ewer = 0x15
+    //          0xC bytes in: uchar drawn_spread_cards;
+    //          // royal_road_arcanum_cards = royal_road_card << 4 | arcanum_card;
+    //          // royal_road_cards[] = {0, enhanced, extended, expanded}
+    //          // arcanum_card[] = {0, 0, 0, 0, 0, 0, 0, lord, lady}
+    //          // e.g. lady drawn and expanded royal road = 0x38
+    //          0xD bytes in: uchar royal_road_arcanum_cards;
+    //        }
     //      }
     //   }
     // }
@@ -926,6 +938,49 @@ namespace Cactbot {
       j.heat = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
       j.ammunition = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       j.gauss = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] == 1;
+      return j;
+    }
+
+    public class AstrologianJobData {
+      public uint draw_ms = 0;
+      public int drawn_card = 0;
+      public int spread_card = 0;
+      public int road_card = 0;
+      public int arcanum_card = 0;
+
+      public override bool Equals(object obj) {
+        var o = obj as AstrologianJobData;
+        return o != null &&
+          draw_ms != o.draw_ms &&
+          drawn_card != o.drawn_card &&
+          spread_card != o.spread_card &&
+          road_card != o.road_card &&
+          arcanum_card != o.arcanum_card;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + draw_ms.GetHashCode();
+        hash = hash * 31 + drawn_card.GetHashCode();
+        hash = hash * 31 + spread_card.GetHashCode();
+        hash = hash * 31 + road_card.GetHashCode();
+        hash = hash * 31 + arcanum_card.GetHashCode();
+        return hash;
+      }
+    }
+
+    public AstrologianJobData GetAstrologian() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new AstrologianJobData();
+      j.drawn_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] & 0xF;
+      if (j.drawn_card > 0)
+        j.draw_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
+      j.spread_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] >> 4 & 0xF;
+      j.road_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 5] >> 4 & 0xF;
+      j.arcanum_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 5] & 0xF;
       return j;
     }
 

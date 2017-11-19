@@ -81,6 +81,8 @@
         document.getElementById("jobinfo").innerText = jobDetail.lightningStacks + " (" + jobDetail.lightningMilliseconds + ")";
       } else if (e.detail.job == "MCH") {
         document.getElementById("jobinfo").innerText = jobDetail.overheatMilliseconds + " | " + jobDetail.heat + " | " + jobDetail.ammunition + " | " + jobDetail.gauss;
+      } else if (e.detail.job == "AST") {
+        document.getElementById("jobinfo").innerText = jobDetail.drawMilliseconds + " | " + jobDetail.drawnCard + " | " + jobDetail.spreadCard + " | " + jobDetail.roadCard + " | " + jobDetail.arcanumCard;
       } else {
         document.getElementById("jobinfo").innerText = "";
       }
