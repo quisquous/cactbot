@@ -30,6 +30,7 @@
   ],
   triggers: [
     {
+      id: 'Test Poke',
       regex: /:You poke the striking dummy/,
       infoText: function(data) {
         data.pokes = (data.pokes || 0) + 1;
@@ -40,6 +41,7 @@
       },
     },
     {
+      id: 'Test Psych',
       regex: /:You psych yourself up alongside the striking dummy/,
       alertText: function(data) {
         return 'PSYCH!!!';
@@ -47,6 +49,7 @@
       tts: 'psych',
     },
     {
+      id: 'Test Laugh',
       regex: /:You burst out laughing at the striking dummy/,
       alarmText: function(data) {
         return 'hahahahaha';
