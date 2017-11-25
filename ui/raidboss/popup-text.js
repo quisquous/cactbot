@@ -292,7 +292,7 @@ class PopupText {
         if (namedSound in that.options) {
           soundUrl = that.options[namedSound];
           if (namedSoundVolume in that.options)
-            volume = that.options[namedSoundVolume];
+            soundVol = that.options[namedSoundVolume];
         }
         if ('soundVolume' in trigger)
           soundVol = trigger.soundVolume;
