@@ -119,7 +119,7 @@
       tts: 'away from tank then stack',
     },
     { id: 'UCU Nael Quote 8',
-      regex: /Fleeting light, outshine the starts for the moon/,
+      regex: /Fleeting light, outshine the stars for the moon/,
       infoText: function(data) { return 'Spread => Away from Tank'; },
       durationSeconds: 6,
       delaySeconds: 4,
