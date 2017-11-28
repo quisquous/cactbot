@@ -47,6 +47,7 @@ namespace Cactbot {
     private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
     JsonTextWriter dispatch_json_writer_;
     JsonSerializer dispatch_serializer_;
+    JsonSerializer message_serializer_;
 
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
@@ -107,6 +108,7 @@ namespace Cactbot {
       wipe_detector_ = new WipeDetector(this);
       dispatch_json_writer_ = new JsonTextWriter(new System.IO.StringWriter(dispatch_string_builder_));
       dispatch_serializer_ = JsonSerializer.CreateDefault();
+      message_serializer_ = JsonSerializer.CreateDefault();
 
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
@@ -637,6 +639,16 @@ namespace Cactbot {
       main_thread_sync_.Post(
         (state) => { this.Log(LogLevel.Info, format, args); },
         null);
+    }
+
+    // This is an overlayMessage() function call from javascript. We accept a json object of
+    // (command, argument) pairs. Commands are:
+    // - say: The argument is a string which is read as text-to-speech.
+    public override void OverlayMessage(string message) {
+      var reader = new JsonTextReader(new StringReader(message));
+      var obj = message_serializer_.Deserialize<Dictionary<string, string>>(reader);
+      if (obj.ContainsKey("say"))
+        Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(obj["say"]);
     }
 
     // State that is tracked and sent to JS when it changes.

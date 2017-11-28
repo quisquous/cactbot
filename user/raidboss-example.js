@@ -9,8 +9,21 @@
 // If false, no timeline of upcoming events will be displayed during fights.
 Options.TimelineEnabled = true
 
-// If false, no text will be shown or spoken, or sounds played, for triggers and timeline events.
-Options.PopupTextEnabled = true
+// If false, triggers and timelines will not show or speak text, nor play
+// sounds.
+Options.AlertsEnabled = true
+
+// If false, then visual text alerts are not shown for triggers.
+Options.TextAlertsEnabled = true
+
+// If false, then sound alerts are not played.
+Options.SoundAlertsEnabled = true,
+
+// If true, then text-to-speech alerts are read aloud.  Text-to-speech takes
+// priority over custom sounds and text noises.  If a trigger does not have
+// a tts entry then it will fall back on text and sound (if turned on).
+Options.SpokenAlertsEnabled = false
+
 
 // Show timer bars for events that will happen in this many seconds or less.
 Options.ShowTimerBarsAtSeconds = 30
@@ -153,3 +166,46 @@ Options.Triggers = [
   },
 
 ]
+
+// Per trigger options.  By default, each trigger uses the global options
+// of TextAlertsEnabled, SoundAlertsEnabled, and SpokenAlertsEnabled.
+// These global options are set up top in this file.
+//
+// If a per trigger entry is present (regardless if true/false), it will
+// override whatever the global option is set to.
+//
+// SoundOverride (if present) behaves like 'sound' on an individual trigger, in
+// that it will take the place of the info/alert/alarm noise if no sound has
+// been specified.  SoundAlert (or SoundAlertsEnabled) must still be true for
+// that override to be played.
+//
+// Here's some example per trigger options that modify the test triggers
+// in Summerford Farms:
+// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/test.js
+
+Options.PerTriggerOptions = {
+  // Just like Options.DisabledTriggers, this is the trigger id to apply to.
+  // This overrides the settings for the "/laugh" trigger from the test
+  // triggers.  You can try this out by teleporting to Summerford Farms
+  // and /laugh at a striking dummy.  It will use these settings and moo.
+  'Test Laugh': {
+    // Play the text to speech.
+    SpeechAlert: false,
+    // Play the sound alert.
+    SoundAlert: true,
+    // Show the info/alert/alarm text on screen.
+    TextAlert: false,
+    // Play this sound (replacing any sound from the original).
+    SoundOverride: '../../resources/sounds/WeakAuras/CowMooing.ogg',
+    // Play the sound (if any) at this volume.
+    VolumeOverride: 0.3,
+  },
+
+  // This makes /poke-ing a striking dummy in Summerford Farms only
+  // use text to speech with no visual text indicator or other sound.
+  'Test Poke': {
+    SpeechAlert: true,
+    SoundAlert: false,
+    TextAlert: false,
+  },
+}

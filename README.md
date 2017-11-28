@@ -170,6 +170,22 @@ Options.DisabledTriggers = {
 }
 ```
 
+If you dislike the built-in sound info, alert, and alarm noises that cactbot uses and would
+prefer to use text to speech (tts), you can set a global option by including this line
+in your **user/raidboss.js** file:
+
+```
+// Including this line will make any trigger with text to speech use that instead of other
+// noises.
+Options.SpokenAlertsEnabled = true;
+
+// If you don't like the on screen text, you can turn that off with this line too:
+Options.TextAlertsEnabled = false;
+```
+
+See [this options documentation](ui/raidboss/raidboss.js) for a full list of options and
+how to configure text, sound, and tts options on a per trigger basis.
+
 To add a sound alert that can be activated in any zone, for example, add the following to **user/raidboss.js**:
 
 ```

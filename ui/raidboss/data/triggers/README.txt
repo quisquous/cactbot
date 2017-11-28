@@ -71,4 +71,5 @@ The full order of evaluation of functions in a trigger is:
 4. infoText
 5. alertText
 6. alarmText
-7. run
+7. tts
+8. run

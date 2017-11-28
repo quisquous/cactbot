@@ -179,7 +179,7 @@ class PopupText {
   }
 
   OnTrigger(trigger, matches) {
-    if (!this.options.PopupTextEnabled)
+    if (!this.options.AlertsEnabled)
       return;
     if ('disabled' in trigger && trigger.disabled)
       return;
@@ -193,13 +193,27 @@ class PopupText {
       return (typeof(f) == "function") ? f(that.data, matches) : f;
     }
 
+    var showText = this.options.TextAlertsEnabled;
+    var playSounds = this.options.SoundAlertsEnabled;
+    var playSpeech = this.options.SpokenAlertsEnabled;
     var userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
 
+    var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id];
+    if (triggerOptions) {
+      if ('SpeechAlert' in triggerOptions)
+        playSpeech = triggerOptions.SpeechAlert;
+      if ('SoundAlert' in triggerOptions)
+        playSounds = triggerOptions.SoundAlert;
+      if ('TextAlert' in triggerOptions)
+        showText = triggerOptions.TextAlert;
+    }
+
     var f = function() {
-      var textSound = '';
-      var textVol = 1;
+      var soundUrl = '';
+      var soundVol = 1;
+      var ttsText = '';
 
       var addText = function(container, e) {
         container.appendChild(e);
@@ -224,70 +238,85 @@ class PopupText {
 
       if ('infoText' in trigger) {
         var text = ValueOrFunction(trigger.infoText);
-        if (text && !userDisabled) {
+        if (text && !userDisabled && showText) {
           var holder = that.infoText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!('sound' in trigger)) {
-            textSound = that.options.InfoSound;
-            textVol = that.options.InfoSoundVolume;
+            soundUrl = that.options.InfoSound;
+            soundVol = that.options.InfoSoundVolume;
           }
         }
       }
       if ('alertText' in trigger) {
         var text = ValueOrFunction(trigger.alertText);
-        if (text && !userDisabled) {
+        if (text && !userDisabled && showText) {
           var holder = that.alertText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!('sound' in trigger)) {
-            textSound = that.options.AlertSound;
-            textVol = that.options.AlertSoundVolume;
+            soundUrl = that.options.AlertSound;
+            soundVol = that.options.AlertSoundVolume;
           }
         }
       }
       if ('alarmText' in trigger) {
         var text = ValueOrFunction(trigger.alarmText);
-        if (text && !userDisabled) {
+        if (text && !userDisabled && showText) {
           var holder = that.alarmText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!('sound' in trigger)) {
-            textSound = that.options.AlarmSound;
-            textVol = that.options.AlarmSoundVolume;
+            soundUrl = that.options.AlarmSound;
+            soundVol = that.options.AlarmSoundVolume;
           }
         }
       }
-
-      if (textSound) {
-        var audio = new Audio(textSound);
-        audio.volume = textVol;
-        audio.play();
+      if ('tts' in trigger && playSpeech) {
+        var text = ValueOrFunction(trigger.tts);
+        if (text && !userDisabled)
+          ttsText = text;
       }
 
-      if (trigger.sound && !userDisabled) {
-        var url = trigger.sound;
-        var volume = 1;
+      if (trigger.sound) {
+        soundUrl = trigger.sound;
 
         var namedSound = trigger.sound + 'Sound';
         var namedSoundVolume = trigger.sound + 'SoundVolume';
         if (namedSound in that.options) {
-          url = that.options[namedSound];
+          soundUrl = that.options[namedSound];
           if (namedSoundVolume in that.options)
-            volume = that.options[namedSoundVolume];
+            soundVol = that.options[namedSoundVolume];
         }
         if ('soundVolume' in trigger)
-          volume = trigger.soundVolume;
+          soundVol = trigger.soundVolume;
+      }
 
-        var audio = new Audio(url);
-        audio.volume = volume;
+      if (triggerOptions) {
+        soundUrl = triggerOptions.SoundOverride || soundUrl;
+        soundVol = triggerOptions.VolumeOverride || soundVol;
+      }
+
+      // Text to speech overrides all other sounds.  This is so
+      // that a user who prefers tts can still get the benefit
+      // of infoText triggers without tts entries by turning
+      // on (speech=true, text=true, sound=true) but this will
+      // not cause tts to play over top of sounds or noises.
+      if (soundUrl && playSounds && !userDisabled && !ttsText) {
+        var audio = new Audio(soundUrl);
+        audio.volume = soundVol;
         audio.play();
+      }
+
+      if (ttsText && !userDisabled) {
+        var cmd = { 'say': ttsText };
+        OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       }
 
       if ('run' in trigger)

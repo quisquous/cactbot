@@ -7,7 +7,10 @@
 // See user/raidboss-example.js for documentation.
 var Options = {
   TimelineEnabled: true,
-  PopupTextEnabled: true,
+  AlertsEnabled: true,
+  TextAlertsEnabled: true,
+  SoundAlertsEnabled: true,
+  SpokenAlertsEnabled: false,
 
   ShowTimerBarsAtSeconds: 30,
   KeepExpiredTimerBarsForSeconds: 0.7,
@@ -25,6 +28,9 @@ var Options = {
   LongSoundVolume: 1,
 
   DisabledTriggers: {},
+
+  PerTriggerOptions: {},
+
   Triggers: [],
 };
 

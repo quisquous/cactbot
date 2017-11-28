@@ -56,5 +56,12 @@
       },
       tts: 'hahahahaha',
     },
+    {
+      id: 'Test Clap',
+      regex: /:You clap for the striking dummy/,
+      sound: '../../resources/sounds/WeakAuras/Applause.ogg',
+      soundVolume: 0.3,
+      tts: 'clapity clap',
+    },
   ],
 }]
