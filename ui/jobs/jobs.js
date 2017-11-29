@@ -16,6 +16,7 @@ var Options = {
 
   RdmCastTime: 1.94 + 0.5,
   WarGcd: 2.38,
+  SmnAetherflowRecast: 60,
 
   BigBuffIconWidth: 44,
   BigBuffIconHeight: 32,
@@ -40,6 +41,7 @@ var kReRdmImpactProcEnd = null;
 var kReRdmEndCombo = null;
 var kReSmnRuinProc = null;
 var kReSmnRuinProcEnd = null;
+var kReSmnAetherflow = null;
 var kReFoodBuff = null;
 
 // Full skill names (regex ok) of abilities that break combos.
@@ -170,6 +172,9 @@ function setupRegexes(me) {
   kReRdmImpactProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Impact:)');
   kReSmnRuinProc = Regexes.Parse(':' + me + ' gains the effect of Further Ruin from ' + me + ' for (\\y{Float}) Seconds\.');
   kReSmnRuinProcEnd = Regexes.Parse(':' + me + ' loses the effect of Further Ruin from ' + me + '\.');
+  kReSmnAetherflow = Regexes.Parse(':' + me + ':A6:Aetherflow:[^:]+:' + me + ':');
+  //kReSmnAetherflow = Regexes.Parse(':' + me + ' gains the effect of Aetherflow from ' + me + ' for ');
+  //kReSmnAetherflow = Regexes.Parse(':testing:');
   kReFoodBuff = Regexes.Parse(':' + me + ' gains the effect of Well Fed from ' + me + ' for (\\y{Float}) Seconds\.')
 }
 
@@ -563,6 +568,25 @@ class Bars {
       this.o.smnRuinTimer.hideafter = 0;
       this.o.smnRuinTimer.fg = window.getComputedStyle(noRuinTimer).backgroundColor;
       this.o.smnRuinTimer.bg = 'black';
+
+      if (1) {
+      var aetherflowTimerContainer = document.createElement("div");
+      aetherflowTimerContainer.id = 'smn-timers-aetherflow';
+      timersContainer.appendChild(aetherflowTimerContainer);
+
+      var aetherflowColor = document.createElement("div");
+      aetherflowColor.classList.add('smn-color-aetherflow');
+      ruinTimerContainer.appendChild(aetherflowColor);
+
+      this.o.smnAetherflowTimer = document.createElement("timer-box");
+      aetherflowTimerContainer.appendChild(this.o.smnAetherflowTimer);
+
+      this.o.smnAetherflowTimer.style = "fill";
+      this.o.smnAetherflowTimer.toward = "top";
+      this.o.smnAetherflowTimer.threshold = 21;
+      this.o.smnAetherflowTimer.fg = window.getComputedStyle(aetherflowColor).backgroundColor;
+      this.o.smnAetherflowTimer.bg = 'black';
+      }
     }
 
     if (this.job == 'RDM') {
@@ -887,6 +911,14 @@ class Bars {
     }
   }
 
+  OnSummonerAetherflow(seconds) {
+    if (this.o.smnAetherflowTimer != null) {
+      // Reset to 0 first to make sure the timer starts over.
+      this.o.smnAetherflowTimer.duration = 0;
+      this.o.smnAetherflowTimer.duration = seconds;
+    }
+  }
+
   OnSummonerRuinProc(seconds) {
     if (this.o.smnRuinTimer != null) {
       // Reset to 0 first to make sure the timer starts over.
@@ -1074,6 +1106,10 @@ class Bars {
           kIconBuffFood);
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
+  }
+
+  OnPartyWipe(e) {
+    this.OnSummonerAetherflow(0);
   }
 
   OnInCombatChanged(e) {
@@ -1314,6 +1350,10 @@ class Bars {
           this.OnSummonerRuinProc(0);
           continue;
         }
+        if (log.search(kReSmnAetherflow) >= 0) {
+          this.OnSummonerAetherflow(this.options.SmnAetherflowRecast);
+          continue;
+        }
       }
 
       if (this.job == 'RDM') {
@@ -1383,6 +1423,9 @@ document.addEventListener("onPlayerChangedEvent", function (e) {
 });
 document.addEventListener("onTargetChangedEvent", function (e) {
   gBars.OnTargetChanged(e);
+});
+document.addEventListener("onPartyWipe", function (e) {
+  gBars.OnPartyWipe(e);
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
   gBars.OnInCombatChanged(e);

@@ -18,6 +18,8 @@ Options.ShowRdmProcs = true
 Options.RdmCastTime = 1.94 + 0.5
 // GCD on warrior.
 Options.WarGcd = 2.38
+// The recast time for Aetherflow.
+Options.SmnAetherflowRecast = 60
 
 // Size of big buff icons.
 Options.BigBuffIconWidth = 44

@@ -157,6 +157,11 @@
   /*left: 10px;*/
   left: calc(152px / 2);
 }
+#smn-timers-aetherflow {
+  position: relative;
+  display: inline-block;
+  left: calc(152px);
+}
 #smn-timers .inactive {
   position: absolute;
   display: inline-block;
@@ -342,4 +347,7 @@
 }
 .smn-color-ruin {
   background-color: rgb(150, 233, 140);
+}
+.smn-color-aetherflow {
+  background-color: rgb(255, 96, 207);
 }
