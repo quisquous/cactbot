@@ -40,8 +40,18 @@ class TimerBox extends HTMLElement {
   set hideafter(h) { this.setAttribute("hideafter", h); }
   get hideafter() { return this.getAttribute("hideafter"); }
 
-  // Current value.
-  get value() { return this._value; }
+  // The length remaining in the count down.
+  get value() {
+    if (!this._start) return this._duration.toString();
+    var elapsedMs = new Date() - this._start;
+    return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
+  }
+
+  // The elapsed time.
+  get elapsed() {
+    if (!this._start) return '0';
+    return ((new Date() - this._start) / 1000).toString();
+  }
 
   // Whether to round up the value to the nearest integer before thresholding.
   set roundupthreshold(r) { this.setAttribute("roundupthreshold", r); }
@@ -117,7 +127,6 @@ class TimerBox extends HTMLElement {
     this.kAnimateMS = 100;
     
     // Default values.
-    this._value = 0;
     this._duration = 0;
     this._threshold = 7;
     this._bg = "rgba(0, 0, 0, 0.8)";
@@ -170,7 +179,7 @@ class TimerBox extends HTMLElement {
       this.layout();
     } else if (name == "hideafter") {
       this._hideafter = Math.max(parseFloat(this.hideafter), 0);
-      if (this._value == 0 && this._hideafter >= 0)
+      if (this._duration == 0 && this._hideafter >= 0)
         this.hide();
       else if (this._hideafter < 0)
         this.show();
@@ -220,12 +229,14 @@ class TimerBox extends HTMLElement {
   draw() {
     if (!this._connected) return;
 
-    var intvalue = parseInt(this._value + 0.99999999999);
+    var elapsedSec = (new Date() - this._start) / 1000;
+    var remainingSec = Math.max(0, this._duration - elapsedSec);
+    var intvalue = parseInt(remainingSec + 0.99999999999);
     var rounded;
     if (this._round_up_threshold) {
       rounded = intvalue;
     } else {
-      rounded = this._value;
+      rounded = remainingSec;
     }
 
     if (rounded <= 0.000000001 || this._duration == 0) {
@@ -242,7 +253,7 @@ class TimerBox extends HTMLElement {
       this.smallBoxElement.style.display = "none";
       this.timerElement.style.display = "block";
       var animStartValue = this._duration > this._threshold ? this._threshold : this._duration;
-      var animPercent = (animStartValue - this._value) / animStartValue;
+      var animPercent = (animStartValue - remainingSec) / animStartValue;
       if (!this._style_fill)
         animPercent = 1.0 - animPercent;
       this.largeBoxForegroundElement.style.transform = "scale(1," + animPercent + ")";
@@ -262,26 +273,25 @@ class TimerBox extends HTMLElement {
     clearTimeout(this._timer);
     this._timer = null;
 
-    this._value = this._duration;
+    this._start = new Date();
     this.advance();
   }
   
   advance() {
-    if (this._value <= 0) {
+    var elapsedSec = (new Date() - this._start) / 1000;
+    if (elapsedSec >= this._duration) {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
       this.duration = 0;
-
-      this._value = 0;
-      if (this._hideafter >= 0) {
+      if (this._hideafter > 0)
         this._hide_timer = setTimeout(this.hide(), this._hideafter);
-      }
+      else if (this._hideafter == 0)
+        this.hide();
+
+      window.cancelAnimationFrame(this._animationFrame);
+      this._animationFrame = null;
     } else {
-      var that = this;
-      this._timer = setTimeout(function() {
-        that._value = that._value - (that.kAnimateMS / 1000);
-        that.advance();
-      }, this.kAnimateMS);
+      this._animationFrame = window.requestAnimationFrame(this.advance.bind(this));
     }
     this.draw();
   }
