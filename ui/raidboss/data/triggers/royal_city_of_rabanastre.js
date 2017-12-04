@@ -82,38 +82,27 @@
       tts: 'trample',
     },
     {
-      // The first two masks are known and have rp text.
-      regex: /:0044:I am the truth from which you run/,
+      regex: /:Argath Thadalfus:261A:Mask Of Truth:/,
       run: function(data) {
         data.maskValue = true;
-        data.maskKnown = true;
       },
     },
     {
-      regex: /:0044:I am the lies upon which you sup/,
+      regex: /:Argath Thadalfus:2619:Mask Of Lies:/,
       run: function(data) {
         data.maskValue = false;
-        data.maskKnown = true;
       },
-    },
-    {
-      regex: /:0044:I am Revelation/,
-      run: function(data) { data.maskKnown = false; },
     },
     {
       id: 'Rab Argath Command Scatter',
       regex: /1B:........:(\y{Name}):....:....:007B:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (!data.maskKnown)
-          return 'Move or Stop?';
         if (data.maskValue)
           return 'Move';
         return 'Stop';
       },
       tts: function(data) {
-        if (!data.maskKnown)
-          return 'Move or Stop?';
         if (data.maskValue)
           return 'Move';
         return 'Stop';
@@ -124,15 +113,11 @@
       regex: /1B:........:(\y{Name}):....:....:007C:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (!data.maskKnown)
-          return 'Look Away or Towards?';
         if (data.maskValue)
           return 'Look Away';
         return 'Look Towards';
       },
       tts: function(data) {
-        if (!data.maskKnown)
-          return 'Look Away or Towards?';
         if (data.maskValue)
           return 'Look Away';
         return 'Look Towards';
