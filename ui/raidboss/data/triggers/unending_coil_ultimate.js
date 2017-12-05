@@ -348,6 +348,9 @@
         data.wideThirdDive = output.wideThirdDive;
         data.unsafeThirdMark = output.unsafeThirdMark;
         delete data.naelDragons;
+        // In case you forget, print marks in the log.
+        // TODO: Maybe only if Options.Debug?
+        console.log(data.naelMarks.join(', '));
         return 'Marks: ' + data.naelMarks.join(', ');
       },
     },
