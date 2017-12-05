@@ -68,8 +68,8 @@ hideall "--sync--"
 248.5 "Bahamut's Claw 2" # first hit
 
 258.0 "Fireball" # explosion
-261.0 "Thunderstruck x2" # explosion
 260.0 "Thermionic + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
+261.0 "Thunderstruck x2" # explosion
 268.0 "Wings of Salvation x3" # first puddle
 270.0 "Doom x3" # debuffs
 280.0 "Thunderstruck x2" # explosion
@@ -108,7 +108,7 @@ hideall "--sync--"
 517.5 "Flare Breath" # animation
 524.5 "Flatten" # end of castbar
 
-# The following times are ballparks.
+# The following times for the rest of the timeline are ballparks.
 
 530 "Quickmarch Trio"
 539 "Megaflare Dive"
@@ -171,8 +171,44 @@ hideall "--sync--"
 789 "Grand Octet"
 798 "Nael Marker"
 824 "Twin Marker"
-727 "Megaflare Stack"
-729 "Towers"
+827 "Megaflare Stack"
+829 "Towers"
+
 
 ##### NAEL + TWIN #####
-800 "--sync--" sync /We shall stand guard as you make ready your divine judgment/ window 800,0
+900 "--sync--" sync /We shall stand guard as you make ready your divine judgment/ window 800,0
+914 "Plummet/Claw"
+917 "Liquid Fire x5"
+922 "Generate x3"
+926 "Twister"
+933 "Triple Nael Quote"
+943 "Twister"
+956 "Megaflare"
+964 "Sentence/Ravensbeak"
+970 "Plummet/Claw"
+979 "Liquid Fire x5"
+985 "Generate x3"
+989 "Twister"
+996 "Triple Nael Quote"
+1006 "Twister"
+1019 "Sentence/Ravensbeak"
+1032 "Megaflare"
+1044 "Enrage" # ???
+
+
+##### GOLDEN BAHAMUT #####
+1200 "--sync--" sync /Bahamut Prime unleases his inner rage/ window 1200,0
+1209 "Morn Afah 1"
+1215 "Akh Morn x3"
+1227 "Exaflare"
+1246 "Akh Morn x4"
+1263 "Morn Afah 2"
+1275 "Exaflare"
+1296 "Morn Afah 3"
+1308 "Akh Morn x5"
+1324 "Exaflare"
+1345 "Morn Afah 4"
+1357 "Akh Morn x6"
+1374 "Exaflare"
+1395 "Morn Afah 5"
+1407 "Morn Afah Enrage"
