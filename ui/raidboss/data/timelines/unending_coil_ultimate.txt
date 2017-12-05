@@ -53,6 +53,7 @@ hideall "--sync--"
 184.0 "Death Sentence" # end of cast bar
 186.0 "Aetheric Profusion Enrage"
 
+
 ##### NAEL #####
 200.0 "Heavensfall" sync /:Ragnarok:26B8:/ window 200,0
 205.5 "Meteor Stream x4" # damage
@@ -98,9 +99,80 @@ hideall "--sync--"
 
 403.0 "Mega Flare Enrage"
 
+
 ##### BAHAMUT #####
 500.0 "Seventh Umbral Era" sync /:Bahamut Prime:26D1:Seventh Umbral Era:/ window 500,0 # damage
 503.0 "Calamitous Flame" # damage
 508.0 "Calamitous Blaze" # damage
+# targetable?
 517.5 "Flare Breath" # animation
 524.5 "Flatten" # end of castbar
+
+# The following times are ballparks.
+
+530 "Quickmarch Trio"
+539 "Megaflare Dive"
+543 "Pepperoni"
+546 "Tempest Wing" duration 8
+551 "Earthshaker x3"
+
+557 "Flare Breath"
+563 "Flatten"
+
+571 "Blackfire Trio"
+577 "Liquid Hell x5" duration 5
+580 "Thermionic Beam"
+581 "Megaflare Dive"
+582 "Megaflare Stack"
+583 "Towers"
+587 "Hypernova x4" duration 6
+595 "Gigaflare"
+
+606 "Flare Breath 1"
+608 "Flare Breath 2"
+610 "Flare Breath 3"
+
+622 "Fellruin Trio"
+628 "Dive Dynamo Combo" duration 8
+638 "Tempest Wing"
+640 "Aetheric Profusion"
+642 "Meteor Stream"
+647 "Gigaflare"
+
+652 "Flare Breath"
+660 "Flatten"
+667 "Flare Breath"
+
+674 "Heavensfall Trio"
+679 "Markers appear"
+681 "Dives"
+685 "Pepperoni"
+689 "Heavenfsall"
+691 "Towers"
+705 "Fireball Soak"
+708 "Gigaflare"
+
+718 "Flare Breath 1"
+720 "Flare Breath 2"
+722 "Flare Breath 3"
+
+733 "Tenstrike Trio"
+739 "Generate x3"
+745 "Meteor Stream (dps)"
+746 "Generate x3"
+749 "Meteor Stream (T/H)"
+751 "Earthshaker x4"
+755 "Earthshaker x4"
+767 "Gigaflare"
+
+778 "Flatten"
+782 "Flare Breath"
+
+789 "Grand Octet"
+798 "Nael Marker"
+824 "Twin Marker"
+727 "Megaflare Stack"
+729 "Towers"
+
+##### NAEL + TWIN #####
+800 "--sync--" sync /We shall stand guard as you make ready your divine judgment/ window 800,0
