@@ -1,9 +1,10 @@
 # Unending Coil of Bahamut (Ultimate)
+# http://clees.me/guides/ucob/
 
 hideall "--Reset--"
 hideall "--sync--"
 
-0 "--Reset--" sync /Removing combatant Phoenix/ window 10000 jump 0
+0 "--Reset--" sync /:Removing combatant Bahamut Prime\.  Max HP: 13751450/ window 10000 jump 0
 
 ##### TWINTANIA #####
 ### Twintania P1: 100% -> 75%
@@ -54,42 +55,52 @@ hideall "--sync--"
 
 ##### NAEL #####
 200.0 "Heavensfall" sync /:Ragnarok:26B8:/ window 200,0
-205.5 "Meteor Stream x4"
-208.5 "Meteor Stream x4"
-211.4 "Dalamud Dive"
-213.5 "Bahamut's Claw" duration 3
-234.9 "Thunderstruck x2"
-235.0 "Dynamo + Beam/Chariot"
-240.3 "Doom x2"
-242.3 "Fireball"
-242.3 "Wings of Salvation x2"
-249.3 "Bahamut's Claw" duration 3
+205.5 "Meteor Stream x4" # damage
+209.5 "Meteor Stream x4" # damage
+212.0 "Dalamud Dive" # damage
+214.5 "Bahamut's Claw 1" # first hit
+231.0 "Dynamo + Beam/Chariot" duration 8 # rp text -> ~2nd mechanic
+235.5 "Thunderstruck x2" # explosion
+240.5 "Doom x2" # debuffs
+243.0 "Fireball" # explosion
+243.5 "Wings of Salvation x2" # first puddle
+248.5 "Bahamut's Claw 2" # first hit
 
-257.0 "Fireball"
-261.0 "Thunderstruck x2"
-261.0 "Thermionic + Dynamo/Chariot"
-270.0 "Doom x3"
-272.0 "Wings of Salvation x3"
-279.0 "Thunderstruck x2"
-284.0 "Fireball"
-289.0 "Bahamut's Claw"
-292.0 "Dive + Dynamo/Chariot"
-305.0 "Fireball"
-305.0 "Doom x3"
-307.0 "Thunderstruck x2"
-315.0 "Wings of Salvation x3"
-324.0 "Ravensbeak"
+258.0 "Fireball" # explosion
+261.0 "Thunderstruck x2" # explosion
+260.0 "Thermionic + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
+268.0 "Wings of Salvation x3" # first puddle
+270.0 "Doom x3" # debuffs
+280.0 "Thunderstruck x2" # explosion
+284.0 "Fireball" # explosion
+288.5 "Bahamut's Claw 3"
+292.5 "Dive + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
+305.5 "Fireball" # explosion
+306.0 "Doom x3" # debuffs
+307.5 "Thunderstruck x2" # explosion
+308.0 "Wings of Salvation x3" # first puddle
+325.0 "Ravensbeak" # end of castbar
 
-333.0 "Cauterize markers x3"
-335.0 "Supernova x4" duration 10
-341.0 "Divebomb #1"
-343.0 "Meteor/Dive or Dive/Beam"
-345.0 "Divebomb #2"
-349.0 "Divebomb #3"
+330.0 "Marker 1" # symbol appearing, lasts 7 seconds
+334.5 "Marker 2" # symbol appearing
+339.0 "Marker 3" # symbol appearing
+342.0 "Divebomb #1" # puff under dragon for dive
+343.5 "--untargetable--"
+346.0 "Meteor/Dive or Dive/Beam" duration 3 # first mechanic -> second
+346.5 "Divebomb #2"
+351.0 "Divebomb #3"
 
-350.0 "Bahamut's Claw"
-363.0 "Random Combo Attack"
-374.0 "Random Combo Attack"
-389.0 "Ravensbeak"
-398.0 "Bahamut's Claw"
+353.5 "Bahamut's Claw 4" # first hit
+365.0 "Random Combo Attack" duration 8 # rp text -> ~second mechanic
+376.5 "Random Combo Attack" duration 8 # rp text -> ~second mechanic
+392.0 "Ravensbeak" # end of castbar
+395.0 "Bahamut's Claw 5"
+
 403.0 "Mega Flare Enrage"
+
+##### BAHAMUT #####
+500.0 "Seventh Umbral Era" sync /:Bahamut Prime:26D1:Seventh Umbral Era:/ window 500,0 # damage
+503.0 "Calamitous Flame" # damage
+508.0 "Calamitous Blaze" # damage
+517.5 "Flare Breath" # animation
+524.5 "Flatten" # end of castbar
