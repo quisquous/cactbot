@@ -28,9 +28,7 @@
     // --- Twintania ---
     { id: 'UCU Twisters',
       regex: /:26AA:Twintania starts using/,
-      alertText: function(data) {
-        return 'Twisters';
-      },
+      alertText: 'Twisters',
       tts: 'twisters',
     },
     { id: 'UCU Death Sentence',
@@ -381,6 +379,13 @@
         data.naelDiveMarkerCount++;
       },
     },
+    { id: 'UCU Twister Dives',
+      regex: /:Twintania:26B2:Twisting Dive:/,
+      alertText: 'Twisters',
+      tts: 'twisters',
+    },
+
+
     {
       // One time setup.
       regex: /:26AA:Twintania starts using/,
