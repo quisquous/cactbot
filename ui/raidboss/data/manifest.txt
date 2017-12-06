@@ -11,6 +11,7 @@ timelines/a10s.txt
 timelines/a11s.txt
 timelines/a12s.txt
 timelines/ravana-ex.txt
+timelines/royal_city_of_rabanastre.txt
 timelines/sephirot-ex.txt
 timelines/shinryu-ex.txt
 timelines/sophia-ex.txt

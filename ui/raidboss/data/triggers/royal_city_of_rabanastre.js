@@ -1,5 +1,6 @@
 [{
   zoneRegex: /^The Royal City Of Rabanastre$/,
+  timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [
     {
       id: 'Rab Mateus Aqua Sphere',
