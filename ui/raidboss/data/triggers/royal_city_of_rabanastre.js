@@ -13,15 +13,15 @@
       regex: /:(\y{Name}) gains the effect of Breathless from/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (data.breathless >= 6)
-          return 'Breathless: ' + data.breathless;
+        if (data.breathless >= 7)
+          return 'Breathless: ' + (data.breathless + 1);
       },
       alarmText: function(data) {
-        if (data.breathless == 5)
+        if (data.breathless == 6)
           return 'Get In Bubble';
       },
       tts: function(data) {
-        if (data.breathless == 5)
+        if (data.breathless == 6)
           return 'bubble';
       },
       run: function(data) {
@@ -36,6 +36,12 @@
       run: function(data) {
         data.breathless = 0;
       },
+    },
+    {
+      id: 'Rab Mateus Blizzard IV',
+      regex: /:Mateus, The Corrupt starts using Blizzard IV/,
+      alertText: 'Move To Safe Spot',
+      tts: 'move away',
     },
     {
       id: 'Rab Hashmal Rock Cutter',
