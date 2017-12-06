@@ -97,7 +97,7 @@ hideall "--sync--"
 392.0 "Ravensbeak" # end of castbar
 395.0 "Bahamut's Claw 5"
 
-403.0 "Mega Flare Enrage"
+408.0 "Mega Flare Enrage"
 
 
 ##### BAHAMUT #####
@@ -147,7 +147,7 @@ hideall "--sync--"
 679 "Markers appear"
 681 "Dives"
 685 "Pepperoni"
-689 "Heavenfsall"
+689 "Heavensfall"
 691 "Towers"
 705 "Fireball Soak"
 708 "Gigaflare"
