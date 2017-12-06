@@ -272,7 +272,7 @@
         if (data.fireball3)
           return;
         if (!data.fireDebuff)
-          return 'Fire IN';
+          return 'Thunder -> Fire IN';
       },
       alertText: function(data) {
         if (data.fireball3)
@@ -280,7 +280,7 @@
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to no stack.
         if (data.fireDebuff)
-          return 'Fire IN: AVOID!';
+          return 'Thunder -> Fire IN: AVOID!';
       },
       tts: function(data) {
         if (data.fireball3)
@@ -298,14 +298,14 @@
         if (data.fireball4)
           return;
         if (!data.fireDebuff)
-          return 'Fire IN';
+          return 'Fire IN -> Thunder';
       },
       alertText: function(data) {
         if (data.fireball4)
           return;
         // Not sure this is possible.
         if (data.fireDebuff)
-          return 'Fire IN: AVOID!';
+          return 'Fire IN: AVOID! -> Thunder';
       },
       tts: function(data) {
         if (data.fireball4)
