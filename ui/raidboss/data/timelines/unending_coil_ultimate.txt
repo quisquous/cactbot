@@ -104,17 +104,20 @@ hideall "--sync--"
 500.0 "Seventh Umbral Era" sync /:Bahamut Prime:26D1:Seventh Umbral Era:/ window 500,0 # damage
 503.0 "Calamitous Flame" # damage
 508.0 "Calamitous Blaze" # damage
-# targetable?
-517.5 "Flare Breath" # animation
-524.5 "Flatten" # end of castbar
+511.5 "--targetable--"
+518.0 "Flare Breath" # animation
+525.0 "Flatten" # end of castbar
+
+532.0 "Quickmarch Trio"
+535.0 "--untargetable--"
+540.5 "Twister Dive" # end of cast
+544.5 "Pepperoni" # appearing
+545.5 "Megaflare" # damage
+549.5 "Stack" # damage
+547.5 "Tempest Wing" duration 7.5 # tether -> damage1
+552.5 "Earthshaker x3" # damage
 
 # The following times for the rest of the timeline are ballparks.
-
-530 "Quickmarch Trio"
-539 "Megaflare Dive"
-543 "Pepperoni"
-546 "Tempest Wing" duration 8
-551 "Earthshaker x3"
 
 557 "Flare Breath"
 563 "Flatten"
@@ -122,8 +125,8 @@ hideall "--sync--"
 571 "Blackfire Trio"
 577 "Liquid Hell x5" duration 5
 580 "Thermionic Beam"
-581 "Megaflare Dive"
-582 "Megaflare Stack"
+581 "Twister Dive"
+582 "Stack"
 583 "Towers"
 587 "Hypernova x4" duration 6
 595 "Gigaflare"
@@ -171,7 +174,7 @@ hideall "--sync--"
 789 "Grand Octet"
 798 "Nael Marker"
 824 "Twin Marker"
-827 "Megaflare Stack"
+827 "Stack"
 829 "Towers"
 
 
@@ -198,17 +201,17 @@ hideall "--sync--"
 
 ##### GOLDEN BAHAMUT #####
 1200 "--sync--" sync /Bahamut Prime unleases his inner rage/ window 1200,0
-1209 "Morn Afah 1"
+1209 "Morn Afah (1)"
 1215 "Akh Morn x3"
 1227 "Exaflare"
 1246 "Akh Morn x4"
-1263 "Morn Afah 2"
+1263 "Morn Afah (2)"
 1275 "Exaflare"
-1296 "Morn Afah 3"
+1296 "Morn Afah (3)"
 1308 "Akh Morn x5"
 1324 "Exaflare"
-1345 "Morn Afah 4"
+1345 "Morn Afah (4)"
 1357 "Akh Morn x6"
 1374 "Exaflare"
-1395 "Morn Afah 5"
+1395 "Morn Afah (5)"
 1407 "Morn Afah Enrage"
