@@ -341,23 +341,27 @@ class PopupTextGenerator {
   Info(text) {
     this.popupText.OnTrigger({
       infoText: text,
+      tts: text,
     });
   }
 
   Alert(text) {
     this.popupText.OnTrigger({
       alertText: text,
+      tts: text,
     });
   }
 
   Alarm(text) {
     this.popupText.OnTrigger({
       alarmText: text,
+      tts: text,
     });
   }
 
   TTS(text) {
     this.popupText.OnTrigger({
+      infoText: text,
       tts: text,
     });
   }
