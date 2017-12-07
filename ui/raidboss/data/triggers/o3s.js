@@ -51,7 +51,7 @@
       infoText: function(data) {
         for (var i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return 'others stack on' + data.holyTargets[1];
+            return 'others stack on ' + data.holyTargets[1];
         }
       },
       condition: function(data, matches) {
