@@ -57,10 +57,19 @@ class Timeline {
         continue;
       }
 
-      // TODO: Support alert sounds and TTS?
-      match = line.match(/^alertall\s+"[^"]*"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound\s+"[^"]*"|speak\s+"[^"]*"\s+"[^"]*")$/)
-      if (match)
+      match = line.match(/^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/)
+      if (match != null) {
+        // TODO: Support alert sounds?
+        if (match[3] == "sound")
+          continue;
+        texts[match[1]] = texts[match[1]] || [];
+        texts[match[1]].push({
+          type: 'tts',
+          secondsBefore: parseFloat(match[2]),
+          text: match[4] ? match[4] : match[1],
+        });
         continue;
+      }
       match = line.match(/^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/);
       if (match)
         continue;
@@ -313,6 +322,9 @@ class Timeline {
       } else if (t.type == 'alarm') {
         if (this.showAlarmTextCallback)
           this.showAlarmTextCallback(t.text);
+      } else if (t.type == 'tts') {
+        if (this.speakTTSCallback)
+          this.speakTTSCallback(t.text);
       }
       ++this.nextText;
     }
@@ -389,6 +401,7 @@ class Timeline {
   SetShowInfoText(c) { this.showInfoTextCallback = c; }
   SetShowAlertText(c) { this.showAlertTextCallback = c; }
   SetShowAlarmText(c) { this.showAlarmTextCallback = c; }
+  SetSpeakTTS(c) { this.speakTTSCallback = c; }
   SetSyncTime(c) { this.syncTimeCallback = c; }
 };
 
@@ -452,6 +465,7 @@ class TimelineUI {
       this.timeline.SetShowInfoText(null);
       this.timeline.SetShowAlertText(null);
       this.timeline.SetShowAlarmText(null);
+      this.timeline.SetSpeakTTS(null);
       this.timeline.SetSyncTime(null);
       this.timerlist.clear();
       this.debugElement.innerHTML = '';
@@ -466,6 +480,7 @@ class TimelineUI {
       this.timeline.SetShowInfoText(this.OnShowInfoText.bind(this));
       this.timeline.SetShowAlertText(this.OnShowAlertText.bind(this));
       this.timeline.SetShowAlarmText(this.OnShowAlarmText.bind(this));
+      this.timeline.SetSpeakTTS(this.OnSpeakTTS.bind(this));
       this.timeline.SetSyncTime(this.OnSyncTime.bind(this));
     }
   }
@@ -528,6 +543,11 @@ class TimelineUI {
   OnShowAlarmText(text) {
     if (this.popupText)
       this.popupText.Alarm(text);
+  }
+
+  OnSpeakTTS(text) {
+    if (this.popupText)
+      this.popupText.TTS(text);
   }
 
   OnSyncTime(fightNow, running) {

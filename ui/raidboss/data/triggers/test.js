@@ -5,6 +5,7 @@
     'infotext "Angry Dummy" before 2 "stack for angry dummy"',
     'alerttext "Final Sting" before 4 "oh no final sting in 4"',
     'alarmtext "Death" before 3',
+    'alertall "Long Castbar" before 1 speak "voice" "long"',
     function(data) {
       if (data.role != 'tank' && data.role != 'healer')
         return 'hideall "Super Tankbuster"';

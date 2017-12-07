@@ -356,6 +356,11 @@ class PopupTextGenerator {
     });
   }
 
+  TTS(text) {
+    this.popupText.OnTrigger({
+      tts: text,
+    });
+  }
 }
 
 var gPopupText;
