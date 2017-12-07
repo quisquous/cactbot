@@ -78,8 +78,8 @@
         }
       },
       tts: function(data) {
-        if (data.dpsProbe) return 'tank probe';
-        else return 'dps probe';
+        if (data.dpsProbe) return 'dps probe';
+        else return 'tank heal probe';
       },
     },
     {
