@@ -741,6 +741,7 @@ class Bars {
       this.o.eyeBox.threshold = 0;
       this.o.eyeBox.hideafter = "";
       this.o.eyeBox.roundupthreshold = false;
+      this.o.eyeBox.valuescale = this.options.WarGcd;
     }
   }
 

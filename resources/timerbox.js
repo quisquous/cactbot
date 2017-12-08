@@ -17,6 +17,10 @@ class TimerBox extends HTMLElement {
   set scale(s) { this.setAttribute("scale", s); }
   get scale() { return this.getAttribute("scale"); }
 
+  // The displayed value is scaled by this.
+  set valuescale(s) { this.setAttribute("valuescale", s); }
+  get valuescale() { return this.getAttribute("valuescale"); }
+
   // Background color.
   set bg(c) { this.setAttribute("bg", c); }
   get bg() { return this.getAttribute("bg"); }
@@ -132,6 +136,7 @@ class TimerBox extends HTMLElement {
     this._bg = "rgba(0, 0, 0, 0.8)";
     this._fg = "red";
     this._scale = 1;
+    this._value_scale = 1;
     this._toward_top = true;
     this._style_fill = true;
     this._hideafter = -1;
@@ -185,6 +190,8 @@ class TimerBox extends HTMLElement {
         this.show();
     } else if (name == "roundupthreshold") {
       this._round_up_threshold = newValue;
+    } else if (name == "valuescale") {
+      this._value_scale = parseFloat(newValue);
     }
 
     this.draw();
@@ -231,10 +238,9 @@ class TimerBox extends HTMLElement {
 
     var elapsedSec = (new Date() - this._start) / 1000;
     var remainingSec = Math.max(0, this._duration - elapsedSec);
-    var intvalue = parseInt(remainingSec + 0.99999999999);
     var rounded;
     if (this._round_up_threshold) {
-      rounded = intvalue;
+      rounded = Math.ceil(remainingSec);
     } else {
       rounded = remainingSec;
     }
@@ -259,9 +265,7 @@ class TimerBox extends HTMLElement {
       this.largeBoxForegroundElement.style.transform = "scale(1," + animPercent + ")";
     }
 
-    // The default parseInt truncates but instead we should show
-    // 1 for (0, 1], 2 for (1, 2], etc.
-    this.timerElement.innerHTML = intvalue;
+    this.timerElement.innerHTML = Math.ceil(remainingSec / this._value_scale);
   }
 
   reset() {
