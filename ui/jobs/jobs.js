@@ -963,10 +963,8 @@ class Bars {
         this.o.rdmCombo3.classList.remove('active');
     } else if (this.job == "WAR") {
       if (skill == "Storm's Eye") {
-        // Storm's eye applies after a small animation delay.
-        // 0.5s appears to lineup the countdown roughly with the in game buff.
         this.o.eyeBox.duration = 0;
-        this.o.eyeBox.duration = 30.5;
+        this.o.eyeBox.duration = 30;
       }
 
       // Min number of skills until eye without breaking combo.
@@ -983,22 +981,17 @@ class Bars {
       }
 
       // The new threshold is "can I finish the current combo and still
-      // have time to do a Storm's Eye".
-      var oldThreshold = this.o.eyeBox.threshold;
-      var newThreshold = (minSkillsUntilEye + 3) * this.options.WarGcd;
+      // have time to do a Storm's Eye".  The 0.3 is for reaction
+      // time slop.
+      var oldThreshold = parseFloat(this.o.eyeBox.threshold);
+      var newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd + 0.3;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
-      if (this.o.eyeBox.value >= newThreshold) {
-        // Haven't past the current threshold, so small.
-        this.o.eyeBox.threshold = newThreshold;
-      } else if (this.o.eyeBox.value >= oldThreshold) {
-        // Past the current one, but not the last one, so this is
-        // the first real threshold crossed.
+      if (this.o.eyeBox.value >= oldThreshold &&
+          this.o.eyeBox.value >= newThreshold) {
         this.o.eyeBox.threshold = newThreshold;
       } else {
-        // Past both the current one and the old one, so preserve
-        // the old one to avoid wiggling the denominator.
         this.o.eyeBox.threshold = oldThreshold;
       }
     }
