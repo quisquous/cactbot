@@ -43,6 +43,13 @@ var kReSmnRuinProc = null;
 var kReSmnRuinProcEnd = null;
 var kReSmnAetherflow = null;
 var kReFoodBuff = null;
+var kFormChange = null;
+var kPeanutButter = null;
+var kDragonKick = null;
+var kTwinSnakes = null;
+var kDemolish = null;
+
+var kBluntDebuff = Regexes.Parse('gains the effect of Blunt Resistance Down from .*?for (\\y{Float}) Seconds\.');
 
 // Full skill names (regex ok) of abilities that break combos.
 // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -176,6 +183,11 @@ function setupRegexes(me) {
   //kReSmnAetherflow = Regexes.Parse(':' + me + ' gains the effect of Aetherflow from ' + me + ' for ');
   //kReSmnAetherflow = Regexes.Parse(':testing:');
   kReFoodBuff = Regexes.Parse(':' + me + ' gains the effect of Well Fed from ' + me + ' for (\\y{Float}) Seconds\.')
+  kFormChange = Regexes.Parse(':' + me + ' gains the effect of (?:Opo-Opo|Raptor|Coeurl) Form from ' + me + ' for (\\y{Float}) Seconds\.');
+  kPeanutButter = Regexes.Parse(':' + me + ' gains the effect of Perfect Balance from ' + me + ' for (\\y{Float}) Seconds\.');
+  kDragonKick = Regexes.Parse(':' + me + ':4A:Dragon Kick:');
+  kTwinSnakes = Regexes.Parse(':' + me + ':3D:Twin Snakes:');
+  kDemolish = Regexes.Parse(':' + me + ':42:Demolish:');
 }
 
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
@@ -742,6 +754,87 @@ class Bars {
       this.o.eyeBox.hideafter = "";
       this.o.eyeBox.roundupthreshold = false;
       this.o.eyeBox.valuescale = this.options.WarGcd;
+    } else if (this.job == "MNK") {
+      var mnkBars = document.createElement("div");
+      mnkBars.id = 'mnk-bar';
+      barsContainer.appendChild(mnkBars);
+
+      this.o.lightningContainer = document.createElement("div");
+      this.o.lightningContainer.id = 'mnk-timers-lightning';
+      this.o.lightningTimer = document.createElement("timer-bar");
+      mnkBars.appendChild(this.o.lightningContainer);
+      this.o.lightningContainer.appendChild(this.o.lightningTimer);
+
+      this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
+      this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
+      this.o.lightningTimer.toward = "left";
+      this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
+
+      this.o.formContainer = document.createElement("div");
+      this.o.formContainer.id = 'mnk-timers-combo';
+      this.o.formTimer = document.createElement("timer-bar");
+      mnkBars.appendChild(this.o.formContainer);
+      this.o.formContainer.appendChild(this.o.formTimer);
+
+      this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
+      this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
+      this.o.formTimer.style = "empty";
+      this.o.formTimer.toward = "left";
+      this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
+      this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
+
+      var mnkBoxesContainer = document.createElement("div");
+      mnkBoxesContainer.id = 'mnk-boxes';
+      barsContainer.appendChild(mnkBoxesContainer);
+
+      this.o.chakraTextBox = document.createElement("div");
+      this.o.chakraTextBox.classList.add('mnk-color-chakra');
+      mnkBoxesContainer.appendChild(this.o.chakraTextBox);
+
+      this.o.chakraText = document.createElement("div");
+      this.o.chakraTextBox.appendChild(this.o.chakraText);
+      this.o.chakraText.classList.add("text");
+
+      var mnkProcs = document.createElement("div");
+      mnkProcs.id = 'mnk-procs';
+      barsContainer.appendChild(mnkProcs);
+
+      this.o.dragonKickTimer = document.createElement("timer-box");
+      this.o.dragonKickTimer.id = "mnk-procs-dragonkick";
+      mnkProcs.appendChild(this.o.dragonKickTimer);
+      this.o.dragonKickTimer.style = "empty";
+      this.o.dragonKickTimer.fg = computeBackgroundColorFrom(this.o.dragonKickTimer, 'mnk-color-dragonkick');
+      this.o.dragonKickTimer.bg = 'black';
+      this.o.dragonKickTimer.toward = "bottom";
+      this.o.dragonKickTimer.threshold = 0;
+      this.o.dragonKickTimer.hideafter = "";
+      this.o.dragonKickTimer.roundupthreshold = false;
+
+      this.o.twinSnakesTimer = document.createElement("timer-box");
+      this.o.twinSnakesTimer.id = "mnk-procs-twinsnakes";
+      mnkProcs.appendChild(this.o.twinSnakesTimer);
+      this.o.twinSnakesTimer.style = this.o.dragonKickTimer.style;
+      this.o.twinSnakesTimer.fg = computeBackgroundColorFrom(this.o.twinSnakesTimer, 'mnk-color-twinsnakes');
+      this.o.twinSnakesTimer.bg = this.o.dragonKickTimer.bg;
+      this.o.twinSnakesTimer.toward = this.o.dragonKickTimer.toward;
+      this.o.twinSnakesTimer.threshold = this.o.dragonKickTimer.threshold;
+      this.o.twinSnakesTimer.hideafter = this.o.dragonKickTimer.hideafter;
+      this.o.twinSnakesTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
+
+      this.o.demolishTimer = document.createElement("timer-box");
+      this.o.demolishTimer.id = "mnk-procs-demolish";
+      mnkProcs.appendChild(this.o.demolishTimer);
+      this.o.demolishTimer.style = this.o.dragonKickTimer.style;
+      this.o.demolishTimer.fg = computeBackgroundColorFrom(this.o.demolishTimer, 'mnk-color-demolish');
+      this.o.demolishTimer.bg = this.o.dragonKickTimer.bg;
+      this.o.demolishTimer.toward = this.o.dragonKickTimer.toward;
+      this.o.demolishTimer.threshold = this.o.dragonKickTimer.threshold;
+      this.o.demolishTimer.hideafter = this.o.dragonKickTimer.hideafter;
+      this.o.demolishTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
+
+      this.o.lightningFgColors = [];
+      for (var i = 0; i <= 3; ++i)
+        this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
     }
   }
 
@@ -910,6 +1003,59 @@ class Bars {
       this.o.beastTextBox.classList.remove('low');
       this.o.beastTextBox.classList.remove('mid');
     }
+  }
+
+  OnMonkUpdate(lightningStacks, chakraStacks, lightningMilliseconds) {
+    if (this.o.chakraTextBox == null)
+      return;
+
+    this.o.chakraText.innerText = chakraStacks;
+    if (chakraStacks < 5)
+      this.o.chakraTextBox.classList.add('dim');
+    else
+      this.o.chakraTextBox.classList.remove('dim');
+
+    var lightningSeconds = lightningMilliseconds / 1000.0;
+    if (parseFloat(this.o.lightningTimer.value) < lightningSeconds) {
+      this.o.lightningTimer.duration = 0;
+      this.o.lightningTimer.duration = lightningSeconds;
+    }
+
+    if (lightningStacks == 0)
+      this.o.lightningTimer.style = "fill";
+    else
+      this.o.lightningTimer.style = "empty";
+
+    this.o.lightningTimer.fg = this.o.lightningFgColors[lightningStacks];
+  }
+
+  OnMonkFormChange(seconds) {
+    this.o.formTimer.duration = 0;
+    this.o.formTimer.duration = seconds;
+    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
+  }
+
+  OnMonkPerfectBalance(seconds) {
+    this.o.formTimer.duration = 0;
+    this.o.formTimer.duration = seconds;
+    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-pb');
+  }
+
+  OnMonkDragonKick(seconds) {
+    var kAnimationDelay = 1.2;
+
+    this.o.dragonKickTimer.duration = 0;
+    this.o.dragonKickTimer.duration = seconds - kAnimationDelay;
+  }
+
+  OnMonkTwinSnakes() {
+    this.o.twinSnakesTimer.duration = 0;
+    this.o.twinSnakesTimer.duration = 15;
+  }
+
+  OnMonkDemolish() {
+    this.o.demolishTimer.duration = 0;
+    this.o.demolishTimer.duration = 18;
   }
 
   OnSummonerAetherflow(seconds) {
@@ -1264,6 +1410,16 @@ class Bars {
         this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
         this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks, this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
+    } else if (this.job == 'MNK') {
+      if (update_job ||
+          e.detail.jobDetail.lightningStacks != this.lightningStacks ||
+          e.detail.jobDetail.chakraStacks != this.chakraStacks ||
+          e.detail.jobDetail.lightningMilliseconds > this.lightningMilliseconds) {
+        this.lightningStacks = e.detail.jobDetail.lightningStacks;
+        this.chakraStacks = e.detail.jobDetail.chakraStacks;
+        this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
+        this.OnMonkUpdate(this.lightningStacks, this.chakraStacks, this.lightningMilliseconds);
+      }
     }
   }
 
@@ -1379,6 +1535,34 @@ class Bars {
         }
         if (log.search(kReRdmImpactProcEnd) >= 0) {
           this.OnRedMageProcImpact(0);
+          continue;
+        }
+      }
+      if (this.job == 'MNK') {
+        if (log.search(kTwinSnakes) >= 0) {
+          this.OnMonkTwinSnakes();
+          continue;
+        }
+        if (log.search(kDemolish) >= 0) {
+          this.OnMonkDemolish();
+          continue;
+        }
+        var r = log.match(kFormChange);
+        if (r != null) {
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          this.OnMonkFormChange(seconds);
+          continue;
+        }
+        r = log.match(kPeanutButter);
+        if (r != null) {
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          this.OnMonkPerfectBalance(seconds);
+          continue;
+        }
+        r = log.match(kBluntDebuff);
+        if (r != null) {
+          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          this.OnMonkDragonKick(seconds);
           continue;
         }
       }
