@@ -117,7 +117,9 @@ To add a cactbot module is the same as adding any overlay plugin.
 
 ![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
 
-8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.  Now you're ready for [cactbot magic](https://clips.twitch.tv/StrangeHungryGarageShadyLulu).
+8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.
+The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
+Now you're ready for [cactbot magic](https://clips.twitch.tv/StrangeHungryGarageShadyLulu).
 
 9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
 
