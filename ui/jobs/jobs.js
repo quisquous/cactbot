@@ -1020,16 +1020,19 @@ class Bars {
     else
       this.o.chakraTextBox.classList.remove('dim');
 
+    // Show sad red bar when you've lost all your pancakes.
     var lightningSeconds = lightningMilliseconds / 1000.0;
-    if (parseFloat(this.o.lightningTimer.value) < lightningSeconds) {
-      this.o.lightningTimer.duration = 0;
-      this.o.lightningTimer.duration = lightningSeconds;
+    if (lightningStacks == 0) {
+      this.o.lightningTimer.style = "fill";
+      lightningSeconds = 0;
+    } else {
+      this.o.lightningTimer.style = "empty";
     }
 
-    if (lightningStacks == 0)
-      this.o.lightningTimer.style = "fill";
-    else
-      this.o.lightningTimer.style = "empty";
+    // Setting the duration resets the timer bar to 0, so set
+    // duration first before adjusting the value.
+    this.o.lightningTimer.duration = 16;
+    this.o.lightningTimer.value = lightningSeconds;
 
     this.o.lightningTimer.fg = this.o.lightningFgColors[lightningStacks];
   }
@@ -1424,6 +1427,8 @@ class Bars {
         this.chakraStacks = e.detail.jobDetail.chakraStacks;
         this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
         this.OnMonkUpdate(this.lightningStacks, this.chakraStacks, this.lightningMilliseconds);
+      } else {
+        this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
       }
     }
   }
