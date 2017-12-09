@@ -809,6 +809,7 @@ class Bars {
       this.o.dragonKickTimer.threshold = 0;
       this.o.dragonKickTimer.hideafter = "";
       this.o.dragonKickTimer.roundupthreshold = false;
+      this.o.dragonKickTimer.threshold = 6;
 
       this.o.twinSnakesTimer = document.createElement("timer-box");
       this.o.twinSnakesTimer.id = "mnk-procs-twinsnakes";
@@ -820,6 +821,7 @@ class Bars {
       this.o.twinSnakesTimer.threshold = this.o.dragonKickTimer.threshold;
       this.o.twinSnakesTimer.hideafter = this.o.dragonKickTimer.hideafter;
       this.o.twinSnakesTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
+      this.o.twinSnakesTimer.threshold = 6;
 
       this.o.demolishTimer = document.createElement("timer-box");
       this.o.demolishTimer.id = "mnk-procs-demolish";
@@ -831,6 +833,9 @@ class Bars {
       this.o.demolishTimer.threshold = this.o.dragonKickTimer.threshold;
       this.o.demolishTimer.hideafter = this.o.dragonKickTimer.hideafter;
       this.o.demolishTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
+      // Slightly shorter time, to make the box not pop right as
+      // you hit snap punch at t=6 (which is probably fine).
+      this.o.demolishTimer.threshold = 5;
 
       this.o.lightningFgColors = [];
       for (var i = 0; i <= 3; ++i)
