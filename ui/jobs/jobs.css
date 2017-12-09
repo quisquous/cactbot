@@ -117,11 +117,19 @@
   top: 0px;
 }
 
-#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div {
+#rdm-boxes>div, #war-boxes>div {
   display: inline-block;
   margin-left: 4;
   width: 30px;
   height: 28px;
+  border: 1px solid rgba(0,0,0,0.7);
+}
+
+#mnk-boxes>div {
+  display: inline-block;
+  margin-left: 4;
+  width: 30px;
+  height: 29px;
   border: 1px solid rgba(0,0,0,0.7);
 }
 
