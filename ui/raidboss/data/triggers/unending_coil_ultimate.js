@@ -332,10 +332,15 @@
         // naelDragons[direction 0-7 (N-NW)] => boolean
         data.naelDragons = data.naelDragons || [0,0,0,0,0,0,0,0];
         data.naelDragons[dir] = 1;
-
-        if (Object.keys(data.seenDragon).length != 5)
-          return;
-
+      },
+    },
+    { id: 'UCU Nael Dragon Placement',
+      regex: /:Iceclaw:26C6/,
+      condition: function(data) {
+        return Object.keys(data.seenDragon).length == 5 && data.naelDragons;
+      },
+      durationSeconds: 12,
+      infoText: function(data) {
         var output = data.findDragonMarks(data.naelDragons);
         data.naelMarks = output.marks;
         data.wideThirdDive = output.wideThirdDive;
@@ -344,21 +349,18 @@
         // In case you forget, print marks in the log.
         // TODO: Maybe only if Options.Debug?
         console.log(data.naelMarks.join(', '));
-      },
-    },
-    { id: 'UCU Nael Dragon Placement',
-      regex: /:Iceclaw:26C6/,
-      condition: function(data) {
-        return data.naelMarks && !data.calledNaelDragons;
-      },
-      durationSeconds: 12,
-      infoText: function(data) {
-        data.calledNaelDragons = true;
         return 'Marks: ' + data.naelMarks.join(', ');
       },
     },
-    { id: 'UCU Nael Dragon Dive Marker Me',
+    { id: 'UCU Nael Dragon Dive Markers',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      infoText: function(data, matches) {
+        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
+        if (matches[1] == data.me)
+          return;
+        var num = data.naelDiveMarkerCount + 1;
+        return 'Dive #' + num + ': ' + matches[1];
+      },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches[1] != data.me)
@@ -373,19 +375,6 @@
           return;
         return 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount];
       },
-    },
-    { id: 'UCU Nael Dragon Dive Marker Others',
-      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
-      infoText: function(data, matches) {
-        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] == data.me)
-          return;
-        var num = data.naelDiveMarkerCount + 1;
-        return 'Dive #' + num + ': ' + matches[1];
-      },
-    },
-    { id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       run: function(data) {
         data.naelDiveMarkerCount++;
       },
@@ -395,6 +384,8 @@
       alertText: 'Twisters',
       tts: 'twisters',
     },
+
+
     {
       // One time setup.
       regex: /:26AA:Twintania starts using/,
