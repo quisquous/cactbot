@@ -32,7 +32,7 @@ namespace Cactbot {
         return new Version();
       }
 
-      var pattern = @"<h1(\s.*?)?\sclass=""release-title"".*?>(?<Header>.*?)</h1>";
+      var pattern = @"<h1(\s.*?)?\sclass=""[^""]*release-title[^""]*"".*?>(?<Header>.*?)</h1>";
       var regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
       var match = regex.Match(html);
       if (!match.Success) {
