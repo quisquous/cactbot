@@ -157,7 +157,17 @@ namespace Cactbot {
         var versions = new VersionChecker(this);
         Version local = versions.GetLocalVersion();
         Version remote = versions.GetRemoteVersion();
-        if (local < remote) {
+
+        if (remote.Major == 0 && remote.Minor == 0) {
+          var result = System.Windows.Forms.MessageBox.Show(Overlay,
+            "Error while checking Cactbot version. " +
+            "Your current version is " + local + ".\n\n" +
+            "Manually check for newer version now?",
+            "Cactbot Manual Check",
+            System.Windows.Forms.MessageBoxButtons.YesNo);
+          if (result == System.Windows.Forms.DialogResult.Yes)
+            System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
+        } else if (local < remote) {
           Version remote_seen_before = new Version(Config.RemoteVersionSeen);
           Config.RemoteVersionSeen = remote.ToString();
 
