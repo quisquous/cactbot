@@ -343,7 +343,7 @@
         delete data.naelDragons;
         // In case you forget, print marks in the log.
         // TODO: Maybe only if Options.Debug?
-        console.log(data.naelMarks.join(', '));
+        console.log(data.naelMarks.join(', ') + data.wideThirdDive ? ' (WIDE)' : '');
       },
     },
     { id: 'UCU Nael Dragon Placement',
@@ -354,7 +354,7 @@
       durationSeconds: 12,
       infoText: function(data) {
         data.calledNaelDragons = true;
-        return 'Marks: ' + data.naelMarks.join(', ');
+        return 'Marks: ' + data.naelMarks.join(', ') + data.wideThirdDive ? ' (WIDE)' : '';
       },
     },
     { id: 'UCU Nael Dragon Dive Marker Me',
