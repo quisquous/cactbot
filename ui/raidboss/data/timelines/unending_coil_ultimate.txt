@@ -63,20 +63,20 @@ hideall "--sync--"
 231.0 "Dynamo + Beam/Chariot" duration 8 # rp text -> ~2nd mechanic
 235.5 "Thunderstruck x2" # explosion
 240.5 "Doom x2" # debuffs
-243.0 "Fireball" # explosion
+243.0 "Fireball (1)" # explosion
 243.5 "Wings of Salvation x2" # first puddle
 248.5 "Bahamut's Claw 2" # first hit
 
-258.0 "Fireball" # explosion
+258.0 "Fireball (2)" # explosion
 260.0 "Thermionic + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
 261.0 "Thunderstruck x2" # explosion
 268.0 "Wings of Salvation x3" # first puddle
 270.0 "Doom x3" # debuffs
 280.0 "Thunderstruck x2" # explosion
-284.0 "Fireball" # explosion
+284.0 "Fireball (3)" # explosion
 288.5 "Bahamut's Claw 3"
 292.5 "Dive + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
-305.5 "Fireball" # explosion
+305.5 "Fireball (4)" # explosion
 306.0 "Doom x3" # debuffs
 307.5 "Thunderstruck x2" # explosion
 308.0 "Wings of Salvation x3" # first puddle
