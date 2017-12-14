@@ -236,19 +236,22 @@ class PopupText {
         return div;
       }
 
+      // If sound is specified it overrides alarm/alert/info sounds.
+      // Otherwise, if multiple alarm/alert/info are specified
+      // it will pick one sound in the order of alarm > alert > info.
       var soundUrl = ValueOrFunction(trigger.sound);
 
-      if ('infoText' in trigger) {
-        var text = ValueOrFunction(trigger.infoText);
+      if ('alarmText' in trigger) {
+        var text = ValueOrFunction(trigger.alarmText);
         if (text && !userDisabled && showText) {
-          var holder = that.infoText.getElementsByClassName('holder')[0];
-          var div = makeTextElement(text, 'info-text');
+          var holder = that.alarmText.getElementsByClassName('holder')[0];
+          var div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!soundUrl) {
-            soundUrl = that.options.InfoSound;
-            soundVol = that.options.InfoSoundVolume;
+            soundUrl = that.options.AlarmSound;
+            soundVol = that.options.AlarmSoundVolume;
           }
         }
       }
@@ -266,20 +269,21 @@ class PopupText {
           }
         }
       }
-      if ('alarmText' in trigger) {
-        var text = ValueOrFunction(trigger.alarmText);
+      if ('infoText' in trigger) {
+        var text = ValueOrFunction(trigger.infoText);
         if (text && !userDisabled && showText) {
-          var holder = that.alarmText.getElementsByClassName('holder')[0];
-          var div = makeTextElement(text, 'alarm-text');
+          var holder = that.infoText.getElementsByClassName('holder')[0];
+          var div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!soundUrl) {
-            soundUrl = that.options.AlarmSound;
-            soundVol = that.options.AlarmSoundVolume;
+            soundUrl = that.options.InfoSound;
+            soundVol = that.options.InfoSoundVolume;
           }
         }
       }
+
       if ('tts' in trigger && playSpeech) {
         var text = ValueOrFunction(trigger.tts);
         if (text && !userDisabled)
