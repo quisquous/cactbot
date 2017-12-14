@@ -236,6 +236,8 @@ class PopupText {
         return div;
       }
 
+      var soundUrl = ValueOrFunction(trigger.sound);
+
       if ('infoText' in trigger) {
         var text = ValueOrFunction(trigger.infoText);
         if (text && !userDisabled && showText) {
@@ -244,7 +246,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
-          if (!('sound' in trigger)) {
+          if (!soundUrl) {
             soundUrl = that.options.InfoSound;
             soundVol = that.options.InfoSoundVolume;
           }
@@ -258,7 +260,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
-          if (!('sound' in trigger)) {
+          if (!soundUrl) {
             soundUrl = that.options.AlertSound;
             soundVol = that.options.AlertSoundVolume;
           }
@@ -272,7 +274,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
-          if (!('sound' in trigger)) {
+          if (!soundUrl) {
             soundUrl = that.options.AlarmSound;
             soundVol = that.options.AlarmSoundVolume;
           }
@@ -284,18 +286,16 @@ class PopupText {
           ttsText = text;
       }
 
-      if (trigger.sound) {
-        soundUrl = trigger.sound;
-
-        var namedSound = trigger.sound + 'Sound';
-        var namedSoundVolume = trigger.sound + 'SoundVolume';
+      if (trigger.sound && soundUrl) {
+        var namedSound = soundUrl + 'Sound';
+        var namedSoundVolume = soundUrl + 'SoundVolume';
         if (namedSound in that.options) {
           soundUrl = that.options[namedSound];
           if (namedSoundVolume in that.options)
             soundVol = that.options[namedSoundVolume];
         }
         if ('soundVolume' in trigger)
-          soundVol = trigger.soundVolume;
+          soundVol = ValueOrFunction(trigger.soundVolume);
       }
 
       if (triggerOptions) {
