@@ -1,0 +1,84 @@
+.resize-helper {
+  display: none;
+}
+
+.resizeHandle .resize-helper {
+  display: inline-block;
+}
+
+.livelist {
+  max-width: 350px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+  margin: 5px;
+}
+
+.livelist div {
+  font-family: "Meiryo";
+  font-size: 12;
+  text-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;
+  font-weight: 300;
+  color: #E2EBF5;
+}
+
+.mistake-row:nth-child(even) {
+  background-color: rgba(20, 20, 20, 0.3);
+}
+
+.mistake-row:nth-child(odd) {
+  background-color: rgba(50, 50, 50, 0.3);
+}
+
+.mistake-row {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  height: 18px;
+}
+
+.mistake-icon {
+  text-align: center;
+  text-shadow: -1px 0 1px grey, 0 1px 1px grey;
+  width: 20px;
+  flex: 0 0 auto;
+}
+
+.mistake-text {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mistake-time {
+  align-self: flex-end;
+  padding-right: 3px;
+}
+
+.mistake-icon.pull:before {
+  color: green;
+  content: '\25B6';
+}
+.mistake-icon.death:before {
+  color: red;
+  content: '\1F480';
+}
+.mistake-icon.warn:before {
+  color: yellow;
+  content: '\26A0';
+}
+.mistake-icon.no:before {
+  color: red;
+  content: '\1F6AB';
+}
+.mistake-icon.wipe:before {
+  color: blue;
+  content: '\1F6BD';
+}
+
+.resizeHandle .hide-if-resizing {
+  display: none;
+}
