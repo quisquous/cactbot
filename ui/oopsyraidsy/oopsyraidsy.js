@@ -2,6 +2,7 @@
 
 var Options = {
   NumLiveListItems: 5,
+  Triggers: [],
 };
 
 // Character offsets into log lines for the chars of the type.
@@ -49,7 +50,7 @@ var kFieldTargetZ = 31;
 // ??
 var kFieldAttackerX = 38;
 var kFieldAttackerY = 39;
-var kFieldAttackerY = 40;
+var kFieldAttackerZ = 40;
 
 // if kFieldFlags is any of these values, then consider field 9/10 as 7/8.
 var kShiftFlagValues = ['3C', '113', '213', '313'];
@@ -115,6 +116,10 @@ function DamageFromFields(fields) {
   // UNKNOWN: 0x[48]0000 is seen sometimes (see example above even) but unclear why.
   var damageWithFlags = parseInt(fields[kFieldDamage], 16);
   return (damageWithFlags & 0xFFFF) * (damageWithFlags & 0x400000 ? 10 : 1);
+}
+
+function IsCritDamage(flags) {
+  return parseInt(flags, 16) & 0x100;
 }
 
 function IsPlayerId(id) {
@@ -196,10 +201,12 @@ class MistakeCollector {
 
   }
 
-  GetFormattedTime() {
+  GetFormattedTime(time) {
     if (!this.startTime)
       return '';
-    var totalSeconds = Math.floor((Date.now() - this.startTime) / 1000);
+    if (!time)
+      time = Date.now();
+    var totalSeconds = Math.floor((time - this.startTime) / 1000);
     var seconds = totalSeconds % 60;
     var minutes = Math.floor(totalSeconds / 60);
     return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
@@ -214,6 +221,40 @@ class MistakeCollector {
     this.wipeTime = null;
   }
 
+  // These OnFooText function could presumably drop messages when
+  // not in combat, but it's nice for testing to not have to be
+  // smacking a striking dummy, and these shouldn't happen out of
+  // combat anyway.
+  OnPullText(text, time) {
+    if (!text)
+      return;
+    this.liveList.AddLine('pull', text, this.GetFormattedTime(time));
+  }
+
+  OnWarnText(text, time) {
+    if (!text)
+      return;
+    this.liveList.AddLine('warn', text, this.GetFormattedTime(time));
+  }
+
+  OnDeathText(text, time) {
+    if (!text)
+      return;
+    this.liveList.AddLine('death', text, this.GetFormattedTime(time));
+  }
+
+  OnNoText(text, time) {
+    if (!text)
+      return;
+    this.liveList.AddLine('no', text, this.GetFormattedTime(time));
+  }
+
+  OnWipeText(text, time) {
+    if (!text)
+      return;
+    this.liveList.AddLine('wipe', text, this.GetFormattedTime(time));
+  }
+
   AddEngage() {
     this.seenEngage = true;
     if (!this.inCombat) {
@@ -223,7 +264,7 @@ class MistakeCollector {
     var seconds = (Date.now() - this.startTime) / 1000;
     if (this.firstPuller) {
       var text = 'Pull: ' + this.firstPuller + ' (' + seconds.toFixed(1) + ' early)';
-      this.liveList.AddLine('pull', text, this.GetFormattedTime());
+      this.OnPullText(text);
     }
   }
 
@@ -237,7 +278,7 @@ class MistakeCollector {
       if (this.seenEngage) {
         var seconds = (Date.now() - this.startTime) / 1000;
         var text = 'Pull: ' + this.firstPuller + ' (' + seconds.toFixed(1) + ' late)';
-        this.liveList.AddLine('pull', text, this.GetFormattedTime());
+        this.OnPullText(text);
       }
     }
   }
@@ -252,7 +293,7 @@ class MistakeCollector {
       var hp = '(' + DamageFromFields(fields) + '/' + fields[kFieldTargetCurrentHp] + ')';
       text += ': ' + fields[kFieldAbilityName] + ' ' + hp;
     }
-    this.liveList.AddLine('death', text, this.GetFormattedTime());
+    this.OnDeathText(text);
 
     // TODO: some things don't have abilities, e.g. jumping off titan ex.  This will just show
     // the last thing that hit you before you were defated.
@@ -263,13 +304,13 @@ class MistakeCollector {
     // test messages throw the wipe first and then end.
     // TODO: maybe reorder the test command to behave the same?
     if (this.wipeTime || this.inCombat)
-      this.liveList.AddLine('wipe', 'Party Wipe', this.wipeTime ? this.wipeTime : this.GetFormattedTime());
+      this.OnWipeText('Party Wipe', this.wipeTime);
     this.Reset();
   }
 
   OnInCombatChangedEvent(e) {
     if (!e.detail.inCombat) {
-      this.wipeTime = this.GetFormattedTime();
+      this.wipeTime = Date.now();
       this.Reset();
     } else {
       this.StartCombat();
@@ -285,13 +326,41 @@ class MistakeCollector {
 class DamageTracker {
   constructor(options, collector) {
     this.options = options;
-    this.lastDamage = {};
     this.collector = collector;
+    this.triggerSets = null;
+    this.timers = [];
+    this.generalTriggers = [];
+    this.damageTriggers = [];
+    this.Reset();
+  }
+
+  Reset() {
+    this.data = {
+      me: this.me,
+      job: this.job,
+      role: this.role,
+      ParseLocaleFloat: Regexes.ParseLocaleFloat,
+      ShortName: ShortNamify,
+      IsPlayerId: IsPlayerId,
+    };
+    this.lastDamage = {};
+    this.activeTriggers = {};
+
+    for (var i = 0; i < this.timers.length; ++i)
+      window.clearTimeout(this.timers[i]);
+    this.timers = [];
   }
 
   OnLogEvent(e) {
     for (var i = 0; i < e.detail.logs.length; ++i) {
       var line = e.detail.logs[i];
+      for (var j = 0; j < this.generalTriggers.length; ++j) {
+        var trigger = this.generalTriggers[j];
+        var matches = line.match(trigger.regex);
+        if (matches != null)
+          this.OnTrigger(trigger, {line: line}, matches);
+      }
+
       if (line[kTypeOffset0] == '0' && line.indexOf('00:0039:Engage!') > 0) {
         this.collector.AddEngage();
         continue;
@@ -342,6 +411,7 @@ class DamageTracker {
     if (lowByte != '0' && lowByte != '03' && lowByte != '05' && lowByte != '06' && lowByte != '32')
       return;
 
+    // TODO track first puller here, collector doesn't need every damage line
     this.collector.AddDamage(fields, line);
 
     // Mobs (and pets) have ids starting at '40000000'.  Players start at '10000000'.
@@ -349,14 +419,201 @@ class DamageTracker {
     // TODO: names aren't unique, should use ids instead.
     if (IsPlayerId(fields[kFieldTargetId][0]))
       this.lastDamage[fields[kFieldTargetName]] = fields;
+
+    var abilityName = fields[kFieldAbilityName];
+    var evt;
+    for (var i = 0; i < this.damageTriggers.length; ++i) {
+      var trigger = this.damageTriggers[i];
+      var matches = abilityName.match(trigger.damageRegex);
+      if (matches == null)
+        continue;
+      // Lazy initialize this giant event object only if
+      // a trigger matches.
+      if (!evt) {
+        evt = {
+          line: line,
+          type: fields[kFieldType],
+          attackerId: fields[kFieldAttackerId],
+          attackerName: fields[kFieldAttackerName],
+          abilityId: fields[kFieldAbilityId],
+          abilityName: fields[kFieldAbilityName],
+          targetId: fields[kFieldTargetId],
+          targetName: fields[kFieldTargetName],
+          flags: fields[kFieldFlags],
+          targetCurrentHp: fields[kFieldTargetCurrentHp],
+          targetMaxHp: fields[kFieldTargetMaxHp],
+          targetCurrentMp: fields[kFieldTargetCurrentMp],
+          targetMaxMp: fields[kFieldTargetMaxMp],
+          targetCurrentTp: fields[kFieldTargetCurrentTp],
+          targetMaxTp: fields[kFieldTargetMaxTp],
+          targetX: fields[kFieldTargetX],
+          targetY: fields[kFieldTargetY],
+          targetZ: fields[kFieldTargetZ],
+          attackerX: fields[kFieldAttackerX],
+          attackerY: fields[kFieldAttackerY],
+          attackerZ: fields[kFieldAttackerZ],
+        };
+        evt.damage = DamageFromFields(fields);
+        evt.damageStr = IsCritDamage(evt.flags) ? evt.damage + '!' : evt.damage;
+      }
+      this.OnTrigger(trigger, evt, matches);
+    }
+  }
+
+  OnTrigger(trigger, evt, matches) {
+    if ('condition' in trigger) {
+      if (!trigger.condition(evt, this.data, matches))
+        return;
+    }
+
+    var ValueOrFunction = (function(f, events) {
+      return (typeof(f) == 'function') ? f(events, this.data, matches) : f;
+    }).bind(this);
+
+    var runOnce = 'runOnce' in trigger ? ValueOrFunction(trigger.runOnce) : false;
+    if (runOnce && trigger in this.activeTriggers) {
+      this.activeTriggers[trigger].push(evt);
+      return;
+    }
+    var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
+
+    var triggerTime = Date.now();
+    var f = (function() {
+      var eventOrEvents = runOnce ? this.activeTriggers[trigger] : evt;
+      delete this.activeTriggers[trigger];
+      if ('pullText' in trigger) {
+        var text = ValueOrFunction(trigger.pullText, eventOrEvents);
+        this.collector.OnPullText(text, triggerTime);
+      }
+      if ('warnText' in trigger) {
+        var text = ValueOrFunction(trigger.warnText, eventOrEvents);
+        this.collector.OnWarnText(text, triggerTime);
+      }
+      if ('noText' in trigger) {
+        var text = ValueOrFunction(trigger.noText, eventOrEvents);
+        this.collector.OnNoText(text, triggerTime);
+      }
+      if ('deathText' in trigger) {
+        var text = ValueOrFunction(trigger.deathText, eventOrEvents);
+        this.collector.OnDeathText(text, triggerTime);
+      }
+      if ('wipeText' in trigger) {
+        var text = ValueOrFunction(trigger.wipeText, eventOrEvents);
+        this.collector.OnWipeText(text, triggerTime);
+      }
+      if ('run' in trigger)
+        ValueOrFunction(this.run, eventOrEvents);
+    }).bind(this);
+
+    // Even if run immediately, if runOnce is specified, then set this here
+    // so that events can be passed as an array for consistency.
+    if (runOnce)
+      this.activeTriggers[trigger] = [evt];
+
+    if (!delay) {
+      f();
+    } else {
+      this.timers.push(window.setTimeout(f, delay * 1000));
+    }
   }
 
   OnPartyWipeEvent(e) {
-    this.lastDamage = {};
+    this.Reset();
   }
 
   OnZoneChangeEvent(e) {
-    this.lastDamage = {};
+    this.zoneName = e.detail.zoneName;
+    this.ReloadTriggers();
+  }
+
+  ReloadTriggers() {
+    // Wait for datafiles / jobs / zone events.
+    if (!this.triggerSets || !this.me | !this.zoneName)
+      return;
+
+    this.Reset();
+
+    this.generalTriggers = [];
+    this.damageTriggers = [];
+    for (var i = 0; i < this.triggerSets.length; ++i) {
+      var set = this.triggerSets[i];
+      if (this.zoneName.search(set.zoneRegex) < 0)
+        continue;
+      for (var j = 0; j < set.triggers.length; ++j) {
+        var trigger = set.triggers[j];
+        if ('regex' in trigger) {
+          trigger.regex = Regexes.Parse(trigger.regex);
+          this.generalTriggers.push(trigger);
+        }
+        if ('damageRegex' in trigger) {
+          trigger.damageRegex = Regexes.Parse(trigger.damageRegex);
+          this.damageTriggers.push(trigger);
+        }
+      }
+    }
+  }
+
+  // TODO: copypasta from popup-text.js.  Maybe could be shared?
+  OnPlayerChange(e) {
+    if (this.job == e.detail.job && this.me == e.detail.name)
+      return;
+
+    this.me = e.detail.name;
+    this.job = e.detail.job;
+    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLD)$/) >= 0)
+      this.role = 'tank';
+    else if (this.job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0)
+      this.role = 'healer';
+    else if (this.job.search(/^(MNK|NIN|DRG|SAM|ROG|LNC|PUG)$/) >= 0)
+      this.role = 'dps-melee';
+    else if (this.job.search(/^(BLM|SMN|RDM|THM|ACN)$/) >= 0)
+      this.role = 'dps-caster';
+    else if (this.job.search(/^(BRD|MCH|ARC)$/) >= 0)
+      this.role = 'dps-ranged';
+    else if (this.job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0)
+      this.role = 'crafting';
+    else if (this.job.search(/^(MIN|BOT|FSH)$/) >= 0)
+      this.role = 'gathering';
+    else {
+      this.role = '';
+      console.log("Unknown job role")
+    }
+
+    this.ReloadTriggers();
+  }
+
+  OnDataFilesRead(e) {
+    this.triggerSets = Options.Triggers;
+    for (var filename in e.detail.files) {
+      var text = e.detail.files[filename];
+      var json;
+      try {
+        json = eval(text);
+      } catch (exception) {
+        console.log('Error parsing JSON from ' + filename + ': ' + exception);
+        continue;
+      }
+      if (typeof json != "object" || !(json.length >= 0)) {
+        console.log('Unexpected JSON from ' + filename + ', expected an array');
+        continue;
+      }
+      for (var i = 0; i < json.length; ++i) {
+        if (!('zoneRegex' in json[i])) {
+          console.log('Unexpected JSON from ' + filename + ', expected a zoneRegex');
+          continue;
+        }
+        if (!('triggers' in json[i])) {
+          console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+          continue;
+        }
+        if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
+          console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+          continue;
+        }
+      }
+      Array.prototype.push.apply(this.triggerSets, json);
+    }
+    this.ReloadTriggers();
   }
 }
 
@@ -382,4 +639,10 @@ document.addEventListener("onZoneChangedEvent", function(e) {
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
   gMistakeCollector.OnInCombatChangedEvent(e);
+});
+document.addEventListener("onDataFilesRead", function(e) {
+  gDamageTracker.OnDataFilesRead(e);
+});
+document.addEventListener("onPlayerChangedEvent", function(e) {
+  gDamageTracker.OnPlayerChange(e);
 });
