@@ -24,6 +24,30 @@
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.iceDebuff = false; },
     },
+    {
+      regex: /:Bahamut Prime starts using Quickmarch Trio/,
+      run: function(data) { data.resetTrio('quickmarch'); },
+    },
+    {
+      regex: /:Bahamut Prime starts using Blackfire Trio/,
+      run: function(data) { data.resetTrio('blackfire'); },
+    },
+    {
+      regex: /:Bahamut Prime starts using Fellruin Trio/,
+      run: function(data) { data.resetTrio('fellruin'); },
+    },
+    {
+      regex: /:Bahamut Prime starts using Heavensfall Trio/,
+      run: function(data) { data.resetTrio('heavensfall'); },
+    },
+    {
+      regex: /:Bahamut Prime starts using Tenstrike Trio/,
+      run: function(data) { data.resetTrio('tenstrike'); },
+    },
+    {
+      regex: /:Bahamut Prime starts using Grand Octet/,
+      run: function(data) { data.resetTrio('octet'); },
+    },
 
     // --- Twintania ---
     { id: 'UCU Twisters',
@@ -396,12 +420,111 @@
       tts: 'twisters',
     },
     {
+      id: 'UCU Megaflare Stack Me',
+      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      condition: function(data, matches) { return data.me == matches[1]; },
+      alertText: 'Megaflare Stack',
+      tts: 'stack',
+    },
+    { // Megaflare stack tracking
+      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      run: function(data, matches) {
+        data.megaStack.push(matches[1]);
+      },
+    },
+    {
+      id: 'UCU Fellruin Tower',
+      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      alertText: function(data) {
+        if (data.trio == 'fellruin' && data.megaStack.length == 4) {
+          if (data.megaStack.indexOf(data.me) == -1) {
+            return 'Find Your Tower';
+          }
+        }
+      },
+      tts: function(data) {
+        if (data.trio == 'fellruin' && data.megaStack.length == 4) {
+          if (data.megaStack.indexOf(data.me) == -1) {
+            return 'tower';
+          }
+        }
+      },
+    },
+    {
+      id: 'UCU Earthshaker Me',
+      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      condition: function(data, matches) { return data.me == matches[1]; },
+      alarmText: 'Earthshaker on YOU',
+      tts: 'shaker',
+    },
+    { // Earthshaker tracking
+      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      run: function(data, matches) {
+        data.shakers.push(matches[1]);
+      },
+    },
+    {
+      id: 'UCU Earthshaker Not Me',
+      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      alertText: function(data) {
+        if (data.trio == 'quickmarch') {
+          if (data.shakers.length != 3)
+            return;
+          if (data.role == 'tank')
+            return 'Pick up tether';
+        }
+      },
+      infoText: function(data) {
+        if (data.trio == 'quickmarch') {
+          if (data.shakers.length != 3)
+            return;
+          if (data.shakers.indexOf(data.me) == -1 && data.role != 'tank')
+            return 'No shaker; stack south.';
+        } else if (data.trio == 'tenstrike') {
+          if (data.shakers.length == 4) {
+            var text;
+            if (data.shakers.indexOf(data.me) == -1)
+              text = 'Stack on safe spot';
+            return text;
+          }
+        }
+      },
+      tts: function(data) {
+        if (data.trio == 'quickmarch') {
+          if (data.shakers.length != 3)
+            return;
+          if (data.role == 'tank')
+            return 'tether';
+          if (data.shakers.indexOf(data.me) == -1)
+            return 'stack south';
+        } else if (data.trio == 'tenstrike') {
+          if (data.shakers.length == 4) {
+            var text;
+            if (!(data.me in data.shakers))
+              text = 'safe spot';
+            return text;
+          }
+        }
+      },
+      run: function(data) {
+        if (data.trio == 'tenstrike' && data.shakers.length == 4) {
+          data.shakers = [];
+        }
+      },
+    },
+    {
       // One time setup.
       regex: /:26AA:Twintania starts using/,
       run: function(data) {
         if (data.oneTimeSetup)
           return;
         data.oneTimeSetup = true;
+
+        data.resetTrio = function(trio) {
+          this.trio = trio;
+          this.shakers = [];
+          this.megaStack = [];
+        };
 
         // Begin copy and paste from dragon_test.js.
         var modDistance = function(mark, dragon) {
