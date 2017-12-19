@@ -66,8 +66,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      runOnce: true,
-      delaySeconds: 0.5,
+      collectSeconds: 0.5,
       noText: function(e) {
         if (e.length <= 2)
           return;

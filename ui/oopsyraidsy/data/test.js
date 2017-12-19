@@ -23,14 +23,13 @@
     },
     {
       regex: /:You poke the striking dummy/,
-      delaySeconds: 5,
-      runOnce: true,
+      collectSeconds: 5,
       noText: function(events, data) {
         // When runOnce is specified, events are passed as an array.
         var pokes = events.length;
 
         // 1 poke at a time is fine, but more than one inside of
-        // delaySeconds is (OBVIOUSLY) a mistake.
+        // collectSeconds is (OBVIOUSLY) a mistake.
         if (pokes <= 1)
           return;
         return data.ShortName(data.me) + ': too many pokes (' + pokes + ')';

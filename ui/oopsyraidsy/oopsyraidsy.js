@@ -491,16 +491,22 @@ class DamageTracker {
       return (typeof(f) == 'function') ? f(events, this.data, matches) : f;
     }).bind(this);
 
-    var runOnce = 'runOnce' in trigger ? ValueOrFunction(trigger.runOnce) : false;
-    if (runOnce && trigger in this.activeTriggers) {
+    var collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
+    var collectMultipleEvents = 'collectSeconds' in trigger;
+    if (collectMultipleEvents && trigger in this.activeTriggers) {
       this.activeTriggers[trigger].push(evt);
       return;
     }
-    var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
+    var delay;
+    if (collectMultipleEvents) {
+      delay = collectSeconds || 0;
+    } else {
+      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
+    }
 
     var triggerTime = Date.now();
     var f = (function() {
-      var eventOrEvents = runOnce ? this.activeTriggers[trigger] : evt;
+      var eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger] : evt;
       delete this.activeTriggers[trigger];
       if ('pullText' in trigger) {
         var text = ValueOrFunction(trigger.pullText, eventOrEvents);
@@ -526,9 +532,9 @@ class DamageTracker {
         ValueOrFunction(this.run, eventOrEvents);
     }).bind(this);
 
-    // Even if run immediately, if runOnce is specified, then set this here
-    // so that events can be passed as an array for consistency.
-    if (runOnce)
+    // Even if delay = 0, if collectMultipleEvents is specified,
+    // then set this here so that events can be passed as an array for consistency.
+    if (collectMultipleEvents)
       this.activeTriggers[trigger] = [evt];
 
     if (!delay) {
