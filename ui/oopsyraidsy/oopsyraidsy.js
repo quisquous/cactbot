@@ -61,6 +61,7 @@ var kFieldAttackerZ = 40;
 
 // if kFieldFlags is any of these values, then consider field 9/10 as 7/8.
 var kShiftFlagValues = ['3C', '113', '213', '313'];
+var kFlagInstantDeath = '32';
 
 /*
 Field 7 Flags:
@@ -303,13 +304,18 @@ class MistakeCollector {
       // Note: ACT just evaluates independently what the hp of everybody is and so may be out of
       // date modulo one hp regen tick with respect to the "current" hp value, e.g. charybdis
       // may appear to do more damage than you have hp, "killing" you.  This is good enough.
-      var hp = '(' + DamageFromFields(fields) + '/' + fields[kFieldTargetCurrentHp] + ')';
-      text += ': ' + fields[kFieldAbilityName] + ' ' + hp;
+      var hp = '';
+      if (fields[kFieldFlags] == kFlagInstantDeath) {
+        // TODO: show something for infinite damage?
+      } else if (kFieldTargetCurrentHp in fields) {
+        hp = ' (' + DamageFromFields(fields) + '/' + fields[kFieldTargetCurrentHp] + ')';
+      }
+      text += ': ' + fields[kFieldAbilityName] + hp;
     }
     this.OnDeathText(text);
 
     // TODO: some things don't have abilities, e.g. jumping off titan ex.  This will just show
-    // the last thing that hit you before you were defated.
+    // the last thing that hit you before you were defeated.
   }
 
   OnPartyWipeEvent(e) {
@@ -481,6 +487,15 @@ class DamageTracker {
     }
   }
 
+  AddImpliedDeathReason(obj) {
+    var fields = {};
+    fields[kFieldTargetName] = obj.name;
+    fields[kFieldAbilityName] = obj.reason;
+    fields[kFieldFlags] = kFlagInstantDeath;
+    fields[kFieldDamage] = 0;
+    this.lastDamage[obj.name] = fields;
+  }
+
   OnTrigger(trigger, evt, matches) {
     if ('condition' in trigger) {
       if (!trigger.condition(evt, this.data, matches))
@@ -527,6 +542,10 @@ class DamageTracker {
       if ('wipeText' in trigger) {
         var text = ValueOrFunction(trigger.wipeText, eventOrEvents);
         this.collector.OnWipeText(text, triggerTime);
+      }
+      if ('deathReason' in trigger) {
+        var ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
+        this.AddImpliedDeathReason(ret);
       }
       if ('run' in trigger)
         ValueOrFunction(this.run, eventOrEvents);

@@ -93,5 +93,15 @@
         return data.ShortName(e.targetName) + ': double laser';
       },
     },
+    {
+      id: 'O4S2 Beyond Death',
+      regex: /:(\y{Name}) loses the effect of Beyond Death/,
+      deathReason: function(e, data, matches) {
+        return {
+          name: matches[1],
+          reason: 'Beyond Death Failure',
+        };
+      },
+    },
   ],
 }]
