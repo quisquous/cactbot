@@ -1,7 +1,7 @@
 "use strict";
 
 var Options = {
-  NumLiveListItems: 8,
+  NumLiveListItemsInCombat: 5,
   Triggers: [],
   AbilityIdNameMap: {
     '26A7': 'Twin Auto',
@@ -136,12 +136,12 @@ function IsPlayerId(id) {
 class OopsyLiveList {
   constructor(options) {
     this.options = options;
-    this.container = document.getElementById('livelist');
+    this.container = document.getElementById('livelist').children[0];
     this.Reset();
   }
 
   AddLine(iconClass, text, time) {
-    var maxItems = this.options.NumLiveListItems;
+    var maxItems = this.options.NumLiveListItemsInCombat;
     if (maxItems == 0)
       return;
 
@@ -181,12 +181,18 @@ class OopsyLiveList {
     return div;
   }
 
+  ShowAllItems() {
+    for (var i = 0; i < this.items.length; ++i) {
+      this.items[i].classList.remove('hide');
+    }
+  }
+
   Reset() {
     this.container.classList.add('hide');
     this.items = [];
     this.numItems = 0;
     this.container.innerHTML = '';
-    for (var i = 0; i < this.options.NumLiveListItems; ++i) {
+    for (var i = 0; i < this.options.NumLiveListItemsInCombat; ++i) {
       this.MakeRow();
     }
   }
@@ -319,6 +325,7 @@ class MistakeCollector {
     if (!e.detail.inCombat) {
       this.wipeTime = Date.now();
       this.Reset();
+      this.liveList.ShowAllItems();
     } else {
       this.StartCombat();
     }

@@ -6,12 +6,51 @@
   display: inline-block;
 }
 
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-button {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #f0f4ce;
+  border: 1px inset #ddd391;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f0f4ce;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #f0f4ce;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 4px solid #202020;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 .livelist {
-  max-width: 350px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 350px;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.livelist-shadow {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
   margin: 5px;
 }
@@ -35,7 +74,6 @@
 .mistake-row {
   display: flex;
   justify-content: space-between;
-  flex: 0 0 auto;
   height: 18px;
 }
 

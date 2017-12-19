@@ -33,7 +33,7 @@
         // delaySeconds is (OBVIOUSLY) a mistake.
         if (pokes <= 1)
           return;
-        return data.me + ': too many pokes (' + pokes + ')';
+        return data.ShortName(data.me) + ': too many pokes (' + pokes + ')';
       },
     },
   ],
