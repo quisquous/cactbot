@@ -194,6 +194,13 @@
     { id: 'UCU Nael Your Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
+      durationSeconds: function(data, matches) {
+        if (data.ParseLocaleFloat(matches[2]) < 9)
+          return 3;
+        if (data.ParseLocaleFloat(matches[2]) < 14)
+          return 6;
+        return 9;
+      },
       alarmText: function(data, matches) {
         if (data.ParseLocaleFloat(matches[2]) < 9)
           return 'Doom #1 on YOU';
