@@ -1,8 +1,15 @@
 "use strict";
 
 var Options = {
-  NumLiveListItems: 5,
+  NumLiveListItems: 8,
   Triggers: [],
+  AbilityIdNameMap: {
+    '26A7': 'Twin Auto',
+    '26B4': 'Nael Auto',
+    '26D0': 'Baha Auto',
+    '23F2': 'Exdeath Auto',
+    '2157': 'Lakshmi Auto',
+  },
 };
 
 // Character offsets into log lines for the chars of the type.
@@ -411,6 +418,14 @@ class DamageTracker {
     if (lowByte != '0' && lowByte != '03' && lowByte != '05' && lowByte != '06' && lowByte != '32')
       return;
 
+    // Clobber ability names here.  For now, regexes will match on the
+    // abilityName prior to changing it in the field.
+    var abilityId = fields[kFieldAbilityId];
+    var abilityName = fields[kFieldAbilityName];
+    if (abilityId in this.options.AbilityIdNameMap) {
+      fields[kFieldAbilityName] = this.options.AbilityIdNameMap[abilityId];
+    }
+
     // TODO track first puller here, collector doesn't need every damage line
     this.collector.AddDamage(fields, line);
 
@@ -420,7 +435,6 @@ class DamageTracker {
     if (IsPlayerId(fields[kFieldTargetId][0]))
       this.lastDamage[fields[kFieldTargetName]] = fields;
 
-    var abilityName = fields[kFieldAbilityName];
     var evt;
     for (var i = 0; i < this.damageTriggers.length; ++i) {
       var trigger = this.damageTriggers[i];
