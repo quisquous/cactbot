@@ -401,7 +401,7 @@ class DamageTracker {
     // Shift damage and flags forward for mysterious spurious :3C:0:.
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
-    if (fields[kFieldFlags] in kShiftFlagValues) {
+    if (kShiftFlagValues.indexOf(fields[kFieldFlags]) >= 0) {
       fields[kFieldFlags] = fields[kFieldFlags + 2];
       fields[kFieldFlags + 1] = fields[kFieldFlags + 3];
     }
