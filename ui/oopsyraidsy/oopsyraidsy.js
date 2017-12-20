@@ -290,7 +290,7 @@ class MistakeCollector {
     }
     var seconds = (Date.now() - this.startTime) / 1000;
     if (this.firstPuller) {
-      var text = 'Pull: ' + this.firstPuller + ' (' + seconds.toFixed(1) + ' early)';
+      var text = ShortNamify(this.firstPuller) + ': early pull (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnPullText(text);
     }
@@ -305,7 +305,7 @@ class MistakeCollector {
       }
       if (this.seenEngage) {
         var seconds = (Date.now() - this.startTime) / 1000;
-        var text = 'Pull: ' + this.firstPuller + ' (' + seconds.toFixed(1) + ' late)';
+        var text = ShortNamify(this.firstPuller) + ': late pull (' + seconds.toFixed(1) + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnPullText(text);
       }
