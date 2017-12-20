@@ -3,6 +3,8 @@
 var Options = {
   NumLiveListItemsInCombat: 5,
   Triggers: [],
+  PlayerNicks: {},
+
   AbilityIdNameMap: {
     '26A7': 'Twin Auto',
     '26B4': 'Nael Auto',
@@ -113,10 +115,11 @@ var gLiveList;
 
 function ShortNamify(name) {
   // TODO: make this unique among the party in case of first name collisions.
-  // TODO: add options for short nicknames.
   // TODO: probably this should be a general cactbot utility.
 
-  // For now, just first name.
+  if (name in Options.PlayerNicks) {
+    return Options.PlayerNicks[name];
+  }
   return name.substr(0, name.indexOf(' '));
 }
 
