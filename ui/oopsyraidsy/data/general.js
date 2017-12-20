@@ -3,6 +3,10 @@
   zoneRegex: /.*/,
   triggers: [
     {
+      // Trigger id for internally generated early pull warning.
+      id: 'General Early Pull',
+    },
+    {
       id: 'General Food Buff',
       buffRegex: 'Well Fed',
       warnText: function(e, data) {

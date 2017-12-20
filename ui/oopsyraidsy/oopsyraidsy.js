@@ -4,6 +4,7 @@ var Options = {
   NumLiveListItemsInCombat: 5,
   Triggers: [],
   PlayerNicks: {},
+  DisabledTriggers: {},
 
   AbilityIdNameMap: {
     '26A7': 'Twin Auto',
@@ -13,6 +14,9 @@ var Options = {
     '2157': 'Lakshmi Auto',
   },
 };
+
+// Internal trigger id for early pull
+var kEarlyPullId = "General Early Pull";
 
 var kBuffRegex = Regexes.Parse(/:(\y{Name}) (gains|loses) the effect of (.*) from (.*?)( for (\y{Float}) Seconds)?\./);
 
@@ -287,7 +291,8 @@ class MistakeCollector {
     var seconds = (Date.now() - this.startTime) / 1000;
     if (this.firstPuller) {
       var text = 'Pull: ' + this.firstPuller + ' (' + seconds.toFixed(1) + ' early)';
-      this.OnPullText(text);
+      if (!this.options.DisabledTriggers[kEarlyPullId])
+        this.OnPullText(text);
     }
   }
 
@@ -301,7 +306,8 @@ class MistakeCollector {
       if (this.seenEngage) {
         var seconds = (Date.now() - this.startTime) / 1000;
         var text = 'Pull: ' + this.firstPuller + ' (' + seconds.toFixed(1) + ' late)';
-        this.OnPullText(text);
+        if (!this.options.DisabledTriggers[kEarlyPullId])
+          this.OnPullText(text);
       }
     }
   }
@@ -550,6 +556,9 @@ class DamageTracker {
   }
 
   OnTrigger(trigger, evt, matches) {
+    if (trigger.id && this.options.DisabledTriggers[trigger.id])
+      return;
+
     if ('condition' in trigger) {
       if (!trigger.condition(evt, this.data, matches))
         return;

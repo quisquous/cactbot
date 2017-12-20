@@ -3,14 +3,17 @@
   zoneRegex: /^Middle La Noscea$/,
   triggers: [
     {
+      id: 'Test Bow',
       regex: /:You bow courteously to the striking dummy/,
       pullText: 'Bow',
     },
     {
+      id: 'Test Wipe',
       regex: /:You bid farewell to the striking dummy/,
       wipeText: 'Party Wipe',
     },
     {
+      id: 'Test Bootshine',
       damageRegex: 'Bootshine',
       condition: function(e) {
         return e.targetName == 'Striking Dummy';
@@ -22,6 +25,7 @@
       },
     },
     {
+      id: 'Test Poke',
       regex: /:You poke the striking dummy/,
       collectSeconds: 5,
       noText: function(events, data) {
