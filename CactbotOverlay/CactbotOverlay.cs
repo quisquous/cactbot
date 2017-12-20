@@ -456,6 +456,16 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+        } else if (player.job == FFXIVProcess.EntityJob.DRG) {
+          var job = ffxiv_.GetDragoon();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.nin)) {
+              notify_state_.drg = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.DragoonDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
         } else if (player.job == FFXIVProcess.EntityJob.BLM || player.job == FFXIVProcess.EntityJob.THM) {
           var job = ffxiv_.GetBlackMage();
           if (job != null) {
@@ -682,6 +692,7 @@ namespace Cactbot {
       public FFXIVProcess.MonkJobData mnk = new FFXIVProcess.MonkJobData();
       public FFXIVProcess.MachinistJobData mch = new FFXIVProcess.MachinistJobData();
       public FFXIVProcess.AstrologianJobData ast = new FFXIVProcess.AstrologianJobData();
+      public FFXIVProcess.DragoonJobData drg = new FFXIVProcess.DragoonJobData();
       public FFXIVProcess.EntityData target = null;
       public FFXIVProcess.EntityData focus = null;
       public int target_cast_id = 0;
