@@ -270,10 +270,10 @@ class MistakeCollector {
     this.liveList.AddLine('death', text, this.GetFormattedTime(time));
   }
 
-  OnNoText(text, time) {
+  OnFailText(text, time) {
     if (!text)
       return;
-    this.liveList.AddLine('no', text, this.GetFormattedTime(time));
+    this.liveList.AddLine('fail', text, this.GetFormattedTime(time));
   }
 
   OnWipeText(text, time) {
@@ -593,9 +593,9 @@ class DamageTracker {
         var text = ValueOrFunction(trigger.warnText, eventOrEvents);
         this.collector.OnWarnText(text, triggerTime);
       }
-      if ('noText' in trigger) {
-        var text = ValueOrFunction(trigger.noText, eventOrEvents);
-        this.collector.OnNoText(text, triggerTime);
+      if ('failText' in trigger) {
+        var text = ValueOrFunction(trigger.failText, eventOrEvents);
+        this.collector.OnFailText(text, triggerTime);
       }
       if ('deathText' in trigger) {
         var text = ValueOrFunction(trigger.deathText, eventOrEvents);

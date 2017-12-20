@@ -8,7 +8,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId) && e.flags == '32';
       },
-      noText: function(e, data) {
+      failText: function(e, data) {
         return data.ShortName(e.targetName) + ': twister pop';
       },
     },
@@ -18,7 +18,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      noText: function(e, data) {
+      failText: function(e, data) {
         return data.ShortName(e.targetName) + ': dynamo';
       },
     },
@@ -28,7 +28,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      noText: function(e, data) {
+      failText: function(e, data) {
         return data.ShortName(e.targetName) + ': chariot';
       },
     },
@@ -38,7 +38,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      noText: function(e, data) {
+      failText: function(e, data) {
         return data.ShortName(e.targetName) + ': white puddle';
       },
     },
@@ -58,7 +58,7 @@
       id: 'UCU Burns',
       buffRegex: 'Burns',
       condition: function(e) { return e.gains; },
-      noText: function(e) {
+      failText: function(e) {
         return data.ShortName(e.targetName) + ': burn dot';
       },
     },
@@ -66,7 +66,7 @@
       id: 'UCU Sludge',
       buffRegex: 'Sludge',
       condition: function(e) { return e.gains; },
-      noText: function(e) {
+      failText: function(e) {
         return data.ShortName(e.targetName) + ': sludge dot';
       },
     },

@@ -47,7 +47,7 @@
       id: 'O4S2 Petrified',
       buffRegex: 'Petrification',
       condition: function(e) { return e.gains; },
-      noText: function(e, data) {
+      failText: function(e, data) {
         return data.ShortName(e.targetName) + ': looked at shriek';
       },
     },
@@ -57,7 +57,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      noText: function(e, data) {
+      failText: function(e, data) {
         return 'Lightning: ' + data.ShortName(e.attackerName) + ' => ' + data.ShortName(e.targetName);
       },
     },
@@ -68,7 +68,7 @@
         return data.IsPlayerId(e.targetId);
       },
       collectSeconds: 0.5,
-      noText: function(e) {
+      failText: function(e) {
         if (e.length <= 2)
           return;
         return 'Double Attack hit ' + e.length;
@@ -80,8 +80,8 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      warnText: function(e) {
-        return e.abilityName + ': ' + e.targetName;
+      warnText: function(e, data) {
+        return data.ShortName(e.targetName) + ': ' + e.abilityName;
       },
     },
     {
@@ -90,7 +90,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      noText: function(events) {
+      failText: function(events, data) {
         return data.ShortName(e.targetName) + ': double laser';
       },
     },

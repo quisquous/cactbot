@@ -28,7 +28,7 @@
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
       collectSeconds: 5,
-      noText: function(events, data) {
+      failText: function(events, data) {
         // When runOnce is specified, events are passed as an array.
         var pokes = events.length;
 

@@ -108,7 +108,7 @@
   color: yellow;
   content: '\26A0';
 }
-.mistake-icon.no:before {
+.mistake-icon.fail:before {
   color: red;
   content: '\1F6AB';
 }
