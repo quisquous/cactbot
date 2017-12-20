@@ -249,10 +249,9 @@ function setupBuffTracker(me) {
       sortKey: 0,
     },
     trick: {
-      // TODO: This is 'Target gains the effect of Vulnerability Up' but
-      // hypercharge also gives vulnerability up, so can't use that.
-      // This will still apply if somebody misses the positional.
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:/),
+      // The flags encode positional data, but the exact specifics are unclear.
+      // Trick attack missed appears to be "710?03" but correct is "28710?03".
+      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:.*:.*:28/),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       // Magenta.
