@@ -39,15 +39,16 @@
     {
       id: 'O4S2 Acceleration Bomb',
       damageRegex: 'Death Bomb',
-      warnText: function(e) {
+      warnText: function(e, data) {
         return data.ShortName(e.targetName) + ': bomb';
       },
     },
     {
       id: 'O4S2 Petrified',
-      regex: /:(\y{Name}) gains the effect of Petrification/,
-      noText: function(e, data, matches) {
-        return data.ShortName(matches[1]) + ': looked at shriek';
+      buffRegex: 'Petrification',
+      condition: function(e) { return e.gains; },
+      noText: function(e, data) {
+        return data.ShortName(e.targetName) + ': looked at shriek';
       },
     },
     {
@@ -95,10 +96,11 @@
     },
     {
       id: 'O4S2 Beyond Death',
-      regex: /:(\y{Name}) loses the effect of Beyond Death/,
-      deathReason: function(e, data, matches) {
+      buffRegex: 'Beyond Death',
+      condition: function(e) { return !e.gains; },
+      deathReason: function(e) {
         return {
-          name: matches[1],
+          name: e.targetName,
           reason: 'Beyond Death Failure',
         };
       },

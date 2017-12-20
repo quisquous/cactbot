@@ -12,6 +12,8 @@ var Options = {
   },
 };
 
+var kBuffRegex = Regexes.Parse(/:(\y{Name}) (gains|loses) the effect of (.*) from (.*?)( for (\y{Float}) Seconds)?\./);
+
 // Character offsets into log lines for the chars of the type.
 var kTypeOffset0 = 15;
 var kTypeOffset1 = 16;
@@ -355,6 +357,8 @@ class DamageTracker {
     this.timers = [];
     this.generalTriggers = [];
     this.damageTriggers = [];
+    this.abilityTriggers = [];
+    this.buffTriggers = [];
     this.Reset();
   }
 
@@ -390,8 +394,11 @@ class DamageTracker {
         continue;
       }
       // 15 chars in is the type: 15 (single target) / 16 (aoe)
+      // See table at the top of this file.
       if (line[kTypeOffset0] != '1')
         continue;
+      if (line[kTypeOffset1] == 'A' || line[kTypeOffset1] == 'E')
+        this.OnBuffEvent(line);
       if (line[kTypeOffset1] == '5' || line[kTypeOffset1] == '6')
         this.OnAbilityEvent(line.substr(kTypeOffset0).split(':'), line);
       if (line[kTypeOffset1] == '9')
@@ -430,67 +437,104 @@ class DamageTracker {
       fields[kFieldFlags + 1] = fields[kFieldFlags + 3];
     }
 
-    var lowByte = fields[kFieldFlags].substr(-2);
-    // miss, damage, block, parry, instant death
-    if (lowByte != '0' && lowByte != '03' && lowByte != '05' && lowByte != '06' && lowByte != '32')
-      return;
-
     // Clobber ability names here.  For now, regexes will match on the
-    // abilityName prior to changing it in the field.
+    // abilityName prior to changing it in fields.
     var abilityId = fields[kFieldAbilityId];
     var abilityName = fields[kFieldAbilityName];
     if (abilityId in this.options.AbilityIdNameMap) {
       fields[kFieldAbilityName] = this.options.AbilityIdNameMap[abilityId];
     }
 
+    // Lazy initialize event.
+    var evt;
+    for (var i = 0; i < this.abilityTriggers.length; ++i) {
+      var trigger = this.abilityTriggers[i];
+      var matches = abilityName.match(trigger.abilityRegex);
+      if (matches == null)
+        continue;
+      if (!evt)
+        evt = this.EventFromFields(fields, line);
+      this.OnTrigger(trigger, evt, matches);
+    }
+
+    var lowByte = fields[kFieldFlags].substr(-2);
+    // miss, damage, block, parry, instant death
+    if (lowByte != '0' && lowByte != '03' && lowByte != '05' && lowByte != '06' && lowByte != '32')
+      return;
+
     // TODO track first puller here, collector doesn't need every damage line
     this.collector.AddDamage(fields, line);
 
-    // Mobs (and pets) have ids starting at '40000000'.  Players start at '10000000'.
-    // Only care about damage to players here.
-    // TODO: names aren't unique, should use ids instead.
     if (IsPlayerId(fields[kFieldTargetId][0]))
       this.lastDamage[fields[kFieldTargetName]] = fields;
 
-    var evt;
     for (var i = 0; i < this.damageTriggers.length; ++i) {
       var trigger = this.damageTriggers[i];
       var matches = abilityName.match(trigger.damageRegex);
       if (matches == null)
         continue;
-      // Lazy initialize this giant event object only if
-      // a trigger matches.
-      if (!evt) {
-        evt = {
-          line: line,
-          type: fields[kFieldType],
-          attackerId: fields[kFieldAttackerId],
-          attackerName: fields[kFieldAttackerName],
-          abilityId: fields[kFieldAbilityId],
-          abilityName: fields[kFieldAbilityName],
-          targetId: fields[kFieldTargetId],
-          targetName: fields[kFieldTargetName],
-          flags: fields[kFieldFlags],
-          targetCurrentHp: fields[kFieldTargetCurrentHp],
-          targetMaxHp: fields[kFieldTargetMaxHp],
-          targetCurrentMp: fields[kFieldTargetCurrentMp],
-          targetMaxMp: fields[kFieldTargetMaxMp],
-          targetCurrentTp: fields[kFieldTargetCurrentTp],
-          targetMaxTp: fields[kFieldTargetMaxTp],
-          targetX: fields[kFieldTargetX],
-          targetY: fields[kFieldTargetY],
-          targetZ: fields[kFieldTargetZ],
-          attackerX: fields[kFieldAttackerX],
-          attackerY: fields[kFieldAttackerY],
-          attackerZ: fields[kFieldAttackerZ],
-        };
-        evt.damage = DamageFromFields(fields);
-        var exclamation = IsCritDamage(evt.flags) ? '!' : '';
-        exclamation += IsDirectHitDamage(evt.flags) ? '!' : '';
-        evt.damageStr = evt.damage + exclamation;
-      }
+      if (!evt)
+        evt = this.EventFromFields(fields, line);
       this.OnTrigger(trigger, evt, matches);
     }
+  }
+
+  OnBuffEvent(line) {
+    var matches = line.match(kBuffRegex);
+    if (matches == null) {
+      console.error(['OnBuffEventParseError', line]);
+      return;
+    }
+    var buffName = matches[3];
+    var evt;
+    for (var i = 0; i < this.buffTriggers.length; ++i) {
+      var trigger = this.buffTriggers[i];
+      var nameMatches = buffName.match(trigger.buffRegex);
+      if (nameMatches == null)
+        continue;
+      if (!evt) {
+        evt = {
+          targetName: matches[1],
+          buffName: matches[3],
+          gains: matches[2] == 'gains',
+          attackerName: matches[4],
+        };
+        if (evt.gains)
+          evt.durationSeconds = Regexes.ParseLocaleFloat(matches[6]);
+      }
+      this.OnTrigger(trigger, evt, nameMatches);
+    }
+  }
+
+  EventFromFields(fields, line) {
+    var evt = {
+      line: line,
+      type: fields[kFieldType],
+      attackerId: fields[kFieldAttackerId],
+      attackerName: fields[kFieldAttackerName],
+      abilityId: fields[kFieldAbilityId],
+      abilityName: fields[kFieldAbilityName],
+      targetId: fields[kFieldTargetId],
+      targetName: fields[kFieldTargetName],
+      flags: fields[kFieldFlags],
+      targetCurrentHp: fields[kFieldTargetCurrentHp],
+      targetMaxHp: fields[kFieldTargetMaxHp],
+      targetCurrentMp: fields[kFieldTargetCurrentMp],
+      targetMaxMp: fields[kFieldTargetMaxMp],
+      targetCurrentTp: fields[kFieldTargetCurrentTp],
+      targetMaxTp: fields[kFieldTargetMaxTp],
+      targetX: fields[kFieldTargetX],
+      targetY: fields[kFieldTargetY],
+      targetZ: fields[kFieldTargetZ],
+      attackerX: fields[kFieldAttackerX],
+      attackerY: fields[kFieldAttackerY],
+      attackerZ: fields[kFieldAttackerZ],
+    };
+    evt.damage = DamageFromFields(fields);
+    var exclamation = IsCritDamage(evt.flags) ? '!' : '';
+    exclamation += IsDirectHitDamage(evt.flags) ? '!' : '';
+    evt.damageStr = evt.damage + exclamation;
+    return evt;
   }
 
   AddImpliedDeathReason(obj) {
@@ -578,6 +622,10 @@ class DamageTracker {
     this.ReloadTriggers();
   }
 
+  OnInCombatChangedEvent(e) {
+    this.data.inCombat = e.detail.inCombat;
+  }
+
   ReloadTriggers() {
     // Wait for datafiles / jobs / zone events.
     if (!this.triggerSets || !this.me | !this.zoneName)
@@ -600,6 +648,14 @@ class DamageTracker {
         if ('damageRegex' in trigger) {
           trigger.damageRegex = Regexes.Parse(trigger.damageRegex);
           this.damageTriggers.push(trigger);
+        }
+        if ('abilityRegex' in trigger) {
+          trigger.abilityRegex = Regexes.Parse(trigger.abilityRegex);
+          this.abilityTriggers.push(trigger);
+        }
+        if ('buffRegex' in trigger) {
+          trigger.buffRegex = Regexes.Parse(trigger.buffRegex);
+          this.buffTriggers.push(trigger);
         }
       }
     }
@@ -690,6 +746,7 @@ document.addEventListener("onZoneChangedEvent", function(e) {
   gMistakeCollector.OnZoneChangeEvent(e);
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
+  gDamageTracker.OnInCombatChangedEvent(e);
   gMistakeCollector.OnInCombatChangedEvent(e);
 });
 document.addEventListener("onDataFilesRead", function(e) {
