@@ -130,6 +130,10 @@ function IsCritDamage(flags) {
   return parseInt(flags, 16) & 0x100;
 }
 
+function IsDirectHitDamage(flags) {
+  return parseInt(flags, 16) & 0x200;
+}
+
 function IsPlayerId(id) {
   return id[0] < 4;
 }
@@ -481,7 +485,9 @@ class DamageTracker {
           attackerZ: fields[kFieldAttackerZ],
         };
         evt.damage = DamageFromFields(fields);
-        evt.damageStr = IsCritDamage(evt.flags) ? evt.damage + '!' : evt.damage;
+        var exclamation = IsCritDamage(evt.flags) ? '!' : '';
+        exclamation += IsDirectHitDamage(evt.flags) ? '!' : '';
+        evt.damageStr = evt.damage + exclamation;
       }
       this.OnTrigger(trigger, evt, matches);
     }
