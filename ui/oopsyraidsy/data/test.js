@@ -60,16 +60,5 @@
         ];
       },
     },
-    {
-      id: 'Test Self Adlo',
-      healRegex: 'Adloquium',
-      condition: function(e, data) {
-        return e.targetName == data.me;
-      },
-      mistake: function(e, data) {
-        var text = e.abilityName + ': ' + e.damageStr;
-        return { type: 'good', blame: e.targetName, text: text };
-      },
-    },
   ],
 }]
