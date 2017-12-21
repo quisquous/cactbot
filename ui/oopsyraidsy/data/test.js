@@ -41,8 +41,23 @@
         // collectSeconds is (OBVIOUSLY) a mistake.
         if (pokes <= 1)
           return;
-        var text = 'too many pokes (' + pokes + ')';
+        var text = 'Too many pokes (' + pokes + ')';
         return { type: 'fail', blame: data.me, text: text };
+      },
+    },
+    {
+      id: 'Test One Ilm Punch',
+      damageRegex: 'One Ilm Punch',
+      condition: function(e) {
+        return e.targetName == 'Striking Dummy';
+      },
+      mistake: function(e, data) {
+        // Demonstrate returning multiple mistakes.
+        return [
+          { type: 'warn', blame: data.me, text: 'ONE!' },
+          { type: 'fail', blame: data.me, text: 'ILM!' },
+          { type: 'potion', blame: data.me, text: 'PUNCH!' },
+        ];
       },
     },
   ],

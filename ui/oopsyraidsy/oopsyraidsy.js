@@ -248,10 +248,20 @@ class MistakeCollector {
     this.wipeTime = null;
   }
 
-  // These two functions could presumably drop messages when
+  // These three functions could presumably drop messages when
   // not in combat, but it's nice for testing to not have to be
   // smacking a striking dummy, and these shouldn't happen out of
   // combat anyway.
+  OnMistakeObj(m) {
+    if (!m)
+      return;
+    if (m.fullText) {
+      this.OnFullMistakeText(m.type, m.blame, m.fullText);
+    } else {
+      this.OnMistakeText(m.type, m.blame, m.text);
+    }
+  }
+
   OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
@@ -571,12 +581,12 @@ class DamageTracker {
       delete this.activeTriggers[trigger];
       if ('mistake' in trigger) {
         var m = ValueOrFunction(trigger.mistake, eventOrEvents);
-        if (m) {
-          if (m.fullText) {
-            this.collector.OnFullMistakeText(m.type, m.blame, m.fullText);
-          } else {
-            this.collector.OnMistakeText(m.type, m.blame, m.text);
+        if (Array.isArray(m)) {
+          for (var i = 0; i < m.length; ++i) {
+            this.collector.OnMistakeObj(m[i]);
           }
+        } else {
+            this.collector.OnMistakeObj(m);
         }
       }
       if ('deathReason' in trigger) {

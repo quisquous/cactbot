@@ -116,6 +116,10 @@
   color: blue;
   content: '\1F6BD';
 }
+.mistake-icon.potion:before {
+  color: purple;
+  content: '\1F378';
+}
 
 .resizeHandle .hide-if-resizing {
   display: none;
