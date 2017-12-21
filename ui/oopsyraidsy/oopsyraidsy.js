@@ -248,38 +248,21 @@ class MistakeCollector {
     this.wipeTime = null;
   }
 
-  // These OnFooText function could presumably drop messages when
+  // These two functions could presumably drop messages when
   // not in combat, but it's nice for testing to not have to be
   // smacking a striking dummy, and these shouldn't happen out of
   // combat anyway.
-  OnPullText(text, time) {
+  OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    this.liveList.AddLine('pull', text, this.GetFormattedTime(time));
+    var blameText = blame ? ShortNamify(blame) + ': ' : '';
+    this.liveList.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
-  OnWarnText(text, time) {
+  OnFullMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    this.liveList.AddLine('warn', text, this.GetFormattedTime(time));
-  }
-
-  OnDeathText(text, time) {
-    if (!text)
-      return;
-    this.liveList.AddLine('death', text, this.GetFormattedTime(time));
-  }
-
-  OnFailText(text, time) {
-    if (!text)
-      return;
-    this.liveList.AddLine('fail', text, this.GetFormattedTime(time));
-  }
-
-  OnWipeText(text, time) {
-    if (!text)
-      return;
-    this.liveList.AddLine('wipe', text, this.GetFormattedTime(time));
+    this.liveList.AddLine(type, text, this.GetFormattedTime(time));
   }
 
   AddEngage() {
@@ -290,9 +273,9 @@ class MistakeCollector {
     }
     var seconds = (Date.now() - this.startTime) / 1000;
     if (this.firstPuller) {
-      var text = ShortNamify(this.firstPuller) + ': early pull (' + seconds.toFixed(1) + 's)';
+      var text = 'early pull (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
-        this.OnPullText(text);
+        this.OnMistakeText('pull', this.firstPuller, text);
     }
   }
 
@@ -305,15 +288,14 @@ class MistakeCollector {
       }
       if (this.seenEngage) {
         var seconds = (Date.now() - this.startTime) / 1000;
-        var text = ShortNamify(this.firstPuller) + ': late pull (' + seconds.toFixed(1) + 's)';
+        var text = 'late pull (' + seconds.toFixed(1) + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
-          this.OnPullText(text);
+          this.OnMistakeText('pull', this.firstPuller, text);
       }
     }
   }
 
   AddDeath(name, fields) {
-     var text = ShortNamify(name);
      if (fields) {
       // (damage/hp at time of death)
       // Note: ACT just evaluates independently what the hp of everybody is and so may be out of
@@ -325,9 +307,9 @@ class MistakeCollector {
       } else if (kFieldTargetCurrentHp in fields) {
         hp = ' (' + DamageFromFields(fields) + '/' + fields[kFieldTargetCurrentHp] + ')';
       }
-      text += ': ' + fields[kFieldAbilityName] + hp;
+      var text = fields[kFieldAbilityName] + hp;
     }
-    this.OnDeathText(text);
+    this.OnMistakeText('death', name, text);
 
     // TODO: some things don't have abilities, e.g. jumping off titan ex.  This will just show
     // the last thing that hit you before you were defeated.
@@ -338,7 +320,7 @@ class MistakeCollector {
     // test messages throw the wipe first and then end.
     // TODO: maybe reorder the test command to behave the same?
     if (this.wipeTime || this.inCombat)
-      this.OnWipeText('Party Wipe', this.wipeTime);
+      this.OnFullMistakeText('wipe', null, 'Party Wipe', this.wipeTime);
     this.Reset();
   }
 
@@ -547,6 +529,8 @@ class DamageTracker {
   }
 
   AddImpliedDeathReason(obj) {
+    if (!obj)
+      return;
     var fields = {};
     fields[kFieldTargetName] = obj.name;
     fields[kFieldAbilityName] = obj.reason;
@@ -585,25 +569,15 @@ class DamageTracker {
     var f = (function() {
       var eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger] : evt;
       delete this.activeTriggers[trigger];
-      if ('pullText' in trigger) {
-        var text = ValueOrFunction(trigger.pullText, eventOrEvents);
-        this.collector.OnPullText(text, triggerTime);
-      }
-      if ('warnText' in trigger) {
-        var text = ValueOrFunction(trigger.warnText, eventOrEvents);
-        this.collector.OnWarnText(text, triggerTime);
-      }
-      if ('failText' in trigger) {
-        var text = ValueOrFunction(trigger.failText, eventOrEvents);
-        this.collector.OnFailText(text, triggerTime);
-      }
-      if ('deathText' in trigger) {
-        var text = ValueOrFunction(trigger.deathText, eventOrEvents);
-        this.collector.OnDeathText(text, triggerTime);
-      }
-      if ('wipeText' in trigger) {
-        var text = ValueOrFunction(trigger.wipeText, eventOrEvents);
-        this.collector.OnWipeText(text, triggerTime);
+      if ('mistake' in trigger) {
+        var m = ValueOrFunction(trigger.mistake, eventOrEvents);
+        if (m) {
+          if (m.fullText) {
+            this.collector.OnFullMistakeText(m.type, m.blame, m.fullText);
+          } else {
+            this.collector.OnMistakeText(m.type, m.blame, m.text);
+          }
+        }
       }
       if ('deathReason' in trigger) {
         var ret = ValueOrFunction(trigger.deathReason, eventOrEvents);

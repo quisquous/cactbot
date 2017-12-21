@@ -21,8 +21,8 @@
         // Ignore unavoidable raid aoe Blizzard III.
         return data.IsPlayerId(e.targetId) && !data.isDecisiveBattleElement;
       },
-      warnText: function(e) {
-        return data.shortName(e.targetName) + ': ' + e.abilityName;
+      mistake: function(e) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
@@ -32,23 +32,23 @@
         // Only consider this during random mechanic after decisive battle.
         return data.IsPlayerId(e.targetId) && data.isDecisiveBattleElement;
       },
-      warnText: function(e) {
-        return data.shortName(e.targetName) + ': ' + e.abilityName;
+      mistake: function(e) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'O4S2 Acceleration Bomb',
       damageRegex: 'Death Bomb',
-      warnText: function(e, data) {
-        return data.ShortName(e.targetName) + ': bomb';
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: 'Bomb' };
       },
     },
     {
       id: 'O4S2 Petrified',
       buffRegex: 'Petrification',
       condition: function(e) { return e.gains; },
-      failText: function(e, data) {
-        return data.ShortName(e.targetName) + ': looked at shriek';
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: 'Bomb' };
       },
     },
     {
@@ -57,8 +57,9 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      failText: function(e, data) {
-        return 'Lightning: ' + data.ShortName(e.attackerName) + ' => ' + data.ShortName(e.targetName);
+      mistake: function(e, data) {
+        var text = 'Lightning => ' + data.ShortName(e.targetName)
+        return { type: 'fail', blame: e.attackerName, text: text };
       },
     },
     {
@@ -68,10 +69,12 @@
         return data.IsPlayerId(e.targetId);
       },
       collectSeconds: 0.5,
-      failText: function(e) {
+      mistake: function(e) {
         if (e.length <= 2)
           return;
-        return 'Double Attack hit ' + e.length;
+        // Hard to know who should be in this and who shouldn't, but
+        // it should never hit 3 people.
+        return { type: 'fail', fullText: e.abilityName + ' hit ' + e.length };
       },
     },
     {
@@ -80,8 +83,8 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      warnText: function(e, data) {
-        return data.ShortName(e.targetName) + ': ' + e.abilityName;
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
@@ -90,8 +93,8 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      failText: function(events, data) {
-        return data.ShortName(e.targetName) + ': double laser';
+      mistake: function(events, data) {
+        return { type: 'fail', blame: e.targetName, text: 'Double Laser' };
       },
     },
     {

@@ -5,12 +5,16 @@
     {
       id: 'Test Bow',
       regex: /:You bow courteously to the striking dummy/,
-      pullText: 'Bow',
+      mistake: function(e, data) {
+        return { type: 'pull', blame: data.me, fullText: 'Bow' };
+      },
     },
     {
       id: 'Test Wipe',
       regex: /:You bid farewell to the striking dummy/,
-      wipeText: 'Party Wipe',
+      mistake: function(e, data) {
+        return { type: 'wipe', blame: data.me, fullText: 'Party Wipe' };
+      }
     },
     {
       id: 'Test Bootshine',
@@ -18,17 +22,18 @@
       condition: function(e) {
         return e.targetName == 'Striking Dummy';
       },
-      warnText: function(e, data) {
+      mistake: function(e, data) {
         data.bootCount = data.bootCount || 0;
         data.bootCount++;
-        return e.abilityName + ' (' + data.bootCount + '): ' + e.targetName + ': ' + e.damageStr;
+        var text = e.abilityName + ' (' + data.bootCount + '): ' + e.damageStr;
+        return { type: 'warn', blame: data.me, text: text };
       },
     },
     {
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
       collectSeconds: 5,
-      failText: function(events, data) {
+      mistake: function(events, data) {
         // When runOnce is specified, events are passed as an array.
         var pokes = events.length;
 
@@ -36,7 +41,8 @@
         // collectSeconds is (OBVIOUSLY) a mistake.
         if (pokes <= 1)
           return;
-        return data.ShortName(data.me) + ': too many pokes (' + pokes + ')';
+        var text = 'too many pokes (' + pokes + ')';
+        return { type: 'fail', blame: data.me, text: text };
       },
     },
   ],

@@ -6,10 +6,13 @@
       id: 'UCU Twister Death',
       damageRegex: 'Twister',
       condition: function(e, data) {
+        // Instant death uses '32' as its flags, differentiating
+        // from the explosion damage you take when somebody else
+        // pops one.
         return data.IsPlayerId(e.targetId) && e.flags == '32';
       },
-      failText: function(e, data) {
-        return data.ShortName(e.targetName) + ': twister pop';
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: 'Twister Pop' };
       },
     },
     {
@@ -18,8 +21,8 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      failText: function(e, data) {
-        return data.ShortName(e.targetName) + ': dynamo';
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: 'Dynamo' };
       },
     },
     {
@@ -28,8 +31,8 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      failText: function(e, data) {
-        return data.ShortName(e.targetName) + ': chariot';
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: 'Chariot' };
       },
     },
     {
@@ -38,8 +41,8 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      failText: function(e, data) {
-        return data.ShortName(e.targetName) + ': white puddle';
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: 'White Puddle' };
       },
     },
     {
@@ -50,24 +53,27 @@
         // on players, so ignore those log lines.
         return data.IsPlayerId(e.targetId) && e.abilityId == '26C8';
       },
-      warnText: function(e, data) {
-        return data.ShortName(e.targetName) + ': hit by lightning';
+      mistake: function(e, data) {
+        // It's hard to assign blame for lightning.  The debuffs
+        // go out and then explode in order, but the attacker is
+        // the dragon and not the player.
+        return { type: 'warn', fullText: e.targetName + ': hit by lightning' };
       },
     },
     {
       id: 'UCU Burns',
       buffRegex: 'Burns',
       condition: function(e) { return e.gains; },
-      failText: function(e) {
-        return data.ShortName(e.targetName) + ': burn dot';
+      mistake: function(e) {
+        return { type: 'fail', blame: e.targetName, text: 'Burn Dot' };
       },
     },
     {
       id: 'UCU Sludge',
       buffRegex: 'Sludge',
       condition: function(e) { return e.gains; },
-      failText: function(e) {
-        return data.ShortName(e.targetName) + ': sludge dot';
+      mistake: function(e) {
+        return { type: 'fail', blame: e.targetName, text: 'Sludge Dot' };
       },
     },
     {
