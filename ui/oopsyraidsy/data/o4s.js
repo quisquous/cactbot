@@ -95,10 +95,19 @@
       },
     },
     {
+      buffRegex: 'Beyond Death',
+      run: function(e, data) {
+        data.hasBeyondDeath[e.targetName] = e.gains;
+      },
+    },
+    {
       id: 'O4S2 Beyond Death',
       buffRegex: 'Beyond Death',
-      condition: function(e) { return !e.gains; },
+      condition: function(e) { return e.gains; },
+      delaySeconds: function(e) { return e.durationSeconds - 1; },
       deathReason: function(e) {
+        if (!data.hasBeyondDeath[e.targetName])
+          return;
         return {
           name: e.targetName,
           reason: 'Beyond Death Failure',

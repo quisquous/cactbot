@@ -72,17 +72,8 @@
     },
     {
       buffRegex: 'Doom',
-      condition: function(e) { return e.gains; },
-      run: function(e, data, matches) {
-        data.doomReason = data.doomReason || {};
-        var reason;
-        if (e.durationSeconds < 9)
-          reason = 'doom #1';
-        else if (e.durationSeconds < 14)
-          reason = 'doom #2';
-        else
-          reason = 'doom #3';
-        data.doomReason[e.targetName] = reason;
+      run: function(e, data) {
+        data.hasDoom[e.targetName] = e.gains;
       },
     },
     {
@@ -95,16 +86,23 @@
       // In other words, doom effect is removed +/- network latency, but can't
       // tell until later that it was a death.  Arguably, this could have been a
       // close-but-successful clearing of doom as well.  It looks the same.
+      // Strategy: if you haven't cleared doom with 1 second to go then you probably
+      // died to doom.  You can get non-fatally iceballed or auto'd in between,
+      // but what can you do.
       id: 'UCU Doom',
       buffRegex: 'Doom',
+      condition: function(e) { return e.gains; },
+      delaySeconds: function(e) { return e.durationSeconds - 1; },
       deathReason: function(e, data, matches) {
-        if (e.gains)
+        if (!data.hasDoom[e.targetName])
           return;
-        var reason = data.doomReason[e.targetName];
-        if (!reason) {
-          reason = 'doom';
-          console.error('Missing gains doom log for ' + e.targetName);
-        }
+        var reason;
+        if (e.durationSeconds < 9)
+          reason = 'doom #1';
+        else if (e.durationSeconds < 14)
+          reason = 'doom #2';
+        else
+          reason = 'doom #3';
         return { name: e.targetName, reason: reason };
       },
     },
