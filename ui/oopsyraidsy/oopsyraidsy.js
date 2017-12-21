@@ -139,6 +139,10 @@ function IsCritDamage(flags) {
   return parseInt(flags, 16) & 0x100;
 }
 
+function IsCritHeal(flags) {
+  return flags == '10004';
+}
+
 function IsDirectHitDamage(flags) {
   return parseInt(flags, 16) & 0x200;
 }
@@ -360,6 +364,7 @@ class DamageTracker {
     this.damageTriggers = [];
     this.abilityTriggers = [];
     this.buffTriggers = [];
+    this.healTriggers = [];
     this.Reset();
   }
 
@@ -459,6 +464,21 @@ class DamageTracker {
     }
 
     var lowByte = fields[kFieldFlags].substr(-2);
+
+    // Healing?
+    if (lowByte == '04') {
+      for (var i = 0; i < this.healTriggers.length; ++i) {
+        var trigger = this.healTriggers[i];
+        var matches = abilityName.match(trigger.healRegex);
+        if (matches == null)
+          continue;
+        if (!evt)
+          evt = this.EventFromFields(fields, line);
+        this.OnTrigger(trigger, evt, matches);
+      }
+      return;
+    }
+
     // miss, damage, block, parry, instant death
     if (lowByte != '0' && lowByte != '03' && lowByte != '05' && lowByte != '06' && lowByte != '32')
       return;
@@ -534,6 +554,7 @@ class DamageTracker {
     evt.damage = DamageFromFields(fields);
     var exclamation = IsCritDamage(evt.flags) ? '!' : '';
     exclamation += IsDirectHitDamage(evt.flags) ? '!' : '';
+    exclamation += IsCritHeal(evt.flags) ? '!' : '';
     evt.damageStr = evt.damage + exclamation;
     return evt;
   }
@@ -631,6 +652,9 @@ class DamageTracker {
 
     this.generalTriggers = [];
     this.damageTriggers = [];
+    this.abilityTriggers = [];
+    this.buffTriggers = [];
+    this.healTriggers = [];
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) < 0)
@@ -652,6 +676,10 @@ class DamageTracker {
         if ('buffRegex' in trigger) {
           trigger.buffRegex = Regexes.Parse(trigger.buffRegex);
           this.buffTriggers.push(trigger);
+        }
+        if ('healRegex' in trigger) {
+          trigger.healRegex = Regexes.Parse(trigger.healRegex);
+          this.healTriggers.push(trigger);
         }
       }
     }

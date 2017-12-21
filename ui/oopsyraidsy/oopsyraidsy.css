@@ -120,6 +120,10 @@
   color: purple;
   content: '\1F378';
 }
+.mistake-icon.good:before {
+  color: green;
+  content: '\2714';
+}
 
 .resizeHandle .hide-if-resizing {
   display: none;
