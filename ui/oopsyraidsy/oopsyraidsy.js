@@ -552,8 +552,10 @@ class DamageTracker {
       attackerZ: fields[kFieldAttackerZ],
     };
     evt.damage = DamageFromFields(fields);
-    var exclamation = IsCritDamage(evt.flags) ? '!' : '';
-    exclamation += IsDirectHitDamage(evt.flags) ? '!' : '';
+    var isCrit = IsCritDamage(evt.flags);
+    var exclamation = isCrit ? '!' : '';
+    // DH on its own doesn't get an exclamation.
+    exclamation += isCrit && IsDirectHitDamage(evt.flags) ? '!' : '';
     exclamation += IsCritHeal(evt.flags) ? '!' : '';
     evt.damageStr = evt.damage + exclamation;
     return evt;
