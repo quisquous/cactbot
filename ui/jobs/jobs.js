@@ -260,7 +260,7 @@ function setupBuffTracker(me) {
     },
     litany: {
       gainRegex: Regexes.Parse(':' + me + ' gains the effect of Battle Litany from \\y{Name} for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
+      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Battle Litany from '),
       durationPosition: 1,
       icon: kIconBuffLitany,
       // Cyan.
