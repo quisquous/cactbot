@@ -2,6 +2,12 @@
 
 var gLang = null;
 
+// TODO: fix me
+console.assert = function(x) {
+  if (!x)
+    console.error("" + x);
+};
+
 class CactbotLanguage {
   constructor(lang) {
     this.lang = lang;
@@ -109,69 +115,4 @@ class CactbotLanguage {
     Object.freeze(this.kAbilNameToId);
     Object.freeze(this.kAbilIdToName);
   }
-
-  // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
-  // We can not look for log messages from FFXIV "You use X" here. Instead we
-  // look for the actual ability usage provided by the XIV plugin.
-  // Also, the networked parse info is given much quicker than the lines from the game.
-  youUseAbilityRegex() {
-    var ids = this.AbilitiesToIds.apply(this, arguments);
-    return Regexes.Parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.AnyOf(ids) + ':');
-  };
-  youStartUsingRegex() {
-    var ids = this.AbilitiesToIds.apply(this, arguments);
-    return Regexes.Parse(' 14:' + Regexes.AnyOf(ids) + ':' + this.playerName + ' starts using ');
-  };
-  youGainEffectRegex() {
-    var effects = [];
-    for (var i = 0; i < arguments.length; ++i) {
-      var effect = arguments[i];
-      this.ValidateEffect(effect);
-      effects.push(effect);
-    }
-    return Regexes.Parse(' 1A:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\.');
-  };
-  youLoseEffectRegex() {
-    var effects = [];
-    for (var i = 0; i < arguments.length; ++i) {
-      var effect = arguments[i];
-      this.ValidateEffect(effect);
-      effects.push(effect);
-    }
-    return Regexes.Parse(' 1E:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\.');
-  };
-
-  abilityRegex(abilityName, attacker, target, flags) {
-    this.ValidateAbility(abilityName);
-    if (!attacker)
-      attacker = '[^:]*';
-    // type:attackerId:attackerName:abilityId:abilityName:targetId:targetName:flags:
-    var r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + this.kAbilNameToId[abilityName] + ':';
-    if (target || flags) {
-      if (!target)
-	target = '[^:]*';
-      if (!flags)
-	flags = '[^:]*';
-      r += '[^:]*:\\y{ObjectId}:' + target + ':' + flags + ':';
-    }
-    return Regexes.Parse(r);
-  };
-
-  gainsEffectRegex(effect, target, attacker) {
-    this.ValidateEffect(effect);
-    if (!target)
-      target = '[^:]*';
-    if (!attacker)
-      attacker = '[^:]*';
-    return Regexes.Parse(' 1A:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\.');
-  };
-
-  losesEffectRegex(effect, target, attacker) {
-    this.ValidateEffect(effect);
-    if (!target)
-      target = '[^:]*';
-    if (!attacker)
-      attacker = '[^:]*';
-    return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '.*\.');
-  };
 };

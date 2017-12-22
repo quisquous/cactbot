@@ -360,8 +360,9 @@ function setupBuffTracker() {
       sortKey: 9,
     },
     requiem: {
-      gainRegex: gLang.gainsEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
-      loseRegex: gLang.losesEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
+      // TODO: Can't use \y{Name} because https://github.com/quisquous/cactbot/issues/22.
+      gainRegex: gLang.gainsEffectRegex(gLang.kEffect.FoeRequiem, '(.*?)', '\\1'),
+      loseRegex: gLang.losesEffectRegex(gLang.kEffect.FoeRequiem, '(.*?)', '\\1'),
       durationPosition: 2,
       icon: kIconBuffFoes,
       // Light Purple.
