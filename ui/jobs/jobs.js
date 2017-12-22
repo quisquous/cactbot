@@ -6,10 +6,13 @@
 // Options.TPInvigorateThreshold = 400
 // See user/jobs-example.js for documentation.
 var Options = {
+  Language: 'en',
+
   LowerOpacityOutOfCombat: true,
 
   HideWellFedAboveSeconds: 15 * 60,
-  WellFedZoneRegex: /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*(Ultimate|Savage).*|.* Coil Of Bahamut.*(Ultimate|Savage).*)|Alexander.*(Ultimate|Savage).*$/,
+  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'UCU'],
+
   MaxLevel: 70,
 
   ShowRdmProcs: true,
@@ -48,43 +51,15 @@ var kPeanutButter = null;
 var kDragonKick = null;
 var kTwinSnakes = null;
 var kDemolish = null;
-
-var kBluntDebuff = Regexes.Parse('gains the effect of Blunt Resistance Down from .*?for (\\y{Float}) Seconds\.');
-
-// Full skill names (regex ok) of abilities that break combos.
-// TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
-var kComboBreakers = Object.freeze([
-  // rdm
-  'Verstone',
-  'Verfire',
-  'Verareo',
-  'Verthunder',
-  'Verholy',
-  'Verflare',
-  'Jolt II',
-  'Jolt',
-  'Impact',
-  'Scatter',
-  'Vercure',
-  'Verraise',
-  '(Enchanted )?(Riposte|Zwerchhau|Redoublement|Moulinet)',
-  // war
-  'Tomahawk',
-  'Overpower',
-  'Skull Sunder',
-  "Butcher's Block",
-  'Maim',
-  "Storm's Eye",
-  "Storm's Path",
-  // general (TODO: is this true?)
-  'Limit Break',
-]);
+var kBluntDebuff = null;
+var kComboBreakers = null;
+var kWellFedZoneRegex = null;
 
 class ComboTracker {
-  constructor(me, comboBreakers, callback) {
-    this.me = me;
+  constructor(comboBreakers, callback) {
     this.comboTimer = null;
-    this.kReEndCombo = Regexes.Parse(':' + me + '( starts using |:' + Regexes.AbilityCode + ':)(' + comboBreakers.join('|') + ')( |:)');
+    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers), 
+                                     gLang.youStartUsingRegex(comboBreakers));
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
     this.callback = callback;
@@ -93,10 +68,6 @@ class ComboTracker {
   }
 
   AddCombo(skillList) {
-    // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
-    // We can not look for log messages from FFXIV "You use X" here. Instead we
-    // look for the actual ability usage provided by the XIV plugin.
-    // Also, the networked parse info is given much quicker than the lines from the game.
     if (this.startList.indexOf(skillList[0]) == -1) {
       this.startList.push(skillList[0]);
     }
@@ -104,7 +75,7 @@ class ComboTracker {
       var node = this.comboNodes[skillList[i]];
       if (node == undefined) {
         node = {
-          re: Regexes.Parse(':' + this.me + ':\\y{AbilityCode}:' + skillList[i] + ':'),
+          re: gLang.youUseAbilityRegex(skillList[i]),
           next: []
         };
         this.comboNodes[skillList[i]] = node;
@@ -160,34 +131,90 @@ class ComboTracker {
   }
 }
 
-function setupComboTracker(me, callback) {
-  var comboTracker = new ComboTracker(me, kComboBreakers, callback);
-  comboTracker.AddCombo(['Enchanted Riposte', 'Enchanted Zwerchhau', 'Enchanted Redoublement', 'Ver(?:flare|holy)']);
-  comboTracker.AddCombo(['Heavy Swing', 'Skull Sunder', "Butcher's Block"]);
-  comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Eye"]);
-  comboTracker.AddCombo(['Heavy Swing', 'Maim', "Storm's Path"]);
-
+function setupComboTracker(callback) {
+  var comboTracker = new ComboTracker(kComboBreakers, callback);
+  comboTracker.AddCombo([
+    gLang.kAbility.EnchantedRiposte,
+    gLang.kAbility.EnchantedZwerchhau,
+    gLang.kAbility.EnchantedRedoublement,
+    gLang.kAbility.Verflare,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.EnchantedRiposte,
+    gLang.kAbility.EnchantedZwerchhau,
+    gLang.kAbility.EnchantedRedoublement,
+    gLang.kAbility.Verholy,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.HeavySwing,
+    gLang.kAbility.SkullSunder,
+    gLang.kAbility.ButchersBlock,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.HeavySwing,
+    gLang.kAbility.Maim,
+    gLang.kAbility.StormsEye,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.HeavySwing,
+    gLang.kAbility.Maim,
+    gLang.kAbility.StormsPath,
+  ]);
   return comboTracker;
 }
 
-function setupRegexes(me) {
-  kReRdmWhiteManaProc = Regexes.Parse(':' + me + ' gains the effect of Verstone Ready from ' + me + ' for (\\y{Float}) Seconds\.');
-  kReRdmWhiteManaProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Verstone Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verstone:)')
-  kReRdmBlackManaProc = Regexes.Parse(':' + me + ' gains the effect of Verfire Ready from ' + me + ' for (\\y{Float}) Seconds\.');
-  kReRdmBlackManaProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Verfire Ready from ' + me + '\.)|(:' + me + ':' + Regexes.AbilityCode + ':Verfire:)');
-  kReRdmImpactProc = Regexes.Parse(':' + me + ' gains the effect of Impactful from ' + me + ' for (\\y{Float}) Seconds\.');
-  kReRdmImpactProcEnd = Regexes.Parse('(:' + me + ' loses the effect of Impactful from ' + me + '.)|(:' + me + ':' + Regexes.AbilityCode + ':Impact:)');
-  kReSmnRuinProc = Regexes.Parse(':' + me + ' gains the effect of Further Ruin from ' + me + ' for (\\y{Float}) Seconds\.');
-  kReSmnRuinProcEnd = Regexes.Parse(':' + me + ' loses the effect of Further Ruin from ' + me + '\.');
-  kReSmnAetherflow = Regexes.Parse(':' + me + ':A6:Aetherflow:[^:]+:' + me + ':');
-  //kReSmnAetherflow = Regexes.Parse(':' + me + ' gains the effect of Aetherflow from ' + me + ' for ');
-  //kReSmnAetherflow = Regexes.Parse(':testing:');
-  kReFoodBuff = Regexes.Parse(':' + me + ' gains the effect of Well Fed from ' + me + ' for (\\y{Float}) Seconds\.')
-  kFormChange = Regexes.Parse(':' + me + ' gains the effect of (?:Opo-Opo|Raptor|Coeurl) Form from ' + me + ' for (\\y{Float}) Seconds\.');
-  kPeanutButter = Regexes.Parse(':' + me + ' gains the effect of Perfect Balance from ' + me + ' for (\\y{Float}) Seconds\.');
-  kDragonKick = Regexes.Parse(':' + me + ':4A:Dragon Kick:');
-  kTwinSnakes = Regexes.Parse(':' + me + ':3D:Twin Snakes:');
-  kDemolish = Regexes.Parse(':' + me + ':42:Demolish:');
+function setupRegexes() {
+  kReRdmWhiteManaProc = gLang.youGainEffectRegex(gLang.kEffect.VerstoneReady);
+  kReRdmWhiteManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerstoneReady);
+  kReRdmBlackManaProc = gLang.youGainEffectRegex(gLang.kEffect.VerfireReady);
+  kReRdmBlackManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerfireReady);
+  kReRdmImpactProc = gLang.youGainEffectRegex(gLang.kEffect.Impactful)
+  kReRdmImpactProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
+  kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin)
+  kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
+  kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
+  kReFoodBuff = gLang.youGainEffectRegex(gLang.kEffect.WellFed);
+  kFormChange = gLang.youGainEffectRegex(gLang.kEffect.OpoOpoForm, gLang.kEffect.RaptorForm, gLang.kEffect.CoeurlForm);
+  kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
+  kDragonKick = gLang.youUseAbilityRegex(gLang.kAbility.DragonKick);
+  kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
+  kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
+  kBluntDebuff = gLang.gainsEffectRegex(gLang.kEffect.BluntResistDown);
+  kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) { return gLang.kZone[x]; }));
+
+// Full skill names of abilities that break combos.
+// TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
+  kComboBreakers = Object.freeze([
+    // rdm
+    gLang.kAbility.Verstone,
+    gLang.kAbility.Verfire,
+    gLang.kAbility.Veraero,
+    gLang.kAbility.Verthunder,
+    gLang.kAbility.Verholy,
+    gLang.kAbility.Verflare,
+    gLang.kAbility.Jolt2,
+    gLang.kAbility.Jolt,
+    gLang.kAbility.Impact,
+    gLang.kAbility.Scatter,
+    gLang.kAbility.Vercure,
+    gLang.kAbility.Verraise,
+    gLang.kAbility.Riposte,
+    gLang.kAbility.Zwerchhau,
+    gLang.kAbility.Redoublement,
+    gLang.kAbility.Moulinet,
+    gLang.kAbility.EnchantedRiposte,
+    gLang.kAbility.EnchantedZwerchhau,
+    gLang.kAbility.EnchantedRedoublement,
+    gLang.kAbility.EnchantedMoulinet,
+    // war
+    gLang.kAbility.Tomahawk,
+    gLang.kAbility.Overpower,
+    gLang.kAbility.SkullSunder,
+    gLang.kAbility.ButchersBlock,
+    gLang.kAbility.Maim,
+    gLang.kAbility.StormsEye,
+    gLang.kAbility.StormsPath,
+  ]);
 }
 
 var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
@@ -238,11 +265,11 @@ function computeBackgroundColorFrom(element, classList) {
 
 var kBigBuffTracker = null;
 
-function setupBuffTracker(me) {
+function setupBuffTracker() {
   kBigBuffTracker = {
     potion: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Medicated from ' + me + ' for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Medicated from '),
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Medicated),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Medicated),
       durationPosition: 1,
       icon: kIconBuffPotion,
       borderColor: '#AA41B2',
@@ -251,7 +278,7 @@ function setupBuffTracker(me) {
     trick: {
       // The flags encode positional data, but the exact specifics are unclear.
       // Trick attack missed appears to be "710?03" but correct is "28710?03".
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Trick Attack:.*:.*:28/),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '28......'),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       // Magenta.
@@ -259,8 +286,8 @@ function setupBuffTracker(me) {
       sortKey: 1,
     },
     litany: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Battle Litany from \\y{Name} for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Battle Litany from '),
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.BattleLitany),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.BattleLitany),
       durationPosition: 1,
       icon: kIconBuffLitany,
       // Cyan.
@@ -268,8 +295,12 @@ function setupBuffTracker(me) {
       sortKey: 2,
     },
     embolden: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Embolden from \\y{Name} for (\\y{Float}) Seconds\\. \\(5\\)'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Embolden from '),
+      // Embolden is special and has some extra text at the end, depending on embolden stage:
+      //   1A:Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
+      // Instead, use somebody using the effect on you:
+      //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
+      gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Embolden),
       durationPosition: 1,
       icon: kIconBuffEmbolden,
       // Lime.
@@ -277,8 +308,8 @@ function setupBuffTracker(me) {
       sortKey: 3,
     },
     balance: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of The Balance from \\y{Name} for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of The Balance from '),
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Balance),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Balance),
       durationPosition: 1,
       icon: kIconBuffBalance,
       // Orange.
@@ -286,7 +317,7 @@ function setupBuffTracker(me) {
       sortKey: 4,
     },
     chain: {
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Chain Stratagem:/),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.ChainStrategem),
       durationSeconds: 15,
       icon: kIconBuffChainStratagem,
       // Blue.
@@ -294,7 +325,7 @@ function setupBuffTracker(me) {
       sortKey: 5,
     },
     hyper: {
-      gainRegex: Regexes.Parse(/:\y{Name}:\y{AbilityCode}:Hypercharge:/),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.Hypercharge),
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
       // Aqua.
@@ -302,8 +333,8 @@ function setupBuffTracker(me) {
       sortKey: 6,
     },
     sight: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of (?:Left|Right) Eye from \\y{Name} for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of (?:Left|Right) Eye from '),
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
       durationPosition: 1,
       icon: kIconBuffDragonSight,
       // Orange.
@@ -311,8 +342,8 @@ function setupBuffTracker(me) {
       sortKey: 7,
     },
     brotherhood: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Brotherhood from \\y{Name} for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Brotherhood from '),
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Brotherhood),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Brotherhood),
       durationPosition: 1,
       icon: kIconBuffBrotherhood,
       // Dark Orange.
@@ -320,8 +351,8 @@ function setupBuffTracker(me) {
       sortKey: 8,
     },
     devotion: {
-      gainRegex: Regexes.Parse(':' + me + ' gains the effect of Devotion from \\y{Name} for (\\y{Float}) Seconds'),
-      loseRegex: Regexes.Parse(':' + me + ' loses the effect of Devotion from '),
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Devotion),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Devotion),
       durationPosition: 1,
       icon: kIconBuffDevotion,
       // Yellow.
@@ -329,8 +360,9 @@ function setupBuffTracker(me) {
       sortKey: 9,
     },
     requiem: {
-      gainRegex: Regexes.Parse(/:(\y{Name}) gains the effect of Foe Requiem from \1 for (\y{Float}) Seconds/),
-      loseRegex: Regexes.Parse(/:(\y{Name}) loses the effect of Foe Requiem from \1/),
+      // TODO: Can't use \y{Name} because https://github.com/quisquous/cactbot/issues/22.
+      gainRegex: gLang.gainsEffectRegex(gLang.kEffect.FoeRequiem, '(.*?)', '\\1'),
+      loseRegex: gLang.losesEffectRegex(gLang.kEffect.FoeRequiem, '(.*?)', '\\1'),
       durationPosition: 2,
       icon: kIconBuffFoes,
       // Light Purple.
@@ -414,7 +446,7 @@ class Bars {
 
     this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
-    this.o.pullCountdown.lefttext = "Pull";
+    this.o.pullCountdown.lefttext = gLang.kUIStrings.Pull;
     this.o.pullCountdown.righttext = "remain";
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = "rgb(255, 120, 120)";
@@ -1222,7 +1254,7 @@ class Bars {
         return false;
       if (this.level < this.options.MaxLevel)
         return true;
-      return this.zone.search(this.options.WellFedZoneRegex) >= 0;
+      return this.zone.search(kWellFedZoneRegex) >= 0;
     }
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
@@ -1321,9 +1353,9 @@ class Bars {
   OnPlayerChanged(e) {
     if (!this.init) {
       this.me = e.detail.name;
-      setupRegexes(this.me);
-      setupBuffTracker(this.me);
-      this.combo = setupComboTracker(this.me, this.OnComboChange.bind(this));
+      setupRegexes();
+      setupBuffTracker();
+      this.combo = setupComboTracker(this.OnComboChange.bind(this));
       this.init = true;
     }
 
@@ -1457,13 +1489,13 @@ class Bars {
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
 
-      var r = log.match(Regexes.Parse(/:Battle commencing in (\y{Float}) seconds!/));
+      var r = log.match(gLang.countdownStartRegex());
       if (r != null) {
         var seconds = Regexes.ParseLocaleFloat(r[1]);
         this.SetPullCountdown(seconds);
         continue;
       }
-      if (log.search(/Countdown canceled by /) >= 0) {
+      if (log.search(gLang.countdownCancelRegex()) >= 0) {
         this.SetPullCountdown(0);
         continue;
       }
@@ -1587,14 +1619,18 @@ class Bars {
 
   Test() {
     var logs = [];
-    logs.push(':' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
-    logs.push(':' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
-    logs.push(':' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(':' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(':' + this.me + ':00:Dragon Sight:');
-    logs.push(':' + this.me + ':00:Chain Stratagem:');
-    logs.push(':' + this.me + ':00:Trick Attack:');
-    logs.push(':' + this.me + ':00:Hypercharge:');
+    logs.push(' 1A:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(' 1A:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(' 1A:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(' 1A:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    logs.push(' 1A:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
+    logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(' 1A:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(' 15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(' 15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(' 1A:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     var e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }

@@ -7,11 +7,33 @@ var Regexes = {
     return parseFloat(m[1] + (m[2] ? '.' : '') + (m[3] ? m[3] : '') + (m[4] ? m[4] : ""));
   },
 
+  // Convenience for turning multiple args into a unioned regular expression.
+  // AnyOf(x, y, z) or AnyOf([x, y, z]) do the same thing, and return (?:x|y|z).
+  // AnyOf(x) or AnyOf(x) on its own simplifies to just x.
+  // args may be strings or RegExp, although any additional markers to RegExp
+  // like /insensitive/i are dropped.
+  AnyOf: function() {
+    var array;
+    if (arguments.length == 1) {
+      if (!Array.isArray(arguments[0]))
+        return arguments[0];
+      array = arguments[0];
+    } else {
+      array = arguments;
+    }
+    var str = '(?:' + (array[0] instanceof RegExp ? array[0].source : array[0]);
+    for (var i = 1; i < array.length; ++i)
+      str += '|' + (array[i] instanceof RegExp ? array[i].source : array[i]);
+    str += ')';
+    return str;
+  },
+
   Parse: function(regexpString) {
     var kCactbotCategories = {
       TimeStamp: '\[[0-9:.]+\]',
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,4}',
+      ObjectId: '[0-9A-F]{8}',
       Name: '(?:\\p{L}\\p{M}*|\\p{N}|\\p{Z}|[-_\'])*',
       // Floats can have comma as separator in FFXIV plugin output: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/137
       Float: '-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?',

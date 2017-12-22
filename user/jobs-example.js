@@ -1,5 +1,8 @@
 // Rename this file to `jobs.js` and edit it to change the jobs ui.
 
+// The language that you play FFXIV in.
+Options.Language = 'en';
+
 // If true, the bars are all made translucent when out of combat.
 Options.LowerOpacityOutOfCombat = true
 
