@@ -148,7 +148,9 @@ In most cases, a single event will be passed to every function.
 
 If `collectSeconds` is used, then as soon as the trigger matches any line, it will wait `collectSeconds` and then pass that first trigger and any additional trigger that matches during that time period as an array.
 
-*NOTE*: `condition` always takes a single event and acts as a filter prior to collecting events.  If `condition` is not true, then it as if the log line didn't exist and the event is skipped, both for the initial match and for the collection.
+`condition` always takes a single event and acts as a filter prior to collecting events.  If `condition` is not true, then it as if the log line didn't exist and the event is skipped, both for the initial match and for the collection.
+
+`delaySeconds` is not called when collecting.
 
 ```
 {

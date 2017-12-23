@@ -595,7 +595,7 @@ class DamageTracker {
     if (collectMultipleEvents) {
       delay = collectSeconds || 0;
     } else {
-      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
+      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt) : 0;
     }
 
     var triggerTime = Date.now();
