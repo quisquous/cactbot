@@ -116,15 +116,15 @@ class CactbotLanguageEn extends CactbotLanguage {
     this.abilityRegex = function(abilityName, attacker, target, flags) {
       this.ValidateAbility(abilityName);
       if (!attacker)
-        attacker = '.*';
+        attacker = '[^:]*';
       // type:attackerId:attackerName:abilityId:abilityName:targetId:targetName:flags:
       var r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + this.kAbilNameToId[abilityName] + ':';
       if (target || flags) {
         if (!target)
-          target = '.*';
+          target = '[^:]*';
         if (!flags)
-          flags = '.*';
-        r += '.*?:\\y{ObjectId}:' + target + ':' + flags + ':';
+          flags = '[^:]*';
+        r += '[^:]*:\\y{ObjectId}:' + target + ':' + flags + ':';
       }
       return Regexes.Parse(r);
     };
@@ -132,17 +132,17 @@ class CactbotLanguageEn extends CactbotLanguage {
     this.gainsEffectRegex = function(effect, target, attacker) {
       this.ValidateEffect(effect);
       if (!target)
-        target = '.*?';
+        target = '[^:]*';
       if (!attacker)
-        attacker = '.*?';
+        attacker = '[^:]*';
       return Regexes.Parse(' 1A:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\.');
     };
     this.losesEffectRegex = function(effect, target, attacker) {
       this.ValidateEffect(effect);
       if (!target)
-        target = '.*?';
+        target = '[^:]*';
       if (!attacker)
-        attacker = '.*?';
+        attacker = '[^:]*';
       return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '.*\.');
     };
 
