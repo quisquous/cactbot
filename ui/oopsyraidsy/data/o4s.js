@@ -15,6 +15,12 @@
       },
     },
     {
+      regex: /:2417:Neo Exdeath starts using Almagest/,
+      run: function(e, data) {
+        data.isNeoExdeath = true;
+      },
+    },
+    {
       id: 'O4S2 Blizzard III',
       damageRegex: 'Blizzard III',
       condition: function(e, data) {
@@ -48,7 +54,11 @@
       buffRegex: 'Petrification',
       condition: function(e) { return e.gains; },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'Bomb' };
+        // On Neo, being petrified is because you looked at Shriek, so your fault.
+        if (e.isNeoExdeath)
+          return { type: 'fail', blame: e.targetName, text: 'Petrification' };
+        // On normal ExDeath, this is due to White Hole.
+        return { type: 'warn', text: 'Petrification' }
       },
     },
     {
@@ -93,7 +103,7 @@
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
-      mistake: function(events, data) {
+      mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: 'Double Laser' };
       },
     },
@@ -108,7 +118,7 @@
       buffRegex: 'Beyond Death',
       condition: function(e) { return e.gains; },
       delaySeconds: function(e) { return e.durationSeconds - 1; },
-      deathReason: function(e) {
+      deathReason: function(e, data) {
         if (!data.hasBeyondDeath[e.targetName])
           return;
         return {
