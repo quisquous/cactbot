@@ -2,12 +2,6 @@
 
 var gLang = null;
 
-// TODO: fix me
-console.assert = function(x) {
-  if (!x)
-    console.error("" + x);
-};
-
 class CactbotLanguage {
   constructor(lang) {
     this.lang = lang;
