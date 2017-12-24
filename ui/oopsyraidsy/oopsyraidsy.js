@@ -285,9 +285,9 @@ class MistakeCollector {
       this.StartCombat();
       return;
     }
-    var seconds = (Date.now() - this.startTime) / 1000;
-    if (this.firstPuller) {
-      var text = 'early pull (' + seconds.toFixed(1) + 's)';
+    var seconds = ((Date.now() - this.startTime) / 1000).toFixed(1);
+    if (this.firstPuller && seconds != '0.0') {
+      var text = 'early pull (' + seconds + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -300,9 +300,9 @@ class MistakeCollector {
       } else if (IsPlayerId(fields[kFieldTargetId])) {
         this.firstPuller = fields[kFieldTargetName];
       }
-      if (this.seenEngage) {
-        var seconds = (Date.now() - this.startTime) / 1000;
-        var text = 'late pull (' + seconds.toFixed(1) + 's)';
+      var seconds = ((Date.now() - this.startTime) / 1000).toFixed(1);
+      if (this.seenEngage && seconds != '0.0') {
+        var text = 'late pull (' + seconds + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnMistakeText('pull', this.firstPuller, text);
       }
