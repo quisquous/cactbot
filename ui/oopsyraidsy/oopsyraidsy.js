@@ -359,6 +359,7 @@ class DamageTracker {
     this.options = options;
     this.collector = collector;
     this.triggerSets = null;
+    this.inCombat = false;
     this.timers = [];
     this.generalTriggers = [];
     this.damageTriggers = [];
@@ -373,6 +374,7 @@ class DamageTracker {
       me: this.me,
       job: this.job,
       role: this.role,
+      inCombat: this.inCombat,
       ParseLocaleFloat: Regexes.ParseLocaleFloat,
       ShortName: ShortNamify,
       IsPlayerId: IsPlayerId,
@@ -642,7 +644,8 @@ class DamageTracker {
   }
 
   OnInCombatChangedEvent(e) {
-    this.data.inCombat = e.detail.inCombat;
+    this.inCombat = e.detail.inCombat;
+    this.data.inCombat = this.inCombat;
   }
 
   ReloadTriggers() {
