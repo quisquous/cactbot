@@ -57,7 +57,7 @@
         // It's hard to assign blame for lightning.  The debuffs
         // go out and then explode in order, but the attacker is
         // the dragon and not the player.
-        return { type: 'warn', fullText: e.targetName + ': hit by lightning' };
+        return { type: 'warn', name: e.targetName, text: 'hit by lightning' };
       },
     },
     {

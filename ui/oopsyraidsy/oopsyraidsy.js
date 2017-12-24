@@ -262,7 +262,7 @@ class MistakeCollector {
     if (m.fullText) {
       this.OnFullMistakeText(m.type, m.blame, m.fullText);
     } else {
-      this.OnMistakeText(m.type, m.blame, m.text);
+      this.OnMistakeText(m.type, m.name || m.blame, m.text);
     }
   }
 

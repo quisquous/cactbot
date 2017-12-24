@@ -47,7 +47,8 @@ Each trigger is an object with the following fields.  All fields are optional.
 ### `mistake` format
 
 * `type` is the icon: pull, warn, fail, potion, death, wipe (:arrow_forward::warning::no_entry_sign::cocktail::skull::toilet:).
-* `blame` is an optional full player name (or array of full player names) to blame for this mistake.
+* `name` is an optional full player name to list as this mistake happening to.  This will prepend their name in the live list.
+* `blame` is an optional full player name (or array of full player names) to blame for this mistake.  If `name` is not specified, then the `name` will be the `blame` player.
 * `text` is an optional reason for the mistake.  It will be prepended by the blamed player's short name (if it exists).
 * `fullText` if it exists will be the entire text of the line, regardless of who is blamed.
 

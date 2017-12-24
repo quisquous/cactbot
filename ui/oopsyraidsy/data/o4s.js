@@ -55,10 +55,10 @@
       condition: function(e) { return e.gains; },
       mistake: function(e, data) {
         // On Neo, being petrified is because you looked at Shriek, so your fault.
-        if (e.isNeoExdeath)
+        if (data.isNeoExdeath)
           return { type: 'fail', blame: e.targetName, text: 'Petrification' };
         // On normal ExDeath, this is due to White Hole.
-        return { type: 'warn', text: 'Petrification' }
+        return { type: 'warn', name: e.targetName, text: 'Petrification' }
       },
     },
     {
