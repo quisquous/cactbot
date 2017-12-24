@@ -79,6 +79,7 @@
     {
       buffRegex: 'Doom',
       run: function(e, data) {
+        data.hasDoom = data.hasDoom || {};
         data.hasDoom[e.targetName] = e.gains;
       },
     },
@@ -100,7 +101,7 @@
       condition: function(e) { return e.gains; },
       delaySeconds: function(e) { return e.durationSeconds - 1; },
       deathReason: function(e, data, matches) {
-        if (!data.hasDoom[e.targetName])
+        if (!data.hasDoom || !data.hasDoom[e.targetName])
           return;
         var reason;
         if (e.durationSeconds < 9)

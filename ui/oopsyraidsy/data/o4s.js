@@ -27,7 +27,7 @@
         // Ignore unavoidable raid aoe Blizzard III.
         return data.IsPlayerId(e.targetId) && !data.isDecisiveBattleElement;
       },
-      mistake: function(e) {
+      mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -84,7 +84,7 @@
           return;
         // Hard to know who should be in this and who shouldn't, but
         // it should never hit 3 people.
-        return { type: 'fail', fullText: e.abilityName + ' hit ' + e.length };
+        return { type: 'fail', fullText: e[0].abilityName + ' hit ' + e.length };
       },
     },
     {
@@ -110,6 +110,7 @@
     {
       buffRegex: 'Beyond Death',
       run: function(e, data) {
+        data.hasBeyondDeath = data.hasBeyondDeath || {};
         data.hasBeyondDeath[e.targetName] = e.gains;
       },
     },
@@ -119,6 +120,8 @@
       condition: function(e) { return e.gains; },
       delaySeconds: function(e) { return e.durationSeconds - 1; },
       deathReason: function(e, data) {
+        if (!data.hasBeyondDeath)
+          return;
         if (!data.hasBeyondDeath[e.targetName])
           return;
         return {
