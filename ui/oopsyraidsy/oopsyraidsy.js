@@ -619,7 +619,7 @@ class DamageTracker {
         this.AddImpliedDeathReason(ret);
       }
       if ('run' in trigger)
-        ValueOrFunction(this.run, eventOrEvents);
+        ValueOrFunction(trigger.run, eventOrEvents);
     }).bind(this);
 
     // Even if delay = 0, if collectMultipleEvents is specified,
