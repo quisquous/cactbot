@@ -7,9 +7,9 @@ class CactbotLanguageKo extends CactbotLanguage {
 
   InitStrings(playerName) {
     this.kAbility = Object.freeze({
-      DragonKick: 'Dragon Kick',
-      TwinSnakes: 'Twin Snakes',
-      Demolish: 'Demolish',
+      DragonKick: '쌍룡각',
+      TwinSnakes: '쌍장타',
+      Demolish: '파쇄권',
       Verstone: '버스톤',
       Verfire: '버파이어',
       Veraero: '버에어로',
@@ -18,10 +18,10 @@ class CactbotLanguageKo extends CactbotLanguage {
       Verflare: '버플레어',
       Jolt2: '졸트라',
       Jolt: '졸트',
-      Impact: 'Impact',
-      Scatter: 'Scatter',
+      Impact: '임팩트',
+      Scatter: '흩뿌리기',
       Vercure: '버케알',
-      Verraise: '버라이즈',
+      Verraise: '버레이즈',
       Riposte: '리포스트',
       Zwerchhau: '츠베르크하우',
       Redoublement: '르두블망',
@@ -30,23 +30,23 @@ class CactbotLanguageKo extends CactbotLanguage {
       EnchantedZwerchhau: '인츠베르크하우',
       EnchantedRedoublement: '인르두블망',
       EnchantedMoulinet: '인물리네',
-      Tomahawk: 'Tomahawk',
-      Overpower: 'Overpower',
-      HeavySwing: 'Heavy Swing',
-      SkullSunder: 'Skull Sunder',
-      ButchersBlock: "Butcher's Block",
-      Maim: 'Maim',
-      StormsEye: "Storm's Eye",
-      StormsPath: "Storm's Path",
+      Tomahawk: '도끼 던지기',
+      Overpower: '압도',
+      HeavySwing: '육중한 일격',
+      SkullSunder: '두개골 절단',
+      ButchersBlock: '휘도는 도끼',
+      Maim: '관절 파괴',
+      StormsEye: '폭풍의 눈',
+      StormsPath: '폭풍 쐐기',
       TrickAttack: '속임수 공격',
-      Embolden: 'Embolden',
+      Embolden: '성원',
       Aetherflow: '에테르 순환',
-      ChainStrategem: 'Chain Strategem',
+      ChainStrategem: '연환계',
       Hypercharge: '과충전',
     });
 
     this.kZone = Object.freeze({
-      O1S: /Deltascape V1\.0 \(Savage\)/, // NOT RELEASED YET
+      O1S: /Deltascape V1\.0 \(Savage\)/, // NOT UPDATED YET
       O2S: /Deltascape V2\.0 \(Savage\)/,
       O3S: /Deltascape V3\.0 \(Savage\)/,
       O4S: /Deltascape V4\.0 \(Savage\)/,
@@ -54,27 +54,27 @@ class CactbotLanguageKo extends CactbotLanguage {
     });
 
     this.kEffect = Object.freeze({
-      BluntResistDown: 'Blunt Resistance Down',
+      BluntResistDown: '타격 저항 감소',
       VerstoneReady: '버스톤 시전 가능',
       VerfireReady: '버파이어 시전 가능',
-      Impactful: 'Impactful',
-      FurtherRuin: 'Further Ruin',
-      Aetherflow: 'Aetherflow',
-      WellFed: 'Well Fed',
+      Impactful: '임팩트 시전 가능',
+      FurtherRuin: '루인 강화',
+      Aetherflow: '에테르 순환',
+      WellFed: '식사',
       OpoOpoForm: '원숭이 품새',
-      RaptorForm: '용 품새', // to be checked
+      RaptorForm: '용 품새',
       CoeurlForm: '호랑이 품새',
-      PerfectBalance: 'Perfect Balance',
-      Medicated: 'Medicated',
-      BattleLitany: 'Battle Litany',
-      Embolden: 'Embolden',
+      PerfectBalance: '진각',
+      Medicated: '강화약',
+      BattleLitany: '전투 기도',
+      Embolden: '성원',
       Balance: '아제마의 균형',
       Hypercharge: '과충전',
       LeftEye: '용의 왼쪽 눈',
       RightEye: '용의 오른쪽 눈',
-      Brotherhood: 'Brotherhood',
-      Devotion: 'Devotion',
-      FoeRequiem: 'Foe Requiem',
+      Brotherhood: '도원결의',
+      Devotion: '에기의 가호',
+      FoeRequiem: '마인의 진혼곡',
     });
 
     this.kUIStrings = Object.freeze({
@@ -158,7 +158,7 @@ class CactbotLanguageKo extends CactbotLanguage {
 document.addEventListener("onPlayerChangedEvent", function (e) {
   if (Options && Options.Language == 'ko') {
     if (!gLang)
-      gLang = new CactbotLanguageEn();
+      gLang = new CactbotLanguageKo();
     if (gLang.playerName != e.detail.name)
       gLang.OnPlayerNameChange(e.detail.name);
   }
