@@ -590,6 +590,7 @@ class TimelineController {
     this.ui = ui;
     this.dataFiles = {};
     this.timelines = {};
+    this.inCombat = false;
   }
 
   SetPopupTextInterface(popupText) {
@@ -597,17 +598,11 @@ class TimelineController {
   }
 
   OnInCombat(e) {
-    if (!e.detail.inCombat && !this.inBossFight)
-      this.OnBossFightStop();
-  }
-  
-  OnBossFightStart() {
-    this.inBossFight = true;
-  }
-
-  OnBossFightStop() {
-    this.inBossFight = false;
-    if (this.activeTimeline)
+    var inCombat = e.detail.inGameCombat;
+    if (this.inCombat == inCombat)
+      return;
+    this.inCombat = inCombat;
+    if (!this.inCombat && this.activeTimeline)
       this.activeTimeline.Stop();
   }
 
@@ -672,12 +667,6 @@ var gTimelineController;
 
 document.addEventListener("onInCombatChangedEvent", function (e) {
   gTimelineController.OnInCombat(e);
-});
-document.addEventListener("onBossFightStart", function(e) {
-  gTimelineController.OnBossFightStart();
-});
-document.addEventListener("onBossFightEnd", function(e) {
-  gTimelineController.OnBossFightStop();
 });
 document.addEventListener("onLogEvent", function(e) {
   gTimelineController.OnLogEvent(e);

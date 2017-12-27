@@ -350,10 +350,13 @@ namespace Cactbot {
       }
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
-      bool in_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
-      if (!notify_state_.in_combat.HasValue || in_combat != notify_state_.in_combat) {
-        notify_state_.in_combat = in_combat;
-        OnInCombatChanged(new JSEvents.InCombatChangedEvent(in_combat));
+      bool in_act_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
+      bool in_game_combat = ffxiv_.GetInGameCombat();
+      if (!notify_state_.in_act_combat.HasValue || in_act_combat != notify_state_.in_act_combat ||
+          notify_state_.in_game_combat.HasValue || in_game_combat != notify_state_.in_game_combat) {
+        notify_state_.in_act_combat = in_act_combat;
+        notify_state_.in_game_combat = in_game_combat;
+        OnInCombatChanged(new JSEvents.InCombatChangedEvent(in_act_combat, in_game_combat));
       }
 
       // onZoneChangedEvent: Fires when the player changes their current zone.
@@ -676,7 +679,8 @@ namespace Cactbot {
       public bool sent_data_dir = false;
       public bool game_exists = false;
       public bool game_active = false;
-      public bool? in_combat;
+      public bool? in_act_combat;
+      public bool? in_game_combat;
       public bool dead = false;
       public string zone_name = null;
       public FFXIVProcess.EntityData player = null;

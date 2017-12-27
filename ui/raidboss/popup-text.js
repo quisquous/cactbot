@@ -6,6 +6,7 @@ class PopupText {
     this.init = false;
     this.triggers = [];
     this.timers = [];
+    this.inCombat = false;
 
     this.kMaxRowsOfText = 2;
   }
@@ -135,19 +136,12 @@ class PopupText {
   }
 
   OnInCombat(e) {
-    // If we're in a boss fight and combat ends, ignore that.
-    // Otherwise consider it a fight reset.
-    if (!e.detail.inCombat && !this.inBossFight)
+    var inCombat = e.detail.inGameCombat;
+    if (this.inCombat == inCombat)
+      return;
+    this.inCombat = inCombat;
+    if (!this.inCombat)
       this.Reset();
-  }
-
-  OnBossFightStart(e) {
-    this.inBossFight = true;
-  }
-
-  OnBossFightEnd(e) {
-    this.inBossFight = false;
-    this.Reset();
   }
 
   Reset() {
@@ -381,12 +375,6 @@ document.addEventListener("onZoneChangedEvent", function(e) {
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
   gPopupText.OnInCombat(e);
-});
-document.addEventListener("onBossFightStart", function(e) {
-  gPopupText.OnBossFightStart(e);
-});
-document.addEventListener("onBossFightEnd", function(e) {
-  gPopupText.OnBossFightEnd(e);
 });
 document.addEventListener("onLogEvent", function(e) {
   gPopupText.OnLog(e);

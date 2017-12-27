@@ -36,7 +36,7 @@
     });
 
     document.addEventListener("onInCombatChangedEvent", function (e) {
-      document.getElementById("inCombat").innerText = "inCombat: " + (e.detail.inCombat ? "yes" : "no");
+      document.getElementById("inCombat").innerText = "inCombat: act: " + (e.detail.inACTCombat ? "yes" : "no") + " game: " + (e.detail.inGameCombat ? "yes" : "no");
     });
 
     document.addEventListener("onPlayerChangedEvent", function (e) {

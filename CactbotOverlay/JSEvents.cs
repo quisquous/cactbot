@@ -42,10 +42,11 @@ namespace Cactbot {
     }
 
     public class InCombatChangedEvent : JSEvent {
-      public InCombatChangedEvent(bool in_combat) { this.inCombat = in_combat; }
+      public InCombatChangedEvent(bool in_act_combat, bool in_game_combat) { this.inACTCombat = in_act_combat; this.inGameCombat = in_game_combat; }
       public string EventName() { return "onInCombatChangedEvent"; }
 
-      public bool inCombat;
+      public bool inACTCombat;
+      public bool inGameCombat;
     }
 
     public class ZoneChangedEvent : JSEvent {

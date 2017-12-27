@@ -15,6 +15,7 @@ namespace Cactbot {
     private IntPtr target_ptr_addr_ = IntPtr.Zero;
     private IntPtr focus_ptr_addr_ = IntPtr.Zero;
     private IntPtr job_data_outer_addr_ = IntPtr.Zero;
+    private IntPtr in_combat_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
     // refer to as the charmap. The pointer is at the end of the signature.
@@ -48,6 +49,16 @@ namespace Cactbot {
     // }
     private static int kTargetStructOffsetTarget = 0;
     private static int kTargetStructOffsetFocus = 0x78;
+
+    // In combat boolean.
+    // Variable is set at 83FA587D70534883EC204863C2410FB6D8381C08744E (offset=0)
+    // via a mov [rax+rcx],bl line.
+    // This sig below finds the calling function that sets rax(offset) and rcx(base address).
+    private static String kInCombatSignature = "84C07425450FB6C7488D0D";
+    private static int kInCombatBaseOffset = 0;
+    private static bool kInCombatBaseRIP = true;
+    private static int kInCombatOffsetOffset = 5;
+    private static bool kInCombatOffsetRIP = false;
 
     // Values found in the EntityStruct's type field.
     public enum EntityType {
@@ -302,6 +313,22 @@ namespace Cactbot {
           } else {
             job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
           }
+
+          p = SigScan(kInCombatSignature, kInCombatBaseOffset, kInCombatBaseRIP);
+          if (p.Count != 1) {
+            logger_.LogError("In combat signature found " + p.Count + " matches");
+          } else {
+            var baseAddress = p[0];
+            p = SigScan(kInCombatSignature, kInCombatOffsetOffset, kInCombatOffsetRIP);
+            if (p.Count != 1) {
+              logger_.LogError("In combat offset signature found " + p.Count + " matches");
+            } else {
+              // Abuse sigscan here to return 64-bit "pointer" which we will mask into the 32-bit immediate integer we need.
+              // TODO: maybe sigscan should be able to return different types?
+              int offset = (int)(((UInt64)p[0]) & 0xFFFFFFFF);
+              in_combat_addr_ = IntPtr.Add(baseAddress, offset);
+            }
+          }
         }
       }
 
@@ -499,6 +526,13 @@ namespace Cactbot {
       if (entity_ptr == IntPtr.Zero)
         return null;
       return GetEntityData(entity_ptr);
+    }
+
+    public bool GetInGameCombat() {
+      if (!HasProcess() || in_combat_addr_ == IntPtr.Zero)
+        return false;
+      var bytes = Read8(in_combat_addr_, 1);
+      return bytes[0] != 0;
     }
 
     private byte[] GetJobSpecificData() {

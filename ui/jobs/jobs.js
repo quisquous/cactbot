@@ -1291,7 +1291,10 @@ class Bars {
   }
 
   OnInCombatChanged(e) {
-    this.inCombat = e.detail.inCombat;
+    if (this.inCombat == e.detail.inGameCombat)
+      return;
+
+    this.inCombat = e.detail.inGameCombat;
     if (this.inCombat)
       this.SetPullCountdown(0);
 
