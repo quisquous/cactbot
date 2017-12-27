@@ -174,7 +174,7 @@ If `collectSeconds` is used, then as soon as the trigger matches any line, it wi
 * `data.me`: string, the player's character name.
 * `data.job`: string, the player's job, e.g. WAR.
 * `data.role`: string, the role of the player's job: tank, healer, dps-melee, dps-ranged, dps-caster, crafting, gathering.
-* `data.inCombat`: bool, whether or not ACT thinks the player is in combat.
+* `data.inCombat`: bool, whether or not the game thinks the player is in combat.  This is different than whether ACT thinks the player is in combat.
 * `data.ShortName`: helper function to turn full player names into shorter names or nicknames.
 * `data.IsPlayerId`: helper function to check if a target or attacker id represents a player (vs a pet or a mob).
 * `data.ParseLocaleFloat`: helper function to turned a parsed `\y{Float}` into a float value, regardless of locale.

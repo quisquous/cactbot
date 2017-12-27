@@ -228,8 +228,7 @@ class MistakeCollector {
     this.startTime = null;
     this.deaths = [];
     this.firstPuller = null;
-    this.seenEngage = false;
-
+    this.engageTime = null;
   }
 
   GetFormattedTime(time) {
@@ -244,9 +243,8 @@ class MistakeCollector {
   }
 
   StartCombat() {
-    if (this.inCombat)
+    if (this.startTime)
       return;
-    this.inCombat = true;
     this.liveList.Reset();
     this.startTime = Date.now();
     this.wipeTime = null;
@@ -280,8 +278,8 @@ class MistakeCollector {
   }
 
   AddEngage() {
-    this.seenEngage = true;
-    if (!this.inCombat) {
+    this.engageTime = Date.now();
+    if (!this.firstPuller) {
       this.StartCombat();
       return;
     }
@@ -299,9 +297,12 @@ class MistakeCollector {
         this.firstPuller = fields[kFieldAttackerName];
       } else if (IsPlayerId(fields[kFieldTargetId])) {
         this.firstPuller = fields[kFieldTargetName];
+      } else {
+        this.firstPuller = '???';
       }
-      var seconds = ((Date.now() - this.startTime) / 1000).toFixed(1);
-      if (this.seenEngage && seconds != '0.0') {
+      this.StartCombat();
+      var seconds = ((Date.now() - this.engageTime) / 1000).toFixed(1);
+      if (this.engageTime && seconds != '0.0') {
         var text = 'late pull (' + seconds + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnMistakeText('pull', this.firstPuller, text);
@@ -339,7 +340,11 @@ class MistakeCollector {
   }
 
   OnInCombatChangedEvent(e) {
-    if (!e.detail.inCombat) {
+    var inCombat = e.detail.inGameCombat;
+    if (this.inCombat == inCombat)
+      return;
+    this.inCombat = inCombat;
+    if (!inCombat) {
       this.wipeTime = Date.now();
       this.Reset();
       this.liveList.ShowAllItems();
@@ -644,7 +649,7 @@ class DamageTracker {
   }
 
   OnInCombatChangedEvent(e) {
-    this.inCombat = e.detail.inCombat;
+    this.inCombat = e.detail.inGameCombat;
     this.data.inCombat = this.inCombat;
   }
 
