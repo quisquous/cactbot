@@ -146,6 +146,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '.*\.');
     };
 
+    // TODO: Countdowns
     this.countdownStartRegex = function() {
       return Regexes.Parse(/Battle commencing in (\y{Float}) seconds!/);
     };
