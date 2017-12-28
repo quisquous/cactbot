@@ -32,7 +32,7 @@ class PullCounter {
       return;
     for (var i = 0; i < e.detail.logs.length; ++i) {
       var log = e.detail.logs[i];
-      if (this.countdownBoss && log.match(gLang.countdownStartRegex)) {
+      if (this.countdownBoss && log.match(gLang.countdownEngageRegex())) {
         this.OnFightStart(this.countdownBoss);
         return;
       }

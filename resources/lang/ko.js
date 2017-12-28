@@ -86,8 +86,11 @@ class CactbotLanguageKo extends CactbotLanguage {
     this.countdownStartRegex = function() {
       return Regexes.Parse(/Battle commencing in (\y{Float}) seconds!/);
     };
+    this.countdownEngageRegex = function() {
+      return /:Engage!/;
+    };
     this.countdownCancelRegex = function() {
-      return Regexes.Parse(/Countdown canceled by /);
+      return /Countdown canceled by /;
     };
   }
 }

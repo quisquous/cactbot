@@ -5,7 +5,7 @@ var gBossFightTriggers = [
     zoneRegex: /^Middle La Noscea$/,
     startRegex: /:You bow courteously to the striking dummy/,
     endRegex: /:You bid farewell to the striking dummy/,
-    countdownStarts: false,
+    countdownStarts: true,
   },
   {
     id: 'o1s',
