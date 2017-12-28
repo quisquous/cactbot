@@ -109,12 +109,6 @@
       //console.log("Game active: " + e.detail.active);
     });
 
-    document.addEventListener("onBossFightStart", function(e) {
-      document.getElementById('event').innerText = "BossFight Start: " + e.detail.name + " : " + e.detail.pullCount;
-    });
-    document.addEventListener("onBossFightEnd", function(e) {
-      document.getElementById('event').innerText = "BossFight End";
-    });
     document.addEventListener("onLogEvent", function(e) {
       for (var i = 0; i < e.detail.logs.length; i++) {
         // Match "/echo tts:<stuff>"

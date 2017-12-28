@@ -365,45 +365,6 @@ namespace Cactbot {
       }
     }
 
-    public class BossFightStart : JSEvent {
-      public BossFightStart(string name, int pull_count) {
-        this.name = name;
-        this.pullCount = pull_count;
-      }
-      public string EventName() { return "onBossFightStart"; }
-
-      public string name;
-      public int pullCount;
-    };
-
-    public class BossFightEnd : JSEvent {
-      public string EventName() { return "onBossFightEnd"; }
-    };
-
-    public class FightPhaseStart : JSEvent {
-      public FightPhaseStart(string phase_id, Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
-        this.name = phase_id;
-        this.dps.Encounter = encounter;
-        this.dps.Combatant = combatant;
-      }
-      public string EventName() { return "onFightPhaseStart"; }
-
-      public string name;
-      public DPSDetail dps;
-    }
-
-    public class FightPhaseEnd : JSEvent {
-      public FightPhaseEnd(string phase_id, Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
-        this.name = phase_id;
-        this.dps.Encounter = encounter;
-        this.dps.Combatant = combatant;
-      }
-      public string EventName() { return "onFightPhaseEnd"; }
-
-      public string name;
-      public DPSDetail dps;
-    }
-
     public class SendSaveData : JSEvent {
       public SendSaveData(string data) {
         this.data = data;
