@@ -18,11 +18,7 @@ class PullCounter {
   }
 
   OnFightStart(boss) {
-    if (!(boss.id in this.pullCounts))
-      this.pullCounts[boss.id] = 1;
-    else
-      this.pullCounts[boss.id]++;
-    this.bossStarted = true;
+    this.pullCounts[boss.id] = (this.pullCounts[boss.id] || 0) + 1;
 
     this.element.innerText = this.pullCounts[boss.id];
     this.element.classList.remove('wipe');
