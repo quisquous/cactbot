@@ -353,7 +353,7 @@ namespace Cactbot {
       bool in_act_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
       bool in_game_combat = ffxiv_.GetInGameCombat();
       if (!notify_state_.in_act_combat.HasValue || in_act_combat != notify_state_.in_act_combat ||
-          notify_state_.in_game_combat.HasValue || in_game_combat != notify_state_.in_game_combat) {
+          !notify_state_.in_game_combat.HasValue || in_game_combat != notify_state_.in_game_combat) {
         notify_state_.in_act_combat = in_act_combat;
         notify_state_.in_game_combat = in_game_combat;
         OnInCombatChanged(new JSEvents.InCombatChangedEvent(in_act_combat, in_game_combat));
