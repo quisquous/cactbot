@@ -92,6 +92,12 @@ class CactbotLanguageKo extends CactbotLanguage {
     this.countdownCancelRegex = function() {
       return /Countdown canceled by /;
     };
+    this.areaSealRegex = function() {
+      return /:(.*) will be sealed off in /;
+    };
+    this.areaUnsealRegex = function() {
+      return /:(.*) is no longer sealed/;
+    };
   }
 }
 

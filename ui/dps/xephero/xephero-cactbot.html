@@ -1,395 +1,52 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <link rel="stylesheet" href="../../../resources/resize_handle.css">
-    <script src="../../../resources/resize_handle.js"></script>
-    <script type="text/javascript" src="../../../resources/lib/jquery/jquery-1.11.3.min.js"></script>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="../../../resources/resize_handle.css">
+  <script src="../../../resources/resize_handle.js"></script>
+  <script type="text/javascript" src="../../../resources/lib/jquery/jquery-1.11.3.min.js"></script>
 
-    <script src="dps_phase_tracker.js"></script>
-    <style>
-        html {
-            width: 100%;
-            height: 100%;
-        }
-        body {
-            margin: 0px;
-            overflow: hidden;
-        }
-        .box {
-            font-family: Tahoma, Verdana;
-            font-size: 10px;
-            color: #ded7be;
-            background-color: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            padding: 0px;
-        }
-        #overlay {
-            margin-top: auto;
-        }
-        .title {
-            display: flex;
-            flex-direction: row;
-        }
-        .title .name {
-            order: 1;
-            align-self: flex-start;
-            margin-right: auto;
-        }
-        .title .misses {
-            flex-shrink: 0;
-            order: 2;
-            align-self: flex-end;
-        }
-        .title .number {
-            flex-shrink: 0;
-            order: 3;
-            align-self: flex-end;
-        }
-        .phase {
-            border-radius: 10px;
-            font-size: 19px;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
-        .phasename {
-            font-size: 18px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            order: -100;
-        }
-        .phasetotal {
-            order: -99;
-        }
-        .number {
-            margin-left: 3px;
-            margin-right: 3px;
-        }
+  <script src="../../../resources/regexes.js"></script>
+  <script src="../../../resources/lang.js"></script>
+  <script src="../../../resources/lang/en.js"></script>
+  <script src="../../../resources/lang/ko.js"></script>
+  <script src="../../../resources/fights.js"></script>
+  <script src="dps_phase_tracker.js"></script>
+  <script src="xephero.js"></script>
 
-        #topcontainer {
-            width: 100%;
-            display: flex;
-        }
+  <link rel="stylesheet" href="xephero.css">
 
-        #overlaysource {
-            display: none;
-        }
-        #phasesource {
-            display: none;
-        }
-        #phasenumbersource {
-            display: none;
-        }
-
-        .highestdps {
-            text-decoration: underline;
-        }
-
-        ol {
-            list-style-type: none;
-            margin: 0px;
-        }
-
-        li {
-            height: 23px;
-        }
-
-        li .dps {
-            display: inline-block;
-            color: #ded7be;
-            width: 75px;
-            text-align: right;
-            font-size: 19px;
-        }
-
-        li .name {
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        li .detail {
-            display: inline-block;
-            vertical-align: top;
-            color: #ded7be;
-            font-size: 12px;
-            width: calc(100% - 80px);
-        }
-
-        li .detail .number {
-            color: #ded7be;
-        }
-
-        li .detail .misses {
-            font-weight: bold;
-            font-size: 14px;
-            margin-right: 5px;
-            margin-left: 5px;
-        }
-
-        li .bar {
-            display: block;
-            height: 5px;
-            background-color: #9d9165;
-        }
-
-        li.you {
-            background-color: #5d5125;
-        }
-
-        .hide {
-            display: none;
-        }
-    </style>
-    <script type="text/javascript">
-        $(function() {
-            "use strict";
-
-            var g_current_zone = null;
-            var g_ignore_zones = [
-                'Seal Rock (Seize)',
-                'The Borderland Ruins (Secure)',
-                'The Fields Of Glory (Shatter)',
-            ];
-
-            var rows = 10;
-            var rdps_max = 0;
-
-            var tracker = new DpsPhaseTracker;
-
-            function hideOverlay() {
-                $('#overlay').addClass('hide');
-            }
-
-            function showOverlay() {
-                $('#overlay').removeClass('hide');
-            }
-
-            function update(dps) {
-                showOverlay();
-
-                var encounter = dps.Encounter;
-                var combatants = dps.Combatant;
-                var template = $('#overlaysource li');
-                var overlay = $('#overlay');
-                var container = overlay.clone();
-                // Reserve one row for the phase titles.
-                var rows = Math.floor($(window).height() / template.height()) - 1;
-
-                // todo: animate changes while combat is active?
-                // for now, always just fully replace the content
-
-                container.html('');
-
-                var rdps = parseFloat(encounter.encdps);
-
-                // sanity check
-                if (!isNaN(rdps) && rdps != Infinity) {
-                    rdps_max = Math.max(rdps_max, rdps);
-                }
-
-                var header = template.clone();
-                if (encounter.encdps.length <= 7) {
-                    header.find('.dps').text(encounter.encdps);
-                } else {
-                    header.find('.dps').text(encounter.ENCDPS);
-                }
-
-                header.find('.name').text(encounter.title);
-                header.find('.number').text(encounter.duration);
-                header.find('.bar').css('width', ((rdps / rdps_max) * 100) + '%');
-
-                container.append(header);
-
-                var limit = Math.max(combatants.length, rows);
-                var names = Object.keys(combatants).slice(0,rows-1);
-                var maxdps = false;
-
-                var dpsOrder = {};
-                for (var i = 0; i < names.length; i++) {
-                    var combatant = combatants[names[i]];
-                    var row = template.clone();
-
-                    if (!maxdps) {
-                        maxdps = parseFloat(combatant.encdps);
-                    }
-
-                    if (combatant.name == 'YOU') {
-                        row.addClass('you');
-                    }
-                    dpsOrder[combatant.name] = i;
-
-                    row.find('.dps').text(combatant.encdps);
-                    row.find('.name').text(combatant.Job.toUpperCase() + ' ' + combatant.name);
-                    row.find('.number').text(combatant.damage);
-                    row.find('.misses').text(combatant.misses > 0 ? '(' + combatant.misses + ')' : '');
-                    row.find('.bar').css('width', ((parseFloat(combatant.encdps) / maxdps) * 100) + '%');
-
-                    container.append(row);
-                }
-
-                overlay.replaceWith(container);
-
-                if (tracker.phases.length >= 1) {
-                    // Don't show the first phase if it starts immediately with the encounter.
-                    if (tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1 || tracker.phases.length >= 2) {
-                        for (var i = 0; i < tracker.phases.length; ++i) {
-                            updatePhase(tracker.phases[i], dpsOrder);
-                        }
-                    }
-                }
-            }
-
-            function updatePhase(phase, dpsOrder) {
-                if (!phase.diff) {
-                    return;
-                }
-
-                if (!phase.element) {
-                    var container = $('#phasesource ol').clone();
-                    phase.element = container;
-                    $('#topcontainer').append(container);
-                    // Map of combatants => elements
-                    phase.rowMap = {};
-                }
-
-                var phasename = phase.element.find('.phasename');
-                phasename.text(phase.name);
-                var phasetotal = phase.element.find('.phasetotal');
-                phasetotal.text(phase.diff.Encounter.ENCDPS);
-
-                var maxPhaseDPS = null;
-                for (var name in dpsOrder) {
-                    var combatant = phase.diff.Combatant[name];
-                    if (!combatant) {
-                        phase.diff.Combatant[name] = combatant = {
-                            ENCDPS: '',
-                        };
-                    }
-                    var row = phase.rowMap[name];
-                    if (!row) {
-                        row = $('#phasenumbersource li').clone();
-                        if (name == 'YOU') {
-                            row.addClass('you');
-                        }
-                        phase.element.append(row);
-                        phase.rowMap[name] = row;
-                    }
-                    row.find('.number').text(combatant.ENCDPS);
-
-                    var order = dpsOrder[name];
-                    row.removeClass('hide');
-                    row.removeClass('highestdps');
-                    row.css('order', dpsOrder[name]);
-
-                    if (!maxPhaseDPS || combatant.ENCDPS > maxPhaseDPS.dps) {
-                        maxPhaseDPS = {
-                            dps: combatant.ENCDPS,
-                            row: row,
-                        };
-                    }
-                }
-
-                // Rows that used to be in dpsOrder but now aren't should be
-                // hidden.
-                for (var name in phase.rowMap) {
-                    var order = dpsOrder[name];
-                    if (order === undefined) {
-                        phase.rowMap[name].addClass('hide');
-                    }
-                }
-
-                if (maxPhaseDPS) {
-                    maxPhaseDPS.row.addClass('highestdps');
-                }
-            }
-
-            function handleEvent(type, e) {
-                 if (type == 'onZoneChangedEvent') {
-                     g_current_zone = e.detail.zoneName;
-                     if (g_ignore_zones.indexOf(g_current_zone) >= 0) {
-                         console.log('ignoring zone');
-                     }
-                    tracker.clearPhases();
-                    hideOverlay();
-                    return;
-                }
-                // DPS numbers in large pvp is not useful and hella noisy.
-                if (g_ignore_zones.indexOf(g_current_zone) >= 0) {
-                    return;
-                }
-                if (type === 'onOverlayDataUpdate') {
-                    tracker.onOverlayDataUpdate(e.detail);
-                    update(e.detail);
-                } else if (type === 'onBossFightStart') {
-                    tracker.onFightStart();
-                } else if (type === 'onBossFightEnd') {
-                    tracker.onFightEnd();
-                } else if (type === 'onFightPhaseStart') {
-                    var d = e.detail;
-                    tracker.onFightPhaseStart(d.name, d.dps);
-                } else if (type === 'onFightPhaseEnd') {
-                    var d = e.detail;
-                    tracker.onFightPhaseEnd(d.name, d.dps);
-                }
-            }
-
-            $(document).on('onOverlayDataUpdate', function(e) {
-                handleEvent('onOverlayDataUpdate', e.originalEvent);
-            });
-            $(document).on('onZoneChangedEvent', function (e) {
-                handleEvent('onZoneChangedEvent', e.originalEvent);
-            });
-            $(document).on('onBossFightStart', function (e) {
-                handleEvent('onBossFightStart', e.originalEvent);
-            });
-            $(document).on('onBossFightEnd', function (e) {
-                handleEvent('onBossFightEnd', e.originalEvent);
-            });
-            $(document).on('onFightPhaseStart', function (e) {
-                handleEvent('onFightPhaseStart', e.originalEvent);
-            });
-            $(document).on('onFightPhaseEnd', function (e) {
-                handleEvent('onFightPhaseEnd', e.originalEvent);
-            });
-
-            window.addEventListener('message', function(e) {
-                handleEvent(e.data.type, e.data);
-            });
-        });
-    </script>
+  <!-- User config -->
+  <link rel="stylesheet" href="../../../user/xephero.css">
+  <script src="../../../user/xephero.js"></script>
 </head>
 <body>
 <ol id="overlaysource">
-    <li>
-        <span class="dps"></span>
-        <div class="detail">
-            <span class="title">
-                <span class="name"></span>
-                <span class="number"></span>
-                <span class="misses"></span>
-            </span>
-            <span class="bar"></span>
-        </div>
-    </li>
+  <li>
+    <span class="dps"></span>
+    <div class="detail">
+      <span class="title">
+        <span class="name"></span>
+        <span class="number"></span>
+        <span class="misses"></span>
+      </span>
+      <span class="bar"></span>
+    </div>
+  </li>
 </ol>
 <div id="phasesource">
-    <ol class="phase box">
-        <li><span class="phasename"></span></li>
-        <li><span class="phasetotal number"></span></li>
-    </ol>
+  <ol class="phase box">
+    <li><span class="phasename"></span></li>
+    <li><span class="phasetotal number"></span></li>
+  </ol>
 </div>
 <ol id="phasenumbersource">
-    <li><span class="number"></span></li>
+  <li><span class="number"></span></li>
 </ol>
 
 <div id="topcontainer">
-    <ol id="overlay" class="box"></ol>
+  <ol id="overlay" class="box"></ol>
 </div>
 </body>
 </html>
