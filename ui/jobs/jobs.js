@@ -301,7 +301,7 @@ function setupBuffTracker() {
       //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
       gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
       loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Embolden),
-      durationPosition: 1,
+      durationSeconds: 20,
       icon: kIconBuffEmbolden,
       // Lime.
       borderColor: '#57FC4A',
@@ -370,7 +370,7 @@ function setupBuffTracker() {
       side: 'left',
       text: 'elapsed',
     },
-  }
+  };
 }
 
 class Bars {
