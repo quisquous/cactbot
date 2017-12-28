@@ -404,6 +404,16 @@ namespace Cactbot {
       public DPSDetail dps;
     }
 
+    public class SendSaveData : JSEvent {
+      public SendSaveData(string data) {
+        this.data = data;
+      }
+
+      public string EventName() { return "onSendSaveData"; }
+
+      public string data;
+    }
+
     public class DataFilesRead : JSEvent {
       public DataFilesRead(Dictionary<string, string> files) {
         this.files = files;

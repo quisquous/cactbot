@@ -622,18 +622,6 @@ namespace Cactbot {
       fast_update_timer_.Start();
     }
 
-    public int IncrementAndGetPullCount(string boss_id) {
-      for (int i = 0; i < Config.BossInfoList.Count; ++i) {
-        if (Config.BossInfoList[i].id == boss_id) {
-          int pull_count = Config.BossInfoList[i].pull_count + 1;
-          Config.BossInfoList[i] = new BossInfo(boss_id, pull_count);
-          return pull_count;
-        }
-      }
-      Config.BossInfoList.Add(new BossInfo(boss_id, 1));
-      return 1;
-    }
-
     // ILogger implementation.
     public void LogDebug(string format, params object[] args) {
       // The Log() method is not threadsafe. Since this is called from Timer threads,
@@ -670,8 +658,13 @@ namespace Cactbot {
     public override void OverlayMessage(string message) {
       var reader = new JsonTextReader(new StringReader(message));
       var obj = message_serializer_.Deserialize<Dictionary<string, string>>(reader);
-      if (obj.ContainsKey("say"))
+      if (obj.ContainsKey("say")) {
         Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(obj["say"]);
+      } else if (obj.ContainsKey("getSaveData")) {
+        DispatchToJS(new JSEvents.SendSaveData(Config.OverlayData));
+      } else if (obj.ContainsKey("setSaveData")) {
+        Config.OverlayData = obj["setSaveData"];
+      }
     }
 
     // State that is tracked and sent to JS when it changes.

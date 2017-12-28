@@ -3,52 +3,16 @@
 <link rel="stylesheet" href="../../resources/defaults.css">
 <link rel="stylesheet" href="../../resources/resize_handle.css">
 <script src="../../resources/resize_handle.js"></script>
+<script src="../../resources/lang.js"></script>
+<script src="../../resources/lang-en.js"></script>
+<script src="../../resources/fights.js"></script>
+<script src="pull_counter.js"></script>
 
-<script>
-    document.addEventListener("onZoneChangedEvent", function (e) {
-        document.getElementById('pullcounttext').innerText = '';
-    });
-    document.addEventListener("onBossFightStart", function (e) {
-        var element = document.getElementById('pullcounttext');
-        element.innerText = e.detail.pullCount;
-        element.classList.remove('wipe');
-    });
-    document.addEventListener("onBossFightEnd", function () {
-    });
-    document.addEventListener("onPartyWipe", function () {
-        document.getElementById('pullcounttext').classList.add('wipe');
-    });
-</script>
-<style>
-
-#pullcount {
-    color: white;
-    font-size: 80px;
-    text-align: center;
-    text-shadow: 0 2px black,0 -2px black,2px 0 black,-2px 0 black,1px 1px black,-1px -1px black,-1px 1px black,1px -1px black
-}
-
-.wipe {
-    text-decoration: line-through;
-}
-
-.resize-helper-inline {
-  display: none;
-}
-.resizeHandle .resize-helper-inline {
-  display: inline;
-}
-
-.resizeHandle .hide-if-resizing {
-  display:none;
-}
-
-</style>
-
+<link rel="stylesheet" href="pull_counter.css">
 
 <!-- User config -->
-<link rel="stylesheet" href="../../user/pullcounter.css">
-<script src="../../user/pullcounter.js"></script>
+<link rel="stylesheet" href="../../user/pull_counter.css">
+<script src="../../user/pull_counter.js"></script>
 
 </head>
 <body>
