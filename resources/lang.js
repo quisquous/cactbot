@@ -6,7 +6,7 @@ class CactbotLanguage {
   constructor(lang) {
     this.lang = lang;
     this.playerName = null;
-    this.kAbilityId = Object.freeze({
+    this.kAbility = Object.freeze({
       DragonKick: '4A',
       TwinSnakes: '3D',
       Demolish: '42',
@@ -53,7 +53,6 @@ class CactbotLanguage {
   OnPlayerNameChange(playerName) {
     this.playerName = playerName;
     this.InitStrings(playerName);
-    this.PostProcess();
   }
 
   ValidateEffect(effectName) {
@@ -63,39 +62,9 @@ class CactbotLanguage {
   }
 
   ValidateAbility(abilityId) {
-    var validAbilities = Object.keys(this.kAbilityId).map((function(k){return this.kAbilityId[k]}).bind(this));
+    var validAbilities = Object.keys(this.kAbility).map((function(k){return this.kAbility[k]}).bind(this));
     if (!abilityId || validAbilities.indexOf(abilityId) < 0)
       console.error('Invalid ability: ' + abilityId);
-  }
-
-  PostProcess() {
-    var keys = Object.keys(this.kAbilityId);
-    var numAbilityNames = Object.keys(this.kAbility).length;
-    if (!this.kAbility)
-      console.error('Missing gLang.kAbility');
-    if (keys.length != numAbilityNames)
-      console.error('kAbilityId/kAbility length mismatch: ' + keys.length + ' vs ' + numAbilityNames);
-
-    this.kAbilIdToName = {};
-    this.kAbilNameToId = {};
-    for (var i = 0; i < keys.length; ++i) {
-      var key = keys[i];
-      if (!(key in this.kAbility))
-        console.error('Missing key ' + key + ' in kAbility');
-      // Id to name mapping must be bijective.
-      if (this.kAbilityId[key] in this.kAbilIdToName)
-        console.error('Duplicate ability id: ' + this.kAbilityId[key]);
-      if (!this.kAbilityId[key])
-        console.error(key + ' has an invalid ability id');
-      if (this.kAbility[key] in this.kAbilNameToId)
-        console.error('Duplicate ability name: ' + this.kAbility[key]);
-      this.kAbilIdToName[this.kAbilityId[key]] = this.kAbility[key];
-      this.kAbilNameToId[this.kAbility[key]] = this.kAbilityId[key];
-    }
-    if (Object.keys(this.kAbilIdToName).length != Object.keys(this.kAbilNameToId).length)
-      console.error('Id to name mapping must be the same size');
-    Object.freeze(this.kAbilNameToId);
-    Object.freeze(this.kAbilIdToName);
   }
 
   // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100

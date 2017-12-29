@@ -6,45 +6,6 @@ class CactbotLanguageEn extends CactbotLanguage {
   }
 
   InitStrings(playerName) {
-    this.kAbility = Object.freeze({
-      DragonKick: 'Dragon Kick', // 0x4a
-      TwinSnakes: 'Twin Snakes', // 0x65
-      Demolish: 'Demolish', // 0x42
-      Verstone: 'Verstone', // 0x1d57
-      Verfire: 'Verfire', // 0x1d56
-      Veraero: 'Veraero', // 0x1d53
-      Verthunder: 'Verthunder', // 0x1d51
-      Verholy: 'Verholy', // 0x1d66
-      Verflare: 'Verflare', // 0x1d65
-      Jolt2: 'Jolt II', // 0x1d64
-      Jolt: 'Jolt', // 0x1d4f
-      Impact: 'Impact', // 0x1d62
-      Scatter: 'Scatter', // 0x1d55
-      Vercure: 'Vercure', // 0x1d5a
-      Verraise: 'Verraise', // 0x1d63
-      Riposte: 'Riposte', // 0x1d50
-      Zwerchhau: 'Zwerchhau', // 0x1d58
-      Redoublement: 'Redoublement', // 0x1d5c
-      Moulinet: 'Moulinet', // 0x1d59
-      EnchantedRiposte: 'Enchanted Riposte', // 0x1d67
-      EnchantedZwerchhau: 'Enchanted Zwerchhau', // 0x1d68
-      EnchantedRedoublement: 'Enchanted Redoublement', // 0x1d69
-      EnchantedMoulinet: 'Enchanted Moulinet', // 0x1d6a
-      Tomahawk: 'Tomahawk', // 0x2e
-      Overpower: 'Overpower', // 0x29
-      HeavySwing: 'Heavy Swing', // 0x1f
-      SkullSunder: 'Skull Sunder', // 0x23
-      ButchersBlock: "Butcher's Block", // 0x2f
-      Maim: 'Maim', // 0x25
-      StormsEye: "Storm's Eye", // 0x2d
-      StormsPath: "Storm's Path", // 0x2a
-      TrickAttack: 'Trick Attack', // 0x8d2
-      Embolden: 'Embolden', // 0x1d60
-      Aetherflow: 'Aetherflow', // 0xa6
-      ChainStrategem: 'Chain Strategem', // 0x1d0c
-      Hypercharge: 'Hypercharge', // 0xb45
-    });
-
     this.kZone = Object.freeze({
       O1S: /Deltascape V1\.0 \(Savage\)/,
       O2S: /Deltascape V2\.0 \(Savage\)/,

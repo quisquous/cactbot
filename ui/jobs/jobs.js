@@ -134,31 +134,31 @@ class ComboTracker {
 function setupComboTracker(callback) {
   var comboTracker = new ComboTracker(kComboBreakers, callback);
   comboTracker.AddCombo([
-    gLang.kAbilityId.EnchantedRiposte,
-    gLang.kAbilityId.EnchantedZwerchhau,
-    gLang.kAbilityId.EnchantedRedoublement,
-    gLang.kAbilityId.Verflare,
+    gLang.kAbility.EnchantedRiposte,
+    gLang.kAbility.EnchantedZwerchhau,
+    gLang.kAbility.EnchantedRedoublement,
+    gLang.kAbility.Verflare,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbilityId.EnchantedRiposte,
-    gLang.kAbilityId.EnchantedZwerchhau,
-    gLang.kAbilityId.EnchantedRedoublement,
-    gLang.kAbilityId.Verholy,
+    gLang.kAbility.EnchantedRiposte,
+    gLang.kAbility.EnchantedZwerchhau,
+    gLang.kAbility.EnchantedRedoublement,
+    gLang.kAbility.Verholy,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbilityId.HeavySwing,
-    gLang.kAbilityId.SkullSunder,
-    gLang.kAbilityId.ButchersBlock,
+    gLang.kAbility.HeavySwing,
+    gLang.kAbility.SkullSunder,
+    gLang.kAbility.ButchersBlock,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbilityId.HeavySwing,
-    gLang.kAbilityId.Maim,
-    gLang.kAbilityId.StormsEye,
+    gLang.kAbility.HeavySwing,
+    gLang.kAbility.Maim,
+    gLang.kAbility.StormsEye,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbilityId.HeavySwing,
-    gLang.kAbilityId.Maim,
-    gLang.kAbilityId.StormsPath,
+    gLang.kAbility.HeavySwing,
+    gLang.kAbility.Maim,
+    gLang.kAbility.StormsPath,
   ]);
   return comboTracker;
 }
@@ -172,13 +172,13 @@ function setupRegexes() {
   kReRdmImpactProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
   kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin)
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
-  kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbilityId.Aetherflow);
+  kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
   kReFoodBuff = gLang.youGainEffectRegex(gLang.kEffect.WellFed);
   kFormChange = gLang.youGainEffectRegex(gLang.kEffect.OpoOpoForm, gLang.kEffect.RaptorForm, gLang.kEffect.CoeurlForm);
   kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
-  kDragonKick = gLang.youUseAbilityRegex(gLang.kAbilityId.DragonKick);
-  kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbilityId.TwinSnakes);
-  kDemolish = gLang.youUseAbilityRegex(gLang.kAbilityId.Demolish);
+  kDragonKick = gLang.youUseAbilityRegex(gLang.kAbility.DragonKick);
+  kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
+  kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
   kBluntDebuff = gLang.gainsEffectRegex(gLang.kEffect.BluntResistDown);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) { return gLang.kZone[x]; }));
 
@@ -278,7 +278,7 @@ function setupBuffTracker() {
     trick: {
       // The flags encode positional data, but the exact specifics are unclear.
       // Trick attack missed appears to be "710?03" but correct is "28710?03".
-      gainRegex: gLang.abilityRegex(gLang.kAbilityId.TrickAttack, null, null, '28......'),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '28......'),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       // Magenta.
@@ -299,7 +299,7 @@ function setupBuffTracker() {
       //   1A:Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
       // Instead, use somebody using the effect on you:
       //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-      gainRegex: gLang.abilityRegex(gLang.kAbilityId.Embolden, null, gLang.playerName),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
       loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Embolden),
       durationSeconds: 20,
       icon: kIconBuffEmbolden,
@@ -317,7 +317,7 @@ function setupBuffTracker() {
       sortKey: 4,
     },
     chain: {
-      gainRegex: gLang.abilityRegex(gLang.kAbilityId.ChainStrategem),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.ChainStrategem),
       durationSeconds: 15,
       icon: kIconBuffChainStratagem,
       // Blue.
@@ -325,7 +325,7 @@ function setupBuffTracker() {
       sortKey: 5,
     },
     hyper: {
-      gainRegex: gLang.abilityRegex(gLang.kAbilityId.Hypercharge),
+      gainRegex: gLang.abilityRegex(gLang.kAbility.Hypercharge),
       durationSeconds: 20,
       icon: kIconBuffHypercharge,
       // Aqua.
@@ -1134,31 +1134,31 @@ class Bars {
 
       if (!skill)
         skill = "";
-      if (skill == gLang.kAbilityId.Riposte || skill == gLang.kAbilityId.EnchantedRiposte)
+      if (skill == gLang.kAbility.Riposte || skill == gLang.kAbility.EnchantedRiposte)
         this.o.rdmCombo1.classList.add('active');
       else
         this.o.rdmCombo1.classList.remove('active');
-      if (skill == gLang.kAbilityId.Zwerchhau || skill == gLang.kAbilityId.EnchantedZwerchhau)
+      if (skill == gLang.kAbility.Zwerchhau || skill == gLang.kAbility.EnchantedZwerchhau)
         this.o.rdmCombo2.classList.add('active');
       else
         this.o.rdmCombo2.classList.remove('active');
-      if (skill == gLang.kAbilityId.Redoublement || skill == gLang.kAbilityId.EnchantedRedoublement)
+      if (skill == gLang.kAbility.Redoublement || skill == gLang.kAbility.EnchantedRedoublement)
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
     } else if (this.job == "WAR") {
-      if (skill == gLang.kAbilityId.StormsEye) {
+      if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
         this.o.eyeBox.duration = 30;
       }
 
       // Min number of skills until eye without breaking combo.
       var minSkillsUntilEye;
-      if (skill == gLang.kAbilityId.HeavySwing) {
+      if (skill == gLang.kAbility.HeavySwing) {
         minSkillsUntilEye = 2;
-      } else if (skill == gLang.kAbilityId.SkullSunder) {
+      } else if (skill == gLang.kAbility.SkullSunder) {
         minSkillsUntilEye = 4;
-      } else if (skill == gLang.kAbilityId.Maim) {
+      } else if (skill == gLang.kAbility.Maim) {
         minSkillsUntilEye = 1;
       } else {
         // End of combo, or broken combo.
