@@ -56,28 +56,16 @@ class CactbotLanguage {
     this.PostProcess();
   }
 
-  AbilitiesToIds() {
-    // Allow passing in an array as args.
-    var array = arguments.length == 1 && Array.isArray(arguments[0]) ? arguments[0] : arguments;
-
-    var ids = [];
-    for (var i = 0; i < array.length; ++i) {
-      var abilityName = array[i];
-      this.ValidateAbility(abilityName);
-      ids.push(this.kAbilNameToId[abilityName]);
-    }
-    return ids;
-  }
-
   ValidateEffect(effectName) {
     var validEffects = Object.keys(this.kEffect).map((function(k){return this.kEffect[k]}).bind(this));
     if (!effectName || validEffects.indexOf(effectName) < 0)
       console.error('Invalid effect: ' + effectName);
   }
 
-  ValidateAbility(abilityName) {
-    if (!abilityName || !(abilityName in this.kAbilNameToId))
-      console.error('Invalid ability: ' + abilityName);
+  ValidateAbility(abilityId) {
+    var validAbilities = Object.keys(this.kAbilityId).map((function(k){return this.kAbilityId[k]}).bind(this));
+    if (!abilityId || validAbilities.indexOf(abilityId) < 0)
+      console.error('Invalid ability: ' + abilityId);
   }
 
   PostProcess() {
@@ -114,14 +102,14 @@ class CactbotLanguage {
   // We can not look for log messages from FFXIV "You use X" here. Instead we
   // look for the actual ability usage provided by the XIV plugin.
   // Also, the networked parse info is given much quicker than the lines from the game.
-  youUseAbilityRegex() {
-    var ids = this.AbilitiesToIds.apply(this, arguments);
+  youUseAbilityRegex(ids) {
     return Regexes.Parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.AnyOf(ids) + ':');
   };
-  youStartUsingRegex() {
-    var ids = this.AbilitiesToIds.apply(this, arguments);
+
+  youStartUsingRegex(ids) {
     return Regexes.Parse(' 14:' + Regexes.AnyOf(ids) + ':' + this.playerName + ' starts using ');
   };
+
   youGainEffectRegex() {
     var effects = [];
     for (var i = 0; i < arguments.length; ++i) {
@@ -131,6 +119,7 @@ class CactbotLanguage {
     }
     return Regexes.Parse(' 1A:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\.');
   };
+
   youLoseEffectRegex() {
     var effects = [];
     for (var i = 0; i < arguments.length; ++i) {
@@ -141,17 +130,17 @@ class CactbotLanguage {
     return Regexes.Parse(' 1E:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\.');
   };
 
-  abilityRegex(abilityName, attacker, target, flags) {
-    this.ValidateAbility(abilityName);
+  abilityRegex(abilityId, attacker, target, flags) {
+    this.ValidateAbility(abilityId);
     if (!attacker)
       attacker = '[^:]*';
     // type:attackerId:attackerName:abilityId:abilityName:targetId:targetName:flags:
-    var r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + this.kAbilNameToId[abilityName] + ':';
+    var r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + abilityId + ':';
     if (target || flags) {
       if (!target)
-	target = '[^:]*';
+        target = '[^:]*';
       if (!flags)
-	flags = '[^:]*';
+        flags = '[^:]*';
       r += '[^:]*:\\y{ObjectId}:' + target + ':' + flags + ':';
     }
     return Regexes.Parse(r);
