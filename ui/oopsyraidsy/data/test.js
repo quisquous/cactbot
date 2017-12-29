@@ -18,7 +18,7 @@
     },
     {
       id: 'Test Bootshine',
-      damageRegex: 'Bootshine',
+      damageRegex: gLang.kAbility.Bootshine,
       condition: function(e) {
         return e.targetName == 'Striking Dummy';
       },
@@ -47,7 +47,7 @@
     },
     {
       id: 'Test One Ilm Punch',
-      damageRegex: 'One Ilm Punch',
+      damageRegex: gLang.kAbility.OneIlmPunch,
       condition: function(e) {
         return e.targetName == 'Striking Dummy';
       },

@@ -8,35 +8,35 @@
     },
     {
       id: 'General Food Buff',
-      buffRegex: 'Well Fed',
+      losesEffectRegex: gLang.kEffect.WellFed,
       mistake: function(e, data) {
         data.lostFood = data.lostFood || {};
         // Well Fed buff happens repeatedly when it falls off (WHY),
         // so suppress multiple occurrences.
-        if (!data.inCombat || e.gains || data.lostFood[e.targetName])
+        if (!data.inCombat || data.lostFood[e.targetName])
           return;
         data.lostFood[e.targetName] = true;
         return { type: 'warn', blame: e.targetName, text: 'lost food buff' };
       },
     },
     {
-      buffRegex: 'Well Fed',
+      gainsEffectRegex: gLang.kEffect.WellFed,
       run: function(e, data) {
-        if (!e.gains || !data.lostFood)
+        if (!data.lostFood)
           return;
         delete data.lostFood[e.targetName];
       },
     },
     {
       id: 'General Rabbit Medium',
-      abilityRegex: 'Rabbit Medium',
+      abilityRegex: gLang.kAbility.RabbitMedium,
       mistake: function(e, data) {
         return { type: 'warn', blame: e.attackerName, text: 'bunny' };
       },
     },
     {
       id: 'General Missed Trick',
-      damageRegex: 'Trick Attack',
+      damageRegex: gLang.kAbility.TrickAttack,
       condition: function(e) {
         // 28710?03 == success
         //   710?03 == failure

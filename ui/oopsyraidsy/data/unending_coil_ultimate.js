@@ -4,7 +4,7 @@
   triggers: [
     {
       id: 'UCU Twister Death',
-      damageRegex: 'Twister',
+      damageRegex: gLang.kAbility.Twister,
       condition: function(e, data) {
         // Instant death uses '32' as its flags, differentiating
         // from the explosion damage you take when somebody else
@@ -17,41 +17,39 @@
     },
     {
       id: 'UCU Dynamo',
-      damageRegex: 'Iron Dynamo',
+      damageRegex: gLang.kAbility.LunarDynamo,
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'Dynamo' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'UCU Chariot',
-      damageRegex: 'Iron Chariot',
+      damageRegex: gLang.kAbility.IronChariot,
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'Chariot' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'UCU White Puddle',
-      damageRegex: 'Wings Of Salvation',
+      damageRegex: gLang.kAbility.WingsOfSalvation,
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'White Puddle' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'UCU Chain Lightning',
-      damageRegex: 'Chain Lightning',
+      damageRegex: gLang.kAbility.ChainLightning,
       condition: function(e, data) {
-        // Chain lightning gets log lines when it goes out
-        // on players, so ignore those log lines.
-        return data.IsPlayerId(e.targetId) && e.abilityId == '26C8';
+        return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
         // It's hard to assign blame for lightning.  The debuffs
@@ -62,22 +60,21 @@
     },
     {
       id: 'UCU Burns',
-      buffRegex: 'Burns',
-      condition: function(e) { return e.gains; },
+      gainsEffectRegex: gLang.kEffect.Burns,
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: 'Burn Dot' };
+        return { type: 'fail', blame: e.targetName, text: e.effectName };
       },
     },
     {
       id: 'UCU Sludge',
-      buffRegex: 'Sludge',
-      condition: function(e) { return e.gains; },
+      gainsEffectRegex: gLang.kEffect.Sludge,
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: 'Sludge Dot' };
+        return { type: 'fail', blame: e.targetName, text: e.effectName };
       },
     },
     {
-      buffRegex: 'Doom',
+      gainsEffectRegex: gLang.kEffect.Doom,
+      losesEffectRegex: gLang.kEffect.Doom,
       run: function(e, data) {
         data.hasDoom = data.hasDoom || {};
         data.hasDoom[e.targetName] = e.gains;
@@ -97,19 +94,18 @@
       // died to doom.  You can get non-fatally iceballed or auto'd in between,
       // but what can you do.
       id: 'UCU Doom',
-      buffRegex: 'Doom',
-      condition: function(e) { return e.gains; },
+      gainsEffectRegex: gLang.kEffect.Doom,
       delaySeconds: function(e) { return e.durationSeconds - 1; },
       deathReason: function(e, data, matches) {
         if (!data.hasDoom || !data.hasDoom[e.targetName])
           return;
         var reason;
         if (e.durationSeconds < 9)
-          reason = 'doom #1';
+          reason = e.effectName + ' #1';
         else if (e.durationSeconds < 14)
-          reason = 'doom #2';
+          reason = e.effectName + ' #2';
         else
-          reason = 'doom #3';
+          reason = e.effectName + ' #3';
         return { name: e.targetName, reason: reason };
       },
     },

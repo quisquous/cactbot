@@ -1,6 +1,7 @@
 "use strict";
 
 var Options = {
+  Language: 'en',
   NumLiveListItemsInCombat: 5,
   Triggers: [],
   PlayerNicks: {},
@@ -17,8 +18,6 @@ var Options = {
 
 // Internal trigger id for early pull
 var kEarlyPullId = "General Early Pull";
-
-var kBuffRegex = Regexes.Parse(/:(\y{Name}) (gains|loses) the effect of (.*) from (.*?)( for (\y{Float}) Seconds)?\./);
 
 // Character offsets into log lines for the chars of the type.
 var kTypeOffset0 = 15;
@@ -369,7 +368,7 @@ class DamageTracker {
     this.generalTriggers = [];
     this.damageTriggers = [];
     this.abilityTriggers = [];
-    this.buffTriggers = [];
+    this.effectTriggers = [];
     this.healTriggers = [];
     this.Reset();
   }
@@ -411,7 +410,7 @@ class DamageTracker {
       if (line[kTypeOffset0] != '1')
         continue;
       if (line[kTypeOffset1] == 'A' || line[kTypeOffset1] == 'E')
-        this.OnBuffEvent(line);
+        this.OnEffectEvent(line);
       if (line[kTypeOffset1] == '5' || line[kTypeOffset1] == '6')
         this.OnAbilityEvent(line.substr(kTypeOffset0).split(':'), line);
       if (line[kTypeOffset1] == '9')
@@ -450,10 +449,8 @@ class DamageTracker {
       fields[kFieldFlags + 1] = fields[kFieldFlags + 3];
     }
 
-    // Clobber ability names here.  For now, regexes will match on the
-    // abilityName prior to changing it in fields.
+    // Clobber ability names here.
     var abilityId = fields[kFieldAbilityId];
-    var abilityName = fields[kFieldAbilityName];
     if (abilityId in this.options.AbilityIdNameMap) {
       fields[kFieldAbilityName] = this.options.AbilityIdNameMap[abilityId];
     }
@@ -462,7 +459,7 @@ class DamageTracker {
     var evt;
     for (var i = 0; i < this.abilityTriggers.length; ++i) {
       var trigger = this.abilityTriggers[i];
-      var matches = abilityName.match(trigger.abilityRegex);
+      var matches = abilityId.match(trigger.idRegex);
       if (matches == null)
         continue;
       if (!evt)
@@ -476,7 +473,7 @@ class DamageTracker {
     if (lowByte == '04') {
       for (var i = 0; i < this.healTriggers.length; ++i) {
         var trigger = this.healTriggers[i];
-        var matches = abilityName.match(trigger.healRegex);
+        var matches = abilityId.match(trigger.idRegex);
         if (matches == null)
           continue;
         if (!evt)
@@ -491,14 +488,15 @@ class DamageTracker {
       return;
 
     // TODO track first puller here, collector doesn't need every damage line
-    this.collector.AddDamage(fields, line);
+    if (!this.collector.firstPuller)
+      this.collector.AddDamage(fields, line);
 
     if (IsPlayerId(fields[kFieldTargetId][0]))
       this.lastDamage[fields[kFieldTargetName]] = fields;
 
     for (var i = 0; i < this.damageTriggers.length; ++i) {
       var trigger = this.damageTriggers[i];
-      var matches = abilityName.match(trigger.damageRegex);
+      var matches = abilityId.match(trigger.idRegex);
       if (matches == null)
         continue;
       if (!evt)
@@ -507,30 +505,27 @@ class DamageTracker {
     }
   }
 
-  OnBuffEvent(line) {
-    var matches = line.match(kBuffRegex);
-    if (matches == null) {
-      console.error(['OnBuffEventParseError', line]);
-      return;
-    }
-    var buffName = matches[3];
+  OnEffectEvent(line) {
     var evt;
-    for (var i = 0; i < this.buffTriggers.length; ++i) {
-      var trigger = this.buffTriggers[i];
-      var nameMatches = buffName.match(trigger.buffRegex);
-      if (nameMatches == null)
+    for (var i = 0; i < this.effectTriggers.length; ++i) {
+      var trigger = this.effectTriggers[i];
+      var matches;
+      if (trigger.gainRegex)
+        matches = line.match(trigger.gainRegex);
+      if (!matches && trigger.loseRegex)
+        matches = line.match(trigger.loseRegex);
+      if (matches == null)
         continue;
       if (!evt) {
         evt = {
           targetName: matches[1],
-          buffName: matches[3],
-          gains: matches[2] == 'gains',
-          attackerName: matches[4],
+          effectName: matches[2],
+          attackerName: matches[3],
+          gains: !!matches[4],
+          durationSeconds: matches[4] ? Regexes.ParseLocaleFloat(matches[4]) : undefined,
         };
-        if (evt.gains)
-          evt.durationSeconds = Regexes.ParseLocaleFloat(matches[6]);
       }
-      this.OnTrigger(trigger, evt, nameMatches);
+      this.OnTrigger(trigger, evt, null);
     }
   }
 
@@ -654,8 +649,10 @@ class DamageTracker {
   }
 
   ReloadTriggers() {
-    // Wait for datafiles / jobs / zone events.
-    if (!this.triggerSets || !this.me | !this.zoneName)
+    this.ProcessDataFiles();
+
+    // Wait for datafiles / jobs / zone events / localization.
+    if (!this.triggerSets || !this.me || !this.zoneName)
       return;
 
     this.Reset();
@@ -663,7 +660,7 @@ class DamageTracker {
     this.generalTriggers = [];
     this.damageTriggers = [];
     this.abilityTriggers = [];
-    this.buffTriggers = [];
+    this.effectTriggers = [];
     this.healTriggers = [];
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
@@ -676,19 +673,23 @@ class DamageTracker {
           this.generalTriggers.push(trigger);
         }
         if ('damageRegex' in trigger) {
-          trigger.damageRegex = Regexes.Parse(trigger.damageRegex);
+          trigger.idRegex = Regexes.Parse(trigger.damageRegex);
           this.damageTriggers.push(trigger);
         }
         if ('abilityRegex' in trigger) {
-          trigger.abilityRegex = Regexes.Parse(trigger.abilityRegex);
+          trigger.idRegex = Regexes.Parse(trigger.abilityRegex);
           this.abilityTriggers.push(trigger);
         }
-        if ('buffRegex' in trigger) {
-          trigger.buffRegex = Regexes.Parse(trigger.buffRegex);
-          this.buffTriggers.push(trigger);
+        if ('gainsEffectRegex' in trigger) {
+          trigger.gainRegex = gLang.gainsEffectRegex('(' + trigger.gainsEffectRegex + ')', '(\\y{Name})', '(.*?)');
+          this.effectTriggers.push(trigger);
+        }
+        if ('losesEffectRegex' in trigger) {
+          trigger.loseRegex = gLang.losesEffectRegex('(' + trigger.losesEffectRegex + ')', '(\\y{Name})', '(.*?)');
+          this.effectTriggers.push(trigger);
         }
         if ('healRegex' in trigger) {
-          trigger.healRegex = Regexes.Parse(trigger.healRegex);
+          trigger.idRegex = Regexes.Parse(trigger.healRegex);
           this.healTriggers.push(trigger);
         }
       }
@@ -725,31 +726,43 @@ class DamageTracker {
   }
 
   OnDataFilesRead(e) {
+    this.dataFiles = e.detail.files;
+    this.ReloadTriggers();
+  }
+
+  ProcessDataFiles() {
+    if (this.triggerSets)
+      return;
+    if (!gLang)
+      return;
+    if (!this.me)
+      return;
+
     this.triggerSets = Options.Triggers;
-    for (var filename in e.detail.files) {
-      var text = e.detail.files[filename];
+    for (var filename in this.dataFiles) {
+      var text = this.dataFiles[filename];
       var json;
       try {
         json = eval(text);
       } catch (exception) {
-        console.log('Error parsing JSON from ' + filename + ': ' + exception);
+        console.error('Error parsing JSON from ' + filename + ': ' + exception);
         continue;
       }
       if (typeof json != "object" || !(json.length >= 0)) {
-        console.log('Unexpected JSON from ' + filename + ', expected an array');
+        console.error('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
       for (var i = 0; i < json.length; ++i) {
         if (!('zoneRegex' in json[i])) {
-          console.log('Unexpected JSON from ' + filename + ', expected a zoneRegex');
+          console.error('Unexpected JSON from ' + filename + ', expected a zoneRegex');
           continue;
         }
         if (!('triggers' in json[i])) {
-          console.log('Unexpected JSON from ' + filename + ', expected a triggers');
+          console.error('Unexpected JSON from ' + filename + ', expected a triggers');
           continue;
         }
         if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
-          console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+          console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
           continue;
         }
       }

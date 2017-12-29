@@ -48,7 +48,7 @@ Options.Triggers = [
     triggers: [
       {
         id: 'Test Self Crit Adlo',
-        healRegex: 'Adloquium',
+        healRegex: gLang.kAbility.Adloquium,
         condition: function(e, data) {
           return e.targetName == data.me && e.damageStr.substr(-1) == '!';
         },

@@ -34,10 +34,11 @@ Each trigger is an object with the following fields.  All fields are optional.
 * `id`: a string representing this trigger, for use in disabling triggers.  See **user/oopsyraidsy-example.js**.
 * `condition`: function returning bool for whether or not to run this trigger.
 * `regex`: regex matching the whole line.
-* `damageRegex`: regex that will only match abilities that do damage.
-* `healRegex`: regex that only matches healing abilities.
-* `buffRegex`: regex that matches gaining/losing buffs and debuffs.
-* `abilityRegex`: regex that matches any type of ability.
+* `damageRegex`: regex that will only match the ids of abilities that do damage.
+* `healRegex`: regex that only matches the ids of healing abilities.
+* `gainsEffectRegex`: regex that matches gaining effects by name.
+* `losesEffectRegex`: regex that matches loses any effects by name.
+* `abilityRegex`: regex that matches the ids of any type of ability.
 * `collectSeconds`: float (or function returning float) 
 * `delaySeconds`: float (or function returning float) for how long to wait before executing this trigger.  Ignored if `collectSeconds > 0`.
 * `deathReason`: overrides the reason that a player died if the player dies without taking any more damage.  This is for things that kill you without an obvious log line, e.g. forgetting to clear Beyond Death.
@@ -98,9 +99,9 @@ Every function specified in a trigger gets an event (or events) object.  This ob
 #### All Events
 * `event.line`: string, representing the entire log line.
 
-#### Buff Events (buffRegex)
+#### Effect Events (gainsEffectRegex, losesEffectRegex)
 * `event.targetName`: string, the target's full name.
-* `event.buffName`: string, the buff name gained, e.g. 'Beyond Death'.
+* `event.effectName`: string, the buff name gained, e.g. 'Beyond Death'.
 * `event.gains`: bool, true if the buff was gained, false if the buff was lost.
 * `event.attackerName`: string, the full name of the attacker that gave the target this buff.
 * `event.durationSeconds`: float, the duration this buff was gained for.  undefined if the buff was lost.
@@ -137,7 +138,8 @@ Current hp/mp/tp values are not 100% precise.  ACT polls these values periodical
 In most cases, a single event will be passed to every function.
 ```
 {
-  damageRegex: /Iron Chariot/,
+  // 26BB is the ability id for Nael's Iron Chariot.
+  damageRegex: '26BB',
   mistake: function(event, data, matches) {
     // event here is a single event object
     console.log(event.targetName);
@@ -155,7 +157,8 @@ If `collectSeconds` is used, then as soon as the trigger matches any line, it wi
 
 ```
 {
-  healRegex: /Succor/,
+  // Succor
+  healRegex: 'BA',
   collectSeconds: 0.2,
   mistake: function(events, data, matches) {
     // events here is an array of event objects
@@ -185,7 +188,9 @@ For example, if you want to store a map of which players have doom or not, that 
 
 ```
 {
-  buffRegex: 'Doom',
+  // Match both gains and loses in the same trigger.
+  gainsEffectRegex: 'Doom',
+  losesEffectRegex: 'Doom',
   run: function(e, data) {
     data.hasDoom[e.targetName] = e.gains;
   },

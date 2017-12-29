@@ -36,6 +36,13 @@ class CactbotLanguageEn extends CactbotLanguage {
       Brotherhood: 'Brotherhood', // 0x49e
       Devotion: 'Devotion', // 0x4bd
       FoeRequiem: 'Foe Requiem', // up 0x8b, down 0x8c
+      
+      // TODO: add ids
+      Petrification: 'Petrification',
+      BeyondDeath: 'Beyond Death',
+      Burns: 'Burns',
+      Sludge: 'Sludge',
+      Doom: 'Doom',
     });
 
     this.kUIStrings = Object.freeze({
