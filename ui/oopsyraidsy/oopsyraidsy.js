@@ -3,6 +3,7 @@
 var Options = {
   Language: 'en',
   NumLiveListItemsInCombat: 5,
+  MinimumTimeForPullMistake: 0.4,
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
@@ -209,12 +210,12 @@ class OopsyLiveList {
     this.items = [];
     this.numItems = 0;
     this.container.innerHTML = '';
-    for (var i = 0; i < this.options.NumLiveListItemsInCombat; ++i) {
-      this.MakeRow();
-    }
   }
 }
 
+// Collector:
+// * processes mistakes, adds lines to the live list
+// * handles timing issues with starting/stopping/early pulls
 class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
@@ -244,9 +245,27 @@ class MistakeCollector {
   StartCombat() {
     if (this.startTime)
       return;
-    this.liveList.Reset();
-    this.startTime = Date.now();
+
+    // Wiping / in combat state / damage are all racy with each other.
+    // One potential ordering:
+    //   -in combat: false
+    //   -wipe
+    //   -belated death/damage <-- this damage shouldn't start
+    //   -damage (early pull) <-- this damage should
+    //   -in combat: true
+    // Therefore, suppress "start combat" after wipes within a short
+    // period of time.  Gross.
+    //
+    // Because damage comes before in combat (regardless of where engage
+    // occurs), StartCombat has to be responsible for clearing the liveList
+    // list.
+    var now = Date.now();
+    var kMinimumSecondsAfterWipe = 5;
+    if (this.wipeTime && now - this.wipeTime < 1000 * kMinimumSecondsAfterWipe)
+      return;
+    this.startTime = now;
     this.wipeTime = null;
+    this.liveList.Reset();
   }
 
   // These three functions could presumably drop messages when
@@ -282,9 +301,9 @@ class MistakeCollector {
       this.StartCombat();
       return;
     }
-    var seconds = ((Date.now() - this.startTime) / 1000).toFixed(1);
-    if (this.firstPuller && seconds != '0.0') {
-      var text = 'early pull (' + seconds + 's)';
+    var seconds = ((Date.now() - this.startTime) / 1000);
+    if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
+      var text = 'early pull (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -300,9 +319,9 @@ class MistakeCollector {
         this.firstPuller = '???';
       }
       this.StartCombat();
-      var seconds = ((Date.now() - this.engageTime) / 1000).toFixed(1);
-      if (this.engageTime && seconds != '0.0') {
-        var text = 'late pull (' + seconds + 's)';
+      var seconds = ((Date.now() - this.engageTime) / 1000);
+      if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
+        var text = 'late pull (' + seconds.toFixed(1) + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnMistakeText('pull', this.firstPuller, text);
       }
@@ -343,6 +362,14 @@ class MistakeCollector {
     if (this.inCombat == inCombat)
       return;
     this.inCombat = inCombat;
+
+    // inGameCombat lags a slight bit from wipes.  Therefore, stopping
+    // combat is definitely the end of combat, so the livelist can
+    // show all items.  Starting combat happens in StartCombat, which
+    // is either the first damage, the Engage!, or a face pull that
+    // would set inGameCombat=true.  This function cannot reset the
+    // livelist, otherwise, pull => inCombat => reset could erase
+    // the pull message.
     if (!inCombat) {
       this.wipeTime = Date.now();
       this.Reset();
