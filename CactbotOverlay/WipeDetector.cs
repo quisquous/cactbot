@@ -17,6 +17,9 @@ namespace Cactbot {
     private bool player_dead_ = false;
     private string player_name_ = null;
     private string player_name_with_colons_ = null;
+    private string player_gains_weakness_ = null;
+    private string player_gains_brink_ = null;
+
     private DateTime? last_revived_time_;
     private DateTime? last_lb3_time_;
 
@@ -30,6 +33,8 @@ namespace Cactbot {
       if (player_name_ == null) {
         player_name_ = player.name;
         player_name_with_colons_ = ":" + player.name + ":";
+        player_gains_weakness_ = " 1A:" + player_name_ + " gains the effect of Weakness from";
+        player_gains_brink_ = " 1A:" + player_name_ + " gains the effect of Brink Of Death from";
       }
 
       var now = DateTime.Now;
@@ -62,8 +67,12 @@ namespace Cactbot {
 
       foreach (var log in e.logs) {
         // TODO: this should support other languages.
-        if (log.IndexOf("You suffer the effect of Weakness", StringComparison.Ordinal) != -1) {
+        if (log.IndexOf(player_gains_weakness_, StringComparison.Ordinal) != -1 ||
+            log.IndexOf(player_gains_brink_, StringComparison.Ordinal) != -1) {
           // Players come back to life before weakness is applied.
+          // Players do gain 9999.00 seconds of Weakness when they die a second time,
+          // but this happens even before the defeated message occurs.  So, this next
+          // case will only occur when the player has been brought back to life.
           if (!player_dead_ && last_revived_time_.HasValue) {
             // This is a raise of some sort, and not a wipe.
             last_revived_time_ = null;
@@ -72,10 +81,7 @@ namespace Cactbot {
           // FIXME: only allow echos to do this vs jerks saying this in chat.
           WipeIt();
         } else {
-          // TODO: Remove debugging info once it's clear whether pulse of life happens before or after
-          // player hp becomes non-zero.  If it's before, then a timer will need to be added (similar
-          // to the weakness timer.  If after, then this can just clear the weakness timer simply.
-
+          // This happens prior to the player's health becoming non-zero, so record when it happens.
           // Lazy regex for :Healer LB3:.*:Player Name:
           int healer_lb3 = Math.Max(
             log.IndexOf(":Pulse Of Life:", StringComparison.Ordinal),
