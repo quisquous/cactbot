@@ -11,7 +11,7 @@ mkdir -p $OUT_HTML/
 cp -r $BIN/CactbotOverlay.dll $OUT_ADDON/
 cp -r $BASE/ui/ $OUT_HTML/
 cp -r $BASE/resources/ $OUT_HTML/
-cp $BASE/README.md $OUT/
+cp $BASE/*.md $OUT/
 
 # manually copy readme due to avoid local user/ files
 mkdir -p $OUT_HTML/user/

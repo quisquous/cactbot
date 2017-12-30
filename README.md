@@ -1,263 +1,64 @@
-# cactbot (Chromium ACT Bindings Overlay for Things)
+# cactbot (ffxiv raiding overlay)
 
 1. [About](#about)
-2. [UI modules](#ui-modules)
-3. [Configuring UI modules](#configuring-ui-modules)
-4. [Installing](#installing)
-5. [Building from source](#building-from-source)
-6. [Writing a cactbot UI module](#writing-a-cactbot-ui-module)
-7. [Languages](#languages)
+1. [Installing](#installing)
+1. [Building From Source](#building-from-source)
+1. [UI Module Overview](#ui-module-overview)
+1. [Cactbot Customization](#cactbot-customization)
+1. [Supported Languages](#supported-languages)
 
 ## About
 
-This project is an overlay plugin for
+cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/).  This project is an overlay plugin for
 [hibiyasleep's OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin)
 which itself is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
-It depends on [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html).
+cactbot provides these modules:
 
-Its goal is to provide log lines, combatant info, dps info, etc.  Everything
-that anybody would need to write a good Javascript UI for
-[Final Fantasy XIV](http://www.finalfantasyxiv.com/).
+* raidboss: built-in timelines and triggers:
 
-## UI modules
+![timeline screenshot](screenshots/promo_raidboss_timeline.png)
+![triggers screenshot](screenshots/promo_raidboss_triggers.png)
 
-The [ui/](ui/) directory has some prebuilt UI modules, and the [resources/](resources/) directory has
-building blocks for building your own modules.
+* oopsyraidsy: mistake and death reporting
 
-### [raidboss](ui/raidboss) module
+![oopsy screenshot](screenshots/promo_oopsy.png)
 
-To use this module, point cactbot at **ui/raidboss/raidboss.html**.
+* jobs: condensed gauges with buff and proc tracking
 
-This module provides a visual timeline of upcoming events in a fight, as well as text and audio
-notifications to help increase raid awareness. Text and sound alerts can be based on the fight
-timeline, or come from log messages that occur in the game, similar to ACT's "Custom Triggers".
-The module is designed to look and feel similar to the
-[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
+![rdm jobs screenshot](screenshots/promo_jobs.png)
 
-Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
-plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
-with [some extensions](ui/raidboss/data/timelines/README.txt).
-
-There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
-Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.
-
-Timeline files are found in [ui/raidboss/data/timelines](ui/raidboss/data/timelines). Triggers
-for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
-
-In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
-text alerts circled in yellow, with an `alert`-level text message visible.
-
-![raidboss screenshot](screenshots/Raidboss.png)
-
-### [jobs](ui/jobs) module
-
-To use this module, point cactbot at **ui/jobs/jobs.html**
-
-This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
-The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
-or raiding, and a visual pull countdown.
-
-It has more fleshed out support for some jobs but is strongly a Work In Progress for others.
-- Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
-- Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time.
-
-In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
-as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
-beside it in orange. The first step of the melee combo has been executed, which is displayed as the yellow
-box above the health bar. The proc tracking is circles below in green.
-
-![jobs screenshot](screenshots/Jobs.png)
-
-### [dps](ui/dps) meters
-
-Cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
-addon, with the option to build out more features through cactbot's additional Javascript
-APIs.
-
-The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
-with the additional ability to do per-phase dps tracking, displayed in additional columns.
-In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
+* dps: extra features for dps meters
 
 ![xephero screenshot](screenshots/xephero.png)
 
-The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
-for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
+### Video Examples
 
-![xephero screenshot](screenshots/rdmty.png)
-
-Here is a video of some of these UI modules in action on Exdeath and Neo Exdeath, from before
-the timelines were added to raidboss:
-
-[![Exdeath video](screenshots/ExdeathVideo.png)](https://www.youtube.com/watch?v=Ot_GMEcwv94)
-
-### Adding overlay modules (example: raidboss)
-
-To add a cactbot module is the same as adding any overlay plugin.
-1. Open ACT.
-2. Navigate to the Plugins tab of ACT and then the OverlayPlugin.dll tab inside it.
-
-![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
-
-3. Click the "New" button and then select Cactbot in the "Type" dropdown.
-
-![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
-
-4. Type in any name you'd like as the name of this overlay, e.g. `raidbossy`.
-5. A good example to start with is the raidboss module.  Set the filename to be **ui/raidboss/raidboss.html**.  Your config should look like this.
-
-![raidboss plugin config](screenshots/OverlayPluginRaidbossConfig.png)
-
-6. At this point, you should see some bunched up test UI appear on screen.
-
-![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
-
-7. Click the **Enable Clickthru** button on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](#configuring-ui-modules) if you want even more control.  It should look something like this:
-
-![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
-
-8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.
-The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
-Now you're ready for [cactbot magic](https://clips.twitch.tv/StrangeHungryGarageShadyLulu).
-
-9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
-
-## Configuring UI modules
-
-Cactbot UI modules can load user settings from the [user/](user/) directory. The user/
-directory already includes some example configuration files, which you can rename and use.
-For example the **user/raidboss-example.js** can be renamed to **user/raidboss.js**
-and edited to change the behaviour of the **raidboss** module.
-
-If you want to do it yourself, then create a **user/\<name\>.css** or a **user/\<name\>.js**
-file, where **\<name\>** is the name of the UI module, such as [raidboss](ui/raidboss) or
-[jobs](ui/jobs).
-
-After making any changes to these files, pressing the "Reload overlay" button for the
-appropriate cactbot in ACT's OverlayPlugin settings will apply the changes.
-
-The **user/\<name\>.css** file can change positions, sizes, colors, etc. for components of
-the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
-For example in [ui/raidboss/raidboss.css](ui/raidboss/raidboss.css), you see the
-`#popup-text-container` and `#timeline-container` which can be changed via **user/raidboss.css**
-to different positions as desired. The size and color of info text alerts can also be changed by
-making a CSS rule for the `.info-text` class such as below:
-
-```
-.info-text {
-  font-size: 200%;
-  color: rgb(50, 100, 50);
-}
-```
-
-The **user/\<name\>.js** file can set options to customize how the UI module works. The
-options that can be changed are documented in the `Options` section at the top of the
-**ui/\<name\>/\<name\>.js** file. For example in [ui/raidboss/raidboss.js](ui/raidboss/raidboss.js),
-you see the `BarExpiresSoonSeconds` option which controls when timeline bars should be
-highlighted. You can change that option from the default value to 5 seconds by editing
-**user/raidboss.js** to say:
-
-```
-Options.BarExpiresSoonSeconds = 5
-```
-
-To disable a text/sound alert that comes built-in for a fight, find the trigger's `id` in the files in
-[ui/raidboss/data/triggers](ui/raidboss/data/triggers). Then add the `id` to the `Options.DisabledTriggers`
-in the **user/raidboss.js** file, such as:
-
-```
-Options.DisabledTriggers = {
-  'O4S1 Fire III': true,
-}
-```
-
-If you dislike the built-in sound info, alert, and alarm noises that cactbot uses and would
-prefer to use text to speech (tts), you can set a global option by including this line
-in your **user/raidboss.js** file:
-
-```
-// Including this line will make any trigger with text to speech use that instead of other
-// noises.
-Options.SpokenAlertsEnabled = true;
-
-// If you don't like the on screen text, you can turn that off with this line too:
-Options.TextAlertsEnabled = false;
-```
-
-See [this options documentation](ui/raidboss/raidboss.js) for a full list of options and
-how to configure text, sound, and tts options on a per trigger basis.
-
-To add a sound alert that can be activated in any zone, for example, add the following to **user/raidboss.js**:
-
-```
-Options.Triggers = [
-  { zoneRegex: /./,
-    triggers: [
-      // Trick Attack used.
-      { regex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
-        sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
-      },
-
-      .. other triggers here ..
-    ],
-  },
-
-  // .. other zones here ..
-]
-```
-
-A more sophisticated example that shows an alert message after a 1 second delay, but
-only when the player's character name appears in the FFXIV log message:
-
-```
-Options.Triggers = [
-  // .. other zones here ..
-
-  { zoneRegex: /./,
-    triggers: [
-      // .. other triggers here ..
-
-      { regex: /:(\y{Name}) gains the effect of Forked Lightning from/,
-        delaySeconds: 1,
-        alertText: 'Forked Lightning: Get out',
-        condition: function(data, matches) { return matches[1] == data.me; },
-      },
-
-      // .. other triggers here ..
-    ],
-  },
-
-  // .. other zones here ..
-]
-```
-
-If you're familiar with regular expressions you'll note the the `\y{Name}` and
-`\y{AbilityCode}` are unfamiliar. These are extensions provided by cactbot for
-convenience to avoid having to match against all possible unicode characters
-or to know the details of how the FFXIV ACT plugin writes things.
-
-The set of extensions are:
-- `\y{Float}`: Matches a floating-point number, accounting for locale-specific encodings.
-- `\y{Name}`: Matches any character or ability name (including empty strings which the FFXIV ACT plugin can generate when unknown).
-- `\y{ObjectId}`: Matches the 8 hex character object id in network log lines.
-- `\y{AbilityCode}`: Matches the FFXIV ACT plugin's format for the number code of a spell or ability.
-- `\y{TimeStamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
-- `\y{LogType}`: Matches the FFXIV ACT plugin's format for the number code describing the type of log event, found near the front of each log event.
-
-See this [cactbot-user git repo](https://github.com/quisquous/cactbot-user) for more examples.
+* [O4S raidboss + monk jobs](https://www.twitch.tv/videos/209562337)
+* [O3S spellblade callouts](https://clips.twitch.tv/StrangeHungryGarageShadyLulu)
 
 ## Installing
 
-You must have [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above installed. You must have [DirectX 11](http://imgur.com/TjcnjmG) enabled for Final Fantasy XIV.
+### Dependencies
 
-You should already have
+Install [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6 or above.
+
+You must have [DirectX 11](http://imgur.com/TjcnjmG) enabled for Final Fantasy XIV.
+
+Install [Advanced Combat Tracker](http://advancedcombattracker.com/), if you have not already.
+
+Download and add the most recent version of [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html) to ACT.  You must enable parsing from the network and make sure that ACT is not firewalled.
+
+You must have
 [OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases)
-installed and working in
-[Advanced Combat Tracker](http://advancedcombattracker.com/).
-You must use the [hibiyasleep](https://github.com/hibiyasleep) version of
+installed and working in ACT.  You must use the [hibiyasleep](https://github.com/hibiyasleep) version of
 OverlayPlugin and not the original RainbowMage version, as cactbot depends
 on several features of that version.
+
+fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT and OverlayPlugin if you prefer video or would like more instructions on how to set these up properly.
+
+### Installing cactbot
 
 1. Download the release zip file.
 2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
@@ -284,7 +85,8 @@ folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin
 
 Note: The cactbot\\ folder does not have to be located inside of the
 OverlayPlugin directory, but that is where it comes by default as part
-of a cactbot release zip file.
+of a cactbot release zip file.  It can be located anywhere on disk as
+long as the entire cactbot\\ folder is kept together.
 
 Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
 
@@ -308,13 +110,7 @@ If triggers or pieces of the UI do not work, ensure that "Disable Parsing from N
 
 ## Building from source
 
-You should already have
-[OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases)
-installed and working in [Advanced Combat
-Tracker](http://advancedcombattracker.com/).
-
-Follow the additional installation steps for the .NET framework and
-DirectX 11 dependencies above.
+Follow all the steps above for installing cactbot first.
 
 1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/OverlayPlugin](CactbotOverlay/ThirdParty/OverlayPlugin).
 2. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/ACT](CactbotOverlay/ThirdParty/ACT).
@@ -323,37 +119,138 @@ DirectX 11 dependencies above.
 5. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
 6. Copy the plugin to the Advanced Combat Tracker\\OverlayPlugin\\addons\\ directory
 
-## Writing a cactbot UI module
+## UI module overview
 
-To build a cactbot ui, you need to make a **.html** file and point cactbot at it. There are a
-number of helpful things in the [resources/](resources/) directory.
+The [ui/](ui/) directory contains cactbot's ui modules.  If you installed cactbot following the instructions above, this will most likely be **C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\cactbot\\ui**.
 
-Include the [resources/defaults.css](resources/defaults.css) file to get some of the default
-look and feel of other cactbot uis, then use the `.text` class on any HTML elements which contain
-text. You may add the `.hide` class to elements you do not want shown, and remove it when they
-should be visible.
+Each cactbot ui module should be added as a separate overlay.  See the [Adding Overlay Modules](#adding-overlay-modules) section for more details about setup.
 
-Include the [resources/resize_handle.css](resources/resize_handle.js) and
-[resources/resize_handle.js](resources/resize_handle.js) files to give visual feedback to the
-user when the module is unlocked for moving and resizing.
+### [raidboss](ui/raidboss) module
 
-Include the [resources/unicode.js](resources/unicode.js) file to use unicode categories in
-regular expressions in order to support non-english characters.
+To use this module, point cactbot at **ui/raidboss/raidboss.html**.
 
-There are a number of web components that provide widgets for building your ui, including the
-[timerbar](resources/timerbar.js), [timerbox](resources/timerbox.js) or
-[resourcebar](resources/resourcebar.js). Include the file and then instatiate it by making an
-element of that type, such as `<timer-bar></timer-bar>` or `<resource-bar></resource-bar>`.
+This module provides a visual timeline of upcoming events in a fight, as well as text and audio
+notifications to help increase raid awareness. Text and sound alerts can be based on the fight
+timeline, or come from log messages that occur in the game, similar to ACT's "Custom Triggers".
+The module is designed to look and feel similar to the
+[BigWigs Bossmods](https://mods.curse.com/addons/wow/big-wigs) addon for World of Warcraft.
 
-The set of Javascript events that can be listened for via `document.addEventListener` is found
-in [CactbotOverlay/JSEvents.cs](CactbotOverlay/JSEvents.cs). The public fields of each event
-type will be members of the event's `detail`. See the
-[ui/test/cactbot_test.html](ui/test/cactbot_test.html) ui module for a simple example of
-listening to and using the Javascript events.
+Fight timelines are provided in files designed for the [ACT Timeline](https://github.com/grindingcoil/act_timeline)
+plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin)
+with [some extensions](ui/raidboss/data/timelines/README.txt).
 
-## Languages
+There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
+Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  [Text-to-speech can be configured](AdvancedCactbot.md#text-to-speech) if you prefer that over on screen text.
 
-Cactbot is tested and works with the English version of Final Fantasy XIV.
+Timeline files are found in [ui/raidboss/data/timelines](ui/raidboss/data/timelines). Triggers
+for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
+
+In this screenshot, the raidboss module is highlighted, with the timeline circled in red, and the
+text alerts circled in yellow, with an `alert`-level text message visible.
+
+![raidboss screenshot](screenshots/Raidboss.png)
+
+### [oopsyraidsy](ui/oopsyraidsy) module
+
+To use this module, point cactbot at **ui/oopsyraidsy/oopsyraidsy.html**.
+
+This module provides mistake tracking and death reporting.  Oopsy raidsy is meant to reduce the time wasted understanding what went wrong on fights and how people died.  During the fight, only a limited number of mistakes are shown (to avoid clutter), but afterwards a full scrollable list is displayed.
+
+When somebody dies, the last thing they took damage from is listed in the log.  For example, if the log specifies: ":skull: Poutine: Iron Chariot (82173/23703)" this means that Poutine most likely died to Iron Chariot, taking 82173 damage and having 23703 health at the time.  The health value itself is not perfect and may be slightly out of date by a ~second due to a hot tick or multiple simultaneous damage sources.
+
+When mistakes are made that are avoidable, oopsy logs warning (:warning:) and failure (:no_entry_sign:) messages, explaining what went wrong.
+
+Mistake triggers are specified for individual fights in the [ui/oopsyraidsy/data](ui/oopsyraidsy/data) folder.
+
+![oopsy screenshot](screenshots/promo_oopsy.png)
+
+### [jobs](ui/jobs) module
+
+To use this module, point cactbot at **ui/jobs/jobs.html**
+
+This module provides health, mana, and tp bars, as well as icons and timer bars for big raid buffs such as
+The Balance and Trick Attack. It also features a food buff warning to keep up your food buff when leveling
+or raiding, and a visual pull countdown.
+
+It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
+- Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
+- Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.
+- Monk: Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.
+
+In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
+as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
+beside it in orange. The first step of the melee combo has been executed, which is displayed as the yellow
+box above the health bar. The proc tracking is circles below in green.
+
+![jobs screenshot](screenshots/Jobs.png)
+
+### [dps](ui/dps) meters
+
+cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
+addon, with the option to build out more features through cactbot's additional Javascript
+APIs.  cactbot also auto-stops fights on wipes, so you can configure ACT's fight time to
+infinity.
+
+The [xephero](ui/dps/xephero) dps meter is based on the same dps meter built for miniparse,
+with the additional ability to do per-phase dps tracking, displayed in additional columns.
+In the screenshot below the phases are named B1, B2, B3.  These autogenerate from dungeon bosses, but could be used to differentiate raid fight phases.
+
+![xephero screenshot](screenshots/xephero.png)
+
+The [rdmty](ui/dps/rdmty) dps meter is based on the same dps meter for miniparse, and updated
+for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
+
+![rdmty screenshot](screenshots/rdmty.png)
+
+### [test](ui/test) module
+
+To use this module, point cactbot at **ui/test/cactbot_test.html**
+
+This module is just an onscreen test of cactbot variables and is not meant to be used while playing.
+It can be useful to try out to make sure everything is working as expected or to use to help debug
+[writing your own module](AdvancedCactbot.md#writing-a-cactbot-ui-module).
+
+![test screenshot](screenshots/test.png)
+
+### Adding overlay modules
+
+Here's an example of how to set up the raidboss overlay module.  Adding other modules is exactly the same, except you need to point the URL to a different HTML file for that specific module.
+
+To add a cactbot module is the same as adding any overlay plugin.
+1. Open ACT.
+2. Navigate to the Plugins tab of ACT and then the OverlayPlugin.dll tab inside it.
+
+![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
+
+3. Click the "New" button and then select Cactbot in the "Type" dropdown.
+
+![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
+
+4. Type in any name you'd like as the name of this overlay, e.g. `raidbossy`.
+5. A good example to start with is the raidboss module.  Set the filename to be **ui/raidboss/raidboss.html**.  Your config should look like this.
+
+![raidboss plugin config](screenshots/OverlayPluginRaidbossConfig.png)
+
+6. At this point, you should see some bunched up test UI appear on screen.  cactbot provides default test UI and a blue background to help with resizing and placing overlays on screen.  These all go away when the overlay is locked in the config panel for the overlay.
+
+![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
+
+7. Click the **Enable Clickthru** button on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](AdvancedCactbot.md#configuring-ui-modules) if you want even more control.  It should look something like this:
+
+![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
+
+8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.
+The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
+
+9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
+
+## Cactbot Customization
+
+See [this documentation](AdvancedCactbot.md#configuring-ui-modules) for more details.
+
+## Supported Languages
+
+cactbot is tested and works with the English version of Final Fantasy XIV.  (Localization to other languages is started, but not complete yet.)
 
 Unicode characters are supported thoughout, through the use of the helpers in the
 [resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
