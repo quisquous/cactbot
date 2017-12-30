@@ -1,10 +1,20 @@
 // Rename this file to `oopsyraidsy.js` then edit to change the oopsyraidsy ui.
 
 
+// Language to use for parsing oopsy raidsy.
+Options.Language = 'en';
+
+
 // Number of items in the live list to show during combat.  After combat
 // is over, the list will be maximized to the overlay size (with a
 // scrollbar if necessary).  When combat starts again it will shrink.
 Options.NumLiveListItemsInCombat = 5;
+
+
+// Minimum time (in seconds) before showing a "mistake" for a pull.
+// This prevent showing "early pull (0.1s)" sorts of messages which
+// aren't that useful.
+Options.MinimumTimeForPullMistake = 0.4;
 
 
 // A set of triggers to be ignored. The key is the 'id' of the trigger, and
@@ -48,7 +58,7 @@ Options.Triggers = [
     triggers: [
       {
         id: 'Test Self Crit Adlo',
-        healRegex: gLang.kAbility.Adloquium,
+        healRegex: 'B9', // Adloquium ability id
         condition: function(e, data) {
           return e.targetName == data.me && e.damageStr.substr(-1) == '!';
         },

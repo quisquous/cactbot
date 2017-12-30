@@ -47,6 +47,7 @@ class CactbotLanguage {
       Adloquium: 'B9',
       RabbitMedium: '8E0',
       OneIlmPunch: '48',
+      Bootshine: '35',
 
       // Susano Ex
       ChurningDeep: '203F',
