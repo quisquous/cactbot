@@ -235,11 +235,11 @@ To add a cactbot module is the same as adding any overlay plugin.
 
 ![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
 
-7. Click the **Enable Clickthru** button on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](AdvancedCactbot.md#configuring-ui-modules) if you want even more control.  It should look something like this:
+7. Uncheck the **Enable Clickthru** box on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](AdvancedCactbot.md#configuring-ui-modules) if you want even more control.  It should look something like this:
 
 ![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
 
-8. Once the overlay is in the right place, click the **Lock Overlay** and unclick **Enable Clickthru**.
+8. Once the overlay is in the right place, check the **Lock Overlay** and the **Enable Clickthru** boxes.
 The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
 
 9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
