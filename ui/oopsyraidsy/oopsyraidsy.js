@@ -227,12 +227,15 @@ class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
     this.liveList = liveList;
+    this.startTime = null;
+    this.hasStarted = false;
     this.Reset();
   }
 
   Reset() {
     this.inCombat = false;
-    this.startTime = null;
+    this.hasStarted = false;
+    // Don't reset startTime in case damage comes in after combat ends.
     this.deaths = [];
     this.firstPuller = null;
     this.engageTime = null;
@@ -250,7 +253,7 @@ class MistakeCollector {
   }
 
   StartCombat() {
-    if (this.startTime)
+    if (this.hasStarted)
       return;
 
     // Wiping / in combat state / damage are all racy with each other.
@@ -271,6 +274,7 @@ class MistakeCollector {
     if (this.wipeTime && now - this.wipeTime < 1000 * kMinimumSecondsAfterWipe)
       return;
     this.startTime = now;
+    this.hasStarted = true;
     this.wipeTime = null;
     this.liveList.Reset();
   }
