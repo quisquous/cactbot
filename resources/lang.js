@@ -7,6 +7,7 @@ class CactbotLanguage {
     this.lang = lang;
     this.playerName = null;
     this.kAbility = Object.freeze({
+      // Player abilities
       DragonKick: '4A',
       TwinSnakes: '3D',
       Demolish: '42',
@@ -43,6 +44,34 @@ class CactbotLanguage {
       Aetherflow: 'A6',
       ChainStrategem: '1D0C',
       Hypercharge: 'B45',
+      Adloquium: 'B9',
+      RabbitMedium: '8E0',
+      OneIlmPunch: '48',
+      Bootshine: '35',
+
+      // Susano Ex
+      ChurningDeep: '203F',
+      RasenKaikyo: '202E',
+
+      // o4s
+      DecisiveBattle: '2408',
+      VacuumWave: '23FE',
+      Almagest: '2417',
+      NeoVacuumWave: '241D',
+      BlizzardIII: '23F8', // both floor aoe and after decisive battle
+      ThunderIII: '23FD', // after decisive battle, not the tankbuster
+      DeathBomb: '2431',
+      DeathBolt: '242E',
+      DoubleAttack: '241C',
+      Emptiness: '2422', // 2420 is cast, 2421 (???), 2422 seems to be damage.
+      EdgeOfDeath: '2415',
+
+      // Unending Coil
+      Twister: '26AB', // 26AA is cast
+      LunarDynamo: '26BC',
+      IronChariot: '26BB',
+      WingsOfSalvation: '26CA',
+      ChainLightning: '26C8',
     });
   }
 
@@ -53,18 +82,6 @@ class CactbotLanguage {
   OnPlayerNameChange(playerName) {
     this.playerName = playerName;
     this.InitStrings(playerName);
-  }
-
-  ValidateEffect(effectName) {
-    var validEffects = Object.keys(this.kEffect).map((function(k){return this.kEffect[k]}).bind(this));
-    if (!effectName || validEffects.indexOf(effectName) < 0)
-      console.error('Invalid effect: ' + effectName);
-  }
-
-  ValidateAbility(abilityId) {
-    var validAbilities = Object.keys(this.kAbility).map((function(k){return this.kAbility[k]}).bind(this));
-    if (!abilityId || validAbilities.indexOf(abilityId) < 0)
-      console.error('Invalid ability: ' + abilityId);
   }
 
   // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
@@ -83,7 +100,6 @@ class CactbotLanguage {
     var effects = [];
     for (var i = 0; i < arguments.length; ++i) {
       var effect = arguments[i];
-      this.ValidateEffect(effect);
       effects.push(effect);
     }
     return Regexes.Parse(' 1A:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\.');
@@ -93,14 +109,12 @@ class CactbotLanguage {
     var effects = [];
     for (var i = 0; i < arguments.length; ++i) {
       var effect = arguments[i];
-      this.ValidateEffect(effect);
       effects.push(effect);
     }
     return Regexes.Parse(' 1E:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\.');
   };
 
   abilityRegex(abilityId, attacker, target, flags) {
-    this.ValidateAbility(abilityId);
     if (!attacker)
       attacker = '[^:]*';
     // type:attackerId:attackerName:abilityId:abilityName:targetId:targetName:flags:
@@ -116,7 +130,6 @@ class CactbotLanguage {
   };
 
   gainsEffectRegex(effect, target, attacker) {
-    this.ValidateEffect(effect);
     if (!target)
       target = '[^:]*';
     if (!attacker)
@@ -125,7 +138,6 @@ class CactbotLanguage {
   };
 
   losesEffectRegex(effect, target, attacker) {
-    this.ValidateEffect(effect);
     if (!target)
       target = '[^:]*';
     if (!attacker)
