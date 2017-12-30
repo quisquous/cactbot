@@ -158,6 +158,13 @@ class OopsyLiveList {
     this.Reset();
   }
 
+  SetInCombat(inCombat) {
+    if (inCombat)
+      this.container.classList.remove('out-of-combat');
+    else
+      this.container.classList.add('out-of-combat');
+  }
+
   AddLine(iconClass, text, time) {
     var maxItems = this.options.NumLiveListItemsInCombat;
     if (maxItems == 0)
@@ -377,6 +384,7 @@ class MistakeCollector {
     } else {
       this.StartCombat();
     }
+    this.liveList.SetInCombat(this.inCombat);
   }
 
   OnZoneChangeEvent(e) {

@@ -55,6 +55,10 @@
   margin: 5px;
 }
 
+.livelist-shadow.out-of-combat {
+  box-shadow: 0 0 5px 2px rgba(200, 200, 70, 0.3);
+}
+
 .livelist div {
   font-family: "Meiryo";
   font-size: 12;
