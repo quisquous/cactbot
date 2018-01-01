@@ -154,23 +154,29 @@ function IsPlayerId(id) {
 class OopsyLiveList {
   constructor(options) {
     this.options = options;
+    this.scroller = document.getElementById('livelist');
     this.container = document.getElementById('livelist').children[0];
     this.Reset();
+    this.SetInCombat(false);
   }
 
   SetInCombat(inCombat) {
-    if (inCombat)
+    if (this.inCombat === inCombat)
+      return;
+    this.inCombat = inCombat;
+    if (inCombat) {
       this.container.classList.remove('out-of-combat');
-    else
+      this.HideOldItems();
+    } else {
       this.container.classList.add('out-of-combat');
+      this.ShowAllItems();
+    }
   }
 
   AddLine(iconClass, text, time) {
     var maxItems = this.options.NumLiveListItemsInCombat;
     if (maxItems == 0)
       return;
-
-    this.container.classList.remove('hide');
 
     var rowDiv;
     if (this.numItems < this.items.length) {
@@ -194,8 +200,14 @@ class OopsyLiveList {
     rowDiv.appendChild(timeDiv);
 
     // Hide anything over the limit from the past.
-    if (this.numItems > maxItems)
-      this.items[this.numItems - maxItems - 1].classList.add('hide');
+    if (this.inCombat) {
+      if (this.numItems > maxItems)
+        this.items[this.numItems - maxItems - 1].classList.add('hide');
+    }
+
+    // Show and scroll to bottom.
+    this.container.classList.remove('hide');
+    this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
   MakeRow() {
@@ -209,6 +221,14 @@ class OopsyLiveList {
   ShowAllItems() {
     for (var i = 0; i < this.items.length; ++i) {
       this.items[i].classList.remove('hide');
+    }
+    this.scroller.scrollTop = this.scroller.scrollHeight;
+  }
+
+  HideOldItems() {
+    var maxItems = this.options.NumLiveListItemsInCombat;
+    for (var i = 0; i < this.items.length - maxItems; ++i) {
+      this.items[i].classList.add('hide');
     }
   }
 
@@ -384,7 +404,6 @@ class MistakeCollector {
     if (!inCombat) {
       this.wipeTime = Date.now();
       this.Reset();
-      this.liveList.ShowAllItems();
     } else {
       this.StartCombat();
     }

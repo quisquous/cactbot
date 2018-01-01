@@ -30,6 +30,13 @@
       },
     },
     {
+      id: 'Test Oops',
+      regex: /:(oops.*)/,
+      mistake: function(e, data, matches) {
+        return { type: 'fail', blame: data.me, text: matches[1] };
+      },
+    },
+    {
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
       collectSeconds: 5,
