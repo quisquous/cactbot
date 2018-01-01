@@ -168,6 +168,7 @@ class OopsyLiveList {
       this.container.classList.remove('out-of-combat');
       this.HideOldItems();
     } else {
+      // TODO: Add an X button to hide/clear the list.
       this.container.classList.add('out-of-combat');
       this.ShowAllItems();
     }
@@ -247,35 +248,32 @@ class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
     this.liveList = liveList;
-    this.startTime = null;
-    this.hasStarted = false;
     this.Reset();
   }
 
   Reset() {
-    this.inCombat = false;
-    this.hasStarted = false;
-    // Don't reset startTime in case damage comes in after combat ends.
-    this.deaths = [];
+    this.baseTime = null;
+    this.startTime = null;
+    this.stopTime = null;
+    this.inACTCombat = false;
+    this.inGameCombat = false;
     this.firstPuller = null;
     this.engageTime = null;
+    this.liveList.Reset();
   }
 
   GetFormattedTime(time) {
-    if (!this.startTime)
+    if (!this.baseTime)
       return '';
     if (!time)
       time = Date.now();
-    var totalSeconds = Math.floor((time - this.startTime) / 1000);
+    var totalSeconds = Math.floor((time - this.baseTime) / 1000);
     var seconds = totalSeconds % 60;
     var minutes = Math.floor(totalSeconds / 60);
     return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
   }
 
   StartCombat() {
-    if (this.hasStarted)
-      return;
-
     // Wiping / in combat state / damage are all racy with each other.
     // One potential ordering:
     //   -in combat: false
@@ -294,15 +292,16 @@ class MistakeCollector {
     if (this.wipeTime && now - this.wipeTime < 1000 * kMinimumSecondsAfterWipe)
       return;
     this.startTime = now;
-    this.hasStarted = true;
-    this.wipeTime = null;
-    this.liveList.Reset();
+    this.stopTime = null;
   }
 
-  // These three functions could presumably drop messages when
-  // not in combat, but it's nice for testing to not have to be
-  // smacking a striking dummy, and these shouldn't happen out of
-  // combat anyway.
+  StopCombat() {
+    this.startTime = null;
+    this.stopTime = Date.now();
+    this.firstPuller = null;
+    this.engageTime = null;
+  }
+
   OnMistakeObj(m) {
     if (!m)
       return;
@@ -361,10 +360,15 @@ class MistakeCollector {
 
   AddDeath(name, fields) {
      if (fields) {
-      // (damage/hp at time of death)
-      // Note: ACT just evaluates independently what the hp of everybody is and so may be out of
-      // date modulo one hp regen tick with respect to the "current" hp value, e.g. charybdis
-      // may appear to do more damage than you have hp, "killing" you.  This is good enough.
+      // Note: ACT just evaluates independently what the hp of everybody
+      // is and so may be out of date modulo one hp regen tick with
+      // respect to the "current" hp value, e.g. charybdis may appear to do
+      // more damage than you have hp, "killing" you.  This is good enough.
+
+      // TODO: record the last N seconds of damage, as often folks are
+      // killed by 2+ things (e.g. 3x flares, or 2x Blizzard III).
+
+      // hp string = (damage/hp at time of death)
       var hp = '';
       if (fields[kFieldFlags] == kFlagInstantDeath) {
         // TODO: show something for infinite damage?
@@ -375,44 +379,51 @@ class MistakeCollector {
     }
     this.OnMistakeText('death', name, text);
 
-    // TODO: some things don't have abilities, e.g. jumping off titan ex.  This will just show
-    // the last thing that hit you before you were defeated.
+    // TODO: some things don't have abilities, e.g. jumping off titan ex.
+    // This will just show the last thing that hit you before you were
+    // defeated.  Maybe the unparsed log entries have this??
   }
 
   OnPartyWipeEvent(e) {
-    // Wipe events usually come after combat ends, however 'cactbot wipe'
-    // test messages throw the wipe first and then end.
-    // TODO: maybe reorder the test command to behave the same?
-    if (this.wipeTime || this.inCombat)
-      this.OnFullMistakeText('wipe', null, 'Party Wipe', this.wipeTime);
-    this.Reset();
+    // TODO: record the time that StopCombat occurs and throw the party
+    // wipe then (to make post-wipe deaths more obvious), however this
+    // requires making liveList be able to insert items in a sorted
+    // manner instead of just being append only.
+    this.OnFullMistakeText('wipe', null, 'Party Wipe');
   }
 
   OnInCombatChangedEvent(e) {
-    var inCombat = e.detail.inGameCombat;
-    if (this.inCombat == inCombat)
-      return;
-    this.inCombat = inCombat;
-
-    // inGameCombat lags a slight bit from wipes.  Therefore, stopping
-    // combat is definitely the end of combat, so the livelist can
-    // show all items.  Starting combat happens in StartCombat, which
-    // is either the first damage, the Engage!, or a face pull that
-    // would set inGameCombat=true.  This function cannot reset the
-    // livelist, otherwise, pull => inCombat => reset could erase
-    // the pull message.
-    if (!inCombat) {
-      this.wipeTime = Date.now();
-      this.Reset();
-    } else {
-      this.StartCombat();
+    // For usability sake:
+    //   - to avoid dungeon trash starting stopping combat and resetting the
+    //     list repeatedly, only reset when ACT starts a new encounter.
+    //   - for consistency with DPS meters, fflogs, etc, use ACT's encounter
+    //     time as the start time, not when game combat becomes true.
+    //   - to make it more readable, show/hide old mistakes out of game
+    //     combat, and consider early pulls starting game combat early.  This
+    //     allows for one long dungeon ACT encounter to have multiple early
+    //     or late pulls.
+    var inGameCombat = e.detail.inGameCombat;
+    if (this.inGameCombat != inGameCombat) {
+      this.inGameCombat = inGameCombat;
+      if (inGameCombat) {
+        this.StartCombat();
+      } else {
+        this.StopCombat();
+      }
+      this.liveList.SetInCombat(this.inGameCombat);
     }
-    this.liveList.SetInCombat(this.inCombat);
+    var inACTCombat = e.detail.inACTCombat;
+    if (this.inACTCombat != inACTCombat) {
+      this.inACTCombat = inACTCombat;
+      if (inACTCombat) {
+        this.baseTime = Date.now();
+        this.liveList.Reset();
+      }
+    }
   }
 
   OnZoneChangeEvent(e) {
     this.Reset();
-    this.liveList.Reset();
   }
 }
 
