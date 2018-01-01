@@ -56,11 +56,14 @@ installed and working in ACT.  You must use the [hibiyasleep](https://github.com
 OverlayPlugin and not the original RainbowMage version, as cactbot depends
 on several features of that version.
 
-fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT and OverlayPlugin if you prefer video or would like more instructions on how to set these up properly.
+Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
+This is under Plugins -> FFXIV Settings -> Parse Options.
+
+fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT and OverlayPlugin if you prefer video or would like more instructions on how to set these two tools up properly.
 
 ### Installing cactbot
 
-1. Download the release zip file.
+1. Find the [latest release](https://github.com/quisquous/cactbot/releases) and download the cactbot-version-number.zip file for that release.
 2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
 3. Unzip the release zip file.
 4. Close ACT, if it's still running.
@@ -95,6 +98,8 @@ Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
 8. In the URL field, browse to an html file to load.
 [ui/test/cactbot_test.html](ui/test/cactbot_test.html) is a good place to
 to start to make sure everything is set up properly.
+
+For more instructions about adding and configuring cactbot overlays, see the [Adding Overlay Modules](#adding-overlay-modules) section.
 
 ### Potential errors and workarounds
 
