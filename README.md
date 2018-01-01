@@ -202,6 +202,15 @@ for Stormblood jobs and recolored to match [fflogs](http://fflogs.com).
 
 ![rdmty screenshot](screenshots/rdmty.png)
 
+### [pull counter](ui/pullcounter) module
+
+This small module sticks the current pull count for raiding bosses on screen.
+This is primarily for folks who stream a lot and want to review video footage.
+Having a number on screen makes it easy to scrub through video and find
+particular pulls to review.
+
+![pull counter screenshot](screenshots/pullcounter.png)
+
 ### [test](ui/test) module
 
 To use this module, point cactbot at **ui/test/cactbot_test.html**
