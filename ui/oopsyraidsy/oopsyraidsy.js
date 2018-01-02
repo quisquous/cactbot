@@ -289,7 +289,7 @@ class MistakeCollector {
     // list.
     var now = Date.now();
     var kMinimumSecondsAfterWipe = 5;
-    if (this.wipeTime && now - this.wipeTime < 1000 * kMinimumSecondsAfterWipe)
+    if (this.stopTime && now - this.stopTime < 1000 * kMinimumSecondsAfterWipe)
       return;
     this.startTime = now;
     this.stopTime = null;
@@ -390,6 +390,9 @@ class MistakeCollector {
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
     this.OnFullMistakeText('wipe', null, 'Party Wipe');
+    // Party wipe usually comes a few seconds after everybody dies
+    // so this will clobber any late damage.
+    this.StopCombat();
   }
 
   OnInCombatChangedEvent(e) {
@@ -442,6 +445,8 @@ class DamageTracker {
     this.Reset();
   }
 
+  // TODO: this shouldn't clear timers and triggers
+  // TODO: seems like some reloads are causing the /poke test to get undefined
   Reset() {
     this.data = {
       me: this.me,
