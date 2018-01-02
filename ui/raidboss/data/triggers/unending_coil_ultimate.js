@@ -245,9 +245,11 @@
       regex: /:Fang of Light:26CA:/,
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
-        var name = data.dooms[data.doomCount];
+        if (data.dooms)
+          var name = data.dooms[data.doomCount];
         data.doomCount++;
-        return 'Cleanse #' + data.doomCount + ': ' + name;
+        if (name)
+          return 'Cleanse #' + data.doomCount + ': ' + name;
       },
     },
     { id: 'UCU Nael Fireball 1',
