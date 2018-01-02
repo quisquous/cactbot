@@ -117,18 +117,17 @@ hideall "--sync--"
 547.5 "Tempest Wing" duration 7.5 # tether -> damage1
 552.5 "Earthshaker x3" # damage
 
+558.0 "Flare Breath" # animation
+565.3 "Flatten" # end of castbar
+
+573.5 "Blackfire Trio" # end of castbar
+579.0 "Liquid Hell x5" duration 5
+582.2 "Thermionic Beam" # damage
+582.5 "Twister Dive"
 # The following times for the rest of the timeline are ballparks.
-
-557 "Flare Breath"
-563 "Flatten"
-
-571 "Blackfire Trio"
-577 "Liquid Hell x5" duration 5
-580 "Thermionic Beam"
-581 "Twister Dive"
-582 "Stack"
-583 "Towers"
-587 "Hypernova x4" duration 6
+584 "Stack"
+585 "Towers"
+588 "Hypernova x4" duration 6
 595 "Gigaflare"
 
 606 "Flare Breath 1"
