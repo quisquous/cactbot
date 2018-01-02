@@ -44,7 +44,7 @@ var gBossFightTriggers = [
   },
   {
     id: 'Unending Coil',
-    zoneRegex: /^The Unending Coil Of Bahamut (Ultimate)$/,
+    zoneRegex: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
     startRegex: /:Twintania:26A7:/,
     endRegex: /Removing combatant Bahamut Prime\.  Max HP: 13751450\./,
     countdownStarts: true,
