@@ -63,7 +63,7 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
 
 ### Installing cactbot
 
-1. Find the [latest release](https://github.com/quisquous/cactbot/releases) and download the cactbot-version-number.zip file for that release.
+1. Find the [latest release](https://github.com/quisquous/cactbot/releases/latest) and download the cactbot-version-number.zip file for that release.
 2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
 3. Unzip the release zip file.
 4. Close ACT, if it's still running.
