@@ -248,15 +248,16 @@ class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
     this.liveList = liveList;
+
+    this.baseTime = null;
+    this.inACTCombat = false;
+    this.inGameCombat = false;
     this.Reset();
   }
 
   Reset() {
-    this.baseTime = null;
     this.startTime = null;
     this.stopTime = null;
-    this.inACTCombat = false;
-    this.inGameCombat = false;
     this.firstPuller = null;
     this.engageTime = null;
     this.liveList.Reset();
@@ -415,10 +416,14 @@ class MistakeCollector {
       }
       this.liveList.SetInCombat(this.inGameCombat);
     }
+
     var inACTCombat = e.detail.inACTCombat;
     if (this.inACTCombat != inACTCombat) {
       this.inACTCombat = inACTCombat;
       if (inACTCombat) {
+        // TODO: This message should probably include the timestamp
+        // for when combat started.  Starting here is not the right
+        // time if this plugin is loaded while ACT is already in combat.
         this.baseTime = Date.now();
         this.liveList.Reset();
       }
