@@ -9,6 +9,10 @@
     {
       id: 'General Food Buff',
       losesEffectRegex: gLang.kEffect.WellFed,
+      condition: function(e, data) {
+        // Prevent "Eos loses the effect of Well Fed from Critlo Mcgee"
+        return e.targetName == e.attackerName;
+      },
       mistake: function(e, data) {
         data.lostFood = data.lostFood || {};
         // Well Fed buff happens repeatedly when it falls off (WHY),
