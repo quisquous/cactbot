@@ -66,16 +66,20 @@ class DpsPhaseTracker {
         }
         for (var b = 0; b < this.bosses.length; ++b) {
           var boss = this.bosses[b]
-          if (log.match(boss.startRegex))
+          if (log.match(boss.startRegex)) {
             this.onFightStart(boss);
+	    return;
+	  }
         }
       }
     } else {
       // TODO: phases??
       for (var i = 0; i < logs.length; ++i) {
         var log = logs[i];
-        if (log.match(this.currentBoss.endRegex))
+        if (log.match(this.currentBoss.endRegex)) {
           this.onFightEnd();
+	  return;
+	}
       }
     }
   }
