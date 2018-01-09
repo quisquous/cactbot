@@ -10,6 +10,10 @@ namespace Cactbot {
   public class CactbotOverlayConfig : OverlayConfigBase {
     public CactbotOverlayConfig(string name)
         : base(name) {
+      // Cactbot only supports visibility toggling with the hotkey.
+      // It assumes all overlays are always locked and either are
+      // clickthru or not on a more permanent basis.
+      GlobalHotkeyType = GlobalHotkeyType.ToggleVisible;
     }
 
     private CactbotOverlayConfig() : base(null) {
