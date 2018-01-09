@@ -240,7 +240,7 @@ class WidgetList extends HTMLElement {
 
   clear() {
     for (var name in this._name_to_id)
-      removeElement(name);
+      this.removeElement(name);
   }
 
   layout() {
