@@ -33,6 +33,9 @@ class DpsPhaseTracker {
   }
 
   onLogEvent(logs) {
+    if (!gLang)
+      return;
+
     // Zones without boss info get default phases.
     if (this.bosses.length == 0) {
       if (!this.defaultPhase) {

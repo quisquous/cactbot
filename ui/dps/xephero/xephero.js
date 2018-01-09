@@ -9,10 +9,9 @@ var Options = {
   ],
 };
 
-var g_current_zone = null;
-
+var gCurrentZone = null;
 var rows = 10;
-var rdps_max = 0;
+var rdpsMax = 0;
 
 var tracker = new DpsPhaseTracker;
 
@@ -44,7 +43,7 @@ function update(dps) {
 
   // sanity check
   if (!isNaN(rdps) && rdps != Infinity) {
-    rdps_max = Math.max(rdps_max, rdps);
+    rdpsMax = Math.max(rdpsMax, rdps);
   }
 
   var header = template.clone();
@@ -56,7 +55,7 @@ function update(dps) {
 
   header.find('.name').text(tracker.title || '');
   header.find('.number').text(encounter.duration);
-  header.find('.bar').css('width', ((rdps / rdps_max) * 100) + '%');
+  header.find('.bar').css('width', ((rdps / rdpsMax) * 100) + '%');
 
   container.append(header);
 
@@ -165,15 +164,15 @@ function updatePhase(phase, dpsOrder) {
 
 $(document).on('onOverlayDataUpdate', function(e) {
   // DPS numbers in large pvp is not useful and hella noisy.
-  if (Options.IgnoreZones.indexOf(g_current_zone) >= 0) {
+  if (Options.IgnoreZones.indexOf(gCurrentZone) >= 0) {
     return;
   }
   tracker.onOverlayDataUpdate(e.originalEvent.detail);
   update(e.originalEvent.detail);
 });
 $(document).on('onZoneChangedEvent', function (e) {
-  g_current_zone = e.originalEvent.detail.zoneName;
-  tracker.onZoneChange(g_current_zone);
+  gCurrentZone = e.originalEvent.detail.zoneName;
+  tracker.onZoneChange(gCurrentZone);
   hideOverlay();
 });
 $(document).on('onLogEvent', function (e) {
