@@ -29,7 +29,7 @@ var Options = {
   BigBuffBorderSize: 1,
 
   FarThresholdOffence: 24,
-  LowMPThreshold: 4800,
+  DRKLowMPThreshold: 4800,
   TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
@@ -59,7 +59,7 @@ var kWellFedZoneRegex = null;
 class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
-    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers), 
+    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers),
                                      gLang.youStartUsingRegex(comboBreakers));
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
@@ -162,7 +162,7 @@ function setupComboTracker(callback) {
     gLang.kAbility.StormsPath,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.Fastblade,
+    gLang.kAbility.FastBlade,
     gLang.kAbility.SavageBlade,
     gLang.kAbility.RageofHalone,
   ]);
@@ -231,16 +231,16 @@ function setupRegexes() {
     gLang.kAbility.StormsEye,
     gLang.kAbility.StormsPath,
 	// pld
-	gLang.kAbility.ShieldLob,
+    gLang.kAbility.ShieldLob,
     gLang.kAbility.TotalEclipse,
     gLang.kAbility.SavageBlade,
     gLang.kAbility.RageofHalone,
     gLang.kAbility.RiotBlade,
     gLang.kAbility.RoyalAuthority,
-	gLang.kAbility.GoringBlade,
-	gLang.kAbility.HolySpirit,
-	gLang.kAbility.Clemency,
-	gLang.kAbility.ShieldBash,
+	  gLang.kAbility.GoringBlade,
+	  gLang.kAbility.HolySpirit,
+	  gLang.kAbility.Clemency,
+	  gLang.kAbility.ShieldBash,
   ]);
 }
 
@@ -813,7 +813,7 @@ class Bars {
       this.o.eyeBox.hideafter = "";
       this.o.eyeBox.roundupthreshold = false;
       this.o.eyeBox.valuescale = this.options.WarGcd;
-	  
+
 	} else if (this.job == "DRK") {
       var bloodBoxesContainer = document.createElement("div");
       bloodBoxesContainer.id = 'drk-boxes';
@@ -826,7 +826,7 @@ class Bars {
       this.o.bloodText = document.createElement("div");
       this.o.bloodTextBox.appendChild(this.o.bloodText);
       this.o.bloodText.classList.add("text");
-	  
+
 	} else if (this.job == "PLD") {
 	  var oathBoxesContainer = document.createElement("div");
       oathBoxesContainer.id = 'pld-boxes';
@@ -839,7 +839,7 @@ class Bars {
       this.o.oathText = document.createElement("div");
       this.o.oathTextBox.appendChild(this.o.oathText);
       this.o.oathText.classList.add("text");
-	  
+
       var goreContainer = document.createElement("div");
       goreContainer.id = 'pld-procs';
       barsContainer.appendChild(goreContainer);
@@ -854,7 +854,7 @@ class Bars {
       this.o.goreBox.hideafter = "";
       this.o.goreBox.roundupthreshold = false;
       this.o.goreBox.valuescale = this.options.PldGcd;
-	  
+
     } else if (this.job == "MNK") {
       var mnkBars = document.createElement("div");
       mnkBars.id = 'mnk-bar';
@@ -1110,7 +1110,7 @@ class Bars {
       this.o.beastTextBox.classList.remove('mid');
     }
   }
-  
+
   OnDrkUpdate(blood) {
     if (this.o.bloodTextBox == null) {
       return;
@@ -1146,7 +1146,7 @@ class Bars {
       this.o.oathTextBox.classList.remove('mid');
     }
   }
-  
+
   OnMonkUpdate(lightningStacks, chakraStacks, lightningMilliseconds) {
     if (this.o.chakraTextBox == null)
       return;
@@ -1253,7 +1253,7 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
-	
+
     } else if (this.job == "WAR") {
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
@@ -1294,23 +1294,23 @@ class Bars {
       }
 
       // Min number of skills until goring without breaking combo.
-      var minSkillsUntilgore;
+      var minSkillsUntilGore;
       if (skill == gLang.kAbility.FastBlade) {
-        minSkillsUntilgore = 2;
+        minSkillsUntilGore = 2;
       } else if (skill == gLang.kAbility.SavageBlade) {
-        minSkillsUntilgore = 4;
+        minSkillsUntilGore = 4;
       } else if (skill == gLang.kAbility.RiotBlade) {
-        minSkillsUntilgore = 1;
+        minSkillsUntilGore = 1;
       } else {
         // End of combo, or broken combo.
-        minSkillsUntilgore = 3;
+        minSkillsUntilGore = 3;
       }
 
       // The new threshold is "can I finish the current combo and still
       // have time to do a Goring Blade".  The 0.3 is for reaction
       // time slop.
       var oldThreshold = parseFloat(this.o.goreBox.threshold);
-      var newThreshold = (minSkillsUntilgore + 2) * this.options.PldGcd + 0.3;
+      var newThreshold = (minSkillsUntilGore + 2) * this.options.PldGcd + 0.3;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
@@ -1321,11 +1321,11 @@ class Bars {
         this.o.goreBox.threshold = oldThreshold;
       }
 	}
-  }	
+  }
   UpdateHealth() {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
-    this.o.healthBar.maxvalue = this.maxHP;	
+    this.o.healthBar.maxvalue = this.maxHP;
     if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
     else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.MidHealthThresholdPercent)
@@ -1338,22 +1338,22 @@ class Bars {
     if (!this.o.manaBar) return;
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
-	var lowmp = -1;
+	  var lowMP = -1;
     var far = -1;
-	
+
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
-	else if (this.job == 'DRK')
-	  lowmp = this.options.LowMPThreshold;
-  
-    if (far >= 0 && this.distance > this.options.FarThresholdOffence)
+	  else if (this.job == 'DRK')
+	    lowMP = this.options.DRKLowMPThreshold;
+
+    if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
-	else if (lowmp >= 0 && this.mp <= this.options.LowMPThreshold)
+	  else if (lowMP >= 0 && this.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
     else
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color')
-  }		
-		
+  }
+
   UpdateTP() {
     if (!this.o.tpBar) return;
 
@@ -1576,7 +1576,7 @@ class Bars {
           this.blackMana = e.detail.jobDetail.blackMana;
           this.OnRedMageUpdate(this.whiteMana, this.blackMana);
         }
-    } else if (this.job == "WAR") {
+  } else if (this.job == "WAR") {
       if (update_job || e.detail.jobDetail.beast != this.beast) {
         this.beast = e.detail.jobDetail.beast;
         this.OnWarUpdate(this.beast);
@@ -1591,7 +1591,7 @@ class Bars {
         this.oath = e.detail.jobDetail.oath;
         this.OnPldUpdate(this.oath);
       }
-    } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
+  } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
           e.detail.jobDetail.aetherflowStacks != this.aetherflowStacks ||
           e.detail.jobDetail.dreadwyrmStacks != this.dreadwyrmStacks ||
