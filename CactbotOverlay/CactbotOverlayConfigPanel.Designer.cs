@@ -110,6 +110,7 @@
       // 
       resources.ApplyResources(this.textGlobalHotkey, "textGlobalHotkey");
       this.textGlobalHotkey.Name = "textGlobalHotkey";
+      this.textGlobalHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxGlobalHotkey_KeyDown);
       // 
       // label9
       // 
