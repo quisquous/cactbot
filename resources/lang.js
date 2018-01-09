@@ -48,6 +48,19 @@ class CactbotLanguage {
       RabbitMedium: '8E0',
       OneIlmPunch: '48',
       Bootshine: '35',
+	  FastBlade: '09',
+	  RiotBlade: '0F',
+	  GoringBlade: 'DD2',
+	  RoyalAuthority: 'DD3',
+	  RageofHalone: '15',
+	  SavageBlade: '0B',
+	  ShieldLob: '18',
+	  Requiescat: '1CD7',
+	  HolySpirit: '1CD8',
+	  TotalEclipse: '1CD5',
+	  Clemency: 'DD5',
+	  ShieldBash: '10',
+	  
 
       // Susano Ex
       ChurningDeep: '203F',

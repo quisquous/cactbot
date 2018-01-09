@@ -38,6 +38,13 @@
   left: 278px;
 }
 
+.pld #right-side-icons {
+  left: 241px;
+}
+
+.drk #right-side-icons {
+  left: 241px;
+}
 /* Relative to #bars */
 #pull-bar, #hp-bar, #mp-bar, #tp-bar, #cp-bar, #gp-bar {
   width: 202px;
@@ -59,7 +66,9 @@
 .tank #hp-bar {
   height: 18px;
 }
-
+.drk #mp-bar {
+  height: 18px;
+}  
 #cp-bar {
   height: 18px;
 }
@@ -111,13 +120,13 @@
 }
 
 /* Relative to #bars */
-#rdm-boxes, #war-boxes, #mnk-boxes {
+#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes {
   position: absolute;
   left: 202px;
   top: 0px;
 }
 
-#rdm-boxes>div, #war-boxes>div {
+#rdm-boxes>div, #war-boxes>div, #pld-boxes>div, #drk-boxes>div {
   display: inline-block;
   margin-left: 4;
   width: 30px;
@@ -133,7 +142,7 @@
   border: 1px solid rgba(0,0,0,0.7);
 }
 
-#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text {
+#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text {
   text-align: center;
   position: relative;
   top: 5px;
@@ -288,7 +297,12 @@
   top: 146px;
   left: 10px;
 }
-
+/* Relative to #bars */
+#pld-procs {
+  position: absolute;
+  top: 146px;
+  left: 10px;
+}
 /* Relative to #bars */
 #mnk-procs {
   position: absolute;
@@ -356,6 +370,9 @@
 .mp-color.far {
   background-color: rgb(215, 120, 0);
 }
+.mp-color.low {
+  background-color: rgb(65, 0, 200);
+}
 .tp-color {
   background-color: rgb(180, 180, 0);
 }
@@ -394,6 +411,27 @@
 }
 .war-color-eye {
   background-color: rgb(60, 100, 210);
+}
+.pld-color-oath {
+  background-color: rgb(255, 210, 45);
+}
+.pld-color-oath.mid {
+  background-color: rgb(255, 255, 100);
+}
+.pld-color-oath.low {
+  background-color: rgb(255, 255, 200);
+}
+.drk-color-blood {
+  background-color: rgb(200, 0, 60);
+}
+.drk-color-blood.low {
+  background-color: rgb(235, 90, 100);
+}
+.drk-color-blood.mid {
+  background-color: rgb(255, 0, 30);
+}
+.pld-color-gore {
+  background-color: rgb(255, 135, 35);
 }
 .smn-color-ruin {
   background-color: rgb(150, 233, 140);
