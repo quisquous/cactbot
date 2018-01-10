@@ -60,7 +60,20 @@ class CactbotLanguage {
 	    TotalEclipse: '1CD5',
 	    Clemency: 'DD5',
 	    ShieldBash: '10',
-
+      FightOrFlight: '14',
+      BloodWeapon: 'E29',
+      Souleater: 'E30',
+      SyphonStrike: 'E27',
+      HardSlash: 'E21',
+      CarveAndSpit: 'E3B',
+      Plunge: 'E38',
+      Unmend: 'E28',
+      AbyssalDrain: 'E39',
+      PowerSlash: 'E2B',
+      SpinningSlash: 'E23',
+      BloodPrice: 'E2F',
+      TheBlackestNight: '1CE1',
+      Delirium: '1CDE',
 
       // Susano Ex
       ChurningDeep: '203F',

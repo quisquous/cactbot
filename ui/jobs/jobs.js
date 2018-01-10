@@ -169,12 +169,25 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     gLang.kAbility.FastBlade,
     gLang.kAbility.RiotBlade,
-    gLang.kAbility.GoringBlade,
+    gLang.kAbility.RoyalAuthority,
   ]);
-    comboTracker.AddCombo([
+  comboTracker.AddCombo([
     gLang.kAbility.FastBlade,
     gLang.kAbility.RiotBlade,
-    gLang.kAbility.RoyalAuthority,
+    gLang.kAbility.FightOrFlight,
+    gLang.kAbility.GoringBlade,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.FightOrFlight,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.GoringBlade,
+  ]);
+  comboTracker.AddCombo([
+	gLang.kAbility.FightOrFlight,
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.GoringBlade,
   ]);
   return comboTracker;
 }
@@ -237,10 +250,10 @@ function setupRegexes() {
     gLang.kAbility.RageofHalone,
     gLang.kAbility.RiotBlade,
     gLang.kAbility.RoyalAuthority,
-	  gLang.kAbility.GoringBlade,
-	  gLang.kAbility.HolySpirit,
-	  gLang.kAbility.Clemency,
-	  gLang.kAbility.ShieldBash,
+	gLang.kAbility.GoringBlade,
+	gLang.kAbility.HolySpirit,
+	gLang.kAbility.Clemency,
+	gLang.kAbility.ShieldBash,
   ]);
 }
 
@@ -530,6 +543,7 @@ class Bars {
     }
 
     var healthText = isTankJob(this.job) ? 'value' : '';
+    var manaText = (this.job == 'DRK') ? 'value' : '';
 
     this.o.healthContainer = document.createElement("div");
     this.o.healthContainer.id = 'hp-bar';
@@ -553,9 +567,10 @@ class Bars {
       // TODO: Let the component do this dynamically.
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
+      this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');;
-    }
-
+	}
+	
     if (!isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement("div");
       this.o.tpContainer.id = 'tp-bar';
@@ -847,13 +862,27 @@ class Bars {
       this.o.goreBox = document.createElement("timer-box");
       goreContainer.appendChild(this.o.goreBox);
       this.o.goreBox.style = "empty";
-      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
+      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-fof');
       this.o.goreBox.bg = 'black';
       this.o.goreBox.toward = "bottom";
       this.o.goreBox.threshold = 0;
       this.o.goreBox.hideafter = "";
       this.o.goreBox.roundupthreshold = false;
       this.o.goreBox.valuescale = this.options.PldGcd;
+
+      var goreTimerContainer = document.createElement("div");
+      goreTimerContainer.id = 'pld-procs-timer';
+      barsContainer.appendChild(goreTimerContainer);
+
+      this.o.goreTimer = document.createElement("timer-box");
+      goreTimerContainer.appendChild(this.o.goreTimer);
+      this.o.goreTimer.style = "empty";
+      this.o.goreTimer.fg = computeBackgroundColorFrom(this.o.goreTimer, 'pld-color-gore');
+      this.o.goreTimer.bg = 'black';
+      this.o.goreTimer.toward = "bottom";
+      this.o.goreTimer.threshold = 21;
+      this.o.goreTimer.hideafter = "";
+      this.o.goreTimer.roundupthreshold = false;
 
     } else if (this.job == "MNK") {
       var mnkBars = document.createElement("div");
@@ -941,12 +970,12 @@ class Bars {
       this.o.lightningFgColors = [];
       for (var i = 0; i <= 3; ++i)
         this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
-    }
+	}
   }
-
+  
   MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
     var div = document.createElement("div");
-
+	
     if (seconds < 0) {
       div.style.borderWidth = 1;
       div.style.borderStyle = 'solid';
@@ -954,7 +983,7 @@ class Bars {
       div.style.width = iconWidth - borderSize * 2;
       div.style.height = iconHeight - borderSize * 2;
       div.style.backgroundColor = borderColor;
-      var inner = document.createElement('div');
+	  var inner = document.createElement('div');
       div.appendChild(inner);
       inner.style.position = 'relative';
       inner.style.left = borderSize;
@@ -972,7 +1001,7 @@ class Bars {
       return div;
     }
 
-
+	
     var icon = document.createElement("timer-icon");
     icon.width = iconWidth;
     icon.height = iconHeight;
@@ -1023,7 +1052,7 @@ class Bars {
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks, dreadwyrmMilliseconds, bahamutMilliseconds) {
     if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
       return;
-
+    
     for (var i = 0; i < this.o.smnBahamutStacks.length; ++i) {
       if (bahamutStacks > i)
         this.o.smnBahamutStacks[i].classList.add('active');
@@ -1066,13 +1095,12 @@ class Bars {
         this.smnChanneling = 2;
         this.o.smnBahamutTimer.duration = bahamutMilliseconds / 1000;
       }
-    }
-    else {
+    } else {
       this.o.smnBahamutTimerContainer.classList.remove('channeling');
     }
     if (dreadwyrmMilliseconds == 0 && bahamutMilliseconds == 0)
       this.smnChanneling = 0;
-  }
+	}
 
   OnRedMageUpdate(white, black) {
     if (this.o.whiteManaBar == null || this.o.blackManaBar == null)
@@ -1083,7 +1111,7 @@ class Bars {
     this.o.whiteManaText.innerText = white;
     this.o.blackManaText.innerText = black;
 
-    if (white < 80)
+    if (white < 80) 
       this.o.whiteManaTextBox.classList.add('dim');
     else
       this.o.whiteManaTextBox.classList.remove('dim');
@@ -1092,7 +1120,7 @@ class Bars {
     else
       this.o.blackManaTextBox.classList.remove('dim');
   }
-
+  
   OnWarUpdate(beast) {
     if (this.o.beastTextBox == null) {
       return;
@@ -1114,7 +1142,7 @@ class Bars {
   OnDrkUpdate(blood) {
     if (this.o.bloodTextBox == null) {
       return;
-    }
+	}
     this.o.bloodText.innerText = blood;
 
     if (blood < 50) {
@@ -1289,8 +1317,12 @@ class Bars {
 	  }
     } else if (this.job == "PLD") {
       if (skill == gLang.kAbility.GoringBlade) {
+        this.o.goreTimer.duration = 0;
+        this.o.goreTimer.duration = 21;
+      }
+      if (skill == gLang.kAbility.FightOrFlight) {
         this.o.goreBox.duration = 0;
-        this.o.goreBox.duration = 21;
+        this.o.goreBox.duration = 25;
       }
 
       // Min number of skills until goring without breaking combo.
@@ -1384,7 +1416,7 @@ class Bars {
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
       opacityContainer.style.opacity = 1.0;
     else
-      opacityContainer.style.opacity = 0.5;
+      opacityContainer.style.opacity = 0.15;
   }
 
   UpdateFoodBuff() {
@@ -1550,11 +1582,10 @@ class Bars {
       this.maxGP = e.detail.maxGP;
       update_gp = true;
     }
-    if (update_job) {
+    if (update_job)
       this.UpdateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this.UpdateOpacity();
-    }
     if (update_hp)
       this.UpdateHealth();
     if (update_mp)

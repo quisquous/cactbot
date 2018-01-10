@@ -56,18 +56,20 @@
   left: 100px;
   top: 0px;
   height: 18px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #mp-bar, #tp-bar, #rdm-bar, #mnk-bar {
   margin-top: 1px;
 }
-
 .tank #hp-bar {
   height: 18px;
 }
 .drk #mp-bar {
   height: 18px;
+}
+.drk #tp-bar {
+  height: 4px;
 }
 #cp-bar {
   height: 18px;
@@ -129,24 +131,24 @@
 #rdm-boxes>div, #war-boxes>div, #pld-boxes>div, #drk-boxes>div {
   display: inline-block;
   margin-left: 4;
-  width: 30px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   border: 1px solid rgba(0,0,0,0.7);
 }
 
 #mnk-boxes>div {
   display: inline-block;
   margin-left: 4;
-  width: 30px;
-  height: 29px;
+  width: 35px;
+  height: 35px;
   border: 1px solid rgba(0,0,0,0.7);
 }
 
 #rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text {
   text-align: center;
   position: relative;
-  top: 5px;
-  font-size: 16px;
+  top: 10px;
+  font-size: 20px;
 }
 
 /* Relative to #bars */
@@ -300,8 +302,14 @@
 /* Relative to #bars */
 #pld-procs {
   position: absolute;
-  top: 146px;
-  left: 10px;
+  top: 186px;
+  left: -10px;
+}
+/* Relative to #bars */
+#pld-procs-timer {
+  position: absolute;
+  top: 246px;
+  left: -10px;
 }
 /* Relative to #bars */
 #mnk-procs {
@@ -432,6 +440,9 @@
 }
 .pld-color-gore {
   background-color: rgb(255, 135, 35);
+}
+.pld-color-fof {
+  background-color: rgb(235, 35, 35);
 }
 .smn-color-ruin {
   background-color: rgb(150, 233, 140);
