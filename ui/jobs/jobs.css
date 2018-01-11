@@ -26,25 +26,18 @@
   left: 206px;
 }
 
+#right-side-icons {
+  left: 242px;
+}
+
 .rdm #right-side-icons {
   left: 278px;
 }
 
-.war #right-side-icons {
-  left: 241px;
-}
-
-.mnk #right-side-icons {
-  left: 278px;
-}
-
-.pld #right-side-icons {
-  left: 241px;
-}
-
 .drk #right-side-icons {
-  left: 241px;
+  left: 250px;
 }
+
 /* Relative to #bars */
 #pull-bar, #hp-bar, #mp-bar, #tp-bar, #cp-bar, #gp-bar {
   width: 202px;
@@ -56,7 +49,7 @@
   left: 100px;
   top: 0px;
   height: 18px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #mp-bar, #tp-bar, #rdm-bar, #mnk-bar {
@@ -128,30 +121,65 @@
   top: 0px;
 }
 
-#rdm-boxes>div, #war-boxes>div, #pld-boxes>div, #drk-boxes>div {
+#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div  {
   display: inline-block;
   margin-left: 4;
-  width: 40px;
-  height: 40px;
   border: 1px solid rgba(0,0,0,0.7);
 }
 
+/*
+  Boxes try to fit the exact height of the bars.
+  War is pretty short though, so just gets a default value.
+*/
+
+#war-boxes>div  {
+  width: 32px;
+  height: 32px;
+}
+
+#drk-boxes>div  {
+  width: 40px;
+  height: 40px;
+}
+
+#rdm-boxes>div {
+  width: 28px;
+  height: 28px;
+}
+
+#pld-boxes>div {
+  width: 32px;
+  height: 32px;
+}
+
 #mnk-boxes>div {
-  display: inline-block;
-  margin-left: 4;
-  width: 35px;
-  height: 35px;
-  border: 1px solid rgba(0,0,0,0.7);
+  width: 29px;
+  height: 29px;
 }
 
 #rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text {
   text-align: center;
   position: relative;
-  top: 10px;
+  top: 7px;
+  font-size: 16px;
+}
+
+#mnk-boxes .text, #rdm-boxes .text {
+  top: 5px;
+}
+
+#drk-boxes .text {
+  top: 9px;
   font-size: 20px;
 }
 
-/* Relative to #bars */
+/*
+  Relative to #bars
+  In general, jobs has ui such that the health bar can appear on top
+  of the ffxiv target+buffs bar, with the procs appearing underneath.
+  All jobs should have procs in roughly the same spot, and the
+  entire bars + procs should be roughly 250px wide, 210px tall.
+*/
 #rdm-procs {
   position: absolute;
   top: 146px;
@@ -294,25 +322,7 @@
 }
 
 /* Relative to #bars */
-#war-procs {
-  position: absolute;
-  top: 146px;
-  left: 10px;
-}
-/* Relative to #bars */
-#pld-procs {
-  position: absolute;
-  top: 186px;
-  left: -10px;
-}
-/* Relative to #bars */
-#pld-procs-timer {
-  position: absolute;
-  top: 246px;
-  left: -10px;
-}
-/* Relative to #bars */
-#mnk-procs {
+#war-procs, #pld-procs, #mnk-procs {
   position: absolute;
   top: 146px;
   left: 10px;
@@ -430,19 +440,16 @@
   background-color: rgb(255, 255, 200);
 }
 .drk-color-blood {
-  background-color: rgb(200, 0, 60);
+  background-color: rgb(255, 0, 10);
 }
 .drk-color-blood.low {
-  background-color: rgb(235, 90, 100);
+  background-color: rgb(235, 140, 140);
 }
 .drk-color-blood.mid {
-  background-color: rgb(255, 0, 30);
+  background-color: rgb(240, 60, 60);
 }
 .pld-color-gore {
   background-color: rgb(255, 135, 35);
-}
-.pld-color-fof {
-  background-color: rgb(235, 35, 35);
 }
 .smn-color-ruin {
   background-color: rgb(150, 233, 140);
