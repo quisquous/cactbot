@@ -184,7 +184,7 @@ function setupComboTracker(callback) {
     gLang.kAbility.GoringBlade,
   ]);
   comboTracker.AddCombo([
-	gLang.kAbility.FightOrFlight,
+    gLang.kAbility.FightOrFlight,
     gLang.kAbility.FastBlade,
     gLang.kAbility.RiotBlade,
     gLang.kAbility.GoringBlade,
@@ -250,10 +250,10 @@ function setupRegexes() {
     gLang.kAbility.RageofHalone,
     gLang.kAbility.RiotBlade,
     gLang.kAbility.RoyalAuthority,
-	gLang.kAbility.GoringBlade,
-	gLang.kAbility.HolySpirit,
-	gLang.kAbility.Clemency,
-	gLang.kAbility.ShieldBash,
+    gLang.kAbility.GoringBlade,
+    gLang.kAbility.HolySpirit,
+    gLang.kAbility.Clemency,
+    gLang.kAbility.ShieldBash,
   ]);
 }
 
@@ -432,8 +432,8 @@ class Bars {
     this.whiteMana = -1;
     this.blackMana = -1;
     this.beast = -1;
-	this.blood = -1;
-	this.oath = -1;
+    this.blood = -1;
+    this.oath = -1;
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
@@ -829,7 +829,7 @@ class Bars {
       this.o.eyeBox.roundupthreshold = false;
       this.o.eyeBox.valuescale = this.options.WarGcd;
 
-	} else if (this.job == "DRK") {
+    } else if (this.job == "DRK") {
       var bloodBoxesContainer = document.createElement("div");
       bloodBoxesContainer.id = 'drk-boxes';
       barsContainer.appendChild(bloodBoxesContainer);
@@ -842,8 +842,8 @@ class Bars {
       this.o.bloodTextBox.appendChild(this.o.bloodText);
       this.o.bloodText.classList.add("text");
 
-	} else if (this.job == "PLD") {
-	  var oathBoxesContainer = document.createElement("div");
+    } else if (this.job == "PLD") {
+      var oathBoxesContainer = document.createElement("div");
       oathBoxesContainer.id = 'pld-boxes';
       barsContainer.appendChild(oathBoxesContainer);
 
@@ -970,7 +970,7 @@ class Bars {
       this.o.lightningFgColors = [];
       for (var i = 0; i <= 3; ++i)
         this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
-	}
+    }
   }
   
   MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
@@ -983,7 +983,7 @@ class Bars {
       div.style.width = iconWidth - borderSize * 2;
       div.style.height = iconHeight - borderSize * 2;
       div.style.backgroundColor = borderColor;
-	  var inner = document.createElement('div');
+      var inner = document.createElement('div');
       div.appendChild(inner);
       inner.style.position = 'relative';
       inner.style.left = borderSize;
@@ -1039,7 +1039,7 @@ class Bars {
     }
 
     if (iconText)
-      icon.text = iconText;
+    icon.text = iconText;
     icon.bordercolor = borderColor;
     bar.fg = barColor;
     icon.icon = auraIcon;
@@ -1352,7 +1352,7 @@ class Bars {
       } else {
         this.o.goreBox.threshold = oldThreshold;
       }
-	}
+    }
   }
   UpdateHealth() {
     if (!this.o.healthBar) return;
@@ -1370,17 +1370,17 @@ class Bars {
     if (!this.o.manaBar) return;
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
-	  var lowMP = -1;
+    var lowMP = -1;
     var far = -1;
 
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
-	  else if (this.job == 'DRK')
-	    lowMP = this.options.DRKLowMPThreshold;
+      else if (this.job == 'DRK')
+      lowMP = this.options.DRKLowMPThreshold;
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
-	  else if (lowMP >= 0 && this.mp <= lowMP)
+    else if (lowMP >= 0 && this.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
     else
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color')
