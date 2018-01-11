@@ -243,7 +243,7 @@ function setupRegexes() {
     gLang.kAbility.Maim,
     gLang.kAbility.StormsEye,
     gLang.kAbility.StormsPath,
-	// pld
+  // pld
     gLang.kAbility.ShieldLob,
     gLang.kAbility.TotalEclipse,
     gLang.kAbility.SavageBlade,
@@ -569,8 +569,8 @@ class Bars {
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');;
-	}
-	
+  }
+
     if (!isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement("div");
       this.o.tpContainer.id = 'tp-bar';
@@ -972,10 +972,10 @@ class Bars {
         this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
     }
   }
-  
+
   MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
     var div = document.createElement("div");
-	
+
     if (seconds < 0) {
       div.style.borderWidth = 1;
       div.style.borderStyle = 'solid';
@@ -1001,7 +1001,7 @@ class Bars {
       return div;
     }
 
-	
+
     var icon = document.createElement("timer-icon");
     icon.width = iconWidth;
     icon.height = iconHeight;
@@ -1052,7 +1052,7 @@ class Bars {
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks, dreadwyrmMilliseconds, bahamutMilliseconds) {
     if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
       return;
-    
+
     for (var i = 0; i < this.o.smnBahamutStacks.length; ++i) {
       if (bahamutStacks > i)
         this.o.smnBahamutStacks[i].classList.add('active');
@@ -1100,7 +1100,7 @@ class Bars {
     }
     if (dreadwyrmMilliseconds == 0 && bahamutMilliseconds == 0)
       this.smnChanneling = 0;
-	}
+  }
 
   OnRedMageUpdate(white, black) {
     if (this.o.whiteManaBar == null || this.o.blackManaBar == null)
@@ -1111,7 +1111,7 @@ class Bars {
     this.o.whiteManaText.innerText = white;
     this.o.blackManaText.innerText = black;
 
-    if (white < 80) 
+    if (white < 80)
       this.o.whiteManaTextBox.classList.add('dim');
     else
       this.o.whiteManaTextBox.classList.remove('dim');
@@ -1120,7 +1120,7 @@ class Bars {
     else
       this.o.blackManaTextBox.classList.remove('dim');
   }
-  
+
   OnWarUpdate(beast) {
     if (this.o.beastTextBox == null) {
       return;
@@ -1142,7 +1142,7 @@ class Bars {
   OnDrkUpdate(blood) {
     if (this.o.bloodTextBox == null) {
       return;
-	}
+  }
     this.o.bloodText.innerText = blood;
 
     if (blood < 50) {
@@ -1314,7 +1314,7 @@ class Bars {
         this.o.eyeBox.threshold = newThreshold;
       } else {
         this.o.eyeBox.threshold = oldThreshold;
-	  }
+    }
     } else if (this.job == "PLD") {
       if (skill == gLang.kAbility.GoringBlade) {
         this.o.goreTimer.duration = 0;
@@ -1612,12 +1612,12 @@ class Bars {
         this.beast = e.detail.jobDetail.beast;
         this.OnWarUpdate(this.beast);
       }
-	} else if (this.job == "DRK") {
+  } else if (this.job == "DRK") {
       if (update_job || e.detail.jobDetail.blood != this.blood) {
         this.blood = e.detail.jobDetail.blood;
         this.OnDrkUpdate(this.blood);
       }
-	} else if (this.job == "PLD") {
+  } else if (this.job == "PLD") {
       if (update_job || e.detail.jobDetail.oath != this.oath) {
         this.oath = e.detail.jobDetail.oath;
         this.OnPldUpdate(this.oath);
@@ -1636,7 +1636,7 @@ class Bars {
         this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
         this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks, this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
-    } else if (this.job == 'MNK') {
+  } else if (this.job == 'MNK') {
       if (update_job ||
           e.detail.jobDetail.lightningStacks != this.lightningStacks ||
           e.detail.jobDetail.chakraStacks != this.chakraStacks ||
