@@ -1152,7 +1152,7 @@ class Bars {
     if (oath < 50) {
       this.o.oathTextBox.classList.add('low');
       this.o.oathTextBox.classList.remove('mid');
-    } else if (oath < 100) {
+    } else if (oath < 90) {
       this.o.oathTextBox.classList.remove('low');
       this.o.oathTextBox.classList.add('mid');
     } else {
