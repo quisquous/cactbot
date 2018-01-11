@@ -861,27 +861,13 @@ class Bars {
       this.o.goreBox = document.createElement("timer-box");
       goreContainer.appendChild(this.o.goreBox);
       this.o.goreBox.style = "empty";
-      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-fof');
+      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
       this.o.goreBox.bg = 'black';
       this.o.goreBox.toward = "bottom";
-      this.o.goreBox.threshold = 0;
+      this.o.goreBox.threshold = this.options.PldGcd * 3 + 0.3;
       this.o.goreBox.hideafter = "";
       this.o.goreBox.roundupthreshold = false;
       this.o.goreBox.valuescale = this.options.PldGcd;
-
-      var goreTimerContainer = document.createElement("div");
-      goreTimerContainer.id = 'pld-procs-timer';
-      barsContainer.appendChild(goreTimerContainer);
-
-      this.o.goreTimer = document.createElement("timer-box");
-      goreTimerContainer.appendChild(this.o.goreTimer);
-      this.o.goreTimer.style = "empty";
-      this.o.goreTimer.fg = computeBackgroundColorFrom(this.o.goreTimer, 'pld-color-gore');
-      this.o.goreTimer.bg = 'black';
-      this.o.goreTimer.toward = "bottom";
-      this.o.goreTimer.threshold = 21;
-      this.o.goreTimer.hideafter = "";
-      this.o.goreTimer.roundupthreshold = false;
 
       // TODO: add shield swipe proc box
     } else if (this.job == "MNK") {
@@ -1316,40 +1302,14 @@ class Bars {
       }
     } else if (this.job == "PLD") {
       if (skill == gLang.kAbility.GoringBlade) {
-        this.o.goreTimer.duration = 0;
-        this.o.goreTimer.duration = 21;
-      }
-      if (skill == gLang.kAbility.FightOrFlight) {
         this.o.goreBox.duration = 0;
-        this.o.goreBox.duration = 25;
-      }
-
-      // Min number of skills until goring without breaking combo.
-      var minSkillsUntilGore;
-      if (skill == gLang.kAbility.FastBlade) {
-        minSkillsUntilGore = 2;
-      } else if (skill == gLang.kAbility.SavageBlade) {
-        minSkillsUntilGore = 4;
-      } else if (skill == gLang.kAbility.RiotBlade) {
-        minSkillsUntilGore = 1;
-      } else {
-        // End of combo, or broken combo.
-        minSkillsUntilGore = 3;
-      }
-
-      // The new threshold is "can I finish the current combo and still
-      // have time to do a Goring Blade".  The 0.3 is for reaction
-      // time slop.
-      var oldThreshold = parseFloat(this.o.goreBox.threshold);
-      var newThreshold = (minSkillsUntilGore + 2) * this.options.PldGcd + 0.3;
-
-      // Because thresholds are nonmonotonic (when finishing a combo)
-      // be careful about setting them in ways that are visually poor.
-      if (this.o.goreBox.value >= oldThreshold &&
-          this.o.goreBox.value >= newThreshold) {
-        this.o.goreBox.threshold = newThreshold;
-      } else {
-        this.o.goreBox.threshold = oldThreshold;
+        // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
+        // have the box show 21, it looks like you're awfully late with
+        // your goring blade and just feels really bad.  So, lie to the
+        // poor paladins who don't have enough skill speed so that the UI
+        // is easier to read for repeating goring, royal, royal, goring
+        // and not having the box run out early.
+        this.o.goreBox.duration = 22;
       }
     }
   }
