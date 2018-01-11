@@ -21,6 +21,8 @@ Options.ShowRdmProcs = true
 Options.RdmCastTime = 1.94 + 0.5
 // GCD on warrior.
 Options.WarGcd = 2.38
+// GCD on paladin.
+Options.PldGcd = 2.43
 // The recast time for Aetherflow.
 Options.SmnAetherflowRecast = 60
 
@@ -36,6 +38,8 @@ Options.BigBuffBorderSize = 1
 
 // The distance that offensive spells such as Verareo, Bio, etc are castable.
 Options.FarThresholdOffence = 24
+// When MP falls below this, the MP bar is highlighted with the .low CSS class on dark knight.
+Options.DRKLowMPThreshold = 4800
 
 // When TP falls below this, the TP bar is highlighted with the .low CSS class.
 Options.TPInvigorateThreshold = 600

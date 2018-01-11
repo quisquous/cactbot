@@ -19,6 +19,7 @@ var Options = {
 
   RdmCastTime: 1.94 + 0.5,
   WarGcd: 2.38,
+  PldGcd: 2.43,
   SmnAetherflowRecast: 60,
 
   BigBuffIconWidth: 44,
@@ -28,7 +29,7 @@ var Options = {
   BigBuffBorderSize: 1,
 
   FarThresholdOffence: 24,
-
+  DRKLowMPThreshold: 4800,
   TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
@@ -58,7 +59,7 @@ var kWellFedZoneRegex = null;
 class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
-    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers), 
+    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers),
                                      gLang.youStartUsingRegex(comboBreakers));
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
@@ -160,6 +161,34 @@ function setupComboTracker(callback) {
     gLang.kAbility.Maim,
     gLang.kAbility.StormsPath,
   ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.SavageBlade,
+    gLang.kAbility.RageofHalone,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.RoyalAuthority,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.FightOrFlight,
+    gLang.kAbility.GoringBlade,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.FightOrFlight,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.GoringBlade,
+  ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.FightOrFlight,
+    gLang.kAbility.FastBlade,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.GoringBlade,
+  ]);
   return comboTracker;
 }
 
@@ -214,6 +243,17 @@ function setupRegexes() {
     gLang.kAbility.Maim,
     gLang.kAbility.StormsEye,
     gLang.kAbility.StormsPath,
+  // pld
+    gLang.kAbility.ShieldLob,
+    gLang.kAbility.TotalEclipse,
+    gLang.kAbility.SavageBlade,
+    gLang.kAbility.RageofHalone,
+    gLang.kAbility.RiotBlade,
+    gLang.kAbility.RoyalAuthority,
+    gLang.kAbility.GoringBlade,
+    gLang.kAbility.HolySpirit,
+    gLang.kAbility.Clemency,
+    gLang.kAbility.ShieldBash,
   ]);
 }
 
@@ -392,6 +432,8 @@ class Bars {
     this.whiteMana = -1;
     this.blackMana = -1;
     this.beast = -1;
+    this.blood = -1;
+    this.oath = -1;
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
@@ -501,6 +543,7 @@ class Bars {
     }
 
     var healthText = isTankJob(this.job) ? 'value' : '';
+    var manaText = (this.job == 'DRK') ? 'value' : '';
 
     this.o.healthContainer = document.createElement("div");
     this.o.healthContainer.id = 'hp-bar';
@@ -524,8 +567,9 @@ class Bars {
       // TODO: Let the component do this dynamically.
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
+      this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');;
-    }
+  }
 
     if (!isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement("div");
@@ -784,6 +828,62 @@ class Bars {
       this.o.eyeBox.hideafter = "";
       this.o.eyeBox.roundupthreshold = false;
       this.o.eyeBox.valuescale = this.options.WarGcd;
+
+    } else if (this.job == "DRK") {
+      var bloodBoxesContainer = document.createElement("div");
+      bloodBoxesContainer.id = 'drk-boxes';
+      barsContainer.appendChild(bloodBoxesContainer);
+
+      this.o.bloodTextBox = document.createElement("div");
+      this.o.bloodTextBox.classList.add('drk-color-blood');
+      bloodBoxesContainer.appendChild(this.o.bloodTextBox);
+
+      this.o.bloodText = document.createElement("div");
+      this.o.bloodTextBox.appendChild(this.o.bloodText);
+      this.o.bloodText.classList.add("text");
+
+    } else if (this.job == "PLD") {
+      var oathBoxesContainer = document.createElement("div");
+      oathBoxesContainer.id = 'pld-boxes';
+      barsContainer.appendChild(oathBoxesContainer);
+
+      this.o.oathTextBox = document.createElement("div");
+      this.o.oathTextBox.classList.add('pld-color-oath');
+      oathBoxesContainer.appendChild(this.o.oathTextBox);
+
+      this.o.oathText = document.createElement("div");
+      this.o.oathTextBox.appendChild(this.o.oathText);
+      this.o.oathText.classList.add("text");
+
+      var goreContainer = document.createElement("div");
+      goreContainer.id = 'pld-procs';
+      barsContainer.appendChild(goreContainer);
+
+      this.o.goreBox = document.createElement("timer-box");
+      goreContainer.appendChild(this.o.goreBox);
+      this.o.goreBox.style = "empty";
+      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-fof');
+      this.o.goreBox.bg = 'black';
+      this.o.goreBox.toward = "bottom";
+      this.o.goreBox.threshold = 0;
+      this.o.goreBox.hideafter = "";
+      this.o.goreBox.roundupthreshold = false;
+      this.o.goreBox.valuescale = this.options.PldGcd;
+
+      var goreTimerContainer = document.createElement("div");
+      goreTimerContainer.id = 'pld-procs-timer';
+      barsContainer.appendChild(goreTimerContainer);
+
+      this.o.goreTimer = document.createElement("timer-box");
+      goreTimerContainer.appendChild(this.o.goreTimer);
+      this.o.goreTimer.style = "empty";
+      this.o.goreTimer.fg = computeBackgroundColorFrom(this.o.goreTimer, 'pld-color-gore');
+      this.o.goreTimer.bg = 'black';
+      this.o.goreTimer.toward = "bottom";
+      this.o.goreTimer.threshold = 21;
+      this.o.goreTimer.hideafter = "";
+      this.o.goreTimer.roundupthreshold = false;
+
     } else if (this.job == "MNK") {
       var mnkBars = document.createElement("div");
       mnkBars.id = 'mnk-bar';
@@ -939,7 +1039,7 @@ class Bars {
     }
 
     if (iconText)
-      icon.text = iconText;
+    icon.text = iconText;
     icon.bordercolor = borderColor;
     bar.fg = barColor;
     icon.icon = auraIcon;
@@ -995,8 +1095,7 @@ class Bars {
         this.smnChanneling = 2;
         this.o.smnBahamutTimer.duration = bahamutMilliseconds / 1000;
       }
-    }
-    else {
+    } else {
       this.o.smnBahamutTimerContainer.classList.remove('channeling');
     }
     if (dreadwyrmMilliseconds == 0 && bahamutMilliseconds == 0)
@@ -1037,6 +1136,42 @@ class Bars {
     } else {
       this.o.beastTextBox.classList.remove('low');
       this.o.beastTextBox.classList.remove('mid');
+    }
+  }
+
+  OnDrkUpdate(blood) {
+    if (this.o.bloodTextBox == null) {
+      return;
+  }
+    this.o.bloodText.innerText = blood;
+
+    if (blood < 50) {
+      this.o.bloodTextBox.classList.add('low');
+      this.o.bloodTextBox.classList.remove('mid');
+    } else if (blood < 100) {
+      this.o.bloodTextBox.classList.remove('low');
+      this.o.bloodTextBox.classList.add('mid');
+    } else {
+      this.o.bloodTextBox.classList.remove('low');
+      this.o.bloodTextBox.classList.remove('mid');
+    }
+  }
+
+   OnPldUpdate(oath) {
+    if (this.o.oathTextBox == null) {
+      return;
+    }
+    this.o.oathText.innerText = oath;
+
+    if (oath < 50) {
+      this.o.oathTextBox.classList.add('low');
+      this.o.oathTextBox.classList.remove('mid');
+    } else if (oath < 100) {
+      this.o.oathTextBox.classList.remove('low');
+      this.o.oathTextBox.classList.add('mid');
+    } else {
+      this.o.oathTextBox.classList.remove('low');
+      this.o.oathTextBox.classList.remove('mid');
     }
   }
 
@@ -1146,6 +1281,7 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
+
     } else if (this.job == "WAR") {
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
@@ -1178,15 +1314,50 @@ class Bars {
         this.o.eyeBox.threshold = newThreshold;
       } else {
         this.o.eyeBox.threshold = oldThreshold;
+    }
+    } else if (this.job == "PLD") {
+      if (skill == gLang.kAbility.GoringBlade) {
+        this.o.goreTimer.duration = 0;
+        this.o.goreTimer.duration = 21;
+      }
+      if (skill == gLang.kAbility.FightOrFlight) {
+        this.o.goreBox.duration = 0;
+        this.o.goreBox.duration = 25;
+      }
+
+      // Min number of skills until goring without breaking combo.
+      var minSkillsUntilGore;
+      if (skill == gLang.kAbility.FastBlade) {
+        minSkillsUntilGore = 2;
+      } else if (skill == gLang.kAbility.SavageBlade) {
+        minSkillsUntilGore = 4;
+      } else if (skill == gLang.kAbility.RiotBlade) {
+        minSkillsUntilGore = 1;
+      } else {
+        // End of combo, or broken combo.
+        minSkillsUntilGore = 3;
+      }
+
+      // The new threshold is "can I finish the current combo and still
+      // have time to do a Goring Blade".  The 0.3 is for reaction
+      // time slop.
+      var oldThreshold = parseFloat(this.o.goreBox.threshold);
+      var newThreshold = (minSkillsUntilGore + 2) * this.options.PldGcd + 0.3;
+
+      // Because thresholds are nonmonotonic (when finishing a combo)
+      // be careful about setting them in ways that are visually poor.
+      if (this.o.goreBox.value >= oldThreshold &&
+          this.o.goreBox.value >= newThreshold) {
+        this.o.goreBox.threshold = newThreshold;
+      } else {
+        this.o.goreBox.threshold = oldThreshold;
       }
     }
   }
-
   UpdateHealth() {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
-
     if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
     else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.MidHealthThresholdPercent)
@@ -1199,13 +1370,18 @@ class Bars {
     if (!this.o.manaBar) return;
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
-
+    var lowMP = -1;
     var far = -1;
+
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
+      else if (this.job == 'DRK')
+      lowMP = this.options.DRKLowMPThreshold;
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
+    else if (lowMP >= 0 && this.mp <= lowMP)
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
     else
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color')
   }
@@ -1240,7 +1416,7 @@ class Bars {
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
       opacityContainer.style.opacity = 1.0;
     else
-      opacityContainer.style.opacity = 0.5;
+      opacityContainer.style.opacity = 0.15;
   }
 
   UpdateFoodBuff() {
@@ -1406,11 +1582,10 @@ class Bars {
       this.maxGP = e.detail.maxGP;
       update_gp = true;
     }
-    if (update_job) {
+    if (update_job)
       this.UpdateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this.UpdateOpacity();
-    }
     if (update_hp)
       this.UpdateHealth();
     if (update_mp)
@@ -1432,12 +1607,22 @@ class Bars {
           this.blackMana = e.detail.jobDetail.blackMana;
           this.OnRedMageUpdate(this.whiteMana, this.blackMana);
         }
-    } else if (this.job == "WAR") {
+  } else if (this.job == "WAR") {
       if (update_job || e.detail.jobDetail.beast != this.beast) {
         this.beast = e.detail.jobDetail.beast;
         this.OnWarUpdate(this.beast);
       }
-    } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
+  } else if (this.job == "DRK") {
+      if (update_job || e.detail.jobDetail.blood != this.blood) {
+        this.blood = e.detail.jobDetail.blood;
+        this.OnDrkUpdate(this.blood);
+      }
+  } else if (this.job == "PLD") {
+      if (update_job || e.detail.jobDetail.oath != this.oath) {
+        this.oath = e.detail.jobDetail.oath;
+        this.OnPldUpdate(this.oath);
+      }
+  } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
           e.detail.jobDetail.aetherflowStacks != this.aetherflowStacks ||
           e.detail.jobDetail.dreadwyrmStacks != this.dreadwyrmStacks ||
@@ -1451,7 +1636,7 @@ class Bars {
         this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
         this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks, this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
-    } else if (this.job == 'MNK') {
+  } else if (this.job == 'MNK') {
       if (update_job ||
           e.detail.jobDetail.lightningStacks != this.lightningStacks ||
           e.detail.jobDetail.chakraStacks != this.chakraStacks ||
