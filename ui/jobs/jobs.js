@@ -243,7 +243,7 @@ function setupRegexes() {
     gLang.kAbility.Maim,
     gLang.kAbility.StormsEye,
     gLang.kAbility.StormsPath,
-  // pld
+    // pld
     gLang.kAbility.ShieldLob,
     gLang.kAbility.TotalEclipse,
     gLang.kAbility.SavageBlade,
@@ -569,7 +569,7 @@ class Bars {
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');;
-  }
+    }
 
     if (!isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement("div");
@@ -828,7 +828,6 @@ class Bars {
       this.o.eyeBox.hideafter = "";
       this.o.eyeBox.roundupthreshold = false;
       this.o.eyeBox.valuescale = this.options.WarGcd;
-
     } else if (this.job == "DRK") {
       var bloodBoxesContainer = document.createElement("div");
       bloodBoxesContainer.id = 'drk-boxes';
@@ -841,7 +840,6 @@ class Bars {
       this.o.bloodText = document.createElement("div");
       this.o.bloodTextBox.appendChild(this.o.bloodText);
       this.o.bloodText.classList.add("text");
-
     } else if (this.job == "PLD") {
       var oathBoxesContainer = document.createElement("div");
       oathBoxesContainer.id = 'pld-boxes';
@@ -884,6 +882,7 @@ class Bars {
       this.o.goreTimer.hideafter = "";
       this.o.goreTimer.roundupthreshold = false;
 
+      // TODO: add shield swipe proc box
     } else if (this.job == "MNK") {
       var mnkBars = document.createElement("div");
       mnkBars.id = 'mnk-bar';
@@ -1039,7 +1038,7 @@ class Bars {
     }
 
     if (iconText)
-    icon.text = iconText;
+      icon.text = iconText;
     icon.bordercolor = borderColor;
     bar.fg = barColor;
     icon.icon = auraIcon;
@@ -1140,9 +1139,9 @@ class Bars {
   }
 
   OnDrkUpdate(blood) {
-    if (this.o.bloodTextBox == null) {
+    if (this.o.bloodTextBox == null)
       return;
-  }
+
     this.o.bloodText.innerText = blood;
 
     if (blood < 50) {
@@ -1281,7 +1280,6 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
-
     } else if (this.job == "WAR") {
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
@@ -1314,7 +1312,7 @@ class Bars {
         this.o.eyeBox.threshold = newThreshold;
       } else {
         this.o.eyeBox.threshold = oldThreshold;
-    }
+      }
     } else if (this.job == "PLD") {
       if (skill == gLang.kAbility.GoringBlade) {
         this.o.goreTimer.duration = 0;
@@ -1354,10 +1352,12 @@ class Bars {
       }
     }
   }
+
   UpdateHealth() {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
+
     if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
     else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.MidHealthThresholdPercent)
@@ -1375,7 +1375,7 @@ class Bars {
 
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
-      else if (this.job == 'DRK')
+    else if (this.job == 'DRK')
       lowMP = this.options.DRKLowMPThreshold;
 
     if (far >= 0 && this.distance > far)
@@ -1413,6 +1413,7 @@ class Bars {
   UpdateOpacity() {
     var opacityContainer = document.getElementById("opacity-container");
     if (!opacityContainer) return;
+    // TODO: add option for opacity value out of combat
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
       opacityContainer.style.opacity = 1.0;
     else
@@ -1582,10 +1583,11 @@ class Bars {
       this.maxGP = e.detail.maxGP;
       update_gp = true;
     }
-    if (update_job)
+    if (update_job) {
       this.UpdateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this.UpdateOpacity();
+    }
     if (update_hp)
       this.UpdateHealth();
     if (update_mp)
@@ -1599,7 +1601,7 @@ class Bars {
     if (update_level)
       this.UpdateFoodBuff();
 
-    if (this.job == "RDM") {
+    if (this.job == 'RDM') {
         if (update_job ||
             e.detail.jobDetail.whiteMana != this.whiteMana ||
             e.detail.jobDetail.blackMana != this.blackMana) {
@@ -1607,22 +1609,22 @@ class Bars {
           this.blackMana = e.detail.jobDetail.blackMana;
           this.OnRedMageUpdate(this.whiteMana, this.blackMana);
         }
-  } else if (this.job == "WAR") {
+    } else if (this.job == 'WAR') {
       if (update_job || e.detail.jobDetail.beast != this.beast) {
         this.beast = e.detail.jobDetail.beast;
         this.OnWarUpdate(this.beast);
       }
-  } else if (this.job == "DRK") {
+    } else if (this.job == 'DRK') {
       if (update_job || e.detail.jobDetail.blood != this.blood) {
         this.blood = e.detail.jobDetail.blood;
         this.OnDrkUpdate(this.blood);
       }
-  } else if (this.job == "PLD") {
+    } else if (this.job == 'PLD') {
       if (update_job || e.detail.jobDetail.oath != this.oath) {
         this.oath = e.detail.jobDetail.oath;
         this.OnPldUpdate(this.oath);
       }
-  } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
+    } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
           e.detail.jobDetail.aetherflowStacks != this.aetherflowStacks ||
           e.detail.jobDetail.dreadwyrmStacks != this.dreadwyrmStacks ||
@@ -1636,7 +1638,7 @@ class Bars {
         this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
         this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks, this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
-  } else if (this.job == 'MNK') {
+    } else if (this.job == 'MNK') {
       if (update_job ||
           e.detail.jobDetail.lightningStacks != this.lightningStacks ||
           e.detail.jobDetail.chakraStacks != this.chakraStacks ||
