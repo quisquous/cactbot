@@ -9,6 +9,7 @@ var Options = {
   Language: 'en',
 
   LowerOpacityOutOfCombat: true,
+  OpacityOutOfCombat: 0.5,
 
   HideWellFedAboveSeconds: 15 * 60,
   WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'UCU'],
@@ -1412,12 +1413,14 @@ class Bars {
 
   UpdateOpacity() {
     var opacityContainer = document.getElementById("opacity-container");
-    if (!opacityContainer) return;
-    // TODO: add option for opacity value out of combat
-    if (this.inCombat || !this.options.LowerOpacityOutOfCombat)
+    if (!opacityContainer)
+      return;
+    if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
+        isCraftingJob(this.job) || isGatheringJob(this.job)) {
       opacityContainer.style.opacity = 1.0;
-    else
-      opacityContainer.style.opacity = 0.15;
+    } else {
+      opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
+    }
   }
 
   UpdateFoodBuff() {

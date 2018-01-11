@@ -6,6 +6,10 @@ Options.Language = 'en';
 // If true, the bars are all made translucent when out of combat.
 Options.LowerOpacityOutOfCombat = true
 
+// The opacity (in the range 0 to 1) of the UI when out of combat.
+// Lower is more translucent.  0 is invisible.  1 is fully opaque.
+OpacityOutOfCombat = 0.5
+
 // The number of seconds before food expires to start showing the food buff warning.
 Options.HideWellFedAboveSeconds = 15 * 60
 // Zones to show food buff warning, when at max level.
