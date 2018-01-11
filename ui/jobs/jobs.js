@@ -1134,7 +1134,7 @@ class Bars {
     if (blood < 50) {
       this.o.bloodTextBox.classList.add('low');
       this.o.bloodTextBox.classList.remove('mid');
-    } else if (blood < 100) {
+    } else if (blood < 90) {
       this.o.bloodTextBox.classList.remove('low');
       this.o.bloodTextBox.classList.add('mid');
     } else {
@@ -1152,7 +1152,7 @@ class Bars {
     if (oath < 50) {
       this.o.oathTextBox.classList.add('low');
       this.o.oathTextBox.classList.remove('mid');
-    } else if (oath < 90) {
+    } else if (oath < 100) {
       this.o.oathTextBox.classList.remove('low');
       this.o.oathTextBox.classList.add('mid');
     } else {
