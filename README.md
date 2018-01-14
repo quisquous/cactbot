@@ -63,9 +63,9 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
 
 ### Installing cactbot
 
-1. Find the [latest release](https://github.com/quisquous/cactbot/releases/latest) and download the cactbot-version-number.zip file for that release.
+1. Find the [latest release](https://github.com/quisquous/cactbot/releases/latest) and download the cactbot-version-number.zip file for that release.  (You likely do *not* want either of the Source zip files.)
 2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
-3. Unzip the release zip file.
+3. Unzip the release zip file.  (If there is no OverlayPlugin\\addons\\CactbotOverlay.dll file, you downloaded the wrong zip file.)
 4. Close ACT, if it's still running.
 5. Copy the **OverlayPlugin\\** folder from inside of the unzipped
 folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\** folder.
