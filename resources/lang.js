@@ -60,6 +60,7 @@ class CactbotLanguage {
       TotalEclipse: '1CD5',
       Clemency: 'DD5',
       ShieldBash: '10',
+      ShieldSwipe: '19',
       FightOrFlight: '14',
       BloodWeapon: 'E29',
       Souleater: 'E30',
@@ -141,6 +142,8 @@ class CactbotLanguage {
   };
 
   abilityRegex(abilityId, attacker, target, flags) {
+    if (!abilityId)
+      abilityId = '[^:]*';
     if (!attacker)
       attacker = '[^:]*';
     // type:attackerId:attackerName:abilityId:abilityName:targetId:targetName:flags:

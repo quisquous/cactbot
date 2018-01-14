@@ -55,6 +55,8 @@ var kTwinSnakes = null;
 var kDemolish = null;
 var kBluntDebuff = null;
 var kComboBreakers = null;
+var kPldShieldSwipe = null;
+var kPldBlock = null;
 var kWellFedZoneRegex = null;
 
 class ComboTracker {
@@ -210,6 +212,8 @@ function setupRegexes() {
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
   kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
   kBluntDebuff = gLang.gainsEffectRegex(gLang.kEffect.BluntResistDown);
+  kPldShieldSwipe = gLang.youUseAbilityRegex(gLang.kAbility.ShieldSwipe);
+  kPldBlock = gLang.abilityRegex(null, null, gLang.playerName, '[^:]*05');
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) { return gLang.kZone[x]; }));
 
 // Full skill names of abilities that break combos.
@@ -439,6 +443,8 @@ class Bars {
     this.combo = 0;
     this.comboTimer = null;
     this.smnChanneling = false;
+    this.pldLastSwipe = 0;
+    this.pldLastBlock = 0;
   }
 
   UpdateJob() {
@@ -854,20 +860,30 @@ class Bars {
       this.o.oathTextBox.appendChild(this.o.oathText);
       this.o.oathText.classList.add("text");
 
-      var goreContainer = document.createElement("div");
-      goreContainer.id = 'pld-procs';
-      barsContainer.appendChild(goreContainer);
+      var procContainer = document.createElement("div");
+      procContainer.id = 'pld-procs';
+      barsContainer.appendChild(procContainer);
 
       this.o.goreBox = document.createElement("timer-box");
-      goreContainer.appendChild(this.o.goreBox);
-      this.o.goreBox.style = "empty";
+      procContainer.appendChild(this.o.goreBox);
+      this.o.goreBox.id = 'pld-procs-gore';
       this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
       this.o.goreBox.bg = 'black';
-      this.o.goreBox.toward = "bottom";
+      this.o.goreBox.toward = 'bottom';
       this.o.goreBox.threshold = this.options.PldGcd * 3 + 0.3;
-      this.o.goreBox.hideafter = "";
+      this.o.goreBox.hideafter = '';
       this.o.goreBox.roundupthreshold = false;
       this.o.goreBox.valuescale = this.options.PldGcd;
+
+      this.o.swipeBox = document.createElement("timer-box");
+      procContainer.appendChild(this.o.swipeBox);
+      this.o.swipeBox.id = 'pld-procs-swipe';
+      this.o.swipeBox.style = 'empty';
+      this.o.swipeBox.bg = 'black';
+      this.o.swipeBox.toward = 'bottom';
+      this.o.swipeBox.threshold = 1000;
+      this.o.swipeBox.hideafter = 0;
+      this.o.swipeBox.roundupthreshold = false;
 
       // TODO: add shield swipe proc box
     } else if (this.job == "MNK") {
@@ -1246,6 +1262,50 @@ class Bars {
   OnRedMageProcImpact(seconds) {
     if (this.o.rdmProcImpact != null)
       this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
+  }
+
+  OnPldBlock() {
+    this.pldLastBlock = Date.now();
+    // How long a swipe takes to be able to be recast.
+    var kSwipeRecastMs = 15000;
+    // How long a block proc lasts from damage to losing proc.
+    var kBlockProcMs = 5500;
+    // Amount of extra reaction time to react to a block.
+    var kIgnoreSlopMs = 200;
+    // Amount of time to make the swipe box bigger earlier
+    // when there is a block during a swipe cooldown but a
+    // swipe can still be used.
+    var kBlockSlopMs = 700;
+
+    var msSinceLastSwipe = this.pldLastBlock - this.pldLastSwipe;
+    if (msSinceLastSwipe < kSwipeRecastMs - kBlockProcMs + kIgnoreSlopMs) {
+      // Swipe too recent, ignore this.
+      return;
+    } else if (msSinceLastSwipe >= kSwipeRecastMs) {
+      // Swipe long ago, full block duration, big box.
+      this.o.swipeBox.duration = 0;
+      this.o.swipeBox.duration = kBlockProcMs / 1000;
+      this.o.swipeBox.threshold = 1000;
+    } else {
+      // Swipe recent, but enough time to still swipe from this block.
+      // Make box small but color it like a block.  It will get big
+      // when the swipe becomes usable (although the window could be
+      // quite small).
+      this.o.swipeBox.duration = 0;
+      this.o.swipeBox.duration = kBlockProcMs / 1000;
+      var msUntilSwipeAvailable = kSwipeRecastMs - msSinceLastSwipe;
+      this.o.swipeBox.threshold = (kBlockProcMs + kBlockSlopMs - msUntilSwipeAvailable) / 1000;
+    }
+    this.o.swipeBox.fg = computeBackgroundColorFrom(this.o.swipeBox, 'pld-color-block');
+  }
+
+  OnPldShieldSwipe() {
+    // Small countdown for swipe.
+    this.pldLastSwipe = Date.now();
+    this.o.swipeBox.duration = 0;
+    this.o.swipeBox.duration = 15;
+    this.o.swipeBox.threshold = -1;
+    this.o.swipeBox.fg = computeBackgroundColorFrom(this.o.swipeBox, 'pld-color-swipe');
   }
 
   OnComboChange(skill) {
@@ -1756,6 +1816,16 @@ class Bars {
         if (r != null) {
           var seconds = Regexes.ParseLocaleFloat(r[1]);
           this.OnMonkDragonKick(seconds);
+          continue;
+        }
+      }
+      if (this.job == 'PLD') {
+        if (log.search(kPldShieldSwipe) >= 0) {
+          this.OnPldShieldSwipe();
+          continue;
+        }
+        if (log.search(kPldBlock) >= 0) {
+          this.OnPldBlock();
           continue;
         }
       }

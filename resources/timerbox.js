@@ -143,7 +143,7 @@ class TimerBox extends HTMLElement {
     this._round_up_threshold = true;
 
     if (this.duration != null) { this._duration = Math.max(parseFloat(this.duration), 0); }
-    if (this.threshold != null) { this._threshold = Math.max(parseFloat(this.threshold), 0); }
+    if (this.threshold != null) { this._threshold = parseFloat(this.threshold); }
     if (this.bg != null) { this._bg = this.bg; }
     if (this.fg != null) { this._fg = this.fg; }
     if (this.scale != null) { this._scale = Math.max(parseFloat(this.scale), 0.01); }

@@ -344,6 +344,18 @@
   left: 142px;
 }
 
+#pld-procs-gore {
+  position: relative;
+  display: inline-block;
+  left: 0px;
+}
+
+#pld-procs-swipe {
+  position: relative;
+  display: inline-block;
+  left: 142px;
+}
+
 /* Relative to #bars */
 .rdm-combo {
   display: none;
@@ -450,6 +462,12 @@
 }
 .pld-color-gore {
   background-color: rgb(255, 135, 35);
+}
+.pld-color-block {
+  background-color: rgb(255, 240, 35);
+}
+.pld-color-swipe {
+  background-color: rgb(60, 60, 60);
 }
 .smn-color-ruin {
   background-color: rgb(150, 233, 140);
