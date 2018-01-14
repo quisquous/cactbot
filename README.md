@@ -111,6 +111,8 @@ If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit
 
 If you get an overlay plugin error similar to `Error: (overlay): Exception in SendFastRateEvents: Could not load file or assembly 'FFXIV_ACT_Plugin, Version=(version), Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.` then you likely need to unblock the ffxiv plugin.  See the instructions above for unblocking DLLs.
 
+If you get an ACT dialog that says "Invalid Plugin" and "This assembly does not have a class that implements ACT's plugin interface", then you are loading the plugin incorrectly.  Cactbot is an overlay and not a direct ACT plugin.  Plugins like **FFXIV_ACT_PLUGIN.dll** and **OverlayPlugin.dll** are ACT plugins and are loaded via ACT -> Plugins -> Plugin Listing -> Add/Enable Plugin.  Cactbot is an overlay plugin.  You load it via going to Plugins -> OverlayPlugin.dll -> New.  See the [adding overlay modules](#adding-overlay-modules) section for more details.
+
 If triggers or pieces of the UI do not work, ensure that "Disable Parsing from Network Data" is **not** checked in the FFXIV plugin settings. Network data is required for accurate trigger timing.
 
 ## Building from source
