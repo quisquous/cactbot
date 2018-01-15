@@ -428,6 +428,11 @@
       alertText: 'Twisters',
       tts: 'twisters',
     },
+    { id: 'UCU Bahamut Gigaflare',
+      regex: /14:26D6:Bahamut Prime starts using Gigaflare/,
+      alertText: 'Gigaflare',
+      tts: 'gigaflare',
+    },
     {
       id: 'UCU Megaflare Stack Me',
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
@@ -444,7 +449,7 @@
     {
       id: 'UCU Fellruin Tower',
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
-      alertText: function(data) {
+      infoText: function(data) {
         if (data.trio == 'fellruin' && data.megaStack.length == 4) {
           if (data.megaStack.indexOf(data.me) == -1) {
             return 'Find Your Tower';
