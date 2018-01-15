@@ -37,6 +37,7 @@ triggers/a10s.js
 triggers/a11s.js
 triggers/a12s.js
 triggers/drowned_city_of_skalla.js
+triggers/general.js
 triggers/lakshmi-ex.js
 triggers/ravana-ex.js
 triggers/sephirot-ex.js
