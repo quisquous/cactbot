@@ -43,7 +43,9 @@ Options.BigBuffBorderSize = 1
 // The distance that offensive spells such as Verareo, Bio, etc are castable.
 Options.FarThresholdOffence = 24
 // When MP falls below this, the MP bar is highlighted with the .low CSS class on dark knight.
-Options.DRKLowMPThreshold = 4800
+Options.DrkLowMPThreshold = 4800
+// When MP falls below this, the MP bar is highlighted with the .low CSS class on paladin.
+Options.PldLowMPThreshold = 2880
 
 // When TP falls below this, the TP bar is highlighted with the .low CSS class.
 Options.TPInvigorateThreshold = 600
