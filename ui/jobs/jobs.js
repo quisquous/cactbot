@@ -868,7 +868,8 @@ class Bars {
       procContainer.appendChild(this.o.goreBox);
       this.o.goreBox.id = 'pld-procs-gore';
       this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
-      this.o.goreBox.bg = 'black';
+      this.o.goreBox.bg = 'black'
+      this.o.goreBox.style = 'empty';
       this.o.goreBox.toward = 'bottom';
       this.o.goreBox.threshold = this.options.PldGcd * 3 + 0.3;
       this.o.goreBox.hideafter = '';
