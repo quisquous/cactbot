@@ -25,6 +25,12 @@
       run: function(data) { data.iceDebuff = false; },
     },
     {
+      regex: /1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
+      run: function(data, matches) {
+        data.fireballs[data.naelFireballCount].push(matches[1]);
+      },
+    },
+    {
       regex: /:26E2:Bahamut Prime starts using Quickmarch Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('quickmarch'); },
     },
@@ -283,22 +289,22 @@
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 35,
       infoText: function(data) {
-        if (data.fireball1)
+        if (data.naelFireballCount >= 1)
           return;
         return 'Fire IN';
       },
       tts: function(data) {
-        if (data.fireball1)
+        if (data.naelFireballCount >= 1)
           return;
         return 'fire in';
       },
-      run: function(data) { data.fireball1 = true; },
+      run: function(data) { data.naelFireballCount = 1; },
     },
     { id: 'UCU Nael Fireball 2',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 51,
       infoText: function(data) {
-        if (data.fireball2)
+        if (data.naelFireballCount >= 2)
           return;
         if (!data.iceDebuff)
           return 'Fire OUT';
@@ -309,70 +315,77 @@
         // stack.  Therefore, make sure you stack.  It's possible you
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
-        if (data.fireball2)
+        if (data.naelFireballCount >= 2)
           return;
-        if (data.iceDebuff)
+        if (data.fireballs[1].indexOf(data.me) == -1)
           return 'Fire OUT: Be in it';
       },
       tts: function(data) {
-        if (data.fireball2)
+        if (data.naelFireballCount >= 2)
           return;
-        if (data.iceDebuff)
+        if (data.fireballs[1].indexOf(data.me) == -1)
           return 'fire out; go with';
         return 'fire out'
       },
-      run: function(data) { data.fireball2 = true; },
+      run: function(data) { data.naelFireballCount = 2; },
     },
     { id: 'UCU Nael Fireball 3',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 77,
       infoText: function(data) {
-        if (data.fireball3)
+        if (data.naelFireballCount >= 3)
           return;
-        if (!data.fireDebuff)
-          return 'Thunder -> Fire IN';
+        var tookTwo = data.fireballs[1].filter(function(p) { return data.fireballs[2].indexOf(p) >= 0; });
+        if (tookTwo.indexOf(data.me) >= 0)
+          return;
+        var str = 'Thunder -> Fire IN';
+        if (tookTwo.length > 0)
+          str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ') + ' out)';
+        return str;
       },
       alertText: function(data) {
-        if (data.fireball3)
+        if (data.naelFireballCount >= 3)
           return;
         // If you were the person with fire tether #2, then you could
-        // have fire debuff here and need to no stack.
-        if (data.fireDebuff)
+        // have fire debuff here and need to not stack.
+        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
           return 'Thunder -> Fire IN: AVOID!';
       },
       tts: function(data) {
-        if (data.fireball3)
+        if (data.naelFireballCount >= 3)
           return;
-        if (data.fireDebuff)
+        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
           return 'avoid fire in';
         return 'fire in'
       },
-      run: function(data) { data.fireball3 = true; },
+      run: function(data) { data.naelFireballCount = 3; },
     },
     { id: 'UCU Nael Fireball 4',
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 98,
       infoText: function(data) {
-        if (data.fireball4)
+        if (data.naelFireballCount >= 4)
           return;
         if (!data.fireDebuff)
           return 'Fire IN -> Thunder';
       },
       alertText: function(data) {
-        if (data.fireball4)
+        if (data.naelFireballCount >= 4)
           return;
-        // Not sure this is possible.
+        // It's possible that you can take 1, 2, and 3 even if nobody dies with
+        // careful ice debuff luck.  However, this means you probably shouldn't
+        // take 4.  Just use the debuff here and not the fireball count.
         if (data.fireDebuff)
           return 'Fire IN: AVOID! -> Thunder';
       },
       tts: function(data) {
-        if (data.fireball4)
+        if (data.naelFireballCount >= 4)
           return;
         if (data.fireDebuff)
           return 'avoid fire in';
         return 'fire in';
       },
-      run: function(data) { data.fireball4 = true; },
+      run: function(data) { data.naelFireballCount = 4; },
     },
     {
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
@@ -660,6 +673,14 @@
         delete data.naelMarks;
         delete data.wideThirdDive;
         delete data.unsafeThirdMark;
+
+        data.naelFireballCount = 0;
+        data.fireballs = {
+          1: [],
+          2: [],
+          3: [],
+          4: [],
+        };
 
         data.resetTrio = function(trio) {
           this.trio = trio;
