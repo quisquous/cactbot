@@ -66,19 +66,36 @@
           return 'buster';
       },
     },
-    { id: 'UCU Hatch Marker',
+    { // Hatch Collect
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      run: function(data, matches) {
+        data.hatch = data.hatch || [];
+        data.hatch.push(matches[1]);
+      },
+    },
+    { id: 'UCU Hatch Marker YOU',
+      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      condition: function(data, matches) { return data.me == matches[1]; },
+      alarmText: 'Hatch on YOU',
+      tts: 'hatch',
+    },
+    {
+      id: 'UCU Hatch Callouts',
+      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      delaySeconds: 0.25,
       infoText: function(data, matches) {
-        if (data.me != matches[1])
-          return 'Hatch on ' + matches[1];
+        if (!data.hatch)
+          return;
+        var hatches = data.hatch.join(', ');
+        delete data.hatch;
+        return 'Hatch: ' + hatches;
       },
-      alarmText: function(data, matches) {
-        if (data.me == matches[1])
-          return 'Hatch on YOU';
-      },
-      tts: function(data, matches) {
-        if (data.me == matches[1])
-          return 'hatch';
+    },
+    { // Hatch Cleanup
+      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      delaySeconds: 5,
+      run: function(data) {
+        delete data.hatch;
       },
     },
     { id: 'UCU Twintania P2',
