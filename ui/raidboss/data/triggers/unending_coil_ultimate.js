@@ -26,27 +26,27 @@
     },
     {
       regex: /:Bahamut Prime starts using Quickmarch Trio/,
-      run: function(data) { data.resetTrio('quickmarch'); },
+      run: function(data) { if (data.resetTrio) data.resetTrio('quickmarch'); },
     },
     {
       regex: /:Bahamut Prime starts using Blackfire Trio/,
-      run: function(data) { data.resetTrio('blackfire'); },
+      run: function(data) { if (data.resetTrio) data.resetTrio('blackfire'); },
     },
     {
       regex: /:Bahamut Prime starts using Fellruin Trio/,
-      run: function(data) { data.resetTrio('fellruin'); },
+      run: function(data) { if (data.resetTrio) data.resetTrio('fellruin'); },
     },
     {
       regex: /:Bahamut Prime starts using Heavensfall Trio/,
-      run: function(data) { data.resetTrio('heavensfall'); },
+      run: function(data) { if (data.resetTrio) data.resetTrio('heavensfall'); },
     },
     {
       regex: /:Bahamut Prime starts using Tenstrike Trio/,
-      run: function(data) { data.resetTrio('tenstrike'); },
+      run: function(data) { if (data.resetTrio) data.resetTrio('tenstrike'); },
     },
     {
       regex: /:Bahamut Prime starts using Grand Octet/,
-      run: function(data) { data.resetTrio('octet'); },
+      run: function(data) { if (data.resetTrio) data.resetTrio('octet'); },
     },
 
     // --- Twintania ---
