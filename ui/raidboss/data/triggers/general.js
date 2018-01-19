@@ -71,9 +71,10 @@
     },
     {
       id: 'General Battle Litany',
-      regex: /:Asada Fireclaw gains the effect of Battle Litany from .*? for [0-9.]+ Seconds/,
+      regex: /:(\y{Name}) gains the effect of Battle Litany from .*? for [0-9.]+ Seconds/,
       sound: '../../resources/sounds/Overwatch/D.Va_-_Boosters_engaged.ogg',
       soundVolume: 0.6,
+      condition: function(data, matches) { return matches[1] == data.me; },
     },
     {
       id: 'General Foe Requiem',
