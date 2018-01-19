@@ -59,11 +59,27 @@
       },
     },
     {
-      id: 'Ready check',
+      id: 'General Ready check',
       regex: /:(?:(\y{Name}) has initiated|You have commenced) a ready check\./,
-      sound: function(data) {
-        return '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg';
-      },      
+      sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
+      soundVolume: 0.6,
+    },
+    {
+      id: 'General Trick Attack',
+      regex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
+      sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
+    },
+    {
+      id: 'General Battle Litany',
+      regex: /:Asada Fireclaw gains the effect of Battle Litany from .*? for [0-9.]+ Seconds/,
+      sound: '../../resources/sounds/Overwatch/D.Va_-_Boosters_engaged.ogg',
+      soundVolume: 0.6,
+    },
+    {
+      id: 'General Foe Requiem',
+      regex: /:(\y{Name}) gains the effect of Foe Requiem from \1 for ([0-9.]+) Seconds/,
+      sound: '../../resources/sounds/Overwatch/Hanzo_-_Sake.ogg',
+      soundVolume: 0.6,
     },
   ],
 }];
