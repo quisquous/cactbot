@@ -195,23 +195,23 @@
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
       durationSeconds: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) < 9)
+        if (data.ParseLocaleFloat(matches[2]) <= 6)
           return 3;
-        if (data.ParseLocaleFloat(matches[2]) < 14)
+        if (data.ParseLocaleFloat(matches[2]) <= 10)
           return 6;
         return 9;
       },
       alarmText: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) < 9)
+        if (data.ParseLocaleFloat(matches[2]) <= 6)
           return 'Doom #1 on YOU';
-        if (data.ParseLocaleFloat(matches[2]) < 14)
+        if (data.ParseLocaleFloat(matches[2]) <= 10)
           return 'Doom #2 on YOU';
         return 'Doom #3 on YOU';
       },
       tts: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) < 9)
+        if (data.ParseLocaleFloat(matches[2]) <= 6)
           return '1';
-        if (data.ParseLocaleFloat(matches[2]) < 14)
+        if (data.ParseLocaleFloat(matches[2]) <= 10)
           return '2';
         return '3';
       },
