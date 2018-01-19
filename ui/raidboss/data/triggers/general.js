@@ -58,5 +58,12 @@
 	return 'Walking: ' + matches[1];
       },
     },
+    {
+      id: 'Ready check',
+      regex: /:(?:(\y{Name}) has initiated|You have commenced) a ready check\./,
+      sound: function(data) {
+        return '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg';
+      },      
+    },
   ],
 }];
