@@ -151,7 +151,8 @@ class PopupText {
     if (name in Options.PlayerNicks) {
       return Options.PlayerNicks[name];
     }
-    return name.substr(0, name.indexOf(' '));
+    var idx = name.indexOf(' ');
+    return idx < 0 ? name : name.substr(0, idx);
   }
 
   Reset() {

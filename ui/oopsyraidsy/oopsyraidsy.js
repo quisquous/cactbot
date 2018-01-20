@@ -117,14 +117,15 @@ var gDamageTracker;
 var gMistakeCollector;
 var gLiveList;
 
-function ShortNamify(name) {
+ShortNamify(name) {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
 
   if (name in Options.PlayerNicks) {
     return Options.PlayerNicks[name];
   }
-  return name.substr(0, name.indexOf(' '));
+  var idx = name.indexOf(' ');
+  return idx < 0 ? name : name.substr(0, idx);
 }
 
 function DamageFromFields(fields) {
