@@ -99,7 +99,7 @@
       infoText: function(data, matches) {
         if (!data.hatch)
           return;
-        var hatches = data.hatch.join(', ');
+        var hatches = data.hatch.map(function(n) { return data.ShortName(n); }).join(', ');
         delete data.hatch;
         return 'Hatch: ' + hatches;
       },
@@ -279,7 +279,7 @@
           var name = data.dooms[data.doomCount];
         data.doomCount++;
         if (name)
-          return 'Cleanse #' + data.doomCount + ': ' + name;
+          return 'Cleanse #' + data.doomCount + ': ' + data.ShortName(name);
       },
     },
     { id: 'UCU Nael Fireball 1',
@@ -446,7 +446,7 @@
         if (matches[1] == data.me)
           return;
         var num = data.naelDiveMarkerCount + 1;
-        return 'Dive #' + num + ': ' + matches[1];
+        return 'Dive #' + num + ': ' + data.ShortName(matches[1]);
       },
     },
     { id: 'UCU Nael Dragon Dive Marker Counter',
@@ -500,21 +500,21 @@
       regex: /1B:........:(\y{Name}):....:....:0077:0000:0000:0000:/,
       condition: function(data) { return data.trio == 'octet'; },
       infoText: function(data, matches) {
-        return data.octetMarker.length + ': ' + matches[1] + ' (nael)';
+        return data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)';
       },
     },
     { id: 'UCU Octet Dragon Marker',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) { return data.trio == 'octet'; },
       infoText: function(data, matches) {
-        return data.octetMarker.length + ': ' + matches[1];
+        return data.octetMarker.length + ': ' + data.ShortName(matches[1]);
       },
     },
     { id: 'UCU Octet Baha Marker',
       regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) { return data.trio == 'octet'; },
       infoText: function(data, matches) {
-        return data.octetMarker.length + ': ' + matches[1] + ' (baha)';
+        return data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)';
       },
     },
     { id: 'UCU Octet Twin Marker',
@@ -531,7 +531,7 @@
         // If this person is not alive, then everybody should stack,
         // but tracking whether folks are alive or not is a mess.
         if (data.lastOctetMarker && data.lastOctetMarker != data.me)
-          return 'Last Dive: ' + data.lastOctetMarker;
+          return 'Last Dive: ' + data.ShortName(data.lastOctetMarker);
       },
       tts: function(data) {
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me)

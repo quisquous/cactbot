@@ -144,11 +144,22 @@ class PopupText {
       this.Reset();
   }
 
+  ShortNamify(name) {
+    // TODO: make this unique among the party in case of first name collisions.
+    // TODO: probably this should be a general cactbot utility.
+
+    if (name in Options.PlayerNicks) {
+      return Options.PlayerNicks[name];
+    }
+    return name.substr(0, name.indexOf(' '));
+  }
+
   Reset() {
     this.data = {
       me: this.me,
       job: this.job,
       role: this.role,
+      ShortName: this.ShortNamify,
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
     };
     for (var i = 0; i < this.timers.length; ++i)

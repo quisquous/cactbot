@@ -66,6 +66,12 @@ Options.AlarmSoundVolume = 1
 // Volume between 0 and 1 to play the LongSound at.
 Options.LongSoundVolume = 1
 
+// A set of nicknames to use for players, when trying to shorten names.
+Options.PlayerNicks = {
+  'Darkest Edgelord': 'Mary',
+  'Captain Jimmy': 'Jimmy',
+  'Pipira Pira': '&#x1F41F;',
+};
 
 // A set of triggers to be ignored. The key is the 'id' of the trigger, and
 // the value should be true if the trigger is to be ignored, whereas false

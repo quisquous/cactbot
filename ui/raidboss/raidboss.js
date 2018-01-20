@@ -12,6 +12,8 @@ var Options = {
   SoundAlertsEnabled: true,
   SpokenAlertsEnabled: false,
 
+  PlayerNicks: {},
+
   ShowTimerBarsAtSeconds: 30,
   KeepExpiredTimerBarsForSeconds: 0.7,
   BarExpiresSoonSeconds: 8,
