@@ -25,27 +25,33 @@
       run: function(data) { data.iceDebuff = false; },
     },
     {
-      regex: /:Bahamut Prime starts using Quickmarch Trio/,
+      regex: /1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
+      run: function(data, matches) {
+        data.fireballs[data.naelFireballCount].push(matches[1]);
+      },
+    },
+    {
+      regex: /:26E2:Bahamut Prime starts using Quickmarch Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('quickmarch'); },
     },
     {
-      regex: /:Bahamut Prime starts using Blackfire Trio/,
+      regex: /:26E3:Bahamut Prime starts using Blackfire Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('blackfire'); },
     },
     {
-      regex: /:Bahamut Prime starts using Fellruin Trio/,
+      regex: /:26E4:Bahamut Prime starts using Fellruin Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('fellruin'); },
     },
     {
-      regex: /:Bahamut Prime starts using Heavensfall Trio/,
+      regex: /:26E5:Bahamut Prime starts using Heavensfall Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('heavensfall'); },
     },
     {
-      regex: /:Bahamut Prime starts using Tenstrike Trio/,
+      regex: /:26E6:Bahamut Prime starts using Tenstrike Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('tenstrike'); },
     },
     {
-      regex: /:Bahamut Prime starts using Grand Octet/,
+      regex: /:26E7:Bahamut Prime starts using Grand Octet/,
       run: function(data) { if (data.resetTrio) data.resetTrio('octet'); },
     },
     {
