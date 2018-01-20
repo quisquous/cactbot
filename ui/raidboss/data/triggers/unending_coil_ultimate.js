@@ -25,12 +25,6 @@
       run: function(data) { data.iceDebuff = false; },
     },
     {
-      regex: /1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
-      run: function(data, matches) {
-        data.fireballs[data.naelFireballCount].push(matches[1]);
-      },
-    },
-    {
       regex: /:26E2:Bahamut Prime starts using Quickmarch Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('quickmarch'); },
     },
