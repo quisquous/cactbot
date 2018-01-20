@@ -653,6 +653,15 @@
           return;
         data.oneTimeSetup = true;
 
+        // TODO: a late white puddle can cause dragons to get seen for the next
+        // phase so clear them again here.  Probably data for triggers needs
+        // to be cleared at more reliable times.
+        delete data.naelDragons;
+        delete data.seenDragon;
+        delete data.naelMarks;
+        delete data.wideThirdDive;
+        delete data.unsafeThirdMark;
+
         data.resetTrio = function(trio) {
           this.trio = trio;
           this.shakers = [];
