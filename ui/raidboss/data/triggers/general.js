@@ -7,7 +7,7 @@
       regex: /:(\y{Name}):1D6D:Provoke:/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Provoke: ' + matches[1];
+        return 'Provoke: ' + matches[1];
       },
     },
     {
@@ -15,7 +15,7 @@
       regex: /:(\y{Name}):1D73:Ultimatum:/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Ultimatum: ' + matches[1];
+        return 'Ultimatum: ' + matches[1];
       },
     },
     {
@@ -23,7 +23,7 @@
       regex: /:(\y{Name}):1D71:Shirk:/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Shirk: ' + matches[1];
+        return 'Shirk: ' + matches[1];
       },
     },
     {
@@ -31,7 +31,7 @@
       regex: /:(\y{Name}):2B:Holmgang:/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Holmgang: ' + matches[1];
+        return 'Holmgang: ' + matches[1];
       },
     },
     {
@@ -39,7 +39,7 @@
       regex: /:(\y{Name}):1E:Hallowed Ground:/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Hallowed: ' + matches[1];
+        return 'Hallowed: ' + matches[1];
       },
     },
     {
@@ -47,7 +47,7 @@
       regex: /:(\y{Name}):E36:Living Dead:/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Living: ' + matches[1];
+        return 'Living: ' + matches[1];
       },
     },
     {
@@ -55,7 +55,7 @@
       regex: /:(\y{Name}) gains the effect of Walking Dead/,
       condition: function(data) { return data.role == 'tank' },
       infoText: function(data, matches) {
-	return 'Walking: ' + matches[1];
+        return 'Walking: ' + matches[1];
       },
     },
     {
