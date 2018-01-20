@@ -48,6 +48,13 @@
       regex: /:Bahamut Prime starts using Grand Octet/,
       run: function(data) { if (data.resetTrio) data.resetTrio('octet'); },
     },
+    {
+      regex: /16:........:Ragnarok:26B8:Heavensfall:........:(\y{Name}):/,
+      run: function(data, matches) {
+        data.partyList = data.partyList || [];
+        data.partyList.push(matches[1]);
+      },
+    },
 
     // --- Twintania ---
     { id: 'UCU Twisters',
@@ -409,6 +416,7 @@
     },
     { id: 'UCU Nael Dragon Dive Marker Me',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      condition: function(data) { return !data.trio; },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches[1] != data.me)
@@ -426,6 +434,7 @@
     },
     { id: 'UCU Nael Dragon Dive Marker Others',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      condition: function(data) { return !data.trio; },
       infoText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches[1] == data.me)
@@ -436,8 +445,91 @@
     },
     { id: 'UCU Nael Dragon Dive Marker Counter',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      condition: function(data) { return !data.trio; },
       run: function(data) {
         data.naelDiveMarkerCount++;
+      },
+    },
+    { // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
+      regex: /1B:........:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
+      condition: function(data) { return data.trio == 'octet'; },
+      run: function(data, matches) {
+        data.octetMarker = data.octetMarker || [];
+        data.octetMarker.push(matches[1]);
+        if (data.octetMarker.length != 7)
+          return;
+
+        if (data.partyList.length != 8) {
+          console.error('Octet error: bad party list size: ' + JSON.stringify(data.partyList));
+          return;
+        }
+        var uniq_dict = {};
+        for (var i = 0; i < data.octetMarker.length; ++i) {
+          uniq_dict[data.octetMarker[i]] = true;
+          if (data.partyList.indexOf(data.octetMarker[i]) < 0) {
+            console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(data.partyList));
+            return;
+          }
+        }
+        var uniq = Object.keys(uniq_dict);
+        // If the number of unique folks who took markers is not 7, then
+        // somebody has died and somebody took two.  Could be on anybody.
+        if (uniq.length != 7)
+          return;
+
+        var remainingPlayers = data.partyList.filter(function(p) {
+          return data.octetMarker.indexOf(p) < 0;
+        });
+        if (remainingPlayers.length != 1) {
+          // This could happen if the party list wasn't unique.
+          console.error('Octet error: failed to find player, ' + JSON.stringify(data.partyList) + ' ' + JSON.stringify(data.octetMarker));
+          return;
+        }
+
+        // Finally, we found it!
+        data.lastOctetMarker = remainingPlayers[0];
+      }
+    },
+    { id: 'UCU Octet Nael Marker',
+      regex: /1B:........:(\y{Name}):....:....:0077:0000:0000:0000:/,
+      condition: function(data) { return data.trio == 'octet'; },
+      infoText: function(data, matches) {
+        return data.octetMarker.length + ': ' + matches[1] + ' (nael)';
+      },
+    },
+    { id: 'UCU Octet Dragon Marker',
+      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      condition: function(data) { return data.trio == 'octet'; },
+      infoText: function(data, matches) {
+        return data.octetMarker.length + ': ' + matches[1];
+      },
+    },
+    { id: 'UCU Octet Baha Marker',
+      regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      condition: function(data) { return data.trio == 'octet'; },
+      infoText: function(data, matches) {
+        return data.octetMarker.length + ': ' + matches[1] + ' (baha)';
+      },
+    },
+    { id: 'UCU Octet Twin Marker',
+      regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      condition: function(data) { return data.trio == 'octet'; },
+      delaySeconds: 0.5,
+      alarmText: function(data) {
+        if (!data.lastOctetMarker)
+          return 'Everyone Stack for Twin???';
+        if (data.lastOctetMarker == data.me)
+          return 'YOU Stack for Twin';
+      },
+      infoText: function(data) {
+        // If this person is not alive, then everybody should stack,
+        // but tracking whether folks are alive or not is a mess.
+        if (data.lastOctetMarker && data.lastOctetMarker != data.me)
+          return 'Last Dive: ' + data.lastOctetMarker;
+      },
+      tts: function(data) {
+        if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
+          return 'stack for twin';
       },
     },
     { id: 'UCU Twister Dives',
@@ -464,20 +556,24 @@
       },
     },
     {
-      id: 'UCU Fellruin Tower',
+      id: 'UCU Megaflare Tower',
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
       infoText: function(data) {
-        if (data.trio == 'fellruin' && data.megaStack.length == 4) {
-          if (data.megaStack.indexOf(data.me) == -1) {
-            return 'Find Your Tower';
-          }
-        }
+        if (data.trio != 'fellruin' && data.trio != 'octet' || data.megaStack.length != 4)
+          return;
+        if (data.megaStack.indexOf(data.me) >= 0)
+          return;
+        if (data.trio == 'fellruin')
+          return 'Tower, bait hypernova';
+        if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
+          return 'Bait Twin, then tower';
+        return 'Get in a far tower';
       },
       tts: function(data) {
-        if (data.trio == 'fellruin' && data.megaStack.length == 4) {
-          if (data.megaStack.indexOf(data.me) == -1) {
-            return 'tower';
-          }
+        if (data.trio != 'fellruin' && data.trio != 'octet' || data.megaStack.length != 4)
+          return;
+        if (data.megaStack.indexOf(data.me) == -1) {
+          return 'tower';
         }
       },
     },
