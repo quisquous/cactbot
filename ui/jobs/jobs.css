@@ -34,9 +34,17 @@
   left: 250px;
 }
 
-#right-side-icons.justbuffs {
+.justbuffs #right-side-icons {
   position: fixed;
   left: 0px;
+}
+
+.justbuffs #pull-bar {
+  display: none;
+}
+
+.justbuffs #bars {
+  display: none;
 }
 
 /* Relative to #bars */

@@ -517,27 +517,27 @@ class Bars {
     this.o.rightBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
 
     if (this.options.JustBuffTracker) {
-      pullCountdownContainer.style.display = 'none';
       // Just alias these two together so the rest of the code doesn't have
       // to care that they're the same thing.
       this.o.leftBuffsList = this.o.rightBuffsList;
       this.o.rightBuffsList.rowcolsize = 20;
       this.o.rightBuffsList.maxnumber = 20;
-      this.o.rightBuffsContainer.classList.add('justbuffs');
-      return;
+      // Hoist the buffs up to hide everything else.
+      barsLayoutContainer.appendChild(this.o.rightBuffsContainer);
+      barsLayoutContainer.classList.add('justbuffs');
+    } else {
+      this.o.leftBuffsContainer = document.createElement("div");
+      this.o.leftBuffsContainer.id = 'left-side-icons';
+      barsContainer.appendChild(this.o.leftBuffsContainer);
+
+      this.o.leftBuffsList = document.createElement('widget-list');
+      this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
+
+      this.o.leftBuffsList.rowcolsize = 7;
+      this.o.leftBuffsList.maxnumber = 7;
+      this.o.leftBuffsList.toward = "left down";
+      this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
-
-    this.o.leftBuffsContainer = document.createElement("div");
-    this.o.leftBuffsContainer.id = 'left-side-icons';
-    barsContainer.appendChild(this.o.leftBuffsContainer);
-
-    this.o.leftBuffsList = document.createElement('widget-list');
-    this.o.leftBuffsContainer.appendChild(this.o.leftBuffsList);
-
-    this.o.leftBuffsList.rowcolsize = 7;
-    this.o.leftBuffsList.maxnumber = 7;
-    this.o.leftBuffsList.toward = "left down";
-    this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
 
     if (isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement("div");
