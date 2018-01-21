@@ -137,11 +137,18 @@ class PopupText {
 
   OnInCombat(e) {
     var inCombat = e.detail.inGameCombat;
-    if (this.inCombat == inCombat)
-      return;
-    this.inCombat = inCombat;
-    if (!this.inCombat)
-      this.Reset();
+
+    // Stop timers when stopping combat to stop any active timers that
+    // are delayed.  However, also reset when starting combat.
+    // This prevents late attacks from affecting |data| which
+    // throws off the next run, potentially.
+    if (this.inCombat != inCombat) {
+      this.inCombat = inCombat;
+      if (!this.inCombat)
+        this.StopTimers();
+      if (this.inCombat)
+        this.Reset();
+    }
   }
 
   ShortNamify(name) {
@@ -163,6 +170,10 @@ class PopupText {
       ShortName: this.ShortNamify,
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
     };
+    this.StopTimers();
+  }
+
+  StopTimers() {
     for (var i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];
