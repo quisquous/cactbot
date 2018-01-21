@@ -18,6 +18,8 @@ var Options = {
 
   ShowRdmProcs: true,
 
+  PerBuffOptions: {},
+
   RdmCastTime: 1.94 + 0.5,
   WarGcd: 2.38,
   PldGcd: 2.43,
@@ -1527,33 +1529,40 @@ class Bars {
   }
 
   OnBigBuff(name, seconds, settings) {
+    var overrides = this.options.PerBuffOptions[name] || {};
+    var borderColor = overrides.borderColor || settings.borderColor;
+    var icon = overrides.icon || settings.icon;
+    var side = overrides.side || settings.side;
+    var sortKey = overrides.sortKey || settings.sortKey;
+    if (overrides.hide)
+      return;
+
     var aura = this.MakeAuraTimerIcon(
         name, seconds,
         this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
         settings.text,
         this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
         this.options.BigBuffBorderSize,
-        settings.borderColor, settings.borderColor,
-        settings.icon);
+        borderColor, borderColor,
+        icon);
     var list = this.o.rightBuffsList;
-    if (settings.side && settings.side == 'left' && this.o.leftBuffsList)
+    if (side && side == 'left' && this.o.leftBuffsList)
       list = this.o.leftBuffsList;
-    list.addElement(name, aura, settings.sortKey);
+    list.addElement(name, aura, sortKey);
     var that = this;
     window.clearTimeout(settings.timeout);
     if (seconds >= 0) {
       settings.timeout = window.setTimeout(function() {
         that.o.rightBuffsList.removeElement(name);
+        that.o.leftBuffsList.removeElement(name);
       }, seconds * 1000);
     }
   }
 
   OnLoseBigBuff(name, settings) {
     window.clearTimeout(settings.timeout);
-    var list = this.o.rightBuffsList;
-    if (settings.side && settings.side == 'left' && this.o.leftBuffsList)
-      list = this.o.leftBuffsList;
-    list.removeElement(name);
+    this.o.rightBuffsList.removeElement(name);
+    this.o.leftBuffsList.removeElement(name);
   }
 
   OnPlayerChanged(e) {
