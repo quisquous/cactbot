@@ -16,6 +16,16 @@
       },
     },
     {
+      id: 'UCU Thermionic Burst',
+      damageRegex: gLang.kAbility.ThermionicBurst,
+      condition: function(e, data) {
+        return data.IsPlayerId(e.targetId);
+      },
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: 'Pizza Slice' };
+      },
+    },
+    {
       id: 'UCU Dynamo',
       damageRegex: gLang.kAbility.LunarDynamo,
       condition: function(e, data) {

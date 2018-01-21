@@ -99,6 +99,7 @@ class CactbotLanguage {
       IronChariot: '26BB',
       WingsOfSalvation: '26CA',
       ChainLightning: '26C8',
+      ThermionicBurst: '26B9',
     });
   }
 
