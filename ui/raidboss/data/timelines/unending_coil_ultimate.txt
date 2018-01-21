@@ -104,77 +104,91 @@ hideall "--sync--"
 500.0 "Seventh Umbral Era" sync /:Bahamut Prime:26D1:Seventh Umbral Era:/ window 500,0 # damage
 503.0 "Calamitous Flame" # damage
 508.0 "Calamitous Blaze" # damage
-511.5 "--targetable--"
-518.0 "Flare Breath" # animation
-525.0 "Flatten" # end of castbar
+511.0 "--targetable--"
+517.0 "Flare Breath" # animation
+524.7 "Flatten" # end of castbar
 
+528.5 "--sync--" sync / 14:26E2:Bahamut Prime starts using Quickmarch Trio/ window 30,10
 532.0 "Quickmarch Trio"
-535.0 "--untargetable--"
+534.5 "--untargetable--"
 540.5 "Twister Dive" # end of cast
-544.5 "Pepperoni" # appearing
-545.5 "Megaflare" # damage
+544.0 "Pepperoni" # appearing
+545.3 "Megaflare" # damage
 549.5 "Stack" # damage
-547.5 "Tempest Wing" duration 7.5 # tether -> damage1
-552.5 "Earthshaker x3" # damage
+547.5 "Tempest Wing" duration 7 # tether -> tornado
+552.0 "Earthshaker x3" # damage
 
-558.0 "Flare Breath" # animation
-565.3 "Flatten" # end of castbar
+557.5 "Flare Breath" # animation
+565.0 "Flatten" # end of castbar
 
-573.5 "Blackfire Trio" # end of castbar
-579.0 "Liquid Hell x5" duration 5
-582.2 "Thermionic Beam" # damage
+569.8 "--sync--" sync / 14:26E3:Bahamut Prime starts using Blackfire Trio/ window 70,10
+573.2 "Blackfire Trio" # end of castbar
+579.0 "Liquid Hell x5" duration 4.5
+582.0 "Thermionic Beam" # damage
 582.5 "Twister Dive"
+589.0 "Hypernova x4" duration 5
+590.5 "Stack" # damage
+591.5 "Towers" # disappearing
+592.5 "--sync--" sync / 14:26D6:Bahamut Prime starts using Gigaflare/ window 100,10
+598.0 "Gigaflare" # end of cast bar
+
+608.0 "Flare Breath 1" # animation
+610.0 "Flare Breath 2" # animation
+612.0 "Flare Breath 3" # animation
+
+621.0 "--sync--" sync / 14:26E4:Bahamut Prime starts using Fellruin Trio/ window 130,10
+624.5 "Fellruin Trio" # end of cast bar
+629.2 "Dive Dynamo Combo" duration 8 # rp text -> second mechanic
+641.5 "Tempest Wing" # damage
+642.2 "Aetheric Profusion" # damage
+
+643.5 "--sync--" sync / 14:26D6:Bahamut Prime starts using Gigaflare/ window 30,10
+645.5 "Meteor Stream" # damage
+649.0 "Gigaflare" # end of castbar
+
+655.0 "Flare Breath" # animation
+663.8 "Flatten" # end of castbar
+669.5 "Flare Breath" # animation
+
+673.5 "--sync--" sync / 14:26E5:Bahamut Prime starts using Heavensfall Trio/ window 170,10
+677.0 "Heavensfall Trio" # end of castbar
+682.0 "Markers appear"
+686.0 "Twister Dive"
+689.0 "Pepperoni" # appearing
+693.7 "Heavensfall" # damage
+697.2 "Towers"
+700.0 "Hypernova x3" duration 3.5
+708.5 "Fireball Soak"
+707.2 "--sync--" sync / 14:26D6:Bahamut Prime starts using Gigaflare/ window 30,10
+712.7 "Gigaflare" # end of castbar
+
+723.0 "Flare Breath 1"
+725.0 "Flare Breath 2"
+727.0 "Flare Breath 3"
+
+734.5 "--sync--" sync / 14:26E6:Bahamut Prime starts using Tenstrike Trio/ window 200,10
+
 # The following times for the rest of the timeline are ballparks.
-584 "Stack"
-585 "Towers"
-588 "Hypernova x4" duration 6
-595 "Gigaflare"
 
-606 "Flare Breath 1"
-608 "Flare Breath 2"
-610 "Flare Breath 3"
+736 "Tenstrike Trio"
+742 "Generate x3"
+748 "Meteor Stream (dps)"
+749 "Generate x3"
+752 "Meteor Stream (T/H)"
+754 "Earthshaker x4"
+758 "Earthshaker x4"
+767 "--sync--" sync / 14:26D6:Bahamut Prime starts using Gigaflare/ window 30,10
+770 "Gigaflare"
 
-622 "Fellruin Trio"
-628 "Dive Dynamo Combo" duration 8
-638 "Tempest Wing"
-640 "Aetheric Profusion"
-642 "Meteor Stream"
-647 "Gigaflare"
+781 "Flatten"
+785 "Flare Breath"
 
-652 "Flare Breath"
-660 "Flatten"
-667 "Flare Breath"
-
-674 "Heavensfall Trio"
-679 "Markers appear"
-681 "Dives"
-685 "Pepperoni"
-689 "Heavensfall"
-691 "Towers"
-705 "Fireball Soak"
-708 "Gigaflare"
-
-718 "Flare Breath 1"
-720 "Flare Breath 2"
-722 "Flare Breath 3"
-
-733 "Tenstrike Trio"
-739 "Generate x3"
-745 "Meteor Stream (dps)"
-746 "Generate x3"
-749 "Meteor Stream (T/H)"
-751 "Earthshaker x4"
-755 "Earthshaker x4"
-767 "Gigaflare"
-
-778 "Flatten"
-782 "Flare Breath"
-
-789 "Grand Octet"
-798 "Nael Marker"
-824 "Twin Marker"
-827 "Stack"
-829 "Towers"
+789 "--sync--" sync / 14:26E7:Bahamut Prime starts using Grand Octet/ window 200,10
+792 "Grand Octet"
+801 "Nael Marker"
+827 "Twin Marker"
+830 "Stack"
+832 "Towers"
 
 
 ##### NAEL + TWIN #####
