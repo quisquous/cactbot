@@ -18,6 +18,8 @@ var Options = {
 
   ShowRdmProcs: true,
 
+  JustBuffTracker: false,
+
   PerBuffOptions: {},
 
   RdmCastTime: 1.94 + 0.5,
@@ -414,7 +416,7 @@ function setupBuffTracker() {
       icon: kIconBuffFoes,
       // Light Purple.
       borderColor: '#F272F2',
-      sortKey: 0.5,
+      sortKey: 10,
       side: 'left',
       text: 'elapsed',
     },
@@ -513,6 +515,17 @@ class Bars {
     this.o.rightBuffsList.maxnumber = 7;
     this.o.rightBuffsList.toward = "right down";
     this.o.rightBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
+
+    if (this.options.JustBuffTracker) {
+      pullCountdownContainer.style.display = 'none';
+      // Just alias these two together so the rest of the code doesn't have
+      // to care that they're the same thing.
+      this.o.leftBuffsList = this.o.rightBuffsList;
+      this.o.rightBuffsList.rowcolsize = 20;
+      this.o.rightBuffsList.maxnumber = 20;
+      this.o.rightBuffsContainer.classList.add('justbuffs');
+      return;
+    }
 
     this.o.leftBuffsContainer = document.createElement("div");
     this.o.leftBuffsContainer.id = 'left-side-icons';

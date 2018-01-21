@@ -55,6 +55,13 @@ Options.LowHealthThresholdPercent = 0.2
 Options.MidHealthThresholdPercent = 0.8
 
 
+// This option, if set to true, makes the jobs module only show buffs, and
+// hides bars and procs.  This is for folks who prefer to use the in game
+// hp/mp/tp bars and jobs gauges.  Using this option also removes the left
+// side of the buff bar (see PerBuffOptions for details), and any buff that
+// would have been on the left is now sorted as if it were on the right.
+Options.JustBuffTracker = true
+
 // Overrides for all of the "big buffs" that appear to the left or right
 // of the hp/mp bars.  This is stuff like trick/embolden/devotion/etc.
 Options.PerBuffOptions = {

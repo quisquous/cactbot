@@ -23,10 +23,6 @@
 /* Relative to #bars */
 #right-side-icons {
   position: absolute;
-  left: 206px;
-}
-
-#right-side-icons {
   left: 242px;
 }
 
@@ -36,6 +32,11 @@
 
 .drk #right-side-icons {
   left: 250px;
+}
+
+#right-side-icons.justbuffs {
+  position: fixed;
+  left: 0px;
 }
 
 /* Relative to #bars */
