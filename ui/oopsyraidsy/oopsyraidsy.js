@@ -117,7 +117,7 @@ var gDamageTracker;
 var gMistakeCollector;
 var gLiveList;
 
-ShortNamify(name) {
+function ShortNamify(name) {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
 
