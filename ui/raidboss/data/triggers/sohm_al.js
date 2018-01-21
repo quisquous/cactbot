@@ -6,7 +6,7 @@
     {
       id: 'Sohm Al Myath Stack',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (data.matches[1] == data.me)
           return 'Stack on YOU';
         return 'Stack on ' + matches[1];
@@ -16,7 +16,7 @@
     {
       id: 'Sohm Al Myath Spread',
       regex: /1B:........:(\y{Name}):....:....:00AE:0000:0000:0000:/,
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (data.matches[1] == data.me)
           return 'Move away from others';
         return 'Move away from ' + matches[1];
@@ -32,11 +32,11 @@
     {
       id: 'Sohm Al Tioman Meteor',
       regex: /1B:........:(\y{Name}):....:....:0007:0000:0000:0000:/,
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (data.matches[1] == data.me)
           return 'place meteor on edge';
       },
-      tts: function(data) {
+      tts: function(data, matches) {
         if (data.matches[1] == data.me)
           return 'meteor';
       },
