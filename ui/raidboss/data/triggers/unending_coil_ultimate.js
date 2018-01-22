@@ -51,8 +51,11 @@
     {
       regex: /16:........:Ragnarok:26B8:Heavensfall:........:(\y{Name}):/,
       run: function(data, matches) {
-        data.partyList = data.partyList || [];
-        data.partyList.push(matches[1]);
+        // This happens once during the nael transition and again during
+        // the heavensfall trio.  This should proooobably hit all 8
+        // people by the time you get to octet.
+        data.partyList = data.partyList || {};
+        data.partyList[matches[1]] = true;
       },
     },
 
@@ -459,15 +462,17 @@
         if (data.octetMarker.length != 7)
           return;
 
-        if (data.partyList.length != 8) {
-          console.error('Octet error: bad party list size: ' + JSON.stringify(data.partyList));
+        var partyList = Object.keys(data.partyList);
+
+        if (partyList.length != 8) {
+          console.error('Octet error: bad party list size: ' + JSON.stringify(partyList));
           return;
         }
         var uniq_dict = {};
         for (var i = 0; i < data.octetMarker.length; ++i) {
           uniq_dict[data.octetMarker[i]] = true;
-          if (data.partyList.indexOf(data.octetMarker[i]) < 0) {
-            console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(data.partyList));
+          if (partyList.indexOf(data.octetMarker[i]) < 0) {
+            console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(partyList));
             return;
           }
         }
@@ -477,12 +482,12 @@
         if (uniq.length != 7)
           return;
 
-        var remainingPlayers = data.partyList.filter(function(p) {
+        var remainingPlayers = partyList.filter(function(p) {
           return data.octetMarker.indexOf(p) < 0;
         });
         if (remainingPlayers.length != 1) {
           // This could happen if the party list wasn't unique.
-          console.error('Octet error: failed to find player, ' + JSON.stringify(data.partyList) + ' ' + JSON.stringify(data.octetMarker));
+          console.error('Octet error: failed to find player, ' + JSON.stringify(partyList) + ' ' + JSON.stringify(data.octetMarker));
           return;
         }
 
@@ -516,16 +521,16 @@
       condition: function(data) { return data.trio == 'octet'; },
       delaySeconds: 0.5,
       alarmText: function(data) {
-        if (!data.lastOctetMarker)
-          return 'Everyone Stack for Twin???';
         if (data.lastOctetMarker == data.me)
           return 'YOU Stack for Twin';
       },
       infoText: function(data) {
+        if (!data.lastOctetMarker)
+          return '8: ??? (twin)';
         // If this person is not alive, then everybody should stack,
         // but tracking whether folks are alive or not is a mess.
-        if (data.lastOctetMarker && data.lastOctetMarker != data.me)
-          return 'Last Dive: ' + data.ShortName(data.lastOctetMarker);
+        if (data.lastOctetMarker != data.me)
+          return '8: ' + data.ShortName(data.lastOctetMarker) + ' (twin)';
       },
       tts: function(data) {
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
