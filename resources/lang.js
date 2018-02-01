@@ -100,6 +100,12 @@ class CactbotLanguage {
       WingsOfSalvation: '26CA',
       ChainLightning: '26C8',
       ThermionicBurst: '26B9',
+
+      // o7s
+      MissileExplosion: '2782',
+      UltrosStoneskin: '2AB5',
+      TheHeat: '2777',
+      ChainCannon: '278F',
     });
   }
 
