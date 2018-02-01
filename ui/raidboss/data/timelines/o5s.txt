@@ -1,5 +1,89 @@
 # Omega - Sigmascape V1.0 (Savage) - O5S
 
-0 "--Reset--" sync /Removing combatant TBD/ window 10000 jump 0
+hideall "--Reset--"
 
-0 "Start" sync /:Engage!/ window 0,1
+# Saintly Beam: 0 light appears, 5 target, 9 hit
+# Diabolic Light: 0 target appears, 8 target, 13 hit
+
+##############################################################
+0 "--Reset--" sync /Removing combatant Phantom Train/ window 10000 jump 0
+
+0 "--Pull--"
+12 "Ghost spawn"
+19 "Saintly Beam" duration 9
+31 "Diabolic Whistle (knockback)"
+41 "All in the Mind"
+50 "Doom Strike"
+64 "Head On"
+65 "Diabolic Wind"
+71 "Acid Rain"
+80 "Diabolic Whistle (dives)"
+91 "Saintly Beam" duration 9
+104 "Diabolic Headlamp"
+116 "Diabolic Whistle (tether)"
+126 "Saintly Beam" duration 9
+141 "Diabolic Light" duration 13
+152 "Doom Strike"
+159 "Acid Rain"
+
+# add phase
+
+166 "--untargetable--"
+180 "Add wave"
+196 "Diabolic Wind"
+203 "Diabolic Wind"
+
+# chimney + train cars here
+
+300 "--targetable--"
+317 "Ghost spawn"
+325 "Diabolic Light" duration 13
+330 "Diabolic Headlamp"
+335 "Saintly Beam" duration 9
+347 "Doom Strike"
+
+356 "Diabolic Whistle (tether)"
+364 "Saintly Beam" duration 9
+380 "Diabolic Whistle (knockback)"
+389 "All in the Mind"
+393 "Diabolic Headlamp"
+411 "Head On"
+413 "Saintly Beam" duration 9
+416 "Ghosts spawn"
+
+429 "Diabolic Whistle (dives)"
+437 "Diabolic Headlamp"
+445 "Diabolic Wind"
+446 "Diabolic Whistle (tethers)"
+454 "Saintly Beam" duration 9
+459 "Diabolic Wind"
+
+465 "Diabolic Light" duration 13
+476 "Doom Strike"
+483 "Acid Rain"
+497 "Diabolic Headlamp"
+500 "Saintly Beam" duration 9
+504 "Acid Rain"
+
+518 "Diabolic Whistle (tethers)"
+529 "Saintly Beam" duration 9
+531 "Ghost Spawn"
+532 "Diabolic Wind"
+
+537 "Diabolic Light" duration 13
+548 "Doom Strike"
+560 "Diabolic Whistle (knockback)" 
+569 "All in the Mind"
+574 "Diabolic Headlamp"
+
+589 "Head On"
+591 "Diabolic Wind"
+597 "Acid Rain"
+608 "Ghosts spawn"
+611 "Diabolic Whistle (dives)"
+619 "Diabolic Headlamp"
+627 "Diabolic Wind"
+628 "Diabolic Whistle (tethers)
+
+# 10:20 enrage?
+631 "Saintly Beam"
