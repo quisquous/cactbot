@@ -68,7 +68,8 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
 3. Unzip the release zip file.  (If there is no OverlayPlugin\\addons\\CactbotOverlay.dll file, you downloaded the wrong zip file.)
 4. Close ACT, if it's still running.
 5. Copy the **OverlayPlugin\\** folder from inside of the unzipped
-folder on top of your existing **C:\\...\\Advanced Combat Tracker\\OverlayPlugin\\** folder.
+folder into your existing **C:\\...\\Advanced Combat Tracker\\** folder.
+6. If you already have an existing **OverlayPlugin\\** folder, you will be prompted to confirm if you want to merge files with existing files.  Click the `Do this for the next N conflicts` checkbox and then the `Move and Replace` checkbox.  If you end up with an **OverlayPlugin\\OverlayPlugin\\** folder then you have done something wrong.
 
    The final directory structure should look something like this:
    - C:\\...\\Advanced Combat Tracker\\
