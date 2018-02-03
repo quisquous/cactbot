@@ -54,6 +54,7 @@ triggers/o1s.js
 triggers/o2s.js
 triggers/o3s.js
 triggers/o4s.js
+triggers/o5n.js
 triggers/o5s.js
 triggers/o6s.js
 triggers/o7n.js
