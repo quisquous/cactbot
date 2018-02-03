@@ -58,6 +58,7 @@ triggers/o5s.js
 triggers/o6s.js
 triggers/o7n.js
 triggers/o7s.js
+triggers/o8n.js
 triggers/o8s.js
 triggers/royal_city_of_rabanastre.js
 triggers/shatter.js
