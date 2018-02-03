@@ -87,7 +87,7 @@ var gBossFightTriggers = [
   {
     id: 'Byakko Ex',
     zoneRegex: /^The Jade Stoa \(Extreme\)$/,
-    startRegex: /:Alte Roite uses Wyrm Tail/,
+    startRegex: /:Byakko starts using Storm Pulse/,
     endRegex: /:Byakko was defeated by/,
     countdownStarts: true,
   },
