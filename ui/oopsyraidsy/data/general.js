@@ -34,12 +34,14 @@
     {
       id: 'General Rabbit Medium',
       abilityRegex: gLang.kAbility.RabbitMedium,
+      condition: function(e, data) { return data.IsPlayerId(e.attackerId); },
       mistake: function(e, data) {
         return { type: 'warn', blame: e.attackerName, text: 'bunny' };
       },
     },
     {
       id: 'General Missed Trick',
+      condition: function(e, data) { return data.IsPlayerId(e.attackerId); },
       damageRegex: gLang.kAbility.TrickAttack,
       condition: function(e) {
         // 28710?03 == success
