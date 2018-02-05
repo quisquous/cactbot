@@ -286,6 +286,7 @@ namespace Cactbot {
         notify_state_.sent_data_dir = true;
 
         var web = new System.Net.WebClient();
+				System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
 
         var data_file_paths = new List<string>();
         try {
