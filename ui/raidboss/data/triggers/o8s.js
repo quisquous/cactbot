@@ -4,6 +4,13 @@
   timelineFile: 'o8s.txt',
   triggers: [
     {
+      id: 'O8S Shockwave',
+      regex: / 14:28DB:Graven Image starts using Shockwave/,
+      delaySeconds: 5,
+      alertText: 'Look for Knockback',
+      tts: 'knockback',
+    },
+    {
       id: 'O8S Indolent Will',
       regex: /Graven Image starts using Indolent Will/,
       alertText: 'Look Away From Statue',
@@ -11,7 +18,7 @@
     },
     {
       id: 'O8S Ave Maria',
-      regex: /Graven Image starts using Ave Maria/,
+      regex: / 14:28E3:Graven Image starts using Ave Maria/,
       alertText: 'Look At Statue',
       tts: 'look towards',
     },
@@ -48,7 +55,7 @@
     },
     {
       id: 'O8S Wings of Destruction',
-      regex: /14:2900:Kefka starts using Wings of Destruction/,
+      regex: / 14:2900:Kefka starts using Wings of Destruction/,
       alarmText: function(data) {
         if (data.role == 'tank')
           return 'Wings: Be Near/Far';
@@ -65,42 +72,18 @@
       },
     },
     {
-      regex: /Graven Image starts using Indulgent Will on (\y{Name})/,
-      run: function(data, matches) {
-        data.confusedList = data.confusedList || [];
-        data.confusedList.push(matches[1]);
-      },
-    },
-    {
-      regex: /Graven Image starts using Indulgent Will/,
-      delaySeconds: 3,
-      run: function(data) {
-        delete data.confusedList;
-      },
-    },
-    {
-      id: 'O8S Indulgent Will You Confused',
-      regex: /Graven Image starts using Indulgent Will on (\y{Name})/,
+      id: 'O8S Indulgent Will',
+      regex: / 14:28E5:Graven Image starts using Indulgent Will on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Confusion on You; Go Outside',
+      alarmText: 'Confusion: Go Outside',
       tts: 'confusion',
     },
     {
-      id: 'O8S Indulgent Will Callout',
-      regex: /Graven Image starts using Indulgent Will on (\y{Name})/,
-      delaySeconds: 0.5,
-      infoText: function(data) {
-        if (!data.confusedList)
-          return;
-        var tankHealerOutside;
-        if (data.confusedList.indexOf(data.me) >= 0) {
-          tankHealerOutside = data.role == 'tank' || data.role == 'healer';
-        } else {
-          tankHealerOutside = data.role != 'tank' && data.role != 'healer';
-        }
-        delete data.confusedList;
-        return tankHealerOutside ? 'dps inside' : 'dps outside';
-      },
+      id: 'O8S Idyllic Will',
+      regex: / 14:28E6:Graven Image starts using Idyllic Will on (\y{Name})/,
+      condition: function(data, matches) { return data.me == matches[1]; },
+      alarmText: 'Sleep: Go Inside',
+      tts: 'sleep',
     },
   ]
 }]

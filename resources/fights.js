@@ -78,11 +78,11 @@ var gBossFightTriggers = [
     countdownStarts: true,
   },
   {
-    id: 'o8s',
+    id: 'o8s-kefka',
     zoneRegex: /Sigmascape V4\.0 \(Savage\)/,
-    startRegex: /:Alte Roite uses Wyrm Tail/,
+    startRegex: / 15:........:Kefka:28C2:/,
     endRegex: /:Kekfa was defeated by/,
-    countdownStarts: true,
+    countdownStarts: false,
   },
   {
     id: 'Byakko Ex',
