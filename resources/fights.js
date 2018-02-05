@@ -59,7 +59,7 @@ var gBossFightTriggers = [
   {
     id: 'o5s',
     zoneRegex: /Sigmascape V1\.0 \(Savage\)/,
-    startRegex: /:Alte Roite uses Wyrm Tail/,
+    startRegex: /:Wroth Ghost:28B6:/,
     endRegex: /:Phantom Train was defeated by/,
     countdownStarts: true,
   },
