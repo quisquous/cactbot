@@ -1886,8 +1886,9 @@ class Bars {
 
 var gBars;
 
-document.addEventListener("onGameExistsEvent", function (e) {
-  if (!gBars) gBars = new Bars(Options);
+window.addEventListener("load", function (e) {
+  if (!gBars)
+    gBars = new Bars(Options);
 });
 document.addEventListener("onPlayerChangedEvent", function (e) {
   gBars.OnPlayerChanged(e);

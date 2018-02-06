@@ -113,9 +113,9 @@ Examples:
   16:103AAEE4:Potato Chippy:B1:Miasma II:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0::::::::::19400:40287:17649:17633:1000:1000:-0.656189:-3.799561:-5.960464E-08:
 */
 
-var gDamageTracker;
-var gMistakeCollector;
 var gLiveList;
+var gMistakeCollector;
+var gDamageTracker;
 
 function ShortNamify(name) {
   // TODO: make this unique among the party in case of first name collisions.
@@ -155,10 +155,16 @@ function IsPlayerId(id) {
 class OopsyLiveList {
   constructor(options) {
     this.options = options;
-    this.scroller = document.getElementById('livelist');
-    this.container = document.getElementById('livelist').children[0];
+    // Stub elements prior to the document load.
+    this.scroller = document.createElement('div');
+    this.container = document.createElement('div');
     this.Reset();
     this.SetInCombat(false);
+  }
+
+  SetScroller(element) {
+    this.scroller = element;
+    this.container = element.children[0];
   }
 
   SetInCombat(inCombat) {
@@ -852,14 +858,13 @@ class DamageTracker {
   }
 }
 
-window.setTimeout(function() {
-  if (gDamageTracker)
-    return;
+gLiveList = new OopsyLiveList(Options);
+gMistakeCollector = new MistakeCollector(Options, gLiveList);
+gDamageTracker = new DamageTracker(Options, gMistakeCollector);
 
-  gLiveList = new OopsyLiveList(Options);
-  gMistakeCollector = new MistakeCollector(Options, gLiveList);
-  gDamageTracker = new DamageTracker(Options, gMistakeCollector);
-}, 0);
+window.addEventListener("load", function(e) {
+  gLiveList.SetScroller(document.getElementById('livelist'));
+});
 
 document.addEventListener("onLogEvent", function(e) {
   gDamageTracker.OnLogEvent(e);

@@ -15,14 +15,15 @@ class PopupText {
     this.timelineLoader = timelineLoader;
   }
 
-  OnPlayerChange(e) {
-    if (!this.init) {
-      this.init = true;
-      this.infoText = document.getElementById('popup-text-info');
-      this.alertText = document.getElementById('popup-text-alert');
-      this.alarmText = document.getElementById('popup-text-alarm');
-    }
+  OnDocumentLoad() {
+    this.init = true;
+    this.infoText = document.getElementById('popup-text-info');
+    this.alertText = document.getElementById('popup-text-alert');
+    this.alarmText = document.getElementById('popup-text-alarm');
+    this.ReloadTimelines();
+  }
 
+  OnPlayerChange(e) {
     if (this.job != e.detail.job || this.me != e.detail.name)
       this.OnJobChange(e);
   }
@@ -71,7 +72,7 @@ class PopupText {
 
   ReloadTimelines() {
     // Datafiles, job, and zone must be loaded.
-    if (!this.triggerSets || !this.me || !this.zoneName)
+    if (!this.triggerSets || !this.me || !this.zoneName || !this.init)
       return;
 
     this.Reset();
@@ -390,6 +391,9 @@ class PopupTextGenerator {
 
 var gPopupText;
 
+window.addEventListener("load", function(e) {
+  gPopupText.OnDocumentLoad(e);
+});
 document.addEventListener("onPlayerChangedEvent", function(e) {
   gPopupText.OnPlayerChange(e);
 });

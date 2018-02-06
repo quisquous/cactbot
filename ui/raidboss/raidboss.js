@@ -36,13 +36,8 @@ var Options = {
   Triggers: [],
 };
 
-
-window.setTimeout(function() {
-  if (!gTimelineController) {
-    gTimelineController = new TimelineController(Options, new TimelineUI(Options));
-    gPopupText = new PopupText(Options);
-    // Connect the timelines to the popup text.
-    gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
-    gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
-  }
-}, 0);
+gTimelineController = new TimelineController(Options, new TimelineUI(Options));
+gPopupText = new PopupText(Options);
+// Connect the timelines to the popup text.
+gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
+gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));

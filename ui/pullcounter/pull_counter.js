@@ -7,14 +7,19 @@ var Options = {
 var gPullCounter;
 
 class PullCounter {
-  constructor(element) {
-    this.element = element;
+  constructor() {
+    // Create stub element to avoid conditionals everywhere.
+    this.element = document.createElement('div');
     this.zone = null;
     this.bossStarted = false;
 
     var cmd = JSON.stringify({getSaveData: ''});
     OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, cmd);
     this.ReloadTriggers();
+  }
+
+  SetElement(element) {
+    this.element = element;
   }
 
   OnFightStart(boss) {
@@ -94,6 +99,8 @@ class PullCounter {
   }
 }
 
+gPullCounter = new PullCounter();
+
 document.addEventListener("onLogEvent", function(e) {
   gPullCounter.OnLogEvent(e);
 });
@@ -114,7 +121,6 @@ document.addEventListener("onSendSaveData", function (e) {
   gPullCounter.SetSaveData(e);
 });
 
-window.setTimeout(function() {
-  if (!gPullCounter)
-    gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
-}, 0);
+window.addEventListener('load', function (e) {
+  gPullCounter.SetElement(document.getElementById('pullcounttext'));
+});
