@@ -41,8 +41,8 @@ class PullCounter {
         var boss = this.bosses[b]
         if (log.match(boss.startRegex)) {
           this.OnFightStart(boss);
-	  return;
-	}
+          return;
+        }
       }
     }
   }
