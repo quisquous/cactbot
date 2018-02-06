@@ -17,6 +17,18 @@
       tts: 'look away',
     },
     {
+      id: 'O8S Intemperate Will',
+      regex: /14:28DF:Graven Image starts using Intemperate Will/,
+      alertText: '<= Get Left/West',
+      tts: 'left',
+    },
+    {
+      id: 'O8N Gravitational Wave',
+      regex: /14:28DE:Graven Image starts using Gravitational Wave/,
+      alertText: 'Get Right/East =>',
+      tts: 'right',
+    },
+    {
       id: 'O8S Ave Maria',
       regex: / 14:28E3:Graven Image starts using Ave Maria/,
       alertText: 'Look At Statue',

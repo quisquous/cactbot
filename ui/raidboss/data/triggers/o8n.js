@@ -26,13 +26,13 @@
     {
       id: 'O8N Gravitational Wave',
       regex: /14:2929:Graven Image starts using Gravitational Wave/,
-      alertText: 'Get East =>',
+      alertText: 'Get Right/East =>',
       tts: 'right',
     },
     {
       id: 'O8N Intemperate Will',
       regex: /14:292A:Graven Image starts using Intemperate Will/,
-      alertText: '<= Get West',
+      alertText: '<= Get Left/West',
       tts: 'left',
     },
     {
