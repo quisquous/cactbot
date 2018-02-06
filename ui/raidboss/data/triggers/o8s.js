@@ -23,7 +23,7 @@
       tts: 'left',
     },
     {
-      id: 'O8N Gravitational Wave',
+      id: 'O8S Gravitational Wave',
       regex: /14:28DE:Graven Image starts using Gravitational Wave/,
       alertText: 'Get Right/East =>',
       tts: 'right',
