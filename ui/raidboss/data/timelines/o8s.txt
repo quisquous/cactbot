@@ -1,5 +1,77 @@
 # Omega - Sigmascape V4.0 (Savage) - O8S
 
-0 "--Reset--" sync /Removing combatant TBD/ window 10000 jump 0
+0 "--Reset--" sync /Removing combatant Kefka/ window 10000 jump 0
+0 "--Reset--" sync /The limit gauge resets!/ window 10000 jump 0
 
 0 "Start" sync /:Engage!/ window 0,1
+13 "Mana Charge" sync /:Kefka:28D1:/ # drift 0.476
+19 "Flagrant Fire" #sync /:Kefka:28CE:/ # drift 0.215
+28 "Hyperdrive" sync /:Kefka:28E8:/
+36 "Mana Release" sync /:Kefka:28D2:/
+41 "Flagrant Fire" #sync /:Kefka:2B32:/
+44 "Thrumming Thunder" #sync /:Kefka:28CA:/
+50 "Ultima Upsurge" sync /:Kefka:28E7:/
+71 "Graven Image" sync /:Kefka:28D7:/
+75 "Inexorable Will" sync /:Graven Image:28DA:/
+76 "Wave Cannon" sync /:Graven Image:28DC:/
+#76 "Unknown_2B34" sync /:Kefka:2B34:/
+79 "Inexorable Will" sync /:Graven Image:28DA:/
+81 "Wave Cannon" sync /:Graven Image:28DC:/
+83 "Pulse Wave" sync /:Graven Image:28DD:/
+83 "Inexorable Will" sync /:Graven Image:28DA:/
+83 "Pulse Wave" sync /:Graven Image:28DD:/
+86 "Indomitable Will" sync /:Graven Image:28D9:/
+87 "Timely Teleport" sync /:Kefka:28D3:/
+90 "Revolting Ruin" sync /:Kefka:28D5:/
+98 "Light Of Judgment" sync /:Kefka:28D8:/
+108 "Mana Charge" sync /:Kefka:28D1:/
+115 "Thrumming Thunder" #sync /:Kefka:28CA:/
+122 "Blizzard Blitz" #sync /:Kefka:28C7:/
+130 "Graven Image" sync /:Kefka:28D7:/
+139 "Mana Release" sync /:Kefka:28D2:/
+140 "Shockwave" sync /:Graven Image:28DB:/
+146 "Thrumming Thunder" #sync /:Kefka:2B2F:/
+146 "Blizzard Blitz" #sync /:Kefka:2B2E:/
+156 "Ultima Upsurge" sync /:Kefka:28E7:/
+163 "Hyperdrive" sync /:Kefka:28E8:/
+178 "Graven Image" sync /:Kefka:28D7:/
+183 "Gravitas" sync /:Graven Image:28E0:/
+#183 "Unknown_2B34" sync /:Kefka:2B34:/
+186 "Vitrophyre" sync /:Graven Image:28E2:/
+190 "Intemperate Will" sync /:Graven Image:28DF:/
+193 "Gravitas" sync /:Graven Image:28E0:/
+#193 "Unknown_2B35" sync /:Kefka:2B35:/
+196 "Vitrophyre" sync /:Graven Image:28E2:/
+200 "Aero Assault" sync /:Kefka:28D6:/
+208 "Light Of Judgment" sync /:Kefka:28D8:/
+218 "Mana Charge" sync /:Kefka:28D1:/ # drift 0.296
+224 "Flagrant Fire" #sync /:Kefka:28CE:/ # drift 0.304
+232 "Ultima Upsurge" sync /:Kefka:28E7:/
+240 "Graven Image" sync /:Kefka:28D7:/ # drift 0.203
+245 "Gravitational Wave" sync /:Graven Image:28DE:/
+246 "Mana Release" sync /:Kefka:28D2:/ # drift 0.302
+251 "Flagrant Fire" #sync /:Kefka:2B32:/
+254 "Thrumming Thunder" #sync /:Kefka:28CA:/
+261 "Ultima Upsurge" sync /:Kefka:28E7:/
+268 "Hyperdrive" sync /:Kefka:28E8:/
+288 "Graven Image" sync /:Kefka:28D7:/ # drift 0.259
+293 "Inexorable Will" sync /:Graven Image:28DA:/
+293 "Statue Gaze" #sync /:Graven Image:28E3:/
+308 "Statue Gaze" sync /:Graven Image:28E3:/ # drift -0.387
+310 "Timely Teleport" sync /:Kefka:28D3:/
+313 "Revolting Ruin" sync /:Kefka:28D5:/ # drift 0.227
+322 "Light Of Judgment" sync /:Kefka:28D8:/
+329 "Ultima Upsurge" sync /:Kefka:28E7:/ # drift 0.31
+336 "Mana Charge" sync /:Kefka:28D1:/ # drift 0.256
+343 "Thrumming Thunder" #sync /:Kefka:28CA:/
+350 "Blizzard Blitz" #sync /:Kefka:28C7:/
+358 "Graven Image" sync /:Kefka:28D7:/
+363 "Indolent Will" sync /:Graven Image:28E4:/
+364 "Mana Release" sync /:Kefka:28D2:/
+371 "Thrumming Thunder" #sync /:Kefka:2B31:/
+371 "Blizzard Blitz" #sync /:Kefka:2B2E:/
+377 "Hyperdrive" sync /:Kefka:28E8:/
+384 "Ultima Upsurge" sync /:Kefka:28E7:/ # drift 0.285
+392 "Ultima Upsurge" sync /:Kefka:28E7:/
+400 "Ultima Upsurge" sync /:Kefka:28E7:/
+408 "Light Of Judgment" sync /:Kefka:2A51:/
