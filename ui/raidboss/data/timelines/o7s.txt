@@ -9,7 +9,7 @@ hideall "--sync--"
 21 "Arm And Hammer" sync /:Guardian:2789:/
 31 "Atomic Ray" sync /:Guardian:278D:/
 40 "Prey" sync /:Guardian:278A:/
-49 "Load" sync /:Guardian:275C:/
+49 "Load ??" sync /:Guardian:275C:/
 50 "--sync--" sync /1A:Guardian gains the effect of Dadaluma Simulation/ jump 1050
 52 "Shockwave?"
 
@@ -18,11 +18,11 @@ hideall "--sync--"
 59 "Demon Simulation" sync /:Guardian:2B36:/
 
 # Dadaluma
-67 "Skip Program" sync /:Guardian:2773:/
+67 "Load Dada / Skip Ultros" sync /:Guardian:2773:/
 70 "Shockwave" sync /:Guardian:2783:/
 77 "Missile Simulation" sync /:Guardian:2764:/
 92 "Chakra Burst" sync /:Guardian:2787:/
-95 "(NW) Run Program" sync /:Guardian:276F:/
+95 "(NW) Run Dada" sync /:Guardian:276F:/
 108 "Magitek Ray" sync /:Guardian:2788:/
 113 "(H) Aura Cannon"
 123 "(DPS) Aura Cannon"
@@ -31,14 +31,14 @@ hideall "--sync--"
 144 "Magitek Ray" sync /:Guardian:2788:/
 
 # Ultros
-153 "Retrieve Program" sync /:Guardian:2774:/
+153 "Retrieve Ultros" sync /:Guardian:2774:/
 154 "Ink" sync /:Guardian:277D:/
-163 "Copy Program" sync /:Guardian:2775:/
+163 "Copy Ultros" sync /:Guardian:2775:/
 170 "Diffractive Plasma" sync /:Guardian:278B:/
 179 "Tentacle Simulation" sync /:Guardian:275E:/
 183 "Tentacle"
 189 "Wallop"
-191 "(NE) Run Program" sync /:Guardian:276F:/
+191 "(NE) Run Ultros" sync /:Guardian:276F:/
 198 "Interrupt Stoneskin" duration 4
 200 "--untargetable--" sync /:Guardian:2937:/
 207 "Chain Cannon" duration 2
@@ -47,10 +47,10 @@ hideall "--sync--"
 228 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Air Force
-236 "Load" sync /:Guardian:275C:/
+236 "Load Air Force" sync /:Guardian:275C:/
 239 "Diffractive Laser" sync /:Guardian:2780:/
 254 "Missile Simulation" sync /:Guardian:2764:/
-264 "Run Program" sync /:Guardian:276F:/
+264 "Run Air Force" sync /:Guardian:276F:/
 278 "Bomb Deployment" sync /:Guardian:2762:/
 279 "Plane Laser" duration 2
 287 "Plane Laser" duration 2
@@ -58,7 +58,7 @@ hideall "--sync--"
 300 "Magitek Ray" sync /:Guardian:2788:/
 
 # Virus
-308 "Skip Program" sync /:Guardian:2773:/
+308 "Virus" sync /:Guardian:2773:/
 311 "Aether Rot"
 321 "Magnetism/Repel" sync /:Fire Control System:10105:/
 334 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -76,14 +76,14 @@ hideall "--sync--"
 420 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Ultros
-428 "Paste Program" sync /:Guardian:2776:/
+428 "Paste Ultros" sync /:Guardian:2776:/
 429 "Ink" sync /:Guardian:277D:/
 436 "Tentacle Simulation" sync /:Guardian:275E:/
 442 "Bomb Deployment" sync /:Guardian:2762:/
 451 "Atomic Ray" sync /:Guardian:278D:/
 456 "Magitek Ray" sync /:Guardian:2788:/
 465 "Diffractive Plasma" sync /:Guardian:278B:/
-475 "Run Program" sync /:Guardian:276F:/
+475 "Run Ultros" sync /:Guardian:276F:/
 481 "Missile Simulation" sync /:Guardian:2764:/
 484 "Interrupt Stoneskin" duration 4
 486 "--untargetable--" sync /:Guardian:2937:/
@@ -93,7 +93,7 @@ hideall "--sync--"
 509 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Divergence point
-519 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+519 "Load/Skip ???" sync /:Guardian:(275C|2773):/
 520 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph/ jump 2520       # Bibliotaph buff, jump to A1
 520 "--sync--" sync /1A:Guardian gains the effect of Dadaluma/ jump 3520         # Dadaluma buff, jump to A2
 522 "Shockwave?"
@@ -104,10 +104,10 @@ hideall "--sync--"
 ########################################################
 
 # Bibliotaph
-2519 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+2519 "Load Biblio" sync /:Guardian:(275C|2773):/
 2528 "Radar" duration 2
 2529 "Demon Simulation" sync /:Guardian:2B36:/
-2542 "Run Program" sync /:Guardian:276F:/
+2542 "Run Biblio" sync /:Guardian:276F:/
 2549 "Diffractive Plasma" sync /:Guardian:278B:/
 2556 "Diffractive Plasma" sync /:Guardian:278B:/
 2563 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -116,7 +116,7 @@ hideall "--sync--"
 2589 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Dadaluma
-2600 "Load/Retrieve Program" sync /:Guardian:(275C|2774):/
+2600 "Load Dada" sync /:Guardian:(275C|2774):/
 2603 "Shockwave" sync /:Guardian:2783:/
 2607 "Radar" duration 2
 2613 "Missile Simulation" sync /:Guardian:2764:/
@@ -128,7 +128,7 @@ hideall "--sync--"
 2658 "--sync--" sync /:(275C|2773):Guardian/ jump 658          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
-2663 "Load/Skip Program"
+2663 "Load Air Force"
 2666 "Diffractive Laser"
 2676 "Diffractive Plasma"
 2688 "Run Program"
@@ -136,7 +136,7 @@ hideall "--sync--"
 #### Divergent path, Version A2: Dadaluma->Biblio
 
 # Dadaluma
-3519 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+3519 "Load Dada" sync /:Guardian:(275C|2773):/
 3522 "Shockwave" sync /:Guardian:2783:/
 3526 "Radar" duration 2
 3532 "Missile Simulation" sync /:Guardian:2764:/
@@ -147,10 +147,10 @@ hideall "--sync--"
 3572 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Bibliotaph
-3582 "Load/Retrieve Program" sync /:Guardian:(275C|2774):/
+3582 "Load Biblio" sync /:Guardian:(275C|2774):/
 3591 "Radar" duration 2
 3592 "Demon Simulation" sync /:Guardian:2B36:/
-3605 "Run Program" sync /:Guardian:276F:/
+3605 "Run Biblio" sync /:Guardian:276F:/
 3612 "Diffractive Plasma" sync /:Guardian:278B:/
 3619 "Diffractive Plasma" sync /:Guardian:278B:/
 3626 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -160,7 +160,7 @@ hideall "--sync--"
 3658 "--sync--" sync /:(275C|2773):Guardian/ jump 658          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
-3663 "Load/Skip Program"
+3663 "Load Air Force"
 3366 "Diffractive Laser"
 3376 "Diffractive Plasma"
 3388 "Run Program"
@@ -171,11 +171,11 @@ hideall "--sync--"
 ##########################################################
 
 # Air Force
-663 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+663 "Load Air Force" sync /:Guardian:(275C|2773):/
 666 "Diffractive Laser" sync /:Guardian:2780:/
 669 "Radar" duration 2
 676 "Diffractive Plasma" sync /:Guardian:278B:/
-688 "Run Program" sync /:Guardian:276F:/
+688 "Run Air Force" sync /:Guardian:276F:/
 694 "Bomb Deployment" sync /:Guardian:2762:/
 695 "Plane Laser" duration 2
 701 "Arm And Hammer" sync /:Guardian:2789:/
@@ -203,7 +203,7 @@ hideall "--sync--"
 1052 "Shockwave" sync /:Guardian:2783:/
 1059 "Missile Simulation" sync /:Guardian:2764:/
 1074 "Chakra Burst" sync /:Guardian:2787:/
-1077 "Run Program" sync /:Guardian:276F:/
+1077 "Run Dada" sync /:Guardian:276F:/
 1090 "Magitek Ray" sync /:Guardian:2788:/
 1095 "(H) Aura Cannon"
 1105 "(DPS) Aura Cannon"
@@ -212,7 +212,7 @@ hideall "--sync--"
 1126 "Magitek Ray" sync /:Guardian:2788:/
 
 # Bibliotaph
-1135 "Skip Program" sync /:Guardian:2773:/
+1135 "Load Biblio / Skip Air Force" sync /:Guardian:2773:/
 1145 "Demon Simulation" sync /:Guardian:2B36:/
 1153 "Retrieve Program" sync /:Guardian:2774:/
 1156 "Diffractive Laser" sync /:Guardian:2780:/
@@ -220,7 +220,7 @@ hideall "--sync--"
 1171 "Missile Simulation" sync /:Guardian:2764:/
 
 # Air Force
-1181 "Run Program" sync /:Guardian:276F:/
+1181 "Run Air Force" sync /:Guardian:276F:/
 1195 "Bomb Deployment" sync /:Guardian:2762:/
 1196 "Plane Laser" duration 2
 1204 "Plane Laser" duration 2
@@ -228,13 +228,13 @@ hideall "--sync--"
 1214 "Magitek Ray" sync /:Guardian:2788:/
 
 # Ultros
-1222 "Load" sync /:Guardian:275C:/
+1222 "Load Ultros" sync /:Guardian:275C:/
 1223 "Ink" sync /:Guardian:277D:/
 1239 "Diffractive Plasma" sync /:Guardian:278B:/
 1248 "Tentacle Simulation" sync /:Guardian:275E:/
 1252 "Tentacle"
 1258 "Wallop"
-1260 "Run Program" sync /:Guardian:276F:/
+1260 "Run Ultros" sync /:Guardian:276F:/
 1267 "Interrupt Stoneskin" duration 4
 1269 "--targetable--" sync /:Guardian:2937:/
 1276 "Chain Cannon" duration 2
@@ -243,7 +243,7 @@ hideall "--sync--"
 1297 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Virus
-1305 "Skip Program" sync /:Guardian:2773:/
+1305 "Virus" sync /:Guardian:2773:/
 1318 "Magnetism/Repel" sync /:Fire Control System:10105:/ # optional?
 1331 "Diffractive Plasma" sync /:Guardian:278B:/
 1343 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -260,11 +260,11 @@ hideall "--sync--"
 1407 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Air Force
-1415 "Paste Program" sync /:Guardian:2776:/ window 10,10
+1415 "Paste Air Force" sync /:Guardian:2776:/ window 10,10
 1418 "Diffractive Laser" sync /:Guardian:2780:/
 1421 "Radar" duration 2
 1430 "Diffractive Plasma" sync /:Guardian:278B:/
-1440 "Run Program" sync /:Guardian:276F:/
+1440 "Run Air Force" sync /:Guardian:276F:/
 1446 "Bomb Deployment" sync /:Guardian:2762:/
 1453 "Plane Laser" duration 2
 1461 "Plane Laser" duration 2
@@ -272,7 +272,7 @@ hideall "--sync--"
 1469 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Divergence point
-1480 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+1480 "Load/Skip ??" sync /:Guardian:(275C|2773):/
 1481 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph/ jump 4481       # Bibliotaph buff, jump to B1
 1481 "--sync--" sync /1A:Guardian gains the effect of Dadaluma/ jump 5481         # Dadaluma buff, jump to B2
 1483 "Shockwave?"
@@ -283,10 +283,10 @@ hideall "--sync--"
 ##########################################################
 
 # Bibliotaph
-4480 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+4480 "Load Biblio" sync /:Guardian:(275C|2773):/
 4489 "Radar" duration 2
 4490 "Demon Simulation" sync /:Guardian:2B36:/
-4503 "Run Program" sync /:Guardian:276F:/
+4503 "Run Biblio" sync /:Guardian:276F:/
 4510 "Diffractive Plasma" sync /:Guardian:278B:/
 4517 "Diffractive Plasma" sync /:Guardian:278B:/
 4524 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -295,7 +295,7 @@ hideall "--sync--"
 4550 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Dadaluma
-4561 "Load/Retrieve Program" sync /:Guardian:(275C|2774):/
+4561 "Load Dada" sync /:Guardian:(275C|2774):/
 4564 "Shockwave" sync /:Guardian:2783:/
 4568 "Radar" duration 2
 4574 "Missile Simulation" sync /:Guardian:2764:/
@@ -307,7 +307,7 @@ hideall "--sync--"
 4619 "--sync--" sync /:(275C|2773):Guardian/ jump 1619         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
-4624 "Load/Skip Program"
+4624 "Load Ultros"
 4625 "Ink"
 4632 "Tentacle Simulation"
 4636 "Tentacle"
@@ -318,7 +318,7 @@ hideall "--sync--"
 #### Divergent path, Version B2: Dadaluma -> Bibliotaph
 
 # Dadaluma
-5480 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+5480 "Load Dada" sync /:Guardian:(275C|2773):/
 5483 "Shockwave" sync /:Guardian:2783:/
 5487 "Radar" duration 2
 5493 "Missile Simulation" sync /:Guardian:2764:/
@@ -329,10 +329,10 @@ hideall "--sync--"
 5533 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Bibliotaph
-5543 "Load/Retrieve Program" sync /:Guardian:(275C|2774):/
+5543 "Load Biblio" sync /:Guardian:(275C|2774):/
 5552 "Radar" duration 2
 5553 "Demon Simulation" sync /:Guardian:2B36:/
-5566 "Run Program" sync /:Guardian:276F:/
+5566 "Run Biblio" sync /:Guardian:276F:/
 5573 "Diffractive Plasma" sync /:Guardian:278B:/
 5580 "Diffractive Plasma" sync /:Guardian:278B:/
 5587 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -342,7 +342,7 @@ hideall "--sync--"
 5619 "--sync--" sync /:(275C|2773):Guardian/ jump 1619         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
-5624 "Load/Skip Program"
+5624 "Load Ultros"
 5625 "Ink"
 5632 "Tentacle Simulation"
 5636 "Tentacle"
@@ -355,7 +355,7 @@ hideall "--sync--"
 ##########################################################
 
 # Ultros
-1624 "Load/Skip Program" sync /:Guardian:(275C|2773):/
+1624 "Load Ultros" sync /:Guardian:(275C|2773):/
 1625 "Ink" sync /:Guardian:277D:/
 1632 "Tentacle Simulation" sync /:Guardian:275E:/
 1636 "Tentacle"
@@ -364,7 +364,7 @@ hideall "--sync--"
 1647 "Atomic Ray" sync /:Guardian:278D:/
 1652 "Magitek Ray" sync /:Guardian:2788:/
 1661 "Diffractive Plasma" sync /:Guardian:278B:/
-1671 "Run Program" sync /:Guardian:276F:/
+1671 "Run Ultros" sync /:Guardian:276F:/
 1677 "Missile Simulation" sync /:Guardian:2764:/
 1680 "Interrupt Stoneskin" duration 4
 1680 "--untargetable--" sync /:Guardian:2937:/
