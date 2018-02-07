@@ -3,88 +3,95 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# Saintly Beam: 0 light appears, 5 target, 9 hit
+# Saintly Beam: 0 light appears, 5 target, 10 hit
 # Diabolic Light: 0 target appears, 8 target, 13 hit
 
 ##############################################################
 0 "--Reset--" sync /Removing combatant Phantom Train\.  Max HP: 12860067\./ window 10000 jump 0
 
 0 "--sync--" sync /:Engage!/ window 0,1
-12 "Ghost spawn"
-19 "Saintly Beam" duration 9
-31 "Diabolic Whistle (knockback)"
-41 "All in the Mind"
-50 "Doom Strike"
-64 "Head On"
-65 "Diabolic Wind"
-71 "Acid Rain"
-80 "Diabolic Whistle (dives)"
-91 "Saintly Beam" duration 9
-104 "Diabolic Headlamp"
-116 "Diabolic Whistle (tether)"
-126 "Saintly Beam" duration 9
+11 "Encumber" sync /:Wroth Ghost:28B6:/
+18 "Saintly Beam" duration 10
+31 "Diabolic Whistle (knockback)" sync /:Phantom Train:28A5:/
+41 "All in the Mind" sync /:Remorse:28AD:/
+50 "Doom Strike" sync /:Phantom Train:28B1:/
+64 "Head On" sync /:Phantom Train:28B7:/
+65 "Diabolic Wind" sync /:Phantom Train:28BD:/
+71 "Acid Rain" sync /:Phantom Train:28B5:/
+80 "Diabolic Whistle (dives)" sync /:Phantom Train:28A5:/
+90 "Saintly Beam" duration 10
+104 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
+116 "Diabolic Whistle (tether)" sync /:Phantom Train:28A5:/
+125 "Saintly Beam" duration 10
 141 "Diabolic Light" duration 13
-152 "Doom Strike"
-159 "Acid Rain"
+152 "Doom Strike" sync /:Phantom Train:28B1:/
+159 "Acid Rain" sync /:Phantom Train:28B5:/
+
 
 # add phase
 
-166 "--untargetable--"
+168 "--untargetable--" sync /:Phantom Train:28A7:/ window 500,500
 180 "Add wave"
-196 "Diabolic Wind"
-203 "Diabolic Wind"
+196 "(DPS) Diabolic Wind" sync /:Phantom Train:28BD:/
+203 "(T/H) Diabolic Wind" sync /:Phantom Train:28BD:/
 
-# chimney + train cars here
+# chimney + train cars
+300 "--sync--" sync /:Phantom Train:28B3:/ window 500,500
+305 "(T/H) Ghosts" sync /:Added new combatant Agony/
+309 "(DPS) Ghosts" sync /:Added new combatant Malice/
 
-300 "--targetable--"
-317 "Ghost spawn"
-325 "Diabolic Light" duration 13
-330 "Diabolic Headlamp"
-335 "Saintly Beam" duration 9
-347 "Doom Strike"
 
-356 "Diabolic Whistle (tether)"
-364 "Saintly Beam" duration 9
-380 "Diabolic Whistle (knockback)"
-389 "All in the Mind"
-393 "Diabolic Headlamp"
-411 "Head On"
-413 "Saintly Beam" duration 9
-416 "Ghosts spawn"
+491 "--sync--" sync /:Phantom Train:28A8:/ window 500,500
+500 "--targetable--"
+517 "Encumber" sync /:Wroth Ghost:28B6:/
+525 "Diabolic Light" duration 13
+530 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
+534 "Saintly Beam" duration 10
+547 "Doom Strike" sync /:Phantom Train:28B1:/
 
-429 "Diabolic Whistle (dives)"
-437 "Diabolic Headlamp"
-445 "Diabolic Wind"
-446 "Diabolic Whistle (tethers)"
-454 "Saintly Beam" duration 9
-459 "Diabolic Wind"
+556 "Diabolic Whistle (tether)" sync /:Phantom Train:28A5:/
+563 "Saintly Beam" duration 10
+580 "Diabolic Whistle (knockback)" sync /:Phantom Train:28A5:/
+589 "All in the Mind" sync /:Remorse:28AD:/
+593 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
+611 "Head On" sync /:Phantom Train:28B7:/
+612 "Saintly Beam" duration 10
+616 "Ghosts spawn"
 
-465 "Diabolic Light" duration 13
-476 "Doom Strike"
-483 "Acid Rain"
-497 "Diabolic Headlamp"
-500 "Saintly Beam" duration 9
-504 "Acid Rain"
+629 "Diabolic Whistle (dives)" sync /:Phantom Train:28A5:/
+637 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
+645 "Diabolic Wind" sync /:Phantom Train:28BD:/
+646 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/
+653 "Saintly Beam" duration 10
+659 "Diabolic Wind" sync /:Phantom Train:28BD:/
 
-518 "Diabolic Whistle (tethers)"
-529 "Saintly Beam" duration 9
-531 "Ghost Spawn"
-532 "Diabolic Wind"
+665 "Diabolic Light" duration 13
+676 "Doom Strike" sync /:Phantom Train:28B1:/
+683 "Acid Rain" sync /:Phantom Train:28B5:/
+697 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
+699 "Saintly Beam" duration 10
+704 "Acid Rain" sync /:Phantom Train:28B5:/
 
-537 "Diabolic Light" duration 13
-548 "Doom Strike"
-560 "Diabolic Whistle (knockback)" 
-569 "All in the Mind"
-574 "Diabolic Headlamp"
+718 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/
+728 "Saintly Beam" duration 10
+731 "Encumber" sync /:Wroth Ghost:28B6:/
+732 "Diabolic Wind" sync /:Phantom Train:28BD:/
 
-589 "Head On"
-591 "Diabolic Wind"
-597 "Acid Rain"
-608 "Ghosts spawn"
-611 "Diabolic Whistle (dives)"
-619 "Diabolic Headlamp"
-627 "Diabolic Wind"
-628 "Diabolic Whistle (tethers)
+737 "Diabolic Light" duration 13
+748 "Doom Strike" sync /:Phantom Train:28B1:/
+760 "Diabolic Whistle (knockback)" 
+769 "All in the Mind" sync /:Remorse:28AD:/
+774 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
 
-# 10:20 enrage?
-631 "Saintly Beam"
+789 "Head On" sync /:Phantom Train:28B7:/
+791 "Diabolic Wind" sync /:Phantom Train:28BD:/
+797 "Acid Rain" sync /:Phantom Train:28B5:/
+808 "Encumber" sync /:Wroth Ghost:28B6:/
+811 "Diabolic Whistle (dives)" sync /:Phantom Train:28A5:/
+819 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
+827 "Diabolic Wind" sync /:Phantom Train:28BD:/
+828 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/
+
+# 10:00 enrage, final phase length depends on add phase time
+821 "--sync--" sync /:2A87:Phantom Train:/ window 821,500
+831 "Saintly Beam" sync /:Phantom Train:2A87:/
