@@ -284,7 +284,7 @@ hideall "--sync--"
 
 # Bibliotaph
 4480 "Load/Skip Program" sync /:Guardian:(275C|2773):/
-4489 "Radar" duraton 2
+4489 "Radar" duration 2
 4490 "Demon Simulation" sync /:Guardian:2B36:/
 4503 "Run Program" sync /:Guardian:276F:/
 4510 "Diffractive Plasma" sync /:Guardian:278B:/
@@ -309,7 +309,7 @@ hideall "--sync--"
 # Should be unreachable, only here for visual continuity before/after jump
 4624 "Load/Skip Program"
 4625 "Ink"
-4632 "Tentacle Simulation
+4632 "Tentacle Simulation"
 4636 "Tentacle"
 4638 "Bomb Deployment"
 4642 "Wallop"
@@ -344,7 +344,7 @@ hideall "--sync--"
 # Should be unreachable, only here for visual continuity before/after jump
 5624 "Load/Skip Program"
 5625 "Ink"
-5632 "Tentacle Simulation
+5632 "Tentacle Simulation"
 5636 "Tentacle"
 5638 "Bomb Deployment"
 5642 "Wallop"
