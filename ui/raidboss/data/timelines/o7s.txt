@@ -125,7 +125,7 @@ hideall "--sync--"
 2639 "Prey" sync /:Guardian:278A:/
 2645 "Magitek Ray" sync /:Guardian:2788:/
 2653 "Diffractive Plasma" sync /:Guardian:278B:/
-2658 "--sync--" sync /:(275C|2773):Guardian:/ jump 658          # Load/Skip starts casting, return to A
+2658 "--sync--" sync /:(275C|2773):Guardian/ jump 658          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 2663 "Load/Skip Program"
@@ -157,7 +157,7 @@ hideall "--sync--"
 3634 "Prey" sync /:Guardian:278A:/
 3643 "Magitek Ray" sync /:Guardian:2788:/
 3652 "Diffractive Plasma" sync /:Guardian:278B:/
-3658 "--sync--" sync /:(275C|2773):Guardian:/ jump 658          # Load/Skip starts casting, return to A
+3658 "--sync--" sync /:(275C|2773):Guardian/ jump 658          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 3663 "Load/Skip Program"
@@ -182,7 +182,7 @@ hideall "--sync--"
 703 "Plane Laser" duration 2
 709 "Diffractive Plasma" sync /:Guardian:278B:/
 
-710 "--sync--" sync /:2791:Guardian:/ window 100,100
+710 "--sync--" sync /:2791:Guardian/ window 100,100
 731 "Enrage" sync /:Guardian:2791:/ jump 0
 
 ######################################
@@ -304,7 +304,7 @@ hideall "--sync--"
 4600 "Prey" sync /:Guardian:278A:/
 4606 "Magitek Ray" sync /:Guardian:2788:/
 4614 "Diffractive Plasma" sync /:Guardian:278B:/
-4619 "--sync--" sync /:(275C|2773):Guardian:/ jump 1619         # Load/Skip casting, return to B
+4619 "--sync--" sync /:(275C|2773):Guardian/ jump 1619         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
 4624 "Load/Skip Program"
@@ -339,7 +339,7 @@ hideall "--sync--"
 5595 "Prey" sync /:Guardian:278A:/
 5604 "Magitek Ray" sync /:Guardian:2788:/
 5613 "Diffractive Plasma" sync /:Guardian:278B:/
-5619 "--sync--" sync /:(275C|2773):Guardian:/ jump 1619         # Load/Skip casting, return to B
+5619 "--sync--" sync /:(275C|2773):Guardian/ jump 1619         # Load/Skip casting, return to B
 
 # Should be unreachable, only here for visual continuity before/after jump
 5624 "Load/Skip Program"
@@ -374,5 +374,5 @@ hideall "--sync--"
 1705 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Enrage
-1710 "--sync--" sync /:2791:Guardian:/ window 100,100
+1710 "--sync--" sync /:2791:Guardian/ window 100,100
 1725 "Enrage" sync /:Guardian:2791:/ jump 0
