@@ -85,6 +85,13 @@ var gBossFightTriggers = [
     countdownStarts: false,
   },
   {
+    id: 'o8s-god kefka',
+    zoneRegex: /Sigmascape V4\.0 \(Savage\)/,
+    startRegex: / 15:........:Kefka:28EC:/,
+    endRegex: /:Kekfa was defeated by/,
+    countdownStarts: false,
+  },
+  {
     id: 'Byakko Ex',
     zoneRegex: /^The Jade Stoa \(Extreme\)$/,
     startRegex: /:Byakko starts using Storm Pulse/,
