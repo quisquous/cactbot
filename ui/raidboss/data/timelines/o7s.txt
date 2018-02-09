@@ -88,82 +88,82 @@ hideall "--sync--"
 474 "Interrupt Stoneskin" duration 4
 476 "--untargetable--" sync /:Guardian:2937:/
 483 "Chain Cannon" duration 2
-487 "Main Cannon" sync /:Guardian:2790:/
-490 "--targetable--" sync /:Guardian:2937:/
-499 "Diffractive Plasma" sync /:Guardian:278B:/
+489 "Main Cannon" sync /:Guardian:2790:/
+492 "--targetable--" sync /:Guardian:2937:/
+501 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Divergence point
-509 "Load/Skip ???" sync /:Guardian:(275C|2773):/
-510 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph/ jump 2510       # Bibliotaph buff, jump to A1
-510 "--sync--" sync /1A:Guardian gains the effect of Dadaluma/ jump 3510         # Dadaluma buff, jump to A2
-512 "Shockwave?"
-519 "Demon Simulation?"
+511 "Load/Skip ???" sync /:Guardian:(275C|2773):/
+512 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph/ jump 2512       # Bibliotaph buff, jump to A1
+512 "--sync--" sync /1A:Guardian gains the effect of Dadaluma/ jump 3512         # Dadaluma buff, jump to A2
+514 "Shockwave?"
+521 "Demon Simulation?"
 
 ########################################################
 ##### Divergent path, Version A1: Biblio->Dadaluma #####
 ########################################################
 
 # Bibliotaph
-2509 "Load Biblio" sync /:Guardian:(275C|2773):/
-2518 "Radar" duration 2
-2519 "Demon Simulation" sync /:Guardian:2B36:/
-2532 "Run Biblio" sync /:Guardian:276F:/
-2539 "Diffractive Plasma" sync /:Guardian:278B:/
-2546 "Diffractive Plasma" sync /:Guardian:278B:/
-2553 "Diffractive Plasma" sync /:Guardian:278B:/
-2561 "Prey" sync /:Guardian:278A:/
-2570 "Magitek Ray" sync /:Guardian:2788:/
-2579 "Diffractive Plasma" sync /:Guardian:278B:/
+2511 "Load Biblio" sync /:Guardian:(275C|2773):/
+2520 "Radar" duration 2
+2521 "Demon Simulation" sync /:Guardian:2B36:/
+2534 "Run Biblio" sync /:Guardian:276F:/
+2541 "Diffractive Plasma" sync /:Guardian:278B:/
+2548 "Diffractive Plasma" sync /:Guardian:278B:/
+2555 "Diffractive Plasma" sync /:Guardian:278B:/
+2563 "Prey" sync /:Guardian:278A:/
+2572 "Magitek Ray" sync /:Guardian:2788:/
+2581 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Dadaluma
-2590 "Load Dada" sync /:Guardian:(275C|2774):/
-2593 "Shockwave" sync /:Guardian:2783:/
-2597 "Radar" duration 2
-2603 "Missile Simulation" sync /:Guardian:2764:/
-2612 "Atomic Ray" sync /:Guardian:278D:/
-2617 "Chakra Burst" sync /:Guardian:2787:/
-2629 "Prey" sync /:Guardian:278A:/
-2635 "Magitek Ray" sync /:Guardian:2788:/
-2643 "Diffractive Plasma" sync /:Guardian:278B:/
-2648 "--sync--" sync /:(275C|2773):Guardian/ jump 648          # Load/Skip starts casting, return to A
+2592 "Load Dada" sync /:Guardian:(275C|2774):/
+2595 "Shockwave" sync /:Guardian:2783:/
+2599 "Radar" duration 2
+2605 "Missile Simulation" sync /:Guardian:2764:/
+2614 "Atomic Ray" sync /:Guardian:278D:/
+2619 "Chakra Burst" sync /:Guardian:2787:/
+2631 "Prey" sync /:Guardian:278A:/
+2637 "Magitek Ray" sync /:Guardian:2788:/
+2645 "Diffractive Plasma" sync /:Guardian:278B:/
+2650 "--sync--" sync /:(275C|2773):Guardian/ jump 650          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
-2653 "Load Air Force"
-2656 "Diffractive Laser"
-2666 "Diffractive Plasma"
-2678 "Run Program"
+2655 "Load Air Force"
+2658 "Diffractive Laser"
+2668 "Diffractive Plasma"
+2680 "Run Program"
 
 #### Divergent path, Version A2: Dadaluma->Biblio
 
 # Dadaluma
-3509 "Load Dada" sync /:Guardian:(275C|2773):/
-3512 "Shockwave" sync /:Guardian:2783:/
-3516 "Radar" duration 2
-3522 "Missile Simulation" sync /:Guardian:2764:/
-3531 "Atomic Ray" sync /:Guardian:278D:/
-3536 "Chakra Burst" sync /:Guardian:2787:/
-3548 "Prey" sync /:Guardian:278A:/
-3554 "Magitek Ray" sync /:Guardian:2788:/
-3562 "Diffractive Plasma" sync /:Guardian:278B:/
+3511 "Load Dada" sync /:Guardian:(275C|2773):/
+3514 "Shockwave" sync /:Guardian:2783:/
+3518 "Radar" duration 2
+3524 "Missile Simulation" sync /:Guardian:2764:/
+3533 "Atomic Ray" sync /:Guardian:278D:/
+3538 "Chakra Burst" sync /:Guardian:2787:/
+3550 "Prey" sync /:Guardian:278A:/
+3556 "Magitek Ray" sync /:Guardian:2788:/
+3564 "Diffractive Plasma" sync /:Guardian:278B:/
 
 # Bibliotaph
-3572 "Load Biblio" sync /:Guardian:(275C|2774):/
-3581 "Radar" duration 2
-3582 "Demon Simulation" sync /:Guardian:2B36:/
-3595 "Run Biblio" sync /:Guardian:276F:/
-3602 "Diffractive Plasma" sync /:Guardian:278B:/
-3609 "Diffractive Plasma" sync /:Guardian:278B:/
-3616 "Diffractive Plasma" sync /:Guardian:278B:/
-3624 "Prey" sync /:Guardian:278A:/
-3633 "Magitek Ray" sync /:Guardian:2788:/
-3642 "Diffractive Plasma" sync /:Guardian:278B:/
-3648 "--sync--" sync /:(275C|2773):Guardian/ jump 648          # Load/Skip starts casting, return to A
+3574 "Load Biblio" sync /:Guardian:(275C|2774):/
+3583 "Radar" duration 2
+3584 "Demon Simulation" sync /:Guardian:2B36:/
+3597 "Run Biblio" sync /:Guardian:276F:/
+3604 "Diffractive Plasma" sync /:Guardian:278B:/
+3611 "Diffractive Plasma" sync /:Guardian:278B:/
+3618 "Diffractive Plasma" sync /:Guardian:278B:/
+3626 "Prey" sync /:Guardian:278A:/
+3635 "Magitek Ray" sync /:Guardian:2788:/
+3644 "Diffractive Plasma" sync /:Guardian:278B:/
+3650 "--sync--" sync /:(275C|2773):Guardian/ jump 650          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
-3653 "Load Air Force"
-3356 "Diffractive Laser"
-3366 "Diffractive Plasma"
-3378 "Run Program"
+3655 "Load Air Force"
+3358 "Diffractive Laser"
+3368 "Diffractive Plasma"
+3380 "Run Program"
 
 
 ##########################################################
@@ -171,19 +171,19 @@ hideall "--sync--"
 ##########################################################
 
 # Air Force
-653 "Load Air Force" sync /:Guardian:(275C|2773):/
-656 "Diffractive Laser" sync /:Guardian:2780:/
-659 "Radar" duration 2
-666 "Diffractive Plasma" sync /:Guardian:278B:/
-678 "Run Air Force" sync /:Guardian:276F:/
-684 "Bomb Deployment" sync /:Guardian:2762:/
-685 "Plane Laser" duration 2
-691 "Arm And Hammer" sync /:Guardian:2789:/
-693 "Plane Laser" duration 2
-699 "Diffractive Plasma" sync /:Guardian:278B:/
+655 "Load Air Force" sync /:Guardian:(275C|2773):/
+658 "Diffractive Laser" sync /:Guardian:2780:/
+661 "Radar" duration 2
+668 "Diffractive Plasma" sync /:Guardian:278B:/
+680 "Run Air Force" sync /:Guardian:276F:/
+686 "Bomb Deployment" sync /:Guardian:2762:/
+687 "Plane Laser" duration 2
+693 "Arm And Hammer" sync /:Guardian:2789:/
+695 "Plane Laser" duration 2
+701 "Diffractive Plasma" sync /:Guardian:278B:/
 
-700 "--sync--" sync /:2791:Guardian/ window 100,100
-721 "Enrage" sync /:Guardian:2791:/ jump 0
+702 "--sync--" sync /:2791:Guardian/ window 100,100
+717 "Enrage" sync /:Guardian:2791:/ jump 0
 
 ######################################
 ########## END of Version A ##########
@@ -252,7 +252,7 @@ hideall "--sync--"
 1366 "Temporary Misdirection" duration 15
 1371 "Magitek Ray" sync /:Guardian:2788:/
 1375 "--untargetable--" sync /:Guardian:2937:/
-1381 "Chain Cannon" duration 2
+1382 "Chain Cannon" duration 2
 1388 "Main Cannon" sync /:Guardian:2790:/
 1389 "Radar" duration 2
 1391 "--targetable--" sync /:Guardian:2938:/
