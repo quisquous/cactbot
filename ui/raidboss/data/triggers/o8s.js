@@ -67,7 +67,7 @@
     },
     {
       id: 'O8S Wings of Destruction',
-      regex: / 14:2900:Kefka starts using Wings of Destruction/,
+      regex: / 14:2900:Kefka starts using Wings Of Destruction/,
       alarmText: function(data) {
         if (data.role == 'tank')
           return 'Wings: Be Near/Far';
