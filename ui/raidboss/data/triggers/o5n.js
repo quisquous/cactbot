@@ -2,7 +2,15 @@
 [{
   zoneRegex: /^(Sigmascape \(V1\.0\)|Sigmascape V1\.0)$/,
   timelineFile: 'o5n.txt',
+  resetWhenOutOfCombat: false,
   triggers: [
+    {
+      regex: /04:Removing combatant Phantom Train/,
+      run: function(data) {
+        data.StopCombat();
+      },
+    },
+
     {
       id: 'O5N Doom Strike',
       regex: /14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,

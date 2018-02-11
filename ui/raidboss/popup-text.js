@@ -7,6 +7,7 @@ class PopupText {
     this.triggers = [];
     this.timers = [];
     this.inCombat = false;
+    this.resetWhenOutOfCombat = true;
 
     this.kMaxRowsOfText = 2;
   }
@@ -81,6 +82,7 @@ class PopupText {
     this.triggers = [];
     var timelineFiles = [];
     var timelines = [];
+    this.resetWhenOutOfCombat = true;
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
@@ -105,6 +107,8 @@ class PopupText {
           timelineFiles.push(set.timelineFile);
         if (set.timeline)
           addTimeline(set.timeline);
+        if (set.resetWhenOutOfCombat !== undefined)
+          this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
       }
     }
 
@@ -136,20 +140,25 @@ class PopupText {
     this.ReloadTimelines();
   }
 
-  OnInCombat(e) {
-    var inCombat = e.detail.inGameCombat;
+  OnInCombatChange(inCombat) {
+    if (inCombat || this.resetWhenOutOfCombat)
+      this.SetInCombat(inCombat);
+  }
 
+  SetInCombat(inCombat) {
     // Stop timers when stopping combat to stop any active timers that
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
-    if (this.inCombat != inCombat) {
-      this.inCombat = inCombat;
-      if (!this.inCombat)
-        this.StopTimers();
-      if (this.inCombat)
-        this.Reset();
+    if (this.inCombat == inCombat)
+      return;
+    this.inCombat = inCombat;
+    if (!this.inCombat) {
+      this.StopTimers();
+      this.timelineLoader.StopCombat();
     }
+    if (this.inCombat)
+      this.Reset();
   }
 
   ShortNamify(name) {
@@ -169,6 +178,7 @@ class PopupText {
       job: this.job,
       role: this.role,
       ShortName: this.ShortNamify,
+      StopCombat: (function() { this.SetInCombat(false); }).bind(this),
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
     };
     this.StopTimers();
@@ -401,7 +411,7 @@ document.addEventListener("onZoneChangedEvent", function(e) {
   gPopupText.OnZoneChange(e);
 });
 document.addEventListener("onInCombatChangedEvent", function (e) {
-  gPopupText.OnInCombat(e);
+  gPopupText.OnInCombatChange(e.detail.inGameCombat);
 });
 document.addEventListener("onLogEvent", function(e) {
   gPopupText.OnLog(e);

@@ -5,6 +5,7 @@
   timeline: `
     hideall "Optionally, more lines to treat as part of the timeline"
     `,
+  resetWhenOutOfCombat: true, // boolean, defaults to true, if true then timelines and triggers will reset when the game is out of combat, otherwise manually call data.StopCombat().
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },
@@ -28,7 +29,9 @@
 //         me: The player's character name.
 //         job: The player's job.
 //         role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster/crafting/gathering).
-//         ParseLocaleFloat: A function that can parse \y{Float} matches from the regex.
+//         function ParseLocaleFloat(float): A function that can parse \y{Float} matches from the regex.
+//         function ShortName(name): A function that simplifies a player's name into something shorter, usually first name.
+//         function StopCombat(): Manually stop timelines and triggers, usually paired with resetWhenOutOfCombat = false.
 // matches: The regex match result of the trigger's regex to the log line it matched.
 //          matches[0] will be the entire match, and matches[1] will be the first group
 //          in the regex, etc. This can be used to pull data out of the log line.

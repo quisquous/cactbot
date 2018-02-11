@@ -33,15 +33,15 @@ class Timeline {
     this.LoadFile(text);
     this.Stop();
   }
-    
+
   LoadFile(text) {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
-    
+
     var uniqueid = 1;
     var texts = {};
-    
+
     var lines = text.split('\n');
     for (var i = 0; i < lines.length; ++i) {
       var line = lines[i];
@@ -87,14 +87,14 @@ class Timeline {
         });
         continue;
       }
-      
+
       match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
       if (match == null) {
         console.log("Unknown timeline: " + originalLine);
         continue;
       }
       line = line.replace(match[1], '').trim();
-      
+
       var seconds = parseFloat(match[2]);
       var e = {
         id: uniqueid++,
@@ -161,7 +161,7 @@ class Timeline {
         }
       }
     }
-    
+
     // Sort by time, but when the time is the same, sort by file order.
     // Then assign a sortKey to each event so that we can maintain that order.
     this.events.sort(function(a, b) {
@@ -175,7 +175,7 @@ class Timeline {
     this.syncStarts.sort(function(a, b) { return a.start - b.start });
     this.syncEnds.sort(function(a, b) { return a.end - b.end });
   }
-  
+
   Stop() {
     this.timebase = null;
 
@@ -198,7 +198,7 @@ class Timeline {
   SyncTo(fightNow) {
     // This records the actual time which aligns with "0" in the timeline.
     this.timebase = new Date(new Date() - fightNow * 1000);
-    
+
     this.nextEvent = 0;
     this.nextText = 0;
     this.nextSyncStart = 0;
@@ -216,7 +216,7 @@ class Timeline {
     if (this.syncTimeCallback)
       this.syncTimeCallback(fightNow, true);
   }
-  
+
   _CollectActiveSyncs(fightNow) {
     this.activeSyncs = [];
     for (var i = this.nextSyncEnd; i < this.syncEnds.length; ++i) {
@@ -224,7 +224,7 @@ class Timeline {
         this.activeSyncs.push(this.syncEnds[i]);
     }
   }
-  
+
   OnLogLine(line) {
     for (var i = 0; i < this.activeSyncs.length; ++i) {
       var sync = this.activeSyncs[i];
@@ -241,7 +241,7 @@ class Timeline {
       }
     }
   }
-  
+
   _AdvanceTimeTo(fightNow) {
     while (this.nextEvent < this.events.length && this.events[this.nextEvent].time <= fightNow)
       ++this.nextEvent;
@@ -252,7 +252,7 @@ class Timeline {
     while (this.nextSyncEnd < this.syncEnds.length && this.syncEnds[this.nextSyncEnd].end <= fightNow)
       ++this.nextSyncEnd;
   }
-  
+
   _ClearTimers() {
     if (this.removeTimerCallback) {
       for (var i = 0; i < this.activeEvents.length; ++i)
@@ -268,7 +268,7 @@ class Timeline {
       this.activeEvents.splice(0, 1);
     }
   }
-  
+
   _AddDurationTimers(fightNow) {
     var sort = false;
     var events = [];
@@ -293,7 +293,7 @@ class Timeline {
       Array.prototype.push.apply(this.activeEvents, events);
       this.activeEvents.sort(function(a, b) { return a.time - b.time });
   }
-  
+
   _AddUpcomingTimers(fightNow) {
     while (this.nextEvent < this.events.length && this.activeEvents.length < this.options.MaxNumberOfTimerBars) {
       var e = this.events[this.nextEvent];
@@ -336,7 +336,7 @@ class Timeline {
       this.updateTimer = null;
     }
   }
-  
+
   _ScheduleUpdate(fightNow) {
     console.assert(this.timebase, "_ScheduleUpdate called while stopped");
 
@@ -346,7 +346,7 @@ class Timeline {
     var nextEventEnding = kBig;
     var nextSyncStarting = kBig;
     var nextSyncEnding = kBig;
-    
+
     if (this.nextEvent < this.events.length) {
       var nextEventEndsAt = this.events[this.nextEvent].time
       console.assert(nextEventStarting > fightNow, "nextEvent wasn't updated before calling _ScheduleUpdate")
@@ -372,14 +372,14 @@ class Timeline {
       nextSyncEnding = this.syncEnds[this.nextSyncEnd].end;
       console.assert(nextSyncEnding > fightNow, "nextSyncEnd wasn't updated before calling _ScheduleUpdate")
     }
-    
+
     var nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding, Math.min(nextTextOccurs, Math.min(nextSyncStarting, nextSyncEnding))));
     if (nextTime != kBig) {
       console.assert(nextTime > fightNow, "nextTime is in the past")
       this.updateTimer = window.setTimeout(this._OnUpdateTimer.bind(this), (nextTime - fightNow) * 1000);
     }
   }
-  
+
   _OnUpdateTimer() {
     console.assert(this.timebase, "_OnTimerUpdate called while stopped");
 
@@ -410,7 +410,7 @@ class TimelineUI {
     this.options = options;
     this.init = false;
   }
-  
+
   Init() {
     if (this.init) return;
     this.init = true;
@@ -484,7 +484,7 @@ class TimelineUI {
       this.timeline.SetSyncTime(this.OnSyncTime.bind(this));
     }
   }
-  
+
   OnAddTimer(fightNow, e, channeling) {
     var div = document.createElement('div');
     var bar = document.createElement('timer-bar');
@@ -512,12 +512,12 @@ class TimelineUI {
       delete this.expireTimers[e.id];
     }
   }
-  
+
   OnTimerExpiresSoon(id) {
     if (id in this.activeBars)
       this.activeBars[id].fg = this.barExpiresSoonColor;
   }
-  
+
   OnRemoveTimer(e, expired) {
     if (expired && this.options.KeepExpiredTimerBarsForSeconds) {
       this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), this.options.KeepExpiredTimerBarsForSeconds * 1000);
@@ -590,19 +590,14 @@ class TimelineController {
     this.ui = ui;
     this.dataFiles = {};
     this.timelines = {};
-    this.inCombat = false;
   }
 
   SetPopupTextInterface(popupText) {
     this.ui.SetPopupTextInterface(popupText);
   }
 
-  OnInCombat(e) {
-    var inCombat = e.detail.inGameCombat;
-    if (this.inCombat == inCombat)
-      return;
-    this.inCombat = inCombat;
-    if (!this.inCombat && this.activeTimeline)
+  SetInCombat(inCombat) {
+    if (!inCombat && this.activeTimeline)
       this.activeTimeline.Stop();
   }
 
@@ -661,13 +656,14 @@ class TimelineLoader {
   SetTimelines(timelineFiles, timelines) {
     this.timelineController.SetActiveTimeline(timelineFiles, timelines);
   }
+
+  StopCombat() {
+    this.timelineController.SetInCombat(false);
+  }
 }
 
 var gTimelineController;
 
-document.addEventListener("onInCombatChangedEvent", function (e) {
-  gTimelineController.OnInCombat(e);
-});
 document.addEventListener("onLogEvent", function(e) {
   gTimelineController.OnLogEvent(e);
 });
