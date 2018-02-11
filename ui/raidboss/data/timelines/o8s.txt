@@ -1,10 +1,13 @@
 # Omega - Sigmascape V4.0 (Savage) - O8S
 
+hideall "--Reset--"
+hideall "--sync--"
+
 0 "--Reset--" sync /Removing combatant Kefka/ window 10000 jump 0
 0 "--Reset--" sync /The limit gauge resets!/ window 10000 jump 0
 
-0 "Start" sync /:Engage!/ window 0,1
-13 "Mana Charge" sync /:Kefka:28D1:/ # drift 0.476
+4 "--sync--" sync /:Kefka:28C2:/ window 5,0
+13 "Mana Charge" sync /:Kefka:28D1:/ window 20,20 # drift 0.476
 19 "Flagrant Fire" #sync /:Kefka:28CE:/ # drift 0.215
 28 "Hyperdrive" sync /:Kefka:28E8:/
 36 "Mana Release" sync /:Kefka:28D2:/
@@ -75,3 +78,81 @@
 392 "Ultima Upsurge" sync /:Kefka:28E7:/
 400 "Ultima Upsurge" sync /:Kefka:28E7:/
 408 "Light Of Judgment" sync /:Kefka:2A51:/
+
+
+
+
+1000 "Start"
+1001 "--sync--" sync /:Kefka:28EC:/ window 1001,0
+1006 "--sync--" sync /14:28FA:Kefka starts using Heartless Angel/ window 10,0
+1010 "Heartless Angel"
+1016 "Ultima"
+1024 "Hyperdrive"
+1032 "Celestriad"
+1042 "Ultima"
+1049 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
+1054 "Forsaken #1"
+1064 "Heartless Archangel"
+1077 "2x Wings of Destruction"
+1084 "Ultima"
+1093 "Heartless Archangel"
+1109 "Light of Judgment"
+1125 "Trine (small)"
+1130 "1x Wings of Destruction"
+1141 "2x Wings of Destruction"
+1158 "Ultima"
+1166 "Past/Future"
+1176 "Ultimate Embrace"
+1183 "Hyperdrive"
+1190 "Ultima"
+1202 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
+1207 "Forsaken #2"
+1216 "Starstrafe"
+1222 "Past/Future"
+1241 "Light of Judgment"
+1257 "Celestriad"
+1265 "1x Wings of Destruction"
+1272 "Ultima"
+1288 "Trine (big)"
+1298 "Past/Future"
+1308 "2x Wings of Destruction"
+1314 "Ultimate Embrace"
+1321 "Hyperdrive"
+1342 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
+1347 "Forsaken #3"
+1357 "Knockback Tethers"
+1370 "Sleep/Confuse Tethers"
+1379 "Ultima"
+1388 "Heartless Archangel"
+1401 "2x Wings of Destruction"
+1402 "4x Path of Light"
+1407 "Ultima"
+1414 "Statue Half Cleave"
+1415 "1x Wings of Destruction"
+1421 "Light of Judgment"
+1435 "Trine (small)"
+1442 "1x Wings of Destruction"
+1453 "2x Wings of Destruction"
+1459 "Ultimate Embrace"
+1475 "Trine (big)"
+1485 "Past/Future"
+1496 "Hyperdrive"
+1504 "Ultima"
+1512 "Ultima"
+1525 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
+1530 "Forsaken #4"
+1541 "Knockback Tethers"
+1549 "Ultimate Embrace"
+1552 "Sleep/Confuse Tethers"
+1562 "Ultima"
+1571 "Heartless Archangel"
+1584 "2x Wings of Destruction"
+1586 "4x Path of Light"
+1590 "Ultima"
+1597 "Statue Half Cleave"
+1598 "1x Wings of Destruction"
+1603 "Ultima"
+1611 "Ultima"
+1619 "Ultima"
+1627 "Ultima"
+1642 "Enrage"
