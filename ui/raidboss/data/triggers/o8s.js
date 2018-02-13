@@ -49,13 +49,13 @@
     {
       id: "O8S Past's End",
       regex: /Kefka starts using Past's End/,
-      alertText: 'Past: Bait to edge, then through',
+      alertText: 'Past: Bait, then through',
       tts: 'run run run',
     },
     {
       id: "O8S Future's End",
-      regex: /Kefka starts using Futures Numbered/,
-      alertText: 'Future: Bait to edge, face out',
+      regex: /Kefka starts using Future's End/,
+      alertText: 'Future: Bait, then stay',
       tts: 'stay stay stay',
     },
     {
