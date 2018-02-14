@@ -49,12 +49,14 @@
     {
       id: "O8S Past's End",
       regex: /Kefka starts using Past's End/,
+      condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
       alertText: 'Past: Bait, then through',
       tts: 'run run run',
     },
     {
       id: "O8S Future's End",
       regex: /Kefka starts using Future's End/,
+      condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
       alertText: 'Future: Bait, then stay',
       tts: 'stay stay stay',
     },
