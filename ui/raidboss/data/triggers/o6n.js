@@ -1,6 +1,7 @@
 // O6N - Sigmascape 2.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V2\.0\)|Sigmascape 2\.0)$/,
+  timelineFile: 'o6n.txt',
   triggers: [
     {
       id: 'O6N Demonic Shear',
