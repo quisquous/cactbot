@@ -3,7 +3,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0 "--Reset--" sync /(Removing combatant Kefka|has initiated a ready check)/ window 10000 jump 0
+0 "--Reset--" sync /Removing combatant Kefka/ window 10000 jump 0
 
 0 "Start" sync /00:0044:Destroy! Destroy! Destroy! I will destroy it all!/
 15 "Hyper Drive" sync /:Kefka:292E:/
