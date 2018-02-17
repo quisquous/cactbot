@@ -24,8 +24,11 @@ timelines/o3s.txt
 timelines/o4s.txt
 timelines/o5n.txt
 timelines/o5s.txt
+timelines/o6n.txt
 timelines/o6s.txt
+timelines/o7n.txt
 timelines/o7s.txt
+timelines/o8n.txt
 timelines/o8s.txt
 timelines/test.txt
 timelines/unending_coil_ultimate.txt

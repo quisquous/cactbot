@@ -1,6 +1,7 @@
 // O8N - Sigmascape 4.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V4\.0\)|Sigmascape V4\.0)$/,
+  timelineFile: 'o8n.txt',
   triggers: [
     {
       id: 'O8N Hyper Drive',
