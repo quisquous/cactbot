@@ -14,12 +14,15 @@
     {
       id: 'O6S Last Kiss',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      infoText: function(data,matches) {
+      alarmText: function(data,matches) {
         if (data.me == matches[1])
 	  return 'Last Kiss on YOU';
+      },
+      infoText: function(data,matches) {
+        if (data.me != matches[1])
 	return 'Last Kiss on ' +data.ShortName(matches[1]);
       },
       tts: 'last kiss',
     },
   ]
-}]
+}
