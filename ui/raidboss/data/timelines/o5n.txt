@@ -16,11 +16,11 @@ hideall "--sync--"
 38 "Ghost Beams" sync /:Phantom Train:28AA:/
 47 "Saintly Beam" duration 12
 63 "Diabolic Headlamp" sync /:Phantom Train:28B0:/ window 5,5
-73 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/
+73 "Tether Whistle" sync /:Phantom Train:28A5:/
 80 "Saintly Beam" duration 12
 102 "Doom Strike" sync /:Phantom Train:28A3:/
 116 "Diabolic Wind" sync /:Phantom Train:28B9:/
-119 "Diabolic Whistle (dives)" sync /:Phantom Train:28A5:/
+119 "Crossing Whistle" sync /:Phantom Train:28A5:/
 139 "Diabolic Light" duration 13
 162 "Acid Rain" sync /:Phantom Train:28AB:/
 
@@ -34,11 +34,11 @@ hideall "--sync--"
 # add phase end
 320 "--sync--" sync /:Phantom Train:28A8:/ window 320,320 # boss reappears
 324 "--targetable--"
-338 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/
+338 "Tether Whistle" sync /:Phantom Train:28A5:/
 342 "Saintly Beam" duration 12
 346 "Acid Rain" sync /:Phantom Train:28AB:/
 366 "Doom Strike" sync /:Phantom Train:28A3:/
-376 "Diabolic Whistle (dives)" sync /:Phantom Train:28A5:/
+376 "Crossing Whistle" sync /:Phantom Train:28A5:/
 386 "Head On" sync /:Phantom Train:28AF:/
 391 "Acid Rain" sync /:Phantom Train:28AB:/
 398 "Diabolic Light" duration 13
@@ -46,13 +46,13 @@ hideall "--sync--"
 425 "Doom Strike" sync /:Phantom Train:28A3:/
 
 # Loop starts here
-433 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/
+433 "Tether Whistle" sync /:Phantom Train:28A5:/
 437 "Saintly Beam" duration 12
 441 "Acid Rain" sync /:Phantom Train:28AB:/
 463 "Head On" sync /:Phantom Train:28AF:/
 465 "Diabolic Wind" sync /:Phantom Train:28B9:/
 470 "Acid Rain" sync /:Phantom Train:28AB:/
-477 "Diabolic Whistle (dives)" sync /:Phantom Train:28A5:/
+477 "Crossing Whistle" sync /:Phantom Train:28A5:/
 483 "Encumber" sync /:Wroth Ghost:28AE:/
 491 "Diabolic Wind" sync /:Phantom Train:28B9:/
 498 "Diabolic Headlamp" sync /:Phantom Train:28B0:/
@@ -64,7 +64,7 @@ hideall "--sync--"
 544 "Diabolic Wind" sync /:Phantom Train:28B9:/
 559 "Doom Strike" sync /:Phantom Train:28A3:/
 
-567 "Diabolic Whistle (tethers)" sync /:Phantom Train:28A5:/ jump 433 # repeats after this?
+567 "Tether Whistle" sync /:Phantom Train:28A5:/ jump 433 # repeats after this?
 
 # Visual continuity
 571 "Saintly Beam" duration 12
