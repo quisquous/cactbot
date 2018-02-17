@@ -4,21 +4,22 @@
   timelineFile: 'o6s.txt',
   triggers: [
     {
-      id: 'O6S Thing',
-      regex: /:1EDD:Alte Roite starts using/,
-      infoText: function(data, matches) {
-      },
-      tts: function(data, matches) {
+      id: 'O6S Demonic Stone',
+      regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      alarmText: function(data,matches) {
+        if (data.me == matches[1])
+	  return 'Demonic Stone on YOU';
       },
     },
     {
-      id: 'O6S Headmarker',
-      regex: /1B:........:(\y{Name}):....:....:00XX:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: function(data) {
+      id: 'O6S Last Kiss',
+      regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      infoText: function(data,matches) {
+        if (data.me == matches[1])
+	  return 'Last Kiss on YOU';
+	return 'Last Kiss on ' +data.ShortName(matches[1]);
       },
-      tts: function(data, matches) {
-      },
+      tts: 'last kiss',
     },
   ]
 }]
