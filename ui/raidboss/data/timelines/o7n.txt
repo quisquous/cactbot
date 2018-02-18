@@ -8,7 +8,7 @@ hideall "--sync--"
 0 "Start" sync /00:0044:WEAPON SYSTEMS ONLINE/
 11 "Magitek Ray" sync /:Guardian:276B:/
 21 "Arm And Hammer" sync /:Guardian:276C:/
-31 "Missile" sync /:Guardian:276D:/
+31 "Prey" sync /:Guardian:276D:/
 39 "Load" sync /:Guardian:275C:/
 
 # Ultros
@@ -35,7 +35,7 @@ hideall "--sync--"
 424 "Chakra Burst" sync /:Guardian:276A:/
 427 "Run Program" sync /:Guardian:276F:/
 436 "Aura Cannon"
-441 "Missile" sync /:Guardian:276D:/
+441 "Prey" sync /:Guardian:276D:/
 449 "Magitek Ray" sync /:Guardian:276B:/
 460 "Load" sync /:Guardian:275C:/
 
@@ -48,7 +48,7 @@ hideall "--sync--"
 637 "Bomb Deployment" sync /:Guardian:2762:/
 648 "Arm And Hammer" sync /:Guardian:276C:/
 659 "Run Program" sync /:Guardian:276F:/
-672 "Missile" sync /:Guardian:276D:/
+672 "Prey" sync /:Guardian:276D:/
 678 "Plane Laser"
 682 "Diffractive Plasma" sync /:Guardian:276E:/
 688 "Load" sync /:Guardian:275C:/
@@ -83,6 +83,6 @@ hideall "--sync--"
 1224 "Chakra Burst" sync /:Guardian:276A:/
 1227 "Magitek Ray" sync /:Guardian:276B:/
 1238 "Diffractive Plasma" sync /:Guardian:276E:/
-1246 "Missile" sync /:Guardian:276D:/
+1246 "Prey" sync /:Guardian:276D:/
 1254 "Arm And Hammer" sync /:Guardian:276C:/
 1266 "Load" sync /:Guardian:275C:/
