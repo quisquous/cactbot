@@ -213,5 +213,20 @@ Options.PerTriggerOptions = {
     SpeechAlert: true,
     SoundAlert: false,
     TextAlert: false,
+    // Override the tts output as well.
+    TTSText: function(data) {
+      return 'Custom Poke (' + data.pokes + ')';
+    },
+  },
+
+  // Normally, /laugh-ing at a striking dummy has alarm text.  This
+  // overrides the alarm text and also outputs alert and info text,
+  // and only runs if you are a tank.
+  'Test Laugh': {
+    Condition: function(data) { return data.role == 'tank'; },
+    AlarmText: 'HA',
+    AlertText: 'HAHA',
+    InfoText: 'HAHAHA',
+    TTSText: '',
   },
 }

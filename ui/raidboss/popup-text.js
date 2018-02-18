@@ -211,8 +211,12 @@ class PopupText {
       return;
     if ('disabled' in trigger && trigger.disabled)
       return;
-    if ('condition' in trigger) {
-      if (!trigger.condition(this.data, matches))
+
+    var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
+
+    var condition = triggerOptions.Condition || trigger.condition;
+    if (condition) {
+      if (!condition(this.data, matches))
         return;
     }
 
@@ -231,7 +235,6 @@ class PopupText {
     var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
 
-    var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id];
     if (triggerOptions) {
       if ('SpeechAlert' in triggerOptions)
         playSpeech = triggerOptions.SpeechAlert;
@@ -272,8 +275,9 @@ class PopupText {
       // it will pick one sound in the order of alarm > alert > info.
       var soundUrl = ValueOrFunction(trigger.sound);
 
-      if ('alarmText' in trigger) {
-        var text = ValueOrFunction(trigger.alarmText);
+      var alarmText = triggerOptions.AlarmText || trigger.alarmText;
+      if (alarmText) {
+        var text = ValueOrFunction(alarmText);
         if (text && !userDisabled && showText) {
           var holder = that.alarmText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'alarm-text');
@@ -286,8 +290,9 @@ class PopupText {
           }
         }
       }
-      if ('alertText' in trigger) {
-        var text = ValueOrFunction(trigger.alertText);
+      var alertText = triggerOptions.AlertText || trigger.alertText;
+      if (alertText) {
+        var text = ValueOrFunction(alertText);
         if (text && !userDisabled && showText) {
           var holder = that.alertText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'alert-text');
@@ -300,8 +305,9 @@ class PopupText {
           }
         }
       }
-      if ('infoText' in trigger) {
-        var text = ValueOrFunction(trigger.infoText);
+      var infoText = triggerOptions.InfoText || trigger.infoText;
+      if (infoText) {
+        var text = ValueOrFunction(infoText);
         if (text && !userDisabled && showText) {
           var holder = that.infoText.getElementsByClassName('holder')[0];
           var div = makeTextElement(text, 'info-text');
@@ -315,8 +321,9 @@ class PopupText {
         }
       }
 
-      if ('tts' in trigger && playSpeech) {
-        var text = ValueOrFunction(trigger.tts);
+      var tts = triggerOptions.TTSText || trigger.tts;
+      if (tts && playSpeech) {
+        var text = ValueOrFunction(tts);
         if (text && !userDisabled)
           ttsText = text;
       }
@@ -333,10 +340,8 @@ class PopupText {
           soundVol = ValueOrFunction(trigger.soundVolume);
       }
 
-      if (triggerOptions) {
-        soundUrl = triggerOptions.SoundOverride || soundUrl;
-        soundVol = triggerOptions.VolumeOverride || soundVol;
-      }
+      soundUrl = triggerOptions.SoundOverride || soundUrl;
+      soundVol = triggerOptions.VolumeOverride || soundVol;
 
       // Text to speech overrides all other sounds.  This is so
       // that a user who prefers tts can still get the benefit
