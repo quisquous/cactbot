@@ -216,6 +216,9 @@ class PopupText {
         return;
     }
 
+    if ('preRun' in trigger)
+      trigger.preRun(this.data, matches);
+
     var that = this;
     var ValueOrFunction = function(f) {
       return (typeof(f) == "function") ? f(that.data, matches) : f;

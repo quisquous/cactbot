@@ -33,8 +33,10 @@
     {
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
-      infoText: function(data) {
+      preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
+      },
+      infoText: function(data) {
         return 'poke #' + data.pokes;
       },
       tts: function(data) {

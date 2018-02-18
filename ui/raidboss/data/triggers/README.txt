@@ -60,6 +60,8 @@
   // A function(data, matches) to test if the trigger should fire or not. If it does not return
   // true, nothing is shown/sounded/run. This is the first thing that is run on the trigger.
   condition: function(data, matches) { return true if it should run }
+  // A function(data, matches) to run. This runs as the first step after condition.
+  preRun: function(data, matches) { do stuff.. },
   // A function(data, matches) to run. This runs as the last step when the trigger fires.
   run: function(data, matches) { do stuff.. },
   // If this is true, the trigger is completely disabled and ignored.
@@ -69,10 +71,11 @@
 
 The full order of evaluation of functions in a trigger is:
 1. condition
-2. delaySeconds
-3. durationSeconds
-4. infoText
-5. alertText
-6. alarmText
-7. tts
-8. run
+2. preRun
+3. delaySeconds
+4. durationSeconds
+5. infoText
+6. alertText
+7. alarmText
+8. tts
+9. run
