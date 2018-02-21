@@ -60,10 +60,10 @@ class CactbotLanguageFr extends CactbotLanguage {
       return /Le compte à rebours a été interrompu par /;
     };
     this.areaSealRegex = function() {
-      return /:(.*) will be sealed off in /;
+      return /:Fermeture (.) dans /;
     };
     this.areaUnsealRegex = function() {
-      return /:(.*) is no longer sealed/;
+      return /:Ouverture (.*)/;
     };
   }
 }
