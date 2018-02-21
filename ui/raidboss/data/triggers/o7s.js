@@ -5,14 +5,14 @@
   triggers: [
     // State
     {
-      regex: / 1A:(\y{Name}) gains the effect of Aether Rot/,
+      regex: / 1A:(\y{Name}) gains the effect of Aether Rot from/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) {
         data.rot = true;
       },
     },
     {
-      regex: / 1A:(\y{Name}) loses the effect of Aether Rot/,
+      regex: / 1E:(\y{Name}) loses the effect of Aether Rot from/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) {
         data.rot = false;
@@ -118,25 +118,15 @@
     },
     {
       id: 'O7S Rot',
-      regex: / 1A:(\y{Name}) gains the effect of Aether Rot/,
-      condition: function(data, matches) { return data.me == matches[1]; },
-      infoText: 'Rot on you',
-      tts: 'rot',
-    },
-    {
-      id: 'O7S Rot Pass',
-      regex: / 1A:(\y{Name}) gains the effect of Aether Rot for (\y{Float}) Seconds/,
-      condition: function(data, matches) { return data.me == matches[1]; },
-      delaySeconds: function(data, matches) {
-        return data.ParseLocaleFloat(matches[2]) - 5;
+      regex: / 1A:(\y{Name}) gains the effect of Aether Rot from/,
+      infoText: function(data, matches) {
+        if (data.me == matches[1])
+          return 'Rot on you';
+        return 'Rot on ' + data.ShortName(matches[1]);
       },
-      alarmText: function(data) {
-        if (data.rot)
-          return 'Pass Rot';
-      },
-      tts: function(data) {
-        if (data.rot)
-          return 'pass rot';
+      tts: function(data, matches) {
+        if (data.me == matches[1])
+          return 'rot';
       },
     },
     {
