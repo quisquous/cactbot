@@ -131,7 +131,7 @@ hideall "--sync--"
 2653 "Load Air Force"
 2656 "Diffractive Laser"
 2666 "Diffractive Plasma"
-2678 "Run Program"
+2678 "Run Air Force"
 
 #### Divergent path, Version A2: Dadaluma->Biblio
 
@@ -163,7 +163,7 @@ hideall "--sync--"
 3653 "Load Air Force"
 3356 "Diffractive Laser"
 3366 "Diffractive Plasma"
-3378 "Run Program"
+3378 "Run Air Force"
 
 
 ##########################################################
@@ -214,9 +214,9 @@ hideall "--sync--"
 # Bibliotaph
 1135 "Load Biblio / Skip Air Force" sync /:Guardian:2773:/
 1145 "Demon Simulation" sync /:Guardian:2B36:/
-1153 "Retrieve Program" sync /:Guardian:2774:/
+1153 "Retrieve Air Force" sync /:Guardian:2774:/
 1156 "Diffractive Laser" sync /:Guardian:2780:/
-1164 "Copy Program" sync /:Guardian:2775:/
+1164 "Copy Air Force" sync /:Guardian:2775:/
 1171 "Missile Simulation" sync /:Guardian:2764:/
 
 # Air Force
