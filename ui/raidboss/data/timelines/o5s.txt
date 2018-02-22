@@ -43,11 +43,11 @@ hideall "--sync--"
 
 491 "--sync--" sync /:Phantom Train:28A8:/ window 500,500
 500 "--targetable--"
-517 "Encumber" sync /:Wroth Ghost:28B6:/ window 500,100
+517 "Encumber" sync /:Wroth Ghost:28B6:/ window 80,80
 525 "Diabolic Light" duration 13
 530 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
 534 "Saintly Beam" duration 10
-547 "Doom Strike" sync /:Phantom Train:28B1:/ window 400,100
+547 "Doom Strike" sync /:Phantom Train:28B1:/
 
 556 "Tether Whistle" sync /:Phantom Train:28A5:/
 563 "Saintly Beam" duration 10
