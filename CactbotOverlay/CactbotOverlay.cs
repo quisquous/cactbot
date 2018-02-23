@@ -160,7 +160,7 @@ namespace Cactbot {
 
         if (remote.Major == 0 && remote.Minor == 0) {
           var result = System.Windows.Forms.MessageBox.Show(Overlay,
-            "Error while checking Cactbot version. " +
+            "Github error while checking Cactbot version. " +
             "Your current version is " + local + ".\n\n" +
             "Manually check for newer version now?",
             "Cactbot Manual Check",

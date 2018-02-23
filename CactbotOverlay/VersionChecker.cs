@@ -9,8 +9,8 @@ namespace Cactbot {
   class VersionChecker {
     private ILogger logger_ = null;
 
-    public const string kReleaseUrl = "http://github.com/quisquous/cactbot/releases/latest";
-    public const string kIssueUrl = "http://github.com/quisquous/cactbot/issues";
+    public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";
+    public const string kIssueUrl = "https://github.com/quisquous/cactbot/issues";
 
     public VersionChecker(ILogger logger) {
       logger_ = logger;
@@ -24,6 +24,7 @@ namespace Cactbot {
       string html;
       try {
         var web = new System.Net.WebClient();
+        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
         var page_stream = web.OpenRead(kReleaseUrl);
         var reader = new System.IO.StreamReader(page_stream);
         html = reader.ReadToEnd();
