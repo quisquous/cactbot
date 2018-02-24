@@ -60,7 +60,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       return /Le compte à rebours a été interrompu par /;
     };
     this.areaSealRegex = function() {
-      return /:Fermeture (.) dans /;
+      return /:Fermeture (.*) dans /;
     };
     this.areaUnsealRegex = function() {
       return /:Ouverture (.*)/;
@@ -71,7 +71,7 @@ class CactbotLanguageFr extends CactbotLanguage {
 document.addEventListener("onPlayerChangedEvent", function (e) {
   if (Options && Options.Language == 'fr') {
     if (!gLang)
-      gLang = new CactbotLanguageEn();
+      gLang = new CactbotLanguageFr();
     if (gLang.playerName != e.detail.name)
       gLang.OnPlayerNameChange(e.detail.name);
   }
