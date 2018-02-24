@@ -29,6 +29,14 @@
       ];
     },
   ],
+  timelineReplace: [
+    {
+      locale: 'fr',
+      replaceText: {
+        'Final Sting': 'Piq&ucirc;re Final',
+      },
+    }
+  ],
   triggers: [
     {
       id: 'Test Poke',

@@ -5,6 +5,19 @@
   timeline: `
     hideall "Optionally, more lines to treat as part of the timeline"
     `,
+  timelineReplace: [
+    {
+	  // Optional locale to restrict this to, e.g. 'en', 'ko', 'fr'.
+	  // If not present, applies to all locales.
+	  locale: 'en',
+	  replaceText: {
+	    // key:value pairs to search and replace in timeline ability names
+		// The display name for that ability is changed, but all hideall,
+		// infotext, alerttext, alarmtext, etc all refer to the original name.
+	    "regexSearch": "strReplace",
+	  },
+	},
+  ],
   resetWhenOutOfCombat: true, // boolean, defaults to true, if true then timelines and triggers will reset when the game is out of combat, otherwise manually call data.StopCombat().
   triggers: [
     { /* ..trigger 1.. */ },
