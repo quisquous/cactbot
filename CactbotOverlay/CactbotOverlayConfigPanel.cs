@@ -28,6 +28,7 @@ namespace Cactbot {
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
+			this.textUserConfigFile.Text = config.UserConfigFile;
     }
 
     private void SetupConfigEventHandlers() {
@@ -144,5 +145,20 @@ namespace Cactbot {
     private void buttonShowDevtools_Click(object sender, EventArgs e) {
       this.overlay.Overlay.Renderer.showDevTools();
     }
-  }
+
+		private void buttonSelectUserConfigFile_Click(object sender, EventArgs e) {
+			var ofd = new OpenFileDialog();
+			try
+			{
+				ofd.InitialDirectory = System.IO.Path.GetDirectoryName(config.UserConfigFile);
+			}
+			catch (Exception) { }
+
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				this.config.UserConfigFile = new Uri(ofd.FileName).ToString();
+				this.textUserConfigFile.Text = this.config.UserConfigFile;
+			}
+		}
+	}
 }

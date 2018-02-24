@@ -384,5 +384,15 @@ namespace Cactbot {
 
       public Dictionary<string, string> files;
     }
-  }
+
+		public class SendUserConfigLocation : JSEvent {
+			public SendUserConfigLocation(string location) {
+				this.location = location;
+			}
+
+			public string EventName() { return "onSendUserConfigLocation"; }
+
+			public string location;
+		}
+	}
 }
