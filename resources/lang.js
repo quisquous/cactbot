@@ -125,6 +125,10 @@ class CactbotLanguage {
       O3S: /Deltascape V3\.0 \(Savage\)/,
       O4S: /Deltascape V4\.0 \(Savage\)/,
       UCU: /The Unending Coil Of Bahamut \(Ultimate\)/,
+      O5S: /Sigmascape V1\.0 \(Savage\)/,
+      O6S: /Sigmascape V2\.0 \(Savage\)/,
+      O7S: /Sigmascape V3\.0 \(Savage\)/,
+      O8S: /Sigmascape V4\.0 \(Savage\)/,
     });
   }
 
