@@ -118,6 +118,14 @@ class CactbotLanguage {
       TheHeat: '2777',
       ChainCannon: '278F',
     });
+
+    this.kZone = Object.freeze({
+      O1S: /Deltascape V1\.0 \(Savage\)/,
+      O2S: /Deltascape V2\.0 \(Savage\)/,
+      O3S: /Deltascape V3\.0 \(Savage\)/,
+      O4S: /Deltascape V4\.0 \(Savage\)/,
+      UCU: /The Unending Coil Of Bahamut \(Ultimate\)/,
+    });
   }
 
   InitStrings(playerName) {
