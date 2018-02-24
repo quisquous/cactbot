@@ -6,14 +6,6 @@ class CactbotLanguageKo extends CactbotLanguage {
   }
 
   InitStrings(playerName) {
-    this.kZone = Object.freeze({
-      O1S: /Deltascape V1\.0 \(Savage\)/, // NOT UPDATED YET
-      O2S: /Deltascape V2\.0 \(Savage\)/,
-      O3S: /Deltascape V3\.0 \(Savage\)/,
-      O4S: /Deltascape V4\.0 \(Savage\)/,
-      UCU: /The Unending Coil Of Bahamut \(Ultimate\)/,
-    });
-
     this.kEffect = Object.freeze({
       BluntResistDown: '타격 저항 감소', // 0x23d, 0x335, 0x3a3
       VerstoneReady: '버스톤 시전 가능', // 0x4d3

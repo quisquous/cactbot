@@ -103,6 +103,9 @@ namespace Cactbot {
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
       main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
+    }
+
+    void Initialize() {
       ffxiv_ = new FFXIVProcess(this);
       fight_tracker_ = new FightTracker(this);
       wipe_detector_ = new WipeDetector(this);
@@ -136,7 +139,7 @@ namespace Cactbot {
       OnGameExists += (e) => DispatchToJS(e);
       OnGameActiveChanged += (e) => DispatchToJS(e);
       OnZoneChanged += (e) => DispatchToJS(e);
-      if (config.LogUpdatesEnabled) {
+      if (this.Config.LogUpdatesEnabled) {
         OnLogsChanged += (e) => DispatchToJS(e);
       }
       OnPlayerChanged += (e) => DispatchToJS(e);
@@ -239,6 +242,8 @@ namespace Cactbot {
     // This is called by the OverlayPlugin every 1s which is not often enough for us, so we
     // do our own update mechanism as well.
     protected override void Update() {
+      if (ffxiv_ == null)
+        Initialize();
       SendSlowRateEvents();
     }
 
