@@ -301,7 +301,7 @@ namespace Cactbot {
           }
         }
 
-        var web = new System.Net.WebClient();
+				var web = new System.Net.WebClient();
         System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
 
         var data_file_paths = new List<string>();
@@ -681,7 +681,9 @@ namespace Cactbot {
         DispatchToJS(new JSEvents.SendSaveData(Config.OverlayData));
       } else if (obj.ContainsKey("setSaveData")) {
         Config.OverlayData = obj["setSaveData"];
-      }
+      } else if (obj.ContainsKey("getUserLocation")) {
+				DispatchToJS(new JSEvents.SendUserConfigLocation(Config.UserConfigFile));
+			}
     }
 
     // State that is tracked and sent to JS when it changes.

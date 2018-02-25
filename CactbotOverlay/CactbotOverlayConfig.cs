@@ -29,5 +29,7 @@ namespace Cactbot {
     public string OverlayData = null;
 
     public string RemoteVersionSeen = "0.0";
+
+		public string UserConfigFile = null;
   }
 }

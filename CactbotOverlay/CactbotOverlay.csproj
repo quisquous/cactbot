@@ -51,26 +51,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Advanced Combat Tracker">
-      <HintPath>ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
+      <HintPath>..\..\OverlayPlugin-Compiler\OverlayPlugin\OverlayPlugin\bin\x64\Release\Advanced Combat Tracker.exe</HintPath>
     </Reference>
     <Reference Include="FFXIV_ACT_Plugin">
-      <HintPath>ThirdParty\ACT\FFXIV_ACT_Plugin.dll</HintPath>
+      <HintPath>C:\Users\john_000\AppData\Roaming\Advanced Combat Tracker\Plugins\FFXIV_ACT_Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\HtmlRenderer.dll</HintPath>
+    <Reference Include="HtmlRenderer">
+      <HintPath>..\..\OverlayPlugin-Compiler\OverlayPlugin\BuildX64\HtmlRenderer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>ThirdParty\OverlayPlugin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin">
-      <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.dll</HintPath>
+      <HintPath>..\..\OverlayPlugin-Compiler\OverlayPlugin\BuildX64\OverlayPlugin.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Common">
-      <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.Common.dll</HintPath>
+      <HintPath>..\..\OverlayPlugin-Compiler\OverlayPlugin\BuildX64\OverlayPlugin.Common.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Core">
-      <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.Core.dll</HintPath>
+      <HintPath>..\..\OverlayPlugin-Compiler\OverlayPlugin\BuildX64\OverlayPlugin.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -83,9 +82,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xilium.CefGlue, Version=3.2272.2035.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\Xilium.CefGlue.dll</HintPath>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>..\..\OverlayPlugin-Compiler\OverlayPlugin\HtmlRenderer\bin\Release\Xilium.CefGlue.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
