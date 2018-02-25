@@ -98,9 +98,23 @@ class PopupText {
       }
     }).bind(this);
 
+    var locale = this.options.Language || 'en';
+    // construct something like regexEn or regexFr.
+    var regexLocale = 'regex' + locale.charAt(0).toUpperCase() + locale.slice(1);
+
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) >= 0) {
+        // Adjust triggers for the locale.
+        for (var j = 0; j < set.triggers.length; ++j) {
+          // Add an additional resolved regex here to save
+          // time later.  This will clobber each time we
+          // load this, but that's ok.
+          var trigger = set.triggers[j];
+          // Locale-based regex takes precedence.
+          var regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+          trigger.localRegex = Regexes.Parse(regex);
+        }
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
         // And set the timeline files/timelines from each set that matches.
@@ -202,7 +216,7 @@ class PopupText {
 
       for (var j = 0; j < this.triggers.length; ++j) {
         var trigger = this.triggers[j];
-        var r = log.match(Regexes.Parse(trigger.regex));
+        var r = log.match(trigger.localRegex);
         if (r != null)
           this.OnTrigger(trigger, r);
       }
@@ -227,9 +241,23 @@ class PopupText {
       trigger.preRun(this.data, matches);
 
     var that = this;
-    var ValueOrFunction = function(f) {
-      return (typeof(f) == "function") ? f(that.data, matches) : f;
-    }
+
+    var ValueOrFunction = (function(f) {
+      var result = (typeof(f) == "function") ? f(this.data, matches) : f;
+      // All triggers return either a string directly, or an object
+      // whose keys are different locale names.  For simplicity, this is
+      // valid to do for any trigger entry that can handle a function.
+      // In case anybody wants to encapsulate any fancy grammar, the values
+      // in this object can also be functions.
+      if (typeof(result) == "string" || result === undefined)
+        return result;
+      var lang = this.options.Language || 'en';
+      if (result.lang)
+        return ValueOrFunction(result.lang);
+      // For partially localized results where this localization doesn't
+      // exist, prefer English over nothing.
+      return ValueOrFunction(result['en']);
+    }).bind(this);
 
     var showText = this.options.TextAlertsEnabled;
     var playSounds = this.options.SoundAlertsEnabled;

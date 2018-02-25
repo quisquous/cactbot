@@ -59,6 +59,10 @@
   id: 'id string'
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
+  // Example of a locale-based regular expression for the 'fr' locale.  If Options.Language == 'fr', then
+  // regexFr (if it exists) takes precedence over regex.  Otherwise, it is ignored.  This is only an
+  // example for french, but other locales behave the same, e.g. regexEn, regexKo.
+  regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
   // Time to wait before showing it once the regex is seen. May be a number or a function(data, matches) that returns a number.
   delaySeconds: 0,
   // Number of seconds to show the trigger for. May be a number or a function(data, matches) that returns a number.
@@ -84,6 +88,11 @@
   // If this is true, the trigger is completely disabled and ignored.
   disabled: true,
 },
+
+Any field that can return a function (e.g. infoText, alertText, alarmText, tts) can also return a localized
+object, e.g. instead of returning 'Get Out', they can return {en: 'Get Out', fr: 'something french'}
+instead.  Fields can also return a function that return a localized object as well.  If the current locale
+does not exist in the object, the 'en' result will be returned.
 
 
 The full order of evaluation of functions in a trigger is:

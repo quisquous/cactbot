@@ -44,14 +44,21 @@
     {
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
+      regexFr: /:You poke the striking dummy, in French/,
       preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
       },
       infoText: function(data) {
-        return 'poke #' + data.pokes;
+        return {
+          en: 'poke #' + data.pokes,
+          fr: 'french poke #' + data.pokes,
+        };
       },
       tts: function(data) {
-        return 'poke ' + data.pokes;
+        return {
+          en: 'poke ' + data.pokes,
+          fr: 'french poke ' + data.pokes,
+        };
       },
     },
     {
@@ -64,11 +71,18 @@
     },
     {
       id: 'Test Laugh',
-      regex: /:You burst out laughing at the striking dummy/,
+      regexEn: /:You burst out laughing at the striking dummy/,
+      regexFr: /:You burst out laughing, in French/,
       alarmText: function(data) {
-        return 'hahahahaha';
+        return {
+          en: 'hahahahaha',
+          fr: 'hahaha in french',
+        };
       },
-      tts: 'hahahahaha',
+      tts: {
+        en: 'hahahahaha',
+        fr: 'hahaha in french',
+      },
     },
     {
       id: 'Test Clap',
