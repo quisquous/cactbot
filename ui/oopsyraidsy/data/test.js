@@ -20,7 +20,7 @@
       id: 'Test Bootshine',
       damageRegex: gLang.kAbility.Bootshine,
       condition: function(e, data) {
-        return e.attackerName = data.me && e.targetName == 'Striking Dummy';
+        return e.attackerName == data.me && e.targetName == 'Striking Dummy';
       },
       mistake: function(e, data) {
         data.bootCount = data.bootCount || 0;
