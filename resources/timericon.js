@@ -243,7 +243,7 @@ class TimerIcon extends HTMLElement {
       var intelapsed = (this._duration - this._value).toFixed(0);
       this.textElement.innerText = intelapsed;
     } else {
-      this.textElement.innerText = this._text;
+      this.textElement.innerHTML = this._text;
     }
   }
 

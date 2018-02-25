@@ -253,15 +253,15 @@ class ResourceBar extends HTMLElement {
     if (this._left_text != "value" && this._left_text != "maxvalue" &&
         this._left_text != "percent") {
       // Otherwise the value is fixed so it can be set here.
-      this.leftTextElement.innerText = this._left_text;
+      this.leftTextElement.innerHTML = this._left_text;
     }
     if (this._center_text != "value" && this._center_text != "maxvalue" &&
         this._center_text != "percent") {
-      this.centerTextElement.innerText = this._center_text;
+      this.centerTextElement.innerHTML = this._center_text;
     }
     if (this._right_text != "value" && this._right_text != "maxvalue" &&
         this._right_text != "percent") {
-      this.rightTextElement.innerText = this._right_text;
+      this.rightTextElement.innerHTML = this._right_text;
     }
   }
 
