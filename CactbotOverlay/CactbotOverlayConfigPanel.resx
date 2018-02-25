@@ -847,7 +847,7 @@
     <value>36</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Custom User Config</value>
+    <value>Custom User Config Directory</value>
   </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>

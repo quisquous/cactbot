@@ -28,7 +28,7 @@ namespace Cactbot {
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
-			this.textUserConfigFile.Text = config.UserConfigFile;
+      this.textUserConfigFile.Text = String.IsNullOrWhiteSpace(config.UserConfigFile) ? new Uri(CactbotOverlayConfig.CactbotUserUri).AbsoluteUri : config.UserConfigFile;
     }
 
     private void SetupConfigEventHandlers() {
@@ -146,19 +146,33 @@ namespace Cactbot {
       this.overlay.Overlay.Renderer.showDevTools();
     }
 
-		private void buttonSelectUserConfigFile_Click(object sender, EventArgs e) {
-			var ofd = new OpenFileDialog();
-			try
-			{
-				ofd.InitialDirectory = System.IO.Path.GetDirectoryName(config.UserConfigFile);
-			}
-			catch (Exception) { }
+    private void buttonSelectUserConfigFile_Click(object sender, EventArgs e) {
+      var ofd = new FolderBrowserDialog();
+      try {
+        ofd.SelectedPath = System.IO.Path.GetDirectoryName(new Uri(config.UserConfigFile).AbsolutePath);
+      } catch (Exception) { }
 
-			if (ofd.ShowDialog() == DialogResult.OK)
-			{
-				this.config.UserConfigFile = new Uri(ofd.FileName).ToString();
-				this.textUserConfigFile.Text = this.config.UserConfigFile;
-			}
-		}
-	}
+      if (ofd.ShowDialog() == DialogResult.OK) {
+        this.config.UserConfigFile = new Uri(ofd.SelectedPath).AbsoluteUri;
+        this.textUserConfigFile.Text = this.config.UserConfigFile;
+      }
+    }
+
+    private void textUserConfigFile_Leave(object sender, EventArgs e) {
+      try {
+        if (!String.IsNullOrWhiteSpace(textUserConfigFile.Text)) {
+          var path = new Uri(textUserConfigFile.Text);
+          if (!System.IO.Directory.Exists(path.AbsolutePath))
+            path = new Uri(path, ".");
+          this.config.UserConfigFile = path.AbsoluteUri;
+        } else {
+          this.config.UserConfigFile = String.IsNullOrWhiteSpace(textUserConfigFile.Text) ? new Uri(CactbotOverlayConfig.CactbotUserUri).AbsoluteUri : textUserConfigFile.Text;
+        }
+        this.textUserConfigFile.Text = this.config.UserConfigFile;
+      } catch (Exception ex) {
+        this.overlay.LogError("User Config Directory Uri must be a valid directory.");
+        this.overlay.LogError(ex.Message);
+      }
+    }
+  }
 }
