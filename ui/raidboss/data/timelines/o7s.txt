@@ -22,7 +22,7 @@ hideall "--sync--"
 70 "Shockwave" sync /:Guardian:2783:/
 77 "Missile Simulation" sync /:Guardian:2764:/
 92 "Chakra Burst" sync /:Guardian:2787:/
-95 "(NW) Run Dada" sync /:Guardian:276F:/
+95 "Run Dada (NW)" sync /:Guardian:276F:/
 108 "Magitek Ray" sync /:Guardian:2788:/
 113 "(H) Aura Cannon"
 123 "(DPS) Aura Cannon"
@@ -38,7 +38,7 @@ hideall "--sync--"
 179 "Tentacle Simulation" sync /:Guardian:275E:/
 183 "Tentacle"
 189 "Wallop"
-191 "(NE) Run Ultros" sync /:Guardian:276F:/
+191 "Run Ultros (NE)" sync /:Guardian:276F:/
 198 "Interrupt Stoneskin" duration 4
 200 "--untargetable--" sync /:Guardian:2937:/
 207 "Chain Cannon" duration 2
@@ -83,7 +83,7 @@ hideall "--sync--"
 439 "Atomic Ray" sync /:Guardian:278D:/
 444 "Magitek Ray" sync /:Guardian:2788:/
 453 "Diffractive Plasma" sync /:Guardian:278B:/
-463 "Run Ultros" sync /:Guardian:276F:/
+463 "Run Ultros (SW)" sync /:Guardian:276F:/
 469 "Missile Simulation" sync /:Guardian:2764:/
 472 "Interrupt Stoneskin" duration 4
 474 "--untargetable--" sync /:Guardian:2937:/
@@ -203,7 +203,7 @@ hideall "--sync--"
 1052 "Shockwave" sync /:Guardian:2783:/
 1059 "Missile Simulation" sync /:Guardian:2764:/
 1074 "Chakra Burst" sync /:Guardian:2787:/
-1077 "Run Dada" sync /:Guardian:276F:/
+1077 "Run Dada (NW)" sync /:Guardian:276F:/
 1090 "Magitek Ray" sync /:Guardian:2788:/
 1095 "(H) Aura Cannon"
 1105 "(DPS) Aura Cannon"
@@ -234,7 +234,7 @@ hideall "--sync--"
 1248 "Tentacle Simulation" sync /:Guardian:275E:/
 1252 "Tentacle"
 1258 "Wallop"
-1260 "Run Ultros" sync /:Guardian:276F:/
+1260 "Run Ultros (SE)" sync /:Guardian:276F:/
 1267 "Interrupt Stoneskin" duration 4
 1269 "--targetable--" sync /:Guardian:2937:/
 1276 "Chain Cannon" duration 2
@@ -365,7 +365,7 @@ hideall "--sync--"
 1648 "Atomic Ray" sync /:Guardian:278D:/
 1653 "Magitek Ray" sync /:Guardian:2788:/
 1662 "Diffractive Plasma" sync /:Guardian:278B:/
-1672 "Run Ultros" sync /:Guardian:276F:/
+1672 "Run Ultros (NE)" sync /:Guardian:276F:/
 1678 "Missile Simulation" sync /:Guardian:2764:/
 1681 "Interrupt Stoneskin" duration 4
 1681 "--untargetable--" sync /:Guardian:2937:/
