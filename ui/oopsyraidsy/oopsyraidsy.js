@@ -1,22 +1,5 @@
 "use strict";
 
-var Options = {
-  Language: 'en',
-  NumLiveListItemsInCombat: 5,
-  MinimumTimeForPullMistake: 0.4,
-  Triggers: [],
-  PlayerNicks: {},
-  DisabledTriggers: {},
-
-  AbilityIdNameMap: {
-    '26A7': 'Twin Auto',
-    '26B4': 'Nael Auto',
-    '26D0': 'Baha Auto',
-    '23F2': 'Exdeath Auto',
-    '2157': 'Lakshmi Auto',
-  },
-};
-
 // Internal trigger id for early pull
 var kEarlyPullId = "General Early Pull";
 
@@ -180,6 +163,11 @@ class OopsyLiveList {
     this.SetInCombat(false);
   }
 
+  reinit(options) {
+    this.options = options;
+    this.Reset();
+  }
+
   SetScroller(element) {
     this.scroller = element;
     this.container = element.children[0];
@@ -277,6 +265,11 @@ class MistakeCollector {
     this.baseTime = null;
     this.inACTCombat = false;
     this.inGameCombat = false;
+    this.Reset();
+  }
+
+  reinit(options) {
+    this.options = options;
     this.Reset();
   }
 
@@ -472,6 +465,11 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+    this.Reset();
+  }
+
+  reinit(options) {
+    this.options = options;
     this.Reset();
   }
 
@@ -876,6 +874,23 @@ class DamageTracker {
   }
 }
 
+var Options = {
+  Language: 'en',
+  NumLiveListItemsInCombat: 5,
+  MinimumTimeForPullMistake: 0.4,
+  Triggers: [],
+  PlayerNicks: {},
+  DisabledTriggers: {},
+
+  AbilityIdNameMap: {
+    '26A7': 'Twin Auto',
+    '26B4': 'Nael Auto',
+    '26D0': 'Baha Auto',
+    '23F2': 'Exdeath Auto',
+    '2157': 'Lakshmi Auto',
+  },
+};
+
 gLiveList = new OopsyLiveList(Options);
 gMistakeCollector = new MistakeCollector(Options, gLiveList);
 gDamageTracker = new DamageTracker(Options, gMistakeCollector);
@@ -906,19 +921,8 @@ document.addEventListener("onPlayerChangedEvent", function(e) {
   gDamageTracker.OnPlayerChange(e);
 });
 
-OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({'getUserLocation': true}));
-document.addEventListener("onSendUserConfigLocation", function(e) {
-  var jsLoc = (e.detail.location);
-  var cssLoc = jsLoc.replace('.js', '.css');
-  /*load CSS*/
-  var userCSS = document.createElement('link');
-  userCSS.setAttribute('rel', 'stylesheet');
-  userCSS.setAttribute('type', 'text/css');
-  userCSS.setAttribute('href', cssLoc);
-  document.getElementsByTagName('head')[0].appendChild(userCSS);
-  /*load JS*/
-  var userJS = document.createElement('script');
-  userJS.setAttribute('type', 'text/javascript');
-  userJS.setAttribute('src', jsLoc);
-  document.getElementsByTagName('head')[0].appendChild(userJS);
+UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
+  gLiveList.reinit(Options);
+  gMistakeCollector.reinit(Options);
+  gDamageTracker.reinit(Options);
 });

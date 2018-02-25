@@ -452,6 +452,10 @@ class Bars {
     this.pldLastBlock = 0;
   }
 
+  reinit(options) {
+    this.options = options;
+  }
+
   UpdateJob() {
     var container = document.getElementById("jobs-container");
     if (container == null) {
@@ -1886,7 +1890,7 @@ class Bars {
 
 var gBars;
 
-window.addEventListener("load", function (e) {
+document.addEventListener("DOMContentLoaded", function (e) {
   if (!gBars)
     gBars = new Bars(Options);
 });
@@ -1909,19 +1913,7 @@ document.addEventListener("onLogEvent", function (e) {
   gBars.OnLogEvent(e);
 });
 
-OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({'getUserLocation': true}));
-document.addEventListener("onSendUserConfigLocation", function(e) {
-  var jsLoc = (e.detail.location);
-  var cssLoc = jsLoc.replace('.js', '.css');
-  /*load CSS*/
-  var userCSS = document.createElement('link');
-  userCSS.setAttribute('rel', 'stylesheet');
-  userCSS.setAttribute('type', 'text/css');
-  userCSS.setAttribute('href', cssLoc);
-  document.getElementsByTagName('head')[0].appendChild(userCSS);
-  /*load JS*/
-  var userJS = document.createElement('script');
-  userJS.setAttribute('type', 'text/javascript');
-  userJS.setAttribute('src', jsLoc);
-  document.getElementsByTagName('head')[0].appendChild(userJS);
+UserConfig.getUserConfigLocation('jobs', function() {
+  if(gBars)
+    gBars.reinit(Options);
 });

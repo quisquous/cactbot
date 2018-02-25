@@ -230,3 +230,4 @@ Options.PerTriggerOptions = {
     TTSText: '',
   },
 }
+console.log('loaded');
