@@ -16,6 +16,10 @@
 		// infotext, alerttext, alarmtext, etc all refer to the original name.
 	    "regexSearch": "strReplace",
 	  },
+	  replaceSync: {
+	    // key:value pairs to search and replace in timeline sync regexes.
+		"regexSearch": "strReplace",
+	  },
 	},
   ],
   resetWhenOutOfCombat: true, // boolean, defaults to true, if true then timelines and triggers will reset when the game is out of combat, otherwise manually call data.StopCombat().

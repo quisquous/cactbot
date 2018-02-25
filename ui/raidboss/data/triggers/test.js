@@ -35,6 +35,9 @@
       replaceText: {
         'Final Sting': 'Piq&ucirc;re Final',
       },
+      replaceSync: {
+        'You bid farewell to the striking dummy': 'cactbot wipe',
+      },
     }
   ],
   triggers: [

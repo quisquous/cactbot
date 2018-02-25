@@ -22,6 +22,6 @@
 10 "Long Castbar" duration 10
 15 "Final Sting"
 18 "Pentacle Sac (DPS)"
-25 "Super Tankbuster"
+25 "Super Tankbuster" sync /:test sync:/ window 30,30
 30 "Dummy Stands Still"
 40 "Death"

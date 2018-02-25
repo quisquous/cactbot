@@ -36,22 +36,30 @@ class Timeline {
     this.Stop();
   }
 
-  GetReplacedText(name) {
-    var text = name;
+  GetReplacedHelper(text, replaceKey) {
     if (!this.replacements)
       return text;
 
+    var orig = text;
     var locale = this.options.Language || 'en';
     for (var i = 0; i < this.replacements.length; ++i) {
       var r = this.replacements[i];
       if (r.locale && r.locale != locale)
         continue;
-      var keys = Object.keys(r.replaceText);
+      var keys = Object.keys(r[replaceKey]);
       for (var j = 0; j < keys.length; ++j) {
-        text = text.replace(Regexes.Parse(keys[j]), r.replaceText[keys[j]])
+        text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]])
       }
     }
     return text;
+  }
+
+  GetReplacedText(text) {
+    return this.GetReplacedHelper(text, 'replaceText');
+  }
+
+  GetReplacedSync(sync) {
+    return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
   LoadFile(text) {
@@ -136,7 +144,7 @@ class Timeline {
           line = line.replace(commandMatch[1], '').trim();
           var sync = {
             id: uniqueid,
-            regex: Regexes.Parse(commandMatch[2]),
+            regex: Regexes.Parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
