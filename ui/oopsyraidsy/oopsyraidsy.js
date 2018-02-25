@@ -777,11 +777,11 @@ class DamageTracker {
           this.generalTriggers.push(trigger);
         }
         if ('damageRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse(trigger.damageRegex);
+          trigger.idRegex = Regexes.Parse('^' + trigger.damageRegex + '$');
           this.damageTriggers.push(trigger);
         }
         if ('abilityRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse(trigger.abilityRegex);
+          trigger.idRegex = Regexes.Parse('^' + trigger.abilityRegex + '$');
           this.abilityTriggers.push(trigger);
         }
         if ('gainsEffectRegex' in trigger) {
@@ -793,7 +793,7 @@ class DamageTracker {
           this.effectTriggers.push(trigger);
         }
         if ('healRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse(trigger.healRegex);
+          trigger.idRegex = Regexes.Parse('^' + trigger.healRegex + '$');
           this.healTriggers.push(trigger);
         }
       }
