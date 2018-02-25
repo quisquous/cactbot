@@ -17,6 +17,7 @@ hideall "--sync--"
 
 # First Graven
 71 "Graven Image" sync /:Kefka:28D7:/
+73 "--untargetable--" sync /:2B34:Kefka/
 75 "Inexorable Will" sync /:Graven Image:28DA:/
 76 "Wave Cannon" sync /:Graven Image:28DC:/
 79 "Inexorable Will" sync /:Graven Image:28DA:/
@@ -41,10 +42,12 @@ hideall "--sync--"
 
 # Third Graven
 178 "Graven Image" sync /:Kefka:28D7:/
+181 "--untargetable--" sync /:2B34:Kefka/
 183 "Gravitas" sync /:Graven Image:28E0:/
 186 "Vitrophyre" sync /:Graven Image:28E2:/
 190 "Half Arena" sync /:Graven Image:28D(E|F):/
 193 "Gravitas" sync /:Graven Image:28E0:/
+195 "--targetable--"
 196 "Vitrophyre" sync /:Graven Image:28E2:/
 200 "Aero Assault" sync /:Kefka:28D6:/
 208 "Light Of Judgment" sync /:Kefka:28D8:/
@@ -63,6 +66,7 @@ hideall "--sync--"
 
 # Fifth Graven
 288 "Graven Image" sync /:Kefka:28D7:/ # drift 0.259
+290 "--untargetable--" sync /:2B34:Kefka/
 293 "Inexorable Will" sync /:Graven Image:28DA:/
 293 "Statue Gaze" #sync /:Graven Image:28E(3|4):/
 308 "Statue Gaze" sync /:Graven Image:28E(3|4):/ # drift -0.387
