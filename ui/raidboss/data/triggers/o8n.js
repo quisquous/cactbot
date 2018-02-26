@@ -70,117 +70,46 @@
       tts: 'stack',
     },
     {
-      // Most thunders are blizzards are used multiple times, so suppress
-      // any duplicates.
-      // TODO: raidboss really needs a suppressSeconds that doesn't let
-      // the same trigger fire for X time.
-      regex: /14:291[BD4689]:Kefka starts using/,
-      delaySeconds: 1,
-      run: function(data) {
-        delete data.suppressThunderBlizzard;
-      },
-    },
-    {
       id: 'O8N Thrumming Thunder Real',
       regex: /14:291D:Kefka starts using Thrumming Thunder/,
-      infoText: function(data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'True Thunder';
-      },
-      tts: function (data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'true';
-      },
-      run: function(data) {
-        data.suppressThunderBlizzard = true;
-      },
+      suppressSeconds: 1,
+      infoText: 'True Thunder',
+      tts: 'true',
     },
     {
       id: 'O8N Thrumming Thunder Fake',
       regex: /14:291B:Kefka starts using Thrumming Thunder/,
-      infoText: function(data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'Fake Thunder';
-      },
-      tts: function (data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'fake';
-      },
-      run: function(data) {
-        data.suppressThunderBlizzard = true;
-      },
+      suppressSeconds: 1,
+      infoText: 'Fake Thunder',
+      tts: 'fake',
     },
     {
       id: 'O8N Blizzard Fake Donut',
       regex: /14:2916:Kefka starts using Blizzard Blitz/,
-      infoText: function(data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'Fake: Get Out';
-      },
-      tts: function (data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'fake';
-      },
-      run: function(data) {
-        data.suppressThunderBlizzard = true;
-      },
+      suppressSeconds: 1,
+      infoText: 'Fake: Get Out',
+      tts: 'fake',
     },
     {
       id: 'O8N Blizzard True Donut',
       regex: /14:2919:Kefka starts using Blizzard Blitz/,
-      infoText: function(data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'True: Get In';
-      },
-      tts: function (data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'true';
-      },
-      run: function(data) {
-        data.suppressThunderBlizzard = true;
-      },
+      suppressSeconds: 1,
+      infoText: 'True: Get In',
+      tts: 'true',
     },
     {
       id: 'O8N Blizzard Fake Near',
       regex: /14:2914:Kefka starts using Blizzard Blitz/,
-      infoText: function(data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'Fake: Get In';
-      },
-      tts: function (data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'fake';
-      },
-      run: function(data) {
-        data.suppressThunderBlizzard = true;
-      },
+      suppressSeconds: 1,
+      infoText: 'Fake: Get In',
+      tts: 'fake',
     },
     {
       id: 'O8N Blizzard True Near',
       regex: /14:2918:Kefka starts using Blizzard Blitz/,
-      infoText: function(data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'True: Get Out';
-      },
-      tts: function (data) {
-        if (data.suppressThunderBlizzard)
-          return;
-        return 'true';
-      },
-      run: function(data) {
-        data.suppressThunderBlizzard = true;
-      },
+      suppressSeconds: 1,
+      infoText: 'True: Get Out',
+      tts: 'true',
     },
   ]
 }]
