@@ -48,6 +48,7 @@ namespace Cactbot {
     JsonTextWriter dispatch_json_writer_;
     JsonSerializer dispatch_serializer_;
     JsonSerializer message_serializer_;
+    private Object dispatch_lock_ = new Object();
 
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
@@ -250,13 +251,18 @@ namespace Cactbot {
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
     public void DispatchToJS(JSEvent e) {
-      dispatch_string_builder_.Append("document.dispatchEvent(new CustomEvent('");
-      dispatch_string_builder_.Append(e.EventName());
-      dispatch_string_builder_.Append("', { detail: ");
-      dispatch_serializer_.Serialize(dispatch_json_writer_, e);
-      dispatch_string_builder_.Append(" }));");
-      this.Overlay.Renderer.ExecuteScript(dispatch_string_builder_.ToString());
-      dispatch_string_builder_.Clear();
+      // DispatchToJS can be called from multiple threads (both fast and main).
+      // OverlayMessage also calls this, which can be on other threads as well.
+      // Could consider adding per-thread builders in TLS to avoid a lock, but maybe overkill.
+      lock (this.dispatch_lock_) {
+        dispatch_string_builder_.Append("document.dispatchEvent(new CustomEvent('");
+        dispatch_string_builder_.Append(e.EventName());
+        dispatch_string_builder_.Append("', { detail: ");
+        dispatch_serializer_.Serialize(dispatch_json_writer_, e);
+        dispatch_string_builder_.Append(" }));");
+        this.Overlay.Renderer.ExecuteScript(dispatch_string_builder_.ToString());
+        dispatch_string_builder_.Clear();
+      }
     }
 
     // Events that we want to update less often because they aren't are critical.
