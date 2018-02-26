@@ -87,6 +87,7 @@
       id: 'Test Laugh',
       regexEn: /:You burst out laughing at the striking dummy/,
       regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
+      suppressSeconds: 5,
       alarmText: function(data) {
         return {
           en: 'hahahahaha',

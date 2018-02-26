@@ -65,6 +65,8 @@
   regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
   // Time to wait before showing it once the regex is seen. May be a number or a function(data, matches) that returns a number.
   delaySeconds: 0,
+  // Time to wait in seconds before showing this trigger again.  May be a number of a function(data, matches).  The time to wait begins at the regex (and not after the delaySeconds).  These triggers will not run anything.  This can be used for catching the first of many events if there's log spam.
+  suppressSeconds: 0,
   // Number of seconds to show the trigger for. May be a number or a function(data, matches) that returns a number.
   durationSeconds: 3,
   // Text to show with info importance. May be a string or a function(data, matches) that returns a string.
@@ -100,8 +102,9 @@ The full order of evaluation of functions in a trigger is:
 2. preRun
 3. delaySeconds
 4. durationSeconds
-5. infoText
-6. alertText
-7. alarmText
-8. tts
-9. run
+5. suppressSeconds
+6. infoText
+7. alertText
+8. alarmText
+9. tts
+10. run

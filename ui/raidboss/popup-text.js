@@ -193,6 +193,7 @@ class PopupText {
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
     };
     this.StopTimers();
+    this.triggerSuppress = {};
   }
 
   StopTimers() {
@@ -219,6 +220,14 @@ class PopupText {
       return;
     if ('disabled' in trigger && trigger.disabled)
       return;
+
+    var now = +new Date();
+    if (trigger.id && trigger.id in this.triggerSuppress) {
+      if (this.triggerSuppress[trigger.id] > now) {
+        return;
+      }
+      delete this.triggerSuppress[trigger.id];
+    }
 
     var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
 
@@ -256,6 +265,10 @@ class PopupText {
     var userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
+    var suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
+    if (trigger.id && suppress > 0) {
+      this.triggerSuppress[trigger.id] = now + suppress * 1000;
+    }
 
     if (triggerOptions) {
       if ('SpeechAlert' in triggerOptions)
