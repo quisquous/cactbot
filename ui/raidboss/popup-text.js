@@ -249,7 +249,7 @@ class PopupText {
       // valid to do for any trigger entry that can handle a function.
       // In case anybody wants to encapsulate any fancy grammar, the values
       // in this object can also be functions.
-      if (typeof(result) == "string" || result === undefined)
+      if (result !== Object(result))
         return result;
       var lang = this.options.Language || 'en';
       if (result.lang)
