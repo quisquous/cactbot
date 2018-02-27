@@ -272,15 +272,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox textUrl;
         private System.Windows.Forms.Button buttonSelectFile;
-    private System.Windows.Forms.Label dpsUpdateRateLabel;
-    private System.Windows.Forms.TextBox dpsUpdateRate;
-    private System.Windows.Forms.Label logUpdateLabel;
-    private System.Windows.Forms.CheckBox logUpdateCheckBox;
-    private System.Windows.Forms.Label restartMessageLabel;
-    private System.Windows.Forms.Button buttonShowDevtools;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-		private System.Windows.Forms.Button buttonSelectUserConfigFile;
-		private System.Windows.Forms.TextBox textUserConfigFile;
-	}
+        private System.Windows.Forms.Label dpsUpdateRateLabel;
+        private System.Windows.Forms.TextBox dpsUpdateRate;
+        private System.Windows.Forms.Label logUpdateLabel;
+        private System.Windows.Forms.CheckBox logUpdateCheckBox;
+        private System.Windows.Forms.Label restartMessageLabel;
+        private System.Windows.Forms.Button buttonShowDevtools;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button buttonSelectUserConfigFile;
+        private System.Windows.Forms.TextBox textUserConfigFile;
+    }
 }

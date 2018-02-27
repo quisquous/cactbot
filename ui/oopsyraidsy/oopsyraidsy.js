@@ -1,5 +1,22 @@
 "use strict";
 
+var Options = {
+  Language: 'en',
+  NumLiveListItemsInCombat: 5,
+  MinimumTimeForPullMistake: 0.4,
+  Triggers: [],
+  PlayerNicks: {},
+  DisabledTriggers: {},
+
+  AbilityIdNameMap: {
+    '26A7': 'Twin Auto',
+    '26B4': 'Nael Auto',
+    '26D0': 'Baha Auto',
+    '23F2': 'Exdeath Auto',
+    '2157': 'Lakshmi Auto',
+  },
+};
+
 // Internal trigger id for early pull
 var kEarlyPullId = "General Early Pull";
 
@@ -873,23 +890,6 @@ class DamageTracker {
     this.ReloadTriggers();
   }
 }
-
-var Options = {
-  Language: 'en',
-  NumLiveListItemsInCombat: 5,
-  MinimumTimeForPullMistake: 0.4,
-  Triggers: [],
-  PlayerNicks: {},
-  DisabledTriggers: {},
-
-  AbilityIdNameMap: {
-    '26A7': 'Twin Auto',
-    '26B4': 'Nael Auto',
-    '26D0': 'Baha Auto',
-    '23F2': 'Exdeath Auto',
-    '2157': 'Lakshmi Auto',
-  },
-};
 
 gLiveList = new OopsyLiveList(Options);
 gMistakeCollector = new MistakeCollector(Options, gLiveList);
