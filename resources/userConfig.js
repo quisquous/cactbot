@@ -17,8 +17,9 @@ var UserConfig = {
         document.getElementsByTagName('head')[0].appendChild(userCSS);
       }
 
-      if(callback) {
-        callback(e);
+      // Post this callback so that the js and css can be executed first.
+      if (callback) {
+        window.setTimeout(callback, 0);
       }
     });
   },

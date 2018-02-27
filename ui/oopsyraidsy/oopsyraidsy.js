@@ -171,23 +171,12 @@ function IsPlayerId(id) {
 }
 
 class OopsyLiveList {
-  constructor(options) {
+  constructor(options, element) {
     this.options = options;
-    // Stub elements prior to the document load.
-    this.scroller = document.createElement('div');
-    this.container = document.createElement('div');
-    this.Reset();
-    this.SetInCombat(false);
-  }
-
-  reinit(options) {
-    this.options = options;
-    this.Reset();
-  }
-
-  SetScroller(element) {
     this.scroller = element;
     this.container = element.children[0];
+    this.Reset();
+    this.SetInCombat(false);
   }
 
   SetInCombat(inCombat) {
@@ -282,11 +271,6 @@ class MistakeCollector {
     this.baseTime = null;
     this.inACTCombat = false;
     this.inGameCombat = false;
-    this.Reset();
-  }
-
-  reinit(options) {
-    this.options = options;
     this.Reset();
   }
 
@@ -482,11 +466,6 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
-    this.Reset();
-  }
-
-  reinit(options) {
-    this.options = options;
     this.Reset();
   }
 
@@ -891,14 +870,6 @@ class DamageTracker {
   }
 }
 
-gLiveList = new OopsyLiveList(Options);
-gMistakeCollector = new MistakeCollector(Options, gLiveList);
-gDamageTracker = new DamageTracker(Options, gMistakeCollector);
-
-window.addEventListener("load", function(e) {
-  gLiveList.SetScroller(document.getElementById('livelist'));
-});
-
 document.addEventListener("onLogEvent", function(e) {
   gDamageTracker.OnLogEvent(e);
 });
@@ -922,7 +893,7 @@ document.addEventListener("onPlayerChangedEvent", function(e) {
 });
 
 UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
-  gLiveList.reinit(Options);
-  gMistakeCollector.reinit(Options);
-  gDamageTracker.reinit(Options);
+  gLiveList = new OopsyLiveList(Options, document.getElementById('livelist'));
+  gMistakeCollector = new MistakeCollector(Options, gLiveList);
+  gDamageTracker = new DamageTracker(Options, gMistakeCollector);
 });

@@ -3,30 +3,19 @@
 class PopupText {
   constructor(options) {
     this.options = options;
-    this.init = false;
     this.triggers = [];
     this.timers = [];
     this.inCombat = false;
     this.resetWhenOutOfCombat = true;
+    this.infoText = document.getElementById('popup-text-info');
+    this.alertText = document.getElementById('popup-text-alert');
+    this.alarmText = document.getElementById('popup-text-alarm');
 
     this.kMaxRowsOfText = 2;
   }
 
-  reinit(options) {
-    this.options = options;
-    this.ReloadTimelines();
-  }
-
   SetTimelineLoader(timelineLoader) {
     this.timelineLoader = timelineLoader;
-  }
-
-  OnDocumentLoad() {
-    this.init = true;
-    this.infoText = document.getElementById('popup-text-info');
-    this.alertText = document.getElementById('popup-text-alert');
-    this.alarmText = document.getElementById('popup-text-alarm');
-    this.ReloadTimelines();
   }
 
   OnPlayerChange(e) {
@@ -78,7 +67,7 @@ class PopupText {
 
   ReloadTimelines() {
     // Datafiles, job, and zone must be loaded.
-    if (!this.triggerSets || !this.me || !this.zoneName || !this.init)
+    if (!this.triggerSets || !this.me || !this.zoneName)
       return;
 
     this.Reset();
@@ -213,9 +202,6 @@ class PopupText {
   }
 
   OnLog(e) {
-    if (!this.init)
-      return;
-
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
 
@@ -445,9 +431,6 @@ class PopupTextGenerator {
 
 var gPopupText;
 
-window.addEventListener("load", function(e) {
-  gPopupText.OnDocumentLoad(e);
-});
 document.addEventListener("onPlayerChangedEvent", function(e) {
   gPopupText.OnPlayerChange(e);
 });
