@@ -119,17 +119,20 @@ namespace Cactbot {
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
       fast_update_timer_.Elapsed += (o, args) => {
+        // Hold this while we're in here to prevent the Renderer or Browser from disappearing from under us.
+        fast_update_timer_semaphore_.Wait();
+        int timer_interval = kSlowTimerMilli;
         try {
-          SendFastRateEvents();
+          timer_interval = SendFastRateEvents();
         } catch (Exception e) {
           // SendFastRateEvents holds this semaphore until it exits.
-          fast_update_timer_semaphore_.Release();
           LogError("Exception in SendFastRateEvents: " + e.Message);
           LogError("Stack: " + e.StackTrace);
           LogError("Source: " + e.Source);
-          fast_update_timer_.Interval = kSlowTimerMilli;
-          fast_update_timer_.Start();
         }
+        fast_update_timer_semaphore_.Release();
+        fast_update_timer_.Interval = timer_interval;
+        fast_update_timer_.Start();
       };
       fast_update_timer_.AutoReset = false;
 
@@ -275,18 +278,12 @@ namespace Cactbot {
       // NOTE: This function runs on a different thread that SendFastRateEvents(), so anything it calls needs to be thread-safe!
     }
 
-    // Events that we want to update as soon as possible.
-    private void SendFastRateEvents() {
-      // Hold this while we're in here to prevent the Renderer or Browser from disappearing from under us.
-      fast_update_timer_semaphore_.Wait();
-
+    // Events that we want to update as soon as possible.  Return next time this should be called.
+    private int SendFastRateEvents() {
       // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
       // register its event handlers.
       if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading) {
-        fast_update_timer_semaphore_.Release();
-        fast_update_timer_.Interval = kSlowTimerMilli;
-        fast_update_timer_.Start();
-        return;
+        return kSlowTimerMilli;
       }
 
       if (reset_notify_state_)
@@ -366,10 +363,7 @@ namespace Cactbot {
 
       // Silently stop sending other messages if the ffxiv process isn't around.
       if (!game_exists) {
-        fast_update_timer_semaphore_.Release();
-        fast_update_timer_.Interval = kUberSlowTimerMilli;
-        fast_update_timer_.Start();
-        return;
+        return kUberSlowTimerMilli;
       }
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
@@ -640,9 +634,7 @@ namespace Cactbot {
 
       fight_tracker_.Tick(DateTime.Now);
 
-      fast_update_timer_semaphore_.Release();
-      fast_update_timer_.Interval = game_active ? kFastTimerMilli : kSlowTimerMilli;
-      fast_update_timer_.Start();
+      return game_active ? kFastTimerMilli : kSlowTimerMilli;
     }
 
     // ILogger implementation.
