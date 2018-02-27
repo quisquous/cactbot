@@ -386,17 +386,17 @@ namespace Cactbot {
       public Dictionary<string, string> files;
     }
 
-    public class SendUserConfigLocation : JSEvent {
-      public SendUserConfigLocation(string location) {
+    public class OnInitializeOverlay : JSEvent {
+      public OnInitializeOverlay(string location) {
         if (String.IsNullOrWhiteSpace(location)) {
-          this.location = CactbotOverlayConfig.CactbotUserUri;
+          this.userLocation = CactbotOverlayConfig.CactbotUserUri;
         } else {
-          this.location = location;
+          this.userLocation = location;
         }
       }
 
-      public string EventName() { return "onSendUserConfigLocation"; }
-      public string location;
+      public string EventName() { return "onInitializeOverlay"; }
+      public string userLocation;
     }
   }
 }

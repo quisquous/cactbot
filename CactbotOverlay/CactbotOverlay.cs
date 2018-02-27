@@ -290,6 +290,41 @@ namespace Cactbot {
         notify_state_ = new NotifyState();
       reset_notify_state_ = false;
 
+      // Loading dance:
+      // * wait for !CefBrowser::IsLoading.
+      // * Execute JS in all overlays to wait for DOMContentReady and send back an event.
+      // * When this OverlayMessage comes in, send back an onInitializeOverlay message.
+      // * Overlays should load options from the provider user data dir in that message.
+      // * As DOMContentReady happened, overlays should also construct themselves and attach to the DOM.
+      // * Now, messages can be sent freely and everything is initialized.
+      if (!notify_state_.added_dom_content_listener) {
+        // Send this from C# so that overlays that are using non-cactbot html
+        // (e.g. dps overlays) don't have to be modified.
+        const string waitForDOMContentReady = @"
+          (function() {
+            var sendDOMContentLoaded = function() {
+              if (!window.OverlayPluginApi) {
+                window.setTimeout(sendDOMContentLoaded, 100);
+              } else {
+                window.OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({'onDOMContentLoaded': true}));
+              }
+            };
+            if (document.readyState == 'loaded' || document.readyState == 'complete') {
+              sendDOMContentLoaded();
+            } else {
+              document.addEventListener('DOMContentLoaded', sendDOMContentLoaded);
+            }
+          })();
+        ";
+        this.Overlay.Renderer.ExecuteScript(waitForDOMContentReady);
+        notify_state_.added_dom_content_listener = true;
+      }
+
+      // This flag set as a result of onDOMContentLoaded overlay message.
+      if (!notify_state_.dom_content_loaded) {
+        return kSlowTimerMilli;
+      }
+
       if (!notify_state_.sent_data_dir && Config.Url.Length > 0) {
         notify_state_.sent_data_dir = true;
 
@@ -679,13 +714,16 @@ namespace Cactbot {
         DispatchToJS(new JSEvents.SendSaveData(Config.OverlayData));
       } else if (obj.ContainsKey("setSaveData")) {
         Config.OverlayData = obj["setSaveData"];
-      } else if (obj.ContainsKey("getUserLocation")) {
-        DispatchToJS(new JSEvents.SendUserConfigLocation(Config.UserConfigFile));
+      } else if (obj.ContainsKey("onDOMContentLoaded")) {
+        DispatchToJS(new JSEvents.OnInitializeOverlay(Config.UserConfigFile));
+        notify_state_.dom_content_loaded = true;
       }
     }
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {
+      public bool added_dom_content_listener = false;
+      public bool dom_content_loaded = false;
       public bool sent_data_dir = false;
       public bool game_exists = false;
       public bool game_active = false;
