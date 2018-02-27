@@ -12,6 +12,11 @@ class PopupText {
     this.kMaxRowsOfText = 2;
   }
 
+  reinit(options) {
+    this.options = options;
+    this.ReloadTimelines();
+  }
+
   SetTimelineLoader(timelineLoader) {
     this.timelineLoader = timelineLoader;
   }

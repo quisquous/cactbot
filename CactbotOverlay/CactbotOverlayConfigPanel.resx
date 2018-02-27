@@ -484,13 +484,13 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 182</value>
+    <value>208, 205</value>
   </data>
   <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 179</value>
+    <value>353, 392</value>
   </data>
   <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -831,6 +831,135 @@
   <data name="&gt;&gt;restartMessageLabel.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 179</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 23</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Custom User Config Directory</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 0</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 1</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="buttonSelectUserConfigFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectUserConfigFile.Name" xml:space="preserve">
+    <value>buttonSelectUserConfigFile</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectUserConfigFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectUserConfigFile.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectUserConfigFile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textUserConfigFile.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="textUserConfigFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="textUserConfigFile.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="textUserConfigFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 20</value>
+  </data>
+  <data name="textUserConfigFile.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textUserConfigFile.Name" xml:space="preserve">
+    <value>textUserConfigFile</value>
+  </data>
+  <data name="&gt;&gt;textUserConfigFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textUserConfigFile.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;textUserConfigFile.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 180</value>
+  </data>
+  <data name="tableLayoutPanel4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="tableLayoutPanel4.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>357, 21</value>
+  </data>
+  <data name="tableLayoutPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Name" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonSelectUserConfigFile" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textUserConfigFile" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,37" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -841,7 +970,7 @@
     <value>12</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>564, 364</value>
+    <value>564, 600</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -859,7 +988,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkMiniParseVisible" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="checkMiniParseClickthru" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkEnableGlobalHotkey" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textGlobalHotkey" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkLock" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel2" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dpsUpdateRateLabel" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dpsUpdateRate" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="logUpdateLabel" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="logUpdateCheckBox" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="restartMessageLabel" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,205,Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label2" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkMiniParseVisible" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="checkMiniParseClickthru" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkEnableGlobalHotkey" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="textGlobalHotkey" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkLock" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel2" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dpsUpdateRateLabel" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dpsUpdateRate" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="logUpdateLabel" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="logUpdateCheckBox" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="restartMessageLabel" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel4" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,205,Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,23,Absolute,30" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -868,7 +997,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>564, 364</value>
+    <value>564, 600</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>CactbotOverlayConfigPanel</value>

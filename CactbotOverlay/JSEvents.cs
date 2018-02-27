@@ -4,6 +4,7 @@ using System.Text;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
 
 namespace Cactbot {
   public interface JSEvent {
@@ -383,6 +384,38 @@ namespace Cactbot {
       public string EventName() { return "onDataFilesRead"; }
 
       public Dictionary<string, string> files;
+    }
+
+    public class SendUserConfigLocation : JSEvent {
+      public SendUserConfigLocation(string location, string _default, CactbotOverlay overlay) {
+        if (String.IsNullOrWhiteSpace(location)) {
+          location = CactbotOverlayConfig.CactbotUserUri;
+        }
+        if (!location.EndsWith("/"))
+          location += "/";
+        location += _default + ".js";
+        var uri = new Uri(location);
+        if (uri.IsFile) {
+          if (System.IO.File.Exists(Uri.UnescapeDataString(uri.AbsolutePath))) {
+            this.location = location;
+            hasJS = true;
+            if (System.IO.File.Exists(Uri.UnescapeDataString(uri.AbsolutePath).Replace(".js", ".css"))) {
+              hasCSS = true;
+            }
+          }
+        } else {
+          // User Config stored on web URL, can look it up to verify it exists, but its not worth the delays and error catching and detection off a head request
+          this.location = location;
+          hasJS = true;
+          hasCSS = true;
+        }
+      }
+
+      public string EventName() { return "onSendUserConfigLocation"; }
+
+      public string location;
+      public bool hasJS;
+      public bool hasCSS;
     }
   }
 }

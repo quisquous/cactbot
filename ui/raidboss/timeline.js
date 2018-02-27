@@ -443,6 +443,13 @@ class TimelineUI {
     this.init = false;
   }
 
+  reinit(options) {
+    this.options = options;
+    this.init = false;
+    if(this.timeline)
+      this.SetTimeline(this.timeline);
+  }
+
   Init() {
     if (this.init) return;
     this.init = true;
@@ -622,6 +629,11 @@ class TimelineController {
     this.ui = ui;
     this.dataFiles = {};
     this.timelines = {};
+  }
+
+  reinit(options) {
+    this.options = options;
+    this.ui.reinit(options);
   }
 
   SetPopupTextInterface(popupText) {

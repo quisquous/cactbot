@@ -75,7 +75,7 @@ Options.PerBuffOptions = {
 
     // The border color.  See: https://www.google.com/search?q=color+picker
     // This example sets trick to use a white border.
-    borderColor: '#FFFFFF',
+    borderColor: '#00FF00',
 
     // The icon to use.  This is a url or a data url like this.  This
     // example sets trick to use a bright red icon instead.

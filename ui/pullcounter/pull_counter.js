@@ -18,6 +18,11 @@ class PullCounter {
     this.ReloadTriggers();
   }
 
+  reinit(options) {
+    Options = options;
+    this.ReloadTriggers();
+  }
+
   SetElement(element) {
     this.element = element;
   }
@@ -123,4 +128,8 @@ document.addEventListener("onSendSaveData", function (e) {
 
 window.addEventListener('load', function (e) {
   gPullCounter.SetElement(document.getElementById('pullcounttext'));
+});
+
+UserConfig.getUserConfigLocation('pullcounter', function() {
+  gPullCounter.reinit(Options);
 });

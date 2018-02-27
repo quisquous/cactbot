@@ -452,6 +452,10 @@ class Bars {
     this.pldLastBlock = 0;
   }
 
+  reinit(options) {
+    this.options = options;
+  }
+
   UpdateJob() {
     var container = document.getElementById("jobs-container");
     if (container == null) {
@@ -1886,7 +1890,7 @@ class Bars {
 
 var gBars;
 
-window.addEventListener("load", function (e) {
+document.addEventListener("DOMContentLoaded", function (e) {
   if (!gBars)
     gBars = new Bars(Options);
 });
@@ -1907,4 +1911,9 @@ document.addEventListener("onZoneChangedEvent", function (e) {
 });
 document.addEventListener("onLogEvent", function (e) {
   gBars.OnLogEvent(e);
+});
+
+UserConfig.getUserConfigLocation('jobs', function() {
+  if(gBars)
+    gBars.reinit(Options);
 });

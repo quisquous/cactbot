@@ -35,7 +35,7 @@ Options.DisabledTriggers = {
 Options.PlayerNicks = {
   'Darkest Edgelord': 'Mary',
   'Captain Jimmy': 'Jimmy',
-  'Pipira Pira': '&#x1F41F;',
+  'Pipira Pira': '&#x1F41F;'
 };
 
 

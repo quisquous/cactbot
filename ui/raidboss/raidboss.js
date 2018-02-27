@@ -41,3 +41,8 @@ gPopupText = new PopupText(Options);
 // Connect the timelines to the popup text.
 gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
 gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
+
+UserConfig.getUserConfigLocation('raidboss', function(e) {
+  gTimelineController.reinit(Options);
+  gPopupText.reinit(Options);
+});

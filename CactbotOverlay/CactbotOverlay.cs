@@ -687,6 +687,8 @@ namespace Cactbot {
         DispatchToJS(new JSEvents.SendSaveData(Config.OverlayData));
       } else if (obj.ContainsKey("setSaveData")) {
         Config.OverlayData = obj["setSaveData"];
+      } else if (obj.ContainsKey("getUserLocation")) {
+        DispatchToJS(new JSEvents.SendUserConfigLocation(Config.UserConfigFile, obj["getUserLocation"], this));
       }
     }
 
