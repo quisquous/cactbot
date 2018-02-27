@@ -36,6 +36,6 @@ namespace Cactbot {
 
     public string RemoteVersionSeen = "0.0";
 
-    public string UserConfigFile = new Uri(CactbotUserUri).AbsoluteUri;
+    public string UserConfigFile = "";
   }
 }

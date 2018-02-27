@@ -28,7 +28,7 @@ namespace Cactbot {
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
-      this.textUserConfigFile.Text = String.IsNullOrWhiteSpace(config.UserConfigFile) ? new Uri(CactbotOverlayConfig.CactbotUserUri).AbsoluteUri : config.UserConfigFile;
+      this.textUserConfigFile.Text = config.UserConfigFile;
     }
 
     private void SetupConfigEventHandlers() {
@@ -166,7 +166,7 @@ namespace Cactbot {
             path = new Uri(path, ".");
           this.config.UserConfigFile = path.AbsoluteUri;
         } else {
-          this.config.UserConfigFile = String.IsNullOrWhiteSpace(textUserConfigFile.Text) ? new Uri(CactbotOverlayConfig.CactbotUserUri).AbsoluteUri : textUserConfigFile.Text;
+          this.config.UserConfigFile = "";
         }
         this.textUserConfigFile.Text = this.config.UserConfigFile;
       } catch (Exception ex) {
