@@ -132,6 +132,7 @@ hideall "--sync--"
 1201 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
 1206 "Forsaken #2" sync /:Kefka:28E9:/
 1214 "Starstrafe" sync /:Kefka:2902:/
+1221 "Past/Future End" sync /:Kefka:28F(5|8):/
 1228 "All Things Ending" sync /:Kefka:28F6:/
 1233 "Meteor" sync /:Kefka:2905:/
 
@@ -153,6 +154,7 @@ hideall "--sync--"
 1340 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
 1345 "Forsaken #3" sync /:Kefka:28E9:/
 1358 "Ultima" sync /:Kefka:2911:/
+1359 "Knockback Tethers" sync /:Graven Image:28DD:/
 1362 "Soak" sync /:Light of Consecration:28EA:/
 1364 "Ultimate Embrace" sync /:Kefka:2910:/
 1371 "Sleep/Confuse Tethers" sync /:Graven Image:28E(5|6):/
@@ -181,6 +183,7 @@ hideall "--sync--"
 1525 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
 1530 "Forsaken #4" sync /:Kefka:28E9:/
 1543 "Ultima" sync /:Kefka:2911:/
+1544 "Knockback Tethers" sync /:Graven Image:28DD:/
 1547 "Soak" sync /:Light of Consecration:28EA:/
 1549 "Ultimate Embrace" sync /:Kefka:2910:/
 1556 "Sleep/Confuse Tethers" sync /:Graven Image:28E(5|6):/
