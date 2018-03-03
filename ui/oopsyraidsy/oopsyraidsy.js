@@ -539,9 +539,15 @@ class DamageTracker {
           this.OnTrigger(trigger, {line: line}, matches);
       }
 
-      if (line[kTypeOffset0] == '0' && line.indexOf('00:0039:Engage!') > 0) {
-        this.collector.AddEngage();
-        continue;
+      if (line[kTypeOffset0] == '0' && line[kTypeOffset1] == '0') {
+        if (line.match(gLang.countdownEngageRegex())) {
+          this.collector.AddEngage();
+          continue;
+        }
+        if (line.match(gLang.countdownStartRegex()) || line.match(gLang.countdownCancelRegex())) {
+          this.collector.Reset();
+          continue;
+        }
       }
       // 15 chars in is the type: 15 (single target) / 16 (aoe)
       // See table at the top of this file.
