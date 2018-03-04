@@ -43,6 +43,7 @@
       replaceSync: {
         'You bid farewell to the striking dummy': "Vous faites vos adieux au mannequin d'entraînement",
         'You bow courteously to the striking dummy': "Vous vous inclinez devant le mannequin d'entraînement",
+        'Engage!': "À l'attaque !",
       },
     }
   ],
