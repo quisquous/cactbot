@@ -243,8 +243,8 @@ class PopupText {
       if (result !== Object(result))
         return result;
       var lang = this.options.Language || 'en';
-      if (result.lang)
-        return ValueOrFunction(result.lang);
+      if (result[lang])
+        return ValueOrFunction(result[lang]);
       // For partially localized results where this localization doesn't
       // exist, prefer English over nothing.
       return ValueOrFunction(result['en']);
