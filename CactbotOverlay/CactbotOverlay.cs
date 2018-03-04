@@ -340,6 +340,7 @@ namespace Cactbot {
         }
 
         var web = new System.Net.WebClient();
+        web.Encoding = System.Text.Encoding.UTF8;
         System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
 
         var data_file_paths = new List<string>();
@@ -374,8 +375,7 @@ namespace Cactbot {
           foreach (string data_filename in data_file_paths) {
             try {
               var file_path = new Uri(new Uri(url), "data/" + data_filename);
-              var file_reader = new StringReader(web.DownloadString(file_path));
-              file_data[data_filename] = file_reader.ReadToEnd();
+              file_data[data_filename] = web.DownloadString(file_path);
             } catch (Exception e) {
               LogError("Unable to read data file: " + e.Message);
             }
