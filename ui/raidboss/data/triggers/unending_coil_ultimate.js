@@ -325,7 +325,7 @@
         var tookTwo = data.fireballs[1].filter(function(p) { return data.fireballs[2].indexOf(p) >= 0; });
         if (tookTwo.indexOf(data.me) >= 0)
           return;
-        var str = 'Thunder -> Fire IN';
+        var str = 'Fire IN';
         if (tookTwo.length > 0)
           str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ') + ' out)';
         return str;
@@ -334,7 +334,7 @@
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to not stack.
         if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
-          return 'Thunder -> Fire IN: AVOID!';
+          return 'Fire IN: AVOID!';
       },
       tts: function(data) {
         if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
@@ -347,16 +347,21 @@
       regex: /:Ragnarok:26B8:/,
       delaySeconds: 98,
       suppressSeconds: 99999,
+      preRun: function(data) {
+        var tookTwo = data.fireballs[1].filter(function(p) { return data.fireballs[2].indexOf(p) >= 0; });
+        var tookThree = tookTwo.filter(function(p) { return data.fireballs[3].indexOf(p) >= 0; });
+        data.tookThreeFireballs = tookThree.indexOf(data.me) >= 0;
+      },
       infoText: function(data) {
-        if (!data.fireDebuff)
-          return 'Fire IN -> Thunder';
+        if (!data.tookThreeFireballs)
+          return 'Fire IN';
       },
       alertText: function(data) {
         // It's possible that you can take 1, 2, and 3 even if nobody dies with
         // careful ice debuff luck.  However, this means you probably shouldn't
-        // take 4.  Just use the debuff here and not the fireball count.
-        if (data.fireDebuff)
-          return 'Fire IN: AVOID! -> Thunder';
+        // take 4.
+        if (data.tookThreeFireballs)
+          return 'Fire IN: AVOID!';
       },
       tts: function(data) {
         return 'fire in';
