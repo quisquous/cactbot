@@ -86,6 +86,49 @@
       },
     },
     {
+      id: 'O8S Single Wing of Destruction',
+      regex: / 14:28F[EF]:Kefka starts using Wings Of Destruction/,
+      infoText: 'Single Wing',
+      tts: 'single wing',
+    },
+    {
+      id: 'O8S Ultimate Embrace',
+      regex: / 14:2910 Kefka starts using Ultimate Embrace on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me)
+          return 'Embrace on YOU';
+      },
+      infoText: function(data, matches) {
+        if (matches[1] == data.me)
+          return;
+        if (data.role == 'healer' || data.role == 'tank')
+          return 'Embrace on ' + data.ShortName(matches[1]);
+      },
+      tts: function(data, matches) {
+        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank')
+          return 'embrace';
+      },
+    },
+    {
+      // 28E8: clown hyperdrive, 2912: god hyperdrive
+      id: 'O8S Hyperdrive',
+      regex: / 14:(?:28E8|2912) Kefka starts using Hyperdrive on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me)
+          return 'Hyperdrive on YOU';
+      },
+      infoText: function(data, matches) {
+        if (matches[1] == data.me)
+          return;
+        if (data.role == 'healer' || data.role == 'tank')
+          return 'Hyperdrive on ' + data.ShortName(matches[1]);
+      },
+      tts: function(data, matches) {
+        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank')
+          return 'hyperdrive';
+      },
+    },
+    {
       id: 'O8S Indulgent Will',
       regex: / 14:28E5:Graven Image starts using Indulgent Will on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
