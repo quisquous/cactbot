@@ -702,6 +702,36 @@ namespace Cactbot {
         null);
     }
 
+    private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
+      // TODO: It's not great to have to load every js and css file in the user dir.
+      // But most of the time they'll be short and there won't be many.  JS
+      // could attempt to send an overlay name to C# code (and race with the
+      // document ready event), but that's probably overkill.
+      var user_files = new Dictionary<string, string>();
+      var path = new Uri(config_dir);
+
+      // It's important to return null here vs an empty dictionary.  null here
+      // indicates to attempt to load the user overloads indirectly via the path.
+      // This is how remote user directories work.
+      if (!Directory.Exists(path.AbsolutePath))
+        return null;
+
+      try {
+        var filenames = Directory.EnumerateFiles(path.AbsolutePath, "*.js").Concat(
+          Directory.EnumerateFiles(path.AbsolutePath, "*.css"));
+        foreach (string filename in filenames) {
+          if (filename.Contains("-example."))
+            continue;
+          user_files[Path.GetFileName(filename)] = File.ReadAllText(filename);
+        }
+      } catch (Exception e) {
+        LogError("User error file exception: {0}", e.ToString());
+      }
+
+      return user_files;
+    }
+
+
     // This is an overlayMessage() function call from javascript. We accept a json object of
     // (command, argument) pairs. Commands are:
     // - say: The argument is a string which is read as text-to-speech.
@@ -715,7 +745,7 @@ namespace Cactbot {
       } else if (obj.ContainsKey("setSaveData")) {
         Config.OverlayData = obj["setSaveData"];
       } else if (obj.ContainsKey("onDOMContentLoaded")) {
-        DispatchToJS(new JSEvents.OnInitializeOverlay(Config.UserConfigFile));
+        DispatchToJS(new JSEvents.OnInitializeOverlay(Config.UserConfigFile, GetLocalUserFiles(Config.UserConfigFile)));
         notify_state_.dom_content_loaded = true;
       }
     }
