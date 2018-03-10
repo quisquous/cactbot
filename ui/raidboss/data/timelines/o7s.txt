@@ -162,10 +162,10 @@ hideall "--sync--"
 
 # Should be unreachable, only here for visual continuity before/after jump
 3653 "Load Air Force"
-3356 "Diffractive Laser"
+3656 "Diffractive Laser"
 3659 "Radar"
-3366 "Diffractive Plasma"
-3378 "Run Air Force"
+3666 "Diffractive Plasma"
+3678 "Run Air Force"
 
 
 ##########################################################
