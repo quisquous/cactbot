@@ -193,13 +193,13 @@ hideall "--sync--"
 1584 "2x Wings of Destruction" sync /:Kefka:2900:/
 1586 "Soak"
 1590 "Ultima" sync /:Kefka:2911:/
-1597 "Statue Half Cleave" sync /:Graven Image:28D(E|F):/
-1598 "1x Wings of Destruction" sync /:Kefka:28FF:/
+1595 "Statue Half Cleave"
+1596 "1x Wings of Destruction" sync /:Kefka:28FF:/
 
 # Enrage
-1604 "Ultima" sync /:Kefka:2911:/
-1612 "Ultima" sync /:Kefka:2911:/
-1620 "Ultima" sync /:Kefka:2911:/
-1628 "Ultima" sync /:Kefka:2911:/
-1632 "--sync--" sync /:2A52:Kefka/
-1642 "Enrage" sync /:Kefka:2A52:/ jump 0
+1602 "Ultima" sync /:Kefka:283D:/
+1610 "Ultima" sync /:Kefka:283D:/
+1618 "Ultima" sync /:Kefka:283D:/
+1626 "Ultima" sync /:Kefka:283D:/
+1630 "--sync--" sync /:2A52:Kefka/
+1640 "Enrage" sync /:Kefka:2A52:/ jump 0
