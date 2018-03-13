@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Advanced_Combat_Tracker;
+using FFXIV_ACT_Plugin;
+using RainbowMage.OverlayPlugin;
+using System;
 using System.Text.RegularExpressions;
 
 namespace Cactbot {
@@ -18,6 +21,34 @@ namespace Cactbot {
 
     public Version GetLocalVersion() {
       return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+    }
+
+    public string GetCactbotLocation() {
+      return System.Reflection.Assembly.GetExecutingAssembly().Location;
+    }
+
+    public Version GetOverlayPluginVersion() {
+      return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).GetName().Version;
+    }
+
+    public string GetOverlayPluginLocation() {
+      return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).Location;
+    }
+
+    public Version GetFFXIVPluginVersion() {
+      return System.Reflection.Assembly.GetAssembly(typeof(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin)).GetName().Version;
+    }
+
+    public string GetFFXIVPluginLocation() {
+      return System.Reflection.Assembly.GetAssembly(typeof(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin)).Location;
+    }
+
+    public Version GetACTVersion() {
+      return System.Reflection.Assembly.GetAssembly(typeof(Advanced_Combat_Tracker.ActGlobals)).GetName().Version;
+    }
+
+    public string GetACTLocation() {
+      return System.Reflection.Assembly.GetAssembly(typeof(Advanced_Combat_Tracker.ActGlobals)).Location;
     }
 
     public Version GetRemoteVersion() {

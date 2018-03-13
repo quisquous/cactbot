@@ -37,7 +37,7 @@ namespace Cactbot {
     // When true, the update function should reset notify state back to defaults.
     private bool reset_notify_state_ = false;
     // When true, check for the latest version on the next Navigate. Used to only check once.
-    private static bool check_version_ = true;
+    private static bool is_first_overlay_initialized_ = true;
     // Set to true when the constructor is run, to prevent premature navigation before we're able to log.
     private bool init_ = false;
 
@@ -159,11 +159,22 @@ namespace Cactbot {
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
 
-      if (check_version_) {
-        check_version_ = false;
+      if (is_first_overlay_initialized_) {
+        is_first_overlay_initialized_ = false;
+
         var versions = new VersionChecker(this);
         Version local = versions.GetLocalVersion();
         Version remote = versions.GetRemoteVersion();
+
+        Version overlay = versions.GetOverlayPluginVersion();
+        Version ffxiv = versions.GetFFXIVPluginVersion();
+        Version act = versions.GetACTVersion();
+
+        // Print out version strings and locations to help users debug.
+        LogInfo("cactbot: {0} {1}", local.ToString(), versions.GetCactbotLocation());
+        LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
+        LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
+        LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
 
         if (remote.Major == 0 && remote.Minor == 0) {
           var result = System.Windows.Forms.MessageBox.Show(Overlay,
