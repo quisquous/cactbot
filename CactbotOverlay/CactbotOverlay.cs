@@ -714,6 +714,9 @@ namespace Cactbot {
     }
 
     private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
+      if (config_dir == null || config_dir == "")
+        return null;
+
       // TODO: It's not great to have to load every js and css file in the user dir.
       // But most of the time they'll be short and there won't be many.  JS
       // could attempt to send an overlay name to C# code (and race with the
@@ -724,8 +727,14 @@ namespace Cactbot {
       // It's important to return null here vs an empty dictionary.  null here
       // indicates to attempt to load the user overloads indirectly via the path.
       // This is how remote user directories work.
-      if (!Directory.Exists(path.AbsolutePath))
+      try {
+        if (!Directory.Exists(path.AbsolutePath)) {
+          return null;
+        }
+      } catch (Exception e) {
+        LogError("Error checking directory: {0}", e.ToString());
         return null;
+      }
 
       try {
         var filenames = Directory.EnumerateFiles(path.AbsolutePath, "*.js").Concat(
