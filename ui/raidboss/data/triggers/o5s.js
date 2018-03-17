@@ -57,14 +57,14 @@
   ],
   triggers: [
     {
-      regex: /04:Removing combatant (魔列車|Phantom Train|Phantomzug|Train Fantôme)/,
+      regex: /04:Removing combatant (?:魔列車|Phantom Train|Phantomzug|Train Fantôme)/,
       run: function(data) {
         data.StopCombat();
       },
     },
     {
       id: 'O5S Doom Strike',
-      regex: /14:28B1:(魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (魔霊撃|Doom Strike|Vernichtungsschlag|Frappe Létale) on (\y{Name})/,
+      regex: /14:28B1:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔霊撃|Doom Strike|Vernichtungsschlag|Frappe Létale) on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
           return {
@@ -87,7 +87,7 @@
     },
     {
       id: 'O5S Head On',
-      regex: /14:28A4:(魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (追突|Head On|Frontalangriff|Plein Fouet)/,
+      regex: /14:28A4:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:追突|Head On|Frontalangriff|Plein Fouet)/,
       alertText: function (data) {
           return {
               en: 'Go To Back',
@@ -103,7 +103,7 @@
     },
     {
       id: 'O5S Diabolic Headlamp',
-      regex: /14:28B2:(魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (魔界の前照灯|Diabolic Headlamp|Diabolische Leuchte|Phare Diabolique)/,
+      regex: /14:28B2:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔界の前照灯|Diabolic Headlamp|Diabolische Leuchte|Phare Diabolique)/,
       alertText: function (data) {
           return {
               en: 'Stack Middle',
@@ -153,7 +153,7 @@
     },
     {
       id: 'O5S Remorse',
-      regex: /Added new combatant (未練のゴースト|Remorse|Melancholischer Geist|Fantôme Mélancolique)/,
+      regex: /Added new combatant (?:未練のゴースト|Remorse|Melancholischer Geist|Fantôme Mélancolique)/,
       infoText: function (data) {
           return {
               en: 'Knockback Ghost',
