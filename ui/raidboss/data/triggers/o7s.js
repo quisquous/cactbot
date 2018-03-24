@@ -8,9 +8,9 @@
     locale: 'de',
     replaceText: {
       'Magitek Ray': 'Magitek-Laser',
-		  'Arm And Hammer': 'Arm-Hammer',
-	  	'Atomic Ray': 'Atomstrahlung',
-	  	'Prey': 'Rakete',
+      'Arm And Hammer': 'Arm-Hammer',
+      'Atomic Ray': 'Atomstrahlung',
+      'Prey': 'Rakete',
       'Load': 'Laden',
       'Shockwave': 'Schockwelle',
       'Demon Simulation': 'Dämonensimulation',
@@ -104,17 +104,17 @@
       id: 'O7S Magitek Ray',
 	  regex: / 14:2788:(?:ガーディアン|Guardian|Wächter|Gardien) starts using (?:魔導レーザー|Magitek Ray|Magitek-Laser|Rayon Magitek)/,
       alertText: function(data) {
-		  return {
-			  en: 'Magitek Ray',
-			  de: 'Magitek-Laser'
-		  };
-	  },
+        return {
+	  en: 'Magitek Ray',
+	  de: 'Magitek-Laser'
+	};
+      },
       tts: function(data) {
-		  return {
-			  en: 'beam',
-			  de: 'laser',
-		  };
-	  },
+	return {
+	  en: 'beam',
+	  de: 'laser',
+        };
+      },
     },
     {
       id: 'O7S Arm And Hammer',
@@ -122,26 +122,26 @@
       alertText: function(data, matches) {
         if (matches[1] == data.me)
           return {
-			  en: 'Tank Buster on YOU',
-			  de: 'Tank Buster auf DIR',
-		  };
+	    en: 'Tank Buster on YOU',
+	    de: 'Tank Buster auf DIR',
+	  };
         if (data.role == 'healer')
           return {
-			  en: 'Buster on ' + data.ShortName(matches[1]),
-			  de: 'Buster auf ' + data.ShortName(matches[1]),
-		  };
+	    en: 'Buster on ' + data.ShortName(matches[1]),
+	    de: 'Buster auf ' + data.ShortName(matches[1]),
+          };
       },
       tts: function(data, matches) {
         if (matches[1] == data.me)
           return {
-			  en: 'buster',
-			  de: 'buster',
-		  };
-		if (data.role == 'healer')
-		  return {
-			en: 'buster',
-			de: 'buster',
-		  };
+	    en: 'buster',
+	    de: 'buster',
+	  };
+	if (data.role == 'healer')
+	  return {
+	    en: 'buster',
+	    de: 'buster',
+	  };
       },
     },
     {
