@@ -751,6 +751,40 @@ namespace Cactbot {
       return user_files;
     }
 
+    private void GetUserConfigDirAndFiles(out string config_dir, out Dictionary<string, string> local_files) {
+      local_files = null;
+      config_dir = null;
+
+      if (Config.UserConfigFile != null && Config.UserConfigFile != "") {
+        // Explicit user config directory specified.
+        config_dir = Config.UserConfigFile;
+        local_files = GetLocalUserFiles(config_dir);
+      } else {
+        if (Config.Url != null && Config.Url != "") {
+          // First try a user directory relative to the html.
+          try {
+            var url_dir = Path.GetDirectoryName(new Uri(Config.Url).LocalPath);
+            config_dir = Path.GetFullPath(url_dir + "\\..\\..\\user\\");
+            local_files = GetLocalUserFiles(config_dir);
+          } catch (Exception e) {
+            LogError("Error checking html rel dir: {0}: {1}", Config.Url, e.ToString());
+            config_dir = null;
+            local_files = null;
+          }
+        }
+        if (local_files == null) {
+          // Second try a user directory relative to the dll.
+          try {
+            config_dir = Path.GetFullPath(CactbotOverlayConfig.CactbotDllRelativeUserUri);
+            local_files = GetLocalUserFiles(config_dir);
+          } catch (Exception e) {
+            LogError("Error checking dll rel dir: {0}: {1}", CactbotOverlayConfig.CactbotDllRelativeUserUri, e.ToString());
+            config_dir = null;
+            local_files = null;
+          }
+        }
+      }
+    }
 
     // This is an overlayMessage() function call from javascript. We accept a json object of
     // (command, argument) pairs. Commands are:
@@ -765,7 +799,10 @@ namespace Cactbot {
       } else if (obj.ContainsKey("setSaveData")) {
         Config.OverlayData = obj["setSaveData"];
       } else if (obj.ContainsKey("onDOMContentLoaded")) {
-        DispatchToJS(new JSEvents.OnInitializeOverlay(Config.UserConfigFile, GetLocalUserFiles(Config.UserConfigFile)));
+        Dictionary<string, string> local_files;
+        string config_dir;
+        GetUserConfigDirAndFiles(out config_dir, out local_files);
+        DispatchToJS(new JSEvents.OnInitializeOverlay(config_dir, local_files));
         notify_state_.dom_content_loaded = true;
       }
     }

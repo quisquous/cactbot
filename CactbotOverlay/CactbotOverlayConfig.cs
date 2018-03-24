@@ -11,7 +11,7 @@ namespace Cactbot {
     public static string CactbotAssemblyUri {
       get { return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location); }
     }
-    public static string CactbotUserUri {
+    public static string CactbotDllRelativeUserUri {
       get { return System.IO.Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
     }
     public CactbotOverlayConfig(string name)
