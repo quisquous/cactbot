@@ -35,7 +35,7 @@
     {
       locale: 'fr',
       replaceSync: {
-        'Engage!': "À l'attaque !",
+        'Engage!': "À l'attaque!",
         'Wroth Ghost': 'Fantôme Furieux',
         'Phantom Train': 'Train Fantôme',
         'Remorse': 'Fantôme Mélancolique',
