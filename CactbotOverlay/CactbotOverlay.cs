@@ -722,13 +722,13 @@ namespace Cactbot {
       // could attempt to send an overlay name to C# code (and race with the
       // document ready event), but that's probably overkill.
       var user_files = new Dictionary<string, string>();
-      var path = new Uri(config_dir);
+      var path = new Uri(config_dir).LocalPath;
 
       // It's important to return null here vs an empty dictionary.  null here
       // indicates to attempt to load the user overloads indirectly via the path.
       // This is how remote user directories work.
       try {
-        if (!Directory.Exists(path.AbsolutePath)) {
+        if (!Directory.Exists(path)) {
           return null;
         }
       } catch (Exception e) {
@@ -737,8 +737,8 @@ namespace Cactbot {
       }
 
       try {
-        var filenames = Directory.EnumerateFiles(path.AbsolutePath, "*.js").Concat(
-          Directory.EnumerateFiles(path.AbsolutePath, "*.css"));
+        var filenames = Directory.EnumerateFiles(path, "*.js").Concat(
+          Directory.EnumerateFiles(path, "*.css"));
         foreach (string filename in filenames) {
           if (filename.Contains("-example."))
             continue;
