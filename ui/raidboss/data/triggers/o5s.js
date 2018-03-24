@@ -66,55 +66,58 @@
       id: 'O5S Doom Strike',
       regex: /14:28B1:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔霊撃|Doom Strike|Vernichtungsschlag|Frappe Létale) on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
-              en: 'Tank Buster on YOU', 
-              de: 'Tank Buster auf DIR',
-              };
-        if (data.role == 'healer')
+            en: 'Tank Buster on YOU',
+            de: 'Tank Buster auf DIR',
+          };
+        }
+        if (data.role == 'healer') {
           return {
-              en: 'Buster on ' + data.ShortName(matches[1]),
-              de: 'Buster auf ' +data.ShortName(matches[1]),
-              };
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' +data.ShortName(matches[1]),
+          };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
-              en: 'buster',
-              de: 'buster',
-              };
+            en: 'buster',
+            de: 'buster',
+          };
+        }
       },
     },
     {
       id: 'O5S Head On',
       regex: /14:28A4:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:追突|Head On|Frontalangriff|Plein Fouet)/,
       alertText: function (data) {
-          return {
-              en: 'Go To Back',
-              de: 'Nach HINTEN!',
-              };
+        return {
+          en: 'Go To Back',
+          de: 'Nach HINTEN!',
+        };
       },
       tts: function(data) {
-          return {
-              en: 'run away',
-              de: 'renn weg',
-          };
+        return {
+          en: 'run away',
+          de: 'renn weg',
+        };
       },
     },
     {
       id: 'O5S Diabolic Headlamp',
       regex: /14:28B2:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔界の前照灯|Diabolic Headlamp|Diabolische Leuchte|Phare Diabolique)/,
       alertText: function (data) {
-          return {
-              en: 'Stack Middle',
-              de: 'Versammeln Mitte',
-              };
+        return {
+          en: 'Stack Middle',
+          de: 'Versammeln Mitte',
+        };
       },
       tts: function(data) {
-          return {
-              en: 'stack middle',
-              de: 'versammeln mitte',
-          };
+        return {
+          en: 'stack middle',
+          de: 'versammeln mitte',
+        };
       },
     },
     {
@@ -122,16 +125,16 @@
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
       infoText: function (data) {
-          return {
-              en: 'Light',
-              de: 'Licht',
-          };
+        return {
+          en: 'Light',
+          de: 'Licht',
+        };
       },
       tts: function (data) {
-          return {
-              en: 'Light',
-              de: 'Licht',
-          };
+        return {
+          en: 'Light',
+          de: 'Licht',
+        };
       },
     },
     {
@@ -139,32 +142,32 @@
       regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
       infoText: function (data) {
-          return {
-              en: 'Wind',
-              de: 'Wind',
-          };
+        return {
+          en: 'Wind',
+          de: 'Wind',
+        };
       },
       tts: function (data) {
-          return {
-              en: 'Wind',
-              de: 'Wind',
-          };
+        return {
+          en: 'Wind',
+          de: 'Wind',
+        };
       },
     },
     {
       id: 'O5S Remorse',
       regex: /Added new combatant (?:未練のゴースト|Remorse|Melancholischer Geist|Fantôme Mélancolique)/,
       infoText: function (data) {
-          return {
-              en: 'Knockback Ghost',
-              de: 'Rückstoß Geist',
-          };
+        return {
+          en: 'Knockback Ghost',
+          de: 'Rückstoß Geist',
+        };
       },
       tts: function (data) {
-          return {
-              en: 'Knockback Ghost',
-              de: 'Rückstoß Geist',
-          };
+        return {
+          en: 'Knockback Ghost',
+          de: 'Rückstoß Geist',
+        };
       },
     },
   ]
