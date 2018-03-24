@@ -10,8 +10,7 @@
       replaceText: {
         'Encumber': 'Wegsperrung',
         'Saintly Beam': 'Heiligenstrahl',
-        'Knockback Whistle': 'Rückstoß Pfeife',
-        'All in the Mind': 'Psychokinese',
+        'Ghost Beams': 'Heiligenstrahl',
         'Doom Strike': 'Vernichtungsschlag',
         'Head On': 'Frontalangriff',
         'Diabolic Wind': 'Diabolischer Wind',
@@ -20,8 +19,9 @@
         'Diabolic Headlamp': 'Diabolische Leuchte',
         'Tether Whistle': 'Verfolger Pfeife',
         'Diabolic Light': 'Diabolisches Licht',
-        ' Ghosts': ' Geister',
-        'Ghosts spawn': 'Geister erscheinen',
+        'Adds spawn': 'Adds erscheinen',
+        'Diabolic Chimney': 'Unheilvoller Schornstein',
+        'Ghosts active': 'Geister aktiv',
       },
       replaceSync: {
         'Engage!': 'Start!',
