@@ -1,5 +1,6 @@
 // O5S - Sigmascape 1.0 Savage
 // localized sync and triggers should work for Ja, En, De, Fr now
+// Missing: jp/fr replaceText
 [{
   zoneRegex: /Sigmascape V1\.0 \(Savage\)/,
   timelineFile: 'o5s.txt',
@@ -57,14 +58,20 @@
   ],
   triggers: [
     {
-      regex: /04:Removing combatant (?:魔列車|Phantom Train|Phantomzug|Train Fantôme)/,
+      regex: /04:Removing combatant Phantom Train/,
+      regexDe: /04:Removing combatant Phantomzug/,
+      regexFr: /04:Removing combatant Train Fantôme/,
+      regexJp: /04:Removing combatant 魔列車/,
       run: function(data) {
         data.StopCombat();
       },
     },
     {
       id: 'O5S Doom Strike',
-      regex: /14:28B1:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔霊撃|Doom Strike|Vernichtungsschlag|Frappe Létale) on (\y{Name})/,
+      regex: /14:28B1:Phantom Train starts using Doom Strike on (\y{Name})/,
+      regexDe: /14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
+      regexFr: /14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
+      regexJp: /14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -90,7 +97,10 @@
     },
     {
       id: 'O5S Head On',
-      regex: /14:28A4:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:追突|Head On|Frontalangriff|Plein Fouet)/,
+      regex: /14:28A4:Phantom Train starts using Head On/,
+      regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
+      regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
+      regexJp: /14:28A4:魔列車 starts using 追突/,
       alertText: function (data) {
         return {
           en: 'Go To Back',
@@ -106,7 +116,10 @@
     },
     {
       id: 'O5S Diabolic Headlamp',
-      regex: /14:28B2:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔界の前照灯|Diabolic Headlamp|Diabolische Leuchte|Phare Diabolique)/,
+      regex: /14:28B2:Phantom Train starts using Diabolic Headlamp/,
+      regexDe: /14:28B2:Phantomzug starts using Diabolische Leuchte/,
+      regexFr: /14:28B2:Train Fantôme starts using Phare Diabolique/,
+      regexJp: /14:28B2:魔列車 starts using 魔界の前照灯/,
       alertText: function (data) {
         return {
           en: 'Stack Middle',
@@ -156,7 +169,10 @@
     },
     {
       id: 'O5S Remorse',
-      regex: /Added new combatant (?:未練のゴースト|Remorse|Melancholischer Geist|Fantôme Mélancolique)/,
+      regex: /Added new combatant Remorse/,
+      regexDe: /Added new combatant Melancholischer Geist/,
+      regexFr: /Added new combatant Fantôme Mélancolique/,
+      regexJp: /Added new combatant 未練のゴースト/,
       infoText: function (data) {
         return {
           en: 'Knockback Ghost',
