@@ -22,6 +22,7 @@
         'Diabolic Light': 'Diabolisches Licht',
         ' Ghosts': ' Geister',
         'Ghosts spawn': 'Geister erscheinen',
+        'Add wave': 'Adds erscheinen',
       },
       replaceSync: {
         'Engage!': 'Start!',
