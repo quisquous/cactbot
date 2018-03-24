@@ -61,11 +61,6 @@ class CactbotLanguageKo extends CactbotLanguage {
   }
 }
 
-document.addEventListener("onPlayerChangedEvent", function (e) {
-  if (Options && Options.Language == 'ko') {
-    if (!gLang)
-      gLang = new CactbotLanguageKo();
-    if (gLang.playerName != e.detail.name)
-      gLang.OnPlayerNameChange(e.detail.name);
-  }
+UserConfig.registerLanguage('ko', function() {
+  gLang = new CactbotLanguageKo();
 });

@@ -1,6 +1,6 @@
 var UserConfig = {
   getUserConfigLocation: function(overlayName, callback) {
-    document.addEventListener("onInitializeOverlay", function(e) {
+    document.addEventListener("onInitializeOverlay", (function(e) {
       var localFiles = e.detail.localUserFiles;
       var basePath = e.detail.userLocation;
       var jsFile = overlayName + '.js';
@@ -34,9 +34,16 @@ var UserConfig = {
       }
 
       // Post this callback so that the js and css can be executed first.
-      if (callback) {
-        window.setTimeout(callback, 0);
-      }
-    });
+      window.setTimeout((function() {
+        if (Options.Language && Options.Language in this.languageFuncs)
+          this.languageFuncs[Options.Language]();
+        if (callback)
+          callback();
+      }).bind(this), 0);
+    }).bind(this));
   },
+  registerLanguage: function(lang, func) {
+    this.languageFuncs[lang] = func;
+  },
+  languageFuncs: {},
 };

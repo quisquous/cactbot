@@ -204,3 +204,8 @@ class CactbotLanguage {
     return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
   };
 };
+
+document.addEventListener("onPlayerChangedEvent", (function (e) {
+  if (gLang)
+    gLang.OnPlayerNameChange(e.detail.name);
+}).bind(this));

@@ -60,11 +60,6 @@ class CactbotLanguageFr extends CactbotLanguage {
   }
 }
 
-document.addEventListener("onPlayerChangedEvent", function (e) {
-  if (Options && Options.Language == 'fr') {
-    if (!gLang)
-      gLang = new CactbotLanguageFr();
-    if (gLang.playerName != e.detail.name)
-      gLang.OnPlayerNameChange(e.detail.name);
-  }
+UserConfig.registerLanguage('fr', function() {
+  gLang = new CactbotLanguageFr();
 });
