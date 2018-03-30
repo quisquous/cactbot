@@ -1,11 +1,54 @@
 // O5N - Sigmascape 1.0 Normal
+// localized - done: ja, en, de, fr - sync with timeline should now work with all 4 languages.
 [{
   zoneRegex: /^(Sigmascape \(V1\.0\)|Sigmascape V1\.0)$/,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,
+  timelineReplace: [
+    {
+      locale: 'de',
+      replaceText: {
+        'Encumber': 'Wegsperrung',
+        'Saintly Beam': 'Heiligenstrahl',
+        'Ghost Beams': 'Heiligenstrahl',
+        'Doom Strike': 'Vernichtungsschlag',
+        'Head On': 'Frontalangriff',
+        'Diabolic Wind': 'Diabolischer Wind',
+        'Acid Rain': 'Säureregen',
+        'Crossing Whistle': 'Kreuzend Pfeife',
+        'Diabolic Headlamp': 'Diabolische Leuchte',
+        'Tether Whistle': 'Verfolger Pfeife',
+        'Diabolic Light': 'Diabolisches Licht',
+        'Adds spawn': 'Adds erscheinen',
+        'Diabolic Chimney': 'Unheilvoller Schornstein',
+        'Ghosts active': 'Geister aktiv',
+      },
+      replaceSync: {
+        'Engage!': 'Start!',
+        'Wroth Ghost': 'Erzürnter Geist',
+        'Phantom Train': 'Phantomzug',
+      },
+    },
+    {
+      locale: 'fr',
+      replaceSync: {
+        'Engage!': "À l'attaque !",
+        'Wroth Ghost': 'Fantôme Furieux',
+        'Phantom Train': 'Train Fantôme',
+      },
+    },
+    {
+      locale: 'ja',
+      replaceSync: {
+        'Engage!': '戦闘開始！',
+        'Wroth Ghost': 'ロスゴースト',
+        'Phantom Train': '魔列車',
+      },
+    },
+  ],
   triggers: [
     {
-      regex: /04:Removing combatant Phantom Train/,
+      regex: /04:Removing combatant (?:魔列車|Phantom Train|Phantomzug|Train Fantôme)/,
       run: function(data) {
         data.StopCombat();
       },
@@ -13,43 +56,92 @@
 
     {
       id: 'O5N Doom Strike',
-      regex: /14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
+      regex: /14:28A3:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔霊撃|Doom Strike|Vernichtungsschlag|Frappe Létale) on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
-          return 'Tank Buster on YOU';
+          return {
+            en: 'Tank Buster on YOU', 
+            de: 'Tank Buster auf DIR',
+          };
         if (data.role == 'healer')
-          return 'Buster on ' + data.ShortName(matches[1]);
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' +data.ShortName(matches[1]),
+          };
       },
       tts: function(data, matches) {
         if (matches[1] == data.me)
-          return 'buster';
+          return {
+            en: 'buster',
+            de: 'buster',
+          };
       },
     },
     {
       id: 'O5N Head On',
-      regex: /14:28A4:Phantom Train starts using Head On/,
-      alertText: 'Go To Back',
-      tts: 'run away',
+      regex: /14:28A4:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:追突|Head On|Frontalangriff|Plein Fouet)/,
+      alertText: function (data) {
+        return {
+          en: 'Go To Back',
+          de: 'Nach HINTEN!',
+        };
+      },
+      tts: function(data) {
+        return {
+          en: 'run away',
+          de: 'renn weg',
+        };
+      },
     },
     {
       id: 'O5N Diabolic Headlamp',
-      regex: /14:28A6:Phantom Train starts using Diabolic Headlamp/,
-      alertText: 'Stack Middle',
-      tts: 'stack middle',
+      regex: /14:28A6:(?:魔列車|Phantom Train|Phantomzug|Train Fantôme) starts using (?:魔界の前照灯|Diabolic Headlamp|Diabolische Leuchte|Phare Diabolique)/,
+      alertText: function (data) {
+        return {
+          en: 'Stack Middle',
+          de: 'Versammeln Mitte',
+        };
+      },
+      tts: function(data) {
+        return {
+          en: 'stack middle',
+          de: 'versammeln mitte',
+        };
+      },
     },
     {
       id: 'O5N Diabolic Light',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Light',
-      tts: 'light',
+      infoText: function (data) {
+        return {
+          en: 'Light',
+          de: 'Licht',
+        };
+      },
+      tts: function (data) {
+        return {
+          en: 'Light',
+          de: 'Licht',
+        };
+      },
     },
     {
       id: 'O5N Diabolic Wind',
       regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Wind',
-      tts: 'wind',
+      infoText: function (data) {
+        return {
+          en: 'Wind',
+          de: 'Wind',
+        };
+      },
+      tts: function (data) {
+        return {
+            en: 'Wind',
+            de: 'Wind',
+        };
+      },
     },
   ]
 }]
