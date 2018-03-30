@@ -388,11 +388,7 @@ namespace Cactbot {
 
     public class OnInitializeOverlay : JSEvent {
       public OnInitializeOverlay(string location, Dictionary<string, string> files) {
-        if (String.IsNullOrWhiteSpace(location)) {
-          this.userLocation = CactbotOverlayConfig.CactbotUserUri;
-        } else {
-          this.userLocation = location;
-        }
+        this.userLocation = location;
         this.localUserFiles = files;
       }
 

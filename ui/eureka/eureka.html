@@ -1,0 +1,43 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <!-- OverlayPlugin widget resize handle -->
+  <link rel="stylesheet" href="../../resources/defaults.css">
+  <link rel="stylesheet" href="../../resources/resize_handle.css">
+  <script src="../../resources/resize_handle.js"></script>
+  
+  <style>
+    #eurekaId { 
+      width: calc(10/6*100%);
+      height: calc(10/6*100%);
+      border: 0px; 
+      zoom: 0.6;
+      -moz-transform: scale(0.6);
+      -moz-transform-origin: 0 0;
+      -o-transform: scale(0.6);
+      -o-transform-origin: 0 0;
+      -webkit-transform: scale(0.6);
+      -webkit-transform-origin: 0 0;
+      opacity: 0.5;
+    }
+  </style>
+  <script>
+    document.addEventListener("onZoneChangedEvent", function (e) {
+	    if (e.detail.zoneName == 'Eureka Anemos') 
+	      document.getElementById("eurekaId").style.display = "block";
+	    else
+	  	document.getElementById("eurekaId").style.display = "none";
+    });
+    document.addEventListener("onLogEvent", function(e) {
+      for (var i = 0; i < e.detail.logs.length; i++) {
+        var eurekaId = e.detail.logs[i].match('ffxiv-eureka.com/(.{6})');
+        if (eurekaId)
+          document.getElementById('eurekaId').src = "https://ffxiv-eureka.com/" + eurekaId[1];
+      }
+    });
+  </script>
+</head>
+<body>
+	<iframe id="eurekaId" scrolling="no"></iframe>
+</body>
+</html>

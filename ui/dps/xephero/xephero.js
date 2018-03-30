@@ -3,13 +3,16 @@
 var Options = {
   Language: 'en',
   IgnoreZones: [
-    'Seal Rock (Seize)',
-    'The Borderland Ruins (Secure)',
-    'The Fields Of Glory (Shatter)',
+    'PvpSeize',
+    'PvpSecure',
+    'PvpShatter',
+    'EurekaAnemos',
   ],
 };
 
 var gCurrentZone = null;
+var gIgnoreCurrentZone = false;
+var gIgnoreZones = [];
 var rows = 10;
 var rdpsMax = 0;
 
@@ -164,14 +167,19 @@ function updatePhase(phase, dpsOrder) {
 
 $(document).on('onOverlayDataUpdate', function(e) {
   // DPS numbers in large pvp is not useful and hella noisy.
-  if (Options.IgnoreZones.indexOf(gCurrentZone) >= 0) {
+  if (gIgnoreCurrentZone)
     return;
-  }
+
   tracker.onOverlayDataUpdate(e.originalEvent.detail);
   update(e.originalEvent.detail);
 });
 $(document).on('onZoneChangedEvent', function (e) {
   gCurrentZone = e.originalEvent.detail.zoneName;
+  gIgnoreCurrentZone = false;
+  for (var i = 0; i < gIgnoreZones.length; ++i) {
+    if (gCurrentZone.match(gIgnoreZones[i]))
+      gIgnoreCurrentZone = true;
+  }
   tracker.onZoneChange(gCurrentZone);
   hideOverlay();
 });
@@ -181,4 +189,8 @@ $(document).on('onLogEvent', function (e) {
 $(document).on('onInCombatChangedEvent', function (e) {
   // Only clear phases when ACT starts a new encounter for consistency.
   tracker.inCombatChanged(e.originalEvent.detail.inACTCombat);
+});
+
+UserConfig.getUserConfigLocation('xephero', function(e) {
+  gIgnoreZones = Options.IgnoreZones.map(function(z) { return gLang.kZone[z]; });
 });

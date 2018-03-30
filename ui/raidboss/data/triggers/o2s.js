@@ -57,7 +57,7 @@
     },
     {
       id: 'O2S Gravitational Wave',
-      regex: /:2372:Catastrophe starts usinge/,
+      regex: /:2372:Catastrophe starts using/,
       infoText: 'Gravitational Wave: AOE damage',
       condition: function(data) { return data.role == 'healer'; },
       tts: 'wave',

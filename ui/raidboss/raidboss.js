@@ -23,11 +23,13 @@ var Options = {
   AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
   AlarmSound: '../../resources/sounds/BigWigs/Alarm.ogg',
   LongSound: '../../resources/sounds/BigWigs/Long.ogg',
+  PullSound: '../../resources/sounds/PowerAuras/sonar.ogg',
 
   InfoSoundVolume: 1,
   AlertSoundVolume: 1,
   AlarmSoundVolume: 1,
   LongSoundVolume: 1,
+  PullSoundVolume: 0.3,
 
   DisabledTriggers: {},
 

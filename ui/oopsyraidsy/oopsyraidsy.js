@@ -7,6 +7,12 @@ var Options = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
+  IgnoreZones: [
+    'PvpSeize',
+    'PvpSecure',
+    'PvpShatter',
+    'EurekaAnemos',
+  ],
 
   AbilityIdNameMap: {
     '5C6': 'Attack',
@@ -500,6 +506,7 @@ class DamageTracker {
     this.collector = collector;
     this.triggerSets = null;
     this.inCombat = false;
+    this.ignoreZone = false;
     this.timers = [];
     this.generalTriggers = [];
     this.damageTriggers = [];
@@ -530,6 +537,8 @@ class DamageTracker {
   }
 
   OnLogEvent(e) {
+    if (this.ignoreZone)
+      return;
     for (var i = 0; i < e.detail.logs.length; ++i) {
       var line = e.detail.logs[i];
       for (var j = 0; j < this.generalTriggers.length; ++j) {
@@ -778,7 +787,10 @@ class DamageTracker {
   }
 
   OnPartyWipeEvent(e) {
+    if (this.ignoreZone)
+      return;
     this.Reset();
+    this.collector.OnPartyWipeEvent(e);
   }
 
   OnZoneChangeEvent(e) {
@@ -805,6 +817,15 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+
+    this.ignoreZone = false;
+    for (var i = 0; i < Options.IgnoreZones.length; ++i) {
+      if (this.zoneName.match(gLang.kZone[Options.IgnoreZones[i]])) {
+        this.ignoreZone = true;
+        return;
+      }
+    }
+
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) < 0)
@@ -920,7 +941,6 @@ document.addEventListener("onLogEvent", function(e) {
 });
 document.addEventListener("onPartyWipe", function(e) {
   gDamageTracker.OnPartyWipeEvent(e);
-  gMistakeCollector.OnPartyWipeEvent(e);
 });
 document.addEventListener("onZoneChangedEvent", function(e) {
   gDamageTracker.OnZoneChangeEvent(e);

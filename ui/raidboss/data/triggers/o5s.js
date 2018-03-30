@@ -117,7 +117,6 @@
           de: 'versammeln mitte',
         };
       },
-
     },
     {
       id: 'O5S Diabolic Light',
@@ -150,6 +149,7 @@
         return {
             en: 'Wind',
             de: 'Wind',
+
         };
       },
     },

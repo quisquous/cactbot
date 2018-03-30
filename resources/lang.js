@@ -129,6 +129,10 @@ class CactbotLanguage {
       O6S: /Sigmascape V2\.0 \(Savage\)/,
       O7S: /Sigmascape V3\.0 \(Savage\)/,
       O8S: /Sigmascape V4\.0 \(Savage\)/,
+      PvpSeize: /Seal Rock \(Seize\)/,
+      PvpSecure: /The Borderland Ruins \(Secure\)/,
+      PvpShatter: /The Fields Of Glory \(Shatter\)/,
+      EurekaAnemos: /Eureka Anemos/,
     });
   }
 
@@ -204,3 +208,8 @@ class CactbotLanguage {
     return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
   };
 };
+
+document.addEventListener("onPlayerChangedEvent", (function (e) {
+  if (gLang)
+    gLang.OnPlayerNameChange(e.detail.name);
+}).bind(this));
