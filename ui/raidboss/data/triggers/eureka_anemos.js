@@ -91,6 +91,16 @@
       },
     },
     {
+      id: 'Fafnir Terror',
+      regex: /14:29B7:Fafnir starts using Absolute Terror/,
+      alarmText: {
+        en: 'Look Away!',
+      },
+      tts: {
+        en: 'look away',
+      },
+    },
+    {
       id: 'Eureka Voidscale Ice',
       regex: /14:29C3:Voidscale starts using Ball Of Ice on (\y{Name})/,
       condition: function(data, matches) { return matches[1] == data.me; },
