@@ -28,7 +28,7 @@
     },
     {
       id: 'Fractal Death Spin',
-      regex: /14:27AE:The Ultima Beast starts using Death Spin/,
+      regex: /14:27(?:AE|AD):The Ultima Beast starts using Death Spin/,
       infoText: 'Knockback',
       tts: 'knockback',
     },
