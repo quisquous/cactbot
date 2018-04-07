@@ -184,10 +184,12 @@ class PopupText {
   }
 
   Reset() {
+    var locale = this.options.Language || 'en';
     this.data = {
       me: this.me,
       job: this.job,
       role: this.role,
+      lang: locale,
       ShortName: this.ShortNamify,
       StopCombat: (function() { this.SetInCombat(false); }).bind(this),
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },

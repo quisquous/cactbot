@@ -110,5 +110,19 @@
         fr: 'Bravo, vive la France',
       },
     },
+    {
+      id: 'Test Lang',
+      regex: /00:0038:cactbot lang/,
+      infoText: function(data) {
+        return {
+	  en: 'Language: ' + data.lang,
+	};
+      },
+      tts: function(data) {
+        return {
+	  en: 'Language: ' + data.lang,
+	};
+      },
+    },
   ],
 }]

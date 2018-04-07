@@ -46,6 +46,7 @@
 //         me: The player's character name.
 //         job: The player's job.
 //         role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster/crafting/gathering).
+//         lang: The current language, e.g. 'en', 'fr', 'ko', 'de', 'ja'.
 //         function ParseLocaleFloat(float): A function that can parse \y{Float} matches from the regex.
 //         function ShortName(name): A function that simplifies a player's name into something shorter, usually first name.
 //         function StopCombat(): Manually stop timelines and triggers, usually paired with resetWhenOutOfCombat = false.
