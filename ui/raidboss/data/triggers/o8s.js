@@ -93,7 +93,7 @@
     },
     {
       id: 'O8S Ultimate Embrace',
-      regex: / 14:2910 Kefka starts using Ultimate Embrace on (\y{Name})/,
+      regex: / 14:2910:Kefka starts using Ultimate Embrace on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
           return 'Embrace on YOU';
@@ -112,7 +112,7 @@
     {
       // 28E8: clown hyperdrive, 2912: god hyperdrive
       id: 'O8S Hyperdrive',
-      regex: / 14:(?:28E8|2912) Kefka starts using Hyperdrive on (\y{Name})/,
+      regex: / 14:(?:28E8|2912):Kefka starts using Hyperdrive on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
           return 'Hyperdrive on YOU';
