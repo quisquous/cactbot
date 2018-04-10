@@ -64,10 +64,10 @@
 #mp-bar, #tp-bar, #rdm-bar, #mnk-bar {
   margin-top: 1px;
 }
-.tank #hp-bar {
+#hp-bar.show-number {
   height: 18px;
 }
-.drk #mp-bar {
+#mp-bar.show-number {
   height: 18px;
 }
 .drk #tp-bar {
