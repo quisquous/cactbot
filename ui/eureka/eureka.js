@@ -492,7 +492,10 @@ class EurekaTracker {
     container.appendChild(label);
 
     window.setTimeout(function() {
-      container.removeChild(label);
+      // Changing zones can also orphan all the labels.
+      if (label.parentElement == container) {
+        container.removeChild(label);
+      }
     }, this.options.FlagTimeoutMs);
   }
 }
