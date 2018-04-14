@@ -29,6 +29,10 @@ cactbot provides these modules:
 
 ![rdm jobs screenshot](screenshots/promo_jobs.png)
 
+* eureka: Eureka NM tracking map
+
+![eureka screenshot](screenshots/promo_eureka.png)
+
 * dps: extra features for dps meters
 
 ![xephero screenshot](screenshots/xephero.png)
@@ -191,6 +195,17 @@ beside it in orange. The first step of the melee combo has been executed, which 
 box above the health bar. The proc tracking is circled below in green.
 
 ![jobs screenshot](screenshots/Jobs.png)
+
+### [eureka](ui/eureka) module
+
+To use this module, point cactbot at **ui/eureka/eureka.html**
+
+This module provides automatic tracking of NMs that are popped or have
+been killed.  It shows gales/night timers and any local tracker link
+that has been pasted in chat.  Any flags in chat are also temporarily
+included on the map.
+
+![eureka screenshot](screenshots/promo_eureka.png)
 
 ### [dps](ui/dps) meters
 
