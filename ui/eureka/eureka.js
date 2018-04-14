@@ -154,7 +154,7 @@ var Options = {
 }
 
 var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})  , (\y{Float}) \)(.*$)/);
-var gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\w*)\/?/);
+var gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
 var gGalesIcon = "&#x1F300;"
 var gWeatherIcons = {
   Gales: gGalesIcon,
