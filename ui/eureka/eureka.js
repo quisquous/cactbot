@@ -75,7 +75,7 @@ var Options = {
           x: 13.8,
           y: 12.5,
         },
-        bomb: {
+        bomba: {
           name: 'Bomb',
           mobName: 'Bombadeel',
           x: 28.3,
@@ -88,7 +88,7 @@ var Options = {
           x: 24.8,
           y: 17.9,
         },
-        juli: {
+        julika: {
           name: 'Juli',
           mobName: 'Judgmental Julika',
           x: 21.9,
@@ -132,7 +132,7 @@ var Options = {
           x: 7.6,
           y: 18.2,
         },
-        lama: {
+        lamashtu: {
           name: 'Lama',
           mobName: 'Lamashtu',
           // 7.7, 23.3 from the tracker but mobs are farther south.
@@ -140,7 +140,7 @@ var Options = {
           y: 25.3,
           time: 'Night',
         },
-        pazu: {
+        pazuzu: {
           name: 'Pazu',
           mobName: 'Pazuzu',
           x: 7.4,
@@ -407,7 +407,6 @@ class EurekaTracker {
       }
       match = log.match(gImportRegex);
       if (match) {
-        var webKeys = ['Sabo', 'Lord', 'Teles', 'Emperor', 'Callisto', 'Number', 'Jaha', 'Amemet', 'Caym', 'Bomba', 'Serket', 'Julika', 'Rider', 'Poly', 'Strider', 'Hazmat', 'Fafnir', 'Amarok', 'Lamashtu', 'Pazuzu'];
         var importText = match[2];
         var importList = importText.split(' > ');
         for(var i = 0; i < importList.length; i++) {
@@ -415,7 +414,7 @@ class EurekaTracker {
           var name = nmInfo[0];
           var time = nmInfo[1].match(/\d+/)[0];
           var nmIndex = webKeys.indexOf(name);
-          var nm = this.nms[this.nmKeys[nmIndex]];
+          var nm = this.nms[name.toLowerCase()];
           nm.respawnTimeMsLocal = (time * 60 * 1000) + (+new Date());
         }
 
