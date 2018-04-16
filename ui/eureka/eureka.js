@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 var Options = {
   Language: 'en',
@@ -155,6 +155,7 @@ var Options = {
 
 var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})  , (\y{Float}) \)(.*$)/);
 var gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
+var gImportRegex = Regexes.Parse(/00:00..:(.*)★ NMs on cooldown: (\S.*\))/);
 var gGalesIcon = "&#x1F300;"
 var gWeatherIcons = {
   Gales: gGalesIcon,
@@ -403,6 +404,22 @@ class EurekaTracker {
       match = log.match(gTrackerRegex);
       if (match) {
         this.currentTracker = match[1];
+      }
+      match = log.match(gImportRegex);
+      if (match) {
+        var webKeys = ['Sabo', 'Lord', 'Teles', 'Emperor', 'Callisto', 'Number', 'Jaha', 'Amemet', 'Caym', 'Bomba', 'Serket', 'Julika', 'Rider', 'Poly', 'Strider', 'Hazmat', 'Fafnir', 'Amarok', 'Lamashtu', 'Pazuzu'];
+        var importText = match[2];
+        var importList = importText.split(' > ');
+        for(var i = 0; i < importList.length; i++) {
+          var nmInfo = importList[i].split(' ');
+          var name = nmInfo[0];
+          var time = nmInfo[1].match(/\d+/)[0];
+          var nmIndex = webKeys.indexOf(name);
+          var nm = this.nms[this.nmKeys[nmIndex]];
+          nm.respawnTimeMsLocal = (time * 60 * 1000) + (+new Date());
+        }
+
+        this.UpdateTimes();
       }
       if (log.indexOf('03:Added new combatant ') >= 0) {
         for (var i = 0; i < this.nmKeys.length; ++i) {
