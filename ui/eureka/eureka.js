@@ -242,6 +242,7 @@ class EurekaTracker {
       nm.addRegex = Regexes.Parse('03:Added new combatant ' + nm.mobName + '\\.');
       nm.removeRegex = Regexes.Parse('04:Removing combatant ' + nm.mobName + '\\.');
       nm.respawnTimeMsLocal = undefined;
+      nm.respawnTimeMsTracker = undefined;
     }
 
     this.playerElement = document.createElement('div');
@@ -349,6 +350,8 @@ class EurekaTracker {
       var respawnMs = null;
       if (nm.respawnTimeMsLocal) {
         respawnMs = nm.respawnTimeMsLocal;
+      } else if (nm.respawnTimeMsTracker) {
+        respawnMs = nm.respawnTimeMsTracker;
       }
 
       var popRespawnMs = respawnMs;
@@ -426,7 +429,7 @@ class EurekaTracker {
       var time = nmInfo[1].match(/\d+/)[0];
       var nm = trackerToNM[name.toLowerCase()];
       if (nm) {
-        nm.respawnTimeMsLocal = (time * 60 * 1000) + (+new Date());
+        nm.respawnTimeMsTracker = (time * 60 * 1000) + (+new Date());
       } else {
         console.error('Invalid NM Import: ' + name);
       }
