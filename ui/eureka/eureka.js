@@ -21,30 +21,35 @@ var Options = {
         sabo: {
           name: 'Sabo',
           mobName: 'Sabotender Corrido',
+          trackerName: 'sabo',
           x: 13.9,
           y: 21.9,
         },
         lord: {
           name: 'Lord',
           mobName: 'The Lord Of Anemos',
+          trackerName: 'lord',
           x: 29.7,
           y: 27.1,
         },
         teles: {
           name: 'Teles',
           mobName: 'Teles',
+          trackerName: 'teles',
           x: 25.6,
           y: 27.4,
         },
         emperor: {
           name: 'Emp',
           mobName: 'The Emperor Of Anemos',
+          trackerName: 'emperor',
           x: 17.2,
           y: 22.2,
         },
         callisto: {
           name: 'Calli',
           mobName: 'Callisto',
+          trackerName: 'callisto',
           // 25.5, 22.3 from the tracker, but collides with number
           x: 26.2,
           y: 22.0,
@@ -52,6 +57,7 @@ var Options = {
         number: {
           name: 'Number',
           mobName: 'Number',
+          trackerName: 'number',
           // 23.5, 22.7 from the tracker, but collides with callisto
           x: 23.5,
           y: 23.4,
@@ -59,6 +65,7 @@ var Options = {
         jaha: {
           name: 'Jaha',
           mobName: 'Jahannam',
+          trackerName: 'jaha',
           x: 17.7,
           y: 18.6,
           weather: 'Gales',
@@ -66,18 +73,21 @@ var Options = {
         amemet: {
           name: 'Amemet',
           mobName: 'Amemet',
+          trackerName: 'amemet',
           x: 15.0,
           y: 15.6,
         },
         caym: {
           name: 'Caym',
           mobName: 'Caym',
+          trackerName: 'caym',
           x: 13.8,
           y: 12.5,
         },
-        bomba: {
+        bomb: {
           name: 'Bomb',
           mobName: 'Bombadeel',
+          trackerName: 'bomba',
           x: 28.3,
           y: 20.4,
           time: 'Night',
@@ -85,18 +95,21 @@ var Options = {
         serket: {
           name: 'Serket',
           mobName: 'Serket',
+          trackerName: 'serket',
           x: 24.8,
           y: 17.9,
         },
-        julika: {
+        juli: {
           name: 'Juli',
           mobName: 'Judgmental Julika',
+          trackerName: 'julika',
           x: 21.9,
           y: 15.6,
         },
         rider: {
           name: 'Rider',
           mobName: 'The White Rider',
+          trackerName: 'rider',
           x: 20.3,
           y: 13.0,
           time: 'Night',
@@ -104,24 +117,28 @@ var Options = {
         poly: {
           name: 'Poly',
           mobName: 'Polyphemus',
+          trackerName: 'poly',
           x: 26.4,
           y: 14.3,
         },
         strider: {
           name: 'Strider',
           mobName: "Simurgh's Strider",
+          trackerName: 'strider',
           x: 28.6,
           y: 13.0,
         },
         hazmat: {
           name: 'Hazmat',
           mobName: 'King Hazmat',
+          trackerName: 'hazmat',
           x: 35.3,
           y: 18.3,
         },
         fafnir: {
           name: 'Fafnir',
           mobName: 'Fafnir',
+          trackerName: 'fafnir',
           x: 35.5,
           y: 21.5,
           time: 'Night',
@@ -129,20 +146,23 @@ var Options = {
         amarok: {
           name: 'Amarok',
           mobName: 'Amarok',
+          trackerName: 'amarok',
           x: 7.6,
           y: 18.2,
         },
-        lamashtu: {
+        lama: {
           name: 'Lama',
           mobName: 'Lamashtu',
+          trackerName: 'lamashtu',
           // 7.7, 23.3 from the tracker but mobs are farther south.
           x: 7.7,
           y: 25.3,
           time: 'Night',
         },
-        pazuzu: {
+        pazu: {
           name: 'Pazu',
           mobName: 'Pazuzu',
+          trackerName: 'pazuzu',
           x: 7.4,
           y: 21.7,
           weather: 'Gales',
@@ -392,6 +412,29 @@ class EurekaTracker {
     }
   }
 
+  ImportFromTracker(importText) {
+    var trackerToNM = {};
+    for (var i = 0; i < this.nmKeys.length; ++i) {
+      var nm = this.nms[this.nmKeys[i]];
+      trackerToNM[nm.trackerName.toLowerCase()] = nm;
+    }
+
+    var importList = importText.split(' > ');
+    for(var i = 0; i < importList.length; i++) {
+      var nmInfo = importList[i].split(' ');
+      var name = nmInfo[0];
+      var time = nmInfo[1].match(/\d+/)[0];
+      var nm = trackerToNM[name.toLowerCase()];
+      if (nm) {
+        nm.respawnTimeMsLocal = (time * 60 * 1000) + (+new Date());
+      } else {
+        console.error('Invalid NM Import: ' + name);
+      }
+    }
+
+    this.UpdateTimes();
+  }
+
   OnLog(e) {
     if (!this.zoneInfo)
       return;
@@ -407,18 +450,8 @@ class EurekaTracker {
       }
       match = log.match(gImportRegex);
       if (match) {
-        var importText = match[2];
-        var importList = importText.split(' > ');
-        for(var i = 0; i < importList.length; i++) {
-          var nmInfo = importList[i].split(' ');
-          var name = nmInfo[0];
-          var time = nmInfo[1].match(/\d+/)[0];
-          var nmIndex = webKeys.indexOf(name);
-          var nm = this.nms[name.toLowerCase()];
-          nm.respawnTimeMsLocal = (time * 60 * 1000) + (+new Date());
-        }
-
-        this.UpdateTimes();
+        this.ImportFromTracker(match[2]);
+        continue;
       }
       if (log.indexOf('03:Added new combatant ') >= 0) {
         for (var i = 0; i < this.nmKeys.length; ++i) {
