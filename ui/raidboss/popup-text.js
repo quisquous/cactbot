@@ -373,9 +373,10 @@ class PopupText {
           if (namedSoundVolume in that.options)
             soundVol = that.options[namedSoundVolume];
         }
-        if ('soundVolume' in trigger)
-          soundVol = ValueOrFunction(trigger.soundVolume);
       }
+
+      if ('soundVolume' in trigger)
+        soundVol = ValueOrFunction(trigger.soundVolume);
 
       soundUrl = triggerOptions.SoundOverride || soundUrl;
       soundVol = triggerOptions.VolumeOverride || soundVol;
