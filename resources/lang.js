@@ -100,6 +100,7 @@ class CactbotLanguage {
       WingsOfSalvation: '26CA',
       ChainLightning: '26C8',
       ThermionicBurst: '26B9',
+      Exaflare: '26EF',
 
       // Byakko Ex
       ByaSweepTheLeg: '27DB',

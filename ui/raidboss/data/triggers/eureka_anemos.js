@@ -153,6 +153,16 @@
       },
     },
     {
+      id: 'Eureka Wraith Count',
+      regex: / 19:Shadow Wraith was defeated by/,
+      infoText: function(data) {
+        data.wraithCount = data.wraithCount || 0;
+        data.wraithCount++;
+        return 'wraiths: ' + data.wraithCount;
+      },
+      soundVolume: 0,
+    },
+    {
       id: 'Eureka Sabo Pop',
       regex: /03:Added new combatant (Sabotender Corrido)\./,
       suppressSeconds: 1700,
@@ -383,6 +393,9 @@
     {
       id: 'Eureka Pazuzu Pop',
       regex: /03:Added new combatant (Pazuzu)\./,
+      preRun: function(data) {
+        data.wraithCount = 0;
+      },
       suppressSeconds: 1700,
       alertText: function(data, matches) {
         return matches[1];
