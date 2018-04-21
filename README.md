@@ -208,7 +208,7 @@ included on the map.
 It currently does not read the tracker information directly.  However,
 if you click on the left/red "Copy killed NMs" button in the tracker to
 copy the list of currently dead NMs, you can paste it in game, e.g.
-`/echo NMs on cooldown: Serket (7m) > Julika (24m) > Poly (54m)`
+`/echo ★ NMs on cooldown: Serket (7m) > Julika (24m) > Poly (54m)`
 
 ![eureka screenshot](screenshots/promo_eureka.png)
 
