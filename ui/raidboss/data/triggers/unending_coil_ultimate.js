@@ -639,6 +639,51 @@
       },
     },
     {
+      id: 'UCU Morn Afah',
+      regex: / 14:26EC:Bahamut Prime starts using Morn Afah on (\y{Name})/,
+      preRun: function(data) {
+        data.mornAfahCount = data.mornAfahCount || 0;
+        data.mornAfahCount++;
+      },
+      alertText: function(data, matches) {
+        var str = 'Morn Afah #' + data.mornAfahCount;
+        if (matches[1] == data.me)
+          return str + ' (YOU)';
+        return str + ' (' + data.ShortName(matches[1]) + ')';
+      },
+      tts: function(data, matches) {
+        return 'morn afah ' + data.ShortName(matches[1]);
+      },
+    },
+    {
+      id: 'UCU Akh Morn',
+      regex: / 14:26EA:Bahamut Prime starts using Akh Morn on (\y{Name})/,
+      preRun: function(data) {
+        data.akhMornCount = data.akhMornCount || 0;
+        data.akhMornCount++;
+      },
+      infoText: function(data, matches) {
+        return 'Akh Morn #' + data.akhMornCount;
+      },
+      tts: function(data, matches) {
+        return 'akh morn ' + data.akhMornCount;
+      },
+    },
+    {
+      id: 'UCU Exaflare',
+      regex: /14:26EF:Bahamut Prime starts using Exaflare/,
+      preRun: function(data) {
+        data.exaflareCount = data.exaflareCount || 0;
+        data.exaflareCount++;
+      },
+      infoText: function(data, matches) {
+        return 'Exaflare #' + data.exaflareCount;
+      },
+      tts: function(data, matches) {
+        return 'exaflare ' + data.exaflareCount;
+      },
+    },
+    {
       // One time setup.
       id: 'UCU Initial Setup',
       regex: /:26AA:Twintania starts using/,
