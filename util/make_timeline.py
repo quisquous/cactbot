@@ -1,5 +1,6 @@
 import argparse
 from datetime import datetime
+import fflogs
 import re
 
 def timestamp_type(arg):
@@ -18,65 +19,6 @@ def parse_line_time(line):
     time = time.replace(microsecond=int(line[23:29]))
     return time
 
-def fflogs_fetch(api_url, options):
-    """Gets a url and handles any API errors"""
-    # Make sure we have the requests library
-    try:
-        import requests
-    except ImportError:
-        raise ImportError("FFlogs parsing requires the Requests module for python. Run the following to install it:\npython -m pip install requests")
-
-    response = requests.get(api_url, params=options)
-
-    # Handle non-JSON response
-    try:
-        response_dict = response.json()
-    except:
-        raise Exception('Could not parse response: ' + response.text)
-
-    # Handle bad request
-    if response.status_code != 200:
-        if 'error' in response_dict:
-            raise Exception('FFLogs error: ' + response_dict['error'])
-        else:
-            raise Exception('Unexpected FFLogs error: ' + response.text)
-    
-    return response_dict
-
-def fflogs_api(call, report, options):
-    """Makes a call to the FFLogs API and returns a dictionary"""
-    if call != 'fights' and call != 'events':
-        return {}
-
-    api_url = 'https://www.fflogs.com:443/v1/report/{}/{}'.format(call, report)
-
-    data = fflogs_fetch(api_url, options)
-
-    # If this is a fight list, we're done already
-    if call == 'fights':
-        return data
-
-    # If this is events, there might be more. Fetch until we have all of it
-    while 'nextPageTimestamp' in data:
-        # Set the new start time
-        options['start'] = data['nextPageTimestamp']
-
-        # Get the extra data
-        more_data = fflogs_fetch(api_url, options)
-
-        # Add the new events to the existing data
-        data['events'].extend(more_data['events'])
-
-        # Continue the loop if there's more
-        if 'nextPageTimestamp' in more_data:
-            data['nextPageTimestamp'] = more_data['nextPageTimestamp']
-        else:
-            del data['nextPageTimestamp']
-            break
-
-    # Return the event data
-    return data
-
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
 
@@ -88,7 +30,7 @@ def parse_report(args):
     last_ability = start_time
 
     # Get report information
-    report_data = fflogs_api('fights', args.report, {'api_key': args.key})
+    report_data = fflogs.api('fights', args.report, {'api_key': args.key})
 
     report_start_time = report_data['start']
 
@@ -120,7 +62,7 @@ def parse_report(args):
         'filter': 'source.disposition="enemy" and type="cast"',
         'translate': 'true',
     }
-    event_data = fflogs_api('events', args.report, options)
+    event_data = fflogs.api('events', args.report, options)
 
     entries = []
 
