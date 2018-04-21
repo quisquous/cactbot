@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 var Options = {
   Language: 'en',
@@ -75,7 +75,7 @@ var Options = {
           x: 13.8,
           y: 12.5,
         },
-        bomb: {
+        bomba: {
           name: 'Bomb',
           mobName: 'Bombadeel',
           x: 28.3,
@@ -88,7 +88,7 @@ var Options = {
           x: 24.8,
           y: 17.9,
         },
-        juli: {
+        julika: {
           name: 'Juli',
           mobName: 'Judgmental Julika',
           x: 21.9,
@@ -132,7 +132,7 @@ var Options = {
           x: 7.6,
           y: 18.2,
         },
-        lama: {
+        lamashtu: {
           name: 'Lama',
           mobName: 'Lamashtu',
           // 7.7, 23.3 from the tracker but mobs are farther south.
@@ -140,7 +140,7 @@ var Options = {
           y: 25.3,
           time: 'Night',
         },
-        pazu: {
+        pazuzu: {
           name: 'Pazu',
           mobName: 'Pazuzu',
           x: 7.4,
@@ -155,6 +155,7 @@ var Options = {
 
 var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})  , (\y{Float}) \)(.*$)/);
 var gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
+var gImportRegex = Regexes.Parse(/00:00..:(.*)★ NMs on cooldown: (\S.*\))/);
 var gGalesIcon = "&#x1F300;"
 var gWeatherIcons = {
   Gales: gGalesIcon,
@@ -403,6 +404,21 @@ class EurekaTracker {
       match = log.match(gTrackerRegex);
       if (match) {
         this.currentTracker = match[1];
+      }
+      match = log.match(gImportRegex);
+      if (match) {
+        var importText = match[2];
+        var importList = importText.split(' > ');
+        for(var i = 0; i < importList.length; i++) {
+          var nmInfo = importList[i].split(' ');
+          var name = nmInfo[0];
+          var time = nmInfo[1].match(/\d+/)[0];
+          var nmIndex = webKeys.indexOf(name);
+          var nm = this.nms[name.toLowerCase()];
+          nm.respawnTimeMsLocal = (time * 60 * 1000) + (+new Date());
+        }
+
+        this.UpdateTimes();
       }
       if (log.indexOf('03:Added new combatant ') >= 0) {
         for (var i = 0; i < this.nmKeys.length; ++i) {
