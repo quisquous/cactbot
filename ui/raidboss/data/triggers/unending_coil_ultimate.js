@@ -558,18 +558,18 @@
       id: 'UCU Megaflare Tower',
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
       infoText: function(data) {
-        if (data.trio != 'fellruin' && data.trio != 'octet' || data.megaStack.length != 4)
+        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
         if (data.megaStack.indexOf(data.me) >= 0)
           return;
-        if (data.trio == 'fellruin')
+        if (data.trio == 'blackfire')
           return 'Tower, bait hypernova';
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
           return 'Bait Twin, then tower';
         return 'Get in a far tower';
       },
       tts: function(data) {
-        if (data.trio != 'fellruin' && data.trio != 'octet' || data.megaStack.length != 4)
+        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
         if (data.megaStack.indexOf(data.me) == -1) {
           return 'tower';
