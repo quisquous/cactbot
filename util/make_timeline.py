@@ -30,7 +30,7 @@ def parse_report(args):
     last_ability = start_time
 
     # Get report information
-    report_data = fflogs.api('fights', args.report, {'api_key': args.key})
+    report_data = fflogs.api('fights', args.report, 'www', {'api_key': args.key})
 
     report_start_time = report_data['start']
 
@@ -54,7 +54,6 @@ def parse_report(args):
         enemies[enemy['id']] = enemy['name']
 
     # Get the actual event list for the single fight
-    api_url = 'https://www.fflogs.com:443/v1/report/events/' + args.report
     options = {
         'api_key': args.key,
         'start': start_time,
@@ -62,7 +61,7 @@ def parse_report(args):
         'filter': 'source.disposition="enemy" and type="cast"',
         'translate': 'true',
     }
-    event_data = fflogs.api('events', args.report, options)
+    event_data = fflogs.api('events', args.report, 'www', options)
 
     entries = []
 

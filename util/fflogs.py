@@ -20,15 +20,18 @@ def _fetch(api_url, options):
             raise Exception('FFLogs error: ' + response_dict['error'])
         else:
             raise Exception('Unexpected FFLogs error: ' + response.text)
-    
+
     return response_dict
 
-def api(call, report, options):
+def api(call, report, prefix, options):
     """Makes a call to the FFLogs API and returns a dictionary"""
     if call != 'fights' and call != 'events':
         return {}
 
-    api_url = 'https://www.fflogs.com:443/v1/report/{}/{}'.format(call, report)
+    if prefix not in ['www', 'fr', 'ja', 'de']:
+      raise Exception('Invalid prefix: %s' % prefix)
+
+    api_url = 'https://{}.fflogs.com:443/v1/report/{}/{}'.format(prefix, call, report)
 
     data = _fetch(api_url, options)
 
