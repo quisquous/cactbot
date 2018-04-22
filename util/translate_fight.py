@@ -48,6 +48,12 @@ def find_start_end_time(report, args):
 
   return start_time, end_time, fight_id
 
+def add_default_ability_mappings(ability_replace):
+  # Many timelines have this, so just include it by default.
+  ability_replace['de']['Engage!'] = 'Start!'
+  ability_replace['fr']['Engage!'] = "À l'attaque"
+  ability_replace['ja']['Engage!'] = '戦闘開始！'
+
 # generate a mapping of lang => { default_name => name }
 def build_mapping(translations, ignore_list=[]):
   replace = defaultdict(dict)
@@ -140,6 +146,8 @@ def main(args):
     mob_replace = build_mapping(enemies)
     ability_replace = build_mapping(abilities, ignore_abilities)
     effect_replace = build_mapping(effects, ignore_effects)
+
+    add_default_ability_mappings(ability_replace)
 
     # Build some JSON similar to what cactbot expects in trigger files.
     timeline_replace = []
