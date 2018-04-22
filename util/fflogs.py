@@ -42,6 +42,7 @@ def api(call, report, prefix, options):
     # If this is events, there might be more. Fetch until we have all of it
     while 'nextPageTimestamp' in data:
         # Set the new start time
+        options = options.copy()
         options['start'] = data['nextPageTimestamp']
 
         # Get the extra data
