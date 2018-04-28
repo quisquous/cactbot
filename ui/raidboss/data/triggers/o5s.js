@@ -1,6 +1,8 @@
 // O5S - Sigmascape 1.0 Savage
-// localized sync and triggers should work for Ja, En, De, Fr now
-// Missing: jp/fr replaceText
+// localization:
+//   de: done
+//   fr: missing replaceText, triggers
+//   ja: missing replaceText, triggers
 [{
   zoneRegex: /Sigmascape V1\.0 \(Savage\)/,
   timelineFile: 'o5s.txt',
@@ -10,7 +12,7 @@
       regex: /04:Removing combatant Phantom Train/,
       regexDe: /04:Removing combatant Phantomzug/,
       regexFr: /04:Removing combatant Train Fantôme/,
-      regexJp: /04:Removing combatant 魔列車/,
+      regexJa: /04:Removing combatant 魔列車/,
       run: function(data) {
         data.StopCombat();
       },
@@ -20,7 +22,7 @@
       regex: /14:28B1:Phantom Train starts using Doom Strike on (\y{Name})/,
       regexDe: /14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
       regexFr: /14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
-      regexJp: /14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
+      regexJa: /14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -49,7 +51,7 @@
       regex: /14:28A4:Phantom Train starts using Head On/,
       regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
       regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
-      regexJp: /14:28A4:魔列車 starts using 追突/,
+      regexJa: /14:28A4:魔列車 starts using 追突/,
       alertText: function (data) {
         return {
           en: 'Go To Back',
@@ -68,7 +70,7 @@
       regex: /14:28B2:Phantom Train starts using Diabolic Headlamp/,
       regexDe: /14:28B2:Phantomzug starts using Diabolische Leuchte/,
       regexFr: /14:28B2:Train Fantôme starts using Phare Diabolique/,
-      regexJp: /14:28B2:魔列車 starts using 魔界の前照灯/,
+      regexJa: /14:28B2:魔列車 starts using 魔界の前照灯/,
       alertText: function (data) {
         return {
           en: 'Stack Middle',
@@ -121,7 +123,7 @@
       regex: /Added new combatant Remorse/,
       regexDe: /Added new combatant Melancholischer Geist/,
       regexFr: /Added new combatant Fantôme Mélancolique/,
-      regexJp: /Added new combatant 未練のゴースト/,
+      regexJa: /Added new combatant 未練のゴースト/,
       infoText: function (data) {
         return {
           en: 'Knockback Ghost',
@@ -140,11 +142,11 @@
     {
       locale: 'de',
       replaceSync: {
-        'Agony': 'Gequält[a] Geist',
+        'Agony': 'Gequälter Geist',
         'Doom Chimney': 'Unheilvoller Schornstein',
         'Phantom Train': 'Phantomzug',
         'Putrid Passenger': 'Fauliger Fahrgast',
-        'Wroth Ghost': 'Erzürnter Geist'
+        'Wroth Ghost': 'Erzürnter Geist',
         'Remorse': 'Melancholischer Geist',
         'Agony': 'Reuiger Geist',
         'Malice': 'Bösartiger Geist',
@@ -162,7 +164,7 @@
         'Engage!': 'Start!',
         'Head On': 'Frontalangriff',
         'Possess': 'Besessenheit',
-        'Saintly Beam': 'Heiligenstrahl'
+        'Saintly Beam': 'Heiligenstrahl',
 
         'Crossing Whistle': 'Kreuzend Pfeife',
         'Knockback Whistle': 'Rückstoß Pfeife',
@@ -174,7 +176,7 @@
         'Connectivity': 'Kopplung',
         'Prey': 'Markiert',
         'Stun': 'Betäubung',
-        'Throttle': 'Erstickung'
+        'Throttle': 'Erstickung',
       }
     },
     {
@@ -184,7 +186,7 @@
         'Doom Chimney': 'Cheminée Maléfique',
         'Phantom Train': 'Train Fantôme',
         'Putrid Passenger': 'Passager Putride',
-        'Wroth Ghost': 'Fantôme Furieux'
+        'Wroth Ghost': 'Fantôme Furieux',
         'Remorse': 'Fantôme Mélancolique',
         'Agony': 'Fantôme Souffrant',
         'Malice': 'Fantôme Rancunier',
@@ -202,7 +204,7 @@
         "Engage!": "À l'attaque",
         'Head On': 'Plein Fouet',
         'Possess': 'Possession',
-        'Saintly Beam': 'Faisceaux Sacrés'
+        'Saintly Beam': 'Faisceaux Sacrés',
         // FIXME:
         'Crossing Whistle': 'Crossing Whistle',
         'Knockback Whistle': 'Knockback Whistle',
@@ -214,7 +216,7 @@
         'Connectivity': 'Attelage',
         'Prey': 'Marquage',
         'Stun': 'Étourdissement',
-        'Throttle': 'Suffocation'
+        'Throttle': 'Suffocation',
       }
     },
     {
@@ -224,7 +226,7 @@
         'Doom Chimney': '魔煙突',
         'Phantom Train': '魔列車',
         'Putrid Passenger': 'ゾンビー・パッセンジャー',
-        'Wroth Ghost': 'ロスゴースト'
+        'Wroth Ghost': 'ロスゴースト',
         'Remorse': '未練のゴースト',
         'Agony': '苦悶のゴースト',
         'Malice': '怨念のゴースト',
@@ -242,7 +244,7 @@
         'Engage!': '戦闘開始！',
         'Head On': '追突',
         'Possess': '取り憑く',
-        'Saintly Beam': 'セイントビーム'
+        'Saintly Beam': 'セイントビーム',
         // FIXME:
         'Crossing Whistle': 'Crossing Whistle',
         'Knockback Whistle': 'Knockback Whistle',
@@ -254,7 +256,7 @@
         'Connectivity': '連結',
         'Prey': 'マーキング',
         'Stun': 'スタン',
-        'Throttle': '窒息'
+        'Throttle': '窒息',
       }
     }
   ],
