@@ -107,7 +107,7 @@ def main(args):
         'end': end_time,
         # filtering for disposition='enemy' drops neutral abilities like Encumber.
         # including death also gets you Wroth Ghosts that don't show up otherwise.
-        'filter': 'source.type="NPC" and (type="cast" or type="death")',
+        'filter': 'source.type="NPC" and (type="cast" or type="death" or type="begincast")',
         'translate': 'true',
     }
     abilities = defaultdict(dict)
