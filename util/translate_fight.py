@@ -164,10 +164,28 @@ def main(args):
     output = { 'timelineReplace': timeline_replace }
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=True)
 
+    # hacky reformatting: single quotes, and remove quotes
+    lines = []
+    headers = ['timelineReplace', 'locale', 'replaceSync', 'replaceText', 'locale']
+    for line in output_str.splitlines():
+      # add trailing commas
+      line = re.sub(r"\"\s*$", "\",", line)
+      line = re.sub(r"]\s*$", "],", line)
+      line = re.sub(r"}\s*$", "},", line)
+
+      # replace all quotes on headers
+      for header in headers:
+        if line.find('"' + header + '":') != -1:
+          line = line.replace('"', '', 2)
+      # replace double with single quotes on any line without apostrophes.
+      if line.find("'") == -1:
+        line = line.replace('"', "'")
+      lines.append(line)
+
     # Write that out to the user.
     if args.output_file:
-      with open(args.output_file, 'w', encoding='utf-16') as fp:
-        fp.write(output_str)
+      with open(args.output_file, 'w', encoding='utf-8') as fp:
+        fp.write('\n'.join(lines))
     else:
       try:
         print(output_str)
