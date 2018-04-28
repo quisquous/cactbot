@@ -220,6 +220,7 @@ hideall "--sync--"
 1158 "Teraflare" sync /:Bahamut Prime:26E9:/ window 1200,0
 1189 "--sync--" sync /:Bahamut Prime:2707:/ window 1200,0 # Glowing ball
 # 1200 Bahamut unleashes his inner rage!
+1203.3 "--targetable--"
 1209 "Morn Afah #1" #sync /:Bahamut Prime:26EC:/
 1215 "Akh Morn #1" #sync /:Bahamut Prime:26EA:/
 1228 "Exaflare #1" #sync /:Bahamut Prime:26EF:/
