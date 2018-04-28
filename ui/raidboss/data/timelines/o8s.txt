@@ -111,11 +111,11 @@ hideall "--sync--"
 1048 "--sync--" sync /14:28E9:Kefka starts using Forsaken/ window 120,60
 1053 "Forsaken #1" sync /:Kefka:28E9:/
 1064 "Heartless Archangel" sync /:Kefka:28FB:/
-1067 "Soak" sync /:Light of Consecration:28EA:/
-1077 "2x Wings of Destruction" sync /:Kefka:2900:/
+1067 "Soak" sync /:Light Of Consecration:28EA:/
+1077 "2x Wings Of Destruction" sync /:Kefka:2900:/
 1083 "Ultima" sync /:Kefka:2911:/
 1093 "Heartless Archangel" sync /:Kefka:28FB:/
-1096 "Soak" sync /:Light of Consecration:28EA:/
+1096 "Soak" sync /:Light Of Consecration:28EA:/
 
 # Light 1
 1108 "Light Of Judgment" sync /:Kefka:28ED:/
@@ -155,23 +155,23 @@ hideall "--sync--"
 1345 "Forsaken #3" sync /:Kefka:28E9:/
 1358 "Ultima" sync /:Kefka:2911:/
 1359 "Knockback Tethers" sync /:Graven Image:28DD:/
-1362 "Soak" sync /:Light of Consecration:28EA:/
+1362 "Soak" sync /:Light Of Consecration:28EA:/
 1364 "Ultimate Embrace" sync /:Kefka:2910:/
 1371 "Sleep/Confuse Tethers" sync /:Graven Image:28E(5|6):/
 1377 "Ultima" sync /:Kefka:2911:/
 1386 "Heartless Archangel" sync /:Kefka:28FB:/
-1389 "Soak" sync /:Light of Consecration:28EA:/
-1399 "2x Wings of Destruction" sync /:Kefka:2900:/
+1389 "Soak" sync /:Light Of Consecration:28EA:/
+1399 "2x Wings Of Destruction" sync /:Kefka:2900:/
 1400 "Soak"
 1405 "Ultima" sync /:Kefka:2911:/
 1412 "Statue Half Cleave" sync /:Graven Image:28D(E|F):/
-1413 "1x Wings of Destruction" sync /:Kefka:28FF:/
+1413 "1x Wings Of Destruction" sync /:Kefka:28FF:/
 
 # Light 3
-1421 "Light of Judgment" sync /:Kefka:28ED:/
+1421 "Light Of Judgment" sync /:Kefka:28ED:/
 1435 "Trine (small)" sync /:Kefka:290D:/
-1442 "1x Wings of Destruction" sync /:Kefka:28FF:/
-1453 "2x Wings of Destruction" sync /:Kefka:2900:/
+1442 "1x Wings Of Destruction" sync /:Kefka:28FF:/
+1453 "2x Wings Of Destruction" sync /:Kefka:2900:/
 1459 "Ultimate Embrace" sync /:Kefka:2910:/
 1475 "Trine (big)" sync /:Kefka:290D:/
 1485 "Past/Future" sync /:Kefka:28(EF|F1):/
@@ -184,17 +184,17 @@ hideall "--sync--"
 1530 "Forsaken #4" sync /:Kefka:28E9:/
 1543 "Ultima" sync /:Kefka:2911:/
 1544 "Knockback Tethers" sync /:Graven Image:28DD:/
-1547 "Soak" sync /:Light of Consecration:28EA:/
+1547 "Soak" sync /:Light Of Consecration:28EA:/
 1549 "Ultimate Embrace" sync /:Kefka:2910:/
 1556 "Sleep/Confuse Tethers" sync /:Graven Image:28E(5|6):/
 1562 "Ultima" sync /:Kefka:2911:/
 1571 "Heartless Archangel" sync /:Kefka:28FB:/
 1574 "Soak"
-1584 "2x Wings of Destruction" sync /:Kefka:2900:/
+1584 "2x Wings Of Destruction" sync /:Kefka:2900:/
 1586 "Soak"
 1590 "Ultima" sync /:Kefka:2911:/
 1595 "Statue Half Cleave"
-1596 "1x Wings of Destruction" sync /:Kefka:28FF:/
+1596 "1x Wings Of Destruction" sync /:Kefka:28FF:/
 
 # Enrage
 1602 "Ultima" sync /:Kefka:283D:/
