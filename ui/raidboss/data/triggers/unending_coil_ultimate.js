@@ -1,4 +1,8 @@
 // UCU - The Unending Coil Of Bahamut (Ultimate)
+// localization:
+//   de: partial timeline, partial triggers
+//   fr: partial timeline, partial triggers
+//   ja: partial timeline, partial triggers
 [{
   zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
   timelineFile: 'unending_coil_ultimate.txt',
@@ -6,56 +10,92 @@
     // --- State ---
     {
       regex: /:(\y{Name}) gains the effect of Firescorched/,
+      regexDe: /:(\y{Name}) gains the effect of Feuerhorn/,
+      regexFr: /:(\y{Name}) gains the effect of Corne-de-feu/,
+      regexJa: /:(\y{Name}) gains the effect of ファイアホーン/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.fireDebuff = true; },
     },
     {
       regex: /:(\y{Name}) loses the effect of Firescorched/,
+      regexDe: /:(\y{Name}) loses the effect of Feuerhorn/,
+      regexFr: /:(\y{Name}) loses the effect of Corne-de-feu/,
+      regexJa: /:(\y{Name}) loses the effect of ファイアホーン/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.fireDebuff = false; },
     },
     {
       regex: /:(\y{Name}) gains the effect of Icebitten/,
+      regexDe: /:(\y{Name}) gains the effect of Eisklaue/,
+      regexFr: /:(\y{Name}) gains the effect of Griffe-de-glace/,
+      regexJa: /:(\y{Name}) gains the effect of アイスクロウ/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.iceDebuff = true; },
     },
     {
       regex: /:(\y{Name}) loses the effect of Icebitten/,
+      regexDe: /:(\y{Name}) loses the effect of Eisklaue/,
+      regexFr: /:(\y{Name}) loses the effect of Griffe-de-glace/,
+      regexJa: /:(\y{Name}) loses the effect of アイスクロウ/,
       condition: function(data, matches) { return data.me == matches[1]; },
       run: function(data) { data.iceDebuff = false; },
     },
     {
       regex: /1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
+      regexDe: /1[56]:\y{ObjectId}:Feuerhorn:26C5:Feuerball:\y{ObjectId}:(\y{Name}):/,
+      regexFr: /1[56]:\y{ObjectId}:Corne-de-feu:26C5:Boule De Feu:\y{ObjectId}:(\y{Name}):/,
+      regexJa: /1[56]:\y{ObjectId}:ファイアホーン:26C5:ファイアボール:\y{ObjectId}:(\y{Name}):/,
       run: function(data, matches) {
         data.fireballs[data.naelFireballCount].push(matches[1]);
       },
     },
     {
       regex: /:26E2:Bahamut Prime starts using Quickmarch Trio/,
+      regexDe: /:26E2:Prim-Bahamut starts using Todesmarsch-Trio/,
+      regexFr: /:26E2:Primo-Bahamut starts using Trio De La Marche Militaire/,
+      regexJa: /:26E2:バハムート・プライム starts using 進軍の三重奏/,
       run: function(data) { if (data.resetTrio) data.resetTrio('quickmarch'); },
     },
     {
       regex: /:26E3:Bahamut Prime starts using Blackfire Trio/,
+      regexDe: /:26E3:Prim-Bahamut starts using Schwarzfeuer-Trio/,
+      regexFr: /:26E3:Primo-Bahamut starts using Trio Des Flammes Noires/,
+      regexJa: /:26E3:バハムート・プライム starts using 黒炎の三重奏/,
       run: function(data) { if (data.resetTrio) data.resetTrio('blackfire'); },
     },
     {
       regex: /:26E4:Bahamut Prime starts using Fellruin Trio/,
+      regexDe: /:26E4:Prim-Bahamut starts using Untergangs-Trio/,
+      regexFr: /:26E4:Primo-Bahamut starts using Trio Du Désastre/,
+      regexJa: /:26E4:バハムート・プライム starts using 厄災の三重奏/,
       run: function(data) { if (data.resetTrio) data.resetTrio('fellruin'); },
     },
     {
       regex: /:26E5:Bahamut Prime starts using Heavensfall Trio/,
+      regexDe: /:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
+      regexFr: /:26E5:Primo-Bahamut starts using Trio De L'univers/,
+      regexJa: /:26E5:バハムート・プライム starts using 天地崩壊 Trio/,
       run: function(data) { if (data.resetTrio) data.resetTrio('heavensfall'); },
     },
     {
       regex: /:26E6:Bahamut Prime starts using Tenstrike Trio/,
+      regexDe: /:26E6:Prim-Bahamut starts using Zehnschlag-Trio/,
+      regexFr: /:26E6:Primo-Bahamut starts using Trio Des Attaques/,
+      regexJa: /:26E6:バハムート・プライム starts using 連撃の三重奏/,
       run: function(data) { if (data.resetTrio) data.resetTrio('tenstrike'); },
     },
     {
       regex: /:26E7:Bahamut Prime starts using Grand Octet/,
+      regexDe: /:26E7:Prim-Bahamut starts using Großes Oktett/,
+      regexFr: /:26E7:Primo-Bahamut starts using Octuors Des Dragons/,
+      regexJa: /:26E7:バハムート・プライム starts using 群竜の八重奏/,
       run: function(data) { if (data.resetTrio) data.resetTrio('octet'); },
     },
     {
       regex: /16:........:Ragnarok:26B8:Heavensfall:........:(\y{Name}):/,
+      regexDe: /16:........:Ragnarök:26B8:Himmelssturz:........:(\y{Name}):/,
+      regexFr: /16:........:Ragnarok:26B8:Destruction Universelle:........:(\y{Name}):/,
+      regexJa: /16:........:ラグナロク:26B8:天地崩壊:........:(\y{Name}):/,
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -68,11 +108,17 @@
     // --- Twintania ---
     { id: 'UCU Twisters',
       regex: /:26AA:Twintania starts using/,
+      regexDe: /:26AA:Twintania starts using/,
+      regexFr: /:26AA:Gémellia starts using/,
+      regexJa: /:26AA:ツインタニア starts using/,
       alertText: 'Twisters',
       tts: 'twisters',
     },
     { id: 'UCU Death Sentence',
       regex: /:Twintania readies Death Sentence/,
+      regexDe: /:Twintania readies Todesurteil/,
+      regexFr: /:Gémellia readies Peine De Mort/,
+      regexJa: /:ツインタニア readies デスセンテンス/,
       alertText: function(data, matches) {
         if (data.role == 'tank' || data.role == 'healer')
           return 'Death Sentence';
@@ -116,6 +162,9 @@
     },
     { id: 'UCU Twintania P2',
       regex: /:Twintania HP at 75%/,
+      regexDe: /:Twintania HP at 75%/,
+      regexFr: /:Gémellia HP at 75%/,
+      regexJa: /:ツインタニア HP at 75%/,
       sound: 'Long',
       infoText: function(data, matches) {
         return 'Phase 2 Push';
@@ -123,6 +172,9 @@
     },
     { id: 'UCU Twintania P3',
       regex: /:Twintania HP at 45%/,
+      regexDe: /:Twintania HP at 45%/,
+      regexFr: /:Gémellia HP at 45%/,
+      regexJa: /:ツインタニア HP at 45%/,
       sound: 'Long',
       infoText: function(data, matches) {
         return 'Phase 3 Push';
@@ -220,12 +272,18 @@
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
       regex: /:Thunderwing:26C7:.*?:........:(\y{Name}):/,
+      regexDe: /:Donnerschwinge:26C7:.*?:........:(\y{Name}):/,
+      regexFr: /:Aile-de-foudre:26C7:.*?:........:(\y{Name}):/,
+      regexJa: /:サンダーウィング:26C7:.*?:........:(\y{Name}):/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: function(data) { return 'Thunder on YOU'; },
       tts: 'thunder',
     },
     { id: 'UCU Nael Your Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      regexDe: /:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
+      regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
+      regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
       durationSeconds: function(data, matches) {
         if (data.ParseLocaleFloat(matches[2]) <= 6)
@@ -252,6 +310,9 @@
     {
       // Doom tracking init.
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      regexDe: /:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
+      regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
+      regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         var order = null;
@@ -267,6 +328,9 @@
     {
       // Doom tracking cleanup.
       regex: /gains the effect of Doom/,
+      regexDe: /gains the effect of Verhängnis/,
+      regexFr: /gains the effect of Glas/,
+      regexJa: /gains the effect of 死の宣告/,
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
@@ -275,6 +339,7 @@
     },
     {
       id: 'UCU Nael Cleanse Callout',
+      // FIXME: need translations
       regex: /:Fang of Light:26CA:/,
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
@@ -287,6 +352,9 @@
     },
     { id: 'UCU Nael Fireball 1',
       regex: /:Ragnarok:26B8:/,
+      regexDe: /:Ragnarök:26B8:/,
+      regexFr: /:Ragnarok:26B8:/,
+      regexJa: /:ラグナロク:26B8:/,
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: 'Fire IN',
@@ -295,6 +363,9 @@
     },
     { id: 'UCU Nael Fireball 2',
       regex: /:Ragnarok:26B8:/,
+      regexDe: /:Ragnarök:26B8:/,
+      regexFr: /:Ragnarok:26B8:/,
+      regexJa: /:ラグナロク:26B8:/,
       delaySeconds: 51,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -319,6 +390,9 @@
     },
     { id: 'UCU Nael Fireball 3',
       regex: /:Ragnarok:26B8:/,
+      regexDe: /:Ragnarök:26B8:/,
+      regexFr: /:Ragnarok:26B8:/,
+      regexJa: /:ラグナロク:26B8:/,
       delaySeconds: 77,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -345,6 +419,9 @@
     },
     { id: 'UCU Nael Fireball 4',
       regex: /:Ragnarok:26B8:/,
+      regexDe: /:Ragnarök:26B8:/,
+      regexFr: /:Ragnarok:26B8:/,
+      regexJa: /:ラグナロク:26B8:/,
       delaySeconds: 98,
       suppressSeconds: 99999,
       preRun: function(data) {
@@ -369,6 +446,7 @@
       run: function(data) { data.naelFireballCount = 4; },
     },
     {
+      // FIXME: need Tail of Darkness/Fang of Light translations
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       condition: function(data, matches) { return !data.seenDragon || !(matches[1] in data.seenDragon); },
       run: function(data, matches) {
@@ -402,6 +480,9 @@
     },
     { id: 'UCU Nael Dragon Placement',
       regex: /:Iceclaw:26C6/,
+      regexDe: /:Eisklaue:26C6/,
+      regexFr: /:Griffe-de-glace:26C6/,
+      regexJa: /:アイスクロウ:26C6/,
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
@@ -533,11 +614,17 @@
     },
     { id: 'UCU Twister Dives',
       regex: /:Twintania:26B2:Twisting Dive:/,
+      regexDe: /:Twintania:26B2:Spiralschwinge:/,
+      regexFr: /:Gémellia:26B2:Plongeon-trombe:/,
+      regexJa: /:ツインタニア:26B2:ツイスターダイブ:/,
       alertText: 'Twisters',
       tts: 'twisters',
     },
     { id: 'UCU Bahamut Gigaflare',
       regex: /14:26D6:Bahamut Prime starts using Gigaflare/,
+      regexDe: /14:26D6:Prim-Bahamut starts using Gigaflare/,
+      regexFr: /14:26D6:Primo-Bahamut starts using GigaBrasier/,
+      regexJa: /14:26D6:バハムート・プライム starts using ギガフレア/,
       alertText: 'Gigaflare',
       tts: 'gigaflare',
     },
@@ -641,6 +728,9 @@
     {
       id: 'UCU Morn Afah',
       regex: / 14:26EC:Bahamut Prime starts using Morn Afah on (\y{Name})/,
+      regexDe: / 14:26EC:Prim-Bahamut starts using Morn Afah on (\y{Name})/,
+      regexFr: / 14:26EC:Primo-Bahamut starts using Morn Afah on (\y{Name})/,
+      regexJa: / 14:26EC:バハムート・プライム starts using モーン・アファー on (\y{Name})/,
       preRun: function(data) {
         data.mornAfahCount = data.mornAfahCount || 0;
         data.mornAfahCount++;
@@ -658,6 +748,9 @@
     {
       id: 'UCU Akh Morn',
       regex: / 14:26EA:Bahamut Prime starts using Akh Morn on (\y{Name})/,
+      regexDe: / 14:26EA:Prim-Bahamut starts using Akh Morn on (\y{Name})/,
+      regexFr: / 14:26EA:Primo-Bahamut starts using Akh Morn on (\y{Name})/,
+      regexJa: / 14:26EA:バハムート・プライム starts using アク・モーン on (\y{Name})/,
       preRun: function(data) {
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
@@ -672,6 +765,9 @@
     {
       id: 'UCU Exaflare',
       regex: /14:26EF:Bahamut Prime starts using Exaflare/,
+      regexDe: /14:26EF:Prim-Bahamut starts using Exaflare/,
+      regexFr: /14:26EF:Primo-Bahamut starts using ExaBrasier/,
+      regexJa: /14:26EF:バハムート・プライム starts using エクサフレア/,
       preRun: function(data) {
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;
@@ -687,6 +783,9 @@
       // One time setup.
       id: 'UCU Initial Setup',
       regex: /:26AA:Twintania starts using/,
+      regexDe: /:26AA:Twintania starts using/,
+      regexFr: /:26AA:Gémellia starts using/,
+      regexJa: /:26AA:ツインタニア starts using/,
       suppressSeconds: 99999,
       run: function(data) {
         // TODO: a late white puddle can cause dragons to get seen for the next
@@ -838,5 +937,259 @@
         data.findDragonMarks = findDragonMarks;
       },
     },
-  ]
+  ],
+  timelineReplace: [
+    {
+      locale: 'de',
+      replaceSync: {
+        'Bahamut Prime': 'Prim-Bahamut',
+        'Firehorn': 'Feuerhorn',
+        'Iceclaw': 'Eisklaue',
+        'Nael Deus Darnus': 'Nael Deus Darnus',
+        'Nael Geminus': 'Nael Geminus',
+        'Oviform': 'Magiekompressor',
+        'Ragnarok': 'Ragnarök',
+        'Thunderwing': 'Donnerschwinge',
+        'Twintania': 'Twintania',
+        // FIXME:
+        'Tail of Darkness': 'Tail of Darkness',
+        'Fang of Light': 'Fang of Light',
+      },
+      replaceText: {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Aetheric Profusion': 'Ätherische Profusion',
+        'Akh Morn': 'Akh Morn',
+        "Bahamut's Claw": "Klauen Bahamuts",
+        "Bahamut's Favor": "Bahamuts Segen",
+        'Blackfire Trio': 'Schwarzfeuer-Trio',
+        'Calamitous Blaze': 'Katastrophale Lohe',
+        'Calamitous Flame': 'Katastrophale Flammen',
+        'Cauterize': 'Kauterisieren',
+        'Chain Lightning': 'Kettenblitz',
+        'Dalamud Dive': 'Dalamud-Sturzflug',
+        'Death Sentence': 'Todesurteil',
+        'Deathstorm': 'Todessturm',
+        'Earth Shaker': 'Erdstoß',
+        'Engage!': 'Start!',
+        'Enrage': 'Finalangriff',
+        'Exaflare': 'Exaflare',
+        'Fellruin Trio': 'Untergangs-Trio',
+        'Fireball': 'Feuerball',
+        'Flames Of Rebirth': 'Flammen Der Wiedergeburt',
+        'Flare Breath': 'Flare-Atem',
+        'Flatten': 'Einebnen',
+        'Generate': 'Formung',
+        'Gigaflare': 'Gigaflare',
+        'Grand Octet': 'Großes Oktett',
+        'Hatch': 'Austritt',
+        'Heavensfall(?! )': 'Himmelssturz',
+        'Heavensfall Trio': 'Himmelssturz-Trio',
+        'Hypernova': 'Supernova',
+        'Iceball': 'Eisball',
+        'Iron Chariot': 'Eiserner Streitwagen',
+        'Liquid Hell': 'Höllenschmelze',
+        'Lunar Dive': 'Lunarer Sturz',
+        'Lunar Dynamo': 'Lunarer Dynamo',
+        'Megaflare': 'Megaflare',
+        'Megaflare Dive': 'Megaflare-Sturz',
+        'Meteor Stream': 'Meteorflug',
+        'Morn Afah': 'Morn Afah',
+        'Plummet': 'Herabstürzen',
+        'Quickmarch Trio': 'Todesmarsch-Trio',
+        'Raven Dive': 'Bahamuts Schwinge',
+        'Ravensbeak': 'Bradamante',
+        'Seventh Umbral Era': 'Siebte Ära Des Schattens',
+        'Tempest Wing': 'Sturm-Schwinge',
+        'Tenstrike Trio': 'Zehnschlag-Trio',
+        'Teraflare': 'Teraflare',
+        'Thermionic Beam': 'Thermionischer Strahl',
+        'Thermionic Burst': 'Thermionische Eruption',
+        'Twister': 'Wirbelsturm',
+        'Twisting Dive': 'Spiralschwinge',
+        'White Fury': 'Naels Zorn',
+        'Wings Of Salvation': 'Rettende Schwinge',
+      },
+      '~effectNames': {
+        'Doom': 'Verhängnis',
+        'Down For The Count': 'Am Boden',
+        'Earth Resistance Down II': 'Erdresistenz - (stark)',
+        'Firescorched': 'Feuerhorn',
+        'Icebitten': 'Eisklaue',
+        'Lohs Daih': 'Lohs Daih',
+        'Mana Hypersensitivity': 'Magieempfindlichkeit',
+        'Neurolink': 'Neurolink',
+        "Phoenix's Blessing": "Stärke Des Phönix",
+        'Piercing Resistance Down II': 'Stichresistenz - (stark)',
+        'Slashing Resistance Down II': 'Hiebresistenz - (stark)',
+        'Thunderstruck': 'Donnerschwinge',
+      },
+    },
+    {
+      locale: 'fr',
+      replaceSync: {
+        'Bahamut Prime': 'Primo-Bahamut',
+        'Firehorn': 'Corne-de-feu',
+        'Iceclaw': 'Griffe-de-glace',
+        'Nael Deus Darnus': 'Nael Deus Darnus',
+        'Nael Geminus': 'Nael Geminus',
+        'Oviform': 'Oviforme',
+        'Ragnarok': 'Ragnarok',
+        'Thunderwing': 'Aile-de-foudre',
+        'Twintania': 'Gémellia',
+        // FIXME:
+        'Tail of Darkness': 'Tail of Darkness',
+        'Fang of Light': 'Fang of Light',
+      },
+      replaceText: {
+        "Aetheric Profusion": "Excès D'éther",
+        'Akh Morn': 'Akh Morn',
+        "Bahamut's Claw": "Griffe De Bahamut",
+        "Bahamut's Favor": "Auspice Du Dragon",
+        'Blackfire Trio': 'Trio Des Flammes Noires',
+        'Calamitous Blaze': 'Brasier Du Fléau',
+        'Calamitous Flame': 'Flammes Du Fléau',
+        'Cauterize': 'Cautérisation',
+        "Chain Lightning": "Chaîne D'éclairs",
+        'Dalamud Dive': 'Chute De Dalamud',
+        'Death Sentence': 'Peine De Mort',
+        'Deathstorm': 'Tempête De La Mort',
+        'Earth Shaker': 'Secousse',
+        "Engage!": "À l'attaque",
+        'Exaflare': 'ExaBrasier',
+        'Fellruin Trio': 'Trio Du Désastre',
+        'Fireball': 'Boule De Feu',
+        'Flames Of Rebirth': 'Feu Résurrecteur',
+        'Flare Breath': 'Souffle Brasier',
+        'Flatten': 'Compression',
+        'Generate': 'Synthèse De Mana',
+        'Gigaflare': 'GigaBrasier',
+        'Grand Octet': 'Octuors Des Dragons',
+        'Hatch': 'Explosion De Mana',
+        'Heavensfall(?! )': 'Destruction Universelle',
+        "Heavensfall Trio": "Trio De L'univers",
+        'Hypernova': 'Supernova',
+        'Iceball': 'Orbe De Glace',
+        'Iron Chariot': 'Char De Fer',
+        'Liquid Hell': 'Enfer Liquide',
+        'Lunar Dive': 'Plongeon Lunaire',
+        'Lunar Dynamo': 'Dynamo Lunaire',
+        'Megaflare': 'MégaBrasier',
+        'Megaflare Dive': 'Plongeon MégaBrasier',
+        'Meteor Stream': 'Rayon Météore',
+        'Morn Afah': 'Morn Afah',
+        'Plummet': 'Piqué',
+        'Quickmarch Trio': 'Trio De La Marche Militaire',
+        'Raven Dive': 'Fonte Du Rapace',
+        'Ravensbeak': 'Bec Du Rapace',
+        'Seventh Umbral Era': '7e Fléau',
+        'Tempest Wing': 'Aile De Tempête',
+        'Tenstrike Trio': 'Trio Des Attaques',
+        'Teraflare': 'TéraBrasier',
+        'Thermionic Beam': 'Rayon Thermoïonique',
+        'Thermionic Burst': 'Rafale Thermoïonique',
+        'Twister': 'Grande Trombe',
+        'Twisting Dive': 'Plongeon-trombe',
+        'White Fury': 'Colère De Nael',
+        'Wings Of Salvation': 'Aile De La Salvation',
+      },
+      '~effectNames': {
+        'Doom': 'Glas',
+        'Down For The Count': 'Au Tapis',
+        'Earth Resistance Down II': 'Résistance à La Terre Réduite+',
+        'Firescorched': 'Corne-de-feu',
+        'Icebitten': 'Griffe-de-glace',
+        'Lohs Daih': 'Lohs Daih',
+        'Mana Hypersensitivity': 'Hypersensibilité à La Mana',
+        'Neurolink': 'Neurolien',
+        "Phoenix's Blessing": "Protection De Phénix",
+        'Piercing Resistance Down II': 'Résistance Au Perforant Réduite+',
+        'Slashing Resistance Down II': 'Résistance Au Tranchant Réduite+',
+        'Thunderstruck': 'Aile-de-foudre',
+      },
+    },
+    {
+      locale: 'ja',
+      replaceSync: {
+        'Bahamut Prime': 'バハムート・プライム',
+        'Firehorn': 'ファイアホーン',
+        'Iceclaw': 'アイスクロウ',
+        'Nael Deus Darnus': 'ネール・デウス・ダーナス',
+        'Nael Geminus': 'ネール・ジェミナス',
+        'Oviform': '魔力圧縮体',
+        'Ragnarok': 'ラグナロク',
+        'Thunderwing': 'サンダーウィング',
+        'Twintania': 'ツインタニア',
+        // FIXME:
+        'Tail of Darkness': 'Tail of Darkness',
+        'Fang of Light': 'Fang of Light',
+      },
+      replaceText: {
+        'Aetheric Profusion': 'エーテリックプロフュージョン',
+        'Akh Morn': 'アク・モーン',
+        "Bahamut's Claw": "バハムートクロウ",
+        "Bahamut's Favor": "龍神の加護",
+        'Blackfire Trio': '黒炎の三重奏',
+        'Calamitous Blaze': '災いの焔',
+        'Calamitous Flame': '災いの炎',
+        'Cauterize': 'カータライズ',
+        'Chain Lightning': 'チェインライトニング',
+        'Dalamud Dive': 'ダラガブダイブ',
+        'Death Sentence': 'デスセンテンス',
+        'Deathstorm': 'デスストーム',
+        'Earth Shaker': 'アースシェイカー',
+        'Engage!': '戦闘開始！',
+        'Exaflare': 'エクサフレア',
+        'Fellruin Trio': '厄災の三重奏',
+        'Fireball': 'ファイアボール',
+        'Flames Of Rebirth': '転生の炎',
+        'Flare Breath': 'フレアブレス',
+        'Flatten': 'フラッテン',
+        'Generate': '魔力錬成',
+        'Gigaflare': 'ギガフレア',
+        'Grand Octet': '群竜の八重奏',
+        'Hatch': '魔力爆散',
+        'Heavensfall(?! )': '天地崩壊',
+        'Heavensfall Trio': '天地の三重奏',
+        'Hypernova': 'スーパーノヴァ',
+        'Iceball': 'アイスボール',
+        'Iron Chariot': 'アイアンチャリオット',
+        'Liquid Hell': 'ヘルリキッド',
+        'Lunar Dive': 'ルナダイブ',
+        'Lunar Dynamo': 'ルナダイナモ',
+        'Megaflare': 'メガフレア',
+        'Megaflare Dive': 'メガフレアダイブ',
+        'Meteor Stream': 'メテオストリーム',
+        'Morn Afah': 'モーン・アファー',
+        'Plummet': 'プラメット',
+        'Quickmarch Trio': '進軍の三重奏',
+        'Raven Dive': 'レイヴンダイブ',
+        'Ravensbeak': 'レイヴェンズビーク',
+        'Seventh Umbral Era': '第七霊災',
+        'Tempest Wing': 'テンペストウィング',
+        'Tenstrike Trio': '連撃の三重奏',
+        'Teraflare': 'テラフレア',
+        'Thermionic Beam': 'サーミオニックビーム',
+        'Thermionic Burst': 'サーミオニックバースト',
+        'Twister': 'ツイスター',
+        'Twisting Dive': 'ツイスターダイブ',
+        'White Fury': 'ネールの憤怒',
+        'Wings Of Salvation': 'サルヴェーションウィング',
+      },
+      '~effectNames': {
+        'Doom': '死の宣告',
+        'Down For The Count': 'ノックダウン',
+        'Earth Resistance Down II': '土属性耐性低下［強］',
+        'Firescorched': 'ファイアホーン',
+        'Icebitten': 'アイスクロウ',
+        'Lohs Daih': 'ロース・ダイ',
+        'Mana Hypersensitivity': '魔力過敏症',
+        'Neurolink': '拘束装置',
+        "Phoenix's Blessing": "フェニックスの加護",
+        'Piercing Resistance Down II': '突属性耐性低下[強]',
+        'Slashing Resistance Down II': '斬属性耐性低下［強］',
+        'Thunderstruck': 'サンダーウィング',
+      },
+    },
+  ],
 }]
