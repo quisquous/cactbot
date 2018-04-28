@@ -54,6 +54,11 @@ def add_default_ability_mappings(ability_replace):
   ability_replace['fr']['Engage!'] = "À l'attaque"
   ability_replace['ja']['Engage!'] = '戦闘開始！'
 
+  # FIXME: add fr/ja translations here.
+  ability_replace['de']['--targetable--'] = '--anvisierbar--'
+  ability_replace['de']['--untargetable--'] = '--nich anvisierbar--'
+  ability_replace['de']['Enrage'] = 'Finalangriff'
+
 # generate a mapping of lang => { default_name => name }
 def build_mapping(translations, ignore_list=[]):
   replace = defaultdict(dict)
