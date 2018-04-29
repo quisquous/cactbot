@@ -17,8 +17,18 @@ namespace Cactbot {
     private bool player_dead_ = false;
     private string player_name_ = null;
     private string player_name_with_colons_ = null;
-    private string player_gains_weakness_ = null;
-    private string player_gains_brink_ = null;
+    // Filled in later with player name.
+    private string[] weakness_strs_ = new string[4];
+    private string[] lb3_strs_ = {
+      ":Pulse Of Life:",
+      ":Pulsation Vitale:",
+      ":Angel Feathers:",
+      ":Plumes D'ange:",
+      ":Astral Stasis:",
+      ":Équilibre Astral:",
+      ":Flames Of Rebirth:",
+      ":Feu Résurrecteur:",
+  };
 
     private DateTime? last_revived_time_;
     private DateTime? last_lb3_time_;
@@ -33,8 +43,10 @@ namespace Cactbot {
       if (player_name_ == null) {
         player_name_ = player.name;
         player_name_with_colons_ = ":" + player.name + ":";
-        player_gains_weakness_ = " 1A:" + player_name_ + " gains the effect of Weakness from";
-        player_gains_brink_ = " 1A:" + player_name_ + " gains the effect of Brink Of Death from";
+        weakness_strs_[0] = " 1A:" + player_name_ + " gains the effect of Weakness from";
+        weakness_strs_[1] = " 1A:" + player_name_ + " gains the effect of Brink Of Death from";
+        weakness_strs_[2] = " 1A:" + player_name_ + " gains the effect of Affaiblissement from";
+        weakness_strs_[3] = " 1A:" + player_name_ + " gains the effect of Mourant from";
       }
 
       var now = DateTime.Now;
@@ -66,32 +78,40 @@ namespace Cactbot {
         return;
 
       foreach (var log in e.logs) {
-        // TODO: this should support other languages.
-        if (log.IndexOf(player_gains_weakness_, StringComparison.Ordinal) != -1 ||
-            log.IndexOf(player_gains_brink_, StringComparison.Ordinal) != -1) {
-          // Players come back to life before weakness is applied.
-          // Players do gain 9999.00 seconds of Weakness when they die a second time,
-          // but this happens even before the defeated message occurs.  So, this next
-          // case will only occur when the player has been brought back to life.
-          if (!player_dead_ && last_revived_time_.HasValue) {
-            // This is a raise of some sort, and not a wipe.
-            last_revived_time_ = null;
-          }
-        } else if (log.IndexOf("cactbot wipe", StringComparison.Ordinal) != -1) {
+        if (log.IndexOf("cactbot wipe", StringComparison.Ordinal) != -1) {
           // FIXME: only allow echos to do this vs jerks saying this in chat.
           WipeIt();
-        } else {
-          // This happens prior to the player's health becoming non-zero, so record when it happens.
-          // Lazy regex for :Healer LB3:.*:Player Name:
-          int healer_lb3 = Math.Max(
-            log.IndexOf(":Pulse Of Life:", StringComparison.Ordinal),
-            Math.Max(log.IndexOf(":Angel Feathers:", StringComparison.Ordinal),
-              Math.Max(log.IndexOf(":Astral Stasis:", StringComparison.Ordinal),
-                log.IndexOf(":Flames Of Rebirth:", StringComparison.Ordinal))));
-          if (healer_lb3 >= 0) {
-            if (log.IndexOf(player_name_with_colons_, StringComparison.Ordinal) > healer_lb3) {
-              last_lb3_time_ = DateTime.Now;
+        }
+        // To avoid 10+ string comparisons per log entry, check player name first.
+        int player_index = log.IndexOf(player_name_with_colons_, StringComparison.Ordinal);
+        if (player_index == -1)
+          continue;
+
+        // TODO: this should support all languages.
+        foreach (var str in weakness_strs_) {
+          if (log.IndexOf(str, StringComparison.Ordinal) != -1) {
+            // Players come back to life before weakness is applied.
+            // Players do gain 9999.00 seconds of Weakness when they die a second time,
+            // but this happens even before the defeated message occurs.  So, this next
+            // case will only occur when the player has been brought back to life,
+            // because we check player_dead.
+            if (!player_dead_ && last_revived_time_.HasValue) {
+              // This is a raise of some sort, and not a wipe.
+              last_revived_time_ = null;
+              break;
             }
+          }
+        }
+
+        // This happens prior to the player's health becoming non-zero, so record when it happens.
+        // Lazy regex for :Healer LB3:.*:Player Name:
+        int healer_lb3 = -1;
+        foreach (var str in lb3_strs_) {
+          healer_lb3 = Math.Max(healer_lb3, log.IndexOf(str, StringComparison.Ordinal));
+        }
+        if (healer_lb3 >= 0) {
+          if (player_index > healer_lb3) {
+            last_lb3_time_ = DateTime.Now;
           }
         }
 
