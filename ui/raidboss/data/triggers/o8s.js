@@ -361,7 +361,7 @@
       run: function(data) {
         data.lastFire = {
           en: 'Spread',
-          fr: "S'écarter",
+          fr: 'Se séparer',
         }[data.lang];
       },
     },
