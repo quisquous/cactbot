@@ -3,6 +3,9 @@
 var Options = {
   Language: 'en',
   RefreshRateMs: 1000,
+  PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
+  PopVolume: 1.0,
+  FlagTimeoutMs: 60000,
   ZoneInfo: {
     'Eureka Anemos': {
       mapImage: 'anemos.png',
@@ -170,7 +173,6 @@ var Options = {
       },
     },
   },
-  FlagTimeoutMs: 60000,
 }
 
 var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})  , (\y{Float}) \)(.*$)/);
@@ -293,11 +295,17 @@ class EurekaTracker {
     return respawnTimeMs + (+new Date());
   }
 
-  OnPopNM(nm) {
+  OnPopNM(nm) {   
     nm.element.classList.add('nm-pop');
     nm.element.classList.remove('nm-down');
     var respawnTimeMs = 120 * 60 * 1000;
     nm.respawnTimeMsLocal = this.RespawnTime(nm);
+
+    if (this.options.PopSound && this.options.PopVolume) {
+      var audio = new Audio(this.options.PopSound);
+      audio.volume = this.options.PopVolume;
+      audio.play();
+    }
   }
 
   OnKillNM(nm) {
