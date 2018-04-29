@@ -5,6 +5,7 @@ var Options = {
   RefreshRateMs: 1000,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   PopVolume: 1.0,
+  SuppressPopMs: 1700 * 1000,
   FlagTimeoutMs: 60000,
   ZoneInfo: {
     'Eureka Anemos': {
@@ -397,9 +398,15 @@ class EurekaTracker {
   }
 
   OnPopNM(nm) {
+    var now = +new Date();
+    if (nm.lastPopTimeMsLocal && now - nm.lastPopTimeMsLocal <= this.options.SuppressPopMs) {
+      return;
+    }
+
     nm.element.classList.add('nm-pop');
     nm.element.classList.remove('nm-down');
     var respawnTimeMs = 120 * 60 * 1000;
+    nm.lastPopTimeMsLocal = +new Date();
     nm.respawnTimeMsLocal = this.RespawnTime(nm);
 
     if (this.options.PopSound && this.options.PopVolume) {
