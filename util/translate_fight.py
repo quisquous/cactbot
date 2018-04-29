@@ -49,15 +49,20 @@ def find_start_end_time(report, args):
   return start_time, end_time, fight_id
 
 def add_default_ability_mappings(ability_replace):
-  # Many timelines have this, so just include it by default.
+  # Many timelines have these, so just include a few by default.
   ability_replace['de']['Engage!'] = 'Start!'
   ability_replace['fr']['Engage!'] = "À l'attaque"
   ability_replace['ja']['Engage!'] = '戦闘開始！'
 
-  # FIXME: add fr/ja translations here.
+  # FIXME: add ja translations here.
   ability_replace['de']['--targetable--'] = '--anvisierbar--'
+  ability_replace['fr']['--targetable--'] = '--ciblable--'
+
   ability_replace['de']['--untargetable--'] = '--nich anvisierbar--'
+  ability_replace['fr']['--untargetable--'] = '--impossible à cibler--'
+
   ability_replace['de']['Enrage'] = 'Finalangriff'
+  ability_replace['fr']['Enrage'] = 'Enragement'
 
 # generate a mapping of lang => { default_name => name }
 def build_mapping(translations, ignore_list=[]):
