@@ -23,35 +23,60 @@ var Options = {
       nms: {
         sabo: {
           name: 'Sabo',
-          mobName: 'Sabotender Corrido',
+          mobName: {
+            en: 'Sabotender Corrido',
+            de: 'Sabotender Corrido',
+            fr: 'Pampa Corrido',
+            ja: 'サボテンダー・コリード',
+          },
           trackerName: 'sabo',
           x: 13.9,
           y: 21.9,
         },
         lord: {
           name: 'Lord',
-          mobName: 'The Lord Of Anemos',
+          mobName: {
+            en: 'The Lord Of Anemos',
+            de: 'Prinz[p] Von Anemos',
+            fr: "Seigneur D'Anemos",
+            ja: 'ロード・オブ・アネモス',
+          },
           trackerName: 'lord',
           x: 29.7,
           y: 27.1,
         },
         teles: {
           name: 'Teles',
-          mobName: 'Teles',
+          mobName: {
+            en: 'Teles',
+            de: 'Teles',
+            fr: 'Teles',
+            ja: 'テレス',
+          },
           trackerName: 'teles',
           x: 25.6,
           y: 27.4,
         },
         emperor: {
           name: 'Emp',
-          mobName: 'The Emperor Of Anemos',
+          mobName: {
+            en: 'The Emperor Of Anemos',
+            de: 'Anemos-Kaiser',
+            fr: "Empereur D'Anemos",
+            ja: 'アネモス・エンペラー',
+          },
           trackerName: 'emperor',
           x: 17.2,
           y: 22.2,
         },
         callisto: {
           name: 'Calli',
-          mobName: 'Callisto',
+          mobName: {
+            en: 'Callisto',
+            de: 'Callisto',
+            fr: 'Callisto',
+            ja: 'カリスト',
+          },
           trackerName: 'callisto',
           // 25.5, 22.3 from the tracker, but collides with number
           x: 26.2,
@@ -59,7 +84,12 @@ var Options = {
         },
         number: {
           name: 'Number',
-          mobName: 'Number',
+          mobName: {
+            en: 'Number',
+            de: 'Zahl',
+            fr: 'Number',
+            ja: 'ナンバーズ',
+          },
           trackerName: 'number',
           // 23.5, 22.7 from the tracker, but collides with callisto
           x: 23.5,
@@ -67,7 +97,12 @@ var Options = {
         },
         jaha: {
           name: 'Jaha',
-          mobName: 'Jahannam',
+          mobName: {
+            en: 'Jahannam',
+            de: 'Jahannam',
+            fr: 'Jahannam',
+            ja: 'ジャハンナム',
+          },
           trackerName: 'jaha',
           x: 17.7,
           y: 18.6,
@@ -75,21 +110,36 @@ var Options = {
         },
         amemet: {
           name: 'Amemet',
-          mobName: 'Amemet',
+          mobName: {
+            en: 'Amemet',
+            de: 'Amemet',
+            fr: 'Amemet',
+            ja: 'アミメット',
+          },
           trackerName: 'amemet',
           x: 15.0,
           y: 15.6,
         },
         caym: {
           name: 'Caym',
-          mobName: 'Caym',
+          mobName: {
+            en: 'Caym',
+            de: 'Caym',
+            fr: 'Caym',
+            ja: 'カイム',
+          },
           trackerName: 'caym',
           x: 13.8,
           y: 12.5,
         },
         bomb: {
           name: 'Bomb',
-          mobName: 'Bombadeel',
+          mobName: {
+            en: 'Bombadeel',
+            de: 'Bombadeel',
+            fr: 'Bombadeel',
+            ja: 'ボンバディール',
+          },
           trackerName: 'bomba',
           x: 28.3,
           y: 20.4,
@@ -97,21 +147,36 @@ var Options = {
         },
         serket: {
           name: 'Serket',
-          mobName: 'Serket',
+          mobName: {
+            en: 'Serket',
+            de: 'Serket',
+            fr: 'Serket',
+            ja: 'セルケト',
+          },
           trackerName: 'serket',
           x: 24.8,
           y: 17.9,
         },
         juli: {
           name: 'Juli',
-          mobName: 'Judgmental Julika',
+          mobName: {
+            en: 'Judgmental Julika',
+            de: 'Verurteilend[a] Julika',
+            fr: 'Julika',
+            ja: 'ジャッジメンタル・ジュリカ',
+          },
           trackerName: 'julika',
           x: 21.9,
           y: 15.6,
         },
         rider: {
           name: 'Rider',
-          mobName: 'The White Rider',
+          mobName: {
+            en: 'The White Rider',
+            de: 'Weiß[a] Reiter',
+            fr: 'Cavalier Blanc',
+            ja: 'ホワイトライダー',
+          },
           trackerName: 'rider',
           x: 20.3,
           y: 13.0,
@@ -119,28 +184,48 @@ var Options = {
         },
         poly: {
           name: 'Poly',
-          mobName: 'Polyphemus',
+          mobName: {
+            en: 'Polyphemus',
+            de: 'Polyphemus',
+            fr: 'Polyphemus',
+            ja: 'ポリュペモス',
+          },
           trackerName: 'poly',
           x: 26.4,
           y: 14.3,
         },
         strider: {
           name: 'Strider',
-          mobName: "Simurgh's Strider",
+          mobName: {
+            en: "Simurgh's Strider",
+            de: 'Simurghs Läufer',
+            fr: 'Trotteur De Simurgh',
+            ja: 'シームルグ・ストライダー',
+          },
           trackerName: 'strider',
           x: 28.6,
           y: 13.0,
         },
         hazmat: {
           name: 'Hazmat',
-          mobName: 'King Hazmat',
+          mobName: {
+            en: 'King Hazmat',
+            de: 'Hazmat-König',
+            fr: 'Hazmat Roi',
+            ja: 'キング・ハズマット',
+          },
           trackerName: 'hazmat',
           x: 35.3,
           y: 18.3,
         },
         fafnir: {
           name: 'Fafnir',
-          mobName: 'Fafnir',
+          mobName: {
+            en: 'Fafnir',
+            de: 'Fafnir',
+            fr: 'Fafnir',
+            ja: 'ファヴニル',
+          },
           trackerName: 'fafnir',
           x: 35.5,
           y: 21.5,
@@ -148,14 +233,24 @@ var Options = {
         },
         amarok: {
           name: 'Amarok',
-          mobName: 'Amarok',
+          mobName: {
+            en: 'Amarok',
+            de: 'Amarok',
+            fr: 'Amarok',
+            ja: 'アマロック',
+          },
           trackerName: 'amarok',
           x: 7.6,
           y: 18.2,
         },
         lama: {
           name: 'Lama',
-          mobName: 'Lamashtu',
+          mobName: {
+            en: 'Lamashtu',
+            de: 'Lamashtu',
+            fr: 'Lamashtu',
+            ja: 'ラマシュトゥ',
+          },
           trackerName: 'lamashtu',
           // 7.7, 23.3 from the tracker but mobs are farther south.
           x: 7.7,
@@ -164,7 +259,12 @@ var Options = {
         },
         pazu: {
           name: 'Pazu',
-          mobName: 'Pazuzu',
+          mobName: {
+            en: 'Pazuzu',
+            de: 'Pazuzu',
+            fr: 'Pazuzu',
+            ja: 'パズズ',
+          },
           trackerName: 'pazuzu',
           x: 7.4,
           y: 21.7,
@@ -241,8 +341,9 @@ class EurekaTracker {
 
       nm.element = label;
       nm.timeElement = time;
-      nm.addRegex = Regexes.Parse('03:Added new combatant ' + nm.mobName + '\\.');
-      nm.removeRegex = Regexes.Parse('04:Removing combatant ' + nm.mobName + '\\.');
+      var mobName = nm.mobName[this.options.Language];
+      nm.addRegex = Regexes.Parse('03:Added new combatant ' + mobName + '\\.');
+      nm.removeRegex = Regexes.Parse('04:Removing combatant ' + mobName + '\\.');
       nm.respawnTimeMsLocal = undefined;
       nm.respawnTimeMsTracker = undefined;
     }
@@ -295,7 +396,7 @@ class EurekaTracker {
     return respawnTimeMs + (+new Date());
   }
 
-  OnPopNM(nm) {   
+  OnPopNM(nm) {
     nm.element.classList.add('nm-pop');
     nm.element.classList.remove('nm-down');
     var respawnTimeMs = 120 * 60 * 1000;
