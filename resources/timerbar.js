@@ -103,16 +103,16 @@ class TimerBar extends HTMLElement {
 
     root.innerHTML = `
       <style>
-        #root {
+        .timerbar-root {
           position: relative;
         }
-        #bg {
+        .timerbar-bg {
           position: absolute;
           width: 100%;
           height: 100%;
           opacity: 0.8;
         }
-        #fg {
+        .timerbar-fg {
           position: absolute;
           left: 1px;
           top: 1px;
@@ -137,28 +137,28 @@ class TimerBar extends HTMLElement {
           height: calc(100% - 2px);
           overflow: hidden;
         }
-        #lefttext {
+        .timerbar-lefttext {
           position: relative;
           text-align: left;
           padding: 0px 0.4em 0px 0.4em;
         }
-        #centertext {
+        .timerbar-centertext {
           position: relative;
           text-align: center;
           padding: 0px 0.4em 0px 0.4em;
         }
-        #righttext {
+        .timerbar-righttext {
           position: relative;
           text-align: right;
           padding: 0px 0.4em 0px 0.4em;
         }
       </style>
-      <div id="root">
-        <div id="bg"></div>
-        <div id="fg"></div>
-        <div class="text-container"><div id="righttext" class="text"></div></div>
-        <div class="text-container"><div id="centertext" class="text"></div></div>
-        <div class="text-container"><div id="lefttext" class="text"></div></div>
+      <div id="root" class="timerbar-root">
+        <div id="bg" class="timerbar-bg"></div>
+        <div id="fg" class="timerbar-fg"></div>
+        <div class="text-container"><div id="righttext" class="text timerbar-righttext"></div></div>
+        <div class="text-container"><div id="centertext" class="text timerbar-centertext"></div></div>
+        <div class="text-container"><div id="lefttext" class="text timerbar-lefttext"></div></div>
       </div>
     `
   }
@@ -281,7 +281,7 @@ class TimerBar extends HTMLElement {
     var display_elapsed = elapsedSec.toFixed(1);
     if (this._style_fill)
       percent = 1.0 - percent;
-    this.foregroundElement.style.transform = "scale(" + percent + ",1)";
+    this.foregroundElement.style.width = "calc(" + percent * 100 + "% - 2px)";
     if (this._left_text != "") {
       if (this._left_text == "remain")
         this.leftTextElement.innerHTML = display_remain;
