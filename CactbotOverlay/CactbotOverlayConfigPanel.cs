@@ -28,6 +28,7 @@ namespace Cactbot {
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
+      this.textUserConfigFile.Text = config.UserConfigFile;
     }
 
     private void SetupConfigEventHandlers() {
@@ -143,6 +144,35 @@ namespace Cactbot {
 
     private void buttonShowDevtools_Click(object sender, EventArgs e) {
       this.overlay.Overlay.Renderer.showDevTools();
+    }
+
+    private void buttonSelectUserConfigFile_Click(object sender, EventArgs e) {
+      var ofd = new FolderBrowserDialog();
+      try {
+        ofd.SelectedPath = System.IO.Path.GetDirectoryName(new Uri(config.UserConfigFile).AbsolutePath);
+      } catch (Exception) { }
+
+      if (ofd.ShowDialog() == DialogResult.OK) {
+        this.config.UserConfigFile = new Uri(ofd.SelectedPath).AbsoluteUri;
+        this.textUserConfigFile.Text = this.config.UserConfigFile;
+      }
+    }
+
+    private void textUserConfigFile_Leave(object sender, EventArgs e) {
+      try {
+        if (!String.IsNullOrWhiteSpace(textUserConfigFile.Text)) {
+          var path = new Uri(textUserConfigFile.Text);
+          if (!System.IO.Directory.Exists(path.AbsolutePath))
+            path = new Uri(path, ".");
+          this.config.UserConfigFile = path.AbsoluteUri;
+        } else {
+          this.config.UserConfigFile = "";
+        }
+        this.textUserConfigFile.Text = this.config.UserConfigFile;
+      } catch (Exception ex) {
+        this.overlay.LogError("User Config Directory Uri must be a valid directory.");
+        this.overlay.LogError(ex.Message);
+      }
     }
   }
 }

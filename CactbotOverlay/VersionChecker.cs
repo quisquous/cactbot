@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Advanced_Combat_Tracker;
+using FFXIV_ACT_Plugin;
+using RainbowMage.OverlayPlugin;
+using System;
 using System.Text.RegularExpressions;
 
 namespace Cactbot {
@@ -9,8 +12,8 @@ namespace Cactbot {
   class VersionChecker {
     private ILogger logger_ = null;
 
-    public const string kReleaseUrl = "http://github.com/quisquous/cactbot/releases/latest";
-    public const string kIssueUrl = "http://github.com/quisquous/cactbot/issues";
+    public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";
+    public const string kIssueUrl = "https://github.com/quisquous/cactbot/issues";
 
     public VersionChecker(ILogger logger) {
       logger_ = logger;
@@ -20,10 +23,39 @@ namespace Cactbot {
       return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
     }
 
+    public string GetCactbotLocation() {
+      return System.Reflection.Assembly.GetExecutingAssembly().Location;
+    }
+
+    public Version GetOverlayPluginVersion() {
+      return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).GetName().Version;
+    }
+
+    public string GetOverlayPluginLocation() {
+      return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).Location;
+    }
+
+    public Version GetFFXIVPluginVersion() {
+      return System.Reflection.Assembly.GetAssembly(typeof(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin)).GetName().Version;
+    }
+
+    public string GetFFXIVPluginLocation() {
+      return System.Reflection.Assembly.GetAssembly(typeof(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin)).Location;
+    }
+
+    public Version GetACTVersion() {
+      return System.Reflection.Assembly.GetAssembly(typeof(Advanced_Combat_Tracker.ActGlobals)).GetName().Version;
+    }
+
+    public string GetACTLocation() {
+      return System.Reflection.Assembly.GetAssembly(typeof(Advanced_Combat_Tracker.ActGlobals)).Location;
+    }
+
     public Version GetRemoteVersion() {
       string html;
       try {
         var web = new System.Net.WebClient();
+        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
         var page_stream = web.OpenRead(kReleaseUrl);
         var reader = new System.IO.StreamReader(page_stream);
         html = reader.ReadToEnd();

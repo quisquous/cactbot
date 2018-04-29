@@ -22,7 +22,7 @@ hideall "--sync--"
 70 "Shockwave" sync /:Guardian:2783:/
 77 "Missile Simulation" sync /:Guardian:2764:/
 92 "Chakra Burst" sync /:Guardian:2787:/
-95 "(NW) Run Dada" sync /:Guardian:276F:/
+95 "Run Dada (NW)" sync /:Guardian:276F:/
 108 "Magitek Ray" sync /:Guardian:2788:/
 113 "(H) Aura Cannon"
 123 "(DPS) Aura Cannon"
@@ -38,7 +38,7 @@ hideall "--sync--"
 179 "Tentacle Simulation" sync /:Guardian:275E:/
 183 "Tentacle"
 189 "Wallop"
-191 "(NE) Run Ultros" sync /:Guardian:276F:/
+191 "Run Ultros (NE)" sync /:Guardian:276F:/
 198 "Interrupt Stoneskin" duration 4
 200 "--untargetable--" sync /:Guardian:2937:/
 207 "Chain Cannon" duration 2
@@ -83,7 +83,7 @@ hideall "--sync--"
 439 "Atomic Ray" sync /:Guardian:278D:/
 444 "Magitek Ray" sync /:Guardian:2788:/
 453 "Diffractive Plasma" sync /:Guardian:278B:/
-463 "Run Ultros" sync /:Guardian:276F:/
+463 "Run Ultros (SW)" sync /:Guardian:276F:/
 469 "Missile Simulation" sync /:Guardian:2764:/
 472 "Interrupt Stoneskin" duration 4
 474 "--untargetable--" sync /:Guardian:2937:/
@@ -94,8 +94,8 @@ hideall "--sync--"
 
 # Divergence point
 509 "Load/Skip ???" sync /:Guardian:(275C|2773):/
-510 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph/ jump 2512       # Bibliotaph buff, jump to A1
-510 "--sync--" sync /1A:Guardian gains the effect of Dadaluma/ jump 3512         # Dadaluma buff, jump to A2
+510 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph/ jump 2510       # Bibliotaph buff, jump to A1
+510 "--sync--" sync /1A:Guardian gains the effect of Dadaluma/ jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
 519 "Demon Simulation?"
 
@@ -125,13 +125,14 @@ hideall "--sync--"
 2629 "Prey" sync /:Guardian:278A:/
 2635 "Magitek Ray" sync /:Guardian:2788:/
 2643 "Diffractive Plasma" sync /:Guardian:278B:/
-2648 "--sync--" sync /:(275C|2773):Guardian/ jump 650          # Load/Skip starts casting, return to A
+2648 "--sync--" sync /:(275C|2773):Guardian/ jump 648          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 2653 "Load Air Force"
 2656 "Diffractive Laser"
+2659 "Radar"
 2666 "Diffractive Plasma"
-2678 "Run Program"
+2678 "Run Air Force"
 
 #### Divergent path, Version A2: Dadaluma->Biblio
 
@@ -157,13 +158,14 @@ hideall "--sync--"
 3624 "Prey" sync /:Guardian:278A:/
 3633 "Magitek Ray" sync /:Guardian:2788:/
 3642 "Diffractive Plasma" sync /:Guardian:278B:/
-3648 "--sync--" sync /:(275C|2773):Guardian/ jump 650          # Load/Skip starts casting, return to A
+3648 "--sync--" sync /:(275C|2773):Guardian/ jump 648          # Load/Skip starts casting, return to A
 
 # Should be unreachable, only here for visual continuity before/after jump
 3653 "Load Air Force"
-3356 "Diffractive Laser"
-3366 "Diffractive Plasma"
-3378 "Run Program"
+3656 "Diffractive Laser"
+3659 "Radar"
+3666 "Diffractive Plasma"
+3678 "Run Air Force"
 
 
 ##########################################################
@@ -203,7 +205,7 @@ hideall "--sync--"
 1052 "Shockwave" sync /:Guardian:2783:/
 1059 "Missile Simulation" sync /:Guardian:2764:/
 1074 "Chakra Burst" sync /:Guardian:2787:/
-1077 "Run Dada" sync /:Guardian:276F:/
+1077 "Run Dada (NW)" sync /:Guardian:276F:/
 1090 "Magitek Ray" sync /:Guardian:2788:/
 1095 "(H) Aura Cannon"
 1105 "(DPS) Aura Cannon"
@@ -214,9 +216,9 @@ hideall "--sync--"
 # Bibliotaph
 1135 "Load Biblio / Skip Air Force" sync /:Guardian:2773:/
 1145 "Demon Simulation" sync /:Guardian:2B36:/
-1153 "Retrieve Program" sync /:Guardian:2774:/
+1153 "Retrieve Air Force" sync /:Guardian:2774:/
 1156 "Diffractive Laser" sync /:Guardian:2780:/
-1164 "Copy Program" sync /:Guardian:2775:/
+1164 "Copy Air Force" sync /:Guardian:2775:/
 1171 "Missile Simulation" sync /:Guardian:2764:/
 
 # Air Force
@@ -234,7 +236,7 @@ hideall "--sync--"
 1248 "Tentacle Simulation" sync /:Guardian:275E:/
 1252 "Tentacle"
 1258 "Wallop"
-1260 "Run Ultros" sync /:Guardian:276F:/
+1260 "Run Ultros (SE)" sync /:Guardian:276F:/
 1267 "Interrupt Stoneskin" duration 4
 1269 "--targetable--" sync /:Guardian:2937:/
 1276 "Chain Cannon" duration 2
@@ -365,7 +367,7 @@ hideall "--sync--"
 1648 "Atomic Ray" sync /:Guardian:278D:/
 1653 "Magitek Ray" sync /:Guardian:2788:/
 1662 "Diffractive Plasma" sync /:Guardian:278B:/
-1672 "Run Ultros" sync /:Guardian:276F:/
+1672 "Run Ultros (NE)" sync /:Guardian:276F:/
 1678 "Missile Simulation" sync /:Guardian:2764:/
 1681 "Interrupt Stoneskin" duration 4
 1681 "--untargetable--" sync /:Guardian:2937:/

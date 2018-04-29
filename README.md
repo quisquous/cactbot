@@ -29,6 +29,10 @@ cactbot provides these modules:
 
 ![rdm jobs screenshot](screenshots/promo_jobs.png)
 
+* eureka: Eureka NM tracking map
+
+![eureka screenshot](screenshots/promo_eureka.png)
+
 * dps: extra features for dps meters
 
 ![xephero screenshot](screenshots/xephero.png)
@@ -46,18 +50,16 @@ Install [.NET Framework](https://www.microsoft.com/net/download/framework) versi
 
 You must have [DirectX 11](http://imgur.com/TjcnjmG) enabled for Final Fantasy XIV.
 
-Install [Advanced Combat Tracker](http://advancedcombattracker.com/), if you have not already.
+Install the 64-bit version of [Advanced Combat Tracker](http://advancedcombattracker.com/), if you have not already.
 
-Download and add the most recent version of [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html) to ACT.  You must enable parsing from the network and make sure that ACT is not firewalled.
+Download and add the most recent version of [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html) to ACT.  You must enable parsing from the network and make sure that ACT is not firewalled.  Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
+This is under Plugins -> FFXIV Settings -> Parse Options.
 
-You must have
-[OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases)
+You must have the latest x64 version of the
+[hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest)
 installed and working in ACT.  You must use the [hibiyasleep](https://github.com/hibiyasleep) version of
 OverlayPlugin and not the original RainbowMage version, as cactbot depends
 on several features of that version.
-
-Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
-This is under Plugins -> FFXIV Settings -> Parse Options.
 
 fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT and OverlayPlugin if you prefer video or would like more instructions on how to set these two tools up properly.
 
@@ -65,7 +67,7 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
 
 1. Find the [latest release](https://github.com/quisquous/cactbot/releases/latest) and download the cactbot-version-number.zip file for that release.  (You likely do *not* want either of the Source zip files.)
 2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
-3. Unzip the release zip file.  (If there is no OverlayPlugin\\addons\\CactbotOverlay.dll file, you downloaded the wrong zip file.)
+3. Unzip the release zip file.  (If there is no **OverlayPlugin\\addons\\CactbotOverlay.dll** file, you downloaded the wrong zip file.)
 4. Close ACT, if it's still running.
 5. Copy the **OverlayPlugin\\** folder from inside of the unzipped
 folder into your existing **C:\\...\\Advanced Combat Tracker\\** folder.
@@ -106,7 +108,9 @@ For more instructions about adding and configuring cactbot overlays, see the [Ad
 
 If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
 
-If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin and need to upgrade to the [hibiyasleep](https://github.com/hibiyasleep/OverlayPlugin/releases) version instead.
+If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin and need to upgrade to the latest x64 full version of the [hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest) instead.
+
+If you get an error in the OverlayPlugin console similar to `Error: (overlay): C:\Program Files (x86)\Advanced Combat Tracker\OverlayPlugin\addons\CactbotOverlay.dll: System.IO.FileNotFoundException: Could not load file or assembly 'Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' or one of its dependencies. The system cannot find the file specified.` then you have likely installed the wrong version of the OverlayPlugin.  Please reinstall the latest x64 full version of the [hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest).
 
 If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit-and-td-net-fixing-the-attempt-was-made-to-load-an-assembly-from-a-network-location-problem/) error on starting the OverlayPlugin, such as "An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous version of the .NET Framework." then this means that you have forgotten to unblock some/all of your DLLs (either hibiyasleep or cactbot).  First, stop ACT.  Then, unblock everything; the easiest way is to unblock the original zip file and re-extract rather than unblocking every file individually.  Finally, restart ACT again.
 
@@ -191,6 +195,22 @@ beside it in orange. The first step of the melee combo has been executed, which 
 box above the health bar. The proc tracking is circled below in green.
 
 ![jobs screenshot](screenshots/Jobs.png)
+
+### [eureka](ui/eureka) module
+
+To use this module, point cactbot at **ui/eureka/eureka.html**
+
+This module provides automatic tracking of NMs that are popped or have
+been killed.  It shows gales/night timers and any local tracker link
+that has been pasted in chat.  Any flags in chat are also temporarily
+included on the map.
+
+It currently does not read the tracker information directly.  However,
+if you click on the left/red "Copy killed NMs" button in the tracker to
+copy the list of currently dead NMs, you can paste it in game, e.g.
+`/echo ★ NMs on cooldown: Serket (7m) > Julika (24m) > Poly (54m)`
+
+![eureka screenshot](screenshots/promo_eureka.png)
 
 ### [dps](ui/dps) meters
 

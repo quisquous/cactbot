@@ -3,25 +3,19 @@
 class PopupText {
   constructor(options) {
     this.options = options;
-    this.init = false;
     this.triggers = [];
     this.timers = [];
     this.inCombat = false;
     this.resetWhenOutOfCombat = true;
+    this.infoText = document.getElementById('popup-text-info');
+    this.alertText = document.getElementById('popup-text-alert');
+    this.alarmText = document.getElementById('popup-text-alarm');
 
     this.kMaxRowsOfText = 2;
   }
 
   SetTimelineLoader(timelineLoader) {
     this.timelineLoader = timelineLoader;
-  }
-
-  OnDocumentLoad() {
-    this.init = true;
-    this.infoText = document.getElementById('popup-text-info');
-    this.alertText = document.getElementById('popup-text-alert');
-    this.alarmText = document.getElementById('popup-text-alarm');
-    this.ReloadTimelines();
   }
 
   OnPlayerChange(e) {
@@ -73,7 +67,7 @@ class PopupText {
 
   ReloadTimelines() {
     // Datafiles, job, and zone must be loaded.
-    if (!this.triggerSets || !this.me || !this.zoneName || !this.init)
+    if (!this.triggerSets || !this.me || !this.zoneName)
       return;
 
     this.Reset();
@@ -82,6 +76,7 @@ class PopupText {
     this.triggers = [];
     var timelineFiles = [];
     var timelines = [];
+    var replacements = [];
     this.resetWhenOutOfCombat = true;
 
     // Recursively/iteratively process timeline entries for triggers.
@@ -97,9 +92,23 @@ class PopupText {
       }
     }).bind(this);
 
+    var locale = this.options.Language || 'en';
+    // construct something like regexEn or regexFr.
+    var regexLocale = 'regex' + locale.charAt(0).toUpperCase() + locale.slice(1);
+
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) >= 0) {
+        // Adjust triggers for the locale.
+        for (var j = 0; j < set.triggers.length; ++j) {
+          // Add an additional resolved regex here to save
+          // time later.  This will clobber each time we
+          // load this, but that's ok.
+          var trigger = set.triggers[j];
+          // Locale-based regex takes precedence.
+          var regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+          trigger.localRegex = Regexes.Parse(regex);
+        }
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
         // And set the timeline files/timelines from each set that matches.
@@ -107,12 +116,14 @@ class PopupText {
           timelineFiles.push(set.timelineFile);
         if (set.timeline)
           addTimeline(set.timeline);
+        if (set.timelineReplace)
+          Array.prototype.push.apply(replacements, set.timelineReplace);
         if (set.resetWhenOutOfCombat !== undefined)
           this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
       }
     }
 
-    this.timelineLoader.SetTimelines(timelineFiles, timelines);
+    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements);
   }
 
   OnJobChange(e) {
@@ -173,15 +184,18 @@ class PopupText {
   }
 
   Reset() {
+    var locale = this.options.Language || 'en';
     this.data = {
       me: this.me,
       job: this.job,
       role: this.role,
+      lang: locale,
       ShortName: this.ShortNamify,
       StopCombat: (function() { this.SetInCombat(false); }).bind(this),
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
     };
     this.StopTimers();
+    this.triggerSuppress = {};
   }
 
   StopTimers() {
@@ -191,15 +205,12 @@ class PopupText {
   }
 
   OnLog(e) {
-    if (!this.init)
-      return;
-
     for (var i = 0; i < e.detail.logs.length; i++) {
       var log = e.detail.logs[i];
 
       for (var j = 0; j < this.triggers.length; ++j) {
         var trigger = this.triggers[j];
-        var r = log.match(Regexes.Parse(trigger.regex));
+        var r = log.match(trigger.localRegex);
         if (r != null)
           this.OnTrigger(trigger, r);
       }
@@ -211,6 +222,14 @@ class PopupText {
       return;
     if ('disabled' in trigger && trigger.disabled)
       return;
+
+    var now = +new Date();
+    if (trigger.id && trigger.id in this.triggerSuppress) {
+      if (this.triggerSuppress[trigger.id] > now) {
+        return;
+      }
+      delete this.triggerSuppress[trigger.id];
+    }
 
     var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
 
@@ -224,9 +243,23 @@ class PopupText {
       trigger.preRun(this.data, matches);
 
     var that = this;
-    var ValueOrFunction = function(f) {
-      return (typeof(f) == "function") ? f(that.data, matches) : f;
-    }
+
+    var ValueOrFunction = (function(f) {
+      var result = (typeof(f) == "function") ? f(this.data, matches) : f;
+      // All triggers return either a string directly, or an object
+      // whose keys are different locale names.  For simplicity, this is
+      // valid to do for any trigger entry that can handle a function.
+      // In case anybody wants to encapsulate any fancy grammar, the values
+      // in this object can also be functions.
+      if (result !== Object(result))
+        return result;
+      var lang = this.options.Language || 'en';
+      if (result[lang])
+        return ValueOrFunction(result[lang]);
+      // For partially localized results where this localization doesn't
+      // exist, prefer English over nothing.
+      return ValueOrFunction(result['en']);
+    }).bind(this);
 
     var showText = this.options.TextAlertsEnabled;
     var playSounds = this.options.SoundAlertsEnabled;
@@ -234,6 +267,10 @@ class PopupText {
     var userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
+    var suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
+    if (trigger.id && suppress > 0) {
+      this.triggerSuppress[trigger.id] = now + suppress * 1000;
+    }
 
     if (triggerOptions) {
       if ('SpeechAlert' in triggerOptions)
@@ -336,9 +373,10 @@ class PopupText {
           if (namedSoundVolume in that.options)
             soundVol = that.options[namedSoundVolume];
         }
-        if ('soundVolume' in trigger)
-          soundVol = ValueOrFunction(trigger.soundVolume);
       }
+
+      if ('soundVolume' in trigger)
+        soundVol = ValueOrFunction(trigger.soundVolume);
 
       soundUrl = triggerOptions.SoundOverride || soundUrl;
       soundVol = triggerOptions.VolumeOverride || soundVol;
@@ -409,9 +447,6 @@ class PopupTextGenerator {
 
 var gPopupText;
 
-window.addEventListener("load", function(e) {
-  gPopupText.OnDocumentLoad(e);
-});
 document.addEventListener("onPlayerChangedEvent", function(e) {
   gPopupText.OnPlayerChange(e);
 });

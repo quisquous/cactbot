@@ -8,6 +8,12 @@ using System.Xml.Serialization;
 
 namespace Cactbot {
   public class CactbotOverlayConfig : OverlayConfigBase {
+    public static string CactbotAssemblyUri {
+      get { return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location); }
+    }
+    public static string CactbotDllRelativeUserUri {
+      get { return System.IO.Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
+    }
     public CactbotOverlayConfig(string name)
         : base(name) {
       // Cactbot only supports visibility toggling with the hotkey.
@@ -29,5 +35,7 @@ namespace Cactbot {
     public string OverlayData = null;
 
     public string RemoteVersionSeen = "0.0";
+
+    public string UserConfigFile = "";
   }
 }

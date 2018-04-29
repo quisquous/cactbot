@@ -13,7 +13,7 @@ hideall "--sync--"
 11 "Encumber" sync /:Wroth Ghost:28B6:/
 18 "Saintly Beam" duration 10
 31 "Knockback Whistle" sync /:Phantom Train:28A5:/
-41 "All in the Mind" sync /:Remorse:28AD:/
+41 "All In The Mind" sync /:Remorse:28AD:/
 50 "Doom Strike" sync /:Phantom Train:28B1:/
 64 "Head On" sync /:Phantom Train:28B7:/
 65 "Diabolic Wind" sync /:Phantom Train:28BD:/
@@ -43,7 +43,7 @@ hideall "--sync--"
 
 491 "--sync--" sync /:Phantom Train:28A8:/ window 500,500
 500 "--targetable--"
-517 "Encumber" sync /:Wroth Ghost:28B6:/
+517 "Encumber" sync /:Wroth Ghost:28B6:/ window 80,80
 525 "Diabolic Light" duration 13
 530 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
 534 "Saintly Beam" duration 10
@@ -52,7 +52,7 @@ hideall "--sync--"
 556 "Tether Whistle" sync /:Phantom Train:28A5:/
 563 "Saintly Beam" duration 10
 580 "Knockback Whistle" sync /:Phantom Train:28A5:/
-589 "All in the Mind" sync /:Remorse:28AD:/
+589 "All In The Mind" sync /:Remorse:28AD:/
 593 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
 611 "Head On" sync /:Phantom Train:28B7:/
 612 "Saintly Beam" duration 10
@@ -80,7 +80,7 @@ hideall "--sync--"
 737 "Diabolic Light" duration 13
 748 "Doom Strike" sync /:Phantom Train:28B1:/
 760 "Knockback Whistle" sync /:Phantom Train:28A5:/
-769 "All in the Mind" sync /:Remorse:28AD:/
+769 "All In The Mind" sync /:Remorse:28AD:/
 774 "Diabolic Headlamp" sync /:Phantom Train:28B8:/
 
 789 "Head On" sync /:Phantom Train:28B7:/

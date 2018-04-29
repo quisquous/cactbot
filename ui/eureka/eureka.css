@@ -1,0 +1,147 @@
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-padding {
+  width: 90%;
+  height: 90%;
+  /* Leave extra room for long labels on the edge */
+  padding: 5%;
+}
+
+.aspect-ratio {
+  width: 100%;
+  height: 0;
+  position: relative;
+  padding-bottom: calc(950%/13);
+}
+
+.inner-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+#nm-labels {
+}
+
+.flag {
+  position: absolute;
+  transform: translate(0, -100%);
+}
+.flag-icon:before {
+  color: red;
+  content: '\1F6A9';
+}
+.flag-name.text {
+  font-size: 10px;
+  color: red;
+  position: relative;
+  top: -3px;
+}
+
+.nm {
+  position: absolute;
+  font-size: 12px;
+  transform: translate(-50%, -40%);
+}
+
+.nm-down .nm-name {
+  font-size: 10px;
+  color: #D25454;
+}
+
+.nm-down .nm-time {
+  font-size: 10px;
+  color: #D25454;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+   transform: scale(1.2);
+  }
+}
+
+.nm-pop .nm-name {
+  color: #8686FF;
+  font-size: 18;
+  animation: pulse 1s infinite alternate;
+}
+
+.nm-pop .nm-time {
+  display: none;
+}
+.nm-pop .nm-icon {
+  display: none;
+}
+
+.nm-icon {
+
+}
+
+.nm-name {
+  display: block;
+  text-align: center;
+  min-width: 100px;
+}
+
+.nm-time {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  min-width: 100px;
+}
+
+.player {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  margin: 0;
+  background-image: radial-gradient(circle, #3CF5D3, #05121B);
+  transform: translate(-50%, -50%);
+}
+
+#label-gales {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#label-time {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#label-tracker {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.resize-helper {
+  display: none;
+}
+.resizeHandle .resize-helper {
+  display: inline-block;
+}

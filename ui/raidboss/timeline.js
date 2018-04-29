@@ -14,8 +14,10 @@ function computeBackgroundColorFrom(element, classList) {
 // This class reads the format of ACT Timeline plugin, described in
 // data/timelines/README.txt.
 class Timeline {
-  constructor(text, options) {
+  constructor(text, replacements, options) {
     this.options = options;
+    this.replacements = replacements;
+
     // A set of names which will not be notified about.
     this.ignores = {};
     // Sorted by event occurance time.
@@ -32,6 +34,32 @@ class Timeline {
     this.activeEvents = [];
     this.LoadFile(text);
     this.Stop();
+  }
+
+  GetReplacedHelper(text, replaceKey) {
+    if (!this.replacements)
+      return text;
+
+    var orig = text;
+    var locale = this.options.Language || 'en';
+    for (var i = 0; i < this.replacements.length; ++i) {
+      var r = this.replacements[i];
+      if (r.locale && r.locale != locale)
+        continue;
+      var keys = Object.keys(r[replaceKey]);
+      for (var j = 0; j < keys.length; ++j) {
+        text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]])
+      }
+    }
+    return text;
+  }
+
+  GetReplacedText(text) {
+    return this.GetReplacedHelper(text, 'replaceText');
+  }
+
+  GetReplacedSync(sync) {
+    return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
   LoadFile(text) {
@@ -99,7 +127,10 @@ class Timeline {
       var e = {
         id: uniqueid++,
         time: seconds,
+        // The original ability name in the timeline.  Used for hideall, infotext, etc.
         name: match[3],
+        // The text to display.  Not used for any logic.
+        text: this.GetReplacedText(match[3]),
         activeTime: 0,
       };
       if (line) {
@@ -113,7 +144,7 @@ class Timeline {
           line = line.replace(commandMatch[1], '').trim();
           var sync = {
             id: uniqueid,
-            regex: Regexes.Parse(commandMatch[2]),
+            regex: Regexes.Parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
@@ -279,7 +310,8 @@ class Timeline {
           id: e.id,
           time: e.time + e.duration,
           sortKey: e.sortKey,
-          name: 'Active: ' + e.name,
+          name: e.name,
+          text: 'Active: ' + e.text,
         };
         events.push(durationEvent);
         this.activeEvents.splice(i, 1);
@@ -494,7 +526,7 @@ class TimelineUI {
     bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
     bar.value = e.time - fightNow;
     bar.righttext = 'remain';
-    bar.lefttext = e.name;
+    bar.lefttext = e.text;
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
 
@@ -608,7 +640,7 @@ class TimelineController {
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
   }
 
-  SetActiveTimeline(timelineFiles, timelines) {
+  SetActiveTimeline(timelineFiles, timelines, replacements) {
     this.activeTimeline = null;
 
     if (!this.options.TimelineEnabled)
@@ -629,7 +661,7 @@ class TimelineController {
       text = text + '\n' + timelines[i];
 
     if (text)
-      this.activeTimeline = new Timeline(text, this.options);
+      this.activeTimeline = new Timeline(text, replacements, this.options);
     this.ui.SetTimeline(this.activeTimeline);
   }
 
@@ -653,8 +685,8 @@ class TimelineController {
 class TimelineLoader {
   constructor(timelineController) { this.timelineController = timelineController; }
 
-  SetTimelines(timelineFiles, timelines) {
-    this.timelineController.SetActiveTimeline(timelineFiles, timelines);
+  SetTimelines(timelineFiles, timelines, replacements) {
+    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements);
   }
 
   StopCombat() {

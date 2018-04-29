@@ -20,6 +20,12 @@ Options.MaxLevel = 70
 // Option to show the stone/fire/impact procs.
 Options.ShowRdmProcs = true
 
+// List of jobs to show an hp value for (defaults to tanks).
+Options.ShowHPNumber = ['PLD', 'WAR', 'DRK']
+
+// List of jobs to show an mp value for.
+Options.ShowMPNumber = ['BLM', 'DRK']
+
 // Show procs ending this amount early so as to not waste GCDs on no-longer-useful procs.
 // Jolt cast time + 0.5 for my reaction time.
 Options.RdmCastTime = 1.94 + 0.5
@@ -60,7 +66,7 @@ Options.MidHealthThresholdPercent = 0.8
 // hp/mp/tp bars and jobs gauges.  Using this option also removes the left
 // side of the buff bar (see PerBuffOptions for details), and any buff that
 // would have been on the left is now sorted as if it were on the right.
-Options.JustBuffTracker = true
+Options.JustBuffTracker = false
 
 // Overrides for all of the "big buffs" that appear to the left or right
 // of the hp/mp bars.  This is stuff like trick/embolden/devotion/etc.

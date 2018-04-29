@@ -29,42 +29,100 @@
       ];
     },
   ],
+  timelineReplace: [
+    {
+      locale: 'fr',
+      replaceText: {
+        'Final Sting': 'Dard final',
+        'Almagest': 'Almageste',
+        'Angry Dummy': 'Mannequin en colère',
+        'Long Castbar': 'Longue barre de lancement',
+        'Dummy Stands Still': 'Mannequin immobile',
+        'Death': 'Mort',
+      },
+      replaceSync: {
+        'You bid farewell to the striking dummy': "Vous faites vos adieux au mannequin d'entraînement",
+        'You bow courteously to the striking dummy': "Vous vous inclinez devant le mannequin d'entraînement",
+        'Engage!': "À l'attaque !",
+      },
+    }
+  ],
   triggers: [
     {
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
+      regexFr: /:Vous touchez légèrement le mannequin d'entraînement du doigt/,
       preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
       },
       infoText: function(data) {
-        return 'poke #' + data.pokes;
+        return {
+          en: 'poke #' + data.pokes,
+          fr: 'Touché #' + data.pokes,
+        };
       },
       tts: function(data) {
-        return 'poke ' + data.pokes;
+        return {
+          en: 'poke ' + data.pokes,
+          fr: 'Touché ' + data.pokes,
+        };
       },
     },
     {
       id: 'Test Psych',
-      regex: /:You psych yourself up alongside the striking dummy/,
+      regexEn: /:You psych yourself up alongside the striking dummy/,
+      regexFr: /:Vous vous motivez devant le mannequin d'entraînement/,
       alertText: function(data) {
-        return 'PSYCH!!!';
+        return {
+          en: 'PSYCH!!!',
+          fr: 'MOTIVATION !!!',
+        };
       },
-      tts: 'psych',
+      tts: {
+        en: 'psych',
+        fr: 'Motivation',
+      },
     },
     {
       id: 'Test Laugh',
-      regex: /:You burst out laughing at the striking dummy/,
+      regexEn: /:You burst out laughing at the striking dummy/,
+      regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
+      suppressSeconds: 5,
       alarmText: function(data) {
-        return 'hahahahaha';
+        return {
+          en: 'hahahahaha',
+          fr: 'Mouahahaha',
+        };
       },
-      tts: 'hahahahaha',
+      tts: {
+        en: 'hahahahaha',
+        fr: 'Haha mort de rire',
+      },
     },
     {
       id: 'Test Clap',
-      regex: /:You clap for the striking dummy/,
+      regexEn: /:You clap for the striking dummy/,
+      regexFr: /:Vous applaudissez le mannequin d'entraînement/,
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
-      tts: 'clapity clap',
+      tts: {
+        en: 'clapity clap',
+        fr: 'Bravo, vive la France',
+      },
+    },
+    {
+      id: 'Test Lang',
+      regex: /00:0038:cactbot lang/,
+      infoText: function(data) {
+        return {
+	  en: 'Language: ' + data.lang,
+	};
+      },
+      tts: function(data) {
+        return {
+	  en: 'Language: ' + data.lang,
+	};
+      },
     },
   ],
 }]

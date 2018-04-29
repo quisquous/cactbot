@@ -100,6 +100,7 @@ class CactbotLanguage {
       WingsOfSalvation: '26CA',
       ChainLightning: '26C8',
       ThermionicBurst: '26B9',
+      Exaflare: '26EF',
 
       // Byakko Ex
       ByaSweepTheLeg: '27DB',
@@ -117,6 +118,22 @@ class CactbotLanguage {
       UltrosStoneskin: '2AB5',
       TheHeat: '2777',
       ChainCannon: '278F',
+    });
+
+    this.kZone = Object.freeze({
+      O1S: /Deltascape V1\.0 \(Savage\)/,
+      O2S: /Deltascape V2\.0 \(Savage\)/,
+      O3S: /Deltascape V3\.0 \(Savage\)/,
+      O4S: /Deltascape V4\.0 \(Savage\)/,
+      UCU: /The Unending Coil Of Bahamut \(Ultimate\)/,
+      O5S: /Sigmascape V1\.0 \(Savage\)/,
+      O6S: /Sigmascape V2\.0 \(Savage\)/,
+      O7S: /Sigmascape V3\.0 \(Savage\)/,
+      O8S: /Sigmascape V4\.0 \(Savage\)/,
+      PvpSeize: /Seal Rock \(Seize\)/,
+      PvpSecure: /The Borderland Ruins \(Secure\)/,
+      PvpShatter: /The Fields Of Glory \(Shatter\)/,
+      EurekaAnemos: /Eureka Anemos/,
     });
   }
 
@@ -192,3 +209,8 @@ class CactbotLanguage {
     return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
   };
 };
+
+document.addEventListener("onPlayerChangedEvent", (function (e) {
+  if (gLang)
+    gLang.OnPlayerNameChange(e.detail.name);
+}).bind(this));

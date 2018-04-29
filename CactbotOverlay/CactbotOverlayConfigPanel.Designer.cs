@@ -29,6 +29,7 @@
       this.label9 = new System.Windows.Forms.Label();
       this.checkLock = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+      this.buttonShowDevtools = new System.Windows.Forms.Button();
       this.buttonReloadBrowser = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,10 +41,14 @@
       this.logUpdateLabel = new System.Windows.Forms.Label();
       this.logUpdateCheckBox = new System.Windows.Forms.CheckBox();
       this.restartMessageLabel = new System.Windows.Forms.Label();
-      this.buttonShowDevtools = new System.Windows.Forms.Button();
+      this.label1 = new System.Windows.Forms.Label();
+      this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+      this.buttonSelectUserConfigFile = new System.Windows.Forms.Button();
+      this.textUserConfigFile = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
+      this.tableLayoutPanel4.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -58,7 +63,7 @@
       this.tableLayoutPanel1.Controls.Add(this.textGlobalHotkey, 1, 7);
       this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
       this.tableLayoutPanel1.Controls.Add(this.checkLock, 1, 2);
-      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 11);
+      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 13);
       this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
       this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
       this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
@@ -67,6 +72,8 @@
       this.tableLayoutPanel1.Controls.Add(this.logUpdateLabel, 0, 9);
       this.tableLayoutPanel1.Controls.Add(this.logUpdateCheckBox, 1, 9);
       this.tableLayoutPanel1.Controls.Add(this.restartMessageLabel, 1, 10);
+      this.tableLayoutPanel1.Controls.Add(this.label1, 0, 12);
+      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 12);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
       // 
@@ -130,6 +137,13 @@
       this.tableLayoutPanel3.Controls.Add(this.buttonShowDevtools, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.buttonReloadBrowser, 1, 0);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+      // 
+      // buttonShowDevtools
+      // 
+      resources.ApplyResources(this.buttonShowDevtools, "buttonShowDevtools");
+      this.buttonShowDevtools.Name = "buttonShowDevtools";
+      this.buttonShowDevtools.UseVisualStyleBackColor = true;
+      this.buttonShowDevtools.Click += new System.EventHandler(this.buttonShowDevtools_Click);
       // 
       // buttonReloadBrowser
       // 
@@ -197,12 +211,30 @@
       resources.ApplyResources(this.restartMessageLabel, "restartMessageLabel");
       this.restartMessageLabel.Name = "restartMessageLabel";
       // 
-      // buttonShowDevtools
+      // label1
       // 
-      resources.ApplyResources(this.buttonShowDevtools, "buttonShowDevtools");
-      this.buttonShowDevtools.Name = "buttonShowDevtools";
-      this.buttonShowDevtools.UseVisualStyleBackColor = true;
-      this.buttonShowDevtools.Click += new System.EventHandler(this.buttonShowDevtools_Click);
+      resources.ApplyResources(this.label1, "label1");
+      this.label1.Name = "label1";
+      // 
+      // tableLayoutPanel4
+      // 
+      resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+      this.tableLayoutPanel4.Controls.Add(this.buttonSelectUserConfigFile, 0, 0);
+      this.tableLayoutPanel4.Controls.Add(this.textUserConfigFile, 0, 0);
+      this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+      // 
+      // buttonSelectUserConfigFile
+      // 
+      resources.ApplyResources(this.buttonSelectUserConfigFile, "buttonSelectUserConfigFile");
+      this.buttonSelectUserConfigFile.Name = "buttonSelectUserConfigFile";
+      this.buttonSelectUserConfigFile.UseVisualStyleBackColor = true;
+      this.buttonSelectUserConfigFile.Click += new System.EventHandler(this.buttonSelectUserConfigFile_Click);
+      // 
+      // textUserConfigFile
+      // 
+      resources.ApplyResources(this.textUserConfigFile, "textUserConfigFile");
+      this.textUserConfigFile.Name = "textUserConfigFile";
+      this.textUserConfigFile.Leave += new System.EventHandler(this.textUserConfigFile_Leave);
       // 
       // CactbotOverlayConfigPanel
       // 
@@ -215,6 +247,8 @@
       this.tableLayoutPanel3.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
       this.tableLayoutPanel2.PerformLayout();
+      this.tableLayoutPanel4.ResumeLayout(false);
+      this.tableLayoutPanel4.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -238,11 +272,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TextBox textUrl;
         private System.Windows.Forms.Button buttonSelectFile;
-    private System.Windows.Forms.Label dpsUpdateRateLabel;
-    private System.Windows.Forms.TextBox dpsUpdateRate;
-    private System.Windows.Forms.Label logUpdateLabel;
-    private System.Windows.Forms.CheckBox logUpdateCheckBox;
-    private System.Windows.Forms.Label restartMessageLabel;
-    private System.Windows.Forms.Button buttonShowDevtools;
-  }
+        private System.Windows.Forms.Label dpsUpdateRateLabel;
+        private System.Windows.Forms.TextBox dpsUpdateRate;
+        private System.Windows.Forms.Label logUpdateLabel;
+        private System.Windows.Forms.CheckBox logUpdateCheckBox;
+        private System.Windows.Forms.Label restartMessageLabel;
+        private System.Windows.Forms.Button buttonShowDevtools;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button buttonSelectUserConfigFile;
+        private System.Windows.Forms.TextBox textUserConfigFile;
+    }
 }

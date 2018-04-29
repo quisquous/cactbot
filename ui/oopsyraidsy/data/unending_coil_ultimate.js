@@ -83,6 +83,16 @@
       },
     },
     {
+      id: 'UCU Exaflare',
+      damageRegex: gLang.kAbility.Exaflare,
+      condition: function(e, data) {
+        return data.IsPlayerId(e.targetId);
+      },
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
       gainsEffectRegex: gLang.kEffect.Doom,
       losesEffectRegex: gLang.kEffect.Doom,
       run: function(e, data) {

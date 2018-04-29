@@ -86,7 +86,8 @@ namespace Cactbot {
           int healer_lb3 = Math.Max(
             log.IndexOf(":Pulse Of Life:", StringComparison.Ordinal),
             Math.Max(log.IndexOf(":Angel Feathers:", StringComparison.Ordinal),
-                     log.IndexOf(":Astral Stasis:", StringComparison.Ordinal)));
+              Math.Max(log.IndexOf(":Astral Stasis:", StringComparison.Ordinal),
+                log.IndexOf(":Flames Of Rebirth:", StringComparison.Ordinal))));
           if (healer_lb3 >= 0) {
             if (log.IndexOf(player_name_with_colons_, StringComparison.Ordinal) > healer_lb3) {
               last_lb3_time_ = DateTime.Now;

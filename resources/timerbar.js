@@ -261,13 +261,13 @@ class TimerBar extends HTMLElement {
     // These values are filled in during draw() when the values change.
     if (varying_texts.indexOf(this._left_text) == -1) {
       // Otherwise the value is fixed so it can be set here.
-      this.leftTextElement.innerText = this._left_text;
+      this.leftTextElement.innerHTML = this._left_text;
     }
     if (varying_texts.indexOf(this._center_text) == -1) {
-      this.centerTextElement.innerText = this._center_text;
+      this.centerTextElement.innerHTML = this._center_text;
     }
     if (varying_texts.indexOf(this._right_text) == -1) {
-      this.rightTextElement.innerText = this._right_text;
+      this.rightTextElement.innerHTML = this._right_text;
     }
   }
 

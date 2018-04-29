@@ -12,7 +12,9 @@ var Options = {
   OpacityOutOfCombat: 0.5,
 
   HideWellFedAboveSeconds: 15 * 60,
-  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'UCU'],
+  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'UCU'],
+  ShowHPNumber: ['PLD', 'WAR', 'DRK'],
+  ShowMPNumber: ['DRK', 'BLM'],
 
   MaxLevel: 70,
 
@@ -565,11 +567,16 @@ class Bars {
       return;
     }
 
-    var healthText = isTankJob(this.job) ? 'value' : '';
-    var manaText = (this.job == 'DRK') ? 'value' : '';
+    var showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
+    var showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
+
+    var healthText = showHPNumber ? 'value' : '';
+    var manaText = showMPNumber ? 'value' : '';
 
     this.o.healthContainer = document.createElement("div");
     this.o.healthContainer.id = 'hp-bar';
+    if (showHPNumber)
+      this.o.healthContainer.classList.add('show-number');
     barsContainer.appendChild(this.o.healthContainer);
 
     this.o.healthBar = document.createElement("resource-bar");
@@ -584,6 +591,8 @@ class Bars {
       this.o.manaContainer = document.createElement("div");
       this.o.manaContainer.id = 'mp-bar';
       barsContainer.appendChild(this.o.manaContainer);
+      if (showMPNumber)
+        this.o.manaContainer.classList.add('show-number');
 
       this.o.manaBar = document.createElement("resource-bar");
       this.o.manaContainer.appendChild(this.o.manaBar);
@@ -1886,10 +1895,6 @@ class Bars {
 
 var gBars;
 
-window.addEventListener("load", function (e) {
-  if (!gBars)
-    gBars = new Bars(Options);
-});
 document.addEventListener("onPlayerChangedEvent", function (e) {
   gBars.OnPlayerChanged(e);
 });
@@ -1907,4 +1912,8 @@ document.addEventListener("onZoneChangedEvent", function (e) {
 });
 document.addEventListener("onLogEvent", function (e) {
   gBars.OnLogEvent(e);
+});
+
+UserConfig.getUserConfigLocation('jobs', function() {
+  gBars = new Bars(Options);
 });

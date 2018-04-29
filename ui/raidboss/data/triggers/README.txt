@@ -5,6 +5,23 @@
   timeline: `
     hideall "Optionally, more lines to treat as part of the timeline"
     `,
+  timelineReplace: [
+    {
+	  // Optional locale to restrict this to, e.g. 'en', 'ko', 'fr'.
+	  // If not present, applies to all locales.
+	  locale: 'en',
+	  replaceText: {
+	    // key:value pairs to search and replace in timeline ability names
+		// The display name for that ability is changed, but all hideall,
+		// infotext, alerttext, alarmtext, etc all refer to the original name.
+	    "regexSearch": "strReplace",
+	  },
+	  replaceSync: {
+	    // key:value pairs to search and replace in timeline sync regexes.
+		"regexSearch": "strReplace",
+	  },
+	},
+  ],
   resetWhenOutOfCombat: true, // boolean, defaults to true, if true then timelines and triggers will reset when the game is out of combat, otherwise manually call data.StopCombat().
   triggers: [
     { /* ..trigger 1.. */ },
@@ -29,6 +46,7 @@
 //         me: The player's character name.
 //         job: The player's job.
 //         role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster/crafting/gathering).
+//         lang: The current language, e.g. 'en', 'fr', 'ko', 'de', 'ja'.
 //         function ParseLocaleFloat(float): A function that can parse \y{Float} matches from the regex.
 //         function ShortName(name): A function that simplifies a player's name into something shorter, usually first name.
 //         function StopCombat(): Manually stop timelines and triggers, usually paired with resetWhenOutOfCombat = false.
@@ -42,8 +60,14 @@
   id: 'id string'
   // Regular expression to match against.
   regex: /trigger-regex-(with-position-1)-here/,
+  // Example of a locale-based regular expression for the 'fr' locale.  If Options.Language == 'fr', then
+  // regexFr (if it exists) takes precedence over regex.  Otherwise, it is ignored.  This is only an
+  // example for french, but other locales behave the same, e.g. regexEn, regexKo.
+  regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
   // Time to wait before showing it once the regex is seen. May be a number or a function(data, matches) that returns a number.
   delaySeconds: 0,
+  // Time to wait in seconds before showing this trigger again.  May be a number of a function(data, matches).  The time to wait begins at the regex (and not after the delaySeconds).  These triggers will not run anything.  This can be used for catching the first of many events if there's log spam.
+  suppressSeconds: 0,
   // Number of seconds to show the trigger for. May be a number or a function(data, matches) that returns a number.
   durationSeconds: 3,
   // Text to show with info importance. May be a string or a function(data, matches) that returns a string.
@@ -68,14 +92,20 @@
   disabled: true,
 },
 
+Any field that can return a function (e.g. infoText, alertText, alarmText, tts) can also return a localized
+object, e.g. instead of returning 'Get Out', they can return {en: 'Get Out', fr: 'something french'}
+instead.  Fields can also return a function that return a localized object as well.  If the current locale
+does not exist in the object, the 'en' result will be returned.
+
 
 The full order of evaluation of functions in a trigger is:
 1. condition
 2. preRun
 3. delaySeconds
 4. durationSeconds
-5. infoText
-6. alertText
-7. alarmText
-8. tts
-9. run
+5. suppressSeconds
+6. infoText
+7. alertText
+8. alarmText
+9. tts
+10. run

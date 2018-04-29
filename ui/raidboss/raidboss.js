@@ -23,11 +23,13 @@ var Options = {
   AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
   AlarmSound: '../../resources/sounds/BigWigs/Alarm.ogg',
   LongSound: '../../resources/sounds/BigWigs/Long.ogg',
+  PullSound: '../../resources/sounds/PowerAuras/sonar.ogg',
 
   InfoSoundVolume: 1,
   AlertSoundVolume: 1,
   AlarmSoundVolume: 1,
   LongSoundVolume: 1,
+  PullSoundVolume: 0.3,
 
   DisabledTriggers: {},
 
@@ -36,8 +38,10 @@ var Options = {
   Triggers: [],
 };
 
-gTimelineController = new TimelineController(Options, new TimelineUI(Options));
-gPopupText = new PopupText(Options);
-// Connect the timelines to the popup text.
-gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
-gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
+UserConfig.getUserConfigLocation('raidboss', function(e) {
+  gTimelineController = new TimelineController(Options, new TimelineUI(Options));
+  gPopupText = new PopupText(Options);
+  // Connect the timelines to the popup text.
+  gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
+  gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
+});

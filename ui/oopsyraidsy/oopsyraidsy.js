@@ -7,13 +7,42 @@ var Options = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
+  IgnoreZones: [
+    'PvpSeize',
+    'PvpSecure',
+    'PvpShatter',
+    'EurekaAnemos',
+  ],
 
   AbilityIdNameMap: {
+    '5C6': 'Attack',
+    '5C7': 'Attack',
+    '5C8': 'Attack',
+    '5C9': 'Attack',
+    '19E7': 'Attack',
+    '1AE2': 'Attack',
+    '1AFE': 'Attack',
+    '1C97': 'Attack',
+    '1CB7': 'Attack',
+    '2157': 'Lakshmi Auto',
+    '21C5': 'Attack',
+    '22EA': 'Attack',
+    '23F2': 'Exdeath Auto',
+    '249F': 'Attack',
+    '24E1': 'Attack',
+    '24E2': 'Attack',
+    '24E8': 'Attack',
+    '25B6': 'Attack',
     '26A7': 'Twin Auto',
     '26B4': 'Nael Auto',
     '26D0': 'Baha Auto',
-    '23F2': 'Exdeath Auto',
-    '2157': 'Lakshmi Auto',
+    '2705': 'Attack',
+    '27FC': 'Attack',
+    '27FD': 'Attack',
+    '27FE': 'Attack',
+    '27FF': 'Attack',
+    '28C1': 'Attack',
+    '2B3E': 'Attack',
   },
 };
 
@@ -67,30 +96,47 @@ var kFieldAttackerX = 38;
 var kFieldAttackerY = 39;
 var kFieldAttackerZ = 40;
 
-// if kFieldFlags is any of these values, then consider field 9/10 as 7/8.
-var kShiftFlagValues = ['3C', '113', '213', '313'];
-var kFlagInstantDeath = '32';
+// If kFieldFlags is any of these values, then consider field 9/10 as 7/8.
+// It appears a little bit that flags come in pairs of values, but it's unclear
+// what these mean.
+var kShiftFlagValues = ['3D', '113', '213', '313'];
+var kFlagInstantDeath = '33';
+// miss, damage, block, parry, instant death
+var kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
 /*
 Field 7 Flags:
-  '0' = no damage at all (missed aoe, repelling shot)
+  '0' = meditation, aoe with no targets
 
-  0x03 = damage
-  0x05 = blocked damage
-  0x06 = parried damage
-  0x32 = instant death
+  damage low bytes:
+    0x01 = dodge
+    0x03 = damage
+    0x05 = blocked damage
+    0x06 = parried damage
+    0x33 = instant death
 
-  0x39 = skill with no buffs/damage (e.g. teleport, bahamut's favor, ninja bunny)
+  misc low bytes:
+    0x08 = mudra(bogus), esuna(no effects?), bane(missed)
+    0x09 = bane(target)
+    0x0B = aetherflow
+    0x0D = purification, invigorate (with tp value in left three chars of next field)
+    0x0F = bio, chain strat, emergency tactics, protect, swiftcast, bane(recipient), sprint, fists of fire, mudra
+    0x10 = shadow flare, sacred soil
+    0x26 = mount (always 126?)
+    0x3A = skill with no buffs/damage (e.g. teleport, bahamut's favor, ninja bunny)
+    0x3B = huton
 
-  0x100 = crit damage
-  0x200 = direct hit damage
-  0x300 = crit direct hit damage
+  damage modifiers:
+    0x100 = crit damage
+    0x200 = direct hit damage
+    0x300 = crit direct hit damage
 
-  0x00004 = heal
-  0x10004 = crit heal
+  heal modifiers:
+    0x00004 = heal
+    0x10004 = crit heal
 
   Special cases:
-    * If flags are 3C, shift 9+10 two over to be 7+8.  (why???)
+    * If flags are 3D, shift 9+10 two over to be 7+8.  (why???)
     * Plenary indulgence has flags=113/213/313 for stacks, shift two as well.
 
   Damage:
@@ -110,14 +156,14 @@ Examples:
 (2) 82538 damage from Hyperdrive (0x4000 extra damage mask)
   15:40024FBA:Kefka:28E8:Hyperdrive:106C1DBA:Okonomi Yaki:750003:426B4001:1C:28E88000:0:0:0:0:0:0:0:0:0:0:0:0:35811:62464:4560:4560:940:1000:-0.1586061:-5.753153:0:30098906:31559062:12000:12000:1000:1000:0.3508911:0.4425049:2.384186E-07:
 
-(3) 22109 damage from Grand Cross Omega (:3C:0: shift, unknown 0x40000 flag)
-  16:40001333:Neo Exdeath:242D:Grand Cross Omega:1048638C:Tater Tot:3C:0:750003:565D0000:1C:80242D:0:0:0:0:0:0:0:0:0:0:41241:41241:5160:5160:670:1000:-0.3251641:6.526299:1.192093E-07:7560944:17702272:12000:12000:1000:1000:0:19:2.384186E-07:
+(3) 22109 damage from Grand Cross Omega (:3D:0: shift, unknown 0x40000 flag)
+  16:40001333:Neo Exdeath:242D:Grand Cross Omega:1048638C:Tater Tot:3D:0:750003:565D0000:1C:80242D:0:0:0:0:0:0:0:0:0:0:41241:41241:5160:5160:670:1000:-0.3251641:6.526299:1.192093E-07:7560944:17702272:12000:12000:1000:1000:0:19:2.384186E-07:
 
 (4) 15732 crit heal from 3 confession stack Plenary Indulgence (:?13:4C3: shift)
   16:10647D2F:Tako Yaki:1D09:Plenary Indulgence:106DD019:Okonomi Yaki:313:4C3:10004:3D74:0:0:0:0:0:0:0:0:0:0:0:0:7124:40265:14400:9192:1000:1000:-10.78815:11.94781:0:11343:40029:19652:16451:1000:1000:6.336648:7.710004:0:
 
 (5) instant death twister
-  16:40004D5D:Twintania:26AB:Twister:10573FDC:Tini Poutini:32:0:1C:8026AB:0:0:0:0:0:0:0:0:0:0:0:0:43985:43985:5760:5760:910:1000:-8.42179:9.49251:-1.192093E-07:57250:57250:0:0:1000:1000:-8.565645:10.20959:0:
+  16:40004D5D:Twintania:26AB:Twister:10573FDC:Tini Poutini:33:0:1C:26AB8000:0:0:0:0:0:0:0:0:0:0:0:0:43985:43985:5760:5760:910:1000:-8.42179:9.49251:-1.192093E-07:57250:57250:0:0:1000:1000:-8.565645:10.20959:0:
 
 (6) zero damage targetless aoe (E0000000 target)
   16:103AAEE4:Potato Chippy:B1:Miasma II:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0::::::::::19400:40287:17649:17633:1000:1000:-0.656189:-3.799561:-5.960464E-08:
@@ -171,18 +217,12 @@ function IsPlayerId(id) {
 }
 
 class OopsyLiveList {
-  constructor(options) {
+  constructor(options, element) {
     this.options = options;
-    // Stub elements prior to the document load.
-    this.scroller = document.createElement('div');
-    this.container = document.createElement('div');
-    this.Reset();
-    this.SetInCombat(false);
-  }
-
-  SetScroller(element) {
     this.scroller = element;
     this.container = element.children[0];
+    this.Reset();
+    this.SetInCombat(false);
   }
 
   SetInCombat(inCombat) {
@@ -466,6 +506,7 @@ class DamageTracker {
     this.collector = collector;
     this.triggerSets = null;
     this.inCombat = false;
+    this.ignoreZone = false;
     this.timers = [];
     this.generalTriggers = [];
     this.damageTriggers = [];
@@ -496,6 +537,8 @@ class DamageTracker {
   }
 
   OnLogEvent(e) {
+    if (this.ignoreZone)
+      return;
     for (var i = 0; i < e.detail.logs.length; ++i) {
       var line = e.detail.logs[i];
       for (var j = 0; j < this.generalTriggers.length; ++j) {
@@ -505,9 +548,15 @@ class DamageTracker {
           this.OnTrigger(trigger, {line: line}, matches);
       }
 
-      if (line[kTypeOffset0] == '0' && line.indexOf('00:0039:Engage!') > 0) {
-        this.collector.AddEngage();
-        continue;
+      if (line[kTypeOffset0] == '0' && line[kTypeOffset1] == '0') {
+        if (line.match(gLang.countdownEngageRegex())) {
+          this.collector.AddEngage();
+          continue;
+        }
+        if (line.match(gLang.countdownStartRegex()) || line.match(gLang.countdownCancelRegex())) {
+          this.collector.Reset();
+          continue;
+        }
       }
       // 15 chars in is the type: 15 (single target) / 16 (aoe)
       // See table at the top of this file.
@@ -545,7 +594,7 @@ class DamageTracker {
   }
 
   OnAbilityEvent(fields, line) {
-    // Shift damage and flags forward for mysterious spurious :3C:0:.
+    // Shift damage and flags forward for mysterious spurious :3D:0:.
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
     if (kShiftFlagValues.indexOf(fields[kFieldFlags]) >= 0) {
@@ -587,8 +636,7 @@ class DamageTracker {
       return;
     }
 
-    // miss, damage, block, parry, instant death
-    if (lowByte != '0' && lowByte != '03' && lowByte != '05' && lowByte != '06' && lowByte != '32')
+    if (kAttackFlags.indexOf(lowByte) == -1)
       return;
 
     // TODO track first puller here, collector doesn't need every damage line
@@ -739,7 +787,10 @@ class DamageTracker {
   }
 
   OnPartyWipeEvent(e) {
+    if (this.ignoreZone)
+      return;
     this.Reset();
+    this.collector.OnPartyWipeEvent(e);
   }
 
   OnZoneChangeEvent(e) {
@@ -766,6 +817,15 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+
+    this.ignoreZone = false;
+    for (var i = 0; i < Options.IgnoreZones.length; ++i) {
+      if (this.zoneName.match(gLang.kZone[Options.IgnoreZones[i]])) {
+        this.ignoreZone = true;
+        return;
+      }
+    }
+
     for (var i = 0; i < this.triggerSets.length; ++i) {
       var set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) < 0)
@@ -777,11 +837,11 @@ class DamageTracker {
           this.generalTriggers.push(trigger);
         }
         if ('damageRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse(trigger.damageRegex);
+          trigger.idRegex = Regexes.Parse('^' + trigger.damageRegex + '$');
           this.damageTriggers.push(trigger);
         }
         if ('abilityRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse(trigger.abilityRegex);
+          trigger.idRegex = Regexes.Parse('^' + trigger.abilityRegex + '$');
           this.abilityTriggers.push(trigger);
         }
         if ('gainsEffectRegex' in trigger) {
@@ -793,7 +853,7 @@ class DamageTracker {
           this.effectTriggers.push(trigger);
         }
         if ('healRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse(trigger.healRegex);
+          trigger.idRegex = Regexes.Parse('^' + trigger.healRegex + '$');
           this.healTriggers.push(trigger);
         }
       }
@@ -876,20 +936,11 @@ class DamageTracker {
   }
 }
 
-gLiveList = new OopsyLiveList(Options);
-gMistakeCollector = new MistakeCollector(Options, gLiveList);
-gDamageTracker = new DamageTracker(Options, gMistakeCollector);
-
-window.addEventListener("load", function(e) {
-  gLiveList.SetScroller(document.getElementById('livelist'));
-});
-
 document.addEventListener("onLogEvent", function(e) {
   gDamageTracker.OnLogEvent(e);
 });
 document.addEventListener("onPartyWipe", function(e) {
   gDamageTracker.OnPartyWipeEvent(e);
-  gMistakeCollector.OnPartyWipeEvent(e);
 });
 document.addEventListener("onZoneChangedEvent", function(e) {
   gDamageTracker.OnZoneChangeEvent(e);
@@ -904,4 +955,10 @@ document.addEventListener("onDataFilesRead", function(e) {
 });
 document.addEventListener("onPlayerChangedEvent", function(e) {
   gDamageTracker.OnPlayerChange(e);
+});
+
+UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
+  gLiveList = new OopsyLiveList(Options, document.getElementById('livelist'));
+  gMistakeCollector = new MistakeCollector(Options, gLiveList);
+  gDamageTracker = new DamageTracker(Options, gMistakeCollector);
 });
