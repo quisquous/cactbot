@@ -459,7 +459,7 @@
     {
       // FIXME: need Tail of Darkness/Fang of Light translations
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
-      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Tempête De La Mort:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
+      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       condition: function(data, matches) { return !data.seenDragon || !(matches[1] in data.seenDragon); },
       run: function(data, matches) {
         // seenDragon[dragon name] => boolean
@@ -1048,7 +1048,7 @@
         'Nael Geminus': 'Nael Geminus',
         'Oviform': 'Oviforme',
         'Ragnarok': 'Ragnarok',
-        'Tail of Darkness': 'Tempête De La Mort',
+        'Tail of Darkness': 'Queue de ténèbres',
         'Thunderwing': 'Aile-de-foudre',
         'Twintania': 'Gémellia',
       },
