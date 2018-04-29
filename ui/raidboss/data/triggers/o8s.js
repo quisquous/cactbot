@@ -361,6 +361,7 @@
       run: function(data) {
         data.lastFire = {
           en: 'Spread',
+          fr: 'Se séparer',
         }[data.lang];
       },
     },
@@ -377,6 +378,7 @@
       run: function(data) {
         data.lastFire = {
           en: 'Stack',
+          fr: 'Se rassembler',
         }[data.lang];
       },
     },
