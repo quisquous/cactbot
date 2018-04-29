@@ -14,8 +14,14 @@
       regexFr: / 14:28DB:Statue Divine starts using Onde De Choc/,
       regexJa: / 14:28DB:神々の像 starts using 衝撃波/,
       delaySeconds: 5,
-      alertText: 'Look for Knockback',
-      tts: 'knockback',
+      alertText: {
+        en: 'Look for Knockback',
+        fr: 'Se préparer à la projection',
+      },
+      tts: {
+        en: 'knockback',
+        fr: 'Projection depuis le boss',
+      },
     },
     {
       id: 'O8S Indolent Will',
@@ -23,8 +29,14 @@
       regexDe: /Göttliche Statue starts using Träger Wille/,
       regexFr: /Statue Divine starts using Volonté Indolente/,
       regexJa: /神々の像 starts using 惰眠の神気/,
-      alertText: 'Look Away From Statue',
-      tts: 'look away',
+      alertText: {
+        en: 'Look Away From Statue',
+        fr: 'Ne pas regarder la statue',
+      },
+      tts: {
+        en: 'look away',
+        fr: 'Ne pas regarder la statue',
+      },
     },
     {
       id: 'O8S Intemperate Will',
@@ -32,8 +44,14 @@
       regexDe: /14:28DF:Göttliche Statue starts using Unmäßiger Wille/,
       regexFr: /14:28DF:Statue Divine starts using Volonté Intempérante/,
       regexJa: /14:28DF:神々の像 starts using 撲殺の神気/,
-      alertText: '<= Get Left/West',
-      tts: 'left',
+      alertText: {
+        en: '<= Get Left/West',
+        fr: '<= Aller à Gauche/Ouest',
+      },
+      tts: {
+        en: 'left',
+        fr: 'Projection depuis le côté gauche',
+      },
     },
     {
       id: 'O8S Gravitational Wave',
@@ -41,8 +59,14 @@
       regexDe: /14:28DE:Göttliche Statue starts using Gravitationswelle/,
       regexFr: /14:28DE:Statue Divine starts using Onde Gravitationnelle/,
       regexJa: /14:28DE:神々の像 starts using 重力波/,
-      alertText: 'Get Right/East =>',
-      tts: 'right',
+      alertText: {
+        en: 'Get Right/East =>',
+        fr: 'Aller à Droite/Est =>',
+      },
+      tts: {
+        en: 'right',
+        fr: 'Projection depuis le côté droit',
+      },
     },
     {
       id: 'O8S Ave Maria',
@@ -50,8 +74,14 @@
       regexDe: / 14:28E3:Göttliche Statue starts using Ave Maria/,
       regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
       regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
-      alertText: 'Look At Statue',
-      tts: 'look towards',
+      alertText: {
+        en: 'Look At Statue',
+        fr: 'Regarder la statue',
+      },
+      tts: {
+        en: 'look towards',
+        fr: 'Regarder la statue',
+      },
     },
     {
       id: 'O8S Pasts Forgotten',
@@ -59,8 +89,14 @@
       regexDe: /Kefka starts using Ende Des Schlummers/,
       regexFr: /Kefka starts using Ruine Du Passé/,
       regexJa: /ケフカ starts using 過去の破滅/,
-      alertText: 'Past: Stack and Stay',
-      tts: 'stack and stay',
+      alertText: {
+        en: 'Past: Stack and Stay',
+        fr: 'Passé : Stack et rester-là',
+      },
+      tts: {
+        en: 'stack and stay',
+        fr: 'Stack et rester-là',
+      },
     },
     {
       id: 'O8S Futures Numbered',
@@ -68,8 +104,14 @@
       regexDe: /Kefka starts using Ende Des Lebens/,
       regexFr: /Kefka starts using Ruine Du Futur/,
       regexJa: /ケフカ starts using 未来の破滅/,
-      alertText: 'Future: Stack and Through',
-      tts: 'stack and through',
+      alertText: {
+        en: 'Future: Stack and Through',
+        fr: 'Futur : Stack et le traverser',
+      },
+      tts: {
+        en: 'stack and through',
+        fr: 'Stack et le traverser',
+      },
     },
     {
       id: "O8S Past's End",
@@ -78,8 +120,14 @@
       regexFr: /Kefka starts using Past's End/,
       regexJa: /ケフカ starts using Past's End/,
       condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
-      alertText: 'Past: Bait, then through',
-      tts: 'run run run',
+      alertText: {
+        en: 'Past: Bait, then through',
+        fr: "Passé : l'appâter, puis le traverser",
+      },
+      tts: {
+        en: 'run run run',
+        fr: "L'appâter, puis le traverser",
+      },
     },
     {
       id: "O8S Future's End",
@@ -88,8 +136,14 @@
       regexFr: /Kefka starts using Fin Du Futur/,
       regexJa: /ケフカ starts using 未来の終焉/,
       condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
-      alertText: 'Future: Bait, then stay',
-      tts: 'stay stay stay',
+      alertText: {
+        en: 'Future: Bait, then stay',
+        fr: "Futur : l'appâter, et rester",
+      },
+      tts: {
+        en: 'stay stay stay',
+        fr: "L'appâter, et rester",
+      },
     },
     {
       id: 'O8S Pulse Wave You',
@@ -98,8 +152,14 @@
       regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
       regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alertText: 'Knockback on YOU',
-      tts: 'knockback',
+      alertText: {
+        en: 'Knockback on YOU',
+        fr: 'Projection depuis la Statue',
+      },
+      tts: {
+        en: 'knockback',
+        fr: 'Projection depuis la statue',
+      },
     },
     {
       id: 'O8S Wings of Destruction',
@@ -108,18 +168,33 @@
       regexFr: / 14:2900:Kefka starts using Aile De La Destruction/,
       regexJa: / 14:2900:ケフカ starts using 破壊の翼/,
       alarmText: function(data) {
-        if (data.role == 'tank')
-          return 'Wings: Be Near/Far';
+        if (data.role == 'tank') {
+          return {
+            en: 'Wings: Be Near/Far',
+            fr: 'Ailes : être près/loin',
+          };
+        }
       },
       infoText: function(data) {
-        if (data.role != 'tank')
-          return 'Max Melee: Avoid Tanks';
+        if (data.role != 'tank') {
+          return {
+            en: 'Max Melee: Avoid Tanks',
+            fr: "Max Mêlée, s'éloigner des Tanks",
+          };
+        }
       },
       tts: function(data) {
-        if (data.role == 'tank')
-          return 'wings';
-        else
-          return 'max melee';
+        if (data.role == 'tank') {
+          return {
+            en: 'wings',
+            fr: 'Ailes, être près ou loin',
+          };
+        } else {
+          return {
+            en: 'max melee',
+            fr: "Max mêlée et s'éloigner des tanks",
+          };
+        }
       },
     },
     {
@@ -128,8 +203,14 @@
       regexDe: / 14:28F[EF]:Kefka starts using Vernichtungsschwinge/,
       regexFr: / 14:28F[EF]:Kefka starts using Aile De La Destruction/,
       regexJa: / 14:28F[EF]:ケフカ starts using 破壊の翼/,
-      infoText: 'Single Wing',
-      tts: 'single wing',
+      infoText: {
+        en: 'Single Wing',
+        fr: 'Aile unique',
+      },
+      tts: {
+        en: 'single wing',
+        fr: 'Aile unique',
+      },
     },
     {
       id: 'O8S Ultimate Embrace',
@@ -138,18 +219,30 @@
       regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
       regexJa: / 14:2910:ケフカ starts using アルテマte Embrace on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
-          return 'Embrace on YOU';
+        if (matches[1] != data.me)
+          return;
+        return {
+          en: 'Embrace on YOU',
+          fr: 'Étreinte sur VOUS',
+        };
       },
       infoText: function(data, matches) {
         if (matches[1] == data.me)
           return;
-        if (data.role == 'healer' || data.role == 'tank')
-          return 'Embrace on ' + data.ShortName(matches[1]);
+        if (data.role == 'healer' || data.role == 'tank') {
+          return {
+            en: 'Embrace on ' + data.ShortName(matches[1]),
+            fr: 'Étreinte sur ' + data.ShortName(matches[1]),
+		      };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank')
-          return 'embrace';
+        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank') {
+          return {
+            en: 'embrace',
+            fr: 'Étreinte',
+          };
+        }
       },
     },
     {
@@ -160,18 +253,30 @@
       regexFr: / 14:(?:28E8|2912):Kefka starts using Colonne De Feu on (\y{Name})/,
       regexJa: / 14:(?:28E8|2912):ケフカ starts using ハイパードライブ on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
-          return 'Hyperdrive on YOU';
+        if (matches[1] != data.me)
+          return;
+        return {
+          en: 'Hyperdrive on YOU',
+          fr: 'Colonne de feu sur VOUS',
+        };
       },
       infoText: function(data, matches) {
         if (matches[1] == data.me)
           return;
-        if (data.role == 'healer' || data.role == 'tank')
-          return 'Hyperdrive on ' + data.ShortName(matches[1]);
+        if (data.role == 'healer' || data.role == 'tank') {
+          return {
+            en: 'Hyperdrive on ' + data.ShortName(matches[1]),
+            fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
+          };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank')
-          return 'hyperdrive';
+        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank') {
+          return {
+            en: 'hyperdrive',
+            fr: 'Colonne de feu',
+          };
+        }
       },
     },
     {
@@ -181,8 +286,14 @@
       regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
       regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Confusion: Go Outside',
-      tts: 'confusion',
+      alarmText: {
+        en: 'Confusion: Go Outside',
+        fr: "Confusion : Aller à l'extérieur",
+      },
+      tts: {
+        en: 'confusion',
+        fr: "Confusion, aller à l'extérieur",
+      },
     },
     {
       id: 'O8S Idyllic Will',
@@ -191,8 +302,14 @@
       regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
       regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Sleep: Go Inside',
-      tts: 'sleep',
+      alarmText: {
+       en: 'Sleep: Go Inside',
+       fr: 'Sommeil : aller au centre',
+      },
+      tts: {
+        en: 'sleep',
+        fr: 'Sommeil, aller au centre',
+      },
     },
     {
       id: 'O8S Mana Charge',
@@ -468,9 +585,15 @@
         'Kefka': 'Kefka',
         'Light Of Consecration': 'Lumière De La Consécration',
         'The Mad Head': 'Visage De La Folie',
+        'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
       },
       replaceText: {
         "Engage!": "À l'attaque",
+        '--Reset--': '--Réinitialisation--',
+        '--sync--': '--synchronisation--',
+        '--targetable--': '--ciblable--',
+        '--untargetable--': '--impossible à cibler--',
+        'Enrage': 'Enragement',
 
         'Aero Assault': 'Méga Vent Véhément',
         'Blizzard Blitz': 'Méga Glace Glissante',
@@ -497,6 +620,10 @@
         'Vitrophyre': 'Vitrophyre',
         'Wave Cannon': 'Canon Plasma',
 
+        'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
+        'Half Arena': "Moitié d'arène",
+        'Statue Gaze': 'Regard statue',
+
         'All Things Ending': 'Fin De Toutes Choses',
         'Blizzard III': 'Méga Glace',
         'Celestriad': 'Tristella',
@@ -519,9 +646,18 @@
         'The Path Of Light': 'Voie De Lumière',
         'Thunder III': 'Méga Foudre',
         'Trine': 'Trine',
+        'Trine (big)': 'Trine (grand)',
+        'Trine (small)': 'Trine (petit)',
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Étreinte Fatidique',
         'Wings Of Destruction': 'Aile De La Destruction',
+
+        'Soak': 'Absorber',
+        'Past/Future': 'Passé/Futur',
+        'Past/Future End': 'Passé/Fin du futur',
+        'Knockback Tethers': 'Liens de projection',
+        'Sleep/Confuse Tethers': 'Liens de Sommeil/Confusion',
+        'Statue Half Cleave': 'Demi clivage de la statue',
       },
     },
     {
