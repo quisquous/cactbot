@@ -14,14 +14,26 @@
       regexFr: / 14:2829:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
       regexJa: / 14:2829:チャダルヌーク・デーモン starts using デモニックシアー on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
-          return 'Tank Buster on YOU';
-        if (data.role == 'healer')
-          return 'Buster on ' + data.ShortName(matches[1]);
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tank Buster auf DIR',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' + data.ShortName(matches[1]),
+          };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
-          return 'buster';
+        if (matches[1] == data.me) {
+          return {
+            en: 'buster',
+            de: 'buster',
+          };
+        }
       },
     },
     {
@@ -31,15 +43,25 @@
       regexFr: /Added new combatant Emprise De La Tempête/,
       regexJa: /Added new combatant 暴風域/,
       condition: function(data) { return data.role == 'tank'; },
-      infoText: 'Hallowed Wind Stack',
-      tts: 'hallowed wind stack',
+      infoText: {
+        en: 'Hallowed Wind Stack',
+        de: 'Heiliger Boden Wind',
+      },
+      tts: {
+        en: 'hallowed wind stack',
+        de: 'heiliger boden wind',
+      },
     },
     {
       id: 'O6S Demonic Stone',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       alarmText: function(data,matches) {
-        if (data.me == matches[1]) 
-          return 'Demonic Stone on YOU';
+        if (data.me == matches[1]) {
+          return {
+            en: 'Demonic Stone on YOU',
+            de: 'Dämonischer Stein auf dir',
+          };
+        }
       },
     },
     {
@@ -50,8 +72,14 @@
       id: 'O6S Last Kiss Marker',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Last Kiss on YOU',
-      tts: 'last kiss',
+      alarmText: {
+        en: 'Last Kiss on YOU',
+        de: 'Letzter Kuss auf DIR',
+      },
+      tts: {
+        en: 'last kiss',
+        de: 'letzter kuss',
+      },
     },
     {
       id: 'O6S Last Kiss',
@@ -64,8 +92,14 @@
         // don't tell them twice.
         return data.me == matches[1] && data.lastKiss != data.me;
       },
-      alarmText: 'Last Kiss on YOU',
-      tts: 'last kiss',
+      alarmText: {
+        en: 'Last Kiss on YOU',
+        de: 'Letzter Kuss auf DIR',
+      },
+      tts: {
+        en: 'last kiss',
+        de: 'letzter kuss',
+      },
     },
   ],
   timelineReplace: [

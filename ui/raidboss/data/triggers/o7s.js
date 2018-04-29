@@ -67,12 +67,15 @@
 
     {
       id: 'O7S Magitek Ray',
-      regex: / 14:2788:Guardian starts using Magitek Ray/,
-      regexDe: / 14:2788:Wächter starts using Magitek-Laser/,
-      regexFr: / 14:2788:Gardien starts using Rayon Magitek/,
-      regexJa: / 14:2788:ガーディアン starts using 魔導レーザー/,
-      alertText: 'Magitek Ray',
-      tts: 'beam',
+      regex: / 14:2788:Guardian starts using (Magitek Ray)/,
+      regexDe: / 14:2788:Wächter starts using (Magitek-Laser)/,
+      regexFr: / 14:2788:Gardien starts using (Rayon Magitek)/,
+      regexJa: / 14:2788:ガーディアン starts using (魔導レーザー)/,
+      alertText: function(data, matches) { return matches[1]; },
+      tts: {
+        en: 'beam',
+        de: 'laser',
+      },
     },
     {
       id: 'O7S Arm And Hammer',
@@ -81,14 +84,26 @@
       regexFr: / 14:2789:Gardien starts using Marteau Stratégique on (\y{Name})/,
       regexJa: / 14:2789:ガーディアン starts using アームハンマー on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
-          return 'Tank Buster on YOU';
-        if (data.role == 'healer')
-          return 'Buster on ' + data.ShortName(matches[1]);
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tank Buster auf DIR',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' + data.ShortName(matches[1]),
+          };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
-          return 'buster';
+        if (matches[1] == data.me) {
+          return {
+            en: 'buster',
+            de: 'buster',
+          };
+        }
       },
     },
     {
@@ -102,29 +117,52 @@
       id: 'O7S Blue Marker',
       regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
-        if (data.me == matches[1])
-          return 'Blue Marker on YOU';
+        if (data.me != matches[1])
+          return;
+        return {
+          en: 'Blue Marker on YOU',
+          de: 'Aura-Kanone auf DIR',
+        };
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1])
-          return 'Blue Marker on ' + data.ShortName(matches[1]);
+        if (data.me == matches[1])
+          return;
+        return {
+          en: 'Blue Marker on ' + data.ShortName(matches[1]),
+          de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
+        };
       },
       tts: function (data, matches) {
-        if (data.me == matches[1])
-          return 'blue marker';
+        if (data.me != matches[1])
+          return;
+        return {
+          en: 'blue marker',
+          de: 'aura-kanone',
+        };
       },
     },
     {
       id: 'O7S Prey',
       regex: /1B:........:(\y{Name}):....:....:001E:0000:0000:0000:/,
       infoText: function(data, matches) {
-        if (data.me == matches[1])
-          return 'Prey on YOU';
-        return 'Prey on ' + data.ShortName(matches[1]);
+        if (data.me == matches[1]) {
+          return {
+            en: 'Prey on YOU',
+            de: 'Rakete auf dir',
+          };
+        }
+        return {
+          en: 'Prey on ' + data.ShortName(matches[1]),
+          de: 'Rakete auf ' + data.ShortName(matches[1]),
+        };
       },
       tts: function (data, matches) {
-        if (data.me == matches[1])
-          return 'prey';
+        if (data.me != matches[1])
+          return;
+        return {
+          en: 'prey',
+          de: 'rakete',
+        };
       },
     },
     {
@@ -134,8 +172,14 @@
       regexFr: / 1A:(\y{Name}) gains the effect of Fournaise/,
       regexJa: / 1A:(\y{Name}) gains the effect of 灼熱/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Searing Wind: go outside',
-      tts: 'searing wind',
+      alarmText: {
+        en: 'Searing Wind: go outside',
+        de: 'Gluthitze: Geh weg',
+      },
+      tts: {
+        en: 'searing wind',
+        de: 'gluthitze',
+      },
     },
     {
       id: 'O7S Abandonment',
@@ -144,8 +188,14 @@
       regexFr: / 1A:(\y{Name}) gains the effect of Isolement/,
       regexJa: / 1A:(\y{Name}) gains the effect of 孤独感/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alertText: 'Abandonment: stay middle',
-      tts: 'abandonment',
+      alertText: {
+        en: 'Abandonment: stay middle',
+        de: 'Verlassen: Geh Mitte',
+      },
+      tts: {
+        en: 'abandonment',
+        de: 'verlassen',
+      },
     },
     {
       id: 'O7S Rot',
@@ -154,13 +204,24 @@
       regexFr: / 1A:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
       regexJa: / 1A:(\y{Name}) gains the effect of エーテルロット from/,
       infoText: function(data, matches) {
-        if (data.me == matches[1])
-          return 'Rot on you';
-        return 'Rot on ' + data.ShortName(matches[1]);
+        if (data.me == matches[1]) {
+          return {
+            en: 'Rot on you',
+            de: 'Fäule auf DIR',
+          };
+        }
+        return {
+          en: 'Rot on ' + data.ShortName(matches[1]),
+          de: 'Fäule auf ' + data.ShortName(matches[1]),
+        };
       },
       tts: function(data, matches) {
-        if (data.me == matches[1])
-          return 'rot';
+        if (data.me != matches[1])
+          return;
+        return {
+          en: 'rot',
+          de: 'fäule',
+        };
       },
     },
     {
@@ -170,14 +231,25 @@
       regexFr: / 14:2AB5:Orthros starts using Cuirasse/,
       regexJa: / 14:2AB5:オルトロス starts using ストンスキン/,
       alarmText: function(data) {
-        if (data.job == 'NIN' || data.role == 'dps-ranged')
-          return 'SILENCE!';
+        if (data.job == 'NIN' || data.role == 'dps-ranged') {
+          return {
+            en: 'SILENCE!',
+            de: 'VERSTUMMEN!',
+          };
+        }
       },
       infoText: function(data) {
-        if (data.job != 'NIN' && data.role != 'dps-ranged')
-          return 'Silence';
+        if (data.job != 'NIN' && data.role != 'dps-ranged') {
+          return {
+            en: 'Silence',
+            de: 'stumm',
+          };
+        }
       },
-      tts: 'silence',
+      tts: {
+        en: 'silence',
+        de: 'stumm',
+      },
     },
     {
       id: 'O7S Load',

@@ -33,7 +33,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' +data.ShortName(matches[1]),
+            de: 'Buster auf ' + data.ShortName(matches[1]),
           };
         }
       },
