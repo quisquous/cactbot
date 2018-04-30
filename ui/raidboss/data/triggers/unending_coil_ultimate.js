@@ -937,7 +937,7 @@
           if (data.role == 'tank')
             return {
              en: 'Pick up tether',
-             fr: 'Prendre un liean',
+             fr: 'Prendre un lien',
             };
         }
       },
