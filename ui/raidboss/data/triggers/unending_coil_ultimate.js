@@ -562,10 +562,18 @@
         var tookTwo = data.fireballs[1].filter(function(p) { return data.fireballs[2].indexOf(p) >= 0; });
         if (tookTwo.indexOf(data.me) >= 0)
           return;
-        var str = 'Fire IN';
-        if (tookTwo.length > 0)
-          str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ') + ' out)';
-        return str;
+        var str = '';
+        if (tookTwo.length > 0) {
+          str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ');
+          if (data.lang == 'fr')
+            str += ' out)';
+          else
+            str += ' éviter)';
+        }
+        return {
+          en: 'Fire IN' + str,
+          fr: 'Feu EN DEDANS' + str,
+        };
       },
       alertText: function(data) {
         // If you were the person with fire tether #2, then you could
@@ -651,7 +659,13 @@
           return;
 
         var output = data.findDragonMarks(data.naelDragons);
-        data.naelMarks = output.marks;
+        var dir_names;
+        if (data.lang == 'fr')
+          dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NW'];
+        else
+          dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        data.naelMarks = output.mark_dirs.map(function(i) { return dir_names[i]; });
+
         data.wideThirdDive = output.wideThirdDive;
         data.unsafeThirdMark = output.unsafeThirdMark;
         delete data.naelDragons;
@@ -673,7 +687,7 @@
         data.calledNaelDragons = true;
         return {
           en: 'Marks: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : ''),
-          fr: 'Marque : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : '')
+          fr: 'Marque : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (LARGE)' : '')
         };
       },
     },
@@ -952,10 +966,11 @@
             };
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
-            var text;
-            if (data.shakers.indexOf(data.me) == -1)
-              text = 'Stack on safe spot';
-            return text;
+            if (data.shakers.indexOf(data.me) == -1) {
+              return {
+                en: 'Stack on safe spot',
+              };
+            }
           }
         }
       },
@@ -975,10 +990,11 @@
             };
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
-            var text;
-            if (!(data.me in data.shakers))
-              text = 'safe spot';
-            return text;
+            if (!(data.me in data.shakers)) {
+              return {
+                en: 'safe spot',
+              };
+            }
           }
         }
       },
@@ -1202,6 +1218,7 @@
 
           var dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
           ret.marks = marks.map(function(i) { return dir_names[i]; });
+          ret.mark_dirs = dir_names;
           return ret;
         };
         // End copy and paste.
