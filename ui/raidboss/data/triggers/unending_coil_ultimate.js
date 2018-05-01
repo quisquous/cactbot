@@ -111,8 +111,14 @@
       regexDe: /:26AA:Twintania starts using/,
       regexFr: /:26AA:Gémellia starts using/,
       regexJa: /:26AA:ツインタニア starts using/,
-      alertText: 'Twisters',
-      tts: 'twisters',
+      alertText: {
+        en: 'Twisters',
+        fr: 'Tornades',
+      },
+      tts: {
+        en: 'twisters',
+        fr: 'Tornades',
+      },
     },
     { id: 'UCU Death Sentence',
       regex: /:Twintania readies Death Sentence/,
@@ -121,11 +127,17 @@
       regexJa: /:ツインタニア readies デスセンテンス/,
       alertText: function(data, matches) {
         if (data.role == 'tank' || data.role == 'healer')
-          return 'Death Sentence';
+          return {
+            en: 'Death Sentence',
+            fr: 'Peine de mort',
+          };
       },
       tts: function(data, matches) {
         if (data.role == 'tank' || data.role == 'healer')
-          return 'buster';
+          return {
+            en: 'buster',
+            fr: 'Anti-tank',
+          };
       },
     },
     { // Hatch Collect
@@ -138,8 +150,14 @@
     { id: 'UCU Hatch Marker YOU',
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Hatch on YOU',
-      tts: 'hatch',
+      alarmText: {
+        en: 'Hatch on YOU',
+        fr: 'Éclosion sur VOUS',
+      },
+      tts: {
+        en: 'hatch',
+        fr: 'Éclosion',
+      },
     },
     {
       id: 'UCU Hatch Callouts',
@@ -150,7 +168,10 @@
           return;
         var hatches = data.hatch.map(function(n) { return data.ShortName(n); }).join(', ');
         delete data.hatch;
-        return 'Hatch: ' + hatches;
+        return {
+          en: 'Hatch: ' + hatches,
+          fr: 'Éclosion: ' + hatches,
+        };
       },
     },
     { // Hatch Cleanup
@@ -167,7 +188,10 @@
       regexJa: /:ツインタニア HP at 75%/,
       sound: 'Long',
       infoText: function(data, matches) {
-        return 'Phase 2 Push';
+        return {
+          en: 'Phase 2 Push',
+          fr: 'Phase 2 poussée',
+        };
       },
     },
     { id: 'UCU Twintania P3',
@@ -177,7 +201,10 @@
       regexJa: /:ツインタニア HP at 45%/,
       sound: 'Long',
       infoText: function(data, matches) {
-        return 'Phase 3 Push';
+        return {
+          en: 'Phase 3 Push',
+          fr: 'Phase 3 poussée',
+        };
       },
     },
 
@@ -185,98 +212,186 @@
     { id: 'UCU Nael Quote 1',
       regex: /From on high I descend, in blessed light to bask/,
       regexFr: /Des cieux je vais descendre et révérer la lune/,
-      infoText: function(data) { return 'Spread => In'; },
+      infoText: {
+        en: 'Spread => In',
+        fr: 'Se dispercer => Dedans',
+      }, 
       durationSeconds: 6,
-      tts: 'spread then in',
+      tts: {
+        en: 'spread then in',
+        fr: 'Se dispercer, puis dedans',
+      },
     },
     { id: 'UCU Nael Quote 2',
       regex: /From on high I descend, mine enemies to smite/,
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
-      infoText: function(data) { return 'Spread => Out'; },
+      infoText: {
+        en: 'Spread => Out',
+        fr: 'Se dispercer => Dehors',
+      },
       durationSeconds: 6,
-      tts: 'spread then out',
+      tts: {
+        en: 'spread then out',
+        fr: "Se dispercer, puis dehors",
+      },
     },
     { id: 'UCU Nael Quote 3',
       regex: /O refulgent moon, shine down your light/,
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
-      infoText: function(data) { return 'Stack => In'; },
+      infoText: {
+        en: 'Stack => In',
+        fr: 'Se rassembler => Dedans',
+      },
       durationSeconds: 6,
-      tts: 'stack then in',
+      tts: {
+        en: 'stack then in',
+        fr: 'Se rassembler, puis dedans',
+      },
     },
     { id: 'UCU Nael Quote 4',
       regex: /Blazing path, lead me to conquest/,
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
-      infoText: function(data) { return 'Stack => Out'; },
+      infoText: {
+        en: 'Stack => Out',
+        fr: 'Se rassembler => Dehors',
+      },
       durationSeconds: 6,
-      tts: 'stack then out',
+      tts: {
+        en: 'stack then out',
+        fr: "Se rassembler, puis dehors",
+      },
     },
     { id: 'UCU Nael Quote 5',
       regex: /O red moon, scorch mine enemies/,
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
-      infoText: function(data) { return 'In => Stack'; },
+      infoText: {
+        en: 'In => Stack',
+        fr: 'Dedans => Se rassembler',
+      },
       durationSeconds: 6,
-      tts: 'in then stack',
+      tts: {
+        en: 'in then stack',
+        fr: 'Dedans, puis se rassembler',
+      },
     },
     { id: 'UCU Nael Quote 6',
       regex: /O red moon, shine the path to conquest/,
       regexFr: /Ô lune! Éclaire la voie de la domination/,
-      infoText: function(data) { return 'In => Out'; },
+      infoText: {
+        en: 'In => Out',
+        fr: 'Dedans => Dehors',
+      },
       durationSeconds: 6,
-      tts: 'in then out',
+      tts: {
+        en: 'in then out',
+        fr: "Dedans, puis dehors",
+      },
     },
     { id: 'UCU Nael Quote 7',
       regex: /Fleeting light, score the earth with a fiery kiss/,
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
-      infoText: function(data) { return 'Away from Tank => Stack'; },
+      infoText: {
+        en: 'Away from Tank => Stack',
+        fr: "S'éloigner du tank => Se rassembler",
+      },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: 'away from tank then stack',
+      tts: {
+        en: 'away from tank then stack',
+        fr: "S'éloigner du tank, puis se rassembler",
+      },
     },
     { id: 'UCU Nael Quote 8',
       regex: /Fleeting light, outshine the stars for the moon/,
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
-      infoText: function(data) { return 'Spread => Away from Tank'; },
+      infoText: {
+        en: 'Spread => Away from Tank',
+        fr: "Se dispercer => S'éloigner du Tank",
+      },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: 'spread then away from tank',
+      tts: {
+        en: 'spread then away from tank',
+        fr: "Se dispercer, puis s'éloigner du tank",
+      },
     },
     { id: 'UCU Nael Quote 9',
       regex: /From on high I descend, a hail of stars to bring/,
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       durationSeconds: 9,
-      infoText: function(data) { return 'Spread => In'; },
-      tts: 'spread then in',
+      infoText: {
+        en: 'Spread => In',
+        fr: 'Se dispercer => Dedans',
+      },
+      tts: {
+        en: 'spread then in',
+        fr: 'Se dispercer, puis dedans',
+      },
     },
     { id: 'UCU Nael Quote 10',
       regex: /From red moon I descend, a hail of stars to bring/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
       durationSeconds: 9,
-      infoText: function(data) { return 'In => Spread'; },
-      tts: 'in then spread',
+      infoText: {
+        en: 'In => Spread',
+        fr: 'Dedans => Se dispercer',
+      },
+      tts: {
+        en: 'in then spread',
+        fr: 'Dedans, puis se dispercer',
+      },
     },
     { id: 'UCU Nael Quote 11',
       regex: /From red moon I draw steel, in my descent to bare/,
+      regexFr: /De la lune je m'arme d'acier et descends/,
       durationSeconds: 9,
-      infoText: function(data) { return 'In => Out => Spread'; },
-      tts: 'in then out then spread',
+      infoText: {
+        en: 'In => Out => Spread',
+        fr: 'Dedans => Dehors => Se dispercer',
+      },
+      tts: {
+        en: 'in then out then spread',
+        fr: 'Dedans, puis dehors, puis se dispercer',
+      },
     },
     { id: 'UCU Nael Quote 12',
       regex: /From red moon I descend, upon burning earth to tread/,
+      regexFr: /De la lune, je descends et marche sur la terre ardente/,
       durationSeconds: 9,
-      infoText: function(data) { return 'In => Spread => Stack'; },
-      tts: 'in then spread then stack',
+      infoText: {
+        en: 'In => Spread => Stack',
+        fr: 'Dedans => Se dispercer => Se rassembler',
+      },
+      tts: {
+        en: 'in then spread then stack',
+        fr: 'Dedans, puis se dispercer, puis se rassembler',
+      },
     },
     { id: 'UCU Nael Quote 13',
       regex: /Gleaming steel, take fire and descend/,
+      regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       durationSeconds: 9,
-      infoText: function(data) { return 'Out => Stack => Spread'; },
-      tts: 'out then stack then spread',
+      infoText: {
+        en: 'Out => Stack => Spread',
+        fr: 'Dehors => Se rassembler => Se dispercer',
+      },
+      tts: {
+        en: 'out then stack then spread',
+        fr: 'Dehors, puis se rassembler, puis se dispercer',
+      },
     },
     { id: 'UCU Nael Quote 14',
       regex: /Gleaming steel, plunge and take fiery edge/,
+      regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       durationSeconds: 9,
-      infoText: function(data) { return 'Out => Spread => Stack'; },
-      tts: 'out then spread then stack',
+      infoText: {
+        en: 'Out => Spread => Stack',
+        fr: 'Dehors => Se dispercer => Se rassembler',
+      },
+      tts: {
+        en: 'out then spread then stack',
+        fr: 'Dehors, puis se dispercer, puis se rassembler',
+      },
     },
     { id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
@@ -286,8 +401,14 @@
       regexFr: /:Aile-de-foudre:26C7:.*?:........:(\y{Name}):/,
       regexJa: /:サンダーウィング:26C7:.*?:........:(\y{Name}):/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: function(data) { return 'Thunder on YOU'; },
-      tts: 'thunder',
+      alarmText: {
+        en: 'Thunder on YOU',
+        fr: 'Foudre sur VOUS',
+      },
+      tts: {
+        en: 'thunder',
+        fr: 'Foudre',
+      },
     },
     { id: 'UCU Nael Your Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
@@ -304,10 +425,19 @@
       },
       alarmText: function(data, matches) {
         if (data.ParseLocaleFloat(matches[2]) <= 6)
-          return 'Doom #1 on YOU';
+          return {
+            en: 'Doom #1 on YOU',
+            fr: 'Glas #1 sur VOUS',
+          };
         if (data.ParseLocaleFloat(matches[2]) <= 10)
-          return 'Doom #2 on YOU';
-        return 'Doom #3 on YOU';
+          return {
+            en: 'Doom #2 on YOU',
+            fr: 'Glas #2 sur VOUS',
+          };
+        return {
+          en: 'Doom #3 on YOU',
+          fr: 'Glas #3 sur VOUS',
+        };
       },
       tts: function(data, matches) {
         if (data.ParseLocaleFloat(matches[2]) <= 6)
@@ -358,7 +488,10 @@
           var name = data.dooms[data.doomCount];
         data.doomCount++;
         if (name)
-          return 'Cleanse #' + data.doomCount + ': ' + data.ShortName(name);
+          return {
+            en: 'Cleanse #' + data.doomCount + ': ' + data.ShortName(name),
+            fr: 'Purifié #' + data.doomCount + ': ' + data.ShortName(name),
+          };
       },
     },
     { id: 'UCU Nael Fireball 1',
@@ -368,8 +501,14 @@
       regexJa: /:ラグナロク:26B8:/,
       delaySeconds: 35,
       suppressSeconds: 99999,
-      infoText: 'Fire IN',
-      tts: 'fire in',
+      infoText: {
+        en: 'Fire IN',
+        fr: 'Feu EN DEDANS',
+      },
+      tts: {
+        en: 'fire in',
+        fr: 'Feu en dedans',
+      },
       run: function(data) { data.naelFireballCount = 1; },
     },
     { id: 'UCU Nael Fireball 2',
@@ -381,7 +520,10 @@
       suppressSeconds: 99999,
       infoText: function(data) {
         if (data.fireballs[1].indexOf(data.me) >= 0)
-          return 'Fire OUT';
+          return {
+            en: 'Fire OUT',
+            fr: 'Feu EN DEHORS',
+          };
       },
       alertText: function(data) {
         // All players should be neutral by the time fire #2 happens.
@@ -390,13 +532,23 @@
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
         if (data.fireballs[1].indexOf(data.me) == -1)
-          return 'Fire OUT: Be in it';
+          return {
+            en: 'Fire OUT: Be in it',
+            fr: 'Feu EN DEHORS : Allez dessus',
+          };
       },
       tts: function(data) {
         if (data.fireballs[1].indexOf(data.me) == -1)
-          return 'fire out; go with';
-        return 'fire out'
+          return {
+            en: 'fire out; go with',
+            fr: 'Feu en dehors; y allez',
+          };
+        return {
+          en: 'fire out',
+          fr: 'Feu en dehors',
+        }
       },
+
       run: function(data) { data.naelFireballCount = 2; },
     },
     { id: 'UCU Nael Fireball 3',
@@ -419,12 +571,21 @@
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to not stack.
         if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
-          return 'Fire IN: AVOID!';
+          return {
+            en: 'Fire IN: AVOID!',
+            fr: "Feu EN DEDANS : L'ÉVITER !",
+          };
       },
       tts: function(data) {
         if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
-          return 'avoid fire in';
-        return 'fire in'
+          return {
+            en: 'avoid fire in',
+            fr: 'Éviter le feu en dedans',
+          };
+        return {
+          en: 'fire in',
+          fr: 'Feu en dedans',
+        }
       },
       run: function(data) { data.naelFireballCount = 3; },
     },
@@ -442,17 +603,26 @@
       },
       infoText: function(data) {
         if (!data.tookThreeFireballs)
-          return 'Fire IN';
+          return {
+            en: 'Fire IN',
+            fr: 'Feu EN DEDANS',
+          };
       },
       alertText: function(data) {
         // It's possible that you can take 1, 2, and 3 even if nobody dies with
         // careful ice debuff luck.  However, this means you probably shouldn't
         // take 4.
         if (data.tookThreeFireballs)
-          return 'Fire IN: AVOID!';
+          return {
+            en: 'Fire IN: AVOID!',
+            fr: "Feu EN DEDANS : L'ÉVITER !",
+          };
       },
       tts: function(data) {
-        return 'fire in';
+        return {
+          en: 'fire in',
+          fr: 'Feu en dedans',
+        };
       },
       run: function(data) { data.naelFireballCount = 4; },
     },
@@ -501,7 +671,10 @@
       durationSeconds: 12,
       infoText: function(data) {
         data.calledNaelDragons = true;
-        return 'Marks: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : '');
+        return {
+          en: 'Marks: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : ''),
+          fr: 'Marque : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : '')
+        };
       },
     },
     { id: 'UCU Nael Dragon Dive Marker Me',
@@ -513,13 +686,19 @@
           return;
         var marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         var dir = data.naelMarks[data.naelDiveMarkerCount];
-        return 'Go To ' + marker + ' (in ' + dir + ')';
+        return {
+          en: 'Go To ' + marker + ' (in ' + dir + ')',
+          fr: 'Aller en ' + marker + ' (au ' + dir + ')',
+        };
       },
       tts: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches[1] != data.me)
           return;
-        return 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount];
+        return {
+          en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          fr: 'Aller en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+        };
       },
     },
     { id: 'UCU Nael Dragon Dive Marker Others',
@@ -530,7 +709,10 @@
         if (matches[1] == data.me)
           return;
         var num = data.naelDiveMarkerCount + 1;
-        return 'Dive #' + num + ': ' + data.ShortName(matches[1]);
+        return {
+          en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
+          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
+        };
       },
     },
     { id: 'UCU Nael Dragon Dive Marker Counter',
@@ -586,21 +768,30 @@
       regex: /1B:........:(\y{Name}):....:....:0077:0000:0000:0000:/,
       condition: function(data) { return data.trio == 'octet'; },
       infoText: function(data, matches) {
-        return data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)';
+        return {
+          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (nael)',
+        };
       },
     },
     { id: 'UCU Octet Dragon Marker',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) { return data.trio == 'octet'; },
       infoText: function(data, matches) {
-        return data.octetMarker.length + ': ' + data.ShortName(matches[1]);
+        return {
+          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]),
+        };
       },
     },
     { id: 'UCU Octet Baha Marker',
       regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) { return data.trio == 'octet'; },
       infoText: function(data, matches) {
-        return data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)';
+        return {
+          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (baha)',
+        };
       },
     },
     { id: 'UCU Octet Twin Marker',
@@ -609,19 +800,31 @@
       delaySeconds: 0.5,
       alarmText: function(data) {
         if (data.lastOctetMarker == data.me)
-          return 'YOU Stack for Twin';
+          return {
+            en: 'YOU Stack for Twin',
+            fr: 'VOUS devez appâter Gémellia',
+          };
       },
       infoText: function(data) {
         if (!data.lastOctetMarker)
-          return '8: ??? (twin)';
+          return {
+            en: '8: ??? (twin)',
+            fr: '8 : ??? (Gémellia)',
+          };
         // If this person is not alive, then everybody should stack,
         // but tracking whether folks are alive or not is a mess.
         if (data.lastOctetMarker != data.me)
-          return '8: ' + data.ShortName(data.lastOctetMarker) + ' (twin)';
+          return {
+            en: '8: ' + data.ShortName(data.lastOctetMarker) + ' (twin)',
+            fr: '8 : ' + data.ShortName(data.lastOctetMarker) + ' (Gémellia)',
+          };
       },
       tts: function(data) {
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
-          return 'stack for twin';
+          return {
+            en: 'stack for twin',
+            fr: 'Se rassembler pour appâter Gémellia',
+          };
       },
     },
     { id: 'UCU Twister Dives',
@@ -629,23 +832,41 @@
       regexDe: /:Twintania:26B2:Spiralschwinge:/,
       regexFr: /:Gémellia:26B2:Plongeon-trombe:/,
       regexJa: /:ツインタニア:26B2:ツイスターダイブ:/,
-      alertText: 'Twisters',
-      tts: 'twisters',
+      alertText: {
+        en: 'Twisters',
+        fr: 'Tornades',
+      },
+      tts: {
+        en: 'twisters',
+        fr: 'Tornades',
+      },
     },
     { id: 'UCU Bahamut Gigaflare',
       regex: /14:26D6:Bahamut Prime starts using Gigaflare/,
       regexDe: /14:26D6:Prim-Bahamut starts using Gigaflare/,
       regexFr: /14:26D6:Primo-Bahamut starts using GigaBrasier/,
       regexJa: /14:26D6:バハムート・プライム starts using ギガフレア/,
-      alertText: 'Gigaflare',
-      tts: 'gigaflare',
+      alertText: {
+        en: 'Gigaflare',
+        fr: 'GigaBrasier',
+      },
+      tts: {
+        en: 'gigaflare',
+        fr: 'Giga Brasier',
+      },
     },
     {
       id: 'UCU Megaflare Stack Me',
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alertText: 'Megaflare Stack',
-      tts: 'stack',
+      alertText: {
+        en: 'Megaflare Stack',
+        fr: 'MegaBrasier rassemblement',
+      },
+      tts: {
+        en: 'stack',
+        fr: 'Se rassembler',
+      },
     },
     { // Megaflare stack tracking
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
@@ -662,16 +883,28 @@
         if (data.megaStack.indexOf(data.me) >= 0)
           return;
         if (data.trio == 'blackfire')
-          return 'Tower, bait hypernova';
+          return {
+            en: 'Tower, bait hypernova',
+            fr: 'Tour, appâter Supernova',
+          };
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
-          return 'Bait Twin, then tower';
-        return 'Get in a far tower';
+          return {
+            en: 'Bait Twin, then tower',
+            fr: 'Appâter Gémellia, puis tour',
+          };
+        return {
+          en: 'Get in a far tower',
+          fr: 'Aller dans une tour lointaine',
+        };
       },
       tts: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
         if (data.megaStack.indexOf(data.me) == -1) {
-          return 'tower';
+          return {
+            en: 'tower',
+            fr: 'Tour',
+          };
         }
       },
     },
@@ -679,8 +912,14 @@
       id: 'UCU Earthshaker Me',
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alarmText: 'Earthshaker on YOU',
-      tts: 'shaker',
+      alarmText: {
+        en: 'Earthshaker on YOU',
+        fr: 'Secousse sur VOUS',
+      },
+      tts: {
+        en: 'shaker',
+        fr: 'Secousse',
+      },
     },
     { // Earthshaker tracking
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
@@ -696,7 +935,10 @@
           if (data.shakers.length != 3)
             return;
           if (data.role == 'tank')
-            return 'Pick up tether';
+            return {
+             en: 'Pick up tether',
+             fr: 'Prendre un lien',
+            };
         }
       },
       infoText: function(data) {
@@ -704,7 +946,10 @@
           if (data.shakers.length != 3)
             return;
           if (data.shakers.indexOf(data.me) == -1 && data.role != 'tank')
-            return 'No shaker; stack south.';
+            return {
+              en: 'No shaker; stack south.',
+              fr: 'Pas de Secousse; se rassembler au Sud.',
+            };
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
             var text;
@@ -719,9 +964,15 @@
           if (data.shakers.length != 3)
             return;
           if (data.role == 'tank')
-            return 'tether';
+            return {
+              en: 'tether',
+              fr: 'Lien',
+            };
           if (data.shakers.indexOf(data.me) == -1)
-            return 'stack south';
+            return {
+              en: 'stack south',
+              fr: 'Se rassembler au sud',
+            };
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
             var text;
@@ -750,7 +1001,10 @@
       alertText: function(data, matches) {
         var str = 'Morn Afah #' + data.mornAfahCount;
         if (matches[1] == data.me)
-          return str + ' (YOU)';
+          return {
+            en: str + ' (YOU)',
+            fr: str + ' (VOUS)',
+          };
         return str + ' (' + data.ShortName(matches[1]) + ')';
       },
       tts: function(data, matches) {
@@ -785,10 +1039,16 @@
         data.exaflareCount++;
       },
       infoText: function(data, matches) {
-        return 'Exaflare #' + data.exaflareCount;
+        return {
+          en: 'Exaflare #' + data.exaflareCount,
+          fr: 'ExaBrasier #' + data.exaflareCount,
+        };
       },
       tts: function(data, matches) {
-        return 'exaflare ' + data.exaflareCount;
+        return {
+          en: 'exaflare ' + data.exaflareCount,
+          fr: 'Exabrasier '+ data.exaflareCount,
+        };
       },
     },
     {
@@ -1053,6 +1313,34 @@
         'Twintania': 'Gémellia',
       },
       replaceText: {
+        '--Reset--': '--Réinitialisation--',
+        '--sync--': '--synchronisation--',
+        "--push--": '--poussé(e)--',
+        "--untargetable--": '--impossible à cibler--',
+        '--targetable--': '--ciblable--',
+          
+        "Targeted Fire": 'Feu ciblé',
+        "Enrage": 'Enragement',
+        "Dynamo + Beam/Chariot": 'Dynamo + Rayon/Char',
+        "Thermionic + Dynamo/Chariot": 'Rayon + Dynamo/Char',
+        "Dive + Dynamo/Chariot": 'Plongeon + Dynamo/Char',
+        "Marker": 'Marqueur',
+        "Divebomb": 'Bombardement',
+        "Meteor/Dive or Dive/Beam": 'Météore/Plongeon ou Plongeon/Rayon',
+        "Random Combo Attack": 'Attaque combo aléatoire',
+        "Stack": 'Se rassembler',
+        "Towers": 'Tours',
+        "Dive Dynamo Combo": 'Plongeon Dynamo Combo',
+        "Markers appear": 'Apparition des marqueurs',
+        "Fireball Soak": 'Absorption Boule De Feu',
+        "Nael Marker": 'Marqueur de Nael',
+        "Nael Dive": 'Plongeon de Nael',
+        "Bahamut Marker": 'Marqueur de Bahamut',
+        "Twin Marker": 'Marqueur de Gémellia',
+        "Plummet/Claw": 'Piqué/Griffe',
+        "Triple Nael Quote": 'Triple citation de Nael',
+        "Sentence/Ravensbeak": 'Peine De Mort/Bec Du Rapace',
+          
         "Aetheric Profusion": "Excès D'éther",
         'Akh Morn': 'Akh Morn',
         "Bahamut's Claw": "Griffe De Bahamut",
