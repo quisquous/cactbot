@@ -566,9 +566,9 @@
         if (tookTwo.length > 0) {
           str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ');
           if (data.lang == 'fr')
-            str += ' out)';
-          else
             str += ' éviter)';
+          else
+            str += ' out)';
         }
         return {
           en: 'Fire IN' + str,
