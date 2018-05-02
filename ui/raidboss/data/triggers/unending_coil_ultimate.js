@@ -661,7 +661,7 @@
         var output = data.findDragonMarks(data.naelDragons);
         var dir_names;
         if (data.lang == 'fr')
-          dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NW'];
+          dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
         else
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
         data.naelMarks = output.mark_dirs.map(function(i) { return dir_names[i]; });
@@ -969,6 +969,7 @@
             if (data.shakers.indexOf(data.me) == -1) {
               return {
                 en: 'Stack on safe spot',
+                fr: 'Se rassembler au point sauf',
               };
             }
           }
@@ -993,6 +994,7 @@
             if (!(data.me in data.shakers)) {
               return {
                 en: 'safe spot',
+                fr: 'Point sauf',
               };
             }
           }
