@@ -664,8 +664,7 @@
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
         else
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-        data.naelMarks = output.mark_dirs.map(function(i) { return dir_names[i]; });
-
+        data.naelMarks = output.marks.map(function(i) { return dir_names[i]; });
         data.wideThirdDive = output.wideThirdDive;
         data.unsafeThirdMark = output.unsafeThirdMark;
         delete data.naelDragons;
@@ -1219,8 +1218,7 @@
           ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
 
           var dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-          ret.marks = marks.map(function(i) { return dir_names[i]; });
-          ret.mark_dirs = dir_names;
+          ret.marks = marks;
           return ret;
         };
         // End copy and paste.
