@@ -62,8 +62,9 @@ namespace Cactbot {
 
         // If an LB3 hit the player recently, then it wasn't a wipe so just
         // forget that they were revived.
-        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= kLogWaitSeconds)
+        if (last_lb3_time_.HasValue && (now - last_lb3_time_.Value).TotalSeconds <= kLogWaitSeconds) {
           last_revived_time_ = null;
+        }
       }
 
       // Heuristic: if a player is revived and a weakness message doesn't happen
@@ -83,7 +84,7 @@ namespace Cactbot {
           WipeIt();
         }
         // To avoid 10+ string comparisons per log entry, check player name first.
-        int player_index = log.IndexOf(player_name_with_colons_, StringComparison.Ordinal);
+        int player_index = log.IndexOf(player_name_, StringComparison.Ordinal);
         if (player_index == -1)
           continue;
 
@@ -110,7 +111,8 @@ namespace Cactbot {
           healer_lb3 = Math.Max(healer_lb3, log.IndexOf(str, StringComparison.Ordinal));
         }
         if (healer_lb3 >= 0) {
-          if (player_index > healer_lb3) {
+          int player_colon_index = log.IndexOf(player_name_with_colons_, StringComparison.Ordinal);
+          if (player_colon_index > healer_lb3) {
             last_lb3_time_ = DateTime.Now;
           }
         }
