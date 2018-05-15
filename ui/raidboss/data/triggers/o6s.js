@@ -31,7 +31,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'buster',
-            de: 'buster',
+            de: 'tenkbasta',
           };
         }
       },
@@ -59,7 +59,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Demonic Stone on YOU',
-            de: 'Dämonischer Stein auf dir',
+            de: 'Dämonischer Stein auf DIR',
           };
         }
       },
