@@ -10,7 +10,7 @@
     {
       id: 'O8S Shockwave',
       regex: / 14:28DB:Graven Image starts using Shockwave/,
-      regexDe: / 14:28DB:Göttliche Statue starts using Schockwelle/,
+      regexDe: / 14:28DB:Helige Statue starts using Schockwelle/,
       regexFr: / 14:28DB:Statue Divine starts using Onde De Choc/,
       regexJa: / 14:28DB:神々の像 starts using 衝撃波/,
       delaySeconds: 5,
@@ -26,7 +26,7 @@
     {
       id: 'O8S Indolent Will',
       regex: /Graven Image starts using Indolent Will/,
-      regexDe: /Göttliche Statue starts using Träger Wille/,
+      regexDe: /Helige Statue starts using Träger Wille/,
       regexFr: /Statue Divine starts using Volonté Indolente/,
       regexJa: /神々の像 starts using 惰眠の神気/,
       alertText: {
@@ -41,7 +41,7 @@
     {
       id: 'O8S Intemperate Will',
       regex: /14:28DF:Graven Image starts using Intemperate Will/,
-      regexDe: /14:28DF:Göttliche Statue starts using Unmäßiger Wille/,
+      regexDe: /14:28DF:Helige Statue starts using Unmäßiger Wille/,
       regexFr: /14:28DF:Statue Divine starts using Volonté Intempérante/,
       regexJa: /14:28DF:神々の像 starts using 撲殺の神気/,
       alertText: {
@@ -56,7 +56,7 @@
     {
       id: 'O8S Gravitational Wave',
       regex: /14:28DE:Graven Image starts using Gravitational Wave/,
-      regexDe: /14:28DE:Göttliche Statue starts using Gravitationswelle/,
+      regexDe: /14:28DE:Helige Statue starts using Gravitationswelle/,
       regexFr: /14:28DE:Statue Divine starts using Onde Gravitationnelle/,
       regexJa: /14:28DE:神々の像 starts using 重力波/,
       alertText: {
@@ -71,7 +71,7 @@
     {
       id: 'O8S Ave Maria',
       regex: / 14:28E3:Graven Image starts using Ave Maria/,
-      regexDe: / 14:28E3:Göttliche Statue starts using Ave Maria/,
+      regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
       regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
       regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
       alertText: {
@@ -148,7 +148,7 @@
     {
       id: 'O8S Pulse Wave You',
       regex: /Graven Image starts using Pulse Wave on (\y{Name})/,
-      regexDe: /Göttliche Statue starts using Pulswelle on (\y{Name})/,
+      regexDe: /Helige Statue starts using Pulswelle on (\y{Name})/,
       regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
       regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
@@ -282,7 +282,7 @@
     {
       id: 'O8S Indulgent Will',
       regex: / 14:28E5:Graven Image starts using Indulgent Will on (\y{Name})/,
-      regexDe: / 14:28E5:Göttliche Statue starts using Nachsichtiger Wille on (\y{Name})/,
+      regexDe: / 14:28E5:Helige Statue starts using Nachsichtiger Wille on (\y{Name})/,
       regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
       regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
@@ -298,7 +298,7 @@
     {
       id: 'O8S Idyllic Will',
       regex: / 14:28E6:Graven Image starts using Idyllic Will on (\y{Name})/,
-      regexDe: / 14:28E6:Göttliche Statue starts using Idyllischer Wille on (\y{Name})/,
+      regexDe: / 14:28E6:Helige Statue starts using Idyllischer Wille on (\y{Name})/,
       regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
       regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
@@ -517,7 +517,7 @@
     {
       locale: 'de',
       replaceSync: {
-        'Graven Image': 'Heilig[a] Statue',
+        'Graven Image': 'Heilige Statue',
         'Kefka': 'Kefka',
         'Light Of Consecration': 'Licht[p] Der Weihe',
         'The Mad Head': 'Verrückt[a] Kopf',
