@@ -41,7 +41,7 @@
         en: 'Look for Knockback',
         fr: 'Se préparer à la projection',
         de: 'Auf Rückstoß achten',
-      },,
+      },
       tts: {
         en: 'knockback',
         fr: 'Projection depuis le boss',
@@ -131,8 +131,6 @@
     {
       id: 'O8N Flagrant Fire Single',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      regexDe: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      regexFr: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
       infoText: {
         en: 'fire on YOU',
@@ -403,4 +401,5 @@
         'Statue Half Cleave': 'Demi clivage de la statue',
       },
     },
+  ]
 }]
