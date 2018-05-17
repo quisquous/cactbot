@@ -569,6 +569,7 @@
         'Kefka': 'Kefka',
         'Light Of Consecration': 'Licht Der Weihe',
         'The Mad Head': 'Verrückter Kopf',
+        'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
