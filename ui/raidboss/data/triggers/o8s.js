@@ -131,8 +131,8 @@
       id: "O8S Past's End",
       regex: /Kefka starts using Past's End/,
       regexDe: /Kefka starts using Ende der Welt/,
-      regexFr: /Kefka starts using Past's End/,
-      regexJa: /ケフカ starts using Past's End/,
+      regexFr: /Kefka starts using Fin Du Passé/,
+      regexJa: /ケフカ starts using 過去の終焉/,
       condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
       alertText: {
         en: 'Past: Bait, then through',
