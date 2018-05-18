@@ -17,10 +17,12 @@
       alertText: {
         en: 'Look for Knockback',
         fr: 'Se préparer à la projection',
+        de: 'Auf Rückstoß achten',
       },
       tts: {
         en: 'knockback',
         fr: 'Projection depuis le boss',
+        de: 'Rückstoß',
       },
     },
     {
@@ -32,10 +34,12 @@
       alertText: {
         en: 'Look Away From Statue',
         fr: 'Ne pas regarder la statue',
+        de: 'Von Statue wegschauen',
       },
       tts: {
         en: 'look away',
         fr: 'Ne pas regarder la statue',
+        de: 'weckschauen',
       },
     },
     {
@@ -47,10 +51,12 @@
       alertText: {
         en: '<= Get Left/West',
         fr: '<= Aller à Gauche/Ouest',
+        de: '<= Nach Links/Westen',
       },
       tts: {
         en: 'left',
         fr: 'Projection depuis le côté gauche',
+        de: 'links',
       },
     },
     {
@@ -62,10 +68,12 @@
       alertText: {
         en: 'Get Right/East =>',
         fr: 'Aller à Droite/Est =>',
+        de: 'Nach Rechts/Westen =>',
       },
       tts: {
         en: 'right',
         fr: 'Projection depuis le côté droit',
+        de: 'rechts',
       },
     },
     {
@@ -77,10 +85,12 @@
       alertText: {
         en: 'Look At Statue',
         fr: 'Regarder la statue',
+        de: 'Statue anschauen',
       },
       tts: {
         en: 'look towards',
         fr: 'Regarder la statue',
+        de: 'anschauen',
       },
     },
     {
@@ -92,10 +102,12 @@
       alertText: {
         en: 'Past: Stack and Stay',
         fr: 'Passé : Stack et rester-là',
+        de: 'Schlummer: Sammeln und Stehenbleiben',
       },
       tts: {
         en: 'stack and stay',
         fr: 'Stack et rester-là',
+        de: 'Stek und Stehenbleiben',
       },
     },
     {
@@ -107,26 +119,30 @@
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et le traverser',
+        de: 'Leben: Sammeln und Durchlaufen',
       },
       tts: {
         en: 'stack and through',
         fr: 'Stack et le traverser',
+        de: 'Stek und durchlaufen',
       },
     },
     {
       id: "O8S Past's End",
       regex: /Kefka starts using Past's End/,
-      regexDe: /Kefka starts using Past's End/,
-      regexFr: /Kefka starts using Past's End/,
-      regexJa: /ケフカ starts using Past's End/,
+      regexDe: /Kefka starts using Ende der Welt/,
+      regexFr: /Kefka starts using Fin Du Passé/,
+      regexJa: /ケフカ starts using 過去の終焉/,
       condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
       alertText: {
         en: 'Past: Bait, then through',
         fr: "Passé : l'appâter, puis le traverser",
+        de: 'Welt : Anlocken und Durchlaufen',
       },
       tts: {
         en: 'run run run',
         fr: "L'appâter, puis le traverser",
+        de: 'Durchlaufen',
       },
     },
     {
@@ -139,10 +155,12 @@
       alertText: {
         en: 'Future: Bait, then stay',
         fr: "Futur : l'appâter, et rester",
+        de: 'Hoffnung: Anlocken und Stehenbleiben',
       },
       tts: {
         en: 'stay stay stay',
         fr: "L'appâter, et rester",
+        de: 'Stehenbleiben',
       },
     },
     {
@@ -155,10 +173,12 @@
       alertText: {
         en: 'Knockback on YOU',
         fr: 'Projection depuis la Statue',
+        de: 'Rückstoß auf DIR',
       },
       tts: {
         en: 'knockback',
         fr: 'Projection depuis la statue',
+        de: 'Rückstoß',
       },
     },
     {
@@ -172,6 +192,7 @@
           return {
             en: 'Wings: Be Near/Far',
             fr: 'Ailes : être près/loin',
+            de: 'Schwingen: Nah/Fern',
           };
         }
       },
@@ -180,6 +201,7 @@
           return {
             en: 'Max Melee: Avoid Tanks',
             fr: "Max Mêlée, s'éloigner des Tanks",
+            de: 'Max Nahkampf: Weg von den Tanks',
           };
         }
       },
@@ -188,11 +210,13 @@
           return {
             en: 'wings',
             fr: 'Ailes, être près ou loin',
+            de: 'schwingen',
           };
         } else {
           return {
             en: 'max melee',
             fr: "Max mêlée et s'éloigner des tanks",
+            de: 'max nahkampf',
           };
         }
       },
@@ -206,10 +230,12 @@
       infoText: {
         en: 'Single Wing',
         fr: 'Aile unique',
+        de: 'Einzelner Flügel',
       },
       tts: {
         en: 'single wing',
         fr: 'Aile unique',
+        de: 'Einzelner Flügel',
       },
     },
     {
@@ -224,6 +250,7 @@
         return {
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
+          de: 'Umarmung auf DIR',
         };
       },
       infoText: function(data, matches) {
@@ -233,6 +260,7 @@
           return {
             en: 'Embrace on ' + data.ShortName(matches[1]),
             fr: 'Étreinte sur ' + data.ShortName(matches[1]),
+            de: 'Umarmung auf ' + data.ShortName(matches[1]),
 		      };
         }
       },
@@ -241,6 +269,7 @@
           return {
             en: 'embrace',
             fr: 'Étreinte',
+            de: 'umarmung',
           };
         }
       },
@@ -258,6 +287,7 @@
         return {
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
+          de: 'Hyperantrieb auf DIRS',
         };
       },
       infoText: function(data, matches) {
@@ -267,6 +297,7 @@
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
             fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
+            de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -275,6 +306,7 @@
           return {
             en: 'hyperdrive',
             fr: 'Colonne de feu',
+            de: 'hyperantrieb',
           };
         }
       },
@@ -289,10 +321,12 @@
       alarmText: {
         en: 'Confusion: Go Outside',
         fr: "Confusion : Aller à l'extérieur",
+        de: 'Konfusion: Nach außen',
       },
       tts: {
         en: 'confusion',
         fr: "Confusion, aller à l'extérieur",
+        de: 'konfusion',
       },
     },
     {
@@ -305,10 +339,12 @@
       alarmText: {
        en: 'Sleep: Go Inside',
        fr: 'Sommeil : aller au centre',
+       de: 'Schlaf: Zur Mitte',
       },
       tts: {
         en: 'sleep',
         fr: 'Sommeil, aller au centre',
+        de: 'Schlaf',
       },
     },
     {
@@ -362,6 +398,7 @@
         data.lastFire = {
           en: 'Spread',
           fr: 'Se séparer',
+          de: 'verteilen',
         }[data.lang];
       },
     },
@@ -379,6 +416,7 @@
         data.lastFire = {
           en: 'Stack',
           fr: 'Se rassembler',
+          de: 'steken',
         }[data.lang];
       },
     },
@@ -396,6 +434,7 @@
         data.lastThunder = {
           en: 'True Thunder',
           fr: 'Vraie foudre',
+          de: 'Wahrer Blitz',
         }[data.lang];
       },
       infoText: function(data) { return data.lastThunder; },
@@ -415,6 +454,7 @@
         data.lastThunder = {
           en: 'Fake Thunder',
           fr: 'Fausse foudre',
+          de: 'Falscher Blitz',
         }[data.lang];
       },
       infoText: function(data) { return data.lastThunder; },
@@ -434,10 +474,12 @@
         data.lastIce = {
           en: 'Fake Ice',
           fr: 'Fausse glace',
+          de: 'Falsches Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
+          de: 'rausgehen',
         }[data.lang];
       },
       infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
@@ -457,10 +499,12 @@
         data.lastIce = {
           en: 'True Ice',
           fr: 'Vraie glace',
+          de: 'Wahres Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
+          de: 'reingehen',
         }[data.lang];
       },
       infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
@@ -480,10 +524,12 @@
         data.lastIce = {
           en: 'Fake Ice',
           fr: 'Fausse glace',
+          de: 'Falsches Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
+          de: 'reingehen',
         }[data.lang];
       },
       infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
@@ -503,10 +549,12 @@
         data.lastIce = {
           en: 'True Ice',
           fr: 'Vraie glace',
+          de: 'Wahres Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
+          de: 'rausgehen',
         }[data.lang];
       },
       infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
@@ -519,8 +567,9 @@
       replaceSync: {
         'Graven Image': 'Heilige Statue',
         'Kefka': 'Kefka',
-        'Light Of Consecration': 'Licht[p] Der Weihe',
-        'The Mad Head': 'Verrückt[a] Kopf',
+        'Light Of Consecration': 'Licht Der Weihe',
+        'The Mad Head': 'Verrückter Kopf',
+        'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',

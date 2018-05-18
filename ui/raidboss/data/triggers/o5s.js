@@ -41,7 +41,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'buster',
-            de: 'buster',
+            de: 'basta',
           };
         }
       },

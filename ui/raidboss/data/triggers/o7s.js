@@ -87,13 +87,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tank Buster auf DIR',
+            de: 'Tenkbasta auf DIR',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
+            de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -101,7 +101,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'buster',
-            de: 'buster',
+            de: 'basta',
           };
         }
       },
@@ -190,7 +190,7 @@
       condition: function(data, matches) { return data.me == matches[1]; },
       alertText: {
         en: 'Abandonment: stay middle',
-        de: 'Verlassen: Geh Mitte',
+        de: 'Verlassen: Bleib mittig',
       },
       tts: {
         en: 'abandonment',
