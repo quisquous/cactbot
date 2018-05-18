@@ -146,8 +146,6 @@
     {
       id: 'O8N Flagrant Fire Stack',
       regex: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
-      regexDe: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
-      regexFr: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: function(data, matches) {
         return 'Stack on ' + data.ShortName(matches[1]);
       },
