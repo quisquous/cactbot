@@ -258,6 +258,8 @@
         'Kefka': 'Kefka',
         'Light Of Consecration': 'Licht Der Weihe',
         'The Mad Head': 'Verrückter Kopf',
+        // FIXME:
+        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -315,6 +317,11 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
+
+        // FIXME:
+        'Aero/Ruin': 'Aero/Ruin',
+        'Half Arena': 'Half Arena',
+        'Statue Gaze': 'Statue Gaze',
       },
     },
     {
@@ -325,6 +332,8 @@
         'Light Of Consecration': 'Lumière De La Consécration',
         'The Mad Head': 'Visage De La Folie',
         'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
+        // FIXME:
+        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!',
       },
       replaceText: {
         "Engage!": "À l'attaque",
@@ -397,6 +406,11 @@
         'Knockback Tethers': 'Liens de projection',
         'Sleep/Confuse Tethers': 'Liens de Sommeil/Confusion',
         'Statue Half Cleave': 'Demi clivage de la statue',
+        'Half Arena': "Moitié d'arène",
+
+        // FIXME:
+        'Aero/Ruin': 'Aero/Ruin',
+        'Statue Gaze': 'Statue Gaze',
       },
     },
   ]

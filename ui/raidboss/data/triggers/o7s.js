@@ -365,6 +365,11 @@
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
       },
       replaceText: {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Engage!': 'Start!',
+        'Enrage': 'Finalangriff',
+
         'Arm And Hammer': 'Arm-Hammer',
         'Atomic Ray': 'Atomstrahlung',
         'Aura Cannon': 'Aura-Kanone',
@@ -406,6 +411,7 @@
         'Run': 'Start',
         'Interrupt Stoneskin': 'Steinhaut unterbrechen',
         'Magnetism/Repel': 'Magnetismus',
+        'Prey': 'Markiert',
         'Temporary Misdirection': 'Plötzliche Panik',
         'Radar': 'Radar',
         'Paste': 'Einfügen',
@@ -413,6 +419,10 @@
         'Plane Laser': 'Luftwaffe Add Laser',
         'Virus': 'Virus',
         'Enrage': 'Finalangriff',
+
+        // FIXME:
+        'Retrieve Ultros': 'Retrieve Ultros',
+        'Retrieve Air Force': 'Retrieve Air Force',
       },
       '~effectNames': {
         'Abandonment': 'Verlassen',
@@ -445,8 +455,13 @@
         'Guardian': 'Gardien',
         'Interdimensional Bomb': 'Bombe Dimensionnelle',
         'Ultros': 'Orthros',
+
+        // FIXME:
+        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE',
       },
       replaceText: {
+        '--targetable--': '--ciblable--',
+        '--untargetable--': '--impossible à cibler--',
         'Arm And Hammer': 'Marteau Stratégique',
         'Atomic Ray': 'Rayon Atomique',
         "Aura Cannon": "Rayon D'aura",
@@ -482,6 +497,7 @@
         'Wallop': 'Taloche Tentaculaire',
 
         // FIXME:
+        'Prey': 'Marquage',
         'Aether Rot': 'Aether Rot',
         'Copy': 'Copy',
         'Skip': 'Skip',
@@ -496,6 +512,8 @@
         'Plane Laser': 'Plane Laser',
         'Virus': 'Virus',
         'Enrage': 'Enrage',
+        'Retrieve Ultros': 'Retrieve Ultros',
+        'Retrieve Air Force': 'Retrieve Air Force',
       },
       '~effectNames': {
         'Abandonment': 'Isolement',

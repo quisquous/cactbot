@@ -110,14 +110,19 @@
         'Easterly': 'Ostwind',
         'Goddess Chadarnook': 'Heilige Chadarnook',
         'Haunt': 'Böser Schatten',
-        'Portrayal Of Fire': 'Feuergemälde',
-        'Portrayal Of Wind': 'Windgemälde',
+        'Portrayal of Fire': 'Feuergemälde',
+        'Portrayal of Wind': 'Windgemälde',
         'Portrayal of Earth': 'Erdgemälde',
         'Portrayal of Water': 'Wassergemälde',
         "The Storm's Grip": "Sturmgebiet",
-        'I have claimed the girl in the picture!': 'Das Mädchen in diesem Bildnis gehört mir!', 
+        'I have claimed the girl in the picture!': 'Das Mädchen in diesem Bildnis gehört mir!',
       },
       replaceText: {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Engage!': 'Start!',
+        'Enrage': 'Finalangriff',
+
         'Demonic Howl': 'Dämonisches Heulen',
         'Demonic Pain': 'Dämonischer Schmerz',
         'Demonic Shear': 'Dämonische Schere',
@@ -145,6 +150,9 @@
         'Rock Hard': 'Felsspalter',
         'Song Of Bravery': 'Lied Der Tapferkeit',
         'The Price': 'Tödliche Versuchung',
+
+        // FIXME:
+        'Flash Flood': 'Flash Flood',
       },
       '~effectNames': {
         'Apathetic': 'Apathie',
@@ -167,14 +175,21 @@
         'Easterly': 'Rafale Ultime',
         'Goddess Chadarnook': 'Déesse Chadarnouk',
         'Haunt': 'Ombre Maléfique',
-        'Portrayal Of Fire': 'Peinture Du Feu',
-        'Portrayal Of Wind': 'Peinture Du Vent',
+        'Portrayal of Fire': 'Peinture Du Feu',
+        'Portrayal of Wind': 'Peinture Du Vent',
         'Portrayal of Earth': 'Peinture De La Terre',
         'Portrayal of Water': "Peinture De L'eau",
         "The Storm's Grip": "Emprise De La Tempête",
         'I have claimed the girl in the picture!': "Héhéhé... La fille du tableau m'appartient",
       },
       replaceText: {
+        "Engage!": "À l'attaque",
+        '--Reset--': '--Réinitialisation--',
+        '--sync--': '--synchronisation--',
+        '--targetable--': '--ciblable--',
+        '--untargetable--': '--impossible à cibler--',
+        'Enrage': 'Enragement',
+
         'Demonic Howl': 'Hurlement Démoniaque',
         'Demonic Pain': 'Douleur Démoniaque',
         'Demonic Shear': 'Cisailles Démoniaques',
@@ -201,6 +216,10 @@
         'Rock Hard': 'Brise-roc',
         'Song Of Bravery': 'Chant Du Courage',
         'The Price': 'Tentation Mortelle',
+
+        // FIXME:
+        'Easterlies': 'Easterlies',
+        'Flash Flood': 'Flash Flood',
       },
       '~effectNames': {
         'Apathetic': 'Apathie',

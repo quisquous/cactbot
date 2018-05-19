@@ -150,8 +150,13 @@
         'Remorse': 'Melancholischer Geist',
         'Agony': 'Reuiger Geist',
         'Malice': 'Bösartiger Geist',
+        'Engage!': 'Start!',
       },
       replaceText: {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Enrage': 'Finalangriff',
+
         'Acid Rain': 'Säureregen',
         'All In The Mind': 'Psychokinese',
         'Diabolic Chimney': 'Diabolischer Schlot',
@@ -169,8 +174,11 @@
         'Crossing Whistle': 'Kreuzend Pfeife',
         'Knockback Whistle': 'Rückstoß Pfeife',
         'Tether Whistle': 'Verfolger Pfeife',
-        ') Ghosts': ') Geister',
+        ' Ghosts': ' Geister',
         'Ghosts spawn': 'Geister erscheinen',
+
+        // FIXME:
+        'Add Wave': 'Add Wave',
       },
       '~effectNames': {
         'Connectivity': 'Kopplung',
@@ -190,8 +198,15 @@
         'Remorse': 'Fantôme Mélancolique',
         'Agony': 'Fantôme Souffrant',
         'Malice': 'Fantôme Rancunier',
+        "Engage!": "À l'attaque",
       },
       replaceText: {
+        '--Reset--': '--Réinitialisation--',
+        '--sync--': '--synchronisation--',
+        '--targetable--': '--ciblable--',
+        '--untargetable--': '--impossible à cibler--',
+        'Enrage': 'Enragement',
+
         'Acid Rain': 'Pluie Acide',
         'All In The Mind': 'Force De Volonté',
         'Diabolic Chimney': 'Cheminée Diabolique',
@@ -209,8 +224,9 @@
         'Crossing Whistle': 'Crossing Whistle',
         'Knockback Whistle': 'Knockback Whistle',
         'Tether Whistle': 'Tether Whistle',
-        ') Ghosts': ') Ghosts',
+        ' Ghosts': ' Ghosts',
         'Ghosts spawn': 'Ghosts spawn',
+        'Add Wave': 'Add Wave',
       },
       '~effectNames': {
         'Connectivity': 'Attelage',
@@ -249,7 +265,7 @@
         'Crossing Whistle': 'Crossing Whistle',
         'Knockback Whistle': 'Knockback Whistle',
         'Tether Whistle': 'Tether Whistle',
-        ') Ghosts': ') Ghosts',
+        ' Ghosts': ' Ghosts',
         'Ghosts spawn': 'Ghosts spawn',
       },
       '~effectNames': {

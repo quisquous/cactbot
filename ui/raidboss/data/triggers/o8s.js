@@ -627,6 +627,17 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
+
+        // FIXME:
+        'Blizzard+Thunder': 'Blizzard+Thunder',
+        'Half Arena': 'Half Arena',
+        'Statue Gaze': 'Statue Gaze',
+        'Soak': 'Soak',
+        'Past/Future': 'Past/Future',
+        'Past/Future End': 'Past/Future End',
+        'Knockback Tethers': 'Knockback Tethers',
+        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers',
+        'Statue Half Cleave': 'Statue Half Cleave',
       },
     },
     {

@@ -215,7 +215,7 @@
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
-      }, 
+      },
       durationSeconds: 6,
       tts: {
         en: 'spread then in',
@@ -1243,6 +1243,7 @@
         // FIXME:
         'Tail of Darkness': 'Tail of Darkness',
         'Fang of Light': 'Fang of Light',
+        'Engage!': 'Start!',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -1297,7 +1298,35 @@
         'Twister': 'Wirbelsturm',
         'Twisting Dive': 'Spiralschwinge',
         'White Fury': 'Naels Zorn',
-        'Wings Of Salvation': 'Rettende Schwinge',
+        'Wings of Salvation': 'Rettende Schwinge',
+
+        'Doom': 'Verhängnis',
+        'Thunderstruck': 'Donnerschwinge',
+        'Enrage': 'Finalangriff',
+
+        // FIXME:
+        '--push--': '--push--',
+        'Targeted Fire': 'Targeted Fire',
+        'Marker': 'Marker',
+        'Divebomb': 'Divebomb',
+        'Meteor/Dive or Dive/Beam': 'Meteor/Dive or Dive/Beam',
+        'Random Combo Attack': 'Random Combo Attack',
+        'Stack': 'Stack',
+        'Towers': 'Towers',
+        'Dive Dynamo Combo': 'Dive Dynamo Combo',
+        'Markers appear': 'Markers appear',
+        'Fireball Soak': 'Fireball Soak',
+        'Nael Marker': 'Nael Marker',
+        'Nael Dive': 'Nael Dive',
+        'Bahamut Marker': 'Bahamut Marker',
+        'Twin Marker': 'Twin Marker',
+        'Plummet/Claw': 'Plummet/Claw',
+        'Triple Nael Quote': 'Triple Nael Quote',
+        'Sentence/Ravensbeak': 'Sentence/Ravensbeak',
+        'Pepperoni': 'Pepperoni',
+        'Dynamo . Beam/Chariot': 'Dynamo + Beam/Chariot',
+        'Thermionic . Dynamo/Chariot': 'Thermionic + Dynamo/Chariot',
+        'Dive . Dynamo/Chariot': 'Dive + Dynamo/Chariot',
       },
       '~effectNames': {
         'Doom': 'Verhängnis',
@@ -1328,6 +1357,7 @@
         'Tail of Darkness': 'Queue de ténèbres',
         'Thunderwing': 'Aile-de-foudre',
         'Twintania': 'Gémellia',
+        "Engage!": "À l'attaque",
       },
       replaceText: {
         '--Reset--': '--Réinitialisation--',
@@ -1335,12 +1365,12 @@
         "--push--": '--poussé(e)--',
         "--untargetable--": '--impossible à cibler--',
         '--targetable--': '--ciblable--',
-          
+
         "Targeted Fire": 'Feu ciblé',
         "Enrage": 'Enragement',
-        "Dynamo + Beam/Chariot": 'Dynamo + Rayon/Char',
-        "Thermionic + Dynamo/Chariot": 'Rayon + Dynamo/Char',
-        "Dive + Dynamo/Chariot": 'Plongeon + Dynamo/Char',
+        "Dynamo . Beam/Chariot": 'Dynamo + Rayon/Char',
+        "Thermionic . Dynamo/Chariot": 'Rayon + Dynamo/Char',
+        "Dive . Dynamo/Chariot": 'Plongeon + Dynamo/Char',
         "Marker": 'Marqueur',
         "Divebomb": 'Bombardement',
         "Meteor/Dive or Dive/Beam": 'Météore/Plongeon ou Plongeon/Rayon',
@@ -1357,7 +1387,7 @@
         "Plummet/Claw": 'Piqué/Griffe',
         "Triple Nael Quote": 'Triple citation de Nael',
         "Sentence/Ravensbeak": 'Peine De Mort/Bec Du Rapace',
-          
+
         "Aetheric Profusion": "Excès D'éther",
         'Akh Morn': 'Akh Morn',
         "Bahamut's Claw": "Griffe De Bahamut",
@@ -1407,7 +1437,13 @@
         'Twister': 'Grande Trombe',
         'Twisting Dive': 'Plongeon-trombe',
         'White Fury': 'Colère De Nael',
-        'Wings Of Salvation': 'Aile De La Salvation',
+        'Wings of Salvation': 'Aile De La Salvation',
+
+        'Thunderstruck': 'Aile-de-foudre',
+        'Doom': 'Glas',
+
+        // FIXME:
+        'Pepperoni': 'Pepperoni',
       },
       '~effectNames': {
         'Doom': 'Glas',
@@ -1490,7 +1526,7 @@
         'Twister': 'ツイスター',
         'Twisting Dive': 'ツイスターダイブ',
         'White Fury': 'ネールの憤怒',
-        'Wings Of Salvation': 'サルヴェーションウィング',
+        'Wings of Salvation': 'サルヴェーションウィング',
       },
       '~effectNames': {
         'Doom': '死の宣告',
