@@ -42,8 +42,12 @@ class FileLikeArray:
     self.out.append(line)
 
 
-def construct_relative_path(filename):
+def construct_relative_triggers_path(filename):
   return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/triggers/' + filename)
+
+
+def construct_relative_timeline_path(filename):
+  return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/timelines/' + filename)
 
 
 def translate_regex(regex, trans):
@@ -55,13 +59,13 @@ def translate_regex(regex, trans):
   did_work = False
   if line.find('gains the effect') != -1 or line.find('loses the effect') != -1:
     for old, new in trans['~effectNames'].items():
-      did_work = did_work or line.find(old) != -1
+      did_work = did_work or re.search(old, line)
       line = re.sub(old, new, line)
   for old, new in trans['replaceText'].items():
-    did_work = did_work or line.find(old) != -1
+    did_work = did_work or re.search(old, line)
     line = re.sub(old, new, line)
   for old, new in trans['replaceSync'].items():
-    did_work = did_work or line.find(old) != -1
+    did_work = did_work or re.search(old, line)
     line = re.sub(old, new, line)
 
   if did_work:
@@ -162,8 +166,58 @@ def parse_translations(triggers):
   return ret_dict
 
 
+def translate_timeline(line, trans):
+  if not re.match(r"\s*[0-9.]+\s+", line):
+    return line
+
+  # handle replace text first
+  did_work = False
+  replace_text_re = re.compile(r'"[^"]*"')
+  m = replace_text_re.search(line)
+  if not m:
+    return line
+  text = m.group(0)
+  for old, new in trans['replaceText'].items():
+    did_work = did_work or re.search(old, text)
+    text = re.sub(old, new, text)
+  line = replace_text_re.sub(text, line)
+  skip_text = [
+    '--sync--',
+    '--Reset--',
+    'Start',
+  ]
+  for skip in skip_text:
+    did_work = did_work or re.search(skip, text)
+  if not did_work:
+    line = line + ' #MISSINGTEXT'
+
+  did_work = False
+  replace_sync_re = re.compile(r'sync /([^/]*)/')
+  m = replace_sync_re.search(line)
+  if not m:
+    return line
+  text = m.group(1)
+  for old, new in trans['replaceSync'].items():
+    did_work = did_work or re.search(old, text)
+    text = re.sub(old, new, text)
+  line = replace_sync_re.sub('sync /%s/' % text, line)
+  if not did_work:
+    line = line + ' #MISSINGSYNC'
+
+  return line
+
+
+def print_timeline(locale, timeline_file, trans):
+  if not locale in trans:
+    raise Exception('no translation for ' + locale)
+  filename = construct_relative_timeline_path(timeline_file)
+  with open(filename, 'r', encoding='utf-8') as fp:
+    for line in fp.readlines():
+      print(translate_timeline(line.strip(), trans[locale]))
+
+
 def main(args):
-  filename = construct_relative_path(args.file)
+  filename = construct_relative_triggers_path(args.file)
   # Try to use it explicitly if the short name doesn't exist.
   if not os.path.exists(filename):
     filename = args.file
@@ -175,6 +229,16 @@ def main(args):
 
   trans = parse_translations(lines)
 
+  if args.timeline:
+    for line in lines:
+      m = re.search(r"timelineFile:\s*'(.*?)',", line)
+      if (m):
+        print_timeline(args.timeline, m.group(1), trans)
+        return
+    raise Exception('unable to find timelineFile in %s' % args.file)
+    return
+
+  # ...otherwise update triggers.
   updated = update_triggers(lines, trans)
 
   # deliberately write utf-8 here, as git treats utf-16 as binary
@@ -192,13 +256,15 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter)
 
     parser.add_argument('-f', '--file', help="The trigger file name, e.g. o5s.js")
+    parser.add_argument('-t', '--timeline', help="If passed, print out the timeline for a locale, e.g. de")
 
     args = parser.parse_args()
 
     if not args.file:
-        raise parser.error("Must pass a file.")
+      raise parser.error('Must pass a file.')
+    if args.timeline and not args.timeline in languages:
+      raise parser.error('Must pick a valid language: %s' % ', '.join(languages))
 
-    # TODO: also translate the timelines
     # TODO: add an option to write to a different file instead of rewriting
     # TODO: add missing entries (from timelines?) to translations
     # TODO: warn if there are name conflicts (a match and b match, but if apply a then b doesn't apply)
