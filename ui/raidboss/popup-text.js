@@ -100,14 +100,16 @@ class PopupText {
       var set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) >= 0) {
         // Adjust triggers for the locale.
-        for (var j = 0; j < set.triggers.length; ++j) {
-          // Add an additional resolved regex here to save
-          // time later.  This will clobber each time we
-          // load this, but that's ok.
-          var trigger = set.triggers[j];
-          // Locale-based regex takes precedence.
-          var regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
-          trigger.localRegex = Regexes.Parse(regex);
+        if (set.triggers) {
+          for (var j = 0; j < set.triggers.length; ++j) {
+            // Add an additional resolved regex here to save
+            // time later.  This will clobber each time we
+            // load this, but that's ok.
+            var trigger = set.triggers[j];
+            // Locale-based regex takes precedence.
+            var regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+            trigger.localRegex = Regexes.Parse(regex);
+          }
         }
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
