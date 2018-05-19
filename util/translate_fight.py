@@ -50,11 +50,9 @@ def find_start_end_time(report, args):
 
 def add_default_ability_mappings(ability_replace):
   # Many timelines have these, so just include a few by default.
-  ability_replace['de']['Engage!'] = 'Start!'
-  ability_replace['fr']['Engage!'] = "À l'attaque"
-  ability_replace['ja']['Engage!'] = '戦闘開始！'
 
   # FIXME: add ja translations here.
+  # FIXME: add Start as well
   ability_replace['de']['--targetable--'] = '--anvisierbar--'
   ability_replace['fr']['--targetable--'] = '--ciblable--'
 
@@ -63,6 +61,14 @@ def add_default_ability_mappings(ability_replace):
 
   ability_replace['de']['Enrage'] = 'Finalangriff'
   ability_replace['fr']['Enrage'] = 'Enragement'
+
+  ability_replace['fr']['--Reset--'] = '--Réinitialisation--'
+  ability_replace['fr']['--sync--'] = '--synchronisation--'
+
+def add_default_sync_mappings(sync_replace):
+  sync_replace['de']['Engage!'] = 'Start!'
+  sync_replace['fr']['Engage!'] = "À l'attaque"
+  sync_replace['ja']['Engage!'] = '戦闘開始！'
 
 # generate a mapping of lang => { default_name => name }
 def build_mapping(translations, ignore_list=[]):
@@ -157,6 +163,7 @@ def main(args):
     ability_replace = build_mapping(abilities, ignore_abilities)
     effect_replace = build_mapping(effects, ignore_effects)
 
+    add_default_sync_mappings(mob_replace)
     add_default_ability_mappings(ability_replace)
 
     # Build some JSON similar to what cactbot expects in trigger files.
