@@ -722,7 +722,13 @@ namespace Cactbot {
       // could attempt to send an overlay name to C# code (and race with the
       // document ready event), but that's probably overkill.
       var user_files = new Dictionary<string, string>();
-      var path = new Uri(config_dir).LocalPath;
+      string path;
+      try {
+        path = new Uri(config_dir).LocalPath;
+      } catch (UriFormatException) {
+        // This can happen e.g. "http://localhost:8000".  Thanks, Uri constructor.  /o\
+        return null;
+      }
 
       // It's important to return null here vs an empty dictionary.  null here
       // indicates to attempt to load the user overloads indirectly via the path.
