@@ -114,10 +114,12 @@
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
+        de: 'Wirbelsturm',
       },
       tts: {
         en: 'twisters',
         fr: 'Tornades',
+        de: 'wirbelstürme',
       },
     },
     { id: 'UCU Death Sentence',
@@ -130,6 +132,7 @@
           return {
             en: 'Death Sentence',
             fr: 'Peine de mort',
+            de: 'Todesurteil',
           };
       },
       tts: function(data, matches) {
@@ -137,6 +140,7 @@
           return {
             en: 'buster',
             fr: 'Anti-tank',
+            de: 'basta',
           };
       },
     },
@@ -153,10 +157,12 @@
       alarmText: {
         en: 'Hatch on YOU',
         fr: 'Éclosion sur VOUS',
+        de: 'Ausbrüten auf DIR',
       },
       tts: {
         en: 'hatch',
         fr: 'Éclosion',
+        de: 'ausbrüten',
       },
     },
     {
@@ -171,6 +177,7 @@
         return {
           en: 'Hatch: ' + hatches,
           fr: 'Éclosion: ' + hatches,
+          de: 'Ausbrüten: ' + hatches,
         };
       },
     },
@@ -191,6 +198,7 @@
         return {
           en: 'Phase 2 Push',
           fr: 'Phase 2 poussée',
+          de: 'Phase 2 Stoß',
         };
       },
     },
@@ -204,6 +212,7 @@
         return {
           en: 'Phase 3 Push',
           fr: 'Phase 3 poussée',
+          de: 'Phase 3 Stoß',
         };
       },
     },
@@ -215,11 +224,13 @@
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
+        de: 'Verteilen => Rein',
       }, 
       durationSeconds: 6,
       tts: {
         en: 'spread then in',
         fr: 'Se dispercer, puis dedans',
+        de: 'verteilen, dann rein',
       },
     },
     { id: 'UCU Nael Quote 2',
@@ -228,11 +239,13 @@
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
+        de: 'Verteilen => Raus',
       },
       durationSeconds: 6,
       tts: {
         en: 'spread then out',
-        fr: "Se dispercer, puis dehors",
+        fr: 'Se dispercer, puis dehors',
+        de: 'verteilen, dann raus',
       },
     },
     { id: 'UCU Nael Quote 3',
@@ -241,11 +254,13 @@
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
+        de: 'Stack => Rein',
       },
       durationSeconds: 6,
       tts: {
         en: 'stack then in',
         fr: 'Se rassembler, puis dedans',
+        de: 'stek dann rein',
       },
     },
     { id: 'UCU Nael Quote 4',
@@ -254,11 +269,13 @@
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
+        de: 'Stack => Raus',
       },
       durationSeconds: 6,
       tts: {
         en: 'stack then out',
-        fr: "Se rassembler, puis dehors",
+        fr: 'Se rassembler, puis dehors',
+        de: 'stek dann raus',
       },
     },
     { id: 'UCU Nael Quote 5',
@@ -267,11 +284,13 @@
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
+        de: 'Rein => Stack',
       },
       durationSeconds: 6,
       tts: {
         en: 'in then stack',
         fr: 'Dedans, puis se rassembler',
+        de: 'rein dann stek',
       },
     },
     { id: 'UCU Nael Quote 6',
@@ -280,11 +299,13 @@
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
+        de: 'Rein => Raus',
       },
       durationSeconds: 6,
       tts: {
         en: 'in then out',
-        fr: "Dedans, puis dehors",
+        fr: 'Dedans, puis dehors',
+        de: 'rein dann raus',
       },
     },
     { id: 'UCU Nael Quote 7',
@@ -293,12 +314,14 @@
       infoText: {
         en: 'Away from Tank => Stack',
         fr: "S'éloigner du tank => Se rassembler",
+        de: 'Weg vom Tank => Stack',
       },
       durationSeconds: 6,
       delaySeconds: 4,
       tts: {
         en: 'away from tank then stack',
         fr: "S'éloigner du tank, puis se rassembler",
+        de: 'weck vom tenk dann stek',
       },
     },
     { id: 'UCU Nael Quote 8',
@@ -307,12 +330,14 @@
       infoText: {
         en: 'Spread => Away from Tank',
         fr: "Se dispercer => S'éloigner du Tank",
+        de: 'Verteilen => Weg vom Tank',
       },
       durationSeconds: 6,
       delaySeconds: 4,
       tts: {
         en: 'spread then away from tank',
         fr: "Se dispercer, puis s'éloigner du tank",
+        de: 'verteilen dann weck vom tenk',
       },
     },
     { id: 'UCU Nael Quote 9',
@@ -322,10 +347,12 @@
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
+        de: 'Verteilen => Rein',
       },
       tts: {
         en: 'spread then in',
         fr: 'Se dispercer, puis dedans',
+        de: 'verteilen dann rein',
       },
     },
     { id: 'UCU Nael Quote 10',
@@ -335,10 +362,12 @@
       infoText: {
         en: 'In => Spread',
         fr: 'Dedans => Se dispercer',
+        de: 'Rein => Verteilen',
       },
       tts: {
         en: 'in then spread',
         fr: 'Dedans, puis se dispercer',
+        de: 'rein dann verteilen',
       },
     },
     { id: 'UCU Nael Quote 11',
@@ -348,10 +377,12 @@
       infoText: {
         en: 'In => Out => Spread',
         fr: 'Dedans => Dehors => Se dispercer',
+        de: 'Rein => Raus => Verteilen',
       },
       tts: {
         en: 'in then out then spread',
         fr: 'Dedans, puis dehors, puis se dispercer',
+        de: 'rein dann raus dann verteilen',
       },
     },
     { id: 'UCU Nael Quote 12',
@@ -361,10 +392,12 @@
       infoText: {
         en: 'In => Spread => Stack',
         fr: 'Dedans => Se dispercer => Se rassembler',
+        de: 'Rein => Verteilen => Stack',
       },
       tts: {
         en: 'in then spread then stack',
         fr: 'Dedans, puis se dispercer, puis se rassembler',
+        de: 'rein dann raus dann stek',
       },
     },
     { id: 'UCU Nael Quote 13',
@@ -374,10 +407,12 @@
       infoText: {
         en: 'Out => Stack => Spread',
         fr: 'Dehors => Se rassembler => Se dispercer',
+        de: 'Raus => Stack => Verteilen',
       },
       tts: {
         en: 'out then stack then spread',
         fr: 'Dehors, puis se rassembler, puis se dispercer',
+        de: 'rein dann raus dann verteilen',
       },
     },
     { id: 'UCU Nael Quote 14',
@@ -387,10 +422,12 @@
       infoText: {
         en: 'Out => Spread => Stack',
         fr: 'Dehors => Se dispercer => Se rassembler',
+        de: 'Raus => Verteilen => Stack',
       },
       tts: {
         en: 'out then spread then stack',
         fr: 'Dehors, puis se dispercer, puis se rassembler',
+        de: 'Raus dann rein dann stek'
       },
     },
     { id: 'UCU Nael Thunderstruck',
@@ -404,10 +441,12 @@
       alarmText: {
         en: 'Thunder on YOU',
         fr: 'Foudre sur VOUS',
+        de: 'Blitz auf DIR',
       },
       tts: {
         en: 'thunder',
         fr: 'Foudre',
+        de: 'blitz',
       },
     },
     { id: 'UCU Nael Your Doom',
@@ -428,15 +467,18 @@
           return {
             en: 'Doom #1 on YOU',
             fr: 'Glas #1 sur VOUS',
+            de: 'Verhängnis #1 auf DIR',
           };
         if (data.ParseLocaleFloat(matches[2]) <= 10)
           return {
             en: 'Doom #2 on YOU',
             fr: 'Glas #2 sur VOUS',
+            de: 'Verhängnis #2 auf DIR',
           };
         return {
           en: 'Doom #3 on YOU',
           fr: 'Glas #3 sur VOUS',
+          de: 'Verhängnis #3 auf DIR',
         };
       },
       tts: function(data, matches) {
@@ -491,6 +533,7 @@
           return {
             en: 'Cleanse #' + data.doomCount + ': ' + data.ShortName(name),
             fr: 'Purifié #' + data.doomCount + ': ' + data.ShortName(name),
+            de: 'Medica #' + data.doomCount + ': ' + data.ShortName(name),
           };
       },
     },
@@ -504,10 +547,12 @@
       infoText: {
         en: 'Fire IN',
         fr: 'Feu EN DEDANS',
+        de: 'Feuer INNEN',
       },
       tts: {
         en: 'fire in',
         fr: 'Feu en dedans',
+        de: 'Feuer innen',
       },
       run: function(data) { data.naelFireballCount = 1; },
     },
@@ -523,6 +568,7 @@
           return {
             en: 'Fire OUT',
             fr: 'Feu EN DEHORS',
+            de: 'Feuer AUßEN',
           };
       },
       alertText: function(data) {
@@ -535,6 +581,7 @@
           return {
             en: 'Fire OUT: Be in it',
             fr: 'Feu EN DEHORS : Allez dessus',
+            de: 'Feuer AUßEN: Drin sein',
           };
       },
       tts: function(data) {
@@ -542,10 +589,12 @@
           return {
             en: 'fire out; go with',
             fr: 'Feu en dehors; y allez',
+            de: 'feuer außen; mitgehen',
           };
         return {
           en: 'fire out',
           fr: 'Feu en dehors',
+          de: 'feuer außen'
         }
       },
 
@@ -573,6 +622,7 @@
         return {
           en: 'Fire IN' + str,
           fr: 'Feu EN DEDANS' + str,
+          de: 'Feuer INNEN',
         };
       },
       alertText: function(data) {
@@ -582,6 +632,7 @@
           return {
             en: 'Fire IN: AVOID!',
             fr: "Feu EN DEDANS : L'ÉVITER !",
+            de: 'Feuer INNEN: AUSWEICHEN!',
           };
       },
       tts: function(data) {
@@ -589,10 +640,12 @@
           return {
             en: 'avoid fire in',
             fr: 'Éviter le feu en dedans',
+            de: 'feuer innen ausweichen',
           };
         return {
           en: 'fire in',
           fr: 'Feu en dedans',
+          de: 'feuer innen',
         }
       },
       run: function(data) { data.naelFireballCount = 3; },
@@ -614,6 +667,7 @@
           return {
             en: 'Fire IN',
             fr: 'Feu EN DEDANS',
+            de: 'Feuer INNEN',
           };
       },
       alertText: function(data) {
@@ -624,12 +678,14 @@
           return {
             en: 'Fire IN: AVOID!',
             fr: "Feu EN DEDANS : L'ÉVITER !",
+            de: 'Feuer INNEN: AUSWEICHEN!',
           };
       },
       tts: function(data) {
         return {
           en: 'fire in',
           fr: 'Feu en dedans',
+          de: 'feuer innen',
         };
       },
       run: function(data) { data.naelFireballCount = 4; },
@@ -686,7 +742,8 @@
         data.calledNaelDragons = true;
         return {
           en: 'Marks: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : ''),
-          fr: 'Marque : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (LARGE)' : '')
+          fr: 'Marque : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (LARGE)' : ''),
+          de: 'Markierungen : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (GROß)' : ''),
         };
       },
     },
@@ -702,6 +759,7 @@
         return {
           en: 'Go To ' + marker + ' (in ' + dir + ')',
           fr: 'Aller en ' + marker + ' (au ' + dir + ')',
+          de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
         };
       },
       tts: function(data, matches) {
@@ -711,6 +769,7 @@
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           fr: 'Aller en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
         };
       },
     },
@@ -725,6 +784,7 @@
         return {
           en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
           fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
+          der: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -784,6 +844,7 @@
         return {
           en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (nael)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
         };
       },
     },
@@ -794,6 +855,7 @@
         return {
           en: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]),
+          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -804,6 +866,7 @@
         return {
           en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (baha)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
         };
       },
     },
@@ -816,6 +879,7 @@
           return {
             en: 'YOU Stack for Twin',
             fr: 'VOUS devez appâter Gémellia',
+            de: 'DU stackst für Twintania',
           };
       },
       infoText: function(data) {
@@ -823,6 +887,7 @@
           return {
             en: '8: ??? (twin)',
             fr: '8 : ??? (Gémellia)',
+            de: '8 : ??? (Twintania)',
           };
         // If this person is not alive, then everybody should stack,
         // but tracking whether folks are alive or not is a mess.
@@ -830,6 +895,7 @@
           return {
             en: '8: ' + data.ShortName(data.lastOctetMarker) + ' (twin)',
             fr: '8 : ' + data.ShortName(data.lastOctetMarker) + ' (Gémellia)',
+            de: '8 : ' + data.ShortName(data.lastOctetMarker) + ' (Twintania)',
           };
       },
       tts: function(data) {
@@ -837,6 +903,7 @@
           return {
             en: 'stack for twin',
             fr: 'Se rassembler pour appâter Gémellia',
+            de: 'Se rassembler pour appâter Gémellia',
           };
       },
     },
@@ -848,10 +915,12 @@
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
+        de: 'Wirbelstürme',
       },
       tts: {
         en: 'twisters',
         fr: 'Tornades',
+        de: 'Wirbelstürme',
       },
     },
     { id: 'UCU Bahamut Gigaflare',
@@ -862,10 +931,12 @@
       alertText: {
         en: 'Gigaflare',
         fr: 'GigaBrasier',
+        de: 'Gigaflare',
       },
       tts: {
         en: 'gigaflare',
         fr: 'Giga Brasier',
+        de: 'Gigafleer',
       },
     },
     {
@@ -875,10 +946,12 @@
       alertText: {
         en: 'Megaflare Stack',
         fr: 'MegaBrasier rassemblement',
+        de: 'Megaflare Stack',
       },
       tts: {
         en: 'stack',
         fr: 'Se rassembler',
+        de: 'stek',
       },
     },
     { // Megaflare stack tracking
@@ -899,11 +972,13 @@
           return {
             en: 'Tower, bait hypernova',
             fr: 'Tour, appâter Supernova',
+            de: 'Turm, Hypernova ködern',
           };
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
           return {
             en: 'Bait Twin, then tower',
             fr: 'Appâter Gémellia, puis tour',
+            de: 'Twintania in Turm locken',
           };
         return {
           en: 'Get in a far tower',
