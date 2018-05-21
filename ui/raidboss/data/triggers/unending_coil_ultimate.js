@@ -221,6 +221,8 @@
     { id: 'UCU Nael Quote 1',
       regex: /From on high I descend, in blessed light to bask/,
       regexFr: /Des cieux je vais descendre et révérer la lune/,
+      regexDe: /Seht, ich steige herab, vom rotglühenden Monde/,
+      regexJp: /我、舞い降りて<br>月を仰がん/,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
@@ -236,6 +238,8 @@
     { id: 'UCU Nael Quote 2',
       regex: /From on high I descend, mine enemies to smite/,
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
+      regexDe: /Seht, ich steige herab, um euch zu beherrschen/,
+      regexJp: /我、舞い降りて<br>鉄の覇道を征く/,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
@@ -251,6 +255,8 @@
     { id: 'UCU Nael Quote 3',
       regex: /O refulgent moon, shine down your light/,
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
+      regexDe: /Flammender Pfad, geschaffen vom roten Mond/,
+      regexJp: /赤熱せし<br>月の祝福を/,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
@@ -266,6 +272,8 @@
     { id: 'UCU Nael Quote 4',
       regex: /Blazing path, lead me to conquest/,
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
+      regexDe: /Umloderter Pfad, führe mich zur Herrschaft/,
+      regexJp: /赤熱し、焼かれし道を<br>鉄の覇道と成す/,
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
@@ -281,6 +289,8 @@
     { id: 'UCU Nael Quote 5',
       regex: /O red moon, scorch mine enemies/,
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
+      regexDe: /O roter Mond! Umlodere meinen Pfad/,
+      regexJp: /月よ！<br>赤熱し、神敵を焼け/,
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
@@ -296,6 +306,8 @@
     { id: 'UCU Nael Quote 6',
       regex: /O red moon, shine the path to conquest/,
       regexFr: /Ô lune! Éclaire la voie de la domination/,
+      regexDe: /O roter Mond! Führe mich zur Herrschaft/,
+      regexJp: /月よ！<br>鉄の覇道を照らせ/,
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
@@ -311,6 +323,8 @@
     { id: 'UCU Nael Quote 7',
       regex: /Fleeting light, score the earth with a fiery kiss/,
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
+      regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
+      regexJp: /超新星よ、輝きを増せ！<br>紅月下の赤熱せし地を照らせ/,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: "S'éloigner du tank => Se rassembler",
@@ -327,6 +341,8 @@
     { id: 'UCU Nael Quote 8',
       regex: /Fleeting light, outshine the stars for the moon/,
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
+      regexDe: /Neues Gestirn! Überstrahle jede Sternschnuppe/,
+      regexJp: /超新星よ、輝きを増せ！<br>星降りの夜に、紅月を称えよ/,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: "Se dispercer => S'éloigner du Tank",
@@ -343,6 +359,8 @@
     { id: 'UCU Nael Quote 9',
       regex: /From on high I descend, a hail of stars to bring/,
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
+      regexDe: /Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich/,
+      regexJp: /我、舞い降りて月を仰ぎ<br>星降りの夜を招かん/,
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -358,6 +376,8 @@
     { id: 'UCU Nael Quote 10',
       regex: /From red moon I descend, a hail of stars to bring/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
+      regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
+      regexJp: /我、月より舞い降りて<br>星降りの夜を招かん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -373,6 +393,8 @@
     { id: 'UCU Nael Quote 11',
       regex: /From red moon I draw steel, in my descent to bare/,
       regexFr: /De la lune je m'arme d'acier et descends/,
+      regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
+      regexJp: /我、月より鉄を備え<br>舞い降りん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
@@ -388,6 +410,8 @@
     { id: 'UCU Nael Quote 12',
       regex: /From red moon I descend, upon burning earth to tread/,
       regexFr: /De la lune, je descends et marche sur la terre ardente/,
+      regexDe: /O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen/,
+      regexJp: /我、月より舞い降りて<br>赤熱せし地を歩まん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -403,6 +427,8 @@
     { id: 'UCU Nael Quote 13',
       regex: /Gleaming steel, take fire and descend/,
       regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
+      regexDe: /Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab/,
+      regexJp: /鉄よ、赤熱せよ！<br>舞い降りし我が刃となれ/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
@@ -418,6 +444,8 @@
     { id: 'UCU Nael Quote 14',
       regex: /Gleaming steel, plunge and take fiery edge/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
+      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
+      regexJp: /鉄よ、舞い降りし<br>我の刃となり赤熱せよ/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
@@ -784,7 +812,7 @@
         return {
           en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
           fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
-          der: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
+          de: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -983,6 +1011,7 @@
         return {
           en: 'Get in a far tower',
           fr: 'Aller dans une tour lointaine',
+          de: 'Geh in entfernten Turm',
         };
       },
       tts: function(data) {
@@ -992,6 +1021,7 @@
           return {
             en: 'tower',
             fr: 'Tour',
+            fr: 'Turm',
           };
         }
       },
@@ -1003,10 +1033,12 @@
       alarmText: {
         en: 'Earthshaker on YOU',
         fr: 'Secousse sur VOUS',
+        de: 'Erdstoß auf Dir',
       },
       tts: {
         en: 'shaker',
         fr: 'Secousse',
+        de: 'Erdstoß',
       },
     },
     { // Earthshaker tracking
@@ -1026,6 +1058,7 @@
             return {
              en: 'Pick up tether',
              fr: 'Prendre un lien',
+             de: 'Verbindung holen',
             };
         }
       },
@@ -1037,6 +1070,7 @@
             return {
               en: 'No shaker; stack south.',
               fr: 'Pas de Secousse; se rassembler au Sud.',
+              de: 'Kein Erdstoß; im süden sammeln',
             };
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
@@ -1044,6 +1078,7 @@
               return {
                 en: 'Stack on safe spot',
                 fr: 'Se rassembler au point sauf',
+                de: 'In Sicherheit steken',
               };
             }
           }
@@ -1057,11 +1092,13 @@
             return {
               en: 'tether',
               fr: 'Lien',
+              de: 'Verbindung',
             };
           if (data.shakers.indexOf(data.me) == -1)
             return {
               en: 'stack south',
               fr: 'Se rassembler au sud',
+              de: 'stek im süden',
             };
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
@@ -1069,6 +1106,7 @@
               return {
                 en: 'safe spot',
                 fr: 'Point sauf',
+                de: 'in sicherheit',
               };
             }
           }
@@ -1096,6 +1134,7 @@
           return {
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
+            de: str + ' (DU)',
           };
         return str + ' (' + data.ShortName(matches[1]) + ')';
       },
@@ -1134,12 +1173,14 @@
         return {
           en: 'Exaflare #' + data.exaflareCount,
           fr: 'ExaBrasier #' + data.exaflareCount,
+          fr: 'Exaflare #' + data.exaflareCount,
         };
       },
       tts: function(data, matches) {
         return {
           en: 'exaflare ' + data.exaflareCount,
           fr: 'Exabrasier '+ data.exaflareCount,
+          fr: 'Exaflair '+ data.exaflareCount,
         };
       },
     },
