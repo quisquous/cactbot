@@ -1,6 +1,6 @@
 // O7S - Sigmascape 3.0 Savage
 // localization:
-//   de: timeline done, partial triggers
+//   de: all done
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
