@@ -18,16 +18,24 @@ namespace Cactbot {
     private string player_name_ = null;
     private string player_name_with_colons_ = null;
     // Filled in later with player name.
-    private string[] weakness_strs_ = new string[4];
+    private string[] weakness_strs_ = new string[8];
     private string[] lb3_strs_ = {
       ":Pulse Of Life:",
       ":Pulsation Vitale:",
+      ":Lebenspuls:",
+      ":生命の鼓動:",
       ":Angel Feathers:",
       ":Plumes D'ange:",
+      ":Engelsfedern:",
+      ":エンジェルフェザー:",
       ":Astral Stasis:",
+      ":Astrale Stasis:",
+      ":星天開門:",
       ":Équilibre Astral:",
       ":Flames Of Rebirth:",
       ":Feu Résurrecteur:",
+      ":Flammen Der Wiedergeburt:",
+      ":転生の炎:",
   };
 
     private DateTime? last_revived_time_;
@@ -47,6 +55,10 @@ namespace Cactbot {
         weakness_strs_[1] = " 1A:" + player_name_ + " gains the effect of Brink Of Death from";
         weakness_strs_[2] = " 1A:" + player_name_ + " gains the effect of Affaiblissement from";
         weakness_strs_[3] = " 1A:" + player_name_ + " gains the effect of Mourant from";
+        weakness_strs_[4] = " 1A:" + player_name_ + " gains the effect of Schwäche from";
+        weakness_strs_[5] = " 1A:" + player_name_ + " gains the effect of Sterbenselend from";
+        weakness_strs_[6] = " 1A:" + player_name_ + " gains the effect of 衰弱 from";
+        weakness_strs_[7] = " 1A:" + player_name_ + " gains the effect of 衰弱［強］ from";
       }
 
       var now = DateTime.Now;
