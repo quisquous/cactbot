@@ -30,7 +30,7 @@ namespace Cactbot {
     //   0x10 bytes...
     //   EntityStruct* player;
     // }
-    private static int kCharmapStructOffsetPlayer = 0x08;
+    private static int kCharmapStructOffsetPlayer = 0;
 
     // A piece of code that reads the pointer to the target entity structure.
     // The pointer is the second ???????? in the signature. At address
@@ -126,7 +126,7 @@ namespace Cactbot {
     //   0xA4 bytes in: float32 pos_z;
     //   0xA8 bytes in: float32 pos_y;
     //   ...
-    //   0x16B8 bytes in:
+    //   0x1700 bytes in:
     //     0x000 bytes in: int32 hp;
     //     0x004 bytes in: int32 maxhp;
     //     0x008 bytes in: int32 mp;
@@ -146,7 +146,7 @@ namespace Cactbot {
     //     0x25C bytes in: float32 casting_spell_time_spent;  // 4 bytes
     //     0x260 bytes in: float32 casting_spell_length;      // 4 bytes
     // }
-    private static int kEntityStructureSize = 0x16B8 + 0x260 + 4;
+    private static int kEntityStructureSize = 0x1700 + 0x260 + 4;
     private static int kEntityStructureSizeName = 0x44;
     private static int kEntityStructureOffsetName = 0x30;
     private static int kEntityStructureOffsetId = 0x74;
@@ -154,11 +154,11 @@ namespace Cactbot {
     private static int kEntityStructureOffsetDistance = 0x92;
     private static int kEntityStructureOffsetPos = 0xA0;
     // Base offset for the things below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x16B8;
+    private static int kEntityStructureOffsetCharacterDetails = 0x1700;
     private static int kEntityStructureOffsetHpMpTp = 0x0;
     private static int kEntityStructureOffsetGpCp = 0x12;
-    private static int kEntityStructureOffsetJob = 0x36;
-    private static int kEntityStructureOffsetLevel = 0x38;
+    private static int kEntityStructureOffsetJob = 0x38;
+    private static int kEntityStructureOffsetLevel = 0x3A;
     private static int kEntityStructureOffsetCastingId = 0x22C;
     private static int kEntityStructureOffsetCastingTimeProgress = 0x25C;
 
