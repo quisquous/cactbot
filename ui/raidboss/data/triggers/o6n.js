@@ -6,6 +6,7 @@
     {
       id: 'O6N Demonic Shear',
       regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
+      regexDe: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
           return {
