@@ -5,20 +5,41 @@
     {
       id: 'Temple Port And Star',
       regex: /:1FDC:Arbuda starts using Port And Star/,
-      alertText: 'front/back are safe',
-      tts: 'go front or back',
+      regexDe: /:1FDC:Arbuda starts using Links & Rechts/,
+      alertText: {
+        en: 'front/back are safe',
+        de: 'Vorne und Hinten sicher',
+      },
+      tts: {
+        en: 'go front or back',
+        de: 'nach vorne oder hinten',
+      },
     },
     {
       id: 'Temple Fore And Aft',
       regex: /:1FDB:Arbuda starts using Fore And Aft/,
-      alertText: 'sides are safe',
-      tts: 'go sides',
+      regexDe: /:1FDB:Arbuda starts using Vor & Zurück/,
+      alertText: {
+        en: 'sides are safe',
+        de: 'Seiten sind sicher',
+      },
+      tts: {
+        en: 'go sides',
+        de: 'an die Seite',
+      },
     },
     {
       id: 'Temple Killer Instinct',
       regex: /:1FDE:Arbuda starts using Killer Instinct/,
-      alertText: 'watch for safe',
-      tts: 'watch for safe',
+      regexDe: /:1FDE:Arbuda starts using Vorausahnung/,
+      alertText: {
+        en: 'watch for safe',
+        de: 'Auf Sicherheit achten',
+      },
+      tts: {
+        en: 'watch for safe',
+        de: 'auf Sicherheit achten',
+      },
     },
   ],
 }]
