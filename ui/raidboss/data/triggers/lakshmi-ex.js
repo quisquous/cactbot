@@ -20,38 +20,72 @@
     {
       id: 'Lakshmi Pull of Light',
       regex: /:215E:Lakshmi starts using The Pull Of Light on (\y{Name})/,
+      regexDe: /:215E:Lakshmi starts using Strom Des Lichts on (\y{Name})/,
       alarmText: function(data, matches) {
         if (data.role != 'tank' && matches[1] == data.me)
-          return 'Buster on YOU';
+          return {
+            en: 'Buster on YOU',
+            de: 'Buster auf DIR',
+          };
       },
       alertText: function(data, matches) {
         if (data.role == 'tank' && matches[1] == data.me)
-          return 'Buster on YOU';
+          return {
+            en: 'Buster on YOU',
+            de: 'Buster auf DIR',
+          };
         if (data.role == 'healer' && matches[1] != data.me)
-          return 'Buster on ' + matches[1];
+          return {
+            en: 'Buster on ' + matches[1],
+            de: 'Buster auf ' + matches[1],
+          };
       },
       tts: function(data) {
         if (data.role == 'tank' || data.role == 'healer')
-          return 'buster';
+          return {
+            en: 'buster',
+            de: 'Basta',
+          };
       },
     },
     {
       id: 'Lakshmi Divine Denial',
       regex: /:2149:Lakshmi starts using Divine Denial/,
-      alertText: 'Vrill + Knockback',
-      tts: 'vrill and knockback',
+      regexDe: /:2149:Lakshmi starts using Göttliche Leugnung/,
+      alertText: {
+        en: 'Vrill + Knockback',
+        de: 'Vril + Rueckstoss,
+      },
+      tts: {
+        en: 'vrill and knockback',
+        de: 'wriel und rückstoß',
+      },
     },
     {
       id: 'Lakshmi Divine Desire',
       regex: /:214B:Lakshmi starts using Divine Desire/,
-      alertText: 'Vrill + Be Outside',
-      tts: 'vrill and outside',
+      regexDe: /:214B:Lakshmi starts using Göttliche Lockung/,
+      alertText: {
+        en: 'Vrill + Be Outside',
+        de: 'Vril + Rausgehen',
+      },
+      tts: {
+        en: 'vrill and outside',
+        de: 'wriel und raus',
+      },
     },
     {
       id: 'Lakshmi Divine Doubt',
       regex: /:214A:Lakshmi starts using Divine Doubt/,
-      alertText: 'Vrill + Pair Up',
-      tts: 'vrill and buddy',
+      regexDe: /:214A:Lakshmi starts using Göttliche Bestürzung/,
+      alertText: {
+        en: 'Vrill + Pair Up',
+        de: 'Vril + Grupperen',
+      },
+      tts: {
+        en: 'vrill and buddy',
+        de: 'wriel und grupperen',
+      },
     },
     { // Stack marker
       id: 'Lakshmi Pall of Light',
@@ -60,20 +94,35 @@
         if (!data.chanchala)
           return;
         if (data.me == matches[1])
-          return 'Vrill + Stack on YOU';
-        return 'Vrill + Stack';
+          return {
+            en: 'Vrill + Stack on YOU',
+            de: 'Vril + Stack auf DIR,
+          };
+        return {
+          en: 'Vrill + Stack',
+          de: 'Vril + Stack,
+        };
       },
       infoText: function(data, matches) {
         if (data.chanchala)
           return;
         if (data.me == matches[1])
-          return 'Stack on YOU';
+          return {
+            en: 'Stack on YOU',
+            de: 'Stack auf DIR',
+          };
         return 'Stack';
       },
       tts: function(data) {
         if (data.chanchala)
-          return 'vrill and stack';
-        return 'stack';
+          return {
+            en: 'vrill and stack',
+            de: 'wriel und stek',
+          };
+        return {
+          en: 'stack',
+          de: 'stek',
+        };
       },
     },
     {
@@ -81,11 +130,17 @@
       regex: /:2147:Lakshmi starts using Stotram/,
       alertText: function(data) {
         if (data.chanchala)
-          return 'Vrill for AOE';
+          return {
+            en: 'Vrill for AOE',
+            de: 'Vril fuer Flaechenangriff',
+          };
       },
       tts: function(data) {
         if (data.chanchala)
-          return 'vrill for aoe';
+          return {
+            en: 'vrill for aoe',
+            de: 'Wriel für fläche',
+          };
       },
     },
     { // Offtank cleave
@@ -93,10 +148,16 @@
       regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: function(data) {
-        return (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU';
+        return {
+          en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
+          de: (data.chanchala ? 'Vril + ' : '') + 'Cleave auf DIR',
+        };
       },
       tts: function(data) {
-        return (data.chanchala ? 'Vrill + ' : '') + 'Cleave';
+        return {
+          en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave',
+          de: (data.chanchala ? 'Wriel + ' : '') + 'kliev',
+        };
       },
     },
     { // Cross aoe
@@ -104,10 +165,16 @@
       regex: /1B:........:(\y{Name}):....:....:006B:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        return (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker';
+        return {
+          en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
+          (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
+        };
       },
       tts: function(data) {
-        return (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker';
+        return {
+          en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
+          de: (data.chanchala ? 'Wriel + ' : '') + 'Kreuz Marker',
+        };
       },
     },
     { // Flower marker (healers)
@@ -115,18 +182,30 @@
       regex: /1B:........:(\y{Name}):....:....:006D:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        return (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker';
+        return {
+          en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
+          de: (data.chanchala ? 'Vril + ' : '') + 'Blumen-Marker',
+        };
       },
       tts: function(data) {
-        return (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker';
+        return {
+          en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
+          de: (data.chanchala ? 'Wriel + ' : '') + 'Blumen Marker',
+        };
       },
     },
     { // Red marker during add phase
       id: 'Lakshmi Water III',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alertText: 'Move Away',
-      tts: 'Move Away',
+      alertText: {
+        en: 'Move Away',
+        de: 'Weg da',
+      },
+      tts: {
+        en: 'Move Away',
+        de: 'Weck da',
+      },
     },
   ]
 }]
