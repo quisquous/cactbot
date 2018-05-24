@@ -18,6 +18,7 @@ timelines/sephirot-ex.txt
 timelines/shinryu-ex.txt
 timelines/sophia-ex.txt
 timelines/susano-ex.txt
+timelines/tsukuyomi-ex.txt
 timelines/o1s.txt
 timelines/o2s.txt
 timelines/o3s.txt
@@ -56,6 +57,7 @@ triggers/sephirot-ex.js
 triggers/shinryu-ex.js
 triggers/sophia-ex.js
 triggers/susano-ex.js
+triggers/tsukuyomi-ex.js
 triggers/o1s.js
 triggers/o2s.js
 triggers/o3s.js
