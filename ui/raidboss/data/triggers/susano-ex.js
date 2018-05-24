@@ -63,11 +63,14 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: function(data) {
         if (data.cloud)
-          return 'Knockback on you (cloud)';
+          return {
+            en: 'Knockback on you (cloud)',
+            de: 'Rueckstoss auf Dir (Wolke)',
+          };
         else if (data.churning)
           return {
             en: 'Knockback + dice (STOP)',
-            de: 'Rückstoß + Würfel (STOPP)',
+            de: 'Rueckstoss + Wuerfel (STOPP)',
           };
         else
           return {
