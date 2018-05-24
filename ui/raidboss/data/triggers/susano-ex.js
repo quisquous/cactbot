@@ -8,6 +8,7 @@
   triggers: [
     { // Thundercloud tracker
       regex: /:Added new combatant Thunderhead\./,
+      regexDe: /:Added new combatant Gewitterwolke\./,
       run: function(data) { data.cloud = true; },
     },
     { // Thundercloud tracker
@@ -16,10 +17,12 @@
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
       regex: /:Thunderhead starts using The Parting Clouds on Thunderhead\./,
+      regexDe: /:Gewitterkopf starts using Wolkenriss on Gewitterkopf\./,
       run: function(data) { data.cloud = false; },
     },
     { // Churning tracker
       regex: /:\y{Name} gains the effect of Churning from Susano/,
+      regex: /:\y{Name} gains the effect of Schäumend from Susano/,
       condition: function(data) { return !data.churning; },
       run: function(data) { data.churning = true; },
     },
@@ -28,12 +31,14 @@
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
       regex: /:\y{Name} loses the effect of Churning from Susano\./,
+      regexDe: /:\y{Name} loses the effect of Schäumend from Susano\./,
       condition: function(data) { return data.churning; },
       run: function(data) { data.churning = false; },
     },
     {
       id: 'SusEx Tankbuster',
       regex: /:Susano readies Stormsplitter\./,
+      regexDe: /:Susano readies Sturmspalter\./,
       alertText: function(data) {
         if (data.role == 'tank')
           return 'Tank Swap';
@@ -46,7 +51,10 @@
       },
       tts: function(data) {
         if (data.role == 'tank' || data.role == 'healer')
-          return 'tank buster';
+          return {
+            en: 'tank buster',
+            de: 'tenkbasta',
+          };
       },
     },
     { // Red knockback marker indicator
@@ -57,17 +65,32 @@
         if (data.cloud)
           return 'Knockback on you (cloud)';
         else if (data.churning)
-          return 'Knockback + dice (STOP)';
+          return {
+            en: 'Knockback + dice (STOP)',
+            de: 'Rückstoß + Würfel (STOPP)',
+          };
         else
-          return 'Knockback on you';
+          return {
+            en: 'Knockback on you',
+            de: 'Rückstoß auf dir',
+          };
       },
       tts: function(data) {
         if (data.cloud)
-          return 'knockback with cloud'
+          return {
+            en: 'knockback with cloud',
+            de: 'nock beck mit wolke',
+          };
         else if (data.churning)
-          return 'Knockback with dice';
+          return {
+            en: 'Knockback with dice',
+            de: 'Rückstoß mit Würfel',
+          };
         else
-          return 'Knockback';
+          return {
+            en: 'Knockback',
+            de: 'Rückstoß',
+          };
       },
     },
     { // Levinbolt indicator
@@ -76,15 +99,27 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: function(data) {
         if (data.cloud)
-          return 'Levinbolt on you (cloud)';
+          return {
+            en: 'Levinbolt on you (cloud)',
+            de: 'Blitz auf Dir (Wolke)',
+          };
         else
-          return 'Levinbolt on you';
+          return {
+            en: 'Levinbolt on you',
+            de: 'Blitz auf dir',
+          };
       },
       tts: function(data) {
         if (data.cloud)
-          return 'bolt with cloud';
+          return {
+            en: 'bolt with cloud',
+            de: 'blitz mit wolke',
+          };
         else
-          return 'bolt';
+          return {
+            en: 'bolt',
+            de: 'blitz',
+          };
       },
     },
     { // Levinbolt indicator debug
@@ -108,10 +143,14 @@
     { // Churning (dice)
       id: 'SusEx Churning',
       regex: /:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
+      regex: /:(\y{Name}) gains the effect of Schäumend from .*? for (\y{Float}) Seconds/,
       delaySeconds: function(data, matches) { return data.ParseLocaleFloat(matches[2]) - 3; },
       alertText: 'Stop',
       condition: function(data, matches) { return matches[1] == data.me; },
-      tts: 'stop',
+      tts: {
+        en: 'stop',
+        de: 'stopp',
+      },
     },
   ]
 }]
