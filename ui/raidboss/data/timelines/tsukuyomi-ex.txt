@@ -6,7 +6,7 @@
 15 "Reprimand" sync /:Tsukuyomi:2BBA:/ window 15,0
 25 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 31 "Lead/Steel"
-42 "Nightfall" sync /:Tsukuyomi:2BBD:/
+42 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 49 "Steel/Lead"
 67 "Reprimand" sync /:Tsukuyomi:2BBA:/
 78 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,80
