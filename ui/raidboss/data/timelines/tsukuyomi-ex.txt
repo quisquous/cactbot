@@ -14,7 +14,7 @@ hideall "--sync--"
 81 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,3
 103 "Homeland adds" sync /:Added new combatant Specter Of The Patriarch/
 140 "Empire adds" sync /:Added new combatant Specter Of Asahi/ window 40,3
-200 "--sync--" sync /:Specter Of Zenos:2BC8:/ window 60,30 # this line doesn't work for some reason
+200 "--sync--" sync /:Specter of Zenos:2BC8:/ window 60,30 # this line doesn't work for some reason
 202 "Concentrativity" # stun/knockback is actually 2s after the real cast (2BC8)
 207 "--sync--" sync /:Specter of Zenos:2CA8:/ window 67,3
 214 "--sync--" sync /:Specter of Zenos:2BCA:/
