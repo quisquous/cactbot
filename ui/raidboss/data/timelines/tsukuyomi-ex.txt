@@ -1,4 +1,5 @@
 # Tsukuyomi Extreme
+hideall "--sync--"
 
 0 "--Reset--" sync /Removing combatant Tsukuyomi/ window 10000 jump 0
 
@@ -9,18 +10,26 @@
 42 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 49 "Steel/Lead"
 67 "Reprimand" sync /:Tsukuyomi:2BBA:/
-78 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,80
-# Add spawn times here
-155 "Concentrativity" sync /:Specter Of Zenos:2BC8:/
-170 "--targetable--"
-178 "Dispersivity" sync /:Specter:2BCC:/
-184 "Dispersivity" sync /:Specter:2BCC:/
-190 "Dispersivity" sync /:Specter:2BCC:/
-196 "Dispersivity" sync /:Specter:2BCC:/
-202 "Dispersivity" sync /:Specter:2BCC:/
+75 "--sync--" sync /:2BC7:Tsuyukomi/ window 72,3 # can push this before reprimand
+81 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,3
+103 "Homeland adds" sync /:Added new combatant Specter Of The Patriarch/
+140 "Empire adds" sync /:Added new combatant Specter Of Asahi/ window 40,3
+200 "--sync--" sync /:Specter Of Zenos:2BC8:/ window 60,30 # this line doesn't work for some reason
+202 "Concentrativity" # stun/knockback is actually 2s after the real cast (2BC8)
+207 "--sync--" sync /:Specter of Zenos:2CA8:/ window 67,3
+214 "--sync--" sync /:Specter of Zenos:2BCA:/
+217 "--targetable--"
+224 "Dispersivity" sync /:Specter:2BCC:/
+230 "Dispersivity" sync /:Specter:2BCC:/
+236 "Dispersivity" sync /:Specter:2BCC:/
+242 "Dispersivity" sync /:Specter:2BCC:/
+248 "Dispersivity" sync /:Specter:2BCC:/
 
 # Adds complete, crescent phase
+486 "--sync--" sync /Specter of Gosetsu:2CD6:/ window 486,0
+496 "--sync--" sync /:2CAF:Tsukuyomi/
 500 "Nightbloom" sync /:Tsukuyomi:2CAF:/ window 500,0
+506 "--targetable--"
 
 # Begin loop
 520 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/
