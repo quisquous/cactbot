@@ -122,9 +122,8 @@
         en: 'Meteor on YOU',
       },
     },
-
-    // Supreme Selenomancy (used to reset counters)
     {
+      id: 'Tsukuyomi Supreme Selenomancy',
       regex: /:Tsukuyomi:2EB0:/,
       run: function(data) {
         delete data.moonlitCount;
@@ -132,8 +131,8 @@
       },
       suppressSeconds: 5,
     },
-    // Moonlit debuff
     {
+      id: 'Tsukuyomi Moonlit Debuff',
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
       condition: function(data, matches) { return matches[1] == data.me },
       preRun: function(data) {
@@ -143,14 +142,17 @@
         }
         data.moonlitCount += 1;
         data.moonshadowedCount = 0;
-        if (data.moonlitCount > 4) data.moonlitCount = 0; // dead/reset?
+        // dead/reset?
+        if (data.moonlitCount > 4)
+          data.moonlitCount = 0;
       },
-      infoText: function(data) {
-        if (data.moonlitCount >= 4) return "Move to Black!!";
+      condition: function(data) { return data.moonlitCount >= 4; },
+      infoText: {
+        en: 'Move to Black!',
       },
     },
-    // Moonshadowed debuff
     {
+      id: 'Tsukuyomi Moonshadowed Debuff',
       regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
       condition: function(data, matches) { return matches[1] == data.me },
       preRun: function(data) {
@@ -160,10 +162,13 @@
         }
         data.moonshadowedCount += 1;
         data.moonlitCount = 0;
-        if (data.moonshadowedCount > 4) data.moonshadowedCount = 0; // dead/reset?
+        // dead/reset?
+        if (data.moonshadowedCount > 4)
+          data.moonshadowedCount = 0;
       },
-      infoText: function(data) {
-        if (data.moonshadowedCount >= 4) return "Move to White!!";
+      condition: function(data) { return data.moonshadowedCount >= 4; },
+      infoText: {
+        en: 'Move to White!',
       },
     },
 
