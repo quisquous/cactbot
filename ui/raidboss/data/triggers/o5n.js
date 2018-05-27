@@ -6,6 +6,7 @@
   triggers: [
     {
       regex: /04:Removing combatant Phantom Train/,
+      regexDe: /04:Removing combatant Phantomzug/,
       run: function(data) {
         data.StopCombat();
       },
@@ -14,26 +15,38 @@
     {
       id: 'O5N Doom Strike',
       regex: /14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
+      regexDe: /14:28A3:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
-          return 'Tank Buster on YOU';
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tank Buster auf DIR',
+          };
         if (data.role == 'healer')
-          return 'Buster on ' + data.ShortName(matches[1]);
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' + data.ShortName(matches[1]),
+          };
       },
       tts: function(data, matches) {
         if (matches[1] == data.me)
-          return 'buster';
+          return {
+            en: 'buster',
+            de: 'tenkbasta',
+          };
       },
     },
     {
       id: 'O5N Head On',
       regex: /14:28A4:Phantom Train starts using Head On/,
+      regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
       alertText: 'Go To Back',
       tts: 'run away',
     },
     {
       id: 'O5N Diabolic Headlamp',
       regex: /14:28A6:Phantom Train starts using Diabolic Headlamp/,
+      regexDe: /14:28A6:Phantomzug starts using Diabolische Leuchte/,
       alertText: 'Stack Middle',
       tts: 'stack middle',
     },
@@ -89,9 +102,8 @@
         'Tether Whistle': 'Verfolger Pfeife',
         'Ghosts': 'Geister',
 
-        // FIXME:
-        'Add Wave': 'Add Wave',
-        'Ghost Beams': 'Ghost Beams',
+        'Add Wave': 'Add Welle',
+        'Ghost Beams': 'Geisterstrahlen',
       },
       '~effectNames': {
         'Connectivity': 'Kopplung',
