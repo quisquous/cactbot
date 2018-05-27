@@ -78,11 +78,11 @@
         if (data.me == matches[1])
           return {
             en: 'Vrill + Stack on YOU',
-            de: 'Vril + Stack auf DIR,
+            de: 'Vril + Stack auf DIR',
           };
         return {
           en: 'Vrill + Stack',
-          de: 'Vril + Stack,
+          de: 'Vril + Stack',
         };
       },
       infoText: function(data, matches) {
@@ -149,7 +149,7 @@
       infoText: function(data) {
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
-          (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
+          de: (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
         };
       },
       tts: function(data) {
