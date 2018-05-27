@@ -16,9 +16,9 @@ hideall "--sync--"
 26 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
 35 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
 47 "Tsunami sync /:Famfrit, the Darkening Cloud:2C50:/
-53 "Tsunami" duration 3
-65 "Tsunami" duration 3
-77 "Tsunami" duration 3
+54 "Tsunami" duration 3
+66 "Tsunami" duration 3
+78 "Tsunami" duration 3
 86 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
 97 "Dark Ewer (cross)" sync /:Famfrit, the Darkening Cloud:2C43:/
 110 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
@@ -34,10 +34,10 @@ hideall "--sync--"
 176 "Dark Cannonade" sync /:Famfrit, the Darkening Cloud:2C42:/
 200 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
 208 "Tsunami" sync /:Famfrit, the Darkening Cloud:2C50:/
-214 "Tsunami" duration 3
-228 "Tsunami" duraiton 3
+215 "Tsunami" duration 3
+227 "Tsunami" duration 3
 228 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
-240 "Tsunami" duration 3
+239 "Tsunami" duration 3
 247 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
 259 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
 272 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
@@ -47,6 +47,9 @@ hideall "--sync--"
 311 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
 318 "Dark Ewer (orbit)" sync /:Famfrit, the Darkening Cloud:2C43:/
 324 "Tsunami" sync /:Famfrit, the Darkening Cloud:2C48:/
+331 "Tsunami" duration 3
+343 "Tsunami" duration 3
+355 "Tsunami" duration 3
 357 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
 364 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
 371 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
@@ -195,37 +198,40 @@ hideall "--sync--"
 3074 "Magnetic Lysis" sync /:Yiazmat:2C2A:/
 3082 "Dust Storm" sync /:Yiazmat:2C36:/
 3088 "Gust Front" duration 4
-3093 "Dust Storm" sync /:Yiazmat:2C36:/
-3102 "Magnetic Genesis" sync /:Yiazmat:2C2B:/
-3109 "Rake (combo)" sync /:Yiazmat:2C3C:/
-3128 "White Breath" sync /:Yiazmat:2C31:/
-3143 "Rake (single)" sync /:Yiazmat:2C26:/
-3154 "Gust Front" duration 4
-3157 "Stone Breath" sync /:Yiazmat:2C29:/
-3170 "Summon" sync /:Yiazmat:2C37:/
-3181 "Magnetic Lysis" sync /:Yiazmat:2C2A:/
-3189 "White Breath" sync /:Yiazmat:2C31:/
-3196 "Dust Storm" sync /:Yiazmat:2C36:/
-3203 "Death Strike" sync /:Yiazmat:2C34:/
-3208 "Magnetic Genesis" sync /:Yiazmat:2C2B:/
-3223 "Cyclone" sync /:Yiazmat:2C23:/ duration 4
+3092 "Stone Breath" sync /:Yiazmat:2C29:/
+3098 "Dust Storm" sync /:Yiazmat:2C36:/
+3101 "Magnetic Genesis" sync /:Yiazmat:2C2B:/
+3114 "Rake (combo)" duration 14
+3134 "White Breath" sync /:Yiazmat:2C31:/
+3149 "Rake (single)" sync /:Yiazmat:2C26:/
+3160 "Gust Front" duration 4
+3162 "Stone Breath" sync /:Yiazmat:2C29:/
+3175 "Summon" sync /:Yiazmat:2C37:/
+3186 "Magnetic Lysis" sync /:Yiazmat:2C2A:/
+3194 "White Breath" sync /:Yiazmat:2C31:/
+3201 "Dust Storm" sync /:Yiazmat:2C36:/
+3208 "Death Strike" sync /:Yiazmat:2C34:/
+3213 "Magnetic Genesis" sync /:Yiazmat:2C2B:/
+3222 "Cyclone" sync /:Yiazmat:2C23:/ duration 4
 
 # Adds
 3241 "Archaeodemon spawn"
-3248 "Karma/Unholy Darkness" sync /:Archaeodemon:2672:/
-3249 "Gust Front" duration 4
-3260 "Death Strike" sync /:Yiazmat:2C33:/
+3248 "Gust Front" duration 4
+3250 "Karma/Unholy Darkness"
+3258 "Death Strike" sync /:Yiazmat:2C33:/
+3262 "Karma/Unholy Darkness"
+3301 "Enrage"
 
 # Adds complete
 3400 "Solar Storm" sync /:Yiazmat:2C2C:/ window 5000,600
-3420 "Rake (combo)" sync /:Yiazmat:2C3C:/
+3420 "Rake (combo)" duration 14
 3425 "Gust Front" duration 4
 3439 "White Breath" sync /:Yiazmat:2C31:/
 3450 "Rake (single)" sync /:Yiazmat:2C26:/
 
 # Begin loop
 3456 "Magnetic Lysis" sync /:Yiazmat:2C2A:/
-3463 "Rake (combo)" sync /:Yiazmat:2C3C:/
+3463 "Rake (combo)" duration 14
 3481 "Dust Storm" sync /:Yiazmat:2C36:/
 3483 "Magnetic Genesis" sync /:Yiazmat:2C2B:/
 3493 "Cyclone" sync /:Yiazmat:2C23:/ duration 4
@@ -254,10 +260,10 @@ hideall "--sync--"
 # 9.99% push
 3694 "--sync--" sync /:2C32:Yiazmat/ window 5000,306
 3700 "Growing Threat" sync /:Yiazmat:2C32:/ window 5000,300
-3707 "Rake (combo)" sync /:Yiazmat:2C3C:/
+3707 "Rake (combo)" duration 14
 3727 "White Breath" sync /:Yiazmat:2C31:/
 3734 "Dust Storm" sync /:Yiazmat:2C36:/
-3740 "Rake (combo)" sync /:Yiazmat:2C3C:/
+3740 "Rake (combo)" duration 14
 3752 "Gust Front" duration 4
 3761 "Stone Breath" sync /:Yiazmat:2C29:/
 3767 "Dust Storm" sync /:Yiazmat:2C36:/

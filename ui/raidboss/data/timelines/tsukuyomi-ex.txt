@@ -1,4 +1,5 @@
 # Tsukuyomi Extreme
+hideall "--sync--"
 
 0 "--Reset--" sync /Removing combatant Tsukuyomi/ window 10000 jump 0
 
@@ -9,25 +10,32 @@
 42 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 49 "Steel/Lead"
 67 "Reprimand" sync /:Tsukuyomi:2BBA:/
-78 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,80
-# Add spawn times here
-155 "Concentrativity" sync /:Specter Of Zenos:2BC8:/
-170 "--targetable--"
-178 "Dispersivity" sync /:Specter:2BCC:/
-184 "Dispersivity" sync /:Specter:2BCC:/
-190 "Dispersivity" sync /:Specter:2BCC:/
-196 "Dispersivity" sync /:Specter:2BCC:/
-202 "Dispersivity" sync /:Specter:2BCC:/
+75 "--sync--" sync /:2BC7:Tsuyukomi/ window 72,3 # can push this before reprimand
+81 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,3
+103 "Homeland adds" sync /:Added new combatant Specter Of The Patriarch/
+140 "Empire adds" sync /:Added new combatant Specter Of Asahi/ window 40,3
+200 "--sync--" sync /:Specter of Zenos:2BC8:/ window 60,30
+202 "Concentrativity" # stun/knockback is actually 2s after the real cast (2BC8)
+207 "--sync--" sync /:Specter of Zenos:2CA8:/ window 67,3
+214 "--sync--" sync /:Specter of Zenos:2BCA:/
+217 "--targetable--"
+224 "Dispersivity" sync /:Specter:2BCC:/
+230 "Dispersivity" sync /:Specter:2BCC:/
+236 "Dispersivity" sync /:Specter:2BCC:/
+242 "Dispersivity" sync /:Specter:2BCC:/
+248 "Dispersivity" sync /:Specter:2BCC:/
 
 # Adds complete, crescent phase
+486 "--sync--" sync /Specter of Gosetsu:2CD6:/ window 486,0
+496 "--sync--" sync /:2CAF:Tsukuyomi/
 500 "Nightbloom" sync /:Tsukuyomi:2CAF:/ window 500,0
+506 "--targetable--"
 
 # Begin loop
 520 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/
-529 "Lunar Halo" sync /:Moonlight:2BD6:/
 539 "Tsuki-no-Kakera" sync /:Tsukuyomi:2BD0:/
-545 "Nightfall" sync /:Tsukuyomi:2BBC:/
-551 "Lead/Steel"
+545 "Nightfall (gun)" sync /:Tsukuyomi:2BBC:/
+551 "Lead of the Underworld"
 564 "Moonfall" sync /:Moondust:2BD1:/
 565 "Midnight Rain" sync /:Tsukuyomi:2BCE:/
 568 "Moonburst" sync /:Moondust:2BD2:/ # drift 0.28
@@ -44,44 +52,45 @@
 628 "Tsuki-no-Maiogi"
 629 "Lead/Steel" sync /:Tsukuyomi:2BBE:/
 645 "Torment Unto Death" sync /:Tsukuyomi:2BBB:/
-656 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/ jump 520
-# End loop
 
-# Dummy loop future
-665 "Lunar Halo" sync /:Moonlight:2BD6:/
+656 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/
 675 "Tsuki-no-Kakera" sync /:Tsukuyomi:2BD0:/
-681 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
+681 "Nightfall (spear)" sync /:Tsukuyomi:2BBD:/
+688 "Steel Of The Underworld"
+700 "Midnight Rain" sync /:Tsukuyomi:2BCE:/
+714 "Lunar Rays" sync /:Tsukuyomi:2BD3:/
+727 "Antitwilight" sync /:Tsukuyomi:2BD8:/ # drift 0.283
 
 # 35% push
-1000 "Dance Of The Dead" sync /:Tsukuyomi:2CD0:/ window 1000,0
-1017 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
-1018 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
-1030 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
-1031 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
+739 "Dance Of The Dead" sync /:Tsukuyomi:2CD0:/ window 1000,0
+756 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
+757 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
+769 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
+770 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
 
 # Begin loop
 # Rotating fans
-1041 "Reprimand" sync /:Tsukuyomi:2BBA:/
-1053 "Lunacy" duration 4
-1054 "Tsuki-no-Maiogi" duration 3
+780 "Reprimand" sync /:Tsukuyomi:2BBA:/
+792 "Lunacy" duration 4
+793 "Tsuki-no-Maiogi" duration 3
 
-1064 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
-1065 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
-1074 "Torment Unto Death" sync /:Tsukuyomi:2EB2:/
+803 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
+804 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
+813 "Torment Unto Death" sync /:Tsukuyomi:2EB2:/
 
 # Side fans
-1087 "Hagetsu" duration 4
-1089 "Tsuki-no-Maiogi"
-1092 "Tsuki-no-Maiogi"
+826 "Hagetsu" duration 4
+828 "Tsuki-no-Maiogi"
+831 "Tsuki-no-Maiogi"
 
-1097 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
-1098 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
-1106 "Reprimand" sync /:Tsukuyomi:2BBA:/
-1113 "Reprimand" sync /:Tsukuyomi:2BBA:/ jump 1041
+836 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
+837 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
+845 "Reprimand" sync /:Tsukuyomi:2BBA:/
+852 "Reprimand" sync /:Tsukuyomi:2BBA:/ jump 1041
 # End loop
 
 # Dummy loop future
-1125 "Lunacy" duration 4
-1126 "Tsuki-no-Maiogi" duration 3
-1137 "Bright/Dark Blade"
-1138 "Waning/Waxing Grudge"
+864 "Lunacy" duration 4
+865 "Tsuki-no-Maiogi" duration 3
+876 "Bright/Dark Blade"
+877 "Waning/Waxing Grudge"
