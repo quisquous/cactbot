@@ -8,6 +8,7 @@
       regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
       alertText: {
         en: 'Gun: Stack',
+        de: 'Pistole: Stack',
       },
     },
     {
@@ -15,6 +16,7 @@
       regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
       alertText: {
         en: 'Spear: Spread',
+        de: 'Speer: Verteilen',
       },
     },
     {
@@ -25,19 +27,20 @@
           return;
         return {
           en: 'Tank Swap!',
+          de: 'Tankwechsel!',
         };
       },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tankbuster auf DIR',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -46,6 +49,7 @@
           return;
         return {
           en: 'Get out of front',
+          de: 'Weg von vorn',
         };
       },
       tts: function(data, matches) {
@@ -62,6 +66,7 @@
       run: function(data) {
         var moonInOut = {
           en: 'Out',
+          de: 'Raus',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -71,6 +76,7 @@
       run: function(data) {
         var moonInOut = {
           en: 'In',
+          de: 'Rein',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -117,9 +123,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alarmText: {
         en: 'Meteor on YOU',
+        de: 'Meteor auf DIR',
       },
       tts: {
         en: 'Meteor on YOU',
+        de: 'Meteor auf DIR',
       },
     },
     {

@@ -258,8 +258,7 @@
         'Kefka': 'Kefka',
         'Light Of Consecration': 'Licht Der Weihe',
         'The Mad Head': 'Verrückter Kopf',
-        // FIXME:
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!',
+        'Destroy! Destroy! Destroy! I will destroy it all!': 'Nichts wird mir standhalten, nichts! Alles will ich vernichten!',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',

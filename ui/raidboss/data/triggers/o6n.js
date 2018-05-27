@@ -6,15 +6,25 @@
     {
       id: 'O6N Demonic Shear',
       regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
+      regex: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
-          return 'Tank Buster on YOU';
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+          };
         if (data.role == 'healer')
-          return 'Buster on ' + data.ShortName(matches[1]);
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' + data.ShortName(matches[1]),
+          };
       },
       tts: function(data, matches) {
         if (matches[1] == data.me)
-          return 'buster';
+          return {
+            en: 'buster',
+            de: 'basta',
+          };
       },
     },
     {

@@ -6,32 +6,45 @@
     {
       id: 'O7N Magitek Ray',
       regex: / 14:276B:Guardian starts using Magitek Ray/,
+      regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
       alertText: 'Magitek Ray',
       tts: 'beam',
     },
     {
       id: 'O7N Arm And Hammer',
       regex: / 14:276C:Guardian starts using Arm And Hammer on (\y{Name})/,
+      regexDe: / 14:276C:Wächter starts using Arm-Hammer on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me)
-          return 'Tank Buster on YOU';
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+          };
         if (data.role == 'healer')
-          return 'Buster on ' + data.ShortName(matches[1]);
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Buster auf ' + data.ShortName(matches[1]),
+          };
       },
       tts: function(data, matches) {
         if (matches[1] == data.me)
-          return 'buster';
+          return {
+            en: 'buster',
+            de: 'basta',
+          };
       },
     },
     {
       id: 'O7N Shockwave',
       regex: / 14:2766:Guardian starts using Shockwave/,
+      regex: / 14:2766:Wächter starts using Schockwelle/,
       alertText: 'Knockback',
       tts: 'knockback',
     },
     {
       id: 'O7N Diffractive Laser',
       regex: / 14:2761:Guardian starts using Diffractive Laser/,
+      regex: / 14:2761:Wächter starts using Diffraktiver Laser/,
       alertText: 'Get Out',
       tts: 'out',
     },
@@ -40,12 +53,21 @@
       regex: /1B:........:(\y{Name}):....:....:001E:0000:0000:0000:/,
       infoText: function(data, matches) {
         if (data.me == matches[1])
-          return 'Prey on YOU';
-        return 'Prey on ' + data.ShortName(matches[1]);
+          return {
+            en: 'Prey on YOU',
+            de: 'Beute auf DIR',
+          };
+        return {
+          en: 'Prey on ' + data.ShortName(matches[1]),
+          de: 'Beute auf ' + data.ShortName(matches[1]),
+        };
       },
       tts: function (data, matches) {
         if (data.me == matches[1])
-          return 'prey';
+          return {
+            en: 'prey',
+            de: 'beute',
+          };
       },
     },
   ],
@@ -57,11 +79,10 @@
         'Dadaluma': 'Dadarma',
         'Fire Control System': 'Feuerleitsystem',
         'Guardian': 'Wächter',
-        'Interdimensional Bomb': 'Interdimensional[a] Bombe',
+        'Interdimensional Bomb': 'Interdimensionale Bombe',
         'Ultros': 'Ultros',
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
-        // FIXME:
-        'Tentacle': 'Tentacle',
+        'Tentacle': 'Tentakel',
         'Bibliotaph': 'Bibliotaph',
       },
       replaceText: {
@@ -119,9 +140,7 @@
         'Plane Laser': 'Luftwaffe Add Laser',
         'Virus': 'Virus',
         'Enrage': 'Finalangriff',
-
-        // FIXME:
-        'Burst/Darkness': 'Burst/Darkness',
+        'Burst/Darkness': 'Burst/Dunkelheit',
       },
       '~effectNames': {
         'Abandonment': 'Verlassen',
