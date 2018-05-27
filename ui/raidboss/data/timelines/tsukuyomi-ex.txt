@@ -94,10 +94,3 @@ hideall "--sync--"
 865 "Tsuki-no-Maiogi" duration 3
 876 "Bright/Dark Blade"
 877 "Waning/Waxing Grudge"
-
-
-
-
-
-
-
