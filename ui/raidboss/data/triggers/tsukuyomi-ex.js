@@ -122,11 +122,58 @@
         en: 'Meteor on YOU',
       },
     },
+    {
+      id: 'Tsukuyomi Supreme Selenomancy',
+      regex: /:Tsukuyomi:2EB0:/,
+      run: function(data) {
+        delete data.moonlitCount;
+        delete data.moonshadowedCount;
+      },
+      suppressSeconds: 5,
+    },
+    {
+      id: 'Tsukuyomi Moonlit Debuff',
+      regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
+      condition: function(data, matches) { return matches[1] == data.me },
+      preRun: function(data) {
+        // init at 3 so we can start at 4 stacks to give the initial instruction to move
+        if (typeof data.moonlitCount === 'undefined') {
+          data.moonlitCount = 3;
+        }
+        data.moonlitCount += 1;
+        data.moonshadowedCount = 0;
+        // dead/reset?
+        if (data.moonlitCount > 4)
+          data.moonlitCount = 0;
+      },
+      condition: function(data) { return data.moonlitCount >= 4; },
+      infoText: {
+        en: 'Move to Black!',
+      },
+    },
+    {
+      id: 'Tsukuyomi Moonshadowed Debuff',
+      regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
+      condition: function(data, matches) { return matches[1] == data.me },
+      preRun: function(data) {
+        // init at 3 so we can start at 4 stacks to give the initial instruction to move
+        if (typeof data.moonshadowedCount === 'undefined') {
+          data.moonshadowedCount = 3;
+        }
+        data.moonshadowedCount += 1;
+        data.moonlitCount = 0;
+        // dead/reset?
+        if (data.moonshadowedCount > 4)
+          data.moonshadowedCount = 0;
+      },
+      condition: function(data) { return data.moonshadowedCount >= 4; },
+      infoText: {
+        en: 'Move to White!',
+      },
+    },
 
     // TODO: fan callouts
     // TODO: add timeline
     // TODO: mob location callouts for tank (maybe based on timeline)
-    // TODO: debuff warnings (go to white, go to black) initially
-    // TODO: debuff warnings (when at four stacks??)
   ]
 }]
