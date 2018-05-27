@@ -1361,10 +1361,8 @@
         'Ragnarok': 'Ragnarök',
         'Thunderwing': 'Donnerschwinge',
         'Twintania': 'Twintania',
-        // FIXED:
         'Tail of Darkness': 'Dunkelschweif',
         'Fang of Light': 'Lichtklaue',
-        // HAVE TO CONFIRM WHEN HOME:
         'Engage!': 'Start!',
       },
       replaceText: {
@@ -1426,7 +1424,6 @@
         'Thunderstruck': 'Donnerschwinge',
         'Enrage': 'Finalangriff',
 
-        // FIXED:
         '--push--': '--stoß--',
         'Targeted Fire': 'Feuer auf Ziel',
         'Marker': 'Marker',
