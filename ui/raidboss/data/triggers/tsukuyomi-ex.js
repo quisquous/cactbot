@@ -132,7 +132,7 @@
       suppressSeconds: 5,
     },
     {
-      id: 'Tsukuyomi Moonlit Debuff',
+      id: 'Tsukuyomi Moonlit Debuff Logic',
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
       condition: function(data, matches) { return matches[1] == data.me },
       preRun: function(data) {
@@ -146,13 +146,17 @@
         if (data.moonlitCount > 4)
           data.moonlitCount = 0;
       },
-      condition: function(data) { return data.moonlitCount >= 4; },
+    },
+    {
+      id: 'Tsukuyomi Moonlit Debuff',
+      regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
+      condition: function(data, matches) { return matches[1] == data.me && data.moonlitCount >= 4; },
       infoText: {
         en: 'Move to Black!',
       },
     },
     {
-      id: 'Tsukuyomi Moonshadowed Debuff',
+      id: 'Tsukuyomi Moonshadowed Debuff Logic',
       regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
       condition: function(data, matches) { return matches[1] == data.me },
       preRun: function(data) {
@@ -166,7 +170,11 @@
         if (data.moonshadowedCount > 4)
           data.moonshadowedCount = 0;
       },
-      condition: function(data) { return data.moonshadowedCount >= 4; },
+    },
+    {
+      id: 'Tsukuyomi Moonshadowed Debuff',
+      regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
+      condition: function(data, matches) { return matches[1] == data.me && data.moonshadowedCount >= 4; },
       infoText: {
         en: 'Move to White!',
       },
