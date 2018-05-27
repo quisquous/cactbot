@@ -38,7 +38,7 @@ var Options = {
           name: 'Lord',
           mobName: {
             en: 'The Lord Of Anemos',
-            de: 'Prinz[p] Von Anemos',
+            de: 'Prinz Von Anemos',
             fr: "Seigneur D'Anemos",
             ja: 'ロード・オブ・アネモス',
           },
@@ -162,7 +162,7 @@ var Options = {
           name: 'Juli',
           mobName: {
             en: 'Judgmental Julika',
-            de: 'Verurteilend[a] Julika',
+            de: 'Verurteilende Julika',
             fr: 'Julika',
             ja: 'ジャッジメンタル・ジュリカ',
           },
@@ -174,7 +174,7 @@ var Options = {
           name: 'Rider',
           mobName: {
             en: 'The White Rider',
-            de: 'Weiß[a] Reiter',
+            de: 'Weißer Reiter',
             fr: 'Cavalier Blanc',
             ja: 'ホワイトライダー',
           },
