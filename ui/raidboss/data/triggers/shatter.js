@@ -5,6 +5,7 @@
     {
       id: 'Big Ice',
       regex: /The icebound tomelith A([1-4]) activates and begins to emit heat/,
+      regexDe: /Vereister Echolith A([1-4]) activates and begins to emit heat/,
       alertText: function(data, matches) {
         var big_ice_dir = {
           '1': 'Center',
@@ -15,7 +16,10 @@
 
         if (!(matches[1] in big_ice_dir))
           return '';
-        return 'Big Ice: ' + big_ice_dir[matches[1]];
+        return {
+          en: 'Big Ice: ' + big_ice_dir[matches[1]],
+          de: 'Grosses Eis: ' + big_ice_dir[matches[1]],
+        };
       },
       tts: function(data, matches) {
         // TODO: figure out how to not duplicate this? or store func in data?
