@@ -176,9 +176,8 @@
         'Tether Whistle': 'Verfolger Pfeife',
         ' Ghosts': ' Geister',
         'Ghosts spawn': 'Geister erscheinen',
-
-        // FIXME:
-        'Add Wave': 'Add Wave',
+        
+        'Add Wave': 'Add Welle',
       },
       '~effectNames': {
         'Connectivity': 'Kopplung',
