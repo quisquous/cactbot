@@ -150,9 +150,7 @@
         'Rock Hard': 'Felsspalter',
         'Song Of Bravery': 'Lied Der Tapferkeit',
         'The Price': 'Tödliche Versuchung',
-
-        // FIXME:
-        'Flash Flood': 'Flash Flood',
+        'Flash Flood': 'Blitzregen',
       },
       '~effectNames': {
         'Apathetic': 'Apathie',
