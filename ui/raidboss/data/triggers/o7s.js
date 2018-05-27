@@ -419,10 +419,8 @@
         'Plane Laser': 'Luftwaffe Add Laser',
         'Virus': 'Virus',
         'Enrage': 'Finalangriff',
-
-        // FIXME:
-        'Retrieve Ultros': 'Retrieve Ultros',
-        'Retrieve Air Force': 'Retrieve Air Force',
+        'Retrieve Ultros': 'Ultros Wiederherstellen',
+        'Retrieve Air Force': 'Luftwaffe Wiederherstellen',
       },
       '~effectNames': {
         'Abandonment': 'Verlassen',
