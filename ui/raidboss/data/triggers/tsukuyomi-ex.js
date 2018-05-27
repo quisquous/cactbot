@@ -123,10 +123,52 @@
       },
     },
 
+    // Supreme Selenomancy (used to reset counters)
+    {
+      regex: /:Tsukuyomi:2EB0:/,
+      run: function(data) {
+        delete data.moonlitCount;
+        delete data.moonshadowedCount;
+      },
+      suppressSeconds: 5,
+    },
+    // Moonlit debuff
+    {
+      regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
+      condition: function(data, matches) { return matches[1] == data.me },
+      preRun: function(data) {
+        // init at 3 so we can start at 4 stacks to give the initial instruction to move
+        if (typeof data.moonlitCount === 'undefined') {
+          data.moonlitCount = 3;
+        }
+        data.moonlitCount += 1;
+        data.moonshadowedCount = 0;
+        if (data.moonlitCount > 4) data.moonlitCount = 0; // dead/reset?
+      },
+      infoText: function(data) {
+        if (data.moonlitCount >= 4) return "Move to Black!!";
+      },
+    },
+    // Moonshadowed debuff
+    {
+      regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
+      condition: function(data, matches) { return matches[1] == data.me },
+      preRun: function(data) {
+        // init at 3 so we can start at 4 stacks to give the initial instruction to move
+        if (typeof data.moonshadowedCount === 'undefined') {
+          data.moonshadowedCount = 3;
+        }
+        data.moonshadowedCount += 1;
+        data.moonlitCount = 0;
+        if (data.moonshadowedCount > 4) data.moonshadowedCount = 0; // dead/reset?
+      },
+      infoText: function(data) {
+        if (data.moonshadowedCount >= 4) return "Move to White!!";
+      },
+    },
+
     // TODO: fan callouts
     // TODO: add timeline
     // TODO: mob location callouts for tank (maybe based on timeline)
-    // TODO: debuff warnings (go to white, go to black) initially
-    // TODO: debuff warnings (when at four stacks??)
   ]
 }]
