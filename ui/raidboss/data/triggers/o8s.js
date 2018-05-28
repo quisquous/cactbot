@@ -287,7 +287,7 @@
         return {
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
-          de: 'Hyperantrieb auf DIRS',
+          de: 'Hyperantrieb auf DIR',
         };
       },
       infoText: function(data, matches) {
@@ -416,7 +416,7 @@
         data.lastFire = {
           en: 'Stack',
           fr: 'Se rassembler',
-          de: 'steken',
+          de: 'stek en',
         }[data.lang];
       },
     },
@@ -479,7 +479,7 @@
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
-          de: 'rausgehen',
+          de: 'raus da',
         }[data.lang];
       },
       infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
@@ -627,17 +627,15 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
-
-        // FIXME:
-        'Blizzard+Thunder': 'Blizzard+Thunder',
-        'Half Arena': 'Half Arena',
-        'Statue Gaze': 'Statue Gaze',
-        'Soak': 'Soak',
-        'Past/Future': 'Past/Future',
-        'Past/Future End': 'Past/Future End',
-        'Knockback Tethers': 'Knockback Tethers',
-        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers',
-        'Statue Half Cleave': 'Statue Half Cleave',
+        'Blizzard+Thunder': 'Eis+Blitz',
+        'Half Arena': 'Halbe Arena',
+        'Statue Gaze': 'Statuenblick',
+        'Soak': 'Aufsaugen',
+        'Past/Future': 'Stehenbleiben/Durchlaufen',
+        'Past/Future End': 'Stehenbleiben/Durchlaufen Ende',
+        'Knockback Tethers': 'Rückstoß Verbindungen',
+        'Sleep/Confuse Tethers': 'Schlaf/Konfusion Verbindungen',
+        'Statue Half Cleave': 'Statue Halber Cleave',
       },
     },
     {

@@ -7,8 +7,14 @@
       id: 'O7N Magitek Ray',
       regex: / 14:276B:Guardian starts using Magitek Ray/,
       regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
-      alertText: 'Magitek Ray',
-      tts: 'beam',
+      alertText: {
+        en: 'Magitek Ray',
+        de: 'Magitek-Laser',
+      },
+      tts: {
+        en: 'beam',
+        de: 'les er strahl',
+      },
     },
     {
       id: 'O7N Arm And Hammer',
@@ -38,15 +44,27 @@
       id: 'O7N Shockwave',
       regex: / 14:2766:Guardian starts using Shockwave/,
       regex: / 14:2766:Wächter starts using Schockwelle/,
-      alertText: 'Knockback',
-      tts: 'knockback',
+      alertText: {
+        en: 'Knockback',
+        de: 'Rückstoß',
+      },
+      tts: {
+        en: 'Knockback',
+        de: 'Rückstoß',
+      },
     },
     {
       id: 'O7N Diffractive Laser',
       regex: / 14:2761:Guardian starts using Diffractive Laser/,
       regex: / 14:2761:Wächter starts using Diffraktiver Laser/,
-      alertText: 'Get Out',
-      tts: 'out',
+      alertText: {
+        en: 'Get out',
+        de: 'Rausgehen',
+      },
+      tts: {
+        en: 'out',
+        de: 'raus da',
+      },
     },
     {
       id: 'O7N Prey',

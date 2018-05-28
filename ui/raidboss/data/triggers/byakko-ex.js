@@ -37,7 +37,10 @@
           de: 'rein',
         };
       },
-      tts: 'inside',
+      tts: {
+        en: 'inside',
+        de: 'rein',
+      },
     },
     {
       id: 'ByaEx Sweep The Leg',
@@ -49,7 +52,10 @@
           de: 'Hinter ihn!',
         };
       },
-      tts: 'behind',
+      tts: {
+        en: 'behind',
+        de: 'hinter ihn',
+      },
     },
     {
       id: 'ByaEx Storm Pulse',
@@ -59,7 +65,10 @@
         if (data.role == 'healer')
           return 'AOE';
       },
-      tts: 'aoe',
+      tts: {
+        en: 'aoe',
+        de: 'a o e',
+      },
     },
     {
       id: 'ByaEx Distant Clap',
@@ -71,15 +80,24 @@
           de: 'Donnergrollen',
         };
       },
-      tts: 'clap',
+      tts: {
+        en: 'clap',
+        de: 'grollen',
+      },
     },
     {
       id: 'ByaEx State Of Shock Tank 1',
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       condition: function(data, matches) { return data.role == 'tank' && matches[1] != data.me; },
-      alertText: 'Provoke Boss',
-      tts: 'Provoke',
+      alertText: {
+        en: 'Provoke Boss',
+        de: 'Boss Abspotten',
+      },
+      tts: {
+        en: 'provoke',
+        de: 'boss abspotten',
+      },
     },
     {
       id: 'ByaEx State Of Shock Tank 2',
@@ -87,8 +105,14 @@
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       delaySeconds: 12,
       condition: function(data, matches) { return data.role == 'tank' && matches[1] == data.me; },
-      alertText: 'Provoke Boss',
-      tts: 'Provoke',
+      alertText: {
+        en: 'Provoke Boss',
+        de: 'Boss Abspotten',
+      },
+      tts:  {
+        en: 'provoke',
+        de: 'boss abspotten',
+      },
     },
     {
       regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
@@ -132,7 +156,10 @@
           de: 'Blase außen ablegen',
         };
       },
-      tts: 'drop outside',
+      tts:  {
+        en: 'drop outside',
+        de: 'außen ablegen',
+      },
     },
     {
       id: 'ByaEx Ominous Wind',
@@ -145,7 +172,10 @@
           de: 'Pinke Blase',
         };
       },
-      tts: 'bubble',
+      tts:  {
+        en: 'bubble',
+        de: 'blase',
+      },
     },
     {
       id: 'ByaEx Puddle Marker',
@@ -157,7 +187,10 @@
           de: 'Pfützen auf DIR',
         };
       },
-      tts: 'puddles',
+      tts:  {
+        en: 'puddles',
+        de: 'pfützen',
+      },
     },
     {
       id: 'ByaEx G100',

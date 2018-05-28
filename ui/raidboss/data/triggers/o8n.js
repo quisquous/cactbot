@@ -246,7 +246,7 @@
       tts: {
         en: 'Get out',
         fr: 'Sortir',
-        de: 'Rausgehen',
+        de: 'raus da',
       },
     },
   ],
@@ -316,11 +316,9 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
-
-        // FIXME:
-        'Aero/Ruin': 'Aero/Ruin',
-        'Half Arena': 'Half Arena',
-        'Statue Gaze': 'Statue Gaze',
+        'Aero/Ruin': 'Wind/Ruin',
+        'Half Arena': 'Halbe Arena',
+        'Statue Gaze': 'Statuenblick',
       },
     },
     {

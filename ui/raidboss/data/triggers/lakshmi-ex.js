@@ -52,22 +52,40 @@
       id: 'Lakshmi Divine Denial',
       regex: /:2149:Lakshmi starts using Divine Denial/,
       regexDe: /:2149:Lakshmi starts using Göttliche Leugnung/,
-      alertText: 'Vrill + Knockback',
-      tts: 'vrill and knockback',
+      alertText: {
+        en: 'Vril + Knockback',
+        de: 'Vril + Rückstoß',
+      },
+      tts: {
+        en: 'Vrill and Knockback',
+        de: 'Wriel und Rückstoß',
+      },
     },
     {
       id: 'Lakshmi Divine Desire',
       regex: /:214B:Lakshmi starts using Divine Desire/,
       regexDe: /:214B:Lakshmi starts using Göttliche Lockung/,
-      alertText: 'Vrill + Be Outside',
-      tts: 'vrill and outside',
+      alertText: {
+        en: 'Vril + Be Outside',
+        de: 'Vril + Draußen bleiben',
+      },
+      tts: {
+        en: 'Vrill and outside',
+        de: 'Wriel und draußenbleiben',
+      },
     },
     {
       id: 'Lakshmi Divine Doubt',
       regex: /:214A:Lakshmi starts using Divine Doubt/,
       regexDe: /:214A:Lakshmi starts using Göttliche Bestürzung/,
-      alertText: 'Vrill + Pair Up',
-      tts: 'vrill and buddy',
+      alertText: {
+        en: 'Vril + Pair up',
+        de: 'Vril und Pärchen bilden',
+      },
+      tts: {
+        en: 'vrill and buddy',
+        de: 'Wriel und pärchen',
+      },
     },
     { // Stack marker
       id: 'Lakshmi Pall of Light',
@@ -180,8 +198,14 @@
       id: 'Lakshmi Water III',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
-      alertText: 'Move Away',
-      tts: 'Move Away',
+      alertText: {
+        en: 'Move away',
+        de: 'Weglaufen',
+      },
+      tts: {
+        en: 'Move away',
+        de: 'wecklaufen',
+      },
     },
   ]
 }]
