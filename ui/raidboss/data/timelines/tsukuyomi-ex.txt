@@ -50,7 +50,7 @@ hideall "--sync--"
 623 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 625 "Tsuki-no-Maiogi"
 628 "Tsuki-no-Maiogi"
-629 "Lead/Steel" sync /:Tsukuyomi:2BBE:/
+629 "Lead/Steel"
 645 "Torment Unto Death" sync /:Tsukuyomi:2BBB:/
 
 656 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/
@@ -62,7 +62,7 @@ hideall "--sync--"
 727 "Antitwilight" sync /:Tsukuyomi:2BD8:/ # drift 0.283
 
 # 35% push
-739 "Dance Of The Dead" sync /:Tsukuyomi:2CD0:/ window 1000,0
+739 "Dance Of The Dead" sync /:Tsukuyomi:2CD0:/ window 1000,1000
 756 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
 757 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
 769 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
@@ -86,7 +86,7 @@ hideall "--sync--"
 836 "Bright/Dark Blade" sync /:Tsukuyomi:2BD(A|B):/
 837 "Waning/Waxing Grudge" sync /:Tsukuyomi:2BD(E|F):/
 845 "Reprimand" sync /:Tsukuyomi:2BBA:/
-852 "Reprimand" sync /:Tsukuyomi:2BBA:/ jump 1041
+852 "Reprimand" sync /:Tsukuyomi:2BBA:/ jump 780
 # End loop
 
 # Dummy loop future
