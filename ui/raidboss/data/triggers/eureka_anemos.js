@@ -155,7 +155,7 @@
     },
     {
       id: 'Eureka Pazuzu Camisado',
-      regexDe: /14:289F:Pazuzu starts using Camisado on (\y{Name})/,
+      regex: /14:289F:Pazuzu starts using Camisado on (\y{Name})/,
       condition: function(data, matches) { return matches[1] == data.me; },
       alertText: {
         en: 'Buster on YOU',
