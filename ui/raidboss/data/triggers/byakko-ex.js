@@ -8,16 +8,18 @@
       regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
       regexDe: / 14:27DA:Byakko starts using Himmelszorn on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
-        return {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-        };
-        if (data.role == 'healer')
-        return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-        };
+        if (matches[1] == data.me){
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+          };
+        }
+        if (data.role == 'healer'){
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          };
+        }
       },
       tts: function(data, matches) {
         if (matches[1] == data.me)
@@ -128,22 +130,26 @@
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       delaySeconds: 14,
       alarmText: function(data) {
-        if (data.roarCount != 2)
+        if (data.roarCount != 2){
           return;
-        if (data.role == 'tank')
-        return {
-          en: 'Tank LB now!',
-          de: 'Tank Limitrausch!',
-        };
+        }
+        if (data.role == 'tank'){
+          return {
+            en: 'Tank LB now!',
+            de: 'Tank Limitrausch!',
+          };
+        }
       },
       tts: function(data) {
-        if (data.roarCount != 2)
+        if (data.roarCount != 2){
           return;
-        if (data.role == 'tank')
-        return {
-          en: 'Tank LB now',
-          de: 'Tenk Limitrausch',
-        };
+        }
+        if (data.role == 'tank'){
+          return {
+            en: 'Tank LB now',
+            de: 'Tenk Limitrausch',
+          };
+        }
       },
     },
     {
