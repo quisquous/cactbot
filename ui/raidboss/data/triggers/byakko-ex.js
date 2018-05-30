@@ -8,13 +8,13 @@
       regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
       regexDe: / 14:27DA:Byakko starts using Himmelszorn on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me){
+        if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
           };
         }
-        if (data.role == 'healer'){
+        if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
@@ -64,9 +64,10 @@
       regex: / 14:27DC:Byakko starts using Storm Pulse/,
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       infoText: function(data, matches) {
-        if (data.role == 'healer')
+        if (data.role == 'healer') {
           return 'AOE';
-      },
+          },
+        }
       tts: {
         en: 'aoe',
         de: 'a o e',
@@ -130,10 +131,10 @@
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       delaySeconds: 14,
       alarmText: function(data) {
-        if (data.roarCount != 2){
+        if (data.roarCount != 2) {
           return;
         }
-        if (data.role == 'tank'){
+        if (data.role == 'tank') {
           return {
             en: 'Tank LB now!',
             de: 'Tank Limitrausch!',
@@ -141,10 +142,10 @@
         }
       },
       tts: function(data) {
-        if (data.roarCount != 2){
+        if (data.roarCount != 2) {
           return;
         }
-        if (data.role == 'tank'){
+        if (data.role == 'tank') {
           return {
             en: 'Tank LB now',
             de: 'Tenk Limitrausch',
@@ -215,9 +216,10 @@
       regex: / 00:0044:Twofold is my wrath, twice-cursed my foes!/,
       regex: / 00:0044:Stürmt los, meine zwei Gesichter!/,
       infoText: function(data) {
-        if (data.role == 'tank')
+        if (data.role == 'tank') {
           return 'Tiger Add';
-      },
+          },
+        }
       tts: 'tiger add',
     },
     {
