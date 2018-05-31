@@ -110,9 +110,14 @@
       id: 'O7S Orb Marker',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      //this is fine in German. comment just for confirmation and can be deleted
-      alertText: 'Orb Marker',
-      tts: 'orb',
+      alertText: {
+        en: 'Orb Marker',
+        de: 'Orb Marker',
+      },
+      tts: {
+        en: 'orb',
+        de: 'Orb',
+      },
     },
     {
       id: 'O7S Blue Marker',
