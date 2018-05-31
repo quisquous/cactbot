@@ -12,8 +12,8 @@ hideall "--sync--"
 67 "Reprimand" sync /:Tsukuyomi:2BBA:/
 75 "--sync--" sync /:2BC7:Tsuyukomi/ window 72,3 # can push this before reprimand
 81 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,3
-103 "Homeland adds" sync /:Added new combatant Specter Of The Patriarch/
-140 "Empire adds" sync /:Added new combatant Specter Of Asahi/ window 40,3
+103 "Homeland adds (E->W)" sync /:Added new combatant Specter Of The Patriarch/
+140 "Empire adds (SW->NW)" sync /:Added new combatant Specter Of Asahi/ window 40,3
 200 "--sync--" sync /:Specter of Zenos:2BC8:/ window 60,30
 202 "Concentrativity" # stun/knockback is actually 2s after the real cast (2BC8)
 207 "--sync--" sync /:Specter of Zenos:2CA8:/ window 67,3

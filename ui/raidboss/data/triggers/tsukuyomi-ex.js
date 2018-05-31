@@ -187,9 +187,5 @@
         en: 'Move to White!',
       },
     },
-
-    // TODO: fan callouts
-    // TODO: add timeline
-    // TODO: mob location callouts for tank (maybe based on timeline)
-  ]
+  ],
 }]
