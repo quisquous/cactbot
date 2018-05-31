@@ -66,8 +66,8 @@
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return 'AOE';
-          },
-        }
+          }
+        },
       tts: {
         en: 'aoe',
         de: 'a o e',
@@ -218,8 +218,8 @@
       infoText: function(data) {
         if (data.role == 'tank') {
           return 'Tiger Add';
-          },
-        }
+          }
+        },
       tts: 'tiger add',
     },
     {
