@@ -6,6 +6,7 @@
     {
       id: 'O3S Phase Counter',
       regex: /:Halicarnassus starts using Panel Swap/,
+      regexDe: /:Halikarnassos starts using Neuaufstellung/,
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
@@ -16,6 +17,7 @@
       // books message in the library phase can be ignored.
       id: 'Spellblade holy counter',
       regex: /:Halicarnassus:22EF:Spellblade Holy:/,
+      regexDe: /:Halikarnassos:22EF:Magieklinge Sanctus:/,
       run: function(data) {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
@@ -37,21 +39,33 @@
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
-        return 'Stack on YOU';
+        return {
+          en: 'Stack on YOU',
+          de: 'Stack auf DIR',
+        };
       },
       alertText: function(data) {
         if (data.holyTargets[1] == data.me)
           return;
         for (var i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return 'Get out';
+            return {
+              en: 'Get out',
+              de: 'Raus da',
+            };
         }
-        return 'Stack on ' + data.holyTargets[1];
+        return {
+          en: 'Stack on ' + data.holyTargets[1],
+          de: 'Stack auf ' + data.holyTargets[1],
+        };
       },
       infoText: function(data) {
         for (var i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return 'others stack on ' + data.holyTargets[1];
+            return {
+              en: 'others stack on ' + data.holyTargets[1],
+              de: 'andere stacken auf ' + data.holyTargets[1],
+            };
         }
       },
       condition: function(data, matches) {
@@ -64,12 +78,21 @@
       },
       tts: function(data) {
         if (data.holyTargets[1] == data.me)
-          return 'stack on you';
+          return {
+            en: 'stack on you',
+            de: 'stek auf dir',
+          };
         for (var i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me)
-            return 'get out';
+            return {
+              en: 'get out',
+              de: 'raus da',
+            };
         }
-        return 'stack on ' + data.holyTargets[i];
+        return {
+          en: 'stack on ' + data.holyTargets[i],
+          de: 'stek auf ' + data.holyTargets[i],
+        };
       },
       run: function(data) {
         delete data.holyTargets;
@@ -84,10 +107,19 @@
           return;
         data.librarySpellbladePrinted = true;
         if (data.librarySpellbladeMe == '0064')
-          return 'go south: stack on you';
+          return {
+            en: 'Go south: stack on YOU',
+            de: 'Nach Süden: stack auf DIR',
+          };
         if (data.librarySpellbladeMe == '0065')
-          return 'go north';
-        return 'go south: stack on friend';
+          return {
+            en: 'go north',
+            de: 'nach norden',
+          };
+        return {
+          en: 'go south: stack on friend',
+          de: 'nach süden: stack auf freund',
+        };
       },
       // Because people can be dead and there are eight marks, delay to
       // accumulate logs instead of counting marks.  Instantly print if
@@ -109,90 +141,172 @@
           return;
         data.librarySpellbladePrinted = true;
         if (data.librarySpellbladeMe == '0064')
-          return 'stack outside';
+          return {
+            en: 'stack outside',
+            de: 'außen stek en',
+          };
         if (data.librarySpellbladeMe == '0065')
-          return 'go north';
-        return 'stack inside';
+          return {
+            en: 'go north',
+            de: 'nach norden',
+          };
+        return {
+          en: 'stack inside',
+          de: 'innen stek en',
+        };
       }
     },
     {
       id: 'O3S Right Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
-      infoText: 'Mindjack: Right',
+      infoText: {
+        en: 'Mindjack: Right',
+        de: 'Geistlenkung: Rechts',
+      },
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
-      tts: 'mindjack right',
+      tts: {
+        en: 'mindjack right',
+        de: 'geistlenkung rechts',
+      },
     },
     {
       id: 'O3S Forward March',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
-      infoText: 'Mindjack: Forward',
+      infoText: {
+        en: 'Mindjack: Forward',
+        de: 'Geistlenkung: Vorwärts',
+      },
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
-      tts: 'mindjack forward',
+      tts: {
+        en: 'mindjack forward',
+        de: 'geistlenkung vorwärts',
+      },
     },
     {
       id: 'O3S Left Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
-      infoText: 'Mindjack: Left',
+      infoText: {
+        en: 'Mindjack: Left',
+        de: 'Geistlenkung: Links',
+      },
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
-      tts: 'mindjack left',
+      tts: {
+        en: 'mindjack left',
+        de: 'geistlenkung links',
+      },
     },
     {
       id: 'O3S About Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
-      infoText: 'Mindjack: Back',
+      infoText: {
+        en: 'Mindjack: Back',
+        de: 'Geistlenkung: Zurück',
+      },
       durationSeconds: 8,
       condition: function(data, matches) { return matches[1] == data.me; },
-      tts: 'mindjack back',
+      tts: {
+        en: 'mindjack back',
+        de: 'geistlenkung zurück',
+      },
     },
     {
       id: 'O3S Ribbit',
       regex: /:22F7:Halicarnassus starts using/,
-      alertText: 'Ribbit: Get behind',
-      tts: 'ribbit',
+      regexDe: /:22F7:Halikarnassos starts using/,
+      alertText: {
+        en: 'Ribbit: Get behind',
+        de: 'Quaaak: Hinter sie',
+      },
+      tts: {
+        en: 'ribbit',
+        de: 'quak',
+      },
     },
     {
       id: 'O3S Oink',
       regex: /:22F9:Halicarnassus starts using/,
-      infoText: 'Oink: Stack',
-      tts: 'oink',
+      regexDe: /:22F9:Halikarnassos starts using/,
+      infoText: {
+        en: 'Oink: Stack',
+        de: 'Quiiiek: Stack',
+      },
+      tts: {
+        en: 'oink',
+        de: 'quiek',
+      },
     },
     {
       id: 'O3S Squelch',
       regex: /:22F8:Halicarnassus starts using/,
-      alarmText: 'Squelch: Look away',
-      tts: 'look away',
+      regexDe: /:22F8:Halikarnassos starts using/,
+      alarmText: {
+        en: 'Squelch: Look away',
+        de: 'Gurrr: Wegschauen',
+      },
+      tts: {
+        en: 'look away',
+        de: 'weckschauen',
+      },
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
       regex: /:230E:Halicarnassus starts using/,
+      regexDe: /:230E:Halikarnassos starts using/,
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
         return data.phase != 3 || !data.seenHolyThisPhase;
       },
-      alertText: 'The Queen\'s Waltz: Books',
-      tts: 'books',
+      alertText: {
+        en: 'The Queen\'s Waltz: Books',
+        de: 'Tanz der Königin: Bücher',
+      },
+      tts: {
+        en: 'books',
+        de: 'bücher',
+      },
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
       regex: /:2306:Halicarnassus starts using/,
-      infoText: 'The Queen\'s Waltz: Clock',
-      tts: 'clock',
+      regexDe: /:2306:Halikarnassos starts using/,
+      infoText: {
+        en: 'The Queen\'s Waltz: Clock',
+        de: 'Tanz der Königin: Uhr',
+      },
+      tts: {
+        en: 'clock',
+        de: 'uhr',
+      },
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
       regex: /:230A:Halicarnassus starts using/,
-      infoText: 'The Queen\'s Waltz: Crystal Square',
-      tts: 'blue square',
+      regexDe: /:230A:Halikarnassos starts using/,
+      infoText: {
+        en: 'The Queen\'s Waltz: Crystal Square',
+        de: 'Tanz der Königin: Kristallfeld',
+      },
+      tts: {
+        en: 'blue square',
+        de: 'blaues feld',
+      },
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
       regex: /:2308:Halicarnassus starts using/,
-      infoText: 'The Queen\'s Waltz: Tethers',
-      tts: 'tethers',
+      regexDe: /:2308:Halikarnassos starts using/,
+      infoText: {
+        en: 'The Queen\'s Waltz: Tethers',
+        de: 'Tanz der Königin: Ranken',
+      },
+      tts: {
+        en: 'tethers',
+        de: 'ranken',
+      },
     },
   ]
 }]

@@ -416,7 +416,7 @@
         data.lastFire = {
           en: 'Stack',
           fr: 'Se rassembler',
-          de: 'steken',
+          de: 'Stacken',
         }[data.lang];
       },
     },
