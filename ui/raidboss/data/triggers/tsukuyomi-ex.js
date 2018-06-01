@@ -161,7 +161,7 @@
       condition: function(data, matches) { return matches[1] == data.me && data.moonlitCount >= 4; },
       infoText: {
         en: 'Move to Black!',
-        de: 'Ab ins Schwarze!',
+        de: "In's schwarze laufen!"
       },
     },
     {
@@ -186,12 +186,8 @@
       condition: function(data, matches) { return matches[1] == data.me && data.moonshadowedCount >= 4; },
       infoText: {
         en: 'Move to White!',
-        de: 'Ab ins Weiße!',
+        de: "In's weiße laufen!"
       },
     },
-
-    // TODO: fan callouts
-    // TODO: add timeline
-    // TODO: mob location callouts for tank (maybe based on timeline)
-  ]
+  ],
 }]
