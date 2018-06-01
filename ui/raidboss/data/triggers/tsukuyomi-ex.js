@@ -131,6 +131,31 @@
       },
     },
     {
+      id: 'Tsukuyomi Lunacy',
+      regex: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      alertText: {
+        en: 'Stack',
+        de: 'Stack',
+      },
+      tts: {
+        en: 'Stack',
+        de: 'Stack',
+      },
+    },
+    {
+      id: 'Tsukuyomi Hagetsu',
+      regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      condition: function(data, matches) { return (matches[1] == data.me); },
+      alertText: {
+        en: 'Spread',
+        de: 'Verteilen',
+      },
+      tts: {
+        en: 'Spread',
+        de: 'Verteilen',
+      },
+    },
+    {
       id: 'Tsukuyomi Supreme Selenomancy',
       regex: /:Tsukuyomi:2EB0:/,
       run: function(data) {

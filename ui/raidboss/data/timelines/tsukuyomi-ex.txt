@@ -1,4 +1,6 @@
 # Tsukuyomi Extreme
+# http://clees.me/guides/tsukuyomi-ex/
+
 hideall "--sync--"
 
 0 "--Reset--" sync /Removing combatant Tsukuyomi/ window 10000 jump 0
