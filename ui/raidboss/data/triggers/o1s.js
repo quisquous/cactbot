@@ -9,6 +9,7 @@
       infoText: {
         en: 'Blaze: Stack up',
         de: 'Flamme: Stacken',
+      },
       tts: {
         en: 'stack',
         de: 'stek',
@@ -32,7 +33,7 @@
       infoText: {
         en: 'Clamp: Get out of front',
         de: 'Klammer: Vorm Boss weg',
-      }
+      },
       tts: {
         en: 'clamp',
         de: 'klammer',

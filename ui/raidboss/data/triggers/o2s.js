@@ -104,6 +104,7 @@
       tts: {
         en: 'dps up',
         de: 'dee dees hoch',
+      },
     },
     {
       id: 'O2S Gravitational Wave',

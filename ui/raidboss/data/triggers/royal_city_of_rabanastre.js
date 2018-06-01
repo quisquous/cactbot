@@ -130,7 +130,7 @@
       regex: /:Archaeolion starts using The Ram's Voice/,
       regexDe: /:Archaeolöwe starts using Stimme Des Widders/,
       alertText: {
-        en: 'Ram Voice: Move Out'
+        en: 'Ram Voice: Move Out',
         de: 'Stimme Des Widders: Raus',
       },
       tts: {
@@ -229,7 +229,7 @@
       return {
         en: 'Look Towards',
         de: 'anschauen',
-      }
+      };
     },
   ],
 }]
