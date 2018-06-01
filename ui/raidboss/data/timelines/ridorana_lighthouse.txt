@@ -1,4 +1,5 @@
 # The Ridorana Lighthouse
+# https://docs.google.com/document/d/1EJMARltDR6Pmts1o5gqMl9pd5weTfROVFu1o1YwgAPk/edit
 
 hideall "--reset--"
 hideall "--sync--"
