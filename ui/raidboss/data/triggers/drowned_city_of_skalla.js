@@ -11,7 +11,10 @@
       alertText: function(data) {
         return data.role == 'tank' ? 'tank cleave' : '';
       },
-      tts: 'tank cleave',
+      tts:  {
+        en: 'tank cleave',
+        de: 'tenk klief',
+      },
     },
     {
       id: 'Hrodric Tail',
@@ -23,7 +26,10 @@
       alertText: function(data) {
         return data.role != 'tank' ? "tail cleave" : "";
       },
-      tts: 'tail attack',
+      tts: {
+        en: 'tail attack',
+        de: 'schweifattacke',
+      },
     },
     {
       id: 'Hrodric Eye',
@@ -32,7 +38,10 @@
       alertText: function(data) {
         return "look away";
       },
-      tts: 'look away',
+      tts: {
+        en: 'look away',
+        de: 'weckschauen',
+      },
     },
     {
       id: 'Hrodric Words',
@@ -41,7 +50,10 @@
       infoText: function(data) {
         return "avoid eye lasers";
       },
-      tts: 'eye laser',
+      tts: {
+        en: 'eye laser',
+        de: 'augenlehser',
+      },
     },
   ]
 }]

@@ -161,6 +161,7 @@
       condition: function(data, matches) { return matches[1] == data.me && data.moonlitCount >= 4; },
       infoText: {
         en: 'Move to Black!',
+        de: "In's schwarze laufen!"
       },
     },
     {
@@ -185,6 +186,7 @@
       condition: function(data, matches) { return matches[1] == data.me && data.moonshadowedCount >= 4; },
       infoText: {
         en: 'Move to White!',
+        de: "In's weiße laufen!"
       },
     },
   ],

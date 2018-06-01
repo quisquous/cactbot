@@ -31,8 +31,14 @@
       id: 'O6N Meteors',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Drop AOEs Away',
-      tts: 'aoes',
+      infoText: {
+        en: 'Drop AOEs Away',
+        de: 'AoEs wegbringen',
+      },
+      tts: {
+        en: 'aoes',
+        de: 'a o eehs',
+      },
     },
   ],
   timelineReplace: [

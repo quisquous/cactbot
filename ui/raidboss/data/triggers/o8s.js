@@ -96,13 +96,13 @@
     {
       id: 'O8S Pasts Forgotten',
       regex: /Kefka starts using Pasts Forgotten/,
-      regexDe: /Kefka starts using Ende Des Schlummers/,
+      regexDe: /Kefka starts using Vernichtung Der Vergangenheit/,
       regexFr: /Kefka starts using Ruine Du Passé/,
       regexJa: /ケフカ starts using 過去の破滅/,
       alertText: {
         en: 'Past: Stack and Stay',
         fr: 'Passé : Stack et rester-là',
-        de: 'Schlummer: Sammeln und Stehenbleiben',
+        de: 'Vergangenheit: Sammeln und Stehenbleiben',
       },
       tts: {
         en: 'stack and stay',
@@ -113,13 +113,13 @@
     {
       id: 'O8S Futures Numbered',
       regex: /Kefka starts using Futures Numbered/,
-      regexDe: /Kefka starts using Ende Des Lebens/,
+      regexDe: /Kefka starts using Vernichtung Der Zukunft/,
       regexFr: /Kefka starts using Ruine Du Futur/,
       regexJa: /ケフカ starts using 未来の破滅/,
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et le traverser',
-        de: 'Leben: Sammeln und Durchlaufen',
+        de: 'Zukunft: Sammeln und Durchlaufen',
       },
       tts: {
         en: 'stack and through',
@@ -130,14 +130,14 @@
     {
       id: "O8S Past's End",
       regex: /Kefka starts using Past's End/,
-      regexDe: /Kefka starts using Ende der Welt/,
+      regexDe: /Kefka starts using Ende Der Vergangenheit/,
       regexFr: /Kefka starts using Fin Du Passé/,
       regexJa: /ケフカ starts using 過去の終焉/,
       condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
       alertText: {
         en: 'Past: Bait, then through',
         fr: "Passé : l'appâter, puis le traverser",
-        de: 'Welt : Anlocken und Durchlaufen',
+        de: 'Vergangenheit : Anlocken und Durchlaufen',
       },
       tts: {
         en: 'run run run',
@@ -148,14 +148,14 @@
     {
       id: "O8S Future's End",
       regex: /Kefka starts using Future's End/,
-      regexDe: /Kefka starts using Ende Der Hoffnung/,
+      regexDe: /Kefka starts using Ende Der Zukunft/,
       regexFr: /Kefka starts using Fin Du Futur/,
       regexJa: /ケフカ starts using 未来の終焉/,
       condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
       alertText: {
         en: 'Future: Bait, then stay',
         fr: "Futur : l'appâter, et rester",
-        de: 'Hoffnung: Anlocken und Stehenbleiben',
+        de: 'Zukunft: Anlocken und Stehenbleiben',
       },
       tts: {
         en: 'stay stay stay',
@@ -287,7 +287,7 @@
         return {
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
-          de: 'Hyperantrieb auf DIRS',
+          de: 'Hyperantrieb auf DIR',
         };
       },
       infoText: function(data, matches) {
@@ -416,7 +416,7 @@
         data.lastFire = {
           en: 'Stack',
           fr: 'Se rassembler',
-          de: 'steken',
+          de: 'stek en',
         }[data.lang];
       },
     },
@@ -479,7 +479,7 @@
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
-          de: 'rausgehen',
+          de: 'raus da',
         }[data.lang];
       },
       infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
@@ -608,8 +608,8 @@
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Forsaken': 'Verloren',
-        "Future's End": "Ende Der Hoffnung",
-        'Futures Numbered': 'Ende Des Lebens',
+        "Future's End": "Ende Der Zukunft",
+        'Futures Numbered': 'Vernichtung Der Zukunft',
         'Gravitational Wave': 'Gravitationswelle',
         'Heartless Angel': 'Herzloser Engel',
         'Heartless Archangel': 'Herzloser Erzengel',
@@ -618,7 +618,7 @@
         'Indulgent Will': 'Nachsichtiger Wille',
         'Light Of Judgment': 'Licht Des Urteils',
         'Meteor': 'Meteo',
-        'Pasts Forgotten': 'Ende Des Schlummers',
+        'Pasts Forgotten': 'Vernichtung Der Vergangenheit',
         'Pulse Wave': 'Pulswelle',
         'Starstrafe': 'Sternentanz',
         'The Path Of Light': 'Pfad Des Lichts',
@@ -627,17 +627,15 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
-
-        // FIXME:
-        'Blizzard+Thunder': 'Blizzard+Thunder',
-        'Half Arena': 'Half Arena',
-        'Statue Gaze': 'Statue Gaze',
-        'Soak': 'Soak',
-        'Past/Future': 'Past/Future',
-        'Past/Future End': 'Past/Future End',
-        'Knockback Tethers': 'Knockback Tethers',
-        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers',
-        'Statue Half Cleave': 'Statue Half Cleave',
+        'Blizzard+Thunder': 'Eis+Blitz',
+        'Half Arena': 'Halbe Arena',
+        'Statue Gaze': 'Statuenblick',
+        'Soak': 'Aufsaugen',
+        'Past/Future': 'Vergangenheit/Zukunft',
+        'Past/Future End': 'Vergangenheit/Zukunft Ende',
+        'Knockback Tethers': 'Rückstoß Verbindungen',
+        'Sleep/Confuse Tethers': 'Schlaf/Konfusion Verbindungen',
+        'Statue Half Cleave': 'Statue Halber Cleave',
       },
     },
     {

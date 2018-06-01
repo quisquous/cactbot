@@ -74,7 +74,7 @@
       alertText: function(data, matches) { return matches[1]; },
       tts: {
         en: 'beam',
-        de: 'laser',
+        de: 'leser',
       },
     },
     {
@@ -110,8 +110,14 @@
       id: 'O7S Orb Marker',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      alertText: 'Orb Marker',
-      tts: 'orb',
+      alertText: {
+        en: 'Orb Marker',
+        de: 'Orb Marker',
+      },
+      tts: {
+        en: 'orb',
+        de: 'Orb',
+      },
     },
     {
       id: 'O7S Blue Marker',
@@ -148,12 +154,12 @@
         if (data.me == matches[1]) {
           return {
             en: 'Prey on YOU',
-            de: 'Rakete auf dir',
+            de: 'Rakete auf DIR',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Rakete auf ' + data.ShortName(matches[1]),
+          de: 'Beute auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function (data, matches) {
@@ -161,7 +167,7 @@
           return;
         return {
           en: 'prey',
-          de: 'rakete',
+          de: 'beute',
         };
       },
     },
