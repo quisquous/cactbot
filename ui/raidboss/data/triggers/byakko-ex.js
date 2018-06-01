@@ -22,11 +22,12 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
-        return {
-          en: 'buster',
-          de: 'basta',
-        };
+        if (matches[1] == data.me) {
+          return {
+            en: 'buster',
+            de: 'basta',
+          };
+        }
       },
     },
     {
@@ -66,8 +67,8 @@
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return 'AOE';
-          }
-        },
+        }
+      },
       tts: {
         en: 'aoe',
         de: 'a o e',
@@ -194,7 +195,7 @@
           de: 'Pfützen auf DIR',
         };
       },
-      tts:  {
+      tts: {
         en: 'puddles',
         de: 'pfützen',
       },
@@ -218,8 +219,8 @@
       infoText: function(data) {
         if (data.role == 'tank') {
           return 'Tiger Add';
-          }
-        },
+        }
+      },
       tts: 'tiger add',
     },
     {
