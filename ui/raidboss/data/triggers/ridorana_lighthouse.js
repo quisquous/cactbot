@@ -1,6 +1,11 @@
 [{
   zoneRegex: /^The Ridorana Lighthouse$/,
   timelineFile: 'ridorana_lighthouse.txt',
+  timeline: [
+    function(data) {
+      return 'alerttext "Stone Breath" before 7 "Get Behind"';
+    },
+  ],
   triggers: [
     {
       id: 'Ridorana Famfrit Tide Pode',
@@ -33,9 +38,35 @@
     },
     {
       id: 'Ridorana Famfrit Tsunami',
-      regex: / 14:2C4B:Famfrit, The Darkening Cloud starts using Tsunami on Famfrit, The Darkening Cloud./,
+      regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
+      delaySeconds: 4.5,
       alertText: {
         en: 'Look for Tsunami',
+      },
+      tts: {
+        en: 'Tsunami',
+      },
+    },
+    {
+      id: 'Ridorana Famfrit Tsunami',
+      regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
+      delaySeconds: 16.5,
+      alertText: {
+        en: 'Look for Tsunami',
+      },
+      tts: {
+        en: 'Tsunami',
+      },
+    },
+    {
+      id: 'Ridorana Famfrit Tsunami',
+      regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
+      delaySeconds: 28.5,
+      alertText: {
+        en: 'Look for Tsunami',
+      },
+      tts: {
+        en: 'Tsunami',
       },
     },
     {
@@ -47,6 +78,17 @@
       },
       tts: {
         en: 'Stack',
+      },
+    },
+    {
+      id: 'Ridorana Famfrit Briny Cannonade',
+      regex: / 1B:........:(\y{Name}):....:....:008B:0000:0000:0000:/,
+      condition: function(data, matches) { return (matches[1] == data.me); },
+      alertText: {
+        en: 'Spread',
+      },
+      tts: {
+        en: 'Spread',
       },
     },
     {
@@ -112,7 +154,7 @@
     },
     {
       id: 'Ridorana Belias Time Bomb',
-      regex: / 14:2CE7:Belias, The Gigas starts using Time Bomb/,
+      regex: / 14:2CE6:Belias, The Gigas starts using Time Bomb/,
       infoText: {
         en: 'Stop Clocks',
       },
@@ -133,7 +175,7 @@
     },
     {
       id: 'Ridorana Construct Destroy',
-      regex: / 14:2C5A:Construct 7 starts using Destroy on (\y{Name})/,
+      regex: / 14:(?:2C5A|2C71):Construct 7 starts using Destroy on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -158,6 +200,40 @@
             de: 'basta',
           };
         }
+      },
+    },
+    {
+      id: 'Ridorana Construct Accelerate Spread',
+      regex: / 1B:........:(\y{Name}):....:....:008A:0000:0000:0000:/,
+      condition: function(data, matches) { return (matches[1] == data.me); },
+      preRun: function(data) {
+        data.accelerateSpreadOnMe = true;
+      },
+      alertText: {
+        en: 'Spread',
+      },
+      tts: {
+        en: 'Spread',
+      },
+    },
+    {
+      id: 'Ridorana Construct Accelerate Stack',
+      regex: / 1B:........:(\y{Name}):....:....:0064:0000:0000:0000:/,
+      condition: function(data) { return !data.accelerateSpreadOnMe; },
+      infoText: function(data, matches) {
+        return {
+          en: 'Stack on ' + data.ShortName(matches[1]),
+        };
+      },
+      tts: {
+        en: 'Stack',
+      },
+    },
+    {
+      // Accelerate cleanup
+      regex: / 14:2C65:Construct 7 starts using Accelerate/,
+      run: function(data) {
+        delete data.accelerateSpreadOnMe;
       },
     },
     {
@@ -245,13 +321,24 @@
       tts: function(data) { return data.mathDirection(); },
     },
     {
-      id: 'Ridorana Construct Compress',
-      regex: / 14:2C5C:Construct 7 starts using Compress/,
+      id: 'Ridorana Construct Pulverize',
+      regex: / 14:2C61:Construct 7 starts using Pulverize/,
+      // 16 yalms
       alertText: {
         en: 'Get Out',
       },
       tts: {
         en: 'Get Out',
+      },
+    },
+    {
+      id: 'Ridorana Construct Dispose',
+      regex: / 14:(?:2C5F|2CE9):Construct 7 starts using Dispose/,
+      alertText: {
+        en: 'Get Behind',
+      },
+      tts: {
+        en: 'Get Behind',
       },
     },
     {
