@@ -1,62 +1,62 @@
 # The Ridorana Lighthouse
 # https://docs.google.com/document/d/1EJMARltDR6Pmts1o5gqMl9pd5weTfROVFu1o1YwgAPk/edit
 
-hideall "--reset--"
+hideall "--Reset--"
 hideall "--sync--"
 
-0 "--reset--" sync /:Removing combatant Famfrit, The Darkening Cloud\.  Max HP: \d{8}\./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Belias, The Gigas\.  Max HP: \d{8}\./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Construct 7\.  Max HP: \d{8}./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Yiazmat\.  Max HP: \d{8}./ window 10000 jump 0
+0 "--Reset--" sync /:Removing combatant Famfrit, The Darkening Cloud\.  Max HP: \d{8}\./ window 10000 jump 0
+0 "--Reset--" sync /:Removing combatant Belias, The Gigas\.  Max HP: \d{8}\./ window 10000 jump 0
+0 "--Reset--" sync /:Removing combatant Construct 7\.  Max HP: \d{8}./ window 10000 jump 0
+0 "--Reset--" sync /:Removing combatant Yiazmat\.  Max HP: \d{8}./ window 10000 jump 0
 
 ###########
 # Famfrit #
 ###########
 0 "Start" sync /:Echoes from Time's Garden will be sealed off/ window 0,1
-13 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/ window 13,0
-26 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-35 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
-47 "Tsunami" sync /:Famfrit, the Darkening Cloud:2C50:/
+13 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/ window 13,0
+26 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+35 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C45:/
+47 "Tsunami" sync /:Famfrit, The Darkening Cloud:2C50:/
 54 "Tsunami" duration 3
 66 "Tsunami" duration 3
 78 "Tsunami" duration 3
-86 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-97 "Dark Ewer (cross)" sync /:Famfrit, the Darkening Cloud:2C43:/
-110 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
-118 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C41:/
-119 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
-124 "Dark Ewer (orbit)" sync /:Famfrit, the Darkening Cloud:2C43:/
-139 "Dark Rain" sync /:Famfrit, the Darkening Cloud:2C40:/
+86 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+97 "Dark Ewer (cross)" sync /:Famfrit, The Darkening Cloud:2C43:/
+110 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/
+118 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C41:/
+119 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C45:/
+124 "Dark Ewer (orbit)" sync /:Famfrit, The Darkening Cloud:2C43:/
+139 "Dark Rain" sync /:Famfrit, The Darkening Cloud:2C40:/
 
 # Begin loop
-151 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-164 "Darkening Rainfall" sync /:Famfrit, the Darkening Cloud:2C3F:/
-169 "Darkening Deluge" sync /:Famfrit, the Darkening Cloud:2C56:/
-176 "Dark Cannonade" sync /:Famfrit, the Darkening Cloud:2C42:/
-200 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-208 "Tsunami" sync /:Famfrit, the Darkening Cloud:2C50:/
+151 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+164 "Darkening Rainfall" sync /:Famfrit, The Darkening Cloud:2C3F:/
+169 "Darkening Deluge" sync /:Famfrit, The Darkening Cloud:2C56:/
+176 "Dark Cannonade" sync /:Famfrit, The Darkening Cloud:2C42:/
+200 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+208 "Tsunami" sync /:Famfrit, The Darkening Cloud:2C50:/
 215 "Tsunami" duration 3
 227 "Tsunami" duration 3
-228 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
+228 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C45:/
 239 "Tsunami" duration 3
-247 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-259 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
-272 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-279 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
-291 "Dark Ewer (cross)" sync /:Famfrit, the Darkening Cloud:2C43:/
-302 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-311 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
-318 "Dark Ewer (orbit)" sync /:Famfrit, the Darkening Cloud:2C43:/
-324 "Tsunami" sync /:Famfrit, the Darkening Cloud:2C48:/
+247 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+259 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/
+272 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+279 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/
+291 "Dark Ewer (cross)" sync /:Famfrit, The Darkening Cloud:2C43:/
+302 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+311 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C45:/
+318 "Dark Ewer (orbit)" sync /:Famfrit, The Darkening Cloud:2C43:/
+324 "Tsunami" sync /:Famfrit, The Darkening Cloud:2C48:/
 331 "Tsunami" duration 3
 343 "Tsunami" duration 3
 355 "Tsunami" duration 3
-357 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
-364 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-371 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
-386 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
-397 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/
-404 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/ jump 151
+357 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C45:/
+364 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+371 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
+386 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/
+397 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/
+404 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/ jump 151
 # End loop
 
 # Dummy loop future
@@ -69,53 +69,53 @@ hideall "--sync--"
 ##########
 
 1000 "Start" sync /:The Spire's Bounds will be sealed off/ window 1000,0
-1012 "Fire" sync /:Belias, the Gigas:2CDB:/ window 1012,0
-1024 "Fire IV" sync /:Belias, the Gigas:2CDC:/
-1033 "Time Eruption" sync /:Belias, the Gigas:2CDE:/
-1038 "Fast Hands" sync /:Belias, the Gigas:2CDF:/
-1041 "Slow Hands" sync /:Belias, the Gigas:2CE0:/
+1012 "Fire" sync /:Belias, The Gigas:2CDB:/ window 1012,0
+1024 "Fire IV" sync /:Belias, The Gigas:2CDC:/
+1033 "Time Eruption" sync /:Belias, The Gigas:2CDE:/
+1038 "Fast Hands" sync /:Belias, The Gigas:2CDF:/
+1041 "Slow Hands" sync /:Belias, The Gigas:2CE0:/
 1041 "--untargetable--"
-1048 "Crimson Cyclone" sync /:Belias, the Gigas:2CE2:/
-1051 "Crimson Cyclone" sync /:Belias, the Gigas:2D5F:/
+1048 "Crimson Cyclone" sync /:Belias, The Gigas:2CE2:/
+1051 "Crimson Cyclone" sync /:Belias, The Gigas:2D5F:/
 1054 "--targetable--"
-1062 "Fire" sync /:Belias, the Gigas:2CDB:/
-1070 "Fire IV" sync /:Belias, the Gigas:2CDC:/
-1079 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/
-1089 "Fire IV" sync /:Belias, the Gigas:2CDC:/
+1062 "Fire" sync /:Belias, The Gigas:2CDB:/
+1070 "Fire IV" sync /:Belias, The Gigas:2CDC:/
+1079 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/
+1089 "Fire IV" sync /:Belias, The Gigas:2CDC:/
 1095 "Eruption" duration 4
-1100 "Fire" sync /:Belias, the Gigas:2CDB:/
-1110 "Fire IV" sync /:Belias, the Gigas:2CDC:/
+1100 "Fire" sync /:Belias, The Gigas:2CDB:/
+1110 "Fire IV" sync /:Belias, The Gigas:2CDC:/
 1118 "Gigas spawns"
 
 # Adds dead
-1300 "Hellfire" sync /:Belias, the Gigas:2CE8:/ window 5000,700
+1300 "Hellfire" sync /:Belias, The Gigas:2CE8:/ window 5000,700
 1313 "Time Bomb" duration 15
-1322 "Fire" sync /:Belias, the Gigas:2CDB:/
+1322 "Fire" sync /:Belias, The Gigas:2CDB:/
 
 # Begin loop
-1342 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/
+1342 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/
 1345 "--untargetable--"
-1352 "Crimson Cyclone" sync /:Belias, the Gigas:2CE2:/
-1355 "Crimson Cyclone" sync /:Belias, the Gigas:2D5F:/
+1352 "Crimson Cyclone" sync /:Belias, The Gigas:2CE2:/
+1355 "Crimson Cyclone" sync /:Belias, The Gigas:2D5F:/
 1358 "--targetable--"
-1365 "Fire IV" sync /:Belias, the Gigas:2CDC:/
-1375 "Time Eruption" sync /:Belias, the Gigas:2CDE:/
-1380 "Fast Hands" sync /:Belias, the Gigas:2CDF:/
+1365 "Fire IV" sync /:Belias, The Gigas:2CDC:/
+1375 "Time Eruption" sync /:Belias, The Gigas:2CDE:/
+1380 "Fast Hands" sync /:Belias, The Gigas:2CDF:/
 1380 "Time Bomb" duration 15
-1383 "Slow Hands" sync /:Belias, the Gigas:2CE0:/
-1396 "Fire" sync /:Belias, the Gigas:2CDB:/
-1411 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/
-1421 "Fire IV" sync /:Belias, the Gigas:2CDC:/
+1383 "Slow Hands" sync /:Belias, The Gigas:2CE0:/
+1396 "Fire" sync /:Belias, The Gigas:2CDB:/
+1411 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/
+1421 "Fire IV" sync /:Belias, The Gigas:2CDC:/
 1422 "Eruption" duration 4
 1436 "Time Bomb" duration 15
 1442 "--untargetable--"
-1449 "Crimson Cyclone" sync /:Belias, the Gigas:2CE2:/
-1451 "Crimson Cyclone" sync /:Belias, the Gigas:2D5F:/
+1449 "Crimson Cyclone" sync /:Belias, The Gigas:2CE2:/
+1451 "Crimson Cyclone" sync /:Belias, The Gigas:2D5F:/
 1454 "--targetable--"
-1466 "Time Eruption" sync /:Belias, the Gigas:2CDE:/
-1471 "Fast Hands" sync /:Belias, the Gigas:2CDF:/
-1474 "Slow Hands" sync /:Belias, the Gigas:2CE0:/
-1486 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/ jump 1342
+1466 "Time Eruption" sync /:Belias, The Gigas:2CDE:/
+1471 "Fast Hands" sync /:Belias, The Gigas:2CDF:/
+1474 "Slow Hands" sync /:Belias, The Gigas:2CE0:/
+1486 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/ jump 1342
 # End loop
 
 # Dummy loop future
