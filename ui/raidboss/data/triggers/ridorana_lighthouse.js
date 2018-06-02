@@ -299,13 +299,12 @@
       regexFr: / 14:2C6C:Automate N°7 starts using Soustraire/,
       regexJa: / 14:2C6C:労働七号 starts using 減算する/,
       run: function(data) {
+        data.mathBaseValue = 0;
         data.mathDirection = function() {
           if (!this.correctMath)
             return;
-          console.log('Subtract: hp: ' + this.currentHP + ', boost: ' + (this.hpBoost || 0));
-          var number = this.currentHP - (this.hpBoost || 0);
-          if (number < 1 || number > 9) {
-            console.error('Bad math: ' + number)
+          if (data.mathBaseValue < 1 || data.mathBaseValue > 9) {
+            console.error('Bad math: ' + data.mathBaseValue)
             return;
           }
           return [
@@ -329,30 +328,37 @@
               en: 'Stand in 4',
               de: 'In 4 stehen',
             },
-          ][this.correctMath[number]];
+          ][this.correctMath[data.mathBaseValue]];
         };
       },
     },
     {
-      id: 'Ridorana HP Boost Gain',
-      regex: / 1A:(\y{Name}) gains the effect of Hp Boost \+(\d)/,
-      regexDe: / 1A:(\y{Name}) gains the effect of LP-Bonus \+(\d)/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Bonus De PV \(\+(\d)\)/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ＋(\d)/,
+      regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
+      regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
+      regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
       condition: function(data, matches) { return (matches[1] == data.me); },
-      preRun: function(data, matches) {
-        data.hpBoost = matches[2];
+      preRun: function(data) {
+        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10) {
+          data.mathBaseValue = data.currentHP;
+        }
       },
     },
     {
-      id: 'Ridorana HP Boost Loss',
-      regex: / 1A:(\y{Name}) loses the effect of Hp Boost \+(\d)/,
-      regexDe: / 1A:(\y{Name}) loses the effect of LP-Bonus \+(\d)/,
-      regexFr: / 1A:(\y{Name}) loses the effect of Bonus De PV \(\+(\d)\)/,
-      regexJa: / 1A:(\y{Name}) loses the effect of 最大ＨＰ＋(\d)/,
+      // Not 100% convinced that hp will have updated exactly when the hp penalty
+      // trigger happens.  However, by t=1 second in testing, standing a circle
+      // will apply.  So, hope for the best by testing at t=0.5 as well, but not
+      // overwriting any results from t=0 if that was valid.
+      regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
+      regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
+      regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
       condition: function(data, matches) { return (matches[1] == data.me); },
-      preRun: function(data, matches) {
-        data.hpBoost = 0;
+      delaySeconds: 0.5,
+      preRun: function(data) {
+        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10) {
+          data.mathBaseValue = data.currentHP;
+        }
       },
     },
     {
