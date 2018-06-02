@@ -157,6 +157,21 @@
       },
     },
     {
+      id: 'Tsukuyomi Dance of the Dead',
+      // There's no "starts using" here.  She pushes at 35% to this ability.
+      // This happens after 2nd meteors naturally, but if dps is good
+      // then this could push unexpectedly earlier (or paired with buster).
+      regex: /00:0044:No\. No\.\.\. Not yet\. Not\. Yet\./,
+      infoText: {
+        en: 'aoe',
+        de: 'aoe',
+      },
+      tts: {
+        en: 'aoe',
+        de: 'a o e',
+      },
+    },
+    {
       id: 'Tsukuyomi Supreme Selenomancy',
       regex: /:Tsukuyomi:2EB0:/,
       run: function(data) {
