@@ -95,7 +95,7 @@
       regexDe: /14:2A72:Polyphemus starts using Finsterer Blick/,
       alertText: {
         en: 'Glower Laser',
-        de: 'Blick Laser',
+       de: 'Blick Laser',
       },
       tts: {
         en: 'Glower',
@@ -178,6 +178,7 @@
       },
       tts: {
         en: 'out of melee',
+        de: 'raus aus nahkampf',
       },
     },
     {

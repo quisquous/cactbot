@@ -117,7 +117,7 @@
     {
       id: 'General Ready check',
       regex: /:(?:(\y{Name}) has initiated|You have commenced) a ready check\./,
-      regexDe: /:(?:(\y{Name}) hat|hast) eine Bereitschaftsanfrage gestartet\./,
+      regexDe: /:(?:(\y{Name}) hat|Du hast) eine Bereitschaftsanfrage gestellt\./,
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
       soundVolume: 0.6,
     },

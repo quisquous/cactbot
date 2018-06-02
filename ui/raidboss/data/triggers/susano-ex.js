@@ -85,8 +85,8 @@
         }
         else {
           return {
-            en: 'Knockback on you',
-            de: 'Rückstoß auf dir',
+            en: 'Knockback on YOU',
+            de: 'Rückstoß auf DIR',
           };
         }
       },
@@ -94,7 +94,7 @@
         if (data.cloud) {
           return {
             en: 'knockback with cloud',
-            de: 'nock beck mit wolke',
+            de: 'Rückstoß mit wolke',
           };
         }
         else if (data.churning) {

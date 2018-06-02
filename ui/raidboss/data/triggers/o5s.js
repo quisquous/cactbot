@@ -54,14 +54,14 @@
       regexJa: /14:28A4:魔列車 starts using 追突/,
       alertText: function (data) {
         return {
-          en: 'Go To Back',
-          de: 'Nach HINTEN!',
+          en: 'Go to back',
+          de: 'Nach hinten laufen',
         };
       },
       tts: function(data) {
         return {
           en: 'run away',
-          de: 'renn weg',
+          de: 'ab nach hinten',
         };
       },
     },
@@ -73,14 +73,14 @@
       regexJa: /14:28B2:魔列車 starts using 魔界の前照灯/,
       alertText: function (data) {
         return {
-          en: 'Stack Middle',
-          de: 'Versammeln Mitte',
+          en: 'Stack middle',
+          de: 'Stack in der Mitte',
         };
       },
       tts: function(data) {
         return {
-          en: 'stack middle',
-          de: 'versammeln mitte',
+          en: 'Stack middle',
+          de: 'Stek in der Mitte',
         };
       },
     },
@@ -176,7 +176,7 @@
         'Tether Whistle': 'Verfolger Pfeife',
         ' Ghosts': ' Geister',
         'Ghosts spawn': 'Geister erscheinen',
-        
+
         'Add Wave': 'Add Welle',
       },
       '~effectNames': {

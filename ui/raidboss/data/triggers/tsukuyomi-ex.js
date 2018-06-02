@@ -21,7 +21,8 @@
     },
     {
       id: 'Tsukuyomi Torment',
-      regex: / 14:2BBB:Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
+      // Different vuln type busters have different ability ids.
+      regex: / 14:(?:2BBB|2BE2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank') {
           return;
@@ -130,6 +131,46 @@
       tts: {
         en: 'Meteor on YOU',
         de: 'Meteor auf DIR',
+      },
+    },
+    {
+      id: 'Tsukuyomi Lunacy',
+      regex: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      alertText: {
+        en: 'Stack',
+        de: 'Stack',
+      },
+      tts: {
+        en: 'Stack',
+        de: 'Stack',
+      },
+    },
+    {
+      id: 'Tsukuyomi Hagetsu',
+      regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      condition: function(data, matches) { return (matches[1] == data.me); },
+      alertText: {
+        en: 'Spread',
+        de: 'Verteilen',
+      },
+      tts: {
+        en: 'Spread',
+        de: 'Verteilen',
+      },
+    },
+    {
+      id: 'Tsukuyomi Dance of the Dead',
+      // There's no "starts using" here.  She pushes at 35% to this ability.
+      // This happens after 2nd meteors naturally, but if dps is good
+      // then this could push unexpectedly earlier (or paired with buster).
+      regex: /00:0044:No\. No\.\.\. Not yet\. Not\. Yet\./,
+      infoText: {
+        en: 'aoe',
+        de: 'aoe',
+      },
+      tts: {
+        en: 'aoe',
+        de: 'a o e',
       },
     },
     {

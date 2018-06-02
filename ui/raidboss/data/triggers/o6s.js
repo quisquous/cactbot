@@ -78,7 +78,7 @@
       },
       tts: {
         en: 'last kiss',
-        de: 'letzter kuss',
+        de: 'letz ter kuss',
       },
     },
     {
@@ -98,7 +98,7 @@
       },
       tts: {
         en: 'last kiss',
-        de: 'letzter kuss',
+        de: 'letz ter kuss',
       },
     },
   ],

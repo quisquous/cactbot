@@ -53,7 +53,7 @@
         return {
           en: 'Get Behind',
           de: 'Hinter ihn laufen',
-        };
+       };
       },
       tts: {
         en: 'behind',
