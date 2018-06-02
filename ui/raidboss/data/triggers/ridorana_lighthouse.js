@@ -146,10 +146,10 @@
       regex: / 1A:(\y{Name}) gains the effect of Burns from/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
-        en: 'Point Tether Outside',
+        en: 'Stretch Tether Outside',
       },
       tts: {
-        en: 'Point Tether Outside',
+        en: 'Stretch Tether Outside',
       },
     },
     {
