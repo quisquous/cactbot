@@ -131,7 +131,7 @@
     {
       id: 'Eureka Voidscale Ice',
       regex: /14:29C3:Voidscale starts using Ball Of Ice on (\y{Name})/,
-      regex: /14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
+      regexDe: /14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
       condition: function(data, matches) { return matches[1] == data.me; },
       alertText: {
         en: 'Ice ball on you!',
@@ -145,7 +145,7 @@
     {
       id: 'Eureka Pazuzu Dread Wind',
       regex: /14:2899:Pazuzu starts using Dread Wind/,
-      regex: /14:2899:Pazuzu starts using Furchtwind/,
+      regexDe: /14:2899:Pazuzu starts using Furchtwind/,
       alarmText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -196,7 +196,7 @@
     {
       id: 'Eureka Wraith Count',
       regex: / 19:Shadow Wraith was defeated by/,
-      regex: / 19:Schatten-Geist was defeated by/,
+      regexDe: / 19:Schatten-Geist was defeated by/,
       infoText: function(data) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;

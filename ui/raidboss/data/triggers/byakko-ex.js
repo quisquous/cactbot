@@ -11,13 +11,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tankbuster auf DIR',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -122,7 +122,7 @@
     },
     {
       regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
-      regex: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
+      regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -174,7 +174,7 @@
     {
       id: 'ByaEx Ominous Wind',
       regex: /1A:(\y{Name}) gains the effect of Ominous Wind/,
-      regex: /1A:(\y{Name}) gains the effect of Unheilvoller Wind/,
+      regexDe: /1A:(\y{Name}) gains the effect of Unheilvoller Wind/,
       condition: function(data, matches) { return matches[1] == data.me; },
       infoText: function(data) {
         return {
