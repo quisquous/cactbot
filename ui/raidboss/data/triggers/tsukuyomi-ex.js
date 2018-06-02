@@ -23,8 +23,9 @@
       id: 'Tsukuyomi Torment',
       regex: / 14:2BBB:Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
       alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
+        if (matches[1] == data.me || data.role != 'tank') {
           return;
+        }
         return {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
@@ -45,8 +46,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer')
+        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer') {
           return;
+        }
         return {
           en: 'Get out of front',
           de: 'Weg von vorn',

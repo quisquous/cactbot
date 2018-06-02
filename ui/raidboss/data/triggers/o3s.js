@@ -37,22 +37,25 @@
       id: 'O3S Spellblade Holy',
       regex: /1B:........:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
       alarmText: function(data) {
-        if (data.holyTargets[1] != data.me)
+        if (data.holyTargets[1] != data.me) {
           return '';
+        }
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
         };
       },
       alertText: function(data) {
-        if (data.holyTargets[1] == data.me)
+        if (data.holyTargets[1] == data.me) {
           return;
+        }
         for (var i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] == data.me) {
             return {
               en: 'Get out',
               de: 'Raus da',
             };
+          }
         }
         return {
           en: 'Stack on ' + data.holyTargets[1],
@@ -61,33 +64,37 @@
       },
       infoText: function(data) {
         for (var i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] == data.me) {
             return {
               en: 'others stack on ' + data.holyTargets[1],
               de: 'andere stacken auf ' + data.holyTargets[1],
             };
+          }
         }
       },
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
-        if (data.phase == 3)
+        if (data.phase == 3) {
           return false;
+        }
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches[1]);
         return data.holyTargets.length == 4;
       },
       tts: function(data) {
-        if (data.holyTargets[1] == data.me)
+        if (data.holyTargets[1] == data.me) {
           return {
             en: 'stack on you',
             de: 'stek auf dir',
           };
+        }
         for (var i = 0; i < 4; ++i) {
-          if (data.holyTargets[i] == data.me)
+          if (data.holyTargets[i] == data.me) {
             return {
               en: 'get out',
               de: 'raus da',
             };
+          }
         }
         return {
           en: 'stack on ' + data.holyTargets[i],
@@ -103,19 +110,22 @@
       id: 'O3S Library Spellblade',
       regex: /1B:........:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
       alertText: function(data) {
-        if (data.librarySpellbladePrinted)
+        if (data.librarySpellbladePrinted) {
           return;
+        }
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064')
+        if (data.librarySpellbladeMe == '0064') {
           return {
             en: 'Go south: stack on YOU',
             de: 'Nach Süden: stack auf DIR',
           };
-        if (data.librarySpellbladeMe == '0065')
+        }
+        if (data.librarySpellbladeMe == '0065') {
           return {
             en: 'go north',
             de: 'nach norden',
           };
+        }
         return {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
@@ -130,26 +140,31 @@
       },
       condition: function(data, matches) {
         // This is only for library phase.
-        if (data.phase != 3)
+        if (data.phase != 3) {
           return false;
-        if (matches[1] == data.me)
+        }
+        if (matches[1] == data.me) {
           data.librarySpellbladeMe = matches[2];
+        }
         return true;
       },
       tts: function(data) {
-        if (data.librarySpellbladePrinted)
+        if (data.librarySpellbladePrinted) {
           return;
+        }
         data.librarySpellbladePrinted = true;
-        if (data.librarySpellbladeMe == '0064')
+        if (data.librarySpellbladeMe == '0064') {
           return {
             en: 'stack outside',
             de: 'außen stek en',
           };
-        if (data.librarySpellbladeMe == '0065')
+        }
+        if (data.librarySpellbladeMe == '0065') {
           return {
             en: 'go north',
             de: 'nach norden',
           };
+        }
         return {
           en: 'stack inside',
           de: 'innen stek en',
@@ -159,6 +174,7 @@
     {
       id: 'O3S Right Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
+      regexDe: /(\y{Name}) gains the effect of (?:Unknown_510|Rechts) from/,
       infoText: {
         en: 'Mindjack: Right',
         de: 'Geistlenkung: Rechts',
@@ -173,6 +189,7 @@
     {
       id: 'O3S Forward March',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
+      regexDe: /(\y{Name}) gains the effect of (?:Unknown_50D|Vorwärts) from/,
       infoText: {
         en: 'Mindjack: Forward',
         de: 'Geistlenkung: Vorwärts',
@@ -187,6 +204,7 @@
     {
       id: 'O3S Left Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
+      regexDe: /(\y{Name}) gains the effect of (?:Unknown_50F|Links) from/,
       infoText: {
         en: 'Mindjack: Left',
         de: 'Geistlenkung: Links',
@@ -201,6 +219,7 @@
     {
       id: 'O3S About Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
+      regexDe: /(\y{Name}) gains the effect of (?:Unknown_50E|Rückwärts) from/,
       infoText: {
         en: 'Mindjack: Back',
         de: 'Geistlenkung: Zurück',

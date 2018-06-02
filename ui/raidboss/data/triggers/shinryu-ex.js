@@ -49,8 +49,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank')
+        if (matches[1] == data.me || data.role == 'tank') {
           return;
+        }
         return {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
@@ -58,6 +59,7 @@
       },
       tts: {
         en: 'akh morn',
+        de: 'akh morn',
       },
     },
     { id: 'ShinryuEx Diamond Dust',
@@ -69,6 +71,7 @@
       },
       tts: {
         en: 'stop',
+        de: 'stopp',
       },
     },
     { id: 'ShinryuEx Dragonfist',
@@ -80,6 +83,7 @@
       },
       tts: {
         en: 'out of middle',
+        de: 'raus aus der mitte',
       },
     },
     { id: 'ShinryuEx Hellfire',
@@ -92,6 +96,7 @@
       },
       tts: {
         en: 'water',
+        de: 'wasser',
       },
     },
     { id: 'ShinryuEx Hypernova',
@@ -105,7 +110,10 @@
             de: 'Stopp! Einfrieren lassen',
           };
         }
-        return 'Stack in water';
+        return {
+          en: 'Stack in water',
+          de: 'In Wasser stacken',
+        };
       },
       tts: function(data) {
         if (data.phase == 3) {
@@ -128,7 +136,10 @@
         en: 'out of water',
         de: 'Raus aus dem Wasser',
       },
-      tts: 'out of water',
+      tts: {
+        en: 'out of water',
+        de: 'raus aus dem wasser',
+      },
     },
     { id: 'ShinryuEx Levinbolt',
       regex: /:Right Wing starts using Levinbolt on Right Wing/,
@@ -245,6 +256,7 @@
       },
       tts: {
         en: 'tail',
+        de: 'schweif',
       },
     },
     { id: 'ShinryuEx Heart',
@@ -257,9 +269,11 @@
       // TODO: If tail is alive, delay this message?
       infoText: {
         en: 'Heart: Switch targets',
+        de: 'Herz: Ziel wechseln',
       },
       tts: {
         en: 'heart',
+        de: 'herz',
       },
     },
     { id: 'ShinryuEx Divebomb',
@@ -271,6 +285,7 @@
       },
       tts: {
         en: 'divebombs',
+        de: 'sturzflug',
       },
     },
     { id: 'ShinryuEx Death Sentence',
@@ -350,6 +365,7 @@
       },
       tts: {
         en: 'get inside',
+        de: 'reingehen',
       },
     },
     { id: 'ShinryuEx Breath',
@@ -361,6 +377,7 @@
       },
       tts: {
         en: 'cleave',
+        de: 'klief',
       },
     },
     { id: 'ShinryuEx Final Left Wing',
@@ -369,9 +386,11 @@
       condition: function(data) { return !data.finalWing; },
       alertText: {
         en: 'kill left first',
+        de: 'linken Flügel zuerst',
       },
       tts: {
         en: 'left first',
+        de: 'links zuerst',
       },
       run: function(data) { data.finalWing = true; }
     },
@@ -381,9 +400,11 @@
       condition: function(data) { return !data.finalWing; },
       alertText: {
         en: 'kill right first',
+        de: 'rechten Flügel zuerst',
       },
       tts: {
         en: 'right first',
+        de: 'rechts zuerst',
       },
       run: function(data) { data.finalWing = true; }
     },
@@ -425,9 +446,11 @@
       },
       alarmText: {
         en: 'tail marker on you',
+        de: 'Schweifmarker auf dir',
       },
       tts: {
         en: 'tail marker',
+        de: 'schweif marker',
       },
     },
     { id: 'ShinryuEx Shakers',
@@ -449,6 +472,7 @@
         if (data.shakerTargets.indexOf(data.me) == -1) {
           return {
             en: 'avoid earthshakers',
+            de: 'Stöße ausweichen',
           };
         }
       },
@@ -475,9 +499,11 @@
       },
       alarmText: {
         en: 'spread out',
+        de: 'verteilen',
       },
       tts: {
         en: 'spread out',
+        de: 'verteilen',
       },
     },
   ]

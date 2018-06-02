@@ -117,7 +117,7 @@
       regex: /:Archaeolion starts using The Dragon's Voice/,
       regexDe: /:Archaeolöwe starts using Stimme Des Drachen/,
       alertText: {
-        en: 'Dragon Voice: Move In'
+        en: 'Dragon Voice: Move In',
         de: 'Stimme Des Drachen: Rein',
       },
       tts: {
@@ -183,22 +183,24 @@
       regex: /1B:........:(\y{Name}):....:....:007B:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (data.maskValue)
+        if (data.maskValue) {
           return {
             en: 'Move',
             de: 'Bewegen',
           };
+        }
         return {
           en: 'Stop',
           de: 'Stopp',
         };
       },
       tts: function(data) {
-        if (data.maskValue)
+        if (data.maskValue) {
           return {
             en: 'Move',
             de: 'Bewegen',
           };
+        }
         return {
           en: 'Stop',
           de: 'Stopp',
@@ -210,26 +212,29 @@
       regex: /1B:........:(\y{Name}):....:....:007C:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       infoText: function(data) {
-        if (data.maskValue)
+        if (data.maskValue) {
           return {
             en: 'Look Away',
             de: 'Wegschauen',
           };
+        }
         return {
           en: 'Look Towards',
           de: 'Anschauen',
         };
       },
       tts: function(data) {
-        if (data.maskValue)
+        if (data.maskValue) {
+          return {
+            en: 'Look Away',
+            de: 'Wegschauen',
+          };
+        }
         return {
-          en: 'Look Away',
-          de: 'Wegschauen',
+          en: 'Look Towards',
+          de: 'anschauen',
         };
-      return {
-        en: 'Look Towards',
-        de: 'anschauen',
-      };
+      },
     },
   ],
 }]
