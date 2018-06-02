@@ -313,9 +313,8 @@
         'Specter Of Zenos': 'Zenos',
         'Tsukuyomi': 'Tsukuyomi',
 
-        // FIXME
-        'Moondust': 'Moondust',
-        'Moonlight': 'Moonlight',
+        'Moondust': 'Mondfragment',
+        'Moonlight': 'Mondlichtkugel',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -349,13 +348,12 @@
         'Waxing Grudge': 'Wachsender Groll',
         'Zashiki-asobi': 'Zashiki-Asobi',
 
-        // FIXME
-        'Lead/Steel': 'Lead/Steel',
-        'Steel/Lead': 'Steel/Lead',
-        'Homeland adds .E->W.': 'Homeland adds (E->W)',
-        'Empire adds .SW->NW.': 'Empire adds (SW->NW)',
-        'Moonburst': 'Moonburst',
-        'Antitwilight': 'Antitwilight',
+        'Lead/Steel': 'Blei/Stahl',
+        'Steel/Lead': 'Stahl/Blei',
+        'Homeland adds .E->W.': 'Domaner Adds (O->W)',
+        'Empire adds .SW->NW.': 'Garlear Adds (SW->NW)',
+        'Moonburst': 'Mondeinschlag',
+        'Antitwilight': 'Schönheit Der Nacht',
       },
       '~effectNames': {
         'Bleeding': 'Blutung',
