@@ -184,21 +184,25 @@
     },
     { // Wound tracking
       regex: /:(\y{Name}) (gains|loses) the effect of White Wound/,
+      regexDe: /:(\y{Name}) (gains|loses) the effect of Wunde Des Lebenden/,
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data, matches) { data.whiteWound = matches[2] == 'gains'; },
     },
     { // Wound tracking
       regex: /:(\y{Name}) (gains|loses) the effect of Black Wound/,
+      regexDe: /:(\y{Name}) (gains|loses) the effect of Wunde Des Toten/,
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data, matches) { data.blackWound = matches[2] == 'gains'; },
     },
     { // Beyond death tracking
       regex: /:(\y{Name}) (gains|loses) the effect of Beyond Death/,
+      regexDe: /:(\y{Name}) (gains|loses) the effect of Jenseis Des Jenseits/,
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data, matches) { data.beyondDeath = matches[2] == 'gains'; },
     },
     { // Allagan field tracking
       regex: /:(\y{Name}) (gains|loses) the effect of Allagan Field/,
+      regexDe: /:(\y{Name}) (gains|loses) the effect of Allagisches Feld/,
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data, matches) { data.allaganField = matches[2] == 'gains'; },
     },

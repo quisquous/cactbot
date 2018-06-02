@@ -17,13 +17,13 @@
     },
     {
       id: 'O2S Levitation',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_556|Levitation) from/,
+      regex: /:(\y{Name}) gains the effect of Levitation from/,
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data) { data.levitating = true; },
     },
     {
       id: 'O2S Levitation',
-      regex: /:(\y{Name}) loses the effect of (?:Unknown_556|Levitation)/,
+      regex: /:(\y{Name}) loses the effect of Levitation/,
       condition: function(data, matches) { return matches[1] == data.me; },
       run: function(data) { data.levitating = false; },
     },
@@ -84,7 +84,8 @@
     },
     {
       id: 'O2S Elevated',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_54E|Elevated) from/,
+      regex: /:(\y{Name}) gains the effect of Elevated from/,
+      regexDe: /:(\y{Name}) gains the effect of Erhöht from/,
       infoText: function(data) {
         if (!data.role.startsWith('dps')) {
           return {
