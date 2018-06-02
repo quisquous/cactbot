@@ -128,8 +128,7 @@
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
             };
-          }
-          else {
+          } else {
             return {
               en: 'Maniacal Probe: DPS',
               de: 'Tentakeltanz: DDs',
@@ -144,8 +143,7 @@
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
             };
-          }
-          else {
+          } else {
             return {
               en: 'Maniacal Probe: DPS',
               de: 'Tentakeltanz: DDs',
@@ -159,8 +157,7 @@
             en: 'dps probe',
             de: 'dee dees tentakel',
           };
-        }
-        else {
+        } else {
           return {
             en: 'tank heal probe',
             de: 'tenks heiler tentakel',

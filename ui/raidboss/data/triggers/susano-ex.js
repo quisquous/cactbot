@@ -76,14 +76,12 @@
             en: 'Knockback on you (cloud)',
             de: 'Rückstoss auf Dir (Wolke)',
           };
-        }
-        else if (data.churning) {
+        } else if (data.churning) {
           return {
             en: 'Knockback + dice (STOP)',
             de: 'Rückstoss + Würfel (STOPP)',
           };
-        }
-        else {
+        } else {
           return {
             en: 'Knockback on YOU',
             de: 'Rückstoß auf DIR',
@@ -96,14 +94,12 @@
             en: 'knockback with cloud',
             de: 'Rückstoß mit wolke',
           };
-        }
-        else if (data.churning) {
+        } else if (data.churning) {
           return {
             en: 'Knockback with dice',
             de: 'Rückstoß mit Würfel',
           };
-        }
-        else {
+        } else {
           return {
             en: 'Knockback',
             de: 'Rückstoß',
@@ -121,8 +117,7 @@
             en: 'Levinbolt on you (cloud)',
             de: 'Blitz auf Dir (Wolke)',
           };
-        }
-        else {
+        } else {
           return {
             en: 'Levinbolt on you',
             de: 'Blitz auf dir',
@@ -135,8 +130,7 @@
             en: 'bolt with cloud',
             de: 'blitz mit wolke',
           };
-        }
-        else {
+        } else {
           return {
             en: 'bolt',
             de: 'blitz',

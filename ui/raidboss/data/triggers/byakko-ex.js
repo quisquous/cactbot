@@ -53,7 +53,7 @@
         return {
           en: 'Get Behind',
           de: 'Hinter ihn laufen',
-       };
+        };
       },
       tts: {
         en: 'behind',
@@ -65,11 +65,12 @@
       regex: / 14:27DC:Byakko starts using Storm Pulse/,
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       infoText: function(data, matches) {
-        if (data.role == 'healer')
-        return {
-          en: 'AOE',
-          de: 'AoE',
-        };
+        if (data.role == 'healer') {
+          return {
+            en: 'AOE',
+            de: 'AoE',
+          };
+        }
       },
       tts: {
         en: 'aoe',
@@ -108,7 +109,7 @@
     {
       id: 'ByaEx State Of Shock Tank 2',
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
-      regex: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
+      regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       delaySeconds: 12,
       condition: function(data, matches) { return data.role == 'tank' && matches[1] == data.me; },
       alertText: {
