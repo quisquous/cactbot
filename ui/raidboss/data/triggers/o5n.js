@@ -17,23 +17,26 @@
       regex: /14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
       regexDe: /14:28A3:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
           };
-        if (data.role == 'healer')
+        }
+        if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
           };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'buster',
             de: 'tenkbasta',
           };
+        }
       },
     },
     {
@@ -54,15 +57,27 @@
       id: 'O5N Diabolic Light',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Light',
-      tts: 'light',
+      infoText: {
+        en: 'Light',
+        de: 'Licht',
+      },
+      tts: {
+        en: 'light',
+        de: 'licht',
+      },
     },
     {
       id: 'O5N Diabolic Wind',
       regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Wind',
-      tts: 'wind',
+      infoText: {
+        en: 'Wind',
+        de: 'Wind',
+      },
+      tts: {
+        en: 'wind',
+        de: 'wind',
+      },
     },
   ],
   timelineReplace: [

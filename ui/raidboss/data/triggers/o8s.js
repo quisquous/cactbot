@@ -245,8 +245,9 @@
       regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
       regexJa: / 14:2910:ケフカ starts using アルテマte Embrace on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches[1] != data.me) {
           return;
+        }
         return {
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
@@ -254,8 +255,9 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return;
+        }
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Embrace on ' + data.ShortName(matches[1]),
@@ -282,8 +284,9 @@
       regexFr: / 14:(?:28E8|2912):Kefka starts using Colonne De Feu on (\y{Name})/,
       regexJa: / 14:(?:28E8|2912):ケフカ starts using ハイパードライブ on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches[1] != data.me) {
           return;
+        }
         return {
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
@@ -291,8 +294,9 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return;
+        }
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),

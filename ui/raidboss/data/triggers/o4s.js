@@ -14,12 +14,18 @@
     { // Fire III not after Decisive Battle.
       id: 'O4S1 Fire III',
       regex: /:23F5:Exdeath starts using/,
-      infoText: 'Fire III',
+      infoText: {
+        en: 'Fire III',
+        de: 'Feuga',
+      },
     },
     { // Blizzard III not after Decisive Battle.
       id: 'O4S1 Blizzard III',
       regex: /:23F7:Exdeath starts using/,
-      infoText: 'Blizzard III' ,
+      infoText: {
+        en: 'Blizzard III',
+        de: 'Eisga',
+      },
     },
     { // Thunder III not after Decisive Battle.
       id: 'O4S1 Thunder III',
@@ -29,7 +35,10 @@
         if (data.role == 'tank' || data.role == 'healer') return false;
         // Only the first for casters, other dps always get an info.
         if (data.role == 'dps-caster' && data.thunderCount) return false;
-        return 'Thunder III';
+        return {
+          en: 'Thunder III',
+          de: 'Blitzga',
+        };
       },
       alertText: function(data) {
         // Tanks/healers always get an alert.
@@ -733,7 +742,10 @@
           };
         }
       },
-      tts: 'shaker',
+      tts: {
+        en: 'shaker',
+        de: 'erstoß',
+      },
     },
     { // Delta Attack
       id: 'O4S2 Delta Attack',

@@ -6,6 +6,7 @@
     {
       id: 'Tsukuyomi Nightfall Gun',
       regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
+      regexDe: / 14:2BBC:Tsukuyomi starts using Einbruch Der Dunkelheit/,
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
@@ -14,6 +15,7 @@
     {
       id: 'Tsukuyomi Nightfall Spear',
       regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
+      regexDe: / 14:2BBD:Tsukuyomi starts using Einbruch Der Dunkelheit/,
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
@@ -22,6 +24,7 @@
     {
       id: 'Tsukuyomi Torment',
       regex: / 14:2BBB:Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
+      regexDe: / 14:2BBB:Tsukuyomi starts using Todesqualen on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank') {
           return;
@@ -65,6 +68,7 @@
     },
     {
       regex: /:Tsukuyomi gains the effect of Full Moon/,
+      regexDe: /:Tsukuyomi gains the effect of Vollmond/,
       run: function(data) {
         var moonInOut = {
           en: 'Out',
@@ -75,6 +79,7 @@
     },
     {
       regex: /:Tsukuyomi gains the effect of New Moon/,
+      regexDe: /:Tsukuyomi gains the effect of Neumond/,
       run: function(data) {
         var moonInOut = {
           en: 'In',
@@ -86,6 +91,7 @@
     {
       id: 'Tsukuyomi Dark Blade',
       regex: / 14:2BDA:Tsukuyomi starts using Dark Blade/,
+      regexDe: / 14:2BDA:Tsukuyomi starts using Dunkle Klinge/,
       infoText: function(data) {
         return {
           en: 'Left + ' + data.moonInOut,
@@ -104,6 +110,7 @@
     {
       id: 'Tsukuyomi Bright Blade',
       regex: / 14:2BDB:Tsukuyomi starts using Bright Blade/,
+      regexDe: / 14:2BDB:Tsukuyomi starts using Helle Klinge/,
       infoText: function(data) {
         return {
           en: 'Right + ' + data.moonInOut,
@@ -144,6 +151,7 @@
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
       condition: function(data, matches) { return matches[1] == data.me },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
@@ -160,6 +168,7 @@
     {
       id: 'Tsukuyomi Moonlit Debuff',
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
       condition: function(data, matches) { return matches[1] == data.me && data.moonlitCount >= 4; },
       infoText: {
         en: 'Move to Black!',
@@ -169,6 +178,7 @@
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
       regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Mondschatten/,
       condition: function(data, matches) { return matches[1] == data.me },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
@@ -185,6 +195,7 @@
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
       regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Mondschatten/,
       condition: function(data, matches) { return matches[1] == data.me && data.moonshadowedCount >= 4; },
       infoText: {
         en: 'Move to White!',

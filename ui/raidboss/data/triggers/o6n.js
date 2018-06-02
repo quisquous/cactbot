@@ -8,31 +8,40 @@
       regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
       regex: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
           };
-        if (data.role == 'healer')
+        }
+        if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
           };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'buster',
             de: 'basta',
           };
+        }
       },
     },
     {
       id: 'O6N Meteors',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Drop AOEs Away',
-      tts: 'aoes',
+      infoText: {
+        en: 'Drop AOEs Away',
+        de: 'AoEs weglocken',
+      },
+      tts: {
+        en: 'aoes',
+        de: 'Flächen',
+      },
     },
   ],
   timelineReplace: [
