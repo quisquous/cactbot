@@ -243,6 +243,7 @@
         data.mathDirection = function() {
           if (!this.correctMath)
             return;
+          console.log('Subtract: hp: ' + this.currentHP + ', boost: ' + (this.hpBoost || 0));
           var number = this.currentHP - (this.hpBoost || 0);
           if (number < 1 || number > 9) {
             console.error('Bad math: ' + number)
