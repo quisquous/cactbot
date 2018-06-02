@@ -21,7 +21,8 @@
     },
     {
       id: 'Tsukuyomi Torment',
-      regex: / 14:2BBB:Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
+      // Different vuln type busters have different ability ids.
+      regex: / 14:(?:2BBB|2BE2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
