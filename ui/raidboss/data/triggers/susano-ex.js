@@ -40,27 +40,30 @@
       regex: /:Susano readies Stormsplitter\./,
       regexDe: /:Susano readies Sturmspalter\./,
       alertText: function(data) {
-        if (data.role == 'tank')
+        if (data.role == 'tank') {
           return {
             en: 'Tank Swap',
             de: 'Tank Wechsel',
           };
+        }
         return false;
       },
       infoText: function(data) {
-        if (data.role == 'healer')
+        if (data.role == 'healer') {
           return {
             en: 'Tank Buster',
             de: 'Tank Buster',
           };
+        }
         return false;
       },
       tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'tank buster',
             de: 'tenkbasta',
           };
+        }
       },
     },
     { // Red knockback marker indicator
@@ -68,38 +71,40 @@
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: function(data) {
-        if (data.cloud)
+        if (data.cloud) {
           return {
             en: 'Knockback on you (cloud)',
             de: 'Rückstoss auf Dir (Wolke)',
           };
-        else if (data.churning)
+        } else if (data.churning) {
           return {
             en: 'Knockback + dice (STOP)',
             de: 'Rückstoss + Würfel (STOPP)',
           };
-        else
+        } else {
           return {
             en: 'Knockback on YOU',
             de: 'Rückstoß auf DIR',
           };
+        }
       },
       tts: function(data) {
-        if (data.cloud)
+        if (data.cloud) {
           return {
             en: 'knockback with cloud',
             de: 'Rückstoß mit wolke',
           };
-        else if (data.churning)
+        } else if (data.churning) {
           return {
             en: 'Knockback with dice',
             de: 'Rückstoß mit Würfel',
           };
-        else
+        } else {
           return {
             en: 'Knockback',
             de: 'Rückstoß',
           };
+        }
       },
     },
     { // Levinbolt indicator
@@ -107,28 +112,30 @@
       regex: /1B:........:(\y{Name}):....:....:006E:0000:0000:0000:/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: function(data) {
-        if (data.cloud)
+        if (data.cloud) {
           return {
             en: 'Levinbolt on you (cloud)',
             de: 'Blitz auf Dir (Wolke)',
           };
-        else
+        } else {
           return {
             en: 'Levinbolt on you',
             de: 'Blitz auf dir',
           };
+        }
       },
       tts: function(data) {
-        if (data.cloud)
+        if (data.cloud) {
           return {
             en: 'bolt with cloud',
             de: 'blitz mit wolke',
           };
-        else
+        } else {
           return {
             en: 'bolt',
             de: 'blitz',
           };
+        }
       },
     },
     { // Levinbolt indicator debug
@@ -145,11 +152,12 @@
       infoText: function(data, matches) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
-        if (data.role == 'tank')
+        if (data.role == 'tank') {
           return {
             en: 'Stun: ' + matches[1],
             de: 'Paralyse ' + matches[1],
           };
+        }
       },
     },
     { // Churning (dice)

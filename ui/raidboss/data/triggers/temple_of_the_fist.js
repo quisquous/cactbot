@@ -8,7 +8,7 @@
       regexDe: /:1FDC:Arbuda starts using Links & Rechts/,
       alertText: {
         en: 'front/back are safe',
-        de: 'Vorne und Hinten sicher',
+        de: 'Vorne/Hinten sicher',
       },
       tts: {
         en: 'go front or back',
@@ -21,11 +21,11 @@
       regexDe: /:1FDB:Arbuda starts using Vor & Zurück/,
       alertText: {
         en: 'sides are safe',
-        de: 'Flanken sicher',
+        de: 'Seiten sind sicher',
       },
       tts: {
         en: 'go sides',
-        de: 'an die flanken',
+        de: 'zur Seite',
       },
     },
     {
@@ -34,11 +34,11 @@
       regexDe: /:1FDE:Arbuda starts using Vorausahnung/,
       alertText: {
         en: 'watch for safe',
-        de: 'Nach Sicherheit schauen',
+        de: 'nach Sicherheit schauen',
       },
       tts: {
         en: 'watch for safe',
-        de: 'Nach Sicherheit schauen',
+        de: 'nach sicherheit schauen',
       },
     },
   ],

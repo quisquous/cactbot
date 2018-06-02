@@ -8,31 +8,33 @@
       regexDe: /14:2AD5:Nichts-Garm starts using Stimme Des Drachen/,
       infoText: {
         en: "Dragon's Voice",
-        de: "Stimme Des Drachen",
+        de: 'Stimme Des Drachen',
       },
       tts: {
         en: "Dragon's Voice",
-        de: "Stimme Des Drachen",
+        de: 'drache',
       },
     },
     {
       id: 'Euereka Sabotender Stack Marker',
       regex: /14:29EB:Sabotender Corrido starts using 100,000 Needles on (\y{Name})/,
-      regexDe: /14:29EB:Sabotender Corrido starts using 100.000 Nadeln on (\y{Name})/,
+      regexDe: /14:29EB:Sabotender Corrido starts using 100\.000 Nadeln on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches[1] != data.me) {
           return;
+        }
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return;
+        }
         return {
           en: '100k Needle Stack',
-          de: '100k Nadeln Stack',
+          de: '100k Nadeln Stack'
         };
       },
       tts: function(data, matches) {
@@ -64,7 +66,7 @@
     {
       id: 'Eureka Poly Swing',
       regex: /14:2A6E:Polyphemus starts using 10,000-Tonze Swing/,
-      regexDe: /14:2A6E:Polyphemus starts using 10.000-Tonzen-Schwung/,
+      regexDe: /14:2A6E:Polyphemus starts using 10\.000-Tonzen-Schwung/,
       alarmText: {
         en: 'GET OUT',
         de: 'RAUS DA',
@@ -84,7 +86,7 @@
       },
       tts: {
         en: 'eye donut',
-        de: 'Augendonat',
+        de: 'augen dohnat'
       },
     },
     {
@@ -93,11 +95,11 @@
       regexDe: /14:2A72:Polyphemus starts using Finsterer Blick/,
       alertText: {
         en: 'Glower Laser',
-        de: 'Augenlaser',
+        de: 'Blick Laser',
       },
       tts: {
         en: 'Glower',
-        de: 'leser',
+        de: 'Blick Lehsa',
       },
     },
     {
@@ -106,7 +108,7 @@
       regexDe: /14:2A64:Caym starts using Doppeltes Hex-Auge/,
       alarmText: {
         en: 'Look Away!',
-        de: 'Wegschauen',
+        de: 'Wegschauen!',
       },
       tts: {
         en: 'look away',
@@ -133,7 +135,7 @@
       condition: function(data, matches) { return matches[1] == data.me; },
       alertText: {
         en: 'Ice ball on you!',
-        de: 'Eisball auf Dir!',
+        de: 'Eisball auf dir!',
       },
       tts: {
         en: 'ice ball',
@@ -146,7 +148,7 @@
       regexDe: /14:2899:Pazuzu starts using Furchtwind/,
       alarmText: {
         en: 'Get Out',
-        de: 'Raus da!',
+        de: 'Raus da',
       },
       tts: {
         en: 'get out',
@@ -159,11 +161,11 @@
       condition: function(data, matches) { return matches[1] == data.me; },
       alertText: {
         en: 'Buster on YOU',
-        de: 'Buster auf DIR',
+        de: 'Tenkbasta auf DIR',
       },
       tts: {
         en: 'buster',
-        de: 'tenkbasta',
+        de: 'basta',
       },
     },
     {
@@ -185,11 +187,11 @@
       regexDe: /14:2896:Pazuzu starts using Heuschreckenplage/,
       alarmText: {
         en: 'Plague Donut',
-        de: 'Plagendonut',
+        de: 'Plagen-Donut',
       },
       tts: {
         en: 'plague donut',
-        de: 'Plagendonat',
+        de: 'plagen dohnat',
       },
     },
     {
@@ -199,7 +201,10 @@
       infoText: function(data) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
-        return 'wraiths: ' + data.wraithCount;
+        return {
+          en: 'wraiths: ' + data.wraithCount,
+          de: 'Geister: ' + data.wraithCount,
+        };
       },
       soundVolume: 0,
     },

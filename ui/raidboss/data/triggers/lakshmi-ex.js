@@ -4,8 +4,9 @@
   timelineFile: 'lakshmi-ex.txt',
   timeline: [
     function(data) {
-      if (data.role == 'tank')
+      if (data.role == 'tank') {
         return 'infotext "Path of Light" before 5 "Cleave Soon"';
+      }
     },
   ],
   triggers: [
@@ -53,12 +54,12 @@
       regex: /:2149:Lakshmi starts using Divine Denial/,
       regexDe: /:2149:Lakshmi starts using Göttliche Leugnung/,
       alertText: {
-        en: 'Vril + Knockback',
+        en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
       },
       tts: {
-        en: 'Vrill and Knockback',
-        de: 'Wriel und Rückstoß',
+        en: 'vrill and knockback',
+        de: 'wriel und rückstoß',
       },
     },
     {
@@ -66,12 +67,12 @@
       regex: /:214B:Lakshmi starts using Divine Desire/,
       regexDe: /:214B:Lakshmi starts using Göttliche Lockung/,
       alertText: {
-        en: 'Vril + Be Outside',
-        de: 'Vril + Draußen bleiben',
+        en: 'Vrill + Be Outside',
+        de: 'Vril + Außen',
       },
       tts: {
-        en: 'Vrill and outside',
-        de: 'Wriel und draußenbleiben',
+        en: 'vrill and outside',
+        de: 'wriel und raus',
       },
     },
     {
@@ -79,46 +80,54 @@
       regex: /:214A:Lakshmi starts using Divine Doubt/,
       regexDe: /:214A:Lakshmi starts using Göttliche Bestürzung/,
       alertText: {
-        en: 'Vril + Pair up',
-        de: 'Vril und Pärchen bilden',
+        en: 'Vrill + Pair Up',
+        de: 'Vril + Pärchen bilden',
       },
       tts: {
         en: 'vrill and buddy',
-        de: 'Wriel und pärchen',
+        de: 'wriel und zu partner',
       },
     },
     { // Stack marker
       id: 'Lakshmi Pall of Light',
       regex: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: function(data, matches) {
-        if (!data.chanchala)
+        if (!data.chanchala) {
           return;
-        if (data.me == matches[1])
+        }
+        if (data.me == matches[1]) {
           return {
             en: 'Vrill + Stack on YOU',
             de: 'Vril + Stack auf DIR',
           };
+        }
         return {
           en: 'Vrill + Stack',
           de: 'Vril + Stack',
         };
       },
       infoText: function(data, matches) {
-        if (data.chanchala)
+        if (data.chanchala) {
           return;
-        if (data.me == matches[1])
+        }
+        if (data.me == matches[1]) {
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
           };
-        return 'Stack';
+        }
+        return {
+          en: 'Stack',
+          de: 'Stack',
+        };
       },
       tts: function(data) {
-        if (data.chanchala)
+        if (data.chanchala) {
           return {
             en: 'vrill and stack',
             de: 'vril und stek',
           };
+        }
         return {
           en: 'stack',
           de: 'stek',
@@ -129,18 +138,20 @@
       id: 'Lakshmi Stotram',
       regex: /:2147:Lakshmi starts using Stotram/,
       alertText: function(data) {
-        if (data.chanchala)
+        if (data.chanchala) {
           return {
             en: 'Vrill for AOE',
             de: 'Vril fuer Flaechenangriff',
           };
+        }
       },
       tts: function(data) {
-        if (data.chanchala)
+        if (data.chanchala) {
           return {
             en: 'vrill for aoe',
             de: 'Wriel für fläche',
           };
+        }
       },
     },
     { // Offtank cleave
@@ -199,12 +210,12 @@
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alertText: {
-        en: 'Move away',
-        de: 'Weglaufen',
+        en: 'Move Away',
+        de: 'Weg da',
       },
       tts: {
-        en: 'Move away',
-        de: 'wecklaufen',
+        en: 'Move Away',
+        de: 'weck da',
       },
     },
   ]

@@ -21,23 +21,26 @@
       regex: / 14:276C:Guardian starts using Arm And Hammer on (\y{Name})/,
       regexDe: / 14:276C:Wächter starts using Arm-Hammer on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
           };
-        if (data.role == 'healer')
+        }
+        if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
           };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'buster',
             de: 'basta',
           };
+        }
       },
     },
     {
@@ -49,7 +52,7 @@
         de: 'Rückstoß',
       },
       tts: {
-        en: 'Knockback',
+        en: 'knockback',
         de: 'Rückstoß',
       },
     },
@@ -58,34 +61,36 @@
       regex: / 14:2761:Guardian starts using Diffractive Laser/,
       regex: / 14:2761:Wächter starts using Diffraktiver Laser/,
       alertText: {
-        en: 'Get out',
-        de: 'Rausgehen',
+        en: 'Get Out',
+        de: 'Raus da',
       },
       tts: {
         en: 'out',
-        de: 'raus da',
+        de: 'raus',
       },
     },
     {
       id: 'O7N Prey',
       regex: /1B:........:(\y{Name}):....:....:001E:0000:0000:0000:/,
       infoText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches[1]) {
           return {
             en: 'Prey on YOU',
             de: 'Beute auf DIR',
           };
+        }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
           de: 'Beute auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function (data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches[1]) {
           return {
             en: 'prey',
             de: 'beute',
           };
+        }
       },
     },
   ],

@@ -49,8 +49,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank')
+        if (matches[1] == data.me || data.role == 'tank') {
           return;
+        }
         return {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
@@ -58,6 +59,7 @@
       },
       tts: {
         en: 'akh morn',
+        de: 'akh morn',
       },
     },
     { id: 'ShinryuEx Diamond Dust',
@@ -69,6 +71,7 @@
       },
       tts: {
         en: 'stop',
+        de: 'stopp',
       },
     },
     { id: 'ShinryuEx Dragonfist',
@@ -109,7 +112,7 @@
         }
         return {
           en: 'Stack in water',
-          de: 'Im wasser stacken',
+          de: 'In Wasser stacken',
         };
       },
       tts: function(data) {
@@ -266,7 +269,7 @@
       // TODO: If tail is alive, delay this message?
       infoText: {
         en: 'Heart: Switch targets',
-        de: 'Herz: Zielwechsel',
+        de: 'Herz: Ziel wechseln',
       },
       tts: {
         en: 'heart',
@@ -383,7 +386,7 @@
       condition: function(data) { return !data.finalWing; },
       alertText: {
         en: 'kill left first',
-        de: 'Linke Schwinge zuerst',
+        de: 'linken Flügel zuerst',
       },
       tts: {
         en: 'left first',
@@ -397,7 +400,7 @@
       condition: function(data) { return !data.finalWing; },
       alertText: {
         en: 'kill right first',
-        de: 'Rechte Schwinge zuerst',
+        de: 'rechten Flügel zuerst',
       },
       tts: {
         en: 'right first',
@@ -443,7 +446,7 @@
       },
       alarmText: {
         en: 'tail marker on you',
-        de: 'Schweif Marker auf DIR',
+        de: 'Schweifmarker auf dir',
       },
       tts: {
         en: 'tail marker',
@@ -469,7 +472,7 @@
         if (data.shakerTargets.indexOf(data.me) == -1) {
           return {
             en: 'avoid earthshakers',
-            de: 'Erdstoß ausweichen',
+            de: 'Stöße ausweichen',
           };
         }
       },

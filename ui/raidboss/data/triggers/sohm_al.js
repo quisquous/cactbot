@@ -19,8 +19,8 @@
         };
       },
       tts: {
-        en: 'Stack',
-        de: 'Stek',
+        en: 'stack',
+        de: 'stek',
       },
     },
     {
@@ -30,7 +30,7 @@
         if (data.matches[1] == data.me) {
           return {
             en: 'Move away from others',
-            de: 'Weg von den anderen!',
+            de: 'Weg von den anderen',
           };
         }
         return {
@@ -49,13 +49,13 @@
       regexDe: /:Added new combatant Gebirgsbrei/,
       alertText: function(data) {
         return {
-          en: 'Kill Chyme add',
-          de: 'Brei Add töten!',
+          en: 'Kill Chyme Add',
+          de: 'Brei Add töten',
         };
       },
       tts: {
         en: 'kill chyme',
-        de: 'Brei töten',
+        de: 'brei töten',
       },
     },
     {
@@ -65,7 +65,7 @@
         if (data.matches[1] == data.me) {
           return {
             en: 'place meteor on edge',
-            de: 'Meteor am Rand ablegen',
+            de: 'Meteor an Kante ablegen',
           };
         }
       },
@@ -73,8 +73,8 @@
         if (data.matches[1] == data.me) {
           return {
             en: 'meteor',
-            de: 'Meteor',
-          };
+            de: 'meteor',
+         };
         }
       },
     },

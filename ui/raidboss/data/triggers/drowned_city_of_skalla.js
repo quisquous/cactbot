@@ -11,7 +11,7 @@
       alertText: function(data) {
         return data.role == 'tank' ? 'tank cleave' : '';
       },
-      tts:  {
+      tts: {
         en: 'tank cleave',
         de: 'tenk klief',
       },
@@ -36,7 +36,10 @@
       regex: /:Hrodric Poisontongue starts using Eye Of The Fire/,
       regexDe: /:Hrodric Giftzunge starts using Feuerauge/,
       alertText: function(data) {
-        return "look away";
+        return {
+          en: "look away",
+          de: 'wegschauen',
+        };
       },
       tts: {
         en: 'look away',
@@ -48,11 +51,14 @@
       regex: /:Hrodric Poisontongue starts using Words Of Woe/,
       regexDe: /:Hrodric Giftzunge starts using Wehklagende Worte/,
       infoText: function(data) {
-        return "avoid eye lasers";
+        return {
+          en: "avoid eye lasers",
+          de: 'Augenlaser ausweichen',
+        };
       },
       tts: {
         en: 'eye laser',
-        de: 'augenlehser',
+        de: 'augen lesa',
       },
     },
   ]

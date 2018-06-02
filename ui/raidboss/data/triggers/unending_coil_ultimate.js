@@ -128,20 +128,22 @@
       regexFr: /:Gémellia readies Peine De Mort/,
       regexJa: /:ツインタニア readies デスセンテンス/,
       alertText: function(data, matches) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Death Sentence',
             fr: 'Peine de mort',
             de: 'Todesurteil'
           };
+        }
       },
       tts: function(data, matches) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'buster',
             fr: 'Anti-tank',
             de: 'basta'
           };
+        }
       },
     },
     { // Hatch Collect
@@ -485,25 +487,29 @@
       regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return data.me == matches[1]; },
       durationSeconds: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) <= 6)
+        if (data.ParseLocaleFloat(matches[2]) <= 6) {
           return 3;
-        if (data.ParseLocaleFloat(matches[2]) <= 10)
+        }
+        if (data.ParseLocaleFloat(matches[2]) <= 10) {
           return 6;
+        }
         return 9;
       },
       alarmText: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) <= 6)
+        if (data.ParseLocaleFloat(matches[2]) <= 6) {
           return {
             en: 'Doom #1 on YOU',
             fr: 'Glas #1 sur VOUS',
             de: 'Verhängnis #1 auf DIR',
           };
-        if (data.ParseLocaleFloat(matches[2]) <= 10)
+        }
+        if (data.ParseLocaleFloat(matches[2]) <= 10) {
           return {
             en: 'Doom #2 on YOU',
             fr: 'Glas #2 sur VOUS',
             de: 'Verhängnis #2 auf DIR',
           };
+        }
         return {
           en: 'Doom #3 on YOU',
           fr: 'Glas #3 sur VOUS',
@@ -511,10 +517,12 @@
         };
       },
       tts: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) <= 6)
+        if (data.ParseLocaleFloat(matches[2]) <= 6) {
           return '1';
-        if (data.ParseLocaleFloat(matches[2]) <= 10)
+        }
+        if (data.ParseLocaleFloat(matches[2]) <= 10) {
           return '2';
+        }
         return '3';
       },
     },
@@ -527,12 +535,13 @@
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         var order = null;
-        if (data.ParseLocaleFloat(matches[2]) < 9)
+        if (data.ParseLocaleFloat(matches[2]) < 9) {
           order = 0;
-        else if (data.ParseLocaleFloat(matches[2]) < 14)
+        } else if (data.ParseLocaleFloat(matches[2]) < 14) {
           order = 1;
-        else
+        } else {
           order = 2;
+        }
         data.dooms[order] = matches[1];
       },
     },
@@ -639,15 +648,19 @@
       suppressSeconds: 99999,
       infoText: function(data) {
         var tookTwo = data.fireballs[1].filter(function(p) { return data.fireballs[2].indexOf(p) >= 0; });
-        if (tookTwo.indexOf(data.me) >= 0)
+        if (tookTwo.indexOf(data.me) >= 0) {
           return;
+        }
         var str = '';
         if (tookTwo.length > 0) {
           str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ');
-          if (data.lang == 'fr')
+          if (data.lang == 'fr') {
             str += ' éviter)';
-          else
+          } else if (data.lang == 'de') {
+            str += ' raus)';
+          } else {
             str += ' out)';
+          }
         }
         return {
           en: 'Fire IN' + str,
@@ -658,20 +671,22 @@
       alertText: function(data) {
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to not stack.
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
+        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
           return {
             en: 'Fire IN: AVOID!',
             fr: "Feu EN DEDANS : L'ÉVITER !",
             de: 'Feuer INNEN: AUSWEICHEN!',
           };
+        }
       },
       tts: function(data) {
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0)
+        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
           return {
             en: 'avoid fire in',
             fr: 'Éviter le feu en dedans',
             de: 'feuer innen ausweichen',
           };
+        }
         return {
           en: 'fire in',
           fr: 'Feu en dedans',
@@ -693,23 +708,25 @@
         data.tookThreeFireballs = tookThree.indexOf(data.me) >= 0;
       },
       infoText: function(data) {
-        if (!data.tookThreeFireballs)
+        if (!data.tookThreeFireballs) {
           return {
             en: 'Fire IN',
             fr: 'Feu EN DEDANS',
             de: 'Feuer INNEN',
           };
+        }
       },
       alertText: function(data) {
         // It's possible that you can take 1, 2, and 3 even if nobody dies with
         // careful ice debuff luck.  However, this means you probably shouldn't
         // take 4.
-        if (data.tookThreeFireballs)
+        if (data.tookThreeFireballs) {
           return {
             en: 'Fire IN: AVOID!',
             fr: "Feu EN DEDANS : L'ÉVITER !",
             de: 'Feuer INNEN: AUSWEICHEN!',
           };
+        }
       },
       tts: function(data) {
         return {
@@ -749,7 +766,7 @@
         var dir_names;
         if (data.lang == 'fr')
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
-        if (data.lang == 'de')
+        else if (data.lang == 'de')
           dir_names = ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'];
         else
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
@@ -997,22 +1014,26 @@
       id: 'UCU Megaflare Tower',
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
       infoText: function(data) {
-        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
+        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4) {
           return;
-        if (data.megaStack.indexOf(data.me) >= 0)
+        }
+        if (data.megaStack.indexOf(data.me) >= 0) {
           return;
-        if (data.trio == 'blackfire')
+        }
+        if (data.trio == 'blackfire') {
           return {
             en: 'Tower, bait hypernova',
             fr: 'Tour, appâter Supernova',
             de: 'Turm, Hypernova ködern',
           };
-        if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
+        }
+        if (!data.lastOctetMarker || data.lastOctetMarker == data.me) {
           return {
             en: 'Bait Twin, then tower',
             fr: 'Appâter Gémellia, puis tour',
             de: 'Twintania in Turm locken',
           };
+        }
         return {
           en: 'Get in a far tower',
           fr: 'Aller dans une tour lointaine',
@@ -1020,8 +1041,9 @@
         };
       },
       tts: function(data) {
-        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
+        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4) {
           return;
+        }
         if (data.megaStack.indexOf(data.me) == -1) {
           return {
             en: 'tower',
@@ -1069,14 +1091,16 @@
       },
       infoText: function(data) {
         if (data.trio == 'quickmarch') {
-          if (data.shakers.length != 3)
+          if (data.shakers.length != 3) {
             return;
-          if (data.shakers.indexOf(data.me) == -1 && data.role != 'tank')
+          }
+          if (data.shakers.indexOf(data.me) == -1 && data.role != 'tank') {
             return {
               en: 'No shaker; stack south.',
               fr: 'Pas de Secousse; se rassembler au Sud.',
               de: 'Kein Erdstoß; im süden sammeln',
             };
+          }
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
             if (data.shakers.indexOf(data.me) == -1) {
@@ -1093,18 +1117,20 @@
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)
             return;
-          if (data.role == 'tank')
+          if (data.role == 'tank') {
             return {
               en: 'tether',
               fr: 'Lien',
               de: 'Verbindung',
             };
-          if (data.shakers.indexOf(data.me) == -1)
+          }
+          if (data.shakers.indexOf(data.me) == -1) {
             return {
               en: 'stack south',
               fr: 'Se rassembler au sud',
               de: 'stek im süden',
             };
+          }
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
             if (!(data.me in data.shakers)) {
@@ -1135,12 +1161,13 @@
       },
       alertText: function(data, matches) {
         var str = 'Morn Afah #' + data.mornAfahCount;
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
             de: str + ' (DU)',
           };
+        }
         return str + ' (' + data.ShortName(matches[1]) + ')';
       },
       tts: function(data, matches) {

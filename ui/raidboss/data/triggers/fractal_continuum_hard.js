@@ -12,7 +12,7 @@
       },
       tts: {
         en: 'swipe',
-        de: 'hieb',
+        de: 'Hieb',
       },
     },
     {
@@ -24,8 +24,8 @@
         de: 'Schwung',
       },
       tts: {
-        en: 'Swing',
-        de: 'schwung',
+        en: 'swing',
+        de: 'Schwung',
       },
     },
     {
@@ -73,7 +73,7 @@
       regexDe: /14:27(?:A3|AF|B0):Ultimative Bestie starts using Ätherbeugung/,
       alertText: {
         en: 'Get In',
-        de: 'Rein gehen',
+        de: 'Reingehen',
       },
       tts: {
         en: 'in in in',

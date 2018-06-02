@@ -14,8 +14,9 @@
           '4': 'Southwest',
         };
 
-        if (!(matches[1] in big_ice_dir))
+        if (!(matches[1] in big_ice_dir)) {
           return '';
+        }
         return {
           en: 'Big Ice: ' + big_ice_dir[matches[1]],
           de: 'Grosses Eis: ' + big_ice_dir[matches[1]],
@@ -30,9 +31,13 @@
           '4': 'Southwest',
         };
 
-        if (!(matches[1] in big_ice_dir))
+        if (!(matches[1] in big_ice_dir)) {
           return '';
-        return big_ice_dir[matches[1]] + ' big ice';
+        }
+        return {
+          en: big_ice_dir[matches[1]] + ' big ice',
+          de: big_ice_dir[matches[1]] + ' großes Eis',
+        };
       },
     },
   ],

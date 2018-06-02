@@ -6,7 +6,7 @@
     {
       id: 'ByaEx Heavenly Strike',
       regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
-      regexDe: / 14:27DA:Byakko starts using Himmelszorn on (\y{Name})/,
+      regexDe: / 14:27DA:Byakko starts using Himmlischer Schlag on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -36,8 +36,8 @@
       regexDe: / 14:27F4:Byakko starts using Vertikalität/,
       alertText: function(data, matches) {
         return {
-          en: 'Get inside',
-          de: 'rein',
+          en: 'Get Inside',
+          de: 'Reingehen',
         };
       },
       tts: {
@@ -51,8 +51,8 @@
       regexDe: / 14:27DB:Byakko starts using Vertikalität/,
       alertText: function(data, matches) {
         return {
-          en: 'get behind',
-          de: 'Hinter ihn!',
+          en: 'Get Behind',
+          de: 'Hinter ihn laufen',
         };
       },
       tts: {
@@ -66,7 +66,10 @@
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       infoText: function(data, matches) {
         if (data.role == 'healer') {
-          return 'AOE';
+          return {
+            en: 'AOE',
+            de: 'AoE',
+          };
         }
       },
       tts: {
@@ -96,11 +99,11 @@
       condition: function(data, matches) { return data.role == 'tank' && matches[1] != data.me; },
       alertText: {
         en: 'Provoke Boss',
-        de: 'Boss Abspotten',
+        de: 'Boss abspotten',
       },
       tts: {
-        en: 'provoke',
-        de: 'boss abspotten',
+        en: 'Provoke',
+        de: 'abspotten',
       },
     },
     {
@@ -111,11 +114,11 @@
       condition: function(data, matches) { return data.role == 'tank' && matches[1] == data.me; },
       alertText: {
         en: 'Provoke Boss',
-        de: 'Boss Abspotten',
+        de: 'Boss abspotten',
       },
-      tts:  {
-        en: 'provoke',
-        de: 'boss abspotten',
+      tts: {
+        en: 'Provoke',
+        de: 'abspotten',
       },
     },
     {
@@ -137,8 +140,8 @@
         }
         if (data.role == 'tank') {
           return {
-            en: 'Tank LB now!',
-            de: 'Tank Limitrausch!',
+            en: 'Tank LB NOW',
+            de: 'JETZT Tank LB',
           };
         }
       },
@@ -148,8 +151,8 @@
         }
         if (data.role == 'tank') {
           return {
-            en: 'Tank LB now',
-            de: 'Tenk Limitrausch',
+            en: 'Tank LB NOW',
+            de: 'JETZT Tank LB',
           };
         }
       },
@@ -164,7 +167,7 @@
           de: 'Blase außen ablegen',
         };
       },
-      tts:  {
+      tts: {
         en: 'drop outside',
         de: 'außen ablegen',
       },
@@ -180,7 +183,7 @@
           de: 'Pinke Blase',
         };
       },
-      tts:  {
+      tts: {
         en: 'bubble',
         de: 'blase',
       },
@@ -206,22 +209,31 @@
       condition: function(data, matches) { return matches[1] == data.me; },
       infoText: function(data) {
         return {
-          en: 'Get Away',
+          en: 'Get away',
           de: 'Weg da',
         };
       },
-      tts: 'get away',
+      tts: {
+        en: 'fet away',
+        de: 'weck da',
+      },
     },
     {
       id: 'ByaEx Tiger Add',
       regex: / 00:0044:Twofold is my wrath, twice-cursed my foes!/,
-      regex: / 00:0044:Stürmt los, meine zwei Gesichter!/,
+      regexDe: / 00:0044:Stürmt los, meine zwei Gesichter!/,
       infoText: function(data) {
         if (data.role == 'tank') {
-          return 'Tiger Add';
+          return {
+            en: 'Tiger Add',
+            de: 'Tiger Add',
+          };
         }
       },
-      tts: 'tiger add',
+      tts: {
+        en: 'Tiger Add',
+        de: 'Tiger Add',
+      },
     },
     {
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
@@ -244,7 +256,10 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       infoText: function(data) {
-        return 'Stack #' + data.stakeCount;
+        return {
+          en: 'Stack #' + data.stakeCount,
+          de: 'Stack #' + data.stakeCount,
+        };
       },
       tts: function(data) {
         return {
