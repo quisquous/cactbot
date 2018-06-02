@@ -243,4 +243,59 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      locale: 'de',
+      replaceSync: {
+        'Specter Of The Patriarch': 'Yotsuyus Ziehvater',
+        'Specter Of Asahi': 'Asahi',
+        'Specter of Zenos': 'Zenos',
+        'Specter of Gosetsu': 'Gosetsu',
+        ':Moondust:2BD1:': ':Mondfragment:2BD1:',
+        ':Moonlight:2BD6:': ':Mondlichtkugel:2BD1:',
+        'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
+        //FIXME - Will have to look this up later
+        'Specter:2BCC:': 'Specter:2BCC',
+
+      },
+      replaceText: {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Engage!': 'Start!',
+
+        'Reprimand': 'Maßregelung',
+        'Nightfall': 'Einbruch Der Dunkelheit',
+        'Lead/Steel': 'Blei/Stahl',
+        'Steel/Lead': 'Stahl/Blei',
+        'Homeland adds (E->W)': 'Domaner Adds (O->W)',
+        'Empire adds (SW->NW)': 'Garlear Adds (SW->NW)',
+        'Concentrativity': 'Konzentriertheit',
+        'Dispersivity': 'Dispersivität',
+
+        'Supreme Selenomancy': 'Hohe Mondprophezeiung',
+        'Tsuki-no-Kakera': 'Mondsplitter',
+        'Nightfall (gun)': 'Einbruch Des Dunkelheit (Pistole)',
+        'Lead of the Underworld': 'Blei Der Unterwelt',
+        'Midnight Rain': 'Mitternachtsregen',
+        'Moonburst': 'Mondeinschlag',
+        'Lunar Halo': 'Flammender Mond',
+        'Lunar Rays': 'Mondschimmer',
+        'Crater': 'Krater',
+        'Antitwilight/Perilune': 'Schönheit Der Nacht/Zenit Des Mondes',
+
+        'Zashiki-asobi': 'Zashiki-Asobi',
+        'Tsuki-no-Maiogi': 'Mondfächer',
+        'Torment Unto Death': 'Todesqualen',
+        'Steel Of The Underworld': 'Stahl Der Unterwelt',
+        'Antitwilight': 'Schönheit Der Nacht',
+
+        'Dance Of The Dead': 'Tanz Der Toten',
+        'Bright/Dark Blade': 'Helle/Dunkle Klinge',
+        'Waning/Waxing Grudge': 'Schwindender/Wachsender Groll',
+
+        'Lunacy': 'Mondscheinblüte',
+        'Hagetsu': 'Hagetsu',
+      },
+    },
+  ],
 }]
