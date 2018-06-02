@@ -74,7 +74,7 @@
           return {
             en: 'meteor',
             de: 'meteor',
-          };
+         };
         }
       },
     },

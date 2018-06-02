@@ -1,4 +1,5 @@
 # The Ridorana Lighthouse
+# https://docs.google.com/document/d/1EJMARltDR6Pmts1o5gqMl9pd5weTfROVFu1o1YwgAPk/edit
 
 hideall "--reset--"
 hideall "--sync--"
@@ -15,7 +16,7 @@ hideall "--sync--"
 13 "Tide Pod" sync /:Famfrit, the Darkening Cloud:2C3E:/ window 13,0
 26 "Water IV" sync /:Famfrit, the Darkening Cloud:2C3D:/
 35 "Briny Cannonade" sync /:Famfrit, the Darkening Cloud:2C45:/
-47 "Tsunami sync /:Famfrit, the Darkening Cloud:2C50:/
+47 "Tsunami" sync /:Famfrit, the Darkening Cloud:2C50:/
 54 "Tsunami" duration 3
 66 "Tsunami" duration 3
 78 "Tsunami" duration 3
@@ -151,7 +152,7 @@ hideall "--sync--"
 2230 "Area Lockdown"
 
 # After adds
-2244 "--sync--" sync /:2C59:Construct 7/ window 5000, 766
+2244 "--sync--" sync /:2C59:Construct 7/ window 5000,766
 2254 "Annihilation Mode" sync /:Construct 7:2C59:/ window 5000,756
 2264 "Destroy" sync /:Construct 7:2C71:/
 2274 "Ignite" sync /:Construct 7:2C67:/

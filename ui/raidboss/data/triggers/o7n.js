@@ -7,8 +7,14 @@
       id: 'O7N Magitek Ray',
       regex: / 14:276B:Guardian starts using Magitek Ray/,
       regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
-      alertText: 'Magitek Ray',
-      tts: 'beam',
+      alertText: {
+        en: 'Magitek Ray',
+        de: 'Magitek-Laser',
+      },
+      tts: {
+        en: 'beam',
+        de: 'les er strahl',
+      },
     },
     {
       id: 'O7N Arm And Hammer',

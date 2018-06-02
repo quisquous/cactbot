@@ -249,7 +249,7 @@
       tts: {
         en: 'Get out',
         fr: 'Sortir',
-        de: 'Rausgehen',
+        de: 'raus da',
       },
     },
   ],

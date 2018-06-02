@@ -43,15 +43,27 @@
       id: 'O5N Head On',
       regex: /14:28A4:Phantom Train starts using Head On/,
       regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
-      alertText: 'Go To Back',
-      tts: 'run away',
+      alertText: {
+        en: 'Go to back',
+        de: 'Nach hinten laufen',
+      },
+      tts: {
+        en: 'run away',
+        de: 'ab nach hinten',
+      },
     },
     {
       id: 'O5N Diabolic Headlamp',
       regex: /14:28A6:Phantom Train starts using Diabolic Headlamp/,
       regexDe: /14:28A6:Phantomzug starts using Diabolische Leuchte/,
-      alertText: 'Stack Middle',
-      tts: 'stack middle',
+      alertText: {
+        en: 'Stack middle',
+        de: 'Stack in der Mitte',
+      },
+      tts: {
+        en: 'Stack middle',
+        de: 'Stek in der Mitte',
+      },
     },
     {
       id: 'O5N Diabolic Light',

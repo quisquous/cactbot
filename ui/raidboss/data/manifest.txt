@@ -33,6 +33,7 @@ timelines/o7s.txt
 timelines/o8n.txt
 timelines/o8s.txt
 timelines/test.txt
+timelines/ultima_weapon_ultimate.txt
 timelines/unending_coil_ultimate.txt
 
 triggers/a1s.js
@@ -77,4 +78,5 @@ triggers/shatter.js
 triggers/sohm_al.js
 triggers/test.js
 triggers/temple_of_the_fist.js
+triggers/ultima_weapon_ultimate.js
 triggers/unending_coil_ultimate.js

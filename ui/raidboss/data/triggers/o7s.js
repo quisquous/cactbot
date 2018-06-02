@@ -78,7 +78,7 @@
       alertText: function(data, matches) { return matches[1]; },
       tts: {
         en: 'beam',
-        de: 'laser',
+        de: 'leser',
       },
     },
     {
@@ -161,12 +161,12 @@
         if (data.me == matches[1]) {
           return {
             en: 'Prey on YOU',
-            de: 'Rakete auf dir',
+            de: 'Rakete auf DIR',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Rakete auf ' + data.ShortName(matches[1]),
+          de: 'Beute auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function (data, matches) {
@@ -175,7 +175,7 @@
         }
         return {
           en: 'prey',
-          de: 'rakete',
+          de: 'beute',
         };
       },
     },

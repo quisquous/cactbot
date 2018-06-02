@@ -1,0 +1,7 @@
+# Ultima Weapon Ultimate
+
+hideall "--sync--"
+hideall "--Reset--"
+
+0 "--Reset--" sync /Removing combatant Ultima Weapon\.  Max HP: \d{8}\./ window 10000 jump 0
+

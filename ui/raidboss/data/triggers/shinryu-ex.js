@@ -38,8 +38,8 @@
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
-            en: 'Akh Morn on you',
-            de: 'Akh Morn auf dir',
+            en: 'Akh Morn on YOU',
+            de: 'Akh Morn auf DIR',
           };
         } else if (data.role == 'tank') {
           return {
@@ -351,7 +351,7 @@
         } else if (data.role == 'tank') {
           return {
             en: 'Tank Swap',
-            de: 'Tenkwechsel',
+            de: 'Tenk wechsel',
           };
         }
       },

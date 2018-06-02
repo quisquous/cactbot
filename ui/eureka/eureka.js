@@ -276,7 +276,8 @@ var Options = {
   },
 }
 
-var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})  , (\y{Float}) \)(.*$)/);
+//var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})  , (\y{Float}) \)(.*$)/);
+var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
 var gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
 var gImportRegex = Regexes.Parse(/00:00..:(.*)★ NMs on cooldown: (\S.*\))/);
 var gGalesIcon = "&#x1F300;"
@@ -603,6 +604,7 @@ class EurekaTracker {
         'trian',
         'tran',
         'choo choo',
+        'train location'
       ],
       fairy: [
         'fairy',
@@ -615,6 +617,7 @@ class EurekaTracker {
         'rez',
         'res ',
         ' res',
+        'raise plz'
       ],
     };
     var keys = Object.keys(dict);
