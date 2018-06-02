@@ -537,11 +537,9 @@
         var order = null;
         if (data.ParseLocaleFloat(matches[2]) < 9) {
           order = 0;
-        }
-        else if (data.ParseLocaleFloat(matches[2]) < 14) {
+        } else if (data.ParseLocaleFloat(matches[2]) < 14) {
           order = 1;
-        }
-        else {
+        } else {
           order = 2;
         }
         data.dooms[order] = matches[1];
@@ -658,11 +656,9 @@
           str += ' (' + tookTwo.map(function(n) { return data.ShortName(n); }).join(', ');
           if (data.lang == 'fr') {
             str += ' éviter)';
-          }
-          else if (data.lang == 'de') {
+          } else if (data.lang == 'de') {
             str += ' raus)';
-          }
-          else {
+          } else {
             str += ' out)';
           }
         }

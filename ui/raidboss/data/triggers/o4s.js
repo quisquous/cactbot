@@ -294,8 +294,7 @@
             en: 'Die On Right Blue',
             de: 'In Blauem rechts sterben',
           };
-        }
-        else if (data.whiteWound) {
+        } else if (data.whiteWound) {
           return {
             en: 'Die On Left Purple',
             de: 'In Pinkem links sterben',
@@ -315,8 +314,7 @@
             en: 'Left On Purple',
             de: 'Links auf Pink',
           };
-        }
-        else if (data.whiteWound) {
+        } else if (data.whiteWound) {
           return {
             en: 'Right On Blue',
             de: 'Rechts auf Blau',
@@ -350,8 +348,7 @@
             en: 'Die On Left Blue',
             de: 'Auf Blauem links sterben',
           };
-        }
-        else if (data.whiteWound) {
+        } else if (data.whiteWound) {
           return {
             en: 'Die On Right Purple',
             de: 'Auf Pinkem rechts sterben',
@@ -371,8 +368,7 @@
             en: 'Be Right On Purple',
             de: 'Rechts auf Pink',
           };
-        }
-        else if (data.whiteWound) {
+        } else if (data.whiteWound) {
           return {
             en: 'Be Left On Blue',
             de: 'Links auf Blau',
@@ -421,8 +417,7 @@
               en: 'Charge: be behind other tank',
               de: 'Aufladung: hinter anderen Tank',
             };
-          }
-          else {
+          } else {
             return {
               en: 'Charge: be in the very back',
               de: 'Aufladung: Ganz nach hinten',
@@ -434,8 +429,7 @@
               en: 'Charge: be in front!',
               de: 'Aufladung: Ganz nach vorn',
             };
-          }
-          else {
+          } else {
             return {
               en: 'Charge: be behind tanks',
               de: 'Aufladung: Hinter die Tanks',
@@ -640,8 +634,7 @@
             en: 'water on you',
             de: 'wasser auf dir',
           };
-        }
-        else if (data.phase == 'omega') {
+        } else if (data.phase == 'omega') {
           return {
             en: 'water: stack under neo',
             de: 'Wasser: Unter Neo stacken',
@@ -669,8 +662,7 @@
             en: 'Stack on ' + data.waterHealer,
             de: 'Stack auf '+ data.waterHealer,
           };
-        }
-        else {
+        } else {
           return {
             en: 'Stack on water',
             de: 'Bei Wasser stacken',
@@ -713,8 +705,7 @@
             en: 'Stack under boss on ' + data.waterHealer,
             de: 'Unter Boss auf ' + data.waterHealer + ' stacken',
           };
-        }
-        else {
+        } else {
           return {
             en: 'Stack on water',
             de: 'Auf Wasser stacken',
@@ -851,8 +842,7 @@
             en: 'flare on you',
             de: 'fleer auf dir',
           };
-        }
-        else {
+        } else {
           return {
             en: 'stack',
             de: 'stek',

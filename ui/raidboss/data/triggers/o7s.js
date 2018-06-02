@@ -37,8 +37,7 @@
       run: function(data) {
         if (data.seenVirus) {
           data.second = 'dada';
-        }
-        else {
+        } else {
           data.first = 'dada';
         }
       },
@@ -52,8 +51,7 @@
       run: function(data) {
         if (data.seenVirus) {
           data.second = 'biblio';
-        }
-        else {
+        } else {
           data.first = 'biblio';
         }
       },
