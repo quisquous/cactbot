@@ -3,6 +3,8 @@
   timelineFile: 'ridorana_lighthouse.txt',
   timeline: [
     function(data) {
+      if (data.lang == 'de')
+        return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
@@ -75,9 +77,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Dorito Stack',
+        de: 'Stacken',
       },
       tts: {
         en: 'Stack',
+        de: 'Stacken',
       },
     },
     {
@@ -86,9 +90,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
       tts: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -97,9 +103,11 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
+        de: 'Adds',
       },
       tts: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -168,9 +176,11 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
+        de: 'Adds',
       },
       tts: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -211,9 +221,11 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
       tts: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -223,10 +235,12 @@
       infoText: function(data, matches) {
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack auf ' + data.ShortName(matches[1]),
         };
       },
       tts: {
         en: 'Stack',
+        en: 'Stacken',
       },
     },
     {
@@ -327,9 +341,11 @@
       // 16 yalms
       alertText: {
         en: 'Get Out',
+        de: 'Raus da',
       },
       tts: {
         en: 'Get Out',
+        de: 'Raus da',
       },
     },
     {
@@ -337,9 +353,11 @@
       regex: / 14:(?:2C5F|2CE9):Construct 7 starts using Dispose/,
       alertText: {
         en: 'Get Behind',
+        de: 'Hinter ihn laufen',
       },
       tts: {
         en: 'Get Behind',
+        de: 'Hinter ihn laufen',
       },
     },
     {
@@ -349,9 +367,11 @@
       delaySeconds: 2,
       alarmText: {
         en: 'Stop',
+        de: 'Stopp',
       },
       tts: {
         en: 'stop',
+        de: 'Stopp',
       },
     },
     {
@@ -389,9 +409,11 @@
       condition: function(data) { return data.role == 'tank' },
       infoText: {
         en: 'Out of Front',
+        de: 'Vorm Boss weg',
       },
       tts: {
         en: 'Out of Front',
+        de: 'Vorm Boss weg',
       },
     },
     {
@@ -399,9 +421,11 @@
       regex: / 14:2C31:Yiazmat starts using White Breath/,
       alertText: {
         en: 'Get Under',
+        de: 'Reingehen',
       },
       tts: {
         en: 'Get Under',
+        de: 'Reingehen',
       },
     },
     {
@@ -432,9 +456,11 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
+        de: 'Adds',
       },
       tts: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -443,9 +469,11 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
+        de: 'Herz',
       },
       tts: {
         en: 'Heart',
+        de: 'Herz',
       },
     },
   ],
