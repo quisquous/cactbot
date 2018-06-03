@@ -24,7 +24,7 @@
         delete data.holyTargets;
         data.seenHolyThisPhase = true;
       },
-    },
+    }
     {
       // Normal spellblade holy with tethers and one stack point.
       // "64" is a stack marker.  "65" is the prey marker.
