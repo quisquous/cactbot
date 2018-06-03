@@ -35,10 +35,11 @@
       regexJa: / 1A:ガーディアン gains the effect of ダダルマー・プログラム/,
       condition: function(data, matches) { return !data.first || data.seenVirus && !data.second },
       run: function(data) {
-        if (data.seenVirus)
+        if (data.seenVirus) {
           data.second = 'dada';
-        else
+        } else {
           data.first = 'dada';
+        }
       },
     },
     {
@@ -48,10 +49,11 @@
       regexJa: / 1A:ガーディアン gains the effect of ビブリオタフ・プログラム/,
       condition: function(data, matches) { return !data.first || data.seenVirus && !data.second },
       run: function(data) {
-        if (data.seenVirus)
+        if (data.seenVirus) {
           data.second = 'biblio';
-        else
+        } else {
           data.first = 'biblio';
+        }
       },
     },
     {
@@ -74,7 +76,7 @@
       alertText: function(data, matches) { return matches[1]; },
       tts: {
         en: 'beam',
-        de: 'laser',
+        de: 'leser',
       },
     },
     {
@@ -87,13 +89,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tenkbuster auf DIR',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -110,31 +112,40 @@
       id: 'O7S Orb Marker',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      alertText: 'Orb Marker',
-      tts: 'orb',
+      alertText: {
+        en: 'Orb Marker',
+        de: 'Orb Marker',
+      },
+      tts: {
+        en: 'orb',
+        de: 'orb',
+      },
     },
     {
       id: 'O7S Blue Marker',
       regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches[1]) {
           return;
+        }
         return {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
         };
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches[1]) {
           return;
+        }
         return {
           en: 'Blue Marker on ' + data.ShortName(matches[1]),
           de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function (data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches[1]) {
           return;
+        }
         return {
           en: 'blue marker',
           de: 'aura-kanone',
@@ -148,20 +159,21 @@
         if (data.me == matches[1]) {
           return {
             en: 'Prey on YOU',
-            de: 'Rakete auf dir',
+            de: 'Rakete auf DIR',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Rakete auf ' + data.ShortName(matches[1]),
+          de: 'Beute auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function (data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches[1]) {
           return;
+        }
         return {
           en: 'prey',
-          de: 'rakete',
+          de: 'beute',
         };
       },
     },
@@ -216,8 +228,9 @@
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches[1]) {
           return;
+        }
         return {
           en: 'rot',
           de: 'fäule',

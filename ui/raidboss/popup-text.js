@@ -12,6 +12,8 @@ class PopupText {
     this.alarmText = document.getElementById('popup-text-alarm');
 
     this.kMaxRowsOfText = 2;
+
+    this.Reset();
   }
 
   SetTimelineLoader(timelineLoader) {
@@ -21,6 +23,7 @@ class PopupText {
   OnPlayerChange(e) {
     if (this.job != e.detail.job || this.me != e.detail.name)
       this.OnJobChange(e);
+    this.data.currentHP = e.detail.currentHP;
   }
 
   OnDataFilesRead(e) {
@@ -187,11 +190,16 @@ class PopupText {
 
   Reset() {
     var locale = this.options.Language || 'en';
+    var preserveHP = 0;
+    if (this.data && this.data.currentHP)
+      preserveHP = this.data.currentHP;
+
     this.data = {
       me: this.me,
       job: this.job,
       role: this.role,
       lang: locale,
+      currentHP: preserveHP,
       ShortName: this.ShortNamify,
       StopCombat: (function() { this.SetInCombat(false); }).bind(this),
       ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },

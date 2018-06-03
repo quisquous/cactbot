@@ -17,52 +17,79 @@
       regex: /14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
       regexDe: /14:28A3:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
           };
-        if (data.role == 'healer')
+        }
+        if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
           };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'buster',
             de: 'tenkbasta',
           };
+        }
       },
     },
     {
       id: 'O5N Head On',
       regex: /14:28A4:Phantom Train starts using Head On/,
       regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
-      alertText: 'Go To Back',
-      tts: 'run away',
+      alertText: {
+        en: 'Go to back',
+        de: 'Nach hinten laufen',
+      },
+      tts: {
+        en: 'run away',
+        de: 'ab nach hinten',
+      },
     },
     {
       id: 'O5N Diabolic Headlamp',
       regex: /14:28A6:Phantom Train starts using Diabolic Headlamp/,
       regexDe: /14:28A6:Phantomzug starts using Diabolische Leuchte/,
-      alertText: 'Stack Middle',
-      tts: 'stack middle',
+      alertText: {
+        en: 'Stack middle',
+        de: 'Stack in der Mitte',
+      },
+      tts: {
+        en: 'Stack middle',
+        de: 'Stek in der Mitte',
+      },
     },
     {
       id: 'O5N Diabolic Light',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Light',
-      tts: 'light',
+      infoText: {
+        en: 'Light',
+        de: 'Licht',
+      },
+      tts: {
+        en: 'light',
+        de: 'licht',
+      },
     },
     {
       id: 'O5N Diabolic Wind',
       regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: 'Wind',
-      tts: 'wind',
+      infoText: {
+        en: 'Wind',
+        de: 'Wind',
+      },
+      tts: {
+        en: 'wind',
+        de: 'wind',
+      },
     },
   ],
   timelineReplace: [

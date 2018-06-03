@@ -9,26 +9,29 @@
       regexDe: /14:292E:Kefka starts using Hyperantrieb on (\y{Name})/,
       regexFr: /14:292E:Kefka starts using Colonne De Feu on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
-          en: 'Hyperdrive on YOU',
-          fr: 'Colonne de feu sur VOUS',
-          de: 'Hyperantrieb auf DIRS',
-        };
-        if (data.role == 'healer')
+            en: 'Hyperdrive on YOU',
+            fr: 'Colonne de feu sur VOUS',
+            de: 'Hyperantrieb auf DIRS',
+          };
+        }
+        if (data.role == 'healer') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
             fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
             de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
           };
+        }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches[1] == data.me) {
           return {
             en: 'buster',
             fr: 'Colonne de feu',
             de: 'hyperantrieb',
           };
+        }
       },
     },
     {
@@ -246,7 +249,7 @@
       tts: {
         en: 'Get out',
         fr: 'Sortir',
-        de: 'Rausgehen',
+        de: 'raus da',
       },
     },
   ],
@@ -316,11 +319,9 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
-
-        // FIXME:
-        'Aero/Ruin': 'Aero/Ruin',
-        'Half Arena': 'Half Arena',
-        'Statue Gaze': 'Statue Gaze',
+        'Aero/Ruin': 'Wind/Ruin',
+        'Half Arena': 'Halbe Arena',
+        'Statue Gaze': 'Statuenblick',
       },
     },
     {

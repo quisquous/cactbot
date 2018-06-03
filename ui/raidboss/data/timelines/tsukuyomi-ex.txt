@@ -1,4 +1,6 @@
 # Tsukuyomi Extreme
+# http://clees.me/guides/tsukuyomi-ex/
+
 hideall "--sync--"
 
 0 "--Reset--" sync /Removing combatant Tsukuyomi/ window 10000 jump 0
@@ -10,10 +12,10 @@ hideall "--sync--"
 42 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 49 "Steel/Lead"
 67 "Reprimand" sync /:Tsukuyomi:2BBA:/
-75 "--sync--" sync /:2BC7:Tsuyukomi/ window 72,3 # can push this before reprimand
+75 "--sync--" sync /:2BC7:Tsukuyomi/ window 72,3 # can push this before reprimand
 81 "Nightbloom" sync /:Tsukuyomi:2BC7:/ window 80,3
-103 "Homeland adds" sync /:Added new combatant Specter Of The Patriarch/
-140 "Empire adds" sync /:Added new combatant Specter Of Asahi/ window 40,3
+103 "Homeland adds (E->W)" sync /:Added new combatant Specter Of The Patriarch/
+140 "Empire adds (SW->NW)" sync /:Added new combatant Specter Of Asahi/ window 40,3
 200 "--sync--" sync /:Specter of Zenos:2BC8:/ window 60,30
 202 "Concentrativity" # stun/knockback is actually 2s after the real cast (2BC8)
 207 "--sync--" sync /:Specter of Zenos:2CA8:/ window 67,3
@@ -35,7 +37,7 @@ hideall "--sync--"
 520 "Supreme Selenomancy" sync /:Tsukuyomi:2EB0:/
 539 "Tsuki-no-Kakera" sync /:Tsukuyomi:2BD0:/
 545 "Nightfall (gun)" sync /:Tsukuyomi:2BBC:/
-551 "Lead of the Underworld"
+551 "Lead Of The Underworld"
 564 "Moonfall" sync /:Moondust:2BD1:/
 565 "Midnight Rain" sync /:Tsukuyomi:2BCE:/
 568 "Moonburst" sync /:Moondust:2BD2:/ # drift 0.28
