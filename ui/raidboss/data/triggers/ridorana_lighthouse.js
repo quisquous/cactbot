@@ -165,9 +165,11 @@
       regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
       infoText: {
         en: 'Stand on Slow Clock',
+        de: 'In der langsamen Uhr stehen',
       },
       tts: {
         en: 'Stand on Slow Clock',
+        de: 'In langsame Uhr',
       },
     },
     {
@@ -179,9 +181,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Stretch Tether Outside',
+        de: 'Verbindung nach außen strecken',
       },
       tts: {
         en: 'Stretch Tether Outside',
+        de: 'Verbindung nach außen',
       },
     },
     {
@@ -192,9 +196,11 @@
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
+        de: 'Uhren anhalten',
       },
       tts: {
         en: 'Stop Clocks',
+        de: 'Uhren anhalten',
       },
     },
     {
@@ -210,7 +216,7 @@
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
+        de: 'Etz',
       },
     },
     {
@@ -223,7 +229,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tenkbuster auf DIR',
           };
         }
       },
@@ -233,7 +239,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -273,7 +279,7 @@
       },
       tts: {
         en: 'Stack',
-        en: 'Stacken',
+        en: 'Stek en',
       },
     },
     {
@@ -305,18 +311,23 @@
           return [
             {
               en: 'Stay out',
+              de: 'Draußen stehen',
             },
             {
               en: 'Stand in 1',
+              de: 'In 1 stehen',
             },
             {
               en: 'Stand in 2',
+              de: 'In 2 stehen',
             },
             {
               en: 'Stand in 3',
+              de: 'In 3 stehen',
             },
             {
               en: 'Stand in 4',
+              de: 'In 4 stehen',
             },
           ][this.correctMath[number]];
         };
@@ -450,7 +461,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tenkbuster auf DIR',
           };
         }
       },
@@ -460,7 +471,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -512,9 +523,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       infoText: {
         en: 'Move to Postive',
+        de: 'Ins Positive laufen',
       },
       tts: {
         en: 'Move Postive',
+        de: 'Nach Plus',
       },
     },
     {
@@ -526,9 +539,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       infoText: {
         en: 'Move to Negative',
+        de: 'Ins Negative laufen',
       },
       tts: {
         en: 'Move Negative',
+        de: 'Nach Minus',
       },
     },
     {
@@ -544,12 +559,13 @@
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
+        de: 'Etz',
       },
     },
     {
       id: 'Ridorana Yiazmat Heart',
       regex: / 03:Added new combatant Heart Of The Dragon\./,
+      regexDe: / 03:Added new combatant Herz Des Drachen\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
