@@ -1,4 +1,4 @@
-![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=master)
+[![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=master)](https://travis-ci.org/quisquous/cactbot)
 
 # cactbot (ffxiv raiding overlay)
 
