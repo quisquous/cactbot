@@ -3,8 +3,6 @@
   timelineFile: 'ridorana_lighthouse.txt',
   timeline: [
     function(data) {
-      if (data.lang == 'de')
-        return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
@@ -12,9 +10,6 @@
     {
       id: 'Ridorana Famfrit Tide Pode',
       regex: / 14:2C3E:Famfrit, The Darkening Cloud starts using Tide Pod on (\y{Name})/,
-      regexDe: / 14:2C3E:Dunkelfürst Famfrit starts using Gezeitenschlag on (\y{Name})/,
-      regexFr: / 14:2C3E:Famfrit Le Nuage Ténébreux starts using Frappe Aqueuse on (\y{Name})/,
-      regexJa: / 14:2C3E:暗黒の雲ファムフリート starts using 水流弾 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -44,9 +39,6 @@
     {
       id: 'Ridorana Famfrit Tsunami',
       regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
-      regexDe: / 14:2C50:Dunkelfürst Famfrit starts using Sturzflut/,
-      regexFr: / 14:2C50:Famfrit Le Nuage Ténébreux starts using Tsunami/,
-      regexJa: / 14:2C50:暗黒の雲ファムフリート starts using 大海嘯/,
       delaySeconds: 4.5,
       alertText: {
         en: 'Look for Tsunami',
@@ -58,9 +50,6 @@
     {
       id: 'Ridorana Famfrit Tsunami',
       regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
-      regexDe: / 14:2C50:Dunkelfürst Famfrit starts using Sturzflut/,
-      regexFr: / 14:2C50:Famfrit Le Nuage Ténébreux starts using Tsunami/,
-      regexJa: / 14:2C50:暗黒の雲ファムフリート starts using 大海嘯/,
       delaySeconds: 16.5,
       alertText: {
         en: 'Look for Tsunami',
@@ -72,9 +61,6 @@
     {
       id: 'Ridorana Famfrit Tsunami',
       regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
-      regexDe: / 14:2C50:Dunkelfürst Famfrit starts using Sturzflut/,
-      regexFr: / 14:2C50:Famfrit Le Nuage Ténébreux starts using Tsunami/,
-      regexJa: / 14:2C50:暗黒の雲ファムフリート starts using 大海嘯/,
       delaySeconds: 28.5,
       alertText: {
         en: 'Look for Tsunami',
@@ -89,11 +75,9 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Dorito Stack',
-        de: 'Stacken',
       },
       tts: {
         en: 'Stack',
-        de: 'Stacken',
       },
     },
     {
@@ -102,35 +86,25 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Spread',
-        de: 'Verteilen',
       },
       tts: {
         en: 'Spread',
-        de: 'Verteilen',
       },
     },
     {
       id: 'Ridorana Famfrit Dark Rain',
       regex: / 03:Added new combatant Dark Rain\./,
-      regexDe: / 03:Added new combatant Dunkler Regen\./,
-      regexFr: / 03:Added new combatant Trombe D'eau\./,
-      regexJa: / 03:Added new combatant 暗雲の雨水\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
-        de: 'Adds',
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
       },
     },
     {
       id: 'Ridorana Belias Fire',
       regex: / 14:2CDB:Belias, The Gigas starts using Fire on (\y{Name})/,
-      regexDe: / 14:2CDB:Dämonid Belias starts using Feuer on (\y{Name})/,
-      regexFr: / 14:2CDB:Bélias Le Titan starts using Feu on (\y{Name})/,
-      regexJa: / 14:2CDB:魔人ベリアス starts using ファイア on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -160,9 +134,6 @@
     {
       id: 'Ridorana Belias Time Eruption',
       regex: / 14:2CDE:Belias, The Gigas starts using Time Eruption/,
-      regexDe: / 14:2CDE:Dämonid Belias starts using Zeiteruption/,
-      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption à Retardement/,
-      regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
       infoText: {
         en: 'Stand on Slow Clock',
       },
@@ -173,9 +144,6 @@
     {
       id: 'Ridorana Belias Hand of Time',
       regex: / 1A:(\y{Name}) gains the effect of Burns from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Brandwunde from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Brûlure from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 火傷 from/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Stretch Tether Outside',
@@ -187,9 +155,6 @@
     {
       id: 'Ridorana Belias Time Bomb',
       regex: / 14:2CE6:Belias, The Gigas starts using Time Bomb/,
-      regexDe: / 14:2CE6:Dämonid Belias starts using Zeitbombe/,
-      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe à Retardement/,
-      regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
       },
@@ -200,25 +165,17 @@
     {
       id: 'Ridorana Belias Gigas',
       regex: / 03:Added new combatant Gigas\./,
-      regexDe: / 03:Added new combatant Diener Von Belias\./,
-      regexFr: / 03:Added new combatant Serviteur De Bélias\./,
-      regexJa: / 03:Added new combatant 魔人兵\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
-        de: 'Adds',
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
       },
     },
     {
       id: 'Ridorana Construct Destroy',
       regex: / 14:(?:2C5A|2C71):Construct 7 starts using Destroy on (\y{Name})/,
-      regexDe: / 14:(?:2C5A|2C71):Automat Nr. 7 starts using Zerstören on (\y{Name})/,
-      regexFr: / 14:(?:2C5A|2C71):Automate N°7 starts using Détruire on (\y{Name})/,
-      regexJa: / 14:(?:2C5A|2C71):労働七号 starts using 破壊する on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -254,11 +211,9 @@
       },
       alertText: {
         en: 'Spread',
-        de: 'Verteilen',
       },
       tts: {
         en: 'Spread',
-        de: 'Verteilen',
       },
     },
     {
@@ -268,20 +223,15 @@
       infoText: function(data, matches) {
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          en: 'Stack auf ' + data.ShortName(matches[1]),
         };
       },
       tts: {
         en: 'Stack',
-        en: 'Stacken',
       },
     },
     {
       // Accelerate cleanup
       regex: / 14:2C65:Construct 7 starts using Accelerate/,
-      regexDe: / 14:2C65:Automat Nr. 7 starts using Beschleunigen/,
-      regexFr: / 14:2C65:Automate N°7 starts using Aplatir/,
-      regexJa: / 14:2C65:労働七号 starts using 突貫する/,
       run: function(data) {
         delete data.accelerateSpreadOnMe;
       },
@@ -289,9 +239,6 @@
     {
       // TODO: need an "always run this trigger when starting zone" option
       regex: / 14:2C6C:Construct 7 starts using Subtract/,
-      regexDe: / 14:2C6C:Automat Nr. 7 starts using Subtrahieren/,
-      regexFr: / 14:2C6C:Automate N°7 starts using Soustraire/,
-      regexJa: / 14:2C6C:労働七号 starts using 減算する/,
       run: function(data) {
         data.mathDirection = function() {
           if (!this.correctMath)
@@ -325,9 +272,6 @@
     {
       id: 'Ridorana HP Boost Gain',
       regex: / 1A:(\y{Name}) gains the effect of Hp Boost \+(\d)/,
-      regexDe: / 1A:(\y{Name}) gains the effect of LP-Bonus \+(\d)/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Bonus De PV \(\+(\d)\)/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ＋(\d)/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       preRun: function(data, matches) {
         data.hpBoost = matches[2];
@@ -336,9 +280,6 @@
     {
       id: 'Ridorana HP Boost Loss',
       regex: / 1A:(\y{Name}) loses the effect of Hp Boost \+(\d)/,
-      regexDe: / 1A:(\y{Name}) loses the effect of LP-Bonus \+(\d)/,
-      regexFr: / 1A:(\y{Name}) loses the effect of Bonus De PV \(\+(\d)\)/,
-      regexJa: / 1A:(\y{Name}) loses the effect of 最大ＨＰ＋(\d)/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       preRun: function(data, matches) {
         data.hpBoost = 0;
@@ -347,9 +288,6 @@
     {
       id: 'Ridorana Construct Divide By Five',
       regex: / 14:2CCD:Construct 7 starts using Divide By Five/,
-      regexDe: / 14:2CCD:Automat Nr. 7 starts using Arithmetik: Durch 5 Teilen/,
-      regexFr: / 14:2CCD:Automate N°7 starts using Arithmétique : Multiples De 5/,
-      regexJa: / 14:2CCD:労働七号 starts using 算術：5倍数/,
       preRun: function(data) {
         data.correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
       },
@@ -359,9 +297,6 @@
     {
       id: 'Ridorana Construct Divide By Four',
       regex: / 14:2CCC:Construct 7 starts using Divide By Four/,
-      regexDe: / 14:2CCC:Automat Nr. 7 starts using Arithmetik: Durch 4 Teilen/,
-      regexFr: / 14:2CCC:Automate N°7 starts using Arithmétique : Multiples De 4/,
-      regexJa: / 14:2CCC:労働七号 starts using 算術：4倍数/,
       preRun: function(data) {
         data.correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
       },
@@ -371,9 +306,6 @@
     {
       id: 'Ridorana Construct Divide By Three',
       regex: / 14:2CCA:Construct 7 starts using Divide By Three/,
-      regexDe: / 14:2CCA:Automat Nr. 7 starts using Arithmetik: Durch 3 Teilen/,
-      regexFr: / 14:2CCA:Automate N°7 starts using Arithmétique : Multiples De 3/,
-      regexJa: / 14:2CCA:労働七号 starts using 算術：3倍数/,
       preRun: function(data) {
         data.correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
       },
@@ -383,9 +315,6 @@
     {
       id: 'Ridorana Construct Indivisible',
       regex: / 14:2CCE:Construct 7 starts using Indivisible/,
-      regexDe: / 14:2CCE:Automat Nr. 7 starts using Unteilbar/,
-      regexFr: / 14:2CCE:Automate N°7 starts using Arithmétique : Nombres Premiers/,
-      regexJa: / 14:2CCE:労働七号 starts using 算術：素数/,
       preRun: function(data) {
         data.correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
       },
@@ -395,57 +324,39 @@
     {
       id: 'Ridorana Construct Pulverize',
       regex: / 14:2C61:Construct 7 starts using Pulverize/,
-      regexDe: / 14:2C61:Automat Nr. 7 starts using Zermahlen/,
-      regexFr: / 14:2C61:Automate N°7 starts using Broyer/,
-      regexJa: / 14:2C61:労働七号 starts using 粉砕する/,
       // 16 yalms
       alertText: {
         en: 'Get Out',
-        de: 'Raus da',
       },
       tts: {
         en: 'Get Out',
-        de: 'Raus da',
       },
     },
     {
       id: 'Ridorana Construct Dispose',
       regex: / 14:(?:2C5F|2CE9):Construct 7 starts using Dispose/,
-      regexDe: / 14:(?:2C5F|2CE9):Automat Nr. 7 starts using Entsorgen/,
-      regexFr: / 14:(?:2C5F|2CE9):Automate N°7 starts using Annihiler/,
-      regexJa: / 14:(?:2C5F|2CE9):労働七号 starts using 処理する/,
       alertText: {
         en: 'Get Behind',
-        de: 'Hinter ihn laufen',
       },
       tts: {
         en: 'Get Behind',
-        de: 'Hinter ihn laufen',
       },
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
       regex: /1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
-      regexJa: /1A:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) { return matches[1] == data.me; },
       delaySeconds: 2,
       alarmText: {
         en: 'Stop',
-        de: 'Stopp',
       },
       tts: {
         en: 'stop',
-        de: 'Stopp',
       },
     },
     {
       id: 'Ridorana Yiazmat Rake Buster',
       regex: / 14:2D4E:Yiazmat starts using Rake on (\y{Name})/,
-      regexDe: / 14:2D4E:Yiasmat starts using Prankenhieb on (\y{Name})/,
-      regexFr: / 14:2D4E:Yiazmat starts using Griffes on (\y{Name})/,
-      regexJa: / 14:2D4E:鬼龍ヤズマット starts using ひっかき on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -475,40 +386,27 @@
     {
       id: 'Ridorana Yiazmat Rake Charge',
       regex: / 14:2E32:Yiazmat starts using Rake/,
-      regexDe: / 14:2E32:Yiasmat starts using Prankenhieb/,
-      regexFr: / 14:2E32:Yiazmat starts using Griffes/,
-      regexJa: / 14:2E32:鬼龍ヤズマット starts using ひっかき/,
       condition: function(data) { return data.role == 'tank' },
       infoText: {
         en: 'Out of Front',
-        de: 'Vorm Boss weg',
       },
       tts: {
         en: 'Out of Front',
-        de: 'Vorm Boss weg',
       },
     },
     {
       id: 'Ridorana Yiazmat White Breath',
       regex: / 14:2C31:Yiazmat starts using White Breath/,
-      regexDe: / 14:2C31:Yiasmat starts using Kalkatem/,
-      regexFr: / 14:2C31:Yiazmat starts using Souffle Blanc/,
-      regexJa: / 14:2C31:鬼龍ヤズマット starts using ホワイトブレス/,
       alertText: {
         en: 'Get Under',
-        de: 'Reingehen',
       },
       tts: {
         en: 'Get Under',
-        de: 'Reingehen',
       },
     },
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
       regex: / 1A:(\y{Name}) gains the effect of Magnetic Lysis - from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Charge Négative from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       infoText: {
         en: 'Move to Postive',
@@ -520,9 +418,6 @@
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
       regex: / 1A:(\y{Name}) gains the effect of Magnetic Lysis \+ from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Positives Magnetfeld from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Charge Positive from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       infoText: {
         en: 'Move to Negative',
@@ -534,17 +429,12 @@
     {
       id: 'Ridorana Yiazmat Archaeodemon',
       regex: / 03:Added new combatant Archaeodemon\./,
-      regexDe: / 03:Added new combatant Archaeodämon\./,
-      regexFr: / 03:Added new combatant Archéodémon\./,
-      regexJa: / 03:Added new combatant アルケオデーモン\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
-        de: 'Adds',
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
       },
     },
     {
@@ -553,11 +443,9 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
-        de: 'Herz',
       },
       tts: {
         en: 'Heart',
-        de: 'Herz',
       },
     },
   ],
@@ -566,23 +454,22 @@
       locale: 'de',
       replaceSync: {
         'Engage!': 'Start!',
-        'Dark Rain': 'Dunkl[a] Regen',
+        'Dark Rain': 'Dunkler Regen',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
         'Belias, The Gigas': 'Dämonid Belias',
-        'Gigas': 'Diener[p] Von Belias',
+        'Gigas': 'Diener Von Belias',
         'Construct 7': 'Automat Nr. 7',
-        'Construct 7.1': 'Verbessert[a] Automat[p] Nr. 7',
+        'Construct 7.1': 'Verbesserter Automat Nr. 7',
         'Missile': 'Rakete',
         'Archaeodemon': 'Archaeodämon',
         'Heart of the Dragon': 'Heart of the Dragon',
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
 
-        // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ":Echoes from Time's Garden will be sealed off": ":Garten Ewiger Zeit schließt",
+        ":The Spire's Bounds will be sealed off": ":Katastase schließt",
+        ":The Cleft of Profaning Wind will be sealed off": ":Kluft Entweihender Winde schließt",
+        ":The Clockwork Coliseum will be sealed off": ":Kolosseum Von Gog schließt",
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -651,14 +538,13 @@
         'Unholy Darkness': 'Unheiliges Dunkel',
         'White Breath': 'Kalkatem',
 
-        // FIXME:
-        'Fast Hands': 'Fast Hands',
-        'Slow Hands': 'Slow Hands',
-        'Gigas spawns': 'Gigas spawns',
+        'Fast Hands': 'Schnelle Hände',
+        'Slow Hands': 'Langsame Hände',
+        'Gigas spawns': 'Gigas erscheint',
         'Division': 'Division',
-        'Area Lockdown': 'Area Lockdown',
-        'Archaeodemon spawn': 'Archaeodemon spawn',
-        'Gale Gaol': 'Gale Gaol',
+        'Area Lockdown': 'Gebiet geschlossen',
+        'Archaeodemon spawn': 'Archaeodämon erscheint',
+        'Gale Gaol': 'Windgefängnis',
       },
       '~effectNames': {
         'Dropsy': 'Wassersucht',
