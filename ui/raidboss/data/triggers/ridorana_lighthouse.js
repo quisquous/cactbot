@@ -6,7 +6,7 @@
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
-  triggers: [
+  triggers: [asdf
     {
       id: 'Ridorana Famfrit Tide Pode',
       regex: / 14:2C3E:Famfrit, The Darkening Cloud starts using Tide Pod on (\y{Name})/,
