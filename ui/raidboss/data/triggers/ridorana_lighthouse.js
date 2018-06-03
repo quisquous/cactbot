@@ -579,10 +579,10 @@
         'Yiazmat': 'Yiasmat',
 
         // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ":Echoes from Time's Garden will be sealed off": ":bis sich der Zugang zum Garten Ewiger Zeit schließt",
+        ":The Spire's Bounds will be sealed off": ":bis sich der Zugang zur Katastase schließt",
+        ":The Cleft of Profaning Wind will be sealed off": ":bis sich der Zugang zur Kluft Entweihender Winde schließt",
+        ":The Clockwork Coliseum will be sealed off": ":bis sich der Zugang zum Kolosseum Von Gog schließt",
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -652,7 +652,8 @@
         'White Breath': 'Kalkatem',
 
         // FIXME:
-        'Fast Hands': 'Fast Hands',
+        'Fast Hands': 'Schnelle Hände',
+
         'Slow Hands': 'Slow Hands',
         'Gigas spawns': 'Gigas spawns',
         'Division': 'Division',
