@@ -165,9 +165,11 @@
       regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
       infoText: {
         en: 'Stand on Slow Clock',
+        de: 'In der langsamen Uhr stehen',
       },
       tts: {
         en: 'Stand on Slow Clock',
+        de: 'In langsame Uhr',
       },
     },
     {
@@ -179,9 +181,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Stretch Tether Outside',
+        de: 'Verbindung nach außen strecken',
       },
       tts: {
         en: 'Stretch Tether Outside',
+        de: 'Verbindung nach außen',
       },
     },
     {
@@ -192,9 +196,11 @@
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
+        de: 'Uhren anhalten',
       },
       tts: {
         en: 'Stop Clocks',
+        de: 'Uhren anhalten',
       },
     },
     {
@@ -210,7 +216,7 @@
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
+        de: 'Etz',
       },
     },
     {
@@ -223,7 +229,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tenkbuster auf DIR',
           };
         }
       },
@@ -233,7 +239,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -273,7 +279,7 @@
       },
       tts: {
         en: 'Stack',
-        en: 'Stacken',
+        en: 'Stek en',
       },
     },
     {
@@ -305,18 +311,23 @@
           return [
             {
               en: 'Stay out',
+              de: 'Draußen stehen',
             },
             {
               en: 'Stand in 1',
+              de: 'In 1 stehen',
             },
             {
               en: 'Stand in 2',
+              de: 'In 2 stehen',
             },
             {
               en: 'Stand in 3',
+              de: 'In 3 stehen',
             },
             {
               en: 'Stand in 4',
+              de: 'In 4 stehen',
             },
           ][this.correctMath[number]];
         };
@@ -450,7 +461,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tenkbuster auf DIR',
           };
         }
       },
@@ -460,7 +471,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -512,9 +523,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       infoText: {
         en: 'Move to Postive',
+        de: 'Ins Positive laufen',
       },
       tts: {
         en: 'Move Postive',
+        de: 'Nach Plus',
       },
     },
     {
@@ -526,9 +539,11 @@
       condition: function(data, matches) { return (matches[1] == data.me); },
       infoText: {
         en: 'Move to Negative',
+        de: 'Ins Negative laufen',
       },
       tts: {
         en: 'Move Negative',
+        de: 'Nach Minus',
       },
     },
     {
@@ -544,12 +559,13 @@
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
+        de: 'Etz',
       },
     },
     {
       id: 'Ridorana Yiazmat Heart',
       regex: / 03:Added new combatant Heart Of The Dragon\./,
+      regexDe: / 03:Added new combatant Herz Des Drachen\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
@@ -566,23 +582,22 @@
       locale: 'de',
       replaceSync: {
         'Engage!': 'Start!',
-        'Dark Rain': 'Dunkl[a] Regen',
+        'Dark Rain': 'Dunkler Regen',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
         'Belias, The Gigas': 'Dämonid Belias',
-        'Gigas': 'Diener[p] Von Belias',
+        'Gigas': 'Diener Von Belias',
         'Construct 7': 'Automat Nr. 7',
-        'Construct 7.1': 'Verbessert[a] Automat[p] Nr. 7',
+        'Construct 7.1': 'Verbesserter Automat Nr. 7',
         'Missile': 'Rakete',
         'Archaeodemon': 'Archaeodämon',
         'Heart of the Dragon': 'Heart of the Dragon',
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
 
-        // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ":Echoes from Time's Garden will be sealed off": ":Garten Ewiger Zeit schließt",
+        ":The Spire's Bounds will be sealed off": ":Katastase schließt",
+        ":The Cleft of Profaning Wind will be sealed off": ":Kluft Entweihender Winde schließt",
+        ":The Clockwork Coliseum will be sealed off": ":Kolosseum Von Gog schließt",
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -651,14 +666,13 @@
         'Unholy Darkness': 'Unheiliges Dunkel',
         'White Breath': 'Kalkatem',
 
-        // FIXME:
-        'Fast Hands': 'Fast Hands',
-        'Slow Hands': 'Slow Hands',
-        'Gigas spawns': 'Gigas spawns',
+        'Fast Hands': 'Schnelle Hände',
+        'Slow Hands': 'Langsame Hände',
+        'Gigas spawns': 'Gigas erscheint',
         'Division': 'Division',
-        'Area Lockdown': 'Area Lockdown',
-        'Archaeodemon spawn': 'Archaeodemon spawn',
-        'Gale Gaol': 'Gale Gaol',
+        'Area Lockdown': 'Gebiet geschlossen',
+        'Archaeodemon spawn': 'Archaeodämon erscheint',
+        'Gale Gaol': 'Windgefängnis',
       },
       '~effectNames': {
         'Dropsy': 'Wassersucht',
