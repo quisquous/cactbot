@@ -808,7 +808,7 @@
     <value>208, 166</value>
   </data>
   <data name="restartMessageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 13</value>
+    <value>286, 13</value>
   </data>
   <data name="restartMessageLabel.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
