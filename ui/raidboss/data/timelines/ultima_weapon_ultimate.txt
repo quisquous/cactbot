@@ -43,6 +43,7 @@ hideall "--Reset--"
 131 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.431
 144 "Slipstream" sync /:Garuda:2B53:/
 153 "Wicked Wheel" sync /:Garuda:2B4E:/ # drift -0.426
+175 "Enrage"
 
 
 ### Phase 2: Ifrit ###
