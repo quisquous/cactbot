@@ -1,7 +1,126 @@
 # Ultima Weapon Ultimate
 
+#$ python util/make_timeline.py --ignore-ability Unknown_2B51 Unknown_2B59 Unknown_2B58 Unknown_2Bb5 Unknown_2B46 Unknown_2B44 Unknown_2B64 --phase 2B5F:300 2CFD:600
+
 hideall "--sync--"
 hideall "--Reset--"
 
-0 "--Reset--" sync /Removing combatant Ultima Weapon\.  Max HP: \d{8}\./ window 10000 jump 0
+0 "--Reset--" sync /Removing combatant The Ultima Weapon\.  Max HP: \d{8}\./ window 10000 jump 0
 
+0 "Start" sync /:Engage!/ window 0,1
+0 "--sync--" sync /00:0044:Heehee HAHA hahaha HEEHEE haha HEEEEEE/ window 0,20
+
+### Phase 1: Garuda ###
+8 "Slipstream" sync /:Garuda:2B53:/ # drift 0.481
+11 "Mistral Song" sync /:Garuda:2B42:/ # drift -0.353
+17 "Grand Whirlwind" sync /:Garuda:2B41:/
+21 "Plume Adds"
+23 "Slipstream" sync /:Garuda:2B53:/ # drift 0.457
+27 "Cyclone" sync /:Spiny Plume:2B45:/ # drift -0.464
+27 "Downburst" sync /:Garuda:2B50:/
+29 "Grand Whirlwind" sync /:Garuda:2B41:/ # drift 0.288
+37 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.268
+42 "Mistral Shriek" sync /:Garuda:2B54:/ # drift -0.201
+52 "Friction" sync /:Garuda:2B48:/ # drift -0.496
+55 "Super Cyclone" sync /:Garuda:2B47:/ # drift -0.231
+56 "Super Cyclone" sync /:Garuda:2B47:/
+58 "Friction" sync /:Garuda:2B48:/ # drift 0.394
+60 "Super Cyclone" sync /:Garuda:2B47:/ # drift 0.407
+63 "Super Cyclone" sync /:Garuda:2B47:/ # drift -0.411
+73 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.328
+73 "Feather Rain" sync /:Garuda:2B4D:/
+78 "Aerial Blast" sync /:Garuda:2B55:/ # drift -0.205
+94 "Feather Rain" sync /:Garuda:2B4D:/ # drift 0.267
+101 "Mistral Song" sync /:Chirada:2B4B:/ # drift -0.338
+102 "Eye Of The Storm" sync /:Garuda:2B52:/ # drift -0.451
+102 "Wicked Wheel" sync /:Garuda:2B4E:/
+106 "Feather Rain" sync /:Garuda:2B4D:/
+107 "Grand Whirlwind" sync /:Garuda:2B41:/ # drift 0.471
+123 "Slipstream" sync /:Garuda:2B53:/ # drift 0.276
+124 "Eye Of The Storm" sync /:Garuda:2B52:/
+126 "Mesohigh" sync /:Chirada:2B49:/
+126 "Downburst" sync /:Garuda:2B50:/ # drift 0.48
+127 "Super Cyclone" sync /:Garuda:2B47:/ # drift -0.438
+131 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.431
+144 "Slipstream" sync /:Garuda:2B53:/
+153 "Wicked Wheel" sync /:Garuda:2B4E:/ # drift -0.426
+
+
+### Phase 2: Ifrit ###
+300 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+301 "Radiant Plume" sync /:Ifrit:2B61:/
+307 "Hellfire" sync /:Ifrit:2B5E:/ # drift 0.246
+315 "Vulcan Burst" sync /:Ifrit:2B57:/
+318 "Incinerate" sync /:Ifrit:2B56:/
+321 "Incinerate" sync /:Ifrit:2B56:/
+325 "Incinerate" sync /:Ifrit:2B56:/
+328 "Nail Adds" sync /:Ifrit:1CD:/
+337 "Infernal Fetters" sync /:Garuda:2C19:/ # drift 0.214
+339 "Inferno Howl" sync /:Ifrit:2B5B:/
+345 "Searing Wind" sync /:Garuda:2B5C:/
+345 "Eruption" sync /:Garuda:2B5A:/ # drift 0.201
+347 "Eruption" sync /:Garuda:2B5A:/
+349 "Eruption" sync /:Garuda:2B5A:/
+351 "Searing Wind" sync /:Garuda:2B5C:/ # drift -0.253
+351 "Eruption" sync /:Garuda:2B5A:/ # drift 0.268
+357 "Searing Wind" sync /:Garuda:2B5C:/
+369 "Hellfire" sync /:Ifrit:2B5E:/ # drift 0.411
+377 "Inferno Howl" sync /:Ifrit:2B5B:/ # drift 0.374
+383 "Searing Wind" sync /:Garuda:2B5C:/
+383 "Eruption" sync /:Garuda:2B5A:/ # drift 0.31
+385 "Eruption" sync /:Garuda:2B5A:/
+387 "Eruption" sync /:Garuda:2B5A:/
+389 "Searing Wind" sync /:Garuda:2B5C:/
+389 "Eruption" sync /:Garuda:2B5A:/
+390 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+395 "Inferno Howl" sync /:Ifrit:2B5B:/
+395 "Searing Wind" sync /:Garuda:2B5C:/
+401 "Searing Wind" sync /:Garuda:2B5C:/
+405 "Flaming Crush" sync /:Ifrit:2B5D:/
+407 "Searing Wind" sync /:Garuda:2B5C:/
+413 "Searing Wind" sync /:Garuda:2B5C:/
+416 "Crimson Cyclone" sync /:Ifrit:2B5F:/ # drift 0.406
+418 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+420 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+422 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+430 "Incinerate" sync /:Ifrit:2B56:/ # drift 0.212
+433 "Incinerate" sync /:Ifrit:2B56:/ # drift 0.294
+437 "Incinerate" sync /:Ifrit:2B56:/
+446 "Eruption" sync /:Garuda:2B5A:/
+448 "Eruption" sync /:Garuda:2B5A:/
+450 "Eruption" sync /:Garuda:2B5A:/
+452 "Eruption" sync /:Garuda:2B5A:/
+455 "Flaming Crush" sync /:Ifrit:2B5D:/
+
+
+### Phase 3: Titan ###
+600 "Geocrush" sync /:Titan:2CFD:/ # drift 0.437
+605 "Earthen Fury" sync /:Titan:2B90:/ # drift 0.407
+613 "Rock Buster" sync /:Titan:2B62:/
+616 "Mountain Buster" sync /:Titan:2B63:/
+621 "Weight Of The Land" sync /:Garuda:2B65:/
+624 "Weight Of The Land" sync /:Ifrit:2B65:/
+629 "Jump" sync /:Titan:2B66:/
+631 "Geocrush" sync /:Titan:2B68:/ # drift 0.475
+634 "Bury" sync /:Bomb Boulder:2B69:/
+637 "Upheaval" sync /:Titan:2B67:/
+639 "Rock Throw" sync /:Garuda:2B6C:/
+639 "Rock Throw" sync /:Titan:2B6B:/
+640 "Detonation" sync /:Bomb Boulder:2B6A:/ # drift -0.495
+642 "Bury" sync /:Bomb Boulder:2B69:/ # drift 0.428
+643 "Landslide" sync /:Garuda:2B70:/ # drift 0.437
+643 "Landslide" sync /:Titan:2B6F:/
+647 "Detonation" sync /:Bomb Boulder:2B6A:/ # drift 0.21
+647 "Landslide" sync /:Garuda:2B70:/
+647 "Landslide" sync /:Titan:2B6F:/
+647 "Freefire" sync /:Granite Gaol:2B6E:/
+649 "Tumult" sync /:Titan:2C18:/
+650 "Tumult" sync /:Titan:2C18:/
+651 "Tumult" sync /:Titan:2C18:/
+652 "Tumult" sync /:Titan:2C18:/
+653 "Tumult" sync /:Titan:2C18:/
+654 "Tumult" sync /:Titan:2C18:/
+655 "Tumult" sync /:Titan:2C18:/
+656 "Tumult" sync /:Titan:2C18:/
+663 "Granite Impact" sync /:Granite Gaol:2B6D:/ # drift -0.457
+663 "Granite Impact" sync /:Granite Gaol:2B6D:/
