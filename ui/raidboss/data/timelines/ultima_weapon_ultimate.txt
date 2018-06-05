@@ -47,7 +47,7 @@ hideall "--Reset--"
 
 
 ### Phase 2: Ifrit ###
-300 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+300 "Crimson Cyclone" sync /:Ifrit:2B5F:/ window 300,100
 301 "Radiant Plume" sync /:Ifrit:2B61:/
 307 "Hellfire" sync /:Ifrit:2B5E:/ # drift 0.246
 315 "Vulcan Burst" sync /:Ifrit:2B57:/
@@ -94,7 +94,7 @@ hideall "--Reset--"
 
 
 ### Phase 3: Titan ###
-600 "Geocrush" sync /:Titan:2CFD:/ # drift 0.437
+600 "Geocrush" sync /:Titan:2CFD:/ window 600,100 # drift 0.437
 605 "Earthen Fury" sync /:Titan:2B90:/ # drift 0.407
 613 "Rock Buster" sync /:Titan:2B62:/
 616 "Mountain Buster" sync /:Titan:2B63:/
