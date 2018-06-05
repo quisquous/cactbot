@@ -26,6 +26,17 @@
       },
     },
     {
+      id: 'UWU Garuda Spiny Plume',
+      regex: / 03:Added new combatant Spiny Plume/,
+      condition: function(data, matches) { return data.role == 'tank'; },
+      infoText: {
+        en: 'Spiny Plume Add',
+      },
+      tts: {
+        en: 'Spiny Plume Add',
+      },
+    },
+    {
       id: 'UWU Ifrit Fetters',
       regex: /1A:(\y{Name}) gains the effect of Infernal Fetters from/,
       condition: function(data, matches) { return data.me == matches[1]; },
