@@ -28,7 +28,6 @@ hideall "--Reset--"
 60 "Super Cyclone" sync /:Garuda:2B47:/ # drift 0.407
 63 "Super Cyclone" sync /:Garuda:2B47:/ # drift -0.411
 73 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.328
-73 "Feather Rain" sync /:Garuda:2B4D:/
 78 "Aerial Blast" sync /:Garuda:2B55:/ # drift -0.205
 94 "Feather Rain" sync /:Garuda:2B4D:/ # drift 0.267
 101 "Mistral Song" sync /:Chirada:2B4B:/ # drift -0.338
