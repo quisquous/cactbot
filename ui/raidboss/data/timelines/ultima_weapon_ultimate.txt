@@ -16,7 +16,6 @@ hideall "--Reset--"
 17 "Grand Whirlwind" sync /:Garuda:2B41:/
 21 "Plume Adds"
 23 "Slipstream" sync /:Garuda:2B53:/ # drift 0.457
-27 "Cyclone" sync /:Spiny Plume:2B45:/ # drift -0.464
 27 "Downburst" sync /:Garuda:2B50:/
 29 "Grand Whirlwind" sync /:Garuda:2B41:/ # drift 0.288
 37 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.268
