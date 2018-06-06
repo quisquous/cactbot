@@ -105,4 +105,11 @@ var gBossFightTriggers = [
     endRegex: /:Removing combatant Tsukuyomi/,
     countdownStarts: true,
   },
+  {
+    id: 'UwU',
+    zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
+    startRegex: /:Garuda:2B53:/,
+    endRegex: /Removing combatant The Ultima Weapon\.  Max HP: \d{8}\./,
+    countdownStarts: true,
+  },
 ];
