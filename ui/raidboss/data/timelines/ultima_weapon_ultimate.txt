@@ -23,10 +23,10 @@ hideall "--Reset--"
 42 "Mistral Shriek" sync /:Garuda:2B54:/ # drift -0.201
 52 "Friction" sync /:Garuda:2B48:/ # drift -0.496
 55 "Super Cyclone" sync /:Garuda:2B47:/ # drift -0.231
-56 "Super Cyclone" sync /:Garuda:2B47:/
+56 "Super Cyclone" #sync /:Garuda:2B47:/
 58 "Friction" sync /:Garuda:2B48:/ # drift 0.394
 60 "Super Cyclone" sync /:Garuda:2B47:/ # drift 0.407
-63 "Super Cyclone" sync /:Garuda:2B47:/ # drift -0.411
+63 "Super Cyclone" #sync /:Garuda:2B47:/ # drift -0.411
 73 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.328
 78 "Aerial Blast" sync /:Garuda:2B55:/ # drift -0.205
 94 "Feather Rain" sync /:Garuda:2B4D:/ # drift 0.267
@@ -52,44 +52,44 @@ hideall "--Reset--"
 307 "Hellfire" sync /:Ifrit:2B5E:/ # drift 0.246
 315 "Vulcan Burst" sync /:Ifrit:2B57:/
 318 "Incinerate" sync /:Ifrit:2B56:/
-321 "Incinerate" sync /:Ifrit:2B56:/
-325 "Incinerate" sync /:Ifrit:2B56:/
+321 "Incinerate" #sync /:Ifrit:2B56:/
+325 "Incinerate" #sync /:Ifrit:2B56:/
 328 "Nail Adds" sync /:Ifrit:1CD:/
 337 "Infernal Fetters" sync /:Garuda:2C19:/ # drift 0.214
 339 "Inferno Howl" sync /:Ifrit:2B5B:/
 345 "Searing Wind" sync /:Garuda:2B5C:/
 345 "Eruption" sync /:Garuda:2B5A:/ # drift 0.201
-347 "Eruption" sync /:Garuda:2B5A:/
-349 "Eruption" sync /:Garuda:2B5A:/
+347 "Eruption" #sync /:Garuda:2B5A:/
+349 "Eruption" #sync /:Garuda:2B5A:/
 351 "Searing Wind" sync /:Garuda:2B5C:/ # drift -0.253
 351 "Eruption" sync /:Garuda:2B5A:/ # drift 0.268
 357 "Searing Wind" sync /:Garuda:2B5C:/
-369 "Hellfire" sync /:Ifrit:2B5E:/ # drift 0.411
+369 "Hellfire" sync /:Ifrit:2B5E:/ window 40,40 # drift 0.411
 377 "Inferno Howl" sync /:Ifrit:2B5B:/ # drift 0.374
 383 "Searing Wind" sync /:Garuda:2B5C:/
 383 "Eruption" sync /:Garuda:2B5A:/ # drift 0.31
-385 "Eruption" sync /:Garuda:2B5A:/
-387 "Eruption" sync /:Garuda:2B5A:/
+385 "Eruption" #sync /:Garuda:2B5A:/
+387 "Eruption" #sync /:Garuda:2B5A:/
 389 "Searing Wind" sync /:Garuda:2B5C:/
 389 "Eruption" sync /:Garuda:2B5A:/
 390 "Crimson Cyclone" sync /:Ifrit:2B5F:/
 395 "Inferno Howl" sync /:Ifrit:2B5B:/
 395 "Searing Wind" sync /:Garuda:2B5C:/
-401 "Searing Wind" sync /:Garuda:2B5C:/
+401 "Searing Wind" #sync #/:Garuda:2B5C:/
 405 "Flaming Crush" sync /:Ifrit:2B5D:/
 407 "Searing Wind" sync /:Garuda:2B5C:/
-413 "Searing Wind" sync /:Garuda:2B5C:/
+413 "Searing Wind" #sync #/:Garuda:2B5C:/
 416 "Crimson Cyclone" sync /:Ifrit:2B5F:/ # drift 0.406
-418 "Crimson Cyclone" sync /:Ifrit:2B5F:/
-420 "Crimson Cyclone" sync /:Ifrit:2B5F:/
-422 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+418 "Crimson Cyclone" #sync /:Ifrit:2B5F:/
+420 "Crimson Cyclone" #sync /:Ifrit:2B5F:/
+422 "Crimson Cyclone" #sync /:Ifrit:2B5F:/
 430 "Incinerate" sync /:Ifrit:2B56:/ # drift 0.212
-433 "Incinerate" sync /:Ifrit:2B56:/ # drift 0.294
-437 "Incinerate" sync /:Ifrit:2B56:/
+433 "Incinerate" #sync /:Ifrit:2B56:/ # drift 0.294
+437 "Incinerate" #sync /:Ifrit:2B56:/
 446 "Eruption" sync /:Garuda:2B5A:/
-448 "Eruption" sync /:Garuda:2B5A:/
-450 "Eruption" sync /:Garuda:2B5A:/
-452 "Eruption" sync /:Garuda:2B5A:/
+448 "Eruption" #sync /:Garuda:2B5A:/
+450 "Eruption" #sync /:Garuda:2B5A:/
+452 "Eruption" #sync /:Garuda:2B5A:/
 455 "Flaming Crush" sync /:Ifrit:2B5D:/
 
 
@@ -105,22 +105,17 @@ hideall "--Reset--"
 634 "Bury" sync /:Bomb Boulder:2B69:/
 637 "Upheaval" sync /:Titan:2B67:/
 639 "Rock Throw" sync /:Garuda:2B6C:/
-639 "Rock Throw" sync /:Titan:2B6B:/
 640 "Detonation" sync /:Bomb Boulder:2B6A:/ # drift -0.495
 642 "Bury" sync /:Bomb Boulder:2B69:/ # drift 0.428
-643 "Landslide" sync /:Garuda:2B70:/ # drift 0.437
 643 "Landslide" sync /:Titan:2B6F:/
 647 "Detonation" sync /:Bomb Boulder:2B6A:/ # drift 0.21
-647 "Landslide" sync /:Garuda:2B70:/
 647 "Landslide" sync /:Titan:2B6F:/
-647 "Freefire" sync /:Granite Gaol:2B6E:/
 649 "Tumult" sync /:Titan:2C18:/
-650 "Tumult" sync /:Titan:2C18:/
-651 "Tumult" sync /:Titan:2C18:/
-652 "Tumult" sync /:Titan:2C18:/
-653 "Tumult" sync /:Titan:2C18:/
-654 "Tumult" sync /:Titan:2C18:/
-655 "Tumult" sync /:Titan:2C18:/
-656 "Tumult" sync /:Titan:2C18:/
+650 "Tumult" #sync /:Titan:2C18:/
+651 "Tumult" #sync /:Titan:2C18:/
+652 "Tumult" #sync /:Titan:2C18:/
+653 "Tumult" #sync /:Titan:2C18:/
+654 "Tumult" #sync /:Titan:2C18:/
+655 "Tumult" #sync /:Titan:2C18:/
+656 "Tumult" #sync /:Titan:2C18:/
 663 "Granite Impact" sync /:Granite Gaol:2B6D:/ # drift -0.457
-663 "Granite Impact" sync /:Granite Gaol:2B6D:/
