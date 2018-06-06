@@ -98,4 +98,11 @@ var gBossFightTriggers = [
     endRegex: /:Byakko was defeated by/,
     countdownStarts: true,
   },
+  {
+    id: 'Tsukuyomi Ex',
+    zoneRegex: /The Minstrel's Ballad: Tsukuyomi's Pain/,
+    startRegex: /:Tsukuyomi:2BBA:/,
+    endRegex: /:Removing combatant Tsukuyomi/,
+    countdownStarts: true,
+  },
 ];
