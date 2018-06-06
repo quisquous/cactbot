@@ -76,6 +76,7 @@ var Options = {
     '2B5D': 'Flaming Crush',
     '2CFD': 'Geocrush',
     '2B90': 'Earthen Fury',
+    '2B58': 'Infernal Surge',
     '2B62': 'Rock Buster',
     '2B63': 'Mountain Buster',
     '2B64': 'Weight Of The Land',
