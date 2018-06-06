@@ -55,6 +55,7 @@ var Options = {
     '2B4D': 'Feather Rain',
     '2B54': 'Mistral Shriek',
     '2B48': 'Friction',
+    '2BB5': 'Super Cyclone',
     '2B47': 'Super Cyclone',
     '2B55': 'Aerial Blast',
     '2B4B': 'Mistral Song',
