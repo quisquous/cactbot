@@ -40,6 +40,7 @@
       id: 'UWU Ifrit Fetters',
       regex: /1A:(\y{Name}) gains the effect of Infernal Fetters from/,
       condition: function(data, matches) { return data.me == matches[1]; },
+      suppressSeconds: 45,
       alertText: {
         en: 'Fetters on YOU',
       },
