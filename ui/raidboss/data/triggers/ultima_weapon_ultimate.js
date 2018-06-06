@@ -18,7 +18,7 @@
       id: 'UWU Garuda Mistral Song Marker',
       regex: / 1B:........:(\y{Name}):....:....:0010:0000:0000:0000:/,
       suppressSeconds: 5,
-      alertText: {
+      infoText: {
         en: 'Mistral Song',
       },
       tts: {
