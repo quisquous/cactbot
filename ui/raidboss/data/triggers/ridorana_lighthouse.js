@@ -19,7 +19,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tankbuster auf DIR',
           };
         }
       },
@@ -29,7 +29,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -50,9 +50,11 @@
       delaySeconds: 4.5,
       alertText: {
         en: 'Look for Tsunami',
+        de: 'Auf Krug achten',
       },
       tts: {
         en: 'Tsunami',
+        de: 'Krug',
       },
     },
     {
@@ -64,9 +66,11 @@
       delaySeconds: 16.5,
       alertText: {
         en: 'Look for Tsunami',
+        de: 'Auf Krug achten',
       },
       tts: {
         en: 'Tsunami',
+        de: 'Krug',
       },
     },
     {
@@ -78,9 +82,11 @@
       delaySeconds: 28.5,
       alertText: {
         en: 'Look for Tsunami',
+        de: 'Auf Krug achten',
       },
       tts: {
         en: 'Tsunami',
+        de: 'Krug',
       },
     },
     {
@@ -93,7 +99,7 @@
       },
       tts: {
         en: 'Stack',
-        de: 'Stacken',
+        de: 'stek en',
       },
     },
     {
@@ -122,7 +128,7 @@
       },
       tts: {
         en: 'Adds',
-        de: 'Adds',
+        de: 'etz',
       },
     },
     {
@@ -135,7 +141,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbasta auf DIR',
+            de: 'Tankbuster auf DIR',
           };
         }
       },
@@ -145,7 +151,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbasta auf ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -196,11 +202,11 @@
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
-        de: 'Uhren anhalten',
+        de: 'Uhrzeiger nach außen',
       },
       tts: {
         en: 'Stop Clocks',
-        de: 'Uhren anhalten',
+        de: 'Uhrzeiger nach außen',
       },
     },
     {
@@ -229,7 +235,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
           };
         }
       },
@@ -239,7 +245,7 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -279,7 +285,7 @@
       },
       tts: {
         en: 'Stack',
-        en: 'Stek en',
+        de: 'Stek en',
       },
     },
     {
@@ -364,7 +370,7 @@
     {
       id: 'Ridorana Construct Divide By Five',
       regex: / 14:2CCD:Construct 7 starts using Divide By Five/,
-      regexDe: / 14:2CCD:Automat Nr. 7 starts using Arithmetik: Durch 5 Teilen/,
+      regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 5 teilen einzusetzen./,
       regexFr: / 14:2CCD:Automate N°7 starts using Arithmétique : Multiples De 5/,
       regexJa: / 14:2CCD:労働七号 starts using 算術：5倍数/,
       preRun: function(data) {
@@ -376,7 +382,7 @@
     {
       id: 'Ridorana Construct Divide By Four',
       regex: / 14:2CCC:Construct 7 starts using Divide By Four/,
-      regexDe: / 14:2CCC:Automat Nr. 7 starts using Arithmetik: Durch 4 Teilen/,
+      regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 4 teilen einzusetzen./,
       regexFr: / 14:2CCC:Automate N°7 starts using Arithmétique : Multiples De 4/,
       regexJa: / 14:2CCC:労働七号 starts using 算術：4倍数/,
       preRun: function(data) {
@@ -388,7 +394,7 @@
     {
       id: 'Ridorana Construct Divide By Three',
       regex: / 14:2CCA:Construct 7 starts using Divide By Three/,
-      regexDe: / 14:2CCA:Automat Nr. 7 starts using Arithmetik: Durch 3 Teilen/,
+      regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 3 teilen einzusetzen./,
       regexFr: / 14:2CCA:Automate N°7 starts using Arithmétique : Multiples De 3/,
       regexJa: / 14:2CCA:労働七号 starts using 算術：3倍数/,
       preRun: function(data) {
@@ -433,11 +439,11 @@
       regexJa: / 14:(?:2C5F|2CE9):労働七号 starts using 処理する/,
       alertText: {
         en: 'Get Behind',
-        de: 'Hinter ihn laufen',
+        de: 'Boss von hinten umkreisen',
       },
       tts: {
         en: 'Get Behind',
-        de: 'Hinter ihn laufen',
+        de: 'Von hinten umkreisen',
       },
     },
     {
@@ -467,7 +473,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
           };
         }
       },
