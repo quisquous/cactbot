@@ -39,7 +39,7 @@ hideall "--Reset--"
 153 "Wicked Tornado" sync /:Garuda:2B4F:/
 156 "Downburst" sync /:Garuda:2B50:/ # drift -0.218
 164 "Slipstream" sync /:Garuda:2B53:/
-176 "Feather Rain" sync /:Garuda:2B4D:/
+176 "--untargetable--" sync /:Garuda:2B4D:/
 181 "Aerial Blast" sync /:Garuda:2B55:/ # drift -0.29
 
 
