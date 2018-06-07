@@ -2,6 +2,9 @@
 [{
   zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
   timelineFile: 'ultima_weapon_ultimate.txt',
+  timeline: [
+    'infotext "Feather Rain" before 3 "Move!"',
+  ],
   triggers: [
     {
       id: 'UWU Garuda Slipstream',
