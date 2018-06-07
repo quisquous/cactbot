@@ -62,6 +62,21 @@
         en: 'Searing Wind',
       },
     },
-    // TODO: what's the 0075 marker
+    {
+      id: 'UWU Garuda Woken',
+      regex: / 1A:Garuda gains the effect of Woken from/,
+      sound: 'Long',
+    },
+    {
+      id: 'UWU Ifrit Woken',
+      regex: / 1A:Ifrit gains the effect of Woken from/,
+      sound: 'Long',
+    },
+    {
+      id: 'UWU Titan Woken',
+      regex: / 1A:Titan gains the effect of Woken from/,
+      sound: 'Long',
+    },
+    // TODO: flaming crush 0075 marker
   ],
 }]
