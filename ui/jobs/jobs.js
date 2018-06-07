@@ -1850,8 +1850,6 @@ class Bars {
         r = log.match(kBluntDebuff);
         if (r != null) {
           var seconds = Regexes.ParseLocaleFloat(r[1]);
-          // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/167
-          seconds = 15;
           this.OnMonkDragonKick(seconds);
           continue;
         }
