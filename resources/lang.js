@@ -118,6 +118,17 @@ class CactbotLanguage {
       UltrosStoneskin: '2AB5',
       TheHeat: '2777',
       ChainCannon: '278F',
+
+      // uwu
+      GreatWhirlwind: '2B41',
+      SearingWind: '2B5C',
+      Slipstream: '2B53',
+      WickedWheel: '2B4E',
+      WickedTornado: '2B4F',
+      Eruption: '2B5A',
+      WeightOfTheLand: '2B65',
+      Landslide1: '2B70',
+      Landslide2: '2B71',
     });
 
     this.kZone = Object.freeze({
