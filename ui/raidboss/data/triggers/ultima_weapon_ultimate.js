@@ -63,6 +63,16 @@
       },
     },
     {
+      id: 'UWU Ifrit Flaming Crush',
+      regex: / 1B:........:(\y{Name}):....:....:0075:0000:0000:0000:/,
+      alertText: {
+        en: 'Stack',
+      },
+      tts: {
+        en: 'Stack',
+      },
+    },
+    {
       id: 'UWU Garuda Woken',
       regex: / 1A:Garuda gains the effect of Woken from/,
       sound: 'Long',
