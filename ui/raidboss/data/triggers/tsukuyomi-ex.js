@@ -7,7 +7,7 @@
       id: 'Tsukuyomi Nightfall Gun',
       regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
       regexDe: / 14:2BBC:Tsukuyomi starts using Einbruch Der Dunkelheit/,
-	  regexFr: / 14:2BBC:Tsukuyomi starts using Jeune Nuit/,
+      regexFr: / 14:2BBC:Tsukuyomi starts using Jeune Nuit/,
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
@@ -18,7 +18,7 @@
       id: 'Tsukuyomi Nightfall Spear',
       regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
       regexDe: / 14:2BBD:Tsukuyomi starts using Einbruch Der Dunkelheit/,
-	  regexFr: / 14:2BBD:Tsukuyomi starts using Jeune Nuit/,
+      regexFr: / 14:2BBD:Tsukuyomi starts using Jeune Nuit/,
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
@@ -79,7 +79,7 @@
     {
       regex: /:Tsukuyomi gains the effect of Full Moon/,
       regexDe: /:Tsukuyomi gains the effect of Vollmond/,
-	  regexFr: /:Tsukuyomi gains the effect of Force De La Pleine Lune/,
+      regexFr: /:Tsukuyomi gains the effect of Force De La Pleine Lune/,
       run: function(data) {
         var moonInOut = {
           en: 'Out',
@@ -92,7 +92,7 @@
     {
       regex: /:Tsukuyomi gains the effect of New Moon/,
       regexDe: /:Tsukuyomi gains the effect of Neumond/,
-	  regexFr: /:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
+      regexFr: /:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
       run: function(data) {
         var moonInOut = {
           en: 'In',
@@ -106,7 +106,7 @@
       id: 'Tsukuyomi Dark Blade',
       regex: / 14:2BDA:Tsukuyomi starts using Dark Blade/,
       regexDe: / 14:2BDA:Tsukuyomi starts using Dunkle Klinge/,
-	  regexFr: / 14:2BDA:Tsukuyomi starts using Lame Ténébreuse/,
+      regexFr: / 14:2BDA:Tsukuyomi starts using Lame Ténébreuse/,
       infoText: function(data) {
         return {
           en: 'Left + ' + data.moonInOut,
@@ -192,7 +192,7 @@
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
       regex: /00:0044:No\. No\.\.\. Not yet\. Not\. Yet\./,
-	  regexFr: /00:0044:Non\, je ne peux pas\.\.\. échouer\.\.\./,
+      regexFr: /00:0044:Non\, je ne peux pas\.\.\. échouer\.\.\./,
       infoText: {
         en: 'aoe',
         de: 'aoe',
