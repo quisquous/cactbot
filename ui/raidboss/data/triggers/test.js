@@ -1,8 +1,11 @@
 [{
   zoneRegex: /^Middle La Noscea$/,
   timelineFile: 'test.txt',
+  // timeline here is additions to the timeline.  They can
+  // be strings, or arrays of strings, or functions that
+  // take the same data object (including role and lang)
+  // that triggers do.
   timeline: [
-    'infotext "Angry Dummy" before 2 "stack for angry dummy"',
     'alerttext "Final Sting" before 4 "oh no final sting in 4"',
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
@@ -28,6 +31,21 @@
         'hideall "Death"',
       ];
     },
+  ],
+  timelineTriggers: [
+    {
+      id: 'Test Angry Dummy',
+      regex: /(Angry Dummy)/,
+      beforeSeconds: 2,
+      infoText: function(data, matches) {
+        return {
+          en: 'Stack for ' + matches[1],
+        };
+      },
+      tts: {
+        en: 'Stack',
+      },
+    }
   ],
   timelineReplace: [
     {
@@ -115,13 +133,13 @@
       regex: /00:0038:cactbot lang/,
       infoText: function(data) {
         return {
-	  en: 'Language: ' + data.lang,
-	};
+          en: 'Language: ' + data.lang,
+        };
       },
       tts: function(data) {
         return {
-	  en: 'Language: ' + data.lang,
-	};
+          en: 'Language: ' + data.lang,
+        };
       },
     },
   ],
