@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var Options = {
+let Options = {
   Language: 'en',
   IgnoreZones: [
     'PvpSeize',
@@ -10,13 +10,13 @@ var Options = {
   ],
 };
 
-var gCurrentZone = null;
-var gIgnoreCurrentZone = false;
-var gIgnoreZones = [];
-var rows = 10;
-var rdpsMax = 0;
+let gCurrentZone = null;
+let gIgnoreCurrentZone = false;
+let gIgnoreZones = [];
+let rows = 10;
+let rdpsMax = 0;
 
-var tracker = new DpsPhaseTracker;
+let tracker = new DpsPhaseTracker;
 
 function hideOverlay() {
   $('#overlay').addClass('hide');
@@ -29,32 +29,32 @@ function showOverlay() {
 function update(dps) {
   showOverlay();
 
-  var encounter = dps.Encounter;
-  var combatants = dps.Combatant;
-  var template = $('#overlaysource li');
-  var overlay = $('#overlay');
-  var container = overlay.clone();
+  let encounter = dps.Encounter;
+  let combatants = dps.Combatant;
+  let template = $('#overlaysource li');
+  let overlay = $('#overlay');
+  let container = overlay.clone();
   // Reserve one row for the phase titles.
-  var rows = Math.floor($(window).height() / template.height()) - 1;
+  let rows = Math.floor($(window).height() / template.height()) - 1;
 
   // todo: animate changes while combat is active?
   // for now, always just fully replace the content
 
   container.html('');
 
-  var rdps = parseFloat(encounter.encdps);
+  let rdps = parseFloat(encounter.encdps);
 
   // sanity check
-  if (!isNaN(rdps) && rdps != Infinity) {
+  if (!isNaN(rdps) && rdps != Infinity)
     rdpsMax = Math.max(rdpsMax, rdps);
-  }
 
-  var header = template.clone();
-  if (encounter.encdps.length <= 7) {
+
+  let header = template.clone();
+  if (encounter.encdps.length <= 7)
     header.find('.dps').text(encounter.encdps);
-  } else {
+  else
     header.find('.dps').text(encounter.ENCDPS);
-  }
+
 
   header.find('.name').text(tracker.title || '');
   header.find('.number').text(encounter.duration);
@@ -62,22 +62,22 @@ function update(dps) {
 
   container.append(header);
 
-  var limit = Math.max(combatants.length, rows);
-  var names = Object.keys(combatants).slice(0,rows-1);
-  var maxdps = false;
+  let limit = Math.max(combatants.length, rows);
+  let names = Object.keys(combatants).slice(0, rows-1);
+  let maxdps = false;
 
-  var dpsOrder = {};
-  for (var i = 0; i < names.length; i++) {
-    var combatant = combatants[names[i]];
-    var row = template.clone();
+  let dpsOrder = {};
+  for (let i = 0; i < names.length; i++) {
+    let combatant = combatants[names[i]];
+    let row = template.clone();
 
-    if (!maxdps) {
+    if (!maxdps)
       maxdps = parseFloat(combatant.encdps);
-    }
 
-    if (combatant.name == 'YOU') {
+
+    if (combatant.name == 'YOU')
       row.addClass('you');
-    }
+
     dpsOrder[combatant.name] = i;
 
     row.find('.dps').text(combatant.encdps);
@@ -93,52 +93,52 @@ function update(dps) {
 
   if (tracker.phases.length >= 1) {
     // Don't show the first phase if it starts immediately with the encounter.
-    if (tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1 || tracker.phases.length >= 2) {
-      for (var i = 0; i < tracker.phases.length; ++i) {
+    if (tracker.phases[0].start && tracker.phases[0].start.Encounter.DURATION > 1 ||
+        tracker.phases.length >= 2) {
+      for (let i = 0; i < tracker.phases.length; ++i)
         updatePhase(tracker.phases[i], dpsOrder);
-      }
     }
   }
 }
 
 function updatePhase(phase, dpsOrder) {
-  if (!phase.diff) {
+  if (!phase.diff)
     return;
-  }
+
 
   if (!phase.element) {
-    var container = $('#phasesource ol').clone();
+    let container = $('#phasesource ol').clone();
     phase.element = container;
     $('#topcontainer').append(container);
     // Map of combatants => elements
     phase.rowMap = {};
   }
 
-  var phasename = phase.element.find('.phasename');
+  let phasename = phase.element.find('.phasename');
   phasename.text(phase.name);
-  var phasetotal = phase.element.find('.phasetotal');
+  let phasetotal = phase.element.find('.phasetotal');
   phasetotal.text(phase.diff.Encounter.ENCDPS);
 
-  var maxPhaseDPS = null;
-  for (var name in dpsOrder) {
-    var combatant = phase.diff.Combatant[name];
+  let maxPhaseDPS = null;
+  for (let name in dpsOrder) {
+    let combatant = phase.diff.Combatant[name];
     if (!combatant) {
       phase.diff.Combatant[name] = combatant = {
         ENCDPS: '',
       };
     }
-    var row = phase.rowMap[name];
+    let row = phase.rowMap[name];
     if (!row) {
       row = $('#phasenumbersource li').clone();
-      if (name == 'YOU') {
+      if (name == 'YOU')
         row.addClass('you');
-      }
+
       phase.element.append(row);
       phase.rowMap[name] = row;
     }
     row.find('.number').text(combatant.ENCDPS);
 
-    var order = dpsOrder[name];
+    let order = dpsOrder[name];
     row.removeClass('hide');
     row.removeClass('highestdps');
     row.css('order', dpsOrder[name]);
@@ -153,16 +153,14 @@ function updatePhase(phase, dpsOrder) {
 
   // Rows that used to be in dpsOrder but now aren't should be
   // hidden.
-  for (var name in phase.rowMap) {
-    var order = dpsOrder[name];
-    if (order === undefined) {
+  for (let name in phase.rowMap) {
+    let order = dpsOrder[name];
+    if (order === undefined)
       phase.rowMap[name].addClass('hide');
-    }
   }
 
-  if (maxPhaseDPS) {
+  if (maxPhaseDPS)
     maxPhaseDPS.row.addClass('highestdps');
-  }
 }
 
 $(document).on('onOverlayDataUpdate', function(e) {
@@ -173,24 +171,26 @@ $(document).on('onOverlayDataUpdate', function(e) {
   tracker.onOverlayDataUpdate(e.originalEvent.detail);
   update(e.originalEvent.detail);
 });
-$(document).on('onZoneChangedEvent', function (e) {
+$(document).on('onZoneChangedEvent', function(e) {
   gCurrentZone = e.originalEvent.detail.zoneName;
   gIgnoreCurrentZone = false;
-  for (var i = 0; i < gIgnoreZones.length; ++i) {
+  for (let i = 0; i < gIgnoreZones.length; ++i) {
     if (gCurrentZone.match(gIgnoreZones[i]))
       gIgnoreCurrentZone = true;
   }
   tracker.onZoneChange(gCurrentZone);
   hideOverlay();
 });
-$(document).on('onLogEvent', function (e) {
+$(document).on('onLogEvent', function(e) {
   tracker.onLogEvent(e.originalEvent.detail.logs);
 });
-$(document).on('onInCombatChangedEvent', function (e) {
+$(document).on('onInCombatChangedEvent', function(e) {
   // Only clear phases when ACT starts a new encounter for consistency.
   tracker.inCombatChanged(e.originalEvent.detail.inACTCombat);
 });
 
 UserConfig.getUserConfigLocation('xephero', function(e) {
-  gIgnoreZones = Options.IgnoreZones.map(function(z) { return gLang.kZone[z]; });
+  gIgnoreZones = Options.IgnoreZones.map(function(z) {
+    return gLang.kZone[z];
+  });
 });
