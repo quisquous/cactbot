@@ -23,7 +23,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
-            fr: 'Tank Buster on TOI',
+            fr: 'Tank Buster sur TOI',
           };
         }
         if (data.role == 'healer') {
