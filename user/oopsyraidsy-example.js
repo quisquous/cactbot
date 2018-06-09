@@ -1,3 +1,5 @@
+'use strict';
+
 // Rename this file to `oopsyraidsy.js` then edit to change the oopsyraidsy ui.
 
 
@@ -63,7 +65,7 @@ Options.Triggers = [
           return e.targetName == data.me && e.damageStr.substr(-1) == '!';
         },
         mistake: function(e, data) {
-          var text = e.abilityName + ': ' + e.damageStr;
+          let text = e.abilityName + ': ' + e.damageStr;
           return { type: 'good', blame: e.targetName, text: text };
         },
       },
