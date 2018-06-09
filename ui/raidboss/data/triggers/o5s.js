@@ -59,14 +59,14 @@
         return {
           en: 'Go to back',
           de: 'Nach hinten laufen',
-          fr: 'S'éloigner',
+          fr: "S'éloigner",
         };
       },
       tts: function(data) {
         return {
           en: 'run away',
           de: 'ab nach hinten',
-          fr: 'S'éloigner',
+          fr: "S'éloigner",
         };
       },
     },
