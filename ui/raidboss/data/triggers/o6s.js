@@ -18,12 +18,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur '+data.ShortName(matches[1]),
           };
         }
       },
@@ -32,6 +34,7 @@
           return {
             en: 'buster',
             de: 'tenkbasta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -46,10 +49,12 @@
       infoText: {
         en: 'Hallowed Wind Stack',
         de: 'Heiliger Boden Wind',
+        fr: 'Packez vous dans le vent',
       },
       tts: {
         en: 'hallowed wind stack',
         de: 'heiliger boden wind',
+        fr: 'Packez vous dans le vent',
       },
     },
     {
@@ -60,6 +65,7 @@
           return {
             en: 'Demonic Stone on YOU',
             de: 'Dämonischer Stein auf DIR',
+            fr: 'Pierre démoniaque sur VOUS',
           };
         }
       },
@@ -75,10 +81,12 @@
       alarmText: {
         en: 'Last Kiss on YOU',
         de: 'Letzter Kuss auf DIR',
+        fr: 'Baiser fatal sur VOUS',
       },
       tts: {
         en: 'last kiss',
         de: 'letz ter kuss',
+        fr: 'baiser fatal',
       },
     },
     {
@@ -95,10 +103,12 @@
       alarmText: {
         en: 'Last Kiss on YOU',
         de: 'Letzter Kuss auf DIR',
+        fr: 'Baiser fatal sur VOUS',
       },
       tts: {
         en: 'last kiss',
         de: 'letz ter kuss',
+        fr: 'baiser fatal',
       },
     },
   ],
@@ -178,16 +188,15 @@
         'Portrayal of Earth': 'Peinture De La Terre',
         'Portrayal of Water': "Peinture De L'eau",
         "The Storm's Grip": "Emprise De La Tempête",
-        'I have claimed the girl in the picture!': "Héhéhé... La fille du tableau m'appartient",
+        "I have claimed the girl in the picture!": "Héhéhé... La fille du tableau m'appartient",
+        "Engage!": "À l'attaque",
       },
       replaceText: {
-        "Engage!": "À l'attaque",
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
-
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
         'Demonic Howl': 'Hurlement Démoniaque',
         'Demonic Pain': 'Douleur Démoniaque',
         'Demonic Shear': 'Cisailles Démoniaques',
@@ -214,10 +223,8 @@
         'Rock Hard': 'Brise-roc',
         'Song Of Bravery': 'Chant Du Courage',
         'The Price': 'Tentation Mortelle',
-
-        // FIXME:
-        'Easterlies': 'Easterlies',
-        'Flash Flood': 'Flash Flood',
+        'Flash Flood': 'Pluie Subite',
+        'Easterlies': 'Rafale Ultime',
       },
       '~effectNames': {
         'Apathetic': 'Apathie',
