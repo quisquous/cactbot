@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /Eureka Anemos/,
   resetWhenOutOfCombat: false,
@@ -7,11 +9,11 @@
       regex: /14:2AD5:Void Garm starts using The Dragon's Voice/,
       regexDe: /14:2AD5:Nichts-Garm starts using Stimme Des Drachen/,
       infoText: {
-        en: "Dragon's Voice",
+        en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
       },
       tts: {
-        en: "Dragon's Voice",
+        en: 'Dragon\'s Voice',
         de: 'drache',
       },
     },
@@ -20,21 +22,21 @@
       regex: /14:29EB:Sabotender Corrido starts using 100,000 Needles on (\y{Name})/,
       regexDe: /14:29EB:Sabotender Corrido starts using 100\.000 Nadeln on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches[1] != data.me)
           return;
-        }
+
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches[1] == data.me)
           return;
-        }
+
         return {
           en: '100k Needle Stack',
-          de: '100k Nadeln Stack'
+          de: '100k Nadeln Stack',
         };
       },
       tts: function(data, matches) {
@@ -86,7 +88,7 @@
       },
       tts: {
         en: 'eye donut',
-        de: 'augen dohnat'
+        de: 'augen dohnat',
       },
     },
     {
@@ -132,7 +134,9 @@
       id: 'Eureka Voidscale Ice',
       regex: /14:29C3:Voidscale starts using Ball Of Ice on (\y{Name})/,
       regexDe: /14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alertText: {
         en: 'Ice ball on you!',
         de: 'Eisball auf dir!',
@@ -158,7 +162,9 @@
     {
       id: 'Eureka Pazuzu Camisado',
       regex: /14:289F:Pazuzu starts using Camisado on (\y{Name})/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alertText: {
         en: 'Buster on YOU',
         de: 'Tenkbasta auf DIR',
@@ -232,4 +238,4 @@
       },
     },
   ],
-}]
+}];

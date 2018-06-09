@@ -1,34 +1,36 @@
+'use strict';
+
 // TODO: This tests the dragon marking algorithm.  This should
 // probably be in some more general unit testing framework, but
 // for now is just a "manual" test, with the code here being
 // copied into the ultimate triggers.
 
 // Begin copy and paste
-var modDistance = function(mark, dragon) {
-  var oneWay = (dragon - mark + 8) % 8;
-  var otherWay = (mark - dragon + 8) % 8;
-  var distance = Math.min(oneWay, otherWay);
+let modDistance = function(mark, dragon) {
+  let oneWay = (dragon - mark + 8) % 8;
+  let otherWay = (mark - dragon + 8) % 8;
+  let distance = Math.min(oneWay, otherWay);
   console.assert(distance >= 0);
   return distance;
 };
 
-var badSpots = function(mark, dragon) {
+let badSpots = function(mark, dragon) {
   // All spots between mark and dragon are bad.  If distance == 1,
   // then the dragon hits the spot behind the mark too.  e.g. N
   // mark, NE dragon will also hit NW.
-  var bad = [];
-  var distance = modDistance(mark, dragon);
+  let bad = [];
+  let distance = modDistance(mark, dragon);
   console.assert(distance > 0);
   console.assert(distance <= 2);
   if ((mark + distance + 8) % 8 == dragon) {
     // Clockwise.
-    for (var i = 0; i <= distance; ++i)
+    for (let i = 0; i <= distance; ++i)
       bad.push((mark + i) % 8);
     if (distance == 1)
       bad.push((mark - 1 + 8) % 8);
   } else {
     // Widdershins.
-    for (var i = 0; i <= distance; ++i)
+    for (let i = 0; i <= distance; ++i)
       bad.push((mark - i + 8) % 8);
     if (distance == 1)
       bad.push((mark + 1) % 8);
@@ -36,13 +38,13 @@ var badSpots = function(mark, dragon) {
   return bad;
 };
 
-var findDragonMarks = function(array) {
-  var marks = [-1, -1, -1];
-  var ret = {
+let findDragonMarks = function(array) {
+  let marks = [-1, -1, -1];
+  let ret = {
     // Third drive is on a dragon three squares away and will cover
     // more of the middle than usual, e.g. SE dragon, SW dragon,
     // mark W (because S is unsafe from 2nd dive).
-    wideThirdDive:  false,
+    wideThirdDive: false,
     // Third mark spot is covered by the first dive so needs to be
     // patient.  Third mark should always be patient, but you never
     // know.
@@ -50,8 +52,8 @@ var findDragonMarks = function(array) {
     marks: ['error', 'error', 'error'],
   };
 
-  var dragons = [];
-  for (var i = 0; i < 8; ++i) {
+  let dragons = [];
+  for (let i = 0; i < 8; ++i) {
     if (array[i])
       dragons.push(i);
   }
@@ -98,10 +100,9 @@ var findDragonMarks = function(array) {
     // hole between #3 and #4, otherwise need all three holes.
     // e.g. N, NE, E, W, NW dragon pattern should prefer third
     // mark SW instead of N.
-    var distance = marks[1] == dragons[2] - 1 ? 2 : 4;
-    if (dragons[3] >= dragons[2] + distance) {
+    let distance = marks[1] == dragons[2] - 1 ? 2 : 4;
+    if (dragons[3] >= dragons[2] + distance)
       marks[2] = dragons[3] - 1;
-    }
   } else {
     // Split dragons.  Common case: bias towards last dragon, in
     // case 2nd charge is going towards this pair.
@@ -116,12 +117,14 @@ var findDragonMarks = function(array) {
     }
   }
 
-  var bad = badSpots(marks[0], dragons[0]);
+  let bad = badSpots(marks[0], dragons[0]);
   bad.concat(badSpots(marks[0], dragons[1]));
   ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
 
-  var dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  ret.marks = marks.map(function(i) { return dir_names[i]; });
+  let dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  ret.marks = marks.map(function(i) {
+    return dir_names[i];
+  });
   return ret;
 };
 
@@ -131,8 +134,8 @@ var findDragonMarks = function(array) {
 // Test functions
 
 function testModDistance() {
-  for (var i = 0; i < 8; ++i) {
-    for (var j = -4; j <= 4; ++j) {
+  for (let i = 0; i < 8; ++i) {
+    for (let j = -4; j <= 4; ++j) {
       console.assert(modDistance(i, (i + j + 8) % 8) == Math.abs(j));
       console.assert(modDistance(i, (i + j + 8) % 8) == Math.abs(j));
     }
@@ -141,12 +144,12 @@ function testModDistance() {
 testModDistance();
 
 function testBadSpots() {
-  var equals = function(a, b) {
+  let equals = function(a, b) {
     a.sort();
     b.sort();
     if (a.length != b.length)
       return false;
-    for (var i = 0; i < a.length; ++i) {
+    for (let i = 0; i < a.length; ++i) {
       if (a[i] != b[i])
         return false;
     }
@@ -154,19 +157,19 @@ function testBadSpots() {
   };
 
   // 1 away dragons
-  for (var i = 0; i < 8; ++i) {
-    var before = (i - 1 + 8) % 8;
-    var after = (i + 1) % 8;
+  for (let i = 0; i < 8; ++i) {
+    let before = (i - 1 + 8) % 8;
+    let after = (i + 1) % 8;
     console.assert(equals([before, i, after], badSpots(i, before)));
     console.assert(equals([before, i, after], badSpots(i, after)));
   }
 
   // 2 away dragons
-  for (var i = 0; i < 8; ++i) {
-    var before2 = (i - 2 + 8) % 8;
-    var before1 = (i - 1 + 8) % 8;
-    var after1 = (i + 1) % 8;
-    var after2 = (i + 2) % 8;
+  for (let i = 0; i < 8; ++i) {
+    let before2 = (i - 2 + 8) % 8;
+    let before1 = (i - 1 + 8) % 8;
+    let after1 = (i + 1) % 8;
+    let after2 = (i + 2) % 8;
     console.assert(equals([before2, before1, i], badSpots(i, before2)));
     console.assert(equals([after2, after1, i], badSpots(i, after2)));
   }
@@ -174,18 +177,20 @@ function testBadSpots() {
 testBadSpots();
 
 function testFindDragonMarks(array, output) {
-  var mark_dirs = output.marks;
-  var dragons = [];
-  for (var i = 0; i < 8; ++i) {
+  let mark_dirs = output.marks;
+  let dragons = [];
+  for (let i = 0; i < 8; ++i) {
     if (array[i])
       dragons.push(i);
   }
   console.assert(dragons.length == 5);
 
-  var dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  var marks = mark_dirs.map(function(i) { return dir_names.indexOf(i); });
+  let dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  let marks = mark_dirs.map(function(i) {
+    return dir_names.indexOf(i);
+  });
   console.assert(marks.length == 3);
-  for (var i = 0; i < marks.length; ++i) {
+  for (let i = 0; i < marks.length; ++i) {
     console.assert(marks[i] >= 0);
     console.assert(marks[i] < 8);
   }
@@ -202,14 +207,14 @@ function testFindDragonMarks(array, output) {
   console.assert(modDistance(marks[0], dragons[0]) <= 2);
   console.assert(modDistance(marks[0], dragons[1]) <= 2);
   console.assert(modDistance(marks[1], dragons[2]) <= 2);
-  if (output.wideThirdDive) {
+  if (output.wideThirdDive)
     console.assert(modDistance(marks[2], dragons[3]) == 3);
-  } else {
+  else
     console.assert(modDistance(marks[2], dragons[3]) <= 2);
-  }
+
   console.assert(modDistance(marks[2], dragons[4]) <= 2);
 
-  var bad = [
+  let bad = [
     badSpots(marks[0], dragons[0]).concat(badSpots(marks[0], dragons[1])),
     badSpots(marks[1], dragons[2]),
   ];
@@ -220,16 +225,15 @@ function testFindDragonMarks(array, output) {
   console.assert(bad[1].indexOf(marks[2]) == -1);
 
   // Verify unsafe third mark.
-  if (output.unsafeThirdMark) {
+  if (output.unsafeThirdMark)
     console.assert(bad[0].indexOf(marks[2]) != -1);
-  } else {
+  else
     console.assert(bad[0].indexOf(marks[2]) == -1);
-  }
 }
 
-var total = 0;
-for (var i = 0; i < 256; ++i) {
-  var array = [
+let total = 0;
+for (let i = 0; i < 256; ++i) {
+  let array = [
     i & 0x80 ? 1 : 0,
     i & 0x40 ? 1 : 0,
     i & 0x20 ? 1 : 0,
@@ -239,15 +243,15 @@ for (var i = 0; i < 256; ++i) {
     i & 0x02 ? 1 : 0,
     i & 0x01 ? 1 : 0,
   ];
-  var count = 0;
-  for (var j = 0; j < array.length; ++j) {
+  let count = 0;
+  for (let j = 0; j < array.length; ++j)
     count += array[j];
-  }
+
   if (count != 5)
     continue;
 
   console.log(array);
-  var output = findDragonMarks(array);
+  let output = findDragonMarks(array);
   console.log(output);
   testFindDragonMarks(array, output);
   ++total;

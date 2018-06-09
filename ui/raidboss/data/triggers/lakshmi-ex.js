@@ -1,52 +1,61 @@
+'use strict';
+
 // Lakshmi Extreme
 [{
   zoneRegex: /^Emanation \(Extreme\)$/,
   timelineFile: 'lakshmi-ex.txt',
   timeline: [
     function(data) {
-      if (data.role == 'tank') {
+      if (data.role == 'tank')
         return 'infotext "Path of Light" before 5 "Cleave Soon"';
-      }
     },
   ],
   triggers: [
     {
       regex: /:Lakshmi starts using Chanchala/,
-      run: function(data) { data.chanchala = true; },
+      run: function(data) {
+        data.chanchala = true;
+      },
     },
     {
       regex: /:Lakshmi loses the effect of Chanchala/,
-      run: function(data) { data.chanchala = false; },
+      run: function(data) {
+        data.chanchala = false;
+      },
     },
     {
       id: 'Lakshmi Pull of Light',
       regex: /:215E:Lakshmi starts using The Pull Of Light on (\y{Name})/,
       regexDe: /:215E:Lakshmi starts using Strom Des Lichts on (\y{Name})/,
       alarmText: function(data, matches) {
-        if (data.role != 'tank' && matches[1] == data.me)
+        if (data.role != 'tank' && matches[1] == data.me) {
           return {
             en: 'Buster on YOU',
             de: 'Tankbuster auf DIR',
           };
+        }
       },
       alertText: function(data, matches) {
-        if (data.role == 'tank' && matches[1] == data.me)
+        if (data.role == 'tank' && matches[1] == data.me) {
           return {
             en: 'Buster on YOU',
             de: 'Tankbuster auf DIR',
           };
-        if (data.role == 'healer' && matches[1] != data.me)
+        }
+        if (data.role == 'healer' && matches[1] != data.me) {
           return {
             en: 'Buster on ' + matches[1],
             de: 'Tankbuster auf ' + matches[1],
           };
+        }
       },
       tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'buster',
             de: 'Basta',
           };
+        }
       },
     },
     {
@@ -92,9 +101,9 @@
       id: 'Lakshmi Pall of Light',
       regex: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: function(data, matches) {
-        if (!data.chanchala) {
+        if (!data.chanchala)
           return;
-        }
+
         if (data.me == matches[1]) {
           return {
             en: 'Vrill + Stack on YOU',
@@ -107,9 +116,9 @@
         };
       },
       infoText: function(data, matches) {
-        if (data.chanchala) {
+        if (data.chanchala)
           return;
-        }
+
         if (data.me == matches[1]) {
           return {
             en: 'Stack on YOU',
@@ -157,7 +166,9 @@
     { // Offtank cleave
       id: 'Lakshmi Path of Light',
       regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: function(data) {
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
@@ -174,7 +185,9 @@
     { // Cross aoe
       id: 'Lakshmi Hand of Grace',
       regex: /1B:........:(\y{Name}):....:....:006B:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: function(data) {
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
@@ -191,7 +204,9 @@
     { // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
       regex: /1B:........:(\y{Name}):....:....:006D:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: function(data) {
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
@@ -208,7 +223,9 @@
     { // Red marker during add phase
       id: 'Lakshmi Water III',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alertText: {
         en: 'Move Away',
         de: 'Weg da',
@@ -218,5 +235,5 @@
         de: 'weck da',
       },
     },
-  ]
-}]
+  ],
+}];

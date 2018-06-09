@@ -1,3 +1,5 @@
+'use strict';
+
 // O8N - Sigmascape 4.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V4\.0\)|Sigmascape V4\.0)$/,
@@ -134,7 +136,9 @@
     {
       id: 'O8N Flagrant Fire Single',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: {
         en: 'fire on YOU',
         fr: 'feu sur TOI',
@@ -308,7 +312,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Forsaken': 'Verloren',
-        "Future's End": "Ende Der Hoffnung",
+        'Future\'s End': 'Ende Der Hoffnung',
         'Futures Numbered': 'Ende Des Lebens',
         'Gravitational Wave': 'Gravitationswelle',
         'Heartless Angel': 'Herzloser Engel',
@@ -343,7 +347,7 @@
         'Destroy! Destroy! Destroy! I will destroy it all!': 'Je détruirai le monde entier! Plus personne ne pourra rêver!',
       },
       replaceText: {
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--synchronisation--',
         '--targetable--': '--ciblable--',
@@ -376,7 +380,7 @@
         'Wave Cannon': 'Canon Plasma',
 
         'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
-        'Half Arena': "Moitié d'arène",
+        'Half Arena': 'Moitié d\'arène',
         'Statue Gaze': 'Regard statue',
 
         'All Things Ending': 'Fin De Toutes Choses',
@@ -385,7 +389,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
         'Forsaken': 'Cataclysme',
-        "Future's End": "Fin Du Futur",
+        'Future\'s End': 'Fin Du Futur',
         'Futures Numbered': 'Ruine Du Futur',
         'Gravitational Wave': 'Onde Gravitationnelle',
         'Heartless Angel': 'Ange Sans Cœur',
@@ -413,11 +417,11 @@
         'Knockback Tethers': 'Liens de projection',
         'Sleep/Confuse Tethers': 'Liens de Sommeil/Confusion',
         'Statue Half Cleave': 'Demi clivage de la statue',
-        'Half Arena': "Moitié d'arène",
+        'Half Arena': 'Moitié d\'arène',
 
         'Aero/Ruin': 'Vent/Ruine',
         'Statue Gaze': 'Regard de statue',
       },
     },
-  ]
-}]
+  ],
+}];

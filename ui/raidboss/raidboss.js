@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 // Each option here can be changed in user/raidboss.js with a line such as
 // Options.BarExpiresSoonSeconds = 2
 // or
 // Options.InfoSound = 'file://C:/path/to/info/sound.ogg'
 // See user/raidboss-example.js for documentation.
-var Options = {
+let Options = {
   TimelineEnabled: true,
   AlertsEnabled: true,
   TextAlertsEnabled: true,

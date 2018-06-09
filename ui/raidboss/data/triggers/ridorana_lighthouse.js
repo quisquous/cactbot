@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /^The Ridorana Lighthouse$/,
   timelineFile: 'ridorana_lighthouse.txt',
@@ -27,9 +29,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
@@ -103,7 +105,9 @@
     {
       id: 'Ridorana Famfrit Dark Cannonade',
       regex: / 1B:........:(\y{Name}):....:....:0037:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: {
         en: 'Dorito Stack',
         de: 'Stacken',
@@ -118,16 +122,18 @@
     {
       id: 'Ridorana Famfrit Briny Cannonade',
       regex: / 1B:........:(\y{Name}):....:....:008B:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: "S'écrater",
+        fr: 'S\'écrater',
       },
       tts: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: "S'écrater",
+        fr: 'S\'écrater',
       },
     },
     {
@@ -164,9 +170,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
@@ -206,16 +212,18 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Brandwunde from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Brûlure from/,
       regexJa: / 1A:(\y{Name}) gains the effect of 火傷 from/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: {
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen strecken',
-        fr: "Lien vers l'exterieur",
+        fr: 'Lien vers l\'exterieur',
       },
       tts: {
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen',
-        fr: "Lien vers l'exterieur",
+        fr: 'Lien vers l\'exterieur',
       },
     },
     {
@@ -264,14 +272,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI'
+            fr: 'Tank Buster sur TOI',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
@@ -291,25 +299,29 @@
     {
       id: 'Ridorana Construct Accelerate Spread',
       regex: / 1B:........:(\y{Name}):....:....:008A:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       preRun: function(data) {
         data.accelerateSpreadOnMe = true;
       },
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: "S'écrater",
+        fr: 'S\'écrater',
       },
       tts: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: "S'écrater",
+        fr: 'S\'écrater',
       },
     },
     {
       id: 'Ridorana Construct Accelerate Stack',
       regex: / 1B:........:(\y{Name}):....:....:0064:0000:0000:0000:/,
-      condition: function(data) { return !data.accelerateSpreadOnMe; },
+      condition: function(data) {
+        return !data.accelerateSpreadOnMe;
+      },
       infoText: function(data, matches) {
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
@@ -345,14 +357,14 @@
           if (!this.correctMath)
             return;
           if (data.mathBaseValue < 1 || data.mathBaseValue > 9) {
-            console.error('Bad math: ' + data.mathBaseValue)
+            console.error('Bad math: ' + data.mathBaseValue);
             return;
           }
           return [
             {
               en: 'Stay out',
               de: 'Draußen stehen',
-              fr: 'En dehors'
+              fr: 'En dehors',
             },
             {
               en: 'Stand in 1',
@@ -383,11 +395,12 @@
       regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
       regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
       regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       preRun: function(data) {
-        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10) {
+        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
-        }
       },
     },
     {
@@ -399,12 +412,13 @@
       regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
       regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
       regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       delaySeconds: 0.5,
       preRun: function(data) {
-        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10) {
+        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
-        }
       },
     },
     {
@@ -416,8 +430,12 @@
       preRun: function(data) {
         data.correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
+      tts: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Divide By Four',
@@ -428,8 +446,12 @@
       preRun: function(data) {
         data.correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
+      tts: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Divide By Three',
@@ -440,8 +462,12 @@
       preRun: function(data) {
         data.correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
+      tts: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Indivisible',
@@ -452,8 +478,12 @@
       preRun: function(data) {
         data.correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
+      tts: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Pulverize',
@@ -465,12 +495,12 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
-        fr: "S'eloigner",
+        fr: 'S\'eloigner',
       },
       tts: {
         en: 'Get Out',
         de: 'Raus da',
-        fr: "S'eloigner",
+        fr: 'S\'eloigner',
       },
     },
     {
@@ -496,7 +526,9 @@
       regexDe: /1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
       regexFr: /1A:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
       regexJa: /1A:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       delaySeconds: 2,
       alarmText: {
         en: 'Stop',
@@ -520,14 +552,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI'
+            fr: 'Tank Buster sur TOI',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
@@ -550,7 +582,9 @@
       regexDe: / 14:2E32:Yiasmat starts using Prankenhieb/,
       regexFr: / 14:2E32:Yiazmat starts using Griffes/,
       regexJa: / 14:2E32:鬼龍ヤズマット starts using ひっかき/,
-      condition: function(data) { return data.role == 'tank' },
+      condition: function(data) {
+        return data.role == 'tank';
+      },
       infoText: {
         en: 'Out of Front',
         de: 'Vorm Boss weg',
@@ -585,7 +619,9 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Charge Négative from/,
       regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       infoText: {
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
@@ -603,7 +639,9 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Positives Magnetfeld from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Charge Positive from/,
       regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       infoText: {
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
@@ -637,7 +675,7 @@
       id: 'Ridorana Yiazmat Heart',
       regex: / 03:Added new combatant Heart Of The Dragon\./,
       regexDe: / 03:Added new combatant Herz Des Drachen\./,
-	  regexFr: / 03:Added new combatant Cœur De Yiazmat\./,
+      regexFr: / 03:Added new combatant Cœur De Yiazmat\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
@@ -653,8 +691,8 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Engage!': 'Start!',
         'Dark Rain': 'Dunkler Regen',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
@@ -668,12 +706,12 @@
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
 
-        ":Echoes from Time's Garden will be sealed off": ":Garten Ewiger Zeit schließt",
-        ":The Spire's Bounds will be sealed off": ":Katastase schließt",
-        ":The Cleft of Profaning Wind will be sealed off": ":Kluft Entweihender Winde schließt",
-        ":The Clockwork Coliseum will be sealed off": ":Kolosseum Von Gog schließt",
+        ':Echoes from Time\'s Garden will be sealed off': ':Garten Ewiger Zeit schließt',
+        ':The Spire\'s Bounds will be sealed off': ':Katastase schließt',
+        ':The Cleft of Profaning Wind will be sealed off': ':Kluft Entweihender Winde schließt',
+        ':The Clockwork Coliseum will be sealed off': ':Kolosseum Von Gog schließt',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Enrage': 'Finalangriff',
@@ -783,10 +821,10 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
-        "Engage!": "À l'attaque",
-        "Dark Rain": "Sphère D'eau Ténébreuse",
+      'locale': 'fr',
+      'replaceSync': {
+        'Engage!': 'À l\'attaque',
+        'Dark Rain': 'Sphère D\'eau Ténébreuse',
         'Famfrit, The Darkening Cloud': 'Famfrit Le Nuage Ténébreux',
         'Belias, The Gigas': 'Bélias Le Titan',
         'Gigas': 'Serviteur De Bélias',
@@ -798,12 +836,12 @@
         'Wind Azer': 'Aze De Vent',
         'Yiazmat': 'Yiazmat',
 
-        ":Echoes from Time's Garden will be sealed off": ":Fermeture du Jardin d'un autre temps dans",
-        ":The Spire's Bounds will be sealed off": ":Fermeture de l'orée des Cieux dans",
-        ":The Cleft of Profaning Wind will be sealed off": ":Fermeture de la corniche des Vents distordants dans",
-        ":The Clockwork Coliseum will be sealed off": ":Fermeture de l'arène de Goug dans",
+        ':Echoes from Time\'s Garden will be sealed off': ':Fermeture du Jardin d\'un autre temps dans',
+        ':The Spire\'s Bounds will be sealed off': ':Fermeture de l\'orée des Cieux dans',
+        ':The Cleft of Profaning Wind will be sealed off': ':Fermeture de la corniche des Vents distordants dans',
+        ':The Clockwork Coliseum will be sealed off': ':Fermeture de l\'arène de Goug dans',
       },
-      replaceText: {
+      'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--synchronisation--',
         '--targetable--': '--ciblable--',
@@ -811,7 +849,7 @@
         'Briny Cannonade': 'Aqua-canon',
         'Dark Cannonade': 'Bombardement Ténébreux',
         'Dark Ewer': 'Aiguières Ténèbreuses',
-        "Dark Rain": "Trombe D'eau",
+        'Dark Rain': 'Trombe D\'eau',
         'Darkening Deluge': 'Nuage Stagnant',
         'Darkening Rainfall': 'Averse Ténébreuse',
         'Explosion': 'Éclatement',
@@ -824,8 +862,8 @@
         'Eruption': 'Éruption',
         'Fire': 'Feu',
         'Fire IV': 'Giga Feu',
-        "Hellfire": "Flammes De L'enfer",
-        "The Hand Of Time": "Trotteuse De L'au-delà",
+        'Hellfire': 'Flammes De L\'enfer',
+        'The Hand Of Time': 'Trotteuse De L\'au-delà',
         'Time Bomb': 'Bombe à Retardement',
         'Time Eruption': 'Éruption à Retardement',
         'Accelerate': 'Aplatir',
@@ -833,7 +871,7 @@
         'Annihilation Mode': 'Module Exterminator',
         'Ballistic Missile': 'Missiles Balistiques',
         'Compress': 'Écraser',
-        "Computation Mode": "Module D'arithmétique",
+        'Computation Mode': 'Module D\'arithmétique',
         'Destroy': 'Détruire',
         'Dispose': 'Annihiler',
         'Divide By Five': 'Arithmétique : Multiples De 5',
@@ -914,8 +952,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Dark Rain': '暗黒の雨水',
         'Engage!': '戦闘開始！',
         'Famfrit, The Darkening Cloud': '暗黒の雲ファムフリート',
@@ -930,12 +968,12 @@
         'Yiazmat': '鬼龍ヤズマット',
 
         // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ':Echoes from Time\'s Garden will be sealed off': ':Echoes from Time\'s Garden will be sealed off',
+        ':The Spire\'s Bounds will be sealed off': ':The Spire\'s Bounds will be sealed off',
+        ':The Cleft of Profaning Wind will be sealed off': ':The Cleft of Profaning Wind will be sealed off',
+        ':The Clockwork Coliseum will be sealed off': ':The Clockwork Coliseum will be sealed off',
       },
-      replaceText: {
+      'replaceText': {
         'Briny Cannonade': '蒼の砲撃',
         'Dark Cannonade': '闇の砲撃',
         'Dark Ewer': '暗雲の水瓶',
@@ -1043,4 +1081,4 @@
       },
     },
   ],
-}]
+}];

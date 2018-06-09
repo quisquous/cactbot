@@ -1,3 +1,5 @@
+'use strict';
+
 // O2S - Deltascape 2.0 Savage
 [{
   zoneRegex: /(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))/,
@@ -18,14 +20,22 @@
     {
       id: 'O2S Levitation',
       regex: /:(\y{Name}) gains the effect of Levitation from/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data) { data.levitating = true; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data) {
+        data.levitating = true;
+      },
     },
     {
       id: 'O2S Levitation',
       regex: /:(\y{Name}) loses the effect of Levitation/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data) { data.levitating = false; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data) {
+        data.levitating = false;
+      },
     },
     {
       id: 'O2S -100Gs',
@@ -112,7 +122,9 @@
       regex: /:2372:Catastrophe starts using/,
       regexDe: /:2372:Katastroph starts using/,
       infoText: 'Gravitational Wave: AOE damage',
-      condition: function(data) { return data.role == 'healer'; },
+      condition: function(data) {
+        return data.role == 'healer';
+      },
       tts: {
         en: 'wave',
         de: 'welle',
@@ -129,12 +141,11 @@
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
             };
-          } else {
-            return {
-              en: 'Maniacal Probe: DPS',
-              de: 'Tentakeltanz: DDs',
-            };
           }
+          return {
+            en: 'Maniacal Probe: DPS',
+            de: 'Tentakeltanz: DDs',
+          };
         }
       },
       alertText: function(data) {
@@ -144,12 +155,11 @@
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
             };
-          } else {
-            return {
-              en: 'Maniacal Probe: DPS',
-              de: 'Tentakeltanz: DDs',
-            };
           }
+          return {
+            en: 'Maniacal Probe: DPS',
+            de: 'Tentakeltanz: DDs',
+          };
         }
       },
       tts: function(data) {
@@ -158,12 +168,11 @@
             en: 'dps probe',
             de: 'dee dees tentakel',
           };
-        } else {
-          return {
-            en: 'tank heal probe',
-            de: 'tenks heiler tentakel',
-          };
         }
+        return {
+          en: 'tank heal probe',
+          de: 'tenks heiler tentakel',
+        };
       },
     },
     {
@@ -171,7 +180,9 @@
       regex: /:(\y{Name}) gains the effect of Unstable Gravity from/,
       regexDe: /:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
       delaySeconds: 9,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alarmText: {
         en: 'Unstable Gravity: Elevate and outside stack',
         de: 'Schwerkraftschwankung: Schweben und außen stacken',
@@ -202,19 +213,27 @@
           };
         }
       },
-      condition: function(data, matches) { return !data.under && matches[1] == data.me; },
+      condition: function(data, matches) {
+        return !data.under && matches[1] == data.me;
+      },
       tts: {
         en: 'float',
         de: 'schweben',
       },
-      run: function(data) { data.under = true; },
+      run: function(data) {
+        data.under = true;
+      },
     },
     {
       id: 'O2S 6 Fulms Under',
       regex: /:(\y{Name}) loses the effect of 6 Fulms Under from/,
       regexDe: /:(\y{Name}) loses the effect of Versinkend from/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data) { data.under = false; }
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data) {
+        data.under = false;
+      },
     },
-  ]
-}]
+  ],
+}];

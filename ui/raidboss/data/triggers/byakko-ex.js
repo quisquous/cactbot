@@ -1,3 +1,5 @@
+'use strict';
+
 // Byakko Extreme
 [{
   zoneRegex: /^The Jade Stoa \(Extreme\)$/,
@@ -96,7 +98,9 @@
       id: 'ByaEx State Of Shock Tank 1',
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
-      condition: function(data, matches) { return data.role == 'tank' && matches[1] != data.me; },
+      condition: function(data, matches) {
+        return data.role == 'tank' && matches[1] != data.me;
+      },
       alertText: {
         en: 'Provoke Boss',
         de: 'Boss abspotten',
@@ -111,7 +115,9 @@
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       delaySeconds: 12,
-      condition: function(data, matches) { return data.role == 'tank' && matches[1] == data.me; },
+      condition: function(data, matches) {
+        return data.role == 'tank' && matches[1] == data.me;
+      },
       alertText: {
         en: 'Provoke Boss',
         de: 'Boss abspotten',
@@ -135,9 +141,9 @@
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       delaySeconds: 14,
       alarmText: function(data) {
-        if (data.roarCount != 2) {
+        if (data.roarCount != 2)
           return;
-        }
+
         if (data.role == 'tank') {
           return {
             en: 'Tank LB NOW',
@@ -146,9 +152,9 @@
         }
       },
       tts: function(data) {
-        if (data.roarCount != 2) {
+        if (data.roarCount != 2)
           return;
-        }
+
         if (data.role == 'tank') {
           return {
             en: 'Tank LB NOW',
@@ -160,7 +166,9 @@
     {
       id: 'ByaEx Bubble',
       regex: /1B:........:(\y{Name}):....:....:0065:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: function(data) {
         return {
           en: 'Drop bubble outside',
@@ -176,7 +184,9 @@
       id: 'ByaEx Ominous Wind',
       regex: /1A:(\y{Name}) gains the effect of Ominous Wind/,
       regexDe: /1A:(\y{Name}) gains the effect of Unheilvoller Wind/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: function(data) {
         return {
           en: 'Pink bubble',
@@ -191,7 +201,9 @@
     {
       id: 'ByaEx Puddle Marker',
       regex: /1B:........:(\y{Name}):....:....:0004:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alarmText: function(data) {
         return {
           en: 'Puddles on YOU',
@@ -206,7 +218,9 @@
     {
       id: 'ByaEx G100',
       regex: /1B:........:(\y{Name}):....:....:0057:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: function(data) {
         return {
           en: 'Get away',
@@ -268,5 +282,5 @@
         };
       },
     },
-  ]
-}]
+  ],
+}];

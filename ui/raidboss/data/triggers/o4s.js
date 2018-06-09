@@ -1,3 +1,5 @@
+'use strict';
+
 // O4S - Deltascape 4.0 Savage
 [{
   zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
@@ -9,7 +11,9 @@
     // Part 1
     { // Phase Tracker: Thunder III not after Decisive Battle.
       regex: /:23F9:Exdeath starts using/,
-      run: function(data) { data.thunderCount = (data.thunderCount || 0) + 1; },
+      run: function(data) {
+        data.thunderCount = (data.thunderCount || 0) + 1;
+      },
     },
     { // Fire III not after Decisive Battle.
       id: 'O4S1 Fire III',
@@ -135,7 +139,7 @@
       },
       run: function(data) {
         delete data.flareTargets;
-      }
+      },
     },
 
     // Part 2
@@ -180,31 +184,49 @@
     },
     { // Phase Tracker: Neverwhere.
       regex: /:2426:Neo Exdeath starts using/,
-      run: function(data) { data.finalphase = true; },
+      run: function(data) {
+        data.finalphase = true;
+      },
     },
     { // Wound tracking
       regex: /:(\y{Name}) (gains|loses) the effect of White Wound/,
       regexDe: /:(\y{Name}) (gains|loses) the effect of Wunde Des Lebenden/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data, matches) { data.whiteWound = matches[2] == 'gains'; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data, matches) {
+        data.whiteWound = matches[2] == 'gains';
+      },
     },
     { // Wound tracking
       regex: /:(\y{Name}) (gains|loses) the effect of Black Wound/,
       regexDe: /:(\y{Name}) (gains|loses) the effect of Wunde Des Toten/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data, matches) { data.blackWound = matches[2] == 'gains'; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data, matches) {
+        data.blackWound = matches[2] == 'gains';
+      },
     },
     { // Beyond death tracking
       regex: /:(\y{Name}) (gains|loses) the effect of Beyond Death/,
       regexDe: /:(\y{Name}) (gains|loses) the effect of Jenseis Des Jenseits/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data, matches) { data.beyondDeath = matches[2] == 'gains'; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data, matches) {
+        data.beyondDeath = matches[2] == 'gains';
+      },
     },
     { // Allagan field tracking
       regex: /:(\y{Name}) (gains|loses) the effect of Allagan Field/,
       regexDe: /:(\y{Name}) (gains|loses) the effect of Allagisches Feld/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      run: function(data, matches) { data.allaganField = matches[2] == 'gains'; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data, matches) {
+        data.allaganField = matches[2] == 'gains';
+      },
     },
     { // Inner Flood (move out).
       id: 'O4S2 Flood of Naught: Inside',
@@ -264,9 +286,8 @@
         }
       },
       sound: function(data) {
-        if (data.shouldDieOnLaser()) {
+        if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
-        }
       },
       tts: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -286,9 +307,9 @@
       regex: /:2411:Neo Exdeath starts using/,
       durationSeconds: 6,
       alarmText: function(data) {
-        if (!data.shouldDieOnLaser()) {
+        if (!data.shouldDieOnLaser())
           return;
-        }
+
         if (data.blackWound) {
           return {
             en: 'Die On Right Blue',
@@ -306,9 +327,9 @@
         };
       },
       alertText: function(data) {
-        if (data.shouldDieOnLaser()) {
+        if (data.shouldDieOnLaser())
           return;
-        }
+
         if (data.blackWound) {
           return {
             en: 'Left On Purple',
@@ -326,9 +347,8 @@
         };
       },
       sound: function(data) {
-        if (data.shouldDieOnLaser()) {
+        if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
-        }
       },
       tts: {
         en: 'colors',
@@ -340,9 +360,9 @@
       regex: /:2412:Neo Exdeath starts using/,
       durationSeconds: 6,
       alarmText: function(data) {
-        if (!data.shouldDieOnLaser()) {
+        if (!data.shouldDieOnLaser())
           return;
-        }
+
         if (data.blackWound) {
           return {
             en: 'Die On Left Blue',
@@ -360,9 +380,9 @@
         };
       },
       alertText: function(data) {
-        if (data.shouldDieOnLaser()) {
+        if (data.shouldDieOnLaser())
           return;
-        }
+
         if (data.blackWound) {
           return {
             en: 'Be Right On Purple',
@@ -380,9 +400,8 @@
         };
       },
       sound: function(data) {
-        if (data.shouldDieOnLaser()) {
+        if (data.shouldDieOnLaser())
           return data.dieDieDieSound;
-        }
       },
       tts: {
         en: 'colors',
@@ -392,17 +411,17 @@
     { // Laser counter.
       regex: /:24(OE|0F|11|12):Neo Exdeath starts using/,
       run: function(data, matches) {
-        if (data.phase != 'omega') {
+        if (data.phase != 'omega')
           return;
-        }
+
 
         // See comments in shouldDieOnLaser.  Beyond Death
         // doesn't get removed until after the 2nd laser
         // appears.  However, colors (THANKFULLY) apply
         // before the next laser appears.
-        if (data.shouldDieOnLaser()) {
+        if (data.shouldDieOnLaser())
           data.omegaProbablyDiedOnLaser = true;
-        }
+
 
         data.omegaLaserCount++;
       },
@@ -417,32 +436,29 @@
               en: 'Charge: be behind other tank',
               de: 'Aufladung: hinter anderen Tank',
             };
-          } else {
-            return {
-              en: 'Charge: be in the very back',
-              de: 'Aufladung: Ganz nach hinten',
-            };
           }
-        } else {
-          if (data.role == 'tank') {
-            return {
-              en: 'Charge: be in front!',
-              de: 'Aufladung: Ganz nach vorn',
-            };
-          } else {
-            return {
-              en: 'Charge: be behind tanks',
-              de: 'Aufladung: Hinter die Tanks',
-            };
-          }
+          return {
+            en: 'Charge: be in the very back',
+            de: 'Aufladung: Ganz nach hinten',
+          };
         }
+        if (data.role == 'tank') {
+          return {
+            en: 'Charge: be in front!',
+            de: 'Aufladung: Ganz nach vorn',
+          };
+        }
+        return {
+          en: 'Charge: be behind tanks',
+          de: 'Aufladung: Hinter die Tanks',
+        };
       },
       tts: {
         en: 'charge',
         de: 'aufladung',
       },
     },
-    {  // Double attack.
+    { // Double attack.
       id: 'O4S2 Double Attack',
       regex: /:241C:Neo Exdeath starts using/,
       alertText: function(data) {
@@ -482,7 +498,9 @@
         en: 'Apocatastasis on tank',
         de: 'Apokatastasis auf Tank',
       },
-      condition: function(data, matches) { return data.role == 'dps-caster' && (data.alphaCount == 1 || data.alphaCount == 3); },
+      condition: function(data, matches) {
+        return data.role == 'dps-caster' && (data.alphaCount == 1 || data.alphaCount == 3);
+      },
     },
     { // Grand Cross Delta.
       id: 'O4S2 Grand Cross Delta',
@@ -544,7 +562,9 @@
         en: 'Apocatastasis on healer',
         de: 'Apokatastasis auf Heiler',
       },
-      condition: function(data, matches) { return data.role == 'dps-caster'; },
+      condition: function(data, matches) {
+        return data.role == 'dps-caster';
+      },
     },
     { // Forked Lightning - Don't Stack.
       id: 'O4S2 Forked Lightning',
@@ -552,10 +572,12 @@
       regexDe: /:(\y{Name}) gains the effect of Gabelblitz from/,
       delaySeconds: 1,
       alertText: {
-        en: "Forked Lightning: Don't Stack",
+        en: 'Forked Lightning: Don\'t Stack',
         de: 'Gabelblitz: Nicht stacken',
       },
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       tts: {
         en: 'lightning get out',
         de: 'blitz raus da',
@@ -565,8 +587,12 @@
       id: 'O4S2 Acceleration Bomb',
       regex: /:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
       regexDe: /:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      delaySeconds: function(data, matches) { return data.ParseLocaleFloat(matches[2]) - 4; },  // 4 second warning.
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      delaySeconds: function(data, matches) {
+        return data.ParseLocaleFloat(matches[2]) - 4;
+      }, // 4 second warning.
       alarmText: function(data) {
         if (data.phase == 'omega') {
           return {
@@ -588,7 +614,9 @@
       id: 'O4S2 Acceleration Bomb Delta',
       regex: /:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
       regexDe: /:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      condition: function(data, matches) { return matches[1] == data.me && data.phase == 'delta'; },
+      condition: function(data, matches) {
+        return matches[1] == data.me && data.phase == 'delta';
+      },
       infoText: {
         en: 'Acceleration Bomb',
         de: 'Beschleunigungsbombe',
@@ -602,8 +630,12 @@
       id: 'O4S2 Omega Shriek',
       regex: /:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
       regexDe: /:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
-      condition: function(data, matches) { return matches[1] == data.me && data.phase == 'omega'; },
-      delaySeconds: function(data, matches) { return data.ParseLocaleFloat(matches[2]) - 5; },
+      condition: function(data, matches) {
+        return matches[1] == data.me && data.phase == 'omega';
+      },
+      delaySeconds: function(data, matches) {
+        return data.ParseLocaleFloat(matches[2]) - 5;
+      },
       alertText: {
         en: 'shriek: get mid, look away',
         de: 'Schrei: Zur mitte und wegschauen',
@@ -625,7 +657,9 @@
       id: 'O4S2 Water Me',
       regex: /:(\y{Name}) gains the effect of Compressed Water/,
       regex: /:(\y{Name}) gains the effect of Wasserkompression/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alarmText: function(data) {
         // Not clear where to tell the healer where to go on delta
         // due to picking a side for uptime strat, or other strats.
@@ -662,12 +696,11 @@
             en: 'Stack on ' + data.waterHealer,
             de: 'Stack auf '+ data.waterHealer,
           };
-        } else {
-          return {
-            en: 'Stack on water',
-            de: 'Bei Wasser stacken',
-          };
         }
+        return {
+          en: 'Stack on water',
+          de: 'Bei Wasser stacken',
+        };
       },
       tts: {
         en: 'water stack',
@@ -705,12 +738,11 @@
             en: 'Stack under boss on ' + data.waterHealer,
             de: 'Unter Boss auf ' + data.waterHealer + ' stacken',
           };
-        } else {
-          return {
-            en: 'Stack on water',
-            de: 'Auf Wasser stacken',
-          };
         }
+        return {
+          en: 'Stack on water',
+          de: 'Auf Wasser stacken',
+        };
       },
       tts: {
         en: 'water stack',
@@ -720,7 +752,9 @@
     { // Earthshaker
       id: 'O4S2 Earthshaker',
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alarmText: function(data) {
         if (data.role != 'tank') {
           return {
@@ -787,30 +821,42 @@
         en: 'almagest',
         de: 'almagest',
       },
-      run: function(data) { data.almagestCount = (data.almagestCount || 0) + 1; },
+      run: function(data) {
+        data.almagestCount = (data.almagestCount || 0) + 1;
+      },
     },
     { // Final phase Addle warning when Reprisal is ending.
       id: 'O4S2 Reprisal',
       regex: /gains the effect of Reprisal from .*? for (\y{Float}) Seconds/,
       regex: /gains the effect of Reflexion from .*? for (\y{Float}) Seconds/,
-      durationSeconds: function(data, matches) { return data.ParseLocaleFloat(matches[1]); },
+      durationSeconds: function(data, matches) {
+        return data.ParseLocaleFloat(matches[1]);
+      },
       infoText: {
         en: 'Reprisal active',
         de: 'Reflexion aktiv',
       },
-      condition: function(data) { return data.finalphase && !data.reprisal; },
-      run: function(data) { data.reprisal = true; },
+      condition: function(data) {
+        return data.finalphase && !data.reprisal;
+      },
+      run: function(data) {
+        data.reprisal = true;
+      },
     },
     { // Final phase Addle warning when Reprisal is ending.
       id: 'O4S2 Reprisal',
       regex: /loses the effect of Reprisal from/,
       regex: /loses the effect of Reflexion from/,
-      condition: function(data) { return data.finalphase && data.reprisal; },
+      condition: function(data) {
+        return data.finalphase && data.reprisal;
+      },
       alertText: {
         en: 'Reprisal ended',
         de: 'Reflexion zu Ende',
       },
-      run: function(data) { data.reprisal = false; },
+      run: function(data) {
+        data.reprisal = false;
+      },
     },
     { // Flare
       id: 'O4S2 Flare',
@@ -842,16 +888,15 @@
             en: 'flare on you',
             de: 'fleer auf dir',
           };
-        } else {
-          return {
-            en: 'stack',
-            de: 'stek',
-          };
         }
+        return {
+          en: 'stack',
+          de: 'stek',
+        };
       },
       run: function(data) {
         delete data.flareTargets;
       },
     },
-  ]
-}]
+  ],
+}];

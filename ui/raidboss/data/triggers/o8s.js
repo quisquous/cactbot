@@ -1,3 +1,5 @@
+'use strict';
+
 // O8S - Sigmascape 4.0 Savage
 // localization:
 //   de: partial timeline, partial triggers
@@ -128,38 +130,42 @@
       },
     },
     {
-      id: "O8S Past's End",
+      id: 'O8S Past\'s End',
       regex: /Kefka starts using Past's End/,
       regexDe: /Kefka starts using Ende Der Vergangenheit/,
       regexFr: /Kefka starts using Fin Du Passé/,
       regexJa: /ケフカ starts using 過去の終焉/,
-      condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
       alertText: {
         en: 'Past: Bait, then through',
-        fr: "Passé : l'appâter, puis le traverser",
+        fr: 'Passé : l\'appâter, puis le traverser',
         de: 'Vergangenheit : Anlocken und Durchlaufen',
       },
       tts: {
         en: 'run run run',
-        fr: "L'appâter, puis le traverser",
+        fr: 'L\'appâter, puis le traverser',
         de: 'Durchlaufen',
       },
     },
     {
-      id: "O8S Future's End",
+      id: 'O8S Future\'s End',
       regex: /Kefka starts using Future's End/,
       regexDe: /Kefka starts using Ende Der Zukunft/,
       regexFr: /Kefka starts using Fin Du Futur/,
       regexJa: /ケフカ starts using 未来の終焉/,
-      condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
       alertText: {
         en: 'Future: Bait, then stay',
-        fr: "Futur : l'appâter, et rester",
+        fr: 'Futur : l\'appâter, et rester',
         de: 'Zukunft: Anlocken und Stehenbleiben',
       },
       tts: {
         en: 'stay stay stay',
-        fr: "L'appâter, et rester",
+        fr: 'L\'appâter, et rester',
         de: 'Stehenbleiben',
       },
     },
@@ -169,7 +175,9 @@
       regexDe: /Helige Statue starts using Pulswelle on (\y{Name})/,
       regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
       regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alertText: {
         en: 'Knockback on YOU',
         fr: 'Projection depuis la Statue',
@@ -200,7 +208,7 @@
         if (data.role != 'tank') {
           return {
             en: 'Max Melee: Avoid Tanks',
-            fr: "Max Mêlée, s'éloigner des Tanks",
+            fr: 'Max Mêlée, s\'éloigner des Tanks',
             de: 'Max Nahkampf: Weg von den Tanks',
           };
         }
@@ -212,13 +220,12 @@
             fr: 'Ailes, être près ou loin',
             de: 'schwingen',
           };
-        } else {
-          return {
-            en: 'max melee',
-            fr: "Max mêlée et s'éloigner des tanks",
-            de: 'max nahkampf',
-          };
         }
+        return {
+          en: 'max melee',
+          fr: 'Max mêlée et s\'éloigner des tanks',
+          de: 'max nahkampf',
+        };
       },
     },
     {
@@ -245,9 +252,9 @@
       regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
       regexJa: / 14:2910:ケフカ starts using アルテマte Embrace on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches[1] != data.me)
           return;
-        }
+
         return {
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
@@ -255,15 +262,15 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches[1] == data.me)
           return;
-        }
+
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Embrace on ' + data.ShortName(matches[1]),
             fr: 'Étreinte sur ' + data.ShortName(matches[1]),
             de: 'Umarmung auf ' + data.ShortName(matches[1]),
-		      };
+          };
         }
       },
       tts: function(data, matches) {
@@ -284,9 +291,9 @@
       regexFr: / 14:(?:28E8|2912):Kefka starts using Colonne De Feu on (\y{Name})/,
       regexJa: / 14:(?:28E8|2912):ケフカ starts using ハイパードライブ on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches[1] != data.me)
           return;
-        }
+
         return {
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
@@ -294,9 +301,9 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches[1] == data.me)
           return;
-        }
+
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
@@ -321,15 +328,17 @@
       regexDe: / 14:28E5:Helige Statue starts using Nachsichtiger Wille on (\y{Name})/,
       regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
       regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: {
         en: 'Confusion: Go Outside',
-        fr: "Confusion : Aller à l'extérieur",
+        fr: 'Confusion : Aller à l\'extérieur',
         de: 'Konfusion: Nach außen',
       },
       tts: {
         en: 'confusion',
-        fr: "Confusion, aller à l'extérieur",
+        fr: 'Confusion, aller à l\'extérieur',
         de: 'konfusion',
       },
     },
@@ -339,11 +348,13 @@
       regexDe: / 14:28E6:Helige Statue starts using Idyllischer Wille on (\y{Name})/,
       regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
       regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: {
-       en: 'Sleep: Go Inside',
-       fr: 'Sommeil : aller au centre',
-       de: 'Schlaf: Zur Mitte',
+        en: 'Sleep: Go Inside',
+        fr: 'Sommeil : aller au centre',
+        de: 'Schlaf: Zur Mitte',
       },
       tts: {
         en: 'sleep',
@@ -380,8 +391,12 @@
           return;
         data.manaReleaseText = data.lastThunder + ', ' + data.lastIceDir;
       },
-      infoText: function(data) { return data.manaReleaseText; },
-      tts: function(data) { return data.manaReleaseText; },
+      infoText: function(data) {
+        return data.manaReleaseText;
+      },
+      tts: function(data) {
+        return data.manaReleaseText;
+      },
     },
     {
       // From ACT log lines, there's not any way to know the fire type as it's used.
@@ -441,8 +456,12 @@
           de: 'Wahrer Blitz',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastThunder; },
-      tts: function(data) { return data.lastThunder; },
+      infoText: function(data) {
+        return data.lastThunder;
+      },
+      tts: function(data) {
+        return data.lastThunder;
+      },
     },
     {
       // 28CA: mana charge (both types)
@@ -461,8 +480,12 @@
           de: 'Falscher Blitz',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastThunder; },
-      tts: function(data) { return data.lastThunder; },
+      infoText: function(data) {
+        return data.lastThunder;
+      },
+      tts: function(data) {
+        return data.lastThunder;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -486,8 +509,12 @@
           de: 'raus da',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -511,8 +538,12 @@
           de: 'reingehen',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -536,8 +567,12 @@
           de: 'reingehen',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -561,8 +596,12 @@
           de: 'rausgehen',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
   ],
   timelineReplace: [
@@ -612,7 +651,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Forsaken': 'Verloren',
-        "Future's End": "Ende Der Zukunft",
+        'Future\'s End': 'Ende Der Zukunft',
         'Futures Numbered': 'Vernichtung Der Zukunft',
         'Gravitational Wave': 'Gravitationswelle',
         'Heartless Angel': 'Herzloser Engel',
@@ -652,7 +691,7 @@
         'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
       },
       replaceText: {
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--synchronisation--',
         '--targetable--': '--ciblable--',
@@ -685,7 +724,7 @@
         'Wave Cannon': 'Canon Plasma',
 
         'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
-        'Half Arena': "Moitié d'arène",
+        'Half Arena': 'Moitié d\'arène',
         'Statue Gaze': 'Regard statue',
 
         'All Things Ending': 'Fin De Toutes Choses',
@@ -694,7 +733,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
         'Forsaken': 'Cataclysme',
-        "Future's End": "Fin Du Futur",
+        'Future\'s End': 'Fin Du Futur',
         'Futures Numbered': 'Ruine Du Futur',
         'Gravitational Wave': 'Onde Gravitationnelle',
         'Heartless Angel': 'Ange Sans Cœur',
@@ -766,7 +805,7 @@
         'Explosion': '爆発',
         'Fire III': 'ファイガ',
         'Forsaken': 'ミッシング',
-        "Future's End": "未来の終焉",
+        'Future\'s End': '未来の終焉',
         'Futures Numbered': '未来の破滅',
         'Gravitational Wave': '重力波',
         'Heartless Angel': '心ない天使',
@@ -788,4 +827,4 @@
       },
     },
   ],
-}]
+}];

@@ -1,3 +1,5 @@
+'use strict';
+
 // O7N - Sigmascape 3.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V3\.0\)|Sigmascape V3\.0)$/,
@@ -74,12 +76,12 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
-        fr: "S'éloigner",
+        fr: 'S\'éloigner',
       },
       tts: {
         en: 'out',
         de: 'raus',
-        fr: "s'éloigner",
+        fr: 's\'éloigner',
       },
     },
     {
@@ -99,7 +101,7 @@
           fr: 'Marquage sur ' + data.ShortName(matches[1]),
         };
       },
-      tts: function (data, matches) {
+      tts: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'prey',
@@ -112,8 +114,8 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Air Force': 'Luftwaffe',
         'Dadaluma': 'Dadarma',
         'Fire Control System': 'Feuerleitsystem',
@@ -124,7 +126,7 @@
         'Tentacle': 'Tentakel',
         'Bibliotaph': 'Bibliotaph',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Engage!': 'Start!',
@@ -204,8 +206,8 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Guardian gains the effect of ': 'Gardien gains the effect of Programme ',
         'Air Force': 'Force Aérienne',
         'Dadaluma': 'Dadaluma',
@@ -216,12 +218,12 @@
         'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle',
         'Tentacle': 'Tentacule',
         'Bibliotaph': 'Bibliotaphe',
-        
+
       },
-      replaceText: {
+      'replaceText': {
         'Arm And Hammer': 'Marteau Stratégique',
         'Atomic Ray': 'Rayon Atomique',
-        "Aura Cannon": "Rayon D'aura",
+        'Aura Cannon': 'Rayon D\'aura',
         'Bomb Deployment': 'Déploiement De Bombes',
         'Chain Cannon': 'Canon Automatique',
         'Chakra Burst': 'Explosion De Chakra',
@@ -230,7 +232,7 @@
         'Diffractive Laser': 'Laser Diffracteur',
         'Diffractive Plasma': 'Plasma Diffracteur',
         'Electric Pulse': 'Impulsion électrique',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Explosion': 'Explosion',
         'Ink': 'Encre',
         'Light Blast': 'Déflagration Légère',
@@ -257,7 +259,7 @@
         '--untargetable--': '--impossible à cibler--',
 
         'Prey': 'Marquage',
-        "Plane Laser": "Laser d'avion",
+        'Plane Laser': 'Laser d\'avion',
         'Burst/Darkness': 'Explosion Magique',
       },
       '~effectNames': {
@@ -283,8 +285,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Air Force': 'エアフォース',
         'Dadaluma': 'ダダルマー',
         'Fire Control System': 'ファイアコントロールシステム',
@@ -292,7 +294,7 @@
         'Interdimensional Bomb': '次元爆弾',
         'Ultros': 'オルトロス',
       },
-      replaceText: {
+      'replaceText': {
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
         'Aura Cannon': 'オーラキャノン',
@@ -350,4 +352,4 @@
       },
     },
   ],
-}]
+}];

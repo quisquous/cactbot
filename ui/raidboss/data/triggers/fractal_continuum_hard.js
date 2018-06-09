@@ -1,3 +1,5 @@
+'use strict';
+
 // Fractal Continuum (Hard)
 [{
   zoneRegex: /^The Fractal Continuum \(Hard\)$/,
@@ -33,7 +35,7 @@
       regex: /starts using The Dragon's Voice/,
       regexDe: /starts using Stimme Des Drachen/,
       alertText: {
-        en: "Dragon's Voice",
+        en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
       },
       tts: {
@@ -46,7 +48,7 @@
       regex: /starts using The Ram's Voice/,
       regexDe: /starts using Stimme Des Widders/,
       alertText: {
-        en: "Ram's Voice",
+        en: 'Ram\'s Voice',
         de: 'Stimme Des Widders',
       },
       tts: {
@@ -81,4 +83,4 @@
       },
     },
   ],
-}]
+}];

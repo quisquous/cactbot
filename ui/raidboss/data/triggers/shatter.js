@@ -1,3 +1,5 @@
+'use strict';
+
 // Frontlines: Shatter
 [{
   zoneRegex: /^The Fields Of Glory \(Shatter\)$/,
@@ -8,7 +10,7 @@
       regexDe: /Vereister Echolith A([1-4]) activates and begins to emit heat/,
       preRun: function(data, matches) {
         data.iceDir = undefined;
-        var ice_lang = {
+        let ice_lang = {
           en: {
             '1': 'Center',
             '2': 'North',
@@ -23,7 +25,7 @@
           },
         };
 
-        var big_ice_dir = ice_lang['en'];
+        let big_ice_dir = ice_lang['en'];
         if (data.lang in ice_lang)
           big_ice_dir = ice_lang[data.lang];
 
@@ -43,4 +45,4 @@
       },
     },
   ],
-}]
+}];

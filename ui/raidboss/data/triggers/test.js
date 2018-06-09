@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /^Middle La Noscea$/,
   timelineFile: 'test.txt',
@@ -20,12 +22,11 @@
     function(data) {
       if (data.role != 'healer')
         return 'hideall "Almagest"';
-      else
-        return 'alarmtext "Almagest" before 0';
+      return 'alarmtext "Almagest" before 0';
     },
     function(data) {
       // <_<
-      var shortName = data.me.substring(0, data.me.indexOf(' '));
+      let shortName = data.me.substring(0, data.me.indexOf(' '));
       return [
         '40 "Death To ' + shortName + '!!"',
         'hideall "Death"',
@@ -45,7 +46,7 @@
       tts: {
         en: 'Stack',
       },
-    }
+    },
   ],
   timelineReplace: [
     {
@@ -59,11 +60,11 @@
         'Death': 'Mort',
       },
       replaceSync: {
-        'You bid farewell to the striking dummy': "Vous faites vos adieux au mannequin d'entraînement",
-        'You bow courteously to the striking dummy': "Vous vous inclinez devant le mannequin d'entraînement",
-        'Engage!': "À l'attaque",
+        'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
+        'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+        'Engage!': 'À l\'attaque',
       },
-    }
+    },
   ],
   triggers: [
     {
@@ -143,4 +144,4 @@
       },
     },
   ],
-}]
+}];

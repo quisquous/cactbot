@@ -1,3 +1,5 @@
+'use strict';
+
 // Shinryu Extreme
 [{
   zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
@@ -49,9 +51,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank') {
+        if (matches[1] == data.me || data.role == 'tank')
           return;
-        }
+
         return {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
@@ -92,7 +94,7 @@
       durationSeconds: 7,
       alertText: {
         en: 'Get in water',
-        de: "In's Wasser",
+        de: 'In\'s Wasser',
       },
       tts: {
         en: 'water',
@@ -154,7 +156,7 @@
         }
         return {
           en: 'Spread out, no water',
-          de: "Verteilen und nicht in's Wasser",
+          de: 'Verteilen und nicht in\'s Wasser',
         };
       },
       tts: function(data) {
@@ -232,7 +234,9 @@
     { id: 'ShinryuEx Final Tidal Wave',
       regex: /:264E:Shinryu starts using Tidal Wave/,
       regexDe: /:264E:Shinryu starts using Flutwelle/,
-      condition: function(data) { return data.role == 'healer'; },
+      condition: function(data) {
+        return data.role == 'healer';
+      },
       infoText: function(data) {
         return {
           en: 'no more heals needed',
@@ -383,7 +387,9 @@
     { id: 'ShinryuEx Final Left Wing',
       regex: /:Left Wing starts using Judgment Bolt/,
       regex: /:Linker Flügel starts using Ionenschlag/,
-      condition: function(data) { return !data.finalWing; },
+      condition: function(data) {
+        return !data.finalWing;
+      },
       alertText: {
         en: 'kill left first',
         de: 'linken Flügel zuerst',
@@ -392,12 +398,16 @@
         en: 'left first',
         de: 'links zuerst',
       },
-      run: function(data) { data.finalWing = true; }
+      run: function(data) {
+        data.finalWing = true;
+      },
     },
     { id: 'ShinryuEx Final Right Wing',
       regex: /:Right Wing starts using Hellfire/,
       regexDe: /:Rechter Flügel starts using Höllenfeuer/,
-      condition: function(data) { return !data.finalWing; },
+      condition: function(data) {
+        return !data.finalWing;
+      },
       alertText: {
         en: 'kill right first',
         de: 'rechten Flügel zuerst',
@@ -406,7 +416,9 @@
         en: 'right first',
         de: 'rechts zuerst',
       },
-      run: function(data) { data.finalWing = true; }
+      run: function(data) {
+        data.finalWing = true;
+      },
     },
     { id: 'ShinryuEx Tethers',
       regex: /1B:........:(\y{Name}):....:....:0061:0000:0000:0000:/,
@@ -506,5 +518,5 @@
         de: 'verteilen',
       },
     },
-  ]
-}]
+  ],
+}];

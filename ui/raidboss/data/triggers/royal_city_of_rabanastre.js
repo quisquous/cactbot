@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /^The Royal City Of Rabanastre$/,
   timelineFile: 'royal_city_of_rabanastre.txt',
@@ -20,7 +22,9 @@
       id: 'Rab Mateus Breathless Gain',
       regex: /:(\y{Name}) gains the effect of Breathless from/,
       regexDe: /:(\y{Name}) gains the effect of Atemnot from/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: function(data) {
         if (data.breathless >= 7) {
           return {
@@ -54,7 +58,9 @@
       id: 'Rab Mateus Breathless Lose',
       regex: /:(\y{Name}) loses the effect of Breathless from/,
       regexDe: /:(\y{Name}) loses the effect of Atemnot from/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       run: function(data) {
         data.breathless = 0;
       },
@@ -141,7 +147,9 @@
     {
       id: 'Rab Rofocale Chariot',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alertText: {
         en: 'Move In (Chariot)',
         de: 'Raus da (Streitwagen)',
@@ -181,7 +189,9 @@
     {
       id: 'Rab Argath Command Scatter',
       regex: /1B:........:(\y{Name}):....:....:007B:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: function(data) {
         if (data.maskValue) {
           return {
@@ -210,7 +220,9 @@
     {
       id: 'Rab Argath Command Turn',
       regex: /1B:........:(\y{Name}):....:....:007C:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: function(data) {
         if (data.maskValue) {
           return {
@@ -237,4 +249,4 @@
       },
     },
   ],
-}]
+}];

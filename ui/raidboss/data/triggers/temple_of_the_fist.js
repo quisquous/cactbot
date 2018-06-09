@@ -1,3 +1,5 @@
+'use strict';
+
 // The Temple of the Fist
 [{
   zoneRegex: /^The Temple Of The Fist$/,
@@ -42,4 +44,4 @@
       },
     },
   ],
-}]
+}];
