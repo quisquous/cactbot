@@ -1,3 +1,5 @@
+'use strict';
+
 // Ultima Weapon Ultimate
 [{
   zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
@@ -102,4 +104,4 @@
       },
     },
   ],
-}]
+}];

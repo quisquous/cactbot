@@ -1,3 +1,5 @@
+'use strict';
+
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
   zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
@@ -115,11 +117,13 @@
       // but what can you do.
       id: 'UCU Doom',
       gainsEffectRegex: gLang.kEffect.Doom,
-      delaySeconds: function(e) { return e.durationSeconds - 1; },
+      delaySeconds: function(e) {
+        return e.durationSeconds - 1;
+      },
       deathReason: function(e, data, matches) {
         if (!data.hasDoom || !data.hasDoom[e.targetName])
           return;
-        var reason;
+        let reason;
         if (e.durationSeconds < 9)
           reason = e.effectName + ' #1';
         else if (e.durationSeconds < 14)
@@ -130,4 +134,4 @@
       },
     },
   ],
-}]
+}];
