@@ -12,8 +12,8 @@
         if (matches[1] == data.me) {
           return {
             en: 'Hyperdrive on YOU',
-            fr: 'Colonne de feu sur VOUS',
-            de: 'Hyperantrieb auf DIRS',
+            fr: 'Colonne de feu sur TOI',
+            de: 'Hyperantrieb auf DIR',
           };
         }
         if (data.role == 'healer') {
@@ -137,7 +137,7 @@
       condition: function(data, matches) { return matches[1] == data.me; },
       infoText: {
         en: 'fire on YOU',
-        fr: 'feu sur VOUS',
+        fr: 'feu sur TOI',
         de: 'Feuer auf DIR',
       },
       tts: {
@@ -215,8 +215,16 @@
       regexDe: /14:2919:Kefka starts using Erstarrendes Eisga/,
       regexFr: /14:2919:Kefka starts using Méga Glace Glissante/,
       suppressSeconds: 1,
-      infoText: 'True: Get In',
-      tts: 'true',
+      infoText: {
+        en: 'True Ice: Get in',
+        fr: 'Vraie glace: Rentrer dedans',
+        de: 'Wahre Eis: Reingehen',
+      },
+      tts: {
+        en: 'Get in',
+        fr: 'rentrer dedans',
+        de: 'Reingehen',
+      },
     },
     {
       id: 'O8N Blizzard Fake Near',
@@ -332,8 +340,7 @@
         'Light Of Consecration': 'Lumière De La Consécration',
         'The Mad Head': 'Visage De La Folie',
         'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
-        // FIXME:
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!',
+        'Destroy! Destroy! Destroy! I will destroy it all!': 'Je détruirai le monde entier! Plus personne ne pourra rêver!',
       },
       replaceText: {
         "Engage!": "À l'attaque",
@@ -408,9 +415,8 @@
         'Statue Half Cleave': 'Demi clivage de la statue',
         'Half Arena': "Moitié d'arène",
 
-        // FIXME:
-        'Aero/Ruin': 'Aero/Ruin',
-        'Statue Gaze': 'Statue Gaze',
+        'Aero/Ruin': 'Vent/Ruine',
+        'Statue Gaze': 'Regard de statue',
       },
     },
   ]

@@ -5,6 +5,8 @@
     function(data) {
       if (data.lang == 'de')
         return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
+      if (data.lang == 'fr')
+        return 'alerttext "Stone Breath" before 7 "Aller derrière"';
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
@@ -20,6 +22,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur TOI',
           };
         }
       },
@@ -30,6 +33,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Buster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -37,6 +41,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'buster',
           };
         }
       },
@@ -51,10 +56,12 @@
       alertText: {
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
+        fr: 'Attention Tsunami',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
+        fr: 'Tsunami',
       },
     },
     {
@@ -67,10 +74,12 @@
       alertText: {
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
+        fr: 'Attention Tsunami',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
+        fr: 'Tsunami',
       },
     },
     {
@@ -83,10 +92,12 @@
       alertText: {
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
+        fr: 'Attention Tsunami',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
+        fr: 'Tsunami',
       },
     },
     {
@@ -96,10 +107,12 @@
       alertText: {
         en: 'Dorito Stack',
         de: 'Stacken',
+        fr: 'Stack',
       },
       tts: {
         en: 'Stack',
         de: 'stek en',
+        fr: 'Stack',
       },
     },
     {
@@ -109,10 +122,12 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: "S'écrater",
       },
       tts: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: "S'écrater",
       },
     },
     {
@@ -125,10 +140,12 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
       tts: {
         en: 'Adds',
         de: 'etz',
+        fr: 'Adds',
       },
     },
     {
@@ -142,6 +159,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur TOI',
           };
         }
       },
@@ -152,6 +170,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Buster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -159,6 +178,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'buster',
           };
         }
       },
@@ -172,10 +192,12 @@
       infoText: {
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
+        fr: 'Se placer sur une horloge lente',
       },
       tts: {
         en: 'Stand on Slow Clock',
         de: 'In langsame Uhr',
+        fr: 'Sur horloge lente',
       },
     },
     {
@@ -188,10 +210,12 @@
       alertText: {
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen strecken',
+        fr: "Lien vers l'exterieur",
       },
       tts: {
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen',
+        fr: "Lien vers l'exterieur",
       },
     },
     {
@@ -203,10 +227,12 @@
       infoText: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
+        fr: 'Arrêter horloge',
       },
       tts: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
+        fr: 'Arrêter horloge',
       },
     },
     {
@@ -219,10 +245,12 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
       tts: {
         en: 'Adds',
         de: 'Etz',
+        fr: 'Adds',
       },
     },
     {
@@ -236,6 +264,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur TOI'
           };
         }
       },
@@ -246,6 +275,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Buster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -253,6 +283,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'buster',
           };
         }
       },
@@ -267,10 +298,12 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: "S'écrater",
       },
       tts: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: "S'écrater",
       },
     },
     {
@@ -280,12 +313,14 @@
       infoText: function(data, matches) {
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          en: 'Stack auf ' + data.ShortName(matches[1]),
+          de: 'Stack auf ' + data.ShortName(matches[1]),
+          fr: 'Stack sur ' + data.ShortName(matches[1]),
         };
       },
       tts: {
         en: 'Stack',
         de: 'Stek en',
+        fr: 'Stack',
       },
     },
     {
@@ -317,22 +352,27 @@
             {
               en: 'Stay out',
               de: 'Draußen stehen',
+              fr: 'En dehors'
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
+              fr: 'Aller sur le 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
+              fr: 'Aller sur le 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
+              fr: 'Aller sur le 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
+              fr: 'Aller sur le 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
@@ -425,10 +465,12 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
+        fr: "S'eloigner",
       },
       tts: {
         en: 'Get Out',
         de: 'Raus da',
+        fr: "S'eloigner",
       },
     },
     {
@@ -440,10 +482,12 @@
       alertText: {
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
+        fr: 'Aller derrière',
       },
       tts: {
         en: 'Get Behind',
         de: 'Von hinten umkreisen',
+        fr: 'Aller derrière',
       },
     },
     {
@@ -457,10 +501,12 @@
       alarmText: {
         en: 'Stop',
         de: 'Stopp',
+        fr: 'Stop',
       },
       tts: {
         en: 'stop',
         de: 'Stopp',
+        fr: 'Stop',
       },
     },
     {
@@ -474,6 +520,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur TOI'
           };
         }
       },
@@ -483,7 +530,8 @@
         }
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Buster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -491,6 +539,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'buster',
           };
         }
       },
@@ -505,10 +554,12 @@
       infoText: {
         en: 'Out of Front',
         de: 'Vorm Boss weg',
+        fr: 'Pas devant',
       },
       tts: {
         en: 'Out of Front',
         de: 'Vorm Boss weg',
+        fr: 'Pas devant',
       },
     },
     {
@@ -520,10 +571,12 @@
       alertText: {
         en: 'Get Under',
         de: 'Reingehen',
+        fr: 'En dessous',
       },
       tts: {
         en: 'Get Under',
         de: 'Reingehen',
+        fr: 'En dessous',
       },
     },
     {
@@ -536,10 +589,12 @@
       infoText: {
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
+        fr: 'Aller sur le plus',
       },
       tts: {
         en: 'Move Postive',
         de: 'Nach Plus',
+        fr: 'Aller sur le plus',
       },
     },
     {
@@ -552,10 +607,12 @@
       infoText: {
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
+        fr: 'Aller sur le moins',
       },
       tts: {
         en: 'Move Negative',
         de: 'Nach Minus',
+        fr: 'Aller sur le moins',
       },
     },
     {
@@ -568,24 +625,29 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
       tts: {
         en: 'Adds',
         de: 'Etz',
+        fr: 'Adds',
       },
     },
     {
       id: 'Ridorana Yiazmat Heart',
       regex: / 03:Added new combatant Heart Of The Dragon\./,
       regexDe: / 03:Added new combatant Herz Des Drachen\./,
+	  regexFr: / 03:Added new combatant Cœur De Yiazmat\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
         de: 'Herz',
+        fr: 'Tuer le cœur',
       },
       tts: {
         en: 'Heart',
         de: 'Herz',
+        fr: 'Cœur',
       },
     },
   ],
@@ -732,15 +794,14 @@
         'Construct 7.1': 'Automate N°7 Amélioré',
         'Missile': 'Missile',
         'Archaeodemon': 'Archéodémon',
-        'Heart of the Dragon': 'Heart of the Dragon',
+        'Heart of the Dragon': 'Cœur De Yiazmat',
         'Wind Azer': 'Aze De Vent',
         'Yiazmat': 'Yiazmat',
 
-        // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ":Echoes from Time's Garden will be sealed off": ":Fermeture du Jardin d'un autre temps dans",
+        ":The Spire's Bounds will be sealed off": ":Fermeture de l'orée des Cieux dans",
+        ":The Cleft of Profaning Wind will be sealed off": ":Fermeture de la corniche des Vents distordants dans",
+        ":The Clockwork Coliseum will be sealed off": ":Fermeture de l'arène de Goug dans",
       },
       replaceText: {
         '--Reset--': '--Réinitialisation--',
@@ -810,14 +871,13 @@
         'Unholy Darkness': 'Miracle Sombre',
         'White Breath': 'Souffle Blanc',
 
-        // FIXME:
-        'Fast Hands': 'Fast Hands',
-        'Slow Hands': 'Slow Hands',
-        'Gigas spawns': 'Gigas spawns',
+        'Fast Hands': 'Mains rapides',
+        'Slow Hands': 'Mains lente',
+        'Gigas spawns': 'Apparition des serviteurs de Bélias',
         'Division': 'Division',
-        'Area Lockdown': 'Area Lockdown',
-        'Archaeodemon spawn': 'Archaeodemon spawn',
-        'Gale Gaol': 'Gale Gaol',
+        'Area Lockdown': 'Verrouillage de la zone',
+        'Archaeodemon spawn': 'Apparition des Archéodémons',
+        'Gale Gaol': 'Prison De Vent',
       },
       '~effectNames': {
         'Dropsy': 'Œdème',

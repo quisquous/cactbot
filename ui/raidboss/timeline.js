@@ -14,7 +14,7 @@ function computeBackgroundColorFrom(element, classList) {
 // This class reads the format of ACT Timeline plugin, described in
 // data/timelines/README.txt.
 class Timeline {
-  constructor(text, replacements, options) {
+  constructor(text, replacements, triggers, options) {
     this.options = options;
     this.replacements = replacements;
 
@@ -32,7 +32,7 @@ class Timeline {
     this.activeSyncs = [];
     // Sorted by event occurance time.
     this.activeEvents = [];
-    this.LoadFile(text);
+    this.LoadFile(text, triggers);
     this.Stop();
   }
 
@@ -62,7 +62,7 @@ class Timeline {
     return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
-  LoadFile(text) {
+  LoadFile(text, triggers) {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -190,6 +190,21 @@ class Timeline {
           };
           this.texts.push(t);
         }
+      }
+
+      // Rather than matching triggers at run time, pre-match all the triggers
+      // against timeline text and insert them as text events to run.
+      for (var t = 0; t < triggers.length; ++t) {
+        var trigger = triggers[t];
+        var m = e.name.match(trigger.regex);
+        if (!m)
+          continue;
+        this.texts.push({
+          type: 'trigger',
+          time: e.time - (trigger.beforeSeconds || 0),
+          trigger: trigger,
+          matches: m,
+        });
       }
     }
 
@@ -357,6 +372,9 @@ class Timeline {
       } else if (t.type == 'tts') {
         if (this.speakTTSCallback)
           this.speakTTSCallback(t.text);
+      } else if (t.type == 'trigger') {
+        if (this.triggerCallback)
+          this.triggerCallback(t.trigger, t.matches);
       }
       ++this.nextText;
     }
@@ -434,6 +452,7 @@ class Timeline {
   SetShowAlertText(c) { this.showAlertTextCallback = c; }
   SetShowAlarmText(c) { this.showAlarmTextCallback = c; }
   SetSpeakTTS(c) { this.speakTTSCallback = c; }
+  SetTrigger(c) { this.triggerCallback = c; }
   SetSyncTime(c) { this.syncTimeCallback = c; }
 };
 
@@ -498,6 +517,7 @@ class TimelineUI {
       this.timeline.SetShowAlertText(null);
       this.timeline.SetShowAlarmText(null);
       this.timeline.SetSpeakTTS(null);
+      this.timeline.SetTrigger(null);
       this.timeline.SetSyncTime(null);
       this.timerlist.clear();
       this.debugElement.innerHTML = '';
@@ -513,6 +533,7 @@ class TimelineUI {
       this.timeline.SetShowAlertText(this.OnShowAlertText.bind(this));
       this.timeline.SetShowAlarmText(this.OnShowAlarmText.bind(this));
       this.timeline.SetSpeakTTS(this.OnSpeakTTS.bind(this));
+      this.timeline.SetTrigger(this.OnTrigger.bind(this));
       this.timeline.SetSyncTime(this.OnSyncTime.bind(this));
     }
   }
@@ -582,6 +603,11 @@ class TimelineUI {
       this.popupText.TTS(text);
   }
 
+  OnTrigger(trigger, matches) {
+    if (this.popupText)
+      this.popupText.Trigger(trigger, matches);
+  }
+
   OnSyncTime(fightNow, running) {
     if (!this.options.Debug)
       return;
@@ -640,7 +666,7 @@ class TimelineController {
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
   }
 
-  SetActiveTimeline(timelineFiles, timelines, replacements) {
+  SetActiveTimeline(timelineFiles, timelines, replacements, triggers) {
     this.activeTimeline = null;
 
     if (!this.options.TimelineEnabled)
@@ -661,7 +687,7 @@ class TimelineController {
       text = text + '\n' + timelines[i];
 
     if (text)
-      this.activeTimeline = new Timeline(text, replacements, this.options);
+      this.activeTimeline = new Timeline(text, replacements, triggers, this.options);
     this.ui.SetTimeline(this.activeTimeline);
   }
 
@@ -685,8 +711,8 @@ class TimelineController {
 class TimelineLoader {
   constructor(timelineController) { this.timelineController = timelineController; }
 
-  SetTimelines(timelineFiles, timelines, replacements) {
-    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements);
+  SetTimelines(timelineFiles, timelines, replacements, triggers) {
+    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements, triggers);
   }
 
   StopCombat() {
