@@ -243,7 +243,7 @@
       condition: function(data, matches) { return matches[1] == data.me && data.moonlitCount >= 4; },
       infoText: {
         en: 'Move to Black!',
-        de: "In's schwarze laufen!"
+        de: "In's schwarze laufen!",
         fr: "Bougez en zone noire !"
       },
     },
@@ -273,7 +273,7 @@
       condition: function(data, matches) { return matches[1] == data.me && data.moonshadowedCount >= 4; },
       infoText: {
         en: 'Move to White!',
-        de: "In's weiße laufen!"
+        de: "In's weiße laufen!",
         fr: 'Bouge dans le blanc!',
       },
     },
