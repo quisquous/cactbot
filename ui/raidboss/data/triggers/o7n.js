@@ -7,30 +7,36 @@
       id: 'O7N Magitek Ray',
       regex: / 14:276B:Guardian starts using Magitek Ray/,
       regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
+      regexFr: / 14:276B:Gardien starts using Rayon Magitek/,
       alertText: {
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
+        fr: 'Rayon Magitek',
       },
       tts: {
         en: 'beam',
         de: 'les er strahl',
+        fr: 'laser',
       },
     },
     {
       id: 'O7N Arm And Hammer',
       regex: / 14:276C:Guardian starts using Arm And Hammer on (\y{Name})/,
       regexDe: / 14:276C:Wächter starts using Arm-Hammer on (\y{Name})/,
+      regexFr: / 14:276C:Gardien starts using Marteau Stratégique on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur TOI',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Buster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -39,6 +45,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'buster',
           };
         }
       },
@@ -46,27 +53,33 @@
     {
       id: 'O7N Shockwave',
       regex: / 14:2766:Guardian starts using Shockwave/,
-      regex: / 14:2766:Wächter starts using Schockwelle/,
+      regexDe: / 14:2766:Wächter starts using Schockwelle/,
+      regexFr: / 14:2766:Gardien starts using Onde De Choc/,
       alertText: {
         en: 'Knockback',
         de: 'Rückstoß',
+        fr: 'Projection',
       },
       tts: {
         en: 'knockback',
         de: 'Rückstoß',
+        fr: 'projection',
       },
     },
     {
       id: 'O7N Diffractive Laser',
       regex: / 14:2761:Guardian starts using Diffractive Laser/,
-      regex: / 14:2761:Wächter starts using Diffraktiver Laser/,
+      regexDe: / 14:2761:Wächter starts using Diffraktiver Laser/,
+      regexFr: / 14:2761:Gardien starts using Laser Diffracteur/,
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
+        fr: "S'éloigner",
       },
       tts: {
         en: 'out',
         de: 'raus',
+        fr: "s'éloigner",
       },
     },
     {
@@ -77,11 +90,13 @@
           return {
             en: 'Prey on YOU',
             de: 'Beute auf DIR',
+            fr: 'Marquage sur TOI',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
           de: 'Beute auf ' + data.ShortName(matches[1]),
+          fr: 'Marquage sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function (data, matches) {
@@ -89,6 +104,7 @@
           return {
             en: 'prey',
             de: 'beute',
+            fr: 'marquage',
           };
         }
       },
@@ -190,17 +206,17 @@
     {
       locale: 'fr',
       replaceSync: {
+        'Guardian gains the effect of ': 'Gardien gains the effect of Programme ',
         'Air Force': 'Force Aérienne',
         'Dadaluma': 'Dadaluma',
         'Fire Control System': 'Système De Contrôle',
         'Guardian': 'Gardien',
         'Interdimensional Bomb': 'Bombe Dimensionnelle',
         'Ultros': 'Orthros',
-
-        // FIXME:
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE',
-        'Tentacle': 'Tentacle',
-        'Bibliotaph': 'Bibliotaph',
+        'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle',
+        'Tentacle': 'Tentacule',
+        'Bibliotaph': 'Bibliotaphe',
+        
       },
       replaceText: {
         'Arm And Hammer': 'Marteau Stratégique',
@@ -240,10 +256,9 @@
         '--targetable--': '--ciblable--',
         '--untargetable--': '--impossible à cibler--',
 
-        // FIXME:
         'Prey': 'Marquage',
-        'Plane Laser': 'Plane Laser',
-        'Burst/Darkness': 'Burst/Darkness',
+        "Plane Laser": "Laser d'avion",
+        'Burst/Darkness': 'Explosion Magique',
       },
       '~effectNames': {
         'Abandonment': 'Isolement',
