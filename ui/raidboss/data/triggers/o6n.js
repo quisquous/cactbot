@@ -6,18 +6,21 @@
     {
       id: 'O6N Demonic Shear',
       regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
-      regex: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
+      regexDe: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
+      regexFr: / 14:282A:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur TOI',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Buster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -26,6 +29,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'buster',
           };
         }
       },
@@ -37,10 +41,12 @@
       infoText: {
         en: 'Drop AOEs Away',
         de: 'AoEs weglocken',
+        fr: 'Pose AOEs loin',
       },
       tts: {
         en: 'aoes',
         de: 'Flächen',
+        fr: 'aoe',
       },
     },
   ],
@@ -111,13 +117,13 @@
       locale: 'fr',
       replaceSync: {
         'Demon Chadarnook': 'Démon Chadarnouk',
-        'Easterly': 'Rafale Ultime',
+        'Easterly': 'Rafale ultime',
         'Goddess Chadarnook': 'Déesse Chadarnouk',
-        'Haunt': 'Ombre Maléfique',
-        'Portrayal of Fire': 'Peinture Du Feu',
-        'Portrayal of Wind': 'Peinture Du Vent',
-        'Portrayal of Earth': 'Peinture De La Terre',
-        'Portrayal of Water': "Peinture De L'eau",
+        'Haunt': 'Ombre maléfique',
+        'Portrayal of Fire': 'Peinture du feu',
+        'Portrayal of Wind': 'Peinture du vent',
+        'Portrayal of Earth': 'Peinture de la terre',
+        'Portrayal of Water': "Peinture de l'eau",
         "The Storm's Grip": "Emprise De La Tempête",
         'I have claimed the girl in the picture!': "Héhéhé... La fille du tableau m'appartient",
       },
