@@ -59,14 +59,14 @@
         return {
           en: 'Go to back',
           de: 'Nach hinten laufen',
-          fr: 'Allez au fond',
+          fr: 'S'éloigner',
         };
       },
       tts: function(data) {
         return {
           en: 'run away',
           de: 'ab nach hinten',
-          fr: 'Courrez',
+          fr: 'S'éloigner',
         };
       },
     },
@@ -80,14 +80,14 @@
         return {
           en: 'Stack middle',
           de: 'Stack in der Mitte',
-          fr: 'Pack au milieu',
+          fr: 'Stack au milieu',
         };
       },
       tts: function(data) {
         return {
           en: 'Stack middle',
           de: 'Stek in der Mitte',
-          fr: 'pack milieu',
+          fr: 'Stack au milieu',
         };
       },
     },
@@ -233,12 +233,11 @@
         'Possess': 'Possession',
         'Saintly Beam': 'Faisceaux Sacrés',
         ' Ghosts': ' Fantômes',
-        // FIXME:
-        'Crossing Whistle': 'Crossing Whistle',
-        'Knockback Whistle': 'Knockback Whistle',
-        'Tether Whistle': 'Tether Whistle',
-        'Ghosts spawn': 'Ghosts spawn',
-        'Add Wave': 'Add Wave',
+        'Crossing Whistle': 'Sifflet traversée',
+        'Tether Whistle': 'Sifflet liens',
+        'Ghosts spawn': 'Pop des Fantômes',
+        'Add Wave': "Vague d'Adds",
+        'Ghost Beams': 'Faisceaux Sacrés',
       },
       '~effectNames': {
         'Connectivity': 'Attelage',
