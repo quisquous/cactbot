@@ -53,13 +53,23 @@
     },
     {
       id: 'UWU Searing Wind',
-      regex: /1A:(\y{Name}) gains the effect of (?:Unknown_62A|Searing Wind) from/,
+      regex: / 14:2B5B:Ifrit starts using Inferno Howl on (\y{Name})/,
       condition: function(data, matches) { return data.me == matches[1]; },
       alarmText: {
         en: 'Searing Wind on YOU',
       },
       tts: {
         en: 'Searing Wind',
+      },
+    },
+    {
+      id: 'UWU Ifrit Flaming Crush',
+      regex: / 1B:........:(\y{Name}):....:....:0075:0000:0000:0000:/,
+      alertText: {
+        en: 'Stack',
+      },
+      tts: {
+        en: 'Stack',
       },
     },
     {
