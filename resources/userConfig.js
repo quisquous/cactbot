@@ -1,32 +1,34 @@
-var UserConfig = {
+'use strict';
+
+let UserConfig = {
   getUserConfigLocation: function(overlayName, callback) {
-    document.addEventListener("onInitializeOverlay", (function(e) {
-      var localFiles = e.detail.localUserFiles;
-      var basePath = e.detail.userLocation;
-      var jsFile = overlayName + '.js';
-      var cssFile = overlayName + '.css';
+    document.addEventListener('onInitializeOverlay', (function(e) {
+      let localFiles = e.detail.localUserFiles;
+      let basePath = e.detail.userLocation;
+      let jsFile = overlayName + '.js';
+      let cssFile = overlayName + '.css';
 
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
       // passed to Javascript for Chrome security reasons.
       if (localFiles) {
-        if (jsFile in localFiles) {
+        if (jsFile in localFiles)
           eval(localFiles[jsFile]);
-        }
+
         if (cssFile in localFiles) {
-          var userCssText = document.createElement('style');
+          let userCssText = document.createElement('style');
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
         }
       } else if (basePath) {
         if (basePath.slice(-1) != '/')
           basePath += '/';
-        var userJS = document.createElement('script');
+        let userJS = document.createElement('script');
         userJS.setAttribute('type', 'text/javascript');
         userJS.setAttribute('src', basePath + jsFile);
         document.getElementsByTagName('head')[0].appendChild(userJS);
 
-        var userCSS = document.createElement('link');
+        let userCSS = document.createElement('link');
         userCSS.setAttribute('rel', 'stylesheet');
         userCSS.setAttribute('type', 'text/css');
         userCSS.setAttribute('href', basePath + cssFile);
