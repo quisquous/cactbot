@@ -87,6 +87,53 @@
       regex: / 1A:Titan gains the effect of Woken from/,
       sound: 'Long',
     },
-    // TODO: flaming crush 0075 marker
+    {
+      id: 'UWU Titan Gaols',
+      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:(\y{Name}):/,
+      preRun: function(data, matches) {
+        data.titanGaols = data.titanGaols || [];
+        data.titanGaols.push(matches[1]);
+        if (data.titanGaols.length == 3) {
+          data.titanGaols.sort();
+        }
+      },
+      alertText: function(data, matches) {
+        if (data.titanGaols.length != 3)
+          return;
+        var idx = data.titanGaols.indexOf(data.me);
+        if (idx < 0)
+          return;
+        // Just return your number.
+        return idx + 1;
+      },
+      infoText: function(data, matches) {
+        if (data.titanGaols.length != 3)
+          return;
+        // Return all the people in order.
+        return data.titanGaols.map(function(n) { return data.ShortName(n); }).join(', ');
+      },
+    },
+    {
+      // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
+      id: 'UWU Titan Bomb Failure',
+      regex: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Burst:\y{ObjectId}:(\y{Name}):/,
+      infoText: function(data, matches) {
+        if (!data.titanGaols)
+          return;
+        if (data.titanGaols.indexOf(matches[1]) < 0)
+          return;
+        return {
+          en: data.ShortName(matches[1]) + ' died',
+        };
+      },
+    },
+    {
+      // Cleanup
+      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}/,
+      delaySeconds: 15,
+      run: function(data) {
+        delete data.titanGaols;
+      },
+    },
   ],
 }]
