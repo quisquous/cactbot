@@ -6,7 +6,7 @@
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
-    "lint": "node_modules/.bin/eslint resources ui user test",
+    "lint": "node_modules/.bin/eslint resources ui user",
     "test": "python test/run_tests.py"
   },
   "devDependencies": {

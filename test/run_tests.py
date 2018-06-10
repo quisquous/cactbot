@@ -21,13 +21,8 @@ def run_compilation_tests():
       success &= compile_test(os.path.join(dir, filename))
   return success
 
-def run_timeline_tests():
-  err = subprocess.call(['node',
-      os.path.join(base_directory(), 'test/check_timelines.js')])
-  return err == 0
-
 def main():
-  success = run_compilation_tests() and run_timeline_tests()
+  success = run_compilation_tests()
   if not success:
     sys.exit(1);
   sys.exit(0);
