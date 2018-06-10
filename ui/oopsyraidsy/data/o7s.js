@@ -11,7 +11,16 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'Missile' };
+        return {
+          type: 'fail',
+          blame: e.targetName,
+          text: {
+            en: 'Missile',
+            de: e.abilityName,
+            fr: e.abilityName,
+            ja: e.abilityName,
+          },
+        };
       },
     },
     {
@@ -28,7 +37,13 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', name: e.targetName, text: 'hit by wind' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'hit by wind',
+          },
+        };
       },
     },
     {

@@ -86,7 +86,7 @@
           return;
         // Hard to know who should be in this and who shouldn't, but
         // it should never hit 3 people.
-        return { type: 'fail', fullText: e[0].abilityName + ' hit ' + e.length };
+        return { type: 'fail', fullText: e[0].abilityName + ' x ' + e.length };
       },
     },
     {
@@ -130,7 +130,7 @@
           return;
         return {
           name: e.targetName,
-          reason: e.effectName + ' failure',
+          reason: e.effectName,
         };
       },
     },

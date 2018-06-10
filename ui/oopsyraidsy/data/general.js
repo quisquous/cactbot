@@ -22,7 +22,13 @@
         if (!data.inCombat || data.lostFood[e.targetName])
           return;
         data.lostFood[e.targetName] = true;
-        return { type: 'warn', blame: e.targetName, text: 'lost food buff' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'lost food buff',
+          },
+        };
       },
     },
     {
@@ -40,7 +46,16 @@
         return data.IsPlayerId(e.attackerId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.attackerName, text: 'bunny' };
+        return {
+          type: 'warn',
+          blame: e.attackerName,
+          text: {
+            en: 'bunny',
+            de: e.abilityName,
+            fr: e.abilityName,
+            ja: e.abilityName,
+          },
+        };
       },
     },
     {
@@ -55,7 +70,13 @@
         return e.flags.substr(-8, 2) != '28';
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.attackerName, text: 'missed trick' };
+        return {
+          type: 'warn',
+          blame: e.attackerName,
+          text: {
+            en: 'missed trick',
+          },
+        };
       },
     },
   ],

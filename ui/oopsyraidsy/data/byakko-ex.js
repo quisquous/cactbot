@@ -41,7 +41,13 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: 'popped aratama' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'popped aratama',
+          },
+        };
       },
     },
     {
@@ -51,7 +57,13 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: 'stepped in orb' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'stepped in orb',
+          },
+        };
       },
     },
     {
@@ -71,7 +83,12 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: 'bubble collision' };
+        return {
+          type: 'warn',
+          blame: e.targetName, text: {
+            en: 'bubble collision',
+          },
+        };
       },
     },
     {
@@ -81,7 +98,13 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: 'thunder' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'thunder',
+          },
+        };
       },
     },
     {
@@ -91,7 +114,13 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: 'thunder' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'thunder',
+          },
+        };
       },
     },
   ],

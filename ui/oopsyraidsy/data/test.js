@@ -8,21 +8,39 @@
       id: 'Test Bow',
       regex: /:You bow courteously to the striking dummy/,
       mistake: function(e, data) {
-        return { type: 'pull', blame: data.me, fullText: 'Bow' };
+        return {
+          type: 'pull',
+          blame: data.me,
+          fullText: {
+            en: 'Bow',
+          },
+        };
       },
     },
     {
       id: 'Test Wipe',
       regex: /:You bid farewell to the striking dummy/,
       mistake: function(e, data) {
-        return { type: 'wipe', blame: data.me, fullText: 'Party Wipe' };
+        return {
+          type: 'wipe',
+          blame: data.me,
+          fullText: {
+            en: 'Party Wipe',
+          },
+        };
       },
     },
     {
       id: 'Test Bootshine',
       damageRegex: gLang.kAbility.Bootshine,
       condition: function(e, data) {
-        return e.attackerName == data.me && e.targetName == 'Striking Dummy';
+        if (e.attackerName != data.me)
+          return false;
+        let strikingDummyNames = [
+          'Striking Dummy',
+          // FIXME: add other languages here
+        ];
+        return strikingDummyNames.indexOf(e.targetName) >= 0;
       },
       mistake: function(e, data) {
         data.bootCount = data.bootCount || 0;
@@ -50,7 +68,9 @@
         // collectSeconds is (OBVIOUSLY) a mistake.
         if (pokes <= 1)
           return;
-        let text = 'Too many pokes (' + pokes + ')';
+        let text = {
+          en: 'Too many pokes (' + pokes + ')',
+        };
         return { type: 'fail', blame: data.me, text: text };
       },
     },
@@ -63,9 +83,27 @@
       mistake: function(e, data) {
         // Demonstrate returning multiple mistakes.
         return [
-          { type: 'warn', blame: data.me, text: 'ONE!' },
-          { type: 'fail', blame: data.me, text: 'ILM!' },
-          { type: 'potion', blame: data.me, text: 'PUNCH!' },
+          {
+            type: 'warn',
+            blame: data.me,
+            text: {
+              en: 'ONE!',
+            },
+          },
+          {
+            type: 'fail',
+            blame: data.me,
+            text: {
+              en: 'ILM!',
+            },
+          },
+          {
+            type: 'potion',
+            blame: data.me,
+            text: {
+              en: 'PUNCH!',
+            },
+          },
         ];
       },
     },

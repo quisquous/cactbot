@@ -97,6 +97,22 @@ let Options = {
   },
 };
 
+let kEarlyPullText = {
+  en: 'early pull',
+  // FIXME
+  de: 'early pull',
+  fr: 'early pull',
+  ja: 'early pull',
+};
+
+let kLatePullText = {
+  en: 'late pull',
+  // FIXME
+  de: 'late pull',
+  fr: 'late pull',
+  ja: 'late pull',
+};
+
 // Internal trigger id for early pull
 let kEarlyPullId = 'General Early Pull';
 
@@ -367,8 +383,8 @@ class OopsyLiveList {
 class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
+    this.lang = this.options.Language || 'en';
     this.liveList = liveList;
-
     this.baseTime = null;
     this.inACTCombat = false;
     this.inGameCombat = false;
@@ -423,13 +439,21 @@ class MistakeCollector {
     this.engageTime = null;
   }
 
+  Translate(obj) {
+    if (obj !== Object(obj))
+      return obj;
+    if (this.lang in obj)
+      return obj[this.lang];
+    return obj['en'];
+  }
+
   OnMistakeObj(m) {
     if (!m)
       return;
     if (m.fullText)
-      this.OnFullMistakeText(m.type, m.blame, m.fullText);
+      this.OnFullMistakeText(m.type, m.blame, this.Translate(m.fullText));
     else
-      this.OnMistakeText(m.type, m.name || m.blame, m.text);
+      this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
   }
 
   OnMistakeText(type, blame, text, time) {
@@ -453,7 +477,7 @@ class MistakeCollector {
     }
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      let text = 'early pull (' + seconds.toFixed(1) + 's)';
+      let text = kEarlyPullText[this.lang] + ' (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -471,7 +495,7 @@ class MistakeCollector {
       this.StartCombat();
       let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
-        let text = 'late pull (' + seconds.toFixed(1) + 's)';
+        let text = kLatePullText[this.lang] + ' (' + seconds.toFixed(1) + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnMistakeText('pull', this.firstPuller, text);
       }
@@ -792,9 +816,9 @@ class DamageTracker {
         return;
     }
 
-    let ValueOrFunction = (function(f, events) {
+    let ValueOrFunction = (f, events) => {
       return (typeof(f) == 'function') ? f(events, this.data, matches) : f;
-    }).bind(this);
+    };
 
     let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
     let collectMultipleEvents = 'collectSeconds' in trigger;
@@ -824,6 +848,7 @@ class DamageTracker {
       }
       if ('deathReason' in trigger) {
         let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
+        ret.reason = this.Translate(ret.reason);
         this.AddImpliedDeathReason(ret);
       }
       if ('run' in trigger)
