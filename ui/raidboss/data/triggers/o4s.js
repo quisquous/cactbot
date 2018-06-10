@@ -116,24 +116,16 @@
     { // Flare
       id: 'O4S1 Flare',
       regex: /2401:Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
-      alarmText: function(data) {
-        if (data.flareTargets.indexOf(data.me) >= 0) {
-          return {
-            en: 'Flare on you',
-            de: 'Flare auf dir',
-          };
-        }
-      },
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches[1]);
         return data.flareTargets.length == 3;
       },
-      tts: function(data) {
+      alarmText: function(data) {
         if (data.flareTargets.indexOf(data.me) >= 0) {
           return {
             en: 'Flare on you',
-            de: 'Fleer auf dir',
+            de: 'Flare auf dir',
           };
         }
       },
@@ -604,10 +596,6 @@
           en: 'stop',
           de: 'Stopp',
         };
-      },
-      tts: {
-        en: 'stop',
-        de: 'stopp',
       },
     },
     {

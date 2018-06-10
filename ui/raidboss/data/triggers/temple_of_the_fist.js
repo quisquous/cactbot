@@ -38,10 +38,6 @@
         en: 'watch for safe',
         de: 'nach Sicherheit schauen',
       },
-      tts: {
-        en: 'watch for safe',
-        de: 'nach sicherheit schauen',
-      },
     },
   ],
 }];

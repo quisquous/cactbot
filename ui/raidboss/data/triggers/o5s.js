@@ -85,13 +85,6 @@
           fr: 'Stack au milieu',
         };
       },
-      tts: function(data) {
-        return {
-          en: 'Stack middle',
-          de: 'Stek in der Mitte',
-          fr: 'Stack au milieu',
-        };
-      },
     },
     {
       id: 'O5S Diabolic Light',
@@ -100,13 +93,6 @@
         return matches[1] == data.me;
       },
       infoText: function(data) {
-        return {
-          en: 'Light',
-          de: 'Licht',
-          fr: 'Lumière',
-        };
-      },
-      tts: function(data) {
         return {
           en: 'Light',
           de: 'Licht',
@@ -127,13 +113,6 @@
           fr: 'Vent',
         };
       },
-      tts: function(data) {
-        return {
-          en: 'Wind',
-          de: 'Wind',
-          fr: 'Vent',
-        };
-      },
     },
     {
       id: 'O5S Remorse',
@@ -142,13 +121,6 @@
       regexFr: /Added new combatant Fantôme Mélancolique/,
       regexJa: /Added new combatant 未練のゴースト/,
       infoText: function(data) {
-        return {
-          en: 'Knockback Ghost',
-          de: 'Rückstoß Geist',
-          fr: 'Fantôme soufflant',
-        };
-      },
-      tts: function(data) {
         return {
           en: 'Knockback Ghost',
           de: 'Rückstoß Geist',

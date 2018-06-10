@@ -43,10 +43,6 @@
           de: 'wegschauen',
         };
       },
-      tts: {
-        en: 'look away',
-        de: 'weckschauen',
-      },
     },
     {
       id: 'Hrodric Words',

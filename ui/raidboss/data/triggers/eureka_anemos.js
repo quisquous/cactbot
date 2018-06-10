@@ -60,10 +60,6 @@
         en: 'Swipe',
         de: 'Hieb',
       },
-      tts: {
-        en: 'swipe',
-        de: 'Hieb',
-      },
     },
     {
       id: 'Eureka Poly Swing',
@@ -72,10 +68,6 @@
       alarmText: {
         en: 'GET OUT',
         de: 'RAUS DA',
-      },
-      tts: {
-        en: 'get out',
-        de: 'raus da',
       },
     },
     {
@@ -86,10 +78,6 @@
         en: 'Eye Donut',
         de: 'Augendonut',
       },
-      tts: {
-        en: 'eye donut',
-        de: 'augen dohnat',
-      },
     },
     {
       id: 'Eureka Poly Glower',
@@ -98,10 +86,6 @@
       alertText: {
         en: 'Glower Laser',
         de: 'Blick Laser',
-      },
-      tts: {
-        en: 'Glower',
-        de: 'Blick Lehsa',
       },
     },
     {
@@ -154,10 +138,6 @@
         en: 'Get Out',
         de: 'Raus da',
       },
-      tts: {
-        en: 'get out',
-        de: 'raus da',
-      },
     },
     {
       id: 'Eureka Pazuzu Camisado',
@@ -181,10 +161,6 @@
       infoText: {
         en: 'Out of melee',
         de: 'Raus aus Nahkampf',
-      },
-      tts: {
-        en: 'out of melee',
-        de: 'raus aus nahkampf',
       },
     },
     {
@@ -230,11 +206,6 @@
         en: 'WAKE UP',
         de: 'AUFWACHEN',
         fr: 'REVEILLES TOI',
-      },
-      tts: {
-        en: 'wake up',
-        de: 'aufwachen',
-        fr: 'reveilles toi',
       },
     },
   ],

@@ -83,10 +83,6 @@
         en: 'Out of middle',
         de: 'Raus aus der Mitte',
       },
-      tts: {
-        en: 'out of middle',
-        de: 'raus aus der mitte',
-      },
     },
     { id: 'ShinryuEx Hellfire',
       regex: /:25DB:Shinryu starts using Hellfire/,
@@ -137,10 +133,6 @@
       alertText: {
         en: 'out of water',
         de: 'Raus aus dem Wasser',
-      },
-      tts: {
-        en: 'out of water',
-        de: 'raus aus dem wasser',
       },
     },
     { id: 'ShinryuEx Levinbolt',
@@ -200,10 +192,6 @@
         en: 'icicle, lean west',
         de: 'Eiszapfen, nach westen',
       },
-      tts: {
-        en: 'icicle lean west',
-        de: 'Eiszapfen nach westen',
-      },
     },
     { id: 'ShinryuEx Icicle Right',
       regex: /:Icicle Impact:.*:-29\.99:-25:/,
@@ -211,10 +199,6 @@
       alarmText: {
         en: 'icicle, lean east',
         de: 'Eiszapfen, nach Osten',
-      },
-      tts: {
-        en: 'icicle lean east',
-        de: 'Eiszapfen nach Osten',
       },
     },
     { id: 'ShinryuEx Tidal Wave',
@@ -510,10 +494,6 @@
         return matches[1] == data.me;
       },
       alarmText: {
-        en: 'spread out',
-        de: 'verteilen',
-      },
-      tts: {
         en: 'spread out',
         de: 'verteilen',
       },

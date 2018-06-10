@@ -66,10 +66,6 @@
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
       },
-      tts: {
-        en: 'vrill and knockback',
-        de: 'wriel und rückstoß',
-      },
     },
     {
       id: 'Lakshmi Divine Desire',
@@ -154,14 +150,6 @@
           };
         }
       },
-      tts: function(data) {
-        if (data.chanchala) {
-          return {
-            en: 'vrill for aoe',
-            de: 'Wriel für fläche',
-          };
-        }
-      },
     },
     { // Offtank cleave
       id: 'Lakshmi Path of Light',
@@ -173,12 +161,6 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
           de: (data.chanchala ? 'Vril + ' : '') + 'Cleave auf DIR',
-        };
-      },
-      tts: function(data) {
-        return {
-          en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave',
-          de: (data.chanchala ? 'Wriel + ' : '') + 'kliev',
         };
       },
     },
@@ -194,12 +176,6 @@
           de: (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
         };
       },
-      tts: function(data) {
-        return {
-          en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
-          de: (data.chanchala ? 'Wriel + ' : '') + 'Kreuz Marker',
-        };
-      },
     },
     { // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
@@ -213,12 +189,6 @@
           de: (data.chanchala ? 'Vril + ' : '') + 'Blumen-Marker',
         };
       },
-      tts: function(data) {
-        return {
-          en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
-          de: (data.chanchala ? 'Wriel + ' : '') + 'Blumen Marker',
-        };
-      },
     },
     { // Red marker during add phase
       id: 'Lakshmi Water III',
@@ -229,10 +199,6 @@
       alertText: {
         en: 'Move Away',
         de: 'Weg da',
-      },
-      tts: {
-        en: 'Move Away',
-        de: 'weck da',
       },
     },
   ],

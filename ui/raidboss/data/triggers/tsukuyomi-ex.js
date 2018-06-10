@@ -116,13 +116,6 @@
           de: 'Links + ' + data.moonInOut,
         };
       },
-      tts: function(data) {
-        return {
-          en: 'Left + ' + data.moonInOut,
-          fr: 'Gauche + ' + data.moonInOut,
-          de: 'Links + ' + data.moonInOut,
-        };
-      },
     },
     {
       id: 'Tsukuyomi Bright Blade',
@@ -130,13 +123,6 @@
       regexDe: / 14:2BDB:Tsukuyomi starts using Helle Klinge/,
       regexFr: / 14:2BDB:Tsukuyomi starts using Lame Blafarde/,
       infoText: function(data) {
-        return {
-          en: 'Right + ' + data.moonInOut,
-          fr: 'Droite + ' + data.moonInOut,
-          de: 'Rechts + ' + data.moonInOut,
-        };
-      },
-      tts: function(data) {
         return {
           en: 'Right + ' + data.moonInOut,
           fr: 'Droite + ' + data.moonInOut,
@@ -155,21 +141,11 @@
         de: 'Meteor auf DIR',
         fr: 'Météore sur VOUS',
       },
-      tts: {
-        en: 'Meteor on YOU',
-        de: 'Meteor auf DIR',
-        fr: 'Météore sur VOUS',
-      },
     },
     {
       id: 'Tsukuyomi Lunacy',
       regex: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: {
-        en: 'Stack',
-        de: 'Stack',
-        fr: 'Pack',
-      },
-      tts: {
         en: 'Stack',
         de: 'Stack',
         fr: 'Pack',
@@ -182,11 +158,6 @@
         return (matches[1] == data.me);
       },
       alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez vous',
-      },
-      tts: {
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez vous',

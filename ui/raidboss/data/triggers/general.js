@@ -19,13 +19,6 @@
           fr: 'Provocation: ' + data.ShortName(matches[1]),
         };
       },
-      tts: function(data, matches) {
-        return {
-          en: 'provoke ' + data.ShortName(matches[1]),
-          de: 'herausforderung ' + data.ShortName(matches[1]),
-          fr: 'Provocation: ' + data.ShortName(matches[1]),
-        };
-      },
     },
     {
       id: 'General Ultimatum',
@@ -35,9 +28,6 @@
       },
       infoText: function(data, matches) {
         return 'Ultimatum: ' + data.ShortName(matches[1]);
-      },
-      tts: function(data, matches) {
-        return 'ultimatum ' + data.ShortName(matches[1]);
       },
     },
     {
@@ -55,13 +45,6 @@
           fr: 'Dérobade: ' + data.ShortName(matches[1]),
         };
       },
-      tts: function(data, matches) {
-        return {
-          en: 'Shirk ' + data.ShortName(matches[1]),
-          de: 'Geteiltes Leid ' + data.ShortName(matches[1]),
-          fr: 'Dérobade: ' + data.ShortName(matches[1]),
-        };
-      },
     },
     {
       id: 'General Holmgang',
@@ -71,9 +54,6 @@
       },
       infoText: function(data, matches) {
         return 'Holmgang: ' + data.ShortName(matches[1]);
-      },
-      tts: function(data, matches) {
-        return 'holmgang ' + data.ShortName(matches[1]);
       },
     },
     {
@@ -88,13 +68,6 @@
         return {
           en: 'Hallowed: ' + data.ShortName(matches[1]),
           de: 'Heiliger Boden: ' + data.ShortName(matches[1]),
-          fr: 'Invincible: ' + data.ShortName(matches[1]),
-        };
-      },
-      tts: function(data, matches) {
-        return {
-          en: 'hallowed ' + data.ShortName(matches[1]),
-          de: 'Heiliger Boden ' + data.ShortName(matches[1]),
           fr: 'Invincible: ' + data.ShortName(matches[1]),
         };
       },
@@ -114,13 +87,6 @@
           fr: 'Mort-vivant: ' + data.ShortName(matches[1]),
         };
       },
-      tts: function(data, matches) {
-        return {
-          en: 'living ' + data.ShortName(matches[1]),
-          de: 'totenerweckung ' + data.ShortName(matches[1]),
-          fr: 'Mort-vivant: ' + data.ShortName(matches[1]),
-        };
-      },
     },
     {
       id: 'General Walking',
@@ -134,13 +100,6 @@
         return {
           en: 'Walking: ' + data.ShortName(matches[1]),
           de: 'Erweckter: ' + data.ShortName(matches[1]),
-          fr: 'Marcheur Des Limbes: ' + data.ShortName(matches[1]),
-        };
-      },
-      tts: function(data, matches) {
-        return {
-          en: 'walking ' + data.ShortName(matches[1]),
-          de: 'erweckter ' + data.ShortName(matches[1]),
           fr: 'Marcheur Des Limbes: ' + data.ShortName(matches[1]),
         };
       },

@@ -40,9 +40,6 @@
       alertText: function(data) {
         return data.iceDir;
       },
-      tts: function(data, matches) {
-        return data.iceDir;
-      },
     },
   ],
 }];

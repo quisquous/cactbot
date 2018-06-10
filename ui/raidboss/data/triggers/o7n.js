@@ -62,11 +62,6 @@
         de: 'Rückstoß',
         fr: 'Projection',
       },
-      tts: {
-        en: 'knockback',
-        de: 'Rückstoß',
-        fr: 'projection',
-      },
     },
     {
       id: 'O7N Diffractive Laser',

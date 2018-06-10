@@ -167,10 +167,6 @@
         en: 'Trample',
         de: 'Zertrampeln',
       },
-      tts: {
-        en: 'trample',
-        de: 'zertrampeln',
-      },
     },
     {
       regex: /:Argath Thadalfus:261A:Mask Of Truth:/,
@@ -204,18 +200,6 @@
           de: 'Stopp',
         };
       },
-      tts: function(data) {
-        if (data.maskValue) {
-          return {
-            en: 'Move',
-            de: 'Bewegen',
-          };
-        }
-        return {
-          en: 'Stop',
-          de: 'Stopp',
-        };
-      },
     },
     {
       id: 'Rab Argath Command Turn',
@@ -233,18 +217,6 @@
         return {
           en: 'Look Towards',
           de: 'Anschauen',
-        };
-      },
-      tts: function(data) {
-        if (data.maskValue) {
-          return {
-            en: 'Look Away',
-            de: 'Wegschauen',
-          };
-        }
-        return {
-          en: 'Look Towards',
-          de: 'anschauen',
         };
       },
     },

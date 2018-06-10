@@ -177,68 +177,52 @@
       id: 'O3S Right Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_510|Rechts) from/,
-      infoText: {
-        en: 'Mindjack: Right',
-        de: 'Geistlenkung: Rechts',
-      },
-      durationSeconds: 8,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      tts: {
-        en: 'mindjack right',
-        de: 'geistlenkung rechts',
+      durationSeconds: 8,
+      infoText: {
+        en: 'Mindjack: Right',
+        de: 'Geistlenkung: Rechts',
       },
     },
     {
       id: 'O3S Forward March',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_50D|Vorwärts) from/,
-      infoText: {
-        en: 'Mindjack: Forward',
-        de: 'Geistlenkung: Vorwärts',
-      },
-      durationSeconds: 8,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      tts: {
-        en: 'mindjack forward',
-        de: 'geistlenkung vorwärts',
+      durationSeconds: 8,
+      infoText: {
+        en: 'Mindjack: Forward',
+        de: 'Geistlenkung: Vorwärts',
       },
     },
     {
       id: 'O3S Left Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_50F|Links) from/,
-      infoText: {
-        en: 'Mindjack: Left',
-        de: 'Geistlenkung: Links',
-      },
-      durationSeconds: 8,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      tts: {
-        en: 'mindjack left',
-        de: 'geistlenkung links',
+      durationSeconds: 8,
+      infoText: {
+        en: 'Mindjack: Left',
+        de: 'Geistlenkung: Links',
       },
     },
     {
       id: 'O3S About Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_50E|Rückwärts) from/,
-      infoText: {
-        en: 'Mindjack: Back',
-        de: 'Geistlenkung: Zurück',
-      },
-      durationSeconds: 8,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      tts: {
-        en: 'mindjack back',
-        de: 'geistlenkung zurück',
+      durationSeconds: 8,
+      infoText: {
+        en: 'Mindjack: Back',
+        de: 'Geistlenkung: Zurück',
       },
     },
     {

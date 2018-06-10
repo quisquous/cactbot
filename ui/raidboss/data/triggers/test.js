@@ -80,12 +80,6 @@
           fr: 'Touché #' + data.pokes,
         };
       },
-      tts: function(data) {
-        return {
-          en: 'poke ' + data.pokes,
-          fr: 'Touché ' + data.pokes,
-        };
-      },
     },
     {
       id: 'Test Psych',
@@ -131,13 +125,9 @@
     },
     {
       id: 'Test Lang',
+      // In game: /echo cactbot lang
       regex: /00:0038:cactbot lang/,
       infoText: function(data) {
-        return {
-          en: 'Language: ' + data.lang,
-        };
-      },
-      tts: function(data) {
         return {
           en: 'Language: ' + data.lang,
         };

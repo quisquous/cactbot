@@ -127,11 +127,6 @@
         fr: 'Projection depuis le boss',
         de: 'Rückstoß vom Boss',
       },
-      tts: {
-        en: 'knockback on boss',
-        fr: 'Projection depuis le boss',
-        de: 'Rückstoß vom Boss',
-      },
     },
     {
       id: 'O8N Flagrant Fire Single',

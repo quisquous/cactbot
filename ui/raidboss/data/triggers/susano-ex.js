@@ -187,10 +187,6 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      tts: {
-        en: 'stop',
-        de: 'stopp',
-      },
     },
   ],
 }];

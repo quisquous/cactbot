@@ -55,11 +55,6 @@
         de: 'Heiliger Boden Wind',
         fr: 'Packez vous dans le vent',
       },
-      tts: {
-        en: 'hallowed wind stack',
-        de: 'heiliger boden wind',
-        fr: 'Packez vous dans le vent',
-      },
     },
     {
       id: 'O6S Demonic Stone',

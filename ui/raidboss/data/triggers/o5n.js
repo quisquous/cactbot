@@ -72,11 +72,6 @@
         de: 'Stack in der Mitte',
         fr: 'Stack au milieu',
       },
-      tts: {
-        en: 'Stack middle',
-        de: 'Stek in der Mitte',
-        fr: 'Stack au milieu',
-      },
     },
     {
       id: 'O5N Diabolic Light',
@@ -89,11 +84,6 @@
         de: 'Licht',
         fr: 'Lumière',
       },
-      tts: {
-        en: 'light',
-        de: 'licht',
-        fr: 'Lumière',
-      },
     },
     {
       id: 'O5N Diabolic Wind',
@@ -104,11 +94,6 @@
       infoText: {
         en: 'Wind',
         de: 'Wind',
-        fr: 'Vent',
-      },
-      tts: {
-        en: 'wind',
-        de: 'wind',
         fr: 'Vent',
       },
     },

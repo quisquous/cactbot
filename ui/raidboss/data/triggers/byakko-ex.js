@@ -151,17 +151,6 @@
           };
         }
       },
-      tts: function(data) {
-        if (data.roarCount != 2)
-          return;
-
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank LB NOW',
-            de: 'JETZT Tank LB',
-          };
-        }
-      },
     },
     {
       id: 'ByaEx Bubble',
@@ -228,7 +217,7 @@
         };
       },
       tts: {
-        en: 'fet away',
+        en: 'get away',
         de: 'weck da',
       },
     },
@@ -243,10 +232,6 @@
             de: 'Tiger Add',
           };
         }
-      },
-      tts: {
-        en: 'Tiger Add',
-        de: 'Tiger Add',
       },
     },
     {
@@ -273,12 +258,6 @@
         return {
           en: 'Stack #' + data.stakeCount,
           de: 'Stack #' + data.stakeCount,
-        };
-      },
-      tts: function(data) {
-        return {
-          en: 'stack ' + data.stakeCount,
-          de: 'stek ' + data.stakeCount,
         };
       },
     },

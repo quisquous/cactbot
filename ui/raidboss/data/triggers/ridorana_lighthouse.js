@@ -113,11 +113,6 @@
         de: 'Stacken',
         fr: 'Stack',
       },
-      tts: {
-        en: 'Stack',
-        de: 'stek en',
-        fr: 'Stack',
-      },
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
@@ -126,11 +121,6 @@
         return (matches[1] == data.me);
       },
       alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'S\'écrater',
-      },
-      tts: {
         en: 'Spread',
         de: 'Verteilen',
         fr: 'S\'écrater',
@@ -200,11 +190,6 @@
         de: 'In der langsamen Uhr stehen',
         fr: 'Se placer sur une horloge lente',
       },
-      tts: {
-        en: 'Stand on Slow Clock',
-        de: 'In langsame Uhr',
-        fr: 'Sur horloge lente',
-      },
     },
     {
       id: 'Ridorana Belias Hand of Time',
@@ -220,11 +205,6 @@
         de: 'Verbindung nach außen strecken',
         fr: 'Lien vers l\'exterieur',
       },
-      tts: {
-        en: 'Stretch Tether Outside',
-        de: 'Verbindung nach außen',
-        fr: 'Lien vers l\'exterieur',
-      },
     },
     {
       id: 'Ridorana Belias Time Bomb',
@@ -233,11 +213,6 @@
       regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe à Retardement/,
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
-        en: 'Stop Clocks',
-        de: 'Uhrzeiger nach außen',
-        fr: 'Arrêter horloge',
-      },
-      tts: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
         fr: 'Arrêter horloge',
@@ -253,11 +228,6 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
-        fr: 'Adds',
-      },
-      tts: {
-        en: 'Adds',
-        de: 'Etz',
         fr: 'Adds',
       },
     },
@@ -306,11 +276,6 @@
         data.accelerateSpreadOnMe = true;
       },
       alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'S\'écrater',
-      },
-      tts: {
         en: 'Spread',
         de: 'Verteilen',
         fr: 'S\'écrater',
@@ -433,9 +398,6 @@
       alertText: function(data) {
         return data.mathDirection();
       },
-      tts: function(data) {
-        return data.mathDirection();
-      },
     },
     {
       id: 'Ridorana Construct Divide By Four',
@@ -447,9 +409,6 @@
         data.correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
       },
       alertText: function(data) {
-        return data.mathDirection();
-      },
-      tts: function(data) {
         return data.mathDirection();
       },
     },
@@ -465,9 +424,6 @@
       alertText: function(data) {
         return data.mathDirection();
       },
-      tts: function(data) {
-        return data.mathDirection();
-      },
     },
     {
       id: 'Ridorana Construct Indivisible',
@@ -481,9 +437,6 @@
       alertText: function(data) {
         return data.mathDirection();
       },
-      tts: function(data) {
-        return data.mathDirection();
-      },
     },
     {
       id: 'Ridorana Construct Pulverize',
@@ -493,11 +446,6 @@
       regexJa: / 14:2C61:労働七号 starts using 粉砕する/,
       // 16 yalms
       alertText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        fr: 'S\'eloigner',
-      },
-      tts: {
         en: 'Get Out',
         de: 'Raus da',
         fr: 'S\'eloigner',
@@ -514,11 +462,6 @@
         de: 'Boss von hinten umkreisen',
         fr: 'Aller derrière',
       },
-      tts: {
-        en: 'Get Behind',
-        de: 'Von hinten umkreisen',
-        fr: 'Aller derrière',
-      },
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
@@ -532,11 +475,6 @@
       delaySeconds: 2,
       alarmText: {
         en: 'Stop',
-        de: 'Stopp',
-        fr: 'Stop',
-      },
-      tts: {
-        en: 'stop',
         de: 'Stopp',
         fr: 'Stop',
       },
@@ -590,11 +528,6 @@
         de: 'Vorm Boss weg',
         fr: 'Pas devant',
       },
-      tts: {
-        en: 'Out of Front',
-        de: 'Vorm Boss weg',
-        fr: 'Pas devant',
-      },
     },
     {
       id: 'Ridorana Yiazmat White Breath',
@@ -603,11 +536,6 @@
       regexFr: / 14:2C31:Yiazmat starts using Souffle Blanc/,
       regexJa: / 14:2C31:鬼龍ヤズマット starts using ホワイトブレス/,
       alertText: {
-        en: 'Get Under',
-        de: 'Reingehen',
-        fr: 'En dessous',
-      },
-      tts: {
         en: 'Get Under',
         de: 'Reingehen',
         fr: 'En dessous',
@@ -627,11 +555,6 @@
         de: 'Ins Positive laufen',
         fr: 'Aller sur le plus',
       },
-      tts: {
-        en: 'Move Postive',
-        de: 'Nach Plus',
-        fr: 'Aller sur le plus',
-      },
     },
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
@@ -645,11 +568,6 @@
       infoText: {
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
-        fr: 'Aller sur le moins',
-      },
-      tts: {
-        en: 'Move Negative',
-        de: 'Nach Minus',
         fr: 'Aller sur le moins',
       },
     },

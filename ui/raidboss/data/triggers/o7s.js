@@ -275,10 +275,6 @@
           };
         }
       },
-      tts: {
-        en: 'silence',
-        de: 'stumm',
-      },
     },
     {
       id: 'O7S Load',

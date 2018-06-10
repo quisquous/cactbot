@@ -12,10 +12,6 @@
         en: 'swipe',
         de: 'Hieb',
       },
-      tts: {
-        en: 'swipe',
-        de: 'Hieb',
-      },
     },
     {
       id: 'Fractal Swing',
@@ -23,10 +19,6 @@
       regexDe: /(?:14:2AE4:Servomechanischer Minotaurus starts using 128-Tonzen-Schwung|14:29A1:Biotech-Minotaurus starts using 111-Tonzen-Schwung)/,
       alertText: {
         en: 'Swing',
-        de: 'Schwung',
-      },
-      tts: {
-        en: 'swing',
         de: 'Schwung',
       },
     },
@@ -62,10 +54,6 @@
       regexDe: /14:27AE:Ultimative Bestie starts using Strudel Des Todes/,
       infoText: {
         en: 'Knockback',
-        de: 'Rückstoß',
-      },
-      tts: {
-        en: 'knockback',
         de: 'Rückstoß',
       },
     },

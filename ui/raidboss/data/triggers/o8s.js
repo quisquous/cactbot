@@ -239,11 +239,6 @@
         fr: 'Aile unique',
         de: 'Einzelner Flügel',
       },
-      tts: {
-        en: 'single wing',
-        fr: 'Aile unique',
-        de: 'Einzelner Flügel',
-      },
     },
     {
       id: 'O8S Ultimate Embrace',

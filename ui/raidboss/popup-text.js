@@ -322,9 +322,12 @@ class PopupText {
       let soundUrl = ValueOrFunction(trigger.sound);
       let soundVol = 1;
 
+      let defaultTTSText;
+
       let alarmText = triggerOptions.AlarmText || trigger.alarmText;
       if (alarmText) {
         let text = ValueOrFunction(alarmText);
+        defaultTTSText = defaultTTSText || text;
         if (text && !userDisabled && showText) {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
@@ -340,6 +343,7 @@ class PopupText {
       let alertText = triggerOptions.AlertText || trigger.alertText;
       if (alertText) {
         let text = ValueOrFunction(alertText);
+        defaultTTSText = defaultTTSText || text;
         if (text && !userDisabled && showText) {
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
@@ -355,6 +359,7 @@ class PopupText {
       let infoText = triggerOptions.InfoText || trigger.infoText;
       if (infoText) {
         let text = ValueOrFunction(infoText);
+        defaultTTSText = defaultTTSText || text;
         if (text && !userDisabled && showText) {
           let holder = that.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
@@ -368,7 +373,8 @@ class PopupText {
         }
       }
 
-      let tts = triggerOptions.TTSText || trigger.tts;
+      // user overrides > tts entries in the trigger > alarm > alert > info
+      let tts = triggerOptions.TTSText || trigger.tts || defaultTTSText;
       let ttsText = '';
 
       if (tts && playSpeech) {
