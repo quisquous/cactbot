@@ -204,12 +204,8 @@ class PopupText {
       lang: locale,
       currentHP: preserveHP,
       ShortName: this.ShortNamify,
-      StopCombat: (function() {
-        this.SetInCombat(false);
-      }).bind(this),
-      ParseLocaleFloat: function(s) {
-        return Regexes.ParseLocaleFloat(s);
-      },
+      StopCombat: () => this.SetInCombat(false),
+      ParseLocaleFloat: parseFloat,
     };
     this.StopTimers();
     this.triggerSuppress = {};

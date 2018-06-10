@@ -1,14 +1,6 @@
 'use strict';
 
 let Regexes = {
-  // Can parse a float matched by \y{Float} and returns it as a number.
-  ParseLocaleFloat: function(s) {
-    let m = s.match(/(-?[0-9]+)(?:([.,])([0-9]+))?(E-?[0-9]+)?/);
-    if (!m)
-      return parseFloat(s);
-    return parseFloat(m[1] + (m[2] ? '.' : '') + (m[3] ? m[3] : '') + (m[4] ? m[4] : ''));
-  },
-
   // Convenience for turning multiple args into a unioned regular expression.
   // AnyOf(x, y, z) or AnyOf([x, y, z]) do the same thing, and return (?:x|y|z).
   // AnyOf(x) or AnyOf(x) on its own simplifies to just x.

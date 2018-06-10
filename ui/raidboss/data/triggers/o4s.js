@@ -591,7 +591,7 @@
         return matches[1] == data.me;
       },
       delaySeconds: function(data, matches) {
-        return data.ParseLocaleFloat(matches[2]) - 4;
+        return parseFloat(matches[2]) - 4;
       }, // 4 second warning.
       alarmText: function(data) {
         if (data.phase == 'omega') {
@@ -634,7 +634,7 @@
         return matches[1] == data.me && data.phase == 'omega';
       },
       delaySeconds: function(data, matches) {
-        return data.ParseLocaleFloat(matches[2]) - 5;
+        return parseFloat(matches[2]) - 5;
       },
       alertText: {
         en: 'shriek: get mid, look away',
@@ -830,7 +830,7 @@
       regex: /gains the effect of Reprisal from .*? for (\y{Float}) Seconds/,
       regex: /gains the effect of Reflexion from .*? for (\y{Float}) Seconds/,
       durationSeconds: function(data, matches) {
-        return data.ParseLocaleFloat(matches[1]);
+        return parseFloat(matches[1]);
       },
       infoText: {
         en: 'Reprisal active',

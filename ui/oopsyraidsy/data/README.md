@@ -180,7 +180,6 @@ If `collectSeconds` is used, then as soon as the trigger matches any line, it wi
 * `data.inCombat`: bool, whether or not the game thinks the player is in combat.  This is different than whether ACT thinks the player is in combat.
 * `data.ShortName`: helper function to turn full player names into shorter names or nicknames.
 * `data.IsPlayerId`: helper function to check if a target or attacker id represents a player (vs a pet or a mob).
-* `data.ParseLocaleFloat`: helper function to turned a parsed `\y{Float}` into a float value, regardless of locale.
 
 `data` is something that triggers can and should store state on, if state is needed to be tracked across multiple triggers.
 

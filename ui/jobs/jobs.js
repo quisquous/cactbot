@@ -1745,7 +1745,7 @@ class Bars {
 
       let r = log.match(gLang.countdownStartRegex());
       if (r != null) {
-        let seconds = Regexes.ParseLocaleFloat(r[1]);
+        let seconds = parseFloat(r[1]);
         this.SetPullCountdown(seconds);
         continue;
       }
@@ -1756,7 +1756,7 @@ class Bars {
 
       r = log.match(kReFoodBuff);
       if (r != null) {
-        let seconds = Regexes.ParseLocaleFloat(r[1]);
+        let seconds = parseFloat(r[1]);
         let now = Date.now(); // This is in ms.
         this.foodBuffExpiresTimeMs = now + (seconds * 1000);
         this.UpdateFoodBuff();
@@ -1770,7 +1770,7 @@ class Bars {
           if ('durationSeconds' in settings)
             seconds = settings.durationSeconds;
           else if ('durationPosition' in settings)
-            seconds = Regexes.ParseLocaleFloat(r[settings.durationPosition]);
+            seconds = parseFloat(r[settings.durationPosition]);
 
           this.OnBigBuff(name, seconds, settings);
         }
@@ -1787,7 +1787,7 @@ class Bars {
       if (this.job == 'SMN') {
         let r = log.match(kReSmnRuinProc);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnSummonerRuinProc(seconds);
           continue;
         }
@@ -1804,19 +1804,19 @@ class Bars {
       if (this.job == 'RDM') {
         let r = log.match(kReRdmBlackManaProc);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnRedMageProcBlack(seconds);
           continue;
         }
         r = log.match(kReRdmWhiteManaProc);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnRedMageProcWhite(seconds);
           continue;
         }
         r = log.match(kReRdmImpactProc);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnRedMageProcImpact(seconds);
           continue;
         }
@@ -1844,19 +1844,19 @@ class Bars {
         }
         let r = log.match(kFormChange);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnMonkFormChange(seconds);
           continue;
         }
         r = log.match(kPeanutButter);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnMonkPerfectBalance(seconds);
           continue;
         }
         r = log.match(kBluntDebuff);
         if (r != null) {
-          let seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnMonkDragonKick(seconds);
           continue;
         }

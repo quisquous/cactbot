@@ -579,9 +579,11 @@ class DamageTracker {
       job: this.job,
       role: this.role,
       inCombat: this.inCombat,
-      ParseLocaleFloat: Regexes.ParseLocaleFloat,
       ShortName: ShortNamify,
       IsPlayerId: IsPlayerId,
+
+      // Deprecated.
+      ParseLocaleFloat: parseFloat,
     };
     this.lastDamage = {};
     this.activeTriggers = {};
@@ -729,7 +731,7 @@ class DamageTracker {
           effectName: matches[2],
           attackerName: matches[3],
           gains: !!matches[4],
-          durationSeconds: matches[4] ? Regexes.ParseLocaleFloat(matches[4]) : undefined,
+          durationSeconds: matches[4] ? parseFloat(matches[4]) : undefined,
         };
       }
       this.OnTrigger(trigger, evt, null);

@@ -525,23 +525,23 @@
         return data.me == matches[1];
       },
       durationSeconds: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) <= 6)
+        if (parseFloat(matches[2]) <= 6)
           return 3;
 
-        if (data.ParseLocaleFloat(matches[2]) <= 10)
+        if (parseFloat(matches[2]) <= 10)
           return 6;
 
         return 9;
       },
       alarmText: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) <= 6) {
+        if (parseFloat(matches[2]) <= 6) {
           return {
             en: 'Doom #1 on YOU',
             fr: 'Glas #1 sur VOUS',
             de: 'Verhängnis #1 auf DIR',
           };
         }
-        if (data.ParseLocaleFloat(matches[2]) <= 10) {
+        if (parseFloat(matches[2]) <= 10) {
           return {
             en: 'Doom #2 on YOU',
             fr: 'Glas #2 sur VOUS',
@@ -555,10 +555,10 @@
         };
       },
       tts: function(data, matches) {
-        if (data.ParseLocaleFloat(matches[2]) <= 6)
+        if (parseFloat(matches[2]) <= 6)
           return '1';
 
-        if (data.ParseLocaleFloat(matches[2]) <= 10)
+        if (parseFloat(matches[2]) <= 10)
           return '2';
 
         return '3';
@@ -573,9 +573,9 @@
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         let order = null;
-        if (data.ParseLocaleFloat(matches[2]) < 9)
+        if (parseFloat(matches[2]) < 9)
           order = 0;
-        else if (data.ParseLocaleFloat(matches[2]) < 14)
+        else if (parseFloat(matches[2]) < 14)
           order = 1;
         else
           order = 2;
@@ -808,8 +808,8 @@
         data.seenDragon = data.seenDragon || [];
         data.seenDragon[matches[1]] = true;
 
-        let x = data.ParseLocaleFloat(matches[2]);
-        let y = data.ParseLocaleFloat(matches[3]);
+        let x = parseFloat(matches[2]);
+        let y = parseFloat(matches[3]);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7

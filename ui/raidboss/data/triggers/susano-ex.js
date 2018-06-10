@@ -178,7 +178,7 @@
       id: 'SusEx Churning',
       regex: /:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
       delaySeconds: function(data, matches) {
-        return data.ParseLocaleFloat(matches[2]) - 3;
+        return parseFloat(matches[2]) - 3;
       },
       alertText: {
         en: 'Stop',
