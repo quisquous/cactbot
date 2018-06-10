@@ -38,6 +38,15 @@ let Options = {
   Triggers: [],
 };
 
+let gTimelineController;
+
+document.addEventListener('onLogEvent', function(e) {
+  gTimelineController.OnLogEvent(e);
+});
+document.addEventListener('onDataFilesRead', function(e) {
+  gTimelineController.SetDataFiles(e.detail.files);
+});
+
 UserConfig.getUserConfigLocation('raidboss', function(e) {
   gTimelineController = new TimelineController(Options, new TimelineUI(Options));
   gPopupText = new PopupText(Options);

@@ -755,12 +755,3 @@ class TimelineLoader {
     this.timelineController.SetInCombat(false);
   }
 }
-
-let gTimelineController;
-
-document.addEventListener('onLogEvent', function(e) {
-  gTimelineController.OnLogEvent(e);
-});
-document.addEventListener('onDataFilesRead', function(e) {
-  gTimelineController.SetDataFiles(e.detail.files);
-});
