@@ -248,7 +248,7 @@ class TimerIcon extends HTMLElement {
     borderBackgroundStyle.width = this._width * this._scale;
     borderBackgroundStyle.height = this._height * this._scale;
 
-    let borderPadding = this.kOuterBorderSize * 2 - this._color_border_size * 2;
+    let borderPadding = this.kOuterBorderSize * 2 + this._color_border_size * 2;
     borderForegroundStyle.width = (this._width - borderPadding) * this._scale;
     borderForegroundStyle.height = (this._height - borderPadding) * this._scale;
     borderForegroundStyle.borderWidth = this._color_border_size * this._scale;
@@ -259,7 +259,7 @@ class TimerIcon extends HTMLElement {
 
     let icon_left = (this.kOuterBorderSize * 2 + this._color_border_size) * this._scale;
     let icon_top = (this.kOuterBorderSize * 2 + this._color_border_size) * this._scale;
-    let iconPadding = this.kOuterBorderSize * 4 - this._color_border_size * 2;
+    let iconPadding = this.kOuterBorderSize * 4 + this._color_border_size * 2;
     let icon_width = (this._width - iconPadding ) * this._scale;
     let icon_height = (this._height - iconPadding) * this._scale;
     let text_height = Math.ceil(Math.min(icon_width, icon_height) / 1.8);

@@ -284,9 +284,10 @@ class ResourceBar extends HTMLElement {
     foregroundStyle.left = this.kBorderSize * this._scale;
     foregroundStyle.top = this.kBorderSize * this._scale;
 
-    let borderPadding = this.kBorderSize * 4 - this.kTextLeftRightEdgePadding * 2;
-    lTextStyle.width = (this._width - borderPadding) * this._scale;
-    lTextStyle.height = (this._height - borderPadding) * this._scale;
+    let widthPadding = this.kBorderSize * 4 + this.kTextLeftRightEdgePadding * 2;
+    lTextStyle.width = (this._width - widthPadding) * this._scale;
+    let heightPadding = this.kBorderSize * 4 + this.kTextTopBottomEdgePadding * 2;
+    lTextStyle.height = (this._height - heightPadding) * this._scale;
     lTextStyle.left = (this.kBorderSize + this.kTextLeftRightEdgePadding) * this._scale;
     lTextStyle.top = (this.kBorderSize + this.kTextTopBottomEdgePadding) * this._scale;
     lTextStyle.fontSize = lTextStyle.height;
