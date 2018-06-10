@@ -45,7 +45,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-			fr: 'Tank Buster sur TOI',
+			fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
@@ -244,7 +244,7 @@
       infoText: {
         en: 'Move to Black!',
         de: "In's schwarze laufen!",
-        fr: "Bougez en zone noire !"
+        fr: "Bougez en zone noire !",
       },
     },
     {
@@ -407,8 +407,8 @@
 		'Moonburst': 'Entrechoc De Fragments Lunaires',
         "Lead/Steel": "Tir De L'au-delà/Pointes De L'au-delà",
         "Steel/Lead": "Pointes De L'au-delà/Tir De L'au-delà",
-        'Homeland adds .E->W.': 'Homeland adds (E->W)',
-        'Empire adds .SW->NW.': 'Empire adds (SW->NW)',
+        'Homeland adds .E->W.': 'Soldats Domien (E->W)',
+        "Empire adds .SW->NW.": "Soldats Impériaux (SW->NW)",
         
       },
       '~effectNames': {
