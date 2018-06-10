@@ -23,250 +23,450 @@ let Options = {
       entityToMapYConstant: 21.4665545,
       nms: {
         sabo: {
-          name: 'Sabo',
+          label: {
+            en: 'Sabo',
+            de: 'Sabo',
+            fr: 'Pampa',
+            ja: 'サボ',
+          },
           mobName: {
             en: 'Sabotender Corrido',
             de: 'Sabotender Corrido',
             fr: 'Pampa Corrido',
             ja: 'サボテンダー・コリード',
           },
-          trackerName: 'sabo',
+          trackerName: {
+            en: 'Sabo',
+            de: 'Sabo',
+            fr: 'Pampa',
+            ja: 'サボテンダー',
+          },
           x: 13.9,
           y: 21.9,
         },
         lord: {
-          name: 'Lord',
+          label: {
+            en: 'Lord',
+            de: 'Prinz',
+            fr: 'Seigneur',
+            ja: 'ロード',
+          },
           mobName: {
             en: 'The Lord Of Anemos',
             de: 'Prinz Von Anemos',
             fr: 'Seigneur D\'Anemos',
             ja: 'ロード・オブ・アネモス',
           },
-          trackerName: 'lord',
+          trackerName: {
+            en: 'Lord',
+            de: 'Prinz[p]',
+            fr: 'Seigneur',
+            ja: 'ロード',
+          },
           x: 29.7,
           y: 27.1,
         },
         teles: {
-          name: 'Teles',
+          label: {
+            en: 'Teles',
+            de: 'Teles',
+            fr: 'Teles',
+            ja: 'テレス',
+          },
           mobName: {
             en: 'Teles',
             de: 'Teles',
             fr: 'Teles',
             ja: 'テレス',
           },
-          trackerName: 'teles',
+          trackerName: {
+            en: 'Teles',
+            de: 'Teles',
+            fr: 'Teles',
+            ja: 'テレス',
+          },
           x: 25.6,
           y: 27.4,
         },
         emperor: {
-          name: 'Emp',
+          label: {
+            en: 'Emp',
+            de: 'Kaiser',
+            fr: 'Emp',
+            ja: 'アネモス',
+          },
           mobName: {
             en: 'The Emperor Of Anemos',
             de: 'Anemos-Kaiser',
             fr: 'Empereur D\'Anemos',
             ja: 'アネモス・エンペラー',
           },
-          trackerName: 'emperor',
+          trackerName: {
+            en: 'Emperor',
+            de: 'Kaiser',
+            fr: 'Empereur',
+            ja: 'アネモス',
+          },
           x: 17.2,
           y: 22.2,
         },
         callisto: {
-          name: 'Calli',
+          label: {
+            en: 'Calli',
+            de: 'Callisto',
+            fr: 'Callisto',
+            ja: 'カリスト',
+          },
           mobName: {
             en: 'Callisto',
             de: 'Callisto',
             fr: 'Callisto',
             ja: 'カリスト',
           },
-          trackerName: 'callisto',
+          trackerName: {
+            en: 'Callisto',
+            de: 'Callisto',
+            fr: 'Callisto',
+            ja: 'カリスト',
+          },
           // 25.5, 22.3 from the tracker, but collides with number
           x: 26.2,
           y: 22.0,
         },
         number: {
-          name: 'Number',
+          label: {
+            en: 'Number',
+            de: 'Zahl',
+            fr: 'Number',
+            ja: 'ナンバーズ',
+          },
           mobName: {
             en: 'Number',
             de: 'Zahl',
             fr: 'Number',
             ja: 'ナンバーズ',
           },
-          trackerName: 'number',
+          trackerName: {
+            en: 'Number',
+            de: 'Zahl',
+            fr: 'Number',
+            ja: 'ナンバーズ',
+          },
           // 23.5, 22.7 from the tracker, but collides with callisto
           x: 23.5,
           y: 23.4,
         },
         jaha: {
-          name: 'Jaha',
+          label: {
+            en: 'Jaha',
+            de: 'Jaha',
+            fr: 'Jaha',
+            ja: 'ジャハ',
+          },
           mobName: {
             en: 'Jahannam',
             de: 'Jahannam',
             fr: 'Jahannam',
             ja: 'ジャハンナム',
           },
-          trackerName: 'jaha',
+          trackerName: {
+            en: 'Jaha',
+            de: 'Jaha',
+            fr: 'Jaha',
+            ja: 'ジャハンナム',
+          },
           x: 17.7,
           y: 18.6,
           weather: 'Gales',
         },
         amemet: {
-          name: 'Amemet',
+          label: {
+            en: 'Amemet',
+            de: 'Amemet',
+            fr: 'Amemet',
+            ja: 'アミメット',
+          },
           mobName: {
             en: 'Amemet',
             de: 'Amemet',
             fr: 'Amemet',
             ja: 'アミメット',
           },
-          trackerName: 'amemet',
+          trackerName: {
+            en: 'Amemet',
+            de: 'Amemet',
+            fr: 'Amemet',
+            ja: 'アミメット',
+          },
           x: 15.0,
           y: 15.6,
         },
         caym: {
-          name: 'Caym',
+          label: {
+            en: 'Caym',
+            de: 'Caym',
+            fr: 'Caym',
+            ja: 'カイム',
+          },
           mobName: {
             en: 'Caym',
             de: 'Caym',
             fr: 'Caym',
             ja: 'カイム',
           },
-          trackerName: 'caym',
+          trackerName: {
+            en: 'Caym',
+            de: 'Caym',
+            fr: 'Caym',
+            ja: 'カイム',
+          },
           x: 13.8,
           y: 12.5,
         },
         bomb: {
-          name: 'Bomb',
+          label: {
+            en: 'Bomb',
+            de: 'Bomba',
+            fr: 'Bomba',
+            ja: 'ボンバ',
+          },
           mobName: {
             en: 'Bombadeel',
             de: 'Bombadeel',
             fr: 'Bombadeel',
             ja: 'ボンバディール',
           },
-          trackerName: 'bomba',
+          trackerName: {
+            en: 'Bomba',
+            de: 'Bomba',
+            fr: 'Bomba',
+            ja: 'ボンバディール',
+          },
           x: 28.3,
           y: 20.4,
           time: 'Night',
         },
         serket: {
-          name: 'Serket',
+          label: {
+            en: 'Serket',
+            de: 'Serket',
+            fr: 'Serket',
+            ja: 'セルケト',
+          },
           mobName: {
             en: 'Serket',
             de: 'Serket',
             fr: 'Serket',
             ja: 'セルケト',
           },
-          trackerName: 'serket',
+          trackerName: {
+            en: 'Serket',
+            de: 'Serket',
+            fr: 'Serket',
+            ja: 'セルケト',
+          },
           x: 24.8,
           y: 17.9,
         },
         juli: {
-          name: 'Juli',
+          label: {
+            en: 'Juli',
+            de: 'Julika',
+            fr: 'Julika',
+            ja: 'ジュリカ',
+          },
           mobName: {
             en: 'Judgmental Julika',
             de: 'Verurteilende Julika',
             fr: 'Julika',
             ja: 'ジャッジメンタル・ジュリカ',
           },
-          trackerName: 'julika',
+          trackerName: {
+            en: 'Julika',
+            de: 'Julika',
+            fr: 'Julika',
+            ja: 'ジュリカ',
+          },
           x: 21.9,
           y: 15.6,
         },
         rider: {
-          name: 'Rider',
+          label: {
+            en: 'Rider',
+            de: 'Reiter',
+            fr: 'Cavalier',
+            ja: 'ライダー',
+          },
           mobName: {
             en: 'The White Rider',
             de: 'Weißer Reiter',
             fr: 'Cavalier Blanc',
             ja: 'ホワイトライダー',
           },
-          trackerName: 'rider',
+          trackerName: {
+            en: 'Rider',
+            de: 'Reiter',
+            fr: 'Cavalier',
+            ja: 'ホワイトライダー',
+          },
           x: 20.3,
           y: 13.0,
           time: 'Night',
         },
         poly: {
-          name: 'Poly',
+          label: {
+            en: 'Poly',
+            de: 'Poly',
+            fr: 'Poly',
+            ja: 'ポリ',
+          },
           mobName: {
             en: 'Polyphemus',
             de: 'Polyphemus',
             fr: 'Polyphemus',
             ja: 'ポリュペモス',
           },
-          trackerName: 'poly',
+          trackerName: {
+            en: 'Poly',
+            de: 'Poly',
+            fr: 'Poly',
+            ja: 'ポリュペモス',
+          },
           x: 26.4,
           y: 14.3,
         },
         strider: {
-          name: 'Strider',
+          label: {
+            en: 'Strider',
+            de: 'Simurghs',
+            fr: 'Simurgh',
+            ja: 'シームルグ',
+          },
           mobName: {
             en: 'Simurgh\'s Strider',
             de: 'Simurghs Läufer',
             fr: 'Trotteur De Simurgh',
             ja: 'シームルグ・ストライダー',
           },
-          trackerName: 'strider',
+          trackerName: {
+            en: 'Strider',
+            de: 'Simurghs',
+            fr: 'Simurgh',
+            ja: 'シームルグ',
+          },
           x: 28.6,
           y: 13.0,
         },
         hazmat: {
-          name: 'Hazmat',
+          label: {
+            en: 'Hazmat',
+            de: 'Hazmat',
+            fr: 'Hazmat',
+            ja: 'ハズマット',
+          },
           mobName: {
             en: 'King Hazmat',
             de: 'Hazmat-König',
             fr: 'Hazmat Roi',
             ja: 'キング・ハズマット',
           },
-          trackerName: 'hazmat',
+          trackerName: {
+            en: 'Hazmat',
+            de: 'Hazmat',
+            fr: 'Hazmat',
+            ja: 'ハズマット',
+          },
           x: 35.3,
           y: 18.3,
         },
         fafnir: {
-          name: 'Fafnir',
+          label: {
+            en: 'Fafnir',
+            de: 'Fafnir',
+            fr: 'Fafnir',
+            ja: 'ファヴニル',
+          },
           mobName: {
             en: 'Fafnir',
             de: 'Fafnir',
             fr: 'Fafnir',
             ja: 'ファヴニル',
           },
-          trackerName: 'fafnir',
+          trackerName: {
+            en: 'Fafnir',
+            de: 'Fafnir',
+            fr: 'Fafnir',
+            ja: 'ファヴニル',
+          },
           x: 35.5,
           y: 21.5,
           time: 'Night',
         },
         amarok: {
-          name: 'Amarok',
+          label: {
+            en: 'Amarok',
+            de: 'Amarok',
+            fr: 'Amarok',
+            ja: 'アマロック',
+          },
           mobName: {
             en: 'Amarok',
             de: 'Amarok',
             fr: 'Amarok',
             ja: 'アマロック',
           },
-          trackerName: 'amarok',
+          trackerName: {
+            en: 'Amarok',
+            de: 'Amarok',
+            fr: 'Amarok',
+            ja: 'アマロック',
+          },
           x: 7.6,
           y: 18.2,
         },
         lama: {
-          name: 'Lama',
+          label: {
+            en: 'Lama',
+            de: 'Lama',
+            fr: 'Lama',
+            ja: 'ラマ',
+          },
           mobName: {
             en: 'Lamashtu',
             de: 'Lamashtu',
             fr: 'Lamashtu',
             ja: 'ラマシュトゥ',
           },
-          trackerName: 'lamashtu',
+          trackerName: {
+            en: 'Lamashtu',
+            de: 'Lamashtu',
+            fr: 'Lamashtu',
+            ja: 'ラマシュトゥ',
+          },
           // 7.7, 23.3 from the tracker but mobs are farther south.
           x: 7.7,
           y: 25.3,
           time: 'Night',
         },
         pazu: {
-          name: 'Pazu',
+          label: {
+            en: 'Pazu',
+            de: 'Pazuzu',
+            fr: 'Pazuzu',
+            ja: 'パズズ',
+          },
           mobName: {
             en: 'Pazuzu',
             de: 'Pazuzu',
             fr: 'Pazuzu',
             ja: 'パズズ',
           },
-          trackerName: 'pazuzu',
+          trackerName: {
+            en: 'Pazuzu',
+            de: 'Pazuzu',
+            fr: 'Pazuzu',
+            ja: 'パズズ',
+          },
           x: 7.4,
           y: 21.7,
           weather: 'Gales',
@@ -331,7 +531,7 @@ class EurekaTracker {
       let name = document.createElement('span');
       name.classList.add('nm-name');
       name.classList.add('text');
-      name.innerText = nm.name;
+      name.innerText = nm.label[this.options.Language];
       let time = document.createElement('span');
       time.classList.add('nm-time');
       time.classList.add('text');
@@ -534,7 +734,7 @@ class EurekaTracker {
     let trackerToNM = {};
     for (let i = 0; i < this.nmKeys.length; ++i) {
       let nm = this.nms[this.nmKeys[i]];
-      trackerToNM[nm.trackerName.toLowerCase()] = nm;
+      trackerToNM[nm.trackerName[this.options.Language].toLowerCase()] = nm;
     }
 
     let importList = importText.split(' > ');
