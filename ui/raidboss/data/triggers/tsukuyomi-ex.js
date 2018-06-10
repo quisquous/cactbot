@@ -407,8 +407,8 @@
 		'Moonburst': 'Entrechoc De Fragments Lunaires',
         "Lead/Steel": "Tir De L'au-delà/Pointes De L'au-delà",
         "Steel/Lead": "Pointes De L'au-delà/Tir De L'au-delà",
-        'Homeland adds .E->W.': 'Parâtre adds (E->W)',
-        'Empire adds .SW->NW.': 'Marâtre adds (SW->NW)',
+        'Homeland adds .E->W.': 'Homeland adds (E->W)',
+        'Empire adds .SW->NW.': 'Empire adds (SW->NW)',
         
       },
       '~effectNames': {
