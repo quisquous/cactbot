@@ -1,6 +1,10 @@
 'use strict';
 
-let Regexes = {
+// Node loading shenanigans.  'var' lets other files require() this file inside of
+// Node and put Regexes as a global without conflicting when redefining.
+/* eslint-disable no-var */
+var Regexes = {
+/* eslint-enable */
   // Convenience for turning multiple args into a unioned regular expression.
   // AnyOf(x, y, z) or AnyOf([x, y, z]) do the same thing, and return (?:x|y|z).
   // AnyOf(x) or AnyOf(x) on its own simplifies to just x.
@@ -136,3 +140,6 @@ let Regexes = {
     };
   })(),
 };
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = Regexes;

@@ -32,6 +32,8 @@ class Timeline {
     this.activeSyncs = [];
     // Sorted by event occurance time.
     this.activeEvents = [];
+    // Sorted by line.
+    this.errors = [];
     this.LoadFile(text, triggers);
     this.Stop();
   }
@@ -117,6 +119,11 @@ class Timeline {
 
       match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
       if (match == null) {
+        this.errors.push({
+          lineNumber: i,
+          line: originalLine,
+          error: 'Invalid format',
+        });
         console.log('Unknown timeline: ' + originalLine);
         continue;
       }
@@ -171,10 +178,16 @@ class Timeline {
         }
       }
       // If there's text left that isn't a comment then we didn't parse that text so report it.
-      if (line && !line.match(/^\s*#/))
+      if (line && !line.match(/^\s*#/)) {
         console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
-      else
+        this.errors.push({
+          lineNumber: i,
+          line: originalLine,
+          error: 'Extra text',
+        });
+      } else {
         this.events.push(e);
+      }
     }
 
     for (let i = 0; i < this.events.length; ++i) {
@@ -193,17 +206,19 @@ class Timeline {
 
       // Rather than matching triggers at run time, pre-match all the triggers
       // against timeline text and insert them as text events to run.
-      for (let t = 0; t < triggers.length; ++t) {
-        let trigger = triggers[t];
-        let m = e.name.match(trigger.regex);
-        if (!m)
-          continue;
-        this.texts.push({
-          type: 'trigger',
-          time: e.time - (trigger.beforeSeconds || 0),
-          trigger: trigger,
-          matches: m,
-        });
+      if (triggers) {
+        for (let t = 0; t < triggers.length; ++t) {
+          let trigger = triggers[t];
+          let m = e.name.match(trigger.regex);
+          if (!m)
+            continue;
+          this.texts.push({
+            type: 'trigger',
+            time: e.time - (trigger.beforeSeconds || 0),
+            trigger: trigger,
+            matches: m,
+          });
+        }
       }
     }
 
@@ -755,3 +770,13 @@ class TimelineLoader {
     this.timelineController.SetInCombat(false);
   }
 }
+
+// Node compatibility shenanigans.  There's probably a better way to do this.
+/* eslint-disable no-var */
+if (typeof require !== 'undefined') {
+  let path = require('path');
+  var Regexes = require('../../resources/regexes.js');
+}
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = Timeline;
+/* eslint-enable */
