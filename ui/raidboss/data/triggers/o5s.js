@@ -1,4 +1,4 @@
-// O5S - Sigmascape 1.0 Savage
+﻿// O5S - Sigmascape 1.0 Savage
 // localization:
 //   de: done
 //   fr: missing replaceText, triggers
@@ -28,12 +28,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -42,6 +44,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -56,12 +59,14 @@
         return {
           en: 'Go to back',
           de: 'Nach hinten laufen',
+          fr: "S'éloigner",
         };
       },
       tts: function(data) {
         return {
           en: 'run away',
           de: 'ab nach hinten',
+          fr: "S'éloigner",
         };
       },
     },
@@ -75,12 +80,14 @@
         return {
           en: 'Stack middle',
           de: 'Stack in der Mitte',
+          fr: 'Stack au milieu',
         };
       },
       tts: function(data) {
         return {
           en: 'Stack middle',
           de: 'Stek in der Mitte',
+          fr: 'Stack au milieu',
         };
       },
     },
@@ -92,12 +99,14 @@
         return {
           en: 'Light',
           de: 'Licht',
+          fr: 'Lumière',
         };
       },
       tts: function (data) {
         return {
           en: 'Light',
           de: 'Licht',
+          fr: 'Lumière',
         };
       },
     },
@@ -109,12 +118,14 @@
         return {
           en: 'Wind',
           de: 'Wind',
+          fr: 'Vent',
         };
       },
       tts: function (data) {
         return {
           en: 'Wind',
           de: 'Wind',
+          fr: 'Vent',
         };
       },
     },
@@ -128,12 +139,14 @@
         return {
           en: 'Knockback Ghost',
           de: 'Rückstoß Geist',
+          fr: 'Fantôme soufflant',
         };
       },
       tts: function (data) {
         return {
           en: 'Knockback Ghost',
           de: 'Rückstoß Geist',
+          fr: 'Fantôme soufflant',
         };
       },
     },
@@ -201,10 +214,10 @@
       },
       replaceText: {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Acid Rain': 'Pluie Acide',
         'All In The Mind': 'Force De Volonté',
@@ -219,13 +232,12 @@
         'Head On': 'Plein Fouet',
         'Possess': 'Possession',
         'Saintly Beam': 'Faisceaux Sacrés',
-        // FIXME:
-        'Crossing Whistle': 'Crossing Whistle',
-        'Knockback Whistle': 'Knockback Whistle',
-        'Tether Whistle': 'Tether Whistle',
-        ' Ghosts': ' Ghosts',
-        'Ghosts spawn': 'Ghosts spawn',
-        'Add Wave': 'Add Wave',
+        ' Ghosts': ' Fantômes',
+        'Crossing Whistle': 'Sifflet traversée',
+        'Tether Whistle': 'Sifflet liens',
+        'Ghosts spawn': 'Pop des Fantômes',
+        'Add Wave': "Vague d'Adds",
+        'Ghost Beams': 'Faisceaux Sacrés',
       },
       '~effectNames': {
         'Connectivity': 'Attelage',

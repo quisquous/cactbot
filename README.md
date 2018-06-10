@@ -101,7 +101,7 @@ Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
 6. Restart ACT.
 7. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
 8. In the URL field, browse to an html file to load.
-[ui/test/cactbot_test.html](ui/test/cactbot_test.html) is a good place to
+[ui/test/test.html](ui/test/test.html) is a good place to
 to start to make sure everything is set up properly.
 
 For more instructions about adding and configuring cactbot overlays, see the [Adding Overlay Modules](#adding-overlay-modules) section.
@@ -245,7 +245,7 @@ particular pulls to review.
 
 ### [test](ui/test) module
 
-To use this module, point cactbot at **ui/test/cactbot_test.html**
+To use this module, point cactbot at **ui/test/test.html**
 
 This module is just an onscreen test of cactbot variables and is not meant to be used while playing.
 It can be useful to try out to make sure everything is working as expected or to use to help debug
