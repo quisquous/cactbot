@@ -15,7 +15,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
@@ -31,7 +31,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -45,7 +45,7 @@
       infoText: {
         en: 'Drop AOEs Away',
         de: 'AoEs weglocken',
-        fr: 'Pose AOEs loin',
+        fr: 'Posez les AoE au loin',
       },
       tts: {
         en: 'aoes',
@@ -134,10 +134,10 @@
       'replaceText': {
         'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Demonic Howl': 'Hurlement Démoniaque',
         'Demonic Pain': 'Douleur Démoniaque',

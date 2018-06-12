@@ -31,14 +31,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
-            fr: 'Buster sur ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -47,7 +47,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -71,7 +71,7 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
-        fr: 'S\'éloigner',
+        fr: 'Eloignez-vous',
       },
       tts: {
         en: 'out',
@@ -87,7 +87,7 @@
           return {
             en: 'Prey on YOU',
             de: 'Beute auf DIR',
-            fr: 'Marquage sur TOI',
+            fr: 'Marquage sur VOUS',
           };
         }
         return {
@@ -250,8 +250,8 @@
         'Viral Weapon': 'Arme Virologique',
         'Wallop': 'Taloche Tentaculaire',
 
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
 
         'Prey': 'Marquage',
         'Plane Laser': 'Laser d\'avion',
