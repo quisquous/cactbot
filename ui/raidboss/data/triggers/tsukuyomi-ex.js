@@ -108,7 +108,7 @@
       id: 'Tsukuyomi Dark Blade',
       regex: / 14:2BDA:Tsukuyomi starts using Dark Blade/,
       regexDe: / 14:2BDA:Tsukuyomi starts using Dunkle Klinge/,
-      regexFr: / 14:2BDA:Tsukuyomi prépare Lame ténébreuse/,
+      regexFr: / 14:2BDA:Tsukuyomi prépare Lame Ténébreuse/,
       infoText: function(data) {
         return {
           en: 'Left + ' + data.moonInOut,
@@ -121,7 +121,7 @@
       id: 'Tsukuyomi Bright Blade',
       regex: / 14:2BDB:Tsukuyomi starts using Bright Blade/,
       regexDe: / 14:2BDB:Tsukuyomi starts using Helle Klinge/,
-      regexFr: / 14:2BDB:Tsukuyomi prépare Lame blafarde/,
+      regexFr: / 14:2BDB:Tsukuyomi prépare Lame Blafarde/,
       infoText: function(data) {
         return {
           en: 'Right + ' + data.moonInOut,
@@ -203,7 +203,7 @@
       id: 'Tsukuyomi Moonlit Debuff Logic',
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
       regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
-      regexFr: / 1A:(\y{Name}) subit l'effet Pleine lune/,
+      regexFr: / 1A:(\y{Name}) subit l'effet Pleine Lune/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -223,14 +223,14 @@
       id: 'Tsukuyomi Moonlit Debuff',
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
       regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
-      regexFr: / 1A:(\y{Name}) subit l'effet Pleine lune/,
+      regexFr: / 1A:(\y{Name}) subit l'effet Pleine Lune/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonlitCount >= 4;
       },
       infoText: {
         en: 'Move to Black!',
-        de: "In's schwarze laufen!",
-        fr: "Bougez en zone noire !",
+        de: 'In\'s schwarze laufen!',
+        fr: 'Bougez en zone noire !',
       },
     },
     {
@@ -263,8 +263,8 @@
       },
       infoText: {
         en: 'Move to White!',
-        de: "In's weiße laufen!",
-        fr: 'Bouge dans le blanc!',
+        de: 'In\'s weiße laufen!',
+        fr: 'Bougez dans le blanc !',
       },
     },
   ],
@@ -393,10 +393,10 @@
         'Zashiki-asobi': 'Zashiki Asobi',
         'Antitwilight': 'Belle-de-nuit',
         'Moonburst': 'Entrechoc De Fragments Lunaires',
-        "Lead/Steel": "Tir De L'au-delà/Pointes De L'au-delà",
-        "Steel/Lead": "Pointes De L'au-delà/Tir De L'au-delà",
+        'Lead/Steel': 'Tir De L\'au-delà/Pointes De L\'au-delà',
+        'Steel/Lead': 'Pointes De L\'au-delà/Tir De L\'au-delà',
         'Homeland adds .E->W.': 'Soldats Domien (E->W)',
-        "Empire adds .SW->NW.": "Soldats Impériaux (SW->NW)",
+        'Empire adds .SW->NW.': 'Soldats Impériaux (SW->NW)',
         
       },
       '~effectNames': {
