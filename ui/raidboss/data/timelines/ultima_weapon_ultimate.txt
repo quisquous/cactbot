@@ -170,9 +170,10 @@ hideall "--Reset--"
 1038 "Crimson Cyclone" sync /:Ifrit:2B5F:/
 1038 "Wicked Wheel" sync /:Garuda:2B4E:/
 1038 "Landslide" sync /:Titan:2B71:/
-1040 "Wicked Tornado" sync /:Titan:2B4F:/
+1040 "Wicked Tornado"
+1040 "Ceruleum Vent" sync /:The Ultima Weapon:2B7C:/
 1040 "Crimson Cyclone"
-1040 "Landslide" sync /:Ifrit:2C22:/
+1040 "Landslide"
 1045 "Feather Rain" sync /:Garuda:2B4D:/
 
 ## Interlude Dance
@@ -246,8 +247,10 @@ hideall "--Reset--"
 1175 "Eye Of The Storm" sync /:Garuda:2B52:/
 1181 "Homing Lasers" sync /:The Ultima Weapon:2B7B:/
 
-## Ultimate Suppression
-1186 "Ultimate Suppression" sync /:The Ultima Weapon:2D4D:/
+# FIXME: tank buster here? other stuff? shift suppression later once natural push time known.
+
+## Ultimate Suppression (50%)
+1186 "Ultimate Suppression" sync /:The Ultima Weapon:2D4D:/ window 1200,500
 1189 "--untargetable--"
 1197 "Rock Throw" sync /:Titan:2B6B:/
 1198 "Eruption" sync /:Garuda:2B5A:/
@@ -299,7 +302,8 @@ hideall "--Reset--"
 ## Enrage
 1329 "--targetable--"
 1332 "Enrage" sync /:The Ultima Weapon:2B8C:/ # drift 0.211
-1357 "Citadel Siege" sync /:Garuda:2B92:/ # drift 0.205999
+# FIXME: this waits until 100% aether, so likely needs to be shifted later for natural push.
+1357 "Citadel Siege" sync /:Garuda:2B92:/ window 100,50
 1360 "Citadel Siege"
 1363 "Citadel Siege"
 1366 "Citadel Siege"
