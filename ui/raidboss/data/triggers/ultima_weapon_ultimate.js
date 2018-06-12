@@ -146,5 +146,26 @@
         delete data.titanGaols;
       },
     },
+    {
+      id: 'UWU Garuda Finale',
+      regex: /:The Ultima Weapon:2CD3:/,
+      infoText: {
+        en: 'Garuda',
+      },
+    },
+    {
+      id: 'UWU Ifrit Finale',
+      regex: /:The Ultima Weapon:2CD4:/,
+      infoText: {
+        en: 'Ifrit',
+      },
+    },
+    {
+      id: 'UWU Titan Finale',
+      regex: /:The Ultima Weapon:2CD5:/,
+      infoText: {
+        en: 'Titan',
+      },
+    },
   ],
 }];
