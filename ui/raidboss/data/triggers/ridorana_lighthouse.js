@@ -183,7 +183,7 @@
       id: 'Ridorana Belias Time Eruption',
       regex: / 14:2CDE:Belias, The Gigas starts using Time Eruption/,
       regexDe: / 14:2CDE:Dämonid Belias starts using Zeiteruption/,
-      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption à Retardement/,
+      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption À Retardement/,
       regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
       infoText: {
         en: 'Stand on Slow Clock',
@@ -210,7 +210,7 @@
       id: 'Ridorana Belias Time Bomb',
       regex: / 14:2CE6:Belias, The Gigas starts using Time Bomb/,
       regexDe: / 14:2CE6:Dämonid Belias starts using Zeitbombe/,
-      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe à Retardement/,
+      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe À Retardement/,
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
@@ -375,7 +375,7 @@
       // overwriting any results from t=0 if that was valid.
       regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
       regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Malus De Pv\+/,
       regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
@@ -467,7 +467,7 @@
       id: 'Ridorana Construct Acceleration Bomb',
       regex: /1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
       regexDe: /1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
+      regexFr: /1A:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
       regexJa: /1A:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
