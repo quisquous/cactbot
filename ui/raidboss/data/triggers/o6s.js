@@ -45,7 +45,7 @@
       id: 'O6S Storms Grip',
       regex: /Added new combatant The Storm's Grip/,
       regexDe: /Added new combatant Sturmgebiet/,
-      regexFr: /Added new combatant Emprise De La Tempête/,
+      regexFr: /Added new combatant Zone De Tempête/,
       regexJa: /Added new combatant 暴風域/,
       condition: function(data) {
         return data.role == 'tank';
