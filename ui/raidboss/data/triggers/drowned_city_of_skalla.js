@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /^The Drowned City Of Skalla$/,
   triggers: [
@@ -21,10 +23,10 @@
       regex: /:Hrodric Poisontongue starts using Tail Drive/,
       regexDe: /:Hrodric Giftzunge starts using Schwanzfetzer/,
       infoText: function(data) {
-        return data.role == 'tank' ? "tail cleave" : "";
+        return data.role == 'tank' ? 'tail cleave' : '';
       },
       alertText: function(data) {
-        return data.role != 'tank' ? "tail cleave" : "";
+        return data.role != 'tank' ? 'tail cleave' : '';
       },
       tts: {
         en: 'tail attack',
@@ -37,13 +39,9 @@
       regexDe: /:Hrodric Giftzunge starts using Feuerauge/,
       alertText: function(data) {
         return {
-          en: "look away",
+          en: 'look away',
           de: 'wegschauen',
         };
-      },
-      tts: {
-        en: 'look away',
-        de: 'weckschauen',
       },
     },
     {
@@ -52,7 +50,7 @@
       regexDe: /:Hrodric Giftzunge starts using Wehklagende Worte/,
       infoText: function(data) {
         return {
-          en: "avoid eye lasers",
+          en: 'avoid eye lasers',
           de: 'Augenlaser ausweichen',
         };
       },
@@ -61,5 +59,5 @@
         de: 'augen lesa',
       },
     },
-  ]
-}]
+  ],
+}];

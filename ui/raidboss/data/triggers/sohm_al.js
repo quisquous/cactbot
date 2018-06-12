@@ -1,3 +1,5 @@
+'use strict';
+
 // Sohm Al (normal)
 // Nobody remembers what to do here, so here's triggers.
 [{
@@ -39,7 +41,7 @@
         };
       },
       tts: {
-        en: "don't stack",
+        en: 'don\'t stack',
         de: 'nicht stek en',
       },
     },
@@ -74,9 +76,9 @@
           return {
             en: 'meteor',
             de: 'meteor',
-         };
+          };
         }
       },
     },
-  ]
-}]
+  ],
+}];

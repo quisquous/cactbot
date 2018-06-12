@@ -1,3 +1,5 @@
+'use strict';
+
 // O7N - Sigmascape 3.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V3\.0\)|Sigmascape V3\.0)$/,
@@ -7,30 +9,36 @@
       id: 'O7N Magitek Ray',
       regex: / 14:276B:Guardian starts using Magitek Ray/,
       regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
+      regexFr: / 14:276B:Gardien starts using Rayon Magitek/,
       alertText: {
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
+        fr: 'Rayon Magitek',
       },
       tts: {
         en: 'beam',
         de: 'les er strahl',
+        fr: 'laser',
       },
     },
     {
       id: 'O7N Arm And Hammer',
       regex: / 14:276C:Guardian starts using Arm And Hammer on (\y{Name})/,
       regexDe: / 14:276C:Wächter starts using Arm-Hammer on (\y{Name})/,
+      regexFr: / 14:276C:Gardien starts using Marteau Stratégique on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -39,6 +47,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -46,27 +55,28 @@
     {
       id: 'O7N Shockwave',
       regex: / 14:2766:Guardian starts using Shockwave/,
-      regex: / 14:2766:Wächter starts using Schockwelle/,
+      regexDe: / 14:2766:Wächter starts using Schockwelle/,
+      regexFr: / 14:2766:Gardien starts using Onde De Choc/,
       alertText: {
         en: 'Knockback',
         de: 'Rückstoß',
-      },
-      tts: {
-        en: 'knockback',
-        de: 'Rückstoß',
+        fr: 'Projection',
       },
     },
     {
       id: 'O7N Diffractive Laser',
       regex: / 14:2761:Guardian starts using Diffractive Laser/,
-      regex: / 14:2761:Wächter starts using Diffraktiver Laser/,
+      regexDe: / 14:2761:Wächter starts using Diffraktiver Laser/,
+      regexFr: / 14:2761:Gardien starts using Laser Diffracteur/,
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
+        fr: 'Eloignez-vous',
       },
       tts: {
         en: 'out',
         de: 'raus',
+        fr: 's\'éloigner',
       },
     },
     {
@@ -77,18 +87,21 @@
           return {
             en: 'Prey on YOU',
             de: 'Beute auf DIR',
+            fr: 'Marquage sur VOUS',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
           de: 'Beute auf ' + data.ShortName(matches[1]),
+          fr: 'Marquage sur ' + data.ShortName(matches[1]),
         };
       },
-      tts: function (data, matches) {
+      tts: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'prey',
             de: 'beute',
+            fr: 'marquage',
           };
         }
       },
@@ -96,8 +109,8 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Air Force': 'Luftwaffe',
         'Dadaluma': 'Dadarma',
         'Fire Control System': 'Feuerleitsystem',
@@ -108,7 +121,7 @@
         'Tentacle': 'Tentakel',
         'Bibliotaph': 'Bibliotaph',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Engage!': 'Start!',
@@ -188,24 +201,24 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
+        'Guardian gains the effect of ': 'Gardien gains the effect of Programme ',
         'Air Force': 'Force Aérienne',
         'Dadaluma': 'Dadaluma',
         'Fire Control System': 'Système De Contrôle',
         'Guardian': 'Gardien',
         'Interdimensional Bomb': 'Bombe Dimensionnelle',
         'Ultros': 'Orthros',
+        'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle',
+        'Tentacle': 'Tentacule',
+        'Bibliotaph': 'Bibliotaphe',
 
-        // FIXME:
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE',
-        'Tentacle': 'Tentacle',
-        'Bibliotaph': 'Bibliotaph',
       },
-      replaceText: {
+      'replaceText': {
         'Arm And Hammer': 'Marteau Stratégique',
         'Atomic Ray': 'Rayon Atomique',
-        "Aura Cannon": "Rayon D'aura",
+        'Aura Cannon': 'Rayon D\'aura',
         'Bomb Deployment': 'Déploiement De Bombes',
         'Chain Cannon': 'Canon Automatique',
         'Chakra Burst': 'Explosion De Chakra',
@@ -214,7 +227,7 @@
         'Diffractive Laser': 'Laser Diffracteur',
         'Diffractive Plasma': 'Plasma Diffracteur',
         'Electric Pulse': 'Impulsion électrique',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Explosion': 'Explosion',
         'Ink': 'Encre',
         'Light Blast': 'Déflagration Légère',
@@ -237,13 +250,12 @@
         'Viral Weapon': 'Arme Virologique',
         'Wallop': 'Taloche Tentaculaire',
 
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
 
-        // FIXME:
         'Prey': 'Marquage',
-        'Plane Laser': 'Plane Laser',
-        'Burst/Darkness': 'Burst/Darkness',
+        'Plane Laser': 'Laser d\'avion',
+        'Burst/Darkness': 'Explosion Magique',
       },
       '~effectNames': {
         'Abandonment': 'Isolement',
@@ -268,8 +280,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Air Force': 'エアフォース',
         'Dadaluma': 'ダダルマー',
         'Fire Control System': 'ファイアコントロールシステム',
@@ -277,7 +289,7 @@
         'Interdimensional Bomb': '次元爆弾',
         'Ultros': 'オルトロス',
       },
-      replaceText: {
+      'replaceText': {
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
         'Aura Cannon': 'オーラキャノン',
@@ -335,4 +347,4 @@
       },
     },
   ],
-}]
+}];

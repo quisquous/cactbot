@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 // Each option here can be changed in user/raidboss.js with a line such as
 // Options.BarExpiresSoonSeconds = 2
 // or
 // Options.InfoSound = 'file://C:/path/to/info/sound.ogg'
 // See user/raidboss-example.js for documentation.
-var Options = {
+let Options = {
   TimelineEnabled: true,
   AlertsEnabled: true,
   TextAlertsEnabled: true,
@@ -37,6 +37,15 @@ var Options = {
 
   Triggers: [],
 };
+
+let gTimelineController;
+
+document.addEventListener('onLogEvent', function(e) {
+  gTimelineController.OnLogEvent(e);
+});
+document.addEventListener('onDataFilesRead', function(e) {
+  gTimelineController.SetDataFiles(e.detail.files);
+});
 
 UserConfig.getUserConfigLocation('raidboss', function(e) {
   gTimelineController = new TimelineController(Options, new TimelineUI(Options));

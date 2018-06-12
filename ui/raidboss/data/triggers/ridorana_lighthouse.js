@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /^The Ridorana Lighthouse$/,
   timelineFile: 'ridorana_lighthouse.txt',
@@ -5,6 +7,8 @@
     function(data) {
       if (data.lang == 'de')
         return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
+      if (data.lang == 'fr')
+        return 'alerttext "Stone Breath" before 7 "Allez derrière"';
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
@@ -20,16 +24,18 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur VOUS',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -37,6 +43,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -51,10 +58,12 @@
       alertText: {
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
+        fr: 'Attention Tsunami',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
+        fr: 'Tsunami',
       },
     },
     {
@@ -67,10 +76,12 @@
       alertText: {
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
+        fr: 'Attention Tsunami',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
+        fr: 'Tsunami',
       },
     },
     {
@@ -83,36 +94,36 @@
       alertText: {
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
+        fr: 'Attention Tsunami',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
+        fr: 'Tsunami',
       },
     },
     {
       id: 'Ridorana Famfrit Dark Cannonade',
       regex: / 1B:........:(\y{Name}):....:....:0037:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: {
         en: 'Dorito Stack',
         de: 'Stacken',
-      },
-      tts: {
-        en: 'Stack',
-        de: 'stek en',
+        fr: 'Stack',
       },
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
       regex: / 1B:........:(\y{Name}):....:....:008B:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-      },
-      tts: {
-        en: 'Spread',
-        de: 'Verteilen',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -125,10 +136,12 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
       tts: {
         en: 'Adds',
         de: 'etz',
+        fr: 'Adds',
       },
     },
     {
@@ -142,16 +155,18 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -159,6 +174,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -167,15 +183,12 @@
       id: 'Ridorana Belias Time Eruption',
       regex: / 14:2CDE:Belias, The Gigas starts using Time Eruption/,
       regexDe: / 14:2CDE:Dämonid Belias starts using Zeiteruption/,
-      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption à Retardement/,
+      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption À Retardement/,
       regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
       infoText: {
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
-      },
-      tts: {
-        en: 'Stand on Slow Clock',
-        de: 'In langsame Uhr',
+        fr: 'Placez-vous sur une horloge lente',
       },
     },
     {
@@ -184,29 +197,25 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Brandwunde from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Brûlure from/,
       regexJa: / 1A:(\y{Name}) gains the effect of 火傷 from/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: {
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen strecken',
-      },
-      tts: {
-        en: 'Stretch Tether Outside',
-        de: 'Verbindung nach außen',
+        fr: 'Lien vers l\'exterieur',
       },
     },
     {
       id: 'Ridorana Belias Time Bomb',
       regex: / 14:2CE6:Belias, The Gigas starts using Time Bomb/,
       regexDe: / 14:2CE6:Dämonid Belias starts using Zeitbombe/,
-      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe à Retardement/,
+      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe À Retardement/,
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
-      },
-      tts: {
-        en: 'Stop Clocks',
-        de: 'Uhrzeiger nach außen',
+        fr: 'Arrêtez horloge',
       },
     },
     {
@@ -219,10 +228,7 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
-      },
-      tts: {
-        en: 'Adds',
-        de: 'Etz',
+        fr: 'Adds',
       },
     },
     {
@@ -236,16 +242,18 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -253,6 +261,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -260,32 +269,35 @@
     {
       id: 'Ridorana Construct Accelerate Spread',
       regex: / 1B:........:(\y{Name}):....:....:008A:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       preRun: function(data) {
         data.accelerateSpreadOnMe = true;
       },
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-      },
-      tts: {
-        en: 'Spread',
-        de: 'Verteilen',
+        fr: 'Ecartez-vous',
       },
     },
     {
       id: 'Ridorana Construct Accelerate Stack',
       regex: / 1B:........:(\y{Name}):....:....:0064:0000:0000:0000:/,
-      condition: function(data) { return !data.accelerateSpreadOnMe; },
+      condition: function(data) {
+        return !data.accelerateSpreadOnMe;
+      },
       infoText: function(data, matches) {
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          en: 'Stack auf ' + data.ShortName(matches[1]),
+          de: 'Stack auf ' + data.ShortName(matches[1]),
+          fr: 'Stack sur ' + data.ShortName(matches[1]),
         };
       },
       tts: {
         en: 'Stack',
         de: 'Stek en',
+        fr: 'Stack',
       },
     },
     {
@@ -310,29 +322,34 @@
           if (!this.correctMath)
             return;
           if (data.mathBaseValue < 1 || data.mathBaseValue > 9) {
-            console.error('Bad math: ' + data.mathBaseValue)
+            console.error('Bad math: ' + data.mathBaseValue);
             return;
           }
           return [
             {
               en: 'Stay out',
               de: 'Draußen stehen',
+              fr: 'Restez dehors',
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
+              fr: 'Allez sur le 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
+              fr: 'Allez sur le 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
+              fr: 'Allez sur le 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
+              fr: 'Allez sur le 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
@@ -343,11 +360,12 @@
       regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
       regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
       regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       preRun: function(data) {
-        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10) {
+        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
-        }
       },
     },
     {
@@ -357,14 +375,15 @@
       // overwriting any results from t=0 if that was valid.
       regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
       regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Malus De Pv\+/,
       regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       delaySeconds: 0.5,
       preRun: function(data) {
-        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10) {
+        if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
-        }
       },
     },
     {
@@ -376,8 +395,9 @@
       preRun: function(data) {
         data.correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Divide By Four',
@@ -388,8 +408,9 @@
       preRun: function(data) {
         data.correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Divide By Three',
@@ -400,8 +421,9 @@
       preRun: function(data) {
         data.correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Indivisible',
@@ -412,8 +434,9 @@
       preRun: function(data) {
         data.correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
       },
-      alertText: function(data) { return data.mathDirection(); },
-      tts: function(data) { return data.mathDirection(); },
+      alertText: function(data) {
+        return data.mathDirection();
+      },
     },
     {
       id: 'Ridorana Construct Pulverize',
@@ -425,10 +448,7 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
-      },
-      tts: {
-        en: 'Get Out',
-        de: 'Raus da',
+        fr: 'Eloignez-vous',
       },
     },
     {
@@ -440,27 +460,23 @@
       alertText: {
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
-      },
-      tts: {
-        en: 'Get Behind',
-        de: 'Von hinten umkreisen',
+        fr: 'Allez derrière le boss',
       },
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
       regex: /1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
       regexDe: /1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
+      regexFr: /1A:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
       regexJa: /1A:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       delaySeconds: 2,
       alarmText: {
         en: 'Stop',
         de: 'Stopp',
-      },
-      tts: {
-        en: 'stop',
-        de: 'Stopp',
+        fr: 'Stop',
       },
     },
     {
@@ -474,16 +490,18 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer') {
+        if (matches[1] == data.me || data.role != 'healer')
           return;
-        }
+
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -491,6 +509,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -501,14 +520,13 @@
       regexDe: / 14:2E32:Yiasmat starts using Prankenhieb/,
       regexFr: / 14:2E32:Yiazmat starts using Griffes/,
       regexJa: / 14:2E32:鬼龍ヤズマット starts using ひっかき/,
-      condition: function(data) { return data.role == 'tank' },
+      condition: function(data) {
+        return data.role == 'tank';
+      },
       infoText: {
         en: 'Out of Front',
         de: 'Vorm Boss weg',
-      },
-      tts: {
-        en: 'Out of Front',
-        de: 'Vorm Boss weg',
+        fr: 'Ne restez pas devant',
       },
     },
     {
@@ -520,10 +538,7 @@
       alertText: {
         en: 'Get Under',
         de: 'Reingehen',
-      },
-      tts: {
-        en: 'Get Under',
-        de: 'Reingehen',
+        fr: 'Allez sous le boss',
       },
     },
     {
@@ -532,14 +547,13 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Charge Négative from/,
       regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       infoText: {
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
-      },
-      tts: {
-        en: 'Move Postive',
-        de: 'Nach Plus',
+        fr: 'Allez sur le plus',
       },
     },
     {
@@ -548,14 +562,13 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Positives Magnetfeld from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Charge Positive from/,
       regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       infoText: {
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
-      },
-      tts: {
-        en: 'Move Negative',
-        de: 'Nach Minus',
+        fr: 'Allez sur le moins',
       },
     },
     {
@@ -568,31 +581,36 @@
       infoText: {
         en: 'Kill Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
       tts: {
         en: 'Adds',
         de: 'Etz',
+        fr: 'Adds',
       },
     },
     {
       id: 'Ridorana Yiazmat Heart',
       regex: / 03:Added new combatant Heart Of The Dragon\./,
       regexDe: / 03:Added new combatant Herz Des Drachen\./,
+      regexFr: / 03:Added new combatant Cœur De Yiazmat\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
         de: 'Herz',
+        fr: 'Tuer le cœur',
       },
       tts: {
         en: 'Heart',
         de: 'Herz',
+        fr: 'Cœur',
       },
     },
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Engage!': 'Start!',
         'Dark Rain': 'Dunkler Regen',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
@@ -606,12 +624,12 @@
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
 
-        ":Echoes from Time's Garden will be sealed off": ":Garten Ewiger Zeit schließt",
-        ":The Spire's Bounds will be sealed off": ":Katastase schließt",
-        ":The Cleft of Profaning Wind will be sealed off": ":Kluft Entweihender Winde schließt",
-        ":The Clockwork Coliseum will be sealed off": ":Kolosseum Von Gog schließt",
+        ':Echoes from Time\'s Garden will be sealed off': ':Garten Ewiger Zeit schließt',
+        ':The Spire\'s Bounds will be sealed off': ':Katastase schließt',
+        ':The Cleft of Profaning Wind will be sealed off': ':Kluft Entweihender Winde schließt',
+        ':The Clockwork Coliseum will be sealed off': ':Kolosseum Von Gog schließt',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Enrage': 'Finalangriff',
@@ -721,10 +739,10 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
-        "Engage!": "À l'attaque",
-        "Dark Rain": "Sphère D'eau Ténébreuse",
+      'locale': 'fr',
+      'replaceSync': {
+        'Engage!': 'À l\'attaque',
+        'Dark Rain': 'Sphère D\'eau Ténébreuse',
         'Famfrit, The Darkening Cloud': 'Famfrit Le Nuage Ténébreux',
         'Belias, The Gigas': 'Bélias Le Titan',
         'Gigas': 'Serviteur De Bélias',
@@ -732,25 +750,24 @@
         'Construct 7.1': 'Automate N°7 Amélioré',
         'Missile': 'Missile',
         'Archaeodemon': 'Archéodémon',
-        'Heart of the Dragon': 'Heart of the Dragon',
+        'Heart of the Dragon': 'Cœur De Yiazmat',
         'Wind Azer': 'Aze De Vent',
         'Yiazmat': 'Yiazmat',
 
-        // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ':Echoes from Time\'s Garden will be sealed off': ':Fermeture du Jardin d\'un autre temps dans',
+        ':The Spire\'s Bounds will be sealed off': ':Fermeture de l\'orée des Cieux dans',
+        ':The Cleft of Profaning Wind will be sealed off': ':Fermeture de la corniche des Vents distordants dans',
+        ':The Clockwork Coliseum will be sealed off': ':Fermeture de l\'arène de Goug dans',
       },
-      replaceText: {
+      'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Briny Cannonade': 'Aqua-canon',
         'Dark Cannonade': 'Bombardement Ténébreux',
         'Dark Ewer': 'Aiguières Ténèbreuses',
-        "Dark Rain": "Trombe D'eau",
+        'Dark Rain': 'Trombe D\'eau',
         'Darkening Deluge': 'Nuage Stagnant',
         'Darkening Rainfall': 'Averse Ténébreuse',
         'Explosion': 'Éclatement',
@@ -763,8 +780,8 @@
         'Eruption': 'Éruption',
         'Fire': 'Feu',
         'Fire IV': 'Giga Feu',
-        "Hellfire": "Flammes De L'enfer",
-        "The Hand Of Time": "Trotteuse De L'au-delà",
+        'Hellfire': 'Flammes De L\'enfer',
+        'The Hand Of Time': 'Trotteuse De L\'au-delà',
         'Time Bomb': 'Bombe à Retardement',
         'Time Eruption': 'Éruption à Retardement',
         'Accelerate': 'Aplatir',
@@ -772,7 +789,7 @@
         'Annihilation Mode': 'Module Exterminator',
         'Ballistic Missile': 'Missiles Balistiques',
         'Compress': 'Écraser',
-        "Computation Mode": "Module D'arithmétique",
+        'Computation Mode': 'Module D\'arithmétique',
         'Destroy': 'Détruire',
         'Dispose': 'Annihiler',
         'Divide By Five': 'Arithmétique : Multiples De 5',
@@ -810,14 +827,13 @@
         'Unholy Darkness': 'Miracle Sombre',
         'White Breath': 'Souffle Blanc',
 
-        // FIXME:
-        'Fast Hands': 'Fast Hands',
-        'Slow Hands': 'Slow Hands',
-        'Gigas spawns': 'Gigas spawns',
+        'Fast Hands': 'Mains rapides',
+        'Slow Hands': 'Mains lente',
+        'Gigas spawns': 'Apparition des serviteurs de Bélias',
         'Division': 'Division',
-        'Area Lockdown': 'Area Lockdown',
-        'Archaeodemon spawn': 'Archaeodemon spawn',
-        'Gale Gaol': 'Gale Gaol',
+        'Area Lockdown': 'Verrouillage de la zone',
+        'Archaeodemon spawn': 'Apparition des Archéodémons',
+        'Gale Gaol': 'Prison De Vent',
       },
       '~effectNames': {
         'Dropsy': 'Œdème',
@@ -854,8 +870,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Dark Rain': '暗黒の雨水',
         'Engage!': '戦闘開始！',
         'Famfrit, The Darkening Cloud': '暗黒の雲ファムフリート',
@@ -870,12 +886,12 @@
         'Yiazmat': '鬼龍ヤズマット',
 
         // FIXME
-        ":Echoes from Time's Garden will be sealed off": ":Echoes from Time's Garden will be sealed off",
-        ":The Spire's Bounds will be sealed off": ":The Spire's Bounds will be sealed off",
-        ":The Cleft of Profaning Wind will be sealed off": ":The Cleft of Profaning Wind will be sealed off",
-        ":The Clockwork Coliseum will be sealed off": ":The Clockwork Coliseum will be sealed off",
+        ':Echoes from Time\'s Garden will be sealed off': ':Echoes from Time\'s Garden will be sealed off',
+        ':The Spire\'s Bounds will be sealed off': ':The Spire\'s Bounds will be sealed off',
+        ':The Cleft of Profaning Wind will be sealed off': ':The Cleft of Profaning Wind will be sealed off',
+        ':The Clockwork Coliseum will be sealed off': ':The Clockwork Coliseum will be sealed off',
       },
-      replaceText: {
+      'replaceText': {
         'Briny Cannonade': '蒼の砲撃',
         'Dark Cannonade': '闇の砲撃',
         'Dark Ewer': '暗雲の水瓶',
@@ -983,4 +999,4 @@
       },
     },
   ],
-}]
+}];

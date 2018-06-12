@@ -1,3 +1,5 @@
+'use strict';
+
 // Fractal Continuum (Hard)
 [{
   zoneRegex: /^The Fractal Continuum \(Hard\)$/,
@@ -10,10 +12,6 @@
         en: 'swipe',
         de: 'Hieb',
       },
-      tts: {
-        en: 'swipe',
-        de: 'Hieb',
-      },
     },
     {
       id: 'Fractal Swing',
@@ -23,17 +21,13 @@
         en: 'Swing',
         de: 'Schwung',
       },
-      tts: {
-        en: 'swing',
-        de: 'Schwung',
-      },
     },
     {
       id: 'Fractal Dragon Voice',
       regex: /starts using The Dragon's Voice/,
       regexDe: /starts using Stimme Des Drachen/,
       alertText: {
-        en: "Dragon's Voice",
+        en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
       },
       tts: {
@@ -46,7 +40,7 @@
       regex: /starts using The Ram's Voice/,
       regexDe: /starts using Stimme Des Widders/,
       alertText: {
-        en: "Ram's Voice",
+        en: 'Ram\'s Voice',
         de: 'Stimme Des Widders',
       },
       tts: {
@@ -60,10 +54,6 @@
       regexDe: /14:27AE:Ultimative Bestie starts using Strudel Des Todes/,
       infoText: {
         en: 'Knockback',
-        de: 'Rückstoß',
-      },
-      tts: {
-        en: 'knockback',
         de: 'Rückstoß',
       },
     },
@@ -81,4 +71,4 @@
       },
     },
   ],
-}]
+}];

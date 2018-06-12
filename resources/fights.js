@@ -1,5 +1,6 @@
+'use strict';
 
-var gBossFightTriggers = [
+let gBossFightTriggers = [
   {
     id: 'test',
     zoneRegex: /^Middle La Noscea$/,

@@ -1,3 +1,5 @@
+'use strict';
+
 // Tsukuyomi Extreme
 [{
   zoneRegex: /^The Minstrel's Ballad: Tsukuyomi's Pain$/,
@@ -11,7 +13,7 @@
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
-		fr: 'Pistolet: Stack',
+        fr: 'Pistolet : Pack',
       },
     },
     {
@@ -22,7 +24,7 @@
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
-		fr: 'Lance: Spread',
+        fr: 'Lance : Ecartez-vous',
       },
     },
     {
@@ -31,13 +33,13 @@
       regexDe: / 14:2BBB:Tsukuyomi starts using Todesqualen on (\y{Name})/,
       regexFr: / 14:2BBB:Tsukuyomi prépare Brimade meurtrière sur (\y{Name})/,
       alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank') {
+        if (matches[1] == data.me || data.role != 'tank')
           return;
-        }
+
         return {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
-		  fr: 'Tank Swap!',
+          fr: 'Tank swap !',
         };
       },
       alertText: function(data, matches) {
@@ -45,25 +47,25 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-			fr: 'Tank Buster sur VOUS',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-			fr: 'Tank Buster sur ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer') {
+        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer')
           return;
-        }
+
         return {
           en: 'Get out of front',
           de: 'Weg von vorn',
-		  fr: 'Personne devant',
+          fr: 'Ne restez pas devant !',
         };
       },
       tts: function(data, matches) {
@@ -71,7 +73,7 @@
           return {
             en: 'buster',
             de: 'basta',
-			fr: 'Tank buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -81,10 +83,10 @@
       regexDe: /:Tsukuyomi gains the effect of Vollmond/,
       regexFr: /:Tsukuyomi bénéficie de l'effet Force de la pleine lune/,
       run: function(data) {
-        var moonInOut = {
+        let moonInOut = {
           en: 'Out',
           de: 'Raus',
-		  fr: 'Exterieur (Loin)',
+          fr: 'Loin',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -94,7 +96,7 @@
       regexDe: /:Tsukuyomi gains the effect of Neumond/,
       regexFr: /:Tsukuyomi bénéficie de l'effet Force de la nouvelle lune/,
       run: function(data) {
-        var moonInOut = {
+        let moonInOut = {
           en: 'In',
           de: 'Rein',
 		  de: 'Intérieur (Sur la hitbox)',
@@ -114,13 +116,6 @@
           de: 'Links + ' + data.moonInOut,
         };
       },
-      tts: function(data) {
-        return {
-          en: 'Left + ' + data.moonInOut,
-          fr: 'Gauche + ' + data.moonInOut,
-          de: 'Links + ' + data.moonInOut,
-        };
-      },
     },
     {
       id: 'Tsukuyomi Bright Blade',
@@ -134,28 +129,17 @@
           de: 'Rechts + ' + data.moonInOut,
         };
       },
-      tts: function(data) {
-        return {
-          en: 'Right + ' + data.moonInOut,
-          fr: 'Droite + ' + data.moonInOut,
-          de: 'Rechts + ' + data.moonInOut,
-        };
-      },
     },
     {
       id: 'Tsukuyomi Meteor Marker',
       regex: / 1B:........:(\y{Name}):....:....:0083:0000:0000:0000:/,
-	  regexFr: / 1B:........:(\y{Name}):....:....:0083:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alarmText: {
         en: 'Meteor on YOU',
         de: 'Meteor auf DIR',
-		fr: 'Metéore sur VOUS',
-      },
-      tts: {
-        en: 'Meteor on YOU',
-        de: 'Meteor auf DIR',
-		fr: 'Metéore sur VOUS',
+        fr: 'Météore sur VOUS',
       },
     },
     {
@@ -165,7 +149,7 @@
       alertText: {
         en: 'Stack',
         de: 'Stack',
-		fr: 'Stack',
+        fr: 'Pack',
       },
       tts: {
         en: 'Stack',
@@ -176,17 +160,16 @@
     {
       id: 'Tsukuyomi Hagetsu',
       regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) { return (matches[1] == data.me); },
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Spread',
       },
-      tts: {
+      alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: 'Spread',
+        fr: 'Ecartez vous',
       },
     },
     {
@@ -195,7 +178,6 @@
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
       regex: /00:0044:No\. No\.\.\. Not yet\. Not\. Yet\./,
-	  regexFr: /00:0044:Non\, je ne peux pas\.\.\. échouer\.\.\./,
       infoText: {
         en: 'aoe',
         de: 'aoe',
@@ -222,12 +204,14 @@
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
       regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
       regexFr: / 1A:(\y{Name}) subit l'effet Pleine lune/,
-      condition: function(data, matches) { return matches[1] == data.me },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
-        if (typeof data.moonlitCount === 'undefined') {
+        if (typeof data.moonlitCount === 'undefined')
           data.moonlitCount = 3;
-        }
+
         data.moonlitCount += 1;
         data.moonshadowedCount = 0;
         // dead/reset?
@@ -240,7 +224,9 @@
       regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
       regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
       regexFr: / 1A:(\y{Name}) subit l'effet Pleine lune/,
-      condition: function(data, matches) { return matches[1] == data.me && data.moonlitCount >= 4; },
+      condition: function(data, matches) {
+        return matches[1] == data.me && data.moonlitCount >= 4;
+      },
       infoText: {
         en: 'Move to Black!',
         de: "In's schwarze laufen!",
@@ -252,12 +238,14 @@
       regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
       regexDe: / 1A:(\y{Name}) gains the effect of Mondschatten/,
       regexFr: / 1A:(\y{Name}) subit l'effet Nouvelle Lune/,
-      condition: function(data, matches) { return matches[1] == data.me },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
-        if (typeof data.moonshadowedCount === 'undefined') {
+        if (typeof data.moonshadowedCount === 'undefined')
           data.moonshadowedCount = 3;
-        }
+
         data.moonshadowedCount += 1;
         data.moonlitCount = 0;
         // dead/reset?
@@ -270,7 +258,9 @@
       regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
       regexDe: / 1A:(\y{Name}) gains the effect of Mondschatten/,
       regexFr: / 1A:(\y{Name}) subit l'effet Nouvelle Lune/,
-      condition: function(data, matches) { return matches[1] == data.me && data.moonshadowedCount >= 4; },
+      condition: function(data, matches) {
+        return matches[1] == data.me && data.moonshadowedCount >= 4;
+      },
       infoText: {
         en: 'Move to White!',
         de: "In's weiße laufen!",
@@ -280,8 +270,8 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Dancing Fan': 'Tanzend[a] Fächer',
         'Engage!': 'Start!',
         'Specter': 'Schemen',
@@ -296,7 +286,7 @@
         'Moondust': 'Mondfragment',
         'Moonlight': 'Mondlichtkugel',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Bright Blade': 'Helle Klinge',
@@ -353,28 +343,26 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Dancing Fan': 'Maiôgi',
-        "Engage!": "À l'attaque",
-        'Specter': 'Spector',
-        "Specter Of Asahi": "Apparition D'Asahi",
-        'Specter Of The Empire': 'Spectre De Soldat Impérial',
-        'Specter Of The Homeland': 'Spectre De Domien',
-        'Specter Of The Matriarch': 'Spectre De La Marâtre',
-        'Specter Of The Patriarch': 'Spectre Du Parâtre',
-        'Specter Of Zenos': 'Spectre De Zenos',
+        'Engage!': 'À l\'attaque',
+        'Specter': 'Spectre',
+        'Specter Of Asahi': 'Apparition d\'Asahi',
+        'Specter Of The Empire': 'Spectre de soldat impérial',
+        'Specter Of The Homeland': 'Spectre de Domien',
+        'Specter Of The Matriarch': 'Spectre de la marâtre',
+        'Specter Of The Patriarch': 'Spectre du parâtre',
+        'Specter Of Zenos': 'Spectre de Zenos',
         'Tsukuyomi': 'Tsukuyomi',
-
-        // FIXME
-        'Moondust': 'Moondust',
-        'Moonlight': 'Moonlight',
+        'Moondust': 'Fragment de lune',
+        'Moonlight': 'Flamboiement Lunaire',
       },
-      replaceText: {
+      'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Bright Blade': 'Lame Blafarde',
         'Concentrativity': 'Kenki Concentré',
         'Crater': 'Explosion De Fragment Lunaire',
@@ -383,7 +371,7 @@
         'Dispersivity': 'Onde Kenki',
         'Enrage': 'Enragement',
         'Hagetsu': 'Pulvérisation Lunaire',
-        "Lead Of The Underworld": "Tir De L'au-delà",
+        'Lead Of The Underworld': 'Tir De L\'au-delà',
         'Lunacy': 'Efflorescence Au Clair De Lune',
         'Lunar Halo': 'Flamboiement Lunaire',
         'Lunar Rays': 'Rayons Lunaires',
@@ -394,7 +382,7 @@
         'Nightfall': 'Jeune Nuit',
         'Perilune': 'Zénith Lunaire',
         'Reprimand': 'Correction',
-        "Steel Of The Underworld": "Pointes De L'au-delà",
+        'Steel Of The Underworld': 'Pointes De L\'au-delà',
         'Supreme Selenomancy': 'Sélénomancie Suprême',
         'Torment Unto Death': 'Brimade Meurtrière',
         'Tsuki-no-Kakera': 'Fragments Lunaires',
@@ -429,8 +417,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Dancing Fan': '舞扇',
         'Engage!': '戦闘開始！',
         'Specter': 'スペクター',
@@ -446,7 +434,7 @@
         'Moondust': 'Moondust',
         'Moonlight': 'Moonlight',
       },
-      replaceText: {
+      'replaceText': {
         'Bright Blade': '月刀左近',
         'Concentrativity': '圧縮剣気',
         'Crater': '氷輪',
@@ -501,4 +489,4 @@
       },
     },
   ],
-}]
+}];

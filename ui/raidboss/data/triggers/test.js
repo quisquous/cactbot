@@ -1,8 +1,13 @@
+'use strict';
+
 [{
   zoneRegex: /^Middle La Noscea$/,
   timelineFile: 'test.txt',
+  // timeline here is additions to the timeline.  They can
+  // be strings, or arrays of strings, or functions that
+  // take the same data object (including role and lang)
+  // that triggers do.
   timeline: [
-    'infotext "Angry Dummy" before 2 "stack for angry dummy"',
     'alerttext "Final Sting" before 4 "oh no final sting in 4"',
     'alarmtext "Death" before 3',
     'alertall "Long Castbar" before 1 speak "voice" "long"',
@@ -17,16 +22,30 @@
     function(data) {
       if (data.role != 'healer')
         return 'hideall "Almagest"';
-      else
-        return 'alarmtext "Almagest" before 0';
+      return 'alarmtext "Almagest" before 0';
     },
     function(data) {
       // <_<
-      var shortName = data.me.substring(0, data.me.indexOf(' '));
+      let shortName = data.me.substring(0, data.me.indexOf(' '));
       return [
         '40 "Death To ' + shortName + '!!"',
         'hideall "Death"',
       ];
+    },
+  ],
+  timelineTriggers: [
+    {
+      id: 'Test Angry Dummy',
+      regex: /(Angry Dummy)/,
+      beforeSeconds: 2,
+      infoText: function(data, matches) {
+        return {
+          en: 'Stack for ' + matches[1],
+        };
+      },
+      tts: {
+        en: 'Stack',
+      },
     },
   ],
   timelineReplace: [
@@ -41,11 +60,11 @@
         'Death': 'Mort',
       },
       replaceSync: {
-        'You bid farewell to the striking dummy': "Vous faites vos adieux au mannequin d'entraînement",
-        'You bow courteously to the striking dummy': "Vous vous inclinez devant le mannequin d'entraînement",
-        'Engage!': "À l'attaque !",
+        'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
+        'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+        'Engage!': 'À l\'attaque',
       },
-    }
+    },
   ],
   triggers: [
     {
@@ -59,12 +78,6 @@
         return {
           en: 'poke #' + data.pokes,
           fr: 'Touché #' + data.pokes,
-        };
-      },
-      tts: function(data) {
-        return {
-          en: 'poke ' + data.pokes,
-          fr: 'Touché ' + data.pokes,
         };
       },
     },
@@ -112,17 +125,13 @@
     },
     {
       id: 'Test Lang',
+      // In game: /echo cactbot lang
       regex: /00:0038:cactbot lang/,
       infoText: function(data) {
         return {
-	  en: 'Language: ' + data.lang,
-	};
-      },
-      tts: function(data) {
-        return {
-	  en: 'Language: ' + data.lang,
-	};
+          en: 'Language: ' + data.lang,
+        };
       },
     },
   ],
-}]
+}];

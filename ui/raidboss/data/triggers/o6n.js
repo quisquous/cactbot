@@ -1,3 +1,5 @@
+'use strict';
+
 // O6N - Sigmascape 2.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V2\.0\)|Sigmascape 2\.0)$/,
@@ -6,18 +8,21 @@
     {
       id: 'O6N Demonic Shear',
       regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
-      regex: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
+      regexDe: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
+      regexFr: / 14:282A:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
+            fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Buster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -26,6 +31,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -33,21 +39,25 @@
     {
       id: 'O6N Meteors',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: {
         en: 'Drop AOEs Away',
         de: 'AoEs weglocken',
+        fr: 'Posez les AoE au loin',
       },
       tts: {
         en: 'aoes',
         de: 'Flächen',
+        fr: 'aoe',
       },
     },
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Demon Chadarnook': 'Gefallener Chadarnook',
         'Easterly': 'Ostwind',
         'Goddess Chadarnook': 'Heilige Chadarnook',
@@ -56,10 +66,10 @@
         'Portrayal of Wind': 'Windgemälde',
         'Portrayal of Earth': 'Erdgemälde',
         'Portrayal of Water': 'Wassergemälde',
-        "The Storm's Grip": "Sturmgebiet",
+        'The Storm\'s Grip': 'Sturmgebiet',
         'I have claimed the girl in the picture!': 'Das Mädchen in diesem Bildnis gehört mir!',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Engage!': 'Start!',
@@ -105,29 +115,29 @@
         'Seduced': 'Versuchung',
         'Slippery Prey': 'Unmarkierbar',
         'Yellow Paint': 'Gelbe Farbe',
-      }
+      },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Demon Chadarnook': 'Démon Chadarnouk',
-        'Easterly': 'Rafale Ultime',
+        'Easterly': 'Rafale ultime',
         'Goddess Chadarnook': 'Déesse Chadarnouk',
-        'Haunt': 'Ombre Maléfique',
-        'Portrayal of Fire': 'Peinture Du Feu',
-        'Portrayal of Wind': 'Peinture Du Vent',
-        'Portrayal of Earth': 'Peinture De La Terre',
-        'Portrayal of Water': "Peinture De L'eau",
-        "The Storm's Grip": "Emprise De La Tempête",
-        'I have claimed the girl in the picture!': "Héhéhé... La fille du tableau m'appartient",
+        'Haunt': 'Ombre maléfique',
+        'Portrayal of Fire': 'Peinture du feu',
+        'Portrayal of Wind': 'Peinture du vent',
+        'Portrayal of Earth': 'Peinture de la terre',
+        'Portrayal of Water': 'Peinture de l\'eau',
+        'The Storm\'s Grip': 'Emprise De La Tempête',
+        'I have claimed the girl in the picture!': 'Héhéhé... La fille du tableau m\'appartient',
       },
-      replaceText: {
-        "Engage!": "À l'attaque",
+      'replaceText': {
+        'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Demonic Howl': 'Hurlement Démoniaque',
         'Demonic Pain': 'Douleur Démoniaque',
@@ -141,7 +151,7 @@
         'Downpour': 'Déluge',
         'Dull Pain': 'Douleur Sourde',
         'Earthquake': 'Grand Séisme',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Featherlance': 'Lance De Plume',
         'Flash Fire': 'Flammes Subites',
         'Flash Gale': 'Vent Subit',
@@ -168,11 +178,11 @@
         'Seduced': 'Séduction',
         'Slippery Prey': 'Marquage Impossible',
         'Yellow Paint': 'Peinture Jaune',
-      }
+      },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Demon Chadarnook': 'チャダルヌーク・デーモン',
         'Easterly': '極風',
         'Goddess Chadarnook': 'チャダルヌーク・ゴッデス',
@@ -181,10 +191,10 @@
         'Portrayal Of Wind': '風の絵画',
         'Portrayal of Earth': '土の絵画',
         'Portrayal of Water': '水の絵画',
-        "The Storm's Grip": "暴風域",
+        'The Storm\'s Grip': '暴風域',
         'I have claimed the girl in the picture!': 'グフフフ……この絵の女は',
       },
-      replaceText: {
+      'replaceText': {
         'Demonic Howl': 'デモニックハウル',
         'Demonic Pain': 'デモニックペイン',
         'Demonic Shear': 'デモニックシアー',
@@ -225,7 +235,7 @@
         'Seduced': '誘惑',
         'Slippery Prey': 'マーキング対象外',
         'Yellow Paint': '黄色の絵の具',
-      }
-    }
+      },
+    },
   ],
-}]
+}];

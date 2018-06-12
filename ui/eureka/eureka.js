@@ -1,6 +1,6 @@
-﻿"use strict";
+'use strict';
 
-var Options = {
+let Options = {
   Language: 'en',
   RefreshRateMs: 1000,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
@@ -23,250 +23,450 @@ var Options = {
       entityToMapYConstant: 21.4665545,
       nms: {
         sabo: {
-          name: 'Sabo',
+          label: {
+            en: 'Sabo',
+            de: 'Sabo',
+            fr: 'Pampa',
+            ja: 'サボ',
+          },
           mobName: {
             en: 'Sabotender Corrido',
             de: 'Sabotender Corrido',
             fr: 'Pampa Corrido',
             ja: 'サボテンダー・コリード',
           },
-          trackerName: 'sabo',
+          trackerName: {
+            en: 'Sabo',
+            de: 'Sabo',
+            fr: 'Pampa',
+            ja: 'サボテンダー',
+          },
           x: 13.9,
           y: 21.9,
         },
         lord: {
-          name: 'Lord',
+          label: {
+            en: 'Lord',
+            de: 'Prinz',
+            fr: 'Seigneur',
+            ja: 'ロード',
+          },
           mobName: {
             en: 'The Lord Of Anemos',
             de: 'Prinz Von Anemos',
-            fr: "Seigneur D'Anemos",
+            fr: 'Seigneur D\'Anemos',
             ja: 'ロード・オブ・アネモス',
           },
-          trackerName: 'lord',
+          trackerName: {
+            en: 'Lord',
+            de: 'Prinz[p]',
+            fr: 'Seigneur',
+            ja: 'ロード',
+          },
           x: 29.7,
           y: 27.1,
         },
         teles: {
-          name: 'Teles',
+          label: {
+            en: 'Teles',
+            de: 'Teles',
+            fr: 'Teles',
+            ja: 'テレス',
+          },
           mobName: {
             en: 'Teles',
             de: 'Teles',
             fr: 'Teles',
             ja: 'テレス',
           },
-          trackerName: 'teles',
+          trackerName: {
+            en: 'Teles',
+            de: 'Teles',
+            fr: 'Teles',
+            ja: 'テレス',
+          },
           x: 25.6,
           y: 27.4,
         },
         emperor: {
-          name: 'Emp',
+          label: {
+            en: 'Emp',
+            de: 'Kaiser',
+            fr: 'Emp',
+            ja: 'アネモス',
+          },
           mobName: {
             en: 'The Emperor Of Anemos',
             de: 'Anemos-Kaiser',
-            fr: "Empereur D'Anemos",
+            fr: 'Empereur D\'Anemos',
             ja: 'アネモス・エンペラー',
           },
-          trackerName: 'emperor',
+          trackerName: {
+            en: 'Emperor',
+            de: 'Kaiser',
+            fr: 'Empereur',
+            ja: 'アネモス',
+          },
           x: 17.2,
           y: 22.2,
         },
         callisto: {
-          name: 'Calli',
+          label: {
+            en: 'Calli',
+            de: 'Callisto',
+            fr: 'Callisto',
+            ja: 'カリスト',
+          },
           mobName: {
             en: 'Callisto',
             de: 'Callisto',
             fr: 'Callisto',
             ja: 'カリスト',
           },
-          trackerName: 'callisto',
+          trackerName: {
+            en: 'Callisto',
+            de: 'Callisto',
+            fr: 'Callisto',
+            ja: 'カリスト',
+          },
           // 25.5, 22.3 from the tracker, but collides with number
           x: 26.2,
           y: 22.0,
         },
         number: {
-          name: 'Number',
+          label: {
+            en: 'Number',
+            de: 'Zahl',
+            fr: 'Number',
+            ja: 'ナンバーズ',
+          },
           mobName: {
             en: 'Number',
             de: 'Zahl',
             fr: 'Number',
             ja: 'ナンバーズ',
           },
-          trackerName: 'number',
+          trackerName: {
+            en: 'Number',
+            de: 'Zahl',
+            fr: 'Number',
+            ja: 'ナンバーズ',
+          },
           // 23.5, 22.7 from the tracker, but collides with callisto
           x: 23.5,
           y: 23.4,
         },
         jaha: {
-          name: 'Jaha',
+          label: {
+            en: 'Jaha',
+            de: 'Jaha',
+            fr: 'Jaha',
+            ja: 'ジャハ',
+          },
           mobName: {
             en: 'Jahannam',
             de: 'Jahannam',
             fr: 'Jahannam',
             ja: 'ジャハンナム',
           },
-          trackerName: 'jaha',
+          trackerName: {
+            en: 'Jaha',
+            de: 'Jaha',
+            fr: 'Jaha',
+            ja: 'ジャハンナム',
+          },
           x: 17.7,
           y: 18.6,
           weather: 'Gales',
         },
         amemet: {
-          name: 'Amemet',
+          label: {
+            en: 'Amemet',
+            de: 'Amemet',
+            fr: 'Amemet',
+            ja: 'アミメット',
+          },
           mobName: {
             en: 'Amemet',
             de: 'Amemet',
             fr: 'Amemet',
             ja: 'アミメット',
           },
-          trackerName: 'amemet',
+          trackerName: {
+            en: 'Amemet',
+            de: 'Amemet',
+            fr: 'Amemet',
+            ja: 'アミメット',
+          },
           x: 15.0,
           y: 15.6,
         },
         caym: {
-          name: 'Caym',
+          label: {
+            en: 'Caym',
+            de: 'Caym',
+            fr: 'Caym',
+            ja: 'カイム',
+          },
           mobName: {
             en: 'Caym',
             de: 'Caym',
             fr: 'Caym',
             ja: 'カイム',
           },
-          trackerName: 'caym',
+          trackerName: {
+            en: 'Caym',
+            de: 'Caym',
+            fr: 'Caym',
+            ja: 'カイム',
+          },
           x: 13.8,
           y: 12.5,
         },
         bomb: {
-          name: 'Bomb',
+          label: {
+            en: 'Bomb',
+            de: 'Bomba',
+            fr: 'Bomba',
+            ja: 'ボンバ',
+          },
           mobName: {
             en: 'Bombadeel',
             de: 'Bombadeel',
             fr: 'Bombadeel',
             ja: 'ボンバディール',
           },
-          trackerName: 'bomba',
+          trackerName: {
+            en: 'Bomba',
+            de: 'Bomba',
+            fr: 'Bomba',
+            ja: 'ボンバディール',
+          },
           x: 28.3,
           y: 20.4,
           time: 'Night',
         },
         serket: {
-          name: 'Serket',
+          label: {
+            en: 'Serket',
+            de: 'Serket',
+            fr: 'Serket',
+            ja: 'セルケト',
+          },
           mobName: {
             en: 'Serket',
             de: 'Serket',
             fr: 'Serket',
             ja: 'セルケト',
           },
-          trackerName: 'serket',
+          trackerName: {
+            en: 'Serket',
+            de: 'Serket',
+            fr: 'Serket',
+            ja: 'セルケト',
+          },
           x: 24.8,
           y: 17.9,
         },
         juli: {
-          name: 'Juli',
+          label: {
+            en: 'Juli',
+            de: 'Julika',
+            fr: 'Julika',
+            ja: 'ジュリカ',
+          },
           mobName: {
             en: 'Judgmental Julika',
             de: 'Verurteilende Julika',
             fr: 'Julika',
             ja: 'ジャッジメンタル・ジュリカ',
           },
-          trackerName: 'julika',
+          trackerName: {
+            en: 'Julika',
+            de: 'Julika',
+            fr: 'Julika',
+            ja: 'ジュリカ',
+          },
           x: 21.9,
           y: 15.6,
         },
         rider: {
-          name: 'Rider',
+          label: {
+            en: 'Rider',
+            de: 'Reiter',
+            fr: 'Cavalier',
+            ja: 'ライダー',
+          },
           mobName: {
             en: 'The White Rider',
             de: 'Weißer Reiter',
             fr: 'Cavalier Blanc',
             ja: 'ホワイトライダー',
           },
-          trackerName: 'rider',
+          trackerName: {
+            en: 'Rider',
+            de: 'Reiter',
+            fr: 'Cavalier',
+            ja: 'ホワイトライダー',
+          },
           x: 20.3,
           y: 13.0,
           time: 'Night',
         },
         poly: {
-          name: 'Poly',
+          label: {
+            en: 'Poly',
+            de: 'Poly',
+            fr: 'Poly',
+            ja: 'ポリ',
+          },
           mobName: {
             en: 'Polyphemus',
             de: 'Polyphemus',
             fr: 'Polyphemus',
             ja: 'ポリュペモス',
           },
-          trackerName: 'poly',
+          trackerName: {
+            en: 'Poly',
+            de: 'Poly',
+            fr: 'Poly',
+            ja: 'ポリュペモス',
+          },
           x: 26.4,
           y: 14.3,
         },
         strider: {
-          name: 'Strider',
+          label: {
+            en: 'Strider',
+            de: 'Simurghs',
+            fr: 'Simurgh',
+            ja: 'シームルグ',
+          },
           mobName: {
-            en: "Simurgh's Strider",
+            en: 'Simurgh\'s Strider',
             de: 'Simurghs Läufer',
             fr: 'Trotteur De Simurgh',
             ja: 'シームルグ・ストライダー',
           },
-          trackerName: 'strider',
+          trackerName: {
+            en: 'Strider',
+            de: 'Simurghs',
+            fr: 'Simurgh',
+            ja: 'シームルグ',
+          },
           x: 28.6,
           y: 13.0,
         },
         hazmat: {
-          name: 'Hazmat',
+          label: {
+            en: 'Hazmat',
+            de: 'Hazmat',
+            fr: 'Hazmat',
+            ja: 'ハズマット',
+          },
           mobName: {
             en: 'King Hazmat',
             de: 'Hazmat-König',
             fr: 'Hazmat Roi',
             ja: 'キング・ハズマット',
           },
-          trackerName: 'hazmat',
+          trackerName: {
+            en: 'Hazmat',
+            de: 'Hazmat',
+            fr: 'Hazmat',
+            ja: 'ハズマット',
+          },
           x: 35.3,
           y: 18.3,
         },
         fafnir: {
-          name: 'Fafnir',
+          label: {
+            en: 'Fafnir',
+            de: 'Fafnir',
+            fr: 'Fafnir',
+            ja: 'ファヴニル',
+          },
           mobName: {
             en: 'Fafnir',
             de: 'Fafnir',
             fr: 'Fafnir',
             ja: 'ファヴニル',
           },
-          trackerName: 'fafnir',
+          trackerName: {
+            en: 'Fafnir',
+            de: 'Fafnir',
+            fr: 'Fafnir',
+            ja: 'ファヴニル',
+          },
           x: 35.5,
           y: 21.5,
           time: 'Night',
         },
         amarok: {
-          name: 'Amarok',
+          label: {
+            en: 'Amarok',
+            de: 'Amarok',
+            fr: 'Amarok',
+            ja: 'アマロック',
+          },
           mobName: {
             en: 'Amarok',
             de: 'Amarok',
             fr: 'Amarok',
             ja: 'アマロック',
           },
-          trackerName: 'amarok',
+          trackerName: {
+            en: 'Amarok',
+            de: 'Amarok',
+            fr: 'Amarok',
+            ja: 'アマロック',
+          },
           x: 7.6,
           y: 18.2,
         },
         lama: {
-          name: 'Lama',
+          label: {
+            en: 'Lama',
+            de: 'Lama',
+            fr: 'Lama',
+            ja: 'ラマ',
+          },
           mobName: {
             en: 'Lamashtu',
             de: 'Lamashtu',
             fr: 'Lamashtu',
             ja: 'ラマシュトゥ',
           },
-          trackerName: 'lamashtu',
+          trackerName: {
+            en: 'Lamashtu',
+            de: 'Lamashtu',
+            fr: 'Lamashtu',
+            ja: 'ラマシュトゥ',
+          },
           // 7.7, 23.3 from the tracker but mobs are farther south.
           x: 7.7,
           y: 25.3,
           time: 'Night',
         },
         pazu: {
-          name: 'Pazu',
+          label: {
+            en: 'Pazu',
+            de: 'Pazuzu',
+            fr: 'Pazuzu',
+            ja: 'パズズ',
+          },
           mobName: {
             en: 'Pazuzu',
             de: 'Pazuzu',
             fr: 'Pazuzu',
             ja: 'パズズ',
           },
-          trackerName: 'pazuzu',
+          trackerName: {
+            en: 'Pazuzu',
+            de: 'Pazuzu',
+            fr: 'Pazuzu',
+            ja: 'パズズ',
+          },
           x: 7.4,
           y: 21.7,
           weather: 'Gales',
@@ -274,19 +474,19 @@ var Options = {
       },
     },
   },
-}
+};
 
-var gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
-var gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
-var gImportRegex = Regexes.Parse(/00:00..:(.*)★ NMs on cooldown: (\S.*\))/);
-var gGalesIcon = "&#x1F300;"
-var gWeatherIcons = {
+let gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
+let gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
+let gImportRegex = Regexes.Parse(/00:00..:(.*)★ NMs on cooldown: (\S.*\))/);
+let gGalesIcon = '&#x1F300;';
+let gWeatherIcons = {
   Gales: gGalesIcon,
 };
-var gNightIcon = "&#x1F319;";
-var gDayIcon = "&#x2600;";
+let gNightIcon = '&#x1F319;';
+let gDayIcon = '&#x2600;';
 
-var gTracker;
+let gTracker;
 class EurekaTracker {
   constructor(options) {
     this.options = options;
@@ -296,18 +496,18 @@ class EurekaTracker {
   }
 
   SetStyleFromMap(style, mx, my) {
-    var zi = this.zoneInfo;
-    var px = zi.mapToPixelXScalar * mx + zi.mapToPixelXConstant;
-    var py = zi.mapToPixelYScalar * my + zi.mapToPixelYConstant;
+    let zi = this.zoneInfo;
+    let px = zi.mapToPixelXScalar * mx + zi.mapToPixelXConstant;
+    let py = zi.mapToPixelYScalar * my + zi.mapToPixelYConstant;
 
     style.left = (px / zi.mapWidth * 100) + '%';
     style.top = (py / zi.mapHeight * 100) + '%';
   }
 
   SetStyleFromEntity(style, ex, ey) {
-    var zi = this.zoneInfo;
-    var mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
-    var my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
+    let zi = this.zoneInfo;
+    let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
+    let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
     this.SetStyleFromMap(style, mx, my);
   }
 
@@ -315,24 +515,24 @@ class EurekaTracker {
     this.nms = this.options.ZoneInfo[this.zoneName].nms;
     this.nmKeys = Object.keys(this.nms);
 
-    var container = document.getElementById('nm-labels');
+    let container = document.getElementById('nm-labels');
 
-    for (var i = 0; i < this.nmKeys.length; ++i) {
-      var nm = this.nms[this.nmKeys[i]];
+    for (let i = 0; i < this.nmKeys.length; ++i) {
+      let nm = this.nms[this.nmKeys[i]];
 
-      var label = document.createElement('div');
+      let label = document.createElement('div');
       label.classList.add('nm');
       label.id = this.nmKeys[i];
 
       this.SetStyleFromMap(label.style, nm.x, nm.y);
 
-      var icon = document.createElement('span');
+      let icon = document.createElement('span');
       icon.classList.add('nm-icon');
-      var name = document.createElement('span');
+      let name = document.createElement('span');
       name.classList.add('nm-name');
       name.classList.add('text');
-      name.innerText = nm.name;
-      var time = document.createElement('span');
+      name.innerText = nm.label[this.options.Language];
+      let time = document.createElement('span');
       time.classList.add('nm-time');
       time.classList.add('text');
       label.appendChild(icon);
@@ -342,7 +542,7 @@ class EurekaTracker {
 
       nm.element = label;
       nm.timeElement = time;
-      var mobName = nm.mobName[this.options.Language];
+      let mobName = nm.mobName[this.options.Language];
       nm.addRegex = Regexes.Parse('03:Added new combatant ' + mobName + '\\.');
       nm.removeRegex = Regexes.Parse('04:Removing combatant ' + mobName + '\\.');
       nm.respawnTimeMsLocal = undefined;
@@ -355,7 +555,7 @@ class EurekaTracker {
   }
 
   ResetZone() {
-    var container = document.getElementById('nm-labels');
+    let container = document.getElementById('nm-labels');
     container.innerHTML = '';
     this.currentTracker = null;
   }
@@ -369,7 +569,7 @@ class EurekaTracker {
   OnZoneChange(e) {
     this.zoneName = e.detail.zoneName;
     this.zoneInfo = this.options.ZoneInfo[this.zoneName];
-    var container = document.getElementById('container');
+    let container = document.getElementById('container');
     if (this.zoneInfo) {
       this.ResetZone();
       document.getElementById('map-image').src = this.zoneInfo.mapImage;
@@ -385,32 +585,31 @@ class EurekaTracker {
       container.classList.add('hide');
     }
 
-    var flags = document.getElementById('flag-labels');
+    let flags = document.getElementById('flag-labels');
 
-    for (var i = 0; i < flags.children.length; ++i) {
+    for (let i = 0; i < flags.children.length; ++i)
       flags.removeChild(flags.children[i]);
-    }
   }
 
   RespawnTime(nm) {
-    var respawnTimeMs = 120 * 60 * 1000;
+    let respawnTimeMs = 120 * 60 * 1000;
     return respawnTimeMs + (+new Date());
   }
 
   OnPopNM(nm) {
-    var now = +new Date();
-    if (nm.lastPopTimeMsLocal && now - nm.lastPopTimeMsLocal <= this.options.SuppressPopMs) {
+    let now = +new Date();
+    if (nm.lastPopTimeMsLocal && now - nm.lastPopTimeMsLocal <= this.options.SuppressPopMs)
       return;
-    }
+
 
     nm.element.classList.add('nm-pop');
     nm.element.classList.remove('nm-down');
-    var respawnTimeMs = 120 * 60 * 1000;
+    let respawnTimeMs = 120 * 60 * 1000;
     nm.lastPopTimeMsLocal = +new Date();
     nm.respawnTimeMsLocal = this.RespawnTime(nm);
 
     if (this.options.PopSound && this.options.PopVolume) {
-      var audio = new Audio(this.options.PopSound);
+      let audio = new Audio(this.options.PopSound);
       audio.volume = this.options.PopVolume;
       audio.play();
     }
@@ -422,22 +621,22 @@ class EurekaTracker {
   }
 
   UpdateTimes() {
-    var nowMs = +new Date();
+    let nowMs = +new Date();
 
-    var galesStr = gGalesIcon;
-    var weather = WeatherFinder.getWeather(nowMs, this.zoneName);
+    let galesStr = gGalesIcon;
+    let weather = WeatherFinder.getWeather(nowMs, this.zoneName);
     if (weather == 'Gales') {
-      var galesStopTime = WeatherFinder.findNextWeatherNot(nowMs, this.zoneName, 'Gales');
+      let galesStopTime = WeatherFinder.findNextWeatherNot(nowMs, this.zoneName, 'Gales');
       if (galesStopTime) {
-        var galesMin = (galesStopTime - nowMs) / 1000 / 60;
+        let galesMin = (galesStopTime - nowMs) / 1000 / 60;
         galesStr += ' for ' + Math.ceil(galesMin) + 'm';
       } else {
         galesStr += ' for ???';
       }
     } else {
-      var galesStartTime = WeatherFinder.findNextWeather(nowMs, this.zoneName, 'Gales');
+      let galesStartTime = WeatherFinder.findNextWeather(nowMs, this.zoneName, 'Gales');
       if (galesStartTime) {
-        var galesMin = (galesStartTime - nowMs) / 1000 / 60;
+        let galesMin = (galesStartTime - nowMs) / 1000 / 60;
         galesStr += ' in ' + Math.ceil(galesMin) + 'm';
       } else {
         galesStr += ' in ???';
@@ -445,41 +644,42 @@ class EurekaTracker {
     }
     document.getElementById('label-gales').innerHTML = galesStr;
 
-    var nextDay = WeatherFinder.findNextNight(nowMs);
-    var nextNight = WeatherFinder.findNextDay(nowMs);
-    var timeStr = "";
-    var timeVal;
-    if (nextDay > nextNight) {
-      timeStr = gNightIcon + " for ";
-    } else {
-      timeStr = gDayIcon + " for ";
-    }
-    var dayNightMin = (Math.min(nextDay, nextNight) - nowMs) / 1000 / 60;
+    let nextDay = WeatherFinder.findNextNight(nowMs);
+    let nextNight = WeatherFinder.findNextDay(nowMs);
+    let timeStr = '';
+    let timeVal;
+    if (nextDay > nextNight)
+      timeStr = gNightIcon + ' for ';
+    else
+      timeStr = gDayIcon + ' for ';
+
+    let dayNightMin = (Math.min(nextDay, nextNight) - nowMs) / 1000 / 60;
     timeStr += Math.ceil(dayNightMin) + 'm';
     document.getElementById('label-time').innerHTML = timeStr;
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 
-    for (var i = 0; i < this.nmKeys.length; ++i) {
-      var nm = this.nms[this.nmKeys[i]];
+    for (let i = 0; i < this.nmKeys.length; ++i) {
+      let nm = this.nms[this.nmKeys[i]];
 
-      var respawnMs = null;
-      if (nm.respawnTimeMsLocal) {
+      let respawnMs = null;
+      if (nm.respawnTimeMsLocal)
         respawnMs = nm.respawnTimeMsLocal;
-      } else if (nm.respawnTimeMsTracker) {
+      else if (nm.respawnTimeMsTracker)
         respawnMs = nm.respawnTimeMsTracker;
-      }
 
-      var popRespawnMs = respawnMs;
+
+      let popRespawnMs = respawnMs;
 
       // Ignore respawns in the past.
       respawnMs = Math.max(respawnMs, nowMs);
-      var respawnIcon = "";
+      let respawnIcon = '';
 
       if (nm.weather) {
-        var respawnWeather = WeatherFinder.getWeather(respawnMs, this.zoneName);
+        let respawnWeather = WeatherFinder.getWeather(respawnMs, this.zoneName);
         if (respawnWeather != nm.weather) {
-          var weatherStartTime = WeatherFinder.findNextWeather(respawnMs, this.zoneName, nm.weather);
+          let weatherStartTime =
+            WeatherFinder.findNextWeather(respawnMs, this.zoneName, nm.weather);
           if (weatherStartTime > respawnMs) {
             respawnIcon = gWeatherIcons[nm.weather];
             respawnMs = weatherStartTime;
@@ -488,9 +688,9 @@ class EurekaTracker {
       }
 
       if (nm.time == 'Night') {
-        var isNight = WeatherFinder.isNightTime(respawnMs);
+        let isNight = WeatherFinder.isNightTime(respawnMs);
         if (!isNight) {
-          var nextNight = WeatherFinder.findNextNight(respawnMs);
+          let nextNight = WeatherFinder.findNextNight(respawnMs);
           if (nextNight > respawnMs) {
             respawnIcon = gNightIcon;
             respawnMs = nextNight;
@@ -498,13 +698,12 @@ class EurekaTracker {
         }
       }
 
-      var remainingMs = respawnMs - nowMs;
-      var remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
+      let remainingMs = respawnMs - nowMs;
       if (remainingMs <= 0) {
-        var openUntil = null;
+        let openUntil = null;
         if (nm.weather) {
-          var weatherStartTime = WeatherFinder.findNextWeatherNot(nowMs, this.zoneName, nm.weather);
-          respawnIcon = gWeatherIcons[nm.weather];;
+          let weatherStartTime = WeatherFinder.findNextWeatherNot(nowMs, this.zoneName, nm.weather);
+          respawnIcon = gWeatherIcons[nm.weather]; ;
           openUntil = weatherStartTime;
         }
         if (nm.time == 'Night') {
@@ -513,7 +712,7 @@ class EurekaTracker {
         }
 
         if (openUntil) {
-          var openMin = (openUntil - nowMs) / 1000 / 60;
+          let openMin = (openUntil - nowMs) / 1000 / 60;
           nm.timeElement.innerHTML = respawnIcon + Math.ceil(openMin) + 'm';
         } else {
           nm.timeElement.innerText = '';
@@ -522,9 +721,9 @@ class EurekaTracker {
       } else {
         // If still waiting on pop, don't show an icon.
         if (popRespawnMs > nowMs)
-          respawnIcon = "";
+          respawnIcon = '';
 
-        var remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
+        let remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
         nm.timeElement.innerHTML = respawnIcon + remainingMinutes + 'm';
         nm.element.classList.add('nm-down');
       }
@@ -532,23 +731,22 @@ class EurekaTracker {
   }
 
   ImportFromTracker(importText) {
-    var trackerToNM = {};
-    for (var i = 0; i < this.nmKeys.length; ++i) {
-      var nm = this.nms[this.nmKeys[i]];
-      trackerToNM[nm.trackerName.toLowerCase()] = nm;
+    let trackerToNM = {};
+    for (let i = 0; i < this.nmKeys.length; ++i) {
+      let nm = this.nms[this.nmKeys[i]];
+      trackerToNM[nm.trackerName[this.options.Language].toLowerCase()] = nm;
     }
 
-    var importList = importText.split(' > ');
-    for(var i = 0; i < importList.length; i++) {
-      var nmInfo = importList[i].split(' ');
-      var name = nmInfo[0];
-      var time = nmInfo[1].match(/\d+/)[0];
-      var nm = trackerToNM[name.toLowerCase()];
-      if (nm) {
+    let importList = importText.split(' > ');
+    for (let i = 0; i < importList.length; i++) {
+      let nmInfo = importList[i].split(' ');
+      let name = nmInfo[0];
+      let time = nmInfo[1].match(/\d+/)[0];
+      let nm = trackerToNM[name.toLowerCase()];
+      if (nm)
         nm.respawnTimeMsTracker = (time * 60 * 1000) + (+new Date());
-      } else {
+      else
         console.error('Invalid NM Import: ' + name);
-      }
     }
 
     this.UpdateTimes();
@@ -557,24 +755,24 @@ class EurekaTracker {
   OnLog(e) {
     if (!this.zoneInfo)
       return;
-    for (var idx = 0; idx < e.detail.logs.length; idx++) {
-      var log = e.detail.logs[idx];
-      var match = log.match(gFlagRegex);
-      if (match) {
+    for (let idx = 0; idx < e.detail.logs.length; idx++) {
+      let log = e.detail.logs[idx];
+      let match = log.match(gFlagRegex);
+      if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
-      }
+
       match = log.match(gTrackerRegex);
-      if (match) {
+      if (match)
         this.currentTracker = match[1];
-      }
+
       match = log.match(gImportRegex);
       if (match) {
         this.ImportFromTracker(match[2]);
         continue;
       }
       if (log.indexOf('03:Added new combatant ') >= 0) {
-        for (var i = 0; i < this.nmKeys.length; ++i) {
-          var nm = this.nms[this.nmKeys[i]];
+        for (let i = 0; i < this.nmKeys.length; ++i) {
+          let nm = this.nms[this.nmKeys[i]];
           if (log.match(nm.addRegex)) {
             this.OnPopNM(nm);
             continue;
@@ -582,8 +780,8 @@ class EurekaTracker {
         }
       }
       if (log.indexOf('04:Removing combatant ') >= 0) {
-        for (var i = 0; i < this.nmKeys.length; ++i) {
-          var nm = this.nms[this.nmKeys[i]];
+        for (let i = 0; i < this.nmKeys.length; ++i) {
+          let nm = this.nms[this.nmKeys[i]];
           if (log.match(nm.removeRegex)) {
             this.OnKillNM(nm);
             continue;
@@ -594,16 +792,16 @@ class EurekaTracker {
   }
 
   SimplifyText(beforeText, afterText) {
-    var str = (beforeText + ' ' + afterText).toLowerCase();
+    let str = (beforeText + ' ' + afterText).toLowerCase();
 
-    var dict = {
+    let dict = {
       train: [
         'train',
         'tren',
         'trian',
         'tran',
         'choo choo',
-        'train location'
+        'train location',
       ],
       fairy: [
         'fairy',
@@ -616,14 +814,14 @@ class EurekaTracker {
         'rez',
         'res ',
         ' res',
-        'raise plz'
+        'raise plz',
       ],
     };
-    var keys = Object.keys(dict);
-    for (var i = 0; i < keys.length; ++i) {
-      var key = keys[i];
-      for (var j = 0; j < dict[key].length; ++j) {
-        var m = dict[key][j];
+    let keys = Object.keys(dict);
+    for (let i = 0; i < keys.length; ++i) {
+      let key = keys[i];
+      for (let j = 0; j < dict[key].length; ++j) {
+        let m = dict[key][j];
         if (str.indexOf(m) >= 0)
           return key;
       }
@@ -637,20 +835,20 @@ class EurekaTracker {
 
     beforeText = beforeText.replace(/(?: at|@)$/, '');
 
-    var simplify = this.SimplifyText(beforeText, afterText);
+    let simplify = this.SimplifyText(beforeText, afterText);
     if (simplify) {
       beforeText = simplify;
       afterText = '';
     }
 
-    var container = document.getElementById('flag-labels');
-    var label = document.createElement('div');
+    let container = document.getElementById('flag-labels');
+    let label = document.createElement('div');
     label.classList.add('flag');
     this.SetStyleFromMap(label.style, x, y);
 
-    var icon = document.createElement('span');
+    let icon = document.createElement('span');
     icon.classList.add('flag-icon');
-    var name = document.createElement('span');
+    let name = document.createElement('span');
     name.classList.add('flag-name');
     name.classList.add('text');
     name.innerText = beforeText;
@@ -663,20 +861,19 @@ class EurekaTracker {
 
     window.setTimeout(function() {
       // Changing zones can also orphan all the labels.
-      if (label.parentElement == container) {
+      if (label.parentElement == container)
         container.removeChild(label);
-      }
     }, this.options.FlagTimeoutMs);
   }
 }
 
-document.addEventListener("onPlayerChangedEvent", function(e) {
+document.addEventListener('onPlayerChangedEvent', function(e) {
   gTracker.OnPlayerChange(e);
 });
-document.addEventListener("onZoneChangedEvent", function(e) {
+document.addEventListener('onZoneChangedEvent', function(e) {
   gTracker.OnZoneChange(e);
 });
-document.addEventListener("onLogEvent", function(e) {
+document.addEventListener('onLogEvent', function(e) {
   gTracker.OnLog(e);
 });
 

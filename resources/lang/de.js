@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class CactbotLanguageDe extends CactbotLanguage {
   constructor(playerName) {
@@ -28,7 +28,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Brotherhood: 'Bruderschaft', // 0x49e
       Devotion: 'Hingabe', // 0x4bd
       FoeRequiem: 'Requiem Der Feinde', // up 0x8b, down 0x8c
-      
+
       // TODO: add ids
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
@@ -49,10 +49,10 @@ class CactbotLanguageDe extends CactbotLanguage {
       return /:Start!/;
     };
     this.countdownCancelRegex = function() {
-      return /:(\y{Name} hat den Countdown abgebrochen/;
+      return /:(\y{Name}) hat den Countdown abgebrochen/;
     };
     this.areaSealRegex = function() {
-      return /:Noch (\y{float} Sekunden bis sich der Zugang zu(.*) schließt/;
+      return /:Noch (\y{float}) Sekunden bis sich der Zugang zu(.*) schließt/;
     };
     this.areaUnsealRegex = function() {
       return /:Der Zugang zu(.*) öffnet sich erneut/;

@@ -1,3 +1,5 @@
+'use strict';
+
 // O8S - Sigmascape 4.0 Savage
 [{
   zoneRegex: /Sigmascape V4\.0 \(Savage\)/,
@@ -10,4 +12,4 @@
       },
     },
   ],
-}]
+}];

@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 // Each option here can be changed in user/jobs.js with a line such as
 // Options.ShowRdmProcs = false
 // or
 // Options.TPInvigorateThreshold = 400
 // See user/jobs-example.js for documentation.
-var Options = {
+let Options = {
   Language: 'en',
 
   LowerOpacityOutOfCombat: true,
@@ -41,36 +41,36 @@ var Options = {
   TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
-}
+};
 
 // Regexes to be filled out once we know the player's name.
-var kReRdmWhiteManaProc = null;
-var kReRdmBlackManaProc = null;
-var kReRdmImpactProc = null;
-var kReRdmWhiteManaProcEnd = null;
-var kReRdmBlackManaProcEnd = null;
-var kReRdmImpactProcEnd = null;
-var kReRdmEndCombo = null;
-var kReSmnRuinProc = null;
-var kReSmnRuinProcEnd = null;
-var kReSmnAetherflow = null;
-var kReFoodBuff = null;
-var kFormChange = null;
-var kPeanutButter = null;
-var kDragonKick = null;
-var kTwinSnakes = null;
-var kDemolish = null;
-var kBluntDebuff = null;
-var kComboBreakers = null;
-var kPldShieldSwipe = null;
-var kPldBlock = null;
-var kWellFedZoneRegex = null;
+let kReRdmWhiteManaProc = null;
+let kReRdmBlackManaProc = null;
+let kReRdmImpactProc = null;
+let kReRdmWhiteManaProcEnd = null;
+let kReRdmBlackManaProcEnd = null;
+let kReRdmImpactProcEnd = null;
+let kReRdmEndCombo = null;
+let kReSmnRuinProc = null;
+let kReSmnRuinProcEnd = null;
+let kReSmnAetherflow = null;
+let kReFoodBuff = null;
+let kFormChange = null;
+let kPeanutButter = null;
+let kDragonKick = null;
+let kTwinSnakes = null;
+let kDemolish = null;
+let kBluntDebuff = null;
+let kComboBreakers = null;
+let kPldShieldSwipe = null;
+let kPldBlock = null;
+let kWellFedZoneRegex = null;
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
     this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers),
-                                     gLang.youStartUsingRegex(comboBreakers));
+        gLang.youStartUsingRegex(comboBreakers));
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
     this.callback = callback;
@@ -79,29 +79,28 @@ class ComboTracker {
   }
 
   AddCombo(skillList) {
-    if (this.startList.indexOf(skillList[0]) == -1) {
+    if (this.startList.indexOf(skillList[0]) == -1)
       this.startList.push(skillList[0]);
-    }
-    for (var i = 0; i < skillList.length; ++i) {
-      var node = this.comboNodes[skillList[i]];
+
+    for (let i = 0; i < skillList.length; ++i) {
+      let node = this.comboNodes[skillList[i]];
       if (node == undefined) {
         node = {
           re: gLang.youUseAbilityRegex(skillList[i]),
-          next: []
+          next: [],
         };
         this.comboNodes[skillList[i]] = node;
       }
-      if (i != skillList.length - 1) {
+      if (i != skillList.length - 1)
         node.next.push(skillList[i + 1]);
-      } else {
+      else
         node.last = true;
-      }
     }
   }
 
   ParseLog(log) {
-    for (var i = 0; i < this.considerNext.length; ++i) {
-      var next = this.considerNext[i];
+    for (let i = 0; i < this.considerNext.length; ++i) {
+      let next = this.considerNext[i];
       if (log.search(this.comboNodes[next].re) >= 0) {
         this.StateTransition(next);
         return true;
@@ -130,7 +129,7 @@ class ComboTracker {
       Array.prototype.push.apply(this.considerNext, this.startList);
 
       if (!this.comboNodes[nextState].last) {
-        var kComboDelayMs = 12000;
+        let kComboDelayMs = 12000;
         this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
       }
     }
@@ -143,7 +142,7 @@ class ComboTracker {
 }
 
 function setupComboTracker(callback) {
-  var comboTracker = new ComboTracker(kComboBreakers, callback);
+  let comboTracker = new ComboTracker(kComboBreakers, callback);
   comboTracker.AddCombo([
     gLang.kAbility.EnchantedRiposte,
     gLang.kAbility.EnchantedZwerchhau,
@@ -207,13 +206,16 @@ function setupRegexes() {
   kReRdmWhiteManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerstoneReady);
   kReRdmBlackManaProc = gLang.youGainEffectRegex(gLang.kEffect.VerfireReady);
   kReRdmBlackManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerfireReady);
-  kReRdmImpactProc = gLang.youGainEffectRegex(gLang.kEffect.Impactful)
+  kReRdmImpactProc = gLang.youGainEffectRegex(gLang.kEffect.Impactful);
   kReRdmImpactProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
-  kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin)
+  kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
   kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
   kReFoodBuff = gLang.youGainEffectRegex(gLang.kEffect.WellFed);
-  kFormChange = gLang.youGainEffectRegex(gLang.kEffect.OpoOpoForm, gLang.kEffect.RaptorForm, gLang.kEffect.CoeurlForm);
+  kFormChange = gLang.youGainEffectRegex(
+      gLang.kEffect.OpoOpoForm,
+      gLang.kEffect.RaptorForm,
+      gLang.kEffect.CoeurlForm);
   kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
   kDragonKick = gLang.youUseAbilityRegex(gLang.kAbility.DragonKick);
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
@@ -221,10 +223,12 @@ function setupRegexes() {
   kBluntDebuff = gLang.gainsEffectRegex(gLang.kEffect.BluntResistDown);
   kPldShieldSwipe = gLang.youUseAbilityRegex(gLang.kAbility.ShieldSwipe);
   kPldBlock = gLang.abilityRegex(null, null, gLang.playerName, '[^:]*05');
-  kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) { return gLang.kZone[x]; }));
+  kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
+    return gLang.kZone[x];
+  }));
 
-// Full skill names of abilities that break combos.
-// TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
+  // Full skill names of abilities that break combos.
+  // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
     // rdm
     gLang.kAbility.Verstone,
@@ -269,12 +273,12 @@ function setupRegexes() {
   ]);
 }
 
-var kCasterJobs = ["RDM", "BLM", "WHM", "SCH", "SMN", "ACN", "AST", "CNJ", "THM"];
-var kTankJobs = ["GLD", "PLD", "MRD", "WAR", "DRK"];
-var kHealerJobs = ["CNJ", "WHM", "SCH", "AST"];
-var kCraftingJobs = ["CRP", "BSM", "ARM", "GSM", "LTW", "WVR", "ALC", "CUL"];
-var kGatheringJobs = ["MIN", "BTN", "FSH"];
-var kMeleeWithMpJobs = ["BRD", "DRK", "PLD"];
+let kCasterJobs = ['RDM', 'BLM', 'WHM', 'SCH', 'SMN', 'ACN', 'AST', 'CNJ', 'THM'];
+let kTankJobs = ['GLD', 'PLD', 'MRD', 'WAR', 'DRK'];
+let kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
+let kCraftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
+let kGatheringJobs = ['MIN', 'BTN', 'FSH'];
+let kMeleeWithMpJobs = ['BRD', 'DRK', 'PLD'];
 
 function isCasterJob(job) {
   return kCasterJobs.indexOf(job) >= 0;
@@ -305,17 +309,17 @@ function doesJobNeedMPBar(job) {
 }
 
 function computeBackgroundColorFrom(element, classList) {
-  var div = document.createElement('div');
-  var classes = classList.split('.');
-  for (var i = 0; i < classes.length; ++i)
+  let div = document.createElement('div');
+  let classes = classList.split('.');
+  for (let i = 0; i < classes.length; ++i)
     div.classList.add(classes[i]);
   element.appendChild(div);
-  var color = window.getComputedStyle(div).backgroundColor;
+  let color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
 }
 
-var kBigBuffTracker = null;
+let kBigBuffTracker = null;
 
 function setupBuffTracker() {
   kBigBuffTracker = {
@@ -455,11 +459,11 @@ class Bars {
   }
 
   UpdateJob() {
-    var container = document.getElementById("jobs-container");
+    let container = document.getElementById('jobs-container');
     if (container == null) {
-      var root = document.getElementById("container");
-      container = document.createElement("div");
-      container.id = "jobs-container";
+      let root = document.getElementById('container');
+      container = document.createElement('div');
+      container.id = 'jobs-container';
       root.appendChild(container);
     }
     while (container.childNodes.length)
@@ -467,7 +471,7 @@ class Bars {
 
     this.o = {};
 
-    var barsLayoutContainer = document.createElement("div");
+    let barsLayoutContainer = document.createElement('div');
     barsLayoutContainer.id = 'jobs';
     container.appendChild(barsLayoutContainer);
 
@@ -483,30 +487,30 @@ class Bars {
     else if (isGatheringJob(this.job))
       barsLayoutContainer.classList.add('gathering');
 
-    var pullCountdownContainer = document.createElement("div");
+    let pullCountdownContainer = document.createElement('div');
     pullCountdownContainer.id = 'pull-bar';
     // Pull counter not affected by opacity option.
     barsLayoutContainer.appendChild(pullCountdownContainer);
-    this.o.pullCountdown = document.createElement("timer-bar");
+    this.o.pullCountdown = document.createElement('timer-bar');
     pullCountdownContainer.appendChild(this.o.pullCountdown);
 
-    var opacityContainer = document.createElement("div");
-    opacityContainer.id = "opacity-container";
+    let opacityContainer = document.createElement('div');
+    opacityContainer.id = 'opacity-container';
     barsLayoutContainer.appendChild(opacityContainer);
 
     // Holds health/mana/tp.
-    var barsContainer = document.createElement('div');
+    let barsContainer = document.createElement('div');
     barsContainer.id = 'bars';
     opacityContainer.appendChild(barsContainer);
 
     this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
     this.o.pullCountdown.lefttext = gLang.kUIStrings.Pull;
-    this.o.pullCountdown.righttext = "remain";
+    this.o.pullCountdown.righttext = 'remain';
     this.o.pullCountdown.hideafter = 0;
-    this.o.pullCountdown.fg = "rgb(255, 120, 120)";
+    this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
 
-    this.o.rightBuffsContainer = document.createElement("div");
+    this.o.rightBuffsContainer = document.createElement('div');
     this.o.rightBuffsContainer.id = 'right-side-icons';
     barsContainer.appendChild(this.o.rightBuffsContainer);
 
@@ -515,7 +519,7 @@ class Bars {
 
     this.o.rightBuffsList.rowcolsize = 7;
     this.o.rightBuffsList.maxnumber = 7;
-    this.o.rightBuffsList.toward = "right down";
+    this.o.rightBuffsList.toward = 'right down';
     this.o.rightBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
 
     if (this.options.JustBuffTracker) {
@@ -528,7 +532,7 @@ class Bars {
       barsLayoutContainer.appendChild(this.o.rightBuffsContainer);
       barsLayoutContainer.classList.add('justbuffs');
     } else {
-      this.o.leftBuffsContainer = document.createElement("div");
+      this.o.leftBuffsContainer = document.createElement('div');
       this.o.leftBuffsContainer.id = 'left-side-icons';
       barsContainer.appendChild(this.o.leftBuffsContainer);
 
@@ -537,107 +541,107 @@ class Bars {
 
       this.o.leftBuffsList.rowcolsize = 7;
       this.o.leftBuffsList.maxnumber = 7;
-      this.o.leftBuffsList.toward = "left down";
+      this.o.leftBuffsList.toward = 'left down';
       this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
 
     if (isCraftingJob(this.job)) {
-      this.o.cpContainer = document.createElement("div");
+      this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
-      this.o.cpBar = document.createElement("resource-bar");
+      this.o.cpBar = document.createElement('resource-bar');
       this.o.cpContainer.appendChild(this.o.cpBar);
       this.o.cpBar.width = window.getComputedStyle(this.o.cpContainer).width;
       this.o.cpBar.height = window.getComputedStyle(this.o.cpContainer).height;
-      this.o.cpBar.centertext = "maxvalue";
+      this.o.cpBar.centertext = 'maxvalue';
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       return;
     } else if (isGatheringJob(this.job)) {
-      this.o.gpContainer = document.createElement("div");
+      this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
-      this.o.gpBar = document.createElement("resource-bar");
+      this.o.gpBar = document.createElement('resource-bar');
       this.o.gpContainer.appendChild(this.o.gpBar);
       this.o.gpBar.width = window.getComputedStyle(this.o.gpContainer).width;
       this.o.gpBar.height = window.getComputedStyle(this.o.gpContainer).height;
-      this.o.gpBar.centertext = "maxvalue";
+      this.o.gpBar.centertext = 'maxvalue';
       this.o.gpBar.bg = computeBackgroundColorFrom(this.o.gpBar, 'bar-border-color');
       this.o.gpBar.fg = computeBackgroundColorFrom(this.o.gpBar, 'gp-color');
       return;
     }
 
-    var showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
-    var showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
+    let showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
+    let showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
 
-    var healthText = showHPNumber ? 'value' : '';
-    var manaText = showMPNumber ? 'value' : '';
+    let healthText = showHPNumber ? 'value' : '';
+    let manaText = showMPNumber ? 'value' : '';
 
-    this.o.healthContainer = document.createElement("div");
+    this.o.healthContainer = document.createElement('div');
     this.o.healthContainer.id = 'hp-bar';
     if (showHPNumber)
       this.o.healthContainer.classList.add('show-number');
     barsContainer.appendChild(this.o.healthContainer);
 
-    this.o.healthBar = document.createElement("resource-bar");
+    this.o.healthBar = document.createElement('resource-bar');
     this.o.healthContainer.appendChild(this.o.healthBar);
-      // TODO: Let the component do this dynamically.
+    // TODO: Let the component do this dynamically.
     this.o.healthBar.width = window.getComputedStyle(this.o.healthContainer).width;
     this.o.healthBar.height = window.getComputedStyle(this.o.healthContainer).height;
     this.o.healthBar.lefttext = healthText;
     this.o.healthBar.bg = computeBackgroundColorFrom(this.o.healthBar, 'bar-border-color');
 
     if (doesJobNeedMPBar(this.job)) {
-      this.o.manaContainer = document.createElement("div");
+      this.o.manaContainer = document.createElement('div');
       this.o.manaContainer.id = 'mp-bar';
       barsContainer.appendChild(this.o.manaContainer);
       if (showMPNumber)
         this.o.manaContainer.classList.add('show-number');
 
-      this.o.manaBar = document.createElement("resource-bar");
+      this.o.manaBar = document.createElement('resource-bar');
       this.o.manaContainer.appendChild(this.o.manaBar);
       // TODO: Let the component do this dynamically.
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.lefttext = manaText;
-      this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');;
+      this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color'); ;
     }
 
     if (!isCasterJob(this.job)) {
-      this.o.tpContainer = document.createElement("div");
+      this.o.tpContainer = document.createElement('div');
       this.o.tpContainer.id = 'tp-bar';
       barsContainer.appendChild(this.o.tpContainer);
 
-      this.o.tpBar = document.createElement("resource-bar");
+      this.o.tpBar = document.createElement('resource-bar');
       this.o.tpContainer.appendChild(this.o.tpBar);
       // TODO: Let the component do this dynamically.
       this.o.tpBar.width = window.getComputedStyle(this.o.tpContainer).width;
       this.o.tpBar.height = window.getComputedStyle(this.o.tpContainer).height;
-      this.o.tpBar.bg = computeBackgroundColorFrom(this.o.tpBar, 'bar-border-color');;
+      this.o.tpBar.bg = computeBackgroundColorFrom(this.o.tpBar, 'bar-border-color'); ;
     }
 
     if (this.job == 'SMN') {
-      var stacksContainer = document.createElement('div');
+      let stacksContainer = document.createElement('div');
       stacksContainer.id = 'smn-stacks';
       barsContainer.appendChild(stacksContainer);
-      var bahaStacks = document.createElement('div');
+      let bahaStacks = document.createElement('div');
       bahaStacks.id = 'smn-stacks-bahamut';
       stacksContainer.appendChild(bahaStacks);
-      var dreadStacks = document.createElement('div');
+      let dreadStacks = document.createElement('div');
       dreadStacks.id = 'smn-stacks-aetherflow';
       stacksContainer.appendChild(dreadStacks);
 
       this.o.smnBahamutStacks = [];
-      for (var i = 0; i < 2; ++i) {
-        var d = document.createElement('div');
+      for (let i = 0; i < 2; ++i) {
+        let d = document.createElement('div');
         d.classList.add('bahamut');
         d.classList.add('stack' + (i+1));
         bahaStacks.appendChild(d);
         this.o.smnBahamutStacks.push(d);
       }
       this.o.smnAetherflowStacks = [];
-      for (var i = 0; i < 3; ++i) {
-        var d = document.createElement('div');
+      for (let i = 0; i < 3; ++i) {
+        let d = document.createElement('div');
         d.classList.add('aetherflow');
         d.classList.add('stack' + (i+1));
         dreadStacks.appendChild(d);
@@ -649,72 +653,75 @@ class Bars {
       bahaStacks.appendChild(this.o.smnBahamutTimerContainer);
       this.o.smnBahamutTimer = document.createElement('timer-bar');
       this.o.smnBahamutTimerContainer.appendChild(this.o.smnBahamutTimer);
-      this.o.smnBahamutTimer.width = window.getComputedStyle(this.o.smnBahamutTimerContainer).width;
-      this.o.smnBahamutTimer.height = window.getComputedStyle(this.o.smnBahamutTimerContainer).height;
-      //this.o.smnBahamutTimer.centertext = "remain";
-      this.o.smnBahamutTimer.fg = window.getComputedStyle(this.o.smnBahamutTimerContainer).color;
+      let containerStyle = window.getComputedStyle(this.o.smnBahamutTimerContainer);
+      this.o.smnBahamutTimer.width = containerStyle.width;
+      this.o.smnBahamutTimer.height = containerStyle.height;
+      // this.o.smnBahamutTimer.centertext = "remain";
+      this.o.smnBahamutTimer.fg = containerStyle.color;
 
       this.o.smnDreadwyrmTimerContainer = document.createElement('div');
       this.o.smnDreadwyrmTimerContainer.id = 'smn-timer-aetherflow';
       dreadStacks.appendChild(this.o.smnDreadwyrmTimerContainer);
       this.o.smnDreadwyrmTimer = document.createElement('timer-bar');
       this.o.smnDreadwyrmTimerContainer.appendChild(this.o.smnDreadwyrmTimer);
-      this.o.smnDreadwyrmTimer.width = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).width;
-      this.o.smnDreadwyrmTimer.height = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).height;
-      //this.o.smnDreadwyrmTimer.centertext = "remain";
-      this.o.smnDreadwyrmTimer.fg = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer).color;
 
-      var timersContainer = document.createElement("div");
+      let timerStyle = window.getComputedStyle(this.o.smnDreadwyrmTimerContainer);
+      this.o.smnDreadwyrmTimer.width = timerStyle.width;
+      this.o.smnDreadwyrmTimer.height = timerStyle.height;
+      // this.o.smnDreadwyrmTimer.centertext = "remain";
+      this.o.smnDreadwyrmTimer.fg = timerStyle.color;
+
+      let timersContainer = document.createElement('div');
       timersContainer.id = 'smn-timers';
       barsContainer.appendChild(timersContainer);
 
-      var ruinTimerContainer = document.createElement("div");
+      let ruinTimerContainer = document.createElement('div');
       ruinTimerContainer.id = 'smn-timers-ruin';
       timersContainer.appendChild(ruinTimerContainer);
 
-      var noRuinTimer = document.createElement("div");
+      let noRuinTimer = document.createElement('div');
       noRuinTimer.classList.add('inactive');
       noRuinTimer.classList.add('smn-color-ruin');
       ruinTimerContainer.appendChild(noRuinTimer);
 
-      this.o.smnRuinTimer = document.createElement("timer-box");
+      this.o.smnRuinTimer = document.createElement('timer-box');
       ruinTimerContainer.appendChild(this.o.smnRuinTimer);
 
-      this.o.smnRuinTimer.style = "empty";
-      this.o.smnRuinTimer.toward = "bottom";
+      this.o.smnRuinTimer.style = 'empty';
+      this.o.smnRuinTimer.toward = 'bottom';
       this.o.smnRuinTimer.threshold = 1000;
       this.o.smnRuinTimer.hideafter = 0;
       this.o.smnRuinTimer.fg = window.getComputedStyle(noRuinTimer).backgroundColor;
       this.o.smnRuinTimer.bg = 'black';
 
       if (1) {
-      var aetherflowTimerContainer = document.createElement("div");
-      aetherflowTimerContainer.id = 'smn-timers-aetherflow';
-      timersContainer.appendChild(aetherflowTimerContainer);
+        let aetherflowTimerContainer = document.createElement('div');
+        aetherflowTimerContainer.id = 'smn-timers-aetherflow';
+        timersContainer.appendChild(aetherflowTimerContainer);
 
-      var aetherflowColor = document.createElement("div");
-      aetherflowColor.classList.add('smn-color-aetherflow');
-      ruinTimerContainer.appendChild(aetherflowColor);
+        let aetherflowColor = document.createElement('div');
+        aetherflowColor.classList.add('smn-color-aetherflow');
+        ruinTimerContainer.appendChild(aetherflowColor);
 
-      this.o.smnAetherflowTimer = document.createElement("timer-box");
-      aetherflowTimerContainer.appendChild(this.o.smnAetherflowTimer);
+        this.o.smnAetherflowTimer = document.createElement('timer-box');
+        aetherflowTimerContainer.appendChild(this.o.smnAetherflowTimer);
 
-      this.o.smnAetherflowTimer.style = "fill";
-      this.o.smnAetherflowTimer.toward = "top";
-      this.o.smnAetherflowTimer.threshold = 21;
-      this.o.smnAetherflowTimer.fg = window.getComputedStyle(aetherflowColor).backgroundColor;
-      this.o.smnAetherflowTimer.bg = 'black';
+        this.o.smnAetherflowTimer.style = 'fill';
+        this.o.smnAetherflowTimer.toward = 'top';
+        this.o.smnAetherflowTimer.threshold = 21;
+        this.o.smnAetherflowTimer.fg = window.getComputedStyle(aetherflowColor).backgroundColor;
+        this.o.smnAetherflowTimer.bg = 'black';
       }
     }
 
     if (this.job == 'RDM') {
-      var rdmBars = document.createElement("div");
+      let rdmBars = document.createElement('div');
       rdmBars.id = 'rdm-bar';
       barsContainer.appendChild(rdmBars);
 
-      var incs = 20;
-      for (var i = 0; i < 100; i += incs) {
-        var marker = document.createElement("div");
+      let incs = 20;
+      for (let i = 0; i < 100; i += incs) {
+        let marker = document.createElement('div');
         marker.classList.add('marker');
         marker.classList.add((i % 40 == 0) ? 'odd' : 'even');
         rdmBars.appendChild(marker);
@@ -722,37 +729,37 @@ class Bars {
         marker.style.width = incs + '%';
       }
 
-      this.o.whiteManaBarContainer = document.createElement("div");
+      this.o.whiteManaBarContainer = document.createElement('div');
       this.o.whiteManaBarContainer.id = 'rdm-white-bar';
-      this.o.whiteManaBar = document.createElement("resource-bar");
+      this.o.whiteManaBar = document.createElement('resource-bar');
       rdmBars.appendChild(this.o.whiteManaBarContainer);
       this.o.whiteManaBarContainer.appendChild(this.o.whiteManaBar);
 
-      this.o.whiteManaBar.bg = "rgba(0, 0, 0, 0)";
+      this.o.whiteManaBar.bg = 'rgba(0, 0, 0, 0)';
       this.o.whiteManaBar.fg = computeBackgroundColorFrom(this.o.whiteManaBar, 'rdm-color-white-mana');
       this.o.whiteManaBar.width = window.getComputedStyle(this.o.whiteManaBarContainer).width;
       this.o.whiteManaBar.height = window.getComputedStyle(this.o.whiteManaBarContainer).height;
       this.o.whiteManaBar.maxvalue = 100;
 
-      this.o.blackManaBarContainer = document.createElement("div");
+      this.o.blackManaBarContainer = document.createElement('div');
       this.o.blackManaBarContainer.id = 'rdm-black-bar';
-      this.o.blackManaBar = document.createElement("resource-bar");
+      this.o.blackManaBar = document.createElement('resource-bar');
       rdmBars.appendChild(this.o.blackManaBarContainer);
       this.o.blackManaBarContainer.appendChild(this.o.blackManaBar);
 
-      this.o.blackManaBar.bg = "rgba(0, 0, 0, 0)";
+      this.o.blackManaBar.bg = 'rgba(0, 0, 0, 0)';
       this.o.blackManaBar.fg = computeBackgroundColorFrom(this.o.blackManaBar, 'rdm-color-black-mana');
       this.o.blackManaBar.width = window.getComputedStyle(this.o.blackManaBarContainer).width;
       this.o.blackManaBar.height = window.getComputedStyle(this.o.blackManaBarContainer).height;
       this.o.blackManaBar.maxvalue = 100;
 
-      this.o.rdmCombo1 = document.createElement("div");
+      this.o.rdmCombo1 = document.createElement('div');
       this.o.rdmCombo1.id = 'rdm-combo-1';
       this.o.rdmCombo1.classList.add('rdm-combo');
-      this.o.rdmCombo2 = document.createElement("div");
+      this.o.rdmCombo2 = document.createElement('div');
       this.o.rdmCombo2.id = 'rdm-combo-2';
       this.o.rdmCombo2.classList.add('rdm-combo');
-      this.o.rdmCombo3 = document.createElement("div");
+      this.o.rdmCombo3 = document.createElement('div');
       this.o.rdmCombo3.id = 'rdm-combo-3';
       this.o.rdmCombo3.classList.add('rdm-combo');
 
@@ -760,48 +767,48 @@ class Bars {
       barsContainer.appendChild(this.o.rdmCombo2);
       barsContainer.appendChild(this.o.rdmCombo3);
 
-      var rdmBoxesContainer = document.createElement("div");
+      let rdmBoxesContainer = document.createElement('div');
       rdmBoxesContainer.id = 'rdm-boxes';
       barsContainer.appendChild(rdmBoxesContainer);
 
-      this.o.whiteManaTextBox = document.createElement("div");
+      this.o.whiteManaTextBox = document.createElement('div');
       this.o.whiteManaTextBox.classList.add('rdm-color-white-mana');
       rdmBoxesContainer.appendChild(this.o.whiteManaTextBox);
 
-      this.o.blackManaTextBox = document.createElement("div");
+      this.o.blackManaTextBox = document.createElement('div');
       this.o.blackManaTextBox.classList.add('rdm-color-black-mana');
       rdmBoxesContainer.appendChild(this.o.blackManaTextBox);
 
-      this.o.whiteManaText = document.createElement("div");
+      this.o.whiteManaText = document.createElement('div');
       this.o.whiteManaTextBox.appendChild(this.o.whiteManaText);
-      this.o.whiteManaText.classList.add("text");
+      this.o.whiteManaText.classList.add('text');
 
-      this.o.blackManaText = document.createElement("div");
+      this.o.blackManaText = document.createElement('div');
       this.o.blackManaTextBox.appendChild(this.o.blackManaText);
-      this.o.blackManaText.classList.add("text");
+      this.o.blackManaText.classList.add('text');
 
       if (this.options.ShowRdmProcs) {
-        var procsContainer = document.createElement("div");
+        let procsContainer = document.createElement('div');
         procsContainer.id = 'rdm-procs';
 
-        var whiteProcContainer = document.createElement("div");
+        let whiteProcContainer = document.createElement('div');
         whiteProcContainer.id = 'rdm-procs-white';
-        var blackProcContainer = document.createElement("div");
+        let blackProcContainer = document.createElement('div');
         blackProcContainer.id = 'rdm-procs-black';
-        var impactProcContainer = document.createElement("div");
+        let impactProcContainer = document.createElement('div');
         impactProcContainer.id = 'rdm-procs-impact';
-        var rdmNoProcWhite = document.createElement("div");
+        let rdmNoProcWhite = document.createElement('div');
         rdmNoProcWhite.classList.add('inactive');
         rdmNoProcWhite.classList.add('rdm-color-white-mana');
-        var rdmNoProcBlack = document.createElement("div");
+        let rdmNoProcBlack = document.createElement('div');
         rdmNoProcBlack.classList.add('inactive');
         rdmNoProcBlack.classList.add('rdm-color-black-mana');
-        var rdmNoProcImpact = document.createElement("div");
+        let rdmNoProcImpact = document.createElement('div');
         rdmNoProcImpact.classList.add('inactive');
         rdmNoProcImpact.classList.add('rdm-color-impact');
-        this.o.rdmProcWhite = document.createElement("timer-box");
-        this.o.rdmProcBlack = document.createElement("timer-box");
-        this.o.rdmProcImpact = document.createElement("timer-box");
+        this.o.rdmProcWhite = document.createElement('timer-box');
+        this.o.rdmProcBlack = document.createElement('timer-box');
+        this.o.rdmProcImpact = document.createElement('timer-box');
 
         barsContainer.appendChild(procsContainer);
         procsContainer.appendChild(whiteProcContainer);
@@ -814,86 +821,86 @@ class Bars {
         blackProcContainer.appendChild(this.o.rdmProcBlack);
         impactProcContainer.appendChild(this.o.rdmProcImpact);
 
-        this.o.rdmProcWhite.style = "empty";
-        this.o.rdmProcWhite.toward = "bottom";
+        this.o.rdmProcWhite.style = 'empty';
+        this.o.rdmProcWhite.toward = 'bottom';
         this.o.rdmProcWhite.threshold = 1000;
         this.o.rdmProcWhite.hideafter = 0;
         this.o.rdmProcWhite.fg = window.getComputedStyle(rdmNoProcWhite).backgroundColor;
         this.o.rdmProcWhite.bg = 'black';
-        this.o.rdmProcBlack.style = "empty";
-        this.o.rdmProcBlack.toward = "bottom";
+        this.o.rdmProcBlack.style = 'empty';
+        this.o.rdmProcBlack.toward = 'bottom';
         this.o.rdmProcBlack.threshold = 1000;
         this.o.rdmProcBlack.hideafter = 0;
         this.o.rdmProcBlack.fg = window.getComputedStyle(rdmNoProcBlack).backgroundColor;
         this.o.rdmProcBlack.bg = 'black';
-        this.o.rdmProcImpact.style = "empty";
-        this.o.rdmProcImpact.toward = "bottom";
+        this.o.rdmProcImpact.style = 'empty';
+        this.o.rdmProcImpact.toward = 'bottom';
         this.o.rdmProcImpact.threshold = 1000;
         this.o.rdmProcImpact.hideafter = 0;
         this.o.rdmProcImpact.fg = window.getComputedStyle(rdmNoProcImpact).backgroundColor;
         this.o.rdmProcImpact.bg = 'black';
       }
-    } else if (this.job == "WAR") {
-      var beastBoxesContainer = document.createElement("div");
+    } else if (this.job == 'WAR') {
+      let beastBoxesContainer = document.createElement('div');
       beastBoxesContainer.id = 'war-boxes';
       barsContainer.appendChild(beastBoxesContainer);
 
-      this.o.beastTextBox = document.createElement("div");
+      this.o.beastTextBox = document.createElement('div');
       this.o.beastTextBox.classList.add('war-color-beast');
       beastBoxesContainer.appendChild(this.o.beastTextBox);
 
-      this.o.beastText = document.createElement("div");
+      this.o.beastText = document.createElement('div');
       this.o.beastTextBox.appendChild(this.o.beastText);
-      this.o.beastText.classList.add("text");
+      this.o.beastText.classList.add('text');
 
-      var eyeContainer = document.createElement("div");
+      let eyeContainer = document.createElement('div');
       eyeContainer.id = 'war-procs';
       barsContainer.appendChild(eyeContainer);
 
-      this.o.eyeBox = document.createElement("timer-box");
+      this.o.eyeBox = document.createElement('timer-box');
       eyeContainer.appendChild(this.o.eyeBox);
-      this.o.eyeBox.style = "empty";
+      this.o.eyeBox.style = 'empty';
       this.o.eyeBox.fg = computeBackgroundColorFrom(this.o.eyeBox, 'war-color-eye');
       this.o.eyeBox.bg = 'black';
-      this.o.eyeBox.toward = "bottom";
+      this.o.eyeBox.toward = 'bottom';
       this.o.eyeBox.threshold = 0;
-      this.o.eyeBox.hideafter = "";
+      this.o.eyeBox.hideafter = '';
       this.o.eyeBox.roundupthreshold = false;
       this.o.eyeBox.valuescale = this.options.WarGcd;
-    } else if (this.job == "DRK") {
-      var bloodBoxesContainer = document.createElement("div");
+    } else if (this.job == 'DRK') {
+      let bloodBoxesContainer = document.createElement('div');
       bloodBoxesContainer.id = 'drk-boxes';
       barsContainer.appendChild(bloodBoxesContainer);
 
-      this.o.bloodTextBox = document.createElement("div");
+      this.o.bloodTextBox = document.createElement('div');
       this.o.bloodTextBox.classList.add('drk-color-blood');
       bloodBoxesContainer.appendChild(this.o.bloodTextBox);
 
-      this.o.bloodText = document.createElement("div");
+      this.o.bloodText = document.createElement('div');
       this.o.bloodTextBox.appendChild(this.o.bloodText);
-      this.o.bloodText.classList.add("text");
-    } else if (this.job == "PLD") {
-      var oathBoxesContainer = document.createElement("div");
+      this.o.bloodText.classList.add('text');
+    } else if (this.job == 'PLD') {
+      let oathBoxesContainer = document.createElement('div');
       oathBoxesContainer.id = 'pld-boxes';
       barsContainer.appendChild(oathBoxesContainer);
 
-      this.o.oathTextBox = document.createElement("div");
+      this.o.oathTextBox = document.createElement('div');
       this.o.oathTextBox.classList.add('pld-color-oath');
       oathBoxesContainer.appendChild(this.o.oathTextBox);
 
-      this.o.oathText = document.createElement("div");
+      this.o.oathText = document.createElement('div');
       this.o.oathTextBox.appendChild(this.o.oathText);
-      this.o.oathText.classList.add("text");
+      this.o.oathText.classList.add('text');
 
-      var procContainer = document.createElement("div");
+      let procContainer = document.createElement('div');
       procContainer.id = 'pld-procs';
       barsContainer.appendChild(procContainer);
 
-      this.o.goreBox = document.createElement("timer-box");
+      this.o.goreBox = document.createElement('timer-box');
       procContainer.appendChild(this.o.goreBox);
       this.o.goreBox.id = 'pld-procs-gore';
       this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
-      this.o.goreBox.bg = 'black'
+      this.o.goreBox.bg = 'black';
       this.o.goreBox.style = 'empty';
       this.o.goreBox.toward = 'bottom';
       this.o.goreBox.threshold = this.options.PldGcd * 3 + 0.3;
@@ -901,7 +908,7 @@ class Bars {
       this.o.goreBox.roundupthreshold = false;
       this.o.goreBox.valuescale = this.options.PldGcd;
 
-      this.o.swipeBox = document.createElement("timer-box");
+      this.o.swipeBox = document.createElement('timer-box');
       procContainer.appendChild(this.o.swipeBox);
       this.o.swipeBox.id = 'pld-procs-swipe';
       this.o.swipeBox.style = 'empty';
@@ -912,65 +919,65 @@ class Bars {
       this.o.swipeBox.roundupthreshold = false;
 
       // TODO: add shield swipe proc box
-    } else if (this.job == "MNK") {
-      var mnkBars = document.createElement("div");
+    } else if (this.job == 'MNK') {
+      let mnkBars = document.createElement('div');
       mnkBars.id = 'mnk-bar';
       barsContainer.appendChild(mnkBars);
 
-      this.o.lightningContainer = document.createElement("div");
+      this.o.lightningContainer = document.createElement('div');
       this.o.lightningContainer.id = 'mnk-timers-lightning';
-      this.o.lightningTimer = document.createElement("timer-bar");
+      this.o.lightningTimer = document.createElement('timer-bar');
       mnkBars.appendChild(this.o.lightningContainer);
       this.o.lightningContainer.appendChild(this.o.lightningTimer);
 
       this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
       this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
-      this.o.lightningTimer.toward = "left";
+      this.o.lightningTimer.toward = 'left';
       this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
 
-      this.o.formContainer = document.createElement("div");
+      this.o.formContainer = document.createElement('div');
       this.o.formContainer.id = 'mnk-timers-combo';
-      this.o.formTimer = document.createElement("timer-bar");
+      this.o.formTimer = document.createElement('timer-bar');
       mnkBars.appendChild(this.o.formContainer);
       this.o.formContainer.appendChild(this.o.formTimer);
 
       this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
       this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
-      this.o.formTimer.style = "empty";
-      this.o.formTimer.toward = "left";
+      this.o.formTimer.style = 'empty';
+      this.o.formTimer.toward = 'left';
       this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
       this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
 
-      var mnkBoxesContainer = document.createElement("div");
+      let mnkBoxesContainer = document.createElement('div');
       mnkBoxesContainer.id = 'mnk-boxes';
       barsContainer.appendChild(mnkBoxesContainer);
 
-      this.o.chakraTextBox = document.createElement("div");
+      this.o.chakraTextBox = document.createElement('div');
       this.o.chakraTextBox.classList.add('mnk-color-chakra');
       mnkBoxesContainer.appendChild(this.o.chakraTextBox);
 
-      this.o.chakraText = document.createElement("div");
+      this.o.chakraText = document.createElement('div');
       this.o.chakraTextBox.appendChild(this.o.chakraText);
-      this.o.chakraText.classList.add("text");
+      this.o.chakraText.classList.add('text');
 
-      var mnkProcs = document.createElement("div");
+      let mnkProcs = document.createElement('div');
       mnkProcs.id = 'mnk-procs';
       barsContainer.appendChild(mnkProcs);
 
-      this.o.dragonKickTimer = document.createElement("timer-box");
-      this.o.dragonKickTimer.id = "mnk-procs-dragonkick";
+      this.o.dragonKickTimer = document.createElement('timer-box');
+      this.o.dragonKickTimer.id = 'mnk-procs-dragonkick';
       mnkProcs.appendChild(this.o.dragonKickTimer);
-      this.o.dragonKickTimer.style = "empty";
+      this.o.dragonKickTimer.style = 'empty';
       this.o.dragonKickTimer.fg = computeBackgroundColorFrom(this.o.dragonKickTimer, 'mnk-color-dragonkick');
       this.o.dragonKickTimer.bg = 'black';
-      this.o.dragonKickTimer.toward = "bottom";
+      this.o.dragonKickTimer.toward = 'bottom';
       this.o.dragonKickTimer.threshold = 0;
-      this.o.dragonKickTimer.hideafter = "";
+      this.o.dragonKickTimer.hideafter = '';
       this.o.dragonKickTimer.roundupthreshold = false;
       this.o.dragonKickTimer.threshold = 6;
 
-      this.o.twinSnakesTimer = document.createElement("timer-box");
-      this.o.twinSnakesTimer.id = "mnk-procs-twinsnakes";
+      this.o.twinSnakesTimer = document.createElement('timer-box');
+      this.o.twinSnakesTimer.id = 'mnk-procs-twinsnakes';
       mnkProcs.appendChild(this.o.twinSnakesTimer);
       this.o.twinSnakesTimer.style = this.o.dragonKickTimer.style;
       this.o.twinSnakesTimer.fg = computeBackgroundColorFrom(this.o.twinSnakesTimer, 'mnk-color-twinsnakes');
@@ -981,8 +988,8 @@ class Bars {
       this.o.twinSnakesTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
       this.o.twinSnakesTimer.threshold = 6;
 
-      this.o.demolishTimer = document.createElement("timer-box");
-      this.o.demolishTimer.id = "mnk-procs-demolish";
+      this.o.demolishTimer = document.createElement('timer-box');
+      this.o.demolishTimer.id = 'mnk-procs-demolish';
       mnkProcs.appendChild(this.o.demolishTimer);
       this.o.demolishTimer.style = this.o.dragonKickTimer.style;
       this.o.demolishTimer.fg = computeBackgroundColorFrom(this.o.demolishTimer, 'mnk-color-demolish');
@@ -996,13 +1003,14 @@ class Bars {
       this.o.demolishTimer.threshold = 5;
 
       this.o.lightningFgColors = [];
-      for (var i = 0; i <= 3; ++i)
+      for (let i = 0; i <= 3; ++i)
         this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
     }
   }
 
-  MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText, barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
-    var div = document.createElement("div");
+  MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
+      barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
+    let div = document.createElement('div');
 
     if (seconds < 0) {
       div.style.borderWidth = 1;
@@ -1011,7 +1019,7 @@ class Bars {
       div.style.width = iconWidth - borderSize * 2;
       div.style.height = iconHeight - borderSize * 2;
       div.style.backgroundColor = borderColor;
-      var inner = document.createElement('div');
+      let inner = document.createElement('div');
       div.appendChild(inner);
       inner.style.position = 'relative';
       inner.style.left = borderSize;
@@ -1030,36 +1038,36 @@ class Bars {
     }
 
 
-    var icon = document.createElement("timer-icon");
+    let icon = document.createElement('timer-icon');
     icon.width = iconWidth;
     icon.height = iconHeight;
     icon.bordersize = borderSize;
     div.appendChild(icon);
 
-    var barDiv = document.createElement("div");
-    barDiv.style.position = "relative";
+    let barDiv = document.createElement('div');
+    barDiv.style.position = 'relative';
     barDiv.style.top = iconHeight;
     div.appendChild(barDiv);
 
-    var bar = document.createElement("timer-bar");
+    let bar = document.createElement('timer-bar');
     bar.width = iconWidth;
     bar.height = barHeight;
     barDiv.appendChild(bar);
 
     if (textHeight > 0) {
-      var text = document.createElement("div");
+      let text = document.createElement('div');
       text.classList.add('text');
       text.style.width = iconWidth;
       text.style.height = textHeight;
-      text.style.overflow = "hidden";
+      text.style.overflow = 'hidden';
       text.style.fontSize = textHeight - 1;
-      text.style.whiteSpace = "pre";
-      text.style.position = "relative";
+      text.style.whiteSpace = 'pre';
+      text.style.position = 'relative';
       text.style.top = iconHeight;
-      text.style.fontFamily = "arial";
-      text.style.fontWeight = "bold";
-      text.style.color = "white";
-      text.style.textShadow = "-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black";
+      text.style.fontFamily = 'arial';
+      text.style.fontWeight = 'bold';
+      text.style.color = 'white';
+      text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
       text.style.paddingBottom = textHeight / 4;
 
       text.innerText = name;
@@ -1077,11 +1085,12 @@ class Bars {
     return div;
   }
 
-  OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks, dreadwyrmMilliseconds, bahamutMilliseconds) {
+  OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
+      dreadwyrmMilliseconds, bahamutMilliseconds) {
     if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
       return;
 
-    for (var i = 0; i < this.o.smnBahamutStacks.length; ++i) {
+    for (let i = 0; i < this.o.smnBahamutStacks.length; ++i) {
       if (bahamutStacks > i)
         this.o.smnBahamutStacks[i].classList.add('active');
       else
@@ -1092,7 +1101,7 @@ class Bars {
       else
         this.o.smnBahamutStacks[i].classList.remove('channeling');
     }
-    for (var i = 0, n = this.o.smnAetherflowStacks.length; i < n; ++i) {
+    for (let i = 0, n = this.o.smnAetherflowStacks.length; i < n; ++i) {
       if (aetherflowStacks > i)
         this.o.smnAetherflowStacks[i].classList.add('active');
       else
@@ -1150,9 +1159,9 @@ class Bars {
   }
 
   OnWarUpdate(beast) {
-    if (this.o.beastTextBox == null) {
+    if (this.o.beastTextBox == null)
       return;
-    }
+
     this.o.beastText.innerText = beast;
 
     if (beast < 50) {
@@ -1185,10 +1194,10 @@ class Bars {
     }
   }
 
-   OnPldUpdate(oath) {
-    if (this.o.oathTextBox == null) {
+  OnPldUpdate(oath) {
+    if (this.o.oathTextBox == null)
       return;
-    }
+
     this.o.oathText.innerText = oath;
 
     if (oath < 50) {
@@ -1214,12 +1223,12 @@ class Bars {
       this.o.chakraTextBox.classList.remove('dim');
 
     // Show sad red bar when you've lost all your pancakes.
-    var lightningSeconds = lightningMilliseconds / 1000.0;
+    let lightningSeconds = lightningMilliseconds / 1000.0;
     if (lightningStacks == 0) {
-      this.o.lightningTimer.style = "fill";
+      this.o.lightningTimer.style = 'fill';
       lightningSeconds = 0;
     } else {
-      this.o.lightningTimer.style = "empty";
+      this.o.lightningTimer.style = 'empty';
     }
 
     // Setting the duration resets the timer bar to 0, so set
@@ -1243,7 +1252,7 @@ class Bars {
   }
 
   OnMonkDragonKick(seconds) {
-    var kAnimationDelay = 1.2;
+    let kAnimationDelay = 1.2;
 
     this.o.dragonKickTimer.duration = 0;
     this.o.dragonKickTimer.duration = seconds - kAnimationDelay;
@@ -1293,17 +1302,17 @@ class Bars {
   OnPldBlock() {
     this.pldLastBlock = Date.now();
     // How long a swipe takes to be able to be recast.
-    var kSwipeRecastMs = 15000;
+    let kSwipeRecastMs = 15000;
     // How long a block proc lasts from damage to losing proc.
-    var kBlockProcMs = 5500;
+    let kBlockProcMs = 5500;
     // Amount of extra reaction time to react to a block.
-    var kIgnoreSlopMs = 200;
+    let kIgnoreSlopMs = 200;
     // Amount of time to make the swipe box bigger earlier
     // when there is a block during a swipe cooldown but a
     // swipe can still be used.
-    var kBlockSlopMs = 700;
+    let kBlockSlopMs = 700;
 
-    var msSinceLastSwipe = this.pldLastBlock - this.pldLastSwipe;
+    let msSinceLastSwipe = this.pldLastBlock - this.pldLastSwipe;
     if (msSinceLastSwipe < kSwipeRecastMs - kBlockProcMs + kIgnoreSlopMs) {
       // Swipe too recent, ignore this.
       return;
@@ -1319,7 +1328,7 @@ class Bars {
       // quite small).
       this.o.swipeBox.duration = 0;
       this.o.swipeBox.duration = kBlockProcMs / 1000;
-      var msUntilSwipeAvailable = kSwipeRecastMs - msSinceLastSwipe;
+      let msUntilSwipeAvailable = kSwipeRecastMs - msSinceLastSwipe;
       this.o.swipeBox.threshold = (kBlockProcMs + kBlockSlopMs - msUntilSwipeAvailable) / 1000;
     }
     this.o.swipeBox.fg = computeBackgroundColorFrom(this.o.swipeBox, 'pld-color-block');
@@ -1335,12 +1344,12 @@ class Bars {
   }
 
   OnComboChange(skill) {
-    if (this.job == "RDM") {
+    if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
 
       if (!skill)
-        skill = "";
+        skill = '';
       if (skill == gLang.kAbility.Riposte || skill == gLang.kAbility.EnchantedRiposte)
         this.o.rdmCombo1.classList.add('active');
       else
@@ -1353,14 +1362,14 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
-    } else if (this.job == "WAR") {
+    } else if (this.job == 'WAR') {
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
         this.o.eyeBox.duration = 30;
       }
 
       // Min number of skills until eye without breaking combo.
-      var minSkillsUntilEye;
+      let minSkillsUntilEye;
       if (skill == gLang.kAbility.HeavySwing) {
         minSkillsUntilEye = 2;
       } else if (skill == gLang.kAbility.SkullSunder) {
@@ -1375,18 +1384,17 @@ class Bars {
       // The new threshold is "can I finish the current combo and still
       // have time to do a Storm's Eye".  The 0.3 is for reaction
       // time slop.
-      var oldThreshold = parseFloat(this.o.eyeBox.threshold);
-      var newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd + 0.3;
+      let oldThreshold = parseFloat(this.o.eyeBox.threshold);
+      let newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd + 0.3;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (this.o.eyeBox.value >= oldThreshold &&
-          this.o.eyeBox.value >= newThreshold) {
+          this.o.eyeBox.value >= newThreshold)
         this.o.eyeBox.threshold = newThreshold;
-      } else {
+      else
         this.o.eyeBox.threshold = oldThreshold;
-      }
-    } else if (this.job == "PLD") {
+    } else if (this.job == 'PLD') {
       if (skill == gLang.kAbility.GoringBlade) {
         this.o.goreBox.duration = 0;
         // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
@@ -1417,8 +1425,8 @@ class Bars {
     if (!this.o.manaBar) return;
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
-    var lowMP = -1;
-    var far = -1;
+    let lowMP = -1;
+    let far = -1;
 
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
@@ -1432,7 +1440,7 @@ class Bars {
     else if (lowMP >= 0 && this.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
     else
-      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color')
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
   UpdateTP() {
@@ -1460,15 +1468,14 @@ class Bars {
   }
 
   UpdateOpacity() {
-    var opacityContainer = document.getElementById("opacity-container");
+    let opacityContainer = document.getElementById('opacity-container');
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        isCraftingJob(this.job) || isGatheringJob(this.job)) {
+        isCraftingJob(this.job) || isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
-    } else {
+    else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
-    }
   }
 
   UpdateFoodBuff() {
@@ -1476,33 +1483,33 @@ class Bars {
     if (!this.init || !this.o.leftBuffsList)
       return;
 
-    var CanShowWellFedWarning = function() {
+    let CanShowWellFedWarning = function() {
       if (this.inCombat)
         return false;
       if (this.level < this.options.MaxLevel)
         return true;
       return this.zone.search(kWellFedZoneRegex) >= 0;
-    }
+    };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
-    var TimeToShowWellFedWarning = function() {
-      var now_ms = Date.now();
-      var show_at_ms = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
+    let TimeToShowWellFedWarning = function() {
+      let now_ms = Date.now();
+      let show_at_ms = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
       return show_at_ms - now_ms;
-    }
+    };
 
     window.clearTimeout(this.foodBuffTimer);
     this.foodBuffTimer = null;
 
-    var canShow = CanShowWellFedWarning.bind(this)();
-    var showAfterMs = TimeToShowWellFedWarning.bind(this)();
+    let canShow = CanShowWellFedWarning.bind(this)();
+    let showAfterMs = TimeToShowWellFedWarning.bind(this)();
 
     if (!canShow || showAfterMs > 0) {
       this.o.leftBuffsList.removeElement('foodbuff');
       if (canShow)
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
-      var div = this.MakeAuraTimerIcon(
+      let div = this.MakeAuraTimerIcon(
           'foodbuff', -1,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           '',
@@ -1538,12 +1545,12 @@ class Bars {
   SetPullCountdown(seconds) {
     if (this.o.pullCountdown == null) return;
 
-    var in_countdown = seconds > 0;
-    var showing_countdown = parseFloat(this.o.pullCountdown.duration) > 0;
+    let in_countdown = seconds > 0;
+    let showing_countdown = parseFloat(this.o.pullCountdown.duration) > 0;
     if (in_countdown != showing_countdown) {
       this.o.pullCountdown.duration = seconds;
       if (in_countdown) {
-        var audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
+        let audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();
       }
@@ -1551,15 +1558,15 @@ class Bars {
   }
 
   OnBigBuff(name, seconds, settings) {
-    var overrides = this.options.PerBuffOptions[name] || {};
-    var borderColor = overrides.borderColor || settings.borderColor;
-    var icon = overrides.icon || settings.icon;
-    var side = overrides.side || settings.side;
-    var sortKey = overrides.sortKey || settings.sortKey;
+    let overrides = this.options.PerBuffOptions[name] || {};
+    let borderColor = overrides.borderColor || settings.borderColor;
+    let icon = overrides.icon || settings.icon;
+    let side = overrides.side || settings.side;
+    let sortKey = overrides.sortKey || settings.sortKey;
     if (overrides.hide)
       return;
 
-    var aura = this.MakeAuraTimerIcon(
+    let aura = this.MakeAuraTimerIcon(
         name, seconds,
         this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
         settings.text,
@@ -1567,11 +1574,11 @@ class Bars {
         this.options.BigBuffBorderSize,
         borderColor, borderColor,
         icon);
-    var list = this.o.rightBuffsList;
+    let list = this.o.rightBuffsList;
     if (side && side == 'left' && this.o.leftBuffsList)
       list = this.o.leftBuffsList;
     list.addElement(name, aura, sortKey);
-    var that = this;
+    let that = this;
     window.clearTimeout(settings.timeout);
     if (seconds >= 0) {
       settings.timeout = window.setTimeout(function() {
@@ -1596,16 +1603,16 @@ class Bars {
       this.init = true;
     }
 
-    var update_job = false;
-    var update_hp = false;
-    var update_mp = false;
-    var update_tp = false;
-    var update_cp = false;
-    var update_gp = false;
-    var update_level = false;
+    let update_job = false;
+    let update_hp = false;
+    let update_mp = false;
+    let update_tp = false;
+    let update_cp = false;
+    let update_gp = false;
+    let update_level = false;
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
-      this.combo.AbortCombo();  // Combos are job specific.
+      this.combo.AbortCombo(); // Combos are job specific.
       update_job = update_hp = update_mp = update_tp = update_cp = update_gp = true;
     }
     if (e.detail.level != this.level) {
@@ -1617,9 +1624,8 @@ class Bars {
       this.maxHP = e.detail.maxHP;
       update_hp = true;
 
-      if (this.hp == 0) {
-        this.combo.AbortCombo();  // Death resets combos.
-      }
+      if (this.hp == 0)
+        this.combo.AbortCombo(); // Death resets combos.
     }
     if (e.detail.currentMP != this.mp || e.detail.maxMP != this.maxMP) {
       this.mp = e.detail.currentMP;
@@ -1660,13 +1666,13 @@ class Bars {
       this.UpdateFoodBuff();
 
     if (this.job == 'RDM') {
-        if (update_job ||
+      if (update_job ||
             e.detail.jobDetail.whiteMana != this.whiteMana ||
             e.detail.jobDetail.blackMana != this.blackMana) {
-          this.whiteMana = e.detail.jobDetail.whiteMana;
-          this.blackMana = e.detail.jobDetail.blackMana;
-          this.OnRedMageUpdate(this.whiteMana, this.blackMana);
-        }
+        this.whiteMana = e.detail.jobDetail.whiteMana;
+        this.blackMana = e.detail.jobDetail.blackMana;
+        this.OnRedMageUpdate(this.whiteMana, this.blackMana);
+      }
     } else if (this.job == 'WAR') {
       if (update_job || e.detail.jobDetail.beast != this.beast) {
         this.beast = e.detail.jobDetail.beast;
@@ -1694,7 +1700,8 @@ class Bars {
         this.bahamutStacks = e.detail.jobDetail.bahamutStacks;
         this.dreadwyrmMilliseconds = e.detail.jobDetail.dreadwyrmMilliseconds;
         this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
-        this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks, this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
+        this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks,
+            this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
     } else if (this.job == 'MNK') {
       if (update_job ||
@@ -1712,7 +1719,7 @@ class Bars {
   }
 
   OnTargetChanged(e) {
-    var update = false;
+    let update = false;
     if (e.detail.name == null) {
       if (this.distance != -1) {
         this.distance = -1;
@@ -1733,12 +1740,12 @@ class Bars {
     if (!this.init)
       return;
 
-    for (var i = 0; i < e.detail.logs.length; i++) {
-      var log = e.detail.logs[i];
+    for (let i = 0; i < e.detail.logs.length; i++) {
+      let log = e.detail.logs[i];
 
-      var r = log.match(gLang.countdownStartRegex());
+      let r = log.match(gLang.countdownStartRegex());
       if (r != null) {
-        var seconds = Regexes.ParseLocaleFloat(r[1]);
+        let seconds = parseFloat(r[1]);
         this.SetPullCountdown(seconds);
         continue;
       }
@@ -1749,22 +1756,22 @@ class Bars {
 
       r = log.match(kReFoodBuff);
       if (r != null) {
-        var seconds = Regexes.ParseLocaleFloat(r[1]);
-        var now = Date.now();  // This is in ms.
+        let seconds = parseFloat(r[1]);
+        let now = Date.now(); // This is in ms.
         this.foodBuffExpiresTimeMs = now + (seconds * 1000);
         this.UpdateFoodBuff();
       }
 
-      for (var name in kBigBuffTracker) {
-        var settings = kBigBuffTracker[name];
-        var r = log.match(settings.gainRegex);
+      for (let name in kBigBuffTracker) {
+        let settings = kBigBuffTracker[name];
+        let r = log.match(settings.gainRegex);
         if (r != null) {
-          var seconds = -1;
-          if ('durationSeconds' in settings) {
+          let seconds = -1;
+          if ('durationSeconds' in settings)
             seconds = settings.durationSeconds;
-          } else if ('durationPosition' in settings) {
-            seconds = Regexes.ParseLocaleFloat(r[settings.durationPosition]);
-          }
+          else if ('durationPosition' in settings)
+            seconds = parseFloat(r[settings.durationPosition]);
+
           this.OnBigBuff(name, seconds, settings);
         }
         if (settings.loseRegex) {
@@ -1778,9 +1785,9 @@ class Bars {
         continue;
 
       if (this.job == 'SMN') {
-        var r = log.match(kReSmnRuinProc);
+        let r = log.match(kReSmnRuinProc);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnSummonerRuinProc(seconds);
           continue;
         }
@@ -1795,21 +1802,21 @@ class Bars {
       }
 
       if (this.job == 'RDM') {
-        var r = log.match(kReRdmBlackManaProc);
+        let r = log.match(kReRdmBlackManaProc);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnRedMageProcBlack(seconds);
           continue;
         }
         r = log.match(kReRdmWhiteManaProc);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnRedMageProcWhite(seconds);
           continue;
         }
         r = log.match(kReRdmImpactProc);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnRedMageProcImpact(seconds);
           continue;
         }
@@ -1835,21 +1842,21 @@ class Bars {
           this.OnMonkDemolish();
           continue;
         }
-        var r = log.match(kFormChange);
+        let r = log.match(kFormChange);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnMonkFormChange(seconds);
           continue;
         }
         r = log.match(kPeanutButter);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnMonkPerfectBalance(seconds);
           continue;
         }
         r = log.match(kBluntDebuff);
         if (r != null) {
-          var seconds = Regexes.ParseLocaleFloat(r[1]);
+          let seconds = parseFloat(r[1]);
           this.OnMonkDragonKick(seconds);
           continue;
         }
@@ -1866,7 +1873,7 @@ class Bars {
       }
 
       // For learning boss ability codes.
-      //if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
+      // if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
       //  console.log(log);
 
       if (log.search(/:test:jobs:/) >= 0)
@@ -1875,7 +1882,7 @@ class Bars {
   }
 
   Test() {
-    var logs = [];
+    let logs = [];
     logs.push(' 1A:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
     logs.push(' 1A:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
     logs.push(' 1A:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
@@ -1888,29 +1895,29 @@ class Bars {
     logs.push(' 15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
     logs.push(' 1A:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
     logs.push(' 1A:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
-    var e = { detail: { logs: logs } };
+    let e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }
 }
 
-var gBars;
+let gBars;
 
-document.addEventListener("onPlayerChangedEvent", function (e) {
+document.addEventListener('onPlayerChangedEvent', function(e) {
   gBars.OnPlayerChanged(e);
 });
-document.addEventListener("onTargetChangedEvent", function (e) {
+document.addEventListener('onTargetChangedEvent', function(e) {
   gBars.OnTargetChanged(e);
 });
-document.addEventListener("onPartyWipe", function (e) {
+document.addEventListener('onPartyWipe', function(e) {
   gBars.OnPartyWipe(e);
 });
-document.addEventListener("onInCombatChangedEvent", function (e) {
+document.addEventListener('onInCombatChangedEvent', function(e) {
   gBars.OnInCombatChanged(e);
 });
-document.addEventListener("onZoneChangedEvent", function (e) {
+document.addEventListener('onZoneChangedEvent', function(e) {
   gBars.OnZoneChanged(e);
 });
-document.addEventListener("onLogEvent", function (e) {
+document.addEventListener('onLogEvent', function(e) {
   gBars.OnLogEvent(e);
 });
 

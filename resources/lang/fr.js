@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class CactbotLanguageFr extends CactbotLanguage {
   constructor(playerName) {
@@ -12,9 +12,9 @@ class CactbotLanguageFr extends CactbotLanguage {
       VerfireReady: 'VerFeu préparé', // 0x4d2
       Impactful: 'Impact préparé', // 0x557
       FurtherRuin: 'Extra Ruine renforcée', // 0x4bc
-      Aetherflow: "Flux d'éther", // 0x130
+      Aetherflow: 'Flux d\'éther', // 0x130
       WellFed: 'Repu', // 0x30
-      OpoOpoForm: "Posture de l'opo-opo", // 0x6b
+      OpoOpoForm: 'Posture de l\'opo-opo', // 0x6b
       RaptorForm: 'Posture du raptor', // 0x6c
       CoeurlForm: 'Posture du coeurl', // 0x6d
       PerfectBalance: 'Équilibre parfait', // 0x6e
@@ -28,7 +28,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Brotherhood: 'Fraternité', // 0x49e
       Devotion: 'Dévouement', // 0x4bd
       FoeRequiem: 'Requiem ennemi', // up 0x8b, down 0x8c
-      
+
       // TODO: add ids
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
