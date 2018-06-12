@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 // O7S - Sigmascape 3.0 Savage
 // localization:
