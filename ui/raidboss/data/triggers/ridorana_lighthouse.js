@@ -8,7 +8,7 @@
       if (data.lang == 'de')
         return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
       if (data.lang == 'fr')
-        return 'alerttext "Stone Breath" before 7 "Aller derrière"';
+        return 'alerttext "Stone Breath" before 7 "Allez derrière"';
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
@@ -538,7 +538,7 @@
       alertText: {
         en: 'Get Under',
         de: 'Reingehen',
-        fr: 'En dessous',
+        fr: 'Allez sous le boss',
       },
     },
     {
