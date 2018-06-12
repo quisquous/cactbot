@@ -160,11 +160,8 @@
     {
       id: 'Tsukuyomi Hagetsu',
       regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Spread',
+      condition: function(data, matches) { 
+          return (matches[1] == data.me); 
       },
       alertText: {
         en: 'Spread',
