@@ -274,42 +274,40 @@ hideall "--Reset--"
 1234 "Ultima" sync /:The Ultima Weapon:2B8B:/ # drift 0.468
 1244 "Aetheric Boom" sync /:The Ultima Weapon:2B88:/ # drift 0.227
 1265 "Viscous Aetheroplasm" sync /:The Ultima Weapon:2B8F:/ # drift 0.256
+1269 "Summon Random Primal"
 
-## Summon Garuda
-1269 "--sync--" sync /:The Ultima Weapon:2CD3:/
-1276 "Wicked Wheel" sync /:Garuda:2B4E:/ # drift 0.351
-1277 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/ # drift 0.326
-1278 "Wicked Tornado" sync /:Garuda:2B4F:/ # drift -0.239
-1283 "Aerial Blast" sync /:Garuda:2B55:/
+## Random Primal Finale (summon all three in random order)
 
-## Summon Ifrit
-1289 "--sync--" sync /:The Ultima Weapon:2CD4:/
-1291 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.208
-1297 "Eruption" sync /:Garuda:2B5A:/ # drift -0.445001
-1297 "Crimson Cyclone" sync /:Ifrit:2B5F:/
-1298 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/
-1305 "Hellfire" sync /:Ifrit:2B5E:/ # drift -0.208999
+## Summon Garuda (random order)
+1300 "--sync--" sync /:The Ultima Weapon:2CD3:/ window 300,300
+1307 "Wicked Wheel" sync /:Garuda:2B4E:/ # drift 0.351
+1308 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/ # drift 0.326
+1309 "Wicked Tornado" sync /:Garuda:2B4F:/ # drift -0.239
+1314 "Aerial Blast" sync /:Garuda:2B55:/
+1320 "Summon Random Primal"
+1322 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.208
 
-## Summon Titan
-1310 "--sync--" sync /:The Ultima Weapon:2CD5:/
-1315 "Weight Of The Land" sync /:Garuda:2B65:/
-1318 "Weight Of The Land" sync /:Ifrit:2B65:/
-1318 "Viscous Aetheroplasm" sync /:Ifrit:2B7A:/ # drift 0.201999
-1321 "Weight Of The Land"
-1324 "Earthen Fury" sync /:Titan:2B90:/ # drift 0.241001
-1326 "--untargetable--"
+## Summon Ifrit (random order)
+1400 "--sync--" sync /:The Ultima Weapon:2CD4:/ window 300,300
+1408 "Eruption" sync /:Garuda:2B5A:/ # drift -0.445001
+1408 "Crimson Cyclone" sync /:Ifrit:2B5F:/
+1409 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/
+1416 "Hellfire" sync /:Ifrit:2B5E:/ # drift -0.208999
+1421 "Summon Random Primal"
+
+## Summon Titan (random order)
+1500 "--sync--" sync /:The Ultima Weapon:2CD5:/ window 300,300
+1505 "Weight Of The Land" sync /:Garuda:2B65:/
+1508 "Weight Of The Land" sync /:Ifrit:2B65:/
+1508 "Viscous Aetheroplasm" sync /:Ifrit:2B7A:/ # drift 0.201999
+1511 "Weight Of The Land"
+1514 "Earthen Fury" sync /:Titan:2B90:/ # drift 0.241001
+1516 "Summon Random Primal"
 
 ## Enrage
-1329 "--targetable--"
-1332 "Enrage" sync /:The Ultima Weapon:2B8C:/ # drift 0.211
+1600.0 "Enrage" sync /:The Ultima Weapon:2B8C:/ window 400,0
 # FIXME: this waits until 100% aether, so likely needs to be shifted later for natural push.
-1357 "Citadel Siege" sync /:Garuda:2B92:/ window 100,50
-1360 "Citadel Siege"
-1363 "Citadel Siege"
-1366 "Citadel Siege"
-1369 "Citadel Siege"
-1372 "Citadel Siege"
-1375 "Citadel Siege"
-1378 "Citadel Siege"
+# +3 seconds for each further one.  Maybe not worth including.
+#1625.0 "Citadel Siege" sync /:Garuda:2B92:/ window 100,50
 
 #$ python util/make_timeline.py --ignore-id 2B51 2B59 2B58 2Bb5 2B46 2B44 2B64 2B6E 2B77 2B6A 2B98 2B89 2B83 2B91 2DB8 2B75 2C20 2C21 2C1F 2CD4 2CD5 2B80 --phase 2B5F:300 2CFD:600 2CF5:800 2B87:1004
