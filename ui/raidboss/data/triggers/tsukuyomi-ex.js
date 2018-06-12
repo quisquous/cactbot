@@ -33,9 +33,9 @@
       regexDe: / 14:2BBB:Tsukuyomi starts using Todesqualen on (\y{Name})/,
       regexFr: / 14:2BBB:Tsukuyomi prépare Brimade meurtrière sur (\y{Name})/,
       alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
+        if (matches[1] == data.me || data.role != 'tank') {
           return;
-
+        }
         return {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
@@ -59,9 +59,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer')
+        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer') {
           return;
-
+        }
         return {
           en: 'Get out of front',
           de: 'Weg von vorn',
@@ -99,7 +99,7 @@
         let moonInOut = {
           en: 'In',
           de: 'Rein',
-		  de: 'Intérieur (Sur la hitbox)',
+          de: 'Intérieur (Sur la hitbox)',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -145,7 +145,7 @@
     {
       id: 'Tsukuyomi Lunacy',
       regex: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
-	  regexFr: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regexFr: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: {
         en: 'Stack',
         de: 'Stack',
@@ -154,7 +154,7 @@
       tts: {
         en: 'Stack',
         de: 'Stack',
-		fr: 'Stack',
+        fr: 'Stack',
       },
     },
     {
@@ -192,7 +192,7 @@
     {
       id: 'Tsukuyomi Supreme Selenomancy',
       regex: /:Tsukuyomi:2EB0:/,
-	  regexFr: /:Tsukuyomi:2EB0:/,
+      regexFr: /:Tsukuyomi:2EB0:/,
       run: function(data) {
         delete data.moonlitCount;
         delete data.moonshadowedCount;
@@ -209,9 +209,9 @@
       },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
-        if (typeof data.moonlitCount === 'undefined')
+        if (typeof data.moonlitCount === 'undefined') {
           data.moonlitCount = 3;
-
+        }
         data.moonlitCount += 1;
         data.moonshadowedCount = 0;
         // dead/reset?
@@ -243,9 +243,9 @@
       },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
-        if (typeof data.moonshadowedCount === 'undefined')
+        if (typeof data.moonshadowedCount === 'undefined') {
           data.moonshadowedCount = 3;
-
+        }
         data.moonshadowedCount += 1;
         data.moonlitCount = 0;
         // dead/reset?
@@ -391,8 +391,8 @@
         'Waning Grudge': 'Rancœur Ténébreuse',
         'Waxing Grudge': 'Rancœur Blafarde',
         'Zashiki-asobi': 'Zashiki Asobi',
-		'Antitwilight': 'Belle-de-nuit',
-		'Moonburst': 'Entrechoc De Fragments Lunaires',
+        'Antitwilight': 'Belle-de-nuit',
+        'Moonburst': 'Entrechoc De Fragments Lunaires',
         "Lead/Steel": "Tir De L'au-delà/Pointes De L'au-delà",
         "Steel/Lead": "Pointes De L'au-delà/Tir De L'au-delà",
         'Homeland adds .E->W.': 'Soldats Domien (E->W)',
