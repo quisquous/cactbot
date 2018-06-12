@@ -1,3 +1,5 @@
+'use strict';
+
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
   zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
@@ -12,7 +14,13 @@
         return data.IsPlayerId(e.targetId) && e.flags == '32';
       },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'Twister Pop' };
+        return {
+          type: 'fail',
+          blame: e.targetName,
+          text: {
+            en: 'Twister Pop',
+          },
+        };
       },
     },
     {
@@ -22,7 +30,13 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: 'Pizza Slice' };
+        return {
+          type: 'fail',
+          blame: e.targetName,
+          text: {
+            en: 'Pizza Slice',
+          },
+        };
       },
     },
     {
@@ -65,7 +79,13 @@
         // It's hard to assign blame for lightning.  The debuffs
         // go out and then explode in order, but the attacker is
         // the dragon and not the player.
-        return { type: 'warn', name: e.targetName, text: 'hit by lightning' };
+        return {
+          type: 'warn',
+          name: e.targetName,
+          text: {
+            en: 'hit by lightning',
+          },
+        };
       },
     },
     {
@@ -115,11 +135,13 @@
       // but what can you do.
       id: 'UCU Doom',
       gainsEffectRegex: gLang.kEffect.Doom,
-      delaySeconds: function(e) { return e.durationSeconds - 1; },
+      delaySeconds: function(e) {
+        return e.durationSeconds - 1;
+      },
       deathReason: function(e, data, matches) {
         if (!data.hasDoom || !data.hasDoom[e.targetName])
           return;
-        var reason;
+        let reason;
         if (e.durationSeconds < 9)
           reason = e.effectName + ' #1';
         else if (e.durationSeconds < 14)
@@ -130,4 +152,4 @@
       },
     },
   ],
-}]
+}];

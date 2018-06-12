@@ -1,3 +1,5 @@
+'use strict';
+
 // O1S - Deltascape 1.0 Savage
 [{
   zoneRegex: /(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))/,
@@ -58,7 +60,9 @@
         en: 'Roar: AOE damage',
         de: 'Brüllen: Flächenschaden',
       },
-      condition: function(data) { return data.role == 'healer' },
+      condition: function(data) {
+        return data.role == 'healer';
+      },
       tts: {
         en: 'roar',
         de: 'brüllen',
@@ -71,11 +75,13 @@
         en: 'Charybdis: AOE damage',
         de: 'Charybdis: Flächenschaden',
       },
-      condition: function(data) { return data.role == 'healer' },
+      condition: function(data) {
+        return data.role == 'healer';
+      },
       tts: {
         en: 'roar',
         de: 'brüllen',
       },
     },
-  ]
-}]
+  ],
+}];

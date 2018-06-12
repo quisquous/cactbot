@@ -1,3 +1,5 @@
+'use strict';
+
 // O8N - Sigmascape 4.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V4\.0\)|Sigmascape V4\.0)$/,
@@ -12,14 +14,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Hyperdrive on YOU',
-            fr: 'Colonne de feu sur TOI',
+            fr: 'Colonne de feu sur VOUS',
             de: 'Hyperantrieb auf DIR',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
-            fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
+            fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
             de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
           };
         }
@@ -42,7 +44,7 @@
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
-        fr: 'Se préparer à la projection',
+        fr: 'Préparez-vous à la projection',
         de: 'Auf Rückstoß achten',
       },
       tts: {
@@ -58,7 +60,7 @@
       regexFr: /14:2929:Statue Divine starts using Onde Gravitationnelle/,
       alertText: {
         en: 'Get Right/East =>',
-        fr: 'Aller à Droite/Est =>',
+        fr: 'Allez à Droite/Est =>',
         de: 'Nach Rechts/Westen =>',
       },
       tts: {
@@ -74,7 +76,7 @@
       regexFr: /14:292A:Statue Divine starts using Volonté Intempérante/,
       alertText: {
         en: '<= Get Left/West',
-        fr: '<= Aller à Gauche/Ouest',
+        fr: '<= Allez à Gauche/Ouest',
         de: '<= Nach Links/Westen',
       },
       tts: {
@@ -90,12 +92,12 @@
       regexFr: /14:292B:Statue Divine starts using Ave Maria/,
       alertText: {
         en: 'Look At Statue',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
         de: 'Statue anschauen',
       },
       tts: {
         en: 'look towards',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
         de: 'anschauen',
       },
     },
@@ -106,12 +108,12 @@
       regexFr: /14:292C:Statue Divine starts using Volonté Indolente/,
       alertText: {
         en: 'Look Away From Statue',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
       },
       tts: {
         en: 'look away',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
       },
     },
@@ -125,19 +127,16 @@
         fr: 'Projection depuis le boss',
         de: 'Rückstoß vom Boss',
       },
-      tts: {
-        en: 'knockback on boss',
-        fr: 'Projection depuis le boss',
-        de: 'Rückstoß vom Boss',
-      },
     },
     {
       id: 'O8N Flagrant Fire Single',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: {
         en: 'fire on YOU',
-        fr: 'feu sur TOI',
+        fr: 'Feu sur VOUS',
         de: 'Feuer auf DIR',
       },
       tts: {
@@ -200,12 +199,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Fake Ice: Get out',
-        fr: 'Fausse glace: Sortir',
+        fr: 'Fausse glace : Sortez',
         de: 'Falsches Eis: Rausgehen',
       },
       tts: {
         en: 'Get out',
-        fr: 'Sortir',
+        fr: 'Sortez',
         de: 'Rausgehen',
       },
     },
@@ -217,12 +216,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'True Ice: Get in',
-        fr: 'Vraie glace: Rentrer dedans',
+        fr: 'Vraie glace: Rentrez dedans',
         de: 'Wahre Eis: Reingehen',
       },
       tts: {
         en: 'Get in',
-        fr: 'rentrer dedans',
+        fr: 'rentrez dedans',
         de: 'Reingehen',
       },
     },
@@ -234,12 +233,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Fake Ice: Get in',
-        fr: 'Fausse glace: Rentrer dedans',
+        fr: 'Fausse glace: Rentrez dedans',
         de: 'Falsches Eis: Reingehen',
       },
       tts: {
         en: 'Get in',
-        fr: 'rentrer dedans',
+        fr: 'rentrez dedans',
         de: 'Reingehen',
       },
     },
@@ -251,12 +250,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'True Ice: Get out',
-        fr: 'Vraie glace: Sortir',
+        fr: 'Vraie glace: Sortez',
         de: 'Wahres Eis: Rausgehen',
       },
       tts: {
         en: 'Get out',
-        fr: 'Sortir',
+        fr: 'Sortez',
         de: 'raus da',
       },
     },
@@ -308,7 +307,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Forsaken': 'Verloren',
-        "Future's End": "Ende Der Hoffnung",
+        'Future\'s End': 'Ende Der Hoffnung',
         'Futures Numbered': 'Ende Des Lebens',
         'Gravitational Wave': 'Gravitationswelle',
         'Heartless Angel': 'Herzloser Engel',
@@ -343,12 +342,12 @@
         'Destroy! Destroy! Destroy! I will destroy it all!': 'Je détruirai le monde entier! Plus personne ne pourra rêver!',
       },
       replaceText: {
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Aero Assault': 'Méga Vent Véhément',
         'Blizzard Blitz': 'Méga Glace Glissante',
@@ -376,7 +375,7 @@
         'Wave Cannon': 'Canon Plasma',
 
         'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
-        'Half Arena': "Moitié d'arène",
+        'Half Arena': 'Moitié d\'arène',
         'Statue Gaze': 'Regard statue',
 
         'All Things Ending': 'Fin De Toutes Choses',
@@ -385,7 +384,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
         'Forsaken': 'Cataclysme',
-        "Future's End": "Fin Du Futur",
+        'Future\'s End': 'Fin Du Futur',
         'Futures Numbered': 'Ruine Du Futur',
         'Gravitational Wave': 'Onde Gravitationnelle',
         'Heartless Angel': 'Ange Sans Cœur',
@@ -413,11 +412,11 @@
         'Knockback Tethers': 'Liens de projection',
         'Sleep/Confuse Tethers': 'Liens de Sommeil/Confusion',
         'Statue Half Cleave': 'Demi clivage de la statue',
-        'Half Arena': "Moitié d'arène",
+        'Half Arena': 'Moitié d\'arène',
 
         'Aero/Ruin': 'Vent/Ruine',
         'Statue Gaze': 'Regard de statue',
       },
     },
-  ]
-}]
+  ],
+}];

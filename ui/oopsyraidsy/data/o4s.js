@@ -1,3 +1,5 @@
+'use strict';
+
 // O4S - Deltascape 4.0 Savage
 [{
   zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
@@ -68,7 +70,7 @@
         return data.IsPlayerId(e.targetId);
       },
       mistake: function(e, data) {
-        var text = e.abilityName + ' => ' + data.ShortName(e.targetName)
+        let text = e.abilityName + ' => ' + data.ShortName(e.targetName);
         return { type: 'fail', blame: e.attackerName, text: text };
       },
     },
@@ -84,7 +86,7 @@
           return;
         // Hard to know who should be in this and who shouldn't, but
         // it should never hit 3 people.
-        return { type: 'fail', fullText: e[0].abilityName + ' hit ' + e.length };
+        return { type: 'fail', fullText: e[0].abilityName + ' x ' + e.length };
       },
     },
     {
@@ -118,7 +120,9 @@
     {
       id: 'O4S2 Beyond Death',
       gainsEffectRegex: gLang.kEffect.BeyondDeath,
-      delaySeconds: function(e) { return e.durationSeconds - 1; },
+      delaySeconds: function(e) {
+        return e.durationSeconds - 1;
+      },
       deathReason: function(e, data) {
         if (!data.hasBeyondDeath)
           return;
@@ -126,9 +130,9 @@
           return;
         return {
           name: e.targetName,
-          reason: e.effectName + ' failure',
+          reason: e.effectName,
         };
       },
     },
   ],
-}]
+}];

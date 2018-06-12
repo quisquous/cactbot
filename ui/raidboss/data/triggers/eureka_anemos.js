@@ -1,3 +1,5 @@
+'use strict';
+
 [{
   zoneRegex: /Eureka Anemos/,
   resetWhenOutOfCombat: false,
@@ -7,11 +9,11 @@
       regex: /14:2AD5:Void Garm starts using The Dragon's Voice/,
       regexDe: /14:2AD5:Nichts-Garm starts using Stimme Des Drachen/,
       infoText: {
-        en: "Dragon's Voice",
+        en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
       },
       tts: {
-        en: "Dragon's Voice",
+        en: 'Dragon\'s Voice',
         de: 'drache',
       },
     },
@@ -20,21 +22,21 @@
       regex: /14:29EB:Sabotender Corrido starts using 100,000 Needles on (\y{Name})/,
       regexDe: /14:29EB:Sabotender Corrido starts using 100\.000 Nadeln on (\y{Name})/,
       alertText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches[1] != data.me)
           return;
-        }
+
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches[1] == data.me)
           return;
-        }
+
         return {
           en: '100k Needle Stack',
-          de: '100k Nadeln Stack'
+          de: '100k Nadeln Stack',
         };
       },
       tts: function(data, matches) {
@@ -58,10 +60,6 @@
         en: 'Swipe',
         de: 'Hieb',
       },
-      tts: {
-        en: 'swipe',
-        de: 'Hieb',
-      },
     },
     {
       id: 'Eureka Poly Swing',
@@ -70,10 +68,6 @@
       alarmText: {
         en: 'GET OUT',
         de: 'RAUS DA',
-      },
-      tts: {
-        en: 'get out',
-        de: 'raus da',
       },
     },
     {
@@ -84,10 +78,6 @@
         en: 'Eye Donut',
         de: 'Augendonut',
       },
-      tts: {
-        en: 'eye donut',
-        de: 'augen dohnat'
-      },
     },
     {
       id: 'Eureka Poly Glower',
@@ -96,10 +86,6 @@
       alertText: {
         en: 'Glower Laser',
         de: 'Blick Laser',
-      },
-      tts: {
-        en: 'Glower',
-        de: 'Blick Lehsa',
       },
     },
     {
@@ -132,7 +118,9 @@
       id: 'Eureka Voidscale Ice',
       regex: /14:29C3:Voidscale starts using Ball Of Ice on (\y{Name})/,
       regexDe: /14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alertText: {
         en: 'Ice ball on you!',
         de: 'Eisball auf dir!',
@@ -150,15 +138,13 @@
         en: 'Get Out',
         de: 'Raus da',
       },
-      tts: {
-        en: 'get out',
-        de: 'raus da',
-      },
     },
     {
       id: 'Eureka Pazuzu Camisado',
       regex: /14:289F:Pazuzu starts using Camisado on (\y{Name})/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       alertText: {
         en: 'Buster on YOU',
         de: 'Tenkbasta auf DIR',
@@ -175,10 +161,6 @@
       infoText: {
         en: 'Out of melee',
         de: 'Raus aus Nahkampf',
-      },
-      tts: {
-        en: 'out of melee',
-        de: 'raus aus nahkampf',
       },
     },
     {
@@ -225,11 +207,6 @@
         de: 'AUFWACHEN',
         fr: 'REVEILLES TOI',
       },
-      tts: {
-        en: 'wake up',
-        de: 'aufwachen',
-        fr: 'reveilles toi',
-      },
     },
   ],
-}]
+}];

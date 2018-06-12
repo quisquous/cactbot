@@ -1,3 +1,5 @@
+'use strict';
+
 // O3S - Deltascape 3.0 Savage
 [{
   zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
@@ -37,19 +39,19 @@
       id: 'O3S Spellblade Holy',
       regex: /1B:........:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
       alarmText: function(data) {
-        if (data.holyTargets[1] != data.me) {
+        if (data.holyTargets[1] != data.me)
           return '';
-        }
+
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
         };
       },
       alertText: function(data) {
-        if (data.holyTargets[1] == data.me) {
+        if (data.holyTargets[1] == data.me)
           return;
-        }
-        for (var i = 0; i < 4; ++i) {
+
+        for (let i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me) {
             return {
               en: 'Get out',
@@ -63,7 +65,7 @@
         };
       },
       infoText: function(data) {
-        for (var i = 0; i < 4; ++i) {
+        for (let i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me) {
             return {
               en: 'others stack on ' + data.holyTargets[1],
@@ -74,9 +76,9 @@
       },
       condition: function(data, matches) {
         // Library phase stack markers behave differently.
-        if (data.phase == 3) {
+        if (data.phase == 3)
           return false;
-        }
+
         data.holyTargets = data.holyTargets || [];
         data.holyTargets.push(matches[1]);
         return data.holyTargets.length == 4;
@@ -88,7 +90,7 @@
             de: 'stek auf dir',
           };
         }
-        for (var i = 0; i < 4; ++i) {
+        for (let i = 0; i < 4; ++i) {
           if (data.holyTargets[i] == data.me) {
             return {
               en: 'get out',
@@ -110,9 +112,9 @@
       id: 'O3S Library Spellblade',
       regex: /1B:........:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
       alertText: function(data) {
-        if (data.librarySpellbladePrinted) {
+        if (data.librarySpellbladePrinted)
           return;
-        }
+
         data.librarySpellbladePrinted = true;
         if (data.librarySpellbladeMe == '0064') {
           return {
@@ -140,18 +142,18 @@
       },
       condition: function(data, matches) {
         // This is only for library phase.
-        if (data.phase != 3) {
+        if (data.phase != 3)
           return false;
-        }
-        if (matches[1] == data.me) {
+
+        if (matches[1] == data.me)
           data.librarySpellbladeMe = matches[2];
-        }
+
         return true;
       },
       tts: function(data) {
-        if (data.librarySpellbladePrinted) {
+        if (data.librarySpellbladePrinted)
           return;
-        }
+
         data.librarySpellbladePrinted = true;
         if (data.librarySpellbladeMe == '0064') {
           return {
@@ -169,66 +171,58 @@
           en: 'stack inside',
           de: 'innen stek en',
         };
-      }
+      },
     },
     {
       id: 'O3S Right Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_510|Rechts) from/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      durationSeconds: 8,
       infoText: {
         en: 'Mindjack: Right',
         de: 'Geistlenkung: Rechts',
-      },
-      durationSeconds: 8,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      tts: {
-        en: 'mindjack right',
-        de: 'geistlenkung rechts',
       },
     },
     {
       id: 'O3S Forward March',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_50D|Vorwärts) from/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      durationSeconds: 8,
       infoText: {
         en: 'Mindjack: Forward',
         de: 'Geistlenkung: Vorwärts',
-      },
-      durationSeconds: 8,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      tts: {
-        en: 'mindjack forward',
-        de: 'geistlenkung vorwärts',
       },
     },
     {
       id: 'O3S Left Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_50F|Links) from/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      durationSeconds: 8,
       infoText: {
         en: 'Mindjack: Left',
         de: 'Geistlenkung: Links',
-      },
-      durationSeconds: 8,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      tts: {
-        en: 'mindjack left',
-        de: 'geistlenkung links',
       },
     },
     {
       id: 'O3S About Face',
       regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
       regexDe: /(\y{Name}) gains the effect of (?:Unknown_50E|Rückwärts) from/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      durationSeconds: 8,
       infoText: {
         en: 'Mindjack: Back',
         de: 'Geistlenkung: Zurück',
-      },
-      durationSeconds: 8,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      tts: {
-        en: 'mindjack back',
-        de: 'geistlenkung zurück',
       },
     },
     {
@@ -327,5 +321,5 @@
         de: 'ranken',
       },
     },
-  ]
-}]
+  ],
+}];

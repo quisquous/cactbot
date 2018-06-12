@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 function computeBackgroundColorFrom(element, classList) {
-  var div = document.createElement('div');
-  var classes = classList.split('.');
-  for (var i = 0; i < classes.length; ++i)
+  let div = document.createElement('div');
+  let classes = classList.split('.');
+  for (let i = 0; i < classes.length; ++i)
     div.classList.add(classes[i]);
   element.appendChild(div);
-  var color = window.getComputedStyle(div).backgroundColor;
+  let color = window.getComputedStyle(div).backgroundColor;
   element.removeChild(div);
   return color;
 }
@@ -32,6 +32,8 @@ class Timeline {
     this.activeSyncs = [];
     // Sorted by event occurance time.
     this.activeEvents = [];
+    // Sorted by line.
+    this.errors = [];
     this.LoadFile(text, triggers);
     this.Stop();
   }
@@ -40,16 +42,15 @@ class Timeline {
     if (!this.replacements)
       return text;
 
-    var orig = text;
-    var locale = this.options.Language || 'en';
-    for (var i = 0; i < this.replacements.length; ++i) {
-      var r = this.replacements[i];
+    let orig = text;
+    let locale = this.options.Language || 'en';
+    for (let i = 0; i < this.replacements.length; ++i) {
+      let r = this.replacements[i];
       if (r.locale && r.locale != locale)
         continue;
-      var keys = Object.keys(r[replaceKey]);
-      for (var j = 0; j < keys.length; ++j) {
-        text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]])
-      }
+      let keys = Object.keys(r[replaceKey]);
+      for (let j = 0; j < keys.length; ++j)
+        text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]]);
     }
     return text;
   }
@@ -67,28 +68,28 @@ class Timeline {
     this.syncStarts = [];
     this.syncEnds = [];
 
-    var uniqueid = 1;
-    var texts = {};
+    let uniqueid = 1;
+    let texts = {};
 
-    var lines = text.split('\n');
-    for (var i = 0; i < lines.length; ++i) {
-      var line = lines[i];
+    let lines = text.split('\n');
+    for (let i = 0; i < lines.length; ++i) {
+      let line = lines[i];
       line = line.trim();
       // Drop comments and empty lines.
       if (!line || line.match(/^\s*#/))
         continue;
-      var originalLine = line;
+      let originalLine = line;
 
-      var match = line.match(/^hideall\s+\"([^"]+)\"$/);
+      let match = line.match(/^hideall\s+\"([^"]+)\"$/);
       if (match != null) {
         this.ignores[match[1]] = true;
         continue;
       }
 
-      match = line.match(/^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/)
+      match = line.match(/^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/);
       if (match != null) {
         // TODO: Support alert sounds?
-        if (match[3] == "sound")
+        if (match[3] == 'sound')
           continue;
         texts[match[1]] = texts[match[1]] || [];
         texts[match[1]].push({
@@ -105,7 +106,7 @@ class Timeline {
       if (match)
         continue;
 
-      match = line.match(/^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/)
+      match = line.match(/^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/);
       if (match != null) {
         texts[match[2]] = texts[match[2]] || [];
         texts[match[2]].push({
@@ -118,13 +119,18 @@ class Timeline {
 
       match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
       if (match == null) {
-        console.log("Unknown timeline: " + originalLine);
+        this.errors.push({
+          lineNumber: i,
+          line: originalLine,
+          error: 'Invalid format',
+        });
+        console.log('Unknown timeline: ' + originalLine);
         continue;
       }
       line = line.replace(match[1], '').trim();
 
-      var seconds = parseFloat(match[2]);
-      var e = {
+      let seconds = parseFloat(match[2]);
+      let e = {
         id: uniqueid++,
         time: seconds,
         // The original ability name in the timeline.  Used for hideall, infotext, etc.
@@ -134,7 +140,7 @@ class Timeline {
         activeTime: 0,
       };
       if (line) {
-        var commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
+        let commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
           e.duration = parseFloat(commandMatch[2]);
@@ -142,15 +148,15 @@ class Timeline {
         commandMatch = line.match(/(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
-          var sync = {
+          let sync = {
             id: uniqueid,
             regex: Regexes.Parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
-          }
+          };
           if (commandMatch[3]) {
-            var argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
+            let argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
             if (argMatch) {
               line = line.replace(argMatch[1], '').trim();
               if (argMatch[2]) {
@@ -172,18 +178,24 @@ class Timeline {
         }
       }
       // If there's text left that isn't a comment then we didn't parse that text so report it.
-      if (line && !line.match(/^\s*#/))
-        console.log("Unknown content '" + line + "' in timeline: " + originalLine);
-      else
+      if (line && !line.match(/^\s*#/)) {
+        console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
+        this.errors.push({
+          lineNumber: i,
+          line: originalLine,
+          error: 'Extra text',
+        });
+      } else {
         this.events.push(e);
+      }
     }
 
-    for (var i = 0; i < this.events.length; ++i) {
-      var e = this.events[i];
+    for (let i = 0; i < this.events.length; ++i) {
+      let e = this.events[i];
       if (e.name in texts) {
-        for (var j = 0; j < texts[e.name].length; ++j) {
-          var matchedTextEvent = texts[e.name][j];
-          var t = {
+        for (let j = 0; j < texts[e.name].length; ++j) {
+          let matchedTextEvent = texts[e.name][j];
+          let t = {
             type: matchedTextEvent.type,
             time: e.time - matchedTextEvent.secondsBefore,
             text: matchedTextEvent.text,
@@ -194,17 +206,19 @@ class Timeline {
 
       // Rather than matching triggers at run time, pre-match all the triggers
       // against timeline text and insert them as text events to run.
-      for (var t = 0; t < triggers.length; ++t) {
-        var trigger = triggers[t];
-        var m = e.name.match(trigger.regex);
-        if (!m)
-          continue;
-        this.texts.push({
-          type: 'trigger',
-          time: e.time - (trigger.beforeSeconds || 0),
-          trigger: trigger,
-          matches: m,
-        });
+      if (triggers) {
+        for (let t = 0; t < triggers.length; ++t) {
+          let trigger = triggers[t];
+          let m = e.name.match(trigger.regex);
+          if (!m)
+            continue;
+          this.texts.push({
+            type: 'trigger',
+            time: e.time - (trigger.beforeSeconds || 0),
+            trigger: trigger,
+            matches: m,
+          });
+        }
       }
     }
 
@@ -214,12 +228,18 @@ class Timeline {
       if (a.time == b.time) return a.id - b.id;
       return a.time - b.time;
     });
-    for (var i = 0; i < this.events.length; ++i)
+    for (let i = 0; i < this.events.length; ++i)
       this.events[i].sortKey = i;
 
-    this.texts.sort(function(a, b) { return a.time - b.time });
-    this.syncStarts.sort(function(a, b) { return a.start - b.start });
-    this.syncEnds.sort(function(a, b) { return a.end - b.end });
+    this.texts.sort(function(a, b) {
+      return a.time - b.time;
+    });
+    this.syncStarts.sort(function(a, b) {
+      return a.start - b.start;
+    });
+    this.syncEnds.sort(function(a, b) {
+      return a.end - b.end;
+    });
   }
 
   Stop() {
@@ -230,7 +250,7 @@ class Timeline {
     this.nextSyncStart = 0;
     this.nextSyncEnd = 0;
 
-    var fightNow = 0;
+    let fightNow = 0;
     this._AdvanceTimeTo(fightNow);
     this._CollectActiveSyncs(fightNow);
 
@@ -265,15 +285,15 @@ class Timeline {
 
   _CollectActiveSyncs(fightNow) {
     this.activeSyncs = [];
-    for (var i = this.nextSyncEnd; i < this.syncEnds.length; ++i) {
+    for (let i = this.nextSyncEnd; i < this.syncEnds.length; ++i) {
       if (this.syncEnds[i].start <= fightNow)
         this.activeSyncs.push(this.syncEnds[i]);
     }
   }
 
   OnLogLine(line) {
-    for (var i = 0; i < this.activeSyncs.length; ++i) {
-      var sync = this.activeSyncs[i];
+    for (let i = 0; i < this.activeSyncs.length; ++i) {
+      let sync = this.activeSyncs[i];
       if (line.search(sync.regex) >= 0) {
         if ('jump' in sync) {
           if (!sync.jump)
@@ -293,15 +313,18 @@ class Timeline {
       ++this.nextEvent;
     while (this.nextText < this.texts.length && this.texts[this.nextText].time <= fightNow)
       ++this.nextText;
-    while (this.nextSyncStart < this.syncStarts.length && this.syncStarts[this.nextSyncStart].start <= fightNow)
+    while (this.nextSyncStart < this.syncStarts.length &&
+        this.syncStarts[this.nextSyncStart].start <= fightNow)
       ++this.nextSyncStart;
-    while (this.nextSyncEnd < this.syncEnds.length && this.syncEnds[this.nextSyncEnd].end <= fightNow)
+
+    while (this.nextSyncEnd < this.syncEnds.length &&
+        this.syncEnds[this.nextSyncEnd].end <= fightNow)
       ++this.nextSyncEnd;
   }
 
   _ClearTimers() {
     if (this.removeTimerCallback) {
-      for (var i = 0; i < this.activeEvents.length; ++i)
+      for (let i = 0; i < this.activeEvents.length; ++i)
         this.removeTimerCallback(this.activeEvents[i], false);
     }
     this.activeEvents = [];
@@ -316,12 +339,12 @@ class Timeline {
   }
 
   _AddDurationTimers(fightNow) {
-    var sort = false;
-    var events = [];
-    for (var i = 0; i < this.activeEvents.length; ++i) {
-      var e = this.activeEvents[i];
+    let sort = false;
+    let events = [];
+    for (let i = 0; i < this.activeEvents.length; ++i) {
+      let e = this.activeEvents[i];
       if (e.time <= fightNow && e.duration) {
-        var durationEvent = {
+        let durationEvent = {
           id: e.id,
           time: e.time + e.duration,
           sortKey: e.sortKey,
@@ -338,12 +361,15 @@ class Timeline {
     }
     if (events.length)
       Array.prototype.push.apply(this.activeEvents, events);
-      this.activeEvents.sort(function(a, b) { return a.time - b.time });
+    this.activeEvents.sort(function(a, b) {
+      return a.time - b.time;
+    });
   }
 
   _AddUpcomingTimers(fightNow) {
-    while (this.nextEvent < this.events.length && this.activeEvents.length < this.options.MaxNumberOfTimerBars) {
-      var e = this.events[this.nextEvent];
+    while (this.nextEvent < this.events.length &&
+        this.activeEvents.length < this.options.MaxNumberOfTimerBars) {
+      let e = this.events[this.nextEvent];
       if (e.time - fightNow > this.options.ShowTimerBarsAtSeconds)
         break;
       if (fightNow < e.time && !(e.name in this.ignores)) {
@@ -357,7 +383,7 @@ class Timeline {
 
   _AddPassedTexts(fightNow) {
     while (this.nextText < this.texts.length) {
-      var t = this.texts[this.nextText];
+      let t = this.texts[this.nextText];
       if (t.time > fightNow)
         break;
       if (t.type == 'info') {
@@ -388,53 +414,56 @@ class Timeline {
   }
 
   _ScheduleUpdate(fightNow) {
-    console.assert(this.timebase, "_ScheduleUpdate called while stopped");
+    console.assert(this.timebase, '_ScheduleUpdate called while stopped');
 
-    var kBig = 1000000000; // Something bigger than any fight length in seconds.
-    var nextEventStarting = kBig;
-    var nextTextOccurs = kBig;
-    var nextEventEnding = kBig;
-    var nextSyncStarting = kBig;
-    var nextSyncEnding = kBig;
+    let kBig = 1000000000; // Something bigger than any fight length in seconds.
+    let nextEventStarting = kBig;
+    let nextTextOccurs = kBig;
+    let nextEventEnding = kBig;
+    let nextSyncStarting = kBig;
+    let nextSyncEnding = kBig;
 
     if (this.nextEvent < this.events.length) {
-      var nextEventEndsAt = this.events[this.nextEvent].time
-      console.assert(nextEventStarting > fightNow, "nextEvent wasn't updated before calling _ScheduleUpdate")
+      let nextEventEndsAt = this.events[this.nextEvent].time;
+      console.assert(nextEventStarting > fightNow, 'nextEvent wasn\'t updated before calling _ScheduleUpdate');
       // There might be more events than we can show, so the next event might be in
       // the past. If that happens, then ignore it, as we can't use that for our timer.
-      var showNextEventAt = nextEventEndsAt - this.options.ShowTimerBarsAtSeconds;
+      let showNextEventAt = nextEventEndsAt - this.options.ShowTimerBarsAtSeconds;
       if (showNextEventAt > fightNow)
         nextEventStarting = showNextEventAt;
     }
     if (this.nextText < this.texts.length) {
       nextTextOccurs = this.texts[this.nextText].time;
-      console.assert(nextTextOccurs > fightNow, "nextText wasn't updated before calling _ScheduleUpdate")
+      console.assert(nextTextOccurs > fightNow, 'nextText wasn\'t updated before calling _ScheduleUpdate');
     }
     if (this.activeEvents.length > 0) {
       nextEventEnding = this.activeEvents[0].time;
-      console.assert(nextEventEnding > fightNow, "Expired activeEvents weren't pruned before calling _ScheduleUpdate")
+      console.assert(nextEventEnding > fightNow, 'Expired activeEvents weren\'t pruned before calling _ScheduleUpdate');
     }
     if (this.nextSyncStart < this.syncStarts.length) {
       nextSyncStarting = this.syncStarts[this.nextSyncStart].start;
-      console.assert(nextSyncStarting > fightNow, "nextSyncStart wasn't updated before calling _ScheduleUpdate")
+      console.assert(nextSyncStarting > fightNow, 'nextSyncStart wasn\'t updated before calling _ScheduleUpdate');
     }
     if (this.nextSyncEnd < this.syncEnds.length) {
       nextSyncEnding = this.syncEnds[this.nextSyncEnd].end;
-      console.assert(nextSyncEnding > fightNow, "nextSyncEnd wasn't updated before calling _ScheduleUpdate")
+      console.assert(nextSyncEnding > fightNow, 'nextSyncEnd wasn\'t updated before calling _ScheduleUpdate');
     }
 
-    var nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding, Math.min(nextTextOccurs, Math.min(nextSyncStarting, nextSyncEnding))));
+    let nextTime = Math.min(nextEventStarting, Math.min(nextEventEnding,
+        Math.min(nextTextOccurs, Math.min(nextSyncStarting, nextSyncEnding))));
     if (nextTime != kBig) {
-      console.assert(nextTime > fightNow, "nextTime is in the past")
-      this.updateTimer = window.setTimeout(this._OnUpdateTimer.bind(this), (nextTime - fightNow) * 1000);
+      console.assert(nextTime > fightNow, 'nextTime is in the past');
+      this.updateTimer = window.setTimeout(
+          this._OnUpdateTimer.bind(this),
+          (nextTime - fightNow) * 1000);
     }
   }
 
   _OnUpdateTimer() {
-    console.assert(this.timebase, "_OnTimerUpdate called while stopped");
+    console.assert(this.timebase, '_OnTimerUpdate called while stopped');
 
     // This is the number of seconds into the fight (subtracting Dates gives milliseconds).
-    var fightNow = (new Date() - this.timebase) / 1000;
+    let fightNow = (new Date() - this.timebase) / 1000;
     // Send text events now or they'd be skipped by _AdvanceTimeTo().
     this._AddPassedTexts(fightNow, true);
     this._AdvanceTimeTo(fightNow);
@@ -446,14 +475,30 @@ class Timeline {
     this._ScheduleUpdate(fightNow);
   }
 
-  SetAddTimer(c) { this.addTimerCallback = c; }
-  SetRemoveTimer(c) { this.removeTimerCallback = c; }
-  SetShowInfoText(c) { this.showInfoTextCallback = c; }
-  SetShowAlertText(c) { this.showAlertTextCallback = c; }
-  SetShowAlarmText(c) { this.showAlarmTextCallback = c; }
-  SetSpeakTTS(c) { this.speakTTSCallback = c; }
-  SetTrigger(c) { this.triggerCallback = c; }
-  SetSyncTime(c) { this.syncTimeCallback = c; }
+  SetAddTimer(c) {
+    this.addTimerCallback = c;
+  }
+  SetRemoveTimer(c) {
+    this.removeTimerCallback = c;
+  }
+  SetShowInfoText(c) {
+    this.showInfoTextCallback = c;
+  }
+  SetShowAlertText(c) {
+    this.showAlertTextCallback = c;
+  }
+  SetShowAlarmText(c) {
+    this.showAlarmTextCallback = c;
+  }
+  SetSpeakTTS(c) {
+    this.speakTTSCallback = c;
+  }
+  SetTrigger(c) {
+    this.triggerCallback = c;
+  }
+  SetSyncTime(c) {
+    this.syncTimeCallback = c;
+  }
 };
 
 class TimelineUI {
@@ -469,10 +514,10 @@ class TimelineUI {
     this.root = document.getElementById('timeline-container');
 
     this.barWidth = window.getComputedStyle(this.root).width;
-    var windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
+    let windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
     this.barHeight = windowHeight / this.options.MaxNumberOfTimerBars - 2;
 
-    this.barColor =  computeBackgroundColorFrom(this.root, 'timeline-bar-color');
+    this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
     this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
 
     this.timerlist = document.getElementById('timeline');
@@ -480,12 +525,12 @@ class TimelineUI {
     this.timerlist.rowcolsize = this.options.MaxNumberOfTimerBars;
     this.timerlist.elementwidth = this.barWidth;
     this.timerlist.elementheight = this.barHeight + 2;
-    this.timerlist.toward = "down right";
+    this.timerlist.toward = 'down right';
 
     // Helper for positioning/resizing when locked.
-    var helper = document.getElementById('timeline-resize-helper');
-    for (var i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
-      var helperBar = document.createElement('div');
+    let helper = document.getElementById('timeline-resize-helper');
+    for (let i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
+      let helperBar = document.createElement('div');
       helperBar.classList.add('text');
       helperBar.classList.add('resize-helper-bar');
       helperBar.classList.add('timeline-bar-color');
@@ -493,7 +538,7 @@ class TimelineUI {
         helperBar.classList.add('soon');
       helperBar.innerText = 'Test bar ' + (i + 1);
       helper.appendChild(helperBar);
-      var borderWidth = parseFloat(window.getComputedStyle(helperBar).borderWidth.match(/([0-9.]+)px/)[1]);
+      let borderWidth = parseFloat(window.getComputedStyle(helperBar).borderWidth.match(/([0-9.]+)px/)[1]);
       helperBar.style.width = this.barWidth - borderWidth * 2;
       helperBar.style.height = this.barHeight - borderWidth * 2;
     }
@@ -539,8 +584,8 @@ class TimelineUI {
   }
 
   OnAddTimer(fightNow, e, channeling) {
-    var div = document.createElement('div');
-    var bar = document.createElement('timer-bar');
+    let div = document.createElement('div');
+    let bar = document.createElement('timer-bar');
     div.appendChild(bar);
     bar.width = this.barWidth;
     bar.height = this.barHeight;
@@ -553,7 +598,9 @@ class TimelineUI {
 
     if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
       bar.fg = this.barColor;
-      window.setTimeout(this.OnTimerExpiresSoon.bind(this, e.id), (e.time - fightNow - this.options.BarExpiresSoonSeconds) * 1000);
+      window.setTimeout(
+          this.OnTimerExpiresSoon.bind(this, e.id),
+          (e.time - fightNow - this.options.BarExpiresSoonSeconds) * 1000);
     } else {
       bar.fg = this.barExpiresSoonColor;
     }
@@ -561,7 +608,7 @@ class TimelineUI {
     this.timerlist.addElement(e.id, div, e.sortKey);
     this.activeBars[e.id] = bar;
     if (e.id in this.expireTimers) {
-      window.clearTimeout(this.expireTimers[e.id])
+      window.clearTimeout(this.expireTimers[e.id]);
       delete this.expireTimers[e.id];
     }
   }
@@ -573,10 +620,12 @@ class TimelineUI {
 
   OnRemoveTimer(e, expired) {
     if (expired && this.options.KeepExpiredTimerBarsForSeconds) {
-      this.expireTimers[e.id] = window.setTimeout(this.OnRemoveTimer.bind(this, e, false), this.options.KeepExpiredTimerBarsForSeconds * 1000);
+      this.expireTimers[e.id] = window.setTimeout(
+          this.OnRemoveTimer.bind(this, e, false),
+          this.options.KeepExpiredTimerBarsForSeconds * 1000);
       return;
     } else if (e.id in this.expireTimers) {
-      window.clearTimeout(this.expireTimers[e.id])
+      window.clearTimeout(this.expireTimers[e.id]);
       delete this.expireTimers[e.id];
     }
     this.timerlist.removeElement(e.id);
@@ -662,7 +711,7 @@ class TimelineController {
   OnLogEvent(e) {
     if (!this.activeTimeline)
       return;
-    for (var i = 0; i < e.detail.logs.length; ++i)
+    for (let i = 0; i < e.detail.logs.length; ++i)
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
   }
 
@@ -672,18 +721,18 @@ class TimelineController {
     if (!this.options.TimelineEnabled)
       return;
 
-    var text = '';
+    let text = '';
 
     // Get the text from each file in |timelineFiles|.
-    for (var i = 0; i < timelineFiles.length; ++i) {
-      var name = timelineFiles[i];
+    for (let i = 0; i < timelineFiles.length; ++i) {
+      let name = timelineFiles[i];
       if (name in this.timelines)
         text = text + '\n' + this.timelines[name];
       else
         console.log('Timeline file not found: ' + name);
     }
     // Append text from each block in |timelines|.
-    for (var i = 0; i < timelines.length; ++i)
+    for (let i = 0; i < timelines.length; ++i)
       text = text + '\n' + timelines[i];
 
     if (text)
@@ -693,12 +742,12 @@ class TimelineController {
 
   SetDataFiles(files) {
     this.timelines = {};
-    for (var f in files) {
+    for (let f in files) {
       // Reads from the data/timelines/ directory.
       if (!f.startsWith('timelines/'))
         continue;
 
-      var name = f;
+      let name = f;
       // Drop leading directory names.
       if (name.indexOf('/') >= 0)
         name = name.split('/').slice(-1)[0];
@@ -709,7 +758,9 @@ class TimelineController {
 }
 
 class TimelineLoader {
-  constructor(timelineController) { this.timelineController = timelineController; }
+  constructor(timelineController) {
+    this.timelineController = timelineController;
+  }
 
   SetTimelines(timelineFiles, timelines, replacements, triggers) {
     this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements, triggers);
@@ -720,11 +771,12 @@ class TimelineLoader {
   }
 }
 
-var gTimelineController;
-
-document.addEventListener("onLogEvent", function(e) {
-  gTimelineController.OnLogEvent(e);
-});
-document.addEventListener("onDataFilesRead", function(e) {
-  gTimelineController.SetDataFiles(e.detail.files);
-});
+// Node compatibility shenanigans.  There's probably a better way to do this.
+/* eslint-disable no-var */
+if (typeof require !== 'undefined') {
+  let path = require('path');
+  var Regexes = require('../../resources/regexes.js');
+}
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = Timeline;
+/* eslint-enable */

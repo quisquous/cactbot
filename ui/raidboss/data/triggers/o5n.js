@@ -1,3 +1,5 @@
+'use strict';
+
 // O5N - Sigmascape 1.0 Normal
 [{
   zoneRegex: /^(Sigmascape \(V1\.0\)|Sigmascape V1\.0)$/,
@@ -23,7 +25,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
@@ -39,7 +41,7 @@
           return {
             en: 'buster',
             de: 'tenkbasta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -52,12 +54,12 @@
       alertText: {
         en: 'Go to back',
         de: 'Nach hinten laufen',
-        fr: "S'éloigner",
+        fr: 'S\'éloigner',
       },
       tts: {
         en: 'run away',
         de: 'ab nach hinten',
-        fr: "s'éloigner",
+        fr: 's\'éloigner',
       },
     },
     {
@@ -70,47 +72,36 @@
         de: 'Stack in der Mitte',
         fr: 'Stack au milieu',
       },
-      tts: {
-        en: 'Stack middle',
-        de: 'Stek in der Mitte',
-        fr: 'Stack au milieu',
-      },
     },
     {
       id: 'O5N Diabolic Light',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: {
         en: 'Light',
         de: 'Licht',
-        fr: 'Lumière',
-      },
-      tts: {
-        en: 'light',
-        de: 'licht',
         fr: 'Lumière',
       },
     },
     {
       id: 'O5N Diabolic Wind',
       regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
       infoText: {
         en: 'Wind',
         de: 'Wind',
-        fr: 'Vent',
-      },
-      tts: {
-        en: 'wind',
-        de: 'wind',
         fr: 'Vent',
       },
     },
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Agony': 'Gequälter Geist',
         'Doom Chimney': 'Unheilvoller Schornstein',
         'Phantom Train': 'Phantomzug',
@@ -121,7 +112,7 @@
         'Malice': 'Bösartiger Geist',
         'Engage!': 'Start!',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Enrage': 'Finalangriff',
@@ -152,11 +143,11 @@
         'Prey': 'Markiert',
         'Stun': 'Betäubung',
         'Throttle': 'Erstickung',
-      }
+      },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Agony': 'Fantôme Souffrant',
         'Doom Chimney': 'Cheminée Maléfique',
         'Phantom Train': 'Train fantôme',
@@ -165,9 +156,9 @@
         'Remorse': 'Fantôme Mélancolique',
         'Agony': 'Fantôme Souffrant',
         'Malice': 'Fantôme Rancunier',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
       },
-      replaceText: {
+      'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--synchronisation--',
         '--targetable--': '--ciblable--',
@@ -183,17 +174,15 @@
         'Diabolic Wind': 'Vent Diabolique',
         'Doom Strike': 'Frappe Létale',
         'Encumber': 'Encombrement',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Head On': 'Plein Fouet',
         'Possess': 'Possession',
         'Saintly Beam': 'Faisceaux Sacrés',
-
-        // FIXME:
         'Crossing Whistle': 'Sifflet traversée',
         'Tether Whistle': 'Sifflet liens',
         'Ghosts': 'Fantômes',
         'Ghosts spawn': 'Pop des Fantômes',
-        'Add Wave': "Vague d'Adds",
+        'Add Wave': 'Vague d\'Adds',
         'Ghost Beams': 'Faisceaux Sacrés',
       },
       '~effectNames': {
@@ -201,11 +190,11 @@
         'Prey': 'Marquage',
         'Stun': 'Étourdissement',
         'Throttle': 'Suffocation',
-      }
+      },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Agony': '苦悶のゴースト',
         'Doom Chimney': '魔煙突',
         'Phantom Train': '魔列車',
@@ -215,7 +204,7 @@
         'Agony': '苦悶のゴースト',
         'Malice': '怨念のゴースト',
       },
-      replaceText: {
+      'replaceText': {
         'Acid Rain': '酸性雨',
         'All In The Mind': '念力',
         'Diabolic Chimney': '魔界の噴煙',
@@ -235,7 +224,7 @@
         'Prey': 'マーキング',
         'Stun': 'スタン',
         'Throttle': '窒息',
-      }
-    }
+      },
+    },
   ],
-}]
+}];

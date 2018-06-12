@@ -1,4 +1,6 @@
-﻿// O5S - Sigmascape 1.0 Savage
+'use strict';
+
+// O5S - Sigmascape 1.0 Savage
 // localization:
 //   de: done
 //   fr: missing replaceText, triggers
@@ -55,18 +57,18 @@
       regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
       regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
       regexJa: /14:28A4:魔列車 starts using 追突/,
-      alertText: function (data) {
+      alertText: function(data) {
         return {
           en: 'Go to back',
           de: 'Nach hinten laufen',
-          fr: "S'éloigner",
+          fr: 'S\'éloigner',
         };
       },
       tts: function(data) {
         return {
           en: 'run away',
           de: 'ab nach hinten',
-          fr: "S'éloigner",
+          fr: 'S\'éloigner',
         };
       },
     },
@@ -76,17 +78,10 @@
       regexDe: /14:28B2:Phantomzug starts using Diabolische Leuchte/,
       regexFr: /14:28B2:Train Fantôme starts using Phare Diabolique/,
       regexJa: /14:28B2:魔列車 starts using 魔界の前照灯/,
-      alertText: function (data) {
+      alertText: function(data) {
         return {
           en: 'Stack middle',
           de: 'Stack in der Mitte',
-          fr: 'Stack au milieu',
-        };
-      },
-      tts: function(data) {
-        return {
-          en: 'Stack middle',
-          de: 'Stek in der Mitte',
           fr: 'Stack au milieu',
         };
       },
@@ -94,15 +89,10 @@
     {
       id: 'O5S Diabolic Light',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: function (data) {
-        return {
-          en: 'Light',
-          de: 'Licht',
-          fr: 'Lumière',
-        };
+      condition: function(data, matches) {
+        return matches[1] == data.me;
       },
-      tts: function (data) {
+      infoText: function(data) {
         return {
           en: 'Light',
           de: 'Licht',
@@ -113,15 +103,10 @@
     {
       id: 'O5S Diabolic Wind',
       regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      infoText: function (data) {
-        return {
-          en: 'Wind',
-          de: 'Wind',
-          fr: 'Vent',
-        };
+      condition: function(data, matches) {
+        return matches[1] == data.me;
       },
-      tts: function (data) {
+      infoText: function(data) {
         return {
           en: 'Wind',
           de: 'Wind',
@@ -135,14 +120,7 @@
       regexDe: /Added new combatant Melancholischer Geist/,
       regexFr: /Added new combatant Fantôme Mélancolique/,
       regexJa: /Added new combatant 未練のゴースト/,
-      infoText: function (data) {
-        return {
-          en: 'Knockback Ghost',
-          de: 'Rückstoß Geist',
-          fr: 'Fantôme soufflant',
-        };
-      },
-      tts: function (data) {
+      infoText: function(data) {
         return {
           en: 'Knockback Ghost',
           de: 'Rückstoß Geist',
@@ -153,8 +131,8 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Agony': 'Gequälter Geist',
         'Doom Chimney': 'Unheilvoller Schornstein',
         'Phantom Train': 'Phantomzug',
@@ -165,7 +143,7 @@
         'Malice': 'Bösartiger Geist',
         'Engage!': 'Start!',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Enrage': 'Finalangriff',
@@ -197,11 +175,11 @@
         'Prey': 'Markiert',
         'Stun': 'Betäubung',
         'Throttle': 'Erstickung',
-      }
+      },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Agony': 'Fantôme Souffrant',
         'Doom Chimney': 'Cheminée Maléfique',
         'Phantom Train': 'Train Fantôme',
@@ -210,9 +188,9 @@
         'Remorse': 'Fantôme Mélancolique',
         'Agony': 'Fantôme Souffrant',
         'Malice': 'Fantôme Rancunier',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
       },
-      replaceText: {
+      'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',
@@ -228,7 +206,7 @@
         'Diabolic Wind': 'Vent Diabolique',
         'Doom Strike': 'Frappe Létale',
         'Encumber': 'Encombrement',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Head On': 'Plein Fouet',
         'Possess': 'Possession',
         'Saintly Beam': 'Faisceaux Sacrés',
@@ -236,7 +214,7 @@
         'Crossing Whistle': 'Sifflet traversée',
         'Tether Whistle': 'Sifflet liens',
         'Ghosts spawn': 'Pop des Fantômes',
-        'Add Wave': "Vague d'Adds",
+        'Add Wave': 'Vague d\'Adds',
         'Ghost Beams': 'Faisceaux Sacrés',
       },
       '~effectNames': {
@@ -244,11 +222,11 @@
         'Prey': 'Marquage',
         'Stun': 'Étourdissement',
         'Throttle': 'Suffocation',
-      }
+      },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Agony': '苦悶のゴースト',
         'Doom Chimney': '魔煙突',
         'Phantom Train': '魔列車',
@@ -258,7 +236,7 @@
         'Agony': '苦悶のゴースト',
         'Malice': '怨念のゴースト',
       },
-      replaceText: {
+      'replaceText': {
         'Acid Rain': '酸性雨',
         'All In The Mind': '念力',
         'Diabolic Chimney': '魔界の噴煙',
@@ -284,7 +262,7 @@
         'Prey': 'マーキング',
         'Stun': 'スタン',
         'Throttle': '窒息',
-      }
-    }
+      },
+    },
   ],
-}]
+}];

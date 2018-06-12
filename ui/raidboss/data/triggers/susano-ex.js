@@ -1,3 +1,5 @@
+'use strict';
+
 // Susano Extreme
 [{
   zoneRegex: /^The Pool Of Tribute \(Extreme\)$/,
@@ -9,7 +11,9 @@
     { // Thundercloud tracker
       regex: /:Added new combatant Thunderhead\./,
       regexDe: /:Added new combatant Gewitterwolke\./,
-      run: function(data) { data.cloud = true; },
+      run: function(data) {
+        data.cloud = true;
+      },
     },
     { // Thundercloud tracker
       // Stop tracking the cloud after it casts lightning instead of
@@ -18,13 +22,19 @@
       // lightning attached to it.
       regex: /:Thunderhead starts using The Parting Clouds on Thunderhead\./,
       regexDe: /:Gewitterkopf starts using Wolkenriss on Gewitterkopf\./,
-      run: function(data) { data.cloud = false; },
+      run: function(data) {
+        data.cloud = false;
+      },
     },
     { // Churning tracker
       regex: /:\y{Name} gains the effect of Churning from Susano/,
       regex: /:\y{Name} gains the effect of Schäumend from Susano/,
-      condition: function(data) { return !data.churning; },
-      run: function(data) { data.churning = true; },
+      condition: function(data) {
+        return !data.churning;
+      },
+      run: function(data) {
+        data.churning = true;
+      },
     },
     { // Churning tracker
       // We could track the number of people with churning here, but
@@ -32,8 +42,12 @@
       // while having churning, but is probably ok in most cases.
       regex: /:\y{Name} loses the effect of Churning from Susano\./,
       regexDe: /:\y{Name} loses the effect of Schäumend from Susano\./,
-      condition: function(data) { return data.churning; },
-      run: function(data) { data.churning = false; },
+      condition: function(data) {
+        return data.churning;
+      },
+      run: function(data) {
+        data.churning = false;
+      },
     },
     {
       id: 'SusEx Tankbuster',
@@ -69,7 +83,9 @@
     { // Red knockback marker indicator
       id: 'SusEx Knockback',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: function(data) {
         if (data.cloud) {
           return {
@@ -81,12 +97,11 @@
             en: 'Knockback + dice (STOP)',
             de: 'Rückstoss + Würfel (STOPP)',
           };
-        } else {
-          return {
-            en: 'Knockback on YOU',
-            de: 'Rückstoß auf DIR',
-          };
         }
+        return {
+          en: 'Knockback on YOU',
+          de: 'Rückstoß auf DIR',
+        };
       },
       tts: function(data) {
         if (data.cloud) {
@@ -99,30 +114,30 @@
             en: 'Knockback with dice',
             de: 'Rückstoß mit Würfel',
           };
-        } else {
-          return {
-            en: 'Knockback',
-            de: 'Rückstoß',
-          };
         }
+        return {
+          en: 'Knockback',
+          de: 'Rückstoß',
+        };
       },
     },
     { // Levinbolt indicator
       id: 'SusEx Levinbolt',
       regex: /1B:........:(\y{Name}):....:....:006E:0000:0000:0000:/,
-      condition: function(data, matches) { return (matches[1] == data.me); },
+      condition: function(data, matches) {
+        return (matches[1] == data.me);
+      },
       alertText: function(data) {
         if (data.cloud) {
           return {
             en: 'Levinbolt on you (cloud)',
             de: 'Blitz auf Dir (Wolke)',
           };
-        } else {
-          return {
-            en: 'Levinbolt on you',
-            de: 'Blitz auf dir',
-          };
         }
+        return {
+          en: 'Levinbolt on you',
+          de: 'Blitz auf dir',
+        };
       },
       tts: function(data) {
         if (data.cloud) {
@@ -130,19 +145,18 @@
             en: 'bolt with cloud',
             de: 'blitz mit wolke',
           };
-        } else {
-          return {
-            en: 'bolt',
-            de: 'blitz',
-          };
         }
+        return {
+          en: 'bolt',
+          de: 'blitz',
+        };
       },
     },
     { // Levinbolt indicator debug
       id: 'SusEx Levinbolt Debug',
       regex: /1B:........:(\y{Name}):....:....:006E:0000:0000:0000:/,
       condition: function(data, matches) {
-      data.levinbolt = matches[1];
+        data.levinbolt = matches[1];
         return (matches[1] != data.me);
       },
     },
@@ -163,16 +177,16 @@
     { // Churning (dice)
       id: 'SusEx Churning',
       regex: /:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
-      delaySeconds: function(data, matches) { return data.ParseLocaleFloat(matches[2]) - 3; },
+      delaySeconds: function(data, matches) {
+        return parseFloat(matches[2]) - 3;
+      },
       alertText: {
         en: 'Stop',
         de: 'Stopp',
       },
-      condition: function(data, matches) { return matches[1] == data.me; },
-      tts: {
-        en: 'stop',
-        de: 'stopp',
+      condition: function(data, matches) {
+        return matches[1] == data.me;
       },
     },
-  ]
-}]
+  ],
+}];

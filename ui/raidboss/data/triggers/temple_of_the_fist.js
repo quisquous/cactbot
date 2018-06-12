@@ -1,3 +1,5 @@
+'use strict';
+
 // The Temple of the Fist
 [{
   zoneRegex: /^The Temple Of The Fist$/,
@@ -36,10 +38,6 @@
         en: 'watch for safe',
         de: 'nach Sicherheit schauen',
       },
-      tts: {
-        en: 'watch for safe',
-        de: 'nach sicherheit schauen',
-      },
     },
   ],
-}]
+}];
