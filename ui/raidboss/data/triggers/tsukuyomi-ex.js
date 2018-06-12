@@ -9,7 +9,7 @@
       id: 'Tsukuyomi Nightfall Gun',
       regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
       regexDe: / 14:2BBC:Tsukuyomi starts using Einbruch Der Dunkelheit/,
-      regexFr: / 14:2BBC:Tsukuyomi prépare Jeune nuit/,
+      regexFr: / 14:2BBC:Tsukuyomi prépare Jeune Nuit/,
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
@@ -20,7 +20,7 @@
       id: 'Tsukuyomi Nightfall Spear',
       regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
       regexDe: / 14:2BBD:Tsukuyomi starts using Einbruch Der Dunkelheit/,
-      regexFr: / 14:2BBC:Tsukuyomi prépare Jeune nuit/,
+      regexFr: / 14:2BBC:Tsukuyomi prépare Jeune Nuit/,
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
@@ -31,7 +31,7 @@
       id: 'Tsukuyomi Torment',
       regex: / 14:2BBB:Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
       regexDe: / 14:2BBB:Tsukuyomi starts using Todesqualen on (\y{Name})/,
-      regexFr: / 14:2BBB:Tsukuyomi prépare Brimade meurtrière sur (\y{Name})/,
+      regexFr: / 14:2BBB:Tsukuyomi prépare Brimade Meurtrière sur (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank') {
           return;
@@ -81,7 +81,7 @@
     {
       regex: /:Tsukuyomi gains the effect of Full Moon/,
       regexDe: /:Tsukuyomi gains the effect of Vollmond/,
-      regexFr: /:Tsukuyomi bénéficie de l'effet Force de la pleine lune/,
+      regexFr: /:Tsukuyomi bénéficie de l'effet Force De La Pleine Lune/,
       run: function(data) {
         let moonInOut = {
           en: 'Out',
@@ -94,7 +94,7 @@
     {
       regex: /:Tsukuyomi gains the effect of New Moon/,
       regexDe: /:Tsukuyomi gains the effect of Neumond/,
-      regexFr: /:Tsukuyomi bénéficie de l'effet Force de la nouvelle lune/,
+      regexFr: /:Tsukuyomi bénéficie de l'effet Force De La Nouvelle Lune/,
       run: function(data) {
         let moonInOut = {
           en: 'In',
