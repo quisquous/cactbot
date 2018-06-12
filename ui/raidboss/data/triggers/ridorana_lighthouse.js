@@ -8,7 +8,7 @@
       if (data.lang == 'de')
         return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
       if (data.lang == 'fr')
-        return 'alerttext "Stone Breath" before 7 "Aller derrière"';
+        return 'alerttext "Stone Breath" before 7 "Allez derrière"';
       return 'alerttext "Stone Breath" before 7 "Get Behind"';
     },
   ],
@@ -24,7 +24,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tank Buster sur VOUS',
           };
         }
       },
@@ -35,7 +35,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -43,7 +43,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -123,7 +123,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: 'S\'écrater',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -155,7 +155,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -166,7 +166,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -174,7 +174,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -188,7 +188,7 @@
       infoText: {
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
-        fr: 'Se placer sur une horloge lente',
+        fr: 'Placez-vous sur une horloge lente',
       },
     },
     {
@@ -215,7 +215,7 @@
       infoText: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
-        fr: 'Arrêter horloge',
+        fr: 'Arrêtez horloge',
       },
     },
     {
@@ -242,7 +242,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -253,7 +253,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -261,7 +261,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -278,7 +278,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: 'S\'écrater',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -329,27 +329,27 @@
             {
               en: 'Stay out',
               de: 'Draußen stehen',
-              fr: 'En dehors',
+              fr: 'Restez dehors',
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
-              fr: 'Aller sur le 1',
+              fr: 'Allez sur le 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
-              fr: 'Aller sur le 2',
+              fr: 'Allez sur le 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
-              fr: 'Aller sur le 3',
+              fr: 'Allez sur le 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
-              fr: 'Aller sur le 4',
+              fr: 'Allez sur le 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
@@ -448,7 +448,7 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
-        fr: 'S\'eloigner',
+        fr: 'Eloignez-vous',
       },
     },
     {
@@ -460,7 +460,7 @@
       alertText: {
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
-        fr: 'Aller derrière',
+        fr: 'Allez derrière le boss',
       },
     },
     {
@@ -490,7 +490,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -501,7 +501,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -509,7 +509,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -526,7 +526,7 @@
       infoText: {
         en: 'Out of Front',
         de: 'Vorm Boss weg',
-        fr: 'Pas devant',
+        fr: 'Ne restez pas devant',
       },
     },
     {
@@ -538,7 +538,7 @@
       alertText: {
         en: 'Get Under',
         de: 'Reingehen',
-        fr: 'En dessous',
+        fr: 'Allez sous le boss',
       },
     },
     {
@@ -553,7 +553,7 @@
       infoText: {
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
-        fr: 'Aller sur le plus',
+        fr: 'Allez sur le plus',
       },
     },
     {
@@ -568,7 +568,7 @@
       infoText: {
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
-        fr: 'Aller sur le moins',
+        fr: 'Allez sur le moins',
       },
     },
     {
@@ -761,9 +761,9 @@
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Briny Cannonade': 'Aqua-canon',
         'Dark Cannonade': 'Bombardement Ténébreux',
         'Dark Ewer': 'Aiguières Ténèbreuses',

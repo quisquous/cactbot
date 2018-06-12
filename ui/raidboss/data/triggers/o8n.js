@@ -14,14 +14,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Hyperdrive on YOU',
-            fr: 'Colonne de feu sur TOI',
+            fr: 'Colonne de feu sur VOUS',
             de: 'Hyperantrieb auf DIR',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
-            fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
+            fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
             de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
           };
         }
@@ -44,7 +44,7 @@
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
-        fr: 'Se préparer à la projection',
+        fr: 'Préparez-vous à la projection',
         de: 'Auf Rückstoß achten',
       },
       tts: {
@@ -60,7 +60,7 @@
       regexFr: /14:2929:Statue Divine starts using Onde Gravitationnelle/,
       alertText: {
         en: 'Get Right/East =>',
-        fr: 'Aller à Droite/Est =>',
+        fr: 'Allez à Droite/Est =>',
         de: 'Nach Rechts/Westen =>',
       },
       tts: {
@@ -76,7 +76,7 @@
       regexFr: /14:292A:Statue Divine starts using Volonté Intempérante/,
       alertText: {
         en: '<= Get Left/West',
-        fr: '<= Aller à Gauche/Ouest',
+        fr: '<= Allez à Gauche/Ouest',
         de: '<= Nach Links/Westen',
       },
       tts: {
@@ -92,12 +92,12 @@
       regexFr: /14:292B:Statue Divine starts using Ave Maria/,
       alertText: {
         en: 'Look At Statue',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
         de: 'Statue anschauen',
       },
       tts: {
         en: 'look towards',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
         de: 'anschauen',
       },
     },
@@ -108,12 +108,12 @@
       regexFr: /14:292C:Statue Divine starts using Volonté Indolente/,
       alertText: {
         en: 'Look Away From Statue',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
       },
       tts: {
         en: 'look away',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
       },
     },
@@ -136,7 +136,7 @@
       },
       infoText: {
         en: 'fire on YOU',
-        fr: 'feu sur TOI',
+        fr: 'Feu sur VOUS',
         de: 'Feuer auf DIR',
       },
       tts: {
@@ -199,12 +199,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Fake Ice: Get out',
-        fr: 'Fausse glace: Sortir',
+        fr: 'Fausse glace : Sortez',
         de: 'Falsches Eis: Rausgehen',
       },
       tts: {
         en: 'Get out',
-        fr: 'Sortir',
+        fr: 'Sortez',
         de: 'Rausgehen',
       },
     },
@@ -216,12 +216,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'True Ice: Get in',
-        fr: 'Vraie glace: Rentrer dedans',
+        fr: 'Vraie glace: Rentrez dedans',
         de: 'Wahre Eis: Reingehen',
       },
       tts: {
         en: 'Get in',
-        fr: 'rentrer dedans',
+        fr: 'rentrez dedans',
         de: 'Reingehen',
       },
     },
@@ -233,12 +233,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Fake Ice: Get in',
-        fr: 'Fausse glace: Rentrer dedans',
+        fr: 'Fausse glace: Rentrez dedans',
         de: 'Falsches Eis: Reingehen',
       },
       tts: {
         en: 'Get in',
-        fr: 'rentrer dedans',
+        fr: 'rentrez dedans',
         de: 'Reingehen',
       },
     },
@@ -250,12 +250,12 @@
       suppressSeconds: 1,
       infoText: {
         en: 'True Ice: Get out',
-        fr: 'Vraie glace: Sortir',
+        fr: 'Vraie glace: Sortez',
         de: 'Wahres Eis: Rausgehen',
       },
       tts: {
         en: 'Get out',
-        fr: 'Sortir',
+        fr: 'Sortez',
         de: 'raus da',
       },
     },
@@ -344,10 +344,10 @@
       replaceText: {
         'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Aero Assault': 'Méga Vent Véhément',
         'Blizzard Blitz': 'Méga Glace Glissante',
