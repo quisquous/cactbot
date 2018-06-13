@@ -18,12 +18,12 @@
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
-        fr: 'Se préparer à la projection',
+        fr: 'Préparez-vous à la projection',
         de: 'Auf Rückstoß achten',
       },
       tts: {
         en: 'knockback',
-        fr: 'Projection depuis le boss',
+        fr: 'Projection',
         de: 'Rückstoß',
       },
     },
@@ -35,12 +35,12 @@
       regexJa: /神々の像 starts using 惰眠の神気/,
       alertText: {
         en: 'Look Away From Statue',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
       },
       tts: {
         en: 'look away',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
       },
     },
@@ -52,12 +52,12 @@
       regexJa: /14:28DF:神々の像 starts using 撲殺の神気/,
       alertText: {
         en: '<= Get Left/West',
-        fr: '<= Aller à Gauche/Ouest',
+        fr: '<= Allez à Gauche/Ouest',
         de: '<= Nach Links/Westen',
       },
       tts: {
         en: 'left',
-        fr: 'Projection depuis le côté gauche',
+        fr: 'gauche',
         de: 'links',
       },
     },
@@ -69,7 +69,7 @@
       regexJa: /14:28DE:神々の像 starts using 重力波/,
       alertText: {
         en: 'Get Right/East =>',
-        fr: 'Aller à Droite/Est =>',
+        fr: 'Allez à Droite/Est =>',
         de: 'Nach Rechts/Westen =>',
       },
       tts: {
@@ -86,12 +86,12 @@
       regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
       alertText: {
         en: 'Look At Statue',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
         de: 'Statue anschauen',
       },
       tts: {
         en: 'look towards',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
         de: 'anschauen',
       },
     },
@@ -103,7 +103,7 @@
       regexJa: /ケフカ starts using 過去の破滅/,
       alertText: {
         en: 'Past: Stack and Stay',
-        fr: 'Passé : Stack et rester-là',
+        fr: 'Passé : Stack et ne bougez plus',
         de: 'Vergangenheit: Sammeln und Stehenbleiben',
       },
       tts: {
@@ -120,12 +120,12 @@
       regexJa: /ケフカ starts using 未来の破滅/,
       alertText: {
         en: 'Future: Stack and Through',
-        fr: 'Futur : Stack et le traverser',
+        fr: 'Futur : Stack et traversez',
         de: 'Zukunft: Sammeln und Durchlaufen',
       },
       tts: {
         en: 'stack and through',
-        fr: 'Stack et le traverser',
+        fr: 'Stack et traversez',
         de: 'Stek und durchlaufen',
       },
     },
@@ -140,12 +140,12 @@
       },
       alertText: {
         en: 'Past: Bait, then through',
-        fr: 'Passé : l\'appâter, puis le traverser',
+        fr: 'Passé : appâtez puis traversez',
         de: 'Vergangenheit : Anlocken und Durchlaufen',
       },
       tts: {
         en: 'run run run',
-        fr: 'L\'appâter, puis le traverser',
+        fr: 'appâtez puis traversez',
         de: 'Durchlaufen',
       },
     },
@@ -160,12 +160,12 @@
       },
       alertText: {
         en: 'Future: Bait, then stay',
-        fr: 'Futur : l\'appâter, et rester',
+        fr: 'Futur : appâtez et ne bougez plus',
         de: 'Zukunft: Anlocken und Stehenbleiben',
       },
       tts: {
         en: 'stay stay stay',
-        fr: 'L\'appâter, et rester',
+        fr: 'appâtez et stop',
         de: 'Stehenbleiben',
       },
     },
@@ -180,12 +180,12 @@
       },
       alertText: {
         en: 'Knockback on YOU',
-        fr: 'Projection depuis la Statue',
+        fr: 'Projection sur VOUS',
         de: 'Rückstoß auf DIR',
       },
       tts: {
         en: 'knockback',
-        fr: 'Projection depuis la statue',
+        fr: 'Projection',
         de: 'Rückstoß',
       },
     },
@@ -208,7 +208,7 @@
         if (data.role != 'tank') {
           return {
             en: 'Max Melee: Avoid Tanks',
-            fr: 'Max Mêlée, s\'éloigner des Tanks',
+            fr: 'Max Mêlée : éloignez-vous des Tanks',
             de: 'Max Nahkampf: Weg von den Tanks',
           };
         }
@@ -223,7 +223,7 @@
         }
         return {
           en: 'max melee',
-          fr: 'Max mêlée et s\'éloigner des tanks',
+          fr: 'Max mêlée éloignez vous des tanks',
           de: 'max nahkampf',
         };
       },
@@ -302,7 +302,7 @@
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
-            fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
+            fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
             de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
           };
         }
@@ -348,12 +348,12 @@
       },
       alarmText: {
         en: 'Sleep: Go Inside',
-        fr: 'Sommeil : aller au centre',
+        fr: 'Sommeil : allez au centre',
         de: 'Schlaf: Zur Mitte',
       },
       tts: {
         en: 'sleep',
-        fr: 'Sommeil, aller au centre',
+        fr: 'Sommeil',
         de: 'Schlaf',
       },
     },
@@ -411,7 +411,7 @@
       run: function(data) {
         data.lastFire = {
           en: 'Spread',
-          fr: 'Se séparer',
+          fr: 'Eloignez-vous',
           de: 'verteilen',
         }[data.lang];
       },
@@ -429,7 +429,7 @@
       run: function(data) {
         data.lastFire = {
           en: 'Stack',
-          fr: 'Se rassembler',
+          fr: 'Stack',
           de: 'Stacken',
         }[data.lang];
       },
@@ -688,10 +688,10 @@
       replaceText: {
         'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Aero Assault': 'Méga Vent Véhément',
         'Blizzard Blitz': 'Méga Glace Glissante',
