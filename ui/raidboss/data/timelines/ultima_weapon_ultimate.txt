@@ -45,7 +45,7 @@ hideall "--Reset--"
 301 "Radiant Plume" sync /:Ifrit:2B61:/
 307 "Hellfire" sync /:Ifrit:2B5E:/ # drift 0.246
 315 "Vulcan Burst" sync /:Ifrit:2B57:/
-318 "Incinerate" sync /:Ifrit:2B56:/
+318 "Incinerate"
 321 "Incinerate"
 325 "Incinerate"
 328 "Nail Adds" sync /:Ifrit:1CD:/
@@ -73,11 +73,11 @@ hideall "--Reset--"
 405 "Flaming Crush" sync /:Ifrit:2B5D:/
 407 "Searing Wind"
 413 "Searing Wind"
-416 "Crimson Cyclone" sync /:Ifrit:2B5F:/ # drift 0.406
+416 "Crimson Cyclone"
 418 "Crimson Cyclone"
 420 "Crimson Cyclone"
 422 "Crimson Cyclone"
-430 "Incinerate" sync /:Ifrit:2B56:/ # drift 0.212
+430 "Incinerate" sync /:Ifrit:2B56:/ window 5,1
 433 "Incinerate"
 437 "Incinerate"
 446 "Eruption"
@@ -100,7 +100,7 @@ hideall "--Reset--"
 637 "Upheaval" sync /:Titan:2B67:/
 639 "Rock Throw" sync /:Titan:2B6B:/
 642 "Bury" sync /:Bomb Boulder:2B69:/
-644 "Landslide" sync /:Titan:2B6F:/
+644 "Landslide" sync /:Titan:2B6F:/ window 5,3
 649 "Landslide"
 651 "Tumult" sync /:Titan:2C18:/
 652 "Tumult"
@@ -110,13 +110,13 @@ hideall "--Reset--"
 656 "Tumult"
 657 "Tumult"
 658 "Tumult"
-666 "Weight Of The Land" sync /:Garuda:2B65:/ # drift 0.205001
+666 "Weight Of The Land" sync /:Garuda:2B65:/ window 5,2
 669 "Weight Of The Land"
-671 "Landslide" sync /:Titan:2B71:/
+671 "Landslide"
 673 "Landslide"
 682 "Jump" sync /:Titan:2B66:/ # drift 0.487
 684 "Rock Throw" sync /:Titan:2B6B:/ # drift 0.420001
-699 "Landslide" sync /:Titan:2B71:/
+699 "Landslide"
 701 "Landslide"
 704 "Tumult" sync /:Titan:2C18:/ # drift 0.254
 705 "Tumult"
@@ -132,7 +132,7 @@ hideall "--Reset--"
 724 "Bury"
 725 "Weight Of The Land"
 726 "Bury"
-727 "Landslide" sync /:Titan:2B71:/
+727 "Landslide"
 728 "Weight Of The Land"
 729 "Landslide"
 735 "Rock Buster" sync /:Titan:2B62:/ # drift 0.26
