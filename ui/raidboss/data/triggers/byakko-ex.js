@@ -219,7 +219,7 @@
         en: 'drop outside',
         de: 'außen ablegen',
         fr: 'déposez extérieur',
-        ja: '外にマーカー'
+        ja: '外にマーカー',
       },
     },
     {
@@ -264,7 +264,7 @@
         en: 'puddles',
         de: 'pfützen',
         fr: 'mare',
-        ja: '床範囲'
+        ja: '床範囲',
       },
     },
     {
