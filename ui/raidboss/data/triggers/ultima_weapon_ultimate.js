@@ -4,8 +4,15 @@
 [{
   zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
   timelineFile: 'ultima_weapon_ultimate.txt',
-  timeline: [
-    'infotext "Feather Rain" before 3 "Move!"',
+  timelineTriggers: [
+    {
+      id: 'UWU Feather Rain',
+      regex: /Feather Rain/,
+      beforeSeconds: 3,
+      infoText: {
+        en: 'Move!',
+      },
+    },
   ],
   triggers: [
     // Phases
