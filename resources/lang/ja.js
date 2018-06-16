@@ -52,10 +52,10 @@ class CactbotLanguageJa extends CactbotLanguage {
       return /:戦闘開始！/;
     };
     this.countdownCancelRegex = function() {
-      return / により、戦闘開始カウントがキャンセルされました。/;
+      return /:(\y{Name})により、戦闘開始カウントがキャンセルされました。/;
     };
     this.areaSealRegex = function() {
-      return /:(.*)の封鎖まであと /;
+      return /:(.*)の封鎖まであと(\y{float})秒/;
     };
     this.areaUnsealRegex = function() {
       return /:(.*)の封鎖が解かれた……/;
