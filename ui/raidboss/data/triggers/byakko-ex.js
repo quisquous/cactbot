@@ -71,7 +71,7 @@
           en: 'Get Behind',
           de: 'Hinter ihn laufen',
           fr: 'Allez derrière le boss',
-          ja: '後ろ'
+          ja: '後ろ',
         };
       },
       tts: {
@@ -293,6 +293,7 @@
       regex: / 00:0044:Twofold is my wrath, twice-cursed my foes!/,
       regexDe: / 00:0044:Stürmt los, meine zwei Gesichter!/,
       regexFr: / 00:0044:Ma colère devient double.*?!/,
+      regexJa: / 00:0044:Ma colère devient double.*?!/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
