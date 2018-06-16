@@ -293,7 +293,7 @@
       regex: / 00:0044:Twofold is my wrath, twice-cursed my foes!/,
       regexDe: / 00:0044:Stürmt los, meine zwei Gesichter!/,
       regexFr: / 00:0044:Ma colère devient double.*?!/,
-      regexJa: / 00:0044:Ma colère devient double.*?!/,
+      regexJa: / 00:0044:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -309,7 +309,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using Tout 乾坤一擲/,
+      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
@@ -319,7 +319,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using Tout 乾坤一擲/,
+      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -330,7 +330,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using Tout 乾坤一擲/,
+      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,
