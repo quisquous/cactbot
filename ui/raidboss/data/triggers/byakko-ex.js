@@ -26,7 +26,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
-        },
+        }
       },
       tts: function(data, matches) {
         if (matches[1] == data.me) {
