@@ -8,6 +8,16 @@
     'infotext "Feather Rain" before 3 "Move!"',
   ],
   triggers: [
+    // Phases
+    {
+      // Wait after suppression for primal triggers at the end.
+      regex: /:The Ultima Weapon:2D4D:/,
+      delaySeconds: 74,
+      run: function(data) {
+        data.phase = 'finale';
+      },
+    },
+
     {
       id: 'UWU Garuda Slipstream',
       regex: /14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
@@ -149,6 +159,9 @@
     {
       id: 'UWU Garuda Finale',
       regex: /:The Ultima Weapon:2CD3:/,
+      condition: function(data) {
+        return data.phase == 'finale';
+      },
       infoText: {
         en: 'Garuda',
       },
@@ -156,6 +169,9 @@
     {
       id: 'UWU Ifrit Finale',
       regex: /:The Ultima Weapon:2CD4:/,
+      condition: function(data) {
+        return data.phase == 'finale';
+      },
       infoText: {
         en: 'Ifrit',
       },
@@ -163,6 +179,9 @@
     {
       id: 'UWU Titan Finale',
       regex: /:The Ultima Weapon:2CD5:/,
+      condition: function(data) {
+        return data.phase == 'finale';
+      },
       infoText: {
         en: 'Titan',
       },
