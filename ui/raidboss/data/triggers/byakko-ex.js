@@ -10,12 +10,14 @@
       regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
       regexDe: / 14:27DA:Byakko starts using Himmlischer Schlag on (\y{Name})/,
       regexFr: / 14:27DA:Byakko starts using Frappe Céleste on (\y{Name})/,
+      regexJa: / 14:27DA:Byakko starts using 天雷掌 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンク即死級',
           };
         }
         if (data.role == 'healer') {
@@ -23,6 +25,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             de: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ja: 'タンク即死級: ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -32,6 +35,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'タンク即死級',
           };
         }
       },
@@ -41,17 +45,20 @@
       regex: / 14:27F4:Byakko starts using Sweep The Leg/,
       regexDe: / 14:27F4:Byakko starts using Vertikalität/,
       regexFr: / 14:27F4:Byakko starts using Verticalité/,
+      regexJa: / 14:27F4:Byakko starts using 旋体脚/,
       alertText: function(data, matches) {
         return {
           en: 'Get Inside',
           de: 'Reingehen',
           fr: 'Allez au centre',
+          ja: '密着',
         };
       },
       tts: {
         en: 'inside',
         de: 'rein',
         fr: 'centre',
+        ja: '密着',
       },
     },
     {
@@ -59,17 +66,20 @@
       regex: / 14:27DB:Byakko starts using Sweep The Leg/,
       regexDe: / 14:27DB:Byakko starts using Vertikalität/,
       regexFr: / 14:27DB:Byakko starts using Verticalité/,
+      regexJa: / 14:27DB:Byakko starts using 旋体脚/,
       alertText: function(data, matches) {
         return {
           en: 'Get Behind',
           de: 'Hinter ihn laufen',
           fr: 'Allez derrière le boss',
+          ja: '後ろ'
         };
       },
       tts: {
         en: 'behind',
         de: 'hinter ihn',
         fr: 'derrière',
+        ja: '後ろ',
       },
     },
     {
@@ -77,12 +87,14 @@
       regex: / 14:27DC:Byakko starts using Storm Pulse/,
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       regexFr: / 14:27DC:Byakko starts using Pulsion De Tempête/,
+      regexJa: / 14:27DC:Byakko starts using 風雷波動/,
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
             en: 'AOE',
             de: 'AoE',
             fr: 'AoE',
+            ja: 'AoE',
           };
         }
       },
@@ -90,6 +102,7 @@
         en: 'aoe',
         de: 'a o e',
         fr: ' a o e',
+        ja: 'AoE',
       },
     },
     {
@@ -97,17 +110,20 @@
       regex: / 14:27DD:Byakko starts using Distant Clap on Byakko/,
       regexDe: / 14:27DD:Byakko starts using Donnergrollen on Byakko/,
       regexFr: / 14:27DD:Byakko starts using Tonnerre Lointain on Byakko/,
+      regexJa: / 14:27DD:Byakko starts using 遠雷 on Byakko/,
       alertText: function(data, matches) {
         return {
           en: 'Distant Clap',
           de: 'Donnergrollen',
           fr: 'Tonnerre Lointain',
+          ja: '遠雷',
         };
       },
       tts: {
         en: 'clap',
         de: 'grollen',
         fr: 'tonnerre',
+        ja: '遠雷',
       },
     },
     {
@@ -115,6 +131,7 @@
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
+      regexJa: / 14:27E0:Byakko starts using 呪縛雷 on (\y{Name})/,
       condition: function(data, matches) {
         return data.role == 'tank' && matches[1] != data.me;
       },
@@ -122,11 +139,13 @@
         en: 'Provoke Boss',
         de: 'Boss abspotten',
         fr: 'Provoquez !',
+        ja: '挑発',
       },
       tts: {
         en: 'Provoke',
         de: 'abspotten',
         fr: 'provoquez',
+        ja: '挑発',
       },
     },
     {
@@ -134,6 +153,7 @@
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
+      regexJa: / 14:27E0:Byakko starts using 呪縛雷 on (\y{Name})/,
       delaySeconds: 12,
       condition: function(data, matches) {
         return data.role == 'tank' && matches[1] == data.me;
@@ -142,17 +162,20 @@
         en: 'Provoke Boss',
         de: 'Boss abspotten',
         fr: 'Provoquez !',
+        ja: '挑発',
       },
       tts: {
         en: 'Provoke',
         de: 'abspotten',
         fr: 'provoquez',
+        ja: '挑発',
       },
     },
     {
       regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
+      regexJa: / 14:27F9:Hakutei starts using 雷轟/,
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -163,6 +186,7 @@
       regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
+      regexJa: / 14:27F9:Hakutei starts using 雷轟/,
       delaySeconds: 14,
       alarmText: function(data) {
         if (data.roarCount != 2)
@@ -173,6 +197,7 @@
             en: 'Tank LB NOW',
             de: 'JETZT Tank LB',
             fr: 'LB Tank maintenant !',
+            ja: '今タンクLB',
           };
         }
       },
@@ -188,12 +213,14 @@
           en: 'Drop bubble outside',
           de: 'Blase außen ablegen',
           fr: 'Déposez à l\'extérieur',
+          ja: '外にマーカーを置く',
         };
       },
       tts: {
         en: 'drop outside',
         de: 'außen ablegen',
         fr: 'déposez extérieur',
+        ja: '外にマーカー'
       },
     },
     {
@@ -201,6 +228,7 @@
       regex: /1A:(\y{Name}) gains the effect of Ominous Wind/,
       regexDe: /1A:(\y{Name}) gains the effect of Unheilvoller Wind/,
       regexFr: /1A:(\y{Name}) gains the effect of Vent Mauvais/,
+      regexJa: /1A:(\y{Name}) gains the effect of 祟り目/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -209,12 +237,14 @@
           en: 'Pink bubble',
           de: 'Pinke Blase',
           fr: 'Bulle violette',
+          ja: '祟り目',
         };
       },
       tts: {
         en: 'bubble',
         de: 'blase',
         fr: 'bulle',
+        ja: '祟り目',
       },
     },
     {
@@ -228,12 +258,14 @@
           en: 'Puddles on YOU',
           de: 'Pfützen auf DIR',
           fr: 'Mare sur VOUS',
+          ja: '自分に床範囲',
         };
       },
       tts: {
         en: 'puddles',
         de: 'pfützen',
         fr: 'mare',
+        ja: '床範囲'
       },
     },
     {
@@ -247,12 +279,14 @@
           en: 'Get away',
           de: 'Weg da',
           fr: 'Eloignez-vous',
+          ja: '離れる',
         };
       },
       tts: {
         en: 'get away',
         de: 'weck da',
         fr: 'eloignez vous',
+        ja: '離れる',
       },
     },
     {
@@ -266,6 +300,7 @@
             en: 'Tiger Add',
             de: 'Tiger Add',
             fr: 'Add Tigre',
+            ja: '虎分離',
           };
         }
       },
@@ -274,6 +309,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
+      regexJa: / 14:27E2:Byakko starts using Tout 乾坤一擲/,
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
@@ -283,6 +319,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
+      regexJa: / 14:27E2:Byakko starts using Tout 乾坤一擲/,
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -293,6 +330,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
+      regexJa: / 14:27E2:Byakko starts using Tout 乾坤一擲/,
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,
