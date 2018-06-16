@@ -4,9 +4,16 @@
 [{
   zoneRegex: /^The Pool Of Tribute \(Extreme\)$/,
   timelineFile: 'susano-ex.txt',
-  timeline: `
-    infotext "Knockback (cloud)" before 1.5 "look for cloud"
-    `,
+  timelineTriggers: [
+    {
+      id: 'SusEx Cloud',
+      regex: /Knockback \(cloud\)/,
+      beforeSeconds: 1.5,
+      infoText: {
+        en: 'look for cloud',
+      },
+    },
+  ],
   triggers: [
     { // Thundercloud tracker
       regex: /:Added new combatant Thunderhead\./,

@@ -4,10 +4,17 @@
 [{
   zoneRegex: /^Emanation \(Extreme\)$/,
   timelineFile: 'lakshmi-ex.txt',
-  timeline: [
-    function(data) {
-      if (data.role == 'tank')
-        return 'infotext "Path of Light" before 5 "Cleave Soon"';
+  timelineTriggers: [
+    {
+      id: 'Lakshmi Path of Light',
+      regex: /Path of Light/,
+      beforeSeconds: 5,
+      condition: function(data) {
+        return data.role == 'tank';
+      },
+      alertText: {
+        en: 'Cleave Soon',
+      },
     },
   ],
   triggers: [

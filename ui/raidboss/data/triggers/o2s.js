@@ -4,9 +4,17 @@
 [{
   zoneRegex: /(Deltascape V2.0 \(Savage\)|Unknown Zone \(2B8\))/,
   timelineFile: 'o2s.txt',
-  timeline: `
-    alerttext "Double Stack" before 6 "DPS: Levitate"
-    `,
+  timelineTriggers: [
+    {
+      id: 'O2S Double Stack',
+      regex: /Double Stack/,
+      beforeSeconds: 6,
+      alertText: {
+        en: 'DPS: Levitate',
+        de: 'DDs hoch',
+      },
+    },
+  ],
   triggers: [
     { // Phase Tracker: Maniacal Probe.
       regex: /:235A:Catastrophe starts using/,
