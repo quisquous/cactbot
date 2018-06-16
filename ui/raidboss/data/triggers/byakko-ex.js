@@ -25,6 +25,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ja: 'タンク即死級 ' + data.ShortName(matches[1]),
           };
         }
       },
