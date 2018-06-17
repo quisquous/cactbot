@@ -83,7 +83,7 @@
       suppressSeconds: 45,
       alertText: {
         en: 'Fetters on YOU',
-        ja: '自分に炎獄の鎖'
+        ja: '自分に炎獄の鎖',
       },
       tts: {
         en: 'Fetters',
@@ -99,7 +99,7 @@
       },
       alarmText: {
         en: 'Searing Wind on YOU',
-        ja: '自分に灼熱'
+        ja: '自分に灼熱',
       },
       tts: {
         en: 'Searing Wind',
@@ -111,11 +111,11 @@
       regex: / 1B:........:(\y{Name}):....:....:0075:0000:0000:0000:/,
       alertText: {
         en: 'Stack',
-        ja: '頭割り'
+        ja: '頭割り',
       },
       tts: {
         en: 'Stack',
-        ja: '頭割り'
+        ja: '頭割り',
       },
     },
     {

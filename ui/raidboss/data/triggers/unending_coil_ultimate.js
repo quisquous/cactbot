@@ -458,7 +458,6 @@
     { id: 'UCU Nael Quote 11',
       regex: /From red moon I draw steel, in my descent to bare/,
       regexFr: /De la lune je m'arme d'acier et descends/,
-      regexFr: /De la lune je m'arme d'acier et descends/,
       regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
       regexJp: /舞い降りん/,
       durationSeconds: 9,
@@ -1252,6 +1251,7 @@
               en: 'Pick up tether',
               fr: 'Prendre un lien',
               de: 'Verbindung holen',
+              ja: 'テンペストウィング線',
             };
           }
         }
@@ -1266,6 +1266,7 @@
               en: 'No shaker; stack south.',
               fr: 'Pas de Secousse; se rassembler au Sud.',
               de: 'Kein Erdstoß; im süden sammeln',
+              ja: 'シェイカーない；頭割りで南',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1275,6 +1276,7 @@
                 en: 'Stack on safe spot',
                 fr: 'Se rassembler au point sauf',
                 de: 'In Sicherheit steken',
+                ja: '頭割りで安全',
               };
             }
           }
@@ -1289,6 +1291,7 @@
               en: 'tether',
               fr: 'Lien',
               de: 'Verbindung',
+              ja: '線',
             };
           }
           if (data.shakers.indexOf(data.me) == -1) {
@@ -1296,7 +1299,7 @@
               en: 'stack south',
               fr: 'Se rassembler au sud',
               de: 'stek im süden',
-              ja: ''
+              ja: '頭割りで南',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1306,7 +1309,7 @@
                 en: 'safe spot',
                 fr: 'Point sauf',
                 de: 'in sicherheit',
-                ja: '安全'
+                ja: '安全',
               };
             }
           }
@@ -1334,7 +1337,7 @@
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
             de: str + ' (DU)',
-            ja: 'モーン・アファー' + data.mornAfahCount; + '回' + ' (自分)',
+            ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (自分)',
           };
         }
         return str + ' (' + data.ShortName(matches[1]) + ')';
@@ -1382,8 +1385,8 @@
         return {
           en: 'exaflare ' + data.exaflareCount,
           fr: 'Exabrasier '+ data.exaflareCount,
-          fr: 'Exafleer '+ data.exaflareCount,
-          ja: 'エクサフレア' + data.exaflareCount
+          de: 'Exafleer '+ data.exaflareCount,
+          ja: 'エクサフレア' + data.exaflareCount,
         };
       },
     },
