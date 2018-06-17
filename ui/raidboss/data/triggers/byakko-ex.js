@@ -10,7 +10,7 @@
       regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
       regexDe: / 14:27DA:Byakko starts using Himmlischer Schlag on (\y{Name})/,
       regexFr: / 14:27DA:Byakko starts using Frappe Céleste on (\y{Name})/,
-      regexJa: / 14:27DA:Byakko starts using 天雷掌 on (\y{Name})/,
+      regexJa: / 14:27DA:白虎 starts using 天雷掌 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -45,7 +45,7 @@
       regex: / 14:27F4:Byakko starts using Sweep The Leg/,
       regexDe: / 14:27F4:Byakko starts using Vertikalität/,
       regexFr: / 14:27F4:Byakko starts using Verticalité/,
-      regexJa: / 14:27F4:Byakko starts using 旋体脚/,
+      regexJa: / 14:27F4:白虎 starts using 旋体脚/,
       alertText: function(data, matches) {
         return {
           en: 'Get Inside',
@@ -66,7 +66,7 @@
       regex: / 14:27DB:Byakko starts using Sweep The Leg/,
       regexDe: / 14:27DB:Byakko starts using Vertikalität/,
       regexFr: / 14:27DB:Byakko starts using Verticalité/,
-      regexJa: / 14:27DB:Byakko starts using 旋体脚/,
+      regexJa: / 14:27DB:白虎 starts using 旋体脚/,
       alertText: function(data, matches) {
         return {
           en: 'Get Behind',
@@ -87,7 +87,7 @@
       regex: / 14:27DC:Byakko starts using Storm Pulse/,
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       regexFr: / 14:27DC:Byakko starts using Pulsion De Tempête/,
-      regexJa: / 14:27DC:Byakko starts using 風雷波動/,
+      regexJa: / 14:27DC:白虎 starts using 風雷波動/,
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
@@ -110,7 +110,7 @@
       regex: / 14:27DD:Byakko starts using Distant Clap on Byakko/,
       regexDe: / 14:27DD:Byakko starts using Donnergrollen on Byakko/,
       regexFr: / 14:27DD:Byakko starts using Tonnerre Lointain on Byakko/,
-      regexJa: / 14:27DD:Byakko starts using 遠雷 on Byakko/,
+      regexJa: / 14:27DD:白虎 starts using 遠雷 on 白虎/,
       alertText: function(data, matches) {
         return {
           en: 'Distant Clap',
@@ -131,7 +131,7 @@
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
-      regexJa: / 14:27E0:Byakko starts using 呪縛雷 on (\y{Name})/,
+      regexJa: / 14:27E0:白虎 starts using 呪縛雷 on (\y{Name})/,
       condition: function(data, matches) {
         return data.role == 'tank' && matches[1] != data.me;
       },
@@ -153,7 +153,7 @@
       regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
       regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
       regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
-      regexJa: / 14:27E0:Byakko starts using 呪縛雷 on (\y{Name})/,
+      regexJa: / 14:27E0:白虎 starts using 呪縛雷 on (\y{Name})/,
       delaySeconds: 12,
       condition: function(data, matches) {
         return data.role == 'tank' && matches[1] == data.me;
@@ -186,7 +186,7 @@
       regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:Hakutei starts using 雷轟/,
+      regexJa: / 14:27F9:白帝 starts using 雷轟/,
       delaySeconds: 14,
       alarmText: function(data) {
         if (data.roarCount != 2)
