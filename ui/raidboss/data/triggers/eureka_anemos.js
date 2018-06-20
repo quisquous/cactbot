@@ -42,7 +42,7 @@
         return {
           en: '100k Needle Stack',
           de: '100k Nadeln Stack',
-          fr: 'Stack 100k Aiguilles',		  
+          fr: 'Stack 100k Aiguilles',
         };
       },
       tts: function(data, matches) {
