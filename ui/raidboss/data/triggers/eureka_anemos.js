@@ -64,7 +64,7 @@
       id: 'Eureka Poly Swipe',
       regex: /14:2A71:Polyphemus starts using 100-Tonze Swipe/,
       regexDe: /14:2A71:Polyphemus starts using 100-Tonzen-Hieb/,
-      regexDe: /14:2A71:Polyphemus starts using Fauche De 100 Tonz/,
+      regexFr: /14:2A71:Polyphemus starts using Fauche De 100 Tonz/,
       infoText: {
         en: 'Swipe',
         de: 'Hieb',
@@ -75,7 +75,7 @@
       id: 'Eureka Poly Swing',
       regex: /14:2A6E:Polyphemus starts using 10,000-Tonze Swing/,
       regexDe: /14:2A6E:Polyphemus starts using 10\.000-Tonzen-Schwung/,
-      regexDe: /14:2A6E:Polyphemus starts using Swing De 10 000 Tonz/,
+      regexFr: /14:2A6E:Polyphemus starts using Swing De 10 000 Tonz/,
       alarmText: {
         en: 'GET OUT',
         de: 'RAUS DA',
