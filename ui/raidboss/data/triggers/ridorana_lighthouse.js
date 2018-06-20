@@ -3,13 +3,16 @@
 [{
   zoneRegex: /^The Ridorana Lighthouse$/,
   timelineFile: 'ridorana_lighthouse.txt',
-  timeline: [
-    function(data) {
-      if (data.lang == 'de')
-        return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
-      if (data.lang == 'fr')
-        return 'alerttext "Stone Breath" before 7 "Allez derrière"';
-      return 'alerttext "Stone Breath" before 7 "Get Behind"';
+  timelineTriggers: [
+    {
+      id: 'Ridorana Stone Breath',
+      regex: /Stone Breath/,
+      beforeSeconds: 7,
+      alertText: {
+        en: 'Get Behind',
+        de: 'Hinter ihn laufen',
+        fr: 'Allez derrière',
+      },
     },
   ],
   triggers: [

@@ -13,16 +13,19 @@
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
+            fr: 'Stack sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + matches[1],
           de: 'Stack auf ' + matches[1],
+          de: 'Stack sur ' + matches[1],
         };
       },
       tts: {
         en: 'stack',
         de: 'stek',
+        fr: 'stack',
       },
     },
     {
@@ -33,31 +36,37 @@
           return {
             en: 'Move away from others',
             de: 'Weg von den anderen',
+            fr: 'Eloignez-vous des autres',
           };
         }
         return {
           en: 'Move away from ' + matches[1],
           de: 'Weg von ' + matches[1],
+          fr: 'Eloignez-vous de ' + matches[1],
         };
       },
       tts: {
         en: 'don\'t stack',
         de: 'nicht stek en',
+        fr: 'ne restez pas packé',
       },
     },
     {
       id: 'Sohm Al Myath Chyme',
       regex: /:Added new combatant Chyme Of The Mountain/,
       regexDe: /:Added new combatant Gebirgsbrei/,
+      regexFr: /:Added new combatant Chyme Des Montagnes/,
       alertText: function(data) {
         return {
           en: 'Kill Chyme Add',
           de: 'Brei Add töten',
+          fr: 'Tuez l\'add',
         };
       },
       tts: {
         en: 'kill chyme',
         de: 'brei töten',
+        fr: 'tuez lad',
       },
     },
     {
@@ -68,6 +77,7 @@
           return {
             en: 'place meteor on edge',
             de: 'Meteor an Kante ablegen',
+            fr: 'Météore à placer sur le côté',
           };
         }
       },
@@ -76,6 +86,7 @@
           return {
             en: 'meteor',
             de: 'meteor',
+            fr: 'météore',
           };
         }
       },

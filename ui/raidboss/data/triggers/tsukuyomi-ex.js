@@ -99,7 +99,7 @@
         let moonInOut = {
           en: 'In',
           de: 'Rein',
-          fr: 'Prêt',
+          fr: 'Près',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
