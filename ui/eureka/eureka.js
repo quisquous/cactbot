@@ -54,7 +54,7 @@ let Options = {
           mobName: {
             en: 'The Lord Of Anemos',
             de: 'Prinz Von Anemos',
-            fr: 'Seigneur D\'Anemos',
+            fr: 'Seigneur D\'anemos',
             ja: 'ロード・オブ・アネモス',
           },
           trackerName: {
@@ -98,7 +98,7 @@ let Options = {
           mobName: {
             en: 'The Emperor Of Anemos',
             de: 'Anemos-Kaiser',
-            fr: 'Empereur D\'Anemos',
+            fr: 'Empereur D\'anemos',
             ja: 'アネモス・エンペラー',
           },
           trackerName: {
