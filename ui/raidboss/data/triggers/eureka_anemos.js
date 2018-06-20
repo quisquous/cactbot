@@ -8,7 +8,7 @@
       id: 'Eureka Garm Dragon Voice',
       regex: /14:2AD5:Void Garm starts using The Dragon's Voice/,
       regexDe: /14:2AD5:Nichts-Garm starts using Stimme Des Drachen/,
-      regexDe: /14:2AD5:Garm Du Néant starts using Voix Du Dragon/,
+      regexFr: /14:2AD5:Garm Du Néant starts using Voix Du Dragon/,
       infoText: {
         en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
