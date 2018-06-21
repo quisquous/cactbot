@@ -29,9 +29,9 @@
     },
     {
       id: 'Tsukuyomi Torment',
-      regex: / 14:(2BBB|2EB2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
-      regexDe: / 14:(2BBB|2EB2):Tsukuyomi starts using Todesqualen on (\y{Name})/,
-      regexFr: / 14:(2BBB|2EB2):Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
+      regex: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
+      regexDe: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Todesqualen on (\y{Name})/,
+      regexFr: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
