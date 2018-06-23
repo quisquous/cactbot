@@ -679,10 +679,6 @@ class TimelineUI {
       this.debugFightTimer.bg = 'transparent';
       this.debugFightTimer.fg = 'transparent';
       this.debugElement.appendChild(this.debugFightTimer);
-      console.log('OnSync: ' + fightNow + ' (init)');
-    } else {
-      console.log('OnSync: ' + fightNow +
-          ' (prev: ' + this.debugFightTimer.elapsed + ')');
     }
 
     // Force this to be reset.
