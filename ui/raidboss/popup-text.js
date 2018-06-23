@@ -110,8 +110,16 @@ class PopupText {
             // time later.  This will clobber each time we
             // load this, but that's ok.
             let trigger = set.triggers[j];
+
+            if (!trigger.regex)
+              console.error('Trigger ' + trigger.id + ': has no regex property specified');
+
             // Locale-based regex takes precedence.
             let regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+            if (!regex) {
+              console.error('Trigger ' + trigger.id + ': undefined ' + regexLocale);
+              continue;
+            }
             trigger.localRegex = Regexes.Parse(regex);
           }
         }
