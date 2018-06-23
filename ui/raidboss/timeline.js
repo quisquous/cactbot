@@ -48,6 +48,8 @@ class Timeline {
       let r = this.replacements[i];
       if (r.locale && r.locale != locale)
         continue;
+      if (!r[replaceKey])
+        continue;
       let keys = Object.keys(r[replaceKey]);
       for (let j = 0; j < keys.length; ++j)
         text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]]);
