@@ -331,23 +331,23 @@
 }
 
 /* Relative to #bars */
-#war-procs, #pld-procs, #mnk-procs {
+#war-procs, #pld-procs, #mnk-procs, #ast-procs {
   position: absolute;
   top: 146px;
   left: 10px;
 }
 
-#mnk-procs-dragonkick {
+#mnk-procs-dragonkick, #ast-procs-combust {
   position: relative;
   display: inline-block;
   left: 0px;
 }
-#mnk-procs-twinsnakes {
+#mnk-procs-twinsnakes, #ast-procs-benefic {
   position: relative;
   display: inline-block;
   left: calc(142px / 2);
 }
-#mnk-procs-demolish {
+#mnk-procs-demolish, #ast-procs-helios {
   position: relative;
   display: inline-block;
   left: 142px;
@@ -516,4 +516,13 @@
 }
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
+}
+.ast-color-combust {
+  background-color: rgb(120, 170, 250);
+}
+.ast-color-benefic {
+  background-color: rgb(62, 224, 170);
+}
+.ast-color-helios {
+  background-color: rgb(175, 235, 215);
 }

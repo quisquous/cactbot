@@ -14,7 +14,7 @@ let Options = {
   HideWellFedAboveSeconds: 15 * 60,
   WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'UCU'],
   ShowHPNumber: ['PLD', 'WAR', 'DRK'],
-  ShowMPNumber: ['DRK', 'BLM'],
+  ShowMPNumber: ['DRK', 'BLM', 'AST', 'WHM', 'SCH'],
 
   MaxLevel: 70,
 
@@ -27,6 +27,7 @@ let Options = {
   RdmCastTime: 1.94 + 0.5,
   WarGcd: 2.45,
   PldGcd: 2.43,
+  AstGcd: 2.39,
   SmnAetherflowRecast: 60,
 
   BigBuffIconWidth: 44,
@@ -64,6 +65,9 @@ let kBluntDebuff = null;
 let kComboBreakers = null;
 let kPldShieldSwipe = null;
 let kPldBlock = null;
+let kAstCombust = null;
+let kAstBenefic = null;
+let kAstHelios = null;
 let kWellFedZoneRegex = null;
 
 class ComboTracker {
@@ -223,6 +227,9 @@ function setupRegexes() {
   kBluntDebuff = gLang.gainsEffectRegex(gLang.kEffect.BluntResistDown);
   kPldShieldSwipe = gLang.youUseAbilityRegex(gLang.kAbility.ShieldSwipe);
   kPldBlock = gLang.abilityRegex(null, null, gLang.playerName, '[^:]*05');
+  kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
+  kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
+  kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
@@ -1005,6 +1012,46 @@ class Bars {
       this.o.lightningFgColors = [];
       for (let i = 0; i <= 3; ++i)
         this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
+    } else if (this.job == 'AST') {
+      let astContainer = document.createElement('div');
+      astContainer.id = 'ast-procs';
+      barsContainer.appendChild(astContainer);
+
+      this.o.combustBox = document.createElement('timer-box');
+      astContainer.appendChild(this.o.combustBox);
+      this.o.combustBox.id = 'ast-procs-combust';
+      this.o.combustBox.style = 'empty';
+      this.o.combustBox.fg = computeBackgroundColorFrom(this.o.combustBox, 'ast-color-combust');
+      this.o.combustBox.bg = 'black';
+      this.o.combustBox.toward = 'bottom';
+      this.o.combustBox.threshold = 3 * this.options.AstGcd;
+      this.o.combustBox.hideafter = '';
+      this.o.combustBox.roundupthreshold = false;
+      this.o.combustBox.valuescale = this.options.AstGcd;
+
+      this.o.beneficBox = document.createElement('timer-box');
+      astContainer.appendChild(this.o.beneficBox);
+      this.o.beneficBox.id = 'ast-procs-benefic';
+      this.o.beneficBox.style = 'empty';
+      this.o.beneficBox.fg = computeBackgroundColorFrom(this.o.beneficBox, 'ast-color-benefic');
+      this.o.beneficBox.bg = 'black';
+      this.o.beneficBox.toward = 'bottom';
+      this.o.beneficBox.threshold = 3 * this.options.AstGcd;
+      this.o.beneficBox.hideafter = '';
+      this.o.beneficBox.roundupthreshold = false;
+      this.o.beneficBox.valuescale = this.options.AstGcd;
+
+      this.o.heliosBox = document.createElement('timer-box');
+      astContainer.appendChild(this.o.heliosBox);
+      this.o.heliosBox.id = 'ast-procs-helios';
+      this.o.heliosBox.style = 'empty';
+      this.o.heliosBox.fg = computeBackgroundColorFrom(this.o.heliosBox, 'ast-color-helios');
+      this.o.heliosBox.bg = 'black';
+      this.o.heliosBox.toward = 'bottom';
+      this.o.heliosBox.threshold = 3 * this.options.AstGcd;
+      this.o.heliosBox.hideafter = '';
+      this.o.heliosBox.roundupthreshold = false;
+      this.o.heliosBox.valuescale = this.options.AstGcd;
     }
   }
 
@@ -1870,6 +1917,19 @@ class Bars {
         }
         if (log.search(kPldBlock) >= 0) {
           this.OnPldBlock();
+          continue;
+        }
+      }
+      if (this.job == 'AST') {
+        // Sorry, no differentation for noct asts here.  <_<
+        if (log.search(kAstCombust) >= 0) {
+          this.o.combustBox.duration = 30;
+          continue;
+        } else if (log.search(kAstBenefic) >= 0) {
+          this.o.beneficBox.duration = 18;
+          continue;
+        } else if (log.search(kAstHelios) >= 0) {
+          this.o.heliosBox.duration = 30;
           continue;
         }
       }
