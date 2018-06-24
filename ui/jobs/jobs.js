@@ -25,7 +25,7 @@ let Options = {
   PerBuffOptions: {},
 
   RdmCastTime: 1.94 + 0.5,
-  WarGcd: 2.38,
+  WarGcd: 2.45,
   PldGcd: 2.43,
   SmnAetherflowRecast: 60,
 
@@ -1365,7 +1365,10 @@ class Bars {
     } else if (this.job == 'WAR') {
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
-        this.o.eyeBox.duration = 30;
+        // Storm's Eye applies with some animation delay here, and on the next
+        // Storm's Eye, it snapshots the damage when the gcd is started, so
+        // add most of a gcd here in duration time from when it's applied.
+        this.o.eyeBox.duration = 30 + 2;
       }
 
       // Min number of skills until eye without breaking combo.
@@ -1382,10 +1385,9 @@ class Bars {
       }
 
       // The new threshold is "can I finish the current combo and still
-      // have time to do a Storm's Eye".  The 0.3 is for reaction
-      // time slop.
+      // have time to do a Storm's Eye".
       let oldThreshold = parseFloat(this.o.eyeBox.threshold);
-      let newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd + 0.3;
+      let newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
