@@ -267,7 +267,7 @@
       regex: /From on high I descend, in blessed light to bask/,
       regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexDe: /Seht, ich steige herab, vom rotglühenden Monde/,
-      regexJp: /月を仰がん/,
+      regexJa: /月を仰がん/,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
@@ -286,7 +286,7 @@
       regex: /From on high I descend, mine enemies to smite/,
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexDe: /Seht, ich steige herab, um euch zu beherrschen/,
-      regexJp: /鉄の覇道を征く/,
+      regexJa: /鉄の覇道を征く/,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
@@ -305,7 +305,7 @@
       regex: /O refulgent moon, shine down your light/,
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexDe: /Flammender Pfad, geschaffen vom roten Mond/,
-      regexJp: /月の祝福を/,
+      regexJa: /月の祝福を/,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
@@ -324,7 +324,7 @@
       regex: /Blazing path, lead me to conquest/,
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexDe: /Umloderter Pfad, führe mich zur Herrschaft/,
-      regexJp: /鉄の覇道と成す/,
+      regexJa: /鉄の覇道と成す/,
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
@@ -343,7 +343,7 @@
       regex: /O red moon, scorch mine enemies/,
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexDe: /O roter Mond! Umlodere meinen Pfad/,
-      regexJp: /赤熱し、神敵を焼け/,
+      regexJa: /赤熱し、神敵を焼け/,
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
@@ -362,7 +362,7 @@
       regex: /O red moon, shine the path to conquest/,
       regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexDe: /O roter Mond! Führe mich zur Herrschaft/,
-      regexJp: /鉄の覇道を照らせ/,
+      regexJa: /鉄の覇道を照らせ/,
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
@@ -381,7 +381,7 @@
       regex: /Fleeting light, score the earth with a fiery kiss/,
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
-      regexJp: /紅月下の赤熱せし地を照らせ/,
+      regexJa: /紅月下の赤熱せし地を照らせ/,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
@@ -401,7 +401,7 @@
       regex: /Fleeting light, outshine the stars for the moon/,
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexDe: /Neues Gestirn! Überstrahle jede Sternschnuppe/,
-      regexJp: /星降りの夜に、紅月を称えよ/,
+      regexJa: /星降りの夜に、紅月を称えよ/,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
@@ -421,7 +421,7 @@
       regex: /From on high I descend, a hail of stars to bring/,
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexDe: /Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich/,
-      regexJp: /星降りの夜を招かん/,
+      regexJa: /星降りの夜を招かん/,
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -440,7 +440,7 @@
       regex: /From red moon I descend, a hail of stars to bring/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
       regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
-      regexJp: /星降りの夜を招かん/,
+      regexJa: /星降りの夜を招かん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -459,7 +459,7 @@
       regex: /From red moon I draw steel, in my descent to bare/,
       regexFr: /De la lune je m'arme d'acier et descends/,
       regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
-      regexJp: /舞い降りん/,
+      regexJa: /舞い降りん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
@@ -478,7 +478,7 @@
       regex: /From red moon I descend, upon burning earth to tread/,
       regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexDe: /O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen/,
-      regexJp: /赤熱せし地を歩まん/,
+      regexJa: /赤熱せし地を歩まん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -497,7 +497,7 @@
       regex: /Gleaming steel, take fire and descend/,
       regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexDe: /Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab/,
-      regexJp: /舞い降りし我が刃となれ/,
+      regexJa: /舞い降りし我が刃となれ/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
@@ -516,7 +516,7 @@
       regex: /Gleaming steel, plunge and take fiery edge/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
-      regexJp: /我の刃となり赤熱せよ/,
+      regexJa: /我の刃となり赤熱せよ/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
