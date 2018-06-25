@@ -31,7 +31,7 @@
     {
       id: 'UWU Garuda Slipstream',
       regex: /14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
-      regex: /14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
+      regexJa: /14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -76,7 +76,7 @@
     {
       id: 'UWU Ifrit Fetters',
       regex: /1A:(\y{Name}) gains the effect of Infernal Fetters from/,
-      regex: /1A:(\y{Name}) gains the effect of 炎獄の鎖 from/,
+      regexJa: /1A:(\y{Name}) gains the effect of 炎獄の鎖 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -121,25 +121,25 @@
     {
       id: 'UWU Garuda Woken',
       regex: / 1A:Garuda gains the effect of Woken from/,
-      regex: / 1A:ガルーダ gains the effect of 覚醒 from/,
+      regexJa: / 1A:ガルーダ gains the effect of 覚醒 from/,
       sound: 'Long',
     },
     {
       id: 'UWU Ifrit Woken',
       regex: / 1A:Ifrit gains the effect of Woken from/,
-      regex: / 1A:イフリート gains the effect of 覚醒 from/,
+      regexJa: / 1A:イフリート gains the effect of 覚醒 from/,
       sound: 'Long',
     },
     {
       id: 'UWU Titan Woken',
       regex: / 1A:Titan gains the effect of Woken from/,
-      regex: / 1A:タイタン gains the effect of 覚醒 from/,
+      regexJa: / 1A:タイタン gains the effect of 覚醒 from/,
       sound: 'Long',
     },
     {
       id: 'UWU Titan Gaols',
       regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:(\y{Name}):/,
-      regex: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches[1]);
@@ -168,7 +168,7 @@
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
       regex: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Burst:\y{ObjectId}:(\y{Name}):/,
-      regex: / 15:\y{ObjectId}:ボムボルダー:2B6A:爆発:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:ボムボルダー:2B6A:爆発:\y{ObjectId}:(\y{Name}):/,
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
@@ -182,7 +182,7 @@
     {
       // Cleanup
       regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}/,
-      regex: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
+      regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
