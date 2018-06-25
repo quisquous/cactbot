@@ -501,6 +501,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'Dadaluma Simulation': 'Programme Dadaluma',
+        'Bibliotaph Simulation': 'Programme Bibliotaphe',
         'Air Force': 'Force Aérienne',
         'Dadaluma': 'Dadaluma',
         'Fire Control System': 'Système De Contrôle',

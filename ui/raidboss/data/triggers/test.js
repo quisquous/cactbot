@@ -83,7 +83,7 @@
     },
     {
       id: 'Test Psych',
-      regexEn: /:You psych yourself up alongside the striking dummy/,
+      regex: /:You psych yourself up alongside the striking dummy/,
       regexFr: /:Vous vous motivez devant le mannequin d'entraînement/,
       alertText: function(data) {
         return {
@@ -98,7 +98,7 @@
     },
     {
       id: 'Test Laugh',
-      regexEn: /:You burst out laughing at the striking dummy/,
+      regex: /:You burst out laughing at the striking dummy/,
       regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
       suppressSeconds: 5,
       alarmText: function(data) {
@@ -114,7 +114,7 @@
     },
     {
       id: 'Test Clap',
-      regexEn: /:You clap for the striking dummy/,
+      regex: /:You clap for the striking dummy/,
       regexFr: /:Vous applaudissez le mannequin d'entraînement/,
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
