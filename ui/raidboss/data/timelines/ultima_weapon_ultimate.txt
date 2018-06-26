@@ -287,7 +287,7 @@ hideall "--Reset--"
 ## Random Primal Finale (summon all three in random order)
 
 ## Summon Garuda (random order)
-1300 "--sync--" sync /:The Ultima Weapon:2CD3:/ window 300,300
+1300 "--sync--" sync /:The Ultima Weapon:2CD3:/ window 50,300
 1307 "Wicked Wheel" sync /:Garuda:2B4E:/ # drift 0.351
 1308 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/ # drift 0.326
 1309 "Wicked Tornado" sync /:Garuda:2B4F:/ # drift -0.239
@@ -296,7 +296,7 @@ hideall "--Reset--"
 1322 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.208
 
 ## Summon Ifrit (random order)
-1400 "--sync--" sync /:The Ultima Weapon:2CD4:/ window 300,300
+1400 "--sync--" sync /:The Ultima Weapon:2CD4:/ window 150,300
 1408 "Eruption" sync /:Garuda:2B5A:/ # drift -0.445001
 1408 "Crimson Cyclone" sync /:Ifrit:2B5F:/
 1409 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/
@@ -304,7 +304,7 @@ hideall "--Reset--"
 1421 "Summon Random Primal"
 
 ## Summon Titan (random order)
-1500 "--sync--" sync /:The Ultima Weapon:2CD5:/ window 300,300
+1500 "--sync--" sync /:The Ultima Weapon:2CD5:/ window 250,300
 1505 "Weight Of The Land" sync /:Garuda:2B65:/
 1508 "Weight Of The Land" sync /:Ifrit:2B65:/
 1508 "Viscous Aetheroplasm" sync /:Ifrit:2B7A:/ # drift 0.201999
