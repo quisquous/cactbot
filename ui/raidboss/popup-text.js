@@ -419,6 +419,7 @@ class PopupText {
       }
 
       if (ttsText && !userDisabled) {
+        ttsText = ttsText.replace(/[#!]/, '');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       }
