@@ -63,7 +63,7 @@
           blame: e.targetName,
           text: {
             en: 'stepped in orb',
-            de: 'in Kugel reingelaufen'
+            de: 'in Kugel reingelaufen',
           },
         };
       },
