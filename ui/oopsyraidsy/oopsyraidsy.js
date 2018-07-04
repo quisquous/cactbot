@@ -99,16 +99,16 @@ let Options = {
 
 let kEarlyPullText = {
   en: 'early pull',
+  de: 'zu früh angegriffen',
   // FIXME
-  de: 'early pull',
   fr: 'early pull',
   ja: 'early pull',
 };
 
 let kLatePullText = {
   en: 'late pull',
+  de: 'zu spät angegriffen',
   // FIXME
-  de: 'late pull',
   fr: 'late pull',
   ja: 'late pull',
 };

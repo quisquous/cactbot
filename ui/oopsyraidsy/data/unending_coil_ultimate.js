@@ -19,6 +19,7 @@
           blame: e.targetName,
           text: {
             en: 'Twister Pop',
+            de: 'Wirbelsturm berührt',
           },
         };
       },
@@ -35,6 +36,7 @@
           blame: e.targetName,
           text: {
             en: 'Pizza Slice',
+            de: 'Pizzastück',
           },
         };
       },
@@ -84,6 +86,7 @@
           name: e.targetName,
           text: {
             en: 'hit by lightning',
+            de: 'vom Blitz getroffen',
           },
         };
       },

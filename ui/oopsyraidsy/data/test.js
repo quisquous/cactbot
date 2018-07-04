@@ -13,6 +13,7 @@
           blame: data.me,
           fullText: {
             en: 'Bow',
+            de: 'Bogen',
           },
         };
       },
@@ -26,6 +27,7 @@
           blame: data.me,
           fullText: {
             en: 'Party Wipe',
+            de: 'Gruppenwipe',
           },
         };
       },
@@ -38,6 +40,7 @@
           return false;
         let strikingDummyNames = [
           'Striking Dummy',
+          'Trainingspuppe',
           // FIXME: add other languages here
         ];
         return strikingDummyNames.indexOf(e.targetName) >= 0;
@@ -70,6 +73,7 @@
           return;
         let text = {
           en: 'Too many pokes (' + pokes + ')',
+          de: 'Zu viele Piekser (' + pokes + ')',
         };
         return { type: 'fail', blame: data.me, text: text };
       },
@@ -88,6 +92,7 @@
             blame: data.me,
             text: {
               en: 'ONE!',
+              de: 'EIN!',
             },
           },
           {
@@ -95,6 +100,7 @@
             blame: data.me,
             text: {
               en: 'ILM!',
+              de: 'ILM!',
             },
           },
           {
@@ -102,6 +108,7 @@
             blame: data.me,
             text: {
               en: 'PUNCH!',
+              de: 'SCHLAG!',
             },
           },
         ];
