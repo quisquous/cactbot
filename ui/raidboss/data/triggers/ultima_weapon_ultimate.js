@@ -8,7 +8,6 @@
     {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
-      regexDe: /Federregen/,
       beforeSeconds: 3,
       infoText: {
         en: 'Move!',
@@ -394,9 +393,7 @@
         'The Ultima Weapon': 'Ultima Arma',
         'Titan': 'Titan',
         'Ultimaplasm': 'Ultimaplasme',
-
-        // FIXME
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Hahaha! HÉHÉHÉ! HA HA HA! Je vais vous écorcher avec mes bourrasques!',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Je vais vous écorcher avec mes bourrasques',
         'Bomb Boulder': 'Bomb Boulder',
       },
       'replaceText': {
