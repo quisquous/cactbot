@@ -87,6 +87,7 @@
       tts: {
         en: 'beam',
         de: 'leser',
+        fr: 'laser',
       },
     },
     {
@@ -100,12 +101,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tenkbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -114,6 +117,7 @@
           return {
             en: 'buster',
             de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -127,10 +131,12 @@
       alertText: {
         en: 'Orb Marker',
         de: 'Orb Marker',
+        fr: 'Orbe',
       },
       tts: {
         en: 'orb',
         de: 'orb',
+        fr: 'orbe',
       },
     },
     {
@@ -143,6 +149,7 @@
         return {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
+          fr: 'Marque Bleue sur VOUS',
         };
       },
       infoText: function(data, matches) {
@@ -152,6 +159,7 @@
         return {
           en: 'Blue Marker on ' + data.ShortName(matches[1]),
           de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
+          fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -161,6 +169,7 @@
         return {
           en: 'blue marker',
           de: 'aura-kanone',
+          fr: 'marque bleu',
         };
       },
     },
@@ -172,11 +181,13 @@
           return {
             en: 'Prey on YOU',
             de: 'Rakete auf DIR',
+            fr: 'Marquage sur VOUS',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
           de: 'Beute auf ' + data.ShortName(matches[1]),
+          fr: 'Marquage sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -186,6 +197,7 @@
         return {
           en: 'prey',
           de: 'beute',
+          fr: 'marquage',
         };
       },
     },
@@ -201,10 +213,12 @@
       alarmText: {
         en: 'Searing Wind: go outside',
         de: 'Gluthitze: Geh weg',
+        fr: 'Fournaise : éloignez-vous',
       },
       tts: {
         en: 'searing wind',
         de: 'gluthitze',
+        fr: 'fournaise',
       },
     },
     {
@@ -219,10 +233,12 @@
       alertText: {
         en: 'Abandonment: stay middle',
         de: 'Verlassen: Bleib mittig',
+        fr: 'Isolement : restez au milieu',
       },
       tts: {
         en: 'abandonment',
         de: 'verlassen',
+        fr: 'isolement',
       },
     },
     {
@@ -236,11 +252,13 @@
           return {
             en: 'Rot on you',
             de: 'Fäule auf DIR',
+            fr: 'Pourriture sur VOUS',
           };
         }
         return {
           en: 'Rot on ' + data.ShortName(matches[1]),
           de: 'Fäule auf ' + data.ShortName(matches[1]),
+          fr: 'Pourriture sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -250,6 +268,7 @@
         return {
           en: 'rot',
           de: 'fäule',
+          fr: 'pourriture',
         };
       },
     },
@@ -264,6 +283,7 @@
           return {
             en: 'SILENCE!',
             de: 'VERSTUMMEN!',
+            fr: 'SILENCE!',
           };
         }
       },
@@ -272,6 +292,7 @@
           return {
             en: 'Silence',
             de: 'stumm',
+            fr: 'silence',
           };
         }
       },
@@ -480,19 +501,19 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'Dadaluma Simulation': 'Programme Dadaluma',
+        'Bibliotaph Simulation': 'Programme Bibliotaphe',
         'Air Force': 'Force Aérienne',
         'Dadaluma': 'Dadaluma',
         'Fire Control System': 'Système De Contrôle',
         'Guardian': 'Gardien',
         'Interdimensional Bomb': 'Bombe Dimensionnelle',
         'Ultros': 'Orthros',
-
-        // FIXME:
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE',
+        'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle... Activation du programme initial... Gardien, au combat',
       },
       'replaceText': {
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Arm And Hammer': 'Marteau Stratégique',
         'Atomic Ray': 'Rayon Atomique',
         'Aura Cannon': 'Rayon D\'aura',
@@ -526,25 +547,23 @@
         'The Heat': 'Carbonisation',
         'Viral Weapon': 'Arme Virologique',
         'Wallop': 'Taloche Tentaculaire',
-
-        // FIXME:
         'Prey': 'Marquage',
-        'Aether Rot': 'Aether Rot',
-        'Copy': 'Copy',
-        'Skip': 'Skip',
-        'Dada': 'Dada',
-        'Run': 'Run',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin',
-        'Magnetism/Repel': 'Magnetism/Repel',
-        'Temporary Misdirection': 'Temporary Misdirection',
+        'Aether Rot': 'Pourriture éthéréenne',
+        'Copy': 'Copie',
+        'Skip': 'Saut De Programme',
+        'Dada': 'Dadaluma',
+        'Run': 'Programme',
+        'Interrupt Stoneskin': 'Interrompre Cuirasse',
+        'Magnetism/Repel': 'Magnétisme/Répulsion',
+        'Temporary Misdirection': 'Démence',
         'Radar': 'Radar',
-        'Paste': 'Paste',
-        'Biblio': 'Biblio',
-        'Plane Laser': 'Plane Laser',
+        'Paste': 'Collage',
+        'Biblio': 'Bibliotaphe',
+        'Plane Laser': 'Laser force aérienne',
         'Virus': 'Virus',
         'Enrage': 'Enrage',
-        'Retrieve Ultros': 'Retrieve Ultros',
-        'Retrieve Air Force': 'Retrieve Air Force',
+        'Retrieve Ultros': 'Programme Précédent Orthros',
+        'Retrieve Air Force': 'Programme Précédent Force Aérienne',
       },
       '~effectNames': {
         'Abandonment': 'Isolement',

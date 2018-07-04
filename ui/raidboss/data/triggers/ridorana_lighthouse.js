@@ -3,13 +3,16 @@
 [{
   zoneRegex: /^The Ridorana Lighthouse$/,
   timelineFile: 'ridorana_lighthouse.txt',
-  timeline: [
-    function(data) {
-      if (data.lang == 'de')
-        return 'alerttext "Stone Breath" before 7 "Hinter ihn laufen"';
-      if (data.lang == 'fr')
-        return 'alerttext "Stone Breath" before 7 "Aller derrière"';
-      return 'alerttext "Stone Breath" before 7 "Get Behind"';
+  timelineTriggers: [
+    {
+      id: 'Ridorana Stone Breath',
+      regex: /Stone Breath/,
+      beforeSeconds: 7,
+      alertText: {
+        en: 'Get Behind',
+        de: 'Hinter ihn laufen',
+        fr: 'Allez derrière',
+      },
     },
   ],
   triggers: [
@@ -24,7 +27,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tank Buster sur VOUS',
           };
         }
       },
@@ -35,7 +38,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -43,7 +46,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -123,7 +126,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: 'S\'écrater',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -155,7 +158,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -166,7 +169,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -174,7 +177,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -183,12 +186,12 @@
       id: 'Ridorana Belias Time Eruption',
       regex: / 14:2CDE:Belias, The Gigas starts using Time Eruption/,
       regexDe: / 14:2CDE:Dämonid Belias starts using Zeiteruption/,
-      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption à Retardement/,
+      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption À Retardement/,
       regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
       infoText: {
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
-        fr: 'Se placer sur une horloge lente',
+        fr: 'Placez-vous sur une horloge lente',
       },
     },
     {
@@ -210,12 +213,12 @@
       id: 'Ridorana Belias Time Bomb',
       regex: / 14:2CE6:Belias, The Gigas starts using Time Bomb/,
       regexDe: / 14:2CE6:Dämonid Belias starts using Zeitbombe/,
-      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe à Retardement/,
+      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe À Retardement/,
       regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
       infoText: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
-        fr: 'Arrêter horloge',
+        fr: 'Arrêtez horloge',
       },
     },
     {
@@ -242,7 +245,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -253,7 +256,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -261,7 +264,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -278,7 +281,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: 'S\'écrater',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -329,27 +332,27 @@
             {
               en: 'Stay out',
               de: 'Draußen stehen',
-              fr: 'En dehors',
+              fr: 'Restez dehors',
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
-              fr: 'Aller sur le 1',
+              fr: 'Allez sur le 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
-              fr: 'Aller sur le 2',
+              fr: 'Allez sur le 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
-              fr: 'Aller sur le 3',
+              fr: 'Allez sur le 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
-              fr: 'Aller sur le 4',
+              fr: 'Allez sur le 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
@@ -375,7 +378,7 @@
       // overwriting any results from t=0 if that was valid.
       regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
       regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Malus De Pv\+/,
       regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
@@ -448,7 +451,7 @@
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
-        fr: 'S\'eloigner',
+        fr: 'Eloignez-vous',
       },
     },
     {
@@ -460,14 +463,14 @@
       alertText: {
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
-        fr: 'Aller derrière',
+        fr: 'Allez derrière le boss',
       },
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
       regex: /1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
       regexDe: /1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
+      regexFr: /1A:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
       regexJa: /1A:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -490,7 +493,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -501,7 +504,7 @@
         return {
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -509,7 +512,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -526,7 +529,7 @@
       infoText: {
         en: 'Out of Front',
         de: 'Vorm Boss weg',
-        fr: 'Pas devant',
+        fr: 'Ne restez pas devant',
       },
     },
     {
@@ -538,7 +541,7 @@
       alertText: {
         en: 'Get Under',
         de: 'Reingehen',
-        fr: 'En dessous',
+        fr: 'Allez sous le boss',
       },
     },
     {
@@ -553,7 +556,7 @@
       infoText: {
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
-        fr: 'Aller sur le plus',
+        fr: 'Allez sur le plus',
       },
     },
     {
@@ -568,7 +571,7 @@
       infoText: {
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
-        fr: 'Aller sur le moins',
+        fr: 'Allez sur le moins',
       },
     },
     {
@@ -761,9 +764,9 @@
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Briny Cannonade': 'Aqua-canon',
         'Dark Cannonade': 'Bombardement Ténébreux',
         'Dark Ewer': 'Aiguières Ténèbreuses',

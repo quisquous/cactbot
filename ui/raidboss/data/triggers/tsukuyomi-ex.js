@@ -29,9 +29,9 @@
     },
     {
       id: 'Tsukuyomi Torment',
-      regex: / 14:2BBB:Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
-      regexDe: / 14:2BBB:Tsukuyomi starts using Todesqualen on (\y{Name})/,
-      regexFr: / 14:2BBB:Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
+      regex: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
+      regexDe: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Todesqualen on (\y{Name})/,
+      regexFr: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -99,7 +99,7 @@
         let moonInOut = {
           en: 'In',
           de: 'Rein',
-          fr: 'Pret',
+          fr: 'Près',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -160,7 +160,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
-        fr: 'Ecartez vous',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -382,12 +382,12 @@
         'Waning Grudge': 'Rancœur Ténébreuse',
         'Waxing Grudge': 'Rancœur Blafarde',
         'Zashiki-asobi': 'Zashiki Asobi',
-        'Homeland adds .E->W.': 'Adds Domiens (E->O)',
-        'Empire adds .SW->NW.': 'Adds de l\'Empire (SO->NO)',
+        'Homeland adds .E->W.': 'Soldats Domiens (E->O)',
+        'Empire adds .SW->NW.': 'Soldats Impériaux (SO->NO)',
         'Moonburst': 'Entrechoc De Fragments Lunaires',
         'Antitwilight': 'Belle-de-nuit',
-        'Lead/Steel': 'Munition/Lance',
-        'Steel/Lead': 'Lance/Munition',
+        'Lead/Steel': 'Tir De L\'au-delà/Pointes De L\'au-delà',
+        'Steel/Lead': 'Pointes De L\'au-delà/Tir De L\'au-delà',
       },
       '~effectNames': {
         'Bleeding': 'Saignant',

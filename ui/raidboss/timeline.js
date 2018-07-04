@@ -48,6 +48,8 @@ class Timeline {
       let r = this.replacements[i];
       if (r.locale && r.locale != locale)
         continue;
+      if (!r[replaceKey])
+        continue;
       let keys = Object.keys(r[replaceKey]);
       for (let j = 0; j < keys.length; ++j)
         text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]]);
@@ -679,10 +681,6 @@ class TimelineUI {
       this.debugFightTimer.bg = 'transparent';
       this.debugFightTimer.fg = 'transparent';
       this.debugElement.appendChild(this.debugFightTimer);
-      console.log('OnSync: ' + fightNow + ' (init)');
-    } else {
-      console.log('OnSync: ' + fightNow +
-          ' (prev: ' + this.debugFightTimer.elapsed + ')');
     }
 
     // Force this to be reset.

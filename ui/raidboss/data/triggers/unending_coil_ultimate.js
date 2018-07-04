@@ -98,7 +98,7 @@
       regex: /:26E5:Bahamut Prime starts using Heavensfall Trio/,
       regexDe: /:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
       regexFr: /:26E5:Primo-Bahamut starts using Trio De L'univers/,
-      regexJa: /:26E5:バハムート・プライム starts using 天地崩壊 Trio/,
+      regexJa: /:26E5:バハムート・プライム starts using 天地の三重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('heavensfall');
       },
@@ -145,11 +145,13 @@
         en: 'Twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
+        ja: '大竜巻',
       },
       tts: {
         en: 'twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
+        ja: '大竜巻',
       },
     },
     { id: 'UCU Death Sentence',
@@ -163,6 +165,7 @@
             en: 'Death Sentence',
             fr: 'Peine de mort',
             de: 'Todesurteil',
+            ja: 'デスセンテンス',
           };
         }
       },
@@ -172,6 +175,7 @@
             en: 'buster',
             fr: 'Anti-tank',
             de: 'basta',
+            ja: 'タンク即死級',
           };
         }
       },
@@ -192,11 +196,13 @@
         en: 'Hatch on YOU',
         fr: 'Éclosion sur VOUS',
         de: 'Ausbrüten auf DIR',
+        ja: '自分に魔力爆散',
       },
       tts: {
         en: 'hatch',
         fr: 'Éclosion',
         de: 'ausbrüten',
+        ja: '魔力爆散',
       },
     },
     {
@@ -214,6 +220,7 @@
           en: 'Hatch: ' + hatches,
           fr: 'Éclosion: ' + hatches,
           de: 'Ausbrüten: ' + hatches,
+          ja: '魔力爆散' + hatches,
         };
       },
     },
@@ -235,6 +242,7 @@
           en: 'Phase 2 Push',
           fr: 'Phase 2 poussée',
           de: 'Phase 2 Stoß',
+          ja: 'フェーズ2',
         };
       },
     },
@@ -249,6 +257,7 @@
           en: 'Phase 3 Push',
           fr: 'Phase 3 poussée',
           de: 'Phase 3 Stoß',
+          ja: 'フェーズ3',
         };
       },
     },
@@ -258,113 +267,126 @@
       regex: /From on high I descend, in blessed light to bask/,
       regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexDe: /Seht, ich steige herab, vom rotglühenden Monde/,
-      regexJp: /月を仰がん/,
+      regexJa: /月を仰がん/,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
         de: 'Verteilen => Rein',
+        ja: '散開 => 密着',
       },
       durationSeconds: 6,
       tts: {
         en: 'spread then in',
         fr: 'Se dispercer, puis dedans',
         de: 'verteilen, dann rein',
+        ja: '散開や密着',
       },
     },
     { id: 'UCU Nael Quote 2',
       regex: /From on high I descend, mine enemies to smite/,
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexDe: /Seht, ich steige herab, um euch zu beherrschen/,
-      regexJp: /鉄の覇道を征く/,
+      regexJa: /鉄の覇道を征く/,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
         de: 'Verteilen => Raus',
+        ja: '散開 => 離れる',
       },
       durationSeconds: 6,
       tts: {
         en: 'spread then out',
         fr: 'Se dispercer, puis dehors',
         de: 'verteilen, dann raus',
+        ja: '散開や離れる',
       },
     },
     { id: 'UCU Nael Quote 3',
       regex: /O refulgent moon, shine down your light/,
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexDe: /Flammender Pfad, geschaffen vom roten Mond/,
-      regexJp: /月の祝福を/,
+      regexJa: /月の祝福を/,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
         de: 'Stack => Rein',
+        ja: '頭割り => 密着',
       },
       durationSeconds: 6,
       tts: {
         en: 'stack then in',
         fr: 'Se rassembler, puis dedans',
         de: 'stek dann rein',
+        ja: '頭割りや密着',
       },
     },
     { id: 'UCU Nael Quote 4',
       regex: /Blazing path, lead me to conquest/,
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexDe: /Umloderter Pfad, führe mich zur Herrschaft/,
-      regexJp: /鉄の覇道と成す/,
+      regexJa: /鉄の覇道と成す/,
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
         de: 'Stack => Raus',
+        ja: '頭割り => 離れる',
       },
       durationSeconds: 6,
       tts: {
         en: 'stack then out',
         fr: 'Se rassembler, puis dehors',
         de: 'stek dann raus',
+        ja: '頭割りや離れる',
       },
     },
     { id: 'UCU Nael Quote 5',
       regex: /O red moon, scorch mine enemies/,
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexDe: /O roter Mond! Umlodere meinen Pfad/,
-      regexJp: /赤熱し、神敵を焼け/,
+      regexJa: /赤熱し、神敵を焼け/,
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
         de: 'Rein => Stack',
+        ja: '密着 => 頭割り',
       },
       durationSeconds: 6,
       tts: {
         en: 'in then stack',
         fr: 'Dedans, puis se rassembler',
         de: 'rein dann stek',
+        ja: '密着や頭割り',
       },
     },
     { id: 'UCU Nael Quote 6',
       regex: /O red moon, shine the path to conquest/,
       regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexDe: /O roter Mond! Führe mich zur Herrschaft/,
-      regexJp: /鉄の覇道を照らせ/,
+      regexJa: /鉄の覇道を照らせ/,
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
         de: 'Rein => Raus',
+        ja: '密着 => 離れる',
       },
       durationSeconds: 6,
       tts: {
         en: 'in then out',
         fr: 'Dedans, puis dehors',
         de: 'rein dann raus',
+        ja: '密着や離れる',
       },
     },
     { id: 'UCU Nael Quote 7',
       regex: /Fleeting light, score the earth with a fiery kiss/,
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
-      regexJp: /紅月下の赤熱せし地を照らせ/,
+      regexJa: /紅月下の赤熱せし地を照らせ/,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
         de: 'Weg vom Tank => Stack',
+        ja: 'タンクから離れる => 頭割り',
       },
       durationSeconds: 6,
       delaySeconds: 4,
@@ -372,17 +394,19 @@
         en: 'away from tank then stack',
         fr: 'S\'éloigner du tank, puis se rassembler',
         de: 'weck vom tenk dann stek',
+        ja: 'タンクから離れるや頭割り',
       },
     },
     { id: 'UCU Nael Quote 8',
       regex: /Fleeting light, outshine the stars for the moon/,
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexDe: /Neues Gestirn! Überstrahle jede Sternschnuppe/,
-      regexJp: /星降りの夜に、紅月を称えよ/,
+      regexJa: /星降りの夜に、紅月を称えよ/,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
         de: 'Verteilen => Weg vom Tank',
+        ja: '散開 => タンクから離れる',
       },
       durationSeconds: 6,
       delaySeconds: 4,
@@ -390,109 +414,121 @@
         en: 'spread then away from tank',
         fr: 'Se dispercer, puis s\'éloigner du tank',
         de: 'verteilen dann weck vom tenk',
+        ja: '散開やタンクから離れる',
       },
     },
     { id: 'UCU Nael Quote 9',
       regex: /From on high I descend, a hail of stars to bring/,
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexDe: /Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich/,
-      regexJp: /星降りの夜を招かん/,
+      regexJa: /星降りの夜を招かん/,
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
         de: 'Verteilen => Rein',
+        ja: '散開 => 密着',
       },
       tts: {
         en: 'spread then in',
         fr: 'Se dispercer, puis dedans',
         de: 'verteilen dann rein',
+        ja: '散開や密着',
       },
     },
     { id: 'UCU Nael Quote 10',
       regex: /From red moon I descend, a hail of stars to bring/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
       regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
-      regexJp: /星降りの夜を招かん/,
+      regexJa: /星降りの夜を招かん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
         fr: 'Dedans => Se dispercer',
         de: 'Rein => Verteilen',
+        ja: '密着 => 散開',
       },
       tts: {
         en: 'in then spread',
         fr: 'Dedans, puis se dispercer',
         de: 'rein dann verteilen',
+        ja: '密着や散開',
       },
     },
     { id: 'UCU Nael Quote 11',
       regex: /From red moon I draw steel, in my descent to bare/,
       regexFr: /De la lune je m'arme d'acier et descends/,
-      regexFr: /De la lune je m'arme d'acier et descends/,
       regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
-      regexJp: /舞い降りん/,
+      regexJa: /舞い降りん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
         fr: 'Dedans => Dehors => Se dispercer',
         de: 'Rein => Raus => Verteilen',
+        ja: '密着 => 離れる => 散開',
       },
       tts: {
         en: 'in then out then spread',
         fr: 'Dedans, puis dehors, puis se dispercer',
         de: 'rein dann raus dann verteilen',
+        ja: '密着や離れるや散開',
       },
     },
     { id: 'UCU Nael Quote 12',
       regex: /From red moon I descend, upon burning earth to tread/,
       regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexDe: /O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen/,
-      regexJp: /赤熱せし地を歩まん/,
+      regexJa: /赤熱せし地を歩まん/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
         fr: 'Dedans => Se dispercer => Se rassembler',
         de: 'Rein => Verteilen => Stack',
+        ja: '密着 => 散開 => 頭割り',
       },
       tts: {
         en: 'in then spread then stack',
         fr: 'Dedans, puis se dispercer, puis se rassembler',
         de: 'rein dann raus dann stek',
+        ja: '密着や散開や頭割り',
       },
     },
     { id: 'UCU Nael Quote 13',
       regex: /Gleaming steel, take fire and descend/,
       regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexDe: /Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab/,
-      regexJp: /舞い降りし我が刃となれ/,
+      regexJa: /舞い降りし我が刃となれ/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
         fr: 'Dehors => Se rassembler => Se dispercer',
         de: 'Raus => Stack => Verteilen',
+        ja: '離れる => 頭割り => 散開',
       },
       tts: {
         en: 'out then stack then spread',
         fr: 'Dehors, puis se rassembler, puis se dispercer',
         de: 'rein dann raus dann verteilen',
+        ja: '離れるや頭割りや散開',
       },
     },
     { id: 'UCU Nael Quote 14',
       regex: /Gleaming steel, plunge and take fiery edge/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
-      regexJp: /我の刃となり赤熱せよ/,
+      regexJa: /我の刃となり赤熱せよ/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
         fr: 'Dehors => Se dispercer => Se rassembler',
         de: 'Raus => Verteilen => Stack',
+        ja: '離れる => 散開 => 頭割り',
       },
       tts: {
         en: 'out then spread then stack',
         fr: 'Dehors, puis se dispercer, puis se rassembler',
         de: 'Raus dann rein dann stek',
+        ja: '離れるや散開や頭割り',
       },
     },
     { id: 'UCU Nael Thunderstruck',
@@ -509,11 +545,13 @@
         en: 'Thunder on YOU',
         fr: 'Foudre sur VOUS',
         de: 'Blitz auf DIR',
+        ja: '自分にサンダー',
       },
       tts: {
         en: 'thunder',
         fr: 'Foudre',
         de: 'blitz',
+        ja: 'サンダー',
       },
     },
     { id: 'UCU Nael Your Doom',
@@ -539,6 +577,7 @@
             en: 'Doom #1 on YOU',
             fr: 'Glas #1 sur VOUS',
             de: 'Verhängnis #1 auf DIR',
+            ja: '自分に一番目死の宣告',
           };
         }
         if (parseFloat(matches[2]) <= 10) {
@@ -546,12 +585,14 @@
             en: 'Doom #2 on YOU',
             fr: 'Glas #2 sur VOUS',
             de: 'Verhängnis #2 auf DIR',
+            ja: '自分に二番目死の宣告',
           };
         }
         return {
           en: 'Doom #3 on YOU',
           fr: 'Glas #3 sur VOUS',
           de: 'Verhängnis #3 auf DIR',
+          ja: '自分に三番目死の宣告',
         };
       },
       tts: function(data, matches) {
@@ -601,6 +642,7 @@
       regex: /:Fang of Light:26CA:/,
       regexFr: /:Croc de lumière:26CA:/,
       regexDe: /:Lichtklaue:26CA:/,
+      regexJa: /:ライトファング:26CA:/,
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
         let name;
@@ -612,6 +654,7 @@
             en: 'Cleanse #' + data.doomCount + ': ' + data.ShortName(name),
             fr: 'Purifié #' + data.doomCount + ': ' + data.ShortName(name),
             de: 'Medica #' + data.doomCount + ': ' + data.ShortName(name),
+            ja: '解除に番目' + data.doomCount + ': ' + data.ShortName(name),
           };
         }
       },
@@ -627,11 +670,13 @@
         en: 'Fire IN',
         fr: 'Feu EN DEDANS',
         de: 'Feuer INNEN',
+        ja: 'ファイアボールは密着',
       },
       tts: {
         en: 'fire in',
         fr: 'Feu en dedans',
         de: 'Feuer innen',
+        ja: 'ファイアボール密着',
       },
       run: function(data) {
         data.naelFireballCount = 1;
@@ -650,6 +695,7 @@
             en: 'Fire OUT',
             fr: 'Feu EN DEHORS',
             de: 'Feuer AUßEN',
+            ja: 'ファイアボールは離れる',
           };
         }
       },
@@ -664,6 +710,7 @@
             en: 'Fire OUT: Be in it',
             fr: 'Feu EN DEHORS : Allez dessus',
             de: 'Feuer AUßEN: Drin sein',
+            ja: 'ファイアボールは離れる: 自分に密着',
           };
         }
       },
@@ -673,12 +720,14 @@
             en: 'fire out; go with',
             fr: 'Feu en dehors; y allez',
             de: 'feuer außen; mitgehen',
+            ja: 'ファイアボール離れる: 自分に密着',
           };
         }
         return {
           en: 'fire out',
           fr: 'Feu en dehors',
           de: 'feuer außen',
+          ja: 'ファイアボール離れる',
         };
       },
 
@@ -716,6 +765,7 @@
           en: 'Fire IN' + str,
           fr: 'Feu EN DEDANS' + str,
           de: 'Feuer INNEN',
+          ja: 'ファイアボールは密着',
         };
       },
       alertText: function(data) {
@@ -726,6 +776,7 @@
             en: 'Fire IN: AVOID!',
             fr: 'Feu EN DEDANS : L\'ÉVITER !',
             de: 'Feuer INNEN: AUSWEICHEN!',
+            ja: 'ファイアボールは密着: 自分に離れる',
           };
         }
       },
@@ -735,12 +786,14 @@
             en: 'avoid fire in',
             fr: 'Éviter le feu en dedans',
             de: 'feuer innen ausweichen',
+            ja: 'ファイアボール密着: 自分に離れる',
           };
         }
         return {
           en: 'fire in',
           fr: 'Feu en dedans',
           de: 'feuer innen',
+          ja: 'ファイアボール密着',
         };
       },
       run: function(data) {
@@ -769,6 +822,7 @@
             en: 'Fire IN',
             fr: 'Feu EN DEDANS',
             de: 'Feuer INNEN',
+            ja: 'ファイアボール密着',
           };
         }
       },
@@ -781,6 +835,7 @@
             en: 'Fire IN: AVOID!',
             fr: 'Feu EN DEDANS : L\'ÉVITER !',
             de: 'Feuer INNEN: AUSWEICHEN!',
+            ja: 'ファイアボールは密着: 自分に離れる',
           };
         }
       },
@@ -789,6 +844,7 @@
           en: 'fire in',
           fr: 'Feu en dedans',
           de: 'feuer innen',
+          ja: 'ファイアボール密着',
         };
       },
       run: function(data) {
@@ -800,6 +856,7 @@
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       regexDe: /:(Eisklaue:26C6|Donnerschwinge:26C7|Lichtklaue:26CA|Dunkelschweif:26C9|Feuerhorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
+      regexJa: /:(アイスクロウ:26C6|サンダーウィング:26C7|ライトファング:26CA|ダークテイル:26C9|ファイアホーン:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       condition: function(data, matches) {
         return !data.seenDragon || !(matches[1] in data.seenDragon);
       },
@@ -856,6 +913,7 @@
           en: 'Marks: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : ''),
           fr: 'Marque : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (LARGE)' : ''),
           de: 'Markierungen : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (GROß)' : ''),
+          ja: 'マーカー: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (広)' : ''),
         };
       },
     },
@@ -874,6 +932,7 @@
           en: 'Go To ' + marker + ' (in ' + dir + ')',
           fr: 'Aller en ' + marker + ' (au ' + dir + ')',
           de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
+          ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
         };
       },
       tts: function(data, matches) {
@@ -884,6 +943,7 @@
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           fr: 'Aller en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
         };
       },
     },
@@ -901,6 +961,7 @@
           en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
           fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
           de: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
+          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches[1]),
         };
       },
     },
@@ -967,6 +1028,7 @@
           en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (nael)',
           de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (ネール)',
         };
       },
     },
@@ -993,6 +1055,7 @@
           en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (baha)',
           de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (バハ)',
         };
       },
     },
@@ -1008,6 +1071,7 @@
             en: 'YOU Stack for Twin',
             fr: 'VOUS devez appâter Gémellia',
             de: 'DU stackst für Twintania',
+            ja: '自分にタニアには頭割り',
           };
         }
       },
@@ -1017,6 +1081,7 @@
             en: '8: ??? (twin)',
             fr: '8 : ??? (Gémellia)',
             de: '8: ??? (Twintania)',
+            ja: '8: ??? (ツインタニア)',
           };
         }
         // If this person is not alive, then everybody should stack,
@@ -1026,6 +1091,7 @@
             en: '8: ' + data.ShortName(data.lastOctetMarker) + ' (twin)',
             fr: '8 : ' + data.ShortName(data.lastOctetMarker) + ' (Gémellia)',
             de: '8: ' + data.ShortName(data.lastOctetMarker) + ' (Twintania)',
+            ja: '8: ' + data.ShortName(data.lastOctetMarker) + ' (ツインタニア)',
           };
         }
       },
@@ -1035,6 +1101,7 @@
             en: 'stack for twin',
             fr: 'Se rassembler pour appâter Gémellia',
             de: 'stek für twintania',
+            ja: '頭割り',
           };
         }
       },
@@ -1048,11 +1115,13 @@
         en: 'Twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
+        ja: 'ツイスター',
       },
       tts: {
         en: 'twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
+        ja: 'ツイスター',
       },
     },
     { id: 'UCU Bahamut Gigaflare',
@@ -1064,11 +1133,13 @@
         en: 'Gigaflare',
         fr: 'GigaBrasier',
         de: 'Gigaflare',
+        ja: 'ギガフレア',
       },
       tts: {
         en: 'gigaflare',
         fr: 'Giga Brasier',
         de: 'Gigafleer',
+        ja: 'ギガフレア',
       },
     },
     {
@@ -1081,11 +1152,13 @@
         en: 'Megaflare Stack',
         fr: 'MegaBrasier rassemblement',
         de: 'Megaflare Stack',
+        ja: 'メガフレア頭割り',
       },
       tts: {
         en: 'stack',
         fr: 'Se rassembler',
         de: 'stek',
+        ja: '頭割り',
       },
     },
     { // Megaflare stack tracking
@@ -1109,6 +1182,7 @@
             en: 'Tower, bait hypernova',
             fr: 'Tour, appâter Supernova',
             de: 'Turm, Hypernova ködern',
+            ja: 'タワーやスーパーノヴァ',
           };
         }
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me) {
@@ -1116,12 +1190,14 @@
             en: 'Bait Twin, then tower',
             fr: 'Appâter Gémellia, puis tour',
             de: 'Twintania in Turm locken',
+            ja: 'タニアダイブやタワー',
           };
         }
         return {
           en: 'Get in a far tower',
           fr: 'Aller dans une tour lointaine',
           de: 'Geh in entfernten Turm',
+          ja: '遠いタワー',
         };
       },
       tts: function(data) {
@@ -1133,6 +1209,7 @@
             en: 'tower',
             fr: 'Tour',
             de: 'Turm',
+            ja: 'タワー',
           };
         }
       },
@@ -1147,11 +1224,13 @@
         en: 'Earthshaker on YOU',
         fr: 'Secousse sur VOUS',
         de: 'Erdstoß auf Dir',
+        ja: '自分にアースシェイカー',
       },
       tts: {
         en: 'shaker',
         fr: 'Secousse',
         de: 'Erdstoß',
+        ja: 'アースシェイカー',
       },
     },
     { // Earthshaker tracking
@@ -1172,6 +1251,7 @@
               en: 'Pick up tether',
               fr: 'Prendre un lien',
               de: 'Verbindung holen',
+              ja: 'テンペストウィング線',
             };
           }
         }
@@ -1186,6 +1266,7 @@
               en: 'No shaker; stack south.',
               fr: 'Pas de Secousse; se rassembler au Sud.',
               de: 'Kein Erdstoß; im süden sammeln',
+              ja: 'シェイカーない；頭割りで南',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1195,6 +1276,7 @@
                 en: 'Stack on safe spot',
                 fr: 'Se rassembler au point sauf',
                 de: 'In Sicherheit steken',
+                ja: '頭割りで安全',
               };
             }
           }
@@ -1209,6 +1291,7 @@
               en: 'tether',
               fr: 'Lien',
               de: 'Verbindung',
+              ja: '線',
             };
           }
           if (data.shakers.indexOf(data.me) == -1) {
@@ -1216,6 +1299,7 @@
               en: 'stack south',
               fr: 'Se rassembler au sud',
               de: 'stek im süden',
+              ja: '頭割りで南',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1225,6 +1309,7 @@
                 en: 'safe spot',
                 fr: 'Point sauf',
                 de: 'in sicherheit',
+                ja: '安全',
               };
             }
           }
@@ -1252,6 +1337,7 @@
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
             de: str + ' (DU)',
+            ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (自分)',
           };
         }
         return str + ' (' + data.ShortName(matches[1]) + ')';
@@ -1292,13 +1378,15 @@
           en: 'Exaflare #' + data.exaflareCount,
           fr: 'ExaBrasier #' + data.exaflareCount,
           de: 'Exaflare #' + data.exaflareCount,
+          ja: 'エクサフレア' + data.exaflareCount + '回',
         };
       },
       tts: function(data, matches) {
         return {
           en: 'exaflare ' + data.exaflareCount,
           fr: 'Exabrasier '+ data.exaflareCount,
-          fr: 'Exafleer '+ data.exaflareCount,
+          de: 'Exafleer '+ data.exaflareCount,
+          ja: 'エクサフレア' + data.exaflareCount,
         };
       },
     },

@@ -25,7 +25,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
-            fr: 'Tank Buster sur TOI',
+            fr: 'Tank Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
@@ -41,7 +41,7 @@
           return {
             en: 'buster',
             de: 'tenkbasta',
-            fr: 'buster',
+            fr: 'tankbuster',
           };
         }
       },
@@ -178,8 +178,6 @@
         'Head On': 'Plein Fouet',
         'Possess': 'Possession',
         'Saintly Beam': 'Faisceaux Sacrés',
-
-        // FIXME:
         'Crossing Whistle': 'Sifflet traversée',
         'Tether Whistle': 'Sifflet liens',
         'Ghosts': 'Fantômes',

@@ -75,6 +75,9 @@ class CactbotLanguage {
       BloodPrice: 'E2F',
       TheBlackestNight: '1CE1',
       Delirium: '1CDE',
+      Combust2: 'E18',
+      AspectedBenefic: 'E0B',
+      AspectedHelios: 'E11',
 
       // Susano Ex
       ChurningDeep: '203F',
