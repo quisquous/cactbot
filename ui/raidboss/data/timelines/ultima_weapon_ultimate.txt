@@ -1,4 +1,5 @@
 # Ultima Weapon Ultimate
+## http://clees.me/guides/uwu/
 
 hideall "--sync--"
 hideall "--Reset--"
@@ -250,7 +251,7 @@ hideall "--Reset--"
 1155 "Homing Lasers" sync /:The Ultima Weapon:2B7B:/
 1163 "Eye Of The Storm" sync /:Garuda:2B52:/
 1165 "Radiant Plume" sync /:The Ultima Weapon:2B7D:/ # drift 0.324001
-1169 "Diffractive Laser" sync /:The Ultima W eapon:2B78:/ # drift -0.486999
+1169 "Diffractive Laser" sync /:The Ultima Weapon:2B78:/ # drift -0.486999
 1173 "Vulcan Burst" sync /:The Ultima Weapon:2CF4:/
 1175 "Eye Of The Storm" sync /:Garuda:2B52:/
 1181 "Homing Lasers" sync /:The Ultima Weapon:2B7B:/
