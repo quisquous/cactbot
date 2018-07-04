@@ -8,7 +8,6 @@
     {
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
-      regexDe: /Federregen/,
       regexJa: /フェザーレイン/,
       beforeSeconds: 3,
       infoText: {
