@@ -40,7 +40,6 @@
           return false;
         let strikingDummyNames = [
           'Striking Dummy',
-          'Trainingspuppe',
           // FIXME: add other languages here
         ];
         return strikingDummyNames.indexOf(e.targetName) >= 0;
