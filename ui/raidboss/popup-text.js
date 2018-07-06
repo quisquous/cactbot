@@ -302,6 +302,12 @@ class PopupText {
         showText = triggerOptions.TextAlert;
     }
 
+    if (userDisabled) {
+      playSpeech = false;
+      playSounds = false;
+      showText = false;
+    }
+
     let f = () => {
       let addText = (container, e) => {
         container.appendChild(e);
@@ -336,7 +342,7 @@ class PopupText {
       if (alarmText) {
         let text = ValueOrFunction(alarmText);
         defaultTTSText = defaultTTSText || text;
-        if (text && !userDisabled && showText) {
+        if (text && showText) {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
@@ -352,7 +358,7 @@ class PopupText {
       if (alertText) {
         let text = ValueOrFunction(alertText);
         defaultTTSText = defaultTTSText || text;
-        if (text && !userDisabled && showText) {
+        if (text && showText) {
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
@@ -368,7 +374,7 @@ class PopupText {
       if (infoText) {
         let text = ValueOrFunction(infoText);
         defaultTTSText = defaultTTSText || text;
-        if (text && !userDisabled && showText) {
+        if (text && showText) {
           let holder = that.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
@@ -382,14 +388,14 @@ class PopupText {
       }
 
       // user overrides > tts entries in the trigger > alarm > alert > info
-      let tts = triggerOptions.TTSText || trigger.tts || defaultTTSText;
-      let ttsText = '';
-
-      if (tts && playSpeech) {
-        let text = ValueOrFunction(tts);
-        if (text && !userDisabled)
-          ttsText = text;
-      }
+      // Specifying any explicitly as falsy means no tts.
+      let ttsText;
+      if ('TTSText' in triggerOptions)
+        ttsText = ValueOrFunction(triggerOptions.TTSText);
+      else if ('tts' in trigger)
+        ttsText = ValueOrFunction(trigger.tts);
+      else
+        ttsText = defaultTTSText;
 
       if (trigger.sound && soundUrl) {
         let namedSound = soundUrl + 'Sound';
@@ -412,16 +418,14 @@ class PopupText {
       // of infoText triggers without tts entries by turning
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
-      if (soundUrl && playSounds && !userDisabled && !ttsText) {
-        let audio = new Audio(soundUrl);
-        audio.volume = soundVol;
-        audio.play();
-      }
-
-      if (ttsText && !userDisabled) {
+      if (ttsText && playSpeech) {
         ttsText = ttsText.replace(/[#!]/, '');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
+      } else if (soundUrl && playSounds) {
+        let audio = new Audio(soundUrl);
+        audio.volume = soundVol;
+        audio.play();
       }
 
       if ('run' in trigger)
