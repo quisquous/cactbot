@@ -387,8 +387,27 @@ class PopupText {
         }
       }
 
-      // user overrides > tts entries in the trigger > alarm > alert > info
-      // Specifying any explicitly as falsy means no tts.
+      // Priority audio order:
+      // * user disabled (play nothing)
+      // * if tts options are enabled globally or for this trigger:
+      //   * user trigger tts override
+      //   * tts entries in the trigger
+      //   * default alarm tts
+      //   * default alert tts
+      //   * default info tts
+      // * if sound options are enabled globally or for this trigger:
+      //   * user trigger sound overrides
+      //   * sound entries in the trigger
+      //   * alarm noise
+      //   * alert noise
+      //   * info noise
+      // * else, nothing
+      //
+      // In general, tts comes before sounds and user overrides come
+      // before defaults.  If a user trigger or tts entry is specified as
+      // being valid but empty, this will take priority over the default
+      // tts texts from alarm/alert/info and will prevent tts from playing
+      // and allowing sounds to be played instead.
       let ttsText;
       if ('TTSText' in triggerOptions)
         ttsText = ValueOrFunction(triggerOptions.TTSText);
