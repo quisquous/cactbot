@@ -624,9 +624,9 @@ class EurekaTracker {
     let nowMs = +new Date();
 
     let galesStr = gGalesIcon;
-    let weather = WeatherFinder.getWeather(nowMs, this.zoneName);
+    let weather = getWeather(nowMs, this.zoneName);
     if (weather == 'Gales') {
-      let galesStopTime = WeatherFinder.findNextWeatherNot(nowMs, this.zoneName, 'Gales');
+      let galesStopTime = findNextWeatherNot(nowMs, this.zoneName, 'Gales');
       if (galesStopTime) {
         let galesMin = (galesStopTime - nowMs) / 1000 / 60;
         galesStr += ' for ' + Math.ceil(galesMin) + 'm';
@@ -634,7 +634,7 @@ class EurekaTracker {
         galesStr += ' for ???';
       }
     } else {
-      let galesStartTime = WeatherFinder.findNextWeather(nowMs, this.zoneName, 'Gales');
+      let galesStartTime = findNextWeather(nowMs, this.zoneName, 'Gales');
       if (galesStartTime) {
         let galesMin = (galesStartTime - nowMs) / 1000 / 60;
         galesStr += ' in ' + Math.ceil(galesMin) + 'm';
@@ -644,8 +644,8 @@ class EurekaTracker {
     }
     document.getElementById('label-gales').innerHTML = galesStr;
 
-    let nextDay = WeatherFinder.findNextNight(nowMs);
-    let nextNight = WeatherFinder.findNextDay(nowMs);
+    let nextDay = findNextNight(nowMs);
+    let nextNight = findNextDay(nowMs);
     let timeStr = '';
     let timeVal;
     if (nextDay > nextNight)
@@ -676,10 +676,10 @@ class EurekaTracker {
       let respawnIcon = '';
 
       if (nm.weather) {
-        let respawnWeather = WeatherFinder.getWeather(respawnMs, this.zoneName);
+        let respawnWeather = getWeather(respawnMs, this.zoneName);
         if (respawnWeather != nm.weather) {
           let weatherStartTime =
-            WeatherFinder.findNextWeather(respawnMs, this.zoneName, nm.weather);
+            findNextWeather(respawnMs, this.zoneName, nm.weather);
           if (weatherStartTime > respawnMs) {
             respawnIcon = gWeatherIcons[nm.weather];
             respawnMs = weatherStartTime;
@@ -688,9 +688,9 @@ class EurekaTracker {
       }
 
       if (nm.time == 'Night') {
-        let isNight = WeatherFinder.isNightTime(respawnMs);
+        let isNight = isNightTime(respawnMs);
         if (!isNight) {
-          let nextNight = WeatherFinder.findNextNight(respawnMs);
+          let nextNight = findNextNight(respawnMs);
           if (nextNight > respawnMs) {
             respawnIcon = gNightIcon;
             respawnMs = nextNight;
@@ -702,13 +702,13 @@ class EurekaTracker {
       if (remainingMs <= 0) {
         let openUntil = null;
         if (nm.weather) {
-          let weatherStartTime = WeatherFinder.findNextWeatherNot(nowMs, this.zoneName, nm.weather);
+          let weatherStartTime = findNextWeatherNot(nowMs, this.zoneName, nm.weather);
           respawnIcon = gWeatherIcons[nm.weather]; ;
           openUntil = weatherStartTime;
         }
         if (nm.time == 'Night') {
           respawnIcon = gNightIcon;
-          openUntil = WeatherFinder.findNextDay(nowMs);
+          openUntil = findNextDay(nowMs);
         }
 
         if (openUntil) {
