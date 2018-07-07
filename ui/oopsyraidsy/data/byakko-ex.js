@@ -46,6 +46,7 @@
           blame: e.targetName,
           text: {
             en: 'popped aratama',
+            de: 'Einschlag ausgelöst',
           },
         };
       },
@@ -62,6 +63,7 @@
           blame: e.targetName,
           text: {
             en: 'stepped in orb',
+            de: 'in Kugel reingelaufen',
           },
         };
       },
@@ -87,6 +89,7 @@
           type: 'warn',
           blame: e.targetName, text: {
             en: 'bubble collision',
+            de: 'Blasen sind zusammengestoßen',
           },
         };
       },
@@ -103,6 +106,7 @@
           blame: e.targetName,
           text: {
             en: 'thunder',
+            de: 'Blitz',
           },
         };
       },
@@ -119,6 +123,7 @@
           blame: e.targetName,
           text: {
             en: 'thunder',
+            de: 'Blitz',
           },
         };
       },

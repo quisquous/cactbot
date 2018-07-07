@@ -27,6 +27,7 @@
           blame: e.targetName,
           text: {
             en: 'lost food buff',
+            de: 'Nahrungsbuff verloren',
           },
         };
       },
@@ -51,6 +52,7 @@
           blame: e.attackerName,
           text: {
             en: 'bunny',
+            de: 'Hase',
             de: e.abilityName,
             fr: e.abilityName,
             ja: e.abilityName,
@@ -75,6 +77,7 @@
           blame: e.attackerName,
           text: {
             en: 'missed trick',
+            de: 'Trickattacke daneben',
           },
         };
       },

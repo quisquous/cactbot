@@ -13,6 +13,7 @@
         en: 'Move!',
         de: 'Bewegen',
         fr: 'Bougez',
+        ja: 'フェザーレイン',
       },
     },
   ],
@@ -287,9 +288,7 @@
         'Titan': 'Titan',
         'Ultimaplasm': 'Ultimaplasma',
         'Bomb Boulder': 'Bomber-Brocken',
-
-        // FIXME
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Heehee HAHA hahaha HEEHEE haha HEEEEEE',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Nun, ihr Würmer! Ihr wollt die Macht des Windes spüren?',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -351,12 +350,10 @@
         'Weight Of The Land': 'Gaias Gewicht',
         'Wicked Tornado': 'Tornado Der Bosheit',
         'Wicked Wheel': 'Rad Der Bosheit',
-
-        // FIXME
-        'Grand Whirlwind': 'Grand Whirlwind',
-        'Nail Adds': 'Nail Adds',
-        'Diffractive Laser': 'Diffractive Laser',
-        'Summon Random Primal': 'Summon Random Primal',
+        'Grand Whirlwind': 'Großer Wirbelsturm',
+        'Nail Adds': 'Nagel Adds',
+        'Diffractive Laser': 'Diffraktiver Laser',
+        'Summon Random Primal': 'Zufällige Primaebeschwörung',
       },
       '~effectNames': {
         'Accursed Flame': 'Fluchflamme',
@@ -396,9 +393,7 @@
         'The Ultima Weapon': 'Ultima Arma',
         'Titan': 'Titan',
         'Ultimaplasm': 'Ultimaplasme',
-
-        // FIXME
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Heehee HAHA hahaha HEEHEE haha HEEEEEE',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Je vais vous écorcher avec mes bourrasques',
         'Bomb Boulder': 'Bomb Boulder',
       },
       'replaceText': {
@@ -509,9 +504,7 @@
         'Titan': 'タイタン',
         'Ultimaplasm': 'アルテマ爆雷',
         'Bomb Boulder': 'ボムボルダ',
-
-        // FIXME
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Heehee HAHA hahaha HEEHEE haha HEEEEEE',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'はじめようぞ、虫ケラ…… わたくしの風でッ！　嵐でッ！　無残に散れッ！',
       },
       'replaceText': {
         'Aerial Blast': 'エリアルブラスト',

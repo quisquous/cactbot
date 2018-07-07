@@ -16,7 +16,7 @@
           blame: e.targetName,
           text: {
             en: 'Missile',
-            de: e.abilityName,
+            de: 'Rakete',
             fr: e.abilityName,
             ja: e.abilityName,
           },
@@ -42,6 +42,7 @@
           blame: e.targetName,
           text: {
             en: 'hit by wind',
+            de: 'von Versengen getroffen',
           },
         };
       },
