@@ -354,6 +354,7 @@
         'Nail Adds': 'Nagel Adds',
         'Diffractive Laser': 'Diffraktiver Laser',
         'Summon Random Primal': 'Zufällige Primaebeschwörung',
+        'Apply Viscous': 'Ätheroplasma wirkt',
       },
       '~effectNames': {
         'Accursed Flame': 'Fluchflamme',
@@ -464,6 +465,7 @@
         'Nail Adds': 'Nail Adds',
         'Diffractive Laser': 'Diffractive Laser',
         'Summon Random Primal': 'Summon Random Primal',
+        'Apply Viscous': 'Apply Viscous',
       },
       '~effectNames': {
         'Accursed Flame': 'Flammes Maudites',
@@ -569,6 +571,7 @@
         'Nail Adds': 'Nail Adds',
         'Diffractive Laser': 'Diffractive Laser',
         'Summon Random Primal': 'Summon Random Primal',
+        'Apply Viscous': 'Apply Viscous',
       },
       '~effectNames': {
         'Accursed Flame': '呪いの炎',

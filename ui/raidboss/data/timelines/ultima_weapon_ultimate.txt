@@ -57,22 +57,16 @@ hideall "--Reset--"
 337 "Infernal Fetters" sync /:Garuda:2C19:/ # drift 0.214
 339 "Inferno Howl" sync /:Ifrit:2B5B:/
 345 "Searing Wind"
-345 "Eruption"
-347 "Eruption"
-349 "Eruption"
+345 "Eruption" duration 6
 351 "Searing Wind"
-351 "Eruption"
 357 "Searing Wind"
 361.5 "--untargetable--"
 365.5 "--targetable--"
 369 "Hellfire" sync /:Ifrit:2B5E:/ window 40,40 # drift 0.411
 377 "Inferno Howl" sync /:Ifrit:2B5B:/ # drift 0.374
 383 "Searing Wind"
-383 "Eruption"
-385 "Eruption"
-387 "Eruption"
+383 "Eruption" duration 6
 389 "Searing Wind"
-389 "Eruption"
 390 "Crimson Cyclone" sync /:Ifrit:2B5F:/
 395 "Inferno Howl" sync /:Ifrit:2B5B:/
 395 "Searing Wind"
@@ -88,10 +82,7 @@ hideall "--Reset--"
 428 "Incinerate" sync /:Ifrit:2B56:/ window 5,1
 431 "Incinerate"
 435 "Incinerate"
-444 "Eruption"
-446 "Eruption"
-448 "Eruption"
-450 "Eruption"
+444 "Eruption" duration 6
 453 "Flaming Crush" sync /:Ifrit:2B5D:/
 
 
@@ -111,15 +102,8 @@ hideall "--Reset--"
 642 "Bury" sync /:Bomb Boulder:2B69:/
 644 "Landslide" sync /:Titan:2B6F:/ window 5,3
 649 "Landslide"
-651 "Tumult"
-652 "Tumult"
-653 "Tumult"
-654 "Tumult"
-655 "Tumult"
-656 "Tumult"
-657 "Tumult"
-658 "Tumult"
-666 "Weight Of The Land" sync /:Garuda:2B65:/ window 5,2
+651 "Tumult x8" duration 7
+666 "Weight Of The Land" sync /:Garuda:2B65:/ window 5,1
 669 "Weight Of The Land"
 671 "Landslide"
 673 "Landslide"
@@ -127,20 +111,12 @@ hideall "--Reset--"
 684 "Rock Throw" sync /:Titan:2B6B:/ # drift 0.420001
 699 "Landslide"
 701 "Landslide"
-704 "Tumult" sync /:Titan:2C18:/ # drift 0.254
-705 "Tumult"
-706 "Tumult"
-707 "Tumult"
-708 "Tumult"
-709 "Tumult"
+704 "Tumult x6" sync /:Titan:2C18:/ duration 5 window 5,0 # drift 0.254
 711 "Rock Buster" sync /:Titan:2B62:/ # drift 0.280001
 715 "Mountain Buster" sync /:Titan:2B63:/ # drift 0.205999
-720 "Bury"
-722 "Weight Of The Land" sync /:Garuda:2B65:/
-722 "Bury"
-724 "Bury"
+720 "Bury" duration 6
+722 "Weight Of The Land" sync /:Garuda:2B65:/ window 5,1
 725 "Weight Of The Land"
-726 "Bury"
 727 "Landslide"
 728 "Weight Of The Land"
 729 "Landslide"
@@ -149,14 +125,7 @@ hideall "--Reset--"
 744 "Weight Of The Land" sync /:Garuda:2B65:/
 747 "Weight Of The Land" sync /:Ifrit:2B65:/
 750 "Weight Of The Land"
-752 "Tumult" sync /:Titan:2C18:/ # drift -0.293
-753 "Tumult"
-754 "Tumult"
-755 "Tumult"
-756 "Tumult"
-757 "Tumult"
-758 "Tumult"
-759 "Tumult"
+752 "Tumult x8" sync /:Titan:2C18:/ duration 7 window 5,0 # drift -0.293
 
 
 ### Phase 4: Snacks ###
@@ -169,7 +138,7 @@ hideall "--Reset--"
 ### Phase 5: Ultima ###
 1000 "--targetable--" sync /:The Ultima Weapon starts casting Tank Purge/ window 1000,100
 1004 "Tank Purge" sync /:The Ultima Weapon:2B87:/ # drift -0.314001
-1006 "Viscous Aetheroplasm" sync /:The Ultima Weapon:2B79:/ # drift 0.430001
+1006 "Apply Viscous" sync /:The Ultima Weapon:2B79:/ # drift 0.430001
 1012 "Homing Lasers" sync /:The Ultima Weapon:2B7B:/ # drift 0.220999
 1017 "Viscous Aetheroplasm" sync /:Garuda:2B7A:/
 
@@ -187,28 +156,14 @@ hideall "--Reset--"
 
 ## Interlude Dance
 1048 "--targetable--"
-1059 "Eruption" sync /:Garuda:2B5A:/ # drift 0.223
-1061 "Eruption"
-1063 "Eruption"
+1059 "Eruption" sync /:Garuda:2B5A:/ duration 6 window 5,0 # drift 0.223
 1064 "Infernal Fetters"
-1065 "Eruption"
 1069 "Radiant Plume" sync /:The Ultima Weapon:2B7D:/
-1070 "Bury" sync /:Bomb Boulder:2B69:/
-1072 "Bury"
-1073 "Landslide" sync /:Titan:2B71:/
-1074 "Bury"
+1070 "Bury" sync /:Bomb Boulder:2B69:/ duration 10 window 5,0
+1073 "Landslide" sync /:Titan:2B71:/ window 5,0
 1074 "Landslide" sync /:The Ultima Weapon:2B7E:/
-1076 "Bury"
-1078 "Bury"
-1079 "Tumult" sync /:Titan:2C18:/ # drift -0.248001
-1080 "Tumult"
-1080 "Bury" sync /:Bomb Boulder:2B69:/ # drift 0.273
-1081 "Tumult"
-1082 "Viscous Aetheroplasm" sync /:The Ultima Weapon:2B79:/
-1082 "Tumult"
-1083 "Tumult"
-1084 "Tumult"
-1085 "Tumult"
+1079 "Tumult x7" sync /:Titan:2C18:/ duration 6 window 5,0 # drift -0.248001
+1082 "Apply Viscous" sync /:The Ultima Weapon:2B79:/
 1086 "Wicked Wheel" sync /:Chirada:2B4C:/ # drift 0.339
 1088 "Mistral Shriek" sync /:Garuda:2B54:/
 1091 "Feather Rain" sync /:Garuda:2B4D:/ # drift 0.402001
@@ -220,7 +175,7 @@ hideall "--Reset--"
 1100 "Ultimate Annihilation" sync /:The Ultima Weapon:2D4C:/ # drift 0.261
 1105 "--untargetable--"
 1110 "--targetable--"
-1112 "Weight Of The Land" sync /:Garuda:2B65:/
+1112 "Weight Of The Land" sync /:Garuda:2B65:/ window 5,1
 1114 "Flaming Crush" sync /:Ifrit:2B5D:/
 1115 "Weight Of The Land"
 1115 "Eye Of The Storm" sync /:Ifrit:2B52:/
@@ -256,22 +211,21 @@ hideall "--Reset--"
 1175 "Eye Of The Storm" sync /:Garuda:2B52:/
 1181 "Homing Lasers" sync /:The Ultima Weapon:2B7B:/
 
-# FIXME: tank buster here? other stuff? shift suppression later once natural push time known.
+# FIXME: shift suppression later once natural push time known.
+# vulcan burst
+# diffractive laser
 
 ## Ultimate Suppression (50%)
 1186 "Ultimate Suppression" sync /:The Ultima Weapon:2D4D:/ window 1200,500
 1189 "--untargetable--"
 1197 "Rock Throw" sync /:Titan:2B6B:/
-1198 "Eruption" sync /:Garuda:2B5A:/
-1200 "Eruption"
-1201 "Mistral Song" sync /:Chirada:2B4B:/ # drift 0.203001
-1202 "Eruption"
+1198 "Eruption" sync /:Garuda:2B5A:/ duration 6 window 5,0
+1201 "Mistral Song" sync /:Chirada:2B4B:/ window 5,0
 1203 "Mistral Song"
-1204 "Eruption"
 1206 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.221
 1207 "Grand Whirlwind" sync /:Garuda:2B41:/
 1207 "Feather Rain" sync /:Ifrit:2B4D:/ # drift 0.468
-1207 "Aetherochemical Laser" sync /:The Ultima Weapon:2B85:/
+1207 "Aetherochemical Laser" sync /:The Ultima Weapon:2B85:/ window 5,2
 1211 "Aetherochemical Laser"
 1214 "Landslide" sync /:Titan:2B71:/
 1215 "Aetherochemical Laser"
@@ -282,7 +236,7 @@ hideall "--Reset--"
 1223 "Tank Purge" sync /:The Ultima Weapon:2B87:/ # drift 0.369999
 1234 "Ultima" sync /:The Ultima Weapon:2B8B:/ # drift 0.468
 1244 "Aetheric Boom" sync /:The Ultima Weapon:2B88:/ # drift 0.227
-1265 "Viscous Aetheroplasm" sync /:The Ultima Weapon:2B8F:/ # drift 0.256
+1265 "Apply Viscous" sync /:The Ultima Weapon:2B8F:/ # drift 0.256
 1269 "Summon Random Primal"
 
 ## Random Primal Finale (summon all three in random order)
