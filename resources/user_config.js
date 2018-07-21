@@ -10,9 +10,8 @@ let UserConfig = {
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
-      if (e.detail.language) {
+      if (e.detail.language)
         Options.Language = e.detail.language;
-      }
 
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and

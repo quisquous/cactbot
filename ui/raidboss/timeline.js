@@ -515,7 +515,7 @@ class TimelineUI {
 
     this.root = document.getElementById('timeline-container');
     if (Options.Language)
-      this.root.classList.add("lang-" + Options.Language);
+      this.root.classList.add('lang-' + Options.Language);
 
     this.barWidth = window.getComputedStyle(this.root).width;
     let windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
