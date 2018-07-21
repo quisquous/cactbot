@@ -175,7 +175,7 @@ hideall "--Reset--"
 ## Ultimate Annihilation
 1100 "Ultimate Annihilation" sync /:The Ultima Weapon:2D4C:/ # drift 0.261
 1105 "--untargetable--"
-1110 "--targetable--"
+1109 "--targetable--"
 1112 "Weight Of The Land" sync /:Garuda:2B65:/ window 5,1
 1114 "Flaming Crush" sync /:Ifrit:2B5D:/
 1115 "Weight Of The Land"
