@@ -13,6 +13,14 @@
   font-size: 14px;
 }
 
+#timeline-container.lang-fr {
+  width: 300px;
+}
+
+#timeline-container.lang-de {
+  width: 300px;
+}
+
 /* Relative to popup-text-container */
 #popup-text-info {
   position: absolute;
