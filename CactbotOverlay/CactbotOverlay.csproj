@@ -97,6 +97,7 @@
     <Compile Include="CactbotOverlayConfigPanel.Designer.cs">
       <DependentUpon>CactbotOverlayConfigPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="FFXIVPlugin.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="FFXIVProcess.cs" />
     <Compile Include="FightTracker.cs" />

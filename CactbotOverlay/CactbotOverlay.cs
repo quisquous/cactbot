@@ -8,8 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 
 namespace Cactbot {
 
@@ -56,6 +54,7 @@ namespace Cactbot {
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
+    private string language_ = null;
     private System.Threading.SynchronizationContext main_thread_sync_;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
@@ -114,7 +113,6 @@ namespace Cactbot {
       dispatch_serializer_ = JsonSerializer.CreateDefault();
       message_serializer_ = JsonSerializer.CreateDefault();
 
-
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
@@ -135,6 +133,9 @@ namespace Cactbot {
         fast_update_timer_.Start();
       };
       fast_update_timer_.AutoReset = false;
+
+      FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
+      language_ = plugin_helper.GetLocaleString();
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
@@ -175,6 +176,11 @@ namespace Cactbot {
         LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
         LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
         LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
+        if (language_ == null) {
+          LogInfo("Language: {0}", "(unknown)");
+        } else {
+          LogInfo("Language: {0}", language_);
+        }
 
         if (remote.Major == 0 && remote.Minor == 0) {
           var result = System.Windows.Forms.MessageBox.Show(Overlay,
@@ -808,7 +814,7 @@ namespace Cactbot {
         Dictionary<string, string> local_files;
         string config_dir;
         GetUserConfigDirAndFiles(out config_dir, out local_files);
-        DispatchToJS(new JSEvents.OnInitializeOverlay(config_dir, local_files));
+        DispatchToJS(new JSEvents.OnInitializeOverlay(config_dir, local_files, language_));
         notify_state_.dom_content_loaded = true;
       }
     }
