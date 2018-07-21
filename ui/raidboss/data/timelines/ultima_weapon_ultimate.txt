@@ -126,6 +126,7 @@ hideall "--Reset--"
 747 "Weight Of The Land" sync /:Ifrit:2B65:/
 750 "Weight Of The Land"
 752 "Tumult x8" sync /:Titan:2C18:/ duration 7 window 5,0 # drift -0.293
+768 "--untargetable--"
 
 
 ### Phase 4: Snacks ###
