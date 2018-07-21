@@ -20,6 +20,15 @@
   triggers: [
     // Phases
     {
+      regex: /:The Ultima Weapon:2D4D:/,
+      regexDe: /:Ultima-Waffe:2D4D:/,
+      regexFr: /:Ultima Arma:2D4D:/,
+      regexJa: /:アルテマウェポン:2D4D:/,
+      run: function(data) {
+        data.phase = 'suppression';
+      },
+    },
+    {
       // Wait after suppression for primal triggers at the end.
       regex: /:The Ultima Weapon:2D4D:/,
       regexDe: /:Ultima-Waffe:2D4D:/,
@@ -30,7 +39,6 @@
         data.phase = 'finale';
       },
     },
-
     {
       id: 'UWU Garuda Slipstream',
       regex: /14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
@@ -50,6 +58,22 @@
     {
       id: 'UWU Garuda Mistral Song Marker',
       regex: / 1B:........:(\y{Name}):....:....:0010:0000:0000:0000:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alertText: {
+        en: 'Mistral on YOU',
+        de: 'Mistral-Song',
+        fr: 'Chant Du Mistral',
+        ja: 'ミストラルソング',
+      },
+    },
+    {
+      id: 'UWU Garuda Mistral Song Tank',
+      regex: / 1B:........:(\y{Name}):....:....:0010:0000:0000:0000:/,
+      condition: function(data) {
+        return data.role == 'tank';
+      },
       suppressSeconds: 5,
       infoText: {
         en: 'Mistral Song',
@@ -84,7 +108,7 @@
         return data.me == matches[1];
       },
       suppressSeconds: 45,
-      alertText: {
+      infoText: {
         en: 'Fetters on YOU',
         de: 'Fesseln auf DIR',
         fr: 'Chaînes Infernales',
@@ -125,12 +149,6 @@
       alertText: {
         en: 'Stack',
         de: 'Stack',
-        fr: 'Stack',
-        ja: '頭割り',
-      },
-      tts: {
-        en: 'Stack',
-        de: 'Stek',
         fr: 'Stack',
         ja: '頭割り',
       },
@@ -216,6 +234,22 @@
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
+      },
+    },
+    {
+      id: 'UWU Suppression Gaol',
+      regex: / 15:\y{ObjectId}:Titan:2B6B:Rock Throw:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Titan:2B6B:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 15:\y{ObjectId}:Titan:2B6B:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:タイタン:2B6B:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
+      condition: function(data, matches) {
+        return data.phase == 'suppression' && data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Gaol on YOU',
+        de: 'Granitgefängnis',
+        fr: 'Geôle',
+        ja: 'ジェイル',
       },
     },
     {
