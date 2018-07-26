@@ -216,7 +216,7 @@ hideall "--Reset--"
 
 ## Ultimate Suppression (50%)
 1195 "Ultimate Suppression" sync /:The Ultima Weapon:2D4D:/ window 1200,500
-1198 "--untargetable--"
+1200 "--untargetable--"
 1206 "Rock Throw" sync /:Titan:2B6B:/
 1207 "Eruption" sync /:Garuda:2B5A:/ duration 6 window 5,0
 1210 "Mistral Song" sync /:Chirada:2B4B:/ window 5,0
