@@ -177,6 +177,9 @@ class PopupText {
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
+    if (!inCombat)
+      this.timelineLoader.StopCombat();
+
     if (this.inCombat == inCombat)
       return;
     this.inCombat = inCombat;
@@ -228,6 +231,8 @@ class PopupText {
   OnLog(e) {
     for (let i = 0; i < e.detail.logs.length; i++) {
       let log = e.detail.logs[i];
+      if (log.indexOf('00:0038:cactbot wipe') >= 0)
+        this.SetInCombat(false);
 
       for (let j = 0; j < this.triggers.length; ++j) {
         let trigger = this.triggers[j];
