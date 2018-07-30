@@ -36,11 +36,11 @@ def load_timeline(timeline):
             entry['seen'] = 0
 
             # Get the start and end of the sync window
-            window_match = re.search(r'window ([\d\.]+),?(\d\.]+)?', match.group('options'))
+            window_match = re.search(r'window ([\d\.]+),?([\d\.]+)?', match.group('options'))
             
             if window_match:
                 pre_window = float(window_match.group(1))
-                if window_match.group(2):
+                if window_match.group(2) != None:
                     post_window = float(window_match.group(2))
                 else:
                     post_window = pre_window
