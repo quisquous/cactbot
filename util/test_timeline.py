@@ -33,7 +33,7 @@ def load_timeline(timeline):
                 continue
 
             entry['regex'] =  sync_match.group(1).replace(':', '\|')
-            entry['seen'] = 0
+            entry['branch'] = 0
 
             # Get the start and end of the sync window
             window_match = re.search(r'window ([\d\.]+),?([\d\.]+)?', match.group('options'))
@@ -77,6 +77,7 @@ def run_file(args, timelist):
     last_entry = False
     last_sync_position = 0
     last_jump = 0
+    branch = 1
     file_started = False
     timeline_stopped = True
 
@@ -112,11 +113,11 @@ def run_file(args, timelist):
                         timeline_position >= entry['start'] and
                         timeline_position <= entry['end']
                 ):
-                    # Flag as seen
+                    # Flag with current branch
                     if last_entry == entry:
                         continue
                     
-                    entry['seen'] += 1
+                    entry['branch'] = branch
                     last_entry = entry
 
                     # Check the timeline drift for anomolous timings
@@ -124,7 +125,7 @@ def run_file(args, timelist):
                     print("{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(timeline_position, entry['time'], entry['label'], drift))
 
                     if time_progress_seconds > 30:
-                        print("    {:.3f}s since last sync".format(time_progress_seconds))
+                        print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
 
                     # Find any syncs before this one that were passed without syncing
                     if not timeline_stopped:
@@ -133,10 +134,13 @@ def run_file(args, timelist):
                                     'regex' in other_entry and
                                     other_entry['time'] > last_jump and
                                     other_entry['time'] < entry['time'] and
-                                    other_entry['seen'] < entry['seen']
+                                    other_entry['branch'] < entry['branch']
                             ):
-                                print("        Prior sync missing or outside window: {} at {}".format(other_entry['label'], other_entry['time']))
-                                other_entry['seen'] = entry['seen']
+                                if 'last' in other_entry:
+                                    print("    Missed sync: {} at {} (last seen at {})".format(other_entry['label'], other_entry['time'], other_entry['last']))
+                                else:
+                                    print("    Missed sync: {} at {}".format(other_entry['label'], other_entry['time']))
+                                other_entry['branch'] = branch
 
                     # Carry out the sync to make this the new baseline position
                     if timeline_stopped:
@@ -144,6 +148,7 @@ def run_file(args, timelist):
                     timeline_stopped = False
                     last_sync_timestamp = parse_line_time(line)
 
+                    # Jump to new time, stopping if necessary
                     if 'jump' in entry:
                         if entry['jump'] == 0:
                             print("---!Resetting encounter from {}!---".format(last_sync_position))
@@ -152,8 +157,17 @@ def run_file(args, timelist):
                             print("    Jumping to {:.3f}".format(entry['jump']))
                         last_jump = entry['jump']
                         last_sync_position = entry['jump']
+                        branch += 1
                     else:
                         last_sync_position = entry['time']
+
+                # Record last seen data if it matches but outside window
+                elif (
+                        'regex' in entry and
+                        re.search(entry['regex'], line)
+                ):
+                    entry['last'] = timeline_position
+
 
 def main(args):
     # Parse timeline file
