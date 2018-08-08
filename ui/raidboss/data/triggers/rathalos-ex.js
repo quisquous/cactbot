@@ -7,13 +7,6 @@
   zoneRegex: /^(The Great Hunt \(Extreme\)|Unknown Zone \(2Fa\))$/,
   triggers: [
     {
-      id: 'RathEx test',
-      regex: / 14:([^:]*):Rathalos starts using (.*) on (.*)/,
-      infoText: function(data, matches) {
-        return matches[1];
-      },
-    },
-    {
       id: 'RathEx Mangle',
       regex: / 14:(?:2853|2863):Rathalos starts using/,
       infoText: {
