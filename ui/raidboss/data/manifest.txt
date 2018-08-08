@@ -54,6 +54,7 @@ triggers/eureka_anemos.js
 triggers/fractal_continuum_hard.js
 triggers/general.js
 triggers/lakshmi-ex.js
+triggers/rathalos-ex.js
 triggers/ravana-ex.js
 triggers/sephirot-ex.js
 triggers/shinryu-ex.js
