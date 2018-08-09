@@ -3,7 +3,7 @@
 # (1) Download https://github.com/ufx/SaintCoinach/releases/latest
 # (2) SaintCoinach.Cmd.exe "C:\Program Files (x86)\SquareEnix\FINAL FANTASY XIV - A Realm Reborn"
 # (3) exd TerritoryType WeatherRate
-# (4) Run util/gen_weather_rate.py path/to/WeatherRate.csv
+# (4) Run util/gen_weather_rate.py -f path/to/WeatherRate.csv
 
 import argparse
 import csv

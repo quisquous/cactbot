@@ -24,6 +24,7 @@ let gTerritoryWeather = {
   'Eastern Thanalan': 11,
   'Emanation': 87,
   'Eureka Anemos': 91,
+  'Eureka Pagos': 94,
   'Foundation': 47,
   'Hullbreaker Isle': 68,
   'Idyllshire': 55,
