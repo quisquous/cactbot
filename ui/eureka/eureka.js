@@ -476,18 +476,18 @@ let Options = {
     },
     'Eureka Pagos': {
       mapImage: 'pagos.png',
-      mapWidth: 1300,
+      mapWidth: 1500,
       mapHeight: 950,
       primaryWeather: 'Blizzards',
       // TODO: these could be a little better tuned :C
-      mapToPixelXScalar: 41.12,
-      mapToPixelXConstant: -224.7,
-      mapToPixelYScalar: 41.09,
-      mapToPixelYConstant: -457.67,
-      entityToMapXScalar: .02002870754,
-      entityToMapXConstant: 21.45210725,
-      entityToMapYScalar: .02000892816,
-      entityToMapYConstant: 21.4665545,
+      mapToPixelXScalar: 41.08333,
+      mapToPixelXConstant: -85.28333,
+      mapToPixelYScalar: 41.09158,
+      mapToPixelYConstant: -370.196,
+      entityToMapXScalar: 0.02,
+      entityToMapXConstant: 21.48,
+      entityToMapYScalar: 0.02,
+      entityToMapYConstant: 21.48,
       nms: {
         snowqueen: {
           label: {
