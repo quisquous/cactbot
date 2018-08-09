@@ -859,9 +859,10 @@ let Options = {
 let gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
 let gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
 let gImportRegex = Regexes.Parse(/00:00..:(.*)★ NMs on cooldown: (\S.*\))/);
-let gGalesIcon = '&#x1F300;';
 let gWeatherIcons = {
-  Gales: gGalesIcon,
+  Gales: '&#x1F300;',
+  Fog: '&#x2601;',
+  Blizzards: '&#x2744;',
 };
 let gNightIcon = '&#x1F319;';
 let gDayIcon = '&#x2600;';
@@ -876,6 +877,11 @@ class EurekaTracker {
   }
 
   SetStyleFromMap(style, mx, my) {
+    if (mx === undefined) {
+      style.display = 'none';
+      return;
+    }
+
     let zi = this.zoneInfo;
     let px = zi.mapToPixelXScalar * mx + zi.mapToPixelXConstant;
     let py = zi.mapToPixelYScalar * my + zi.mapToPixelYConstant;
@@ -948,6 +954,8 @@ class EurekaTracker {
 
   OnZoneChange(e) {
     this.zoneName = e.detail.zoneName;
+    if (this.zoneName == 'Unknown Zone (2Fb)')
+      this.zoneName = 'Eureka Pagos';
     this.zoneInfo = this.options.ZoneInfo[this.zoneName];
     let container = document.getElementById('container');
     if (this.zoneInfo) {
@@ -1003,26 +1011,27 @@ class EurekaTracker {
   UpdateTimes() {
     let nowMs = +new Date();
 
-    let galesStr = gGalesIcon;
+    let primaryWeather = this.options.ZoneInfo[this.zoneName].primaryWeather;
+    let weatherStr = gWeatherIcons[primaryWeather];
     let weather = getWeather(nowMs, this.zoneName);
-    if (weather == 'Gales') {
-      let galesStopTime = findNextWeatherNot(nowMs, this.zoneName, 'Gales');
-      if (galesStopTime) {
-        let galesMin = (galesStopTime - nowMs) / 1000 / 60;
-        galesStr += ' for ' + Math.ceil(galesMin) + 'm';
+    if (weather == primaryWeather) {
+      let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
+      if (stopTime) {
+        let min = (stopTime - nowMs) / 1000 / 60;
+        weatherStr += ' for ' + Math.ceil(min) + 'm';
       } else {
-        galesStr += ' for ???';
+        weatherStr += ' for ???';
       }
     } else {
-      let galesStartTime = findNextWeather(nowMs, this.zoneName, 'Gales');
-      if (galesStartTime) {
-        let galesMin = (galesStartTime - nowMs) / 1000 / 60;
-        galesStr += ' in ' + Math.ceil(galesMin) + 'm';
+      let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
+      if (startTime) {
+        let min = (startTime - nowMs) / 1000 / 60;
+        weatherStr += ' in ' + Math.ceil(min) + 'm';
       } else {
-        galesStr += ' in ???';
+        weatherStr += ' in ???';
       }
     }
-    document.getElementById('label-gales').innerHTML = galesStr;
+    document.getElementById('label-weather').innerHTML = weatherStr;
 
     let nextDay = findNextNight(nowMs);
     let nextNight = findNextDay(nowMs);
