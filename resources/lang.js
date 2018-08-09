@@ -144,10 +144,12 @@ class CactbotLanguage {
       O6S: /Sigmascape V2\.0 \(Savage\)/,
       O7S: /Sigmascape V3\.0 \(Savage\)/,
       O8S: /Sigmascape V4\.0 \(Savage\)/,
+      UWU: /The Weapon's Refrain \(Ultimate\)/,
       PvpSeize: /Seal Rock \(Seize\)/,
       PvpSecure: /The Borderland Ruins \(Secure\)/,
       PvpShatter: /The Fields Of Glory \(Shatter\)/,
       EurekaAnemos: /Eureka Anemos/,
+      EurekaPagos: /(Eureka Pagos|Unknown Zone \(2Fb\))/,
     });
   }
 

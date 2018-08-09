@@ -7,6 +7,7 @@ let Options = {
     'PvpSecure',
     'PvpShatter',
     'EurekaAnemos',
+    'EurekaPagos',
   ],
 };
 
