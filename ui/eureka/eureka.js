@@ -497,10 +497,10 @@ let Options = {
             ja: 'Snow Queen',
           },
           mobName: {
-            en: 'Snow Queen',
-            de: 'Snow Queen',
-            fr: 'Snow Queen',
-            ja: 'Snow Queen',
+            en: 'The Snow Queen',
+            de: 'The Snow Queen',
+            fr: 'The Snow Queen',
+            ja: 'The Snow Queen',
           },
           trackerName: {
             en: 'Snow Queen',
@@ -631,10 +631,10 @@ let Options = {
             ja: 'Igloo',
           },
           mobName: {
-            en: 'Igloo',
-            de: 'Igloo',
-            fr: 'Igloo',
-            ja: 'Igloo',
+            en: 'King Igloo',
+            de: 'King Igloo',
+            fr: 'King Igloo',
+            ja: 'King Igloo',
           },
           trackerName: {
             en: 'Igloo',
@@ -719,10 +719,10 @@ let Options = {
             ja: 'Minotaurs',
           },
           mobName: {
-            en: 'Minotaurs',
-            de: 'Minotaurs',
-            fr: 'Minotaurs',
-            ja: 'Minotaurs',
+            en: 'Mindertaur',
+            de: 'Mindertaur',
+            fr: 'Mindertaur',
+            ja: 'Mindertaur',
           },
           trackerName: {
             en: 'Minotaurs',
@@ -730,6 +730,8 @@ let Options = {
             fr: 'Minotaurs',
             ja: 'Minotaurs',
           },
+          x: 13,
+          y: 18,
         },
         holycow: {
           label: {
@@ -750,6 +752,8 @@ let Options = {
             fr: 'Holy Cow',
             ja: 'Holy Cow',
           },
+          x: 26,
+          y: 16,
         },
         hadhayosh: {
           label: {
@@ -770,6 +774,9 @@ let Options = {
             fr: 'Hadhayosh',
             ja: 'Hadhayosh',
           },
+          weather: 'Thunder',
+          x: 30,
+          y: 19,
         },
         horus: {
           label: {
@@ -779,10 +786,10 @@ let Options = {
             ja: 'Horus',
           },
           mobName: {
-            en: 'Horus',
-            de: 'Horus',
-            fr: 'Horus',
-            ja: 'Horus',
+            en: 'Eye of Horus',
+            de: 'Eye of Horus',
+            fr: 'Eye of Horus',
+            ja: 'Eye of Horus',
           },
           trackerName: {
             en: 'Horus',
@@ -790,6 +797,8 @@ let Options = {
             fr: 'Horus',
             ja: 'Horus',
           },
+          x: 25,
+          y: 19,
         },
         mainyu: {
           label: {
@@ -799,10 +808,10 @@ let Options = {
             ja: 'Mainyu',
           },
           mobName: {
-            en: 'Mainyu',
-            de: 'Mainyu',
-            fr: 'Mainyu',
-            ja: 'Mainyu',
+            en: 'Arch Angra Mainyu',
+            de: 'Arch Angra Mainyu',
+            fr: 'Arch Angra Mainyu',
+            ja: 'Arch Angra Mainyu',
           },
           trackerName: {
             en: 'Mainyu',
@@ -810,6 +819,8 @@ let Options = {
             fr: 'Mainyu',
             ja: 'Mainyu',
           },
+          x: 24,
+          y: 25,
         },
         cassie: {
           label: {
@@ -819,10 +830,10 @@ let Options = {
             ja: 'Cassie',
           },
           mobName: {
-            en: 'Cassie',
-            de: 'Cassie',
-            fr: 'Cassie',
-            ja: 'Cassie',
+            en: 'Capricious Cassie',
+            de: 'Capricious Cassie',
+            fr: 'Capricious Cassie',
+            ja: 'Capricious Cassie',
           },
           trackerName: {
             en: 'Cassie',
@@ -850,6 +861,8 @@ let Options = {
             fr: 'Louhi',
             ja: 'Louhi',
           },
+          x: 36,
+          y: 19,
         },
       },
     },
@@ -863,6 +876,7 @@ let gWeatherIcons = {
   Gales: '&#x1F300;',
   Fog: '&#x2601;',
   Blizzards: '&#x2744;',
+  Thunder: '&#x26A1;',
 };
 let gNightIcon = '&#x1F319;';
 let gDayIcon = '&#x2600;';
