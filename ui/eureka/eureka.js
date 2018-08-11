@@ -12,7 +12,7 @@ let Options = {
       mapImage: 'anemos.png',
       mapWidth: 1300,
       mapHeight: 950,
-      primaryWeather: 'Gales',
+      primaryWeather: ['Gales'],
       // TODO: these could be a little better tuned :C
       mapToPixelXScalar: 41.12,
       mapToPixelXConstant: -224.7,
@@ -478,7 +478,7 @@ let Options = {
       mapImage: 'pagos.png',
       mapWidth: 1500,
       mapHeight: 950,
-      primaryWeather: 'Blizzards',
+      primaryWeather: ['Blizzards', 'Thunder', 'Fog'],
       // TODO: these could be a little better tuned :C
       mapToPixelXScalar: 41.08333,
       mapToPixelXConstant: -85.28333,
@@ -1025,27 +1025,33 @@ class EurekaTracker {
   UpdateTimes() {
     let nowMs = +new Date();
 
-    let primaryWeather = this.options.ZoneInfo[this.zoneName].primaryWeather;
-    let weatherStr = gWeatherIcons[primaryWeather];
-    let weather = getWeather(nowMs, this.zoneName);
-    if (weather == primaryWeather) {
-      let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
-      if (stopTime) {
-        let min = (stopTime - nowMs) / 1000 / 60;
-        weatherStr += ' for ' + Math.ceil(min) + 'm';
-      } else {
-        weatherStr += ' for ???';
+    for (let i = 0; i < 3; ++i) {
+      let primaryWeather = this.options.ZoneInfo[this.zoneName].primaryWeather[i];
+      if (!primaryWeather) {
+        document.getElementById('label-weather' + i).innerHTML = '';
+        continue;
       }
-    } else {
-      let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
-      if (startTime) {
-        let min = (startTime - nowMs) / 1000 / 60;
-        weatherStr += ' in ' + Math.ceil(min) + 'm';
+      let weatherStr = gWeatherIcons[primaryWeather];
+      let weather = getWeather(nowMs, this.zoneName);
+      if (weather == primaryWeather) {
+        let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
+        if (stopTime) {
+          let min = (stopTime - nowMs) / 1000 / 60;
+          weatherStr += ' for ' + Math.ceil(min) + 'm';
+        } else {
+          weatherStr += ' for ???';
+        }
       } else {
-        weatherStr += ' in ???';
+        let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
+        if (startTime) {
+          let min = (startTime - nowMs) / 1000 / 60;
+          weatherStr += ' in ' + Math.ceil(min) + 'm';
+        } else {
+          weatherStr += ' in ???';
+        }
       }
+      document.getElementById('label-weather' + i).innerHTML = weatherStr;
     }
-    document.getElementById('label-weather').innerHTML = weatherStr;
 
     let nextDay = findNextNight(nowMs);
     let nextNight = findNextDay(nowMs);
