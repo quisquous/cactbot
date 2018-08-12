@@ -1,6 +1,7 @@
 import argparse
 from datetime import datetime
 import fflogs
+from make_timeline import parse_report
 import os
 from pathlib import Path
 import re
@@ -66,20 +67,110 @@ def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
 
-def parse_line_time(line):
+def parse_event_time(event):
     """Parses the line's timestamp into a datetime object"""
-    time = parse_time(line[3:22])
-    time = time.replace(microsecond=int(line[23:29]))
-    return time
+    if isinstance(event, str):
+        time = parse_time(event[3:22])
+        time = time.replace(microsecond=int(event[23:29]))
+        return time
+    elif isinstance(event, dict):
+        return event['time']
+
+def get_regex(event):
+    if isinstance(event, str):
+        return event
+    elif isinstance(event, dict):
+        return event['regex']
+
+def check_event(event, timelist, state):
+    # Get amount of time that's passed since last sync point
+    if state['timeline_stopped']:
+        time_progress_seconds = 0
+    else:
+        time_progress_delta = parse_event_time(event) - state['last_sync_timestamp']
+        time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
+
+    # Get where the timeline would be at this time
+    timeline_position = state['last_sync_position'] + time_progress_seconds
+
+    # Search timelist for matches
+    for entry in timelist:
+        if (
+                'regex' in entry and
+                re.search(entry['regex'], get_regex(event)) and
+                timeline_position >= entry['start'] and
+                timeline_position <= entry['end']
+        ):
+            # Flag with current branch
+            if state['last_entry'] == entry:
+                continue
+            
+            entry['branch'] = state['branch']
+            state['last_entry'] = entry
+
+            # Check the timeline drift for anomolous timings
+            drift = entry['time'] - timeline_position
+            print("{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(timeline_position, entry['time'], entry['label'], drift))
+
+            if time_progress_seconds > 30:
+                print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
+
+            # Find any syncs before this one that were passed without syncing
+            if not state['timeline_stopped']:
+                for other_entry in timelist:
+                    if (
+                            'regex' in other_entry and
+                            other_entry['time'] >state['last_jump'] and
+                            other_entry['time'] < entry['time'] and
+                            other_entry['branch'] < entry['branch']
+                    ):
+                        if 'last' in other_entry:
+                            print("    Missed sync: {} at {} (last seen at {})".format(other_entry['label'], other_entry['time'], other_entry['last']))
+                        else:
+                            print("    Missed sync: {} at {}".format(other_entry['label'], other_entry['time']))
+                        other_entry['branch'] = state['branch']
+
+            # Carry out the sync to make this the new baseline position
+            if state['timeline_stopped']:
+                state['last_jump'] = entry['time']
+            state['timeline_stopped'] = False
+            state['last_sync_timestamp'] = parse_event_time(event)
+
+            # Jump to new time, stopping if necessary
+            if 'jump' in entry:
+                if entry['jump'] == 0:
+                    print("---!Resetting encounter from {}!---".format(state['last_sync_position']))
+                    state['timeline_stopped'] = True
+                else:
+                    print("    Jumping to {:.3f}".format(entry['jump']))
+                state['last_jump'] = entry['jump']
+                state['last_sync_position'] = entry['jump']
+                state['branch'] += 1
+            else:
+                state['last_sync_position'] = entry['time']
+
+        # Record last seen data if it matches but outside window
+        elif (
+                'regex' in entry and
+                re.search(entry['regex'], get_regex(event))
+        ):
+            entry['last'] = timeline_position
+        else:
+            pass
+
+    return state
 
 def run_file(args, timelist):
     """Runs a timeline against a specified file"""
-    last_entry = False
-    last_sync_position = 0
-    last_jump = 0
-    branch = 1
+    state = {
+        'file': True,
+        'last_entry': False,
+        'last_sync_position': 0,
+        'last_jump': 0,
+        'branch': 1,
+        'timeline_stopped': True
+    }
     file_started = False
-    timeline_stopped = True
 
     with args.file as file:
         for line in file:
@@ -93,81 +184,32 @@ def run_file(args, timelist):
             # We're at the start of the encounter now.
             if not file_started:
                 file_started = True
-                last_sync_timestamp = parse_line_time(line)
+                state['last_sync_timestamp'] = parse_event_time(line)
 
-            # Get amount of time that's passed since last sync point
-            if timeline_stopped:
-                time_progress_seconds = 0
-            else:
-                time_progress_delta = parse_line_time(line) - last_sync_timestamp
-                time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
+            state = check_event(line, timelist, state)
 
-            # Get where the timeline would be at this time
-            timeline_position = last_sync_position + time_progress_seconds
+def run_report(args, timelist):
+    """Runs a timeline against a specified FFlogs report"""
+    # Reuse the parse_report functionality to get the entry list
+    events, start_time = parse_report(args)
 
-            # Search timelist for matches
-            for entry in timelist:
-                if (
-                        'regex' in entry and
-                        re.search(entry['regex'], line) and
-                        timeline_position >= entry['start'] and
-                        timeline_position <= entry['end']
-                ):
-                    # Flag with current branch
-                    if last_entry == entry:
-                        continue
-                    
-                    entry['branch'] = branch
-                    last_entry = entry
+    # Add in the log string to search for
+    for event in events:
+        event['regex'] = '|{}|{}|'.format(event['combatant'], event['ability_id'])
 
-                    # Check the timeline drift for anomolous timings
-                    drift = entry['time'] - timeline_position
-                    print("{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(timeline_position, entry['time'], entry['label'], drift))
+    # Set up state. timeline_stopped will never be True with reports
+    state = {
+        'file': False,
+        'last_entry': False,
+        'last_sync_position': 0,
+        'last_sync_timestamp': start_time,
+        'last_jump': 0,
+        'branch': 1,
+        'timeline_stopped': False
+    }
 
-                    if time_progress_seconds > 30:
-                        print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
-
-                    # Find any syncs before this one that were passed without syncing
-                    if not timeline_stopped:
-                        for other_entry in timelist:
-                            if (
-                                    'regex' in other_entry and
-                                    other_entry['time'] > last_jump and
-                                    other_entry['time'] < entry['time'] and
-                                    other_entry['branch'] < entry['branch']
-                            ):
-                                if 'last' in other_entry:
-                                    print("    Missed sync: {} at {} (last seen at {})".format(other_entry['label'], other_entry['time'], other_entry['last']))
-                                else:
-                                    print("    Missed sync: {} at {}".format(other_entry['label'], other_entry['time']))
-                                other_entry['branch'] = branch
-
-                    # Carry out the sync to make this the new baseline position
-                    if timeline_stopped:
-                        last_jump = entry['time']
-                    timeline_stopped = False
-                    last_sync_timestamp = parse_line_time(line)
-
-                    # Jump to new time, stopping if necessary
-                    if 'jump' in entry:
-                        if entry['jump'] == 0:
-                            print("---!Resetting encounter from {}!---".format(last_sync_position))
-                            timeline_stopped = True
-                        else:
-                            print("    Jumping to {:.3f}".format(entry['jump']))
-                        last_jump = entry['jump']
-                        last_sync_position = entry['jump']
-                        branch += 1
-                    else:
-                        last_sync_position = entry['time']
-
-                # Record last seen data if it matches but outside window
-                elif (
-                        'regex' in entry and
-                        re.search(entry['regex'], line)
-                ):
-                    entry['last'] = timeline_position
-
+    for event in events:
+        state = check_event(event, timelist, state)
 
 def main(args):
     # Parse timeline file
@@ -176,10 +218,13 @@ def main(args):
     if args.file:
         run_file(args, timelist)
 
+    elif args.report:
+        print("Running analysis based on report. Caveats apply.")
+        run_report(args, timelist)
 
 def timeline_file(arg):
     """Defines the timeline file argument type"""
-    path = Path('../ui/raidboss/data/timelines/' + arg + '.txt')
+    path = Path(__file__).parent.parent / 'ui' / 'raidboss' / 'data' / 'timelines' / (arg + '.txt')
 
     if not path.exists():
         raise argparse.ArgumentTypeError("Could not load timeline at " + path)
