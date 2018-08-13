@@ -663,8 +663,8 @@ let Options = {
             fr: 'Asag',
             ja: 'Asag',
           },
-          x: 10,
-          y: 10,
+          x: 10.8,
+          y: 10.5,
         },
         surabhi: {
           label: {
@@ -830,10 +830,10 @@ let Options = {
             ja: 'Cassie',
           },
           mobName: {
-            en: 'Capricious Cassie',
-            de: 'Capricious Cassie',
-            fr: 'Capricious Cassie',
-            ja: 'Capricious Cassie',
+            en: 'Copycat Cassie',
+            de: 'Copycat Cassie',
+            fr: 'Copycat Cassie',
+            ja: 'Copycat Cassie',
           },
           trackerName: {
             en: 'Cassie',
