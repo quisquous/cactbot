@@ -1,7 +1,6 @@
 import argparse
 from datetime import datetime
 import fflogs
-from make_timeline import parse_report
 import os
 from pathlib import Path
 import re
@@ -36,6 +35,23 @@ def load_timeline(timeline):
             entry['regex'] =  sync_match.group(1).replace(':', '\|')
             entry['branch'] = 0
 
+            # Special casing on syncs
+            entry['special_type'] = False
+
+            begincast_match = re.search(r'^:([0-9A-F]{4}):([^:]+)', sync_match.group(1))
+            if begincast_match:
+                entry['special_type'] = 'begincast'
+                entry['special_line'] = '20'
+                entry['cast_id'] = begincast_match.group(1)
+                entry['caster_name'] = begincast_match.group(2)
+
+            buff_match = re.search(r'1A:(.+) gains the effect of (.+)( from)?', sync_match.group(1))
+            if buff_match:
+                entry['special_type'] = 'applydebuff'
+                entry['special_line'] = '26'
+                entry['buff_target'] = buff_match.group(1)
+                entry['buff_name'] = buff_match.group(2)
+
             # Get the start and end of the sync window
             window_match = re.search(r'window ([\d\.]+),?([\d\.]+)?', match.group('options'))
             
@@ -63,6 +79,70 @@ def load_timeline(timeline):
 
     return timelist
 
+def parse_report(args):
+    """Reads an fflogs report and return a list of entries"""
+
+    # Default values
+    report_start_time = 0
+    start_time = 0
+    end_time = 0
+    enemies = {}
+
+    # Get report information
+    report_data = fflogs.api('fights', args.report, 'www', {'api_key': args.key})
+
+    report_start_time = report_data['start']
+
+    # Get the start and end timestamps for the specific fight
+    fight_id_found = False
+    for fight in report_data['fights']:
+        if args.fight and fight['id'] == args.fight:
+            start_time = fight['start_time']
+            end_time = fight['end_time']
+            fight_id_found = True
+            break
+        elif fight['end_time'] - fight['start_time'] > end_time - start_time:
+            start_time = fight['start_time']
+            end_time = fight['end_time']
+
+    if args.fight and not fight_id_found:
+        raise Exception('Fight ID not found in report')
+
+    # Build an enemy name list, since these aren't in the events
+    for enemy in report_data['enemies']:
+        enemies[enemy['id']] = enemy['name']
+
+    # Get the actual event list for the single fight
+    options = {
+        'api_key': args.key,
+        'start': start_time,
+        'end': end_time,
+        'filter': '(source.disposition="enemy" and (type="cast" or type="begincast")) or (target.disposition="enemy" and source.disposition!="friendly" and type="applydebuff")',
+        'translate': 'true',
+    }
+    event_data = fflogs.api('events', args.report, 'www', options)
+
+    entries = []
+
+    # Actually make the entry dicts
+    for event in event_data['events']:
+        entry = {
+            'time': datetime.fromtimestamp((report_start_time + event['timestamp']) / 1000),
+            'ability_id': hex(event['ability']['guid'])[2:].upper(),
+            'ability_name': event['ability']['name'],
+            'type': event['type']
+        }
+
+        # In the applydebuff case, the source is -1 (environment) and we want the target instead
+        if event['type'] == 'applydebuff':
+            entry['combatant'] = enemies[event['targetID']]
+        else:
+            entry['combatant'] = enemies[event['sourceID']]
+
+        entries.append(entry)
+
+    return entries, datetime.fromtimestamp((report_start_time + start_time) / 1000)
+
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
@@ -77,10 +157,73 @@ def parse_event_time(event):
         return event['time']
 
 def get_regex(event):
+    """Gets the regex for the event for both file and report types"""
     if isinstance(event, str):
         return event
     elif isinstance(event, dict):
         return event['regex']
+
+def get_type(event):
+    """Gets the line type for both file and report types"""
+    if isinstance(event, str):
+        if event.startswith('20'):
+            return 'begincast'
+        elif event.startswith('26'):
+            return 'applydebuff'
+        elif event.startswith('21') or event.startswith('22'):
+            return 'cast'
+        else:
+            return 'none'
+
+    elif isinstance(event, dict):
+        return event['type']
+
+    # In case event is a different type
+    return 'none'
+
+def test_match(event, entry):
+    # Normal case. Exclude begincast to avoid false positive match with cast events
+    if 'regex' in entry and re.search(entry['regex'], get_regex(event)) and not entry['special_type'] and get_type(event) != 'begincast':
+        return True
+
+    # File parsing cases
+    if isinstance(event, str) and entry['special_type']:
+        # Begincast case
+        if entry['special_type'] == 'begincast' and event.startswith(entry['special_line']):
+            begincast_match = re.search('\|{}\|{}\|'.format(entry['caster_name'], entry['cast_id']), event)
+            if begincast_match:
+                return True
+            else:
+                return False
+
+        # Buff case
+        elif entry['special_type'] == 'applydebuff' and event.startswith(entry['special_line']):
+            # Matching this format generically:
+            # |Dadaluma Simulation|0.00|E0000000||4000AE96|Guardian
+            buff_match = re.search('\|{}\|([^\|]*\|){{4}}{}'.format(entry['buff_name'], entry['buff_target']), event)
+            if buff_match:
+                return True
+            else:
+                return False
+
+    # Report parsing cases
+    elif isinstance(event, dict) and entry['special_type'] == event['type']:
+        # Begincast case
+        if event['type'] == 'begincast':
+            if event['ability_id'] == entry['cast_id'] and event['combatant'] == entry['caster_name']:
+                return True
+            else:
+                return False
+
+        # Buff case
+        elif event['type'] == 'applydebuff':
+            if event['combatant'] == entry['buff_target'] and event['ability_name'] == entry['buff_name']:
+                return True
+            else:
+                return False
+
+    # If none of the above have matched, there's no match
+    return False
 
 def check_event(event, timelist, state):
     # Get amount of time that's passed since last sync point
@@ -96,15 +239,14 @@ def check_event(event, timelist, state):
     # Search timelist for matches
     for entry in timelist:
         if (
-                'regex' in entry and
-                re.search(entry['regex'], get_regex(event)) and
+                test_match(event, entry) and
                 timeline_position >= entry['start'] and
                 timeline_position <= entry['end']
         ):
             # Flag with current branch
             if state['last_entry'] == entry:
                 continue
-            
+
             entry['branch'] = state['branch']
             state['last_entry'] = entry
 
@@ -150,13 +292,8 @@ def check_event(event, timelist, state):
                 state['last_sync_position'] = entry['time']
 
         # Record last seen data if it matches but outside window
-        elif (
-                'regex' in entry and
-                re.search(entry['regex'], get_regex(event))
-        ):
+        elif test_match(event, entry):
             entry['last'] = timeline_position
-        else:
-            pass
 
     return state
 
@@ -224,7 +361,7 @@ def main(args):
 
 def timeline_file(arg):
     """Defines the timeline file argument type"""
-    path = Path(__file__).parent.parent / 'ui' / 'raidboss' / 'data' / 'timelines' / (arg + '.txt')
+    path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data' / 'timelines' / (arg + '.txt')
 
     if not path.exists():
         raise argparse.ArgumentTypeError("Could not load timeline at " + path)
