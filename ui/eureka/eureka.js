@@ -479,7 +479,6 @@ let Options = {
       mapWidth: 1500,
       mapHeight: 950,
       primaryWeather: ['Blizzards', 'Thunder', 'Fog'],
-      // TODO: these could be a little better tuned :C
       mapToPixelXScalar: 41.08333,
       mapToPixelXConstant: -85.28333,
       mapToPixelYScalar: 41.09158,
@@ -797,6 +796,7 @@ let Options = {
             fr: 'Horus',
             ja: 'Horus',
           },
+          weather: 'Heat Waves',
           x: 25,
           y: 19,
         },
@@ -841,6 +841,9 @@ let Options = {
             fr: 'Cassie',
             ja: 'Cassie',
           },
+          weather: 'Blizzards',
+          x: 22,
+          y: 14,
         },
         louhi: {
           label: {
@@ -873,10 +876,11 @@ let gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float
 let gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
 let gImportRegex = Regexes.Parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/);
 let gWeatherIcons = {
-  Gales: '&#x1F300;',
-  Fog: '&#x2601;',
-  Blizzards: '&#x2744;',
-  Thunder: '&#x26A1;',
+  'Gales': '&#x1F300;',
+  'Fog': '&#x2601;',
+  'Blizzards': '&#x2744;',
+  'Thunder': '&#x26A1;',
+  'Heat Waves': '&#x2600;',
 };
 let gNightIcon = '&#x1F319;';
 let gDayIcon = '&#x2600;';
@@ -1025,7 +1029,7 @@ class EurekaTracker {
   UpdateTimes() {
     let nowMs = +new Date();
 
-    for (let i = 0; i < 3; ++i) {
+    for (let i = 0; i < 5; ++i) {
       let primaryWeather = this.options.ZoneInfo[this.zoneName].primaryWeather[i];
       if (!primaryWeather) {
         document.getElementById('label-weather' + i).innerHTML = '';
