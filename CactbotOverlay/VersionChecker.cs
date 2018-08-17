@@ -64,7 +64,7 @@ namespace Cactbot {
         return new Version();
       }
 
-      var pattern = @"<h1(\s.*?)?\sclass=""[^""]*release-title[^""]*"".*?>(?<Header>.*?)</h1>";
+      var pattern = @"href=""/quisquous/cactbot/releases/download/v?(?<Version>.*?)/";
       var regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
       var match = regex.Match(html);
       if (!match.Success) {
@@ -72,17 +72,7 @@ namespace Cactbot {
         return new Version();
       }
 
-      string header_string = match.Groups["Header"].Value;
-
-      pattern = @"<a\s.*?>\s*(?<ReleaseTitle>.*?)\s*</a>";
-      regex = new Regex(pattern, RegexOptions.IgnoreCase);
-      match = regex.Match(header_string);
-      if (!match.Success) {
-        logger_.LogError("Error parsing most recent github release, no match found. Please report an issue at " + kIssueUrl);
-        return new Version();
-      }
-
-      string version_string = match.Groups["ReleaseTitle"].Value;
+      string version_string = match.Groups["Version"].Value;
 
       pattern = @"(?<VersionNumber>(?<Major>[0-9]+)\.(?<Minor>[0-9]+)\.(?<Revision>[0-9+]))";
       regex = new Regex(pattern);
