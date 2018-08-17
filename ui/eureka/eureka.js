@@ -490,7 +490,7 @@ let Options = {
       nms: {
         snowqueen: {
           label: {
-            en: 'Snow Queen',
+            en: 'Queen',
             de: 'Snow Queen',
             fr: 'Snow Queen',
             ja: 'Snow Queen',
@@ -507,8 +507,8 @@ let Options = {
             fr: 'Snow Queen',
             ja: 'Snow Queen',
           },
-          x: 21,
-          y: 26,
+          x: 21.5,
+          y: 26.5,
         },
         taxim: {
           label: {
@@ -529,13 +529,13 @@ let Options = {
             fr: 'Taxim',
             ja: 'Taxim',
           },
-          x: 25,
-          y: 28,
+          x: 25.5,
+          y: 28.3,
           time: 'Night',
         },
         ashdragon: {
           label: {
-            en: 'Ash Dragon',
+            en: 'Dragon',
             de: 'Ash Dragon',
             fr: 'Ash Dragon',
             ja: 'Ash Dragon',
@@ -552,8 +552,8 @@ let Options = {
             fr: 'Ash Dragon',
             ja: 'Ash Dragon',
           },
-          x: 29,
-          y: 30,
+          x: 29.7,
+          y: 30.0,
         },
         glavoid: {
           label: {
@@ -574,8 +574,8 @@ let Options = {
             fr: 'Glavoid',
             ja: 'Glavoid',
           },
-          x: 34,
-          y: 28,
+          x: 33.0,
+          y: 28.0,
         },
         anapos: {
           label: {
@@ -596,8 +596,8 @@ let Options = {
             fr: 'Anapos',
             ja: 'Anapos',
           },
-          x: 34,
-          y: 21,
+          x: 33.0,
+          y: 21.5,
           weather: 'Fog',
         },
         hakutaku: {
@@ -619,8 +619,8 @@ let Options = {
             fr: 'Hakutaku',
             ja: 'Hakutaku',
           },
-          x: 29,
-          y: 22,
+          x: 29.0,
+          y: 22.5,
         },
         igloo: {
           label: {
@@ -663,7 +663,7 @@ let Options = {
             fr: 'Asag',
             ja: 'Asag',
           },
-          x: 10.8,
+          x: 11.3,
           y: 10.5,
         },
         surabhi: {
@@ -685,8 +685,8 @@ let Options = {
             fr: 'Surabhi',
             ja: 'Surabhi',
           },
-          x: 10,
-          y: 20,
+          x: 10.5,
+          y: 20.5,
         },
         kingarthro: {
           label: {
@@ -707,8 +707,8 @@ let Options = {
             fr: 'King Arthro',
             ja: 'King Arthro',
           },
-          x: 8,
-          y: 15,
+          x: 8.0,
+          y: 15.2,
         },
         minotaurs: {
           label: {
@@ -729,8 +729,8 @@ let Options = {
             fr: 'Minotaurs',
             ja: 'Minotaurs',
           },
-          x: 13,
-          y: 18,
+          x: 13.8,
+          y: 18.4,
         },
         holycow: {
           label: {
@@ -756,7 +756,7 @@ let Options = {
         },
         hadhayosh: {
           label: {
-            en: 'Hadhayosh',
+            en: 'Hadha',
             de: 'Hadhayosh',
             fr: 'Hadhayosh',
             ja: 'Hadhayosh',
@@ -797,8 +797,8 @@ let Options = {
             ja: 'Horus',
           },
           weather: 'Heat Waves',
-          x: 25,
-          y: 19,
+          x: 26,
+          y: 20,
         },
         mainyu: {
           label: {
@@ -819,8 +819,8 @@ let Options = {
             fr: 'Mainyu',
             ja: 'Mainyu',
           },
-          x: 24,
-          y: 25,
+          x: 25,
+          y: 24,
         },
         cassie: {
           label: {
@@ -865,7 +865,7 @@ let Options = {
             ja: 'Louhi',
           },
           x: 36,
-          y: 19,
+          y: 18.5,
         },
       },
     },
