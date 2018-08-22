@@ -1150,11 +1150,16 @@ class EurekaTracker {
       trackerToNM[nm.trackerName[this.options.Language].toLowerCase()] = nm;
     }
 
+    let regex = Regexes.Parse(/(.*) \((\d*)m\)/);
     let importList = importText.split(' > ');
     for (let i = 0; i < importList.length; i++) {
-      let nmInfo = importList[i].split(' ');
-      let name = nmInfo[0];
-      let time = nmInfo[1].match(/\d+/)[0];
+      let m = importList[i].match(regex);
+      if (!m) {
+        console.error('Unknown tracker entry: ' + importList[i]);
+        continue;
+      }
+      let name = m[1];
+      let time = m[2];
       let nm = trackerToNM[name.toLowerCase()];
       if (nm)
         nm.respawnTimeMsTracker = (time * 60 * 1000) + (+new Date());
