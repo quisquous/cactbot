@@ -180,22 +180,22 @@ hideall "--Reset--"
 1114 "Flaming Crush" sync /:Ifrit:2B5D:/
 1115 "Weight Of The Land"
 1115 "Eye Of The Storm" sync /:Ifrit:2B52:/
-1116 "Aetheroplasm" sync /:Aetheroplasm:2B81:/
+1116 "Aetheroplasm"
 1117 "Mesohigh" sync /:Garuda:2B49:/
 1118 "Weight Of The Land"
 1118 "Inferno Howl" sync /:Ifrit:2B5B:/
 1122 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.466001
-1123 "Aetheroplasm" sync /:Aetheroplasm:2B81:/ # drift 0.483
+1123 "Aetheroplasm"
 1124 "Searing Wind" sync /:Garuda:2B5C:/ # drift -0.237
 1126 "Crimson Cyclone" sync /:Ifrit:2B5F:/
 1127 "Landslide" sync /:Titan:2B71:/
 1128 "Crimson Cyclone" sync /:Titan:2B60:/
 1129 "Landslide" sync /:Ifrit:2C22:/
 1130 "Searing Wind" sync /:Garuda:2B5C:/ # drift -0.432999
-1131 "Aetheroplasm" sync /:Aetheroplasm:2B81:/ # drift -0.344001
+1131 "Aetheroplasm"
 1133 "Eye Of The Storm" sync /:Ifrit:2B52:/ # drift -0.436001
 1136 "Mesohigh" sync /:Garuda:2B49:/ # drift -0.478999
-1136 "Aetheroplasm" sync /:Aetheroplasm:2B81:/
+1136 "Aetheroplasm"
 1137 "Searing Wind" sync /:Garuda:2B5C:/ # drift 0.374
 1139 "Tank Purge" sync /:The Ultima Weapon:2B87:/ # drift -0.434
 1141 "Feather Rain" sync /:Garuda:2B4D:/ # drift -0.328
