@@ -146,15 +146,19 @@ namespace Cactbot {
     //     0x25C bytes in: float32 casting_spell_time_spent;  // 4 bytes
     //     0x260 bytes in: float32 casting_spell_length;      // 4 bytes
     // }
-    private static int kEntityStructureSize = 0x1700 + 0x260 + 4;
+  
+    // Base offset for the character details below.
+    private static int kEntityStructureOffsetCharacterDetails = 0x1750;
+
+    private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
     private static int kEntityStructureSizeName = 0x44;
     private static int kEntityStructureOffsetName = 0x30;
     private static int kEntityStructureOffsetId = 0x74;
     private static int kEntityStructureOffsetType = 0x8C;
     private static int kEntityStructureOffsetDistance = 0x92;
     private static int kEntityStructureOffsetPos = 0xA0;
-    // Base offset for the things below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x1700;
+
+    // Character details.
     private static int kEntityStructureOffsetHpMpTp = 0x0;
     private static int kEntityStructureOffsetGpCp = 0x12;
     private static int kEntityStructureOffsetJob = 0x38;
