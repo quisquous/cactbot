@@ -129,7 +129,7 @@ def main(args):
     phases = {}
     for phase in args.phase:
         ability, time = phase.split(':')
-        phases[ability] = int(time)
+        phases[ability] = float(time)
 
     # Get the entry list
     if args.report:
@@ -169,20 +169,20 @@ def main(args):
         last_time_diff_us = last_time_diff.microseconds
         drift = False
 
-        # Round up to the second
-        if last_time_diff_us > 800000:
-            last_time_diff_sec += 1
+        # Round up to the tenth of second
+        if last_time_diff_us > 80000:
+            last_time_diff_sec += .1
 
         # Round up with a note about exceptional drift
-        elif last_time_diff_us > 500000:
-            last_time_diff_sec += 1
-            drift = -1000000 + last_time_diff_us
+        elif last_time_diff_us > 50000:
+            last_time_diff_sec += .1
+            drift = -100000 + last_time_diff_us
 
         # Round down with a note about exceptional drift
-        elif last_time_diff_us > 200000:
+        elif last_time_diff_us > 20000:
             drift = last_time_diff_us
         
-        # If <200ms then there's no need to adjust sec or drift
+        # If <20ms then there's no need to adjust sec or drift
         else:
             pass
 
@@ -198,7 +198,7 @@ def main(args):
         entry['position'] = timeline_position
 
         # Write the line
-        output_entry = '{position} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
+        output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
         if drift:
             output_entry += ' # drift {}'.format(drift/1000000)
 
