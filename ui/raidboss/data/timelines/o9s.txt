@@ -1,1 +1,169 @@
-# Omega - Alphascape V1.0 (Savage) - O9S
+# Omega - Alphascape V1.0 Savage - O9S
+# -ii 319E 3174 3186 3176 3177 3178 3179 3182 3183 3184 3185 3187 3188 3189 319F 317A 317B 31A0 31A1 31A2 3419 3215 33C0 33C1 33C2
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /Removing combatant Chaos/ window 10000 jump 0
+
+0 "Start"
+2.5 "--sync--" sync /:Chaos:316F:/ window 3,0 # First autoattack
+
+## Branch between Fire/Water paths
+10.1 "--sync--" sync /:317(2|3):Chaos/ jump 2010.1 # Long/lat means water path
+10.7 "--sync--" sync /:3171:Chaos/ jump 1010.7 # Edict means fire path
+
+# Fake water path
+15.1 "Latitudinal Implosion?"
+29.2 "Tsunami?"
+38.3 "Umbra Smash?"
+39.4 "Stray Spray?"
+
+# Fake fire path
+16.1 "Damning Edict?"
+29.1 "Blaze?"
+
+#############
+# Fire path #
+#############
+
+# Fire phase
+1016.1 "Damning Edict" sync /:Chaos:3171:/
+1029.1 "Blaze" sync /:Chaos:3206:/ # drift 0.027
+1040.2 "(T/H) Stray Flames" sync /:Chaos:318C:/
+1045.3 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
+1053.4 "(DPS) Stray Flames" sync /:Chaos:318C:/
+1063.5 "Chaotic Dispersion" sync /:Chaos:3170:/
+1075.5 "Blaze" sync /:Chaos:3206:/ # drift 0.028
+1086.6 "(T/H) Stray Flames" sync /:Chaos:318C:/
+1093.7 "Knock" sync /:Chaos:317E:/
+1099.8 "(DPS) Stray Flames" sync /:Chaos:318C:/
+1103.9 "Big Bang" sync /:Chaos:3180:/
+1112.0 "Fiendish Orbs" sync /:Chaos:317C:/
+
+# Wind phase
+1134.0 "Cyclone" sync /:Chaos:3208:/ # drift 0.039
+1146.0 "Umbra Smash" sync /:Chaos:3175:/
+1153.1 "Cyclone" sync /:Chaos:318F:/
+1155.2 "Damning Edict" sync /:Chaos:3171:/
+1173.2 "Chaotic Dispersion" sync /:Chaos:3170:/ # drift 0.021
+1185.2 "Cyclone" sync /:Chaos:3208:/ # drift 0.027
+1197.3 "Knock" sync /:Chaos:317F:/
+1197.4 "Cyclone" sync /:Chaos:318F:/
+1203.5 "Big Bang" sync /:Chaos:3181:/
+1214.6 "Fiendish Orbs" sync /:Chaos:317D:/
+
+# Orb phase
+1239.6 "Bowels Of Agony" sync /:Chaos:318A:/ # drift 0.04
+1253.6 "(DPS) Stray Flames" sync /:Chaos:318C:/
+1255.7 "(T/H) Stray Spray" sync /:Chaos:318D:/
+1280.8 "Soul Of Chaos" sync /:Chaos:318B:/ window 500,500 # drift -0.045
+
+# Water phase
+1307.6 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
+1321.7 "Tsunami" sync /:Chaos:3207:/
+1330.8 "Umbra Smash" sync /:Chaos:3175:/
+1331.9 "(T/H) Stray Spray" sync /:Chaos:318D:/
+1338.9 "(DPS) Stray Spray" sync /:Chaos:318D:/
+1340.9 "Damning Edict" sync /:Chaos:3171:/
+1359.0 "Chaotic Dispersion" sync /:Chaos:3170:/
+1371.1 "Tsunami" sync /:Chaos:3207:/
+1381.2 "(T/H) Stray Spray" sync /:Chaos:318D:/
+1381.3 "Knock" sync /:Chaos:317F:/
+1387.4 "(DPS) Stray Spray" sync /:Chaos:318D:/
+1387.5 "Big Bang" sync /:Chaos:3181:/
+1398.6 "Fiendish Orbs" sync /:Chaos:317D:/
+
+# Earth phase
+1420.7 "Earthquake" sync /:Chaos:3209:/
+1430.8 "Earthquake" sync /:Chaos:3190:/ # drift -0.022
+1433.9 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
+1453.0 "Chaotic Dispersion" sync /:Chaos:3170:/
+1465.1 "Earthquake" sync /:Chaos:3209:/
+1475.2 "Earthquake" sync /:Chaos:3190:/
+1477.3 "Knock" sync /:Chaos:317E:/
+1481.4 "Big Bang" sync /:Chaos:3180:/
+1489.5 "Fiendish Orbs" sync /:Chaos:317C:/
+
+# Enrage phase
+1519.6 "Blaze" sync /:Chaos:3206:/
+1526.7 "(ALL) Stray Flames" sync /:Chaos:318C:/
+1531.8 "Tsunami" sync /:Chaos:3207:/
+1537.9 "(ALL) Stray Spray" sync /:Chaos:318D:/
+1544.0 "Cyclone" sync /:Chaos:3208:/
+1550.6 "Stray Gusts"
+1557.0 "Earthquake" sync /:Chaos:3209:/
+1565.2 "Stray Earth"
+
+##############
+# Water Path #
+##############
+
+# Water phase
+2015.1 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
+2029.2 "Tsunami" sync /:Chaos:3207:/
+2038.3 "Umbra Smash" sync /:Chaos:3175:/
+2039.4 "(T/H) Stray Spray" sync /:Chaos:318D:/
+2045.5 "(DPS) Stray Spray" sync /:Chaos:318D:/
+2046.6 "Damning Edict" sync /:Chaos:3171:/
+2064.7 "Chaotic Dispersion" sync /:Chaos:3170:/
+2076.7 "Tsunami" sync /:Chaos:3207:/ # drift 0.028
+2086.8 "(T/H) Stray Spray" sync /:Chaos:318D:/
+2086.9 "Knock" sync /:Chaos:317F:/
+2093.0 "(DPS) Stray Spray" sync /:Chaos:318D:/
+2093.1 "Big Bang" sync /:Chaos:3181:/
+2104.2 "Fiendish Orbs" sync /:Chaos:317D:/
+
+# Earth phase
+2126.2 "Earthquake" sync /:Chaos:3209:/ # drift 0.036
+2136.2 "Earthquake" sync /:Chaos:3190:/
+2139.3 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
+2147.4 "Stray Earth" sync /:Chaos:31A2:/
+2157.5 "Chaotic Dispersion" sync /:Chaos:3170:/
+2169.5 "Earthquake" sync /:Chaos:3209:/ # drift 0.031
+2179.5 "Earthquake" sync /:Chaos:3190:/
+2181.6 "Knock" sync /:Chaos:317E:/
+2185.7 "Big Bang" sync /:Chaos:3180:/
+2193.8 "Fiendish Orbs" sync /:Chaos:317C:/
+
+# Orb phase
+2218.8 "Bowels Of Agony" sync /:Chaos:318A:/ # drift 0.038
+2232.8 "(DPS) Stray Flames" sync /:Chaos:318C:/
+2235.8 "(T/H) Stray Spray" sync /:Chaos:318D:/
+2255.9 "Soul Of Chaos" sync /:Chaos:318B:/ window 500,500
+
+# Fire phase
+2283.7 "Damning Edict" sync /:Chaos:3171:/
+2296.7 "Blaze" sync /:Chaos:3206:/ # drift 0.024
+2307.8 "(T/H) Stray Flames" sync /:Chaos:318C:/
+2312.9 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
+2321.0 "(DPS) Stray Flames" sync /:Chaos:318C:/
+2331.1 "Chaotic Dispersion" sync /:Chaos:3170:/
+2343.1 "Blaze" sync /:Chaos:3206:/ # drift 0.033
+2354.2 "(T/H) Stray Flames" sync /:Chaos:318C:/
+2361.3 "Knock" sync /:Chaos:317E:/
+2367.4 "(DPS) Stray Flames" sync /:Chaos:318C:/
+2371.5 "Big Bang" sync /:Chaos:3180:/
+2379.6 "Fiendish Orbs" sync /:Chaos:317C:/
+
+# Wind phase
+2401.6 "Cyclone" sync /:Chaos:3208:/ # drift 0.037
+2413.6 "Umbra Smash" sync /:Chaos:3175:/
+2420.7 "Cyclone" sync /:Chaos:318F:/
+2422.8 "Damning Edict" sync /:Chaos:3171:/
+2440.8 "Chaotic Dispersion" sync /:Chaos:3170:/
+2452.8 "Cyclone" sync /:Chaos:3208:/ # drift 0.025
+2464.9 "Knock" sync /:Chaos:317F:/
+2465.0 "Cyclone" sync /:Chaos:318F:/
+2471.1 "Big Bang" sync /:Chaos:3181:/
+2482.2 "Fiendish Orbs" sync /:Chaos:317D:/
+
+# Enrage phase
+2512.3 "Blaze" sync /:Chaos:3206:/ # drift -0.047
+2519.4 "(ALL) Stray Flames" sync /:Chaos:318C:/
+2524.5 "Tsunami" sync /:Chaos:3207:/
+2530.6 "(ALL) Stray Spray" sync /:Chaos:318D:/
+2536.7 "Cyclone" sync /:Chaos:3208:/
+2543.3 "Stray Gusts"
+2549.7 "Earthquake" sync /:Chaos:3209:/
+2557.9 "Stray Earth"
