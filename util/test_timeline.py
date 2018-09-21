@@ -244,7 +244,7 @@ def check_event(event, timelist, state):
                 timeline_position <= entry['end']
         ):
             # Flag with current branch
-            if state['last_entry'] == entry:
+            if state['last_entry'] == entry and time_progress_seconds < 2.5:
                 continue
 
             entry['branch'] = state['branch']
