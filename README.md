@@ -54,7 +54,7 @@ You must have [DirectX 11](http://imgur.com/TjcnjmG) enabled for Final Fantasy X
 
 Install the 64-bit version of [Advanced Combat Tracker](http://advancedcombattracker.com/), if you have not already.
 
-Download and add the most recent version of [ravahn's FFXIV ACT plugin](http://www.eq2flames.com/plugin-discussion/98088-ffxiv-arr-plugin.html) to ACT.  You must enable parsing from the network and make sure that ACT is not firewalled.  Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
+Download and add the most recent version of [ravahn's FFXIV ACT plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases/latest) to ACT.  You must enable parsing from the network and make sure that ACT is not firewalled.  Make sure the settings for the FFXIV plugin have the "Include HP for Triggers" button checked.
 This is under Plugins -> FFXIV Settings -> Parse Options.
 
 You must have the latest x64 version of the
