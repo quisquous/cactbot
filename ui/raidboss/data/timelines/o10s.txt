@@ -44,17 +44,8 @@ hideall "--sync--"
 186.3 "Horrid Roar" sync /:Midgardsormr:31B9:/
 
 # Add phase
-209.3 "Frost Breath" sync /:Ancient Dragon:33F1:/ # drift 0.048
-215.3 "Rime Wreath" sync /:Ancient Dragon:33F2:/ window 10,10
-219.3 "Frost Breath" sync /:Ancient Dragon:33F1:/
-229.4 "Frost Breath"
-233.4 "Rime Wreath"
-239.4 "Frost Breath"
-249.5 "Rime Wreath"
-251.5 "Frost Breath"
-261.5 "Frost Breath"
-265.5 "Rime Wreath"
-271.5 "Frost Breath"
+209.3 "Frost Breath" sync /:Ancient Dragon:33F1:/ window 2.5,30
+219.3 "Frost Breath ready"
 
 277.6 "Protostar" sync /:Midgardsormr:31C3:/ window 500,500
 
