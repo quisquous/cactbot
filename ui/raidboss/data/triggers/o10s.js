@@ -44,5 +44,65 @@
         en: 'Fire Marker',
       },
     },
+    {
+      id: 'O10S Earthshakers',
+      regex: /:31B6:Midgardsormr casts Earth Shaker/,
+      alarmText: {
+        en: 'Spread shakers',
+      },
+    },
+    {
+      id: '010S Flip Count',
+      regex: /: Flip/,
+      infoText: {
+        en: 'Flip'
+      },
+      preRun: function(data) {
+        data.firstMove = (data.firstMove || 'flip');
+        data.totalCoilFlip = (data.totalCoilFlip || 0) + 1;
+
+        // Coil Flip
+        if(data.firstMove === 'coil') {
+          data.coilFlipText = 'get in, donut'
+        } else { // Flip Flip
+          data.coilFlipText = 'plus sign'
+        }
+
+      },
+      tts: function(data) {
+        return (data.totalCoilFlip === 2) ? data.coilFlipText : null;
+      }
+    },
+    {
+      id: '010S Coil Count',
+      regex: /: Flip/,
+      infoText: {
+        en: 'Flip'
+      },
+      preRun: function(data) {
+        data.firstMove = (data.firstMove || 'coil');
+        data.totalCoilFlip = (data.totalCoilFlip || 0) + 1;
+
+        // Coil Coil
+        if(data.firstMove === 'coil') {
+          data.coilFlipText = 'get out, max melee'
+        } else { // Flip Coil
+          data.coilFlipText = 'X sign'
+        }
+
+      },
+      tts: function(data) {
+        return (data.totalCoilFlip === 2) ? data.coilFlipText : null;
+      }
+    },
+    {
+      id: 'O10S In/Out',
+      regex: ':31B(2|4):(Midgardsormr)',
+      run: function(data) {
+        // resets coilFlip
+        delete data.totalCoilFlip;
+        delete data.firstMove;
+      }
+    }
   ],
 }];

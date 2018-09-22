@@ -112,6 +112,7 @@
     }, {
       id: 'O9S Accretion',
       regex: /:(\y{Name}) suffers the effect of Accretion/,
+      suppressSeconds: 10,
       alertText: function(data) {
         return {
           en: 'T/H Full HP, DPS Die',
