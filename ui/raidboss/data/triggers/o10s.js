@@ -1,10 +1,35 @@
 'use strict';
 
 // O10S - Alphascape 2.0 Savage
-//
 [{
   zoneRegex: /^Alphascape V2.0 \(Savage\)$/,
   timelineFile: 'o10s.txt',
+  timelineTriggers: [
+    {
+      id: 'O10S Ice Positioning',
+      regex: /Northern Cross/,
+      beforeSeconds: 1,
+      alertText: {
+        en: 'position for ice',
+      },
+    },
+    {
+      id: 'O10S Add Phase',
+      regex: /Frost Breath ready/,
+      beforeSeconds: 12,
+      alertText: {
+        en: 'add incoming',
+      },
+    },
+    {
+      id: 'O10S Dive Bombs',
+      regex: /Cauterize/,
+      beforeSeconds: 1,
+      alertText: {
+        en: 'avoid dive bomb',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'O10S Tail End',
@@ -97,7 +122,7 @@
       id: 'O10S In/Out',
       regex: ':31B(2|4):(Midgardsormr)',
       run: function(data) {
-        // resets coilFlip
+        // resolves coilFlip
         delete data.totalCoilFlip;
         delete data.firstMove;
       },
@@ -105,10 +130,13 @@
     {
       id: 'O10S Death from Above',
       regex: 'Death from Above',
+      run: function(data, matches) {
+        data.hasAboveBuff = matches[1];
+      },
       tts: function(data, matches) {
         if (matches[1] == data.me) {
           return {
-            en: data.ShortName(matches[1]) + ' get ground units',
+            en: data.ShortName(matches[1]) + ' get ground ',
           };
         }
       },
@@ -116,12 +144,42 @@
     {
       id: 'O10S Death from Below',
       regex: 'Death from Below',
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       tts: function(data, matches) {
         if (matches[1] == data.me) {
           return {
-            en: data.ShortName(matches[1]) + ' tank boss',
+            en: data.ShortName(matches[1]) + ' tank flying',
           };
         }
+      },
+    },
+    {
+      id: 'O10S Puddle',
+      regex: ':XXXX:Add removed from battlefield',
+      tts: function(data) {
+        return {
+          en: data.ShortName(data.hasAboveBuff) + 'get puddle.',
+        };
+      },
+    },
+    {
+      id: 'O10S Crumbling Bulwark',
+      regex: ':XXXX:Crumbling Bulwark',
+      tts: function(data) {
+        return {
+          en: 'Bulwark Crumbling',
+        };
+      },
+    },
+    {
+      id: 'O10S Pass Bulwark',
+      regex: ':31BC: Crimson Breath',
+      tts: function(data, matches) {
+        return {
+          en: 'Pass to ' + data.ShortName(matches[1]),
+        };
       },
     },
   ],
