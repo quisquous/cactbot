@@ -35,16 +35,46 @@
       },
     },
     {
+      // Ability IDs:
+      // Starboard 1: 3262
+      // Starboard 2: 3264
+      // Larboard 1: 3263
+      // Larboard 2: 3265
+      // For the cannons, match #1 and #2 for the first one.  This is so
+      // that if a log entry for the first is dropped for some reason, it
+      // will at least say left/right for the second.
       // Starboard/Larboard Cannon cleanup.
-      regex: / 14:326[25]:Omega starts using/,
-      delaySeconds: 10,
+      regex: / 14:326[24]:Omega starts using/,
+      delaySeconds: 15,
       run: function(data) {
         delete data.lastWasStarboard;
       },
     },
     {
+      id: 'O11S Starboard Cannon 1',
+      regex: / 14:326[24]:Omega starts using Starboard/,
+      suppressSeconds: 10,
+      alertText: {
+        en: 'Left',
+      },
+      run: function(data) {
+        data.lastWasStarboard = true;
+      },
+    },
+    {
+      id: 'O11S Larboard Cannon 1',
+      regex: / 14:326[35]:Omega starts using Larboard/,
+      suppressSeconds: 10,
+      alertText: {
+        en: 'Right',
+      },
+      run: function(data) {
+        data.lastWasStarboard = false;
+      },
+    },
+    {
       id: 'O11S Starboard Cannon 2',
-      regex: / 14:3262:Omega starts using Starboard/,
+      regex: / 14:3264:Omega starts using Starboard/,
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
@@ -77,25 +107,17 @@
       },
     },
     {
-      id: 'O11S Starboard Cannon 1',
-      regex: / 14:3262:Omega starts using Starboard/,
-      suppressSeconds: 10,
+      id: 'O11S Starboard Surge 1',
+      regex: / 14:3266:Omega starts using Starboard/,
       alertText: {
-        en: 'Left',
-      },
-      run: function(data) {
-        data.lastWasStarboard = true;
+        en: 'Left (then opposite)',
       },
     },
     {
-      id: 'O11S Larboard Cannon 1',
-      regex: / 14:3265:Omega starts using Larboard/,
-      suppressSeconds: 10,
+      id: 'O11S Larboard Surge 1',
+      regex: / 14:3268:Omega starts using Larboard/,
       alertText: {
-        en: 'Right',
-      },
-      run: function(data) {
-        data.lastWasStarboard = false;
+        en: 'Right (then opposite)',
       },
     },
     {
@@ -112,20 +134,6 @@
       delaySeconds: 4,
       alertText: {
         en: 'Opposite (Right)',
-      },
-    },
-    {
-      id: 'O11S Starboard Surge 1',
-      regex: / 14:3266:Omega starts using Starboard/,
-      alertText: {
-        en: 'Left (then opposite)',
-      },
-    },
-    {
-      id: 'O11S Larboard Surge 1',
-      regex: / 14:3268:Omega starts using Larboard/,
-      alertText: {
-        en: 'Right (then opposite)',
       },
     },
   ],
