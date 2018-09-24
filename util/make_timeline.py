@@ -169,8 +169,15 @@ def main(args):
         last_time_diff_us = last_time_diff.microseconds
         drift = False
 
+        # Find the difference to the 0.1 second
+        last_time_diff_tenthsec = int(last_time_diff_us / 100000) / 10
+
+        # Adjust other diffs
+        last_time_diff_sec += last_time_diff_tenthsec
+        last_time_diff_us %= 100000
+
         # Round up to the tenth of second
-        if last_time_diff_us > 80000:
+        if last_time_diff_us > 60000:
             last_time_diff_sec += .1
 
         # Round up with a note about exceptional drift
@@ -179,7 +186,7 @@ def main(args):
             drift = -100000 + last_time_diff_us
 
         # Round down with a note about exceptional drift
-        elif last_time_diff_us > 20000:
+        elif last_time_diff_us > 40000:
             drift = last_time_diff_us
         
         # If <20ms then there's no need to adjust sec or drift
