@@ -136,8 +136,10 @@ def parse_report(args):
         # In the applydebuff case, the source is -1 (environment) and we want the target instead
         if event['type'] == 'applydebuff':
             entry['combatant'] = enemies[event['targetID']]
-        else:
+        elif 'sourceID' in event:
             entry['combatant'] = enemies[event['sourceID']]
+        else:
+            entry['combatant'] = ''
 
         entries.append(entry)
 
@@ -263,14 +265,15 @@ def check_event(event, timelist, state):
                 for other_entry in timelist:
                     if (
                             'regex' in other_entry and
-                            other_entry['time'] >state['last_jump'] and
+                            other_entry['time'] > state['last_jump'] and
                             other_entry['time'] < entry['time'] and
                             other_entry['branch'] < entry['branch']
                     ):
-                        if 'last' in other_entry:
+                        if 'last' in other_entry and drift < 999:
                             print("    Missed sync: {} at {} (last seen at {})".format(other_entry['label'], other_entry['time'], other_entry['last']))
-                        else:
+                        elif drift < 999:
                             print("    Missed sync: {} at {}".format(other_entry['label'], other_entry['time']))
+                        # If this is a sync from a large window, ignore missed syncs
                         other_entry['branch'] = state['branch']
 
             # Carry out the sync to make this the new baseline position
