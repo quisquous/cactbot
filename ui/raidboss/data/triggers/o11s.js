@@ -37,8 +37,8 @@
     {
       // Ability IDs:
       // Starboard 1: 3262
-      // Starboard 2: 3264
-      // Larboard 1: 3263
+      // Starboard 2: 3263
+      // Larboard 1: 3264
       // Larboard 2: 3265
       // For the cannons, match #1 and #2 for the first one.  This is so
       // that if a log entry for the first is dropped for some reason, it
@@ -52,7 +52,7 @@
     },
     {
       id: 'O11S Starboard Cannon 1',
-      regex: / 14:326[24]:Omega starts using Starboard/,
+      regex: / 14:326[23]:Omega starts using Starboard/,
       suppressSeconds: 10,
       alertText: {
         en: 'Left',
@@ -63,7 +63,7 @@
     },
     {
       id: 'O11S Larboard Cannon 1',
-      regex: / 14:326[35]:Omega starts using Larboard/,
+      regex: / 14:326[45]:Omega starts using Larboard/,
       suppressSeconds: 10,
       alertText: {
         en: 'Right',
