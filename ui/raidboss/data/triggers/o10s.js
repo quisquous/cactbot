@@ -76,5 +76,74 @@
         en: 'Death From Above',
       },
     },
+    {
+      // Spin Table
+      // 31AC + 31AE = 31B2 (horiz + horiz = out)
+      // 31AC + 31B0 = 31B4 (horiz + vert = in)
+      // 31AD + 31AE = 31B3 (vert + horiz = x)
+      // 31AD + 31B0 = 31B5 (vert + vert = +)
+      id: 'O10S Spin Cleanup',
+      // 16 if it doesn't hit anybody, 15 if it does.
+      // Also, some log lines are inconsistent here and don't always list
+      // Midgardsormr's name and are sometimes blank.
+      regex: /1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:/,
+      run: function(data) {
+        delete data.lastSpinWasHorizontal;
+      },
+    },
+    {
+      id: 'O10N Horizontal Spin 1',
+      regex: /15:\y{ObjectId}:Midgardsormr:31AC:/,
+      infoText: {
+        en: 'Next Spin: In/Out',
+      },
+      run: function(data) {
+        data.lastSpinWasHorizontal = true;
+      },
+    },
+    {
+      id: 'O10N Vertical Spin 1',
+      regex: /15:\y{ObjectId}:Midgardsormr:31AD:/,
+      infoText: {
+        en: 'Next Spin: Cross/Plus',
+      },
+      run: function(data) {
+        data.lastSpinWasHorizontal = false;
+      },
+    },
+    {
+      id: 'O10N Horizontal Spin 2',
+      regex: /15:\y{ObjectId}:Midgardsormr:31AE:/,
+      condition: function(data) {
+        return data.lastSpinWasHorizontal !== undefined;
+      },
+      alertText: function(data) {
+        if (data.lastSpinWasHorizontal) {
+          return {
+            en: 'Get Out',
+          };
+        }
+        return {
+          en: 'Go To Cardinals',
+        };
+      },
+    },
+    {
+      id: 'O10N Vertical Spin 2',
+      regex: /15:\y{ObjectId}:Midgardsormr:31B0:/,
+      condition: function(data) {
+        return data.lastSpinWasHorizontal !== undefined;
+      },
+      alertText: function(data) {
+        if (data.lastSpinWasHorizontal) {
+          return {
+            en: 'Get In',
+          };
+        }
+        return {
+          en: 'Go To Corners',
+        };
+      },
+    },
   ],
 }];
