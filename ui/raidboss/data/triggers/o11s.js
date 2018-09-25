@@ -53,7 +53,9 @@
     {
       id: 'O11S Starboard Cannon 1',
       regex: / 14:326[23]:Omega starts using Starboard/,
-      suppressSeconds: 10,
+      condition: function(data) {
+        return data.lastWasStarboard === undefined;
+      },
       alertText: {
         en: 'Left',
       },
@@ -64,7 +66,9 @@
     {
       id: 'O11S Larboard Cannon 1',
       regex: / 14:326[45]:Omega starts using Larboard/,
-      suppressSeconds: 10,
+      condition: function(data) {
+        return data.lastWasStarboard === undefined;
+      },
       alertText: {
         en: 'Right',
       },
@@ -74,14 +78,14 @@
     },
     {
       id: 'O11S Starboard Cannon 2',
-      regex: / 14:3264:Omega starts using Starboard/,
+      regex: / 14:3263:Omega starts using Starboard/,
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
       alertText: function(data) {
         if (data.lastWasStarboard) {
           return {
-            en: 'Opposite (Left)',
+            en: 'Move (Left)',
           };
         }
         return {
@@ -102,7 +106,7 @@
           };
         }
         return {
-          en: 'Opposite (Right)',
+          en: 'Move (Right)',
         };
       },
     },
