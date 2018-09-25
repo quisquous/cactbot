@@ -10,8 +10,9 @@ hideall "--sync--"
 0 "--Reset--" sync /Removing combatant Omega/ window 10000 jump 0
 
 # Phase 1
-0 "Start"
-11.1 "Atomic Ray" sync /:Omega:326C:/
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync /:Omega:368:/ window 3,0
+11.1 "Atomic Ray" sync /:Omega:326C:/ window 15,15
 23.1 "Mustard Bomb" sync /:Omega:326D:/ # drift 0.020999
 29.1 "Flamethrower" sync /:Omega:325C:/
 31.1 "Afterburner" sync /:Omega:325E:/
