@@ -38,7 +38,7 @@ hideall "--sync--"
 157.5 "Reset" sync /:Level Checker:3628:/
 160.5 "Storage Violation" sync /:Omega:3256:/
 163.5 "Reformat" sync /:Level Checker:3627:/
-173.5 "Force Quit Enrage" # guessing at time
+185.0 "Force Quit Enrage"
 
 ### Phase 3
 300.0 "--sync--" sync /14:325B:Omega starts using/ window 200,200
