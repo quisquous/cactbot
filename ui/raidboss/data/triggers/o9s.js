@@ -158,7 +158,7 @@
     {
       id: 'O9S Accretion',
       regex: /:\y{Name} gains the effect of Accretion/,
-      regexFr: /:\y{Name} subit l'effet Bourbier du chaos/,
+      regexFr: /:\y{Name} gains the effect of Bourbier du chaos/,
       condition: function(data) {
         return data.role == 'healer';
       },
