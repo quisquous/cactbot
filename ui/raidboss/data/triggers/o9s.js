@@ -173,7 +173,7 @@
     {
       id: 'O9S Primordial Crust',
       regex: /:(\y{Name}) gains the effect of Primordial Crust/,
-      regexFr: /:\y{Name} subit l'effet Terre du chaos/,
+      regexFr: /:\y{Name} gains the effect of Terre du chaos/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
