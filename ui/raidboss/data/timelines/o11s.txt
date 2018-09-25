@@ -2,12 +2,10 @@
 # -ii 2799 3608 3703 370D 325D 36FF 3708 370B 370A 3707 3705 -p 325B:310
 # manually add in flamethrower during panto #2, diffuse wave cannon, panto ballistic impact
 
-# TODO: Get a better Loop/Force Quit enrage time
-
 hideall "--Reset--"
 hideall "--sync--"
 
-0 "--Reset--" sync /Removing combatant Omega/ window 10000 jump 0
+0.0 "--Reset--" sync /Removing combatant Omega.  Max HP: \d{8}/ window 10000 jump 0
 
 # Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
