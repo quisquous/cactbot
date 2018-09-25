@@ -24,6 +24,7 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Spread (Tanks/Healers)',
+            fr: 'Ecartez-vous (Tanks/Healers)',
           };
         }
       },
@@ -31,6 +32,7 @@
         if (data.role != 'tank' && data.role != 'healer') {
           return {
             en: 'Hide Middle',
+            fr: 'Allez au centre',
           };
         }
       },
@@ -43,6 +45,7 @@
         if (data.role != 'tank' && data.role != 'healer') {
           return {
             en: 'Spread (DPS)',
+            fr: 'Ecartez-vous (DPS)',
           };
         }
       },
@@ -50,6 +53,7 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Hide Middle',
+            fr: 'Allez au centre',
           };
         }
       },
@@ -60,6 +64,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Spread (Everyone)',
+        fr: 'Ecartez-vous (Tout le monde)',
       },
     },
   ],
@@ -67,6 +72,7 @@
     {
       id: 'O9S Chaotic Dispersion',
       regex: / 14:3170:Chaos starts using Chaotic Dispersion on (\y{Name})/,
+      regexFr: / 14:3170:Chaos starts using Dispersion Chaotique on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -78,6 +84,7 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank Swap',
+            fr: 'Tank Swap',
           };
         }
         if (data.role == 'healer') {
@@ -98,6 +105,7 @@
         } else if (data.role == 'tank') {
           return {
             en: 'tank swap',
+            fr: 'tank swap',
           };
         }
       },
@@ -105,43 +113,52 @@
     {
       id: 'O9S Longitudinal Implosion',
       regex: /14:3172:Chaos starts using Longitudinal Implosion/,
+      regexFr: /14:3172:Chaos starts using Implosion Verticale/,
       infoText: function(data) {
         return {
           en: 'Sides -> Front/Back',
+          fr: 'Côtés puis Devant/Derrière',
         };
       },
       tts: function(data) {
         return {
           en: 'go to sides',
+          fr: 'aller sur les cotés',
         };
       },
     },
     {
       id: 'O9S Latitudinal Implosion',
       regex: /14:3173:Chaos starts using Latitudinal Implosion/,
+      regexFr: /14:3173:Chaos starts using Implosion Horizontale/,
       infoText: function(data) {
         return {
           en: 'Front/Back -> Sides',
+          fr: 'Devant/Derrière puis Côtés',
         };
       },
       tts: function(data) {
         return {
           en: 'go to back',
+          fr: 'aller derrière',
         };
       },
     },
     {
       id: 'O9S Damning Edict',
       regex: /14:3171:Chaos starts using Damning Edict/,
+      regexFr: /14:3171:Chaos starts using Décret Accablant/,
       infoText: function(data) {
         return {
           en: 'Get Behind',
+          fr: 'Derrière le boss',
         };
       },
     },
     {
       id: 'O9S Accretion',
       regex: /:\y{Name} gains the effect of Accretion/,
+      regexFr: /:\y{Name} subit l'effet Bourbier du chaos/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -149,30 +166,35 @@
       infoText: function(data) {
         return {
           en: 'Heal Tanks/Healers to full',
+          fr: 'Soignez Heals/Tanks full vie',
         };
       },
     },
     {
       id: 'O9S Primordial Crust',
       regex: /:(\y{Name}) gains the effect of Primordial Crust/,
+      regexFr: /:\y{Name} subit l'effet Terre du chaos/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: function(data) {
         return {
           en: 'Die on next mechanic',
+          fr: 'Mourrez sur la prochaine mécanique',
         };
       },
     },
     {
       id: 'O9S Orbs Fiend',
       regex: /14:317C:Chaos starts using Fiendish Orbs/,
+      regexFr: /14:317C:Chaos starts using Ordre De Poursuite/,
       condition: function(data) {
         return data.role == 'tank';
       },
       alarmText: function(data) {
         return {
           en: 'Orb Tethers',
+          fr: 'Récupérez l\'orbe',
         };
       },
     },

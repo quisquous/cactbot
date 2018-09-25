@@ -18,6 +18,7 @@
       regex: /15:\y{ObjectId}:Midgardsormr:31C7:/,
       infoText: {
         en: 'Next Spin: In/Out',
+        fr: 'Tour suivant : Dedans/Dehors',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -28,6 +29,7 @@
       regex: /15:\y{ObjectId}:Midgardsormr:31C8:/,
       infoText: {
         en: 'Next Spin: Cross/Plus',
+        fr: 'Tour suivant : Croix/Plus',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -43,10 +45,12 @@
         if (data.lastSpinWasHorizontal) {
           return {
             en: 'Get Out',
+            fr: 'Sortez',
           };
         }
         return {
           en: 'Go To Cardinals',
+          fr: 'Allez sur les points cardinaux',
         };
       },
     },
@@ -60,10 +64,12 @@
         if (data.lastSpinWasHorizontal) {
           return {
             en: 'Get In',
+            fr: 'Allez sous le boss',
           };
         }
         return {
           en: 'Go To Corners',
+          fr: 'Allez dans les coins',
         };
       },
     },
