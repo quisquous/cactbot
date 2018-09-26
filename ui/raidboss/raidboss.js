@@ -11,7 +11,7 @@ let Options = {
   TextAlertsEnabled: true,
   SoundAlertsEnabled: true,
   SpokenAlertsEnabled: false,
-  GroupSpokenAlertsEnabled: false;
+  GroupSpokenAlertsEnabled: false,
 
 
   PlayerNicks: {},

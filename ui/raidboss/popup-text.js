@@ -426,13 +426,14 @@ class PopupText {
 
 
       if (playGroupSpeech) {
+        console.log(trigger.groupTTS);
         if ('GroupTTSText' in triggerOptions)
-          ttsText = ValueOrFunction(triggerOptions.TTSText);
+          ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
         else if ('groupTTS' in trigger)
           ttsText = ValueOrFunction(trigger.groupTTS);
       }
 
-      if (typeof ttsText === 'undefined') {
+      if (!playGroupSpeech || typeof ttsText === 'undefined') {
         if ('TTSText' in triggerOptions)
           ttsText = ValueOrFunction(triggerOptions.TTSText);
         else if ('tts' in trigger)
@@ -440,7 +441,6 @@ class PopupText {
         else
           ttsText = defaultTTSText;
       }
-
       if (trigger.sound && soundUrl) {
         let namedSound = soundUrl + 'Sound';
         let namedSoundVolume = soundUrl + 'SoundVolume';

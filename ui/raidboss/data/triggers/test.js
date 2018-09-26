@@ -116,7 +116,7 @@
         fr: 'Haha mort de rire',
       },
       groupTTS: {
-        en: 'group psych',
+        en: 'group laugh',
         fr: 'group motivation',
       },
     },
