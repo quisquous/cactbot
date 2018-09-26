@@ -26,6 +26,10 @@ Options.SoundAlertsEnabled = true,
 // a tts entry then it will fall back on text and sound (if turned on).
 Options.SpokenAlertsEnabled = false;
 
+// Will override the singular TTS alerts if a group alert is set for a specific trigger
+// Change phrasing to make sense in a group setting
+Options.GroupSpokenAlertsEnabled = false;
+
 
 // Show timer bars for events that will happen in this many seconds or less.
 Options.ShowTimerBarsAtSeconds = 30;
