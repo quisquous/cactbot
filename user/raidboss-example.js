@@ -225,6 +225,20 @@ Options.PerTriggerOptions = {
     },
   },
 
+    // This makes /clack-ing a striking dummy override the default
+    // behavior to use the group TTS
+    'Test Clap': {
+      GroupSpeechAlert: true,
+      SpeechAlert: true,
+      SoundAlert: false,
+      TextAlert: false,
+      // Override the tts output as well.
+      GroupTTSText: function(data) {
+        return 'Custom Group clap';
+      }
+    },
+
+
   // Normally, /laugh-ing at a striking dummy has alarm text.  This
   // overrides the alarm text and also outputs alert and info text,
   // and only runs if you are a tank.
