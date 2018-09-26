@@ -301,7 +301,7 @@ class PopupText {
 
 
     if (triggerOptions) {
-      if('GroupSpeechAlert' in triggerOptions)
+      if ('GroupSpeechAlert' in triggerOptions)
         playGroupSpeech = triggerOptions.GroupSpeechAlert;
       if ('SpeechAlert' in triggerOptions)
         playSpeech = triggerOptions.SpeechAlert;
@@ -425,20 +425,20 @@ class PopupText {
       let ttsText;
 
 
-      if(playGroupSpeech) {
-         if ('GroupTTSText' in triggerOptions)
-            ttsText = ValueOrFunction(triggerOptions.TTSText);
-         else if ('groupTTS' in trigger)
-            ttsText = ValueOrFunction(trigger.groupTTS);
+      if (playGroupSpeech) {
+        if ('GroupTTSText' in triggerOptions)
+          ttsText = ValueOrFunction(triggerOptions.TTSText);
+        else if ('groupTTS' in trigger)
+          ttsText = ValueOrFunction(trigger.groupTTS);
       }
 
-      if(typeof ttsText === 'undefined') {
-         if ('TTSText' in triggerOptions)
-            ttsText = ValueOrFunction(triggerOptions.TTSText);
-         else if ('tts' in trigger)
-            ttsText = ValueOrFunction(trigger.tts);
-         else
-            ttsText = defaultTTSText;
+      if (typeof ttsText === 'undefined') {
+        if ('TTSText' in triggerOptions)
+          ttsText = ValueOrFunction(triggerOptions.TTSText);
+        else if ('tts' in trigger)
+          ttsText = ValueOrFunction(trigger.tts);
+        else
+          ttsText = defaultTTSText;
       }
 
       if (trigger.sound && soundUrl) {
