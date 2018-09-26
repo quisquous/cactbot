@@ -290,6 +290,8 @@ class PopupText {
     let showText = this.options.TextAlertsEnabled;
     let playSounds = this.options.SoundAlertsEnabled;
     let playSpeech = this.options.SpokenAlertsEnabled;
+    let playGroupSpeech = this.options.GroupSpokenAlertsEnabled;
+
     let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     let duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
@@ -299,6 +301,8 @@ class PopupText {
 
 
     if (triggerOptions) {
+      if('GroupSpeechAlert' in triggerOptions)
+        playGroupSpeech = triggerOptions.GroupSpeechAlert;
       if ('SpeechAlert' in triggerOptions)
         playSpeech = triggerOptions.SpeechAlert;
       if ('SoundAlert' in triggerOptions)
@@ -309,6 +313,7 @@ class PopupText {
 
     if (userDisabled) {
       playSpeech = false;
+      playGroupSpeech = false;
       playSounds = false;
       showText = false;
     }
@@ -327,6 +332,7 @@ class PopupText {
           }
         }
       };
+
       let makeTextElement = function(text, className) {
         let div = document.createElement('div');
         div.classList.add(className);
@@ -359,6 +365,7 @@ class PopupText {
           }
         }
       }
+
       let alertText = triggerOptions.AlertText || trigger.alertText;
       if (alertText) {
         let text = ValueOrFunction(alertText);
@@ -375,6 +382,7 @@ class PopupText {
           }
         }
       }
+
       let infoText = triggerOptions.InfoText || trigger.infoText;
       if (infoText) {
         let text = ValueOrFunction(infoText);
@@ -396,6 +404,7 @@ class PopupText {
       // * user disabled (play nothing)
       // * if tts options are enabled globally or for this trigger:
       //   * user trigger tts override
+      //   * groupTTS entries in the trigger
       //   * tts entries in the trigger
       //   * default alarm tts
       //   * default alert tts
@@ -414,12 +423,23 @@ class PopupText {
       // tts texts from alarm/alert/info and will prevent tts from playing
       // and allowing sounds to be played instead.
       let ttsText;
-      if ('TTSText' in triggerOptions)
-        ttsText = ValueOrFunction(triggerOptions.TTSText);
-      else if ('tts' in trigger)
-        ttsText = ValueOrFunction(trigger.tts);
-      else
-        ttsText = defaultTTSText;
+
+
+      if(playGroupSpeech) {
+         if ('GroupTTSText' in triggerOptions)
+            ttsText = ValueOrFunction(triggerOptions.TTSText);
+         else if ('groupTTS' in trigger)
+            ttsText = ValueOrFunction(trigger.groupTTS);
+      }
+
+      if(typeof ttsText === 'undefined') {
+         if ('TTSText' in triggerOptions)
+            ttsText = ValueOrFunction(triggerOptions.TTSText);
+         else if ('tts' in trigger)
+            ttsText = ValueOrFunction(trigger.tts);
+         else
+            ttsText = defaultTTSText;
+      }
 
       if (trigger.sound && soundUrl) {
         let namedSound = soundUrl + 'Sound';
