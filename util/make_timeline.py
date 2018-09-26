@@ -27,7 +27,6 @@ def parse_report(args):
     start_time = 0
     end_time = 0
     enemies = {}
-    last_ability = start_time
 
     # Get report information
     report_data = fflogs.api('fights', args.report, 'www', {'api_key': args.key})
@@ -50,6 +49,10 @@ def parse_report(args):
         raise Exception('Fight ID not found in report')
 
     # Build an enemy name list, since these aren't in the events
+    # Environment special case
+    enemies[-1] = ''
+
+    # Real enemies
     for enemy in report_data['enemies']:
         enemies[enemy['id']] = enemy['name']
 
@@ -67,6 +70,9 @@ def parse_report(args):
 
     # Actually make the entry dicts
     for event in event_data['events']:
+        if 'sourceID' not in event:
+            event['sourceID'] = event['source']['id']
+
         entry = {
             'time': datetime.fromtimestamp((report_start_time + event['timestamp']) / 1000),
             'combatant': enemies[event['sourceID']],
@@ -169,8 +175,15 @@ def main(args):
         last_time_diff_us = last_time_diff.microseconds
         drift = False
 
+        # Find the difference to the 0.1 second
+        last_time_diff_tenthsec = int(last_time_diff_us / 100000) / 10
+
+        # Adjust other diffs
+        last_time_diff_sec += last_time_diff_tenthsec
+        last_time_diff_us %= 100000
+
         # Round up to the tenth of second
-        if last_time_diff_us > 80000:
+        if last_time_diff_us > 60000:
             last_time_diff_sec += .1
 
         # Round up with a note about exceptional drift
@@ -179,7 +192,7 @@ def main(args):
             drift = -100000 + last_time_diff_us
 
         # Round down with a note about exceptional drift
-        elif last_time_diff_us > 20000:
+        elif last_time_diff_us > 40000:
             drift = last_time_diff_us
         
         # If <20ms then there's no need to adjust sec or drift

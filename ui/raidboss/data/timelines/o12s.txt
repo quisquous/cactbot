@@ -1,1 +1,166 @@
 # Omega - Alphascape V4.0 (Savage) - O12S
+# -ii 3326 337D 32F7 32FA 32F5 3302 32FC 32F9 32FA 32F8 32FB 32FC 330C 330B 32FE 32F2
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync /Removing combatant Omega-M.  Max HP: \d{8}/ window 10000 jump 0
+
+0.0 "Start" sync /0044:I am the Omega/ window 1,0
+2.4 "--sync--" sync /:Omega-M:337D:/ window 3,0.5 # first auto
+11.7 "Synthetic Shield" sync /:Omega-M:32FD:/
+19.7 "Suppression" sync /:Omega-M:3345:/
+26.6 "Beyond Defense" sync /:Omega-M:332B:/
+26.7 "Optical Laser" sync /:Optical Unit:3347:/
+26.9 "Beyond Defense" sync /:Omega-M:332C:/
+30.1 "Pile Pitch" sync /:Omega-M:332E:/
+
+# F phase
+49.1 "Subject Simulation F" sync /:Omega-M:32F1:/
+61.2 "Discharger" sync /:Omega-M:3327:/ # drift -0.044
+73.2 "Synthetic Blades" sync /:Omega-M:3301:/
+81.2 "Advanced Suppression" sync /:Omega-M:3349:/
+87.2 "Superliminal Motion" sync /:Omega-M:3334:/
+88.2 "Advanced Optical Laser" sync /:Optical Unit:334A:/
+90.3 "Optimized Fire III" sync /:Omega-M:3335:/ # drift 0.047
+90.5 "Optimized Fire III" sync /:Omega-F:3337:/
+
+# Twin phase
+102.6 "Subject Simulation M" sync /:Omega-M:32F4:/
+114.1 "Electric Slide" sync /:Omega:3354:/
+122.7 "Discharger + Bladework" sync /:Omega:3327:/
+132.0 "Firewall" sync /:Omega:3339:/
+141.2 "Resonance" sync /:Omega:333B:/
+155.6 "Fundamental Synergy" sync /:Omega:333D:/
+
+# Slides
+160.7 "Advanced Suppression" sync /:Omega:3349:/
+164.2 "Electric Slide"
+166.0 "Electric Slide"
+167.7 "Electric Slide"
+167.8 "Advanced Optical Laser" sync /:Optical Unit:334A:/
+169.4 "Electric Slide"
+180.1 "Laser Shower" sync /:Omega:3353:/
+189.3 "Solar Ray" sync /:Omega:3351:/
+
+# Branch point
+200.5 "Synthetic Blades/Shield" sync /:Omega-M:32FD:/ jump 1200.5  # shield: defense branch
+200.5 "--sync--" sync /:Omega:3301:/ jump 2200.5 # blades: defense branch
+212.2 "Operational Synergy"
+218.2 "Steel/Defense?"
+219.8 "Optimized Blizzard III"
+221.5 "Pile Pitch"
+228.8 "Optimized Fire III"
+
+# Defense-first path
+1200.5 "Synthetic Shield" sync /:Omega:3301:/
+1212.2 "Operational Synergy" sync /:Omega:3341:/
+1219.2 "Beyond Defense" sync /:Omega-M:332B:/
+1219.4 "Optimized Blizzard III" sync /:Omega:3333:/
+1222.7 "Pile Pitch" sync /:Omega-M:332E:/
+1227.4 "Optimized Fire III" sync /:Omega-F:3337:/
+1230.7 "Beyond Strength" sync /:Omega-M:3328:/
+1233.7 "Efficient Bladework" sync /:Omega-M:3329:/
+1234.4 "Laser Shower" sync /:Omega:3353:/
+1241.4 "Laser Shower" sync /:Omega:3353:/
+1250.9 "Firewall" sync /:Omega:3339:/
+1260.1 "Resonance" sync /:Omega:333B:/
+1274.5 "Fundamental Synergy" sync /:Omega:333D:/
+1279.6 "Advanced Suppression" sync /:Omega:3349:/
+1282.6 "Electric Slide"
+1284.3 "Electric Slide"
+1286.0 "Electric Slide"
+1286.5 "Advanced Optical Laser" sync /:Optical Unit:334A:/
+1287.7 "Electric Slide"
+1298.4 "Laser Shower" sync /:Omega:3353:/
+1307.4 "Solar Ray" sync /:Omega:3351:/
+1318.4 "Synthetic Blades" sync /:Omega:3301:/
+1329.4 "Operational Synergy" sync /:Omega:3341:/
+1334.4 "Superliminal Steel" sync /:Omega-F:3331:/
+1337.6 "Optimized Blizzard III" sync /:Omega:3332:/
+1337.7 "Pile Pitch" sync /:Omega-M:332E:/
+1343.8 "Superliminal Motion" sync /:Omega:3334:/
+1347.0 "Optimized Fire III" sync /:Omega-F:3337:/
+1348.2 "Efficient Bladework" sync /:Omega-M:332A:/
+1356.4 "Laser Shower" sync /:Omega-M:3352:/
+1363.4 "Laser Shower" sync /:Omega:3353:/
+1378.0 "Suppression" sync /:Omega:3346:/ jump 378.0
+1385.1 "Optical Laser" # Cosmetic
+1385.4 "Optimized Meteor"
+1385.6 "Optimized Sagittarius Arrow"
+1396.4 "Cosmo Memory"
+1404.4 "Laser Shower"
+
+# Blades-first path
+2212.2 "Operational Synergy" sync /:Omega:3341:/
+2217.2 "Superliminal Steel" sync /:Omega:332F:/
+2220.2 "Optimized Blizzard III" sync /:Omega:3332:/
+2220.4 "Pile Pitch" sync /:Omega-M:332E:/
+2226.2 "Superliminal Motion" sync /:Omega:3334:/
+2229.2 "Optimized Fire III" sync /:Omega:3335:/
+2230.4 "Efficient Bladework" sync /:Omega-M:332A:/
+2238.2 "Laser Shower" sync /:Omega:3353:/
+2250.4 "Firewall" sync /:Omega:3339:/
+2259.4 "Resonance" sync /:Omega:333B:/
+2273.4 "Fundamental Synergy" sync /:Omega:333D:/
+2278.4 "Advanced Suppression" sync /:Omega:3349:/
+2281.4 "Electric Slide" 
+2283.1 "Electric Slide"
+2284.8 "Electric Slide"
+2285.2 "Advanced Optical Laser" sync /:Optical Unit:334A:/
+2286.5 "Electric Slide"
+2297.2 "Laser Shower" sync /:Omega:3353:/
+2306.2 "Solar Ray" sync /:Omega:3351:/
+2317.2 "Synthetic Shield" sync /:Omega-M:32FD:/
+2328.2 "Operational Synergy" sync /:Omega:3341:/
+2335.1 "Beyond Defense" sync /:Omega-M:332B:/
+2335.4 "Optimized Blizzard III" sync /:Omega:3333:/
+2338.6 "Pile Pitch" sync /:Omega-M:332E:/
+2343.4 "Optimized Fire III" sync /:Omega:3336:/
+2346.6 "Beyond Strength" sync /:Omega-M:3328:/
+2349.6 "Efficient Bladework" sync /:Omega-M:3329:/
+2350.4 "Laser Shower" sync /:Omega:3353:/
+2357.4 "Laser Shower" sync /:Omega:3353:/
+2375.7 "Suppression" sync /:Omega:3346:/ jump 378.0
+2382.7 "Optical Laser" # Cosmetic
+2382.7 "Optimized Meteor"
+2382.8 "Optimized Sagittarius Arrow"
+2393.3 "Cosmo Memory"
+2401.3 "Laser Shower"
+
+# Paths converge to enrage sequence
+378.0 "Suppression" sync /:Omega:3346:/
+385.1 "Optical Laser" sync /:Optical Unit:3347:/
+385.4 "Optimized Meteor" sync /:Omega-F:334F:/
+385.6 "Optimized Sagittarius Arrow" sync /:Omega-M:334D:/
+396.4 "Cosmo Memory" sync /:Omega:3343:/
+404.4 "Laser Shower" sync /:Omega:3353:/
+412.4 "Optimized Blade Dance" sync /:Omega:334C:/
+430.4 "Advanced Suppression" sync /:Omega:3349:/
+437.4 "Advanced Optical Laser" sync /:Optical Unit:334A:/
+437.4 "Optimized Meteor" sync /:Omega-F:334F:/
+437.4 "Optimized Sagittarius Arrow" sync /:Omega-M:334D:/
+447.9 "Cosmo Memory" sync /:Omega:3343:/
+455.9 "Laser Shower" sync /:Omega:3353:/
+463.9 "Optimized Blade Dance" sync /:Omega:334C:/
+479.4 "Cosmo Memory" sync /:Omega:33EC:/
+
+# Final Omega - Alphascape V4.0 (Savage) - O12S+
+# -ii 3380 -p 336C:3015.3
+
+0.0 "--Reset--" sync /Removing combatant Omega.  Max HP: \d{8}/ window 10000 jump 0
+
+3000.0 "Start"
+3002.6 "attack" sync /:Omega:3380:/ window 3003,0
+3015.3 "Target Analysis" sync /:Omega:336C:/ window 3016,2.5
+3018.3 "Savage Wave Cannon" sync /:Omega:336D:/
+3026.3 "Patch" sync /:Omega:3376:/
+3033.3 "Diffuse Wave Cannon" sync /:Omega:3368:/
+3033.3 "Diffuse Wave Cannon" sync /:Omega:3369:/
+3035.2 "Patch" sync /:Omega:3377:/
+3041.3 "Oversampled Wave Cannon" sync /:Omega:3365:/
+3041.3 "Oversampled Wave Cannon" sync /:Omega:3366:/
+3043.3 "Patch" sync /:Omega:3377:/
+3048.2 "Patch" sync /:Omega:3377:/
+3053.3 "Ion Efflux" sync /:Omega:3357:/
+3068.3 "Hello, World" sync /:Omega:336E:/
