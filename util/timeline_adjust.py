@@ -12,7 +12,7 @@ def adjust_lines(lines, adjust):
     match = re.match(time_re, line)
     if match:
       time = float(match.group(1)) + adjust
-      print(re.sub(first_num_re, str(time), line, 1), end='')
+      print(re.sub(first_num_re, "%.1f" % time, line, 1), end='')
     else:
       print(line, end='')
 

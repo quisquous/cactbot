@@ -38,7 +38,7 @@ def load_timeline(timeline):
             # Special casing on syncs
             entry['special_type'] = False
 
-            begincast_match = re.search(r'^:([0-9A-F]{4}):([^:]+)', sync_match.group(1))
+            begincast_match = re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', sync_match.group(1))
             if begincast_match:
                 entry['special_type'] = 'begincast'
                 entry['special_line'] = '20'
@@ -136,8 +136,10 @@ def parse_report(args):
         # In the applydebuff case, the source is -1 (environment) and we want the target instead
         if event['type'] == 'applydebuff':
             entry['combatant'] = enemies[event['targetID']]
-        else:
+        elif 'sourceID' in event:
             entry['combatant'] = enemies[event['sourceID']]
+        else:
+            entry['combatant'] = ''
 
         entries.append(entry)
 
@@ -210,14 +212,14 @@ def test_match(event, entry):
     elif isinstance(event, dict) and entry['special_type'] == event['type']:
         # Begincast case
         if event['type'] == 'begincast':
-            if event['ability_id'] == entry['cast_id'] and event['combatant'] == entry['caster_name']:
+            if re.search(entry['cast_id'], event['ability_id']) and re.search(entry['caster_name'], event['combatant']):
                 return True
             else:
                 return False
 
         # Buff case
         elif event['type'] == 'applydebuff':
-            if event['combatant'] == entry['buff_target'] and event['ability_name'] == entry['buff_name']:
+            if re.search(entry['buff_target'], event['combatant']) and re.search(entry['buff_name'], event['ability_name']):
                 return True
             else:
                 return False
@@ -238,8 +240,9 @@ def check_event(event, timelist, state):
 
     # Search timelist for matches
     for entry in timelist:
+        match = test_match(event, entry)
         if (
-                test_match(event, entry) and
+                match and
                 timeline_position >= entry['start'] and
                 timeline_position <= entry['end']
         ):
@@ -262,14 +265,15 @@ def check_event(event, timelist, state):
                 for other_entry in timelist:
                     if (
                             'regex' in other_entry and
-                            other_entry['time'] >state['last_jump'] and
+                            other_entry['time'] > state['last_jump'] and
                             other_entry['time'] < entry['time'] and
                             other_entry['branch'] < entry['branch']
                     ):
-                        if 'last' in other_entry:
+                        if 'last' in other_entry and drift < 999:
                             print("    Missed sync: {} at {} (last seen at {})".format(other_entry['label'], other_entry['time'], other_entry['last']))
-                        else:
+                        elif drift < 999:
                             print("    Missed sync: {} at {}".format(other_entry['label'], other_entry['time']))
+                        # If this is a sync from a large window, ignore missed syncs
                         other_entry['branch'] = state['branch']
 
             # Carry out the sync to make this the new baseline position
@@ -292,7 +296,7 @@ def check_event(event, timelist, state):
                 state['last_sync_position'] = entry['time']
 
         # Record last seen data if it matches but outside window
-        elif test_match(event, entry):
+        elif match:
             entry['last'] = timeline_position
 
     return state
