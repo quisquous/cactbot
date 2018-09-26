@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad357b19-74a6-4d82-b295-0382e16fe4d3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/raidboss/data/triggers/o10n.js" beforeDir="false" afterPath="$PROJECT_DIR$/ui/raidboss/data/triggers/o10n.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/raidboss/data/triggers/o10s.js" beforeDir="false" afterPath="$PROJECT_DIR$/ui/raidboss/data/triggers/o10s.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/raidboss/data/triggers/o9s.js" beforeDir="false" afterPath="$PROJECT_DIR$/ui/raidboss/data/triggers/o9s.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/raidboss/data/triggers/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/ui/raidboss/data/triggers/test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,12 +23,29 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="6" />
+          <entry key="gitignore" value="1" />
+          <entry key="js" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JavaScript" value="6" />
+          <entry key="JavaScript" value="7" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.create.new" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gitignore" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="12" />
         </counts>
       </usages-collector>
     </session>
@@ -37,24 +53,33 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o10n.js">
+        <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o9s.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="509">
+              <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o9s.js">
+        <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+            <state relative-caret-position="779">
+              <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o10s.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -67,6 +92,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -74,12 +104,14 @@
         <option value="$PROJECT_DIR$/ui/raidboss/data/triggers/o10n.js" />
         <option value="$PROJECT_DIR$/ui/raidboss/data/triggers/o9s.js" />
         <option value="$PROJECT_DIR$/ui/raidboss/data/triggers/o10s.js" />
+        <option value="$PROJECT_DIR$/ui/raidboss/data/triggers/test.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1406" />
-    <option name="y" value="30" />
+    <option name="x" value="1146" />
+    <option name="y" value="27" />
     <option name="width" value="1242" />
     <option name="height" value="1336" />
   </component>
@@ -98,44 +130,6 @@
             <path>
               <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
               <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="pullcounter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="raidboss" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="raidboss" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="raidboss" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="triggers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cactbot-unf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cactbot-unf" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -176,13 +170,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466000" />
+    <option name="totallyTimeSpent" value="663000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1406" y="30" width="1242" height="1336" extended-state="0" />
+    <frame x="1146" y="27" width="1242" height="1336" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -198,7 +192,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="SonarLint" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.329582" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.329582" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -223,6 +217,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o10s.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o10n.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -232,15 +233,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o9s.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="509">
+          <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/o10s.js">
+    <entry file="file://$PROJECT_DIR$/ui/raidboss/data/triggers/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        <state relative-caret-position="779">
+          <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
