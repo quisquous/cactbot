@@ -3,13 +3,19 @@
 // TODO: add phase tracking
 // TODO: add Big Bang "get middle" for fire phase
 // TODO: track primordial crust debuff, and call out lat/long differently
-// TODO: double check fiendish orbs ability id (317C? 317D?)
 // TODO: move timeline triggers for stray flames to "Entropy" debuff tracking.
 // TODO: add dynamic fluid vs entropy trigger for hitting your orb partner?
 // TODO: stack head marker in fire phase?
 // TODO: healer head markers for dropping orbs
 // TODO: add headwind/tailwind debuff tracking
 // TODO: handle accretion based on phase (everybody gets accretion at the end, not just T/H)
+
+// Entropy: Unknown_640
+// Dynamic Fluid: Unknown_641
+// Headwind: Unknown_642
+// Tailwind: Unknown_643
+// Accretion: Unknown_644
+// Primordial Crust: Unknown_645
 
 /* O9S - Alphascape 1.0 Savage*/
 [{
@@ -157,8 +163,10 @@
     },
     {
       id: 'O9S Accretion',
-      regex: /:\y{Name} gains the effect of Accretion/,
-      regexFr: /:\y{Name} gains the effect of Bourbier du chaos/,
+
+      regex: /:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
+      regexFr: /:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
+
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -172,8 +180,10 @@
     },
     {
       id: 'O9S Primordial Crust',
-      regex: /:(\y{Name}) gains the effect of Primordial Crust/,
-      regexFr: /:\y{Name} gains the effect of Terre du chaos/,
+
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      regexFr: /:\y{Name} gains the effect of (?:Unknown_645|Terre du chaos)/,
+
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -186,8 +196,10 @@
     },
     {
       id: 'O9S Orbs Fiend',
-      regex: /14:317C:Chaos starts using Fiendish Orbs/,
-      regexFr: /14:317C:Chaos starts using Ordre De Poursuite/,
+
+      regex: /14:317D:Chaos starts using Fiendish Orbs/,
+      regexFr: /14:317D:Chaos starts using Ordre De Poursuite/,
+
       condition: function(data) {
         return data.role == 'tank';
       },

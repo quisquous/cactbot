@@ -89,7 +89,7 @@
           };
         }
         return {
-          en: 'Stay (Right)',
+          en: 'Stay (Left)',
         };
       },
     },
@@ -102,7 +102,7 @@
       alertText: function(data) {
         if (data.lastWasStarboard) {
           return {
-            en: 'Stay (Left)',
+            en: 'Stay (Right)',
           };
         }
         return {
