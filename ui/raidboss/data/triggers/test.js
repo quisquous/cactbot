@@ -95,10 +95,6 @@
         en: 'psych',
         fr: 'Motivation',
       },
-      groupTTS: {
-        en: 'group psych',
-        fr: 'group motivation',
-      },
     },
     {
       id: 'Test Laugh',
@@ -114,10 +110,6 @@
       tts: {
         en: 'hahahahaha',
         fr: 'Haha mort de rire',
-      },
-      groupTTS: {
-        en: 'group laugh',
-        fr: 'group motivation',
       },
     },
     {
