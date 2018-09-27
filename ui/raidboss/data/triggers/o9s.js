@@ -1,5 +1,22 @@
 'use strict';
 
+// TODO: add phase tracking
+// TODO: add Big Bang "get middle" for fire phase
+// TODO: track primordial crust debuff, and call out lat/long differently
+// TODO: move timeline triggers for stray flames to "Entropy" debuff tracking.
+// TODO: add dynamic fluid vs entropy trigger for hitting your orb partner?
+// TODO: stack head marker in fire phase?
+// TODO: healer head markers for dropping orbs
+// TODO: add headwind/tailwind debuff tracking
+// TODO: handle accretion based on phase (everybody gets accretion at the end, not just T/H)
+
+// Entropy: Unknown_640
+// Dynamic Fluid: Unknown_641
+// Headwind: Unknown_642
+// Tailwind: Unknown_643
+// Accretion: Unknown_644
+// Primordial Crust: Unknown_645
+
 /* O9S - Alphascape 1.0 Savage*/
 [{
   zoneRegex: /^Alphascape V1.0 \(Savage\)$/,
@@ -9,131 +26,159 @@
       id: 'O9S TH Spread',
       regex: /\(T\/H\) Stray Flames/,
       beforeSeconds: 4,
-      alertText: {
-        en: 'spread Tanks Healers',
+      alertText: function(data) {
+        if (data.role == 'tank' || data.role == 'healer') {
+          return {
+            en: 'Spread (Tanks/Healers)',
+          };
+        }
       },
-    }, {
+      infoText: function(data) {
+        if (data.role != 'tank' && data.role != 'healer') {
+          return {
+            en: 'Hide Middle',
+          };
+        }
+      },
+    },
+    {
       id: 'O9S DPS Spread',
       regex: /\(DPS\) Stray Flames/,
       beforeSeconds: 4,
-      alertText: {
-        en: 'spread DPS',
+      alertText: function(data) {
+        if (data.role != 'tank' && data.role != 'healer') {
+          return {
+            en: 'Spread (DPS)',
+          };
+        }
       },
-    }, {
+      infoText: function(data) {
+        if (data.role == 'tank' || data.role == 'healer') {
+          return {
+            en: 'Hide Middle',
+          };
+        }
+      },
+    },
+    {
       id: 'O9S ALL Spread',
       regex: /\(All\) Stray Flames/,
       beforeSeconds: 4,
       alertText: {
-        en: 'spread everyone',
+        en: 'Spread (Everyone)',
       },
-    }, {
-      id: 'O9S Look Away Orbs',
-      regex: /\(All\) Stray Flames/,
-      beforeSeconds: 4,
-      alertText: {
-        en: 'spread everyone',
-      },
-
     },
   ],
   triggers: [
     {
       id: 'O9S Chaotic Dispersion',
-      regex: /:3170:Chaos starts using Chaotic Dispersion on (\y{Name})/,
+      regex: / 14:3170:Chaos starts using Chaotic Dispersion on (\y{Name})/,
       alertText: function(data, matches) {
-        return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Buster auf ' + data.ShortName(matches[1]),
-          fr: 'Buster sur ' + data.ShortName(matches[1]),
-        };
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tenkbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+        if (data.role == 'tank') {
+          return {
+            en: 'Tank Swap',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
       },
       tts: function(data, matches) {
-        return {
-          en: 'Buster on' + data.ShortName(matches[1]) + '',
-          de: 'tenkbasta',
-          fr: 'tankbuster',
-        };
+        if (matches[1] == data.me) {
+          return {
+            en: 'buster',
+            de: 'basta',
+            fr: 'tankbuster',
+          };
+        } else if (data.role == 'tank') {
+          return {
+            en: 'tank swap',
+          };
+        }
       },
-    }, {
+    },
+    {
       id: 'O9S Longitudinal Implosion',
-      regex: /:Chaos starts using Longitudinal Implosion/,
-      alertText: function(data) {
+      regex: /14:3172:Chaos starts using Longitudinal Implosion/,
+      infoText: function(data) {
         return {
-          en: 'Front Back -> Sides',
+          en: 'Sides -> Front/Back',
         };
       },
       tts: function(data) {
         return {
-          en: 'avoid Front Back',
-
+          en: 'go to sides',
         };
       },
-    }, {
+    },
+    {
       id: 'O9S Latitudinal Implosion',
-      regex: /:Chaos starts using Latitudinal Implosion/,
-      alertText: function(data) {
+      regex: /14:3173:Chaos starts using Latitudinal Implosion/,
+      infoText: function(data) {
         return {
-          en: 'Sides -> Front Back',
+          en: 'Front/Back -> Sides',
         };
       },
       tts: function(data) {
         return {
-          en: 'avoid Sides',
-
+          en: 'go to back',
         };
       },
-    }, {
+    },
+    {
       id: 'O9S Damning Edict',
-      regex: /14:3171:Chaos starts using Damning Edict on Chaos./,
-      alertText: function(data) {
+      regex: /14:3171:Chaos starts using Damning Edict/,
+      infoText: function(data) {
         return {
-          en: 'Knockback',
+          en: 'Get Behind',
         };
       },
-      tts: function(data) {
-        return {
-          en: 'Knockback',
-
-        };
-      },
-    }, {
-      id: 'O9S Blaze',
-      regex: /:3186:Chaos starts using Blaze/,
-      alertText: function(data) {
-        return {
-          en: 'AoE',
-        };
-      },
-      tts: function(data) {
-        return {
-          en: 'AoE',
-        };
-      },
-    }, {
+    },
+    {
       id: 'O9S Accretion',
-      regex: /:(\y{Name}) suffers the effect of Accretion/,
+      regex: /:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
       suppressSeconds: 10,
-      alertText: function(data) {
+      infoText: function(data) {
         return {
-          en: 'T/H Full HP, DPS Die',
+          en: 'Heal Tanks/Healers to full',
         };
       },
-      tts: function(data) {
+    },
+    {
+      id: 'O9S Primordial Crust',
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: function(data) {
         return {
-          en: 'Cap HP Tanks Healers, DPS die',
+          en: 'Die on next mechanic',
         };
       },
-    }, {
+    },
+    {
       id: 'O9S Orbs Fiend',
-      regex: /14:317D:Chaos starts using Fiendish Orbs on Chaos./,
-      alertText: function(data) {
-        return {
-          en: 'Orbs',
-        };
+      regex: /14:317D:Chaos starts using Fiendish Orbs/,
+      condition: function(data) {
+        return data.role == 'tank';
       },
-      tts: function(data) {
+      alarmText: function(data) {
         return {
-          en: 'Tanks get orbs',
+          en: 'Orb Tethers',
         };
       },
     },
