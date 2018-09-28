@@ -23,6 +23,7 @@
     {
       id: 'General Ultimatum',
       regex: /:(\y{Name}):1D73:Ultimatum:/,
+      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -35,6 +36,7 @@
       regex: /:(\y{Name}):1D71:Shirk:/,
       regexDe: /:(\y{Name}):1D71:Geteiltes Leid:/,
       regexFr: /:(\y{Name}):1D71:Dérobade:/,
+      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -61,6 +63,7 @@
       regex: /:(\y{Name}):1E:Hallowed Ground:/,
       regexDe: /:(\y{Name}):1E:Heiliger Boden:/,
       regexFr: /:(\y{Name}):1E:Invincible:/,
+      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';
       },
