@@ -51,7 +51,7 @@
       regex: /Akh Rhai/,
       beforeSeconds: 5,
       alertText: {
-        en: 'Ack Rice',
+        en: 'DPS Move',
       },
     },
     {
@@ -108,17 +108,12 @@
       regex: /:32EF:/,
       run: function(data, matches) {
       // Boss Locations
+      // THIS IS NOT RIGHT, somehow
       // Phase 1 - Flying (first cast)
       // Phase 2 - Adds  (no cast)
       // Phase 3 - Grounded (cast)
       // Phase 4  - Flying (cast, cast)
         data.memorialCounter = (data.memorialCounter || 0) + 1;
-      },
-      infoText: {
-        en: 'Potential Tank Swap',
-      },
-      tts: {
-        en: '',
       },
     },
     {
@@ -155,7 +150,7 @@
         data.deathAboveText = 'get grounded ';
 
         // // boss is flying at this points
-        // if (data.memorialCounter === 0 || data.memorialCounter === 2 || data.memorialCounter === 3)
+      // if (data.memorialCounter === 0 || data.memorialCounter === 2 || data.memorialCounter === 3)
         //   data.deathAboveText = 'get boss ';
       },
       infoText: function(data, matches) {

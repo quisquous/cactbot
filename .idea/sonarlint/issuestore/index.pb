@@ -1,0 +1,31 @@
+
+H
+user/raidboss-example.js,8/c/8cecac097ad6ed9ac8bde932df4c3f9eb908627f
+I
+ui/raidboss/popup-text.js,e/a/eaca7731998b991e1951f9380650532df6d2b008
+P
+ ui/raidboss/data/triggers/o8s.js,4/b/4be6470cbf40b860500d7f29f08cf8be2a3c8046
+?
+ui/test/test.js,8/c/8c661409ad259bc64b605c3f150d0a454575e0ba
+Q
+!ui/raidboss/data/triggers/test.js,a/9/a93275dffc8d15cbd43b04ed8db50455e546896b
+<
+package.json,7/0/7030d0b2f71b999ff89a343de08c414af32fc93a
+V
+&ui/raidboss/data/triggers/suzaku-ex.js,5/1/519219d20042fd361c28adad15e9f21cdc5ec47f
+P
+ ui/raidboss/data/triggers/o9n.js,4/d/4d24089d874493a39f4b2426894513ca6c136e68
+Q
+!ui/raidboss/data/triggers/o12n.js,3/4/348201814ed00e717a36afe81f914e1a89dbb1ec
+Q
+!ui/raidboss/data/triggers/o11n.js,9/9/99e594de2962b4156fe6e3bb4a2693c094076392
+Q
+!ui/raidboss/data/triggers/o10n.js,3/c/3ca3e1043dd975be9bc1c2668f9b0a7264885791
+P
+ ui/raidboss/data/triggers/o9s.js,6/3/633879b4a66fc69718bc7e21e7c4aa0bc6540df3
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+H
+ui/settings/settings.css,e/8/e88d363fc9c62378dacc593596feaf816174e3d0
+G
+ui/settings/settings.js,d/9/d9eac4dc0563746208316ee7a1379a7fb3263e15
