@@ -111,6 +111,10 @@
     {
       id: 'O9S Longitudinal Implosion',
       regex: /14:3172:Chaos starts using Longitudinal Implosion/,
+      run: function(data) {
+        data.phasePath = (typeof data.phasePath === 'undefined') ? 'fire' : data.phasePath;
+        data.currentPhase = 'fire';
+      },
       infoText: function(data) {
         return {
           en: 'Sides -> Front/Back',
@@ -125,6 +129,10 @@
     {
       id: 'O9S Latitudinal Implosion',
       regex: /14:3173:Chaos starts using Latitudinal Implosion/,
+      run: function(data) {
+        data.phasePath = (typeof data.phasePath === 'undefined') ? 'water' : data.phasePath;
+        data.currentPhase = 'water';
+      },
       infoText: function(data) {
         return {
           en: 'Front/Back -> Sides',
@@ -132,7 +140,7 @@
       },
       tts: function(data) {
         return {
-          en: 'go to back',
+          en: 'go to front back',
         };
       },
     },
@@ -171,7 +179,69 @@
       },
     },
     {
+      id: 'O9S Orbs Fiendish Phase Tracker',
+      regex: /14:317(C|D):Chaos starts using Fiendish Orbs/,
+      // condition: function(data) {
+      //   return data.role == 'tank';
+      // },
+      run: function(data) {
+        // Orbs are at end of each phase.
+        data.orbCounter = (data.orbCounter || 0) + 1;
+
+        if (data.phasePath === 'fire') {
+          switch (data.orbCounter) {
+          case 1:
+            data.currentPhase = 'wind';
+            break;
+          case 2:
+            data.currentPhase = 'orb';
+            break;
+          case 3:
+            data.currentPhase = 'earth';
+            break;
+          case 4:
+            data.currentPhase = 'enrage';
+            break;
+          default:
+            data.currentPhase = 'error';
+          }
+        }
+
+        if (data.phasePath === 'water') {
+          switch (data.orbCounter) {
+          case 1:
+            data.currentPhase = 'earth';
+            break;
+          case 2:
+            data.currentPhase = 'orb';
+            break;
+          case 3:
+            data.currentPhase = 'wind';
+            break;
+          case 4:
+            data.currentPhase = 'enrage';
+            break;
+          default:
+            data.currentPhase = 'error';
+          }
+        }
+      },
+      alarmText: function(data) {
+        return {
+          en: 'Orb Tethers',
+        };
+      },
+    },
+    {
       id: 'O9S Orbs Fiend',
+      regex: /14:318B:Soul Of Chaos/,
+      run: function(data) {
+      // Orbs are at end of each phase.
+        data.currentPhase = (data.phasePath === 'fire') ? 'water' : 'fire';
+      },
+    },
+    {
+      id: 'O9S Orbs Fiend', // Tank Orbs
       regex: /14:317D:Chaos starts using Fiendish Orbs/,
       condition: function(data) {
         return data.role == 'tank';
