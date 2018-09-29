@@ -9,8 +9,10 @@ hideall "--sync--"
 0.0 "Start" sync /0044:Tenzen/
 2.5 "--sync--" sync /:Suzaku:367:/ window 5,0
 11.5 "Screams Of The Damned" sync /:Suzaku:32D2:/ window 12,20
+18.9 "--untargetable--"
 24.5 "Rout" sync /:Suzaku:32F0:/
 26.2 "Rekindle" sync /:Suzaku:32E0:/
+29.0 "--targetable--"
 35.3 "Fleeting Summer" sync /:Suzaku:32D3:/
 42.8 "Cremate" sync /:Suzaku:32D1:/
 54.3 "Phoenix Down" sync /:Suzaku:3224:/
@@ -19,7 +21,7 @@ hideall "--sync--"
 79.6 "Wing And A Prayer" sync /:Scarlet Tail Feather:32D4:/
 92.2 "Screams Of The Damned" sync /:Suzaku:32D2:/
 109.2 "Eternal Flame" sync /:Suzaku:3222:/ # drift 0.023
-111.3 "--unatargetable--"
+111.3 "--untargetable--"
 
 # DDR phase
 126.5 "--sync--" sync /:Suzaku:3226:/
