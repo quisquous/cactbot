@@ -120,7 +120,7 @@ hideall "--sync--"
 664.5 "Phantom Half" sync /:Suzaku:32DE:/
 674.1 "Scarlet Hymn" sync /:Suzaku:3237:/
 683.6 "--sync--" sync /:Suzaku:322E:/
-639.0 "Ruthless/Mesmerizing" sync /:Suzaku:32D(A|B):/
+689.0 "Ruthless/Mesmerizing" sync /:Suzaku:32D(A|B):/
 695.0 "Hotspot x8" duration 7.7
 708.8 "Southron Star" sync /:Suzaku:32DF:/ # drift -0.047
 714.2 "Hotspot x8" duration 7.7
