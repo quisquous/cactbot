@@ -17,7 +17,7 @@
       id: 'O10N Horizontal Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31C7:/,
       infoText: {
-        en: 'Next Spin: In/Out',
+        en: 'Next Spin: In or Out',
         fr: 'Tour suivant : Dedans/Dehors',
       },
       run: function(data) {
@@ -28,7 +28,7 @@
       id: 'O10N Vertical Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31C8:/,
       infoText: {
-        en: 'Next Spin: Cross/Plus',
+        en: 'Next Spin: Cardinals or Corners',
         fr: 'Tour suivant : Croix/Plus',
       },
       run: function(data) {

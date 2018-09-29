@@ -105,4 +105,4 @@ hideall "--sync--"
 748.9 "Atomic Ray" sync /:Omega:326A:/
 754.9 "Atomic Ray" sync /:Omega:326A:/
 760.9 "Atomic Ray" sync /:Omega:326A:/ # drift 0.030999
-768.5 "Loop Enrage" # guessing at time
+780.9 "Loop Enrage" # guessing at time
