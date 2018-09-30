@@ -109,12 +109,16 @@
       },
     },
     {
-      id: 'O9S Longitudinal Implosion',
+      id: 'O9S Long Implosion Phase Tracker',
       regex: /14:3172:Chaos starts using Longitudinal Implosion/,
       run: function(data) {
         data.phasePath = (typeof data.phasePath === 'undefined') ? 'fire' : data.phasePath;
         data.currentPhase = 'fire';
       },
+    },
+    {
+      id: 'O9S Longitudinal Implosion',
+      regex: /14:3172:Chaos starts using Longitudinal Implosion/,
       infoText: function(data) {
         return {
           en: 'Sides -> Front/Back',
@@ -127,12 +131,16 @@
       },
     },
     {
-      id: 'O9S Latitudinal Implosion',
+      id: 'O9S Lat Implosion Phase Tracker ',
       regex: /14:3173:Chaos starts using Latitudinal Implosion/,
       run: function(data) {
         data.phasePath = (typeof data.phasePath === 'undefined') ? 'water' : data.phasePath;
         data.currentPhase = 'water';
       },
+    },
+    {
+      id: 'O9S Latitudinal Implosion',
+      regex: /14:3173:Chaos starts using Latitudinal Implosion/,
       infoText: function(data) {
         return {
           en: 'Front/Back -> Sides',
@@ -162,7 +170,7 @@
       suppressSeconds: 10,
       infoText: function(data) {
         return {
-          en: 'Heal Tanks/Healers to full',
+          en: 'Heal Tanks and Healers to full',
         };
       },
     },
@@ -181,9 +189,6 @@
     {
       id: 'O9S Orbs Fiendish Phase Tracker',
       regex: /14:317(C|D):Chaos starts using Fiendish Orbs/,
-      // condition: function(data) {
-      //   return data.role == 'tank';
-      // },
       run: function(data) {
         // Orbs are at end of each phase.
         data.orbCounter = (data.orbCounter || 0) + 1;
@@ -233,7 +238,7 @@
       },
     },
     {
-      id: 'O9S Orbs Fiend',
+      id: 'O9S Orbs Fiend Phase Tracking',
       regex: /14:318B:Soul Of Chaos/,
       run: function(data) {
       // Orbs are at end of each phase.
@@ -248,7 +253,7 @@
       },
       alarmText: function(data) {
         return {
-          en: 'Orb Tethers',
+          en: 'Get Orb',
         };
       },
     },
