@@ -2,8 +2,6 @@
 
 // O12S - Alphascape 4.0 Savage
 
-// TODO: Optimized Blade Dance
-
 [{
   zoneRegex: /^Alphascape V4.0 \(Savage\)$/,
   timelineFile: 'o12s.txt',
@@ -35,6 +33,39 @@
     {
       id: 'O12S Solar Ray',
       regex: / 14:(?:3350|3351):Omega(?:-M)? starts using (?:Unknown_3350|Unknown_3351|Solar Ray) on (\y{Name})/,
+      condition: function(data, matches) {
+        return data.me == matches[1] || data.role == 'healer';
+      },
+      suppressSeconds: 1,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tenkbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Tank Busters',
+            de: 'Tenkbuster',
+            fr: 'Tankbuster',
+          };
+        }
+      },
+      tts: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'buster',
+            de: 'basta',
+            fr: 'tankbuster',
+          };
+        }
+      },
+    },
+    {
+      id: 'O12S Optimized Blade Dance',
+      regex: / 14:(?:334B|334C):Omega(?:-M)? starts using (?:Unknown_334B|Unknown_334C|Optimized Blade Dance) on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
