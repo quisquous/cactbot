@@ -221,6 +221,34 @@
       },
     },
     {
+      id: 'O12S Oversampled Wave Cannon Right',
+      regex: / 14:3364:Omega starts using (?:Oversampled Wave Cannon|Unknown_3364)/,
+      infoText: function(data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Monitors Left',
+          };
+        }
+        return {
+          en: 'Dodge Left',
+        };
+      },
+    },
+    {
+      id: 'O12S Oversampled Wave Cannon Left',
+      regex: / 14:3365:Omega starts using (?:Oversampled Wave Cannon|Unknown_3365)/,
+      infoText: function(data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Monitors Right',
+          };
+        }
+        return {
+          en: 'Dodge Right',
+        };
+      },
+    },
+    {
       id: 'O12S Target Analysis Target',
       regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
