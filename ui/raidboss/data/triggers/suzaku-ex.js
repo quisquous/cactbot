@@ -106,7 +106,7 @@
         'Hotspot x8': 'Couleurs x8',
         'Ruthless/Mesmerizing': 'Refrain/Mélodie',
         'Close-Quarter Crescendo': 'Mélopée Fantoche',
-        'Pay The Piper': 'Pay The Piper',
+        'Pay The Piper': 'Marche forcée',
         'Incandescent Interlude': 'Mélopée Incandescente',
         'Ruthless Refrain': 'Refrain Impitoyable',
         'Hotspot x4': 'Couleurs x4',
