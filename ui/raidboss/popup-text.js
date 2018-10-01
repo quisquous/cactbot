@@ -403,8 +403,9 @@ class PopupText {
       // Priority audio order:
       // * user disabled (play nothing)
       // * if tts options are enabled globally or for this trigger:
-      //   * user trigger tts override
+      //   * user groupTTS trigger groupTTS/tts override
       //   * groupTTS entries in the trigger
+      //   * user TTS triggers tts override
       //   * tts entries in the trigger
       //   * default alarm tts
       //   * default alert tts
