@@ -426,7 +426,6 @@ class PopupText {
 
 
       if (playGroupSpeech) {
-        console.log(trigger.groupTTS);
         if ('GroupTTSText' in triggerOptions)
           ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
         else if ('groupTTS' in trigger)

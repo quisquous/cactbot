@@ -4,6 +4,7 @@ bin/
 obj/
 packages/
 user/
+
 !user/README.txt
 CactbotOverlay/CactbotOverlay.csproj.user
 CactbotOverlay/ThirdParty/*/*.pdb
@@ -17,3 +18,4 @@ package-lock.json
 .idea/*
 .idea/
 *.iml
+.DS_Store
