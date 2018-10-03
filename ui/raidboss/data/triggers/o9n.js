@@ -39,7 +39,6 @@
       id: 'O9N Orbs Fiend',
       regex: /14:315C:Chaos starts using Fiendish Orbs/,
       regexFr: /14:315C:Chaos starts using Ordre De Poursuite/,
-      
       condition: function(data) {
         return data.role == 'tank';
       },
