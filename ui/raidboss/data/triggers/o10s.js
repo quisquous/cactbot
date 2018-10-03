@@ -15,6 +15,7 @@
     {
       id: 'O10S Tail End',
       regex: / 14:31AA:Midgardsormr starts using Tail End on (\y{Name})/,
+      regexFr: / 14:31AA:Midgardsormr starts using Pointe De Queue on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -49,6 +50,7 @@
       },
       alarmText: {
         en: 'Fire Marker on YOU',
+        fr: 'Feu sur VOUS',
       },
       infoText: function(data, matches) {
         if (data.me != matches[1])
@@ -63,6 +65,7 @@
       },
       infoText: {
         en: 'Death From Below',
+        fr: 'Désastre terrestre',
       },
     },
     {
@@ -73,6 +76,7 @@
       },
       infoText: {
         en: 'Death From Above',
+        fr: 'Désastre Céleste',
       },
     },
     {
@@ -95,6 +99,7 @@
       regex: /15:\y{ObjectId}:Midgardsormr:31AC:/,
       infoText: {
         en: 'Next Spin: In or Out',
+        fr: 'Tour suivant : Dedans/Dehors',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -105,6 +110,7 @@
       regex: /15:\y{ObjectId}:Midgardsormr:31AD:/,
       infoText: {
         en: 'Next Spin: Cardinals or Corners',
+        fr: 'Tour suivant : Cardinaux ou Coins',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -120,10 +126,12 @@
         if (data.lastSpinWasHorizontal) {
           return {
             en: 'Get Out',
+            fr: 'Sortez !',
           };
         }
         return {
           en: 'Go To Cardinals',
+          fr: 'Allez sur les cardinaux',
         };
       },
     },
@@ -137,11 +145,54 @@
         if (data.lastSpinWasHorizontal) {
           return {
             en: 'Get In',
+            fr: 'Sous le boss !',
           };
         }
         return {
           en: 'Go To Corners',
+          fr: 'Allez dans les coins',
         };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Engage!': 'À l\'attaque',
+      },
+      'replaceText': {
+        '--Reset--': '--Réinitialisation--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Flip': 'Tour vertical',
+        'Spin': 'Tour horizontal',
+        'Cardinals': 'Cardinaux',
+        'Akh Morn': 'Akh Morn',
+        'Out': 'Dehors',
+        'Tail End': 'Pointe de queue',
+        'Flip/Spin': 'Tour Hz/Vt',
+        'In/Out': 'Dedans/Dehors',
+        'Earth Shaker': 'Secousse',
+        'Corners/Cardinals': 'Coins/Cardinaux',
+        'Thunderstorm': 'Tempête De Foudre',
+        'Time Immemorial': 'Big Bang',
+        'Northern Cross': 'Croix du Nord',
+        'Akh Rhai': 'Akh Rhai',
+        'Dry Ice': 'Poussière Glaçante',
+        'Shaker/Thunder': 'Secousse/Tempête',
+        'Cauterize': 'Cautérisation',
+        'Horrid Roar': 'Rugissement Horrible',
+        'Frost Breath': 'Souffle Glacé',
+        'Frost Breath ready': 'Souffle Glacé prêt',
+        // FIX ME
+        'Touchdown': 'Touchdown',
+        'Crimson Breath': 'Haleine cramoisie',
+        'Flame Blast': 'Explosion de flamme',
+        'Hot Tail': 'Queue Brulante',
+        'Signal?': 'Signal ?',
+        'Positions?': 'Positions ?',
       },
     },
   ],
