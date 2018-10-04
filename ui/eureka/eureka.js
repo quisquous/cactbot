@@ -971,9 +971,7 @@ class EurekaTracker {
   }
 
   OnZoneChange(e) {
-    this.zoneName = e.detail.zoneName;
-    if (this.zoneName == 'Unknown Zone (2Fb)')
-      this.zoneName = 'Eureka Pagos';
+    this.zoneName = e.detail.zoneName.replace('The Forbidden Land, ', '');
     this.zoneInfo = this.options.ZoneInfo[this.zoneName];
     let container = document.getElementById('container');
     if (this.zoneInfo) {

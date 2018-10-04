@@ -4,6 +4,7 @@ bin/
 obj/
 packages/
 user/
+
 !user/README.txt
 CactbotOverlay/CactbotOverlay.csproj.user
 CactbotOverlay/ThirdParty/*/*.pdb
@@ -14,6 +15,7 @@ publish/
 __pycache__
 node_modules
 package-lock.json
+.idea/*
 .idea/
 *.iml
 .DS_Store

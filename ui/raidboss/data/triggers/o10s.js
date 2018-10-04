@@ -183,10 +183,7 @@
       id: 'O10N Horizontal Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31AC:/,
       infoText: {
-        en: 'Next In/Out',
-      },
-      tts: {
-        en: '',
+        en: 'Next Spin: In or Out',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -216,10 +213,7 @@
       id: 'O10N Vertical Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31AD:/,
       infoText: {
-        en: 'Next Spin: Cross/Plus',
-      },
-      tts: {
-        en: '',
+        en: 'Next Spin: Cardinals or Corners',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
