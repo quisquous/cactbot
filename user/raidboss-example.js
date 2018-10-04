@@ -19,12 +19,16 @@ Options.AlertsEnabled = true;
 Options.TextAlertsEnabled = true;
 
 // If false, then sound alerts are not played.
-Options.SoundAlertsEnabled = true,
+Options.SoundAlertsEnabled = true;
 
 // If true, then text-to-speech alerts are read aloud.  Text-to-speech takes
 // priority over custom sounds and text noises.  If a trigger does not have
 // a tts entry then it will fall back on text and sound (if turned on).
 Options.SpokenAlertsEnabled = false;
+
+// Will override the singular TTS alerts if a group alert is set for a specific trigger
+// Change phrasing to make sense in a group setting
+Options.GroupSpokenAlertsEnabled = false;
 
 
 // Show timer bars for events that will happen in this many seconds or less.
@@ -208,7 +212,6 @@ Options.PerTriggerOptions = {
     // Play the sound (if any) at this volume.
     VolumeOverride: 0.3,
   },
-
   // This makes /poke-ing a striking dummy in Summerford Farms only
   // use text to speech with no visual text indicator or other sound.
   'Test Poke': {
@@ -220,17 +223,17 @@ Options.PerTriggerOptions = {
       return 'Custom Poke (' + data.pokes + ')';
     },
   },
-
-  // Normally, /laugh-ing at a striking dummy has alarm text.  This
-  // overrides the alarm text and also outputs alert and info text,
-  // and only runs if you are a tank.
-  'Test Laugh': {
-    Condition: function(data) {
-      return data.role == 'tank';
+  // This makes /clack-ing a striking dummy override the default
+  // behavior to use the group TTS
+  'Test Clap': {
+    GroupSpeechAlert: true,
+    SpeechAlert: true,
+    SoundAlert: false,
+    TextAlert: false,
+    // Override the tts output as well.
+    GroupTTSText: function(data) {
+      return 'Custom CLAP';
     },
-    AlarmText: 'HA',
-    AlertText: 'HAHA',
-    InfoText: 'HAHAHA',
-    TTSText: '',
   },
 };
+

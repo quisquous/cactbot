@@ -146,21 +146,116 @@ hideall "--sync--"
 479.4 "Cosmo Memory" sync /:Omega:33EC:/
 
 # Final Omega - Alphascape V4.0 (Savage) - O12S+
-# -ii 3380 -p 336C:3015.3
+# -r ch1gtabdwN7QYDR6 -p 336C:3016 -ii 3380 3369 3366 335F 3377 336B 33B5
 
 0.0 "--Reset--" sync /Removing combatant Omega.  Max HP: \d{8}/ window 10000 jump 0
 
 3000.0 "Start"
-3002.6 "attack" sync /:Omega:3380:/ window 3003,0
-3015.3 "Target Analysis" sync /:Omega:336C:/ window 3016,2.5
-3018.3 "Savage Wave Cannon" sync /:Omega:336D:/
-3026.3 "Patch" sync /:Omega:3376:/
-3033.3 "Diffuse Wave Cannon" sync /:Omega:3368:/
-3033.3 "Diffuse Wave Cannon" sync /:Omega:3369:/
-3035.2 "Patch" sync /:Omega:3377:/
-3041.3 "Oversampled Wave Cannon" sync /:Omega:3365:/
-3041.3 "Oversampled Wave Cannon" sync /:Omega:3366:/
-3043.3 "Patch" sync /:Omega:3377:/
-3048.2 "Patch" sync /:Omega:3377:/
-3053.3 "Ion Efflux" sync /:Omega:3357:/
-3068.3 "Hello, World" sync /:Omega:336E:/
+3002.5 "--sync--" sync /:Omega:3380:/ window 3003,0
+3016.0 "Target Analysis" sync /:Omega:336C:/
+3019.0 "Savage Wave Cannon" sync /:Omega:336D:/
+3027.5 "Patch" sync /:Omega:3376:/
+3034.5 "Diffuse Wave Cannon" sync /:Omega:336[78]:/ # drift 0.046001
+3042.5 "Oversampled Wave Cannon" sync /:Omega:336[45]:/
+3054.5 "Ion Efflux" sync /:Omega:3357:/
+3062.6 "--sync--" sync /:Omega:3381:/
+3069.9 "Hello, World" sync /:Omega:336E:/
+3078.0 "Critical Synchronization Bug" #sync /:Omega:336F:/
+3078.0 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3082.9 "Critical Synchronization Bug" #sync /:Omega:336F:/
+3086.1 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3086.1 "Critical Synchronization Bug" #sync /:Omega:336F:/
+3094.2 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3097.0 "Critical Error" sync /:Omega:337E:/
+3105.1 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3105.1 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3113.1 "Ion Efflux" sync /:Omega:3357:/
+3119.3 "--sync--" sync /:Omega:3381:/
+3124.4 "Archive Peripheral" sync /:Omega:3358:/ # drift -0.042999
+3140.5 "Hyper Pulse" sync /:Right Arm Unit:335A:/
+3145.6 "Target Analysis" sync /:Omega:336C:/
+3149.0 "Savage Wave Cannon" sync /:Omega:336D:/
+3152.0 "--sync--" sync /:Omega:3359:/ # drift 0.05
+3161.2 "Diffuse Wave Cannon" sync /:Omega:336[78]:/
+3169.4 "Oversampled Wave Cannon" sync /:Omega:336[45]:/
+3183.6 "Index and Archive Peripheral" sync /:Omega:339A:/
+3188.8 "--sync--" sync /:Omega:3381:/
+3197.8 "Hyper Pulse" sync /:Right Arm Unit:335C:/ duration 6.5
+3198.0 "Wave Cannon" sync /:Omega:336A:/
+3206.2 "Target Analysis" sync /:Omega:336C:/
+3209.2 "Savage Wave Cannon" sync /:Omega:336D:/ # drift 0.047
+3212.2 "--sync--" sync /:Omega:3359:/
+3234.2 "Patch" sync /:Omega:3376:/
+3241.2 "Diffuse Wave Cannon" sync /:Omega:336[78]:/
+3249.4 "Oversampled Wave Cannon" sync /:Omega:336[45]:/
+3261.5 "Ion Efflux" sync /:Omega:3357:/ # drift -0.049001
+3269.8 "Archive All" sync /:Omega:335D:/
+3283.0 "Electric Slide" sync /:Omega:3363:/ # drift 0.05
+3289.1 "Delta Attack" sync /:Omega:3378:/
+3292.2 "Floodlight" sync /:Omega:337A:/
+3294.1 "Optimized Fire III" sync /:Omega:3379:/ # drift 0.042001
+3294.1 "Spotlight" sync /:Omega:337B:/
+3297.0 "Colossal Blow" sync /:Left Arm Unit:3360:/
+3299.3 "--sync--" sync /:Omega:335E:/
+3307.5 "Diffuse Wave Cannon" sync /:Omega:336[78]:/
+3320.8 "--sync--" sync /:Omega:3381:/
+3328.0 "Hello, World" sync /:Omega:336E:/
+3336.1 "Critical Synchronization Bug" #sync /:Omega:336F:/
+3336.1 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3341.1 "Critical Synchronization Bug" #sync /:Omega:336F:/
+3343.2 "Critical Underflow Bug" #sync /:Omega:3371:/
+3344.2 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3344.2 "Critical Synchronization Bug" #sync /:Omega:336F:/
+3344.2 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3345.8 "Critical Underflow Bug" #sync /:Omega:3371:/
+3349.2 "Critical Underflow Bug" #sync /:Omega:3371:/
+3352.2 "Critical Overflow Bug" #sync /:Omega:34E7:/
+3353.3 "Critical Underflow Bug" #sync /:Omega:3371:/
+3355.3 "Critical Error" sync /:Omega:337E:/
+3358.3 "Cascading Latent Defect" sync /:Omega:3373:/
+3360.9 "Critical Underflow Bug" #sync /:Omega:3371:/ # drift 0.042999
+3362.6 "Critical Underflow Bug" #sync /:Omega:3371:/
+3362.8 "Critical Underflow Bug" #sync /:Omega:3371:/
+3363.4 "Critical Overflow Bug" #sync /:Omega:34E7:/ # drift -0.041
+3371.5 "Ion Efflux" sync /:Omega:3357:/
+3377.7 "--sync--" sync /:Omega:3381:/ # drift 0.042001
+3382.7 "Archive Peripheral" sync /:Omega:3358:/
+3399.0 "Hyper Pulse" sync /:Right Arm Unit:335A:/ duration 6.5
+3403.9 "Target Analysis" sync /:Omega:336C:/
+3407.4 "Savage Wave Cannon" sync /:Omega:336D:/ # drift 0.043999
+3410.5 "--sync--" sync /:Omega:3359:/
+3419.6 "Diffuse Wave Cannon" sync /:Omega:336[78]:/
+3427.8 "Oversampled Wave Cannon" sync /:Omega:336[45]:/
+3442.0 "Index and Archive Peripheral" sync /:Omega:339A:/
+3447.2 "--sync--" sync /:Omega:3381:/
+3456.3 "Hyper Pulse" sync /:Right Arm Unit:335C:/ duration 6.5
+3456.4 "Wave Cannon" sync /:Omega:336A:/
+3464.5 "Target Analysis" sync /:Omega:336C:/
+3467.8 "Savage Wave Cannon" sync /:Omega:336D:/
+3470.9 "--sync--" sync /:Omega:3359:/ # drift -0.047
+3493.1 "Patch" sync /:Omega:3376:/
+3500.2 "Diffuse Wave Cannon" sync /:Omega:336[78]:/
+3508.4 "Oversampled Wave Cannon" sync /:Omega:336[45]:/
+3520.7 "Ion Efflux" sync /:Omega:3357:/
+3529.0 "Archive All" sync /:Omega:335D:/ # drift -0.045999
+3542.1 "Electric Slide" sync /:Omega:3363:/
+3548.2 "Delta Attack" sync /:Omega:3378:/
+3551.3 "Floodlight" sync /:Omega:337A:/
+3553.3 "Optimized Fire III" sync /:Omega:3379:/ # drift 0.043999
+3553.3 "Spotlight" sync /:Omega:337B:/
+3556.1 "Colossal Blow" sync /:Left Arm Unit:3360:/
+3558.3 "--sync--" sync /:Omega:335E:/
+3566.5 "Diffuse Wave Cannon" sync /:Omega:336[78]:/ # drift -0.042
+3579.8 "--sync--" sync /:Omega:3381:/
+3585.2 "Program Omega" sync /:Omega:360A:/
+3587.3 "--Enrage--"
+3587.3 "Ion Efflux" sync /:Omega:3355:/
+# Skipping the 3356 small explosions
+3596.4 "Ion Efflux" sync /:Omega:35E1:/
+3599.6 "Ion Efflux" sync /:Omega:3355:/
+3608.7 "Ion Efflux" sync /:Omega:35E1:/
+3611.8 "Ion Efflux" sync /:Omega:3355:/
+3620.9 "Ion Efflux" sync /:Omega:35E1:/
+3624.1 "Ion Efflux" sync /:Omega:3355:/
+3633.3 "Ion Efflux" sync /:Omega:35E1:/
+3646.4 "Ion Efflux" sync /:Omega:337C:/

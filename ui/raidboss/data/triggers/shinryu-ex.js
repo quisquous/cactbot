@@ -370,7 +370,7 @@
     },
     { id: 'ShinryuEx Final Left Wing',
       regex: /:Left Wing starts using Judgment Bolt/,
-      regex: /:Linker Flügel starts using Ionenschlag/,
+      regexDe: /:Linker Flügel starts using Ionenschlag/,
       condition: function(data) {
         return !data.finalWing;
       },

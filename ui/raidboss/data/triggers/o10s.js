@@ -1,6 +1,5 @@
 'use strict';
 
-// TODO: cross/in/out callouts
 // TODO: fix tail end (seemed to not work??)
 // TODO: add phase tracking (so death from above/below can tell you to swap or not)
 // TODO: add swap callout after exaflares
@@ -121,7 +120,7 @@
       id: 'O10N Horizontal Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31AC:/,
       infoText: {
-        en: 'Next Spin: In/Out',
+        en: 'Next Spin: In or Out',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -131,7 +130,7 @@
       id: 'O10N Vertical Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31AD:/,
       infoText: {
-        en: 'Next Spin: Cross/Plus',
+        en: 'Next Spin: Cardinals or Corners',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
