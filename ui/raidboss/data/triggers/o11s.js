@@ -4,6 +4,59 @@
 [{
   zoneRegex: /^Alphascape V3.0 \(Savage\)$/,
   timelineFile: 'o11s.txt',
+  timelineTriggers: [
+    {
+      id: 'O11S Reset',
+      regex: /Reset/,
+      beforeSeconds: 3,
+      alertText: {
+        en: 'get out',
+      },
+    },
+    {
+      id: 'O11S Reset',
+      regex: /Reformat/,
+      beforeSeconds: 3,
+      alertText: {
+        en: 'avoid donuts',
+      },
+    },
+    {
+      id: 'O11S Delta Attack',
+      regex: /Delta Attack/,
+      beforeSeconds: 5,
+      alertText: function(data) {
+        if(data.role == 'tank') {
+          en: 'TANK LB'
+        }
+      },
+      groupTTS: {
+        en: 'Tank LB'
+      }
+    },
+    {
+      id: 'O11S Ballistic Puddles',
+      regex: /Ballistic Impact/,
+      beforeSeconds: 7,
+      infoText: {
+        en: 'position for puddles'
+      },
+      groupTTS: {
+        en: 'drop puddles'
+      }
+    },
+    {
+      id: 'O11S Ballistic Stacks',
+      regex: /Engage Ballistic Systems/,
+      beforeSeconds: 3,
+      infoText: {
+        en: 'party stack'
+      },
+      groupTTS: {
+        en: 'stack'
+      }
+    },
+  ],
   triggers: [
     {
       id: 'O11S Mustard Bomb',
@@ -32,6 +85,13 @@
             fr: 'tankbuster',
           };
         }
+      },
+      groupTTS: function(data, matches) {
+          return {
+            en: 'tankbuster',
+            de: 'basta',
+            fr: 'tankbuster',
+          }
       },
     },
     {
@@ -99,15 +159,22 @@
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
-      alertText: function(data) {
-        if (data.lastWasStarboard) {
-          return {
-            en: 'Stay (Right)',
+      preRun: function(data) {
+          if (data.lastWasStarboard) {
+            data.larboardText = {
+                    en: 'Stay (Right)',
+                };
+            return;
+          }
+          data.larboardText = {
+              en: 'Move (Left)',
           };
-        }
-        return {
-          en: 'Move (Right)',
-        };
+      },
+      alertText: function(data) {
+          return data.larboardText;
+      },
+      groupTTS: function(data) {
+        return data.larboardText;
       },
     },
     {
@@ -116,12 +183,18 @@
       alertText: {
         en: 'Left (then opposite)',
       },
+      groupTTS: {
+          en: 'left then opposite',
+      },
     },
     {
       id: 'O11S Larboard Surge 1',
       regex: / 14:3268:Omega starts using Larboard/,
       alertText: {
         en: 'Right (then opposite)',
+      },
+      groupTTS: {
+            en: 'right then opposite',
       },
     },
     {
@@ -131,6 +204,9 @@
       alertText: {
         en: 'Opposite (Left)',
       },
+      groupTTS: {
+            en: 'opposite left',
+      },
     },
     {
       id: 'O11S Larboard Surge 2',
@@ -138,6 +214,87 @@
       delaySeconds: 4,
       alertText: {
         en: 'Opposite (Right)',
+      },
+      groupTTS: {
+            en: 'opposite right',
+      },
+    },
+      // End Starboard / Laboard Stuff
+    {
+        id: 'O11S Flamethrower',
+        regex: /:14:325C:Flamethrower/,
+        infoText: {
+            en: 'Spread out'
+        },
+        groupTTS: {
+            en: 'Spread out'
+        }
+
+    },
+    {
+      id: 'O11S Blaster',
+      regex: /3261:Blaster:/,
+      tts: function(data, matches) {
+        if (data.role == 'healer') {
+          return {
+            en: 'Teather on ' + data.ShortName(matches[1]),
+            de: ' auf ' + data.ShortName(matches[1]),
+            fr: ' sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+      groupTTS: function(data, matches) {
+        return {
+          en: 'Teather on ' + data.shortName(matches[0]),
+          de: ' auf ' + data.ShortName(matches[1]),
+          fr: ' sur ' + data.ShortName(matches[1]),
+        }
+      }
+    },
+    {
+      id: '011S Ferrofluid',
+      regex: /:3253:Level Checker Ferrofluid/,
+      alertText: {
+        en: 'Push pull'
+      },
+      groupTTS: {
+        en: 'pull in, push out, pull in',
+      }
+    },
+    {
+      id: 'O11S Peripheral Synthesis',
+      regex: /:324A:/,
+      preRun: function(data) {
+        data.synthCount = (data.synthCount || 0) + 1;
+      },
+      infoText: function(data) {
+        return {
+          en: 'TEST: Perph Synth Count ' + data.synthCount,
+        }
+      },
+      tts: function (data) {
+        if(data.synthCount == 4)
+          return {
+           en: 'TANK LB'
+          }
+      },
+      groupTTS: function(data) {
+        // Type A - Matching
+        if(data.synthCount == 1)
+          return {
+            en: 'match green blue'
+          };
+        // Type B ? Do I need this Half the party is matched
+        if(data.synthCount == 2 || data.synthCount == 3)
+          return {
+            en: 'rockets on 4'
+          };
+        // Type C / ALL 8
+        if(data.synthCount == 4)
+          return {
+            en: 'TANK LB'
+          };
+
       },
     },
   ],
