@@ -16,7 +16,7 @@ hideall "--sync--"
 31.1 "Afterburner" sync /:Omega:325E:/
 38.6 "Starboard/Larboard Cannon" sync /:Omega:326[24]:/
 44.1 "Starboard/Larboard Cannon" sync /:Omega:326[35]:/
-55.6 "Peripheral Synthesis" sync /:Omega:324A:/
+55.6 "Peripheral Synthesis A" sync /:Omega:324A:/
 71.6 "Mustard Bomb" sync /:Omega:326D:/
 
 ### Phase 2: Tower Dance
@@ -51,10 +51,10 @@ hideall "--sync--"
 368.9 "Blaster" sync /:Omega:3261:/
 377.0 "Atomic Ray" sync /:Omega:326C:/
 
-390.0 "Peripheral Synthesis" sync /:Omega:324A:/
+390.0 "Peripheral Synthesis B" sync /:Omega:324A:/
 403.0 "Rush" sync /:Rocket Punch:3250:/
 410.0 "Electric Slide" sync /:Omega:326B:/
-419.0 "Peripheral Synthesis" sync /:Omega:324A:/
+419.0 "Peripheral Synthesis B" sync /:Omega:324A:/
 432.0 "Rush" sync /:Rocket Punch:3250:/
 438.0 "Starboard/Larboard Cannon" sync /:Omega:326[24]:/
 443.5 "Starboard/Larboard Cannon" sync /:Omega:326[35]:/
@@ -67,7 +67,7 @@ hideall "--sync--"
 480.0 "Starboard/Larboard Surge" sync /:Omega:326[79]:/
 
 496.0 "Pantokrator 1" sync /:Omega:3702:/
-500.0 "Ballistic Impact" duration 8
+500.0 "Engage Ballistic Systems" duration 8
 510.1 "Condensed Wave Cannon Kyrios" sync /:Omega:3704:/
 519.1 "Wave Cannon Kyrios 1" sync /:Omega:3706:/
 526.2 "Wave Cannon Kyrios 2" sync /:Omega:3706:/
@@ -75,7 +75,7 @@ hideall "--sync--"
 544.6 "Blaster" sync /:Omega:3261:/
 550.7 "Atomic Ray" sync /:Omega:326C:/
 
-561.8 "Peripheral Synthesis" sync /:Omega:324A:/
+561.8 "Peripheral Synthesis C" sync /:Omega:324A:/
 565.8 "Unmitigated Explosion" # sync /:Omega:36F8:/ # no sync
 586.8 "Mustard Bomb" sync /:Omega:326D:/
 598.8 "Atomic Ray" sync /:Omega:326C:/
@@ -87,7 +87,7 @@ hideall "--sync--"
 618.8 "Starboard/Larboard Surge" sync /:Omega:326[79]:/
 
 634.7 "Pantokrator 2" sync /:Omega:3702:/
-639.7 "Ballistic Impact" duration 18 # +5
+639.7 "Engage Ballistic Systems" duration 18 # +5
 642.7 "Flamethrower" duration 5.5 # +3
 646.7 "Guided Missile Kyrios" sync /:Omega:3709:/ duration 6.5
 660.7 "Condensed Wave Cannon Kyrios" sync /:Omega:3704:/ # drift 0.038001
