@@ -1,6 +1,0 @@
-Files in this directory come from: https://overwatch.gamepedia.com and are used
-without modification.
-
-They are distributed under the Attribution-NonCommercial-ShareAlike 3.0
-Unported (CC BY-NC-SA 3.0) license. Full license text can be found at
-https://creativecommons.org/licenses/by-nc-sa/3.0/
