@@ -295,7 +295,7 @@
         data.synthCount = (data.synthCount || 0) + 1;
       },
       infoText: function(data) {
-        if(data.role == 'tank') {
+        if (data.role == 'tank') {
           return {
             en: 'Tank LB',
           };
