@@ -26,31 +26,30 @@
       regex: /:325B:Omega readies Delta Attack./,
       beforeSeconds: 5,
       alertText: function(data) {
-        if(data.role == 'tank') {
-          en: 'TANK LB'
-        }
+        if (data.role == 'tank')
+          en: 'TANK LB';
       },
       groupTTS: {
-        en: 'Tank LB'
-      }
+        en: 'Tank LB',
+      },
     },
     {
       id: 'O11S Ballistic Puddles',
       regex: /Ballistic Impact/,
       beforeSeconds: 7,
       infoText: {
-        en: 'position for puddles'
+        en: 'position for puddles',
       },
       groupTTS: {
-        en: 'drop puddles'
-      }
+        en: 'drop puddles',
+      },
     },
     {
       id: 'O11S Ballistic Stacks',
       regex: /Engage Ballistic Systems/,
       beforeSeconds: 3,
       infoText: {
-        en: 'party stack'
+        en: 'party stack',
       },
     },
   ],
@@ -84,27 +83,28 @@
         }
       },
       groupTTS: function(data, matches) {
-          return {
-            en: 'tankbuster',
-            de: 'basta',
-            fr: 'tankbuster',
-          }
+        return {
+          en: 'tankbuster',
+          de: 'basta',
+          fr: 'tankbuster',
+        };
       },
     },
     {
       id: 'O11S Atomic Ray',
       regex: / 14:326C:Omega readies Atomic Ray,/,
       tts: function(data) {
-       if(data.role == 'healer')
-            return {
-              en: 'AOE',
-            }
+        if (data.role == 'healer') {
+          return {
+            en: 'AOE',
+          };
+        }
       },
       groupTTS: function(data, matches) {
         return {
           en: 'AOE',
-        }
-      }
+        };
+      },
     },
     {
       // Ability IDs:
@@ -172,18 +172,18 @@
         return data.lastWasStarboard !== undefined;
       },
       preRun: function(data) {
-          if (data.lastWasStarboard) {
-            data.larboardText = {
-                    en: 'Stay',
-                };
-            return;
-          }
+        if (data.lastWasStarboard) {
           data.larboardText = {
-              en: 'Move',
+            en: 'Stay',
           };
+          return;
+        }
+        data.larboardText = {
+          en: 'Move',
+        };
       },
       alertText: function(data) {
-          return data.larboardText;
+        return data.larboardText;
       },
     },
     {
@@ -193,7 +193,7 @@
         en: 'Left (then opposite)',
       },
       groupTTS: {
-          en: 'left then opposite',
+        en: 'left then opposite',
       },
     },
     {
@@ -203,7 +203,7 @@
         en: 'Right (then opposite)',
       },
       groupTTS: {
-            en: 'right then opposite',
+        en: 'right then opposite',
       },
     },
     {
@@ -214,7 +214,7 @@
         en: 'Opposite (Left)',
       },
       groupTTS: {
-            en: 'opposite left',
+        en: 'opposite left',
       },
     },
     {
@@ -225,26 +225,26 @@
         en: 'Opposite (Right)',
       },
       groupTTS: {
-            en: 'opposite right',
+        en: 'opposite right',
       },
     },
-      // End Starboard / Laboard Stuff
+    // End Starboard / Laboard Stuff
     {
-        id: 'O11S Flamethrower',
-        regex: /00:282b:Omega readies Flamethrower./,
-        infoText: {
-            en: 'Flames (rotate)'
-        },
-       tts: {
-          en: 'flames, then rotate'
-       },
+      id: 'O11S Flamethrower',
+      regex: /00:282b:Omega readies Flamethrower./,
+      infoText: {
+        en: 'Flames (rotate)',
+      },
+      tts: {
+        en: 'flames, then rotate',
+      },
     },
     {
       id: '011S Electric Slide',
       regex: /Omega readies Electric Slide./,
       alertText: {
         en: 'Stack',
-      }
+      },
     },
     {
       id: 'O11S Blaster',
@@ -263,28 +263,29 @@
           en: 'Teather on ' + data.shortName(matches[0]),
           de: ' auf ' + data.ShortName(matches[1]),
           fr: ' sur ' + data.ShortName(matches[1]),
-        }
-      }
+        };
+      },
     },
     {
 
       id: '011S Ferrofluid',
       regex: / 14:3253:Level Checker starts using Ferrofluid on Level Checker/,
       alertText: {
-        en: 'Different (out), Same (in)'
+        en: 'Different (out), Same (in)',
       },
       groupTTS: {
         en: 'different out, same in',
-      }
+      },
     },
-    //[20:26:01.568] 1B:105A629D:Faiyt Lee:0000:0000:00A3:0000:0000:0000: -
-    // :00A2: Positive // useful at allllll
+    // [20:26:01.568] 1B:105A629D:Person Name:0000:0000:00A3:0000:0000:0000: -
+    // :00A2: Positive // useful at all?
+    // Is it possible to see who is matching who?
     {
       id: 'O11S Pantokrator',
       regex: /:3702:Omega readies Pantokrator/,
       alertText: {
-        en: 'puddles, then directionals'
-      }
+        en: 'puddles, then directionals',
+      },
     },
     {
       id: 'O11S Peripheral Synthesis',
@@ -295,35 +296,36 @@
       infoText: function(data) {
         return {
           en: 'TEST: Perph Synth Count ' + data.synthCount,
-        }
+        };
       },
-      tts: function (data) {
-        if(data.synthCount == 4)
+      tts: function(data) {
+        if (data.synthCount == 4) {
           return {
-           en: 'TANK LB'
-          }
+            en: 'TANK LB',
+          };
+        }
       },
       groupTTS: function(data) {
         // Type A - Matching
-        if(data.synthCount == 1)
-          return { en: 'match yellow blue', };
+        if (data.synthCount == 1)
+          return { en: 'match yellow blue' };
         // Type B ? Do I need this Half the party is matched
-        if(data.synthCount == 2 || data.synthCount == 3)
-          return { en: 'rockets on 4', };
+        if (data.synthCount == 2 || data.synthCount == 3)
+          return { en: 'rockets on 4' };
         // Type C / ALL 8
-        if(data.synthCount == 4)
-          return { en: 'TANK LB', };
-
+        if (data.synthCount == 4)
+          return { en: 'TANK LB' };
       },
     },
     {
       id: 'O11S Charybdis',
       regex: /:326E:/,
       alertText: function(data) {
-        if (data.role == 'healer')
+        if (data.role == 'healer') {
           return {
             en: '1 HP ',
           };
+        }
       },
       groupTTS: function(data) {
         return {

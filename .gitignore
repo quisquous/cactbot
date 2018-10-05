@@ -15,13 +15,9 @@ publish/
 __pycache__
 node_modules
 package-lock.json
-<<<<<<< HEAD
 
-
-.idea/*
-=======
 .idea/*
 .idea/
 *.iml
 .DS_Store
->>>>>>> a88a7708c1fb8bcb8aafaad84bdd547d2b24e3de
+
