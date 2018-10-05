@@ -4,6 +4,10 @@ bin/
 obj/
 packages/
 user/
+!user/README.txt
+!user/raidboss-example.js
+!user/jobs-example.js
+!user/oopsyraid-example.js
 
 !user/README.txt
 CactbotOverlay/CactbotOverlay.csproj.user
