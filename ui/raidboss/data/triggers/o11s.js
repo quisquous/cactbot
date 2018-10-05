@@ -295,9 +295,11 @@
         data.synthCount = (data.synthCount || 0) + 1;
       },
       infoText: function(data) {
-        return {
-          en: 'TEST: Perph Synth Count ' + data.synthCount,
-        };
+        if(data.role == 'tank') {
+          return {
+            en: 'Tank LB',
+          };
+        }
       },
       tts: function(data) {
         if (data.synthCount == 4) {
