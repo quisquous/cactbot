@@ -8,6 +8,7 @@
     {
       id: 'O9N Chaotic Dispersion',
       regex: / 14:314F:Chaos starts using Chaotic Dispersion on (\y{Name})/,
+      regexFr: / 14:314F:Chaos starts using Dispertion Chaotique on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -37,12 +38,14 @@
     {
       id: 'O9N Orbs Fiend',
       regex: /14:315C:Chaos starts using Fiendish Orbs/,
+      regexFr: /14:315C:Chaos starts using Ordre De Poursuite/,
       condition: function(data) {
         return data.role == 'tank';
       },
       alarmText: function(data) {
         return {
           en: 'Orb Tethers',
+          fr: 'Attrapez les orbes',
         };
       },
     },
