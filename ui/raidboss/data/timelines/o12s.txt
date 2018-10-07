@@ -47,7 +47,8 @@ hideall "--sync--"
 200.5 "Synthetic Blades/Shield" sync /:Omega-M:32FD:/ jump 1200.5  # shield: defense branch
 200.5 "--sync--" sync /:Omega:3301:/ jump 2200.5 # blades: defense branch
 212.2 "Operational Synergy"
-218.2 "Steel/Defense?"
+218.2 "Beyond Defense?"
+218.2 "Superliminal Steel?"
 219.8 "Optimized Blizzard III"
 221.5 "Pile Pitch"
 228.8 "Optimized Fire III"
