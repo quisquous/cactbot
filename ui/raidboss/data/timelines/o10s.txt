@@ -101,7 +101,7 @@ hideall "--sync--"
 484.5 "Tail End" # Cosmetic
 486.6 "Flip/Spin"
 490.6 "Signal?"
-492.1 "Positions?"
+492.1 "Position?"
 
 ## Branch A1: Spin->Earthshaker
 
@@ -197,7 +197,7 @@ hideall "--sync--"
 598.0 "Tail End" # Cosmetic
 600.1 "Flip/Spin"
 604.1 "Signal?"
-605.6 "Positions?"
+605.6 "Position?"
 615.8 "Time Immemorial"
 
 # Enrage
