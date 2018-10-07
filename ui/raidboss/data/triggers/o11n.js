@@ -22,7 +22,7 @@
       id: 'O11N Mustard Bomb',
       regex: / 14:3287:Omega starts using Mustard Bomb on (\y{Name})/,
       regexDe: / 14:3287:Omega starts using Senfbombe on (\y{Name})/,
-      regexFr: / 14:3287:Oméga starts using Obus d'ypérite on (\y{Name})/,
+      regexFr: / 14:3287:Oméga starts using Obus D\'ypérite on (\y{Name})/,
       regexJa: / 14:3287:オメガ starts using マスタードボム on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -73,13 +73,14 @@
       id: 'O11N Starboard Cannon 1',
       regex: / 14:328[12]:Omega starts using Starboard Wave Cannon/,
       regexDe: / 14:328[12]:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:328[12]:Oméga starts using Canon plasma tribord/,
+      regexFr: / 14:328[12]:Oméga starts using Salve De Tribord/,
       regexJa: / 14:328[12]:オメガ starts using 右舷斉射・波動砲/,
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
       alertText: {
         en: 'Left',
+        fr: 'Gauche',
       },
       run: function(data) {
         data.lastWasStarboard = true;
@@ -89,13 +90,14 @@
       id: 'O11N Larboard Cannon 1',
       regex: / 14:328[34]:Omega starts using Larboard Wave Cannon/,
       regexDe: / 14:328[34]:Omega starts using Backbord-Wellenkanone/,
-      regexFr: / 14:328[34]:Oméga starts using Canon plasma bâbord/,
+      regexFr: / 14:328[34]:Oméga starts using Salve De Bâbord/,
       regexJa: / 14:328[34]:オメガ starts using 左舷斉射・波動砲/,
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
       alertText: {
         en: 'Right',
+        fr: 'Droite',
       },
       run: function(data) {
         data.lastWasStarboard = false;
@@ -114,10 +116,12 @@
         if (data.lastWasStarboard) {
           return {
             en: 'Move (Left)',
+            fr: 'Bougez (Gauche)',
           };
         }
         return {
           en: 'Stay (Left)',
+          fr: 'Restez ici (Gauche)',
         };
       },
     },
@@ -125,7 +129,7 @@
       id: 'O11N Larboard Cannon 2',
       regex: / 14:3284:Omega starts using Larboard Wave Cannon/,
       regexDe: / 14:3284:Omega starts using Backbord-Wellenkanone/,
-      regexFr: / 14:3284:Oméga starts using Canon plasma bâbord/,
+      regexFr: / 14:3284:Oméga starts using Salve De Bâbord/,
       regexJa: / 14:3284:オメガ starts using 左舷斉射・波動砲/,
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
@@ -134,10 +138,12 @@
         if (data.lastWasStarboard) {
           return {
             en: 'Stay (Right)',
+            fr: 'Restez ici (Droite)',
           };
         }
         return {
           en: 'Move (Right)',
+          fr: 'Bougez (droite)',
         };
       },
     },
@@ -226,17 +232,15 @@
         'Engage!': 'À l\'attaque',
         'Level Checker': 'Vérifiniveau',
         'Omega': 'Oméga',
-        'Augmented Rocket Punch': 'astéropoing renforcé',
-        'Rocket Punch': 'astéropoing',
-
-        // FIXME
-        'Engaging Delta Attack protocol': 'Engaging Delta Attack protocol',
+        'Augmented Rocket Punch': 'Astéropoing Renforcé',
+        'Rocket Punch': 'Astéropoing',
+        'Engaging Delta Attack protocol': 'Nécessité d\'utiliser l\'attaque Delta',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Afterburner': 'Postcombustion',
         'Atomic Ray': 'Rayon atomique',
         'Ballistic Impact': 'Impact de missile',
@@ -277,7 +281,6 @@
         'Unmitigated Explosion': 'Grosse explosion',
         'Update Program': 'Boucle de programme : mise à jour',
         'Wave Cannon Kyrios': 'Canon plasma P',
-
         'Starboard/Larboard Cannon': 'Tribord/Bâbord',
         'Starboard/Larboard Surge': 'Tribord/Bâbord',
       },
