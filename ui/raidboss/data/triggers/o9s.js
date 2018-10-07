@@ -78,7 +78,9 @@
     {
       id: 'O9S Chaotic Dispersion',
       regex: / 14:3170:Chaos starts using Chaotic Dispersion on (\y{Name})/,
+      regexDe: / 14:3170:Chaos starts using Chaos-Dispersion on (\y{Name})/,
       regexFr: / 14:3170:Chaos starts using Dispersion Chaotique on (\y{Name})/,
+      regexJa: / 14:3170:カオス starts using カオティックディスパーション on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -119,7 +121,9 @@
     {
       id: 'O9S Longitudinal Implosion',
       regex: /14:3172:Chaos starts using Longitudinal Implosion/,
+      regexDe: /14:3172:Chaos starts using Vertikale Implosion/,
       regexFr: /14:3172:Chaos starts using Implosion Verticale/,
+      regexJa: /14:3172:カオス starts using ヴァーティカルインプロージョン/,
       infoText: function(data) {
         return {
           en: 'Sides -> Front/Back',
@@ -136,7 +140,9 @@
     {
       id: 'O9S Latitudinal Implosion',
       regex: /14:3173:Chaos starts using Latitudinal Implosion/,
+      regexDe: /14:3173:Chaos starts using Horizontale Implosion/,
       regexFr: /14:3173:Chaos starts using Implosion Horizontale/,
+      regexJa: /14:3173:カオス starts using ホリゾンタルインプロージョン/,
       infoText: function(data) {
         return {
           en: 'Front/Back -> Sides',
@@ -153,7 +159,9 @@
     {
       id: 'O9S Damning Edict',
       regex: /14:3171:Chaos starts using Damning Edict/,
+      regexDe: /14:3171:Chaos starts using Verdammendes Edikt/,
       regexFr: /14:3171:Chaos starts using Décret Accablant/,
+      regexJa: /14:3171:カオス starts using ダミングイーディクト/,
       infoText: function(data) {
         return {
           en: 'Get Behind',
@@ -163,10 +171,10 @@
     },
     {
       id: 'O9S Accretion',
-
       regex: /:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
+      regexDe: /:\y{Name} gains the effect of (?:Unknown_644|Chaossumpf)/,
       regexFr: /:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
-
+      regexJa: /:\y{Name} gains the effect of (?:Unknown_644|混沌の泥土)/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -180,10 +188,10 @@
     },
     {
       id: 'O9S Primordial Crust',
-
       regex: /:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
-      regexFr: /:\y{Name} gains the effect of (?:Unknown_645|Terre du chaos)/,
-
+      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
+      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
+      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -196,10 +204,10 @@
     },
     {
       id: 'O9S Orbs Fiend',
-
       regex: /14:317D:Chaos starts using Fiendish Orbs/,
+      regexDe: /14:317D:Chaos starts using Höllenkugeln/,
       regexFr: /14:317D:Chaos starts using Ordre De Poursuite/,
-
+      regexJa: /14:317D:カオス starts using 追尾せよ/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -213,37 +221,151 @@
   ],
   timelineReplace: [
     {
+      'locale': 'de',
+      'replaceSync': {
+        'Chaos': 'Chaos',
+        'Chaosphere': 'Chaossphäre',
+        'Engage!': 'Start!',
+        'dark crystal': 'dunkl[a] Kristall',
+      },
+      'replaceText': {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Big Bang': 'Quantengravitation',
+        'Blaze': 'Flamme',
+        'Bowels of Agony': 'Quälende Eingeweide',
+        'Chaosphere': 'Chaossphäre',
+        'Chaotic Dispersion': 'Chaos-Dispersion',
+        'Cyclone': 'Tornado',
+        'Damning Edict': 'Verdammendes Edikt',
+        'Earthquake': 'Erdbeben',
+        'Enrage': 'Finalangriff',
+        'Fiendish Orbs': 'Höllenkugeln',
+        'Knock': 'Einschlag',
+        'Knock Down': 'Niederschmettern',
+        'Latitudinal Implosion': 'Horizontale Implosion',
+        'Longitudinal Implosion': 'Vertikale Implosion',
+        'Orbshadow': 'Kugelschatten',
+        'Shockwave': 'Schockwelle',
+        'Soul of Chaos': 'Chaosseele',
+        'Stray Earth': 'Chaoserde',
+        'Stray Flames': 'Chaosflammen',
+        'Stray Gusts': 'Chaosböen',
+        'Stray Spray': 'Chaosspritzer',
+        'Tsunami': 'Tsunami',
+        'Umbra Smash': 'Schattenschlag',
+
+        // FIXME
+        'Long/Lat Implosion': 'Hz/Vert Implosion',
+        '\\(ALL\\)': '(ALL)',
+      },
+      '~effectNames': {
+        'Accretion': 'Chaossumpf',
+        'Dynamic Fluid': 'Chaosspritzer',
+        'Entropy': 'Chaosflammen',
+        'Headwind': 'Chaosböen',
+        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
+        'Physical Vulnerability Up': 'Erhöhte Physische Verwundbarkeit',
+        'Primordial Crust': 'Chaoserde',
+        'Tailwind': 'Chaossturm',
+      },
+    },
+    {
       'locale': 'fr',
       'replaceSync': {
+        'Chaos': 'Chaos',
+        'Chaosphere': 'Sphère De Chaos',
         'Engage!': 'À l\'attaque',
+        'dark crystal': 'cristal noir',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
-        'Enrage': 'Enrage',
-        'Damning Edict': 'Décret Accablant',
-        'Blaze': 'Flammes',
-        '\(T/H\) Stray Flames': 'Flammes Du Chaos \(T/H\)',
-        'Long/Lat Implosion': 'Implosion Hz/Vert',
-        '\(DPS\) Stray Flames': 'Flammes du chaos \(DPS\)',
-        'Chaotic Dispersion': 'Dispersion Chaotique',
-        'Knock': 'Impact',
+        '--sync--': '--synchronisation--',
+        '--targetable--': '--ciblable--',
+        '--untargetable--': '--impossible à cibler--',
         'Big Bang': 'Saillie',
-        'Fiendish Orbs': 'Ordre De Poursuite',
+        'Blaze': 'Flammes',
+        'Bowels of Agony': 'Entrailles de l\'agonie',
+        'Chaosphere': 'Sphère de chaos',
+        'Chaotic Dispersion': 'Dispersion chaotique',
         'Cyclone': 'Tornade',
-        'Umbra Smash': 'Fracas Ombral',
-        'Bowels Of Agony': 'Entrailles De L\'agonie',
-        'Soul Of Chaos': 'Âme Du Chaos',
-        'Tsunami': 'Raz-De-Marée',
-        '\(T/H\) Stray Spray': 'Eaux Du Chaos \(T/H\)',
-        '\(DPS\) Stray Spray': 'Eaux Du Chaos \(DPS\)',
+        'Damning Edict': 'Décret accablant',
         'Earthquake': 'Séisme',
-        '\(ALL\) Stray Flames': 'Flammes Du Chaos \(Tous\)',
-        '\(ALL\) Stray Spray': 'Eaux Du Chaos \(Tous\)',
-        'Stray Gusts': 'Rafales Du Chaos',
-        'Stray Earth': 'Terre Du Chaos',
+        'Enrage': 'Enragement',
+        'Fiendish Orbs': 'Ordre de poursuite',
+        'Knock': 'Impact',
+        'Knock Down': 'Ordre d\'impact',
+        'Latitudinal Implosion': 'Implosion horizontale',
+        'Longitudinal Implosion': 'Implosion verticale',
+        'Orbshadow': 'Poursuite',
+        'Shockwave': 'Onde de choc',
+        'Soul of Chaos': 'Âme du chaos',
+        'Stray Earth': 'Terre du chaos',
+        'Stray Flames': 'Flammes du chaos',
+        'Stray Gusts': 'Vent du chaos',
+        'Stray Spray': 'Eaux du chaos',
+        'Tsunami': 'Raz-de-marée',
+        'Umbra Smash': 'Fracas ombral',
+
+        'Long/Lat Implosion': 'Implosion Hz/Vert',
+        '\\(ALL\\)': '(Tous)',
+      },
+      '~effectNames': {
+        'Accretion': 'Bourbier du chaos',
+        'Dynamic Fluid': 'Eaux du chaos',
+        'Entropy': 'Flammes du chaos',
+        'Headwind': 'Vent du chaos',
+        'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
+        'Physical Vulnerability Up': 'Vulnérabilité Physique Augmentée',
+        'Primordial Crust': 'Terre du chaos',
+        'Tailwind': 'Vent contraire du chaos',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Chaos': 'カオス',
+        'Chaosphere': 'カオススフィア',
+        'Engage!': '戦闘開始！',
+        'dark crystal': '黒水晶',
+      },
+      'replaceText': {
+        'Big Bang': '突出',
+        'Blaze': 'ほのお',
+        'Bowels of Agony': 'バウル・オブ・アゴニー',
+        'Chaosphere': 'カオススフィア',
+        'Chaotic Dispersion': 'カオティックディスパーション',
+        'Cyclone': 'たつまき',
+        'Damning Edict': 'ダミングイーディクト',
+        'Earthquake': 'じしん',
+        'Fiendish Orbs': '追尾せよ',
+        'Knock': '着弾',
+        'Knock Down': '着弾せよ',
+        'Latitudinal Implosion': 'ホリゾンタルインプロージョン',
+        'Longitudinal Implosion': 'ヴァーティカルインプロージョン',
+        'Orbshadow': '追尾',
+        'Shockwave': '衝撃波',
+        'Soul of Chaos': 'ソウル・オブ・カオス',
+        'Stray Earth': '混沌の土',
+        'Stray Flames': '混沌の炎',
+        'Stray Gusts': '混沌の風',
+        'Stray Spray': '混沌の水',
+        'Tsunami': 'つなみ',
+        'Umbra Smash': 'アンブラスマッシュ',
+
+        // FIXME
+        'Long/Lat Implosion': 'Long/Lat Implosion',
+        '\\(ALL\\)': '(ALL)',
+      },
+      '~effectNames': {
+        'Accretion': '混沌の泥土',
+        'Dynamic Fluid': '混沌の水',
+        'Entropy': '混沌の炎',
+        'Headwind': '混沌の風',
+        'Magic Vulnerability Up': '被魔法ダメージ増加',
+        'Physical Vulnerability Up': '被物理ダメージ増加',
+        'Primordial Crust': '混沌の土',
+        'Tailwind': '混沌の逆風',
       },
     },
   ],

@@ -54,10 +54,10 @@ hideall "--sync--"
 1225.6 "Fiendish Orbs" sync /:Chaos:317D:/
 
 # Orb phase
-1251.0 "Bowels Of Agony" sync /:Chaos:318A:/ # drift 0.04
+1251.0 "Bowels of Agony" sync /:Chaos:318A:/ # drift 0.04
 1265.1 "(DPS) Stray Flames" sync /:Chaos:318C:/
 1268.1 "(T/H) Stray Spray" sync /:Chaos:318D:/
-1293.1 "Soul Of Chaos" sync /:Chaos:318B:/ window 500,500
+1293.1 "Soul of Chaos" sync /:Chaos:318B:/ window 500,500
 
 # Water phase
 1320.1 "Long/Lat Implosion" sync /:Chaos:317(2|3):/
@@ -124,10 +124,10 @@ hideall "--sync--"
 2200.6 "Fiendish Orbs" sync /:Chaos:317C:/
 
 # Orb phase
-2225.6 "Bowels Of Agony" sync /:Chaos:318A:/ # drift 0.038
+2225.6 "Bowels of Agony" sync /:Chaos:318A:/ # drift 0.038
 2239.6 "(DPS) Stray Flames" sync /:Chaos:318C:/
 2242.6 "(T/H) Stray Spray" sync /:Chaos:318D:/
-2267.6 "Soul Of Chaos" sync /:Chaos:318B:/ window 500,500
+2267.6 "Soul of Chaos" sync /:Chaos:318B:/ window 500,500
 
 # Fire phase
 2295.3 "Damning Edict" sync /:Chaos:3171:/
