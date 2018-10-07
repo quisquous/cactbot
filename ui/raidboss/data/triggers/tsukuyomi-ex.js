@@ -360,7 +360,7 @@
         'Dance Of The Dead': 'Danse Des Morts',
         'Dark Blade': 'Lame Ténébreuse',
         'Dispersivity': 'Onde Kenki',
-        'Enrage': 'Enragement',
+        'Enrage': 'Enrage',
         'Hagetsu': 'Pulvérisation Lunaire',
         'Lead Of The Underworld': 'Tir De L\'au-delà',
         'Lunacy': 'Efflorescence Au Clair De Lune',

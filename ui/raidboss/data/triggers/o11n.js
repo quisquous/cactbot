@@ -253,7 +253,7 @@
         'Dual Storage Violation': 'Corruption de données P',
         'Electric Slide': 'Glissement Oméga',
         'Engage Ballistics Systems': 'Contrôle de tir activé',
-        'Enrage': 'Enragement',
+        'Enrage': 'Enrage',
         'Executable': 'Exécution de programme',
         'Explosion': 'Explosion',
         'Ferrofluid': 'Ferrofluide',

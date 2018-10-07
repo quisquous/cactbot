@@ -54,16 +54,16 @@ def add_default_ability_mappings(ability_replace):
   # FIXME: add ja translations here.
   # FIXME: add Start as well
   ability_replace['de']['--targetable--'] = '--anvisierbar--'
-  ability_replace['fr']['--targetable--'] = '--ciblable--'
+  ability_replace['fr']['--targetable--'] = '--Ciblable--'
 
   ability_replace['de']['--untargetable--'] = '--nich anvisierbar--'
-  ability_replace['fr']['--untargetable--'] = '--impossible à cibler--'
+  ability_replace['fr']['--untargetable--'] = '--Impossible à cibler--'
 
   ability_replace['de']['Enrage'] = 'Finalangriff'
-  ability_replace['fr']['Enrage'] = 'Enragement'
+  ability_replace['fr']['Enrage'] = 'Enrage'
 
   ability_replace['fr']['--Reset--'] = '--Réinitialisation--'
-  ability_replace['fr']['--sync--'] = '--synchronisation--'
+  ability_replace['fr']['--sync--'] = '--Synchronisation--'
 
 def add_default_sync_mappings(sync_replace):
   sync_replace['de']['Engage!'] = 'Start!'

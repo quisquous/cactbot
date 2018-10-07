@@ -177,7 +177,7 @@
         'Burn': 'Combustion',
         'Close-Quarter Crescendo': 'Mélopée fantoche',
         'Cremate': 'Crématorium',
-        'Enrage': 'Enragement',
+        'Enrage': 'Enrage',
         'Eternal Flame': 'Flamme éternelle',
         'Fleeting Summer': 'Ailes vermillon',
         'Hotspot': 'Couleurs',

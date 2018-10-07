@@ -1680,13 +1680,13 @@
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--push--': '--poussé(e)--',
-        '--untargetable--': '--impossible à cibler--',
-        '--targetable--': '--ciblable--',
+        '--sync--': '--Synchronisation--',
+        '--push--': '--Poussé(e)--',
+        '--untargetable--': '--Impossible à cibler--',
+        '--targetable--': '--Ciblable--',
 
         'Targeted Fire': 'Feu ciblé',
-        'Enrage': 'Enragement',
+        'Enrage': 'Enrage',
         'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
         'Thermionic . Dynamo/Chariot': 'Rayon + Dynamo/Char',
         'Dive . Dynamo/Chariot': 'Plongeon + Dynamo/Char',
