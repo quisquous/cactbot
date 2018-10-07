@@ -85,7 +85,9 @@ def build_mapping(translations, ignore_list=[]):
       if default_name in replace[lang]:
         existing_name = replace[lang][default_name]
         if existing_name != name:
-          raise Exception('Conflict on %s: "%s" and "%s"' % (default_name, existing_name, name))
+          # Just clean this up in post.
+          # raise Exception('Conflict on %s: "%s" and "%s"' % (default_name, existing_name, name))
+          pass
       else:
         replace[lang][default_name] = name
   return replace
