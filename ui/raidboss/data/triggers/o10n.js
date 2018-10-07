@@ -6,6 +6,10 @@
   timelineFile: 'o10n.txt',
   triggers: [
     {
+      // Spin Table
+      // 31C7 + 31C9 = 31CD (horiz + horiz = out)
+      // 31C7 + 31CB = 31CF (horiz + vert = in)
+      // 31C8 + 31CB = 31D0 (vert + vert = +)
       id: 'O10N Spin Cleanup',
       regex: /15:\y{ObjectId}:Midgardsormr:31C[78]:/,
       delaySeconds: 10,
@@ -28,8 +32,8 @@
       id: 'O10N Vertical Spin 1',
       regex: /15:\y{ObjectId}:Midgardsormr:31C8:/,
       infoText: {
-        en: 'Next Spin: Cardinals or Corners',
-        fr: 'Tour suivant : Croix/Plus',
+        en: 'Next Spin: Corners',
+        fr: 'Tour suivant : Plus',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -48,6 +52,7 @@
             fr: 'Sortez',
           };
         }
+        // This shouldn't happen.
         return {
           en: 'Go To Cardinals',
           fr: 'Allez sur les points cardinaux',
