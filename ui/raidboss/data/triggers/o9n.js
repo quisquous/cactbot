@@ -114,10 +114,8 @@
         'Chaos': 'Chaos',
         'Chaosphere': 'Sphère De Chaos',
         'Engage!': 'À l\'attaque',
-        'dark crystal': 'cristal noir',
-
-        // FIXME
-        'YOU DARE!': 'YOU DARE!',
+        'Dark crystal': 'Cristal noir',
+        'YOU DARE!': '... Mon cristal !? Impossible !',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -147,7 +145,6 @@
         'Stray Spray': 'Eaux du chaos',
         'Tsunami': 'Raz-de-marée',
         'Umbra Smash': 'Fracas ombral',
-
         'Long/Lat Implosion': 'Implosion Hz/Vert',
         '\\(ALL\\)': '(Tous)',
       },
