@@ -177,6 +177,136 @@
         en: 'Attack Omega-F',
       },
     },
+    {
+      id: 'O12S Diffuse Wave Cannon Sides',
+      regex: / 14:3367:Omega starts using (?:Diffuse Wave Cannon|Unknown_3367)/,
+      infoText: {
+        en: 'Sides',
+      },
+    },
+    {
+      id: 'O12S Diffuse Wave Cannon Front/Back',
+      regex: / 14:3368:Omega starts using (?:Diffuse Wave Cannon|Unknown_3368)/,
+      infoText: {
+        en: 'Front or Back',
+      },
+    },
+    {
+      id: 'O12S Target Analysis Target',
+      regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      alarmText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Vuln on YOU',
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.me == matches[1] || data.role != 'tank')
+          return;
+        return {
+          en: 'Vuln on ' + data.ShortName(matches[1]),
+        };
+      },
+    },
+    {
+      id: 'O12S Local Tethers',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Local Regression) from/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Close Tethers',
+      },
+    },
+    {
+      id: 'O12S Far Tethers',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Remote Regression) from/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Far Tethers',
+      },
+    },
+    {
+      id: 'Hello World Cleanup',
+      regex: / 14:336E:Omega starts using/,
+      run: function(data) {
+        data.personDebuff = {};
+        data.totalDefamation = 0;
+        data.totalBlueMarker = 0;
+        data.totalStack = 0;
+        data.totalRot = 0;
+        data.totalHelloWorld = (data.totalHelloWorld || 0) + 1;
+      },
+    },
+    {
+      id: 'O12S Defamation',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Defamation on YOU',
+      },
+      run: function(data, matches) {
+        data.totalDefamation++;
+        data.personDebuff[matches[1]] = true;
+      },
+    },
+    {
+      id: 'O12S Latent Defect',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latent Defect) from/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Blue Marker',
+      },
+      run: function(data, matches) {
+        data.totalBlueMarker++;
+        data.personDebuff[matches[1]] = true;
+      },
+    },
+    {
+      id: 'O12S Rot',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Critical Underflow Bug) from/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Rot',
+      },
+      run: function(data, matches) {
+        data.totalRot++;
+        data.personDebuff[matches[1]] = true;
+      },
+    },
+    {
+      id: 'O12S Stack',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alertText: function(data, matches) {
+        let t = parseFloat(matches[2]);
+        if (!(t > 0))
+          return;
+        if (t <= 8) {
+          return {
+            en: 'Short Stack',
+          };
+        }
+        return {
+          en: 'Long Stack',
+        };
+      },
+      run: function(data, matches) {
+        data.totalStack++;
+        data.personDebuff[matches[1]] = true;
+      },
+    },
   ],
   timelineReplace: [
     {
