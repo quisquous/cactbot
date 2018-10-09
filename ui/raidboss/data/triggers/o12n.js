@@ -8,9 +8,11 @@
     {
       id: 'O12N Knockback',
       regex: /Discharger/,
+      regexDe: /Entlader/,
       beforeSeconds: 5,
       alertText: {
         en: 'Knockback',
+        de: 'Rückstoß',
       },
     },
   ],
@@ -29,14 +31,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            de: 'Tenkbuster',
+            de: 'Tankbuster',
             fr: 'Tankbuster',
           };
         }
@@ -65,14 +67,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            de: 'Tenkbuster',
+            de: 'Tankbuster',
             fr: 'Tankbuster',
           };
         }
@@ -98,6 +100,7 @@
       },
       alertText: {
         en: 'Move bosses apart',
+        de: 'Bosse auseinander ziehen',
       },
     },
     {
@@ -108,6 +111,7 @@
       },
       infoText: {
         en: 'Meteor on YOU',
+        de: 'Meteor auf DIR',
       },
     },
     {
@@ -118,6 +122,7 @@
           return;
         return {
           en: 'Get Out',
+          de: 'Raus da',
         };
       },
       infoText: function(data, matches) {
@@ -125,6 +130,7 @@
           return;
         return {
           en: 'Stack',
+          de: 'Stacken',
         };
       },
     },
@@ -139,6 +145,7 @@
       },
       infoText: {
         en: 'Attack Omega-M',
+        de: 'Omega-M angreifen',
       },
     },
     {
@@ -152,6 +159,7 @@
       },
       infoText: {
         en: 'Attack Omega-F',
+        de: 'Omega-W angreifen',
       },
     },
   ],
@@ -164,9 +172,7 @@
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
-
-        // FIXME
-        'Progress to party combat': 'Progress to party combat',
+        'Progress to party combat': 'Initiiere Gruppenkampf',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',

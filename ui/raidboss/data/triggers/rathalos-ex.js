@@ -11,6 +11,7 @@
       regex: / 14:(?:2853|2863):Rathalos starts using/,
       infoText: {
         en: 'Mangle',
+        de: 'Biss und Schweifhieb',
       },
     },
     {
@@ -18,6 +19,7 @@
       regex: / 14:(?:2856|2861):Rathalos starts using/,
       alertText: {
         en: 'Rush',
+        de: 'Stürmen',
       },
     },
     {
@@ -25,6 +27,7 @@
       regex: / 14:(?:2859|285B):Rathalos starts using/,
       alarmText: {
         en: 'Flaming Recoil',
+        de: 'Flammenschlag vorne',
       },
     },
     {
@@ -35,6 +38,7 @@
       },
       infoText: {
         en: 'Fire Breath on YOU',
+        de: 'Feueratem auf DIR',
       },
     },
     {
@@ -44,22 +48,26 @@
         if (data.me == matches[1]) {
           return {
             en: 'Stack on YOU',
+            de: 'Stack auf DIR',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          de: 'Stack auf ' + data.ShortName(matches[1]),
         };
       },
     },
     {
       id: 'RathEx Adds',
       regex: /:Added new combatant Steppe Sheep\./,
+      regexDe: /:Added new combatant Steppnschaf\./,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';
       },
       infoText: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
   ],

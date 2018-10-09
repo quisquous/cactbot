@@ -15,14 +15,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
@@ -48,7 +48,7 @@
       },
       alertText: {
         en: 'Tank Buster',
-        de: 'Tenkbuster',
+        de: 'Tankbuster',
         fr: 'Tankbuster',
       },
       tts: function(data, matches) {
@@ -69,6 +69,7 @@
       regexJa: / 14:32DA:朱雀 starts using 誘引の旋律/,
       alertText: {
         en: 'Get Out',
+        de: 'Raus da',
         fr: 'Allez au bord extérieur',
       },
     },
@@ -80,6 +81,7 @@
       regexJa: / 14:32DB:朱雀 starts using 拒絶の旋律/,
       alertText: {
         en: 'Get In',
+        de: 'Rein da',
         fr: 'Allez au bord intérieur',
       },
     },
@@ -90,20 +92,18 @@
       'replaceSync': {
         'Engage!': 'Start!',
         'Song of Durance': 'Lied[p] der Gefangenheit',
-        'Song of Fire': 'Lied[p] des Feuerrots',
-        'Song of Oblivion': 'Lied[p] der Lüge',
-        'Song of Sorrow': 'Lied[p] der Tränen',
+        'Song of Fire': 'Lied des Feuerrots',
+        'Song of Oblivion': 'Lied der Lüge',
+        'Song of Sorrow': 'Lied der Tränen',
         'Suzaku': 'Suzaku',
         'Eastern Pyre': 'Ostflamme',
         'Northern Pyre': 'Nordflamme',
-        'Rapturous Echo': 'Klang[p] der Liebe',
+        'Rapturous Echo': 'Klang der Liebe',
         'Scarlet Lady': 'Flammenvogel',
         'Scarlet Plume': 'Flügelfeder',
         'Scarlet Tail Feather': 'Schwanzfeder',
         'Southern Pyre': 'Südflamme',
         'Western Pyre': 'Westflamme',
-
-        // FIXME
         '0044.Tenzen': '0044:Tenzen',
       },
       'replaceText': {
@@ -131,10 +131,8 @@
         'Southron Star': 'Stern des Südens',
         'Well Of Flame': 'Flammenbrunnen',
         'Wing And A Prayer': 'Letztes Gebet',
-
-        // FIXME
-        'Ruthless/Mesmerizing': 'Ruthless/Mesmerizing',
-        'Phantom Half': 'Phantom Half',
+        'Ruthless/Mesmerizing': 'Rabiater/Bezaubernde',
+        'Phantom Half': 'Phantomhast',
       },
       '~effectNames': {
         'Burns': 'Brandwunde',

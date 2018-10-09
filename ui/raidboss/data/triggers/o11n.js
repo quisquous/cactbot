@@ -28,14 +28,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
@@ -80,6 +80,7 @@
       },
       alertText: {
         en: 'Left',
+        de: 'Links',
         fr: 'Gauche',
       },
       run: function(data) {
@@ -97,6 +98,7 @@
       },
       alertText: {
         en: 'Right',
+        de: 'Rechts',
         fr: 'Droite',
       },
       run: function(data) {
@@ -116,11 +118,13 @@
         if (data.lastWasStarboard) {
           return {
             en: 'Move (Left)',
+            de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
           };
         }
         return {
           en: 'Stay (Left)',
+          de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
         };
       },
@@ -138,11 +142,13 @@
         if (data.lastWasStarboard) {
           return {
             en: 'Stay (Right)',
+            de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
           };
         }
         return {
           en: 'Move (Right)',
+          de: 'Bewegen (Rechts)',
           fr: 'Bougez (droite)',
         };
       },
@@ -155,11 +161,9 @@
         'Engage!': 'Start!',
         'Level Checker': 'Monitor',
         'Omega': 'Omega',
-        'Augmented Rocket Punch': 'verstärkt[a] Raketenschlag',
+        'Augmented Rocket Punch': 'verstärkter Raketenschlag',
         'Rocket Punch': 'Raketenschlag',
-
-        // FIXME
-        'Engaging Delta Attack protocol': 'Engaging Delta Attack protocol',
+        'Engaging Delta Attack protocol': 'Reinitialisiere Deltaprotokoll',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',

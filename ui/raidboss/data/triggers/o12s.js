@@ -37,6 +37,7 @@
       regexJa: / 1A:オメガ gains the effect of (?:レゾナンスプログラム：ファー|Unknown_67F) from/,
       alertText: {
         en: 'Move Bosses Together',
+        de: 'Bosse zusammenziehen',
       },
     },
     {
@@ -53,14 +54,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            de: 'Tenkbuster',
+            de: 'Tankbuster',
             fr: 'Tankbuster',
           };
         }
@@ -89,14 +90,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            de: 'Tenkbuster',
+            de: 'Tankbuster',
             fr: 'Tankbuster',
           };
         }
@@ -126,9 +127,11 @@
 
         let squareName = {
           en: 'Square',
+          de: 'Viereck',
         }[data.lang];
         let triangleName = {
           en: 'Triangle',
+          de: 'Dreieck',
         }[data.lang];
         return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
       },
@@ -139,6 +142,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Stack',
+        de: 'Stacken',
       },
     },
     {
@@ -149,6 +153,7 @@
       },
       infoText: {
         en: 'Meteor on YOU',
+        de: 'Meteor auf DIR',
       },
     },
     {
@@ -162,6 +167,7 @@
       },
       infoText: {
         en: 'Attack Omega-M',
+        de: 'Omega-M angreifen',
       },
     },
     {
@@ -175,20 +181,25 @@
       },
       infoText: {
         en: 'Attack Omega-F',
+        de: 'Omega-W angreifen',
       },
     },
     {
       id: 'O12S Diffuse Wave Cannon Sides',
       regex: / 14:3367:Omega starts using (?:Diffuse Wave Cannon|Unknown_3367)/,
+      regexDe: / 14:3367:Omega starts using (?:Streuende Wellenkanone|Unknown_3367)/,
       infoText: {
         en: 'Sides',
+        de: 'Seiten',
       },
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
       regex: / 14:3368:Omega starts using (?:Diffuse Wave Cannon|Unknown_3368)/,
+      regexDe: / 14:3368:Omega starts using (?:Streuende Wellenkanone|Unknown_3368)/,
       infoText: {
         en: 'Front or Back',
+        de: 'Vorn oder Hinten',
       },
     },
     {
@@ -198,6 +209,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Vuln on YOU',
+            de: 'Verwundbarkeit auf DIR',
           };
         }
       },
@@ -206,6 +218,7 @@
           return;
         return {
           en: 'Vuln on ' + data.ShortName(matches[1]),
+          de: 'Verwundbarkeit auf ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -217,6 +230,7 @@
       },
       infoText: {
         en: 'Close Tethers',
+        de: 'Nahe Verbindungen',
       },
     },
     {
@@ -227,6 +241,7 @@
       },
       infoText: {
         en: 'Far Tethers',
+        de: 'Entfernte Verbindungen',
       },
     },
     {
@@ -244,11 +259,13 @@
     {
       id: 'O12S Defamation',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       alarmText: {
         en: 'Defamation on YOU',
+        de: 'Urteil auf DIR',
       },
       run: function(data, matches) {
         data.totalDefamation++;
@@ -258,6 +275,7 @@
     {
       id: 'O12S Latent Defect',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latent Defect) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latenter Defekt) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -272,6 +290,7 @@
     {
       id: 'O12S Rot',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Critical Underflow Bug) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Kritischer Bug: Unterlauf) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -286,6 +305,7 @@
     {
       id: 'O12S Stack',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -296,10 +316,12 @@
         if (t <= 8) {
           return {
             en: 'Short Stack',
+            de: 'Kurzer Stack',
           };
         }
         return {
           en: 'Long Stack',
+          de: 'Langer Stack',
         };
       },
       run: function(data, matches) {
@@ -318,8 +340,8 @@
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
 
-        'Left Arm Unit': 'link[a] Arm',
-        'Right Arm Unit': 'recht[a] Arm',
+        'Left Arm Unit': 'linker Arm',
+        'Right Arm Unit': 'rechter Arm',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',

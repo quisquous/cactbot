@@ -30,6 +30,7 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Spread (Tanks/Healers)',
+            de: 'Verteilen (Tanks/Heiler)',
             fr: 'Ecartez-vous (Tanks/Healers)',
           };
         }
@@ -38,6 +39,7 @@
         if (data.role != 'tank' && data.role != 'healer') {
           return {
             en: 'Hide Middle',
+            de: 'Zur Mitte',
             fr: 'Allez au centre',
           };
         }
@@ -51,6 +53,7 @@
         if (data.role != 'tank' && data.role != 'healer') {
           return {
             en: 'Spread (DPS)',
+            de: 'Verteilen (DDs)',
             fr: 'Ecartez-vous (DPS)',
           };
         }
@@ -59,6 +62,7 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Hide Middle',
+            de: 'Zur Mitte',
             fr: 'Allez au centre',
           };
         }
@@ -70,6 +74,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Spread (Everyone)',
+        de: 'Verteilen (Jeder)',
         fr: 'Ecartez-vous (Tout le monde)',
       },
     },
@@ -85,20 +90,21 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'tank') {
           return {
             en: 'Tank Swap',
+            de: 'Tank-Wechsel',
             fr: 'Tank Swap',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
@@ -113,6 +119,7 @@
         } else if (data.role == 'tank') {
           return {
             en: 'tank swap',
+            de: 'tenk wechsel',
             fr: 'tank swap',
           };
         }
@@ -127,12 +134,14 @@
       infoText: function(data) {
         return {
           en: 'Sides -> Front/Back',
+          de: 'Seiten -> Vorne/Hinten',
           fr: 'Côtés puis Devant/Derrière',
         };
       },
       tts: function(data) {
         return {
           en: 'go to sides',
+          de: 'an die Seiten',
           fr: 'aller sur les cotés',
         };
       },
@@ -146,12 +155,14 @@
       infoText: function(data) {
         return {
           en: 'Front/Back -> Sides',
+          de: 'Vorne/Hinten -> Seiten',
           fr: 'Devant/Derrière puis Côtés',
         };
       },
       tts: function(data) {
         return {
           en: 'go to back',
+          de: 'hinten dran',
           fr: 'aller derrière',
         };
       },
@@ -165,6 +176,7 @@
       infoText: function(data) {
         return {
           en: 'Get Behind',
+          de: 'Hinten dran',
           fr: 'Derrière le boss',
         };
       },
@@ -182,6 +194,7 @@
       infoText: function(data) {
         return {
           en: 'Heal Tanks/Healers to full',
+          de: 'Tanks/Heiler vollheilen',
           fr: 'Soignez Heals/Tanks full vie',
         };
       },
@@ -198,6 +211,7 @@
       infoText: function(data) {
         return {
           en: 'Die on next mechanic',
+          de: 'An nächster Mechanik tödlichen Schaden nehmen',
           fr: 'Mourrez sur la prochaine mécanique',
         };
       },
@@ -214,6 +228,7 @@
       alarmText: function(data) {
         return {
           en: 'Orb Tethers',
+          de: 'Kugel-Verbindungen',
           fr: 'Récupérez l\'orbe',
         };
       },
@@ -226,7 +241,7 @@
         'Chaos': 'Chaos',
         'Chaosphere': 'Chaossphäre',
         'Engage!': 'Start!',
-        'dark crystal': 'dunkl[a] Kristall',
+        'dark crystal': 'dunkler Kristall',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -254,9 +269,9 @@
         'Stray Spray': 'Chaosspritzer',
         'Tsunami': 'Tsunami',
         'Umbra Smash': 'Schattenschlag',
+        'Long/Lat Implosion': 'Horizontale/Vertikale Implosion',
 
         // FIXME
-        'Long/Lat Implosion': 'Hz/Vert Implosion',
         '\\(ALL\\)': '(ALL)',
       },
       '~effectNames': {
