@@ -11,6 +11,7 @@
       beforeSeconds: 5,
       alertText: {
         en: 'Knockback',
+        fr: 'Poussée en arrière',
       },
     },
   ],
@@ -98,6 +99,7 @@
       },
       alertText: {
         en: 'Move bosses apart',
+        fr: 'Ecartez les boss',
       },
     },
     {
@@ -108,6 +110,7 @@
       },
       infoText: {
         en: 'Meteor on YOU',
+        fr: 'Météore sur VOUS',
       },
     },
     {
@@ -118,6 +121,7 @@
           return;
         return {
           en: 'Get Out',
+          fr: 'Sortez',
         };
       },
       infoText: function(data, matches) {
@@ -125,6 +129,7 @@
           return;
         return {
           en: 'Stack',
+          fr: 'Packez vous',
         };
       },
     },
@@ -132,26 +137,28 @@
       id: 'O12N Packet Filter F',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Packet Filter F) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Sicherungssystem F) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Programme protecteur F) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Programme Protecteur F) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|ガードプログラムF) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: {
         en: 'Attack Omega-M',
+        fr: 'Attaquez Oméga-M',
       },
     },
     {
       id: 'O12N Packet Filter M',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Packet Filter M) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Sicherungssystem M) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme protecteur M) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme Protecteur M) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|ガードプログラムM) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: {
         en: 'Attack Omega-F',
+        fr: 'Attaquez Oméga-F',
       },
     },
   ],
@@ -214,10 +221,8 @@
         'Omega': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
-        'Optical Unit': 'unité optique',
-
-        // FIXME
-        'Progress to party combat': 'Progress to party combat',
+        'Optical Unit': 'Unité optique',
+        'Progress to party combat': 'Bip... Bip... Limites du combat en solitaire atteintes... Passage à l\'organisation humaine dite “en équipe”...',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
