@@ -67,7 +67,7 @@ def add_default_ability_mappings(ability_replace):
 
 def add_default_sync_mappings(sync_replace):
   sync_replace['de']['Engage!'] = 'Start!'
-  sync_replace['fr']['Engage!'] = "À l'attaque"
+  sync_replace['fr']['Engage!'] = 'À l\'attaque'
   sync_replace['ja']['Engage!'] = '戦闘開始！'
 
 # generate a mapping of lang => { default_name => name }
