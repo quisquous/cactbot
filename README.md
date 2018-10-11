@@ -291,7 +291,7 @@ See [this documentation](AdvancedCactbot.md#configuring-ui-modules) for more det
 
 ## Supported Languages
 
-cactbot is tested and works with the English and German versions of Final Fantasy XIV.  French localization is only partially supported (Unending Coil of Bahamut, mostly).
+cactbot is tested and works with the English, German and French versions of Final Fantasy XIV.
 
 Unicode characters are supported thoughout, through the use of the helpers in the
 [resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
