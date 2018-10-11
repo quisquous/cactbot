@@ -249,7 +249,6 @@ hideall "--sync--"
 3566.5 "Diffuse Wave Cannon" sync /:Omega:336[78]:/ # drift -0.042
 3579.8 "--sync--" sync /:Omega:3381:/
 3585.2 "Program Omega" sync /:Omega:360A:/
-3587.3 "--Enrage--"
 3587.3 "Ion Efflux" sync /:Omega:3355:/
 # Skipping the 3356 small explosions
 3596.4 "Ion Efflux" sync /:Omega:35E1:/
@@ -259,4 +258,4 @@ hideall "--sync--"
 3620.9 "Ion Efflux" sync /:Omega:35E1:/
 3624.1 "Ion Efflux" sync /:Omega:3355:/
 3633.3 "Ion Efflux" sync /:Omega:35E1:/
-3646.4 "Ion Efflux" sync /:Omega:337C:/
+3646.4 "Enrage" sync /:Omega:337C:/
