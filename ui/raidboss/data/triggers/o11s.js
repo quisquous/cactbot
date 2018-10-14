@@ -15,14 +15,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
@@ -66,7 +66,8 @@
         return data.lastWasStarboard === undefined;
       },
       alertText: {
-        en: 'Left',
+        en: 'Left', 
+        de: 'Links',
         fr: 'Gauche',
       },
       run: function(data) {
@@ -84,6 +85,7 @@
       },
       alertText: {
         en: 'Right',
+        de: 'Rechts',
         fr: 'Droite',
       },
       run: function(data) {
@@ -103,11 +105,13 @@
         if (data.lastWasStarboard) {
           return {
             en: 'Move (Left)',
+            de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
           };
         }
         return {
           en: 'Stay (Left)',
+          de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
         };
       },
@@ -125,11 +129,13 @@
         if (data.lastWasStarboard) {
           return {
             en: 'Stay (Right)',
+            de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
           };
         }
         return {
           en: 'Move (Right)',
+          de: 'Bewegen (Rechts)',
           fr: 'Bougez (Droite)',
         };
       },
@@ -142,6 +148,7 @@
       regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
       alertText: {
         en: 'Left (then opposite)',
+        de: 'Links (dann umgekehrt)',
         fr: 'Gauche (puis Droite)',
       },
     },
@@ -153,6 +160,7 @@
       regexJa: / 14:3268:オメガ starts using 左舷斉射・零式波動砲/,
       alertText: {
         en: 'Right (then opposite)',
+        de: 'Rechts (dann umgekehrt)',
         fr: 'Droite (puis Gauche)',
       },
     },
@@ -165,6 +173,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Opposite (Left)',
+        de: 'Umgekehrt (Links)',
         fr: 'Côté opposé (Gauche)',
       },
     },
@@ -177,6 +186,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Opposite (Right)',
+        de: 'Umgekehrt (Rechts)',
         fr: 'Côté opposé (Droite)',
       },
     },
@@ -188,7 +198,7 @@
         'Engage!': 'Start!',
         'Level Checker': 'Monitor',
         'Omega': 'Omega',
-        'Augmented Rocket Punch': 'verstärkt[a] Raketenschlag',
+        'Augmented Rocket Punch': 'verstärkter Raketenschlag',
         'Rocket Punch': 'Raketenschlag',
       },
       'replaceText': {

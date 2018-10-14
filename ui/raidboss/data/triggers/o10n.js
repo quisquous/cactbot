@@ -28,6 +28,7 @@
       regexJa: /15:\y{ObjectId}:ミドガルズオルム:31C7:/,
       infoText: {
         en: 'Next Spin: In or Out',
+        de: 'Nächste Drehung: Rein oder raus',
         fr: 'Tour suivant : Dedans/Dehors',
       },
       run: function(data) {
@@ -42,6 +43,7 @@
       regexJa: /15:\y{ObjectId}:ミドガルズオルム:31C8:/,
       infoText: {
         en: 'Next Spin: Corners',
+        de: 'Nächste Drehung: Ecken',
         fr: 'Tour suivant : Plus',
       },
       run: function(data) {
@@ -61,12 +63,14 @@
         if (data.lastSpinWasHorizontal) {
           return {
             en: 'Get Out',
+            de: 'Raus da',
             fr: 'Sortez',
           };
         }
         // This shouldn't happen.
         return {
           en: 'Go To Cardinals',
+          de: 'Geh zu den Kanten',
           fr: 'Allez sur les points cardinaux',
         };
       },
@@ -84,11 +88,13 @@
         if (data.lastSpinWasHorizontal) {
           return {
             en: 'Get In',
+            de: 'Rein da',
             fr: 'Allez sous le boss',
           };
         }
         return {
           en: 'Go To Corners',
+          de: 'In die Ecken',
           fr: 'Allez dans les coins',
         };
       },
@@ -100,8 +106,8 @@
       'replaceSync': {
         'Engage!': 'Start!',
         'Midgardsormr': 'Midgardsormr',
-        'Ancient Dragon': 'Antik[a] Drache',
-        'Immortal Key': 'Unsterblich[a] Schlüssel',
+        'Ancient Dragon': 'Antiker Drache',
+        'Immortal Key': 'Unsterblicher Schlüssel',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -132,19 +138,17 @@
         'Time Immemorial': 'Urknall',
         'Touchdown': 'Himmelssturz',
         'attack': 'Attacke',
-
-        // FIXME
-        'Flip': 'Flip',
-        'Spin': 'Spin',
-        'Cardinals': 'Cardinals',
-        'Corners': 'Corners',
-        'In': 'In',
-        'Out': 'Out',
-        'Flip/Spin': 'Flip/Spin',
-        'In/Out': 'In/Out',
-        'Corners/Cardinals': 'Corners/Cardinals',
-        'Shaker/Thunder': 'Shaker/Thunder',
-        ' ready': ' ready',
+        'Flip': 'Rolle',
+        'Spin': 'Drehung',
+        'Cardinals': 'Kanten',
+        'Corners': 'Ecken',
+        'In': 'Rein',
+        'Out': 'Raus',
+        'Flip/Spin': 'Rolle/Drehung',
+        'In/Out': 'Rein/Raus',
+        'Corners/Cardinals': 'Ecken/Kanten',
+        'Shaker/Thunder': 'Erdstoß/Blitz',
+        ' ready': ' bereit',
         'Signal': 'Signal',
         'Position': 'Position',
       },

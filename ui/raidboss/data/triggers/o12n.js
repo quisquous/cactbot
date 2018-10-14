@@ -8,9 +8,11 @@
     {
       id: 'O12N Knockback',
       regex: /Discharger/,
+      regexDe: /Entlader/,
       beforeSeconds: 5,
       alertText: {
         en: 'Knockback',
+        de: 'Rückstoß',
         fr: 'Poussée en arrière',
       },
     },
@@ -30,14 +32,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            de: 'Tenkbuster',
+            de: 'Tankbuster',
             fr: 'Tankbuster',
           };
         }
@@ -66,14 +68,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            de: 'Tenkbuster',
+            de: 'Tankbuster',
             fr: 'Tankbuster',
           };
         }
@@ -99,6 +101,7 @@
       },
       alertText: {
         en: 'Move bosses apart',
+        de: 'Bosse auseinander ziehen',
         fr: 'Ecartez les boss',
       },
     },
@@ -110,6 +113,7 @@
       },
       infoText: {
         en: 'Meteor on YOU',
+        de: 'Meteor auf DIR',
         fr: 'Météore sur VOUS',
       },
     },
@@ -121,6 +125,7 @@
           return;
         return {
           en: 'Get Out',
+          de: 'Raus da',
           fr: 'Sortez',
         };
       },
@@ -129,6 +134,7 @@
           return;
         return {
           en: 'Stack',
+          de: 'Stacken',
           fr: 'Packez vous',
         };
       },
@@ -144,6 +150,7 @@
       },
       infoText: {
         en: 'Attack Omega-M',
+        de: 'Omega-M angreifen',
         fr: 'Attaquez Oméga-M',
       },
     },
@@ -158,6 +165,7 @@
       },
       infoText: {
         en: 'Attack Omega-F',
+        de: 'Omega-W angreifen',
         fr: 'Attaquez Oméga-F',
       },
     },
@@ -171,9 +179,7 @@
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
-
-        // FIXME
-        'Progress to party combat': 'Progress to party combat',
+        'Progress to party combat': 'Initiiere Gruppenkampf',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
