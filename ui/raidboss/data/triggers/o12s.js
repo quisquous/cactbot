@@ -14,14 +14,10 @@
       run: function(data) {
         data.isFinalOmega = true;
 
+        data.helloDebuffs = {};
         data.archiveMarkers = {};
         data.armValue = 0;
         data.numArms = 0;
-        data.personDebuff = {};
-        data.totalDefamation = 0;
-        data.totalBlueMarker = 0;
-        data.totalStack = 0;
-        data.totalRot = 0;
       },
     },
     {
@@ -304,10 +300,6 @@
         en: 'Defamation on YOU',
         de: 'Urteil auf DIR',
       },
-      run: function(data, matches) {
-        data.totalDefamation++;
-        data.personDebuff[matches[1]] = true;
-      },
     },
     {
       id: 'O12S Latent Defect',
@@ -316,12 +308,8 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: {
+      alertText: {
         en: 'Blue Marker',
-      },
-      run: function(data, matches) {
-        data.totalBlueMarker++;
-        data.personDebuff[matches[1]] = true;
       },
     },
     {
@@ -333,10 +321,6 @@
       },
       infoText: {
         en: 'Rot',
-      },
-      run: function(data, matches) {
-        data.totalRot++;
-        data.personDebuff[matches[1]] = true;
       },
     },
     {
@@ -361,9 +345,23 @@
           de: 'Langer Stack',
         };
       },
-      run: function(data, matches) {
-        data.totalStack++;
-        data.personDebuff[matches[1]] = true;
+    },
+    {
+      id: 'O12S Hello World No Marker',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug|Unknown_686|Latent Defect|Unknown_680|Critical Synchronization Bug) from/,
+      preRun: function(data, matches) {
+        data.helloDebuffs[matches[1]] = true;
+      },
+      alertText: function(data) {
+        // 1 Defamation (T), 3 Blue Markers (T/H/D), 2 Stack Markers (D/D) = 6
+        // Ignore rot here to be consistent.
+        if (Object.keys(data.helloDebuffs).length != 6)
+          return;
+        if (data.me in data.helloDebuffs)
+          return;
+        return {
+          en: 'No Marker',
+        };
       },
     },
     {
