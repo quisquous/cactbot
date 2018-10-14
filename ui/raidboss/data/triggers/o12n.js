@@ -227,7 +227,7 @@
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'Unité optique',
-        'Progress to party combat': 'Bip... Bip... Limites du combat en solitaire atteintes... Passage à l\'organisation humaine dite “en équipe”...',
+        'Progress to party combat': 'Limites du combat en solitaire atteintes',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
