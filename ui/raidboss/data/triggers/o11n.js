@@ -109,7 +109,7 @@
       id: 'O11N Starboard Cannon 2',
       regex: / 14:3282:Omega starts using Starboard Wave Cannon/,
       regexDe: / 14:3282:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:3282:Oméga starts using Canon plasma tribord/,
+      regexFr: / 14:3282:Oméga starts using Salve De Tribord/,
       regexJa: / 14:3282:オメガ starts using 右舷斉射・波動砲/,
       condition: function(data) {
         return data.lastWasStarboard !== undefined;

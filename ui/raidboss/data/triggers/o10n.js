@@ -202,7 +202,6 @@
         'Time Immemorial': 'Big bang',
         'Touchdown': 'Atterrissage',
         'attack': 'Attaque',
-
         'Flip': 'Tour vertical',
         'Spin': 'Tour horizontal',
         'Cardinals': 'Cardinaux',
@@ -213,9 +212,7 @@
         'Corners/Cardinals': 'Coins/Cardinaux',
         'Shaker/Thunder': 'Secousse/Tempête',
         ' ready': ' prêt',
-
-        // FIXME
-        'Corners': 'Corners',
+        'Corners': 'Coins',
         'Signal': 'Signal',
         'Position': 'Position',
       },
