@@ -7,6 +7,21 @@
   timelineFile: 'o12s.txt',
   triggers: [
     {
+      // Track Omega MF vs Final Omega phase.
+      regex: / 14:3357:Omega starts using (?:Ion Efflux|Unknown_3357)/,
+      regexDe: / 14:3357:Omega starts using (?:Ionenstrom|Unknown_3357)/,
+      regexFr: / 14:3357:Oméga starts using (?:Fuite D\'ions|Unknown_3357)/,
+      run: function(data) {
+        data.isFinalOmega = true;
+        data.archiveMarkers = {};
+        data.personDebuff = {};
+        data.totalDefamation = 0;
+        data.totalBlueMarker = 0;
+        data.totalStack = 0;
+        data.totalRot = 0;
+      },
+    },
+    {
       id: 'O12S Beyond Defense',
       regex: / 1[56]:\y{ObjectId}:Omega-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 1[56]:\y{ObjectId}:Omega-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
@@ -137,8 +152,11 @@
       },
     },
     {
-      id: 'O12S Stack Marker',
+      id: 'O12S MF Stack Marker',
       regex: /1B:........:\y{Name}:....:....:003E:0000:0000:0000:/,
+      condition: function(data) {
+        return !data.isFinalOmega;
+      },
       suppressSeconds: 1,
       infoText: {
         en: 'Stack',
@@ -245,18 +263,6 @@
       },
     },
     {
-      id: 'Hello World Cleanup',
-      regex: / 14:336E:Omega starts using/,
-      run: function(data) {
-        data.personDebuff = {};
-        data.totalDefamation = 0;
-        data.totalBlueMarker = 0;
-        data.totalStack = 0;
-        data.totalRot = 0;
-        data.totalHelloWorld = (data.totalHelloWorld || 0) + 1;
-      },
-    },
-    {
       id: 'O12S Defamation',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf) from/,
@@ -303,7 +309,7 @@
       },
     },
     {
-      id: 'O12S Stack',
+      id: 'O12S Hello World Stack',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
@@ -327,6 +333,57 @@
       run: function(data, matches) {
         data.totalStack++;
         data.personDebuff[matches[1]] = true;
+      },
+    },
+    {
+      // Archive All Marker Tracking
+      regex: /1B:........:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
+      condition: function(data) {
+        return data.isFinalOmega;
+      },
+      run: function(data, matches) {
+        data.archiveMarkers[matches[1]] = matches[2];
+      },
+    },
+    {
+      id: 'O12S Archive All No Marker',
+      regex: /1B:........:(\y{Name}):....:....:(?:003E|0060):0000:0000:0000:/,
+      condition: function(data) {
+        // 4 fire markers, 1 stack marker.
+        return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
+      },
+      infoText: function(data, matches) {
+        for (let player in data.archiveMarkers) {
+          if (data.archiveMarkers[player] != '003E')
+            continue;
+          return {
+            en: 'Stack on ' + data.ShortName(player),
+            de: 'Stacken auf ' + data.ShortName(player),
+          };
+        }
+      },
+    },
+    {
+      id: 'O12S Archive Stack Marker',
+      regex: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      condition: function(data, matches) {
+        return data.isFinalOmega && matches[1] == data.me;
+      },
+      infoText: {
+        en: 'Stack on YOU',
+        de: 'Stacken auf DIR',
+      },
+    },
+    {
+      id: 'O12S Archive Spread Marker',
+      regex: /1B:........:(\y{Name}):....:....:0060:0000:0000:0000:/,
+      condition: function(data, matches) {
+        return data.isFinalOmega && matches[1] == data.me;
+      },
+      infoText: {
+        en: 'Spread',
+        de: 'Verteilen',
+        fr: 'Ecartez-vous',
       },
     },
   ],
