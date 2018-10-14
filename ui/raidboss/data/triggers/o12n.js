@@ -8,7 +8,6 @@
     {
       id: 'O12N Knockback',
       regex: /Discharger/,
-      regexDe: /Entlader/,
       beforeSeconds: 5,
       alertText: {
         en: 'Knockback',
