@@ -414,6 +414,20 @@
         fr: 'Ecartez-vous',
       },
     },
+    {
+      id: 'O12S Archive Blue Arrow',
+      regex: / 1B:........:Rear Power Unit:....:....:009D:0000:0000:0000:/,
+      alertText: {
+        en: 'Back Left',
+      },
+    },
+    {
+      id: 'O12S Archive Red Arrow',
+      regex: / 1B:........:Rear Power Unit:....:....:009C:0000:0000:0000:/,
+      alertText: {
+        en: 'Back Right',
+      },
+    },
   ],
   timelineReplace: [
     {
@@ -425,8 +439,11 @@
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
 
-        'Left Arm Unit': 'linker Arm',
-        'Right Arm Unit': 'rechter Arm',
+        'Left Arm Unit': 'Linker Arm',
+        'Right Arm Unit': 'Rechter Arm',
+
+        // FIXME
+        'Rear Power Unit': 'Rear Power Unit',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -517,10 +534,13 @@
         'Omega': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
-        'Optical Unit': 'unité optique',
+        'Optical Unit': 'Unité Optique',
 
-        'Left Arm Unit': 'unité bras gauche',
-        'Right Arm Unit': 'unité bras droit',
+        'Left Arm Unit': 'Unité Bras Gauche',
+        'Right Arm Unit': 'Unité Bras Droit',
+
+        // FIXME
+        'Rear Power Unit': 'Rear Power Unit',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -617,6 +637,9 @@
 
         'Left Arm Unit': 'レフトアームユニット',
         'Right Arm Unit': 'ライトアームユニット',
+
+        // FIXME
+        'Rear Power Unit': 'Rear Power Unit',
       },
       'replaceText': {
         'Advanced Optical Laser': 'オプチカルレーザーS',
