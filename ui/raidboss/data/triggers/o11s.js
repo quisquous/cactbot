@@ -66,7 +66,7 @@
         return data.lastWasStarboard === undefined;
       },
       alertText: {
-        en: 'Left', 
+        en: 'Left',
         de: 'Links',
         fr: 'Gauche',
       },
