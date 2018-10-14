@@ -15,14 +15,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
+            de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
@@ -49,6 +49,7 @@
       alarmText: function(data) {
         return {
           en: 'Orb Tethers',
+          de: 'Kugel-Verbindungen',
           fr: 'Attrapez les orbes',
         };
       },
@@ -61,10 +62,8 @@
         'Chaos': 'Chaos',
         'Chaosphere': 'Chaossphäre',
         'Engage!': 'Start!',
-        'dark crystal': 'dunkl[a] Kristall',
-
-        // FIXME
-        'YOU DARE!': 'YOU DARE!',
+        'dark crystal': 'dunkler Kristall',
+        'YOU DARE!': 'Wie könnt ihr es wagen?!',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -92,9 +91,9 @@
         'Stray Spray': 'Chaosspritzer',
         'Tsunami': 'Tsunami',
         'Umbra Smash': 'Schattenschlag',
+        'Long/Lat Implosion': 'Horizontale/Vertikale Implosion',
 
         // FIXME
-        'Long/Lat Implosion': 'Hz/Vert Implosion',
         '\\(ALL\\)': '(ALL)',
       },
       '~effectNames': {
