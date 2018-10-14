@@ -12,7 +12,7 @@
       alertText: {
         en: 'Knockback',
         de: 'Rückstoß',
-        fr: 'Poussée en arrière',
+        fr: 'Poussée',
       },
     },
   ],
@@ -21,7 +21,7 @@
       id: 'O12N Solar Ray',
       regex: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using (?:Unknown_330F|Unknown_3310|Solar Ray) on (\y{Name})/,
       regexDe: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using (?:Unknown_330F|Unknown_3310|Sonnenstrahl) on (\y{Name})/,
-      regexFr: / 14:(?:330F|3310):(?:Oméga|Oméga-M) starts using (?:Unknown_330F|Unknown_3310|Rayon solaire) on (\y{Name})/,
+      regexFr: / 14:(?:330F|3310):(?:Oméga|Oméga-M) starts using (?:Unknown_330F|Unknown_3310|Rayon Solaire) on (\y{Name})/,
       regexJa: / 14:(?:330F|3310):(?:オメガ|オメガM) starts using (?:Unknown_330F|Unknown_3310|ソーラレイ) on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
@@ -57,7 +57,7 @@
       id: 'O12N Optimized Blade Dance',
       regex: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using (?:Unknown_3321|Unknown_3322|Optimized Blade Dance) on (\y{Name})/,
       regexDe: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using (?:Unknown_3321|Unknown_3322|Omega-Schwertertanz) on (\y{Name})/,
-      regexFr: / 14:(?:3321|3322):(?:Oméga|Oméga-M) starts using (?:Unknown_3321|Unknown_3322|Danse de la lame Oméga) on (\y{Name})/,
+      regexFr: / 14:(?:3321|3322):(?:Oméga|Oméga-M) starts using (?:Unknown_3321|Unknown_3322|Danse De La Lame Oméga) on (\y{Name})/,
       regexJa: / 14:(?:3321|3322):(?:オメガ|オメガM) starts using (?:Unknown_3321|Unknown_3322|ブレードダンス・オメガ) on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
@@ -93,7 +93,7 @@
       id: 'O12N Local Resonance',
       regex: / 1A:Omega gains the effect of (?:Unknown_67E|Local Resonance) from/,
       regexDe: / 1A:Omega gains the effect of (?:Unknown_67E|Resonanzprogramm: Nah) from/,
-      regexFr: / 1A:Oméga gains the effect of (?:Unknown_67E|Programme de résonance: proximité) from/,
+      regexFr: / 1A:Oméga gains the effect of (?:Unknown_67E|Programme De Résonance : Proximité) from/,
       regexJa: / 1A:オメガ gains the effect of (?:Unknown_67E|レゾナンスプログラム：ニアー) from/,
       condition: function(data) {
         return data.role == 'tank';
