@@ -13,7 +13,10 @@
       regexFr: / 14:3357:Oméga starts using (?:Fuite D\'ions|Unknown_3357)/,
       run: function(data) {
         data.isFinalOmega = true;
+
         data.archiveMarkers = {};
+        data.armValue = 0;
+        data.numArms = 0;
         data.personDebuff = {};
         data.totalDefamation = 0;
         data.totalBlueMarker = 0;
@@ -392,7 +395,7 @@
       },
     },
     {
-      id: 'O12S Archive Stack Marker',
+      id: 'O12S Archive All Stack Marker',
       regex: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.isFinalOmega && matches[1] == data.me;
@@ -403,7 +406,7 @@
       },
     },
     {
-      id: 'O12S Archive Spread Marker',
+      id: 'O12S Archive All Spread Marker',
       regex: /1B:........:(\y{Name}):....:....:0060:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.isFinalOmega && matches[1] == data.me;
@@ -415,17 +418,53 @@
       },
     },
     {
-      id: 'O12S Archive Blue Arrow',
+      id: 'O12S Archive All Blue Arrow',
       regex: / 1B:........:Rear Power Unit:....:....:009D:0000:0000:0000:/,
       alertText: {
         en: 'Back Left',
       },
     },
     {
-      id: 'O12S Archive Red Arrow',
+      id: 'O12S Archive All Red Arrow',
       regex: / 1B:........:Rear Power Unit:....:....:009C:0000:0000:0000:/,
       alertText: {
         en: 'Back Right',
+      },
+    },
+    {
+      // Archive Peripheral Tracking.
+      regex: / 1B:........:Right Arm Unit:....:....:009(C|D):0000:0000:0000:/,
+      run: function(data, matches) {
+        // Create a 3 digit binary value, R = 0, B = 1.
+        // e.g. BBR = 110 = 6
+        data.armValue *= 2;
+        if (matches[1] == 'D')
+          data.armValue += 1;
+        data.numArms++;
+      },
+    },
+    {
+      id: 'O12S Archive Peripheral',
+      regex: / 1B:........:Right Arm Unit:....:....:009(?:C|D):0000:0000:0000:/,
+      condition: function(data) {
+        return data.numArms == 3;
+      },
+      alertText: function(data) {
+        let v = parseInt(data.armValue);
+        if (!(v >= 0) || v > 7)
+          return;
+        return {
+          en: {
+            0b000: 'East',
+            0b001: 'Northeast',
+            0b010: undefined,
+            0b011: 'Northwest',
+            0b100: 'Southeast',
+            0b101: undefined,
+            0b110: 'Southwest',
+            0b111: 'West',
+          },
+        }[data.lang][v];
       },
     },
   ],
