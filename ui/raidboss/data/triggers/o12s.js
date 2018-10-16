@@ -383,6 +383,8 @@
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
       },
       infoText: function(data, matches) {
+        if (data.me in data.archiveMarkers)
+          return;
         for (let player in data.archiveMarkers) {
           if (data.archiveMarkers[player] != '003E')
             continue;
