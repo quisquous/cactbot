@@ -11,6 +11,7 @@
       regex: / 14:3357:Omega starts using (?:Ion Efflux|Unknown_3357)/,
       regexDe: / 14:3357:Omega starts using (?:Ionenstrom|Unknown_3357)/,
       regexFr: / 14:3357:Oméga starts using (?:Fuite D\'ions|Unknown_3357)/,
+      regexJa: / 14:3357:オメガ starts using (?:イオンエフラクス|Unknown_3357)/,
       run: function(data) {
         data.isFinalOmega = true;
 
@@ -205,6 +206,8 @@
       id: 'O12S Diffuse Wave Cannon Sides',
       regex: / 14:3367:Omega starts using (?:Diffuse Wave Cannon|Unknown_3367)/,
       regexDe: / 14:3367:Omega starts using (?:Streuende Wellenkanone|Unknown_3367)/,
+      regexFr: / 14:3367:Oméga starts using (?:Canon plasma diffuseur|Unknown_3367)/,
+      regexJa: / 14:3367:オメガ starts using (?:拡散波動砲|Unknown_3367)/,
       infoText: {
         en: 'Sides',
         de: 'Seiten',
@@ -214,6 +217,8 @@
       id: 'O12S Diffuse Wave Cannon Front/Back',
       regex: / 14:3368:Omega starts using (?:Diffuse Wave Cannon|Unknown_3368)/,
       regexDe: / 14:3368:Omega starts using (?:Streuende Wellenkanone|Unknown_3368)/,
+      regexFr: / 14:3368:Oméga starts using (?:Canon plasma diffuseur|Unknown_3368)/,
+      regexJa: / 14:3368:オメガ starts using (?:拡散波動砲|Unknown_3368)/,
       infoText: {
         en: 'Front or Back',
         de: 'Vorn oder Hinten',
@@ -222,6 +227,9 @@
     {
       id: 'O12S Oversampled Wave Cannon Right',
       regex: / 14:3364:Omega starts using (?:Oversampled Wave Cannon|Unknown_3364)/,
+      regexDe: / 14:3364:Omega starts using (?:Fokussierte Wellenkanone|Unknown_3364)/,
+      regexFr: / 14:3364:Oméga starts using (?:Canon plasma chercheur|Unknown_3364)/,
+      regexJa: / 14:3364:オメガ starts using (?:検知式波動砲|Unknown_3364)/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -236,6 +244,9 @@
     {
       id: 'O12S Oversampled Wave Cannon Left',
       regex: / 14:3365:Omega starts using (?:Oversampled Wave Cannon|Unknown_3365)/,
+      regexDe: / 14:3365:Omega starts using (?:Fokussierte Wellenkanone|Unknown_3365)/,
+      regexFr: / 14:3365:Oméga starts using (?:Canon plasma chercheur|Unknown_3365)/,
+      regexJa: / 14:3365:オメガ starts using (?:検知式波動砲|Unknown_3365)/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -270,6 +281,9 @@
     {
       id: 'O12S Local Tethers',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Local Regression) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Regression: Nah) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Bogue intentionnel: proximité) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|エンバグ：ニアー) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -281,6 +295,9 @@
     {
       id: 'O12S Far Tethers',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Remote Regression) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Regression: Fern) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Bogue intentionnel: distance) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|エンバグ：ファー) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -293,6 +310,8 @@
       id: 'O12S Defamation',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -305,6 +324,8 @@
       id: 'O12S Latent Defect',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latent Defect) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latenter Defekt) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Bogue latent) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|レイテントバグ) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -316,6 +337,8 @@
       id: 'O12S Rot',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Critical Underflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Kritischer Bug: Unterlauf) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Bogue critique: dégradation) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|クリティカルバグ：デグレード) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -327,6 +350,8 @@
       id: 'O12S Hello World Stack',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage) from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -349,6 +374,9 @@
     {
       id: 'O12S Hello World No Marker',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug|Unknown_686|Latent Defect|Unknown_680|Critical Synchronization Bug) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf|Unknown_686|Latenter Bug|Unknown_680|Kritischer Bug: Synchronisierung) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle|Unknown_686|Bogue latent|Unknown_680|Bogue critique: partage) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル|Unknown_686|レイテントバグ|Unknown_680|クリティカルバグ：シェア) from/,
       preRun: function(data, matches) {
         data.helloDebuffs[matches[1]] = true;
       },
@@ -435,6 +463,9 @@
     {
       // Archive Peripheral Tracking.
       regex: / 1B:........:Right Arm Unit:....:....:009(C|D):0000:0000:0000:/,
+      regexDe: / 1B:........:Rechter Arm:....:....:009(C|D):0000:0000:0000:/,
+      regexFr: / 1B:........:Unité Bras Droit:....:....:009(C|D):0000:0000:0000:/,
+      regexJa: / 1B:........:ライトアームユニット:....:....:009(C|D):0000:0000:0000:/,
       run: function(data, matches) {
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
@@ -447,6 +478,9 @@
     {
       id: 'O12S Archive Peripheral',
       regex: / 1B:........:Right Arm Unit:....:....:009(?:C|D):0000:0000:0000:/,
+      regexDe: / 1B:........:Rechter Arm:....:....:009(?:C|D):0000:0000:0000:/,
+      regexFr: / 1B:........:Unité Bras Droit:....:....:009(?:C|D):0000:0000:0000:/,
+      regexJa: / 1B:........:ライトアームユニット:....:....:009(?:C|D):0000:0000:0000:/,
       condition: function(data) {
         return data.numArms == 3;
       },
