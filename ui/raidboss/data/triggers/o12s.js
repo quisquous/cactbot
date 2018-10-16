@@ -359,6 +359,7 @@
           return;
         if (data.me in data.helloDebuffs)
           return;
+        data.helloDebuffs[data.me] = true;
         return {
           en: 'No Marker',
         };
