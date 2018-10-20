@@ -1,0 +1,186 @@
+# Alexander - The Soul of the Creator (Savage) - A12S / C4S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 10/8/2016
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+hideall "--Reset--"
+#########DPS CAN HIDE THESE
+#hideall "Cleave"
+#hideall "Tank Buster"
+#hideall "Half Gravity"
+
+#########HEALERS CAN HIDE THESE
+
+
+#########TANKS CAN HIDE THESE
+
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Gravitational Anomaly" before 3 speak "voice" "stack"
+#alertall "Tank Buster" before 3 speak "voice" "Tank Buster"
+#alertall "Incinerating Heat" before 5 speak "voice" "stack"
+#alertall "Tethers" before 2 speak "voice" "Tethers"
+#alertall "Holy Bleed" before 5 speak "voice" "AoE"
+#alertall "Lasers" before 5 speak "voice" "Lasers"
+#alertall "Holy Scourge" before 5 speak "voice" "Mega Tank Buster"
+
+##############################################################
+0 "--Reset--" sync /Removing combatant Alexander Prime/ window 870 jump 0
+
+################# Phase 1
+0	"Cleave" sync /uses Divine Spear/ window 8
+7	"Tank Buster"	#Punishing Heat
+11	"Cleave"
+17	"Blazing Scourge" 
+24	"Incinerating Heat"	#stack
+29	"Mega Holy"
+33	"Mega Holy"
+39	"Gravitational Anomaly"	duration 6
+47	"Sacrament"
+47	"Cleave"
+57	"Tank Buster"	#Punishing Heat
+60	"--Boss Untargetable--"	#Time Push
+
+################# Phase 2
+62	"Arrhidaeus Spawn"
+97	""
+98	"Wings Spawn"	#spawns 35s after Arrhidaeus spawn
+107	"Almost Holy"	sync /uses Almost Holy/ window 107,0
+115	"Almost Holy"
+124	"Almost Holy"
+136	""
+137	"Might & Time Spawn"	#spawn 39s after Wings spawn
+148	"Smash"	sync /uses Smash/ window 148,0
+151	"Half Gravity"	#casted by General's Time
+155	"Smash"	#casted by General's Might
+160	"Half Gravity"	#casted by General's Time
+163	"Smash"	#casted by General's Might
+169	"Half Gravity"	#casted by General's Time
+172	"Smash"	#casted by General's Might
+178	"Half Gravity"	#casted by General's Time
+180	"Smash"	#casted by General's Might
+187	"Half Gravity"	#casted by General's Time
+188	"Smash"	#casted by General's Might
+195	"Smash"	#casted by General's Might
+196	"Half Gravity"	#casted by General's Time
+203	"Smash"	#casted by General's Might
+205	"Half Gravity"	#casted by General's Time
+211	"Smash"	#casted by General's Might
+219	"Smash"	#casted by General's Might
+235	"Enrage"
+633	""
+633	""
+633	""
+633	""
+633	""
+633	""
+633	""
+633	""
+633	""
+633	""
+
+################# Phase 3
+634	"Divine Judgment"
+645	"--Boss Targetable--"	#exactly 2 minutes after General's Time spawns
+645	"Chronofoil"	sync /readies Chronofoil/ window 645,0
+658	"Tethers"
+667	"Temporal Stasis"	#Temporal Displacement debuff, freeze time
+675	"Gravitational Anomaly"	duration 6
+684	"Sacrament"
+688	"Mega Holy"
+696	"Cleave"
+702	"Tank Buster"	#Punishing Heat
+706	"Cleave"
+711	"Tethers"
+720	"Temporal Stasis"	#Temporal Displacement debuff, freeze time
+729	"Gravitational Anomaly"	duration 6
+737	"Radiant Sacrament"	#move in
+742	"Mega Holy"
+749	"Cleave"
+755	"Tank Buster"	#Punishing Heat
+760	"Cleave"
+762	"--Boss Untargetable--"	#Time Push
+
+################# Phase 4
+765	"--Boss Targetable--"
+769	"Timegate"	#Healer SE
+790	"Judgment Crystal"
+798	"Incinerating Heat"	#stack
+802	"Crystal Explode"	#face away
+811	"Judgment Crystal"
+819	"Radiant Sacrament"	#move in
+823	"Crystal Explode"	#face away
+832	"Judgment Crystal"
+838	"Tank Buster"	#Punishing Heat
+844	"Crystal Explode"	#face away
+852	"Judgment Crystal"
+856	"Crystal Explode"	#face away
+
+################# Phase 5
+869	"Inception" sync/Alexander Prime uses Inception/ window 869,0
+871	"--Reset--" sync /Removing combatant Alexander Prime/ window 0,1000 jump 0
+869	"--Boss Untargetable--"
+876	"Tetrashatter"	#move away
+877	"--Boss Targetable--"
+877	"Cross Beams"
+884	"Radiant Sacrament"	#move in
+896	"Tank Buster"	#Punishing Heat
+901	"Cleave"
+907	"Gravitational Anomaly"	duration 6
+915	"Incinerating Heat"	#stack
+
+926	"Inception"
+926	"Tethers"
+926	"--Boss Untargetable--"
+933	"Tetrashatter"
+933	"--Boss Targetable--"
+934	"Cross Beams"
+941	"Radiant Sacrament"
+952	"Tank Buster"	#Punishing Heat
+958	"Cleave"
+964	"Gravitational Anomaly"	duration 6
+971	"Incinerating Heat"	#stack
+
+################# Phase 6
+981	"Summon Alexander" sync/casts Summon Alexander/ window 981,0
+990	"Void of Repentance" sync /casts Void of Repentance/ window 990,0
+1013	"Incinerating Heat"	#stack
+1022	"Holy Bleed"	 sync /casts Holy Bleed/ window 1022,0	#AoE, no cast bar
+1029	"Holy Scourge"	#Heal Prey Tank
+1037	"Chastening Heat"
+1043	"Void of Repentance"
+1046	"Lasers"	#hit x6 over 17s
+1056	"Sacrament"
+1057	"Cross Beams"	#Sacrament?
+1066	"Incinerating Heat"	#stack
+1075	"Holy Bleed"	#AoE, no cast bar
+1082	"Mega Holy"
+1091	"Holy Scourge"	#Heal Prey Tank
+1099	"Chastening Heat"
+1105	"Void of Repentance"
+1107	"Lasers"	#hit x6 over 17s
+1117	"Sacrament"
+1118	"Cross Beams"
+1128	"Incinerating Heat"	#stack
+1137	"Holy Bleed"	#AoE, no cast bar
+1144	"Mega Holy"
+1153	"Holy Scourge"
+1161	"Chastening Heat"
+1165	"Void of Repentance"
+1169	"Lasers"

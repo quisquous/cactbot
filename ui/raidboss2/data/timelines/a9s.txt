@@ -1,0 +1,152 @@
+# Alexander - The Eyes of the Creator (Savage) - A9S / C1S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 10/5/2016
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#########DPS CAN HIDE THESE
+#hideall "Scrap"
+#hideall "Stockpile"
+
+#########HEALERS CAN HIDE THESE
+
+#########TANKS CAN HIDE THESE
+
+#########DON'T TOUCH THESE ONES, MEANT TO STAY HIDDEN
+hideall "--Reset--"
+
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Scrapline" before 3 speak "voice" "Behind Boss"
+#alertall "Double Scrapline" before 6 speak "voice" "Go in Purple"
+#alertall "Scrap Burst" before 5 speak "voice" "Line of Sight"
+#alertall "Acid Rain" before 6 speak "voice" "Spread"
+#alertall "Scrap Bomb" before 6 speak "voice" "Stack"
+
+#alertall "Power Generator Spawn" before 3 speak "voice" "Pick Up Generator"
+
+############### Tank-Only Callouts
+#alertall "Scrap" before 3 speak "voice" "Tank Buster"
+#alertall "Bombs Explode" before 4 speak "voice" "Bomb Exploding"
+
+############### Healer-Only Callouts
+#alertall "Scrap" before 3 speak "voice" "Tank Buster"
+
+##############################################################
+0 "--Reset--" sync /The Main Generators is no longer sealed/ window 10000 jump 0
+
+################# Phase 1
+0	"--Start--"	sync /Life Support will be sealed off in 15 seconds/ window 10000
+8	"Stockpile"
+14	"Power Generator Spawn"
+22	"Scrap"
+28	"Scrap Targets Marked"
+38	"Scrap Burst"	#LoS Boss
+47	"Scrap"
+54	"Scrap"
+60	"NE Lava"
+63	"Stockpile"
+71	"Scrapline"	#move rear
+
+################# Phase 2
+77	"Power Generator Spawn"
+85	"Scrap"
+97	"Scrap"
+97	"Acid Rain"	#before 5 spread
+104	"Scrap"
+119	"Scrap Bomb"	#before 5 stack
+123	"SE Lava"
+129	"Stockpile"
+137	"Scrapline"	#move rear
+
+################# Phase 3
+149	"Full-Metal Faust Spawns"
+161	"Scrapline"	#move rear
+162	"NW Lava"
+176	"Acid Rain"
+178	"NE Lava"
+186	"Scrap Targets Marked"
+191	"SW Lava"
+195	"Scrap Burst"
+205	"SE Lava"
+210	"Stockpile"
+
+################# Phase 4
+223	"Power Generator Spawn"
+225	"Alarum Spawn"	sync /Added new combatant Alarum/ window 225,0
+229	"Scrap Targets Marked"
+240	"Scrap Burst"
+249	"Scrap"
+256	"Scrap"
+265	"Scrap Bomb"
+269	"SW Lava"
+276	"Stockpile"
+289	"Double Scrapline"	#before 5 get in purple
+
+################# Phase 5
+294	"Power Generator Spawn"
+296	"Alarum Spawn"
+301	"Scrap"
+308	"Scrap"
+315	"Acid Rain"
+320	"Scrap"
+327	"Scrap"
+331	"Bombs Explode"
+334	"Scrap"
+339	"Acid Rain"
+340	"Lava NW"
+344	"Stockpile"
+355	"Double Scrapline"
+
+################# Phase 6
+361	"Power Generator Spawn"
+362	"Alarum Spawn"
+372	"Scrap Bomb"
+379	"Scrap"
+388	"Scrap Targets Marked"
+397	"Bombs Explode"
+399	"Scrap Burst"
+407	"NE SW Lava"
+413	"Stockpile"
+423	"Double Scrapline"
+
+################# Phase 7
+429	"Power Generator Spawn"
+431	"Alarum Spawn"
+435	"Scrap"
+442	"Scrap"
+450	"Acid Rain"
+454	"Scrap"
+461	"Scrap"
+466	"Bombs Explode"
+469	"Scrap"
+474	"Acid Rain"
+475	"Lava NW"
+479	"Stockpile"
+490	"Double Scrapline"
+
+################# Phase 8
+496	"Power Generator Spawn"
+497	"Alarum Spawn"
+507	"Scrap Bomb"
+514	"Scrap"
+523	"Scrap Targets Marked"
+532	"Bombs Explode"
+534	"Scrap Burst"
+542	"NE SW Lava"
+548	"Stockpile"	#last boss debuff falls off

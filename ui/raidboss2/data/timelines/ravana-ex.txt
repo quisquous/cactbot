@@ -1,0 +1,107 @@
+# Ravana Extreme
+# Script for act_timeline. https://github.com/anoyetta/act_timeline
+# Compiled by Maki Kurisu (Excalibur), Reddit: /u/bunnykun
+
+# Opening Phase
+ 
+0.00 "Encounter Start" sync /Dance to the song of ringing steel/ window 100000
+5.00 "Blinding Blade" sync /Ravana uses Blinding Blade./ window 90
+8.00 "The Seeing" duration 3 # sync /Ravana readies The Seeing/ window 5
+14.00 "Atma-Linga" sync /Ravana uses Atma-Linga./ window 3
+21.00 "Tapasya" # /Ravana uses Tapasya./
+28.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+# Below is loop filler. Script will loop back to Blinding Blade if used again.
+# Should get actual timings of looping this phase, but will then need to adjust timing of the rest of the script.
+31.10 "Blinding Blade"
+31.20 "The Seeing"
+31.30 "Atma-Linga"
+31.40 "Tapasya"
+31.50 "Atma-Linga"
+ 
+# Scorpion Phase (Prelude to Liberation -> Liberation Phase (Ifrit charges))
+ 
+37.00 "Scorpion Avatar" sync /Ravana uses Scorpion Avatar./ window 75
+42.00 "Blades of Carnage and Liberation" # /Ravana uses Blades of Carnage and Liberation./
+43.85 "Prelude to Liberation" duration 16 sync /Ravana starts using Prelude To Liberation on Ravana./ window 3
+# 61.00 "Prelude to Liberation" sync /Ravana uses Prelude to Liberation./ window 3
+82.00 "Blades of Carnage and Liberation" sync /Ravana uses Blades of Carnage and Liberation./ window 3
+82.00 "Blades of Carnage and Liberation"
+82.00 "Blades of Carnage and Liberation"
+82.00 "Blades of Carnage and Liberation"
+82.00 "Blades of Carnage and Liberation"
+84.57 "Liberation" duration 16 sync /Ravana starts using Liberation on Ravana./ window 3
+# 101.00 "Liberation" sync /Ravana uses Liberation./ window 3
+ 
+# Dragonfly Phase (Moon + Ghana)
+ 
+124.00 "Dragonfly Avatar" sync /Ravana uses Dragonfly Avatar./ window 20
+# 126.27 "Warlord Shell" duration 1.73 sync /Ravana starts using Warlord Shell on Ravana./
+128.00 "Warlord Shell" sync /Ravana uses Warlord Shell./ window 3
+131.00 "The Seeing" duration 3 sync /Ravana readies The Seeing/ window 3
+139.00 "The Seeing" duration 3 # sync /Ravana readies The Seeing/
+154.00 "Tapasya" sync /Ravana uses Tapasya./ window 5
+162.00 "Atma-Linga" # sync /Ravana uses Atma-Linga./ window 1
+165.00 "Blinding Blade" # /Ravana uses Blinding Blade./
+168.00 "The Seeing" # duration 3 sync /Ravana readies The Seeing/ window 3
+174.00 "Atma-Linga" # sync /Ravana uses Atma-Linga./ window 1
+179.00 "Tapasya" sync /Ravana uses Tapasya./ window 5
+187.00 "Atma-Linga" # sync /Ravana uses Atma-Linga./ window 1
+190.00 "Blinding Blade" # sync /Ravana uses Blinding Blade./ window 1
+193.00 "Atma-Linga" # sync /Ravana uses Atma-Linga./ window 1
+196.00 "Tapasya" sync /Ravana uses Tapasya./ window 5
+205.00 "Blinding Blade" # sync /Ravana uses Blinding Blade./ window 1
+207.00 "The Seeing" duration 3 # sync /Ravana readies The Seeing/ window 3
+214.00 "Atma-Linga" # sync /Ravana uses Atma-Linga./ window 3
+217.00 "Atma-Linga" # sync /Ravana uses Atma-Linga./ window 3
+221.17 "Bloody Fuller" duration 5 sync /Ravana starts using Bloody Fuller on Ravana./ window 10
+ 
+# Beetle Phase (Single Prey -> Orbs)
+ 
+247.00 "Beetle Avatar" sync /Ravana uses Beetle Avatar./ window 20
+248.16 "Pillars of Heaven" duration 3 sync /Ravana starts using Pillars Of Heaven on Ravana./ window 5
+# 251.00 "Pillars of Heaven" sync /Ravana uses Pillars of Heaven./ window 2
+260.00 "Laughing Rose" sync /Ravana uses Laughing Rose./ window 5
+275.00 "Surpanakha 1/4" sync /Ravana uses Surpanakha./ window 1.5
+277.00 "Surpanakha 2/4" # /Ravana uses Surpanakha./
+279.00 "Surpanakha 3/4" # sync /Ravana uses Surpanakha./ window 1
+281.00 "Surpanakha 4/4" # /Ravana uses Surpanakha./
+283.00 "Orbs" # /Ravana uses The Rose of Conviction./
+# 287.39 "Rose of Hate" duration 3.61 sync /Ravana starts using The Rose Of Hate on Ravana./
+295.00 "Surpanakha 1/5" sync /Ravana uses Surpanakha./ window 1.5
+297.00 "Surpanakha 2/5" # /Ravana uses Surpanakha./
+299.00 "Surpanakha 3/5" # sync /Ravana uses Surpanakha./ window 1
+301.00 "Surpanakha 4/5" # /Ravana uses Surpanakha./
+303.00 "Surpanakha 5/5" # /Ravana uses Surpanakha./
+ 
+# Scorpion Phase (Sword Charges)
+ 
+308.00 "Scorpion Avatar" sync /Ravana uses Scorpion Avatar./ window 10
+313.00 "Blades of Carnage and Liberation" # sync /Ravana uses Blades of Carnage and Liberation./ window 5
+314.91 "Swift Liberation" duration 17 sync /Ravana starts using Swift Liberation on Ravana./ window 5
+356.00 "Blades of Carnage and Liberation" sync /Ravana uses Blades of Carnage and Liberation./ window 5
+358.77 "1st Double Prey" duration 17 sync /Ravana starts using Final Liberation on Ravana./ window 5
+384.00 "2nd Double Prey"
+390.00 "Outer AOE" sync /Ravana uses Final Liberation./ window 3
+396.00 "Inner AOE" # /Ravana uses Final Liberation./
+ 
+# Dragonfly Phase
+ 
+405.00 "Dragonfly Avatar" sync /Ravana uses Dragonfly Avatar./ window 200
+# 406.35 "Warlord Shell" duration 2.65 sync /Ravana starts using Warlord Shell on Ravana./
+409.00 "Warlord Shell" sync /Ravana uses Warlord Shell./ window 5
+411.00 "The Seeing" duration 3 sync /Ravana readies The Seeing/ window 10
+417.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+418.00 "The Seeing" duration 3 sync /Ravana readies The Seeing/
+430.00 "Blinding Blade" sync /Ravana uses Blinding Blade./ window 5
+433.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+435.00 "Tapasya" sync /Ravana uses Tapasya./ window 5
+442.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+445.00 "Blinding Blade" # /Ravana uses Blinding Blade./
+448.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+450.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+452.00 "Tapasya" sync /Ravana uses Tapasya./ window 5
+458.00 "Blinding Blade" # /Ravana uses Blinding Blade./
+461.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+470.00 "Blinding Blade" # /Ravana uses Blinding Blade./
+473.00 "Atma-Linga" # /Ravana uses Atma-Linga./
+475.00 "Tapasya" sync /Ravana uses Tapasya./ window 5

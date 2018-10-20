@@ -1,0 +1,215 @@
+# Alexander - The Heart of the Creator (Savage) - A11S / C3S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 11/1/2016 v2
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+hideall "--Reset--"
+#########DPS CAN HIDE THESE
+#hideall "Photon"
+#hideall "Photon OT"
+#hideall "Photon DPS"
+#hideall "Photon Healer"
+#hideall "Laser X Sword"
+
+#########HEALERS CAN HIDE THESE
+#hideall "Destroy Armor"
+
+#########TANKS CAN HIDE THESE
+#hideall "Destroy Armor"
+
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Destroy Armor" before 2 speak "voice" "Destroy Armor"
+#alertall "Destroy Shield" before 2 speak "voice" "Destroy Shield"
+#alertall "Open Duct" before 2 speak "voice" "Open Duct"
+#alertall "GA-100" before 2 speak "voice" "Away from Marker"
+#alertall "E.D.D. Spawns" before 2 speak "voice" "Kill Ed Boy"
+#alertall "Propeller Wind" before 7 speak "voice" "Hide from Boss"
+#alertall "Plasmasphere 1" before 0 speak "voice" "Sphere South"
+#alertall "Plasmasphere 2 3" before 0 speak "voice" "Spheres Northeast Northwest"
+#alertall "Plasmasphere 4 5" before 0 speak "voice" "Spheres Southeast Southwest"
+#alertall "Markers" before 2 speak "voice" "Memorize Number"
+#alertall "Enrage" before 10 speak "voice" "Enrage"
+
+############### Tank-Only Callouts
+#alertall "Laser X Sword" before 3 speak "voice" "Tanks Stack Front"
+#alertall "Spin Crusher" before 3 speak "voice" "Move Rear"
+
+############### Healer-Only Callouts
+#alertall "Laser X Sword" before 3 speak "voice" "Heal Both Tanks"
+#alertall "Photon OT" before 3 speak "voice" "Heal Off Tank"
+#alertall "Photon DPS" before 3 speak "voice" "Heal DPS"
+#alertall "Photon Healer" before 3 speak "voice" "Heal Healer"
+#alertall "Enrage" before 22 speak "voice" "Go Cleric Stance"
+
+##############################################################
+0 "--Reset--" sync /The Main Generators is no longer sealed/ window 10000 jump 0
+
+################# Phase 1
+0 "--Start--" sync /The Main Generators will be sealed off in 15 seconds/ window 10000
+8 "Laser Sword"
+17 "Optical Sight"
+28 ""
+28 ""
+28 ""
+28 ""
+28 ""
+28 ""
+28 ""
+28 ""
+28 ""
+28 ""
+
+################# Phase 2; Push at 93%
+29 "E.D.D. Spawns" sync /Added new combatant E.D.D./ window 60
+36 "Laser Sword"
+39 "Destroy Armor"
+45 "Spin Crusher"
+63 "Whirlwind" #skippable
+272 ""
+272 ""
+272 ""
+272 ""
+272 ""
+272 ""
+272 ""
+272 ""
+272 ""
+272 ""
+
+################# Phase 3; Push at 86%
+273 "Optical Sight" sync /Cruise Chaser uses Optical Sight/ window 244,0
+288 "Optical Sight"
+302 "Optical Sight"
+320 "Whirlwind" 
+328 "Laser Sword"
+
+################# Phase 3
+337 "Limit Cut" sync /uses Limit Cut/ window 341,0
+342 "Markers"
+353 "Cleave"
+354 "Super Blassty Charge"
+356 "Cleave"
+357 "Super Blassty Charge"
+359 "Cleave"
+360 "Super Blassty Charge"
+363 "Cleave"
+364 "Super Blassty Charge"
+366 "Boss Targetable"
+375 "Photon"
+382 "Whirlwind"
+390 "Laser Sword"
+396 "Knockback"
+398 "Open Duct"
+425 "--Boss Targetable--"
+
+################# Phase 4
+524 "Limit Cut" sync /uses Limit Cut/ window 100,0
+531 "Lapis Lazuli Spawn" sync /Added new combatant Lapis Lazuli/ window 531,0
+534 "Plasmasphere 1" #always on OT
+537 "Whirlwind"
+546 "Clasters Spawn"
+552 "Plasmasphere 2 3"
+553 "Claster Lasers"
+562 "Laser X Sword"
+569 "Claster Lasers"
+572 "Plasmasphere 4 5"
+580 "Laser Sword"
+589 ""
+589 ""
+589 ""
+589 ""
+589 ""
+589 ""
+589 ""
+589 ""
+589 ""
+589 ""
+
+################# Phase 5
+588 "Eternal Darkness" duration 8 sync /Cruise Chaser readies Eternal Darkness/ window 600,0
+605 "Laser Sword"
+613 "Whirlwind"
+622 "Spin Crusher"
+629 "Optical Sight"
+644 "Limit Cut"
+650 "Destroy Shield"
+
+701 "Blassty Charge" duration 4 sync /Cruise Chaser readies Blassty Charge/ window 51,0
+711 "Photon OT" sync/Cruise Chaser uses Photon/ window 150,0
+718 "Laser X Sword"
+730 "E.D.D. Spawns"
+731 "Photon DPS"
+736 "Destroy Armor"
+739 "Whirlwind"
+750 "Laser Sword"
+756 "Photon Healer"
+764 "Whirlwind" #skippable
+
+################# Phase 6; Push at 46%?
+807 "Knockback" sync /Cruise Chaser uses Blastoff/ window 105,0
+811 "Open Duct"
+837 "--Boss Targetable--"
+855 "GA-100"	#Away from marker
+863 "Optical Sight"
+878 "Optical Sight"
+891 "Whirlwind"
+900 "Whirlwind"
+910 "Laser X Sword"
+917 "Optical Sight"
+930 "Clasters Spawn"
+933 "Photon"#911
+938 "Claster Lasers"
+940 "Whirlwind"
+945 "Claster Lasers"
+952 "Claster Lasers"
+956 "Propeller Wind"	#LoS Boss
+
+################# Phase 7
+961 "Limit Cut"
+966 "Markers"
+977 "Cleave"
+978 "Super Blassty Charge"
+980 "Cleave"
+981 "Super Blassty Charge"
+983 "Cleave"
+984 "Super Blassty Charge"
+986 "Cleave"
+987 "Super Blassty Charge"
+
+################# Phase 8
+988 "Boss Targetable"
+998 "Laser X Sword"
+1005 "E.D.D. Spawns"
+1010 "Destroy Armor"
+1011 "Photon DPS"
+1020 "Laser Sword"
+1027 "Photon Healer"
+1035 "Whirlwind"
+
+################# Phase 9
+1040 "Limit Cut"
+1046 "Destroy Shield"
+
+1100 "Blassty Charge" duration 4 sync /readies Blassty Charge/ window 60,0
+1114 "Laser Sword"
+1124 "Whirlwind"
+1131 "Spin Crusher"
+1140 "Laser X Sword"
+1165 "Enrage"

@@ -1,0 +1,338 @@
+# Alexander - Burden of the Son (Savage) - A8S / M4S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 6/28/2016
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#########DPS CAN HIDE THESE
+hideall "Seed of the Sky"
+hideall "Hydrothermal"
+hideall "Execution"
+hideall "Perpetual Ray"
+hideall "Aux Power (Brawler)"
+hideall "Aux Power (Swindler)"
+hideall "Flarethrower"
+hideall "Double Rocket Punch"
+hideall "Long Needle"
+hideall "Super Jump"
+hideall "Missile Command"
+hideall "Flarethrower"
+hideall "Apocalyptic Ray"
+hideall "100-megatonze Shock"
+hideall "Mines"
+hideall "Justice"
+hideall "Final Punch"
+hideall "Final Apocalypse"
+hideall "J Wave"
+hideall "--Reset--"
+
+#########HEALERS CAN HIDE THESE
+#hideall "Seed of the Sky"
+#hideall "Execution"
+#hideall "Aux Power (Brawler)"
+#hideall "Aux Power (Swindler)"
+#hideall "Super Jump"
+#hideall "Missile Command"
+
+#########TANKS CAN HIDE THESE
+#hideall "Seed of the Sky"
+#hideall "Execution"
+#hideall "Missile Command"
+#hideall "100-megatonze Shock"
+#hideall "Justice"
+#hideall "J Wave"
+
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+alertall "Mega Beam" before 3 speak "voice" "Beam"
+alertall "Final Beam" before 3 speak "voice" "Beam"
+alertall "Hydrothermal" before 3 speak "voice" "Hydrothermal"
+alertall "Perpetual Ray" before 4 speak "voice" "Perpetual Ray"
+alertall "Legislation" before 1 speak "voice" "Check Your Debuff"
+alertall "Git Gud" before 0 speak "voice" "Git Gud"
+
+alertall "Height" before 0 speak "voice" "Height"
+alertall "Attachment" before 1 speak "voice" "Attachment"
+alertall "Mind Blast" before 3 speak "voice" "Mind Blast"
+alertall "Swindler Spawn" before 2 speak "voice" "Swindler"
+alertall "Vortexer Spawn" before 2 speak "voice" "Vortexer"
+
+alertall "Puddles" before 6 speak "voice" "Stack"
+alertall "Super Jump" before 6 speak "voice" "Super Jump"
+alertall "Missile Command" before 6 speak "voice" "Shield"
+alertall "Flarethrower" before 4 speak "voice" "Flarethrower"
+alertall "Double Rocket Punch" before 4 speak "voice" "Punch"
+alertall "Final Punch" before 4 speak "voice" "Punch"
+alertall "Apocalyptic Ray" before 3 speak "voice" "Apocalyptic"
+alertall "Final Apocalypse" before 3 speak "voice" "Apocalypse"
+
+alertall "J Kick" before 5 speak "voice" "Stack"
+alertall "Double Buster" before 5 speak "voice" "Stack"
+alertall "Double Drills" before 5 speak "voice" "Double Drill"
+alertall "Chakrams Spawn" before 1 speak "voice" "Chawkrums"
+alertall "Mirages Land" before 6 speak "voice" "Spread Out"
+
+alertall "Enumeration" before 5 speak "voice" "Enumeration"
+alertall "Verdict" before 1 speak "voice" "Check Debuff"
+alertall "Gavel" before 1 speak "voice" "Get Last Orb"
+
+alertall "J Storm" before 5 speak "voice" "Burn Baby Burn"
+
+##############################################################
+0 "--Reset--" sync /Removing combatant Onslaughter/ window 300 jump 0
+
+################# Phase 1
+0 "--Start--" sync /Onslaughter uses Hydrothermal Missile/ window 12
+5 "Seed of the Sky"
+11 "Mega Beam"
+16 "Hydrothermal"
+21 "Execution"
+24 "Regulators Spawn"
+25 "Hydrothermal"
+28 "Seed of the Sky"
+34 "Mega Beam"
+40 "Perpetual Ray"
+48 "Hydrothermal"
+55 "Mega Beam"
+61 "Hydrothermal"
+65 "Legislation"
+73 "Balls Spawn"
+75 "Hydrothermal"
+80 "Seed of the Sky"
+86 "Mega Beam"
+89 "Hydrothermal"
+94 "Perpetual Ray"
+100 "Hydrothermal"
+105 "Boss Should be Dead"
+110 "Git Gud"
+200 ""
+200 ""
+200 ""
+200 ""
+200 ""
+200 ""
+200 ""
+200 ""
+200 ""
+200 ""
+
+
+################# Phase 2
+300 "Phase 2" sync /Added new combatant Blaster/ window 300,0
+301 "--Reset--" sync /Removing combatant Brawler/ window 2,50 jump 0
+302 "--Reset--" sync /Removing combatant Vortexer/ window 0,300 jump 0
+311 "Aux Power (Brawler)"
+315 "Attachment" #Brawler
+321 "Swindler Spawn"
+325 "Aux Power (Brawler)"
+341 "Aux Power (Brawler)"
+344 "Height" #Swindler
+345 "Attachment" #Brawler
+345 "Vortexer Spawn"
+355 "Aux Power (Brawler)"
+376 "Height" #Swindler
+408 "Height" #Swindler
+440 "Height" #Swindler
+499 ""
+499 ""
+499 ""
+499 ""
+499 ""
+499 ""
+499 ""
+499 ""
+499 ""
+499 ""
+
+500 "Bio-arithmeticks" sync /Swindler readies Bio-arithmeticks/ window 200,20
+504 "Aux Power (Swindler)"
+521 "Height + Enumeration"
+528 "Aux Power (Swindler)"
+534 "Aux Power (Swindler)"
+599 ""
+599 ""
+599 ""
+599 ""
+599 ""
+599 ""
+599 ""
+599 ""
+599 ""
+599 ""
+
+
+################# Phase 3
+600 "Transform"
+613 "Flarethrower" sync /Brute Justice uses Flarethrower/ window 1000,0
+614 "--Reset--" sync /Removing combatant Brute Justice/ window 0,74 jump 0
+618 "Double Rocket Punch"
+623 "Missile Command"
+625 "Puddles"
+627 "Flarethrower"
+630 "Long Needle"
+633 "Mega Beam"
+638 "Super Jump"
+644 "Apocalyptic Ray"
+653 "Flarethrower"
+659 "Double Rocket Punch"
+661 "Flarethrower"
+665 "Missile Command"
+667 "Puddles"
+669 "Flarethrower"
+671 "Long Needle"
+674 "Mega Beam"
+679 "Super Jump"
+683 "--Untargetable--"
+
+
+################# Phase 4
+
+686 "J Kick" sync /Brute Justice uses J Kick/ window 686,0
+695 "100-megatonze Shock"
+698 "Chakrams Spawn"
+704 "Double Buster"
+708 "Mega Beam"
+715 "Ballistic Missile Telegraph"
+717 "Ice Missiles"
+717 "Height"
+718 "Ballistic Missiles Hit"
+721 "Mega Beam"
+723 "Single Buster"
+##### Just here for appearences
+736 "Flarethrower"
+742 "--Reset--" sync /(.*)/ window 0,5 jump 0
+743 "Double Rocket Punch"
+747 "Missile Command"
+749 "Puddles"
+751 "Flarethrower"
+752 "Long Needle"
+756 "Mega Beam"
+761 "Super Jump"
+767 "Apocalyptic Ray"
+
+
+################# Phase 5 (exactly the same as Phase 3)
+
+800 "Flarethrower" sync /Brute Justice uses Flarethrower/ window 100,0
+801 "--Reset--" sync /Removing combatant Brute Justice/ window 0,300 jump 0
+807 "Double Rocket Punch"
+811 "Missile Command"
+813 "Puddles"
+815 "Flarethrower"
+816 "Long Needle"
+820 "Mega Beam"
+825 "Super Jump"
+831 "Apocalyptic Ray"
+840 "Flarethrower"
+847 "Double Rocket Punch"
+851 "Missile Command"
+853 "Puddles"
+855 "Flarethrower"
+856 "Long Needle"
+860 "Mega Beam"
+865 "Super Jump" #End at 1HP
+900 ""
+900 ""
+900 ""
+900 ""
+900 ""
+900 ""
+900 ""
+900 ""
+900 ""
+900 ""
+
+
+################# Phase 6
+1000 "J Kick"
+1009 "100-megatonze Shock"
+1014 "Mines" sync /Hidden Minefield/ window 1014,5 #might not work
+1015 "Double Drills"
+1018 "Chakrams Spawn"
+1018 "Mega Beam"
+1024 "Mirages Land" #TTS: Spread Out
+1026 "Single Drill"
+1028 "Mega Beam"
+1037 "Enumeration" sync /(.*)/ window 1 jump 0
+
+
+################# Phase 7
+1053 "Justice" sync /Brute Justice uses Justice/ window 2000,5
+1054 "--Reset--" sync /Removing combatant Brute Justice/ window 0,70 jump 0
+1060 "Verdict"
+1092 "Gavel"
+1101 "--Untargetable--"
+##### Just here for appearences
+1106 "J Kick"
+1110 "Link-up"
+1123 "Final Punch"
+1124 "Final Apocalypse"
+1130 "Final Beam"
+1134 "Missile Command"
+1134 "Hidden Mine"
+1138 "Flarethrower"
+1139 "Puddles"
+
+
+################# Phase 8
+1200 "J Kick"
+1204 "Link-up" sync /uses Link-up/ window 5000
+1206 "--Reset--" sync /Removing combatant Brute Justice/ window 0,200 jump 0
+1217 "Final Punch"
+1218 "Final Apocalypse"
+1224 "Final Beam"
+1228 "Missile Command"
+1228 "Hidden Mine Spawn"
+1230 "Puddles"
+1233 "Flarethrower"
+1234 "Long Needle"
+1235 "Chakrams Spawn"
+1247 "Crashing Wave"
+1247 "Enumeration"
+1251 "Mega Beam"
+1257 "Super Jump"
+1264 "Flarethrower"
+1270 "Missile Command"
+1276 "Final Punch"
+1277 "Final Apocalypse"
+1284 "Final Beam"
+1290 "--Untargetable--"
+
+
+################# Phase 9
+1294 "J Storm" sync /uses J Storm/ window 10000
+1300 "J Wave"
+1305 "J Wave"
+1310 "J Wave"
+1315 "J Wave"
+1320 "J Wave"
+1325 "J Wave"
+1330 "J Wave"
+1335 "J Wave"
+1340 "J Wave"
+1345 "J Wave"
+1350 "J Wave"
+1355 "J Wave"
+1360 "J Wave"
+1365 "J Wave"
+1370 "J Wave"
+1375 "J Wave"
+1380 "J Wave"
+1385 "J Wave"
+1390 "J Wave"
+1395 "J Wave"

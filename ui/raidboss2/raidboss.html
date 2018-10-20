@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="../../resources/defaults.css">
+  <link rel="stylesheet" href="../../resources/resize_handle.css">
+  <script src="../../resources/regexes.js"></script>
+  <script src="../../resources/resize_handle.js"></script>
+  <script src="../../resources/timerbar.js"></script>
+  <script src="../../resources/widgetlist.js"></script>
+  <script src="../../resources/user_config.js"></script>
+  <script src="../../resources/lang.js"></script>
+  <script src="../../resources/lang/en.js"></script>
+  <script src="../../resources/lang/de.js"></script>
+  <script src="../../resources/lang/fr.js"></script>
+  <script src="../../resources/lang/ja.js"></script>
+  <script src="../../resources/lang/ko.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="raidboss.css">
+  <script src="timeline.js"></script>
+  <script src="popup-text.js"></script>
+  <script src="raidboss.js"></script>
+</head>
+<body>
+<div id="container" class="hide"></div>
+  <div id="timeline-container">
+    <div id="timeline-resize-helper" class="resize-helper"></div>
+    <div id="timeline-debug"></div>
+    <widget-list id="timeline"></widget-list>
+  </div>
+
+  <div id="popup-text-container">
+    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>Info text</div><div>Info text 2</div></span></div>
+    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>Alert text</div><div>Alert text 2</div></span></div>
+    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>Alarm text</div><div>Alarm text 2</div></span></div>
+  </div>
+</body>
+
+<script>
+  function hide(h) {
+    var hideWhenInactive = false;
+    if (h && hideWhenInactive)
+      document.getElementById("container").style.display = "none";
+    else
+      document.getElementById("container").style.display = "block";
+  }
+  document.addEventListener("onGameActiveChangedEvent", function(e) {
+      hide(!e.detail.active);
+  });
+  hide(true);
+</script>
+</html>

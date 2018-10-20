@@ -1,0 +1,152 @@
+# Alexander - The Arm of the Father (Savage) - A3S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+0 "--Stop--" sync /Condensate Demineralizer #9 is no longer sealed/ window 10000 jump 0
+
+# Phase 1 - Living Liquid (man) - First Protean Wave
+0 "--Phase 1--" sync /Condensate Demineralizer #9 will be sealed off in/ window 10000
+7 "Fluid Swing"
+12 "Protean Wave 1" duration 3
+17 "Protean Wave 2"
+22 "Fluid Swing"
+25 "Splash x3"
+32 "Fluid Swing"
+45 "Sluice"
+50 "Splash x3"
+55 "Fluid Swing"
+
+# Phase 2 - Living Liquid & Liquid Limb (hands)
+65 "Phase 2" sync /Living Liquid loses the effect of Invincibility/ window 10
+70 "Fluid Strike"
+77 "Wash Away"
+78 "Digititis" duration 7
+90 "Fluid Strike"
+100 "Fluid Strike"
+108 "Wash Away"
+117 "Fluid Swing"
+118 "Hands together" duration 5
+130 "Digititis" duration 7
+137 "Equal Concentration"
+137 "DPS BURN" duration 25
+140 "Fluid Strike"
+149 "Fluid Strike"
+157 "Fluid Strike"
+163 "Hand of Pain"
+170 "Hands apart" duration 5
+180 "Fluid Swing"
+
+# Phase 3 - Piston Lubricant & Gear Lubricant (slimes)
+182 "Phase 3" sync /Living Liquid gains the effect of Invincibility/ window 10
+203 "Drainage Tethers" duration 7
+225 "Ferrofluid" duration 5
+233 "Drainage Tethers" duration 7
+248 "Ferrofluid" duration 5
+
+# Phase 4 Loop 1 - Living Liquid
+287 "Phase 4 Loop 1" sync /Living Liquid loses the effect of Invincibility/ window 10
+298 "Cascade"
+301 "Ferrofluid" duration 5
+313 "Splash x3"
+318 "Fluid Swing"
+329 "Sluice"
+329 "Protean Wave 1" duration 3
+334 "Protean Wave 2"
+338 "Fluid Swing"
+347 "Splash x3"
+350 "Fluid Swing"
+358 "Digititis" duration 7
+359 "Sluice"
+368 "Fluid Swing"
+
+# Phase 5 Loop 1 - Liquid Gaol & Living Liquid
+370 "Phase 5 Loop 1" sync /Living Liquid begins casting Cascade/ window 10
+374 "Cascade"
+389 "Liquid Gaol"
+389 "Splash x3"
+394 "Fluid Swing"
+404 "Fluid Swing"
+406 "Splash x3"
+415 "Digititis" duration 7
+426 "Fluid Swing"
+430 "Splash x6" duration 6
+439 "Fluid Swing"
+
+# Phase 6 Loop 1 - Liquid Rage/Embolus
+440 "Phase 6 Loop 1" sync /Living Liquid begins casting Cascade/ window 10
+445 "Cascade"
+454 "Fluid Swing"
+456 "Protean Wave" duration 3
+456 "Drainage Tether" duration 7
+457 "Throttle 1"
+460 "Throttle 2"
+461 "Ferrofluid" duration 5
+462 "Protean Wave" duration 3
+475 "Fluid Swing"
+481 "Throttle 1"
+484 "Throttle 2"
+485 "Embolus (Bubble)"
+493 "Fluid Swing"
+496 "Protean Wave" duration 3
+496 "Drainage Tether" duration 7
+505 "Sluice"
+505 "Embolus (Bubble)"
+505 "Protean Wave" duration 3
+513 "Fluid Swing"
+
+# Phase 4 Loop 2 - Living Liquid
+516 "Phase 4 Loop 2" sync /Living Liquid begins casting Cascade/ window 10
+521 "Cascade"
+524 "Ferrofluid" duration 5
+535 "Splash x3"
+541 "Fluid Swing"
+550 "Sluice"
+550 "Protean Wave 1" duration 3
+555 "Protean Wave 2"
+560 "Fluid Swing"
+566 "Splash x3"
+572 "Fluid Swing"
+580 "Digititis" duration 7
+582 "Sluice"
+590 "Fluid Swing"
+
+# Phase 5 Loop 2 - Liquid Gaol & Living Liquid
+592 "Phase 5 Loop 2" sync /Living Liquid begins casting Cascade/ window 10
+597 "Cascade"
+611 "Liquid Gaol"
+611 "Splash x3"
+617 "Fluid Swing"
+625 "Fluid Swing"
+629 "Splash x3"
+637 "Digititis" duration 7
+649 "Fluid Swing"
+652 "Splash x6" duration 6
+662 "Fluid Swing"
+
+# Phase 6 Loop 2 - Liquid Rage/Embolus
+663 "Phase 6 Loop 2" sync /Living Liquid begins casting Cascade/ window 10
+668 "Cascade"
+679 "Fluid Swing"
+680 "Protean Wave" duration 3
+680 "Drainage Tether" duration 7
+681 "Throttle 1"
+684 "Throttle 2"
+685 "Ferrofluid" duration 5
+686 "Protean Wave" duration 3
+700 "Fluid Swing"
+705 "Throttle 1"
+708 "Throttle 2"
+709 "Embolus (Bubble)"
+717 "Fluid Swing"
+720 "Protean Wave" duration 3
+720 "Drainage Tether" duration 7
+729 "Sluice"
+729 "Embolus (Bubble)"
+729 "Protean Wave" duration 3
+737 "Fluid Swing"
+
+# Phase 4 Loop 3 - Living Liquid
+740 "Phase 4 Loop 3" sync /Living Liquid begins casting Cascade/ window 10
+745 "Cascade"
+748 "Ferrofluid" duration 5
+768 "Enrage"

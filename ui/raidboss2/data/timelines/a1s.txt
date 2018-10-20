@@ -1,0 +1,114 @@
+# Alexander - The Fist of the Father (Savage) - A1S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+######Windows 8 & 10 Sound Triggers#######
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#alertall "Hydrothermal" before 3 speak "voice" "hydrothermal"
+#alertall "Resin Bomb" before 3 speak "voice"  "resin"
+#alertall "Adds" before 3 speak "voice"  "adds spawning"
+#alertall "Hypercompressed Plasma" before 3 speak "voice"  "tank buster"
+#alertall "Liftoff" before 7 speak "voice"  "jump in six"
+
+######Windows 7 Sound Triggers#######
+#define speaker "voice" "Microsoft Anna" 0 100
+
+#alertall "Hydrothermal" before 3 speak "voice" "hydrothermal"
+#alertall "Resin Bomb" before 3 speak "voice" "resin"
+#alertall "Adds" before 3 speak "voice" "adds spawning"
+#alertall "Hypercompressed Plasma" before 3 speak "voice" "tank buster"
+#alertall "Liftoff" before 7 speak "voice" "jump in six"
+
+0 "--Stop--" sync /Hangar 8 is no longer sealed/ window 10000 jump 0
+
+# Phase 1 
+0 "--Phase 1--" sync /Hangar 8 will be sealed off in 15 seconds/ window 100000
+7 "Royal Fount"
+11 "Gunnery Pod"
+19 "Gunnery Pod"
+19 "Hydrothermal"
+20 "Photon Spaser" duration 3
+28 "Royal Fount"
+37 "Resin Bomb" duration 3
+39 "Royal Fount"
+40 "Photon Spaser" duration 3
+46 "Gunnery Pod"
+49 "Royal Fount"
+54 "Adds"
+63 "Hydrothermal"
+63 "Gunnery Pod"
+66 "Royal Fount"
+70 "Gunnery Pod"
+72 "Photon Spaser" duration 3
+77 "Gunnery Pod"
+79 "Gunnery Pod"
+84 "Royal Fount"
+85 "Distress Beacon"
+ 
+# Phase 2 - Oppressor 0.5
+87 "--Phase 2--" sync /Added new combatant Oppressor 0.5/ window 10
+110 "Lasers"
+112 "Gunnery Pod"
+117 "Adds"
+126 "Resin Bomb" duration 3
+128 "Royal Fount"
+129 "Photon Spaser" duration 3
+136 "Gunnery Pod"
+145 "Hydrothermal"
+147 "Royal Fount"
+154 "Hypercompressed Plasma"
+162 "Photon Spaser" duration 3
+173 "Gunnery Pod"
+183 "Royal Fount"
+188 "Liftoff"
+200 "Resin Bomb x8" duration 8
+
+
+# Post-First Jump
+211 "Quick Landing" sync /uses Quick Landing/ window 10
+230 "Lasers"
+233 "Gunnery Pod"
+238 "Adds"
+246 "Resin Bomb" duration 3
+248 "Royal Fount"
+250 "Photon Spaser" duration 3
+257 "Gunnery Pod"
+266 "Hydrothermal"
+268 "Royal Fount"
+275 "Hypercompressed Plasma"
+283 "Photon Spaser" duration 3
+294 "Gunnery Pod"
+303 "Royal Fount"
+309 "Liftoff"
+321 "Resin Bomb x8" duration 8
+ 
+# Post-Second Jump
+332 "Quick Landing" sync /uses Quick Landing/ window 10
+351 "Lasers"
+353 "Gunnery Pod"
+359 "Adds"
+366 "Resin Bomb" duration 3
+369 "Royal Fount"
+371 "Photon Spaser" duration 3
+378 "Gunnery Pod"
+387 "Hydrothermal"
+390 "Royal Fount"
+396 "Hypercompressed Plasma"
+405 "Photon Spaser" duration 3
+415 "Gunnery Pod"
+424 "Royal Fount"
+430 "Liftoff"
+442 "Resin Bomb x8" duration 8
+ 
+# Post-Third Jump
+453 "Quick Landing" sync /uses Quick Landing/ window 10 
+472 "Lasers"
+475 "Gunnery Pod"
+480 "Adds"
+487 "Resin Bomb" duration 3
+490 "Royal Fount"
+492 "Photon Spaser"
+507 "Hydrothermal"
+510 "Enrage" duration 10

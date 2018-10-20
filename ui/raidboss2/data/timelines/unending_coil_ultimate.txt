@@ -1,0 +1,239 @@
+# Unending Coil of Bahamut (Ultimate)
+# http://clees.me/guides/ucob/
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /:Removing combatant Bahamut Prime\.  Max HP: 13751450/ window 10000 jump 0
+
+##### TWINTANIA #####
+### Twintania P1: 100% -> 75%
+0.0 "Start" sync /:Engage!/ window 0,1
+7.0 "--sync--" sync /:Twintania:26A8:/ window 12,12 # plummet cast
+8.0 "Plummet" # damage
+11.0 "Twister" # start of cast bar
+17.5 "Fireball" # damage, 6.5s after marker
+24.0 "Death Sentence" # end of cast bar
+28.5 "Plummet" # damage
+30.5 "Twister" # start of cast bar
+37.0 "Fireball" # damage, 6.5s after marker
+40.0 "--push--"
+# TODO: Make this loop back to 24?
+# 43.5 "You're Slow Death Sentence"
+
+### Twintania P2: 75% -> 45%
+48.5 "Liquid Hell x5" duration 5
+53.0 "Generate" sync /14:26AE:Twintania/ window 30,15 # start of cast bar
+60.0 "Liquid Hell x5" duration 5
+70.5 "Death Sentence" # end of cast bar
+74.5 "Generate" # start of cast bar
+79.0 "Twister" # start of cast bar
+88.0 "Plummet" # damage
+93.0 "Liquid Hell x5" duration 5
+101.0 "--push--"
+# TODO: Make this loop back to 53?
+# 101.5 "You're Slow Generate"
+
+### Twintania P3: 45% -> 0%
+113.0 "Liquid Hell x5" duration 5
+113.5 "Generate x2" sync /14:26AE:Twintania/ window 10,20 # start of cast bar
+121.0 "Targeted Fire x5" duration 4.5
+128.0 "Fireball" # damage
+135.0 "Death Sentence" # end of cast bar
+140.0 "Plummet" # damage
+143.0 "Generate x2" # start of cast bar
+147.2 "Twister" # start of cast bar
+155.5 "Plummet" # damage
+157.5 "Liquid Hell x5" duration 5
+162.5 "Generate x2" # start of cast bar
+170.0 "Targeted Fire x5" duration 4.5
+177.0 "Fireball" # damage
+184.0 "Death Sentence" # end of cast bar
+186.0 "Aetheric Profusion Enrage"
+
+
+##### NAEL #####
+200.0 "Heavensfall" sync /:Ragnarok:26B8:/ window 200,0
+205.5 "Meteor Stream x4" # damage
+209.5 "Meteor Stream x4" # damage
+212.0 "Dalamud Dive" # damage
+214.5 "Bahamut's Claw 1" # first hit
+231.0 "Dynamo + Beam/Chariot" duration 8 # rp text -> ~2nd mechanic
+235.5 "Thunderstruck x2" # explosion
+240.5 "Doom x2" # debuffs
+243.0 "Fireball (1)" # explosion
+243.5 "Wings of Salvation x2" # first puddle
+248.5 "Bahamut's Claw 2" # first hit
+
+258.0 "Fireball (2)" # explosion
+260.0 "Thermionic + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
+261.0 "Thunderstruck x2" # explosion
+268.0 "Wings of Salvation x3" # first puddle
+270.0 "Doom x3" # debuffs
+280.0 "Thunderstruck x2" # explosion
+284.0 "Fireball (3)" # explosion
+288.5 "Bahamut's Claw 3"
+292.5 "Dive + Dynamo/Chariot" duration 8 # rp text -> ~2nd mechanic
+305.5 "Fireball (4)" # explosion
+306.0 "Doom x3" # debuffs
+307.5 "Thunderstruck x2" # explosion
+308.0 "Wings of Salvation x3" # first puddle
+325.0 "Ravensbeak" # end of castbar
+
+330.0 "Marker 1" # symbol appearing, lasts 7 seconds
+334.5 "Marker 2" # symbol appearing
+339.0 "Marker 3" # symbol appearing
+342.0 "Divebomb #1" # puff under dragon for dive
+343.5 "--untargetable--"
+346.0 "Meteor/Dive or Dive/Beam" duration 3 # first mechanic -> second
+346.5 "Divebomb #2"
+351.0 "Divebomb #3"
+
+353.5 "Bahamut's Claw 4" # first hit
+365.0 "Random Combo Attack" duration 8 # rp text -> ~second mechanic
+376.5 "Random Combo Attack" duration 8 # rp text -> ~second mechanic
+392.0 "Ravensbeak" # end of castbar
+395.0 "Bahamut's Claw 5"
+
+408.0 "Megaflare Enrage"
+
+
+##### BAHAMUT #####
+500.0 "Seventh Umbral Era" sync /:Bahamut Prime:26D1:/ window 500,0 # damage
+503.0 "Calamitous Flame" # damage
+508.0 "Calamitous Blaze" # damage
+511.0 "--targetable--"
+517.0 "Flare Breath" # animation
+524.7 "Flatten" # end of castbar
+
+### QUICKMARCH
+528.5 "--sync--" sync /14:26E2:Bahamut Prime/ window 30,10
+532.0 "Quickmarch Trio"
+534.5 "--untargetable--"
+540.5 "Twister Dive" # end of cast
+544.0 "Pepperoni" # appearing
+545.3 "Megaflare" # damage
+549.5 "Stack" # damage
+547.5 "Tempest Wing" duration 7 # tether -> tornado
+552.0 "Earth Shaker x3" # damage
+
+557.5 "Flare Breath" # animation
+565.0 "Flatten" # end of castbar
+
+### BLACKFIRE
+569.8 "--sync--" sync /14:26E3:Bahamut Prime/ window 70,10
+573.2 "Blackfire Trio" # end of castbar
+579.0 "Liquid Hell x5" duration 4.5
+582.0 "Thermionic Beam" # damage
+582.5 "Twister Dive"
+589.0 "Hypernova x4" duration 5
+590.5 "Stack" # damage
+591.5 "Towers" # disappearing
+592.5 "--sync--" sync /14:26D6:Bahamut Prime/ window 100,10
+598.0 "Gigaflare" # end of cast bar
+
+608.0 "Flare Breath 1" # animation
+610.0 "Flare Breath 2" # animation
+612.0 "Flare Breath 3" # animation
+
+### FELLRUIN
+621.0 "--sync--" sync /14:26E4:Bahamut Prime/ window 130,10
+624.5 "Fellruin Trio" # end of cast bar
+629.2 "Dive Dynamo Combo" duration 8 # rp text -> second mechanic
+641.5 "Tempest Wing" # damage
+642.2 "Aetheric Profusion" # damage
+643.5 "--sync--" sync /14:26D6:Bahamut Prime/ window 30,10
+645.5 "Meteor Stream" # damage
+649.0 "Gigaflare" # end of castbar
+
+655.0 "Flare Breath" # animation
+663.8 "Flatten" # end of castbar
+669.5 "Flare Breath" # animation
+
+#### HEAVENSFALL
+673.5 "--sync--" sync /14:26E5:Bahamut Prime/ window 170,10
+677.0 "Heavensfall Trio" # end of castbar
+682.0 "Markers appear"
+686.0 "Twister Dive"
+689.0 "Pepperoni" # appearing
+693.7 "Heavensfall" # damage
+697.2 "Towers"
+700.0 "Hypernova x3" duration 3.5
+708.5 "Fireball Soak"
+707.2 "--sync--" sync /14:26D6:Bahamut Prime/ window 30,10
+712.7 "Gigaflare" # end of castbar
+
+722.5 "Flare Breath 1" # animation
+724.5 "Flare Breath 2"
+726.5 "Flare Breath 3"
+
+### TENSTRIKE
+734.5 "--sync--" sync /14:26E6:Bahamut Prime/ window 200,10
+738 "Tenstrike Trio" # end of cast
+743 "Generate x3" # markers
+747.5 "Meteor Stream (dps)" # first damage
+749 "Generate x3" # markers
+751.5 "Meteor Stream (T/H)" #first damage
+754.5 "Earth Shaker x4" # markers
+760 "Earth Shaker x4" # markers
+767 "--sync--" sync /14:26D6:Bahamut Prime/ window 30,10
+772.5 "Gigaflare" # end of castbar
+
+783.8 "Flatten" # end of castbar
+787.5 "Flare Breath" # animation
+
+### GRAND OCTET
+791.5 "--sync--" sync /14:26E7:Bahamut Prime/ window 200,10
+795.0 "Grand Octet"
+804.0 "Nael Marker"
+809.0 "Nael Dive"
+821.0 "Bahamut Marker"
+830.0 "Twin Marker"
+833.0 "Stack"
+834.5 "Towers"
+834.5 "Twister Dive"
+
+
+##### ADDS PHASE: NAEL + TWIN #####
+# 900 We shall stand guard as you make ready your divine judgment
+904 "--sync--" sync /:Bahamut Prime:26E8:/ window 1000,0
+914 "Plummet/Claw"
+917 "Liquid Hell x5"
+923 "Generate x3" sync /14:26AE:Twintania/ window 30,10
+930 "Twister"
+933 "Triple Nael Quote"
+947 "Twister"
+958 "Megaflare"
+966 "Sentence/Ravensbeak"
+970 "Plummet/Claw"
+978 "Liquid Hell x5"
+985 "Generate x3" sync /14:26AE:Twintania/ window 30,10
+992 "Twister"
+996 "Triple Nael Quote"
+1009 "Twister"
+1021 "Sentence/Ravensbeak"
+1033 "Megaflare"
+1044 "Enrage" # ???
+
+
+##### GOLDEN BAHAMUT #####
+1158 "Teraflare" sync /:Bahamut Prime:26E9:/ window 1200,0
+1189 "--sync--" sync /:Bahamut Prime:2707:/ window 1200,0 # Glowing ball
+# 1200 Bahamut unleashes his inner rage!
+1203.3 "--targetable--"
+1209 "Morn Afah #1" #sync /:Bahamut Prime:26EC:/
+1215 "Akh Morn #1" #sync /:Bahamut Prime:26EA:/
+1228 "Exaflare #1" #sync /:Bahamut Prime:26EF:/
+1247 "Akh Morn #2" #sync /:Bahamut Prime:26EA:/
+1265 "Morn Afah #2" #sync /:Bahamut Prime:26EC:/
+1277 "Exaflare #2" #sync /:Bahamut Prime:26EF:/
+1298 "Morn Afah #3" #sync /:Bahamut Prime:26EC:/
+1310 "Akh Morn #3" #sync /:Bahamut Prime:26EA:/
+1327 "Exaflare #3" #sync /:Bahamut Prime:26EF:/
+1348 "Morn Afah #4" #sync /:Bahamut Prime:26EC:/
+1360 "Akh Morn #4" #sync /:Bahamut Prime:26EA:/
+1378 "Exaflare #4" #sync /:Bahamut Prime:26EF:/
+1399 "Morn Afah #5" #sync /:Bahamut Prime:26EC:/
+1413 "Morn Afah Enrage" #sync /:Bahamut Prime:26EE:/
+
+# victory ezpz

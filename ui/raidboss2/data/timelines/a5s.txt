@@ -1,0 +1,158 @@
+# Alexander - Fist of the Son (Savage) - A5S / M1S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#########DPS CAN HIDE THESE
+hideall "Gobjab"
+hideall "Glupgloop"
+hideall "Glupgloop Mark"
+hideall "Glupgloop Mark 1"
+hideall "Glupgloop Mark 2"
+hideall "Steel Scales"
+hideall "Shock Therapy"
+hideall "Chimera Spawn"
+hideall "Add Spawn"
+
+#########HEALERS CAN HIDE THESE
+#hideall "Goes Big"
+#hideall "Goes Small"
+#hideall "Steel Scales"
+
+#########TANKS CAN HIDE THESE
+#hideall "Goes Big"
+#hideall "Goes Small"
+#hideall "Shock Therapy"
+#hideall "Glupgloop"
+#hideall "Glupgloop Mark"
+#hideall "Glupgloop Mark 1"
+#hideall "Glupgloop Mark 2"
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+alertall "Cleanse Poison" before 5 speak "voice" "cleanse poison"
+alertall "Away from Spikey" before 1 speak "voice" "away from spikey"
+alertall "Diagonal Bombs" before 2 speak "voice" "diagonal bombs"
+alertall "Go Near Spikey" before 1 speak "voice" "go to first spikey"
+alertall "3 Spikey (Scattered)" before 2 speak "voice" "3 spikey bombs"
+alertall "Bird Time" before 5 speak "voice" "Go Bird"
+alertall "Gobhook" before 5 speak "voice" "Behind Boss"
+alertall "Petrifaction" before 5 speak "voice" "petrifaction"
+alertall "Stack Indicator" before 3 speak "voice" "stack"
+
+alertall "Away from Spikey" before 8 speak "voice" "Go Gorilla"
+alertall "Go Near Spikey" before 10 speak "voice" "Go Gorilla"
+alertall "Buster" before 5 speak "voice" "Shield"
+alertall "Shock Therapy" before 5 speak "voice" "Shield"
+alertall "Stack Indicator" before 5 speak "voice" "Shield"
+alertall "Prey" before 0 speak "voice" "MOVE"
+alertall "Prey 1" before 0 speak "voice" "MOVE"
+alertall "Prey 2" before 0 speak "voice" "MOVE"
+alertall "Steel Scales" before 2 speak "voice" "stun snake"
+alertall "Chimera Spawn" before 5 speak "voice" "Kimera"
+alertall "Adds" before 3 speak "voice" "Adds"
+alertall "More Pigs" before 3 speak "voice" "Pick Up Pigs"
+alertall "Refresh Debuff" before 0 speak "voice" "Refresh Debuff"
+
+##############################################################
+0 "--Reset--" sync /Advanced Clevering is no longer sealed/ window 10000 jump 0 #Detect reset
+0 "--Start--" sync /Advanced Clevering will be sealed off in 15 seconds/ window 10000 #Detect start
+5 "Goes Big" #Takes less damage
+8 "Gobjab" #Applies Headache stack
+12 "Gobjab" #Applies Headache stack
+16 "Gobjab" #Applies Headache stack
+20 "Gobjab" #Applies Headache stack
+25 "Buster" #Gobcut or Gobstraight
+34 "Prey" #Marked for Charge
+41 "Charge" #Gobdash
+
+50 "Goes Small" sync /loses the effect of Bigbulge Biggerbrain/ window 50 #Takes normal damage
+50 "Glupgloop Mark 1" #AoE placed 7s later
+60 "Glupgloop Mark 2" #AoE placed 7s later
+68 "2 Snakes Spawn"
+77 "Steel Scales"
+84 "Shock Therapy" #Raid-wide AoE
+93 "Cleanse Poison" #And get 1 Gorilla
+98 "Away from Spikey" #1 Spikey, 2 Smartbomb
+
+119 "Goes Big" sync /uses Guzzle/ window 50,0 #Takes less damage
+125 "Bird Time"
+126 "Diagonal Bombs"
+141 "Prey"
+148 "Charge"
+154 "Gobhook"
+162 "Gobjab" #Applies Headache stack
+166 "Gobjab" #Applies Headache stack
+170 "Gobjab" #Applies Headache stack
+174 "Gobjab" #Applies Headache stack
+182 "Buster" #Gobcut or Gobstraight
+
+189 "Goes Small" sync /loses the effect of Bigbulge Biggerbrain/ window 100
+190 "Chimera Spawn" sync /Added new combatant Gobbledygroper/ window 190,0
+208 "Glupgloop Mark" #AoE placed 7s later
+222 "Go Near Spikey" #1 Spikey, 2 Smartbomb, then 1 more Spikey
+228 "Shock Therapy" #Raid-wide AoE
+236 "Shock Therapy" #Raid-wide AoE
+244 "Shock Therapy" #Raid-wide AoE
+252 "Shock Therapy" #Raid-wide AoE
+260 "Shock Therapy" #Raid-wide AoE
+
+268 "Goes Big" sync /uses Guzzle/ window 50,0 #Takes less damage
+274 "Bird Time"
+275 "3 Spikey (Scattered)"
+303 "Stack Indicator"
+303 "Prey 1"
+305 "Prey 2"
+311 "Charge 1" #Gobdash
+315 "Charge 2" #Gobdash
+321 "Gobhook" #Get behind
+329 "Gobjab" #Applies Headache stack
+333 "Gobjab" #Applies Headache stack
+337 "Gobjab" #Applies Headache stack
+341 "Gobjab" #Applies Headache stack
+349 "Buster" #Gobcut or Gobstraight
+
+369 "Goes Small" sync /loses the effect of Bigbulge Biggerbrain/ window 100
+372 "Adds"#6 Yorn Pigs, 1 Glassy-eyed Minotaur
+376 "More Adds" #2 Gobbledygawker
+392 "More Pigs" #3 Yorn Pigs
+385 "Petrifaction" #AKA Oogle
+386 "Petrifaction" #AKA Oogle
+388 "Glupgloop Mark"
+400 "Refresh Debuff"
+419 "Shock Therapy" #Raid-wide AoE
+428 "Shock Therapy" #Raid-wide AoE
+436 "Shock Therapy" #Raid-wide AoE
+444 "Shock Therapy" #Raid-wide AoE
+452 "Shock Therapy" #Raid-wide AoE
+458 "Add Spawn" #1 Glassy-Eyed Shabti
+
+463 "Goes Big" sync /uses Guzzle/ window 50,0 #Takes less damage
+470 "Gobjab" #Applies Headache stack
+474 "Gobjab" #Applies Headache stack
+478 "Gobjab" #Applies Headache stack
+482 "Gobjab" #Applies Headache stack
+490 "Buster" #Gobcut or Gobstraight
+
+501 "Goes Small" sync /loses the effect of Bigbulge Biggerbrain/ window 100
+501 "Chimera Spawn"
+512 "Lion's Breath"
+519 "Lion's Breath"
+525 "Lion's Breath"
+531 "Lion's Breath"
+537 "Go Near Spikey" #1 Spikey, 2 Smartbomb, then 1 more Spikey
+549 "Enrage"

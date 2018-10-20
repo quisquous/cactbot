@@ -1,0 +1,193 @@
+# Alexander - cuff of the Son (Savage) - A6S / M2S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#########DPS CAN HIDE THESE
+#hideall "Magic Vuln"
+#hideall "AoE"
+#hideall "Brute Force"
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Attachment" before 1 speak "voice" "attachment"
+#alertall "Stacks" before 2 speak "voice" "Stacks"
+#alertall "Stacks + Height" before 2 speak "voice" "Stacks"
+#alertall "Height" before 0 speak "voice" "Height"
+#alertall "Stacks + Height" before 0 speak "voice" "Height"
+#alertall "Stack Mid" before 0 speak "voice" "Stack Mid"
+#alertall "Spread" before 0 speak "voice" "spread"
+#alertall "Element Stacks" before 2 speak "voice" "Element Stacks"
+#alertall "Knockback & Stacks" before 4 speak "voice" "Knockback"
+#alertall "Behind Pillar" before 5 speak "voice" "Behind Pillar"
+
+#alertall "Mind Blast" before 1 speak "voice" "silence"
+#alertall "Tether Mirages" before 2 speak "voice" "tethers"
+#alertall "AoE" before 5 speak "voice" "Shield"
+#alertall "Ice Marks" before 1 speak "voice" "Ice Marks"
+
+##############################################################
+########Boss 1
+0 "--Reset--" sync /Machinery Bay 67 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 1
+0 "--Reset--" sync /Machinery Bay 68 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 2
+0 "--Reset--" sync /Machinery Bay 69 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 3
+0 "--Reset--" sync /Machinery Bay 70 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 4
+0 "--Start--" sync /Machinery Bay 67 will be sealed off in 15 seconds/ window 10000 #Detect start Boss 1
+7 "Magic Vuln"
+11 "Mind Blast" #Should be silenced
+16 "Mines"
+27 "Charge Mirages"
+36 "Magic Vuln"
+40 "Magic Vuln"
+########Pushes at 50%
+40 "Burn Adds" duration 27 sync /Added new combatant Blaster Mirage/ window 5
+########Pushes when adds dead
+83 "Mines" sync /Blaster uses Ballistic Missile/ window 40,0
+86 "Magic Vuln"
+95 "Tether Mirages" #Hands up, look away. Hands down, look toward
+105 "Magic Vuln"
+109 "Mind Blast" #Should be silenced
+113 "Mines" sync /Blaster uses Ballistic Missile/ window 40,0
+115 "Magic Vuln"
+125 "Charge Mirages"
+133 "Magic Vuln"
+141 "Mind Blast" #Should be silenced
+143 "Magic Vuln"
+
+########Boss 2
+300 "--Start--" sync /Machinery Bay 68 will be sealed off in 15 seconds/ window 10000 #Detect start Boss 2
+309 "Magic Vuln" #AKA Magicked Mark
+311 "Attachment" #7s telegraph for next ability
+323 "Magic Vuln" #AKA Magicked Mark
+325 "Attachment" #7s telegraph for next ability
+337 "Magic Vuln"
+339 "Attachment"
+351 "Magic Vuln"
+353 "Attachment"
+365 "Magic Vuln"
+367 "Attachment"
+379 "Magic Vuln"
+381 "Attachment"
+393 "Magic Vuln"
+395 "Attachment"
+407 "Magic Vuln"
+409 "Attachment"
+421 "Magic Vuln"
+423 "Attachment"
+435 "Magic Vuln"
+437 "Attachment"
+########Phase pushes at 0%
+450 "Adds Spawn" sync /Added new combatant Power Plasma Alpha/ window 150,0 #2 alpha, 2 gamma
+456 "Attachment"
+464 "Adds Spawn" sync /Added new combatant Power Plasma Beta/ window 164,0 #2 alpha, 2 beta, 1 gamma
+478 "Adds Spawn" sync /Added new combatant Power Plasma Gamma/ window 10,2 #2 alpha, 1 gamma
+481 "Attachment"
+496 "Adds Spawn" sync /Added new combatant Power Plasma Gamma/ window 10,2 #3 alpha, 1 gamma
+498 "Attachment"
+507 "Attachment"
+
+########Boss 3
+530 "--Start--"	sync /Machinery Bay 69 will be sealed off in 15 seconds/ window 10000	#Detect start Boss 3
+545 "Stacks + Height"
+559 "AoE"
+560 "Adds Spawn" sync /Added combatant Midan Hardhelm/ window 30,0	#12 adds
+576 "Height"		#Might need to resync around here
+585 "Stacks"
+598 "AoE"
+601 "Gunners Spawn" sync /Added combatant Midan Gunner/ window 71,0	#4 gunners
+609 "Height"
+619 "Stacks + Height"
+630 "AoE"
+639 "AoE"
+
+########Boss 4
+750 "--Start--" sync /Machinery Bay 70 will be sealed off in 15 seconds/ window 10000	#Detect start Boss 4
+757 "Brute Force" #Physical Vuln, phase start
+766 "Elemental Jammer" sync /uses Elemental Jammer/ window 16,40
+767 "Fire Stack" duration 5 #Drop AoEs
+773 "Spread" #Fire Ream
+782 "Brute Force" #Physical Vuln
+783 "Element Stacks" duration 4
+788 "AoEs"
+790 "Ice Marks"
+803 "Brute Force" #Physical Vuln
+804 "Element Stacks" duration 5
+810 "AoEs"
+811 "Fire Stack" duration 6 #Drop AoEs
+818 "Spread"
+827 "Knockback & Stacks" #AKA Super Cyclone
+828 "Element Stacks" duration 3
+832 "AoEs"
+834 "Brute Force" #Physical Vuln
+845 "Behind Pillar" #Ultra Flash
+
+850 "Brute Force" #Physical Vuln, Phase repeat
+859 "Elemental Jammer" sync /uses Elemental Jammer/ window 90
+860 "Fire Stack" duration 6
+867 "Spread"
+875 "Brute Force" #Physical Vuln
+876 "Element Stacks" duration 5
+882 "AoEs"
+883 "Ice Marks"
+897 "Brute Force" #Physical Vuln
+897 "Element Stacks" duration 5
+903 "AoEs"
+904 "Fire Stack" duration 6
+911 "Spread"
+920 "Knockback & Stacks" #AKA Super Cyclone
+921 "Element Stacks" duration 3
+925 "AoEs"
+927 "Brute Force" #Physical Vuln
+938 "Behind Pillar"
+
+943 "Brute Force" #Physical Vuln, Phase repeat
+952 "Elemental Jammer" sync /uses Elemental Jammer/ window 90
+953 "Fire Stack" duration 6
+959 "Spread"
+968 "Brute Force" #Physical Vuln
+969 "Element Stacks" duration 5
+974 "AoEs"
+976 "Ice Marks"
+989 "Brute Force" #Physical Vuln
+990 "Element Stacks" duration 5
+996 "AoEs"
+997 "Fire Stack" duration 6
+1004 "Spread"
+1013 "Knockback & Stacks" #AKA Super Cyclone
+1014 "Element Stacks" duration 3
+1018 "AoEs"
+1020 "Brute Force" #Physical Vuln
+1031 "Behind Pillar"
+
+1036 "Brute Force" #Physical Vuln, Phase repeat
+1045 "Elemental Jammer" sync /uses Elemental Jammer/ window 90
+1046 "Fire Stack" duration 6
+1052 "Spread"
+1061 "Brute Force" #Physical Vuln
+1062 "Element Stacks" duration 5
+1067 "AoEs"
+1069 "Ice Marks"
+1082 "Brute Force" #Physical Vuln
+1083 "Element Stacks" duration 5
+1089 "AoEs"
+1090 "Fire Stack" duration 6
+1097 "Spread"
+1106 "Knockback & Stacks" #AKA Super Cyclone
+1107 "Element Stacks" duration 3
+1111 "AoEs"
+1113 "Brute Force" #Physical Vuln
+1124 "Behind Pillar"

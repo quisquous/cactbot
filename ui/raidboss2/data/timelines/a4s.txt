@@ -1,0 +1,136 @@
+# Alexander - The Burden of the Father (Savage) - A4S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+#The reset line is not working. Timeline will need to be restarted manually every attempt
+#0 "--Stop--" sync /Removing combatant King Thordan/ window 10000 jump 0
+
+######Windows 8 & 10 Sound Triggers#######
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#alertall "Dragon's Gaze" before 4 speak "voice" "gaze"
+#alertall "Dragon's Rage" before 5 speak "voice" "stack"
+
+######Windows 7 Sound Triggers#######
+#define speaker "voice" "Microsoft Anna" 0 100
+
+#alertall "Dragon's Gaze" before 4 speak "voice" "gaze"
+#alertall "Dragon's Rage" before 5 speak "voice" "stack"
+
+# Phase 1 - Thordan
+0 "Ascalon's Might" sync /King Thordan uses Ascalon's Might./ window 10
+7 "Meteorain" duration 3
+12 "Ascalon's Mercy" duration 3
+19 "Ascalon's Might"
+23 "Dragon's Eye"
+33 "Dragon's Gaze"
+39 "Ascalon's Might"
+47 "Lightning Storm"
+55 "Dragon's Rage"
+60 "Ancient Quaga"
+67 "Ascalon's Might"
+73 "Heavenly Heel"
+74 "Ascalon's Might"
+
+
+120 "Phase 2" sync /Added new combatant Ser Charibert./ window 120 #Testing
+#120 Spawns Ser Charibert
+#122 Spawns Ser Hermenost
+125 "Burning Chains" duration 3
+133 "Towers"
+#133 Spawns Ser Zephirin
+136 "DPS Burn" duration 20
+#152 spawns Ser Ignasse, Ser Paulecrain, Ser Vellguine
+163 "Charges"
+#165 Spawns Ser Janlenoux and Ser Adelphel
+180 "Divine Right"
+189 "Holy Bladedance"
+199 "Dive Mark 1"
+202 "Dive Mark 2"
+205 "Dive Mark 3"
+208 "Divine Right"
+217 "Holiest of Holy"
+223 "Holiest of Holy"
+229 "Holy Bladedance"
+236 "Divine Right"
+243 "Holiest of Holy"
+
+
+300 "Phase 3" sync /Added new combatant Ser Ignasse/ window 100,0
+#300 spawns Ser Ignasse, Ser Vellguine, Ser Paulecrain
+#302 spawns Ser Grinnaux
+#303 spawns Ser Haumeric
+304 "Tethers" duration 7 #AKA Spiral Pierce
+308 "Hiemal Storm" duration 3
+#310 Spawns Ser Noudenet
+317 "Knockback" #AKA Faith Unmoving
+#320 Spawns Comet Circle x8, Meteor Circle x1
+327 "Comet" duration 5
+334 "Comet" duration 5
+370 "Meteor Impact"
+
+
+#397 "Phase 4" sync /Removed combatant Meteor Circle/ window 500
+#406 "Knockbacks" duration 7
+#408 Spawns everyone
+#425 "Ultimate End"
+#435 "Dragon's Eye"
+445 "Knights of the Round" sync /casts Knights of the Round./ window 200
+#448 Spawns Ser Adelphel & Janlenoux
+451 "Ascalon's Might"
+#454 Spawns Ser Zephirin
+457 "Healer Stunned" duration 11
+467 "Charge"
+473 "Dragon's Gaze"
+487 "Ancient Quaga"
+501 "Knights of the Round"
+#503 spawns Ser Guerrique & Ser Herimenost
+507 "Towers" duration 5
+511 "Heavy Strike" duration 7
+512 "Dragon's Gaze"
+#512 Spawns Ser Grinnaux
+
+523 "Dragon's Rage" duration 5
+526 "Knockback"
+534 "Ascalon's Might"
+542 "Dragon's Eye"
+552 "Knights of the Round"
+#555 spawns Ser Vellguine, Ser Ignasse, Ser Paulecrain
+559 "Lightning Storm"
+561 "Tether" duration 7
+565 "Dive Mark" duration 5
+565 "Dragon's Rage" duration 5
+569 "Charge"
+
+581 "Heavenly Heel"
+584 "Ascalon's Might"
+593 "Dragon's Eye"
+603 "Knights of the Round"
+#606 Spawns Ser Noudenet
+#608 Spawns Ser Charibert
+611 "Ascalon's Might"
+613 "Burning Chains" duration 3
+614 "Dragon's Gaze"
+616 "Comet" duration 5
+618 "Ascalon's Mercy" duration 3
+620 "Hiemal Storm" duration 3
+630 "Ancient Quaga"
+635 "Heavenly Heel"
+642 "Ancient Quaga"
+645 "Dragon's Eye"
+655 "Knights of the Round"
+#658 spawns Ser Janlenoux and Ser Adelphel
+662 "Ascalon's Might"
+667 "Holiest of Holy"
+#669 spawns Ser Ignasse, Ser Paulecrain, Ser Vellguine
+676 "Heavensward Leap"
+679 "Heavensward Leap"
+682 "Heavensward Leap"
+
+#685 Spawn Ser Zephirin
+689 "DPS Burn" duration 25
+697 "Pure of Soul"
+707 "Absolute Conviction"
+712 "Dragon's Glory"
+712 "Dragon's Gaze"

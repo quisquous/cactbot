@@ -1,0 +1,98 @@
+# Alexander - The Cuff of the Father (Savage) - A2S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+0 "--STOP--" sync /Hangar 12 is no longer sealed/ window 10000 jump 0
+
+# Wave 1 - Soldier x2
+0 "--Phase 1--" sync /Hangar 12 will be sealed off in 15 seconds/ window 100000
+
+
+# Wave 2 - Soldier x2, Sniper x1, Hardmind x1
+20 "Wave 2" sync /Added new combatant Gordian Sniper/ window 20,2
+#35 "Heal Reduction"
+#40 "Magic Def. Up"
+
+
+# Wave 3 - Soldier x3, Sniper x1, Hardmind x1, Hardhelm x1
+100 "Wave 3" sync /Added new combatant Gordian Hardhelm/ window 100,2
+#115 "Heal Reduction"
+#120 "Magic Def. Up"
+#120 "Physical Def. Up"
+
+
+# 1m  hard?
+# Wave 4 - Soldier x2, Sniper x2, Gobwalker x1
+170 "Wave 4" sync /Added new combatant Boomtype Magitek Gobwalker G-VII/ window 170,2
+187 "Bomb 1" duration 15
+208 "Bomb 2" duration 15
+
+
+# 70s hard phase push
+# Wave 5 - Soldier x2, Gobwidow x2
+240 "Wave 5" sync /Added new combatant Magitek Gobwidow G-IX/ window 240,2
+254 "Bomb 1" duration 15
+263 "Boomcannon"
+275 "Bomb 2" duration 15
+291 "Boomcannon"
+
+
+# 2m hard? probably not time dependent. 104s slow. 74s fast.
+# Wave 6 - Hardhelm x1, Gobwalker x1, Doll x1
+310 "Wave 6" sync /Added new combatant Jagd Doll/ window 310,2
+319 "Boomcannon"
+322 "Bomb 1" duration 15
+324 "Blitzstrahl" duration 3
+#325 "Heal Reduction"
+#330 "Physical Def. Up"
+343 "Bomb 2" duration 15
+347 "Blitzstrahl" duration 3
+347 "Boomcannon"
+370 "Blitzstrahl" duration 3
+375 "Boomcannon"
+393 "Blitzstrahl" duration 3
+403 "Boomcannon"
+416 "Blitzstrahl" duration 3
+
+
+# 80s hard phase push
+# Wave 7 - Doll x4
+430 "Wave 7" sync /Added new combatant Jagd Doll/ window 110,2
+443 "Blitzstrahl" duration 3
+443 "Bomb 1" duration 15
+466 "Blitzstrahl" duration 3
+468 "Bomb 2" duration 15
+489 "Blitzstrahl" duration 3
+
+
+# wave probably not time dependent. 98s slow.
+# Wave 8 - Soldier x1, Sniper x3, Hardmind x1, Hardhelm x1
+510 "Wave 8" sync /Added new combatant Gordian Sniper/ window 70,2
+512 "Blitzstrahl" duration 3
+524 "Bomb 1" duration 15
+#525 "Heal Reduction"
+#530 "Phys Def. Up"
+#530 "Magic Def. Up"
+535 "Blitzstrahl" duration 3
+549 "Bomb 2" duration 15
+558 "Blitzstrahl" duration 3
+581 "Blitzstrahl" duration 3
+604 "Blitzstrahl" duration 3
+
+
+# Wave 9 - Soldier x2, Sniper x2, Gobwalker x1, Gobwidow x2, Doll x1
+630 "Wave 9" sync /Added new combatant Magitek Gobwidow G-IX/ window 110,2
+645 "Blitzstrahl" duration 3
+651 "Boomcannon"
+668 "Blitzstrahl" duration 3
+679 "Boomcannon"
+691 "Blitzstrahl" duration 3
+707 "Boomcannon"
+714 "Blitzstrahl" duration 3
+735 "Boomcannon"
+737 "Blitzstrahl" duration 3
+760 "Blitzstrahl" duration 3
+763 "Boomcannon"
+783 "Blitzstrahl" duration 3
+791 "Boomcannon"
+806 "Blitzstrahl" duration 3

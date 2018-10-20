@@ -1,0 +1,234 @@
+# Sephirot (Extreme)
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#########DPS CAN HIDE THESE
+#hideall "Cleave"
+#hideall "Tiferet"
+#hideall "Tank Buster"
+#hideall "Large Add Spawn"
+#hideall "Towers Up"
+#hideall "Fiendish Wail"
+
+#########HEALERS CAN HIDE THESE
+#hideall "Large Add Spawn"
+#hideall "Towers Up"
+
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+#REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "STACK" before 0 speak "voice" "stack"
+#alertall "STACK MID" before 0 speak "voice" "stack mid"
+#alertall "STACK FRONT" before 0 speak "voice" "stack front"
+#alertall "SPLIT STACKS" before 2 speak "voice" "stack"
+#alertall "SPREAD" before 0 speak "voice" "spread"
+#alertall "Yesod, MOVE" before 0 speak "voice" "move"
+#alertall "Debuff" before 0 speak "voice" "Check Color"
+#alertall "Tank Buster" before 3 speak "voice" "Tank Buster"
+#alertall "Spawn Orb" before 1 speak "voice" "stack"
+#alertall "Towers Up" before 0 speak "voice" "Tank Tower"
+#alertall "Fiendish Wail" before 2 speak "voice" "Heal Tanks"
+#alertall "Da'at" before 3 speak "voice" "Heal Tanks"
+
+##############################################################
+0 "-Preparing-" sync /Removing combatant Sephirot/ window 10000 jump 0
+
+0 "Cleave" sync /uses Triple Trial/ window 10 #Triple Trial
+4 "Tiferet" #AoE
+10 "Tiferet" #AoE
+
+14 "Cleave" sync /uses Triple Trial/ window 15,5 #Triple Trial
+19 "Spawn Orbs" #Plus / X pattern
+22 "Tiferet" #AoE
+25 "SPLIT STACKS"
+31 "Jump 1"
+34 "Jump 2"
+41 "Tiferet" #AoE
+46 "Tiferet" #AoE
+52 "Tank Buster" #Chesed
+54 "Cleave" #Triple Trial
+61 "Spawn Orb" #Single orb, stack to bait cleave
+63 "Tiferet" #AoE
+67 "SPREAD" #Ratzon Indicator, 5s til cleave
+73 "Ratzon" #AoEs go off
+77 "Tiferet" #AoE
+82 "Tiferet" #AoE
+88 "Tank Buster" #Chesed
+ 
+90 "Cleave" sync /uses Triple Trial/ window 25,25 #Triple Trial
+95 "Spawn Orbs" #Plus / X pattern
+98 "Tiferet" #AoE
+101 "SPLIT STACKS"
+107 "Jump 1"
+110 "Jump 2"
+117 "Tiferet" #AoE
+122 "Tiferet" #AoE
+128 "Tank Buster" #Chesed
+130 "Cleave" #Triple Trial
+137 "Spawn Orb" #Single orb, stack to bait cleave
+139 "Tiferet" #AoE
+143 "SPREAD" #Ratzon Indicator, 5s til cleave
+149 "Ratzon" #AoEs go off
+153 "Tiferet" #AoE
+158 "Tiferet" #AoE
+164 "Tank Buster" #Chesed
+ 
+166 "Cleave" sync /uses Triple Trial/ window 25,25 #Triple Trial
+171 "Spawn Orbs" #Plus / X pattern
+174 "Tiferet" #AoE
+177 "SPLIT STACKS"
+183 "Jump 1"
+186 "Jump 2"
+193 "Tiferet" #AoE
+198 "Tiferet" #AoE
+204 "Tank Buster" #Chesed
+206 "Cleave" #Triple Trial
+213 "Spawn Orb" #Single orb, stack to bait cleave
+215 "Tiferet" #AoE
+219 "SPREAD" #Ratzon Indicator, 5s til cleave
+225 "Ratzon" #AoEs go off
+229 "Tiferet" #AoE
+234 "Tiferet" #AoE
+240 "Tank Buster" #Chesed
+ 
+242 "Cleave" sync /uses Triple Trial/ window 25,25 #Triple Trial
+247 "Spawn Orbs" #Plus / X pattern
+250 "Tiferet" #AoE
+253 "SPLIT STACKS"
+259 "Jump 1"
+262 "Jump 2"
+269 "Tiferet" #AoE
+274 "Tiferet" #AoE
+280 "Tank Buster" #Chesed
+282 "Cleave" #Triple Trial
+289 "Spawn Orb" #Single orb, stack to bait cleave
+291 "Tiferet" #AoE
+295 "SPREAD" #Ratzon Indicator, 5s til cleave
+301 "Ratzon" #AoEs go off
+305 "Tiferet" #AoE
+310 "Tiferet" #AoE
+316 "Tank Buster" #Chesed
+
+##############################################################
+########Phase is so straightforward, nothing needed here
+########Besides, the timing varies a lot based on DPS
+
+400 "-Phase 2-" sync /Added new combatant Cochma/ window 400,0
+400 "Large Add Spawn"
+436 "Large Add Spawn"
+
+##############################################################
+
+628 "Ein Sof Ohr" sync /Ein Sof Ohr/ window 10000 #Boss LB
+638 "Yesod, MOVE"
+
+646 "Debuff"
+657 "Color Slam" #Life Force / Spirit
+658 "Towers Up"
+#660 "Orbs Spawn" #4 orbs
+663 "Fiendish Wail"
+664 "Tethers"
+677 "Towers Up"
+682 "Fiendish Wail"
+689 "Color Slam" #Life Force / Spirit
+690 "STACK MID" #Earthshaker + Yesod
+692 "Earthshaker"
+695 "Yesod, MOVE"
+700 "SPREAD"
+705 "Da'at"
+710 "Towers Up"
+713 "Fiendish Wail"
+722 "Color Slam" #Life Force / Spirit
+723 "STACK" #Yesod
+726 "Yesod, MOVE"
+730 "Knockback" #Pillar of Mercy
+735 "Knockback" #Pillar of Mercy
+739 "Knockback" #Pillar of Mercy
+740 "STACK MID" #Earthshaker
+743 "Earthshaker"
+749 "SPREAD" #Da'at + Yesod
+755 "Yesod, MOVE"
+756 "Da'at"
+760 "Towers Up"
+764 "Fiendish Wail"
+773 "Color Slam" #Life Force / Spirit
+774 "STACK FRONT"
+778 "Blow Away" #Malkuth
+779 "Adds spawn" #4 Binah + 1 Storm of Words
+781 "STACK" #Yesod
+788 "Color Slam"
+789 "Towers Up"
+792 "Yesod, MOVE"
+793 "Fiendish Wail"
+796 "STACK"
+801 "Color Slam"
+803 "STACK"
+811 "Yesod, MOVE"
+817 "Color Slam"
+823 "Impact of Hod" #Small knockback
+823 "JUMP" #Indicator for jump
+828 "Ascension" #Damage from jump
+831 "STACK MID" #Yesod
+836 "Yesod, MOVE"
+
+845 "Debuff"
+856 "Color Slam" #Life Force / Spirit
+857 "Towers Up"
+#859 "Orbs Spawn" #4 orbs
+862 "Fiendish Wail"
+863 "Tethers"
+876 "Towers Up"
+881 "Fiendish Wail"
+888 "Color Slam" #Life Force / Spirit
+889 "STACK MID" #Earthshaker + Yesod
+891 "Earthshaker"
+894 "Yesod, MOVE"
+899 "SPREAD"
+904 "Da'at"
+909 "Towers Up"
+912 "Fiendish Wail"
+921 "Color Slam" #Life Force / Spirit
+922 "STACK" #Yesod
+925 "Yesod, MOVE"
+929 "Knockback" #Pillar of Mercy
+934 "Knockback" #Pillar of Mercy
+938 "Knockback" #Pillar of Mercy
+939 "STACK MID" #Earthshaker
+942 "Earthshaker"
+948 "SPREAD" #Da'at + Yesod
+954 "Yesod, MOVE"
+955 "Da'at"
+959 "Towers Up"
+963 "Fiendish Wail"
+972 "Color Slam" #Life Force / Spirit
+973 "STACK FRONT"
+977 "Blow Away" #Malkuth
+978 "Adds spawn" #4 Binah + 1 Storm of Words
+980 "STACK" #Yesod
+987 "Color Slam"
+988 "Towers Up"
+991 "Yesod, MOVE"
+992 "Fiendish Wail"
+995 "STACK"
+1000 "Color Slam"
+1002 "STACK"
+1010 "Yesod, MOVE"
+1016 "Color Slam"
+1022 "Impact of Hod" #Small knockback
+1022 "JUMP" #Indicator for jump
+1027 "Ascension" #Damage from jump

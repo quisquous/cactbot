@@ -6,10 +6,10 @@
 // Options.InfoSound = 'file://C:/path/to/info/sound.ogg'
 // See user/raidboss-example.js for documentation.
 let Options = {
-  TimelineEnabled: true,
-  AlertsEnabled: false,
-  TextAlertsEnabled: false,
-  SoundAlertsEnabled: false,
+  TimelineEnabled: false,
+  AlertsEnabled: true,
+  TextAlertsEnabled: true,
+  SoundAlertsEnabled: true,
   SpokenAlertsEnabled: false,
   GroupSpokenAlertsEnabled: false,
 

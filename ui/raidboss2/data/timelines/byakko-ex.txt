@@ -1,0 +1,113 @@
+# Byakko Extreme
+
+hideall "--sync--"
+
+0 "--Reset--" sync /Removing combatant Byakko\.  Max HP: 10997725\./ window 10000 jump 0
+
+##### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.7 "--sync--" sync / 00:0044:There is no turning back!/ window 1,30
+10.0 "Storm Pulse" # end of castbar
+16.0 "Heavenly Strike" # end of castbar
+26.0 "State of Shock" # end of castbar
+28.5 "Highest Stakes 1" duration 4.5 # end of castbar
+38.5 "Highest Stakes 2" duration 4.5 # end of castbar
+
+55.0 "--sync--" sync /14:27ED:Byakko starts using Unrelenting Anguish/ window 5,5
+58.0 "Unrelenting Anguish" sync /Byakko:27ED:Unrelenting Anguish:/ window 5,5 # end of castbar
+63.5 "Storm Pulse" # end of castbar
+67.0 "Ominous Wind" # debuff
+74.5 "Fire and Lightning" # end of castbar
+83.5 "--leap north--"
+88.0 "Puddle Markers x2" # markers appearing
+
+91.0 "Hakutei Add" # targetable
+100.5 "Storm Pulse" # end of castbar
+102.0 "Tiger Cleave" # damage
+108.0 "Tiger Cleave" # damage
+110.5 "Heavenly Strike" # end of castbar
+114.0 "--tiger untargetable--"
+120.0 "--tiger lands--" # damage
+116.5 "--sync--" sync /14:27DD:Byakko starts using Distant Clap/ window 5,5
+121.5 "Distant Clap" sync /:Byakko:27DD:Distant Clap:/ window 5,5 # end of castbar
+124.5 "Fire and Lightning" # end of castbar
+129.0 "Storm Pulse" # end of castbar
+131.5 "--untargetable--"
+136.5 "TP Orbs" # appearing
+155.0 "Roar of Thunder" # end of castbar
+
+##### Phase 2: zzz x infinity
+159.5 "--sync--" sync /00:0044:All creation trembles before my might!/ window 200,20
+198.0 "Donut AOE" # aoe disappears
+205.0 "Line AOE" # aoe disappears
+216.0 "Line AOE" # aoe disappears
+229.0 "Donut AOE" # aoe disappears
+233.0 "Line AOE" # aoe disappears
+
+##### Phase 3: More Bubbles
+260.5 "--sync--" sync /Byakko:27FB:Fell Swoop:/ window 300,20 # damage
+279.0 "Heavenly Strike" # end of castbar
+285.5 "Hundredfold Havoc" # appearing
+291.0 "State of Shock" # end of castbar
+298.0 "Highest Stakes 1" # end of castbar
+308.0 "Highest Stakes 2" # end of castbar
+314.5 "Sweep the Leg" # end of castbar
+
+326.0 "--sync--" sync /14:27ED:Byakko starts using Unrelenting Anguish/ window 5,5
+329.0 "Unrelenting Anguish" sync /:Byakko:27ED:Unrelenting Anguish:/ window 5,5 # end of castbar
+334.5 "Storm Pulse" # end of castbar
+339.0 "Orb Marker x3" duration 8 # appearing -> disappearing
+354.0 "Fire and Lightning" # end of castbar
+357.5 "--leap north--"
+363.0 "Fire and Lightning" # end of castbar
+
+373.0 "Hakutei Add" # targetable
+373.5 "Puddle Markers x2" # markers appearing
+382.0 "--tiger untargetable--"
+384.0 "--sync--" sync /14:27DD:Byakko starts using Distant Clap/ window 5,5
+389.0 "Distant Clap" sync /:Byakko:27DD:Distant Clap:/ window 5,5 # end of castbar
+387.0 "--tiger lands--" # damage
+392.0 "Fire and Lightning" # end of castbar
+392.0 "--sync--" sync /14:27DD:Byakko starts using Distant Clap/ window 5,5
+397.0 "Distant Clap" sync /:Byakko:27DD:Distant Clap:/ window 5,5 # end of castbar
+400.0 "Fire and Lightning" # end of castbar
+407.5 "Heavenly Strike" # end of castbar
+408.5 "Tiger Cleave"
+419.5 "TP Orbs" # appearing
+438.0 "Roar of Thunder" # end of castbar
+
+445.5 "--sync--" sync /14:27D9:Byakko starts using Fire And Lightning/ window 5,5
+449.5 "Fire and Lightning" # end of castbar
+464.5 "Storm Pulse" # end of castbar
+475.5 "Orb Marker x3" duration 7 # appearing -> disappearing
+476.0 "Hundredfold Havoc" # appearing
+485.0 "State of Shock" # end of castbar
+492.0 "Highest Stakes 1" # end of castbar
+502.0 "Highest Stakes 2" # end of castbar
+508.5 "Sweep the Leg" # end of castbar
+522.5 "Heavenly Strike" # end of castbar
+532.5 "Storm Pulse" # end of castbar
+540.5 "--sync--" sync /14:27DD:Byakko starts using Distant Clap/ window 5,5
+545.5 "Distant Clap" sync /:Byakko:27DD:Distant Clap:/ window 5,5 # end of castbar
+551.5 "Heavenly Strike" # end of castbar
+
+561.0 "--sync--" sync /14:27ED:Byakko starts using Unrelenting Anguish/ window 5,5
+564.0 "Unrelenting Anguish" sync /Byakko:27ED:Unrelenting Anguish:/ window 5,5 # end of castbar
+570.0 "Storm Pulse" # end of castbar
+574.5 "Orb Marker x3" duration 8 # appearing -> disappearing
+583.0 "Ominous Wind" # debuff
+586.0 "--sync--" sync /14:27D9:Byakko starts using Fire And Lightning/ window 5,5
+589.5 "Fire and Lightning" # end of castbar
+593.0 "--leap north--"
+594.5 "--sync--" sync /14:27D9:Byakko starts using Fire And Lightning/ window 5,5
+598.0 "Fire and Lightning" # end of castbar
+613.5 "Storm Pulse" # end of castbar
+622.0 "Hundredfold Havoc" # appearing
+627.0 "State of Shock" # end of castbar
+635.5 "Highest Stakes 1" # end of castbar
+645.5 "Highest Stakes 2" # end of castbar
+652.0 "Sweep the Leg" # end of castbar
+
+661.5 "--leap middle--"
+666.0 "Storm Pulse x4" duration 7 # end of castbar => 4th damage
+683.0 "Enrage Storm Pulse" # wipe

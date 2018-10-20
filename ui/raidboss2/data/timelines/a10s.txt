@@ -1,0 +1,205 @@
+# Alexander - The Breath of the Creator (Savage) - A10S / C2S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 10/6/2016
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+hideall "--Reset--"
+hideall "Discharge Cast"
+#########DPS CAN HIDE THESE
+#hideall "AoE"
+
+#########HEALERS CAN HIDE THESE
+
+
+#########TANKS CAN HIDE THESE
+
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+#alertall "Single Charge" before 3 speak "voice" "Charge"
+#alertall "Single Charge: In" before 7 speak "voice" "In"
+#alertall "Tank Buster" before 5 speak "voice" "Buster"
+#alertall "Discharge Hits" before 3 speak "voice" "Sides"
+#alertall "Turrets Fire" before 4 speak "voice" "Move Middle"
+#alertall "Gobsnick Leghops" before 4 speak "voice" "Stop Actions"
+#alertall "Ceiling Balls Drop" before 3 speak "voice" "Sides"
+#alertall "AoE Puddles Hit" before 3 speak "voice" "Near Button"
+#alertall "Ceiling Balls Drop" before 5 speak "voice" "Move Sides"
+#alertall "Gobspin Zoomdrops + Gobswish Spraymops" before 0 speak "voice" "Get Tether"
+#alertall "Gobslice Mooncrops" before 7 speak "voice" "Hit Spikes"
+#alertall "Steam Roller" before 4 speak "voice" "Move"
+#alertall "Steam Roller Wipe" before 1 speak "voice" "git gud"
+#alertall "LB3" before 0 speak "voice" "limit break"
+
+##############################################################
+0 "--Reset--" sync /Excruciationator is no longer sealed/ window 10000 jump 0
+
+################# Phase 1
+0 "--Start--" sync /Excruciationator will be sealed off in 15 seconds/ window 10000
+9 "AoE"
+14 "AoE"
+21 "Single Charge"
+28 "Trap"
+37 "Single Charge"
+51 "Line AoE to Prey"
+61 "Tank Buster"
+
+################# Phase 2; Pushes at 85%
+165 "Discharge Cast" sync /uses Discharge/ window 165,0
+168 "AoE" sync /uses Gobsway Rumblerocks/ window 140,0
+172 "Trap"
+175 "Discharge Hits"
+178 "Turrets Fire"
+187 "Gobsnick Leghops"
+189 "Clone Spawns"
+194 "Single Charge: In"
+202 "AoE"
+203 "Gobswish Spraymops"
+212 "Tank Buster"
+224 "Trap"
+228 "Ceiling Balls Drop"
+233 "AoE Puddles Hit"
+242 "Line AoE to Prey"
+245 "AoE"
+249 "AoE"
+262 "Double Charge"
+275 "Single Charge/Gobsnick Leghops"
+281 "AoE"
+291 "Tank Buster"
+399 ""
+399 ""
+399 ""
+399 ""
+399 ""
+399 ""
+399 ""
+399 ""
+399 ""
+399 ""
+
+
+################# Phase 3; Pushes at 60%
+400 "" sync /Added new combatant Gobpress R-VI/ window 400,0
+412 "Hand Cannon"
+412 "Fire Puddles #1 Drop"
+420 "Fire Puddles #2 Drop"
+420 "Steam Roller"
+430 "Hand Cannon"
+434 "AoE"
+438 "AoE"
+440 "Steam Roller"
+446 "Hand Cannon"
+446 "Fire Puddles #1 Drop"
+454 "Fire Puddles #2 Drop"
+458 "Steam Roller"
+466 "Hand Cannon"
+471 "AoE"
+475 "AoE"
+477 "Steam Roller"
+483 "Hand Cannon"
+484 "AoE"
+490 "AoE"
+494 "AoE"
+498 "AoE"
+499 "Steam Roller Wipe"
+591 ""
+591 ""
+591 ""
+591 ""
+591 ""
+591 ""
+591 ""
+591 ""
+591 ""
+591 ""
+
+################# Phase 4
+592 "" sync /uses Goblin Rush/ window 190,0
+600 "Tank Buster" sync /uses Gobrush Rushgob/ window 200,0
+612 "Triple Charge" sync /uses Triple Charge/ window 600,0
+629 "AoE"
+639 "AoE"
+645 "Clone Spawns"
+648 "Single Charge: In"
+658 "Gobspin Zoomdrops + Gobswish Spraymops"
+661 "Tether Spawn"
+667 "Spin AoE"
+673 "Spin AoE"
+679 "Spin AoE"
+
+783 "AoE" sync /uses Gobsway Rumblerocks/ window 125,0
+789 "Tank Buster"
+794 "Boss Dashes"
+804 "Gobslice Mooncrops"
+809 "Boss Dashes"
+815 "Single Charge/Gobsnick Leghops"
+821 "AoE"
+825 "AoE"
+836 "Prey Fire Puddles" #Brighteyes Prey applies
+840 "Hand Cannon"
+840 "Fire Puddles Drop"
+850 "Fire Puddles Drop"
+851 "Single Charge"
+867 "Line AoE to Prey"
+874 "Tank Buster"
+882 "Trap"
+886 "Turrets Fire"
+890 "Ceiling Balls Drop"
+894 "AoE Puddles Hit"
+898 "Adds x3 Spawn"
+898 "AoE"
+902 "AoE"
+909 "Gobsnick Leghops"
+912 "LB3"
+
+########### This marks phase repeat
+923 "Tank Buster" sync /uses Gobrush Rushgob/ window 30,0
+935 "Triple Charge" sync /uses Triple Charge/ window 200,0
+952 "AoE"
+962 "AoE"
+968 "Clone Spawns"
+971 "Single Charge: In"
+981 "Gobspin Zoomdrops + Gobswish Spraymops"
+984 "Tether Spawn"
+990 "Spin AoE"
+996 "Spin AoE"
+1002 "Spin AoE"
+
+1106 "AoE" sync/uses Gobsway Rumblerocks/ window 125,0
+1112 "Tank Buster"
+1117 "Boss Dashes"
+1127 "Gobslice Mooncrops"
+1132 "Boss Dashes"
+1138 "Single Charge/Gobsnick Leghops"
+1144 "AoE"
+1148 "AoE"
+1159 "Prey Fire Puddles" #Brighteyes Prey applies
+1163 "Hand Cannon"
+1163 "Fire Puddles Drop"
+1173 "Fire Puddles Drop"
+1174 "Single Charge"
+1190 "Line AoE to Prey"
+1197 "Tank Buster"
+1205 "Trap"
+1209 "Turrets Fire"
+1213 "Ceiling Balls Drop"
+1217 "AoE Puddles Hit"
+1221 "Adds x3 Spawn"
+1221 "AoE"
+1225 "AoE"
+1232 "Gobsnick Leghops"

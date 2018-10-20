@@ -1,0 +1,212 @@
+# Omega - Deltascape V4.0 (Savage) - O4S
+# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
+# Shasta's reddit: /u/shastaxc
+# Last Updated: 08/01/2017
+
+#############################################################
+########CUSTOMIZE your timeline. Remove the hashtag from 
+########the beginning of the following lines to prevent 
+########them from appearing on your timeline.
+
+#hideall "--Reset--"
+#########DPS CAN HIDE THESE
+
+
+#########HEALERS CAN HIDE THESE
+
+
+#########TANKS CAN HIDE THESE
+
+##############################################################
+################## Windows 8 & 10 Voices ##################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft David Desktop" 0 100
+
+#################### Windows 7 Voices ####################
+########REMOVE THE HASTAG to select a voice
+#define speaker "voice" "Microsoft Anna" 0 100
+
+################ CUSTOMIZE Call Outs #####################
+########REMOVE THE HASHTAG to enable each call out
+
+
+##############################################################
+0	"--Reset--" sync /Removing combatant Exdeath/ window 10000 jump 0
+0	"--Reset--" sync /Removing combatant Neo Exdeath/ window 10000 jump 0
+
+
+######Phase 1
+13	"Dualcast"	sync /uses Dualcast/ window 20,0
+16	"Blizzard III"
+19	"Blizzard III"
+24	"Dualcast"
+31	"Thunder III"
+37	"Dualcast"
+43	"Fire III (DPS)"	#Fire III on DPS
+47	"Fire III (T/H)"	#Fire III on Tanks & Healers
+54	"White Hole"
+66	"--Boss Untargetable--"
+73	"Knockback"
+75	"Holy"
+78	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
+79	"Zombie Breath"
+
+
+######Phase 2
+86	"--Boss Targetable--"
+90	"Random Elemental"	#Enhanced Thunder/Fire/Blizzard III
+97	"Vacuum Wave (1)"
+107	"White Hole"
+119	"Black Hole"	#Black Holes tether to Tanks & Healers + AoE dmg + HP Down Debuff
+119.01	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
+128	"Fire III (DPS)"	#Fire III on DPS
+132	"Fire III (T/H)"	#Fire III on Tanks & Healers
+135	"Holy"	#Stack Mechanic
+144	"White Hole"
+159	"Thunder III"
+167	"Meteor"
+180	"--Boss Untargetable--"
+186	"Knockback"	#Collision
+188	"Holy"	#Stack Mechanic
+191	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
+192	"Zombie Breath"
+
+######Phase 3
+200	"--Boss Targetable--"
+203	"Random Elemental"	#Enhanced Thunder/Fire/Blizzard III
+210	"Vacuum Wave (1)"	#Vacuum Wave
+220	"White Hole"	#Need full HP
+232	"Black Hole"	#Black Holes tether to Tanks & Healers + AoE dmg + HP Down Debuff
+232.01	"HP Down Debuff" duration 21  #Debuff is 20 seconds but applies to people staggered over time
+241	"Blizzard III"	#Healers + DPS
+243	"Blizzard III"	#Healers + DPS
+243	"Flare" duration 5	#1 tank, 1 healer, 1 DPS
+258	"White Hole"	#Need full HP
+265	"Dualcast"
+273	"Thunder III"
+280	"Meteor"	#Party wipe if boss HP>65%
+282	"--Boss Untargetable--"
+344	"--LB Gauge Resets--"
+
+######################################################
+######Neo Phase 1
+507	"Almagest"	sync /uses Almagest/ window 520,0	#AoE + 15s DoT
+516	"Aero III"  # Tank buster
+527	"Delta Attack"	#Blizzard III (Healers & DPS) + Fire III (DPS)
+530	"Delta Attack 2"	#Blizzard III (Healers & DPS) + Fire III (Tanks & Healers)
+543	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
+546	"--Boss Untargetable--"
+549	"--Boss Targetable--"
+555	"Charge"
+558	"--Acceleration Bomb Resolves--"
+559	"--Allagan Field Explodes--"
+563	"Flood of Naught"	#1 of 4 Flood of Naught variants
+569	"Double Attack Tethers"	#Double Attack Tether
+574	"Double Attack"	#Boss jumps to target, knockback target, jumps back
+
+######Neo Phase 2
+588	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+593	"Flood of Naught"	#1 of 4 Flood of Naught variants
+604	"Aero III"  # Tank buster
+619	"Grand Cross Delta"	#AOE + Debuffs (8s Forked Lightning x2, 7s Cursed Shriek x2, 8s Compressed Water x1, something else)
+626	"Cursed Shriek"	#Look away from Cursed Shriek players
+627	"Forked Lightning + Water"	#Lightning alone, stack on water
+631	"Flood of Naught"	#1 of 4 random variants
+640	"Almagest"	#AoE + 15s DoT
+652	"Aero III"  # Tank buster
+662	"Earth Shaker"	#On Tanks
+667	"Vacuum Wave"	#Vacuum Wave
+684	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+688	"Light and Darkness"	#Flare Markers Out (DPS, Healer, Tank) & Stack Inidicator (Healer)
+695	"Flare + Holy"
+701	"Flood of Naught"	#1 of 4 Flood of Naught variants
+716	"Meteors" duration 20
+729	"Flood of Naught"	#1 of 4 Flood of Naught variants
+742	"Charybdis"	#Everyone to low HP
+745	"Double Attack Tethers"	#Double Attack Tether
+750	"Double Attack"	#Boss jumps to target, knockback target, jumps back
+765	"Almagest"	#AoE + 15s DoT
+771	"Vacuum Wave"	#Vacuum Wave
+778	"Aero III"  # Tank buster
+785	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+793	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
+795	"--Boss Untargetable--"
+798	"--Boss Targetable--"
+804	"Charge"
+808	"--Acceleration Bomb Resolves--"
+809	"--Allagan Field Explodes--"
+812	"Flood of Naught"	#1 of 4 Flood of Naught variants
+829	"Delta Attack"	#Blizzard III (Healers & DPS) + Fire III (DPS)
+832	"Delta Attack 2"	#Blizzard III (Healers & DPS) + Fire III (Tanks & Healers)
+837	"Flood of Naught"	#1 of 4 Flood of Naught variants
+
+######Neo Phase 3
+847	"Grand Cross Omega"	#AoE + Debuffs (White/Black Wound, Hysteria, Forked Lightning, Cursed Shriek, Allagan Field, Acceleration Bomb, something else)
+854	"Final Battle"
+859	"Forked Lightning"
+861	"Flood of Naught"	#1 of 4 Flood of Naught variants
+866	"Flood of Naught"	#1 of 4 Flood of Naught variants
+873	"Flood of Naught"	#1 of 4 Flood of Naught variants
+876	"--Acceleration Bomb Resolves--"
+877	"Cursed Shriek"	#Look away from Cursed Shriek player
+885	"Charge"
+891	"--Allagan Field Explodes--"
+896	"Almagest"	#AoE + 15s DoT
+
+######Neo Phase 4 (Loop of Neo P2)
+906	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+911	"Flood of Naught"	#1 of 4 Flood of Naught variants
+922	"Aero III"  # Tank buster
+937	"Grand Cross Delta"	#AOE + Debuffs (8s Forked Lightning x2, 7s Cursed Shriek x2, 8s Compressed Water x1, something else)
+944	"Cursed Shriek"	#Look away from Cursed Shriek players
+946	"Forked Lightning + Water"	#Lightning alone, stack on water
+949	"Flood of Naught"	#1 of 4 Flood of Naught variants
+958	"Almagest"	#AoE + 15s DoT
+970	"Aero III"  # Tank buster
+980	"Earth Shaker"	#On Tanks
+985	"Vacuum Wave"
+1002	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+1007	"Light and Darkness"	#Flare Markers Out (DPS, Healer, Tank) & Stack Inidicator (Healer)
+1013	"Flare + Holy"
+1019	"Flood of Naught"	#1 of 4 Flood of Naught variants
+1034	"Meteors" duration 20
+1047	"Flood of Naught"	#1 of 4 Flood of Naught variants
+1060	"Charybdis"	#Everyone to low HP
+1063	"Double Attack Tethers"	#Double Attack Tether
+1068	"Double Attack"	#Boss jumps to target, knockback target, jumps back
+1083	"Almagest"	#AoE + 15s DoT
+1089	"Vacuum Wave"
+1096	"Aero III"  # Tank buster
+1103	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+1111	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
+1113	"--Boss Untargetable--"
+1116	"--Boss Targetable--"
+1121	"Charge"
+1125	"--Acceleration Bomb Resolves--"
+1126	"--Allagan Field Explodes--"
+1129	"Flood of Naught"	#1 of 4 Flood of Naught variants
+1146	"Delta Attack"	#Blizzard III (Healers & DPS) + Fire III (DPS)
+1150	"Delta Attack 2"	#Blizzard III (Healers & DPS) + Fire III (Tanks & Healers)
+1155	"Flood of Naught"	#1 of 4 Flood of Naught variants
+
+######Neo Phase 5
+1164	"Neverwhere"	#Starts soft enrage
+1173	"Charybdis"	#Everyone to low HP
+1176	"Frenzied Fist x9"	#Small Raid AoEs
+1183	"Frenzied Sphere (1)"	#Big Raid AoE
+1186	"Frenzied Fist x9"	#Small Raid AoEs
+1193	"Frenzied Sphere (2)"	#Big Raid AoE
+1196	"Frenzied Fist x9"	#Small Raid AoEs
+1203	"Frenzied Sphere (3)"	#Big Raid AoE
+1206	"Frenzied Fist x9"	#Small Raid AoEs
+1213	"Frenzied Sphere (4)"	#Big Raid AoE
+1216	"Frenzied Fist x9"	#Small Raid AoEs
+1223	"Frenzied Sphere (5)"	#Big Raid AoE
+1226	"Frenzied Fist x9"	#Small Raid AoEs
+1233	"Frenzied Sphere (6)"	#Big Raid AoE
+1236	"Frenzied Fist x9"	#Small Raid AoEs
+1243	"Frenzied Sphere (7)"	#Big Raid AoE
+1246	"Frenzied Fist x9"	#Small Raid AoEs
+1253	"Frenzied Sphere (8)"	#Big Raid AoE
+1266	"Enrage"	#Long Almagest

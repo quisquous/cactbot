@@ -1,0 +1,107 @@
+# Omega - Deltascape V1.0 (Savage) - O1S
+# Created by Paprika Rika on Balmung
+# Times originally from http://i.imgur.com/PF21Fnh.png
+
+##############################################################
+0	"--Reset--" sync /Removing combatant Alte Roite/ window 10000 jump 0
+
+###### 1st Classical Elements
+0 "Start" sync /:Engage!/ window 0,1
+6.8 "Wyrm Tail" sync /:Alte Roite:1ECE:Wyrm Tail:/ window 3,3
+12.8 "Wyrm Tail"
+14.8 "Twin Bolt" duration 5
+
+# spread: knockback => in => spread+lightning
+28.7 "Classical (spread)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+51.2 "Thin Ice"
+52.2 "Downburst"
+56 "Outer Fireballs"
+59.7 "Levinbolt"
+65.2 "Roar"
+72.5 "Wyrm Tail"
+78.5 "Wyrm Tail"
+83.7 "Twin Bolt" duration 5
+90.7 "Clamp"
+109.7 "Wyrm Tail"
+115.7 "Outer Fireballs"
+118.7 "Levinbolt"
+120.7 "Inner Fireballs"
+121.0 "Blaze" duration 6
+134.1 "Wyrm Tail"
+140.1 "Wyrm Tail"
+141.5 "Twin Bolt" duration 5
+156.5 "Roar"
+162.5 "Roar"
+169.9 "Wyrm Tail"
+175.9 "Charybdis"
+182.9 "Roar"
+
+###### 2nd Classical Elements
+# safe: knockback safe spot => spread+lightning
+188.1 "Classical (safe)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+213.2 "Downburst"
+213.6 "Thin Ice"
+215.6 "Outer Fireballs"
+221.4 "Levinbolt"
+231.9 "Teleport"
+239.1 "Thin Ice"
+240.1 "Breath Wing"
+#240.4 "Fireballs"
+248.8 "Clamp"
+247.2 "Blaze" duration 6
+260.6 "Roar"
+267.9 "Wyrm Tail"
+273.9 "Wyrm Tail"
+284.0 "Charybdis"
+### TODO
+287.5 "Twin Bolt" duration 5
+316.1 "Levinbolt"
+317.6 "Inner Fireballs"
+321.7 "Clamp"
+326.0 "Outer Fireballs"
+331.6 "Roar"
+337.6 "Roar"
+
+# *** NOTE ***
+# Timings from this point need readjusting from video.
+# 3rd section is likely 1-3 seconds off.
+# 4th section has never been adjusted from video.
+
+###### 3rd Classical Elements
+# stack: knockback => in => blaze stack
+343.6 "Classical (stack)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+369.9 "Outer Fireballs"
+370.0 "Thin Ice"
+370.4 "Downburst"
+373.0 "Outer Fireballs"
+373.9 "Blaze" duration 6
+385.4 "Roar"
+392.4 "Wyrm Tail"
+398.5 "Wyrm Tail"
+403.8 "Twin Bolt" duration 5
+410.8 "Clamp"
+428.6 "Wyrm Tail"
+435.4 "Outer Fireballs"
+438.4 "Levinbolt"
+440.2 "Inner Fireballs"
+440.9 "Blaze" duration 6
+
+##### 4th Classical Elements
+# spread: knockback => in => spread+lightning
+453.0 "Classical (spread)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+469.0 "Thin Ice"
+470.0 "Downburst"
+475.0 "Outer Fireballs"
+478.0 "Levinbolt"
+484.0 "Roar"
+490.0 "Wyrm Tail"
+496.0 "Wyrm Tail"
+507.0 "Charybdis"
+515.0 "Twin Bolt"
+538.0 "Levinbolt"
+540.0 "Inner Fireballs"
+547.0 "Clamp"
+548.0 "Outer Fireballs"
+554.0 "Roar"
+560.0 "Roar"
+579.0 "Enrage"

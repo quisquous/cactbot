@@ -1,0 +1,105 @@
+#popup-text-container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+#timeline-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 220px;
+  height: 120px;
+  font-size: 14px;
+}
+
+#timeline-container.lang-fr {
+  width: 300px;
+}
+
+#timeline-container.lang-de {
+  width: 300px;
+}
+
+/* Relative to popup-text-container */
+#popup-text-info {
+  position: absolute;
+  width: 100%;
+  top: 155px;
+}
+/* Relative to popup-text-container */
+#popup-text-alert {
+  position: absolute;
+  width: 100%;
+  top: 90px;
+}
+/* Relative to popup-text-container */
+#popup-text-alarm {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+}
+
+.info-text {
+  color: #2b2;
+  font-size: 140%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
+}
+.alert-text {
+  color: #fb0;
+  font-size: 170%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
+  text-transform: uppercase;
+}
+.alarm-text {
+  color: #f30;
+  font-size: 230%;
+  text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
+  will-change: transform;
+  text-transform: uppercase;
+}
+
+.animate-text {
+  animation-name: zoom-in-out;
+  animation-duration: 300ms;
+}
+
+@keyframes zoom-in-out {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1.0); }
+}
+
+/* Show only when unlocked for move/resize. */
+.resize-helper {
+  display: none;
+}
+.resizeHandle .resize-helper {
+  display: inline-block;
+}
+
+/* Fake bars for helping with move/resize. */
+#timeline-resize-helper {
+  width: 100%;
+}
+#timeline-resize-helper .resize-helper-bar {
+  border: 1px solid black;
+  margin-bottom: 2;
+  padding: 0 0.2em 0 0.2em;
+  vertical-align: middle;
+}
+
+.timeline-bar-color {
+  background-color: #88f;
+}
+.timeline-bar-color.soon {
+  background-color: #f88;
+}
+
+#timeline-debug {
+  position: absolute;
+  top: 0px;
+  left: calc(100%);
+}
