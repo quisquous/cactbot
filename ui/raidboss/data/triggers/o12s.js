@@ -394,6 +394,16 @@
       },
     },
     {
+      id: 'O12S Hello World Tower Complete',
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Cascading Latent Defect) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Latenter Bug: Unterlauf) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent: dégradation) from/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|レイテントバグ：デグレード) from/,
+      infoText: {
+        en: 'Move out for Defamation',
+      },
+    },
+    {
       // Archive All Marker Tracking
       regex: /1B:........:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
       condition: function(data) {
