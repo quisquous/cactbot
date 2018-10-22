@@ -78,6 +78,7 @@ class CactbotLanguage {
       Combust2: 'E18',
       AspectedBenefic: 'E0B',
       AspectedHelios: 'E11',
+      Contagion: '31B',
 
       // Susano Ex
       ChurningDeep: '203F',

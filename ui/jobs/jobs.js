@@ -395,6 +395,14 @@ function setupBuffTracker() {
       borderColor: '#006b99',
       sortKey: 6,
     },
+    contagion: {
+      gainRegex: gLang.abilityRegex(gLang.kAbility.Contagion),
+      durationSeconds: 15,
+      icon: kIconBuffContagion,
+      // Light blue.
+      borderColor: '#B6C2D8',
+      sortKey: 7,
+    },
     sight: {
       gainRegex: gLang.youGainEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
       loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
@@ -402,7 +410,7 @@ function setupBuffTracker() {
       icon: kIconBuffDragonSight,
       // Orange.
       borderColor: '#FA8737',
-      sortKey: 7,
+      sortKey: 8,
     },
     brotherhood: {
       gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Brotherhood),
@@ -411,7 +419,7 @@ function setupBuffTracker() {
       icon: kIconBuffBrotherhood,
       // Dark Orange.
       borderColor: '#994200',
-      sortKey: 8,
+      sortKey: 9,
     },
     devotion: {
       gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Devotion),
@@ -420,7 +428,7 @@ function setupBuffTracker() {
       icon: kIconBuffDevotion,
       // Yellow.
       borderColor: '#ffbf00',
-      sortKey: 9,
+      sortKey: 10,
     },
     requiem: {
       gainRegex: gLang.gainsEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
@@ -429,7 +437,7 @@ function setupBuffTracker() {
       icon: kIconBuffFoes,
       // Light Purple.
       borderColor: '#F272F2',
-      sortKey: 10,
+      sortKey: 11,
       side: 'left',
       text: 'elapsed',
     },
