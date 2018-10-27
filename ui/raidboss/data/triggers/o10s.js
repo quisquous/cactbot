@@ -47,13 +47,14 @@
     {
       id: 'O10S Fire Marker',
       regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) {
-        return data.me == matches[1];
-      },
-      alarmText: {
-        en: 'Fire Marker on YOU',
-        de: 'Feuer Marker auf DIR',
-        fr: 'Feu sur VOUS',
+      alarmText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Fire Marker on YOU',
+            de: 'Feuer Marker auf DIR',
+            fr: 'Feu sur VOUS',
+          };
+        }
       },
       infoText: function(data, matches) {
         if (data.me != matches[1])
