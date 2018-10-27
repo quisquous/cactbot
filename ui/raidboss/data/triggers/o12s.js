@@ -399,6 +399,9 @@
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Latenter Bug: Unterlauf) from/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent: dégradation) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|レイテントバグ：デグレード) from/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: {
         en: 'Move out for Defamation',
       },
