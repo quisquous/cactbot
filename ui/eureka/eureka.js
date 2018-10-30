@@ -709,6 +709,7 @@ let Options = {
           },
           x: 8.0,
           y: 15.2,
+          weather: 'Fog',
         },
         minotaurs: {
           label: {
@@ -785,10 +786,10 @@ let Options = {
             ja: 'Horus',
           },
           mobName: {
-            en: 'Eye of Horus',
-            de: 'Eye of Horus',
-            fr: 'Eye of Horus',
-            ja: 'Eye of Horus',
+            en: 'Horus',
+            de: 'Horus',
+            fr: 'Horus',
+            ja: 'Horus',
           },
           trackerName: {
             en: 'Horus',
