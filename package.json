@@ -91,7 +91,11 @@
         }
       ],
       "camelcase": 0,
-      "guard-for-in": 0
+      "guard-for-in": 0,
+      "space-in-parens": [
+        "error",
+        "never"
+      ]
     }
   }
 }

@@ -260,7 +260,7 @@ class TimerIcon extends HTMLElement {
     let icon_left = (this.kOuterBorderSize * 2 + this._color_border_size) * this._scale;
     let icon_top = (this.kOuterBorderSize * 2 + this._color_border_size) * this._scale;
     let iconPadding = this.kOuterBorderSize * 4 + this._color_border_size * 2;
-    let icon_width = (this._width - iconPadding ) * this._scale;
+    let icon_width = (this._width - iconPadding) * this._scale;
     let icon_height = (this._height - iconPadding) * this._scale;
     let text_height = Math.ceil(Math.min(icon_width, icon_height) / 1.8);
     iconStyle.width = icon_width;
