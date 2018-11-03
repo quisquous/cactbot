@@ -1,6 +1,6 @@
 'use strict';
 /* O9S - Alphascape 1.0 Savage*/
-  [{
+[{
   zoneRegex: /^Alphascape V1.0 \(Savage\)$/,
   timelineFile: 'o9s.txt',
   triggers: [
@@ -41,7 +41,7 @@
             de: 'basta',
             fr: 'tankbuster',
           };
-        }else if ( data.role == 'tank' ) {
+        } else if ( data.role == 'tank' ) {
           return {
             en: 'tank swap',
             de: 'tenk wechsel',
@@ -82,13 +82,12 @@
             de: 'hinten dran',
             fr: 'aller derrière',
           };
-        }else {
-          return {
-            en: 'go to sides',
-            de: 'an die Seiten',
-            fr: 'aller sur les cotés',
-          };
         }
+        return {
+          en: 'go to sides',
+          de: 'an die Seiten',
+          fr: 'aller sur les cotés',
+        };
       },
       run: function(data) {
         delete data.primordialCrust;
@@ -117,7 +116,7 @@
           en: 'Front/Back -> Sides',
           de: 'Vorne/Hinten -> Seiten',
           fr: 'Devant/Derrière puis Côtés',
-        }; 
+        };
       },
       tts: function(data) {
         if ( data.primordialCrust == 'true' ) {
@@ -126,13 +125,12 @@
             de: 'an die Seiten',
             fr: 'aller sur les cotés',
           };
-        }else {
-          return {
-            en: 'go to back',
-            de: 'hinten dran',
-            fr: 'aller derrière',
-          };
         }
+        return {
+          en: 'go to back',
+          de: 'hinten dran',
+          fr: 'aller derrière',
+        };
       },
       run: function(data) {
         delete data.primordialCrust;
@@ -177,7 +175,7 @@
         }
       },
     },
-    
+
     // Fire Path
     {
       id: 'O9S fire phase tracking',
@@ -186,9 +184,8 @@
       preRun: function(data) {
         data.phaseCount = data.phaseCount || 0;
         data.phaseCount += 1;
-        if ( data.phaseCount < 8 ) {
+        if ( data.phaseCount < 8 )
           data.phaseType = 'fire';
-        }
       },
     },
     {
@@ -202,9 +199,8 @@
       },
       preRun: function(data) {
         data.entropyCount = data.entropyCount || 0;
-        if ( data.phaseType == 'fire' ) {
+        if ( data.phaseType == 'fire' )
           data.entropyCount += 1;
-        }
       },
       delaySeconds: function(data, matches) {
         if ( (data.role == 'tank' || data.role == 'healer') && data.phaseType == 'fire' ) {
@@ -213,11 +209,9 @@
         }
         if ( (data.role != 'tank' && data.role != 'healer') && data.phaseType == 'fire' ) {
           // 24s duration on entropy
-          if ( data.entropyCount > 1 ) {
+          if ( data.entropyCount > 1 )
             return 12;
-          }else {
-            return 19;
-          }
+          return 19;
         }
         if ( data.phaseType == 'enrage' ) {
           // 6s for everyone on enrage
@@ -262,12 +256,10 @@
         }
       },
       run: function(data) {
-        if ( data.entropyCount > 1 ) {
+        if ( data.entropyCount > 1 )
           delete data.entropyCount;
-        }
-        if ( data.phaseType == 'orb' || data.phaseType == 'enrage' ) {
+        if ( data.phaseType == 'orb' || data.phaseType == 'enrage' )
           delete data.entropyCount;
-        }
       },
     },
     {
@@ -283,12 +275,10 @@
         data.entropyCount = data.entropyCount || 0;
       },
       delaySeconds: function(data) {
-        if ( (data.role == 'tank' || data.role == 'healer') && data.phaseType == 'fire' ) {
+        if ( (data.role == 'tank' || data.role == 'healer') && data.phaseType == 'fire' )
           return 19;
-        }
-        if ( (data.role != 'tank' && data.role != 'healer') && data.phaseType == 'fire' ) {
+        if ( (data.role != 'tank' && data.role != 'healer') && data.phaseType == 'fire' )
           return 5;
-        }
       },
       infoText: function(data) {
         if ( data.phaseType == 'fire' ) {
@@ -315,7 +305,7 @@
         };
       },
     },
-    
+
     // Water Path
     {
       id: 'O9S water phase tracking',
@@ -324,9 +314,8 @@
       preRun: function(data) {
         data.phaseCount = data.phaseCount || 0;
         data.phaseCount += 1;
-        if ( data.phaseCount < 8 ) {
+        if ( data.phaseCount < 8 )
           data.phaseType = 'water';
-        }
       },
     },
     {
@@ -340,12 +329,10 @@
       },
       delaySeconds: function(data, matches) {
         // T/H get 10s & DPS get 17s
-        if ( data.phaseType == 'water' ) {
+        if ( data.phaseType == 'water' )
           return 5;
-        }
-        if ( data.phaseType == 'enrage' ) {
+        if ( data.phaseType == 'enrage' )
           return Number(matches[3]) - 5;
-        }
       },
       infoText: function(data) {
         if ( data.phaseType == 'water' ) {
@@ -375,9 +362,8 @@
       },
       delaySeconds: function(data, matches) {
         // T/H get 10s & DPS get 17s
-        if ( data.phaseType == 'water' ) {
+        if ( data.phaseType == 'water' )
           return 12;
-        }
       },
       infoText: function(data) {
         if ( data.phaseType == 'water' ) {
@@ -414,16 +400,15 @@
       preRun: function(data) {
         data.phaseCount = data.phaseCount || 0;
         data.phaseCount += 1;
-        if ( data.phaseCount < 8 ) {
+        if ( data.phaseCount < 8 )
           data.phaseType = 'wind';
-        }
       },
       infoText: function(data) {
         if ( (data.role != 'tank' && data.role != 'healer') && data.phaseType == 'enrage') {
           return {
             en: 'use spare LIMITBREAK now!',
             de: 'falls möglich LIMITRAUSCH!',
-            fr: 'si possible utilisez TRANSCENDANCE!'
+            fr: 'si possible utilisez TRANSCENDANCE!',
           };
         }
       },
@@ -494,7 +479,7 @@
         }
       },
     },
-    
+
     // Earth Path
     {
       id: 'O9S earth phase tracking',
@@ -503,9 +488,8 @@
       preRun: function(data) {
         data.phaseCount = data.phaseCount || 0;
         data.phaseCount += 1;
-        if ( data.phaseCount < 8 ) {
+        if ( data.phaseCount < 8 )
           data.phaseType = 'earth';
-        }
       },
     },
     {
@@ -525,13 +509,12 @@
             de: 'Alle vollheilen',
             fr: 'Soignez vie pleine tout le monde',
           };
-        }else {
-          return {
-            en: 'Heal Tanks/Healers to full',
-            de: 'Tanks/Heiler vollheilen',
-            fr: 'Soignez Heals/Tanks full vie',
-          };
         }
+        return {
+          en: 'Heal Tanks/Healers to full',
+          de: 'Tanks/Heiler vollheilen',
+          fr: 'Soignez Heals/Tanks full vie',
+        };
       },
     },
     {
@@ -545,7 +528,7 @@
       },
       preRun: function(data, matches) {
         data.primordialCrust = 'true';
-      },       
+      },
       infoText: function(data) {
         return {
           en: 'Die on next mechanic',
@@ -554,10 +537,9 @@
         };
       },
       run: function(data) {
-        if ( data.phaseType == 'orb' ) {
+        if ( data.phaseType == 'orb' )
           delete data.primordialCrust;
-        }
-      }
+      },
     },
     {
       id: 'O9S earth stack marker',
@@ -650,9 +632,8 @@
         return matches[1] == data.me;
       },
       delaySeconds: function(data, matches) {
-        if ( data.phaseType == 'orb' ) {
+        if ( data.phaseType == 'orb' )
           return Number(matches[3]) - 3;
-        }
       },
       infoText: function(data) {
         if ( data.phaseType == 'orb' ) {
