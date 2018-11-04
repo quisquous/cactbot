@@ -486,6 +486,7 @@
         if (data.phaseCount < 8)
           data.phaseType = 'earth';
       },
+    },
     {
       id: 'O9S Accretion',
       regex: /:\y{Name}gains the effect of (?:Unknown_644|Accretion)/,
