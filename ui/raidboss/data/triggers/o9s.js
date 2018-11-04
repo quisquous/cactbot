@@ -479,7 +479,7 @@
     {
       id: 'O9S Earth Phase Tracking',
       regex: / 14:3189:Chaos starts using /,
-      regex: / 14:3189:カオス starts using /,
+      regexJa: / 14:3189:カオス starts using /,
       preRun: function(data) {
         data.phaseCount = data.phaseCount || 0;
         data.phaseCount += 1;
