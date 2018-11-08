@@ -151,6 +151,7 @@ class CactbotLanguage {
       PvpShatter: /The Fields Of Glory \(Shatter\)/,
       EurekaAnemos: /Eureka Anemos/,
       EurekaPagos: /(Eureka Pagos|Unknown Zone \(2Fb\))/,
+      EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
     });
   }
 

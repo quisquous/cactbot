@@ -61,6 +61,7 @@ triggers/byakko-ex.js
 triggers/drowned_city_of_skalla.js
 triggers/eureka_anemos.js
 triggers/eureka_pagos.js
+triggers/eureka_pyros.js
 triggers/fractal_continuum_hard.js
 triggers/general.js
 triggers/lakshmi-ex.js

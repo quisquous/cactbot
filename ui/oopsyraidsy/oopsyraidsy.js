@@ -13,6 +13,7 @@ let Options = {
     'PvpShatter',
     'EurekaAnemos',
     'EurekaPagos',
+    'EurekaPyros',
   ],
 
   AbilityIdNameMap: {

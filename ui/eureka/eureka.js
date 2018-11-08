@@ -873,7 +873,7 @@ let Options = {
   },
 };
 
-let gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
+let gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos|Pyros) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
 let gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(\S*)\/?/);
 let gImportRegex = Regexes.Parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/);
 let gWeatherIcons = {
