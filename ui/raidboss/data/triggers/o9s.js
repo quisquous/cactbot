@@ -1,4 +1,5 @@
 'use strict';
+
 /* O9S - Alphascape 1.0 Savage*/
 [{
   zoneRegex: /^Alphascape V1.0 \(Savage\)$/,
@@ -59,7 +60,7 @@
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
-            en: 'Front/Back -> Sides',
+            en: 'Die on Front/Back -> Sides',
             de: 'Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
           };
@@ -75,7 +76,7 @@
       tts: function(data) {
         if (data.primordialCrust) {
           return {
-            en: 'go to back',
+            en: 'die on back',
             de: 'hinten dran',
             fr: 'aller derrière',
           };
@@ -99,7 +100,7 @@
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
-            en: 'Sides -> Front/Back',
+            en: 'Die on Sides -> Front/Back',
             de: 'Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
           };
@@ -115,7 +116,7 @@
       tts: function(data) {
         if (data.primordialCrust) {
           return {
-            en: 'go to sides',
+            en: 'die on sides',
             de: 'an die Seiten',
             fr: 'aller sur les cotés',
           };
@@ -173,12 +174,12 @@
     // Fire Path
     {
       id: 'O9S Fire Phase Tracking',
-      regex: / 14:3186:Chaos starts using /,
+      regex: / 14:3186:Chaos starts using Blaze /,
+      regexDe: / 14:3186:Chaos starts using /,
+      regexFr: / 14:3186:Chaos starts using /,
       regexJa: / 14:3186:カオス starts using /,
-      preRun: function(data) {
-        data.phaseCount = data.phaseCount || 0;
-        data.phaseCount += 1;
-        if (data.phaseCount < 8)
+      run: function(data) {
+        if (data.phaseType != 'enrage')
           data.phaseType = 'fire';
       },
     },
@@ -193,67 +194,34 @@
       },
       preRun: function(data) {
         data.entropyCount = data.entropyCount || 0;
-        if (data.phaseType == 'fire')
-          data.entropyCount += 1;
+        data.entropyCount += 1;
       },
       delaySeconds: function(data, matches) {
-        if ((data.role == 'tank' || data.role == 'healer') && data.phaseType == 'fire') {
-          // 10s duration on entropy
-          return 5;
-        }
-        if ((data.role != 'tank' && data.role != 'healer') && data.phaseType == 'fire') {
-          // 24s duration on entropy
-          if (data.entropyCount > 1)
-            return 12;
-          return 19;
-        }
-        if (data.phaseType == 'enrage') {
-          // 6s for everyone on enrage
-          return 1;
-        }
+        // Warn dps earlier to stack.
+        if (data.role != 'tank' && data.role != 'healer' && data.entropyCount == 2)
+          return parseFloat(matches[2]) - 12;
+        return parseFloat(matches[2]) - 5;
       },
       alertText: function(data) {
-        if (data.entropyCount == 1 && (data.role == 'tank' || data.role == 'healer')) {
+        if (data.phaseType == 'enrage' || data.phaseType == 'orb' || data.entropyCount == 1) {
           return {
-            en: 'Spread (Tanks/Healers)',
-            de: 'Verteilen (Tanks/Heiler)',
-            fr: 'Ecartez-vous (Tanks/Healers)',
+            en: 'Spread',
+            de: 'Verteilen)',
+            fr: 'Ecartez-vous',
+          };
+        } else if (data.role == 'tank' || data.role == 'healer') {
+          return {
+            en: 'Spread and Stay',
+            de: 'Verteilen und bleiben',
+            fr: 'Ecartez-vous et rester',
           };
         }
-        if (data.entropyCount == 2 && (data.role == 'tank' || data.role == 'healer')) {
-          return {
-            en: 'Spread and stay!(Tanks/Healers)',
-            de: 'Verteilen und bleiben (Tanks/Heiler)',
-            fr: 'Ecartez-vous et rester (Tanks/Healers)',
-          };
-        }
-        if (data.entropyCount == 1 && (data.role != 'tank' && data.role != 'healer')) {
-          return {
-            en: 'Spread (DPS)',
-            de: 'Verteilen (DPS)',
-            fr: 'Ecartez-vous (DPS)',
-          };
-        }
-        if (data.entropyCount == 2 && (data.role != 'tank' && data.role != 'healer')) {
-          return {
-            en: 'Stack and Stay! (DPS)',
-            de: 'Stack und Bleiben! (DPS)',
-            fr: 'Empiler et rester! (DPS)',
-          };
-        }
-        if (data.phaseType == 'enrage') {
-          return {
-            en: 'Spread (Everyone)',
-            de: 'Verteilen (Jeder)',
-            fr: 'Ecartez-vous (Tout le monde)',
-          };
-        }
-      },
-      run: function(data) {
-        if (data.entropyCount > 1)
-          delete data.entropyCount;
-        if (data.phaseType == 'orb' || data.phaseType == 'enrage')
-          delete data.entropyCount;
+        // DPS entropy #2
+        return {
+          en: 'Stack and Stay Out',
+          de: 'Stack und Bleiben',
+          fr: 'Empiler et rester',
+        };
       },
     },
     {
@@ -263,115 +231,110 @@
       regexFr: /:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches[1] == data.me && data.phaseType == 'fire';
       },
-      preRun: function(data) {
-        data.entropyCount = data.entropyCount || 0;
-      },
-      delaySeconds: function(data) {
-        if ((data.role == 'tank' || data.role == 'healer') && data.phaseType == 'fire')
-          return 19;
-        if ((data.role != 'tank' && data.role != 'healer') && data.phaseType == 'fire')
+      delaySeconds: function(data, matches) {
+        // Folks get either the 24 second or the 10 second.
+        // So, delay for the opposite minus 5.
+        let seconds = parseFloat(matches[2]);
+        // Got 24 seconds (dps)
+        if (seconds > 11)
           return 5;
+        // Got 10 seconds (tank)
+        return 19;
       },
-      infoText: function(data) {
-        if (data.phaseType == 'fire') {
-          return {
-            en: 'Hide Middle',
-            de: 'Zur Mitte',
-            fr: 'Allez au centre',
-          };
-        }
+      infoText: {
+        en: 'Hide Middle',
+        de: 'Zur Mitte',
+        fr: 'Allez au centre',
       },
     },
     {
       id: 'O9S Fire Big Bang',
-      regex: / 14:3180:Chaos starts using /,
+      regex: / 14:3180:Chaos starts using Big Bang /,
+      regexDe: / 14:3180:Chaos starts using /,
+      regexFr: / 14:3180:Chaos starts using /,
       regexJa: / 14:3180:カオス starts using /,
+      // Each big bang has its own cast, so suppress.
+      suppressSeconds: 1,
       condition: function(data) {
         return data.phaseType == 'fire';
       },
-      alertText: function(data) {
-        return {
-          en: 'Hide Middle',
-          de: 'Zur Mitte',
-          fr: 'Allez au centre',
-        };
+      alertText: {
+        en: 'Hide Middle',
+        de: 'Zur Mitte',
+        fr: 'Allez au centre',
       },
     },
 
     // Water Path
     {
       id: 'O9S Water Phase Tracking',
-      regex: / 14:3187:Chaos starts using /,
+      regex: / 14:3187:Chaos starts using Tsunami /,
+      regexDe: / 14:3187:Chaos starts using /,
+      regexFr: / 14:3187:Chaos starts using /,
       regexJa: / 14:3187:カオス starts using /,
-      preRun: function(data) {
-        data.phaseCount = data.phaseCount || 0;
-        data.phaseCount += 1;
-        if (data.phaseCount < 8)
+      run: function(data) {
+        if (data.phaseType != 'enrage')
           data.phaseType = 'water';
       },
     },
     {
       id: 'O9S Dynamic Fluid 1',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
-      condition: function(data, matches) {
-        return matches[1] == data.me;
+      regex: /:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexDe: /:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
+      regexFr: /:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
+      regexJa: /:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      condition: function(data) {
+        return data.phaseType == 'water';
       },
-      delaySeconds: function(data, matches) {
-        // T/H get 10s & DPS get 17s
-        if (data.phaseType == 'water')
-          return 5;
-        if (data.phaseType == 'enrage')
-        // enrage -> 6s
-          return 1;
-      },
-      infoText: function(data) {
-        if (data.phaseType == 'water') {
-          return {
-            en: 'Stack Donut',
-            de: 'Sammeln Donut',
-            fr: 'Empiler Donut',
-          };
-        }
-        if (data.phaseType == 'enrage') {
-          return {
-            en: 'Hide Middle',
-            de: 'Zur Mitte',
-            fr: 'Allez au centre',
-          };
-        }
+      suppressSeconds: 1,
+      // T/H get 10s & DPS get 17s
+      delaySeconds: 5,
+      infoText: {
+        en: 'Stack Donut',
+        de: 'Sammeln Donut',
+        fr: 'Empiler Donut',
       },
     },
     {
       id: 'O9S Dynamic Fluid 2',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
-      condition: function(data, matches) {
-        return matches[1] == data.me;
+      regex: /:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexDe: /:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
+      regexFr: /:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
+      regexJa: /:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      condition: function(data) {
+        return data.phaseType == 'water';
       },
-      delaySeconds: function(data, matches) {
-        // T/H get 10s & DPS get 17s
-        if (data.phaseType == 'water')
-          return 12;
-      },
-      infoText: function(data) {
-        if (data.phaseType == 'water') {
-          return {
-            en: 'Stack Donut',
-            de: 'Sammeln Donut',
-            fr: 'Empiler Donut',
-          };
-        }
+      suppressSeconds: 1,
+      // T/H get 10s & DPS get 17s
+      delaySeconds: 12,
+      infoText: {
+        en: 'Stack Donut',
+        de: 'Sammeln Donut',
+        fr: 'Empiler Donut',
       },
     },
     {
-      id: 'O9S Water Knock Down',
+      id: 'O9S Dynamic Fluid 3',
+      regex: /:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexDe: /:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
+      regexFr: /:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
+      regexJa: /:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      condition: function(data) {
+        return data.phaseType == 'enrage';
+      },
+      suppressSeconds: 1,
+      // enrage -> 6s
+      delaySeconds: 1,
+      infoText: {
+        en: 'Stack Donut',
+        de: 'Sammeln Donut',
+        fr: 'Empiler Donut',
+      },
+    },
+    {
+      id: 'O9S Knock Down Marker',
       regex: / 1B:........:(\y{Name}):0000:0000:0057:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -379,9 +342,15 @@
       alertText: function(data) {
         if (data.phaseType == 'water') {
           return {
-            en: 'Go North / South',
+            en: 'Drop Outside',
             de: 'Gehe Nord / Süd',
             fr: 'Aller Nord / Sud',
+          };
+        } else if (data.phaseType == 'wind') {
+          return {
+            en: 'Drop Outside + Knockback',
+            de: 'Geh nächste Ecke nah am Tornado',
+            fr: 'Aller au prochain coin près du Tornade',
           };
         }
       },
@@ -390,22 +359,13 @@
     // Wind Path
     {
       id: 'O9S Wind Phase Tracking',
-      regex: / 14:3188:Chaos starts using /,
+      regex: / 14:3188:Chaos starts using Cyclone /,
+      regexDe: / 14:3188:Chaos starts using /,
+      regexFr: / 14:3188:Chaos starts using /,
       regexJa: / 14:3188:カオス starts using /,
-      preRun: function(data) {
-        data.phaseCount = data.phaseCount || 0;
-        data.phaseCount += 1;
-        if (data.phaseCount < 8)
+      run: function(data) {
+        if (data.phaseType != 'enrage')
           data.phaseType = 'wind';
-      },
-      alertText: function(data) {
-        if ((data.role != 'tank' && data.role != 'healer') && data.phaseType == 'enrage') {
-          return {
-            en: 'use spare LIMITBREAK now!',
-            de: 'falls möglich LIMITRAUSCH!',
-            fr: 'si possible utilisez TRANSCENDANCE!',
-          };
-        }
       },
     },
     {
@@ -417,7 +377,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      preRun: function(data) {
+      run: function(data) {
         data.wind = 'head';
       },
     },
@@ -430,18 +390,20 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      preRun: function(data) {
+      run: function(data) {
         data.wind = 'tail';
       },
     },
     {
       id: 'O9S Cyclone Knockback',
-      regex: / 14:318F:Chaos starts using /,
+      regex: / 14:318F:Chaos starts using Cyclone /,
+      regexDe: / 14:318F:Chaos starts using /,
+      regexFr: / 14:318F:Chaos starts using /,
       regexJa: / 14:318F:カオス starts using /,
       alarmText: function(data) {
         if (data.wind == 'head') {
           return {
-            en: 'Back towards Cyclone',
+            en: 'Back to Tornado',
             de: 'Rücken zum Tornado',
             fr: 'Se détourner de la tornade',
           };
@@ -458,41 +420,25 @@
         delete data.wind;
       },
     },
-    {
-      id: 'O9S Wind Knock Down',
-      regex: / 1B:........:(\y{Name}):0000:0000:0057:0000:0000:0000:/,
-      condition: function(data, matches) {
-        return matches[1] == data.me;
-      },
-      alertText: function(data) {
-        if (data.phaseType == 'wind') {
-          return {
-            en: 'Go next Corner close to Cyclone',
-            de: 'Geh nächste Ecke nah am Tornado',
-            fr: 'Aller au prochain coin près du Tornade',
-          };
-        }
-      },
-    },
 
     // Earth Path
     {
       id: 'O9S Earth Phase Tracking',
-      regex: / 14:3189:Chaos starts using /,
+      regex: / 14:3189:Chaos starts using Earthquake /,
+      regexDe: / 14:3189:Chaos starts using /,
+      regexFr: / 14:3189:Chaos starts using /,
       regexJa: / 14:3189:カオス starts using /,
-      preRun: function(data) {
-        data.phaseCount = data.phaseCount || 0;
-        data.phaseCount += 1;
-        if (data.phaseCount < 8)
+      run: function(data) {
+        if (data.phaseType != 'enrage')
           data.phaseType = 'earth';
       },
     },
     {
       id: 'O9S Accretion',
-      regex: /:\y{Name}gains the effect of (?:Unknown_644|Accretion)/,
-      regexDe: /:\y{Name}gains the effect of (?:Unknown_644|Chaossumpf)/,
-      regexFr: /:\y{Name}gains the effect of (?:Unknown_644|Bourbier du chaos)/,
-      regexJa: /:\y{Name}gains the effect of (?:Unknown_644|混沌の泥土)/,
+      regex: /:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
+      regexDe: /:\y{Name} gains the effect of (?:Unknown_644|Chaossumpf)/,
+      regexFr: /:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
+      regexJa: /:\y{Name} gains the effect of (?:Unknown_644|混沌の泥土)/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -500,7 +446,7 @@
       infoText: function(data) {
         if (data.phaseType != 'earth') {
           return {
-            en: 'Heal All to full',
+            en: 'Heal All to Full',
             de: 'Alle vollheilen',
             fr: 'Soignez vie pleine tout le monde',
           };
@@ -519,10 +465,10 @@
       regexFr: /:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
       regexJa: /:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches[1] && data.phaseType != 'orb';
       },
       preRun: function(data, matches) {
-        data.primordialCrust = 'true';
+        data.primordialCrust = true;
       },
       infoText: function(data) {
         return {
@@ -531,10 +477,6 @@
           fr: 'Mourrez sur la prochaine mécanique',
         };
       },
-      run: function(data) {
-        if (data.phaseType == 'orb')
-          delete data.primordialCrust;
-      },
     },
     {
       id: 'O9S Earth Stack Marker',
@@ -542,45 +484,22 @@
       suppressSeconds: 10,
       infoText: function(data) {
         return {
-          en: 'Spread stacks',
+          en: 'Stack with partner',
           de: 'Stacks verteilen',
           fr: 'Ecartez-vous et empiler',
         };
-      },
-    },
-    {
-      id: 'O9S Earth Big Bang',
-      regex: / 14:317A:Chaos starts using /,
-      regexJa: / 14:317A:カオス starts using /,
-      condition: function(data) {
-        return data.phaseType == 'earth';
-      },
-      alertText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Go North!',
-            de: 'Nach Norden!',
-            fr: 'Aller Nord!',
-          };
-        }
-        if (data.role != 'tank' && data.role != 'healer') {
-          return {
-            en: 'Stay!',
-            de: 'Bleiben!',
-            fr: 'Rester!',
-          };
-        }
       },
     },
 
     // Orb Phase
     {
       id: 'O9S Orb Phase Tracking',
-      regex: / 14:318A:Chaos starts using /,
+      regex: / 14:318A:Chaos starts using Bowels Of Agony /,
+      regexDe: / 14:318A:Chaos starts using /,
+      regexFr: / 14:318A:Chaos starts using /,
       regexJa: / 14:318A:カオス starts using /,
       preRun: function(data) {
         data.phaseType = 'orb';
-        data.phaseCount += 1;
       },
     },
     {
@@ -590,25 +509,18 @@
       regexFr: /:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
-        return matches[1] != data.me;
+        return matches[1] != data.me && data.phaseType == 'orb';
       },
       suppressSeconds: 10,
-      delaySeconds: 11, // orb Entropy has 14s
-      alertText: function(data) {
-        if (data.phaseType == 'orb') {
-          return {
-            en: 'knockback in 3',
-            de: 'rückstoß in 3',
-            fr: 'recul en 3',
-          };
-        }
+      delaySeconds: function(data, matches) {
+        return parseFloat(matches[2]) - 3;
       },
-      infoText: function(data) {
-        if (data.wind == 'head') {
+      alertText: function(data) {
+        if (data.head == 'wind') {
           return {
-            en: 'back towards DPS',
-            de: 'rücken zum DPS',
-            fr: 'dos au DPS',
+            en: 'Back to DPS',
+            de: 'Rücken zum DPS',
+            fr: 'Dos au DPS',
           };
         }
       },
@@ -618,40 +530,37 @@
     },
     {
       id: 'O9S Orb Dynamic Fluid',
-      regex: / :(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
       regexDe: /:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
       regexFr: /:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches[1] == data.me && data.phaseType == 'orb';
       },
       delaySeconds: function(data, matches) {
-        if (data.phaseType == 'orb')
-        // 17s
-          return 12;
+        return parseFloat(matches[2]) - 5;
       },
       infoText: function(data) {
-        if (data.phaseType == 'orb') {
-          return {
-            en: 'kill your DPS',
-            de: 'töte deinen DPS',
-            fr: 'tuez votre DPS',
-          };
-        }
+        return {
+          en: 'Hit DPS with Water',
+          de: 'töte deinen DPS',
+          fr: 'tuez votre DPS',
+        };
       },
     },
+
     // Enrage Phase
     {
       id: 'O9S Enrage Phase Tracking',
-      regex: / 14:....:Chaos starts using /,
-      regexJa: / 14:....:カオス starts using /,
-      condition: function(data) {
-        if (data.phaseType != 'enrage')
-          return data.phaseCount > 8;
-        return data.phaseCount > 100; // something unreachable if possible just abort trigger here
-      },
-      preRun: function(data) {
-        data.phaseType = 'enrage';
+      regex: / 14:3186:Chaos starts using Blaze /,
+      regexDe: / 14:3186:Chaos starts using /,
+      regexFr: / 14:3186:Chaos starts using /,
+      regexJa: / 14:3186:カオス starts using /,
+      run: function(data) {
+        data.blazeCount = data.blazeCount || 0;
+        data.blazeCount++;
+        if (data.blazeCount >= 3)
+          data.phaseType = 'enrage';
       },
     },
   ],
