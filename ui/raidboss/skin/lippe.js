@@ -35,13 +35,13 @@ class TimerBar extends HTMLElement {
     return this.getAttribute('height');
   }
   set duration(s) {
-    this.attributeChangedCallback('duration' , this.duration, s);
+    this.attributeChangedCallback('duration', this.duration, s);
   }
   get duration() {
     return this._duration.toString();
   }
   set value(s) {
-    this.attributeChangedCallback('value' , this.value, s);
+    this.attributeChangedCallback('value', this.value, s);
   }
   get value() {
     if (!this._start) return this._duration.toString();
@@ -49,7 +49,7 @@ class TimerBar extends HTMLElement {
     return Math.max(0, this._duration - (elapsedMs / 1000)).toString();
   }
   set elapsed(s) {
-    this.attributeChangedCallback('elapsed' , this.elapsed, s);
+    this.attributeChangedCallback('elapsed', this.elapsed, s);
   }
   get elapsed() {
     if (!this._start) return '0';
@@ -328,7 +328,7 @@ class TimerBar extends HTMLElement {
       if (this._center_text == 'remain')
         this.centerTextElement.innerHTML = display_remain;
       else if (this._center_text == 'duration')
-        this.centerTextElement.innerHTML = display_remain + " / " + this._duration;
+        this.centerTextElement.innerHTML = display_remain + ' / ' + this._duration;
       else if (this._center_text == 'percent')
         this.centerTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
       else if (this._center_text == 'elapsed')
@@ -360,7 +360,7 @@ class TimerBar extends HTMLElement {
   }
 
   advance() {
-    var elapsedSec = (new Date() - this._start) / 1000;
+    let elapsedSec = (new Date() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
