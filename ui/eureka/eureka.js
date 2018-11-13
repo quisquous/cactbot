@@ -1150,7 +1150,7 @@ class EurekaTracker {
     }
 
     let regex = Regexes.Parse(/(.*) \((\d*)m\)/);
-    let importList = importText.split(' > ');
+    let importList = importText.split(' → ');
     for (let i = 0; i < importList.length; i++) {
       let m = importList[i].match(regex);
       if (!m) {
