@@ -491,13 +491,13 @@ let Options = {
         snowqueen: {
           label: {
             en: 'Queen',
-            de: 'Snow Queen',
+            de: 'Schneekönigin',
             fr: 'Snow Queen',
             ja: 'Snow Queen',
           },
           mobName: {
             en: 'The Snow Queen',
-            de: 'The Snow Queen',
+            de: 'Schneekönigin',
             fr: 'The Snow Queen',
             ja: 'The Snow Queen',
           },
@@ -536,13 +536,13 @@ let Options = {
         ashdragon: {
           label: {
             en: 'Dragon',
-            de: 'Ash Dragon',
+            de: 'Aschedrache',
             fr: 'Ash Dragon',
             ja: 'Ash Dragon',
           },
           mobName: {
             en: 'Ash Dragon',
-            de: 'Ash Dragon',
+            de: 'Aschedrache',
             fr: 'Ash Dragon',
             ja: 'Ash Dragon',
           },
@@ -580,13 +580,13 @@ let Options = {
         anapos: {
           label: {
             en: 'Anapos',
-            de: 'Anapos',
+            de: 'Anapo',
             fr: 'Anapos',
             ja: 'Anapos',
           },
           mobName: {
             en: 'Anapos',
-            de: 'Anapos',
+            de: 'Anapo',
             fr: 'Anapos',
             ja: 'Anapos',
           },
@@ -625,13 +625,13 @@ let Options = {
         igloo: {
           label: {
             en: 'Igloo',
-            de: 'Igloo',
+            de: 'Iglu',
             fr: 'Igloo',
             ja: 'Igloo',
           },
           mobName: {
             en: 'King Igloo',
-            de: 'King Igloo',
+            de: 'Iglu-König',
             fr: 'King Igloo',
             ja: 'King Igloo',
           },
@@ -691,13 +691,13 @@ let Options = {
         kingarthro: {
           label: {
             en: 'Arthro',
-            de: 'King Arthro',
+            de: 'König Athro',
             fr: 'King Arthro',
             ja: 'King Arthro',
           },
           mobName: {
             en: 'King Arthro',
-            de: 'King Arthro',
+            de: 'König Athro',
             fr: 'King Arthro',
             ja: 'King Arthro',
           },
@@ -714,13 +714,13 @@ let Options = {
         minotaurs: {
           label: {
             en: 'Minotaurs',
-            de: 'Minotaurs',
+            de: 'Minotauren',
             fr: 'Minotaurs',
             ja: 'Minotaurs',
           },
           mobName: {
             en: 'Mindertaur',
-            de: 'Mindertaur',
+            de: 'niederer Minotaurus',
             fr: 'Mindertaur',
             ja: 'Mindertaur',
           },
@@ -736,13 +736,13 @@ let Options = {
         holycow: {
           label: {
             en: 'Holy Cow',
-            de: 'Holy Cow',
+            de: 'Heilsbringer',
             fr: 'Holy Cow',
             ja: 'Holy Cow',
           },
           mobName: {
             en: 'Holy Cow',
-            de: 'Holy Cow',
+            de: 'Heilsbringer',
             fr: 'Holy Cow',
             ja: 'Holy Cow',
           },
@@ -810,7 +810,7 @@ let Options = {
           },
           mobName: {
             en: 'Arch Angra Mainyu',
-            de: 'Arch Angra Mainyu',
+            de: 'Erz-Angra Mainyu',
             fr: 'Arch Angra Mainyu',
             ja: 'Arch Angra Mainyu',
           },
@@ -832,7 +832,7 @@ let Options = {
           },
           mobName: {
             en: 'Copycat Cassie',
-            de: 'Copycat Cassie',
+            de: 'kopierende Cassie',
             fr: 'Copycat Cassie',
             ja: 'Copycat Cassie',
           },
