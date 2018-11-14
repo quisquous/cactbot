@@ -832,7 +832,7 @@ let Options = {
           },
           mobName: {
             en: 'Copycat Cassie',
-            de: 'kopierende Cassie',
+            de: 'Kopierende Cassie',
             fr: 'Copycat Cassie',
             ja: 'Copycat Cassie',
           },
