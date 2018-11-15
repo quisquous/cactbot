@@ -213,14 +213,14 @@
           return {
             en: 'Spread and Stay',
             de: 'Verteilen und bleiben',
-            fr: 'Ecartez-vous et rester',
+            fr: 'Ecartez-vous et restez',
           };
         }
         // DPS entropy #2
         return {
           en: 'Stack and Stay Out',
           de: 'Stack und Bleiben',
-          fr: 'Empiler et rester',
+          fr: 'Packez-vous et restez',
         };
       },
     },
@@ -294,7 +294,7 @@
       infoText: {
         en: 'Stack Donut',
         de: 'Sammeln Donut',
-        fr: 'Empiler Donut',
+        fr: 'Packez-vous',
       },
     },
     {
@@ -312,7 +312,7 @@
       infoText: {
         en: 'Stack Donut',
         de: 'Sammeln Donut',
-        fr: 'Empiler Donut',
+        fr: 'Packez-vous',
       },
     },
     {
@@ -330,7 +330,7 @@
       infoText: {
         en: 'Stack Donut',
         de: 'Sammeln Donut',
-        fr: 'Empiler Donut',
+        fr: 'Packez-vous',
       },
     },
     {
@@ -344,13 +344,13 @@
           return {
             en: 'Drop Outside',
             de: 'Gehe Nord / Süd',
-            fr: 'Aller Nord / Sud',
+            fr: 'Allez au Nord/Sud',
           };
         } else if (data.phaseType == 'wind') {
           return {
             en: 'Drop Outside + Knockback',
             de: 'Geh nächste Ecke nah am Tornado',
-            fr: 'Aller au prochain coin près du Tornade',
+            fr: 'Déposez dans les coins',
           };
         }
       },
@@ -405,14 +405,14 @@
           return {
             en: 'Back to Tornado',
             de: 'Rücken zum Tornado',
-            fr: 'Se détourner de la tornade',
+            fr: 'Regardez vers l\'extérieur',
           };
         }
         if (data.wind == 'tail') {
           return {
             en: 'Face the Tornado',
             de: 'Zum Tornado hin',
-            fr: 'Se tourner vers la tornade',
+            fr: 'Regardez la tornade',
           };
         }
       },
@@ -448,7 +448,7 @@
           return {
             en: 'Heal All to Full',
             de: 'Alle vollheilen',
-            fr: 'Soignez vie pleine tout le monde',
+            fr: 'Soignez tout le monde full vie',
           };
         }
         return {
@@ -486,7 +486,7 @@
         return {
           en: 'Stack with partner',
           de: 'Stacks verteilen',
-          fr: 'Ecartez-vous et empiler',
+          fr: 'Packez-vous en binôme',
         };
       },
     },
@@ -544,7 +544,7 @@
         return {
           en: 'Hit DPS with Water',
           de: 'töte deinen DPS',
-          fr: 'tuez votre DPS',
+          fr: 'Tuez les DPS',
         };
       },
     },
