@@ -1003,7 +1003,7 @@ let gWeatherRates = {
       100,
     ],
     'weathers': [
-      'Wyrmstorm',
+      'Wyrmstorms',
     ],
   },
   77: {
@@ -1011,7 +1011,7 @@ let gWeatherRates = {
       100,
     ],
     'weathers': [
-      'Revelstorm',
+      'Revelstorms',
     ],
   },
   78: {
@@ -1217,7 +1217,7 @@ let gWeatherRates = {
       100,
     ],
     'weathers': [
-      'White Cyclone',
+      'White Cyclones',
     ],
   },
   94: {
@@ -1244,6 +1244,40 @@ let gWeatherRates = {
     ],
     'weathers': [
       'Fair Skies',
+    ],
+  },
+  96: {
+    'rates': [
+      10,
+      28,
+      46,
+      64,
+      82,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Heat Waves',
+      'Thunder',
+      'Blizzards',
+      'Umbral Wind',
+      'Snow',
+    ],
+  },
+  97: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Sandstorms',
+    ],
+  },
+  98: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Scarlet',
     ],
   },
 };
