@@ -25,12 +25,13 @@ function getWeatherChanceValue(timeMs) {
   let increment = (bell + 8 - (bell % 8)) % 24;
 
   // Take Eorzea days since unix epoch
-  let totalDays = Math.floor(unix / 4200);
+  let totalDays = (unix / 4200) >>> 0;
 
-  let calcBase = (totalDays * 0x64) + increment;
+  // The following math all needs to be done as unsigned integers.
+  let calcBase = ((totalDays * 0x64) + increment) >>> 0;
 
-  let step1 = (calcBase << 0xB) ^ calcBase;
-  let step2 = (step1 >> 8) ^ step1;
+  let step1 = ((calcBase << 0xB) ^ calcBase) >>> 0;
+  let step2 = ((step1 >>> 8) ^ step1) >>> 0;
 
   return step2 % 0x64;
 }
