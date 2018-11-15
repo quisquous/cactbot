@@ -14,7 +14,7 @@ document.addEventListener('onZoneChangedEvent', function(e) {
   document.getElementById('currentZone').innerHTML = e.detail.zoneName;
 });
 document.getElementById('inputLogFile').addEventListener('change', function(e) {
-  let myFile = this.files[0];
+  let myFile = document.getElementById('inputLogFile').files[0];
   let reader = new FileReader();
   global.storage = [];
   if (global.logTimers) {
@@ -67,7 +67,7 @@ function playLogFile() {
 function stopLogFile() {
   for (let i = 0; i < global.logTimers.length; i++)
     clearTimeout(global.logTimers[i]);
-  
+
   global.logTimers = [];
   let myArray = [];
   myArray.push('00:0038:cactbot wipe');
@@ -113,8 +113,7 @@ showHandleIcon.addEventListener('click', function() {
     showHandleIcon.setAttribute('class', 'glyphicon glyphicon-eye-open');
     emuHandle.style.color = 'rgba(255,255,255, 0.1)';
     emulatorState('show');
-  }
-  else {
+  } else {
     showHandleIcon.setAttribute('class', 'glyphicon glyphicon-eye-closed');
     emulatorState('hide');
   }
