@@ -32,6 +32,7 @@
       },
       alarmText: {
         en: 'Don\'t Stack!',
+        de: 'Nicht stacken!',
       },
     },
     {
@@ -42,6 +43,7 @@
       regexJa: / 1A:オメガ gains the effect of (?:レゾナンスプログラム：ニアー|Unknown_67E) from/,
       infoText: {
         en: 'Keep Bosses Apart',
+        de: 'Bosse auseinander ziehen',
       },
     },
     {
@@ -234,10 +236,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Monitors Left',
+            de: 'Monitore Links',
           };
         }
         return {
           en: 'Dodge Left',
+          de: 'Rechts ausweichen',
         };
       },
     },
@@ -251,10 +255,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Monitors Right',
+            de: 'Monitore Rechts',
           };
         }
         return {
           en: 'Dodge Right',
+          de: 'Rechts ausweichen',
         };
       },
     },
@@ -331,6 +337,7 @@
       },
       alertText: {
         en: 'Blue Marker',
+        de: 'Blauer Marker',
       },
     },
     {
@@ -344,6 +351,7 @@
       },
       infoText: {
         en: 'Rot',
+        de: 'Fäulnis',
       },
     },
     {
@@ -390,6 +398,7 @@
         data.helloDebuffs[data.me] = true;
         return {
           en: 'No Marker',
+          de: 'Kein Marker',
         };
       },
     },
@@ -404,6 +413,7 @@
       },
       infoText: {
         en: 'Move out for Defamation',
+        de: 'Rausgehen für Urteil',
       },
     },
     {
@@ -464,6 +474,7 @@
       regex: / 1B:........:Rear Power Unit:....:....:009D:0000:0000:0000:/,
       alertText: {
         en: 'Back Left',
+        de: 'Hinten Links',
       },
     },
     {
@@ -471,6 +482,7 @@
       regex: / 1B:........:Rear Power Unit:....:....:009C:0000:0000:0000:/,
       alertText: {
         en: 'Back Right',
+        de: 'Hinten Rechts',
       },
     },
     {
@@ -528,9 +540,7 @@
 
         'Left Arm Unit': 'Linker Arm',
         'Right Arm Unit': 'Rechter Arm',
-
-        // FIXME
-        'Rear Power Unit': 'Rear Power Unit',
+        'Rear Power Unit': 'Hintere Antriebseinheit',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',

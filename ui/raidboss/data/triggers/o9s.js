@@ -61,7 +61,7 @@
         if (data.primordialCrust) {
           return {
             en: 'Die on Front/Back -> Sides',
-            de: 'Vorne/Hinten -> Seiten',
+            de: 'Stirb Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
           };
         }
@@ -101,7 +101,7 @@
         if (data.primordialCrust) {
           return {
             en: 'Die on Sides -> Front/Back',
-            de: 'Vorne/Hinten -> Seiten',
+            de: 'Stirb an Seiten -> Vorne/Hinten',
             fr: 'Devant/Derrière puis Côtés',
           };
         }
