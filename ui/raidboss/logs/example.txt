@@ -1,0 +1,13 @@
+Middle La Noscea
+[17:33:30.549] 00:0038:Engage!
+[17:33:31.549] 14:Mumbling
+[17:33:32.549] 14:Some noise
+[17:33:33.549] 14:Mumbling
+[17:33:34.549] 14:Some noise
+[17:33:35.549] 15:You poke the striking dummy
+[17:33:36.549] 14:Mumbling
+[17:33:37.549] 14:Some noise
+[17:33:38.549] 15:You burst out laughing at the striking dummy
+[17:33:39.549] 14:Mumbling
+[17:33:40.549] 14:Some noise
+[17:33:42.549] 15:You clap for the striking dummy

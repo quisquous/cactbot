@@ -1,0 +1,91 @@
+#emulatorFooter {
+  height: 50px; width: 80%;
+  position: absolute;
+  bottom: 12px; left: 10%;
+  background: rgba(0, 0, 150, 0.2);
+  box-shadow: 0px 0px 12px 6px rgba(0, 0, 150, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+
+  /* FFXIV Font */
+  text-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;
+  font-weight: 300;
+  color: #E2EBF5;
+}
+#emulatorInput, #emulatorLog {
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#currentZone {
+  display: inline;
+}
+#emulatorLogLine {
+  width: 100%;
+  margin: 0 auto;
+}
+#emulatorLogTimer {
+  width: 0%; height: 3px;
+  display: block;
+  background: #E2EBF5;
+  box-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;
+  border-radius: 2.5px;
+}
+/* input, button {
+  height: 23px;
+  border: 0px solid #E2EBF5;
+  background: transparent;
+  box-shadow: 0 0 3px #E2EBF5, inset 0 0 3px #E2EBF5;
+
+  text-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;
+  font-weight: 300;
+  color: #E2EBF5;
+} */
+
+@font-face{
+  font-family:'Glyphicons Halflings';
+  src:url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot);
+  src:url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),
+  url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2) format('woff2'),
+  url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff) format('woff'),
+  url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf) format('truetype'),
+  url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+}
+
+.glyphicon{
+  display:inline-block;
+  font-family:'Glyphicons Halflings';
+  font-style:normal;
+  font-weight:400;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.glyphicon-eye-open:before {
+  content: '\e105';
+}
+.glyphicon-eye-closed:before {
+  content: '\e106';
+}
+.glyphicon-play:before {
+  content: "\e072";
+}
+.glyphicon-stop:before {
+  content: "\e074";
+}
+#emulatorShowHandle {
+  min-width: 30px; height: 30px;
+  margin: 0 auto;
+  padding: 5px;
+  position: absolute;
+  top:0; right: 0;
+  color: rgba(255, 255, 255, 0.1);
+  font-family: Arial;
+  text-align: right;
+  transition: 0.5s;
+  font-variant: small-caps;
+  background: rgba(0, 0, 0, 0.01);
+}
+#showHandleText {
+  display: inline-block;
+}

@@ -1,0 +1,69 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+<!-- General Overlay Scripts-->
+  <link rel="stylesheet" href="../../resources/defaults.css">
+  <link rel="stylesheet" href="../../resources/resize_handle.css">
+  <script src="../../resources/regexes.js"></script>
+  <script src="../../resources/resize_handle.js"></script>
+  <script src="../../resources/timerbar.js"></script>
+  <script src="../../resources/widgetlist.js"></script>
+  <script src="../../resources/user_config.js"></script>
+  <script src="../../resources/lang.js"></script>
+  <script src="../../resources/lang/en.js"></script>
+  <script src="../../resources/lang/de.js"></script>
+  <script src="../../resources/lang/fr.js"></script>
+  <script src="../../resources/lang/ja.js"></script>
+  <script src="../../resources/lang/ko.js"></script>
+ <!-- Cactbot Overlay Scripts-->
+  <link rel="stylesheet" type="text/css" href="raidboss.css">
+  <script src="timeline.js"></script>
+  <script src="popup-text.js"></script>
+  <script src="raidboss.js"></script>
+  <link rel="stylesheet" type="text/css" href="raidemulator.css">
+</head>
+<body>
+<div id="container" class="hide"></div>
+  <div id="timeline-container">
+    <div id="timeline-resize-helper" class="resize-helper"></div>
+    <div id="timeline-debug"></div>
+    <widget-list id="timeline"></widget-list>
+  </div>
+  <div id="popup-text-container">
+    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>How to use: </div><div>Create a textfile with</div></span></div>
+    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>1st line Zone Name</div><div>2nd line and following copy the log file</div></span></div>
+    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>check logs/example.txt</div><div>(This Overlay works as raidboss replacement!)</div></span></div>
+  </div>
+
+  <div id='emulatorShowHandle'><div class="info-text resize-helper">Show/Hide Emulator -></div><div id='showHandleIcon' class='glyphicon glyphicon-eye-closed'></div></div>
+  <div id='emulatorFooter' class='hide'>
+    <div id='emulatorInput'>
+      <input type='file' id='inputLogFile'>
+      <button onclick='playLogFile()'><span class='glyphicon glyphicon-play'></span>Play</button>
+      <button onclick='stopLogFile()'><span class='glyphicon glyphicon-stop'></span>Stop</button>
+      Applied Zone: 
+      <div id='currentZone'> -- </div>
+    </div>
+    <div id='emulatorLog'>
+      <div id="emulatorLogTimer"></div>
+      <textarea id='zoneName' class="hide"></textarea>
+      <div id='emulatorLogLine'> Awaiting Data...</div>
+    </div>
+  </div>
+<script src="raidemulator.js"></script>
+</body>
+<script>
+  function hide(h) {
+    var hideWhenInactive = false;
+    if (h && hideWhenInactive)
+      document.getElementById("container").style.display = "none";
+    else
+      document.getElementById("container").style.display = "block";
+  }
+  document.addEventListener("onGameActiveChangedEvent", function(e) {
+      hide(!e.detail.active);
+  });
+  hide(true);
+</script>
+</html>
