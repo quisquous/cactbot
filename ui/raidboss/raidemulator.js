@@ -1,18 +1,18 @@
 'use strict';
-var global = {};
-var input = document.getElementById('zoneName');
+let global = {};
+let input = document.getElementById('zoneName');
 function LogEvent(logs) {
-  let evt = new CustomEvent('onLogEvent', {detail: {logs: logs}});
+  let evt = new CustomEvent('onLogEvent', { detail: { logs: logs } });
   document.dispatchEvent(evt);
 }
 function ZoneEvent() {
   let zone = input.value.replace(/\n/, '');
-  let evt = new CustomEvent('onZoneChangedEvent', {detail: {zoneName: zone}});
+  let evt = new CustomEvent('onZoneChangedEvent', { detail: { zoneName: zone } });
   document.dispatchEvent(evt);
 }
 document.addEventListener('onZoneChangedEvent', function(e) {
   document.getElementById('currentZone').innerHTML = e.detail.zoneName;
-})
+});
 document.getElementById('inputLogFile').addEventListener('change', function(e) {
   let myFile = this.files[0];
   let reader = new FileReader();
@@ -38,8 +38,8 @@ document.getElementById('inputLogFile').addEventListener('change', function(e) {
 
 function editLog(log) {
   let result = [];
-  for(let i = 0; i < log.length; i++) {
-    let regex = [/ 14:/, / 15:/ , / 1B:/, / gains the effect of /, / starts using /, /:Engage!/, /:Start!/, /:À l\'attaque/, /removing combatant /, /adding combatant/];
+  for (let i = 0; i < log.length; i++) {
+    let regex = [/ 14:/, / 15:/, / 1B:/, / gains the effect of /, / starts using /, /:Engage!/, /:Start!/, /:À l\'attaque/, /removing combatant /, /adding combatant/];
     for (let r = 0; r < regex.length; r++) {
       if (regex[r].test(log[i]) == true) {
         result.push(log[i]);
@@ -52,7 +52,7 @@ function editLog(log) {
 
 function playLogFile() {
   global.logTimers = [];
-  for(let i = 0; i < global.storage.length; i++) {
+  for (let i = 0; i < global.storage.length; i++) {
     global.logTimers.push(setTimeout(function() {
       let myArray = [];
       myArray.push(global.storage[i]);
@@ -65,9 +65,9 @@ function playLogFile() {
 }
 
 function stopLogFile() {
-  for(let i = 0; i < global.logTimers.length; i++) {
+  for (let i = 0; i < global.logTimers.length; i++)
     clearTimeout(global.logTimers[i]);
-  }
+  
   global.logTimers = [];
   let myArray = [];
   myArray.push('00:0038:cactbot wipe');
@@ -79,14 +79,14 @@ function stopLogFile() {
 function delayLog() {
   global.logDelay = [];
   delete global.logOldTime;
-  for(let i = 0; i < global.storage.length; i++) {
+  for (let i = 0; i < global.storage.length; i++) {
     let logLine = global.storage[i];
     let time = logLine.match(/\[(\d\d):(\d\d):(\d\d).(\d\d\d)\]/);
     let d = new Date();
-        d.setHours(time[1]);
-        d.setMinutes(time[2]);
-        d.setSeconds(time[3]);
-        d.setMilliseconds(time[4]);
+    d.setHours(time[1]);
+    d.setMinutes(time[2]);
+    d.setSeconds(time[3]);
+    d.setMilliseconds(time[4]);
     let newTime = d.getTime();
     let oldTime = global.logOldTime || d.getTime();
 
@@ -100,7 +100,7 @@ function delayLog() {
 let emuHandle = document.getElementById('emulatorShowHandle');
 let showHandleText = document.getElementById('showHandleText');
 let showHandleIcon = document.getElementById('showHandleIcon');
-showHandleIcon.addEventListener('mouseover', function(){
+showHandleIcon.addEventListener('mouseover', function() {
   emuHandle.style.color = 'rgba(255,255,255, 0.8)';
   // showHandleText.style.visibility = 'visible';
 });
@@ -108,26 +108,23 @@ showHandleIcon.addEventListener('mouseout', function() {
   emuHandle.style.color = 'rgba(255,255,255, 0.1)';
   // showHandleText.style.visibility = 'hidden';
 });
-showHandleIcon.addEventListener('click', function(){
-  if(showHandleIcon.getAttribute('class') == 'glyphicon glyphicon-eye-closed') {
+showHandleIcon.addEventListener('click', function() {
+  if (showHandleIcon.getAttribute('class') == 'glyphicon glyphicon-eye-closed') {
     showHandleIcon.setAttribute('class', 'glyphicon glyphicon-eye-open');
-    emuHandle.style.color = 'rgba(255,255,255, 0.1)'
-    // showHandleText.innerHTML = 'Hide Emulator';
+    emuHandle.style.color = 'rgba(255,255,255, 0.1)';
     emulatorState('show');
   }
   else {
     showHandleIcon.setAttribute('class', 'glyphicon glyphicon-eye-closed');
-    // showHandleText.innerHTML = 'Show Emulator';
     emulatorState('hide');
   }
 });
 function emulatorState(arg) {
-  if (arg == 'show') {
+  if (arg == 'show')
     document.getElementById('emulatorFooter').removeAttribute('class');
-  }
   if (arg == 'hide') {
     document.getElementById('emulatorFooter').setAttribute('class', 'hide');
-    if(global.logTimers)
+    if (global.logTimers)
       stopLogFile();
   }
 }
@@ -143,4 +140,5 @@ function emulatorTimerbar() {
   timer.style.transition = '0s';
   timer.style.width = 0 + '%';
   timer.style.transition = runtime + 's linear';
-} 
+}
+
