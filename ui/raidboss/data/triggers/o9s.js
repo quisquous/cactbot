@@ -89,9 +89,6 @@
           fr: 'aller sur les cotés',
         };
       },
-      run: function(data) {
-        delete data.primordialCrust;
-      },
     },
     {
       id: 'O9S Latitudinal Implosion',
@@ -130,9 +127,6 @@
           de: 'hinten dran',
           fr: 'aller derrière',
         };
-      },
-      run: function(data) {
-        delete data.primordialCrust;
       },
     },
     {
@@ -471,15 +465,29 @@
       condition: function(data, matches) {
         return data.me == matches[1] && data.phaseType != 'orb';
       },
-      preRun: function(data, matches) {
-        data.primordialCrust = true;
-      },
       infoText: function(data) {
         return {
           en: 'Die on next mechanic',
           de: 'An nächster Mechanik tödlichen Schaden nehmen',
           fr: 'Mourrez sur la prochaine mécanique',
         };
+      },
+      run: function(data, matches) {
+        data.primordialCrust = true;
+      },
+    },
+    {
+      // Primordial Crust Cleanup
+      regex: /:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
+      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
+      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: 30,
+      run: function(data, matches) {
+        delete data.primordialCrust;
       },
     },
     {
