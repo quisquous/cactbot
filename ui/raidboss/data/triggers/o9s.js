@@ -67,11 +67,13 @@
         }
       },
       infoText: function(data) {
-        return {
-          en: 'Sides -> Front/Back',
-          de: 'Seiten -> Vorne/Hinten',
-          fr: 'Côtés puis Devant/Derrière',
-        };
+        if (!data.primordialCrust) {
+          return {
+            en: 'Sides -> Front/Back',
+            de: 'Seiten -> Vorne/Hinten',
+            fr: 'Côtés puis Devant/Derrière',
+          };
+        }
       },
       tts: function(data) {
         if (data.primordialCrust) {
@@ -107,11 +109,13 @@
         }
       },
       infoText: function(data) {
-        return {
-          en: 'Front/Back -> Sides',
-          de: 'Vorne/Hinten -> Seiten',
-          fr: 'Devant/Derrière puis Côtés',
-        };
+        if (!data.primordialCrust) {
+          return {
+            en: 'Front/Back -> Sides',
+            de: 'Vorne/Hinten -> Seiten',
+            fr: 'Devant/Derrière puis Côtés',
+          };
+        }
       },
       tts: function(data) {
         if (data.primordialCrust) {
