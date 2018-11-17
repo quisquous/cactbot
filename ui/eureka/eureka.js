@@ -1286,7 +1286,7 @@ let gWeatherIcons = {
   'Umbral Wind': '&#x1F300;',
 };
 let gNightIcon = '&#x1F319;';
-let gDayIcon = '&#x2600;';
+let gDayIcon = '&#x263C;';
 
 let gTracker;
 class EurekaTracker {
