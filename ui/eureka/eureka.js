@@ -480,7 +480,6 @@ let Options = {
       mapWidth: 1500,
       mapHeight: 950,
       shortName: 'pagos',
-      primaryWeather: ['Blizzards', 'Thunder', 'Fog'],
       mapToPixelXScalar: 41.08333,
       mapToPixelXConstant: -85.28333,
       mapToPixelYScalar: 41.09158,
@@ -879,7 +878,6 @@ let Options = {
       mapWidth: 1350,
       mapHeight: 1450,
       shortName: 'pyros',
-      primaryWeather: ['Heat Waves', 'Blizzards', 'Thunder', 'Umbral Wind'],
       mapToPixelXScalar: 42.515,
       mapToPixelXConstant: -344.064,
       mapToPixelYScalar: 42.486,
@@ -1284,6 +1282,8 @@ let gWeatherIcons = {
   'Thunder': '&#x26A1;',
   'Heat Waves': '&#x2600;',
   'Umbral Wind': '&#x1F300;',
+  'Fair Skies': '&#x26C5;',
+  'Snow': '&#x26C4;',
 };
 let gNightIcon = '&#x1F319;';
 let gDayIcon = '&#x263C;';
@@ -1437,32 +1437,64 @@ class EurekaTracker {
   UpdateTimes() {
     let nowMs = +new Date();
 
-    for (let i = 0; i < 5; ++i) {
-      let primaryWeather = this.options.ZoneInfo[this.zoneName].primaryWeather[i];
-      if (!primaryWeather) {
-        document.getElementById('label-weather' + i).innerHTML = '';
-        continue;
-      }
-      let weatherStr = gWeatherIcons[primaryWeather];
-      let weather = getWeather(nowMs, this.zoneName);
-      if (weather == primaryWeather) {
-        let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
-        if (stopTime) {
-          let min = (stopTime - nowMs) / 1000 / 60;
-          weatherStr += ' for ' + Math.ceil(min) + 'm';
-        } else {
-          weatherStr += ' for ???';
+    let primaryWeatherList = this.options.ZoneInfo[this.zoneName].primaryWeather;
+    if (primaryWeatherList) {
+      for (let i = 0; i < 5 && i < primaryWeatherList.length; ++i) {
+        let primaryWeather = primaryWeatherList[i];
+        if (!primaryWeather) {
+          document.getElementById('label-weather' + i).innerHTML = '';
+          continue;
         }
+        let weatherStr = gWeatherIcons[primaryWeather];
+        let weather = getWeather(nowMs, this.zoneName);
+        if (weather == primaryWeather) {
+          let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
+          if (stopTime) {
+            let min = (stopTime - nowMs) / 1000 / 60;
+            weatherStr += ' for ' + Math.ceil(min) + 'm';
+          } else {
+            weatherStr += ' for ???';
+          }
+        } else {
+          let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
+          if (startTime) {
+            let min = (startTime - nowMs) / 1000 / 60;
+            weatherStr += ' in ' + Math.ceil(min) + 'm';
+          } else {
+            weatherStr += ' in ???';
+          }
+        }
+        document.getElementById('label-weather' + i).innerHTML = weatherStr;
+      }
+    } else {
+      let currentWeather = getWeather(nowMs, this.zoneName);
+      let weatherStr = gWeatherIcons[currentWeather];
+      let stopTime = findNextWeatherNot(nowMs, this.zoneName, currentWeather);
+      if (stopTime) {
+        let min = (stopTime - nowMs) / 1000 / 60;
+        weatherStr += ' for ' + Math.ceil(min) + 'm';
       } else {
-        let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
+        weatherStr += ' for ???';
+      }
+      document.getElementById('label-weather0').innerHTML = weatherStr;
+
+      // round up current time
+      let lastTime = nowMs;
+      let lastWeather = currentWeather;
+      for (let i = 1; i < 5; ++i) {
+        let startTime = findNextWeatherNot(lastTime, this.zoneName, lastWeather);
+        let weather = getWeather(startTime + 1, this.zoneName);
+        let weatherStr = gWeatherIcons[weather];
         if (startTime) {
           let min = (startTime - nowMs) / 1000 / 60;
           weatherStr += ' in ' + Math.ceil(min) + 'm';
         } else {
           weatherStr += ' in ???';
         }
+        document.getElementById('label-weather' + i).innerHTML = weatherStr;
+        lastTime = startTime;
+        lastWeather = weather;
       }
-      document.getElementById('label-weather' + i).innerHTML = weatherStr;
     }
 
     let nextDay = findNextNight(nowMs);
