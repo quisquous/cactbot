@@ -906,8 +906,8 @@ let Options = {
             fr: 'Leucosia',
             ja: 'レウコ',
           },
-          x: 0,
-          y: 0,
+          x: 26.8,
+          y: 26.3,
           time: 'Night',
         },
         flauros: {
@@ -929,8 +929,8 @@ let Options = {
             fr: 'Flauros',
             ja: 'フラウロス',
           },
-          x: 0,
-          y: 0,
+          x: 28.9,
+          y: 29.2,
         },
         sophist: {
           label: {
@@ -951,8 +951,8 @@ let Options = {
             fr: 'Sophist',
             ja: 'ソフィスト',
           },
-          x: 0,
-          y: 0,
+          x: 31.8,
+          y: 31.0,
         },
         graff: {
           label: {
@@ -973,8 +973,8 @@ let Options = {
             fr: 'Graff',
             ja: 'グラフアカネ',
           },
-          x: 0,
-          y: 0,
+          x: 23.5,
+          y: 37.2,
         },
         askala: {
           label: {
@@ -995,8 +995,8 @@ let Options = {
             fr: 'Askala',
             ja: 'アスカラ',
           },
-          x: 0,
-          y: 0,
+          x: 19.3,
+          y: 29.0,
           weather: 'Umbral Wind',
         },
         batym: {
@@ -1018,8 +1018,8 @@ let Options = {
             fr: 'Duke Batym',
             ja: 'デュークパティム',
           },
-          x: 0,
-          y: 0,
+          x: 18.0,
+          y: 14.1,
           time: 'Night',
         },
         aetolus: {
@@ -1041,8 +1041,8 @@ let Options = {
             fr: 'Aetolus',
             ja: 'アイトロス',
           },
-          x: 0,
-          y: 0,
+          x: 10.0,
+          y: 14.0,
         },
         lesath: {
           label: {
@@ -1063,8 +1063,8 @@ let Options = {
             fr: 'Lesath',
             ja: 'レサト',
           },
-          x: 0,
-          y: 0,
+          x: 13.2,
+          y: 11.2,
         },
         eldthurs: {
           label: {
@@ -1085,8 +1085,8 @@ let Options = {
             fr: 'Eldthurs',
             ja: 'エルドスルス',
           },
-          x: 0,
-          y: 0,
+          x: 15.3,
+          y: 6.8,
         },
         iris: {
           label: {
@@ -1107,8 +1107,8 @@ let Options = {
             fr: 'Iris',
             ja: 'イリス',
           },
-          x: 0,
-          y: 0,
+          x: 21.3,
+          y: 12.0,
         },
         lamebrix: {
           label: {
@@ -1129,8 +1129,8 @@ let Options = {
             fr: 'Lamebrix',
             ja: 'レイムプリクス',
           },
-          x: 0,
-          y: 0,
+          x: 21.9,
+          y: 8.3,
         },
         dux: {
           label: {
@@ -1151,8 +1151,8 @@ let Options = {
             fr: 'Dux',
             ja: 'ドゥクス',
           },
-          x: 0,
-          y: 0,
+          x: 27.4,
+          y: 8.8,
           weather: 'Thunder',
         },
         jack: {
@@ -1174,8 +1174,8 @@ let Options = {
             fr: 'Jack',
             ja: 'ランバージャック',
           },
-          x: 0,
-          y: 0,
+          x: 30.1,
+          y: 11.7,
         },
         glauko: {
           label: {
@@ -1196,8 +1196,8 @@ let Options = {
             fr: 'Glaukopis',
             ja: 'グラウコピス',
           },
-          x: 0,
-          y: 0,
+          x: 32.3,
+          y: 15.1,
         },
         yingyang: {
           label: {
@@ -1218,8 +1218,8 @@ let Options = {
             fr: 'Ying-Yang',
             ja: 'インヤン',
           },
-          x: 0,
-          y: 0,
+          x: 11.4,
+          y: 34.1,
         },
         skoll: {
           label: {
@@ -1240,8 +1240,8 @@ let Options = {
             fr: 'Skoll',
             ja: 'スコル',
           },
-          x: 0,
-          y: 0,
+          x: 24.3,
+          y: 30.1,
           weather: 'Blizzards',
         },
         penthe: {
@@ -1263,8 +1263,8 @@ let Options = {
             fr: 'Penthesilea',
             ja: 'ペンテ',
           },
-          x: 0,
-          y: 0,
+          x: 35.7,
+          y: 5.9,
           weather: 'Heat Waves',
         },
       },
@@ -1281,6 +1281,7 @@ let gWeatherIcons = {
   'Blizzards': '&#x2744;',
   'Thunder': '&#x26A1;',
   'Heat Waves': '&#x2600;',
+  'Umbral Wind': '&#x1F300;',
 };
 let gNightIcon = '&#x1F319;';
 let gDayIcon = '&#x2600;';
