@@ -131,10 +131,23 @@
 
 #label-container {
   position: absolute;
-  top: 0px;
   left: 0px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
+  padding: 5px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.aspect-ratio-anemos #label-container {
+  top: 0%;
+}
+
+.aspect-ratio-pagos #label-container {
+  top: 75%;
+}
+
+.aspect-ratio-pyros #label-container {
+  top: 40%;
 }
 
 .resize-helper {
