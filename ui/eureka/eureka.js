@@ -1372,6 +1372,7 @@ class EurekaTracker {
 
   OnZoneChange(e) {
     this.zoneName = e.detail.zoneName.replace('The Forbidden Land, ', '');
+    this.zoneName = this.zoneName.replace('Unknown Zone (31B)', 'Eureka Pyros');
     this.zoneInfo = this.options.ZoneInfo[this.zoneName];
     let container = document.getElementById('container');
     if (this.zoneInfo) {
