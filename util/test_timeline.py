@@ -1,7 +1,6 @@
 import argparse
 from datetime import datetime
 import fflogs
-import os
 from pathlib import Path
 import re
 
@@ -32,7 +31,7 @@ def load_timeline(timeline):
             if not sync_match:
                 continue
 
-            entry['regex'] =  sync_match.group(1).replace(':', '\|')
+            entry['regex'] = sync_match.group(1).replace(':', '\|')
             entry['branch'] = 0
 
             # Special casing on syncs
@@ -54,10 +53,10 @@ def load_timeline(timeline):
 
             # Get the start and end of the sync window
             window_match = re.search(r'window ([\d\.]+),?([\d\.]+)?', match.group('options'))
-            
+
             if window_match:
                 pre_window = float(window_match.group(1))
-                if window_match.group(2) != None:
+                if window_match.group(2) is not None:
                     post_window = float(window_match.group(2))
                 else:
                     post_window = pre_window
@@ -413,7 +412,7 @@ if __name__ == "__main__":
     # Check dependent args
     if args.file and not (args.start and args.end):
         raise parser.error("Log file input requires start and end timestamps")
-    
+
     if args.report and not args.key:
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the Public key")
 

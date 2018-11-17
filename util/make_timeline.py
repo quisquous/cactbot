@@ -120,7 +120,7 @@ def parse_file(args):
             }
 
             entries.append(entry)
-        
+
     return entries, last_ability_time
 
 def main(args):
@@ -194,7 +194,7 @@ def main(args):
         # Round down with a note about exceptional drift
         elif last_time_diff_us > 40000:
             drift = last_time_diff_us
-        
+
         # If <20ms then there's no need to adjust sec or drift
         else:
             pass
@@ -258,7 +258,7 @@ if __name__ == "__main__":
     # Check dependent args
     if args.file and not (args.start and args.end):
         raise parser.error("Log file input requires start and end timestamps")
-    
+
     if args.report and not args.key:
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
 

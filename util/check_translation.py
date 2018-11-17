@@ -232,11 +232,10 @@ def main(args):
   if args.timeline:
     for line in lines:
       m = re.search(r"timelineFile:\s*'(.*?)',", line)
-      if (m):
+      if m:
         print_timeline(args.timeline, m.group(1), trans)
         return
     raise Exception('unable to find timelineFile in %s' % args.file)
-    return
 
   # ...otherwise update triggers.
   updated = update_triggers(lines, trans)

@@ -25,7 +25,7 @@ def _fetch(api_url, options):
 
 def api(call, report, prefix, options):
     """Makes a call to the FFLogs API and returns a dictionary"""
-    if call != 'fights' and call != 'events':
+    if call not in ('fights', 'events'):
         return {}
 
     if prefix not in ['www', 'fr', 'ja', 'de']:

@@ -1,13 +1,12 @@
 import os
-import re
 import subprocess
 import sys
 
 def base_directory():
-  return os.path.join(os.path.dirname(__file__), '..');
+  return os.path.join(os.path.dirname(__file__), '..')
 
 def triggers_directory():
-  return os.path.join(base_directory(), 'ui/raidboss/data/triggers/');
+  return os.path.join(base_directory(), 'ui/raidboss/data/triggers/')
 
 def compile_test(filename):
   err = subprocess.call(['node', filename])
@@ -29,8 +28,8 @@ def run_timeline_tests():
 def main():
   success = run_compilation_tests() and run_timeline_tests()
   if not success:
-    sys.exit(1);
-  sys.exit(0);
+    sys.exit(1)
+  sys.exit(0)
 
 if __name__ == "__main__":
     main()
