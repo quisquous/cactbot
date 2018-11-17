@@ -12,6 +12,7 @@ let Options = {
       mapImage: 'anemos.png',
       mapWidth: 1300,
       mapHeight: 950,
+      shortName: 'anemos',
       primaryWeather: ['Gales'],
       // TODO: these could be a little better tuned :C
       mapToPixelXScalar: 41.12,
@@ -478,6 +479,7 @@ let Options = {
       mapImage: 'pagos.png',
       mapWidth: 1500,
       mapHeight: 950,
+      shortName: 'pagos',
       primaryWeather: ['Blizzards', 'Thunder', 'Fog'],
       mapToPixelXScalar: 41.08333,
       mapToPixelXConstant: -85.28333,
@@ -1378,6 +1380,12 @@ class EurekaTracker {
     let container = document.getElementById('container');
     if (this.zoneInfo) {
       this.ResetZone();
+
+      let aspect = document.getElementById('aspect-ratio');
+      while (aspect.classList.length > 0)
+        aspect.classList.remove(aspect.classList.item(0));
+      aspect.classList.add('aspect-ratio-' + this.zoneInfo.shortName);
+
       document.getElementById('map-image').src = this.zoneInfo.mapImage;
       this.InitNMs();
       this.UpdateTimes();
