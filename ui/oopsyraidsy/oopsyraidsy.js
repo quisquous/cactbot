@@ -961,7 +961,7 @@ class DamageTracker {
       this.role = 'dps-ranged';
     } else if (this.job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0) {
       this.role = 'crafting';
-    } else if (this.job.search(/^(MIN|BOT|FSH)$/) >= 0) {
+    } else if (this.job.search(/^(MIN|BTN|FSH)$/) >= 0) {
       this.role = 'gathering';
     } else {
       this.role = '';
