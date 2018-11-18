@@ -2,7 +2,6 @@
 
 import argparse
 from collections import defaultdict
-from datetime import datetime
 import fflogs
 import json
 import re
@@ -180,7 +179,7 @@ def main(args):
         # sort this last <_<
         '~effectNames': effect_replace[lang],
       })
-    output = { 'timelineReplace': timeline_replace }
+    output = {'timelineReplace': timeline_replace}
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=True)
 
     # hacky reformatting: single quotes, and remove quotes
@@ -208,7 +207,7 @@ def main(args):
     else:
       try:
         print(output_str)
-      except UnicodeEncodeError as e:
+      except UnicodeEncodeError:
         print("Warning: unable to print to console, use --output-file", file=sys.stderr)
         raise
 
