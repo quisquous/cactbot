@@ -12,7 +12,7 @@ let Options = {
   OpacityOutOfCombat: 0.5,
 
   HideWellFedAboveSeconds: 15 * 60,
-  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'UCU'],
+  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU'],
   ShowHPNumber: ['PLD', 'WAR', 'DRK'],
   ShowMPNumber: ['DRK', 'BLM', 'AST', 'WHM', 'SCH'],
 
