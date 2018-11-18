@@ -1,23 +1,29 @@
 import argparse
 from datetime import datetime
-import fflogs
 import re
+
+import fflogs
+
 
 def timestamp_type(arg):
     """Defines the timestamp input format"""
     if re.match('\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
-        raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
+        raise argparse.ArgumentTypeError(
+            "Invalid timestamp format. Use the format 12:34:56.789")
     return arg
+
 
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
+
 
 def parse_line_time(line):
     """Parses the line's timestamp into a datetime object"""
     time = parse_time(line[3:22])
     time = time.replace(microsecond=int(line[23:29]))
     return time
+
 
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
@@ -84,6 +90,7 @@ def parse_report(args):
 
     return entries, datetime.fromtimestamp((report_start_time + start_time) / 1000)
 
+
 def parse_file(args):
     """Reads a file specified by arguments, and returns an entry list"""
 
@@ -123,6 +130,7 @@ def parse_file(args):
 
     return entries, last_ability_time
 
+
 def main(args):
     """Starting point for execution with args"""
     timeline_position = 0
@@ -160,8 +168,8 @@ def main(args):
 
         # Ignore lines by arguments
         if (entry['ability_name'] in args.ignore_ability or
-            entry['ability_id'] in args.ignore_id or
-            entry['combatant'] in args.ignore_combatant):
+                entry['ability_id'] in args.ignore_id or
+                entry['combatant'] in args.ignore_combatant):
             continue
 
         # Ignore aoe spam
@@ -219,6 +227,7 @@ def main(args):
 
         # Save the entry til the next line for filtering
         last_entry = entry
+
 
 if __name__ == "__main__":
     # Set up all of the arguments

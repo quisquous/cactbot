@@ -23,13 +23,14 @@ def _fetch(api_url, options):
 
     return response_dict
 
+
 def api(call, report, prefix, options):
     """Makes a call to the FFLogs API and returns a dictionary"""
     if call not in ('fights', 'events'):
         return {}
 
     if prefix not in ['www', 'fr', 'ja', 'de']:
-      raise Exception('Invalid prefix: %s' % prefix)
+        raise Exception('Invalid prefix: %s' % prefix)
 
     api_url = 'https://{}.fflogs.com:443/v1/report/{}/{}'.format(prefix, call, report)
 
