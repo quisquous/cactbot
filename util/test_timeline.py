@@ -1,8 +1,10 @@
 import argparse
 from datetime import datetime
-import fflogs
 from pathlib import Path
 import re
+
+import fflogs
+
 
 def load_timeline(timeline):
     """Loads a timeline file into a list of entry dicts"""
@@ -78,6 +80,7 @@ def load_timeline(timeline):
 
     return timelist
 
+
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
 
@@ -144,9 +147,11 @@ def parse_report(args):
 
     return entries, datetime.fromtimestamp((report_start_time + start_time) / 1000)
 
+
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
+
 
 def parse_event_time(event):
     """Parses the line's timestamp into a datetime object"""
@@ -157,12 +162,14 @@ def parse_event_time(event):
     elif isinstance(event, dict):
         return event['time']
 
+
 def get_regex(event):
     """Gets the regex for the event for both file and report types"""
     if isinstance(event, str):
         return event
     elif isinstance(event, dict):
         return event['regex']
+
 
 def get_type(event):
     """Gets the line type for both file and report types"""
@@ -181,6 +188,7 @@ def get_type(event):
 
     # In case event is a different type
     return 'none'
+
 
 def test_match(event, entry):
     # Normal case. Exclude begincast to avoid false positive match with cast events
@@ -225,6 +233,7 @@ def test_match(event, entry):
 
     # If none of the above have matched, there's no match
     return False
+
 
 def check_event(event, timelist, state):
     # Get amount of time that's passed since last sync point
@@ -300,6 +309,7 @@ def check_event(event, timelist, state):
 
     return state
 
+
 def run_file(args, timelist):
     """Runs a timeline against a specified file"""
     state = {
@@ -328,6 +338,7 @@ def run_file(args, timelist):
 
             state = check_event(line, timelist, state)
 
+
 def run_report(args, timelist):
     """Runs a timeline against a specified FFlogs report"""
     # Reuse the parse_report functionality to get the entry list
@@ -351,6 +362,7 @@ def run_report(args, timelist):
     for event in events:
         state = check_event(event, timelist, state)
 
+
 def main(args):
     # Parse timeline file
     timelist = load_timeline(args.timeline)
@@ -362,6 +374,7 @@ def main(args):
         print("Running analysis based on report. Caveats apply.")
         run_report(args, timelist)
 
+
 def timeline_file(arg):
     """Defines the timeline file argument type"""
     path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data' / 'timelines' / (arg + '.txt')
@@ -371,11 +384,13 @@ def timeline_file(arg):
     else:
         return path.open()
 
+
 def timestamp_type(arg):
     """Defines the timestamp input format"""
     if re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
         raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
     return arg
+
 
 if __name__ == "__main__":
     # Set up all of the arguments
