@@ -53,7 +53,7 @@ Options.AbilityIdNameMap['26CA'] = 'White Swirly';
 // https://github.com/quisquous/cactbot/tree/master/ui/oopsyraidsy/data/
 //
 // Here's an example trigger to show a line in the mistake log when
-// you crit adlo yourself in Summerfield Farms.
+// you crit adlo yourself in Summerford Farms.
 Options.Triggers = [
   {
     zoneRegex: /^Middle La Noscea$/,
