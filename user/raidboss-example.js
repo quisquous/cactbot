@@ -223,7 +223,7 @@ Options.PerTriggerOptions = {
       return 'Custom Poke (' + data.pokes + ')';
     },
   },
-  // This makes /clack-ing a striking dummy override the default
+  // This makes /clap-ing a striking dummy override the default
   // behavior to use the group TTS
   'Test Clap': {
     GroupSpeechAlert: true,
