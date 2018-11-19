@@ -1163,7 +1163,7 @@ let Options = {
             ja: 'ジャック',
           },
           mobName: {
-            en: 'Lumber Jack',
+            en: 'The Weeping Willow',
             de: 'Lumber Jack',
             fr: 'Lumber Jack',
             ja: 'ランバージャック・デスマッチ',
