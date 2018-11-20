@@ -721,7 +721,7 @@ let Options = {
           },
           mobName: {
             en: 'Mindertaur',
-            de: 'niederer Minotaurus',
+            de: 'Niederer Minotaurus',
             fr: 'Mindertaur',
             ja: 'Mindertaur',
           },
@@ -890,13 +890,13 @@ let Options = {
         luecosia: {
           label: {
             en: 'Leuco',
-            de: 'Leuco',
+            de: 'Leuko',
             fr: 'Leuco',
             ja: 'レウコ',
           },
           mobName: {
             en: 'Leucosia',
-            de: 'Leucosia',
+            de: 'Leukosia',
             fr: 'Leucosia',
             ja: 'レウコシアー',
           },
@@ -941,7 +941,7 @@ let Options = {
           },
           mobName: {
             en: 'The Sophist',
-            de: 'The Sophist',
+            de: 'Sophist',
             fr: 'The Sophist',
             ja: 'ソフィスト',
           },
@@ -1008,7 +1008,7 @@ let Options = {
           },
           mobName: {
             en: 'Grand Duke Batym',
-            de: 'Grand Duke Batym',
+            de: 'Großherzog Batym',
             fr: 'Grand Duke Batym',
             ja: 'グランドデューク・パティム',
           },
@@ -1119,7 +1119,7 @@ let Options = {
           },
           mobName: {
             en: 'Lamebrix Strikebocks',
-            de: 'Lamebrix Strikebocks',
+            de: 'Wüterix der Söldner',
             fr: 'Lamebrix Strikebocks',
             ja: '傭兵のレイムプリクス',
           },
@@ -1158,13 +1158,13 @@ let Options = {
         jack: {
           label: {
             en: 'Jack',
-            de: 'Jack',
+            de: 'Weide',
             fr: 'Jack',
             ja: 'ジャック',
           },
           mobName: {
             en: 'The Weeping Willow',
-            de: 'Lumber Jack',
+            de: 'Trauerweide',
             fr: 'Lumber Jack',
             ja: 'ランバージャック・デスマッチ',
           },
@@ -1202,13 +1202,13 @@ let Options = {
         yingyang: {
           label: {
             en: 'Ying-Yang',
-            de: 'Ying-Yang',
+            de: 'Yin-Yang',
             fr: 'Ying-Yang',
             ja: 'イン・ヤン',
           },
           mobName: {
             en: 'Ying-Yang',
-            de: 'Ying-Yang',
+            de: 'Yin-Yang',
             fr: 'Ying-Yang',
             ja: 'イン・ヤン',
           },
@@ -1224,13 +1224,13 @@ let Options = {
         skoll: {
           label: {
             en: 'Skoll',
-            de: 'Skoll',
+            de: 'Skalli',
             fr: 'Skoll',
             ja: 'スコル',
           },
           mobName: {
             en: 'Skoll',
-            de: 'Skoll',
+            de: 'Skalli',
             fr: 'Skoll',
             ja: 'スコル',
           },
