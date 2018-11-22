@@ -75,7 +75,7 @@ namespace Cactbot {
     // Values found in the EntityStruct's job field.
     public enum EntityJob {
       None = 0,
-      GLD = 1,
+      GLA = 1,
       PGL = 2,
       MRD = 3,
       LNC = 4,
