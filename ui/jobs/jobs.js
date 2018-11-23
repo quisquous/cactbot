@@ -281,7 +281,7 @@ function setupRegexes() {
 }
 
 let kCasterJobs = ['RDM', 'BLM', 'WHM', 'SCH', 'SMN', 'ACN', 'AST', 'CNJ', 'THM'];
-let kTankJobs = ['GLD', 'PLD', 'MRD', 'WAR', 'DRK'];
+let kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK'];
 let kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
 let kCraftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
 let kGatheringJobs = ['MIN', 'BTN', 'FSH'];

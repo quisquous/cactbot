@@ -145,7 +145,7 @@ class PopupText {
   OnJobChange(e) {
     this.me = e.detail.name;
     this.job = e.detail.job;
-    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLD)$/) >= 0) {
+    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLA)$/) >= 0) {
       this.role = 'tank';
     } else if (this.job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0) {
       this.role = 'healer';
