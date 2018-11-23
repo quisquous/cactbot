@@ -1,6 +1,6 @@
-[![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=master)](https://travis-ci.org/quisquous/cactbot)
-
 # cactbot (ffxiv raiding overlay)
+
+[![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=master)](https://travis-ci.org/quisquous/cactbot)
 
 1. [About](#about)
 1. [Installing](#installing)
@@ -68,41 +68,43 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
 ### Installing cactbot
 
 1. Find the [latest release](https://github.com/quisquous/cactbot/releases/latest) and download the cactbot-version-number.zip file for that release.  (You likely do *not* want either of the Source zip files.)
-2. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
-3. Unzip the release zip file.  (If there is no **OverlayPlugin\\addons\\CactbotOverlay.dll** file, you downloaded the wrong zip file.)
-4. Close ACT, if it's still running.
-5. Copy the **OverlayPlugin\\** folder from inside of the unzipped
-folder into your existing **C:\\...\\Advanced Combat Tracker\\** folder.
-6. If you already have an existing **OverlayPlugin\\** folder, you will be prompted to confirm if you want to merge files with existing files.  Click the `Do this for the next N conflicts` checkbox and then the `Move and Replace` checkbox.  If you end up with an **OverlayPlugin\\OverlayPlugin\\** folder then you have done something wrong.
+1. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
+1. Unzip the release zip file.  (If there is no **OverlayPlugin\\addons\\CactbotOverlay.dll** file, you downloaded the wrong zip file.)
+1. Close ACT, if it's still running.
+1. Copy the **OverlayPlugin\\** folder from inside of the unzipped folder into your existing **C:\\...\\Advanced Combat Tracker\\** folder.
+1. If you already have an existing **OverlayPlugin\\** folder, you will be prompted to confirm if you want to merge files with existing files.  Click the `Do this for the next N conflicts` checkbox and then the `Move and Replace` checkbox.  If you end up with an **OverlayPlugin\\OverlayPlugin\\** folder then you have done something wrong.
 
-   The final directory structure should look something like this:
-   - C:\\...\\Advanced Combat Tracker\\
-     - Advanced Combat Tracker.exe
-     - FFXIV_ACT_Plugin.dll
-     - OverlayPlugin\\
-       - OverlayPlugin.dll
-       - OverlayPlugin.Common.dll
-       - OverlayPlugin.Core.dll
-       - etc etc OverlayPlugin files
-       - addons\\
-         - CactbotOverlay.dll
-       - cactbot\\
-         - ui\\
-         - resources\\
-         - user\\
+    The final directory structure should look something like this:
 
-Note: The cactbot\\ folder does not have to be located inside of the
-OverlayPlugin directory, but that is where it comes by default as part
-of a cactbot release zip file.  It can be located anywhere on disk as
-long as the entire cactbot\\ folder is kept together.
+    ```code
+    - C:\...\Advanced Combat Tracker\
+      - Advanced Combat Tracker.exe
+      - FFXIV_ACT_Plugin.dll
+      - OverlayPlugin\
+         - OverlayPlugin.dll
+         - OverlayPlugin.Common.dll
+         - OverlayPlugin.Core.dll
+         - etc etc OverlayPlugin files
+         - addons\
+            - CactbotOverlay.dll
+         - cactbot\
+            - ui\
+            - resources\
+            - user\
+    ```
 
-Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
+    Note: The cactbot\\ folder does not have to be located inside of the
+    OverlayPlugin directory, but that is where it comes by default as part
+    of a cactbot release zip file.  It can be located anywhere on disk as
+    long as the entire cactbot\\ folder is kept together.
 
-6. Restart ACT.
-7. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
-8. In the URL field, browse to an html file to load.
-[ui/test/test.html](ui/test/test.html) is a good place to
-to start to make sure everything is set up properly.
+    Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
+
+1. Restart ACT.
+1. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
+1. In the URL field, browse to an html file to load.
+
+    [ui/test/test.html](ui/test/test.html) is a good place to start to make sure everything is set up properly.
 
 For more instructions about adding and configuring cactbot overlays, see the [Adding Overlay Modules](#adding-overlay-modules) section.
 
@@ -129,11 +131,11 @@ If triggers or pieces of the UI do not work, ensure that "Disable Parsing from N
 Follow all the steps above for installing cactbot first.
 
 1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/OverlayPlugin](CactbotOverlay/ThirdParty/OverlayPlugin).
-2. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/ACT](CactbotOverlay/ThirdParty/ACT).
-3. Open the solution in Visual Studio (tested with Visual Studio 2017).
-4. Build for "Release" and "x64".
-5. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
-6. Copy the plugin to the Advanced Combat Tracker\\OverlayPlugin\\addons\\ directory
+1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/ACT](CactbotOverlay/ThirdParty/ACT).
+1. Open the solution in Visual Studio (tested with Visual Studio 2017).
+1. Build for "Release" and "x64".
+1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
+1. Copy the plugin to the Advanced Combat Tracker\\OverlayPlugin\\addons\\ directory
 
 ## UI module overview
 
@@ -189,9 +191,10 @@ The Balance and Trick Attack. It also features a food buff warning to keep up yo
 or raiding, and a visual pull countdown.
 
 It has more fleshed out support for some jobs but is *strongly* a Work In Progress for others.
-- Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
-- Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.
-- Monk: Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.
+
+* Red Mage: Shows white/black mana, tracks procs for Verstone, Verfire and Impact, and shows the state of the melee combo in progress.
+* Warrior: Shows the beast amount, and tracks the remaining Storm's Eye buff time in gcds.
+* Monk: Shows chakra count, remaining greased lightning time, and tracks monk buffs and debuffs.
 
 In this screenshot, the jobs module is highlighted for the Red Mage job. The health and mana bars, as well
 as Red Mage white/black mana tracking is circled in purple, with the large raid buff tracking pointed to
@@ -260,32 +263,34 @@ It can be useful to try out to make sure everything is working as expected or to
 Here's an example of how to set up the raidboss overlay module.  Adding other modules is exactly the same, except you need to point the URL to a different HTML file for that specific module.
 
 To add a cactbot module is the same as adding any overlay plugin.
+
 1. Open ACT.
-2. Navigate to the Plugins tab of ACT and then the OverlayPlugin.dll tab inside it.
+1. Navigate to the Plugins tab of ACT and then the OverlayPlugin.dll tab inside it.
 
-![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
+    ![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
 
-3. Click the "New" button and then select Cactbot in the "Type" dropdown.
+1. Click the "New" button and then select Cactbot in the "Type" dropdown.
 
-![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
+    ![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
 
-4. Type in any name you'd like as the name of this overlay, e.g. `raidbossy`.
-5. A good example to start with is the raidboss module.  Set the filename to be **ui/raidboss/raidboss.html**.  Your config should look like this.
+1. Type in any name you'd like as the name of this overlay, e.g. `raidbossy`.
+1. A good example to start with is the raidboss module.  Set the filename to be **ui/raidboss/raidboss.html**.  Your config should look like this.
 
-![raidboss plugin config](screenshots/OverlayPluginRaidbossConfig.png)
+    ![raidboss plugin config](screenshots/OverlayPluginRaidbossConfig.png)
 
-6. At this point, you should see some bunched up test UI appear on screen.  cactbot provides default test UI and a blue background to help with resizing and placing overlays on screen.  These all go away when the overlay is locked in the config panel for the overlay.
+1. At this point, you should see some bunched up test UI appear on screen.  cactbot provides default test UI and a blue background to help with resizing and placing overlays on screen.  These all go away when the overlay is locked in the config panel for the overlay.
 
-![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
+    ![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
 
-7. Uncheck the **Enable Clickthru** box on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](AdvancedCactbot.md#configuring-ui-modules) if you want even more control.  It should look something like this:
+1. Uncheck the **Enable Clickthru** box on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](AdvancedCactbot.md#configuring-ui-modules) if you want even more control.  It should look something like this:
 
-![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
+    ![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
 
-8. Once the overlay is in the right place, check the **Lock Overlay** and the **Enable Clickthru** boxes.
-The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
+1. Once the overlay is in the right place, check the **Lock Overlay** and the **Enable Clickthru** boxes.
 
-9. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
+    The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
+
+1. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
 
 ## Cactbot Customization
 
