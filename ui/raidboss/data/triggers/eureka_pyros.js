@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Pyros|Unknown Zone ID \[31B\])/,
+  zoneRegex: /(Eureka Pyros|Unknown Zone \(31B\))/,
   resetWhenOutOfCombat: false,
   triggers: [
     {
