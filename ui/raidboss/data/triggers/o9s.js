@@ -204,7 +204,7 @@
         if (data.phaseType == 'enrage' || data.phaseType == 'orb' || data.entropyCount == 1) {
           return {
             en: 'Spread',
-            de: 'Verteilen)',
+            de: 'Verteilen',
             fr: 'Ecartez-vous',
           };
         } else if (data.role == 'tank' || data.role == 'healer') {
