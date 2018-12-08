@@ -113,4 +113,4 @@ TimerBar.prototype.draw = function() {
     else if (this._right_text == 'elapsed')
       this.rightTextElement.innerHTML = display_elapsed;
   }
-}
+};
