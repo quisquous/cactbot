@@ -159,6 +159,8 @@ class TimerBar extends HTMLElement {
       <style>
         .timerbar-root {
           position: relative;
+          border: 1px solid black;
+          box-sizing: border-box;
         }
         .timerbar-bg {
           position: absolute;
@@ -168,10 +170,8 @@ class TimerBar extends HTMLElement {
         }
         .timerbar-fg {
           position: absolute;
-          left: 1px;
-          top: 1px;
-          width: calc(100% - 2px);
-          height: calc(100% - 2px);
+          width: 100%;
+          height: 100%;
           opacity: 1.0;
           will-change: transform;
         }
@@ -187,8 +187,8 @@ class TimerBar extends HTMLElement {
           position: absolute;
           left: 0px;
           top: calc(50% - 1.2ex);
-          width: calc(100% - 0px);
-          height: calc(100% - 2px);
+          width: 100%;
+          height: 100%;
           overflow: hidden;
         }
         .timerbar-lefttext {
@@ -330,11 +330,11 @@ class TimerBar extends HTMLElement {
     let percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    let display_remain = remainSec ? remainSec.toFixed(1) : ''; // parseInt(this._value + 0.99999999999);
+    let display_remain = remainSec ? remainSec.toFixed(1) : '';
     let display_elapsed = elapsedSec.toFixed(1);
     if (this._style_fill)
       percent = 1.0 - percent;
-    this.foregroundElement.style.width = 'calc(' + percent * 100 + '% - 2px)';
+    this.foregroundElement.style.width = percent * 100 + '%';
     if (this._left_text != '') {
       if (this._left_text == 'remain')
         this.leftTextElement.innerHTML = display_remain;
