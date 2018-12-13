@@ -103,3 +103,7 @@
   top: 0px;
   left: calc(100%);
 }
+
+#timeline-debug /deep/ .timerbar-root {
+  border: none;
+}
