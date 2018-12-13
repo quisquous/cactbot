@@ -55,7 +55,7 @@ let UserConfig = {
   },
   languageFuncs: {},
   handleSkin: function(skinName) {
-    if (skinName == 'default')
+    if (!skinName || skinName == 'default')
       return;
 
     let basePath = document.location.toString();
