@@ -29,8 +29,10 @@ namespace Cactbot {
     private SemaphoreSlim log_lines_semaphore_ = new SemaphoreSlim(1);
     // Not thread-safe, as OnLogLineRead may happen at any time. Use |log_lines_semaphore_| to access it.
     private List<string> log_lines_ = new List<string>(40);
+    private List<string> import_log_lines_ = new List<string>(40);
     // Used on the fast timer to avoid allocing List every time.
     private List<string> last_log_lines_ = new List<string>(40);
+    private List<string> last_import_log_lines_ = new List<string>(40);
 
     // When true, the update function should reset notify state back to defaults.
     private bool reset_notify_state_ = false;
@@ -83,6 +85,9 @@ namespace Cactbot {
 
     public delegate void LogHandler(JSEvents.LogEvent e);
     public event LogHandler OnLogsChanged;
+
+    public delegate void ImportLogHandler(JSEvents.ImportLogEvent e);
+    public event ImportLogHandler OnImportLogsChanged;
 
     public delegate void InCombatChangedHandler(JSEvents.InCombatChangedEvent e);
     public event InCombatChangedHandler OnInCombatChanged;
@@ -146,6 +151,7 @@ namespace Cactbot {
       OnZoneChanged += (e) => DispatchToJS(e);
       if (this.Config.LogUpdatesEnabled) {
         OnLogsChanged += (e) => DispatchToJS(e);
+        OnImportLogsChanged += (e) => DispatchToJS(e);
       }
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnTargetChanged += (e) => DispatchToJS(e);
@@ -251,12 +257,11 @@ namespace Cactbot {
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
-      // isImport happens when somebody is importing old encounters and all the log lines are processed.
-      // Don't need to send all of these to the overlay.
-      if (isImport)
-        return;
       log_lines_semaphore_.Wait();
-      log_lines_.Add(args.logLine);
+      if (isImport)
+        import_log_lines_.Add(args.logLine);
+      else
+        log_lines_.Add(args.logLine);
       log_lines_semaphore_.Release();
     }
 
@@ -674,16 +679,25 @@ namespace Cactbot {
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
       // more specific events, some of which may involve parsing the logs as well.
       List<string> logs;
+      List<string> import_logs;
       log_lines_semaphore_.Wait();
       logs = log_lines_;
       log_lines_ = last_log_lines_;
+      import_logs = import_log_lines_;
+      import_log_lines_ = last_import_log_lines_;
       log_lines_semaphore_.Release();
+
       if (logs.Count > 0) {
         OnLogsChanged(new JSEvents.LogEvent(logs));
         logs.Clear();
       }
-      last_log_lines_ = logs;
+      if (import_logs.Count > 0) {
+        OnImportLogsChanged(new JSEvents.ImportLogEvent(import_logs));
+        import_logs.Clear();
+      }
 
+      last_log_lines_ = logs;
+      last_import_log_lines_ = import_logs;
       fight_tracker_.Tick(DateTime.Now);
 
       return game_active ? kFastTimerMilli : kSlowTimerMilli;

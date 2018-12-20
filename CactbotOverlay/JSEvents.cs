@@ -42,6 +42,13 @@ namespace Cactbot {
       public List<string> logs;
     }
 
+    public class ImportLogEvent : JSEvent {
+      public ImportLogEvent(List<String> logs) { this.logs = logs; }
+      public string EventName() { return "onImportLogEvent"; }
+
+      public List<string> logs;
+    }
+
     public class InCombatChangedEvent : JSEvent {
       public InCombatChangedEvent(bool in_act_combat, bool in_game_combat) { this.inACTCombat = in_act_combat; this.inGameCombat = in_game_combat; }
       public string EventName() { return "onInCombatChangedEvent"; }
