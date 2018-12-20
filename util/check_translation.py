@@ -126,6 +126,7 @@ def parse_translations(triggers):
 
     # go go parsing javascript in python.
     # We could arguably run node.js here and use it to parse the js, buuuut <_<
+    # oh god this whole section is a terrible hack, I'm so, so sorry.
     lines = ['[']
     line = fp.readline()
     while line:
@@ -134,12 +135,15 @@ def parse_translations(triggers):
             while line and not line.startswith('  ]'):
                 awful_json_trailing_comma_check = False
                 line = line.strip()
+
                 # remove comments (assume no comments in strings)
                 line = re.sub(r'//.*$', '', line)
                 # fix unquoted/single-quoted Javascript keys and properties <_<
                 line = re.sub(r"^([^:\"\'](?:\s*[^:\"\'])*)(\s*:)", r'"\1"\2', line)
-                line = re.sub(r"^'([^:\"\'](?:\s*[^:\"\'])*)'(\s*:)", r'"\1"\2', line)
+                line = re.sub(r"^\s*'([^:\"\'](?:\s*[^:])*)'(\s*:)", r'"\1"\2', line)
                 line = re.sub(r"(:\s?)'(.*)',", r'\1"\2",', line)
+                # hackily handle escaped single quotes
+                line = re.sub(r"\\'", "'", line)
                 if line.endswith(','):
                     awful_json_trailing_comma_check = True
                     line = line[:-1]
