@@ -199,8 +199,9 @@ class Fisher {
   handleChumFade() {
     // Chum fades just before the catch appears, so we need to
     // delay it to record the catch with chum active
+    let _this = this;
     setTimeout(function() {
-      this.chum = false;
+      _this.chum = false;
     }, 1000);
   }
 

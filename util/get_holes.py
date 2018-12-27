@@ -9,15 +9,12 @@ columns = 'columns=ID,PlaceName.NameNoArticle,Item0.Singular,Item1.Singular,Item
 page = 1
 
 response = requests.get(f'{base}{spot}?{columns}&page={page}').json()
-# XIVAPI has a 1 request per second rate limit for requests without an API key
-sleep(1.5)
 
 results = response['Results']
 
 while (response['Pagination']['Page'] != response['Pagination']['PageTotal']):
     page += 1
     response = requests.get(f'{base}{spot}?{columns}&page={page}').json()
-    sleep(1.5)
 
     results += response['Results']
 
@@ -42,8 +39,20 @@ for result in results:
 
     holes[result['PlaceName']['NameNoArticle']] = items
 
+holes_string = json.dumps(holes)
+
+# Coerce from json to single quotes
+holes_string = holes_string.replace("'", r"\'")
+holes_string = holes_string.replace("\"", "'")
+
+# Spaces before and after braces
+holes_string = holes_string.replace('{', '{ ')
+holes_string = holes_string.replace('}', ' }')
+
 filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'holes.js'
 
 with open(filename, 'w') as file:
-    file.write('var gFishingHoles=')
-    file.write(json.dumps(holes))
+    file.write("'use strict';\n\n")
+    file.write("const gFishingHoles=")
+    file.write(holes_string)
+    file.write(";\n")
