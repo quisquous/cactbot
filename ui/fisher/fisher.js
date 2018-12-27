@@ -8,8 +8,8 @@ let Options = {
     'unknown': 'rgba(0, 0, 0, 0.5)',
     'light': 'rgba(99, 212, 152, 0.5)',
     'medium': 'rgba(245, 241, 32, 0.5)',
-    'heavy': 'rgba(250, 15, 19, 0.5)'
-  }
+    'heavy': 'rgba(250, 15, 19, 0.5)',
+  },
 };
 
 let gFisher;
@@ -51,18 +51,21 @@ class Fisher {
       'chumfade': /00:08b0:You lose the effect of Chum/,
       'snaggain': /00:08ae:⇒ You gain the effect of Snagging/,
       'snagfade': /00:08b0:You lose the effect of Snagging/,
-      'quit': /00:08c3:You put away your rod\./
-    }
+      'quit': /00:08c3:You put away your rod\./,
+    };
 
-    this.ui = new FisherUI(element)
+    this.ui = new FisherUI(element);
     this.seaBase = new SeaBase();
   }
 
   updateFishData(hole, bait) {
     // We can only know data for both of these
     if (!hole || !bait) {
-      return new Promise(function(resolve, reject) {resolve();});
+      return new Promise(function(resolve, reject) {
+        resolve();
+      });
     }
+
 
     let _this = this;
     this.hookTimes = {};
@@ -125,8 +128,6 @@ class Fisher {
     this.updateFishData(this.hole, this.bait).then(function() {
       _this.ui.startFishing();
     });
-
-    
   }
 
   handleBite() {
@@ -148,7 +149,7 @@ class Fisher {
       'hookTime': (this.castEnd - this.castStart),
       'reelTime': (this.castGet - this.castEnd),
       'chum': this.chum?1:0,
-      'snagging': this.snagging
+      'snagging': this.snagging,
     });
 
     if (this.mooching) {
@@ -200,7 +201,7 @@ class Fisher {
     // delay it to record the catch with chum active
     setTimeout(function() {
       this.chum = false;
-    }, 1000)
+    }, 1000);
   }
 
   handleQuit() {
@@ -214,20 +215,20 @@ class Fisher {
     let result = null;
 
     for (let type in this.regex) {
-      result = this.regex[type].exec(log)
+      result = this.regex[type].exec(log);
       if (result != null) {
         switch (type) {
-          case 'bait':      this.handleBait(result[1]);           break;
-          case 'cast':      this.handleCast(result[1]);           break;
-          case 'bite':      this.handleBite();                    break;
-          case 'catch':     this.handleCatch(result[1]);          break;
-          case 'nocatch':   this.handleNoCatch();                 break;
-          case 'mooch':     this.handleMooch();                   break;
-          case 'snaggain':  this.handleSnagGain();                break;
-          case 'snagfade':  this.handleSnagFade();                break;
-          case 'chumgain':  this.handleChumGain();                break;
-          case 'chumfade':  this.handleChumFade();                break;
-          case 'quit':      this.handleQuit();                    break;
+        case 'bait': this.handleBait(result[1]); break;
+        case 'cast': this.handleCast(result[1]); break;
+        case 'bite': this.handleBite(); break;
+        case 'catch': this.handleCatch(result[1]); break;
+        case 'nocatch': this.handleNoCatch(); break;
+        case 'mooch': this.handleMooch(); break;
+        case 'snaggain': this.handleSnagGain(); break;
+        case 'snagfade': this.handleSnagFade(); break;
+        case 'chumgain': this.handleChumGain(); break;
+        case 'chumfade': this.handleChumFade(); break;
+        case 'quit': this.handleQuit(); break;
         }
       }
     }
@@ -244,11 +245,10 @@ class Fisher {
   }
 
   OnPlayerChange(e) {
-    if (e.detail.job == "FSH") {
+    if (e.detail.job == 'FSH')
       this.element.style.opacity = 1;
-    } else {
+    else
       this.element.style.opacity = 0;
-    }
   }
 }
 
