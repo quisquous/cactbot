@@ -28,7 +28,6 @@ namespace Cactbot {
     //
     // CharmapStruct* outer;  // The pointer found from the signature.
     // CharmapStruct {
-    //   0x10 bytes...
     //   EntityStruct* player;
     // }
     private static int kCharmapStructOffsetPlayer = 0;
@@ -147,11 +146,6 @@ namespace Cactbot {
     //     0x036 bytes in: EntityJob job;  // 1 byte.
     //     ...
     //     0x038 bytes in: int16 level;
-    //     ...
-    //     0x22C bytes in: int casting_spell_id;  // 4 bytes (maybe 2?)
-    //     ...
-    //     0x25C bytes in: float32 casting_spell_time_spent;  // 4 bytes
-    //     0x260 bytes in: float32 casting_spell_length;      // 4 bytes
     // }
   
     // Base offset for the character details below.
@@ -170,25 +164,18 @@ namespace Cactbot {
     private static int kEntityStructureOffsetGpCp = 0x12;
     private static int kEntityStructureOffsetJob = 0x38;
     private static int kEntityStructureOffsetLevel = 0x3A;
-    private static int kEntityStructureOffsetCastingId = 0x22C;
-    private static int kEntityStructureOffsetCastingTimeProgress = 0x25C;
 
-    // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
+    // A piece of code that reads the job data. At address ffxiv_dx11.exe+3ADB90
     // in July 7, 2017 update. The lines that actually read are:
     //   movzx r8d,byte ptr[rbx+09]  // Black
     //   movzx r8d,byte ptr[rbx+08]  // White
     // The pointer of interest is the first ???????? in the signature.
+    // TODO: If need more signature, prepend "B83C020000E9????????"
+    // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
     private static String kRedMageManaSignature = "488B0D????????4885C974B8488B05";
     private static int kRedMageManaSignatureOffset = -12;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kRedMageManaSignatureRIP = true;
-
-    // For reference, the warrior job points to the same structure at this signature.
-    // ffxiv_dx11.exe+77B600: mov rcx,[???]
-    // ffxiv_dx11.exe+77B61B: mov ebx, [rcx+08]
-    // private static String kWarriorSignature = "488B0D????????4885C974B8488B05";
-    // TODO: If need more signature, prepend "B83C020000E9????????"
-    // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
 
     // The op before the pointer wildcard in the signature reads a pointer-to-a-pointer
     // to the job-specific data structure. We call it |outer| below:
@@ -456,24 +443,17 @@ namespace Cactbot {
       }
     }
 
-    public class SpellCastingData {
-      public int casting_id = 0;
-      public float casting_time_progress = 0;
-      public float casting_time_length = 0;
-    }
-
     private int GetBait() {
       short[] jorts = Read16(bait_addr_, 1);
       return jorts[0];
     }
 
-    private Tuple<EntityData, SpellCastingData> GetEntityData(IntPtr entity_ptr) {
+    private EntityData GetEntityData(IntPtr entity_ptr) {
       byte[] bytes = Read8(entity_ptr, kEntityStructureSize);
       if (bytes == null)
         return null;
 
       EntityData data = new EntityData();
-      SpellCastingData casting_data = null;
 
       int name_length = kEntityStructureSizeName;
       for (int i = 0; i < kEntityStructureSizeName; ++i) {
@@ -514,17 +494,12 @@ namespace Cactbot {
             data.debugJob += string.Format("{0:x2}", job_bytes[i]);
           }
         }
-
-        casting_data = new SpellCastingData();
-        casting_data.casting_id = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingId);
-        casting_data.casting_time_progress = BitConverter.ToSingle(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingTimeProgress);
-        casting_data.casting_time_length = BitConverter.ToSingle(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingTimeProgress + 4);
       }
 
-      return Tuple.Create(data, casting_data);
+      return data;
     }
 
-    public Tuple<EntityData, SpellCastingData> GetSelfData() {
+    public EntityData GetSelfData() {
       if (!HasProcess() || player_ptr_addr_ == IntPtr.Zero)
         return null;
 
@@ -532,12 +507,12 @@ namespace Cactbot {
       if (entity_ptr == IntPtr.Zero)
         return null;
       var data = GetEntityData(entity_ptr);
-      if (data.Item1.job == EntityJob.FSH)
-        data.Item1.bait = GetBait();
+      if (data.job == EntityJob.FSH)
+        data.bait = GetBait();
       return data;
     }
 
-    public Tuple<EntityData, SpellCastingData> GetTargetData() {
+    public EntityData GetTargetData() {
       if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
         return null;
 
@@ -547,7 +522,7 @@ namespace Cactbot {
       return GetEntityData(entity_ptr);
     }
 
-    public Tuple<EntityData, SpellCastingData> GetFocusData() {
+    public EntityData GetFocusData() {
       if (!HasProcess() || focus_ptr_addr_ == IntPtr.Zero)
         return null;
 
