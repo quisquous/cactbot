@@ -16,6 +16,7 @@ namespace Cactbot {
     private IntPtr focus_ptr_addr_ = IntPtr.Zero;
     private IntPtr job_data_outer_addr_ = IntPtr.Zero;
     private IntPtr in_combat_addr_ = IntPtr.Zero;
+    private IntPtr bait_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
     // refer to as the charmap. The pointer is at the end of the signature.
@@ -59,6 +60,12 @@ namespace Cactbot {
     private static bool kInCombatBaseRIP = true;
     private static int kInCombatOffsetOffset = 5;
     private static bool kInCombatOffsetRIP = false;
+
+    // Bait integer.
+    // Variable is accessed via a cmp eax,[...] line at offset=0.
+    private static String kBaitSignature = "4883C4305BC3498BC8E8????????3B05";
+    private static int kBaitBaseOffset = 0;
+    private static bool kBaitBaseRIP = true;
 
     // Values found in the EntityStruct's type field.
     public enum EntityType {
@@ -333,6 +340,13 @@ namespace Cactbot {
               in_combat_addr_ = IntPtr.Add(baseAddress, offset);
             }
           }
+
+          p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
+          if (p.Count != 1) {
+            logger_.LogError("Bait signature found " + p.Count + " matches");
+          } else {
+            bait_addr_ = p[0];
+          }
         }
       }
 
@@ -366,6 +380,7 @@ namespace Cactbot {
       public float pos_x = 0;
       public float pos_y = 0;
       public float pos_z = 0;
+      public int bait = 0;
       public int hp = 0;
       public int max_hp = 0;
       public int mp = 0;
@@ -392,6 +407,7 @@ namespace Cactbot {
         hash = hash * 31 + pos_x.GetHashCode();
         hash = hash * 31 + pos_y.GetHashCode();
         hash = hash * 31 + pos_z.GetHashCode();
+        hash = hash * 31 + bait.GetHashCode();
         hash = hash * 31 + hp.GetHashCode();
         hash = hash * 31 + max_hp.GetHashCode();
         hash = hash * 31 + mp.GetHashCode();
@@ -420,6 +436,7 @@ namespace Cactbot {
           a.pos_x == b.pos_x &&
           a.pos_y == b.pos_y &&
           a.pos_z == b.pos_z &&
+          a.bait == b.bait &&
           a.hp == b.hp &&
           a.max_hp == b.max_hp &&
           a.mp == b.mp &&
@@ -443,6 +460,11 @@ namespace Cactbot {
       public int casting_id = 0;
       public float casting_time_progress = 0;
       public float casting_time_length = 0;
+    }
+
+    private int GetBait() {
+      short[] jorts = Read16(bait_addr_, 1);
+      return jorts[0];
     }
 
     private Tuple<EntityData, SpellCastingData> GetEntityData(IntPtr entity_ptr) {
@@ -509,7 +531,10 @@ namespace Cactbot {
       IntPtr entity_ptr = ReadIntPtr(player_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
-      return GetEntityData(entity_ptr);
+      var data = GetEntityData(entity_ptr);
+      if (data.Item1.job == EntityJob.FSH)
+        data.Item1.bait = GetBait();
+      return data;
     }
 
     public Tuple<EntityData, SpellCastingData> GetTargetData() {

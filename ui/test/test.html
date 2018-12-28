@@ -48,6 +48,7 @@
       document.getElementById("cp").innerText = e.detail.currentCP + '/' + e.detail.maxCP;
       document.getElementById("gp").innerText = e.detail.currentGP + '/' + e.detail.maxGP;
       document.getElementById("job").innerText = e.detail.level + ' ' + e.detail.job;
+      document.getElementById("bait").innerText = e.detail.bait;
       document.getElementById("debug").innerText = e.detail.debugJob;
       var jobDetail = e.detail.jobDetail;
       if (e.detail.job == "RDM") {
@@ -127,6 +128,7 @@
     <div>id: <span id="id"></span></div>
     <div>job: <span id="job"></span> <span id="jobinfo"></span></div>
     <div>pos: <span id="pos"></span></div>
+    <div>bait: <span id="bait"></span></div>
     <div>debug: <span id="debug"></span></div>
     <div>target: <span id="target">--</span> id: <span id="tid"></span> distance: <span id="tdistance"></span></div>
     <div id="event">--</event>
