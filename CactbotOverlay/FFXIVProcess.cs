@@ -165,17 +165,14 @@ namespace Cactbot {
     private static int kEntityStructureOffsetJob = 0x38;
     private static int kEntityStructureOffsetLevel = 0x3A;
 
-    // A piece of code that reads the job data. At address ffxiv_dx11.exe+3ADB90
-    // in July 7, 2017 update. The lines that actually read are:
-    //   movzx r8d,byte ptr[rbx+09]  // Black
-    //   movzx r8d,byte ptr[rbx+08]  // White
+    // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.
     // TODO: If need more signature, prepend "B83C020000E9????????"
     // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
-    private static String kRedMageManaSignature = "488B0D????????4885C974B8488B05";
-    private static int kRedMageManaSignatureOffset = -12;
+    private static String kJobDataSignature = "488B0D????????4885C974B8488B05";
+    private static int kJobDataSignatureOffset = -12;
     // The signature finds a pointer in the executable code which uses RIP addressing.
-    private static bool kRedMageManaSignatureRIP = true;
+    private static bool kJobDataSignatureRIP = true;
 
     // The op before the pointer wildcard in the signature reads a pointer-to-a-pointer
     // to the job-specific data structure. We call it |outer| below:
@@ -305,9 +302,9 @@ namespace Cactbot {
             focus_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetFocus);
           }
 
-          p = SigScan(kRedMageManaSignature, kRedMageManaSignatureOffset, kRedMageManaSignatureRIP);
+          p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
           if (p.Count != 1) {
-            logger_.LogError("RedMage signature found " + p.Count + " matches");
+            logger_.LogError("Job signature found " + p.Count + " matches");
           } else {
             job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
           }
