@@ -565,7 +565,7 @@ class EmulatorView {
         'Upper Aetheroacoustic Exploratory Site', 'Lower Aetheroacoustic Exploratory Site', 'The Ragnarok', 'Ragnarok Drive Cylinder', 'Ragnarok Central Core',
         'Alphascape V1.0 (Savage)', 'Alphascape V2.0 (Savage)', 'Alphascape V3.0 (Savage)', 'Alphascape V4.0 (Savage)',
         'Alphascape V1.0', 'Alphascape V2.0', 'Alphascape V3.0', 'Alphascape V4.0',
-        'Sigmascape V1.0 (Savage)', 'Sigmascape V2.0 (Savage)', 'Sigmascape V3.0 (Savage)', 'Sigmascape V4.0 (Savage),
+        'Sigmascape V1.0 (Savage)', 'Sigmascape V2.0 (Savage)', 'Sigmascape V3.0 (Savage)', 'Sigmascape V4.0 (Savage)',
         'Sigmascape V1.0', 'Sigmascape V2.0', 'Sigmascape V3.0', 'Sigmascape V4.0',
         'Deltascape', 'The Unending Coil Of Bahamut',
       ];
