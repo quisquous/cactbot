@@ -46,8 +46,8 @@ class LogCollector {
       this.fights = JSON.parse(localStorage.getItem('fights'));
     for (let i = 0; i < this.fights.length; i++) {
       let fight = this.fights[i];
-      fight.startDate = new Date (Date.parse(fight.startDate));
-      fight.endDate = new Date (Date.parse(fight.endDate));
+      fight.startDate = new Date(Date.parse(fight.startDate));
+      fight.endDate = new Date(Date.parse(fight.endDate));
       if (this.addFightCallback)
         this.addFightCallback(fight);
     }
@@ -119,9 +119,13 @@ class LogCollector {
     }
 
     // Trim log before pushing
-    // 00:0038 = echo | 00:0039 = countdown | 14, 15, 16 = attack related stuff | 1A = gaining effects -> 1E losing effects | 1B = head Markers | 01 = zone change | 03,04 = adding/removing combatant | 21 = wipe?
+    // 00:0038 = echo | 00:0039 = countdown | 14, 15, 16 = attack related stuff
+    // 1A = gaining effects -> 1E losing effects | 1B = head Markers | 01 = zone change
+    // 03,04 = adding/removing combatant | 21 = wipe?
     // Add more to regex only if needed
-    fight.logs = fight.logs.filter(function(line) { return / 1[456AB]:| 0[134]:| 00:003[89]:| 21:.{8}:/.test(line); }).sort();
+    fight.logs = fight.logs.filter(function(line) {
+      return / 1[456AB]:| 0[134]:| 00:003[89]:| 21:.{8}:/.test(line);
+    }).sort();
 
     this.fights.push(fight);
     if (this.addFightCallback)
@@ -275,7 +279,10 @@ class LogPlayer {
 // Responsible for manipulating any UI on screen, and starting and stopping
 // the log player when needed.
 class EmulatorView {
-  constructor(fightListElement, timerElement, elapsedElement, infoElement, partyElement, currentZoneElement, currentPlayerElement, triggerInfoElement) {
+  constructor(
+    fightListElement, timerElement, elapsedElement, infoElement,
+    partyElement, currentPlayerElement, triggerInfoElement
+  ) {
     this.fightListElement = fightListElement;
     this.timerElement = timerElement;
     this.elapsedElement = elapsedElement;
@@ -286,9 +293,7 @@ class EmulatorView {
     this.selectedFight = null;
     this.startTimeLocalMs = null;
 
-    // Lippe emulator stuff
     this.partyElement = partyElement;
-    this.currentZoneElement = currentZoneElement;
     this.currentPlayerElement = currentPlayerElement;
     this.triggerInfoElement = triggerInfoElement;
 
@@ -351,7 +356,9 @@ class EmulatorView {
       this.ShowFightInfo(this.selectedFight);
 
       // Simply push first Player
-      let name = this.sortedPlayers[0].name, job = this.sortedPlayers[0].job, id = this.sortedPlayers[0].id;
+      let name = this.sortedPlayers[0].name;
+      let job = this.sortedPlayers[0].job;
+      let id = this.sortedPlayers[0].id;
       this.logPlayer.SendPlayerEvent(name, job, id);
 
       this.Analyze();
@@ -447,21 +454,66 @@ class EmulatorView {
   // Lippe functions
   SearchPlayers(logs) {
     let moves = {
-      PLD: [ 9, 20, 11, 14, 15, 24, 16, 21, 25, 28, 26, 17, 27, 19, 29, 22, 23, 30, 3542, 3538, 3540, 3541, 3539, 7381, 7382, 7383, 7384, 7385 ],
-      WAR: [ 31, 35, 37, 38, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 3548, 3549, 3550, 3551, 3552, 7386, 7387, 7388, 7389 ],
-      DRK: [ 3617, 3619, 3621, 3623, 3624, 3625, 3627, 3628, 2629, 3631, 3632, 3633, 3634, 3635, 3636, 3638, 3639, 3640, 3641, 3642, 3643, 7390, 7391, 7392, 7393 ],
-      WHM: [ 119, 120, 121, 124, 125, 127, 128, 131, 132, 133, 134, 135, 136, 137, 139, 140, 3568, 3569, 3570, 3571, 3572, 7430, 7431, 7432, 7433 ],
-      SCH: [ 117, 185, 186, 188, 189, 3583, 3584, 3585, 3586, 3587, 7434, 7435, 7436, 7437, 7869 ],
-      AST: [ 3590, 3591, 3592, 3593, 3594, 3595, 3596, 3598, 3599, 3600, 3601, 3603, 3604, 3605, 3606, 3608, 3610, 3611, 3612, 3613, 3614, 3615, 3616, 4645, 4646, 7439, 7442, 7443, 7444, 7445, 7448 ],
-      MNK: [ 53, 54, 56, 59, 60, 61, 62, 63, 64,  65, 66, 67, 69, 70, 71, 72, 73, 74, 3543, 3544, 3545, 3546, 3547, 4262, 7394, 7395, 7396, 7864, 7865, 7866, 7868 ],
-      DRG: [ 75, 78, 79, 81, 83, 84, 85, 86, 87, 88, 90, 92, 94, 95, 96, 3553, 3554, 3555, 3556, 3557, 7397, 7398, 7399, 7400 ],
-      NIN: [ 2240, 2241, 2242, 2245, 2246, 2247, 2248, 2253, 2254, 2255, 2256, 2257, 2258, 2259, 2260, 2261, 2262, 2263, 2264, 2265, 2266, 2267, 2268, 2269, 2270, 2271, 2272, 3563, 3564, 3565, 3566, 3567, 7401, 7402, 7403 ],
-      SAM: [ 7477, 7478, 7479, 7480, 7481, 7482, 7483, 7484, 7485, 7486, 7487, 7488, 7489, 7490, 7491, 7492, 7493, 7494, 7495, 7496, 7497, 7498, 7499, 7500, 7501, 7502, 7867 ],
-      BRD: [ 97, 98, 100, 101, 103, 106, 107, 110, 112, 113, 114, 115, 116, 117, 118, 3558, 3559, 3560, 3561, 3562, 7404, 7405, 7406, 7407, 7408, 7409 ],
-      MCH: [ 2864, 2865, 2866, 2867, 2868, 2870, 2872, 2873, 2874, 2875, 2876, 2878, 2879, 2880, 2881, 2885, 2887, 2888, 2890, 3487, 7410, 7411, 7412, 7413, 7414, 7415, 7418, 9015, 9372 ],
-      BLM: [ 141, 142, 144, 145, 146, 147, 149, 152, 153, 154, 155, 156, 157, 158, 159, 162, 3573, 3574, 3575, 3576, 3577, 7419, 7420, 7421, 7422, 7447 ],
-      SMN: [ 180, 181, 182, 184, 3578, 3579, 3580, 3581, 3582, 7423, 7424, 7425, 7426, 7427, 7429 ],
-      RDM: [ 7503, 7504, 7505, 7506, 7507, 7508, 7509, 7510, 7411, 7512, 7513, 7514, 7515, 7516, 7517, 7518, 7519, 7520, 7521, 7522, 7523, 7524, 7525, 7526, 7527, 7528, 7529, 7530 ],
+      PLD: [
+        9, 20, 11, 14, 15, 24, 16, 21, 25, 28, 26, 17, 27, 19, 29, 22, 23, 30,
+        3542, 3538, 3540, 3541, 3539, 7381, 7382, 7383, 7384, 7385
+      ],
+      WAR: [
+        31, 35, 37, 38, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52,
+        3548, 3549, 3550, 3551, 3552, 7386, 7387, 7388, 7389
+      ],
+      DRK: [
+        3617, 3619, 3621, 3623, 3624, 3625, 3627, 3628, 2629, 3631, 3632, 3633, 3634, 3635,
+        3636, 3638, 3639, 3640, 3641, 3642, 3643, 7390, 7391, 7392, 7393
+      ],
+      WHM: [
+        119, 120, 121, 124, 125, 127, 128, 131, 132, 133, 134, 135, 136, 137, 139, 140,
+        3568, 3569, 3570, 3571, 3572, 7430, 7431, 7432, 7433
+      ],
+      SCH: [
+        117, 185, 186, 188, 189, 3583, 3584, 3585, 3586, 3587, 7434, 7435, 7436, 7437, 7869
+      ],
+      AST: [
+        3590, 3591, 3592, 3593, 3594, 3595, 3596, 3598, 3599, 3600, 3601, 3603, 3604, 3605,
+        3606, 3608, 3610, 3611, 3612, 3613, 3614, 3615, 3616, 4645, 4646, 7439, 7442, 7443,
+        7444, 7445, 7448
+      ],
+      MNK: [
+        53, 54, 56, 59, 60, 61, 62, 63, 64,  65, 66, 67, 69, 70, 71, 72, 73, 74,
+        3543, 3544, 3545, 3546, 3547, 4262, 7394, 7395, 7396, 7864, 7865, 7866, 7868
+      ],
+      DRG: [
+        75, 78, 79, 81, 83, 84, 85, 86, 87, 88, 90, 92, 94, 95, 96,
+        3553, 3554, 3555, 3556, 3557, 7397, 7398, 7399, 7400
+      ],
+      NIN: [
+        2240, 2241, 2242, 2245, 2246, 2247, 2248, 2253, 2254, 2255, 2256, 2257, 2258, 2259,
+        2260, 2261, 2262, 2263, 2264, 2265, 2266, 2267, 2268, 2269, 2270, 2271, 2272, 3563,
+        3564, 3565, 3566, 3567, 7401, 7402, 7403
+      ],
+      SAM: [
+        7477, 7478, 7479, 7480, 7481, 7482, 7483, 7484, 7485, 7486, 7487, 7488, 7489, 7490,
+        7491, 7492, 7493, 7494, 7495, 7496, 7497, 7498, 7499, 7500, 7501, 7502, 7867
+      ],
+      BRD: [
+        97, 98, 100, 101, 103, 106, 107, 110, 112, 113, 114, 115, 116, 117, 118, 3558, 3559,
+        3560, 3561, 3562, 7404, 7405, 7406, 7407, 7408, 7409
+      ],
+      MCH: [
+        2864, 2865, 2866, 2867, 2868, 2870, 2872, 2873, 2874, 2875, 2876, 2878, 2879, 2880,
+        2881, 2885, 2887, 2888, 2890, 3487, 7410, 7411, 7412, 7413, 7414, 7415, 7418, 9015, 9372
+      ],
+      BLM: [
+        141, 142, 144, 145, 146, 147, 149, 152, 153, 154, 155, 156, 157, 158, 159, 162, 
+        3573, 3574, 3575, 3576, 3577, 7419, 7420, 7421, 7422, 7447
+      ],
+      SMN: [
+        180, 181, 182, 184, 3578, 3579, 3580, 3581, 3582, 7423, 7424, 7425, 7426, 7427, 7429
+      ],
+      RDM: [
+        7503, 7504, 7505, 7506, 7507, 7508, 7509, 7510, 7411, 7512, 7513, 7514, 7515, 7516,
+        7517, 7518, 7519, 7520, 7521, 7522, 7523, 7524, 7525, 7526, 7527, 7528, 7529, 7530
+      ],
     };
     let players = this.players = {};
     let regex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
@@ -471,7 +523,10 @@ class EmulatorView {
       if (matches != null) {
         let ObjId = new RegExp(matches[1]);
         if (!ObjId.test(Object.keys(players))) {
-          let playerId = matches[1], job, role, ability = parseInt(matches[3], 16);
+          let playerId = matches[1];
+          let job;
+          let role;
+          let ability = parseInt(matches[3], 16);
           for (let m in moves) {
             for (let a = 0; a < moves[m].length; a++) {
               if (ability == moves[m][a]) {
@@ -489,17 +544,19 @@ class EmulatorView {
           if (job == 'MNK' || job == 'DRG' || job == 'NIN' || job == 'SAM' || job == 'BRD' || job == 'MCH' || job == 'BLM' || job == 'SMN' || job == 'RDM')
             role = 'dps';
           if (role && job)
-            Object.assign(players, { [playerId]: { name: matches[2], role: role, job: job, id: playerId } });
+            Object.assign(players, {
+              [playerId]: { name: matches[2], role: role, job: job, id: playerId }
+            });
         }
       }
 
-      // This can speed up this function a lot! 
+      // This can speed up this function a lot!
       // Add logic to differ between 4 and 8 player dungeons;
       let partySize = 8;
       let zoneRegex = new RegExp(this.selectedFight.zoneName);
       let full = [
         'Upper Aetheroacoustic Exploratory Site', 'Lower Aetheroacoustic Exploratory Site', 'The Ragnarok', 'Ragnarok Drive Cylinder', 'Ragnarok Central Core',
-        'Alphascape V1.0 (Savage)', 'Sigmascape', 'Deltascape', 'The Unending Coil Of Bahamut'
+        'Alphascape V1.0 (Savage)', 'Sigmascape', 'Deltascape', 'The Unending Coil Of Bahamut',
       ];
       let raid = [
         'The Labyrinth Of The Ancients', 'Syrcus Tower', 'The World Of Darkness',
@@ -517,10 +574,9 @@ class EmulatorView {
 
     // workaround for Object.values
     let party = this.sortedPlayers = [];
-    for (let p in players) {
+    for (let p in players)
       party.push(players[p]);
-    }
-    party = party.sort(function(a, b) {      
+    party = party.sort(function(a, b) {
       if (Object.keys(moves).indexOf(a.job) < Object.keys(moves).indexOf(b.job))
         return -1;
       if (Object.keys(moves).indexOf(a.job) > Object.keys(moves).indexOf(b.job))
@@ -528,9 +584,10 @@ class EmulatorView {
       return 0;
     });
 
-    while (this.partyElement.firstChild) {
+    // Clear party
+    while (this.partyElement.firstChild)
       this.partyElement.firstChild.remove();
-    }
+
     for (let i = 0; i < party.length; i++) {
       let playerElement = document.createElement('div');
       playerElement.className = 'jobicon ' + party[i].job;
@@ -538,7 +595,9 @@ class EmulatorView {
       playerElement.setAttribute('name', party[i].name);
       playerElement.setAttribute('job', party[i].job);
       playerElement.addEventListener('click', function(e) {
-        let id = e.target.id, name = e.target.getAttribute('name'), job = e.target.getAttribute('job');
+        let id = e.target.id;
+        let name = e.target.getAttribute('name');
+        let job = e.target.getAttribute('job');
         gEmulatorView.logPlayer.SendPlayerEvent(name, job, id);
       });
       this.partyElement.appendChild(playerElement);
@@ -549,9 +608,8 @@ class EmulatorView {
     // Clear all triggerlines
     let triggerlines = document.getElementsByClassName('triggerline');
     for (let i = 0; i < triggerlines.length; i++) {
-      while (triggerlines[i].firstChild) {
+      while (triggerlines[i].firstChild)
         triggerlines[i].firstChild.remove();
-      }
     }
 
     this.AnalyzeFight('all');
@@ -561,7 +619,10 @@ class EmulatorView {
   }
 
   AnalyzeFight(role) {
-    let triggers = gPopupText.triggers, data = {}, logs = this.selectedFight.logs;
+    let triggers = gPopupText.triggers;
+    let data = {};
+    let logs = this.selectedFight.logs;
+
     data.ShortName = function(name) {
       return name.split(/\s/)[0];
     };
@@ -576,15 +637,19 @@ class EmulatorView {
           continue;
 
         let matches = log.match(trigger.localRegex);
-        if (matches != null) {
+        if (matches != null)
           this.RunTriggers(logs, log, trigger, role, data, matches);
-        }
       }
     }
   }
 
   RunTriggers(logs, log, trigger, role, data, matches) {
-    let run, result, timestamp = dateFromLogLine(log).getTime(), delay = 0, suppress = 1, suppressed = this.suppressedTriggersLocal;
+    let run;
+    let result;
+    let timestamp = dateFromLogLine(log).getTime();
+    let delay = 0;
+    let suppress = 1;
+    let suppressed = this.suppressedTriggersLocal;
 
     if (role == 'all')
       suppressed = this.suppressedTriggers;
@@ -593,14 +658,19 @@ class EmulatorView {
       delay = trigger.delaySeconds(data, matches) * 1000 || delay * 1000;
     if (typeof trigger.delaySeconds === 'number')
       delay = trigger.delaySeconds * 1000 || delay * 1000;
-    
-    let pos = (timestamp + delay - dateFromLogLine(logs[0]).getTime()) / (dateFromLogLine(logs[logs.length - 1]).getTime() - dateFromLogLine(logs[0]).getTime()) * 100;
-    let players = new Object();
-    for (let p in this.players)
+
+    let startTime = dateFromLogLine(logs[0]).getTime();
+    let endTime = dateFromLogLine(logs[logs.length - 1]).getTime();
+    let pos = (timestamp + delay - startTime) / ( endTime - startTime) * 100;
+    let players = {};
+    for (let p in this.players) {
       if (this.players[p].role == role)
-        Object.assign(players, {[p]: { name: this.players[p].name, job: this.players[p].job, role: this.players[p].role } });
+        Object.assign(players, {
+          [p]: { name: this.players[p].name, job: this.players[p].job, role: this.players[p].role }
+        });
+    }
     if (role == 'all')
-      players = {'00000000': { name: 'Generic Player', job: 'none', role: 'none' } };
+      players = { '00000000': { name: 'Generic Player', job: 'none', role: 'none' } };
 
     for (let p in players) {
       data.me = players[p].name, data.role = players[p].role, data.job = players[p].job;
@@ -630,7 +700,7 @@ class EmulatorView {
         result = trigger.infoText(data, matches).en || trigger.infoText(data, matches);
       else if (typeof trigger.infoText === 'object')
         result = trigger.infoText.en || trigger.infoText;
-      
+
       // execute run function after text!
       if (typeof trigger.run === 'function') {
         run = true;
@@ -640,7 +710,6 @@ class EmulatorView {
       if (result || run)
         break; // trigger is already handled for this role so break loop
     }
-
 
     // checking for suppression, first local then global
     if (typeof suppressed[trigger.id]) {
@@ -662,7 +731,7 @@ class EmulatorView {
       return;
 
     if (!suppressed[trigger.id])
-      suppressed[trigger.id] = new Array();
+      suppressed[trigger.id] = [];
 
     if (trigger.suppressSeconds) {
       if (typeof trigger.suppressSeconds === 'function')
@@ -670,7 +739,6 @@ class EmulatorView {
       else
         timestamp = timestamp + trigger.suppressSeconds * 1000;
       suppressed[trigger.id].push(timestamp);
-
     } else {
       timestamp = timestamp + suppress * 1000;
       suppressed[trigger.id].push(timestamp);
@@ -694,8 +762,6 @@ class EmulatorView {
 
     return;
   }
-
-
 };
 
 function dateFromLogLine(log) {
@@ -724,11 +790,13 @@ document.addEventListener('DOMContentLoaded', function() {
   let infoElement = document.getElementById('info-panel');
 
   let partyElement = document.getElementById('party');
-  let currentZoneElement = document.getElementById('zone');
   let currentPlayerElement = document.getElementById('player');
   let triggerInfoElement = document.getElementById('tInfo');
 
-  gEmulatorView = new EmulatorView(fightListElement, timerElement, elapsedElement, infoElement, partyElement, currentZoneElement, currentPlayerElement, triggerInfoElement);
+  gEmulatorView = new EmulatorView(
+    fightListElement, timerElement, elapsedElement, infoElement,
+    partyElement, currentPlayerElement, triggerInfoElement
+  );
   gLogCollector = new LogCollector(gEmulatorView.AddFight.bind(gEmulatorView));
 });
 
