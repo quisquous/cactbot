@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8" />
   <title></title>
-<!-- General Overlay Scripts-->
+  <!-- General Overlay Scripts-->
   <link rel="stylesheet" href="../../resources/defaults.css">
   <link rel="stylesheet" href="../../resources/resize_handle.css">
   <script src="../../resources/regexes.js"></script>
@@ -16,11 +16,12 @@
   <script src="../../resources/lang/fr.js"></script>
   <script src="../../resources/lang/ja.js"></script>
   <script src="../../resources/lang/ko.js"></script>
- <!-- Cactbot Overlay Scripts-->
+  <!-- Cactbot Overlay Scripts-->
   <link rel="stylesheet" type="text/css" href="raidboss.css">
   <script src="timeline.js"></script>
   <script src="popup-text.js"></script>
   <script src="raidboss.js"></script>
+  <script src="raidemulator.js"></script>
   <link rel="stylesheet" type="text/css" href="raidemulator.css">
 </head>
 <body>
@@ -31,27 +32,49 @@
     <widget-list id="timeline"></widget-list>
   </div>
   <div id="popup-text-container">
-    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>How to use: </div><div>Create a textfile with</div></span></div>
-    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>1st line Zone Name</div><div>2nd line and following copy the log file</div></span></div>
-    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>check logs/example.txt</div><div>(This Overlay works as raidboss replacement!)</div></span></div>
+    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>How to use: </div><div>First, lock the overlay.</div></span></div>
+    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>Then, import a Network log into ACT.</div><div>Select the fight in the list below.</div></span></div>
+    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>Press the play button.</div><div>(Remember to lock the overlay to hide this text.)</div></span></div>
   </div>
-
-  <div id='emulatorShowHandle'><div class="info-text resize-helper">Show/Hide Emulator -></div><div id='showHandleIcon' class='glyphicon glyphicon-eye-closed'></div></div>
-  <div id='emulatorFooter' class='hide'>
-    <div id='emulatorInput'>
-      <input type='file' id='inputLogFile'>
-      <button onclick='playLogFile()'><span class='glyphicon glyphicon-play'></span>Play</button>
-      <button onclick='stopLogFile()'><span class='glyphicon glyphicon-stop'></span>Stop</button>
-      Applied Zone: 
-      <div id='currentZone'> -- </div>
+  <!-- Fight Picker & Playback -->
+  <div id='playback-controls'>
+    <div id='emulator-input'>
+      <div id='fight-picker'></div>
+      <button onclick='playLogFile()'>Play</button>
+      <button onclick='stopLogFile()'>Stop</button>
+      <button onclick="localStorage.clear()">Clear</button>
+      <div id='elapsed-time'></div>
     </div>
-    <div id='emulatorLog'>
-      <div id="emulatorLogTimer"></div>
-      <textarea id='zoneName' class="hide"></textarea>
-      <div id='emulatorLogLine'> Awaiting Data...</div>
+    <div id='emulator-log'>
+      <div id="emulator-log-timer"></div>
+    </div>
+    <div id='info-panel'></div>
+  </div>
+  <!-- Infos & Play as -->
+  <div class="playback-info">
+    <div class="info-element">
+      <div id="player"></div>
+      <div class="subtitle">Current Player</div>
     </div>
   </div>
-<script src="raidemulator.js"></script>
+  <div class="emulator-info">
+      <div class="info-element">
+        <div id="tInfo"></div>
+        <div class="subtitle">Selected Trigger ID</div>
+      </div>
+      <div class="info-element right">
+        <div id="party"></div>
+        <div class="subtitle">Player Characters</div>
+      </div>
+  </div>
+  <!-- Triggerlines -->
+  <div class="triggerlines">
+    <div id="triggerline-all" class="triggerline all"></div>
+    <div id="triggerline-tank" class="triggerline tank"></div>
+    <div id="triggerline-healer" class="triggerline healer"></div>
+    <div id="triggerline-dps" class="triggerline dps"></div>
+  </div>
+  <div class="emulator-background"></div>
 </body>
 <script>
   function hide(h) {
