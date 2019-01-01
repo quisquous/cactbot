@@ -1,26 +1,5 @@
 'use strict';
 
-// TODO: allow for different playback rates.  The main trickiness
-// here is that (1) timeline playback needs to be adjusted and
-// (2) delaySeconds/suppressSeconds also need to be fixed.
-
-// TODO: make it possible to scrub around forwards and backwards
-// in time in the player.  Forwards is easiest, because the
-// player could just play all the logs (silently).  Backwards
-// is much harder because it would need to start from the
-// beginning again (or some data checkpoint).
-
-// TODO: allow the emulator to suppress events from the game
-// such as zone changing or player data changing in raidboss.
-// Currently, switching zones will stop the emulator.
-
-// TODO: it would be nice to let the user select their name
-// and role to pretend to be somebody else in the log.  The user
-// could input this manually, or maybe select from the actors
-// detected in the fight.  Although this would require detecting what
-// jobs they were, probably by matching on particular skills that
-// they likely would use, e.g. / 15:........:name:1F:/ for heavy swing.
-
 let gLogCollector;
 let gEmulatorView;
 
@@ -36,44 +15,14 @@ class LogCollector {
     this.wait;
   }
 
-  StoreFights(fights) {
-    localStorage.clear();
-    localStorage.setItem('fights', JSON.stringify(fights));
-  }
-
-  RestoreOldFights() {
-    if (localStorage.fights)
-      this.fights = JSON.parse(localStorage.getItem('fights'));
-    for (let i = 0; i < this.fights.length; i++) {
-      let fight = this.fights[i];
-      fight.startDate = new Date(Date.parse(fight.startDate));
-      fight.endDate = new Date(Date.parse(fight.endDate));
-      if (this.addFightCallback)
-        this.addFightCallback(fight);
-    }
-
-    if (localStorage.fightKey) {
-      let fightKey = localStorage.fightKey;
-      document.getElementById(fightKey).checked = true;
-      gEmulatorView.SelectFight(fightKey);
-    }
-  }
-
-  WaitForRaidboss() {
-    let wait = this.wait;
-    if (typeof gPopupText !== 'undefined') {
-      console.log('success');
-      clearTimeout(wait);
-    } else {
-      console.log('repeat');
-      wait = setTimeout(this.WaitForRaidboss, 500);
-    }
-  }
-
   AppendImportLogs(logs) {
+    // Define now to save time later
+    let playerRegex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
+
     for (let i = 0; i < logs.length; ++i) {
       let log = logs[i];
       let logZoneChange = this.ParseZoneChange(log);
+
       if (logZoneChange && logZoneChange != this.currentZone) {
         if (this.currentFight)
           this.EndFight(log);
@@ -82,8 +31,14 @@ class LogCollector {
 
       if (this.currentFight) {
         this.currentFight.logs.push(log);
+        let matches = log.match(playerRegex);
+
+        if (matches)
+          this.SearchPlayers(matches);
+
         if (this.IsWipe(log))
           this.EndFight(log);
+
       } else if (log.match(gLang.countdownEngageRegex())) {
         // For consistency, only start fights on a countdown.  This
         // makes it easy to know where to start all fights (vs
@@ -96,10 +51,10 @@ class LogCollector {
           logs: [log],
           durationMs: null,
           key: this.fights.length,
+          players: {},
         };
       }
     }
-    this.StoreFights(this.fights);
   }
 
   EndFight(log) {
@@ -143,316 +98,97 @@ class LogCollector {
       return;
     return m[1];
   }
-}
 
-// Responsible for playing back a fight and emitting events as needed.
-class LogPlayer {
-  LogPlayer() {
-    this.Reset();
-  }
-
-  Reset() {
-    this.fight = null;
-    this.localStartTime = null;
-    this.logIdx = null;
-  }
-
-  SendLogEvent(logs) {
-    let evt = new CustomEvent('onLogEvent', { detail: { logs: logs } });
-    document.dispatchEvent(evt);
-  }
-
-  SendZoneEvent(zoneName) {
-    let evt = new CustomEvent('onZoneChangedEvent', { detail: { zoneName: zoneName } });
-    document.dispatchEvent(evt);
-  }
-
-  SendPlayerEvent(name, job, id) {
-    let jobDetail = {
-      oath: 100,
-      beast: 100,
-      blood: 100,
-      lillies: 3,
-      aetherflowStacks: 3,
-      fairyGauge: 100,
-      drawMilliseconds: 15000,
-      drawnCard: 'Speer',
-      spreadCard: 'Baum',
-      roadCard: 'Waage',
-      arcanumCard: 'König der Kronen',
-      lightningStacks: 3,
-      lightningMilliseconds: 12000,
-      chakraStacks: 5,
-      bloodMilliseconds: 10000,
-      lifeMilliseconds: 10000,
-      eyesAmount: 3,
-      hutonMilliseconds: 10000,
-      ninkiAmount: 3,
-      samuraiGauge: 100,
-      songName: 'Mages Ballad',
-      songProcs: 3,
-      overheatMilliseconds: 10000,
-      heat: 100,
-      ammunition: 3,
-      gauss: 'gauss',
-      umbralStacks: 3,
-      umbralMilliseconds: 10000,
-      umbralHearts: 3,
-      enochian: 'enochian',
-      polygot: 'polygot',
-      nextPolygotMilliseconds: 10000,
-      dreadwyrmStacks: 3,
-      bahamutStacks: 2,
-      dreadwyrmMilliseconds: 10000,
-      bahamutMilliseconds: 10000,
-      whiteMana: 100,
-      blackMana: 100,
-    };
-    let evt = new CustomEvent('onPlayerChangedEvent', { detail: {
-      id: id,
-      name: name,
-      job: job,
-      currentHP: 1000,
-      maxHP: 1000,
-      currentMP: 1000,
-      maxMP: 1000,
-      currentTP: 1000,
-      maxTP: 1000,
-      currentCP: 1000,
-      maxCP: 1000,
-      currentGP: 1000,
-      maxGP: 1000,
-      level: 100,
-      debugJob: 'debug',
-      jobDetail: jobDetail,
-      pos: { x: 0, y: 0, z: 0 },
-    } });
-    document.dispatchEvent(evt);
-    document.getElementById('player').textContent = name;
-  }
-
-  Start(fight) {
-    this.localStartMs = +new Date();
-    this.logStartMs = fight.startDate.getTime();
-    this.fight = fight;
-    this.logIdx = 0;
-
-    this.SendZoneEvent(fight.zoneName);
-    this.Tick();
-  }
-
-  IsPlaying() {
-    return !!this.fight;
-  }
-
-  Tick() {
-    // The last raf doesn't get cancelled, so just silently ignore.
-    if (!this.fight)
+  ClearStorage() {
+    localStorage.clear();
+    let labels = document.querySelectorAll('label[for]');
+    if (!labels.length)
       return;
 
-    let timeMs = +new Date();
-    let elapsedMs = timeMs - this.localStartMs;
-    let cutOffTimeMs = this.logStartMs + elapsedMs;
-
-    // Walk through all logs that should be emitted since the last tick.
-    let logs = [];
-    while (dateFromLogLine(this.fight.logs[this.logIdx]).getTime() <= cutOffTimeMs) {
-      logs.push(this.fight.logs[this.logIdx]);
-      this.logIdx++;
-
-      if (this.logIdx >= this.fight.logs.length) {
-        this.SendLogEvent(logs);
-        this.Stop();
-        return;
-      }
-    }
-    this.SendLogEvent(logs);
+    for (let i = 0; i < labels.length; i++)
+      if (labels[i].textContent.indexOf(' (stored)') > -1)
+        labels[i].textContent = labels[i].textContent.replace(' (stored)', '');
   }
 
-  Stop() {
-    // FIXME: there's surely some better way to stop things.
-    this.SendLogEvent(['00:0038:cactbot wipe']);
-    this.Reset();
-  }
-};
+  StoreFights() {
+    let fight = gEmulatorView.selectedFight;
+    if (!fight)
+      return;
 
-// Responsible for manipulating any UI on screen, and starting and stopping
-// the log player when needed.
-class EmulatorView {
-  constructor(
-      fightListElement, timerElement, elapsedElement, infoElement,
-      partyElement, currentPlayerElement, triggerInfoElement
-  ) {
-    this.fightListElement = fightListElement;
-    this.timerElement = timerElement;
-    this.elapsedElement = elapsedElement;
-    this.infoElement = infoElement;
-
-    this.logPlayer = new LogPlayer();
-    this.fightMap = {};
-    this.selectedFight = null;
-    this.startTimeLocalMs = null;
-
-    this.partyElement = partyElement;
-    this.currentPlayerElement = currentPlayerElement;
-    this.triggerInfoElement = triggerInfoElement;
-
-    this.players = {};
-    this.sortedPlayers = [];
-    this.logs = [];
-    this.duration = 0;
-    this.suppressedTriggers = {};
-  }
-
-  DateToTimeStr(date) {
-    let pad2 = function(num) {
-      return ('0' + num).slice(-2);
-    };
-    return pad2(date.getHours()) + ':' + pad2(date.getMinutes());
-  }
-
-  AddFight(fight) {
-    // Note: this uses radio inputs to allow the user to select from a list of
-    // fights that were imported.  It might seem like a <select> would be
-    // more natural, but the native UI for a <select> behaves very badly inside
-    // of CEF, sometimes causing the overlay to be resized (?!).
-    let parentDiv = document.createElement('div');
-    parentDiv.classList.add('fight-option');
-    let radioElement = document.createElement('input');
     let fightKey = 'fight' + fight.key;
-    this.fightMap[fightKey] = fight;
+    let label = document.querySelector('label[for="' + fightKey + '"]');
 
-    radioElement.id = fightKey;
-    radioElement.name = 'fight';
-    radioElement.type = 'radio';
-    let labelElement = document.createElement('label');
-    labelElement.setAttribute('for', radioElement.id);
+    if (label.textContent.indexOf(' (stored)') > -1)
+      return;
 
-    let dateStr = this.DateToTimeStr(fight.startDate);
-    let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
-    let durMinutes = Math.floor(durTotalSeconds / 60);
-    let durStr = '';
-    if (durMinutes > 0)
-      durStr += durMinutes + 'm';
-    durStr += (durTotalSeconds % 60) + 's';
-    labelElement.innerText = fight.zoneName + ', ' + dateStr + ', ' + durStr;
+    let fights = [];
+    if (localStorage.fights)
+      fights = JSON.parse(localStorage.getItem('fights'));
 
-    parentDiv.appendChild(radioElement);
-    parentDiv.appendChild(labelElement);
-    this.fightListElement.appendChild(parentDiv);
+    let preserveOld = fights;
+    fights.push(fight);
 
-    radioElement.addEventListener('change', (function() {
-      this.SelectFight(radioElement.id);
-    }).bind(this));
-  }
-
-  SelectFight(fightKey) {
-    let fight = this.fightMap[fightKey];
-    this.selectedFight = fight;
-    localStorage.setItem('fightKey', fightKey);
-
-    if (!this.playingFight) {
-      this.logPlayer.SendZoneEvent(fight.zoneName);
-      this.ShowFightInfo(this.selectedFight);
-
-      // Simply push first Player
-      let name = this.sortedPlayers[0].name;
-      let job = this.sortedPlayers[0].job;
-      let id = this.sortedPlayers[0].id;
-      this.logPlayer.SendPlayerEvent(name, job, id);
-
-      this.Analyze();
+    try {
+      localStorage.setItem('fights', JSON.stringify(fights));
+      label.textContent += ' (stored)';
+    } catch(e) {
+      console.error('Exceeded localStorage capacity!');
+      localStorage.setItem('fights', preserveOld);
     }
   }
 
-  Start() {
-    if (!this.selectedFight)
-      return;
-    let fight = this.selectedFight;
-
-    let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
-    this.timerElement.style.transition = '0s';
-    this.timerElement.style.width = '0%';
-    this.timerElement.style.transition = durTotalSeconds + 's linear';
-    this.timerElement.style.width = '100%';
-
-    this.logPlayer.Start(fight);
-    this.localStartMs = +new Date();
-    this.playingFight = fight;
-    this.ShowFightInfo(this.playingFight);
-    this.Tick();
-  }
-
-  Tick() {
-    this.logPlayer.Tick();
-    if (!this.logPlayer.IsPlaying())
+  RestoreFights() {
+    if (!localStorage.fights)
       return;
 
-    let localTimeMs = +new Date();
-    let elapsedMs = localTimeMs - this.localStartMs;
-    let totalTimeMs = this.playingFight.durationMs;
+    let oldSelection = null;
+    if (localStorage.fightKey)
+      oldSelection = localStorage.fightKey;
 
-    let msToTimeStr = function(ms) {
-      let pad = function(num, pad) {
-        return ('00' + num).slice(-pad);
-      };
-      let minStr = pad(Math.floor(ms / 60000), 2);
-      let secStr = pad(Math.ceil(ms / 1000) % 60, 2);
-      return minStr + ':' + secStr;
-    };
+    this.fights = JSON.parse(localStorage.getItem('fights'));
+    for (let i = 0; i < this.fights.length; i++) {
+      let fight = this.fights[i];
+      fight.startDate = new Date(Date.parse(fight.startDate));
+      fight.endDate = new Date(Date.parse(fight.endDate));
+      let oldKey = 'fight' + fight.key;
+      fight.key = i;
+      if (this.addFightCallback)
+        this.addFightCallback(fight);
+      let fightKey = 'fight' + fight.key;
+      document.querySelector('label[for="' + fightKey + '"]').textContent += ' (stored)';
 
-    this.elapsedElement.innerText =
-        msToTimeStr(elapsedMs) + ' / ' + msToTimeStr(totalTimeMs);
-
-    window.requestAnimationFrame(this.Tick.bind(this));
-  }
-
-  Stop() {
-    this.logPlayer.Stop();
-    this.localStartMs = null;
-    this.playingFight = null;
-
-    this.timerElement.style.transition = '0s';
-    this.timerElement.style.width = '0%';
-
-    this.ShowFightInfo(this.selectedFight);
-  }
-
-  ShowFightInfo(fight) {
-    if (!fight) {
-      this.infoElement.innerText = '';
-      return;
-    }
-
-    // Search Players
-    this.SearchPlayers(fight.logs);
-
-    // Use cached fight info, if available.
-    if (!fight.info) {
-      // Walk through all the logs and figure out info from the pull.
-      let isClear = false;
-      for (let i = 0; i < fight.logs.length; ++i) {
-        let log = fight.logs[i];
-        if (log.indexOf(' 21:') != -1 && log.match(/ 21:........:40000003:/))
-          isClear = true;
+      if (oldSelection == oldKey) {
+        let fightKey = 'fight' + fight.key;
+        document.getElementById(fightKey).checked = true;
+        gEmulatorView.SelectFight(fightKey);
       }
-
-      let info = '';
-      let actors = [];
-      for (let i = 0; i < this.sortedPlayers.length; i++)
-        actors.push(this.sortedPlayers[i].name);
-
-      info += '<div class="nowrap">' + fight.zoneName + '</div><div class="subtitle">Applied Zone</div>';
-      info += '<div class="nowrap">' + this.DateToTimeStr(fight.startDate) + ' - ' + this.DateToTimeStr(fight.endDate) + (isClear ? ' (Clear)' : ' (Wipe?)') + '</div><div class="subtitle">Time</div>';
-      info += '<div class="actors">' + actors.join(', ') + '</div><div class="subtitle">Actors</div>';
-
-      fight.info = info;
     }
-    this.infoElement.innerHTML = fight.info;
+    // Store fights in new order
+    localStorage.setItem('fights', JSON.stringify(this.fights));
   }
 
-  // Lippe functions
-  SearchPlayers(logs) {
+  RemoveStoredFight() {
+    let fight = gEmulatorView.selectedFight;
+    if (!fight)
+      return;
+
+    let fightKey = 'fight' + fight.key;
+    let label = document.querySelector('label[for="' + fightKey + '"]');
+
+    if (label.textContent.indexOf(' (stored)') > -1) {
+      let stored = JSON.parse(localStorage.getItem('fights'));
+      for (let i = 0; i < stored.length; i++) {
+        if (fight.key == stored[i].key)
+          stored.splice(i, 1);
+      }
+      localStorage.setItem('fights', JSON.stringify(stored));
+      label.textContent = label.textContent.replace(' (stored)', '');
+    }
+  }
+
+  SearchPlayers(matches) {
+    if (matches[1] in this.currentFight.players)
+      return;
     let moves = {
       PLD: [
         9, 20, 11, 14, 15, 24, 16, 21, 25, 28, 26, 17, 27, 19, 29, 22, 23, 30,
@@ -515,87 +251,307 @@ class EmulatorView {
         7517, 7518, 7519, 7520, 7521, 7522, 7523, 7524, 7525, 7526, 7527, 7528, 7529, 7530,
       ],
     };
-    let players = this.players = {};
-    let regex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
-
-    for (let i = 0; i < logs.length; i++) {
-      let matches = logs[i].match(regex);
-      if (matches != null) {
-        let ObjId = new RegExp(matches[1]);
-        if (!ObjId.test(Object.keys(players))) {
-          let playerId = matches[1];
-          let job;
-          let role;
-          let ability = parseInt(matches[3], 16);
-          for (let m in moves) {
-            for (let a = 0; a < moves[m].length; a++) {
-              if (ability == moves[m][a]) {
-                job = m;
-                break;
-              }
-            }
-            if (job)
-              break;
-          }
-          if (job == 'PLD' || job == 'WAR' || job == 'DRK')
-            role = 'tank';
-          if (job == 'WHM' || job == 'SCH' || job == 'AST')
-            role = 'healer';
-          if (job == 'MNK' || job == 'DRG' || job == 'NIN' || job == 'SAM' || job == 'BRD' || job == 'MCH' || job == 'BLM' || job == 'SMN' || job == 'RDM')
-            role = 'dps';
-          if (role && job) {
-            Object.assign(players, {
-              [playerId]: {
-                name: matches[2],
-                role: role,
-                job: job,
-                id: playerId,
-              },
-            });
-          }
+    let player = {
+      id: matches[1], name: matches[2],
+    };
+    let ability = parseInt(matches[3], 16);
+    for (let m in moves) {
+      for (let a = 0; a < moves[m].length; a++) {
+        if (ability == moves[m][a]) {
+        player.job = m;
+        break;
         }
       }
-
-      // This can speed up this function a lot!
-      // Add logic to differ between 4 and 8 player dungeons
-      // TODO: Find a better Way of doing this
-      let partySize = 8;
-      let zoneRegex = new RegExp(this.selectedFight.zoneName);
-      let full = [
-        'Upper Aetheroacoustic Exploratory Site', 'Lower Aetheroacoustic Exploratory Site', 'The Ragnarok', 'Ragnarok Drive Cylinder', 'Ragnarok Central Core',
-        'Alphascape V1.0 (Savage)', 'Alphascape V2.0 (Savage)', 'Alphascape V3.0 (Savage)', 'Alphascape V4.0 (Savage)',
-        'Alphascape V1.0', 'Alphascape V2.0', 'Alphascape V3.0', 'Alphascape V4.0',
-        'Sigmascape V1.0 (Savage)', 'Sigmascape V2.0 (Savage)', 'Sigmascape V3.0 (Savage)', 'Sigmascape V4.0 (Savage)',
-        'Sigmascape V1.0', 'Sigmascape V2.0', 'Sigmascape V3.0', 'Sigmascape V4.0',
-        'Deltascape', 'The Unending Coil Of Bahamut',
-      ];
-      let raid = [
-        'The Labyrinth Of The Ancients', 'Syrcus Tower', 'The World Of Darkness',
-        'Void Ark', 'The Weeping City of Mhach', 'Dun Scaith',
-        'The Royal City Of Rabanastre', 'The Ridorana Lighthouse', 'The Orbonne Monastery',
-        'Eureka Anemos', 'Eureka Pagos', 'Eureka Pyros',
-      ];
-      if (zoneRegex.test(full))
-        partySize = 8;
-      if (zoneRegex.test(raid))
-        partySize = 24;
-      if (Object.keys(players).length == partySize)
+      if (player.job)
         break;
     }
+    if (['PLD', 'WAR', 'DRK'].indexOf(player.job) > -1)
+      player.role = 'tank';
+    if (['WHM', 'SCH', 'AST'].indexOf(player.job) > -1)
+      player.role = 'healer';
+    if (['MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM'].indexOf(player.job) > -1)
+      player.role = 'dps';
 
-    // workaround for Object.values
-    let party = this.sortedPlayers = [];
-    for (let p in players)
-      party.push(players[p]);
-    party = party.sort(function(a, b) {
-      if (Object.keys(moves).indexOf(a.job) < Object.keys(moves).indexOf(b.job))
-        return -1;
-      if (Object.keys(moves).indexOf(a.job) > Object.keys(moves).indexOf(b.job))
-        return 1;
-      return 0;
-    });
+    if (player.role && player.job)
+      this.currentFight.players[player.id] = player;
+  }
+};
 
-    // Clear party
+// Responsible for playing back a fight and emitting events as needed.
+class LogPlayer {
+  LogPlayer() {
+    this.Reset();
+  }
+
+  Reset() {
+    this.fight = null;
+    this.localStartTime = null;
+    this.logIdx = null;
+  }
+
+  SendLogEvent(logs) {
+    let evt = new CustomEvent('onLogEvent', { detail: { logs: logs } });
+    document.dispatchEvent(evt);
+  }
+
+  SendZoneEvent(zoneName) {
+    let evt = new CustomEvent('onZoneChangedEvent', { detail: { zoneName: zoneName } });
+    document.dispatchEvent(evt);
+  }
+
+  SendPlayerEvent(name, job, id) {
+    let evt = new CustomEvent('onPlayerChangedEvent', { detail: {
+      id: id,
+      name: name,
+      job: job,
+    } });
+    document.dispatchEvent(evt);
+  }
+
+  Start(fight) {
+    this.localStartMs = +new Date();
+    this.logStartMs = fight.startDate.getTime();
+    this.fight = fight;
+    this.logIdx = 0;
+
+    this.SendZoneEvent(fight.zoneName);
+    this.Tick();
+  }
+
+  IsPlaying() {
+    return !!this.fight;
+  }
+
+  Tick() {
+    // The last raf doesn't get cancelled, so just silently ignore.
+    if (!this.fight)
+      return;
+
+    let timeMs = +new Date();
+    let elapsedMs = timeMs - this.localStartMs;
+    let cutOffTimeMs = this.logStartMs + elapsedMs;
+
+    // Walk through all logs that should be emitted since the last tick.
+    let logs = [];
+    while (dateFromLogLine(this.fight.logs[this.logIdx]).getTime() <= cutOffTimeMs) {
+      logs.push(this.fight.logs[this.logIdx]);
+      this.logIdx++;
+
+      if (this.logIdx >= this.fight.logs.length) {
+        this.SendLogEvent(logs);
+        this.Stop();
+        return;
+      }
+    }
+    this.SendLogEvent(logs);
+  }
+
+  Stop() {
+    // FIXME: there's surely some better way to stop things.
+    this.SendLogEvent(['00:0038:cactbot wipe']);
+    this.Reset();
+  }
+};
+
+class EmulatorView {
+  constructor(
+      fightListElement, timerElement, elapsedElement, infoElement,
+      partyElement, currentPlayerElement, triggerInfoElement
+  ) {
+    this.fightListElement = fightListElement;
+    this.timerElement = timerElement;
+    this.elapsedElement = elapsedElement;
+    this.infoElement = infoElement;
+
+    this.logPlayer = new LogPlayer();
+    this.fightMap = {};
+    this.selectedFight = null;
+    this.startTimeLocalMs = null;
+    this.fightInfo = {};
+
+    this.partyElement = partyElement;
+    this.currentPlayerElement = currentPlayerElement;
+    this.triggerInfoElement = triggerInfoElement;
+
+    this.suppressedTriggers = {};
+  }
+
+  DateToTimeStr(date) {
+    let pad2 = function(num) {
+      return ('0' + num).slice(-2);
+    };
+    return pad2(date.getHours()) + ':' + pad2(date.getMinutes());
+  }
+
+  AddFight(fight) {
+    // Note: this uses radio inputs to allow the user to select from a list of
+    // fights that were imported.  It might seem like a <select> would be
+    // more natural, but the native UI for a <select> behaves very badly inside
+    // of CEF, sometimes causing the overlay to be resized (?!).
+    let parentDiv = document.createElement('div');
+    parentDiv.classList.add('fight-option');
+    let radioElement = document.createElement('input');
+    let fightKey = 'fight' + fight.key;
+    this.fightMap[fightKey] = fight;
+
+    radioElement.id = fightKey;
+    radioElement.name = 'fight';
+    radioElement.type = 'radio';
+    let labelElement = document.createElement('label');
+    labelElement.setAttribute('for', radioElement.id);
+
+    let dateStr = this.DateToTimeStr(fight.startDate);
+    let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
+    let durMinutes = Math.floor(durTotalSeconds / 60);
+    let durStr = '';
+    if (durMinutes > 0)
+      durStr += durMinutes + 'm';
+    durStr += (durTotalSeconds % 60) + 's';
+    labelElement.innerText = fight.zoneName + ', ' + dateStr + ', ' + durStr;
+
+    parentDiv.appendChild(radioElement);
+    parentDiv.appendChild(labelElement);
+    this.fightListElement.appendChild(parentDiv);
+
+    radioElement.addEventListener('change', (function() {
+      this.SelectFight(radioElement.id);
+    }).bind(this));
+  }
+
+  SelectFight(fightKey) {
+    let fight = this.fightMap[fightKey];
+    this.selectedFight = fight;
+
+    if (!this.playingFight) {
+      this.logPlayer.SendZoneEvent(fight.zoneName);
+      this.ShowFightInfo(this.selectedFight);
+
+      // Simply push first Player
+      let name = this.fightInfo[fight.key].party[0].name;
+      let job = this.fightInfo[fight.key].party[0].job;
+      let id = this.fightInfo[fight.key].party[0].id;
+      this.logPlayer.SendPlayerEvent(name, job, id);
+
+      window.setTimeout(function() {
+        this.AsyncAnalyzer();
+      }.bind(this), 0);
+    }
+
+    try {
+      localStorage.setItem('fightKey', fightKey);
+    } catch (e) {
+      console.error('Exceeded localStorage capacity!');
+    }
+  }
+
+  Start() {
+    if (!this.selectedFight)
+      return;
+    let fight = this.selectedFight;
+
+    let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
+    this.timerElement.style.transition = '0s';
+    this.timerElement.style.width = '0%';
+    this.timerElement.style.transition = durTotalSeconds + 's linear';
+    this.timerElement.style.width = '100%';
+
+    this.logPlayer.Start(fight);
+    this.localStartMs = +new Date();
+    this.playingFight = fight;
+    this.ShowFightInfo(this.playingFight);
+    this.Tick();
+  }
+
+  Tick() {
+    this.logPlayer.Tick();
+    if (!this.logPlayer.IsPlaying())
+      return;
+
+    let localTimeMs = +new Date();
+    let elapsedMs = localTimeMs - this.localStartMs;
+    let totalTimeMs = this.playingFight.durationMs;
+
+    let msToTimeStr = function(ms) {
+      let pad = function(num, pad) {
+        return ('00' + num).slice(-pad);
+      };
+      let minStr = pad(Math.floor(ms / 60000), 2);
+      let secStr = pad(Math.ceil(ms / 1000) % 60, 2);
+      return minStr + ':' + secStr;
+    };
+
+    this.elapsedElement.innerText =
+        msToTimeStr(elapsedMs) + ' / ' + msToTimeStr(totalTimeMs);
+
+    window.requestAnimationFrame(this.Tick.bind(this));
+  }
+
+  Stop() {
+    this.logPlayer.Stop();
+    this.localStartMs = null;
+    this.playingFight = null;
+
+    this.timerElement.style.transition = '0s';
+    this.timerElement.style.width = '0%';
+
+    this.ShowFightInfo(this.selectedFight);
+  }
+
+  ShowFightInfo(fight) {
+    if (!fight) {
+      this.infoElement.innerText = '';
+      return;
+    }
+    let info;
+    let party;
+
+    // Use cached fight info, if available
+    if (!this.fightInfo[fight.key]) {
+      // Save info in a seperate object to save space for localStorage
+      this.fightInfo[fight.key] = { info: '', party: [] };
+      party = this.fightInfo[fight.key].party;
+      info = this.fightInfo[fight.key].info;
+
+      // Walk through all the logs and figure out info from the pull.
+      let isClear = false;
+      for (let i = 0; i < fight.logs.length; ++i) {
+        let log = fight.logs[i];
+        if (log.indexOf(' 21:') != -1 && log.match(/ 21:........:40000003:/))
+          isClear = true;
+      }
+
+      // List actors and sort players by role
+      let actors = [];
+      for (let p in fight.players) {
+        party.push(fight.players[p]);
+        actors.push(fight.players[p].name);
+      }
+
+      party = party.sort(function(a, b) {
+        let jobOrder = ['PLD', 'WAR', 'DKR', 'WHM', 'SCH', 'AST', 'MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM'];
+        if (jobOrder.indexOf(a.job) < jobOrder.indexOf(b.job))
+          return -1;
+        if (jobOrder.indexOf(a.job) > jobOrder.indexOf(b.job))
+          return 1;
+        return 0;
+      });
+      
+      info += '<div class="nowrap">' + fight.zoneName + '</div><div class="subtitle">Applied Zone</div>';
+      info += '<div class="nowrap">' + this.DateToTimeStr(fight.startDate) + ' - ' + this.DateToTimeStr(fight.endDate);
+      info += (isClear ? ' (Clear)' : ' (Wipe?)') + '</div><div class="subtitle">Time</div>';
+      info += '<div class="actors">' + actors.join(', ') + '</div><div class="subtitle">Actors</div>';
+
+      this.fightInfo[fight.key].info = info;
+      this.fightInfo[fight.key].party = party;
+
+    } else {
+      info = this.fightInfo[fight.key].info;
+      party = this.fightInfo[fight.key].party;
+    }
+    
+    this.infoElement.innerHTML = info;
+
+    // Add playerIcon to list
     while (this.partyElement.firstChild)
       this.partyElement.firstChild.remove();
 
@@ -615,13 +571,16 @@ class EmulatorView {
     }
   }
 
-  Analyze() {
+  AsyncAnalyzer() {
     // Clear all triggerlines
     let triggerlines = document.getElementsByClassName('triggerline');
     for (let i = 0; i < triggerlines.length; i++) {
       while (triggerlines[i].firstChild)
         triggerlines[i].firstChild.remove();
     }
+
+    // reset global trigger suppressions
+    this.suppressedTriggers = {};
 
     this.AnalyzeFight('all');
     this.AnalyzeFight('tank');
@@ -631,7 +590,9 @@ class EmulatorView {
 
   AnalyzeFight(role) {
     let triggers = gPopupText.triggers;
-    let data = {};
+    let data = { 
+      lang: gPopupText.data.lang,
+    };
     let logs = this.selectedFight.logs;
 
     data.ShortName = function(name) {
@@ -639,6 +600,24 @@ class EmulatorView {
     };
     // Reset local Suppression
     this.suppressedTriggersLocal = {};
+
+    // Get all players of said role
+    let players = {};
+    if (role == 'all')
+      players = { '00000000': { name: 'Generic Player', job: 'none', role: 'none' } };
+    else {
+      for (let p in this.selectedFight.players) {
+        if (this.selectedFight.players[p].role == role) {
+          Object.assign(players, {
+            [p]: {
+              name: this.selectedFight.players[p].name,
+              job: this.selectedFight.players[p].job,
+              role: this.selectedFight.players[p].role,
+            },
+          });
+        }
+      }
+    }
 
     for (let i = 0; i < logs.length; i++) {
       let log = logs[i];
@@ -648,13 +627,13 @@ class EmulatorView {
           continue;
 
         let matches = log.match(trigger.localRegex);
-        if (matches != null)
-          this.RunTriggers(logs, log, trigger, role, data, matches);
+        if (matches)
+          this.RunTriggers(log, trigger, players, role, data, matches);
       }
     }
   }
 
-  RunTriggers(logs, log, trigger, role, data, matches) {
+  RunTriggers(log, trigger, players, role, data, matches) {
     let run;
     let result;
     let timestamp = dateFromLogLine(log).getTime();
@@ -670,24 +649,11 @@ class EmulatorView {
     if (typeof trigger.delaySeconds === 'number')
       delay = trigger.delaySeconds * 1000 || delay * 1000;
 
-    let startTime = dateFromLogLine(logs[0]).getTime();
-    let endTime = dateFromLogLine(logs[logs.length - 1]).getTime();
+    let startTime = this.selectedFight.startDate.getTime();
+    let endTime = this.selectedFight.endDate.getTime();
     let pos = (timestamp + delay - startTime) / (endTime - startTime) * 100;
-    let players = {};
-    for (let p in this.players) {
-      if (this.players[p].role == role) {
-        Object.assign(players, {
-          [p]: {
-            name: this.players[p].name,
-            job: this.players[p].job,
-            role: this.players[p].role,
-          },
-        });
-      }
-    }
-    if (role == 'all')
-      players = { '00000000': { name: 'Generic Player', job: 'none', role: 'none' } };
 
+    // Checking for any trigger output
     for (let p in players) {
       data.me = players[p].name, data.role = players[p].role, data.job = players[p].job;
 
@@ -703,19 +669,19 @@ class EmulatorView {
 
       // popup text
       if (typeof trigger.alarmText === 'function' && trigger.alarmText(data, matches))
-        result = trigger.alarmText(data, matches).en || trigger.alarmText(data, matches);
+        result = trigger.alarmText(data, matches);
       else if (typeof trigger.alarmText === 'object')
-        result = trigger.alarmText.en || trigger.alarmText;
+        result = trigger.alarmText;
 
       if (typeof trigger.alertText === 'function' && trigger.alertText(data, matches))
-        result = trigger.alertText(data, matches).en || trigger.alertText(data, matches);
+        result = trigger.alertText(data, matches);
       else if (typeof trigger.alertText === 'object')
-        result = trigger.alertText.en || trigger.alertText;
+        result = trigger.alertText;
 
       if (typeof trigger.infoText === 'function' && trigger.infoText(data, matches))
-        result = trigger.infoText(data, matches).en || trigger.infoText(data, matches);
+        result = trigger.infoText(data, matches);
       else if (typeof trigger.infoText === 'object')
-        result = trigger.infoText.en || trigger.infoText;
+        result = trigger.infoText;
 
       // execute run function after text!
       if (typeof trigger.run === 'function') {
@@ -771,9 +737,10 @@ class EmulatorView {
     triggerElement.addEventListener('mouseleave', function() {
       document.getElementById('tInfo').style.display = 'none';
     });
-    // debug:
-    triggerElement.setAttribute('from', data.me);
-    triggerElement.setAttribute('time', timestamp);
+    // DEBUG:
+    // btriggerElement.setAttribute('from', data.me);
+    // triggerElement.setAttribute('time', timestamp);
+
     document.getElementById('triggerline-' + role).appendChild(triggerElement);
 
     return;
@@ -814,10 +781,15 @@ document.addEventListener('DOMContentLoaded', function() {
       partyElement, currentPlayerElement, triggerInfoElement
   );
   gLogCollector = new LogCollector(gEmulatorView.AddFight.bind(gEmulatorView));
-});
 
-document.addEventListener('onDataFilesRead', function() {
-  gLogCollector.RestoreOldFights();
+  document.addEventListener('onPlayerChangedEvent', function(e) {
+    document.getElementById('player').textContent = e.detail.name;
+  });
+
+  // Timeout is required because the overlay is slower and will break the Zone
+  setTimeout(function() {
+    gLogCollector.RestoreFights();
+  }, 1000)
 });
 
 // Share user config for raidboss, in terms of options and css styling, etc.
@@ -829,4 +801,15 @@ function playLogFile() {
 
 function stopLogFile() {
   gEmulatorView.Stop();
+}
+
+function storeFight() {
+  gLogCollector.StoreFights();
+}
+function unstoreFight() {
+  gLogCollector.RemoveStoredFight();
+}
+
+function clearStorage() {
+  gLogCollector.ClearStorage();
 }

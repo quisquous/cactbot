@@ -20,14 +20,17 @@ html, body {
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 3px;
 }
-.button {
-  height: 45px; width: 160px;
+button {
+  height: 25px; width: 100px;
   text-align: center;
-  line-height: 45px;
   cursor: pointer;
+  color: whitesmoke;
   font-variant: small-caps;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
 }
-.hover:hover {
+button:hover {
   background: rgba(100, 200, 255, 0.2);
 }
 .nowrap {
@@ -40,7 +43,7 @@ html, body {
   bottom: 0px; left: 2.5%;
   height: 320px; width: 95%;
   z-index: -1;
-  background: url(res/img/dark-bg-220.png) repeat;
+  background: url(../../resources/img/dark-bg-64x200-220.png) repeat;
   border-radius: 5px;
 }
 #playback-controls {
@@ -88,21 +91,21 @@ html, body {
   display: inline-block;
   cursor: pointer;
 }
-.PLD { background: url(res/img/pld.png) 0 / contain; }
-.WAR { background: url(res/img/war.png) 0 / contain; }
-.DRK { background: url(res/img/drk.png) 0 / contain; }
-.WHM { background: url(res/img/whm.png) 0 / contain; }
-.SCH { background: url(res/img/sch.png) 0 / contain; }
-.AST { background: url(res/img/ast.png) 0 / contain; }
-.MNK { background: url(res/img/mnk.png) 0 / contain; }
-.DRG { background: url(res/img/drg.png) 0 / contain; }
-.NIN { background: url(res/img/nin.png) 0 / contain; }
-.SAM { background: url(res/img/sam.png) 0 / contain; }
-.BRD { background: url(res/img/brd.png) 0 / contain; }
-.MCH { background: url(res/img/mch.png) 0 / contain; }
-.BLM { background: url(res/img/blm.png) 0 / contain; }
-.SMN { background: url(res/img/smn.png) 0 / contain; }
-.RDM { background: url(res/img/rdm.png) 0 / contain; }
+.PLD { background: url(../../resources/icon/jobs/pld-framed.png) 0 / contain; }
+.WAR { background: url(../../resources/icon/jobs/war-framed.png) 0 / contain; }
+.DRK { background: url(../../resources/icon/jobs/drk-framed.png) 0 / contain; }
+.WHM { background: url(../../resources/icon/jobs/whm-framed.png) 0 / contain; }
+.SCH { background: url(../../resources/icon/jobs/sch-framed.png) 0 / contain; }
+.AST { background: url(../../resources/icon/jobs/ast-framed.png) 0 / contain; }
+.MNK { background: url(../../resources/icon/jobs/mnk-framed.png) 0 / contain; }
+.DRG { background: url(../../resources/icon/jobs/drg-framed.png) 0 / contain; }
+.NIN { background: url(../../resources/icon/jobs/nin-framed.png) 0 / contain; }
+.SAM { background: url(../../resources/icon/jobs/sam-framed.png) 0 / contain; }
+.BRD { background: url(../../resources/icon/jobs/brd-framed.png) 0 / contain; }
+.MCH { background: url(../../resources/icon/jobs/mch-framed.png) 0 / contain; }
+.BLM { background: url(../../resources/icon/jobs/blm-framed.png) 0 / contain; }
+.SMN { background: url(../../resources/icon/jobs/smn-framed.png) 0 / contain; }
+.RDM { background: url(../../resources/icon/jobs/rdm-framed.png) 0 / contain; }
 
 /* Triggerlines */
 .triggerlines {
