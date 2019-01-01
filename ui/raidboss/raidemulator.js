@@ -38,7 +38,6 @@ class LogCollector {
 
         if (this.IsWipe(log))
           this.EndFight(log);
-
       } else if (log.match(gLang.countdownEngageRegex())) {
         // For consistency, only start fights on a countdown.  This
         // makes it easy to know where to start all fights (vs
@@ -105,9 +104,10 @@ class LogCollector {
     if (!labels.length)
       return;
 
-    for (let i = 0; i < labels.length; i++)
+    for (let i = 0; i < labels.length; i++) {
       if (labels[i].textContent.indexOf(' (stored)') > -1)
         labels[i].textContent = labels[i].textContent.replace(' (stored)', '');
+    }
   }
 
   StoreFights() {
@@ -131,7 +131,7 @@ class LogCollector {
     try {
       localStorage.setItem('fights', JSON.stringify(fights));
       label.textContent += ' (stored)';
-    } catch(e) {
+    } catch (err) {
       console.error('Exceeded localStorage capacity!');
       localStorage.setItem('fights', preserveOld);
     }
@@ -258,8 +258,8 @@ class LogCollector {
     for (let m in moves) {
       for (let a = 0; a < moves[m].length; a++) {
         if (ability == moves[m][a]) {
-        player.job = m;
-        break;
+          player.job = m;
+          break;
         }
       }
       if (player.job)
@@ -439,7 +439,7 @@ class EmulatorView {
 
     try {
       localStorage.setItem('fightKey', fightKey);
-    } catch (e) {
+    } catch (err) {
       console.error('Exceeded localStorage capacity!');
     }
   }
@@ -535,7 +535,7 @@ class EmulatorView {
           return 1;
         return 0;
       });
-      
+
       info += '<div class="nowrap">' + fight.zoneName + '</div><div class="subtitle">Applied Zone</div>';
       info += '<div class="nowrap">' + this.DateToTimeStr(fight.startDate) + ' - ' + this.DateToTimeStr(fight.endDate);
       info += (isClear ? ' (Clear)' : ' (Wipe?)') + '</div><div class="subtitle">Time</div>';
@@ -543,12 +543,11 @@ class EmulatorView {
 
       this.fightInfo[fight.key].info = info;
       this.fightInfo[fight.key].party = party;
-
     } else {
       info = this.fightInfo[fight.key].info;
       party = this.fightInfo[fight.key].party;
     }
-    
+
     this.infoElement.innerHTML = info;
 
     // Add playerIcon to list
@@ -590,7 +589,7 @@ class EmulatorView {
 
   AnalyzeFight(role) {
     let triggers = gPopupText.triggers;
-    let data = { 
+    let data = {
       lang: gPopupText.data.lang,
     };
     let logs = this.selectedFight.logs;
@@ -603,9 +602,9 @@ class EmulatorView {
 
     // Get all players of said role
     let players = {};
-    if (role == 'all')
+    if (role == 'all') {
       players = { '00000000': { name: 'Generic Player', job: 'none', role: 'none' } };
-    else {
+    } else {
       for (let p in this.selectedFight.players) {
         if (this.selectedFight.players[p].role == role) {
           Object.assign(players, {
@@ -789,7 +788,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Timeout is required because the overlay is slower and will break the Zone
   setTimeout(function() {
     gLogCollector.RestoreFights();
-  }, 1000)
+  }, 1000);
 });
 
 // Share user config for raidboss, in terms of options and css styling, etc.
