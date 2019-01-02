@@ -355,11 +355,11 @@ class LogPlayer {
 
 class EmulatorView {
   constructor(
-      fightListElement, timerElement, elapsedElement, infoElement,
+      fightListElement, timerElements, elapsedElement, infoElement,
       partyElement, currentPlayerElement, triggerInfoElement
   ) {
     this.fightListElement = fightListElement;
-    this.timerElement = timerElement;
+    this.timerElements = timerElements;
     this.elapsedElement = elapsedElement;
     this.infoElement = infoElement;
 
@@ -399,6 +399,7 @@ class EmulatorView {
     radioElement.type = 'radio';
     let labelElement = document.createElement('label');
     labelElement.setAttribute('for', radioElement.id);
+    labelElement.className = 'nowrap';
 
     let dateStr = this.DateToTimeStr(fight.startDate);
     let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
@@ -450,11 +451,12 @@ class EmulatorView {
     let fight = this.selectedFight;
 
     let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
-    this.timerElement.style.transition = '0s';
-    this.timerElement.style.width = '0%';
-    this.timerElement.style.transition = durTotalSeconds + 's linear';
-    this.timerElement.style.width = '100%';
-
+    for (let i = 0; i < this.timerElements.length; i++) {
+      this.timerElements[i].style.transition = '0s';
+      this.timerElements[i].style.width = '0%';
+      this.timerElements[i].style.transition = durTotalSeconds + 's linear';
+      this.timerElements[i].style.width = '100%';
+    }
     this.logPlayer.Start(fight);
     this.localStartMs = +new Date();
     this.playingFight = fight;
@@ -491,8 +493,10 @@ class EmulatorView {
     this.localStartMs = null;
     this.playingFight = null;
 
-    this.timerElement.style.transition = '0s';
-    this.timerElement.style.width = '0%';
+    for (let i = 0; i < this.timerElements.length; i++) {
+      this.timerElements[i].style.transition = '0s';
+      this.timerElements[i].style.width = '0%';
+    }
 
     this.ShowFightInfo(this.selectedFight);
   }
@@ -576,6 +580,10 @@ class EmulatorView {
     for (let i = 0; i < triggerlines.length; i++) {
       while (triggerlines[i].firstChild)
         triggerlines[i].firstChild.remove();
+      // Add timerbar
+      let timerbar = document.createElement('div');
+      timerbar.className = 'triggerline-timer';
+      triggerlines[i].appendChild(timerbar);
     }
 
     // reset global trigger suppressions
@@ -767,7 +775,7 @@ document.addEventListener('onImportLogEvent', function(e) {
 
 document.addEventListener('DOMContentLoaded', function() {
   let fightListElement = document.getElementById('fight-picker');
-  let timerElement = document.getElementById('emulator-log-timer');
+  let timerElements = document.getElementsByClassName('triggerline-timer');
   let elapsedElement = document.getElementById('elapsed-time');
   let infoElement = document.getElementById('info-panel');
 
@@ -776,7 +784,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let triggerInfoElement = document.getElementById('tInfo');
 
   gEmulatorView = new EmulatorView(
-      fightListElement, timerElement, elapsedElement, infoElement,
+      fightListElement, timerElements, elapsedElement, infoElement,
       partyElement, currentPlayerElement, triggerInfoElement
   );
   gLogCollector = new LogCollector(gEmulatorView.AddFight.bind(gEmulatorView));

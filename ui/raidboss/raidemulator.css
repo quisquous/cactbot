@@ -140,19 +140,19 @@ button:hover {
 .triggerline.dps > .trigger {
   background: rgba(255, 100, 100, 0.8);
 }
+.triggerline-timer {
+  position: absolute;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2.5px;
+  z-index: -1;
+}
 
 /* Fight Picker */
 #emulator-input, #emulator-log {
   display: block;
   margin: 0 auto;
   overflow: hidden;
-}
-#emulator-log-timer {
-  width: 0%; height: 3px;
-  display: block;
-  background: #E2EBF5;
-  box-shadow: -1px 0 3px #217AA2, 0 1px 3px #217AA2, 1px 0 3px #217AA2, 0 -1px 3px #217AA2;
-  border-radius: 2.5px;
 }
 #fight-picker {
   width: 450px;
