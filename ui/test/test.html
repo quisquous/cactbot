@@ -85,6 +85,8 @@
         document.getElementById("jobinfo").innerText = jobDetail.overheatMilliseconds + " | " + jobDetail.heat + " | " + jobDetail.ammunition + " | " + jobDetail.gauss;
       } else if (e.detail.job == "AST") {
         document.getElementById("jobinfo").innerText = jobDetail.drawMilliseconds + " | " + jobDetail.drawnCard + " | " + jobDetail.spreadCard + " | " + jobDetail.roadCard + " | " + jobDetail.arcanumCard;
+      } else if (e.detail.job == "SAM") {
+        document.getElementById("jobinfo").innerText = jobDetail.kenki + " | " + jobDetail.setsu + " | " + jobDetail.gekko + " | " + jobDetail.ka;
       } else {
         document.getElementById("jobinfo").innerText = "";
       }

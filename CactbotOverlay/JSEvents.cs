@@ -229,6 +229,14 @@ namespace Cactbot {
         public int roadCard;
         public int arcanumCard;
       }
+
+      public struct SamuraiDetail {
+        public SamuraiDetail(FFXIVProcess.SamuraiJobData d) { kenki = d.kenki; setsu = d.setsu; gekko = d.gekko; ka = d.ka; }
+        public int kenki;
+        public bool setsu;
+        public bool gekko;
+        public bool ka;
+      }
     }
 
     public class TargetCastingEvent : JSEvent {

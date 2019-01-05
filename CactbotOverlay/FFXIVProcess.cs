@@ -252,6 +252,10 @@ namespace Cactbot {
     //          // e.g. lady drawn and expanded royal road = 0x38
     //          0xD bytes in: uchar royal_road_arcanum_cards;
     //        }
+    //        struct Samurai {
+    //          0x8 bytes in: byte kenki;
+    //          0x9 bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
+    //        }
     //      }
     //   }
     // }
@@ -1016,6 +1020,45 @@ namespace Cactbot {
       j.spread_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] >> 4 & 0xF;
       j.road_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 5] >> 4 & 0xF;
       j.arcanum_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 5] & 0xF;
+      return j;
+    }
+
+    public class SamuraiJobData {
+      public int kenki = 0;
+      public bool setsu = false;
+      public bool gekko = false;
+      public bool ka = false;
+
+      public override bool Equals(object obj) {
+        var o = obj as SamuraiJobData;
+        return o != null &&
+          kenki != o.kenki &&
+          setsu != o.setsu &&
+          gekko != o.gekko &&
+          ka != o.ka;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + kenki.GetHashCode();
+        hash = hash * 31 + setsu.GetHashCode();
+        hash = hash * 31 + gekko.GetHashCode();
+        hash = hash * 31 + ka.GetHashCode();
+        return hash;
+      }
+    }
+
+    public SamuraiJobData GetSamurai() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new SamuraiJobData();
+      j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 1];
+      j.setsu = (sen & 0x1) != 0;
+      j.gekko = (sen & 0x2) != 0;
+      j.ka = (sen & 0x4) != 0;
       return j;
     }
 
