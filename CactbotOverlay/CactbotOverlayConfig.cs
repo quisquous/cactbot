@@ -30,7 +30,7 @@ namespace Cactbot {
     }
 
     public bool LogUpdatesEnabled = true;
-    public double DpsUpdatesPerSecond = 3;
+    public double DpsUpdatesPerSecond = 0;
 
     public string OverlayData = null;
 
