@@ -149,7 +149,7 @@ namespace Cactbot {
     // }
   
     // Base offset for the character details below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x1750;
+    private static int kEntityStructureOffsetCharacterDetails = 0x1758;
 
     private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
     private static int kEntityStructureSizeName = 0x44;
