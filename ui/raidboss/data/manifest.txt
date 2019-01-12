@@ -15,6 +15,7 @@ timelines/lakshmi-ex.txt
 timelines/ravana-ex.txt
 timelines/ridorana_lighthouse.txt
 timelines/royal_city_of_rabanastre.txt
+timelines/seiryu-ex.txt
 timelines/sephirot-ex.txt
 timelines/shinryu-ex.txt
 timelines/sophia-ex.txt
@@ -67,6 +68,7 @@ triggers/general.js
 triggers/lakshmi-ex.js
 triggers/rathalos-ex.js
 triggers/ravana-ex.js
+triggers/seiryu-ex.js
 triggers/sephirot-ex.js
 triggers/shinryu-ex.js
 triggers/sophia-ex.js
