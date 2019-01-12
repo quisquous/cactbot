@@ -78,6 +78,7 @@ namespace Cactbot {
       Minion = 9,
       Mailbox = 12,
     };
+
     // Values found in the EntityStruct's job field.
     public enum EntityJob {
       None = 0,
@@ -116,6 +117,7 @@ namespace Cactbot {
       AST = 33,
       SAM = 34,
       RDM = 35,
+      BLU = 36,
     };
 
     // EntityStruct {

@@ -280,39 +280,10 @@ function setupRegexes() {
   ]);
 }
 
-let kCasterJobs = ['RDM', 'BLM', 'WHM', 'SCH', 'SMN', 'ACN', 'AST', 'CNJ', 'THM'];
-let kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK'];
-let kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
-let kCraftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
-let kGatheringJobs = ['MIN', 'BTN', 'FSH'];
 let kMeleeWithMpJobs = ['BRD', 'DRK', 'PLD'];
 
-function isCasterJob(job) {
-  return kCasterJobs.indexOf(job) >= 0;
-}
-
-function isTankJob(job) {
-  return kTankJobs.indexOf(job) >= 0;
-}
-
-function isHealerJob(job) {
-  return kHealerJobs.indexOf(job) >= 0;
-}
-
-function isCraftingJob(job) {
-  return kCraftingJobs.indexOf(job) >= 0;
-}
-
-function isGatheringJob(job) {
-  return kGatheringJobs.indexOf(job) >= 0;
-}
-
-function isCombatJob(job) {
-  return !isCraftingJob(job) && !isGatheringJob(job);
-}
-
 function doesJobNeedMPBar(job) {
-  return isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
+  return Util.isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
 }
 
 function computeBackgroundColorFrom(element, classList) {
@@ -491,15 +462,15 @@ class Bars {
     container.appendChild(barsLayoutContainer);
 
     barsLayoutContainer.classList.add(this.job.toLowerCase());
-    if (isTankJob(this.job))
+    if (Util.isTankJob(this.job))
       barsLayoutContainer.classList.add('tank');
-    else if (isHealerJob(this.job))
+    else if (Util.isHealerJob(this.job))
       barsLayoutContainer.classList.add('healer');
-    else if (isCombatJob(this.job))
+    else if (Util.isCombatJob(this.job))
       barsLayoutContainer.classList.add('dps');
-    else if (isCraftingJob(this.job))
+    else if (Util.isCraftingJob(this.job))
       barsLayoutContainer.classList.add('crafting');
-    else if (isGatheringJob(this.job))
+    else if (Util.isGatheringJob(this.job))
       barsLayoutContainer.classList.add('gathering');
 
     let pullCountdownContainer = document.createElement('div');
@@ -560,7 +531,7 @@ class Bars {
       this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
 
-    if (isCraftingJob(this.job)) {
+    if (Util.isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
       barsContainer.appendChild(this.o.cpContainer);
@@ -572,7 +543,7 @@ class Bars {
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
       return;
-    } else if (isGatheringJob(this.job)) {
+    } else if (Util.isGatheringJob(this.job)) {
       this.o.gpContainer = document.createElement('div');
       this.o.gpContainer.id = 'gp-bar';
       barsContainer.appendChild(this.o.gpContainer);
@@ -622,7 +593,7 @@ class Bars {
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color'); ;
     }
 
-    if (!isCasterJob(this.job)) {
+    if (!Util.isCasterJob(this.job)) {
       this.o.tpContainer = document.createElement('div');
       this.o.tpContainer.id = 'tp-bar';
       barsContainer.appendChild(this.o.tpContainer);
@@ -1529,7 +1500,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        isCraftingJob(this.job) || isGatheringJob(this.job))
+        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;

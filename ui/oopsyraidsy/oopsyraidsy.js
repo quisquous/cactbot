@@ -942,32 +942,13 @@ class DamageTracker {
     }
   }
 
-  // TODO: copypasta from popup-text.js.  Maybe could be shared?
   OnPlayerChange(e) {
     if (this.job == e.detail.job && this.me == e.detail.name)
       return;
 
     this.me = e.detail.name;
     this.job = e.detail.job;
-    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLA)$/) >= 0) {
-      this.role = 'tank';
-    } else if (this.job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0) {
-      this.role = 'healer';
-    } else if (this.job.search(/^(MNK|NIN|DRG|SAM|ROG|LNC|PGL)$/) >= 0) {
-      this.role = 'dps-melee';
-    } else if (this.job.search(/^(BLM|SMN|RDM|THM|ACN)$/) >= 0) {
-      this.role = 'dps-caster';
-    } else if (this.job.search(/^(BRD|MCH|ARC)$/) >= 0) {
-      this.role = 'dps-ranged';
-    } else if (this.job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0) {
-      this.role = 'crafting';
-    } else if (this.job.search(/^(MIN|BTN|FSH)$/) >= 0) {
-      this.role = 'gathering';
-    } else {
-      this.role = '';
-      console.log('Unknown job role');
-    }
-
+    this.role = Util.jobToRole(this.job);
     this.ReloadTriggers();
   }
 
