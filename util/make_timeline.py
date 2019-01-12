@@ -128,6 +128,9 @@ def parse_file(args):
 
             entries.append(entry)
 
+    if not started:
+        raise Exception('Fight start not found')
+
     return entries, last_ability_time
 
 
