@@ -169,8 +169,14 @@ def parse_time(timestamp):
 def parse_event_time(event):
     """Parses the line's timestamp into a datetime object"""
     if isinstance(event, str):
-        time = parse_time(event[3:22])
-        time = time.replace(microsecond=int(event[23:29]))
+        # TCPDecoder errors have a 251 at the start instead of a single hex byte
+	# But most just have two digits.
+        if event[3] == '|':
+            time = parse_time(event[4:23])
+            time = time.replace(microsecond=int(event[24:30]))
+        else:
+            time = parse_time(event[3:22])
+            time = time.replace(microsecond=int(event[23:29]))
         return time
     elif isinstance(event, dict):
         return event['time']
