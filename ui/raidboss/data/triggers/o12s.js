@@ -15,6 +15,7 @@
       run: function(data) {
         data.isFinalOmega = true;
 
+        data.dpsShortStack = true;
         data.helloDebuffs = {};
         data.archiveMarkers = {};
         data.armValue = 0;
@@ -360,24 +361,38 @@
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage) from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
-      condition: function(data, matches) {
-        return data.me == matches[1];
-      },
       alertText: function(data, matches) {
         let t = parseFloat(matches[2]);
+        if(!(data.me == matches[1]))
+          return;
         if (!(t > 0))
           return;
         if (t <= 8) {
           return {
-            en: 'Short Stack',
-            de: 'Kurzer Stack',
+            en: 'Short Stack on YOU',
+            de: 'Kurzer Stack auf YOU',
           };
         }
         return {
-          en: 'Long Stack',
-          de: 'Langer Stack',
+          en: 'Long Stack on YOU',
+          de: 'Langer Stack auf YOU',
         };
       },
+      infoText: function(data, matches) {
+        if (data.me == matches[1])
+            return;
+        if (!data.dpsShortStack)
+            return;
+        let t = parseFloat(matches[2]);
+        if (t <= 8) {
+          data.dpsShortStack = false;
+          return {
+            en: 'Short Stack on ' + matches[1],
+            de: 'Kurzer Stack auf ' + matches[1],
+          };
+        }
+        return;
+     }
     },
     {
       id: 'O12S Hello World No Marker',
