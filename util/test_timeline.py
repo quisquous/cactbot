@@ -337,6 +337,8 @@ def run_file(args, timelist):
                 state['last_sync_timestamp'] = parse_event_time(line)
 
             state = check_event(line, timelist, state)
+    if not file_started:
+        raise Exception('Fight start not found')
 
 
 def run_report(args, timelist):
