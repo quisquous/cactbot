@@ -53,6 +53,19 @@ def load_timeline(timeline):
                 entry['buff_target'] = buff_match.group(1)
                 entry['buff_name'] = buff_match.group(2)
 
+            log_match = re.search(r'^\s*00:([0-9]*):(.*$)', sync_match.group(1))
+            if log_match:
+                entry['special_type'] = 'battlelog'
+                entry['special_line'] = '00'
+                entry['logid'] = log_match.group(1)
+                entry['line'] = log_match.group(2)
+
+            add_match = re.search(r'Added new combatant (.*$)', sync_match.group(1))
+            if add_match:
+                entry['special_type'] = 'addlog'
+                entry['special_line'] = '03'
+                entry['name'] = add_match.group(1)
+
             # Get the start and end of the sync window
             window_match = re.search(r'window ([\d\.]+),?([\d\.]+)?', match.group('options'))
 
@@ -180,6 +193,10 @@ def get_type(event):
             return 'applydebuff'
         elif event.startswith('21') or event.startswith('22'):
             return 'cast'
+        elif event.startswith('00'):
+            return 'battlelog'
+        elif event.startswith('03'):
+            return 'addlog'
         else:
             return 'none'
 
@@ -215,6 +232,26 @@ def test_match(event, entry):
             else:
                 return False
 
+        # Battlelog case
+        elif entry['special_type'] == 'battlelog' and event.startswith(entry['special_line']):
+            # Matching this format generically:
+            # 00|2019-01-12T18:08:14.0000000-05:00|0839||The Realm of the Machinists will be sealed off in 15 seconds!|
+            log_match = re.search('^00\|[^\|]*\|{}\|[^\|]*\|{}'.format(entry['logid'], entry['line']), event)
+            if log_match:
+                return True
+            else:
+                return False
+
+        # Added combatant case
+        elif entry['special_type'] == 'addlog' and event.startswith(entry['special_line']):
+            # Matching this format generically:
+            # 03|2019-01-12T18:07:46.6390000-05:00|40002269|Mustadio|0|46|dfa2|2ee0|0|0||dc029b852788abdd6056147620d2193c
+            add_match = re.search('^03\|[^\|]*\|[^\|]*\|{}\|'.format(entry['name']), event)
+            if add_match:
+                return True
+            else:
+                return False
+
     # Report parsing cases
     elif isinstance(event, dict) and entry['special_type'] == event['type']:
         # Begincast case
@@ -240,8 +277,14 @@ def check_event(event, timelist, state):
     if state['timeline_stopped']:
         time_progress_seconds = 0
     else:
-        time_progress_delta = parse_event_time(event) - state['last_sync_timestamp']
-        time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
+        event_time = parse_event_time(event)
+        if event_time > state['last_sync_timestamp']:
+             time_progress_delta = parse_event_time(event) - state['last_sync_timestamp']
+             time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
+        else:
+             # battle logs have out of order parsed times because their
+             # microseconds are zero.  Just pretend this is 0.
+             time_progress_seconds = 0
 
     # Get where the timeline would be at this time
     timeline_position = state['last_sync_position'] + time_progress_seconds
