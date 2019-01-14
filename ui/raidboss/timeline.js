@@ -265,7 +265,12 @@ class Timeline {
 
   SyncTo(fightNow) {
     // This records the actual time which aligns with "0" in the timeline.
-    this.timebase = new Date(new Date() - fightNow * 1000);
+    let newTimebase = new Date(new Date() - fightNow * 1000);
+    // Skip syncs that are too close.  Many syncs happen on abilities that
+    // hit 8 to 24 people, and so this is a lot of churn.
+    if (Math.abs(newTimebase - this.timebase) <= 2)
+      return;
+    this.timebase = newTimebase;
 
     this.nextEvent = 0;
     this.nextText = 0;
