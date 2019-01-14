@@ -363,7 +363,7 @@
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
       alertText: function(data, matches) {
         let t = parseFloat(matches[2]);
-        if(!(data.me == matches[1]))
+        if( !(data.me == matches[1]))
           return;
         if (!(t > 0))
           return;
@@ -380,9 +380,9 @@
       },
       infoText: function(data, matches) {
         if (data.me == matches[1])
-            return;
+          return;
         if (!data.dpsShortStack)
-            return;
+          return;
         let t = parseFloat(matches[2]);
         if (t <= 8) {
           data.dpsShortStack = false;
@@ -392,7 +392,7 @@
           };
         }
         return;
-     }
+      },
     },
     {
       id: 'O12S Hello World No Marker',
