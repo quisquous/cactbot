@@ -70,6 +70,13 @@
       },
     },
     {
+      id: 'Orbonne Mustadio Last Testament',
+      regex: / 14:3737:Mustadio starts using Last Testament/,
+      alertText: {
+        en: 'Point opening at Mustadio',
+      },
+    },
+    {
       id: 'Orbonne Mustadio Arm Shot',
       regex: / 14:3739:Mustadio starts using Arm Shot on (\y{Name})/,
       regexDe: / 14:3739:Mustadio starts using Armschuss on (\y{Name})/,
@@ -482,25 +489,25 @@
       },
     },
     {
-      id: 'Orbonne Cid Holy Sword Three',
+      id: 'Orbonne Cid Holy Sword Three 1',
       regex: / 14:374C:The Thunder God starts using/,
       regexDe: / 14:374C:Cidolfus starts using/,
       regexFr: / 14:374C:Cid le Dieu de la Foudre starts using/,
       alertText: {
         // e.g. E / NE / NW platforms
-        en: 'Avoid Swords Counterclockwise',
+        en: 'Run right to avoid swords',
         de: 'Im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens anti-horaire',
       },
     },
     {
-      id: 'Orbonne Cid Holy Sword Three',
+      id: 'Orbonne Cid Holy Sword Three 2',
       regex: / 14:374D:The Thunder God starts using/,
       regexDe: / 14:374D:Cidolfus starts using/,
       regexFr: / 14:374D:Cid le Dieu de la Foudre starts using/,
       alertText: {
         // NW / NE / E platforms
-        en: 'Avoid Swords Clockwise',
+        en: 'Run left to avoid swords',
         de: 'Schwertern im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens horaire',
       },
