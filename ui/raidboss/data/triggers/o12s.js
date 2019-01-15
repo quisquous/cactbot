@@ -392,8 +392,8 @@
         if (t <= 8) {
           data.dpsShortStack = false;
           return {
-            en: 'Short Stack on ' + matches[1],
-            de: 'Kurzer Stack auf ' + matches[1],
+            en: 'Short Stack on ' + data.ShortName(matches[1]),
+            de: 'Kurzer Stack auf ' + data.ShortName(matches[1]),
           };
         }
         return;
