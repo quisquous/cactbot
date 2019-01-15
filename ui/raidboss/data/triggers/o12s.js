@@ -362,11 +362,11 @@
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage) from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
       delaySeconds: function(data, matches) {
-        return matches[1] == data.me ? 0 : 2;
+        return matches[1] == data.me ? 0 : 1;
       },
       alertText: function(data, matches) {
         let t = parseFloat(matches[2]);
-        if (!(data.me == matches[1]))
+        if (data.me != matches[1])
           return;
         if (!(t > 0))
           return;
