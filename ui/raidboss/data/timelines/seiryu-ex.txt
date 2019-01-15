@@ -42,11 +42,11 @@ hideall "--sync--"
 478.0 "Handprint" sync /:Seiryu:37E8:/
 486.5 "Force of Nature" sync /:Seiryu:37EB:/
 488.5 "Coursing River" sync /:Seiryu:37F6:/
-494.3 "Forbidden Arts" sync /:Seiryu:37C7:/ # drift -0.041
+494.3 "Forbidden Arts" sync /:Seiryu:37C7:/
 496.3 "Forbidden Arts" sync /:Seiryu:37C8:/
 504.3 "--rotate--" sync /:Seiryu:37C4:/
-511.9 "Blazing Aramitama" sync /:Seiryu:37E4:/ #4:44
-515.9 "--jump--" sync /:Seiryu:37D5:/ #4:49/4:50
+511.9 "Blazing Aramitama" sync /:Seiryu:37E4:/
+515.9 "--jump--" sync /:Seiryu:37D5:/
 #519.4 "In/Out" sync /:Seiryu:(37DA|37D8):/
 522.4 "In/Out" sync /:Seiryu:(3A05|3A03):/
 #524.9 "Out/In" sync /:Seiryu:(37DB|37D9):/
@@ -67,7 +67,7 @@ hideall "--sync--"
 599.0 "Fifth Element" sync /:Seiryu:37C3:/
 611.0 "Cursekeeper" sync /:Seiryu:37D2:/
 624.1 "Cursekeeper" sync /:Seiryu:37D2:/
-633.3 "Fifth Element" sync /:Seiryu:37C3:/ # drift 0.05
+633.3 "Fifth Element" sync /:Seiryu:37C3:/
 646.3 "Summon Shiki" sync /:Seiryu:37CD:/
 652.3 "--jump--" sync /:Seiryu:37D5:/
 #655.8 "In/Out" sync /:Seiryu:(37DA|37D8):/
@@ -81,12 +81,12 @@ hideall "--sync--"
 677.3 "Red Rush" sync /:Aka-no-shiki:37F1:/
 677.3 "Blue Bolt" sync /:Ao-no-shiki:37F0:/
 678.3 "--rotate--" sync /:Seiryu:37C4:/
-685.0 "Kuji-kiri" sync /:Seiryu:37E1:/ # drift -0.049999
-691.9 "Handprint" sync /:Seiryu:37E8:/ # drift -0.044001
-697.1 "Fifth Element" sync /:Seiryu:37C3:/ # drift -0.041
-700.0 "Handprint" sync /:Seiryu:37E8:/ # drift -0.042
+685.0 "Kuji-kiri" sync /:Seiryu:37E1:/
+691.9 "Handprint" sync /:Seiryu:37E8:/
+697.1 "Fifth Element" sync /:Seiryu:37C3:/
+700.0 "Handprint" sync /:Seiryu:37E8:/
 708.0 "Handprint" sync /:Seiryu:37E8:/
-708.6 "Summon Shiki" sync /:Seiryu:37D0:/ # drift 0.045999
+708.6 "Summon Shiki" sync /:Seiryu:37D0:/
 716.5 "Force of Nature" sync /:Seiryu:37EB:/
 719.1 "Coursing River" sync /:Seiryu:37F6:/
 721.6 "--jump--" sync /:Seiryu:37D5:/
@@ -100,8 +100,8 @@ hideall "--sync--"
 751.0 "Summon Shiki" sync /:Seiryu:37D0:/
 758.4 "Force of Nature" sync /:Seiryu:37EB:/
 761.5 "Coursing River" sync /:Seiryu:37F6:/
-768.6 "Forbidden Arts 1" sync /:Seiryu:3C22:/ # drift -0.049001
-770.6 "Forbidden Arts 2" sync /:Seiryu:3C23:/ # drift 0.040001
+768.6 "Forbidden Arts 1" sync /:Seiryu:3C22:/
+770.6 "Forbidden Arts 2" sync /:Seiryu:3C23:/
 777.6 "Fifth Element" sync /:Seiryu:37C3:/
 794.6 "Cursekeeper" sync /:Seiryu:37D2:/
 807.8 "Cursekeeper" sync /:Seiryu:37D2:/
