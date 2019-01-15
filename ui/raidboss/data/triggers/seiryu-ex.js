@@ -134,21 +134,75 @@
       },
     },
     {
+      // Ability IDs:
+      // Left Handprint 37E6
+      // Right Handprint 37E5
+	    // Middle Force of Nature 37E9
       id: 'SeiryuEx Handprint East',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      condition: function(data) {
+        return data.firstHandprint === undefined;
+      },
       infoText: {
         en: 'East =>',
+      },
+      run: function(data) {
+        data.firstHandprint = true;
       },
     },
     {
       id: 'SeiryuEx Handprint West',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      condition: function(data) {
+        return data.firstHandprint === undefined;
+      },
       infoText: {
         en: '<= West',
       },
+      run: function(data) {
+        data.firstHandprint = true;
+      },
     },
+    {
+      id: 'SeiryuEx Handprint East 2',
+      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
+      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      condition: function(data) {
+        return data.firstHandprint !== undefined;
+      },
+      infoText: {
+        en: 'East =>',
+      },
+      tts: {
+        en: 'Move (East)',
+      },
+    },
+    {
+      id: 'SeiryuEx Handprint West 2',
+      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
+      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      condition: function(data) {
+        return data.firstHandprint !== undefined;
+      },
+      infoText: {
+        en: '<= West',
+      },
+      tts: {
+        en: 'Move (West)',
+      },
+    },
+    {
+	    id: 'SeiryuEx Force of Nature',
+	    regex: /Yama-no-shiki:37E9:/,
+	    run: function(data) {
+        delete data.firstHandprint;
+      },
+	    alertText: {
+	      en: 'Avoid Middle',
+	    },
+	  },
     {
       id: 'SeiryuEx Find Sneks',
       regex: / 14:37F7:Seiryu starts using Coursing River/,
