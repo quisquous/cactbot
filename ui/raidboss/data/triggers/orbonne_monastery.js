@@ -14,7 +14,6 @@
       // and if you do it wrong it wipes the raid.  So... /shrug??
       id: 'Orbonne Agrias Duskblade',
       regex: /Duskblade/,
-      regexFr: /Lame sombre/,
       beforeSeconds: 15,
       infoText: {
         en: 'Get to your pads',
@@ -24,7 +23,6 @@
     {
       id: 'Orbonne Ultima Dominion Tether',
       regex: /Demi-Virgo.*Tether/,
-      regexFr: /Demi-Vierge.*Tether/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -89,7 +87,6 @@
     {
       id: 'Orbonne Mustadio Searchlight',
       regex: / 1B:........:(\y{Name}):....:....:00A4:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:00A4:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -101,7 +98,6 @@
     {
       id: 'Orbonne Spread Marker',
       regex: / 1B:........:(\y{Name}):....:....:008B:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -147,7 +143,6 @@
     {
       id: 'Orbonne Agrias Vacuum',
       regex: / 1B:........:(\y{Name}):....:....:00A5:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:00A5:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -193,7 +188,6 @@
     {
       id: 'Orbonne Agrias Hallowed Bolt',
       regex: / 1B:........:(\y{Name}):....:....:00A6:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:00A6:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -345,7 +339,6 @@
     {
       id: 'Orbonne Cid Shadowblade Bubble',
       regex: / 1B:........:(\y{Name}):....:....:00AA:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:00AA:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -357,7 +350,6 @@
     {
       id: 'Orbonne Cid Hallowed Bolt',
       regex: / 1B:........:(\y{Name}):....:....:0017:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:0017:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -369,7 +361,6 @@
     {
       id: 'Orbonne Cid Crush Weapon',
       regex: / 1B:........:(\y{Name}):....:....:005C:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:005C:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -381,7 +372,6 @@
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
       regex: / 1B:........:\y{Name}:....:....:003E:/,
-      regexFr: / 1B:........:\y{Name}:....:....:003E:/,
       suppressSeconds: 10,
       infoText: {
         en: 'Stack',
@@ -391,7 +381,6 @@
     {
       id: 'Orbonne Cid Divine Ruination',
       regex: / 1B:........:(\y{Name}):....:....:006E:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:006E:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -482,7 +471,6 @@
     {
       id: 'Orbonne Ultima Dark Cannonade',
       regex: / 1B:........:(\y{Name}):....:....:0037:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:0037:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -495,7 +483,6 @@
     {
       id: 'Orbonne Ultima Eruption',
       regex: / 1B:........:(\y{Name}):....:....:0066:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:0066:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -507,7 +494,6 @@
     {
       id: 'Orbonne Ultima Flare IV',
       regex: / 1B:........:(\y{Name}):....:....:0057:/,
-      regexFr: / 1B:........:(\y{Name}):....:....:0057:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
