@@ -183,7 +183,7 @@ hideall "--sync--"
 4057.0 "Shadowblade" sync /:The Thunder God:375D:/
 4062.6 "Crush Helm" duration 7
 4069.6 "--sync--" sync /:The Thunder God:3754:/
-4080.1 "Sword Thunder" sync /:The Thunder God:374[9A]:/
+4080.1 "Sword L/R" sync /:The Thunder God:374[9A]:/
 4090.1 "Sword Out/In" sync /:The Thunder God:37(50|4F):/
 4110.2 "Duskblade" sync /:The Thunder God:3761:/ # drift -0.045
 4123.2 "Crush Weapon" sync /:The Thunder God:3755:/ # drift 0.046
