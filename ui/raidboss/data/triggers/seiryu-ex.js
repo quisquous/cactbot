@@ -11,6 +11,7 @@
       beforeSeconds: 4,
       infoText: {
         en: 'stack with your group',
+        fr: 'Packé avec votre groupe',
       },
     },
     {
@@ -20,6 +21,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'line stack',
+        fr: 'packé en ligne',
       },
     },
     {
@@ -31,6 +33,7 @@
       },
       alertText: {
         en: 'Grab Tether, Point Away',
+        fr: 'Prenez le lien, pointez vers l\'extérieur',
       },
     },
   ],
@@ -39,7 +42,7 @@
       id: 'SeiryuEx Aramitama Tracking',
       regex: / 14:37E4:Seiryu starts using Blazing Aramitama/,
       regexDe: / 14:37E4:Seiryu starts using Flammende Aramitama/,
-      regexFr: / 14:37E4:Seiryû starts using Aramitama incandescent/,
+      regexFr: / 14:37E4:Seiryû starts using Aramitama Incandescent/,
       regexJa: / 14:37E4:青龍 starts using 荒魂燃焼/,
       run: function(data) {
         data.blazing = true;
@@ -55,11 +58,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Swap',
+            fr: 'Tank Swap',
           };
         }
         if (data.role == 'tank') {
           return {
             en: 'Swap, then Buster',
+            fr: 'Swap puis tankbuster',
           };
         }
       },
@@ -78,13 +83,14 @@
       delaySeconds: 3,
       alertText: {
         en: 'Away From Tanks',
+        fr: 'Ecartez-vous des tanks',
       },
     },
     {
       id: 'SeiryuEx Ascending Tracking',
       regex: / 14:3C25:Seiryu starts using Serpent Ascending/,
       regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
-      regexFr: / 14:3C25:Seiryû starts using Dragon levant/,
+      regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
       regexJa: / 14:3C25:青龍 starts using 登り龍/,
       run: function(data) {
         data.markers = [];
@@ -94,11 +100,12 @@
       id: 'SeiryuEx Ascending Stack',
       regex: / 14:3C25:Seiryu starts using Serpent Ascending/,
       regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
-      regexFr: / 14:3C25:Seiryû starts using Dragon levant/,
+      regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
       regexJa: / 14:3C25:青龍 starts using 登り龍/,
       delaySeconds: 1,
       infoText: {
         en: 'Stack for Puddle AOEs',
+        fr: 'Sur votre tour pour l\'aoe',
       },
     },
     {
@@ -119,6 +126,7 @@
       },
       infoText: {
         en: 'Spread (no tower)',
+        fr: 'Ecartez-vous (pas sur la tour)',
       },
     },
     {
@@ -131,61 +139,70 @@
       },
       alarmText: {
         en: 'Get Tower',
+        fr: 'Sur votre tour',
       },
     },
     {
       id: 'SeiryuEx Handprint East',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
+      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
       infoText: {
         en: 'East =>',
+        fr: 'Est =>',
       },
     },
     {
       id: 'SeiryuEx Handprint West',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
+      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
       infoText: {
         en: '<= West',
+        fr: '<= Ouest',
       },
     },
     {
       id: 'SeiryuEx Find Sneks',
       regex: / 14:37F7:Seiryu starts using Coursing River/,
       regexDe: / 14:37F7:Seiryu starts using Woge der Schlange/,
-      regexFr: / 14:37F7:Seiryû starts using Vague de serpents/,
+      regexFr: / 14:37F7:Seiryû starts using Vague De Serpents/,
       regexJa: / 14:37F7:青龍 starts using 蛇崩/,
       alarmText: {
         en: 'Go To Snakes',
+        fr: 'Allez vers les serpents',
       },
     },
     {
       id: 'SeiryuEx Silence',
       regex: / 14:37F4:Numa-No-Shiki starts using Stoneskin/,
       regexDe: / 14:37F4:Numa no Shiki starts using Steinhaut/,
-      regexFr: / 14:37F4:shiki uligineux starts using Cuirasse/,
+      regexFr: / 14:37F4:Shiki uligineux starts using Cuirasse/,
       regexJa: / 14:37F4:沼の式鬼 starts using ストンスキン/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'dps-ranged';
       },
       alertText: {
         en: 'Silence',
+        fr: 'Silence',
       },
     },
     {
       id: 'SeiryuEx Stack',
       regex: / 03:Added new combatant Ao-No-Shiki./,
       regexDe: / 03:Added new combatant Ao no Shiki./,
-      regexFr: / 03:Added new combatant shiki céruléen./,
+      regexFr: / 03:Added new combatant Shiki céruléen./,
       regexJa: / 03:Added new combatant 蒼の式鬼./,
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Stack South',
+            fr: 'Packez-vous au sud',
           };
         }
         return {
           en: 'Stack if no tether',
+          fr: 'Packez-vous si pas de lien',
         };
       },
     },
@@ -199,27 +216,30 @@
       regexJa: / 14:3A01:青龍 starts using 陰陽の印/,
       infoText: {
         en: 'Out',
+        fr: 'Dehors',
       },
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
       regexDe: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexFr: / 14:3A05:Seiryû starts using Serpent-Eye Sigil/,
+      regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
       infoText: {
         en: 'In, then out',
+        fr: 'Dedans, puis dehors',
       },
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
       regexDe: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexFr: / 14:3A05:Seiryû starts using Serpent-Eye Sigil/,
+      regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',
+        fr: 'Dehors',
       },
     },
     {
@@ -230,6 +250,7 @@
       regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
       infoText: {
         en: 'Out, then in',
+        fr: 'Dehors, puis dedans',
       },
     },
     {
@@ -241,17 +262,19 @@
       delaySeconds: 2.7,
       infoText: {
         en: 'In',
+        fr: 'Dedans',
       },
     },
     {
       id: 'SeiryuEx Swim Lessons',
       regex: / 14:37CB:Seiryu starts using Dragon's Wake/,
       regexDe: / 14:37CB:Seiryu starts using Erwachen des Drachen/,
-      regexFr: / 14:37CB:Seiryû starts using Ascension draconique/,
+      regexFr: / 14:37CB:Seiryû starts using Ascension Draconique/,
       regexJa: / 14:37CB:青龍 starts using 雲蒸龍変/,
       delaySeconds: 28,
       alertText: {
         en: 'Pop Sprint',
+        fr: 'Sprintez',
       },
     },
   ],
@@ -327,18 +350,16 @@
       'replaceSync': {
         'Engage!': 'À l\'attaque',
         'Seiryu': 'Seiryû',
-        'Aka-no-shiki': 'shiki écarlate',
-        'Aka-No-Shiki': 'shiki écarlate',
-        'Ao-no-shiki': 'shiki céruléen',
-        'Ao-No-Shiki': 'shiki céruléen',
-        'Blue orochi': 'orochi azur',
-        'Doro-no-shiki': 'shiki fangeux',
-        'Iwa-no-shiki': 'shiki rocailleux',
-        'Numa-no-shiki': 'shiki uligineux',
-        'Numa-No-Shiki': 'shiki uligineux',
-
-        // FIXME:
-        'Yama-no-shiki': 'Yama-no-shiki',
+        'Aka-no-shiki': 'Shiki écarlate',
+        'Aka-No-Shiki': 'Shiki écarlate',
+        'Ao-no-shiki': 'Shiki céruléen',
+        'Ao-No-Shiki': 'Shiki céruléen',
+        'Blue orochi': 'Orochi azur',
+        'Doro-no-shiki': 'Shiki fangeux',
+        'Iwa-no-shiki': 'Shiki rocailleux',
+        'Numa-no-shiki': 'Shiki uligineux',
+        'Numa-No-Shiki': 'Shiki uligineux',
+        'Yama-no-shiki': 'Shiki montagneux',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -374,12 +395,10 @@
         'Strength of Spirit': 'Chakra',
         'Summon Shiki': 'Invocation de shiki',
         'Yama-kagura': 'Yama-kagura',
-
-        // FIXME:
-        '--rotate--': '--rotate--',
-        '--jump--': '--jump--',
-        'In/Out': 'In/Out',
-        'Out/In': 'Out/In',
+        '--rotate--': '--Tourne--',
+        '--jump--': '--Saut--',
+        'In/Out': 'Dedans/Dehors',
+        'Out/In': 'Dehors/Dedans',
       },
       '~effectNames': {
         'Being dragged under by the current. Unable to move or execute actions.': 'Impossible d\'utiliser des actions ou de se déplacer.',
