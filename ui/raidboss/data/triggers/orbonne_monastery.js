@@ -17,6 +17,7 @@
       beforeSeconds: 15,
       infoText: {
         en: 'Get to your pads',
+        de: 'Geh auf Dein Feld',
         fr: 'Allez sur votre tour',
       },
     },
@@ -28,6 +29,7 @@
       },
       alertText: {
         en: 'Pick up tether',
+        de: 'Verbindung abnehmen',
         fr: 'Prenez le lien',
       },
     },
@@ -36,34 +38,41 @@
     {
       id: 'Orbonne Harpy Devitalize',
       regex: / 14:3778:Harpy starts using Devitalize/,
+      regexDe: / 14:3778:Harpyie starts using Schwächung/,
       regexFr: / 14:3778:Harpie starts using Dévitalisation/,
       suppressSeconds: 10,
       alertText: {
         en: 'Look Away',
+        de: 'Wegschauen',
         fr: 'Regardez ailleurs',
       },
     },
     {
       id: 'Orbonne Mustadio Right Handgonne',
       regex: / 14:373E:Mustadio starts using Right Handgonne/,
+      regexDe: / 14:373E:Mustadio starts using Rechte Donnerbüchse/,
       regexFr: / 14:373E:Mustadio starts using Mitraillage Droite/,
       infoText: {
         en: 'Left',
+        de: 'Links',
         fr: 'A gauche',
       },
     },
     {
       id: 'Orbonne Mustadio Left Handgonne',
       regex: / 14:373F:Mustadio starts using Left Handgonne/,
+      regexDe: / 14:373F:Mustadio starts using Linke Donnerbüchse/,
       regexFr: / 14:373E:Mustadio starts using Mitraillage Gauche/,
       infoText: {
         en: 'Right',
+        de: 'Rechts',
         fr: 'A droite',
       },
     },
     {
       id: 'Orbonne Mustadio Arm Shot',
       regex: / 14:3739:Mustadio starts using Arm Shot on (\y{Name})/,
+      regexDe: / 14:3739:Mustadio starts using Armschuss on (\y{Name})/,
       regexFr: / 14:3739:Mustadio starts using Visée Des Bras on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -92,6 +101,7 @@
       },
       alertText: {
         en: 'Searchlight on YOU',
+        de: 'Suchscheinwerfer auf DIR',
         fr: 'Repérage sur VOUS',
       },
     },
@@ -103,12 +113,14 @@
       },
       infoText: {
         en: 'Spread Marker',
+        de: 'Verteilen-Marker',
         fr: 'Ecartez-vous',
       },
     },
     {
       id: 'Orbonne Agrias Thunder Slash',
       regex: / 14:3866:Agrias starts using Thunder Slash on (\y{Name})/,
+      regexDe: / 14:3866:Agrias starts using Donnerhieb on (\y{Name})/,
       regexFr: / 14:3866:Agrias starts using Foudrolle on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -123,6 +135,7 @@
         if (matches[1] != data.me) {
           return {
             en: 'Tank Cleave',
+            de: 'Tank Cleave',
             fr: 'Tank Cleave',
           };
         }
@@ -131,6 +144,7 @@
     {
       id: 'Orbonne Agrias Cleansing Strike',
       regex: / 14:3854:Agrias starts using Cleansing Strike/,
+      regexDe: / 14:3854:Agrias starts using Säuberungsschlag/,
       regexFr: / 14:3854:Agrias starts using Impact purifiant/,
       preRun: function(data) {
         data.halidom = [];
@@ -153,18 +167,21 @@
     {
       id: 'Orbonne Agrias Consecration',
       regex: / 14:3850:Agrias starts using Consecration/,
+      regexDe: / 14:3850:Agrias starts using Konsekration/,
       regexFr: / 14:3850:Agrias starts using Joug Sanctifié/,
       condition: function(data) {
         return !data.agriasGhostCleanse;
       },
       infoText: {
         en: 'Pick up swords',
+        de: 'Schwerter aufnehmen',
         fr: 'Prenez les épées',
       },
     },
     {
       id: 'Orbonne Agrias Halidom Inside',
       regex: / 15:\y{ObjectId}:Halidom:3851:[^:]*:\y{ObjectId}:(\y{Name})/,
+      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:[^:]*:\y{ObjectId}:(\y{Name})/,
       regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:[^:]*:\y{ObjectId}:(\y{Name})/,
       run: function(data, matches) {
         data.halidom.push(matches[1]);
@@ -173,6 +190,7 @@
     {
       id: 'Orbonne Agrias Halidom Outside',
       regex: / 15:\y{ObjectId}:Halidom:3851:/,
+      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:/,
       regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:/,
       delaySeconds: 0.5,
       suppressSeconds: 10,
@@ -181,6 +199,7 @@
           return;
         return {
           en: 'Use Swords On Jails',
+          de: 'Kristalle mit Schwert zerschlagen',
           fr: 'Libérez les prisonniers avec les épées',
         };
       },
@@ -193,59 +212,71 @@
       },
       alarmText: {
         en: 'Go To Center',
+        de: 'In die Mitte gehen',
         fr: 'Allez au centre',
       },
     },
     {
       id: 'Orbonne Agrias Adds Phase',
       regex: / 15:\y{ObjectId}:Agrias:385D:/,
+      regexDe: / 15:\y{ObjectId}:Agrias:385D:/,
       regexFr: / 15:\y{ObjectId}:Agrias:385D:/,
       alertText: {
         en: 'Get Shield',
+        de: 'Schild nehmen',
         fr: 'Prenez un bouclier',
       },
     },
     {
       id: 'Orbonne Agrias Mortal Blow',
       regex: / 14:385E:Sword Knight starts using Mortal Blow/,
+      regexDe: / 14:385E:Schwertritter starts using Tödlicher Hieb/,
       regexFr: / 14:385E:Chevalier .*?pée starts using Frappe Brutale/,
       suppressSeconds: 5,
       alertText: {
         en: 'Use Shield, Face Knights',
+        de: 'Schild benutzen, Ritter anschauen',
         fr: 'Bouclier, face au chevaliers',
       },
     },
     {
       id: 'Orbonne Agrias Extra Adds',
       regex: / 03:Added new combatant Emblazoned Shield/,
+      regexDe: / 03:Added new combatant Geschmückter Schild/,
       regexFr: / 03:Added new combatant Pavois Miroitant/,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill shields with sword',
+        de: 'Schilde mit Schwert zerstören',
         fr: 'Détruisez les boucliers avec les épées',
       },
     },
     {
       id: 'Orbonne Agrias Judgment Blade',
       regex: / 14:3857:Agrias starts using Judgment Blade/,
+      regexDe: / 14:3857:Agrias starts using Klinge des Urteils/,
       regexFr: / 14:3857:Agrias starts using Lame Du Jugement/,
       infoText: {
         en: 'Use shield, face boss',
+        de: 'Schild benutzen, Boss anschauen',
         fr: 'Bouclier, face au boss',
       },
     },
     {
       id: 'Orbonne Agrias Divine Ruination',
       regex: / 14:3858:Agrias starts using Divine Ruination/,
+      regexDe: / 14:3858:Agrias starts using Göttliche Zerstörung/,
       regexFr: / 14:3858:Agrias starts using Onde De Lumière/,
       infoText: {
         en: 'Use shield if tethered',
+        de: 'Schild benutzen, wenn verbunden',
         fr: 'Bouclier si lié',
       },
     },
     {
       id: 'Orbonne Cid Crush Helm Healer',
       regex: / 14:3752:The Thunder God starts using Crush Helm/,
+      regexDe: / 14:3752:Cidolfus starts using Zenitspaltung/,
       regexFr: / 14:3752:Cid le Dieu de la Foudre starts using Bombardement Céleste/,
       condition: function(data) {
         return data.role == 'healer';
@@ -259,18 +290,21 @@
     {
       id: 'Orbonne Cid Crush Helm Feint',
       regex: / 14:3752:The Thunder God starts using Crush Helm/,
+      regexDe: / 14:3752:Cidolfus starts using Zenitspaltung/,
       regexFr: / 14:3752:Cid le Dieu de la Foudre starts using Bombardement Céleste/,
       condition: function(data) {
         return data.role == 'dps-melee';
       },
       infoText: {
         en: 'Feint Tank Buster',
+        de: 'Tankbuster Zermürben',
         fr: 'Evitez Tank Buster',
       },
     },
     {
       id: 'Orbonne Cid Crush Helm Tank',
       regex: / 15:\y{ObjectId}:The Thunder God:3753:Crush Helm:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Cidolfus:3753:Zenitspaltung:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Cid le Dieu de la Foudre:3753:Bombardement Céleste:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -284,30 +318,35 @@
     {
       id: 'Orbonne Cid Crush Armor Tank',
       regex: / 14:3758:The Thunder God starts using Crush Armor/,
+      regexDe: / 14:3758:Cidolfus starts using Helmspalter/,
       regexFr: / 14:3758:Cid le Dieu de la Foudre starts using Brèche Insidieuse/,
       condition: function(data, matches) {
         return data.role == 'tank';
       },
       alarmText: {
         en: 'Give Tether Away',
+        de: 'Verbindung abgeben',
         fr: 'Donnez le lien',
       },
     },
     {
       id: 'Orbonne Cid Crush Armor',
       regex: / 15:\y{ObjectId}:The Thunder God:3759:Crush Armor:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Cidolfus:3759:Helmspalter:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Cid le Dieu de la Foudre:3759:Brèche Insidieuse:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       alertText: {
         en: 'Give Tether Away',
+        de: 'Verbindung abgeben',
         fr: 'Donnez le lien',
       },
     },
     {
       id: 'Orbonne Cid Crush Accessory',
       regex: / 14:375A:The Thunder God starts using Crush Accessory/,
+      regexDe: / 14:375A:Cidolfus starts using Hagelkörner/,
       regexFr: / 14:375A:Cid le Dieu de la Foudre starts using Grêlons/,
       alertText: {
         en: 'Kill Icewolf Adds',
@@ -317,6 +356,7 @@
     {
       id: 'Orbonne Cid Cleansing Strike',
       regex: / 16:\y{ObjectId}:The Thunder God:3751:Cleansing Strike:/,
+      regexDe: / 16:\y{ObjectId}:Cidolfus:3751:Säuberungsschlag:/,
       regexFr: / 16:\y{ObjectId}:Cid le Dieu de la Foudre:3751:Impact Purifiant:/,
       suppressSeconds: 10,
       condition: function(data) {
@@ -324,15 +364,18 @@
       },
       alertText: {
         en: 'Heal To Full',
+        de: 'Vollheilen',
         fr: 'Full life',
       },
     },
     {
       id: 'Orbonne Cid Shadowblade Bubble',
       regex: / 14:3761:The Thunder God starts using Duskblade/,
+      regexDe: / 14:3761:Cidolfus starts using Dämmerklinge/,
       regexFr: / 14:3761:Cid le Dieu de la Foudre starts using Lame sombre/,
       alertText: {
         en: 'Stand on Pads',
+        de: 'Auf Felder stellen',
         fr: 'Restez sur le pad',
       },
     },
@@ -344,6 +387,7 @@
       },
       alertText: {
         en: 'Drop Bubble In Back',
+        de: 'Blase hinten ablegen',
         fr: 'Déposez bulles derrière',
       },
     },
@@ -355,6 +399,7 @@
       },
       alertText: {
         en: 'Bolt on YOU',
+        de: 'Blitz auf DIR',
         fr: 'Eclair sur VOUS',
       },
     },
@@ -366,6 +411,7 @@
       },
       alarmText: {
         en: 'GTFO',
+        de: 'VERZIEH DICH',
         fr: 'Sortez',
       },
     },
@@ -375,6 +421,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Stack',
+        de: 'Stacken',
         fr: 'Packez-vous',
       },
     },
@@ -386,68 +433,82 @@
       },
       alarmText: {
         en: 'Point Line Outside',
+        de: 'Linie nach Außen',
         fr: 'Ligne vers l\'extérieur',
       },
     },
     {
       id: 'Orbonne Cid Holy Sword In',
       regex: / 14:3750:The Thunder God starts using/,
+      regexDe: / 14:3750:Cidolfus starts using/,
       regexFr: / 14:3750:Cid le Dieu de la Foudre starts using/,
       alertText: {
         en: 'Get In',
+        de: 'Rein da',
         fr: 'Près du boss',
       },
     },
     {
       id: 'Orbonne Cid Holy Sword Out',
       regex: / 14:374F:The Thunder God starts using/,
+      regexDe: / 14:374F:Cidolfus starts using/,
       regexFr: / 14:374F:Cid le Dieu de la Foudre starts using/,
       alertText: {
         en: 'Get Out',
+        de: 'Raus da',
         fr: 'Loin du boss',
       },
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Left',
       regex: / 14:3749:The Thunder God starts using/,
+      regexDe: / 14:3749:Cidolfus starts using/,
       regexFr: / 14:3749:Cid le Dieu de la Foudre starts using/,
       alertText: {
         en: 'Left',
+        de: 'Links',
         fr: 'Gauche',
       },
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Right',
       regex: / 14:374A:The Thunder God starts using/,
+      regexDe: / 14:374A:Cidolfus starts using/,
       regexFr: / 14:374A:Cid le Dieu de la Foudre starts using/,
       alertText: {
         en: 'Right',
+        de: 'Rechts',
         fr: 'Droite',
       },
     },
     {
       id: 'Orbonne Cid Holy Sword Three',
       regex: / 14:374C:The Thunder God starts using/,
+      regexDe: / 14:374C:Cidolfus starts using/,
       regexFr: / 14:374C:Cid le Dieu de la Foudre starts using/,
       alertText: {
         // e.g. E / NE / NW platforms
         en: 'Avoid Swords Counterclockwise',
+        de: 'Im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens anti-horaire',
       },
     },
     {
       id: 'Orbonne Cid Holy Sword Three',
       regex: / 14:374D:The Thunder God starts using/,
+      regexDe: / 14:374D:Cidolfus starts using/,
       regexFr: / 14:374D:Cid le Dieu de la Foudre starts using/,
       alertText: {
         // NW / NE / E platforms
         en: 'Avoid Swords Clockwise',
+        de: 'Schwertern im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens horaire',
       },
     },
     {
       id: 'Orbonne Ultima Redemption',
       regex: / 14:38AA:Ultima, The High Seraph starts using Redemption on (\y{Name})/,
+      regexDe: / 14:38AA:Cherub Ultima starts using Zerstörung on (\y{Name})/,
       regexFr: / 14:38AA:Ultima la Grande Séraphine starts using Destruction on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -488,6 +549,7 @@
       },
       alertText: {
         en: 'Eruption on YOU',
+        de: 'Eruption auf DIR',
         fr: 'Éruption sur vous',
       },
     },
@@ -499,12 +561,14 @@
       },
       alarmText: {
         en: 'GTFO',
+        de: 'VERZIEH DICH',
         fr: 'Sortez',
       },
     },
     {
       id: 'Orbonne Ultima Time Eruption',
       regex: / 14:38CF:Demi-Belias starts using Time Eruption/,
+      regexDe: / 14:38CF:Demi-Belias starts using Zeiteruption/,
       regexFr: / 14:38CF:Demi-Belias starts using Éruption/,
       infoText: {
         en: 'Stand on Slow Clock',
@@ -515,21 +579,25 @@
     {
       id: 'Orbonne Ultima Extreme Edge',
       regex: / 14:38DB:Demi-Hashmal starts using Extreme Edge/,
+      regexDe: / 14:38DB:Demi-Hashmal starts using Extremkante/,
       regexFr: / 14:38DB:Demi-Hashmal starts using Taille Suprême/,
       alertText: {
         en: 'Look for Hashmal dash',
+        de: 'Nach Hashmal-Dash ausschau halten',
         fr: 'Attention au dash',
       },
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
       regex: /14:3895:Ultima, The High Seraph starts using Ultimate Illusion/,
+      regexDe: /14:3895:Cherub Ultima starts using Ultimative Illusion/,
       regexFr: /14:3895:Ultima la Grande Séraphine starts using Fantaisie Finale/,
       condition: function(data) {
         return data.role == 'healer';
       },
       alertText: {
         en: 'Heal Like Whoa',
+        de: 'Heilen was das Zeug hält',
         fr: 'Mass heal',
       },
     },
@@ -537,6 +605,7 @@
       id: 'Orbonne Ultima Ultimate Illusion',
       // Yes, this is lower case "the High Seraph".
       regex: / 15:\y{ObjectId}:Ultima, the High Seraph:3895:Ultimate Illusion:/,
+      regexDe: / 15:\y{ObjectId}:Cherub Ultima:3895:Ultimative Illusion:/,
       regexFr: / 15:\y{ObjectId}:Ultima la Grande Séraphine:3895:Fantaisie Finale:/,
       condition: function(data) {
         return data.role != 'healer';
@@ -545,12 +614,14 @@
       delaySeconds: 23.5,
       alertText: {
         en: 'Kill Ruination!',
+        de: 'Zerstörung vernichten',
         fr: 'Tuez la Marque des déchus',
       },
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
       regex: /:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: /:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
       regexFr: /:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -571,11 +642,11 @@
       'replaceSync': {
         'Engage!': 'Start!',
         'Mustadio': 'Mustadio',
-        'Early Turret': 'alt[a] Gefechtsturm',
+        'Early Turret': 'alter Gefechtsturm',
         'Iron Construct': 'Eisenkonstrukt',
-        'Halidom': 'Falsch[a] Heiligtum',
-        'Emblazoned Shield': 'geschmückt[a] Schild',
-        'Ephemeral Knight': 'vergänglich[a] Ritter',
+        'Halidom': 'Falsches Heiligtum',
+        'Emblazoned Shield': 'geschmückter Schild',
+        'Ephemeral Knight': 'vergänglicher Ritter',
         'Shield Knight': 'Schildritter',
         'Sword Knight': 'Schwertritter',
         'Icewolf': 'Eiswolf',
@@ -585,22 +656,21 @@
         'Ultima, the High Seraph': 'Cherub Ultima',
         'Aspersory': 'Aspersorium',
         'Auracite Shard': 'Auracitenscherbe',
-        'Ruination': 'Zeichen[p] des gefallenen Engels',
+        'Ruination': 'Zeichen des gefallenen Engels',
 
-        // FIXME:
-        'Harpy': 'Harpy',
+        'Harpy': 'Harpyie',
         'Agrias': 'Agrias',
-        'Dark Crusader': 'Dark Crusader',
+        'Dark Crusader': 'Düsterritter',
         'Ramza': 'Ramza',
         'Dominion': 'Dominion',
         'Demi-Famfrit': 'Demi-Famfrit',
-        '..is no longer sealed': '.*is no longer sealed',
-        'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off',
-        'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off',
-        'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off',
-        'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off',
-        'The Crystalline Gaol will be sealed off': 'The Crystalline Gaol will be sealed off',
-        'I see it now': 'I see it now',
+        '..is no longer sealed': '.*ist nicht mehr geschlossen',
+        'The Realm of the Templars will be sealed off': 'Das Reich der Tempelritter schließt',
+        'The Realm of the Machinists will be sealed off': 'Das Reich der Maschinisten schließt',
+        'The lifeless alley will be sealed off': 'Der Leblose Pfad Tempelritter schließt',
+        'The Realm of the Thunder God will be sealed off': 'Das Reich des Donnergottes schließt',
+        'The Crystalline Gaol will be sealed off': 'Der Kristallkerker schließt',
+        'I see it now': 'Ich sehe ihn in dir!',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -672,29 +742,27 @@
         'Towerfall': 'Turmsturz',
         'Ultimate Illusion': 'Ultimative Illusion',
         'attack': 'Attacke',
-
-        // FIXME
-        'Devitalize': 'Devitalize',
+        'Devitalize': 'Schwächung',
         'L/R Handgonne': 'L/R Donnerbüchse',
-        'Last Testament': 'Last Testament',
-        'Dark Rite': 'Dark Rite',
+        'Last Testament': 'Letztes Testament',
+        'Dark Rite': 'Dunkler Ritus',
         'Noahionto': 'Noahionto',
-        'Infernal Wave': 'Infernal Wave',
+        'Infernal Wave': 'Infernowelle',
         'Sword L/R': 'Sword L/R',
-        'Sword In/Out': 'Sword In/Out',
-        'Sword Out/In': 'Sword Out/In',
+        'Sword In/Out': 'Schwert Rein/Raus',
+        'Sword Out/In': 'Schwert Raus/Rein',
         'Stack': 'Stack',
-        'Balance Asunder': 'Balance Asunder',
-        'Sword Three In A Row': 'Sword Three In A Row',
-        'Earth Hammer': 'Earth Hammer',
+        'Balance Asunder': 'Bruch des Gleichgewichts',
+        'Sword Three In A Row': 'Schwertreihenschlag',
+        'Earth Hammer': 'Erdhammer',
         'Eruption': 'Eruption',
-        'East/West March': 'East/West March',
-        'Ray Of Light': 'Ray Of Light',
-        'Demi-Virgo Line': 'Demi-Virgo Line',
-        'Demi-Virgo Feet': 'Demi-Virgo Feet',
-        'Demi-Virgo Tether': 'Demi-Virgo Tether',
-        'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether',
-        'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet',
+        'East/West March': 'Ost-/West-Marsch',
+        'Ray Of Light': 'Lichtstrahl',
+        'Demi-Virgo Line': 'Demi-Virgo Linie',
+        'Demi-Virgo Feet': 'Demi-Virgo Füße',
+        'Demi-Virgo Tether': 'Demi-Virgo Verbindung',
+        'Demi-Virgo Line/Tether': 'Demi-Virgo Linie/Verbindung',
+        'Demi-Virgo Tether/Feet': 'Demi-Virgo Verbindung/Füße',
       },
       '~effectNames': {
         'Down For The Count': 'Am Boden',
@@ -715,9 +783,7 @@
         'Clashing': 'Gekreuzte Klingen',
         'Fearless': 'Furchtlos',
         'Out Of The Action': 'Außer Gefecht',
-
-        // FIXME
-        'Acceleration Bomb': 'Acceleration Bomb',
+        'Acceleration Bomb': 'Beschleunigungsbombe',
       },
     },
     {
