@@ -55,7 +55,7 @@
     {
       id: 'Orbonne Mustadio Left Handgonne',
       regex: / 14:373F:Mustadio starts using Left Handgonne/,
-      regexFr: / 14:373E:Mustadio starts using Mitraillage Gauche/,
+      regexFr: / 14:373F:Mustadio starts using Mitraillage Gauche/,
       infoText: {
         en: 'Right',
         fr: 'A droite',
@@ -64,8 +64,10 @@
     {
       id: 'Orbonne Mustadio Last Testament',
       regex: / 14:3737:Mustadio starts using Last Testament/,
+      regexFr: / 14:3737:Mustadio starts using Dernier Testament/,
       alertText: {
         en: 'Point opening at Mustadio',
+        fr: 'Orientez l\'ouverture vers le boss',
       },
     },
     {
@@ -138,7 +140,7 @@
     {
       id: 'Orbonne Agrias Cleansing Strike',
       regex: / 14:3854:Agrias starts using Cleansing Strike/,
-      regexFr: / 14:3854:Agrias starts using Impact purifiant/,
+      regexFr: / 14:3854:Agrias starts using Impact Purifiant/,
       preRun: function(data) {
         data.halidom = [];
       },
@@ -215,7 +217,7 @@
     {
       id: 'Orbonne Agrias Mortal Blow',
       regex: / 14:385E:Sword Knight starts using Mortal Blow/,
-      regexFr: / 14:385E:Chevalier .*?pée starts using Frappe Brutale/,
+      regexFr: / 14:385E:Chevalier à l'épée starts using Frappe Brutale/,
       suppressSeconds: 5,
       alertText: {
         en: 'Use Shield, Face Knights',
@@ -244,7 +246,7 @@
     {
       id: 'Orbonne Agrias Divine Ruination',
       regex: / 14:3858:Agrias starts using Divine Ruination/,
-      regexFr: / 14:3858:Agrias starts using Onde De Lumière/,
+      regexFr: / 14:3858:Agrias starts using Ire Céleste/,
       infoText: {
         en: 'Use shield if tethered',
         fr: 'Bouclier si lié',
@@ -315,7 +317,7 @@
     {
       id: 'Orbonne Cid Crush Accessory',
       regex: / 14:375A:The Thunder God starts using Crush Accessory/,
-      regexFr: / 14:375A:Cid le Dieu de la Foudre starts using Grêlons/,
+      regexFr: / 14:375A:Cid le Dieu de la Foudre starts using Grêlons Fracassants/,
       alertText: {
         en: 'Kill Icewolf Adds',
         fr: 'Tuez les Grêlons de glace',
@@ -749,21 +751,19 @@
         'Aspersory': 'Aiguière Bénie',
         'Auracite Shard': 'Concrétion d\'Auralithe',
         'Ruination': 'Marque Des Déchus',
-
-        // FIXME:
-        'Harpy': 'Harpy',
+        'Harpy': 'Harpie',
         'Agrias': 'Agrias',
-        'Dark Crusader': 'Dark Crusader',
-        'Ramza': 'Ramza',
-        'Dominion': 'Dominion',
         'Demi-Famfrit': 'Demi-Famfrit',
-        '..is no longer sealed': '.*is no longer sealed',
+        'Ramza': 'Ramza',
+        'Dark Crusader': 'Conquérant sombre',
+        'Dominion': 'Dominion',
+        '..is no longer sealed': 'Ouverture du',
         'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off',
         'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off',
-        'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off',
-        'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off',
-        'The Crystalline Gaol will be sealed off': 'The Crystalline Gaol will be sealed off',
-        'I see it now': 'I see it now',
+        'The lifeless alley will be sealed off': 'Fermeture des corridors silencieux',
+        'The Realm of the Thunder God will be sealed off': 'Fermeture du cloître du Dieu de la Foudre',
+        'The Crystalline Gaol will be sealed off': 'Fermeture de la Geôle cristalline',
+        'I see it now': 'À vous, maintenant',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -842,28 +842,25 @@
         'Ultimate Flare': 'Explosion ultima',
         'Westward March': 'Marche vers l\'ouest',
         'attack': 'Attaque',
-
-        // FIXME
-        'Devitalize': 'Devitalize',
-        'L/R Handgonne': 'L/R Donnerbüchse',
-        'Last Testament': 'Last Testament',
+        'Devitalize': 'Dévitalisation',
+        'L/R Handgonne': 'Mitraillage G/D',
+        'Last Testament': 'Dernier testament',
         'Dark Rite': 'Dark Rite',
         'Noahionto': 'Noahionto',
-        'Infernal Wave': 'Infernal Wave',
-        'Sword L/R': 'Sword L/R',
-        'Sword In/Out': 'Sword In/Out',
-        'Sword Out/In': 'Sword Out/In',
-        'Stack': 'Stack',
-        'Balance Asunder': 'Balance Asunder',
-        'Sword Three In A Row': 'Sword Three In A Row',
-        'Earth Hammer': 'Earth Hammer',
-        'East/West March': 'East/West March',
-        'Ray Of Light': 'Ray Of Light',
-        'Demi-Virgo Line': 'Demi-Virgo Line',
-        'Demi-Virgo Feet': 'Demi-Virgo Feet',
-        'Demi-Virgo Tether': 'Demi-Virgo Tether',
-        'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether',
-        'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet',
+        'Infernal Wave': 'Onde infernale',
+        'Sword L/R': 'Epée G/D',
+        'Sword In/Out': 'Epée Dedans/Dehors',
+        'Sword Out/In': 'Epée Dehors/Dedans',
+        'Stack': 'Packez-vous',
+        'Balance Asunder': 'Bouleversement de l\'équilibre',
+        'Sword Three In A Row': '3 coups d\'épée à la suite',
+        'Earth Hammer': 'Marteau tellurique',
+        'East/West March': 'Marche Est/Ouest',
+        'Demi-Virgo Line': 'Demi-Virge Ligne',
+        'Demi-Virgo Feet': 'Demi-Virge Pieds',
+        'Demi-Virgo Tether': 'Demi-Vierge Liens',
+        'Demi-Virgo Line/Tether': 'Demi-Vierge Ligne/Lien',
+        'Demi-Virgo Tether/Feet': 'Demi-Vierge Lien/Pieds',
       },
       '~effectNames': {
         'Down For The Count': 'Au Tapis',
