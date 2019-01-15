@@ -379,11 +379,13 @@
         };
       },
       infoText: function(data, matches) {
+        let t = parseFloat(matches[2]);
         if (data.me == matches[1])
           return;
         if (!data.dpsShortStack)
           return;
-        let t = parseFloat(matches[2]);
+        if (!(t > 0))
+          return;
         if (t <= 8) {
           data.dpsShortStack = false;
           return {
