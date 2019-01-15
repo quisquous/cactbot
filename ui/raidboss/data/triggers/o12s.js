@@ -361,6 +361,9 @@
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage) from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
+      delaySeconds: function(data, matches) {
+        return matches[1] == data.me ? 0 : 2;
+      },
       alertText: function(data, matches) {
         let t = parseFloat(matches[2]);
         if (!(data.me == matches[1]))
