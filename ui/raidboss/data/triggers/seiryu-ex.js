@@ -11,6 +11,7 @@
       beforeSeconds: 4,
       infoText: {
         en: 'stack with your group',
+        de: 'mit der Gruppe stacken',
       },
     },
     {
@@ -20,6 +21,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'line stack',
+        de: 'Linien-Stack',
       },
     },
     {
@@ -31,6 +33,7 @@
       },
       alertText: {
         en: 'Grab Tether, Point Away',
+        de: 'Verbindung nehmen und wegdrehen',
       },
     },
   ],
@@ -55,11 +58,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Swap',
+            de: 'Tankwechsel',
           };
         }
         if (data.role == 'tank') {
           return {
             en: 'Swap, then Buster',
+            de: 'Tankwechsel, danach Tankbuster',
           };
         }
       },
@@ -78,6 +83,7 @@
       delaySeconds: 3,
       alertText: {
         en: 'Away From Tanks',
+        de: 'Weg von den Tanks',
       },
     },
     {
@@ -99,6 +105,7 @@
       delaySeconds: 1,
       infoText: {
         en: 'Stack for Puddle AOEs',
+        de: 'Stacken (Pfützen)',
       },
     },
     {
@@ -119,6 +126,7 @@
       },
       infoText: {
         en: 'Spread (no tower)',
+        de: 'Verteilen (nicht in den Turm)',
       },
     },
     {
@@ -131,6 +139,7 @@
       },
       alarmText: {
         en: 'Get Tower',
+        de: 'In den Turm',
       },
     },
     {
@@ -139,6 +148,7 @@
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
       infoText: {
         en: 'East =>',
+        de: 'Osten =>',
       },
     },
     {
@@ -147,6 +157,7 @@
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
       infoText: {
         en: '<= West',
+        de: '<= Westen',
       },
     },
     {
@@ -157,6 +168,7 @@
       regexJa: / 14:37F7:青龍 starts using 蛇崩/,
       alarmText: {
         en: 'Go To Snakes',
+        de: 'Zu den Schlangen',
       },
     },
     {
@@ -170,6 +182,7 @@
       },
       alertText: {
         en: 'Silence',
+        de: 'Verstummen',
       },
     },
     {
@@ -182,10 +195,12 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Stack South',
+            de: 'Im Süden stacken',
           };
         }
         return {
           en: 'Stack if no tether',
+          de: 'Stacken, wenn keine Verbindung',
         };
       },
     },
@@ -199,27 +214,30 @@
       regexJa: / 14:3A01:青龍 starts using 陰陽の印/,
       infoText: {
         en: 'Out',
+        de: 'Raus',
       },
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
+      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Serpent-Eye Sigil/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
       infoText: {
         en: 'In, then out',
+        de: 'Rein, dann raus',
       },
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
+      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Serpent-Eye Sigil/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',
+        de: 'Raus',
       },
     },
     {
@@ -230,6 +248,7 @@
       regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
       infoText: {
         en: 'Out, then in',
+        de: 'Raus, dann rein',
       },
     },
     {
@@ -241,6 +260,7 @@
       delaySeconds: 2.7,
       infoText: {
         en: 'In',
+        de: 'Rein',
       },
     },
     {
@@ -252,6 +272,7 @@
       delaySeconds: 28,
       alertText: {
         en: 'Pop Sprint',
+        de: 'Sprinten',
       },
     },
   ],
