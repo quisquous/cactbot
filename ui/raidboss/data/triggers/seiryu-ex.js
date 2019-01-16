@@ -135,7 +135,7 @@
     },
     {
       id: 'SeiryuEx Handprint East Move',
-      regex: /:Yama-no-shiki:37E5:/,
+      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
       condition: function(data) {
         return data.firstHandprint !== undefined;
