@@ -11,6 +11,7 @@
       beforeSeconds: 4,
       infoText: {
         en: 'stack with your group',
+        de: 'mit der Gruppe stacken',
         fr: 'Packé avec votre groupe',
       },
     },
@@ -21,6 +22,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'line stack',
+        de: 'Linien-Stack',
         fr: 'packé en ligne',
       },
     },
@@ -33,6 +35,7 @@
       },
       alertText: {
         en: 'Grab Tether, Point Away',
+        de: 'Verbindung nehmen und wegdrehen',
         fr: 'Prenez le lien, pointez vers l\'extérieur',
       },
     },
@@ -58,12 +61,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Swap',
+            de: 'Tankwechsel',
             fr: 'Tank Swap',
           };
         }
         if (data.role == 'tank') {
           return {
             en: 'Swap, then Buster',
+            de: 'Tankwechsel, danach Tankbuster',
             fr: 'Swap puis tankbuster',
           };
         }
@@ -83,6 +88,7 @@
       delaySeconds: 3,
       alertText: {
         en: 'Away From Tanks',
+        de: 'Weg von den Tanks',
         fr: 'Ecartez-vous des tanks',
       },
     },
@@ -105,6 +111,7 @@
       delaySeconds: 1,
       infoText: {
         en: 'Stack for Puddle AOEs',
+        de: 'Stacken (Pfützen)',
         fr: 'Sur votre tour pour l\'aoe',
       },
     },
@@ -126,6 +133,7 @@
       },
       infoText: {
         en: 'Spread (no tower)',
+        de: 'Verteilen (nicht in den Turm)',
         fr: 'Ecartez-vous (pas sur la tour)',
       },
     },
@@ -139,6 +147,7 @@
       },
       alarmText: {
         en: 'Get Tower',
+        de: 'In den Turm',
         fr: 'Sur votre tour',
       },
     },
@@ -149,6 +158,7 @@
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
       infoText: {
         en: 'East =>',
+        de: 'Osten =>',
         fr: 'Est =>',
       },
     },
@@ -159,6 +169,7 @@
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
       infoText: {
         en: '<= West',
+        de: '<= Westen',
         fr: '<= Ouest',
       },
     },
@@ -170,6 +181,7 @@
       regexJa: / 14:37F7:青龍 starts using 蛇崩/,
       alarmText: {
         en: 'Go To Snakes',
+        de: 'Zu den Schlangen',
         fr: 'Allez vers les serpents',
       },
     },
@@ -184,6 +196,7 @@
       },
       alertText: {
         en: 'Silence',
+        de: 'Verstummen',
         fr: 'Silence',
       },
     },
@@ -197,11 +210,13 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Stack South',
+            de: 'Im Süden stacken',
             fr: 'Packez-vous au sud',
           };
         }
         return {
           en: 'Stack if no tether',
+          de: 'Stacken, wenn keine Verbindung',
           fr: 'Packez-vous si pas de lien',
         };
       },
@@ -216,29 +231,32 @@
       regexJa: / 14:3A01:青龍 starts using 陰陽の印/,
       infoText: {
         en: 'Out',
+        de: 'Raus',
         fr: 'Dehors',
       },
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
+      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
       infoText: {
         en: 'In, then out',
+        de: 'Rein, dann raus',
         fr: 'Dedans, puis dehors',
       },
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
+      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',
+        de: 'Raus',
         fr: 'Dehors',
       },
     },
@@ -250,6 +268,7 @@
       regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
       infoText: {
         en: 'Out, then in',
+        de: 'Raus, dann rein',
         fr: 'Dehors, puis dedans',
       },
     },
@@ -262,6 +281,7 @@
       delaySeconds: 2.7,
       infoText: {
         en: 'In',
+        de: 'Rein',
         fr: 'Dedans',
       },
     },
@@ -274,6 +294,7 @@
       delaySeconds: 28,
       alertText: {
         en: 'Pop Sprint',
+        de: 'Sprinten',
         fr: 'Sprintez',
       },
     },
