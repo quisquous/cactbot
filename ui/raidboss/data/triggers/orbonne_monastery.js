@@ -1055,7 +1055,7 @@
         'Stack': 'Stack',
         'Balance Asunder': 'Balance Asunder',
         'Sword Three In A Row': 'Sword Three In A Row',
-        
+
         'Earth Hammer': 'Earth Hammer',
         'East/West March': 'East/West March',
         'Ray Of Light': 'Ray Of Light',
