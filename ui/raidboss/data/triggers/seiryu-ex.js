@@ -160,13 +160,13 @@
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
       condition: function(data) {
-          return data.firstHandprint === undefined;
+        return data.firstHandprint === undefined;
       },
       infoText: {
-          en: 'East',
+        en: 'East',
       },
       run: function(data) {
-          data.firstHandprint = true;
+        data.firstHandprint = true;
       },
     },
     {
