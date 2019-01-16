@@ -134,22 +134,40 @@
       },
     },
     {
-        // Ability IDs:
-        // Left Handprint 37E6
-        // Right Handprint 37E5
-        // Middle Force of Nature 37E9
-        id: 'SeiryuEx Handprint East',
-        regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
-        regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
-        condition: function(data) {
-            return data.firstHandprint === undefined;
-        },
-        infoText: {
-            en: 'East =>',
-        },
-        run: function(data) {
-            data.firstHandprint = true;
-        },
+      id: 'SeiryuEx Handprint East Move',
+      regex: /:Yama-no-shiki:37E5:/,
+      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      condition: function(data) {
+        return data.firstHandprint !== undefined;
+      },
+      infoText: {
+        en: 'Move, East',
+      },
+    },
+    {
+      id: 'SeiryuEx Handprint West Move',
+      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
+      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      condition: function(data) {
+        return data.firstHandprint !== undefined;
+      },
+      infoText: {
+        en: 'Move, West',
+      },
+    },
+    {
+      id: 'SeiryuEx Handprint East',
+      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
+      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      condition: function(data) {
+          return data.firstHandprint === undefined;
+      },
+      infoText: {
+          en: 'East',
+      },
+      run: function(data) {
+          data.firstHandprint = true;
+      },
     },
     {
       id: 'SeiryuEx Handprint West',
@@ -159,49 +177,23 @@
         return data.firstHandprint === undefined;
       },
       infoText: {
-        en: '<= West',
+        en: 'West',
       },
       run: function(data) {
         data.firstHandprint = true;
       },
     },
     {
-      id: 'SeiryuEx Handprint East 2',
-      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
-      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
-      condition: function(data) {
-        return data.firstHandprint !== undefined;
-      },
+      id: 'SeiryuEx Force of Nature',
+      regex: /Yama-no-shiki:37E9:/,
+      delaySeconds: 1,
       infoText: {
-        en: 'East =>',
+        en: 'Out of middle',
+        de: 'Raus aus der Mitte',
       },
-      tts: {
-        en: 'Move (East)',
+      run: function(data) {
+        delete data.firstHandprint;
       },
-    },
-    {
-      id: 'SeiryuEx Handprint West 2',
-      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
-      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
-      condition: function(data) {
-        return data.firstHandprint !== undefined;
-      },
-      infoText: {
-        en: '<= West',
-      },
-      tts: {
-        en: 'Move (West)',
-      },
-    },
-    {
-        id: 'SeiryuEx Force of Nature',
-        regex: /Yama-no-shiki:37E9:/,
-        alertText: {
-            en: 'Avoid Middle',
-        },
-        run: function(data) {
-            delete data.firstHandprint;
-        },
     },
     {
       id: 'SeiryuEx Find Sneks',
