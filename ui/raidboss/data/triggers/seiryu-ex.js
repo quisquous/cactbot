@@ -197,13 +197,11 @@
             fr: 'Allez vers les serpents',
 		      };
 		    }
-		    else {
-		      return {
+		    return {
 	          en: 'Out of Middle, Toward Snakes',
 		        de: 'Raus aus der Mitte, Zu den Schlangen',
             fr: 'Allez vers les serpents',
-		      };
-		    }
+		    };
       },
 	    run: function(data) {
 		    data.withForce = true;
