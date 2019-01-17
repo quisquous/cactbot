@@ -161,6 +161,11 @@
         de: 'Osten =>',
         fr: 'Est =>',
       },
+      tts: {
+        en: 'East',
+        de: 'Osten',
+        fr: 'Est',
+      },
     },
     {
       id: 'SeiryuEx Handprint West',
@@ -172,6 +177,11 @@
         de: '<= Westen',
         fr: '<= Ouest',
       },
+      tts: {
+        en: 'West',
+        de: 'Westen',
+        fr: 'Ouest',
+      },
     },
     {
       id: 'SeiryuEx Find Sneks',
@@ -179,10 +189,22 @@
       regexDe: / 14:37F7:Seiryu starts using Woge der Schlange/,
       regexFr: / 14:37F7:Seiryû starts using Vague De Serpents/,
       regexJa: / 14:37F7:青龍 starts using 蛇崩/,
-      alarmText: {
-        en: 'Go To Snakes',
-        de: 'Zu den Schlangen',
-        fr: 'Allez vers les serpents',
+      alarmText: function(data) {
+        if (data.withForce === undefined) {
+          return {
+            en: 'Go To Snakes',
+            de: 'Zu den Schlangen',
+            fr: 'Allez vers les serpents',
+          };
+        }
+        return {
+          en: 'Out of Middle, Toward Snakes',
+          de: 'Raus aus der Mitte, Zu den Schlangen',
+          fr: 'Allez vers les serpents',
+        };
+      },
+      run: function(data) {
+        data.withForce = true;
       },
     },
     {

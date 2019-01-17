@@ -120,4 +120,4 @@ hideall "--sync--"
 869.6 "--rotate--" sync /:Seiryu:37C4:/
 876.9 "Fifth Element" sync /:Seiryu:37C3:/
 883.9 "Fifth Element" sync /:Seiryu:37C3:/
-906.0 "Enrage"
+906.0 "Enrage" sync /:Seiryu:3CA9:/
