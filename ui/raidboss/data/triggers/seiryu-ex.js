@@ -23,7 +23,7 @@
       infoText: {
         en: 'line stack',
         de: 'Linien-Stack',
-        fr: 'packé en ligne',
+        fr: 'Packé en ligne',
       },
     },
     {
@@ -112,7 +112,7 @@
       infoText: {
         en: 'Stack for Puddle AOEs',
         de: 'Stacken (Pfützen)',
-        fr: 'Sur votre tour pour l\'aoe',
+        fr: 'Packez-vous pour l\'aoe',
       },
     },
     {
@@ -200,7 +200,7 @@
         return {
           en: 'Out of Middle, Toward Snakes',
           de: 'Raus aus der Mitte, Zu den Schlangen',
-          fr: 'Allez vers les serpents',
+          fr: 'Pas au centre, du côté des serpents',
         };
       },
       run: function(data) {
