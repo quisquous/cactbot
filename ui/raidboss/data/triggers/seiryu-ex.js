@@ -189,7 +189,7 @@
       regexDe: / 14:37F7:Seiryu starts using Woge der Schlange/,
       regexFr: / 14:37F7:Seiryû starts using Vague De Serpents/,
       regexJa: / 14:37F7:青龍 starts using 蛇崩/,
-      alarmText: {
+      alarmText: function(data) {
         if (data.withForce === undefined) {
           return {
 			en: 'Go To Snakes',
