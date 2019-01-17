@@ -161,11 +161,11 @@
         de: 'Osten =>',
         fr: 'Est =>',
       },
-	    tts: {
+      tts: {
         en: 'East',
         de: 'Osten',
         fr: 'Est',
-	    },
+      },
     },
     {
       id: 'SeiryuEx Handprint West',
@@ -177,11 +177,11 @@
         de: '<= Westen',
         fr: '<= Ouest',
       },
-	    tts: {
+      tts: {
         en: 'West',
         de: 'Westen',
         fr: 'Ouest',
-	    },
+      },
     },
     {
       id: 'SeiryuEx Find Sneks',
@@ -192,20 +192,20 @@
       alarmText: function(data) {
         if (data.withForce === undefined) {
           return {
-			      en: 'Go To Snakes',
+            en: 'Go To Snakes',
             de: 'Zu den Schlangen',
             fr: 'Allez vers les serpents',
-		      };
-		    }
-		    return {
-	          en: 'Out of Middle, Toward Snakes',
-		        de: 'Raus aus der Mitte, Zu den Schlangen',
-            fr: 'Allez vers les serpents',
-		    };
+          };
+        }
+        return {
+          en: 'Out of Middle, Toward Snakes',
+          de: 'Raus aus der Mitte, Zu den Schlangen',
+          fr: 'Allez vers les serpents',
+        };
       },
-	    run: function(data) {
-		    data.withForce = true;
-	    },
+      run: function(data) {
+        data.withForce = true;
+      },
     },
     {
       id: 'SeiryuEx Silence',
