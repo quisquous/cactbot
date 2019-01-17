@@ -147,7 +147,7 @@ namespace Cactbot {
     //     ...
     //     0x036 bytes in: EntityJob job;  // 1 byte.
     //     ...
-    //     0x038 bytes in: int16 level;
+    //     0x038 bytes in: int8 level;
     // }
   
     // Base offset for the character details below.
@@ -484,7 +484,7 @@ namespace Cactbot {
         data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 4);
         data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 6);
         data.job = (EntityJob)bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetJob];
-        data.level = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel);
+        data.level = bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel];
 
         byte[] job_bytes = GetJobSpecificData();
         data.debugJob = "";
