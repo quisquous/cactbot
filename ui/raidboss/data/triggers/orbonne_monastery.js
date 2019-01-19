@@ -497,7 +497,7 @@
       regexFr: / 14:374C:Cid le Dieu de la Foudre starts using/,
       alertText: {
         // e.g. E / NE / NW platforms
-        en: 'Run right to avoid swords',
+        en: 'Rotate right',
         de: 'Im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens anti-horaire',
       },
@@ -509,7 +509,7 @@
       regexFr: / 14:374D:Cid le Dieu de la Foudre starts using/,
       alertText: {
         // NW / NE / E platforms
-        en: 'Run left to avoid swords',
+        en: 'Rotate left',
         de: 'Schwertern im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens horaire',
       },
