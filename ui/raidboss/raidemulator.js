@@ -18,8 +18,9 @@ class LogCollector {
   AppendImportLogs(logs) {
     // Define now to save time later
     let playerRegex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
-    let sealRegex = Regexes.Parse(/ 00:0839:(.*) will be sealed off in /);
-    let unsealRegex = Regexes.Parse(/ 00:0839:.* is no longer sealed/);
+    let sealRegex = gLang.areaSealRegex(); // Regexes.Parse(/ 00:0839:(.*) will be sealed off in /);
+    let unsealRegex = gLang.areaSealRegex(); // Regexes.Parse(/ 00:0839:.* is no longer sealed/);
+    let engageRegex = gLang.countdownEngageRegex();
 
     for (let i = 0; i < logs.length; ++i) {
       let log = logs[i];
@@ -40,7 +41,7 @@ class LogCollector {
 
         if (this.IsWipe(log) || log.match(unsealRegex))
           this.EndFight(log);
-      } else if (log.match(gLang.countdownEngageRegex()) || log.match(sealRegex)) {
+      } else if (log.match(engageRegex) || log.match(sealRegex)) {
         // For consistency, only start fights on a countdown.  This
         // makes it easy to know where to start all fights (vs
         // reading timeline files or some such).
