@@ -167,8 +167,16 @@ class LogCollector {
     let fightKey = 'fight' + fight.key;
     let label = document.querySelector('label[for="' + fightKey + '"]');
 
-    if (label.textContent.indexOf(' (stored)') > -1)
+    if (label.textContent.indexOf(' (stored)') > -1) {
+      let stored = JSON.parse(localStorage.getItem('fights'));
+      for (let i = 0; i < stored.length; i++) {
+        if (fight.key == stored[i].key)
+          stored.splice(i, 1);
+      }
+      localStorage.setItem('fights', JSON.stringify(stored));
+      label.textContent = label.textContent.replace(' (stored)', '');
       return;
+    }
 
     let fights = [];
     if (localStorage.fights)
@@ -214,25 +222,6 @@ class LogCollector {
     }
     // Store fights in new order
     localStorage.setItem('fights', JSON.stringify(this.fights));
-  }
-
-  RemoveStoredFight() {
-    let fight = gEmulatorView.selectedFight;
-    if (!fight)
-      return;
-
-    let fightKey = 'fight' + fight.key;
-    let label = document.querySelector('label[for="' + fightKey + '"]');
-
-    if (label.textContent.indexOf(' (stored)') > -1) {
-      let stored = JSON.parse(localStorage.getItem('fights'));
-      for (let i = 0; i < stored.length; i++) {
-        if (fight.key == stored[i].key)
-          stored.splice(i, 1);
-      }
-      localStorage.setItem('fights', JSON.stringify(stored));
-      label.textContent = label.textContent.replace(' (stored)', '');
-    }
   }
 
   SearchPlayers(matches) {
@@ -893,11 +882,8 @@ function stopLogFile() {
   gEmulatorView.Stop();
 }
 
-function storeFight() {
+function toggleStoreFight() {
   gLogCollector.StoreFights();
-}
-function unstoreFight() {
-  gLogCollector.RemoveStoredFight();
 }
 function clearStorage() {
   gLogCollector.ClearStorage();
