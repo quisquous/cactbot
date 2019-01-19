@@ -13,22 +13,59 @@ class LogCollector {
     this.currentFight = null;
     this.addFightCallback = addFightCallback;
     this.wait;
+    this.sealRegexes = {
+      ja: Regexes.Parse(/ 00:0839:(.*)の封鎖まであと\y{Float}秒/),
+      en: / 00:0839:(.*) will be sealed off in /,
+      de: Regexes.Parse(/ 00:0839:Noch \y{Float} Sekunden, bis sich (.*) schließt/),
+      fr: / 00:0839:Fermeture (.*) dans /,
+    };
+    this.unsealRegexes = {
+      ja: / 00:0839:(.*)の封鎖が解かれた……/,
+      en: / 00:0839:(.*) is no longer sealed/,
+      de: / 00:0839:(.*) öffnet sich erneut/,
+      fr: / 00:0839:Ouverture (.*)/,
+    };
+    this.countdownEngageRegexes = {
+      ja: / 00:0039:戦闘開始！/,
+      en: / 00:0039:Engage!/,
+      de: / 00:0039:Start!/,
+      fr: / 00:0039:À l'attaque !/,
+    };
+  }
+
+  MatchStart(log) {
+    for (let i in this.countdownEngageRegexes) {
+      if (log.match(this.countdownEngageRegexes[i]))
+        return i;
+    }
+    for (let i in this.sealRegexes) {
+      if (log.match(this.sealRegexes[i]))
+        return i;
+    }
+  }
+
+  MatchEnd(log) {
+    if (this.IsWipe(log))
+      return true;
+    for (let i in this.unsealRegexes) {
+      if (log.match(this.unsealRegexes[i]))
+        return { matches: log.match(this.unsealRegexes[i]) };
+    }
   }
 
   AppendImportLogs(logs) {
     // Define now to save time later
     let playerRegex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
-    let sealRegex = gLang.areaSealRegex(); // Regexes.Parse(/ 00:0839:(.*) will be sealed off in /);
-    let unsealRegex = gLang.areaSealRegex(); // Regexes.Parse(/ 00:0839:.* is no longer sealed/);
-    let engageRegex = gLang.countdownEngageRegex();
 
     for (let i = 0; i < logs.length; ++i) {
       let log = logs[i];
       let logZoneChange = this.ParseZoneChange(log);
 
       if (logZoneChange && logZoneChange != this.currentZone) {
-        if (this.currentFight)
+        if (this.currentFight) {
+          this.currentFight.fightName = this.currentFight.zoneName;
           this.EndFight(log);
+        }
         this.currentZone = logZoneChange;
       }
 
@@ -39,27 +76,31 @@ class LogCollector {
         if (matches)
           this.SearchPlayers(matches);
 
-        if (this.IsWipe(log) || log.match(unsealRegex))
+        if (this.MatchEnd(log)) {
+          let unseal = this.MatchEnd(log);
+          if (typeof unseal == 'object') {
+            this.currentFight.fightName = unseal.matches[1];
+          }
+          else
+            this.currentFight.fightName = this.currentFight.zoneName;
           this.EndFight(log);
-      } else if (log.match(engageRegex) || log.match(sealRegex)) {
+        }
+      } else if (this.MatchStart(log)) {
         // For consistency, only start fights on a countdown.  This
         // makes it easy to know where to start all fights (vs
         // reading timeline files or some such).
         if (!this.currentZone)
           console.error('Network log file specifies no zone?');
 
-        let fightName = this.currentZone;
-        if (sealRegex[1])
-          fightName = sealRegex[1];
-
         this.currentFight = {
           zoneName: this.currentZone,
-          fightName: fightName,
+          fightName: null,
           startDate: dateFromLogLine(log),
           logs: [log],
           durationMs: null,
           key: this.fights.length,
           players: {},
+          lang: this.MatchStart(log),
         };
       }
     }
@@ -442,6 +483,12 @@ class EmulatorView {
       let id = this.fightInfo[fight.key].party[0].id;
       this.logPlayer.SendPlayerEvent(name, job, id);
 
+      // change Language
+      gPopupText.options.Language = fight.lang;
+      gPopupText.ReloadTimelines();
+
+      document.getElementById('triggerline-playAs').style.display = 'none';
+
       window.setTimeout(function() {
         this.AsyncAnalyzer();
       }.bind(this), 0);
@@ -581,6 +628,15 @@ class EmulatorView {
         let job = e.target.getAttribute('job');
         let role = e.target.getAttribute('role');
         gEmulatorView.logPlayer.SendPlayerEvent(name, job, id);
+
+        // Clear playAs Triggerline
+        while (document.getElementById('triggerline-playAs').firstChild)
+          document.getElementById('triggerline-playAs').firstChild.remove();
+        // Add timerbar
+        let timerbar = document.createElement('div');
+        timerbar.className = 'triggerline-timer';
+        document.getElementById('triggerline-playAs').appendChild(timerbar);
+
         gEmulatorView.AnalyzeFight({ id: { name: name, job: job, role: role } });
         document.getElementById('triggerline-playAs').style.display = 'block';
       });
@@ -615,7 +671,6 @@ class EmulatorView {
       lang: gPopupText.data.lang,
     };
     let logs = this.selectedFight.logs;
-
     data.ShortName = function(name) {
       return name.split(/\s/)[0];
     };
@@ -758,12 +813,17 @@ class EmulatorView {
     triggerElement.style.left = pos + '%';
     if (result)
       triggerElement.setAttribute('outputText', result[data.lang] || result['en'] || result);
+    else {
+      triggerElement.style.height = '50%';
+      triggerElement.style.top = '25%';
+    }
     triggerElement.addEventListener('mouseenter', function(e) {
-      document.getElementById('tInfo').innerHTML = e.target.getAttribute('trigger');
-      document.getElementById('tInfo').style.display = 'block';
+      document.getElementById('tInfo').textContent = e.target.getAttribute('outputText');
+      document.getElementById('tInfoSub').textContent = 'Selected Trigger ID: ' + e.target.getAttribute('trigger');
     });
     triggerElement.addEventListener('mouseleave', function() {
-      document.getElementById('tInfo').style.display = 'none';
+      document.getElementById('tInfo').textContent = '';
+      document.getElementById('tInfoSub').textContent = 'Selected Trigger ID';
     });
     // DEBUG:
     // triggerElement.setAttribute('from', data.me);
@@ -839,7 +899,6 @@ function storeFight() {
 function unstoreFight() {
   gLogCollector.RemoveStoredFight();
 }
-
 function clearStorage() {
   gLogCollector.ClearStorage();
 }
