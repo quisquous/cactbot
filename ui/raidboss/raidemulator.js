@@ -78,9 +78,8 @@ class LogCollector {
 
         if (this.MatchEnd(log)) {
           let unseal = this.MatchEnd(log);
-          if (typeof unseal == 'object') {
+          if (typeof unseal == 'object')
             this.currentFight.fightName = unseal.matches[1];
-          }
           else
             this.currentFight.fightName = this.currentFight.zoneName;
           this.EndFight(log);
@@ -811,9 +810,9 @@ class EmulatorView {
     triggerElement.setAttribute('trigger', trigger.id);
     triggerElement.className = 'trigger';
     triggerElement.style.left = pos + '%';
-    if (result)
+    if (result) {
       triggerElement.setAttribute('outputText', result[data.lang] || result['en'] || result);
-    else {
+    } else {
       triggerElement.style.height = '50%';
       triggerElement.style.top = '25%';
     }
