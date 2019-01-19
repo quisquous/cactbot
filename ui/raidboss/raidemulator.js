@@ -889,7 +889,7 @@ function clearStorage() {
   gLogCollector.ClearStorage();
 }
 
-function hideRunTriggers() {
+function toggleRunTriggers() {
   let triggers = document.querySelectorAll('.trigger[runTrigger]');
   let change;
   if (triggers[0].style.display == 'none')
