@@ -815,6 +815,7 @@ class EmulatorView {
     } else {
       triggerElement.style.height = '50%';
       triggerElement.style.top = '25%';
+      triggerElement.setAttribute('runTrigger', 'true');
     }
     triggerElement.addEventListener('mouseenter', function(e) {
       document.getElementById('tInfo').textContent = e.target.getAttribute('outputText');
@@ -900,4 +901,15 @@ function unstoreFight() {
 }
 function clearStorage() {
   gLogCollector.ClearStorage();
+}
+
+function hideRunTriggers() {
+  let triggers = document.querySelectorAll('.trigger[runTrigger]');
+  let change;
+  if (triggers[0].style.display == 'none')
+    change = 'block';
+  else
+    change = 'none';
+  for (let i = 0; i < triggers.length; i++)
+    triggers[i].style.display = change;
 }
