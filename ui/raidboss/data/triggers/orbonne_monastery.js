@@ -587,9 +587,9 @@
     },
     {
       id: 'Orbonne Ultima Extreme Edge',
-      regex: / 14:38DB:Demi-Hashmal starts using Extreme Edge/,
-      regexDe: / 14:38DB:Demi-Hashmal starts using Extremkante/,
-      regexFr: / 14:38DB:Demi-Hashmal starts using Taille Suprême/,
+      regex: / 14:38DA:Demi-Hashmal starts using Extreme Edge/,
+      regexDe: / 14:38DA:Demi-Hashmal starts using Extremkante/,
+      regexFr: / 14:38DA:Demi-Hashmal starts using Taille Suprême/,
       alertText: {
         en: 'Look for Hashmal dash',
         de: 'Nach Hashmal-Dash ausschau halten',
