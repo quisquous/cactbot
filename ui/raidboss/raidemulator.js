@@ -18,6 +18,8 @@ class LogCollector {
   AppendImportLogs(logs) {
     // Define now to save time later
     let playerRegex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
+    let sealRegex = Regexes.Parse(/ 00:0839:(.*) will be sealed off in /);
+    let unsealRegex = Regexes.Parse(/ 00:0839:.* is no longer sealed/);
 
     for (let i = 0; i < logs.length; ++i) {
       let log = logs[i];
@@ -36,16 +38,22 @@ class LogCollector {
         if (matches)
           this.SearchPlayers(matches);
 
-        if (this.IsWipe(log))
+        if (this.IsWipe(log) || log.match(unsealRegex))
           this.EndFight(log);
-      } else if (log.match(gLang.countdownEngageRegex())) {
+      } else if (log.match(gLang.countdownEngageRegex()) || log.match(sealRegex)) {
         // For consistency, only start fights on a countdown.  This
         // makes it easy to know where to start all fights (vs
         // reading timeline files or some such).
         if (!this.currentZone)
           console.error('Network log file specifies no zone?');
+
+        let fightName = this.currentZone;
+        if (sealRegex[1])
+          fightName = sealRegex[1];
+
         this.currentFight = {
           zoneName: this.currentZone,
+          fightName: fightName,
           startDate: dateFromLogLine(log),
           logs: [log],
           durationMs: null,
@@ -408,7 +416,7 @@ class EmulatorView {
     if (durMinutes > 0)
       durStr += durMinutes + 'm';
     durStr += (durTotalSeconds % 60) + 's';
-    labelElement.innerText = fight.zoneName + ', ' + dateStr + ', ' + durStr;
+    labelElement.innerText = fight.fightName + ', ' + dateStr + ', ' + durStr;
 
     parentDiv.appendChild(radioElement);
     parentDiv.appendChild(labelElement);
@@ -564,11 +572,16 @@ class EmulatorView {
       playerElement.id = party[i].id;
       playerElement.setAttribute('name', party[i].name);
       playerElement.setAttribute('job', party[i].job);
+      playerElement.setAttribute('role', party[i].role);
       playerElement.addEventListener('click', function(e) {
+        // PlayAs Event
         let id = e.target.id;
         let name = e.target.getAttribute('name');
         let job = e.target.getAttribute('job');
+        let role = e.target.getAttribute('role');
         gEmulatorView.logPlayer.SendPlayerEvent(name, job, id);
+        gEmulatorView.AnalyzeFight({ id: { name: name, job: job, role: role } });
+        document.getElementById('triggerline-playAs').style.display = 'block';
       });
       this.partyElement.appendChild(playerElement);
     }
@@ -610,7 +623,12 @@ class EmulatorView {
 
     // Get all players of said role
     let players = {};
-    if (role == 'all') {
+    if (typeof role === 'object') {
+      // Convert playerObject to role and players
+      players = role;
+      players.mode = 'playAs';
+      role = players[Object.keys(role)[0]].role;
+    } else if (role == 'all') {
       players = { '00000000': { name: 'Generic Player', job: 'none', role: 'none' } };
     } else {
       for (let p in this.selectedFight.players) {
@@ -737,6 +755,8 @@ class EmulatorView {
     triggerElement.setAttribute('trigger', trigger.id);
     triggerElement.className = 'trigger';
     triggerElement.style.left = pos + '%';
+    if (result)
+      triggerElement.setAttribute('outputText', result[data.lang] || result['en'] || result);
     triggerElement.addEventListener('mouseenter', function(e) {
       document.getElementById('tInfo').innerHTML = e.target.getAttribute('trigger');
       document.getElementById('tInfo').style.display = 'block';
@@ -745,11 +765,13 @@ class EmulatorView {
       document.getElementById('tInfo').style.display = 'none';
     });
     // DEBUG:
-    // btriggerElement.setAttribute('from', data.me);
+    // triggerElement.setAttribute('from', data.me);
     // triggerElement.setAttribute('time', timestamp);
-
+    if (players.mode) {
+      document.getElementById('triggerline-' + players.mode).appendChild(triggerElement);
+      return;
+    }
     document.getElementById('triggerline-' + role).appendChild(triggerElement);
-
     return;
   }
 };
