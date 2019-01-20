@@ -69,53 +69,53 @@ hideall "--sync--"
 ##########
 
 1000 "Start" sync /:The Spire's Bounds will be sealed off/ window 1000,0
-1012 "Fire" sync /:Belias, The Gigas:2CDB:/ window 1012,0
-1024 "Fire IV" sync /:Belias, The Gigas:2CDC:/
-1033 "Time Eruption" sync /:Belias, The Gigas:2CDE:/
-1038 "Fast Hands" sync /:Belias, The Gigas:2CDF:/
-1041 "Slow Hands" sync /:Belias, The Gigas:2CE0:/
+1012 "Fire" sync /:Belias, the Gigas:2CDB:/ window 1012,5
+1024 "Fire IV" sync /:Belias, the Gigas:2CDC:/
+1033 "Time Eruption" sync /:Belias, the Gigas:2CDE:/
+1038 "Fast Hands" sync /:Belias, the Gigas:2CDF:/
+1041 "Slow Hands" sync /:Belias, the Gigas:2CE0:/
 1041 "--untargetable--"
-1048 "Crimson Cyclone" sync /:Belias, The Gigas:2CE2:/
-1051 "Crimson Cyclone" sync /:Belias, The Gigas:2D5F:/
+1048 "Crimson Cyclone" sync /:Belias, the Gigas:2CE2:/
+1051 "Crimson Cyclone" sync /:Belias, the Gigas:2D5F:/
 1054 "--targetable--"
-1062 "Fire" sync /:Belias, The Gigas:2CDB:/
-1070 "Fire IV" sync /:Belias, The Gigas:2CDC:/
-1079 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/
-1089 "Fire IV" sync /:Belias, The Gigas:2CDC:/
+1062 "Fire" sync /:Belias, the Gigas:2CDB:/
+1070 "Fire IV" sync /:Belias, the Gigas:2CDC:/
+1079 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/
+1089 "Fire IV" sync /:Belias, the Gigas:2CDC:/
 1095 "Eruption" duration 4
-1100 "Fire" sync /:Belias, The Gigas:2CDB:/
-1110 "Fire IV" sync /:Belias, The Gigas:2CDC:/
+1100 "Fire" sync /:Belias, the Gigas:2CDB:/
+1110 "Fire IV" sync /:Belias, the Gigas:2CDC:/
 1118 "Gigas spawns"
 
 # Adds dead
-1300 "Hellfire" sync /:Belias, The Gigas:2CE8:/ window 5000,700
+1300 "Hellfire" sync /:Belias, the Gigas:2CE8:/ window 5000,700
 1313 "Time Bomb" duration 15
-1322 "Fire" sync /:Belias, The Gigas:2CDB:/
+1322 "Fire" sync /:Belias, the Gigas:2CDB:/
 
 # Begin loop
-1342 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/
+1342 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/
 1345 "--untargetable--"
-1352 "Crimson Cyclone" sync /:Belias, The Gigas:2CE2:/
-1355 "Crimson Cyclone" sync /:Belias, The Gigas:2D5F:/
+1352 "Crimson Cyclone" sync /:Belias, the Gigas:2CE2:/
+1355 "Crimson Cyclone" sync /:Belias, the Gigas:2D5F:/
 1358 "--targetable--"
-1365 "Fire IV" sync /:Belias, The Gigas:2CDC:/
-1375 "Time Eruption" sync /:Belias, The Gigas:2CDE:/
-1380 "Fast Hands" sync /:Belias, The Gigas:2CDF:/
+1365 "Fire IV" sync /:Belias, the Gigas:2CDC:/
+1375 "Time Eruption" sync /:Belias, the Gigas:2CDE:/
+1380 "Fast Hands" sync /:Belias, the Gigas:2CDF:/
 1380 "Time Bomb" duration 15
-1383 "Slow Hands" sync /:Belias, The Gigas:2CE0:/
-1396 "Fire" sync /:Belias, The Gigas:2CDB:/
-1411 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/
-1421 "Fire IV" sync /:Belias, The Gigas:2CDC:/
+1383 "Slow Hands" sync /:Belias, the Gigas:2CE0:/
+1396 "Fire" sync /:Belias, the Gigas:2CDB:/
+1411 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/
+1421 "Fire IV" sync /:Belias, the Gigas:2CDC:/
 1422 "Eruption" duration 4
 1436 "Time Bomb" duration 15
 1442 "--untargetable--"
-1449 "Crimson Cyclone" sync /:Belias, The Gigas:2CE2:/
-1451 "Crimson Cyclone" sync /:Belias, The Gigas:2D5F:/
+1449 "Crimson Cyclone" sync /:Belias, the Gigas:2CE2:/
+1451 "Crimson Cyclone" sync /:Belias, the Gigas:2D5F:/
 1454 "--targetable--"
-1466 "Time Eruption" sync /:Belias, The Gigas:2CDE:/
-1471 "Fast Hands" sync /:Belias, The Gigas:2CDF:/
-1474 "Slow Hands" sync /:Belias, The Gigas:2CE0:/
-1486 "The Hand Of Time" sync /:Belias, The Gigas:2CE5:/ jump 1342
+1466 "Time Eruption" sync /:Belias, the Gigas:2CDE:/
+1471 "Fast Hands" sync /:Belias, the Gigas:2CDF:/
+1474 "Slow Hands" sync /:Belias, the Gigas:2CE0:/
+1486 "The Hand Of Time" sync /:Belias, the Gigas:2CE5:/ jump 1342
 # End loop
 
 # Dummy loop future
