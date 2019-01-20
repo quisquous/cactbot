@@ -131,10 +131,19 @@
       condition: function(data, matches) {
         return data.blazing && matches[1] == data.me;
       },
-      infoText: {
-        en: 'Spread (no tower)',
-        de: 'Verteilen (nicht in den Turm)',
-        fr: 'Ecartez-vous (pas sur la tour)',
+      infoText: function(data) {
+        if (data.role == 'tank' || data.role == 'healer') {
+          return {
+            en: 'Spread (dps get towers)',
+            de: 'Verteilen (nicht in den Turm)',
+            fr: 'Ecartez-vous (pas sur la tour)',
+          };
+        }
+        return {
+          en: 'Spread (tanks/healers get towers)',
+          de: 'Verteilen (nicht in den Turm)',
+          fr: 'Ecartez-vous (pas sur la tour)',
+        };
       },
     },
     {
@@ -145,10 +154,19 @@
           return false;
         return data.markers.indexOf(data.me) == -1;
       },
-      alarmText: {
-        en: 'Get Tower',
-        de: 'In den Turm',
-        fr: 'Sur votre tour',
+      alarmText: function(data) {
+        if (data.role == 'tank' || data.role == 'healer') {
+          return {
+            en: 'Get Tower (tank/healer towers)',
+            de: 'In den Turm',
+            fr: 'Sur votre tour',
+          };
+        }
+        return {
+          en: 'Get Tower (dps towers)',
+          de: 'In den Turm',
+          fr: 'Sur votre tour',
+        };
       },
     },
     {
