@@ -72,6 +72,67 @@ Options.DisabledTriggers = {
 }
 ```
 
+### Per Trigger Options
+
+If you want to customize when and what triggers say, there are a few options.  For example, you want to change how the twisters callout works in ucob.  To start, look up the id for the trigger in the [triggers file](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/unending_coil_ultimate.js#L139).  This is `UCU Twisters`.  The `zoneRegex` for this zone is at the top of this file, and is `zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,`.
+
+#### Option 1: disable the original, write your own
+
+Add the following code to your **user/raidboss.js** file.  If you have other existing disabled triggers or triggers, you will need to splice these additions in.
+
+This option disables the original twisters trigger and adds a second trigger that just says `Panic!` instead.  The gives you maximum flexibility, but the downside of this approach is that if the trigger regex ever changes, then when cactbot updates, you will need to update your custom trigger as well.  Note that this is fairly unlikely.
+
+```
+Options.DisabledTriggers = {
+  'UCU Twisters': true,
+};
+Options.Triggers = [
+  {
+    zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
+    triggers: [
+      {
+        regex: /:26AA:Twintania starts using/,
+        alarmText: 'Panic!',
+      },
+    ],
+  },
+];
+```
+
+#### Option 2: per trigger options to modify/override behavior
+
+The other option is to use per trigger options.  These override the existing trigger behaviors, without needing to disable the original trigger.
+
+The [user/raidboss-example.js](https://github.com/quisquous/cactbot/blob/master/user/raidboss-example.js#L198) file has some examples of how to do this.
+
+If you wanted to change the twister cast to say `Panic!` as above, you would do the following:
+
+```
+Options.PerTriggerOptions = {
+  'UCU Twisters': {
+    'AlertText': '',
+    'AlarmText': 'Panic!',
+  },
+};
+```
+
+The fields that are valid on PerTriggerOptions are the following:
+
+* `GroupSpeechAlert`: boolean, turn on or off group tts texts
+* `SpeechAlert`: boolean, turn on or off tts texts
+* `SoundAlert`: boolean, turn on or off sounds
+* `TextAlert`: boolean, turn on or off on screen text
+
+* `AlarmText`: function, the string to show as alarm text
+* `AlertText`: function, the string to show as alert text
+* `InfoText`: function, the string to show as info text
+* `TTSText`: function, the string to play as tts text
+* `GroupTTSText`: function, the string to play for group tts text
+* `SoundOverride`: function, the path to the sound to play for this trigger
+* `VolumeOverride`: function, 0-1 value for how loud to play the sound at
+
+All of the functions in the above list override the previous values if they exist.  So, if the trigger has an `alertText` entry and the option specifies an `AlertText` (even if empty), then it will not play.  This is what the example does for twisters above.
+
 ### Text To Speech
 
 If you dislike the built-in sound info, alert, and alarm noises that cactbot uses by default and would
