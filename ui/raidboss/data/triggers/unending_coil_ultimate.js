@@ -1215,6 +1215,29 @@
       },
     },
     {
+      id: 'UCU Megaflare Twin Tower',
+      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      delaySeconds: 0.5,
+      suppressSeconds: 1,
+      infoText: function(data) {
+        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
+          return;
+        if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
+          return;
+
+        let twin = data.ShortName(data.lastOctetMarker);
+        if (data.megaStack.indexOf(data.lastOctetMarker) >= 0) {
+          return {
+            en: twin + ' (twin) has megaflare',
+          };
+        }
+        return {
+          en: twin + ' (twin) needs tower',
+        };
+      },
+      tts: null,
+    },
+    {
       id: 'UCU Earthshaker Me',
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
