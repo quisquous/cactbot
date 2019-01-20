@@ -77,9 +77,11 @@ class DpsPhaseTracker {
       }
     } else {
       // TODO: phases??
+      let defaultEndRegex = / 21:........:400000(03|10):/;
+      let endRegex = this.currentBoss.endRegex ? this.currentBoss.endRegex : defaultEndRegex;
       for (let i = 0; i < logs.length; ++i) {
         let log = logs[i];
-        if (log.match(this.currentBoss.endRegex)) {
+        if (log.match(endRegex)) {
           this.onFightEnd();
           return;
         }
