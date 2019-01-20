@@ -172,7 +172,7 @@
     // Fire Path
     {
       id: 'O9S Fire Phase Tracking',
-      regex: / 14:3186:Chaos starts using Blaze /,
+      regex: / 14:3186:Chaos starts using Blaze/,
       regexDe: / 14:3186:Chaos starts using /,
       regexFr: / 14:3186:Chaos starts using /,
       regexJa: / 14:3186:カオス starts using /,
@@ -220,6 +220,10 @@
           de: 'Stack und Bleiben',
           fr: 'Packez-vous et restez',
         };
+      },
+      run: function(data) {
+        if (data.phaseType == 'orb' || data.entropyCount == 2)
+          delete data.entropyCount;
       },
     },
     {
@@ -333,7 +337,7 @@
     },
     {
       id: 'O9S Knock Down Marker',
-      regex: / 1B:........:(\y{Name}):0000:0000:0057:0000:0000:0000:/,
+      regex: / 1B:........:(\y{Name}):....:....:0057:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -492,7 +496,7 @@
     },
     {
       id: 'O9S Earth Stack Marker',
-      regex: / 1B:........:(\y{Name}):0000:0000:003E:0000:0000:0000:/,
+      regex: / 1B:........:(\y{Name}):....:....:003E:/,
       suppressSeconds: 10,
       infoText: function(data) {
         return {
