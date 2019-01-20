@@ -1,3 +1,13 @@
+#timeline {
+  position: absolute;
+  z-index: 0;
+}
+
+#popup-text-container {
+  position: absolute;
+  z-index: 1;
+}
+
 widget-list /deep/ .timerbar-root {
   border: none;
 }
