@@ -127,7 +127,7 @@ class LogCollector {
     // 03,04 = adding/removing combatant | 21 = wipe? | 00:0839: = sealed.
     // Add more to regex only if needed
     fight.logs = fight.logs.filter(function(line) {
-      return / 1[456AB]:| 0[134]:| 00:0[08]3[89]:| 21:.{8}:/.test(line);
+      return / 1[456AB]:| 0[134]:| 00:(?:003[89]|0839|0044):| 21:.{8}:/.test(line);
     }).sort();
 
     this.fights.push(fight);
