@@ -22,7 +22,7 @@ class LogCollector {
     this.unsealRegexes = {
       ja: / 00:0839:(.*)の封鎖が解かれた……/,
       en: / 00:0839:(.*) is no longer sealed/,
-      de: / 00:0839:(.*) öffnet sich erneut/,
+      de: / 00:0839:(?:Der Zugang zu\w* |)(.*) öffnet sich (?:erneut|wieder)/,
       fr: / 00:0839:Ouverture (.*)/,
     };
     this.countdownEngageRegexes = {
@@ -494,13 +494,11 @@ class EmulatorView {
       return;
     let fight = this.selectedFight;
 
-    let durTotalSeconds = Math.ceil(fight.durationMs / 1000);
+    // Reset progress bars
     for (let i = 0; i < this.timerElements.length; i++) {
-      this.timerElements[i].style.transition = '0s';
       this.timerElements[i].style.width = '0%';
-      this.timerElements[i].style.transition = durTotalSeconds + 's linear';
-      this.timerElements[i].style.width = '100%';
     }
+
     this.logPlayer.Start(fight);
     this.localStartMs = +new Date();
     this.playingFight = fight;
@@ -525,6 +523,11 @@ class EmulatorView {
       let secStr = pad(Math.ceil(ms / 1000) % 60, 2);
       return minStr + ':' + secStr;
     };
+
+    // Update progress bars
+    for (let i = 0; i < this.timerElements.length; i++) {
+      this.timerElements[i].style.width = (elapsedMs / totalTimeMs * 100) + '%';
+    }
 
     this.elapsedElement.innerText =
         msToTimeStr(elapsedMs) + ' / ' + msToTimeStr(totalTimeMs);
@@ -824,6 +827,17 @@ class EmulatorView {
     document.getElementById('triggerline-' + role).appendChild(triggerElement);
     return;
   }
+
+  ToggleRunTriggers() {
+    let triggers = document.querySelectorAll('.trigger[runTrigger]');
+    let change;
+    if (triggers[0].style.display == 'none')
+      change = 'block';
+    else
+      change = 'none';
+    for (let i = 0; i < triggers.length; i++)
+      triggers[i].style.display = change;
+  }
 };
 
 function dateFromLogLine(log) {
@@ -885,17 +899,23 @@ function stopLogFile() {
 function toggleStoreFight() {
   gLogCollector.StoreFights();
 }
+
 function clearStorage() {
   gLogCollector.ClearStorage();
 }
 
 function toggleRunTriggers() {
-  let triggers = document.querySelectorAll('.trigger[runTrigger]');
-  let change;
-  if (triggers[0].style.display == 'none')
-    change = 'block';
-  else
-    change = 'none';
-  for (let i = 0; i < triggers.length; i++)
-    triggers[i].style.display = change;
+  gEmulatorView.ToggleRunTriggers();
+}
+
+function debug(arg) {
+  gEmulatorView.logPlayer.SendPlayerEvent('Godbert Manderville', 'GSM', '12345678');
+  gEmulatorView.logPlayer.SendZoneEvent('Middle La Noscea');
+  let evt = new CustomEvent('onGameExistsEvent', { detail: { exists: true } });
+  document.dispatchEvent(evt);
+  let evt2 = new CustomEvent('onGameActiveChangedEvent', { detail: { active: true } });
+  dispatchEvent(evt2);
+
+  if (arg)
+    gEmulatorView.logPlayer.SendLogEvent(['00:0038:Engage!']);
 }
