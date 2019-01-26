@@ -36,7 +36,7 @@
     content: 'Bait: ';
 }
 
-#hole-name:before {
+#place-name:before {
     content: 'Hole: ';
 }
 

@@ -19,81 +19,131 @@ class Fisher {
     this.element = element;
 
     this.zone = null;
+    this.job = null;
 
-    this.bait = null;
+    this.baseBait = { id: null, name: null };
+    this.moochBait = { id: null, name: null };
+    this.lastCatch = { id: null, name: null };
+    this.place = { id: null, name: null };
     this.fishing = false;
     this.mooching = false;
     this.snagging = false;
     this.chum = false;
-    this.lastBait = null;
-    this.hole = null;
 
-    this.holeFish = null;
+    this.placeFish = null;
     this.hookTimes = null;
     this.tugTypes = null;
-
-    this.lastCatch = null;
 
     this.castStart = null;
     this.castEnd = null;
     this.castGet = null;
 
-    this.raf = null;
-
     this.regex = {
-      'bait': /00:0039:You apply a ....([\w\s]+) to your line\./,
-      'cast': /00:08c3:You cast your line (?:on|in|at) (?:the )?([\w\s]+)\./,
-      'bite': /00:08c3:Something bites!/,
-      'catch': /00:0843:You land (?:a|an|[\d]+ )?.+?([\w\s-']{3,})(?: | [^\w] |[^\w\s].+ )measuring/,
-      'nocatch': /00:08c3:(Nothing bites\.|You reel in your line|You lose your bait|The fish gets away)/,
-      'mooch': /00:08c3:You recast your line/,
-      'chumgain': /00:08ae:You gain the effect of Chum/,
-      'chumfade': /00:08b0:You lose the effect of Chum/,
-      'snaggain': /00:08ae:⇒ You gain the effect of Snagging/,
-      'snagfade': /00:08b0:You lose the effect of Snagging/,
-      'quit': /00:08c3:You put away your rod\./,
+      // Localized strings from: https://xivapi.com/LogMessage?pretty=1&columns=ID,Text_de,Text_en,Text_fr,Text_ja&ids=1110,1111,1112,1113,1116,1117,1118,1119,1120,1121,1127,1129,3511,3512,3515,3516,3525
+      // 1110: cast
+      // 1111: quit (stop)
+      // 1112: quit (death)
+      // 1113: quit (combat)
+      // 1116: bite
+      // 1117: nocatch (lose bait)
+      // 1118: nocatch (lose lure)
+      // 1119: nocatch (gets away)
+      // 1120: nocatch (break)
+      // 1121: mooch
+      // 1127: nocatch (wrong bait)
+      // 1128: nocatch (early hook)
+      // 3511: nocatch (moving)
+      // 3512: catch
+      // 3515: nocatch (lose lure)
+      // 3516: nocatch (anti-bot)
+      // 3525: nocatch (inventory full)
+
+      'de': {
+        'cast': /00:08c3:Du hast mit dem Fischen (?:am )?([\w\s]+) begonnen./,
+        'bite': /00:08c3:Etwas hat angebissen!/,
+        'catch': /00:0843:Du hast (?:einen )?.+?([\w\s-']{3,})(?: | [^\w] |[^\w\s].+ )\(\d/,
+        'nocatch': /00:08c3:(?:Der Fisch hat den K\u00f6der vom Haken gefressen|.+ ist davongeschwommen|Der Fisch konnte sich vom Haken rei\u00dfen|Die Leine ist gerissen|Nichts bei\u00dft an|Du hast nichts gefangen|Du hast das Fischen abgebrochen|Deine Beute hat sich aus dem Staub gemacht und du hast|Die Fische sind misstrauisch und kommen keinen Ilm n\u00e4her|Du hast .+ geangelt, musst deinen Fang aber wieder freilassen, weil du nicht mehr davon besitzen kannst)/,
+        'mooch': /00:08c3:Du hast die Leine mit/,
+        'quit': /00:08c3:(?:Du hast das Fischen beendet\.|Das Fischen wurde abgebrochen)/,
+      },
+      'en': {
+        'cast': /00:08c3:You cast your line (?:on|in|at) (?:the )?([\w\s]+)\./,
+        'bite': /00:08c3:Something bites!/,
+        'catch': /00:0843:You land (?:a|an|[\d]+ )?.+?([\w\s-']{3,})(?: | [^\w] |[^\w\s].+ )measuring \d/,
+        'nocatch': /00:08c3:(Nothing bites\.|You reel in your line|You lose your bait|The fish gets away|You lose your |Your line breaks|The fish sense something amiss|You cannot carry any more)/,
+        'mooch': /00:08c3:You recast your line/,
+        'chumgain': /00:08ae:You gain the effect of Chum/,
+        'chumfade': /00:08b0:You lose the effect of Chum/,
+        'snaggain': /00:08ae:⇒ You gain the effect of Snagging/,
+        'snagfade': /00:08b0:You lose the effect of Snagging/,
+        'quit': /00:08c3:(?:You put away your rod\.|Fishing canceled)/,
+      },
+      'fr': {
+        'cast': /00:08c3:Vous commencez \u00e0 p\u00eacher.\n\nPoint de p\u00eache: ([\w\s]+)/,
+        'bite': /00:08c3:Vous avez une touche!/,
+        'catch': /00:0843:Vous avez p\u00each\u00e9 (?:un )?.+?([\w\s-']{3,})(?: | [^\w] |[^\w\s].+ )de \d/,
+        'nocatch': /00:08c3:(?:L'app\u00e2t a disparu|Vous avez perdu votre|L'app\u00e2t a disparu|Le poisson a r\u00e9ussi \u00e0 se d\u00e9faire de l'hame\u00e7on|Le fil s'est cass\u00e9|Vous n'avez pas eu de touche|Vous n'avez pas r\u00e9ussi \u00e0 ferrer le poisson|Vous arr\u00eatez de p\u00eacher|Le poisson s'est enfui et a emport\u00e9 avec lui votre|Les poissons sont devenus m\u00e9fiants|Vous avez p\u00each\u00e9 .+, mais ne pouvez en poss\u00e9der davantage et l'avez donc rel\u00e2ch\u00e9)/,
+        'mooch': /00:08c3:Vous essayez de p\u00eacher au vif avec/,
+        'quit': /00:08c3:(?:Vous arr\u00eatez de p\u00eacher\.|P\u00eache interrompue)/,
+      },
+      'ja': {
+        'cast': /00:08c3:\u306f([\w\s]+)\u3067\u91e3\u308a\u3092\u958b\u59cb\u3057\u305f\u3002/,
+        'bite': /00:08c3:\u9b5a\u3092\u30d5\u30c3\u30ad\u30f3\u30b0\u3057\u305f\uff01/,
+        'catch': /00:0843:\u306f.+?([\w\s-']{3,})(?: | [^\w] |[^\w\s].+ )\uff08\d\.\d\u30a4\u30eb\u30e0\uff09\u3092\u91e3\u308a\u4e0a\u3052\u305f\u3002/,
+        'nocatch': /00:08c3:(?:\u3044\u3064\u306e\u9593\u306b\u304b\u91e3\u308a\u990c\u3092\u3068\u3089\u308c\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u3044\u3064\u306e\u9593\u306b\u304b.+\u3092\u30ed\u30b9\u30c8\u3057\u3066\u3057\u307e\u3063\u305f\uff01|\u3044\u3064\u306e\u9593\u306b\u304b\u91e3\u308a\u990c\u3092\u3068\u3089\u308c\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u91e3\u308a\u91dd\u306b\u304b\u304b\u3063\u305f\u9b5a\u306b\u9003\u3052\u3089\u308c\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u30e9\u30a4\u30f3\u30d6\u30ec\u30a4\u30af\uff01\uff01|\u4f55\u3082\u304b\u304b\u3089\u306a\u304b\u3063\u305f\u2026\u2026\u3002\n\n\u91e3\u308a\u990c\u304c\u91e3\u308a\u5834\u306b\u3042\u3063\u3066\u306a\u3044\u3088\u3046\u3060\u3002|\u4f55\u3082\u304b\u304b\u3089\u306a\u304b\u3063\u305f\u2026\u2026\u3002|.+\u306f\u91e3\u308a\u3092\u4e2d\u65ad\u3057\u305f\u3002|\u9b5a\u306b\u9003\u3052\u3089\u308c\u3001.+\u3092\u30ed\u30b9\u30c8\u3057\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u9b5a\u305f\u3061\u306b\u8b66\u6212\u3055\u308c\u3066\u3057\u307e\u3063\u305f\u3088\u3046\u3060\u2026\u2026|.+\u3092\u91e3\u308a\u4e0a\u3052\u305f\u304c\u3001\u3053\u308c\u4ee5\u4e0a\u6301\u3066\u306a\u3044\u305f\u3081\u30ea\u30ea\u30fc\u30b9\u3057\u305f\u3002)/,
+        'mooch': /00:08c3:\u306f\u91e3\u308a\u4e0a\u3052\u305f.+\u3092\u614e\u91cd\u306b\u6295\u3052\u8fbc\u307f\u3001\u6cf3\u304c\u305b\u91e3\u308a\u3092\u8a66\u307f\u305f\u3002/,
+        'quit': /00:08c3:(?:\u306f\u91e3\u308a\u3092\u7d42\u3048\u305f\u3002|\u6226\u95d8\u4e0d\u80fd\u306b\u306a\u3063\u305f\u305f\u3081\u3001\u91e3\u308a\u304c\u4e2d\u65ad\u3055\u308c\u307e\u3057\u305f\u3002|\u306f\u91e3\u308a\u3092\u7d42\u3048\u305f\u3002|\u6575\u304b\u3089\u653b\u6483\u3092\u53d7\u3051\u305f\u305f\u3081\u3001\u91e3\u308a\u304c\u4e2d\u65ad\u3055\u308c\u307e\u3057\u305f\u3002)/,
+      },
     };
 
     this.ui = new FisherUI(element);
     this.seaBase = new SeaBase();
   }
 
-  updateFishData(hole, bait) {
+  getActiveBait() {
+    if (this.mooching)
+      return this.moochBait;
+
+
+    return this.baseBait;
+  }
+
+  updateFishData() {
     // We can only know data for both of these
-    if (!hole || !bait) {
+    if (!this.place || !this.getActiveBait()) {
       return new Promise(function(resolve, reject) {
         resolve();
       });
     }
 
-
     let _this = this;
     this.hookTimes = {};
     this.tugTypes = {};
 
-    // Get the list of fish available at this particular hole
-    this.holeFish = this.seaBase.getFishForHole(this.hole);
+    // Get the list of fish available at this particular place
+    this.placeFish = this.seaBase.getFishForPlace(this.place);
 
     // We should update twice for each fish, one for hook times and one for tugs
-    let queue = this.holeFish.length * 2;
+    let queue = this.placeFish.length * 2;
 
     return new Promise(function(resolve, reject) {
-      for (let index in _this.holeFish) {
-        let fish = _this.holeFish[index];
+      for (let index in _this.placeFish) {
+        let fish = _this.placeFish[index];
 
         // Get the hook min and max times for the fish/bait/chum combo
-        _this.seaBase.getHookTimes(fish, _this.bait, _this.chum).then(function(hookTimes) {
-          _this.hookTimes[fish] = hookTimes;
-          queue -= 1;
-          if (!queue) {
-            _this.ui.redrawFish(_this.hookTimes, _this.tugTypes);
-            resolve();
-          }
-        });
+        _this.seaBase.getHookTimes(fish, _this.getActiveBait(), _this.chum)
+          .then(function(hookTimes) {
+            _this.hookTimes[fish.name] = hookTimes;
+            queue -= 1;
+            if (!queue) {
+              _this.ui.redrawFish(_this.hookTimes, _this.tugTypes);
+              resolve();
+            }
+          });
 
         // Get the tug type for the fish
         _this.seaBase.getTug(fish).then(function(tug) {
-          _this.tugTypes[fish] = tug;
+          _this.tugTypes[fish.name] = tug;
           queue -= 1;
           if (!queue) {
             _this.ui.redrawFish(_this.hookTimes, _this.tugTypes);
@@ -105,27 +155,34 @@ class Fisher {
   }
 
   handleBait(bait) {
-    // Bait is swapped
-    this.bait = bait;
-    this.ui.setBait(bait);
+    let name = '';
+    // Mooching: bait is the last fish
+    if (this.mooching) {
+      this.moochBait = bait;
+      name = bait.name;
+    } else {
+      this.baseBait = this.seaBase.getBait(bait);
+      name = this.baseBait.name;
+    }
+    this.ui.setBait(name);
   }
 
-  handleCast(hole) {
+  handleCast(place) {
     this.element.style.opacity = 1;
     this.castStart = new Date();
     this.castEnd = null;
     this.castGet = null;
     this.fishing = true;
 
-    // Set hole, if it's unset
-    if (!this.hole) {
-      this.hole = hole;
-      this.ui.setHole(hole);
+    // Set place, if it's unset
+    if (!this.place) {
+      this.place = this.seaBase.getPlace(place);
+      this.ui.setPlace(place);
     }
 
     let _this = this;
 
-    this.updateFishData(this.hole, this.bait).then(function() {
+    this.updateFishData().then(function() {
       _this.ui.startFishing();
     });
   }
@@ -138,13 +195,13 @@ class Fisher {
 
   handleCatch(fish) {
     this.castGet = new Date();
-    this.lastCatch = fish;
+    this.lastCatch = this.seaBase.getFish(fish);
     this.fishing = false;
 
     this.seaBase.addCatch({
-      'fish': fish,
-      'bait': this.bait,
-      'hole': this.hole,
+      'fish': this.lastCatch.id,
+      'bait': this.getActiveBait().id,
+      'place': this.place.id,
       'castTimestamp': +this.castStart,
       'hookTime': (this.castEnd - this.castStart),
       'reelTime': (this.castGet - this.castEnd),
@@ -153,11 +210,9 @@ class Fisher {
     });
 
     if (this.mooching) {
-      this.handleBait(this.lastBait);
+      this.handleBait(this.baseBait);
       this.mooching = false;
     }
-
-    this.chum = false;
   }
 
   handleNoCatch() {
@@ -168,7 +223,7 @@ class Fisher {
     this.lastCatch = null;
 
     if (this.mooching) {
-      this.handleBait(this.lastBait);
+      this.handleBait(this.baseBait);
       this.mooching = false;
     }
 
@@ -177,10 +232,9 @@ class Fisher {
 
   handleMooch() {
     this.mooching = true;
-    this.lastBait = this.bait;
 
     this.handleBait(this.lastCatch);
-    this.handleCast(this.hole);
+    this.handleCast(this.place);
   }
 
   handleSnagGain() {
@@ -193,7 +247,7 @@ class Fisher {
 
   handleChumGain() {
     this.chum = true;
-    this.updateFishData(this.hole, this.bait);
+    this.updateFishData();
   }
 
   handleChumFade() {
@@ -207,19 +261,19 @@ class Fisher {
 
   handleQuit() {
     this.lastCatch = null;
-    this.hole = null;
-    this.ui.setHole(null);
-    this.element.style.opacity = 0.5;
+    this.place = null;
+    this.ui.setPlace(null);
+    this.element.style.opacity = 0;
   }
 
   parseLine(log) {
     let result = null;
 
-    for (let type in this.regex) {
-      result = this.regex[type].exec(log);
+    for (let type in this.regex[Options.Language]) {
+      result = this.regex[Options.Language][type].exec(log);
       if (result != null) {
         switch (type) {
-        case 'bait': this.handleBait(result[1]); break;
+        // case 'bait': this.handleBait(result[1]); break;
         case 'cast': this.handleCast(result[1]); break;
         case 'bite': this.handleBite(); break;
         case 'catch': this.handleCatch(result[1]); break;
@@ -236,44 +290,39 @@ class Fisher {
   }
 
   OnLogEvent(e) {
-    e.detail.logs.forEach(this.parseLine, this);
+    if (this.job == 'FSH')
+      e.detail.logs.forEach(this.parseLine, this);
   }
 
   OnZoneChange(e) {
     this.zone = e.detail.zoneName;
-    this.hole = null;
-    this.ui.setHole(null);
+    this.place = null;
+    this.ui.setPlace(null);
   }
 
   OnPlayerChange(e) {
-    if (e.detail.job == 'FSH')
-      this.element.style.opacity = 1;
-    else
-      this.element.style.opacity = 0;
+    this.job = e.detail.job;
+    if (this.job == 'FSH') {
+      this.element.style.display = 'block';
+      this.handleBait(e.detail.bait);
+    } else {
+      this.element.style.display = 'none';
+    }
   }
 }
-
-function initialize() {
-  if (gFisher) {
-    document.addEventListener('onLogEvent', function(e) {
-      gFisher.OnLogEvent(e);
-    });
-
-    document.addEventListener('onZoneChangedEvent', function(e) {
-      gFisher.OnZoneChange(e);
-    });
-
-    document.addEventListener('onPlayerChangedEvent', function(e) {
-      gFisher.OnPlayerChange(e);
-    });
-  } else {
-    setTimeout(initialize, 250);
-  }
-}
-
-initialize();
 
 UserConfig.getUserConfigLocation('fisher', function() {
   gFisher = new Fisher(document.getElementById('fisher'));
-  window.gFisher = gFisher;
+
+  document.addEventListener('onLogEvent', function(e) {
+    gFisher.OnLogEvent(e);
+  });
+
+  document.addEventListener('onZoneChangedEvent', function(e) {
+    gFisher.OnZoneChange(e);
+  });
+
+  document.addEventListener('onPlayerChangedEvent', function(e) {
+    gFisher.OnPlayerChange(e);
+  });
 });

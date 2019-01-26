@@ -20,7 +20,7 @@ class FisherUI {
   constructor(element) {
     this.element = element;
     this.bait_el = element.querySelector('#bait-name');
-    this.hole_el = element.querySelector('#hole-name');
+    this.place_el = element.querySelector('#place-name');
     this.time_el = element.querySelector('#cast-duration');
     this.arrow_el = element.querySelector('#fisher-arrow');
 
@@ -42,20 +42,20 @@ class FisherUI {
     this.animationFrame = requestAnimationFrame(this.draw.bind(this));
   }
 
-  setBait(bait) {
-    this.bait_el.innerHTML = bait;
+  setBait(bait_name) {
+    this.bait_el.innerHTML = bait_name;
   }
 
-  setHole(hole) {
-    let oldHole = this.hole_el.innerHTML;
+  setPlace(place) {
+    let oldPlace = this.place_el.innerHTML;
 
-    if (!hole) {
-      if (oldHole && oldHole[0] != '(')
-        this.hole_el.innerHTML = '(' + oldHole + ')';
+    if (!place) {
+      if (oldPlace && oldPlace[0] != '(')
+        this.place_el.innerHTML = '(' + oldPlace + ')';
       else
-        this.hole_el.innerHTML = '(None)';
+        this.place_el.innerHTML = '(None)';
     } else {
-      this.hole_el.innerHTML = hole;
+      this.place_el.innerHTML = place;
     }
   }
 

@@ -6,6 +6,11 @@ class SeaBase {
     this._dbVersion = 1;
     this._storeName = 'catches';
     this.db = null;
+    this.locale = Options.Language;
+  }
+
+  findKey(obj, val) {
+    return Object.keys(obj).find((x) => obj[x] == val);
   }
 
   getConnection() {
@@ -130,11 +135,12 @@ class SeaBase {
   }
 
   addCatch(data) {
+    // Add a catch to the database
     let commit = true;
     let _this = this;
 
     // Make sure we have complete data before recording
-    let keys = ['fish', 'bait', 'hole', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
+    let keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
 
     for (let index in keys) {
       if (!data.hasOwnProperty(keys[index]) || data[keys[index]] === null) {
@@ -146,7 +152,6 @@ class SeaBase {
     if (!commit)
       return false;
 
-
     this.getConnection().then(function(db) {
       let tx = db.transaction(_this._storeName, 'readwrite');
       let store = tx.objectStore(_this._storeName);
@@ -155,27 +160,88 @@ class SeaBase {
     });
   }
 
-  getFishForHole(hole) {
-    return gFishingHoles[hole];
+  getInfo(lookup, value) {
+    let info;
+    // Value can be one of three things
+    if (typeof value === 'object' && value !== null) {
+      // 1. Object with id and/or name
+      // If we have one and not the other, fill in the other
+      if (value.id && !value.name) {
+        info = {
+          id: value.id,
+          name: gFisherData[lookup][this.locale][value.id],
+        };
+      } else if (!value.id && value.name) {
+        info = {
+          id: this.findKey(gFisherData[lookup][this.locale], value.name),
+          name: value.name,
+        };
+      } else {
+        info = value;
+      }
+    } else if (isNaN(value)) {
+      // 2. String with the name
+      info = {
+        id: this.findKey(gFisherData[lookup][this.locale], value),
+        name: value,
+      };
+    } else {
+      // 3. Number with the ID
+      info = {
+        id: value,
+        name: gFisherData[lookup][this.locale][value],
+      };
+    }
+
+    return info;
+  }
+
+  getFish(fish) {
+    return this.getInfo('fish', fish);
+  }
+
+  getBait(bait) {
+    return this.getInfo('tackle', bait);
+  }
+
+  getPlace(place) {
+    return this.getInfo('places', place);
+  }
+
+  getFishForPlace(place) {
+    // Get place object
+    let placeObject = this.getPlace(place);
+
+    // Get fish IDs for place ID
+    let fishList = gFisherData['placefish'][placeObject.id];
+
+    // Get fish names for IDs
+    let placeFish = [];
+    for (let fishID in fishList)
+      placeFish.push(this.getFish(fishList[fishID]));
+
+
+    return placeFish;
   }
 
   queryHookTimes(index, fish, bait, chum) {
     let times = [];
 
     return new Promise(function(resolve, reject) {
-      index.openCursor(IDBKeyRange.only([fish, bait, chum?1:0])).onsuccess = function(event) {
-        let cursor = event.target.result;
+      index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum?1:0]))
+        .onsuccess = function(event) {
+          let cursor = event.target.result;
 
-        if (cursor) {
-          times.push(cursor.value.hookTime);
-          if (times.length < Options.IQRHookQuantity)
-            cursor.continue();
-          else
+          if (cursor) {
+            times.push(cursor.value.hookTime);
+            if (times.length < Options.IQRHookQuantity)
+              cursor.continue();
+            else
+              resolve(times);
+          } else {
             resolve(times);
-        } else {
-          resolve(times);
-        }
-      };
+          }
+        };
     });
   }
 
@@ -197,8 +263,6 @@ class SeaBase {
         _this.queryHookTimes(index, fish, bait, chum).then(function(times) {
           if (!times.length)
             resolve({ min: undefined, max: undefined });
-
-
           resolve(_this.normalizeHooks(times));
         });
       });
@@ -209,7 +273,7 @@ class SeaBase {
     let reelTimes = [];
 
     return new Promise(function(resolve, reject) {
-      index.openCursor(IDBKeyRange.only(fish)).onsuccess = function(event) {
+      index.openCursor(IDBKeyRange.only(fish.id.toString())).onsuccess = function(event) {
         let cursor = event.target.result;
 
         if (cursor) {
