@@ -286,7 +286,7 @@
       id: 'Orbonne Cid Crush Helm Healer',
       regex: / 14:3752:The Thunder God starts using Crush Helm/,
       regexDe: / 14:3752:Cidolfus starts using Zenitspaltung/,
-      regexFr: / 14:3752:Cid le Dieu de la Foudre starts using Bombardement Céleste/,
+      regexFr: / 14:3752:Cid Le Dieu De La Foudre starts using Bombardement Céleste/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -300,7 +300,7 @@
       id: 'Orbonne Cid Crush Helm Feint',
       regex: / 14:3752:The Thunder God starts using Crush Helm/,
       regexDe: / 14:3752:Cidolfus starts using Zenitspaltung/,
-      regexFr: / 14:3752:Cid le Dieu de la Foudre starts using Bombardement Céleste/,
+      regexFr: / 14:3752:Cid Le Dieu De La Foudre starts using Bombardement Céleste/,
       condition: function(data) {
         return data.role == 'dps-melee';
       },
@@ -314,7 +314,7 @@
       id: 'Orbonne Cid Crush Helm Tank',
       regex: / 15:\y{ObjectId}:The Thunder God:3753:Crush Helm:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Cidolfus:3753:Zenitspaltung:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Cid le Dieu de la Foudre:3753:Bombardement Céleste:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3753:Bombardement Céleste:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -328,7 +328,7 @@
       id: 'Orbonne Cid Crush Armor Tank',
       regex: / 14:3758:The Thunder God starts using Crush Armor/,
       regexDe: / 14:3758:Cidolfus starts using Helmspalter/,
-      regexFr: / 14:3758:Cid le Dieu de la Foudre starts using Brèche Insidieuse/,
+      regexFr: / 14:3758:Cid Le Dieu De La Foudre starts using Brèche Insidieuse/,
       condition: function(data, matches) {
         return data.role == 'tank';
       },
@@ -342,7 +342,7 @@
       id: 'Orbonne Cid Crush Armor',
       regex: / 15:\y{ObjectId}:The Thunder God:3759:Crush Armor:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Cidolfus:3759:Helmspalter:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Cid le Dieu de la Foudre:3759:Brèche Insidieuse:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3759:Brèche Insidieuse:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -356,7 +356,7 @@
       id: 'Orbonne Cid Crush Accessory',
       regex: / 14:375A:The Thunder God starts using Crush Accessory/,
       regexDe: / 14:375A:Cidolfus starts using Hagelkörner/,
-      regexFr: / 14:375A:Cid le Dieu de la Foudre starts using Grêlons Fracassants/,
+      regexFr: / 14:375A:Cid Le Dieu De La Foudre starts using Grêlons Fracassants/,
       alertText: {
         en: 'Kill Icewolf Adds',
         fr: 'Tuez les Grêlons de glace',
@@ -366,7 +366,7 @@
       id: 'Orbonne Cid Cleansing Strike',
       regex: / 16:\y{ObjectId}:The Thunder God:3751:Cleansing Strike:/,
       regexDe: / 16:\y{ObjectId}:Cidolfus:3751:Säuberungsschlag:/,
-      regexFr: / 16:\y{ObjectId}:Cid le Dieu de la Foudre:3751:Impact Purifiant:/,
+      regexFr: / 16:\y{ObjectId}:Cid Le Dieu De La Foudre:3751:Impact Purifiant:/,
       suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'healer';
@@ -381,7 +381,7 @@
       id: 'Orbonne Cid Shadowblade Bubble',
       regex: / 14:3761:The Thunder God starts using Duskblade/,
       regexDe: / 14:3761:Cidolfus starts using Dämmerklinge/,
-      regexFr: / 14:3761:Cid le Dieu de la Foudre starts using Lame sombre/,
+      regexFr: / 14:3761:Cid Le Dieu De La Foudre starts using Lame sombre/,
       alertText: {
         en: 'Stand on Pads',
         de: 'Auf Felder stellen',
@@ -450,7 +450,7 @@
       id: 'Orbonne Cid Holy Sword In',
       regex: / 14:3750:The Thunder God starts using/,
       regexDe: / 14:3750:Cidolfus starts using/,
-      regexFr: / 14:3750:Cid le Dieu de la Foudre starts using/,
+      regexFr: / 14:3750:Cid Le Dieu De La Foudre starts using/,
       alertText: {
         en: 'Get In',
         de: 'Rein da',
@@ -461,7 +461,7 @@
       id: 'Orbonne Cid Holy Sword Out',
       regex: / 14:374F:The Thunder God starts using/,
       regexDe: / 14:374F:Cidolfus starts using/,
-      regexFr: / 14:374F:Cid le Dieu de la Foudre starts using/,
+      regexFr: / 14:374F:Cid Le Dieu De La Foudre starts using/,
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -472,7 +472,7 @@
       id: 'Orbonne Cid Holy Sword Thunder Left',
       regex: / 14:3749:The Thunder God starts using/,
       regexDe: / 14:3749:Cidolfus starts using/,
-      regexFr: / 14:3749:Cid le Dieu de la Foudre starts using/,
+      regexFr: / 14:3749:Cid Le Dieu De La Foudre starts using/,
       alertText: {
         en: 'Left',
         de: 'Links',
@@ -483,7 +483,7 @@
       id: 'Orbonne Cid Holy Sword Thunder Right',
       regex: / 14:374A:The Thunder God starts using/,
       regexDe: / 14:374A:Cidolfus starts using/,
-      regexFr: / 14:374A:Cid le Dieu de la Foudre starts using/,
+      regexFr: / 14:374A:Cid Le Dieu De La Foudre starts using/,
       alertText: {
         en: 'Right',
         de: 'Rechts',
@@ -494,7 +494,7 @@
       id: 'Orbonne Cid Holy Sword Three 1',
       regex: / 14:374C:The Thunder God starts using/,
       regexDe: / 14:374C:Cidolfus starts using/,
-      regexFr: / 14:374C:Cid le Dieu de la Foudre starts using/,
+      regexFr: / 14:374C:Cid Le Dieu De La Foudre starts using/,
       alertText: {
         // e.g. E / NE / NW platforms
         en: 'Rotate right',
@@ -506,7 +506,7 @@
       id: 'Orbonne Cid Holy Sword Three 2',
       regex: / 14:374D:The Thunder God starts using/,
       regexDe: / 14:374D:Cidolfus starts using/,
-      regexFr: / 14:374D:Cid le Dieu de la Foudre starts using/,
+      regexFr: / 14:374D:Cid Le Dieu De La Foudre starts using/,
       alertText: {
         // NW / NE / E platforms
         en: 'Rotate left',
@@ -518,7 +518,7 @@
       id: 'Orbonne Ultima Redemption',
       regex: / 14:38AA:Ultima, The High Seraph starts using Redemption on (\y{Name})/,
       regexDe: / 14:38AA:Cherub Ultima starts using Zerstörung on (\y{Name})/,
-      regexFr: / 14:38AA:Ultima la Grande Séraphine starts using Destruction on (\y{Name})/,
+      regexFr: / 14:38AA:Ultima La Grande Séraphine starts using Destruction on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -600,7 +600,7 @@
       id: 'Orbonne Ultima Ultimate Illusion Healer',
       regex: /14:3895:Ultima, The High Seraph starts using Ultimate Illusion/,
       regexDe: /14:3895:Cherub Ultima starts using Ultimative Illusion/,
-      regexFr: /14:3895:Ultima la Grande Séraphine starts using Fantaisie Finale/,
+      regexFr: /14:3895:Ultima La Grande Séraphine starts using Fantaisie Finale/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -615,7 +615,7 @@
       // Yes, this is lower case "the High Seraph".
       regex: / 15:\y{ObjectId}:Ultima, the High Seraph:3895:Ultimate Illusion:/,
       regexDe: / 15:\y{ObjectId}:Cherub Ultima:3895:Ultimative Illusion:/,
-      regexFr: / 15:\y{ObjectId}:Ultima la Grande Séraphine:3895:Fantaisie Finale:/,
+      regexFr: / 15:\y{ObjectId}:Ultima La Grande Séraphine:3895:Fantaisie Finale:/,
       condition: function(data) {
         return data.role != 'healer';
       },
@@ -808,12 +808,12 @@
         'Shield Knight': 'Chevalier Au Bouclier',
         'Sword Knight': 'Chevalier À l\'Épée',
         'icewolf': 'Grêlon De Glace',
-        'The Thunder God': 'Cid le Dieu de la Foudre',
+        'The Thunder God': 'Cid Le Dieu De La Foudre',
         'Demi-Belias': 'Demi-Belias',
         'Demi-Hashmal': 'Demi-Hashmal',
         'Demi-Leo': 'Demi-Lion',
         'Demi-Virgo': 'Demi-Vierge',
-        'Ultima, the High Seraph': 'Ultima la Grande Séraphine',
+        'Ultima, the High Seraph': 'Ultima La Grande Séraphine',
         'Aspersory': 'Aiguière Bénie',
         'Auracite Shard': 'Concrétion d\'Auralithe',
         'Ruination': 'Marque Des Déchus',
