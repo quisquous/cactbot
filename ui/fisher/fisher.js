@@ -304,7 +304,8 @@ class Fisher {
     this.job = e.detail.job;
     if (this.job == 'FSH') {
       this.element.style.display = 'block';
-      this.handleBait(e.detail.bait);
+      if (!this.fishing)
+        this.handleBait(e.detail.bait);
     } else {
       this.element.style.display = 'none';
     }
