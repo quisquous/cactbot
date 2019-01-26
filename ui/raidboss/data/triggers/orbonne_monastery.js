@@ -772,6 +772,10 @@
         'Demi-Virgo Tether': 'Demi-Virgo Verbindung',
         'Demi-Virgo Line/Tether': 'Demi-Virgo Linie/Verbindung',
         'Demi-Virgo Tether/Feet': 'Demi-Virgo Verbindung/Füße',
+
+        // FIXME
+        'ghost stun': 'ghost stun',
+        'crystal stun': 'crystal stun',
       },
       '~effectNames': {
         'Down For The Count': 'Am Boden',
@@ -927,6 +931,10 @@
         'Demi-Virgo Tether': 'Demi-Vierge Liens',
         'Demi-Virgo Line/Tether': 'Demi-Vierge Ligne/Lien',
         'Demi-Virgo Tether/Feet': 'Demi-Vierge Lien/Pieds',
+
+        // FIXME
+        'ghost stun': 'ghost stun',
+        'crystal stun': 'crystal stun',
       },
       '~effectNames': {
         'Down For The Count': 'Au Tapis',
@@ -1064,6 +1072,8 @@
         'Demi-Virgo Tether': 'Demi-Virgo Tether',
         'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether',
         'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet',
+        'ghost stun': 'ghost stun',
+        'crystal stun': 'crystal stun',
       },
       '~effectNames': {
         'Down For The Count': 'ノックダウン',

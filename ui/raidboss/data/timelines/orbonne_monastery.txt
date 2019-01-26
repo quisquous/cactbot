@@ -24,7 +24,7 @@ hideall "--sync--"
 1085.6 "Arm Shot" sync /:Mustadio:3739:/
 1099.3 "Analysis" sync /:Mustadio:3735:/
 1100.8 "Ballistic Impact" sync /:Mustadio:3745:/
-1101.0 "--untargetable--"
+1099.5 "--untargetable--"
 
 ### DRAMATIC CUTSCENE~!
 1105.0 "--sync--" sync /:Mustadio:3746:/ window 100,100
@@ -54,16 +54,18 @@ hideall "--sync--"
 ### Phase 3 Loop
 1281.0 "Searchlight" sync /:Mustadio:373D:/
 1287.9 "Analysis" sync /:Mustadio:3735:/
+1288.5 "--untargetable--"
 1291.2 "--sync--" sync /:Mustadio:3736:/
 1295.3 "--sync--" sync /:Mustadio:376C:/
 1301.3 "Last Testament" sync /:Mustadio:3737:/ window 100,100
+1308.8 "--targetable--"
 1315.0 "Energy Burst" sync /:Mustadio:373B:/
 1327.9 "Leg Shot" sync /:Mustadio:3738:/ duration 20
 1337.5 "L/R Handgonne" sync /:Mustadio:373[EF]:/
 1344.1 "L/R Handgonne" sync /:Mustadio:373[EF]:/
 1354.7 "Energy Burst" sync /:Mustadio:373B:/
 1361.5 "Arm Shot" sync /:Mustadio:3739:/
-1378.7 "Maintenance" sync /:Mustadio:3734:/ 
+1378.7 "Maintenance" sync /:Mustadio:3734:/
 1385.2 "Satellite Beam" sync /:Early Turret:3741:/
 1385.2 "Compress" sync /:Iron Construct:3740:/
 1389.3 "Ballistic Missile" sync /:Mustadio:373C:/
@@ -99,8 +101,10 @@ hideall "--sync--"
 2054.9 "Divine Light" sync /:Agrias:3867:/
 2065.4 "Thunder Slash" sync /:Agrias:3866:/
 2076.4 "Cleansing Flame" sync /:Agrias:3864:/
+2085.0 "--ghost stun--"
 2091.0 "Cleansing Strike" sync /:Agrias:3854:/
 2106.2 "Consecration" sync /:Agrias:3850:/
+2106.2 "--crystal stun--"
 2123.9 "Northswain's Strike" sync /:Agrias:3A86:/
 2131.1 "Divine Light" sync /:Agrias:3867:/
 2136.6 "Thunder Slash" sync /:Agrias:3866:/
@@ -123,8 +127,10 @@ hideall "--sync--"
 2535.6 "Divine Light" sync /:Agrias:3867:/
 2546.1 "Thunder Slash" sync /:Agrias:3866:/
 2558.1 "Cleansing Flame" sync /:Agrias:3864:/
+2567.6 "--ghost stun--"
 2573.6 "Cleansing Strike" sync /:Agrias:3854:/
 2581.8 "Consecration" sync /:Agrias:3850:/
+2581.8 "--crystal stun--"
 2599.5 "Northswain's Strike" sync /:Agrias:3A86:/
 2606.7 "Divine Light" sync /:Agrias:3867:/
 2617.2 "Hallowed Bolt Marks" sync /:Agrias:385A:/
@@ -189,7 +195,9 @@ hideall "--sync--"
 4123.2 "Crush Weapon" sync /:The Thunder God:3755:/ # drift 0.046
 
 ### Adds Phase
+4136.0 "--untargetable--"
 4136.0 "Colosseum" sync /:The Thunder God:3762:/
+4143.4 "--targetable--"
 4163.0 "Hallowed Bolt" sync /:Ephemeral Knight:3765:/
 4173.0 "Stack" sync /:Ephemeral Knight:3768:/
 4191.0 "Hallowed Bolt" sync /:Ephemeral Knight:3765:/
@@ -200,6 +208,7 @@ hideall "--sync--"
 4400.0 "--sync--" sync /:The Thunder God:36EB:/ window 400,0
 4401.0 "--sync--" sync /:The Thunder God:3824:/ window 400,5
 4403.0 "Balance Asunder" sync /:The Thunder God:376A:/
+4420.0 "--targetable--"
 
 ### Phase 3 Loop
 4438.5 "Sword L/R" sync /:The Thunder God:374[9A]:/
@@ -270,7 +279,7 @@ hideall "--sync--"
 5424.3 "Materialize" sync /:Aspersory:38CB:/
 5424.4 "Hammerfall" sync /:Demi-Hashmal:38D9:/
 5430.4 "Eruption" sync /:Demi-Belias:3C77:/
-5433.6 "Extreme Edge" sync /:Demi-Hashmal:38DA:/ 
+5433.6 "Extreme Edge" sync /:Demi-Hashmal:38DA:/
 
 #5446.5 "Crush Weapon" sync /:The Thunder God:38B3:/
 #5449.6 "Hallowed Bolt" sync /:Agrias:38B2:/
@@ -282,6 +291,7 @@ hideall "--sync--"
 5963.4 "--sync--" sync /:Mustadio:3A79:/ window 1000,0
 5971.0 "--sync--" sync /:Ramza:38B5:/ window 1000,5
 # 5991.0 "Few can claim to have endured the might of my will."
+5995.6 "--targetable--"
 
 #################
 # Ultima part 2 #
