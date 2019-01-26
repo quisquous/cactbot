@@ -518,7 +518,7 @@
       id: 'Orbonne Ultima Redemption',
       regex: / 14:38AA:Ultima, The High Seraph starts using Redemption on (\y{Name})/,
       regexDe: / 14:38AA:Cherub Ultima starts using Zerstörung on (\y{Name})/,
-      regexFr: / 14:38AA:Ultima la Grande Séraphine starts using Destruction on (\y{Name})/,
+      regexFr: / 14:38AA:Ultima La Grande Séraphine starts using Destruction on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -600,7 +600,7 @@
       id: 'Orbonne Ultima Ultimate Illusion Healer',
       regex: /14:3895:Ultima, The High Seraph starts using Ultimate Illusion/,
       regexDe: /14:3895:Cherub Ultima starts using Ultimative Illusion/,
-      regexFr: /14:3895:Ultima la Grande Séraphine starts using Fantaisie Finale/,
+      regexFr: /14:3895:Ultima La Grande Séraphine starts using Fantaisie Finale/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -615,7 +615,7 @@
       // Yes, this is lower case "the High Seraph".
       regex: / 15:\y{ObjectId}:Ultima, the High Seraph:3895:Ultimate Illusion:/,
       regexDe: / 15:\y{ObjectId}:Cherub Ultima:3895:Ultimative Illusion:/,
-      regexFr: / 15:\y{ObjectId}:Ultima la Grande Séraphine:3895:Fantaisie Finale:/,
+      regexFr: / 15:\y{ObjectId}:Ultima La Grande Séraphine:3895:Fantaisie Finale:/,
       condition: function(data) {
         return data.role != 'healer';
       },
@@ -813,7 +813,7 @@
         'Demi-Hashmal': 'Demi-Hashmal',
         'Demi-Leo': 'Demi-Lion',
         'Demi-Virgo': 'Demi-Vierge',
-        'Ultima, the High Seraph': 'Ultima la Grande Séraphine',
+        'Ultima, the High Seraph': 'Ultima La Grande Séraphine',
         'Aspersory': 'Aiguière Bénie',
         'Auracite Shard': 'Concrétion d\'Auralithe',
         'Ruination': 'Marque Des Déchus',
