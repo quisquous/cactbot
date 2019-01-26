@@ -83,10 +83,11 @@ class PullCounter {
   }
 
   SetSaveData(e) {
-    if (!e.detail.data)
-      return;
     try {
-      this.pullCounts = JSON.parse(e.detail.data);
+      if (e.detail.data)
+        this.pullCounts = JSON.parse(e.detail.data);
+      else
+        this.pullCounts = {};
     } catch (err) {
       console.error('onSendSaveData parse error: ' + err.message);
     }
