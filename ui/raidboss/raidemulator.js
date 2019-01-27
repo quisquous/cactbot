@@ -495,9 +495,8 @@ class EmulatorView {
     let fight = this.selectedFight;
 
     // Reset progress bars
-    for (let i = 0; i < this.timerElements.length; i++) {
+    for (let i = 0; i < this.timerElements.length; i++)
       this.timerElements[i].style.width = '0%';
-    }
 
     this.logPlayer.Start(fight);
     this.localStartMs = +new Date();
@@ -525,9 +524,8 @@ class EmulatorView {
     };
 
     // Update progress bars
-    for (let i = 0; i < this.timerElements.length; i++) {
+    for (let i = 0; i < this.timerElements.length; i++)
       this.timerElements[i].style.width = (elapsedMs / totalTimeMs * 100) + '%';
-    }
 
     this.elapsedElement.innerText =
         msToTimeStr(elapsedMs) + ' / ' + msToTimeStr(totalTimeMs);
@@ -540,10 +538,8 @@ class EmulatorView {
     this.localStartMs = null;
     this.playingFight = null;
 
-    for (let i = 0; i < this.timerElements.length; i++) {
-      this.timerElements[i].style.transition = '0s';
+    for (let i = 0; i < this.timerElements.length; i++)
       this.timerElements[i].style.width = '0%';
-    }
 
     this.ShowFightInfo(this.selectedFight);
   }
