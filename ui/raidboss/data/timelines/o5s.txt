@@ -31,7 +31,7 @@ hideall "--sync--"
 # add phase
 
 168 "--untargetable--" sync /:Phantom Train:28A7:/ window 500,500
-180 "Add wave"
+180 "Add Wave"
 196 "(DPS) Diabolic Wind" sync /:Phantom Train:28BD:/
 203 "(T/H) Diabolic Wind" sync /:Phantom Train:28BD:/
 

@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var gLang = null;
+let gLang = null;
 
 class CactbotLanguage {
   constructor(lang) {
@@ -75,6 +75,10 @@ class CactbotLanguage {
       BloodPrice: 'E2F',
       TheBlackestNight: '1CE1',
       Delirium: '1CDE',
+      Combust2: 'E18',
+      AspectedBenefic: 'E0B',
+      AspectedHelios: 'E11',
+      Contagion: '31B',
 
       // Susano Ex
       ChurningDeep: '203F',
@@ -118,6 +122,17 @@ class CactbotLanguage {
       UltrosStoneskin: '2AB5',
       TheHeat: '2777',
       ChainCannon: '278F',
+
+      // uwu
+      GreatWhirlwind: '2B41',
+      SearingWind: '2B5C',
+      Slipstream: '2B53',
+      WickedWheel: '2B4E',
+      WickedTornado: '2B4F',
+      Eruption: '2B5A',
+      WeightOfTheLand: '2B65',
+      Landslide1: '2B70',
+      Landslide2: '2B71',
     });
 
     this.kZone = Object.freeze({
@@ -130,10 +145,17 @@ class CactbotLanguage {
       O6S: /Sigmascape V2\.0 \(Savage\)/,
       O7S: /Sigmascape V3\.0 \(Savage\)/,
       O8S: /Sigmascape V4\.0 \(Savage\)/,
+      UWU: /The Weapon's Refrain \(Ultimate\)/,
+      O9S: /Alphascape V1\.0 \(Savage\)/,
+      O10S: /Alphascape V2\.0 \(Savage\)/,
+      O11S: /Alphascape V3\.0 \(Savage\)/,
+      O12S: /Alphascape V4\.0 \(Savage\)/,
       PvpSeize: /Seal Rock \(Seize\)/,
       PvpSecure: /The Borderland Ruins \(Secure\)/,
       PvpShatter: /The Fields Of Glory \(Shatter\)/,
       EurekaAnemos: /Eureka Anemos/,
+      EurekaPagos: /(Eureka Pagos|Unknown Zone \(2Fb\))/,
+      EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
     });
   }
 
@@ -149,7 +171,8 @@ class CactbotLanguage {
   // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
   // We can not look for log messages from FFXIV "You use X" here. Instead we
   // look for the actual ability usage provided by the XIV plugin.
-  // Also, the networked parse info is given much quicker than the lines from the game.
+  // Also, the networked parse info is given much quicker than the lines
+  // from the game.
   youUseAbilityRegex(ids) {
     return Regexes.Parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.AnyOf(ids) + ':');
   };
@@ -159,18 +182,18 @@ class CactbotLanguage {
   };
 
   youGainEffectRegex() {
-    var effects = [];
-    for (var i = 0; i < arguments.length; ++i) {
-      var effect = arguments[i];
+    let effects = [];
+    for (let i = 0; i < arguments.length; ++i) {
+      let effect = arguments[i];
       effects.push(effect);
     }
     return Regexes.Parse(' 1A:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
   };
 
   youLoseEffectRegex() {
-    var effects = [];
-    for (var i = 0; i < arguments.length; ++i) {
-      var effect = arguments[i];
+    let effects = [];
+    for (let i = 0; i < arguments.length; ++i) {
+      let effect = arguments[i];
       effects.push(effect);
     }
     return Regexes.Parse(' 1E:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\\.');
@@ -181,8 +204,8 @@ class CactbotLanguage {
       abilityId = '[^:]*';
     if (!attacker)
       attacker = '[^:]*';
-    // type:attackerId:attackerName:abilityId:abilityName:targetId:targetName:flags:
-    var r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + abilityId + ':';
+    // type:attackerId:attackerName:abilId:abilName:targetId:targetName:flags:
+    let r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + abilityId + ':';
     if (target || flags) {
       if (!target)
         target = '[^:]*';
@@ -210,7 +233,7 @@ class CactbotLanguage {
   };
 };
 
-document.addEventListener("onPlayerChangedEvent", (function (e) {
+document.addEventListener('onPlayerChangedEvent', (function(e) {
   if (gLang)
     gLang.OnPlayerNameChange(e.detail.name);
-}).bind(this));
+}));

@@ -1,23 +1,29 @@
 import argparse
 from datetime import datetime
-import fflogs
 import re
+
+import fflogs
+
 
 def timestamp_type(arg):
     """Defines the timestamp input format"""
     if re.match('\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
-        raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
+        raise argparse.ArgumentTypeError(
+            "Invalid timestamp format. Use the format 12:34:56.789")
     return arg
+
 
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
+
 
 def parse_line_time(line):
     """Parses the line's timestamp into a datetime object"""
     time = parse_time(line[3:22])
     time = time.replace(microsecond=int(line[23:29]))
     return time
+
 
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
@@ -27,7 +33,6 @@ def parse_report(args):
     start_time = 0
     end_time = 0
     enemies = {}
-    last_ability = start_time
 
     # Get report information
     report_data = fflogs.api('fights', args.report, 'www', {'api_key': args.key})
@@ -50,6 +55,10 @@ def parse_report(args):
         raise Exception('Fight ID not found in report')
 
     # Build an enemy name list, since these aren't in the events
+    # Environment special case
+    enemies[-1] = ''
+
+    # Real enemies
     for enemy in report_data['enemies']:
         enemies[enemy['id']] = enemy['name']
 
@@ -67,6 +76,9 @@ def parse_report(args):
 
     # Actually make the entry dicts
     for event in event_data['events']:
+        if 'sourceID' not in event:
+            event['sourceID'] = event['source']['id']
+
         entry = {
             'time': datetime.fromtimestamp((report_start_time + event['timestamp']) / 1000),
             'combatant': enemies[event['sourceID']],
@@ -77,6 +89,7 @@ def parse_report(args):
         entries.append(entry)
 
     return entries, datetime.fromtimestamp((report_start_time + start_time) / 1000)
+
 
 def parse_file(args):
     """Reads a file specified by arguments, and returns an entry list"""
@@ -114,8 +127,12 @@ def parse_file(args):
             }
 
             entries.append(entry)
-        
+
+    if not started:
+        raise Exception('Fight start not found')
+
     return entries, last_ability_time
+
 
 def main(args):
     """Starting point for execution with args"""
@@ -129,7 +146,7 @@ def main(args):
     phases = {}
     for phase in args.phase:
         ability, time = phase.split(':')
-        phases[ability] = int(time)
+        phases[ability] = float(time)
 
     # Get the entry list
     if args.report:
@@ -154,8 +171,8 @@ def main(args):
 
         # Ignore lines by arguments
         if (entry['ability_name'] in args.ignore_ability or
-            entry['ability_id'] in args.ignore_id or
-            entry['combatant'] in args.ignore_combatant):
+                entry['ability_id'] in args.ignore_id or
+                entry['combatant'] in args.ignore_combatant):
             continue
 
         # Ignore aoe spam
@@ -169,20 +186,27 @@ def main(args):
         last_time_diff_us = last_time_diff.microseconds
         drift = False
 
-        # Round up to the second
-        if last_time_diff_us > 800000:
-            last_time_diff_sec += 1
+        # Find the difference to the 0.1 second
+        last_time_diff_tenthsec = int(last_time_diff_us / 100000) / 10
+
+        # Adjust other diffs
+        last_time_diff_sec += last_time_diff_tenthsec
+        last_time_diff_us %= 100000
+
+        # Round up to the tenth of second
+        if last_time_diff_us > 60000:
+            last_time_diff_sec += .1
 
         # Round up with a note about exceptional drift
-        elif last_time_diff_us > 500000:
-            last_time_diff_sec += 1
-            drift = -1000000 + last_time_diff_us
+        elif last_time_diff_us > 50000:
+            last_time_diff_sec += .1
+            drift = -100000 + last_time_diff_us
 
         # Round down with a note about exceptional drift
-        elif last_time_diff_us > 200000:
+        elif last_time_diff_us > 40000:
             drift = last_time_diff_us
-        
-        # If <200ms then there's no need to adjust sec or drift
+
+        # If <20ms then there's no need to adjust sec or drift
         else:
             pass
 
@@ -198,7 +222,7 @@ def main(args):
         entry['position'] = timeline_position
 
         # Write the line
-        output_entry = '{position} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
+        output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
         if drift:
             output_entry += ' # drift {}'.format(drift/1000000)
 
@@ -206,6 +230,7 @@ def main(args):
 
         # Save the entry til the next line for filtering
         last_entry = entry
+
 
 if __name__ == "__main__":
     # Set up all of the arguments
@@ -245,7 +270,7 @@ if __name__ == "__main__":
     # Check dependent args
     if args.file and not (args.start and args.end):
         raise parser.error("Log file input requires start and end timestamps")
-    
+
     if args.report and not args.key:
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
 

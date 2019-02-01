@@ -26,10 +26,10 @@ hideall "--sync--"
 
 # add phase start
 163 "--untargetable--" sync /:Phantom Train:28A7:/
-178 "Adds spawn"
+178 "Add Wave"
 193 "Diabolic Wind" sync /:Phantom Train:28B9:/
 250 "Diabolic Chimney" sync /:Phantom Train:28A9:/ window 100,100
-260 "Ghosts active"
+260 "Ghosts"
 
 # add phase end
 320 "--sync--" sync /:Phantom Train:28A8:/ window 320,320 # boss reappears

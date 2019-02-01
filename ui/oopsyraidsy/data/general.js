@@ -1,3 +1,5 @@
+'use strict';
+
 // General mistakes; these apply everywhere.
 [{
   zoneRegex: /.*/,
@@ -20,7 +22,14 @@
         if (!data.inCombat || data.lostFood[e.targetName])
           return;
         data.lostFood[e.targetName] = true;
-        return { type: 'warn', blame: e.targetName, text: 'lost food buff' };
+        return {
+          type: 'warn',
+          blame: e.targetName,
+          text: {
+            en: 'lost food buff',
+            de: 'Nahrungsbuff verloren',
+          },
+        };
       },
     },
     {
@@ -34,14 +43,28 @@
     {
       id: 'General Rabbit Medium',
       abilityRegex: gLang.kAbility.RabbitMedium,
-      condition: function(e, data) { return data.IsPlayerId(e.attackerId); },
+      condition: function(e, data) {
+        return data.IsPlayerId(e.attackerId);
+      },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.attackerName, text: 'bunny' };
+        return {
+          type: 'warn',
+          blame: e.attackerName,
+          text: {
+            en: 'bunny',
+            de: 'Hase',
+            de: e.abilityName,
+            fr: e.abilityName,
+            ja: e.abilityName,
+          },
+        };
       },
     },
     {
       id: 'General Missed Trick',
-      condition: function(e, data) { return data.IsPlayerId(e.attackerId); },
+      condition: function(e, data) {
+        return data.IsPlayerId(e.attackerId);
+      },
       damageRegex: gLang.kAbility.TrickAttack,
       condition: function(e) {
         // 28710?03 == success
@@ -49,8 +72,15 @@
         return e.flags.substr(-8, 2) != '28';
       },
       mistake: function(e, data) {
-        return { type: 'warn', blame: e.attackerName, text: 'missed trick' };
+        return {
+          type: 'warn',
+          blame: e.attackerName,
+          text: {
+            en: 'missed trick',
+            de: 'Trickattacke daneben',
+          },
+        };
       },
     },
   ],
-}]
+}];

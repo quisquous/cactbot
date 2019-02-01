@@ -42,6 +42,13 @@ namespace Cactbot {
       public List<string> logs;
     }
 
+    public class ImportLogEvent : JSEvent {
+      public ImportLogEvent(List<String> logs) { this.logs = logs; }
+      public string EventName() { return "onImportLogEvent"; }
+
+      public List<string> logs;
+    }
+
     public class InCombatChangedEvent : JSEvent {
       public InCombatChangedEvent(bool in_act_combat, bool in_game_combat) { this.inACTCombat = in_act_combat; this.inGameCombat = in_game_combat; }
       public string EventName() { return "onInCombatChangedEvent"; }
@@ -83,6 +90,7 @@ namespace Cactbot {
         maxCP = e.max_cp;
         pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
         jobDetail = null;
+        bait = e.bait;
         debugJob = e.debugJob;
       }
       public string EventName() { return "onPlayerChangedEvent"; }
@@ -105,6 +113,7 @@ namespace Cactbot {
       public string debugJob;
 
       public Point3F pos;
+      public int bait;
 
       // One of the FooJobDetails structures, depending on the value of |job|.
       public object jobDetail;
@@ -219,6 +228,14 @@ namespace Cactbot {
         public int spreadCard;
         public int roadCard;
         public int arcanumCard;
+      }
+
+      public struct SamuraiDetail {
+        public SamuraiDetail(FFXIVProcess.SamuraiJobData d) { kenki = d.kenki; setsu = d.setsu; gekko = d.gekko; ka = d.ka; }
+        public int kenki;
+        public bool setsu;
+        public bool gekko;
+        public bool ka;
       }
     }
 
@@ -387,14 +404,16 @@ namespace Cactbot {
     }
 
     public class OnInitializeOverlay : JSEvent {
-      public OnInitializeOverlay(string location, Dictionary<string, string> files) {
+      public OnInitializeOverlay(string location, Dictionary<string, string> files, string language) {
         this.userLocation = location;
         this.localUserFiles = files;
+        this.language = language;
       }
 
       public string EventName() { return "onInitializeOverlay"; }
       public string userLocation;
       public Dictionary<string, string> localUserFiles;
+      public string language;
     }
   }
 }

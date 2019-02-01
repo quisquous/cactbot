@@ -1,35 +1,53 @@
+'use strict';
+
 // Frontlines: Shatter
 [{
   zoneRegex: /^The Fields Of Glory \(Shatter\)$/,
   triggers: [
     {
-      id: 'Big Ice',
+      id: 'Shatter Big Ice',
       regex: /The icebound tomelith A([1-4]) activates and begins to emit heat/,
-      alertText: function(data, matches) {
-        var big_ice_dir = {
-          '1': 'Center',
-          '2': 'North',
-          '3': 'Southeast',
-          '4': 'Southwest',
+      regexDe: /Vereister Echolith A([1-4]) activates and begins to emit heat/,
+      regexFr: /Mémolithe Congelé A([1-4]) activates and begins to emit heat/,
+      preRun: function(data, matches) {
+        data.iceDir = undefined;
+        let ice_lang = {
+          en: {
+            '1': 'Center',
+            '2': 'North',
+            '3': 'Southeast',
+            '4': 'Southwest',
+          },
+          de: {
+            '1': 'Mitte',
+            '2': 'Norden',
+            '3': 'Süden',
+            '4': 'Südwesten',
+          },
+          fr: {
+            '1': 'Milieu',
+            '2': 'Nord',
+            '3': 'Sud-Est',
+            '4': 'Sud-Ouest',
+          },
         };
 
+        let big_ice_dir = ice_lang['en'];
+        if (data.lang in ice_lang)
+          big_ice_dir = ice_lang[data.lang];
+
         if (!(matches[1] in big_ice_dir))
-          return '';
-        return 'Big Ice: ' + big_ice_dir[matches[1]];
+          return;
+
+        data.iceDir = {
+          en: 'Big Ice: ' + big_ice_dir[matches[1]],
+          de: 'Grosses Eis: ' + big_ice_dir[matches[1]],
+          fr: 'Grosse Glace :' + big_ice_dir[matches[1]],
+        };
       },
-      tts: function(data, matches) {
-        // TODO: figure out how to not duplicate this? or store func in data?
-        var big_ice_dir = {
-          '1': 'Center',
-          '2': 'North',
-          '3': 'Southeast',
-          '4': 'Southwest',
-        };
-
-        if (!(matches[1] in big_ice_dir))
-          return '';
-        return big_ice_dir[matches[1]] + ' big ice';
+      alertText: function(data) {
+        return data.iceDir;
       },
     },
   ],
-}]
+}];

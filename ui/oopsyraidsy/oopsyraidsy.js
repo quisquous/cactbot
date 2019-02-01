@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var Options = {
+let Options = {
   Language: 'en',
   NumLiveListItemsInCombat: 5,
   MinimumTimeForPullMistake: 0.4,
@@ -12,6 +12,8 @@ var Options = {
     'PvpSecure',
     'PvpShatter',
     'EurekaAnemos',
+    'EurekaPagos',
+    'EurekaPyros',
   ],
 
   AbilityIdNameMap: {
@@ -43,15 +45,82 @@ var Options = {
     '27FF': 'Attack',
     '28C1': 'Attack',
     '2B3E': 'Attack',
+
+    // uwu temp
+    '2B51': 'Attack',
+    '2B53': 'Slipstream',
+    '2B42': 'Mistral Song',
+    '2B41': 'Grand Whirlwind',
+    '2B50': 'Downburst',
+    '2B45': 'Cyclone',
+    '2B46': 'Gigaburst',
+    '2B4D': 'Feather Rain',
+    '2B54': 'Mistral Shriek',
+    '2B48': 'Friction',
+    '2BB5': 'Super Cyclone',
+    '2B47': 'Super Cyclone',
+    '2B55': 'Aerial Blast',
+    '2B4B': 'Mistral Song',
+    '2B52': 'Eye Of The Storm',
+    '2B4E': 'Wicked Wheel',
+    '2B4F': 'Wicked Tornado',
+    '2B5F': 'Crimson Cyclone',
+    '2B61': 'Radiant Plume',
+    '2B57': 'Vulcan Burst',
+    '2B56': 'Incinerate',
+    '2B49': 'Mesohigh',
+    '1CD': 'Nail Adds',
+    '2C19': 'Infernal Fetters',
+    '2B5A': 'Eruption',
+    '2B5B': 'Inferno Howl',
+    '2B5C': 'Searing Wind',
+    '2B5E': 'Hellfire',
+    '2B5D': 'Flaming Crush',
+    '2CFD': 'Geocrush',
+    '2B90': 'Earthen Fury',
+    '2B58': 'Infernal Surge',
+    '2B62': 'Rock Buster',
+    '2B63': 'Mountain Buster',
+    '2B64': 'Weight Of The Land',
+    '2B65': 'Weight Of The Land',
+    '2B66': 'Jump',
+    '2B67': 'Upheaval',
+    '2B68': 'Geocrush',
+    '2B69': 'Bury',
+    '2B6A': 'Detonation',
+    '2B6B': 'Rock Throw',
+    '2B6C': 'Rock Throw',
+    '2B6D': 'Granite Impact',
+    '2B6E': 'Freefire',
+    '2B6F': 'Landslide',
+    '2B70': 'Landslide',
+    '2B71': 'Landslide',
+    '2C18': 'Tumult',
   },
 };
 
+let kEarlyPullText = {
+  en: 'early pull',
+  de: 'zu früh angegriffen',
+  // FIXME
+  fr: 'early pull',
+  ja: 'early pull',
+};
+
+let kLatePullText = {
+  en: 'late pull',
+  de: 'zu spät angegriffen',
+  // FIXME
+  fr: 'late pull',
+  ja: 'late pull',
+};
+
 // Internal trigger id for early pull
-var kEarlyPullId = "General Early Pull";
+let kEarlyPullId = 'General Early Pull';
 
 // Character offsets into log lines for the chars of the type.
-var kTypeOffset0 = 15;
-var kTypeOffset1 = 16;
+let kTypeOffset0 = 15;
+let kTypeOffset1 = 16;
 
 /*
 Log Message Types (hex)
@@ -72,37 +141,39 @@ Log Message Types (hex)
 */
 
 // Fields for type=15/16 (decimal)
-var kFieldType = 0;
-var kFieldAttackerId = 1;
-var kFieldAttackerName = 2;
-var kFieldAbilityId = 3;
-var kFieldAbilityName = 4;
-var kFieldTargetId = 5;
-var kFieldTargetName = 6;
-var kFieldFlags = 7;
-var kFieldDamage = 8;
+let kFieldType = 0;
+let kFieldAttackerId = 1;
+let kFieldAttackerName = 2;
+let kFieldAbilityId = 3;
+let kFieldAbilityName = 4;
+let kFieldTargetId = 5;
+let kFieldTargetName = 6;
+let kFieldFlags = 7;
+let kFieldDamage = 8;
 // ??
-var kFieldTargetCurrentHp = 23;
-var kFieldTargetMaxHp = 24;
-var kFieldTargetCurrentMp = 25;
-var kFieldTargetMaxMp = 26;
-var kFieldTargetCurrentTp = 27;
-var kFieldTargetMaxTp = 28;
-var kFieldTargetX = 29;
-var kFieldTargetY = 30;
-var kFieldTargetZ = 31;
+let kFieldTargetCurrentHp = 23;
+let kFieldTargetMaxHp = 24;
+let kFieldTargetCurrentMp = 25;
+let kFieldTargetMaxMp = 26;
+let kFieldTargetCurrentTp = 27;
+let kFieldTargetMaxTp = 28;
+let kFieldTargetX = 29;
+let kFieldTargetY = 30;
+let kFieldTargetZ = 31;
 // ??
-var kFieldAttackerX = 38;
-var kFieldAttackerY = 39;
-var kFieldAttackerZ = 40;
+let kFieldAttackerX = 38;
+let kFieldAttackerY = 39;
+let kFieldAttackerZ = 40;
 
 // If kFieldFlags is any of these values, then consider field 9/10 as 7/8.
 // It appears a little bit that flags come in pairs of values, but it's unclear
 // what these mean.
-var kShiftFlagValues = ['3D', '113', '213', '313'];
-var kFlagInstantDeath = '33';
+let kShiftFlagValues = ['3E', '113', '213', '313'];
+let kFlagInstantDeath = '33';
 // miss, damage, block, parry, instant death
-var kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
+let kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
+
+/* eslint-disable max-len */
 
 /*
 Field 7 Flags:
@@ -136,7 +207,7 @@ Field 7 Flags:
     0x10004 = crit heal
 
   Special cases:
-    * If flags are 3D, shift 9+10 two over to be 7+8.  (why???)
+    * If flags are 3E, shift 9+10 two over to be 7+8.  (why???)
     * Plenary indulgence has flags=113/213/313 for stacks, shift two as well.
 
   Damage:
@@ -156,8 +227,8 @@ Examples:
 (2) 82538 damage from Hyperdrive (0x4000 extra damage mask)
   15:40024FBA:Kefka:28E8:Hyperdrive:106C1DBA:Okonomi Yaki:750003:426B4001:1C:28E88000:0:0:0:0:0:0:0:0:0:0:0:0:35811:62464:4560:4560:940:1000:-0.1586061:-5.753153:0:30098906:31559062:12000:12000:1000:1000:0.3508911:0.4425049:2.384186E-07:
 
-(3) 22109 damage from Grand Cross Omega (:3D:0: shift, unknown 0x40000 flag)
-  16:40001333:Neo Exdeath:242D:Grand Cross Omega:1048638C:Tater Tot:3D:0:750003:565D0000:1C:80242D:0:0:0:0:0:0:0:0:0:0:41241:41241:5160:5160:670:1000:-0.3251641:6.526299:1.192093E-07:7560944:17702272:12000:12000:1000:1000:0:19:2.384186E-07:
+(3) 22109 damage from Grand Cross Omega (:3E:0: shift, unknown 0x40000 flag)
+  16:40001333:Neo Exdeath:242D:Grand Cross Omega:1048638C:Tater Tot:3E:0:750003:565D0000:1C:80242D:0:0:0:0:0:0:0:0:0:0:41241:41241:5160:5160:670:1000:-0.3251641:6.526299:1.192093E-07:7560944:17702272:12000:12000:1000:1000:0:19:2.384186E-07:
 
 (4) 15732 crit heal from 3 confession stack Plenary Indulgence (:?13:4C3: shift)
   16:10647D2F:Tako Yaki:1D09:Plenary Indulgence:106DD019:Okonomi Yaki:313:4C3:10004:3D74:0:0:0:0:0:0:0:0:0:0:0:0:7124:40265:14400:9192:1000:1000:-10.78815:11.94781:0:11343:40029:19652:16451:1000:1000:6.336648:7.710004:0:
@@ -167,34 +238,37 @@ Examples:
 
 (6) zero damage targetless aoe (E0000000 target)
   16:103AAEE4:Potato Chippy:B1:Miasma II:E0000000::0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0::::::::::19400:40287:17649:17633:1000:1000:-0.656189:-3.799561:-5.960464E-08:
+
 */
 
-var gLiveList;
-var gMistakeCollector;
-var gDamageTracker;
+/* eslint-enable */
+
+let gLiveList;
+let gMistakeCollector;
+let gDamageTracker;
 
 function ShortNamify(name) {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
 
-  if (name in Options.PlayerNicks) {
+  if (name in Options.PlayerNicks)
     return Options.PlayerNicks[name];
-  }
-  var idx = name.indexOf(' ');
+
+  let idx = name.indexOf(' ');
   return idx < 0 ? name : name.substr(0, idx);
 }
 
 function DamageFromFields(fields) {
-  var field = fields[kFieldDamage];
-  var len = field.length;
+  let field = fields[kFieldDamage];
+  let len = field.length;
   if (len <= 4)
     return 0;
   // Get the left two bytes as damage.
-  var damage = parseInt(field.substr(0, len - 4), 16);
+  let damage = parseInt(field.substr(0, len - 4), 16);
   // Check for third byte == 0x40.
   if (field[len - 4] == '4') {
     // Wrap in the 4th byte as extra damage.  See notes above.
-    var rightDamage = parseInt(field.substr(len - 2, 2), 16);
+    let rightDamage = parseInt(field.substr(len - 2, 2), 16);
     damage = damage - rightDamage + (rightDamage << 16);
   }
   return damage;
@@ -240,27 +314,27 @@ class OopsyLiveList {
   }
 
   AddLine(iconClass, text, time) {
-    var maxItems = this.options.NumLiveListItemsInCombat;
+    let maxItems = this.options.NumLiveListItemsInCombat;
     if (maxItems == 0)
       return;
 
-    var rowDiv;
-    if (this.numItems < this.items.length) {
+    let rowDiv;
+    if (this.numItems < this.items.length)
       rowDiv = this.items[this.numItems];
-    } else {
+    else
       rowDiv = this.MakeRow();
-    }
+
     this.numItems++;
 
-    var iconDiv = document.createElement('div');
+    let iconDiv = document.createElement('div');
     iconDiv.classList.add('mistake-icon');
     iconDiv.classList.add(iconClass);
     rowDiv.appendChild(iconDiv);
-    var textDiv = document.createElement('div');
+    let textDiv = document.createElement('div');
     textDiv.classList.add('mistake-text');
     textDiv.innerHTML = text;
     rowDiv.appendChild(textDiv);
-    var timeDiv = document.createElement('div');
+    let timeDiv = document.createElement('div');
     timeDiv.classList.add('mistake-time');
     timeDiv.innerHTML = time;
     rowDiv.appendChild(timeDiv);
@@ -277,7 +351,7 @@ class OopsyLiveList {
   }
 
   MakeRow() {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.classList.add('mistake-row');
     this.items.push(div);
     this.container.appendChild(div);
@@ -285,17 +359,16 @@ class OopsyLiveList {
   }
 
   ShowAllItems() {
-    for (var i = 0; i < this.items.length; ++i) {
+    for (let i = 0; i < this.items.length; ++i)
       this.items[i].classList.remove('hide');
-    }
+
     this.scroller.scrollTop = this.scroller.scrollHeight;
   }
 
   HideOldItems() {
-    var maxItems = this.options.NumLiveListItemsInCombat;
-    for (var i = 0; i < this.items.length - maxItems; ++i) {
+    let maxItems = this.options.NumLiveListItemsInCombat;
+    for (let i = 0; i < this.items.length - maxItems; ++i)
       this.items[i].classList.add('hide');
-    }
   }
 
   Reset() {
@@ -312,8 +385,8 @@ class OopsyLiveList {
 class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
+    this.lang = this.options.Language || 'en';
     this.liveList = liveList;
-
     this.baseTime = null;
     this.inACTCombat = false;
     this.inGameCombat = false;
@@ -333,9 +406,9 @@ class MistakeCollector {
       return '';
     if (!time)
       time = Date.now();
-    var totalSeconds = Math.floor((time - this.baseTime) / 1000);
-    var seconds = totalSeconds % 60;
-    var minutes = Math.floor(totalSeconds / 60);
+    let totalSeconds = Math.floor((time - this.baseTime) / 1000);
+    let seconds = totalSeconds % 60;
+    let minutes = Math.floor(totalSeconds / 60);
     return minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
   }
 
@@ -353,8 +426,8 @@ class MistakeCollector {
     // Because damage comes before in combat (regardless of where engage
     // occurs), StartCombat has to be responsible for clearing the liveList
     // list.
-    var now = Date.now();
-    var kMinimumSecondsAfterWipe = 5;
+    let now = Date.now();
+    let kMinimumSecondsAfterWipe = 5;
     if (this.stopTime && now - this.stopTime < 1000 * kMinimumSecondsAfterWipe)
       return;
     this.startTime = now;
@@ -368,20 +441,27 @@ class MistakeCollector {
     this.engageTime = null;
   }
 
+  Translate(obj) {
+    if (obj !== Object(obj))
+      return obj;
+    if (this.lang in obj)
+      return obj[this.lang];
+    return obj['en'];
+  }
+
   OnMistakeObj(m) {
     if (!m)
       return;
-    if (m.fullText) {
-      this.OnFullMistakeText(m.type, m.blame, m.fullText);
-    } else {
-      this.OnMistakeText(m.type, m.name || m.blame, m.text);
-    }
+    if (m.fullText)
+      this.OnFullMistakeText(m.type, m.blame, this.Translate(m.fullText));
+    else
+      this.OnMistakeText(m.type, m.name || m.blame, this.Translate(m.text));
   }
 
   OnMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    var blameText = blame ? ShortNamify(blame) + ': ' : '';
+    let blameText = blame ? ShortNamify(blame) + ': ' : '';
     this.liveList.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
@@ -397,9 +477,9 @@ class MistakeCollector {
       this.StartCombat();
       return;
     }
-    var seconds = ((Date.now() - this.startTime) / 1000);
+    let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      var text = 'early pull (' + seconds.toFixed(1) + 's)';
+      let text = kEarlyPullText[this.lang] + ' (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -407,17 +487,17 @@ class MistakeCollector {
 
   AddDamage(fields, line) {
     if (!this.firstPuller) {
-      if (IsPlayerId(fields[kFieldAttackerId])) {
+      if (IsPlayerId(fields[kFieldAttackerId]))
         this.firstPuller = fields[kFieldAttackerName];
-      } else if (IsPlayerId(fields[kFieldTargetId])) {
+      else if (IsPlayerId(fields[kFieldTargetId]))
         this.firstPuller = fields[kFieldTargetName];
-      } else {
+      else
         this.firstPuller = '???';
-      }
+
       this.StartCombat();
-      var seconds = ((Date.now() - this.engageTime) / 1000);
+      let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
-        var text = 'late pull (' + seconds.toFixed(1) + 's)';
+        let text = kLatePullText[this.lang] + ' (' + seconds.toFixed(1) + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnMistakeText('pull', this.firstPuller, text);
       }
@@ -425,7 +505,8 @@ class MistakeCollector {
   }
 
   AddDeath(name, fields) {
-     if (fields) {
+    let text;
+    if (fields) {
       // Note: ACT just evaluates independently what the hp of everybody
       // is and so may be out of date modulo one hp regen tick with
       // respect to the "current" hp value, e.g. charybdis may appear to do
@@ -435,13 +516,13 @@ class MistakeCollector {
       // killed by 2+ things (e.g. 3x flares, or 2x Blizzard III).
 
       // hp string = (damage/hp at time of death)
-      var hp = '';
+      let hp = '';
       if (fields[kFieldFlags] == kFlagInstantDeath) {
         // TODO: show something for infinite damage?
       } else if (kFieldTargetCurrentHp in fields) {
         hp = ' (' + DamageFromFields(fields) + '/' + fields[kFieldTargetCurrentHp] + ')';
       }
-      var text = fields[kFieldAbilityName] + hp;
+      text = fields[kFieldAbilityName] + hp;
     }
     this.OnMistakeText('death', name, text);
 
@@ -471,18 +552,18 @@ class MistakeCollector {
     //     combat, and consider early pulls starting game combat early.  This
     //     allows for one long dungeon ACT encounter to have multiple early
     //     or late pulls.
-    var inGameCombat = e.detail.inGameCombat;
+    let inGameCombat = e.detail.inGameCombat;
     if (this.inGameCombat != inGameCombat) {
       this.inGameCombat = inGameCombat;
-      if (inGameCombat) {
+      if (inGameCombat)
         this.StartCombat();
-      } else {
+      else
         this.StopCombat();
-      }
+
       this.liveList.SetInCombat(this.inGameCombat);
     }
 
-    var inACTCombat = e.detail.inACTCombat;
+    let inACTCombat = e.detail.inACTCombat;
     if (this.inACTCombat != inACTCombat) {
       this.inACTCombat = inACTCombat;
       if (inACTCombat) {
@@ -524,14 +605,16 @@ class DamageTracker {
       job: this.job,
       role: this.role,
       inCombat: this.inCombat,
-      ParseLocaleFloat: Regexes.ParseLocaleFloat,
       ShortName: ShortNamify,
       IsPlayerId: IsPlayerId,
+
+      // Deprecated.
+      ParseLocaleFloat: parseFloat,
     };
     this.lastDamage = {};
     this.activeTriggers = {};
 
-    for (var i = 0; i < this.timers.length; ++i)
+    for (let i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];
   }
@@ -539,13 +622,13 @@ class DamageTracker {
   OnLogEvent(e) {
     if (this.ignoreZone)
       return;
-    for (var i = 0; i < e.detail.logs.length; ++i) {
-      var line = e.detail.logs[i];
-      for (var j = 0; j < this.generalTriggers.length; ++j) {
-        var trigger = this.generalTriggers[j];
-        var matches = line.match(trigger.regex);
+    for (let i = 0; i < e.detail.logs.length; ++i) {
+      let line = e.detail.logs[i];
+      for (let j = 0; j < this.generalTriggers.length; ++j) {
+        let trigger = this.generalTriggers[j];
+        let matches = line.match(trigger.regex);
         if (matches != null)
-          this.OnTrigger(trigger, {line: line}, matches);
+          this.OnTrigger(trigger, { line: line }, matches);
       }
 
       if (line[kTypeOffset0] == '0' && line[kTypeOffset1] == '0') {
@@ -573,14 +656,14 @@ class DamageTracker {
 
   OnDefeated(line) {
     // two chars for type + colon
-    var offset = kTypeOffset0 + 3;
-    var defeatedIdx = line.indexOf(' was defeated');
+    let offset = kTypeOffset0 + 3;
+    let defeatedIdx = line.indexOf(' was defeated');
     if (defeatedIdx == -1) {
       console.error(['OnDefeatedParseError', line]);
       return;
     }
-    var name = line.substr(offset, defeatedIdx - offset);
-    var fields = this.lastDamage[name];
+    let name = line.substr(offset, defeatedIdx - offset);
+    let fields = this.lastDamage[name];
     delete this.lastDamage[name];
     // Monsters get defeated as well, but they will never
     // have lastDamage marked for them.  It's possible that
@@ -594,7 +677,7 @@ class DamageTracker {
   }
 
   OnAbilityEvent(fields, line) {
-    // Shift damage and flags forward for mysterious spurious :3D:0:.
+    // Shift damage and flags forward for mysterious spurious :3E:0:.
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
     if (kShiftFlagValues.indexOf(fields[kFieldFlags]) >= 0) {
@@ -603,16 +686,16 @@ class DamageTracker {
     }
 
     // Clobber ability names here.
-    var abilityId = fields[kFieldAbilityId];
-    if (abilityId in this.options.AbilityIdNameMap) {
+    let abilityId = fields[kFieldAbilityId];
+    if (abilityId in this.options.AbilityIdNameMap)
       fields[kFieldAbilityName] = this.options.AbilityIdNameMap[abilityId];
-    }
+
 
     // Lazy initialize event.
-    var evt;
-    for (var i = 0; i < this.abilityTriggers.length; ++i) {
-      var trigger = this.abilityTriggers[i];
-      var matches = abilityId.match(trigger.idRegex);
+    let evt;
+    for (let i = 0; i < this.abilityTriggers.length; ++i) {
+      let trigger = this.abilityTriggers[i];
+      let matches = abilityId.match(trigger.idRegex);
       if (matches == null)
         continue;
       if (!evt)
@@ -620,13 +703,13 @@ class DamageTracker {
       this.OnTrigger(trigger, evt, matches);
     }
 
-    var lowByte = fields[kFieldFlags].substr(-2);
+    let lowByte = fields[kFieldFlags].substr(-2);
 
     // Healing?
     if (lowByte == '04') {
-      for (var i = 0; i < this.healTriggers.length; ++i) {
-        var trigger = this.healTriggers[i];
-        var matches = abilityId.match(trigger.idRegex);
+      for (let i = 0; i < this.healTriggers.length; ++i) {
+        let trigger = this.healTriggers[i];
+        let matches = abilityId.match(trigger.idRegex);
         if (matches == null)
           continue;
         if (!evt)
@@ -646,9 +729,9 @@ class DamageTracker {
     if (IsPlayerId(fields[kFieldTargetId][0]))
       this.lastDamage[fields[kFieldTargetName]] = fields;
 
-    for (var i = 0; i < this.damageTriggers.length; ++i) {
-      var trigger = this.damageTriggers[i];
-      var matches = abilityId.match(trigger.idRegex);
+    for (let i = 0; i < this.damageTriggers.length; ++i) {
+      let trigger = this.damageTriggers[i];
+      let matches = abilityId.match(trigger.idRegex);
       if (matches == null)
         continue;
       if (!evt)
@@ -658,10 +741,10 @@ class DamageTracker {
   }
 
   OnEffectEvent(line) {
-    var evt;
-    for (var i = 0; i < this.effectTriggers.length; ++i) {
-      var trigger = this.effectTriggers[i];
-      var matches;
+    let evt;
+    for (let i = 0; i < this.effectTriggers.length; ++i) {
+      let trigger = this.effectTriggers[i];
+      let matches;
       if (trigger.gainRegex)
         matches = line.match(trigger.gainRegex);
       if (!matches && trigger.loseRegex)
@@ -674,7 +757,7 @@ class DamageTracker {
           effectName: matches[2],
           attackerName: matches[3],
           gains: !!matches[4],
-          durationSeconds: matches[4] ? Regexes.ParseLocaleFloat(matches[4]) : undefined,
+          durationSeconds: matches[4] ? parseFloat(matches[4]) : undefined,
         };
       }
       this.OnTrigger(trigger, evt, null);
@@ -682,7 +765,7 @@ class DamageTracker {
   }
 
   EventFromFields(fields, line) {
-    var evt = {
+    let evt = {
       line: line,
       type: fields[kFieldType],
       attackerId: fields[kFieldAttackerId],
@@ -706,8 +789,8 @@ class DamageTracker {
       attackerZ: fields[kFieldAttackerZ],
     };
     evt.damage = DamageFromFields(fields);
-    var isCrit = IsCritDamage(evt.flags);
-    var exclamation = isCrit ? '!' : '';
+    let isCrit = IsCritDamage(evt.flags);
+    let exclamation = isCrit ? '!' : '';
     // DH on its own doesn't get an exclamation.
     exclamation += isCrit && IsDirectHitDamage(evt.flags) ? '!' : '';
     exclamation += IsCritHeal(evt.flags) ? '!' : '';
@@ -718,7 +801,7 @@ class DamageTracker {
   AddImpliedDeathReason(obj) {
     if (!obj)
       return;
-    var fields = {};
+    let fields = {};
     fields[kFieldTargetName] = obj.name;
     fields[kFieldAbilityName] = obj.reason;
     fields[kFieldFlags] = kFlagInstantDeath;
@@ -735,39 +818,39 @@ class DamageTracker {
         return;
     }
 
-    var ValueOrFunction = (function(f, events) {
+    let ValueOrFunction = (f, events) => {
       return (typeof(f) == 'function') ? f(events, this.data, matches) : f;
-    }).bind(this);
+    };
 
-    var collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
-    var collectMultipleEvents = 'collectSeconds' in trigger;
+    let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
+    let collectMultipleEvents = 'collectSeconds' in trigger;
     if (collectMultipleEvents && trigger in this.activeTriggers) {
       this.activeTriggers[trigger].push(evt);
       return;
     }
-    var delay;
-    if (collectMultipleEvents) {
+    let delay;
+    if (collectMultipleEvents)
       delay = collectSeconds || 0;
-    } else {
+    else
       delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt) : 0;
-    }
 
-    var triggerTime = Date.now();
-    var f = (function() {
-      var eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger] : evt;
+
+    let triggerTime = Date.now();
+    let f = (function() {
+      let eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger] : evt;
       delete this.activeTriggers[trigger];
       if ('mistake' in trigger) {
-        var m = ValueOrFunction(trigger.mistake, eventOrEvents);
+        let m = ValueOrFunction(trigger.mistake, eventOrEvents);
         if (Array.isArray(m)) {
-          for (var i = 0; i < m.length; ++i) {
+          for (let i = 0; i < m.length; ++i)
             this.collector.OnMistakeObj(m[i]);
-          }
         } else {
-            this.collector.OnMistakeObj(m);
+          this.collector.OnMistakeObj(m);
         }
       }
       if ('deathReason' in trigger) {
-        var ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
+        let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
+        ret.reason = this.Translate(ret.reason);
         this.AddImpliedDeathReason(ret);
       }
       if ('run' in trigger)
@@ -779,11 +862,10 @@ class DamageTracker {
     if (collectMultipleEvents)
       this.activeTriggers[trigger] = [evt];
 
-    if (!delay) {
+    if (!delay)
       f();
-    } else {
+    else
       this.timers.push(window.setTimeout(f, delay * 1000));
-    }
   }
 
   OnPartyWipeEvent(e) {
@@ -819,19 +901,19 @@ class DamageTracker {
     this.healTriggers = [];
 
     this.ignoreZone = false;
-    for (var i = 0; i < Options.IgnoreZones.length; ++i) {
+    for (let i = 0; i < Options.IgnoreZones.length; ++i) {
       if (this.zoneName.match(gLang.kZone[Options.IgnoreZones[i]])) {
         this.ignoreZone = true;
         return;
       }
     }
 
-    for (var i = 0; i < this.triggerSets.length; ++i) {
-      var set = this.triggerSets[i];
+    for (let i = 0; i < this.triggerSets.length; ++i) {
+      let set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) < 0)
         continue;
-      for (var j = 0; j < set.triggers.length; ++j) {
-        var trigger = set.triggers[j];
+      for (let j = 0; j < set.triggers.length; ++j) {
+        let trigger = set.triggers[j];
         if ('regex' in trigger) {
           trigger.regex = Regexes.Parse(trigger.regex);
           this.generalTriggers.push(trigger);
@@ -860,32 +942,13 @@ class DamageTracker {
     }
   }
 
-  // TODO: copypasta from popup-text.js.  Maybe could be shared?
   OnPlayerChange(e) {
     if (this.job == e.detail.job && this.me == e.detail.name)
       return;
 
     this.me = e.detail.name;
     this.job = e.detail.job;
-    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLD)$/) >= 0)
-      this.role = 'tank';
-    else if (this.job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0)
-      this.role = 'healer';
-    else if (this.job.search(/^(MNK|NIN|DRG|SAM|ROG|LNC|PUG)$/) >= 0)
-      this.role = 'dps-melee';
-    else if (this.job.search(/^(BLM|SMN|RDM|THM|ACN)$/) >= 0)
-      this.role = 'dps-caster';
-    else if (this.job.search(/^(BRD|MCH|ARC)$/) >= 0)
-      this.role = 'dps-ranged';
-    else if (this.job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0)
-      this.role = 'crafting';
-    else if (this.job.search(/^(MIN|BOT|FSH)$/) >= 0)
-      this.role = 'gathering';
-    else {
-      this.role = '';
-      console.log("Unknown job role")
-    }
-
+    this.role = Util.jobToRole(this.job);
     this.ReloadTriggers();
   }
 
@@ -903,20 +966,20 @@ class DamageTracker {
       return;
 
     this.triggerSets = Options.Triggers;
-    for (var filename in this.dataFiles) {
-      var text = this.dataFiles[filename];
-      var json;
+    for (let filename in this.dataFiles) {
+      let text = this.dataFiles[filename];
+      let json;
       try {
         json = eval(text);
       } catch (exception) {
         console.error('Error parsing JSON from ' + filename + ': ' + exception);
         continue;
       }
-      if (typeof json != "object" || !(json.length >= 0)) {
+      if (typeof json != 'object' || !(json.length >= 0)) {
         console.error('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      for (var i = 0; i < json.length; ++i) {
+      for (let i = 0; i < json.length; ++i) {
         if (!('zoneRegex' in json[i])) {
           console.error('Unexpected JSON from ' + filename + ', expected a zoneRegex');
           continue;
@@ -936,24 +999,24 @@ class DamageTracker {
   }
 }
 
-document.addEventListener("onLogEvent", function(e) {
+document.addEventListener('onLogEvent', function(e) {
   gDamageTracker.OnLogEvent(e);
 });
-document.addEventListener("onPartyWipe", function(e) {
+document.addEventListener('onPartyWipe', function(e) {
   gDamageTracker.OnPartyWipeEvent(e);
 });
-document.addEventListener("onZoneChangedEvent", function(e) {
+document.addEventListener('onZoneChangedEvent', function(e) {
   gDamageTracker.OnZoneChangeEvent(e);
   gMistakeCollector.OnZoneChangeEvent(e);
 });
-document.addEventListener("onInCombatChangedEvent", function (e) {
+document.addEventListener('onInCombatChangedEvent', function(e) {
   gDamageTracker.OnInCombatChangedEvent(e);
   gMistakeCollector.OnInCombatChangedEvent(e);
 });
-document.addEventListener("onDataFilesRead", function(e) {
+document.addEventListener('onDataFilesRead', function(e) {
   gDamageTracker.OnDataFilesRead(e);
 });
-document.addEventListener("onPlayerChangedEvent", function(e) {
+document.addEventListener('onPlayerChangedEvent', function(e) {
   gDamageTracker.OnPlayerChange(e);
 });
 

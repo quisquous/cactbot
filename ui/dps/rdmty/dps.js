@@ -5,7 +5,11 @@ var IMAGE_PATH = '../../../resources/icon';
 var EncountersArray = [];
 
 var React = window.React;
-
+var parseHealing = function(healing, percent) {
+	var max_pct = 100;
+	percent = parseInt(percent.replace('%', ''));
+	return formatNumber(healing * (max_pct - percent) / max_pct);
+};
 var formatNumber = function(number)  {
     number = parseFloat(number, 10);
 
@@ -269,7 +273,6 @@ var ____Class3=React.Component;for(var ____Class3____Key in ____Class3){if(____C
         for (var i = 0; i < names.length; i++) {
             combatant = isDataArray ? this.props.data[i] : this.props.data[names[i]];
             stats = null;
-
             isSelf = combatant.name === 'YOU' || combatant.name === 'You';
 
             if (combatant.Job !== "") {
@@ -284,7 +287,7 @@ var ____Class3=React.Component;for(var ____Class3____Key in ____Class3){if(____C
                             characterName: combatant.name,
                             total: combatant.healed,
                             totalFormatted: formatNumber(combatant.healed),
-                            perSecond: formatNumber(combatant.enchps),
+                            perSecond: parseHealing(combatant.enchps, combatant['OverHealPct']),
                             additional: combatant['OverHealPct'],
                             percentage: combatant['healed%']
                         }

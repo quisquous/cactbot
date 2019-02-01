@@ -1,0 +1,102 @@
+{
+  "name": "cactbot",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quisquous/cactbot"
+  },
+  "scripts": {
+    "lint": "node_modules/.bin/eslint resources ui user test",
+    "lintfix": "node_modules/.bin/eslint --fix resources ui user test",
+    "test": "python test/run_tests.py"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "extends": "google",
+    "rules": {
+      "no-else-return": 2,
+      "curly": [
+        "error",
+        "multi-or-nest",
+        "consistent"
+      ],
+      "max-len": [
+        2,
+        {
+          "code": 100,
+          "tabWidth": 2,
+          "ignoreUrls": true,
+          "ignoreRegExpLiterals": true,
+          "ignoreStrings": true,
+          "ignoreTemplateLiterals": true
+        }
+      ],
+      "indent": [
+        "error",
+        2,
+        {
+          "ArrayExpression": 1,
+          "ObjectExpression": 1,
+          "ignoreComments": false,
+          "FunctionDeclaration": {
+            "parameters": 2
+          },
+          "FunctionExpression": {
+            "parameters": 2
+          },
+          "CallExpression": {
+            "arguments": 2
+          }
+        }
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "object-curly-spacing": [
+        2,
+        "always"
+      ],
+      "require-jsdoc": 0,
+      "no-unused-vars": 0,
+      "operator-linebreak": 2,
+      "linebreak-style": [
+        "error",
+        "windows"
+      ],
+      "strict": [
+        "error",
+        "global"
+      ],
+      "prefer-rest-params": 0,
+      "unicode-bom": [
+        2,
+        "never"
+      ],
+      "new-cap": [
+        "error",
+        {
+          "newIsCap": false,
+          "capIsNew": false,
+          "properties": false
+        }
+      ],
+      "camelcase": 0,
+      "guard-for-in": 0,
+      "space-in-parens": [
+        "error",
+        "never"
+      ]
+    }
+  }
+}

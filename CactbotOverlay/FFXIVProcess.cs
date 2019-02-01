@@ -16,6 +16,7 @@ namespace Cactbot {
     private IntPtr focus_ptr_addr_ = IntPtr.Zero;
     private IntPtr job_data_outer_addr_ = IntPtr.Zero;
     private IntPtr in_combat_addr_ = IntPtr.Zero;
+    private IntPtr bait_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
     // refer to as the charmap. The pointer is at the end of the signature.
@@ -27,10 +28,9 @@ namespace Cactbot {
     //
     // CharmapStruct* outer;  // The pointer found from the signature.
     // CharmapStruct {
-    //   0x10 bytes...
     //   EntityStruct* player;
     // }
-    private static int kCharmapStructOffsetPlayer = 0x08;
+    private static int kCharmapStructOffsetPlayer = 0;
 
     // A piece of code that reads the pointer to the target entity structure.
     // The pointer is the second ???????? in the signature. At address
@@ -60,6 +60,12 @@ namespace Cactbot {
     private static int kInCombatOffsetOffset = 5;
     private static bool kInCombatOffsetRIP = false;
 
+    // Bait integer.
+    // Variable is accessed via a cmp eax,[...] line at offset=0.
+    private static String kBaitSignature = "4883C4305BC3498BC8E8????????3B05";
+    private static int kBaitBaseOffset = 0;
+    private static bool kBaitBaseRIP = true;
+
     // Values found in the EntityStruct's type field.
     public enum EntityType {
       None = 0,
@@ -72,10 +78,11 @@ namespace Cactbot {
       Minion = 9,
       Mailbox = 12,
     };
+
     // Values found in the EntityStruct's job field.
     public enum EntityJob {
       None = 0,
-      GLD = 1,
+      GLA = 1,
       PGL = 2,
       MRD = 3,
       LNC = 4,
@@ -110,6 +117,7 @@ namespace Cactbot {
       AST = 33,
       SAM = 34,
       RDM = 35,
+      BLU = 36,
     };
 
     // EntityStruct {
@@ -126,7 +134,7 @@ namespace Cactbot {
     //   0xA4 bytes in: float32 pos_z;
     //   0xA8 bytes in: float32 pos_y;
     //   ...
-    //   0x16B8 bytes in:
+    //   0x1700 bytes in:
     //     0x000 bytes in: int32 hp;
     //     0x004 bytes in: int32 maxhp;
     //     0x008 bytes in: int32 mp;
@@ -139,45 +147,34 @@ namespace Cactbot {
     //     ...
     //     0x036 bytes in: EntityJob job;  // 1 byte.
     //     ...
-    //     0x038 bytes in: int16 level;
-    //     ...
-    //     0x22C bytes in: int casting_spell_id;  // 4 bytes (maybe 2?)
-    //     ...
-    //     0x25C bytes in: float32 casting_spell_time_spent;  // 4 bytes
-    //     0x260 bytes in: float32 casting_spell_length;      // 4 bytes
+    //     0x038 bytes in: int8 level;
     // }
-    private static int kEntityStructureSize = 0x16B8 + 0x260 + 4;
+  
+    // Base offset for the character details below.
+    private static int kEntityStructureOffsetCharacterDetails = 0x1758;
+
+    private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
     private static int kEntityStructureSizeName = 0x44;
     private static int kEntityStructureOffsetName = 0x30;
     private static int kEntityStructureOffsetId = 0x74;
     private static int kEntityStructureOffsetType = 0x8C;
     private static int kEntityStructureOffsetDistance = 0x92;
     private static int kEntityStructureOffsetPos = 0xA0;
-    // Base offset for the things below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x16B8;
+
+    // Character details.
     private static int kEntityStructureOffsetHpMpTp = 0x0;
     private static int kEntityStructureOffsetGpCp = 0x12;
-    private static int kEntityStructureOffsetJob = 0x36;
-    private static int kEntityStructureOffsetLevel = 0x38;
-    private static int kEntityStructureOffsetCastingId = 0x22C;
-    private static int kEntityStructureOffsetCastingTimeProgress = 0x25C;
+    private static int kEntityStructureOffsetJob = 0x38;
+    private static int kEntityStructureOffsetLevel = 0x3A;
 
-    // A piece of code that reads the white and black mana. At address ffxiv_dx11.exe+3ADB90
-    // in July 7, 2017 update. The lines that actually read are:
-    //   movzx r8d,byte ptr[rbx+09]  // Black
-    //   movzx r8d,byte ptr[rbx+08]  // White
+    // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.
-    private static String kRedMageManaSignature = "488B0D????????4885C974B8488B05";
-    private static int kRedMageManaSignatureOffset = -12;
-    // The signature finds a pointer in the executable code which uses RIP addressing.
-    private static bool kRedMageManaSignatureRIP = true;
-
-    // For reference, the warrior job points to the same structure at this signature.
-    // ffxiv_dx11.exe+77B600: mov rcx,[???]
-    // ffxiv_dx11.exe+77B61B: mov ebx, [rcx+08]
-    // private static String kWarriorSignature = "488B0D????????4885C974B8488B05";
     // TODO: If need more signature, prepend "B83C020000E9????????"
     // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
+    private static String kJobDataSignature = "488B0D????????4885C974B8488B05";
+    private static int kJobDataSignatureOffset = -12;
+    // The signature finds a pointer in the executable code which uses RIP addressing.
+    private static bool kJobDataSignatureRIP = true;
 
     // The op before the pointer wildcard in the signature reads a pointer-to-a-pointer
     // to the job-specific data structure. We call it |outer| below:
@@ -257,6 +254,10 @@ namespace Cactbot {
     //          // e.g. lady drawn and expanded royal road = 0x38
     //          0xD bytes in: uchar royal_road_arcanum_cards;
     //        }
+    //        struct Samurai {
+    //          0x8 bytes in: byte kenki;
+    //          0x9 bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
+    //        }
     //      }
     //   }
     // }
@@ -307,9 +308,9 @@ namespace Cactbot {
             focus_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetFocus);
           }
 
-          p = SigScan(kRedMageManaSignature, kRedMageManaSignatureOffset, kRedMageManaSignatureRIP);
+          p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
           if (p.Count != 1) {
-            logger_.LogError("RedMage signature found " + p.Count + " matches");
+            logger_.LogError("Job signature found " + p.Count + " matches");
           } else {
             job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
           }
@@ -328,6 +329,13 @@ namespace Cactbot {
               int offset = (int)(((UInt64)p[0]) & 0xFFFFFFFF);
               in_combat_addr_ = IntPtr.Add(baseAddress, offset);
             }
+          }
+
+          p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
+          if (p.Count != 1) {
+            logger_.LogError("Bait signature found " + p.Count + " matches");
+          } else {
+            bait_addr_ = p[0];
           }
         }
       }
@@ -362,6 +370,7 @@ namespace Cactbot {
       public float pos_x = 0;
       public float pos_y = 0;
       public float pos_z = 0;
+      public int bait = 0;
       public int hp = 0;
       public int max_hp = 0;
       public int mp = 0;
@@ -388,6 +397,7 @@ namespace Cactbot {
         hash = hash * 31 + pos_x.GetHashCode();
         hash = hash * 31 + pos_y.GetHashCode();
         hash = hash * 31 + pos_z.GetHashCode();
+        hash = hash * 31 + bait.GetHashCode();
         hash = hash * 31 + hp.GetHashCode();
         hash = hash * 31 + max_hp.GetHashCode();
         hash = hash * 31 + mp.GetHashCode();
@@ -416,6 +426,7 @@ namespace Cactbot {
           a.pos_x == b.pos_x &&
           a.pos_y == b.pos_y &&
           a.pos_z == b.pos_z &&
+          a.bait == b.bait &&
           a.hp == b.hp &&
           a.max_hp == b.max_hp &&
           a.mp == b.mp &&
@@ -435,19 +446,17 @@ namespace Cactbot {
       }
     }
 
-    public class SpellCastingData {
-      public int casting_id = 0;
-      public float casting_time_progress = 0;
-      public float casting_time_length = 0;
+    private int GetBait() {
+      short[] jorts = Read16(bait_addr_, 1);
+      return jorts[0];
     }
 
-    private Tuple<EntityData, SpellCastingData> GetEntityData(IntPtr entity_ptr) {
+    private EntityData GetEntityData(IntPtr entity_ptr) {
       byte[] bytes = Read8(entity_ptr, kEntityStructureSize);
       if (bytes == null)
         return null;
 
       EntityData data = new EntityData();
-      SpellCastingData casting_data = null;
 
       int name_length = kEntityStructureSizeName;
       for (int i = 0; i < kEntityStructureSizeName; ++i) {
@@ -475,7 +484,7 @@ namespace Cactbot {
         data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 4);
         data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 6);
         data.job = (EntityJob)bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetJob];
-        data.level = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel);
+        data.level = bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel];
 
         byte[] job_bytes = GetJobSpecificData();
         data.debugJob = "";
@@ -488,27 +497,25 @@ namespace Cactbot {
             data.debugJob += string.Format("{0:x2}", job_bytes[i]);
           }
         }
-
-        casting_data = new SpellCastingData();
-        casting_data.casting_id = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingId);
-        casting_data.casting_time_progress = BitConverter.ToSingle(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingTimeProgress);
-        casting_data.casting_time_length = BitConverter.ToSingle(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetCastingTimeProgress + 4);
       }
 
-      return Tuple.Create(data, casting_data);
+      return data;
     }
 
-    public Tuple<EntityData, SpellCastingData> GetSelfData() {
+    public EntityData GetSelfData() {
       if (!HasProcess() || player_ptr_addr_ == IntPtr.Zero)
         return null;
 
       IntPtr entity_ptr = ReadIntPtr(player_ptr_addr_);
       if (entity_ptr == IntPtr.Zero)
         return null;
-      return GetEntityData(entity_ptr);
+      var data = GetEntityData(entity_ptr);
+      if (data.job == EntityJob.FSH)
+        data.bait = GetBait();
+      return data;
     }
 
-    public Tuple<EntityData, SpellCastingData> GetTargetData() {
+    public EntityData GetTargetData() {
       if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
         return null;
 
@@ -518,7 +525,7 @@ namespace Cactbot {
       return GetEntityData(entity_ptr);
     }
 
-    public Tuple<EntityData, SpellCastingData> GetFocusData() {
+    public EntityData GetFocusData() {
       if (!HasProcess() || focus_ptr_addr_ == IntPtr.Zero)
         return null;
 
@@ -1015,6 +1022,45 @@ namespace Cactbot {
       j.spread_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] >> 4 & 0xF;
       j.road_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 5] >> 4 & 0xF;
       j.arcanum_card = bytes[kJobDataInnerStructOffsetJobSpecificData + 5] & 0xF;
+      return j;
+    }
+
+    public class SamuraiJobData {
+      public int kenki = 0;
+      public bool setsu = false;
+      public bool gekko = false;
+      public bool ka = false;
+
+      public override bool Equals(object obj) {
+        var o = obj as SamuraiJobData;
+        return o != null &&
+          kenki != o.kenki &&
+          setsu != o.setsu &&
+          gekko != o.gekko &&
+          ka != o.ka;
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 31 + kenki.GetHashCode();
+        hash = hash * 31 + setsu.GetHashCode();
+        hash = hash * 31 + gekko.GetHashCode();
+        hash = hash * 31 + ka.GetHashCode();
+        return hash;
+      }
+    }
+
+    public SamuraiJobData GetSamurai() {
+      byte[] bytes = GetJobSpecificData();
+      if (bytes == null)
+        return null;
+
+      var j = new SamuraiJobData();
+      j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 1];
+      j.setsu = (sen & 0x1) != 0;
+      j.gekko = (sen & 0x2) != 0;
+      j.ka = (sen & 0x4) != 0;
       return j;
     }
 

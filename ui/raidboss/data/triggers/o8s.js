@@ -1,3 +1,5 @@
+'use strict';
+
 // O8S - Sigmascape 4.0 Savage
 // localization:
 //   de: partial timeline, partial triggers
@@ -10,155 +12,181 @@
     {
       id: 'O8S Shockwave',
       regex: / 14:28DB:Graven Image starts using Shockwave/,
-      regexDe: / 14:28DB:Göttliche Statue starts using Schockwelle/,
+      regexDe: / 14:28DB:Helige Statue starts using Schockwelle/,
       regexFr: / 14:28DB:Statue Divine starts using Onde De Choc/,
       regexJa: / 14:28DB:神々の像 starts using 衝撃波/,
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
-        fr: 'Se préparer à la projection',
+        fr: 'Préparez-vous à la projection',
+        de: 'Auf Rückstoß achten',
       },
       tts: {
         en: 'knockback',
-        fr: 'Projection depuis le boss',
+        fr: 'Projection',
+        de: 'Rückstoß',
       },
     },
     {
       id: 'O8S Indolent Will',
       regex: /Graven Image starts using Indolent Will/,
-      regexDe: /Göttliche Statue starts using Träger Wille/,
+      regexDe: /Helige Statue starts using Träger Wille/,
       regexFr: /Statue Divine starts using Volonté Indolente/,
       regexJa: /神々の像 starts using 惰眠の神気/,
       alertText: {
         en: 'Look Away From Statue',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
+        de: 'Von Statue wegschauen',
       },
       tts: {
         en: 'look away',
-        fr: 'Ne pas regarder la statue',
+        fr: 'Ne regardez pas la statue',
+        de: 'weckschauen',
       },
     },
     {
       id: 'O8S Intemperate Will',
       regex: /14:28DF:Graven Image starts using Intemperate Will/,
-      regexDe: /14:28DF:Göttliche Statue starts using Unmäßiger Wille/,
+      regexDe: /14:28DF:Helige Statue starts using Unmäßiger Wille/,
       regexFr: /14:28DF:Statue Divine starts using Volonté Intempérante/,
       regexJa: /14:28DF:神々の像 starts using 撲殺の神気/,
       alertText: {
         en: '<= Get Left/West',
-        fr: '<= Aller à Gauche/Ouest',
+        fr: '<= Allez à Gauche/Ouest',
+        de: '<= Nach Links/Westen',
       },
       tts: {
         en: 'left',
-        fr: 'Projection depuis le côté gauche',
+        fr: 'gauche',
+        de: 'links',
       },
     },
     {
       id: 'O8S Gravitational Wave',
       regex: /14:28DE:Graven Image starts using Gravitational Wave/,
-      regexDe: /14:28DE:Göttliche Statue starts using Gravitationswelle/,
+      regexDe: /14:28DE:Helige Statue starts using Gravitationswelle/,
       regexFr: /14:28DE:Statue Divine starts using Onde Gravitationnelle/,
       regexJa: /14:28DE:神々の像 starts using 重力波/,
       alertText: {
         en: 'Get Right/East =>',
-        fr: 'Aller à Droite/Est =>',
+        fr: 'Allez à Droite/Est =>',
+        de: 'Nach Rechts/Westen =>',
       },
       tts: {
         en: 'right',
         fr: 'Projection depuis le côté droit',
+        de: 'rechts',
       },
     },
     {
       id: 'O8S Ave Maria',
       regex: / 14:28E3:Graven Image starts using Ave Maria/,
-      regexDe: / 14:28E3:Göttliche Statue starts using Ave Maria/,
+      regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
       regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
       regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
       alertText: {
         en: 'Look At Statue',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
+        de: 'Statue anschauen',
       },
       tts: {
         en: 'look towards',
-        fr: 'Regarder la statue',
+        fr: 'Regardez la statue',
+        de: 'anschauen',
       },
     },
     {
       id: 'O8S Pasts Forgotten',
       regex: /Kefka starts using Pasts Forgotten/,
-      regexDe: /Kefka starts using Ende Des Schlummers/,
+      regexDe: /Kefka starts using Vernichtung Der Vergangenheit/,
       regexFr: /Kefka starts using Ruine Du Passé/,
       regexJa: /ケフカ starts using 過去の破滅/,
       alertText: {
         en: 'Past: Stack and Stay',
-        fr: 'Passé : Stack et rester-là',
+        fr: 'Passé : Stack et ne bougez plus',
+        de: 'Vergangenheit: Sammeln und Stehenbleiben',
       },
       tts: {
         en: 'stack and stay',
         fr: 'Stack et rester-là',
+        de: 'Stek und Stehenbleiben',
       },
     },
     {
       id: 'O8S Futures Numbered',
       regex: /Kefka starts using Futures Numbered/,
-      regexDe: /Kefka starts using Ende Des Lebens/,
+      regexDe: /Kefka starts using Vernichtung Der Zukunft/,
       regexFr: /Kefka starts using Ruine Du Futur/,
       regexJa: /ケフカ starts using 未来の破滅/,
       alertText: {
         en: 'Future: Stack and Through',
-        fr: 'Futur : Stack et le traverser',
+        fr: 'Futur : Stack et traversez',
+        de: 'Zukunft: Sammeln und Durchlaufen',
       },
       tts: {
         en: 'stack and through',
-        fr: 'Stack et le traverser',
+        fr: 'Stack et traversez',
+        de: 'Stek und durchlaufen',
       },
     },
     {
-      id: "O8S Past's End",
+      id: 'O8S Past\'s End',
       regex: /Kefka starts using Past's End/,
-      regexDe: /Kefka starts using Past's End/,
-      regexFr: /Kefka starts using Past's End/,
-      regexJa: /ケフカ starts using Past's End/,
-      condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
+      regexDe: /Kefka starts using Ende Der Vergangenheit/,
+      regexFr: /Kefka starts using Fin Du Passé/,
+      regexJa: /ケフカ starts using 過去の終焉/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
       alertText: {
         en: 'Past: Bait, then through',
-        fr: "Passé : l'appâter, puis le traverser",
+        fr: 'Passé : appâtez puis traversez',
+        de: 'Vergangenheit : Anlocken und Durchlaufen',
       },
       tts: {
         en: 'run run run',
-        fr: "L'appâter, puis le traverser",
+        fr: 'appâtez puis traversez',
+        de: 'Durchlaufen',
       },
     },
     {
-      id: "O8S Future's End",
+      id: 'O8S Future\'s End',
       regex: /Kefka starts using Future's End/,
-      regexDe: /Kefka starts using Ende Der Hoffnung/,
+      regexDe: /Kefka starts using Ende Der Zukunft/,
       regexFr: /Kefka starts using Fin Du Futur/,
       regexJa: /ケフカ starts using 未来の終焉/,
-      condition: function(data) { return data.role == 'tank' || data.role == 'healer'; },
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
       alertText: {
         en: 'Future: Bait, then stay',
-        fr: "Futur : l'appâter, et rester",
+        fr: 'Futur : appâtez et ne bougez plus',
+        de: 'Zukunft: Anlocken und Stehenbleiben',
       },
       tts: {
         en: 'stay stay stay',
-        fr: "L'appâter, et rester",
+        fr: 'appâtez et stop',
+        de: 'Stehenbleiben',
       },
     },
     {
       id: 'O8S Pulse Wave You',
       regex: /Graven Image starts using Pulse Wave on (\y{Name})/,
-      regexDe: /Göttliche Statue starts using Pulswelle on (\y{Name})/,
+      regexDe: /Helige Statue starts using Pulswelle on (\y{Name})/,
       regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
       regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alertText: {
         en: 'Knockback on YOU',
-        fr: 'Projection depuis la Statue',
+        fr: 'Projection sur VOUS',
+        de: 'Rückstoß auf DIR',
       },
       tts: {
         en: 'knockback',
-        fr: 'Projection depuis la statue',
+        fr: 'Projection',
+        de: 'Rückstoß',
       },
     },
     {
@@ -172,6 +200,7 @@
           return {
             en: 'Wings: Be Near/Far',
             fr: 'Ailes : être près/loin',
+            de: 'Schwingen: Nah/Fern',
           };
         }
       },
@@ -179,7 +208,8 @@
         if (data.role != 'tank') {
           return {
             en: 'Max Melee: Avoid Tanks',
-            fr: "Max Mêlée, s'éloigner des Tanks",
+            fr: 'Max Mêlée : éloignez-vous des Tanks',
+            de: 'Max Nahkampf: Weg von den Tanks',
           };
         }
       },
@@ -188,13 +218,14 @@
           return {
             en: 'wings',
             fr: 'Ailes, être près ou loin',
-          };
-        } else {
-          return {
-            en: 'max melee',
-            fr: "Max mêlée et s'éloigner des tanks",
+            de: 'schwingen',
           };
         }
+        return {
+          en: 'max melee',
+          fr: 'Max mêlée éloignez vous des tanks',
+          de: 'max nahkampf',
+        };
       },
     },
     {
@@ -206,10 +237,7 @@
       infoText: {
         en: 'Single Wing',
         fr: 'Aile unique',
-      },
-      tts: {
-        en: 'single wing',
-        fr: 'Aile unique',
+        de: 'Einzelner Flügel',
       },
     },
     {
@@ -221,19 +249,23 @@
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
+
         return {
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
+          de: 'Umarmung auf DIR',
         };
       },
       infoText: function(data, matches) {
         if (matches[1] == data.me)
           return;
+
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Embrace on ' + data.ShortName(matches[1]),
             fr: 'Étreinte sur ' + data.ShortName(matches[1]),
-		      };
+            de: 'Umarmung auf ' + data.ShortName(matches[1]),
+          };
         }
       },
       tts: function(data, matches) {
@@ -241,6 +273,7 @@
           return {
             en: 'embrace',
             fr: 'Étreinte',
+            de: 'umarmung',
           };
         }
       },
@@ -255,18 +288,22 @@
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
+
         return {
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
+          de: 'Hyperantrieb auf DIR',
         };
       },
       infoText: function(data, matches) {
         if (matches[1] == data.me)
           return;
+
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
-            fr: 'Colonne de feu on ' + data.ShortName(matches[1]),
+            fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
+            de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -275,6 +312,7 @@
           return {
             en: 'hyperdrive',
             fr: 'Colonne de feu',
+            de: 'hyperantrieb',
           };
         }
       },
@@ -282,33 +320,41 @@
     {
       id: 'O8S Indulgent Will',
       regex: / 14:28E5:Graven Image starts using Indulgent Will on (\y{Name})/,
-      regexDe: / 14:28E5:Göttliche Statue starts using Nachsichtiger Wille on (\y{Name})/,
+      regexDe: / 14:28E5:Helige Statue starts using Nachsichtiger Wille on (\y{Name})/,
       regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
       regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: {
         en: 'Confusion: Go Outside',
-        fr: "Confusion : Aller à l'extérieur",
+        fr: 'Confusion : Aller à l\'extérieur',
+        de: 'Konfusion: Nach außen',
       },
       tts: {
         en: 'confusion',
-        fr: "Confusion, aller à l'extérieur",
+        fr: 'Confusion, aller à l\'extérieur',
+        de: 'konfusion',
       },
     },
     {
       id: 'O8S Idyllic Will',
       regex: / 14:28E6:Graven Image starts using Idyllic Will on (\y{Name})/,
-      regexDe: / 14:28E6:Göttliche Statue starts using Idyllischer Wille on (\y{Name})/,
+      regexDe: / 14:28E6:Helige Statue starts using Idyllischer Wille on (\y{Name})/,
       regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
       regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: {
-       en: 'Sleep: Go Inside',
-       fr: 'Sommeil : aller au centre',
+        en: 'Sleep: Go Inside',
+        fr: 'Sommeil : allez au centre',
+        de: 'Schlaf: Zur Mitte',
       },
       tts: {
         en: 'sleep',
-        fr: 'Sommeil, aller au centre',
+        fr: 'Sommeil',
+        de: 'Schlaf',
       },
     },
     {
@@ -340,8 +386,12 @@
           return;
         data.manaReleaseText = data.lastThunder + ', ' + data.lastIceDir;
       },
-      infoText: function(data) { return data.manaReleaseText; },
-      tts: function(data) { return data.manaReleaseText; },
+      infoText: function(data) {
+        return data.manaReleaseText;
+      },
+      tts: function(data) {
+        return data.manaReleaseText;
+      },
     },
     {
       // From ACT log lines, there's not any way to know the fire type as it's used.
@@ -361,7 +411,8 @@
       run: function(data) {
         data.lastFire = {
           en: 'Spread',
-          fr: 'Se séparer',
+          fr: 'Eloignez-vous',
+          de: 'verteilen',
         }[data.lang];
       },
     },
@@ -378,7 +429,8 @@
       run: function(data) {
         data.lastFire = {
           en: 'Stack',
-          fr: 'Se rassembler',
+          fr: 'Stack',
+          de: 'Stacken',
         }[data.lang];
       },
     },
@@ -396,10 +448,15 @@
         data.lastThunder = {
           en: 'True Thunder',
           fr: 'Vraie foudre',
+          de: 'Wahrer Blitz',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastThunder; },
-      tts: function(data) { return data.lastThunder; },
+      infoText: function(data) {
+        return data.lastThunder;
+      },
+      tts: function(data) {
+        return data.lastThunder;
+      },
     },
     {
       // 28CA: mana charge (both types)
@@ -415,10 +472,15 @@
         data.lastThunder = {
           en: 'Fake Thunder',
           fr: 'Fausse foudre',
+          de: 'Falscher Blitz',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastThunder; },
-      tts: function(data) { return data.lastThunder; },
+      infoText: function(data) {
+        return data.lastThunder;
+      },
+      tts: function(data) {
+        return data.lastThunder;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -434,14 +496,20 @@
         data.lastIce = {
           en: 'Fake Ice',
           fr: 'Fausse glace',
+          de: 'Falsches Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
+          de: 'raus da',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -457,14 +525,20 @@
         data.lastIce = {
           en: 'True Ice',
           fr: 'Vraie glace',
+          de: 'Wahres Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
+          de: 'reingehen',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -480,14 +554,20 @@
         data.lastIce = {
           en: 'Fake Ice',
           fr: 'Fausse glace',
+          de: 'Falsches Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
+          de: 'reingehen',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
     {
       // 28C7: mana charge (all ice types)
@@ -503,24 +583,31 @@
         data.lastIce = {
           en: 'True Ice',
           fr: 'Vraie glace',
+          de: 'Wahres Eis',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
+          de: 'rausgehen',
         }[data.lang];
       },
-      infoText: function(data) { return data.lastIce + ': ' + data.lastIceDir; },
-      tts: function(data) { return data.lastIce; },
+      infoText: function(data) {
+        return data.lastIce + ': ' + data.lastIceDir;
+      },
+      tts: function(data) {
+        return data.lastIce;
+      },
     },
   ],
   timelineReplace: [
     {
       locale: 'de',
       replaceSync: {
-        'Graven Image': 'Heilig[a] Statue',
+        'Graven Image': 'Heilige Statue',
         'Kefka': 'Kefka',
-        'Light Of Consecration': 'Licht[p] Der Weihe',
-        'The Mad Head': 'Verrückt[a] Kopf',
+        'Light Of Consecration': 'Licht Der Weihe',
+        'The Mad Head': 'Verrückter Kopf',
+        'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
       },
       replaceText: {
         '--targetable--': '--anvisierbar--',
@@ -559,8 +646,8 @@
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Forsaken': 'Verloren',
-        "Future's End": "Ende Der Hoffnung",
-        'Futures Numbered': 'Ende Des Lebens',
+        'Future\'s End': 'Ende Der Zukunft',
+        'Futures Numbered': 'Vernichtung Der Zukunft',
         'Gravitational Wave': 'Gravitationswelle',
         'Heartless Angel': 'Herzloser Engel',
         'Heartless Archangel': 'Herzloser Erzengel',
@@ -569,7 +656,7 @@
         'Indulgent Will': 'Nachsichtiger Wille',
         'Light Of Judgment': 'Licht Des Urteils',
         'Meteor': 'Meteo',
-        'Pasts Forgotten': 'Ende Des Schlummers',
+        'Pasts Forgotten': 'Vernichtung Der Vergangenheit',
         'Pulse Wave': 'Pulswelle',
         'Starstrafe': 'Sternentanz',
         'The Path Of Light': 'Pfad Des Lichts',
@@ -578,6 +665,15 @@
         'Ultima': 'Ultima',
         'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
+        'Blizzard+Thunder': 'Eis+Blitz',
+        'Half Arena': 'Halbe Arena',
+        'Statue Gaze': 'Statuenblick',
+        'Soak': 'Aufsaugen',
+        'Past/Future': 'Vergangenheit/Zukunft',
+        'Past/Future End': 'Vergangenheit/Zukunft Ende',
+        'Knockback Tethers': 'Rückstoß Verbindungen',
+        'Sleep/Confuse Tethers': 'Schlaf/Konfusion Verbindungen',
+        'Statue Half Cleave': 'Statue Halber Cleave',
       },
     },
     {
@@ -590,12 +686,12 @@
         'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
       },
       replaceText: {
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
-        '--sync--': '--synchronisation--',
-        '--targetable--': '--ciblable--',
-        '--untargetable--': '--impossible à cibler--',
-        'Enrage': 'Enragement',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
 
         'Aero Assault': 'Méga Vent Véhément',
         'Blizzard Blitz': 'Méga Glace Glissante',
@@ -623,7 +719,7 @@
         'Wave Cannon': 'Canon Plasma',
 
         'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
-        'Half Arena': "Moitié d'arène",
+        'Half Arena': 'Moitié d\'arène',
         'Statue Gaze': 'Regard statue',
 
         'All Things Ending': 'Fin De Toutes Choses',
@@ -632,7 +728,7 @@
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
         'Forsaken': 'Cataclysme',
-        "Future's End": "Fin Du Futur",
+        'Future\'s End': 'Fin Du Futur',
         'Futures Numbered': 'Ruine Du Futur',
         'Gravitational Wave': 'Onde Gravitationnelle',
         'Heartless Angel': 'Ange Sans Cœur',
@@ -704,7 +800,7 @@
         'Explosion': '爆発',
         'Fire III': 'ファイガ',
         'Forsaken': 'ミッシング',
-        "Future's End": "未来の終焉",
+        'Future\'s End': '未来の終焉',
         'Futures Numbered': '未来の破滅',
         'Gravitational Wave': '重力波',
         'Heartless Angel': '心ない天使',
@@ -726,4 +822,4 @@
       },
     },
   ],
-}]
+}];

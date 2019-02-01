@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class PopupText {
   constructor(options) {
@@ -12,6 +12,8 @@ class PopupText {
     this.alarmText = document.getElementById('popup-text-alarm');
 
     this.kMaxRowsOfText = 2;
+
+    this.Reset();
   }
 
   SetTimelineLoader(timelineLoader) {
@@ -21,28 +23,29 @@ class PopupText {
   OnPlayerChange(e) {
     if (this.job != e.detail.job || this.me != e.detail.name)
       this.OnJobChange(e);
+    this.data.currentHP = e.detail.currentHP;
   }
 
   OnDataFilesRead(e) {
     this.triggerSets = Options.Triggers;
-    for (var filename in e.detail.files) {
+    for (let filename in e.detail.files) {
       // Reads from the data/triggers/ directory.
       if (!filename.startsWith('triggers/'))
         continue;
 
-      var text = e.detail.files[filename];
-      var json;
+      let text = e.detail.files[filename];
+      let json;
       try {
         json = eval(text);
       } catch (exception) {
         console.log('Error parsing JSON from ' + filename + ': ' + exception);
         continue;
       }
-      if (typeof json != "object" || !(json.length >= 0)) {
+      if (typeof json != 'object' || !(json.length >= 0)) {
         console.log('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      for (var i = 0; i < json.length; ++i) {
+      for (let i = 0; i < json.length; ++i) {
         if (!('zoneRegex' in json[i])) {
           console.log('Unexpected JSON from ' + filename + ', expected a zoneRegex');
           continue;
@@ -74,16 +77,17 @@ class PopupText {
 
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
-    var timelineFiles = [];
-    var timelines = [];
-    var replacements = [];
+    let timelineFiles = [];
+    let timelines = [];
+    let replacements = [];
+    let timelineTriggers = [];
     this.resetWhenOutOfCombat = true;
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
-    var addTimeline = (function(obj) {
+    let addTimeline = (function(obj) {
       if (Array.isArray(obj)) {
-        for (var i = 0; i < obj.length; ++i)
+        for (let i = 0; i < obj.length; ++i)
           addTimeline(obj[i]);
       } else if (typeof(obj) == 'function') {
         addTimeline(obj(this.data));
@@ -92,22 +96,32 @@ class PopupText {
       }
     }).bind(this);
 
-    var locale = this.options.Language || 'en';
+    let locale = this.options.Language || 'en';
     // construct something like regexEn or regexFr.
-    var regexLocale = 'regex' + locale.charAt(0).toUpperCase() + locale.slice(1);
+    let regexLocale = 'regex' + locale.charAt(0).toUpperCase() + locale.slice(1);
 
-    for (var i = 0; i < this.triggerSets.length; ++i) {
-      var set = this.triggerSets[i];
+    for (let i = 0; i < this.triggerSets.length; ++i) {
+      let set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) >= 0) {
         // Adjust triggers for the locale.
-        for (var j = 0; j < set.triggers.length; ++j) {
-          // Add an additional resolved regex here to save
-          // time later.  This will clobber each time we
-          // load this, but that's ok.
-          var trigger = set.triggers[j];
-          // Locale-based regex takes precedence.
-          var regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
-          trigger.localRegex = Regexes.Parse(regex);
+        if (set.triggers) {
+          for (let j = 0; j < set.triggers.length; ++j) {
+            // Add an additional resolved regex here to save
+            // time later.  This will clobber each time we
+            // load this, but that's ok.
+            let trigger = set.triggers[j];
+
+            if (!trigger.regex)
+              console.error('Trigger ' + trigger.id + ': has no regex property specified');
+
+            // Locale-based regex takes precedence.
+            let regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+            if (!regex) {
+              console.error('Trigger ' + trigger.id + ': undefined ' + regexLocale);
+              continue;
+            }
+            trigger.localRegex = Regexes.Parse(regex);
+          }
         }
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
@@ -118,36 +132,20 @@ class PopupText {
           addTimeline(set.timeline);
         if (set.timelineReplace)
           Array.prototype.push.apply(replacements, set.timelineReplace);
+        if (set.timelineTriggers)
+          Array.prototype.push.apply(timelineTriggers, set.timelineTriggers);
         if (set.resetWhenOutOfCombat !== undefined)
           this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
       }
     }
 
-    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements);
+    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements, timelineTriggers);
   }
 
   OnJobChange(e) {
     this.me = e.detail.name;
     this.job = e.detail.job;
-    if (this.job.search(/^(WAR|DRK|PLD|MRD|GLD)$/) >= 0)
-      this.role = 'tank';
-    else if (this.job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0)
-      this.role = 'healer';
-    else if (this.job.search(/^(MNK|NIN|DRG|SAM|ROG|LNC|PUG)$/) >= 0)
-      this.role = 'dps-melee';
-    else if (this.job.search(/^(BLM|SMN|RDM|THM|ACN)$/) >= 0)
-      this.role = 'dps-caster';
-    else if (this.job.search(/^(BRD|MCH|ARC)$/) >= 0)
-      this.role = 'dps-ranged';
-    else if (this.job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0)
-      this.role = 'crafting';
-    else if (this.job.search(/^(MIN|BOT|FSH)$/) >= 0)
-      this.role = 'gathering';
-    else {
-      this.role = '';
-      console.log("Unknown job role")
-    }
-
+    this.role = Util.jobToRole(this.job);
     this.ReloadTimelines();
   }
 
@@ -161,6 +159,9 @@ class PopupText {
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
+    if (!inCombat)
+      this.timelineLoader.StopCombat();
+
     if (this.inCombat == inCombat)
       return;
     this.inCombat = inCombat;
@@ -176,41 +177,48 @@ class PopupText {
     // TODO: make this unique among the party in case of first name collisions.
     // TODO: probably this should be a general cactbot utility.
 
-    if (name in Options.PlayerNicks) {
+    if (name in Options.PlayerNicks)
       return Options.PlayerNicks[name];
-    }
-    var idx = name.indexOf(' ');
+
+    let idx = name.indexOf(' ');
     return idx < 0 ? name : name.substr(0, idx);
   }
 
   Reset() {
-    var locale = this.options.Language || 'en';
+    let locale = this.options.Language || 'en';
+    let preserveHP = 0;
+    if (this.data && this.data.currentHP)
+      preserveHP = this.data.currentHP;
+
     this.data = {
       me: this.me,
       job: this.job,
       role: this.role,
       lang: locale,
+      currentHP: preserveHP,
       ShortName: this.ShortNamify,
-      StopCombat: (function() { this.SetInCombat(false); }).bind(this),
-      ParseLocaleFloat: function(s) { return Regexes.ParseLocaleFloat(s); },
+      StopCombat: () => this.SetInCombat(false),
+      ParseLocaleFloat: parseFloat,
     };
     this.StopTimers();
     this.triggerSuppress = {};
   }
 
   StopTimers() {
-    for (var i = 0; i < this.timers.length; ++i)
+    for (let i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];
   }
 
   OnLog(e) {
-    for (var i = 0; i < e.detail.logs.length; i++) {
-      var log = e.detail.logs[i];
+    for (let i = 0; i < e.detail.logs.length; i++) {
+      let log = e.detail.logs[i];
+      if (log.indexOf('00:0038:cactbot wipe') >= 0)
+        this.SetInCombat(false);
 
-      for (var j = 0; j < this.triggers.length; ++j) {
-        var trigger = this.triggers[j];
-        var r = log.match(trigger.localRegex);
+      for (let j = 0; j < this.triggers.length; ++j) {
+        let trigger = this.triggers[j];
+        let r = log.match(trigger.localRegex);
         if (r != null)
           this.OnTrigger(trigger, r);
       }
@@ -223,17 +231,17 @@ class PopupText {
     if ('disabled' in trigger && trigger.disabled)
       return;
 
-    var now = +new Date();
+    let now = +new Date();
     if (trigger.id && trigger.id in this.triggerSuppress) {
-      if (this.triggerSuppress[trigger.id] > now) {
+      if (this.triggerSuppress[trigger.id] > now)
         return;
-      }
+
       delete this.triggerSuppress[trigger.id];
     }
 
-    var triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
+    let triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
 
-    var condition = triggerOptions.Condition || trigger.condition;
+    let condition = triggerOptions.Condition || trigger.condition;
     if (condition) {
       if (!condition(this.data, matches))
         return;
@@ -242,10 +250,10 @@ class PopupText {
     if ('preRun' in trigger)
       trigger.preRun(this.data, matches);
 
-    var that = this;
+    let that = this;
 
-    var ValueOrFunction = (function(f) {
-      var result = (typeof(f) == "function") ? f(this.data, matches) : f;
+    let ValueOrFunction = (function(f) {
+      let result = (typeof(f) == 'function') ? f(this.data, matches) : f;
       // All triggers return either a string directly, or an object
       // whose keys are different locale names.  For simplicity, this is
       // valid to do for any trigger entry that can handle a function.
@@ -253,7 +261,7 @@ class PopupText {
       // in this object can also be functions.
       if (result !== Object(result))
         return result;
-      var lang = this.options.Language || 'en';
+      let lang = this.options.Language || 'en';
       if (result[lang])
         return ValueOrFunction(result[lang]);
       // For partially localized results where this localization doesn't
@@ -261,18 +269,22 @@ class PopupText {
       return ValueOrFunction(result['en']);
     }).bind(this);
 
-    var showText = this.options.TextAlertsEnabled;
-    var playSounds = this.options.SoundAlertsEnabled;
-    var playSpeech = this.options.SpokenAlertsEnabled;
-    var userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
-    var delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
-    var duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
-    var suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
-    if (trigger.id && suppress > 0) {
+    let showText = this.options.TextAlertsEnabled;
+    let playSounds = this.options.SoundAlertsEnabled;
+    let playSpeech = this.options.SpokenAlertsEnabled;
+    let playGroupSpeech = this.options.GroupSpokenAlertsEnabled;
+
+    let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
+    let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
+    let duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
+    let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
+    if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
-    }
+
 
     if (triggerOptions) {
+      if ('GroupSpeechAlert' in triggerOptions)
+        playGroupSpeech = triggerOptions.GroupSpeechAlert;
       if ('SpeechAlert' in triggerOptions)
         playSpeech = triggerOptions.SpeechAlert;
       if ('SoundAlert' in triggerOptions)
@@ -281,43 +293,51 @@ class PopupText {
         showText = triggerOptions.TextAlert;
     }
 
-    var f = function() {
-      var soundUrl = '';
-      var soundVol = 1;
-      var ttsText = '';
+    if (userDisabled) {
+      playSpeech = false;
+      playGroupSpeech = false;
+      playSounds = false;
+      showText = false;
+    }
 
-      var addText = function(container, e) {
+    let f = () => {
+      let addText = (container, e) => {
         container.appendChild(e);
         if (container.children.length > this.kMaxRowsOfText)
           container.removeChild(container.children[0]);
-      }
-      var removeText = function(container, e) {
-        for (var i = 0; i < container.children.length; ++i) {
+      };
+      let removeText = (container, e) => {
+        for (let i = 0; i < container.children.length; ++i) {
           if (container.children[i] == e) {
             container.removeChild(e);
             break;
           }
         }
-      }
-      var makeTextElement = function(text, className) {
-        var div = document.createElement('div');
+      };
+
+      let makeTextElement = function(text, className) {
+        let div = document.createElement('div');
         div.classList.add(className);
         div.classList.add('animate-text');
         div.innerText = text;
         return div;
-      }
+      };
 
       // If sound is specified it overrides alarm/alert/info sounds.
       // Otherwise, if multiple alarm/alert/info are specified
       // it will pick one sound in the order of alarm > alert > info.
-      var soundUrl = ValueOrFunction(trigger.sound);
+      let soundUrl = ValueOrFunction(trigger.sound);
+      let soundVol = 1;
 
-      var alarmText = triggerOptions.AlarmText || trigger.alarmText;
+      let defaultTTSText;
+
+      let alarmText = triggerOptions.AlarmText || trigger.alarmText;
       if (alarmText) {
-        var text = ValueOrFunction(alarmText);
-        if (text && !userDisabled && showText) {
-          var holder = that.alarmText.getElementsByClassName('holder')[0];
-          var div = makeTextElement(text, 'alarm-text');
+        let text = ValueOrFunction(alarmText);
+        defaultTTSText = defaultTTSText || text;
+        if (text && showText) {
+          let holder = that.alarmText.getElementsByClassName('holder')[0];
+          let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
@@ -327,12 +347,14 @@ class PopupText {
           }
         }
       }
-      var alertText = triggerOptions.AlertText || trigger.alertText;
+
+      let alertText = triggerOptions.AlertText || trigger.alertText;
       if (alertText) {
-        var text = ValueOrFunction(alertText);
-        if (text && !userDisabled && showText) {
-          var holder = that.alertText.getElementsByClassName('holder')[0];
-          var div = makeTextElement(text, 'alert-text');
+        let text = ValueOrFunction(alertText);
+        defaultTTSText = defaultTTSText || text;
+        if (text && showText) {
+          let holder = that.alertText.getElementsByClassName('holder')[0];
+          let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
@@ -342,12 +364,14 @@ class PopupText {
           }
         }
       }
-      var infoText = triggerOptions.InfoText || trigger.infoText;
+
+      let infoText = triggerOptions.InfoText || trigger.infoText;
       if (infoText) {
-        var text = ValueOrFunction(infoText);
-        if (text && !userDisabled && showText) {
-          var holder = that.infoText.getElementsByClassName('holder')[0];
-          var div = makeTextElement(text, 'info-text');
+        let text = ValueOrFunction(infoText);
+        defaultTTSText = defaultTTSText || text;
+        if (text && showText) {
+          let holder = that.infoText.getElementsByClassName('holder')[0];
+          let div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
           window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
@@ -358,16 +382,50 @@ class PopupText {
         }
       }
 
-      var tts = triggerOptions.TTSText || trigger.tts;
-      if (tts && playSpeech) {
-        var text = ValueOrFunction(tts);
-        if (text && !userDisabled)
-          ttsText = text;
+      // Priority audio order:
+      // * user disabled (play nothing)
+      // * if tts options are enabled globally or for this trigger:
+      //   * user groupTTS trigger groupTTS/tts override
+      //   * groupTTS entries in the trigger
+      //   * user TTS triggers tts override
+      //   * tts entries in the trigger
+      //   * default alarm tts
+      //   * default alert tts
+      //   * default info tts
+      // * if sound options are enabled globally or for this trigger:
+      //   * user trigger sound overrides
+      //   * sound entries in the trigger
+      //   * alarm noise
+      //   * alert noise
+      //   * info noise
+      // * else, nothing
+      //
+      // In general, tts comes before sounds and user overrides come
+      // before defaults.  If a user trigger or tts entry is specified as
+      // being valid but empty, this will take priority over the default
+      // tts texts from alarm/alert/info and will prevent tts from playing
+      // and allowing sounds to be played instead.
+      let ttsText;
+
+
+      if (playGroupSpeech) {
+        if ('GroupTTSText' in triggerOptions)
+          ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
+        else if ('groupTTS' in trigger)
+          ttsText = ValueOrFunction(trigger.groupTTS);
       }
 
+      if (!playGroupSpeech || typeof ttsText === 'undefined') {
+        if ('TTSText' in triggerOptions)
+          ttsText = ValueOrFunction(triggerOptions.TTSText);
+        else if ('tts' in trigger)
+          ttsText = ValueOrFunction(trigger.tts);
+        else
+          ttsText = defaultTTSText;
+      }
       if (trigger.sound && soundUrl) {
-        var namedSound = soundUrl + 'Sound';
-        var namedSoundVolume = soundUrl + 'SoundVolume';
+        let namedSound = soundUrl + 'Sound';
+        let namedSoundVolume = soundUrl + 'SoundVolume';
         if (namedSound in that.options) {
           soundUrl = that.options[namedSound];
           if (namedSoundVolume in that.options)
@@ -386,15 +444,14 @@ class PopupText {
       // of infoText triggers without tts entries by turning
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
-      if (soundUrl && playSounds && !userDisabled && !ttsText) {
-        var audio = new Audio(soundUrl);
+      if (ttsText && playSpeech) {
+        ttsText = ttsText.replace(/[#!]/, '');
+        let cmd = { 'say': ttsText };
+        OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
+      } else if (soundUrl && playSounds) {
+        let audio = new Audio(soundUrl);
         audio.volume = soundVol;
         audio.play();
-      }
-
-      if (ttsText && !userDisabled) {
-        var cmd = { 'say': ttsText };
-        OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       }
 
       if ('run' in trigger)
@@ -407,14 +464,16 @@ class PopupText {
   }
 
   Test(zone, log) {
-    this.OnPlayerChange({ detail: { name : 'ME' } });
+    this.OnPlayerChange({ detail: { name: 'ME' } });
     this.OnZoneChange({ detail: { zoneName: zone } });
-    this.OnLog({ detail: { logs : ['abcdefgh', log, 'hgfedcba']}});
+    this.OnLog({ detail: { logs: ['abcdefgh', log, 'hgfedcba'] } });
   }
 };
 
 class PopupTextGenerator {
-  constructor(popupText) { this.popupText = popupText; }
+  constructor(popupText) {
+    this.popupText = popupText;
+  }
 
   Info(text) {
     this.popupText.OnTrigger({
@@ -443,22 +502,26 @@ class PopupTextGenerator {
       tts: text,
     });
   }
+
+  Trigger(trigger, matches) {
+    this.popupText.OnTrigger(trigger, matches);
+  }
 }
 
-var gPopupText;
+let gPopupText;
 
-document.addEventListener("onPlayerChangedEvent", function(e) {
+document.addEventListener('onPlayerChangedEvent', function(e) {
   gPopupText.OnPlayerChange(e);
 });
-document.addEventListener("onZoneChangedEvent", function(e) {
+document.addEventListener('onZoneChangedEvent', function(e) {
   gPopupText.OnZoneChange(e);
 });
-document.addEventListener("onInCombatChangedEvent", function (e) {
+document.addEventListener('onInCombatChangedEvent', function(e) {
   gPopupText.OnInCombatChange(e.detail.inGameCombat);
 });
-document.addEventListener("onLogEvent", function(e) {
+document.addEventListener('onLogEvent', function(e) {
   gPopupText.OnLog(e);
 });
-document.addEventListener("onDataFilesRead", function(e) {
+document.addEventListener('onDataFilesRead', function(e) {
   gPopupText.OnDataFilesRead(e);
 });

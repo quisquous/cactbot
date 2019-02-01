@@ -1,3 +1,5 @@
+'use strict';
+
 // O7S - Sigmascape 3.0 Savage
 // localization:
 //   de: timeline done, partial triggers
@@ -13,7 +15,9 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Ätherfäule from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
       regexJa: / 1A:(\y{Name}) gains the effect of エーテルロット from/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       run: function(data) {
         data.rot = true;
       },
@@ -23,7 +27,9 @@
       regexDe: / 1E:(\y{Name}) loses the effect of Ätherfäule from/,
       regexFr: / 1E:(\y{Name}) loses the effect of Pourriture éthéréenne from/,
       regexJa: / 1E:(\y{Name}) loses the effect of エーテルロット from/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       run: function(data) {
         data.rot = false;
       },
@@ -33,7 +39,9 @@
       regexDe: / 1A:Wächter gains the effect of Dadarma-Kampfprogramm/,
       regexFr: / 1A:Gardien gains the effect of Programme Dadaluma/,
       regexJa: / 1A:ガーディアン gains the effect of ダダルマー・プログラム/,
-      condition: function(data, matches) { return !data.first || data.seenVirus && !data.second },
+      condition: function(data, matches) {
+        return !data.first || data.seenVirus && !data.second;
+      },
       run: function(data) {
         if (data.seenVirus)
           data.second = 'dada';
@@ -46,7 +54,9 @@
       regexDe: / 1A:Wächter gains the effect of Bibliotaph-Kampfprogramm/,
       regexFr: / 1A:Gardien gains the effect of Programme Bibliotaphe/,
       regexJa: / 1A:ガーディアン gains the effect of ビブリオタフ・プログラム/,
-      condition: function(data, matches) { return !data.first || data.seenVirus && !data.second },
+      condition: function(data, matches) {
+        return !data.first || data.seenVirus && !data.second;
+      },
       run: function(data) {
         if (data.seenVirus)
           data.second = 'biblio';
@@ -71,10 +81,13 @@
       regexDe: / 14:2788:Wächter starts using (Magitek-Laser)/,
       regexFr: / 14:2788:Gardien starts using (Rayon Magitek)/,
       regexJa: / 14:2788:ガーディアン starts using (魔導レーザー)/,
-      alertText: function(data, matches) { return matches[1]; },
+      alertText: function(data, matches) {
+        return matches[1];
+      },
       tts: {
         en: 'beam',
-        de: 'laser',
+        de: 'leser',
+        fr: 'laser',
       },
     },
     {
@@ -87,13 +100,15 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
-            de: 'Tank Buster auf DIR',
+            de: 'Tenkbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
+            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -101,7 +116,8 @@
         if (matches[1] == data.me) {
           return {
             en: 'buster',
-            de: 'buster',
+            de: 'basta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -109,9 +125,19 @@
     {
       id: 'O7S Orb Marker',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return matches[1] == data.me; },
-      alertText: 'Orb Marker',
-      tts: 'orb',
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      alertText: {
+        en: 'Orb Marker',
+        de: 'Orb Marker',
+        fr: 'Orbe',
+      },
+      tts: {
+        en: 'orb',
+        de: 'orb',
+        fr: 'orbe',
+      },
     },
     {
       id: 'O7S Blue Marker',
@@ -119,25 +145,31 @@
       alarmText: function(data, matches) {
         if (data.me != matches[1])
           return;
+
         return {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
+          fr: 'Marque Bleue sur VOUS',
         };
       },
       infoText: function(data, matches) {
         if (data.me == matches[1])
           return;
+
         return {
           en: 'Blue Marker on ' + data.ShortName(matches[1]),
           de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
+          fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
         };
       },
-      tts: function (data, matches) {
+      tts: function(data, matches) {
         if (data.me != matches[1])
           return;
+
         return {
           en: 'blue marker',
           de: 'aura-kanone',
+          fr: 'marque bleu',
         };
       },
     },
@@ -148,20 +180,24 @@
         if (data.me == matches[1]) {
           return {
             en: 'Prey on YOU',
-            de: 'Rakete auf dir',
+            de: 'Rakete auf DIR',
+            fr: 'Marquage sur VOUS',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Rakete auf ' + data.ShortName(matches[1]),
+          de: 'Beute auf ' + data.ShortName(matches[1]),
+          fr: 'Marquage sur ' + data.ShortName(matches[1]),
         };
       },
-      tts: function (data, matches) {
+      tts: function(data, matches) {
         if (data.me != matches[1])
           return;
+
         return {
           en: 'prey',
-          de: 'rakete',
+          de: 'beute',
+          fr: 'marquage',
         };
       },
     },
@@ -171,14 +207,18 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Gluthitze/,
       regexFr: / 1A:(\y{Name}) gains the effect of Fournaise/,
       regexJa: / 1A:(\y{Name}) gains the effect of 灼熱/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: {
         en: 'Searing Wind: go outside',
         de: 'Gluthitze: Geh weg',
+        fr: 'Fournaise : éloignez-vous',
       },
       tts: {
         en: 'searing wind',
         de: 'gluthitze',
+        fr: 'fournaise',
       },
     },
     {
@@ -187,14 +227,18 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Verlassen/,
       regexFr: / 1A:(\y{Name}) gains the effect of Isolement/,
       regexJa: / 1A:(\y{Name}) gains the effect of 孤独感/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alertText: {
         en: 'Abandonment: stay middle',
-        de: 'Verlassen: Geh Mitte',
+        de: 'Verlassen: Bleib mittig',
+        fr: 'Isolement : restez au milieu',
       },
       tts: {
         en: 'abandonment',
         de: 'verlassen',
+        fr: 'isolement',
       },
     },
     {
@@ -208,19 +252,23 @@
           return {
             en: 'Rot on you',
             de: 'Fäule auf DIR',
+            fr: 'Pourriture sur VOUS',
           };
         }
         return {
           en: 'Rot on ' + data.ShortName(matches[1]),
           de: 'Fäule auf ' + data.ShortName(matches[1]),
+          fr: 'Pourriture sur ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
         if (data.me != matches[1])
           return;
+
         return {
           en: 'rot',
           de: 'fäule',
+          fr: 'pourriture',
         };
       },
     },
@@ -235,6 +283,7 @@
           return {
             en: 'SILENCE!',
             de: 'VERSTUMMEN!',
+            fr: 'SILENCE!',
           };
         }
       },
@@ -243,12 +292,9 @@
           return {
             en: 'Silence',
             de: 'stumm',
+            fr: 'silence',
           };
         }
-      },
-      tts: {
-        en: 'silence',
-        de: 'stumm',
       },
     },
     {
@@ -311,8 +357,12 @@
           'virus': 'virus',
         })[data.thisLoad];
       },
-      alertText: function (data) { return data.thisLoadText; },
-      tts: function(data) { return data.thisLoadTTS; },
+      alertText: function(data) {
+        return data.thisLoadText;
+      },
+      tts: function(data) {
+        return data.thisLoadTTS;
+      },
     },
     {
       id: 'O7S Run',
@@ -325,19 +375,19 @@
         data.thisRunText = undefined;
         data.thisRunTTS = undefined;
 
-        if (data.runCount == 1) {
+        if (data.runCount == 1)
           data.thisRun = data.first == 'biblio' ? 'dada' : 'dada';
-        } else if (data.runCount == 2) {
+        else if (data.runCount == 2)
           data.thisRun = data.first == 'biblio' ? 'ultros' : 'ships';
-        } else if (data.runCount == 3) {
+        else if (data.runCount == 3)
           data.thisRun = data.first == 'biblio' ? 'ships' : 'ultros';
-        } else if (data.runCount == 4) {
+        else if (data.runCount == 4)
           data.thisRun = data.first == 'biblio' ? 'ultros' : 'ships';
-        } else if (data.runCount == 5) {
+        else if (data.runCount == 5)
           data.thisRun = 'biblio';
-        } else if (data.runCount == 6) {
+        else if (data.runCount == 6)
           data.thisRun = data.first == 'biblio' ? 'ships' : 'ultros';
-        }
+
 
         data.thisRunText = ({
           'biblio': 'Biblio Add',
@@ -348,14 +398,18 @@
 
         data.thisRunTTS = data.thisRunText;
       },
-      infoText: function(data) { return data.thisRunText; },
-      tts: function(data) { return data.thisRunTTS; },
+      infoText: function(data) {
+        return data.thisRunText;
+      },
+      tts: function(data) {
+        return data.thisRunTTS;
+      },
     },
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Air Force': 'Luftwaffe',
         'Dadaluma': 'Dadarma',
         'Fire Control System': 'Feuerleitsystem',
@@ -364,7 +418,12 @@
         'Ultros': 'Ultros',
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
       },
-      replaceText: {
+      'replaceText': {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Engage!': 'Start!',
+        'Enrage': 'Finalangriff',
+
         'Arm And Hammer': 'Arm-Hammer',
         'Atomic Ray': 'Atomstrahlung',
         'Aura Cannon': 'Aura-Kanone',
@@ -406,6 +465,7 @@
         'Run': 'Start',
         'Interrupt Stoneskin': 'Steinhaut unterbrechen',
         'Magnetism/Repel': 'Magnetismus',
+        'Prey': 'Markiert',
         'Temporary Misdirection': 'Plötzliche Panik',
         'Radar': 'Radar',
         'Paste': 'Einfügen',
@@ -413,6 +473,8 @@
         'Plane Laser': 'Luftwaffe Add Laser',
         'Virus': 'Virus',
         'Enrage': 'Finalangriff',
+        'Retrieve Ultros': 'Ultros Wiederherstellen',
+        'Retrieve Air Force': 'Luftwaffe Wiederherstellen',
       },
       '~effectNames': {
         'Abandonment': 'Verlassen',
@@ -437,19 +499,24 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
+        'Dadaluma Simulation': 'Programme Dadaluma',
+        'Bibliotaph Simulation': 'Programme Bibliotaphe',
         'Air Force': 'Force Aérienne',
         'Dadaluma': 'Dadaluma',
         'Fire Control System': 'Système De Contrôle',
         'Guardian': 'Gardien',
         'Interdimensional Bomb': 'Bombe Dimensionnelle',
         'Ultros': 'Orthros',
+        'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle... Activation du programme initial... Gardien, au combat',
       },
-      replaceText: {
+      'replaceText': {
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Arm And Hammer': 'Marteau Stratégique',
         'Atomic Ray': 'Rayon Atomique',
-        "Aura Cannon": "Rayon D'aura",
+        'Aura Cannon': 'Rayon D\'aura',
         'Bomb Deployment': 'Déploiement De Bombes',
         'Chain Cannon': 'Canon Automatique',
         'Chakra Burst': 'Explosion De Chakra',
@@ -458,7 +525,7 @@
         'Diffractive Laser': 'Laser Diffracteur',
         'Diffractive Plasma': 'Plasma Diffracteur',
         'Electric Pulse': 'Impulsion électrique',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Explosion': 'Explosion',
         'Ink': 'Encre',
         'Light Blast': 'Déflagration Légère',
@@ -480,22 +547,23 @@
         'The Heat': 'Carbonisation',
         'Viral Weapon': 'Arme Virologique',
         'Wallop': 'Taloche Tentaculaire',
-
-        // FIXME:
-        'Aether Rot': 'Aether Rot',
-        'Copy': 'Copy',
-        'Skip': 'Skip',
-        'Dada': 'Dada',
-        'Run': 'Run',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin',
-        'Magnetism/Repel': 'Magnetism/Repel',
-        'Temporary Misdirection': 'Temporary Misdirection',
+        'Prey': 'Marquage',
+        'Aether Rot': 'Pourriture éthéréenne',
+        'Copy': 'Copie',
+        'Skip': 'Saut De Programme',
+        'Dada': 'Dadaluma',
+        'Run': 'Programme',
+        'Interrupt Stoneskin': 'Interrompre Cuirasse',
+        'Magnetism/Repel': 'Magnétisme/Répulsion',
+        'Temporary Misdirection': 'Démence',
         'Radar': 'Radar',
-        'Paste': 'Paste',
-        'Biblio': 'Biblio',
-        'Plane Laser': 'Plane Laser',
+        'Paste': 'Collage',
+        'Biblio': 'Bibliotaphe',
+        'Plane Laser': 'Laser force aérienne',
         'Virus': 'Virus',
         'Enrage': 'Enrage',
+        'Retrieve Ultros': 'Programme Précédent Orthros',
+        'Retrieve Air Force': 'Programme Précédent Force Aérienne',
       },
       '~effectNames': {
         'Abandonment': 'Isolement',
@@ -520,8 +588,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Air Force': 'エアフォース',
         'Dadaluma': 'ダダルマー',
         'Fire Control System': 'ファイアコントロールシステム',
@@ -529,7 +597,7 @@
         'Interdimensional Bomb': '次元爆弾',
         'Ultros': 'オルトロス',
       },
-      replaceText: {
+      'replaceText': {
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
         'Aura Cannon': 'オーラキャノン',
@@ -603,4 +671,4 @@
       },
     },
   ],
-}]
+}];

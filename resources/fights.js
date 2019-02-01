@@ -1,5 +1,6 @@
+'use strict';
 
-var gBossFightTriggers = [
+let gBossFightTriggers = [
   {
     id: 'test',
     zoneRegex: /^Middle La Noscea$/,
@@ -11,21 +12,18 @@ var gBossFightTriggers = [
     id: 'o1s',
     zoneRegex: /^Deltascape V1.0 \(Savage\)$/,
     startRegex: /:Alte Roite uses Wyrm Tail/,
-    endRegex: /:Alte Roite was defeated by/,
     countdownStarts: true,
   },
   {
     id: 'o2s',
     zoneRegex: /^Deltascape V2.0 \(Savage\)$/,
     startRegex: /:Catastrophe uses Earthquake/,
-    endRegex: /:Catastrophe was defeated by/,
     countdownStarts: true,
   },
   {
     id: 'o3s',
     zoneRegex: /^Deltascape V3.0 \(Savage\)$/,
     startRegex: /:Halicarnassus uses Critical Hit/,
-    endRegex: /:Halicarnassus was defeated by/,
     countdownStarts: true,
   },
   {
@@ -39,42 +37,36 @@ var gBossFightTriggers = [
     id: 'o4s-neo',
     zoneRegex: /^Deltascape V4.0 \(Savage\)$/,
     startRegex: /:Neo Exdeath uses Almagest/,
-    endRegex: /:Neo Exdeath is defeated/,
     countdownStarts: false,
   },
   {
     id: 'Unending Coil',
     zoneRegex: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
     startRegex: /:Twintania:26A7:/,
-    endRegex: /Removing combatant Bahamut Prime\.  Max HP: 13751450\./,
     countdownStarts: true,
   },
   {
     id: 'Shinryu Ex',
     zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
     startRegex: /:Shinryu starts using Earthen Fury/,
-    endRegex: /Removing combatant Shinryu\.  Max HP: 17167557\./,
     countdownStarts: true,
   },
   {
     id: 'o5s',
     zoneRegex: /Sigmascape V1\.0 \(Savage\)/,
     startRegex: /:Wroth Ghost:28B6:/,
-    endRegex: /:Phantom Train was defeated by/,
     countdownStarts: true,
   },
   {
     id: 'o6s',
     zoneRegex: /Sigmascape V2\.0 \(Savage\)/,
     startRegex: /14:2829:Demon Chadarnook starts using Demonic Shear/,
-    endRegex: /:Demon Chadarnook was defeated by/,
     countdownStarts: true,
   },
   {
     id: 'o7s',
     zoneRegex: /Sigmascape V3\.0 \(Savage\)/,
     startRegex: /00:0044:WEAPON SYSTEMS ONLINE/,
-    endRegex: /:Guardian was defeated by/,
     countdownStarts: true,
   },
   {
@@ -88,14 +80,66 @@ var gBossFightTriggers = [
     id: 'o8s-god kefka',
     zoneRegex: /Sigmascape V4\.0 \(Savage\)/,
     startRegex: / 15:........:Kefka:28EC:/,
-    endRegex: /:Kekfa was defeated by/,
     countdownStarts: false,
   },
   {
     id: 'Byakko Ex',
     zoneRegex: /^The Jade Stoa \(Extreme\)$/,
     startRegex: /:Byakko starts using Storm Pulse/,
-    endRegex: /:Byakko was defeated by/,
     countdownStarts: true,
+  },
+  {
+    id: 'Tsukuyomi Ex',
+    zoneRegex: /The Minstrel's Ballad: Tsukuyomi's Pain/,
+    startRegex: /:Tsukuyomi:2BBA:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'UwU',
+    zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
+    startRegex: /:Garuda:2B53:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'Suzaku Ex',
+    zoneRegex: /^Hells\' Kier \(Extreme\)$/,
+    startRegex: /:Suzaku:367:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'Seiryu Ex',
+    zoneRegex: /^The Wreath Of Snakes \(Extreme\)$/,
+    startRegex: /:Seiryu:366:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'o9s',
+    zoneRegex: /Alphascape V1\.0 \(Savage\)/,
+    startRegex: /:Chaos:316F:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'o10s',
+    zoneRegex: /Alphascape V2\.0 \(Savage\)/,
+    startRegex: /:Midgardsormr:31F9:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'o11s',
+    zoneRegex: /Alphascape V3\.0 \(Savage\)/,
+    startRegex: /:Omega:368:/,
+    countdownStarts: true,
+  },
+  {
+    id: 'o12s-door',
+    zoneRegex: /Alphascape V4\.0 \(Savage\)/,
+    startRegex: /:Omega-M:337D:/,
+    countdownStarts: false,
+  },
+  {
+    id: 'o12s-final',
+    zoneRegex: /Alphascape V4\.0 \(Savage\)/,
+    startRegex: /:Omega:336C:/,
+    countdownStarts: false,
   },
 ];

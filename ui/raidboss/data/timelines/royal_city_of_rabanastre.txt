@@ -5,11 +5,10 @@ hideall "--reset--"
 hideall "--sync--"
 hideall "--start--"
 
-0 "--reset--" sync /:Removing combatant Mateus, The Corrupt\.  Max HP: 15293765./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Hashmal, Bringer Of Order.  Max HP: 14232922./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Rofocale\.  Max HP: 24392507./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Argath Thadalfus\.  Max HP: 23596160./ window 10000 jump 0
-
+0 "--reset--" sync /:Removing combatant Mateus, The Corrupt\.  Max HP: \d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Hashmal, Bringer Of Order.  Max HP: \d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Rofocale\.  Max HP: \d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Argath Thadalfus\.  Max HP: \d{8}./ window 10000 jump 0
 
 
 ### Mateus
@@ -81,16 +80,16 @@ hideall "--start--"
 
 ### Rofocale
 2000.0 "--start--" sync /:The Lesalia Garden Ruins will be sealed off/ window 3000,0
-2014.5 "Crush Helm" # end of cast
+2019.5 "Crush Helm" sync /:Rofocale:2682:/
 2034.5 "Chariot" # end of cast
 2036.8 "Cry of Victory" duration 2.7 # start -> end of cast
 2051.0 "Crush Weapon" # end of cast
 2072.3 "Trample" # end of cast
 2084.5 "--untargetable--"
-2087.0 "--sync--" sync /:Rofocale starts using Maverick/ window 30,10 # start of cast
+2087.0 "--sync--" sync /:2689:Rofocale/ window 30,30 # start of cast
 2092.5 "Maverick" # end of cast
 2097.0 "--targetable--"
-2103.5 "Crush Helm" # end of cast
+2103.5 "Crush Helm" sync /:Rofocale:2682:/
 2116.5 "Crush Weapon" # end of cast
 2123.3 "Trample" # end of cast
 2141.0 "Chariot" # end of cast
@@ -98,15 +97,15 @@ hideall "--start--"
 2153.2 "Trample" # end of cast
 2164.5 "Crush Weapon" # end of cast
 2169.0 "--untargetable--"
-2171.8 "--sync--" sync /:Rofocale starts using Maverick/ window 30,10 # start of cast
+2171.8 "--sync--" sync /:2689:Rofocale/ window 30,30 # start of cast
 2177.3 "Maverick" # end of cast
 2181.8 "--targetable--"
-2188.0 "Crush Helm" # end of cast
+2188.0 "Crush Helm" sync /:Rofocale:2682:/
 2194.5 "--invulnerable--"
-2193.5 "Archaeodemon Adds"
+2196.5 "Archaeodemon Adds" sync /03:Added new combatant Archaeodemon/ window 300,300
 2203.5 "--lock out--"
-2232.3 "--sync--" sync /The heavens tremble in my wake/ window 30,30
-2250.0 "--sync--" sync /:Rofocale starts using Heavenly Subjugation/ window 60,10
+2232.3 "--sync--" sync /00:0044:The heavens tremble in my wake/ window 300,300
+2250.0 "--sync--" sync /:268A:Rofocale/ window 60,10
 2253.0 "Heavenly Subjugation" # end of cast
 2265.5 "Embrace" # end of cast
 2282.7 "Chariot" # end of cast
@@ -117,31 +116,34 @@ hideall "--start--"
 2325.0 "Embrace" # aoes on floor
 2332.7 "Crush Weapon" # end of cast
 2339.5 "Line AOEs" # appearing
-2352.0 "Crush Helm" # end of cast
+2356.0 "Crush Helm" sync /:Rofocale:2682:/
 2363.5 "Embrace" # aoes of floor
 2372.0 "Pomp and Circumstance" # damage
-2378.0 "Dark Geas" # end of cast
-2400.0 "--sync--" sync /:Rofocale starts using Maverick/ window 30,10 # start of cast
-2405.5 "Maverick" # end of cast
-2410.0 "--targetable--"
-2416.3 "Crush Helm" # end of cast
-2425.8 "Embrace" # aoes on floor
-2429.5 "Line AOEs" # appearing
-2436.2 "Chariot" # end of cast
-2439.0 "Cry of Victory" duration 2.7 # start -> end of cast
-2445.5 "Line AOEs" # appearing
-2453.8 "Trample" # end of cast
-2457.8 "Cry of Victory" duration 2.7 # start -> end of cast
-2474.0 "Crush Weapon" # end of cast
-2479.2 "Dark Geas" # end of cast
-2501.5 "--sync--" sync /:Rofocale starts using Maverick/ window 30,10 # start of cast
-2507.0 "Maverick" # end of cast
-2512.0 "--targetable--"
-2518.3 "Crush Weapon" # end of cast
-2525.3 "Trample" # end of cast
-2538.5 "Crush Helm" # end of cast
-2551.0 "Embrace" # end of cast
+2378.0 "Dark Geas" sync /:Rofocale:2688:/ window 80,80
+
+2500.0 "--sync--" sync /:2689:Rofocale/ window 150,50
+2505.5 "Maverick" # end of cast
+2510.0 "--targetable--"
+2516.3 "Crush Helm" sync /:Rofocale:2682:/
+2525.8 "Embrace" # aoes on floor
+2529.5 "Line AOEs" # appearing
+2536.2 "Chariot" # end of cast
+2539.0 "Cry of Victory" duration 2.7 # start -> end of cast
+2545.5 "Line AOEs" # appearing
+2553.8 "Trample" # end of cast
+2557.8 "Cry of Victory" duration 2.7 # start -> end of cast
+2574.0 "Crush Weapon" # end of cast
+2579.2 "Dark Geas" sync /:Rofocale:2688:/ window 80,80
+
+2700.0 "--sync--" sync /:2689:Rofocale/ window 150,50
+2705.5 "Maverick" # end of cast
+2710.5 "--targetable--"
+2716.8 "Crush Weapon" # end of cast
+2723.8 "Trample" # end of cast
+2737.0 "Crush Helm" sync /:Rofocale:2682:/
+2749.5 "Embrace" # end of cast
 # TODO: ???, doesn't seem to loop yet
+# Given current dps, I guess we'll never know??
 
 
 ### Argath

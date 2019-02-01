@@ -1,3 +1,5 @@
+'use strict';
+
 // O6S - Sigmascape 2.0 Savage
 // localization:
 //   de: timeline done, triggers incomplete
@@ -18,12 +20,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur '+data.ShortName(matches[1]),
           };
         }
       },
@@ -31,7 +35,8 @@
         if (matches[1] == data.me) {
           return {
             en: 'buster',
-            de: 'buster',
+            de: 'tenkbasta',
+            fr: 'tankbuster',
           };
         }
       },
@@ -40,45 +45,51 @@
       id: 'O6S Storms Grip',
       regex: /Added new combatant The Storm's Grip/,
       regexDe: /Added new combatant Sturmgebiet/,
-      regexFr: /Added new combatant Emprise De La Tempête/,
+      regexFr: /Added new combatant Zone De Tempête/,
       regexJa: /Added new combatant 暴風域/,
-      condition: function(data) { return data.role == 'tank'; },
+      condition: function(data) {
+        return data.role == 'tank';
+      },
       infoText: {
         en: 'Hallowed Wind Stack',
         de: 'Heiliger Boden Wind',
-      },
-      tts: {
-        en: 'hallowed wind stack',
-        de: 'heiliger boden wind',
+        fr: 'Packez vous dans le vent',
       },
     },
     {
       id: 'O6S Demonic Stone',
       regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
-      alarmText: function(data,matches) {
+      alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Demonic Stone on YOU',
-            de: 'Dämonischer Stein auf dir',
+            de: 'Dämonischer Stein auf DIR',
+            fr: 'Pierre démoniaque sur VOUS',
           };
         }
       },
     },
     {
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      run: function(data, matches) { data.lastKiss = matches[1]; },
+      run: function(data, matches) {
+        data.lastKiss = matches[1];
+      },
     },
     {
       id: 'O6S Last Kiss Marker',
       regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
-      condition: function(data, matches) { return data.me == matches[1]; },
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alarmText: {
         en: 'Last Kiss on YOU',
         de: 'Letzter Kuss auf DIR',
+        fr: 'Baiser fatal sur VOUS',
       },
       tts: {
         en: 'last kiss',
-        de: 'letzter kuss',
+        de: 'letz ter kuss',
+        fr: 'baiser fatal',
       },
     },
     {
@@ -95,29 +106,36 @@
       alarmText: {
         en: 'Last Kiss on YOU',
         de: 'Letzter Kuss auf DIR',
+        fr: 'Baiser fatal sur VOUS',
       },
       tts: {
         en: 'last kiss',
-        de: 'letzter kuss',
+        de: 'letz ter kuss',
+        fr: 'baiser fatal',
       },
     },
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Demon Chadarnook': 'Gefallener Chadarnook',
         'Easterly': 'Ostwind',
         'Goddess Chadarnook': 'Heilige Chadarnook',
         'Haunt': 'Böser Schatten',
-        'Portrayal Of Fire': 'Feuergemälde',
-        'Portrayal Of Wind': 'Windgemälde',
+        'Portrayal of Fire': 'Feuergemälde',
+        'Portrayal of Wind': 'Windgemälde',
         'Portrayal of Earth': 'Erdgemälde',
         'Portrayal of Water': 'Wassergemälde',
-        "The Storm's Grip": "Sturmgebiet",
-        'I have claimed the girl in the picture!': 'Das Mädchen in diesem Bildnis gehört mir!', 
+        'The Storm\'s Grip': 'Sturmgebiet',
+        'I have claimed the girl in the picture!': 'Das Mädchen in diesem Bildnis gehört mir!',
       },
-      replaceText: {
+      'replaceText': {
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Engage!': 'Start!',
+        'Enrage': 'Finalangriff',
+
         'Demonic Howl': 'Dämonisches Heulen',
         'Demonic Pain': 'Dämonischer Schmerz',
         'Demonic Shear': 'Dämonische Schere',
@@ -145,6 +163,7 @@
         'Rock Hard': 'Felsspalter',
         'Song Of Bravery': 'Lied Der Tapferkeit',
         'The Price': 'Tödliche Versuchung',
+        'Flash Flood': 'Blitzregen',
       },
       '~effectNames': {
         'Apathetic': 'Apathie',
@@ -158,23 +177,29 @@
         'Seduced': 'Versuchung',
         'Slippery Prey': 'Unmarkierbar',
         'Yellow Paint': 'Gelbe Farbe',
-      }
+      },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Demon Chadarnook': 'Démon Chadarnouk',
         'Easterly': 'Rafale Ultime',
         'Goddess Chadarnook': 'Déesse Chadarnouk',
         'Haunt': 'Ombre Maléfique',
-        'Portrayal Of Fire': 'Peinture Du Feu',
-        'Portrayal Of Wind': 'Peinture Du Vent',
+        'Portrayal of Fire': 'Peinture Du Feu',
+        'Portrayal of Wind': 'Peinture Du Vent',
         'Portrayal of Earth': 'Peinture De La Terre',
-        'Portrayal of Water': "Peinture De L'eau",
-        "The Storm's Grip": "Emprise De La Tempête",
-        'I have claimed the girl in the picture!': "Héhéhé... La fille du tableau m'appartient",
+        'Portrayal of Water': 'Peinture De L\'eau',
+        'The Storm\'s Grip': 'Emprise De La Tempête',
+        'I have claimed the girl in the picture!': 'Héhéhé... La fille du tableau m\'appartient',
+        'Engage!': 'À l\'attaque',
       },
-      replaceText: {
+      'replaceText': {
+        '--Reset--': '--Réinitialisation--',
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Enrage': 'Enrage',
         'Demonic Howl': 'Hurlement Démoniaque',
         'Demonic Pain': 'Douleur Démoniaque',
         'Demonic Shear': 'Cisailles Démoniaques',
@@ -187,7 +212,7 @@
         'Downpour': 'Déluge',
         'Dull Pain': 'Douleur Sourde',
         'Earthquake': 'Grand Séisme',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Featherlance': 'Lance De Plume',
         'Flash Fire': 'Flammes Subites',
         'Flash Gale': 'Vent Subit',
@@ -201,6 +226,8 @@
         'Rock Hard': 'Brise-roc',
         'Song Of Bravery': 'Chant Du Courage',
         'The Price': 'Tentation Mortelle',
+        'Flash Flood': 'Pluie Subite',
+        'Easterlies': 'Rafale Ultime',
       },
       '~effectNames': {
         'Apathetic': 'Apathie',
@@ -214,11 +241,11 @@
         'Seduced': 'Séduction',
         'Slippery Prey': 'Marquage Impossible',
         'Yellow Paint': 'Peinture Jaune',
-      }
+      },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Demon Chadarnook': 'チャダルヌーク・デーモン',
         'Easterly': '極風',
         'Goddess Chadarnook': 'チャダルヌーク・ゴッデス',
@@ -227,10 +254,10 @@
         'Portrayal Of Wind': '風の絵画',
         'Portrayal of Earth': '土の絵画',
         'Portrayal of Water': '水の絵画',
-        "The Storm's Grip": "暴風域",
+        'The Storm\'s Grip': '暴風域',
         'I have claimed the girl in the picture!': 'グフフフ……この絵の女は',
       },
-      replaceText: {
+      'replaceText': {
         'Demonic Howl': 'デモニックハウル',
         'Demonic Pain': 'デモニックペイン',
         'Demonic Shear': 'デモニックシアー',
@@ -271,7 +298,7 @@
         'Seduced': '誘惑',
         'Slippery Prey': 'マーキング対象外',
         'Yellow Paint': '黄色の絵の具',
-      }
-    }
+      },
+    },
   ],
-}]
+}];

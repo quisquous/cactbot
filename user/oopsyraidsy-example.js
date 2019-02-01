@@ -1,3 +1,5 @@
+'use strict';
+
 // Rename this file to `oopsyraidsy.js` then edit to change the oopsyraidsy ui.
 
 
@@ -51,7 +53,7 @@ Options.AbilityIdNameMap['26CA'] = 'White Swirly';
 // https://github.com/quisquous/cactbot/tree/master/ui/oopsyraidsy/data/
 //
 // Here's an example trigger to show a line in the mistake log when
-// you crit adlo yourself in Summerfield Farms.
+// you crit adlo yourself in Summerford Farms.
 Options.Triggers = [
   {
     zoneRegex: /^Middle La Noscea$/,
@@ -63,7 +65,7 @@ Options.Triggers = [
           return e.targetName == data.me && e.damageStr.substr(-1) == '!';
         },
         mistake: function(e, data) {
-          var text = e.abilityName + ': ' + e.damageStr;
+          let text = e.abilityName + ': ' + e.damageStr;
           return { type: 'good', blame: e.targetName, text: text };
         },
       },

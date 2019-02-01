@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-var Options = {
+let Options = {
   Language: 'en',
 };
 
-var gPullCounter;
+let gPullCounter;
 
 class PullCounter {
   constructor(element) {
@@ -12,7 +12,7 @@ class PullCounter {
     this.zone = null;
     this.bossStarted = false;
 
-    var cmd = JSON.stringify({getSaveData: ''});
+    let cmd = JSON.stringify({ getSaveData: '' });
     OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, cmd);
     this.ReloadTriggers();
   }
@@ -24,21 +24,21 @@ class PullCounter {
     this.element.innerText = this.pullCounts[boss.id];
     this.element.classList.remove('wipe');
 
-    var cmd = JSON.stringify({setSaveData: JSON.stringify(this.pullCounts)});
+    let cmd = JSON.stringify({ setSaveData: JSON.stringify(this.pullCounts) });
     OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, cmd);
   }
 
   OnLogEvent(e) {
     if (this.bosses.length == 0 || this.bossStarted)
       return;
-    for (var i = 0; i < e.detail.logs.length; ++i) {
-      var log = e.detail.logs[i];
+    for (let i = 0; i < e.detail.logs.length; ++i) {
+      let log = e.detail.logs[i];
       if (this.countdownBoss && log.match(gLang.countdownEngageRegex())) {
         this.OnFightStart(this.countdownBoss);
         return;
       }
-      for (var b = 0; b < this.bosses.length; ++b) {
-        var boss = this.bosses[b]
+      for (let b = 0; b < this.bosses.length; ++b) {
+        let boss = this.bosses[b];
         if (log.match(boss.startRegex)) {
           this.OnFightStart(boss);
           return;
@@ -59,8 +59,8 @@ class PullCounter {
     if (!this.zone || !this.pullCounts)
       return;
 
-    for (var i = 0; i < gBossFightTriggers.length; ++i) {
-      var boss = gBossFightTriggers[i];
+    for (let i = 0; i < gBossFightTriggers.length; ++i) {
+      let boss = gBossFightTriggers[i];
       if (!this.zone.match(boss.zoneRegex))
         continue;
       this.bosses.push(boss);
@@ -83,34 +83,35 @@ class PullCounter {
   }
 
   SetSaveData(e) {
-    if (!e.detail.data)
-      return;
     try {
-      this.pullCounts = JSON.parse(e.detail.data);
-    } catch(err) {
+      if (e.detail.data)
+        this.pullCounts = JSON.parse(e.detail.data);
+      else
+        this.pullCounts = {};
+    } catch (err) {
       console.error('onSendSaveData parse error: ' + err.message);
     }
     this.ReloadTriggers();
   }
 }
 
-document.addEventListener("onLogEvent", function(e) {
+document.addEventListener('onLogEvent', function(e) {
   gPullCounter.OnLogEvent(e);
 });
 
-document.addEventListener("onZoneChangedEvent", function (e) {
+document.addEventListener('onZoneChangedEvent', function(e) {
   gPullCounter.OnZoneChange(e);
 });
 
-document.addEventListener("onInCombatChangedEvent", function (e) {
+document.addEventListener('onInCombatChangedEvent', function(e) {
   gPullCounter.OnInCombatChange(e);
 });
 
-document.addEventListener("onPartyWipe", function () {
+document.addEventListener('onPartyWipe', function() {
   gPullCounter.OnPartyWipe();
 });
 
-document.addEventListener("onSendSaveData", function (e) {
+document.addEventListener('onSendSaveData', function(e) {
   gPullCounter.SetSaveData(e);
 });
 
