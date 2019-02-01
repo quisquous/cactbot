@@ -53,7 +53,7 @@ class FisherUI {
       if (oldPlace && oldPlace[0] != '(')
         this.place_el.innerHTML = '(' + oldPlace + ')';
       else
-        this.place_el.innerHTML = '(None)';
+        this.place_el.innerHTML = '------------';
     } else {
       this.place_el.innerHTML = place;
     }

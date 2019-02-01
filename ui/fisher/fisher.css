@@ -32,12 +32,8 @@
     font-size: 1.3em;
 }
 
-#bait-name:before {
-    content: 'Bait: ';
-}
-
 #place-name:before {
-    content: 'Hole: ';
+    content: '@ ';
 }
 
 #fisher-depth {
