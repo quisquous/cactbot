@@ -212,7 +212,7 @@ function setupRegexes() {
   kReRdmBlackManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerfireReady);
   kReRdmImpactProc = gLang.youGainEffectRegex(gLang.kEffect.Impactful);
   kReRdmImpactProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
-  kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin)
+  kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
   kReFoodBuff = gLang.youGainEffectRegex(gLang.kEffect.WellFed);
