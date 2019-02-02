@@ -156,7 +156,7 @@ hideall "--sync--"
 2254 "Annihilation Mode" sync /:Construct 7:2C59:/ window 5000,756
 2264 "Destroy" sync /:Construct 7:2C71:/
 2274 "Ignite" sync /:Construct 7:2C67:/
-2277 "Accelerate" sync /:Construct 7:2C65:/
+2277 "Accelerate" sync /:Construct 7:2C65:/ window 150,150
 2291 "Pulverize (close)" sync /:Construct 7:2C61:/ 
 2296 "Pulverize (far)" duration 4
 2297 "Compress" sync /:Construct 7:2C5D:/
