@@ -35,6 +35,10 @@ cactbot provides these modules:
 
 ![eureka screenshot](screenshots/promo_eureka.png)
 
+* fisher: Fishing cast time tracking
+
+![fisher screenshot](screenshots/promo_fishing.png)
+
 * dps: extra features for dps meters
 
 ![xephero screenshot](screenshots/xephero.png)
@@ -220,6 +224,14 @@ copy the list of currently dead NMs, you can paste it in game, e.g.
 If you do not see the emoji, make sure you have installed [this Windows update](https://support.microsoft.com/en-us/help/2729094/an-update-for-the-segoe-ui-symbol-font-in-windows-7-and-in-windows-ser).
 
 ![eureka screenshot](screenshots/promo_eureka.png)
+
+### [fisher](ui/fisher) module
+
+To use this module, point cactbot at **ui/fisher/fisher.html**
+
+When you cast your line at a fishing hole, this module keeps track of when you reel in particular fish so that you know what you might be getting when you hook it.
+
+![fishing screenshot](screenshots/promo_fishing.png)
 
 ### [dps](ui/dps) meters
 
