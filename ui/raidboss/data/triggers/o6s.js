@@ -15,12 +15,14 @@
       regexDe: / 14:2829:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
       regexFr: / 14:2829:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
       regexJa: / 14:2829:チャダルヌーク・デーモン starts using デモニックシアー on (\y{Name})/,
+      regexKo: / 14:2829:차다르누크 악령 starts using 악령의 참격 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 → 나',
           };
         }
         if (data.role == 'healer') {
@@ -28,6 +30,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur '+data.ShortName(matches[1]),
+            ko: '탱버 → '+data.ShortName(matches[1]),
           };
         }
       },
@@ -37,6 +40,7 @@
             en: 'buster',
             de: 'tenkbasta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -47,6 +51,7 @@
       regexDe: /Added new combatant Sturmgebiet/,
       regexFr: /Added new combatant Zone De Tempête/,
       regexJa: /Added new combatant 暴風域/,
+      regexKo: /Added new combatant 폭풍 영역/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -54,6 +59,7 @@
         en: 'Hallowed Wind Stack',
         de: 'Heiliger Boden Wind',
         fr: 'Packez vous dans le vent',
+        ko: '쉐어징 천무',
       },
     },
     {
@@ -65,6 +71,7 @@
             en: 'Demonic Stone on YOU',
             de: 'Dämonischer Stein auf DIR',
             fr: 'Pierre démoniaque sur VOUS',
+            ko: '악령의 돌 장판 → 나',
           };
         }
       },
@@ -85,11 +92,13 @@
         en: 'Last Kiss on YOU',
         de: 'Letzter Kuss auf DIR',
         fr: 'Baiser fatal sur VOUS',
+        ko: '죽음의 입맞춤 → 나',
       },
       tts: {
         en: 'last kiss',
         de: 'letz ter kuss',
         fr: 'baiser fatal',
+        ko: '죽음의 입맞춤',
       },
     },
     {
@@ -98,6 +107,7 @@
       regexDe: /1A:(\y{Name}) gains the effect of Letzter Kuss/,
       regexFr: /1A:(\y{Name}) gains the effect of Baiser Fatal/,
       regexJa: /1A:(\y{Name}) gains the effect of 死の口づけ/,
+      regexKo: /1A:(\y{Name}) gains the effect of 죽음의 입맞춤/,
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
@@ -107,11 +117,13 @@
         en: 'Last Kiss on YOU',
         de: 'Letzter Kuss auf DIR',
         fr: 'Baiser fatal sur VOUS',
+        ko: '죽음의 입맞춤 → 나',
       },
       tts: {
         en: 'last kiss',
         de: 'letz ter kuss',
         fr: 'baiser fatal',
+        ko: '죽음의 ',
       },
     },
   ],
@@ -298,6 +310,63 @@
         'Seduced': '誘惑',
         'Slippery Prey': 'マーキング対象外',
         'Yellow Paint': '黄色の絵の具',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Demon Chadarnook': '차다르누크 악령',
+        'Easterly': '극풍',
+        'Goddess Chadarnook': '차다르누크 여신',
+        'Haunt': '악령의 그림자',
+        'Portrayal Of Fire': '불의 그림',
+        'Portrayal Of Wind': '바람의 그림',
+        'Portrayal of Earth': '땅의 그림',
+        'Portrayal of Water': '물의 그림',
+        'The Storm\'s Grip': '폭풍 영역',
+        'I have claimed the girl in the picture!': '우후후후…… 그림 속 여자는',
+      },
+      'replaceText': {
+        'Demonic Howl': '악령의 외침',
+        'Demonic Pain': '악령의 고통',
+        'Demonic Shear': '악령의 참격',
+        'Demonic Spout': '악령의 물기둥',
+        'Demonic Stone': '악령의 돌',
+        'Demonic Storm': '악령의 폭풍',
+        'Demonic Typhoon': '악령의 태풍',
+        'Demonic Wave': '악령의 물결',
+        'Divine Lure': '여신의 유혹',
+        'Downpour': '물고문',
+        'Dull Pain': '약한 고통',
+        'Earthquake': '대지진',
+        'Easterlies': '극풍',
+        'Engage!': '전투 시작!',
+        'Featherlance': '깃털창',
+        'Flash Fire': '불바다',
+        'Flash Gale': '돌풍',
+        'Flash Torrent': '급류',
+        'Last Kiss': '죽음의 입맞춤',
+        'Lullaby': '자장가',
+        'Materialize': '실체화',
+        'Poltergeist': '폴터가이스트',
+        'Possession': '그림 빙의',
+        'Release': '빙의 해제',
+        'Rock Hard': '암석 분쇄',
+        'Song Of Bravery': '용기의 노래',
+        'The Price': '죽음의 유혹',
+      },
+      '~effectNames': {
+        'Apathetic': '무기력',
+        'Black Paint': '검은색 물감',
+        'Blue Paint': '파란색 물감',
+        'Fire Resistance Up': '불속성 저항 상승',
+        'Invisible': 'Invisible',
+        'Knockback Penalty': '넉백 무효',
+        'Last Kiss': '죽음의 입맞춤',
+        'Red Paint': '빨간색 물감',
+        'Seduced': '유혹',
+        'Slippery Prey': '징 대상에서 제외',
+        'Yellow Paint': '노란색 물감',
       },
     },
   ],
