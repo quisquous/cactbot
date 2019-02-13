@@ -15,6 +15,7 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Ätherfäule from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
       regexJa: / 1A:(\y{Name}) gains the effect of エーテルロット from/,
+      regexKo: / 1A:(\y{Name}) gains the effect of 에테르 부패 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -27,6 +28,7 @@
       regexDe: / 1E:(\y{Name}) loses the effect of Ätherfäule from/,
       regexFr: / 1E:(\y{Name}) loses the effect of Pourriture éthéréenne from/,
       regexJa: / 1E:(\y{Name}) loses the effect of エーテルロット from/,
+      regexKo: / 1E:(\y{Name}) loses the effect of 에테르 부패 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -39,6 +41,7 @@
       regexDe: / 1A:Wächter gains the effect of Dadarma-Kampfprogramm/,
       regexFr: / 1A:Gardien gains the effect of Programme Dadaluma/,
       regexJa: / 1A:ガーディアン gains the effect of ダダルマー・プログラム/,
+      regexKo: / 1A:가디언 gains the effect of 다다루마 프로그램/,
       condition: function(data, matches) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -54,6 +57,7 @@
       regexDe: / 1A:Wächter gains the effect of Bibliotaph-Kampfprogramm/,
       regexFr: / 1A:Gardien gains the effect of Programme Bibliotaphe/,
       regexJa: / 1A:ガーディアン gains the effect of ビブリオタフ・プログラム/,
+      regexKo: / 1A:가디언 gains the effect of 비블리오타프 프로그램/,
       condition: function(data, matches) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -69,6 +73,7 @@
       regexDe: / 1A:Wächter gains the effect of Virus/,
       regexFr: / 1A:Gardien gains the effect of Programme Virus/,
       regexJa: / 1A:ガーディアン gains the effect of ウィルス・プログラム/,
+      regexKo: / 1A:가디언 gains the effect of 바이러스 프로그램/,
       run: function(data) {
         data.seenVirus = true;
       },
@@ -81,6 +86,7 @@
       regexDe: / 14:2788:Wächter starts using (Magitek-Laser)/,
       regexFr: / 14:2788:Gardien starts using (Rayon Magitek)/,
       regexJa: / 14:2788:ガーディアン starts using (魔導レーザー)/,
+      regexKo: / 14:2788:가디언 starts using (마도 레이저)/,
       alertText: function(data, matches) {
         return matches[1];
       },
@@ -88,6 +94,7 @@
         en: 'beam',
         de: 'leser',
         fr: 'laser',
+        ko: '레이저',
       },
     },
     {
@@ -96,12 +103,14 @@
       regexDe: / 14:2789:Wächter starts using Arm-Hammer on (\y{Name})/,
       regexFr: / 14:2789:Gardien starts using Marteau Stratégique on (\y{Name})/,
       regexJa: / 14:2789:ガーディアン starts using アームハンマー on (\y{Name})/,
+      regexKo: / 14:2789:가디언 starts using 양팔 내리치기 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tenkbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 → 나',
           };
         }
         if (data.role == 'healer') {
@@ -109,6 +118,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ko: '탱버 → ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -118,6 +128,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -132,11 +143,13 @@
         en: 'Orb Marker',
         de: 'Orb Marker',
         fr: 'Orbe',
+        ko: '원자 파동 징',
       },
       tts: {
         en: 'orb',
         de: 'orb',
         fr: 'orbe',
+        ko: '원자 파동',
       },
     },
     {
@@ -150,6 +163,7 @@
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
+          ko: '파란징 → 나',
         };
       },
       infoText: function(data, matches) {
@@ -160,6 +174,7 @@
           en: 'Blue Marker on ' + data.ShortName(matches[1]),
           de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
           fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
+          ko: '파란징 → ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -170,6 +185,7 @@
           en: 'blue marker',
           de: 'aura-kanone',
           fr: 'marque bleu',
+          ko: '파란징',
         };
       },
     },
@@ -182,12 +198,14 @@
             en: 'Prey on YOU',
             de: 'Rakete auf DIR',
             fr: 'Marquage sur VOUS',
+            ko: '빨간징 → 나',
           };
         }
         return {
           en: 'Prey on ' + data.ShortName(matches[1]),
           de: 'Beute auf ' + data.ShortName(matches[1]),
           fr: 'Marquage sur ' + data.ShortName(matches[1]),
+          ko: '빨간징 → ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -198,6 +216,7 @@
           en: 'prey',
           de: 'beute',
           fr: 'marquage',
+          ko: '빨간징',
         };
       },
     },
@@ -207,6 +226,7 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Gluthitze/,
       regexFr: / 1A:(\y{Name}) gains the effect of Fournaise/,
       regexJa: / 1A:(\y{Name}) gains the effect of 灼熱/,
+      regexKo: / 1A:(\y{Name}) gains the effect of 작열/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -214,11 +234,13 @@
         en: 'Searing Wind: go outside',
         de: 'Gluthitze: Geh weg',
         fr: 'Fournaise : éloignez-vous',
+        ko: '작열: 바깥으로',
       },
       tts: {
         en: 'searing wind',
         de: 'gluthitze',
         fr: 'fournaise',
+        ko: '작열',
       },
     },
     {
@@ -227,6 +249,7 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Verlassen/,
       regexFr: / 1A:(\y{Name}) gains the effect of Isolement/,
       regexJa: / 1A:(\y{Name}) gains the effect of 孤独感/,
+      regexKo: / 1A:(\y{Name}) gains the effect of 고독감/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -234,11 +257,13 @@
         en: 'Abandonment: stay middle',
         de: 'Verlassen: Bleib mittig',
         fr: 'Isolement : restez au milieu',
+        ko: '고독감: 중앙에 있기',
       },
       tts: {
         en: 'abandonment',
         de: 'verlassen',
         fr: 'isolement',
+        ko: '고독감',
       },
     },
     {
@@ -247,18 +272,21 @@
       regexDe: / 1A:(\y{Name}) gains the effect of Ätherfäule from/,
       regexFr: / 1A:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
       regexJa: / 1A:(\y{Name}) gains the effect of エーテルロット from/,
+      regexKo: / 1A:(\y{Name}) gains the effect of 에테르 부패 from/,
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Rot on you',
             de: 'Fäule auf DIR',
             fr: 'Pourriture sur VOUS',
+            ko: '에테르 → 나',
           };
         }
         return {
           en: 'Rot on ' + data.ShortName(matches[1]),
           de: 'Fäule auf ' + data.ShortName(matches[1]),
           fr: 'Pourriture sur ' + data.ShortName(matches[1]),
+          ko: '에테르 → ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -278,12 +306,14 @@
       regexDe: / 14:2AB5:Ultros starts using Steinhaut/,
       regexFr: / 14:2AB5:Orthros starts using Cuirasse/,
       regexJa: / 14:2AB5:オルトロス starts using ストンスキン/,
+      regexKo: / 14:2AB5:오르트로스 starts using 스톤스킨/,
       alarmText: function(data) {
         if (data.job == 'NIN' || data.role == 'dps-ranged') {
           return {
             en: 'SILENCE!',
             de: 'VERSTUMMEN!',
             fr: 'SILENCE!',
+            ko: '침묵!',
           };
         }
       },
@@ -293,6 +323,7 @@
             en: 'Silence',
             de: 'stumm',
             fr: 'silence',
+            ko: '침묵',
           };
         }
       },
@@ -307,6 +338,7 @@
       regexDe: / 14:(?:275C|2773|2774|2776):Wächter starts using/,
       regexFr: / 14:(?:275C|2773|2774|2776):Gardien starts using/,
       regexJa: / 14:(?:275C|2773|2774|2776):ガーディアン starts using/,
+      regexKo: / 14:(?:275C|2773|2774|2776):가디언 starts using/,
       preRun: function(data) {
         data.loadCount = ++data.loadCount || 1;
         data.thisLoad = undefined;
@@ -370,6 +402,7 @@
       regexDe: / 14:276F:Wächter starts using Programm Starten/,
       regexFr: / 14:276F:Gardien starts using Programme De Matérialisation/,
       regexJa: / 14:276F:ガーディアン starts using 実体化プログラム/,
+      regexKo: / 14:276F:가디언 starts using 실체화 프로그램/,
       preRun: function(data) {
         data.runCount = ++data.runCount || 1;
         data.thisRunText = undefined;
@@ -668,6 +701,90 @@
         'Temporary Misdirection': '心神喪失',
         'Ultros Simulation': 'オルトロス・プログラム',
         'Virus': 'ウィルス・プログラム',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Air Force': '에어포스',
+        'Dadaluma': '다다루마',
+        'Fire Control System': '병기 제어 시스템',
+        'Guardian': '가디언',
+        'Interdimensional Bomb': '차원 폭탄',
+        'Ultros': '오르트로스',
+      },
+      'replaceText': {
+        '--targetable--': '--대상 지정 가능--',
+        '--untargetable--': '--대상 지정 불가--',
+        'Arm And Hammer': '양팔 내리치기',
+        'Atomic Ray': '원자 파동',
+        'Aura Cannon': '오라 포격',
+        'Bomb Deployment': '폭탄 설치',
+        'Chain Cannon': '기관총',
+        'Chakra Burst': '차크라 폭발',
+        'Copy Program': '프로그램 복사',
+        'Demon Simulation': '불러오기: 악마',
+        'Diffractive Laser': '확산 레이저',
+        'Diffractive Plasma': '확산 플라스마',
+        'Electric Pulse': '전자기 펄스',
+        'Engage!': '전투 시작!',
+        'Explosion': '폭발',
+        'Ink': '먹물',
+        'Light Blast': '소규모 폭발',
+        'Load': '불러오기',
+        'Magitek Ray': '마도 레이저',
+        'Magnetism': '자력',
+        'Main Cannon': '주포',
+        'Missile': '미사일',
+        'Missile Simulation': '불러오기: 미사일',
+        'Paste Program': '프로그램 붙여넣기',
+        'Repel': '반발',
+        'Retrieve Program': '역순 불러오기',
+        'Run Program': '실체화 프로그램',
+        'Shockwave': '충격파',
+        'Skip Program': '건너뛰기',
+        'Stoneskin': '스톤스킨',
+        'Tentacle': '문어발',
+        'Tentacle Simulation': '불러오기: 문어발',
+        'The Heat': '작열',
+        'Viral Weapon': '바이러스 병기',
+        'Wallop': '매질',
+        
+        'Aether Rot': '에테르 부패',
+        'Copy': '복사',
+        'Skip': '건너뛰기',
+        'Dada': '다다',
+        'Run': '실체화',
+        'Interrupt Stoneskin': '스톤스킨 취소됨',
+        'Magnetism/Repel': '자력/반발',
+        'Temporary Misdirection': '심신상실',
+        'Radar': '레이더',
+        'Paste': '붙여넣기',
+        'Biblio': '비블리오',
+        'Plane Laser': '에어포스 레이저',
+        'Virus': '바이러스',
+        'Enrage': '전멸기',
+      },
+      '~effectNames': {
+        'Abandonment': '고독감',
+        'Aether Rot': '에테르 부패',
+        'Aether Rot Immunity': '에테르 부패 항체',
+        'Air Force Simulation': '에어포스 프로그램',
+        'Bibliotaph Simulation': '비블리오타프 프로그램',
+        'Bleeding': '고통',
+        'Burns': '화상',
+        'Dadaluma Simulation': '다다루마 프로그램',
+        'Fire Resistance Down II': '불속성 저항 감소[강]',
+        'Hover': '체공',
+        'Negative Charge': '자력[-]',
+        'Paralysis': '마비',
+        'Positive Charge': '자력[+]',
+        'Prey': '징',
+        'Searing Wind': '작열',
+        'Stun': '기절',
+        'Temporary Misdirection': '심신상실',
+        'Ultros Simulation': '오르트로스 프로그램',
+        'Virus': '바이러스 프로그램',
       },
     },
   ],
