@@ -31,6 +31,13 @@
   padding-bottom: calc(1450%/13.5);
 }
 
+.aspect-ratio-hydatos {
+  width: 100%;
+  height: 0;
+  position: relative;
+  padding-bottom: calc(1000%/13.5);
+}
+
 .inner-container {
   position: absolute;
   top: 0;
@@ -147,6 +154,10 @@
 }
 
 .aspect-ratio-pyros #label-container {
+  top: 40%;
+}
+
+.aspect-ratio-hydatos #label-container {
   top: 40%;
 }
 
