@@ -29,12 +29,15 @@ class CactbotLanguageKo extends CactbotLanguage {
       Devotion: '에기의 가호', // 0x4bd
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c
 
-      // TODO: translate, add ids
-      Petrification: 'Petrification',
-      BeyondDeath: 'Beyond Death',
-      Burns: 'Burns',
-      Sludge: 'Sludge',
-      Doom: 'Doom',
+      // TODO: add ids
+      Petrification: '석화',
+      BeyondDeath: '죽음의 초월',
+      Burns: '화상',
+      Sludge: '진흙탕',
+      Doom: '죽음의 선고',
+      
+      // UWU
+      Windburn: '열상',
     });
 
     this.kUIStrings = Object.freeze({
@@ -44,19 +47,19 @@ class CactbotLanguageKo extends CactbotLanguage {
 
     // TODO: Countdowns
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/Battle commencing in (\y{Float}) seconds!/);
+      return Regexes.Parse(/전투 시작 (\y{Float})초 전!/);
     };
     this.countdownEngageRegex = function() {
-      return /:Engage!/;
+      return /:전투 시작!/;
     };
     this.countdownCancelRegex = function() {
-      return /Countdown canceled by /;
+      return / 님이 초읽기를 취소했습니다./;
     };
     this.areaSealRegex = function() {
-      return /:(.*) will be sealed off in /;
+      return /:(\y{Float})초 후에 (.*)(이|가) 봉쇄됩니다./;
     };
     this.areaUnsealRegex = function() {
-      return /:(.*) is no longer sealed/;
+      return /:(.*)의 봉쇄가 해제되었습니다./;
     };
   }
 }
