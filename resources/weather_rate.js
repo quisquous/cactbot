@@ -1280,4 +1280,32 @@ let gWeatherRates = {
       'Scarlet',
     ],
   },
+  99: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'True Blue',
+    ],
+  },
+  100: {
+    'rates': [
+      12,
+      34,
+      56,
+      78,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Showers',
+      'Gloom',
+      'Thunderstorms',
+      'Snow',
+    ],
+  },
+  101: {
+    'rates': [],
+    'weathers': [],
+  },
 };
