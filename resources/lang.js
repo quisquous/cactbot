@@ -156,6 +156,7 @@ class CactbotLanguage {
       EurekaAnemos: /Eureka Anemos/,
       EurekaPagos: /(Eureka Pagos|Unknown Zone \(2Fb\))/,
       EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
+      EurekaHydatos: /(Eureka Hydatos|Unknown Zone \(33B\))/,
     });
   }
 

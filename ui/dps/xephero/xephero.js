@@ -9,6 +9,7 @@ let Options = {
     'EurekaAnemos',
     'EurekaPagos',
     'EurekaPyros',
+    'EurekaHydatos',
   ],
 };
 
