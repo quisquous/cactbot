@@ -15,6 +15,7 @@
       regexDe: /04:Removing combatant Phantomzug/,
       regexFr: /04:Removing combatant Train Fantôme/,
       regexJa: /04:Removing combatant 魔列車/,
+      regexKo: /04:Removing combatant 마열차/,
       run: function(data) {
         data.StopCombat();
       },
@@ -25,12 +26,14 @@
       regexDe: /14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
       regexFr: /14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
       regexJa: /14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
+      regexKo: /14:28B1:마열차 starts using 마령격 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 → 나',
           };
         }
         if (data.role == 'healer') {
@@ -38,6 +41,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ko: '탱버 → ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -47,6 +51,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -57,11 +62,13 @@
       regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
       regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
       regexJa: /14:28A4:魔列車 starts using 追突/,
+      regexKo: /14:28A4:마열차 starts using 추돌/,
       alertText: function(data) {
         return {
           en: 'Go to back',
           de: 'Nach hinten laufen',
           fr: 'S\'éloigner',
+          ko: '뒤로 이동',
         };
       },
       tts: function(data) {
@@ -69,6 +76,7 @@
           en: 'run away',
           de: 'ab nach hinten',
           fr: 'S\'éloigner',
+          ko: '뒤로 이동',
         };
       },
     },
@@ -78,11 +86,13 @@
       regexDe: /14:28B2:Phantomzug starts using Diabolische Leuchte/,
       regexFr: /14:28B2:Train Fantôme starts using Phare Diabolique/,
       regexJa: /14:28B2:魔列車 starts using 魔界の前照灯/,
+      regexKo: /14:28B2:마열차 starts using 마계의 전조등/,
       alertText: function(data) {
         return {
           en: 'Stack middle',
           de: 'Stack in der Mitte',
           fr: 'Stack au milieu',
+          ko: '중앙으로 모이기',
         };
       },
     },
@@ -97,6 +107,7 @@
           en: 'Light',
           de: 'Licht',
           fr: 'Lumière',
+          ko: '빛장판',
         };
       },
     },
@@ -111,6 +122,7 @@
           en: 'Wind',
           de: 'Wind',
           fr: 'Vent',
+          ko: '초록징',
         };
       },
     },
@@ -120,11 +132,13 @@
       regexDe: /Added new combatant Melancholischer Geist/,
       regexFr: /Added new combatant Fantôme Mélancolique/,
       regexJa: /Added new combatant 未練のゴースト/,
+      regexKo: /Added new combatant 미련이 남은 유령/,
       infoText: function(data) {
         return {
           en: 'Knockback Ghost',
           de: 'Rückstoß Geist',
           fr: 'Fantôme soufflant',
+          ko: 'Fantôme soufflant',
         };
       },
     },
@@ -262,6 +276,46 @@
         'Prey': 'マーキング',
         'Stun': 'スタン',
         'Throttle': '窒息',
+      },
+    },
+    {
+      'locale': 'Ko',
+      'replaceSync': {
+        'Agony': '고뇌하는 유령',
+        'Doom Chimney': '마열차 굴뚝',
+        'Phantom Train': '마열차',
+        'Putrid Passenger': '좀비 승객',
+        'Wroth Ghost': '격노하는 유령',
+        'Remorse': '미련이 남은 유령',
+        'Agony': '고뇌하는 유령',
+        'Malice': '원한 품은 유령',
+      },
+      'replaceText': {
+        'Acid Rain': '산성비',
+        'All In The Mind': '염력',
+        'Diabolic Chimney': '마계의 연기',
+        'Diabolic Headlamp': '마계의 전조등',
+        'Diabolic Light': '마계의 빛',
+        'Diabolic Whistle': '마계의 경적',
+        'Diabolic Wind': '마계의 바람',
+        'Doom Strike': '마령격',
+        'Encumber': '진로 방해',
+        'Engage!': '전투 시작!',
+        'Head On': '추돌',
+        'Possess': '빙의',
+        'Saintly Beam': '성스러운 광선',
+        
+        'Crossing Whistle': '행진 유령',
+        'Knockback Whistle': '넉백 유령',
+        'Tether Whistle': '추적 유령',
+        ' Ghosts': ' 유령',
+        'Ghosts spawn': '유령 등장',
+      },
+      '~effectNames': {
+        'Connectivity': '연결',
+        'Prey': '징',
+        'Stun': '기절',
+        'Throttle': '질식',
       },
     },
   ],
