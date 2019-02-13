@@ -15,16 +15,19 @@
       regexDe: / 14:28DB:Helige Statue starts using Schockwelle/,
       regexFr: / 14:28DB:Statue Divine starts using Onde De Choc/,
       regexJa: / 14:28DB:神々の像 starts using 衝撃波/,
+      regexKo: / 14:28DB:신들의 상 starts using 충격파/,
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
         fr: 'Préparez-vous à la projection',
         de: 'Auf Rückstoß achten',
+        ko: '넉백 대비',
       },
       tts: {
         en: 'knockback',
         fr: 'Projection',
         de: 'Rückstoß',
+        ko: '넉백',
       },
     },
     {
@@ -33,15 +36,18 @@
       regexDe: /Helige Statue starts using Träger Wille/,
       regexFr: /Statue Divine starts using Volonté Indolente/,
       regexJa: /神々の像 starts using 惰眠の神気/,
+      regexKo: /신들의 상 starts using 태만의 신기/,
       alertText: {
         en: 'Look Away From Statue',
         fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
+        ko: '시선 피하기',
       },
       tts: {
         en: 'look away',
         fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
+        ko: '뒤돌기',
       },
     },
     {
@@ -50,15 +56,18 @@
       regexDe: /14:28DF:Helige Statue starts using Unmäßiger Wille/,
       regexFr: /14:28DF:Statue Divine starts using Volonté Intempérante/,
       regexJa: /14:28DF:神々の像 starts using 撲殺の神気/,
+      regexKo: /14:28DF:신들의 상 starts using 박살의 신기/,
       alertText: {
         en: '<= Get Left/West',
         fr: '<= Allez à Gauche/Ouest',
         de: '<= Nach Links/Westen',
+        ko: '<= 왼쪽이 안전',
       },
       tts: {
         en: 'left',
         fr: 'gauche',
         de: 'links',
+        ko: '왼쪽',
       },
     },
     {
@@ -67,15 +76,18 @@
       regexDe: /14:28DE:Helige Statue starts using Gravitationswelle/,
       regexFr: /14:28DE:Statue Divine starts using Onde Gravitationnelle/,
       regexJa: /14:28DE:神々の像 starts using 重力波/,
+      regexKo: /14:28DE:신들의 상 starts using 중력파/,
       alertText: {
         en: 'Get Right/East =>',
         fr: 'Allez à Droite/Est =>',
         de: 'Nach Rechts/Westen =>',
+        ko: '오른쪽이 안전 =>',
       },
       tts: {
         en: 'right',
         fr: 'Projection depuis le côté droit',
         de: 'rechts',
+        ko: '오른쪽',
       },
     },
     {
@@ -84,15 +96,18 @@
       regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
       regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
       regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
+      regexKo: / 14:28E3:신들의 상 starts using 아베 마리아/,
       alertText: {
         en: 'Look At Statue',
         fr: 'Regardez la statue',
         de: 'Statue anschauen',
+        ko: '시선 바라보기',
       },
       tts: {
         en: 'look towards',
         fr: 'Regardez la statue',
         de: 'anschauen',
+        ko: '쳐다보기',
       },
     },
     {
@@ -101,15 +116,18 @@
       regexDe: /Kefka starts using Vernichtung Der Vergangenheit/,
       regexFr: /Kefka starts using Ruine Du Passé/,
       regexJa: /ケフカ starts using 過去の破滅/,
+      regexKo: /케프카 starts using 과거의 파멸/,
       alertText: {
         en: 'Past: Stack and Stay',
         fr: 'Passé : Stack et ne bougez plus',
         de: 'Vergangenheit: Sammeln und Stehenbleiben',
+        ko: '과거: 맞고 가만히있기',
       },
       tts: {
         en: 'stack and stay',
         fr: 'Stack et rester-là',
         de: 'Stek und Stehenbleiben',
+        ko: '맞고 가만히',
       },
     },
     {
@@ -118,15 +136,18 @@
       regexDe: /Kefka starts using Vernichtung Der Zukunft/,
       regexFr: /Kefka starts using Ruine Du Futur/,
       regexJa: /ケフカ starts using 未来の破滅/,
+      regexKo: /케프카 starts using 미래의 파멸/,
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et traversez',
         de: 'Zukunft: Sammeln und Durchlaufen',
+        ko: '미래: 맞고 통과해가기',
       },
       tts: {
         en: 'stack and through',
         fr: 'Stack et traversez',
         de: 'Stek und durchlaufen',
+        ko: '맞고 통과해가기',
       },
     },
     {
@@ -135,6 +156,7 @@
       regexDe: /Kefka starts using Ende Der Vergangenheit/,
       regexFr: /Kefka starts using Fin Du Passé/,
       regexJa: /ケフカ starts using 過去の終焉/,
+      regexKo: /케프카 starts using 과거의 종언/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -142,11 +164,13 @@
         en: 'Past: Bait, then through',
         fr: 'Passé : appâtez puis traversez',
         de: 'Vergangenheit : Anlocken und Durchlaufen',
+        ko: '과거: 맞고, 이동',
       },
       tts: {
         en: 'run run run',
         fr: 'appâtez puis traversez',
         de: 'Durchlaufen',
+        ko: '맞고 이동',
       },
     },
     {
@@ -155,6 +179,7 @@
       regexDe: /Kefka starts using Ende Der Zukunft/,
       regexFr: /Kefka starts using Fin Du Futur/,
       regexJa: /ケフカ starts using 未来の終焉/,
+      regexKo: /케프카 starts using 미래의 종언/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -162,11 +187,13 @@
         en: 'Future: Bait, then stay',
         fr: 'Futur : appâtez et ne bougez plus',
         de: 'Zukunft: Anlocken und Stehenbleiben',
+        ko: '미래: 맞고, 가만히',
       },
       tts: {
         en: 'stay stay stay',
         fr: 'appâtez et stop',
         de: 'Stehenbleiben',
+        ko: '맞고 가만히',
       },
     },
     {
@@ -175,6 +202,7 @@
       regexDe: /Helige Statue starts using Pulswelle on (\y{Name})/,
       regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
       regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
+      regexJa: /신들의 상 starts using 파동탄 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -182,11 +210,13 @@
         en: 'Knockback on YOU',
         fr: 'Projection sur VOUS',
         de: 'Rückstoß auf DIR',
+        ko: '넉백 → 나',
       },
       tts: {
         en: 'knockback',
         fr: 'Projection',
         de: 'Rückstoß',
+        ko: '넉백',
       },
     },
     {
@@ -195,12 +225,14 @@
       regexDe: / 14:2900:Kefka starts using Vernichtungsschwinge/,
       regexFr: / 14:2900:Kefka starts using Aile De La Destruction/,
       regexJa: / 14:2900:ケフカ starts using 破壊の翼/,
+      regexJa: / 14:2900:케프카 starts using 파괴의 날개/,
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Wings: Be Near/Far',
             fr: 'Ailes : être près/loin',
             de: 'Schwingen: Nah/Fern',
+            ko: '양날개: 가까이/멀리',
           };
         }
       },
@@ -210,6 +242,7 @@
             en: 'Max Melee: Avoid Tanks',
             fr: 'Max Mêlée : éloignez-vous des Tanks',
             de: 'Max Nahkampf: Weg von den Tanks',
+            ko: '칼끝딜: 탱커 피하기',
           };
         }
       },
@@ -219,12 +252,14 @@
             en: 'wings',
             fr: 'Ailes, être près ou loin',
             de: 'schwingen',
+            ko: '양날개',
           };
         }
         return {
           en: 'max melee',
           fr: 'Max mêlée éloignez vous des tanks',
           de: 'max nahkampf',
+          ko: '칼끝딜',
         };
       },
     },
@@ -234,10 +269,12 @@
       regexDe: / 14:28F[EF]:Kefka starts using Vernichtungsschwinge/,
       regexFr: / 14:28F[EF]:Kefka starts using Aile De La Destruction/,
       regexJa: / 14:28F[EF]:ケフカ starts using 破壊の翼/,
+      regexJa: / 14:28F[EF]:케프카 starts using 파괴의 날개/,
       infoText: {
         en: 'Single Wing',
         fr: 'Aile unique',
         de: 'Einzelner Flügel',
+        ko: '한쪽 날개',
       },
     },
     {
@@ -246,6 +283,7 @@
       regexDe: / 14:2910:Kefka starts using Ultima-Umarmung on (\y{Name})/,
       regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
       regexJa: / 14:2910:ケフカ starts using アルテマte Embrace on (\y{Name})/,
+      regexJa: / 14:2910:케프카 starts using 종말의 포옹 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
@@ -254,6 +292,7 @@
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
           de: 'Umarmung auf DIR',
+          ko: '종말의 포옹 → 나',
         };
       },
       infoText: function(data, matches) {
@@ -265,6 +304,7 @@
             en: 'Embrace on ' + data.ShortName(matches[1]),
             fr: 'Étreinte sur ' + data.ShortName(matches[1]),
             de: 'Umarmung auf ' + data.ShortName(matches[1]),
+            ko: '종말의 포옹 → ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -274,6 +314,7 @@
             en: 'embrace',
             fr: 'Étreinte',
             de: 'umarmung',
+            ko: '종말의 포옹',
           };
         }
       },
@@ -285,6 +326,7 @@
       regexDe: / 14:(?:28E8|2912):Kefka starts using Hyperantrieb on (\y{Name})/,
       regexFr: / 14:(?:28E8|2912):Kefka starts using Colonne De Feu on (\y{Name})/,
       regexJa: / 14:(?:28E8|2912):ケフカ starts using ハイパードライブ on (\y{Name})/,
+      regexKo: / 14:(?:28E8|2912):케프카 starts using 하이퍼드라이브 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
@@ -293,6 +335,7 @@
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
           de: 'Hyperantrieb auf DIR',
+          ko: '하이퍼드라이브 → 나',
         };
       },
       infoText: function(data, matches) {
@@ -304,6 +347,7 @@
             en: 'Hyperdrive on ' + data.ShortName(matches[1]),
             fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
             de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
+            ko: '하이퍼드라이브 → ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -313,6 +357,7 @@
             en: 'hyperdrive',
             fr: 'Colonne de feu',
             de: 'hyperantrieb',
+            ko: '하이퍼드라이브',
           };
         }
       },
@@ -323,6 +368,7 @@
       regexDe: / 14:28E5:Helige Statue starts using Nachsichtiger Wille on (\y{Name})/,
       regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
       regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
+      regexKo: / 14:28E5:신들의 상 starts using 성모의 신기 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -330,11 +376,13 @@
         en: 'Confusion: Go Outside',
         fr: 'Confusion : Aller à l\'extérieur',
         de: 'Konfusion: Nach außen',
+        ko: '혼란: 바깥으로',
       },
       tts: {
         en: 'confusion',
         fr: 'Confusion, aller à l\'extérieur',
         de: 'konfusion',
+        ko: '혼란',
       },
     },
     {
@@ -343,6 +391,7 @@
       regexDe: / 14:28E6:Helige Statue starts using Idyllischer Wille on (\y{Name})/,
       regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
       regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
+      regexKo: / 14:28E6:신들의 상 starts using 수마의 신기 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -350,11 +399,13 @@
         en: 'Sleep: Go Inside',
         fr: 'Sommeil : allez au centre',
         de: 'Schlaf: Zur Mitte',
+        ko: '수면: 안으로',
       },
       tts: {
         en: 'sleep',
         fr: 'Sommeil',
         de: 'Schlaf',
+        ko: '수면',
       },
     },
     {
@@ -363,6 +414,7 @@
       regexDe: / 14:28D1:Kefka starts using Mana-Aufladung/,
       regexFr: / 14:28D1:Kefka starts using Concentration De Mana/,
       regexJa: / 14:28D1:ケフカ starts using マジックチャージ/,
+      regexJa: / 14:28D1:케프카 starts using 마력 충전/,
       run: function(data) {
         delete data.lastFire;
         delete data.lastThunder;
@@ -377,6 +429,7 @@
       regexDe: / 14:28D2:Kefka starts using Mana-Entladung/,
       regexFr: / 14:28D2:Kefka starts using Décharge De Mana/,
       regexJa: / 14:28D2:ケフカ starts using マジックアウト/,
+      regexJa: / 14:28D2:케프카 starts using 마력 방출/,
       preRun: function(data) {
         if (data.lastFire) {
           data.manaReleaseText = data.lastFire;
@@ -407,12 +460,14 @@
       regexDe: /1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
       regexFr: /1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
       regexJa: /1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
+      regexKo: /1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
           en: 'Spread',
           fr: 'Eloignez-vous',
           de: 'verteilen',
+          ko: '산개',
         }[data.lang];
       },
     },
@@ -425,12 +480,14 @@
       regexDe: /1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
       regexFr: /1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
       regexJa: /1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
+      regexKo: /1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
           en: 'Stack',
           fr: 'Stack',
           de: 'Stacken',
+          ko: '집합',
         }[data.lang];
       },
     },
@@ -443,12 +500,14 @@
       regexDe: /14:(?:28CD|2B31):Kefka starts using Brachiales Blitzga/,
       regexFr: /14:(?:28CD|2B31):Kefka starts using Méga Foudre Fourmillante/,
       regexJa: /14:(?:28CD|2B31):ケフカ starts using もりもりサンダガ/,
+      regexKo: /14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
           en: 'True Thunder',
           fr: 'Vraie foudre',
           de: 'Wahrer Blitz',
+          ko: '진실 선더가',
         }[data.lang];
       },
       infoText: function(data) {
@@ -467,12 +526,14 @@
       regexDe: /14:(?:28CC|2B30):Kefka starts using Brachiales Blitzga/,
       regexFr: /14:(?:28CC|2B30):Kefka starts using Méga Foudre Fourmillante/,
       regexJa: /14:(?:28CC|2B30):ケフカ starts using もりもりサンダガ/,
+      regexKo: /14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
           en: 'Fake Thunder',
           fr: 'Fausse foudre',
           de: 'Falscher Blitz',
+          ko: '거짓 선더가',
         }[data.lang];
       },
       infoText: function(data) {
@@ -491,17 +552,20 @@
       regexDe: /14:(?:28C5|2B2B):Kefka starts using Erstarrendes Eisga/,
       regexFr: /14:(?:28C5|2B2B):Kefka starts using Méga Glace Glissante/,
       regexJa: /14:(?:28C5|2B2B):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: /14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'Fake Ice',
           fr: 'Fausse glace',
           de: 'Falsches Eis',
+          ko: '거짓 블리자가',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
           de: 'raus da',
+          ko: '밖으로',
         }[data.lang];
       },
       infoText: function(data) {
@@ -520,17 +584,20 @@
       regexDe: /14:(?:28C9|2B2E):Kefka starts using Erstarrendes Eisga/,
       regexFr: /14:(?:28C9|2B2E):Kefka starts using Méga Glace Glissante/,
       regexJa: /14:(?:28C9|2B2E):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: /14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'True Ice',
           fr: 'Vraie glace',
           de: 'Wahres Eis',
+          ko: '진실 블리자가',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
           de: 'reingehen',
+          ko: '안으로',
         }[data.lang];
       },
       infoText: function(data) {
@@ -549,17 +616,20 @@
       regexDe: /14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
       regexFr: /14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
       regexJa: /14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: /14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'Fake Ice',
           fr: 'Fausse glace',
           de: 'Falsches Eis',
+          ko: '거짓 블리자가',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
           de: 'reingehen',
+          ko: '안으로',
         }[data.lang];
       },
       infoText: function(data) {
@@ -578,17 +648,20 @@
       regexDe: /14:(?:28C8|2B2D):Kefka starts using Erstarrendes Eisga/,
       regexFr: /14:(?:28C8|2B2D):Kefka starts using Méga Glace Glissante/,
       regexJa: /14:(?:28C8|2B2D):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: /14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'True Ice',
           fr: 'Vraie glace',
           de: 'Wahres Eis',
+          ko: '진실 블리자가',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
           de: 'rausgehen',
+          ko: '밖으로',
         }[data.lang];
       },
       infoText: function(data) {
@@ -819,6 +892,72 @@
         'Ultima': 'アルテマ',
         'Ultimate Embrace': '終末の双腕',
         'Wings Of Destruction': '破壊の翼',
+      },
+    },
+    {
+      locale: 'ko',
+      replaceSync: {
+        'Graven Image': '신들의 상',
+        'Kefka': '케프카',
+        'Light Of Consecration': '성결의 빛',
+        'The Mad Head': '광인의 머리',
+      },
+      replaceText: {
+        '--targetable--': '--대상 지정 가능--',
+        '--untargetable--': '--대상 지정 불가--',
+        'Enrage': '전멸기',
+        'Engage!': '전투 시작!',
+
+        'Aero Assault': '갈기갈기 에어로가',
+        'Blizzard Blitz': '빙글빙글 블리자가',
+        'Flagrant Fire': '이글이글 파이가',
+        'Graven Image': '신들의 상',
+        'Gravitas': '중력탄',
+        'Holy Ascent': '승천',
+        'Hyperdrive': '하이퍼드라이브',
+        'Idyllic Will': '수마의 신기',
+        'Indolent Will': '태만의 신기',
+        'Indomitable Will': '호완의 신기',
+        'Indulgent Will': '성모의 신기',
+        'Inexorable Will': '무정의 신기',
+        'Intemperate Will': '박살의 신기',
+        'Light Of Judgment': '심판의 빛',
+        'Mana Charge': '마력 충전',
+        'Mana Release': '마력 방출',
+        'Pulse Wave': '파동탄',
+        'Revolting Ruin': '파삭파삭 루인가',
+        'Shockwave': '충격파',
+        'Thrumming Thunder': '찌릿찌릿 선더가',
+        'Timely Teleport': '껑충껑충 텔레포',
+        'Ultima Upsurge': '두근두근 알테마',
+        'Vitrophyre': '암석탄',
+        'Wave Cannon': '파동포',
+
+        'All Things Ending': '소멸의 발차기',
+        'Blizzard III': '블리자가',
+        'Celestriad': '세 개의 별',
+        'Explosion': '폭발',
+        'Fire III': '파이가',
+        'Forsaken': '행방불명',
+        'Future\'s End': '미래의 종언',
+        'Futures Numbered': '미래의 파멸',
+        'Gravitational Wave': '중력파',
+        'Heartless Angel': '비정한 천사',
+        'Heartless Archangel': '비정한 대천사',
+        'Hyperdrive': '하이퍼드라이브',
+        'Idyllic Will': '수마의 신기',
+        'Indulgent Will': '성모의 신기',
+        'Light Of Judgment': '심판의 빛',
+        'Meteor': '메테오',
+        'Pasts Forgotten': '과거의 파멸',
+        'Pulse Wave': '파동탄',
+        'Starstrafe': '요성난무',
+        'The Path Of Light': '빛의 파동',
+        'Thunder III': '선더가',
+        'Trine': '트라인',
+        'Ultima': '알테마',
+        'Ultimate Embrace': '종말의 포옹',
+        'Wings Of Destruction': '파괴의 날개',
       },
     },
   ],
