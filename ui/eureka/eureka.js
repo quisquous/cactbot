@@ -1547,6 +1547,7 @@ let Options = {
           },
           x: 26.8,
           y: 29.0,
+          respawnMinutes: 20,
         },
         tristicia: {
           label: {
@@ -1569,6 +1570,7 @@ let Options = {
           },
           x: 18.7,
           y: 29.7,
+          respawnMinutes: 20,
         },
       },
     },
@@ -1713,6 +1715,8 @@ class EurekaTracker {
 
   RespawnTime(nm) {
     let respawnTimeMs = 120 * 60 * 1000;
+    if ('respawnMinutes' in nm)
+      respawnTimeMs = nm.respawnMinutes * 60 * 1000;
     return respawnTimeMs + (+new Date());
   }
 
