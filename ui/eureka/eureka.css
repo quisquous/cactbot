@@ -35,7 +35,7 @@
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(1000%/13.5);
+  padding-bottom: calc(800%/15);
 }
 
 .inner-container {
@@ -158,7 +158,7 @@
 }
 
 .aspect-ratio-hydatos #label-container {
-  top: 40%;
+  top: 90%;
 }
 
 .resize-helper {

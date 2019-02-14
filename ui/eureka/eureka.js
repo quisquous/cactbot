@@ -5,8 +5,9 @@ let Options = {
   RefreshRateMs: 1000,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   PopVolume: 1.0,
-  SuppressPopMs: 1700 * 1000,
-  FlagTimeoutMs: 60000,
+  // 20 minutes for Ovni?
+  SuppressPopMs: 60 * 20 * 1000,
+  FlagTimeoutMs: 90000,
   ZoneInfo: {
     'Eureka Anemos': {
       mapImage: 'anemos.png',
@@ -1271,24 +1272,24 @@ let Options = {
     },
     'Eureka Hydatos': {
       mapImage: 'hydatos.png',
-      mapWidth: 1350,
-      mapHeight: 1450,
+      mapWidth: 1500,
+      mapHeight: 800,
       shortName: 'hydatos',
-      mapToPixelXScalar: 42.515,
-      mapToPixelXConstant: -344.064,
-      mapToPixelYScalar: 42.486,
-      mapToPixelYConstant: -202.628,
+      mapToPixelXScalar: 37.523,
+      mapToPixelXConstant: -48.160,
+      mapToPixelYScalar: 37.419,
+      mapToPixelYConstant: -414.761,
       entityToMapXScalar: 0.02,
       entityToMapXConstant: 21.48,
       entityToMapYScalar: 0.02,
-      entityToMapYConstant: 21.48,
+      entityToMapYConstant: 30.977,
       nms: {
         khalamari: {
           label: {
-            en: 'Khalamari',
-            de: 'Khalamari',
-            fr: 'Khalamari',
-            ja: 'Khalamari',
+            en: 'Khala',
+            de: 'Khala',
+            fr: 'Khala',
+            ja: 'Khala',
           },
           mobName: {
             en: 'Khalamari',
@@ -1307,10 +1308,10 @@ let Options = {
         },
         stegodon: {
           label: {
-            en: 'Stegodon',
-            de: 'Stegodon',
-            fr: 'Stegodon',
-            ja: 'Stegodon',
+            en: 'Stego',
+            de: 'Stego',
+            fr: 'Stego',
+            ja: 'Stego',
           },
           mobName: {
             en: 'Stegodon',
@@ -1368,15 +1369,15 @@ let Options = {
             fr: 'Piasa',
             ja: 'Piasa',
           },
-          x: 23.5,
-          y: 37.2,
+          x: 7.1,
+          y: 14.1,
         },
         frostmane: {
           label: {
-            en: 'Frostmane',
-            de: 'Frostmane',
-            fr: 'Frostmane',
-            ja: 'Frostmane',
+            en: 'Frost',
+            de: 'Frost',
+            fr: 'Frost',
+            ja: 'Frost',
           },
           mobName: {
             en: 'Frostmane',
@@ -1391,7 +1392,7 @@ let Options = {
             ja: 'Frostmane',
           },
           x: 8.1,
-          y: 26.2,
+          y: 26.4,
         },
         daphne: {
           label: {
@@ -1417,10 +1418,10 @@ let Options = {
         },
         goldemar: {
           label: {
-            en: 'Goldemar',
-            de: 'Goldemar',
-            fr: 'Goldemar',
-            ja: 'Goldemar',
+            en: 'King',
+            de: 'King',
+            fr: 'King',
+            ja: 'King',
           },
           mobName: {
             en: 'King Goldemar',
@@ -1434,9 +1435,8 @@ let Options = {
             fr: 'King Goldemar',
             ja: 'King Goldemar',
           },
-          // ?
-          // x: 10.0,
-          // y: 14.0,
+          x: 28.9,
+          y: 23.9,
         },
         leuke: {
           label: {
@@ -1457,9 +1457,8 @@ let Options = {
             fr: 'Leuke',
             ja: 'Leuke',
           },
-          // ?
-          // x: 13.2,
-          // y: 11.2,
+          x: 37.3,
+          y: 27.0,
         },
         barong: {
           label: {
@@ -1480,9 +1479,8 @@ let Options = {
             fr: 'Barong',
             ja: 'Barong',
           },
-          // FIXME
-          x: 28.4,
-          y: 25.1,
+          x: 32.2,
+          y: 24.2,
         },
         ceto: {
           label: {
@@ -1503,9 +1501,8 @@ let Options = {
             fr: 'Ceto',
             ja: 'Ceto',
           },
-          // FIXME
-          x: 35.9,
-          y: 14.1,
+          x: 36.1,
+          y: 13.4,
         },
         watcher: {
           label: {
@@ -1526,9 +1523,52 @@ let Options = {
             fr: 'Provenance Watcher',
             ja: 'Provenance Watcher',
           },
-          // FIXME
           x: 32.7,
-          y: 20.0,
+          y: 19.5,
+        },
+        ovni: {
+          label: {
+            en: 'Ovni',
+            de: 'Ovni',
+            fr: 'Ovni',
+            ja: 'Ovni',
+          },
+          mobName: {
+            en: 'Ovni',
+            de: 'Ovni',
+            fr: 'Ovni',
+            ja: 'Ovni',
+          },
+          trackerName: {
+            en: 'Ovni',
+            de: 'Ovni',
+            fr: 'Ovni',
+            ja: 'Ovni',
+          },
+          x: 26.8,
+          y: 29.0,
+        },
+        tristicia: {
+          label: {
+            en: 'Tristicia',
+            de: 'Tristicia',
+            fr: 'Tristicia',
+            ja: 'Tristicia',
+          },
+          mobName: {
+            en: 'Tristicia',
+            de: 'Tristicia',
+            fr: 'Tristicia',
+            ja: 'Tristicia',
+          },
+          trackerName: {
+            en: 'Tristicia',
+            de: 'Tristicia',
+            fr: 'Tristicia',
+            ja: 'Tristicia',
+          },
+          x: 18.7,
+          y: 29.7,
         },
       },
     },
