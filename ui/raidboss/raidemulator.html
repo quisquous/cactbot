@@ -1,0 +1,93 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <!-- General Overlay Scripts-->
+  <link rel="stylesheet" href="../../resources/defaults.css">
+  <link rel="stylesheet" href="../../resources/resize_handle.css">
+  <script src="../../resources/common.js"></script>
+  <script src="../../resources/regexes.js"></script>
+  <script src="../../resources/resize_handle.js"></script>
+  <script src="../../resources/timerbar.js"></script>
+  <script src="../../resources/widgetlist.js"></script>
+  <script src="../../resources/user_config.js"></script>
+  <script src="../../resources/lang.js"></script>
+  <script src="../../resources/lang/en.js"></script>
+  <script src="../../resources/lang/de.js"></script>
+  <script src="../../resources/lang/fr.js"></script>
+  <script src="../../resources/lang/ja.js"></script>
+  <script src="../../resources/lang/ko.js"></script>
+  <!-- Cactbot Overlay Scripts-->
+  <link rel="stylesheet" type="text/css" href="raidboss.css">
+  <script src="timeline.js"></script>
+  <script src="popup-text.js"></script>
+  <script src="raidboss.js"></script>
+  <script src="raidemulator.js"></script>
+  <link rel="stylesheet" type="text/css" href="raidemulator.css">
+</head>
+<body>
+<div id="container" class="hide"></div>
+  <div id="timeline-container">
+    <div id="timeline-resize-helper" class="resize-helper"></div>
+    <div id="timeline-debug"></div>
+    <widget-list id="timeline"></widget-list>
+  </div>
+  <div id="popup-text-container">
+    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>How to use: </div><div>First, lock the overlay.</div></span></div>
+    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>Then, import a Network log into ACT.</div><div>Select the fight in the list below.</div></span></div>
+    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>Press the play button.</div><div>(Remember to lock the overlay to hide this text.)</div></span></div>
+  </div>
+  <!-- Fight Picker & Playback -->
+  <div id='playback-controls'>
+    <div id='emulator-input'>
+      <div id='fight-picker'></div>
+      <button onclick='playLogFile()'>Play</button>
+      <button onclick='stopLogFile()'>Stop</button>
+      <button onclick="toggleStoreFight()">Toggle Store</button>
+      <button onclick="clearStorage()">Clear Storage</button>
+      <button onclick="toggleRunTriggers()">Toggle Run</button>
+      <div id='elapsed-time'></div>
+    </div>
+    <div id='info-panel'></div>
+  </div>
+  <!-- Infos & Play as -->
+  <div class="playback-info">
+    <div class="info-element">
+      <div id="player"></div>
+      <div class="subtitle">Current Player</div>
+    </div>
+  </div>
+  <div class="emulator-info">
+      <div class="info-element">
+        <div id="tInfo"></div>
+        <div id="tInfoSub" class="subtitle">Selected Trigger ID</div>
+      </div>
+      <div class="info-element right">
+        <div id="party"></div>
+        <div class="subtitle">Player Characters</div>
+      </div>
+  </div>
+  <!-- Triggerlines -->
+  <div class="triggerlines">
+    <div id="triggerline-all" class="triggerline all"></div>
+    <div id="triggerline-tank" class="triggerline tank"></div>
+    <div id="triggerline-healer" class="triggerline healer"></div>
+    <div id="triggerline-dps" class="triggerline dps"></div>
+    <div id="triggerline-playAs" class="triggerline all"></div>
+  </div>
+  <div class="emulator-background"></div>
+</body>
+<script>
+  function hide(h) {
+    var hideWhenInactive = false;
+    if (h && hideWhenInactive)
+      document.getElementById("container").style.display = "none";
+    else
+      document.getElementById("container").style.display = "block";
+  }
+  document.addEventListener("onGameActiveChangedEvent", function(e) {
+      hide(!e.detail.active);
+  });
+  hide(true);
+</script>
+</html>
