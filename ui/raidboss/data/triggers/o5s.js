@@ -291,6 +291,8 @@
         'Malice': '원한 품은 유령',
       },
       'replaceText': {
+        '--targetable--': '--대상 지정 가능--',
+        '--untargetable--': '--대상 지정 불가--',
         'Acid Rain': '산성비',
         'All In The Mind': '염력',
         'Diabolic Chimney': '마계의 연기',
