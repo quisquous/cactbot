@@ -304,7 +304,7 @@
         'Head On': '추돌',
         'Possess': '빙의',
         'Saintly Beam': '성스러운 광선',
-        
+
         'Crossing Whistle': '행진 유령',
         'Knockback Whistle': '넉백 유령',
         'Tether Whistle': '추적 유령',
