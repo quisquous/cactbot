@@ -35,7 +35,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       Burns: '화상',
       Sludge: '진흙탕',
       Doom: '죽음의 선고',
-      
+
       // UWU
       Windburn: '열상',
     });
