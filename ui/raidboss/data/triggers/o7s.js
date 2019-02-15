@@ -726,7 +726,7 @@
         'Demon Simulation': '불러오기: 악마',
         'Diffractive Laser': '확산 레이저',
         'Diffractive Plasma': '확산 플라스마',
-        'Electric Pulse': '전자기 펄스',
+        'Electric Pulse': '전기 충격',
         'Engage!': '전투 시작!',
         'Explosion': '폭발',
         'Ink': '먹물',
@@ -749,7 +749,7 @@
         'The Heat': '작열',
         'Viral Weapon': '바이러스 병기',
         'Wallop': '매질',
-        
+
         'Aether Rot': '에테르 부패',
         'Copy': '복사',
         'Skip': '건너뛰기',
