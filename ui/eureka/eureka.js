@@ -1557,10 +1557,11 @@ let Options = {
             ja: 'Tristicia',
           },
           mobName: {
-            en: 'Tristicia',
-            de: 'Tristicia',
-            fr: 'Tristicia',
-            ja: 'Tristicia',
+            // <_<
+            en: '(Tristicia|Tristitia|Trisitia)',
+            de: '(Tristicia|Tristitia|Trisitia)',
+            fr: '(Tristicia|Tristitia|Trisitia)',
+            ja: '(Tristicia|Tristitia|Trisitia)',
           },
           trackerName: {
             en: 'Tristicia',
