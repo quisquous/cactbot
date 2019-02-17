@@ -174,7 +174,7 @@ class Fisher {
     this.fishing = true;
 
     // Set place, if it's unset
-    if (!this.place) {
+    if (!this.place || !this.place.id) {
       this.place = this.seaBase.getPlace(place);
       this.ui.setPlace(place);
     }
