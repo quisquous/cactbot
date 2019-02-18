@@ -14,6 +14,7 @@
         de: 'Bewegen',
         fr: 'Bougez',
         ja: 'フェザーレイン',
+        ko: '이동',
       },
     },
   ],
@@ -24,6 +25,7 @@
       regexDe: /:Ultima-Waffe:2D4D:/,
       regexFr: /:Ultima Arma:2D4D:/,
       regexJa: /:アルテマウェポン:2D4D:/,
+      regexKo: /:알테마 웨폰:2D4D:/,
       run: function(data) {
         data.phase = 'suppression';
       },
@@ -34,6 +36,7 @@
       regexDe: /:Ultima-Waffe:2D4D:/,
       regexFr: /:Ultima Arma:2D4D:/,
       regexJa: /:アルテマウェポン:2D4D:/,
+      regexKo: /:알테마 웨폰:2D4D:/,
       delaySeconds: 74,
       run: function(data) {
         data.phase = 'finale';
@@ -45,6 +48,7 @@
       regexDe: /14:2B53:Garuda starts using (?:Unknown_2B53|Wirbelströmung)/,
       regexFr: /14:2B53:Garuda starts using (?:Unknown_2B53|Sillage)/,
       regexJa: /14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
+      regexKo: /14:2B53:가루다 starts using (?:Unknown_2B53|반동 기류)/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -53,6 +57,7 @@
         de: 'Wirbelströmung',
         fr: 'Sillage',
         ja: 'スリップストリーム',
+        ko: '반동 기류',
       },
     },
     {
@@ -66,6 +71,7 @@
         de: 'Mistral-Song',
         fr: 'Chant Du Mistral',
         ja: 'ミストラルソング',
+        ko: '삭풍 징',
       },
     },
     {
@@ -80,6 +86,7 @@
         de: 'Mistral-Song',
         fr: 'Chant Du Mistral',
         ja: 'ミストラルソング',
+        ko: '삭풍 징',
       },
     },
     {
@@ -88,6 +95,7 @@
       regexDe: / 03:Added new combatant Dorniger Federsturm/,
       regexFr: / 03:Added new combatant Plume Perforante/,
       regexJa: / 03:Added new combatant スパイニープルーム/,
+      regexKo: / 03:Added new combatant 가시돋힌 깃털/,
       condition: function(data, matches) {
         return data.role == 'tank';
       },
@@ -96,6 +104,7 @@
         de: 'Dorniger Federsturm',
         fr: 'Plume Perforante',
         ja: 'スパイニープルーム',
+        ko: '가시돋힌 깃털 등장',
       },
     },
     {
@@ -104,6 +113,7 @@
       regexDe: /1A:(\y{Name}) gains the effect of Infernofesseln from/,
       regexFr: /1A:(\y{Name}) gains the effect of Chaînes Infernales from/,
       regexJa: /1A:(\y{Name}) gains the effect of 炎獄の鎖 from/,
+      regexKo: /1A:(\y{Name}) gains the effect of 염옥의 사슬 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -113,12 +123,14 @@
         de: 'Fesseln auf DIR',
         fr: 'Chaînes Infernales',
         ja: '自分に炎獄の鎖',
+        ko: '사슬 → 나',
       },
       tts: {
         en: 'Fetters',
         de: 'Fesseln',
         fr: 'Chaînes Infernales',
         ja: '炎獄の鎖',
+        ko: '사슬',
       },
     },
     {
@@ -127,6 +139,7 @@
       regexDe: / 14:2B5B:Ifrit starts using Brennende Wut on (\y{Name})/,
       regexFr: / 14:2B5B:Ifrit starts using Rugissement Infernal on (\y{Name})/,
       regexJa: / 14:2B5B:イフリート starts using 灼熱の咆吼 on (\y{Name})/,
+      regexKo: / 14:2B5B:이프리트 starts using 작열의 포효 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -135,12 +148,14 @@
         de: 'Versengen auf DIR',
         fr: 'Rugissement Infernal',
         ja: '自分に灼熱',
+        ko: '작열 → 나',
       },
       tts: {
         en: 'Searing Wind',
         de: 'Versengen',
         fr: 'Rugissement Infernal',
         ja: '灼熱',
+        ko: '작열',
       },
     },
     {
@@ -151,6 +166,7 @@
         de: 'Stack',
         fr: 'Stack',
         ja: '頭割り',
+        ko: '집합',
       },
     },
     {
@@ -159,6 +175,7 @@
       regexDe: / 1A:Garuda gains the effect of Ätherüberladung from/,
       regexFr: / 1A:Garuda gains the effect of Éveil éthéré from/,
       regexJa: / 1A:ガルーダ gains the effect of 覚醒 from/,
+      regexKo: / 1A:가루다 gains the effect of 각성 from/,
       sound: 'Long',
     },
     {
@@ -167,6 +184,7 @@
       regexDe: / 1A:Ifrit gains the effect of Ätherüberladung from/,
       regexFr: / 1A:Ifrit gains the effect of Éveil éthéré from/,
       regexJa: / 1A:イフリート gains the effect of 覚醒 from/,
+      regexKo: / 1A:이프리트 gains the effect of 각성 from/,
       sound: 'Long',
     },
     {
@@ -175,6 +193,7 @@
       regexDe: / 1A:Titan gains the effect of Ätherüberladung from/,
       regexFr: / 1A:Titan gains the effect of Éveil éthéré from/,
       regexJa: / 1A:タイタン gains the effect of 覚醒 from/,
+      regexKo: / 1A:타이탄 gains the effect of 각성 from/,
       sound: 'Long',
     },
     {
@@ -183,6 +202,7 @@
       regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:(\y{Name}):/,
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches[1]);
@@ -214,6 +234,7 @@
       regexDe: / 15:\y{ObjectId}:Bomber-Brocken:2B6A:Zerschmetterung:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Grosse Explosion:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:ボムボルダー:2B6A:爆発:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:화강암 감옥:2B6A:대폭발:\y{ObjectId}:(\y{Name}):/,
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
@@ -222,6 +243,7 @@
         return {
           en: data.ShortName(matches[1]) + ' died',
           de: data.ShortName(matches[1]) + ' gestorben',
+          ko: data.ShortName(matches[1]) + ' 죽음',
         };
       },
     },
@@ -231,6 +253,7 @@
       regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}/,
       regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}/,
       regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
+      regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
@@ -242,6 +265,7 @@
       regexDe: / 15:\y{ObjectId}:Titan:2B6B:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Titan:2B6B:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:タイタン:2B6B:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:타이탄:2B6B:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.phase == 'suppression' && data.me == matches[1];
       },
@@ -250,6 +274,7 @@
         de: 'Granitgefängnis',
         fr: 'Geôle',
         ja: 'ジェイル',
+        ko: '감옥 → 나',
       },
     },
     {
@@ -258,6 +283,7 @@
       regexDe: /:Ultima-Waffe:2CD3:/,
       regexFr: /:Ultima Arma:2CD3:/,
       regexJa: /:アルテマウェポン:2CD3:/,
+      regexKo: /:알테마 웨폰:2CD3:/,
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -266,6 +292,7 @@
         de: 'Garuda',
         fr: 'Garuda',
         ja: 'ガルーダ',
+        ko: '가루다',
       },
     },
     {
@@ -274,6 +301,7 @@
       regexDe: /:Ultima-Waffe:2CD4:/,
       regexFr: /:Ultima Arma:2CD4:/,
       regexJa: /:アルテマウェポン:2CD4:/,
+      regexKo: /:알테마 웨폰:2CD4:/,
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -282,6 +310,7 @@
         de: 'Ifrit',
         fr: 'Ifrit',
         ja: 'イフリート',
+        ko: '이프리트',
       },
     },
     {
@@ -290,6 +319,7 @@
       regexDe: /:Ultima-Waffe:2CD5:/,
       regexFr: /:Ultima Arma:2CD5:/,
       regexJa: /:アルテマウェポン:2CD5:/,
+      regexKo: /:알테마 웨폰:2CD5:/,
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -298,6 +328,7 @@
         de: 'Titan',
         fr: 'Titan',
         ja: 'タイタン',
+        ko: '타이탄',
       },
     },
   ],
@@ -624,6 +655,113 @@
         'Viscous Aetheroplasm': '吸着爆雷',
         'Vulnerability Down': '被ダメージ低下',
         'Woken': '覚醒',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Aetheroplasm': '에테르 폭뢰',
+        'Chirada': '치라다',
+        'Engage!': '전투 시작!',
+        'Garuda': '가루다',
+        'Granite Gaol': '화강암 감옥',
+        'Ifrit': '이프리트',
+        'Infernal Nail': '염옥의 말뚝',
+        'Lahabrea': '아씨엔 라하브레아',
+        'Magitek Bit': '마도 비트',
+        'Razor Plume': '예리한 깃털',
+        'Satin Plume': '부드러운 깃털',
+        'Spiny Plume': '가시돋힌 깃털',
+        'Suparna': '수파르나',
+        'The Ultima Weapon': '알테마 웨폰',
+        'Titan': '타이탄',
+        'Ultimaplasm': '알테마 폭뢰',
+        'Bomb Boulder': '화강암 감옥',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '시작하자, 버러지들아',
+      },
+      'replaceText': {
+        '--targetable--': '--대상 지정 가능--',
+        '--untargetable--': '--대상 지정 불가--',
+        'Aerial Blast': '대기 폭발',
+        'Aetheric Boom': '에테르 파동',
+        'Aetherochemical Laser': '마과학 레이저',
+        'Aetheroplasm': '폭뢰 기폭',
+        'Blight': '독안개',
+        'Burst': '대폭발',
+        'Bury': '충격',
+        'Ceruleum Vent': '청린 방출',
+        'Crimson Cyclone': '진홍 회오리',
+        'Cyclone': '돌개바람',
+        'Dark IV': '다쟈',
+        'Downburst': '하강 기류',
+        'Earthen Fury': '대지의 분노',
+        'Eruption': '용암 분출',
+        'Eye Of The Storm': '태풍의 눈',
+        'Feather Rain': '깃털비',
+        'Featherlance': '깃털창',
+        'Flaming Crush': '화염 작열',
+        'Freefire': '유폭',
+        'Friction': '바람의 칼날',
+        'Fusion Burst': '융합 폭발',
+        'Geocrush': '대지 붕괴',
+        'Gigastorm': '대폭풍',
+        'Granite Impact': '감옥 폭발',
+        'Great Whirlwind': '대선풍',
+        'Hellfire': '지옥의 화염',
+        'Homing Lasers': '유도 레이저',
+        'Incinerate': '소각',
+        'Infernal Fetters': '염옥의 사슬',
+        'Infernal Surge': '염옥의 불꽃',
+        'Inferno Howl': '작열의 포효',
+        'Landslide': '산사태',
+        'Light Pillar': '빛 기둥',
+        'Mesohigh': '뇌우고기압',
+        'Mistral Shriek': '삭풍의 비명',
+        'Mistral Song': '삭풍의 노래',
+        'Mountain Buster': '산 쪼개기',
+        'Radiant Plume': '광휘의 불기둥',
+        'Rock Buster': '바위 쪼개기',
+        'Rock Throw': '화강암 감옥',
+        'Searing Wind': '열풍',
+        'Self-destruct': '자폭',
+        'Slipstream': '반동 기류',
+        'Super Cyclone': '대형 돌개바람',
+        'Tank Purge': '마도 플레어',
+        'Tumult': '격진',
+        'Ultima': '알테마',
+        'Ultimate Annihilation': '궁극의 폭격 환상',
+        'Ultimate Predation': '궁극의 추격 환상',
+        'Ultimate Suppression': '궁극의 난격 환상',
+        'Upheaval': '대격진',
+        'Viscous Aetheroplasm': '흡착 폭뢰 기폭',
+        'Vulcan Burst': '폭렬 난사',
+        'Weight Of The Land': '대지의 무게',
+        'Wicked Tornado': '마녀의 회오리',
+        'Wicked Wheel': '마녀의 수레바퀴',
+
+        'Grand Whirlwind': '대선풍',
+        'Nail Adds': '염옥의 말뚝',
+        'Diffractive Laser': '확산 레이저',
+        'Summon Random Primal': '무작위 야만신 소환',
+        'Apply Viscous': '흡착식 에테르 폭뢰',
+      },
+      '~effectNames': {
+        'Accursed Flame': '저주의 불꽃',
+        'Aetherially Charged': '에테르 공급',
+        'Beyond Limits': '한계 돌파',
+        'Damage Up': '주는 피해량 증가',
+        'Doom': '죽음의 선고',
+        'Down For The Count': '넉다운',
+        'Fetters': '구속',
+        'Fire Resistance Down II': '불속성 저항 감소[강]',
+        'Infernal Fetters': '염옥의 사슬',
+        'Searing Wind': '작열',
+        'Stun': '기절',
+        'Thermal High': '고기압',
+        'Thermal Low': '저기압',
+        'Viscous Aetheroplasm': '흡착 폭뢰',
+        'Vulnerability Down': '받는 피해 감소',
+        'Woken': '각성',
       },
     },
   ],
