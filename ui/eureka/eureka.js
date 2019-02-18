@@ -2070,7 +2070,7 @@ let Options = {
             ja: 'Tristitia',
           },
           spawnTrigger: {
-            en: '00:0839:An avatar of Absolute Virtue has manifested somewhere in Hydatos'
+            en: '00:0839:An avatar of Absolute Virtue has manifested somewhere in Hydatos',
           },
           trackerName: {
             en: 'Tristitia',
