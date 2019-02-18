@@ -49,9 +49,47 @@ hideall "--sync--"
 
 
 ### EAST BRANCH / OWAIN
-# python util/make_timeline.py -f ba.log -s 15:09:07.000 -e 15:12:47.000 -ic Daphne Tentacle Orlasrach Art -ii 3957 -p 3945:2018.8
-2002.5 "--sync--" sync / 15:........:Owain:3957:[^:]*:........:[^:]/ window 1500,0
-# FIXME: add Owain properly
+# python util/make_timeline.py -f ba.log -s 15:09:07.000 -e 15:12:47.000 -ic Daphne Tentacle Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
+2002.5 "--sync--" sync / 15:........:Owain:3957:[^:]*:........:[^:]/ window 2500,0
+2016.0 "Thricecull" sync /:Owain:3945:/
+2028.1 "Acallam Na Senorach" sync /:Owain:3946:/ #3:29
+2037.7 "Mythcall" sync /:Owain:3936:/ #3:39
+2041.7 "Elemental Shift" sync /:Owain:3937:/
+2052.8 "Elemental Magicks" sync /:Owain:393[AB]:/
+2067.8 "Thricecull" sync /:Owain:3945:/
+2079.9 "Acallam Na Senorach" sync /:Owain:3946:/ 
+2089.3 "Elemental Shift" sync /:Owain:3937:/
+2100.4 "Elemental Magicks" sync /:Owain:393[AB]:/
+2116.4 "Thricecull" sync /:Owain:3945:/
+2127.5 "Spiritcull" sync /:Owain:393E:/
+2132.5 "Legendary Imbas" sync /:Owain:3940:/
+2132.5 "Piercing Light" sync /:Owain:393F:/
+2142.5 "Thricecull" sync /:Owain:3945:/
+2153.6 "Acallam Na Senorach" sync /:Owain:3946:/
+2164.7 "Piercing Light" sync /:Owain:3944:/
+2165.7 "Pitfall" sync /:Owain:394D:/
+2180.3 "Acallam Na Senorach" sync /:Owain:3946:/
+2190.3 "Acallam Na Senorach" sync /:Owain:3946:/
+2199.9 "Elemental Shift" sync /:Owain:3937:/
+2209.0 "Spiritcull" sync /:Owain:393E:/
+2214.0 "Legendary Imbas" sync /:Owain:3940:/
+2214.0 "Piercing Light" sync /:Owain:393F:/
+2216.0 "Elemental Magicks" sync /:Owain:393[AB]:/
+2230.0 "Thricecull" sync /:Owain:3945:/
+2252.1 "Acallam Na Senorach" sync /:Owain:3946:/
+2261.4 "Elemental Shift" sync /:Owain:3937:/
+2267.5 "Ivory Palm Adds" # sync /:Ivory Palm:3941:/
+2272.5 "Elemental Magicks" sync /:Owain:393[AB]:/
+2290.5 "(Explosion Enrage)"
+2283.5 "Thricecull" sync /:Owain:3945:/
+2291.6 "Spiritcull" sync /:Owain:393E:/
+2296.6 "Legendary Imbas" sync /:Owain:3940:/
+2296.6 "Piercing Light" sync /:Owain:393F:/
+2306.6 "Thricecull" sync /:Owain:3945:/
+2317.6 "Acallam Na Senorach" sync /:Owain:3946:/
+2328.6 "Piercing Light" sync /:Owain:3944:/
+2329.6 "Pitfall" sync /:Owain:394D:/
+2344.2 "Acallam Na Senorach" sync /:Owain:3946:/
 
 
 ### Raiden
@@ -65,7 +103,9 @@ hideall "--sync--"
 3051.8 "--sync--" sync /:Raiden:3869:/
 3058.4 "Whirling Zantetsuken" sync /:Raiden:386A:/
 # FIXME: targetable/untargetable
-3074.0 "--sync--" sync /:Ball Lightning:386D:/
+
+# FIXME: this is phase 2 and phase 1 can loop for a bit if you are slooow
+3074.0 "--sync--" sync /:Ball Lightning:386D:/ window 80,10
 3078.1 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
 3088.8 "Spirits of the Fallen" sync /:Raiden:387A:/
 # FIXME: is this correct?
@@ -87,7 +127,8 @@ hideall "--sync--"
 3247.6 "Whirling Zantetsuken" sync /:Raiden:386A:/
 3254.8 "Booming Lament" sync /:Raiden:387D:/
 3264.9 "Spirits of the Fallen" sync /:Raiden:387A:/
-3280.3 "--sync--" sync /:Ball Lightning:386D:/
+
+3280.3 "--sync--" sync /:Ball Lightning:386D:/ window 150,150
 # FIXME: targetable/unteragetbale
 3287.9 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
 3320.8 "Spirits of the Fallen" sync /:Raiden:387A:/

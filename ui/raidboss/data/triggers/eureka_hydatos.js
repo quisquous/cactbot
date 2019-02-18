@@ -136,6 +136,104 @@
       },
     },
     {
+      id: 'BA Owain Tankbuster',
+      regex: / 14:3945:Owain starts using (?:Thricecull|Unknown_3945) on (\y{Name})/,
+      condition: function(data) {
+        return data.side == 'west';
+      },
+      alarmText: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+      tts: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'buster',
+            de: 'basta',
+            fr: 'tankbuster',
+          };
+        }
+      },
+    },
+    {
+      id: 'BA Owain Piercing Light Marker',
+      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      condition: function(data, matches) {
+        return data.side == 'east' && data.me == matches[1];
+      },
+      infoText: {
+        en: 'Spread Marker',
+      },
+    },
+    {
+      id: 'BA Owain Dorito Stack',
+      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      condition: function(data, matches) {
+        return data.side == 'east' && data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Dorito Stack',
+      },
+    },
+    {
+      id: 'BA Owain Fire Element',
+      regex: / 00:0044:Munderg, turn flesh to ash/,
+      condition: function(data, matches) {
+        return data.side == 'east';
+      },
+      alertText: {
+        en: 'Get to Ice',
+      },
+      infoText: {
+        en: 'Switch Magia',
+      },
+    },
+    {
+      id: 'BA Owain Ice Element',
+      regex: / 00:0044:Munderg, turn blood to ice/,
+      condition: function(data, matches) {
+        return data.side == 'east';
+      },
+      alertText: {
+        en: 'Get to Fire',
+      },
+      infoText: {
+        en: 'Switch Magia',
+      },
+    },
+    {
+      id: 'BA Owain Ivory Palm',
+      regex: / 16:\y{ObjectId}:Ivory Palm:3941:[^:]*:y{ObjectId}:(\y{Name}):/,
+      condition: function(data, matches) {
+        return data.side == 'east' && data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Dorito Stack',
+      },
+    },
+    {
+      id: 'BA Owain Pitfall',
+      regex: / 14:394D:Owain starts using (?:Pitfall|Unknown_394D)/,
+      condition: function(data) {
+        return data.side == 'east';
+      },
+      alertText: {
+        en: 'Get Out To Edges',
+      },
+    },
+    {
       id: 'BA Silence Centaur',
       regex: / 14:3BFE:Arsenal Centaur starts using (?:Berserk|Unknown_3Bfe)/,
       condition: function(data) {
