@@ -1,0 +1,96 @@
+# Eureka Hydatos - Baldesian Armory
+# https://docs.google.com/document/d/1mUBLg1wed5du9PdWQ3T4mdJd38TrT_jye5y6B8HKjm4/preview#
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 10000 jump 0
+
+### WEST BRANCH / ART
+# python util/make_timeline.py -f ba.log -s 15:09:07.000 -e 15:12:47.000 -ic Daphne Tentacle Owain -ii 3956 392D -p 3934:1014.5
+
+# Note: This checks that Art's auto hits a target close enough for you to see.
+# You can see Owain's auto abilities, but the target is listed as empty.
+1002.5 "--sync--" sync / 15:........:Art:3956:[^:]*:........:[^:]/ window 1500,0
+1014.5 "Thricecull" sync /:Art:3934:/
+1023.1 "Legendcarver" sync /:Art:3928:/
+1030.7 "Legendspinner" sync /:Art:3929:/
+1038.8 "Acallam Na Senorach" sync /:Art:3935:/
+1047.5 "Mythcall" sync /:Art:3927:/
+1058.1 "Carver/Spinner" sync /:Art:392[89]:/
+1061.1 "Spear Copy" sync /:Orlasrach:392[AB]:/
+1068.2 "Acallam Na Senorach" sync /:Art:3935:/
+1075.3 "Thricecull" sync /:Art:3934:/
+1081.7 "Mythcall" sync /:Art:3927:/
+1092.3 "Carver/Spinner" sync /:Art:392[89]:/
+1095.3 "Spear Copy" sync /:Orlasrach:392B:/
+1102.4 "Legendary Geas" sync /:Art:3932:/
+1109.2 "--sync--" sync /:Art:3933:/
+1113.7 "Acallam Na Senorach" sync /:Art:3935:/
+# FIXME: targetable / untargetable
+1123.3 "Orb x5" sync /:Art:392C:/ duration 6
+1125.8 "Pitfall" sync /:Art:392F:/
+1138.3 "Thricecull" sync /:Art:3934:/
+1145.4 "Acallam Na Senorach" sync /:Art:3935:/
+1155.1 "Mythcall" sync /:Art:3927:/
+1155.1 "(Legendary Geas)"
+1165.6 "Carver/Spinner" sync /:Art:392[89]:/
+1168.7 "Spear Copy" sync /:Orlasrach:392[AB]:/
+1175.7 "Thricecull" sync /:Art:3934:/
+1182.8 "Acallam Na Senorach" sync /:Art:3935:/
+1189.2 "Mythcall" sync /:Art:3927:/
+1197.8 "Piercing Dark" sync /:Art:3930:/ duration 6.5
+# FIXME: is this one always spinner because piercing dark?
+1203.9 "Carver/Spinner" sync /:Art:392[89]:/
+1204.3 "--sync--" sync /:Art:3931:/
+1206.9 "Spear Copy" sync /:Orlasrach:392[AB]:/
+1218.0 "Legendary Geas" sync /:Art:3932:/
+# FIXME: spiritcall somewhere in here, and then a loop?
+
+
+### EAST BRANCH / OWAIN
+# python util/make_timeline.py -f ba.log -s 15:09:07.000 -e 15:12:47.000 -ic Daphne Tentacle Orlasrach Art -ii 3957 -p 3945:2018.8
+2002.5 "--sync--" sync / 15:........:Owain:3957:[^:]*:........:[^:]/ window 1500,0
+# FIXME: add Owain properly
+
+
+### Raiden
+# $ python util/make_timeline.py -f ba.log -s 15:29:24.000 -e 15:34:54.000 -ii 39B9 3994 3996 3995 3997 -p 387A:3013
+
+3000.0 "--sync--" sync /00:0839:The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
+3013.0 "Spirits of the Fallen" sync /:Raiden:387A:/
+3023.1 "Shingan" sync /:Raiden:387B:/
+3034.2 "Thundercall" sync /:Raiden:387F:/
+3048.8 "Ame-no-Sakahoko" sync /:Raiden:3868:/
+3051.8 "--sync--" sync /:Raiden:3869:/
+3058.4 "Whirling Zantetsuken" sync /:Raiden:386A:/
+# FIXME: targetable/untargetable
+3074.0 "--sync--" sync /:Ball Lightning:386D:/
+3078.1 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
+3088.8 "Spirits of the Fallen" sync /:Raiden:387A:/
+# FIXME: is this correct?
+3097.9 "Lancing Bolt" sync /:Raiden:3876:/
+# FIXME: ultimate zantetsuken timing
+3136.6 "Spirits of the Fallen" sync /:Raiden:387A:/ window 30,30
+3142.9 "Booming Lament" sync /:Raiden:387D:/
+3149.0 "Cloud to Ground" sync /:Raiden:3870:/
+# FIXME: puddle1 puddle2
+3165.1 "Bitter Barbs" sync /:Raiden:3874:/
+3182.2 "Whirling Zantetsuken" sync /:Raiden:386A:/
+3192.2 "Spirits of the Fallen" sync /:Raiden:387A:/
+# FIXME: what is this second cloud to ground?
+3205.3 "Cloud to Ground" sync /:Raiden:3870:/
+3219.4 "Levinwhorl" sync /:Raiden:386E:/
+3219.4 "--sync--" sync /:Raiden:386F:/
+3238.0 "Ame-no-Sakahoko" sync /:Raiden:3868:/
+3241.0 "-sync--" sync /:Raiden:3869:/
+3247.6 "Whirling Zantetsuken" sync /:Raiden:386A:/
+3254.8 "Booming Lament" sync /:Raiden:387D:/
+3264.9 "Spirits of the Fallen" sync /:Raiden:387A:/
+3280.3 "--sync--" sync /:Ball Lightning:386D:/
+# FIXME: targetable/unteragetbale
+3287.9 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
+3320.8 "Spirits of the Fallen" sync /:Raiden:387A:/
+3326.9 "Shingan" sync /:Raiden:387B:/
+# FIXME: ultimate zantetsuken timing
+# FIXME: more?
