@@ -2058,23 +2058,25 @@ let Options = {
         },
         tristicia: {
           label: {
-            en: 'Tristicia',
-            de: 'Tristicia',
-            fr: 'Tristicia',
-            ja: 'Tristicia',
+            en: 'Tristitia',
+            de: 'Tristitia',
+            fr: 'Tristitia',
+            ja: 'Tristitia',
           },
           mobName: {
-            // <_<
-            en: '(Tristicia|Tristitia|Trisitia)',
-            de: '(Tristicia|Tristitia|Trisitia)',
-            fr: '(Tristicia|Tristitia|Trisitia)',
-            ja: '(Tristicia|Tristitia|Trisitia)',
+            en: 'Tristitia',
+            de: 'Tristitia',
+            fr: 'Tristitia',
+            ja: 'Tristitia',
+          },
+          spawnTrigger: {
+            en: '00:0839:An avatar of Absolute Virtue has manifested somewhere in Hydatos'
           },
           trackerName: {
-            en: 'Tristicia',
-            de: 'Tristicia',
-            fr: 'Tristicia',
-            ja: 'Tristicia',
+            en: 'Tristitia',
+            de: 'Tristitia',
+            fr: 'Tristitia',
+            ja: 'Tristitia',
           },
           x: 18.7,
           y: 29.7,
@@ -2166,7 +2168,10 @@ class EurekaTracker {
       nm.element = label;
       nm.timeElement = time;
       let mobName = nm.mobName[this.options.Language];
-      nm.addRegex = Regexes.Parse('03:Added new combatant ' + mobName + '\\.');
+      if (nm.spawnTrigger)
+        nm.addRegex = Regexes.Parse(nm.spawnTrigger[this.options.Language]);
+      if (!nm.addRegex)
+        nm.addRegex = Regexes.Parse('03:Added new combatant ' + mobName + '\\.');
       nm.removeRegex = Regexes.Parse('04:Removing combatant ' + mobName + '\\.');
       nm.respawnTimeMsLocal = undefined;
       nm.respawnTimeMsTracker = undefined;
@@ -2446,7 +2451,7 @@ class EurekaTracker {
         this.ImportFromTracker(match[2]);
         continue;
       }
-      if (log.indexOf('03:Added new combatant ') >= 0) {
+      if (log.indexOf('03:Added new combatant ') >= 0 || log.indexOf('00:0839:') >= 0) {
         for (let i = 0; i < this.nmKeys.length; ++i) {
           let nm = this.nms[this.nmKeys[i]];
           if (log.match(nm.addRegex)) {
