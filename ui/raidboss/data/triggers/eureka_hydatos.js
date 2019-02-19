@@ -451,12 +451,12 @@
         if (!data.clones)
           return;
         let wrists = data.clones.shift();
-        if (data.bracelets == 'Astral') {
+        if (wrists == 'Astral') {
           return {
             en: 'Dark??',
           };
         }
-        if (data.bracelets == 'Umbral') {
+        if (wrists == 'Umbral') {
           return {
             en: 'Light??',
           };
