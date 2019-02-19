@@ -447,7 +447,7 @@
     {
       id: 'BA AV Eidos Impact Stream',
       regex: /14:3797:Absolute Virtue starts using/,
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (!data.clones)
           return;
         let wrists = data.clones.shift();
