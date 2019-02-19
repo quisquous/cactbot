@@ -4,6 +4,16 @@
   zoneRegex: /(Eureka Hydatos|Unknown Zone \(33B\))/,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
+  timelineTriggers: [
+    {
+      id: 'BA Art Geas',
+      regex: /Legendary Geas/,
+      beforeSeconds: 0,
+      infoText: {
+        en: 'Stop Moving',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'Eureka Hydatos Falling Asleep',
@@ -96,10 +106,10 @@
         };
       },
       alertText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me == matches[1])
           return;
         return {
-          en: 'Get away from ' + matches[1],
+          en: 'Away From Orb Marker',
         };
       },
     },
@@ -114,12 +124,32 @@
       },
     },
     {
+      id: 'BA Art Legendcarver',
+      regex: / 14:3928:Art starts using (?:Legendcarver|Unknown_3928)/,
+      condition: function(data) {
+        return data.side == 'west';
+      },
+      infoText: {
+        en: 'Out',
+      },
+    },
+    {
+      id: 'BA Art Legendspinner',
+      regex: / 14:3929:Art starts using (?:Legendspinner|Unknown_3929)/,
+      condition: function(data) {
+        return data.side == 'west';
+      },
+      infoText: {
+        en: 'In',
+      },
+    },
+    {
       id: 'BA Art Mythcall Legendcarver',
       regex: / 14:3928:Art starts using (?:Legendcarver|Unknown_3928)/,
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
-      delaySeconds: 3,
+      delaySeconds: 3.5,
       infoText: {
         en: 'Under Boss',
       },
@@ -130,7 +160,7 @@
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
-      delaySeconds: 3,
+      delaySeconds: 3.5,
       infoText: {
         en: 'Under Spears',
       },

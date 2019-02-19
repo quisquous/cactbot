@@ -27,9 +27,10 @@ hideall "--sync--"
 1102.4 "Legendary Geas" sync /:Art:3932:/
 1109.2 "--sync--" sync /:Art:3933:/
 1113.7 "Acallam Na Senorach" sync /:Art:3935:/
-# FIXME: targetable / untargetable
+1116.7 "--untargetable--"
 1123.3 "Orb x5" sync /:Art:392C:/ duration 6
 1125.8 "Pitfall" sync /:Art:392F:/
+1126.8 "--targetable--"
 1138.3 "Thricecull" sync /:Art:3934:/
 1145.4 "Acallam Na Senorach" sync /:Art:3935:/
 1155.1 "Mythcall" sync /:Art:3927:/
