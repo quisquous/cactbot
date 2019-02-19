@@ -13,6 +13,14 @@
         en: 'Stop Moving',
       },
     },
+    {
+      id: 'BA Raiden Levinwhorl',
+      regex: /Levinwhorl/,
+      beforeSeconds: 10,
+      alertText: {
+        en: 'Shields and Mitigation',
+      },
+    },
   ],
   triggers: [
     {
@@ -27,11 +35,18 @@
       },
     },
     {
+      id: 'Eureka Saved By Rememberance',
+      regex: /00:0a39:The memories of heroes past live on again/,
+      sound: 'Long',
+    },
+    {
       id: 'BA Clear Data',
       regex: /00:0839:.*is no longer sealed/,
       run: function(data) {
         delete data.side;
         delete data.mythcall;
+        delete data.clones;
+        delete data.bracelets;
       },
     },
     {
@@ -310,6 +325,27 @@
       },
       alarmText: {
         en: 'Spread',
+      },
+    },
+    {
+      id: 'BA Raiden Ame',
+      regex: / 14:3868:Raiden starts using/,
+      alertText: {
+        en: 'Get Far Away',
+      },
+    },
+    {
+      id: 'BA Raiden Whirling',
+      regex: / 14:386A:Raiden starts using (?:Whirling Zantetsuken|Unknown_386A)/,
+      alertText: {
+        en: 'Under',
+      },
+    },
+    {
+      id: 'BA Raiden For Honor',
+      regex: / 14:387C:Raiden starts using (?:For Honor|Unknown_387C)/,
+      alertText: {
+        en: 'Get Out',
       },
     },
     {

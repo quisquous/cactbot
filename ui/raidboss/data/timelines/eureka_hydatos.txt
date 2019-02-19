@@ -94,48 +94,61 @@ hideall "--sync--"
 
 
 ### Raiden
-# -ii 39B9 3994 3996 3995 3997 -p 387A:3013
-
+# -ii 39B9 3994 3996 3995 3997 3872 3871 3873 -p 387A:3013 386D:3091
 3000.0 "--sync--" sync /00:0839:The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
-3013.0 "Spirits of the Fallen" sync /:Raiden:387A:/
-3023.1 "Shingan" sync /:Raiden:387B:/
-3034.2 "Thundercall" sync /:Raiden:387F:/
-3048.8 "Ame-no-Sakahoko" sync /:Raiden:3868:/
-3051.8 "--sync--" sync /:Raiden:3869:/
-3058.4 "Whirling Zantetsuken" sync /:Raiden:386A:/
-# FIXME: targetable/untargetable
+3013.0 "Spirits of the Fallen" sync /:Raiden:387A:/ # drift -0.041
+3023.0 "Shingan" sync /:Raiden:387B:/ # drift 0.05
+3034.1 "Thundercall" sync /:Raiden:387F:/
+3044.2 "--sync--" sync /:3868:Raiden/ window 10,10
+3048.7 "Ame-no-Sakahoko" sync /:Raiden:3868:/
+3051.7 "--sync--" sync /:Raiden:3869:/
+3058.3 "Whirling Zantetsuken" sync /:Raiden:386A:/
+3065.4 "--sync--" sync /:3868:Raiden/ window 10,10
+3069.9 "Ame-no-Sakahoko" sync /:Raiden:3868:/
+3072.9 "--sync--" sync /:Raiden:3869:/
+3079.5 "Whirling Zantetsuken" sync /:Raiden:386A:/
+# FIXME: does this loop doing Ame forever or does it naturally go into Lateral?
+# FIXME: Are these always Whirling?
 
-# FIXME: this is phase 2 and phase 1 can loop for a bit if you are slooow
-3074.0 "--sync--" sync /:Ball Lightning:386D:/ window 80,10
-3078.1 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
-3088.8 "Spirits of the Fallen" sync /:Raiden:387A:/
-# FIXME: is this correct?
-3097.9 "Lancing Bolt" sync /:Raiden:3876:/
-# FIXME: ultimate zantetsuken timing
-3136.6 "Spirits of the Fallen" sync /:Raiden:387A:/ window 30,30
-3142.9 "Booming Lament" sync /:Raiden:387D:/
-3149.0 "Cloud to Ground" sync /:Raiden:3870:/
-# FIXME: puddle1 puddle2
-3165.1 "Bitter Barbs" sync /:Raiden:3874:/
-3182.2 "Whirling Zantetsuken" sync /:Raiden:386A:/
-3192.2 "Spirits of the Fallen" sync /:Raiden:387A:/
-# FIXME: what is this second cloud to ground?
-3205.3 "Cloud to Ground" sync /:Raiden:3870:/
-3219.4 "Levinwhorl" sync /:Raiden:386E:/
-3219.4 "--sync--" sync /:Raiden:386F:/
-3238.0 "Ame-no-Sakahoko" sync /:Raiden:3868:/
-3241.0 "-sync--" sync /:Raiden:3869:/
-3247.6 "Whirling Zantetsuken" sync /:Raiden:386A:/
-3254.8 "Booming Lament" sync /:Raiden:387D:/
-3264.9 "Spirits of the Fallen" sync /:Raiden:387A:/
+# Adds Phase
+3095.0 "--sync--" sync /:Ball Lightning:386D:/ window 100,10
+3099.1 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
+3109.8 "Spirits of the Fallen" sync /:Raiden:387A:/
+3118.9 "Lancing Bolt" sync /:Raiden:3876:/
+3124.4 "Streak Lightning" #sync /:Streak Lightning:3877:/
+3134.9 "Ultimate Zantetsuken" sync /:3878:Raiden/ duration 20
 
-3280.3 "--sync--" sync /:Ball Lightning:386D:/ window 150,150
-# FIXME: targetable/unteragetbale
-3287.9 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
-3320.8 "Spirits of the Fallen" sync /:Raiden:387A:/
-3326.9 "Shingan" sync /:Raiden:387B:/
-# FIXME: ultimate zantetsuken timing
-# FIXME: more?
+3154.9 "--sync--" sync / 17:........:Raiden:3878:/ window 40,0
+3164.9 "Spirits of the Fallen" sync /:Raiden:387A:/ window 40,5
+3171.2 "Booming Lament" sync /:Raiden:387D:/
+3177.3 "Cloud to Ground" sync /:Raiden:3870:/
+3193.4 "Bitter Barbs" sync /:Raiden:3874:/
+3210.5 "Whirling Zantetsuken" sync /:Raiden:386A:/
+3220.5 "Spirits of the Fallen" sync /:Raiden:387A:/
+
+3233.6 "Cloud to Ground" sync /:Raiden:3870:/
+3247.7 "Levinwhorl" sync /:Raiden:386E:/
+3247.7 "--sync--" sync /:Raiden:386F:/
+3266.3 "Ame-no-Sakahoko" sync /:Raiden:3868:/
+3269.3 "-sync--" sync /:Raiden:3869:/
+3275.9 "Whirling Zantetsuken" sync /:Raiden:386A:/
+3283.1 "Booming Lament" sync /:Raiden:387D:/
+3293.2 "Spirits of the Fallen" sync /:Raiden:387A:/
+
+3308.5 "--sync--" sync /:Ball Lightning:386D:/ window 100,10
+3310.7 "Streak Lightning" sync /:Streak Lightning:3877:/ # drift 0.043
+3316.0 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
+3321.7 "Ultimate Zantetsuken" sync /:3878:Raiden/ duration 20
+
+3341.7 "--sync--" sync / 17:........:Raiden:3878:/ window 40,0
+3347.7 "Spirits of the Fallen" sync /:Raiden:387A:/ window 40,5
+3353.8 "Shingan" sync /:Raiden:387B:/
+3365.4 "Ame-no-Sakahoko" sync /:Raiden:3868:/
+3368.4 "--sync--" sync /:Raiden:3869:/
+3373.9 "For Honor" sync /:Raiden:387C:/
+3381.5 "Whirling Zantetsuken" sync /:Raiden:386A:/ # drift -0.048
+3390.7 "Booming Lament" sync /:Raiden:387D:/
+
 
 ### Absolute Virtue
 # -p 3799:4016 -ii 38C4 378F 3791 3792 3954 378C
