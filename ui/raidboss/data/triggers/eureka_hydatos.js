@@ -437,7 +437,7 @@
     {
       id: 'BA AV Eidos Relative Virtue Colors',
       regex: /00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
-      run: function(data) {
+      run: function(data, matches) {
         // FIXME: It hypothetically is possible that the RV clones get buffs
         // in the same order that they do their attacks in.
         data.clones = data.clones || [];
