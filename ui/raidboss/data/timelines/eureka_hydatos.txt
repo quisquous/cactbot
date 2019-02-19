@@ -7,7 +7,7 @@ hideall "--sync--"
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 10000 jump 0
 
 ### WEST BRANCH / ART
-# python util/make_timeline.py -f ba.log -s 15:09:07.000 -e 15:12:47.000 -ic Daphne Tentacle Owain -ii 3956 392D -p 3934:1014.5
+# -ic Owain -ii 3956 392D -p 3934:1014.5
 
 # Note: This checks that Art's auto hits a target close enough for you to see.
 # You can see Owain's auto abilities, but the target is listed as empty.
@@ -49,7 +49,7 @@ hideall "--sync--"
 
 
 ### EAST BRANCH / OWAIN
-# python util/make_timeline.py -f ba.log -s 15:09:07.000 -e 15:12:47.000 -ic Daphne Tentacle Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
+# -ic Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
 2002.5 "--sync--" sync / 15:........:Owain:3957:[^:]*:........:[^:]/ window 2500,0
 2016.0 "Thricecull" sync /:Owain:3945:/
 2028.1 "Acallam Na Senorach" sync /:Owain:3946:/ #3:29
@@ -93,7 +93,7 @@ hideall "--sync--"
 
 
 ### Raiden
-# $ python util/make_timeline.py -f ba.log -s 15:29:24.000 -e 15:34:54.000 -ii 39B9 3994 3996 3995 3997 -p 387A:3013
+# -ii 39B9 3994 3996 3995 3997 -p 387A:3013
 
 3000.0 "--sync--" sync /00:0839:The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
 3013.0 "Spirits of the Fallen" sync /:Raiden:387A:/
@@ -135,3 +135,72 @@ hideall "--sync--"
 3326.9 "Shingan" sync /:Raiden:387B:/
 # FIXME: ultimate zantetsuken timing
 # FIXME: more?
+
+### Absolute Virtue
+# -p 3799:4016 -ii 38C4 378F 3791 3792 3954 378C
+4000.0 "--sync--" sync /00:0839:The Lance of Virtue Containment Unit will be sealed off/ window 4000,0
+4016.0 "Meteor" sync /:Absolute Virtue:3799:/
+4022.0 "Eidos" sync /:Absolute Virtue:378[67]:/
+4033.6 "Hostile Aspect" sync /:Absolute Virtue:378B:/
+4039.8 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4046.8 "Eidos" sync /:Absolute Virtue:378[67]:/
+4053.6 "Impact Stream" sync /:Absolute Virtue:3788:/
+4064.6 "Auroral Wind" sync /:Absolute Virtue:379A:/
+4078.7 "Eidos" sync /:Absolute Virtue:378[67]:/
+4090.5 "Hostile Aspect" sync /:Absolute Virtue:378B:/
+4108.5 "Meteor" sync /:Absolute Virtue:3799:/
+4118.6 "Turbulent Aether" sync /:Absolute Virtue:3790:/
+4126.9 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4134.9 "Auroral Wind" sync /:Absolute Virtue:379A:/
+4142.9 "Meteor" sync /:Absolute Virtue:3799:/
+4151.9 "Meteor" sync /:Absolute Virtue:3799:/
+
+# Triple Stream
+4166.5 "Explosive Impulse" sync /:Relative Virtue:3793:/
+4174.5 "Impact Stream"
+4175.5 "Impact Stream"
+4184.5 "Impact Stream"
+4190.5 "Explosive Impulse" sync /:Absolute Virtue:3794:/
+4196.5 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4208.5 "Auroral Wind" sync /:Absolute Virtue:379A:/
+4216.5 "Meteor" sync /:Absolute Virtue:3799:/
+
+# Wyvern Pair 1
+4225.6 "Call Wyvern" sync /:Absolute Virtue:3798:/
+4231.6 "Turbulent Aether" sync /:Absolute Virtue:3790:/
+4239.8 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4241.6 "(Wyvern Explosion)"
+4247.8 "Auroral Wind" sync /:Absolute Virtue:379A:/
+4264.8 "Meteor" sync /:Absolute Virtue:3799:/
+4270.8 "Eidos" sync /:Absolute Virtue:378[67]:/
+4283.0 "Hostile Aspect" sync /:Absolute Virtue:378B:/
+
+# Double Stream 1
+4286.9 "Explosive Impulse" sync /:Relative Virtue:3793:/
+4294.1 "Eidos" sync /:Absolute Virtue:378[67]:/
+4296.1 "Impact Stream" sync /:Absolute Virtue:3797:/
+4300.8 "Impact Stream" sync /:Absolute Virtue:3788:/
+4311.8 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4318.8 "Meteor" sync /:Absolute Virtue:3799:/
+
+# Wyvern Pair 2
+4333.8 "Call Wyvern" sync /:Absolute Virtue:3798:/
+4339.8 "Turbulent Aether" sync /:Absolute Virtue:3790:/
+4348.1 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4349.8 "(Wyvern Explosion)"
+4356.1 "Auroral Wind" sync /:Absolute Virtue:379A:/
+4373.1 "Meteor" sync /:Absolute Virtue:3799:/
+4379.1 "Eidos" sync /:Absolute Virtue:378[67]:/
+4391.2 "Hostile Aspect" sync /:Absolute Virtue:378B:/
+
+# Double Stream 2
+4395.1 "Explosive Impulse" sync /:Relative Virtue:3793:/
+4402.3 "Eidos" sync /:Absolute Virtue:378[67]:/
+4404.3 "Impact Stream" sync /:Absolute Virtue:3797:/
+4408.4 "Impact Stream" sync /:Absolute Virtue:3788:/
+4419.6 "Medusa Javelin" sync /:Absolute Virtue:379B:/
+4426.6 "Meteor" sync /:Absolute Virtue:3799:/
+
+4443.4 "Meteor Enrage" sync /:Absolute Virtue:396C:/
+4446.4 "Meteor Enrage" sync /:Absolute Virtue:396F:/
+4451.4 "Meteor Enrage" sync /:Absolute Virtue:396F:/

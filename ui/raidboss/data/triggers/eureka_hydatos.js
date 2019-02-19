@@ -296,6 +296,121 @@
         en: 'RIGHT',
       },
     },
+    {
+      id: 'BA AV Tankbuster',
+      regex: / 14:379A:Absolute Virtue starts using (?:Auroral Wind|Unknown_379A) on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (matches[1] != data.me)
+          return;
+        return {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tankbuster sur VOUS',
+        };
+      },
+      infoText: function(data, matches) {
+        if (matches[1] == data.me)
+          return;
+        return {
+          en: 'Away from ' + data.ShortName(matches[1]),
+        };
+      },
+    },
+    {
+      id: 'BA AV Eidos Dark Bracelets',
+      regex: /14:3787:Absolute Virtue starts using (?:Eidos|Unknown_3787)/,
+      infoText: {
+        en: 'Dark Bracelets',
+      },
+      run: function(data) {
+        data.bracelets = 'dark';
+      },
+    },
+    {
+      id: 'BA AV Eidos Light Bracelets',
+      regex: /14:3786:Absolute Virtue starts using (?:Eidos|Unknown_3786)/,
+      infoText: {
+        en: 'Light Bracelets',
+      },
+      run: function(data) {
+        data.bracelets = 'light';
+      },
+    },
+    {
+      id: 'BA AV Eidos Hostile Aspect',
+      regex: /14:378B:Absolute Virtue starts using (?:Hostile Aspect|Unknown_378B)/,
+      alertText: function(data) {
+        if (data.bracelets == 'light') {
+          return {
+            en: 'Stand By Dark Circles',
+          };
+        }
+        if (data.bracelets == 'dark') {
+          return {
+            en: 'Stand By Light Circles',
+          };
+        }
+      },
+    },
+    {
+      id: 'BA AV Eidos Impact Stream',
+      regex: /14:3788:Absolute Virtue starts using (?:Impact Stream|Unknown_3788)/,
+      alertText: function(data) {
+        if (data.bracelets == 'light') {
+          return {
+            en: 'Dark',
+          };
+        }
+        if (data.bracelets == 'dark') {
+          return {
+            en: 'Light',
+          };
+        }
+      },
+    },
+    {
+      id: 'BA AV Eidos Relative Virtue Colors',
+      regex: /00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
+      run: function(data) {
+        // FIXME: It hypothetically is possible that the RV clones get buffs
+        // in the same order that they do their attacks in.
+        data.clones = data.clones || [];
+        data.clones.push(matches[1]);
+      },
+    },
+    {
+      id: 'BA AV Eidos Impact Stream',
+      regex: /14:3797:Absolute Virtue starts using/,
+      alertText: function(data) {
+        if (!data.clones)
+          return;
+        let wrists = data.clones.shift();
+        if (data.bracelets == 'Astral') {
+          return {
+            en: 'Dark??',
+          };
+        }
+        if (data.bracelets == 'Umbral') {
+          return {
+            en: 'Light??',
+          };
+        }
+      },
+    },
+    {
+      id: 'BA AV Eidos Turbulent Aether',
+      regex: /15:\y{ObjectId}:Absolute Virtue:3790:/,
+      infoText: {
+        en: 'Orbs to Opposite Colors',
+      },
+    },
+    {
+      id: 'BA AV Call Wyvern',
+      regex: /15:\y{ObjectId}:Absolute Virtue:3798:/,
+      infoText: {
+        en: 'Kill Wyverns, Switch Magia',
+      },
+    },
 
     // FIXME: art spiritcall
   ],
