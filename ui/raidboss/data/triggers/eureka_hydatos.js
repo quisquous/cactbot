@@ -21,6 +21,14 @@
         en: 'Shields and Mitigation',
       },
     },
+    {
+      id: 'BA Ozma Black Hole Warning',
+      regex: /Black Hole/,
+      beforeSeconds: 16,
+      infoText: {
+        en: 'Black Hole Soon',
+      },
+    },
   ],
   triggers: [
     {
@@ -55,6 +63,7 @@
         delete data.clones;
         delete data.bracelets;
         delete data.sealed;
+        delete data.blackHoleCount;
       },
     },
     {
@@ -528,6 +537,189 @@
       },
       infoText: {
         en: 'Kill Wyverns, Switch Magia',
+      },
+    },
+    {
+      id: 'BA Ozma Sphere Form',
+      regex: /:Proto Ozma:(?:37B3|37A5|379F):/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      preRun: function(data) {
+        data.blackHoleCount = data.blackHoleCount || 0;
+        data.blackHoleCount++;
+      },
+      alarmText: function(data) {
+        return {
+          en: 'Black Hole ' + data.blackHoleCount + ' / 6',
+        };
+      },
+      tts: function(data) {
+        return {
+          en: 'Black Hole ' + data.blackHoleCount,
+        };
+      },
+    },
+    {
+      id: 'BA Ozma Pyramid Form',
+      regex: /:Proto Ozma:37A4:/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      alertText: {
+        en: 'Off the Platform',
+      },
+    },
+    {
+      id: 'BA Ozma Pyramid Form 2',
+      regex: /:Proto Ozma:37A4:/,
+      delaySeconds: 9,
+      condition: function(data) {
+        return data.sealed;
+      },
+      infoText: {
+        en: 'Spread for Bleed',
+      },
+    },
+    {
+      id: 'BA Ozma Star Form',
+      regex: /:Proto Ozma:37B2:/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      alertText: {
+        en: 'Away From Ozma',
+      },
+    },
+    {
+      id: 'BA Ozma Star Form 2',
+      regex: /:Proto Ozma:37B2:/,
+      delaySeconds: 9,
+      condition: function(data) {
+        return data.sealed;
+      },
+      infoText: function(data) {
+        // FIXME: taking multiple autos probably means tanking,
+        // so probably could figure this out automatically.
+        if (data.role == 'tank') {
+          return {
+            en: 'Stack (if not tanking)',
+          };
+        }
+        return {
+          en: 'Stack Up',
+        };
+      },
+    },
+    {
+      id: 'BA Ozma Cube Form',
+      regex: /:Proto Ozma:379E:/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      alertText: {
+        en: 'In Towards Front',
+      },
+    },
+    {
+      id: 'BA Ozma Cube Form 2',
+      regex: /:Proto Ozma:379E:/,
+      delaySeconds: 9,
+      condition: function(data) {
+        return data.sealed;
+      },
+      alertText: function(data) {
+        // FIXME: taking multiple autos probably means tanking,
+        // so probably could figure this out automatically.
+        if (data.role == 'tank') {
+          return {
+            en: 'Offtanks Get Orbs',
+          };
+        }
+      },
+      infoText: function(data) {
+        if (data.role != 'tank') {
+          return {
+            en: 'Stack Away From Tank',
+          };
+        }
+      },
+    },
+    {
+      id: 'BA Ozma Pyramid Shade',
+      regex: /:Ozmashade:37A4:/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      suppressSeconds: 1,
+      alertText: {
+        en: 'Off the Platform',
+      },
+    },
+    {
+      id: 'BA Ozma Star Shade',
+      regex: /:Ozmashade:37B2:/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      suppressSeconds: 1,
+      alertText: {
+        en: 'In Towards Front',
+      },
+    },
+    {
+      id: 'BA Ozma Cube Shade',
+      regex: /:Ozmashade:379E:/,
+      condition: function(data) {
+        return data.sealed;
+      },
+      suppressSeconds: 1,
+      alertText: {
+        en: 'Far Away Under Shade',
+      },
+    },
+    {
+      id: 'BA Ozma Adds 1',
+      regex: /:Cloudlarker:37B0:/,
+      delaySeconds: 2,
+      condition: function(data) {
+        return data.sealed;
+      },
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Kill Adds (switch magia)',
+      },
+    },
+    {
+      id: 'BA Ozma Adds 2',
+      regex: /:Cloudlarker:37B0:/,
+      delaySeconds: 16,
+      condition: function(data) {
+        return data.sealed;
+      },
+      suppressSeconds: 1,
+      infoText: {
+        en: '(switch magia back)',
+      },
+    },
+    {
+      id: 'BA Ozma Acceleration Bomb',
+      regex: / 16:\y{ObjectId}:Proto Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      condition: function(data, matches) {
+        return data.sealed && data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Stop Soon',
+      },
+    },
+    {
+      id: 'BA Ozma Meteor',
+      regex: / 1B:........:(\y{Name}):....:....:0039:/,
+      condition: function(data, matches) {
+        return data.sealed && data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Meteor on YOU',
       },
     },
   ],
