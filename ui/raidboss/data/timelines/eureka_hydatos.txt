@@ -6,7 +6,10 @@ hideall "--sync--"
 
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 10000 jump 0
 
-### WEST BRANCH / ART
+
+#####################
+# WEST BRANCH / ART #
+#####################
 # -ic Owain -ii 3956 392D -p 3934:1014.5
 
 # Note: This checks that Art's auto hits a target close enough for you to see.
@@ -44,12 +47,15 @@ hideall "--sync--"
 # FIXME: is this one always spinner because piercing dark?
 1203.9 "Carver/Spinner" sync /:Art:392[89]:/
 1204.3 "--sync--" sync /:Art:3931:/
-1206.9 "Spear Copy" sync /:Orlasrach:392[AB]:/
+1206.9 "Spear Shade" sync /:Orlasrach:392[AB]:/
 1218.0 "Legendary Geas" sync /:Art:3932:/
 # FIXME: spiritcall somewhere in here, and then a loop?
 
 
-### EAST BRANCH / OWAIN
+
+#######################
+# EAST BRANCH / OWAIN #
+#######################
 # -ic Orlasrach Art -ii 3957 3941 3939 393C 393D 3938 -p 3945:2016.0
 2002.5 "--sync--" sync / 15:........:Owain:3957:[^:]*:........:[^:]/ window 2500,0
 2016.0 "Thricecull" sync /:Owain:3945:/
@@ -93,7 +99,10 @@ hideall "--sync--"
 2344.2 "Acallam Na Senorach" sync /:Owain:3946:/
 
 
-### Raiden
+
+##########
+# Raiden #
+##########
 # -ii 39B9 3994 3996 3995 3997 3872 3871 3873 -p 387A:3013 386D:3091
 3000.0 "--sync--" sync /00:0839:The Shin-Zantetsuken Containment Unit will be sealed off/ window 3000,0
 3013.0 "Spirits of the Fallen" sync /:Raiden:387A:/ # drift -0.041
@@ -150,7 +159,10 @@ hideall "--sync--"
 3390.7 "Booming Lament" sync /:Raiden:387D:/
 
 
-### Absolute Virtue
+
+###################
+# Absolute Virtue #
+###################
 # -p 3799:4016 -ii 38C4 378F 3791 3792 3954 378C
 4000.0 "--sync--" sync /00:0839:The Lance of Virtue Containment Unit will be sealed off/ window 4000,0
 4016.0 "Meteor" sync /:Absolute Virtue:3799:/
@@ -218,3 +230,171 @@ hideall "--sync--"
 4443.4 "Meteor Enrage" sync /:Absolute Virtue:396C:/
 4446.4 "Meteor Enrage" sync /:Absolute Virtue:396F:/
 4451.4 "Meteor Enrage" sync /:Absolute Virtue:396F:/
+
+
+
+##############
+# Proto Ozma #
+##############
+# -ii 37AB 37B8 37A2 37AC -p 37B2:5021.5
+5000.0 "--sync--" sync /00:0839:The Proto Ozma Containment Unit will be sealed off/ window 5000,0
+
+### Initial Star Form (no meteor)
+5021.5 "Star Form" sync /:Proto Ozma:37B2:/
+5028.5 "--sync--" sync /:Proto Ozma:37B4:/
+5029.5 "Mourning Star" sync /:Ozma:37B5:/
+
+5032.5 "Soak Attack" sync /:Ozma:37B6:/
+5038.5 "Soak Attack" sync /:Ozma:37B6:/
+5044.5 "Soak Attack" sync /:Ozma:37B6:/
+
+5051.5 "Shooting Star" sync /:Proto Ozma:37B7:/
+
+5056.5 "Soak Attack" sync /:Ozma:37B6:/
+5062.5 "Soak Attack" sync /:Ozma:37B6:/
+5068.5 "Soak Attack" sync /:Ozma:37B6:/
+
+5070.5 "Sphere Form" sync /:Proto Ozma:(37B3|37A5|379F):/
+5079.5 "Black Hole" sync /:Proto Ozma:379D:/
+
+5092.5 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+5099.5 "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5101.0 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+
+5121.5 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5125.5 "Random Form"
+5130.0 "Shade Ability"
+5134.2 "Ozma Ability"
+5136.5 "Soak Attack?"
+5136.5 "Acceleration Bomb?"
+5138.5 "Bleed Attack?"
+5144.5 "Bleed Attack?"
+5144.5 "Meteor (Stack)?"
+5147.5 "Holy?"
+5151.5 "Meteor (Adds)?"
+5154.5 "Shooting Star?"
+5157.5 "Meteor (Adds)?"
+
+
+### Pyramid Phase
+5300.0 "Pyramid Form" sync /:Proto Ozma:37A4:/ window 800,800
+5303.0  "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5304.5 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+
+5307.0 "--sync--" sync /:Proto Ozma:37A6:/
+5308.7 "Execration" sync /:Ozma:37A7:/
+
+5311.0 "Acceleration Bomb" sync /:Proto Ozma:37AA:/
+5313.0 "Bleed Attack" sync /:Ozma:37AD:/
+5319.0 "Bleed Attack" sync /:Ozma:37AD:/
+
+5332.0 "Meteor (Adds)" sync /:Cloudlarker:37B0:/
+5337.0 "Bleed Attack" sync /:Ozma:37AD:/
+5343.0 "Bleed Attack" sync /:Ozma:37AD:/
+
+5346.0 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+5349.0 "Acceleration Bomb" sync /:Proto Ozma:37AA:/
+5353.0 "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5354.5 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+
+5364.0 "Meteor (Stack)" sync /:Ozma:37A8:/
+5370.0 "Bleed Attack" sync /:Ozma:37AD:/
+
+5373.0 "Sphere Form" sync /:Proto Ozma:(37B3|37A5|379F):/
+5382.0 "Black Hole" sync /:Proto Ozma:379D:/
+
+5395.0 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5399.0 "Random Form"
+5403.5 "Shade Ability"
+5407.7 "Ozma Ability"
+5410.0 "Soak Attack?"
+5410.0 "Acceleration Bomb?"
+5412.0 "Bleed Attack?"
+5418.0 "Bleed Attack?"
+5418.0 "Meteor (Stack)?"
+5421.0 "Holy?"
+5425.0 "Meteor (Adds)?"
+5428.0 "Shooting Star?"
+5431.0 "Meteor (Adds)?"
+
+
+### Cube Phase
+5600.0 "Cube Form" sync /:Proto Ozma:379E:/ window 800,800
+
+5603.0 "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5604.5 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+
+5607.0 "--sync--" sync /:Proto Ozma:37A0:/
+5608.5 "Flare Star" sync /:Ozma:37A1:/
+
+5619.0 "Meteor (Stack)" sync /:Ozma:37A8:/
+5622.0 "Holy" sync /:Proto Ozma:37A9:/
+
+5649.0 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+5655.0 "Meteor (Stack)" sync /:Ozma:37A8:/
+5656.0 "Holy" sync /:Proto Ozma:37A9:/
+5656.0 "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5657.5 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+
+5673.0 "Sphere Form" sync /:Proto Ozma:(37B3|37A5|379F):/
+5682.0 "Black Hole" sync /:Proto Ozma:379D:/
+
+5695.0 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5699.0 "Random Form"
+5703.5 "Shade Ability"
+5707.7 "Ozma Ability"
+5710.0 "Soak Attack?"
+5710.0 "Acceleration Bomb?"
+5712.0 "Bleed Attack?"
+5718.0 "Bleed Attack?"
+5718.0 "Meteor (Stack)?"
+5721.0 "Holy?"
+5725.0 "Meteor (Adds)?"
+5728.0 "Shooting Star?"
+5731.0 "Meteor (Adds)?"
+
+
+### Star Phase
+5900.0 "Star Form" sync /:Proto Ozma:37B2:/ window 800,800
+5903.0 "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5904.5 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+5907.0 "--sync--" sync /:Proto Ozma:37B4:/
+5908.0 "Mourning Star" sync /:Ozma:37B5:/
+5911.0 "Soak Attack" sync /:Ozma:37B6:/
+5926.0 "Meteor (Adds)" sync /:Cloudlarker:37B0:/
+5929.0 "Shooting Star" sync /:Proto Ozma:37B7:/
+5938.0 "Soak Attack" sync /:Ozma:37B6:/
+5944.0 "Soak Attack" sync /:Ozma:37B6:/
+
+5949.0 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+5954.0 "Shooting Star" sync /:Proto Ozma:37B7:/
+5956.0 "--sync--" sync /:Ozmashade:(37A6|37B4|37A0):/
+5957.5 "Shade Ability" # sync /:Shadow:(37A7|37B5|37A1):/
+5959.0 "Soak Attack" sync /:Ozma:37B6:/
+5959.0 "Soak Attack" sync /:Ozma:37B6:/
+5965.0 "Soak Attack" sync /:Ozma:37B6:/
+
+5973.0 "Sphere Form" sync /:Proto Ozma:(37B3|37A5|379F):/
+5982.0 "Black Hole" sync /:Proto Ozma:379D:/
+
+5995.0 "Random Shade" sync /:Ozmashade:(37A4|37B2|379E):/
+
+# fake loop
+5999.0 "Random Form"
+6003.5 "Shade Ability"
+6007.7 "Ozma Ability"
+6010.0 "Soak Attack?"
+6010.0 "Acceleration Bomb?"
+6012.0 "Bleed Attack?"
+6018.0 "Bleed Attack?"
+6018.0 "Meteor (Stack)?"
+6021.0 "Holy?"
+6025.0 "Meteor (Adds)?"
+6028.0 "Shooting Star?"
+6031.0 "Meteor (Adds)?"
