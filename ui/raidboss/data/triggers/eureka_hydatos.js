@@ -40,6 +40,13 @@
       sound: 'Long',
     },
     {
+      id: 'BA Seal',
+      regex: /00:0839:.*will be sealed off/,
+      run: function(data) {
+        data.sealed = true;
+      },
+    },
+    {
       id: 'BA Clear Data',
       regex: /00:0839:.*is no longer sealed/,
       run: function(data) {
@@ -47,6 +54,7 @@
         delete data.mythcall;
         delete data.clones;
         delete data.bracelets;
+        delete data.sealed;
       },
     },
     {
@@ -291,6 +299,9 @@
     {
       id: 'BA Raiden Tankbuster',
       regex: / 14:387B:Raiden starts using (?:Shingan|Unknown_387B) on (\y{Name})/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -321,7 +332,7 @@
       id: 'BA Raiden Lancing Bolt',
       regex: / 1B:........:(\y{Name}):....:....:008A:/,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.sealed && data.me == matches[1];
       },
       alarmText: {
         en: 'Spread',
@@ -330,6 +341,9 @@
     {
       id: 'BA Raiden Ame',
       regex: / 14:3868:Raiden starts using/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: {
         en: 'Get Far Away',
       },
@@ -337,6 +351,9 @@
     {
       id: 'BA Raiden Whirling',
       regex: / 14:386A:Raiden starts using (?:Whirling Zantetsuken|Unknown_386A)/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: {
         en: 'Under',
       },
@@ -344,6 +361,9 @@
     {
       id: 'BA Raiden For Honor',
       regex: / 14:387C:Raiden starts using (?:For Honor|Unknown_387C)/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: {
         en: 'Get Out',
       },
@@ -351,6 +371,9 @@
     {
       id: 'BA Raiden Lateral 1',
       regex: / 14:386C:Raiden starts using (?:Lateral Zantetsuken|Unknown_386C) on (\y{Name})/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: {
         en: 'LEFT',
       },
@@ -358,6 +381,9 @@
     {
       id: 'BA Raiden Lateral 2',
       regex: / 14:386B:Raiden starts using (?:Lateral Zantetsuken|Unknown_386B) on (\y{Name})/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: {
         en: 'RIGHT',
       },
@@ -365,6 +391,9 @@
     {
       id: 'BA AV Tankbuster',
       regex: / 14:379A:Absolute Virtue starts using (?:Auroral Wind|Unknown_379A) on (\y{Name})/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
@@ -385,6 +414,9 @@
     {
       id: 'BA AV Eidos Dark Bracelets',
       regex: /14:3787:Absolute Virtue starts using (?:Eidos|Unknown_3787)/,
+      condition: function(data) {
+        return data.sealed;
+      },
       infoText: {
         en: 'Dark Bracelets',
       },
@@ -395,6 +427,9 @@
     {
       id: 'BA AV Eidos Light Bracelets',
       regex: /14:3786:Absolute Virtue starts using (?:Eidos|Unknown_3786)/,
+      condition: function(data) {
+        return data.sealed;
+      },
       infoText: {
         en: 'Light Bracelets',
       },
@@ -405,6 +440,9 @@
     {
       id: 'BA AV Eidos Hostile Aspect',
       regex: /14:378B:Absolute Virtue starts using (?:Hostile Aspect|Unknown_378B)/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: function(data) {
         if (data.bracelets == 'light') {
           return {
@@ -421,6 +459,9 @@
     {
       id: 'BA AV Eidos Impact Stream',
       regex: /14:3788:Absolute Virtue starts using (?:Impact Stream|Unknown_3788)/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: function(data) {
         if (data.bracelets == 'light') {
           return {
@@ -437,6 +478,9 @@
     {
       id: 'BA AV Eidos Relative Virtue Colors',
       regex: /00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
+      condition: function(data) {
+        return data.sealed;
+      },
       run: function(data, matches) {
         // FIXME: It hypothetically is possible that the RV clones get buffs
         // in the reverse order that they do their attacks in.
@@ -445,8 +489,11 @@
       },
     },
     {
-      id: 'BA AV Eidos Impact Stream',
+      id: 'BA AV Triple Impact Stream',
       regex: /14:3797:Absolute Virtue starts using/,
+      condition: function(data) {
+        return data.sealed;
+      },
       alertText: function(data, matches) {
         if (!data.clones)
           return;
@@ -466,6 +513,9 @@
     {
       id: 'BA AV Eidos Turbulent Aether',
       regex: /15:\y{ObjectId}:Absolute Virtue:3790:/,
+      condition: function(data) {
+        return data.sealed;
+      },
       infoText: {
         en: 'Orbs to Opposite Colors',
       },
@@ -473,6 +523,9 @@
     {
       id: 'BA AV Call Wyvern',
       regex: /15:\y{ObjectId}:Absolute Virtue:3798:/,
+      condition: function(data) {
+        return data.sealed;
+      },
       infoText: {
         en: 'Kill Wyverns, Switch Magia',
       },
