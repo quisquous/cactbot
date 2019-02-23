@@ -439,7 +439,7 @@
       regex: /00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
       run: function(data, matches) {
         // FIXME: It hypothetically is possible that the RV clones get buffs
-        // in the same order that they do their attacks in.
+        // in the reverse order that they do their attacks in.
         data.clones = data.clones || [];
         data.clones.push(matches[1]);
       },
@@ -450,7 +450,7 @@
       alertText: function(data, matches) {
         if (!data.clones)
           return;
-        let wrists = data.clones.shift();
+        let wrists = data.clones.pop();
         if (wrists == 'Astral') {
           return {
             en: 'Dark??',
@@ -477,7 +477,5 @@
         en: 'Kill Wyverns, Switch Magia',
       },
     },
-
-    // FIXME: art spiritcall
   ],
 }];
