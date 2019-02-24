@@ -64,7 +64,7 @@ hideall "--sync--"
 2041.7 "Elemental Shift" sync /:Owain:3937:/
 2052.8 "Elemental Magicks" sync /:Owain:393[AB]:/
 2067.8 "Thricecull" sync /:Owain:3945:/
-2079.9 "Acallam Na Senorach" sync /:Owain:3946:/ 
+2079.9 "Acallam Na Senorach" sync /:Owain:3946:/
 2089.3 "Elemental Shift" sync /:Owain:3937:/
 2100.4 "Elemental Magicks" sync /:Owain:393[AB]:/
 2116.4 "Thricecull" sync /:Owain:3945:/
@@ -73,8 +73,10 @@ hideall "--sync--"
 2132.5 "Piercing Light" sync /:Owain:393F:/
 2142.5 "Thricecull" sync /:Owain:3945:/
 2153.6 "Acallam Na Senorach" sync /:Owain:3946:/
+2157.7 "--untargetable--"
 2164.7 "Piercing Light" sync /:Owain:3944:/
 2165.7 "Pitfall" sync /:Owain:394D:/
+2166.0 "--targetable--"
 2180.3 "Acallam Na Senorach" sync /:Owain:3946:/
 2190.3 "Acallam Na Senorach" sync /:Owain:3946:/
 2199.9 "Elemental Shift" sync /:Owain:3937:/
