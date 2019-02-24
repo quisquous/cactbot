@@ -22,6 +22,15 @@
       },
     },
     {
+      id: 'BA AV Eurekan Potion',
+      regex: /Explosive Impulse/,
+      beforeSeconds: 10,
+      suppressSeconds: 60,
+      infoText: {
+        en: 'Pop Eurekan Potions',
+      },
+    },
+    {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
       beforeSeconds: 16,
@@ -64,6 +73,7 @@
         delete data.bracelets;
         delete data.sealed;
         delete data.blackHoleCount;
+        delete data.seenHostile;
       },
     },
     {
@@ -453,6 +463,19 @@
         return data.sealed;
       },
       alertText: function(data) {
+        if (!data.seenHostile) {
+          if (data.bracelets == 'light') {
+            return {
+              en: 'Away From Light Circles',
+            };
+          }
+          if (data.bracelets == 'dark') {
+            return {
+              en: 'Away From Dark Circles',
+            };
+          }
+          return;
+        }
         if (data.bracelets == 'light') {
           return {
             en: 'Stand By Dark Circles',
@@ -463,6 +486,9 @@
             en: 'Stand By Light Circles',
           };
         }
+      },
+      run: function(data) {
+        data.seenHostile = true;
       },
     },
     {
@@ -560,6 +586,11 @@
         };
       },
     },
+    // FIXME: on all these forms, most of the time they come with double mechanics,
+    // so probably need some "Then," text so folks don't leave the first mechanic early.
+    // FIXME: random shade mechanic mid ozma form comes with holy/acceleration bomb/knockback
+    // so call out something like "get off + holy" or "get knocked in".
+    // FIXME: need callouts for knockback, and maybe "holy soon"?
     {
       id: 'BA Ozma Pyramid Form',
       regex: /:Proto Ozma:37A4:/,
