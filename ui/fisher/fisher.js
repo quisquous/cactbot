@@ -67,7 +67,7 @@ class Fisher {
         'quit': /00:08c3:(?:Du hast das Fischen beendet\.|Das Fischen wurde abgebrochen)/,
       },
       'en': {
-        'cast': /00:08c3:You cast your line (?:on|in|at) (?:the )?([\w\s]+)\./,
+        'cast': /00:08c3:You cast your line (?:on|in|at) (?:the )?([\w\s']+)\./,
         'bite': /00:08c3:Something bites!/,
         'catch': /00:0843:You land (?:a|an|[\d]+ )?.+?([\w\s\-\'\#\d]{3,})(?: | [^\w] |[^\w\s].+ )measuring \d/,
         'nocatch': /00:08c3:(Nothing bites\.|You reel in your line|You lose your bait|The fish gets away|You lose your |Your line breaks|The fish sense something amiss|You cannot carry any more)/,
@@ -197,16 +197,18 @@ class Fisher {
     this.lastCatch = this.seaBase.getFish(fish);
     this.fishing = false;
 
-    this.seaBase.addCatch({
-      'fish': this.lastCatch.id,
-      'bait': this.getActiveBait().id,
-      'place': this.place.id,
-      'castTimestamp': +this.castStart,
-      'hookTime': (this.castEnd - this.castStart),
-      'reelTime': (this.castGet - this.castEnd),
-      'chum': this.chum?1:0,
-      'snagging': this.snagging,
-    });
+    if (this.place) {
+      this.seaBase.addCatch({
+        'fish': this.lastCatch.id,
+        'bait': this.getActiveBait().id,
+        'place': this.place.id,
+        'castTimestamp': +this.castStart,
+        'hookTime': (this.castEnd - this.castStart),
+        'reelTime': (this.castGet - this.castEnd),
+        'chum': this.chum?1:0,
+        'snagging': this.snagging,
+      });
+    }
 
     if (this.mooching) {
       this.handleBait(this.baseBait);
