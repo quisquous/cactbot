@@ -2168,7 +2168,7 @@ class EurekaTracker {
       nm.element = label;
       nm.timeElement = time;
       let mobName = nm.mobName[this.options.Language];
-      if (nm.spawnTrigger)
+      if (nm.spawnTrigger && nm.spawnTrigger[this.options.Language])
         nm.addRegex = Regexes.Parse(nm.spawnTrigger[this.options.Language]);
       if (!nm.addRegex)
         nm.addRegex = Regexes.Parse('03:Added new combatant ' + mobName + '\\.');
