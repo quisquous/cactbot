@@ -1794,19 +1794,19 @@ let Options = {
         khalamari: {
           label: {
             en: 'Khala',
-            de: 'Khala',
+            de: 'Kala',
             fr: 'Khala',
             ja: 'Khala',
           },
           mobName: {
             en: 'Khalamari',
-            de: 'Khalamari',
+            de: 'Kalamari',
             fr: 'Khalamari',
             ja: 'Khalamari',
           },
           trackerName: {
             en: 'Khalamari',
-            de: 'Khalamari',
+            de: 'Kalamari',
             fr: 'Khalamari',
             ja: 'Khalamari',
           },
@@ -1838,19 +1838,19 @@ let Options = {
         molech: {
           label: {
             en: 'Molech',
-            de: 'Molech',
+            de: 'Molek',
             fr: 'Molech',
             ja: 'Molech',
           },
           mobName: {
             en: 'Molech',
-            de: 'Molech',
+            de: 'Molek',
             fr: 'Molech',
             ja: 'Molech',
           },
           trackerName: {
             en: 'Molech',
-            de: 'Molech',
+            de: 'Molek',
             fr: 'Molech',
             ja: 'Molech',
           },
@@ -1888,13 +1888,13 @@ let Options = {
           },
           mobName: {
             en: 'Frostmane',
-            de: 'Frostmane',
+            de: 'Frosticore',
             fr: 'Frostmane',
             ja: 'Frostmane',
           },
           trackerName: {
             en: 'Frostmane',
-            de: 'Frostmane',
+            de: 'Frosticore',
             fr: 'Frostmane',
             ja: 'Frostmane',
           },
@@ -1926,19 +1926,19 @@ let Options = {
         goldemar: {
           label: {
             en: 'King',
-            de: 'King',
+            de: 'König',
             fr: 'King',
             ja: 'King',
           },
           mobName: {
             en: 'King Goldemar',
-            de: 'King Goldemar',
+            de: 'König Goldemar',
             fr: 'King Goldemar',
             ja: 'King Goldemar',
           },
           trackerName: {
             en: 'King Goldemar',
-            de: 'King Goldemar',
+            de: 'König Goldemar',
             fr: 'King Goldemar',
             ja: 'King Goldemar',
           },
@@ -1948,19 +1948,19 @@ let Options = {
         leuke: {
           label: {
             en: 'Leuke',
-            de: 'Leuke',
+            de: 'Leukea',
             fr: 'Leuke',
             ja: 'Leuke',
           },
           mobName: {
             en: 'Leuke',
-            de: 'Leuke',
+            de: 'Leukea',
             fr: 'Leuke',
             ja: 'Lesath',
           },
           trackerName: {
             en: 'Leuke',
-            de: 'Leuke',
+            de: 'Leukea',
             fr: 'Leuke',
             ja: 'Leuke',
           },
@@ -1970,19 +1970,19 @@ let Options = {
         barong: {
           label: {
             en: 'Barong',
-            de: 'Barong',
+            de: 'Baron',
             fr: 'Barong',
             ja: 'Barong',
           },
           mobName: {
             en: 'Barong',
-            de: 'Barong',
+            de: 'Baron Feuermähne',
             fr: 'Barong',
             ja: 'Barong',
           },
           trackerName: {
             en: 'Barong',
-            de: 'Barong',
+            de: 'Baron Feuermähne',
             fr: 'Barong',
             ja: 'Barong',
           },
@@ -2014,19 +2014,19 @@ let Options = {
         watcher: {
           label: {
             en: 'Watcher',
-            de: 'Watcher',
+            de: 'Wächter',
             fr: 'Watcher',
             ja: 'Watcher',
           },
           mobName: {
             en: 'Provenance Watcher',
-            de: 'Provenance Watcher',
+            de: 'Kristallwächter',
             fr: 'Provenance Watcher',
             ja: 'Provenance Watcher',
           },
           trackerName: {
             en: 'Provenance Watcher',
-            de: 'Provenance Watcher',
+            de: 'Kristallwächter',
             fr: 'Provenance Watcher',
             ja: 'Provenance Watcher',
           },
