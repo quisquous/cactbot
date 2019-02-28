@@ -203,7 +203,7 @@
       id: 'O12S Packet Filter M',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Packet Filter M) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Sicherungssystem M) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme protecteur M) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme protecteur M|Programme Protecteur M) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|ガードプログラムM) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
