@@ -34,6 +34,7 @@
       alarmText: {
         en: 'Don\'t Stack!',
         de: 'Nicht stacken!',
+        fr: 'Ne vous packez pas !',
       },
     },
     {
@@ -45,6 +46,7 @@
       infoText: {
         en: 'Keep Bosses Apart',
         de: 'Bosse auseinander ziehen',
+        fr: 'Séparez les boss',
       },
     },
     {
@@ -56,13 +58,14 @@
       alertText: {
         en: 'Move Bosses Together',
         de: 'Bosse zusammenziehen',
+        fr: 'Packez les boss',
       },
     },
     {
       id: 'O12S Solar Ray',
       regex: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using (?:Unknown_3350|Unknown_3351|Solar Ray) on (\y{Name})/,
       regexDe: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using (?:Unknown_3350|Unknown_3351|Sonnenstrahl) on (\y{Name})/,
-      regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using (?:Unknown_3350|Unknown_3351|Rayon solaire) on (\y{Name})/,
+      regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using (?:Unknown_3350|Unknown_3351|Rayon solaire|Rayon Solaire) on (\y{Name})/,
       regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using (?:Unknown_3350|Unknown_3351|ソーラレイ) on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
@@ -98,7 +101,7 @@
       id: 'O12S Optimized Blade Dance',
       regex: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using (?:Unknown_334B|Unknown_334C|Optimized Blade Dance) on (\y{Name})/,
       regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using (?:Unknown_334B|Unknown_334C|Omega-Schwertertanz) on (\y{Name})/,
-      regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using (?:Unknown_334B|Unknown_334C|Danse de la lame Oméga) on (\y{Name})/,
+      regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using (?:Unknown_334B|Unknown_334C|Danse de la lame Oméga|Danse De La Lame Oméga) on (\y{Name})/,
       regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using (?:Unknown_334B|Unknown_334C|ブレードダンス・オメガ) on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
@@ -146,10 +149,12 @@
         let squareName = {
           en: 'Square',
           de: 'Viereck',
+          fr: 'Carré',
         }[data.lang];
         let triangleName = {
           en: 'Triangle',
           de: 'Dreieck',
+          fr: 'Triangle',
         }[data.lang];
         return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
       },
@@ -164,6 +169,7 @@
       infoText: {
         en: 'Stack',
         de: 'Stacken',
+        fr: 'Packez-vous',
       },
     },
     {
@@ -175,13 +181,14 @@
       infoText: {
         en: 'Meteor on YOU',
         de: 'Meteor auf DIR',
+        fr: 'Météore sur VOUS',
       },
     },
     {
       id: 'O12S Packet Filter F',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Packet Filter F) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Sicherungssystem F) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Programme protecteur F) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Programme protecteur F|Programme Protecteur F) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|ガードプログラムF) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -189,13 +196,14 @@
       infoText: {
         en: 'Attack Omega-M',
         de: 'Omega-M angreifen',
+        fr: 'Attaquez Oméga-M',
       },
     },
     {
       id: 'O12S Packet Filter M',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Packet Filter M) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Sicherungssystem M) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme protecteur M) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme protecteur M|Programme Protecteur M) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|ガードプログラムM) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -203,17 +211,19 @@
       infoText: {
         en: 'Attack Omega-F',
         de: 'Omega-W angreifen',
+        fr: 'Attaquez Oméga-F',
       },
     },
     {
       id: 'O12S Diffuse Wave Cannon Sides',
       regex: / 14:3367:Omega starts using (?:Diffuse Wave Cannon|Unknown_3367)/,
       regexDe: / 14:3367:Omega starts using (?:Streuende Wellenkanone|Unknown_3367)/,
-      regexFr: / 14:3367:Oméga starts using (?:Canon plasma diffuseur|Unknown_3367)/,
+      regexFr: / 14:3367:Oméga starts using (?:Canon plasma diffuseur|Canon Plasma Diffuseur|Unknown_3367)/,
       regexJa: / 14:3367:オメガ starts using (?:拡散波動砲|Unknown_3367)/,
       infoText: {
         en: 'Sides',
         de: 'Seiten',
+        fr: 'Cotés',
       },
     },
     {
@@ -225,24 +235,27 @@
       infoText: {
         en: 'Front or Back',
         de: 'Vorn oder Hinten',
+        fr: 'Devant ou derrière',
       },
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
       regex: / 14:3364:Omega starts using (?:Oversampled Wave Cannon|Unknown_3364)/,
       regexDe: / 14:3364:Omega starts using (?:Fokussierte Wellenkanone|Unknown_3364)/,
-      regexFr: / 14:3364:Oméga starts using (?:Canon plasma chercheur|Unknown_3364)/,
+      regexFr: / 14:3364:Oméga starts using (?:Canon plasma chercheur|Canon Plasma Chercheur|Unknown_3364)/,
       regexJa: / 14:3364:オメガ starts using (?:検知式波動砲|Unknown_3364)/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Monitors Left',
             de: 'Monitore Links',
+            fr: 'Moniteur Gauche',
           };
         }
         return {
           en: 'Dodge Left',
           de: 'Rechts ausweichen',
+          fr: 'Evitez gauche',
         };
       },
     },
@@ -250,18 +263,20 @@
       id: 'O12S Oversampled Wave Cannon Left',
       regex: / 14:3365:Omega starts using (?:Oversampled Wave Cannon|Unknown_3365)/,
       regexDe: / 14:3365:Omega starts using (?:Fokussierte Wellenkanone|Unknown_3365)/,
-      regexFr: / 14:3365:Oméga starts using (?:Canon plasma chercheur|Unknown_3365)/,
+      regexFr: / 14:3365:Oméga starts using (?:Canon plasma chercheur|Canon Plasma Chercheur|Unknown_3365)/,
       regexJa: / 14:3365:オメガ starts using (?:検知式波動砲|Unknown_3365)/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Monitors Right',
             de: 'Monitore Rechts',
+            fr: 'Moniteur Droite',
           };
         }
         return {
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
+          fr: 'Evitez droite',
         };
       },
     },
@@ -273,6 +288,7 @@
           return {
             en: 'Vuln on YOU',
             de: 'Verwundbarkeit auf DIR',
+            fr: 'Vulnérabilité sur VOUS',
           };
         }
       },
@@ -282,6 +298,7 @@
         return {
           en: 'Vuln on ' + data.ShortName(matches[1]),
           de: 'Verwundbarkeit auf ' + data.ShortName(matches[1]),
+          fr: 'Vulnérabilité sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -289,7 +306,7 @@
       id: 'O12S Local Tethers',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Local Regression) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Regression: Nah) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Bogue intentionnel: proximité) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Bogue intentionnel: proximité|Bogue Intentionnel: Proximité) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|エンバグ：ニアー) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -297,13 +314,14 @@
       infoText: {
         en: 'Close Tethers',
         de: 'Nahe Verbindungen',
+        fr: 'Liens proches',
       },
     },
     {
       id: 'O12S Far Tethers',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Remote Regression) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Regression: Fern) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Bogue intentionnel: distance) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Bogue intentionnel: distance|Bogue Intentionnel: Distance) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|エンバグ：ファー) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -311,13 +329,14 @@
       infoText: {
         en: 'Far Tethers',
         de: 'Entfernte Verbindungen',
+        fr: 'Liens éloignés',
       },
     },
     {
       id: 'O12S Defamation',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle|Bogue Critique: Boucle) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -325,13 +344,14 @@
       alarmText: {
         en: 'Defamation on YOU',
         de: 'Urteil auf DIR',
+        fr: '#Médisance sur VOUS',
       },
     },
     {
       id: 'O12S Latent Defect',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latent Defect) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Latenter Defekt) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Bogue latent) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|Bogue latent|Bogue Latent) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_686|レイテントバグ) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -339,13 +359,14 @@
       alertText: {
         en: 'Blue Marker',
         de: 'Blauer Marker',
+        fr: 'Marqueur bleu',
       },
     },
     {
       id: 'O12S Rot',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Critical Underflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Kritischer Bug: Unterlauf) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Bogue critique: dégradation) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Bogue critique: dégradation|Bogue Critique: Dégradation) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|クリティカルバグ：デグレード) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -353,13 +374,14 @@
       infoText: {
         en: 'Rot',
         de: 'Fäulnis',
+        fr: 'Pourriture',
       },
     },
     {
       id: 'O12S Hello World Stack',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage) from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage|Bogue Critique: Partage) from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
       delaySeconds: function(data, matches) {
         return matches[1] == data.me ? 0 : 1;
@@ -374,11 +396,13 @@
           return {
             en: 'Short Stack on YOU',
             de: 'Kurzer Stack auf YOU',
+            fr: 'Marque courte sur VOUS',
           };
         }
         return {
           en: 'Long Stack on YOU',
           de: 'Langer Stack auf YOU',
+          fr: 'Marque longue sur VOUS',
         };
       },
       infoText: function(data, matches) {
@@ -394,6 +418,7 @@
           return {
             en: 'Short Stack on ' + data.ShortName(matches[1]),
             de: 'Kurzer Stack auf ' + data.ShortName(matches[1]),
+            fr: 'Marque courte sur ' + data.ShortName(matches[1]),
           };
         }
         return;
@@ -403,7 +428,7 @@
       id: 'O12S Hello World No Marker',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug|Unknown_686|Latent Defect|Unknown_680|Critical Synchronization Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf|Unknown_686|Latenter Bug|Unknown_680|Kritischer Bug: Synchronisierung) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle|Unknown_686|Bogue latent|Unknown_680|Bogue critique: partage) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle|Bogue Critique: Boucle|Unknown_686|Bogue latent|Bogue Latent|Unknown_680|Bogue critique: partage|Bogue Critique: Partage) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル|Unknown_686|レイテントバグ|Unknown_680|クリティカルバグ：シェア) from/,
       preRun: function(data, matches) {
         data.helloDebuffs[matches[1]] = true;
@@ -419,6 +444,7 @@
         return {
           en: 'No Marker',
           de: 'Kein Marker',
+          fr: 'Aucun marqueur',
         };
       },
     },
@@ -426,7 +452,7 @@
       id: 'O12S Hello World Tower Complete',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Cascading Latent Defect) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Latenter Bug: Unterlauf) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent: dégradation) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent: dégradation|Bogue Latent: Dégradation) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|レイテントバグ：デグレード) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -434,6 +460,7 @@
       infoText: {
         en: 'Move out for Defamation',
         de: 'Rausgehen für Urteil',
+        fr: 'Ecartez-vous pour #médisance',
       },
     },
     {
@@ -462,6 +489,7 @@
           return {
             en: 'Stack on ' + data.ShortName(player),
             de: 'Stacken auf ' + data.ShortName(player),
+            fr: 'Packez-vous sur ' + data.ShortName(player),
           };
         }
       },
@@ -475,6 +503,7 @@
       infoText: {
         en: 'Stack on YOU',
         de: 'Stacken auf DIR',
+        fr: 'Package sur VOUS',
       },
     },
     {
@@ -495,6 +524,7 @@
       alertText: {
         en: 'Back Left',
         de: 'Hinten Links',
+        fr: 'Arrière gauche',
       },
     },
     {
@@ -503,6 +533,7 @@
       alertText: {
         en: 'Back Right',
         de: 'Hinten Rechts',
+        fr: 'Arrière droite',
       },
     },
     {
