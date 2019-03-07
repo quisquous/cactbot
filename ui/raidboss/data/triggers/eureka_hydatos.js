@@ -33,7 +33,7 @@
     {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
-      beforeSeconds: 16,
+      beforeSeconds: 12,
       infoText: {
         en: 'Black Hole Soon',
       },
@@ -517,8 +517,7 @@
         return data.sealed;
       },
       run: function(data, matches) {
-        // FIXME: It hypothetically is possible that the RV clones get buffs
-        // in the reverse order that they do their attacks in.
+        // RV clones get buffs in the reverse order that they do their attacks in.
         data.clones = data.clones || [];
         data.clones.push(matches[1]);
       },
@@ -535,12 +534,12 @@
         let wrists = data.clones.pop();
         if (wrists == 'Astral') {
           return {
-            en: 'Dark??',
+            en: 'Dark',
           };
         }
         if (wrists == 'Umbral') {
           return {
-            en: 'Light??',
+            en: 'Light',
           };
         }
       },
@@ -619,7 +618,7 @@
         return data.sealed;
       },
       alertText: {
-        en: 'Away From Ozma',
+        en: 'Go Far',
       },
     },
     {
@@ -649,7 +648,7 @@
         return data.sealed;
       },
       alertText: {
-        en: 'In Towards Front',
+        en: 'Get Close',
       },
     },
     {
@@ -684,7 +683,7 @@
       },
       suppressSeconds: 1,
       alertText: {
-        en: 'Off the Platform',
+        en: 'Get Off',
       },
     },
     {
@@ -695,7 +694,7 @@
       },
       suppressSeconds: 1,
       alertText: {
-        en: 'In Towards Front',
+        en: 'Get Close',
       },
     },
     {
@@ -706,11 +705,11 @@
       },
       suppressSeconds: 1,
       alertText: {
-        en: 'Far Away Under Shade',
+        en: 'Go Far',
       },
     },
     {
-      id: 'BA Ozma Adds 1',
+      id: 'BA Ozma Adds',
       regex: /:Cloudlarker:37B0:/,
       delaySeconds: 2,
       condition: function(data) {
@@ -718,19 +717,7 @@
       },
       suppressSeconds: 1,
       infoText: {
-        en: 'Kill Adds (switch magia)',
-      },
-    },
-    {
-      id: 'BA Ozma Adds 2',
-      regex: /:Cloudlarker:37B0:/,
-      delaySeconds: 16,
-      condition: function(data) {
-        return data.sealed;
-      },
-      suppressSeconds: 1,
-      infoText: {
-        en: '(switch magia back)',
+        en: 'Kill Adds',
       },
     },
     {

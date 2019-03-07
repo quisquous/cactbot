@@ -121,7 +121,7 @@ hideall "--sync--"
 # FIXME: does this loop doing Ame forever or does it naturally go into Lateral?
 # FIXME: Are these always Whirling?
 
-# Adds Phase
+# Adds Phase at 60%
 3095.0 "--sync--" sync /:Ball Lightning:386D:/ window 100,10
 3099.1 "Lateral Zantetsuken" sync /:Raiden:386[BC]:/
 3109.8 "Spirits of the Fallen" sync /:Raiden:387A:/
@@ -184,11 +184,13 @@ hideall "--sync--"
 4151.9 "Meteor" sync /:Absolute Virtue:3799:/
 
 # Triple Stream
+4161.0 "--untargetable--"
 4166.5 "Explosive Impulse" sync /:Relative Virtue:3793:/
 4174.5 "Impact Stream"
 4175.5 "Impact Stream"
 4184.5 "Impact Stream"
 4190.5 "Explosive Impulse" sync /:Absolute Virtue:3794:/
+4191.0 "--targetable--"
 4196.5 "Medusa Javelin" sync /:Absolute Virtue:379B:/
 4208.5 "Auroral Wind" sync /:Absolute Virtue:379A:/
 4216.5 "Meteor" sync /:Absolute Virtue:3799:/
