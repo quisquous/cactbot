@@ -488,7 +488,7 @@
       },
       infoText: {
         en: 'Dark Bracelets',
-        de: 'Dunkle Armreife'
+        de: 'Dunkle Armreife',
       },
       run: function(data) {
         data.bracelets = 'dark';
