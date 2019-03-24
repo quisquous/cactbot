@@ -120,6 +120,21 @@ namespace Cactbot {
       BLU = 36,
     };
 
+    static bool IsGatherer(EntityJob job) {
+      return job == EntityJob.FSH || job == EntityJob.MIN || job == EntityJob.BTN;
+    }
+
+    static bool IsCrafter(EntityJob job) {
+      return job == EntityJob.CRP ||
+        job == EntityJob.BSM ||
+        job == EntityJob.ARM ||
+        job == EntityJob.GSM ||
+        job == EntityJob.LTW ||
+        job == EntityJob.WVR ||
+        job == EntityJob.ALC ||
+        job == EntityJob.CUL;
+    }
+
     // EntityStruct {
     //   ...
     //   0x30 bytes in: string name;  // 0x44 bytes.
@@ -418,6 +433,7 @@ namespace Cactbot {
         bool b_null = object.ReferenceEquals(b, null);
         if (a_null && b_null) return true;
         if (a_null || b_null) return false;
+
         return
           a.name == b.name &&
           a.id == b.id &&
@@ -474,16 +490,28 @@ namespace Cactbot {
       data.pos_y = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos + 8);
 
       if (data.type == EntityType.PC || data.type == EntityType.Monster) {
+        data.job = (EntityJob)bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetJob];
+
         data.hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp);
         data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 4);
         data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 8);
         data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 12);
         data.tp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 16);
-        data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp);
-        data.max_gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 2);
-        data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 4);
-        data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 6);
-        data.job = (EntityJob)bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetJob];
+
+        if (IsGatherer(data.job)) {
+          data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp);
+          data.max_gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 2);
+        } else {
+          data.gp = 0;
+          data.max_gp = 0;
+        }
+        if (IsCrafter(data.job)) {
+          data.cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 4);
+          data.max_cp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp + 6);
+        } else {
+          data.cp = 0;
+          data.max_cp = 0;
+        }
         data.level = bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel];
 
         byte[] job_bytes = GetJobSpecificData();
