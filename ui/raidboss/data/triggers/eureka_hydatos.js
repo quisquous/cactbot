@@ -475,7 +475,7 @@
           return;
         return {
           en: 'Away from ' + data.ShortName(matches[1]),
-          en: 'Weg von ' + data.ShortName(matches[1]),
+          de: 'Weg von ' + data.ShortName(matches[1]),
         };
       },
     },
