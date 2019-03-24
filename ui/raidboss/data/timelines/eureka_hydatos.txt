@@ -1,10 +1,12 @@
-# Eureka Hydatos - Baldesian Armory
-# https://docs.google.com/document/d/1mUBLg1wed5du9PdWQ3T4mdJd38TrT_jye5y6B8HKjm4/preview#
+# Eureka Hydatos - Baldesion Armory
+# http://elysium.gg/guides/baldesion-arsenal-primer/
+# http://elysium.gg/guides/baldesion-arsenal-raid-guide/
 
 hideall "--Reset--"
 hideall "--sync--"
 
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 10000 jump 0
+0 "--Reset--" sync /04:Removing combatant Proto Ozma\.  Max HP: \d{8}\./ window 10000 jump 0
 
 
 #####################
