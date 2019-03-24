@@ -397,7 +397,7 @@ namespace Cactbot {
       public short max_cp = 0;
       public EntityJob job = EntityJob.None;
       public short level = 0;
-      public string debugJob;
+      public string debug_job;
 
       public override bool Equals(object obj) {
         return obj is EntityData && (EntityData)obj == this;
@@ -424,7 +424,7 @@ namespace Cactbot {
         hash = hash * 31 + max_cp.GetHashCode();
         hash = hash * 31 + job.GetHashCode();
         hash = hash * 31 + level.GetHashCode();
-        hash = hash * 31 + debugJob.GetHashCode();
+        hash = hash * 31 + debug_job.GetHashCode();
         return hash;
       }
 
@@ -454,7 +454,7 @@ namespace Cactbot {
           a.max_cp == b.max_cp &&
           a.job == b.job &&
           a.level == b.level &&
-          a.debugJob == b.debugJob;
+          a.debug_job == b.debug_job;
       }
 
       public static bool operator !=(EntityData a, EntityData b) {
@@ -515,14 +515,14 @@ namespace Cactbot {
         data.level = bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetLevel];
 
         byte[] job_bytes = GetJobSpecificData();
-        data.debugJob = "";
+        data.debug_job = "";
 
         if (job_bytes != null) {
           // Start at 8 to skip past the initial pointer.
           for (var i = 8; i < job_bytes.Length; ++i) {
-            if (data.debugJob != "")
-              data.debugJob += " ";
-            data.debugJob += string.Format("{0:x2}", job_bytes[i]);
+            if (data.debug_job != "")
+              data.debug_job += " ";
+            data.debug_job += string.Format("{0:x2}", job_bytes[i]);
           }
         }
       }

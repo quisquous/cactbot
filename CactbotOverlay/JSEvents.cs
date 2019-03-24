@@ -91,7 +91,7 @@ namespace Cactbot {
         pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
         jobDetail = null;
         bait = e.bait;
-        debugJob = e.debugJob;
+        debugJob = e.debug_job;
       }
       public string EventName() { return "onPlayerChangedEvent"; }
 
