@@ -405,6 +405,8 @@ function setupBuffTracker() {
       gainRegex: gLang.gainsEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
       loseRegex: gLang.losesEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
       durationPosition: 2,
+      // In Eureka, the effect lost can often be hidden, so cancel after 40s.
+      durationSeconds: 40,
       icon: kIconBuffFoes,
       // Light Purple.
       borderColor: '#F272F2',
