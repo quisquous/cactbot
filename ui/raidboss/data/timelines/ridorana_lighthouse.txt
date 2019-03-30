@@ -13,7 +13,7 @@ hideall "--sync--"
 # Famfrit #
 ###########
 0 "Start" sync /:Echoes from Time's Garden will be sealed off/ window 0,1
-13 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/ window 13,0
+13 "Tide Pod" sync /:Famfrit, The Darkening Cloud:2C3E:/ window 13,1
 26 "Water IV" sync /:Famfrit, The Darkening Cloud:2C3D:/
 35 "Briny Cannonade" sync /:Famfrit, The Darkening Cloud:2C45:/
 47 "Tsunami" sync /:Famfrit, The Darkening Cloud:2C50:/

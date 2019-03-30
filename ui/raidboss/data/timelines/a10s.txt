@@ -9,7 +9,7 @@
 ########them from appearing on your timeline.
 
 hideall "--Reset--"
-hideall "Discharge Cast"
+#hideall "Discharge Cast"
 #########DPS CAN HIDE THESE
 #hideall "AoE"
 

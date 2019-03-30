@@ -6,7 +6,7 @@ hideall "--sync--"
 0 "--Reset--" sync /Removing combatant Tsukuyomi/ window 10000 jump 0
 
 0 "Start" sync /Engage!/ window 0,1
-15 "Reprimand" sync /:Tsukuyomi:2BBA:/ window 15,0
+15 "Reprimand" sync /:Tsukuyomi:2BBA:/ window 15,2
 25 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/
 31 "Lead/Steel"
 42 "Nightfall" sync /:Tsukuyomi:2BB(C|D):/

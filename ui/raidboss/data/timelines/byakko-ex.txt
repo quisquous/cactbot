@@ -13,7 +13,7 @@ hideall "--sync--"
 28.5 "Highest Stakes 1" duration 4.5 # end of castbar
 38.5 "Highest Stakes 2" duration 4.5 # end of castbar
 
-55.0 "--sync--" sync /14:27ED:Byakko starts using Unrelenting Anguish/ window 5,5
+55.0 "--sync--" sync /14:27ED:Byakko starts using Unrelenting Anguish/ window 60,5
 58.0 "Unrelenting Anguish" sync /Byakko:27ED:Unrelenting Anguish:/ window 5,5 # end of castbar
 63.5 "Storm Pulse" # end of castbar
 67.0 "Ominous Wind" # debuff

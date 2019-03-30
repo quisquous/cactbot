@@ -8,15 +8,15 @@
 ########them from appearing on your timeline.
 
 #########DPS CAN HIDE THESE
-hideall "Gobjab"
-hideall "Glupgloop"
-hideall "Glupgloop Mark"
-hideall "Glupgloop Mark 1"
-hideall "Glupgloop Mark 2"
-hideall "Steel Scales"
-hideall "Shock Therapy"
-hideall "Chimera Spawn"
-hideall "Add Spawn"
+#hideall "Gobjab"
+#hideall "Glupgloop"
+#hideall "Glupgloop Mark"
+#hideall "Glupgloop Mark 1"
+#hideall "Glupgloop Mark 2"
+#hideall "Steel Scales"
+#hideall "Shock Therapy"
+#hideall "Chimera Spawn"
+#hideall "Add Spawn"
 
 #########HEALERS CAN HIDE THESE
 #hideall "Goes Big"
@@ -35,7 +35,7 @@ hideall "Add Spawn"
 ##############################################################
 ################## Windows 8 & 10 Voices ##################
 ########REMOVE THE HASTAG to select a voice
-define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
 #define speaker "voice" "Microsoft David Desktop" 0 100
 
 #################### Windows 7 Voices ####################
@@ -44,29 +44,29 @@ define speaker "voice" "Microsoft Zira Desktop" 0 100
 
 ################ CUSTOMIZE Call Outs #####################
 ########REMOVE THE HASHTAG to enable each call out
-alertall "Cleanse Poison" before 5 speak "voice" "cleanse poison"
-alertall "Away from Spikey" before 1 speak "voice" "away from spikey"
-alertall "Diagonal Bombs" before 2 speak "voice" "diagonal bombs"
-alertall "Go Near Spikey" before 1 speak "voice" "go to first spikey"
-alertall "3 Spikey (Scattered)" before 2 speak "voice" "3 spikey bombs"
-alertall "Bird Time" before 5 speak "voice" "Go Bird"
-alertall "Gobhook" before 5 speak "voice" "Behind Boss"
-alertall "Petrifaction" before 5 speak "voice" "petrifaction"
-alertall "Stack Indicator" before 3 speak "voice" "stack"
-
-alertall "Away from Spikey" before 8 speak "voice" "Go Gorilla"
-alertall "Go Near Spikey" before 10 speak "voice" "Go Gorilla"
-alertall "Buster" before 5 speak "voice" "Shield"
-alertall "Shock Therapy" before 5 speak "voice" "Shield"
-alertall "Stack Indicator" before 5 speak "voice" "Shield"
-alertall "Prey" before 0 speak "voice" "MOVE"
-alertall "Prey 1" before 0 speak "voice" "MOVE"
-alertall "Prey 2" before 0 speak "voice" "MOVE"
-alertall "Steel Scales" before 2 speak "voice" "stun snake"
-alertall "Chimera Spawn" before 5 speak "voice" "Kimera"
-alertall "Adds" before 3 speak "voice" "Adds"
-alertall "More Pigs" before 3 speak "voice" "Pick Up Pigs"
-alertall "Refresh Debuff" before 0 speak "voice" "Refresh Debuff"
+#alertall "Cleanse Poison" before 5 speak "voice" "cleanse poison"
+#alertall "Away from Spikey" before 1 speak "voice" "away from spikey"
+#alertall "Diagonal Bombs" before 2 speak "voice" "diagonal bombs"
+#alertall "Go Near Spikey" before 1 speak "voice" "go to first spikey"
+#alertall "3 Spikey (Scattered)" before 2 speak "voice" "3 spikey bombs"
+#alertall "Bird Time" before 5 speak "voice" "Go Bird"
+#alertall "Gobhook" before 5 speak "voice" "Behind Boss"
+#alertall "Petrifaction" before 5 speak "voice" "petrifaction"
+#alertall "Stack Indicator" before 3 speak "voice" "stack"
+#
+#alertall "Away from Spikey" before 8 speak "voice" "Go Gorilla"
+#alertall "Go Near Spikey" before 10 speak "voice" "Go Gorilla"
+#alertall "Buster" before 5 speak "voice" "Shield"
+#alertall "Shock Therapy" before 5 speak "voice" "Shield"
+#alertall "Stack Indicator" before 5 speak "voice" "Shield"
+#alertall "Prey" before 0 speak "voice" "MOVE"
+#alertall "Prey 1" before 0 speak "voice" "MOVE"
+#alertall "Prey 2" before 0 speak "voice" "MOVE"
+#alertall "Steel Scales" before 2 speak "voice" "stun snake"
+#alertall "Chimera Spawn" before 5 speak "voice" "Kimera"
+#alertall "Adds" before 3 speak "voice" "Adds"
+#alertall "More Pigs" before 3 speak "voice" "Pick Up Pigs"
+#alertall "Refresh Debuff" before 0 speak "voice" "Refresh Debuff"
 
 ##############################################################
 0 "--Reset--" sync /Advanced Clevering is no longer sealed/ window 10000 jump 0 #Detect reset

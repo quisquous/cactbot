@@ -9,26 +9,26 @@
 ########them from appearing on your timeline.
 
 #########DPS CAN HIDE THESE
-hideall "Seed of the Sky"
-hideall "Hydrothermal"
-hideall "Execution"
-hideall "Perpetual Ray"
-hideall "Aux Power (Brawler)"
-hideall "Aux Power (Swindler)"
-hideall "Flarethrower"
-hideall "Double Rocket Punch"
-hideall "Long Needle"
-hideall "Super Jump"
-hideall "Missile Command"
-hideall "Flarethrower"
-hideall "Apocalyptic Ray"
-hideall "100-megatonze Shock"
-hideall "Mines"
-hideall "Justice"
-hideall "Final Punch"
-hideall "Final Apocalypse"
-hideall "J Wave"
-hideall "--Reset--"
+#hideall "Seed of the Sky"
+#hideall "Hydrothermal"
+#hideall "Execution"
+#hideall "Perpetual Ray"
+#hideall "Aux Power (Brawler)"
+#hideall "Aux Power (Swindler)"
+#hideall "Flarethrower"
+#hideall "Double Rocket Punch"
+#hideall "Long Needle"
+#hideall "Super Jump"
+#hideall "Missile Command"
+#hideall "Flarethrower"
+#hideall "Apocalyptic Ray"
+#hideall "100-megatonze Shock"
+#hideall "Mines"
+#hideall "Justice"
+#hideall "Final Punch"
+#hideall "Final Apocalypse"
+#hideall "J Wave"
+#hideall "--Reset--"
 
 #########HEALERS CAN HIDE THESE
 #hideall "Seed of the Sky"
@@ -50,7 +50,7 @@ hideall "--Reset--"
 ##############################################################
 ################## Windows 8 & 10 Voices ##################
 ########REMOVE THE HASTAG to select a voice
-define speaker "voice" "Microsoft Zira Desktop" 0 100
+#define speaker "voice" "Microsoft Zira Desktop" 0 100
 #define speaker "voice" "Microsoft David Desktop" 0 100
 
 #################### Windows 7 Voices ####################
@@ -59,39 +59,39 @@ define speaker "voice" "Microsoft Zira Desktop" 0 100
 
 ################ CUSTOMIZE Call Outs #####################
 ########REMOVE THE HASHTAG to enable each call out
-alertall "Mega Beam" before 3 speak "voice" "Beam"
-alertall "Final Beam" before 3 speak "voice" "Beam"
-alertall "Hydrothermal" before 3 speak "voice" "Hydrothermal"
-alertall "Perpetual Ray" before 4 speak "voice" "Perpetual Ray"
-alertall "Legislation" before 1 speak "voice" "Check Your Debuff"
-alertall "Git Gud" before 0 speak "voice" "Git Gud"
-
-alertall "Height" before 0 speak "voice" "Height"
-alertall "Attachment" before 1 speak "voice" "Attachment"
-alertall "Mind Blast" before 3 speak "voice" "Mind Blast"
-alertall "Swindler Spawn" before 2 speak "voice" "Swindler"
-alertall "Vortexer Spawn" before 2 speak "voice" "Vortexer"
-
-alertall "Puddles" before 6 speak "voice" "Stack"
-alertall "Super Jump" before 6 speak "voice" "Super Jump"
-alertall "Missile Command" before 6 speak "voice" "Shield"
-alertall "Flarethrower" before 4 speak "voice" "Flarethrower"
-alertall "Double Rocket Punch" before 4 speak "voice" "Punch"
-alertall "Final Punch" before 4 speak "voice" "Punch"
-alertall "Apocalyptic Ray" before 3 speak "voice" "Apocalyptic"
-alertall "Final Apocalypse" before 3 speak "voice" "Apocalypse"
-
-alertall "J Kick" before 5 speak "voice" "Stack"
-alertall "Double Buster" before 5 speak "voice" "Stack"
-alertall "Double Drills" before 5 speak "voice" "Double Drill"
-alertall "Chakrams Spawn" before 1 speak "voice" "Chawkrums"
-alertall "Mirages Land" before 6 speak "voice" "Spread Out"
-
-alertall "Enumeration" before 5 speak "voice" "Enumeration"
-alertall "Verdict" before 1 speak "voice" "Check Debuff"
-alertall "Gavel" before 1 speak "voice" "Get Last Orb"
-
-alertall "J Storm" before 5 speak "voice" "Burn Baby Burn"
+#alertall "Mega Beam" before 3 speak "voice" "Beam"
+#alertall "Final Beam" before 3 speak "voice" "Beam"
+#alertall "Hydrothermal" before 3 speak "voice" "Hydrothermal"
+#alertall "Perpetual Ray" before 4 speak "voice" "Perpetual Ray"
+#alertall "Legislation" before 1 speak "voice" "Check Your Debuff"
+#alertall "Git Gud" before 0 speak "voice" "Git Gud"
+#
+#alertall "Height" before 0 speak "voice" "Height"
+#alertall "Attachment" before 1 speak "voice" "Attachment"
+#alertall "Mind Blast" before 3 speak "voice" "Mind Blast"
+#alertall "Swindler Spawn" before 2 speak "voice" "Swindler"
+#alertall "Vortexer Spawn" before 2 speak "voice" "Vortexer"
+#
+#alertall "Puddles" before 6 speak "voice" "Stack"
+#alertall "Super Jump" before 6 speak "voice" "Super Jump"
+#alertall "Missile Command" before 6 speak "voice" "Shield"
+#alertall "Flarethrower" before 4 speak "voice" "Flarethrower"
+#alertall "Double Rocket Punch" before 4 speak "voice" "Punch"
+#alertall "Final Punch" before 4 speak "voice" "Punch"
+#alertall "Apocalyptic Ray" before 3 speak "voice" "Apocalyptic"
+#alertall "Final Apocalypse" before 3 speak "voice" "Apocalypse"
+#
+#alertall "J Kick" before 5 speak "voice" "Stack"
+#alertall "Double Buster" before 5 speak "voice" "Stack"
+#alertall "Double Drills" before 5 speak "voice" "Double Drill"
+#alertall "Chakrams Spawn" before 1 speak "voice" "Chawkrums"
+#alertall "Mirages Land" before 6 speak "voice" "Spread Out"
+#
+#alertall "Enumeration" before 5 speak "voice" "Enumeration"
+#alertall "Verdict" before 1 speak "voice" "Check Debuff"
+#alertall "Gavel" before 1 speak "voice" "Get Last Orb"
+#
+#alertall "J Storm" before 5 speak "voice" "Burn Baby Burn"
 
 ##############################################################
 0 "--Reset--" sync /Removing combatant Onslaughter/ window 300 jump 0
