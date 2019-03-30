@@ -68,7 +68,7 @@
 
 ########Phase 1
 0	"Start" sync /:Engage!/ window 0,1
-10	"Critical Hit"	sync /uses Critical Hit/ window 9	#Tank buster
+10	"Critical Hit"	sync /uses Critical Hit/ window 10,10	#Tank buster
 19	"Spellblade Holy"	duration 6 #4 players spread/stack
 37	"Queen's Waltz (Clock)"	#Spread around boss
 41	"Haste"

@@ -7,7 +7,7 @@
 
 ###### 1st Classical Elements
 0 "Start" sync /:Engage!/ window 0,1
-6.8 "Wyrm Tail" sync /:Alte Roite:1ECE:Wyrm Tail:/ window 3,3
+6.8 "Wyrm Tail" sync /:Alte Roite:1ECE:Wyrm Tail:/ window 7,3
 12.8 "Wyrm Tail"
 14.8 "Twin Bolt" duration 5
 
