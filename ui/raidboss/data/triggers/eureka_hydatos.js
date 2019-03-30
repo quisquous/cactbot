@@ -761,7 +761,7 @@
     },
     {
       id: 'BA Ozma Pyramid Shade',
-      regex: /:Ozmashade:37A4:/,
+      regex: /:(?:Ozmashade|Shadow):37A4:/,
       regexDe: /:Yadis-Schatten:37A4:/,
       condition: function(data) {
         return data.sealed;
@@ -774,7 +774,7 @@
     },
     {
       id: 'BA Ozma Star Shade',
-      regex: /:Ozmashade:37B2:/,
+      regex: /:(?:Ozmashade|Shadow):37B2:/,
       regexDe: /:Yadis-Schatten:37B2:/,
       condition: function(data) {
         return data.sealed;
@@ -787,7 +787,7 @@
     },
     {
       id: 'BA Ozma Cube Shade',
-      regex: /:Ozmashade:379E:/,
+      regex: /:(?:Ozmashade|Shadow):379E:/,
       regexDe: /:Yadis-Schatten:379E:/,
       condition: function(data) {
         return data.sealed;
