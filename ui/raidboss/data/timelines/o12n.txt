@@ -9,7 +9,7 @@ hideall "--sync--"
 ### Phase 1 (loops until low%)
 0.0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
-15.3 "Solar Ray" sync /:Omega-M:330F:/
+15.3 "Solar Ray" sync /:Omega-M:330F:/ window 16,3
 20.4 "Program Alpha" sync /:Omega-M:3308:/
 23.5 "Floodlight" sync /:Omega-M:3309:/
 27.5 "Spotlight" sync /:Omega-M:330A:/
