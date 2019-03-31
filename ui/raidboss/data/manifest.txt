@@ -47,6 +47,7 @@ timelines/o12s.txt
 timelines/test.txt
 timelines/ultima_weapon_ultimate.txt
 timelines/unending_coil_ultimate.txt
+timelines/yojimbo.txt
 
 triggers/a1s.js
 triggers/a2s.js
@@ -107,3 +108,4 @@ triggers/test.js
 triggers/temple_of_the_fist.js
 triggers/ultima_weapon_ultimate.js
 triggers/unending_coil_ultimate.js
+triggers/yojimbo.js
