@@ -12,6 +12,7 @@
       },
       alertText: {
         en: 'Run Marker Away',
+        de: 'Mit Marker weglaufen',
       },
     },
     {
@@ -34,6 +35,7 @@
       },
       infoText: {
         en: 'Gekko Marker',
+        de: 'Gekko Marker',
       },
     },
     {
@@ -44,6 +46,7 @@
       },
       alarmText: {
         en: 'GTFO',
+        de: 'WEG!',
       },
     },
   ],
