@@ -6,6 +6,7 @@ var EncountersArray = [];
 
 var React = window.React;
 var parseHealing = function(healing, percent) {
+	healing = parseFloat(healing, 10);
 	var max_pct = 100;
 	percent = parseInt(percent.replace('%', ''));
 	return formatNumber(healing * (max_pct - percent) / max_pct);
