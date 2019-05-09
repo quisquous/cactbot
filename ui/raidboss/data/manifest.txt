@@ -79,6 +79,7 @@ triggers/shinryu-ex.js
 triggers/sophia-ex.js
 triggers/susano-ex.js
 triggers/suzaku-ex.js
+triggers/t10.js
 triggers/tsukuyomi-ex.js
 triggers/o1s.js
 triggers/o2s.js
