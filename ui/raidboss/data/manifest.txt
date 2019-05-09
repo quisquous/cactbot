@@ -81,6 +81,7 @@ triggers/susano-ex.js
 triggers/suzaku-ex.js
 triggers/t1.js
 triggers/t2.js
+triggers/t4.js
 triggers/t10.js
 triggers/tsukuyomi-ex.js
 triggers/o1s.js
