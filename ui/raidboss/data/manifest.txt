@@ -83,6 +83,7 @@ triggers/t1.js
 triggers/t2.js
 triggers/t4.js
 triggers/t5.js
+triggers/t6.js
 triggers/t10.js
 triggers/tsukuyomi-ex.js
 triggers/o1s.js
