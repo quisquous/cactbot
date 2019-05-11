@@ -4,7 +4,7 @@
   zoneRegex: /The Final Coil Of Bahamut - Turn \(2\)/,
   triggers: [
     {
-      id: 'T10 Secondary Head',
+      id: 'T11 Secondary Head',
       regex: / 15:\y{ObjectId}:Kaliya:B73:Secondary Head:\y{ObjectId}:(\y{Name}):/,
       alertText: function(data, matches) {
         return {
@@ -13,7 +13,7 @@
       },
     },
     {
-      id: 'T10 Seed River First',
+      id: 'T11 Seed River First',
       regex: / 15:\y{ObjectId}:Kaliya:B74:/,
       alertText: function(data) {
         if (data.firstSeed)
@@ -28,7 +28,7 @@
       },
     },
     {
-      id: 'T10 Seed Sea First',
+      id: 'T11 Seed Sea First',
       regex: / 15:\y{ObjectId}:Kaliya:B75:/,
       alertText: function(data) {
         if (data.firstSeed)
@@ -43,8 +43,8 @@
       },
     },
     {
-      id: 'T10 Seed River Second',
-      regex: / 15:\y{ObjectId}:Kaliya:B76:Seed Of The Rivers:/,
+      id: 'T11 Seed River Second',
+      regex: / 1[56]:\y{ObjectId}:Kaliya:B76:Seed Of The Rivers:/,
       infoText: function(data) {
         if (!data.firstSeed)
           return;
@@ -57,8 +57,8 @@
       },
     },
     {
-      id: 'T10 Seed Sea Second',
-      regex: / 15:\y{ObjectId}:Kaliya:B77:Seed Of The Sea:/,
+      id: 'T11 Seed Sea Second',
+      regex: / 1[56]:\y{ObjectId}:Kaliya:B77:Seed Of The Sea:/,
       infoText: function(data) {
         if (!data.firstSeed)
           return;
@@ -71,7 +71,7 @@
       },
     },
     {
-      id: 'T10 Phase 2',
+      id: 'T11 Phase 2',
       regex: /:Kaliya HP at 61%/,
       sound: 'Long',
       infoText: function(data, matches) {
@@ -81,7 +81,7 @@
       },
     },
     {
-      id: 'T10 Forked Lightning',
+      id: 'T11 Forked Lightning',
       regex: / 15:\y{ObjectId}:Electric Node:B85:Forked Lightning:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -91,7 +91,7 @@
       },
     },
     {
-      id: 'T10 Phase 3',
+      id: 'T11 Phase 3',
       regex: /15:\y{ObjectId}:Kaliya:B78:Emergency Mode/,
       sound: 'Long',
       infoText: function(data) {
@@ -101,7 +101,7 @@
       },
     },
     {
-      id: 'T10 Tether Warning',
+      id: 'T11 Tether Warning',
       regex: / 14:B7B:Kaliya starts using Nanospore Jet/,
       infoText: {
         en: 'Tethers Soon',
@@ -112,7 +112,7 @@
       },
     },
     {
-      id: 'T10 Aethero Accumulate A',
+      id: 'T11 Aethero Accumulate A',
       regex: /1A:(\y{Name}) gains the effect of Aetherochemical Nanospores [Α|A]/,
       run: function(data, matches) {
         data.tetherA = data.tetherA || [];
@@ -121,7 +121,7 @@
       },
     },
     {
-      id: 'T10 Aethero Accumulate B',
+      id: 'T11 Aethero Accumulate B',
       regex: /1A:(\y{Name}) gains the effect of Aetherochemical Nanospores [Β|B]/,
       run: function(data, matches) {
         data.tetherB = data.tetherB || [];
@@ -129,7 +129,7 @@
       },
     },
     {
-      id: 'T10 Tether A',
+      id: 'T11 Tether A',
       regex: /1A:\y{Name} gains the effect of Aetherochemical Nanospores [Α|A]/,
       condition: function(data) {
         return data.tetherA.length == 2;
@@ -148,7 +148,7 @@
       },
     },
     {
-      id: 'T10 Tether B',
+      id: 'T11 Tether B',
       regex: /1A:\y{Name} gains the effect of Aetherochemical Nanospores [Β|B]/,
       condition: function(data) {
         return data.tetherB.length == 2;
