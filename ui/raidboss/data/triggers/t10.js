@@ -2,6 +2,7 @@
 
 [{
   zoneRegex: /The Final Coil Of Bahamut - Turn \(1\)/,
+  timelineFile: 't10.txt',
   triggers: [
     {
       id: 'T10 Phase Change',
