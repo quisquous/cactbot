@@ -35,6 +35,7 @@
         en: 'Don\'t Stack!',
         de: 'Nicht stacken!',
         fr: 'Ne vous packez pas !',
+        ja: 'スタックするな！',
       },
     },
     {
@@ -47,6 +48,7 @@
         en: 'Keep Bosses Apart',
         de: 'Bosse auseinander ziehen',
         fr: 'Séparez les boss',
+        ja: 'ボス離して',
       },
     },
     {
@@ -59,6 +61,7 @@
         en: 'Move Bosses Together',
         de: 'Bosse zusammenziehen',
         fr: 'Packez les boss',
+        ja: 'ボス重ねて',
       },
     },
     {
@@ -150,11 +153,13 @@
           en: 'Square',
           de: 'Viereck',
           fr: 'Carré',
+          ja: '四角',
         }[data.lang];
         let triangleName = {
           en: 'Triangle',
           de: 'Dreieck',
           fr: 'Triangle',
+          ja: '三角',
         }[data.lang];
         return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
       },
@@ -170,6 +175,7 @@
         en: 'Stack',
         de: 'Stacken',
         fr: 'Packez-vous',
+        ja: 'スタック',
       },
     },
     {
@@ -182,6 +188,7 @@
         en: 'Meteor on YOU',
         de: 'Meteor auf DIR',
         fr: 'Météore sur VOUS',
+        ja: 'メテオ on YOU',
       },
     },
     {
@@ -197,6 +204,7 @@
         en: 'Attack Omega-M',
         de: 'Omega-M angreifen',
         fr: 'Attaquez Oméga-M',
+        ja: 'Mを攻撃',
       },
     },
     {
@@ -212,6 +220,7 @@
         en: 'Attack Omega-F',
         de: 'Omega-W angreifen',
         fr: 'Attaquez Oméga-F',
+        ja: 'Fを攻撃',
       },
     },
     {
@@ -224,6 +233,7 @@
         en: 'Sides',
         de: 'Seiten',
         fr: 'Cotés',
+        ja: '横',
       },
     },
     {
@@ -236,6 +246,7 @@
         en: 'Front or Back',
         de: 'Vorn oder Hinten',
         fr: 'Devant ou derrière',
+        ja: '縦',
       },
     },
     {
@@ -315,6 +326,7 @@
         en: 'Close Tethers',
         de: 'Nahe Verbindungen',
         fr: 'Liens proches',
+        ja: 'ニアー',
       },
     },
     {
@@ -330,6 +342,7 @@
         en: 'Far Tethers',
         de: 'Entfernte Verbindungen',
         fr: 'Liens éloignés',
+        ja: 'ファー',
       },
     },
     {
@@ -345,6 +358,7 @@
         en: 'Defamation on YOU',
         de: 'Urteil auf DIR',
         fr: '#Médisance sur VOUS',
+        ja: 'サークルついた',
       },
     },
     {
@@ -360,6 +374,7 @@
         en: 'Blue Marker',
         de: 'Blauer Marker',
         fr: 'Marqueur bleu',
+        ja: 'レイテントついた',
       },
     },
     {
@@ -375,6 +390,7 @@
         en: 'Rot',
         de: 'Fäulnis',
         fr: 'Pourriture',
+        ja: 'デグレードついた',
       },
     },
     {
@@ -574,6 +590,16 @@
             0b101: undefined,
             0b110: 'Southwest',
             0b111: 'West',
+          },
+          ja: {
+            0b000: '東',
+            0b001: '北東',
+            0b010: undefined,
+            0b011: '北西',
+            0b100: '南東',
+            0b101: undefined,
+            0b110: '南西',
+            0b111: '西',
           },
         }[data.lang][v];
       },

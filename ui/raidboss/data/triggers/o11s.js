@@ -69,6 +69,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
+        ja: '左',
       },
       run: function(data) {
         data.lastWasStarboard = true;
@@ -87,6 +88,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
+        ja: '右',
       },
       run: function(data) {
         data.lastWasStarboard = false;
@@ -107,12 +109,14 @@
             en: 'Move (Left)',
             de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
+            ja: '反対へ (左)',
           };
         }
         return {
           en: 'Stay (Left)',
           de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
+          ja: 'そのまま (左)',
         };
       },
     },
@@ -131,12 +135,14 @@
             en: 'Stay (Right)',
             de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
+            ja: 'そのまま (右)',
           };
         }
         return {
           en: 'Move (Right)',
           de: 'Bewegen (Rechts)',
           fr: 'Bougez (Droite)',
+          ja: '反対へ (右)',
         };
       },
     },
@@ -150,6 +156,7 @@
         en: 'Left (then opposite)',
         de: 'Links (dann umgekehrt)',
         fr: 'Gauche (puis Droite)',
+        ja: '左 (零式)',
       },
     },
     {
@@ -162,6 +169,7 @@
         en: 'Right (then opposite)',
         de: 'Rechts (dann umgekehrt)',
         fr: 'Droite (puis Gauche)',
+        ja: '右 (零式)',
       },
     },
     {
@@ -175,6 +183,7 @@
         en: 'Opposite (Left)',
         de: 'Umgekehrt (Links)',
         fr: 'Côté opposé (Gauche)',
+        ja: '反対へ (左)',
       },
     },
     {
@@ -188,6 +197,7 @@
         en: 'Opposite (Right)',
         de: 'Umgekehrt (Rechts)',
         fr: 'Côté opposé (Droite)',
+        ja: '反対へ (右)',
       },
     },
   ],

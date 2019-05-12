@@ -53,6 +53,7 @@
             en: 'Fire Marker on YOU',
             de: 'Feuer Marker auf DIR',
             fr: 'Feu sur VOUS',
+            ja: 'マーカー on YOU',
           };
         }
       },
@@ -113,6 +114,7 @@
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder Raus',
         fr: 'Tour suivant : Dedans/Dehors',
+        ja: '中か外',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -128,6 +130,7 @@
         en: 'Next Spin: Cardinals or Corners',
         de: 'Nächste Drehung: Kanten oder Ecken',
         fr: 'Tour suivant : Cardinaux ou Coins',
+        ja: '角かマーカー',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -148,12 +151,14 @@
             en: 'Get Out',
             de: 'Raus da',
             fr: 'Sortez !',
+            ja: '外へ',
           };
         }
         return {
           en: 'Go To Cardinals',
           de: 'An die Kanten',
           fr: 'Allez sur les cardinaux',
+          ja: 'マーカーへ',
         };
       },
     },
@@ -172,12 +177,14 @@
             en: 'Get In',
             de: 'Rein da',
             fr: 'Sous le boss !',
+            ja: '中へ',
           };
         }
         return {
           en: 'Go To Corners',
           de: 'In die Ecken',
           fr: 'Allez dans les coins',
+          ja: '角へ',
         };
       },
     },

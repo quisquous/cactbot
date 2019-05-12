@@ -41,12 +41,14 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         } else if (data.role == 'tank') {
           return {
             en: 'tank swap',
             de: 'tenk wechsel',
             fr: 'tank swap',
+            ja: 'スイッチ',
           };
         }
       },
@@ -102,6 +104,7 @@
             en: 'Die on Sides -> Front/Back',
             de: 'Stirb an Seiten -> Vorne/Hinten',
             fr: 'Devant/Derrière puis Côtés',
+            ja: '死: 横 -> 縦',
           };
         }
       },
@@ -111,6 +114,7 @@
             en: 'Front/Back -> Sides',
             de: 'Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
+            ja: '縦 -> 横',
           };
         }
       },
@@ -120,12 +124,14 @@
             en: 'die on sides',
             de: 'an die Seiten',
             fr: 'aller sur les cotés',
+            ja: '横から縦で死ぬ',
           };
         }
         return {
           en: 'go to back',
           de: 'hinten dran',
           fr: 'aller derrière',
+          ja: '縦から',
         };
       },
     },
@@ -140,6 +146,7 @@
           en: 'Get Behind',
           de: 'Hinten dran',
           fr: 'Derrière le boss',
+          ja: '背面へ',
         };
       },
     },
@@ -155,6 +162,7 @@
             en: 'Orb Tethers',
             de: 'Kugel-Verbindungen',
             fr: 'Récupérez l\'orbe',
+            ja: '線出たよ',
           };
         }
       },
@@ -164,6 +172,7 @@
             en: 'Orb Tethers',
             de: 'Kugel-Verbindungen',
             fr: 'Récupérez l\'orbe',
+            ja: '線出たよ',
           };
         }
       },
@@ -206,12 +215,14 @@
             en: 'Spread',
             de: 'Verteilen',
             fr: 'Ecartez-vous',
+            ja: '散開',
           };
         } else if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Spread and Stay',
             de: 'Verteilen und bleiben',
             fr: 'Ecartez-vous et restez',
+            ja: '散開して待機',
           };
         }
         // DPS entropy #2
@@ -219,6 +230,7 @@
           en: 'Stack and Stay Out',
           de: 'Stack und Bleiben',
           fr: 'Packez-vous et restez',
+          ja: '中央に集合',
         };
       },
       run: function(data) {
@@ -249,6 +261,7 @@
         en: 'Hide Middle',
         de: 'Zur Mitte',
         fr: 'Allez au centre',
+        ja: '中央へ',
       },
     },
     {
@@ -266,6 +279,7 @@
         en: 'Hide Middle',
         de: 'Zur Mitte',
         fr: 'Allez au centre',
+        ja: '中央へ',
       },
     },
 
@@ -297,6 +311,7 @@
         en: 'Stack Donut',
         de: 'Sammeln Donut',
         fr: 'Packez-vous',
+        ja: 'スタック',
       },
     },
     {
@@ -315,6 +330,7 @@
         en: 'Stack Donut',
         de: 'Sammeln Donut',
         fr: 'Packez-vous',
+        ja: 'スタック',
       },
     },
     {
@@ -333,6 +349,7 @@
         en: 'Stack Donut',
         de: 'Sammeln Donut',
         fr: 'Packez-vous',
+        ja: 'スタック',
       },
     },
     {
@@ -347,12 +364,14 @@
             en: 'Drop Outside',
             de: 'Gehe Nord / Süd',
             fr: 'Allez au Nord/Sud',
+            ja: 'メテオ捨てて',
           };
         } else if (data.phaseType == 'wind') {
           return {
             en: 'Drop Outside + Knockback',
             de: 'Geh nächste Ecke nah am Tornado',
             fr: 'Déposez dans les coins',
+            ja: 'メテオ捨てて + ノックバック',
           };
         }
       },
@@ -451,12 +470,14 @@
             en: 'Heal All to Full',
             de: 'Alle vollheilen',
             fr: 'Soignez tout le monde full vie',
+            ja: 'HP戻して',
           };
         }
         return {
           en: 'Heal Tanks/Healers to full',
           de: 'Tanks/Heiler vollheilen',
           fr: 'Soignez Heals/Tanks full vie',
+          ja: 'HP戻して',
         };
       },
     },
@@ -474,6 +495,7 @@
           en: 'Die on next mechanic',
           de: 'An nächster Mechanik tödlichen Schaden nehmen',
           fr: 'Mourrez sur la prochaine mécanique',
+          ja: '次のギミックで死んでね',
         };
       },
       run: function(data, matches) {
@@ -537,6 +559,7 @@
             en: 'Back to DPS',
             de: 'Rücken zum DPS',
             fr: 'Dos au DPS',
+            ja: 'DPSの後ろへ',
           };
         }
       },
@@ -561,6 +584,7 @@
           en: 'Hit DPS with Water',
           de: 'töte deinen DPS',
           fr: 'Tuez les DPS',
+          ja: '水当てて',
         };
       },
     },
