@@ -25,6 +25,7 @@ timelines/susano-ex.txt
 timelines/suzaku-ex.txt
 timelines/tsukuyomi-ex.txt
 timelines/t10.txt
+timelines/t12.txt
 timelines/o1s.txt
 timelines/o2s.txt
 timelines/o3s.txt
