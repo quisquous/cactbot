@@ -23,6 +23,7 @@
     {
       id: 'General Ultimatum',
       regex: /:(\y{Name}):1D73:Ultimatum:/,
+      regexJa: /:(\y{Name}):1D73:アルティメイタム:/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -35,6 +36,7 @@
       regex: /:(\y{Name}):1D71:Shirk:/,
       regexDe: /:(\y{Name}):1D71:Geteiltes Leid:/,
       regexFr: /:(\y{Name}):1D71:Dérobade:/,
+      regexJa: /:(\y{Name}):1D71:シャーク:/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -43,12 +45,14 @@
           en: 'Shirk: ' + data.ShortName(matches[1]),
           de: 'Geteiltes Leid: ' + data.ShortName(matches[1]),
           fr: 'Dérobade: ' + data.ShortName(matches[1]),
+          ja: 'シャーク: ' + data.ShortName(matches[1]),
         };
       },
     },
     {
       id: 'General Holmgang',
       regex: /:(\y{Name}):2B:Holmgang:/,
+      regexJa: /:(\y{Name}):2B:ホルムギャング:/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -61,6 +65,7 @@
       regex: /:(\y{Name}):1E:Hallowed Ground:/,
       regexDe: /:(\y{Name}):1E:Heiliger Boden:/,
       regexFr: /:(\y{Name}):1E:Invincible:/,
+      regexJa: /:(\y{Name}):1E:インビンシブル:/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -69,6 +74,7 @@
           en: 'Hallowed: ' + data.ShortName(matches[1]),
           de: 'Heiliger Boden: ' + data.ShortName(matches[1]),
           fr: 'Invincible: ' + data.ShortName(matches[1]),
+          ja: 'インビンシブル: ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -77,6 +83,7 @@
       regex: /:(\y{Name}):E36:Living Dead:/,
       regexDe: /:(\y{Name}):E36:Totenerweckung:/,
       regexFr: /:(\y{Name}):E36:Mort-Vivant:/,
+      regexJa: /:(\y{Name}):E36:リビングデッド:/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -85,6 +92,7 @@
           en: 'Living: ' + data.ShortName(matches[1]),
           de: 'Totenerweckung: ' + data.ShortName(matches[1]),
           fr: 'Mort-vivant: ' + data.ShortName(matches[1]),
+          ja: 'リビングデッド: ' + data.ShortName(matches[1]),
         };
       },
     },
