@@ -2,6 +2,7 @@
 
 [{
   zoneRegex: /The Binding Coil Of Bahamut - Turn \(4\)/,
+  timelineFile: 't4.txt',
   triggers: [
     {
       id: 'T4 Gravity Thrust',
@@ -9,7 +10,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: {
+      alertText: {
         en: 'LOS Thrust',
       },
     },
@@ -19,7 +20,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      alertText: {
+      alarmText: {
         en: 'LOS Pox',
       },
     },
