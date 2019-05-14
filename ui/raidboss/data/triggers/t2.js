@@ -36,5 +36,33 @@
         }
       },
     },
+    {
+      id: 'T2 Pass Rot',
+      regex: / 1A:(\y{Name}) gains the effect of Allagan Rot/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      preRun: function(data) {
+        data.rot = true;
+      },
+      delaySeconds: 11,
+      alertText: function(data) {
+        if (!data.rot)
+          return;
+        return {
+          en: 'Pass Rot',
+        };
+      },
+    },
+    {
+      id: 'T2 Lost Rot',
+      regex: / 1E:(\y{Name}) loses the effect of Allagan Rot/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      run: function(data) {
+        delete data.rot;
+      },
+    },
   ],
 }];
