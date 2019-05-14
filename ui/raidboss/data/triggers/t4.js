@@ -24,5 +24,13 @@
         en: 'LOS Pox',
       },
     },
+    {
+      id: 'T4 Reminder',
+      regex: / 03:Added new combatant Clockwork Knight/,
+      suppressSeconds: 100000,
+      infoText: {
+        en: 'Magic on Soldier, Physical on Knights',
+      },
+    },
   ],
 }];
