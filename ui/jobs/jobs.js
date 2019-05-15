@@ -917,7 +917,6 @@ class Bars {
       this.o.swipeBox.threshold = 1000;
       this.o.swipeBox.hideafter = 0;
       this.o.swipeBox.roundupthreshold = false;
-
     } else if (this.job == 'MNK') {
       let mnkBars = document.createElement('div');
       mnkBars.id = 'mnk-bar';
