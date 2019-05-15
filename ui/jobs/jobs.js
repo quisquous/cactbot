@@ -314,6 +314,13 @@ function setupBuffTracker() {
       borderColor: '#AA41B2',
       sortKey: 0,
     },
+    peculiar: {
+      gainRegex: gLang.abilityRegex(gLang.kAbility.PeculiarLight),
+      durationSeconds: 10,
+      icon: kIconBuffPeculiarLight,
+      borderColor: '#F28F7B',
+      sortKey: 1,
+    },
     trick: {
       // The flags encode positional data, but the exact specifics are unclear.
       // Trick attack missed appears to be "710?03" but correct is "28710?03".
