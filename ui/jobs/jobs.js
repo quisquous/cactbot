@@ -28,6 +28,7 @@ let Options = {
   WarGcd: 2.45,
   PldGcd: 2.43,
   AstGcd: 2.39,
+  BluGcd: 2.40,
   SmnAetherflowRecast: 60,
 
   BigBuffIconWidth: 44,
@@ -68,6 +69,8 @@ let kPldBlock = null;
 let kAstCombust = null;
 let kAstBenefic = null;
 let kAstHelios = null;
+let kBluOffguard = null;
+let kBluTorment = null;
 let kWellFedZoneRegex = null;
 
 class ComboTracker {
@@ -230,6 +233,8 @@ function setupRegexes() {
   kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
   kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
   kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
+  kBluOffguard = gLang.youUseAbilityRegex(gLang.kAbility.OffGuard);
+  kBluTorment = gLang.youUseAbilityRegex(gLang.kAbility.SongOfTorment);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
@@ -308,6 +313,13 @@ function setupBuffTracker() {
       icon: kIconBuffPotion,
       borderColor: '#AA41B2',
       sortKey: 0,
+    },
+    peculiar: {
+      gainRegex: gLang.abilityRegex(gLang.kAbility.PeculiarLight),
+      durationSeconds: 10,
+      icon: kIconBuffPeculiarLight,
+      borderColor: '#F28F7B',
+      sortKey: 1,
     },
     trick: {
       // The flags encode positional data, but the exact specifics are unclear.
@@ -905,8 +917,6 @@ class Bars {
       this.o.swipeBox.threshold = 1000;
       this.o.swipeBox.hideafter = 0;
       this.o.swipeBox.roundupthreshold = false;
-
-      // TODO: add shield swipe proc box
     } else if (this.job == 'MNK') {
       let mnkBars = document.createElement('div');
       mnkBars.id = 'mnk-bar';
@@ -1033,6 +1043,34 @@ class Bars {
       this.o.heliosBox.hideafter = '';
       this.o.heliosBox.roundupthreshold = false;
       this.o.heliosBox.valuescale = this.options.AstGcd;
+    } else if (this.job == 'BLU') {
+      let bluContainer = document.createElement('div');
+      bluContainer.id = 'blu-procs';
+      barsContainer.appendChild(bluContainer);
+
+      this.o.offguardBox = document.createElement('timer-box');
+      bluContainer.appendChild(this.o.offguardBox);
+      this.o.offguardBox.id = 'blu-procs-offguard';
+      this.o.offguardBox.style = 'empty';
+      this.o.offguardBox.fg = computeBackgroundColorFrom(this.o.offguardBox, 'blu-color-offguard');
+      this.o.offguardBox.bg = 'black';
+      this.o.offguardBox.toward = 'bottom';
+      this.o.offguardBox.threshold = 3 * this.options.BluGcd;
+      this.o.offguardBox.hideafter = '';
+      this.o.offguardBox.roundupthreshold = false;
+      this.o.offguardBox.valuescale = this.options.BluGcd;
+
+      this.o.tormentBox = document.createElement('timer-box');
+      bluContainer.appendChild(this.o.tormentBox);
+      this.o.tormentBox.id = 'blu-procs-torment';
+      this.o.tormentBox.style = 'empty';
+      this.o.tormentBox.fg = computeBackgroundColorFrom(this.o.tormentBox, 'blu-color-torment');
+      this.o.tormentBox.bg = 'black';
+      this.o.tormentBox.toward = 'bottom';
+      this.o.tormentBox.threshold = 3 * this.options.BluGcd;
+      this.o.tormentBox.hideafter = '';
+      this.o.tormentBox.roundupthreshold = false;
+      this.o.tormentBox.valuescale = this.options.BluGcd;
     }
   }
 
@@ -1911,6 +1949,15 @@ class Bars {
           continue;
         } else if (log.search(kAstHelios) >= 0) {
           this.o.heliosBox.duration = 30;
+          continue;
+        }
+      }
+      if (this.job == 'BLU') {
+        if (log.search(kBluOffguard) >= 0) {
+          this.o.offguardBox.duration = 30;
+          continue;
+        } else if (log.search(kBluTorment) >= 0) {
+          this.o.tormentBox.duration = 30;
           continue;
         }
       }
