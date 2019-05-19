@@ -79,9 +79,6 @@ class CactbotLanguage {
       AspectedBenefic: 'E0B',
       AspectedHelios: 'E11',
       Contagion: '31B',
-      OffGuard: '2C93',
-      SongOfTorment: '2C7A',
-      PeculiarLight: '2C9D',
 
       // Susano Ex
       ChurningDeep: '203F',

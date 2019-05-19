@@ -226,7 +226,7 @@ def main(args):
         if drift:
             output_entry += ' # drift {}'.format(drift/1000000)
 
-        print(output_entry.encode('ascii', 'ignore').decode('utf8', 'ignore'))
+        print(output_entry)
 
         # Save the entry til the next line for filtering
         last_entry = entry

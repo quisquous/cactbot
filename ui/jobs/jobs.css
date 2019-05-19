@@ -331,18 +331,18 @@
 }
 
 /* Relative to #bars */
-#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs {
+#war-procs, #pld-procs, #mnk-procs, #ast-procs {
   position: absolute;
   top: 146px;
   left: 10px;
 }
 
-#mnk-procs-dragonkick, #ast-procs-combust, #blu-procs-offguard {
+#mnk-procs-dragonkick, #ast-procs-combust {
   position: relative;
   display: inline-block;
   left: 0px;
 }
-#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment  {
+#mnk-procs-twinsnakes, #ast-procs-benefic {
   position: relative;
   display: inline-block;
   left: calc(142px / 2);
@@ -525,10 +525,4 @@
 }
 .ast-color-helios {
   background-color: rgb(175, 235, 215);
-}
-.blu-color-offguard {
-  background-color: rgb(210, 255, 196);
-}
-.blu-color-torment {
-  background-color: rgb(168, 65, 45);
 }
