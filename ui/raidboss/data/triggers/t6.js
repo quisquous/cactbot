@@ -5,7 +5,7 @@
   triggers: [
     {
       id: 'T6 Thorn Whip',
-      regex: / 15:\y{ObjectId}:Rafflesia:879:Thorn Whip:\y{ObjectId}:(\y{Name}):/,
+      regex: / 1[56]:\y{ObjectId}:Rafflesia:879:Thorn Whip:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -70,7 +70,7 @@
     {
       id: 'T6 Blighted',
       regex: / 14:79D:Rafflesia starts using Blighted Bouquet/,
-      alertText: {
+      alarmText: {
         en: 'STOP',
       },
     },
