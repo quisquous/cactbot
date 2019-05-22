@@ -2,6 +2,7 @@
 
 [{
   zoneRegex: /The Second Coil Of Bahamut - Turn \(1\)/,
+  timelineFile: 't6.txt',
   triggers: [
     {
       id: 'T6 Thorn Whip',
