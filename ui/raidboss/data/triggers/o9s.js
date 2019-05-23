@@ -25,6 +25,7 @@
             en: 'Tank Swap',
             de: 'Tank-Wechsel',
             fr: 'Tank Swap',
+            ja: 'スイッチ',
           };
         }
         if (data.role == 'healer') {

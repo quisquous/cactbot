@@ -96,6 +96,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -132,6 +133,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -506,6 +508,7 @@
             en: 'Stack on ' + data.ShortName(player),
             de: 'Stacken auf ' + data.ShortName(player),
             fr: 'Packez-vous sur ' + data.ShortName(player),
+            ja: data.ShortName(player) + 'とスタック',
           };
         }
       },
@@ -520,6 +523,7 @@
         en: 'Stack on YOU',
         de: 'Stacken auf DIR',
         fr: 'Package sur VOUS',
+        ja: 'スタック on YOU',
       },
     },
     {
@@ -532,6 +536,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        ja: '散開',
       },
     },
     {
@@ -541,6 +546,7 @@
         en: 'Back Left',
         de: 'Hinten Links',
         fr: 'Arrière gauche',
+        ja: '左後ろ',
       },
     },
     {
@@ -550,6 +556,7 @@
         en: 'Back Right',
         de: 'Hinten Rechts',
         fr: 'Arrière droite',
+        ja: '右後ろ',
       },
     },
     {

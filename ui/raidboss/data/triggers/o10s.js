@@ -40,6 +40,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },

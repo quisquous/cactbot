@@ -22,12 +22,14 @@
         fr: 'Préparez-vous à la projection',
         de: 'Auf Rückstoß achten',
         ko: '넉백 대비',
+        ja: 'ノックバックくるよ',
       },
       tts: {
         en: 'knockback',
         fr: 'Projection',
         de: 'Rückstoß',
         ko: '넉백',
+        ja: 'ノックバック',
       },
     },
     {
@@ -42,12 +44,14 @@
         fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
         ko: '시선 피하기',
+        ja: '塔を見ないで！',
       },
       tts: {
         en: 'look away',
         fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
         ko: '뒤돌기',
+        ja: '見るな！',
       },
     },
     {
@@ -62,12 +66,14 @@
         fr: '<= Allez à Gauche/Ouest',
         de: '<= Nach Links/Westen',
         ko: '<= 왼쪽이 안전',
+        ja: '<= 左/西へ',
       },
       tts: {
         en: 'left',
         fr: 'gauche',
         de: 'links',
         ko: '왼쪽',
+        ja: '左',
       },
     },
     {
@@ -82,12 +88,14 @@
         fr: 'Allez à Droite/Est =>',
         de: 'Nach Rechts/Westen =>',
         ko: '오른쪽이 안전 =>',
+        ja: '右/東へ =>',
       },
       tts: {
         en: 'right',
         fr: 'Projection depuis le côté droit',
         de: 'rechts',
         ko: '오른쪽',
+        ja: '右',
       },
     },
     {
@@ -102,12 +110,14 @@
         fr: 'Regardez la statue',
         de: 'Statue anschauen',
         ko: '시선 바라보기',
+        ja: '像を見て！',
       },
       tts: {
         en: 'look towards',
         fr: 'Regardez la statue',
         de: 'anschauen',
         ko: '쳐다보기',
+        ja: '像見て！',
       },
     },
     {
@@ -122,12 +132,14 @@
         fr: 'Passé : Stack et ne bougez plus',
         de: 'Vergangenheit: Sammeln und Stehenbleiben',
         ko: '과거: 맞고 가만히있기',
+        ja: '過去: スタックしてそのまま',
       },
       tts: {
         en: 'stack and stay',
         fr: 'Stack et rester-là',
         de: 'Stek und Stehenbleiben',
         ko: '맞고 가만히',
+        ja: 'スタックしてそのまま',
       },
     },
     {
@@ -142,12 +154,14 @@
         fr: 'Futur : Stack et traversez',
         de: 'Zukunft: Sammeln und Durchlaufen',
         ko: '미래: 맞고 통과해가기',
+        ja: '未来: シェア後ボス通り抜ける',
       },
       tts: {
         en: 'stack and through',
         fr: 'Stack et traversez',
         de: 'Stek und durchlaufen',
         ko: '맞고 통과해가기',
+        ja: 'シェア後通り抜け',
       },
     },
     {
@@ -165,12 +179,14 @@
         fr: 'Passé : appâtez puis traversez',
         de: 'Vergangenheit : Anlocken und Durchlaufen',
         ko: '과거: 맞고, 이동',
+        ja: '過去: 飛んできたら反対向ける',
       },
       tts: {
         en: 'run run run',
         fr: 'appâtez puis traversez',
         de: 'Durchlaufen',
         ko: '맞고 이동',
+        ja: '反対向ける',
       },
     },
     {
@@ -188,12 +204,14 @@
         fr: 'Futur : appâtez et ne bougez plus',
         de: 'Zukunft: Anlocken und Stehenbleiben',
         ko: '미래: 맞고, 가만히',
+        ja: '未来: 飛んできたらそのまま',
       },
       tts: {
         en: 'stay stay stay',
         fr: 'appâtez et stop',
         de: 'Stehenbleiben',
         ko: '맞고 가만히',
+        ja: 'そのまま',
       },
     },
     {
@@ -211,12 +229,14 @@
         fr: 'Projection sur VOUS',
         de: 'Rückstoß auf DIR',
         ko: '넉백 → 나',
+        ja: 'ノックバック on YOU',
       },
       tts: {
         en: 'knockback',
         fr: 'Projection',
         de: 'Rückstoß',
         ko: '넉백',
+        ja: 'ノックバック',
       },
     },
     {
@@ -233,6 +253,7 @@
             fr: 'Ailes : être près/loin',
             de: 'Schwingen: Nah/Fern',
             ko: '양날개: 가까이/멀리',
+            ja: '翼: めり込む/離れる',
           };
         }
       },
@@ -243,6 +264,7 @@
             fr: 'Max Mêlée : éloignez-vous des Tanks',
             de: 'Max Nahkampf: Weg von den Tanks',
             ko: '칼끝딜: 탱커 피하기',
+            ja: '近接最大レンジ タンクから離れて',
           };
         }
       },
@@ -253,6 +275,7 @@
             fr: 'Ailes, être près ou loin',
             de: 'schwingen',
             ko: '양날개',
+            ja: '翼',
           };
         }
         return {
@@ -282,7 +305,7 @@
       regex: / 14:2910:Kefka starts using Ultimate Embrace on (\y{Name})/,
       regexDe: / 14:2910:Kefka starts using Ultima-Umarmung on (\y{Name})/,
       regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
-      regexJa: / 14:2910:ケフカ starts using アルテマte Embrace on (\y{Name})/,
+      regexJa: / 14:2910:ケフカ starts using 終末の双腕 on (\y{Name})/,
       regexJa: / 14:2910:케프카 starts using 종말의 포옹 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] != data.me)
@@ -293,6 +316,7 @@
           fr: 'Étreinte sur VOUS',
           de: 'Umarmung auf DIR',
           ko: '종말의 포옹 → 나',
+          ja: '双腕 on YOU',
         };
       },
       infoText: function(data, matches) {
@@ -305,6 +329,7 @@
             fr: 'Étreinte sur ' + data.ShortName(matches[1]),
             de: 'Umarmung auf ' + data.ShortName(matches[1]),
             ko: '종말의 포옹 → ' + data.ShortName(matches[1]),
+            ja: '双腕 on ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -315,6 +340,7 @@
             fr: 'Étreinte',
             de: 'umarmung',
             ko: '종말의 포옹',
+            ja: '双腕',
           };
         }
       },
@@ -336,6 +362,7 @@
           fr: 'Colonne de feu sur VOUS',
           de: 'Hyperantrieb auf DIR',
           ko: '하이퍼드라이브 → 나',
+          ja: 'ハイパードライブ on YOU',
         };
       },
       infoText: function(data, matches) {
@@ -348,6 +375,7 @@
             fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
             de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
             ko: '하이퍼드라이브 → ' + data.ShortName(matches[1]),
+            ja: 'ハイパードライブ on ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -358,6 +386,7 @@
             fr: 'Colonne de feu',
             de: 'hyperantrieb',
             ko: '하이퍼드라이브',
+            ja: 'ハイパードライブ',
           };
         }
       },
@@ -377,12 +406,14 @@
         fr: 'Confusion : Aller à l\'extérieur',
         de: 'Konfusion: Nach außen',
         ko: '혼란: 바깥으로',
+        ja: '混乱: 外へ',
       },
       tts: {
         en: 'confusion',
         fr: 'Confusion, aller à l\'extérieur',
         de: 'konfusion',
         ko: '혼란',
+        ja: '混乱',
       },
     },
     {
@@ -400,12 +431,14 @@
         fr: 'Sommeil : allez au centre',
         de: 'Schlaf: Zur Mitte',
         ko: '수면: 안으로',
+        ja: '睡眠: 中へ',
       },
       tts: {
         en: 'sleep',
         fr: 'Sommeil',
         de: 'Schlaf',
         ko: '수면',
+        ja: '睡眠',
       },
     },
     {
@@ -468,6 +501,7 @@
           fr: 'Eloignez-vous',
           de: 'verteilen',
           ko: '산개',
+          ja: '散開',
         }[data.lang];
       },
     },
@@ -488,6 +522,7 @@
           fr: 'Stack',
           de: 'Stacken',
           ko: '집합',
+          ja: 'スタック',
         }[data.lang];
       },
     },
@@ -508,6 +543,7 @@
           fr: 'Vraie foudre',
           de: 'Wahrer Blitz',
           ko: '진실 선더가',
+          ja: '真サンダガ',
         }[data.lang];
       },
       infoText: function(data) {
@@ -534,6 +570,7 @@
           fr: 'Fausse foudre',
           de: 'Falscher Blitz',
           ko: '거짓 선더가',
+          ja: 'にせサンダガ',
         }[data.lang];
       },
       infoText: function(data) {
@@ -560,12 +597,14 @@
           fr: 'Fausse glace',
           de: 'Falsches Eis',
           ko: '거짓 블리자가',
+          ja: 'にせブリザガ',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
           de: 'raus da',
           ko: '밖으로',
+          ja: '外へ',
         }[data.lang];
       },
       infoText: function(data) {
@@ -592,12 +631,14 @@
           fr: 'Vraie glace',
           de: 'Wahres Eis',
           ko: '진실 블리자가',
+          ja: '真ブリザガ',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
           de: 'reingehen',
           ko: '안으로',
+          ja: '中へ',
         }[data.lang];
       },
       infoText: function(data) {
@@ -624,12 +665,14 @@
           fr: 'Fausse glace',
           de: 'Falsches Eis',
           ko: '거짓 블리자가',
+          ja: 'にせブリザガ',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
           de: 'reingehen',
           ko: '안으로',
+          ja: '中へ',
         }[data.lang];
       },
       infoText: function(data) {
@@ -656,12 +699,14 @@
           fr: 'Vraie glace',
           de: 'Wahres Eis',
           ko: '진실 블리자가',
+          ja: '真ブリザガ',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
           de: 'rausgehen',
           ko: '밖으로',
+          ja: '外へ',
         }[data.lang];
       },
       infoText: function(data) {

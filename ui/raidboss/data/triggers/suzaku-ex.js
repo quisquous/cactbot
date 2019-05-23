@@ -71,7 +71,11 @@
         en: 'Get Out',
         de: 'Raus da',
         fr: 'Allez au bord extérieur',
+        ja: '誘引: 外へ',
       },
+      tts: {
+        ja: '外へ',
+      }
     },
     {
       id: 'SuzEx Ruthless Refrain',
@@ -83,7 +87,11 @@
         en: 'Get In',
         de: 'Rein da',
         fr: 'Allez au bord intérieur',
+        ja: '拒絶: 中へ',
       },
+      tts: {
+        ja: '中へ',
+      }
     },
   ],
   timelineReplace: [
