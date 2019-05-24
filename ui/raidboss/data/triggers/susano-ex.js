@@ -65,6 +65,7 @@
           return {
             en: 'Tank Swap',
             de: 'Tank Wechsel',
+            ja: 'スイッチ',
           };
         }
         return false;

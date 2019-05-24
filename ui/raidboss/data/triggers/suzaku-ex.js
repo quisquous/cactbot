@@ -33,6 +33,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -71,7 +72,7 @@
         en: 'Get Out',
         de: 'Raus da',
         fr: 'Allez au bord extérieur',
-        ja: '誘引: 外へ',
+        ja: '誘引',
       },
       tts: {
         ja: '外へ',
@@ -87,7 +88,7 @@
         en: 'Get In',
         de: 'Rein da',
         fr: 'Allez au bord intérieur',
-        ja: '拒絶: 中へ',
+        ja: '拒絶',
       },
       tts: {
         ja: '中へ',
