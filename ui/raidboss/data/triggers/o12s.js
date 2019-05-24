@@ -810,6 +810,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        'I am the Omega': 'ワタシはオメガであり',
         'Engage!': '戦闘開始！',
         'Omega': 'オメガ',
         'Omega-F': 'オメガF',
