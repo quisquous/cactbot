@@ -13,7 +13,7 @@
         en: 'stack with your group',
         de: 'mit der Gruppe stacken',
         fr: 'Packé avec votre groupe',
-        ja: '2グループに分かれてスタック',
+        ja: 'グループ別にスタック',
       },
     },
     {

@@ -74,6 +74,9 @@
         fr: 'Allez au bord extérieur',
         ja: '誘引',
       },
+      tts: {
+        ja: '外へ',
+      }
     },
     {
       id: 'SuzEx Ruthless Refrain',
@@ -87,6 +90,9 @@
         fr: 'Allez au bord intérieur',
         ja: '拒絶',
       },
+      tts: {
+        ja: '中へ',
+      }
     },
   ],
   timelineReplace: [

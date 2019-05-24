@@ -33,6 +33,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -402,8 +403,8 @@
         'Wave Cannon Kyrios': '波動砲P',
 
         // FIXME
-        'Starboard/Larboard Cannon': 'Starboard/Larboard Cannon',
-        'Starboard/Larboard Surge': 'Starboard/Larboard Surge',
+        'Starboard/Larboard Cannon': '右舷/左舷・波動砲',
+        'Starboard/Larboard Surge': '右舷/左舷・零式波動砲',
       },
       '~effectNames': {
         'Biohacked': 'ハッキング',

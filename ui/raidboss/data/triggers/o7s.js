@@ -95,6 +95,7 @@
         de: 'leser',
         fr: 'laser',
         ko: '레이저',
+        ja: 'レーザー',
       },
     },
     {
@@ -129,6 +130,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ko: '탱버',
+            ja: 'バスター',
           };
         }
       },
@@ -144,12 +146,14 @@
         de: 'Orb Marker',
         fr: 'Orbe',
         ko: '원자 파동 징',
+        ja: 'マーカー',
       },
       tts: {
         en: 'orb',
         de: 'orb',
         fr: 'orbe',
         ko: '원자 파동',
+        ja: 'マーカー',
       },
     },
     {
@@ -164,6 +168,7 @@
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
           ko: '파란징 → 나',
+          ja: '青玉 on YOU',
         };
       },
       infoText: function(data, matches) {
@@ -175,6 +180,7 @@
           de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
           fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
           ko: '파란징 → ' + data.ShortName(matches[1]),
+          ja: '青玉 on ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -186,6 +192,7 @@
           de: 'aura-kanone',
           fr: 'marque bleu',
           ko: '파란징',
+          ja: '青玉ついた',
         };
       },
     },

@@ -25,6 +25,7 @@
             en: 'Tank Swap',
             de: 'Tank-Wechsel',
             fr: 'Tank Swap',
+            ja: 'スイッチ',
           };
         }
         if (data.role == 'healer') {
@@ -65,6 +66,7 @@
             en: 'Die on Front/Back -> Sides',
             de: 'Stirb Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
+            ja: '縦 -> 横で死ぬ',
           };
         }
       },
@@ -74,6 +76,7 @@
             en: 'Sides -> Front/Back',
             de: 'Seiten -> Vorne/Hinten',
             fr: 'Côtés puis Devant/Derrière',
+            ja: '横 -> 縦',
           };
         }
       },
@@ -83,12 +86,14 @@
             en: 'die on back',
             de: 'hinten dran',
             fr: 'aller derrière',
+            ja: '縦から',
           };
         }
         return {
           en: 'go to sides',
           de: 'an die Seiten',
           fr: 'aller sur les cotés',
+          ja: '横から',
         };
       },
     },
@@ -104,7 +109,7 @@
             en: 'Die on Sides -> Front/Back',
             de: 'Stirb an Seiten -> Vorne/Hinten',
             fr: 'Devant/Derrière puis Côtés',
-            ja: '死: 横 -> 縦',
+            ja: '横 -> 縦で死ぬ',
           };
         }
       },
@@ -124,7 +129,7 @@
             en: 'die on sides',
             de: 'an die Seiten',
             fr: 'aller sur les cotés',
-            ja: '横から縦で死ぬ',
+            ja: '横から',
           };
         }
         return {
