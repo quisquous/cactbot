@@ -283,6 +283,7 @@
           fr: 'Max mêlée éloignez vous des tanks',
           de: 'max nahkampf',
           ko: '칼끝딜',
+          ja: '最大レンジ',
         };
       },
     },
@@ -298,6 +299,7 @@
         fr: 'Aile unique',
         de: 'Einzelner Flügel',
         ko: '한쪽 날개',
+        ja: '片翼',
       },
     },
     {

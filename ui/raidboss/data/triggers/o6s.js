@@ -41,6 +41,7 @@
             de: 'tenkbasta',
             fr: 'tankbuster',
             ko: '탱버',
+            ja: 'バスター',
           };
         }
       },
@@ -60,6 +61,7 @@
         de: 'Heiliger Boden Wind',
         fr: 'Packez vous dans le vent',
         ko: '쉐어징 천무',
+        ja: '隅でスタック',
       },
     },
     {
@@ -72,6 +74,7 @@
             de: 'Dämonischer Stein auf DIR',
             fr: 'Pierre démoniaque sur VOUS',
             ko: '악령의 돌 장판 → 나',
+            ja: 'デモニックストーン on YOU',
           };
         }
       },
@@ -93,12 +96,14 @@
         de: 'Letzter Kuss auf DIR',
         fr: 'Baiser fatal sur VOUS',
         ko: '죽음의 입맞춤 → 나',
+        ja: '口づけ on YOU',
       },
       tts: {
         en: 'last kiss',
         de: 'letz ter kuss',
         fr: 'baiser fatal',
         ko: '죽음의 입맞춤',
+        ja: '口づけ',
       },
     },
     {
@@ -118,12 +123,14 @@
         de: 'Letzter Kuss auf DIR',
         fr: 'Baiser fatal sur VOUS',
         ko: '죽음의 입맞춤 → 나',
+        ja: '口づけ on YOU',
       },
       tts: {
         en: 'last kiss',
         de: 'letz ter kuss',
         fr: 'baiser fatal',
         ko: '죽음의 ',
+        ja: '口づけ',
       },
     },
   ],
