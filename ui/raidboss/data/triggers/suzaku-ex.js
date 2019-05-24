@@ -76,7 +76,7 @@
       },
       tts: {
         ja: '外へ',
-      }
+      },
     },
     {
       id: 'SuzEx Ruthless Refrain',
@@ -92,7 +92,7 @@
       },
       tts: {
         ja: '中へ',
-      }
+      },
     },
   ],
   timelineReplace: [
