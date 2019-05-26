@@ -813,15 +813,14 @@
         'I am the Omega': 'ワタシはオメガであり',
         'Engage!': '戦闘開始！',
         'Omega': 'オメガ',
-        'Omega-F': 'オメガF',
-        'Omega-M': 'オメガM',
+        'Omega-F': 'オメガf',
+        'Omega-M': 'オメガm',
         'Optical Unit': 'オプチカルユニット',
 
         'Left Arm Unit': 'レフトアームユニット',
         'Right Arm Unit': 'ライトアームユニット',
 
-        // FIXME
-        'Rear Power Unit': 'Rear Power Unit',
+        'Rear Power Unit': 'リアユニット',
       },
       'replaceText': {
         'Advanced Optical Laser': 'オプチカルレーザーS',
