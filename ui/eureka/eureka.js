@@ -24,6 +24,9 @@ let Options = {
       entityToMapXConstant: 21.45210725,
       entityToMapYScalar: .02000892816,
       entityToMapYConstant: 21.4665545,
+      fairy: {
+        en: 'Anemos Elemental',
+      },
       nms: {
         sabo: {
           label: {
@@ -549,6 +552,9 @@ let Options = {
       entityToMapXConstant: 21.48,
       entityToMapYScalar: 0.02,
       entityToMapYConstant: 21.48,
+      fairy: {
+        en: 'Pagos Elemental',
+      },
       nms: {
         snowqueen: {
           label: {
@@ -997,6 +1003,9 @@ let Options = {
       entityToMapXConstant: 21.48,
       entityToMapYScalar: 0.02,
       entityToMapYConstant: 21.48,
+      fairy: {
+        en: 'Pyros Elemental',
+      },
       nms: {
         luecosia: {
           label: {
@@ -1393,6 +1402,9 @@ let Options = {
       entityToMapXConstant: 21.48,
       entityToMapYScalar: 0.02,
       entityToMapYConstant: 30.977,
+      fairy: {
+        en: 'Hydatos Elemental',
+      },
       nms: {
         khalamari: {
           label: {
@@ -1781,6 +1793,11 @@ class EurekaTracker {
       nm.respawnTimeMsTracker = undefined;
     }
 
+    this.fairy = this.options.ZoneInfo[this.zoneName].fairy;
+    let fairyName = this.fairy[this.options.Language];
+    this.fairy.regex = Regexes.Parse('03:Added new combatant (' + fairyName + ')\\. .* ' +
+                                     'Pos: \\(([^,]+),([^,]+),([^,]+)\\)');
+
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
     container.appendChild(this.playerElement);
@@ -2063,6 +2080,10 @@ class EurekaTracker {
             continue;
           }
         }
+
+        match = log.match(this.fairy.regex);
+        if (match)
+          this.AddFairy(match[1], match[2], match[3]);
       }
       if (log.indexOf('04:Removing combatant ') >= 0) {
         for (let i = 0; i < this.nmKeys.length; ++i) {
@@ -2149,6 +2170,13 @@ class EurekaTracker {
       if (label.parentElement == container)
         container.removeChild(label);
     }, this.options.FlagTimeoutMs);
+  }
+
+  AddFairy(name, ex, ey) {
+    let zi = this.zoneInfo;
+    let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
+    let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
+    this.AddFlag(mx, my, 'fairy', '');
   }
 }
 
