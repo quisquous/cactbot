@@ -26,7 +26,7 @@ function InitDpsModule(config, updateFunc, hideFunc) {
   });
 
   document.addEventListener('onZoneChangedEvent', function(e) {
-    gCurrentZone = e.originalEvent.detail.zoneName;
+    gCurrentZone = e.detail.zoneName;
     gIgnoreDps = false;
     for (let i = 0; i < gIgnoreZones.length; ++i) {
       if (gCurrentZone.match(gIgnoreZones[i]))

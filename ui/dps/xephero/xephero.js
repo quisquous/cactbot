@@ -151,11 +151,12 @@ function updatePhase(phase, dpsOrder) {
 }
 
 function onOverlayDataUpdateEvent(e) {
-  tracker.onOverlayDataUpdate(e.originalEvent.detail);
-  update(e.originalEvent.detail);
+  tracker.onOverlayDataUpdate(e.detail);
+  update(e.detail);
 }
 
 $(document).on('onZoneChangedEvent', function(e) {
+  let currentZone = e.originalEvent.detail.zoneName;
   tracker.onZoneChange(currentZone);
 });
 $(document).on('onLogEvent', function(e) {
