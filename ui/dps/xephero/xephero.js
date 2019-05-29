@@ -1,21 +1,5 @@
 'use strict';
 
-let Options = {
-  Language: 'en',
-  IgnoreZones: [
-    'PvpSeize',
-    'PvpSecure',
-    'PvpShatter',
-    'EurekaAnemos',
-    'EurekaPagos',
-    'EurekaPyros',
-    'EurekaHydatos',
-  ],
-};
-
-let gCurrentZone = null;
-let gIgnoreCurrentZone = false;
-let gIgnoreZones = [];
 let rows = 10;
 let rdpsMax = 0;
 
@@ -166,23 +150,13 @@ function updatePhase(phase, dpsOrder) {
     maxPhaseDPS.row.addClass('highestdps');
 }
 
-$(document).on('onOverlayDataUpdate', function(e) {
-  // DPS numbers in large pvp is not useful and hella noisy.
-  if (gIgnoreCurrentZone)
-    return;
-
+function onOverlayDataUpdateEvent(e) {
   tracker.onOverlayDataUpdate(e.originalEvent.detail);
   update(e.originalEvent.detail);
-});
+}
+
 $(document).on('onZoneChangedEvent', function(e) {
-  gCurrentZone = e.originalEvent.detail.zoneName;
-  gIgnoreCurrentZone = false;
-  for (let i = 0; i < gIgnoreZones.length; ++i) {
-    if (gCurrentZone.match(gIgnoreZones[i]))
-      gIgnoreCurrentZone = true;
-  }
-  tracker.onZoneChange(gCurrentZone);
-  hideOverlay();
+  tracker.onZoneChange(currentZone);
 });
 $(document).on('onLogEvent', function(e) {
   tracker.onLogEvent(e.originalEvent.detail.logs);
@@ -192,8 +166,4 @@ $(document).on('onInCombatChangedEvent', function(e) {
   tracker.inCombatChanged(e.originalEvent.detail.inACTCombat);
 });
 
-UserConfig.getUserConfigLocation('xephero', function(e) {
-  gIgnoreZones = Options.IgnoreZones.map(function(z) {
-    return gLang.kZone[z];
-  });
-});
+InitDpsModule('xephero', onOverlayDataUpdateEvent, hideOverlay);
