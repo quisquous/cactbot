@@ -444,7 +444,7 @@ class PopupText {
       // of infoText triggers without tts entries by turning
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
-      if (ttsText && playSpeech) {
+      if (typeof ttsText === 'string' && playSpeech) {
         ttsText = ttsText.replace(/[#!]/, '');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
