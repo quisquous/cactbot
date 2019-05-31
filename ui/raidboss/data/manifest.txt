@@ -25,6 +25,7 @@ timelines/susano-ex.txt
 timelines/suzaku-ex.txt
 timelines/tsukuyomi-ex.txt
 timelines/t4.txt
+timelines/t5.txt
 timelines/t6.txt
 timelines/t10.txt
 timelines/t12.txt
