@@ -267,7 +267,7 @@
         }
         return {
           en: 'Dodge Left',
-          de: 'Rechts ausweichen',
+          de: 'Links ausweichen',
           fr: 'Evitez gauche',
         };
       },

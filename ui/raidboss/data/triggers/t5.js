@@ -2,6 +2,7 @@
 
 [{
   zoneRegex: /The Binding Coil Of Bahamut - Turn \(5\)/,
+  timelineFile: 't5.txt',
   triggers: [
     {
       id: 'T5 Death Sentence',
