@@ -30,7 +30,9 @@ data_flow
     network -> fflogs [label="upload"]
     network -> ffxivmon [label="import"]
     network -> ACT [label="import"]
-    plugins [label="other ACT plugins"]
+    network -> timeline [label="process"]
+    timeline [label="cactbot make_timeline.py"]
+    plugins [label="triggers, ACT plugins"]
     ACT -> plugins [label="ACT log lines"]
   }
 data_flow
