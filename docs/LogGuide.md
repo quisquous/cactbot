@@ -3,6 +3,10 @@
 This is intended to be a comprehensive guide to log lines
 for folks who want to write ACT triggers for ff14.
 
+This guide was last updated for:
+* [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 4.58
+* [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 1.7.2.13
+
 ## TOC
 1. [Data Flow](#data-flow)
 1. [Glossary of Terms](#glossary-of-terms)
@@ -20,7 +24,7 @@ data_flow
     ff14 [label="ff14 servers"]
     ff14 -> ACT [label="network data"]
     network [label="network log files"]
-    ACT [label="ACT + ffxiv plugin",shape=box]
+    ACT [label="ACT + ffxiv plugin",shape=box,penwidth=3]
     ACT -> network [label="write to disk"]
     fflogs
     network -> fflogs [label="upload"]
