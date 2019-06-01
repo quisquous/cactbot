@@ -374,8 +374,8 @@ Lines are printed, but with blank data.
 
 ### 0D: CombatantHP
 
-If you have the *Include HP for Triggers* setting turned on
-in the *FFXIV Settings* tab of ACT, then it will emit log lines
+If you have the **Include HP for Triggers** setting turned on
+in the **FFXIV Settings** tab of ACT, then it will emit log lines
 for every percentage change of every entity.
 
 This is often used for phase change triggers.
