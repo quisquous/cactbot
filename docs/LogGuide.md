@@ -37,14 +37,14 @@ data_flow
 If you have ACT open during a fight, then it will generate logs.
 These logs will be trimmed to the start and end of combat.
 
-![view logs screenshot](images/logguide_viewlogs.png)
-
-To see the logs, click on the *Main* tab,
+To see the logs, click on the **Main** tab,
 expand the zone you care about,
 right click on the encounter you want,
-then select *View Logs*.
+then select **View Logs**.
 
-The *All* entry includes all the encounters in a zone and cannot be viewed.
+![view logs screenshot](images/logguide_viewlogs.png)
+
+The **All** entry includes all the encounters in a zone and cannot be viewed.
 You must view individual encounters.
 
 ### Importing an old fight
@@ -52,13 +52,13 @@ You must view individual encounters.
 Sometimes you have to close ACT, but you want to look at old fights.
 Or, somebody else sends you a log, and you want to make triggers from it.
 
-![import screenshot](images/logguide_import.png)
+To do this, click the **Import/Export** tab,
+click on **Import a Log File**,
+click on **Select File...**
+select the **Network_date.log** log file,
+and finally click the **YOU** button.
 
-To do this, click the *Import/Export* tab,
-click on *Import a Log File*,
-click on *Select File...*
-select the *Network_date.log* log file,
-and finally click the *YOU* button.
+![import screenshot](images/logguide_import.png)
 
 This will create encounters whose [logs you can view](#viewing-logs-after-a-fight).
 
@@ -67,7 +67,7 @@ This will create encounters whose [logs you can view](#viewing-logs-after-a-figh
 If you want to dig into the network data itself, ffxivmon is a great tool.
 
 To create a log file suitable for ffxivmon,
-first turn on the *(DEBUG) Dump all Network Data to logfile* setting in ACT.
+first turn on the **(DEBUG) Dump all Network Data to logfile** setting in ACT.
 
 ![dump network data screenshot](images/logguide_dumpnetworkdata.png)
 
@@ -96,7 +96,7 @@ so this document does not focus very much on this type of data.
 ### Network Log Lines
 
 These represent the lines that the ffxiv plugin writes to disk in
-*Network_20191002.log* files in your log directory.
+**Network_20191002.log** files in your log directory.
 These lines are still processed and filtered by the ffxiv plugin,
 and are (mostly) not raw network data.
 
@@ -110,7 +110,7 @@ Here are some example network log lines:
 Data on network log lines is separated by vertical braces, i.e. `|`.
 Network log lines also contain the hash of that line at the end.
 The log line type itself is in decimal, e.g. aoe abilities are on lines that begin with `22|`.
-When in an ACT log, that same line would be written as the hex type `0x16`, i.e. `NetworkAOEAbility`.
+The equivalent [ACT log line](#act-log-lines) would be written as the hex type `0x16`, i.e. `NetworkAOEAbility`.
 
 The ffxiv plugin does not write the ACT log lines that plugins interact with
 to disk.
@@ -142,9 +142,9 @@ Here is an example:
 A game log line is a specific type of ACT log line with type `00`.
 These log lines also appear directly in your chat windows in game,
 possibly in the Battle Log tab.
-Try to [avoid writing triggers](#dont-write-triggers-using-game-log-lines) using these lines.
+Try to [avoid writing triggers](#dont-write-triggers-against-game-log-lines) using these lines.
 
-See: [00: Log Lines](#00-loglines) for examples.
+See: [00: Log Lines](#00-logline) for examples.
 
 ### Object/Actor/Entity/Mob/Combatant
 
@@ -169,7 +169,7 @@ One thing to note is that in most raids,
 there are many mobs in the scene with the same name.
 For example, in t13, there are about twenty Bahamut Prime mobs in the zone,
 most of which are invisible.
-You can often differentiate these by HP values (see [AddCombatant](#03-add-combatant) log lines).
+You can often differentiate these by HP values (see [AddCombatant](#03-addcombatant) log lines).
 Often these invisible mobs are used as the damaging actors,
 which is why in UWU Titan Phase, both Garuda and Titan use Rock Throw to put people in jails.
 
@@ -191,7 +191,7 @@ This works for both players and enemies, abilities and spells.
 
 Here's an example of a typical log line:
 `[12:01:48.293] 21:80034E29:40000001:E10:00:00:00`.
-This log line happens to be the actor control line (type=0x21) for commencing Titan Extreme.
+This log line happens to be the actor control line (type=`0x21`) for commencing Titan Extreme.
 
 Log lines always start with the time in square brackets.
 This time is formatted to be in your local time zone.
@@ -249,7 +249,7 @@ Examples:
 
 ### 02: ChangePrimaryPlayer
 
-This redundant message follows every ChangeZone message to indicate the name of the player.
+This redundant message follows every [ChangeZone](#01-changezone) message to indicate the name of the player.
 
 ```
 02:Changed primary player to Potato Chippy.
@@ -318,7 +318,7 @@ Examples:
 
 ### 06: RemoveBuff
 
-This is the memory-parsing equivalent of [1E: NetworkBuffRemove](#1e-networkbuff-remove).
+This is the memory-parsing equivalent of [1E: NetworkBuffRemove](#1e-networkbuffremove).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Examples:
@@ -423,7 +423,7 @@ Index | Example | Explanation
 6 | Striking Dummy | target name
 7 | 710003 | [flags](#ability-flags)
 8 | 9420000 | [damage](#ability-damage)
-9-22 | 0 | ???
+9-22 | 0 | ??? (see: [special case shifts](#special-case-shifts))
 23 | 2778 | target current hp
 24 | 2778 | target max hp
 25 | 0 | target current mp
@@ -606,6 +606,10 @@ This corresponds to game log messages that look like this:
 Although game messages differentiate between buffs and debuffs,
 log message type `1A` includes all effect types (both positive and negative).
 
+You cannot count on the time remaining to be precise.
+In rare cases, the time will already have counted down a tiny bit.
+This matters for cases such as ucob Nael phase doom debuffs.
+
 ### 1B: NetworkTargetIcon (Head Markers)
 
 Structure:
@@ -647,7 +651,7 @@ Examples:
 
 ### 1F: NetworkGauge
 
-Info about the current player's gauge.
+Info about the current player's job gauge.
 
 Examples:
 ```
@@ -683,7 +687,7 @@ Structure:
 `21:ZoneID (4 bytes):Command (4 bytes):Data (4x 4? byte extra data)`
 
 The ZoneID is constant for a particular zone across games,
-but does not necessarily reflect the same ZoneID from the `ChangeZone` message.
+but does not necessarily reflect the same ZoneID from the [ChangeZone](#01-changezone) message.
 
 Wipes on most raids and primals these days can be detected via this regex:
 `21:........:40000010:`.  However, this does not occur on some older fights,
