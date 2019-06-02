@@ -246,19 +246,19 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Catastrophe': 'Katastroph',
         'Engage!': 'Start!',
         'Fleshy Member': 'Tentakel',
       },
-      replaceText: {
+      'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         '-100 Gs': 'Minus 100 G',
         '100 Gs': '100 G',
         'Antilight': 'Dunkellicht',
-        "Death's Gaze": "Todesblick",
+        'Death\'s Gaze': 'Todesblick',
         'Earthquake': 'Erdbeben',
         'Enrage': 'Finalangriff',
         'Epicenter': 'Epizentrum',
@@ -290,13 +290,13 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Catastrophe': 'Catastrophe',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Fleshy Member': 'Tentacule',
       },
-      replaceText: {
+      'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',
@@ -304,7 +304,7 @@
         '-100 Gs': 'Gravité -100',
         '100 Gs': 'Gravité 100',
         'Antilight': 'Lumière Obscure',
-        "Death's Gaze": "Œil De La Mort",
+        'Death\'s Gaze': 'Œil De La Mort',
         'Earthquake': 'Grand Séisme',
         'Enrage': 'Enrage',
         'Epicenter': 'Épicentre',
@@ -336,17 +336,17 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Catastrophe': 'カタストロフィー',
         'Engage!': '戦闘開始！',
         'Fleshy Member': '触手',
       },
-      replaceText: {
+      'replaceText': {
         '-100 Gs': '重力マイナス100',
         '100 Gs': '重力100',
         'Antilight': '暗黒光',
-        "Death's Gaze": "死神の瞳",
+        'Death\'s Gaze': '死神の瞳',
         'Earthquake': '大地震',
         'Epicenter': '震源生成',
         'Erosion': '浸食',

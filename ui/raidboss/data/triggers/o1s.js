@@ -86,13 +86,13 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Black Hole': 'Schwarz[a] Loch',
         'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
       },
-      replaceText: {
+      'replaceText': {
         '': '',
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
@@ -123,13 +123,13 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Black Hole': 'Trou Noir',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
       },
-      replaceText: {
+      'replaceText': {
         '': '',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
@@ -162,13 +162,13 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Black Hole': 'ブラックホール',
         'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
       },
-      replaceText: {
+      'replaceText': {
         '': '',
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',

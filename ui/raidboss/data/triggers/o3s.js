@@ -324,8 +324,8 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
+      'locale': 'de',
+      'replaceSync': {
         'Ancient Tome': 'Uralt[a] Foliant',
         'Apanda': 'Apanda',
         'Engage!': 'Start!',
@@ -334,7 +334,7 @@
         'Soul Reaper': 'Seelenschnitter',
         'White Flame': 'Weiß[a] Flamme',
       },
-      replaceText: {
+      'replaceText': {
         '': '',
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
@@ -368,7 +368,7 @@
         'Stench Of Death': 'Gestank Des Todes',
         'The Game': 'Spielbeginn',
         'The Playing Field': 'Spielfeld',
-        "The Queen's Waltz": "Tanz Der Königin",
+        'The Queen\'s Waltz': 'Tanz Der Königin',
         'Uplift': 'Erhöhung',
         'White Wind': 'Weißer Wind',
       },
@@ -388,17 +388,17 @@
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
+      'locale': 'fr',
+      'replaceSync': {
         'Ancient Tome': 'Volume Ancien',
         'Apanda': 'Apanda',
-        "Engage!": "À l'attaque",
+        'Engage!': 'À l\'attaque',
         'Great Dragon': 'Dragon Suprême',
         'Halicarnassus': 'Halicarnasse',
         "Soul Reaper": "Faucheur D'âmes",
         'White Flame': 'Flamme Blanche',
       },
-      replaceText: {
+      'replaceText': {
         '': '',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
@@ -434,7 +434,7 @@
         'Stench Of Death': 'Parfum De Mort',
         'The Game': 'Début De Partie',
         'The Playing Field': 'Plateau De Jeu',
-        "The Queen's Waltz": "Danse De La Reine",
+        'The Queen\'s Waltz': 'Danse De La Reine',
         'Uplift': 'Exhaussement',
         'White Wind': 'Mistral',
       },
@@ -454,8 +454,8 @@
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Ancient Tome': '古代書',
         'Apanda': 'アパンダ',
         'Engage!': '戦闘開始！',
@@ -464,7 +464,7 @@
         'Soul Reaper': 'ソウルリーパー',
         'White Flame': 'ホワイトフレイム',
       },
-      replaceText: {
+      'replaceText': {
         '': '',
         'Critical Hit': 'クリティカル',
         'Cross Reaper': 'クロスリーパー',
@@ -495,7 +495,7 @@
         'Stench Of Death': '死の気配',
         'The Game': 'ゲームスタート',
         'The Playing Field': 'ゲームボード',
-        "The Queen's Waltz": "女王の舞い",
+        'The Queen\'s Waltz': '女王の舞い',
         'Uplift': '隆起',
         'White Wind': 'ホワイトウインド',
       },
