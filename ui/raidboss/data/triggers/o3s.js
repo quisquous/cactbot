@@ -395,7 +395,7 @@
         'Engage!': 'À l\'attaque',
         'Great Dragon': 'Dragon Suprême',
         'Halicarnassus': 'Halicarnasse',
-        "Soul Reaper": "Faucheur D'âmes",
+        'Soul Reaper': 'Faucheur D\'âmes',
         'White Flame': 'Flamme Blanche',
       },
       'replaceText': {
