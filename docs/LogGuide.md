@@ -7,11 +7,61 @@ This guide was last updated for:
 * [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 4.58
 * [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 1.7.2.13
 
+<!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
 ## TOC
-1. [Data Flow](#data-flow)
-1. [Glossary of Terms](#glossary-of-terms)
-1. [Log Line Overview](#log-line-overview)
-1. [Future Network Data Science](#future-network-data-science)
+- [Data Flow](#data-flow)
+  - [Viewing logs after a fight](#viewing-logs-after-a-fight)
+  - [Importing an old fight](#importing-an-old-fight)
+  - [Importing into ffxivmon](#importing-into-ffxivmon)
+- [Glossary of Terms](#glossary-of-terms)
+  - [Network Data](#network-data)
+  - [Network Log Lines](#network-log-lines)
+  - [ACT Log Lines](#act-log-lines)
+  - [Game Log Lines](#game-log-lines)
+  - [Object/Actor/Entity/Mob/Combatant](#objectactorentitymobcombatant)
+  - [Object ID](#object-id)
+  - [Ability ID](#ability-id)
+- [Log Line Overview](#log-line-overview)
+  - [00: LogLine](#00-logline)
+    - [Don't Write Triggers Against Game Log Lines](#dont-write-triggers-against-game-log-lines)
+  - [01: ChangeZone](#01-changezone)
+  - [02: ChangePrimaryPlayer](#02-changeprimaryplayer)
+  - [03: AddCombatant](#03-addcombatant)
+  - [04: RemoveCombatant](#04-removecombatant)
+  - [05: AddBuff](#05-addbuff)
+  - [06: RemoveBuff](#06-removebuff)
+  - [07: FlyingText](#07-flyingtext)
+  - [08: OutgoingAbility](#08-outgoingability)
+  - [0A: IncomingAbility](#0a-incomingability)
+  - [0B: PartyList](#0b-partylist)
+  - [0C: PlayerStats](#0c-playerstats)
+  - [0D: CombatantHP](#0d-combatanthp)
+  - [14: NetworkStartsCasting](#14-networkstartscasting)
+  - [15: NetworkAbility](#15-networkability)
+    - [Ability Flags](#ability-flags)
+    - [Ability Damage](#ability-damage)
+    - [Special Case Shifts](#special-case-shifts)
+    - [Ability Examples](#ability-examples)
+  - [16: NetworkAOEAbility](#16-networkaoeability)
+  - [17: NetworkCancelAbility](#17-networkcancelability)
+  - [18: NetworkDoT](#18-networkdot)
+  - [19: NetworkDeath](#19-networkdeath)
+  - [1A: NetworkBuff](#1a-networkbuff)
+  - [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers)
+  - [1C: NetworkRaidMarker](#1c-networkraidmarker)
+  - [1D: NetworkTargetMarker](#1d-networktargetmarker)
+  - [1E: NetworkBuffRemove](#1e-networkbuffremove)
+  - [1F: NetworkGauge](#1f-networkgauge)
+  - [20: NetworkWorld](#20-networkworld)
+  - [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
+  - [22: NetworkNameToggle](#22-networknametoggle)
+  - [23: NetworkTether](#23-networktether)
+  - [FB: Debug](#fb-debug)
+  - [FC: PacketDump](#fc-packetdump)
+  - [FD: Version](#fd-version)
+  - [FE: Error](#fe-error)
+  - [FF: Timer](#ff-timer)
+- [Future Network Data Science](#future-network-data-science)
 
 ## Data Flow
 
@@ -228,7 +278,7 @@ the full set of LogTypes is not well-documented.
 
 (Pull requests welcome!)
 
-### Don't Write Triggers Against Game Log Lines
+#### Don't Write Triggers Against Game Log Lines
 
 There are a number of reasons to avoid basing triggers on game log lines:
 * show up later than ACT log lines (often up to half a second)
