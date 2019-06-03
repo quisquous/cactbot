@@ -103,6 +103,9 @@ then select **View Logs**.
 The **All** entry includes all the encounters in a zone and cannot be viewed.
 You must view individual encounters.
 
+The window that pops up has the text that triggers can be made against.
+This is usually the best way to search through and find the text that you want to make a trigger for.
+
 ### Importing an old fight
 
 Sometimes you have to close ACT, but you want to look at old fights.
