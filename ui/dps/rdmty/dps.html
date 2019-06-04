@@ -4,37 +4,49 @@
   <meta charset="utf-8" />
   <title></title>
   <link rel="stylesheet" href="../../../resources/resize_handle.css">
+  <script src="../../../resources/common.js"></script>
+  <script src="../../../resources/regexes.js"></script>
+  <script src="../../../resources/user_config.js"></script>
+  <script src="../../../resources/lang.js"></script>
+  <script src="../../../resources/lang/en.js"></script>
+  <script src="../../../resources/lang/de.js"></script>
+  <script src="../../../resources/lang/fr.js"></script>
+  <script src="../../../resources/lang/ja.js"></script>
+  <script src="../../../resources/lang/ko.js"></script>
+  <script src="../../../resources/fights.js"></script>
   <script src="../../../resources/resize_handle.js"></script>
   <script src="../../../resources/lib/lodash.min.js"></script>
   <script src="../../../resources/lib/react.min.js"></script>
+  <script src="../dps_common.js"></script>
 
   <link rel="stylesheet" type="text/css" href="dps.css">
 
   <script src="dps.js"></script>
   <script>
+    'use strict';
     function onOverlayDataUpdate(e) {
-      var start = new Date().getTime();
-      var details = e.detail;
+      let start = new Date().getTime();
+      let details = e.detail;
+      let container = document.getElementById('container');
+      container.style.display = 'block';
 
       React.render(
         React.createElement(DamageMeter, {
           parseData: e.detail
         }),
-        document.getElementById('container')
+        container
       );
       //console.log('rendered in ' + (+new Date() - start) + 'ms');
     }
-    document.addEventListener('onOverlayDataUpdate', onOverlayDataUpdate);
-    window.addEventListener('message', function (e) {
-      if (e.data.type === 'onOverlayDataUpdate') {
-        onOverlayDataUpdate(e.data);
-      }
-    });
+
+    function hideOverlay() {
+      document.getElementById('container').style.display = 'none';
+    }
+
+    InitDpsModule('rdmty', onOverlayDataUpdate, hideOverlay);
   </script>
 </head>
 <body>
-  <div id="container">
-    <h3>Awaiting data.</h3>
-  </div>
+  <div id="container"></div>
 </body>
 </html>

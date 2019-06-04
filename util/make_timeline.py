@@ -223,8 +223,6 @@ def main(args):
 
         # Write the line
         output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
-        if drift:
-            output_entry += ' # drift {}'.format(drift/1000000)
 
         print(output_entry.encode('ascii', 'ignore').decode('utf8', 'ignore'))
 
