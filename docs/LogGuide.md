@@ -786,12 +786,14 @@ This does not appear to be used for player to player tethers like dragonsight or
 Examples:
 ```
 23:40015B4E:Weapons Node:40015B4D:Gravity Node:751E:0000:000E:40015B4D:000F:7F4B:
-23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0006:1048638C:000F:7FEF:
-23:40001614:Omega:10686258:Potato Chippy:0000:0054:10686258:000F:0000:
+23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0000:0006:1048638C:000F:7FEF:
+23:40001614:Omega:10686258:Potato Chippy:0023:0000:0054:10686258:000F:0000:
 ```
 
 Structure:
-`23:SourceId:SourceName:TargetId:TargetName:Unknown1 (4 bytes):Type (4 bytes):TargetId:Unknown2 (4 bytes):Unknown3 (4 bytes):`
+`23:SourceId:SourceName:TargetId:TargetName:Unknown1 (4 bytes):Unknown2 (4 bytes):Type (4 bytes):TargetId:Unknown3 (4 bytes):Unknown4 (4 bytes):`
+
+The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
 
 Like [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers),
 Type is consistent across fights and represents a particular visual style of tether.
