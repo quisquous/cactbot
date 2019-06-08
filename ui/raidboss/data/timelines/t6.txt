@@ -39,6 +39,8 @@ hideall "--sync--"
 136.0 "Bloody Caress"
 
 ### Phase 2
+# There is a Bloody Caress (often?) right at the start of this phase before blighted.
+# But it's hard to sync to it properly, sorry.
 200.0 "--sync--" sync /:79D:Rafflesia/ window 200,0
 204.0 "Blighted Bouquet" sync /:Rafflesia:79D:/
 209.0 "Briary Growth" sync /:Rafflesia:884:/ window 20,20
