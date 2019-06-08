@@ -86,5 +86,12 @@
         en: 'Look Away!',
       },
     },
+    {
+      id: 'T7 Tail',
+      regex: /14:7B2:Melusine starts using Venomous Tail/,
+      alertText: {
+        en: 'Venomous Tail',
+      },
+    },
   ],
 }];
