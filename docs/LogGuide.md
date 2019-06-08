@@ -329,19 +329,20 @@ Examples:
 This combatant may be invisible and fake.  The real ones have more HP.
 For example, at the start of t5 you will see messages like this:
 ```
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 514596 Max MP: 0.
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0.
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0.
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (-8.42909,17.4637,50.15326).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 514596 Max MP: 0 Pos: (2.251731,4.753533,50.03756).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (8.960839,18.12193,50.66183).
+03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (18.30528,3.778645,50.44044).
 ```
 
 In heavy zones (e.g. Eureka), combatants may be culled if there are too many
