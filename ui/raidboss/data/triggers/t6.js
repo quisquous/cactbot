@@ -6,12 +6,44 @@
   triggers: [
     {
       id: 'T6 Thorn Whip',
+      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
+      run: function(data, matches) {
+        data.thornMap = data.thornMap || {};
+        data.thornMap[matches[1]] = data.thornMap[matches[1]] || [];
+        data.thornMap[matches[1]].push(matches[2]);
+        data.thornMap[matches[2]] = data.thornMap[matches[2]] || [];
+        data.thornMap[matches[2]].push(matches[1]);
+      },
+    },
+    {
+      id: 'T6 Thorn Whip',
       regex: / 1[56]:\y{ObjectId}:Rafflesia:879:Thorn Whip:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: {
-        en: 'Thorns on YOU',
+      infoText: function(data) {
+        let partners = data.thornMap[data.me];
+        if (!partners) {
+          return {
+            en: 'Thorns on YOU',
+          };
+        }
+        if (partners.length == 1) {
+          return {
+            en: 'Thorns w/ (' + data.ShortName(partners[0]) + ')',
+          };
+        }
+        if (partners.length == 2) {
+          return {
+            en: 'Thorns w/ (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
+          };
+        }
+        return {
+          en: 'Thorns (' + partners.length + ' people)',
+        };
+      },
+      run: function(data) {
+        delete data.thornMap;
       },
     },
     {
@@ -78,7 +110,13 @@
     {
       id: 'T6 Phase 3',
       regex: / 14:79E:Rafflesia starts using Leafstorm/,
+      condition: function(data) {
+        return !data.seenLeafstorm;
+      },
       sound: 'Long',
+      run: function(data) {
+        data.seenLeafstorm = true;
+      },
     },
     {
       id: 'T6 Swarm',
@@ -110,9 +148,16 @@
     },
     {
       id: 'T6 Rotten Stench',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:000E:/,
-      alertText: {
-        en: 'Share Laser',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:/,
+      alertText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Share Laser (on YOU)',
+          };
+        }
+        return {
+          en: 'Share Laser (on ' + data.ShortName(matches[1]) + ')',
+        };
       },
     },
   ],
