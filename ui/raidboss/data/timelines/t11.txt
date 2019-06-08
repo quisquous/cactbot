@@ -1,0 +1,117 @@
+### Turn 11
+# -ii B70 B6A B75 B74 B80 -p B6F:200 B78:600
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 00:0839:The Core Override is no longer sealed/ window 10000 jump 0
+
+### Phase 1
+0.0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 00:0839:The Core Override will be sealed off/ window 10,10
+2.5 "--sync--" sync /:Kaliya:B6A:/ window 3,0
+9.4 "Resonance" sync /:Kaliya:B6B:/
+
+19.7 "Nerve Gas" sync /:Kaliya:B6C:/
+24.9 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+30.1 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+33.4 "Resonance" sync /:Kaliya:B6B:/
+38.6 "Resonance" sync /:Kaliya:B6B:/
+
+48.9 "Nerve Gas" sync /:Kaliya:B6[CDE]:/ window 15,15 jump 19.7
+54.1 "Nerve Gas"
+59.3 "Nerve Gas"
+62.6 "Resonance"
+67.8 "Resonance"
+
+### Phase 2 (90%)
+200.0 "Barofield" sync /:Kaliya:B6F:/ window 200,0
+
+208.0 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+213.3 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+217.5 "Resonance" sync /:Kaliya:B6B:/
+220.7 "Secondary Head Stun" sync /:Kaliya:B73:/
+225.8 "Secondary Head" sync /:Kaliya:B72:/
+226.9 "Main Head" sync /:Kaliya:B71:/
+231.1 "Resonance" sync /:Kaliya:B6B:/
+237.4 "Nerve Gas" sync /:Kaliya:B6C:/
+242.5 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+247.5 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+250.8 "Resonance" sync /:Kaliya:B6B:/
+
+258.0 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+263.3 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+267.5 "Resonance" sync /:Kaliya:B6B:/ window 10,10 jump 217.5
+270.7 "Secondary Head Stun"
+275.8 "Secondary Head"
+276.9 "Main Head"
+281.1 "Resonance"
+287.4 "Nerve Gas"
+292.5 "Nerve Gas"
+297.5 "Nerve Gas"
+300.8 "Resonance"
+
+### Phase 3 (60%)
+
+### Phase 4 (nodes defeated)
+600.0 "Emergency Mode" sync /:Kaliya:B78:/
+
+606.1 "Nerve Cloud" sync /:Kaliya:B79:/ window 700,100
+622.3 "Nerve Gas" sync /:Kaliya:B6C:/
+627.4 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+632.5 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+634.6 "Resonance" sync /:Kaliya:B6B:/
+645.8 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+650.8 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+651.1 "Resonance" sync /:Kaliya:B6B:/
+653.2 "Secondary Head Stun" sync /:Kaliya:B73:/
+658.3 "Secondary Head" sync /:Kaliya:B72:/
+659.4 "Main Head" sync /:Kaliya:B71:/
+672.8 "Resonance" sync /:Kaliya:B6B:/
+681.9 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+686.9 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+691.3 "Nerve Gas" sync /:Kaliya:B6C:/
+696.4 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+701.5 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+705.8 "Secondary Head Stun" sync /:Kaliya:B73:/
+710.9 "Secondary Head" sync /:Kaliya:B72:/
+712.0 "Main Head" sync /:Kaliya:B71:/
+715.3 "Resonance" sync /:Kaliya:B6B:/
+
+721.4 "Nerve Cloud" sync /:Kaliya:B79:/ window 100,100
+737.7 "Nerve Gas" sync /:Kaliya:B6C:/
+742.9 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+748.1 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+750.2 "Resonance" sync /:Kaliya:B6B:/
+761.3 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+766.4 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+766.7 "Resonance" sync /:Kaliya:B6B:/
+768.8 "Secondary Head Stun" sync /:Kaliya:B73:/
+773.9 "Secondary Head" sync /:Kaliya:B72:/
+775.0 "Main Head" sync /:Kaliya:B71:/
+791.3 "Nerve Gas" sync /:Kaliya:B6C:/
+796.5 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+801.7 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+803.9 "Resonance" sync /:Kaliya:B6B:/
+815.1 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+820.0 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+820.3 "Resonance" sync /:Kaliya:B6B:/
+822.4 "Secondary Head Stun" sync /:Kaliya:B73:/
+827.5 "Secondary Head" sync /:Kaliya:B72:/
+828.6 "Main Head" sync /:Kaliya:B71:/
+
+836.9 "Nerve Cloud" sync /:Kaliya:B79:/ window 100,100
+853.1 "Nerve Gas" sync /:Kaliya:B6C:/
+858.2 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+863.3 "Nerve Gas" sync /:Kaliya:B6[DE]:/ window 3,3
+865.4 "Resonance" sync /:Kaliya:B6B:/
+876.6 "Seed Of The Sea/Rivers" sync /:Kaliya:B7[67]:/
+881.5 "Seed Of The Rivers/Sea" sync /:Kaliya:B7[67]:/
+
+### Phase 5 (soft enrage)
+887.5 "Nerve Cloud" sync /:Kaliya:B7A:/ window 900,900
+899.7 "Nerve Cloud"
+911.9 "Nerve Cloud"
+924.1 "Nerve Cloud"
+936.3 "Nerve Cloud"

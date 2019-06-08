@@ -2,6 +2,7 @@
 
 [{
   zoneRegex: /The Final Coil Of Bahamut - Turn \(2\)/,
+  timelineFile: 't11.txt',
   triggers: [
     {
       id: 'T11 Secondary Head',
@@ -72,7 +73,7 @@
     },
     {
       id: 'T11 Phase 2',
-      regex: /:Kaliya HP at 61%/,
+      regex: /:Kaliya HP at 60%/,
       sound: 'Long',
       infoText: function(data, matches) {
         return {
