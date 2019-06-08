@@ -52,5 +52,23 @@
         }
       },
     },
+    {
+      id: 'T10 Cyclonic Tether',
+      regex: /23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
+      alarmText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Cyclonic on YOU',
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.me != matches[1]) {
+          return {
+            en: 'Cyclonic on ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+    },
   ],
 }];
