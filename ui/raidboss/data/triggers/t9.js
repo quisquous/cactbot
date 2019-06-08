@@ -6,6 +6,7 @@
 
 [{
   zoneRegex: /The Second Coil Of Bahamut - Turn \(4\)/,
+  timelineFile: 't9.txt',
   triggers: [
     {
       id: 'T9 Raven Blight You',
@@ -54,7 +55,7 @@
         return data.me == matches[1];
       },
       infoText: {
-        en: 'Meteor Stream',
+        en: 'Spread (Meteor Stream)',
       },
     },
     {
@@ -70,6 +71,11 @@
           en: 'Stack on ' + data.ShortName(matches[1]),
         };
       },
+    },
+    {
+      id: 'T9 Phase 2',
+      regex: /:Nael deus Darnus HP at 64%/,
+      sound: 'Long',
     },
     {
       id: 'T9 Earthshock',
