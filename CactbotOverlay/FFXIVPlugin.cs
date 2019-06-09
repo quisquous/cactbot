@@ -1,5 +1,4 @@
 ﻿using Advanced_Combat_Tracker;
-using FFXIV_ACT_Plugin;
 using System;
 using System.Reflection;
 

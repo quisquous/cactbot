@@ -25,7 +25,7 @@ namespace Cactbot {
         return;
       }
 
-      if (!FFXIV_ACT_Plugin.ACTWrapper.InCombat) {
+      if (!Advanced_Combat_Tracker.ActGlobals.oFormActMain.InCombat) {
         return;
       }
 

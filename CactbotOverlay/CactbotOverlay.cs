@@ -1,5 +1,4 @@
 ﻿using Advanced_Combat_Tracker;
-using FFXIV_ACT_Plugin;
 using Newtonsoft.Json;
 using RainbowMage.OverlayPlugin;
 using System;
@@ -416,7 +415,7 @@ namespace Cactbot {
       }
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
-      bool in_act_combat = FFXIV_ACT_Plugin.ACTWrapper.InCombat;
+      bool in_act_combat = Advanced_Combat_Tracker.ActGlobals.oFormActMain.InCombat;
       bool in_game_combat = ffxiv_.GetInGameCombat();
       if (!notify_state_.in_act_combat.HasValue || in_act_combat != notify_state_.in_act_combat ||
           !notify_state_.in_game_combat.HasValue || in_game_combat != notify_state_.in_game_combat) {
@@ -426,7 +425,7 @@ namespace Cactbot {
       }
 
       // onZoneChangedEvent: Fires when the player changes their current zone.
-      string zone_name = FFXIV_ACT_Plugin.ACTWrapper.CurrentZone;
+      string zone_name = Advanced_Combat_Tracker.ActGlobals.oFormActMain.CurrentZone;
       if (notify_state_.zone_name == null || !zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
