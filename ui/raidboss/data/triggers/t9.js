@@ -1,9 +1,5 @@
 'use strict';
 
-// TODO: what is that skill that needs to be silenced? earthshock?
-// TODO: having a timeline would be super nice here, esp last phase
-// TODO: could probably add dragon triggers for final phase too
-
 [{
   zoneRegex: /The Second Coil Of Bahamut - Turn \(4\)/,
   timelineFile: 't9.txt',
