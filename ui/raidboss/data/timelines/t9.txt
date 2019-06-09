@@ -188,6 +188,8 @@ hideall "--sync--"
 1050.0 "Chain Lightning" sync /:Thunderwing:7FD:/ duration 6
 1051.2 "Fireball (In)" sync /:Firehorn:7FB:/
 1054.2 "Bahamut's Claw x5" duration 2.9 #sync /:Nael deus Darnus:871:/
+1061.2 "Divebomb Mark A" duration 5
+1067.3 "Divebomb Mark B" duration 5
 1070.5 "Cauterize x2" sync /:Thunderwing:801:/
 1070.6 "Meteor Stream" sync /:Nael Geminus:7DE:/
 1076.6 "Cauterize x1" sync /:Firehorn:7FF:/
@@ -210,6 +212,8 @@ hideall "--sync--"
 1146.6 "Chain Lightning" sync /:Thunderwing:7FD:/ duration 6
 1147.7 "Fireball (In)" sync /:Firehorn:7FB:/
 1150.6 "Bahamut's Claw x5" duration 2.9 #sync /:Nael deus Darnus:871:/
+1157.8 "Divebomb Mark A" duration 5
+1163.9 "Divebomb Mark B" duration 5
 1164.3 "Iron Chariot" sync /:Nael deus Darnus:7D8:/
 1167.1 "Cauterize x2" sync /:Firehorn:7FF:/
 1168.1 "Raven Dive" sync /:Nael deus Darnus:7DD:/
@@ -232,6 +236,8 @@ hideall "--sync--"
 1243.1 "Chain Lightning" sync /:Thunderwing:7FD:/ duration 6
 1244.4 "Fireball (In)" sync /:Firehorn:7FB:/
 1247.4 "Bahamut's Claw x5" duration 2.9 #sync /:Nael deus Darnus:871:/
+1254.4 "Divebomb Mark A" duration 5
+1260.3 "Divebomb Mark B" duration 5
 1263.7 "Cauterize x2" sync /:Thunderwing:801:/
 1263.8 "Meteor Stream" sync /:Nael Geminus:7DE:/
 1269.6 "Cauterize x1" sync /:Firehorn:7FF:/
@@ -254,6 +260,8 @@ hideall "--sync--"
 1339.7 "Chain Lightning"
 1340.8 "Fireball (In)"
 1343.7 "Bahamut's Claw x5"
+1350.9 "Divebomb Mark A"
+1357.0 "Divebomb Mark B"
 1357.4 "Iron Chariot"
 1360.2 "Cauterize x2"
 1361.2 "Raven Dive"
