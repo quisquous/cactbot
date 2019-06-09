@@ -229,7 +229,6 @@
         data.tetherCount++;
         // Out, In, Out, In
         data.tetherDir = data.tetherCount % 2 ? 'Fire Out' : 'Fire In';
-        console.log(data.tetherDir);
       },
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
