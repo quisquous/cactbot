@@ -125,10 +125,11 @@ class LogCollector {
     // 00:0038 = echo | 00:0039 = countdown | 14, 15, 16 = attack related stuff
     // 1A = gaining effects -> 1E losing effects | 1B = head Markers | 01 = zone change
     // 03,04 = adding/removing combatant | 21 = wipe? | 00:0839: = sealed.
+    // 23 = tethers
     // 00:332e: = Relative Virtue
     // Add more to regex only if needed
     fight.logs = fight.logs.filter(function(line) {
-      return / 1[456AB]:| 0[134]:| 00:(?:003[89]|0839|0044|332e):| 21:.{8}:/.test(line);
+      return / (?:1[456AB]|23):| 0[134]:| 00:(?:003[89]|0839|0044|332e):| 21:.{8}:/.test(line);
     }).sort();
 
     this.fights.push(fight);
