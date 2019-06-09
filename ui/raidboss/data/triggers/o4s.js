@@ -903,7 +903,6 @@
         'Exdeath': 'Exdeath',
       },
       'replaceText': {
-        '': '',
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Black Hole': 'Schwarzes Loch',
@@ -939,7 +938,6 @@
         'Exdeath': 'Exdeath',
       },
       'replaceText': {
-        '': '',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',
@@ -977,7 +975,6 @@
         'Exdeath': 'エクスデス',
       },
       'replaceText': {
-        '': '',
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',
         'Blizzard III': 'ブリザガ',

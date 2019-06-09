@@ -335,7 +335,6 @@
         'White Flame': 'Weiß[a] Flamme',
       },
       'replaceText': {
-        '': '',
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Critical Hit': 'Kritischer Treffer',
@@ -399,7 +398,6 @@
         'White Flame': 'Flamme Blanche',
       },
       'replaceText': {
-        '': '',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',
@@ -465,7 +463,6 @@
         'White Flame': 'ホワイトフレイム',
       },
       'replaceText': {
-        '': '',
         'Critical Hit': 'クリティカル',
         'Cross Reaper': 'クロスリーパー',
         'Dimensional Wave': '次元波動',
