@@ -267,6 +267,10 @@ namespace Cactbot {
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
     public void DispatchToJS(JSEvent e) {
+      // Make sure we're not in the middle of shutdown.
+      if (this.Overlay.Renderer == null)
+        return;
+
       // DispatchToJS can be called from multiple threads (both fast and main).
       // OverlayMessage also calls this, which can be on other threads as well.
       // Could consider adding per-thread builders in TLS to avoid a lock, but maybe overkill.
