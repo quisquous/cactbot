@@ -290,6 +290,9 @@ class LogCollector {
         7503, 7504, 7505, 7506, 7507, 7508, 7509, 7510, 7411, 7512, 7513, 7514, 7515, 7516,
         7517, 7518, 7519, 7520, 7521, 7522, 7523, 7524, 7525, 7526, 7527, 7528, 7529, 7530,
       ],
+      BLU: [
+        0x2C8E, 0x2CA0, 0x2C8C, 0x2C92, 0x2CA3, 0x2CA6,
+      ],
     };
     let player = {
       id: matches[1], name: matches[2],
@@ -309,7 +312,7 @@ class LogCollector {
       player.role = 'tank';
     if (['WHM', 'SCH', 'AST'].indexOf(player.job) > -1)
       player.role = 'healer';
-    if (['MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM'].indexOf(player.job) > -1)
+    if (['MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM', 'BLU'].indexOf(player.job) > -1)
       player.role = 'dps';
 
     if (player.role && player.job)
@@ -577,7 +580,7 @@ class EmulatorView {
       }
 
       party = party.sort(function(a, b) {
-        let jobOrder = ['PLD', 'WAR', 'DKR', 'WHM', 'SCH', 'AST', 'MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM'];
+        let jobOrder = ['PLD', 'WAR', 'DKR', 'WHM', 'SCH', 'AST', 'MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM', 'BLU'];
         if (jobOrder.indexOf(a.job) < jobOrder.indexOf(b.job))
           return -1;
         if (jobOrder.indexOf(a.job) > jobOrder.indexOf(b.job))
