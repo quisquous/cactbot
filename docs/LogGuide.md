@@ -329,19 +329,20 @@ Examples:
 This combatant may be invisible and fake.  The real ones have more HP.
 For example, at the start of t5 you will see messages like this:
 ```
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0.
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0.
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 514596 Max MP: 0.
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0.
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0.
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (-8.42909,17.4637,50.15326).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 514596 Max MP: 0 Pos: (2.251731,4.753533,50.03756).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (8.960839,18.12193,50.66183).
+03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (18.30528,3.778645,50.44044).
 ```
 
 In heavy zones (e.g. Eureka), combatants may be culled if there are too many
@@ -785,12 +786,14 @@ This does not appear to be used for player to player tethers like dragonsight or
 Examples:
 ```
 23:40015B4E:Weapons Node:40015B4D:Gravity Node:751E:0000:000E:40015B4D:000F:7F4B:
-23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0006:1048638C:000F:7FEF:
-23:40001614:Omega:10686258:Potato Chippy:0000:0054:10686258:000F:0000:
+23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0000:0006:1048638C:000F:7FEF:
+23:40001614:Omega:10686258:Potato Chippy:0023:0000:0054:10686258:000F:0000:
 ```
 
 Structure:
-`23:SourceId:SourceName:TargetId:TargetName:Unknown1 (4 bytes):Type (4 bytes):TargetId:Unknown2 (4 bytes):Unknown3 (4 bytes):`
+`23:SourceId:SourceName:TargetId:TargetName:Unknown1 (4 bytes):Unknown2 (4 bytes):Type (4 bytes):TargetId:Unknown3 (4 bytes):Unknown4 (4 bytes):`
+
+The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
 
 Like [1B: NetworkTargetIcon (Head Markers)](#1b-networktargeticon-head-markers),
 Type is consistent across fights and represents a particular visual style of tether.

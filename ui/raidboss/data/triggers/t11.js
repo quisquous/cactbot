@@ -2,6 +2,7 @@
 
 [{
   zoneRegex: /The Final Coil Of Bahamut - Turn \(2\)/,
+  timelineFile: 't11.txt',
   triggers: [
     {
       id: 'T11 Secondary Head',
@@ -72,11 +73,11 @@
     },
     {
       id: 'T11 Phase 2',
-      regex: /:Kaliya HP at 61%/,
+      regex: /:Kaliya HP at 60%/,
       sound: 'Long',
       infoText: function(data, matches) {
         return {
-          en: 'Move Away',
+          en: 'Out of Middle',
         };
       },
     },
@@ -101,28 +102,16 @@
       },
     },
     {
-      id: 'T11 Tether Warning',
-      regex: / 14:B7B:Kaliya starts using Nanospore Jet/,
-      infoText: {
-        en: 'Tethers Soon',
-      },
-      run: function(data) {
-        delete data.tetherA;
-        delete data.tetherB;
-      },
-    },
-    {
-      id: 'T11 Aethero Accumulate A',
-      regex: /1A:(\y{Name}) gains the effect of Aetherochemical Nanospores [Α|A]/,
+      id: 'T11 Tether Accumulate A',
+      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
       run: function(data, matches) {
         data.tetherA = data.tetherA || [];
         data.tetherA.push(matches[1]);
-        console.log(data.tetherA);
       },
     },
     {
-      id: 'T11 Aethero Accumulate B',
-      regex: /1A:(\y{Name}) gains the effect of Aetherochemical Nanospores [Β|B]/,
+      id: 'T11 Tether Accumulate B',
+      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
       run: function(data, matches) {
         data.tetherB = data.tetherB || [];
         data.tetherB.push(matches[1]);
@@ -130,7 +119,7 @@
     },
     {
       id: 'T11 Tether A',
-      regex: /1A:\y{Name} gains the effect of Aetherochemical Nanospores [Α|A]/,
+      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
       condition: function(data) {
         return data.tetherA.length == 2;
       },
@@ -143,13 +132,13 @@
         if (!partner)
           return;
         return {
-          en: 'Tethered To ' + data.ShortName(partner),
+          en: 'Red Tethers With ' + data.ShortName(partner),
         };
       },
     },
     {
       id: 'T11 Tether B',
-      regex: /1A:\y{Name} gains the effect of Aetherochemical Nanospores [Β|B]/,
+      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
       condition: function(data) {
         return data.tetherB.length == 2;
       },
@@ -162,8 +151,16 @@
         if (!partner)
           return;
         return {
-          en: 'Tethered To ' + data.ShortName(partner),
+          en: 'Blue Tethers With ' + data.ShortName(partner),
         };
+      },
+    },
+    {
+      id: 'T11 Tether Cleanup',
+      regex: /16:\y{ObjectId}:Kaliya:B7B:Nanospore Jet:/,
+      run: function(data) {
+        delete data.tetherA;
+        delete data.tetherB;
       },
     },
   ],

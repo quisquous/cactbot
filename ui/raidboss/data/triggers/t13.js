@@ -2,6 +2,17 @@
 
 [{
   zoneRegex: /The Final Coil Of Bahamut - Turn \(4\)/,
+  timelineFile: 't13.txt',
+  timelineTriggers: [
+    {
+      id: 'T13 Dive Warning',
+      regex: /Megaflare Dive/,
+      beforeSeconds: 5,
+      infoText: {
+        en: 'Stack Center for Dives',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'T13 Gigaflare Phase Change',
@@ -26,9 +37,6 @@
     {
       id: 'T13 Flatten',
       regex: / 14:BAE:Bahamut Prime starts using Flatten on (\y{Name})\./,
-      condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer' || data.job == 'BLU';
-      },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -37,7 +45,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches[1] == data.me) {
+          return;
+          if (data.role == 'healer' || data.job == 'BLU') {}
           return {
             en: 'Flatten on ' + data.ShortName(matches[1]),
           };
@@ -50,7 +60,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: {
+      alertText: {
         en: 'Megaflare Stack',
       },
     },
@@ -65,20 +75,18 @@
       },
     },
     {
-      id: 'T13 Dive Warning',
-      // This is the double dive headmarker.
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:002A:/,
-      delaySeconds: 25,
+      id: 'T13 Tempest Wing',
+      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Bahamut Prime:....:....:0004:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: {
-        en: 'Stack Center for Dives',
+        en: 'Tempest Tether on YOU',
       },
     },
     {
       id: 'T13 Akh Morn',
       regex: / 14:BC2:Bahamut Prime starts using Akh Morn on (\y{Name})\./,
-      condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer' || data.job == 'BLU';
-      },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

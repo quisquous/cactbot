@@ -31,12 +31,13 @@ function InitDpsModule(config, updateFunc, hideFunc) {
     let newZone = e.detail.zoneName;
     if (gCurrentZone == newZone)
       return;
+    // Always hide on switching zones.
+    hideFunc();
     gCurrentZone = newZone;
     gIgnoreCurrentZone = false;
     for (let i = 0; i < gIgnoreZones.length; ++i) {
       if (gCurrentZone.match(gIgnoreZones[i])) {
         gIgnoreCurrentZone = true;
-        hideFunc();
         return;
       }
     }
