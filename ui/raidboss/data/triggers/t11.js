@@ -132,7 +132,7 @@
         if (!partner)
           return;
         return {
-          en: 'Red Tethers With' + data.ShortName(partner),
+          en: 'Red Tethers With ' + data.ShortName(partner),
         };
       },
     },
@@ -153,6 +153,14 @@
         return {
           en: 'Blue Tethers With ' + data.ShortName(partner),
         };
+      },
+    },
+    {
+      id: 'T11 Tether Cleanup',
+      regex: /16:\y{ObjectId}:Kaliya:B7B:Nanospore Jet:/,
+      run: function(data) {
+        delete data.tetherA;
+        delete data.tetherB;
       },
     },
   ],
