@@ -11,6 +11,7 @@ timelines/a10s.txt
 timelines/a11s.txt
 timelines/a12s.txt
 timelines/byakko-ex.txt
+timelines/cape_westwind.txt
 timelines/eureka_hydatos.txt
 timelines/lakshmi-ex.txt
 timelines/orbonne_monastery.txt
@@ -72,6 +73,7 @@ triggers/a10s.js
 triggers/a11s.js
 triggers/a12s.js
 triggers/byakko-ex.js
+triggers/cape_westwind.js
 triggers/drowned_city_of_skalla.js
 triggers/eureka_anemos.js
 triggers/eureka_hydatos.js
