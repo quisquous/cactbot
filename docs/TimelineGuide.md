@@ -10,6 +10,36 @@ for triggers and timelines.
 These are combined together so that you can make triggers that are based on actions
 or triggers that are based on timelines themselves.
 
+<!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
+## TOC
+- [History](#history)
+- [Timeline File Syntax](#timeline-file-syntax)
+  - [Comments](#comments)
+  - [Entries](#entries)
+  - [Commands](#commands)
+  - [Examples](#examples)
+  - [Testing](#testing)
+  - [Shasta Kota Guide](#shasta-kota-guide)
+- [Cactbot Style Guide](#cactbot-style-guide)
+- [Timeline Triggers](#timeline-triggers)
+- [Timeline Injection](#timeline-injection)
+- [Timeline Translation](#timeline-translation)
+- [Example Timeline Creation](#example-timeline-creation)
+  - [Run the fight a few times](#run-the-fight-a-few-times)
+  - [Software prerequisites](#software-prerequisites)
+  - [Timeline Skeleton](#timeline-skeleton)
+  - [Generating an initial timeline file](#generating-an-initial-timeline-file)
+  - [Building Loops](#building-loops)
+  - [Adding Phases](#adding-phases)
+  - [Next phase](#next-phase)
+  - [Final Phase](#final-phase)
+  - [Boilerplate glue](#boilerplate-glue)
+  - [Making loops loop](#making-loops-loop)
+  - [Putting it all together](#putting-it-all-together)
+  - [Testing Timelines](#testing-timelines)
+  - [Test against other timelines](#test-against-other-timelines)
+
+
 ## History
 
 Back in 2016, Shasta Kota on the Death and Taxes website made this [guide](https://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin) to use with  anoyetta's [ACT timeline plugin](https://github.com/anoyetta/ACT.Hojoring).
@@ -882,7 +912,7 @@ This leaves us with this final version of the initial loop.
 
 This is done on all the following loops as well.
 
-### Ready for testing
+### Putting it all together
 
 Putting all the loops that we have created together leaves
 us with the following timeline.
@@ -990,7 +1020,7 @@ hideall "--sync--"
 689.2 "Winds Of Tartarus"
 ```
 
-### Testing
+### Testing Timelines
 
 cactbot has a testing tool called **util/test_timeline.py** that can
 test a network log file or an fflogs fight against an existing timeline.
