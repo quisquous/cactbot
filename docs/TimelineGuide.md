@@ -230,8 +230,10 @@ In particular, you can't get rp text lines, the text for the zone sealing/unseal
 Once you've run the combat, you'll have generated a couple of [network log files](LogGuide.md#network-log-lines).
 
 If you want to try these examples, here are a couple of files:
-1. [CapeWestwind.log](CapeWestwind.log)
-1. [CapeWestwind2.log](CapeWestwind2.log)
+1. [CapeWestwind.log](data/CapeWestwind.log)
+1. [CapeWestwind2.log](data/CapeWestwind2.log)
+
+Follow those links, click **Raw**, then right click and **Save As** to save them to disk.
 
 Good guidelines for getting good logs are:
 1. run long enough to see the enrage
