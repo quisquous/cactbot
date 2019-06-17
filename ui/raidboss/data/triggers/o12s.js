@@ -80,6 +80,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: 'タンクバスター on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -87,6 +88,7 @@
             en: 'Tank Busters',
             de: 'Tankbuster',
             fr: 'Tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -117,6 +119,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: 'タンクバスター on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -124,6 +127,7 @@
             en: 'Tank Busters',
             de: 'Tankbuster',
             fr: 'Tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -302,6 +306,7 @@
             en: 'Vuln on YOU',
             de: 'Verwundbarkeit auf DIR',
             fr: 'Vulnérabilité sur VOUS',
+            ja: '標的 on YOU',
           };
         }
       },
@@ -312,6 +317,7 @@
           en: 'Vuln on ' + data.ShortName(matches[1]),
           de: 'Verwundbarkeit auf ' + data.ShortName(matches[1]),
           fr: 'Vulnérabilité sur ' + data.ShortName(matches[1]),
+          ja: '標的 on ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -415,12 +421,14 @@
             en: 'Short Stack on YOU',
             de: 'Kurzer Stack auf YOU',
             fr: 'Marque courte sur VOUS',
+            ja: '早シェア on YOU',
           };
         }
         return {
           en: 'Long Stack on YOU',
           de: 'Langer Stack auf YOU',
           fr: 'Marque longue sur VOUS',
+          ja: '遅シェア on YOU',
         };
       },
       infoText: function(data, matches) {
@@ -437,6 +445,7 @@
             en: 'Short Stack on ' + data.ShortName(matches[1]),
             de: 'Kurzer Stack auf ' + data.ShortName(matches[1]),
             fr: 'Marque courte sur ' + data.ShortName(matches[1]),
+            ja: '早シェア on ' + data.ShortName(matches[1]),
           };
         }
         return;
@@ -463,6 +472,7 @@
           en: 'No Marker',
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
+          ja: '無職',
         };
       },
     },
@@ -479,6 +489,7 @@
         en: 'Move out for Defamation',
         de: 'Rausgehen für Urteil',
         fr: 'Ecartez-vous pour #médisance',
+        ja: 'サークル捨てる',
       },
     },
     {
