@@ -42,7 +42,7 @@
       id: 'O12S Local Resonance',
       regex: / 1A:Omega gains the effect of (?:Local Resonance|Unknown_67E) from/,
       regexDe: / 1A:Omega gains the effect of (?:Resonanzprogramm: Nah|Unknown_67E) from/,
-      regexFr: / 1A:Oméga gains the effect of (?:Programme de résonance: proximité|Unknown_67E) from/,
+      regexFr: / 1A:Oméga gains the effect of (?:Programme de résonance : proximité|Programme De Résonance : Proximité|Unknown_67E) from/,
       regexJa: / 1A:オメガ gains the effect of (?:レゾナンスプログラム：ニアー|Unknown_67E) from/,
       infoText: {
         en: 'Keep Bosses Apart',
@@ -55,7 +55,7 @@
       id: 'O12S Remote Resonance',
       regex: / 1A:Omega gains the effect of (?:Remote Resonance|Unknown_67F) from/,
       regexDe: / 1A:Omega gains the effect of (?:Resonanzprogramm: Fern|Unknown_67F) from/,
-      regexFr: / 1A:Oméga gains the effect of (?:Programme de résonance: distance|Unknown_67F) from/,
+      regexFr: / 1A:Oméga gains the effect of (?:Programme de résonance : distance|Programme De Résonance : Distance|Unknown_67F) from/,
       regexJa: / 1A:オメガ gains the effect of (?:レゾナンスプログラム：ファー|Unknown_67F) from/,
       alertText: {
         en: 'Move Bosses Together',
@@ -242,7 +242,7 @@
       id: 'O12S Diffuse Wave Cannon Front/Back',
       regex: / 14:3368:Omega starts using (?:Diffuse Wave Cannon|Unknown_3368)/,
       regexDe: / 14:3368:Omega starts using (?:Streuende Wellenkanone|Unknown_3368)/,
-      regexFr: / 14:3368:Oméga starts using (?:Canon plasma diffuseur|Unknown_3368)/,
+      regexFr: / 14:3368:Oméga starts using (?:Canon plasma diffuseur|Canon Plasma Diffuseur|Unknown_3368)/,
       regexJa: / 14:3368:オメガ starts using (?:拡散波動砲|Unknown_3368)/,
       infoText: {
         en: 'Front or Back',
@@ -268,7 +268,7 @@
         return {
           en: 'Dodge Left',
           de: 'Links ausweichen',
-          fr: 'Evitez gauche',
+          fr: 'Evitez à gauche',
         };
       },
     },
@@ -289,7 +289,7 @@
         return {
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
-          fr: 'Evitez droite',
+          fr: 'Evitez à droite',
         };
       },
     },
@@ -319,7 +319,7 @@
       id: 'O12S Local Tethers',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Local Regression) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Regression: Nah) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Bogue intentionnel: proximité|Bogue Intentionnel: Proximité) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|Bogue intentionnel : proximité|Bogue Intentionnel : Proximité) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_688|エンバグ：ニアー) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -335,7 +335,7 @@
       id: 'O12S Far Tethers',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Remote Regression) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Regression: Fern) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Bogue intentionnel: distance|Bogue Intentionnel: Distance) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|Bogue intentionnel : distance|Bogue Intentionnel : Distance) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_689|エンバグ：ファー) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -351,7 +351,7 @@
       id: 'O12S Defamation',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle|Bogue Critique: Boucle) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique : boucle|Bogue Critique : Boucle) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -383,7 +383,7 @@
       id: 'O12S Rot',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Critical Underflow Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Kritischer Bug: Unterlauf) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Bogue critique: dégradation|Bogue Critique: Dégradation) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|Bogue critique : dégradation|Bogue Critique : Dégradation) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_682|クリティカルバグ：デグレード) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -399,7 +399,7 @@
       id: 'O12S Hello World Stack',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique: partage|Bogue Critique: Partage) from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique : partage|Bogue Critique : Partage) from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
       delaySeconds: function(data, matches) {
         return matches[1] == data.me ? 0 : 1;
@@ -446,7 +446,7 @@
       id: 'O12S Hello World No Marker',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug|Unknown_686|Latent Defect|Unknown_680|Critical Synchronization Bug) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf|Unknown_686|Latenter Bug|Unknown_680|Kritischer Bug: Synchronisierung) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique: boucle|Bogue Critique: Boucle|Unknown_686|Bogue latent|Bogue Latent|Unknown_680|Bogue critique: partage|Bogue Critique: Partage) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique : boucle|Bogue Critique : Boucle|Unknown_686|Bogue latent|Bogue Latent|Unknown_680|Bogue critique : partage|Bogue Critique : Partage) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル|Unknown_686|レイテントバグ|Unknown_680|クリティカルバグ：シェア) from/,
       preRun: function(data, matches) {
         data.helloDebuffs[matches[1]] = true;
@@ -470,7 +470,7 @@
       id: 'O12S Hello World Tower Complete',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Cascading Latent Defect) from/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Latenter Bug: Unterlauf) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent: dégradation|Bogue Latent: Dégradation) from/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent : dégradation|Bogue Latent : Dégradation) from/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_687|レイテントバグ：デグレード) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -786,25 +786,25 @@
       },
       '~effectNames': {
         'Infinite Limit': 'Dépassement de limites',
-        'Local Resonance': 'Programme de résonance: proximité',
+        'Local Resonance': 'Programme de résonance : proximité',
         'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
         'Packet Filter F': 'Programme protecteur F',
         'Packet Filter M': 'Programme protecteur M',
         'Physical Vulnerability Up': 'Vulnérabilité Physique Augmentée',
         'Prey': 'Marquage',
-        'Remote Resonance': 'Programme de résonance: distance',
+        'Remote Resonance': 'Programme de résonance : distance',
 
-        'Cascading Latent Defect': 'Bogue latent: dégradation',
-        'Critical Overflow Bug': 'Bogue critique: boucle',
-        'Critical Synchronization Bug': 'Bogue critique: partage',
-        'Critical Underflow Bug': 'Bogue critique: dégradation',
+        'Cascading Latent Defect': 'Bogue latent : dégradation',
+        'Critical Overflow Bug': 'Bogue critique : boucle',
+        'Critical Synchronization Bug': 'Bogue critique : partage',
+        'Critical Underflow Bug': 'Bogue critique : dégradation',
         'Latent Defect': 'Bogue latent',
         'Local Regression': 'Bogue intentionnel: proximité',
         'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
-        'Overflow Debugger': 'Déboguage: boucle',
-        'Remote Regression': 'Bogue intentionnel: distance',
-        'Synchronization Debugger': 'Déboguage: partage',
-        'Underflow Debugger': 'Déboguage: dégradation',
+        'Overflow Debugger': 'Déboguage : boucle',
+        'Remote Regression': 'Bogue intentionnel : distance',
+        'Synchronization Debugger': 'Déboguage : partage',
+        'Underflow Debugger': 'Déboguage : dégradation',
       },
     },
     {
