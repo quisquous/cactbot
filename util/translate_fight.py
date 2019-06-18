@@ -186,7 +186,7 @@ def main(args):
         # Fix lower mob names like "ao-no-shiki" to "Aka-No-Shiki" and "Aka-no-shiki"
         upper_mob_replace = {}
         for (old, new) in mob_replace[lang].items():
-            if old.find("-")!=-1:
+            if old.find("-")!=-1 or old.find(" ")!=-1:
                 def upper_first_char(x):
                     return x.upper() if len(x)<=1 else x[0].upper()+x[1:]
                 for ch in [' ', '-']:
