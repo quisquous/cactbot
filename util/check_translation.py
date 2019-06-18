@@ -62,10 +62,10 @@ def translate_regex(regex, trans):
         for old, new in trans['~effectNames'].items():
             did_work = did_work or re.search(old, line)
             line = re.sub(old, new, line)
-    for old, new in trans['replaceText'].items():
+    for old, new in sorted(trans['replaceText'].items(), key=lambda x: -len(x[0])):
         did_work = did_work or re.search(old, line)
         line = re.sub(old, new, line)
-    for old, new in trans['replaceSync'].items():
+    for old, new in sorted(trans['replaceText'].items(), key=lambda x: -len(x[0])):
         did_work = did_work or re.search(old, line)
         line = re.sub(old, new, line)
 
