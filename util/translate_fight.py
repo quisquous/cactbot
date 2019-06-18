@@ -10,12 +10,13 @@ import fflogs
 
 # 'en' here is 'www' which we consider the "base" and do automatically.
 # 'cn' exists on fflogs but does not have proper translations, sorry.
-languages = ['en', 'de', 'fr', 'ja']
+languages = ['en', 'de', 'fr', 'ja', 'cn']
 prefixes = {
     'en': 'www',
     'de': 'de',
     'fr': 'fr',
     'ja': 'ja',
+    'cn': 'cn',
 }
 default_language = 'en'
 ignore_abilities = ['Attack']
@@ -72,6 +73,7 @@ def add_default_sync_mappings(sync_replace):
     sync_replace['de']['Engage!'] = 'Start!'
     sync_replace['fr']['Engage!'] = 'À l\'attaque'
     sync_replace['ja']['Engage!'] = '戦闘開始！'
+    sync_replace['cn']['Engage!'] = '战斗开始！'
 
 
 def build_mapping(translations, ignore_list=[]):
@@ -181,6 +183,16 @@ def main(args):
     for lang in languages:
         if lang == default_language:
             continue
+        # Fix lower mob names like "ao-no-shiki" to "Aka-No-Shiki" and "Aka-no-shiki"
+        upper_mob_replace = {}
+        for (old, new) in mob_replace[lang].items():
+            if old.find("-")!=-1:
+                def upper_first_char(x):
+                    return x.upper() if len(x)<=1 else x[0].upper()+x[1:]
+                for ch in [' ', '-']:
+                    upper_mob_replace[ch.join(list(map(upper_first_char, old.split(ch))))] = new
+                    upper_mob_replace[ch.join(list(map(upper_first_char, old.split(ch)[:1]))+old.split(ch)[1:])] = new
+        mob_replace[lang].update(upper_mob_replace)
         timeline_replace.append({
             'locale': lang,
             'replaceText': ability_replace[lang],
@@ -192,22 +204,23 @@ def main(args):
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=True)
 
     # hacky reformatting: single quotes, and remove quotes
-    lines = []
-    headers = ['timelineReplace', 'locale', 'replaceSync', 'replaceText', 'locale']
-    for line in output_str.splitlines():
-        # add trailing commas
-        line = re.sub(r"\"\s*$", "\",", line)
-        line = re.sub(r"]\s*$", "],", line)
-        line = re.sub(r"}\s*$", "},", line)
-
-        # replace all quotes on headers
-        for header in headers:
-            if line.find('"' + header + '":') != -1:
-                line = line.replace('"', '', 2)
-        # replace double with single quotes on any line without apostrophes.
-        if line.find("'") == -1:
-            line = line.replace('"', "'")
-        lines.append(line)
+    # lines = []
+    # headers = ['timelineReplace', 'locale', 'replaceSync', 'replaceText', 'locale']
+    # for line in output_str.splitlines():
+    #     # add trailing commas
+    #     line = re.sub(r"\"\s*$", "\",", line)
+    #     line = re.sub(r"]\s*$", "],", line)
+    #     line = re.sub(r"}\s*$", "},", line)
+    #
+    #     # replace all quotes on headers
+    #     for header in headers:
+    #         if line.find('"' + header + '":') != -1:
+    #             line = line.replace('"', '', 2)
+    #     # replace double with single quotes on any line without apostrophes.
+    #     if line.find("'") == -1:
+    #         line = line.replace('"', "'")
+    #     lines.append(line)
+    lines = output_str.splitlines()
 
     # Write that out to the user.
     if args.output_file:
