@@ -187,11 +187,9 @@ def main(args):
         upper_mob_replace = {}
         for (old, new) in mob_replace[lang].items():
             if old.find("-")!=-1 or old.find(" ")!=-1:
-                def upper_first_char(x):
-                    return x.upper() if len(x)<=1 else x[0].upper()+x[1:]
                 for ch in [' ', '-']:
-                    upper_mob_replace[ch.join(list(map(upper_first_char, old.split(ch))))] = new
-                    upper_mob_replace[ch.join(list(map(upper_first_char, old.split(ch)[:1]))+old.split(ch)[1:])] = new
+                    upper_mob_replace[ch.join(list(map(str.capitalize, old.split(ch))))] = new
+                    upper_mob_replace[ch.join(list(map(str.capitalize, old.split(ch)[:1]))+old.split(ch)[1:])] = new
         mob_replace[lang].update(upper_mob_replace)
         timeline_replace.append({
             'locale': lang,
