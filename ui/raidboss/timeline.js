@@ -51,6 +51,7 @@ class Timeline {
       if (!r[replaceKey])
         continue;
       let keys = Object.keys(r[replaceKey]);
+      keys.sort().reverse();
       for (let j = 0; j < keys.length; ++j)
         text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]]);
     }
