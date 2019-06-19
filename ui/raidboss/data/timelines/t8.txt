@@ -1,4 +1,5 @@
 ### Turn 8
+# -ii 7D1 87C 87D 7CC 7CD 7CF 7CE -p 7C9:162.6 7C8:800
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -9,7 +10,7 @@ hideall "--sync--"
 0.0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
 0.0 "--sync--" sync / 00:0839:The central bow will be sealed off/ window 10,10
-3.5 "--sync--" sync /:The Avatar:7C0:/ window 4,0
+3.5 "--sync--" sync /:The Avatar:7C[01]:/ window 3.5,0
 6.1 "Diffusion Ray" sync /:The Avatar:7C2:/ window 7,10
 26.0 "Homing Missile" sync /:The Avatar:7C7:/
 27.2 "Diffusion Ray" sync /:The Avatar:7C2:/
@@ -26,83 +27,84 @@ hideall "--sync--"
 122.2 "Diffusion Ray" sync /:The Avatar:7C2:/
 137.2 "Diffusion Ray" sync /:The Avatar:7C2:/
 146.0 "Homing Missile" sync /:The Avatar:7C7:/
+155.0 "Gaseous Bomb" sync /:The Avatar:7C6:/
+156.2 "Diffusion Ray" sync /:The Avatar:7C2:/
 
-### Phase 2: brainjack + ballistic missile
-147.4 "Inertia Stream" sync /:The Avatar:7C9:/
-148.5 "Inertia Stream" sync /:The Avatar:7C9:/
-153.7 "Ballistic Missile" sync /:The Avatar:7CA:/
-161.4 "Diffusion Ray" sync /:The Avatar:7C2:/
-169.3 "Brainjack" sync /:The Avatar:7C3:/ duration 11
-176.4 "Diffusion Ray" sync /:The Avatar:7C2:/
-184.3 "Homing Missile" sync /:The Avatar:7C7:/
-191.4 "Diffusion Ray" sync /:The Avatar:7C2:/
-200.3 "Gaseous Bomb" sync /:The Avatar:7C6:/
-209.4 "Brainjack" sync /:The Avatar:7C3:/ duration 11
-210.6 "Diffusion Ray" sync /:The Avatar:7C2:/
-224.4 "Homing Missile" sync /:The Avatar:7C7:/
-225.7 "Diffusion Ray" sync /:The Avatar:7C2:/
-226.8 "Inertia Stream" sync /:The Avatar:7C9:/
-227.9 "Inertia Stream" sync /:The Avatar:7C9:/
-233.1 "Ballistic Missile" sync /:The Avatar:7CA:/
-240.4 "Gaseous Bomb" sync /:The Avatar:7C6:/
-241.6 "Diffusion Ray" sync /:The Avatar:7C2:/
-249.5 "Brainjack" sync /:The Avatar:7C3:/ duration 11
-256.5 "Diffusion Ray" sync /:The Avatar:7C2:/
-264.4 "Homing Missile" sync /:The Avatar:7C7:/
-271.6 "Diffusion Ray" sync /:The Avatar:7C2:/
-280.5 "Gaseous Bomb" sync /:The Avatar:7C6:/
-289.6 "Brainjack" sync /:The Avatar:7C3:/ duration 11
-290.8 "Diffusion Ray" sync /:The Avatar:7C2:/
-304.5 "Homing Missile" sync /:The Avatar:7C7:/
-305.8 "Diffusion Ray" sync /:The Avatar:7C2:/
-307.0 "Inertia Stream" sync /:The Avatar:7C9:/
-308.0 "Inertia Stream" sync /:The Avatar:7C9:/
-313.2 "Ballistic Missile" sync /:The Avatar:7CA:/
-320.6 "Gaseous Bomb" sync /:The Avatar:7C6:/
-321.8 "Diffusion Ray" sync /:The Avatar:7C2:/
-329.7 "Brainjack" sync /:The Avatar:7C3:/ duration 11
-336.8 "Diffusion Ray" sync /:The Avatar:7C2:/
-344.6 "Homing Missile" sync /:The Avatar:7C7:/
-351.9 "Diffusion Ray" sync /:The Avatar:7C2:/
-360.7 "Gaseous Bomb" sync /:The Avatar:7C6:/
+### Phase 2 (75%): brainjack + ballistic missile
+# Inertia Stream hits twice 1 second apart.
+# Only sync backwards for this first of three.
+162.6 "Inertia Stream" sync /:The Avatar:7C9:/ window 170,0
+168.9 "Ballistic Missile" sync /:The Avatar:7CA:/
+176.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+184.5 "Brainjack" sync /:The Avatar:7C3:/ duration 11
+191.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+199.5 "Homing Missile" sync /:The Avatar:7C7:/
+206.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+215.5 "Gaseous Bomb" sync /:The Avatar:7C6:/
+224.6 "Brainjack" sync /:The Avatar:7C3:/ duration 11
+225.8 "Diffusion Ray" sync /:The Avatar:7C2:/
+239.6 "Homing Missile" sync /:The Avatar:7C7:/
+240.9 "Diffusion Ray" sync /:The Avatar:7C2:/
+242.0 "Inertia Stream"
+248.3 "Ballistic Missile" sync /:The Avatar:7CA:/
+255.6 "Gaseous Bomb" sync /:The Avatar:7C6:/
+256.8 "Diffusion Ray" sync /:The Avatar:7C2:/
+264.7 "Brainjack" sync /:The Avatar:7C3:/ duration 11
+271.7 "Diffusion Ray" sync /:The Avatar:7C2:/
+279.6 "Homing Missile" sync /:The Avatar:7C7:/
+286.8 "Diffusion Ray" sync /:The Avatar:7C2:/
+295.7 "Gaseous Bomb" sync /:The Avatar:7C6:/
+304.8 "Brainjack" sync /:The Avatar:7C3:/ duration 11
+306.0 "Diffusion Ray" sync /:The Avatar:7C2:/
+319.7 "Homing Missile" sync /:The Avatar:7C7:/
+321.0 "Diffusion Ray" sync /:The Avatar:7C2:/
+322.2 "Inertia Stream"
+328.4 "Ballistic Missile" sync /:The Avatar:7CA:/
+335.8 "Gaseous Bomb" sync /:The Avatar:7C6:/
+337.0 "Diffusion Ray" sync /:The Avatar:7C2:/
+344.9 "Brainjack" sync /:The Avatar:7C3:/ duration 11
+352.0 "Diffusion Ray" sync /:The Avatar:7C2:/
+359.8 "Homing Missile" sync /:The Avatar:7C7:/
+367.1 "Diffusion Ray" sync /:The Avatar:7C2:/
+375.9 "Gaseous Bomb" sync /:The Avatar:7C6:/
 
 ### Phase 3 (45%): allagan field
-364.8 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 window 400,10
-371.1 "Homing Missile" sync /:The Avatar:7C7:/
-372.4 "Diffusion Ray" sync /:The Avatar:7C2:/
-379.0 "Gaseous Bomb" sync /:The Avatar:7C6:/
-387.3 "Diffusion Ray" sync /:The Avatar:7C2:/
-395.7 "Critical Surge" sync /:Allagan Field:7C5:/
+380.0 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 window 400,10
+386.3 "Homing Missile" sync /:The Avatar:7C7:/
+387.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+394.2 "Gaseous Bomb" sync /:The Avatar:7C6:/
+402.5 "Diffusion Ray" sync /:The Avatar:7C2:/
+410.9 "Critical Surge" sync /:Allagan Field:7C5:/
 
-404.8 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
-406.0 "Diffusion Ray" sync /:The Avatar:7C2:/
-412.0 "Homing Missile" sync /:The Avatar:7C7:/
-419.0 "Gaseous Bomb" sync /:The Avatar:7C6:/
-421.0 "Diffusion Ray" sync /:The Avatar:7C2:/
-435.6 "Critical Surge" sync /:Allagan Field:7C5:/
-436.0 "Diffusion Ray" sync /:The Avatar:7C2:/
+420.0 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
+421.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+427.2 "Homing Missile" sync /:The Avatar:7C7:/
+434.2 "Gaseous Bomb" sync /:The Avatar:7C6:/
+436.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+450.8 "Critical Surge" sync /:Allagan Field:7C5:/
+451.2 "Diffusion Ray" sync /:The Avatar:7C2:/
 
-444.9 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
-452.1 "Homing Missile" sync /:The Avatar:7C7:/
-453.3 "Diffusion Ray" sync /:The Avatar:7C2:/
-459.1 "Gaseous Bomb" sync /:The Avatar:7C6:/
-468.4 "Diffusion Ray" sync /:The Avatar:7C2:/
-475.7 "Critical Surge" sync /:Allagan Field:7C5:/
+460.1 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
+467.3 "Homing Missile" sync /:The Avatar:7C7:/
+468.5 "Diffusion Ray" sync /:The Avatar:7C2:/
+474.3 "Gaseous Bomb" sync /:The Avatar:7C6:/
+483.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+490.9 "Critical Surge" sync /:Allagan Field:7C5:/
 
-484.8 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
-486.0 "Diffusion Ray" sync /:The Avatar:7C2:/
-492.1 "Homing Missile" sync /:The Avatar:7C7:/
-499.1 "Gaseous Bomb" sync /:The Avatar:7C6:/
-501.0 "Diffusion Ray" sync /:The Avatar:7C2:/
-515.7 "Critical Surge" sync /:Allagan Field:7C5:/
-516.0 "Diffusion Ray" sync /:The Avatar:7C2:/
+500.0 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
+501.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+507.3 "Homing Missile" sync /:The Avatar:7C7:/
+514.3 "Gaseous Bomb" sync /:The Avatar:7C6:/
+516.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+530.9 "Critical Surge" sync /:Allagan Field:7C5:/
+531.2 "Diffusion Ray" sync /:The Avatar:7C2:/
 
-524.9 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 jump 444.9
-532.1 "Homing Missile"
-533.3 "Diffusion Ray"
-539.1 "Gaseous Bomb"
-548.3 "Diffusion Ray"
-555.7 "Critical Surge"
+540.1 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 jump 460.1
+547.3 "Homing Missile"
+548.5 "Diffusion Ray"
+554.3 "Gaseous Bomb"
+563.5 "Diffusion Ray"
+570.9 "Critical Surge"
 
 
 ### Phase 4: Enrage
