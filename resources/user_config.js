@@ -42,12 +42,10 @@ let UserConfig = {
       }
 
       // Post this callback so that the js and css can be executed first.
-      window.setTimeout((function() {
-        if (Options.Language && Options.Language in this.languageFuncs)
-          this.languageFuncs[Options.Language]();
-        if (callback)
-          callback();
-      }).bind(this), 0);
+      if (Options.Language && Options.Language in this.languageFuncs)
+        this.languageFuncs[Options.Language]();
+      if (callback)
+        callback();
     }).bind(this));
   },
   registerLanguage: function(lang, func) {
@@ -71,6 +69,7 @@ let UserConfig = {
     let userJS = document.createElement('script');
     userJS.setAttribute('type', 'text/javascript');
     userJS.setAttribute('src', src);
+    userJS.setAttribute('async', false);
     document.getElementsByTagName('head')[0].appendChild(userJS);
   },
   appendCSSLink: function(href) {
