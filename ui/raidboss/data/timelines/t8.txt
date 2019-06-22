@@ -1,6 +1,9 @@
 ### Turn 8
 # -ii 7D1 87C 87D 7CC 7CD 7CF 7CE -p 7C9:162.6 7C8:800
 
+# Note: sadly there's nothing in the logs about towers and so
+# there's no way to really include them here.
+
 hideall "--Reset--"
 hideall "--sync--"
 
@@ -69,35 +72,44 @@ hideall "--sync--"
 375.9 "Gaseous Bomb" sync /:The Avatar:7C6:/
 
 ### Phase 3 (45%): allagan field
+# NOTE: there seems to be two different last phase timings
+# for diffusion ray, depending on when you push.
+# There's the allagan field + 2 ray pattern (e.g. 380), where ray comes with missile/late
+# There's the allagan field + 3 ray pattern (e.g. 420), where ray comes with field/bomb/surge
+# The first 380 pattern seems always correct, however sometimes the 420 pattern
+# can instead be the 380/460 pattern, with a different diffusion ray.
+# The field/missile/bomb/surge timings are all roughly the same, so this
+# just removes the ray syncs and hopes for the best.
+377.0 "--sync--" sync /:7C4:The Avatar/ window 400,0
 380.0 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 window 400,10
 386.3 "Homing Missile" sync /:The Avatar:7C7:/
-387.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+387.6 "Diffusion Ray" #sync /:The Avatar:7C2:/
 394.2 "Gaseous Bomb" sync /:The Avatar:7C6:/
-402.5 "Diffusion Ray" sync /:The Avatar:7C2:/
+402.5 "Diffusion Ray" #sync /:The Avatar:7C2:/
 410.9 "Critical Surge" sync /:Allagan Field:7C5:/
 
 420.0 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
-421.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+421.2 "Diffusion Ray" #sync /:The Avatar:7C2:/
 427.2 "Homing Missile" sync /:The Avatar:7C7:/
 434.2 "Gaseous Bomb" sync /:The Avatar:7C6:/
-436.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+436.2 "Diffusion Ray" #sync /:The Avatar:7C2:/
 450.8 "Critical Surge" sync /:Allagan Field:7C5:/
-451.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+451.2 "Diffusion Ray" #sync /:The Avatar:7C2:/
 
 460.1 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
 467.3 "Homing Missile" sync /:The Avatar:7C7:/
-468.5 "Diffusion Ray" sync /:The Avatar:7C2:/
+468.5 "Diffusion Ray" #sync /:The Avatar:7C2:/
 474.3 "Gaseous Bomb" sync /:The Avatar:7C6:/
-483.6 "Diffusion Ray" sync /:The Avatar:7C2:/
+483.6 "Diffusion Ray" #sync /:The Avatar:7C2:/
 490.9 "Critical Surge" sync /:Allagan Field:7C5:/
 
 500.0 "Allagan Field" sync /:The Avatar:7C4:/ duration 31
-501.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+501.2 "Diffusion Ray" #sync /:The Avatar:7C2:/
 507.3 "Homing Missile" sync /:The Avatar:7C7:/
 514.3 "Gaseous Bomb" sync /:The Avatar:7C6:/
-516.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+516.2 "Diffusion Ray" #sync /:The Avatar:7C2:/
 530.9 "Critical Surge" sync /:Allagan Field:7C5:/
-531.2 "Diffusion Ray" sync /:The Avatar:7C2:/
+531.2 "Diffusion Ray" #sync /:The Avatar:7C2:/
 
 540.1 "Allagan Field" sync /:The Avatar:7C4:/ duration 31 jump 460.1
 547.3 "Homing Missile"
