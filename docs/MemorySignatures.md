@@ -9,8 +9,8 @@ look up game state
 even when the game refuses to give you an API for this.
 
 This guide shows how to use Cheat Engine to find such memory signatures.
-It's probably helpful if you know some basic assembly language
-or at least are willing to be patient and look things up.
+It's probably helpful if you know some basic assembly language,
+some programming, and have extreme levels of patience.
 
 ## Installation
 
@@ -49,7 +49,7 @@ and then hit a striking dummy until your beast gauge is 80.
 
 Switch back to Cheat Engine.
 
-![cheat engine connected screenshot](images/cheatengine_connected.png)
+![cheat engine initial scan screenshot](images/cheatengine_initialscan.png)
 
 Put in a value (not hex) of 80.
 The scan type should be `Exact Value` with a `Value Type` of byte.
@@ -66,6 +66,8 @@ A great start!
 
 ![cheat engine found screenshot](images/cheatengine_found.png)
 
+This is a live view into all of these memory locations.
+They turn red when they have changed.
 Some of these are flickering values that are changing even without doing something in game.
 You can always mash **Next Scan**
 a few times to repeat the scan and eliminate them.
@@ -118,7 +120,7 @@ and select **Browse This Memory Region*.
 
 That will bring up the Memory Viewer window.
 This has a disassembly view at the top and a memory viewer at the bottom.
-Confusingly, these are separate views.
+Confusingly, these are separate views and are *not* synced together even though they are in the same window.
 They will sync to whatever the last address you have selected
 **Disassemble This Memory Region**
 or **Browse This Memory Region** on respectively.
@@ -170,15 +172,17 @@ Given that this is the line that is writing memory,
 but we need to find the calling code that set `rcx`.
 This code is likely somewhere very different in the executable.
 
-One option here is to do a trace to find calling code.
-The second option is to consider what reads the address and not just write.
-A third option is to find some other code path that modifies the value,
+We have a couple of different options here.
+One option here is to [do a trace to find calling code](#approach-2-tracing).
+The second option is to [consider what reads the address](#approach-3-finding-readers) and not just write.
+A third option (not explored in this guide) is to find some other code path that modifies the value,
 and see if that code path has an easier signature.
 (For example, changing jobs likely modifies the value in a different way?)
 
 ### Approach 2: Tracing
 
-If pure disassembly doesn't work, Cheat Engine has "break and trace" functionality.
+If pure disassembly doesn't yield enough contextual information,
+Cheat Engine has "break and trace" functionality.
 Go back to the [browsing memory](#browsing-memory) view.
 This functionality is not available from the address list directly.
 
@@ -201,12 +205,12 @@ have the Memory Viewer disassembly window jump to that location.
 
 In this case, expanding the arrow and double clicking the `ret`
 return assembly instruction goes back to exactly what we were
-looking at before.
+looking at before in the disassembly window.
 
 Double clicking on `mov rdx, [rsp+50]` brings us to the code
 that called the code we were looking at before.
 
-![cheat engine tracing screenshot](images/cheatengine_tracing.png)
+![cheat engine tracing 2 screenshot](images/cheatengine_tracing2.png)
 
 The `call` right before that line is the `call` into the code
 we were looking at.
