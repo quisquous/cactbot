@@ -10,12 +10,13 @@ import fflogs
 
 # 'en' here is 'www' which we consider the "base" and do automatically.
 # 'cn' exists on fflogs but does not have proper translations, sorry.
-languages = ['en', 'de', 'fr', 'ja']
+languages = ['en', 'de', 'fr', 'ja', 'cn']
 prefixes = {
     'en': 'www',
     'de': 'de',
     'fr': 'fr',
     'ja': 'ja',
+    'cn': 'cn',
 }
 default_language = 'en'
 ignore_abilities = ['Attack']
@@ -72,6 +73,7 @@ def add_default_sync_mappings(sync_replace):
     sync_replace['de']['Engage!'] = 'Start!'
     sync_replace['fr']['Engage!'] = 'À l\'attaque'
     sync_replace['ja']['Engage!'] = '戦闘開始！'
+    sync_replace['cn']['Engage!'] = '战斗开始！'
 
 
 def build_mapping(translations, ignore_list=[]):
@@ -183,36 +185,18 @@ def main(args):
             continue
         timeline_replace.append({
             'locale': lang,
-            'replaceText': ability_replace[lang],
-            'replaceSync': mob_replace[lang],
+            'replaceSync': dict(sorted(mob_replace[lang].items(), reverse=True)),
+            'replaceText': dict(sorted(ability_replace[lang].items(), reverse=True)),
             # sort this last <_<
-            '~effectNames': effect_replace[lang],
+            '~effectNames': dict(sorted(effect_replace[lang].items(), reverse=True)),
         })
     output = {'timelineReplace': timeline_replace}
-    output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=True)
-
-    # hacky reformatting: single quotes, and remove quotes
-    lines = []
-    headers = ['timelineReplace', 'locale', 'replaceSync', 'replaceText', 'locale']
-    for line in output_str.splitlines():
-        # add trailing commas
-        line = re.sub(r"\"\s*$", "\",", line)
-        line = re.sub(r"]\s*$", "],", line)
-        line = re.sub(r"}\s*$", "},", line)
-
-        # replace all quotes on headers
-        for header in headers:
-            if line.find('"' + header + '":') != -1:
-                line = line.replace('"', '', 2)
-        # replace double with single quotes on any line without apostrophes.
-        if line.find("'") == -1:
-            line = line.replace('"', "'")
-        lines.append(line)
+    output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=False)
 
     # Write that out to the user.
     if args.output_file:
         with open(args.output_file, 'w', encoding='utf-8') as fp:
-            fp.write('\n'.join(lines))
+            fp.write(output_str)
     else:
         try:
             print(output_str)
