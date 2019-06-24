@@ -1,7 +1,9 @@
+import csv
 import coinach
 import json
 from pathlib import Path
 import os
+import re
 import requests
 import sys
 
@@ -156,13 +158,44 @@ def get_tackle():
 
     return tackle
 
+def get_special_place_names(places):
+    # handle special german casting names
+    fishing_places = places['de'].keys()
+
+    output = {}
+    for locale in locales:
+      output[locale] = {}
+    coin = coinach.CoinachReader()
+    reader = csv.reader(coin.exd('PlaceName', lang='de'))
+    next(reader)
+    next(reader)
+    next(reader)
+
+    place_idx = 0
+    xml_idx = 9
+
+    for row in reader:
+        place = int(row[place_idx])
+        if not place:
+            continue
+        if place not in fishing_places:
+            continue
+        m = re.search(r'<Case\(2\)>([^<]*)<\/Case>', row[xml_idx])
+        if not m:
+            continue
+        output['de'][place] = m.group(1)
+
+    return output
+
 # Actual program runs here
 places, fishes, placefish = get_fish_data()
 tackle = get_tackle()
+places_cast = get_special_place_names(places)
 
 data = {
     'tackle': tackle,
     'places': places,
+    'places_cast': places_cast,
     'fish': fishes,
     'placefish': placefish
 }

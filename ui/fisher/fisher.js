@@ -59,7 +59,10 @@ class Fisher {
       // 3525: nocatch (inventory full)
 
       'de': {
-        'cast': /00:08c3:Du hast mit dem Fischen (?:am |auf dem |im )?([\w\s\-]+) begonnen./,
+        // Note, the preposition in German is stored in the cast string, so is ignored here.
+        // We could attempt to trim prepositions in the fishing data and then include all
+        // potential prepositions here, but I don't know German that well.
+        'cast': /00:08c3:Du hast mit dem Fischen (.+) begonnen\./,
         'bite': /00:08c3:Etwas hat angebissen!/,
         'catch': /00:0843:Du hast (?:einen |eine )?.+?\s?([\w\s\-\'\.\d\u00c4-\u00fc]{3,})(?: | [^\w] |[^\w\s\-\'\u00c4-\u00fc].+ )\(\d/,
         'nocatch': /00:08c3:(?:Der Fisch hat den K\u00f6der vom Haken gefressen|.+ ist davongeschwommen|Der Fisch konnte sich vom Haken rei\u00dfen|Die Leine ist gerissen|Nichts bei\u00dft an|Du hast nichts gefangen|Du hast das Fischen abgebrochen|Deine Beute hat sich aus dem Staub gemacht und du hast|Die Fische sind misstrauisch und kommen keinen Ilm n\u00e4her|Du hast .+ geangelt, musst deinen Fang aber wieder freilassen, weil du nicht mehr davon besitzen kannst)/,
@@ -180,7 +183,11 @@ class Fisher {
     // Set place, if it's unset
     if (!this.place || !this.place.id) {
       this.place = this.seaBase.getPlace(place);
-      this.ui.setPlace(place);
+      // This lookup could fail and, for German,
+      // this.place.name may differ from place
+      // due to differing cast vs location names.
+      if (this.place.id)
+        this.ui.setPlace(this.place.name);
     }
 
     let _this = this;
