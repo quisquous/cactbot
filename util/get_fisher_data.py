@@ -1,5 +1,7 @@
+import coinach
 import json
 from pathlib import Path
+import os
 import requests
 import sys
 
@@ -64,16 +66,6 @@ def xivapi(content, filters = {}):
         results += response['Results']
 
     return results
-
-def coerce(string):
-    """Changing strict JSON string to a format that satisfies eslint"""
-    # Double quotes to single quotes
-    coerced = string.replace("'", r"\'").replace("\"", "'")
-
-    # Spaces between brace and content
-    coerced = coerced.replace('{', '{ ').replace('}', ' }')
-
-    return coerced
 
 def get_fish_data():
     """Returns dictionaries for places, fish, and place->fish mapping"""
@@ -175,12 +167,10 @@ data = {
     'placefish': placefish
 }
 
-data_string = coerce(json.dumps(data))
-
 filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
-
-with open(filename, 'w') as file:
-    file.write("'use strict';\n\n")
-    file.write("const gFisherData=")
-    file.write(data_string)
-    file.write(";\n")
+writer = coinach.CoinachWriter()
+writer.write(
+    filename,
+    os.path.basename(os.path.abspath(__file__)),
+    'gFisherData',
+    data)
