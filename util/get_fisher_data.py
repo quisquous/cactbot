@@ -16,6 +16,13 @@ if len(sys.argv) > 1:
 else:
     xivapi_key = False
 
+def cleanup_german(word):
+    word = word.replace('[a]', 'e')
+    word = word.replace('[A]', 'er')
+    word = word.replace('[p]', '')
+    word = word.replace('[t]', 'der')
+    return word
+
 def xivapi(content, filters = {}):
     """Fetches content columns from XIVAPI"""
     base = 'https://xivapi.com/'
@@ -115,10 +122,8 @@ def get_fish_data():
                 if not fish[f'Singular_{locale}']:
                     continue
 
-                # In German, multi-word item names have the first word suffixed by [a] or [p] to denote casing
-                # For our purposes, simply removing it yields the in-game result
                 if locale == 'de':
-                    fish['Singular_de'] = fish['Singular_de'].replace('[a]', '').replace('[p]', '')
+                    fish['Singular_de'] = cleanup_german(fish['Singular_de'])
 
                 # Add fish to fish list
                 fishes[locale][fish['ID']] = fish[f'Singular_{locale}']
@@ -151,7 +156,7 @@ def get_tackle():
 
         for result in results:
             if locale == 'de':
-                result[f'Singular_de'] = result['Singular_de'].replace('[a]', '').replace('[p]', '')
+                result['Singular_de'] = cleanup_german(result['Singular_de'])
             locale_tackle[result['ID']] = result[f'Singular_{locale}']
 
         tackle[locale] = locale_tackle
