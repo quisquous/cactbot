@@ -15,17 +15,26 @@ def parse_data(csvfile):
     place_idx = keys.index('PlaceName')
     rate_idx = keys.index('WeatherRate')
 
+    # TODO: verify which of these they should be
+    known_conflicts = {
+      # Mist is 14/32
+      'Mist': 14,
+      # Diadem is 60/61/62/71
+      'The Diadem': 60,
+      # The Howling Eye is 26/101 (101 probably ff15 content)
+      'The Howling Eye': 26,
+    }
+
     row_idx = 3
     for row in reader:
         row_idx += 1
         place = row[place_idx]
         if not place:
             continue
+        if place in known_conflicts:
+            all_rates[place] = known_conflicts[place]
+            continue
         rate = int(row[rate_idx])
-
-        # Unknown conflicts:
-        # TODO: Mist is 14/32
-        # TODO: Diadem is 60/61/62/71
 
         # ignore many single weather types that are (likely?) used for instanced fights
         # TODO: If these ever change, consider
