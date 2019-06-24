@@ -1305,7 +1305,11 @@ let gWeatherRates = {
     ],
   },
   101: {
-    'rates': [],
-    'weathers': [],
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Gales',
+    ],
   },
 };

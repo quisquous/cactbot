@@ -67,6 +67,7 @@ Here is some grammar examples of timeline entries.
 Every timeline entry begins with the ability time and the ability name.
 
 `Number "String" (duration Number)`
+
 `Number "String" sync /Regex/ (window Number,Number) (jump Number) (duration Number)`
 
 The parentheses here indicate optionality and are not literal parentheses.

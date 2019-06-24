@@ -197,15 +197,33 @@ class SeaBase {
   }
 
   getFish(fish) {
-    return this.getInfo('fish', fish);
+    let result = this.getInfo('fish', fish);
+    if (!result.id || !result.name)
+      console.log('failed to look up fish: ' + fish);
+    return result;
   }
 
   getBait(bait) {
-    return this.getInfo('tackle', bait);
+    let result = this.getInfo('tackle', bait);
+    if (!result.id || !result.name)
+      console.log('failed to look up bait: ' + bait);
+    return result;
   }
 
   getPlace(place) {
-    return this.getInfo('places', place);
+    let result = this.getInfo('places', place);
+    if (!result.id) {
+      // In some cases, we can find the name in places_cast instead.
+      // For things like German, there's a different string for the place
+      // during the cast itself.
+      result = this.getInfo('places_cast', place);
+      // If we do, do a reverse lookup by id to find the correct place name.
+      if (result.id)
+        result = this.getInfo('places', result.id);
+    }
+    if (!result.id || !result.name)
+      console.log('failed to look up place: ' + place);
+    return result;
   }
 
   getFishForPlace(place) {

@@ -1,5 +1,9 @@
+import csv
+import coinach
 import json
 from pathlib import Path
+import os
+import re
 import requests
 import sys
 
@@ -11,6 +15,13 @@ if len(sys.argv) > 1:
     xivapi_key = sys.argv[1]
 else:
     xivapi_key = False
+
+def cleanup_german(word):
+    word = word.replace('[a]', 'e')
+    word = word.replace('[A]', 'er')
+    word = word.replace('[p]', '')
+    word = word.replace('[t]', 'der')
+    return word
 
 def xivapi(content, filters = {}):
     """Fetches content columns from XIVAPI"""
@@ -65,16 +76,6 @@ def xivapi(content, filters = {}):
 
     return results
 
-def coerce(string):
-    """Changing strict JSON string to a format that satisfies eslint"""
-    # Double quotes to single quotes
-    coerced = string.replace("'", r"\'").replace("\"", "'")
-
-    # Spaces between brace and content
-    coerced = coerced.replace('{', '{ ').replace('}', ' }')
-
-    return coerced
-
 def get_fish_data():
     """Returns dictionaries for places, fish, and place->fish mapping"""
     # Generate the columns needed
@@ -121,10 +122,8 @@ def get_fish_data():
                 if not fish[f'Singular_{locale}']:
                     continue
 
-                # In German, multi-word item names have the first word suffixed by [a] or [p] to denote casing
-                # For our purposes, simply removing it yields the in-game result
                 if locale == 'de':
-                    fish['Singular_de'] = fish['Singular_de'].replace('[a]', '').replace('[p]', '')
+                    fish['Singular_de'] = cleanup_german(fish['Singular_de'])
 
                 # Add fish to fish list
                 fishes[locale][fish['ID']] = fish[f'Singular_{locale}']
@@ -157,30 +156,59 @@ def get_tackle():
 
         for result in results:
             if locale == 'de':
-                result[f'Singular_de'] = result['Singular_de'].replace('[a]', '').replace('[p]', '')
+                result['Singular_de'] = cleanup_german(result['Singular_de'])
             locale_tackle[result['ID']] = result[f'Singular_{locale}']
 
         tackle[locale] = locale_tackle
 
     return tackle
 
+def get_special_place_names(places):
+    # handle special german casting names
+    fishing_places = places['de'].keys()
+
+    output = {}
+    for locale in locales:
+      output[locale] = {}
+    coin = coinach.CoinachReader()
+    reader = csv.reader(coin.exd('PlaceName', lang='de'))
+    next(reader)
+    next(reader)
+    next(reader)
+
+    place_idx = 0
+    xml_idx = 9
+
+    for row in reader:
+        place = int(row[place_idx])
+        if not place:
+            continue
+        if place not in fishing_places:
+            continue
+        m = re.search(r'<Case\(2\)>([^<]*)<\/Case>', row[xml_idx])
+        if not m:
+            continue
+        output['de'][place] = m.group(1)
+
+    return output
+
 # Actual program runs here
 places, fishes, placefish = get_fish_data()
 tackle = get_tackle()
+places_cast = get_special_place_names(places)
 
 data = {
     'tackle': tackle,
     'places': places,
+    'places_cast': places_cast,
     'fish': fishes,
     'placefish': placefish
 }
 
-data_string = coerce(json.dumps(data))
-
 filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
-
-with open(filename, 'w') as file:
-    file.write("'use strict';\n\n")
-    file.write("const gFisherData=")
-    file.write(data_string)
-    file.write(";\n")
+writer = coinach.CoinachWriter()
+writer.write(
+    filename,
+    os.path.basename(os.path.abspath(__file__)),
+    'gFisherData',
+    data)
