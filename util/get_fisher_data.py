@@ -17,11 +17,17 @@ else:
     xivapi_key = False
 
 def cleanup_german(word):
-    word = word.replace('[a]', 'e')
     word = word.replace('[A]', 'er')
     word = word.replace('[p]', '')
     word = word.replace('[t]', 'der')
-    return word
+
+    if word.find('[a]') == -1:
+      return [word]
+
+    # [a] is complicated, and can mean different things in different contexts.
+    # Just cover all our bases here.
+    endings = ['e', 'en', 'es', 'er']
+    return list(map(lambda x : word.replace('[a]', x), endings))
 
 def xivapi(content, filters = {}):
     """Fetches content columns from XIVAPI"""
@@ -89,6 +95,7 @@ def get_fish_data():
         for locale in locales:
             columns.append(f'Item{i}.ID')
             columns.append(f'Item{i}.Singular_{locale}')
+            columns.append(f'Item{i}.Plural_{locale}')
 
     results = xivapi('FishingSpot', {'columns': columns})
 
@@ -124,9 +131,19 @@ def get_fish_data():
 
                 if locale == 'de':
                     fish['Singular_de'] = cleanup_german(fish['Singular_de'])
+                    fish['Plural_de'] = cleanup_german(fish['Plural_de'])
+                    flist = fish['Singular_de']
+                    flist.extend(fish['Plural_de'])
+                else:
+                    flist = [fish[f'Singular_{locale}'], fish[f'Plural_{locale}']]
 
-                # Add fish to fish list
-                fishes[locale][fish['ID']] = fish[f'Singular_{locale}']
+                # uniq
+                flist = [x for idx, x in enumerate(flist) if idx == flist.index(x) and x]
+                # delistify if only one element
+                if len(flist) == 1:
+                  flist = flist[0]
+
+                fishes[locale][fish['ID']] = flist
 
                 # Add fish to id list
                 id_list.append(fish['ID'])
@@ -163,13 +180,10 @@ def get_tackle():
 
     return tackle
 
-def get_special_place_names(places):
+def append_special_place_names(places):
     # handle special german casting names
     fishing_places = places['de'].keys()
 
-    output = {}
-    for locale in locales:
-      output[locale] = {}
     coin = coinach.CoinachReader()
     reader = csv.reader(coin.exd('PlaceName', lang='de'))
     next(reader)
@@ -188,19 +202,20 @@ def get_special_place_names(places):
         m = re.search(r'<Case\(2\)>([^<]*)<\/Case>', row[xml_idx])
         if not m:
             continue
-        output['de'][place] = m.group(1)
 
-    return output
+        if isinstance(places['de'][place], list):
+          places['de'][place].append(m.group(1))
+        else:
+          places['de'][place] = [places['de'][place], m.group(1)]
 
 # Actual program runs here
 places, fishes, placefish = get_fish_data()
 tackle = get_tackle()
-places_cast = get_special_place_names(places)
+append_special_place_names(places)
 
 data = {
     'tackle': tackle,
     'places': places,
-    'places_cast': places_cast,
     'fish': fishes,
     'placefish': placefish
 }

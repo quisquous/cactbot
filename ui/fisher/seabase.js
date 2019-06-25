@@ -10,7 +10,15 @@ class SeaBase {
   }
 
   findKey(obj, val) {
-    return Object.keys(obj).find((x) => obj[x] == val);
+    return Object.keys(obj).find((x) =>
+      obj[x] == val ||
+      Array.isArray(obj[x]) && obj[x].indexOf(val) >= 0);
+  }
+
+  firstIfArray(obj) {
+    if (Array.isArray(obj))
+      return obj[0];
+    return obj;
   }
 
   getConnection() {
@@ -161,6 +169,12 @@ class SeaBase {
   }
 
   getInfo(lookup, value) {
+    // Note: the name entry may be a single string, or it may
+    // be an array with multiple values in it.  The first name
+    // in the array is the canonical value and should always be
+    // returned, even if looking up by another name in its list.
+    // This lets getPlace("german grammar used only when casting")
+    // return the correct place name to display in the ui.
     let info;
     // Value can be one of three things
     if (typeof value === 'object' && value !== null) {
@@ -169,27 +183,32 @@ class SeaBase {
       if (value.id && !value.name) {
         info = {
           id: value.id,
-          name: gFisherData[lookup][this.locale][value.id],
+          name: this.firstIfArray(gFisherData[lookup][this.locale][value.id]),
         };
       } else if (!value.id && value.name) {
+        // Return the first / primary name regardless of what is passed in
+        // when doing a reverse lookup by name.
+        let key = this.findKey(gFisherData[lookup][this.locale], value.name);
         info = {
-          id: this.findKey(gFisherData[lookup][this.locale], value.name),
-          name: value.name,
+          id: key,
+          name: this.firstIfArray(gFisherData[lookup][this.locale][key]),
         };
       } else {
         info = value;
       }
     } else if (isNaN(value)) {
       // 2. String with the name
+      // See note above about reverse lookups.
+      let key = this.findKey(gFisherData[lookup][this.locale], value);
       info = {
-        id: this.findKey(gFisherData[lookup][this.locale], value),
-        name: value,
+        id: key,
+        name: this.firstIfArray(gFisherData[lookup][this.locale][key]),
       };
     } else {
       // 3. Number with the ID
       info = {
         id: value,
-        name: gFisherData[lookup][this.locale][value],
+        name: this.firstIfArray(gFisherData[lookup][this.locale][value]),
       };
     }
 
@@ -212,15 +231,6 @@ class SeaBase {
 
   getPlace(place) {
     let result = this.getInfo('places', place);
-    if (!result.id) {
-      // In some cases, we can find the name in places_cast instead.
-      // For things like German, there's a different string for the place
-      // during the cast itself.
-      result = this.getInfo('places_cast', place);
-      // If we do, do a reverse lookup by id to find the correct place name.
-      if (result.id)
-        result = this.getInfo('places', result.id);
-    }
     if (!result.id || !result.name)
       console.log('failed to look up place: ' + place);
     return result;
