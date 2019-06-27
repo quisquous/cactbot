@@ -29,7 +29,7 @@ def api(call, report, prefix, options):
     if call not in ('fights', 'events'):
         return {}
 
-    if prefix not in ['www', 'fr', 'ja', 'de']:
+    if prefix not in ['www', 'fr', 'ja', 'de', 'cn']:
         raise Exception('Invalid prefix: %s' % prefix)
 
     api_url = 'https://{}.fflogs.com:443/v1/report/{}/{}'.format(prefix, call, report)

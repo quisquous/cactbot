@@ -57,7 +57,7 @@
     },
     {
       id: 'T8 Brainjack',
-      regex: / [16:38:07.301] 14:7C3:The Avatar starts using Brainjack on (\y{Name})\./,
+      regex: / 14:7C3:The Avatar starts using Brainjack on (\y{Name})\./,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
