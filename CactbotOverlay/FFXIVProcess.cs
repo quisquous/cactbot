@@ -19,9 +19,9 @@ namespace Cactbot {
     private IntPtr bait_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
-    // refer to as the charmap. The pointer is at the end of the signature.
-    private static String kCharmapSignature = "85AD????????8BD7488D0D";
-    private static int kCharmapSignatureOffset = 0;
+    // refer to as the charmap. The pointer is the first ????????.
+    private static String kCharmapSignature = "488B1D????????488BFA33D2488BCF";
+    private static int kCharmapSignatureOffset = -12;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kCharmapSignatureRIP = true;
     // The pointer is to a structure as:
@@ -145,18 +145,15 @@ namespace Cactbot {
     //   ...
     //   0x8C bytes in: EntityType type;  // 1 byte.
     //   ...
-    //   0x92 bytes in: byte distance;
-    //   ...
     //   0xA0 bytes in: float32 pos_x;
     //   0xA4 bytes in: float32 pos_z;
     //   0xA8 bytes in: float32 pos_y;
     //   ...
-    //   0x1700 bytes in:
+    //   0x18A4 bytes in:
     //     0x000 bytes in: int32 hp;
     //     0x004 bytes in: int32 maxhp;
     //     0x008 bytes in: int32 mp;
     //     0x00C bytes in: int32 maxmp;
-    //     0x010 bytes in: int16 tp;
     //     0x012 bytes in: int16 gp;
     //     0x014 bytes in: int16 maxgp;
     //     0x016 bytes in: int16 cp;
@@ -168,7 +165,7 @@ namespace Cactbot {
     // }
   
     // Base offset for the character details below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x1758;
+    private static int kEntityStructureOffsetCharacterDetails = 0x18A4;
 
     private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
     private static int kEntityStructureSizeName = 0x44;
