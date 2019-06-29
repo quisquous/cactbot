@@ -118,6 +118,8 @@ namespace Cactbot {
       SAM = 34,
       RDM = 35,
       BLU = 36,
+      DNC = 37,
+      GNB = 38,
     };
 
     static bool IsGatherer(EntityJob job) {
