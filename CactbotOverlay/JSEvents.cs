@@ -172,15 +172,15 @@ namespace Cactbot {
           umbralStacks = d.umbral_stacks;
           umbralMilliseconds = d.umbral_time_ms;
           umbralHearts = d.umbral_hearts;
+          foulCount = d.foul_count;
           enochian = d.enochian_active;
-          polygot = d.polygot_active;
           nextPolygotMilliseconds = d.polygot_time_ms;
         }
         public int umbralStacks;  // Positive = Fire, Negative = Ice.
         public uint umbralMilliseconds;
         public int umbralHearts;
+        public int foulCount;
         public bool enochian;
-        public bool polygot;
         public uint nextPolygotMilliseconds;
       }
 

@@ -210,36 +210,37 @@ namespace Cactbot {
     //        struct Paladin {
     //          0x8 bytes in: byte beast;
     //        }
-    //        struct Bard {
+    //        struct Bard { // FIXME
     //          0x8 bytes in: uint16 song_ms;  // Number of ms left in current song.
     //          0xA bytes in: byte song_procs_count;
     //          0xB bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
     //        }
-    //        struct Dragoon {
+    //        struct Dragoon { // needs testing
     //          0x8 bytes in: uint16 blood_or_life_ms;  // Number of ms left in Blood/Life of the Dragon.
     //          0xA bytes in: uchar stance;  // 0 = None, 1 = Blood, 2 = Life
     //          0xB bytes in: uchar eyes_amount;
     //        }
     //        struct Ninja {
     //          0x8 bytes in: uint32 huton_ms;  // Number of ms left in huton.
-    //          0xE bytes in: uchar ninki_amount;
+    //          0xD bytes in: uchar ninki_amount;
     //        }
     //        struct BlackMage {
     //          0x8 bytes in: uint16 polygot_time_ms;  // Number of ms left before polygot proc.
     //          0xA bytes in: uint16 umbral_time_ms;  // Number of ms left in umbral fire/ice.
     //          0xC bytes in: uchar umbral_state;  // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
     //          0xD bytes in: uchar umbral_hearts_count;
-    //          0xE bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
+    //          0xE bytes in: uchar foul_count;
+    //          0xF bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
     //        }
     //        struct WhiteMage {
     //          0xA bytes in: byte lilies;
     //        }
-    //        struct Summoner {
+    //        struct Summoner { // needs testing
     //          0x8 bytes in: uint16 stance_ms;  // Dreadwyrm or Bahamut time left.
     //          0xA bytes in: uchar bahamut_stance;  // 3 = Bahamut summoned, else 0.
     //          0xC bytes in: uchar stacks;  // Bottom 2 bits: Aetherflow. Next 2 bits: Dreadwyrm. Next 2 bits: Bahamut.
     //        }
-    //        struct Scholar {
+    //        struct Scholar { // needs testing
     //          0xC bytes in: uchar aetherflow_stacks;
     //          0xD bytes in: uchar fairy_amount;
     //        }
@@ -248,33 +249,21 @@ namespace Cactbot {
     //          0xA bytes in: uchar greased_lightning_stacks;
     //          0xB bytes in: uchar chakra_stacks;
     //        }
-    //        struct Machinist {
-    //          0x8 bytes in: uint16 overheated_time_ms;
-    //          0xA bytes in: uchar heat;
-    //          0xB bytes in: uchar ammunition;
-    //          0xC bytes in: uchar gauss_barrel;
+    //        struct Machinist { // FIXME
+    //          // ???
     //        }
-    //        struct Astrologian {
-    //          0x8 bytes in: uint16 card_draw_time_ms; // time remaining on currently drawn card
-    //          // drawn_spread_cards = spread_card << 4 | drawn_card;
-    //          // cards[] = {0, balance, bole, arrow, spear, ewer, spire};
-    //          // e.g. balance in spread + drawn ewer = 0x15
-    //          0xC bytes in: uchar drawn_spread_cards;
-    //          // royal_road_arcanum_cards = royal_road_card << 4 | arcanum_card;
-    //          // royal_road_cards[] = {0, enhanced, extended, expanded}
-    //          // arcanum_card[] = {0, 0, 0, 0, 0, 0, 0, lord, lady}
-    //          // e.g. lady drawn and expanded royal road = 0x38
-    //          0xD bytes in: uchar royal_road_arcanum_cards;
+    //        struct Astrologian { // FIXME
+    //          // ???
     //        }
     //        struct Samurai {
-    //          0x8 bytes in: byte kenki;
-    //          0x9 bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
+    //          0xA bytes in: byte kenki;
+    //          0xB bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
     //        }
     //      }
     //   }
     // }
     private static int kJobDataOuterStructOffset = 0;
-    private static int kJobDataInnerStructSize = 8 + 7;
+    private static int kJobDataInnerStructSize = 8 + 8;
     private static int kJobDataInnerStructOffsetJobSpecificData = 8;
 
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
@@ -798,7 +787,7 @@ namespace Cactbot {
 
       var j = new NinjaJobData();
       j.huton_ms = BitConverter.ToUInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
-      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 6];
+      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
       return j;
     }
 
@@ -807,8 +796,8 @@ namespace Cactbot {
       public uint umbral_time_ms = 0;
       public int umbral_stacks = 0;
       public int umbral_hearts = 0;
+      public int foul_count = 0;
       public bool enochian_active = false;
-      public bool polygot_active = false;
 
       public override bool Equals(Object obj) {
         var o = obj as BlackMageJobData;
@@ -817,8 +806,8 @@ namespace Cactbot {
           umbral_time_ms == o.umbral_time_ms &&
           umbral_stacks == o.umbral_stacks &&
           umbral_hearts == o.umbral_hearts &&
-          enochian_active == o.enochian_active &&
-          polygot_active == o.polygot_active;
+          foul_count == o.foul_count &&
+          enochian_active == o.enochian_active;
       }
 
       public override int GetHashCode() {
@@ -827,8 +816,8 @@ namespace Cactbot {
         hash = hash * 31 + umbral_time_ms.GetHashCode();
         hash = hash * 31 + umbral_stacks.GetHashCode();
         hash = hash * 31 + umbral_hearts.GetHashCode();
+        hash = hash * 31 + foul_count.GetHashCode();
         hash = hash * 31 + enochian_active.GetHashCode();
-        hash = hash * 31 + polygot_active.GetHashCode();
         return hash;
       }
     }
@@ -848,8 +837,8 @@ namespace Cactbot {
       if (j.umbral_stacks != 0)
         j.umbral_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
       j.umbral_hearts = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
-      j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 0)) != 0;
-      j.polygot_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 1)) != 0;
+      j.foul_count = bytes[kJobDataInnerStructOffsetJobSpecificData + 6];
+      j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 7] & 0xF) == 1;
       if (j.enochian_active)
         j.polygot_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
       return j;
@@ -1081,8 +1070,8 @@ namespace Cactbot {
         return null;
 
       var j = new SamuraiJobData();
-      j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData];
-      byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 1];
+      j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
+      byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       j.setsu = (sen & 0x1) != 0;
       j.gekko = (sen & 0x2) != 0;
       j.ka = (sen & 0x4) != 0;
