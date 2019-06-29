@@ -308,11 +308,11 @@ class LogCollector {
       if (player.job)
         break;
     }
-    if (['PLD', 'WAR', 'DRK'].indexOf(player.job) > -1)
+    if (['PLD', 'WAR', 'DRK', 'GNB'].indexOf(player.job) > -1)
       player.role = 'tank';
     if (['WHM', 'SCH', 'AST'].indexOf(player.job) > -1)
       player.role = 'healer';
-    if (['MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM', 'BLU'].indexOf(player.job) > -1)
+    if (['MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'DNC', 'BLM', 'SMN', 'RDM', 'BLU'].indexOf(player.job) > -1)
       player.role = 'dps';
 
     if (player.role && player.job)
@@ -580,7 +580,13 @@ class EmulatorView {
       }
 
       party = party.sort(function(a, b) {
-        let jobOrder = ['PLD', 'WAR', 'DKR', 'WHM', 'SCH', 'AST', 'MNK', 'DRG', 'NIN', 'SAM', 'BRD', 'MCH', 'BLM', 'SMN', 'RDM', 'BLU'];
+        let jobOrder = [
+          'PLD', 'WAR', 'DRK', 'GNB',
+          'WHM', 'SCH', 'AST',
+          'MNK', 'DRG', 'NIN', 'SAM',
+          'BRD', 'MCH', 'DNC',
+          'BLM', 'SMN', 'RDM',
+          'BLU'];
         if (jobOrder.indexOf(a.job) < jobOrder.indexOf(b.job))
           return -1;
         if (jobOrder.indexOf(a.job) > jobOrder.indexOf(b.job))
