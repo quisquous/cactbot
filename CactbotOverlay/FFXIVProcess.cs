@@ -186,10 +186,8 @@ namespace Cactbot {
 
     // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.
-    // TODO: If need more signature, prepend "B83C020000E9????????"
-    // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
-    private static String kJobDataSignature = "488B0D????????4885C974B8488B05";
-    private static int kJobDataSignatureOffset = -12;
+    private static String kJobDataSignature = "488B0D????????4885C90F84????????488B05????????3C03";
+    private static int kJobDataSignatureOffset = -22;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kJobDataSignatureRIP = true;
 
