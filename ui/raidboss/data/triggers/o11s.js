@@ -149,7 +149,7 @@
     {
       id: 'O11S Starboard Surge 1',
       regex: / 14:3266:Omega starts using Starboard Wave Cannon Surge/,
-      regexDe: / 14:3266:Omega starts using Steuerbord-Wellenkanone Surge/,
+      regexDe: / 14:3266:Omega starts using Steuerbord-Nullform-Partikelstrahl/,
       regexFr: / 14:3266:Oméga starts using Canon Plasma Absolu Tribord/,
       regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
       alertText: {
@@ -175,7 +175,7 @@
     {
       id: 'O11S Starboard Surge 2',
       regex: / 14:3266:Omega starts using Starboard Wave Cannon Surge/,
-      regexDe: / 14:3266:Omega starts using Steuerbord-Wellenkanone Surge/,
+      regexDe: / 14:3266:Omega starts using Steuerbord-Nullform-Partikelstrahl/,
       regexFr: / 14:3266:Oméga starts using Canon Plasma Absolu Tribord/,
       regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
       delaySeconds: 4,
