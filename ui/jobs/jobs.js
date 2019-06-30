@@ -536,7 +536,6 @@ class Bars {
     }
 
     let showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
-    showHPNumber |= !doesJobNeedMPBar(this.job) && this.job != 'MNK';
     let showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
 
     let healthText = showHPNumber ? 'value' : '';
