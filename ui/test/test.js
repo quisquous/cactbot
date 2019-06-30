@@ -12,7 +12,6 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
   document.getElementById('id').innerText = e.detail.id.toString(16);
   document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP;
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
-  document.getElementById('tp').innerText = e.detail.currentTP + '/' + e.detail.maxTP;
   document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
   document.getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
   document.getElementById('job').innerText = e.detail.level + ' ' + e.detail.job;
@@ -33,7 +32,7 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'DRG')
     document.getElementById('jobinfo').innerText = jobDetail.bloodMilliseconds + ' | ' + jobDetail.lifeMilliseconds + ' | ' + jobDetail.eyesAmount;
   else if (e.detail.job == 'BLM')
-    document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ') | ' + jobDetail.umbralHearts + ' | ' + jobDetail.enochian + ' ' + jobDetail.polygot + ' (' + jobDetail.nextPolygotMilliseconds + ')';
+    document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ') | ' + jobDetail.umbralHearts + ' | ' + jobDetail.foulCount + ' ' + jobDetail.enochian + ' (' + jobDetail.nextPolygotMilliseconds + ')';
   else if (e.detail.job == 'THM')
     document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ')';
   else if (e.detail.job == 'WHM')
@@ -48,10 +47,6 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' | ' + jobDetail.chakraStacks + ' (' + jobDetail.lightningMilliseconds + ')';
   else if (e.detail.job == 'PGL')
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' (' + jobDetail.lightningMilliseconds + ')';
-  else if (e.detail.job == 'MCH')
-    document.getElementById('jobinfo').innerText = jobDetail.overheatMilliseconds + ' | ' + jobDetail.heat + ' | ' + jobDetail.ammunition + ' | ' + jobDetail.gauss;
-  else if (e.detail.job == 'AST')
-    document.getElementById('jobinfo').innerText = jobDetail.drawMilliseconds + ' | ' + jobDetail.drawnCard + ' | ' + jobDetail.spreadCard + ' | ' + jobDetail.roadCard + ' | ' + jobDetail.arcanumCard;
   else
     document.getElementById('jobinfo').innerText = '';
 

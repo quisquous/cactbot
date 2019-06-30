@@ -1,7 +1,7 @@
 'use strict';
 
 let kCasterJobs = ['BLU', 'RDM', 'BLM', 'WHM', 'SCH', 'SMN', 'ACN', 'AST', 'CNJ', 'THM'];
-let kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK'];
+let kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
 let kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
 let kCraftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
 let kGatheringJobs = ['MIN', 'BTN', 'FSH'];
@@ -9,7 +9,7 @@ let kGatheringJobs = ['MIN', 'BTN', 'FSH'];
 let Util = {
   jobToRole: function(job) {
     let role;
-    if (job.search(/^(WAR|DRK|PLD|MRD|GLA)$/) >= 0) {
+    if (job.search(/^(WAR|DRK|PLD|GNB|MRD|GLA)$/) >= 0) {
       role = 'tank';
     } else if (job.search(/^(WHM|SCH|AST|CNJ)$/) >= 0) {
       role = 'healer';
@@ -17,7 +17,7 @@ let Util = {
       role = 'dps-melee';
     } else if (job.search(/^(BLU|BLM|SMN|RDM|THM|ACN)$/) >= 0) {
       role = 'dps-caster';
-    } else if (job.search(/^(BRD|MCH|ARC)$/) >= 0) {
+    } else if (job.search(/^(BRD|MCH|DNC|ARC)$/) >= 0) {
       role = 'dps-ranged';
     } else if (job.search(/^(CRP|BSM|ARM|GSM|LTW|WVR|ALC|CUL)$/) >= 0) {
       role = 'crafting';

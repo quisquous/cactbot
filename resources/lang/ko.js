@@ -28,6 +28,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       Brotherhood: '도원결의', // 0x49e
       Devotion: '에기의 가호', // 0x4bd
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c
+      LeadenFist: 'FIXME',
 
       // TODO: add ids
       Petrification: '석화',

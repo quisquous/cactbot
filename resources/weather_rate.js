@@ -1312,4 +1312,196 @@ let gWeatherRates = {
       'Gales',
     ],
   },
+  102: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Everlasting Light',
+    ],
+  },
+  103: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Dreams',
+    ],
+  },
+  104: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Brilliance',
+    ],
+  },
+  105: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Termination',
+    ],
+  },
+  106: {
+    'rates': [
+      20,
+      60,
+      75,
+      85,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Thunderstorms',
+    ],
+  },
+  107: {
+    'rates': [
+      10,
+      20,
+      30,
+      45,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Gales',
+      'Rain',
+      'Fog',
+      'Clouds',
+      'Fair Skies',
+      'Clear Skies',
+    ],
+  },
+  108: {
+    'rates': [
+      45,
+      60,
+      70,
+      80,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Dust Storms',
+      'Heat Waves',
+      'Clear Skies',
+    ],
+  },
+  109: {
+    'rates': [
+      10,
+      20,
+      35,
+      45,
+      60,
+      100,
+    ],
+    'weathers': [
+      'Rain',
+      'Fog',
+      'Clouds',
+      'Thunderstorms',
+      'Clear Skies',
+      'Fair Skies',
+    ],
+  },
+  110: {
+    'rates': [
+      10,
+      20,
+      30,
+      45,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Fog',
+      'Rain',
+      'Umbral Wind',
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+    ],
+  },
+  111: {
+    'rates': [
+      20,
+      80,
+      100,
+    ],
+    'weathers': [
+      'Clouds',
+      'Fair Skies',
+      'Clear Skies',
+    ],
+  },
+  112: {
+    'rates': [
+      20,
+      60,
+      75,
+      85,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Thunderstorms',
+    ],
+  },
+  113: {
+    'rates': [
+      10,
+      20,
+      30,
+      45,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Gales',
+      'Rain',
+      'Fog',
+      'Clouds',
+      'Fair Skies',
+      'Clear Skies',
+    ],
+  },
+  114: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+    ],
+  },
+  115: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Thunderstorms',
+    ],
+  },
+  116: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Termination',
+    ],
+  },
 };

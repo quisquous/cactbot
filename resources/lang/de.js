@@ -28,8 +28,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Brotherhood: 'Bruderschaft', // 0x49e
       Devotion: 'Hingabe', // 0x4bd
       FoeRequiem: 'Requiem Der Feinde', // up 0x8b, down 0x8c
+      LeadenFist: 'FIXME',
 
-      // TODO: add ids
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
       Burns: 'Brandwunde',

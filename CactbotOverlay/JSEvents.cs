@@ -82,7 +82,6 @@ namespace Cactbot {
         maxHP = e.max_hp;
         currentMP = e.mp;
         maxMP = e.max_mp;
-        currentTP = e.tp;
         maxTP = 1000;
         currentGP = e.gp;
         maxGP = e.max_gp;
@@ -172,15 +171,15 @@ namespace Cactbot {
           umbralStacks = d.umbral_stacks;
           umbralMilliseconds = d.umbral_time_ms;
           umbralHearts = d.umbral_hearts;
+          foulCount = d.foul_count;
           enochian = d.enochian_active;
-          polygot = d.polygot_active;
           nextPolygotMilliseconds = d.polygot_time_ms;
         }
         public int umbralStacks;  // Positive = Fire, Negative = Ice.
         public uint umbralMilliseconds;
         public int umbralHearts;
+        public int foulCount;
         public bool enochian;
-        public bool polygot;
         public uint nextPolygotMilliseconds;
       }
 
@@ -276,8 +275,6 @@ namespace Cactbot {
           maxHP = e.max_hp;
           currentMP = e.mp;
           maxMP = e.max_mp;
-          currentTP = e.tp;
-          maxTP = 1000;
           pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
           distance = e.distance;
         }

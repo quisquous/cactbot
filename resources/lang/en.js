@@ -28,8 +28,8 @@ class CactbotLanguageEn extends CactbotLanguage {
       Brotherhood: 'Brotherhood', // 0x49e
       Devotion: 'Devotion', // 0x4bd
       FoeRequiem: 'Foe Requiem', // up 0x8b, down 0x8c
+      LeadenFist: 'Leaden Fist',
 
-      // TODO: add ids
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',
       Burns: 'Burns',

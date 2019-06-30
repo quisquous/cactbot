@@ -19,9 +19,9 @@ namespace Cactbot {
     private IntPtr bait_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
-    // refer to as the charmap. The pointer is at the end of the signature.
-    private static String kCharmapSignature = "85AD????????8BD7488D0D";
-    private static int kCharmapSignatureOffset = 0;
+    // refer to as the charmap. The pointer is the first ????????.
+    private static String kCharmapSignature = "488B1D????????488BFA33D2488BCF";
+    private static int kCharmapSignatureOffset = -12;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kCharmapSignatureRIP = true;
     // The pointer is to a structure as:
@@ -118,6 +118,8 @@ namespace Cactbot {
       SAM = 34,
       RDM = 35,
       BLU = 36,
+      DNC = 37,
+      GNB = 38,
     };
 
     static bool IsGatherer(EntityJob job) {
@@ -143,18 +145,15 @@ namespace Cactbot {
     //   ...
     //   0x8C bytes in: EntityType type;  // 1 byte.
     //   ...
-    //   0x92 bytes in: byte distance;
-    //   ...
     //   0xA0 bytes in: float32 pos_x;
     //   0xA4 bytes in: float32 pos_z;
     //   0xA8 bytes in: float32 pos_y;
     //   ...
-    //   0x1700 bytes in:
+    //   0x18A4 bytes in:
     //     0x000 bytes in: int32 hp;
     //     0x004 bytes in: int32 maxhp;
     //     0x008 bytes in: int32 mp;
     //     0x00C bytes in: int32 maxmp;
-    //     0x010 bytes in: int16 tp;
     //     0x012 bytes in: int16 gp;
     //     0x014 bytes in: int16 maxgp;
     //     0x016 bytes in: int16 cp;
@@ -166,7 +165,7 @@ namespace Cactbot {
     // }
   
     // Base offset for the character details below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x1758;
+    private static int kEntityStructureOffsetCharacterDetails = 0x18A4;
 
     private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
     private static int kEntityStructureSizeName = 0x44;
@@ -184,10 +183,8 @@ namespace Cactbot {
 
     // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.
-    // TODO: If need more signature, prepend "B83C020000E9????????"
-    // TODO: If need more signature, append "????????3C0374043C1575A90FB659084533C9".
-    private static String kJobDataSignature = "488B0D????????4885C974B8488B05";
-    private static int kJobDataSignatureOffset = -12;
+    private static String kJobDataSignature = "488B0D????????4885C90F84????????488B05????????3C03";
+    private static int kJobDataSignatureOffset = -22;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kJobDataSignatureRIP = true;
 
@@ -213,36 +210,37 @@ namespace Cactbot {
     //        struct Paladin {
     //          0x8 bytes in: byte beast;
     //        }
-    //        struct Bard {
+    //        struct Bard { // FIXME
     //          0x8 bytes in: uint16 song_ms;  // Number of ms left in current song.
     //          0xA bytes in: byte song_procs_count;
     //          0xB bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
     //        }
-    //        struct Dragoon {
+    //        struct Dragoon { // needs testing
     //          0x8 bytes in: uint16 blood_or_life_ms;  // Number of ms left in Blood/Life of the Dragon.
     //          0xA bytes in: uchar stance;  // 0 = None, 1 = Blood, 2 = Life
     //          0xB bytes in: uchar eyes_amount;
     //        }
     //        struct Ninja {
     //          0x8 bytes in: uint32 huton_ms;  // Number of ms left in huton.
-    //          0xE bytes in: uchar ninki_amount;
+    //          0xD bytes in: uchar ninki_amount;
     //        }
     //        struct BlackMage {
     //          0x8 bytes in: uint16 polygot_time_ms;  // Number of ms left before polygot proc.
     //          0xA bytes in: uint16 umbral_time_ms;  // Number of ms left in umbral fire/ice.
     //          0xC bytes in: uchar umbral_state;  // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
     //          0xD bytes in: uchar umbral_hearts_count;
-    //          0xE bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
+    //          0xE bytes in: uchar foul_count;
+    //          0xF bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
     //        }
     //        struct WhiteMage {
     //          0xA bytes in: byte lilies;
     //        }
-    //        struct Summoner {
+    //        struct Summoner { // needs testing
     //          0x8 bytes in: uint16 stance_ms;  // Dreadwyrm or Bahamut time left.
     //          0xA bytes in: uchar bahamut_stance;  // 3 = Bahamut summoned, else 0.
     //          0xC bytes in: uchar stacks;  // Bottom 2 bits: Aetherflow. Next 2 bits: Dreadwyrm. Next 2 bits: Bahamut.
     //        }
-    //        struct Scholar {
+    //        struct Scholar { // needs testing
     //          0xC bytes in: uchar aetherflow_stacks;
     //          0xD bytes in: uchar fairy_amount;
     //        }
@@ -251,33 +249,21 @@ namespace Cactbot {
     //          0xA bytes in: uchar greased_lightning_stacks;
     //          0xB bytes in: uchar chakra_stacks;
     //        }
-    //        struct Machinist {
-    //          0x8 bytes in: uint16 overheated_time_ms;
-    //          0xA bytes in: uchar heat;
-    //          0xB bytes in: uchar ammunition;
-    //          0xC bytes in: uchar gauss_barrel;
+    //        struct Machinist { // FIXME
+    //          // ???
     //        }
-    //        struct Astrologian {
-    //          0x8 bytes in: uint16 card_draw_time_ms; // time remaining on currently drawn card
-    //          // drawn_spread_cards = spread_card << 4 | drawn_card;
-    //          // cards[] = {0, balance, bole, arrow, spear, ewer, spire};
-    //          // e.g. balance in spread + drawn ewer = 0x15
-    //          0xC bytes in: uchar drawn_spread_cards;
-    //          // royal_road_arcanum_cards = royal_road_card << 4 | arcanum_card;
-    //          // royal_road_cards[] = {0, enhanced, extended, expanded}
-    //          // arcanum_card[] = {0, 0, 0, 0, 0, 0, 0, lord, lady}
-    //          // e.g. lady drawn and expanded royal road = 0x38
-    //          0xD bytes in: uchar royal_road_arcanum_cards;
+    //        struct Astrologian { // FIXME
+    //          // ???
     //        }
     //        struct Samurai {
-    //          0x8 bytes in: byte kenki;
-    //          0x9 bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
+    //          0xA bytes in: byte kenki;
+    //          0xB bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
     //        }
     //      }
     //   }
     // }
     private static int kJobDataOuterStructOffset = 0;
-    private static int kJobDataInnerStructSize = 8 + 7;
+    private static int kJobDataInnerStructSize = 8 + 8;
     private static int kJobDataInnerStructOffsetJobSpecificData = 8;
 
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
@@ -390,7 +376,6 @@ namespace Cactbot {
       public int max_hp = 0;
       public int mp = 0;
       public int max_mp = 0;
-      public short tp = 0;
       public short gp = 0;
       public short max_gp = 0;
       public short cp = 0;
@@ -417,7 +402,6 @@ namespace Cactbot {
         hash = hash * 31 + max_hp.GetHashCode();
         hash = hash * 31 + mp.GetHashCode();
         hash = hash * 31 + max_mp.GetHashCode();
-        hash = hash * 31 + tp.GetHashCode();
         hash = hash * 31 + gp.GetHashCode();
         hash = hash * 31 + max_gp.GetHashCode();
         hash = hash * 31 + cp.GetHashCode();
@@ -447,7 +431,6 @@ namespace Cactbot {
           a.max_hp == b.max_hp &&
           a.mp == b.mp &&
           a.max_mp == b.max_mp &&
-          a.tp == b.tp &&
           a.gp == b.gp &&
           a.max_gp == b.max_gp &&
           a.cp == b.cp &&
@@ -496,7 +479,6 @@ namespace Cactbot {
         data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 4);
         data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 8);
         data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 12);
-        data.tp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 16);
 
         if (IsGatherer(data.job)) {
           data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp);
@@ -801,7 +783,7 @@ namespace Cactbot {
 
       var j = new NinjaJobData();
       j.huton_ms = BitConverter.ToUInt32(bytes, kJobDataInnerStructOffsetJobSpecificData);
-      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 6];
+      j.ninki_amount = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
       return j;
     }
 
@@ -810,8 +792,8 @@ namespace Cactbot {
       public uint umbral_time_ms = 0;
       public int umbral_stacks = 0;
       public int umbral_hearts = 0;
+      public int foul_count = 0;
       public bool enochian_active = false;
-      public bool polygot_active = false;
 
       public override bool Equals(Object obj) {
         var o = obj as BlackMageJobData;
@@ -820,8 +802,8 @@ namespace Cactbot {
           umbral_time_ms == o.umbral_time_ms &&
           umbral_stacks == o.umbral_stacks &&
           umbral_hearts == o.umbral_hearts &&
-          enochian_active == o.enochian_active &&
-          polygot_active == o.polygot_active;
+          foul_count == o.foul_count &&
+          enochian_active == o.enochian_active;
       }
 
       public override int GetHashCode() {
@@ -830,8 +812,8 @@ namespace Cactbot {
         hash = hash * 31 + umbral_time_ms.GetHashCode();
         hash = hash * 31 + umbral_stacks.GetHashCode();
         hash = hash * 31 + umbral_hearts.GetHashCode();
+        hash = hash * 31 + foul_count.GetHashCode();
         hash = hash * 31 + enochian_active.GetHashCode();
-        hash = hash * 31 + polygot_active.GetHashCode();
         return hash;
       }
     }
@@ -851,8 +833,8 @@ namespace Cactbot {
       if (j.umbral_stacks != 0)
         j.umbral_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
       j.umbral_hearts = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
-      j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 0)) != 0;
-      j.polygot_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 6] & (1 << 1)) != 0;
+      j.foul_count = bytes[kJobDataInnerStructOffsetJobSpecificData + 6];
+      j.enochian_active = (bytes[kJobDataInnerStructOffsetJobSpecificData + 7] & 0xF) == 1;
       if (j.enochian_active)
         j.polygot_time_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
       return j;
@@ -1084,8 +1066,8 @@ namespace Cactbot {
         return null;
 
       var j = new SamuraiJobData();
-      j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData];
-      byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 1];
+      j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
+      byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       j.setsu = (sen & 0x1) != 0;
       j.gekko = (sen & 0x2) != 0;
       j.ka = (sen & 0x4) != 0;

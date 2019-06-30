@@ -94,6 +94,7 @@ button:hover {
 .PLD { background: url(../../resources/icon/jobs/pld-framed.png) 0 / contain; }
 .WAR { background: url(../../resources/icon/jobs/war-framed.png) 0 / contain; }
 .DRK { background: url(../../resources/icon/jobs/drk-framed.png) 0 / contain; }
+.GNB { background: url(../../resources/icon/jobs/gnb-framed.png) 0 / contain; }
 .WHM { background: url(../../resources/icon/jobs/whm-framed.png) 0 / contain; }
 .SCH { background: url(../../resources/icon/jobs/sch-framed.png) 0 / contain; }
 .AST { background: url(../../resources/icon/jobs/ast-framed.png) 0 / contain; }
@@ -103,6 +104,7 @@ button:hover {
 .SAM { background: url(../../resources/icon/jobs/sam-framed.png) 0 / contain; }
 .BRD { background: url(../../resources/icon/jobs/brd-framed.png) 0 / contain; }
 .MCH { background: url(../../resources/icon/jobs/mch-framed.png) 0 / contain; }
+.DNC { background: url(../../resources/icon/jobs/dnc-framed.png) 0 / contain; }
 .BLM { background: url(../../resources/icon/jobs/blm-framed.png) 0 / contain; }
 .SMN { background: url(../../resources/icon/jobs/smn-framed.png) 0 / contain; }
 .RDM { background: url(../../resources/icon/jobs/rdm-framed.png) 0 / contain; }
