@@ -67,9 +67,9 @@
       },
       damageRegex: gLang.kAbility.TrickAttack,
       condition: function(e) {
-        // 28710?03 == success
+        // 2?710?03 == success
         //   710?03 == failure
-        return e.flags.substr(-8, 2) != '28';
+        return e.flags.substr(-8, 1) != '2';
       },
       mistake: function(e, data) {
         return {

@@ -318,8 +318,8 @@ function setupBuffTracker() {
     },
     trick: {
       // The flags encode positional data, but the exact specifics are unclear.
-      // Trick attack missed appears to be "710?03" but correct is "28710?03".
-      gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '28......'),
+      // Trick attack missed appears to be "710?03" but correct is "20710?03".
+      gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
       durationSeconds: 10,
       icon: kIconBuffTrickAttack,
       // Magenta.
@@ -1882,7 +1882,7 @@ class Bars {
     logs.push(' 1A:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
     logs.push(' 1A:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
     logs.push(' 1A:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
-    logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
     logs.push(' 1A:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
     logs.push(' 1A:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
     logs.push(' 15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
