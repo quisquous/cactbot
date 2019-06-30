@@ -28,7 +28,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       Brotherhood: '桃園結義：攻撃', // 0x49e
       Devotion: 'エギの加護', // 0x4bd
       FoeRequiem: '魔人のレクイエム', // up 0x8b, down 0x8c
-      LeadenFist: 'FIXME',
+      LeadenFist: '連撃効果アップ',
 
       Petrification: '石化',
       BeyondDeath: '死の超越',

@@ -28,7 +28,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Brotherhood: 'Fraternité', // 0x49e
       Devotion: 'Dévouement', // 0x4bd
       FoeRequiem: 'Requiem ennemi', // up 0x8b, down 0x8c
-      LeadenFist: 'FIXME',
+      LeadenFist: 'Poings de plomb',
 
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
