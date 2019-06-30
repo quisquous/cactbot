@@ -12,7 +12,6 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
   document.getElementById('id').innerText = e.detail.id.toString(16);
   document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP;
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
-  document.getElementById('tp').innerText = e.detail.currentTP + '/' + e.detail.maxTP;
   document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
   document.getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
   document.getElementById('job').innerText = e.detail.level + ' ' + e.detail.job;

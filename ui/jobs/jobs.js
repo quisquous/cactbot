@@ -14,7 +14,7 @@ let Options = {
   HideWellFedAboveSeconds: 15 * 60,
   WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU'],
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
-  ShowMPNumber: ['DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
+  ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
   MaxLevel: 80,
 
@@ -536,6 +536,7 @@ class Bars {
     }
 
     let showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
+    showHPNumber |= !doesJobNeedMPBar(this.job) && this.job != 'MNK';
     let showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
 
     let healthText = showHPNumber ? 'value' : '';
@@ -569,19 +570,6 @@ class Bars {
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color'); ;
-    }
-
-    if (!Util.isCasterJob(this.job)) {
-      this.o.tpContainer = document.createElement('div');
-      this.o.tpContainer.id = 'tp-bar';
-      barsContainer.appendChild(this.o.tpContainer);
-
-      this.o.tpBar = document.createElement('resource-bar');
-      this.o.tpContainer.appendChild(this.o.tpBar);
-      // TODO: Let the component do this dynamically.
-      this.o.tpBar.width = window.getComputedStyle(this.o.tpContainer).width;
-      this.o.tpBar.height = window.getComputedStyle(this.o.tpContainer).height;
-      this.o.tpBar.bg = computeBackgroundColorFrom(this.o.tpBar, 'bar-border-color'); ;
     }
 
     if (this.job == 'SMN') {
@@ -1423,18 +1411,6 @@ class Bars {
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
-  UpdateTP() {
-    if (!this.o.tpBar) return;
-
-    if (this.tp <= this.options.TPInvigorateThreshold)
-      this.o.tpBar.fg = computeBackgroundColorFrom(this.o.tpBar, 'tp-color.low');
-    else
-      this.o.tpBar.fg = computeBackgroundColorFrom(this.o.tpBar, 'tp-color');
-
-    this.o.tpBar.value = this.tp;
-    this.o.tpBar.maxvalue = this.maxTP;
-  }
-
   UpdateCP() {
     if (!this.o.cpBar) return;
     this.o.cpBar.value = this.cp;
@@ -1636,8 +1612,6 @@ class Bars {
       this.UpdateHealth();
     if (update_mp)
       this.UpdateMana();
-    if (update_tp)
-      this.UpdateTP();
     if (update_cp)
       this.UpdateCP();
     if (update_gp)
@@ -1712,7 +1686,6 @@ class Bars {
     if (update) {
       this.UpdateHealth();
       this.UpdateMana();
-      this.UpdateTP();
     }
   }
 

@@ -48,7 +48,7 @@
 }
 
 /* Relative to #bars */
-#pull-bar, #hp-bar, #mp-bar, #tp-bar, #cp-bar, #gp-bar {
+#pull-bar, #hp-bar, #mp-bar, #cp-bar, #gp-bar {
   width: 202px;
   height: 7px;
 }
@@ -61,23 +61,25 @@
   font-size: 12px;
 }
 
-#mp-bar, #tp-bar, #rdm-bar, #mnk-bar {
+#mp-bar, #rdm-bar, #mnk-bar {
   margin-top: 1px;
 }
 #hp-bar.show-number {
-  height: 18px;
+  height: 32px;
 }
 #mp-bar.show-number {
   height: 18px;
 }
-.drk #tp-bar {
-  height: 4px;
-}
 #cp-bar {
   height: 18px;
 }
-
 #gp-bar {
+  height: 18px;
+}
+.mnk #hp-bar {
+  height: 10px;
+}
+.drk #hp-bar, .pld #hp-bar, .blu #hp-bar {
   height: 18px;
 }
 
@@ -119,7 +121,7 @@
   display: block;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 10px;
   margin-top: 1px;
 }
 
@@ -142,13 +144,13 @@
 */
 
 #war-boxes>div  {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
 }
 
-#drk-boxes>div  {
-  width: 40px;
-  height: 40px;
+#drk-boxes>div , #pld-boxes>div {
+  width: 35px;
+  height: 35px;
 }
 
 #rdm-boxes>div {
@@ -156,14 +158,9 @@
   height: 28px;
 }
 
-#pld-boxes>div {
-  width: 32px;
-  height: 32px;
-}
-
 #mnk-boxes>div {
-  width: 29px;
-  height: 29px;
+  width: 30px;
+  height: 30px;
 }
 
 #rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text {
@@ -177,8 +174,8 @@
   top: 5px;
 }
 
-#drk-boxes .text {
-  top: 9px;
+#drk-boxes .text, #pld-boxes .text {
+  top: 6px;
   font-size: 20px;
 }
 
@@ -405,12 +402,6 @@
 }
 .mp-color.low {
   background-color: rgb(65, 0, 200);
-}
-.tp-color {
-  background-color: rgb(180, 180, 0);
-}
-.tp-color.low {
-  background-color: rgb(200, 70, 15);
 }
 .cp-color {
   background-color: rgb(75, 135, 230);

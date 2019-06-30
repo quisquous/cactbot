@@ -82,7 +82,6 @@ namespace Cactbot {
         maxHP = e.max_hp;
         currentMP = e.mp;
         maxMP = e.max_mp;
-        currentTP = e.tp;
         maxTP = 1000;
         currentGP = e.gp;
         maxGP = e.max_gp;
@@ -276,8 +275,6 @@ namespace Cactbot {
           maxHP = e.max_hp;
           currentMP = e.mp;
           maxMP = e.max_mp;
-          currentTP = e.tp;
-          maxTP = 1000;
           pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
           distance = e.distance;
         }

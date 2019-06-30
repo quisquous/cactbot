@@ -376,7 +376,6 @@ namespace Cactbot {
       public int max_hp = 0;
       public int mp = 0;
       public int max_mp = 0;
-      public short tp = 0;
       public short gp = 0;
       public short max_gp = 0;
       public short cp = 0;
@@ -403,7 +402,6 @@ namespace Cactbot {
         hash = hash * 31 + max_hp.GetHashCode();
         hash = hash * 31 + mp.GetHashCode();
         hash = hash * 31 + max_mp.GetHashCode();
-        hash = hash * 31 + tp.GetHashCode();
         hash = hash * 31 + gp.GetHashCode();
         hash = hash * 31 + max_gp.GetHashCode();
         hash = hash * 31 + cp.GetHashCode();
@@ -433,7 +431,6 @@ namespace Cactbot {
           a.max_hp == b.max_hp &&
           a.mp == b.mp &&
           a.max_mp == b.max_mp &&
-          a.tp == b.tp &&
           a.gp == b.gp &&
           a.max_gp == b.max_gp &&
           a.cp == b.cp &&
@@ -482,7 +479,6 @@ namespace Cactbot {
         data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 4);
         data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 8);
         data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 12);
-        data.tp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 16);
 
         if (IsGatherer(data.job)) {
           data.gp = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetGpCp);
