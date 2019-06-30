@@ -13,10 +13,10 @@ let Options = {
 
   HideWellFedAboveSeconds: 15 * 60,
   WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU'],
-  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'BLU'],
+  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
-  MaxLevel: 70,
+  MaxLevel: 80,
 
   ShowRdmProcs: true,
 
@@ -59,13 +59,11 @@ let kReSmnAetherflow = null;
 let kReFoodBuff = null;
 let kFormChange = null;
 let kPeanutButter = null;
-let kDragonKick = null;
+let kLeadenBuff = null;
+let kLeadenBuffEnd = null;
 let kTwinSnakes = null;
 let kDemolish = null;
-let kBluntDebuff = null;
 let kComboBreakers = null;
-let kPldShieldSwipe = null;
-let kPldBlock = null;
 let kAstCombust = null;
 let kAstBenefic = null;
 let kAstHelios = null;
@@ -224,12 +222,10 @@ function setupRegexes() {
       gLang.kEffect.RaptorForm,
       gLang.kEffect.CoeurlForm);
   kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
-  kDragonKick = gLang.youUseAbilityRegex(gLang.kAbility.DragonKick);
+  kLeadenBuff = gLang.youGainEffectRegex(gLang.kEffect.LeadenFist);
+  kLeadenBuffEnd = gLang.youLoseEffectRegex(gLang.kEffect.LeadenFist);
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
   kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
-  kBluntDebuff = gLang.gainsEffectRegex(gLang.kEffect.BluntResistDown);
-  kPldShieldSwipe = gLang.youUseAbilityRegex(gLang.kAbility.ShieldSwipe);
-  kPldBlock = gLang.abilityRegex(null, null, gLang.playerName, '[^:]*05');
   kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
   kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
   kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
@@ -281,7 +277,6 @@ function setupRegexes() {
     gLang.kAbility.GoringBlade,
     gLang.kAbility.HolySpirit,
     gLang.kAbility.Clemency,
-    gLang.kAbility.ShieldBash,
   ]);
 }
 
@@ -370,22 +365,6 @@ function setupBuffTracker() {
       borderColor: '#4674E5',
       sortKey: 5,
     },
-    hyper: {
-      gainRegex: gLang.abilityRegex(gLang.kAbility.Hypercharge),
-      durationSeconds: 20,
-      icon: kIconBuffHypercharge,
-      // Aqua.
-      borderColor: '#006b99',
-      sortKey: 6,
-    },
-    contagion: {
-      gainRegex: gLang.abilityRegex(gLang.kAbility.Contagion),
-      durationSeconds: 15,
-      icon: kIconBuffContagion,
-      // Light blue.
-      borderColor: '#B6C2D8',
-      sortKey: 7,
-    },
     sight: {
       gainRegex: gLang.youGainEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
       loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
@@ -412,19 +391,6 @@ function setupBuffTracker() {
       // Yellow.
       borderColor: '#ffbf00',
       sortKey: 10,
-    },
-    requiem: {
-      gainRegex: gLang.gainsEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
-      loseRegex: gLang.losesEffectRegex(gLang.kEffect.FoeRequiem, '(\\y{Name})', '\\1'),
-      durationPosition: 2,
-      // In Eureka, the effect lost can often be hidden, so cancel after 40s.
-      durationSeconds: 40,
-      icon: kIconBuffFoes,
-      // Light Purple.
-      borderColor: '#F272F2',
-      sortKey: 11,
-      side: 'left',
-      text: 'elapsed',
     },
   };
 }
@@ -454,8 +420,6 @@ class Bars {
     this.combo = 0;
     this.comboTimer = null;
     this.smnChanneling = false;
-    this.pldLastSwipe = 0;
-    this.pldLastBlock = 0;
   }
 
   UpdateJob() {
@@ -907,16 +871,6 @@ class Bars {
       this.o.goreBox.hideafter = '';
       this.o.goreBox.roundupthreshold = false;
       this.o.goreBox.valuescale = this.options.PldGcd;
-
-      this.o.swipeBox = document.createElement('timer-box');
-      procContainer.appendChild(this.o.swipeBox);
-      this.o.swipeBox.id = 'pld-procs-swipe';
-      this.o.swipeBox.style = 'empty';
-      this.o.swipeBox.bg = 'black';
-      this.o.swipeBox.toward = 'bottom';
-      this.o.swipeBox.threshold = 1000;
-      this.o.swipeBox.hideafter = 0;
-      this.o.swipeBox.roundupthreshold = false;
     } else if (this.job == 'MNK') {
       let mnkBars = document.createElement('div');
       mnkBars.id = 'mnk-bar';
@@ -1317,11 +1271,13 @@ class Bars {
     this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-pb');
   }
 
-  OnMonkDragonKick(seconds) {
-    let kAnimationDelay = 1.2;
-
+  OnMonkLeadenFistStart() {
     this.o.dragonKickTimer.duration = 0;
-    this.o.dragonKickTimer.duration = seconds - kAnimationDelay;
+    this.o.dragonKickTimer.duration = 30;
+  }
+
+  OnMonkLeadenFistEnd() {
+    this.o.dragonKickTimer.duration = 0;
   }
 
   OnMonkTwinSnakes() {
@@ -1365,50 +1321,6 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
-  OnPldBlock() {
-    this.pldLastBlock = Date.now();
-    // How long a swipe takes to be able to be recast.
-    let kSwipeRecastMs = 15000;
-    // How long a block proc lasts from damage to losing proc.
-    let kBlockProcMs = 5500;
-    // Amount of extra reaction time to react to a block.
-    let kIgnoreSlopMs = 200;
-    // Amount of time to make the swipe box bigger earlier
-    // when there is a block during a swipe cooldown but a
-    // swipe can still be used.
-    let kBlockSlopMs = 700;
-
-    let msSinceLastSwipe = this.pldLastBlock - this.pldLastSwipe;
-    if (msSinceLastSwipe < kSwipeRecastMs - kBlockProcMs + kIgnoreSlopMs) {
-      // Swipe too recent, ignore this.
-      return;
-    } else if (msSinceLastSwipe >= kSwipeRecastMs) {
-      // Swipe long ago, full block duration, big box.
-      this.o.swipeBox.duration = 0;
-      this.o.swipeBox.duration = kBlockProcMs / 1000;
-      this.o.swipeBox.threshold = 1000;
-    } else {
-      // Swipe recent, but enough time to still swipe from this block.
-      // Make box small but color it like a block.  It will get big
-      // when the swipe becomes usable (although the window could be
-      // quite small).
-      this.o.swipeBox.duration = 0;
-      this.o.swipeBox.duration = kBlockProcMs / 1000;
-      let msUntilSwipeAvailable = kSwipeRecastMs - msSinceLastSwipe;
-      this.o.swipeBox.threshold = (kBlockProcMs + kBlockSlopMs - msUntilSwipeAvailable) / 1000;
-    }
-    this.o.swipeBox.fg = computeBackgroundColorFrom(this.o.swipeBox, 'pld-color-block');
-  }
-
-  OnPldShieldSwipe() {
-    // Small countdown for swipe.
-    this.pldLastSwipe = Date.now();
-    this.o.swipeBox.duration = 0;
-    this.o.swipeBox.duration = 15;
-    this.o.swipeBox.threshold = -1;
-    this.o.swipeBox.fg = computeBackgroundColorFrom(this.o.swipeBox, 'pld-color-swipe');
-  }
-
   OnComboChange(skill) {
     if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
@@ -1434,7 +1346,7 @@ class Bars {
         // Storm's Eye applies with some animation delay here, and on the next
         // Storm's Eye, it snapshots the damage when the gcd is started, so
         // add most of a gcd here in duration time from when it's applied.
-        this.o.eyeBox.duration = 30 + 2;
+        this.o.eyeBox.duration = 30 + 1.5;
       }
 
       // Min number of skills until eye without breaking combo.
@@ -1910,6 +1822,14 @@ class Bars {
           this.OnMonkDemolish();
           continue;
         }
+        if (log.search(kLeadenBuff) >= 0) {
+          this.OnMonkLeadenFistStart();
+          continue;
+        }
+        if (log.search(kLeadenBuffEnd) >= 0) {
+          this.OnMonkLeadenFistEnd();
+          continue;
+        }
         let r = log.match(kFormChange);
         if (r != null) {
           let seconds = parseFloat(r[1]);
@@ -1920,22 +1840,6 @@ class Bars {
         if (r != null) {
           let seconds = parseFloat(r[1]);
           this.OnMonkPerfectBalance(seconds);
-          continue;
-        }
-        r = log.match(kBluntDebuff);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnMonkDragonKick(seconds);
-          continue;
-        }
-      }
-      if (this.job == 'PLD') {
-        if (log.search(kPldShieldSwipe) >= 0) {
-          this.OnPldShieldSwipe();
-          continue;
-        }
-        if (log.search(kPldBlock) >= 0) {
-          this.OnPldBlock();
           continue;
         }
       }

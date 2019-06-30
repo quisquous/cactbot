@@ -19,13 +19,13 @@ Options.HideWellFedAboveSeconds = 15 * 60;
 Options.WellFedZoneRegex = /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*(Ultimate|Savage).*|.* Coil Of Bahamut.*(Ultimate|Savage).*)|Alexander.*(Ultimate|Savage).*$/;
 // The food buff warning is shown when you're below this level.
 // Update this when new expansion happens.
-Options.MaxLevel = 70;
+Options.MaxLevel = 80;
 
 // Option to show the stone/fire/impact procs.
 Options.ShowRdmProcs = true;
 
 // List of jobs to show an hp value for (defaults to tanks).
-Options.ShowHPNumber = ['PLD', 'WAR', 'DRK'];
+Options.ShowHPNumber = ['PLD', 'WAR', 'DRK', 'GNB'];
 
 // List of jobs to show an mp value for.
 Options.ShowMPNumber = ['BLM', 'DRK'];
