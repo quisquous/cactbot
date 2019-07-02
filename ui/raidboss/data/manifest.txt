@@ -129,6 +129,7 @@ triggers/ridorana_lighthouse.js
 triggers/shatter.js
 triggers/sohm_al.js
 triggers/test.js
+triggers/titania-ex.js
 triggers/temple_of_the_fist.js
 triggers/ultima_weapon_ultimate.js
 triggers/unending_coil_ultimate.js
