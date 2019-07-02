@@ -136,7 +136,8 @@
     },
 
     // --- Twintania ---
-    { id: 'UCU Twisters',
+    {
+      id: 'UCU Twisters',
       regex: /:26AA:Twintania starts using/,
       regexDe: /:26AA:Twintania starts using/,
       regexFr: /:26AA:Gémellia starts using/,
@@ -154,7 +155,8 @@
         ja: '大竜巻',
       },
     },
-    { id: 'UCU Death Sentence',
+    {
+      id: 'UCU Death Sentence',
       regex: /:Twintania readies Death Sentence/,
       regexDe: /:Twintania readies Todesurteil/,
       regexFr: /:Gémellia readies Peine De Mort/,
@@ -180,14 +182,16 @@
         }
       },
     },
-    { // Hatch Collect
+    {
+      // Hatch Collect
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
       run: function(data, matches) {
         data.hatch = data.hatch || [];
         data.hatch.push(matches[1]);
       },
     },
-    { id: 'UCU Hatch Marker YOU',
+    {
+      id: 'UCU Hatch Marker YOU',
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -224,14 +228,16 @@
         };
       },
     },
-    { // Hatch Cleanup
+    {
+      // Hatch Cleanup
       regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
       },
     },
-    { id: 'UCU Twintania P2',
+    {
+      id: 'UCU Twintania P2',
       regex: /:Twintania HP at 75%/,
       regexDe: /:Twintania HP at 75%/,
       regexFr: /:Gémellia HP at 75%/,
@@ -246,7 +252,8 @@
         };
       },
     },
-    { id: 'UCU Twintania P3',
+    {
+      id: 'UCU Twintania P3',
       regex: /:Twintania HP at 45%/,
       regexDe: /:Twintania HP at 45%/,
       regexFr: /:Gémellia HP at 45%/,
@@ -263,11 +270,13 @@
     },
 
     // --- Nael ---
-    { id: 'UCU Nael Quote 1',
-      regex: /From on high I descend, in blessed light to bask/,
+    {
+      // https://xivapi.com/NpcYell/6497?pretty=true
+      id: 'UCU Nael Quote 1',
+      regex: /From on high I descend, the hallowed moon to call/,
       regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexDe: /Seht, ich steige herab, vom rotglühenden Monde/,
-      regexJa: /月を仰がん/,
+      regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01/,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
@@ -282,11 +291,13 @@
         ja: '散開や密着',
       },
     },
-    { id: 'UCU Nael Quote 2',
-      regex: /From on high I descend, mine enemies to smite/,
+    {
+      // https://xivapi.com/NpcYell/6496?pretty=true
+      id: 'UCU Nael Quote 2',
+      regex: /From on high I descend, the iron path to walk/,
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexDe: /Seht, ich steige herab, um euch zu beherrschen/,
-      regexJa: /鉄の覇道を征く/,
+      regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01/,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
@@ -301,11 +312,13 @@
         ja: '散開や離れる',
       },
     },
-    { id: 'UCU Nael Quote 3',
-      regex: /O refulgent moon, shine down your light/,
+    {
+      // https://xivapi.com/NpcYell/6495?pretty=true
+      id: 'UCU Nael Quote 3',
+      regex: /Take fire, O hallowed moon/,
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexDe: /Flammender Pfad, geschaffen vom roten Mond/,
-      regexJa: /月の祝福を/,
+      regexJa: /\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01/,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
@@ -320,11 +333,13 @@
         ja: '頭割りや密着',
       },
     },
-    { id: 'UCU Nael Quote 4',
-      regex: /Blazing path, lead me to conquest/,
+    {
+      // https://xivapi.com/NpcYell/6494?pretty=true
+      id: 'UCU Nael Quote 4',
+      regex: /Blazing path, lead me to iron rule/,
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexDe: /Umloderter Pfad, führe mich zur Herrschaft/,
-      regexJa: /鉄の覇道と成す/,
+      regexJa: /\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01/,
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
@@ -339,11 +354,13 @@
         ja: '頭割りや離れる',
       },
     },
-    { id: 'UCU Nael Quote 5',
-      regex: /O red moon, scorch mine enemies/,
+    {
+      // https://xivapi.com/NpcYell/6493?pretty=true
+      id: 'UCU Nael Quote 5',
+      regex: /O hallowed moon, take fire and scorch my foes/,
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexDe: /O roter Mond! Umlodere meinen Pfad/,
-      regexJa: /赤熱し、神敵を焼け/,
+      regexJa: /\u6708\u3088\uff01\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01/,
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
@@ -358,11 +375,13 @@
         ja: '密着や頭割り',
       },
     },
-    { id: 'UCU Nael Quote 6',
-      regex: /O red moon, shine the path to conquest/,
+    {
+      // https://xivapi.com/NpcYell/6492?pretty=true
+      id: 'UCU Nael Quote 6',
+      regex: /O hallowed moon, shine you the iron path/,
       regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexDe: /O roter Mond! Führe mich zur Herrschaft/,
-      regexJa: /鉄の覇道を照らせ/,
+      regexJa: /\u6708\u3088\uff01\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01/,
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
@@ -377,11 +396,13 @@
         ja: '密着や離れる',
       },
     },
-    { id: 'UCU Nael Quote 7',
-      regex: /Fleeting light, score the earth with a fiery kiss/,
+    {
+      // https://xivapi.com/NpcYell/6501?pretty=true
+      id: 'UCU Nael Quote 7',
+      regex: /Fleeting light! 'Neath the red moon, scorch you the earth/,
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
-      regexJa: /紅月下の赤熱せし地を照らせ/,
+      regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
@@ -397,11 +418,13 @@
         ja: 'タンクから離れるや頭割り',
       },
     },
-    { id: 'UCU Nael Quote 8',
-      regex: /Fleeting light, outshine the stars for the moon/,
+    {
+      // https://xivapi.com/NpcYell/6500?pretty=true
+      id: 'UCU Nael Quote 8',
+      regex: /Fleeting light! Amid a rain of stars, exalt you the red moon/,
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexDe: /Neues Gestirn! Überstrahle jede Sternschnuppe/,
-      regexJa: /星降りの夜に、紅月を称えよ/,
+      regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01/,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
@@ -417,11 +440,13 @@
         ja: '散開やタンクから離れる',
       },
     },
-    { id: 'UCU Nael Quote 9',
-      regex: /From on high I descend, a hail of stars to bring/,
+    {
+      // https://xivapi.com/NpcYell/6502?pretty=true
+      id: 'UCU Nael Quote 9',
+      regex: /From on high I descend, the moon and stars to bring/,
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexDe: /Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich/,
-      regexJa: /星降りの夜を招かん/,
+      regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -436,11 +461,13 @@
         ja: '散開や密着',
       },
     },
-    { id: 'UCU Nael Quote 10',
-      regex: /From red moon I descend, a hail of stars to bring/,
+    {
+      // https://xivapi.com/NpcYell/6503?pretty=true
+      id: 'UCU Nael Quote 10',
+      regex: /From hallowed moon I descend, a rain of stars to bring/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
       regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
-      regexJa: /星降りの夜を招かん/,
+      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff0/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -455,11 +482,13 @@
         ja: '密着や散開',
       },
     },
-    { id: 'UCU Nael Quote 11',
-      regex: /From red moon I draw steel, in my descent to bare/,
+    {
+      // https://xivapi.com/NpcYell/6507?pretty=true
+      id: 'UCU Nael Quote 11',
+      regex: /From hallowed moon I bare iron, in my descent to wield/,
       regexFr: /De la lune je m'arme d'acier et descends/,
       regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
-      regexJa: /舞い降りん/,
+      regexJa: /\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\s*\u821e\u3044\u964d\u308a\u3093\uff01/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
@@ -474,11 +503,13 @@
         ja: '密着や離れるや散開',
       },
     },
-    { id: 'UCU Nael Quote 12',
-      regex: /From red moon I descend, upon burning earth to tread/,
+    {
+      // https://xivapi.com/NpcYell/6506?pretty=true
+      id: 'UCU Nael Quote 12',
+      regex: /From hallowed moon I descend, upon burning earth to tread/,
       regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexDe: /O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen/,
-      regexJa: /赤熱せし地を歩まん/,
+      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -493,11 +524,13 @@
         ja: '密着や散開や頭割り',
       },
     },
-    { id: 'UCU Nael Quote 13',
-      regex: /Gleaming steel, take fire and descend/,
+    {
+      // https://xivapi.com/NpcYell/6504?pretty=true
+      id: 'UCU Nael Quote 13',
+      regex: /Unbending iron, take fire and descend/,
       regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexDe: /Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab/,
-      regexJa: /舞い降りし我が刃となれ/,
+      regexJa: /\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
@@ -512,11 +545,13 @@
         ja: '離れるや頭割りや散開',
       },
     },
-    { id: 'UCU Nael Quote 14',
-      regex: /Gleaming steel, plunge and take fiery edge/,
+    {
+      // https://xivapi.com/NpcYell/6505?pretty=true
+      id: 'UCU Nael Quote 14',
+      regex: /Unbending iron, descend with fiery edge/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
-      regexJa: /我の刃となり赤熱せよ/,
+      regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
@@ -531,7 +566,8 @@
         ja: '離れるや散開や頭割り',
       },
     },
-    { id: 'UCU Nael Thunderstruck',
+    {
+      id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
       regex: /:Thunderwing:26C7:.*?:........:(\y{Name}):/,
@@ -554,12 +590,17 @@
         ja: 'サンダー',
       },
     },
-    { id: 'UCU Nael Your Doom',
+    {
+      id: 'UCU Nael Your Doom',
       regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
       regexDe: /:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
       regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
+        // FIXME: temporary workaround for "gains the effect for 9999.00"
+        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
+        if (matches[2] > 1000)
+          return false;
         return data.me == matches[1];
       },
       durationSeconds: function(data, matches) {
@@ -611,6 +652,11 @@
       regexDe: /:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
       regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      condition: function(data, matches) {
+        // FIXME: temporary workaround for "gains the effect for 9999.00"
+        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
+        return matches[2] < 1000;
+      },
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         let order = null;
@@ -638,8 +684,7 @@
     },
     {
       id: 'UCU Nael Cleanse Callout',
-      // FIXME: need translations
-      regex: /:Fang of Light:26CA:/,
+      regex: /:Fang [Oo]f Light:26CA:/,
       regexFr: /:Croc de lumière:26CA:/,
       regexDe: /:Lichtklaue:26CA:/,
       regexJa: /:ライトファング:26CA:/,
@@ -659,7 +704,8 @@
         }
       },
     },
-    { id: 'UCU Nael Fireball 1',
+    {
+      id: 'UCU Nael Fireball 1',
       regex: /:Ragnarok:26B8:/,
       regexDe: /:Ragnarök:26B8:/,
       regexFr: /:Ragnarok:26B8:/,
@@ -682,7 +728,8 @@
         data.naelFireballCount = 1;
       },
     },
-    { id: 'UCU Nael Fireball 2',
+    {
+      id: 'UCU Nael Fireball 2',
       regex: /:Ragnarok:26B8:/,
       regexDe: /:Ragnarök:26B8:/,
       regexFr: /:Ragnarok:26B8:/,
@@ -735,7 +782,8 @@
         data.naelFireballCount = 2;
       },
     },
-    { id: 'UCU Nael Fireball 3',
+    {
+      id: 'UCU Nael Fireball 3',
       regex: /:Ragnarok:26B8:/,
       regexDe: /:Ragnarök:26B8:/,
       regexFr: /:Ragnarok:26B8:/,
@@ -800,7 +848,8 @@
         data.naelFireballCount = 3;
       },
     },
-    { id: 'UCU Nael Fireball 4',
+    {
+      id: 'UCU Nael Fireball 4',
       regex: /:Ragnarok:26B8:/,
       regexDe: /:Ragnarök:26B8:/,
       regexFr: /:Ragnarok:26B8:/,
@@ -852,8 +901,7 @@
       },
     },
     {
-      // FIXME: need Tail of Darkness/Fang of Light translations
-      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang of Light:26CA|Tail of Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
+      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       regexDe: /:(Eisklaue:26C6|Donnerschwinge:26C7|Lichtklaue:26CA|Dunkelschweif:26C9|Feuerhorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
       regexJa: /:(アイスクロウ:26C6|サンダーウィング:26C7|ライトファング:26CA|ダークテイル:26C9|ファイアホーン:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:$/,
@@ -898,7 +946,8 @@
         console.log(data.naelMarks.join(', ') + (data.wideThirdDive ? ' (WIDE)' : ''));
       },
     },
-    { id: 'UCU Nael Dragon Placement',
+    {
+      id: 'UCU Nael Dragon Placement',
       regex: /:Iceclaw:26C6/,
       regexDe: /:Eisklaue:26C6/,
       regexFr: /:Griffe-de-glace:26C6/,
@@ -917,7 +966,8 @@
         };
       },
     },
-    { id: 'UCU Nael Dragon Dive Marker Me',
+    {
+      id: 'UCU Nael Dragon Dive Marker Me',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
@@ -947,7 +997,8 @@
         };
       },
     },
-    { id: 'UCU Nael Dragon Dive Marker Others',
+    {
+      id: 'UCU Nael Dragon Dive Marker Others',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
@@ -965,7 +1016,8 @@
         };
       },
     },
-    { id: 'UCU Nael Dragon Dive Marker Counter',
+    {
+      id: 'UCU Nael Dragon Dive Marker Counter',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
@@ -974,7 +1026,8 @@
         data.naelDiveMarkerCount++;
       },
     },
-    { // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
+    {
+      // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       regex: /1B:........:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
@@ -1018,7 +1071,8 @@
         data.lastOctetMarker = remainingPlayers[0];
       },
     },
-    { id: 'UCU Octet Nael Marker',
+    {
+      id: 'UCU Octet Nael Marker',
       regex: /1B:........:(\y{Name}):....:....:0077:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
@@ -1032,7 +1086,8 @@
         };
       },
     },
-    { id: 'UCU Octet Dragon Marker',
+    {
+      id: 'UCU Octet Dragon Marker',
       regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
@@ -1045,7 +1100,8 @@
         };
       },
     },
-    { id: 'UCU Octet Baha Marker',
+    {
+      id: 'UCU Octet Baha Marker',
       regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
@@ -1059,7 +1115,8 @@
         };
       },
     },
-    { id: 'UCU Octet Twin Marker',
+    {
+      id: 'UCU Octet Twin Marker',
       regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
@@ -1106,7 +1163,8 @@
         }
       },
     },
-    { id: 'UCU Twister Dives',
+    {
+      id: 'UCU Twister Dives',
       regex: /:Twintania:26B2:Twisting Dive:/,
       regexDe: /:Twintania:26B2:Spiralschwinge:/,
       regexFr: /:Gémellia:26B2:Plongeon-trombe:/,
@@ -1124,7 +1182,8 @@
         ja: 'ツイスター',
       },
     },
-    { id: 'UCU Bahamut Gigaflare',
+    {
+      id: 'UCU Bahamut Gigaflare',
       regex: /14:26D6:Bahamut Prime starts using Gigaflare/,
       regexDe: /14:26D6:Prim-Bahamut starts using Gigaflare/,
       regexFr: /14:26D6:Primo-Bahamut starts using GigaBrasier/,
@@ -1161,7 +1220,8 @@
         ja: '頭割り',
       },
     },
-    { // Megaflare stack tracking
+    {
+      // Megaflare stack tracking
       regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
       run: function(data, matches) {
         data.megaStack.push(matches[1]);
@@ -1256,7 +1316,8 @@
         ja: 'アースシェイカー',
       },
     },
-    { // Earthshaker tracking
+    {
+      // Earthshaker tracking
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
       run: function(data, matches) {
         data.shakers.push(matches[1]);
