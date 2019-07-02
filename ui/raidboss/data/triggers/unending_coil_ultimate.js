@@ -399,7 +399,7 @@
     {
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
-      regex: /Fleeting light! 'Neath the red moon, scorch you the eart/,
+      regex: /Fleeting light! 'Neath the red moon, scorch you the earth/,
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
