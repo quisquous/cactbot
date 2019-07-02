@@ -597,6 +597,10 @@
       regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
+        // FIXME: temporary workaround for "gains the effect for 9999.00"
+        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
+        if (matches[2] > 1000)
+          return false;
         return data.me == matches[1];
       },
       durationSeconds: function(data, matches) {
@@ -648,6 +652,11 @@
       regexDe: /:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
       regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      condition: function(data, matches) {
+        // FIXME: temporary workaround for "gains the effect for 9999.00"
+        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
+        return matches[2] < 1000;
+      },
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         let order = null;
