@@ -81,6 +81,7 @@ triggers/eureka_pagos.js
 triggers/eureka_pyros.js
 triggers/fractal_continuum_hard.js
 triggers/general.js
+triggers/innocence-ex.js
 triggers/lakshmi-ex.js
 triggers/orbonne_monastery.js
 triggers/rathalos-ex.js
