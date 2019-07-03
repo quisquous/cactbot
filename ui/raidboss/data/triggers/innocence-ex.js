@@ -5,11 +5,11 @@
   zoneRegex: /.*/,
   timelineFile: 'innocence-ex.txt',
   triggers: [
-    {
+    /* {
       id: 'InnoEx 2',
       regex: /14:40BD:Innocence starts using Winged Reprobation on Innocence/,
       alertText: 'Winged?',
-    },
+    },*/
     {
       id: 'InnoEx 3',
       regex: /14:3ECD:Innocence starts using Righteous Bolt on (\y{Name})/,
@@ -35,6 +35,9 @@
       id: 'InnoEx 6',
       regex: /14:3EEF:Innocence starts using Starbirth on Innocence/,
       alertText: 'Star Orbs',
+      run: function(data, matches) {
+        // TODO: Track Star Orbs, is it always 3 -> 2 -> 4?
+      },
     },
     {
       id: 'InnoEx 7',
@@ -44,13 +47,15 @@
     {
       id: 'InnoEx 8',
       regex: /1B:........:(\y{Name}):....:....:00AC:0000:0000:0000:/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Spear on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-        };
+      condition: function(data, matches) {
+        return matches[1] == data.me;
       },
+      alertText: 'Spear on YOU',
+    },
+    {
+      id: 'InnoEx 9',
+      regex: /14:3EE4:Innocence starts using God Ray on Innocence/,
+      alertText: 'Swords then Nuclear Ground',
     },
     /* {
       id: 'InnoEx 9',
