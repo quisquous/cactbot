@@ -20,7 +20,7 @@
     },
     {
       id: 'T2 Rot',
-      regex: / 1A:(\y{Name}) gains the effect of Allagan Rot/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Allagan Rot/,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -38,7 +38,7 @@
     },
     {
       id: 'T2 Pass Rot',
-      regex: / 1A:(\y{Name}) gains the effect of Allagan Rot/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Allagan Rot/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -56,7 +56,7 @@
     },
     {
       id: 'T2 Lost Rot',
-      regex: / 1E:(\y{Name}) loses the effect of Allagan Rot/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Allagan Rot/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

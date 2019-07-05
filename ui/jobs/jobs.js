@@ -224,6 +224,7 @@ function setupRegexes() {
   kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
   kLeadenBuff = gLang.youGainEffectRegex(gLang.kEffect.LeadenFist);
   kLeadenBuffEnd = gLang.youLoseEffectRegex(gLang.kEffect.LeadenFist);
+  console.log(kLeadenBuff);
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
   kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
   kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
@@ -337,7 +338,7 @@ function setupBuffTracker() {
     },
     embolden: {
       // Embolden is special and has some extra text at the end, depending on embolden stage:
-      //   1A:Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
+      // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
       // Instead, use somebody using the effect on you:
       //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
       gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
@@ -1849,18 +1850,18 @@ class Bars {
 
   Test() {
     let logs = [];
-    logs.push(' 1A:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
-    logs.push(' 1A:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(' 1A:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    logs.push(' 1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
     logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(' 1A:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
     logs.push(' 15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
     logs.push(' 15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(' 1A:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     let e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }

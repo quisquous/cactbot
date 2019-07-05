@@ -131,10 +131,10 @@
     },
     {
       id: 'Ridorana Famfrit Dark Rain',
-      regex: / 03:Added new combatant Dark Rain\./,
-      regexDe: / 03:Added new combatant Dunkler Regen\./,
-      regexFr: / 03:Added new combatant Trombe D'eau\./,
-      regexJa: / 03:Added new combatant 暗雲の雨水\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Dark Rain\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Dunkler Regen\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Trombe D'eau\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 暗雲の雨水/,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
@@ -196,10 +196,10 @@
     },
     {
       id: 'Ridorana Belias Hand of Time',
-      regex: / 1A:(\y{Name}) gains the effect of Burns from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Brandwunde from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Brûlure from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 火傷 from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Burns from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandwunde from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brûlure from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火傷 from/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -223,10 +223,10 @@
     },
     {
       id: 'Ridorana Belias Gigas',
-      regex: / 03:Added new combatant Gigas\./,
-      regexDe: / 03:Added new combatant Diener Von Belias\./,
-      regexFr: / 03:Added new combatant Serviteur De Bélias\./,
-      regexJa: / 03:Added new combatant 魔人兵\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Gigas\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Diener Von Belias\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Serviteur De Bélias\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 魔人兵\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
@@ -359,10 +359,10 @@
       },
     },
     {
-      regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
-      regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Malus De PV\+/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Hp Penalty/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of LP-Malus/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Malus De PV\+/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -376,10 +376,10 @@
       // trigger happens.  However, by t=1 second in testing, standing a circle
       // will apply.  So, hope for the best by testing at t=0.5 as well, but not
       // overwriting any results from t=0 if that was valid.
-      regex: / 1A:(\y{Name}) gains the effect of Hp Penalty/,
-      regexDe: / 1A:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Malus De Pv\+/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Hp Penalty/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of LP-Malus/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Malus De Pv\+/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -468,10 +468,10 @@
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
-      regex: /1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
-      regexJa: /1A:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
+      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -546,10 +546,10 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
-      regex: / 1A:(\y{Name}) gains the effect of Magnetic Lysis - from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Charge Négative from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Magnetic Lysis - from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Charge Négative from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -561,10 +561,10 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
-      regex: / 1A:(\y{Name}) gains the effect of Magnetic Lysis \+ from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Positives Magnetfeld from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Charge Positive from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Magnetic Lysis \+ from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Positives Magnetfeld from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Charge Positive from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -576,10 +576,10 @@
     },
     {
       id: 'Ridorana Yiazmat Archaeodemon',
-      regex: / 03:Added new combatant Archaeodemon\./,
-      regexDe: / 03:Added new combatant Archaeodämon\./,
-      regexFr: / 03:Added new combatant Archéodémon\./,
-      regexJa: / 03:Added new combatant アルケオデーモン\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Archaeodemon\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Archaeodämon\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Archéodémon\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant アルケオデーモン\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
@@ -594,9 +594,9 @@
     },
     {
       id: 'Ridorana Yiazmat Heart',
-      regex: / 03:Added new combatant Heart Of The Dragon\./,
-      regexDe: / 03:Added new combatant Herz Des Drachen\./,
-      regexFr: / 03:Added new combatant Cœur De Yiazmat\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Heart Of The Dragon\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Herz Des Drachen\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Cœur De Yiazmat\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',

@@ -91,10 +91,10 @@
     },
     {
       id: 'O12N Local Resonance',
-      regex: / 1A:Omega gains the effect of (?:Unknown_67E|Local Resonance) from/,
-      regexDe: / 1A:Omega gains the effect of (?:Unknown_67E|Resonanzprogramm: Nah) from/,
-      regexFr: / 1A:Oméga gains the effect of (?:Unknown_67E|Programme De Résonance : Proximité) from/,
-      regexJa: / 1A:オメガ gains the effect of (?:Unknown_67E|レゾナンスプログラム：ニアー) from/,
+      regex: / 1A:\y{ObjectId}:Omega gains the effect of (?:Unknown_67E|Local Resonance) from/,
+      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of (?:Unknown_67E|Resonanzprogramm: Nah) from/,
+      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of (?:Unknown_67E|Programme De Résonance : Proximité) from/,
+      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of (?:Unknown_67E|レゾナンスプログラム：ニアー) from/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -140,10 +140,10 @@
     },
     {
       id: 'O12N Packet Filter F',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Packet Filter F) from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Sicherungssystem F) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|Programme Protecteur F) from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67D|ガードプログラムF) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|Packet Filter F) from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|Sicherungssystem F) from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|Programme Protecteur F) from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|ガードプログラムF) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -155,10 +155,10 @@
     },
     {
       id: 'O12N Packet Filter M',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Packet Filter M) from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Sicherungssystem M) from/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|Programme Protecteur M) from/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_67C|ガードプログラムM) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|Packet Filter M) from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|Sicherungssystem M) from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|Programme Protecteur M) from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|ガードプログラムM) from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

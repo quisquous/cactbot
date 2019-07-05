@@ -175,8 +175,8 @@
     },
     {
       id: 'O3S Right Face',
-      regex: /(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
-      regexDe: /(\y{Name}) gains the effect of (?:Unknown_510|Rechts) from/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_510|Rechts) from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -188,8 +188,8 @@
     },
     {
       id: 'O3S Forward March',
-      regex: /(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
-      regexDe: /(\y{Name}) gains the effect of (?:Unknown_50D|Vorwärts) from/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50D|Vorwärts) from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

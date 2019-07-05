@@ -14,7 +14,7 @@
     },
     {
       id: 'T12 Bennu',
-      regex: / 03:Added new combatant Bennu/,
+      regex: / 03:\y{ObjectId}:Added new combatant Bennu\./,
       delaySeconds: 55,
       durationSeconds: 4.5,
       infoText: function(data) {
@@ -72,7 +72,7 @@
     },
     {
       id: 'T12 Chain',
-      regex: / 1A:(\y{Name}) gains the effect of Chain Of Purgatory/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chain Of Purgatory/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

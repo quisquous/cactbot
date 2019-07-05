@@ -102,7 +102,7 @@ hideall "--start--"
 2181.8 "--targetable--"
 2188.0 "Crush Helm" sync /:Rofocale:2682:/
 2194.5 "--invulnerable--"
-2196.5 "Archaeodemon Adds" sync /03:Added new combatant Archaeodemon/ window 300,300
+2196.5 "Archaeodemon Adds" sync /03:........:Added new combatant Archaeodemon\./ window 300,300
 2203.5 "--lock out--"
 2232.3 "--sync--" sync /00:0044:The heavens tremble in my wake/ window 300,300
 2250.0 "--sync--" sync /:268A:Rofocale/ window 60,10

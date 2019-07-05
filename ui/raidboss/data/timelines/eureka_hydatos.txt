@@ -6,7 +6,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 10000 jump 0
-0 "--Reset--" sync /04:Removing combatant Proto Ozma\.  Max HP: \d{8}\./ window 10000 jump 0
+0 "--Reset--" sync /04:........:Removing combatant Proto Ozma\.  Max HP: \d{8}\./ window 10000 jump 0
 
 
 #####################

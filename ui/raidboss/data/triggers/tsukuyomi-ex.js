@@ -192,9 +192,9 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
-      regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Pleine Lune/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -212,9 +212,9 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
-      regex: / 1A:(\y{Name}) gains the effect of Moonlit/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Mondschein/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Pleine Lune/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonlitCount >= 4;
       },
@@ -226,9 +226,9 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
-      regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Mondschatten/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Nouvelle Lune/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -246,9 +246,9 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
-      regex: / 1A:(\y{Name}) gains the effect of Moonshadowed/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Mondschatten/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Nouvelle Lune/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonshadowedCount >= 4;
       },

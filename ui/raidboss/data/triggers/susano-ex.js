@@ -34,8 +34,8 @@
       },
     },
     { // Churning tracker
-      regex: /:\y{Name} gains the effect of Churning from Susano/,
-      regex: /:\y{Name} gains the effect of Schäumend from Susano/,
+      regex: /1A:\y{ObjectId}:\y{Name} gains the effect of Churning from Susano/,
+      regexDe: /1A:\y{ObjectId}:\y{Name} gains the effect of Schäumend from Susano/,
       condition: function(data) {
         return !data.churning;
       },
@@ -47,8 +47,8 @@
       // We could track the number of people with churning here, but
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
-      regex: /:\y{Name} loses the effect of Churning from Susano\./,
-      regexDe: /:\y{Name} loses the effect of Schäumend from Susano\./,
+      regex: /1E:\y{ObjectId}:\y{Name} loses the effect of Churning from Susano\./,
+      regexDe: /1E:\y{ObjectId}:\y{Name} loses the effect of Schäumend from Susano\./,
       condition: function(data) {
         return data.churning;
       },

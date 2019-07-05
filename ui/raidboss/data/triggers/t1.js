@@ -28,7 +28,7 @@
     },
     {
       id: 'T1 Split',
-      regex: / 03:Added new combatant Caduceus/,
+      regex: / 03:\y{ObjectId}:Added new combatant Caduceus\./,
       suppressSeconds: 5,
       condition: function(data) {
         return data.started;
@@ -60,7 +60,7 @@
     },
     {
       id: 'T1 Slime Timer',
-      regex: / 03:Added new combatant Dark Matter Slime/,
+      regex: / 03:\y{ObjectId}:Added new combatant Dark Matter Slime\./,
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {

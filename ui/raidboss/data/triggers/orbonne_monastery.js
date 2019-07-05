@@ -250,9 +250,9 @@
     },
     {
       id: 'Orbonne Agrias Extra Adds',
-      regex: / 03:Added new combatant Emblazoned Shield/,
-      regexDe: / 03:Added new combatant Geschmückter Schild/,
-      regexFr: / 03:Added new combatant Pavois Miroitant/,
+      regex: / 03:\y{ObjectId}:Added new combatant Emblazoned Shield\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Geschmückter Schild\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Pavois Miroitant\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill shields with sword',
@@ -629,9 +629,9 @@
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
-      regex: /:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

@@ -25,7 +25,7 @@
       },
     },
     {
-      regex: /:Lakshmi loses the effect of Chanchala/,
+      regex: /1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
       run: function(data) {
         data.chanchala = false;
       },

@@ -10,7 +10,7 @@ hideall "--sync--"
 31 "Atomic Ray" sync /:Guardian:278D:/
 40 "Prey" sync /:Guardian:278A:/
 49 "Load ??" sync /:Guardian:275C:/
-50 "--sync--" sync /1A:Guardian gains the effect of Dadaluma Simulation/ jump 1050
+50 "--sync--" sync /1A:........:Guardian gains the effect of Dadaluma Simulation/ jump 1050
 52 "Shockwave?"
 
 # This is Version A of the encounter, with Bibliotaph first
@@ -94,8 +94,8 @@ hideall "--sync--"
 
 # Divergence point
 509 "Load/Skip ???" sync /:Guardian:(275C|2773):/
-510 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph Simulation/ jump 2510       # Bibliotaph buff, jump to A1
-510 "--sync--" sync /1A:Guardian gains the effect of Dadaluma Simulation/ jump 3510         # Dadaluma buff, jump to A2
+510 "--sync--" sync /1A:........:Guardian gains the effect of Bibliotaph Simulation/ jump 2510       # Bibliotaph buff, jump to A1
+510 "--sync--" sync /1A:........:Guardian gains the effect of Dadaluma Simulation/ jump 3510         # Dadaluma buff, jump to A2
 512 "Shockwave?"
 519 "Demon Simulation?"
 
@@ -276,8 +276,8 @@ hideall "--sync--"
 
 # Divergence point
 1481 "Load/Skip ??" sync /:Guardian:(275C|2773):/
-1482 "--sync--" sync /1A:Guardian gains the effect of Bibliotaph Simulation/ jump 4482       # Bibliotaph buff, jump to B1
-1482 "--sync--" sync /1A:Guardian gains the effect of Dadaluma Simulation/ jump 5482         # Dadaluma buff, jump to B2
+1482 "--sync--" sync /1A:........:Guardian gains the effect of Bibliotaph Simulation/ jump 4482       # Bibliotaph buff, jump to B1
+1482 "--sync--" sync /1A:........:Guardian gains the effect of Dadaluma Simulation/ jump 5482         # Dadaluma buff, jump to B2
 1484 "Shockwave?"
 1491 "Demon Simulation?"
 

@@ -7,9 +7,9 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
-      regex: /04:Removing combatant Phantom Train/,
-      regexDe: /04:Removing combatant Phantomzug/,
-      regexFr: /04:Removing combatant Train Fantôme/,
+      regex: /04:\y{ObjectId}:Removing combatant Phantom Train\./,
+      regexDe: /04:\y{ObjectId}:Removing combatant Phantomzug\./,
+      regexFr: /04:\y{ObjectId}:Removing combatant Train Fantôme\./,
       run: function(data) {
         data.StopCombat();
       },

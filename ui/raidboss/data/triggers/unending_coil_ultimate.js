@@ -11,10 +11,10 @@
   triggers: [
     // --- State ---
     {
-      regex: /:(\y{Name}) gains the effect of Firescorched/,
-      regexDe: /:(\y{Name}) gains the effect of Feuerhorn/,
-      regexFr: /:(\y{Name}) gains the effect of Corne-de-feu/,
-      regexJa: /:(\y{Name}) gains the effect of ファイアホーン/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Firescorched/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Feuerhorn/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Corne-de-feu/,
+      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of ファイアホーン/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -23,10 +23,10 @@
       },
     },
     {
-      regex: /:(\y{Name}) loses the effect of Firescorched/,
-      regexDe: /:(\y{Name}) loses the effect of Feuerhorn/,
-      regexFr: /:(\y{Name}) loses the effect of Corne-de-feu/,
-      regexJa: /:(\y{Name}) loses the effect of ファイアホーン/,
+      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Firescorched/,
+      regexDe: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Feuerhorn/,
+      regexFr: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Corne-de-feu/,
+      regexJa: /1E:\y{ObjectId}:(\y{Name}) loses the effect of ファイアホーン/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -35,10 +35,10 @@
       },
     },
     {
-      regex: /:(\y{Name}) gains the effect of Icebitten/,
-      regexDe: /:(\y{Name}) gains the effect of Eisklaue/,
-      regexFr: /:(\y{Name}) gains the effect of Griffe-de-glace/,
-      regexJa: /:(\y{Name}) gains the effect of アイスクロウ/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Icebitten/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Eisklaue/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Griffe-de-glace/,
+      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of アイスクロウ/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -47,10 +47,10 @@
       },
     },
     {
-      regex: /:(\y{Name}) loses the effect of Icebitten/,
-      regexDe: /:(\y{Name}) loses the effect of Eisklaue/,
-      regexFr: /:(\y{Name}) loses the effect of Griffe-de-glace/,
-      regexJa: /:(\y{Name}) loses the effect of アイスクロウ/,
+      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Icebitten/,
+      regexDe: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Eisklaue/,
+      regexFr: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Griffe-de-glace/,
+      regexJa: /1E:\y{ObjectId}:(\y{Name}) loses the effect of アイスクロウ/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -592,7 +592,7 @@
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: /:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
       regexDe: /:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
       regexFr: /:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,

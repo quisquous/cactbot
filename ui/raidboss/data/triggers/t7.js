@@ -32,14 +32,14 @@
     },
     {
       id: 'T7 Renaud',
-      regex: / 03:Added new combatant Renaud\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Renaud\./,
       infoText: {
         en: 'Renaud Add',
       },
     },
     {
       id: 'T7 Voice',
-      regex: / 1A:(\y{Name}) gains the effect of Cursed Voice from .*for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Voice from .*for (\y{Float}) Seconds/,
       delaySeconds: function(data, matches) {
         return matches[2] - 3;
       },
@@ -52,7 +52,7 @@
     },
     {
       id: 'T7 Shriek',
-      regex: / 1A:(\y{Name}) gains the effect of Cursed Shriek/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
       durationSeconds: 3,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
@@ -71,7 +71,7 @@
     },
     {
       id: 'T7 Shriek Reminder',
-      regex: / 1A:(\y{Name}) gains the effect of Cursed Shriek/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
