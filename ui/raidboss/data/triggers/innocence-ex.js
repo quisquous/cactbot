@@ -143,7 +143,7 @@
     },
     {
       id: 'InnoEx Winged Reprobation Tether',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00AC:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00AC:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -153,7 +153,7 @@
     },
     {
       id: 'InnoEx Winged Drop Of Light',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:008A:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
