@@ -81,6 +81,7 @@ triggers/eureka_pagos.js
 triggers/eureka_pyros.js
 triggers/fractal_continuum_hard.js
 triggers/general.js
+triggers/innocence-ex.js
 triggers/lakshmi-ex.js
 triggers/orbonne_monastery.js
 triggers/rathalos-ex.js
@@ -129,6 +130,7 @@ triggers/ridorana_lighthouse.js
 triggers/shatter.js
 triggers/sohm_al.js
 triggers/test.js
+triggers/titania-ex.js
 triggers/temple_of_the_fist.js
 triggers/ultima_weapon_ultimate.js
 triggers/unending_coil_ultimate.js
