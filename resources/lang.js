@@ -82,6 +82,8 @@ class CactbotLanguage {
       OffGuard: '2C93',
       SongOfTorment: '2C7A',
       PeculiarLight: '2C9D',
+      Overpower: '29',
+      MythrilTempest: '404E',
 
       // Susano Ex
       ChurningDeep: '203F',

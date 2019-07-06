@@ -69,6 +69,7 @@ let kAstBenefic = null;
 let kAstHelios = null;
 let kBluOffguard = null;
 let kBluTorment = null;
+let kLostStormsEye = null;
 let kWellFedZoneRegex = null;
 
 class ComboTracker {
@@ -176,6 +177,10 @@ function setupComboTracker(callback) {
     gLang.kAbility.StormsPath,
   ]);
   comboTracker.AddCombo([
+    gLang.kAbility.Overpower,
+    gLang.kAbility.MythrilTempest,
+  ]);
+  comboTracker.AddCombo([
     gLang.kAbility.FastBlade,
     gLang.kAbility.SavageBlade,
     gLang.kAbility.RageofHalone,
@@ -224,7 +229,6 @@ function setupRegexes() {
   kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
   kLeadenBuff = gLang.youGainEffectRegex(gLang.kEffect.LeadenFist);
   kLeadenBuffEnd = gLang.youLoseEffectRegex(gLang.kEffect.LeadenFist);
-  console.log(kLeadenBuff);
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
   kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
   kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
@@ -232,6 +236,7 @@ function setupRegexes() {
   kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
   kBluOffguard = gLang.youUseAbilityRegex(gLang.kAbility.OffGuard);
   kBluTorment = gLang.youUseAbilityRegex(gLang.kAbility.SongOfTorment);
+  kLostStormsEye = gLang.youLoseEffectRegex(gLang.kEffect.StormsEye);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
@@ -268,6 +273,7 @@ function setupRegexes() {
     gLang.kAbility.Maim,
     gLang.kAbility.StormsEye,
     gLang.kAbility.StormsPath,
+    gLang.kAbility.MythrilTempest,
     // pld
     gLang.kAbility.ShieldLob,
     gLang.kAbility.TotalEclipse,
@@ -1309,6 +1315,10 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
+  OnLostStormsEye() {
+    this.o.eyeBox.duration = 0;
+  }
+
   OnComboChange(skill) {
     if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
@@ -1329,12 +1339,22 @@ class Bars {
       else
         this.o.rdmCombo3.classList.remove('active');
     } else if (this.job == 'WAR') {
+      // TODO: handle flags where you don't hit something.
+      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+      if (skill == gLang.kAbility.MythrilTempest) {
+        if (this.o.eyeBox.duration > 0) {
+          let old = parseInt(this.o.eyeBox.duration);
+          this.o.eyeBox.duration = 0;
+          this.o.eyeBox.duration = Math.min(old + 10, 30);
+        }
+        return;
+      }
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
         // Storm's Eye applies with some animation delay here, and on the next
         // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add most of a gcd here in duration time from when it's applied.
-        this.o.eyeBox.duration = 30 + 1.5;
+        // add some of a gcd here in duration time from when it's applied.
+        this.o.eyeBox.duration = 30 + 1;
       }
 
       // Min number of skills until eye without breaking combo.
@@ -1752,6 +1772,12 @@ class Bars {
           this.OnSummonerAetherflow(this.options.SmnAetherflowRecast);
           continue;
         }
+      }
+
+      if (this.job == 'WAR') {
+        let r = log.match(kLostStormsEye);
+        if (r)
+          this.OnLostStormsEye();
       }
 
       if (this.job == 'RDM') {
