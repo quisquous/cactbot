@@ -24,6 +24,7 @@ timelines/shinryu-ex.txt
 timelines/sophia-ex.txt
 timelines/susano-ex.txt
 timelines/suzaku-ex.txt
+timelines/titania-ex.txt
 timelines/tsukuyomi-ex.txt
 timelines/t4.txt
 timelines/t5.txt
