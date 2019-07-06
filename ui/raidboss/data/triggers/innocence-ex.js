@@ -84,18 +84,10 @@
     {
       id: 'InnoEx Starbirth Avoid',
       regex: /14:3EEF:Innocence starts using Starbirth/,
-      delaySeconds: 3,
+      delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
       },
-      alertText: {
-        en: 'Get to Safe Corner',
-      },
-    },
-    {
-      id: 'InnoEx Starbirth Explode',
-      regex: /14:3F3E:Innocence starts using Light Pillar/,
-      delaySeconds: 6.5,
       alertText: {
         en: 'Get to Safe Corner',
       },
@@ -130,12 +122,23 @@
           en: 'Avoid Orbs With Line',
         };
       },
-      alertText: function(data, matches) {
+      infoText: function(data, matches) {
         if (matches[1] == data.me)
           return;
         return {
           en: 'Line Stack',
         };
+      },
+    },
+    {
+      id: 'InnoEx Starbirth Explode',
+      regex: /14:3F3E:Innocence starts using Light Pillar/,
+      condition: function(data) {
+        return data.lightPillar == 3;
+      },
+      delaySeconds: 6.5,
+      alertText: {
+        en: 'Get to Safe Corner',
       },
     },
     {
