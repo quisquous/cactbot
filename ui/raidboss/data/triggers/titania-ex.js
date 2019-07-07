@@ -154,7 +154,7 @@
     },
     {
       id: 'TitaniaEx Uplift Markers',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:008A:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -191,14 +191,40 @@
       },
     },
     {
-      id: 'TitaniaEx Pucks Breath Markers',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00A1:0000:0000:0000:/,
+      id: 'TitaniaEx Peasebomb',
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00BD:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Spread',
+      },
+      run: function(data) {
+        data.bomb = data.bomb || {};
+        data.bomb[data.me] = true;
+      },
+    },
+    {
+      id: 'TitaniaEx Peasebomb Use',
+      regex: /1[56]:\y{ObjectId}:Peaseblossom:3D3F:Peasebomb/,
+      run: function(data) {
+        delete data.bomb;
+      },
+    },
+    {
+      id: 'TitaniaEx Adds Stack',
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00A1:/,
+      delaySeconds: 0.25,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Stack on YOU',
           };
         }
+
+        if (data.bomb && data.bomb[data.me])
+          return;
+
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
         };
@@ -214,13 +240,11 @@
     },
     {
       id: 'TitaniaEx Thunder Rune',
-      regex: /(^.*) 1[56]:\y{ObjectId}:Titania:3D29:Thunder Rune:/,
+      regex: /1[56]:\y{ObjectId}:Titania:3D29:Thunder Rune:/,
       preRun: function(data, matches) {
         data.thunderCount = data.thunderCount || 1;
       },
-      condition: function(data, matches) {
-        return data.thunderTime != matches[1];
-      },
+      suppressSeconds: 1,
       infoText: function(data) {
         return {
           en: 'Thunder ' + data.thunderCount,

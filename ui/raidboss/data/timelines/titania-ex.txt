@@ -1,5 +1,5 @@
 ### Titania Ex
-# -ii 429E 3D2F 468B 468A 3D49 3D39 3D42 3D43 -p 3D4B:12 3D3D:500 3D32:800
+# -ii 429E 3D2F 468B 468A 3D49 3D39 3D42 3D43 -p 3D4B:12 3D3D:500 3D32:800 3DAE:1510
 # https://thebalanceffxiv.com/guide/titania/
 
 hideall "--Reset--"
@@ -44,7 +44,9 @@ hideall "--sync--"
 
 
 ### Phase 2a: smol adds
-256.4 "--untargetable--" sync /:Titania:3D31:/ window 300,0
+251.8 "--untargetable--"
+256.4 "--sync--" sync /:Titania:3D31:/ window 300,0
+258.8 "--targetable--"
 271.0 "Leafstorm" sync /:Mustardseed:3D38:/
 271.1 "Gentle Breeze" sync /:Puck:3F82:/
 273.4 "Pease" sync /:Peaseblossom:3D35:/
@@ -61,6 +63,7 @@ hideall "--sync--"
 
 ### Phase 2b: bigger is better
 500.0 "Love-In-Idleness" sync /:Titania:3D3D:/ window 500,0
+518.2 "--targetable--"
 528.5 "Leafstorm" sync /:Mustardseed:3D3E:/
 529.0 "War And Pease" sync /:Peaseblossom:3D40:/
 529.0 "Peasebomb" sync /:Peaseblossom:3D3F:/
@@ -107,6 +110,10 @@ hideall "--sync--"
 1031.7 "Phantom Rune" sync /:Titania:3D4[CD]:/
 1043.7 "Bright Sabbath" sync /:Titania:3D4B:/
 1050.7 "Divination Rune" sync /:Titania:3D4A:/
+1065.6 "Mist Rune" sync /:Titania:3D45:/
+# ???
 
 ### Phase 4: too slow
-1062.7 "Bright Sabbath Enrage" sync /:Titania:3DAE:/
+
+1500.0 "--sync--" sync /:3DAE:Titania/
+1510.0 "Bright Sabbath Enrage" sync /:Titania:3DAE:/
