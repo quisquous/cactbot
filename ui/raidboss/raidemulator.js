@@ -376,8 +376,13 @@ class LogPlayer {
 
     // Walk through all logs that should be emitted since the last tick.
     let logs = [];
-    while (dateFromLogLine(this.fight.logs[this.logIdx]).getTime() <= cutOffTimeMs) {
-      logs.push(this.fight.logs[this.logIdx]);
+    while (true) {
+      let date = dateFromLogLine(this.fight.logs[this.logIdx]);
+      if (date) {
+        if (date.getTime() > cutOffTimeMs)
+          break;
+        logs.push(this.fight.logs[this.logIdx]);
+      }
       this.logIdx++;
 
       if (this.logIdx >= this.fight.logs.length) {
