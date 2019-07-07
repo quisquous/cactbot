@@ -210,6 +210,14 @@ li:last-child {
     background-color: rgb(228, 109, 4);
 }
 
+.show-job-colors .gnb .bar {
+    background-color: rgb(121,109,48);
+}
+
+.show-job-colors .dnc .bar {
+    background-color: rgb(226,176,175);
+}
+
 .show-job-colors .nin .bar, .show-job-colors .rog .bar {
     background-color: rgb(175, 25, 100);
 }
