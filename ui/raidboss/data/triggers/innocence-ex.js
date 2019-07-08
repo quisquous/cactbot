@@ -197,8 +197,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'Innozenz',
-        'Geläuterte Wollust': '',
-        'Geläuterte Schande': '',
         'Engage!': 'Start!'
       },
       'replaceText': {
@@ -225,9 +223,10 @@
         'Drop of Light': 'Lichtabfall',
         'Dream of the Rood': 'Traum des Kreuzes',
         'Beatific Vision': 'Seligmachende Schau',
+        'Forgiven venery': 'Geläuterte Wollust',
+        'Forgiven shame': 'Geläuterte Schande',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
-        '': ''
+        '--targetable--': '--anvisierbar--'
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
@@ -241,8 +240,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'Innocence',
-        'Geläuterte Wollust': '',
-        'Geläuterte Schande': '',
         'Engage!': 'À l\'attaque'
       },
       'replaceText': {
@@ -269,11 +266,12 @@
         'Drop of Light': 'Goutte de lumière',
         'Dream of the Rood': 'Le Rêve de la Croix',
         'Beatific Vision': 'Vision béatifique',
+        'Forgiven venery': 'débauche pardonnée',
+        'Forgiven shame': 'déshonneur pardonné',
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
-        '': ''
+        '--Reset--': '--Réinitialisation--'
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
@@ -287,8 +285,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'イノセンス',
-        'Geläuterte Wollust': '',
-        'Geläuterte Schande': '',
         'Engage!': '戦闘開始！'
       },
       'replaceText': {
@@ -314,7 +310,8 @@
         'Drop of Light': 'ドロップ・オブ・ライト',
         'Dream of the Rood': 'ドリーム・オブ・ザ・ルード',
         'Beatific Vision': 'ビーティフィックビジョン',
-        '': ''
+        'Forgiven venery': 'フォーギヴン・ヴェナリー',
+        'Forgiven shame': 'フォーギヴン・シェイム',
       },
       '~effectNames': {
         'Physical Vulnerability Up': '被物理ダメージ増加',
@@ -328,8 +325,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': '',
-        'Geläuterte Wollust': '',
-        'Geläuterte Schande': '',
         'Engage!': '战斗开始！'
       },
       'replaceText': {
@@ -355,6 +350,8 @@
         'Drop of Light': '',
         'Dream of the Rood': '',
         'Beatific Vision': '',
+        'Geläuterte Wollust': '',
+        'Geläuterte Schande': '',
         '': ''
       },
       '~effectNames': {
