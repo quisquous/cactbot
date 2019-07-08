@@ -191,13 +191,13 @@
       },
     },
   ],
-  'timelineReplace': [
+  timelineReplace: [
     {
       'locale': 'de',
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'Innozenz',
-        'Engage!': 'Start!'
+        'Engage!': 'Start!',
       },
       'replaceText': {
         '断罪': '断罪',
@@ -226,21 +226,21 @@
         'Forgiven venery': 'Geläuterte Wollust',
         'Forgiven shame': 'Geläuterte Schande',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
         'Lightning Resistance Down II': 'Blitzresistenz - (stark)',
         'Embolden': 'Ermutigen',
-        'Damage Down': 'Schaden -'
-      }
+        'Damage Down': 'Schaden -',
+      },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque'
+        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         '断罪': '断罪',
@@ -271,21 +271,21 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
         'Lightning Resistance Down II': 'Résistance à La Foudre Réduite+',
         'Embolden': 'Enhardissement',
-        'Damage Down': 'Malus de dégâts'
-      }
+        'Damage Down': 'Malus de dégâts',
+      },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！'
+        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         '断罪': '断罪',
@@ -317,15 +317,15 @@
         'Physical Vulnerability Up': '被物理ダメージ増加',
         'Lightning Resistance Down II': '雷属性耐性低下［強］',
         'Embolden': 'エンボルデン',
-        'Damage Down': 'ダメージ低下'
-      }
+        'Damage Down': 'ダメージ低下',
+      },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': '',
-        'Engage!': '战斗开始！'
+        'Engage!': '战斗开始！',
       },
       'replaceText': {
         '断罪': '',
@@ -352,14 +352,13 @@
         'Beatific Vision': '',
         'Geläuterte Wollust': '',
         'Geläuterte Schande': '',
-        '': ''
       },
       '~effectNames': {
         'Physical Vulnerability Up': '',
         'Lightning Resistance Down II': '雷属性耐性大幅降低',
         'Embolden': '鼓励',
-        'Damage Down': ''
-      }
-    }
+        'Damage Down': '',
+      },
+    },
   ],
 }];

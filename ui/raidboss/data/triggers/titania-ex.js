@@ -263,7 +263,7 @@
       },
     },
   ],
-  'timelineReplace': [
+  timelineReplace: [
     {
       'locale': 'de',
       'replaceSync': {
@@ -308,7 +308,7 @@
         'Bright Sabbath': 'Leuchtender Sabbat',
         'Being Mortal': 'Sterblichkeit',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Thorny Vine': 'Dornenranken',
@@ -317,8 +317,8 @@
         'Fire Resistance Up': 'Feuerresistenz +',
         'Fire Resistance Down II': 'Feuerresistenz - (stark)',
         'Embolden': 'Ermutigen',
-        'Blunt Resistance Down': 'Schlagresistenz -'
-      }
+        'Blunt Resistance Down': 'Schlagresistenz -',
+      },
     },
     {
       'locale': 'fr',
@@ -329,7 +329,7 @@
         'Peaseblossom': 'Fleur-de-pois',
         'Mustardseed': 'Pousse-de-moutarde',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque'
+        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -366,7 +366,7 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Thorny Vine': 'Sarment De Ronces',
@@ -375,8 +375,8 @@
         'Fire Resistance Up': 'Résistance Au Feu Accrue',
         'Fire Resistance Down II': 'Résistance au feu réduite+',
         'Embolden': 'Enhardissement',
-        'Blunt Resistance Down': 'Résistance Au Contondant Réduite'
-      }
+        'Blunt Resistance Down': 'Résistance Au Contondant Réduite',
+      },
     },
     {
       'locale': 'ja',
@@ -387,7 +387,7 @@
         'Peaseblossom': 'ピーズブロッサム',
         'Mustardseed': 'マスタードシード',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！'
+        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -419,7 +419,7 @@
         'Divination Rune': '魔のルーン',
         'Chain of Brambles': 'ブランブルチェーン',
         'Bright Sabbath': 'ブライトサバト',
-        'Being Mortal': '死すべき定め'
+        'Being Mortal': '死すべき定め',
       },
       '~effectNames': {
         'Thorny Vine': '茨の蔓',
@@ -428,8 +428,8 @@
         'Fire Resistance Up': '火属性耐性向上',
         'Fire Resistance Down II': '火属性耐性低下[強]',
         'Embolden': 'エンボルデン',
-        'Blunt Resistance Down': '打属性耐性低下'
-      }
+        'Blunt Resistance Down': '打属性耐性低下',
+      },
     },
     {
       'locale': 'cn',
@@ -440,7 +440,7 @@
         'Peaseblossom': '',
         'Mustardseed': '',
         'Innocence': '',
-        'Engage!': '战斗开始！'
+        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'attack': '攻击',
@@ -472,7 +472,7 @@
         'Divination Rune': '',
         'Chain of Brambles': '',
         'Bright Sabbath': '',
-        'Being Mortal': ''
+        'Being Mortal': '',
       },
       '~effectNames': {
         'Thorny Vine': '荆棘丛生',
@@ -481,8 +481,8 @@
         'Fire Resistance Up': '火属性耐性提升',
         'Fire Resistance Down II': '',
         'Embolden': '鼓励',
-        'Blunt Resistance Down': '打击耐性降低'
-      }
-    }
+        'Blunt Resistance Down': '打击耐性降低',
+      },
+    },
   ],
 }];
