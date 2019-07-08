@@ -273,7 +273,7 @@
         'Peaseblossom': 'Bohnenblüte',
         'Mustardseed': 'Senfsamen',
         'Innocence': 'Innozenz',
-        'Engage!': 'Start!'
+        'Engage!': 'Start!',
       },
       'replaceText': {
         'attack': 'Attacke',
