@@ -192,7 +192,8 @@ def main(args):
         })
     output = {'timelineReplace': timeline_replace}
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=False)
-
+    output_str = output_str.replace("'", "\\'").replace("\"","'")
+    
     # Write that out to the user.
     if args.output_file:
         with open(args.output_file, 'w', encoding='utf-8') as fp:
