@@ -140,7 +140,27 @@ def main(args):
     last_ability_time = 0
 
     # ACT log doesn't include friendly/enemy information per-line, so this is a set of default friendly npcs to filter
-    npc_combatants = ['Eos', 'Selene', 'Garuda-Egi', 'Titan-Egi', 'Ifrit-Egi', 'Emerald Carbuncle', 'Ruby Carbuncle', 'Rook Autoturret', 'Bishop Autoturret', 'Demi-Bahamut', 'Earthly Star', '']
+    # https://xivapi.com/Pet?pretty=true
+    npc_combatants = [
+        'Eos',
+        'Selene',
+        'Garuda-Egi',
+        'Titan-Egi',
+        'Ifrit-Egi',
+        'Emerald Carbuncle',
+        'Topaz Carbuncle',
+        'Ruby Carbuncle',
+        'Moonstone Carbuncle',
+        'Rook Autoturret',
+        'Bishop Autoturret',
+        'Demi-Bahamut',
+        'Demi-Phoenix',
+        'Earthly Star',
+        'Seraph',
+        'Automaton Queen',
+        'Bunshin',
+        ''
+    ]
 
     # Format the phase timings
     phases = {}

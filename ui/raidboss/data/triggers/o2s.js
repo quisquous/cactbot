@@ -185,8 +185,8 @@
     },
     {
       id: 'O2S Unstable Gravity',
-      regex: /:(\y{Name}) gains the effect of Unstable Gravity from/,
-      regexDe: /:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Unstable Gravity from/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
       delaySeconds: 9,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -202,8 +202,8 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: /:(\y{Name}) gains the effect of 6 Fulms Under from/,
-      regexDe: /:(\y{Name}) gains the effect of Versinkend from/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Versinkend from/,
       delaySeconds: 5,
       infoText: function(data) {
         if (data.levitating) {
@@ -234,8 +234,8 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: /:(\y{Name}) loses the effect of 6 Fulms Under from/,
-      regexDe: /:(\y{Name}) loses the effect of Versinkend from/,
+      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of 6 Fulms Under from/,
+      regexDe: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Versinkend from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

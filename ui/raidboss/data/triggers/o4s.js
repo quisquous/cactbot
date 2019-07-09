@@ -567,8 +567,8 @@
     },
     { // Forked Lightning - Don't Stack.
       id: 'O4S2 Forked Lightning',
-      regex: /:(\y{Name}) gains the effect of Forked Lightning from/,
-      regexDe: /:(\y{Name}) gains the effect of Gabelblitz from/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Gabelblitz from/,
       delaySeconds: 1,
       alertText: {
         en: 'Forked Lightning: Don\'t Stack',
@@ -584,8 +584,8 @@
     },
     { // Acceleration Bomb
       id: 'O4S2 Acceleration Bomb',
-      regex: /:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

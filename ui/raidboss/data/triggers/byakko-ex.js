@@ -225,10 +225,10 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: /1A:(\y{Name}) gains the effect of Ominous Wind/,
-      regexDe: /1A:(\y{Name}) gains the effect of Unheilvoller Wind/,
-      regexFr: /1A:(\y{Name}) gains the effect of Vent Mauvais/,
-      regexJa: /1A:(\y{Name}) gains the effect of 祟り目/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
+      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り目/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

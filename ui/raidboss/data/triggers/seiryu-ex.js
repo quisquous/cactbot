@@ -260,10 +260,10 @@
     },
     {
       id: 'SeiryuEx Stack',
-      regex: / 03:Added new combatant Ao-No-Shiki./,
-      regexDe: / 03:Added new combatant Ao no Shiki./,
-      regexFr: / 03:Added new combatant Shiki céruléen./,
-      regexJa: / 03:Added new combatant 蒼の式鬼./,
+      regex: / 03:\y{ObjectId}:Added new combatant Ao-No-Shiki\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Ao no Shiki\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Shiki céruléen\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 蒼の式鬼\./,
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {

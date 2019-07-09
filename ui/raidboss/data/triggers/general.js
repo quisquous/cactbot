@@ -98,9 +98,9 @@
     },
     {
       id: 'General Walking',
-      regex: /:(\y{Name}) gains the effect of Walking Dead/,
-      regexDe: /:(\y{Name}) gains the effect of Erweckter/,
-      regexFr: /:(\y{Name}) gains the effect of Marcheur Des Limbes/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Walking Dead/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Erweckter/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Marcheur Des Limbes/,
       condition: function(data) {
         return data.role == 'tank';
       },

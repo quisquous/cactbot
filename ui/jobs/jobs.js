@@ -69,6 +69,7 @@ let kAstBenefic = null;
 let kAstHelios = null;
 let kBluOffguard = null;
 let kBluTorment = null;
+let kLostStormsEye = null;
 let kWellFedZoneRegex = null;
 
 class ComboTracker {
@@ -176,6 +177,10 @@ function setupComboTracker(callback) {
     gLang.kAbility.StormsPath,
   ]);
   comboTracker.AddCombo([
+    gLang.kAbility.Overpower,
+    gLang.kAbility.MythrilTempest,
+  ]);
+  comboTracker.AddCombo([
     gLang.kAbility.FastBlade,
     gLang.kAbility.SavageBlade,
     gLang.kAbility.RageofHalone,
@@ -231,6 +236,7 @@ function setupRegexes() {
   kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
   kBluOffguard = gLang.youUseAbilityRegex(gLang.kAbility.OffGuard);
   kBluTorment = gLang.youUseAbilityRegex(gLang.kAbility.SongOfTorment);
+  kLostStormsEye = gLang.youLoseEffectRegex(gLang.kEffect.StormsEye);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
@@ -267,6 +273,7 @@ function setupRegexes() {
     gLang.kAbility.Maim,
     gLang.kAbility.StormsEye,
     gLang.kAbility.StormsPath,
+    gLang.kAbility.MythrilTempest,
     // pld
     gLang.kAbility.ShieldLob,
     gLang.kAbility.TotalEclipse,
@@ -337,7 +344,7 @@ function setupBuffTracker() {
     },
     embolden: {
       // Embolden is special and has some extra text at the end, depending on embolden stage:
-      //   1A:Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
+      // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
       // Instead, use somebody using the effect on you:
       //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
       gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
@@ -1308,6 +1315,10 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
+  OnLostStormsEye() {
+    this.o.eyeBox.duration = 0;
+  }
+
   OnComboChange(skill) {
     if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
@@ -1328,12 +1339,22 @@ class Bars {
       else
         this.o.rdmCombo3.classList.remove('active');
     } else if (this.job == 'WAR') {
+      // TODO: handle flags where you don't hit something.
+      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+      if (skill == gLang.kAbility.MythrilTempest) {
+        if (this.o.eyeBox.duration > 0) {
+          let old = parseInt(this.o.eyeBox.duration);
+          this.o.eyeBox.duration = 0;
+          this.o.eyeBox.duration = Math.min(old + 10, 30);
+        }
+        return;
+      }
       if (skill == gLang.kAbility.StormsEye) {
         this.o.eyeBox.duration = 0;
         // Storm's Eye applies with some animation delay here, and on the next
         // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add most of a gcd here in duration time from when it's applied.
-        this.o.eyeBox.duration = 30 + 1.5;
+        // add some of a gcd here in duration time from when it's applied.
+        this.o.eyeBox.duration = 30 + 1;
       }
 
       // Min number of skills until eye without breaking combo.
@@ -1753,6 +1774,12 @@ class Bars {
         }
       }
 
+      if (this.job == 'WAR') {
+        let r = log.match(kLostStormsEye);
+        if (r)
+          this.OnLostStormsEye();
+      }
+
       if (this.job == 'RDM') {
         let r = log.match(kReRdmBlackManaProc);
         if (r != null) {
@@ -1849,18 +1876,18 @@ class Bars {
 
   Test() {
     let logs = [];
-    logs.push(' 1A:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
-    logs.push(' 1A:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(' 1A:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    logs.push(' 1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
     logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(' 1A:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
     logs.push(' 15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
     logs.push(' 15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(' 1A:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     let e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }

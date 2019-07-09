@@ -82,6 +82,8 @@ class CactbotLanguage {
       OffGuard: '2C93',
       SongOfTorment: '2C7A',
       PeculiarLight: '2C9D',
+      Overpower: '29',
+      MythrilTempest: '404E',
 
       // Susano Ex
       ChurningDeep: '203F',
@@ -191,7 +193,7 @@ class CactbotLanguage {
       let effect = arguments[i];
       effects.push(effect);
     }
-    return Regexes.Parse(' 1A:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
+    return Regexes.Parse(' 1A:\\y{ObjectId}:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
   };
 
   youLoseEffectRegex() {
@@ -200,7 +202,7 @@ class CactbotLanguage {
       let effect = arguments[i];
       effects.push(effect);
     }
-    return Regexes.Parse(' 1E:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\\.');
+    return Regexes.Parse(' 1E:\\y{ObjectId}:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\\.');
   };
 
   abilityRegex(abilityId, attacker, target, flags) {
@@ -225,7 +227,7 @@ class CactbotLanguage {
       target = '[^:]*';
     if (!attacker)
       attacker = '[^:]*';
-    return Regexes.Parse(' 1A:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\\.');
+    return Regexes.Parse(' 1A:\\y{ObjectId}:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\\.');
   };
 
   losesEffectRegex(effect, target, attacker) {
@@ -233,7 +235,7 @@ class CactbotLanguage {
       target = '[^:]*';
     if (!attacker)
       attacker = '[^:]*';
-    return Regexes.Parse(' 1E:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
+    return Regexes.Parse(' 1E:\\y{ObjectId}:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
   };
 };
 

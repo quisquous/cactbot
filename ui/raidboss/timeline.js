@@ -130,6 +130,8 @@ class Timeline {
         continue;
       }
       line = line.replace(match[1], '').trim();
+      // There can be # in the ability name, but probably not in the regex.
+      line = line.replace(/#.*$/, '').trim();
 
       let seconds = parseFloat(match[2]);
       let e = {

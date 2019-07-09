@@ -93,7 +93,7 @@
     },
     {
       id: 'T8 Dreadnaught',
-      regex: /03:Added new combatant Clockwork Dreadnaught/,
+      regex: /03:\y{ObjectId}:Added new combatant Clockwork Dreadnaught\./,
       infoText: {
         en: 'Dreadnaught Add',
       },

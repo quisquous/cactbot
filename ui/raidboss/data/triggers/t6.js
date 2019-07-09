@@ -48,7 +48,7 @@
     },
     {
       id: 'T6 Honey On',
-      regex: / 1A:(\y{Name}) gains the effect of Honey-Glazed/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honey-Glazed/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -58,7 +58,7 @@
     },
     {
       id: 'T6 Honey Off',
-      regex: / 1E:(\y{Name}) loses the effect of Honey-Glazed/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honey-Glazed/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

@@ -228,7 +228,7 @@
     },
     {
       id: 'Eureka Pazuzu Pop',
-      regex: /03:Added new combatant Pazuzu\./,
+      regex: /03:\y{ObjectId}:Added new combatant Pazuzu\./,
       run: function(data) {
         data.wraithCount = 0;
       },

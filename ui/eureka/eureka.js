@@ -1787,15 +1787,15 @@ class EurekaTracker {
       if (nm.spawnTrigger && nm.spawnTrigger[this.options.Language])
         nm.addRegex = Regexes.Parse(nm.spawnTrigger[this.options.Language]);
       if (!nm.addRegex)
-        nm.addRegex = Regexes.Parse('03:Added new combatant ' + mobName + '\\.');
-      nm.removeRegex = Regexes.Parse('04:Removing combatant ' + mobName + '\\.');
+        nm.addRegex = Regexes.Parse('03:\\y{ObjectId}:Added new combatant ' + mobName + '\\.');
+      nm.removeRegex = Regexes.Parse('04:\\y{ObjectId}:Removing combatant ' + mobName + '\\.');
       nm.respawnTimeMsLocal = undefined;
       nm.respawnTimeMsTracker = undefined;
     }
 
     this.fairy = this.options.ZoneInfo[this.zoneName].fairy;
     let fairyName = this.fairy[this.options.Language];
-    this.fairy.regex = Regexes.Parse('03:Added new combatant (' + fairyName + ')\\. .* ' +
+    this.fairy.regex = Regexes.Parse('03:\\y{ObjectId}:Added new combatant (' + fairyName + ')\\. .* ' +
                                      'Pos: \\(([^,]+),([^,]+),([^,]+)\\)');
 
     this.playerElement = document.createElement('div');
@@ -2072,7 +2072,7 @@ class EurekaTracker {
         this.ImportFromTracker(match[2]);
         continue;
       }
-      if (log.indexOf('03:Added new combatant ') >= 0 || log.indexOf('00:0839:') >= 0) {
+      if (log.indexOf(' 03:') >= 0 || log.indexOf('00:0839:') >= 0) {
         for (let i = 0; i < this.nmKeys.length; ++i) {
           let nm = this.nms[this.nmKeys[i]];
           if (log.match(nm.addRegex)) {
@@ -2085,7 +2085,7 @@ class EurekaTracker {
         if (match)
           this.AddFairy(match[1], match[2], match[3]);
       }
-      if (log.indexOf('04:Removing combatant ') >= 0) {
+      if (log.indexOf(' 04:') >= 0) {
         for (let i = 0; i < this.nmKeys.length; ++i) {
           let nm = this.nms[this.nmKeys[i]];
           if (log.match(nm.removeRegex)) {

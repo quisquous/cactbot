@@ -46,7 +46,7 @@ def load_timeline(timeline):
                 entry['cast_id'] = begincast_match.group(1)
                 entry['caster_name'] = begincast_match.group(2)
 
-            buff_match = re.search(r'1A:(.+) gains the effect of (.+)( from)?', sync_match.group(1))
+            buff_match = re.search(r'1A:.......:(.+) gains the effect of (.+)( from)?', sync_match.group(1))
             if buff_match:
                 entry['special_type'] = 'applydebuff'
                 entry['special_line'] = '26'

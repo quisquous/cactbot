@@ -35,7 +35,7 @@
   triggers: [
     {
       id: 'T9 Raven Blight You',
-      regex: / 1A:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -49,7 +49,7 @@
     },
     {
       id: 'T9 Raven Blight You',
-      regex: / 1A:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -118,7 +118,7 @@
     },
     {
       id: 'T9 Garotte Twist Gain',
-      regex: / 1A:(\y{Name}) gains the effect of Garrote Twist/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Garrote Twist/,
       condition: function(data, matches) {
         return data.me == matches[1] && !data.garotte;
       },
@@ -141,7 +141,7 @@
     },
     {
       id: 'T9 Garotte Twist Lose',
-      regex: / 1E:(\y{Name}) loses the effect of Garrote Twist/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Garrote Twist/,
       run: function(data) {
         delete data.garotte;
       },
@@ -159,7 +159,7 @@
     },
     {
       id: 'T9 Dragon Locations',
-      regex: /03:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
+      regex: /03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
       run: function(data, matches) {
         let names = ['Firehorn', 'Iceclaw', 'Thunderwing'];
         let idx = names.indexOf(matches[1]);

@@ -23,9 +23,9 @@
     },
     {
       id: 'Rab Mateus Breathless Gain',
-      regex: /:(\y{Name}) gains the effect of Breathless from/,
-      regexDe: /:(\y{Name}) gains the effect of Atemnot from/,
-      regexFr: /:(\y{Name}) gains the effect of Suffocation from/,
+      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Breathless from/,
+      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Atemnot from/,
+      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Suffocation from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -63,9 +63,9 @@
     },
     {
       id: 'Rab Mateus Breathless Lose',
-      regex: /:(\y{Name}) loses the effect of Breathless from/,
-      regexDe: /:(\y{Name}) loses the effect of Atemnot from/,
-      regexFr: /:(\y{Name}) loses the effect of Suffocation from/,
+      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Breathless from/,
+      regexDe: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Atemnot from/,
+      regexFr: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Suffocation from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
