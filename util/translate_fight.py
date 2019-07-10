@@ -107,7 +107,11 @@ def format_output_str(output_str):
     output_str = output_str.replace("'", "\\'")
     output_str = output_str.replace("\"","'")
     output_str = output_str.replace("'timelineReplace'", "timelineReplace")
-    return output_str
+    regex = re.compile(r"]$", re.M)
+    output_str = regex.sub("],", output_str)
+    regex = re.compile(r"}$", re.M)
+    output_str = regex.sub("},", output_str)
+    return output_str[:-1]
 
 
 def main(args):
