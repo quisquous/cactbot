@@ -98,8 +98,20 @@ def build_mapping(translations, ignore_list=[]):
                     # raise Exception('Conflict on %s: "%s" and "%s"' % (default_name, existing_name, name))
                     pass
             else:
-                replace[lang][default_name] = name
+                if default_name and name :
+                    replace[lang][default_name] = name
     return replace
+
+
+def format_output_str(output_str):
+    output_str = output_str.replace("'", "\\'")
+    output_str = output_str.replace("\"","'")
+    output_str = output_str.replace("'timelineReplace'", "timelineReplace")
+    regex = re.compile(r"]$", re.M)
+    output_str = regex.sub("],", output_str)
+    regex = re.compile(r"}$", re.M)
+    output_str = regex.sub("},", output_str)
+    return output_str[:-1]
 
 
 def main(args):
@@ -192,7 +204,8 @@ def main(args):
         })
     output = {'timelineReplace': timeline_replace}
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=False)
-
+    output_str = format_output_str(output_str)
+    
     # Write that out to the user.
     if args.output_file:
         with open(args.output_file, 'w', encoding='utf-8') as fp:
