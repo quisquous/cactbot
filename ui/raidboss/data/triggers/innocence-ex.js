@@ -53,6 +53,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Tank Busters',
+        fr: 'Tankbusters',
       },
     },
     {
@@ -74,10 +75,12 @@
         if (data.starbirthActive) {
           return {
             en: 'Avoid Charge and Orbs',
+            fr: 'Evitez les charges et orbes',
           };
         }
         return {
           en: 'Avoid Charge',
+          fr: 'Evitez les charges',
         };
       },
     },
@@ -90,6 +93,7 @@
       },
       alertText: {
         en: 'Get to Safe Corner',
+        fr: 'Allez sur le coin sûr',
       },
     },
     {
@@ -100,6 +104,7 @@
       },
       infoText: {
         en: 'Grab East/West Venery Adds',
+        fr: 'Attrapez les adds en Est/Ouest',
       },
     },
     {
@@ -116,10 +121,12 @@
         if (data.lightPillar == 3) {
           return {
             en: 'Aim Line At Back Orb',
+            fr: 'Visez l\'orbe arrière avec la ligne',
           };
         }
         return {
           en: 'Avoid Orbs With Line',
+          fr: 'Evitez l\'orbe avec la ligne',
         };
       },
       infoText: function(data, matches) {
@@ -127,6 +134,7 @@
           return;
         return {
           en: 'Line Stack',
+          fr: 'Packez-vous en ligne',
         };
       },
     },
@@ -139,6 +147,7 @@
       delaySeconds: 6.5,
       alertText: {
         en: 'Get to Safe Corner',
+        fr: 'Allez sur le coin sûr',
       },
     },
     {
@@ -149,6 +158,7 @@
       },
       alertText: {
         en: 'Tether on YOU',
+        fr: 'Lien sur VOUS',
       },
     },
     {
@@ -161,10 +171,12 @@
         if (data.starbirthActive) {
           return {
             en: 'Circle, Avoid Orbs',
+            fr: 'Cercle, Evitez orbes',
           };
         }
         return {
           en: 'Circle on YOU',
+          fr: 'Cercle sur vous',
         };
       },
     },
@@ -174,6 +186,7 @@
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
+        fr: 'Evitez l\'épée puis le rayon',
       },
     },
     {

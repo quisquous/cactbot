@@ -10,6 +10,7 @@
       regex: /14:3D4C:Titania starts using Phantom Rune/,
       alertText: {
         en: 'Out',
+        fr: 'Dehors',
       },
     },
     {
@@ -17,6 +18,7 @@
       regex: /14:3D4D:Titania starts using Phantom Rune/,
       alertText: {
         en: 'In',
+        fr: 'Dedans',
       },
     },
     {
@@ -24,6 +26,7 @@
       regex: /03:\y{ObjectId}:Added new combatant Spirit Of Dew\./,
       infoText: {
         en: 'Kill Extra Add',
+        fr: 'Tuez l\'add',
       },
     },
     {
@@ -33,10 +36,12 @@
         if (data.seenMistRune) {
           return {
             en: 'In/Out, then Water Positions',
+            fr: 'Dedans/Dehors puis position pour l\'eau',
           };
         }
         return {
           en: 'Water Positions',
+          fr: 'Position pour l\'eau',
         };
       },
       run: function(data) {
@@ -52,10 +57,12 @@
         if (data.seenFlameRune) {
           return {
             en: 'Stack (maybe rotate?)',
+            fr: 'Packez-vous (rotation ?)',
           };
         }
         return {
           en: 'Stack Positions',
+          fr: 'Packez-vous',
         };
       },
       run: function(data) {
@@ -69,6 +76,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Cleave on YOU',
+            fr: 'Tank cleave sur vous',
           };
         }
       },
@@ -76,6 +84,7 @@
         if (matches[1] != data.me) {
           return {
             en: 'Tank Cleave on ' + data.ShortName(matches[1]),
+            fr: 'Tank cleave sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -85,6 +94,7 @@
       regex: /14:42D7:Titania starts using Chain Of Brambles/,
       infoText: {
         en: 'Wait For Tethers In Center',
+        fr: 'Attente des liens au centre',
       },
     },
     {
@@ -93,6 +103,7 @@
       delaySeconds: 3,
       alertText: {
         en: 'Run!',
+        fr: 'Courez !',
       },
     },
     {
@@ -100,6 +111,7 @@
       regex: /15:\y{ObjectId}:Puck:3D42:Puck's Rebuke/,
       alertText: {
         en: 'Diagonal Knockback Soon',
+        fr: 'Poussée en diagonale bientôt',
       },
     },
     {
@@ -118,6 +130,7 @@
         if (data.role != 'tank' && data.role != 'healer') {
           return {
             en: 'Tank Cleave',
+            fr: 'Tank cleave',
           };
         }
       },
@@ -127,6 +140,7 @@
       regex: /14:3D2A:Titania starts using Frost Rune/,
       infoText: {
         en: 'Get Middle, Shiva Circles',
+        fr: 'Allez au milieu, comme sur Shiva',
       },
     },
     {
@@ -135,6 +149,7 @@
       delaySeconds: 6.5,
       infoText: {
         en: 'Run Out',
+        fr: 'Courez dehors',
       },
     },
     {
@@ -143,6 +158,7 @@
       suppressSeconds: 60,
       infoText: {
         en: 'Run In',
+        fr: 'Courez dedans',
       },
     },
     {
@@ -150,6 +166,7 @@
       regex: /14:3D2E:Titania starts using Growth Rune/,
       infoText: {
         en: 'Roots',
+        fr: 'Racines',
       },
     },
     {
@@ -160,6 +177,7 @@
       },
       infoText: {
         en: 'Spread',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -187,6 +205,7 @@
       infoText: function(data) {
         return {
           en: 'Pummel ' + data.pummelCount,
+          fr: 'Torgnole ' + data.pummelCount,
         };
       },
     },
@@ -198,6 +217,7 @@
       },
       infoText: {
         en: 'Spread',
+        fr: 'Ecartez-vous',
       },
       run: function(data) {
         data.bomb = data.bomb || {};
@@ -219,6 +239,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Stack on YOU',
+            fr: 'Package sur VOUS',
           };
         }
 
@@ -227,6 +248,7 @@
 
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Packez-vous sur' + data.ShortName(matches[1]),
         };
       },
     },
@@ -236,6 +258,7 @@
       suppressSeconds: 60,
       alertText: {
         en: 'Initial Thunder Tether',
+        fr: 'Lien de foudre initial',
       },
     },
     {
@@ -248,6 +271,7 @@
       infoText: function(data) {
         return {
           en: 'Thunder ' + data.thunderCount,
+          fr: 'Foudre ' + data.thunderCount,
         };
       },
       run: function(data, matches) {
@@ -323,7 +347,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'spirit of flame': 'esprit des flammes',
+        'spirit of flame': 'Esprit Des Flammes',
         'Titania': 'Titania',
         'Puck': 'Puck',
         'Peaseblossom': 'Fleur-de-pois',
