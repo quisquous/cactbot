@@ -511,3 +511,44 @@
 .blu-color-torment {
   background-color: rgb(168, 65, 45);
 }
+
+/* MCH */
+#mch-resource-bars {
+  position: relative;
+  /*border: 1px solid black;*/
+  width: calc(225px * 2 + 35px);  /* 202 minus borders */
+  height: calc(12px * 2 - 2px);
+  /*background: rgba(30, 30, 30, 0.7);*/
+}
+
+#mch-heat-bar, #mch-battery-bar {
+  /*display: inline;*/
+  position: relative;
+  margin: 1px 0px 0px 0px;
+  width: 225px;
+  height: calc(100% - 2px);
+}
+
+#mch-battery-bar {
+  top: -21px;
+  left: calc(225px + 50px);
+}
+
+.mch-heat-textbox, .mch-battery-textbox {
+  position: absolute;
+  width: 225px;
+  height: calc(12px * 2 - 2px);
+  top: 1px;
+  right: 4px;
+  text-align: right;
+}
+
+#mch-timer-overheat, #mch-timer-battery {
+  position: absolute;
+  width: 225px;
+  height: 100%;
+}
+
+.mch-bar-hide {
+  display: none;
+}

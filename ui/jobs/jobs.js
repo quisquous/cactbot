@@ -14,7 +14,7 @@ let Options = {
   HideWellFedAboveSeconds: 15 * 60,
   WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU'],
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
-  ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
+  ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU', 'MCH'],
 
   MaxLevel: 80,
 
@@ -208,6 +208,11 @@ function setupComboTracker(callback) {
     gLang.kAbility.RiotBlade,
     gLang.kAbility.GoringBlade,
   ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.HSplitShot,
+    gLang.kAbility.SlugShot,
+    gLang.kAbility.HCleanShot,
+  ]);
   return comboTracker;
 }
 
@@ -284,6 +289,11 @@ function setupRegexes() {
     gLang.kAbility.GoringBlade,
     gLang.kAbility.HolySpirit,
     gLang.kAbility.Clemency,
+    // mch
+    gLang.kAbility.SpreadShot,
+    gLang.kAbility.AutoCrossbow,
+    gLang.kAbility.CleanShot,
+    gLang.kAbility.HSlugShot,
   ]);
 }
 
@@ -1019,6 +1029,85 @@ class Bars {
       this.o.tormentBox.hideafter = '';
       this.o.tormentBox.roundupthreshold = false;
       this.o.tormentBox.valuescale = this.options.BluGcd;
+    } else if (this.job == 'MCH') {
+      let mchResourceBars = document.createElement('div');
+      mchResourceBars.id = 'mch-resource-bars';
+      barsContainer.appendChild(mchResourceBars);
+
+      //heat bar    
+      this.o.heatContainer = document.createElement('div');
+      this.o.heatContainer.id = 'mch-heat-bar';
+      this.o.heatBar = document.createElement('resource-bar');      
+      mchResourceBars.appendChild(this.o.heatContainer)
+      this.o.heatContainer.appendChild(this.o.heatBar);
+
+      this.o.heatBar.bg = 'rgb(0, 0, 0)';
+      this.o.heatBar.fg = 'rgb(255, 150, 0)';
+      this.o.heatBar.width = window.getComputedStyle(this.o.heatContainer).width;
+      this.o.heatBar.height = window.getComputedStyle(this.o.heatContainer).height;
+      this.o.heatBar.maxvalue = 100;
+
+      this.o.heatTextBox = document.createElement('div');
+      this.o.heatTextBox.classList.add('mch-heat-textbox');
+      this.o.heatContainer.appendChild(this.o.heatTextBox);
+
+      this.o.heatText = document.createElement('div');
+      this.o.heatTextBox.appendChild(this.o.heatText);
+      this.o.heatText.classList.add('text');
+
+      //battery bar    
+      this.o.batteryContainer = document.createElement('div');
+      this.o.batteryContainer.id = 'mch-battery-bar';
+      this.o.batteryBar = document.createElement('resource-bar');      
+      mchResourceBars.appendChild(this.o.batteryContainer)
+      this.o.batteryContainer.appendChild(this.o.batteryBar);
+
+      this.o.batteryBar.bg = 'rgb(0, 0, 0)';
+      this.o.batteryBar.fg = 'rgb(30, 140, 255)';
+      this.o.batteryBar.width = window.getComputedStyle(this.o.batteryContainer).width;
+      this.o.batteryBar.height = window.getComputedStyle(this.o.batteryContainer).height;
+      this.o.batteryBar.maxvalue = 100;
+
+      this.o.batteryTextBox = document.createElement('div');
+      this.o.batteryTextBox.classList.add('mch-battery-textbox');
+      this.o.batteryContainer.appendChild(this.o.batteryTextBox);
+
+      this.o.batteryText = document.createElement('div');
+      this.o.batteryTextBox.appendChild(this.o.batteryText);
+      this.o.batteryText.classList.add('text');
+
+      //overheat timer
+      this.o.mchOverheatTimerContainer = document.createElement('div');
+      this.o.mchOverheatTimerContainer.id = 'mch-timer-overheat';      
+      this.o.mchOverheatTimer = document.createElement('timer-bar');
+      this.o.mchOverheatTimerContainer.appendChild(this.o.mchOverheatTimer);
+      this.o.heatContainer.appendChild(this.o.mchOverheatTimerContainer);
+
+      this.o.mchOverheatTimer.lefttext = 'remain';
+      this.o.mchOverheatTimer.hideafter = 1;
+      this.o.mchOverheatTimer.bg = 'rgb(0, 0, 0)';
+      this.o.mchOverheatTimer.fg = 'rgb(255, 120, 120)';
+
+      //battery timer
+      this.o.mchBatteryTimerContainer = document.createElement('div');
+      this.o.mchBatteryTimerContainer.id = 'mch-timer-battery';      
+      this.o.mchBatteryTimer = document.createElement('timer-bar');
+      this.o.mchBatteryTimerContainer.appendChild(this.o.mchBatteryTimer);     
+      this.o.batteryContainer.appendChild(this.o.mchBatteryTimerContainer);
+
+      this.o.mchBatteryTimer.lefttext = 'remain';
+      this.o.mchBatteryTimer.hideafter = 1;
+      this.o.mchBatteryTimer.bg = 'rgb(0, 0,0)';
+      this.o.mchBatteryTimer.fg = 'rgb(128, 255, 225)';      
+
+      //procs
+      let procContainer = document.createElement('div');
+      procContainer.id = 'mch-procs';
+      barsContainer.appendChild(procContainer);      
+
+      let timersContainer = document.createElement('div');
+      timersContainer.id = 'mch-timers';
+      barsContainer.appendChild(timersContainer);
     }
   }
 
@@ -1224,6 +1313,57 @@ class Bars {
       this.o.oathTextBox.classList.remove('low');
       this.o.oathTextBox.classList.remove('mid');
     }
+  }
+
+  OnMchUpdate(heat, overheatTime, battery, batteryTime) {
+    //Update Heat Bar
+    if (this.o.heatBar != null) {
+      this.o.heatBar.value = heat;
+      this.o.heatText.innerText = heat;
+    }
+
+
+    //Update Battery Bar
+    if (this.o.batteryBar != null) {
+      this.o.batteryBar.value = battery;
+      this.o.batteryText.innerText = battery;
+    }
+
+    // this.o.heatText.innerText = heat
+    //this.o.batteryText.innerText = battery
+    //this.o.batteryTextBox.classList.add('low')
+
+    if (overheatTime > 0) {
+      this.o.mchOverheatTimer.value = overheatTime / 1000;
+      if (this.mchOverheating != 1) {
+        this.mchOverheating = 1;
+        this.o.heatBar.classList.add('mch-bar-hide');
+        this.o.heatText.classList.add('mch-bar-hide');
+        this.o.mchOverheatTimerContainer.classList.add('channeling');
+        this.o.mchOverheatTimer.duration = overheatTime / 1000;
+      }
+    } else {
+      this.o.mchOverheatTimerContainer.classList.remove('channeling');
+      this.o.heatBar.classList.remove('mch-bar-hide')
+      this.o.heatText.classList.remove('mch-bar-hide');
+      this.mchOverheating = 0;
+    }
+
+    if (batteryTime > 0) {
+      this.o.mchBatteryTimer.value = batteryTime / 1000;
+      if (this.mchDischarging != 1) {
+        this.mchDischarging = 1;
+        this.o.batteryBar.classList.add('mch-bar-hide');
+        this.o.batteryText.classList.add('mch-bar-hide');
+        this.o.mchBatteryTimerContainer.classList.add('channeling');
+        this.o.mchBatteryTimer.duration = batteryTime / 1000;
+      }
+    } else {
+      this.o.mchBatteryTimerContainer.classList.remove('channeling');
+      this.o.batteryBar.classList.remove('mch-bar-hide');
+      this.o.batteryText.classList.remove('mch-bar-hide');
+      this.mchDischarging = 0;
+    }    
   }
 
   OnMonkUpdate(lightningStacks, chakraStacks, lightningMilliseconds) {
@@ -1661,6 +1801,18 @@ class Bars {
       if (update_job || e.detail.jobDetail.oath != this.oath) {
         this.oath = e.detail.jobDetail.oath;
         this.OnPldUpdate(this.oath);
+      }
+    } else if (this.job == 'MCH') {
+      if (update_job || e.detail.jobDetail.heat != this.heat ||
+                        e.detail.jobDetail.battery != this.battery ||
+                        e.detail.jobDetail.overheatTime != this.overheatTime ||
+                        e.detail.jobDetail.batteryTime != this.batteryTime) {
+        this.heat = e.detail.jobDetail.heat;
+        this.battery = e.detail.jobDetail.battery;
+        this.overheatTime = e.detail.jobDetail.overheatTime;
+        this.batteryTime = e.detail.jobDetail.batteryTime;
+
+        this.OnMchUpdate(this.heat, this.overheatTime, this.battery, this.batteryTime)
       }
     } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
