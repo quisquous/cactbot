@@ -14,6 +14,7 @@ timelines/byakko-ex.txt
 timelines/cape_westwind.txt
 timelines/dohn_mheg.txt
 timelines/eureka_hydatos.txt
+timelines/holminster_switch.txt
 timelines/innocence-ex.txt
 timelines/lakshmi-ex.txt
 timelines/orbonne_monastery.txt
@@ -87,6 +88,7 @@ triggers/eureka_pagos.js
 triggers/eureka_pyros.js
 triggers/fractal_continuum_hard.js
 triggers/general.js
+triggers/holminster_switch.js
 triggers/innocence-ex.js
 triggers/lakshmi-ex.js
 triggers/orbonne_monastery.js
