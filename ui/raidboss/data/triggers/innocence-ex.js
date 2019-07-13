@@ -8,6 +8,7 @@
     {
       id: 'InnoEx Starbirth Start',
       regex: /14:3EEF:Innocence starts using Starbirth/,
+      regexJa: /14:3EEF:イノセンス starts using スターバース/,
       run: function(data) {
         data.starbirthCount = data.starbirthCount || 0;
         data.starbirthCount++;
@@ -17,6 +18,7 @@
     {
       id: 'InnoEx Righteous Bolt',
       regex: /14:3ECD:Innocence starts using Righteous Bolt on (\y{Name})/,
+      regexJa: /14:3ECD:イノセンス starts using ジャッジボルト on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -25,6 +27,7 @@
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
+          ja: 'スイッチ',
         };
       },
       alertText: function(data, matches) {
@@ -33,6 +36,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
@@ -40,6 +44,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ja: data.ShortName(matches[1]) + 'にタンクバスター',
           };
         }
       },
@@ -47,17 +52,20 @@
     {
       id: 'InnoEx Holy Sword Healer',
       regex: /14:3EC9:Forgiven Venery starts using Holy Sword/,
+      regexJa: /14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード/,
       condition: function(data) {
         return data.role == 'healer';
       },
       suppressSeconds: 5,
       infoText: {
         en: 'Tank Busters',
+        ja: 'タンクバスター',
       },
     },
     {
       id: 'InnoEx Holy Sword Me',
       regex: /14:3EC9:Forgiven Venery starts using Holy Sword on (\y{Name})/,
+      regexJa: /14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -65,46 +73,55 @@
         en: 'Tank Buster on YOU',
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
+        ja: '自分にタンクバスター',
       },
     },
     {
       id: 'InnoEx Charge',
       regex: /14:3EEE:Innocence starts using Beatific Vision/,
+      regexJa: /14:3EEE:イノセンス starts using ビーティフィックビジョン/,
       alertText: function(data) {
         if (data.starbirthActive) {
           return {
             en: 'Avoid Charge and Orbs',
+            ja: '玉無い外周へ',
           };
         }
         return {
           en: 'Avoid Charge',
+          ja: '外周へ',
         };
       },
     },
     {
       id: 'InnoEx Starbirth Avoid',
       regex: /14:3EEF:Innocence starts using Starbirth/,
+      regexJa: /14:3EEF:イノセンス starts using スターバース/,
       delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
       },
       alertText: {
         en: 'Get to Safe Corner',
+        ja: '安置へ',
       },
     },
     {
       id: 'InnoEx Adds',
       regex: /15:\y{ObjectId}:Innocence:42B0:/,
+      regexJa: /15:\y{ObjectId}:イノセンス:42B0:/,
       condition: function(data) {
         return data.role == 'tank';
       },
       infoText: {
         en: 'Grab East/West Venery Adds',
+        ja: '雑魚のタゲ取って'
       },
     },
     {
       id: 'InnoEx Light Pillar',
       regex: /15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexJa: /15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       preRun: function(data) {
         data.lightPillar = data.lightPillar || 0;
         data.lightPillar++;
@@ -116,10 +133,12 @@
         if (data.lightPillar == 3) {
           return {
             en: 'Aim Line At Back Orb',
+            ja: '後ろの玉に当てて',
           };
         }
         return {
           en: 'Avoid Orbs With Line',
+          ja: '玉に当てるな',
         };
       },
       infoText: function(data, matches) {
@@ -127,12 +146,14 @@
           return;
         return {
           en: 'Line Stack',
+          ja: 'シェア',
         };
       },
     },
     {
       id: 'InnoEx Starbirth Explode',
       regex: /14:3F3E:Innocence starts using Light Pillar/,
+      regexJa: /14:3F3E:イノセンス starts using ライトピラー/,
       condition: function(data) {
         return data.lightPillar == 3;
       },
