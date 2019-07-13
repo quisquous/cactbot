@@ -112,7 +112,7 @@ hideall "--sync--"
 1065.6 "Mist Rune" sync /:Titania:3D45:/
 # ???
 
-### Phase 4: too slow
 
-1500.0 "--sync--" sync /:3DAE:Titania/
+### Phase 4: too slow
+1500.0 "--sync--" sync /:3DAE:Titania/ window 1500,0
 1510.0 "Bright Sabbath Enrage" sync /:Titania:3DAE:/
