@@ -232,7 +232,7 @@
       regexFr: / 14:37F4:Shiki uligineux starts using Cuirasse/,
       regexJa: / 14:37F4:沼の式鬼 starts using ストンスキン/,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'dps-ranged';
+        return data.CanSilence();
       },
       alertText: {
         en: 'Silence',

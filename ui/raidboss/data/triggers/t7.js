@@ -7,6 +7,10 @@
     {
       id: 'T7 Ram',
       regex: / 14:860:Proto-Chimera starts using The Ram's Voice/,
+      condition: function(data) {
+        // TODO: is this silenceable in 5.0?
+        return data.CanStun() || data.CanSilence();
+      },
       infoText: {
         en: 'Silence Ram\'s Voice',
       },
@@ -14,6 +18,10 @@
     {
       id: 'T7 Dragon',
       regex: / 14:861:Proto-Chimera starts using The Dragon's Voice/,
+      condition: function(data) {
+        // TODO: is this silenceable in 5.0?
+        return data.CanStun() || data.CanSilence();
+      },
       infoText: {
         en: 'Silence Dragon\'s Voice',
       },

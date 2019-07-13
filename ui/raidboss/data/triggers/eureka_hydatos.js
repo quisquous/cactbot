@@ -344,7 +344,7 @@
       regex: / 14:3BFE:Arsenal Centaur starts using (?:Berserk|Unknown_3Bfe)/,
       regexDe: / 14:3BFE:Arsenal-Zentaur starts using (?:Berserker|Unknown_3Bfe)/,
       condition: function(data) {
-        return data.job == 'WHM' || data.job == 'BLM';
+        return data.CanSleep();
       },
       alertText: {
         en: 'Sleep Centaur',

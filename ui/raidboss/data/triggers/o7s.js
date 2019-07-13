@@ -308,7 +308,7 @@
       regexJa: / 14:2AB5:オルトロス starts using ストンスキン/,
       regexKo: / 14:2AB5:오르트로스 starts using 스톤스킨/,
       alarmText: function(data) {
-        if (data.job == 'NIN' || data.role == 'dps-ranged') {
+        if (data.CanSilence()) {
           return {
             en: 'SILENCE!',
             de: 'VERSTUMMEN!',
@@ -318,7 +318,7 @@
         }
       },
       infoText: function(data) {
-        if (data.job != 'NIN' && data.role != 'dps-ranged') {
+        if (!data.CanSilence()) {
           return {
             en: 'Silence',
             de: 'stumm',

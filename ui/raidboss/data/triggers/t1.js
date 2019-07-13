@@ -6,6 +6,9 @@
     {
       id: 'T1 Silence',
       regex: / 14:5A7:Ads starts using High Voltage/,
+      condition: function(data) {
+        return data.CanSilence();
+      },
       alertText: {
         en: 'Silence',
       },
