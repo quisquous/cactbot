@@ -12,6 +12,7 @@
       alertText: {
         en: 'Out',
         ja: '外へ',
+        fr: 'Dehors',
       },
     },
     {
@@ -21,6 +22,7 @@
       alertText: {
         en: 'In',
         ja: '中へ',
+        fr: 'Dedans',
       },
     },
     {
@@ -30,6 +32,7 @@
       infoText: {
         en: 'Kill Extra Add',
         ja: '水の精倒して',
+        fr: 'Tuez l\'add',
       },
     },
     {
@@ -41,11 +44,13 @@
           return {
             en: 'In/Out, then Water Positions',
             ja: '中/外避けてポジションへ',
+            fr: 'Dedans/Dehors puis position pour l\'eau',
           };
         }
         return {
           en: 'Water Positions',
           ja: 'ポジションへ',
+          fr: 'Position pour l\'eau',
         };
       },
       run: function(data) {
@@ -63,11 +68,13 @@
           return {
             en: 'Stack (maybe rotate?)',
             ja: 'シェア (多分時計回り?)',
+            fr: 'Packez-vous (rotation ?)',
           };
         }
         return {
           en: 'Stack Positions',
           ja: 'シェア',
+          fr: 'Packez-vous',
         };
       },
       run: function(data) {
@@ -83,6 +90,7 @@
           return {
             en: 'Tank Cleave on YOU',
             ja: '自分にタンクバスター',
+            fr: 'Tank cleave sur vous',
           };
         }
       },
@@ -91,6 +99,7 @@
           return {
             en: 'Tank Cleave on ' + data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'にタンクバスター',
+            fr: 'Tank cleave sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -102,6 +111,7 @@
       infoText: {
         en: 'Wait For Tethers In Center',
         ja: '中央で待機',
+        fr: 'Attente des liens au centre',
       },
     },
     {
@@ -112,6 +122,7 @@
       alertText: {
         en: 'Run!',
         ja: '走れ！',
+        fr: 'Courez !',
       },
     },
     {
@@ -121,6 +132,7 @@
       alertText: {
         en: 'Diagonal Knockback Soon',
         ja: '対角に飛ぶ',
+        fr: 'Poussée en diagonale bientôt',
       },
     },
     {
@@ -142,6 +154,7 @@
           return {
             en: 'Tank Cleave',
             ja: 'タンクバスター',
+            fr: 'Tank cleave',
           };
         }
       },
@@ -153,6 +166,7 @@
       infoText: {
         en: 'Get Middle, Shiva Circles',
         ja: 'シヴァの輪っか',
+        fr: 'Allez au milieu, comme sur Shiva',
       },
     },
     {
@@ -163,6 +177,7 @@
       infoText: {
         en: 'Run Out',
         ja: '外へ',
+        fr: 'Courez dehors',
       },
     },
     {
@@ -173,6 +188,7 @@
       infoText: {
         en: 'Run In',
         ja: '中へ',
+        fr: 'Courez dedans',
       },
     },
     {
@@ -182,6 +198,7 @@
       infoText: {
         en: 'Roots',
         ja: '根のルーン',
+        fr: 'Racines',
       },
     },
     {
@@ -193,6 +210,7 @@
       infoText: {
         en: 'Spread',
         ja: '散開',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -224,6 +242,7 @@
         return {
           en: 'Pummel ' + data.pummelCount,
           ja: '殴打 ' + data.pummelCount,
+          fr: 'Torgnole ' + data.pummelCount,
         };
       },
     },
@@ -236,6 +255,7 @@
       infoText: {
         en: 'Spread',
         ja: '散開',
+        fr: 'Ecartez-vous',
       },
       run: function(data) {
         data.bomb = data.bomb || {};
@@ -259,6 +279,7 @@
           return {
             en: 'Stack on YOU',
             ja: '自分にシェア',
+            fr: 'Package sur VOUS',
           };
         }
 
@@ -267,6 +288,7 @@
 
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Packez-vous sur' + data.ShortName(matches[1]),
         };
       },
     },
@@ -278,6 +300,7 @@
       alertText: {
         en: 'Initial Thunder Tether',
         ja: '線一人目',
+        fr: 'Lien de foudre initial',
       },
     },
     {
@@ -292,6 +315,7 @@
         return {
           en: 'Thunder ' + data.thunderCount,
           ja: '線' + data.thunderCount + '人目',
+          fr: 'Foudre ' + data.thunderCount,
         };
       },
       run: function(data, matches) {
@@ -368,7 +392,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'spirit of flame': 'esprit des flammes',
+        'spirit of flame': 'Esprit Des Flammes',
         'Titania': 'Titania',
         'Puck': 'Puck',
         'Peaseblossom': 'Fleur-de-pois',

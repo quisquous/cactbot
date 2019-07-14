@@ -60,6 +60,7 @@
       infoText: {
         en: 'Tank Busters',
         ja: 'タンクバスター',
+        fr: 'Tankbusters',
       },
     },
     {
@@ -85,11 +86,13 @@
           return {
             en: 'Avoid Charge and Orbs',
             ja: '玉無い外周へ',
+            fr: 'Evitez les charges et orbes',
           };
         }
         return {
           en: 'Avoid Charge',
           ja: '外周へ',
+          fr: 'Evitez les charges',
         };
       },
     },
@@ -104,6 +107,7 @@
       alertText: {
         en: 'Get to Safe Corner',
         ja: '安置へ',
+        fr: 'Allez sur le coin sûr',
       },
     },
     {
@@ -116,6 +120,7 @@
       infoText: {
         en: 'Grab East/West Venery Adds',
         ja: '雑魚のタゲ取って'
+        fr: 'Attrapez les adds en Est/Ouest',
       },
     },
     {
@@ -134,11 +139,13 @@
           return {
             en: 'Aim Line At Back Orb',
             ja: '後ろの玉に当てて',
+            fr: 'Visez l\'orbe arrière avec la ligne',
           };
         }
         return {
           en: 'Avoid Orbs With Line',
           ja: '玉に当てるな',
+          fr: 'Evitez l\'orbe avec la ligne',
         };
       },
       infoText: function(data, matches) {
@@ -147,6 +154,7 @@
         return {
           en: 'Line Stack',
           ja: 'シェア',
+          fr: 'Packez-vous en ligne',
         };
       },
     },
@@ -160,6 +168,7 @@
       delaySeconds: 6.5,
       alertText: {
         en: 'Get to Safe Corner',
+        fr: 'Allez sur le coin sûr',
       },
     },
     {
@@ -170,6 +179,7 @@
       },
       alertText: {
         en: 'Tether on YOU',
+        fr: 'Lien sur VOUS',
       },
     },
     {
@@ -182,10 +192,12 @@
         if (data.starbirthActive) {
           return {
             en: 'Circle, Avoid Orbs',
+            fr: 'Cercle, Evitez orbes',
           };
         }
         return {
           en: 'Circle on YOU',
+          fr: 'Cercle sur vous',
         };
       },
     },
@@ -195,6 +207,7 @@
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
+        fr: 'Evitez l\'épée puis le rayon',
       },
     },
     {
