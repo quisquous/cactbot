@@ -6,6 +6,9 @@
     {
       id: 'T2 Silence',
       regex: / 14:4C0:.*starts using High Voltage/,
+      condition: function(data) {
+        return data.CanSilence();
+      },
       infoText: {
         en: 'Silence',
       },

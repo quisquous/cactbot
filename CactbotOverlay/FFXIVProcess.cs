@@ -118,8 +118,8 @@ namespace Cactbot {
       SAM = 34,
       RDM = 35,
       BLU = 36,
-      DNC = 37,
-      GNB = 38,
+      GNB = 37,
+      DNC = 38,
     };
 
     static bool IsGatherer(EntityJob job) {
@@ -233,7 +233,8 @@ namespace Cactbot {
     //          0xF bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
     //        }
     //        struct WhiteMage {
-    //          0xA bytes in: byte lilies;
+    //          0xA bytes in: uint16 lilies_ms;
+    //          0xC bytes in: byte lilies;
     //        }
     //        struct Summoner { // needs testing
     //          0x8 bytes in: uint16 stance_ms;  // Dreadwyrm or Bahamut time left.
@@ -257,7 +258,7 @@ namespace Cactbot {
     //        }
     //        struct Samurai {
     //          0xA bytes in: byte kenki;
-    //          0xB bytes in: byte sen_bits; // 0x1 setsu, 0x2 gekko, 0x4 ka.
+    //          0xB bytes in: byte sen_bits; // 0x1 setsu, 0x2 getsu, 0x4 ka.
     //        }
     //      }
     //   }
@@ -862,7 +863,7 @@ namespace Cactbot {
         return null;
 
       var j = new WhiteMageJobData();
-      j.lilies = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
+      j.lilies = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       return j;
     }
 
@@ -1038,7 +1039,7 @@ namespace Cactbot {
     public class SamuraiJobData {
       public int kenki = 0;
       public bool setsu = false;
-      public bool gekko = false;
+      public bool getsu = false;
       public bool ka = false;
 
       public override bool Equals(object obj) {
@@ -1046,7 +1047,7 @@ namespace Cactbot {
         return o != null &&
           kenki != o.kenki &&
           setsu != o.setsu &&
-          gekko != o.gekko &&
+          getsu != o.getsu &&
           ka != o.ka;
       }
 
@@ -1054,7 +1055,7 @@ namespace Cactbot {
         int hash = 17;
         hash = hash * 31 + kenki.GetHashCode();
         hash = hash * 31 + setsu.GetHashCode();
-        hash = hash * 31 + gekko.GetHashCode();
+        hash = hash * 31 + getsu.GetHashCode();
         hash = hash * 31 + ka.GetHashCode();
         return hash;
       }
@@ -1069,7 +1070,7 @@ namespace Cactbot {
       j.kenki = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
       byte sen = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       j.setsu = (sen & 0x1) != 0;
-      j.gekko = (sen & 0x2) != 0;
+      j.getsu = (sen & 0x2) != 0;
       j.ka = (sen & 0x4) != 0;
       return j;
     }

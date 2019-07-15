@@ -105,6 +105,9 @@
     {
       id: 'T9 Earthshock',
       regex: / 14:7F5:Dalamud Spawn starts using Earthshock/,
+      condition: function(data) {
+        return data.CanSilence();
+      },
       alertText: {
         en: 'Silence Blue Golem',
       },

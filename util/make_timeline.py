@@ -159,6 +159,13 @@ def main(args):
         'Seraph',
         'Automaton Queen',
         'Bunshin',
+        'Alphinaud',
+        'Alisaie',
+        'Y\'shtola',
+        'Ryne',
+        'Minfilia',
+        'Thancred',
+        'Urianger',
         ''
     ]
 

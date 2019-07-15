@@ -230,10 +230,10 @@ namespace Cactbot {
       }
 
       public struct SamuraiDetail {
-        public SamuraiDetail(FFXIVProcess.SamuraiJobData d) { kenki = d.kenki; setsu = d.setsu; gekko = d.gekko; ka = d.ka; }
+        public SamuraiDetail(FFXIVProcess.SamuraiJobData d) { kenki = d.kenki; setsu = d.setsu; getsu = d.getsu; ka = d.ka; }
         public int kenki;
         public bool setsu;
-        public bool gekko;
+        public bool getsu;
         public bool ka;
       }
     }
