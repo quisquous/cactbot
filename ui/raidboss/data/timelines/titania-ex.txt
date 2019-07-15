@@ -44,8 +44,7 @@ hideall "--sync--"
 
 
 ### Phase 2a: smol adds
-251.8 "--untargetable--"
-256.4 "--sync--" sync /:Titania:3D31:/ window 300,0
+256.4 "--untargetable--" sync /:Titania:3D31:/ window 300,0
 258.8 "--targetable--"
 271.0 "Leafstorm" sync /:Mustardseed:3D38:/
 271.1 "Gentle Breeze" sync /:Puck:3F82:/
