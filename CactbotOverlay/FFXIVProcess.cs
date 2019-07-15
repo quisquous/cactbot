@@ -233,7 +233,8 @@ namespace Cactbot {
     //          0xF bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
     //        }
     //        struct WhiteMage {
-    //          0xA bytes in: byte lilies;
+    //          0xA bytes in: uint16 lilies_ms;
+    //          0xC bytes in: byte lilies;
     //        }
     //        struct Summoner { // needs testing
     //          0x8 bytes in: uint16 stance_ms;  // Dreadwyrm or Bahamut time left.
@@ -862,7 +863,7 @@ namespace Cactbot {
         return null;
 
       var j = new WhiteMageJobData();
-      j.lilies = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
+      j.lilies = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
       return j;
     }
 
