@@ -17,6 +17,7 @@ timelines/eureka_hydatos.txt
 timelines/holminster_switch.txt
 timelines/innocence-ex.txt
 timelines/lakshmi-ex.txt
+timelines/malikahs_well.txt
 timelines/orbonne_monastery.txt
 timelines/qitana_ravel.txt
 timelines/ravana-ex.txt
@@ -91,6 +92,7 @@ triggers/general.js
 triggers/holminster_switch.js
 triggers/innocence-ex.js
 triggers/lakshmi-ex.js
+triggers/malikahs_well.js
 triggers/orbonne_monastery.js
 triggers/qitana_ravel.js
 triggers/rathalos-ex.js
