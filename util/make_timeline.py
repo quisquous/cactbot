@@ -159,6 +159,7 @@ def main(args):
         'Seraph',
         'Automaton Queen',
         'Bunshin',
+        'Esteem',
         'Alphinaud',
         'Alisaie',
         'Y\'shtola',
