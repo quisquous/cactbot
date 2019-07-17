@@ -1,0 +1,116 @@
+### Malikah's Well (lvl 77 dungeon)
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
+
+
+### Greater Armadillo
+# TODO: deep draught??
+# -ii 3CEA 3CE8 -p 3CE5:115
+100.0 "--sync--" sync /00:0839:Terminus will be sealed off/ window 100,0
+
+115.0 "Stone Flail" sync /:Greater Armadillo:3CE5:/ window 115,5
+133.6 "Head Toss" sync /:Greater Armadillo:3CE6:/
+138.6 "Right Round" sync /:Greater Armadillo:3CE7:/
+144.2 "Flail Smash" sync /:Greater Armadillo:3CE9:/
+148.9 "Earthshake" sync /:Greater Armadillo:3E39:/
+
+160.7 "2x Pack Armadillo"
+
+175.3 "Stone Flail" sync /:Greater Armadillo:3CE5:/
+180.6 "Deep Draught" sync /:Pack Armadillo:4188:/
+198.0 "Head Toss" sync /:Greater Armadillo:3CE6:/
+203.0 "Right Round" sync /:Greater Armadillo:3CE7:/
+208.6 "Flail Smash" sync /:Greater Armadillo:3CE9:/
+213.3 "Earthshake" sync /:Greater Armadillo:3E39:/
+
+215.1 "2x Pack Armadillo"
+
+239.6 "Stone Flail" sync /:Greater Armadillo:3CE5:/
+262.0 "Head Toss" sync /:Greater Armadillo:3CE6:/
+266.9 "Right Round" sync /:Greater Armadillo:3CE7:/
+272.5 "Flail Smash" sync /:Greater Armadillo:3CE9:/
+277.2 "Earthshake" sync /:Greater Armadillo:3E39:/
+
+289.0 "2x Pack Armadillo"
+
+303.5 "Stone Flail" sync /:Greater Armadillo:3CE5:/ window 20,20 jump 175.3
+308.8 "Deep Draught"
+326.2 "Head Toss"
+331.2 "Right Round"
+336.8 "Flail Smash"
+341.5 "Earthshake"
+
+353.3 "2x Pack Armadillo"
+
+
+### Amphibious Talos
+# -ii 3CF0 -p 3CEB:515.5
+500.0 "--sync--" sync /00:0839:Malikah's Gift will be sealed off/ window 500,0
+515.5 "Efface" sync /:Amphibious Talos:3CEB:/
+527.1 "Wellbore" sync /:Amphibious Talos:3CED:/
+531.3 "Geyser Eruption" sync /:Amphibious Talos:3CEE:/
+534.1 "High Pressure" sync /:Amphibious Talos:3CEC:/
+544.5 "Swift Spill x6" sync /:Amphibious Talos:3CEF:/ duration 6.4
+562.4 "Efface" sync /:Amphibious Talos:3CEB:/
+575.1 "Efface" sync /:Amphibious Talos:3CEB:/
+
+590.4 "Wellbore" sync /:Amphibious Talos:3CED:/
+594.6 "Geyser Eruption" sync /:Amphibious Talos:3CEE:/
+597.4 "High Pressure" sync /:Amphibious Talos:3CEC:/
+608.0 "Swift Spill x6" sync /:Amphibious Talos:3CEF:/ duration 6.4
+625.9 "Efface" sync /:Amphibious Talos:3CEB:/
+638.6 "Efface" sync /:Amphibious Talos:3CEB:/
+
+653.9 "Wellbore" sync /:Amphibious Talos:3CED:/ window 20,20 jump 590.4
+658.1 "Geyser Eruption"
+660.9 "High Pressure"
+671.5 "Swift Spill x6" duration 6.4
+689.4 "Efface"
+702.1 "Efface"
+
+
+### Storge
+# -ii 3CF7 3CA8 41A8 -p 3CF1:1015
+1000.0 "--sync--" sync /00:0839:Unquestioned Acceptance will be sealed off/ window 1000,0
+1015.0 "Intestinal Crank" sync /:Storge:3CF1:/ window 1015,5
+1028.2 "Heretic's Fork" sync /:Storge:3CF2:/
+1043.0 "Breaking Wheel" sync /:Storge:3CF5:/
+
+1056.1 "Crystal Nail" sync /:Storge:3CF6:/
+1063.2 "Heretic's Fork" sync /:Storge:3CF2:/
+1068.3 "Censure" sync /:Storge:3CF8:/
+1078.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+1082.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+1086.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+1090.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+1093.4 "Heretic's Fork" sync /:Storge:3E0E:/
+1105.6 "Intestinal Crank" sync /:Storge:3CF1:/
+1119.7 "Intestinal Crank" sync /:Storge:3CF1:/
+1133.8 "Intestinal Crank" sync /:Storge:3CF1:/
+
+1146.6 "Crystal Nail" sync /:Storge:3CF6:/
+1156.2 "Breaking Wheel" sync /:Storge:3CF5:/
+1161.4 "Censure" sync /:Storge:3E37:/
+1172.5 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+1177.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+1182.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+1187.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+1192.6 "Breaking Wheel" sync /:Storge:3E0F:/
+1212.4 "Intestinal Crank" sync /:Storge:3CF1:/
+1226.5 "Intestinal Crank" sync /:Storge:3CF1:/
+1240.6 "Intestinal Crank" sync /:Storge:3CF1:/
+
+1253.4 "Crystal Nail" sync /:Storge:3CF6:/ window 50,50 jump 1056.1
+1260.5 "Heretic's Fork"
+1265.5 "Censure"
+1275.7 "Heretic's Fork"
+1279.7 "Heretic's Fork"
+1283.7 "Heretic's Fork"
+1287.7 "Heretic's Fork"
+1290.5 "Heretic's Fork"
+1302.7 "Intestinal Crank"
+1316.8 "Intestinal Crank"
+1331.0 "Intestinal Crank"
