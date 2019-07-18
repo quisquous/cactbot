@@ -66,7 +66,7 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Drop Puddle, Get Out',
+        en: 'Drop Puddle, Run Middle',
       },
     },
     {

@@ -1,5 +1,6 @@
 ### Eden 1 (Normal)
 # Eden's Gate: Resurrection
+# -p 3DA1:12 3E3A:300 -ii 3D9E 3DA0 44FF
 
 hideall "--Reset--"
 hideall "--sync--"
