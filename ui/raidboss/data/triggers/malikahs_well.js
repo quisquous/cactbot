@@ -2,7 +2,7 @@
 
 [{
   zoneRegex: /^Malikah's Well$/,
-  timelineFile: 'malilkahs_well.txt',
+  timelineFile: 'malikahs_well.txt',
   triggers: [
     {
       id: 'Malikah Stone Flail',
