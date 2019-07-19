@@ -12,7 +12,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts sur le raid',
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -67,7 +67,7 @@
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
       infoText: {
         en: 'Avoid Puddles and Dives',
-        fr: 'Evitez les flaques et aux plongeons',
+        fr: 'Evitez les flaques et aux dives',
       },
     },
     {
@@ -89,7 +89,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts sur le raid'
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -116,7 +116,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Knockback on YOU',
-            fr: 'Repoussement sur VOUS'
+            fr: 'Repoussement sur VOUS',
           };
         }
         return {
@@ -133,7 +133,7 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Disperser',
+        fr: 'Dispersez-vous',
       },
     },
     {
