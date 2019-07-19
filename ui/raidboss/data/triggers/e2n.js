@@ -86,7 +86,7 @@
       },
       alertText: {
         en: 'Spread',
-        fr: 'Disperser',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -111,7 +111,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Look Away from ' + data.ShortName(matches[1]),
-          fr: 'Ne regarder pas '+ data.ShortName(matches[1]),
+          fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
         };
       },
     },
@@ -142,7 +142,7 @@
       },
       alertText: {
         en: 'Spread',
-        fr: 'Disperser',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -216,7 +216,7 @@
       alarmText: function(data, matches) {
         return {
           en: 'Look Away from ' + data.ShortName(matches[1]),
-          fr: 'Ne regarder pas ' + data.ShortName(matches[1]),
+          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
         };
       },
     },

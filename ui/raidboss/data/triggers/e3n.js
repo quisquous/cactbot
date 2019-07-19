@@ -78,7 +78,7 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Disperser',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -133,7 +133,7 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Disperser',
+        fr: 'Dispersez-vous',
       },
     },
     {
