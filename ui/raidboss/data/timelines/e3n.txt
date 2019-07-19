@@ -1,5 +1,6 @@
 ### Eden 3 (Normal)
 # Eden's Gate: Inundation
+# -ii 42D8 3FC5 3FC7 3FD1 3FD9 3FD2 4010 3FD4 -p 3FC4:12.5
 
 hideall "--Reset--"
 hideall "--sync--"
