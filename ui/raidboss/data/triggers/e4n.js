@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^Eden's Gate: Resurrection$/,
+  zoneRegex: /^Eden's Gate: Sepulture$/,
   timelineFile: 'e4n.txt',
   triggers: [
     {
