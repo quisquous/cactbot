@@ -12,6 +12,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts sur le raid',
       },
     },
     {
@@ -42,6 +43,7 @@
       delaySeconds: 8,
       infoText: {
         en: 'Knockback',
+        fr: 'Repoussement',
       },
     },
     {
@@ -49,6 +51,7 @@
       regex: / 14:3FD0:Leviathan starts using Undersea Quake/,
       alertText: {
         en: 'Get Middle',
+        fr: 'Allez au centre',
       },
     },
     {
@@ -56,6 +59,7 @@
       regex: / 14:3FCF:Leviathan starts using Undersea Quake/,
       alertText: {
         en: 'Go To Sides',
+        fr: 'Allez sur les côtés',
       },
     },
     {
@@ -63,6 +67,7 @@
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
       infoText: {
         en: 'Avoid Puddles and Dives',
+        fr: 'Evitez les flaques et aux plongeons',
       },
     },
     {
@@ -73,6 +78,7 @@
       },
       infoText: {
         en: 'Spread',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -83,6 +89,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts sur le raid'
       },
     },
     {
@@ -93,10 +100,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            fr: 'Partage sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Partage sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -107,10 +116,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Knockback on YOU',
+            fr: 'Repoussement sur VOUS'
           };
         }
         return {
           en: 'Knockback on ' + data.ShortName(matches[1]),
+          fr: 'Repoussement sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -122,6 +133,7 @@
       },
       infoText: {
         en: 'Spread',
+        fr: 'Disperser',
       },
     },
     {
@@ -132,6 +144,7 @@
       },
       infoText: {
         en: 'Donut on YOU',
+        fr: 'Donut sur VOUS';
       },
     },
   ],
