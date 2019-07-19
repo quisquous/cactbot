@@ -7,7 +7,6 @@ hideall "--sync--"
 
 
 ### Greater Armadillo
-# TODO: deep draught??
 # -ii 3CEA 3CE8 -p 3CE5:115
 100.0 "--sync--" sync /00:0839:Terminus will be sealed off/ window 100,0
 
@@ -20,7 +19,6 @@ hideall "--sync--"
 160.7 "2x Pack Armadillo"
 
 175.3 "Stone Flail" sync /:Greater Armadillo:3CE5:/
-180.6 "Deep Draught" sync /:Pack Armadillo:4188:/
 198.0 "Head Toss" sync /:Greater Armadillo:3CE6:/
 203.0 "Right Round" sync /:Greater Armadillo:3CE7:/
 208.6 "Flail Smash" sync /:Greater Armadillo:3CE9:/
@@ -37,7 +35,6 @@ hideall "--sync--"
 289.0 "2x Pack Armadillo"
 
 303.5 "Stone Flail" sync /:Greater Armadillo:3CE5:/ window 20,20 jump 175.3
-308.8 "Deep Draught"
 326.2 "Head Toss"
 331.2 "Right Round"
 336.8 "Flail Smash"
@@ -80,37 +77,41 @@ hideall "--sync--"
 1043.0 "Breaking Wheel" sync /:Storge:3CF5:/
 
 1056.1 "Crystal Nail" sync /:Storge:3CF6:/
-1063.2 "Heretic's Fork" sync /:Storge:3CF2:/
-1068.3 "Censure" sync /:Storge:3CF8:/
-1078.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
-1082.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
-1086.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
-1090.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
-1093.4 "Heretic's Fork" sync /:Storge:3E0E:/
-1105.6 "Intestinal Crank" sync /:Storge:3CF1:/
-1119.7 "Intestinal Crank" sync /:Storge:3CF1:/
-1133.8 "Intestinal Crank" sync /:Storge:3CF1:/
+1063.2 "Heretic's Fork?" sync /:Storge:3CF2:/ window 10,10 jump 2063.2
+1065.7 "Breaking Wheel?" sync /:Storge:3CF5:/ window 10,10 jump 2156.2
 
-1146.6 "Crystal Nail" sync /:Storge:3CF6:/
-1156.2 "Breaking Wheel" sync /:Storge:3CF5:/
-1161.4 "Censure" sync /:Storge:3E37:/
-1172.5 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
-1177.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
-1182.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
-1187.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
-1192.6 "Breaking Wheel" sync /:Storge:3E0F:/
-1212.4 "Intestinal Crank" sync /:Storge:3CF1:/
-1226.5 "Intestinal Crank" sync /:Storge:3CF1:/
-1240.6 "Intestinal Crank" sync /:Storge:3CF1:/
+2056.1 "Crystal Nail" sync /:Storge:3CF6:/
+2063.2 "Heretic's Fork" sync /:Storge:3CF2:/
+2068.3 "Censure" sync /:Storge:3CF8:/
+2078.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+2082.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+2086.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+2090.5 "Heretic's Fork" #sync /:Rhapsodic Nail:3CF9:/
+2093.4 "Heretic's Fork" sync /:Storge:3E0E:/
+2105.6 "Intestinal Crank" sync /:Storge:3CF1:/
+2119.7 "Intestinal Crank" sync /:Storge:3CF1:/
+2133.8 "Intestinal Crank" sync /:Storge:3CF1:/
 
-1253.4 "Crystal Nail" sync /:Storge:3CF6:/ window 50,50 jump 1056.1
-1260.5 "Heretic's Fork"
-1265.5 "Censure"
-1275.7 "Heretic's Fork"
-1279.7 "Heretic's Fork"
-1283.7 "Heretic's Fork"
-1287.7 "Heretic's Fork"
-1290.5 "Heretic's Fork"
-1302.7 "Intestinal Crank"
-1316.8 "Intestinal Crank"
-1331.0 "Intestinal Crank"
+2146.6 "Crystal Nail" sync /:Storge:3CF6:/
+2156.2 "Breaking Wheel" sync /:Storge:3CF5:/
+2161.4 "Censure" sync /:Storge:3E37:/
+2172.5 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+2177.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+2182.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+2187.7 "Breaking Wheel" #sync /:Rhapsodic Nail:3CFA:/
+2192.6 "Breaking Wheel" sync /:Storge:3E0F:/
+2212.4 "Intestinal Crank" sync /:Storge:3CF1:/
+2226.5 "Intestinal Crank" sync /:Storge:3CF1:/
+2240.6 "Intestinal Crank" sync /:Storge:3CF1:/
+
+2253.4 "Crystal Nail" sync /:Storge:3CF6:/ window 50,50 jump 2056.1
+2260.5 "Heretic's Fork"
+2265.5 "Censure"
+2275.7 "Heretic's Fork"
+2279.7 "Heretic's Fork"
+2283.7 "Heretic's Fork"
+2287.7 "Heretic's Fork"
+2290.5 "Heretic's Fork"
+2302.7 "Intestinal Crank"
+2316.8 "Intestinal Crank"
+2331.0 "Intestinal Crank"
