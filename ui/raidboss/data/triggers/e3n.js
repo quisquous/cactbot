@@ -67,7 +67,7 @@
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
       infoText: {
         en: 'Avoid Puddles and Dives',
-        fr: 'Evitez les flaques et aux dives',
+        fr: 'Evitez les flaques et les dives',
       },
     },
     {
@@ -78,7 +78,7 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Dispersez-vous',
+        fr: 'Disperser',
       },
     },
     {
@@ -133,7 +133,7 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Dispersez-vous',
+        fr: 'Disperser',
       },
     },
     {
@@ -144,7 +144,7 @@
       },
       infoText: {
         en: 'Donut on YOU',
-        fr: 'Donut sur VOUS';
+        fr: 'Donut sur VOUS',
       },
     },
   ],

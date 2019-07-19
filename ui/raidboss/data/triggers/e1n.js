@@ -12,6 +12,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -22,6 +23,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -32,6 +34,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -39,6 +42,7 @@
       regex: / 14:3D97:Eden Prime starts using Eden's Flare/,
       alertText: {
         en: 'Under',
+        fr: 'Intérieur',
       },
     },
     {
@@ -49,6 +53,7 @@
       },
       alertText: {
         en: 'Tank Laser on YOU',
+        fr: 'Tank laser sur VOUS',
       },
     },
     {
@@ -57,6 +62,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'tank cleaves',
+        fr: 'Tank cleaves',
       },
     },
     {
@@ -67,6 +73,7 @@
       },
       alertText: {
         en: 'Drop Puddle, Run Middle',
+        fr: 'Placer les flaques, courrer au centre',
       },
     },
     {
@@ -76,6 +83,7 @@
       delaySeconds: 4.5,
       alertText: {
         en: 'Drop Puddle, Get Out',
+        fr: "Placer flaques, bouger à l'extérieur",
       },
     },
   ],
