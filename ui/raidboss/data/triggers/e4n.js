@@ -76,7 +76,7 @@
       regex: /14:4102:Titan starts using Fault Zone/,
       alertText: {
         en: 'Stand On Flank',
-        fr: 'Se placer sur un flanc',
+        fr: 'Se placer sur le flanc',
       },
     },
   ],
