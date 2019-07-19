@@ -203,7 +203,7 @@
       },
       infoText: {
         en: 'Delayed Shadoweye',
-        fr: "Oeil de l'ombre retardé",
+        fr: 'Oeil de l ombre retardé',
       },
     },
     {

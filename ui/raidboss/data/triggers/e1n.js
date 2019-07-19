@@ -83,7 +83,7 @@
       delaySeconds: 4.5,
       alertText: {
         en: 'Drop Puddle, Get Out',
-        fr: "Placer flaques, bouger à l'extérieur",
+        fr: 'Placer flaques, bouger à l extérieur',
       },
     },
   ],
