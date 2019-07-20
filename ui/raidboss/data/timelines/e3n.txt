@@ -36,10 +36,12 @@ hideall "--sync--"
 203.5 "Tidal Roar" sync /:Leviathan:3FC4:/ window 3,3
 
 216.7 "Maelstrom" sync /:Leviathan:3FD8:/ duration 30
+218.7 "--untargetable--"
 222.0 "--sync--" sync /:Leviathan:3F7E:/
 226.9 "Spinning Dive" sync /:Leviathan:3FDB:/
 229.1 "--sync--" sync /:Leviathan:3F7E:/
 234.0 "Spinning Dive" sync /:Leviathan:3FDB:/
+240.4 "--targetable--"
 248.4 "Tidal Roar" sync /:Leviathan:3FC4:/ window 3,3
 255.4 "Rip Current" sync /:Leviathan:3FC6:/
 276.8 "Tidal Wave" sync /:Leviathan:3FD3:/
@@ -71,10 +73,12 @@ hideall "--sync--"
 461.4 "Tidal Roar" sync /:Leviathan:3FC4:/ window 3,3
 
 476.4 "Maelstrom" sync /:Leviathan:3FD8:/ duration 30
+478.4 "--untargetable--"
 481.4 "--sync--" sync /:Leviathan:3F7E:/
 486.4 "Spinning Dive" sync /:Leviathan:3FDB:/
 488.4 "--sync--" sync /:Leviathan:3F7E:/
 493.4 "Spinning Dive" sync /:Leviathan:3FDB:/
+499.9 "--targetable--"
 507.9 "Tidal Roar" sync /:Leviathan:3FC4:/ window 3,3
 515.0 "Rip Current" sync /:Leviathan:3FC6:/
 536.4 "Tidal Wave" sync /:Leviathan:3FD3:/
