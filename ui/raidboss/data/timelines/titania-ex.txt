@@ -80,6 +80,7 @@ hideall "--sync--"
 ### Phase 3: double mechanics
 800.0 "Being Mortal" sync /:Titania:3D32:/ window 800,0
 808.5 "Being Mortal" sync /:Titania:3D33:/
+814.0 "--targetable--"
 825.3 "Mist Rune" sync /:Titania:3D45:/
 833.3 "Phantom Rune" sync /:Titania:3D4[CD]:/
 846.3 "Flame Rune" sync /:Titania:3D47:/

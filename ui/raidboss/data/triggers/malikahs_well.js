@@ -46,6 +46,16 @@
       },
     },
     {
+      id: 'Malikah Deep Draught',
+      regex: / 14:4188:Pack Armadillo starts using Deep Draught/,
+      condition: function(data) {
+        return data.CanSilence();
+      },
+      infoText: {
+        en: 'Silence Add',
+      },
+    },
+    {
       id: 'Malikah Efface',
       regex: / 14:3CEB:Amphibious Talos starts using Efface on (\y{Name})/,
       alertText: function(data, matches) {
