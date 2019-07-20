@@ -180,6 +180,7 @@
       alertText: {
         en: 'Tether on YOU',
         fr: 'Lien sur VOUS',
+        ja: '線ついた',
       },
     },
     {
@@ -193,26 +194,31 @@
           return {
             en: 'Circle, Avoid Orbs',
             fr: 'Cercle, Evitez orbes',
+            ja: 'オーブに当てないで',
           };
         }
         return {
           en: 'Circle on YOU',
           fr: 'Cercle sur vous',
+          ja: 'サークルついた',
         };
       },
     },
     {
       id: 'InnoEx God Ray',
       regex: /14:3EE[456]:Innocence starts using God Ray/,
+      regexJa: /14:3EE[456]:イノセンス starts using ゴッドレイ/,
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
         fr: 'Evitez l\'épée puis le rayon',
+        ja: '剣避けてからピザカット',
       },
     },
     {
       id: 'InnoEx Starbirth End 1',
       regex: /14:3EEA:Innocence starts using Shadowreaver/,
+      regexJa: /14:3EEA:イノセンス starts using シャドウリーヴァー/,
       run: function(data) {
         delete data.starbirthActive;
       },
@@ -220,6 +226,7 @@
     {
       id: 'InnoEx Starbirth End 2',
       regex: /14:3EEE:Innocence starts using Beatific Vision/,
+      regexJa: /14:3EEE:Innocence starts using ビューティフィックビジョン/,
       run: function(data) {
         delete data.starbirthActive;
       },
