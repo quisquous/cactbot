@@ -12,6 +12,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -22,6 +23,7 @@
       },
       infoText: {
         en: 'aoe + dot',
+        fr: 'Dégâts de raid + dot',
       },
     },
     {
@@ -49,6 +51,7 @@
       regex: / 14:40FA:Titan starts using Massive Landslide/,
       alertText: {
         en: 'Stand In Front',
+        fr: 'Se placer devant',
       },
     },
     {
@@ -57,6 +60,7 @@
       delaySeconds: 6,
       infoText: {
         en: 'Hide Behind Boulder',
+        fr: 'Se cacher derrière le rocher',
       },
     },
     {
@@ -64,6 +68,7 @@
       regex: / 14:40F6:Titan starts using Geocrush/,
       infoText: {
         en: 'Knockback',
+        fr: 'Repoussement',
       },
     },
     {
@@ -71,6 +76,7 @@
       regex: /14:4102:Titan starts using Fault Zone/,
       alertText: {
         en: 'Stand On Flank',
+        fr: 'Se placer sur le flanc',
       },
     },
   ],

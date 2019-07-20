@@ -10,6 +10,7 @@
       beforeSeconds: 6,
       infoText: {
         en: 'Get Puddles',
+        fr: 'Prenez les flaques',
       },
     },
   ],
@@ -39,6 +40,7 @@
       },
       infoText: {
         en: 'tank busters',
+        fr: 'Tank busters',
       },
     },
     {
@@ -49,6 +51,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de raid',
       },
     },
     {
@@ -56,6 +59,7 @@
       regex: / 14:3E3C:Voidwalker starts using Doomvoid Slicer/,
       infoText: {
         en: 'Get Under',
+        fr: 'Intérieur',
       },
     },
     {
@@ -63,6 +67,7 @@
       regex: / 14:3E46:The Hand Of Erebos starts using Empty Hate/,
       infoText: {
         en: 'Knockback',
+        fr: 'Repoussement',
       },
     },
     {
@@ -81,6 +86,7 @@
       },
       alertText: {
         en: 'Spread',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -90,10 +96,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            fr: 'Partage sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Partage sur '+ data.ShortName(matches[1]),
         };
       },
     },
@@ -103,6 +111,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Look Away from ' + data.ShortName(matches[1]),
+          fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
         };
       },
     },
@@ -122,6 +131,7 @@
       },
       infoText: {
         en: 'Delayed Fire',
+        fr: 'Feu retardé',
       },
     },
     {
@@ -132,6 +142,7 @@
       },
       alertText: {
         en: 'Spread',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -150,6 +161,7 @@
       },
       infoText: {
         en: 'Delayed Stack',
+        fr: 'Partage retardé',
       },
     },
     {
@@ -166,10 +178,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            fr: 'Partage sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Partage sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -189,6 +203,7 @@
       },
       infoText: {
         en: 'Delayed Shadoweye',
+        fr: 'Oeil de l ombre retardé',
       },
     },
     {
@@ -201,6 +216,7 @@
       alarmText: function(data, matches) {
         return {
           en: 'Look Away from ' + data.ShortName(matches[1]),
+          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
         };
       },
     },
