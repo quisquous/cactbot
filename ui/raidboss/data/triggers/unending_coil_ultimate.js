@@ -603,6 +603,9 @@
           return false;
         return data.me == matches[1];
       },
+      // FIXME: temporary workaround for multiple gains effects messages.
+      // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
+      suppressSeconds: 20,
       durationSeconds: function(data, matches) {
         if (parseFloat(matches[2]) <= 6)
           return 3;
@@ -667,7 +670,10 @@
         else
           order = 2;
 
-        data.dooms[order] = matches[1];
+        // FIXME: temporary workaround for multiple gains effects messages.
+        // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
+        if (order !== null && data.dooms[order] === null)
+          data.dooms[order] = matches[1];
       },
     },
     {
