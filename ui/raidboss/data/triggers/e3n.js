@@ -38,6 +38,7 @@
     {
       id: 'E3N Tidal Wave Look',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
+      delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
         fr: 'Repérez la vague',
