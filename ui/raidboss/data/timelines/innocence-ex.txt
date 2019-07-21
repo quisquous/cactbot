@@ -132,6 +132,7 @@ hideall "Soul And Body"
 740.4 "--sync--" sync /:Innocence:3EA2:/
 743.9 "Holy Trinity" #sync /:Innocence:3EDB:/
 
-744.7 "Starbirth Enrage" sync /:Innocence:3EEF:/
+741.7 "--sync--" sync /:3EEF:Innocence/ window 10,10
+744.7 "Starbirth Final" sync /:Innocence:3EEF:/
 764.7 "Beatific Vision" sync /:Innocence:3EF1:/
 765.6 "Explosion Enrage" sync /:Innocence:3EF0:/
