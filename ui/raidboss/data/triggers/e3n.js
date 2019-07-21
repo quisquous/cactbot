@@ -36,12 +36,19 @@
       },
     },
     {
-      id: 'E3N Tidal Wave',
+      id: 'E3N Tidal Wave Look',
+      regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
+      infoText: {
+        en: 'Look for Wave',
+      },
+    },
+    {
+      id: 'E3N Tidal Wave Knockback',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
-      infoText: {
+      alertText: {
         en: 'Knockback',
         fr: 'Repoussement',
       },
@@ -57,7 +64,7 @@
     {
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FCF:Leviathan starts using Undersea Quake/,
-      alertText: {
+      alarmText: {
         en: 'Go To Sides',
         fr: 'Allez sur les côtés',
       },
@@ -65,6 +72,7 @@
     {
       id: 'E3N Maelstrom',
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
+      delaySeconds: 8,
       infoText: {
         en: 'Avoid Puddles and Dives',
         fr: 'Evitez les flaques et les dives',

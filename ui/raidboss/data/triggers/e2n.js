@@ -117,7 +117,7 @@
     },
     {
       id: 'E2N Dark Fire Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B5:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B5:/,
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches[1]] = 'fire';
@@ -125,7 +125,7 @@
     },
     {
       id: 'E2N Dark Fire Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B5:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B5:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -136,7 +136,7 @@
     },
     {
       id: 'E2N Countdown Marker Fire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B8:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
         return data.me == matches[1] && data.spell[data.me] == 'fire';
       },
@@ -147,7 +147,7 @@
     },
     {
       id: 'E2N Unholy Darkness Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B4:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B4:/,
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches[1]] = 'stack';
@@ -155,7 +155,7 @@
     },
     {
       id: 'E2N Unholy Darkness Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B4:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B4:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -166,13 +166,13 @@
     },
     {
       id: 'E2N Countdown Marker Unholy Darkness',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B8:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
         // The third fire coincides with stack.
         // These people should avoid.
         if (data.spell[data.me] == 'fire' && data.fireCount == 3)
           return false;
-        return data.spell[data.matches[1]] == 'stack';
+        return data.spell[matches[1]] == 'stack';
       },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -189,7 +189,7 @@
     },
     {
       id: 'E2N Shadoweye Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B7:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B7:/,
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches[1]] = 'eye';
@@ -197,7 +197,7 @@
     },
     {
       id: 'E2N Shadoweye Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B7:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B7:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -208,16 +208,34 @@
     },
     {
       id: 'E2N Countdown Marker Shadoweye',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B8:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
-        return data.me != matches[1] && data.spell[matches[1]] == 'eye';
+        return data.spell[matches[1]] == 'eye';
       },
       delaySeconds: 2,
       alarmText: function(data, matches) {
-        return {
-          en: 'Look Away from ' + data.ShortName(matches[1]),
-          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
-        };
+        if (data.me != matches[1]) {
+          return {
+            en: 'Look Away from ' + data.ShortName(matches[1]),
+            fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Eye on YOU',
+            fr: 'Oeil de l ombre sur VOUS',
+          };
+        }
+      },
+    },
+    {
+      id: 'E2N Countdown Marker Cleanup',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      delaySeconds: 10,
+      run: function(data, matches) {
+        delete data.spell[matches[1]];
       },
     },
   ],

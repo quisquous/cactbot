@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^Eden's Gate: Resurrection$/,
+  zoneRegex: /^Eden's Gate: Sepulture$/,
   timelineFile: 'e4n.txt',
   triggers: [
     {
@@ -58,6 +58,7 @@
       id: 'E4N Seismic Wave',
       regex: / 14:40F2:Massive Boulder starts using Crumbling Down/,
       delaySeconds: 6,
+      suppressSeconds: 10,
       infoText: {
         en: 'Hide Behind Boulder',
         fr: 'Se cacher derrière le rocher',

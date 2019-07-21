@@ -57,6 +57,7 @@ hideall "Vice And Virtue"
 300.0 "Primeval Stasis" sync /:Eden:3E3A:/ window 300,0
 343.6 "Eternal Breath" sync /:Eden Prime:3DA5:/
 
+354.0 "--targetable--"
 360.0 "Vice And Virtue" sync /:Eden Prime:44E4:/
 360.8 "Vice Of Vanity" sync /:Eden Prime:44E7:/
 370.6 "Spear Of Paradise" sync /:Eden Prime:3DA1:/
