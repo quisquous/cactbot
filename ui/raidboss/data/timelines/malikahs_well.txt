@@ -24,7 +24,7 @@ hideall "--sync--"
 208.6 "Flail Smash" sync /:Greater Armadillo:3CE9:/
 213.3 "Earthshake" sync /:Greater Armadillo:3E39:/
 
-215.1 "2x Pack Armadillo"
+225.1 "2x Pack Armadillo"
 
 239.6 "Stone Flail" sync /:Greater Armadillo:3CE5:/
 262.0 "Head Toss" sync /:Greater Armadillo:3CE6:/
