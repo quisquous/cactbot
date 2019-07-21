@@ -12,7 +12,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -23,7 +23,7 @@
       },
       infoText: {
         en: 'aoe + dot',
-        fr: 'Dégâts de raid + dot',
+        fr: 'Dégâts de zone + dot',
       },
     },
     {
@@ -69,7 +69,7 @@
       regex: / 14:40F6:Titan starts using Geocrush/,
       infoText: {
         en: 'Knockback',
-        fr: 'Repoussement',
+        fr: 'Poussée',
       },
     },
     {

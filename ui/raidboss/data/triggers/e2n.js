@@ -51,7 +51,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -67,7 +67,7 @@
       regex: / 14:3E46:The Hand Of Erebos starts using Empty Hate/,
       infoText: {
         en: 'Knockback',
-        fr: 'Repoussement',
+        fr: 'Poussée',
       },
     },
     {
@@ -96,12 +96,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
-            fr: 'Partage sur VOUS',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          fr: 'Partage sur '+ data.ShortName(matches[1]),
+          fr: 'Package sur '+ data.ShortName(matches[1]),
         };
       },
     },
@@ -161,7 +161,7 @@
       },
       infoText: {
         en: 'Delayed Stack',
-        fr: 'Partage retardé',
+        fr: 'Package retardé',
       },
     },
     {
@@ -178,12 +178,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
-            fr: 'Partage sur VOUS',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          fr: 'Partage sur ' + data.ShortName(matches[1]),
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -203,7 +203,7 @@
       },
       infoText: {
         en: 'Delayed Shadoweye',
-        fr: 'Oeil de l ombre retardé',
+        fr: 'Œil de l\'ombre retardé',
       },
     },
     {
@@ -225,7 +225,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Eye on YOU',
-            fr: 'Oeil de l ombre sur VOUS',
+            fr: 'Œil de l\'ombre sur VOUS',
           };
         }
       },
