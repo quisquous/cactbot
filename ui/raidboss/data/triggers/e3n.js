@@ -40,6 +40,7 @@
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
       infoText: {
         en: 'Look for Wave',
+        fr: 'Repérez la vague',
       },
     },
     {

@@ -225,7 +225,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Eye on YOU',
-            fr: 'Oeil de l ombre',
+            fr: 'Oeil de l ombre sur VOUS',
           };
         }
       },
