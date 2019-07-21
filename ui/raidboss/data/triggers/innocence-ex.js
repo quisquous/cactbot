@@ -119,7 +119,7 @@
       },
       infoText: {
         en: 'Grab East/West Venery Adds',
-        ja: '雑魚のタゲ取って'
+        ja: '雑魚のタゲ取って',
         fr: 'Attrapez les adds en Est/Ouest',
       },
     },
