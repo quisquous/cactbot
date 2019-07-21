@@ -6,7 +6,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync /Removing combatant Suzaku\.  Max HP: \d{8}/ window 10000 jump 0
 
-0.0 "Start" sync /0044:Tenzen/
+0.0 "Start" sync /00:0044:[^:]*:Tenzen/
 2.5 "--sync--" sync /:Suzaku:367:/ window 5,0
 11.5 "Screams Of The Damned" sync /:Suzaku:32D2:/ window 12,20
 18.9 "--untargetable--"

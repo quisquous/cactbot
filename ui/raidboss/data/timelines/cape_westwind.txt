@@ -26,7 +26,7 @@ hideall "--sync--"
 
 
 ### Phase 2 (80%): firebombs
-199.0 "--sync--" sync /00:0044:My shields are impregnable/ window 200,0
+199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/ window 200,0
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 205,10
 208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
@@ -76,7 +76,7 @@ hideall "--sync--"
 
 
 ### Phase 4 (40%): magitek missiles
-584.3 "--sync--" sync /00:0044:Your defeat will bring/ window 600,0
+584.3 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 604.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/

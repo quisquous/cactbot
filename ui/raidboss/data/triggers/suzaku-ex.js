@@ -104,7 +104,7 @@
         'Scarlet Tail Feather': 'Schwanzfeder',
         'Southern Pyre': 'Südflamme',
         'Western Pyre': 'Westflamme',
-        '0044.Tenzen': '0044:Tenzen',
+        ':Tenzen': ':Tenzen',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -165,7 +165,7 @@
         'Western Pyre': 'Flamme occidentale',
 
         // FIXME
-        '0044.Tenzen': '0044:Tenzen',
+        ':Tenzen': ':Tenzen',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -228,7 +228,7 @@
         'Western Pyre': '西炎',
 
         // FIXME
-        '0044.Tenzen': '0044:Tenzen',
+        ':Tenzen': ':Tenzen',
       },
       'replaceText': {
         'Burn': '燃焼',

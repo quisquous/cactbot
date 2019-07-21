@@ -436,10 +436,10 @@ The relevant lines here are:
 ```
 [18:45:27.041] 03:Added new combatant 7Th Cohort Optio.  Job: 0 Level: 49 Max HP: 24057 Max MP: 8010 Pos: (-665.5159,-804.6631,62.33055).
 [18:45:27.041] 03:Added new combatant 7Th Cohort Optio.  Job: 0 Level: 49 Max HP: 24057 Max MP: 8010 Pos: (-665.5013,-807.1013,62.45256).
-[18:42:24.000] 00:0044:I will suffer none to oppose Lord van Baelsar!
-[18:44:08.000] 00:0044:My shields are impregnable! Join the countless challengers who have dashed themselves against them!
-[18:46:27.000] 00:0044:Your defeat will bring Lord van Baelsar's noble conquest one step closer to fruition!
-[18:48:27.000] 00:0044:Ungh... Though it cost me my life...I will strike you down!
+[18:42:24.000] 00:0044:Rhitahtyn sas Arvina:I will suffer none to oppose Lord van Baelsar!
+[18:44:08.000] 00:0044:Rhitahtyn sas Arvina:My shields are impregnable! Join the countless challengers who have dashed themselves against them!
+[18:46:27.000] 00:0044:Rhitahtyn sas Arvina:Your defeat will bring Lord van Baelsar's noble conquest one step closer to fruition!
+[18:48:27.000] 00:0044:Rhitahtyn sas Arvina:Ungh... Though it cost me my life...I will strike you down!
 ```
 
 You can subtract the times from the start time to figure out about where they are.
@@ -559,7 +559,7 @@ This gets us the following output for phase 2,
 with manually added blank lines to break out the loops.
 ```
 # manually added in
-199.0 "--sync--" sync /00:0044:My shields are impregnable/
+199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 
 # output of make_timeline
@@ -631,7 +631,7 @@ The current state of our timeline is now:
 80.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
 
 # 80%
-199.0 "--sync--" sync /00:0044:My shields are impregnable/
+199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
@@ -761,7 +761,7 @@ Here's the final command line, including this second phase:
 
 ```
 # manually added in
-595.0 "--sync--" sync /00:0044:Your defeat will bring/ window 600,0
+595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 604.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 608.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
@@ -951,7 +951,7 @@ hideall "--sync--"
 
 
 ### Phase 2 (80%): firebombs
-199.0 "--sync--" sync /00:0044:My shields are impregnable/ window 200,0
+199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/ window 200,0
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 204.3 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/ window 205,10
 208.8 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
@@ -1000,7 +1000,7 @@ hideall "--sync--"
 
 
 ### Phase 4 (40%): magitek missiles
-595.0 "--sync--" sync /00:0044:Your defeat will bring/ window 600,0
+595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 604.5 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
@@ -1172,7 +1172,7 @@ resynced (thank goodness), but some of the abilities before that were wrong.
 
 The original timeline is:
 ```
-595.0 "--sync--" sync /00:0044:Your defeat will bring/ window 600,0
+595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 ```
 
@@ -1182,7 +1182,7 @@ The fix is to move the rp text sync back in time by that amount.
 The new time will be 595 - 10.7 = 584.3.
 
 ```
-584.3 "--sync--" sync /00:0044:Your defeat will bring/ window 600,0
+584.3 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 ```
 
