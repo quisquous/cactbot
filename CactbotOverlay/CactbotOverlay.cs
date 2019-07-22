@@ -287,11 +287,6 @@ namespace Cactbot {
 
     // Events that we want to update less often because they aren't are critical.
     private void SendSlowRateEvents() {
-      // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
-      // register its event handlers.
-      //if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading)
-      //  return;
-
       // NOTE: This function runs on a different thread that SendFastRateEvents(), so anything it calls needs to be thread-safe!
     }
 
