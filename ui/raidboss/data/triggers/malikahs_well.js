@@ -42,7 +42,7 @@
       id: 'Malikah Right Round',
       regex: / 14:3CE7:Greater Armadillo starts using Right Round/,
       infoText: {
-        en: 'Out of Melee',
+        en: 'Melee Knockback',
       },
     },
     {
