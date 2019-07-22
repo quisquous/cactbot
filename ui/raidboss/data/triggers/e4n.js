@@ -87,7 +87,7 @@
       'replaceSync': {
         'Engage!': 'Start!',
         'Titan': 'Titan',
-        'Bomb Boulder': 'Bomber-Brocken'
+        'Bomb Boulder': 'Bomber-Brocken',
       },
       'replaceText': {
         'Fault Line': 'Bruchlinie',
@@ -171,7 +171,7 @@
       'replaceSync': {
         'Engage!': '戦闘開始！',
         'Titan': 'タイタン',
-        'Bomb Boulder': 'ボムボルダー'
+        'Bomb Boulder': 'ボムボルダー',
       },
       'replaceText': {
         'Fault Line': 'フォールトライン',
