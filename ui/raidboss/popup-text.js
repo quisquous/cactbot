@@ -62,6 +62,7 @@ class PopupText {
           console.log('Unexpected JSON from ' + filename + ', expected triggers to be an array');
           continue;
         }
+        json[i].filename = filename;
       }
       Array.prototype.push.apply(this.triggerSets, json);
     }
@@ -107,6 +108,8 @@ class PopupText {
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) >= 0) {
+        if (this.options.Debug)
+          console.log('Loading ' + set.filename);
         // Adjust triggers for the locale.
         if (set.triggers) {
           for (let j = 0; j < set.triggers.length; ++j) {
