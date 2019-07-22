@@ -175,7 +175,7 @@
       },
     },
   ],
-    timelineReplace: [
+  timelineReplace: [
     {
       locale: 'fr',
       replaceSync: {
@@ -196,9 +196,9 @@
         'The Path Of Light': 'Voie de lumière',
         'Brazen Bull': 'Taureau d\'airain',
         'Gibbet Cage': 'Gibet de fer',
-        'Thumbscrew' : 'Ecraseur à vis',
+        'Thumbscrew': 'Ecraseur à vis',
         'Heretic\'s Fork': 'Fourche hérétique',
-        'Light Shot' : 'Tir de lumière',
+        'Light Shot': 'Tir de lumière',
         'Wooden Horse': 'Chevalet',
         'Pillory': 'Pilori',
         'The Tickler': 'Chatouillement',
