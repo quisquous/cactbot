@@ -6,6 +6,16 @@
   timelineFile: 'titania-ex.txt',
   triggers: [
     {
+      id: 'TitaniaEx Bright Sabbath',
+      regex: /14:3D4B:Titania starts using Bright Sabbath/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+      },
+    },
+    {
       id: 'TitaniaEx Phantom Out',
       regex: /14:3D4C:Titania starts using Phantom Rune/,
       alertText: {
