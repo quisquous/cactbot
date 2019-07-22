@@ -12,7 +12,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -52,7 +52,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Knockback',
-        fr: 'Repoussement',
+        fr: 'Poussée',
       },
     },
     {
@@ -99,7 +99,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -110,12 +110,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
-            fr: 'Partage sur VOUS',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          fr: 'Partage sur ' + data.ShortName(matches[1]),
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -126,12 +126,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Knockback on YOU',
-            fr: 'Repoussement sur VOUS',
+            fr: 'Poussée sur VOUS',
           };
         }
         return {
           en: 'Knockback on ' + data.ShortName(matches[1]),
-          fr: 'Repoussement sur ' + data.ShortName(matches[1]),
+          fr: 'Poussée sur ' + data.ShortName(matches[1]),
         };
       },
     },

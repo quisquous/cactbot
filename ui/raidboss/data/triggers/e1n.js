@@ -12,7 +12,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -23,7 +23,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -34,7 +34,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -64,7 +64,7 @@
       },
       alertText: {
         en: 'Drop Puddle, Run Middle',
-        fr: 'Placer les flaques, courrez au centre',
+        fr: 'Placer les flaques, courez au centre',
       },
     },
     {
