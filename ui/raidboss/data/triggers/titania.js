@@ -1,21 +1,26 @@
 'use strict';
 
-// say grab mobs, group on west mustardseed?
-// test mist failure
-// test which phantoms are random
-// is divination still a cleave?
-// what does puck's rebuke do here?
-
 // Titania Normal Mode
 [{
   zoneRegex: /^The Dancing Plague$/,
   timelineFile: 'titania.txt',
   triggers: [
     {
+      id: 'Titania Bright Sabbath',
+      regex: /14:3D5C:Titania starts using Bright Sabbath/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+      },
+    },
+    {
       id: 'Titania Phantom Out',
       regex: /14:3D5D:Titania starts using Phantom Rune/,
       alertText: {
         en: 'Out',
+        fr: 'Dehors',
       },
     },
     {
@@ -23,6 +28,7 @@
       regex: /14:3D5E:Titania starts using Phantom Rune/,
       alertText: {
         en: 'In',
+        fr: 'Dedans',
       },
     },
     {
@@ -37,15 +43,16 @@
       regex: /14:3D45:Titania starts using Mist Rune/,
       infoText: {
         en: 'Water Positions',
+        fr: 'Position pour l\'eau',
       },
     },
     {
       id: 'Titania Flame',
       regex: /14:3D47:Titania starts using Flame Rune/,
-      // You have 14 seconds until the first stack damage.
       delaySeconds: 6,
       alertText: {
-        en: 'Stack Positions',
+        en: 'Stack In Puddles',
+        fr: 'Packez-vous',
       },
     },
     {
@@ -55,6 +62,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank Cleave on YOU',
+            fr: 'Tank cleave sur vous',
           };
         }
       },
@@ -62,6 +70,7 @@
         if (matches[1] != data.me) {
           return {
             en: 'Tank Cleave on ' + data.ShortName(matches[1]),
+            fr: 'Tank cleave sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -71,6 +80,7 @@
       regex: /14:3D2A:Titania starts using Frost Rune/,
       infoText: {
         en: 'Get Middle, Shiva Circles',
+        fr: 'Allez au milieu, comme sur Shiva',
       },
     },
     {
@@ -79,6 +89,7 @@
       delaySeconds: 6.5,
       infoText: {
         en: 'Run Out',
+        fr: 'Courez dehors',
       },
     },
     {
@@ -87,13 +98,15 @@
       suppressSeconds: 60,
       infoText: {
         en: 'Run In',
+        fr: 'Courez dedans',
       },
     },
     {
       id: 'Titania Growth Rune',
       regex: /14:3D2E:Titania starts using Growth Rune/,
       infoText: {
-        en: 'Roots',
+        en: 'Avoid Roots',
+        fr: 'Racines',
       },
     },
     {
@@ -104,6 +117,7 @@
       },
       infoText: {
         en: 'Spread',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -114,6 +128,7 @@
       },
       infoText: {
         en: 'Spread',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -123,11 +138,36 @@
         if (data.me == matches[1]) {
           return {
             en: 'Stack on YOU',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Packez-vous sur' + data.ShortName(matches[1]),
         };
+      },
+    },
+    {
+      id: 'Titania Knockback',
+      regex: /15:\y{ObjectId}:Puck:3D42:Puck's Rebuke/,
+      alertText: {
+        en: 'Diagonal Knockback Soon',
+        fr: 'Poussée en diagonale bientôt',
+      },
+    },
+    {
+      id: 'Titania Mini Add Phase',
+      regex: /1[56]:\y{ObjectId}:Titania:3D31:/,
+      infoText: function(data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Group Adds East (on Mustardseed)',
+          };
+        } else {
+          return {
+            en: 'Kill Mustardseed (East)',
+          };
+        }
       },
     },
   ],
