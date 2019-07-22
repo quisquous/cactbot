@@ -163,11 +163,10 @@
           return {
             en: 'Group Adds East (on Mustardseed)',
           };
-        } else {
-          return {
-            en: 'Kill Mustardseed (East)',
-          };
         }
+        return {
+          en: 'Kill Mustardseed (East)',
+        };
       },
     },
   ],
