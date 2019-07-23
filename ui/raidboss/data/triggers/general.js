@@ -21,17 +21,6 @@
       },
     },
     {
-      id: 'General Ultimatum',
-      regex: /:(\y{Name}):1D73:Ultimatum:/,
-      regexJa: /:(\y{Name}):1D73:アルティメイタム:/,
-      condition: function(data) {
-        return data.role == 'tank';
-      },
-      infoText: function(data, matches) {
-        return 'Ultimatum: ' + data.ShortName(matches[1]);
-      },
-    },
-    {
       id: 'General Shirk',
       regex: /:(\y{Name}):1D71:Shirk:/,
       regexDe: /:(\y{Name}):1D71:Geteiltes Leid:/,
@@ -75,6 +64,24 @@
           de: 'Heiliger Boden: ' + data.ShortName(matches[1]),
           fr: 'Invincible: ' + data.ShortName(matches[1]),
           ja: 'インビンシブル: ' + data.ShortName(matches[1]),
+        };
+      },
+    },
+    {
+      id: 'General Superbolide',
+      regex: /:(\y{Name}):3F18:Superbolide:/,
+      regexDe: /:(\y{Name}):3F18:Meteoritenfall:/,
+      regexFr: /:(\y{Name}):3F18:Bolide:/,
+      regexJa: /:(\y{Name}):3F18:ボーライド:/,
+      condition: function(data) {
+        return data.role == 'tank';
+      },
+      infoText: function(data, matches) {
+        return {
+          en: 'Bolide: ' + data.ShortName(matches[1]),
+          de: 'Meteoritenfall: ' + data.ShortName(matches[1]),
+          fr: 'Bolide: ' + data.ShortName(matches[1]),
+          ja: 'ボーライド: ' + data.ShortName(matches[1]),
         };
       },
     },
