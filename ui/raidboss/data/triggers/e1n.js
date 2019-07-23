@@ -47,7 +47,7 @@
       regexFr: / 14:3D97:Primo-Éden starts using Brasier Édénique/,
       alertText: {
         en: 'Under',
-        fr: 'Intérieur',
+        fr: 'Sous le boss',
       },
     },
     {
@@ -137,6 +137,7 @@
       },
       'replaceText': {
         'attack': 'Attaque',
+        'Spear Of Paradise' : 'Lance du paradis',
         'Vice of Vanity': 'Péché de vanité',
         'Vice of Apathy': 'Péché d\'apathie',
         'Vice and Virtue': 'Vice et vertue',
@@ -166,6 +167,8 @@
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
+        '--corner--': '--Coin--',
+        '--center--': '--Centre--',
       },
       '~effectNames': {
         'Summon Order': 'Action en attente: 1',
