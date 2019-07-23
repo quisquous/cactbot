@@ -1316,7 +1316,11 @@ class Bars {
   }
 
   OnLostStormsEye() {
-    this.o.eyeBox.duration = 0;
+    // Because storm's eye is tracked from the hit, and the ability is delayed,
+    // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
+    // To fix this, don't "lose" unless it's been going on a bit.
+    if (this.o.eyeBox.elapsed > 10)
+      this.o.eyeBox.duration = 0;
   }
 
   OnComboChange(skill) {
