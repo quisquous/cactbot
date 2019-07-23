@@ -137,7 +137,7 @@
       },
       'replaceText': {
         'attack': 'Attaque',
-        'Spear Of Paradise' : 'Lance du paradis',
+        'Spear Of Paradise': 'Lance du paradis',
         'Vice of Vanity': 'Péché de vanité',
         'Vice of Apathy': 'Péché d\'apathie',
         'Vice and Virtue': 'Vice et vertue',
