@@ -30,7 +30,7 @@
     },
     {
       id: 'E1N Dimensional Shift',
-      //English regex seems wrong
+      // English regex seems wrong
       regex: / 14:3D9C:Eden Prime starts using Fragor Maximus/,
       regexFr: / 14:3D9C:Primo-Éden starts using Translation Dimensionnelle/,
       condition: function(data) {
@@ -90,7 +90,7 @@
       'locale': 'de',
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Engage!': 'Start!'
+        'Engage!': 'Start!',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -120,20 +120,20 @@
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Summon Order': 'Egi-Attacke I',
         'Heavy': 'Gewicht',
         'Fetters': 'Gefesselt',
-        'Brink of Death': 'Sterbenselend'
+        'Brink of Death': 'Sterbenselend',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Eden Prime': 'Primo-Éden',
-        'Engage!': 'À l\'attaque'
+        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -165,20 +165,20 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Summon Order': 'Action en attente: 1',
         'Heavy': 'Pesanteur',
         'Fetters': 'Attache',
-        'Brink of Death': 'Mourant'
+        'Brink of Death': 'Mourant',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Engage!': '戦闘開始！'
+        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -205,28 +205,28 @@
         'Eden\'s Fire III': 'エデン・ファイガ',
         'Eden\'s Blizzard III': 'エデン・ブリザガ',
         'Dimensional Shift': 'ディメンションシフト',
-        'Delta Attack': 'デルタアタック'
+        'Delta Attack': 'デルタアタック',
       },
       '~effectNames': {
         'Summon Order': 'アクション実行待機I',
         'Heavy': 'ヘヴィ',
         'Fetters': '拘束',
-        'Brink of Death': '衰弱［強］'
+        'Brink of Death': '衰弱［強］',
       },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Engage!': '战斗开始！'
+        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'attack': '攻击',
-        'Unknown Ability': 'Unknown Ability'
+        'Unknown Ability': 'Unknown Ability',
       },
       '~effectNames': {
         'Fetters': '拘束',
-        'Brink of Death': '濒死'
+        'Brink of Death': '濒死',
       },
     },
   ],
