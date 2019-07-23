@@ -226,7 +226,7 @@ look and feel of other cactbot uis, then use the `.text` class on any HTML eleme
 text. You may add the `.hide` class to elements you do not want shown, and remove it when they
 should be visible.
 
-Include the [resources/resize_handle.css](resources/resize_handle.js) and
+Include the [resources/resize_handle.css](resources/resize_handle.css) and
 [resources/resize_handle.js](resources/resize_handle.js) files to give visual feedback to the
 user when the module is unlocked for moving and resizing.
 
