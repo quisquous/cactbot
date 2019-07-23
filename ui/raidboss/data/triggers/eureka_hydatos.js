@@ -286,8 +286,8 @@
     },
     {
       id: 'BA Owain Fire Element',
-      regex: / 00:0044:Munderg, turn flesh to ash/,
-      regexDe: / 00:0044:Munderg, entfessele den Flammeneid/,
+      regex: / 00:0044:[^:]*:Munderg, turn flesh to ash/,
+      regexDe: / 00:0044:[^:]*:Munderg, entfessele den Flammeneid/,
       condition: function(data, matches) {
         return data.side == 'east';
       },
@@ -302,8 +302,8 @@
     },
     {
       id: 'BA Owain Ice Element',
-      regex: / 00:0044:Munderg, turn blood to ice/,
-      regexDe: / 00:0044:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen/,
+      regex: / 00:0044:[^:]*:Munderg, turn blood to ice/,
+      regexDe: / 00:0044:[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen/,
       condition: function(data, matches) {
         return data.side == 'east';
       },

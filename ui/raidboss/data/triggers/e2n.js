@@ -51,7 +51,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -67,7 +67,7 @@
       regex: / 14:3E46:The Hand Of Erebos starts using Empty Hate/,
       infoText: {
         en: 'Knockback',
-        fr: 'Repoussement',
+        fr: 'Poussée',
       },
     },
     {
@@ -96,12 +96,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
-            fr: 'Partage sur VOUS',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          fr: 'Partage sur '+ data.ShortName(matches[1]),
+          fr: 'Package sur '+ data.ShortName(matches[1]),
         };
       },
     },
@@ -117,7 +117,7 @@
     },
     {
       id: 'E2N Dark Fire Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B5:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B5:/,
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches[1]] = 'fire';
@@ -125,7 +125,7 @@
     },
     {
       id: 'E2N Dark Fire Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B5:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B5:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -136,7 +136,7 @@
     },
     {
       id: 'E2N Countdown Marker Fire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B8:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
         return data.me == matches[1] && data.spell[data.me] == 'fire';
       },
@@ -147,7 +147,7 @@
     },
     {
       id: 'E2N Unholy Darkness Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B4:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B4:/,
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches[1]] = 'stack';
@@ -155,41 +155,41 @@
     },
     {
       id: 'E2N Unholy Darkness Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B4:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B4:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: {
         en: 'Delayed Stack',
-        fr: 'Partage retardé',
+        fr: 'Package retardé',
       },
     },
     {
       id: 'E2N Countdown Marker Unholy Darkness',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B8:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
         // The third fire coincides with stack.
         // These people should avoid.
         if (data.spell[data.me] == 'fire' && data.fireCount == 3)
           return false;
-        return data.spell[data.matches[1]] == 'stack';
+        return data.spell[matches[1]] == 'stack';
       },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
-            fr: 'Partage sur VOUS',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          fr: 'Partage sur ' + data.ShortName(matches[1]),
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
     {
       id: 'E2N Shadoweye Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B7:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B7:/,
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches[1]] = 'eye';
@@ -197,27 +197,143 @@
     },
     {
       id: 'E2N Shadoweye Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B7:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B7:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: {
         en: 'Delayed Shadoweye',
-        fr: 'Oeil de l ombre retardé',
+        fr: 'Œil de l\'ombre retardé',
       },
     },
     {
       id: 'E2N Countdown Marker Shadoweye',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):0000:0000:00B8:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
-        return data.me != matches[1] && data.spell[matches[1]] == 'eye';
+        return data.spell[matches[1]] == 'eye';
       },
       delaySeconds: 2,
       alarmText: function(data, matches) {
-        return {
-          en: 'Look Away from ' + data.ShortName(matches[1]),
-          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
-        };
+        if (data.me != matches[1]) {
+          return {
+            en: 'Look Away from ' + data.ShortName(matches[1]),
+            fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Eye on YOU',
+            fr: 'Œil de l\'ombre sur VOUS',
+          };
+        }
+      },
+    },
+    {
+      id: 'E2N Countdown Marker Cleanup',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      delaySeconds: 10,
+      run: function(data, matches) {
+        delete data.spell[matches[1]];
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Engage!': 'Start!',
+      },
+      'replaceText': {
+        'Spell-in-Waiting': 'Verzögerung',
+        'Shadowflame': 'Schattenflamme',
+        'Doomvoid Guillotine': 'Nichtsmarter-Fallbeil',
+        'Dark Fire III': 'Dunkel-Feuga',
+        'attack': 'Attacke',
+        'Unholy Darkness': 'Unheiliges Dunkel',
+        '--targetable--': '--anvisierbar--',
+        'Punishing Ray': 'Strafender Strahl',
+        'Doomvoid Slicer': 'Nichtsmarter-Sense',
+        'Empty Hate': 'Gähnender Abgrund',
+        'Shadoweye': 'Schattenauge',
+        'Enrage': 'Finalangriff',
+        'Entropy': 'Entropie',
+        '--untargetable--': '--nich anvisierbar--',
+      },
+      '~effectNames': {
+        'Spell-in-Waiting: Shadoweye': 'Verzögerung: Schattenauge',
+        'Infirmity': 'Gebrechlichkeit',
+        'Petrification': 'Stein',
+        'Bleeding': 'Blutung',
+        'Diabolic Curse': 'Diabolischer Fluch',
+        'Spell-in-Waiting: Dark Fire III': 'Verzögerung: Dunkel-Feuga',
+        'Brink of Death': 'Sterbenselend',
+        'Spell-in-Waiting: Unholy Darkness': 'Verzögerung: Unheiliges Dunkel',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Voidwalker': 'Marcheuse du néant',
+        'Engage!': 'À l\'attaque',
+      },
+      'replaceText': {
+        'Spell-in-Waiting': 'Déphasage incantatoire',
+        '--sync--': '--Synchronisation--',
+        'Shadowflame': 'Flamme d\'ombre',
+        'Doomvoid Guillotine': 'Guillotine du néant ravageur',
+        'Dark Fire III': 'Méga Feu ténébreux',
+        'attack': 'Attaque',
+        'Unholy Darkness': 'Miracle sombre',
+        '--targetable--': '--Ciblable--',
+        '--Reset--': '--Réinitialisation--',
+        'Punishing Ray': 'Rayon punitif',
+        'Doomvoid Slicer': 'Entaille du néant ravageur',
+        'Empty Hate': 'Vaine malice',
+        'Shadoweye': 'Œil de l\'ombre',
+        'Enrage': 'Enrage',
+        'Entropy': 'Entropie',
+        '--untargetable--': '--Impossible à cibler--',
+      },
+      '~effectNames': {
+        'Spell-in-Waiting: Shadoweye': 'Sort déphasé: Œil de l\'ombre',
+        'Infirmity': 'Infirmité',
+        'Petrification': 'Pétrification',
+        'Bleeding': 'Saignant',
+        'Diabolic Curse': 'Maléfice Du Néant',
+        'Spell-in-Waiting: Dark Fire III': 'Sort déphasé: Méga Feu ténébreux',
+        'Brink of Death': 'Mourant',
+        'Spell-in-Waiting: Unholy Darkness': 'Sort déphasé: Miracle sombre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Engage!': '戦闘開始！',
+      },
+      'replaceText': {
+        'Spell-in-Waiting': 'ディレイスペル',
+        'Shadowflame': 'シャドーフレイム',
+        'Doomvoid Guillotine': 'ドゥームヴォイド・ギロチン',
+        'Dark Fire III': 'ダークファイガ',
+        'attack': '攻撃',
+        'Unholy Darkness': 'ダークホーリー',
+        'Punishing Ray': 'パニッシュレイ',
+        'Doomvoid Slicer': 'ドゥームヴォイド・スライサー',
+        'Empty Hate': '虚ろなる悪意',
+        'Shadoweye': 'シャドウアイ',
+        'Entropy': 'エントロピー',
+      },
+      '~effectNames': {
+        'Spell-in-Waiting: Shadoweye': 'ディレイスペル：シャドウアイ',
+        'Infirmity': '虚弱',
+        'Petrification': '石化',
+        'Bleeding': 'ペイン',
+        'Diabolic Curse': 'ヴォイドの呪詛',
+        'Spell-in-Waiting: Dark Fire III': 'ディレイスペル：ダークファイガ',
+        'Brink of Death': '衰弱［強］',
+        'Spell-in-Waiting: Unholy Darkness': 'ディレイスペル：ダークホーリー',
       },
     },
   ],

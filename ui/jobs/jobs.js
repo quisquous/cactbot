@@ -1316,7 +1316,11 @@ class Bars {
   }
 
   OnLostStormsEye() {
-    this.o.eyeBox.duration = 0;
+    // Because storm's eye is tracked from the hit, and the ability is delayed,
+    // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
+    // To fix this, don't "lose" unless it's been going on a bit.
+    if (this.o.eyeBox.elapsed > 10)
+      this.o.eyeBox.duration = 0;
   }
 
   OnComboChange(skill) {
@@ -1343,7 +1347,7 @@ class Bars {
       // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
       if (skill == gLang.kAbility.MythrilTempest) {
         if (this.o.eyeBox.duration > 0) {
-          let old = parseInt(this.o.eyeBox.duration);
+          let old = parseInt(this.o.eyeBox.duration) - parseInt(this.o.eyeBox.elapsed);
           this.o.eyeBox.duration = 0;
           this.o.eyeBox.duration = Math.min(old + 10, 30);
         }

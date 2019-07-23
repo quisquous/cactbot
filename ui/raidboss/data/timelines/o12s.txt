@@ -6,7 +6,7 @@ hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-0.0 "Start" sync /0044:I am the Omega/ window 1,0
+0.0 "Start" sync /00:0044:[^:]*:I am the Omega/ window 1,0
 2.4 "--sync--" sync /:Omega-M:337D:/ window 3,0.5 # first auto
 11.7 "Synthetic Shield" sync /:Omega-M:32FD:/
 19.7 "Suppression" sync /:Omega-M:3345:/

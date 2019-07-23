@@ -12,7 +12,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -23,7 +23,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -34,7 +34,7 @@
       },
       infoText: {
         en: 'aoe',
-        fr: 'Dégâts de raid',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -57,15 +57,6 @@
       },
     },
     {
-      id: 'E1N Vice of Vanity Not You Probably',
-      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Eden Prime:....:....:0011:/,
-      suppressSeconds: 10,
-      infoText: {
-        en: 'tank cleaves',
-        fr: 'Tank cleaves',
-      },
-    },
-    {
       id: 'E1N Vice of Apathy Mark',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001C:/,
       condition: function(data, matches) {
@@ -73,7 +64,7 @@
       },
       alertText: {
         en: 'Drop Puddle, Run Middle',
-        fr: 'Placer les flaques, courrez au centre',
+        fr: 'Placer les flaques, courez au centre',
       },
     },
     {
@@ -82,8 +73,8 @@
       regex: / 14:3DA3:Eden Prime starts using Pure Light/,
       delaySeconds: 4.5,
       alertText: {
-        en: 'Drop Puddle, Get Out',
-        fr: 'Placer flaques, déplacez-vous à l extérieur',
+        en: 'Get Behind',
+        fr: 'Derrière le boss',
       },
     },
   ],

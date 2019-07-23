@@ -10,7 +10,7 @@ hideall "Spell-In-Waiting"
 
 0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
-0.5 "--sync--" sync /:Eden Prime:3E4C:/ window 1,0
+1.0 "--sync--" sync /:Voidwalker:3E4C:/ window 1,0
 10.7 "Doomvoid Guillotine" sync /:Voidwalker:3E3B:/ window 11,5
 27.7 "Doomvoid Slicer" sync /:Voidwalker:3E3C:/
 46.7 "Shadowflame" sync /:Voidwalker:3E4D:/

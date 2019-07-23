@@ -250,8 +250,11 @@ namespace Cactbot {
     //          0xA bytes in: uchar greased_lightning_stacks;
     //          0xB bytes in: uchar chakra_stacks;
     //        }
-    //        struct Machinist { // FIXME
-    //          // ???
+    //        struct Machinist {
+    //          0x8 bytes in: uint16 overheat_ms;
+    //          0xA bytes in: uint16 battery_ms;
+    //          0XC bytes in: uchar heat;
+    //          0xD bytes in: uchar battery;
     //        }
     //        struct Astrologian { // FIXME
     //          // ???
@@ -956,26 +959,26 @@ namespace Cactbot {
     }
 
     public class MachinistJobData {
-      public uint overheat_ms = 0;
       public int heat = 0;
-      public int ammunition = 0;
-      public bool gauss = false;
+      public uint overheat_ms = 0;
+      public int battery = 0;
+      public uint battery_ms = 0;
 
       public override bool Equals(object obj) {
         var o = obj as MachinistJobData;
         return o != null &&
-          overheat_ms != o.overheat_ms &&
           heat != o.heat &&
-          ammunition != o.ammunition &&
-          gauss != o.gauss;
+          overheat_ms != o.overheat_ms &&
+          battery != o.battery_ms &&
+          battery_ms != o.battery_ms;
       }
 
       public override int GetHashCode() {
         int hash = 17;
-        hash = hash * 31 + overheat_ms.GetHashCode();
         hash = hash * 31 + heat.GetHashCode();
-        hash = hash * 31 + ammunition.GetHashCode();
-        hash = hash * 31 + gauss.GetHashCode();
+        hash = hash * 31 + overheat_ms.GetHashCode();
+        hash = hash * 31 + battery.GetHashCode();
+        hash = hash * 31 + battery_ms.GetHashCode();
         return hash;
       }
     }
@@ -987,9 +990,9 @@ namespace Cactbot {
 
       var j = new MachinistJobData();
       j.overheat_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData);
-      j.heat = bytes[kJobDataInnerStructOffsetJobSpecificData + 2];
-      j.ammunition = bytes[kJobDataInnerStructOffsetJobSpecificData + 3];
-      j.gauss = bytes[kJobDataInnerStructOffsetJobSpecificData + 4] == 1;
+      j.battery_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
+      j.heat = bytes[kJobDataInnerStructOffsetJobSpecificData + 4];
+      j.battery = bytes[kJobDataInnerStructOffsetJobSpecificData + 5];
       return j;
     }
 

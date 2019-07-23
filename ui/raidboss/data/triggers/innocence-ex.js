@@ -6,13 +6,60 @@
   timelineFile: 'innocence-ex.txt',
   triggers: [
     {
-      id: 'InnoEx Starbirth Start',
+      id: 'InnoEx Starbirth Count',
       regex: /14:3EEF:Innocence starts using Starbirth/,
       regexJa: /14:3EEF:イノセンス starts using スターバース/,
       run: function(data) {
         data.starbirthCount = data.starbirthCount || 0;
         data.starbirthCount++;
         data.starbirthActive = true;
+      },
+    },
+    {
+      id: 'InnoEx Reprobation Swords 2',
+      regex: /14:3EDC:Innocence starts using Rightful Reprobation/,
+      // 3 seconds cast time + 7 seconds until next sword.
+      delaySeconds: 7,
+      infoText: {
+        en: 'Swords!',
+      },
+    },
+    {
+      id: 'InnoEx Starbirth Warning',
+      regex: /14:3EEF:Innocence starts using Starbirth/,
+      infoText: function(data) {
+        if (data.starbirthCount == 1) {
+          return {
+            en: 'Starbirth: Corner',
+          };
+        } else if (data.starbirthCount == 2 || data.starbirthCount == 5) {
+          return {
+            en: 'Starbirth: Avoid + Charge',
+          };
+        } else if (data.starbirthCount == 3) {
+          return {
+            en: 'Starbirth: Explode',
+          };
+        } else if (data.starbirthCount == 4) {
+          return {
+            en: 'Starbirth: Charge',
+          };
+        } else if (data.starbirthCount == 6) {
+          return {
+            en: 'Starbirth: Enrage',
+          };
+        }
+        // No text for the second enrage one.
+      },
+    },
+    {
+      id: 'InnoEx Shadowreaver',
+      regex: /14:3EEA:Innocence starts using Shadowreaver/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
       },
     },
     {

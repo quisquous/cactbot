@@ -21,17 +21,6 @@
       },
     },
     {
-      id: 'General Ultimatum',
-      regex: /:(\y{Name}):1D73:Ultimatum:/,
-      regexJa: /:(\y{Name}):1D73:アルティメイタム:/,
-      condition: function(data) {
-        return data.role == 'tank';
-      },
-      infoText: function(data, matches) {
-        return 'Ultimatum: ' + data.ShortName(matches[1]);
-      },
-    },
-    {
       id: 'General Shirk',
       regex: /:(\y{Name}):1D71:Shirk:/,
       regexDe: /:(\y{Name}):1D71:Geteiltes Leid:/,
@@ -54,7 +43,7 @@
       regex: /:(\y{Name}):2B:Holmgang:/,
       regexJa: /:(\y{Name}):2B:ホルムギャング:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return 'Holmgang: ' + data.ShortName(matches[1]);
@@ -67,7 +56,7 @@
       regexFr: /:(\y{Name}):1E:Invincible:/,
       regexJa: /:(\y{Name}):1E:インビンシブル:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
@@ -79,13 +68,31 @@
       },
     },
     {
+      id: 'General Superbolide',
+      regex: /:(\y{Name}):3F18:Superbolide:/,
+      regexDe: /:(\y{Name}):3F18:Meteoritenfall:/,
+      regexFr: /:(\y{Name}):3F18:Bolide:/,
+      regexJa: /:(\y{Name}):3F18:ボーライド:/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: function(data, matches) {
+        return {
+          en: 'Bolide: ' + data.ShortName(matches[1]),
+          de: 'Meteoritenfall: ' + data.ShortName(matches[1]),
+          fr: 'Bolide: ' + data.ShortName(matches[1]),
+          ja: 'ボーライド: ' + data.ShortName(matches[1]),
+        };
+      },
+    },
+    {
       id: 'General Living',
       regex: /:(\y{Name}):E36:Living Dead:/,
       regexDe: /:(\y{Name}):E36:Totenerweckung:/,
       regexFr: /:(\y{Name}):E36:Mort-Vivant:/,
       regexJa: /:(\y{Name}):E36:リビングデッド:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
@@ -102,7 +109,7 @@
       regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Erweckter/,
       regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Marcheur Des Limbes/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' | data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {

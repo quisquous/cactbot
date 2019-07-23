@@ -22,6 +22,7 @@ timelines/holminster_switch.txt
 timelines/innocence-ex.txt
 timelines/lakshmi-ex.txt
 timelines/malikahs_well.txt
+timelines/mt_gulg.txt
 timelines/orbonne_monastery.txt
 timelines/qitana_ravel.txt
 timelines/ravana-ex.txt
@@ -101,6 +102,7 @@ triggers/holminster_switch.js
 triggers/innocence-ex.js
 triggers/lakshmi-ex.js
 triggers/malikahs_well.js
+triggers/mt_gulg.js
 triggers/orbonne_monastery.js
 triggers/qitana_ravel.js
 triggers/rathalos-ex.js
@@ -149,6 +151,7 @@ triggers/ridorana_lighthouse.js
 triggers/shatter.js
 triggers/sohm_al.js
 triggers/test.js
+triggers/titania.js
 triggers/titania-ex.js
 triggers/temple_of_the_fist.js
 triggers/ultima_weapon_ultimate.js

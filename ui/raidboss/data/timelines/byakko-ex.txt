@@ -6,7 +6,7 @@ hideall "--sync--"
 
 ##### Phase 1
 0.0 "--sync--" sync /:Engage!/ window 0,1
-0.7 "--sync--" sync / 00:0044:There is no turning back!/ window 1,30
+0.7 "--sync--" sync / 00:0044:[^:]*:There is no turning back!/ window 1,30
 10.0 "Storm Pulse" # end of castbar
 16.0 "Heavenly Strike" # end of castbar
 26.0 "State Of Shock" # end of castbar

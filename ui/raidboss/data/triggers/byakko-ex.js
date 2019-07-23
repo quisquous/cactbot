@@ -291,10 +291,10 @@
     },
     {
       id: 'ByaEx Tiger Add',
-      regex: / 00:0044:Twofold is my wrath, twice-cursed my foes!/,
-      regexDe: / 00:0044:Stürmt los, meine zwei Gesichter!/,
-      regexFr: / 00:0044:Ma colère devient double.*?!/,
-      regexJa: / 00:0044:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！/,
+      regex: / 00:0044:[^:]*:Twofold is my wrath, twice-cursed my foes!/,
+      regexDe: / 00:0044:[^:]*:Stürmt los, meine zwei Gesichter!/,
+      regexFr: / 00:0044:[^:]*:Ma colère devient double.*?!/,
+      regexJa: / 00:0044:[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {

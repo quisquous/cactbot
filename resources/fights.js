@@ -66,7 +66,7 @@ let gBossFightTriggers = [
   {
     id: 'o7s',
     zoneRegex: /Sigmascape V3\.0 \(Savage\)/,
-    startRegex: /00:0044:WEAPON SYSTEMS ONLINE/,
+    startRegex: /00:0044:[^:]*:WEAPON SYSTEMS ONLINE/,
     countdownStarts: true,
   },
   {

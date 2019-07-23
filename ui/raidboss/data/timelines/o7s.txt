@@ -4,7 +4,7 @@ hideall "--sync--"
 
 0 "--Reset--" sync /Removing combatant Guardian/ window 10000 jump 0
 
-0 "Start" sync /0044:WEAPON SYSTEMS ONLINE/ window 0,1
+0 "Start" sync /0044:[^:]*:WEAPON SYSTEMS ONLINE/ window 0,1
 11 "Magitek Ray" sync /:Guardian:2788:/ window 11,10
 21 "Arm And Hammer" sync /:Guardian:2789:/
 31 "Atomic Ray" sync /:Guardian:278D:/
