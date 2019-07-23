@@ -30,8 +30,7 @@
     },
     {
       id: 'E1N Dimensional Shift',
-      // English regex seems wrong
-      regex: / 14:3D9C:Eden Prime starts using Fragor Maximus/,
+      regex: / 14:3D9C:Eden Prime starts using Dimensional Shift/,
       regexFr: / 14:3D9C:Primo-Éden starts using Translation Dimensionnelle/,
       condition: function(data) {
         return data.role == 'healer';
