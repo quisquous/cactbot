@@ -1347,7 +1347,7 @@ class Bars {
       // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
       if (skill == gLang.kAbility.MythrilTempest) {
         if (this.o.eyeBox.duration > 0) {
-          let old = parseInt(this.o.eyeBox.duration);
+          let old = parseInt(this.o.eyeBox.duration) - parseInt(this.o.eyeBox.elapsed);
           this.o.eyeBox.duration = 0;
           this.o.eyeBox.duration = Math.min(old + 10, 30);
         }
