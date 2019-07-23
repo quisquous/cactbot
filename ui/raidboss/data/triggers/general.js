@@ -43,7 +43,7 @@
       regex: /:(\y{Name}):2B:Holmgang:/,
       regexJa: /:(\y{Name}):2B:ホルムギャング:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return 'Holmgang: ' + data.ShortName(matches[1]);
@@ -56,7 +56,7 @@
       regexFr: /:(\y{Name}):1E:Invincible:/,
       regexJa: /:(\y{Name}):1E:インビンシブル:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
@@ -74,7 +74,7 @@
       regexFr: /:(\y{Name}):3F18:Bolide:/,
       regexJa: /:(\y{Name}):3F18:ボーライド:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
@@ -92,7 +92,7 @@
       regexFr: /:(\y{Name}):E36:Mort-Vivant:/,
       regexJa: /:(\y{Name}):E36:リビングデッド:/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
@@ -109,7 +109,7 @@
       regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Erweckter/,
       regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Marcheur Des Limbes/,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' | data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
