@@ -7,10 +7,11 @@
     {
       id: 'E2N Punishing Ray',
       regex: /Punishing Ray/,
+      regexFr: /Rayon [pP]unitif/,
       beforeSeconds: 6,
       infoText: {
         en: 'Get Puddles',
-        fr: 'Prenez les flaques',
+        fr: 'Prenez les rayons',
       },
     },
   ],
@@ -18,6 +19,7 @@
     {
       id: 'E2N Shadowflame YOU',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on (\y{Name})/,
+      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -34,6 +36,7 @@
     {
       id: 'E2N Shadowflame Healer',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
+      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       suppressSeconds: 1,
       condition: function(data, matches) {
         return data.role == 'healer';
@@ -46,6 +49,7 @@
     {
       id: 'E2N Entropy',
       regex: / 14:3E6D:Voidwalker starts using Entropy/,
+      regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -57,6 +61,7 @@
     {
       id: 'E2N Doomvoid Slicer',
       regex: / 14:3E3C:Voidwalker starts using Doomvoid Slicer/,
+      regexFr: / 14:3E3C:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
       infoText: {
         en: 'Get Under',
         fr: 'Intérieur',
@@ -65,6 +70,7 @@
     {
       id: 'E2N Empty Hate',
       regex: / 14:3E46:The Hand Of Erebos starts using Empty Hate/,
+      regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
       infoText: {
         en: 'Knockback',
         fr: 'Poussée',
@@ -73,6 +79,7 @@
     {
       id: 'E2N Darkfire Counter',
       regex: / 14:3E42:Voidwalker starts using Dark Fire III/,
+      regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
       run: function(data) {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;
