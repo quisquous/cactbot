@@ -8,16 +8,19 @@
     {
       id: 'TitaniaEx Bright Sabbath',
       regex: /14:3D4B:Titania starts using Bright Sabbath/,
+      regexFr: /14:3D4B:Titania starts using Sabbat En Plein Jour/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de zone',
       },
     },
     {
       id: 'TitaniaEx Phantom Out',
       regex: /14:3D4C:Titania starts using Phantom Rune/,
+      regexFr: /14:3D4C:Titania starts using Rune D'illusion/,
       alertText: {
         en: 'Out',
         fr: 'Dehors',
@@ -26,6 +29,7 @@
     {
       id: 'TitaniaEx Phantom In',
       regex: /14:3D4D:Titania starts using Phantom Rune/,
+      regexFr: /14:3D4C:Titania starts using Rune D'illusion/,
       alertText: {
         en: 'In',
         fr: 'Dedans',
@@ -34,6 +38,7 @@
     {
       id: 'TitaniaEx Mist Failure',
       regex: /03:\y{ObjectId}:Added new combatant Spirit Of Dew\./,
+      regexFr: /03:\y{ObjectId}:Added new combatant Esprit Des Rosées\./,
       infoText: {
         en: 'Kill Extra Add',
         fr: 'Tuez l\'add',
@@ -42,16 +47,17 @@
     {
       id: 'TitaniaEx Mist',
       regex: /14:3D45:Titania starts using Mist Rune/,
+      regexFr: /14:3D45:Titania starts using Rune D'eau/,
       infoText: function(data) {
         if (data.seenMistRune) {
           return {
             en: 'In/Out, then Water Positions',
-            fr: 'Dedans/Dehors puis position pour l\'eau',
+            fr: 'Dedans/Dehors puis dans l\'eau',
           };
         }
         return {
           en: 'Water Positions',
-          fr: 'Position pour l\'eau',
+          fr: 'Dans l\'eau',
         };
       },
       run: function(data) {
@@ -61,6 +67,7 @@
     {
       id: 'TitaniaEx Flame',
       regex: /14:3D47:Titania starts using Flame Rune/,
+      regexFr: /14:3D47:Titania starts using Rune De Feu/,
       // You have 16.5 seconds until the first stack damage.
       delaySeconds: 8.5,
       alertText: function(data) {
@@ -82,6 +89,7 @@
     {
       id: 'TitaniaEx Divination',
       regex: /14:3D4A:Titania starts using Divination Rune on (\y{Name})/,
+      regexFr: /14:3D4A:Titania starts using Rune De Malice on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -102,6 +110,7 @@
     {
       id: 'TitaniaEx Bramble 1',
       regex: /14:42D7:Titania starts using Chain Of Brambles/,
+      regexFr: /14:42D7:Titania starts using Chaînes De Ronces/,
       infoText: {
         en: 'Wait For Tethers In Center',
         fr: 'Attente des liens au centre',
@@ -110,6 +119,7 @@
     {
       id: 'TitaniaEx Bramble 2',
       regex: /14:42D7:Titania starts using Chain Of Brambles/,
+      regexFr: /14:42D7:Titania starts using Chaînes De Ronces/,
       delaySeconds: 3,
       alertText: {
         en: 'Run!',
@@ -119,6 +129,7 @@
     {
       id: 'TitaniaEx Bramble Knockback',
       regex: /15:\y{ObjectId}:Puck:3D42:Puck's Rebuke/,
+      regexFr: /15:\y{ObjectId}:Puck:3D42:Réprimande De Puck/,
       alertText: {
         en: 'Diagonal Knockback Soon',
         fr: 'Poussée en diagonale bientôt',
@@ -127,6 +138,7 @@
     {
       id: 'TitaniaEx Fae Light',
       regex: /14:3D2C:Titania starts using Fae Light/,
+      regexFr: /14:3D2C:Titania starts using Lueur Féérique/,
       alertText: function(data, matches) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -148,6 +160,7 @@
     {
       id: 'TitaniaEx Frost Rune 1',
       regex: /14:3D2A:Titania starts using Frost Rune/,
+      regexFr: /14:3D2A:Titania starts using Rune De Gel/,
       infoText: {
         en: 'Get Middle, Shiva Circles',
         fr: 'Allez au milieu, comme sur Shiva',
@@ -156,24 +169,27 @@
     {
       id: 'TitaniaEx Frost Rune 2',
       regex: /14:3D2A:Titania starts using Frost Rune/,
+      regexFr: /14:3D2A:Titania starts using Rune De Gel/,
       delaySeconds: 6.5,
       infoText: {
         en: 'Run Out',
-        fr: 'Courez dehors',
+        fr: 'Allez à l\'extérieur',
       },
     },
     {
       id: 'TitaniaEx Frost Rune 3',
       regex: /1[56]:\y{ObjectId}:Titania:3D2B:Frost Rune:/,
+      regexFr: /1[56]:\y{ObjectId}:Titania:3D2B:Rune De Gel:/,
       suppressSeconds: 60,
       infoText: {
         en: 'Run In',
-        fr: 'Courez dedans',
+        fr: 'Allez au centre',
       },
     },
     {
       id: 'TitaniaEx Growth Rune',
       regex: /14:3D2E:Titania starts using Growth Rune/,
+      regexFr: /14:3D2E:Titania starts using Rune De Racine/,
       infoText: {
         en: 'Roots',
         fr: 'Racines',
@@ -187,12 +203,13 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Ecartez-vous',
+        fr: 'Dispersez-vous',
       },
     },
     {
       id: 'TitaniaEx Hard Swipe',
       regex: /14:3D36:Peaseblossom starts using Hard Swipe on (\y{Name})/,
+      regexFr: /14:3D36:Fleur-De-Pois starts using Fauchage Brutal on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -205,6 +222,7 @@
     {
       id: 'TitaniaEx Pummel',
       regex: /14:3D37:Puck starts using Pummel on (\y{Name})/,
+      regexFr: /14:3D37:Puck starts using Torgnole on (\y{Name})/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -227,7 +245,7 @@
       },
       infoText: {
         en: 'Spread',
-        fr: 'Ecartez-vous',
+        fr: 'Dispersez-vous',
       },
       run: function(data) {
         data.bomb = data.bomb || {};
@@ -237,6 +255,7 @@
     {
       id: 'TitaniaEx Peasebomb Use',
       regex: /1[56]:\y{ObjectId}:Peaseblossom:3D3F:Peasebomb/,
+      regexFr: /1[56]:\y{ObjectId}:Fleur-de-pois:3D3F:Haricot Explosif/,
       run: function(data) {
         delete data.bomb;
       },
@@ -258,7 +277,7 @@
 
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          fr: 'Packez-vous sur' + data.ShortName(matches[1]),
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -274,6 +293,7 @@
     {
       id: 'TitaniaEx Thunder Rune',
       regex: /1[56]:\y{ObjectId}:Titania:3D29:Thunder Rune:/,
+      regexFr: /1[56]:\y{ObjectId}:Titania:3D29:Rune De Foudre:/,
       preRun: function(data, matches) {
         data.thunderCount = data.thunderCount || 1;
       },
@@ -292,6 +312,7 @@
     {
       id: 'TitaniaEx Thunder Cleanup',
       regex: /14:3D32:Titania starts using Being Mortal/,
+      regexFr: /14:3D32:Titania starts using Deuil Des Vivants/,
       run: function(data) {
         delete data.thunderCount;
       },
