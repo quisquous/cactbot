@@ -29,7 +29,7 @@
     {
       id: 'TitaniaEx Phantom In',
       regex: /14:3D4D:Titania starts using Phantom Rune/,
-      regexFr: /14:3D4C:Titania starts using Rune D'illusion/,
+      regexFr: /14:3D4D:Titania starts using Rune D'illusion/,
       alertText: {
         en: 'In',
         fr: 'Dedans',
