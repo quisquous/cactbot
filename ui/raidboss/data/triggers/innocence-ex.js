@@ -132,13 +132,13 @@
         if (data.starbirthActive) {
           return {
             en: 'Avoid Charge and Orbs',
-            ja: '玉無い外周へ',
+            ja: '玉と突進避けて',
             fr: 'Evitez les charges et orbes',
           };
         }
         return {
           en: 'Avoid Charge',
-          ja: '外周へ',
+          ja: '突進避けて',
           fr: 'Evitez les charges',
         };
       },
