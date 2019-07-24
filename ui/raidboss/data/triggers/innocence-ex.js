@@ -8,6 +8,7 @@
     {
       id: 'InnoEx Starbirth Count',
       regex: /14:3EEF:Innocence starts using Starbirth/,
+      regexFr: /14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
       run: function(data) {
         data.starbirthCount = data.starbirthCount || 0;
         data.starbirthCount++;
@@ -17,35 +18,43 @@
     {
       id: 'InnoEx Reprobation Swords 2',
       regex: /14:3EDC:Innocence starts using Rightful Reprobation/,
+      regexFr: /14:3EDC:Innocence starts using Réprobation [lL]égitime/,
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
       infoText: {
         en: 'Swords!',
+        fr: 'Epées !',
       },
     },
     {
       id: 'InnoEx Starbirth Warning',
       regex: /14:3EEF:Innocence starts using Starbirth/,
+      regexFr: /14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
       infoText: function(data) {
         if (data.starbirthCount == 1) {
           return {
             en: 'Starbirth: Corner',
+            fr: 'Accouchement Stellaire : Coin',
           };
         } else if (data.starbirthCount == 2 || data.starbirthCount == 5) {
           return {
             en: 'Starbirth: Avoid + Charge',
+            fr: 'Accouchement Stellaire : Evitez + Charge',
           };
         } else if (data.starbirthCount == 3) {
           return {
             en: 'Starbirth: Explode',
+            fr: 'Accouchement Stellaire : Explosion',
           };
         } else if (data.starbirthCount == 4) {
           return {
             en: 'Starbirth: Charge',
+            fr: 'Accouchement Stellaire : Charge',
           };
         } else if (data.starbirthCount == 6) {
           return {
             en: 'Starbirth: Enrage',
+            fr: 'Accouchement Stellaire : Enrage',
           };
         }
         // No text for the second enrage one.
@@ -54,16 +63,19 @@
     {
       id: 'InnoEx Shadowreaver',
       regex: /14:3EEA:Innocence starts using Shadowreaver/,
+      regexFr: /14:3EEA:Innocence starts using Pilleur/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de zone',
       },
     },
     {
       id: 'InnoEx Righteous Bolt',
       regex: /14:3ECD:Innocence starts using Righteous Bolt on (\y{Name})/,
+      regexFr: /14:3ECD:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -94,6 +106,7 @@
     {
       id: 'InnoEx Holy Sword Healer',
       regex: /14:3EC9:Forgiven Venery starts using Holy Sword/,
+      regexFr: /14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -106,6 +119,7 @@
     {
       id: 'InnoEx Holy Sword Me',
       regex: /14:3EC9:Forgiven Venery starts using Holy Sword on (\y{Name})/,
+      regexFr: /14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -118,6 +132,7 @@
     {
       id: 'InnoEx Charge',
       regex: /14:3EEE:Innocence starts using Beatific Vision/,
+      regexFr: /14:3EEE:Innocence starts using Vision [bB]éatifique/,
       alertText: function(data) {
         if (data.starbirthActive) {
           return {
@@ -134,6 +149,7 @@
     {
       id: 'InnoEx Starbirth Avoid',
       regex: /14:3EEF:Innocence starts using Starbirth/,
+      regexFr: /14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
       delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
@@ -188,6 +204,7 @@
     {
       id: 'InnoEx Starbirth Explode',
       regex: /14:3F3E:Innocence starts using Light Pillar/,
+      regexFr: /14:3F3E:Innocence starts using Pilier [dD]e [lL]umière/,
       condition: function(data) {
         return data.lightPillar == 3;
       },
@@ -230,6 +247,7 @@
     {
       id: 'InnoEx God Ray',
       regex: /14:3EE[456]:Innocence starts using God Ray/,
+      regexFr: /14:3EE[456]:Innocence starts using Rayon Divin/,
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
@@ -239,6 +257,7 @@
     {
       id: 'InnoEx Starbirth End 1',
       regex: /14:3EEA:Innocence starts using Shadowreaver/,
+      regexFr: /14:3EEA:Innocence starts using Pilleur/,
       run: function(data) {
         delete data.starbirthActive;
       },
@@ -246,6 +265,7 @@
     {
       id: 'InnoEx Starbirth End 2',
       regex: /14:3EEE:Innocence starts using Beatific Vision/,
+      regexFr: /14:3EEE:Innocence starts using Vision [bB]éatifique/,
       run: function(data) {
         delete data.starbirthActive;
       },
@@ -260,7 +280,6 @@
         'Engage!': 'Start!',
       },
       'replaceText': {
-        '断罪': '断罪',
         'attack': 'Attacke',
         'Winged Reprobation': 'Schwinge des Urteils',
         'Unknown Ability': 'Unknown Ability',
@@ -298,12 +317,13 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Schwert des Urteils': '',
+        'Sword Of Condemnation': 'Épée De Condamnation',
+        'Forgiven Venery': 'Débauche Pardonnée',
+        'Forgiven Shame': 'Déshonneur Pardonné',
         'Innocence': 'Innocence',
         'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        '断罪': '断罪',
         'attack': 'Attaque',
         'Winged Reprobation': 'Réprobation ailée',
         'Unknown Ability': 'Unknown Ability',
