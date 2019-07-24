@@ -7,6 +7,7 @@
     {
       id: 'E4N Voice of the Land',
       regex: / 14:40F7:Titan starts using Voice Of The Land/,
+      regexFr: / 14:40F7:Titan starts using Hurlement Tellurique/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -18,6 +19,7 @@
     {
       id: 'E4N Earthen Fury',
       regex: / 14:40F8:Titan starts using Earthen Fury/,
+      regexFr: / 14:40F8:Titan starts using Fureur Tellurique/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -29,6 +31,7 @@
     {
       id: 'E4N Stonecrusher',
       regex: / 14:40F9:Titan starts using Stonecrusher on (\y{Name})/,
+      regexFr: / 14:40F9:Titan starts using Éruption Tellurique on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -45,10 +48,20 @@
           };
         }
       },
+      infoText: function(data, matches) {
+        if (matches[1] != data.me && data.role == 'tank') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
     },
     {
       id: 'E4N Massive Landslide',
       regex: / 14:40FA:Titan starts using Massive Landslide/,
+      regexFR: / 14:40FA:Titan starts using Glissement Apocalyptique/,
       alertText: {
         en: 'Stand In Front',
         fr: 'Se placer devant',
@@ -57,6 +70,7 @@
     {
       id: 'E4N Seismic Wave',
       regex: / 14:40F2:Massive Boulder starts using Crumbling Down/,
+      regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
       delaySeconds: 6,
       suppressSeconds: 10,
       infoText: {
@@ -67,6 +81,7 @@
     {
       id: 'E4N Geocrush',
       regex: / 14:40F6:Titan starts using Geocrush/,
+      regexFr: / 14:40F6:Titan starts using Broie-Terre/,
       infoText: {
         en: 'Knockback',
         fr: 'Poussée',
@@ -75,6 +90,7 @@
     {
       id: 'E4N Fault Zone',
       regex: /14:4102:Titan starts using Fault Zone/,
+      regexFr: /14:4102:Titan starts using Faille Tectonique/,
       alertText: {
         en: 'Stand On Flank',
         fr: 'Se placer sur le flanc',

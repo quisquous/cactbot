@@ -294,7 +294,7 @@ namespace Cactbot {
     private int SendFastRateEvents() {
       // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
       // register its event handlers.
-      if (Overlay == null || Overlay.Renderer == null) {
+      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading) {
         return kSlowTimerMilli;
       }
 

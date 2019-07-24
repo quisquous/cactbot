@@ -7,6 +7,7 @@
     {
       id: 'E3N Tidal Roar',
       regex: / 14:3FC4:Leviathan starts using Tidal Roar/,
+      regexFr: / 14:3FC4:Léviathan starts using Vague Rugissante/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -34,10 +35,20 @@
           };
         }
       },
+      infoText: function(data, matches) {
+        if (matches[1] != data.me && data.role == 'tank') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
     },
     {
       id: 'E3N Tidal Wave Look',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
+      regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -47,6 +58,7 @@
     {
       id: 'E3N Tidal Wave Knockback',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
+      regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -58,6 +70,7 @@
     {
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FD0:Leviathan starts using Undersea Quake/,
+      regexFr: / 14:3FD0:Léviathan starts using Séisme Sous-Marin/,
       alertText: {
         en: 'Get Middle',
         fr: 'Allez au centre',
@@ -66,6 +79,7 @@
     {
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FCF:Leviathan starts using Undersea Quake/,
+      regexFr: / 14:3FCF:Léviathan starts using Séisme Sous-Marin/,
       alarmText: {
         en: 'Go To Sides',
         fr: 'Allez sur les côtés',
@@ -74,6 +88,7 @@
     {
       id: 'E3N Maelstrom',
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
+      regexFr: / 14:3FD8:Léviathan starts using Maelström/,
       delaySeconds: 8,
       infoText: {
         en: 'Avoid Puddles and Dives',
@@ -94,6 +109,7 @@
     {
       id: 'E3N Tsunami',
       regex: / 14:3FD4:Leviathan starts using Tsunami/,
+      regexFr: / 14:3FD4:Léviathan starts using Tsunami/,
       condition: function(data) {
         return data.role == 'healer';
       },
