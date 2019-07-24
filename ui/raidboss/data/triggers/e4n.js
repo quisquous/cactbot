@@ -48,6 +48,15 @@
           };
         }
       },
+      infoText: function(data, matches) {
+        if (matches[1] != data.me && data.role == 'tank') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
     },
     {
       id: 'E4N Massive Landslide',

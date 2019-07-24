@@ -62,6 +62,36 @@
       },
     },
     {
+      id: 'E1N Spear Of Paradise',
+      regex: / 14:3DA1:Eden Prime starts using Spear Of Paradise on (\y{Name})/,
+      regex: / 14:3DA1:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (matches[1] != data.me && data.role == 'tank') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+    },
+    {
       id: 'E1N Vice of Apathy Mark',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001C:/,
       condition: function(data, matches) {

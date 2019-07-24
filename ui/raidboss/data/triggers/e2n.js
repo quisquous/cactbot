@@ -17,20 +17,16 @@
   ],
   triggers: [
     {
-      id: 'E2N Shadowflame YOU',
+      id: 'E2N Shadowflame Tank',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on (\y{Name})/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.role == 'tank';
       },
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
+      alertText: {
+        en: 'Tank Buster on YOU',
+        de: 'Tankbuster auf DIR',
+        fr: 'Tankbuster sur VOUS',
       },
     },
     {
