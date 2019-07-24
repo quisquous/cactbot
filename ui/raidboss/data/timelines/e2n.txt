@@ -14,7 +14,7 @@ hideall "Spell-In-Waiting"
 10.7 "Doomvoid Guillotine" sync /:Voidwalker:3E3B:/ window 11,5
 27.7 "Doomvoid Slicer" sync /:Voidwalker:3E3C:/
 46.7 "Shadowflame" sync /:Voidwalker:3E4D:/
-59.4 "Dark Fire III" sync /:Voidwalker:3E43:/
+59.4 "Dark Fire III" sync /:Voidwalker:3E43:/ window 60,5
 67.4 "Unholy Darkness" sync /:Voidwalker:3E40:/
 72.7 "Spell-In-Waiting" sync /:Voidwalker:3E3E:/
 91.2 "Dark Fire III" sync /:Voidwalker:3E43:/
@@ -32,7 +32,7 @@ hideall "Spell-In-Waiting"
 191.3 "Doomvoid Slicer" sync /:Voidwalker:3E3C:/
 206.3 "Shadowflame" sync /:Voidwalker:3E4D:/
 
-216.8 "Entropy" sync /:Voidwalker:3E6E:/
+216.8 "Entropy" sync /:Voidwalker:3E6E:/ window 30,5
 223.3 "Spell-In-Waiting" sync /:Voidwalker:3E3E:/
 230.3 "Punishing Ray" sync /:Voidwalker:3E47:/
 241.3 "Spell-In-Waiting" sync /:Voidwalker:3E3E:/
