@@ -8,7 +8,7 @@
       id: 'E2N Punishing Ray',
       regex: /Punishing Ray/,
       regexFr: /Rayon [pP]unitif/,
-      beforeSeconds: 6,
+      beforeSeconds: 9,
       infoText: {
         en: 'Get Puddles',
         fr: 'Prenez les rayons',
@@ -143,9 +143,17 @@
       condition: function(data, matches) {
         return data.me == matches[1] && data.spell[data.me] == 'fire';
       },
-      alertText: {
-        en: 'Spread',
-        fr: 'Dispersez-vous',
+      alertText: function(data) {
+        if (data.fireCount == 3) {
+          return {
+            en: 'Spread (don\'t stack!)',
+            fr: 'Dispersez-vous', // FIXME
+          };
+        }
+        return {
+          en: 'Spread',
+          fr: 'Dispersez-vous',
+        };
       },
     },
     {
