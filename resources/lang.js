@@ -84,6 +84,9 @@ class CactbotLanguage {
       PeculiarLight: '2C9D',
       Overpower: '29',
       MythrilTempest: '404E',
+      Prominence: '4049',
+      HolyCircle: '404A',
+      Confiteor: '404B',
 
       // Susano Ex
       ChurningDeep: '203F',

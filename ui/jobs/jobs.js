@@ -282,8 +282,10 @@ function setupRegexes() {
     gLang.kAbility.RiotBlade,
     gLang.kAbility.RoyalAuthority,
     gLang.kAbility.GoringBlade,
+    gLang.kAbility.Prominence,
     gLang.kAbility.HolySpirit,
-    gLang.kAbility.Clemency,
+    gLang.kAbility.HolyCircle,
+    gLang.kAbility.Confiteor,
   ]);
 }
 
