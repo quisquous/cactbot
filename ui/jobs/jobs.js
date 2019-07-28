@@ -135,7 +135,7 @@ class ComboTracker {
       Array.prototype.push.apply(this.considerNext, this.startList);
 
       if (!this.comboNodes[nextState].last) {
-        let kComboDelayMs = 12000;
+        let kComboDelayMs = 15000;
         this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
       }
     }
