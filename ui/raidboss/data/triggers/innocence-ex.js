@@ -270,6 +270,38 @@
         delete data.starbirthActive;
       },
     },
+    {
+      id: 'InnoEx Soul And Body Left',
+      regex: / 14:3ED7:Innocence starts using Soul And Body/,
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Rotate Left',
+      },
+    },
+    {
+      id: 'InnoEx Soul And Body Right',
+      regex: / 14:3ED9:Innocence starts using Soul And Body/,
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Rotate Right',
+      },
+    },
+    {
+      id: 'InnoEx Rood',
+      regex: / 14:3ED3:Innocence starts using Dream Of The Rood/,
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Rotate Left',
+      },
+    },
+    {
+      id: 'InnoEx Rood',
+      regex: / 14:3ED5:Innocence starts using Dream Of The Rood/,
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Rotate Right',
+      },
+    },
   ],
   timelineReplace: [
     {
