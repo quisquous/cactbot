@@ -170,7 +170,7 @@ let kFieldAttackerZ = 40;
 // It appears a little bit that flags come in pairs of values, but it's unclear
 // what these mean.
 let kShiftFlagValues = ['3F', '113', '213', '313'];
-let kFlagInstantDeath = '33';
+let kFlagInstantDeath = 'XX'; // FIXME
 // miss, damage, block, parry, instant death
 let kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
@@ -185,7 +185,7 @@ Field 7 Flags:
     0x03 = damage
     0x05 = blocked damage
     0x06 = parried damage
-    0x33 = instant death
+    0x?? = instant death
 
   misc low bytes:
     0x08 = mudra(bogus), esuna(no effects?), bane(missed)
@@ -197,6 +197,7 @@ Field 7 Flags:
     0x26 = mount (always 126?)
     0x3A = skill with no buffs/damage (e.g. teleport, bahamut's favor, ninja bunny)
     0x3B = huton
+    0x33 = summon
 
   damage modifiers:
     0x100 = crit damage
@@ -704,10 +705,11 @@ class DamageTracker {
       this.OnTrigger(trigger, evt, matches);
     }
 
+    // Length 1 or 2.
     let lowByte = fields[kFieldFlags].substr(-2);
 
     // Healing?
-    if (lowByte == '04') {
+    if (lowByte == '04' || lowByte == '4') {
       for (let i = 0; i < this.healTriggers.length; ++i) {
         let trigger = this.healTriggers[i];
         let matches = abilityId.match(trigger.idRegex);
