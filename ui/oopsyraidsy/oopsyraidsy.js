@@ -169,8 +169,8 @@ let kFieldAttackerZ = 40;
 // If kFieldFlags is any of these values, then consider field 9/10 as 7/8.
 // It appears a little bit that flags come in pairs of values, but it's unclear
 // what these mean.
-let kShiftFlagValues = ['3F', '113', '213', '313'];
-let kFlagInstantDeath = '33';
+let kShiftFlagValues = ['3E', '113', '213', '313'];
+let kFlagInstantDeath = 'XX'; // FIXME
 // miss, damage, block, parry, instant death
 let kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
@@ -185,7 +185,7 @@ Field 7 Flags:
     0x03 = damage
     0x05 = blocked damage
     0x06 = parried damage
-    0x33 = instant death
+    0x?? = instant death
 
   misc low bytes:
     0x08 = mudra(bogus), esuna(no effects?), bane(missed)
@@ -197,6 +197,7 @@ Field 7 Flags:
     0x26 = mount (always 126?)
     0x3A = skill with no buffs/damage (e.g. teleport, bahamut's favor, ninja bunny)
     0x3B = huton
+    0x33 = summon
 
   damage modifiers:
     0x100 = crit damage
@@ -208,7 +209,7 @@ Field 7 Flags:
     0x10004 = crit heal
 
   Special cases:
-    * If flags are 3F, shift 9+10 two over to be 7+8.  (why???)
+    * If flags are 3E, shift 9+10 two over to be 7+8.  (why???)
     * Plenary indulgence has flags=113/213/313 for stacks, shift two as well.
 
   Damage:
@@ -228,8 +229,8 @@ Examples:
 (2) 82538 damage from Hyperdrive (0x4000 extra damage mask)
   15:40024FBA:Kefka:28E8:Hyperdrive:106C1DBA:Okonomi Yaki:750003:426B4001:1C:28E88000:0:0:0:0:0:0:0:0:0:0:0:0:35811:62464:4560:4560:940:1000:-0.1586061:-5.753153:0:30098906:31559062:12000:12000:1000:1000:0.3508911:0.4425049:2.384186E-07:
 
-(3) 22109 damage from Grand Cross Omega (:3F:0: shift, unknown 0x40000 flag)
-  16:40001333:Neo Exdeath:242D:Grand Cross Omega:1048638C:Tater Tot:3F:0:750003:565D0000:1C:80242D:0:0:0:0:0:0:0:0:0:0:41241:41241:5160:5160:670:1000:-0.3251641:6.526299:1.192093E-07:7560944:17702272:12000:12000:1000:1000:0:19:2.384186E-07:
+(3) 22109 damage from Grand Cross Omega (:3E:0: shift, unknown 0x40000 flag)
+  16:40001333:Neo Exdeath:242D:Grand Cross Omega:1048638C:Tater Tot:3E:0:750003:565D0000:1C:80242D:0:0:0:0:0:0:0:0:0:0:41241:41241:5160:5160:670:1000:-0.3251641:6.526299:1.192093E-07:7560944:17702272:12000:12000:1000:1000:0:19:2.384186E-07:
 
 (4) 15732 crit heal from 3 confession stack Plenary Indulgence (:?13:4C3: shift)
   16:10647D2F:Tako Yaki:1D09:Plenary Indulgence:106DD019:Okonomi Yaki:313:4C3:10004:3D74:0:0:0:0:0:0:0:0:0:0:0:0:7124:40265:14400:9192:1000:1000:-10.78815:11.94781:0:11343:40029:19652:16451:1000:1000:6.336648:7.710004:0:
@@ -678,7 +679,7 @@ class DamageTracker {
   }
 
   OnAbilityEvent(fields, line) {
-    // Shift damage and flags forward for mysterious spurious :3F:0:.
+    // Shift damage and flags forward for mysterious spurious :3E:0:.
     // Plenary Indulgence also appears to prepend confession stacks.
     // UNKNOWN: Can these two happen at the same time?
     if (kShiftFlagValues.indexOf(fields[kFieldFlags]) >= 0) {
@@ -704,10 +705,11 @@ class DamageTracker {
       this.OnTrigger(trigger, evt, matches);
     }
 
+    // Length 1 or 2.
     let lowByte = fields[kFieldFlags].substr(-2);
 
     // Healing?
-    if (lowByte == '04') {
+    if (lowByte == '04' || lowByte == '4') {
       for (let i = 0; i < this.healTriggers.length; ++i) {
         let trigger = this.healTriggers[i];
         let matches = abilityId.match(trigger.idRegex);

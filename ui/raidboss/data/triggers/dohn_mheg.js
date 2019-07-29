@@ -8,8 +8,8 @@
       id: 'Dohn Mheg Rake',
       regex: /Rake/,
       beforeSeconds: 5,
-      condition: function(data, matches) {
-        return matches[1] == data.me || data.role == 'healer';
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
         en: 'Mini Buster',
@@ -63,7 +63,7 @@
     },
     {
       id: 'Dohn Mheg Candy Cane',
-      regex: / 14:2299:Aenc Thon, Lord of the Lingering Gaze starts using Candy Cane/,
+      regex: / 14:2299:Aenc Thon, Lord of the Lingering Gaze starts using Candy Cane on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -117,7 +117,7 @@
     },
     {
       id: 'Dohn Mheg Crippling Blow',
-      regex: / 14:35A4:Aenc Thon, Lord of the Lengthsome Gait starts using Crippling Blow/,
+      regex: / 14:35A4:Aenc Thon, Lord of the Lengthsome Gait starts using Crippling Blow on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -136,7 +136,14 @@
       },
     },
     {
-      id: 'Dohn Mheg Crippling Blow',
+      id: 'Dohn Mheg Imp Choir',
+      regex: / 14:34F0:Aenc Thon, Lord of the Lengthsome Gait starts using Imp Choir/,
+      alertText: {
+        en: 'Look Away',
+      },
+    },
+    {
+      id: 'Dohn Mheg Toad Choir',
       regex: / 14:34EF:Aenc Thon, Lord of the Lengthsome Gait starts using Toad Choir/,
       alertText: {
         en: 'Out of Front',
