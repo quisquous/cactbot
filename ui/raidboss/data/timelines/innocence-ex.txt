@@ -56,7 +56,7 @@ hideall "Soul And Body"
 
 ### Phase 3: Starbirth
 300.0 "--sync--" sync /:Sword of Condemnation:3EE9:/ window 300,0
-
+314.0 "--targetable--"
 323.0 "Starbirth Corner" sync /:Innocence:3EEF:/
 336.0 "Shadowreaver" sync /:Innocence:3EEA:/
 337.0 "Explosion" sync /:Innocence:3EF0:/
@@ -64,7 +64,7 @@ hideall "Soul And Body"
 353.0 "Soul And Body" sync /:Innocence:3ED9:/
 359.0 "--sync--" sync /:Innocence:3EA2:/
 363.0 "Rightful Reprobation" sync /:Innocence:3EDD:/
-367.0 "--sync--" sync /:Innocence:3EA2:/
+367.0 "--jump--" sync /:Innocence:3EA2:/
 369.8 "Reprobation" sync /:Innocence:3ECC:/
 373.7 "Beatific Vision" sync /:Innocence:3EEE:/
 389.7 "Righteous Bolt" sync /:Innocence:3ECD:/
@@ -73,7 +73,7 @@ hideall "Soul And Body"
 407.7 "Drop Of Light 1" #sync /:Innocence:3EEC:/
 412.8 "Drop Of Light 2" #sync /:Innocence:3EEC:/
 419.7 "Light Pillar" sync /:Innocence:3EED:/
-421.7 "--sync--" sync /:Innocence:3EA2:/
+421.7 "--jump--" sync /:Innocence:3EA2:/
 428.3 "Beatific Vision" sync /:Innocence:3EEE:/
 441.3 "--sync--" sync /:Innocence:3EA2:/
 445.4 "Rightful Reprobation" sync /:Innocence:3EDC:/
@@ -101,7 +101,7 @@ hideall "Soul And Body"
 562.3 "Holy Trinity" #sync /:Innocence:3EDB:/
 
 570.3 "Starbirth Charge" sync /:Innocence:3EEF:/
-573.3 "--sync--" sync /:Innocence:3EA2:/
+573.3 "--jump--" sync /:Innocence:3EA2:/
 579.9 "Beatific Vision" sync /:Innocence:3EEE:/
 592.9 "--sync--" sync /:Innocence:3EA2:/
 597.1 "Rightful Reprobation" sync /:Innocence:3EDC:/
@@ -116,7 +116,7 @@ hideall "Soul And Body"
 641.4 "Drop Of Light 1" #sync /:Innocence:3EEC:/
 646.5 "Drop Of Light 2" #sync /:Innocence:3EEC:/
 653.4 "Light Pillar" sync /:Innocence:3EED:/
-655.4 "--sync--" sync /:Innocence:3EA2:/
+655.4 "--jump--" sync /:Innocence:3EA2:/
 662.1 "Beatific Vision" sync /:Innocence:3EEE:/
 675.2 "--sync--" sync /:Innocence:3EA2:/
 679.4 "Rightful Reprobation" sync /:Innocence:3EDC:/
