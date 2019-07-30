@@ -918,6 +918,22 @@ class DamageTracker {
       let set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) < 0)
         continue;
+      let warnKeys = set.damageWarn ? Object.keys(set.damageWarn) : [];
+      for (let j = 0; j < warnKeys.length; ++j) {
+        let warnKey = warnKeys[j];
+        let id = set.damageWarn[warnKey];
+        let trigger = {
+          id: warnKey,
+          damageRegex: id,
+          idRegex: Regexes.Parse('^' + id + '$'),
+          mistake: function(e, data) {
+            return { type: 'warn', blame: e.targetName, text: e.abilityName };
+          },
+        };
+        this.damageTriggers.push(trigger);
+      }
+      if (!set.triggers)
+        set.triggers = [];
       for (let j = 0; j < set.triggers.length; ++j) {
         let trigger = set.triggers[j];
         if ('regex' in trigger) {
