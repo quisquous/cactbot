@@ -218,13 +218,13 @@
       id: 'E1S Vice and Virtue Healer Mark Not You',
       regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (?:Unknown_83F|Prey)/,
       condition: function(data, matches) {
-        if (data.paradise && data.role == 'dps')
-          return true;
-        if (!data.paradise && data.role == 'tank')
-          return true;
-        return data.role != 'healer';
+        if (data.role == 'dps')
+          return data.paradise;
+        if (data.role == 'tank')
+          return !data.paradise;
+        return false;
       },
-      suppressSeconds: 1,
+      suppressSeconds: 20,
       alertText: {
         en: 'Take prey from healer',
       },
