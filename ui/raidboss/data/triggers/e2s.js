@@ -1,25 +1,28 @@
 'use strict';
 
 // TODO
-// buddies marker??
-// what's 001E marker?
-// call out side of knockback?
-// cycle of retribution
-// cycle of chaos
-// quietus aoe
+// better callouts for cycle
+// tank provoke messages when cotank has flare
 
 [{
   zoneRegex: /(^Eden's Gate: Descent \(Savage \)$|Unknown Zone \(356\))/,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
     {
-      id: 'E2N Punishing Ray',
+      id: 'E2S Punishing Ray',
       regex: /Punishing Ray/,
-      regexFr: /Rayon [pP]unitif/,
       beforeSeconds: 9,
       infoText: {
         en: 'Get Puddles',
         fr: 'Prenez les rayons',
+      },
+    },
+    {
+      id: 'E2S Buddy Circles',
+      regex: /Light\/Dark Circles/,
+      beforeSeconds: 5,
+      alarmText: {
+        en: 'Stack With Partner',
       },
     },
   ],
@@ -51,6 +54,17 @@
       },
     },
     {
+      id: 'E2S Quietus',
+      regex: / 14:3E71:Voidwalker starts using (?:Quietus|)/,
+      condition: function(data, matches) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+        fr: 'Dégâts de zone',
+      },
+    },
+    {
       id: 'E2S Shadowflame Tank',
       regex: / 14:3E6[12]:Voidwalker starts using (?:Shadowflame|Unknown_3E6[12]) on (\y{Name})/,
       regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using (?:Flamme D'ombre|Unknown_3E6[12]) on (\y{Name})/,
@@ -64,9 +78,9 @@
       },
     },
     {
-      id: 'E2N Shadowflame Healer',
-      regex: / 14:3E61:Voidwalker starts using (?:Shadowflame|Unknown_3E6[12])/,
-      regexFr: / 14:3E61:Marcheuse Du Néant starts using (?:Flamme D'ombre|Unknown_3E6[12])/,
+      id: 'E2S Shadowflame Healer',
+      regex: / 14:3E61:Voidwalker starts using (?:Shadowflame|)/,
+      regexFr: / 14:3E61:Marcheuse Du Néant starts using (?:Flamme D'ombre|)/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -77,7 +91,7 @@
     },
     {
       id: 'E2S Doomvoid Cleaver',
-      regex: / 14:3E63:Voidwalker starts using (?:Doomvoid Slicer|)/,
+      regex: / 14:3E63:Voidwalker starts using (?:Doomvoid Cleaver|)/,
       alertText: {
         en: 'Protean',
       },
@@ -91,10 +105,11 @@
     },
     {
       id: 'E2S Doomvoid Slicer',
-      regex: / 14:3E3C:Voidwalker starts using (:?:Doomvoid Slicer|)/,
-      regexFr: / 14:3E3C:Marcheuse Du Néant starts using (?:Entaille Du Néant Ravageur|)/,
-      alertText: {
-        en: 'Sides',
+      regex: / 14:3E50:Voidwalker starts using (:?:Doomvoid Slicer|)/,
+      regexFr: / 14:3E50:Marcheuse Du Néant starts using (?:Entaille Du Néant Ravageur|)/,
+      infoText: {
+        en: 'Get Under',
+        fr: 'Intérieur',
       },
     },
     {
@@ -348,11 +363,87 @@
       },
     },
     {
+      id: 'E2S Hell Wind No Waiting',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      condition: function(data, matches) {
+        return !data.waiting && data.me == matches[1];
+      },
+      // The "no waiting" version comes paired with a stack.
+      alarmText: {
+        en: 'Hell Wind: Get Out',
+      },
+    },
+    {
+      id: 'E2S Hell Wind Collect',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      condition: function(data) {
+        return data.waiting;
+      },
+      run: function(data, matches) {
+        data.spell = data.spell || {};
+        data.spell[matches[1]] = 'wind';
+      },
+    },
+    {
+      id: 'E2S Hell Wind Waiting',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      condition: function(data, matches) {
+        return data.waiting && data.me == matches[1];
+      },
+      infoText: {
+        en: 'Delayed Hell Wind',
+      },
+    },
+    {
+      id: 'E2S Countdown Marker Hell Wind',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      condition: function(data, matches) {
+        if (data.role == 'healer')
+          return false;
+        return data.me == matches[1] && data.spell[data.me] == 'wind';
+      },
+      alertText: function(data) {
+        return {
+          en: 'Hell Wind: wait for heals',
+        };
+      },
+    },
+    {
+      id: 'E2S Countdown Marker Hell Wind Healer',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      condition: function(data, matches) {
+        if (data.role != 'healer')
+          return;
+        return data.spell[matches[1]] == 'wind';
+      },
+      suppressSeconds: 10,
+      infoText: function(data) {
+        return {
+          en: 'Heal Hell Wind Targets',
+        };
+      },
+    },
+    {
       id: 'E2S Countdown Marker Cleanup',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       delaySeconds: 10,
       run: function(data, matches) {
         delete data.spell[matches[1]];
+      },
+    },
+    {
+      // TODO: add callouts for each of these
+      id: 'E2S Cycle of Retribution',
+      regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
+      infoText: {
+        en: 'In => Protean => Sides',
+      },
+    },
+    {
+      id: 'E2S Cycle of Chaos',
+      regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
+      infoText: {
+        en: 'Sides => In => Protean',
       },
     },
   ],
