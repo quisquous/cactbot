@@ -144,6 +144,7 @@
       },
     },
     {
+      // FIXME: consider vice of greed 44F3 which comes first
       id: 'E1S Vice and Virtue Healer 1',
       regex: / 14:44F0:Eden Prime starts using (?:Vice and Virtue|)/,
       run: function(data) {
@@ -151,6 +152,7 @@
       },
     },
     {
+      // FIXME: consider vice of greed 3D7E which comes first
       id: 'E1S Vice and Virtue Healer 2',
       regex: / 14:3D7D:Eden Prime starts using (?:Vice and Virtue|)/,
       run: function(data) {
