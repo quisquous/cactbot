@@ -17,6 +17,10 @@ timelines/e1n.txt
 timelines/e2n.txt
 timelines/e3n.txt
 timelines/e4n.txt
+timelines/e1s.txt
+timelines/e2s.txt
+timelines/e3s.txt
+timelines/e4s.txt
 timelines/eureka_hydatos.txt
 timelines/holminster_switch.txt
 timelines/innocence-ex.txt
@@ -92,6 +96,10 @@ triggers/e1n.js
 triggers/e2n.js
 triggers/e3n.js
 triggers/e4n.js
+triggers/e1s.js
+triggers/e2s.js
+triggers/e3s.js
+triggers/e4s.js
 triggers/eureka_anemos.js
 triggers/eureka_hydatos.js
 triggers/eureka_pagos.js
