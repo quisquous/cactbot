@@ -22,7 +22,7 @@ hideall "--sync--"
 80.9 "Pure Light" sync /:Eden Prime:3D8A:/
 83.7 "--center--" sync /:Eden Prime:4683:/
 93.8 "Delta Attack (Cross)" sync /:Eden Prime:44F4:/
-99.4 "--corner--" sync /:Eden Prime:4683:/
+99.4 "--sync--" sync /:Eden Prime:4683:/
 106.0 "Dimensional Shift" sync /:Eden Prime:3D7F:/
 112.5 "Paradise Lost" sync /:Eden Prime:3D86:/ duration 9
 122.9 "Pure Beam" sync /:Eden Prime:3D80:/

@@ -67,15 +67,15 @@ hideall "Spell-In-Waiting"
 # FIXME: I've seen this push ~6s earlier once
 # but is pretty consistent otherwise?
 499.2 "Quietus" sync /:Voidwalker:3E71:/ window 500,20
-507.4 "Cycle Of Retribution" sync /:Voidwalker:4659:/
-510.5 "Doomvoid Slicer" sync /:Voidwalker:465A:/
-511.2 "Doomvoid Cleaver" sync /:Voidwalker:3E64:/
-513.6 "Doomvoid Guillotine" sync /:Voidwalker:465B:/
+507.4 "Cycle Of ?" sync /:Voidwalker:(40B9|4659):/
+510.5 "Slicer/Guillotine?" sync /:Voidwalker:465A:/
+511.2 "Cleaver/Slicer?" sync /:Voidwalker:3E64:/
+513.6 "Guillotine/Cleaver?" sync /:Voidwalker:465B:/
 
-531.8 "Cycle Of Chaos" sync /:Voidwalker:40B9:/
-534.9 "Doomvoid Guillotine" sync /:Voidwalker:40BA:/
-538.0 "Doomvoid Slicer" sync /:Voidwalker:40BB:/
-538.7 "Doomvoid Cleaver" sync /:Voidwalker:3E64:/
+531.8 "Cycle Of ?" sync /:Voidwalker:(40B9|4659):/
+534.9 "Slicer/Guillotine?" sync /:Voidwalker:40BA:/
+538.0 "Cleaver/Slicer?" sync /:Voidwalker:40BB:/
+538.7 "Guillotine/Cleaver?" sync /:Voidwalker:3E64:/
 
 558.2 "Quietus" sync /:Voidwalker:3E71:/
 568.2 "Cycle Of ?" sync /:Voidwalker:(40B9|4659):/
@@ -85,3 +85,5 @@ hideall "Spell-In-Waiting"
 593.2 "Quietus" sync /:Voidwalker:3E71:/
 602.5 "Quietus" sync /:Voidwalker:3E71:/
 611.8 "Quietus" sync /:Voidwalker:3E71:/
+624.8 "--sync--" sync /:3E73:Voidwalker/ window 700,5
+629.8 "Quietus Enrage"
