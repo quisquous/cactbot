@@ -5,7 +5,7 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: /(^Eden's Gate: Descent \(Savage \)$|Unknown Zone \(356\))/,
+  zoneRegex: /(^Eden's Gate: Descent \(Savage\)$|Unknown Zone \(356\))/,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
     {
