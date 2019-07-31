@@ -337,4 +337,20 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Eden Prime': 'Prim-Eden',
+        'Guardian Of Paradise': 'Hüter Von Eden',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Eden-Prime': 'Primo-Éden',
+        'Guardian Of Paradise': '',
+      },
+    },
+    ],
 }];
