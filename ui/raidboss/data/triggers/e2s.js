@@ -492,4 +492,13 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Engage!': '戦闘開始！',
+        'Voidwalker': 'ヴォイドウォーカー',
+      },
+    }
+  ],
 }];
