@@ -16,10 +16,10 @@ hideall "Spell-In-Waiting"
 25.4 "Unholy Darkness" sync /:Voidwalker:3E54:/
 31.8 "Slicer/Guillotine" sync /:Voidwalker:(3E4F|3E50):/
 43.8 "Dark Fire III" sync /:Voidwalker:3E57:/
-59.2 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+59.2 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 69.3 "Punishing Ray" sync /:Voidwalker:3E5B:/
-72.7 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
-86.1 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+72.7 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
+86.1 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 95.3 "Dark Fire III" sync /:Voidwalker:3E57:/
 105.3 "Hell Wind" sync /:Voidwalker:3E66:/
 106.8 "Shadoweye" sync /:Voidwalker:3E69:/
@@ -33,9 +33,9 @@ hideall "Spell-In-Waiting"
 175.8 "Doomvoid Cleaver" sync /:Voidwalker:3E64:/
 191.2 "Shadowflame" sync /:Voidwalker:3E61:/
 203.4 "Entropy" sync /:Voidwalker:3E70:/
-208.0 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+208.0 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 224.9 "Flare" sync /:Voidwalker:4685:/
-229.3 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+229.3 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 242.5 "Hell Wind" sync /:Voidwalker:3E66:/
 248.5 "Punishing Ray" sync /:Voidwalker:3E5B:/
 248.9 "Shadoweye" sync /:Voidwalker:3E69:/
@@ -47,15 +47,15 @@ hideall "Spell-In-Waiting"
 304.1 "Slicer/Guillotine" sync /:Voidwalker:(3E4F|3E50):/
 330.3 "Shadowflame" sync /:Voidwalker:3E61:/
 342.5 "Entropy" sync /:Voidwalker:3E70:/
-348.1 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+348.1 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 358.2 "Empty Hate/Rage" sync /:Voidwalker:(3E5A|3E6C):/
-361.4 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
-374.7 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+361.4 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
+374.7 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 381.6 "Flare" sync /:Voidwalker:4685:/
 386.9 "Unholy Darkness" sync /:Voidwalker:3E54:/
 399.9 "Shadowflame" sync /:Voidwalker:3E61:/
-408.5 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
-421.8 "Spell-in-Waiting" sync /:Voidwalker:3E52:/
+408.5 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
+421.8 "Spell-In-Waiting" sync /:Voidwalker:3E52:/
 430.0 "Shadoweye" sync /:Voidwalker:3E69:/
 430.0 "Flare" sync /:Voidwalker:4685:/
 437.4 "Dark Fire III" sync /:Voidwalker:3E57:/
@@ -67,18 +67,18 @@ hideall "Spell-In-Waiting"
 # FIXME: I've seen this push ~6s earlier once
 # but is pretty consistent otherwise?
 499.2 "Quietus" sync /:Voidwalker:3E71:/ window 500,20
-507.4 "Cycle of Retribution" sync /:Voidwalker:4659:/
+507.4 "Cycle Of Retribution" sync /:Voidwalker:4659:/
 510.5 "Doomvoid Slicer" sync /:Voidwalker:465A:/
 511.2 "Doomvoid Cleaver" sync /:Voidwalker:3E64:/
 513.6 "Doomvoid Guillotine" sync /:Voidwalker:465B:/
 
-531.8 "Cycle of Chaos" sync /:Voidwalker:40B9:/
+531.8 "Cycle Of Chaos" sync /:Voidwalker:40B9:/
 534.9 "Doomvoid Guillotine" sync /:Voidwalker:40BA:/
 538.0 "Doomvoid Slicer" sync /:Voidwalker:40BB:/
 538.7 "Doomvoid Cleaver" sync /:Voidwalker:3E64:/
 
 558.2 "Quietus" sync /:Voidwalker:3E71:/
-568.2 "Cycle of ?" sync /:Voidwalker:(40B9|4659):/
+568.2 "Cycle Of ?" sync /:Voidwalker:(40B9|4659):/
 571.3 "Slicer/Guillotine?" sync /:Voidwalker:(40BA|465A):/
 574.4 "Cleaver/Slicer?" #sync /:Voidwalker:(40BB|3E64):/
 575.1 "Guillotine/Cleaver?" #sync /:Voidwalker:(3E64|465B):/
