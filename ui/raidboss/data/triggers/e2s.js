@@ -444,7 +444,7 @@
       alertText: function(data) {
         return {
           en: 'Hell Wind: wait for heals',
-          ja: 'ヘルウィンド: HP戻ってから,
+          ja: 'ヘルウィンド: HP戻ってから',
         };
       },
     },
