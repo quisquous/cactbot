@@ -123,7 +123,7 @@
     },
     {
       id: 'E2S Empty Rage',
-      regex: / 14:3E6BB:The Hand Of Erebos starts using (?:Empty Rage|)/,
+      regex: / 14:3E6B:The Hand Of Erebos starts using (?:Empty Rage|)/,
       alertText: {
         en: 'Away From Hand',
       },
