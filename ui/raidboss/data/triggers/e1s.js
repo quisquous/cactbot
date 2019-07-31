@@ -5,6 +5,18 @@
   timelineFile: 'e1s.txt',
   triggers: [
     {
+      id: 'E1S Initial',
+      regex: / 14:3D70:Eden Prime starts using (?:Eden's Gravity|)/,
+      regexFr: / 14:3D70:Primo-Éden starts using (?:Gravité Édénique|)/,
+      run: function(data) {
+        if (!data.viceCount) {
+          data.viceCount = 1;
+          data.vice = 'dps';
+          console.log('1: dps');
+        }
+      },
+    },
+    {
       id: 'E1S Paradise Regained',
       regex: / 1A:\y{ObjectId}:Eden Prime gains the effect of (?:Unknown_7B6|Paradise Regained)/,
       run: function(data) {
@@ -116,10 +128,37 @@
       },
     },
     {
+      // 44EF: dps1
+      // 3D7A: dps2
+      // 44EE: tank1
+      // 3D78: tank2
+      // 44F0: healer1
+      // 3D7D: healer2
       id: 'E1S Vice and Virtue DPS 1',
-      regex: / 14:44EF:Eden Prime starts using (?:Vice and Virtue|)/,
+      regex: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Eden Prime starts using (?:Vice and Virtue|)/,
       run: function(data) {
-        data.vice = 'dps';
+        // Note: this happens *after* the marks, so is setting up vice for the next marks.
+        data.viceCount++;
+        let viceMap = {
+          1: 'dps',
+          2: 'tank',
+          3: 'healer',
+
+          4: 'tank',
+          5: 'dps',
+          6: 'healer',
+
+          7: 'tank',
+          8: 'dps',
+          9: 'healer',
+
+          // theoretically??
+          10: 'tank',
+          11: 'dps',
+          12: 'healer',
+        };
+        console.log(data.viceCount + ': ' + viceMap[data.viceCount]);
+        data.vice = viceMap[data.viceCount];
       },
     },
     {
@@ -133,30 +172,28 @@
       id: 'E1S Vice and Virtue Tank 1',
       regex: / 14:44EE:Eden Prime starts using (?:Vice and Virtue|)/,
       run: function(data) {
-        data.vice = 'tank';
+        data.vice = 'healer';
       },
     },
     {
       id: 'E1S Vice and Virtue Tank 2',
       regex: / 14:3D78:Eden Prime starts using (?:Vice and Virtue|)/,
       run: function(data) {
+        data.vice = 'dps';
+      },
+    },
+    {
+      id: 'E1S Vice and Virtue Healer 1',
+      regex: / 14:44F0:Eden Prime starts using (?:Vice and Virtue|)/,
+      run: function(data) {
         data.vice = 'tank';
       },
     },
     {
-      // FIXME: consider vice of greed 44F3 which comes first
-      id: 'E1S Vice and Virtue Healer 1',
-      regex: / 14:44F0:Eden Prime starts using (?:Vice and Virtue|)/,
-      run: function(data) {
-        data.vice = 'healer';
-      },
-    },
-    {
-      // FIXME: consider vice of greed 3D7E which comes first
       id: 'E1S Vice and Virtue Healer 2',
       regex: / 14:3D7D:Eden Prime starts using (?:Vice and Virtue|)/,
       run: function(data) {
-        data.vice = 'healer';
+        data.vice = 'tank';
       },
     },
     {
