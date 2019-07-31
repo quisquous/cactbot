@@ -352,5 +352,5 @@
         'Guardian Of Paradise': '',
       },
     },
-    ],
+  ],
 }];
