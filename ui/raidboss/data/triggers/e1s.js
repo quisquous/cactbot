@@ -77,7 +77,7 @@
     {
       id: 'E1S Spear Of Paradise',
       regex: / 14:3D88:Eden Prime starts using (?:Spear Of Paradise|Unknown_3D88) on (\y{Name})/,
-      regexDe: / 14:3D88:Prim-Eden starts using (?:Unknown_3D88) on (\y{Name})/,
+      regexDe: / 14:3D88:Prim-Eden starts using (?:Paradiesspeer|Unknown_3D88) on (\y{Name})/,
       regexFr: / 14:3D88:Primo-Éden starts using (?:Lance [Dd]u [Pp]aradis|Unknown_3D88) on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
