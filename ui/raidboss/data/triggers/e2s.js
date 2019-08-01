@@ -196,7 +196,7 @@
       id: 'E2S Countdown Marker Unholy Darkness',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
-        return data.spell[matches[1]] == 'stack';
+        return !data.hellWind && data.spell[matches[1]] == 'stack';
       },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -409,6 +409,20 @@
       alarmText: {
         en: 'Hell Wind: Get Out',
         ja: 'ヘルウィンド: HP1になるよ',
+      },
+      run: function(data) {
+        data.hellWind = true;
+      },
+    },
+    {
+      id: 'E2S Hell Wind Cleanup',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      condition: function(data, matches) {
+        return !data.waiting && data.me == matches[1];
+      },
+      delaySeconds: 15,
+      run: function(data) {
+        delete data.hellWind;
       },
     },
     {
