@@ -22,7 +22,7 @@
       },
       alertText: {
         en: 'Tank Cleaves, Move Front',
-        ja: '',
+        ja: '拡散くるよ',
       },
     },
   ],
@@ -174,6 +174,7 @@
     {
       id: 'E3S Roiling Pulse Abilities',
       regex: / 14:3FE4:Leviathan starts using Roiling Pulse/,
+      regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
       delaySeconds: 2.9,
       infoText: function(data) {
         if (data.role == 'tank') {
@@ -362,6 +363,7 @@
       regexJa: / 14:3FED:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
         en: 'front left / back right',
+        ja: '左前 / 右後ろ',
       },
     },
     {
@@ -370,6 +372,7 @@
       regexJa: / 14:3FEC:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
         en: 'front right / back left',
+        ja: '右前 / 左後ろ',
       },
     },
   ],
@@ -396,15 +399,20 @@
         'Smothering Tsunami': '溺没の大海嘯',
         'Swirling Tsunami': '渦動の大海嘯',
         'Refreshing Shower': '水の覚醒',
-        'Backbreaking Wave': 'ブランジングウェイブ',
-        'Refreshing Shower': '水の覚醒',
-        'Refreshing Shower': '水の覚醒',
-        'Refreshing Shower': '水の覚醒',
-        'Refreshing Shower': '水の覚醒',
-        'Refreshing Shower': '水の覚醒',
-        'Refreshing Shower': '水の覚醒',
+        'Plunging Wave': 'ブランジングウェイブ',
+        'Tidal Rage': 'タイダルレイジ',
+        'Freak Wave': 'フリークウェーブ',
+        'Surging Tsunami': '強圧の大海嘯',
+        'Sweeping Tsunami': '拡散の大海嘯',
+        'Scouring Tsunami': '暴風の大海嘯',
+        'Roiling Pulse': '苛烈なる波動',
+        'Killer Wave': 'キラーウェーブ',
+        'Spilling Wave': 'スピリングウェーブ',
+        'Hydrothermal Vent': 'ハイドロサーマルベント',
+        'Hot Water': '熱水',
+        'The Calm': '沈溺の波動',
+        'The Storm': '混沌の渦動',
       },
     },
-   
   ],
 }];

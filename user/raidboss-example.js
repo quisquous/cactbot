@@ -61,16 +61,16 @@ Options.AlarmSound = '../../resources/sounds/BigWigs/Alarm.ogg';
 Options.LongSound = '../../resources/sounds/BigWigs/Long.ogg';
 
 // Volume between 0 and 1 to play the InfoSound at.
-Options.InfoSoundVolume = 1;
+Options.InfoSoundVolume = 0.05;
 
 // Volume between 0 and 1 to play the AlertSound at.
-Options.AlertSoundVolume = 1;
+Options.AlertSoundVolume = 0.05;
 
 // Volume between 0 and 1 to play the AlarmSound at.
-Options.AlarmSoundVolume = 1;
+Options.AlarmSoundVolume = 0.05;
 
 // Volume between 0 and 1 to play the LongSound at.
-Options.LongSoundVolume = 1;
+Options.LongSoundVolume = 0.05;
 
 // A set of nicknames to use for players, when trying to shorten names.
 Options.PlayerNicks = {
