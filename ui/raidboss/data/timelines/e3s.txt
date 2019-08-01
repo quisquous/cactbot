@@ -14,11 +14,11 @@ hideall "--sync--"
 23.9 "Rip Current" sync /:Leviathan:3FE0:/
 43.3 "Undersea Quake" sync /:Leviathan:3FEF:/
 46.1 "Tidal Wave" sync /:Leviathan:3FF2:/
-52.4 "Temporary Current" sync /:Leviathan:3FEB:/
+52.4 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 61.6 "Drenching Pulse" sync /:Leviathan:3FE2:/
 65.7 "Monster Wave" sync /:Leviathan:3FE5:/
 69.7 "Freak Wave" sync /:Leviathan:3FE6:/
-73.7 "Temporary Current" sync /:Leviathan:3FEA:/
+73.7 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 87.9 "Maelstrom" sync /:Leviathan:3FFA:/
 99.3 "Spinning Dive 1" #sync /:Leviathan:3FFD:/
 101.3 "Spinning Dive 2" #sync /:Leviathan:3FFD:/
@@ -27,12 +27,12 @@ hideall "--sync--"
 132.8 "Tsunami" sync /:Leviathan:441C:/
 141.4 "Sundering Tsunami" sync /:Leviathan:3FF6:/
 146.1 "Undersea Quake" sync /:Leviathan:3FEE:/
-158.4 "Temporary Current" sync /:Leviathan:3FEA:/
+158.4 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 158.4 "Smothering Tsunami" sync /:Leviathan:3FF7:/
 158.4 "Swirling Tsunami" sync /:Leviathan:3FF4:/
 168.7 "Tidal Roar" sync /:Leviathan:3FDC:/
 175.9 "Rip Current" sync /:Leviathan:3FE0:/
-186.1 "Temporary Current" sync /:Leviathan:3FEB:/
+186.1 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 197.3 "Tidal Roar" sync /:Leviathan:3FDC:/
 210.4 "Refreshing Shower" sync /:Leviathan:400F:/
 223.6 "Tidal Rage" sync /:Leviathan:3FDE:/
