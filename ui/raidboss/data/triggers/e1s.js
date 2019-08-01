@@ -20,7 +20,7 @@
     {
       id: 'E1S Paradise Regained',
       regex: / 1A:\y{ObjectId}:Eden Prime gains the effect of (?:Unknown_7B6|Paradise Regained)/,
-      regexDe: / 1A:\y{ObjectId}:Prim-Eden gains the effect of (?:Unknown_7B6|Paradise Regained)/,
+      regexDe: / 1A:\y{ObjectId}:Prim-Eden gains the effect of (?:Unknown_7B6|Wiedergewonnenes Paradies)/,
       regexFr: / 1A:\y{ObjectId}:Primo-Éden gains the effect of (?:Unknown_7B6|Paradise Regained)/,
       run: function(data) {
         data.paradise = true;
@@ -29,7 +29,7 @@
     {
       id: 'E1S Paradise Regained But Lost',
       regex: / 1E:\y{ObjectId}:Eden Prime loses the effect of (?:Unknown_7B6|Paradise Regained)/,
-      regexDe: / 1E:\y{ObjectId}:Prim-Eden loses the effect of (?:Unknown_7B6|Paradise Regained)/,
+      regexDe: / 1E:\y{ObjectId}:Prim-Eden loses the effect of (?:Unknown_7B6|Wiedergewonnenes Paradies)/,
       regexFr: / 1E:\y{ObjectId}:Primo-Éden loses the effect of (?:Unknown_7B6|Paradise Regained)/,
       run: function(data) {
         data.paradise = false;
@@ -267,6 +267,7 @@
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_83F|Prey)/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_83F|Markiert)/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
