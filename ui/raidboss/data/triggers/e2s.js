@@ -25,6 +25,7 @@
       beforeSeconds: 5,
       alarmText: {
         en: 'Stack With Partner',
+        ja: '白黒合わせて',
       },
     },
   ],
@@ -47,7 +48,7 @@
       id: 'E2S Entropy',
       regex: / 14:3E6F:Voidwalker starts using (?:Entropy|)/,
       regexFr: / 14:3E6F:Marcheuse Du Néant starts using (?:Entropie|)/,
-      regex: / 14:3E6F:ヴォイドウォーカー starts using (?:エントロピー|)/,
+      regexJa: / 14:3E6F:ヴォイドウォーカー starts using (?:エントロピー|)/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -492,7 +493,7 @@
       regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using (?:復讐の連続剣|)/,
       infoText: {
-        en: 'In => Protean => Sides',
+        en: 'In, Protean, Sides',
         ja: '中 => 散開 => 横',
       },
     },
@@ -501,7 +502,7 @@
       regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using (?:混沌の連続剣|)/,
       infoText: {
-        en: 'Sides => In => Protean',
+        en: 'Sides, In, Protean',
         ja: '横 => 中 => 散開',
       },
     },
@@ -512,6 +513,7 @@
       'replaceSync': {
         'Engage!': '戦闘開始！',
         'Voidwalker': 'ヴォイドウォーカー',
+        en: 'Sides, In, Protean',
       },
     },
   ],

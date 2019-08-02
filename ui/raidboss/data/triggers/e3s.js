@@ -114,7 +114,7 @@
       id: 'E3S Undersea Quake Outside',
       regex: / 14:3FEF:Leviathan starts using Undersea Quake/,
       regexFr: / 14:3FEF:Léviathan starts using Séisme Sous-Marin/,
-      regex: / 14:3FEF:リヴァイアサン starts using アンダーシークエイク/,
+      regexJa: / 14:3FEF:リヴァイアサン starts using アンダーシークエイク/,
       alertText: {
         en: 'Get Middle',
         fr: 'Allez au centre',
@@ -155,7 +155,7 @@
     {
       id: 'E3S Drenching Pulse Puddles',
       regex: / 14:3FE2:Leviathan starts using Drenching Pulse/,
-      regex: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
+      regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
       delaySeconds: 2.9,
       infoText: {
         en: 'Drop Puddles Outside',
@@ -304,6 +304,23 @@
       },
     },
     {
+      id: 'E3S Smothering Waters',
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) (.*) Seconds/,
+      condition: function(data, matches) {
+        // first tsunami stack is 25 seconds
+        // second tsunami stack is 13 seconds
+        // Everybody is in first stack, but tanks not in the second.
+        return parseFloat(matches[2]) > 15 || data.role != 'tank';
+      },
+      delaySeconds: function(data, matches) {
+        return parseFloat(matches[2]) - 3;
+      },
+      suppressSeconds: 1,
+      alertText: {
+        en: 'Stack',
+      },
+    },
+    {
       id: 'E3S Scouring Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
@@ -318,7 +335,8 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -329,14 +347,24 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches[1] || data.role == 'tank';
       },
       delaySeconds: 13,
+      suppressSeconds: 1,
       infoText: {
         en: 'Tank Cone',
         ja: '断絶',
+      },
+    },
+    {
+      id: 'E3S Refreshed',
+      regex: / 14:400F:Leviathan starts using Refreshing Shower/,
+      regexJa: / 14:400F:Leviathan starts using 水の覚醒/,
+      run: function(data) {
+        data.refreshed = true;
       },
     },
     {
@@ -344,7 +372,7 @@
       regex: / 14:3FEB:Leviathan starts using Temporary Current/,
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
-        en: 'front left / back right',
+        en: 'left front / back right',
         ja: '左前 / 右後ろ',
       },
     },
@@ -353,25 +381,37 @@
       regex: / 14:3FEA:Leviathan starts using Temporary Current/,
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
-        en: 'front right / back left',
+        en: 'right front / back left',
         ja: '右前 / 左後ろ',
       },
     },
     {
+      // Note: there are different abilities for the followup
+      // temporary current, but there's only a 1 second cast time.
+      // The original has a 6 second cast time and 4 seconds before
+      // the next one.
       id: 'E3S Front Left Temporary Current 2',
-      regex: / 14:3FED:Leviathan starts using Temporary Current/,
-      regexJa: / 14:3FED:リヴァイアサン starts using テンポラリーカレント/,
-      infoText: {
-        en: 'front left / back right',
+      regex: / 14:3FEA:Leviathan starts using Temporary Current/,
+      regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
+      condition: function(data) {
+        return data.refreshed;
+      },
+      delaySeconds: 6.2,
+      alertText: {
+        en: 'left front / back right',
         ja: '左前 / 右後ろ',
       },
     },
     {
       id: 'E3S Front Right Temporary Current 2',
-      regex: / 14:3FEC:Leviathan starts using Temporary Current/,
-      regexJa: / 14:3FEC:リヴァイアサン starts using テンポラリーカレント/,
-      infoText: {
-        en: 'front right / back left',
+      regex: / 14:3FEB:Leviathan starts using Temporary Current/,
+      regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
+      condition: function(data) {
+        return data.refreshed;
+      },
+      delaySeconds: 6.2,
+      alertText: {
+        en: 'right front / back left',
         ja: '右前 / 左後ろ',
       },
     },
