@@ -272,7 +272,7 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sundering Waters from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -282,9 +282,9 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sundering Waters from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches[1] || data.role == 'tank';
       },
       delaySeconds: 13,
       infoText: {
