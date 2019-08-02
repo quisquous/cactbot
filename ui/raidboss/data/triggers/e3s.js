@@ -260,6 +260,23 @@
       },
     },
     {
+      id: 'E3S Smothering Waters',
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) (.*) Seconds/,
+      condition: function(data, matches) {
+        // first tsunami stack is 25 seconds
+        // second tsunami stack is 13 seconds
+        // Everybody is in first stack, but tanks not in the second.
+        return parseFloat(matches[2]) > 15 || data.role != 'tank';
+      },
+      delaySeconds: function(data, matches) {
+        return parseFloat(matches[2]) - 3;
+      },
+      suppressSeconds: 1,
+      alertText: {
+        en: 'Stack',
+      },
+    },
+    {
       id: 'E3S Scouring Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
       condition: function(data, matches) {
@@ -287,8 +304,16 @@
         return data.me == matches[1] || data.role == 'tank';
       },
       delaySeconds: 13,
+      suppressSeconds: 1,
       infoText: {
         en: 'Tank Cone',
+      },
+    },
+    {
+      id: 'E3S Refreshed',
+      regex: / 14:400F:Leviathan starts using Refreshing Shower/,
+      run: function(data) {
+        data.refreshed = true;
       },
     },
     {
@@ -306,16 +331,28 @@
       },
     },
     {
+      // Note: there are different abilities for the followup
+      // temporary current, but there's only a 1 second cast time.
+      // The original has a 6 second cast time and 4 seconds before
+      // the next one.
       id: 'E3S Front Left Temporary Current 2',
-      regex: / 14:3FED:Leviathan starts using Temporary Current/,
-      infoText: {
+      regex: / 14:3FEA:Leviathan starts using Temporary Current/,
+      condition: function(data) {
+        return data.refreshed;
+      },
+      delaySeconds: 6.2,
+      alertText: {
         en: 'left front / back right',
       },
     },
     {
       id: 'E3S Front Right Temporary Current 2',
-      regex: / 14:3FEC:Leviathan starts using Temporary Current/,
-      infoText: {
+      regex: / 14:3FEB:Leviathan starts using Temporary Current/,
+      condition: function(data) {
+        return data.refreshed;
+      },
+      delaySeconds: 6.2,
+      alertText: {
         en: 'right front / back left',
       },
     },
