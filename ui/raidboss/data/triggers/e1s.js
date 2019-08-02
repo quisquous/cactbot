@@ -13,7 +13,6 @@
         if (!data.viceCount) {
           data.viceCount = 1;
           data.vice = 'dps';
-          console.log('1: dps');
         }
       },
     },
@@ -173,7 +172,6 @@
           11: 'dps',
           12: 'healer',
         };
-        console.log(data.viceCount + ': ' + viceMap[data.viceCount]);
         data.vice = viceMap[data.viceCount];
       },
     },
