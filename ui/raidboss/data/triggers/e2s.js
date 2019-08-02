@@ -450,14 +450,14 @@
       id: 'E2S Cycle of Retribution',
       regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
       infoText: {
-        en: 'In => Protean => Sides',
+        en: 'In, Protean, Sides',
       },
     },
     {
       id: 'E2S Cycle of Chaos',
       regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
       infoText: {
-        en: 'Sides => In => Protean',
+        en: 'Sides, In, Protean',
       },
     },
   ],
