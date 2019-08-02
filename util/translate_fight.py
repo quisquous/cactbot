@@ -111,6 +111,8 @@ def format_output_str(output_str):
     output_str = regex.sub("],", output_str)
     regex = re.compile(r"}$", re.M)
     output_str = regex.sub("},", output_str)
+    regex = re.compile(r"'[\r\n]", re.M)
+    output_str = regex.sub("',\n", output_str)
     return output_str[:-1]
 
 
