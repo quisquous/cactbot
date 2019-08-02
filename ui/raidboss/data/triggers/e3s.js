@@ -295,28 +295,28 @@
       id: 'E3S Front Left Temporary Current',
       regex: / 14:3FEB:Leviathan starts using Temporary Current/,
       infoText: {
-        en: 'front left / back right',
+        en: 'left front / back right',
       },
     },
     {
       id: 'E3S Front Right Temporary Current',
       regex: / 14:3FEA:Leviathan starts using Temporary Current/,
       infoText: {
-        en: 'front right / back left',
+        en: 'right front / back left',
       },
     },
     {
       id: 'E3S Front Left Temporary Current 2',
       regex: / 14:3FED:Leviathan starts using Temporary Current/,
       infoText: {
-        en: 'front left / back right',
+        en: 'left front / back right',
       },
     },
     {
       id: 'E3S Front Right Temporary Current 2',
       regex: / 14:3FEC:Leviathan starts using Temporary Current/,
       infoText: {
-        en: 'front right / back left',
+        en: 'right front / back left',
       },
     },
   ],
