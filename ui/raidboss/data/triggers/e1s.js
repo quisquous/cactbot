@@ -358,7 +358,7 @@
       'replaceSync': {
         'Engage!': 'Start!',
         'Eden Prime': 'Eden Prime',
-        'Arcane Sphere': 'Arkan[a] Sphäre'
+        'Arcane Sphere': 'Arkan[a] Sphäre',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -395,7 +395,7 @@
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Slippery Prey': 'Unmarkierbar',
@@ -406,7 +406,7 @@
         'Lightning Resistance Down II': 'Blitzresistenz - (stark)',
         'Healing Magic Down': 'Heilmagie -',
         'Fetters': 'Gefesselt',
-        'Bleeding': 'Blutung'
+        'Bleeding': 'Blutung',
       },
     },
     {
@@ -414,7 +414,7 @@
       'replaceSync': {
         'Engage!': 'À l\'attaque',
         'Eden Prime': 'Eden Prime',
-        'Arcane Sphere': 'Sphère Arcanique'
+        'Arcane Sphere': 'Sphère Arcanique',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -453,7 +453,7 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Slippery Prey': 'Marquage Impossible',
@@ -464,7 +464,7 @@
         'Lightning Resistance Down II': 'Résistance à la foudre réduite+',
         'Healing Magic Down': 'Malus de soin',
         'Fetters': 'Attache',
-        'Bleeding': 'Saignement'
+        'Bleeding': 'Saignement',
       },
     },
     {
@@ -473,7 +473,7 @@
         'Guardian of Paradise': 'Guardian of Paradise',
         'Engage!': '戦闘開始！',
         'Eden Prime': 'Eden Prime',
-        'Arcane Sphere': '立体魔法陣'
+        'Arcane Sphere': '立体魔法陣',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -507,7 +507,7 @@
         'Eden\'s Fire III': 'エデン・ファイガ',
         'Eden\'s Blizzard III': 'エデン・ブリザガ',
         'Dimensional Shift': 'ディメンションシフト',
-        'Delta Attack': 'デルタアタック'
+        'Delta Attack': 'デルタアタック',
       },
       '~effectNames': {
         'Slippery Prey': 'マーキング対象外',
@@ -518,7 +518,7 @@
         'Lightning Resistance Down II': '雷属性耐性低下［強］',
         'Healing Magic Down': '回復魔法効果低下',
         'Fetters': '拘束',
-        'Bleeding': 'ペイン'
+        'Bleeding': 'ペイン',
       },
     },
     {
@@ -526,15 +526,15 @@
       'replaceSync': {
         'Engage!': '战斗开始！',
         'Eden Prime': 'Eden Prime',
-        'Arcane Sphere': '立体魔法阵'
+        'Arcane Sphere': '立体魔法阵',
       },
       'replaceText': {
         'attack': '攻击',
-        'Unknown Ability': 'Unknown Ability'
+        'Unknown Ability': 'Unknown Ability',
       },
       '~effectNames': {
         'Slippery Prey': '非目标',
-        'Fetters': '拘束'
+        'Fetters': '拘束',
       },
     },
   ],

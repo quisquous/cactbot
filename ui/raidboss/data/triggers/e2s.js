@@ -466,7 +466,7 @@
       'locale': 'de',
       'replaceSync': {
         'Voidwalker': 'Voidwalker',
-        'Engage!': 'Start!'
+        'Engage!': 'Start!',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -490,7 +490,7 @@
         'Cycle of Retribution': 'Vergeltendes Chaos',
         'Cycle of Chaos': 'Chronisches Chaos',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Stone Curse': 'Steinfluch',
@@ -504,14 +504,14 @@
         'Infirmity': 'Gebrechlichkeit',
         'Diabolic Curse': 'Diabolischer Fluch',
         'Damage Down': 'Schaden -',
-        'Bleeding': 'Blutung'
+        'Bleeding': 'Blutung',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Voidwalker': 'Voidwalker',
-        'Engage!': 'À l\'attaque'
+        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -537,7 +537,7 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Stone Curse': 'Piège De Pierre',
@@ -551,14 +551,14 @@
         'Infirmity': 'Infirmité',
         'Diabolic Curse': 'Maléfice Du Néant',
         'Damage Down': 'Malus de dégâts',
-        'Bleeding': 'Saignant'
+        'Bleeding': 'Saignant',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Voidwalker': 'Voidwalker',
-        'Engage!': '戦闘開始！'
+        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -579,7 +579,7 @@
         'Doomvoid Cleaver': 'ドゥームヴォイド・クリーバー',
         'Dark Fire III': 'ダークファイガ',
         'Cycle of Retribution': '復讐の連続剣',
-        'Cycle of Chaos': '混沌の連続剣'
+        'Cycle of Chaos': '混沌の連続剣',
       },
       '~effectNames': {
         'Stone Curse': '石化の呪い',
@@ -593,24 +593,24 @@
         'Infirmity': '虚弱',
         'Diabolic Curse': 'ヴォイドの呪詛',
         'Damage Down': 'ダメージ低下',
-        'Bleeding': 'ペイン'
+        'Bleeding': 'ペイン',
       },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Voidwalker': 'Voidwalker',
-        'Engage!': '战斗开始！'
+        'Engage!': '战斗开始！',
       },
       'replaceText': {
-        'Unknown Ability': 'Unknown Ability'
+        'Unknown Ability': 'Unknown Ability',
       },
       '~effectNames': {
         'Stone Curse': '石化的诅咒',
         'Prey': '猎物',
         'Infirmity': '虚弱',
         'Diabolic Curse': '虚无的诅咒',
-        'Bleeding': '出血'
+        'Bleeding': '出血',
       },
     },
   ],

@@ -313,7 +313,7 @@
         'Titan': 'Titan',
         'Granite Gaol': 'Granitgefängnis',
         'Engage!': 'Start!',
-        'Bomb Boulder': 'Bomber-Brocken'
+        'Bomb Boulder': 'Bomber-Brocken',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -352,7 +352,7 @@
         'Bomb Boulders': 'Tumulus',
         'Aftershock': 'Nachbeben',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Summon Order III': 'Egi-Attacke III',
@@ -363,7 +363,7 @@
         'Filthy': 'Dreck',
         'Fetters': 'Gefesselt',
         'Devotion': 'Hingabe',
-        'Damage Down': 'Schaden -'
+        'Damage Down': 'Schaden -',
       },
     },
     {
@@ -372,7 +372,7 @@
         'Titan': 'Titan',
         'Granite Gaol': 'Geôle De Granite',
         'Engage!': 'À l\'attaque',
-        'Bomb Boulder': 'Bombo Rocher'
+        'Bomb Boulder': 'Bombo Rocher',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -413,7 +413,7 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Summon Order III': 'Actions en attente: 3',
@@ -424,7 +424,7 @@
         'Filthy': 'Embourbement',
         'Fetters': 'Attache',
         'Devotion': 'Dévouement',
-        'Damage Down': 'Malus De Dégâts'
+        'Damage Down': 'Malus De Dégâts',
       },
     },
     {
@@ -434,7 +434,7 @@
         'Titan': 'タイタン',
         'Granite Gaol': 'グラナイト・ジェイル',
         'Engage!': '戦闘開始！',
-        'Bomb Boulder': 'ボムボルダー'
+        'Bomb Boulder': 'ボムボルダー',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -470,7 +470,7 @@
         'Crumbling Down': '岩盤崩落',
         'Bury': '衝撃',
         'Bomb Boulders': 'ボムボルダー',
-        'Aftershock': '余波'
+        'Aftershock': '余波',
       },
       '~effectNames': {
         'Summon Order III': 'アクション実行待機III',
@@ -481,7 +481,7 @@
         'Filthy': '汚泥',
         'Fetters': '拘束',
         'Devotion': 'エギの加護',
-        'Damage Down': 'ダメージ低下'
+        'Damage Down': 'ダメージ低下',
       },
     },
     {
@@ -490,10 +490,10 @@
         'Titan': '泰坦',
         'Granite Gaol': '花岗石牢',
         'Engage!': '战斗开始！',
-        'Bomb Boulder': '爆破岩石'
+        'Bomb Boulder': '爆破岩石',
       },
       'replaceText': {
-        'Unknown Ability': 'Unknown Ability'
+        'Unknown Ability': 'Unknown Ability',
       },
       '~effectNames': {
         'Physical Vulnerability Up': '物理受伤加重',
@@ -501,7 +501,7 @@
         'Healing Magic Down': '治疗魔法效果降低',
         'Filthy': '污泥',
         'Devotion': '灵护',
-        'Damage Down': '伤害降低'
+        'Damage Down': '伤害降低',
       },
     },
   ],

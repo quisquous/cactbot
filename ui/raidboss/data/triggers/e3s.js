@@ -362,7 +362,7 @@
       'locale': 'de',
       'replaceSync': {
         'Leviathan': 'Leviathan',
-        'Engage!': 'Start!'
+        'Engage!': 'Start!',
       },
       'replaceText': {
         'Unknown Ability': 'Unknown Ability',
@@ -399,7 +399,7 @@
         'Black Smokers': 'Schwarzer Raucher',
         'Backbreaking Wave': 'Verwüstende Welle',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--'
+        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Swirling Waters': 'Omen des Wasserwirbels',
@@ -410,14 +410,14 @@
         'Smothering Waters': 'Omen der Ertränkung',
         'Scouring Waters': 'Omen der Böen',
         'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Heavy': 'Gewicht'
+        'Heavy': 'Gewicht',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Leviathan': 'Léviathan',
-        'Engage!': 'À l\'attaque'
+        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'Unknown Ability': 'Unknown Ability',
@@ -456,7 +456,7 @@
         '--untargetable--': '--Impossible à cibler--',
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--'
+        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Swirling Waters': 'Eaux tournoyantes',
@@ -467,14 +467,14 @@
         'Smothering Waters': 'Eaux submergeantes',
         'Scouring Waters': 'Eaux dévastatrices',
         'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
-        'Heavy': 'Pesanteur'
+        'Heavy': 'Pesanteur',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Leviathan': 'リヴァイアサン',
-        'Engage!': '戦闘開始！'
+        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'Unknown Ability': 'Unknown Ability',
@@ -508,7 +508,7 @@
         'Drenching Pulse': '猛烈なる波動',
         'Breaking Wave': 'ブレーキングウェイブ',
         'Black Smokers': 'ブラックスモーカー',
-        'Backbreaking Wave': 'バックブレーキングウェイブ'
+        'Backbreaking Wave': 'バックブレーキングウェイブ',
       },
       '~effectNames': {
         'Swirling Waters': '渦動の兆し',
@@ -519,21 +519,21 @@
         'Smothering Waters': '溺没の兆し',
         'Scouring Waters': '暴風の兆し',
         'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Heavy': 'ヘヴィ'
+        'Heavy': 'ヘヴィ',
       },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Leviathan': '利维亚桑',
-        'Engage!': '战斗开始！'
+        'Engage!': '战斗开始！',
       },
       'replaceText': {
-        'Unknown Ability': 'Unknown Ability'
+        'Unknown Ability': 'Unknown Ability',
       },
       '~effectNames': {
         'Magic Vulnerability Up': '魔法受伤加重',
-        'Heavy': '加重'
+        'Heavy': '加重',
       },
     },
   ],
