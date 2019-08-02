@@ -19,4 +19,3 @@ package-lock.json
 .idea/
 *.iml
 .DS_Store
-user/raidboss-example.js

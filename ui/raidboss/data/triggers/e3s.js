@@ -43,7 +43,7 @@
     {
       id: 'E3S Tidal Rage',
       regex: / 14:3FDE:Leviathan starts using Tidal Rage/,
-      regex: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
+      regexJa: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
