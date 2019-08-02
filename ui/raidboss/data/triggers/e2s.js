@@ -513,7 +513,6 @@
       'replaceSync': {
         'Engage!': '戦闘開始！',
         'Voidwalker': 'ヴォイドウォーカー',
-        en: 'Sides, In, Protean',
       },
     },
   ],

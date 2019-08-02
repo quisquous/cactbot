@@ -220,7 +220,7 @@
       regexDe: /Helige Statue starts using Pulswelle on (\y{Name})/,
       regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
       regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
-      regexJa: /신들의 상 starts using 파동탄 on (\y{Name})/,
+      regexKo: /신들의 상 starts using 파동탄 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -245,7 +245,7 @@
       regexDe: / 14:2900:Kefka starts using Vernichtungsschwinge/,
       regexFr: / 14:2900:Kefka starts using Aile De La Destruction/,
       regexJa: / 14:2900:ケフカ starts using 破壊の翼/,
-      regexJa: / 14:2900:케프카 starts using 파괴의 날개/,
+      regexKo: / 14:2900:케프카 starts using 파괴의 날개/,
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -293,7 +293,7 @@
       regexDe: / 14:28F[EF]:Kefka starts using Vernichtungsschwinge/,
       regexFr: / 14:28F[EF]:Kefka starts using Aile De La Destruction/,
       regexJa: / 14:28F[EF]:ケフカ starts using 破壊の翼/,
-      regexJa: / 14:28F[EF]:케프카 starts using 파괴의 날개/,
+      regexKo: / 14:28F[EF]:케프카 starts using 파괴의 날개/,
       infoText: {
         en: 'Single Wing',
         fr: 'Aile unique',
@@ -308,7 +308,7 @@
       regexDe: / 14:2910:Kefka starts using Ultima-Umarmung on (\y{Name})/,
       regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
       regexJa: / 14:2910:ケフカ starts using 終末の双腕 on (\y{Name})/,
-      regexJa: / 14:2910:케프카 starts using 종말의 포옹 on (\y{Name})/,
+      regexKo: / 14:2910:케프카 starts using 종말의 포옹 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
@@ -449,7 +449,7 @@
       regexDe: / 14:28D1:Kefka starts using Mana-Aufladung/,
       regexFr: / 14:28D1:Kefka starts using Concentration De Mana/,
       regexJa: / 14:28D1:ケフカ starts using マジックチャージ/,
-      regexJa: / 14:28D1:케프카 starts using 마력 충전/,
+      regexKo: / 14:28D1:케프카 starts using 마력 충전/,
       run: function(data) {
         delete data.lastFire;
         delete data.lastThunder;
@@ -464,7 +464,7 @@
       regexDe: / 14:28D2:Kefka starts using Mana-Entladung/,
       regexFr: / 14:28D2:Kefka starts using Décharge De Mana/,
       regexJa: / 14:28D2:ケフカ starts using マジックアウト/,
-      regexJa: / 14:28D2:케프카 starts using 마력 방출/,
+      regexKo: / 14:28D2:케프카 starts using 마력 방출/,
       preRun: function(data) {
         if (data.lastFire) {
           data.manaReleaseText = data.lastFire;

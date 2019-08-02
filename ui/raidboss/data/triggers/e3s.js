@@ -306,6 +306,7 @@
     {
       id: 'E3S Smothering Waters',
       regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没の兆し from (?:.*) (.*) Seconds/,
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
@@ -318,6 +319,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Stack',
+        ja: 'スタック',
       },
     },
     {
