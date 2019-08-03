@@ -370,7 +370,7 @@
         'Engage!': 'Start!',
         'Eden Prime': 'Prim-Eden',
         'Arcane Sphere': 'Arkan[a] Sphäre',
-        'Guardian Of Paradise': 'Hüter von Eden'
+        'Guardian Of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
         'attack': 'Attacke',
