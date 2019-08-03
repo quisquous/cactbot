@@ -377,6 +377,9 @@
         en: 'left front / back right',
         ja: '左前 / 右後ろ',
       },
+      tts: {
+        en: 'left front back right',
+      },
     },
     {
       id: 'E3S Front Right Temporary Current',
@@ -385,6 +388,9 @@
       infoText: {
         en: 'right front / back left',
         ja: '右前 / 左後ろ',
+      },
+      tts: {
+        en: 'right front back left',
       },
     },
     {
@@ -403,6 +409,9 @@
         en: 'left front / back right',
         ja: '左前 / 右後ろ',
       },
+      tts: {
+        en: 'left front back right',
+      },
     },
     {
       id: 'E3S Front Right Temporary Current 2',
@@ -415,6 +424,9 @@
       alertText: {
         en: 'right front / back left',
         ja: '右前 / 左後ろ',
+      },
+      tts: {
+        en: 'right front back left',
       },
     },
   ],
