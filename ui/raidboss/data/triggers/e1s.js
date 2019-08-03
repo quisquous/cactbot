@@ -127,7 +127,7 @@
       id: 'E1S Delta Attack 1',
       regex: / 14:44F4:Eden Prime starts using (?:Delta Attack|)/,
       regexDe: / 14:44F4:Prim-Eden starts using (?:Delta-Attacke|)/,
-      regexFr: / 14:44F4:Eden Prime starts using (?:Attaque Delta|)/,
+      regexFr: / 14:44F4:Primo-Éden starts using (?:Attaque Delta|)/,
       regexJa: / 14:44F4:Eden Prime starts using (?:デルタアタック|)/,
       alertText: {
         en: 'Cross Spread',
@@ -137,7 +137,7 @@
       id: 'E1S Delta Attack 2',
       regex: / 14:44F8:Eden Prime starts using (?:Delta Attack|)/,
       regexDe: / 14:44F8:Prim-Eden starts using (?:Delta-Attacke|)/,
-      regexFr: / 14:44F8:Eden Prime starts using (?:Attaque Delta|)/,
+      regexFr: / 14:44F8:Primo-Éden starts using (?:Attaque Delta|)/,
       regexJa: / 14:44F8:Eden Prime starts using (?:デルタアタック|)/,
       alertText: function(data) {
         if (data.role == 'tank') {
@@ -160,7 +160,7 @@
       id: 'E1S Vice and Virtue DPS 1',
       regex: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       run: function(data) {
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
@@ -190,7 +190,7 @@
       id: 'E1S Vice and Virtue DPS 2',
       regex: / 14:3D7A:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:3D7A:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:3D7A:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:3D7A:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:3D7A:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       run: function(data) {
         data.vice = 'dps';
@@ -200,7 +200,7 @@
       id: 'E1S Vice and Virtue Tank 1',
       regex: / 14:44EE:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:44EE:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:44EE:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:44EE:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:44EE:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       run: function(data) {
         data.vice = 'healer';
@@ -210,7 +210,7 @@
       id: 'E1S Vice and Virtue Tank 2',
       regex: / 14:3D78:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:3D78:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:3D78:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:3D78:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:3D78:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       run: function(data) {
         data.vice = 'dps';
@@ -220,7 +220,7 @@
       id: 'E1S Vice and Virtue Healer 1',
       regex: / 14:44F0:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:44F0:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:44F0:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:44F0:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:44F0:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       run: function(data) {
         data.vice = 'tank';
@@ -230,7 +230,7 @@
       id: 'E1S Vice and Virtue Healer 2',
       regex: / 14:3D7D:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:3D7D:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:3D7D:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:3D7D:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:3D7D:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       run: function(data) {
         data.vice = 'tank';
@@ -250,7 +250,7 @@
       id: 'E1S Vice and Virtue DPS 2',
       regex: / 14:3D7A:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:3D7A:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:3D7A:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:3D7A:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:3D7A:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       alertText: {
         en: 'Stack With Partner',
@@ -271,7 +271,7 @@
       id: 'E1S Vice and Virtue Tank Stack',
       regex: / 14:3D78:Eden Prime starts using (?:Vice and Virtue|)/,
       regexDe: / 14:3D78:Prim-Eden starts using (?:Laster und Tugend|)/,
-      regexFr: / 14:3D78:Eden Prime starts using (?:Vice et vertu|)/,
+      regexFr: / 14:3D78:Primo-Éden starts using (?:Vice et vertu|)/,
       regexJa: / 14:3D78:Eden Prime starts using (?:ヴァイス・アンド・ヴァーチュー|)/,
       condition: function(data) {
         return data.role != 'tank';
@@ -321,7 +321,7 @@
     {
       id: 'E1S Mana Boost',
       regex: / 14:3D8D:Guardian Of Paradise starts using (?:Mana Boost|)/,
-      regexDe: / 14:3D8D:Guardian Of Paradise starts using (?:Mana-Verstärker|)/,
+      regexDe: / 14:3D8D:Hüter von Eden starts using (?:Mana-Verstärker|)/,
       regexFr: / 14:3D8D:Guardian Of Paradise starts using (?:Amplificateur de mana|)/,
       regexJa: / 14:3D8D:Guardian Of Paradise starts using (?:マナブースター|)/,
       condition: function(data) {
@@ -335,7 +335,7 @@
       id: 'E1S Pure Light',
       regex: / 14:3D8A:Eden Prime starts using (?:Pure Light|)/,
       regexDe: / 14:3D8A:Prim-Eden starts using (?:Läuterndes Licht|)/,
-      regexFr: / 14:3D8A:Eden Prime starts using (?:Lumière purificatrice|)/,
+      regexFr: / 14:3D8A:Primo-Éden starts using (?:Lumière purificatrice|)/,
       regexJa: / 14:3D8A:Eden Prime starts using (?:ピュアライト|)/,
       alertText: {
         en: 'Get Behind',
@@ -346,7 +346,7 @@
       id: 'E1S Pure Beam 1',
       regex: / 14:3D80:Eden Prime starts using (?:Pure Beam|)/,
       regexDe: / 14:3D80:Prim-Eden starts using (?:Läuternder Strahl|)/,
-      regexFr: / 14:3D80:Eden Prime starts using (?:Rayon purificateur|)/,
+      regexFr: / 14:3D80:Primo-Éden starts using (?:Rayon purificateur|)/,
       regexJa: / 14:3D80:Eden Prime starts using (?:ピュアレイ|)/,
       infoText: {
         en: 'Get Outside Your Orb',
@@ -356,7 +356,7 @@
       id: 'E1S Pure Beam 2',
       regex: / 14:3D82:Eden Prime starts using (?:Pure Beam|)/,
       regexDe: / 14:3D82:Prim-Eden starts using (?:Läuternder Strahl|)/,
-      regexFr: / 14:3D82:Eden Prime starts using (?:Rayon purificateur|)/,
+      regexFr: / 14:3D82:Primo-Éden starts using (?:Rayon purificateur|)/,
       regexJa: / 14:3D82:Eden Prime starts using (?:ピュアレイ|)/,
       infoText: {
         en: 'Bait Orb Lasers Outside',
@@ -370,6 +370,7 @@
         'Engage!': 'Start!',
         'Eden Prime': 'Prim-Eden',
         'Arcane Sphere': 'Arkan[a] Sphäre',
+        'Guardian Of Paradise': 'Hüter von Eden'
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -407,6 +408,7 @@
         'Delta Attack': 'Delta-Attacke',
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        '--center--': '--mitte--',
       },
       '~effectNames': {
         'Slippery Prey': 'Unmarkierbar',
@@ -424,7 +426,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Engage!': 'À l\'attaque',
-        'Eden Prime': 'Eden Prime',
+        'Eden Prime': 'Primo-Éden',
         'Arcane Sphere': 'Sphère Arcanique',
       },
       'replaceText': {
