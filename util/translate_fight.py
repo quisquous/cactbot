@@ -111,6 +111,8 @@ def format_output_str(output_str):
     output_str = regex.sub("],", output_str)
     regex = re.compile(r"}$", re.M)
     output_str = regex.sub("},", output_str)
+    regex = re.compile(r"'[\r\n]", re.M)
+    output_str = regex.sub("',\n", output_str)
     return output_str[:-1]
 
 
@@ -234,10 +236,14 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--report', help="The ID of an FFLogs report")
     parser.add_argument('-of', '--output-file', help="The file to write output in")
 
-    parser.add_argument('-k', '--key', help="The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser")
+    parser.add_argument('-k', '--key', help="The FFLogs API key (public) to use, from https://www.fflogs.com/accounts/changeuser")
     parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
 
     args = parser.parse_args()
+
+    if not args.key and not args.report:
+        parser.print_help()
+        sys.exit(0)
 
     if args.report and not args.key:
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
