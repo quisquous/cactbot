@@ -95,6 +95,7 @@
         de: 'leser',
         fr: 'laser',
         ko: '레이저',
+        ja: 'レーザー',
       },
     },
     {
@@ -129,6 +130,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ko: '탱버',
+            ja: 'バスター',
           };
         }
       },
@@ -144,12 +146,14 @@
         de: 'Orb Marker',
         fr: 'Orbe',
         ko: '원자 파동 징',
+        ja: 'マーカー',
       },
       tts: {
         en: 'orb',
         de: 'orb',
         fr: 'orbe',
         ko: '원자 파동',
+        ja: 'マーカー',
       },
     },
     {
@@ -164,6 +168,7 @@
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
           ko: '파란징 → 나',
+          ja: '青玉 on YOU',
         };
       },
       infoText: function(data, matches) {
@@ -175,6 +180,7 @@
           de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
           fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
           ko: '파란징 → ' + data.ShortName(matches[1]),
+          ja: '青玉 on ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -186,6 +192,7 @@
           de: 'aura-kanone',
           fr: 'marque bleu',
           ko: '파란징',
+          ja: '青玉ついた',
         };
       },
     },
@@ -199,6 +206,7 @@
             de: 'Rakete auf DIR',
             fr: 'Marquage sur VOUS',
             ko: '빨간징 → 나',
+            ja: 'マーカー on YOU',
           };
         }
         return {
@@ -206,6 +214,7 @@
           de: 'Beute auf ' + data.ShortName(matches[1]),
           fr: 'Marquage sur ' + data.ShortName(matches[1]),
           ko: '빨간징 → ' + data.ShortName(matches[1]),
+          ja: 'マーカー on ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -217,6 +226,7 @@
           de: 'beute',
           fr: 'marquage',
           ko: '빨간징',
+          ja: 'マーカー',
         };
       },
     },
@@ -235,12 +245,14 @@
         de: 'Gluthitze: Geh weg',
         fr: 'Fournaise : éloignez-vous',
         ko: '작열: 바깥으로',
+        ja: '灼熱: 外側へ',
       },
       tts: {
         en: 'searing wind',
         de: 'gluthitze',
         fr: 'fournaise',
         ko: '작열',
+        ja: '灼熱',
       },
     },
     {
@@ -258,12 +270,14 @@
         de: 'Verlassen: Bleib mittig',
         fr: 'Isolement : restez au milieu',
         ko: '고독감: 중앙에 있기',
+        ja: '孤独: 内側へ',
       },
       tts: {
         en: 'abandonment',
         de: 'verlassen',
         fr: 'isolement',
         ko: '고독감',
+        ja: '孤独',
       },
     },
     {
@@ -280,6 +294,7 @@
             de: 'Fäule auf DIR',
             fr: 'Pourriture sur VOUS',
             ko: '에테르 → 나',
+            ja: 'ロット on YOU',
           };
         }
         return {
@@ -287,6 +302,7 @@
           de: 'Fäule auf ' + data.ShortName(matches[1]),
           fr: 'Pourriture sur ' + data.ShortName(matches[1]),
           ko: '에테르 → ' + data.ShortName(matches[1]),
+          en: 'ロット on ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -297,6 +313,7 @@
           en: 'rot',
           de: 'fäule',
           fr: 'pourriture',
+          ja: 'ロット',
         };
       },
     },
@@ -314,6 +331,7 @@
             de: 'VERSTUMMEN!',
             fr: 'SILENCE!',
             ko: '침묵!',
+            ja: '沈黙！',
           };
         }
       },
@@ -324,6 +342,7 @@
             de: 'stumm',
             fr: 'silence',
             ko: '침묵',
+            ja: '沈黙',
           };
         }
       },

@@ -13,6 +13,7 @@
         en: 'stack with your group',
         de: 'mit der Gruppe stacken',
         fr: 'Packé avec votre groupe',
+        ja: 'グループ別にスタック',
       },
     },
     {
@@ -24,6 +25,7 @@
         en: 'line stack',
         de: 'Linien-Stack',
         fr: 'Packé en ligne',
+        ja: 'スタック',
       },
     },
     {
@@ -37,6 +39,7 @@
         en: 'Grab Tether, Point Away',
         de: 'Verbindung nehmen und wegdrehen',
         fr: 'Prenez le lien, pointez vers l\'extérieur',
+        ja: '線取って外向ける',
       },
     },
   ],
@@ -63,6 +66,7 @@
             en: 'Tank Swap',
             de: 'Tankwechsel',
             fr: 'Tank Swap',
+            ja: 'スイッチ',
           };
         }
         if (data.role == 'tank') {
@@ -70,6 +74,7 @@
             en: 'Swap, then Buster',
             de: 'Tankwechsel, danach Tankbuster',
             fr: 'Swap puis tankbuster',
+            ja: 'スイッチ後強攻撃',
           };
         }
       },
@@ -90,6 +95,7 @@
         en: 'Away From Tanks',
         de: 'Weg von den Tanks',
         fr: 'Ecartez-vous des tanks',
+        ja: 'タンクから離れて',
       },
     },
     {
@@ -113,6 +119,7 @@
         en: 'Stack for Puddle AOEs',
         de: 'Stacken (Pfützen)',
         fr: 'Packez-vous pour l\'aoe',
+        ja: 'スタック',
       },
     },
     {
@@ -137,12 +144,14 @@
             en: 'Spread (dps get towers)',
             de: 'Verteilen (nicht in den Turm)',
             fr: 'Ecartez-vous (pas sur la tour)',
+            ja: '散開 (DPSが塔)',
           };
         }
         return {
           en: 'Spread (tanks/healers get towers)',
           de: 'Verteilen (nicht in den Turm)',
           fr: 'Ecartez-vous (pas sur la tour)',
+          ja: '散開 (タンクヒラが塔)',
         };
       },
     },
@@ -160,12 +169,14 @@
             en: 'Get Tower (tank/healer towers)',
             de: 'In den Turm',
             fr: 'Sur votre tour',
+            ja: '塔 (タンクヒラが塔)',
           };
         }
         return {
           en: 'Get Tower (dps towers)',
           de: 'In den Turm',
           fr: 'Sur votre tour',
+          ja: '塔 (DPSが塔)',
         };
       },
     },
@@ -178,11 +189,13 @@
         en: 'East =>',
         de: 'Osten =>',
         fr: 'Est =>',
+        ja: '東 =>',
       },
       tts: {
         en: 'East',
         de: 'Osten',
         fr: 'Est',
+        ja: 'ひがし',
       },
     },
     {
@@ -194,11 +207,13 @@
         en: '<= West',
         de: '<= Westen',
         fr: '<= Ouest',
+        ja: '<= 西',
       },
       tts: {
         en: 'West',
         de: 'Westen',
         fr: 'Ouest',
+        ja: 'にし',
       },
     },
     {
@@ -213,12 +228,14 @@
             en: 'Go To Snakes',
             de: 'Zu den Schlangen',
             fr: 'Allez vers les serpents',
+            ja: '蛇側へ',
           };
         }
         return {
           en: 'Out of Middle, Toward Snakes',
           de: 'Raus aus der Mitte, Zu den Schlangen',
           fr: 'Pas au centre, du côté des serpents',
+          ja: '真ん中からずれて蛇向いて',
         };
       },
       run: function(data) {
@@ -238,6 +255,7 @@
         en: 'Silence',
         de: 'Verstummen',
         fr: 'Silence',
+        ja: 'ストンスキン',
       },
     },
     {
@@ -252,12 +270,14 @@
             en: 'Stack South',
             de: 'Im Süden stacken',
             fr: 'Packez-vous au sud',
+            ja: '南でスタック',
           };
         }
         return {
           en: 'Stack if no tether',
           de: 'Stacken, wenn keine Verbindung',
           fr: 'Packez-vous si pas de lien',
+          ja: '線無しはスタック',
         };
       },
     },
@@ -273,6 +293,7 @@
         en: 'Out',
         de: 'Raus',
         fr: 'Dehors',
+        ja: '外',
       },
     },
     {
@@ -285,6 +306,7 @@
         en: 'In, then out',
         de: 'Rein, dann raus',
         fr: 'Dedans, puis dehors',
+        ja: '中から外',
       },
     },
     {
@@ -298,6 +320,7 @@
         en: 'Out',
         de: 'Raus',
         fr: 'Dehors',
+        ja: '外',
       },
     },
     {
@@ -310,6 +333,7 @@
         en: 'Out, then in',
         de: 'Raus, dann rein',
         fr: 'Dehors, puis dedans',
+        ja: '外から中',
       },
     },
     {
@@ -323,6 +347,7 @@
         en: 'In',
         de: 'Rein',
         fr: 'Dedans',
+        ja: '中',
       },
     },
     {
@@ -336,6 +361,7 @@
         en: 'Pop Sprint',
         de: 'Sprinten',
         fr: 'Sprintez',
+        ja: 'スプリント',
       },
     },
   ],

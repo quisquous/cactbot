@@ -80,6 +80,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: 'タンクバスター on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -87,6 +88,7 @@
             en: 'Tank Busters',
             de: 'Tankbuster',
             fr: 'Tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -96,6 +98,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -116,6 +119,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: 'タンクバスター on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -123,6 +127,7 @@
             en: 'Tank Busters',
             de: 'Tankbuster',
             fr: 'Tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -132,6 +137,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ja: 'バスター',
           };
         }
       },
@@ -300,6 +306,7 @@
             en: 'Vuln on YOU',
             de: 'Verwundbarkeit auf DIR',
             fr: 'Vulnérabilité sur VOUS',
+            ja: '標的 on YOU',
           };
         }
       },
@@ -310,6 +317,7 @@
           en: 'Vuln on ' + data.ShortName(matches[1]),
           de: 'Verwundbarkeit auf ' + data.ShortName(matches[1]),
           fr: 'Vulnérabilité sur ' + data.ShortName(matches[1]),
+          ja: '標的 on ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -413,12 +421,14 @@
             en: 'Short Stack on YOU',
             de: 'Kurzer Stack auf YOU',
             fr: 'Marque courte sur VOUS',
+            ja: '早シェア on YOU',
           };
         }
         return {
           en: 'Long Stack on YOU',
           de: 'Langer Stack auf YOU',
           fr: 'Marque longue sur VOUS',
+          ja: '遅シェア on YOU',
         };
       },
       infoText: function(data, matches) {
@@ -435,6 +445,7 @@
             en: 'Short Stack on ' + data.ShortName(matches[1]),
             de: 'Kurzer Stack auf ' + data.ShortName(matches[1]),
             fr: 'Marque courte sur ' + data.ShortName(matches[1]),
+            ja: '早シェア on ' + data.ShortName(matches[1]),
           };
         }
         return;
@@ -461,6 +472,7 @@
           en: 'No Marker',
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
+          ja: '無職',
         };
       },
     },
@@ -477,6 +489,7 @@
         en: 'Move out for Defamation',
         de: 'Rausgehen für Urteil',
         fr: 'Ecartez-vous pour #médisance',
+        ja: 'サークル捨てる',
       },
     },
     {
@@ -506,6 +519,7 @@
             en: 'Stack on ' + data.ShortName(player),
             de: 'Stacken auf ' + data.ShortName(player),
             fr: 'Packez-vous sur ' + data.ShortName(player),
+            ja: data.ShortName(player) + 'とスタック',
           };
         }
       },
@@ -520,6 +534,7 @@
         en: 'Stack on YOU',
         de: 'Stacken auf DIR',
         fr: 'Package sur VOUS',
+        ja: 'スタック on YOU',
       },
     },
     {
@@ -532,6 +547,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        ja: '散開',
       },
     },
     {
@@ -541,6 +557,7 @@
         en: 'Back Left',
         de: 'Hinten Links',
         fr: 'Arrière gauche',
+        ja: '左後ろ',
       },
     },
     {
@@ -550,6 +567,7 @@
         en: 'Back Right',
         de: 'Hinten Rechts',
         fr: 'Arrière droite',
+        ja: '右後ろ',
       },
     },
     {
@@ -803,17 +821,17 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        'I am the Omega': 'ワタシはオメガであり',
         'Engage!': '戦闘開始！',
         'Omega': 'オメガ',
-        'Omega-F': 'オメガF',
-        'Omega-M': 'オメガM',
+        'Omega-F': 'オメガf',
+        'Omega-M': 'オメガm',
         'Optical Unit': 'オプチカルユニット',
 
         'Left Arm Unit': 'レフトアームユニット',
         'Right Arm Unit': 'ライトアームユニット',
 
-        // FIXME
-        'Rear Power Unit': 'Rear Power Unit',
+        'Rear Power Unit': 'リアユニット',
       },
       'replaceText': {
         'Advanced Optical Laser': 'オプチカルレーザーS',

@@ -52,6 +52,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ko: '탱버',
+            ja: 'バスター',
           };
         }
       },
@@ -69,6 +70,7 @@
           de: 'Nach hinten laufen',
           fr: 'S\'éloigner',
           ko: '뒤로 이동',
+          ja: '後ろへ',
         };
       },
       tts: function(data) {
@@ -77,6 +79,7 @@
           de: 'ab nach hinten',
           fr: 'S\'éloigner',
           ko: '뒤로 이동',
+          ja: '後ろへ',
         };
       },
     },
@@ -93,6 +96,7 @@
           de: 'Stack in der Mitte',
           fr: 'Stack au milieu',
           ko: '중앙으로 모이기',
+          ja: '中央でスタック',
         };
       },
     },
@@ -108,6 +112,7 @@
           de: 'Licht',
           fr: 'Lumière',
           ko: '빛장판',
+          ja: 'ライト',
         };
       },
     },
@@ -123,6 +128,7 @@
           de: 'Wind',
           fr: 'Vent',
           ko: '초록징',
+          ja: '風',
         };
       },
     },
@@ -139,6 +145,7 @@
           de: 'Rückstoß Geist',
           fr: 'Fantôme soufflant',
           ko: 'Fantôme soufflant',
+          ja: 'ノックバックゴースト',
         };
       },
     },
