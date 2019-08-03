@@ -187,7 +187,7 @@
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + " stacken",
+          de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にスタック',
         };
@@ -234,7 +234,7 @@
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + " stacken",
+          de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にスタック',
         };
@@ -302,7 +302,7 @@
         if (data.me != matches[1]) {
           return {
             en: 'Look Away from ' + data.ShortName(matches[1]),
-            de: 'Von ' + data.ShortName(matches[1]) + " weg schauen",
+            de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
             fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'を見ないで',
           };
@@ -354,7 +354,7 @@
         if (data.me != matches[1]) {
           return {
             en: 'Look Away from ' + data.ShortName(matches[1]),
-            de: 'Von ' + data.ShortName(matches[1]) + " weg schauen",
+            de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
             fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'を見ないで',
           };
