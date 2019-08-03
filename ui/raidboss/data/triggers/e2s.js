@@ -509,15 +509,6 @@
   ],
   timelineReplace: [
     {
-      'locale': 'ja',
-      'replaceSync': {
-        'Engage!': '戦闘開始！',
-        'Voidwalker': 'ヴォイドウォーカー',
-      },
-    },
-  ],
-  timelineReplace: [
-    {
       'locale': 'de',
       'replaceSync': {
         'Voidwalker': 'Voidwalker',
@@ -612,7 +603,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Voidwalker': 'Voidwalker',
+        'Voidwalker': 'ヴォイドウォーカー',
         'Engage!': '戦闘開始！',
       },
       'replaceText': {
