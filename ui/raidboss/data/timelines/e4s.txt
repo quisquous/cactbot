@@ -51,7 +51,7 @@ hideall "Earthen Wheels"
 407.5 "Landslide" sync /:Titan:411A:/
 413.5 "Right/Left Landslide" sync /:Titan:411[CD]:/
 420.7 "Earthen Armor" sync /:Titan:40E7:/
-431.1 "Orogenesis" sync /:Titan:4371:/
+431.1 "Orogenesis" #sync /:Titan:4371:/
 
 
 ### Gauntlets path
@@ -76,7 +76,7 @@ hideall "Earthen Wheels"
 717.6 "Magnitude 5.0" sync /:Titan:4121:/
 720.7 "Earthen Armor" sync /:Titan:40E9:/
 722.6 "Pulse of the Land" sync /:Titan:4106:/
-730.5 "Orogenesis" sync /:Titan:4371:/
+730.5 "Orogenesis" #sync /:Titan:4371:/
 
 
 ### Transition
