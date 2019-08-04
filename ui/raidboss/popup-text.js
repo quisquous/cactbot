@@ -5,6 +5,7 @@ class PopupText {
     this.options = options;
     this.triggers = [];
     this.timers = [];
+    this.intervals = {};
     this.inCombat = false;
     this.resetWhenOutOfCombat = true;
     this.infoText = document.getElementById('popup-text-info');
@@ -212,6 +213,9 @@ class PopupText {
     };
     this.StopTimers();
     this.triggerSuppress = {};
+    for (let iv in this.intervals)
+      clearInterval(this.intervals[iv]);
+    this.intervals = {};
   }
 
   StopTimers() {
@@ -324,6 +328,13 @@ class PopupText {
           }
         }
       };
+      let resolveText = (condition, callback, id) => {
+        console.log(condition(gPopupText.data))
+        if (condition(this.data)) {
+          window.clearInterval(this.intervals[id]);
+          callback();
+        }
+      };
 
       let makeTextElement = function(text, className) {
         let div = document.createElement('div');
@@ -349,7 +360,16 @@ class PopupText {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          
+          if ('resolve' in trigger && 'id' in trigger) {
+            Object.assign(this.intervals, {
+              [trigger.id]: window.setInterval(
+                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id),
+              300)
+            });
+          }
+          else
+            window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!soundUrl) {
             soundUrl = that.options.AlarmSound;
@@ -366,7 +386,16 @@ class PopupText {
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          
+          if ('resolve' in trigger && 'id' in trigger) {
+            Object.assign(this.intervals, {
+              [trigger.id]: window.setInterval(
+                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id),
+              300)
+            });
+          }
+          else
+            window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!soundUrl) {
             soundUrl = that.options.AlertSound;
@@ -383,7 +412,16 @@ class PopupText {
           let holder = that.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          
+          if ('resolve' in trigger && 'id' in trigger) {
+            Object.assign(this.intervals, {
+              [trigger.id]: window.setInterval(
+                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id),
+              300)
+            });
+          }
+          else
+            window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
 
           if (!soundUrl) {
             soundUrl = that.options.InfoSound;
