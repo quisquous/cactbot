@@ -385,6 +385,7 @@
         'Engage!': 'Start!',
         'Eden Prime': 'Prim-Eden',
         'Arcane Sphere': 'Arkane Sphäre',
+        'Guardian Of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -422,6 +423,7 @@
         'Delta Attack': 'Delta-Attacke',
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        '--center--': '--mitte--',
       },
       '~effectNames': {
         'Slippery Prey': 'Unmarkierbar',

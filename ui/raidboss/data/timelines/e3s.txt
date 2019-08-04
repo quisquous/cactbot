@@ -20,8 +20,10 @@ hideall "--sync--"
 69.7 "Freak Wave" sync /:Leviathan:3FE6:/
 73.7 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 87.9 "Maelstrom" sync /:Leviathan:3FFA:/
+90.0  "--untargetable--"
 99.3 "Spinning Dive 1" #sync /:Leviathan:3FFD:/
 101.3 "Spinning Dive 2" #sync /:Leviathan:3FFD:/
+103.5 "--targetable--"
 111.5 "Tidal Roar" sync /:Leviathan:3FDC:/
 127.8 "Tsunami" sync /:Leviathan:3FF3:/
 132.8 "Tsunami" sync /:Leviathan:441C:/
@@ -46,9 +48,11 @@ hideall "--sync--"
 269.4 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 273.5 "Temporary Current" sync /:Leviathan:(3FEC|3FED):/
 287.8 "Maelstrom" sync /:Leviathan:3FFA:/
+209.0 "--untargetable--"
 301.2 "Spinning Dive 1" #sync /:Leviathan:3FFD:/
 303.1 "Spinning Dive 2" #sync /:Leviathan:3FFD:/
 305.1 "Spinning Dive 3" #sync /:Leviathan:3FFD:/
+307.5 "--targetable--"
 316.4 "Tidal Rage" sync /:Leviathan:3FDE:/
 323.5 "Rip Current" sync /:Leviathan:3FE0:/
 339.7 "Stormy Horizon" sync /:Leviathan:3FFE:/

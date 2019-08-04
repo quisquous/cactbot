@@ -54,13 +54,14 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Pulse - Spread',
+        en: 'Spread Marker',
       },
     },
     {
       id: 'E4S Evil Earth',
       regex: / 14:410C:Titan starts using Evil Earth/,
-      alertText: {
+      suppressSeconds: 1,
+      infoText: {
         en: 'Look for Evil Earth Marker',
       },
     },
@@ -71,7 +72,7 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Force - Stack',
+        en: 'Stack Marker',
       },
     },
     {
@@ -96,15 +97,14 @@
     {
       id: 'E4S Massive Landslide - Front',
       regex: / 15:........:Titan:40E6:Earthen Gauntlets/,
-      delaySeconds: 2,
       alertText: {
-        en: 'Get in Front',
+        en: 'Landslide: In Front',
       },
     },
     {
       id: 'E4S Massive Landslide - Sides',
       regex: / 15:........:Titan:4117:Massive Landslide/,
-      alertText: {
+      infoText: {
         en: 'Get to Sides',
       },
     },
@@ -112,35 +112,7 @@
       id: 'E4S Landslide',
       regex: / 14:411A:Titan starts using Landslide/,
       alertText: {
-        en: 'Jump - Stay Out',
-      },
-    },
-    {
-      id: 'E4S Leftward Landslide 1',
-      regex: / 14:411C:Titan starts using Leftward Landslide/,
-      alertText: {
-        en: 'Go Left',
-      },
-    },
-    {
-      id: 'E4S Leftward Landslide 2',
-      regex: / 15:........:Titan:411C:Leftward Landslide/,
-      alertText: {
-        en: 'Go Right',
-      },
-    },
-    {
-      id: 'E4S Rightward Landslide 1',
-      regex: / 14:411D:Titan starts using Rightward Landslide/,
-      alertText: {
-        en: 'Go Right',
-      },
-    },
-    {
-      id: 'E4S Rightward Landslide 2',
-      regex: / 15:........:Titan:411D:Rightward Landslide/,
-      alertText: {
-        en: 'Go Left',
+        en: 'Back Corners',
       },
     },
     {
@@ -150,35 +122,34 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Bomb Marker on YOU',
+        en: 'Bomb on YOU',
       },
     },
     {
       id: 'E4S Seismic Wave',
       regex: / 14:4110:Titan starts using Seismic Wave/,
       alertText: {
-        en: 'Hide!',
+        en: 'Hide Behind',
       },
     },
     {
       id: 'E4S Fault Line - Sides',
-      regex: / 15:........:Titan:40E8:Earthen Wheels/,
-      delaySeconds: 2,
+      regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels/,
       alertText: {
-        en: 'Get to Sides',
+        en: 'Wheels: On Sides',
       },
     },
     {
       id: 'E4S Fault Line - Front',
-      regex: / 15:........:Titan:411F:Fault Line/,
-      alertText: {
-        en: 'Get away from tank!',
+      regex: / 16:\y{ObjectId}:Titan:411F:Fault Line/,
+      infoText: {
+        en: 'Tank Charge',
       },
     },
     {
       id: 'E4S Magnitude 5.0',
       regex: / 14:4121:Titan starts using Magnitude 5.0/,
-      infoText: {
+      alertText: {
         en: 'Get Under',
       },
     },
@@ -196,28 +167,28 @@
       id: 'E4S Earthen Fist - Left/Right',
       regex: / 14:412F:Titan Maximum starts using Earthen Fist/,
       infoText: {
-        en: 'GO LEFT THEN RIGHT',
+        en: 'Left, Go Right',
       },
     },
     {
       id: 'E4S Earthen Fist - Right/Left',
       regex: / 14:4130:Titan Maximum starts using Earthen Fist/,
       infoText: {
-        en: 'GO RIGHT THEN LEFT',
+        en: 'Right, Go Left',
       },
     },
     {
       id: 'E4S Earthen Fist - 2x Left',
       regex: / 14:4131:Titan Maximum starts using Earthen Fist/,
       infoText: {
-        en: 'STAY LEFT',
+        en: 'Left, Stay Left',
       },
     },
     {
       id: 'E4S Earthen Fist - 2x Right',
       regex: / 14:4132:Titan Maximum starts using Earthen Fist/,
       infoText: {
-        en: 'STAY RIGHT',
+        en: 'Right, Stay Right',
       },
     },
     {
@@ -235,7 +206,7 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Weight Marker on YOU - Get Away',
+        en: 'Weight, Get Out',
       },
     },
     {
@@ -244,16 +215,16 @@
       alertText: function(data, matches) {
         if (data.role != 'tank') {
           return {
-            en: 'Get Away from Tanks',
+            en: 'Away from Tanks',
           };
         }
         if (matches[1] == data.me) {
           return {
-            en: 'Stack Marker on YOU',
+            en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack Marker on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -264,7 +235,7 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Gaol Marker on YOU',
+        en: 'Gaol on YOU',
       },
     },
     {
