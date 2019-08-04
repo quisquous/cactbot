@@ -56,7 +56,7 @@
     },
     {
       // There's another Void Blizzard IV with ID 1C77, but it's not the timing we want
-      //T he actual knockback cast is Void Aero IV, but it gives only 2-3s warning.
+      // The actual knockback cast is Void Aero IV, but it gives only 2-3s warning.
       id: 'Dun Scaith Blizzard Pillars',
       regex: / 14:1C8B:Deathgaze Hollow starts using Void Blizzard IV/,
       suppressSeconds: 5,
