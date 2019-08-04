@@ -341,7 +341,7 @@
         en: 'Avoid AoE, Kill Connla',
       },
     },
-    
+
     // These triggers are common to both Scathach and Diabolos
 
     {
