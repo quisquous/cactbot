@@ -40,9 +40,9 @@ hideall "Earthen Wheels"
 315.3 "Bomb Boulders" sync /:Titan:4109:/
 327.4 "Seismic Wave" sync /:Titan:4110:/
 340.7 "Voice of the Land" sync /:Titan:4114:/
-350.0 "Stonecrusher" sync /:Titan:4116:/
-353.1 "Stonecrusher 1" #sync /:Titan:4143:/
-356.1 "Stonecrusher 2" #sync /:Titan:4143:/
+350.0 "Stonecrusher 1" sync /:Titan:4116:/
+353.1 "Stonecrusher 2" #sync /:Titan:4143:/
+356.1 "Stonecrusher 3" #sync /:Titan:4143:/
 372.4 "Geocrush" sync /:Titan:4113:/
 376.2 "Earthen Gauntlets" sync /:Titan:40E6:/
 382.6 "Pulse of the Land" sync /:Titan:4106:/
