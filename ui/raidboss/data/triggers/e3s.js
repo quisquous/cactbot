@@ -434,7 +434,7 @@
       regexFr: / 14:3FEB:Léviathan starts using Courant évanescent/,
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
-        en: 'left front / back right',
+        en: 'front left / back right',
         ja: '左前 / 右後ろ',
       },
     },
@@ -446,7 +446,7 @@
       regexFr: / 14:3FEA:Léviathan starts using Courant évanescent/,
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
-        en: 'right front / back left',
+        en: 'front right / back left',
         ja: '右前 / 左後ろ',
       },
     },
@@ -466,7 +466,7 @@
       },
       delaySeconds: 6.2,
       alertText: {
-        en: 'left front / back right',
+        en: 'front left / back right',
         ja: '左前 / 右後ろ',
       },
     },
@@ -482,7 +482,7 @@
       },
       delaySeconds: 6.2,
       alertText: {
-        en: 'right front / back left',
+        en: 'front right / back left',
         ja: '右前 / 左後ろ',
       },
     },
