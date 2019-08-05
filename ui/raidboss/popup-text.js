@@ -455,7 +455,14 @@ class PopupText {
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
       if (ttsText && playSpeech) {
-        ttsText = ttsText.replace(/[#!]/, '');
+        // Heuristics for auto tts.
+        // * Remove a bunch of chars.
+        ttsText = ttsText.replace(/[#!\/]/, '');
+        // * arrows at the front or the end are directions, e.g. "east =>"
+        ttsText = ttsText.replace(/[-=]>\s*$/, '');
+        ttsText = ttsText.replace(/^\s*<[-=]/, '');
+        // * arrows in the middle are a sequence, e.g. "in => out => spread"
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       } else if (soundUrl && playSounds) {
