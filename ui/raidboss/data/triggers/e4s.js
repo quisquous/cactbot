@@ -20,16 +20,6 @@
     {
       id: 'E4S Stonecrusher',
       regex: / 14:4116:Titan starts using Stonecrusher on (\y{Name})/,
-      alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
-          return;
-
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-        };
-      },
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -38,13 +28,20 @@
             fr: 'Tankbuster sur VOUS',
           };
         }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-          };
-        }
+      },
+      // As this seems to usually seems to be invulned,
+      // don't make a big deal out of it.
+      infoText: function(data, matches) {
+        if (matches[1] == data.me)
+          return;
+        if (data.role != 'tank' && data.role != 'healer')
+          return;
+
+        return {
+          en: 'Buster on ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+        };
       },
     },
     {
@@ -167,14 +164,14 @@
       id: 'E4S Earthen Fist - Left/Right',
       regex: / 14:412F:Titan Maximum starts using Earthen Fist/,
       infoText: {
-        en: 'Left, Go Right',
+        en: 'Left, Then Right',
       },
     },
     {
       id: 'E4S Earthen Fist - Right/Left',
       regex: / 14:4130:Titan Maximum starts using Earthen Fist/,
       infoText: {
-        en: 'Right, Go Left',
+        en: 'Right, Then Left',
       },
     },
     {
@@ -239,6 +236,12 @@
       },
     },
     {
+      // TODO: these could be better called out
+      // On the first set, maybe should tell you where to put the jails,
+      // if it's a consistent strategy to ranged lb the jails.  After that
+      // it could just tell you to "go right" or "go left".
+      // On the second set, could just say "go right" / "go front" and
+      // keep track of which it has seen.
       id: 'E4S Plate Fracture - Front Right',
       regex: / 14:4125:Titan Maximum starts using Plate Fracture/,
       infoText: {
