@@ -237,10 +237,10 @@
       regex: / 14:1DA4:Proto Ultima starts using Flare Star/,
       suppressSeconds: 1,
       preRun: function(data) {
-        data.flareStarCount = (data.flareStarCount || 0);
+        data.flareStarCount = (data.flareStarCount || 0) + 1;
       },
       alertText: function(data) {
-        if (data.flareStarCount == 0) {
+        if (data.flareStarCount == 1) {
           return {
             en: 'Out of center--Wait for outer ring then keep going',
           };
@@ -248,9 +248,6 @@
         return {
           en: 'Avoid flares--Wait for outer ring then keep going',
         };
-      },
-      run: function(data) {
-        data.flareStarCount + 1;
       },
     },
     {
