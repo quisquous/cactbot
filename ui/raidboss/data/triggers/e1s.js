@@ -31,7 +31,7 @@
       id: 'E1S Paradise Regained But Lost',
       regex: / 1E:\y{ObjectId}:Eden Prime loses the effect of (?:Unknown_7B6|Paradise Regained)/,
       regexDe: / 1E:\y{ObjectId}:Prim-Eden loses the effect of (?:Unknown_7B6|Wiedergewonnenes Paradies)/,
-      regexFr: / 1E:\y{ObjectId}:Primo-Éden loses the effect of (?:Unknown_7B6|Paradise Regained)/,
+      regexFr: / 1E:\y{ObjectId}:Primo-Éden loses the effect of (?:Unknown_7B6|Paradis retrouvé)/,
       regexJa: / 1E:\y{ObjectId}:エデン・プライム loses the effect of (?:Unknown_7B6|パラダイスリゲイン)/,
       run: function(data) {
         data.paradise = false;
@@ -133,6 +133,7 @@
       alertText: {
         en: 'Cross Spread',
         de: 'Verteilen',
+        fr: 'Ecartez-vous en croix',
       },
     },
     {
@@ -146,11 +147,13 @@
           return {
             en: 'Get In, Spread',
             de: 'Rein gehen, verteilen',
+            fr: 'Intérieur, écartez-vous',
           };
         }
         return {
           en: 'In, Stack Behind',
           de: 'Rein, hinten stacken',
+          fr: 'Intérieur, pack derrière',
         };
       },
     },
@@ -249,6 +252,7 @@
       alertText: {
         en: 'Puddle Spread',
         de: 'Flächen verteilen',
+        fr: 'Ecartez-vous des autres',
       },
     },
     {
@@ -260,6 +264,7 @@
       alertText: {
         en: 'Stack With Partner',
         de: 'Mit Partner stacken',
+        fr: 'Packez-vous avec votre partenaire',
       },
     },
     {
@@ -286,6 +291,7 @@
       infoText: {
         en: 'Stack in front of tank',
         de: 'Vorne mit dem Tank stacken',
+        fr: 'Packez devant le tank',
       },
     },
     {
@@ -302,11 +308,13 @@
           return {
             en: 'Pass Prey to DPS',
             de: 'Marker einem DPS geben',
+            fr: 'Donnez la marque à un DPS',
           };
         }
         return {
           en: 'Pass Prey to Tank',
           de: 'Marker einem Tank geben',
+          fr: 'Donnez la marque à un Tank',
         };
       },
     },
@@ -327,6 +335,7 @@
       alertText: {
         en: 'Take prey from healer',
         de: 'Marker vom Heiler nehmen',
+        fr: 'Prenez la marque du healer',
       },
     },
     {
@@ -341,6 +350,7 @@
       alertText: {
         en: 'Silence Guardian',
         de: 'Stumm auf Hüter ',
+        fr: 'Interrompez le gardien',
       },
     },
     {
@@ -364,6 +374,7 @@
       infoText: {
         en: 'Get Outside Your Orb',
         de: 'Geh zu deinem Orb',
+        fr: 'Allez à l\'extérieur de votre orbe',
       },
     },
     {
@@ -375,6 +386,7 @@
       infoText: {
         en: 'Bait Orb Lasers Outside',
         de: 'Laser nach drausen ködern',
+        fr: 'Appâtez les lasers à l\'extérieur',
       },
     },
   ],
