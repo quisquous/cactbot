@@ -387,10 +387,10 @@ class PopupText {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
                   resolveText.bind(
-                    that,
-                    trigger.resolve,
-                    removeText.bind(that, holder, div),
-                    trigger.id
+                      that,
+                      trigger.resolve,
+                      removeText.bind(that, holder, div),
+                      trigger.id
                   )
               ),
             });
@@ -418,10 +418,10 @@ class PopupText {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
                   resolveText.bind(
-                    that,
-                    trigger.resolve,
-                    removeText.bind(that, holder, div),
-                    trigger.id
+                      that,
+                      trigger.resolve,
+                      removeText.bind(that, holder, div),
+                      trigger.id
                   )
               ),
             });
@@ -449,10 +449,10 @@ class PopupText {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
                     resolveText.bind(
-                      that,
-                      trigger.resolve,
-                      removeText.bind(that, holder, div),
-                      trigger.id
+                        that,
+                        trigger.resolve,
+                        removeText.bind(that, holder, div),
+                        trigger.id
                     )
               ),
             });
