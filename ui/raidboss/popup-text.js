@@ -130,12 +130,32 @@ class PopupText {
               // check if locale has replacement dictionary
               for (let dict in set.timelineReplace) {
                 dict = set.timelineReplace[dict];
-                if (set.timelineReplace[dict].locale == locale) {
+                if (dict.locale == locale) {
                   // now run over dictionary
-                  for (let key in dict.replaceSync)
-                    string = string.replace(key, dict.replaceSync[key]);
-                  for (let key in dict.replaceText)
-                    string = string.replace(key, dict.replaceText[key]);
+                  for (let key in dict.replaceSync) {
+                    let replacement = dict.replaceSync[key];
+                    while (replacement.search(/\s\w/) > 0) {
+                      replacement = replacement.replace(/\s\w/,
+                          ' [' + 
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() + 
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() + 
+                          ']'
+                      );
+                    }
+                    string = string.replace(new RegExp(key, "i"), replacement);
+                  }
+                  for (let key in dict.replaceText) {
+                    let replacement = dict.replaceText[key];
+                    while (replacement.search(/\s\w/) > 0) {
+                      replacement = replacement.replace(/\s\w/,
+                          ' [' + 
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() + 
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() + 
+                          ']'
+                      );
+                    }
+                    string = string.replace(new RegExp(key, "i"), replacement);
+                  }
                   break;
                 }
               }
