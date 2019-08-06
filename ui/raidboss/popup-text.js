@@ -161,7 +161,7 @@ class PopupText {
               }
               Object.assign(trigger, { [regexLocale]: new RegExp(string) });
               if (this.options.Debug)
-                console.log('Trigger ' + trigger.id + ' translated: ' + trigger[regexLocale])
+                console.log('Trigger ' + trigger.id + ' translated: ' + trigger[regexLocale]);
             }
 
             // Locale-based regex takes precedence.
