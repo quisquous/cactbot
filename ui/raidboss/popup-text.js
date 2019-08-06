@@ -386,12 +386,12 @@ class PopupText {
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(
-                  that,
-                  trigger.resolve,
-                  removeText.bind(that, holder, div),
-                  trigger.id
-                )
+                  resolveText.bind(
+                    that,
+                    trigger.resolve,
+                    removeText.bind(that, holder, div),
+                    trigger.id
+                  )
               ),
             });
           } else {
@@ -417,12 +417,12 @@ class PopupText {
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(
-                  that,
-                  trigger.resolve,
-                  removeText.bind(that, holder, div),
-                  trigger.id
-                )
+                  resolveText.bind(
+                    that,
+                    trigger.resolve,
+                    removeText.bind(that, holder, div),
+                    trigger.id
+                  )
               ),
             });
           } else {
@@ -448,12 +448,12 @@ class PopupText {
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                  resolveText.bind(
-                    that,
-                    trigger.resolve,
-                    removeText.bind(that, holder, div),
-                    trigger.id
-                  )
+                    resolveText.bind(
+                      that,
+                      trigger.resolve,
+                      removeText.bind(that, holder, div),
+                      trigger.id
+                    )
               ),
             });
           } else {
