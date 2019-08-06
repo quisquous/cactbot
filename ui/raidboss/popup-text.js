@@ -122,6 +122,27 @@ class PopupText {
             if (!trigger.regex)
               console.error('Trigger ' + trigger.id + ': has no regex property specified');
 
+            // If trigger has no localized regex but does have a replacement
+            // create regex
+            // FIXME: move this to loading data files to save time
+            if (!trigger[regexLocale] && set.timelineReplace) {
+              let string = trigger.regex.toString().replace(/^\/|\/$/g, '');
+              // check if locale has replacement dictionary
+              for (let dict in set.timelineReplace) {
+                if (dict.locale == locale) {
+                  // now run over dictionary
+                  for (let key in dict.replaceSync) {
+                    string.replace(new RegExp(key), dict.replaceSync[key]);
+                  }
+                  for (let key in dict.replaceText) {
+                    string.replace(new RegExp(key), dict.replaceText[key]);
+                  }
+                  break;
+                }
+              }
+              Object.assign(trigger, { [regexLocale]: new RegExp(string) });
+            }
+
             // Locale-based regex takes precedence.
             let regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
             if (!regex) {
@@ -212,16 +233,20 @@ class PopupText {
       CanSleep: () => this.sleepJobs.indexOf(this.job) >= 0,
     };
     this.StopTimers();
+    this.StopIntervals();
     this.triggerSuppress = {};
-    for (let iv in this.intervals)
-      clearInterval(this.intervals[iv]);
-    this.intervals = {};
   }
 
   StopTimers() {
     for (let i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];
+  }
+
+  StopIntervals() {
+    for (let iv in this.intervals)
+      window.clearInterval(this.intervals[iv]);
+    this.intervals = {};
   }
 
   OnLog(e) {
@@ -327,11 +352,10 @@ class PopupText {
             break;
           }
         }
-      };
-      let resolveText = (condition, callback, id) => {
-        console.log(condition(gPopupText.data))
+        };
+      let resolveText = (condition, callback, triggerId) => {
         if (condition(this.data)) {
-          window.clearInterval(this.intervals[id]);
+          window.clearInterval(this.intervals[triggerId]);
           callback();
         }
       };
@@ -360,16 +384,16 @@ class PopupText {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
-          
+
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id),
-              300)
+                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id)),
             });
           }
-          else
+          else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          }
 
           if (!soundUrl) {
             soundUrl = that.options.AlarmSound;
@@ -386,16 +410,16 @@ class PopupText {
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
-          
+
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id),
-              300)
+                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id)),
             });
           }
-          else
+          else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          }
 
           if (!soundUrl) {
             soundUrl = that.options.AlertSound;
@@ -412,16 +436,16 @@ class PopupText {
           let holder = that.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
-          
+
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id),
-              300)
+                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id)),
             });
           }
-          else
+          else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          }
 
           if (!soundUrl) {
             soundUrl = that.options.InfoSound;
@@ -493,7 +517,14 @@ class PopupText {
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
       if (ttsText && playSpeech) {
-        ttsText = ttsText.replace(/[#!]/, '');
+        // Heuristics for auto tts.
+        // * Remove a bunch of chars.
+        ttsText = ttsText.replace(/[#!\/]/, '');
+        // * arrows at the front or the end are directions, e.g. "east =>"
+        ttsText = ttsText.replace(/[-=]>\s*$/, '');
+        ttsText = ttsText.replace(/^\s*<[-=]/, '');
+        // * arrows in the middle are a sequence, e.g. "in => out => spread"
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       } else if (soundUrl && playSounds) {
