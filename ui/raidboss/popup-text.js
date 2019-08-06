@@ -129,16 +129,19 @@ class PopupText {
               let string = trigger.regex.toString().replace(/^\/|\/$/g, '');
               // check if locale has replacement dictionary
               for (let dict in set.timelineReplace) {
-                if (dict.locale == locale) {
+                dict = set.timelineReplace[dict];
+                if (set.timelineReplace[dict].locale == locale) {
                   // now run over dictionary
                   for (let key in dict.replaceSync)
-                    string.replace(new RegExp(key), dict.replaceSync[key]);
+                    string = string.replace(key, dict.replaceSync[key]);
                   for (let key in dict.replaceText)
-                    string.replace(new RegExp(key), dict.replaceText[key]);
+                    string = string.replace(key, dict.replaceText[key]);
                   break;
                 }
               }
               Object.assign(trigger, { [regexLocale]: new RegExp(string) });
+              if (this.options.Debug)
+                console.log('Trigger ' + trigger.id + ' translated: ' + trigger[regexLocale])
             }
 
             // Locale-based regex takes precedence.
