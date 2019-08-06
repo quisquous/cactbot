@@ -457,7 +457,9 @@ class PopupText {
       if (ttsText && playSpeech) {
         // Heuristics for auto tts.
         // * Remove a bunch of chars.
-        ttsText = ttsText.replace(/[#!\/]/, '');
+        ttsText = ttsText.replace(/[#!]/, '');
+        // * slashes between mechanics
+        ttsText = ttsText.replace('/', ' ');
         // * arrows at the front or the end are directions, e.g. "east =>"
         ttsText = ttsText.replace(/[-=]>\s*$/, '');
         ttsText = ttsText.replace(/^\s*<[-=]/, '');
