@@ -136,25 +136,25 @@ class PopupText {
                     let replacement = dict.replaceSync[key];
                     while (replacement.search(/\s\w/) > 0) {
                       replacement = replacement.replace(/\s\w/,
-                          ' [' + 
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() + 
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() + 
+                          ' [' +
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() +
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() +
                           ']'
                       );
                     }
-                    string = string.replace(new RegExp(key, "i"), replacement);
+                    string = string.replace(new RegExp(key, 'i'), replacement);
                   }
                   for (let key in dict.replaceText) {
                     let replacement = dict.replaceText[key];
                     while (replacement.search(/\s\w/) > 0) {
                       replacement = replacement.replace(/\s\w/,
-                          ' [' + 
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() + 
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() + 
+                          ' [' +
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() +
+                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() +
                           ']'
                       );
                     }
-                    string = string.replace(new RegExp(key, "i"), replacement);
+                    string = string.replace(new RegExp(key, 'i'), replacement);
                   }
                   break;
                 }
