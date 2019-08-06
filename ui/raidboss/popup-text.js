@@ -131,12 +131,10 @@ class PopupText {
               for (let dict in set.timelineReplace) {
                 if (dict.locale == locale) {
                   // now run over dictionary
-                  for (let key in dict.replaceSync) {
+                  for (let key in dict.replaceSync)
                     string.replace(new RegExp(key), dict.replaceSync[key]);
-                  }
-                  for (let key in dict.replaceText) {
+                  for (let key in dict.replaceText)
                     string.replace(new RegExp(key), dict.replaceText[key]);
-                  }
                   break;
                 }
               }
@@ -352,7 +350,7 @@ class PopupText {
             break;
           }
         }
-        };
+      };
       let resolveText = (condition, callback, triggerId) => {
         if (condition(this.data)) {
           window.clearInterval(this.intervals[triggerId]);
@@ -388,10 +386,15 @@ class PopupText {
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id)),
+                resolveText.bind(
+                  that,
+                  trigger.resolve,
+                  removeText.bind(that, holder, div),
+                  trigger.id
+                )
+              ),
             });
-          }
-          else {
+          } else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
           }
 
@@ -414,10 +417,15 @@ class PopupText {
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id)),
+                resolveText.bind(
+                  that,
+                  trigger.resolve,
+                  removeText.bind(that, holder, div),
+                  trigger.id
+                )
+              ),
             });
-          }
-          else {
+          } else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
           }
 
@@ -440,10 +448,15 @@ class PopupText {
           if ('resolve' in trigger && 'id' in trigger) {
             Object.assign(this.intervals, {
               [trigger.id]: window.setInterval(
-                resolveText.bind(that, trigger.resolve, removeText.bind(that, holder, div), trigger.id)),
+                  resolveText.bind(
+                    that,
+                    trigger.resolve,
+                    removeText.bind(that, holder, div),
+                    trigger.id
+                  )
+              ),
             });
-          }
-          else {
+          } else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
           }
 
