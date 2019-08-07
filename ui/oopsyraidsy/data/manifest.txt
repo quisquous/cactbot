@@ -1,6 +1,10 @@
 byakko-ex.js
 general.js
 innocence-ex.js
+e1s.js
+e2s.js
+e3s.js
+e4s.js
 o4s.js
 o5s.js
 o6s.js
