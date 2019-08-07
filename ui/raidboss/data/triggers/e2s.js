@@ -286,7 +286,7 @@
       alertText: function(data) {
         return {
           en: 'Spread',
-          en: 'Verteilen',
+          de: 'Verteilen',
           fr: 'Dispersez-vous',
           ja: '散開',
         };
