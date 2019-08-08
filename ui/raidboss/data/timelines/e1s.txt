@@ -74,8 +74,7 @@ hideall "--sync--"
 760.0 "--center--" sync /:Eden Prime:4683:/
 766.5 "Dimensional Shift" sync /:Eden Prime:3D7F:/
 779.2 "Eden's Gravity" sync /:Eden Prime:3D70:/
-790.7 "Eden's Flare" sync /:Eden Prime:3D73:/
-798.2 "--sync--" sync /:44FC:Eden Prime:/ jump 515.4
+790.7 "Eden's Flare" sync /:Eden Prime:3D73:/ jump 507.9
 
 ### Enrage
 900.0 "Fragor Maximus (Enrage)" sync /:45E4:Eden Prime:/ window 500,0 duration 10.0
