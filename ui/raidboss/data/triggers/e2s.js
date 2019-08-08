@@ -44,8 +44,8 @@
     },
     {
       id: 'E2S Spell In Waiting Lose',
-      regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of (?:Spell-In-Waiting|)/,
-      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant loses the effect of (?:Déphasage incantatoire|)/,
+      regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
+      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage incantatoire/,
       run: function(data) {
         data.waiting = false;
       },
