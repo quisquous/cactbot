@@ -81,6 +81,7 @@ hideall "Earthen Wheels"
 
 ### Transition
 1000.0 "Orogenesis" sync /:Titan:4371:/ window 1000,0
+1026.1 "--targetable--"
 1033.1 "Earthen Fury" sync /:Titan Maximum:4124:/
 1048.3 "Earthen Fist" sync /:Titan Maximum:(4130|4131|4132|412F):/
 1053.2 "Weight of the Land" sync /:Titan:4108:/
