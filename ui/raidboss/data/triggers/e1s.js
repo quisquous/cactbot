@@ -494,8 +494,8 @@
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
-        '--center--': '--mitte--',
-        '--corner--': '--ecke--',
+        '--center--': '--Centre--',
+        '--corner--': '--Coin--',
       },
       '~effectNames': {
         'Slippery Prey': 'Marquage Impossible',
