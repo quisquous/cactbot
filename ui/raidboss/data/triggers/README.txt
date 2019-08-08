@@ -76,6 +76,8 @@
   alertText = 'Info',
   // Text to show with alarm importance. May be a string or a function(data, matches) that returns a string.
   alarmText = 'Info',
+  // A function(data) to keep a text on screen until a condition has been met.
+  resolve: function(data) { if (condition to resolve) { return true; } return false; }
   // Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'. Paths to sound files are
   // relative to the ui/raidboss/ directory.
   sound: '',
