@@ -11,7 +11,7 @@ hideall "--sync--"
 0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
 1.5 "--sync--" sync /:Eden Prime:367:/ window 2,0
-12.0 "Eden's Gravity" sync /:Eden Prime:3D70:/ window 12,1
+12.0 "Eden's Gravity" sync /:Eden Prime:3D70:/ window 12,5
 25.6 "Vice And Virtue (D)" sync /:Eden Prime:44EF:/
 32.0 "Eden's Flare" sync /:Eden Prime:3D73:/
 50.5 "Vice And Virtue (T)" sync /:Eden Prime:44EE:/
@@ -47,7 +47,7 @@ hideall "--sync--"
 528.8 "Vice And Virtue! (T)" sync /:Eden Prime:3D78:/
 542.5 "Vice And Virtue! (D)" sync /:Eden Prime:3D7A:/
 544.9 "--sync--" sync /:Eden Prime:4683:/
-555.0 "Delta Attack! (Donut)" sync /:Eden Prime:44F8:/
+555.0 "Delta Attack (Donut)" sync /:Eden Prime:44F8:/
 568.8 "Vice And Virtue! (H)" sync /:Eden Prime:3D7D:/
 576.1 "Spear Of Paradise" sync /:Eden Prime:3D88:/
 577.7 "Heavensunder" sync /:Eden Prime:3D89:/
@@ -80,4 +80,9 @@ hideall "--sync--"
 800.2 "Paradise Regained" sync /:Eden Prime:44FC:/
 810.7 "Vice and Virtue (T)" sync /:Eden Prime:3D78:/
 824.2 "Vice and Virtue (DPS)" sync /:Eden Prime:3D7A:/
-836.7 "Enrage" sync /:Eden Prime:45E4:/
+826.2 "--sync--" sync /:Eden Prime:4683:/
+826.5 "--Enrage Soon--"
+
+# Enrage can either happen immediately, or a final Delta Attack before enraging
+900.0 "Delta Attack (Donut)" sync /:44F8:Eden Prime:/ window 100,0 duration 6.0
+908.0 "Fragor Maximus (Enrage)" sync /:45E4:Eden Prime:/ window 100,5 duration 10.0
