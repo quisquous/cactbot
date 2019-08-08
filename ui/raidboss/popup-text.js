@@ -122,48 +122,6 @@ class PopupText {
             if (!trigger.regex)
               console.error('Trigger ' + trigger.id + ': has no regex property specified');
 
-            // If trigger has no localized regex but does have a replacement
-            // create regex
-            // FIXME: move this to loading data files to save time
-            if (!trigger[regexLocale] && set.timelineReplace) {
-              let string = trigger.regex.toString().replace(/^\/|\/$/g, '');
-              // check if locale has replacement dictionary
-              for (let dict in set.timelineReplace) {
-                dict = set.timelineReplace[dict];
-                if (dict.locale == locale) {
-                  // now run over dictionary
-                  for (let key in dict.replaceSync) {
-                    let replacement = dict.replaceSync[key];
-                    while (replacement.search(/\s\w/) > 0) {
-                      replacement = replacement.replace(/\s\w/,
-                          ' [' +
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() +
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() +
-                          ']'
-                      );
-                    }
-                    string = string.replace(new RegExp(key, 'i'), replacement);
-                  }
-                  for (let key in dict.replaceText) {
-                    let replacement = dict.replaceText[key];
-                    while (replacement.search(/\s\w/) > 0) {
-                      replacement = replacement.replace(/\s\w/,
-                          ' [' +
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toUpperCase() +
-                          replacement.charAt(replacement.search(/\s\w/) + 1).toLowerCase() +
-                          ']'
-                      );
-                    }
-                    string = string.replace(new RegExp(key, 'i'), replacement);
-                  }
-                  break;
-                }
-              }
-              Object.assign(trigger, { [regexLocale]: new RegExp(string) });
-              if (this.options.Debug)
-                console.log('Trigger ' + trigger.id + ' translated: ' + trigger[regexLocale]);
-            }
-
             // Locale-based regex takes precedence.
             let regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
             if (!regex) {
