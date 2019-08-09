@@ -77,4 +77,4 @@ hideall "--sync--"
 790.7 "Eden's Flare" sync /:Eden Prime:3D73:/ jump 507.9
 
 ### Enrage
-900.0 "Fragor Maximus (Enrage)" sync /:45E4:Eden Prime:/ window 500,0 duration 10.0
+900.0 "Fragor Maximus (Enrage)" sync /:45E4:Eden Prime/ window 500,0 duration 10.0
