@@ -11,6 +11,7 @@
     {
       id: 'E2S Punishing Ray',
       regex: /Punishing Ray/,
+      regexFr: /Rayon punitif/,
       regexJa: /パニッシュレイ/,
       beforeSeconds: 9,
       infoText: {
@@ -27,6 +28,7 @@
       alarmText: {
         en: 'Stack With Partner',
         de: 'Mit Partner stacken',
+        fr: 'Packez-vous avec votre partenaire',
         ja: '白黒合わせて',
       },
     },
@@ -35,6 +37,7 @@
     {
       id: 'E2S Spell In Waiting Gain',
       regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
+      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage incantatoire/,
       run: function(data) {
         data.waiting = true;
       },
@@ -42,6 +45,7 @@
     {
       id: 'E2S Spell In Waiting Lose',
       regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
+      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage incantatoire/,
       run: function(data) {
         data.waiting = false;
       },
@@ -118,6 +122,7 @@
       regexJa: / 14:3E63:ヴォイドウォーカー starts using (?:ドゥームヴォイド・クリーバー|)/,
       alertText: {
         en: 'Protean',
+        fr: 'Position',
         ja: '散開',
       },
     },
@@ -130,6 +135,7 @@
       alertText: {
         en: 'Sides',
         de: 'Seiten',
+        fr: 'Côtés',
         ja: '横へ',
       },
     },
@@ -167,6 +173,7 @@
       alertText: {
         en: 'Away From Hand',
         de: 'Weg von der Hand',
+        fr: 'Eloignez-vous de la main',
         ja: '手から離れて',
       },
     },
@@ -380,6 +387,7 @@
       alertText: {
         en: 'Flare',
         de: 'Flare',
+        fr: 'Brasier',
         ja: 'フレア捨てて',
       },
     },
@@ -403,7 +411,7 @@
       infoText: {
         en: 'Delayed Flare',
         de: 'Verzögerte Flare',
-        fr: 'Feu retardé',
+        fr: 'Brasier retardé',
         ja: 'フレア(ディレイ)',
       },
     },
@@ -417,6 +425,7 @@
         return {
           en: 'Flare',
           de: 'Flare',
+          fr: 'Brasier',
           ja: 'フレア捨てて',
         };
       },
@@ -434,6 +443,7 @@
         return {
           en: 'Flare aoes',
           de: 'Flare aoes',
+          fr: 'Dégâts de zone des Brasiers',
           ja: 'フレア AoE',
         };
       },
@@ -448,6 +458,7 @@
       alarmText: {
         en: 'Hell Wind: Get Out',
         de: 'Höllenwind: Raus gehen',
+        fr: 'Vent infernal: Dépackez-vous',
         ja: 'ヘルウィンド: HP1になるよ',
       },
       run: function(data) {
@@ -485,6 +496,7 @@
       infoText: {
         en: 'Delayed Hell Wind',
         de: 'Verzögerte Höllenwind',
+        fr: 'Vent infernal retardé',
         ja: 'ヘルウィンド(ディレイ)',
       },
     },
@@ -500,6 +512,7 @@
         return {
           en: 'Hell Wind: wait for heals',
           de: 'Höllenwind: Warte auf Heilung',
+          fr: 'Vent infernal: attendez les soins',
           ja: 'ヘルウィンド: HP戻ってから',
         };
       },
@@ -517,6 +530,7 @@
         return {
           en: 'Heal Hell Wind Targets',
           de: 'Heile Höllenwind Ziele',
+          fr: 'Soignez les cibles de Vent infernal',
           ja: 'HP戻して',
         };
       },
@@ -533,18 +547,22 @@
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
       regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
+      regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-taillade vengeresse|)/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using (?:復讐の連続剣|)/,
       infoText: {
         en: 'In, Protean, Sides',
+        fr: 'Intérieur, Position, Côtés',
         ja: '中 => 散開 => 横',
       },
     },
     {
       id: 'E2S Cycle of Chaos',
       regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
+      regexFr: / 14:40B9:Marcheuse du Néant starts using (?:Multi-taillade chaotique|)/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using (?:混沌の連続剣|)/,
       infoText: {
         en: 'Sides, In, Protean',
+        fr: 'Côtés, Intérieur, Position',
         ja: '横 => 中 => 散開',
       },
     },
