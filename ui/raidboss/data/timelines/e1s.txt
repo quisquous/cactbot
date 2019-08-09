@@ -74,7 +74,17 @@ hideall "--sync--"
 760.0 "--center--" sync /:Eden Prime:4683:/
 766.5 "Dimensional Shift" sync /:Eden Prime:3D7F:/
 779.2 "Eden's Gravity" sync /:Eden Prime:3D70:/
-790.7 "Eden's Flare" sync /:Eden Prime:3D73:/ jump 507.9
+790.7 "Eden's Flare" sync /:Eden Prime:3D73:/
+
+801.2 "Paradise Regained" sync /:Eden Prime:44FC:/ window 200,200 jump 518.4
+811.6 "Vice And Virtue! (T)"
+825.3 "Vice And Virtue! (D)"
+827.7 "--sync--"
+837.8 "Delta Attack (Donut)"
+851.6 "Vice And Virtue! (H)"
+858.9 "Spear Of Paradise"
+860.5 "Heavensunder"
+
 
 ### Enrage
 900.0 "Fragor Maximus (Enrage)" sync /:45E4:Eden Prime/ window 500,0 duration 10.0
