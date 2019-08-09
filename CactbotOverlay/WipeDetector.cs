@@ -6,7 +6,7 @@ namespace Cactbot {
   class WipeDetector {
     Regex wipe_regex_;
 
-    public WipeDetector(CactbotOverlay client) {
+    public WipeDetector(CactbotEventSource client) {
       this.client_ = client;
       client_.OnLogsChanged += OnLogsChanged;
       // See: https://gist.github.com/quisquous/250001cbce232a48e6a9ce772a56675a
@@ -14,7 +14,7 @@ namespace Cactbot {
       wipe_regex_ = new Regex(pattern);
     }
 
-    private CactbotOverlay client_;
+    private CactbotEventSource client_;
 
     private void WipeIt() {
       client_.Wipe();

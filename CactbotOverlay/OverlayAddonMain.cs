@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cactbot {
-  public class OverlayAddonMain : IOverlayAddon {
+  public class OverlayAddonMain : IOverlayAddonV2 {
     public string Name {
       get { return "Cactbot"; }
     }
@@ -15,33 +16,51 @@ namespace Cactbot {
       get { return "A hodgepodge of bindings"; }
     }
 
-    public Type OverlayType {
-      get { return typeof(CactbotOverlay); }
+    public Type EventSourceType {
+      get { return typeof(CactbotEventSource); }
     }
 
-    public Type OverlayConfigType {
-      get { return typeof(CactbotOverlayConfig); }
+    public Type EventSourceConfigType {
+      get { return typeof(CactbotEventSourceConfig); }
     }
 
-    public Type OverlayConfigControlType {
-      get { return typeof(CactbotOverlayConfigPanel); }
+    public Type EventSourceControlType {
+      get { return typeof(CactbotEventSourceConfigPanel); }
     }
 
-    public IOverlay CreateOverlayInstance(IOverlayConfig config) {
-      config.MaxFrameRate = 60;  // The maximum allowed by CEF, sadly: http://cefsharp.github.io/api/51.0.0/html/P_CefSharp_BrowserSettings_WindowlessFrameRate.htm
-      return new CactbotOverlay((CactbotOverlayConfig)config);
+    public Type OverlayType => null;
+    public Type OverlayConfigType => null;
+    public Type OverlayConfigControlType => null;
+
+    public IEventSource CreateEventSourceInstance(IEventSourceConfig config) {
+      return new CactbotEventSource((CactbotEventSourceConfig)config);
     }
 
-    public IOverlayConfig CreateOverlayConfigInstance(string name) {
-      return new CactbotOverlayConfig(name);
+    public IEventSourceConfig CreateEventSourceConfigInstance() {
+      return new CactbotEventSourceConfig();
     }
 
-    public System.Windows.Forms.Control CreateOverlayConfigControlInstance(IOverlay overlay) {
-      return new CactbotOverlayConfigPanel((CactbotOverlay)overlay);
+    public Control CreateEventSourceControlInstance(IEventSource source) {
+      return new CactbotEventSourceConfigPanel((CactbotEventSource)source);
     }
 
     public void Dispose() {
 
+    }
+
+    public IOverlay CreateOverlayInstance(IOverlayConfig config)
+    {
+      return null;
+    }
+
+    public IOverlayConfig CreateOverlayConfigInstance(string name)
+    {
+      return null;
+    }
+
+    public Control CreateOverlayConfigControlInstance(IOverlay overlay)
+    {
+        return null;
     }
   }
 }

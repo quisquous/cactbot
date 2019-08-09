@@ -1,5 +1,6 @@
 ﻿using Advanced_Combat_Tracker;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RainbowMage.OverlayPlugin;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,9 @@ namespace Cactbot {
   }
 
 
-  public class CactbotOverlay : OverlayBase<CactbotOverlayConfig>, ILogger {
+  public class CactbotEventSource : EventSourceBase, ILogger {
+    public CactbotEventSourceConfig Config { get; private set; }
+
     private static int kFastTimerMilli = 16;
     private static int kSlowTimerMilli = 300;
     private static int kUberSlowTimerMilli = 3000;
@@ -35,19 +38,11 @@ namespace Cactbot {
 
     // When true, the update function should reset notify state back to defaults.
     private bool reset_notify_state_ = false;
-    // When true, check for the latest version on the next Navigate. Used to only check once.
-    private static bool is_first_overlay_initialized_ = true;
     // Set to true when the constructor is run, to prevent premature navigation before we're able to log.
     private bool init_ = false;
 
     // Temporarily hold any navigations that occur during construction
     private string deferred_navigate_;
-
-    private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
-    JsonTextWriter dispatch_json_writer_;
-    JsonSerializer dispatch_serializer_;
-    JsonSerializer message_serializer_;
-    private Object dispatch_lock_ = new Object();
 
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
@@ -98,18 +93,22 @@ namespace Cactbot {
     public delegate void DataFilesReadHandler(JSEvents.DataFilesRead e);
     public event DataFilesReadHandler OnDataFilesRead;
 
-    public CactbotOverlay(CactbotOverlayConfig config)
-        : base(config, config.Name) {
+    public CactbotEventSource(CactbotEventSourceConfig config)
+        : base() {
+      Config = config; 
       main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
+
+      RegisterEventTypes(new List<string>()
+      {
+          "onGameExistsEvent", "onGameActiveChangedEvent", "onLogEvent", "onImportLogEvent", "onInCombatChangedEvent",
+          "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent", "onTargetChangedEvent",
+      });
     }
 
-    void Initialize() {
+    public override void Start() {
       ffxiv_ = new FFXIVProcess(this);
       fight_tracker_ = new FightTracker(this);
       wipe_detector_ = new WipeDetector(this);
-      dispatch_json_writer_ = new JsonTextWriter(new System.IO.StringWriter(dispatch_string_builder_));
-      dispatch_serializer_ = JsonSerializer.CreateDefault();
-      message_serializer_ = JsonSerializer.CreateDefault();
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
@@ -157,58 +156,54 @@ namespace Cactbot {
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
 
-      if (is_first_overlay_initialized_) {
-        is_first_overlay_initialized_ = false;
+      var versions = new VersionChecker(this);
+      Version local = versions.GetLocalVersion();
+      Version remote = versions.GetRemoteVersion();
 
-        var versions = new VersionChecker(this);
-        Version local = versions.GetLocalVersion();
-        Version remote = versions.GetRemoteVersion();
+      Version overlay = versions.GetOverlayPluginVersion();
+      Version ffxiv = versions.GetFFXIVPluginVersion();
+      Version act = versions.GetACTVersion();
 
-        Version overlay = versions.GetOverlayPluginVersion();
-        Version ffxiv = versions.GetFFXIVPluginVersion();
-        Version act = versions.GetACTVersion();
+      // Print out version strings and locations to help users debug.
+      LogInfo("cactbot: {0} {1}", local.ToString(), versions.GetCactbotLocation());
+      LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
+      LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
+      LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
+      if (language_ == null) {
+        LogInfo("Language: {0}", "(unknown)");
+      } else {
+        LogInfo("Language: {0}", language_);
+      }
 
-        // Print out version strings and locations to help users debug.
-        LogInfo("cactbot: {0} {1}", local.ToString(), versions.GetCactbotLocation());
-        LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
-        LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
-        LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
-        if (language_ == null) {
-          LogInfo("Language: {0}", "(unknown)");
+      if (remote.Major == 0 && remote.Minor == 0) {
+        var result = System.Windows.Forms.MessageBox.Show(
+          "Github error while checking Cactbot version. " +
+          "Your current version is " + local + ".\n\n" +
+          "Manually check for newer version now?",
+          "Cactbot Manual Check",
+          System.Windows.Forms.MessageBoxButtons.YesNo);
+        if (result == System.Windows.Forms.DialogResult.Yes)
+          System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
+      } else if (local < remote && false) {
+        Version remote_seen_before = new Version(Config.RemoteVersionSeen);
+        Config.RemoteVersionSeen = remote.ToString();
+
+        string update_message = "There is a new version of Cactbot is available at: \n" +
+          VersionChecker.kReleaseUrl + " \n\n" +
+          "New version " + remote + " \n" +
+          "Current version " + local;
+        if (remote == remote_seen_before) {
+          LogError(update_message);
         } else {
-          LogInfo("Language: {0}", language_);
-        }
-
-        if (remote.Major == 0 && remote.Minor == 0) {
-          var result = System.Windows.Forms.MessageBox.Show(Overlay,
-            "Github error while checking Cactbot version. " +
-            "Your current version is " + local + ".\n\n" +
-            "Manually check for newer version now?",
-            "Cactbot Manual Check",
+          var result = System.Windows.Forms.MessageBox.Show(
+            update_message + "\n\n" +
+            "Get it now?",
+            "Cactbot update available",
             System.Windows.Forms.MessageBoxButtons.YesNo);
           if (result == System.Windows.Forms.DialogResult.Yes)
             System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-        } else if (local < remote) {
-          Version remote_seen_before = new Version(Config.RemoteVersionSeen);
-          Config.RemoteVersionSeen = remote.ToString();
-
-          string update_message = "There is a new version of Cactbot is available at: \n" +
-            VersionChecker.kReleaseUrl + " \n\n" +
-            "New version " + remote + " \n" +
-            "Current version " + local;
-          if (remote == remote_seen_before) {
-            LogError(update_message);
-          } else {
-            var result = System.Windows.Forms.MessageBox.Show(Overlay,
-              update_message + "\n\n" +
-              "Get it now?",
-              "Cactbot update available",
-              System.Windows.Forms.MessageBoxButtons.YesNo);
-            if (result == System.Windows.Forms.DialogResult.Yes)
-              System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-          }
-          Config.RemoteVersionSeen = remote.ToString();
         }
+        Config.RemoteVersionSeen = remote.ToString();
       }
 
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
@@ -217,34 +212,16 @@ namespace Cactbot {
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
 
       init_ = true;
-      if (deferred_navigate_ != null) {
-        this.Navigate(deferred_navigate_);
-      }
     }
 
-    public override void Dispose() {
+    public override void Stop() {
       fast_update_timer_.Stop();
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
-      base.Dispose();
     }
 
-    public override void Navigate(string url) {
-      if (!init_) {
-        deferred_navigate_ = url;
-        return;
-      }
-
-      // Wait for the fast timer to end before we proceed.
-      fast_update_timer_semaphore_.Wait();
-
-      // When we navigate, reset all state so that the newly loaded page can receive all updates.
-      reset_notify_state_ = true;
-
-      // We navigate only when the timer isn't running, as the browser window will disappear out
-      // from under it. Once the navigation is done, the Browser is gone and we can run the timer
-      // again.
-      base.Navigate(url);
-      fast_update_timer_semaphore_.Release();
+    protected override void Update()
+    {
+        // Nothing to do since this is handled in SendFastRateEvents.
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
@@ -256,48 +233,17 @@ namespace Cactbot {
       log_lines_semaphore_.Release();
     }
 
-    // This is called by the OverlayPlugin every 1s which is not often enough for us, so we
-    // do our own update mechanism as well.
-    protected override void Update() {
-      if (ffxiv_ == null)
-        Initialize();
-      SendSlowRateEvents();
-    }
-
     // Sends an event called |event_name| to javascript, with an event.detail that contains
     // the fields and values of the |detail| structure.
     public void DispatchToJS(JSEvent e) {
-      // Make sure we're not in the middle of shutdown.
-      if (this.Overlay.Renderer == null)
-        return;
-
-      // DispatchToJS can be called from multiple threads (both fast and main).
-      // OverlayMessage also calls this, which can be on other threads as well.
-      // Could consider adding per-thread builders in TLS to avoid a lock, but maybe overkill.
-      lock (this.dispatch_lock_) {
-        dispatch_string_builder_.Append("document.dispatchEvent(new CustomEvent('");
-        dispatch_string_builder_.Append(e.EventName());
-        dispatch_string_builder_.Append("', { detail: ");
-        dispatch_serializer_.Serialize(dispatch_json_writer_, e);
-        dispatch_string_builder_.Append(" }));");
-        this.Overlay.Renderer.ExecuteScript(dispatch_string_builder_.ToString());
-        dispatch_string_builder_.Clear();
-      }
-    }
-
-    // Events that we want to update less often because they aren't are critical.
-    private void SendSlowRateEvents() {
-      // NOTE: This function runs on a different thread that SendFastRateEvents(), so anything it calls needs to be thread-safe!
+      JObject ev = new JObject();
+      ev["type"] = e.EventName();
+      ev["detail"] = JObject.FromObject(e);
+      DispatchEvent(ev);
     }
 
     // Events that we want to update as soon as possible.  Return next time this should be called.
     private int SendFastRateEvents() {
-      // Handle startup and shutdown. And do not fire any events until the page has loaded and had a chance to
-      // register its event handlers.
-      if (Overlay == null || Overlay.Renderer == null || Overlay.Renderer.Browser == null || Overlay.Renderer.Browser.IsLoading) {
-        return kSlowTimerMilli;
-      }
-
       if (reset_notify_state_)
         notify_state_ = new NotifyState();
       reset_notify_state_ = false;
@@ -309,7 +255,7 @@ namespace Cactbot {
       // * Overlays should load options from the provider user data dir in that message.
       // * As DOMContentReady happened, overlays should also construct themselves and attach to the DOM.
       // * Now, messages can be sent freely and everything is initialized.
-      if (!notify_state_.added_dom_content_listener) {
+     /* if (!notify_state_.added_dom_content_listener) {
         // Send this from C# so that overlays that are using non-cactbot html
         // (e.g. dps overlays) don't have to be modified.
         const string waitForDOMContentReady = @"
@@ -394,7 +340,7 @@ namespace Cactbot {
           }
           OnDataFilesRead(new JSEvents.DataFilesRead(file_data));
         }
-      }
+      }*/
 
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
@@ -410,7 +356,7 @@ namespace Cactbot {
 
       // Silently stop sending other messages if the ffxiv process isn't around.
       if (!game_exists) {
-        return kUberSlowTimerMilli;
+        //return kUberSlowTimerMilli;
       }
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
@@ -650,32 +596,16 @@ namespace Cactbot {
 
     // ILogger implementation.
     public void LogDebug(string format, params object[] args) {
-      // The Log() method is not threadsafe. Since this is called from Timer threads,
-      // it must post the task to the plugin main thread.
-      main_thread_sync_.Post(
-        (state) => { this.Log(LogLevel.Debug, format, args); },
-        null);
+      this.Log(LogLevel.Debug, format, args);
     }
     public void LogError(string format, params object[] args) {
-      // The Log() method is not threadsafe. Since this is called from Timer threads,
-      // it must post the task to the plugin main thread.
-      main_thread_sync_.Post(
-        (state) => { this.Log(LogLevel.Error, format, args); },
-        null);
+      this.Log(LogLevel.Error, format, args);
     }
     public void LogWarning(string format, params object[] args) {
-      // The Log() method is not threadsafe. Since this is called from Timer threads,
-      // it must post the task to the plugin main thread.
-      main_thread_sync_.Post(
-        (state) => { this.Log(LogLevel.Warning, format, args); },
-        null);
+      this.Log(LogLevel.Warning, format, args);
     }
     public void LogInfo(string format, params object[] args) {
-      // The Log() method is not threadsafe. Since this is called from Timer threads,
-      // it must post the task to the plugin main thread.
-      main_thread_sync_.Post(
-        (state) => { this.Log(LogLevel.Info, format, args); },
-        null);
+      this.Log(LogLevel.Info, format, args);
     }
 
     private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
@@ -731,7 +661,9 @@ namespace Cactbot {
         config_dir = Config.UserConfigFile;
         local_files = GetLocalUserFiles(config_dir);
       } else {
-        if (Config.Url != null && Config.Url != "") {
+        // TOOD: @ngld: Is it possible to retrieve this? Maybe it's better to not rely on this since
+        // this wouldn't be possible over WS anyway.
+        /*if (Config.Url != null && Config.Url != "") {
           // First try a user directory relative to the html.
           try {
             var url_dir = Path.GetDirectoryName(new Uri(Config.Url).LocalPath);
@@ -742,14 +674,14 @@ namespace Cactbot {
             config_dir = null;
             local_files = null;
           }
-        }
+        }*/
         if (local_files == null) {
           // Second try a user directory relative to the dll.
           try {
-            config_dir = Path.GetFullPath(CactbotOverlayConfig.CactbotDllRelativeUserUri);
+            config_dir = Path.GetFullPath(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
             local_files = GetLocalUserFiles(config_dir);
           } catch (Exception e) {
-            LogError("Error checking dll rel dir: {0}: {1}", CactbotOverlayConfig.CactbotDllRelativeUserUri, e.ToString());
+            LogError("Error checking dll rel dir: {0}: {1}", CactbotEventSourceConfig.CactbotDllRelativeUserUri, e.ToString());
             config_dir = null;
             local_files = null;
           }
@@ -757,10 +689,12 @@ namespace Cactbot {
       }
     }
 
+    // TODO: @ngld: Convert into message handlers
+
     // This is an overlayMessage() function call from javascript. We accept a json object of
     // (command, argument) pairs. Commands are:
     // - say: The argument is a string which is read as text-to-speech.
-    public override void OverlayMessage(string message) {
+    /*public override void OverlayMessage(string message) {
       var reader = new JsonTextReader(new StringReader(message));
       var obj = message_serializer_.Deserialize<Dictionary<string, string>>(reader);
       if (obj.ContainsKey("say")) {
@@ -776,7 +710,7 @@ namespace Cactbot {
         DispatchToJS(new JSEvents.OnInitializeOverlay(config_dir, local_files, language_));
         notify_state_.dom_content_loaded = true;
       }
-    }
+    }*/
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {

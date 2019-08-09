@@ -7,26 +7,19 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Cactbot {
-  public class CactbotOverlayConfig : OverlayConfigBase {
+  public class CactbotEventSourceConfig : IEventSourceConfig {
     public static string CactbotAssemblyUri {
       get { return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location); }
     }
     public static string CactbotDllRelativeUserUri {
       get { return System.IO.Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
     }
-    public CactbotOverlayConfig(string name)
-        : base(name) {
-      // Cactbot only supports visibility toggling with the hotkey.
-      // It assumes all overlays are always locked and either are
-      // clickthru or not on a more permanent basis.
-      GlobalHotkeyType = GlobalHotkeyType.ToggleVisible;
+    public CactbotEventSourceConfig()
+        : base() {
     }
 
-    private CactbotOverlayConfig() : base(null) {
-    }
-
-    public override Type OverlayType {
-      get { return typeof(CactbotOverlay); }
+    public Type SourceType {
+      get { return typeof(CactbotEventSource); }
     }
 
     public bool LogUpdatesEnabled = true;

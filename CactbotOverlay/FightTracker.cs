@@ -6,13 +6,13 @@ using System.Collections.Generic;
 namespace Cactbot {
   public class FightTracker {
     private DateTime last_update_;
-    private CactbotOverlay overlay_;
+    private CactbotEventSource overlay_;
     private int last_encounter_seconds_ = 0;
     private const float kUpdateIntervalInSeconds = 1;
 
     public delegate void DispatchToJS(JSEvent detail);
 
-    public FightTracker(CactbotOverlay overlay) {
+    public FightTracker(CactbotEventSource overlay) {
       this.overlay_ = overlay;
     }
 
