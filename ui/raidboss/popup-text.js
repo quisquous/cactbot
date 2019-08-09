@@ -372,9 +372,16 @@ class PopupText {
                       trigger.resolve,
                       removeText.bind(that, holder, div),
                       trigger.id
-                  )
+                  ),
+                  300
               ),
             });
+            if ('duration' in trigger) {
+              window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+              window.setTimeout(
+                window.clearInterval(this.intervals[triggerId], duration * 1000)
+              );
+            }
           } else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
           }
@@ -403,9 +410,16 @@ class PopupText {
                       trigger.resolve,
                       removeText.bind(that, holder, div),
                       trigger.id
-                  )
+                  ),
+                  300
               ),
             });
+            if ('duration' in trigger) {
+              window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+              window.setTimeout(
+                window.clearInterval(this.intervals[triggerId], duration * 1000)
+              );
+            }
           } else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
           }
@@ -434,9 +448,16 @@ class PopupText {
                       trigger.resolve,
                       removeText.bind(that, holder, div),
                       trigger.id
-                  )
+                  ),
+                  300
               ),
             });
+            if ('duration' in trigger) {
+              window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+              window.setTimeout(
+                window.clearInterval(this.intervals[triggerId], duration * 1000)
+              );
+            }
           } else {
             window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
           }
