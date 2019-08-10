@@ -28,7 +28,7 @@
       id: 'Dun Scaith Void Death',
       regex: / 14:(?:1C7F|1C90):Deathgaze Hollow starts using Void Death/,
       suppressSeconds: 5,
-      infoText: {
+      alertText: {
         en: 'Out of death circle',
       },
     },
@@ -47,14 +47,6 @@
       },
     },
     {
-      id: 'Dun Scaith Blizzard Fan',
-      regex: / 14:1C8A:Deathgaze Hollow starts using Void Blizzard III/,
-      suppressSeconds: 5,
-      alertText: {
-        en: 'Avoid ice fan',
-      },
-    },
-    {
       // There's another Void Blizzard IV with ID 1C77, but it's not the timing we want
       // The actual knockback cast is Void Aero IV, but it gives only 2-3s warning.
       id: 'Dun Scaith Blizzard Pillars',
@@ -68,7 +60,7 @@
       id: 'Dun Scaith Void Sprite',
       regex: / 03:........:Added new combatant Void Sprite/,
       suppressSeconds: 10,
-      alertText: {
+      infoText: {
         en: 'Kill sprites',
       },
     },
@@ -78,7 +70,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      alertText: {
+      infoText: {
         en: 'Drop Tornado outside',
       },
     },
@@ -109,19 +101,12 @@
       id: 'Dun Scaith Scythe Drop',
       regex: / 1B:........:(\y{Name}):....:....:0017/,
       suppressSeconds: 5,
-      alertText: function(data, matches) {
+      infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Drop scythe outside',
           };
         }
-      },
-    },
-    {
-      id: 'Dun Scaith Jester\'s Reap',
-      regex: / 14:1E41:Ferdiad Hollow starts using Jester's Reap/,
-      alertText: {
-        en: 'Frontal Cleave',
       },
     },
     {
@@ -133,9 +118,11 @@
             en: 'Tank buster on YOU',
           };
         }
+      },
+      infoText: function(data) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -177,7 +164,7 @@
     {
       id: 'Dun Scaith Blackfire',
       regex: / 14:1CAA:Ferdiad Hollow starts using Blackfire/,
-      alertText: {
+      infoText: {
         en: 'Avoid puddles',
       },
     },
@@ -206,7 +193,7 @@
       // Each has an incremental ID: 1D96, 1D97, 1D98
       id: 'Dun Scaith Aetherochemical Laser',
       regex: / 14:1D96:Proto Ultima starts using Aetherochemical Laser/,
-      alertText: {
+      infoText: {
         en: 'Dodge trident laser',
       },
     },
@@ -263,8 +250,8 @@
       id: 'Dun Scaith Bit Circles',
       regex: / 03:........:Added new combatant Proto Bit/,
       suppressSeconds: 5,
-      alertText: {
-        en: 'Watch for Bit AoEs',
+      infoText: {
+        en: 'Avoid Bit AoEs',
       },
     },
     {
@@ -284,7 +271,7 @@
       id: 'Dun Scaith Shadespin',
       regex: / 14:1D1(E|F):Scathach starts using Shadespin/,
       suppressSeconds: 5,
-      alertText: {
+      infoText: {
         en: 'Avoid arm slaps',
       },
     },
@@ -297,9 +284,9 @@
       },
     },
     {
-      id: 'Dun Scaith Thirty Arrows',
+      id:' Dun Scaith Thirty Arrows',
       regex: / 14:1D2F:Scathach starts using Thirty Arrows/,
-      alertText: {
+      infoText: {
         en: 'Avoid line AoEs',
       },
     },
@@ -319,7 +306,7 @@
       id: 'Dun Scaith Shadow Links',
       regex: /Shadows gather on the floor/,
       suppressSeconds: 5,
-      alertText: {
+      infoText: {
         en: 'Stop moving',
       },
     },
@@ -356,7 +343,7 @@
     {
       id: 'Dun Scaith Shadethrust',
       regex: / 14:(?:1D23:Scathach|1C1A:Diabolos Hollow) starts using Shadethrust/,
-      alertText: {
+      infoText: {
         en: 'Away from front',
       },
     },
@@ -366,7 +353,7 @@
     {
       id: 'Dun Scaith Ultimate Terror',
       regex: / 14:1C12:Diabolos starts using Ultimate Terror/,
-      alertText: {
+      infoText: {
         en: 'Get in',
       },
     },
@@ -379,19 +366,13 @@
     },
     {
       id: 'Dun Scaith Noctoshield',
-      regex: / 1A:........:Diabolos (?:gains|loses) the effect of Noctoshield/,
+      regex: / 1A:........:Diabolos gains the effect of Noctoshield/,
+      suppressSeconds: 5,
       condition: function(data) {
-        return data.role != 'dps';
+        return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: function(matches) {
-        if (matches[1] == 'gains') {
-          return {
-            en: 'Boss hitting hard--Shield/Mitigate',
-          };
-        }
-        return {
-          en: 'Boss has stopped auto-critting',
-        };
+      alertText:  {
+        en: 'Boss hitting hard--Shield/Mitigate',
       },
     },
     {
@@ -409,7 +390,7 @@
       id: 'Dun Scaith Deathgates',
       regex: / 03:........:Added new combatant Deathgate/,
       suppressSeconds: 5,
-      alertText: {
+      infoText: {
         en: 'Kill the deathgates',
       },
     },
@@ -422,6 +403,8 @@
             en: 'Tank buster on YOU',
           };
         }
+      },
+      infoText: function(data) {
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
@@ -480,4 +463,4 @@
       },
     },
   ],
-}];
+},];
