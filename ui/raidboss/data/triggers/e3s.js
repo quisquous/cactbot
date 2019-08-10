@@ -507,7 +507,7 @@
       },
       delaySeconds: 6.2,
       alertText: {
-        en: 'front right / back left',
+        en: 'Front right / Back left',
         fr: 'Avant gauche / Arrière droite',
         ja: '右前 / 左後ろ',
       },
