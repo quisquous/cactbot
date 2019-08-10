@@ -37,7 +37,7 @@
     {
       id: 'E2S Spell In Waiting Gain',
       regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
-      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage incantatoire/,
+      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
       run: function(data) {
         data.waiting = true;
       },
@@ -45,7 +45,7 @@
     {
       id: 'E2S Spell In Waiting Lose',
       regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
-      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage incantatoire/,
+      regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
       run: function(data) {
         data.waiting = false;
       },
@@ -118,7 +118,7 @@
       id: 'E2S Doomvoid Cleaver',
       regex: / 14:3E63:Voidwalker starts using (?:Doomvoid Cleaver|)/,
       regexDe: / 14:3E63:Nichtswandler starts using (?:Nichtsmarter-Schlachter|)/,
-      regexFr: / 14:3E63:Marcheuse Du Néant starts using (?:Couperet du néant ravageur|)/,
+      regexFr: / 14:3E63:Marcheuse Du Néant starts using (?:Couperet Du Néant Ravageur|)/,
       regexJa: / 14:3E63:ヴォイドウォーカー starts using (?:ドゥームヴォイド・クリーバー|)/,
       alertText: {
         en: 'Protean',
@@ -130,7 +130,7 @@
       id: 'E2S Doomvoid Guillotine',
       regex: / 14:3E4F:Voidwalker starts using (?:Doomvoid Guillotine|)/,
       regexDe: / 14:3E4F:Nichtswandler starts using (?:Nichtsmarter-Fallbeil|)/,
-      regexFr: / 14:3E4F:Marcheuse Du Néant starts using (?:Guillotine du néant ravageur|)/,
+      regexFr: / 14:3E4F:Marcheuse Du Néant starts using (?:Guillotine Du Néant Ravageur|)/,
       regexJa: / 14:3E4F:ヴォイドウォーカー starts using (?:ドゥームヴォイド・ギロチン|)/,
       alertText: {
         en: 'Sides',
@@ -168,7 +168,7 @@
       id: 'E2S Empty Rage',
       regex: / 14:3E6B:The Hand Of Erebos starts using (?:Empty Rage|)/,
       regexDe: / 14:3E6B:Arm des Erebos starts using (?:Lockende Leere|)/,
-      regexFr: / 14:3E6B:Bras D'érèbe starts using (?:Vaine cruauté|)/,
+      regexFr: / 14:3E6B:Bras D'érèbe starts using (?:Vaine Cruauté|)/,
       regexJa: / 14:3E6B:エレボスの巨腕 starts using (?:虚ろなる害意|)/,
       alertText: {
         en: 'Away From Hand',
@@ -547,7 +547,7 @@
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
       regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
-      regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-taillade vengeresse|)/,
+      regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-taillade Vengeresse|)/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using (?:復讐の連続剣|)/,
       infoText: {
         en: 'In, Protean, Sides',
@@ -558,7 +558,7 @@
     {
       id: 'E2S Cycle of Chaos',
       regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
-      regexFr: / 14:40B9:Marcheuse du Néant starts using (?:Multi-taillade chaotique|)/,
+      regexFr: / 14:40B9:Marcheuse Du Néant starts using (?:Multi-taillade Chaotique|)/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using (?:混沌の連続剣|)/,
       infoText: {
         en: 'Sides, In, Protean',
