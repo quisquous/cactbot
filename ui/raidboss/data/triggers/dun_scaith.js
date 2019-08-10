@@ -284,7 +284,7 @@
       },
     },
     {
-      id:' Dun Scaith Thirty Arrows',
+      id: 'Dun Scaith Thirty Arrows',
       regex: / 14:1D2F:Scathach starts using Thirty Arrows/,
       infoText: {
         en: 'Avoid line AoEs',
@@ -371,7 +371,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText:  {
+      alertText: {
         en: 'Boss hitting hard--Shield/Mitigate',
       },
     },
@@ -463,4 +463,5 @@
       },
     },
   ],
-},];
+},
+];
