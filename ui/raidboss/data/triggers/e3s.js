@@ -10,6 +10,7 @@
       beforeSeconds: 2,
       infoText: {
         en: 'Line Stack',
+        fr: 'Empilez en ligne',
         ja: '直線スタック',
       },
     },
@@ -22,6 +23,7 @@
       },
       alertText: {
         en: 'Tank Cleaves, Move Front',
+        fr: 'Cleave tank, allez à l\'avant',
         ja: '拡散くるよ',
       },
     },
@@ -32,7 +34,7 @@
       regex: / 14:3FDC:Leviathan starts using Tidal Roar/,
       regexCn: / 14:3FDC:利维亚桑 starts using Tidal Roar/,
       regexDe: / 14:3FDC:Leviathan starts using Schrei der Gezeiten/,
-      regexFr: / 14:3FDC:Léviathan starts using Vague rugissante/,
+      regexFr: / 14:3FDC:Léviathan starts using Vague Rugissante/,
       regexJa: / 14:3FDC:リヴァイアサン starts using タイダルロア/,
       condition: function(data, matches) {
         return data.role == 'healer';
@@ -48,7 +50,7 @@
       regex: / 14:3FDE:Leviathan starts using Tidal Rage/,
       regexCn: / 14:3FDE:利维亚桑 starts using Tidal Rage/,
       regexDe: / 14:3FDE:Leviathan starts using Wütende Flut/,
-      regexFr: / 14:3FDE:Léviathan starts using Furie des marées/,
+      regexFr: / 14:3FDE:Léviathan starts using Furie Des Marées/,
       regexJa: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
       condition: function(data, matches) {
         return data.role == 'healer';
@@ -115,6 +117,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
+            fr: 'Tankbursters',
             ja: 'タンクバスター',
           };
         }
@@ -154,6 +157,7 @@
       },
       alarmText: {
         en: 'Flare on YOU',
+        fr: 'Brasier sur VOUS',
         ja: '自分にフレア',
       },
     },
@@ -162,10 +166,11 @@
       regex: / 14:3FE2:Leviathan starts using Drenching Pulse/,
       regexCn: / 14:3FE2:利维亚桑 starts using Drenching Pulse/,
       regexDe: / 14:3FE2:Leviathan starts using Tosende Wogen/,
-      regexFr: / 14:3FE2:Léviathan starts using Pulsation sauvage/,
+      regexFr: / 14:3FE2:Léviathan starts using Pulsation Sauvage/,
       regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
       infoText: {
         en: 'Stack, Bait Puddles',
+        fr: 'Empilez, appâtez les zones',
         ja: '集合',
       },
     },
@@ -174,11 +179,12 @@
       regex: / 14:3FE2:Leviathan starts using Drenching Pulse/,
       regexCn: / 14:3FE2:利维亚桑 starts using Drenching Pulse/,
       regexDe: / 14:3FE2:Leviathan starts using Tosende Wogen/,
-      regexFr: / 14:3FE2:Léviathan starts using Pulsation sauvage/,
+      regexFr: / 14:3FE2:Léviathan starts using Pulsation Sauvage/,
       regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
       delaySeconds: 2.9,
       infoText: {
         en: 'Drop Puddles Outside',
+        fr: 'Posez les flaques à l\'extérieur',
         ja: '散開',
       },
     },
@@ -187,10 +193,11 @@
       regex: / 14:3FE4:Leviathan starts using Roiling Pulse/,
       regexCn: / 14:3FE4:利维亚桑 starts using Roiling Pulse/,
       regexDe: / 14:3FE4:Leviathan starts using Wüstende Wogen/,
-      regexFr: / 14:3FE4:Léviathan starts using Pulsation ravageuse/,
+      regexFr: / 14:3FE4:Léviathan starts using Pulsation Ravageuse/,
       regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
       infoText: {
         en: 'Stack, Bait Puddles',
+        fr: 'Empilez, appâtez les zones',
         ja: '集合',
       },
     },
@@ -199,18 +206,20 @@
       regex: / 14:3FE4:Leviathan starts using Roiling Pulse/,
       regexCn: / 14:3FE4:利维亚桑 starts using Roiling Pulse/,
       regexDe: / 14:3FE4:Leviathan starts using Wüstende Wogen/,
-      regexFr: / 14:3FE4:Léviathan starts using Pulsation ravageuse/,
+      regexFr: / 14:3FE4:Léviathan starts using Pulsation Ravageuse/,
       regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
       delaySeconds: 2.9,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Flare To Outside Corner',
+            fr: 'Brasier dans un coin extérieur',
             ja: '隅にフレア',
           };
         }
         return {
           en: 'Stack Outside, Avoid Flares',
+          fr: 'Empilez à l\'extérieur, évitez les brasiers',
           ja: '前で集合',
         };
       },
@@ -220,10 +229,11 @@
       regex: / 14:3FE9:Leviathan starts using Stormy Horizon/,
       regexCn: / 14:3FE9:利维亚桑 starts using Stormy Horizon/,
       regexDe: / 14:3FE9:Leviathan starts using Stürmische See/,
-      regexFr: / 14:3FE9:Léviathan starts using Mer déchaînée/,
+      regexFr: / 14:3FE9:Léviathan starts using Mer Déchaînée/,
       regexJa: / 14:3FE9:リヴァイアサン starts using 大時化/,
       infoText: {
         en: 'Panto Puddles x5',
+        fr: 'Panto x5',
         ja: 'パント5回',
       },
     },
@@ -239,6 +249,7 @@
       },
       alertText: {
         en: 'Puddle Tether on YOU',
+        fr: 'Lien sur VOUS',
         ja: '線ついた',
       },
     },
@@ -266,6 +277,7 @@
       },
       infoText: {
         en: 'Pop alternating bubbles',
+        fr: 'Absorbez les bulles en alternance',
         ja: '水出た',
       },
     },
@@ -273,13 +285,14 @@
       id: 'E3S Surging Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Surging Waters/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Erdrückung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux écrasantes/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Écrasantes/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 強圧の兆し/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       alertText: {
         en: 'Initial knockback on YOU',
+        fr: 'Pousée initiale sur VOUS',
         ja: '最初のノックバック',
       },
     },
@@ -289,7 +302,7 @@
       id: 'E3S Sundering Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sundering Waters from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Zerstörung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux fracturantes from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Fracturantes from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -299,6 +312,7 @@
         if (seconds <= 8) {
           return {
             en: 'Knockback on YOU',
+            fr: 'Pousée sur VOUS',
             ja: '自分にノックバック',
           };
         }
@@ -310,11 +324,13 @@
         if (seconds <= 21) {
           return {
             en: 'Late First Knockback',
+            fr: '1ère pousée tardive',
             ja: '遅ノックバック1',
           };
         }
         return {
           en: 'Late Second Knockback',
+          fr: '2nde pousée tardive',
           ja: '遅ノックバック2',
         };
       },
@@ -324,13 +340,14 @@
       id: 'E3S Scouring Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux dévastatrices/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: {
         en: 'Defamation',
+        fr: 'Médisance',
         ja: '暴風',
       },
     },
@@ -338,7 +355,7 @@
       id: 'E3S Scouring Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux dévastatrices/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -346,6 +363,7 @@
       delaySeconds: 22,
       infoText: {
         en: 'Avoid Knockback, Move to Back',
+        fr: 'Evitez la pousée, allez à l\'arrière',
         ja: '後ろへ',
       },
     },
@@ -353,7 +371,7 @@
       id: 'E3S Smothering Waters',
       regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) (.*) Seconds/,
       regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Omen der Ertränkung from (?:.*) (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux submergeantes from (?:.*) (.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux Submergeantes from (?:.*) (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没の兆し from (?:.*) (.*) Seconds/,
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
@@ -367,6 +385,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Stack',
+        fr: 'Empilez',
         ja: 'スタック',
       },
     },
@@ -374,7 +393,7 @@
       id: 'E3S Scouring Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux dévastatrices/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
       condition: function(data, matches) {
         return data.me != matches[1];
@@ -382,6 +401,7 @@
       delaySeconds: 25,
       infoText: {
         en: 'Move In, Avoid Defamation',
+        fr: 'Sous le boss, evitez la médisance',
         ja: '前にノックバック',
       },
     },
@@ -389,13 +409,14 @@
       id: 'E3S Sweeping Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux pulvérisantes from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: {
         en: 'Tank Cone',
+        fr: 'Cône tank',
         ja: '断絶',
       },
     },
@@ -403,7 +424,7 @@
       id: 'E3S Sweeping Waters',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux pulvérisantes from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'tank';
@@ -412,6 +433,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Tank Cone',
+        fr: 'Cône tank',
         ja: '断絶',
       },
     },
@@ -420,7 +442,7 @@
       regex: / 14:400F:Leviathan starts using Refreshing Shower/,
       regexCn: / 14:400F:利维亚桑 starts using Refreshing Shower/,
       regexDe: / 14:400F:Leviathan starts using Erwachen der Tiefen/,
-      regexFr: / 14:400F:Léviathan starts using Éveil de l'eau/,
+      regexFr: / 14:400F:Léviathan starts using Éveil De L'eau/,
       regexJa: / 14:400F:Leviathan starts using 水の覚醒/,
       run: function(data) {
         data.refreshed = true;
@@ -431,10 +453,11 @@
       regex: / 14:3FEB:Leviathan starts using Temporary Current/,
       regexCn: / 14:3FEB:利维亚桑 starts using Temporary Current/,
       regexDe: / 14:3FEB:Leviathan starts using Unstete Gezeiten/,
-      regexFr: / 14:3FEB:Léviathan starts using Courant évanescent/,
+      regexFr: / 14:3FEB:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
-        en: 'front left / back right',
+        en: 'Front left / Back right',
+        fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
       },
     },
@@ -443,10 +466,11 @@
       regex: / 14:3FEA:Leviathan starts using Temporary Current/,
       regexCn: / 14:3FEA:利维亚桑 starts using Temporary Current/,
       regexDe: / 14:3FEA:Leviathan starts using Unstete Gezeiten/,
-      regexFr: / 14:3FEA:Léviathan starts using Courant évanescent/,
+      regexFr: / 14:3FEA:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
-        en: 'front right / back left',
+        en: 'Front right / Back left',
+        fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
       },
     },
@@ -459,14 +483,15 @@
       regex: / 14:3FEA:Leviathan starts using Temporary Current/,
       regexCn: / 14:3FEA:利维亚桑 starts using Temporary Current/,
       regexDe: / 14:3FEA:Leviathan starts using Unstete Gezeiten/,
-      regexFr: / 14:3FEA:Léviathan starts using Courant évanescent/,
+      regexFr: / 14:3FEA:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
       condition: function(data) {
         return data.refreshed;
       },
       delaySeconds: 6.2,
       alertText: {
-        en: 'front left / back right',
+        en: 'Front left / Back right',
+        fr: 'Avant gauche / Arrière droite x2',
         ja: '左前 / 右後ろ',
       },
     },
@@ -475,7 +500,7 @@
       regex: / 14:3FEB:Leviathan starts using Temporary Current/,
       regexCn: / 14:3FEB:利维亚桑 starts using Temporary Current/,
       regexDe: / 14:3FEB:Leviathan starts using Unstete Gezeiten/,
-      regexFr: / 14:3FEB:Léviathan starts using Courant évanescent/,
+      regexFr: / 14:3FEB:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
       condition: function(data) {
         return data.refreshed;
@@ -483,6 +508,7 @@
       delaySeconds: 6.2,
       alertText: {
         en: 'front right / back left',
+        fr: 'Avant gauche / Arrière droite x2',
         ja: '右前 / 左後ろ',
       },
     },
