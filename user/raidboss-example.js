@@ -62,7 +62,7 @@ Options.LongSound = '../../resources/sounds/BigWigs/Long.ogg';
 
 // Path to sound played when the fight starts, or when "Pull" is 
 // specified as the sound name.
-Options.PullSound = '../../resources/sounds/PowerAuras/sonar.ogg',
+Options.PullSound = '../../resources/sounds/PowerAuras/sonar.ogg';
 
 // Volume between 0 and 1 to play the InfoSound at.
 Options.InfoSoundVolume = 1;
