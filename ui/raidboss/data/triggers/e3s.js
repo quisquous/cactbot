@@ -110,14 +110,14 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
-            fr: 'Tankbursters',
+            fr: 'Tank bursters',
             ja: 'タンクバスター',
           };
         }
@@ -491,7 +491,7 @@
       delaySeconds: 6.2,
       alertText: {
         en: 'Front left / Back right',
-        fr: 'Avant gauche / Arrière droite x2',
+        fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
       },
     },
@@ -508,7 +508,7 @@
       delaySeconds: 6.2,
       alertText: {
         en: 'front right / back left',
-        fr: 'Avant gauche / Arrière droite x2',
+        fr: 'Avant gauche / Arrière droite',
         ja: '右前 / 左後ろ',
       },
     },
