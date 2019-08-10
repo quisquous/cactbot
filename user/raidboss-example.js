@@ -60,6 +60,10 @@ Options.AlarmSound = '../../resources/sounds/BigWigs/Alarm.ogg';
 // Path to sound played when "Long" is specified as the sound name.
 Options.LongSound = '../../resources/sounds/BigWigs/Long.ogg';
 
+// Path to sound played when the fight starts, or when "Pull" is 
+// specified as the sound name.
+Options.PullSound = '../../resources/sounds/PowerAuras/sonar.ogg',
+
 // Volume between 0 and 1 to play the InfoSound at.
 Options.InfoSoundVolume = 1;
 
@@ -71,6 +75,9 @@ Options.AlarmSoundVolume = 1;
 
 // Volume between 0 and 1 to play the LongSound at.
 Options.LongSoundVolume = 1;
+
+// Volume between 0 and 1 to play the PullSound at.
+Options.PullSoundVolume = 1;
 
 // A set of nicknames to use for players, when trying to shorten names.
 Options.PlayerNicks = {
