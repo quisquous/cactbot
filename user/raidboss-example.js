@@ -60,7 +60,7 @@ Options.AlarmSound = '../../resources/sounds/BigWigs/Alarm.ogg';
 // Path to sound played when "Long" is specified as the sound name.
 Options.LongSound = '../../resources/sounds/BigWigs/Long.ogg';
 
-// Path to sound played when the fight starts, or when "Pull" is 
+// Path to sound played when the fight starts, or when "Pull" is
 // specified as the sound name.
 Options.PullSound = '../../resources/sounds/PowerAuras/sonar.ogg';
 
