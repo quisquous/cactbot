@@ -379,7 +379,7 @@ class PopupText {
             if ('duration' in trigger) {
               window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
               window.setTimeout(
-                window.clearInterval(this.intervals[triggerId], duration * 1000)
+                  window.clearInterval(this.intervals[triggerId], duration * 1000)
               );
             }
           } else {
@@ -417,7 +417,7 @@ class PopupText {
             if ('duration' in trigger) {
               window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
               window.setTimeout(
-                window.clearInterval(this.intervals[triggerId], duration * 1000)
+                  window.clearInterval(this.intervals[triggerId], duration * 1000)
               );
             }
           } else {
@@ -455,7 +455,7 @@ class PopupText {
             if ('duration' in trigger) {
               window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
               window.setTimeout(
-                window.clearInterval(this.intervals[triggerId], duration * 1000)
+                  window.clearInterval(this.intervals[triggerId], duration * 1000)
               );
             }
           } else {
