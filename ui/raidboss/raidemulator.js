@@ -676,9 +676,12 @@ class EmulatorView {
       currentHP: 0,
       StopCombat: () => {},
       ParseLocaleFloat: parseFloat,
-      CanStun: () => false,
-      CanSilence: () => false,
-      CanSleep: () => false,
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
     let logs = this.selectedFight.logs;
     data.ShortName = function(name) {

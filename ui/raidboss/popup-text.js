@@ -13,11 +13,6 @@ class PopupText {
 
     this.kMaxRowsOfText = 2;
 
-    this.stunJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL', 'WAR', 'MRD', 'PLD', 'GLA', 'DRK', 'GNB'];
-    this.silenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GNB', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
-    this.sleepJobs = ['BLM', 'WHM'];
-    this.cleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];
-
     this.Reset();
   }
 
@@ -198,6 +193,8 @@ class PopupText {
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
 
+    // TODO: make a breaking change at some point and
+    // make all this style consistent, sorry.
     this.data = {
       me: this.me,
       job: this.job,
@@ -207,10 +204,12 @@ class PopupText {
       ShortName: this.ShortNamify,
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
-      CanStun: () => this.stunJobs.indexOf(this.job) >= 0,
-      CanSilence: () => this.silenceJobs.indexOf(this.job) >= 0,
-      CanSleep: () => this.sleepJobs.indexOf(this.job) >= 0,
-      CanCleanse: () => this.cleanseJobs.indexOf(this.job) >= 0,
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
     this.StopTimers();
     this.triggerSuppress = {};
