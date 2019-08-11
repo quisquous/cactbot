@@ -85,7 +85,7 @@
     else
       document.getElementById("container").style.display = "block";
   }
-  document.addEventListener("onGameActiveChangedEvent", function(e) {
+  addOverlayListener("onGameActiveChangedEvent", function(e) {
       hide(!e.detail.active);
   });
   hide(true);

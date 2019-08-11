@@ -2180,16 +2180,16 @@ class EurekaTracker {
   }
 }
 
-document.addEventListener('onPlayerChangedEvent', function(e) {
-  gTracker.OnPlayerChange(e);
-});
-document.addEventListener('onZoneChangedEvent', function(e) {
-  gTracker.OnZoneChange(e);
-});
-document.addEventListener('onLogEvent', function(e) {
-  gTracker.OnLog(e);
-});
-
 UserConfig.getUserConfigLocation('eureka', function(e) {
+  addOverlayListener('onPlayerChangedEvent', function(e) {
+    gTracker.OnPlayerChange(e);
+  });
+  addOverlayListener('onZoneChangedEvent', function(e) {
+    gTracker.OnZoneChange(e);
+  });
+  addOverlayListener('onLogEvent', function(e) {
+    gTracker.OnLog(e);
+  });
+
   gTracker = new EurekaTracker(Options);
 });

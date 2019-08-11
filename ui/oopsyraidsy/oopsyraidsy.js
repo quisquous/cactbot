@@ -1027,29 +1027,40 @@ class DamageTracker {
   }
 }
 
-document.addEventListener('onLogEvent', function(e) {
-  gDamageTracker.OnLogEvent(e);
-});
-document.addEventListener('onPartyWipe', function(e) {
-  gDamageTracker.OnPartyWipeEvent(e);
-});
-document.addEventListener('onZoneChangedEvent', function(e) {
-  gDamageTracker.OnZoneChangeEvent(e);
-  gMistakeCollector.OnZoneChangeEvent(e);
-});
-document.addEventListener('onInCombatChangedEvent', function(e) {
-  gDamageTracker.OnInCombatChangedEvent(e);
-  gMistakeCollector.OnInCombatChangedEvent(e);
-});
-document.addEventListener('onDataFilesRead', function(e) {
-  gDamageTracker.OnDataFilesRead(e);
-});
-document.addEventListener('onPlayerChangedEvent', function(e) {
-  gDamageTracker.OnPlayerChange(e);
-});
-
 UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
   gLiveList = new OopsyLiveList(Options, document.getElementById('livelist'));
   gMistakeCollector = new MistakeCollector(Options, gLiveList);
   gDamageTracker = new DamageTracker(Options, gMistakeCollector);
+
+  addOverlayListener('onLogEvent', function(e) {
+    gDamageTracker.OnLogEvent(e);
+  });
+  addOverlayListener('onPartyWipe', function(e) {
+    gDamageTracker.OnPartyWipeEvent(e);
+  });
+  addOverlayListener('onZoneChangedEvent', function(e) {
+    gDamageTracker.OnZoneChangeEvent(e);
+    gMistakeCollector.OnZoneChangeEvent(e);
+  });
+  addOverlayListener('onInCombatChangedEvent', function(e) {
+    gDamageTracker.OnInCombatChangedEvent(e);
+    gMistakeCollector.OnInCombatChangedEvent(e);
+  });
+
+  if (window.callOverlayHandler) {
+    callOverlayHandler({
+      call: 'cactbotReadDataFiles',
+      source: location.href,
+    }).then((r) => gDamageTracker.OnDataFilesRead(r));
+  } else {
+    addOverlayListener('onDataFilesRead', function(e) {
+      gDamageTracker.OnDataFilesRead(e);
+    });
+  }
+
+  addOverlayListener('onPlayerChangedEvent', function(e) {
+    gDamageTracker.OnPlayerChange(e);
+  });
+
+  callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

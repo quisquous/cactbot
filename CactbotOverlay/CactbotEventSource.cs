@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Cactbot {
 
@@ -100,8 +101,23 @@ namespace Cactbot {
 
       RegisterEventTypes(new List<string>()
       {
-          "onGameExistsEvent", "onGameActiveChangedEvent", "onLogEvent", "onImportLogEvent", "onInCombatChangedEvent",
-          "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent", "onTargetChangedEvent",
+        "onGameExistsEvent", "onGameActiveChangedEvent", "onLogEvent", "onImportLogEvent", "onInCombatChangedEvent",
+        "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent", "onTargetChangedEvent",
+      });
+
+      RegisterEventHandler("cactbotLoadUser", FetchUserFiles);
+      RegisterEventHandler("cactbotReadDataFiles", FetchDataFiles);
+      RegisterEventHandler("cactbotRequestPlayerUpdate", (msg) => {
+        notify_state_.player = null;
+        return null;
+      });
+      RegisterEventHandler("cactbotRequestState", (msg) => {
+        reset_notify_state_ = true;
+        return null;
+      });
+      RegisterEventHandler("cactbotSay", (msg) => {
+        Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(msg["text"].ToString());
+        return null;
       });
     }
 
@@ -608,6 +624,78 @@ namespace Cactbot {
       this.Log(LogLevel.Info, format, args);
     }
 
+    private Dictionary<string, string> GetDataFiles(string url) {
+      // If file is a remote pointer, load that file explicitly so that the manifest
+      // is relative to the pointed to url and not the local file.
+      if (url.StartsWith("file:///")) {
+        var html = File.ReadAllText(new Uri(url).LocalPath);
+        var match = System.Text.RegularExpressions.Regex.Match(html, @"<meta http-equiv=""refresh"" content=""0; url=(.*)?""\/?>");
+        if (match.Groups.Count > 1) {
+          url = match.Groups[1].Value;
+        }
+      }
+
+      var web = new System.Net.WebClient();
+      web.Encoding = System.Text.Encoding.UTF8;
+      System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
+
+      var data_file_paths = new List<string>();
+      try {
+        var data_dir_manifest = new Uri(new Uri(url), "data/manifest.txt");
+        var manifest_reader = new StringReader(web.DownloadString(data_dir_manifest));
+        for (var line = manifest_reader.ReadLine(); line != null; line = manifest_reader.ReadLine()) {
+          line = line.Trim();
+          if (line.Length > 0)
+            data_file_paths.Add(line);
+        }
+      } catch (System.Net.WebException e) {
+        if (e.Status == System.Net.WebExceptionStatus.ProtocolError &&
+            e.Response is System.Net.HttpWebResponse &&
+            ((System.Net.HttpWebResponse)e.Response).StatusCode == System.Net.HttpStatusCode.NotFound) {
+          // Ignore file not found.
+        } else if (e.InnerException != null &&
+          (e.InnerException is FileNotFoundException || e.InnerException is DirectoryNotFoundException)) {
+          // Ignore file not found.
+        } else if (e.InnerException != null && e.InnerException.InnerException != null &&
+          (e.InnerException.InnerException is FileNotFoundException || e.InnerException.InnerException is DirectoryNotFoundException)) {
+          // Ignore file not found.
+        } else {
+          LogError("Unable to read manifest file: " + e.Message);
+        }
+      } catch (Exception e) {
+        LogError("Unable to read manifest file: " + e.Message);
+      }
+
+      if (data_file_paths.Count > 0) {
+        var file_data = new Dictionary<string, string>();
+        foreach (string data_filename in data_file_paths) {
+          try {
+            var file_path = new Uri(new Uri(url), "data/" + data_filename);
+            file_data[data_filename] = web.DownloadString(file_path);
+          } catch (Exception e) {
+            LogError("Unable to read data file: " + e.Message);
+          }
+        }
+
+        //OnDataFilesRead(new JSEvents.DataFilesRead(file_data));
+        return file_data;
+      }
+
+      return null;
+    }
+
+    private JObject FetchDataFiles(JObject msg) {
+      var result = GetDataFiles(msg["source"].ToString());
+
+      var container = new JObject();
+      container["files"] = result == null ? null : JObject.FromObject(result);
+
+      var output = new JObject();
+      output["detail"] = container;
+
+      return output;
+    }
+
     private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
       if (config_dir == null || config_dir == "")
         return null;
@@ -652,7 +740,7 @@ namespace Cactbot {
       return user_files;
     }
 
-    private void GetUserConfigDirAndFiles(out string config_dir, out Dictionary<string, string> local_files) {
+    private void GetUserConfigDirAndFiles(string source, out string config_dir, out Dictionary<string, string> local_files) {
       local_files = null;
       config_dir = null;
 
@@ -661,27 +749,26 @@ namespace Cactbot {
         config_dir = Config.UserConfigFile;
         local_files = GetLocalUserFiles(config_dir);
       } else {
-        // TOOD: @ngld: Is it possible to retrieve this? Maybe it's better to not rely on this since
-        // this wouldn't be possible over WS anyway.
-        /*if (Config.Url != null && Config.Url != "") {
+        if (source != null && source != "") {
           // First try a user directory relative to the html.
           try {
-            var url_dir = Path.GetDirectoryName(new Uri(Config.Url).LocalPath);
+            var url_dir = Path.GetDirectoryName(new Uri(source).LocalPath);
             config_dir = Path.GetFullPath(url_dir + "\\..\\..\\user\\");
             local_files = GetLocalUserFiles(config_dir);
           } catch (Exception e) {
-            LogError("Error checking html rel dir: {0}: {1}", Config.Url, e.ToString());
+            LogError("Error checking html rel dir: {0}: {1}", source, e.ToString());
             config_dir = null;
             local_files = null;
           }
-        }*/
+        }
         if (local_files == null) {
           // Second try a user directory relative to the dll.
           try {
             config_dir = Path.GetFullPath(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
             local_files = GetLocalUserFiles(config_dir);
           } catch (Exception e) {
-            LogError("Error checking dll rel dir: {0}: {1}", CactbotEventSourceConfig.CactbotDllRelativeUserUri, e.ToString());
+            // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
+            LogError("Error checking dll rel dir: {0}: {1}", config_dir, e.ToString());
             config_dir = null;
             local_files = null;
           }
@@ -689,7 +776,19 @@ namespace Cactbot {
       }
     }
 
-    // TODO: @ngld: Convert into message handlers
+    private JObject FetchUserFiles(JObject msg) {
+      Dictionary<string, string> user_files;
+      GetUserConfigDirAndFiles(msg["source"].ToString(), out string config_dir, out user_files);
+
+      var result = new JObject();
+      result["userLocation"] = config_dir;
+      result["localUserFiles"] = user_files == null ? null : JObject.FromObject(user_files);
+      result["language"] = language_;
+
+      var response = new JObject();
+      response["detail"] = result;
+      return response;
+    }
 
     // This is an overlayMessage() function call from javascript. We accept a json object of
     // (command, argument) pairs. Commands are:

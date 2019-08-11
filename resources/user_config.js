@@ -2,7 +2,7 @@
 
 let UserConfig = {
   getUserConfigLocation: function(overlayName, callback) {
-    document.addEventListener('onInitializeOverlay', (function(e) {
+    let configLoader = (e) => {
       let localFiles = e.detail.localUserFiles;
       let basePath = e.detail.userLocation;
       let jsFile = overlayName + '.js';
@@ -46,7 +46,19 @@ let UserConfig = {
         this.languageFuncs[Options.Language]();
       if (callback)
         callback();
-    }).bind(this));
+
+      if (window.callOverlayHandler)
+        callOverlayHandler({ call: 'cactbotRequestState' });
+    };
+
+    if (window.callOverlayHandler) {
+      window.callOverlayHandler({
+        call: 'cactbotLoadUser',
+        source: location.href,
+      }).then(configLoader);
+    } else {
+      document.addEventListener('onInitializeOverlay', configLoader);
+    }
   },
   registerLanguage: function(lang, func) {
     this.languageFuncs[lang] = func;

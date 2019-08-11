@@ -558,18 +558,26 @@ class PopupTextGenerator {
 
 let gPopupText;
 
-document.addEventListener('onPlayerChangedEvent', function(e) {
+addOverlayListener('onPlayerChangedEvent', function(e) {
   gPopupText.OnPlayerChange(e);
 });
-document.addEventListener('onZoneChangedEvent', function(e) {
+addOverlayListener('onZoneChangedEvent', function(e) {
   gPopupText.OnZoneChange(e);
 });
-document.addEventListener('onInCombatChangedEvent', function(e) {
+addOverlayListener('onInCombatChangedEvent', function(e) {
   gPopupText.OnInCombatChange(e.detail.inGameCombat);
 });
-document.addEventListener('onLogEvent', function(e) {
+addOverlayListener('onLogEvent', function(e) {
   gPopupText.OnLog(e);
 });
-document.addEventListener('onDataFilesRead', function(e) {
-  gPopupText.OnDataFilesRead(e);
-});
+
+if (window.callOverlayHandler) {
+  callOverlayHandler({
+    call: 'cactbotReadDataFiles',
+    source: location.href,
+  }).then((e) => gPopupText.OnDataFilesRead(e));
+} else {
+  addOverlayListener('onDataFilesRead', function(e) {
+    gPopupText.OnDataFilesRead(e);
+  });
+}

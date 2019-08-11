@@ -936,7 +936,7 @@ function dateFromLogLine(log) {
 // Only listen to the import log event here and *not* the zone changed event.
 // The log collector figures out the zone from the logs itself, and not through
 // what ACT sends while importing (which races with sending logs).
-document.addEventListener('onImportLogEvent', function(e) {
+addOverlayListener('onImportLogEvent', function(e) {
   gLogCollector.AppendImportLogs(e.detail.logs);
 });
 

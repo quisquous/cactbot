@@ -95,26 +95,26 @@ class PullCounter {
   }
 }
 
-document.addEventListener('onLogEvent', function(e) {
-  gPullCounter.OnLogEvent(e);
-});
-
-document.addEventListener('onZoneChangedEvent', function(e) {
-  gPullCounter.OnZoneChange(e);
-});
-
-document.addEventListener('onInCombatChangedEvent', function(e) {
-  gPullCounter.OnInCombatChange(e);
-});
-
-document.addEventListener('onPartyWipe', function() {
-  gPullCounter.OnPartyWipe();
-});
-
-document.addEventListener('onSendSaveData', function(e) {
-  gPullCounter.SetSaveData(e);
-});
-
 UserConfig.getUserConfigLocation('pullcounter', function() {
+  addOverlayListener('onLogEvent', function(e) {
+    gPullCounter.OnLogEvent(e);
+  });
+
+  addOverlayListener('onZoneChangedEvent', function(e) {
+    gPullCounter.OnZoneChange(e);
+  });
+
+  addOverlayListener('onInCombatChangedEvent', function(e) {
+    gPullCounter.OnInCombatChange(e);
+  });
+
+  addOverlayListener('onPartyWipe', function() {
+    gPullCounter.OnPartyWipe();
+  });
+
+  addOverlayListener('onSendSaveData', function(e) {
+    gPullCounter.SetSaveData(e);
+  });
+
   gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
 });

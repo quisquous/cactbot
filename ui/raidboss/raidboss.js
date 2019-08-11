@@ -47,14 +47,22 @@ let Options = {
 
 let gTimelineController;
 
-document.addEventListener('onLogEvent', function(e) {
-  gTimelineController.OnLogEvent(e);
-});
-document.addEventListener('onDataFilesRead', function(e) {
-  gTimelineController.SetDataFiles(e.detail.files);
-});
-
 UserConfig.getUserConfigLocation('raidboss', function(e) {
+  addOverlayListener('onLogEvent', function(e) {
+    gTimelineController.OnLogEvent(e);
+  });
+  
+  if (window.callOverlayHandler) {
+    callOverlayHandler({
+      call: 'cactbotReadDataFiles',
+      source: location.href,
+    }).then((e) => gTimelineController.SetDataFiles(e.detail.files));
+  } else {
+    addOverlayListener('onDataFilesRead', function(e) {
+      gTimelineController.SetDataFiles(e.detail.files);
+    });
+  }
+
   gTimelineController = new TimelineController(Options, new TimelineUI(Options));
   gPopupText = new PopupText(Options);
   // Connect the timelines to the popup text.

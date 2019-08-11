@@ -1,14 +1,14 @@
 'use strict';
 
-document.addEventListener('onZoneChangedEvent', function(e) {
+addOverlayListener('onZoneChangedEvent', function(e) {
   document.getElementById('currentZone').innerText = 'currentZone: ' + e.detail.zoneName;
 });
 
-document.addEventListener('onInCombatChangedEvent', function(e) {
+addOverlayListener('onInCombatChangedEvent', function(e) {
   document.getElementById('inCombat').innerText = 'inCombat: act: ' + (e.detail.inACTCombat ? 'yes' : 'no') + ' game: ' + (e.detail.inGameCombat ? 'yes' : 'no');
 });
 
-document.addEventListener('onPlayerChangedEvent', function(e) {
+addOverlayListener('onPlayerChangedEvent', function(e) {
   document.getElementById('id').innerText = e.detail.id.toString(16);
   document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
@@ -55,7 +55,7 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
   document.getElementById('pos').innerText = e.detail.pos.x + ',' + e.detail.pos.y + ',' + e.detail.pos.z;
 });
 
-document.addEventListener('onTargetChangedEvent', function(e) {
+addOverlayListener('onTargetChangedEvent', function(e) {
   if (!e.detail) {
     document.getElementById('target').innerText = '--';
     document.getElementById('tid').innerText = '';
@@ -67,19 +67,24 @@ document.addEventListener('onTargetChangedEvent', function(e) {
   }
 });
 
-document.addEventListener('onGameExistsEvent', function(e) {
+addOverlayListener('onGameExistsEvent', function(e) {
   // console.log("Game exists: " + e.detail.exists);
 });
 
-document.addEventListener('onGameActiveChangedEvent', function(e) {
+addOverlayListener('onGameActiveChangedEvent', function(e) {
   // console.log("Game active: " + e.detail.active);
 });
 
-document.addEventListener('onLogEvent', function(e) {
+addOverlayListener('onLogEvent', function(e) {
   for (let i = 0; i < e.detail.logs.length; i++) {
     // Match "/echo tts:<stuff>"
     let r = e.detail.logs[i].match('00:0038:tts:(.*)');
-    if (r)
-      OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({ 'say': r[1] }));
+    if (r) {
+      // OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({ 'say': r[1] }));
+      callOverlayHandler({
+        call: 'cactbotSay',
+        text: r[1],
+      });
+    }
   }
 });

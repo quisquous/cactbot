@@ -326,15 +326,15 @@ class Fisher {
 UserConfig.getUserConfigLocation('fisher', function() {
   gFisher = new Fisher(document.getElementById('fisher'));
 
-  document.addEventListener('onLogEvent', function(e) {
+  addOverlayListener('onLogEvent', function(e) {
     gFisher.OnLogEvent(e);
   });
 
-  document.addEventListener('onZoneChangedEvent', function(e) {
+  addOverlayListener('onZoneChangedEvent', function(e) {
     gFisher.OnZoneChange(e);
   });
 
-  document.addEventListener('onPlayerChangedEvent', function(e) {
+  addOverlayListener('onPlayerChangedEvent', function(e) {
     gFisher.OnPlayerChange(e);
   });
 });
