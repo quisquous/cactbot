@@ -3,6 +3,32 @@
 [{
   zoneRegex: /(^Eden's Gate: Resurrection \(Savage\)$|Unknown Zone \(355\))/,
   timelineFile: 'e1s.txt',
+  timeline: [
+    function(data) {
+      let chance = 0.4;
+      let time = '275';
+
+      if (Math.random() >= chance)
+        return;
+
+      let goofs = {
+        en: [
+          'brb',
+          ':zzz:',
+          'LA HEE',
+          'Quick Powernap',
+          'brb making coffee',
+          'Eden\'s Snoozefest',
+          'rip enochian',
+        ],
+      }[data.lang];
+      if (!goofs)
+        return;
+
+      let goof = goofs[Math.floor(Math.random() * goofs.length)];
+      return time + ' "' + goof + '"';
+    },
+  ],
   triggers: [
     {
       id: 'E1S Initial',
