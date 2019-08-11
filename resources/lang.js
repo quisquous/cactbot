@@ -87,6 +87,7 @@ class CactbotLanguage {
       Prominence: '4049',
       HolyCircle: '404A',
       Confiteor: '404B',
+      FourPointFury: '4059',
 
       // Susano Ex
       ChurningDeep: '203F',
