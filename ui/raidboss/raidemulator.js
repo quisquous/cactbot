@@ -670,8 +670,15 @@ class EmulatorView {
 
   AnalyzeFight(role) {
     let triggers = gPopupText.triggers;
+    // This needs to match the data construction from popup.
     let data = {
       lang: gPopupText.data.lang,
+      currentHP: 0,
+      StopCombat: () => {},
+      ParseLocaleFloat: parseFloat,
+      CanStun: () => false,
+      CanSilence: () => false,
+      CanSleep: () => false,
     };
     let logs = this.selectedFight.logs;
     data.ShortName = function(name) {
