@@ -16,6 +16,7 @@ class PopupText {
     this.stunJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL', 'WAR', 'MRD', 'PLD', 'GLA', 'DRK', 'GNB'];
     this.silenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GNB', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
     this.sleepJobs = ['BLM', 'WHM'];
+    this.cleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];
 
     this.Reset();
   }
@@ -209,6 +210,7 @@ class PopupText {
       CanStun: () => this.stunJobs.indexOf(this.job) >= 0,
       CanSilence: () => this.silenceJobs.indexOf(this.job) >= 0,
       CanSleep: () => this.sleepJobs.indexOf(this.job) >= 0,
+      CanCleanse: () => this.cleanseJobs.indexOf(this.job) >= 0,
     };
     this.StopTimers();
     this.triggerSuppress = {};
