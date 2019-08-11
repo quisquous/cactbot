@@ -226,11 +226,11 @@
     },
     {
       id: 'E3S Stormy Horizon',
-      regex: / 14:3FE9:Leviathan starts using Stormy Horizon/,
-      regexCn: / 14:3FE9:利维亚桑 starts using Stormy Horizon/,
-      regexDe: / 14:3FE9:Leviathan starts using Stürmische See/,
-      regexFr: / 14:3FE9:Léviathan starts using Mer Déchaînée/,
-      regexJa: / 14:3FE9:リヴァイアサン starts using 大時化/,
+      regex: / 14:3FFE:Leviathan starts using Stormy Horizon/,
+      regexCn: / 14:3FFE:利维亚桑 starts using Stormy Horizon/,
+      regexDe: / 14:3FFE:Leviathan starts using Stürmische See/,
+      regexFr: / 14:3FFE:Léviathan starts using Mer Déchaînée/,
+      regexJa: / 14:3FFE:リヴァイアサン starts using 大時化/,
       infoText: {
         en: 'Panto Puddles x5',
         fr: 'Panto x5',
@@ -508,7 +508,7 @@
       delaySeconds: 6.2,
       alertText: {
         en: 'Front right / Back left',
-        fr: 'Avant gauche / Arrière droite',
+        fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
       },
     },
