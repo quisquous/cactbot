@@ -3,6 +3,7 @@ from datetime import datetime
 import re
 
 import fflogs
+import timeline_aggregator
 
 
 def timestamp_type(arg):
@@ -185,7 +186,8 @@ def main(args):
     last_ability_time = start_time
     last_entry = {'time': 0, 'ability_id': ''}
 
-    print('0 "Start"')
+    output = []
+    output.append('0 "Start"')
 
     for entry in entries:
         # First up, check if it's an ignored entry
@@ -252,11 +254,11 @@ def main(args):
         # Write the line
         output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
 
-        print(output_entry.encode('ascii', 'ignore').decode('utf8', 'ignore'))
+        output.append(output_entry.encode('ascii', 'ignore').decode('utf8', 'ignore'))
 
         # Save the entry til the next line for filtering
         last_entry = entry
-
+    return output
 
 if __name__ == "__main__":
     # Set up all of the arguments
@@ -291,6 +293,9 @@ if __name__ == "__main__":
     parser.add_argument('-ic', '--ignore-combatant', nargs='*', default=[], help="Combatant names to ignore, e.g. Aratama Soul")
     parser.add_argument('-p', '--phase', nargs='*', default=[], help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000")
 
+    # Aggregate arguments
+    parser.add_argument('-at', '--aggregate-threshold', type=float, default=2.0, help="Threshold to average events from multiple reports by")
+
     args = parser.parse_args()
 
     # Check dependent args
@@ -301,4 +306,13 @@ if __name__ == "__main__":
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
 
     # Actually call the script
-    main(args)
+    if not args.report or len(args.report.split(',')) == 1:
+        print('\n'.join(main(args)))
+    else:
+        timelines = []
+        tmp_args = args
+        for report in args.report.split(','):
+            tmp_args.report = report
+            timelines.append(main(tmp_args))
+        timeline_aggregator = timeline_aggregator.TimelineAggregator(timelines)
+        print('\n'.join(timeline_aggregator.aggregate(args.aggregate_threshold)))
