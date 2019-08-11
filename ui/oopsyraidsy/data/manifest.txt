@@ -1,5 +1,6 @@
 byakko-ex.js
 general.js
+innocence.js
 innocence-ex.js
 e1n.js
 e1s.js
