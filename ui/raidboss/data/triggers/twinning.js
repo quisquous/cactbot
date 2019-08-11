@@ -26,9 +26,16 @@
     },
     {
       id: 'Twinning Augurium',
-      regex: / [23:19:19.606] 14:3D65:Alpha Zaghnal starts using Augurium/,
-      alertText: {
-        en: 'Avoid frontal cleave',
+      regex: / 14:3D65:Alpha Zaghnal starts using Augurium on (\y{Name})/,
+      alertText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Buster cone on YOU',
+          };
+        }
+        return {
+          en: 'Avoid buster cleave',
+        };
       },
     },
     {
