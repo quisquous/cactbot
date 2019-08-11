@@ -12,7 +12,8 @@
         return data.role == 'healer' || data.role == 'tank';
       },
       alertText: {
-        en: 'tank busters',
+        en: 'Tank Busters',
+        fr: 'Tankbusters',
       },
     },
   ],
@@ -22,7 +23,7 @@
       regex: / 14:4116:Titan starts using Stonecrusher on (\y{Name})/,
       regexCn: / 14:4116:泰坦 starts using Stonecrusher on (\y{Name})/,
       regexDe: / 14:4116:Titan starts using Felsbrecher on (\y{Name})/,
-      regexFr: / 14:4116:Titan starts using Éruption tellurique on (\y{Name})/,
+      regexFr: / 14:4116:Titan starts using Éruption Tellurique on (\y{Name})/,
       regexJa: / 14:4116:タイタン starts using ロッククラッシュ on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -56,6 +57,7 @@
       },
       alertText: {
         en: 'Spread Marker',
+        fr: 'Marque de dispersion',
       },
     },
     {
@@ -63,11 +65,12 @@
       regex: / 14:410C:Titan starts using Evil Earth/,
       regexCn: / 14:410C:泰坦 starts using Evil Earth/,
       regexDe: / 14:410C:Titan starts using Grimm der Erde/,
-      regexFr: / 14:410C:Titan starts using Terre maléfique/,
+      regexFr: / 14:410C:Titan starts using Terre Maléfique/,
       regexJa: / 14:410C:タイタン starts using イビルアース/,
       suppressSeconds: 1,
       infoText: {
         en: 'Look for Evil Earth Marker',
+        fr: 'Repérez une marque de Terre maléfique',
       },
     },
     {
@@ -78,6 +81,7 @@
       },
       alertText: {
         en: 'Stack Marker',
+        fr: 'Marque de package',
       },
     },
     {
@@ -85,7 +89,7 @@
       regex: / 14:4114:Titan starts using Voice of the Land/,
       regexCn: / 14:4114:泰坦 starts using Voice of the Land/,
       regexDe: / 14:4114:Titan starts using Aufschrei der Erde/,
-      regexFr: / 14:4114:Titan starts using Hurlement tellurique/,
+      regexFr: / 14:4114:Titan starts using Hurlement Tellurique/,
       regexJa: / 14:4114:タイタン starts using 大地の叫び/,
       condition: function(data, matches) {
         return data.role == 'healer';
@@ -100,7 +104,7 @@
       regex: / 14:4113:Titan starts using Geocrush/,
       regexCn: / 14:4113:泰坦 starts using Geocrush/,
       regexDe: / 14:4113:Titan starts using Kraterschlag/,
-      regexFr: / 14:4113:Titan starts using Broie-terre/,
+      regexFr: / 14:4113:Titan starts using Broie-Terre/,
       regexJa: / 14:4113:タイタン starts using ジオクラッシュ/,
       alertText: {
         en: 'Knockback',
@@ -112,10 +116,11 @@
       regex: / 15:........:Titan:40E6:Earthen Gauntlets/,
       regexCn: / 15:........:泰坦:40E6:Earthen Gauntlets/,
       regexDe: / 15:........:Titan:40E6:Gaia-Armberge/,
-      regexFr: / 15:........:Titan:40E6:Poing tellurique/,
+      regexFr: / 15:........:Titan:40E6:Poing Tellurique/,
       regexJa: / 15:........:タイタン:40E6:大地の手甲/,
       alertText: {
         en: 'Landslide: In Front',
+        fr: 'En avant',
       },
     },
     {
@@ -123,10 +128,11 @@
       regex: / 15:........:Titan:4117:Massive Landslide/,
       regexCn: / 15:........:泰坦:4117:Massive Landslide/,
       regexDe: / 15:........:Titan:4117:Gigantischer Bergsturz/,
-      regexFr: / 15:........:Titan:4117:Glissement apocalyptique/,
+      regexFr: / 15:........:Titan:4117:Glissement Apocalyptique/,
       regexJa: / 15:........:タイタン:4117:メガ・ランドスライド/,
       infoText: {
         en: 'Get to Sides',
+        fr: 'Sur les côtés',
       },
     },
     {
@@ -134,10 +140,11 @@
       regex: / 14:411A:Titan starts using Landslide/,
       regexCn: / 14:411A:泰坦 starts using Landslide/,
       regexDe: / 14:411A:Titan starts using Bergsturz/,
-      regexFr: / 14:411A:Titan starts using Glissement de terrain/,
+      regexFr: / 14:411A:Titan starts using Glissement De Terrain/,
       regexJa: / 14:411A:タイタン starts using ランドスライド/,
       alertText: {
         en: 'Back Corners',
+        fr: 'Coins arrière',
       },
     },
     {
@@ -148,6 +155,7 @@
       },
       alertText: {
         en: 'Bomb on YOU',
+        fr: 'Bombe sur VOUS',
       },
     },
     {
@@ -155,10 +163,11 @@
       regex: / 14:4110:Titan starts using Seismic Wave/,
       regexCn: / 14:4110:泰坦 starts using Seismic Wave/,
       regexDe: / 14:4110:Titan starts using Seismische Welle/,
-      regexFr: / 14:4110:Titan starts using Ondes sismiques/,
+      regexFr: / 14:4110:Titan starts using Ondes Sismiques/,
       regexJa: / 14:4110:タイタン starts using サイズミックウェーブ/,
       alertText: {
         en: 'Hide Behind',
+        fr: 'Cachez-vous derrière',
       },
     },
     {
@@ -166,10 +175,11 @@
       regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels/,
       regexCn: / 15:\y{ObjectId}:泰坦:40E8:Earthen Wheels/,
       regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas tellurique/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique/,
       regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪/,
       alertText: {
         en: 'Wheels: On Sides',
+        fr: 'Roues: Sur les côtés',
       },
     },
     {
@@ -177,10 +187,11 @@
       regex: / 16:\y{ObjectId}:Titan:411F:Fault Line/,
       regexCn: / 16:\y{ObjectId}:泰坦:411F:Fault Line/,
       regexDe: / 16:\y{ObjectId}:Titan:411F:Bruchlinie/,
-      regexFr: / 16:\y{ObjectId}:Titan:411F:Faille tectonique/,
+      regexFr: / 16:\y{ObjectId}:Titan:411F:Faille Tectonique/,
       regexJa: / 16:\y{ObjectId}:タイタン:411F:フォールトゾーン/,
       infoText: {
         en: 'Tank Charge',
+        fr: 'Charge tank',
       },
     },
     {
@@ -192,6 +203,7 @@
       regexJa: / 14:4121:タイタン starts using マグニチュード5.0/,
       alertText: {
         en: 'Get Under',
+        fr: 'Sous le boss',
       },
     },
     {
@@ -199,13 +211,14 @@
       regex: / 14:4124:Titan Maximum starts using Earthen Fury/,
       regexCn: / 14:4124:泰坦 Maximum starts using Earthen Fury/,
       regexDe: / 14:4124:Titan Maximum starts using Gaias Zorn/,
-      regexFr: / 14:4124:Titan Maximum starts using Fureur tellurique/,
+      regexFr: / 14:4124:Titan Maximum starts using Fureur Tellurique/,
       regexJa: / 14:4124:タイタン Maximum starts using 大地の怒り/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
-        en: 'big aoe',
+        en: 'Big aoe',
+        fr: 'Gros dégâts de zone',
       },
     },
     {
@@ -213,10 +226,11 @@
       regex: / 14:412F:Titan Maximum starts using Earthen Fist/,
       regexCn: / 14:412F:泰坦 Maximum starts using Earthen Fist/,
       regexDe: / 14:412F:Titan Maximum starts using Gaias Faust/,
-      regexFr: / 14:412F:Titan Maximum starts using Poing de la terre/,
+      regexFr: / 14:412F:Titan Maximum starts using Poing De La Terre/,
       regexJa: / 14:412F:タイタン Maximum starts using 大地の拳/,
       infoText: {
         en: 'Left, Then Right',
+        fr: 'Gauche puis droite',
       },
     },
     {
@@ -224,10 +238,11 @@
       regex: / 14:4130:Titan Maximum starts using Earthen Fist/,
       regexCn: / 14:4130:泰坦 Maximum starts using Earthen Fist/,
       regexDe: / 14:4130:Titan Maximum starts using Gaias Faust/,
-      regexFr: / 14:4130:Titan Maximum starts using Poing de la terre/,
+      regexFr: / 14:4130:Titan Maximum starts using Poing De La Terre/,
       regexJa: / 14:4130:タイタン Maximum starts using 大地の拳/,
       infoText: {
         en: 'Right, Then Left',
+        fr: 'Droite puis gauche',
       },
     },
     {
@@ -235,10 +250,11 @@
       regex: / 14:4131:Titan Maximum starts using Earthen Fist/,
       regexCn: / 14:4131:泰坦 Maximum starts using Earthen Fist/,
       regexDe: / 14:4131:Titan Maximum starts using Gaias Faust/,
-      regexFr: / 14:4131:Titan Maximum starts using Poing de la terre/,
+      regexFr: / 14:4131:Titan Maximum starts using Poing De La Terre/,
       regexJa: / 14:4131:タイタン Maximum starts using 大地の拳/,
       infoText: {
         en: 'Left, Stay Left',
+        fr: 'Gauche puis restez',
       },
     },
     {
@@ -246,10 +262,11 @@
       regex: / 14:4132:Titan Maximum starts using Earthen Fist/,
       regexCn: / 14:4132:泰坦 Maximum starts using Earthen Fist/,
       regexDe: / 14:4132:Titan Maximum starts using Gaias Faust/,
-      regexFr: / 14:4132:Titan Maximum starts using Poing de la terre/,
+      regexFr: / 14:4132:Titan Maximum starts using Poing De La Terre/,
       regexJa: / 14:4132:タイタン Maximum starts using 大地の拳/,
       infoText: {
         en: 'Right, Stay Right',
+        fr: 'Droite puis restez',
       },
     },
     {
@@ -257,7 +274,7 @@
       regex: / 14:4135:Titan Maximum starts using Dual Earthen Fists/,
       regexCn: / 14:4135:泰坦 Maximum starts using Dual Earthen Fists/,
       regexDe: / 14:4135:Titan Maximum starts using Dual Gaias Fausts/,
-      regexFr: / 14:4135:Titan Maximum starts using Dual Poing de la terres/,
+      regexFr: / 14:4135:Titan Maximum starts using Frappe De La Terre/,
       regexJa: / 14:4135:タイタン Maximum starts using Dual 大地の拳s/,
       infoText: {
         en: 'Knockback',
@@ -272,6 +289,7 @@
       },
       alertText: {
         en: 'Weight, Get Out',
+        fr: 'Poids, éloignez-vous',
       },
     },
     {
@@ -281,15 +299,18 @@
         if (data.role != 'tank') {
           return {
             en: 'Away from Tanks',
+            fr: 'Loin des tanks',
           };
         }
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -301,6 +322,7 @@
       },
       alertText: {
         en: 'Gaol on YOU',
+        fr: 'Geôle sur VOUS',
       },
     },
     {
@@ -314,10 +336,11 @@
       regex: / 14:4125:Titan Maximum starts using Plate Fracture/,
       regexCn: / 14:4125:泰坦 Maximum starts using Plate Fracture/,
       regexDe: / 14:4125:Titan Maximum starts using Felsberster/,
-      regexFr: / 14:4125:Titan Maximum starts using Fracture rocheuse/,
+      regexFr: / 14:4125:Titan Maximum starts using Fracture Rocheuse/,
       regexJa: / 14:4125:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF FRONT RIGHT',
+        fr: 'PARTEZ DE L\'AVANT DROITE',
       },
     },
     {
@@ -325,10 +348,11 @@
       regex: / 14:4126:Titan Maximum starts using Plate Fracture/,
       regexCn: / 14:4126:泰坦 Maximum starts using Plate Fracture/,
       regexDe: / 14:4126:Titan Maximum starts using Felsberster/,
-      regexFr: / 14:4126:Titan Maximum starts using Fracture rocheuse/,
+      regexFr: / 14:4126:Titan Maximum starts using Fracture Rocheuse/,
       regexJa: / 14:4126:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF BACK RIGHT',
+        fr: 'PARTEZ DE L\'ARRIERE DROITE',
       },
     },
     {
@@ -336,10 +360,11 @@
       regex: / 14:4127:Titan Maximum starts using Plate Fracture/,
       regexCn: / 14:4127:泰坦 Maximum starts using Plate Fracture/,
       regexDe: / 14:4127:Titan Maximum starts using Felsberster/,
-      regexFr: / 14:4127:Titan Maximum starts using Fracture rocheuse/,
+      regexFr: / 14:4127:Titan Maximum starts using Fracture Rocheuse/,
       regexJa: / 14:4127:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF BACK LEFT',
+        fr: 'PARTEZ DE L\'ARRIERE GAUCHE',
       },
     },
     {
@@ -347,10 +372,11 @@
       regex: / 14:4128:Titan Maximum starts using Plate Fracture/,
       regexCn: / 14:4128:泰坦 Maximum starts using Plate Fracture/,
       regexDe: / 14:4128:Titan Maximum starts using Felsberster/,
-      regexFr: / 14:4128:Titan Maximum starts using Fracture rocheuse/,
+      regexFr: / 14:4128:Titan Maximum starts using Fracture Rocheuse/,
       regexJa: / 14:4128:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF FRONT LEFT',
+        fr: 'PARTEZ DE L\'AVANT GAUCHE',
       },
     },
     {
@@ -365,6 +391,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de zone',
       },
     },
   ],
