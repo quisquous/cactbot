@@ -60,11 +60,11 @@ def output_to_timeline(timeline_event_map):
     return sorted(list(timeline_events), key=lambda s: float(s.split()[0]))
 
 
-def create_averaging_function(treshold):
+def create_averaging_function(threshold):
     """Creates and returns a function to group by.
 
-    Creates the averaging function to be used with the itertools.groupby
-    function. Takes a treshold value in seconds as input to average groups
+    Creates the averaging function to be used with the itertools.groupby()
+    function. Takes a threshold value in seconds as input to average groups
     of similar event times.
     """
     key = None
@@ -76,14 +76,14 @@ def create_averaging_function(treshold):
         """
         nonlocal key
         if key is None:
-            key = event_time + treshold
+            key = event_time + threshold
         elif event_time >= key:
-            key = event_time + treshold
+            key = event_time + threshold
         return key
     return averaging_function
 
 
-def average_similar_events(values, treshold):
+def average_similar_events(values, threshold):
     """Return a list where similar numbers have been averaged.
 
     Items are grouped using the supplied width and criteria and the
@@ -91,7 +91,7 @@ def average_similar_events(values, treshold):
     averages are not rounded.
 
     """
-    grouped_values = itertools.groupby(values, create_averaging_function(treshold))
+    grouped_values = itertools.groupby(values, create_averaging_function(threshold))
     return list(round(mean(group), 1) for _, group in grouped_values)
 
 

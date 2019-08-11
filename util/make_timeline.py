@@ -294,7 +294,7 @@ if __name__ == "__main__":
     parser.add_argument('-p', '--phase', nargs='*', default=[], help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000")
 
     # Aggregate arguments
-    parser.add_argument('-at', '--aggregate-threshold', type=float, default=2.0, help="Treshold to average events from multiple reports by")
+    parser.add_argument('-at', '--aggregate-threshold', type=float, default=2.0, help="Threshold to average events from multiple reports by")
 
     args = parser.parse_args()
 
