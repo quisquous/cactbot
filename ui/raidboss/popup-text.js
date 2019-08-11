@@ -13,11 +13,6 @@ class PopupText {
 
     this.kMaxRowsOfText = 2;
 
-    this.stunJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL', 'WAR', 'MRD', 'PLD', 'GLA', 'DRK', 'GNB'];
-    this.silenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GNB', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
-    this.sleepJobs = ['BLM', 'WHM'];
-    this.cleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];
-
     this.Reset();
   }
 
@@ -198,6 +193,8 @@ class PopupText {
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
 
+    // TODO: make a breaking change at some point and
+    // make all this style consistent, sorry.
     this.data = {
       me: this.me,
       job: this.job,
@@ -207,10 +204,12 @@ class PopupText {
       ShortName: this.ShortNamify,
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
-      CanStun: () => this.stunJobs.indexOf(this.job) >= 0,
-      CanSilence: () => this.silenceJobs.indexOf(this.job) >= 0,
-      CanSleep: () => this.sleepJobs.indexOf(this.job) >= 0,
-      CanCleanse: () => this.cleanseJobs.indexOf(this.job) >= 0,
+      CanStun: () => Util.canStun(this.job),
+      CanSilence: () => Util.canSilence(this.job),
+      CanSleep: () => Util.canSleep(this.job),
+      CanCleanse: () => Util.canCleanse(this.job),
+      CanFeint: () => Util.canFeint(this.job),
+      CanAddle: () => Util.canAddle(this.job),
     };
     this.StopTimers();
     this.triggerSuppress = {};
@@ -457,7 +456,16 @@ class PopupText {
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
       if (ttsText && playSpeech) {
+        // Heuristics for auto tts.
+        // * Remove a bunch of chars.
         ttsText = ttsText.replace(/[#!]/, '');
+        // * slashes between mechanics
+        ttsText = ttsText.replace('/', ' ');
+        // * arrows at the front or the end are directions, e.g. "east =>"
+        ttsText = ttsText.replace(/[-=]>\s*$/, '');
+        ttsText = ttsText.replace(/^\s*<[-=]/, '');
+        // * arrows in the middle are a sequence, e.g. "in => out => spread"
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
         let cmd = { 'say': ttsText };
         OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
       } else if (soundUrl && playSounds) {

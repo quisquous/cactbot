@@ -891,6 +891,25 @@ class DamageTracker {
     this.data.inCombat = this.inCombat;
   }
 
+  AddSimpleTriggers(type, dict) {
+    if (!dict)
+      return;
+    let keys = Object.keys(dict);
+    for (let j = 0; j < keys.length; ++j) {
+      let key = keys[j];
+      let id = dict[key];
+      let trigger = {
+        id: key,
+        damageRegex: id,
+        idRegex: Regexes.Parse('^' + id + '$'),
+        mistake: function(e, data) {
+          return { type: type, blame: e.targetName, text: e.abilityName };
+        },
+      };
+      this.damageTriggers.push(trigger);
+    }
+  }
+
   ReloadTriggers() {
     this.ProcessDataFiles();
 
@@ -918,20 +937,9 @@ class DamageTracker {
       let set = this.triggerSets[i];
       if (this.zoneName.search(set.zoneRegex) < 0)
         continue;
-      let warnKeys = set.damageWarn ? Object.keys(set.damageWarn) : [];
-      for (let j = 0; j < warnKeys.length; ++j) {
-        let warnKey = warnKeys[j];
-        let id = set.damageWarn[warnKey];
-        let trigger = {
-          id: warnKey,
-          damageRegex: id,
-          idRegex: Regexes.Parse('^' + id + '$'),
-          mistake: function(e, data) {
-            return { type: 'warn', blame: e.targetName, text: e.abilityName };
-          },
-        };
-        this.damageTriggers.push(trigger);
-      }
+      this.AddSimpleTriggers('warn', set.damageWarn);
+      this.AddSimpleTriggers('fail', set.damageFail);
+
       if (!set.triggers)
         set.triggers = [];
       for (let j = 0; j < set.triggers.length; ++j) {
@@ -1006,13 +1014,11 @@ class DamageTracker {
           console.error('Unexpected JSON from ' + filename + ', expected a zoneRegex');
           continue;
         }
-        if (!('triggers' in json[i])) {
-          console.error('Unexpected JSON from ' + filename + ', expected a triggers');
-          continue;
-        }
-        if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
-          console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
-          continue;
+        if ('triggers' in json[i]) {
+          if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
+            console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
+            continue;
+          }
         }
       }
       Array.prototype.push.apply(this.triggerSets, json);

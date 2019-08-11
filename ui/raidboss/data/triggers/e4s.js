@@ -12,7 +12,8 @@
         return data.role == 'healer' || data.role == 'tank';
       },
       alertText: {
-        en: 'tank busters',
+        en: 'Tank Busters',
+        fr: 'Tankbusters',
       },
     },
   ],
@@ -20,16 +21,10 @@
     {
       id: 'E4S Stonecrusher',
       regex: / 14:4116:Titan starts using Stonecrusher on (\y{Name})/,
-      alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
-          return;
-
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-        };
-      },
+      regexCn: / 14:4116:泰坦 starts using Stonecrusher on (\y{Name})/,
+      regexDe: / 14:4116:Titan starts using Felsbrecher on (\y{Name})/,
+      regexFr: / 14:4116:Titan starts using Éruption Tellurique on (\y{Name})/,
+      regexJa: / 14:4116:タイタン starts using ロッククラッシュ on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -38,13 +33,20 @@
             fr: 'Tankbuster sur VOUS',
           };
         }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-          };
-        }
+      },
+      // As this seems to usually seems to be invulned,
+      // don't make a big deal out of it.
+      infoText: function(data, matches) {
+        if (matches[1] == data.me)
+          return;
+        if (data.role != 'tank' && data.role != 'healer')
+          return;
+
+        return {
+          en: 'Buster on ' + data.ShortName(matches[1]),
+          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+        };
       },
     },
     {
@@ -55,14 +57,20 @@
       },
       alertText: {
         en: 'Spread Marker',
+        fr: 'Marque de dispersion',
       },
     },
     {
       id: 'E4S Evil Earth',
       regex: / 14:410C:Titan starts using Evil Earth/,
+      regexCn: / 14:410C:泰坦 starts using Evil Earth/,
+      regexDe: / 14:410C:Titan starts using Grimm der Erde/,
+      regexFr: / 14:410C:Titan starts using Terre Maléfique/,
+      regexJa: / 14:410C:タイタン starts using イビルアース/,
       suppressSeconds: 1,
       infoText: {
         en: 'Look for Evil Earth Marker',
+        fr: 'Repérez une marque de Terre maléfique',
       },
     },
     {
@@ -73,11 +81,16 @@
       },
       alertText: {
         en: 'Stack Marker',
+        fr: 'Marque de package',
       },
     },
     {
       id: 'E4S Voice of the Land',
       regex: / 14:4114:Titan starts using Voice of the Land/,
+      regexCn: / 14:4114:泰坦 starts using Voice of the Land/,
+      regexDe: / 14:4114:Titan starts using Aufschrei der Erde/,
+      regexFr: / 14:4114:Titan starts using Hurlement Tellurique/,
+      regexJa: / 14:4114:タイタン starts using 大地の叫び/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -89,6 +102,10 @@
     {
       id: 'E4S Geocrush',
       regex: / 14:4113:Titan starts using Geocrush/,
+      regexCn: / 14:4113:泰坦 starts using Geocrush/,
+      regexDe: / 14:4113:Titan starts using Kraterschlag/,
+      regexFr: / 14:4113:Titan starts using Broie-Terre/,
+      regexJa: / 14:4113:タイタン starts using ジオクラッシュ/,
       alertText: {
         en: 'Knockback',
         fr: 'Poussée',
@@ -97,22 +114,37 @@
     {
       id: 'E4S Massive Landslide - Front',
       regex: / 15:........:Titan:40E6:Earthen Gauntlets/,
+      regexCn: / 15:........:泰坦:40E6:Earthen Gauntlets/,
+      regexDe: / 15:........:Titan:40E6:Gaia-Armberge/,
+      regexFr: / 15:........:Titan:40E6:Poing Tellurique/,
+      regexJa: / 15:........:タイタン:40E6:大地の手甲/,
       alertText: {
         en: 'Landslide: In Front',
+        fr: 'En avant',
       },
     },
     {
       id: 'E4S Massive Landslide - Sides',
       regex: / 15:........:Titan:4117:Massive Landslide/,
+      regexCn: / 15:........:泰坦:4117:Massive Landslide/,
+      regexDe: / 15:........:Titan:4117:Gigantischer Bergsturz/,
+      regexFr: / 15:........:Titan:4117:Glissement Apocalyptique/,
+      regexJa: / 15:........:タイタン:4117:メガ・ランドスライド/,
       infoText: {
         en: 'Get to Sides',
+        fr: 'Sur les côtés',
       },
     },
     {
       id: 'E4S Landslide',
       regex: / 14:411A:Titan starts using Landslide/,
+      regexCn: / 14:411A:泰坦 starts using Landslide/,
+      regexDe: / 14:411A:Titan starts using Bergsturz/,
+      regexFr: / 14:411A:Titan starts using Glissement De Terrain/,
+      regexJa: / 14:411A:タイタン starts using ランドスライド/,
       alertText: {
         en: 'Back Corners',
+        fr: 'Coins arrière',
       },
     },
     {
@@ -123,77 +155,127 @@
       },
       alertText: {
         en: 'Bomb on YOU',
+        fr: 'Bombe sur VOUS',
       },
     },
     {
       id: 'E4S Seismic Wave',
       regex: / 14:4110:Titan starts using Seismic Wave/,
+      regexCn: / 14:4110:泰坦 starts using Seismic Wave/,
+      regexDe: / 14:4110:Titan starts using Seismische Welle/,
+      regexFr: / 14:4110:Titan starts using Ondes Sismiques/,
+      regexJa: / 14:4110:タイタン starts using サイズミックウェーブ/,
       alertText: {
         en: 'Hide Behind',
+        fr: 'Cachez-vous derrière',
       },
     },
     {
       id: 'E4S Fault Line - Sides',
       regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E8:Earthen Wheels/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪/,
       alertText: {
         en: 'Wheels: On Sides',
+        fr: 'Roues: Sur les côtés',
       },
     },
     {
       id: 'E4S Fault Line - Front',
       regex: / 16:\y{ObjectId}:Titan:411F:Fault Line/,
+      regexCn: / 16:\y{ObjectId}:泰坦:411F:Fault Line/,
+      regexDe: / 16:\y{ObjectId}:Titan:411F:Bruchlinie/,
+      regexFr: / 16:\y{ObjectId}:Titan:411F:Faille Tectonique/,
+      regexJa: / 16:\y{ObjectId}:タイタン:411F:フォールトゾーン/,
       infoText: {
         en: 'Tank Charge',
+        fr: 'Charge tank',
       },
     },
     {
       id: 'E4S Magnitude 5.0',
       regex: / 14:4121:Titan starts using Magnitude 5.0/,
+      regexCn: / 14:4121:泰坦 starts using Magnitude 5.0/,
+      regexDe: / 14:4121:Titan starts using Magnitude 5.0/,
+      regexFr: / 14:4121:Titan starts using Magnitude 5/,
+      regexJa: / 14:4121:タイタン starts using マグニチュード5.0/,
       alertText: {
         en: 'Get Under',
+        fr: 'Sous le boss',
       },
     },
     {
       id: 'E4S Earthen Fury',
       regex: / 14:4124:Titan Maximum starts using Earthen Fury/,
+      regexCn: / 14:4124:泰坦 Maximum starts using Earthen Fury/,
+      regexDe: / 14:4124:Titan Maximum starts using Gaias Zorn/,
+      regexFr: / 14:4124:Titan Maximum starts using Fureur Tellurique/,
+      regexJa: / 14:4124:タイタン Maximum starts using 大地の怒り/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
-        en: 'big aoe',
+        en: 'Big aoe',
+        fr: 'Gros dégâts de zone',
       },
     },
     {
       id: 'E4S Earthen Fist - Left/Right',
       regex: / 14:412F:Titan Maximum starts using Earthen Fist/,
+      regexCn: / 14:412F:泰坦 Maximum starts using Earthen Fist/,
+      regexDe: / 14:412F:Titan Maximum starts using Gaias Faust/,
+      regexFr: / 14:412F:Titan Maximum starts using Poing De La Terre/,
+      regexJa: / 14:412F:タイタン Maximum starts using 大地の拳/,
       infoText: {
-        en: 'Left, Go Right',
+        en: 'Left, Then Right',
+        fr: 'Gauche puis droite',
       },
     },
     {
       id: 'E4S Earthen Fist - Right/Left',
       regex: / 14:4130:Titan Maximum starts using Earthen Fist/,
+      regexCn: / 14:4130:泰坦 Maximum starts using Earthen Fist/,
+      regexDe: / 14:4130:Titan Maximum starts using Gaias Faust/,
+      regexFr: / 14:4130:Titan Maximum starts using Poing De La Terre/,
+      regexJa: / 14:4130:タイタン Maximum starts using 大地の拳/,
       infoText: {
-        en: 'Right, Go Left',
+        en: 'Right, Then Left',
+        fr: 'Droite puis gauche',
       },
     },
     {
       id: 'E4S Earthen Fist - 2x Left',
       regex: / 14:4131:Titan Maximum starts using Earthen Fist/,
+      regexCn: / 14:4131:泰坦 Maximum starts using Earthen Fist/,
+      regexDe: / 14:4131:Titan Maximum starts using Gaias Faust/,
+      regexFr: / 14:4131:Titan Maximum starts using Poing De La Terre/,
+      regexJa: / 14:4131:タイタン Maximum starts using 大地の拳/,
       infoText: {
         en: 'Left, Stay Left',
+        fr: 'Gauche puis restez',
       },
     },
     {
       id: 'E4S Earthen Fist - 2x Right',
       regex: / 14:4132:Titan Maximum starts using Earthen Fist/,
+      regexCn: / 14:4132:泰坦 Maximum starts using Earthen Fist/,
+      regexDe: / 14:4132:Titan Maximum starts using Gaias Faust/,
+      regexFr: / 14:4132:Titan Maximum starts using Poing De La Terre/,
+      regexJa: / 14:4132:タイタン Maximum starts using 大地の拳/,
       infoText: {
         en: 'Right, Stay Right',
+        fr: 'Droite puis restez',
       },
     },
     {
       id: 'E4S Dual Earthen Fists',
       regex: / 14:4135:Titan Maximum starts using Dual Earthen Fists/,
+      regexCn: / 14:4135:泰坦 Maximum starts using Dual Earthen Fists/,
+      regexDe: / 14:4135:Titan Maximum starts using Dual Gaias Fausts/,
+      regexFr: / 14:4135:Titan Maximum starts using Frappe De La Terre/,
+      regexJa: / 14:4135:タイタン Maximum starts using Dual 大地の拳s/,
       infoText: {
         en: 'Knockback',
         fr: 'Poussée',
@@ -207,6 +289,7 @@
       },
       alertText: {
         en: 'Weight, Get Out',
+        fr: 'Poids, éloignez-vous',
       },
     },
     {
@@ -216,15 +299,18 @@
         if (data.role != 'tank') {
           return {
             en: 'Away from Tanks',
+            fr: 'Loin des tanks',
           };
         }
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -236,44 +322,76 @@
       },
       alertText: {
         en: 'Gaol on YOU',
+        fr: 'Geôle sur VOUS',
       },
     },
     {
+      // TODO: these could be better called out
+      // On the first set, maybe should tell you where to put the jails,
+      // if it's a consistent strategy to ranged lb the jails.  After that
+      // it could just tell you to "go right" or "go left".
+      // On the second set, could just say "go right" / "go front" and
+      // keep track of which it has seen.
       id: 'E4S Plate Fracture - Front Right',
       regex: / 14:4125:Titan Maximum starts using Plate Fracture/,
+      regexCn: / 14:4125:泰坦 Maximum starts using Plate Fracture/,
+      regexDe: / 14:4125:Titan Maximum starts using Felsberster/,
+      regexFr: / 14:4125:Titan Maximum starts using Fracture Rocheuse/,
+      regexJa: / 14:4125:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF FRONT RIGHT',
+        fr: 'PARTEZ DE L\'AVANT DROITE',
       },
     },
     {
       id: 'E4S Plate Fracture - Back Right',
       regex: / 14:4126:Titan Maximum starts using Plate Fracture/,
+      regexCn: / 14:4126:泰坦 Maximum starts using Plate Fracture/,
+      regexDe: / 14:4126:Titan Maximum starts using Felsberster/,
+      regexFr: / 14:4126:Titan Maximum starts using Fracture Rocheuse/,
+      regexJa: / 14:4126:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF BACK RIGHT',
+        fr: 'PARTEZ DE L\'ARRIERE DROITE',
       },
     },
     {
       id: 'E4S Plate Fracture - Back Left',
       regex: / 14:4127:Titan Maximum starts using Plate Fracture/,
+      regexCn: / 14:4127:泰坦 Maximum starts using Plate Fracture/,
+      regexDe: / 14:4127:Titan Maximum starts using Felsberster/,
+      regexFr: / 14:4127:Titan Maximum starts using Fracture Rocheuse/,
+      regexJa: / 14:4127:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF BACK LEFT',
+        fr: 'PARTEZ DE L\'ARRIERE GAUCHE',
       },
     },
     {
       id: 'E4S Plate Fracture - Front Left',
       regex: / 14:4128:Titan Maximum starts using Plate Fracture/,
+      regexCn: / 14:4128:泰坦 Maximum starts using Plate Fracture/,
+      regexDe: / 14:4128:Titan Maximum starts using Felsberster/,
+      regexFr: / 14:4128:Titan Maximum starts using Fracture Rocheuse/,
+      regexJa: / 14:4128:タイタン Maximum starts using ロックフラクチャー/,
       infoText: {
         en: 'GET OFF FRONT LEFT',
+        fr: 'PARTEZ DE L\'AVANT GAUCHE',
       },
     },
     {
       id: 'E4S Tumult',
       regex: / 14:412A:Titan Maximum starts using Tumult/,
+      regexCn: / 14:412A:泰坦 Maximum starts using Tumult/,
+      regexDe: / 14:412A:Titan Maximum starts using Katastrophales Beben/,
+      regexFr: / 14:412A:Titan Maximum starts using Tumulte/,
+      regexJa: / 14:412A:タイタン Maximum starts using 激震/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégâts de zone',
       },
     },
   ],

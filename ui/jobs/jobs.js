@@ -62,6 +62,7 @@ let kPeanutButter = null;
 let kLeadenBuff = null;
 let kLeadenBuffEnd = null;
 let kTwinSnakes = null;
+let kFourPointFury = null;
 let kDemolish = null;
 let kComboBreakers = null;
 let kAstCombust = null;
@@ -230,6 +231,7 @@ function setupRegexes() {
   kLeadenBuff = gLang.youGainEffectRegex(gLang.kEffect.LeadenFist);
   kLeadenBuffEnd = gLang.youLoseEffectRegex(gLang.kEffect.LeadenFist);
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
+  kFourPointFury = gLang.youUseAbilityRegex(gLang.kAbility.FourPointFury);
   kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
   kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
   kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
@@ -1281,6 +1283,12 @@ class Bars {
     this.o.twinSnakesTimer.duration = 15;
   }
 
+  OnMonkFourPointFury() {
+    let old = parseInt(this.o.twinSnakesTimer.duration) - parseInt(this.o.twinSnakesTimer.elapsed);
+    this.o.twinSnakesTimer.duration = 0;
+    this.o.twinSnakesTimer.duration = Math.min(old + 10, 15);
+  }
+
   OnMonkDemolish() {
     this.o.demolishTimer.duration = 0;
     this.o.demolishTimer.duration = 18;
@@ -1821,6 +1829,10 @@ class Bars {
       if (this.job == 'MNK') {
         if (log.search(kTwinSnakes) >= 0) {
           this.OnMonkTwinSnakes();
+          continue;
+        }
+        if (log.search(kFourPointFury) >= 0) {
+          this.OnMonkFourPointFury();
           continue;
         }
         if (log.search(kDemolish) >= 0) {

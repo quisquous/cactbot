@@ -44,8 +44,6 @@
       infoText: function(data) {
         // Tanks/healers always get an alert.
         if (data.role == 'tank' || data.role == 'healer') return false;
-        // Only the first for casters, other dps always get an info.
-        if (data.role == 'dps-caster' && data.thunderCount) return false;
         return {
           en: 'Thunder III',
           de: 'Blitzga',
@@ -57,21 +55,6 @@
           return {
             en: 'Thunder III: Tank buster',
             de: 'Blitzga: Tank buster',
-          };
-        }
-        // Non-casters always get an info.
-        if (data.role != 'dps-caster') return false;
-        // Casters get an alert after the first.
-        if (data.thunderCount == 2) {
-          return {
-            en: 'Thunder III: Addle during',
-            de: 'Blitzga: Stumpfsinn dabei einsetzen',
-          };
-        }
-        if (data.thunderCount == 3) {
-          return {
-            en: 'Thunder III: Addle after',
-            de: 'Blitzga: Stumpfsinn danach einsetzen',
           };
         }
       },
@@ -489,18 +472,6 @@
         de: 'In die Mitte',
       },
     },
-    { // Grand Cross Alpha finished cast - Use Apoc on tank except before Omega.
-      id: 'O4S2 Apocatastasis',
-      regex: /:242B:Neo Exdeath starts using/,
-      delaySeconds: 5,
-      alertText: {
-        en: 'Apocatastasis on tank',
-        de: 'Apokatastasis auf Tank',
-      },
-      condition: function(data, matches) {
-        return data.role == 'dps-caster' && (data.alphaCount == 1 || data.alphaCount == 3);
-      },
-    },
     { // Grand Cross Delta.
       id: 'O4S2 Grand Cross Delta',
       regex: /:242C:Neo Exdeath starts using/,
@@ -551,18 +522,6 @@
       tts: {
         en: 'go to middle',
         de: 'in die Mitte',
-      },
-    },
-    { // Grand Cross Omega finished cast - Use Apoc on healer.
-      id: 'O4S2 Apocatastasis',
-      regex: /:242D:Neo Exdeath starts using/,
-      delaySeconds: 8,
-      alertText: {
-        en: 'Apocatastasis on healer',
-        de: 'Apokatastasis auf Heiler',
-      },
-      condition: function(data, matches) {
-        return data.role == 'dps-caster';
       },
     },
     { // Forked Lightning - Don't Stack.
@@ -787,26 +746,6 @@
       id: 'O4S2 Almagest',
       regex: /:2417:Neo Exdeath starts using/,
       alertText: function(data) {
-        // 4th almagest skips Dismantle but get Addle.
-        // 5th almagest skips Addle but gets Troubadour/Dismantle.
-        if (data.job == 'MCH' && data.almagestCount != 3) {
-          return {
-            en: 'Almagest: Dismantle',
-            de: 'Almagest: Zerlegen',
-          };
-        }
-        if (data.role == 'dps-caster' && data.almagestCount != 4) {
-          return {
-            en: 'Almagest: Addle',
-            de: 'Almagest: Stumpfsinn',
-          };
-        }
-        if (data.job == 'BRD' && data.almagestCount == 4) {
-          return {
-            en: 'Almagest: Troubadour',
-            de: 'Almagest: Troubadour',
-          };
-        }
         return {
           en: 'Almagest',
           de: 'Almagest',

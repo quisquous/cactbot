@@ -40,9 +40,9 @@ hideall "Earthen Wheels"
 315.3 "Bomb Boulders" sync /:Titan:4109:/
 327.4 "Seismic Wave" sync /:Titan:4110:/
 340.7 "Voice of the Land" sync /:Titan:4114:/
-350.0 "Stonecrusher" sync /:Titan:4116:/
-353.1 "Stonecrusher 1" #sync /:Titan:4143:/
-356.1 "Stonecrusher 2" #sync /:Titan:4143:/
+350.0 "Stonecrusher 1" sync /:Titan:4116:/
+353.1 "Stonecrusher 2" #sync /:Titan:4143:/
+356.1 "Stonecrusher 3" #sync /:Titan:4143:/
 372.4 "Geocrush" sync /:Titan:4113:/
 376.2 "Earthen Gauntlets" sync /:Titan:40E6:/
 382.6 "Pulse of the Land" sync /:Titan:4106:/
@@ -51,7 +51,8 @@ hideall "Earthen Wheels"
 407.5 "Landslide" sync /:Titan:411A:/
 413.5 "Right/Left Landslide" sync /:Titan:411[CD]:/
 420.7 "Earthen Armor" sync /:Titan:40E7:/
-431.1 "Orogenesis" sync /:Titan:4371:/
+425.7 "--untargetable--"
+431.1 "Orogenesis" #sync /:Titan:4371:/
 
 
 ### Gauntlets path
@@ -76,11 +77,13 @@ hideall "Earthen Wheels"
 717.6 "Magnitude 5.0" sync /:Titan:4121:/
 720.7 "Earthen Armor" sync /:Titan:40E9:/
 722.6 "Pulse of the Land" sync /:Titan:4106:/
-730.5 "Orogenesis" sync /:Titan:4371:/
+725.8 "--untargetable--"
+730.5 "Orogenesis" #sync /:Titan:4371:/
 
 
 ### Transition
 1000.0 "Orogenesis" sync /:Titan:4371:/ window 1000,0
+1026.3 "--targetable--"
 1033.1 "Earthen Fury" sync /:Titan Maximum:4124:/
 1048.3 "Earthen Fist" sync /:Titan Maximum:(4130|4131|4132|412F):/
 1053.2 "Weight of the Land" sync /:Titan:4108:/

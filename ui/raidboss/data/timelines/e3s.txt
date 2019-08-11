@@ -48,7 +48,7 @@ hideall "--sync--"
 269.4 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 273.5 "Temporary Current" sync /:Leviathan:(3FEC|3FED):/
 287.8 "Maelstrom" sync /:Leviathan:3FFA:/
-209.0 "--untargetable--"
+290.0 "--untargetable--"
 301.2 "Spinning Dive 1" #sync /:Leviathan:3FFD:/
 303.1 "Spinning Dive 2" #sync /:Leviathan:3FFD:/
 305.1 "Spinning Dive 3" #sync /:Leviathan:3FFD:/

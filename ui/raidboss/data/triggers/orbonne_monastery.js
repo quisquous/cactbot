@@ -302,7 +302,7 @@
       regexDe: / 14:3752:Cidolfus starts using Zenitspaltung/,
       regexFr: / 14:3752:Cid Le Dieu De La Foudre starts using Bombardement Céleste/,
       condition: function(data) {
-        return data.role == 'dps-melee';
+        return data.canFeint();
       },
       infoText: {
         en: 'Feint Tank Buster',

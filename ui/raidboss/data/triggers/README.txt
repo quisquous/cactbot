@@ -1,3 +1,5 @@
+TODO: turn this into markdown
+
 // File format.
 [{
   zoneRegex: /match for the zone/,
@@ -45,7 +47,7 @@
 //       It comes with the following fields pre-set:
 //         me: The player's character name.
 //         job: The player's job.
-//         role: The role of the player's job (tank/healer/dps-melee/dps-ranged/dps-caster/crafting/gathering).
+//         role: The role of the player's job (tank/healer/dps/crafter/gatherer).
 //         lang: The current language, e.g. 'en', 'fr', 'ko', 'de', 'ja'.
 //         currentHP: The player's current HP (may be slightly delayed)
 //         function ShortName(name): A function that simplifies a player's name into something shorter, usually first name.
@@ -53,6 +55,7 @@
 // matches: The regex match result of the trigger's regex to the log line it matched.
 //          matches[0] will be the entire match, and matches[1] will be the first group
 //          in the regex, etc. This can be used to pull data out of the log line.
+//         function canFeint()/canSleep()/canStun()/canSilence()/canAddle(): if the player can do these abilities
 //
 {
   // An id string for the trigger, used to disable triggers. Every built-in trigger that has a text/sound
