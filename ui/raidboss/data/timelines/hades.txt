@@ -116,6 +116,7 @@ hideall "Double"
 1062.0 "Captivity" sync /:Hades:4168:/ window 150,10
 1062.8 "--fetters--"
 1065.0 "--sync--" sync /:Hades:417F:/
+1066.0 "Doom"
 1067.0 "Gaol Add"
 1068.5 "--sync--" sync /:416C:Hades/
 1098.5 "Chorus Of The Lost" sync /:416C:Hades:/
