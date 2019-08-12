@@ -122,6 +122,7 @@
       regexJa: / 14:3E63:ヴォイドウォーカー starts using (?:ドゥームヴォイド・クリーバー|)/,
       alertText: {
         en: 'Protean',
+        de: 'Himmelsrichtungen',
         fr: 'Position',
         ja: '散開',
       },
@@ -160,6 +161,7 @@
       regexJa: / 14:3E59:エレボスの巨腕 starts using (?:虚ろなる悪意|)/,
       infoText: {
         en: 'Knockback',
+        de: 'Knockback',
         fr: 'Poussée',
         ja: 'ノックバック',
       },
@@ -547,10 +549,12 @@
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
       regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
+      regexDe: / 14:4659:Nichtswandler starts using (?:Vergeltendes Chaos|)/,
       regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-taillade Vengeresse|)/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using (?:復讐の連続剣|)/,
       infoText: {
         en: 'In, Protean, Sides',
+        de: 'Rein, Himmelsrichtungen, Seiten',
         fr: 'Intérieur, Position, Côtés',
         ja: '中 => 散開 => 横',
       },
@@ -558,10 +562,12 @@
     {
       id: 'E2S Cycle of Chaos',
       regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
+      regexDe: / 14:40B9:Nichtswandler starts using (?:Chronisches Chaos|)/,
       regexFr: / 14:40B9:Marcheuse Du Néant starts using (?:Multi-taillade Chaotique|)/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using (?:混沌の連続剣|)/,
       infoText: {
         en: 'Sides, In, Protean',
+        de: 'Seiten, Rein, Himmelsrichtungen',
         fr: 'Côtés, Intérieur, Position',
         ja: '横 => 中 => 散開',
       },
