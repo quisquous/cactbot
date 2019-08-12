@@ -88,6 +88,7 @@ class CactbotLanguage {
       HolyCircle: '404A',
       Confiteor: '404B',
       FourPointFury: '4059',
+      TechnicalFinish: '3F44',
 
       // Susano Ex
       ChurningDeep: '203F',
