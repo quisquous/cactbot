@@ -12625,7 +12625,7 @@ let gFisherData = {
       '3313': 'Saint Fathric\'s Temple',
       '3314': 'Father Collard\'s Failings',
       '3315': 'Lake Tusi Mek\'ta',
-      '3316': 'The Red Chalice',
+      '3316': 'Red Chalice',
       '3317': 'Rotzatl',
       '3318': 'south Mjrl\'s Regret',
       '3319': 'Woven Oath',
