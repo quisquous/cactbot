@@ -31,5 +31,4 @@
     'InnoEx God Ray 3': '3EE8',
     'InnoEx Explosion': '3EF0',
   },
-  triggers: [],
 }];
