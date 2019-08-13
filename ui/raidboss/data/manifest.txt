@@ -10,6 +10,7 @@ timelines/a9s.txt
 timelines/a10s.txt
 timelines/a11s.txt
 timelines/a12s.txt
+timelines/akadaemia_anyder.txt
 timelines/byakko-ex.txt
 timelines/cape_westwind.txt
 timelines/dohn_mheg.txt
@@ -91,6 +92,7 @@ triggers/a9s.js
 triggers/a10s.js
 triggers/a11s.js
 triggers/a12s.js
+triggers/akadaemia_anyder.js
 triggers/byakko-ex.js
 triggers/cape_westwind.js
 triggers/dohn_mheg.js
