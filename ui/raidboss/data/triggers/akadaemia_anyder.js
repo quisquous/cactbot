@@ -5,4 +5,4 @@
   timelineFile: 'akadaemia_anyder.txt',
   triggers: [
   ],
-}]
+}];
