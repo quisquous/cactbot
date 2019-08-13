@@ -13,6 +13,7 @@ timelines/a12s.txt
 timelines/byakko-ex.txt
 timelines/cape_westwind.txt
 timelines/dohn_mheg.txt
+timelines/dun_scaith.txt
 timelines/e1n.txt
 timelines/e2n.txt
 timelines/e3n.txt
