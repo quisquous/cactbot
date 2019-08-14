@@ -59,6 +59,9 @@ Options.DrkLowMPThreshold = 4800;
 // When MP falls below this, the MP bar is highlighted with the .low CSS class
 // on paladin.
 Options.PldLowMPThreshold = 2880;
+// When MP falls below this, the MP bar is highlighted with the .low CSS class
+// on black mage.
+Options.BlmLowMPThreshold = 2400;
 
 // When TP falls below this, the TP bar is highlighted with the .low CSS class.
 Options.TPInvigorateThreshold = 600;
