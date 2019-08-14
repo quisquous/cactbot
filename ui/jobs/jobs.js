@@ -368,13 +368,22 @@ function setupBuffTracker() {
       borderColor: '#ff9900',
       sortKey: 4,
     },
+    technicalFinish: {
+      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.TechnicalFinish),
+      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.TechnicalFinish),
+      durationSeconds: 20,
+      icon: kIconBuffTechnicalFinish,
+      // Dark Peach.
+      borderColor: '#E0757C',
+      sortKey: 5,
+    },
     chain: {
       gainRegex: gLang.abilityRegex(gLang.kAbility.ChainStrategem),
       durationSeconds: 15,
       icon: kIconBuffChainStratagem,
       // Blue.
       borderColor: '#4674E5',
-      sortKey: 5,
+      sortKey: 6,
     },
     sight: {
       gainRegex: gLang.youGainEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),

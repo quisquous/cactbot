@@ -10,9 +10,11 @@ timelines/a9s.txt
 timelines/a10s.txt
 timelines/a11s.txt
 timelines/a12s.txt
+timelines/akadaemia_anyder.txt
 timelines/byakko-ex.txt
 timelines/cape_westwind.txt
 timelines/dohn_mheg.txt
+timelines/dun_scaith.txt
 timelines/e1n.txt
 timelines/e2n.txt
 timelines/e3n.txt
@@ -23,6 +25,7 @@ timelines/e3s.txt
 timelines/e4s.txt
 timelines/eureka_hydatos.txt
 timelines/holminster_switch.txt
+timelines/hades.txt
 timelines/innocence.txt
 timelines/innocence-ex.txt
 timelines/lakshmi-ex.txt
@@ -89,6 +92,7 @@ triggers/a9s.js
 triggers/a10s.js
 triggers/a11s.js
 triggers/a12s.js
+triggers/akadaemia_anyder.js
 triggers/byakko-ex.js
 triggers/cape_westwind.js
 triggers/dohn_mheg.js
@@ -108,6 +112,7 @@ triggers/eureka_pagos.js
 triggers/eureka_pyros.js
 triggers/fractal_continuum_hard.js
 triggers/general.js
+triggers/hades.js
 triggers/holminster_switch.js
 triggers/innocence.js
 triggers/innocence-ex.js

@@ -231,6 +231,13 @@ class SeaBase {
 
   getPlace(place) {
     let result = this.getInfo('places', place);
+
+    // English assumes that there could be a 'the' which fails
+    // for fishing locations that include the 'The'.
+    // This should probably be a noop for other languages.
+    if (!result.id || !result.name)
+      result = this.getInfo('places', 'The ' + place);
+
     if (!result.id || !result.name)
       console.log('failed to look up place: ' + place);
     return result;

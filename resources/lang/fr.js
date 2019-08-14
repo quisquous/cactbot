@@ -29,6 +29,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Devotion: 'Dévouement', // 0x4bd
       FoeRequiem: 'Requiem ennemi', // up 0x8b, down 0x8c
       LeadenFist: 'Poings de plomb',
+      TechnicalFinish: 'Final technique',
 
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
