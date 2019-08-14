@@ -21,7 +21,7 @@
         return data.role == 'healer';
       },
       alertText: {
-        en: 'AoE Damage',
+        en: 'AoE',
       },
     },
     {
@@ -30,11 +30,11 @@
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
-            en: 'Buster cone on YOU',
+            en: 'Tank cleave on YOU',
           };
         }
         return {
-          en: 'Avoid buster cleave',
+          en: 'Avoid tank cleave',
         };
       },
     },
@@ -53,14 +53,6 @@
       },
     },
     {
-      id: 'Twinning adds',
-      regex: / Added new combatant/,
-      suppressSeconds: 5,
-      infoText: {
-        en: 'Kill Adds',
-      },
-    },
-    {
       id: 'Twinning Thunder Beam',
       regex: / 14:3DED:Mithridates starts using Thunder Beam on (\y{Name})/,
       alertText: function(data, matches) {
@@ -74,13 +66,6 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
           };
         }
-      },
-    },
-    {
-      id: 'Twinning Electric Discharge',
-      regex: / 14:3DF0:Mithridates starts using Electric Discharge/,
-      infoText: {
-        en: 'Avoid orb explosions',
       },
     },
     {
@@ -102,13 +87,6 @@
       suppressSeconds: 15,
       alertText: {
         en: 'Avoid lasers',
-      },
-    },
-    {
-      id: 'Twinning Artificial Gravity',
-      regex: / [23:36:46.401] 14:3DF9:The Tycoon starts using Artificial Gravity/,
-      infoText: {
-        en: 'Avoid puddles',
       },
     },
     {
@@ -142,7 +120,7 @@
         return data.role == 'healer';
       },
       infoText: {
-        en: 'AoE damage',
+        en: 'AoE',
       },
     },
   ],

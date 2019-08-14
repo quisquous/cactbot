@@ -9,21 +9,12 @@
   triggers: [
     {
       id: 'O4n Doom',
-      regex: / 1A:........:(\y{Name}) gains the effect of Doom/,
+      regex: / 14:24B7:Exdeath starts using Doom/,
       condition: function(data) {
-        return data.canCleanse();
+        return data.CanCleanse();
       },
-      alertText: function(data, matches) {
-        return {
-          en: 'Cleanse ' + data.shortName(matches[1]),
-        };
-      },
-    },
-    {
-      id: 'O4n Standard Blizzard',
-      regex: / 14:24BB:Exdeath starts using Blizzard III/,
-      infoText: {
-        en: 'Avoid Blizzard Puddles',
+      alertText: {
+        en: 'Cleanse Doom soon',
       },
     },
     {
@@ -58,14 +49,14 @@
     {
       id: 'O4n Empowered Blizzard',
       regex: / 14:24C0:Exdeath starts using Blizzard III/,
-      alertText: {
+      infoText: {
         en: 'Move around',
       },
     },
     {
       id: 'O4n Empowered Fire',
       regex: / 14:24BF:Exdeath starts using Fire III/,
-      alertText: {
+      infoText: {
         en: 'Stop everything',
       },
     },
@@ -79,7 +70,7 @@
     {
       id: 'O4n Decisive Battle ',
       regex: / 14:2408:Exdeath starts using The Decisive Battle/,
-      delaySeconds: 3,
+      delaySeconds: 6,
       infoText: {
         en: 'Stand in the gap',
       },
@@ -87,7 +78,7 @@
     {
       id: 'O4n Zombie Breath',
       regex: / 14:240A:Exdeath starts using Unknown_240A/,
-      delaySeconds: 3,
+      delaySeconds: 6,
       infoText: {
         en: 'Behind head--Avoid zombie breath',
       },
@@ -113,20 +104,20 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Flare on YOU--Spread from other Flares',
+        en: 'Flare on YOU',
       },
     },
     {
       id: 'O4n Holy',
-      regex: / 14:24C5:Exdeath starts using Holy on (\y{Name})/,
+      regex: / 1B:........:(\y{Name}):....:....:003E/,
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (matches[1] == data.me) {
           return {
-            en: 'Stack marker on YOU',
+            en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.shortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches[1]),
         };
       },
     },
