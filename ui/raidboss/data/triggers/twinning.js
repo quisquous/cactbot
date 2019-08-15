@@ -4,6 +4,7 @@
 
 [{
   zoneRegex: /^The Twinning$/,
+  timelineFile: 'twinning.txt',
   triggers: [
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
