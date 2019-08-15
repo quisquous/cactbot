@@ -40,6 +40,7 @@ let Options = {
   FarThresholdOffence: 24,
   DrkLowMPThreshold: 4800,
   PldLowMPThreshold: 2880,
+  BlmLowMPThreshold: 2400,
   TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
@@ -1441,10 +1442,13 @@ class Bars {
 
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
-    else if (this.job == 'DRK')
+
+    if (this.job == 'DRK')
       lowMP = this.options.DrkLowMPThreshold;
     else if (this.job == 'PLD')
       lowMP = this.options.PldLowMPThreshold;
+    else if (this.job == 'BLM')
+      lowMP = this.options.BlmLowMPThreshold;
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
