@@ -148,6 +148,6 @@ hideall "Double"
 1391.0 "The Dark Devours x5" sync /:Hades:4177:/ duration 9
 1403.0 "--sync--" sync /:Hades:4159:/
 
-# This is probably the enrage???
-# This time estimates a 10 second cast??? But just guessing???
-1421.3 "Black Cauldron"
+# Gratuitous 45 second enrage.
+1412.7 "--sync--" sync /:417B:Hades/ window 100,100
+1457.7 "Enrage" sync /:Hades:417B:/
