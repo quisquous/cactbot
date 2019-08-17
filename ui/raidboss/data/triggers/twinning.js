@@ -7,22 +7,53 @@
   timelineFile: 'twinning.txt',
   triggers: [
     {
+      id: 'Twinning Main Head',
+      regex: / 14:3DBC:Surplus Kaliya starts using Main Head/,
+      condition: function(data) {
+        return data.CanStun() || data.CanSilence();
+      },
+      alertText: {
+        en: 'Interrupt Kaliya',
+      },
+    },
+    {
+      id: 'Twinning Berserk',
+      regex: / 14:3DC0:Vitalized Reptoid starts using Berserk/,
+      condition: function(data) {
+        return data.CanStun() || data.CanSilence();
+      },
+      alertText: {
+        en: 'Interrupt Reptoid',
+      },
+    },
+    {
+      id: 'Twinning 128 Tonze Swing',
+      regex: / 14:3DBA:Servomechanical Minotaur starts using 128-Tonze Swing/,
+      condition: function(data) {
+        return data.CanSilence();
+      },
+      alertText: {
+        en: 'Silence Minotaur',
+      },
+    },
+    {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
       regex: / 1B:........:\y{Name}:....:....:(003[2-5]|005A)/,
       suppressSeconds: 10,
-      alertText: {
-        en: 'Spread--Avoid cages',
+      infoText: {
+        en: 'Spread (avoid cages)',
       },
     },
     {
       id: 'Twinning Beastly Roar',
       regex: / 14:3D64:Alpha Zaghnal starts using Beastly Roar/,
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      alertText: {
-        en: 'AoE',
+      infoText: {
+        en: 'aoe',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -73,21 +104,27 @@
       // Alternatively, we could use 1B:........:(\y{Name}):....:....:00A0
       id: 'Twinning Allagan Thunder',
       regex: / 14:3DEF:Mithridates starts using Allagan Thunder on (\y{Name})/,
-      alertText: function(data, matches) {
-        if (data.me == matches[1]) {
-          return {
-            en: 'Avoid other thunder markers',
-          };
-        }
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Spread',
       },
     },
     {
-      // Combining in/out lasers because execution is the same regardless
-      id: 'Twinning Magitek Lasers',
-      regex: / 14:(3DF8|3DF2):The Tycoon starts using (Magitek Crossray|Defensive Array)/,
+      id: 'Twinning Magitek Crossray',
+      regex: / 14:3DF8:The Tycoon starts using Magitek Crossray/,
       suppressSeconds: 15,
-      alertText: {
-        en: 'Avoid lasers',
+      infoText: {
+        en: 'cardinal lasers',
+      },
+    },
+    {
+      id: 'Twinning Defensive Array',
+      regex: / 14:3DF2:The Tycoon starts using Defensive Array/,
+      suppressSeconds: 15,
+      infoText: {
+        en: 'outer lasers',
       },
     },
     {
@@ -111,17 +148,18 @@
       id: 'Twinning Magicrystal',
       regex: / 14:3E0C:The Tycoon starts using Magicrystal/,
       alertText: {
-        en: 'Spread',
+        en: 'spread',
       },
     },
     {
       id: 'Twinning Discharger',
       regex: / 14:3DFC:The Tycoon starts using High-Tension Discharger/,
       condition: function(data) {
-        return data.role == 'healer';
+        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
       infoText: {
-        en: 'AoE',
+        en: 'aoe',
+        fr: 'Dégâts de zone',
       },
     },
   ],
