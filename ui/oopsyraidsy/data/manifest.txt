@@ -1,4 +1,5 @@
 amaurot.js
+akadaemia_anyder.js
 byakko-ex.js
 general.js
 hades.js
