@@ -200,7 +200,7 @@ Options.Triggers = [
 //
 // Here's some example per trigger options that modify the test triggers
 // in Summerford Farms:
-// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/test.js
+// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/00-misc/test.js
 
 Options.PerTriggerOptions = {
   // Just like Options.DisabledTriggers, this is the trigger id to apply to.
