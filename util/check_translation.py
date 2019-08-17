@@ -43,8 +43,12 @@ class FileLikeArray:
         self.out.append(line)
 
 
+def base_triggers_path():
+    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/');
+
+
 def construct_relative_triggers_path(filename):
-    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/' + filename)
+    return os.path.join(base_triggers_path() + filename)
 
 
 def translate_regex(regex, trans):
@@ -219,9 +223,14 @@ def print_timeline(locale, timeline_file, trans):
 def main(args):
     filename = construct_relative_triggers_path(args.file)
     # Try to use it explicitly if the short name doesn't exist.
-    # TODO: maybe search for this so folks can just specify "e4s.js".
     if not os.path.exists(filename):
         filename = args.file
+    # Allow for just specifying the base filename, e.g. "o12s.js"
+    if not os.path.exists(filename):
+        for root, dirs, files in os.walk(base_triggers_path()):
+          if filename in files:
+            filename = os.path.join(root, filename)
+            break
     if not os.path.exists(filename):
         raise FileNotFoundError('Could not find file "%s"' % filename)
 
