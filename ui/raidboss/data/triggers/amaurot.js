@@ -10,9 +10,21 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
+      preRun: function(data) {
+        data.meteor = (data.meteor || 0) + 1;
+      },
       infoText: function(data) {
+        if (data.meteor == 1) {
+          return {
+            en: 'Drop Meteor West',
+          };
+        } else if (data.meteor == 2) {
+          return {
+            en: 'Drop Meteor East',
+          };
+        }
         return {
-          en: 'Meteor (leave room behind)',
+          en: 'Meteor',
         };
       },
     },
@@ -26,6 +38,13 @@
         return {
           en: 'Spread',
         };
+      },
+    },
+    {
+      id: 'Amaurot Final Sky',
+      regex: / 14:3CCB:The First Beast starts using The Final Sky/,
+      alertText: {
+        en: 'Hide Behind Boulder',
       },
     },
     {
