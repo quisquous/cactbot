@@ -1,3 +1,4 @@
+amaurot.js
 byakko-ex.js
 general.js
 hades.js
