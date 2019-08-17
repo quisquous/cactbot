@@ -172,7 +172,7 @@ Examples:
 * [T9](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/t9.js)
 * [O12 normal](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/o12n.js)
 
-These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/README.txt) as normal triggers.
+These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/README.txt) as normal triggers.
 They still allow you to use functions if you want to return something.
 You can use a [condition](https://github.com/quisquous/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/triggers/t9.js#L10) to have it only trigger for a particular job or role.
 
