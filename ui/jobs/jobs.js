@@ -3,7 +3,7 @@
 // Each option here can be changed in user/jobs.js with a line such as
 // Options.ShowRdmProcs = false
 // or
-// Options.TPInvigorateThreshold = 400
+// Options.JustBuffTracker: true
 // See user/jobs-example.js for documentation.
 let Options = {
   Language: 'en',
@@ -43,7 +43,6 @@ let Options = {
   PldLowMPThreshold: 3600,
   PldMediumMPThreshold: 9400,
   BlmLowMPThreshold: 2400,
-  TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
 };
@@ -423,8 +422,6 @@ class Bars {
     this.maxHP = 0;
     this.mp = 0;
     this.maxMP = 0;
-    this.tp = 0;
-    this.maxTP = 0;
     this.level = 0;
     this.distance = -1;
     this.whiteMana = -1;
@@ -488,7 +485,7 @@ class Bars {
     opacityContainer.id = 'opacity-container';
     barsLayoutContainer.appendChild(opacityContainer);
 
-    // Holds health/mana/tp.
+    // Holds health/mana.
     let barsContainer = document.createElement('div');
     barsContainer.id = 'bars';
     opacityContainer.appendChild(barsContainer);
@@ -1654,14 +1651,13 @@ class Bars {
     let update_job = false;
     let update_hp = false;
     let update_mp = false;
-    let update_tp = false;
     let update_cp = false;
     let update_gp = false;
     let update_level = false;
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
       this.combo.AbortCombo(); // Combos are job specific.
-      update_job = update_hp = update_mp = update_tp = update_cp = update_gp = true;
+      update_job = update_hp = update_mp = update_cp = update_gp = true;
     }
     if (e.detail.level != this.level) {
       this.level = e.detail.level;
@@ -1679,11 +1675,6 @@ class Bars {
       this.mp = e.detail.currentMP;
       this.maxMP = e.detail.maxMP;
       update_mp = true;
-    }
-    if (e.detail.currentTP != this.tp || e.detail.maxTP != this.maxTP) {
-      this.tp = e.detail.currentTP;
-      this.maxTP = e.detail.maxTP;
-      update_tp = true;
     }
     if (e.detail.currentCP != this.cp || e.detail.maxCP != this.maxCP) {
       this.cp = e.detail.currentCP;
