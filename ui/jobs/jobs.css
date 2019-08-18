@@ -401,6 +401,9 @@
   background-color: rgb(215, 120, 0);
 }
 .mp-color.low {
+  background-color: rgb(210, 20, 65);
+}
+.mp-color.medium {
   background-color: rgb(65, 0, 200);
 }
 .cp-color {

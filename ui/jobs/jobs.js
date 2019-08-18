@@ -38,8 +38,10 @@ let Options = {
   BigBuffBorderSize: 1,
 
   FarThresholdOffence: 24,
-  DrkLowMPThreshold: 4800,
-  PldLowMPThreshold: 2880,
+  DrkLowMPThreshold: 3000,
+  DrkMediumMPThreshold: 6000,
+  PldLowMPThreshold: 3600,
+  PldMediumMPThreshold: 9400,
   BlmLowMPThreshold: 2400,
   TPInvigorateThreshold: 600,
   LowHealthThresholdPercent: 0.2,
@@ -1438,22 +1440,28 @@ class Bars {
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
     let lowMP = -1;
+    let mediumMP = -1;
     let far = -1;
 
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
 
-    if (this.job == 'DRK')
+    if (this.job == 'DRK') {
       lowMP = this.options.DrkLowMPThreshold;
-    else if (this.job == 'PLD')
+      mediumMP = this.options.DrkMediumMPThreshold;
+    } else if (this.job == 'PLD') {
       lowMP = this.options.PldLowMPThreshold;
-    else if (this.job == 'BLM')
+      mediumMP = this.options.PldMediumMPThreshold;
+    } else if (this.job == 'BLM') {
       lowMP = this.options.BlmLowMPThreshold;
+    }
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
     else if (lowMP >= 0 && this.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
+    else if (mediumMP >= 0 && this.mp <= mediumMP)
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.medium');
     else
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
