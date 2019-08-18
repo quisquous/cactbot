@@ -11,6 +11,12 @@
 // If false, no timeline of upcoming events will be displayed during fights.
 Options.TimelineEnabled = true;
 
+// Alerts & text-to-speech language.
+// Default value is the language of your timeline.
+// Remove the '//' before the line below and change the value to one
+// of the supported language ('en', 'fr', 'de', 'jp'...).
+// Options.AlertsLanguage = 'en';
+
 // If false, triggers and timelines will not show or speak text, nor play
 // sounds.
 Options.AlertsEnabled = true;
