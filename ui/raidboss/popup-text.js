@@ -277,7 +277,7 @@ class PopupText {
       // in this object can also be functions.
       if (result !== Object(result))
         return result;
-      let lang = this.options.Language || 'en';
+      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
       if (result[lang])
         return ValueOrFunction(result[lang]);
       // For partially localized results where this localization doesn't
