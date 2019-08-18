@@ -437,8 +437,6 @@ class Bars {
     this.distance = -1;
     this.whiteMana = -1;
     this.blackMana = -1;
-    this.beast = -1;
-    this.blood = -1;
     this.oath = -1;
     this.inCombat = false;
     this.combo = 0;
@@ -828,17 +826,7 @@ class Bars {
     } else if (this.job == 'WAR') {
       this.setupWar();
     } else if (this.job == 'DRK') {
-      let bloodBoxesContainer = document.createElement('div');
-      bloodBoxesContainer.id = 'drk-boxes';
-      barsContainer.appendChild(bloodBoxesContainer);
-
-      this.o.bloodTextBox = document.createElement('div');
-      this.o.bloodTextBox.classList.add('drk-color-blood');
-      bloodBoxesContainer.appendChild(this.o.bloodTextBox);
-
-      this.o.bloodText = document.createElement('div');
-      this.o.bloodTextBox.appendChild(this.o.bloodText);
-      this.o.bloodText.classList.add('text');
+      this.setupDrk();
     } else if (this.job == 'PLD') {
       let oathBoxesContainer = document.createElement('div');
       oathBoxesContainer.id = 'pld-boxes';
@@ -1237,6 +1225,30 @@ class Bars {
     };
   }
 
+  setupDrk() {
+    let textBox = this.addResourceBox({
+      classList: ['drk-color-blood'],
+    });
+
+    this.jobFuncs.push(function(jobDetail) {
+      let blood = jobDetail.blood;
+      if (textBox.innerText === blood)
+        return;
+      textBox.innerText = blood;
+      let p = textBox.parentNode;
+      if (blood < 50) {
+        p.classList.add('low');
+        p.classList.remove('mid');
+      } else if (blood < 90) {
+        p.classList.remove('low');
+        p.classList.add('mid');
+      } else {
+        p.classList.remove('low');
+        p.classList.remove('mid');
+      }
+    });
+  }
+
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
       dreadwyrmMilliseconds, bahamutMilliseconds) {
     if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
@@ -1308,24 +1320,6 @@ class Bars {
       this.o.blackManaTextBox.classList.add('dim');
     else
       this.o.blackManaTextBox.classList.remove('dim');
-  }
-
-  OnDrkUpdate(blood) {
-    if (this.o.bloodTextBox == null)
-      return;
-
-    this.o.bloodText.innerText = blood;
-
-    if (blood < 50) {
-      this.o.bloodTextBox.classList.add('low');
-      this.o.bloodTextBox.classList.remove('mid');
-    } else if (blood < 90) {
-      this.o.bloodTextBox.classList.remove('low');
-      this.o.bloodTextBox.classList.add('mid');
-    } else {
-      this.o.bloodTextBox.classList.remove('low');
-      this.o.bloodTextBox.classList.remove('mid');
-    }
   }
 
   OnPldUpdate(oath) {
@@ -1739,11 +1733,6 @@ class Bars {
         this.whiteMana = e.detail.jobDetail.whiteMana;
         this.blackMana = e.detail.jobDetail.blackMana;
         this.OnRedMageUpdate(this.whiteMana, this.blackMana);
-      }
-    } else if (this.job == 'DRK') {
-      if (update_job || e.detail.jobDetail.blood != this.blood) {
-        this.blood = e.detail.jobDetail.blood;
-        this.OnDrkUpdate(this.blood);
       }
     } else if (this.job == 'PLD') {
       if (update_job || e.detail.jobDetail.oath != this.oath) {
