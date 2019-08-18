@@ -71,11 +71,10 @@ let kComboBreakers = null;
 let kAstCombust = null;
 let kAstBenefic = null;
 let kAstHelios = null;
-let kBluOffguard = null;
-let kBluTorment = null;
 let kWellFedZoneRegex = null;
 
 let kLostEffectRegex = null;
+let kUseAbilityRegex = null;
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
@@ -240,12 +239,11 @@ function setupRegexes() {
   kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
   kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
   kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
-  kBluOffguard = gLang.youUseAbilityRegex(gLang.kAbility.OffGuard);
-  kBluTorment = gLang.youUseAbilityRegex(gLang.kAbility.SongOfTorment);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
   kLostEffectRegex = gLang.youLoseEffectRegex('(.*)');
+  kUseAbilityRegex = gLang.youUseAbilityRegex('([^:]*)');
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -447,6 +445,7 @@ class Bars {
     this.jobFuncs = [];
     this.gainEffectFuncMap = {};
     this.lostEffectFuncMap = {};
+    this.abilityFuncMap = {};
   }
 
   UpdateJob() {
@@ -454,6 +453,7 @@ class Bars {
     this.jobFuncs = [];
     this.gainEffectFuncMap = {};
     this.lostEffectFuncMap = {};
+    this.abilityFuncMap = {};
 
     let container = document.getElementById('jobs-container');
     if (container == null) {
@@ -956,33 +956,7 @@ class Bars {
       this.o.heliosBox.roundupthreshold = false;
       this.o.heliosBox.valuescale = this.options.AstGcd;
     } else if (this.job == 'BLU') {
-      let bluContainer = document.createElement('div');
-      bluContainer.id = 'blu-procs';
-      barsContainer.appendChild(bluContainer);
-
-      this.o.offguardBox = document.createElement('timer-box');
-      bluContainer.appendChild(this.o.offguardBox);
-      this.o.offguardBox.id = 'blu-procs-offguard';
-      this.o.offguardBox.style = 'empty';
-      this.o.offguardBox.fg = computeBackgroundColorFrom(this.o.offguardBox, 'blu-color-offguard');
-      this.o.offguardBox.bg = 'black';
-      this.o.offguardBox.toward = 'bottom';
-      this.o.offguardBox.threshold = 3 * this.options.BluGcd;
-      this.o.offguardBox.hideafter = '';
-      this.o.offguardBox.roundupthreshold = false;
-      this.o.offguardBox.valuescale = this.options.BluGcd;
-
-      this.o.tormentBox = document.createElement('timer-box');
-      bluContainer.appendChild(this.o.tormentBox);
-      this.o.tormentBox.id = 'blu-procs-torment';
-      this.o.tormentBox.style = 'empty';
-      this.o.tormentBox.fg = computeBackgroundColorFrom(this.o.tormentBox, 'blu-color-torment');
-      this.o.tormentBox.bg = 'black';
-      this.o.tormentBox.toward = 'bottom';
-      this.o.tormentBox.threshold = 3 * this.options.BluGcd;
-      this.o.tormentBox.hideafter = '';
-      this.o.tormentBox.roundupthreshold = false;
-      this.o.tormentBox.valuescale = this.options.BluGcd;
+      this.setupBlu();
     }
   }
 
@@ -1109,6 +1083,8 @@ class Bars {
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
     timerBox.valuescale = options.scale ? options.scale : 1;
+    if (options.id)
+      timerBox.id = options.id;
 
     return timerBox;
   }
@@ -1265,6 +1241,33 @@ class Bars {
         goreBox.duration = 22;
       }
     });
+  }
+
+  setupBlu() {
+    let gcd = this.options.BluGcd;
+
+    let offguardBox = this.addProcBox({
+      id: 'blu-procs-offguard',
+      fgColor: 'blu-color-offguard',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let tormentBox = this.addProcBox({
+      id: 'blu-procs-torment',
+      fgColor: 'blu-color-torment',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    this.abilityFuncMap[gLang.kAbility.OffGuard] = function() {
+      offguardBox.duration = 0;
+      offguardBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.SongOfTorment] = function() {
+      tormentBox.duration = 0;
+      tormentBox.duration = 30;
+    };
   }
 
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
@@ -1796,12 +1799,26 @@ class Bars {
         this.UpdateFoodBuff();
       }
 
-      if (log[15] == '1' && log[16] == 'E') {
-        let m = log.match(kLostEffectRegex);
-        if (m) {
-          let f = this.lostEffectFuncMap[m[1]];
-          if (f)
-            f();
+      if (log[15] == '1') {
+        if (log[16] == 'E') {
+          let m = log.match(kLostEffectRegex);
+          if (m) {
+            let f = this.lostEffectFuncMap[m[1]];
+            if (f)
+              f(m[1]);
+          }
+        }
+        // TODO: consider flags for missing.
+        // flags:damage is 1:0 in most misses.
+        if (log[16] == '5' || log[16] == '6') {
+          if (this.combo.ParseLog(log))
+            continue;
+          let m = log.match(kUseAbilityRegex);
+          if (m) {
+            let f = this.abilityFuncMap[m[1]];
+            if (f)
+              f(m[1]);
+          }
         }
       }
 
@@ -1823,9 +1840,6 @@ class Bars {
             this.OnLoseBigBuff(name, settings);
         }
       }
-
-      if (this.combo.ParseLog(log))
-        continue;
 
       if (this.job == 'SMN') {
         let r = log.match(kReSmnRuinProc);
@@ -1920,15 +1934,6 @@ class Bars {
           continue;
         } else if (log.search(kAstHelios) >= 0) {
           this.o.heliosBox.duration = 30;
-          continue;
-        }
-      }
-      if (this.job == 'BLU') {
-        if (log.search(kBluOffguard) >= 0) {
-          this.o.offguardBox.duration = 30;
-          continue;
-        } else if (log.search(kBluTorment) >= 0) {
-          this.o.tormentBox.duration = 30;
           continue;
         }
       }
