@@ -73,8 +73,9 @@ let kAstBenefic = null;
 let kAstHelios = null;
 let kBluOffguard = null;
 let kBluTorment = null;
-let kLostStormsEye = null;
 let kWellFedZoneRegex = null;
+
+let kLostEffectRegex = null;
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
@@ -241,10 +242,10 @@ function setupRegexes() {
   kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
   kBluOffguard = gLang.youUseAbilityRegex(gLang.kAbility.OffGuard);
   kBluTorment = gLang.youUseAbilityRegex(gLang.kAbility.SongOfTorment);
-  kLostStormsEye = gLang.youLoseEffectRegex(gLang.kEffect.StormsEye);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
+  kLostEffectRegex = gLang.youLoseEffectRegex('(.*)');
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -443,9 +444,19 @@ class Bars {
     this.combo = 0;
     this.comboTimer = null;
     this.smnChanneling = false;
+
+    this.comboFuncs = [];
+    this.jobFuncs = [];
+    this.gainEffectFuncMap = {};
+    this.lostEffectFuncMap = {};
   }
 
   UpdateJob() {
+    this.comboFuncs = [];
+    this.jobFuncs = [];
+    this.gainEffectFuncMap = {};
+    this.lostEffectFuncMap = {};
+
     let container = document.getElementById('jobs-container');
     if (container == null) {
       let root = document.getElementById('container');
@@ -815,32 +826,7 @@ class Bars {
         this.o.rdmProcImpact.bg = 'black';
       }
     } else if (this.job == 'WAR') {
-      let beastBoxesContainer = document.createElement('div');
-      beastBoxesContainer.id = 'war-boxes';
-      barsContainer.appendChild(beastBoxesContainer);
-
-      this.o.beastTextBox = document.createElement('div');
-      this.o.beastTextBox.classList.add('war-color-beast');
-      beastBoxesContainer.appendChild(this.o.beastTextBox);
-
-      this.o.beastText = document.createElement('div');
-      this.o.beastTextBox.appendChild(this.o.beastText);
-      this.o.beastText.classList.add('text');
-
-      let eyeContainer = document.createElement('div');
-      eyeContainer.id = 'war-procs';
-      barsContainer.appendChild(eyeContainer);
-
-      this.o.eyeBox = document.createElement('timer-box');
-      eyeContainer.appendChild(this.o.eyeBox);
-      this.o.eyeBox.style = 'empty';
-      this.o.eyeBox.fg = computeBackgroundColorFrom(this.o.eyeBox, 'war-color-eye');
-      this.o.eyeBox.bg = 'black';
-      this.o.eyeBox.toward = 'bottom';
-      this.o.eyeBox.threshold = 0;
-      this.o.eyeBox.hideafter = '';
-      this.o.eyeBox.roundupthreshold = false;
-      this.o.eyeBox.valuescale = this.options.WarGcd;
+      this.setupWar();
     } else if (this.job == 'DRK') {
       let bloodBoxesContainer = document.createElement('div');
       bloodBoxesContainer.id = 'drk-boxes';
@@ -1115,6 +1101,142 @@ class Bars {
     return div;
   }
 
+  addResourceBox(options) {
+    // TODO: make this just boxes with job as a different class.
+    let id = this.job.toLowerCase() + '-boxes';
+    let boxes = document.getElementById(id);
+    if (!boxes) {
+      boxes = document.createElement('div');
+      boxes.id = id;
+      document.getElementById('bars').appendChild(boxes);
+    }
+
+    let boxDiv = document.createElement('div');
+    if (options.classList) {
+      for (let i = 0; i < options.classList.length; ++i)
+        boxDiv.classList.add(options.classList[i]);
+    }
+
+    boxes.appendChild(boxDiv);
+
+    let textDiv = document.createElement('div');
+    boxDiv.appendChild(textDiv);
+    textDiv.classList.add('text');
+
+    return textDiv;
+  }
+
+  addProcBox(options) {
+    let id = this.job.toLowerCase() + '-procs';
+
+    let container = document.getElementById(id);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = id;
+      document.getElementById('bars').appendChild(container);
+    }
+
+    let timerBox = document.createElement('timer-box');
+    container.appendChild(timerBox);
+    timerBox.style = 'empty';
+    if (options.fgColor)
+      timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
+    timerBox.bg = 'black';
+    timerBox.toward = 'bottom';
+    timerBox.threshold = 0;
+    timerBox.hideafter = '';
+    timerBox.roundupthreshold = false;
+    if (options.scale)
+      timerBox.valuescale = options.scale;
+
+    return timerBox;
+  }
+
+  setupWar() {
+    let warGcd = this.options.WarGcd;
+
+    let textBox = this.addResourceBox({
+      classList: ['war-color-beast'],
+    });
+
+    this.jobFuncs.push(function(jobDetail) {
+      let beast = jobDetail.beast;
+      if (textBox.innerText === beast)
+        return;
+      textBox.innerText = beast;
+      let p = textBox.parentNode;
+      if (beast < 50) {
+        p.classList.add('low');
+        p.classList.remove('mid');
+      } else if (beast < 100) {
+        p.classList.remove('low');
+        p.classList.add('mid');
+      } else {
+        p.classList.remove('low');
+        p.classList.remove('mid');
+      }
+    });
+
+    let eyeBox = this.addProcBox({
+      fgColor: 'war-color-eye',
+      scale: warGcd,
+    });
+
+    this.comboFuncs.push(function(skill) {
+      // TODO: handle flags where you don't hit something.
+      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+      if (skill == gLang.kAbility.MythrilTempest) {
+        if (eyeBox.duration > 0) {
+          let old = parseInt(eyeBox.duration) - parseInt(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 10, 30);
+        }
+        return;
+      }
+      if (skill == gLang.kAbility.StormsEye) {
+        eyeBox.duration = 0;
+        // Storm's Eye applies with some animation delay here, and on the next
+        // Storm's Eye, it snapshots the damage when the gcd is started, so
+        // add some of a gcd here in duration time from when it's applied.
+        eyeBox.duration = 30 + 1;
+      }
+
+      // Min number of skills until eye without breaking combo.
+      let minSkillsUntilEye;
+      if (skill == gLang.kAbility.HeavySwing) {
+        minSkillsUntilEye = 2;
+      } else if (skill == gLang.kAbility.SkullSunder) {
+        minSkillsUntilEye = 4;
+      } else if (skill == gLang.kAbility.Maim) {
+        minSkillsUntilEye = 1;
+      } else {
+        // End of combo, or broken combo.
+        minSkillsUntilEye = 3;
+      }
+
+      // The new threshold is "can I finish the current combo and still
+      // have time to do a Storm's Eye".
+      let oldThreshold = parseFloat(eyeBox.threshold);
+      let newThreshold = (minSkillsUntilEye + 2) * warGcd;
+
+      // Because thresholds are nonmonotonic (when finishing a combo)
+      // be careful about setting them in ways that are visually poor.
+      if (eyeBox.value >= oldThreshold &&
+          eyeBox.value >= newThreshold)
+        eyeBox.threshold = newThreshold;
+      else
+        eyeBox.threshold = oldThreshold;
+    });
+
+    this.lostEffectFuncMap[gLang.kEffect.StormsEye] = function() {
+      // Because storm's eye is tracked from the hit, and the ability is delayed,
+      // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
+      // To fix this, don't "lose" unless it's been going on a bit.
+      if (eyeBox.elapsed > 10)
+        eyeBox.duration = 0;
+    };
+  }
+
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
       dreadwyrmMilliseconds, bahamutMilliseconds) {
     if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
@@ -1186,24 +1308,6 @@ class Bars {
       this.o.blackManaTextBox.classList.add('dim');
     else
       this.o.blackManaTextBox.classList.remove('dim');
-  }
-
-  OnWarUpdate(beast) {
-    if (this.o.beastTextBox == null)
-      return;
-
-    this.o.beastText.innerText = beast;
-
-    if (beast < 50) {
-      this.o.beastTextBox.classList.add('low');
-      this.o.beastTextBox.classList.remove('mid');
-    } else if (beast < 100) {
-      this.o.beastTextBox.classList.remove('low');
-      this.o.beastTextBox.classList.add('mid');
-    } else {
-      this.o.beastTextBox.classList.remove('low');
-      this.o.beastTextBox.classList.remove('mid');
-    }
   }
 
   OnDrkUpdate(blood) {
@@ -1337,15 +1441,10 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
-  OnLostStormsEye() {
-    // Because storm's eye is tracked from the hit, and the ability is delayed,
-    // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
-    // To fix this, don't "lose" unless it's been going on a bit.
-    if (this.o.eyeBox.elapsed > 10)
-      this.o.eyeBox.duration = 0;
-  }
-
   OnComboChange(skill) {
+    for (let i = 0; i < this.comboFuncs.length; ++i) {
+      this.comboFuncs[i](skill);
+    }
     if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
@@ -1364,50 +1463,6 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
-    } else if (this.job == 'WAR') {
-      // TODO: handle flags where you don't hit something.
-      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-      if (skill == gLang.kAbility.MythrilTempest) {
-        if (this.o.eyeBox.duration > 0) {
-          let old = parseInt(this.o.eyeBox.duration) - parseInt(this.o.eyeBox.elapsed);
-          this.o.eyeBox.duration = 0;
-          this.o.eyeBox.duration = Math.min(old + 10, 30);
-        }
-        return;
-      }
-      if (skill == gLang.kAbility.StormsEye) {
-        this.o.eyeBox.duration = 0;
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
-        this.o.eyeBox.duration = 30 + 1;
-      }
-
-      // Min number of skills until eye without breaking combo.
-      let minSkillsUntilEye;
-      if (skill == gLang.kAbility.HeavySwing) {
-        minSkillsUntilEye = 2;
-      } else if (skill == gLang.kAbility.SkullSunder) {
-        minSkillsUntilEye = 4;
-      } else if (skill == gLang.kAbility.Maim) {
-        minSkillsUntilEye = 1;
-      } else {
-        // End of combo, or broken combo.
-        minSkillsUntilEye = 3;
-      }
-
-      // The new threshold is "can I finish the current combo and still
-      // have time to do a Storm's Eye".
-      let oldThreshold = parseFloat(this.o.eyeBox.threshold);
-      let newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd;
-
-      // Because thresholds are nonmonotonic (when finishing a combo)
-      // be careful about setting them in ways that are visually poor.
-      if (this.o.eyeBox.value >= oldThreshold &&
-          this.o.eyeBox.value >= newThreshold)
-        this.o.eyeBox.threshold = newThreshold;
-      else
-        this.o.eyeBox.threshold = oldThreshold;
     } else if (this.job == 'PLD') {
       if (skill == gLang.kAbility.GoringBlade) {
         this.o.goreBox.duration = 0;
@@ -1674,6 +1729,9 @@ class Bars {
     if (update_level)
       this.UpdateFoodBuff();
 
+    for (let i = 0; i < this.jobFuncs.length; ++i)
+      this.jobFuncs[i](e.detail.jobDetail);
+
     if (this.job == 'RDM') {
       if (update_job ||
             e.detail.jobDetail.whiteMana != this.whiteMana ||
@@ -1681,11 +1739,6 @@ class Bars {
         this.whiteMana = e.detail.jobDetail.whiteMana;
         this.blackMana = e.detail.jobDetail.blackMana;
         this.OnRedMageUpdate(this.whiteMana, this.blackMana);
-      }
-    } else if (this.job == 'WAR') {
-      if (update_job || e.detail.jobDetail.beast != this.beast) {
-        this.beast = e.detail.jobDetail.beast;
-        this.OnWarUpdate(this.beast);
       }
     } else if (this.job == 'DRK') {
       if (update_job || e.detail.jobDetail.blood != this.blood) {
@@ -1770,6 +1823,15 @@ class Bars {
         this.UpdateFoodBuff();
       }
 
+      if (log[15] == '1' && log[16] == 'E') {
+        let m = log.match(kLostEffectRegex);
+        if (m) {
+          let f = this.lostEffectFuncMap[m[1]];
+          if (f)
+            f();
+        }
+      }
+
       for (let name in kBigBuffTracker) {
         let settings = kBigBuffTracker[name];
         let r = log.match(settings.gainRegex);
@@ -1807,12 +1869,6 @@ class Bars {
           this.OnSummonerAetherflow(this.options.SmnAetherflowRecast);
           continue;
         }
-      }
-
-      if (this.job == 'WAR') {
-        let r = log.match(kLostStormsEye);
-        if (r)
-          this.OnLostStormsEye();
       }
 
       if (this.job == 'RDM') {
