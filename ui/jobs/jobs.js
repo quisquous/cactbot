@@ -68,9 +68,6 @@ let kTwinSnakes = null;
 let kFourPointFury = null;
 let kDemolish = null;
 let kComboBreakers = null;
-let kAstCombust = null;
-let kAstBenefic = null;
-let kAstHelios = null;
 let kWellFedZoneRegex = null;
 
 let kLostEffectRegex = null;
@@ -236,9 +233,6 @@ function setupRegexes() {
   kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
   kFourPointFury = gLang.youUseAbilityRegex(gLang.kAbility.FourPointFury);
   kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
-  kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
-  kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
-  kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
@@ -916,45 +910,7 @@ class Bars {
       for (let i = 0; i <= 3; ++i)
         this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
     } else if (this.job == 'AST') {
-      let astContainer = document.createElement('div');
-      astContainer.id = 'ast-procs';
-      barsContainer.appendChild(astContainer);
-
-      this.o.combustBox = document.createElement('timer-box');
-      astContainer.appendChild(this.o.combustBox);
-      this.o.combustBox.id = 'ast-procs-combust';
-      this.o.combustBox.style = 'empty';
-      this.o.combustBox.fg = computeBackgroundColorFrom(this.o.combustBox, 'ast-color-combust');
-      this.o.combustBox.bg = 'black';
-      this.o.combustBox.toward = 'bottom';
-      this.o.combustBox.threshold = 3 * this.options.AstGcd;
-      this.o.combustBox.hideafter = '';
-      this.o.combustBox.roundupthreshold = false;
-      this.o.combustBox.valuescale = this.options.AstGcd;
-
-      this.o.beneficBox = document.createElement('timer-box');
-      astContainer.appendChild(this.o.beneficBox);
-      this.o.beneficBox.id = 'ast-procs-benefic';
-      this.o.beneficBox.style = 'empty';
-      this.o.beneficBox.fg = computeBackgroundColorFrom(this.o.beneficBox, 'ast-color-benefic');
-      this.o.beneficBox.bg = 'black';
-      this.o.beneficBox.toward = 'bottom';
-      this.o.beneficBox.threshold = 3 * this.options.AstGcd;
-      this.o.beneficBox.hideafter = '';
-      this.o.beneficBox.roundupthreshold = false;
-      this.o.beneficBox.valuescale = this.options.AstGcd;
-
-      this.o.heliosBox = document.createElement('timer-box');
-      astContainer.appendChild(this.o.heliosBox);
-      this.o.heliosBox.id = 'ast-procs-helios';
-      this.o.heliosBox.style = 'empty';
-      this.o.heliosBox.fg = computeBackgroundColorFrom(this.o.heliosBox, 'ast-color-helios');
-      this.o.heliosBox.bg = 'black';
-      this.o.heliosBox.toward = 'bottom';
-      this.o.heliosBox.threshold = 3 * this.options.AstGcd;
-      this.o.heliosBox.hideafter = '';
-      this.o.heliosBox.roundupthreshold = false;
-      this.o.heliosBox.valuescale = this.options.AstGcd;
+      this.setupAst();
     } else if (this.job == 'BLU') {
       this.setupBlu();
     }
@@ -1267,6 +1223,46 @@ class Bars {
     this.abilityFuncMap[gLang.kAbility.SongOfTorment] = function() {
       tormentBox.duration = 0;
       tormentBox.duration = 30;
+    };
+  }
+
+  // TODO: none of this is actually super useful.
+  setupAst() {
+    let gcd = this.options.AstGcd;
+
+    let combustBox = this.addProcBox({
+      id: 'ast-procs-combust',
+      fgColor: 'ast-color-combust',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let beneficBox = this.addProcBox({
+      id: 'ast-procs-benefic',
+      fgColor: 'ast-color-benefic',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let heliosBox = this.addProcBox({
+      id: 'ast-procs-helios',
+      fgColor: 'ast-color-helios',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    // Sorry, no differentation for noct asts here.  <_<
+    this.abilityFuncMap[gLang.kAbility.Combust2] = function() {
+      combustBox.duration = 0;
+      combustBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = function() {
+      beneficBox.duration = 0;
+      beneficBox.duration = 18;
+    };
+    this.abilityFuncMap[gLang.kAbility.AspectedHelios] = function() {
+      heliosBox.duration = 0;
+      heliosBox.duration = 30;
     };
   }
 
@@ -1921,19 +1917,6 @@ class Bars {
         if (r != null) {
           let seconds = parseFloat(r[1]);
           this.OnMonkPerfectBalance(seconds);
-          continue;
-        }
-      }
-      if (this.job == 'AST') {
-        // Sorry, no differentation for noct asts here.  <_<
-        if (log.search(kAstCombust) >= 0) {
-          this.o.combustBox.duration = 30;
-          continue;
-        } else if (log.search(kAstBenefic) >= 0) {
-          this.o.beneficBox.duration = 18;
-          continue;
-        } else if (log.search(kAstHelios) >= 0) {
-          this.o.heliosBox.duration = 30;
           continue;
         }
       }
