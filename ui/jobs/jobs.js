@@ -38,8 +38,8 @@ let Options = {
   BigBuffBorderSize: 1,
 
   FarThresholdOffence: 24,
-  DrkLowMPThreshold: 3000,
-  DrkMediumMPThreshold: 6000,
+  DrkLowMPThreshold: 2999,
+  DrkMediumMPThreshold: 5999,
   PldLowMPThreshold: 3600,
   PldMediumMPThreshold: 9400,
   BlmLowMPThreshold: 2400,
