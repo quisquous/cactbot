@@ -204,11 +204,13 @@
             data.printedBury = true;
             return {
               en: 'Hide Behind East',
+              fr: 'Cachez-vous derrière à l\'est',
             };
           } else if (x > 105) {
             data.printedBury = true;
             return {
               en: 'Hide Behind West',
+              fr: 'Cachez-vous derrière à l\'ouest',
             };
           }
         } else if (data.phase == 'landslide') {
@@ -224,11 +226,13 @@
             // Corners dropped first.  Cardinals safe.
             return {
               en: 'Go Cardinals First',
+              fr: 'Allez aux cardinaux en premier',
             };
           }
           // Cardinals dropped first.  Corners safe.
           return {
             en: 'Go Corners First',
+            fr: 'Allez aux coins en premier',
           };
         }
       },
