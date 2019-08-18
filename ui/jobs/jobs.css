@@ -350,12 +350,6 @@
   left: 142px;
 }
 
-#pld-procs-gore {
-  position: relative;
-  display: inline-block;
-  left: 0px;
-}
-
 /* Relative to #bars */
 .rdm-combo {
   display: none;

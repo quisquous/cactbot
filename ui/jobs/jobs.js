@@ -828,33 +828,7 @@ class Bars {
     } else if (this.job == 'DRK') {
       this.setupDrk();
     } else if (this.job == 'PLD') {
-      let oathBoxesContainer = document.createElement('div');
-      oathBoxesContainer.id = 'pld-boxes';
-      barsContainer.appendChild(oathBoxesContainer);
-
-      this.o.oathTextBox = document.createElement('div');
-      this.o.oathTextBox.classList.add('pld-color-oath');
-      oathBoxesContainer.appendChild(this.o.oathTextBox);
-
-      this.o.oathText = document.createElement('div');
-      this.o.oathTextBox.appendChild(this.o.oathText);
-      this.o.oathText.classList.add('text');
-
-      let procContainer = document.createElement('div');
-      procContainer.id = 'pld-procs';
-      barsContainer.appendChild(procContainer);
-
-      this.o.goreBox = document.createElement('timer-box');
-      procContainer.appendChild(this.o.goreBox);
-      this.o.goreBox.id = 'pld-procs-gore';
-      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
-      this.o.goreBox.bg = 'black';
-      this.o.goreBox.style = 'empty';
-      this.o.goreBox.toward = 'bottom';
-      this.o.goreBox.threshold = this.options.PldGcd * 3 + 0.3;
-      this.o.goreBox.hideafter = '';
-      this.o.goreBox.roundupthreshold = false;
-      this.o.goreBox.valuescale = this.options.PldGcd;
+      this.setupPld();
     } else if (this.job == 'MNK') {
       let mnkBars = document.createElement('div');
       mnkBars.id = 'mnk-bar';
@@ -1131,17 +1105,16 @@ class Bars {
       timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
     timerBox.bg = 'black';
     timerBox.toward = 'bottom';
-    timerBox.threshold = 0;
+    timerBox.threshold = options.threshold ? options.threshold : 0;
     timerBox.hideafter = '';
     timerBox.roundupthreshold = false;
-    if (options.scale)
-      timerBox.valuescale = options.scale;
+    timerBox.valuescale = options.scale ? options.scale : 1;
 
     return timerBox;
   }
 
   setupWar() {
-    let warGcd = this.options.WarGcd;
+    let gcd = this.options.WarGcd;
 
     let textBox = this.addResourceBox({
       classList: ['war-color-beast'],
@@ -1167,7 +1140,7 @@ class Bars {
 
     let eyeBox = this.addProcBox({
       fgColor: 'war-color-eye',
-      scale: warGcd,
+      scale: gcd,
     });
 
     this.comboFuncs.push(function(skill) {
@@ -1205,7 +1178,7 @@ class Bars {
       // The new threshold is "can I finish the current combo and still
       // have time to do a Storm's Eye".
       let oldThreshold = parseFloat(eyeBox.threshold);
-      let newThreshold = (minSkillsUntilEye + 2) * warGcd;
+      let newThreshold = (minSkillsUntilEye + 2) * gcd;
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
@@ -1245,6 +1218,51 @@ class Bars {
       } else {
         p.classList.remove('low');
         p.classList.remove('mid');
+      }
+    });
+  }
+
+  setupPld() {
+    let gcd = this.options.PldGcd;
+
+    let textBox = this.addResourceBox({
+      classList: ['pld-color-oath'],
+    });
+
+    this.jobFuncs.push(function(jobDetail) {
+      let oath = jobDetail.oath;
+      if (textBox.innerText === oath)
+        return;
+      textBox.innerText = oath;
+      let p = textBox.parentNode;
+      if (oath < 50) {
+        p.classList.add('low');
+        p.classList.remove('mid');
+      } else if (blood < 100) {
+        p.classList.remove('low');
+        p.classList.add('mid');
+      } else {
+        p.classList.remove('low');
+        p.classList.remove('mid');
+      }
+    });
+
+    let goreBox = this.addProcBox({
+      fgColor: 'pld-color-gore',
+      scale: gcd,
+      threshold: gcd * 3 + 0.3,
+    });
+
+    this.comboFuncs.push(function(skill) {
+      if (skill == gLang.kAbility.GoringBlade) {
+        goreBox.duration = 0;
+        // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
+        // have the box show 21, it looks like you're awfully late with
+        // your goring blade and just feels really bad.  So, lie to the
+        // poor paladins who don't have enough skill speed so that the UI
+        // is easier to read for repeating goring, royal, royal, goring
+        // and not having the box run out early.
+        goreBox.duration = 22;
       }
     });
   }
@@ -1320,24 +1338,6 @@ class Bars {
       this.o.blackManaTextBox.classList.add('dim');
     else
       this.o.blackManaTextBox.classList.remove('dim');
-  }
-
-  OnPldUpdate(oath) {
-    if (this.o.oathTextBox == null)
-      return;
-
-    this.o.oathText.innerText = oath;
-
-    if (oath < 50) {
-      this.o.oathTextBox.classList.add('low');
-      this.o.oathTextBox.classList.remove('mid');
-    } else if (oath < 100) {
-      this.o.oathTextBox.classList.remove('low');
-      this.o.oathTextBox.classList.add('mid');
-    } else {
-      this.o.oathTextBox.classList.remove('low');
-      this.o.oathTextBox.classList.remove('mid');
-    }
   }
 
   OnMonkUpdate(lightningStacks, chakraStacks, lightningMilliseconds) {
@@ -1457,17 +1457,6 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
-    } else if (this.job == 'PLD') {
-      if (skill == gLang.kAbility.GoringBlade) {
-        this.o.goreBox.duration = 0;
-        // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
-        // have the box show 21, it looks like you're awfully late with
-        // your goring blade and just feels really bad.  So, lie to the
-        // poor paladins who don't have enough skill speed so that the UI
-        // is easier to read for repeating goring, royal, royal, goring
-        // and not having the box run out early.
-        this.o.goreBox.duration = 22;
-      }
     }
   }
 
@@ -1733,11 +1722,6 @@ class Bars {
         this.whiteMana = e.detail.jobDetail.whiteMana;
         this.blackMana = e.detail.jobDetail.blackMana;
         this.OnRedMageUpdate(this.whiteMana, this.blackMana);
-      }
-    } else if (this.job == 'PLD') {
-      if (update_job || e.detail.jobDetail.oath != this.oath) {
-        this.oath = e.detail.jobDetail.oath;
-        this.OnPldUpdate(this.oath);
       }
     } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
