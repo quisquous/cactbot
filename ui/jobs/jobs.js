@@ -58,13 +58,6 @@ let kReRdmEndCombo = null;
 let kReSmnRuinProc = null;
 let kReSmnRuinProcEnd = null;
 let kReSmnAetherflow = null;
-let kFormChange = null;
-let kPeanutButter = null;
-let kLeadenBuff = null;
-let kLeadenBuffEnd = null;
-let kTwinSnakes = null;
-let kFourPointFury = null;
-let kDemolish = null;
 let kComboBreakers = null;
 let kWellFedZoneRegex = null;
 
@@ -74,6 +67,12 @@ let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
 
 let kGainSecondsRegex = Regexes.Parse('for (\\y{Float}) Seconds\\.');
+function gainSecondsFromLog(log) {
+  let m = log.match(kGainSecondsRegex);
+  if (m)
+    return m[1];
+  return 0;
+}
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
@@ -223,16 +222,6 @@ function setupRegexes() {
   kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
-  kFormChange = gLang.youGainEffectRegex(
-      gLang.kEffect.OpoOpoForm,
-      gLang.kEffect.RaptorForm,
-      gLang.kEffect.CoeurlForm);
-  kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
-  kLeadenBuff = gLang.youGainEffectRegex(gLang.kEffect.LeadenFist);
-  kLeadenBuffEnd = gLang.youLoseEffectRegex(gLang.kEffect.LeadenFist);
-  kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
-  kFourPointFury = gLang.youUseAbilityRegex(gLang.kAbility.FourPointFury);
-  kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
@@ -546,13 +535,11 @@ class BuffTracker {
     if (!b)
       return;
     let seconds = -1;
-    if (b.useEffectDuration) {
-      let m = log.match(kGainSecondsRegex);
-      if (m)
-        seconds = m[1];
-    } else if ('durationSeconds' in b) {
+    if (b.useEffectDuration)
+      seconds = gainSecondsFromLog(log);
+    else if ('durationSeconds' in b)
       seconds = b.durationSeconds;
-    }
+
     this.onBigBuff(b.name, seconds, b);
   }
 
@@ -637,10 +624,7 @@ class Bars {
     this.abilityFuncMap = {};
 
     this.gainEffectFuncMap[gLang.kEffect.WellFed] = (function(name, log) {
-      let m = log.match(kGainSecondsRegex);
-      if (!m)
-        return;
-      seconds = m[1];
+      let seconds = gainSecondsFromLog(log);
       let now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this.UpdateFoodBuff();
@@ -1023,91 +1007,7 @@ class Bars {
     } else if (this.job == 'PLD') {
       this.setupPld();
     } else if (this.job == 'MNK') {
-      let mnkBars = document.createElement('div');
-      mnkBars.id = 'mnk-bar';
-      barsContainer.appendChild(mnkBars);
-
-      this.o.lightningContainer = document.createElement('div');
-      this.o.lightningContainer.id = 'mnk-timers-lightning';
-      this.o.lightningTimer = document.createElement('timer-bar');
-      mnkBars.appendChild(this.o.lightningContainer);
-      this.o.lightningContainer.appendChild(this.o.lightningTimer);
-
-      this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
-      this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
-      this.o.lightningTimer.toward = 'left';
-      this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
-
-      this.o.formContainer = document.createElement('div');
-      this.o.formContainer.id = 'mnk-timers-combo';
-      this.o.formTimer = document.createElement('timer-bar');
-      mnkBars.appendChild(this.o.formContainer);
-      this.o.formContainer.appendChild(this.o.formTimer);
-
-      this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
-      this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
-      this.o.formTimer.style = 'empty';
-      this.o.formTimer.toward = 'left';
-      this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
-      this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
-
-      let mnkBoxesContainer = document.createElement('div');
-      mnkBoxesContainer.id = 'mnk-boxes';
-      barsContainer.appendChild(mnkBoxesContainer);
-
-      this.o.chakraTextBox = document.createElement('div');
-      this.o.chakraTextBox.classList.add('mnk-color-chakra');
-      mnkBoxesContainer.appendChild(this.o.chakraTextBox);
-
-      this.o.chakraText = document.createElement('div');
-      this.o.chakraTextBox.appendChild(this.o.chakraText);
-      this.o.chakraText.classList.add('text');
-
-      let mnkProcs = document.createElement('div');
-      mnkProcs.id = 'mnk-procs';
-      barsContainer.appendChild(mnkProcs);
-
-      this.o.dragonKickTimer = document.createElement('timer-box');
-      this.o.dragonKickTimer.id = 'mnk-procs-dragonkick';
-      mnkProcs.appendChild(this.o.dragonKickTimer);
-      this.o.dragonKickTimer.style = 'empty';
-      this.o.dragonKickTimer.fg = computeBackgroundColorFrom(this.o.dragonKickTimer, 'mnk-color-dragonkick');
-      this.o.dragonKickTimer.bg = 'black';
-      this.o.dragonKickTimer.toward = 'bottom';
-      this.o.dragonKickTimer.threshold = 0;
-      this.o.dragonKickTimer.hideafter = '';
-      this.o.dragonKickTimer.roundupthreshold = false;
-      this.o.dragonKickTimer.threshold = 6;
-
-      this.o.twinSnakesTimer = document.createElement('timer-box');
-      this.o.twinSnakesTimer.id = 'mnk-procs-twinsnakes';
-      mnkProcs.appendChild(this.o.twinSnakesTimer);
-      this.o.twinSnakesTimer.style = this.o.dragonKickTimer.style;
-      this.o.twinSnakesTimer.fg = computeBackgroundColorFrom(this.o.twinSnakesTimer, 'mnk-color-twinsnakes');
-      this.o.twinSnakesTimer.bg = this.o.dragonKickTimer.bg;
-      this.o.twinSnakesTimer.toward = this.o.dragonKickTimer.toward;
-      this.o.twinSnakesTimer.threshold = this.o.dragonKickTimer.threshold;
-      this.o.twinSnakesTimer.hideafter = this.o.dragonKickTimer.hideafter;
-      this.o.twinSnakesTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
-      this.o.twinSnakesTimer.threshold = 6;
-
-      this.o.demolishTimer = document.createElement('timer-box');
-      this.o.demolishTimer.id = 'mnk-procs-demolish';
-      mnkProcs.appendChild(this.o.demolishTimer);
-      this.o.demolishTimer.style = this.o.dragonKickTimer.style;
-      this.o.demolishTimer.fg = computeBackgroundColorFrom(this.o.demolishTimer, 'mnk-color-demolish');
-      this.o.demolishTimer.bg = this.o.dragonKickTimer.bg;
-      this.o.demolishTimer.toward = this.o.dragonKickTimer.toward;
-      this.o.demolishTimer.threshold = this.o.dragonKickTimer.threshold;
-      this.o.demolishTimer.hideafter = this.o.dragonKickTimer.hideafter;
-      this.o.demolishTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
-      // Slightly shorter time, to make the box not pop right as
-      // you hit snap punch at t=6 (which is probably fine).
-      this.o.demolishTimer.threshold = 5;
-
-      this.o.lightningFgColors = [];
-      for (let i = 0; i <= 3; ++i)
-        this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
+      this.setupMnk();
     } else if (this.job == 'AST') {
       this.setupAst();
     } else if (this.job == 'BLU') {
@@ -1388,6 +1288,137 @@ class Bars {
     };
   }
 
+  setupMnk() {
+    let mnkBars = document.createElement('div');
+    mnkBars.id = 'mnk-bar';
+    document.getElementById('bars').appendChild(mnkBars);
+
+    // TODO: abstract timer bar additions
+    this.o.lightningContainer = document.createElement('div');
+    this.o.lightningContainer.id = 'mnk-timers-lightning';
+    this.o.lightningTimer = document.createElement('timer-bar');
+    mnkBars.appendChild(this.o.lightningContainer);
+    this.o.lightningContainer.appendChild(this.o.lightningTimer);
+
+    this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
+    this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
+    this.o.lightningTimer.toward = 'left';
+    this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
+
+    this.o.formContainer = document.createElement('div');
+    this.o.formContainer.id = 'mnk-timers-combo';
+    this.o.formTimer = document.createElement('timer-bar');
+    mnkBars.appendChild(this.o.formContainer);
+    this.o.formContainer.appendChild(this.o.formTimer);
+
+    this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
+    this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
+    this.o.formTimer.style = 'empty';
+    this.o.formTimer.toward = 'left';
+    this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
+    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
+
+    let lightningTimer = this.o.lightningTimer;
+    let formTimer = this.o.formTimer;
+
+    let textBox = this.addResourceBox({
+      classList: ['mnk-color-chakra'],
+    });
+
+    let lightningFgColors = [];
+    for (let i = 0; i <= 3; ++i)
+      lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
+
+    this.jobFuncs.push(function(jobDetail) {
+      let chakra = jobDetail.chakraStacks;
+      if (textBox.innerText !== chakra) {
+        textBox.innerText = chakra;
+        let p = textBox.parentNode;
+        if (chakra < 5)
+          p.classList.add('dim');
+        else
+          p.classList.remove('dim');
+      }
+
+      let stacks = jobDetail.lightningStacks;
+      lightningTimer.fg = lightningFgColors[stacks];
+      if (stacks == 0) {
+        // Show sad red bar when you've lost all your pancakes.
+        lightningTimer.style = 'fill';
+        lightningTimer.value = 0;
+        lightningTimer.duration = 0;
+      } else {
+        lightningTimer.style = 'empty';
+
+        // Setting the duration resets the timer bar to 0, so set
+        // duration first before adjusting the value.
+        let old = parseInt(lightningTimer.duration) - parseInt(lightningTimer.elapsed);
+        let lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
+        if (lightningSeconds > old) {
+          lightningTimer.duration = 16;
+          lightningTimer.value = lightningSeconds;
+        }
+      }
+    });
+
+    let dragonKickBox = this.addProcBox({
+      id: 'mnk-procs-dragonkick',
+      fgColor: 'mnk-color-dragonkick',
+      threshold: 6,
+    });
+
+    let twinSnakesBox = this.addProcBox({
+      id: 'mnk-procs-twinsnakes',
+      fgColor: 'mnk-color-twinsnakes',
+      threshold: 6,
+    });
+
+    let demolishBox = this.addProcBox({
+      id: 'mnk-procs-demolish',
+      fgColor: 'mnk-color-demolish',
+      // Slightly shorter time, to make the box not pop right as
+      // you hit snap punch at t=6 (which is probably fine).
+      threshold: 5,
+    });
+
+    this.abilityFuncMap[gLang.kAbility.TwinSnakes] = function() {
+      twinSnakesBox.duration = 0;
+      twinSnakesBox.duration = 15;
+    };
+    this.abilityFuncMap[gLang.kAbility.FourPointFury] = function() {
+      // FIXME: using this at zero.
+      let old = parseInt(twinSnakesBox.duration) - parseInt(twinSnakesBox.elapsed);
+      twinSnakesBox.duration = 0;
+      if (old > 0)
+        twinSnakesBox.duration = Math.min(old + 10, 15);
+    };
+    this.abilityFuncMap[gLang.kAbility.Demolish] = function() {
+      demolishBox.duration = 0;
+      demolishBox.duration = 15;
+    };
+    this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = function() {
+      dragonKickBox.duration = 0;
+      dragonKickBox.duration = 30;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.LeadenFist] = function() {
+      dragonKickBox.duration = 0;
+    };
+    this.gainEffectFuncMap[gLang.kEffect.PerfectBalance] = function(name, log) {
+      formTimer.duration = 0;
+      formTimer.duration = gainSecondsFromLog(log);
+      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
+    };
+
+    let changeFormFunc = function(name, log) {
+      formTimer.duration = 0;
+      formTimer.duration = gainSecondsFromLog(log);
+      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+    };
+    this.gainEffectFuncMap[gLang.kEffect.OpoOpoForm] = changeFormFunc;
+    this.gainEffectFuncMap[gLang.kEffect.RaptorForm] = changeFormFunc;
+    this.gainEffectFuncMap[gLang.kEffect.CoeurlForm] = changeFormFunc;
+  }
+
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
       dreadwyrmMilliseconds, bahamutMilliseconds) {
     if (this.o.smnBahamutStacks == null || this.o.smnAetherflowStacks == null)
@@ -1459,70 +1490,6 @@ class Bars {
       this.o.blackManaTextBox.classList.add('dim');
     else
       this.o.blackManaTextBox.classList.remove('dim');
-  }
-
-  OnMonkUpdate(lightningStacks, chakraStacks, lightningMilliseconds) {
-    if (this.o.chakraTextBox == null)
-      return;
-
-    this.o.chakraText.innerText = chakraStacks;
-    if (chakraStacks < 5)
-      this.o.chakraTextBox.classList.add('dim');
-    else
-      this.o.chakraTextBox.classList.remove('dim');
-
-    // Show sad red bar when you've lost all your pancakes.
-    let lightningSeconds = lightningMilliseconds / 1000.0;
-    if (lightningStacks == 0) {
-      this.o.lightningTimer.style = 'fill';
-      lightningSeconds = 0;
-    } else {
-      this.o.lightningTimer.style = 'empty';
-    }
-
-    // Setting the duration resets the timer bar to 0, so set
-    // duration first before adjusting the value.
-    this.o.lightningTimer.duration = 16;
-    this.o.lightningTimer.value = lightningSeconds;
-
-    this.o.lightningTimer.fg = this.o.lightningFgColors[lightningStacks];
-  }
-
-  OnMonkFormChange(seconds) {
-    this.o.formTimer.duration = 0;
-    this.o.formTimer.duration = seconds;
-    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
-  }
-
-  OnMonkPerfectBalance(seconds) {
-    this.o.formTimer.duration = 0;
-    this.o.formTimer.duration = seconds;
-    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-pb');
-  }
-
-  OnMonkLeadenFistStart() {
-    this.o.dragonKickTimer.duration = 0;
-    this.o.dragonKickTimer.duration = 30;
-  }
-
-  OnMonkLeadenFistEnd() {
-    this.o.dragonKickTimer.duration = 0;
-  }
-
-  OnMonkTwinSnakes() {
-    this.o.twinSnakesTimer.duration = 0;
-    this.o.twinSnakesTimer.duration = 15;
-  }
-
-  OnMonkFourPointFury() {
-    let old = parseInt(this.o.twinSnakesTimer.duration) - parseInt(this.o.twinSnakesTimer.elapsed);
-    this.o.twinSnakesTimer.duration = 0;
-    this.o.twinSnakesTimer.duration = Math.min(old + 10, 15);
-  }
-
-  OnMonkDemolish() {
-    this.o.demolishTimer.duration = 0;
-    this.o.demolishTimer.duration = 18;
   }
 
   OnSummonerAetherflow(seconds) {
@@ -1815,18 +1782,6 @@ class Bars {
         this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks,
             this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
       }
-    } else if (this.job == 'MNK') {
-      if (update_job ||
-          e.detail.jobDetail.lightningStacks != this.lightningStacks ||
-          e.detail.jobDetail.chakraStacks != this.chakraStacks ||
-          e.detail.jobDetail.lightningMilliseconds > this.lightningMilliseconds) {
-        this.lightningStacks = e.detail.jobDetail.lightningStacks;
-        this.chakraStacks = e.detail.jobDetail.chakraStacks;
-        this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
-        this.OnMonkUpdate(this.lightningStacks, this.chakraStacks, this.lightningMilliseconds);
-      } else {
-        this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
-      }
     }
   }
 
@@ -1899,9 +1854,8 @@ class Bars {
             this.buffTracker.onUseAbility(id, log);
           } else {
             let m = log.match(kAnybodyAbilityRegex);
-            if (m) {
+            if (m)
               this.buffTracker.onUseAbility(m[1], log);
-            }
           }
         }
       }
@@ -1952,40 +1906,6 @@ class Bars {
         }
         if (log.search(kReRdmImpactProcEnd) >= 0) {
           this.OnRedMageProcImpact(0);
-          continue;
-        }
-      }
-      if (this.job == 'MNK') {
-        if (log.search(kTwinSnakes) >= 0) {
-          this.OnMonkTwinSnakes();
-          continue;
-        }
-        if (log.search(kFourPointFury) >= 0) {
-          this.OnMonkFourPointFury();
-          continue;
-        }
-        if (log.search(kDemolish) >= 0) {
-          this.OnMonkDemolish();
-          continue;
-        }
-        if (log.search(kLeadenBuff) >= 0) {
-          this.OnMonkLeadenFistStart();
-          continue;
-        }
-        if (log.search(kLeadenBuffEnd) >= 0) {
-          this.OnMonkLeadenFistEnd();
-          continue;
-        }
-        let r = log.match(kFormChange);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnMonkFormChange(seconds);
-          continue;
-        }
-        r = log.match(kPeanutButter);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnMonkPerfectBalance(seconds);
           continue;
         }
       }
