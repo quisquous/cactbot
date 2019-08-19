@@ -75,8 +75,7 @@ let kUseAbilityRegex = null;
 class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
-    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers),
-        gLang.youStartUsingRegex(comboBreakers));
+    this.comboBreakers = comboBreakers;
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
     this.callback = callback;
@@ -92,7 +91,7 @@ class ComboTracker {
       let node = this.comboNodes[skillList[i]];
       if (node == undefined) {
         node = {
-          re: gLang.youUseAbilityRegex(skillList[i]),
+          id: skillList[i],
           next: [],
         };
         this.comboNodes[skillList[i]] = node;
@@ -104,15 +103,15 @@ class ComboTracker {
     }
   }
 
-  ParseLog(log) {
+  HandleAbility(id) {
     for (let i = 0; i < this.considerNext.length; ++i) {
       let next = this.considerNext[i];
-      if (log.search(this.comboNodes[next].re) >= 0) {
+      if (this.comboNodes[next].id == id) {
         this.StateTransition(next);
         return true;
       }
     }
-    if (log.search(this.kReEndCombo) >= 0) {
+    if (this.comboBreakers.indexOf(id) >= 0) {
       this.AbortCombo();
       return true;
     }
@@ -1790,21 +1789,22 @@ class Bars {
         if (log[16] == 'E') {
           let m = log.match(kLostEffectRegex);
           if (m) {
-            let f = this.lostEffectFuncMap[m[1]];
+            let name = m[1];
+            let f = this.lostEffectFuncMap[name];
             if (f)
-              f(m[1]);
+              f(name);
           }
         }
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
         if (log[16] == '5' || log[16] == '6') {
-          if (this.combo.ParseLog(log))
-            continue;
           let m = log.match(kUseAbilityRegex);
           if (m) {
-            let f = this.abilityFuncMap[m[1]];
+            let id = m[1];
+            this.combo.HandleAbility(id);
+            let f = this.abilityFuncMap[id];
             if (f)
-              f(m[1]);
+              f(id);
           }
         }
       }
