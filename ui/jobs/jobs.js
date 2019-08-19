@@ -58,7 +58,6 @@ let kReRdmEndCombo = null;
 let kReSmnRuinProc = null;
 let kReSmnRuinProcEnd = null;
 let kReSmnAetherflow = null;
-let kReFoodBuff = null;
 let kFormChange = null;
 let kPeanutButter = null;
 let kLeadenBuff = null;
@@ -69,8 +68,12 @@ let kDemolish = null;
 let kComboBreakers = null;
 let kWellFedZoneRegex = null;
 
-let kLostEffectRegex = null;
-let kUseAbilityRegex = null;
+let kYouGainEffectRegex = null;
+let kYouLoseEffectRegex = null;
+let kYouUseAbilityRegex = null;
+let kAnybodyAbilityRegex = null;
+
+let kGainSecondsRegex = Regexes.Parse('for (\\y{Float}) Seconds\\.');
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
@@ -220,7 +223,6 @@ function setupRegexes() {
   kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
-  kReFoodBuff = gLang.youGainEffectRegex(gLang.kEffect.WellFed);
   kFormChange = gLang.youGainEffectRegex(
       gLang.kEffect.OpoOpoForm,
       gLang.kEffect.RaptorForm,
@@ -234,8 +236,11 @@ function setupRegexes() {
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
-  kLostEffectRegex = gLang.youLoseEffectRegex('(.*)');
-  kUseAbilityRegex = gLang.youUseAbilityRegex('([^:]*)');
+
+  kYouGainEffectRegex = gLang.youGainEffectRegex('(.*)');
+  kYouLoseEffectRegex = gLang.youLoseEffectRegex('(.*)');
+  kYouUseAbilityRegex = gLang.youUseAbilityRegex('([^:]*)');
+  kAnybodyAbilityRegex = gLang.abilityRegex('(\y{AbilityCode})');
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -302,111 +307,297 @@ function computeBackgroundColorFrom(element, classList) {
   return color;
 }
 
-let kBigBuffTracker = null;
+function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
+    barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
+  let div = document.createElement('div');
 
-function setupBuffTracker() {
-  kBigBuffTracker = {
-    potion: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Medicated),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Medicated),
-      durationPosition: 1,
-      icon: kIconBuffPotion,
-      borderColor: '#AA41B2',
-      sortKey: 0,
-    },
-    peculiar: {
-      gainRegex: gLang.abilityRegex(gLang.kAbility.PeculiarLight),
-      durationSeconds: 10,
-      icon: kIconBuffPeculiarLight,
-      borderColor: '#F28F7B',
-      sortKey: 1,
-    },
-    trick: {
-      // The flags encode positional data, but the exact specifics are unclear.
-      // Trick attack missed appears to be "710?03" but correct is "20710?03".
-      gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
-      durationSeconds: 10,
-      icon: kIconBuffTrickAttack,
-      // Magenta.
-      borderColor: '#FC4AE6',
-      sortKey: 1,
-    },
-    litany: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.BattleLitany),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.BattleLitany),
-      durationPosition: 1,
-      icon: kIconBuffLitany,
-      // Cyan.
-      borderColor: '#099',
-      sortKey: 2,
-    },
-    embolden: {
-      // Embolden is special and has some extra text at the end, depending on embolden stage:
-      // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
-      // Instead, use somebody using the effect on you:
-      //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-      gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Embolden),
-      durationSeconds: 20,
-      icon: kIconBuffEmbolden,
-      // Lime.
-      borderColor: '#57FC4A',
-      sortKey: 3,
-    },
-    balance: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Balance),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Balance),
-      durationPosition: 1,
-      icon: kIconBuffBalance,
-      // Orange.
-      borderColor: '#ff9900',
-      sortKey: 4,
-    },
-    technicalFinish: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.TechnicalFinish),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.TechnicalFinish),
-      durationSeconds: 20,
-      icon: kIconBuffTechnicalFinish,
-      // Dark Peach.
-      borderColor: '#E0757C',
-      sortKey: 5,
-    },
-    chain: {
-      gainRegex: gLang.abilityRegex(gLang.kAbility.ChainStrategem),
-      durationSeconds: 15,
-      icon: kIconBuffChainStratagem,
-      // Blue.
-      borderColor: '#4674E5',
-      sortKey: 6,
-    },
-    sight: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
-      durationPosition: 1,
-      icon: kIconBuffDragonSight,
-      // Orange.
-      borderColor: '#FA8737',
-      sortKey: 8,
-    },
-    brotherhood: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Brotherhood),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Brotherhood),
-      durationPosition: 1,
-      icon: kIconBuffBrotherhood,
-      // Dark Orange.
-      borderColor: '#994200',
-      sortKey: 9,
-    },
-    devotion: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Devotion),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Devotion),
-      durationPosition: 1,
-      icon: kIconBuffDevotion,
-      // Yellow.
-      borderColor: '#ffbf00',
-      sortKey: 10,
-    },
-  };
+  if (seconds < 0) {
+    div.style.borderWidth = 1;
+    div.style.borderStyle = 'solid';
+    div.style.borderColor = '#000';
+    div.style.width = iconWidth - borderSize * 2;
+    div.style.height = iconHeight - borderSize * 2;
+    div.style.backgroundColor = borderColor;
+    let inner = document.createElement('div');
+    div.appendChild(inner);
+    inner.style.position = 'relative';
+    inner.style.left = borderSize;
+    inner.style.top = borderSize;
+    inner.style.borderWidth = borderSize;
+    inner.style.borderStyle = 'solid';
+    inner.style.borderColor = '#000';
+    inner.style.width = iconWidth - borderSize * 6;
+    inner.style.height = iconHeight - borderSize * 6;
+    inner.style.backgroundImage = 'url(' + auraIcon + ')';
+    inner.style.backgroundColor = '#888';
+    inner.style.backgroundRepeat = 'no-repeat';
+    inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
+    inner.style.backgroundPosition = 'center';
+    return div;
+  }
+
+
+  let icon = document.createElement('timer-icon');
+  icon.width = iconWidth;
+  icon.height = iconHeight;
+  icon.bordersize = borderSize;
+  div.appendChild(icon);
+
+  let barDiv = document.createElement('div');
+  barDiv.style.position = 'relative';
+  barDiv.style.top = iconHeight;
+  div.appendChild(barDiv);
+
+  let bar = document.createElement('timer-bar');
+  bar.width = iconWidth;
+  bar.height = barHeight;
+  barDiv.appendChild(bar);
+
+  if (textHeight > 0) {
+    let text = document.createElement('div');
+    text.classList.add('text');
+    text.style.width = iconWidth;
+    text.style.height = textHeight;
+    text.style.overflow = 'hidden';
+    text.style.fontSize = textHeight - 1;
+    text.style.whiteSpace = 'pre';
+    text.style.position = 'relative';
+    text.style.top = iconHeight;
+    text.style.fontFamily = 'arial';
+    text.style.fontWeight = 'bold';
+    text.style.color = 'white';
+    text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
+    text.style.paddingBottom = textHeight / 4;
+
+    text.innerText = name;
+    div.appendChild(text);
+  }
+
+  if (iconText)
+    icon.text = iconText;
+  icon.bordercolor = borderColor;
+  bar.fg = barColor;
+  icon.icon = auraIcon;
+  icon.duration = seconds;
+  bar.duration = seconds;
+
+  return div;
+}
+
+class BuffTracker {
+  constructor(options, leftBuffDiv, rightBuffDiv) {
+    this.options = options;
+    this.leftBuffDiv = leftBuffDiv;
+    this.rightBuffDiv = rightBuffDiv;
+
+    this.buffInfo = {
+      potion: {
+        gainEffect: gLang.kEffect.Medicated,
+        loseEffect: gLang.kEffect.Medicated,
+        useEffectDuration: true,
+        icon: kIconBuffPotion,
+        borderColor: '#AA41B2',
+        sortKey: 0,
+      },
+      peculiar: {
+        gainAbility: gLang.kAbility.PeculiarLight,
+        durationSeconds: 10,
+        icon: kIconBuffPeculiarLight,
+        borderColor: '#F28F7B',
+        sortKey: 1,
+      },
+      trick: {
+        // The flags encode positional data, but the exact specifics are unclear.
+        // Trick attack missed appears to be "710?03" but correct is "20710?03".
+        gainAbility: gLang.kAbility.TrickAttack,
+        gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
+        durationSeconds: 10,
+        icon: kIconBuffTrickAttack,
+        // Magenta.
+        borderColor: '#FC4AE6',
+        sortKey: 1,
+      },
+      litany: {
+        gainEffect: gLang.kEffect.BattleLitany,
+        loseEffect: gLang.kEffect.BattleLitany,
+        useEffectDuration: true,
+        icon: kIconBuffLitany,
+        // Cyan.
+        borderColor: '#099',
+        sortKey: 2,
+      },
+      embolden: {
+        // Embolden is special and has some extra text at the end, depending on embolden stage:
+        // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
+        // Instead, use somebody using the effect on you:
+        //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
+        gainAbility: gLang.kAbility.Embolden,
+        gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
+        loseEffect: gLang.kEffect.Embolden,
+        durationSeconds: 20,
+        icon: kIconBuffEmbolden,
+        // Lime.
+        borderColor: '#57FC4A',
+        sortKey: 3,
+      },
+      balance: {
+        gainEffect: gLang.kEffect.Balance,
+        loseEffect: gLang.kEffect.Balance,
+        useEffectDuration: true,
+        icon: kIconBuffBalance,
+        // Orange.
+        borderColor: '#ff9900',
+        sortKey: 4,
+      },
+      technicalFinish: {
+        gainEffect: gLang.kEffect.TechnicalFinish,
+        loseEffect: gLang.kEffect.TechnicalFinish,
+        durationSeconds: 20,
+        icon: kIconBuffTechnicalFinish,
+        // Dark Peach.
+        borderColor: '#E0757C',
+        sortKey: 5,
+      },
+      chain: {
+        gainAbility: gLang.kAbility.ChainStrategem,
+        durationSeconds: 15,
+        icon: kIconBuffChainStratagem,
+        // Blue.
+        borderColor: '#4674E5',
+        sortKey: 6,
+      },
+      lefteye: {
+        gainEffect: gLang.kEffect.LeftEye,
+        loseEffect: gLang.kEffect.LeftEye,
+        useEffectDuration: true,
+        icon: kIconBuffDragonSight,
+        // Orange.
+        borderColor: '#FA8737',
+        sortKey: 8,
+      },
+      righteye: {
+        gainEffect: gLang.kEffect.RightEye,
+        loseEffect: gLang.kEffect.RightEye,
+        useEffectDuration: true,
+        icon: kIconBuffDragonSight,
+        // Orange.
+        borderColor: '#FA8737',
+        sortKey: 8,
+      },
+      brotherhood: {
+        gainEffect: gLang.kEffect.Brotherhood,
+        loseEffect: gLang.kEffect.Brotherhood,
+        useEffectDuration: true,
+        icon: kIconBuffBrotherhood,
+        // Dark Orange.
+        borderColor: '#994200',
+        sortKey: 9,
+      },
+      devotion: {
+        gainEffect: gLang.kEffect.Devotion,
+        loseEffect: gLang.kEffect.Devotion,
+        useEffectDuration: true,
+        icon: kIconBuffDevotion,
+        // Yellow.
+        borderColor: '#ffbf00',
+        sortKey: 10,
+      },
+    };
+
+    let keys = Object.keys(this.buffInfo);
+    this.gainEffectMap = {};
+    this.loseEffectMap = {};
+    this.gainAbilityMap = {};
+    for (let i = 0; i < keys.length; ++i) {
+      let buff = this.buffInfo[keys[i]];
+      buff.name = keys[i];
+      if (buff.gainEffect) {
+        if (buff.gainEffect in this.gainEffectMap)
+          console.error('Duplicate buff entry: ' + buff.gainEffect);
+        this.gainEffectMap[buff.gainEffect] = buff;
+      }
+      if (buff.loseEffect) {
+        if (buff.loseEffect in this.loseEffectMap)
+          console.error('Duplicate buff entry: ' + buff.loseEffect);
+        this.loseEffectMap[buff.loseEffect] = buff;
+      }
+      if (buff.gainAbility) {
+        if (buff.gainAbility in this.gainAbilityMap)
+          console.error('Duplicate buff entry: ' + buff.gainAbility);
+        this.gainAbilityMap[buff.gainAbility] = buff;
+      }
+    }
+  }
+
+  onUseAbility(id, log) {
+    let b = this.gainAbilityMap[id];
+    if (!b)
+      return;
+
+    if (b.gainRegex && !log.match(b.gainRegex))
+      return;
+
+    let seconds = b.durationSeconds;
+    this.onBigBuff(b.name, seconds, b);
+  }
+
+  onYouGainEffect(name, log) {
+    let b = this.gainEffectMap[name];
+    if (!b)
+      return;
+    let seconds = -1;
+    if (b.useEffectDuration) {
+      let m = log.match(kGainSecondsRegex);
+      if (m)
+        seconds = m[1];
+    } else if ('durationSeconds' in b) {
+      seconds = b.durationSeconds;
+    }
+    this.onBigBuff(b.name, seconds, b);
+  }
+
+  onYouLoseEffect(name, log) {
+    let b = this.loseEffectMap[name];
+    if (!b)
+      return;
+    this.onLoseBigBuff(b.name, b);
+  }
+
+  onBigBuff(name, seconds, settings) {
+    let overrides = this.options.PerBuffOptions[name] || {};
+    let borderColor = overrides.borderColor || settings.borderColor;
+    let icon = overrides.icon || settings.icon;
+    let side = overrides.side || settings.side;
+    let sortKey = overrides.sortKey || settings.sortKey;
+    if (overrides.hide)
+      return;
+
+    let aura = makeAuraTimerIcon(
+        name, seconds,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        settings.text,
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        this.options.BigBuffBorderSize,
+        borderColor, borderColor,
+        icon);
+    let list = this.rightBuffDiv;
+    if (side && side == 'left' && this.leftBuffDiv)
+      list = this.leftBuffDiv;
+    list.addElement(name, aura, sortKey);
+    window.clearTimeout(settings.timeout);
+    if (seconds >= 0) {
+      settings.timeout = window.setTimeout((function() {
+        this.rightBuffDiv.removeElement(name);
+        this.leftBuffDiv.removeElement(name);
+      }).bind(this), seconds * 1000);
+    }
+  }
+
+  onLoseBigBuff(name, settings) {
+    window.clearTimeout(settings.timeout);
+    this.rightBuffDiv.removeElement(name);
+    this.leftBuffDiv.removeElement(name);
+  }
 }
 
 class Bars {
@@ -434,7 +625,7 @@ class Bars {
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.gainEffectFuncMap = {};
-    this.lostEffectFuncMap = {};
+    this.loseEffectFuncMap = {};
     this.abilityFuncMap = {};
   }
 
@@ -442,8 +633,18 @@ class Bars {
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.gainEffectFuncMap = {};
-    this.lostEffectFuncMap = {};
+    this.loseEffectFuncMap = {};
     this.abilityFuncMap = {};
+
+    this.gainEffectFuncMap[gLang.kEffect.WellFed] = (function(name, log) {
+      let m = log.match(kGainSecondsRegex);
+      if (!m)
+        return;
+      seconds = m[1];
+      let now = Date.now(); // This is in ms.
+      this.foodBuffExpiresTimeMs = now + (seconds * 1000);
+      this.UpdateFoodBuff();
+    }).bind(this);
 
     let container = document.getElementById('jobs-container');
     if (container == null) {
@@ -530,6 +731,8 @@ class Bars {
       this.o.leftBuffsList.toward = 'left down';
       this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
+
+    this.buffTracker = new BuffTracker(this.options, this.o.leftBuffsList, this.o.rightBuffsList);
 
     if (Util.isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
@@ -912,83 +1115,6 @@ class Bars {
     }
   }
 
-  MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
-      barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
-    let div = document.createElement('div');
-
-    if (seconds < 0) {
-      div.style.borderWidth = 1;
-      div.style.borderStyle = 'solid';
-      div.style.borderColor = '#000';
-      div.style.width = iconWidth - borderSize * 2;
-      div.style.height = iconHeight - borderSize * 2;
-      div.style.backgroundColor = borderColor;
-      let inner = document.createElement('div');
-      div.appendChild(inner);
-      inner.style.position = 'relative';
-      inner.style.left = borderSize;
-      inner.style.top = borderSize;
-      inner.style.borderWidth = borderSize;
-      inner.style.borderStyle = 'solid';
-      inner.style.borderColor = '#000';
-      inner.style.width = iconWidth - borderSize * 6;
-      inner.style.height = iconHeight - borderSize * 6;
-      inner.style.backgroundImage = 'url(' + auraIcon + ')';
-      inner.style.backgroundColor = '#888';
-      inner.style.backgroundRepeat = 'no-repeat';
-      inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
-      inner.style.backgroundPosition = 'center';
-      return div;
-    }
-
-
-    let icon = document.createElement('timer-icon');
-    icon.width = iconWidth;
-    icon.height = iconHeight;
-    icon.bordersize = borderSize;
-    div.appendChild(icon);
-
-    let barDiv = document.createElement('div');
-    barDiv.style.position = 'relative';
-    barDiv.style.top = iconHeight;
-    div.appendChild(barDiv);
-
-    let bar = document.createElement('timer-bar');
-    bar.width = iconWidth;
-    bar.height = barHeight;
-    barDiv.appendChild(bar);
-
-    if (textHeight > 0) {
-      let text = document.createElement('div');
-      text.classList.add('text');
-      text.style.width = iconWidth;
-      text.style.height = textHeight;
-      text.style.overflow = 'hidden';
-      text.style.fontSize = textHeight - 1;
-      text.style.whiteSpace = 'pre';
-      text.style.position = 'relative';
-      text.style.top = iconHeight;
-      text.style.fontFamily = 'arial';
-      text.style.fontWeight = 'bold';
-      text.style.color = 'white';
-      text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
-      text.style.paddingBottom = textHeight / 4;
-
-      text.innerText = name;
-      div.appendChild(text);
-    }
-
-    if (iconText)
-      icon.text = iconText;
-    icon.bordercolor = borderColor;
-    bar.fg = barColor;
-    icon.icon = auraIcon;
-    icon.duration = seconds;
-    bar.duration = seconds;
-
-    return div;
-  }
-
   addResourceBox(options) {
     // TODO: make this just boxes with job as a different class.
     let id = this.job.toLowerCase() + '-boxes';
@@ -1117,7 +1243,7 @@ class Bars {
         eyeBox.threshold = oldThreshold;
     });
 
-    this.lostEffectFuncMap[gLang.kEffect.StormsEye] = function() {
+    this.loseEffectFuncMap[gLang.kEffect.StormsEye] = function() {
       // Because storm's eye is tracked from the hit, and the ability is delayed,
       // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
       // To fix this, don't "lose" unless it's been going on a bit.
@@ -1431,9 +1557,9 @@ class Bars {
   }
 
   OnComboChange(skill) {
-    for (let i = 0; i < this.comboFuncs.length; ++i) {
+    for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
-    }
+
     if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
@@ -1553,7 +1679,7 @@ class Bars {
       if (canShow)
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
-      let div = this.MakeAuraTimerIcon(
+      let div = makeAuraTimerIcon(
           'foodbuff', -1,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           '',
@@ -1601,48 +1727,10 @@ class Bars {
     }
   }
 
-  OnBigBuff(name, seconds, settings) {
-    let overrides = this.options.PerBuffOptions[name] || {};
-    let borderColor = overrides.borderColor || settings.borderColor;
-    let icon = overrides.icon || settings.icon;
-    let side = overrides.side || settings.side;
-    let sortKey = overrides.sortKey || settings.sortKey;
-    if (overrides.hide)
-      return;
-
-    let aura = this.MakeAuraTimerIcon(
-        name, seconds,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        settings.text,
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        this.options.BigBuffBorderSize,
-        borderColor, borderColor,
-        icon);
-    let list = this.o.rightBuffsList;
-    if (side && side == 'left' && this.o.leftBuffsList)
-      list = this.o.leftBuffsList;
-    list.addElement(name, aura, sortKey);
-    let that = this;
-    window.clearTimeout(settings.timeout);
-    if (seconds >= 0) {
-      settings.timeout = window.setTimeout(function() {
-        that.o.rightBuffsList.removeElement(name);
-        that.o.leftBuffsList.removeElement(name);
-      }, seconds * 1000);
-    }
-  }
-
-  OnLoseBigBuff(name, settings) {
-    window.clearTimeout(settings.timeout);
-    this.o.rightBuffsList.removeElement(name);
-    this.o.leftBuffsList.removeElement(name);
-  }
-
   OnPlayerChanged(e) {
     if (!this.init) {
       this.me = e.detail.name;
       setupRegexes();
-      setupBuffTracker();
       this.combo = setupComboTracker(this.OnComboChange.bind(this));
       this.init = true;
     }
@@ -1766,65 +1854,55 @@ class Bars {
     for (let i = 0; i < e.detail.logs.length; i++) {
       let log = e.detail.logs[i];
 
-      let r = log.match(gLang.countdownStartRegex());
-      if (r != null) {
-        let seconds = parseFloat(r[1]);
-        this.SetPullCountdown(seconds);
-        continue;
-      }
-      if (log.search(gLang.countdownCancelRegex()) >= 0) {
-        this.SetPullCountdown(0);
-        continue;
-      }
-
-      r = log.match(kReFoodBuff);
-      if (r != null) {
-        let seconds = parseFloat(r[1]);
-        let now = Date.now(); // This is in ms.
-        this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-        this.UpdateFoodBuff();
-      }
-
-      if (log[15] == '1') {
-        if (log[16] == 'E') {
-          let m = log.match(kLostEffectRegex);
+      // TODO(enne): only consider this when not in battle.
+      if (log[15] == '0') {
+        let r = log.match(gLang.countdownStartRegex());
+        if (r != null) {
+          let seconds = parseFloat(r[1]);
+          this.SetPullCountdown(seconds);
+          continue;
+        }
+        if (log.search(gLang.countdownCancelRegex()) >= 0) {
+          this.SetPullCountdown(0);
+          continue;
+        }
+      } else if (log[15] == '1') {
+        if (log[16] == 'A') {
+          let m = log.match(kYouGainEffectRegex);
           if (m) {
             let name = m[1];
-            let f = this.lostEffectFuncMap[name];
+            let f = this.gainEffectFuncMap[name];
             if (f)
-              f(name);
+              f(name, log);
+            this.buffTracker.onYouGainEffect(name, log);
+          }
+        } else if (log[16] == 'E') {
+          let m = log.match(kYouLoseEffectRegex);
+          if (m) {
+            let name = m[1];
+            let f = this.loseEffectFuncMap[name];
+            if (f)
+              f(name, log);
+            this.buffTracker.onYouLoseEffect(name, log);
           }
         }
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
         if (log[16] == '5' || log[16] == '6') {
-          let m = log.match(kUseAbilityRegex);
+          let m = log.match(kYouUseAbilityRegex);
           if (m) {
             let id = m[1];
             this.combo.HandleAbility(id);
             let f = this.abilityFuncMap[id];
             if (f)
               f(id);
+            this.buffTracker.onUseAbility(id, log);
+          } else {
+            let m = log.match(kAnybodyAbilityRegex);
+            if (m) {
+              this.buffTracker.onUseAbility(m[1], log);
+            }
           }
-        }
-      }
-
-      for (let name in kBigBuffTracker) {
-        let settings = kBigBuffTracker[name];
-        let r = log.match(settings.gainRegex);
-        if (r != null) {
-          let seconds = -1;
-          if ('durationSeconds' in settings)
-            seconds = settings.durationSeconds;
-          else if ('durationPosition' in settings)
-            seconds = parseFloat(r[settings.durationPosition]);
-
-          this.OnBigBuff(name, seconds, settings);
-        }
-        if (settings.loseRegex) {
-          r = log.match(settings.loseRegex);
-          if (r != null)
-            this.OnLoseBigBuff(name, settings);
         }
       }
 
@@ -1923,18 +2001,19 @@ class Bars {
 
   Test() {
     let logs = [];
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(' 1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
-    logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
-    logs.push(' 15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(' 15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    let t = '[10:10:10.000] ';
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
+    logs.push(t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     let e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }
