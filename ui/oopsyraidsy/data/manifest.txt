@@ -18,6 +18,7 @@ o5s.js
 o6s.js
 o7s.js
 o8s.js
+mt_gulg.js
 susano-ex.js
 test.js
 titania.js
