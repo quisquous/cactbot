@@ -7,13 +7,14 @@
     {
       id: 'E4S Earthen Anguish',
       regex: /Earthen Anguish/,
+      regexFr: /[éÉ]ruption [tT]ellurique/,
       beforeSeconds: 3,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
       alertText: {
         en: 'Tank Busters',
-        fr: 'Tankbusters',
+        fr: 'Tank busters',
       },
     },
   ],
@@ -144,7 +145,7 @@
       regexJa: / 15:........:タイタン:40E6:大地の手甲/,
       alertText: {
         en: 'Landslide: In Front',
-        fr: 'En avant',
+        fr: 'Devant',
       },
     },
     {
@@ -233,7 +234,7 @@
           // Cardinals dropped first.  Corners safe.
           return {
             en: 'Go Corners First',
-            fr: 'Allez aux coins en premier',
+            fr: 'Allez dans les coins en premier',
           };
         }
       },
@@ -247,7 +248,7 @@
       regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪/,
       alertText: {
         en: 'Wheels: On Sides',
-        fr: 'Roues: Sur les côtés',
+        fr: 'Roues : Sur les côtés',
       },
     },
     {

@@ -7,23 +7,25 @@
     {
       id: 'E3S Plunging Wave',
       regex: /Plunging Wave/,
+      regexFr: /Vague [pP]longeante/,
       beforeSeconds: 2,
       infoText: {
         en: 'Line Stack',
-        fr: 'Empilez en ligne',
+        fr: 'Packé en ligne',
         ja: '直線スタック',
       },
     },
     {
       id: 'E3S Spilling Wave',
       regex: /Spilling Wave/,
+      regexFr: /Vague [dD]éversante/,
       beforeSeconds: 3,
       condition: function(data) {
         return data.role == 'tank';
       },
       alertText: {
         en: 'Tank Cleaves, Move Front',
-        fr: 'Cleave tank, allez à l\'avant',
+        fr: 'Tank cleave, allez devant',
         ja: '拡散くるよ',
       },
     },
@@ -170,7 +172,7 @@
       regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
       infoText: {
         en: 'Stack, Bait Puddles',
-        fr: 'Empilez, appâtez les zones',
+        fr: 'Packé, évitez zone au sol',
         ja: '集合',
       },
     },
@@ -184,7 +186,7 @@
       delaySeconds: 2.9,
       infoText: {
         en: 'Drop Puddles Outside',
-        fr: 'Posez les flaques à l\'extérieur',
+        fr: 'Placez les flaques à l\'extérieur',
         ja: '散開',
       },
     },
@@ -197,7 +199,7 @@
       regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
       infoText: {
         en: 'Stack, Bait Puddles',
-        fr: 'Empilez, appâtez les zones',
+        fr: 'Packé, évitez zone au sol',
         ja: '集合',
       },
     },
@@ -219,7 +221,7 @@
         }
         return {
           en: 'Stack Outside, Avoid Flares',
-          fr: 'Empilez à l\'extérieur, évitez les brasiers',
+          fr: 'Packé à l\'extérieur, évitez les brasiers',
           ja: '前で集合',
         };
       },
@@ -324,13 +326,13 @@
         if (seconds <= 21) {
           return {
             en: 'Late First Knockback',
-            fr: '1ère pousée tardive',
+            fr: 'Poussée tardive 1',
             ja: '遅ノックバック1',
           };
         }
         return {
           en: 'Late Second Knockback',
-          fr: '2nde pousée tardive',
+          fr: 'Poussée tardive 2',
           ja: '遅ノックバック2',
         };
       },
@@ -385,7 +387,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Stack',
-        fr: 'Empilez',
+        fr: 'Packé',
         ja: 'スタック',
       },
     },
@@ -401,7 +403,7 @@
       delaySeconds: 25,
       infoText: {
         en: 'Move In, Avoid Defamation',
-        fr: 'Sous le boss, evitez la médisance',
+        fr: 'Sous le boss, évitez la médisance',
         ja: '前にノックバック',
       },
     },
@@ -442,7 +444,7 @@
       regex: / 14:400F:Leviathan starts using Refreshing Shower/,
       regexCn: / 14:400F:利维亚桑 starts using Refreshing Shower/,
       regexDe: / 14:400F:Leviathan starts using Erwachen der Tiefen/,
-      regexFr: / 14:400F:Léviathan starts using Éveil De L'eau/,
+      regexFr: / 14:400F:Léviathan starts using Éveil De L'[eE]au/,
       regexJa: / 14:400F:Leviathan starts using 水の覚醒/,
       run: function(data) {
         data.refreshed = true;

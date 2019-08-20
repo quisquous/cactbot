@@ -11,7 +11,7 @@
     {
       id: 'E2S Punishing Ray',
       regex: /Punishing Ray/,
-      regexFr: /Rayon punitif/,
+      regexFr: /Rayon [pP]unitif/,
       regexJa: /パニッシュレイ/,
       beforeSeconds: 9,
       infoText: {
@@ -86,7 +86,7 @@
       id: 'E2S Shadowflame Tank',
       regex: / 14:3E6[12]:Voidwalker starts using (?:Shadowflame|Unknown_3E6[12]) on (\y{Name})/,
       regexDe: / 14:3E6[12]:Nichtswandler starts using (?:Schattenflamme|Unknown_3E6[12]) on (\y{Name})/,
-      regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using (?:Flamme D'ombre|Unknown_3E6[12]) on (\y{Name})/,
+      regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using (?:Flamme D'[oO]mbre|Unknown_3E6[12]) on (\y{Name})/,
       regexJa: / 14:3E6[12]:ヴォイドウォーカー starts using (?:シャドーフレイム|Unknown_3E6[12]) on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -149,7 +149,7 @@
       infoText: {
         en: 'Get Under',
         de: 'Unter den Boss',
-        fr: 'Intérieur',
+        fr: 'Sous le boss',
         ja: '中へ',
       },
     },
@@ -374,7 +374,7 @@
           return {
             en: 'Eye on YOU',
             de: 'Auge auf DIR',
-            fr: 'Œil de l\'ombre sur VOUS',
+            fr: 'Œil sur VOUS',
             ja: '自分に目',
           };
         }
@@ -460,7 +460,7 @@
       alarmText: {
         en: 'Hell Wind: Get Out',
         de: 'Höllenwind: Raus gehen',
-        fr: 'Vent infernal: Dépackez-vous',
+        fr: 'Vent infernal : Sortez',
         ja: 'ヘルウィンド: HP1になるよ',
       },
       run: function(data) {
@@ -514,7 +514,7 @@
         return {
           en: 'Hell Wind: wait for heals',
           de: 'Höllenwind: Warte auf Heilung',
-          fr: 'Vent infernal: attendez les soins',
+          fr: 'Vent infernal : attendez les soins',
           ja: 'ヘルウィンド: HP戻ってから',
         };
       },
@@ -550,7 +550,7 @@
       id: 'E2S Cycle of Retribution',
       regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
       regexDe: / 14:4659:Nichtswandler starts using (?:Vergeltendes Chaos|)/,
-      regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-taillade Vengeresse|)/,
+      regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-[tT]aillade Vengeresse|)/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using (?:復讐の連続剣|)/,
       infoText: {
         en: 'In, Protean, Sides',
@@ -563,7 +563,7 @@
       id: 'E2S Cycle of Chaos',
       regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
       regexDe: / 14:40B9:Nichtswandler starts using (?:Chronisches Chaos|)/,
-      regexFr: / 14:40B9:Marcheuse Du Néant starts using (?:Multi-taillade Chaotique|)/,
+      regexFr: / 14:40B9:Marcheuse Du Néant starts using (?:Multi-[tT]aillade Chaotique|)/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using (?:混沌の連続剣|)/,
       infoText: {
         en: 'Sides, In, Protean',
