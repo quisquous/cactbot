@@ -438,7 +438,7 @@ class BuffTracker {
         borderColor: '#ff9900',
         sortKey: 4,
       },
-	  standardFinish: {
+      standardFinish: {
         gainEffect: gLang.kEffect.StandardFinish,
         loseEffect: gLang.kEffect.StandardFinish,
         durationSeconds: 60,
