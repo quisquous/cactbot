@@ -20,6 +20,7 @@ o7s.js
 o8s.js
 susano-ex.js
 test.js
+titania.js
 titania-ex.js
 twinning.js
 unending_coil_ultimate.js
