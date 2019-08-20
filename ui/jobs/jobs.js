@@ -228,8 +228,8 @@ function setupRegexes() {
 
   kYouGainEffectRegex = gLang.youGainEffectRegex('(.*)');
   kYouLoseEffectRegex = gLang.youLoseEffectRegex('(.*)');
-  kYouUseAbilityRegex = gLang.youUseAbilityRegex('([^:]*)');
-  kAnybodyAbilityRegex = gLang.abilityRegex('(\y{AbilityCode})');
+  kYouUseAbilityRegex = gLang.youUseAbilityRegex('(\\y{AbilityCode})');
+  kAnybodyAbilityRegex = gLang.abilityRegex('(\\y{AbilityCode})');
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
