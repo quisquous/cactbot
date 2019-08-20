@@ -30,6 +30,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c
       LeadenFist: 'FIXME',
       TechnicalFinish: 'FIXME',
+      StandardFinish: 'FIXME',
 
       // TODO: add ids
       Petrification: '석화',

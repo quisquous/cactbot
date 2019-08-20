@@ -30,6 +30,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       FoeRequiem: '魔人のレクイエム', // up 0x8b, down 0x8c
       LeadenFist: '連撃効果アップ',
       TechnicalFinish: 'テクニカルフィニッシュ',
+      StandardFinish: 'FIXME',
 
       Petrification: '石化',
       BeyondDeath: '死の超越',

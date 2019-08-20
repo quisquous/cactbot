@@ -30,6 +30,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       FoeRequiem: 'Requiem Der Feinde', // up 0x8b, down 0x8c
       LeadenFist: 'Verbesserter Schlag auf Schlag',
       TechnicalFinish: 'Komplexes Finale',
+      StandardFinish: 'FIXME',
 
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
