@@ -264,100 +264,14 @@ namespace Cactbot {
         notify_state_ = new NotifyState();
       reset_notify_state_ = false;
 
-      // Loading dance:
+      // Loading dance: (TODO: @ngld: this needs to be updated)
       // * wait for !CefBrowser::IsLoading.
       // * Execute JS in all overlays to wait for DOMContentReady and send back an event.
       // * When this OverlayMessage comes in, send back an onInitializeOverlay message.
       // * Overlays should load options from the provider user data dir in that message.
       // * As DOMContentReady happened, overlays should also construct themselves and attach to the DOM.
       // * Now, messages can be sent freely and everything is initialized.
-     /* if (!notify_state_.added_dom_content_listener) {
-        // Send this from C# so that overlays that are using non-cactbot html
-        // (e.g. dps overlays) don't have to be modified.
-        const string waitForDOMContentReady = @"
-          (function() {
-            var sendDOMContentLoaded = function() {
-              if (!window.OverlayPluginApi) {
-                window.setTimeout(sendDOMContentLoaded, 100);
-              } else {
-                window.OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({'onDOMContentLoaded': true}));
-              }
-            };
-            if (document.readyState == 'loaded' || document.readyState == 'complete') {
-              sendDOMContentLoaded();
-            } else {
-              document.addEventListener('DOMContentLoaded', sendDOMContentLoaded);
-            }
-          })();
-        ";
-        this.Overlay.Renderer.ExecuteScript(waitForDOMContentReady);
-        notify_state_.added_dom_content_listener = true;
-      }
-
-      // This flag set as a result of onDOMContentLoaded overlay message.
-      if (!notify_state_.dom_content_loaded) {
-        return kSlowTimerMilli;
-      }
-
-      if (!notify_state_.sent_data_dir && Config.Url.Length > 0) {
-        notify_state_.sent_data_dir = true;
-
-        var url = Config.Url;
-        // If file is a remote pointer, load that file explicitly so that the manifest
-        // is relative to the pointed to url and not the local file.
-        if (url.StartsWith("file:///")) {
-          var html = File.ReadAllText(new Uri(url).LocalPath);
-          var match = System.Text.RegularExpressions.Regex.Match(html, @"<meta http-equiv=""refresh"" content=""0; url=(.*)?""\/?>");
-          if (match.Groups.Count > 1) {
-            url = match.Groups[1].Value;
-          }
-        }
-
-        var web = new System.Net.WebClient();
-        web.Encoding = System.Text.Encoding.UTF8;
-        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
-
-        var data_file_paths = new List<string>();
-        try {
-          var data_dir_manifest = new Uri(new Uri(url), "data/manifest.txt");
-          var manifest_reader = new StringReader(web.DownloadString(data_dir_manifest));
-          for (var line = manifest_reader.ReadLine(); line != null; line = manifest_reader.ReadLine()) {
-            line = line.Trim();
-            if (line.Length > 0)
-              data_file_paths.Add(line);
-          }
-        } catch (System.Net.WebException e) {
-          if (e.Status == System.Net.WebExceptionStatus.ProtocolError &&
-              e.Response is System.Net.HttpWebResponse &&
-              ((System.Net.HttpWebResponse)e.Response).StatusCode == System.Net.HttpStatusCode.NotFound) {
-            // Ignore file not found.
-          } else if (e.InnerException != null &&
-            (e.InnerException is FileNotFoundException || e.InnerException is DirectoryNotFoundException)) {
-            // Ignore file not found.
-          } else if (e.InnerException != null && e.InnerException.InnerException != null &&
-            (e.InnerException.InnerException is FileNotFoundException || e.InnerException.InnerException is DirectoryNotFoundException)) {
-            // Ignore file not found.
-          } else {
-            LogError("Unable to read manifest file: " + e.Message);
-          }
-        } catch (Exception e) {
-          LogError("Unable to read manifest file: " + e.Message);
-        }
-
-        if (data_file_paths.Count > 0) {
-          var file_data = new Dictionary<string, string>();
-          foreach (string data_filename in data_file_paths) {
-            try {
-              var file_path = new Uri(new Uri(url), "data/" + data_filename);
-              file_data[data_filename] = web.DownloadString(file_path);
-            } catch (Exception e) {
-              LogError("Unable to read data file: " + e.Message);
-            }
-          }
-          OnDataFilesRead(new JSEvents.DataFilesRead(file_data));
-        }
-      }*/
-
+     
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
         notify_state_.game_exists = game_exists;

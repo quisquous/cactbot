@@ -1047,16 +1047,10 @@ UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
     gMistakeCollector.OnInCombatChangedEvent(e);
   });
 
-  if (window.callOverlayHandler) {
-    callOverlayHandler({
-      call: 'cactbotReadDataFiles',
-      source: location.href,
-    }).then((r) => gDamageTracker.OnDataFilesRead(r));
-  } else {
-    addOverlayListener('onDataFilesRead', function(e) {
-      gDamageTracker.OnDataFilesRead(e);
-    });
-  }
+  callOverlayHandler({
+    call: 'cactbotReadDataFiles',
+    source: location.href,
+  }).then((r) => gDamageTracker.OnDataFilesRead(r));
 
   addOverlayListener('onPlayerChangedEvent', function(e) {
     gDamageTracker.OnPlayerChange(e);

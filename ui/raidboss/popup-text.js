@@ -571,13 +571,7 @@ addOverlayListener('onLogEvent', function(e) {
   gPopupText.OnLog(e);
 });
 
-if (window.callOverlayHandler) {
-  callOverlayHandler({
-    call: 'cactbotReadDataFiles',
-    source: location.href,
-  }).then((e) => gPopupText.OnDataFilesRead(e));
-} else {
-  addOverlayListener('onDataFilesRead', function(e) {
-    gPopupText.OnDataFilesRead(e);
-  });
-}
+callOverlayHandler({
+  call: 'cactbotReadDataFiles',
+  source: location.href,
+}).then((e) => gPopupText.OnDataFilesRead(e));

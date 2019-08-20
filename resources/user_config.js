@@ -47,18 +47,13 @@ let UserConfig = {
       if (callback)
         callback();
 
-      if (window.callOverlayHandler)
-        callOverlayHandler({ call: 'cactbotRequestState' });
+      callOverlayHandler({ call: 'cactbotRequestState' });
     };
 
-    if (window.callOverlayHandler) {
-      window.callOverlayHandler({
-        call: 'cactbotLoadUser',
-        source: location.href,
-      }).then(configLoader);
-    } else {
-      document.addEventListener('onInitializeOverlay', configLoader);
-    }
+    callOverlayHandler({
+      call: 'cactbotLoadUser',
+      source: location.href,
+    }).then(configLoader);
   },
   registerLanguage: function(lang, func) {
     this.languageFuncs[lang] = func;

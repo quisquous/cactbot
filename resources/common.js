@@ -141,12 +141,8 @@ let Util = {
 
         connectWs();
     } else {
-        document.addEventListener('OverlayEvent', (e) => {
-            processEvent(e.detail);
-        });
-
         function waitForApi() {
-            if (!window.OverlayPluginApi) {
+            if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
                 setTimeout(waitForApi, 300);
                 return;
             }
@@ -155,6 +151,11 @@ let Util = {
             queue = null;
 
             window.__OverlayCallback = processEvent;
+
+            OverlayPluginApi.callHandler(JSON.stringify({
+                'call': 'subscribe',
+                'events': Object.keys(subscribers),
+            }), null);
 
             for (let [msg, resolve] of q) {
                 OverlayPluginApi.callHandler(JSON.stringify(msg), resolve);
