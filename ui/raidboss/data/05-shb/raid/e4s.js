@@ -31,14 +31,14 @@
       },
     },
     {
-      id: 'E4S Earthen Wheels',
-      regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E8:Earthen Wheels/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪/,
+      id: 'E4S Earthen Armor',
+      regex: / 15:........:Titan:40E[79]:Earthen Armor/,
+      regexCn: / 15:........:泰坦:40E[79]:Earthen Gauntlets/,
+      regexDe: / 15:........:Titan:40E[79]:Basaltpanzer/,
+      regexFr: / 15:........:Titan:40E[79]:Armure Tellurique/,
+      regexJa: / 15:........:タイタン:40E[79]:大地の鎧/,
       run: function(data) {
-        data.phase = 'wheels';
+        data.phase = 'armor';
         delete data.printedBury;
       },
     },
@@ -194,11 +194,12 @@
       condition: function(data) {
         return !data.printedBury;
       },
+      durationSeconds: 7,
       alertText: function(data, matches) {
         let x = matches[1];
         let y = matches[2];
 
-        if (data.phase == 'wheels') {
+        if (data.phase == 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.
           if (x < 95) {
             data.printedBury = true;
