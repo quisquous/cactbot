@@ -17,3 +17,9 @@ matrix:
       - pip install pylint requests
     script:
       - pylint **/*.py --errors-only
+
+  - language: python
+    python:
+      - 3.7
+    script:
+      - python test/manifest_integrity.py
