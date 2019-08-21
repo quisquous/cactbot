@@ -438,14 +438,23 @@ class BuffTracker {
         borderColor: '#ff9900',
         sortKey: 4,
       },
+      devilment: {
+        gainEffect: gLang.kEffect.Devilment,
+        loseEffect: gLang.kEffect.Devilment,
+        durationSeconds: 20,
+        icon: kIconBuffDevilment,
+        // Dark Green.
+        borderColor: '#006400',
+        sortKey: 5,
+      },
       standardFinish: {
         gainEffect: gLang.kEffect.StandardFinish,
         loseEffect: gLang.kEffect.StandardFinish,
         durationSeconds: 60,
         icon: kIconBuffStandardFinish,
-        // Brown.
-        borderColor: '#A52A2A',
-        sortKey: 5,
+        // Green.
+        borderColor: '#32CD32',
+        sortKey: 6,
       },
       technicalFinish: {
         gainEffect: gLang.kEffect.TechnicalFinish,

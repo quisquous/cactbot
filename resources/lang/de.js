@@ -29,8 +29,9 @@ class CactbotLanguageDe extends CactbotLanguage {
       Devotion: 'Hingabe', // 0x4bd
       FoeRequiem: 'Requiem Der Feinde', // up 0x8b, down 0x8c
       LeadenFist: 'Verbesserter Schlag auf Schlag',
+      Devilment: 'Todestango',
       TechnicalFinish: 'Komplexes Finale',
-      StandardFinish: 'FIXME',
+      StandardFinish: 'Einfaches Finale',
 
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',

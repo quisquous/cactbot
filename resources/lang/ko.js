@@ -29,6 +29,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       Devotion: '에기의 가호', // 0x4bd
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c
       LeadenFist: 'FIXME',
+      Devilment: 'FIXME',
       TechnicalFinish: 'FIXME',
       StandardFinish: 'FIXME',
 
