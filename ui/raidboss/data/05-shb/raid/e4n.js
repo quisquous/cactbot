@@ -61,7 +61,7 @@
     {
       id: 'E4N Massive Landslide',
       regex: / 14:40FA:Titan starts using Massive Landslide/,
-      regexFR: / 14:40FA:Titan starts using Glissement Apocalyptique/,
+      regexFr: / 14:40FA:Titan starts using Glissement Apocalyptique/,
       alertText: {
         en: 'Stand In Front',
         fr: 'Se placer devant',
