@@ -19,6 +19,30 @@
   ],
   triggers: [
     {
+      id: 'E4S Earthen Gauntlets',
+      regex: / 15:........:Titan:40E6:Earthen Gauntlets/,
+      regexCn: / 15:........:泰坦:40E6:Earthen Gauntlets/,
+      regexDe: / 15:........:Titan:40E6:Gaia-Armberge/,
+      regexFr: / 15:........:Titan:40E6:Poing Tellurique/,
+      regexJa: / 15:........:タイタン:40E6:大地の手甲/,
+      run: function(data) {
+        data.phase = 'landslide';
+        delete data.printedBury;
+      },
+    },
+    {
+      id: 'E4S Earthen Armor',
+      regex: / 15:........:Titan:40E[79]:Earthen Armor/,
+      regexCn: / 15:........:泰坦:40E[79]:Earthen Gauntlets/,
+      regexDe: / 15:........:Titan:40E[79]:Basaltpanzer/,
+      regexFr: / 15:........:Titan:40E[79]:Armure Tellurique/,
+      regexJa: / 15:........:タイタン:40E[79]:大地の鎧/,
+      run: function(data) {
+        data.phase = 'armor';
+        delete data.printedBury;
+      },
+    },
+    {
       id: 'E4S Stonecrusher',
       regex: / 14:4116:Titan starts using Stonecrusher on (\y{Name})/,
       regexCn: / 14:4116:泰坦 starts using Stonecrusher on (\y{Name})/,
@@ -159,15 +183,59 @@
       },
     },
     {
-      id: 'E4S Seismic Wave',
-      regex: / 14:4110:Titan starts using Seismic Wave/,
-      regexCn: / 14:4110:泰坦 starts using Seismic Wave/,
-      regexDe: / 14:4110:Titan starts using Seismische Welle/,
-      regexFr: / 14:4110:Titan starts using Ondes Sismiques/,
-      regexJa: / 14:4110:タイタン starts using サイズミックウェーブ/,
-      alertText: {
-        en: 'Hide Behind',
-        fr: 'Cachez-vous derrière',
+      // Bomb positions are all x = (86 west, 100 mid, 114 east), y = (86, 100, 114).
+      // Note: as these may hit multiple people, there may be multiple lines for the same bomb.
+      id: 'E4S Bury Directions',
+      regex: / 1[56]:\y{ObjectId}:Bomb Boulder:4142:Bury:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:$/,
+      regexCn: / 1[56]:\y{ObjectId}:爆破岩石:4142:Bury:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:$/,
+      regexDe: / 1[56]:\y{ObjectId}:Bomber-Brocken:4142:Begraben:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:$/,
+      regexFr: / 1[56]:\y{ObjectId}:Bombo Rocher:4142:Ensevelissement:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:$/,
+      regexJa: / 1[56]:\y{ObjectId}:ボムボルダー:4142:衝撃:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:$/,
+      condition: function(data) {
+        return !data.printedBury;
+      },
+      durationSeconds: 7,
+      alertText: function(data, matches) {
+        let x = matches[1];
+        let y = matches[2];
+
+        if (data.phase == 'armor') {
+          // Three line bombs (middle, e/w, w/e), with seismic wave.
+          if (x < 95) {
+            data.printedBury = true;
+            return {
+              en: 'Hide Behind East',
+              fr: 'Cachez-vous derrière à l\'est',
+            };
+          } else if (x > 105) {
+            data.printedBury = true;
+            return {
+              en: 'Hide Behind West',
+              fr: 'Cachez-vous derrière à l\'ouest',
+            };
+          }
+        } else if (data.phase == 'landslide') {
+          // Landslide cardinals/corners + middle, followed by remaining 4.
+          let xMiddle = x < 105 && x > 95;
+          let yMiddle = y < 105 && y > 95;
+          // Ignore middle point, which may come first.
+          if (xMiddle && yMiddle)
+            return;
+
+          data.printedBury = true;
+          if (!xMiddle && !yMiddle) {
+            // Corners dropped first.  Cardinals safe.
+            return {
+              en: 'Go Cardinals First',
+              fr: 'Allez aux cardinaux en premier',
+            };
+          }
+          // Cardinals dropped first.  Corners safe.
+          return {
+            en: 'Go Corners First',
+            fr: 'Allez aux coins en premier',
+          };
+        }
       },
     },
     {

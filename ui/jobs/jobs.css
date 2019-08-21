@@ -350,12 +350,6 @@
   left: 142px;
 }
 
-#pld-procs-gore {
-  position: relative;
-  display: inline-block;
-  left: 0px;
-}
-
 /* Relative to #bars */
 .rdm-combo {
   display: none;
@@ -401,6 +395,9 @@
   background-color: rgb(215, 120, 0);
 }
 .mp-color.low {
+  background-color: rgb(210, 20, 65);
+}
+.mp-color.medium {
   background-color: rgb(65, 0, 200);
 }
 .cp-color {

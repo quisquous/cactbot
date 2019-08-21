@@ -43,12 +43,12 @@ class FileLikeArray:
         self.out.append(line)
 
 
+def base_triggers_path():
+    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/');
+
+
 def construct_relative_triggers_path(filename):
-    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/triggers/' + filename)
-
-
-def construct_relative_timeline_path(filename):
-    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/timelines/' + filename)
+    return os.path.join(base_triggers_path() + filename)
 
 
 def translate_regex(regex, trans):
@@ -215,8 +215,7 @@ def translate_timeline(line, trans):
 def print_timeline(locale, timeline_file, trans):
     if not locale in trans:
         raise Exception('no translation for ' + locale)
-    filename = construct_relative_timeline_path(timeline_file)
-    with open(filename, 'r', encoding='utf-8') as fp:
+    with open(timeline_file) as fp:
         for line in fp.readlines():
             print(translate_timeline(line.strip(), trans[locale]))
 
@@ -226,6 +225,12 @@ def main(args):
     # Try to use it explicitly if the short name doesn't exist.
     if not os.path.exists(filename):
         filename = args.file
+    # Allow for just specifying the base filename, e.g. "o12s.js"
+    if not os.path.exists(filename):
+        for root, dirs, files in os.walk(base_triggers_path()):
+          if filename in files:
+            filename = os.path.join(root, filename)
+            break
     if not os.path.exists(filename):
         raise FileNotFoundError('Could not find file "%s"' % filename)
 
@@ -238,7 +243,9 @@ def main(args):
         for line in lines:
             m = re.search(r"timelineFile:\s*'(.*?)',", line)
             if m:
-                print_timeline(args.timeline, m.group(1), trans)
+                timeline_dir = os.path.dirname(filename)
+                timeline_file = os.path.join(timeline_dir, m.group(1))
+                print_timeline(args.timeline, timeline_file, trans)
                 return
         raise Exception('unable to find timelineFile in %s' % args.file)
 

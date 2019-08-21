@@ -31,8 +31,10 @@ hideall "--sync--"
 136.5 "--center--" sync /:Eden Prime:4683:/
 143.1 "Dimensional Shift" sync /:Eden Prime:3D7F:/
 153.7 "Fragor Maximus" sync /:Eden Prime:3D8B:/ window 200,0
+154.3 "--untargetable--"
 
 ### Phase 2 - Adds
+169.9 "--targetable--"
 169.9 "Paradisal Dive" sync /:Guardian of Paradise:3D91:/
 185.2 "Mana Slice" sync /:Guardian of Paradise:3D8E:/
 194.3 "Mana Burst" sync /:Guardian of Paradise:3D8F:/
@@ -42,6 +44,7 @@ hideall "--sync--"
 
 ### Phase 3
 500.0 "Eternal Breath" sync /:Eden Prime:3D8C:/ window 500,0
+510.0 "--targetable--"
 518.4 "Paradise Regained" sync /:Eden Prime:44FC:/
 528.8 "Vice And Virtue! (T)" sync /:Eden Prime:3D78:/
 542.5 "Vice And Virtue! (D)" sync /:Eden Prime:3D7A:/

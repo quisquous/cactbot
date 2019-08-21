@@ -29,8 +29,7 @@ class PopupText {
   OnDataFilesRead(e) {
     this.triggerSets = Options.Triggers;
     for (let filename in e.detail.files) {
-      // Reads from the data/triggers/ directory.
-      if (!filename.startsWith('triggers/'))
+      if (!filename.endsWith('.js'))
         continue;
 
       let text = e.detail.files[filename];
@@ -129,8 +128,14 @@ class PopupText {
         // Save the triggers from each set that matches.
         Array.prototype.push.apply(this.triggers, set.triggers);
         // And set the timeline files/timelines from each set that matches.
-        if (set.timelineFile)
-          timelineFiles.push(set.timelineFile);
+        if (set.timelineFile) {
+          if (set.filename) {
+            let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
+            timelineFiles.push(dir + '/' + set.timelineFile);
+          } else {
+            console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
+          }
+        }
         if (set.timeline)
           addTimeline(set.timeline);
         if (set.timelineReplace)
@@ -272,7 +277,7 @@ class PopupText {
       // in this object can also be functions.
       if (result !== Object(result))
         return result;
-      let lang = this.options.Language || 'en';
+      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
       if (result[lang])
         return ValueOrFunction(result[lang]);
       // For partially localized results where this localization doesn't

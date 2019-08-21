@@ -74,7 +74,7 @@ Options.DisabledTriggers = {
 
 ### Per Trigger Options
 
-If you want to customize when and what triggers say, there are a few options.  For example, you want to change how the twisters callout works in ucob.  To start, look up the id for the trigger in the [triggers file](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/unending_coil_ultimate.js#L139).  This is `UCU Twisters`.  The `zoneRegex` for this zone is at the top of this file, and is `zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,`.
+If you want to customize when and what triggers say, there are a few options.  For example, you want to change how the twisters callout works in ucob.  To start, look up the id for the trigger in the [triggers file](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L139).  This is `UCU Twisters`.  The `zoneRegex` for this zone is at the top of this file, and is `zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,`.
 
 #### Option 1: disable the original, write your own
 

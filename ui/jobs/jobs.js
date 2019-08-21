@@ -3,7 +3,7 @@
 // Each option here can be changed in user/jobs.js with a line such as
 // Options.ShowRdmProcs = false
 // or
-// Options.TPInvigorateThreshold = 400
+// Options.JustBuffTracker: true
 // See user/jobs-example.js for documentation.
 let Options = {
   Language: 'en',
@@ -12,7 +12,7 @@ let Options = {
   OpacityOutOfCombat: 0.5,
 
   HideWellFedAboveSeconds: 15 * 60,
-  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU'],
+  WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU', 'E1S', 'E2S', 'E3S', 'E4S'],
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
@@ -38,9 +38,11 @@ let Options = {
   BigBuffBorderSize: 1,
 
   FarThresholdOffence: 24,
-  DrkLowMPThreshold: 4800,
-  PldLowMPThreshold: 2880,
-  TPInvigorateThreshold: 600,
+  DrkLowMPThreshold: 2999,
+  DrkMediumMPThreshold: 5999,
+  PldLowMPThreshold: 3600,
+  PldMediumMPThreshold: 9400,
+  BlmLowMPThreshold: 2400,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
 };
@@ -56,28 +58,26 @@ let kReRdmEndCombo = null;
 let kReSmnRuinProc = null;
 let kReSmnRuinProcEnd = null;
 let kReSmnAetherflow = null;
-let kReFoodBuff = null;
-let kFormChange = null;
-let kPeanutButter = null;
-let kLeadenBuff = null;
-let kLeadenBuffEnd = null;
-let kTwinSnakes = null;
-let kFourPointFury = null;
-let kDemolish = null;
 let kComboBreakers = null;
-let kAstCombust = null;
-let kAstBenefic = null;
-let kAstHelios = null;
-let kBluOffguard = null;
-let kBluTorment = null;
-let kLostStormsEye = null;
 let kWellFedZoneRegex = null;
+
+let kYouGainEffectRegex = null;
+let kYouLoseEffectRegex = null;
+let kYouUseAbilityRegex = null;
+let kAnybodyAbilityRegex = null;
+
+let kGainSecondsRegex = Regexes.Parse('for (\\y{Float}) Seconds\\.');
+function gainSecondsFromLog(log) {
+  let m = log.match(kGainSecondsRegex);
+  if (m)
+    return m[1];
+  return 0;
+}
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
-    this.kReEndCombo = Regexes.AnyOf(gLang.youUseAbilityRegex(comboBreakers),
-        gLang.youStartUsingRegex(comboBreakers));
+    this.comboBreakers = comboBreakers;
     this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
     this.startList = [];
     this.callback = callback;
@@ -93,7 +93,7 @@ class ComboTracker {
       let node = this.comboNodes[skillList[i]];
       if (node == undefined) {
         node = {
-          re: gLang.youUseAbilityRegex(skillList[i]),
+          id: skillList[i],
           next: [],
         };
         this.comboNodes[skillList[i]] = node;
@@ -105,15 +105,15 @@ class ComboTracker {
     }
   }
 
-  ParseLog(log) {
+  HandleAbility(id) {
     for (let i = 0; i < this.considerNext.length; ++i) {
       let next = this.considerNext[i];
-      if (log.search(this.comboNodes[next].re) >= 0) {
+      if (this.comboNodes[next].id == id) {
         this.StateTransition(next);
         return true;
       }
     }
-    if (log.search(this.kReEndCombo) >= 0) {
+    if (this.comboBreakers.indexOf(id) >= 0) {
       this.AbortCombo();
       return true;
     }
@@ -222,26 +222,14 @@ function setupRegexes() {
   kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
-  kReFoodBuff = gLang.youGainEffectRegex(gLang.kEffect.WellFed);
-  kFormChange = gLang.youGainEffectRegex(
-      gLang.kEffect.OpoOpoForm,
-      gLang.kEffect.RaptorForm,
-      gLang.kEffect.CoeurlForm);
-  kPeanutButter = gLang.youGainEffectRegex(gLang.kEffect.PerfectBalance);
-  kLeadenBuff = gLang.youGainEffectRegex(gLang.kEffect.LeadenFist);
-  kLeadenBuffEnd = gLang.youLoseEffectRegex(gLang.kEffect.LeadenFist);
-  kTwinSnakes = gLang.youUseAbilityRegex(gLang.kAbility.TwinSnakes);
-  kFourPointFury = gLang.youUseAbilityRegex(gLang.kAbility.FourPointFury);
-  kDemolish = gLang.youUseAbilityRegex(gLang.kAbility.Demolish);
-  kAstCombust = gLang.youUseAbilityRegex(gLang.kAbility.Combust2);
-  kAstBenefic = gLang.youUseAbilityRegex(gLang.kAbility.AspectedBenefic);
-  kAstHelios = gLang.youUseAbilityRegex(gLang.kAbility.AspectedHelios);
-  kBluOffguard = gLang.youUseAbilityRegex(gLang.kAbility.OffGuard);
-  kBluTorment = gLang.youUseAbilityRegex(gLang.kAbility.SongOfTorment);
-  kLostStormsEye = gLang.youLoseEffectRegex(gLang.kEffect.StormsEye);
   kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
+
+  kYouGainEffectRegex = gLang.youGainEffectRegex('(.*)');
+  kYouLoseEffectRegex = gLang.youLoseEffectRegex('(.*)');
+  kYouUseAbilityRegex = gLang.youUseAbilityRegex('(\\y{AbilityCode})');
+  kAnybodyAbilityRegex = gLang.abilityRegex('(\\y{AbilityCode})');
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -308,111 +296,295 @@ function computeBackgroundColorFrom(element, classList) {
   return color;
 }
 
-let kBigBuffTracker = null;
+function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
+    barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
+  let div = document.createElement('div');
 
-function setupBuffTracker() {
-  kBigBuffTracker = {
-    potion: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Medicated),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Medicated),
-      durationPosition: 1,
-      icon: kIconBuffPotion,
-      borderColor: '#AA41B2',
-      sortKey: 0,
-    },
-    peculiar: {
-      gainRegex: gLang.abilityRegex(gLang.kAbility.PeculiarLight),
-      durationSeconds: 10,
-      icon: kIconBuffPeculiarLight,
-      borderColor: '#F28F7B',
-      sortKey: 1,
-    },
-    trick: {
-      // The flags encode positional data, but the exact specifics are unclear.
-      // Trick attack missed appears to be "710?03" but correct is "20710?03".
-      gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
-      durationSeconds: 10,
-      icon: kIconBuffTrickAttack,
-      // Magenta.
-      borderColor: '#FC4AE6',
-      sortKey: 1,
-    },
-    litany: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.BattleLitany),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.BattleLitany),
-      durationPosition: 1,
-      icon: kIconBuffLitany,
-      // Cyan.
-      borderColor: '#099',
-      sortKey: 2,
-    },
-    embolden: {
-      // Embolden is special and has some extra text at the end, depending on embolden stage:
-      // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
-      // Instead, use somebody using the effect on you:
-      //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-      gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Embolden),
-      durationSeconds: 20,
-      icon: kIconBuffEmbolden,
-      // Lime.
-      borderColor: '#57FC4A',
-      sortKey: 3,
-    },
-    balance: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Balance),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Balance),
-      durationPosition: 1,
-      icon: kIconBuffBalance,
-      // Orange.
-      borderColor: '#ff9900',
-      sortKey: 4,
-    },
-    technicalFinish: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.TechnicalFinish),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.TechnicalFinish),
-      durationSeconds: 20,
-      icon: kIconBuffTechnicalFinish,
-      // Dark Peach.
-      borderColor: '#E0757C',
-      sortKey: 5,
-    },
-    chain: {
-      gainRegex: gLang.abilityRegex(gLang.kAbility.ChainStrategem),
-      durationSeconds: 15,
-      icon: kIconBuffChainStratagem,
-      // Blue.
-      borderColor: '#4674E5',
-      sortKey: 6,
-    },
-    sight: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.LeftEye, gLang.kEffect.RightEye),
-      durationPosition: 1,
-      icon: kIconBuffDragonSight,
-      // Orange.
-      borderColor: '#FA8737',
-      sortKey: 8,
-    },
-    brotherhood: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Brotherhood),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Brotherhood),
-      durationPosition: 1,
-      icon: kIconBuffBrotherhood,
-      // Dark Orange.
-      borderColor: '#994200',
-      sortKey: 9,
-    },
-    devotion: {
-      gainRegex: gLang.youGainEffectRegex(gLang.kEffect.Devotion),
-      loseRegex: gLang.youLoseEffectRegex(gLang.kEffect.Devotion),
-      durationPosition: 1,
-      icon: kIconBuffDevotion,
-      // Yellow.
-      borderColor: '#ffbf00',
-      sortKey: 10,
-    },
-  };
+  if (seconds < 0) {
+    div.style.borderWidth = 1;
+    div.style.borderStyle = 'solid';
+    div.style.borderColor = '#000';
+    div.style.width = iconWidth - borderSize * 2;
+    div.style.height = iconHeight - borderSize * 2;
+    div.style.backgroundColor = borderColor;
+    let inner = document.createElement('div');
+    div.appendChild(inner);
+    inner.style.position = 'relative';
+    inner.style.left = borderSize;
+    inner.style.top = borderSize;
+    inner.style.borderWidth = borderSize;
+    inner.style.borderStyle = 'solid';
+    inner.style.borderColor = '#000';
+    inner.style.width = iconWidth - borderSize * 6;
+    inner.style.height = iconHeight - borderSize * 6;
+    inner.style.backgroundImage = 'url(' + auraIcon + ')';
+    inner.style.backgroundColor = '#888';
+    inner.style.backgroundRepeat = 'no-repeat';
+    inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
+    inner.style.backgroundPosition = 'center';
+    return div;
+  }
+
+
+  let icon = document.createElement('timer-icon');
+  icon.width = iconWidth;
+  icon.height = iconHeight;
+  icon.bordersize = borderSize;
+  div.appendChild(icon);
+
+  let barDiv = document.createElement('div');
+  barDiv.style.position = 'relative';
+  barDiv.style.top = iconHeight;
+  div.appendChild(barDiv);
+
+  let bar = document.createElement('timer-bar');
+  bar.width = iconWidth;
+  bar.height = barHeight;
+  barDiv.appendChild(bar);
+
+  if (textHeight > 0) {
+    let text = document.createElement('div');
+    text.classList.add('text');
+    text.style.width = iconWidth;
+    text.style.height = textHeight;
+    text.style.overflow = 'hidden';
+    text.style.fontSize = textHeight - 1;
+    text.style.whiteSpace = 'pre';
+    text.style.position = 'relative';
+    text.style.top = iconHeight;
+    text.style.fontFamily = 'arial';
+    text.style.fontWeight = 'bold';
+    text.style.color = 'white';
+    text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
+    text.style.paddingBottom = textHeight / 4;
+
+    text.innerText = name;
+    div.appendChild(text);
+  }
+
+  if (iconText)
+    icon.text = iconText;
+  icon.bordercolor = borderColor;
+  bar.fg = barColor;
+  icon.icon = auraIcon;
+  icon.duration = seconds;
+  bar.duration = seconds;
+
+  return div;
+}
+
+class BuffTracker {
+  constructor(options, leftBuffDiv, rightBuffDiv) {
+    this.options = options;
+    this.leftBuffDiv = leftBuffDiv;
+    this.rightBuffDiv = rightBuffDiv;
+
+    this.buffInfo = {
+      potion: {
+        gainEffect: gLang.kEffect.Medicated,
+        loseEffect: gLang.kEffect.Medicated,
+        useEffectDuration: true,
+        icon: kIconBuffPotion,
+        borderColor: '#AA41B2',
+        sortKey: 0,
+      },
+      peculiar: {
+        gainAbility: gLang.kAbility.PeculiarLight,
+        durationSeconds: 10,
+        icon: kIconBuffPeculiarLight,
+        borderColor: '#F28F7B',
+        sortKey: 1,
+      },
+      trick: {
+        // The flags encode positional data, but the exact specifics are unclear.
+        // Trick attack missed appears to be "710?03" but correct is "20710?03".
+        gainAbility: gLang.kAbility.TrickAttack,
+        gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
+        durationSeconds: 10,
+        icon: kIconBuffTrickAttack,
+        // Magenta.
+        borderColor: '#FC4AE6',
+        sortKey: 1,
+      },
+      litany: {
+        gainEffect: gLang.kEffect.BattleLitany,
+        loseEffect: gLang.kEffect.BattleLitany,
+        useEffectDuration: true,
+        icon: kIconBuffLitany,
+        // Cyan.
+        borderColor: '#099',
+        sortKey: 2,
+      },
+      embolden: {
+        // Embolden is special and has some extra text at the end, depending on embolden stage:
+        // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
+        // Instead, use somebody using the effect on you:
+        //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
+        gainAbility: gLang.kAbility.Embolden,
+        gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
+        loseEffect: gLang.kEffect.Embolden,
+        durationSeconds: 20,
+        icon: kIconBuffEmbolden,
+        // Lime.
+        borderColor: '#57FC4A',
+        sortKey: 3,
+      },
+      balance: {
+        gainEffect: gLang.kEffect.Balance,
+        loseEffect: gLang.kEffect.Balance,
+        useEffectDuration: true,
+        icon: kIconBuffBalance,
+        // Orange.
+        borderColor: '#ff9900',
+        sortKey: 4,
+      },
+      technicalFinish: {
+        gainEffect: gLang.kEffect.TechnicalFinish,
+        loseEffect: gLang.kEffect.TechnicalFinish,
+        durationSeconds: 20,
+        icon: kIconBuffTechnicalFinish,
+        // Dark Peach.
+        borderColor: '#E0757C',
+        sortKey: 5,
+      },
+      chain: {
+        gainAbility: gLang.kAbility.ChainStrategem,
+        durationSeconds: 15,
+        icon: kIconBuffChainStratagem,
+        // Blue.
+        borderColor: '#4674E5',
+        sortKey: 6,
+      },
+      lefteye: {
+        gainEffect: gLang.kEffect.LeftEye,
+        loseEffect: gLang.kEffect.LeftEye,
+        useEffectDuration: true,
+        icon: kIconBuffDragonSight,
+        // Orange.
+        borderColor: '#FA8737',
+        sortKey: 8,
+      },
+      righteye: {
+        gainEffect: gLang.kEffect.RightEye,
+        loseEffect: gLang.kEffect.RightEye,
+        useEffectDuration: true,
+        icon: kIconBuffDragonSight,
+        // Orange.
+        borderColor: '#FA8737',
+        sortKey: 8,
+      },
+      brotherhood: {
+        gainEffect: gLang.kEffect.Brotherhood,
+        loseEffect: gLang.kEffect.Brotherhood,
+        useEffectDuration: true,
+        icon: kIconBuffBrotherhood,
+        // Dark Orange.
+        borderColor: '#994200',
+        sortKey: 9,
+      },
+      devotion: {
+        gainEffect: gLang.kEffect.Devotion,
+        loseEffect: gLang.kEffect.Devotion,
+        useEffectDuration: true,
+        icon: kIconBuffDevotion,
+        // Yellow.
+        borderColor: '#ffbf00',
+        sortKey: 10,
+      },
+    };
+
+    let keys = Object.keys(this.buffInfo);
+    this.gainEffectMap = {};
+    this.loseEffectMap = {};
+    this.gainAbilityMap = {};
+    for (let i = 0; i < keys.length; ++i) {
+      let buff = this.buffInfo[keys[i]];
+      buff.name = keys[i];
+      if (buff.gainEffect) {
+        if (buff.gainEffect in this.gainEffectMap)
+          console.error('Duplicate buff entry: ' + buff.gainEffect);
+        this.gainEffectMap[buff.gainEffect] = buff;
+      }
+      if (buff.loseEffect) {
+        if (buff.loseEffect in this.loseEffectMap)
+          console.error('Duplicate buff entry: ' + buff.loseEffect);
+        this.loseEffectMap[buff.loseEffect] = buff;
+      }
+      if (buff.gainAbility) {
+        if (buff.gainAbility in this.gainAbilityMap)
+          console.error('Duplicate buff entry: ' + buff.gainAbility);
+        this.gainAbilityMap[buff.gainAbility] = buff;
+      }
+    }
+  }
+
+  onUseAbility(id, log) {
+    let b = this.gainAbilityMap[id];
+    if (!b)
+      return;
+
+    if (b.gainRegex && !log.match(b.gainRegex))
+      return;
+
+    let seconds = b.durationSeconds;
+    this.onBigBuff(b.name, seconds, b);
+  }
+
+  onYouGainEffect(name, log) {
+    let b = this.gainEffectMap[name];
+    if (!b)
+      return;
+    let seconds = -1;
+    if (b.useEffectDuration)
+      seconds = gainSecondsFromLog(log);
+    else if ('durationSeconds' in b)
+      seconds = b.durationSeconds;
+
+    this.onBigBuff(b.name, seconds, b);
+  }
+
+  onYouLoseEffect(name, log) {
+    let b = this.loseEffectMap[name];
+    if (!b)
+      return;
+    this.onLoseBigBuff(b.name, b);
+  }
+
+  onBigBuff(name, seconds, settings) {
+    let overrides = this.options.PerBuffOptions[name] || {};
+    let borderColor = overrides.borderColor || settings.borderColor;
+    let icon = overrides.icon || settings.icon;
+    let side = overrides.side || settings.side;
+    let sortKey = overrides.sortKey || settings.sortKey;
+    if (overrides.hide)
+      return;
+
+    let aura = makeAuraTimerIcon(
+        name, seconds,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        settings.text,
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        this.options.BigBuffBorderSize,
+        borderColor, borderColor,
+        icon);
+    let list = this.rightBuffDiv;
+    if (side && side == 'left' && this.leftBuffDiv)
+      list = this.leftBuffDiv;
+    list.addElement(name, aura, sortKey);
+    window.clearTimeout(settings.timeout);
+    if (seconds >= 0) {
+      settings.timeout = window.setTimeout((function() {
+        this.rightBuffDiv.removeElement(name);
+        this.leftBuffDiv.removeElement(name);
+      }).bind(this), seconds * 1000);
+    }
+  }
+
+  onLoseBigBuff(name, settings) {
+    window.clearTimeout(settings.timeout);
+    this.rightBuffDiv.removeElement(name);
+    this.leftBuffDiv.removeElement(name);
+  }
 }
 
 class Bars {
@@ -427,22 +599,37 @@ class Bars {
     this.maxHP = 0;
     this.mp = 0;
     this.maxMP = 0;
-    this.tp = 0;
-    this.maxTP = 0;
     this.level = 0;
     this.distance = -1;
     this.whiteMana = -1;
     this.blackMana = -1;
-    this.beast = -1;
-    this.blood = -1;
     this.oath = -1;
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
     this.smnChanneling = false;
+
+    this.comboFuncs = [];
+    this.jobFuncs = [];
+    this.gainEffectFuncMap = {};
+    this.loseEffectFuncMap = {};
+    this.abilityFuncMap = {};
   }
 
   UpdateJob() {
+    this.comboFuncs = [];
+    this.jobFuncs = [];
+    this.gainEffectFuncMap = {};
+    this.loseEffectFuncMap = {};
+    this.abilityFuncMap = {};
+
+    this.gainEffectFuncMap[gLang.kEffect.WellFed] = (function(name, log) {
+      let seconds = gainSecondsFromLog(log);
+      let now = Date.now(); // This is in ms.
+      this.foodBuffExpiresTimeMs = now + (seconds * 1000);
+      this.UpdateFoodBuff();
+    }).bind(this);
+
     let container = document.getElementById('jobs-container');
     if (container == null) {
       let root = document.getElementById('container');
@@ -482,7 +669,7 @@ class Bars {
     opacityContainer.id = 'opacity-container';
     barsLayoutContainer.appendChild(opacityContainer);
 
-    // Holds health/mana/tp.
+    // Holds health/mana.
     let barsContainer = document.createElement('div');
     barsContainer.id = 'bars';
     opacityContainer.appendChild(barsContainer);
@@ -528,6 +715,8 @@ class Bars {
       this.o.leftBuffsList.toward = 'left down';
       this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
+
+    this.buffTracker = new BuffTracker(this.options, this.o.leftBuffsList, this.o.rightBuffsList);
 
     if (Util.isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
@@ -812,304 +1001,422 @@ class Bars {
         this.o.rdmProcImpact.bg = 'black';
       }
     } else if (this.job == 'WAR') {
-      let beastBoxesContainer = document.createElement('div');
-      beastBoxesContainer.id = 'war-boxes';
-      barsContainer.appendChild(beastBoxesContainer);
-
-      this.o.beastTextBox = document.createElement('div');
-      this.o.beastTextBox.classList.add('war-color-beast');
-      beastBoxesContainer.appendChild(this.o.beastTextBox);
-
-      this.o.beastText = document.createElement('div');
-      this.o.beastTextBox.appendChild(this.o.beastText);
-      this.o.beastText.classList.add('text');
-
-      let eyeContainer = document.createElement('div');
-      eyeContainer.id = 'war-procs';
-      barsContainer.appendChild(eyeContainer);
-
-      this.o.eyeBox = document.createElement('timer-box');
-      eyeContainer.appendChild(this.o.eyeBox);
-      this.o.eyeBox.style = 'empty';
-      this.o.eyeBox.fg = computeBackgroundColorFrom(this.o.eyeBox, 'war-color-eye');
-      this.o.eyeBox.bg = 'black';
-      this.o.eyeBox.toward = 'bottom';
-      this.o.eyeBox.threshold = 0;
-      this.o.eyeBox.hideafter = '';
-      this.o.eyeBox.roundupthreshold = false;
-      this.o.eyeBox.valuescale = this.options.WarGcd;
+      this.setupWar();
     } else if (this.job == 'DRK') {
-      let bloodBoxesContainer = document.createElement('div');
-      bloodBoxesContainer.id = 'drk-boxes';
-      barsContainer.appendChild(bloodBoxesContainer);
-
-      this.o.bloodTextBox = document.createElement('div');
-      this.o.bloodTextBox.classList.add('drk-color-blood');
-      bloodBoxesContainer.appendChild(this.o.bloodTextBox);
-
-      this.o.bloodText = document.createElement('div');
-      this.o.bloodTextBox.appendChild(this.o.bloodText);
-      this.o.bloodText.classList.add('text');
+      this.setupDrk();
     } else if (this.job == 'PLD') {
-      let oathBoxesContainer = document.createElement('div');
-      oathBoxesContainer.id = 'pld-boxes';
-      barsContainer.appendChild(oathBoxesContainer);
-
-      this.o.oathTextBox = document.createElement('div');
-      this.o.oathTextBox.classList.add('pld-color-oath');
-      oathBoxesContainer.appendChild(this.o.oathTextBox);
-
-      this.o.oathText = document.createElement('div');
-      this.o.oathTextBox.appendChild(this.o.oathText);
-      this.o.oathText.classList.add('text');
-
-      let procContainer = document.createElement('div');
-      procContainer.id = 'pld-procs';
-      barsContainer.appendChild(procContainer);
-
-      this.o.goreBox = document.createElement('timer-box');
-      procContainer.appendChild(this.o.goreBox);
-      this.o.goreBox.id = 'pld-procs-gore';
-      this.o.goreBox.fg = computeBackgroundColorFrom(this.o.goreBox, 'pld-color-gore');
-      this.o.goreBox.bg = 'black';
-      this.o.goreBox.style = 'empty';
-      this.o.goreBox.toward = 'bottom';
-      this.o.goreBox.threshold = this.options.PldGcd * 3 + 0.3;
-      this.o.goreBox.hideafter = '';
-      this.o.goreBox.roundupthreshold = false;
-      this.o.goreBox.valuescale = this.options.PldGcd;
+      this.setupPld();
     } else if (this.job == 'MNK') {
-      let mnkBars = document.createElement('div');
-      mnkBars.id = 'mnk-bar';
-      barsContainer.appendChild(mnkBars);
-
-      this.o.lightningContainer = document.createElement('div');
-      this.o.lightningContainer.id = 'mnk-timers-lightning';
-      this.o.lightningTimer = document.createElement('timer-bar');
-      mnkBars.appendChild(this.o.lightningContainer);
-      this.o.lightningContainer.appendChild(this.o.lightningTimer);
-
-      this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
-      this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
-      this.o.lightningTimer.toward = 'left';
-      this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
-
-      this.o.formContainer = document.createElement('div');
-      this.o.formContainer.id = 'mnk-timers-combo';
-      this.o.formTimer = document.createElement('timer-bar');
-      mnkBars.appendChild(this.o.formContainer);
-      this.o.formContainer.appendChild(this.o.formTimer);
-
-      this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
-      this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
-      this.o.formTimer.style = 'empty';
-      this.o.formTimer.toward = 'left';
-      this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
-      this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
-
-      let mnkBoxesContainer = document.createElement('div');
-      mnkBoxesContainer.id = 'mnk-boxes';
-      barsContainer.appendChild(mnkBoxesContainer);
-
-      this.o.chakraTextBox = document.createElement('div');
-      this.o.chakraTextBox.classList.add('mnk-color-chakra');
-      mnkBoxesContainer.appendChild(this.o.chakraTextBox);
-
-      this.o.chakraText = document.createElement('div');
-      this.o.chakraTextBox.appendChild(this.o.chakraText);
-      this.o.chakraText.classList.add('text');
-
-      let mnkProcs = document.createElement('div');
-      mnkProcs.id = 'mnk-procs';
-      barsContainer.appendChild(mnkProcs);
-
-      this.o.dragonKickTimer = document.createElement('timer-box');
-      this.o.dragonKickTimer.id = 'mnk-procs-dragonkick';
-      mnkProcs.appendChild(this.o.dragonKickTimer);
-      this.o.dragonKickTimer.style = 'empty';
-      this.o.dragonKickTimer.fg = computeBackgroundColorFrom(this.o.dragonKickTimer, 'mnk-color-dragonkick');
-      this.o.dragonKickTimer.bg = 'black';
-      this.o.dragonKickTimer.toward = 'bottom';
-      this.o.dragonKickTimer.threshold = 0;
-      this.o.dragonKickTimer.hideafter = '';
-      this.o.dragonKickTimer.roundupthreshold = false;
-      this.o.dragonKickTimer.threshold = 6;
-
-      this.o.twinSnakesTimer = document.createElement('timer-box');
-      this.o.twinSnakesTimer.id = 'mnk-procs-twinsnakes';
-      mnkProcs.appendChild(this.o.twinSnakesTimer);
-      this.o.twinSnakesTimer.style = this.o.dragonKickTimer.style;
-      this.o.twinSnakesTimer.fg = computeBackgroundColorFrom(this.o.twinSnakesTimer, 'mnk-color-twinsnakes');
-      this.o.twinSnakesTimer.bg = this.o.dragonKickTimer.bg;
-      this.o.twinSnakesTimer.toward = this.o.dragonKickTimer.toward;
-      this.o.twinSnakesTimer.threshold = this.o.dragonKickTimer.threshold;
-      this.o.twinSnakesTimer.hideafter = this.o.dragonKickTimer.hideafter;
-      this.o.twinSnakesTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
-      this.o.twinSnakesTimer.threshold = 6;
-
-      this.o.demolishTimer = document.createElement('timer-box');
-      this.o.demolishTimer.id = 'mnk-procs-demolish';
-      mnkProcs.appendChild(this.o.demolishTimer);
-      this.o.demolishTimer.style = this.o.dragonKickTimer.style;
-      this.o.demolishTimer.fg = computeBackgroundColorFrom(this.o.demolishTimer, 'mnk-color-demolish');
-      this.o.demolishTimer.bg = this.o.dragonKickTimer.bg;
-      this.o.demolishTimer.toward = this.o.dragonKickTimer.toward;
-      this.o.demolishTimer.threshold = this.o.dragonKickTimer.threshold;
-      this.o.demolishTimer.hideafter = this.o.dragonKickTimer.hideafter;
-      this.o.demolishTimer.roundupthreshold = this.o.dragonKickTimer.roundupthreshold;
-      // Slightly shorter time, to make the box not pop right as
-      // you hit snap punch at t=6 (which is probably fine).
-      this.o.demolishTimer.threshold = 5;
-
-      this.o.lightningFgColors = [];
-      for (let i = 0; i <= 3; ++i)
-        this.o.lightningFgColors.push(computeBackgroundColorFrom(this.o.lightningTimer, 'mnk-color-lightning-' + i));
+      this.setupMnk();
     } else if (this.job == 'AST') {
-      let astContainer = document.createElement('div');
-      astContainer.id = 'ast-procs';
-      barsContainer.appendChild(astContainer);
-
-      this.o.combustBox = document.createElement('timer-box');
-      astContainer.appendChild(this.o.combustBox);
-      this.o.combustBox.id = 'ast-procs-combust';
-      this.o.combustBox.style = 'empty';
-      this.o.combustBox.fg = computeBackgroundColorFrom(this.o.combustBox, 'ast-color-combust');
-      this.o.combustBox.bg = 'black';
-      this.o.combustBox.toward = 'bottom';
-      this.o.combustBox.threshold = 3 * this.options.AstGcd;
-      this.o.combustBox.hideafter = '';
-      this.o.combustBox.roundupthreshold = false;
-      this.o.combustBox.valuescale = this.options.AstGcd;
-
-      this.o.beneficBox = document.createElement('timer-box');
-      astContainer.appendChild(this.o.beneficBox);
-      this.o.beneficBox.id = 'ast-procs-benefic';
-      this.o.beneficBox.style = 'empty';
-      this.o.beneficBox.fg = computeBackgroundColorFrom(this.o.beneficBox, 'ast-color-benefic');
-      this.o.beneficBox.bg = 'black';
-      this.o.beneficBox.toward = 'bottom';
-      this.o.beneficBox.threshold = 3 * this.options.AstGcd;
-      this.o.beneficBox.hideafter = '';
-      this.o.beneficBox.roundupthreshold = false;
-      this.o.beneficBox.valuescale = this.options.AstGcd;
-
-      this.o.heliosBox = document.createElement('timer-box');
-      astContainer.appendChild(this.o.heliosBox);
-      this.o.heliosBox.id = 'ast-procs-helios';
-      this.o.heliosBox.style = 'empty';
-      this.o.heliosBox.fg = computeBackgroundColorFrom(this.o.heliosBox, 'ast-color-helios');
-      this.o.heliosBox.bg = 'black';
-      this.o.heliosBox.toward = 'bottom';
-      this.o.heliosBox.threshold = 3 * this.options.AstGcd;
-      this.o.heliosBox.hideafter = '';
-      this.o.heliosBox.roundupthreshold = false;
-      this.o.heliosBox.valuescale = this.options.AstGcd;
+      this.setupAst();
     } else if (this.job == 'BLU') {
-      let bluContainer = document.createElement('div');
-      bluContainer.id = 'blu-procs';
-      barsContainer.appendChild(bluContainer);
-
-      this.o.offguardBox = document.createElement('timer-box');
-      bluContainer.appendChild(this.o.offguardBox);
-      this.o.offguardBox.id = 'blu-procs-offguard';
-      this.o.offguardBox.style = 'empty';
-      this.o.offguardBox.fg = computeBackgroundColorFrom(this.o.offguardBox, 'blu-color-offguard');
-      this.o.offguardBox.bg = 'black';
-      this.o.offguardBox.toward = 'bottom';
-      this.o.offguardBox.threshold = 3 * this.options.BluGcd;
-      this.o.offguardBox.hideafter = '';
-      this.o.offguardBox.roundupthreshold = false;
-      this.o.offguardBox.valuescale = this.options.BluGcd;
-
-      this.o.tormentBox = document.createElement('timer-box');
-      bluContainer.appendChild(this.o.tormentBox);
-      this.o.tormentBox.id = 'blu-procs-torment';
-      this.o.tormentBox.style = 'empty';
-      this.o.tormentBox.fg = computeBackgroundColorFrom(this.o.tormentBox, 'blu-color-torment');
-      this.o.tormentBox.bg = 'black';
-      this.o.tormentBox.toward = 'bottom';
-      this.o.tormentBox.threshold = 3 * this.options.BluGcd;
-      this.o.tormentBox.hideafter = '';
-      this.o.tormentBox.roundupthreshold = false;
-      this.o.tormentBox.valuescale = this.options.BluGcd;
+      this.setupBlu();
     }
   }
 
-  MakeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
-      barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
-    let div = document.createElement('div');
-
-    if (seconds < 0) {
-      div.style.borderWidth = 1;
-      div.style.borderStyle = 'solid';
-      div.style.borderColor = '#000';
-      div.style.width = iconWidth - borderSize * 2;
-      div.style.height = iconHeight - borderSize * 2;
-      div.style.backgroundColor = borderColor;
-      let inner = document.createElement('div');
-      div.appendChild(inner);
-      inner.style.position = 'relative';
-      inner.style.left = borderSize;
-      inner.style.top = borderSize;
-      inner.style.borderWidth = borderSize;
-      inner.style.borderStyle = 'solid';
-      inner.style.borderColor = '#000';
-      inner.style.width = iconWidth - borderSize * 6;
-      inner.style.height = iconHeight - borderSize * 6;
-      inner.style.backgroundImage = 'url(' + auraIcon + ')';
-      inner.style.backgroundColor = '#888';
-      inner.style.backgroundRepeat = 'no-repeat';
-      inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
-      inner.style.backgroundPosition = 'center';
-      return div;
+  addResourceBox(options) {
+    // TODO: make this just boxes with job as a different class.
+    let id = this.job.toLowerCase() + '-boxes';
+    let boxes = document.getElementById(id);
+    if (!boxes) {
+      boxes = document.createElement('div');
+      boxes.id = id;
+      document.getElementById('bars').appendChild(boxes);
     }
 
-
-    let icon = document.createElement('timer-icon');
-    icon.width = iconWidth;
-    icon.height = iconHeight;
-    icon.bordersize = borderSize;
-    div.appendChild(icon);
-
-    let barDiv = document.createElement('div');
-    barDiv.style.position = 'relative';
-    barDiv.style.top = iconHeight;
-    div.appendChild(barDiv);
-
-    let bar = document.createElement('timer-bar');
-    bar.width = iconWidth;
-    bar.height = barHeight;
-    barDiv.appendChild(bar);
-
-    if (textHeight > 0) {
-      let text = document.createElement('div');
-      text.classList.add('text');
-      text.style.width = iconWidth;
-      text.style.height = textHeight;
-      text.style.overflow = 'hidden';
-      text.style.fontSize = textHeight - 1;
-      text.style.whiteSpace = 'pre';
-      text.style.position = 'relative';
-      text.style.top = iconHeight;
-      text.style.fontFamily = 'arial';
-      text.style.fontWeight = 'bold';
-      text.style.color = 'white';
-      text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
-      text.style.paddingBottom = textHeight / 4;
-
-      text.innerText = name;
-      div.appendChild(text);
+    let boxDiv = document.createElement('div');
+    if (options.classList) {
+      for (let i = 0; i < options.classList.length; ++i)
+        boxDiv.classList.add(options.classList[i]);
     }
 
-    if (iconText)
-      icon.text = iconText;
-    icon.bordercolor = borderColor;
-    bar.fg = barColor;
-    icon.icon = auraIcon;
-    icon.duration = seconds;
-    bar.duration = seconds;
+    boxes.appendChild(boxDiv);
 
-    return div;
+    let textDiv = document.createElement('div');
+    boxDiv.appendChild(textDiv);
+    textDiv.classList.add('text');
+
+    return textDiv;
+  }
+
+  addProcBox(options) {
+    let id = this.job.toLowerCase() + '-procs';
+
+    let container = document.getElementById(id);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = id;
+      document.getElementById('bars').appendChild(container);
+    }
+
+    let timerBox = document.createElement('timer-box');
+    container.appendChild(timerBox);
+    timerBox.style = 'empty';
+    if (options.fgColor)
+      timerBox.fg = computeBackgroundColorFrom(timerBox, options.fgColor);
+    timerBox.bg = 'black';
+    timerBox.toward = 'bottom';
+    timerBox.threshold = options.threshold ? options.threshold : 0;
+    timerBox.hideafter = '';
+    timerBox.roundupthreshold = false;
+    timerBox.valuescale = options.scale ? options.scale : 1;
+    if (options.id)
+      timerBox.id = options.id;
+
+    return timerBox;
+  }
+
+  setupWar() {
+    let gcd = this.options.WarGcd;
+
+    let textBox = this.addResourceBox({
+      classList: ['war-color-beast'],
+    });
+
+    this.jobFuncs.push(function(jobDetail) {
+      let beast = jobDetail.beast;
+      if (textBox.innerText === beast)
+        return;
+      textBox.innerText = beast;
+      let p = textBox.parentNode;
+      if (beast < 50) {
+        p.classList.add('low');
+        p.classList.remove('mid');
+      } else if (beast < 100) {
+        p.classList.remove('low');
+        p.classList.add('mid');
+      } else {
+        p.classList.remove('low');
+        p.classList.remove('mid');
+      }
+    });
+
+    let eyeBox = this.addProcBox({
+      fgColor: 'war-color-eye',
+      scale: gcd,
+    });
+
+    this.comboFuncs.push(function(skill) {
+      // TODO: handle flags where you don't hit something.
+      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+      if (skill == gLang.kAbility.MythrilTempest) {
+        if (eyeBox.duration > 0) {
+          let old = parseInt(eyeBox.duration) - parseInt(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 10, 30);
+        }
+        return;
+      }
+      if (skill == gLang.kAbility.StormsEye) {
+        eyeBox.duration = 0;
+        // Storm's Eye applies with some animation delay here, and on the next
+        // Storm's Eye, it snapshots the damage when the gcd is started, so
+        // add some of a gcd here in duration time from when it's applied.
+        eyeBox.duration = 30 + 1;
+      }
+
+      // Min number of skills until eye without breaking combo.
+      let minSkillsUntilEye;
+      if (skill == gLang.kAbility.HeavySwing) {
+        minSkillsUntilEye = 2;
+      } else if (skill == gLang.kAbility.SkullSunder) {
+        minSkillsUntilEye = 4;
+      } else if (skill == gLang.kAbility.Maim) {
+        minSkillsUntilEye = 1;
+      } else {
+        // End of combo, or broken combo.
+        minSkillsUntilEye = 3;
+      }
+
+      // The new threshold is "can I finish the current combo and still
+      // have time to do a Storm's Eye".
+      let oldThreshold = parseFloat(eyeBox.threshold);
+      let newThreshold = (minSkillsUntilEye + 2) * gcd;
+
+      // Because thresholds are nonmonotonic (when finishing a combo)
+      // be careful about setting them in ways that are visually poor.
+      if (eyeBox.value >= oldThreshold &&
+          eyeBox.value >= newThreshold)
+        eyeBox.threshold = newThreshold;
+      else
+        eyeBox.threshold = oldThreshold;
+    });
+
+    this.loseEffectFuncMap[gLang.kEffect.StormsEye] = function() {
+      // Because storm's eye is tracked from the hit, and the ability is delayed,
+      // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
+      // To fix this, don't "lose" unless it's been going on a bit.
+      if (eyeBox.elapsed > 10)
+        eyeBox.duration = 0;
+    };
+  }
+
+  setupDrk() {
+    let textBox = this.addResourceBox({
+      classList: ['drk-color-blood'],
+    });
+
+    this.jobFuncs.push(function(jobDetail) {
+      let blood = jobDetail.blood;
+      if (textBox.innerText === blood)
+        return;
+      textBox.innerText = blood;
+      let p = textBox.parentNode;
+      if (blood < 50) {
+        p.classList.add('low');
+        p.classList.remove('mid');
+      } else if (blood < 90) {
+        p.classList.remove('low');
+        p.classList.add('mid');
+      } else {
+        p.classList.remove('low');
+        p.classList.remove('mid');
+      }
+    });
+  }
+
+  setupPld() {
+    let gcd = this.options.PldGcd;
+
+    let textBox = this.addResourceBox({
+      classList: ['pld-color-oath'],
+    });
+
+    this.jobFuncs.push(function(jobDetail) {
+      let oath = jobDetail.oath;
+      if (textBox.innerText === oath)
+        return;
+      textBox.innerText = oath;
+      let p = textBox.parentNode;
+      if (oath < 50) {
+        p.classList.add('low');
+        p.classList.remove('mid');
+      } else if (blood < 100) {
+        p.classList.remove('low');
+        p.classList.add('mid');
+      } else {
+        p.classList.remove('low');
+        p.classList.remove('mid');
+      }
+    });
+
+    let goreBox = this.addProcBox({
+      fgColor: 'pld-color-gore',
+      scale: gcd,
+      threshold: gcd * 3 + 0.3,
+    });
+
+    this.comboFuncs.push(function(skill) {
+      if (skill == gLang.kAbility.GoringBlade) {
+        goreBox.duration = 0;
+        // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
+        // have the box show 21, it looks like you're awfully late with
+        // your goring blade and just feels really bad.  So, lie to the
+        // poor paladins who don't have enough skill speed so that the UI
+        // is easier to read for repeating goring, royal, royal, goring
+        // and not having the box run out early.
+        goreBox.duration = 22;
+      }
+    });
+  }
+
+  setupBlu() {
+    let gcd = this.options.BluGcd;
+
+    let offguardBox = this.addProcBox({
+      id: 'blu-procs-offguard',
+      fgColor: 'blu-color-offguard',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let tormentBox = this.addProcBox({
+      id: 'blu-procs-torment',
+      fgColor: 'blu-color-torment',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    this.abilityFuncMap[gLang.kAbility.OffGuard] = function() {
+      offguardBox.duration = 0;
+      offguardBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.SongOfTorment] = function() {
+      tormentBox.duration = 0;
+      tormentBox.duration = 30;
+    };
+  }
+
+  // TODO: none of this is actually super useful.
+  setupAst() {
+    let gcd = this.options.AstGcd;
+
+    let combustBox = this.addProcBox({
+      id: 'ast-procs-combust',
+      fgColor: 'ast-color-combust',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let beneficBox = this.addProcBox({
+      id: 'ast-procs-benefic',
+      fgColor: 'ast-color-benefic',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let heliosBox = this.addProcBox({
+      id: 'ast-procs-helios',
+      fgColor: 'ast-color-helios',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    // Sorry, no differentation for noct asts here.  <_<
+    this.abilityFuncMap[gLang.kAbility.Combust2] = function() {
+      combustBox.duration = 0;
+      combustBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = function() {
+      beneficBox.duration = 0;
+      beneficBox.duration = 18;
+    };
+    this.abilityFuncMap[gLang.kAbility.AspectedHelios] = function() {
+      heliosBox.duration = 0;
+      heliosBox.duration = 30;
+    };
+  }
+
+  setupMnk() {
+    let mnkBars = document.createElement('div');
+    mnkBars.id = 'mnk-bar';
+    document.getElementById('bars').appendChild(mnkBars);
+
+    // TODO: abstract timer bar additions
+    this.o.lightningContainer = document.createElement('div');
+    this.o.lightningContainer.id = 'mnk-timers-lightning';
+    this.o.lightningTimer = document.createElement('timer-bar');
+    mnkBars.appendChild(this.o.lightningContainer);
+    this.o.lightningContainer.appendChild(this.o.lightningTimer);
+
+    this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
+    this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
+    this.o.lightningTimer.toward = 'left';
+    this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
+
+    this.o.formContainer = document.createElement('div');
+    this.o.formContainer.id = 'mnk-timers-combo';
+    this.o.formTimer = document.createElement('timer-bar');
+    mnkBars.appendChild(this.o.formContainer);
+    this.o.formContainer.appendChild(this.o.formTimer);
+
+    this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
+    this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
+    this.o.formTimer.style = 'empty';
+    this.o.formTimer.toward = 'left';
+    this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
+    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
+
+    let lightningTimer = this.o.lightningTimer;
+    let formTimer = this.o.formTimer;
+
+    let textBox = this.addResourceBox({
+      classList: ['mnk-color-chakra'],
+    });
+
+    let lightningFgColors = [];
+    for (let i = 0; i <= 3; ++i)
+      lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
+
+    this.jobFuncs.push(function(jobDetail) {
+      let chakra = jobDetail.chakraStacks;
+      if (textBox.innerText !== chakra) {
+        textBox.innerText = chakra;
+        let p = textBox.parentNode;
+        if (chakra < 5)
+          p.classList.add('dim');
+        else
+          p.classList.remove('dim');
+      }
+
+      let stacks = jobDetail.lightningStacks;
+      lightningTimer.fg = lightningFgColors[stacks];
+      if (stacks == 0) {
+        // Show sad red bar when you've lost all your pancakes.
+        lightningTimer.style = 'fill';
+        lightningTimer.value = 0;
+        lightningTimer.duration = 0;
+      } else {
+        lightningTimer.style = 'empty';
+
+        // Setting the duration resets the timer bar to 0, so set
+        // duration first before adjusting the value.
+        let old = parseInt(lightningTimer.duration) - parseInt(lightningTimer.elapsed);
+        let lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
+        if (lightningSeconds > old) {
+          lightningTimer.duration = 16;
+          lightningTimer.value = lightningSeconds;
+        }
+      }
+    });
+
+    let dragonKickBox = this.addProcBox({
+      id: 'mnk-procs-dragonkick',
+      fgColor: 'mnk-color-dragonkick',
+      threshold: 6,
+    });
+
+    let twinSnakesBox = this.addProcBox({
+      id: 'mnk-procs-twinsnakes',
+      fgColor: 'mnk-color-twinsnakes',
+      threshold: 6,
+    });
+
+    let demolishBox = this.addProcBox({
+      id: 'mnk-procs-demolish',
+      fgColor: 'mnk-color-demolish',
+      // Slightly shorter time, to make the box not pop right as
+      // you hit snap punch at t=6 (which is probably fine).
+      threshold: 5,
+    });
+
+    this.abilityFuncMap[gLang.kAbility.TwinSnakes] = function() {
+      twinSnakesBox.duration = 0;
+      twinSnakesBox.duration = 15;
+    };
+    this.abilityFuncMap[gLang.kAbility.FourPointFury] = function() {
+      // FIXME: using this at zero.
+      let old = parseInt(twinSnakesBox.duration) - parseInt(twinSnakesBox.elapsed);
+      twinSnakesBox.duration = 0;
+      if (old > 0)
+        twinSnakesBox.duration = Math.min(old + 10, 15);
+    };
+    this.abilityFuncMap[gLang.kAbility.Demolish] = function() {
+      demolishBox.duration = 0;
+      demolishBox.duration = 15;
+    };
+    this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = function() {
+      dragonKickBox.duration = 0;
+      dragonKickBox.duration = 30;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.LeadenFist] = function() {
+      dragonKickBox.duration = 0;
+    };
+    this.gainEffectFuncMap[gLang.kEffect.PerfectBalance] = function(name, log) {
+      formTimer.duration = 0;
+      formTimer.duration = gainSecondsFromLog(log);
+      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
+    };
+
+    let changeFormFunc = function(name, log) {
+      formTimer.duration = 0;
+      formTimer.duration = gainSecondsFromLog(log);
+      formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
+    };
+    this.gainEffectFuncMap[gLang.kEffect.OpoOpoForm] = changeFormFunc;
+    this.gainEffectFuncMap[gLang.kEffect.RaptorForm] = changeFormFunc;
+    this.gainEffectFuncMap[gLang.kEffect.CoeurlForm] = changeFormFunc;
   }
 
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
@@ -1185,124 +1492,6 @@ class Bars {
       this.o.blackManaTextBox.classList.remove('dim');
   }
 
-  OnWarUpdate(beast) {
-    if (this.o.beastTextBox == null)
-      return;
-
-    this.o.beastText.innerText = beast;
-
-    if (beast < 50) {
-      this.o.beastTextBox.classList.add('low');
-      this.o.beastTextBox.classList.remove('mid');
-    } else if (beast < 100) {
-      this.o.beastTextBox.classList.remove('low');
-      this.o.beastTextBox.classList.add('mid');
-    } else {
-      this.o.beastTextBox.classList.remove('low');
-      this.o.beastTextBox.classList.remove('mid');
-    }
-  }
-
-  OnDrkUpdate(blood) {
-    if (this.o.bloodTextBox == null)
-      return;
-
-    this.o.bloodText.innerText = blood;
-
-    if (blood < 50) {
-      this.o.bloodTextBox.classList.add('low');
-      this.o.bloodTextBox.classList.remove('mid');
-    } else if (blood < 90) {
-      this.o.bloodTextBox.classList.remove('low');
-      this.o.bloodTextBox.classList.add('mid');
-    } else {
-      this.o.bloodTextBox.classList.remove('low');
-      this.o.bloodTextBox.classList.remove('mid');
-    }
-  }
-
-  OnPldUpdate(oath) {
-    if (this.o.oathTextBox == null)
-      return;
-
-    this.o.oathText.innerText = oath;
-
-    if (oath < 50) {
-      this.o.oathTextBox.classList.add('low');
-      this.o.oathTextBox.classList.remove('mid');
-    } else if (oath < 100) {
-      this.o.oathTextBox.classList.remove('low');
-      this.o.oathTextBox.classList.add('mid');
-    } else {
-      this.o.oathTextBox.classList.remove('low');
-      this.o.oathTextBox.classList.remove('mid');
-    }
-  }
-
-  OnMonkUpdate(lightningStacks, chakraStacks, lightningMilliseconds) {
-    if (this.o.chakraTextBox == null)
-      return;
-
-    this.o.chakraText.innerText = chakraStacks;
-    if (chakraStacks < 5)
-      this.o.chakraTextBox.classList.add('dim');
-    else
-      this.o.chakraTextBox.classList.remove('dim');
-
-    // Show sad red bar when you've lost all your pancakes.
-    let lightningSeconds = lightningMilliseconds / 1000.0;
-    if (lightningStacks == 0) {
-      this.o.lightningTimer.style = 'fill';
-      lightningSeconds = 0;
-    } else {
-      this.o.lightningTimer.style = 'empty';
-    }
-
-    // Setting the duration resets the timer bar to 0, so set
-    // duration first before adjusting the value.
-    this.o.lightningTimer.duration = 16;
-    this.o.lightningTimer.value = lightningSeconds;
-
-    this.o.lightningTimer.fg = this.o.lightningFgColors[lightningStacks];
-  }
-
-  OnMonkFormChange(seconds) {
-    this.o.formTimer.duration = 0;
-    this.o.formTimer.duration = seconds;
-    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
-  }
-
-  OnMonkPerfectBalance(seconds) {
-    this.o.formTimer.duration = 0;
-    this.o.formTimer.duration = seconds;
-    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-pb');
-  }
-
-  OnMonkLeadenFistStart() {
-    this.o.dragonKickTimer.duration = 0;
-    this.o.dragonKickTimer.duration = 30;
-  }
-
-  OnMonkLeadenFistEnd() {
-    this.o.dragonKickTimer.duration = 0;
-  }
-
-  OnMonkTwinSnakes() {
-    this.o.twinSnakesTimer.duration = 0;
-    this.o.twinSnakesTimer.duration = 15;
-  }
-
-  OnMonkFourPointFury() {
-    let old = parseInt(this.o.twinSnakesTimer.duration) - parseInt(this.o.twinSnakesTimer.elapsed);
-    this.o.twinSnakesTimer.duration = 0;
-    this.o.twinSnakesTimer.duration = Math.min(old + 10, 15);
-  }
-
-  OnMonkDemolish() {
-    this.o.demolishTimer.duration = 0;
-    this.o.demolishTimer.duration = 18;
-  }
-
   OnSummonerAetherflow(seconds) {
     if (this.o.smnAetherflowTimer != null) {
       // Reset to 0 first to make sure the timer starts over.
@@ -1334,15 +1523,10 @@ class Bars {
       this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
   }
 
-  OnLostStormsEye() {
-    // Because storm's eye is tracked from the hit, and the ability is delayed,
-    // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
-    // To fix this, don't "lose" unless it's been going on a bit.
-    if (this.o.eyeBox.elapsed > 10)
-      this.o.eyeBox.duration = 0;
-  }
-
   OnComboChange(skill) {
+    for (let i = 0; i < this.comboFuncs.length; ++i)
+      this.comboFuncs[i](skill);
+
     if (this.job == 'RDM') {
       if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
         return;
@@ -1361,61 +1545,6 @@ class Bars {
         this.o.rdmCombo3.classList.add('active');
       else
         this.o.rdmCombo3.classList.remove('active');
-    } else if (this.job == 'WAR') {
-      // TODO: handle flags where you don't hit something.
-      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-      if (skill == gLang.kAbility.MythrilTempest) {
-        if (this.o.eyeBox.duration > 0) {
-          let old = parseInt(this.o.eyeBox.duration) - parseInt(this.o.eyeBox.elapsed);
-          this.o.eyeBox.duration = 0;
-          this.o.eyeBox.duration = Math.min(old + 10, 30);
-        }
-        return;
-      }
-      if (skill == gLang.kAbility.StormsEye) {
-        this.o.eyeBox.duration = 0;
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
-        this.o.eyeBox.duration = 30 + 1;
-      }
-
-      // Min number of skills until eye without breaking combo.
-      let minSkillsUntilEye;
-      if (skill == gLang.kAbility.HeavySwing) {
-        minSkillsUntilEye = 2;
-      } else if (skill == gLang.kAbility.SkullSunder) {
-        minSkillsUntilEye = 4;
-      } else if (skill == gLang.kAbility.Maim) {
-        minSkillsUntilEye = 1;
-      } else {
-        // End of combo, or broken combo.
-        minSkillsUntilEye = 3;
-      }
-
-      // The new threshold is "can I finish the current combo and still
-      // have time to do a Storm's Eye".
-      let oldThreshold = parseFloat(this.o.eyeBox.threshold);
-      let newThreshold = (minSkillsUntilEye + 2) * this.options.WarGcd;
-
-      // Because thresholds are nonmonotonic (when finishing a combo)
-      // be careful about setting them in ways that are visually poor.
-      if (this.o.eyeBox.value >= oldThreshold &&
-          this.o.eyeBox.value >= newThreshold)
-        this.o.eyeBox.threshold = newThreshold;
-      else
-        this.o.eyeBox.threshold = oldThreshold;
-    } else if (this.job == 'PLD') {
-      if (skill == gLang.kAbility.GoringBlade) {
-        this.o.goreBox.duration = 0;
-        // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
-        // have the box show 21, it looks like you're awfully late with
-        // your goring blade and just feels really bad.  So, lie to the
-        // poor paladins who don't have enough skill speed so that the UI
-        // is easier to read for repeating goring, royal, royal, goring
-        // and not having the box run out early.
-        this.o.goreBox.duration = 22;
-      }
     }
   }
 
@@ -1437,19 +1566,28 @@ class Bars {
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
     let lowMP = -1;
+    let mediumMP = -1;
     let far = -1;
 
     if (this.job == 'RDM' || this.job == 'BLM' || this.job == 'SMN' || this.job == 'ACN')
       far = this.options.FarThresholdOffence;
-    else if (this.job == 'DRK')
+
+    if (this.job == 'DRK') {
       lowMP = this.options.DrkLowMPThreshold;
-    else if (this.job == 'PLD')
+      mediumMP = this.options.DrkMediumMPThreshold;
+    } else if (this.job == 'PLD') {
       lowMP = this.options.PldLowMPThreshold;
+      mediumMP = this.options.PldMediumMPThreshold;
+    } else if (this.job == 'BLM') {
+      lowMP = this.options.BlmLowMPThreshold;
+    }
 
     if (far >= 0 && this.distance > far)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.far');
     else if (lowMP >= 0 && this.mp <= lowMP)
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.low');
+    else if (mediumMP >= 0 && this.mp <= mediumMP)
+      this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color.medium');
     else
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
@@ -1508,7 +1646,7 @@ class Bars {
       if (canShow)
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
-      let div = this.MakeAuraTimerIcon(
+      let div = makeAuraTimerIcon(
           'foodbuff', -1,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           '',
@@ -1556,48 +1694,10 @@ class Bars {
     }
   }
 
-  OnBigBuff(name, seconds, settings) {
-    let overrides = this.options.PerBuffOptions[name] || {};
-    let borderColor = overrides.borderColor || settings.borderColor;
-    let icon = overrides.icon || settings.icon;
-    let side = overrides.side || settings.side;
-    let sortKey = overrides.sortKey || settings.sortKey;
-    if (overrides.hide)
-      return;
-
-    let aura = this.MakeAuraTimerIcon(
-        name, seconds,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        settings.text,
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        this.options.BigBuffBorderSize,
-        borderColor, borderColor,
-        icon);
-    let list = this.o.rightBuffsList;
-    if (side && side == 'left' && this.o.leftBuffsList)
-      list = this.o.leftBuffsList;
-    list.addElement(name, aura, sortKey);
-    let that = this;
-    window.clearTimeout(settings.timeout);
-    if (seconds >= 0) {
-      settings.timeout = window.setTimeout(function() {
-        that.o.rightBuffsList.removeElement(name);
-        that.o.leftBuffsList.removeElement(name);
-      }, seconds * 1000);
-    }
-  }
-
-  OnLoseBigBuff(name, settings) {
-    window.clearTimeout(settings.timeout);
-    this.o.rightBuffsList.removeElement(name);
-    this.o.leftBuffsList.removeElement(name);
-  }
-
   OnPlayerChanged(e) {
     if (!this.init) {
       this.me = e.detail.name;
       setupRegexes();
-      setupBuffTracker();
       this.combo = setupComboTracker(this.OnComboChange.bind(this));
       this.init = true;
     }
@@ -1605,14 +1705,13 @@ class Bars {
     let update_job = false;
     let update_hp = false;
     let update_mp = false;
-    let update_tp = false;
     let update_cp = false;
     let update_gp = false;
     let update_level = false;
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
       this.combo.AbortCombo(); // Combos are job specific.
-      update_job = update_hp = update_mp = update_tp = update_cp = update_gp = true;
+      update_job = update_hp = update_mp = update_cp = update_gp = true;
     }
     if (e.detail.level != this.level) {
       this.level = e.detail.level;
@@ -1630,11 +1729,6 @@ class Bars {
       this.mp = e.detail.currentMP;
       this.maxMP = e.detail.maxMP;
       update_mp = true;
-    }
-    if (e.detail.currentTP != this.tp || e.detail.maxTP != this.maxTP) {
-      this.tp = e.detail.currentTP;
-      this.maxTP = e.detail.maxTP;
-      update_tp = true;
     }
     if (e.detail.currentCP != this.cp || e.detail.maxCP != this.maxCP) {
       this.cp = e.detail.currentCP;
@@ -1662,6 +1756,9 @@ class Bars {
     if (update_level)
       this.UpdateFoodBuff();
 
+    for (let i = 0; i < this.jobFuncs.length; ++i)
+      this.jobFuncs[i](e.detail.jobDetail);
+
     if (this.job == 'RDM') {
       if (update_job ||
             e.detail.jobDetail.whiteMana != this.whiteMana ||
@@ -1669,21 +1766,6 @@ class Bars {
         this.whiteMana = e.detail.jobDetail.whiteMana;
         this.blackMana = e.detail.jobDetail.blackMana;
         this.OnRedMageUpdate(this.whiteMana, this.blackMana);
-      }
-    } else if (this.job == 'WAR') {
-      if (update_job || e.detail.jobDetail.beast != this.beast) {
-        this.beast = e.detail.jobDetail.beast;
-        this.OnWarUpdate(this.beast);
-      }
-    } else if (this.job == 'DRK') {
-      if (update_job || e.detail.jobDetail.blood != this.blood) {
-        this.blood = e.detail.jobDetail.blood;
-        this.OnDrkUpdate(this.blood);
-      }
-    } else if (this.job == 'PLD') {
-      if (update_job || e.detail.jobDetail.oath != this.oath) {
-        this.oath = e.detail.jobDetail.oath;
-        this.OnPldUpdate(this.oath);
       }
     } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
@@ -1699,18 +1781,6 @@ class Bars {
         this.bahamutMilliseconds = e.detail.jobDetail.bahamutMilliseconds;
         this.OnSummonerUpdate(this.aetherflowStacks, this.dreadwyrmStacks,
             this.bahamutStacks, this.dreadwyrmMilliseconds, this.bahamutMilliseconds);
-      }
-    } else if (this.job == 'MNK') {
-      if (update_job ||
-          e.detail.jobDetail.lightningStacks != this.lightningStacks ||
-          e.detail.jobDetail.chakraStacks != this.chakraStacks ||
-          e.detail.jobDetail.lightningMilliseconds > this.lightningMilliseconds) {
-        this.lightningStacks = e.detail.jobDetail.lightningStacks;
-        this.chakraStacks = e.detail.jobDetail.chakraStacks;
-        this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
-        this.OnMonkUpdate(this.lightningStacks, this.chakraStacks, this.lightningMilliseconds);
-      } else {
-        this.lightningMilliseconds = e.detail.jobDetail.lightningMilliseconds;
       }
     }
   }
@@ -1739,46 +1809,56 @@ class Bars {
     for (let i = 0; i < e.detail.logs.length; i++) {
       let log = e.detail.logs[i];
 
-      let r = log.match(gLang.countdownStartRegex());
-      if (r != null) {
-        let seconds = parseFloat(r[1]);
-        this.SetPullCountdown(seconds);
-        continue;
-      }
-      if (log.search(gLang.countdownCancelRegex()) >= 0) {
-        this.SetPullCountdown(0);
-        continue;
-      }
-
-      r = log.match(kReFoodBuff);
-      if (r != null) {
-        let seconds = parseFloat(r[1]);
-        let now = Date.now(); // This is in ms.
-        this.foodBuffExpiresTimeMs = now + (seconds * 1000);
-        this.UpdateFoodBuff();
-      }
-
-      for (let name in kBigBuffTracker) {
-        let settings = kBigBuffTracker[name];
-        let r = log.match(settings.gainRegex);
+      // TODO(enne): only consider this when not in battle.
+      if (log[15] == '0') {
+        let r = log.match(gLang.countdownStartRegex());
         if (r != null) {
-          let seconds = -1;
-          if ('durationSeconds' in settings)
-            seconds = settings.durationSeconds;
-          else if ('durationPosition' in settings)
-            seconds = parseFloat(r[settings.durationPosition]);
-
-          this.OnBigBuff(name, seconds, settings);
+          let seconds = parseFloat(r[1]);
+          this.SetPullCountdown(seconds);
+          continue;
         }
-        if (settings.loseRegex) {
-          r = log.match(settings.loseRegex);
-          if (r != null)
-            this.OnLoseBigBuff(name, settings);
+        if (log.search(gLang.countdownCancelRegex()) >= 0) {
+          this.SetPullCountdown(0);
+          continue;
+        }
+      } else if (log[15] == '1') {
+        if (log[16] == 'A') {
+          let m = log.match(kYouGainEffectRegex);
+          if (m) {
+            let name = m[1];
+            let f = this.gainEffectFuncMap[name];
+            if (f)
+              f(name, log);
+            this.buffTracker.onYouGainEffect(name, log);
+          }
+        } else if (log[16] == 'E') {
+          let m = log.match(kYouLoseEffectRegex);
+          if (m) {
+            let name = m[1];
+            let f = this.loseEffectFuncMap[name];
+            if (f)
+              f(name, log);
+            this.buffTracker.onYouLoseEffect(name, log);
+          }
+        }
+        // TODO: consider flags for missing.
+        // flags:damage is 1:0 in most misses.
+        if (log[16] == '5' || log[16] == '6') {
+          let m = log.match(kYouUseAbilityRegex);
+          if (m) {
+            let id = m[1];
+            this.combo.HandleAbility(id);
+            let f = this.abilityFuncMap[id];
+            if (f)
+              f(id);
+            this.buffTracker.onUseAbility(id, log);
+          } else {
+            let m = log.match(kAnybodyAbilityRegex);
+            if (m)
+              this.buffTracker.onUseAbility(m[1], log);
+          }
         }
       }
-
-      if (this.combo.ParseLog(log))
-        continue;
 
       if (this.job == 'SMN') {
         let r = log.match(kReSmnRuinProc);
@@ -1795,12 +1875,6 @@ class Bars {
           this.OnSummonerAetherflow(this.options.SmnAetherflowRecast);
           continue;
         }
-      }
-
-      if (this.job == 'WAR') {
-        let r = log.match(kLostStormsEye);
-        if (r)
-          this.OnLostStormsEye();
       }
 
       if (this.job == 'RDM') {
@@ -1835,62 +1909,6 @@ class Bars {
           continue;
         }
       }
-      if (this.job == 'MNK') {
-        if (log.search(kTwinSnakes) >= 0) {
-          this.OnMonkTwinSnakes();
-          continue;
-        }
-        if (log.search(kFourPointFury) >= 0) {
-          this.OnMonkFourPointFury();
-          continue;
-        }
-        if (log.search(kDemolish) >= 0) {
-          this.OnMonkDemolish();
-          continue;
-        }
-        if (log.search(kLeadenBuff) >= 0) {
-          this.OnMonkLeadenFistStart();
-          continue;
-        }
-        if (log.search(kLeadenBuffEnd) >= 0) {
-          this.OnMonkLeadenFistEnd();
-          continue;
-        }
-        let r = log.match(kFormChange);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnMonkFormChange(seconds);
-          continue;
-        }
-        r = log.match(kPeanutButter);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnMonkPerfectBalance(seconds);
-          continue;
-        }
-      }
-      if (this.job == 'AST') {
-        // Sorry, no differentation for noct asts here.  <_<
-        if (log.search(kAstCombust) >= 0) {
-          this.o.combustBox.duration = 30;
-          continue;
-        } else if (log.search(kAstBenefic) >= 0) {
-          this.o.beneficBox.duration = 18;
-          continue;
-        } else if (log.search(kAstHelios) >= 0) {
-          this.o.heliosBox.duration = 30;
-          continue;
-        }
-      }
-      if (this.job == 'BLU') {
-        if (log.search(kBluOffguard) >= 0) {
-          this.o.offguardBox.duration = 30;
-          continue;
-        } else if (log.search(kBluTorment) >= 0) {
-          this.o.tormentBox.duration = 30;
-          continue;
-        }
-      }
 
       // For learning boss ability codes.
       // if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
@@ -1903,18 +1921,19 @@ class Bars {
 
   Test() {
     let logs = [];
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
-    logs.push(' 1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
-    logs.push(' 15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
-    logs.push(' 15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(' 15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
-    logs.push(' 1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    let t = '[10:10:10.000] ';
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
+    logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');
+    logs.push(t + '15:1048638C:Okonomi Yaki:8D2:Trick Attack:40000C96:Striking Dummy:20710103:154B:');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Left Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Right Eye from That Guy for 15.0 Seconds.');
+    logs.push(t + '15:1048638C:Tako Yaki:1D0C:Chain Stratagem:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
     let e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }

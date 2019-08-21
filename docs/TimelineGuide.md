@@ -168,13 +168,13 @@ cactbot adds all of its timeline triggers from the timeline file.
 This is done by adding a `timelineTriggers` section to the triggers file.
 
 Examples:
-* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/orbonne_monastery.js)
-* [T9](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/t9.js)
-* [O12 normal](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/o12n.js)
+* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/alliance/orbonne_monastery.js)
+* [T9](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/02-arr/raid/t9.js)
+* [O12 normal](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/raid/o12n.js)
 
-These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/triggers/README.txt) as normal triggers.
+These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/README.txt) as normal triggers.
 They still allow you to use functions if you want to return something.
-You can use a [condition](https://github.com/quisquous/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/triggers/t9.js#L10) to have it only trigger for a particular job or role.
+You can use a [condition](https://github.com/quisquous/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/02-arr/raid/t9.js#L10) to have it only trigger for a particular job or role.
 
 However there are a few differences:
 
@@ -261,9 +261,9 @@ You can leave it blank.
 
 (2) Add a new triggers file, if it doesn't exist.
 
-Create **ui/raidboss/data/triggers/cape_westwind.js**.
+Create **ui/raidboss/data/02-arr/trial/cape_westwind.js**.
 This can be named whatever you want.
-Timeline files are loaded via triggers files,
+Timeline files can only be loaded via triggers files,
 so the triggers file is always required.
 
 An initial triggers file should look like the following:

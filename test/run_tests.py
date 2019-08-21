@@ -8,7 +8,7 @@ def base_directory():
 
 
 def triggers_directory():
-    return os.path.join(base_directory(), 'ui/raidboss/data/triggers/')
+    return os.path.join(base_directory(), 'ui/raidboss/data/')
 
 
 def compile_test(filename):
@@ -19,9 +19,12 @@ def compile_test(filename):
 def run_compilation_tests():
     success = True
     dir = triggers_directory()
-    for filename in os.listdir(dir):
-        if filename.endswith('.js'):
-            success &= compile_test(os.path.join(dir, filename))
+    for root, dirs, files in os.walk(dir):
+        # TODO: maybe this should only check manifest-listed files?
+        if 'test' in dirs:
+            dirs.remove('test')
+        for filename in [f for f in files if f.endswith('.js')]:
+            success &= compile_test(os.path.join(root, filename))
     return success
 
 

@@ -373,6 +373,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
+      suppressSeconds: 1,
       alertText: {
         en: 'Silence Guardian',
         de: 'Stumm auf Hüter ',

@@ -12,7 +12,7 @@ function computeBackgroundColorFrom(element, classList) {
 }
 
 // This class reads the format of ACT Timeline plugin, described in
-// data/timelines/README.txt.
+// data/README.txt.
 class Timeline {
   constructor(text, replacements, triggers, options) {
     this.options = options;
@@ -774,16 +774,9 @@ class TimelineController {
   SetDataFiles(files) {
     this.timelines = {};
     for (let f in files) {
-      // Reads from the data/timelines/ directory.
-      if (!f.startsWith('timelines/'))
+      if (!f.endsWith('.txt'))
         continue;
-
-      let name = f;
-      // Drop leading directory names.
-      if (name.indexOf('/') >= 0)
-        name = name.split('/').slice(-1)[0];
-
-      this.timelines[name] = files[f];
+      this.timelines[f] = files[f];
     }
   }
 }
