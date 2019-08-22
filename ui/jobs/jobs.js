@@ -438,6 +438,24 @@ class BuffTracker {
         borderColor: '#ff9900',
         sortKey: 4,
       },
+      devilment: {
+        gainEffect: gLang.kEffect.Devilment,
+        loseEffect: gLang.kEffect.Devilment,
+        durationSeconds: 20,
+        icon: kIconBuffDevilment,
+        // Dark Green.
+        borderColor: '#006400',
+        sortKey: 5,
+      },
+      standardFinish: {
+        gainEffect: gLang.kEffect.StandardFinish,
+        loseEffect: gLang.kEffect.StandardFinish,
+        durationSeconds: 60,
+        icon: kIconBuffStandardFinish,
+        // Green.
+        borderColor: '#32CD32',
+        sortKey: 6,
+      },
       technicalFinish: {
         gainEffect: gLang.kEffect.TechnicalFinish,
         loseEffect: gLang.kEffect.TechnicalFinish,
@@ -445,7 +463,7 @@ class BuffTracker {
         icon: kIconBuffTechnicalFinish,
         // Dark Peach.
         borderColor: '#E0757C',
-        sortKey: 5,
+        sortKey: 6,
       },
       chain: {
         gainAbility: gLang.kAbility.ChainStrategem,
@@ -453,7 +471,7 @@ class BuffTracker {
         icon: kIconBuffChainStratagem,
         // Blue.
         borderColor: '#4674E5',
-        sortKey: 6,
+        sortKey: 7,
       },
       lefteye: {
         gainEffect: gLang.kEffect.LeftEye,

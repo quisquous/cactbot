@@ -30,8 +30,9 @@ class CactbotLanguageEn extends CactbotLanguage {
       FoeRequiem: 'Foe Requiem', // up 0x8b, down 0x8c
       LeadenFist: 'Leaden Fist',
       StormsEye: 'Storm\'s Eye',
+      Devilment: 'Devilment',
+      StandardFinish: 'Standard Finish',
       TechnicalFinish: 'Technical Finish',
-
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',
       Burns: 'Burns',

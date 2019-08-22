@@ -29,7 +29,9 @@ class CactbotLanguageJa extends CactbotLanguage {
       Devotion: 'エギの加護', // 0x4bd
       FoeRequiem: '魔人のレクイエム', // up 0x8b, down 0x8c
       LeadenFist: '連撃効果アップ',
+      Devilment: '攻めのタンゴ',
       TechnicalFinish: 'テクニカルフィニッシュ',
+      StandardFinish: 'スタンダードフィニッシュ',
 
       Petrification: '石化',
       BeyondDeath: '死の超越',
