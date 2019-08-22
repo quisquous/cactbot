@@ -38,6 +38,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       Burns: 'Burns',
       Sludge: 'Sludge',
       Doom: 'Doom',
+      StoneCurse: 'Stone Curse',
 
       // UWU
       Windburn: 'Windburn',

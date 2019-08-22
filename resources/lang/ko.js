@@ -33,12 +33,12 @@ class CactbotLanguageKo extends CactbotLanguage {
       TechnicalFinish: 'FIXME',
       StandardFinish: 'FIXME',
 
-      // TODO: add ids
       Petrification: '석화',
       BeyondDeath: '죽음의 초월',
       Burns: '화상',
       Sludge: '진흙탕',
       Doom: '죽음의 선고',
+      StoneCurse: 'FIXME',
 
       // UWU
       Windburn: '열상',

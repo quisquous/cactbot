@@ -38,6 +38,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       Burns: '火傷',
       Sludge: '汚泥',
       Doom: '死の宣告',
+      StoneCurse: '石化の呪い',
 
       // UWU
       Windburn: '裂傷',

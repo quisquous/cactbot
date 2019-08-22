@@ -38,6 +38,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Burns: 'Brûlure',
       Sludge: 'Emboué',
       Doom: 'Glas',
+      StoneCurse: 'Piège de pierre',
     });
 
     this.kUIStrings = Object.freeze({

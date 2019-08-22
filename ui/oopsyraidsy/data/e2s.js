@@ -25,6 +25,13 @@
       },
     },
     {
+      id: 'E2S Shadoweye',
+      gainsEffectRegex: gLang.kEffect.StoneCurse,
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: e.effectName };
+      },
+    },
+    {
       id: 'E2S Nyx',
       damageRegex: '3E51',
       mistake: function(e, data) {
