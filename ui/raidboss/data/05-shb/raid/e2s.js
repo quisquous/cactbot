@@ -11,8 +11,6 @@
     {
       id: 'E2S Punishing Ray',
       regex: /Punishing Ray/,
-      regexFr: /Rayon [pP]unitif/,
-      regexJa: /パニッシュレイ/,
       beforeSeconds: 9,
       infoText: {
         en: 'Get Puddles',

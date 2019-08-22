@@ -7,7 +7,6 @@
     {
       id: 'E3S Plunging Wave',
       regex: /Plunging Wave/,
-      regexFr: /Vague [pP]longeante/,
       beforeSeconds: 2,
       infoText: {
         en: 'Line Stack',
@@ -18,7 +17,6 @@
     {
       id: 'E3S Spilling Wave',
       regex: /Spilling Wave/,
-      regexFr: /Vague [dD]éversante/,
       beforeSeconds: 3,
       condition: function(data) {
         return data.role == 'tank';

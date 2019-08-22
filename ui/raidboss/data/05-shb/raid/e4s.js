@@ -7,7 +7,6 @@
     {
       id: 'E4S Earthen Anguish',
       regex: /Earthen Anguish/,
-      regexFr: /[éÉ]ruption [tT]ellurique/,
       beforeSeconds: 3,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
