@@ -9,14 +9,14 @@
   timeline: `hideall`,
   timelineReplace: [
   {
-	  locale: 'en',
-	  replaceText: {
+     locale: 'en',
+     replaceText: {
       'regexSearch': 'strReplace',
-	  },
-	  replaceSync: {
+     },
+     replaceSync: {
       'regexSearch': 'strReplace',
-	  },
-	},
+     },
+   },
   ],
   resetWhenOutOfCombat: true,
   triggers: [
@@ -61,13 +61,13 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 
 ```
 {
-  id: 'id string'
+  id: 'id string',
   regex: /trigger-regex-(with-position-1)(and-position-2)-here/,
   regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
   delaySeconds: 0,
   suppressSeconds: 0,
   durationSeconds: 3,
-  condition: function(data, matches) { return true if it should run }
+  condition: function(data, matches) { return true if it should run },
   preRun: function(data, matches) { do stuff.. },
   infoText: {'Info popup'},
   alertText: {'Alert Popup'},
