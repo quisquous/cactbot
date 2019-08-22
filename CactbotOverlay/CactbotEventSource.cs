@@ -94,10 +94,10 @@ namespace Cactbot {
     public delegate void DataFilesReadHandler(JSEvents.DataFilesRead e);
     public event DataFilesReadHandler OnDataFilesRead;
 
-    public CactbotEventSource(CactbotEventSourceConfig config)
-        : base() {
-      Config = config; 
+    public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
+        : base(logger) {
       main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
+      Name = "Cactbot";
 
       RegisterEventTypes(new List<string>()
       {
@@ -119,6 +119,28 @@ namespace Cactbot {
         Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(msg["text"].ToString());
         return null;
       });
+      RegisterEventHandler("cactbotSaveData", (msg) => {
+        Config.OverlayData[msg["overlay"].ToString()] = msg["data"].ToString();
+        return null;
+      });
+      RegisterEventHandler("cactbotLoadData", (msg) => {
+        if (Config.OverlayData.ContainsKey(msg["overlay"].ToString())) {
+          return new JValue(Config.OverlayData[msg["overlay"].ToString()]);
+        } else {
+          return null;
+        }
+      });
+    }
+
+    public override System.Windows.Forms.Control CreateConfigControl()
+    {
+      return new CactbotEventSourceConfigPanel(this);
+    }
+
+    public override void LoadConfig(IPluginConfig config)
+    {
+      Config = CactbotEventSourceConfig.LoadConfig(config);
+      if (Config.OverlayData == null) Config.OverlayData = new Dictionary<string, string>();
     }
 
     public override void Start() {

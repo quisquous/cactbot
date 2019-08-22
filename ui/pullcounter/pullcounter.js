@@ -12,8 +12,11 @@ class PullCounter {
     this.zone = null;
     this.bossStarted = false;
 
-    let cmd = JSON.stringify({ getSaveData: '' });
-    OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, cmd);
+    callOverlayHandler({
+      call: 'cactbotLoadData',
+      overlay: OverlayPluginApi.overlayName,
+    })
+    .then((data) => gPullCounter.SetSaveData(data));
     this.ReloadTriggers();
   }
 
@@ -24,8 +27,11 @@ class PullCounter {
     this.element.innerText = this.pullCounts[boss.id];
     this.element.classList.remove('wipe');
 
-    let cmd = JSON.stringify({ setSaveData: JSON.stringify(this.pullCounts) });
-    OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, cmd);
+    callOverlayHandler({
+      call: 'cactbotSaveData',
+      overlay: OverlayPluginApi.overlayName,
+      data: JSON.stringify(this.pullCounts),
+    });
   }
 
   OnLogEvent(e) {
@@ -82,10 +88,10 @@ class PullCounter {
     this.element.classList.add('wipe');
   }
 
-  SetSaveData(e) {
+  SetSaveData(data) {
     try {
-      if (e.detail.data)
-        this.pullCounts = JSON.parse(e.detail.data);
+      if (data)
+        this.pullCounts = JSON.parse(data);
       else
         this.pullCounts = {};
     } catch (err) {
@@ -110,10 +116,6 @@ UserConfig.getUserConfigLocation('pullcounter', function() {
 
   addOverlayListener('onPartyWipe', function() {
     gPullCounter.OnPartyWipe();
-  });
-
-  addOverlayListener('onSendSaveData', function(e) {
-    gPullCounter.SetSaveData(e);
   });
 
   gPullCounter = new PullCounter(document.getElementById('pullcounttext'));

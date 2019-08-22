@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Cactbot {
   [Serializable]
-  public class CactbotEventSourceConfig : IEventSourceConfig {
-    [XmlIgnore]
+  public class CactbotEventSourceConfig {
+    [JsonIgnore]
     public static string CactbotAssemblyUri {
       get {
         var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -22,31 +23,32 @@ namespace Cactbot {
       }
     }
 
-    [XmlIgnore]
+    [JsonIgnore]
     public static string CactbotDllRelativeUserUri {
       get { return CactbotAssemblyUri == null ? null : System.IO.Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
     }
 
-    public CactbotEventSourceConfig()
-        : base() {
+    public CactbotEventSourceConfig() {
     }
 
-    public Type SourceType {
-      get { return typeof(CactbotEventSource); }
+    public static CactbotEventSourceConfig LoadConfig(IPluginConfig pluginConfig)
+    {
+      if (!pluginConfig.EventSourceConfigs.ContainsKey("CactbotESConfig"))
+      {
+        pluginConfig.EventSourceConfigs["CactbotESConfig"] = new CactbotEventSourceConfig();
+      }
+
+      return (CactbotEventSourceConfig)pluginConfig.EventSourceConfigs["CactbotESConfig"];
     }
     
-    [XmlElement("LogUpdatesEnabled")]
     public bool LogUpdatesEnabled = true;
 
-    [XmlElement("DpsUpdatesPerSecond")]
     public double DpsUpdatesPerSecond = 0;
 
-    public string OverlayData = null;
+    public Dictionary<string, string> OverlayData = null;
     
-    [XmlElement("RemoteVersionSeen")]
     public string RemoteVersionSeen = "0.0";
     
-    [XmlElement("UserConfigFile")]
     public string UserConfigFile = "";
   }
 }
