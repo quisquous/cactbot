@@ -692,12 +692,12 @@ It seems likely this was implemented later and nobody wanted to break old conten
 Marker Code | Name | Sample Locations | Consistent meaning?
 --- | --- | --- | ---
 000[1-2, 4] | Prey Circle (orange) | O6s, The Burn boss 2 | Yes
-0005 | Missile Tether (white) | T8 n/s
-0007 | Green Meteor | T9 n/s | ???
-0008 | Ghost Meteor | T9 n/s | ???
-0009 | Red Meteor | T9 n/s | ???
-000A | Yellow Meteor | T9 n/s | ???
-000D | Devour Flower | T6 n/s | ???
+0005 | Missile Tether (white) | T8 n/s | N/A
+0007 | Green Meteor | T9 n/s | N/A
+0008 | Ghost Meteor | T9 n/s | N/A
+0009 | Red Meteor | T9 n/s | N/A
+000A | Yellow Meteor | T9 n/s | N/A
+000D | Devour Flower | T6 n/s, Sohm Al | Yes
 000E | Prey Circle (blue) | T6 n/s, O7s | No
 0010 | Teal Crystal | Ultima Weapon Ultimate |N/A
 0011 | Heavenly Laser (red) | T8 n/s, E1n | No
@@ -705,7 +705,7 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 0028 | Earth Shaker | Sephirot n/EX, O4s | Yes
 001C | Gravity Puddle | E1n | N/A
 001E | Prey Sphere (orange) | Dun Scaith boss 3, O7n/s | No
-001F | Prey Sphere (blue) | T10 | ???
+001F | Prey Sphere (blue) | T10 | N/A
 003[2-5] | Sword Markers 1-4 | Ravana n/EX, Twinning boss 1 | N/A
 0037 | Red Dorito | Weeping City boss 2, Ridorana boss 1 | Yes
 0039 | Purple Spread Circle (large) | Ravana n/EX, Shinryu EX | Yes
@@ -720,13 +720,13 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 0061 | Chain Tether (orange) | The Vault boss 3, Shinryu n/EX | Yes
 0064 | Stack Marker (bordered) | O3s, Ridorana boss 3 | Yes
 0065 | Spread Bubble | O3s, Byakko EX | N/A
-006E | Levinbolt | Susano EX | ???
+006E | Levinbolt | Susano EX | N/A
 0076 | Prey (dark) | Bahamut Ultimate | N/A
 0078 | Orange Spread Circle (large) | Akadaemia Anyder | Yes
 007B | Scatter (animated Play symbol) | Rabanastre boss 4 | N/A
 007E | Green Crystal | Shinryu n/EX | No
 0083 | Sword Meteor (Tsukuyomi) | Tsukuyomi EX | N/A
-0087 | Prey Sphere (blue) | Akadaemia Anyder | ???
+0087 | Prey Sphere (blue) | Akadaemia Anyder | N/A
 008A | Orange Spread Circle (large) | Innocence n/EX, Orbonne boss 3 | Yes
 008B | Purple Spread Circle (small) | Ridorana boss 1, Hades n | Yes
 008E | Death From Above | O10s | N/A
@@ -736,12 +736,12 @@ Marker Code | Name | Sample Locations | Consistent meaning?
 00A9 | Orange Spread Circle (small) | O11n/s, E3n/s | Yes
 00AB | Green Poison Circle | Qitana Ravel | N/A
 00AC | Reprobation Tether | Innocence EX | N/A
-00AE | Blue Pinwheel | Sohm Al boss 2 | Unknown
+00AE | Blue Pinwheel | Sohm Al boss 2 | N/A
 00B9 | Yellow Triangle (spread) | E4s | N/A
 00BA | Orange Square (stack) | E4s |N/A
 00BB | Blue Square (big spread) | E4s |N/A
 00BD | Purple Spread Circle (giant) | TItania n/EX | Yes
-00BF | Granite Gaol | E4s |???
+00BF | Granite Gaol | E4s | N/A
 
 
 ### 1C: NetworkRaidMarker
