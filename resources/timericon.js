@@ -162,7 +162,7 @@ class TimerIcon extends HTMLElement {
     // Constants.
     this.kBackgroundOpacity = 0.8;
     this.kOuterBorderSize = 1;
-    this.kAnimateMS = 100;
+    this.kAnimateMs = 100;
 
     // Default values.
     this._value = 0;
@@ -301,7 +301,10 @@ class TimerIcon extends HTMLElement {
   }
 
   reset() {
-    if (!this._connected) return;
+    if (!this._connected)
+      return;
+
+    this.startTimeMs = +new Date();
 
     this.rootElement.style.display = 'block';
     clearTimeout(this._hide_timer);
@@ -314,6 +317,7 @@ class TimerIcon extends HTMLElement {
   }
 
   advance() {
+    this._value = this._duration + (this.startTimeMs - new Date()) / 1000;
     if (this._value <= 0) {
       this._value = 0;
       if (this._hideafter >= 0) {
@@ -328,9 +332,8 @@ class TimerIcon extends HTMLElement {
       }
     } else {
       this._timer = setTimeout(() => {
-        this._value = this._value - (this.kAnimateMS / 1000);
         this.advance();
-      }, this.kAnimateMS);
+      }, this.kAnimateMs);
     }
     this.draw();
   }
