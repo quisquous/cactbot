@@ -82,6 +82,9 @@
 .drk #hp-bar, .pld #hp-bar, .blu #hp-bar {
   height: 18px;
 }
+.blm #mp-bar {
+  height: 22px;
+}
 
 /* Relative to #bars */
 #rdm-bar {
