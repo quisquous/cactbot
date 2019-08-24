@@ -227,7 +227,7 @@ class LogCollector {
   }
 
   SearchPlayers(matches) {
-    if (matches[1] in this.currentFight.players)
+    if (matches[1] in this.currentFight.players || /^4/.test(matches[1]))
       return;
     let moves = {
       PLD: [
