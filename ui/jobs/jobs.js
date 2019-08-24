@@ -785,7 +785,7 @@ class Bars {
       'MNK': this.setupMnk,
     };
     if (setup[this.job])
-      setup[this.job]();
+      setup[this.job].bind(this)();
   }
 
   addResourceBox(options) {
