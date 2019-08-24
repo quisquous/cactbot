@@ -1085,6 +1085,31 @@ class Bars {
     return timerBox;
   }
 
+  addTimerBar(options) {
+    let id = this.job.toLowerCase() + '-bar';
+    let container = document.getElementById(id);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = id;
+      document.getElementById('bars').appendChild(container);
+    }
+
+    let timerDiv = document.createElement('div');
+    timerDiv.id = options.id;
+    let timer = document.createElement('timer-bar');
+    container.appendChild(timerDiv);
+    timerDiv.appendChild(timer);
+
+    timer.width = window.getComputedStyle(timerDiv).width;
+    timer.height = window.getComputedStyle(timerDiv).height;
+    timer.toward = 'left';
+    timer.bg = computeBackgroundColorFrom(timer, 'bar-border-color');
+    if (options.fgColor)
+      timer.fg = computeBackgroundColorFrom(timer, options.fgColor);
+
+    return timer;
+  }
+
   setupWar() {
     let gcd = this.options.WarGcd;
 
@@ -1307,37 +1332,15 @@ class Bars {
   }
 
   setupMnk() {
-    let mnkBars = document.createElement('div');
-    mnkBars.id = 'mnk-bar';
-    document.getElementById('bars').appendChild(mnkBars);
+    let lightningTimer = this.addTimerBar({
+      id: 'mnk-timers-lightning',
+      fgColor: 'mnk-color-lightning-0',
+    });
 
-    // TODO: abstract timer bar additions
-    this.o.lightningContainer = document.createElement('div');
-    this.o.lightningContainer.id = 'mnk-timers-lightning';
-    this.o.lightningTimer = document.createElement('timer-bar');
-    mnkBars.appendChild(this.o.lightningContainer);
-    this.o.lightningContainer.appendChild(this.o.lightningTimer);
-
-    this.o.lightningTimer.width = window.getComputedStyle(this.o.lightningContainer).width;
-    this.o.lightningTimer.height = window.getComputedStyle(this.o.lightningContainer).height;
-    this.o.lightningTimer.toward = 'left';
-    this.o.lightningTimer.bg = computeBackgroundColorFrom(this.o.lightningTimer, 'bar-border-color');
-
-    this.o.formContainer = document.createElement('div');
-    this.o.formContainer.id = 'mnk-timers-combo';
-    this.o.formTimer = document.createElement('timer-bar');
-    mnkBars.appendChild(this.o.formContainer);
-    this.o.formContainer.appendChild(this.o.formTimer);
-
-    this.o.formTimer.width = window.getComputedStyle(this.o.formContainer).width;
-    this.o.formTimer.height = window.getComputedStyle(this.o.formContainer).height;
-    this.o.formTimer.style = 'empty';
-    this.o.formTimer.toward = 'left';
-    this.o.formTimer.bg = computeBackgroundColorFrom(this.o.formTimer, 'bar-border-color');
-    this.o.formTimer.fg = computeBackgroundColorFrom(this.o.formTimer, 'mnk-color-form');
-
-    let lightningTimer = this.o.lightningTimer;
-    let formTimer = this.o.formTimer;
+    let formTimer = this.addTimerBar({
+      id: 'mnk-timers-combo',
+      fgColor: 'mnk-color-form',
+    });
 
     let textBox = this.addResourceBox({
       classList: ['mnk-color-chakra'],
