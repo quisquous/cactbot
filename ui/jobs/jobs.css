@@ -51,6 +51,7 @@
 #pull-bar, #hp-bar, #mp-bar, #mp-tick, #cp-bar, #gp-bar {
   width: 202px;
   height: 7px;
+  margin-top: 1px;
 }
 
 #pull-bar {
@@ -232,6 +233,44 @@
   display: inline-block;
   left: 142px;
 }
+
+#blm-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 203px;
+  height: 12px;
+}
+#blm-stacks-xeno {
+  width: 50%;
+  height: 100%;
+}
+#blm-stacks-xeno > div {
+  background-color: rgba(66, 19, 128, 0.2);
+  margin-right: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(50% - 4px);
+  height: 100%;
+}
+#blm-stacks-xeno > div.active {
+  background-color: rgb(66, 19, 128);
+}
+#blm-stacks-heart {
+  width: 50%;
+  height: 100%;
+}
+#blm-stacks-heart > div {
+  background-color: rgba(174, 227, 235, 0.2);
+  margin-left: 2px;
+  display: inline-block;
+  border: 1px solid black;
+  width: calc(33% - 4px);
+  height: 100%;
+}
+#blm-stacks-heart > div.active {
+  background-color: rgb(174, 227, 235);
+}
+
 
 .bar-border-color {
   background-color: rgb(30, 30, 30);

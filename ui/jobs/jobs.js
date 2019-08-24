@@ -868,7 +868,7 @@ class Bars {
     return timerBox;
   }
 
-  addTimerBar(options) {
+  addJobBarContainer() {
     let id = this.job.toLowerCase() + '-bar';
     let container = document.getElementById(id);
     if (!container) {
@@ -876,6 +876,11 @@ class Bars {
       container.id = id;
       document.getElementById('bars').appendChild(container);
     }
+    return container;
+  }
+
+  addTimerBar(options) {
+    let container = addJobBarContainer();
 
     let timerDiv = document.createElement('div');
     timerDiv.id = options.id;
@@ -894,13 +899,7 @@ class Bars {
   }
 
   addResourceBar(options) {
-    let id = this.job.toLowerCase() + '-bar';
-    let container = document.getElementById(id);
-    if (!container) {
-      container = document.createElement('div');
-      container.id = id;
-      document.getElementById('bars').appendChild(container);
-    }
+    let container = addJobBarContainer();
 
     let barDiv = document.createElement('div');
     barDiv.id = options.id;
@@ -1258,13 +1257,7 @@ class Bars {
   }
 
   setupRdm() {
-    let id = this.job.toLowerCase() + '-bar';
-    let container = document.getElementById(id);
-    if (!container) {
-      container = document.createElement('div');
-      container.id = id;
-      document.getElementById('bars').appendChild(container);
-    }
+    let container = this.addJobBarContainer();
 
     let incs = 20;
     for (let i = 0; i < 100; i += incs) {
@@ -1358,13 +1351,6 @@ class Bars {
   }
 
   setupBlm() {
-    this.jobFuncs.push((jobDetail) => {
-      if (this.umbralStacks != jobDetail.umbralStacks) {
-        this.umbralStacks = jobDetail.umbralStacks;
-        this.UpdateMPTicker();
-      }
-    });
-
     let thunderDot = this.addProcBox({
       id: 'blm-dot-thunder',
       fgColor: 'blm-color-dot',
@@ -1414,6 +1400,52 @@ class Bars {
       fireProc.duration = gainSecondsFromLog(log);
     };
     this.loseEffectFuncMap[gLang.kEffect.Firestarter] = () => fireProc.duration = 0;
+
+    // It'd be super nice to use grid here.
+    // Maybe some day when cactbot uses new cef.
+    let stacksContainer = document.createElement('div');
+    stacksContainer.id = 'blm-stacks';
+    this.addJobBarContainer().appendChild(stacksContainer);
+    let xenoStacksContainer = document.createElement('div');
+    xenoStacksContainer.id = 'blm-stacks-xeno';
+    stacksContainer.appendChild(xenoStacksContainer);
+    let heartStacksContainer = document.createElement('div');
+    heartStacksContainer.id = 'blm-stacks-heart';
+    stacksContainer.appendChild(heartStacksContainer);
+
+    let xenoStacks = [];
+    for (let i = 0; i < 2; ++i) {
+      let d = document.createElement('div');
+      xenoStacksContainer.appendChild(d);
+      xenoStacks.push(d);
+    }
+    let heartStacks = [];
+    for (let i = 0; i < 3; ++i) {
+      let d = document.createElement('div');
+      heartStacksContainer.appendChild(d);
+      heartStacks.push(d);
+    }
+
+    this.jobFuncs.push((jobDetail) => {
+      if (this.umbralStacks != jobDetail.umbralStacks) {
+        this.umbralStacks = jobDetail.umbralStacks;
+        this.UpdateMPTicker();
+      }
+      let fouls = jobDetail.foulCount;
+      for (let i = 0; i < 2; ++i) {
+        if (fouls > i)
+          xenoStacks[i].classList.add('active');
+        else
+          xenoStacks[i].classList.remove('active');
+      }
+      let hearts = jobDetail.umbralHearts;
+      for (let i = 0; i < 3; ++i) {
+        if (hearts > i)
+          heartStacks[i].classList.add('active');
+        else
+          heartStacks[i].classList.remove('active');
+      }
+    });
   }
 
   OnComboChange(skill) {
