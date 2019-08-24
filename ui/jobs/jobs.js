@@ -785,7 +785,7 @@ class Bars {
       this.o.manaBar.width = window.getComputedStyle(this.o.manaContainer).width;
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.lefttext = manaText;
-      this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color'); ;
+      this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color');
     }
 
     if (showMPTicker) {
@@ -811,6 +811,7 @@ class Bars {
       'AST': this.setupAst,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
+      'BLM': this.setupBlm,
     };
     if (setup[this.job])
       setup[this.job].bind(this)();
@@ -1357,6 +1358,15 @@ class Bars {
     this.loseEffectFuncMap[gLang.kEffect.Impactful] = () => impactfulProc.duration = 0;
   }
 
+  setupBlm() {
+    this.jobFuncs.push((jobDetail) => {
+      if (this.umbralStacks != jobDetail.umbralStacks) {
+        this.umbralStacks = jobDetail.umbralStacks;
+        this.UpdateMPTicker();
+      }
+    });
+  }
+
   OnComboChange(skill) {
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
@@ -1555,7 +1565,11 @@ class Bars {
     let update_level = false;
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
-      this.combo.AbortCombo(); // Combos are job specific.
+      // Combos are job specific.
+      this.combo.AbortCombo();
+      // Update MP ticker as umbral stacks has changed.
+      this.umbralStacks = 0;
+      this.UpdateMPTicker();
       update_job = update_hp = update_mp = update_cp = update_gp = true;
     }
     if (e.detail.level != this.level) {
@@ -1601,13 +1615,9 @@ class Bars {
     if (update_level)
       this.UpdateFoodBuff();
 
-    for (let i = 0; i < this.jobFuncs.length; ++i)
-      this.jobFuncs[i](e.detail.jobDetail);
-
-    // Update this even for non-BLM since it's relevant for the MP ticker
-    if (this.umbralStacks != e.detail.jobDetail.umbralStacks) {
-      this.umbralStacks = e.detail.jobDetail.umbralStacks;
-      this.UpdateMPTicker();
+    if (e.detail.jobDetail) {
+      for (let i = 0; i < this.jobFuncs.length; ++i)
+        this.jobFuncs[i](e.detail.jobDetail);
     }
   }
 
