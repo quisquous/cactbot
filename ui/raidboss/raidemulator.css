@@ -108,6 +108,7 @@ button:hover {
 .BLM { background: url(../../resources/icon/jobs/blm-framed.png) 0 / contain; }
 .SMN { background: url(../../resources/icon/jobs/smn-framed.png) 0 / contain; }
 .RDM { background: url(../../resources/icon/jobs/rdm-framed.png) 0 / contain; }
+.BLU { background: url(../../resources/icon/jobs/blu-framed.png) 0 / contain; }
 
 /* Triggerlines */
 .triggerlines {
@@ -145,7 +146,7 @@ button:hover {
 .triggerline-timer {
   position: absolute;
   height: 100%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 1);
   border-radius: 2.5px;
   z-index: -1;
 }
