@@ -84,7 +84,7 @@
   height: 18px;
 }
 .blm #mp-bar {
-  height: 22px;
+  height: 24px;
 }
 
 /* Relative to #bars */
@@ -130,13 +130,14 @@
 }
 
 /* Relative to #bars */
-#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes {
+#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes, #blm-boxes {
+  display: flex;
   position: absolute;
   left: 202px;
   top: 0px;
 }
 
-#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div  {
+#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div, #blm-boxes>div  {
   display: inline-block;
   margin-left: 4;
   border: 1px solid rgba(0,0,0,0.7);
@@ -167,7 +168,7 @@
   height: 30px;
 }
 
-#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text {
+#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text, #blm-boxes .text {
   text-align: center;
   position: relative;
   top: 7px;
@@ -181,6 +182,14 @@
 #drk-boxes .text, #pld-boxes .text {
   top: 6px;
   font-size: 20px;
+}
+
+#blm-boxes > div{
+  width: 30px;
+  height: 30px;
+}
+#blm-boxes .text {
+  top: 6px;
 }
 
 /*
@@ -253,7 +262,7 @@
   height: 100%;
 }
 #blm-stacks-xeno > div.active {
-  background-color: rgb(66, 19, 128);
+  background-color: rgb(200, 50, 200);
 }
 #blm-stacks-heart {
   width: 50%;
@@ -424,4 +433,19 @@
 }
 .blm-color-fire {
   background-color: rgb(217, 51, 0);
+}
+.blm-umbral-timer {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.blm-umbral-timer.fire {
+  background-color: rgb(229, 56, 53);
+}
+.blm-umbral-timer.ice {
+  background-color: rgb(30, 80, 245);
+}
+.blm-xeno-timer {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.blm-xeno-timer.active {
+  background-color: rgb(200, 50, 200);
 }

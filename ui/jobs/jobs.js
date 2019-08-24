@@ -816,8 +816,18 @@ class Bars {
       setup[this.job].bind(this)();
   }
 
-  addResourceBox(options) {
-    // TODO: make this just boxes with job as a different class.
+  addJobBarContainer() {
+    let id = this.job.toLowerCase() + '-bar';
+    let container = document.getElementById(id);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = id;
+      document.getElementById('bars').appendChild(container);
+    }
+    return container;
+  }
+
+  addJobBoxContainer() {
     let id = this.job.toLowerCase() + '-boxes';
     let boxes = document.getElementById(id);
     if (!boxes) {
@@ -825,13 +835,16 @@ class Bars {
       boxes.id = id;
       document.getElementById('bars').appendChild(boxes);
     }
+    return boxes;
+  }
 
+  addResourceBox(options) {
+    let boxes = this.addJobBoxContainer();
     let boxDiv = document.createElement('div');
     if (options.classList) {
       for (let i = 0; i < options.classList.length; ++i)
         boxDiv.classList.add(options.classList[i]);
     }
-
     boxes.appendChild(boxDiv);
 
     let textDiv = document.createElement('div');
@@ -868,19 +881,8 @@ class Bars {
     return timerBox;
   }
 
-  addJobBarContainer() {
-    let id = this.job.toLowerCase() + '-bar';
-    let container = document.getElementById(id);
-    if (!container) {
-      container = document.createElement('div');
-      container.id = id;
-      document.getElementById('bars').appendChild(container);
-    }
-    return container;
-  }
-
   addTimerBar(options) {
-    let container = addJobBarContainer();
+    let container = this.addJobBarContainer();
 
     let timerDiv = document.createElement('div');
     timerDiv.id = options.id;
@@ -899,7 +901,7 @@ class Bars {
   }
 
   addResourceBar(options) {
-    let container = addJobBarContainer();
+    let container = this.addJobBarContainer();
 
     let barDiv = document.createElement('div');
     barDiv.id = options.id;
@@ -951,7 +953,7 @@ class Bars {
       // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
       if (skill == gLang.kAbility.MythrilTempest) {
         if (eyeBox.duration > 0) {
-          let old = parseInt(eyeBox.duration) - parseInt(eyeBox.elapsed);
+          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
           eyeBox.duration = Math.min(old + 10, 30);
         }
@@ -1028,7 +1030,7 @@ class Bars {
         p.classList.remove('mid');
       }
 
-      let oldSeconds = parseInt(darksideBox.duration) - parseInt(darksideBox.elapsed);
+      let oldSeconds = parseFloat(darksideBox.duration) - parseFloat(darksideBox.elapsed);
       let seconds = jobDetail.darksideMilliseconds / 1000.0;
       if (!darksideBox.duration || seconds > oldSeconds) {
         darksideBox.duration = 0;
@@ -1191,7 +1193,7 @@ class Bars {
 
         // Setting the duration resets the timer bar to 0, so set
         // duration first before adjusting the value.
-        let old = parseInt(lightningTimer.duration) - parseInt(lightningTimer.elapsed);
+        let old = parseFloat(lightningTimer.duration) - parseFloat(lightningTimer.elapsed);
         let lightningSeconds = jobDetail.lightningMilliseconds / 1000.0;
         if (lightningSeconds > old) {
           lightningTimer.duration = 16;
@@ -1226,7 +1228,7 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.FourPointFury] = () => {
       // FIXME: using this at zero.
-      let old = parseInt(twinSnakesBox.duration) - parseInt(twinSnakesBox.elapsed);
+      let old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
       twinSnakesBox.duration = 0;
       if (old > 0)
         twinSnakesBox.duration = Math.min(old + 10, 15);
@@ -1426,6 +1428,13 @@ class Bars {
       heartStacks.push(d);
     }
 
+    let umbralTimer = this.addResourceBox({
+      classList: ['blm-umbral-timer'],
+    });
+    let xenoTimer = this.addResourceBox({
+      classList: ['blm-xeno-timer'],
+    });
+
     this.jobFuncs.push((jobDetail) => {
       if (this.umbralStacks != jobDetail.umbralStacks) {
         this.umbralStacks = jobDetail.umbralStacks;
@@ -1444,6 +1453,31 @@ class Bars {
           heartStacks[i].classList.add('active');
         else
           heartStacks[i].classList.remove('active');
+      }
+
+      let stacks = jobDetail.umbralStacks;
+      let seconds = Math.ceil(jobDetail.umbralMilliseconds / 1000.0);
+      let p = umbralTimer.parentNode;
+      if (!stacks) {
+        umbralTimer.innerText = '';
+        p.classList.remove('fire');
+        p.classList.remove('ice');
+      } else if (stacks > 0) {
+        umbralTimer.innerText = seconds;
+        p.classList.add('fire');
+        p.classList.remove('ice');
+      } else {
+        umbralTimer.innerText = seconds;
+        p.classList.remove('fire');
+        p.classList.add('ice');
+      }
+
+      if (!jobDetail.enochian) {
+        xenoTimer.innerText = '';
+        xenoTimer.parentNode.classList.remove('active');
+      } else {
+        xenoTimer.innerText = Math.ceil(jobDetail.nextPolygotMilliseconds / 1000.0);
+        xenoTimer.parentNode.classList.add('active');
       }
     });
   }
