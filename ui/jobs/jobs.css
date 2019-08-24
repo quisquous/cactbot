@@ -208,23 +208,23 @@
 }
 
 /* Relative to #bars */
-#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs, #drk-procs {
+#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs, #drk-procs, #blm-procs {
   position: absolute;
   top: 146px;
   left: 10px;
 }
 
-#mnk-procs-dragonkick, #ast-procs-combust, #blu-procs-offguard {
+#mnk-procs-dragonkick, #ast-procs-combust, #blu-procs-offguard, #blm-procs-fire{
   position: relative;
   display: inline-block;
   left: 0px;
 }
-#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment  {
+#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment, #blm-procs-thunder  {
   position: relative;
   display: inline-block;
   left: calc(142px / 2);
 }
-#mnk-procs-demolish, #ast-procs-helios {
+#mnk-procs-demolish, #ast-procs-helios, #blm-dot-thunder  {
   position: relative;
   display: inline-block;
   left: 142px;
@@ -399,4 +399,13 @@
 }
 .blu-color-torment {
   background-color: rgb(168, 65, 45);
+}
+.blm-color-dot {
+  background-color: rgb(110, 186, 245);
+}
+.blm-color-thunder {
+  background-color: rgb(64, 65, 163);
+}
+.blm-color-fire {
+  background-color: rgb(217, 51, 0);
 }

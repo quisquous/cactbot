@@ -32,6 +32,8 @@ class CactbotLanguageJa extends CactbotLanguage {
       Devilment: '攻めのタンゴ',
       TechnicalFinish: 'テクニカルフィニッシュ',
       StandardFinish: 'スタンダードフィニッシュ',
+      Thundercloud: 'サンダー系魔法効果アップ',
+      Firestarter: 'ファイガ効果アップ',
 
       Petrification: '石化',
       BeyondDeath: '死の超越',

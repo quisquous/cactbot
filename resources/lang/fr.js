@@ -32,6 +32,8 @@ class CactbotLanguageFr extends CactbotLanguage {
       Devilment: 'Tango endiablé',
       TechnicalFinish: 'Final technique',
       StandardFinish: 'Final classique',
+      Thundercloud: 'Nuage d\'orage',
+      Firestarter: 'Pyromane',
 
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',

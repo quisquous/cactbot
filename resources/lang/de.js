@@ -32,6 +32,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Devilment: 'Todestango',
       TechnicalFinish: 'Komplexes Finale',
       StandardFinish: 'Einfaches Finale',
+      Thundercloud: 'Blitz +',
+      Firestarter: 'Feuga +',
 
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',

@@ -33,6 +33,9 @@ class CactbotLanguageEn extends CactbotLanguage {
       Devilment: 'Devilment',
       StandardFinish: 'Standard Finish',
       TechnicalFinish: 'Technical Finish',
+      Thundercloud: 'Thundercloud',
+      Firestarter: 'Firestarter',
+
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',
       Burns: 'Burns',

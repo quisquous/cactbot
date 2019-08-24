@@ -89,6 +89,10 @@ class CactbotLanguage {
       Confiteor: '404B',
       FourPointFury: '4059',
       TechnicalFinish: '3F44',
+      Thunder1: '90',
+      Thunder2: '94',
+      Thunder3: '99',
+      Thunder4: '1CFC',
 
       // Susano Ex
       ChurningDeep: '203F',

@@ -1365,6 +1365,56 @@ class Bars {
         this.UpdateMPTicker();
       }
     });
+
+    let thunderDot = this.addProcBox({
+      id: 'blm-dot-thunder',
+      fgColor: 'blm-color-dot',
+      threshold: 4,
+    });
+    let thunderProc = this.addProcBox({
+      id: 'blm-procs-thunder',
+      fgColor: 'blm-color-thunder',
+      threshold: 1000,
+    });
+    thunderProc.bigatzero = false;
+    let fireProc = this.addProcBox({
+      id: 'blm-procs-fire',
+      fgColor: 'blm-color-fire',
+      threshold: 1000,
+    });
+    fireProc.bigatzero = false;
+
+    // This could have two boxes here for the rare case where you
+    // have two long-lived enemies, but it's an edge case that
+    // maybe only makes sense in ucob?
+    this.abilityFuncMap[gLang.kAbility.Thunder1] = () => {
+      thunderDot.duration = 0;
+      thunderDot.duration = 18;
+    };
+    this.abilityFuncMap[gLang.kAbility.Thunder2] = () => {
+      thunderDot.duration = 0;
+      thunderDot.duration = 12;
+    };
+    this.abilityFuncMap[gLang.kAbility.Thunder3] = () => {
+      thunderDot.duration = 0;
+      thunderDot.duration = 24;
+    };
+    this.abilityFuncMap[gLang.kAbility.Thunder4] = () => {
+      thunderDot.duration = 0;
+      thunderDot.duration = 18;
+    };
+
+    this.gainEffectFuncMap[gLang.kEffect.Thundercloud] = (name, log) => {
+      thunderProc.duration = 0;
+      thunderProc.duration = gainSecondsFromLog(log);
+    };
+    this.loseEffectFuncMap[gLang.kEffect.Thundercloud] = () => thunderProc.duration = 0;
+
+    this.gainEffectFuncMap[gLang.kEffect.Firestarter] = (name, log) => {
+      fireProc.duration = 0;
+      fireProc.duration = gainSecondsFromLog(log);
+    };
+    this.loseEffectFuncMap[gLang.kEffect.Firestarter] = () => fireProc.duration = 0;
   }
 
   OnComboChange(skill) {
@@ -1695,10 +1745,6 @@ class Bars {
           }
         }
       }
-
-      // For learning boss ability codes.
-      // if (log.search(/Exdeath (starts using Unknown_|readies |begins casting )/) >= 0)
-      //  console.log(log);
 
       if (log.search(/:test:jobs:/) >= 0)
         this.Test();
