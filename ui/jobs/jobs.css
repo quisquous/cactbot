@@ -233,32 +233,6 @@
   left: 142px;
 }
 
-/* Relative to #bars */
-.rdm-combo {
-  display: none;
-  position: absolute;
-  top: -9px;
-  width: 50px;
-  height: 6px;
-  backgroundColor: #990;
-  border: 1px solid black;
-}
-.rdm-combo.active {
-  display: block;
-}
-#rdm-combo-1 {
-  left: 0px;
-  background: #990;
-}
-#rdm-combo-2 {
-  left: calc((202px - 52px) / 2);
-  background: #990;
-}
-#rdm-combo-3 {
-  left: calc(202px - 52px);
-  background: #A00;
-}
-
 .bar-border-color {
   background-color: rgb(30, 30, 30);
 }
