@@ -1424,24 +1424,25 @@ class Bars {
     let stacksContainer = document.createElement('div');
     stacksContainer.id = 'blm-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
-    let xenoStacksContainer = document.createElement('div');
-    xenoStacksContainer.id = 'blm-stacks-xeno';
-    stacksContainer.appendChild(xenoStacksContainer);
+
     let heartStacksContainer = document.createElement('div');
     heartStacksContainer.id = 'blm-stacks-heart';
     stacksContainer.appendChild(heartStacksContainer);
-
-    let xenoStacks = [];
-    for (let i = 0; i < 2; ++i) {
-      let d = document.createElement('div');
-      xenoStacksContainer.appendChild(d);
-      xenoStacks.push(d);
-    }
     let heartStacks = [];
     for (let i = 0; i < 3; ++i) {
       let d = document.createElement('div');
       heartStacksContainer.appendChild(d);
       heartStacks.push(d);
+    }
+
+    let xenoStacksContainer = document.createElement('div');
+    xenoStacksContainer.id = 'blm-stacks-xeno';
+    stacksContainer.appendChild(xenoStacksContainer);
+    let xenoStacks = [];
+    for (let i = 0; i < 2; ++i) {
+      let d = document.createElement('div');
+      xenoStacksContainer.appendChild(d);
+      xenoStacks.push(d);
     }
 
     let umbralTimer = this.addResourceBox({

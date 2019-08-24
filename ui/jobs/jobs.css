@@ -30,12 +30,12 @@
   left: 278px;
 }
 
-.blm #right-side-icons {
-  left: 278px;
-}
-
 .drk #right-side-icons {
   left: 250px;
+}
+
+.blm #left-side-icons {
+  left: -40px;
 }
 
 .justbuffs #right-side-icons {
@@ -236,12 +236,12 @@
   display: inline-block;
   left: 0px;
 }
-#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment, #blm-procs-thunder  {
+#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment, #blm-dot-thunder  {
   position: relative;
   display: inline-block;
   left: calc(142px / 2);
 }
-#mnk-procs-demolish, #ast-procs-helios, #blm-dot-thunder  {
+#mnk-procs-demolish, #ast-procs-helios, #blm-procs-thunder {
   position: relative;
   display: inline-block;
   left: 142px;
@@ -250,7 +250,7 @@
 #blm-stacks {
   display: flex;
   margin-top: 1px;
-  width: 203px;
+  width: 202px;
   height: 12px;
 }
 #blm-stacks-xeno {
@@ -259,7 +259,7 @@
 }
 #blm-stacks-xeno > div {
   background-color: rgba(66, 19, 128, 0.2);
-  margin-right: 2px;
+  margin-left: 2px;
   display: inline-block;
   border: 1px solid black;
   width: calc(50% - 4px);
@@ -274,7 +274,7 @@
 }
 #blm-stacks-heart > div {
   background-color: rgba(174, 227, 235, 0.2);
-  margin-left: 2px;
+  margin-right: 2px;
   display: inline-block;
   border: 1px solid black;
   width: calc(33% - 4px);
@@ -283,7 +283,11 @@
 #blm-stacks-heart > div.active {
   background-color: rgb(174, 227, 235);
 }
-
+.blm-umbral-timer {
+  position: absolute;
+  /* fix this hack by using better layout primitives */
+  left: -242px;
+}
 
 .bar-border-color {
   background-color: rgb(30, 30, 30);
