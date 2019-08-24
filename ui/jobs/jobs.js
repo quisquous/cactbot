@@ -18,8 +18,6 @@ let Options = {
 
   MaxLevel: 80,
 
-  ShowRdmProcs: true,
-
   JustBuffTracker: false,
 
   PerBuffOptions: {},
@@ -48,13 +46,6 @@ let Options = {
 };
 
 // Regexes to be filled out once we know the player's name.
-let kReRdmWhiteManaProc = null;
-let kReRdmBlackManaProc = null;
-let kReRdmImpactProc = null;
-let kReRdmWhiteManaProcEnd = null;
-let kReRdmBlackManaProcEnd = null;
-let kReRdmImpactProcEnd = null;
-let kReRdmEndCombo = null;
 let kReSmnRuinProc = null;
 let kReSmnRuinProcEnd = null;
 let kReSmnAetherflow = null;
@@ -213,12 +204,6 @@ function setupComboTracker(callback) {
 }
 
 function setupRegexes() {
-  kReRdmWhiteManaProc = gLang.youGainEffectRegex(gLang.kEffect.VerstoneReady);
-  kReRdmWhiteManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerstoneReady);
-  kReRdmBlackManaProc = gLang.youGainEffectRegex(gLang.kEffect.VerfireReady);
-  kReRdmBlackManaProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.VerfireReady);
-  kReRdmImpactProc = gLang.youGainEffectRegex(gLang.kEffect.Impactful);
-  kReRdmImpactProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.Impactful);
   kReSmnRuinProc = gLang.youGainEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnRuinProcEnd = gLang.youLoseEffectRegex(gLang.kEffect.FurtherRuin);
   kReSmnAetherflow = gLang.youUseAbilityRegex(gLang.kAbility.Aetherflow);
@@ -641,12 +626,12 @@ class Bars {
     this.loseEffectFuncMap = {};
     this.abilityFuncMap = {};
 
-    this.gainEffectFuncMap[gLang.kEffect.WellFed] = (function(name, log) {
+    this.gainEffectFuncMap[gLang.kEffect.WellFed] = (name, log) => {
       let seconds = gainSecondsFromLog(log);
       let now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this.UpdateFoodBuff();
-    }).bind(this);
+    };
 
     let container = document.getElementById('jobs-container');
     if (container == null) {
@@ -893,131 +878,7 @@ class Bars {
     }
 
     if (this.job == 'RDM') {
-      let rdmBars = document.createElement('div');
-      rdmBars.id = 'rdm-bar';
-      barsContainer.appendChild(rdmBars);
-
-      let incs = 20;
-      for (let i = 0; i < 100; i += incs) {
-        let marker = document.createElement('div');
-        marker.classList.add('marker');
-        marker.classList.add((i % 40 == 0) ? 'odd' : 'even');
-        rdmBars.appendChild(marker);
-        marker.style.left = i + '%';
-        marker.style.width = incs + '%';
-      }
-
-      this.o.whiteManaBarContainer = document.createElement('div');
-      this.o.whiteManaBarContainer.id = 'rdm-white-bar';
-      this.o.whiteManaBar = document.createElement('resource-bar');
-      rdmBars.appendChild(this.o.whiteManaBarContainer);
-      this.o.whiteManaBarContainer.appendChild(this.o.whiteManaBar);
-
-      this.o.whiteManaBar.bg = 'rgba(0, 0, 0, 0)';
-      this.o.whiteManaBar.fg = computeBackgroundColorFrom(this.o.whiteManaBar, 'rdm-color-white-mana');
-      this.o.whiteManaBar.width = window.getComputedStyle(this.o.whiteManaBarContainer).width;
-      this.o.whiteManaBar.height = window.getComputedStyle(this.o.whiteManaBarContainer).height;
-      this.o.whiteManaBar.maxvalue = 100;
-
-      this.o.blackManaBarContainer = document.createElement('div');
-      this.o.blackManaBarContainer.id = 'rdm-black-bar';
-      this.o.blackManaBar = document.createElement('resource-bar');
-      rdmBars.appendChild(this.o.blackManaBarContainer);
-      this.o.blackManaBarContainer.appendChild(this.o.blackManaBar);
-
-      this.o.blackManaBar.bg = 'rgba(0, 0, 0, 0)';
-      this.o.blackManaBar.fg = computeBackgroundColorFrom(this.o.blackManaBar, 'rdm-color-black-mana');
-      this.o.blackManaBar.width = window.getComputedStyle(this.o.blackManaBarContainer).width;
-      this.o.blackManaBar.height = window.getComputedStyle(this.o.blackManaBarContainer).height;
-      this.o.blackManaBar.maxvalue = 100;
-
-      this.o.rdmCombo1 = document.createElement('div');
-      this.o.rdmCombo1.id = 'rdm-combo-1';
-      this.o.rdmCombo1.classList.add('rdm-combo');
-      this.o.rdmCombo2 = document.createElement('div');
-      this.o.rdmCombo2.id = 'rdm-combo-2';
-      this.o.rdmCombo2.classList.add('rdm-combo');
-      this.o.rdmCombo3 = document.createElement('div');
-      this.o.rdmCombo3.id = 'rdm-combo-3';
-      this.o.rdmCombo3.classList.add('rdm-combo');
-
-      barsContainer.appendChild(this.o.rdmCombo1);
-      barsContainer.appendChild(this.o.rdmCombo2);
-      barsContainer.appendChild(this.o.rdmCombo3);
-
-      let rdmBoxesContainer = document.createElement('div');
-      rdmBoxesContainer.id = 'rdm-boxes';
-      barsContainer.appendChild(rdmBoxesContainer);
-
-      this.o.whiteManaTextBox = document.createElement('div');
-      this.o.whiteManaTextBox.classList.add('rdm-color-white-mana');
-      rdmBoxesContainer.appendChild(this.o.whiteManaTextBox);
-
-      this.o.blackManaTextBox = document.createElement('div');
-      this.o.blackManaTextBox.classList.add('rdm-color-black-mana');
-      rdmBoxesContainer.appendChild(this.o.blackManaTextBox);
-
-      this.o.whiteManaText = document.createElement('div');
-      this.o.whiteManaTextBox.appendChild(this.o.whiteManaText);
-      this.o.whiteManaText.classList.add('text');
-
-      this.o.blackManaText = document.createElement('div');
-      this.o.blackManaTextBox.appendChild(this.o.blackManaText);
-      this.o.blackManaText.classList.add('text');
-
-      if (this.options.ShowRdmProcs) {
-        let procsContainer = document.createElement('div');
-        procsContainer.id = 'rdm-procs';
-
-        let whiteProcContainer = document.createElement('div');
-        whiteProcContainer.id = 'rdm-procs-white';
-        let blackProcContainer = document.createElement('div');
-        blackProcContainer.id = 'rdm-procs-black';
-        let impactProcContainer = document.createElement('div');
-        impactProcContainer.id = 'rdm-procs-impact';
-        let rdmNoProcWhite = document.createElement('div');
-        rdmNoProcWhite.classList.add('inactive');
-        rdmNoProcWhite.classList.add('rdm-color-white-mana');
-        let rdmNoProcBlack = document.createElement('div');
-        rdmNoProcBlack.classList.add('inactive');
-        rdmNoProcBlack.classList.add('rdm-color-black-mana');
-        let rdmNoProcImpact = document.createElement('div');
-        rdmNoProcImpact.classList.add('inactive');
-        rdmNoProcImpact.classList.add('rdm-color-impact');
-        this.o.rdmProcWhite = document.createElement('timer-box');
-        this.o.rdmProcBlack = document.createElement('timer-box');
-        this.o.rdmProcImpact = document.createElement('timer-box');
-
-        barsContainer.appendChild(procsContainer);
-        procsContainer.appendChild(whiteProcContainer);
-        procsContainer.appendChild(blackProcContainer);
-        procsContainer.appendChild(impactProcContainer);
-        whiteProcContainer.appendChild(rdmNoProcWhite);
-        blackProcContainer.appendChild(rdmNoProcBlack);
-        impactProcContainer.appendChild(rdmNoProcImpact);
-        whiteProcContainer.appendChild(this.o.rdmProcWhite);
-        blackProcContainer.appendChild(this.o.rdmProcBlack);
-        impactProcContainer.appendChild(this.o.rdmProcImpact);
-
-        this.o.rdmProcWhite.style = 'empty';
-        this.o.rdmProcWhite.toward = 'bottom';
-        this.o.rdmProcWhite.threshold = 1000;
-        this.o.rdmProcWhite.hideafter = 0;
-        this.o.rdmProcWhite.fg = window.getComputedStyle(rdmNoProcWhite).backgroundColor;
-        this.o.rdmProcWhite.bg = 'black';
-        this.o.rdmProcBlack.style = 'empty';
-        this.o.rdmProcBlack.toward = 'bottom';
-        this.o.rdmProcBlack.threshold = 1000;
-        this.o.rdmProcBlack.hideafter = 0;
-        this.o.rdmProcBlack.fg = window.getComputedStyle(rdmNoProcBlack).backgroundColor;
-        this.o.rdmProcBlack.bg = 'black';
-        this.o.rdmProcImpact.style = 'empty';
-        this.o.rdmProcImpact.toward = 'bottom';
-        this.o.rdmProcImpact.threshold = 1000;
-        this.o.rdmProcImpact.hideafter = 0;
-        this.o.rdmProcImpact.fg = window.getComputedStyle(rdmNoProcImpact).backgroundColor;
-        this.o.rdmProcImpact.bg = 'black';
-      }
+      this.setupRdm();
     } else if (this.job == 'WAR') {
       this.setupWar();
     } else if (this.job == 'DRK') {
@@ -1110,6 +971,30 @@ class Bars {
     return timer;
   }
 
+  addResourceBar(options) {
+    let id = this.job.toLowerCase() + '-bar';
+    let container = document.getElementById(id);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = id;
+      document.getElementById('bars').appendChild(container);
+    }
+
+    let barDiv = document.createElement('div');
+    barDiv.id = options.id;
+    let bar = document.createElement('resource-bar');
+    container.appendChild(barDiv);
+    barDiv.appendChild(bar);
+
+    bar.bg = 'rgba(0, 0, 0, 0)';
+    bar.fg = computeBackgroundColorFrom(bar, options.fgColor);
+    bar.width = window.getComputedStyle(barDiv).width;
+    bar.height = window.getComputedStyle(barDiv).height;
+    bar.maxvalue = options.maxvalue;
+
+    return bar;
+  }
+
   setupWar() {
     let gcd = this.options.WarGcd;
 
@@ -1117,7 +1002,7 @@ class Bars {
       classList: ['war-color-beast'],
     });
 
-    this.jobFuncs.push(function(jobDetail) {
+    this.jobFuncs.push((jobDetail) => {
       let beast = jobDetail.beast;
       if (textBox.innerText === beast)
         return;
@@ -1140,7 +1025,7 @@ class Bars {
       scale: gcd,
     });
 
-    this.comboFuncs.push(function(skill) {
+    this.comboFuncs.push((skill) => {
       // TODO: handle flags where you don't hit something.
       // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
       if (skill == gLang.kAbility.MythrilTempest) {
@@ -1186,7 +1071,7 @@ class Bars {
         eyeBox.threshold = oldThreshold;
     });
 
-    this.loseEffectFuncMap[gLang.kEffect.StormsEye] = function() {
+    this.loseEffectFuncMap[gLang.kEffect.StormsEye] = () => {
       // Because storm's eye is tracked from the hit, and the ability is delayed,
       // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
       // To fix this, don't "lose" unless it's been going on a bit.
@@ -1200,7 +1085,7 @@ class Bars {
       classList: ['drk-color-blood'],
     });
 
-    this.jobFuncs.push(function(jobDetail) {
+    this.jobFuncs.push((jobDetail) => {
       let blood = jobDetail.blood;
       if (textBox.innerText === blood)
         return;
@@ -1226,7 +1111,7 @@ class Bars {
       classList: ['pld-color-oath'],
     });
 
-    this.jobFuncs.push(function(jobDetail) {
+    this.jobFuncs.push((jobDetail) => {
       let oath = jobDetail.oath;
       if (textBox.innerText === oath)
         return;
@@ -1250,7 +1135,7 @@ class Bars {
       threshold: gcd * 3 + 0.3,
     });
 
-    this.comboFuncs.push(function(skill) {
+    this.comboFuncs.push((skill) => {
       if (skill == gLang.kAbility.GoringBlade) {
         goreBox.duration = 0;
         // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
@@ -1281,11 +1166,11 @@ class Bars {
       threshold: gcd * 3,
     });
 
-    this.abilityFuncMap[gLang.kAbility.OffGuard] = function() {
+    this.abilityFuncMap[gLang.kAbility.OffGuard] = () => {
       offguardBox.duration = 0;
       offguardBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.SongOfTorment] = function() {
+    this.abilityFuncMap[gLang.kAbility.SongOfTorment] = () => {
       tormentBox.duration = 0;
       tormentBox.duration = 30;
     };
@@ -1317,15 +1202,15 @@ class Bars {
     });
 
     // Sorry, no differentation for noct asts here.  <_<
-    this.abilityFuncMap[gLang.kAbility.Combust2] = function() {
+    this.abilityFuncMap[gLang.kAbility.Combust2] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = function() {
+    this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = () => {
       beneficBox.duration = 0;
       beneficBox.duration = 18;
     };
-    this.abilityFuncMap[gLang.kAbility.AspectedHelios] = function() {
+    this.abilityFuncMap[gLang.kAbility.AspectedHelios] = () => {
       heliosBox.duration = 0;
       heliosBox.duration = 30;
     };
@@ -1350,7 +1235,7 @@ class Bars {
     for (let i = 0; i <= 3; ++i)
       lightningFgColors.push(computeBackgroundColorFrom(lightningTimer, 'mnk-color-lightning-' + i));
 
-    this.jobFuncs.push(function(jobDetail) {
+    this.jobFuncs.push((jobDetail) => {
       let chakra = jobDetail.chakraStacks;
       if (textBox.innerText !== chakra) {
         textBox.innerText = chakra;
@@ -1402,35 +1287,33 @@ class Bars {
       threshold: 5,
     });
 
-    this.abilityFuncMap[gLang.kAbility.TwinSnakes] = function() {
+    this.abilityFuncMap[gLang.kAbility.TwinSnakes] = () => {
       twinSnakesBox.duration = 0;
       twinSnakesBox.duration = 15;
     };
-    this.abilityFuncMap[gLang.kAbility.FourPointFury] = function() {
+    this.abilityFuncMap[gLang.kAbility.FourPointFury] = () => {
       // FIXME: using this at zero.
       let old = parseInt(twinSnakesBox.duration) - parseInt(twinSnakesBox.elapsed);
       twinSnakesBox.duration = 0;
       if (old > 0)
         twinSnakesBox.duration = Math.min(old + 10, 15);
     };
-    this.abilityFuncMap[gLang.kAbility.Demolish] = function() {
+    this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
       demolishBox.duration = 15;
     };
-    this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = function() {
+    this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
       dragonKickBox.duration = 0;
       dragonKickBox.duration = 30;
     };
-    this.loseEffectFuncMap[gLang.kEffect.LeadenFist] = function() {
-      dragonKickBox.duration = 0;
-    };
-    this.gainEffectFuncMap[gLang.kEffect.PerfectBalance] = function(name, log) {
+    this.loseEffectFuncMap[gLang.kEffect.LeadenFist] = () => dragonKickBox.duration = 0;
+    this.gainEffectFuncMap[gLang.kEffect.PerfectBalance] = (name, log) => {
       formTimer.duration = 0;
       formTimer.duration = gainSecondsFromLog(log);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
     };
 
-    let changeFormFunc = function(name, log) {
+    let changeFormFunc = (name, log) => {
       formTimer.duration = 0;
       formTimer.duration = gainSecondsFromLog(log);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
@@ -1438,6 +1321,106 @@ class Bars {
     this.gainEffectFuncMap[gLang.kEffect.OpoOpoForm] = changeFormFunc;
     this.gainEffectFuncMap[gLang.kEffect.RaptorForm] = changeFormFunc;
     this.gainEffectFuncMap[gLang.kEffect.CoeurlForm] = changeFormFunc;
+  }
+
+  setupRdm() {
+    let id = this.job.toLowerCase() + '-bar';
+    let container = document.getElementById(id);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = id;
+      document.getElementById('bars').appendChild(container);
+    }
+
+    let incs = 20;
+    for (let i = 0; i < 100; i += incs) {
+      let marker = document.createElement('div');
+      marker.classList.add('marker');
+      marker.classList.add((i % 40 == 0) ? 'odd' : 'even');
+      container.appendChild(marker);
+      marker.style.left = i + '%';
+      marker.style.width = incs + '%';
+    }
+
+    let whiteManaBar = this.addResourceBar({
+      id: 'rdm-white-bar',
+      fgColor: 'rdm-color-white-mana',
+      maxvalue: 100,
+    });
+
+    let blackManaBar = this.addResourceBar({
+      id: 'rdm-black-bar',
+      fgColor: 'rdm-color-black-mana',
+      maxvalue: 100,
+    });
+
+    let whiteManaBox = this.addResourceBox({
+      classList: ['rdm-color-white-mana'],
+    });
+
+    let blackManaBox = this.addResourceBox({
+      classList: ['rdm-color-black-mana'],
+    });
+
+    let whiteProc = this.addProcBox({
+      id: 'rdm-procs-white',
+      fgColor: 'rdm-color-white-mana',
+      threshold: 1000,
+    });
+    whiteProc.bigatzero = false;
+    let blackProc = this.addProcBox({
+      id: 'rdm-procs-black',
+      fgColor: 'rdm-color-black-mana',
+      threshold: 1000,
+    });
+    blackProc.bigatzero = false;
+    let impactProc = this.addProcBox({
+      id: 'rdm-procs-impact',
+      fgColor: 'rdm-color-impact',
+      threshold: 1000,
+    });
+    impactProc.bigatzero = false;
+
+    this.jobFuncs.push(function(jobDetail) {
+      let white = jobDetail.whiteMana;
+      let black = jobDetail.blackMana;
+
+      whiteManaBar.value = white;
+      blackManaBar.value = black;
+
+      if (whiteManaBox.innerText !== white) {
+        whiteManaBox.innerText = white;
+        let p = whiteManaBox.parentNode;
+        if (white < 80)
+          p.classList.add('dim');
+        else
+          p.classList.remove('dim');
+      }
+      if (blackManaBox.innerText !== black) {
+        blackManaBox.innerText = black;
+        let p = blackManaBox.parentNode;
+        if (black < 80)
+          p.classList.add('dim');
+        else
+          p.classList.remove('dim');
+      }
+    });
+
+    this.gainEffectFuncMap[gLang.kEffect.VerstoneReady] = (name, log) => {
+      whiteProc.duration = 0;
+      whiteProc.duration = gainSecondsFromLog(log) - this.options.RdmCastTime;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.VerstoneReady] = () => whiteProc.duration = 0;
+    this.gainEffectFuncMap[gLang.kEffect.VerfireReady] = (name, log) => {
+      blackProc.duration = 0;
+      blackProc.duration = gainSecondsFromLog(log) - this.options.RdmCastTime;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.VerfireReady] = () => blackProc.duration = 0;
+    this.gainEffectFuncMap[gLang.kEffect.Impactful] = (name, log) => {
+      impactfulProc.duration = 0;
+      impactfulProc = gainSecondsFromLog(log) - this.options.RdmCastTime;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.Impactful] = () => impactfulProc.duration = 0;
   }
 
   OnSummonerUpdate(aetherflowStacks, dreadwyrmStacks, bahamutStacks,
@@ -1494,25 +1477,6 @@ class Bars {
       this.smnChanneling = 0;
   }
 
-  OnRedMageUpdate(white, black) {
-    if (this.o.whiteManaBar == null || this.o.blackManaBar == null)
-      return;
-
-    this.o.whiteManaBar.value = white;
-    this.o.blackManaBar.value = black;
-    this.o.whiteManaText.innerText = white;
-    this.o.blackManaText.innerText = black;
-
-    if (white < 80)
-      this.o.whiteManaTextBox.classList.add('dim');
-    else
-      this.o.whiteManaTextBox.classList.remove('dim');
-    if (black < 80)
-      this.o.blackManaTextBox.classList.add('dim');
-    else
-      this.o.blackManaTextBox.classList.remove('dim');
-  }
-
   OnSummonerAetherflow(seconds) {
     if (this.o.smnAetherflowTimer != null) {
       // Reset to 0 first to make sure the timer starts over.
@@ -1529,44 +1493,9 @@ class Bars {
     }
   }
 
-  OnRedMageProcBlack(seconds) {
-    if (this.o.rdmProcBlack != null)
-      this.o.rdmProcBlack.duration = Math.max(0, seconds - this.options.RdmCastTime);
-  }
-
-  OnRedMageProcWhite(seconds) {
-    if (this.o.rdmProcWhite != null)
-      this.o.rdmProcWhite.duration = Math.max(0, seconds - this.options.RdmCastTime);
-  }
-
-  OnRedMageProcImpact(seconds) {
-    if (this.o.rdmProcImpact != null)
-      this.o.rdmProcImpact.duration = Math.max(0, seconds - this.options.RdmCastTime);
-  }
-
   OnComboChange(skill) {
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
-
-    if (this.job == 'RDM') {
-      if (this.o.rdmCombo1 == null || this.o.rdmCombo2 == null || this.o.rdmCombo3 == null)
-        return;
-
-      if (!skill)
-        skill = '';
-      if (skill == gLang.kAbility.Riposte || skill == gLang.kAbility.EnchantedRiposte)
-        this.o.rdmCombo1.classList.add('active');
-      else
-        this.o.rdmCombo1.classList.remove('active');
-      if (skill == gLang.kAbility.Zwerchhau || skill == gLang.kAbility.EnchantedZwerchhau)
-        this.o.rdmCombo2.classList.add('active');
-      else
-        this.o.rdmCombo2.classList.remove('active');
-      if (skill == gLang.kAbility.Redoublement || skill == gLang.kAbility.EnchantedRedoublement)
-        this.o.rdmCombo3.classList.add('active');
-      else
-        this.o.rdmCombo3.classList.remove('active');
-    }
   }
 
   UpdateHealth() {
@@ -1780,15 +1709,7 @@ class Bars {
     for (let i = 0; i < this.jobFuncs.length; ++i)
       this.jobFuncs[i](e.detail.jobDetail);
 
-    if (this.job == 'RDM') {
-      if (update_job ||
-            e.detail.jobDetail.whiteMana != this.whiteMana ||
-            e.detail.jobDetail.blackMana != this.blackMana) {
-        this.whiteMana = e.detail.jobDetail.whiteMana;
-        this.blackMana = e.detail.jobDetail.blackMana;
-        this.OnRedMageUpdate(this.whiteMana, this.blackMana);
-      }
-    } else if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
+    if (this.job == 'SMN' || this.job == 'SCH' || this.job == 'ACN') {
       if (update_job ||
           e.detail.jobDetail.aetherflowStacks != this.aetherflowStacks ||
           e.detail.jobDetail.dreadwyrmStacks != this.dreadwyrmStacks ||
@@ -1894,39 +1815,6 @@ class Bars {
         }
         if (log.search(kReSmnAetherflow) >= 0) {
           this.OnSummonerAetherflow(this.options.SmnAetherflowRecast);
-          continue;
-        }
-      }
-
-      if (this.job == 'RDM') {
-        let r = log.match(kReRdmBlackManaProc);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnRedMageProcBlack(seconds);
-          continue;
-        }
-        r = log.match(kReRdmWhiteManaProc);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnRedMageProcWhite(seconds);
-          continue;
-        }
-        r = log.match(kReRdmImpactProc);
-        if (r != null) {
-          let seconds = parseFloat(r[1]);
-          this.OnRedMageProcImpact(seconds);
-          continue;
-        }
-        if (log.search(kReRdmBlackManaProcEnd) >= 0) {
-          this.OnRedMageProcBlack(0);
-          continue;
-        }
-        if (log.search(kReRdmWhiteManaProcEnd) >= 0) {
-          this.OnRedMageProcWhite(0);
-          continue;
-        }
-        if (log.search(kReRdmImpactProcEnd) >= 0) {
-          this.OnRedMageProcImpact(0);
           continue;
         }
       }

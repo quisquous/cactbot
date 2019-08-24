@@ -2,7 +2,7 @@
 
 class TimerBox extends HTMLElement {
   static get observedAttributes() {
-    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'style', 'hideafter', 'roundupthreshold'];
+    return ['duration', 'threshold', 'bg', 'fg', 'toward', 'style', 'hideafter', 'bigatzero', 'roundupthreshold'];
   }
 
   // The full duration of the current countdown. When this is changed,
@@ -80,6 +80,14 @@ class TimerBox extends HTMLElement {
   }
   get hideafter() {
     return this.getAttribute('hideafter');
+  }
+
+  // When the timer reaches 0, it is big if this is true.
+  set bigatzero(big) {
+    this.setAttribute('bigatzero', big);
+  }
+  get bigatzero() {
+    return this.getAttribute('bigatzero');
   }
 
   // The length remaining in the count down.
@@ -186,6 +194,7 @@ class TimerBox extends HTMLElement {
     this._toward_top = true;
     this._style_fill = true;
     this._hideafter = -1;
+    this._big_at_zero = true;
     this._round_up_threshold = true;
 
     if (this.duration != null) this._duration = Math.max(parseFloat(this.duration), 0);
@@ -238,8 +247,9 @@ class TimerBox extends HTMLElement {
       this._round_up_threshold = newValue;
     } else if (name == 'valuescale') {
       this._value_scale = parseFloat(newValue);
+    } else if (name == 'bigatzero') {
+      this._big_at_zero = newValue === 'true';
     }
-
 
     this.draw();
   }
@@ -298,8 +308,13 @@ class TimerBox extends HTMLElement {
 
 
     if (rounded <= 0.000000001 || this._duration == 0) {
-      this.largeBoxElement.style.display = 'block';
-      this.smallBoxElement.style.display = 'none';
+      if (this._big_at_zero) {
+        this.largeBoxElement.style.display = 'block';
+        this.smallBoxElement.style.display = 'none';
+      } else {
+        this.largeBoxElement.style.display = 'none';
+        this.smallBoxElement.style.display = 'block';
+      }
       this.timerElement.style.display = 'none';
       this.largeBoxForegroundElement.style.transform = '';
     } else if (rounded > this._threshold) {

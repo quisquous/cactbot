@@ -206,16 +206,6 @@
   display: inline-block;
   left: 142px;
 }
-#rdm-procs .inactive {
-  position: absolute;
-  display: inline-block;
-  opacity: 0.6;
-  border: 1px solid black;
-  left: 14px;
-  top: 14px;
-  width: 20px;
-  height: 20px;
-}
 
 /* Relative to #bars */
 #smn-timers {
