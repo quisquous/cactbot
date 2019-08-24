@@ -205,7 +205,8 @@ namespace Cactbot {
     //          0x8 bytes in: byte beast;
     //        }
     //        struct DarkKnight {
-    //          0x8 bytes in: byte beast;
+    //          0x8 bytes in: byte blood;
+    //          0xA bytes in: uint16 darkside_ms;
     //        }
     //        struct Paladin {
     //          0x8 bytes in: byte beast;
@@ -627,16 +628,19 @@ namespace Cactbot {
 
     public class DarkKnightJobData {
       public int blood = 0;
+      public int darkside_ms = 0;
 
       public override bool Equals(object obj) {
         var o = obj as DarkKnightJobData;
         return o != null &&
-          blood == o.blood;
+          blood == o.blood &&
+          darkside_ms == o.darkside_ms;
       }
 
       public override int GetHashCode() {
         int hash = 17;
         hash = hash * 31 + blood.GetHashCode();
+        hash = hash * 31 + darkside_ms.GetHashCode();
         return hash;
       }
     }
@@ -648,6 +652,7 @@ namespace Cactbot {
 
       var j = new DarkKnightJobData();
       j.blood = bytes[kJobDataInnerStructOffsetJobSpecificData];
+      j.darkside_ms = BitConverter.ToUInt16(bytes, kJobDataInnerStructOffsetJobSpecificData + 2);
       return j;
     }
 

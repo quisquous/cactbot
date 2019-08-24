@@ -129,8 +129,9 @@ namespace Cactbot {
       }
 
       public struct DarkKnightDetail {
-        public DarkKnightDetail(FFXIVProcess.DarkKnightJobData d) { blood = d.blood; }
+        public DarkKnightDetail(FFXIVProcess.DarkKnightJobData d) { blood = d.blood; darksideMilliseconds = d.darkside_ms; }
         public int blood;
+        public int darksideMilliseconds;
       }
 
       public struct PaladinDetail {

@@ -22,7 +22,7 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'WAR')
     document.getElementById('jobinfo').innerText = jobDetail.beast;
   else if (e.detail.job == 'DRK')
-    document.getElementById('jobinfo').innerText = jobDetail.blood;
+    document.getElementById('jobinfo').innerText = jobDetail.blood + ' | ' + jobDetail.darksideMilliseconds;
   else if (e.detail.job == 'PLD')
     document.getElementById('jobinfo').innerText = jobDetail.oath;
   else if (e.detail.job == 'BRD')
