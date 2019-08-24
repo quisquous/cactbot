@@ -16,6 +16,9 @@ let Options = {
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
+  ShowMPTicker: ['BLM'],
+  ShowMPTickerOutOfCombat: false,
+
   MaxLevel: 80,
 
   JustBuffTracker: false,
@@ -43,6 +46,13 @@ let Options = {
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
 };
+
+let kMPNormalRate = 0.06;
+let kMPCombatRate = 0.02;
+let kMPUI1Rate = 0.30;
+let kMPUI2Rate = 0.45;
+let kMPUI3Rate = 0.60;
+let kMPTickInterval = 3.0;
 
 // Regexes to be filled out once we know the player's name.
 let kComboBreakers = null;
@@ -594,12 +604,14 @@ class Bars {
     this.hp = 0;
     this.maxHP = 0;
     this.mp = 0;
+    this.prevMP = 0;
     this.maxMP = 0;
     this.level = 0;
     this.distance = -1;
     this.whiteMana = -1;
     this.blackMana = -1;
     this.oath = -1;
+    this.umbralStacks = 0;
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
@@ -741,6 +753,7 @@ class Bars {
 
     let showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
     let showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
+    let showMPTicker = this.options.ShowMPTicker.indexOf(this.job) >= 0;
 
     let healthText = showHPNumber ? 'value' : '';
     let manaText = showMPNumber ? 'value' : '';
@@ -773,6 +786,21 @@ class Bars {
       this.o.manaBar.height = window.getComputedStyle(this.o.manaContainer).height;
       this.o.manaBar.lefttext = manaText;
       this.o.manaBar.bg = computeBackgroundColorFrom(this.o.manaBar, 'bar-border-color'); ;
+    }
+
+    if (showMPTicker) {
+      this.o.mpTickContainer = document.createElement('div');
+      this.o.mpTickContainer.id = 'mp-tick';
+      barsContainer.appendChild(this.o.mpTickContainer);
+
+      this.o.mpTicker = document.createElement('timer-bar');
+      this.o.mpTickContainer.appendChild(this.o.mpTicker);
+      this.o.mpTicker.width = window.getComputedStyle(this.o.mpTickContainer).width;
+      this.o.mpTicker.height = window.getComputedStyle(this.o.mpTickContainer).height;
+      this.o.mpTicker.bg = computeBackgroundColorFrom(this.o.mpTicker, 'bar-border-color');
+      this.o.mpTicker.style = 'fill';
+      this.o.mpTicker.hideafter = 0;
+      this.o.mpTicker.loop = true;
     }
 
     let setup = {
@@ -1347,7 +1375,37 @@ class Bars {
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
   }
 
+  UpdateMPTicker() {
+    if (!this.o.mpTicker) return;
+    let delta = this.mp - this.prevMP;
+    this.prevMP = this.mp;
+
+    // Hide out of combat if requested
+    if (!this.options.ShowMPTickerOutOfCombat && !this.inCombat) {
+      this.o.mpTicker.duration = 0;
+      return;
+    }
+
+    let baseTick = this.inCombat ? kMPCombatRate : kMPNormalRate;
+    let umbralTick = 0;
+    if (this.umbralStacks == -1) umbralTick = kMPUI1Rate;
+    if (this.umbralStacks == -2) umbralTick = kMPUI2Rate;
+    if (this.umbralStacks == -3) umbralTick = kMPUI3Rate;
+
+    let mpTick = Math.floor(this.maxMP * baseTick) + Math.floor(this.maxMP * umbralTick);
+    if (delta == mpTick && this.umbralStacks <= 0) // MP ticks disabled in AF
+      this.o.mpTicker.duration = kMPTickInterval;
+
+    // Update color based on the astral fire/ice state
+    let colorTag = 'mp-tick-color';
+    if (this.umbralStacks < 0) colorTag = 'mp-tick-color.ice';
+    if (this.umbralStacks > 0) colorTag = 'mp-tick-color.fire';
+    this.o.mpTicker.fg = computeBackgroundColorFrom(this.o.mpTicker, colorTag);
+  }
+
   UpdateMana() {
+    this.UpdateMPTicker();
+
     if (!this.o.manaBar) return;
     this.o.manaBar.value = this.mp;
     this.o.manaBar.maxvalue = this.maxMP;
@@ -1458,6 +1516,7 @@ class Bars {
 
     this.UpdateOpacity();
     this.UpdateFoodBuff();
+    this.UpdateMPTicker();
   }
 
   OnZoneChanged(e) {
@@ -1544,6 +1603,12 @@ class Bars {
 
     for (let i = 0; i < this.jobFuncs.length; ++i)
       this.jobFuncs[i](e.detail.jobDetail);
+
+    // Update this even for non-BLM since it's relevant for the MP ticker
+    if (this.umbralStacks != e.detail.jobDetail.umbralStacks) {
+      this.umbralStacks = e.detail.jobDetail.umbralStacks;
+      this.UpdateMPTicker();
+    }
   }
 
   OnTargetChanged(e) {

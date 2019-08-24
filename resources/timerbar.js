@@ -2,7 +2,7 @@
 
 class TimerBar extends HTMLElement {
   static get observedAttributes() {
-    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward'];
+    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];
   }
 
   // Background color.
@@ -120,6 +120,17 @@ class TimerBar extends HTMLElement {
     return this.getAttribute('centertext');
   }
 
+  // If this attribute is present, the timer will loop forever.
+  set loop(l) {
+    if (l)
+      this.setAttribute('loop', '');
+    else
+      this.removeAttribute('loop');
+  }
+  get loop() {
+    return this.hasAttribute('loop');
+  }
+
   // This would be used with window.customElements.
   constructor() {
     super();
@@ -154,6 +165,7 @@ class TimerBar extends HTMLElement {
     this._center_text = '';
     this._right_text = '';
     this._hideafter = -1;
+    this._loop = false;
 
     root.innerHTML = `
       <style>
@@ -287,6 +299,8 @@ class TimerBar extends HTMLElement {
         else
           this.show();
       }
+    } else if (name == 'loop') {
+      this._loop = newValue != null;
     }
 
     if (this._connected)
@@ -383,6 +397,13 @@ class TimerBar extends HTMLElement {
   advance() {
     let elapsedSec = (new Date() - this._start) / 1000;
     if (elapsedSec >= this._duration) {
+      // Timer completed
+      if (this._loop && this._duration > 0) {
+        // Sets the remaining time to include any extra elapsed seconds past the duration
+        this.setvalue(this._duration + (this._duration - elapsedSec) % this._duration);
+        return;
+      }
+
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
       this._duration = 0;
@@ -394,6 +415,7 @@ class TimerBar extends HTMLElement {
       window.cancelAnimationFrame(this._animationFrame);
       this._animationFrame = null;
     } else {
+      // Timer not completed, request another animation frame
       this._animationFrame = window.requestAnimationFrame(this.advance.bind(this));
     }
 

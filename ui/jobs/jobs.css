@@ -48,7 +48,7 @@
 }
 
 /* Relative to #bars */
-#pull-bar, #hp-bar, #mp-bar, #cp-bar, #gp-bar {
+#pull-bar, #hp-bar, #mp-bar, #mp-tick, #cp-bar, #gp-bar {
   width: 202px;
   height: 7px;
 }
@@ -389,6 +389,15 @@
 }
 .mp-color.medium {
   background-color: rgb(65, 0, 200);
+}
+.mp-tick-color {
+  background-color: rgb(133, 192, 231);
+}
+.mp-tick-color.ice {
+  background-color: rgb(30, 80, 245);
+}
+.mp-tick-color.fire {
+  background-color: rgb(229, 56, 53);
 }
 .cp-color {
   background-color: rgb(75, 135, 230);
