@@ -70,6 +70,20 @@ function gainSecondsFromLog(log) {
     return m[1];
   return 0;
 }
+let kGainSourceRegex = Regexes.Parse(' from (\\y{Name}) for');
+function gainSourceFromLog(log) {
+  let m = log.match(kGainSourceRegex);
+  if (m)
+    return m[1];
+  return null;
+}
+let kAbilitySourceRegex = Regexes.Parse(' 1[56]:\\y{ObjectId}:(\\y{Name}):');
+function abilitySourceFromLog(log) {
+  let m = log.match(kAbilitySourceRegex);
+  if (m)
+    return m[1];
+  return null;
+}
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
@@ -533,7 +547,8 @@ class BuffTracker {
       return;
 
     let seconds = b.durationSeconds;
-    this.onBigBuff(b.name, seconds, b);
+    let source = abilitySourceFromLog(log);
+    this.onBigBuff(b.name, seconds, b, source);
   }
 
   onYouGainEffect(name, log) {
@@ -546,7 +561,8 @@ class BuffTracker {
     else if ('durationSeconds' in b)
       seconds = b.durationSeconds;
 
-    this.onBigBuff(b.name, seconds, b);
+    let source = gainSourceFromLog(log);
+    this.onBigBuff(b.name, seconds, b, source);
   }
 
   onYouLoseEffect(name, log) {
@@ -556,7 +572,7 @@ class BuffTracker {
     this.onLoseBigBuff(b.name, b);
   }
 
-  onBigBuff(name, seconds, settings) {
+  onBigBuff(name, seconds, settings, source) {
     let overrides = this.options.PerBuffOptions[name] || {};
     let borderColor = overrides.borderColor || settings.borderColor;
     let icon = overrides.icon || settings.icon;
@@ -1630,7 +1646,7 @@ class Bars {
   }
 
   OnPartyWipe(e) {
-    this.OnSummonerAetherflow(0);
+    // TODO: reset timers etc
   }
 
   OnInCombatChanged(e) {
@@ -1762,7 +1778,7 @@ class Bars {
     for (let i = 0; i < e.detail.logs.length; i++) {
       let log = e.detail.logs[i];
 
-      // TODO(enne): only consider this when not in battle.
+      // TODO: only consider this when not in battle.
       if (log[15] == '0') {
         let r = log.match(gLang.countdownStartRegex());
         if (r != null) {
@@ -1772,6 +1788,10 @@ class Bars {
         }
         if (log.search(gLang.countdownCancelRegex()) >= 0) {
           this.SetPullCountdown(0);
+          continue;
+        }
+        if (log.search(/:test:jobs:/) >= 0) {
+          this.Test();
           continue;
         }
       } else if (log[15] == '1') {
@@ -1812,9 +1832,6 @@ class Bars {
           }
         }
       }
-
-      if (log.search(/:test:jobs:/) >= 0)
-        this.Test();
     }
   }
 
