@@ -318,7 +318,7 @@
 }
 
 /* Relative to #bars */
-#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs {
+#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs, #drk-procs {
   position: absolute;
   top: 146px;
   left: 10px;
@@ -440,6 +440,9 @@
 }
 .drk-color-blood.mid {
   background-color: rgb(200, 0, 10);
+}
+.drk-color-darkside {
+  background-color: rgb(129, 33, 138);
 }
 .pld-color-gore {
   background-color: rgb(255, 135, 35);

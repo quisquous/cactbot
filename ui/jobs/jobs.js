@@ -975,16 +975,21 @@ class Bars {
   }
 
   setupDrk() {
-    let textBox = this.addResourceBox({
+    let bloodBox = this.addResourceBox({
       classList: ['drk-color-blood'],
+    });
+
+    let darksideBox = this.addProcBox({
+      fgColor: 'drk-color-darkside',
+      threshold: 10,
     });
 
     this.jobFuncs.push((jobDetail) => {
       let blood = jobDetail.blood;
-      if (textBox.innerText === blood)
+      if (bloodBox.innerText === blood)
         return;
-      textBox.innerText = blood;
-      let p = textBox.parentNode;
+      bloodBox.innerText = blood;
+      let p = bloodBox.parentNode;
       if (blood < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
@@ -994,6 +999,13 @@ class Bars {
       } else {
         p.classList.remove('low');
         p.classList.remove('mid');
+      }
+
+      let oldSeconds = parseInt(darksideBox.duration) - parseInt(darksideBox.elapsed);
+      let seconds = jobDetail.darksideMilliseconds / 1000.0;
+      if (!darksideBox.duration || seconds > oldSeconds) {
+        darksideBox.duration = 0;
+        darksideBox.duration = seconds;
       }
     });
   }
