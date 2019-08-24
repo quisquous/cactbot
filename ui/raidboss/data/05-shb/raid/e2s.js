@@ -35,6 +35,7 @@
     {
       id: 'E2S Spell In Waiting Gain',
       regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
+      regexDe: / 1A:\y{ObjectId}:Nichtswandler gains the effect of Verzögerung/,
       regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
       run: function(data) {
         data.waiting = true;
@@ -43,6 +44,7 @@
     {
       id: 'E2S Spell In Waiting Lose',
       regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
+      regexDe: / 1E:\y{ObjectId}:Nichtswandler loses the effect of Verzögerung/,
       regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
       run: function(data) {
         data.waiting = false;
@@ -154,7 +156,7 @@
     {
       id: 'E2S Empty Hate',
       regex: / 14:3E59:The Hand Of Erebos starts using (?:Empty Hate|)/,
-      regexDe: / 14:3E59:Arm des Erebos starts using (?:Gähnender Abgrund|)/,
+      regexDe: / 14:3E59:Arm Des Erebos starts using (?:Gähnender Abgrund|)/,
       regexFr: / 14:3E59:Bras D'érèbe starts using (?:Vaine Malice)/,
       regexJa: / 14:3E59:エレボスの巨腕 starts using (?:虚ろなる悪意|)/,
       infoText: {
@@ -167,7 +169,7 @@
     {
       id: 'E2S Empty Rage',
       regex: / 14:3E6B:The Hand Of Erebos starts using (?:Empty Rage|)/,
-      regexDe: / 14:3E6B:Arm des Erebos starts using (?:Lockende Leere|)/,
+      regexDe: / 14:3E6B:Arm Des Erebos starts using (?:Lockende Leere|)/,
       regexFr: / 14:3E6B:Bras D'érèbe starts using (?:Vaine Cruauté|)/,
       regexJa: / 14:3E6B:エレボスの巨腕 starts using (?:虚ろなる害意|)/,
       alertText: {
