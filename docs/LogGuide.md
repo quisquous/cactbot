@@ -681,7 +681,7 @@ Examples:
 1B:106F0213:Potato Chippy:0000:0EE3:0061:0000:0000:0000:
 ```
 
-The different headmarker types (e.g. `0027` or `0061` in the examples above) are consistent across fights as far as which marker they *visually* represent. (Correct *resolution* for the marker mechanic may not be.)  For example, `0039` is the meteor marker in Shinryu Ex adds phase and the Baldesion Arsenal Ozma fight.  The data following the type always appears to be zero in practice, although `Unknown1` and `Unknown2` infrequently have non-zero values.
+The different headmarker types (e.g. `0027` or `0061` in the examples above) are consistent across fights as far as which marker they *visually* represent. (Correct *resolution* for the marker mechanic may not be.)  For example, `0039` is the meteor marker in Shinryu EX adds phase and the Baldesion Arsenal Ozma fight.  The data following the type always appears to be zero in practice, although `Unknown1` and `Unknown2` infrequently have non-zero values.
 
 Note: It's unclear when the head markers disappear.  Maybe `Unknown2` is a duration time? It's not clear what either of these unknown values mean.
 
@@ -691,57 +691,58 @@ It seems likely this was implemented later and nobody wanted to break old conten
 
 Marker Code | Name | Sample Locations | Consistent meaning?
 --- | --- | --- | ---
-000[1-2, 4] | Prey Circle (orange) | O6s, The Burn boss 2 | Yes
-0005 | Missile Tether (white) | T8 n/s | N/A
-0007 | Green Meteor | T9 n/s | N/A
-0008 | Ghost Meteor | T9 n/s | N/A
-0009 | Red Meteor | T9 n/s | N/A
-000A | Yellow Meteor | T9 n/s | N/A
-000D | Devour Flower | T6 n/s, Sohm Al | Yes
-000E | Prey Circle (blue) | T6 n/s, O7s | No
+000[1-2, 4] | Prey Circle (orange) | o6s, The Burn boss 2 | Yes
+0007 | Green Meteor | t9n/s | N/A
+0008 | Ghost Meteor | t9n/s | N/A
+0009 | Red Meteor | t9n/s | N/A
+000A | Yellow Meteor | t9n/s | N/A
+000D | Devour Flower | t6n/s, Sohm Al boss 1 | Yes
+000E | Prey Circle (blue) | t6n/s, o7s | No
 0010 | Teal Crystal | Ultima Weapon Ultimate |N/A
-0011 | Heavenly Laser (red) | T8 n/s, E1n | No
-0017 | Red Pinwheel | Sohm Al boss 2, Susano normal/EX, E3n/s | No
-0028 | Earth Shaker | Sephirot n/EX, O4s | Yes
-001C | Gravity Puddle | E1n | N/A
-001E | Prey Sphere (orange) | Dun Scaith boss 3, O7n/s | No
-001F | Prey Sphere (blue) | T10 | N/A
-003[2-5] | Sword Markers 1-4 | Ravana n/EX, Twinning boss 1 | N/A
+0011 | Heavenly Laser (red) | t8n/s, e1n | No
+0017 | Red Pinwheel | Sohm Al boss 2, Susano N/EX, e3n/s | No
+0028 | Earth Shaker | Sephirot N/EX, o4s | Yes
+001C | Gravity Puddle | e1n | N/A
+001E | Prey Sphere (orange) | Dun Scaith boss 3, o7n/s | No
+001F | Prey Sphere (blue) | t10 | N/A
+003[2-5] | Sword Markers 1-4 | Ravana N/EX, Twinning boss 1 | N/A
 0037 | Red Dorito | Weeping City boss 2, Ridorana boss 1 | Yes
-0039 | Purple Spread Circle (large) | Ravana n/EX, Shinryu EX | Yes
-003E | Stack Marker (bordered) | O8n/s, Dun Scaith | Yes
-0046 | Green Pinwheel | Dun Scaith boss 1, O5n/s | Yes
-004C | Purple Fire Circle (large) | E2n/s | Yes
+0039 | Purple Spread Circle (large) | Ravana N/EX, Shinryu EX | Yes
+003E | Stack Marker (bordered) | o8n/s, Dun Scaith | Yes
+0046 | Green Pinwheel | Dun Scaith boss 1, o5n/s | Yes
+004B | Acceleration Bomb | Weeping City boss 3, Susano N/EX, o4s | Yes
+004C | Purple Fire Circle (large) | e2n/s | Yes
 0054 | Thunder Tether (orange) | Titania EX | N/A
-0057 | Flare | O4n/s, E2n/s | Yes 
+0057 | Flare | o4n/s, e2n/s | Yes 
 005C | Prey (dark) | Dun Scaith boss 3/4, Holminster Switch boss 3 | No
-005D | Stack Marker (tank--no border) | Dun Scaith boss 4, E4s | Yes
-0060 | Orange Spread Circle (small) | Hades n | Yes
-0061 | Chain Tether (orange) | The Vault boss 3, Shinryu n/EX | Yes
-0064 | Stack Marker (bordered) | O3s, Ridorana boss 3 | Yes
-0065 | Spread Bubble | O3s, Byakko EX | N/A
+005D | Stack Marker (tank--no border) | Dun Scaith boss 4, e4s | Yes
+0060 | Orange Spread Circle (small) | Hades N | Yes
+0061 | Chain Tether (orange) | The Vault boss 3, Shinryu N/EX | Yes
+0064 | Stack Marker (bordered) | o3s, Ridorana boss 3 | Yes
+0065 | Spread Bubble | o3s, Byakko EX | N/A
 006E | Levinbolt | Susano EX | N/A
 0076 | Prey (dark) | Bahamut Ultimate | N/A
 0078 | Orange Spread Circle (large) | Akadaemia Anyder | Yes
 007B | Scatter (animated Play symbol) | Rabanastre boss 4 | N/A
-007E | Green Crystal | Shinryu n/EX | No
+007C | Turn Away (animated eye symbol) | Rabanastre boss 4 | N/A
+007E | Green Crystal | Shinryu N/EX | No
 0083 | Sword Meteor (Tsukuyomi) | Tsukuyomi EX | N/A
 0087 | Prey Sphere (blue) | Akadaemia Anyder | N/A
-008A | Orange Spread Circle (large) | Innocence n/EX, Orbonne boss 3 | Yes
-008B | Purple Spread Circle (small) | Ridorana boss 1, Hades n | Yes
-008E | Death From Above | O10s | N/A
-008F | Death From Below | O10s | N/A
-009[1-8] | Fundamental Synergy Square/Circle | O12s | N/A
-00A1 | Stack Marker (bordered) | Titania n/EX | Yes
-00A9 | Orange Spread Circle (small) | O11n/s, E3n/s | Yes
+008A | Orange Spread Circle (large) | Innocence N/EX, Orbonne boss 3 | Yes
+008B | Purple Spread Circle (small) | Ridorana boss 1, Hades N | Yes
+008E | Death From Above | o10s | N/A
+008F | Death From Below | o10s | N/A
+009[1-8] | Fundamental Synergy Square/Circle | o12s | N/A
+00A1 | Stack Marker (bordered) | Titania N/EX | Yes
+00A9 | Orange Spread Circle (small) | o11n/s, e3n/s | Yes
 00AB | Green Poison Circle | Qitana Ravel | N/A
 00AC | Reprobation Tether | Innocence EX | N/A
 00AE | Blue Pinwheel | Sohm Al boss 2 | N/A
-00B9 | Yellow Triangle (spread) | E4s | N/A
-00BA | Orange Square (stack) | E4s |N/A
-00BB | Blue Square (big spread) | E4s |N/A
-00BD | Purple Spread Circle (giant) | TItania n/EX | Yes
-00BF | Granite Gaol | E4s | N/A
+00B9 | Yellow Triangle (spread) | e4s | N/A
+00BA | Orange Square (stack) | e4s |N/A
+00BB | Blue Square (big spread) | e4s |N/A
+00BD | Purple Spread Circle (giant) | TItania N/EX | Yes
+00BF | Granite Gaol | e4s | N/A
 
 
 ### 1C: NetworkRaidMarker
@@ -836,7 +837,7 @@ Examples:
 ### 23: NetworkTether
 
 This log line is for tethers between enemies or enemies and players.
-This does not appear to be used for player to player tethers like dragonsight or cover.
+This does not appear to be used for player to player skill tethers like dragonsight or cover. (It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
 
 Examples:
 ```
@@ -898,7 +899,7 @@ It'd be nice for folks to dig into network data to figure out how some specific 
 
 * Boss headmarkers for Lamebrix Strikebocks (both A10S and Eureka Pyros)
 * Running into insta-kill walls
-* Figure out how t13 Dark Aether and Suzaku Ex adds tether
+* Figure out how t13 Dark Aether and Suzaku EX adds tether
 * Find network data zone sealing so game log lines don't have to be used
 * Network data for Absolute Virtue clone buffs (they're currently just game log lines)
 * How to detect a wipe in older content like coil?
