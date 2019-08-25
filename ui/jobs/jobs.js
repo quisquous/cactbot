@@ -380,6 +380,7 @@ class BuffTracker {
     this.options = options;
     this.leftBuffDiv = leftBuffDiv;
     this.rightBuffDiv = rightBuffDiv;
+    this.activeBuffs = {};
 
     this.buffInfo = {
       potion: {
@@ -389,6 +390,7 @@ class BuffTracker {
         icon: kIconBuffPotion,
         borderColor: '#AA41B2',
         sortKey: 0,
+        cooldown: 270,
       },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
@@ -396,6 +398,7 @@ class BuffTracker {
         icon: kIconBuffPeculiarLight,
         borderColor: '#F28F7B',
         sortKey: 1,
+        cooldown: 60,
       },
       trick: {
         // The flags encode positional data, but the exact specifics are unclear.
@@ -407,6 +410,7 @@ class BuffTracker {
         // Magenta.
         borderColor: '#FC4AE6',
         sortKey: 1,
+        cooldown: 60,
       },
       litany: {
         gainEffect: gLang.kEffect.BattleLitany,
@@ -416,6 +420,7 @@ class BuffTracker {
         // Cyan.
         borderColor: '#099',
         sortKey: 2,
+        cooldown: 180,
       },
       embolden: {
         // Embolden is special and has some extra text at the end, depending on embolden stage:
@@ -430,6 +435,7 @@ class BuffTracker {
         // Lime.
         borderColor: '#57FC4A',
         sortKey: 3,
+        cooldown: 120,
       },
       balance: {
         gainEffect: gLang.kEffect.Balance,
@@ -448,6 +454,7 @@ class BuffTracker {
         // Dark Green.
         borderColor: '#006400',
         sortKey: 5,
+        cooldown: 120,
       },
       standardFinish: {
         gainEffect: gLang.kEffect.StandardFinish,
@@ -466,6 +473,7 @@ class BuffTracker {
         // Dark Peach.
         borderColor: '#E0757C',
         sortKey: 6,
+        cooldown: 120,
       },
       chain: {
         gainAbility: gLang.kAbility.ChainStrategem,
@@ -474,6 +482,7 @@ class BuffTracker {
         // Blue.
         borderColor: '#4674E5',
         sortKey: 7,
+        cooldown: 120,
       },
       lefteye: {
         gainEffect: gLang.kEffect.LeftEye,
@@ -483,6 +492,7 @@ class BuffTracker {
         // Orange.
         borderColor: '#FA8737',
         sortKey: 8,
+        cooldown: 120,
       },
       righteye: {
         gainEffect: gLang.kEffect.RightEye,
@@ -492,6 +502,7 @@ class BuffTracker {
         // Orange.
         borderColor: '#FA8737',
         sortKey: 8,
+        cooldown: 120,
       },
       brotherhood: {
         gainEffect: gLang.kEffect.Brotherhood,
@@ -501,6 +512,7 @@ class BuffTracker {
         // Dark Orange.
         borderColor: '#994200',
         sortKey: 9,
+        cooldown: 90,
       },
       devotion: {
         gainEffect: gLang.kEffect.Devotion,
@@ -510,6 +522,7 @@ class BuffTracker {
         // Yellow.
         borderColor: '#ffbf00',
         sortKey: 10,
+        cooldown: 180,
       },
     };
 
@@ -593,9 +606,15 @@ class BuffTracker {
     if (side && side == 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;
     list.addElement(name, aura, sortKey);
-    window.clearTimeout(settings.timeout);
+
+    let key = name + source;
+    this.activeBuffs[key] = this.activeBuffs[key] || {};
+    let state = this.activeBuffs[key];
+
+    if (state.activeTimeout)
+      window.clearTimeout(state.activeTimeout);
     if (seconds >= 0) {
-      settings.timeout = window.setTimeout((function() {
+      state.activeTimeout = window.setTimeout((function() {
         this.rightBuffDiv.removeElement(name);
         this.leftBuffDiv.removeElement(name);
       }).bind(this), seconds * 1000);
@@ -1839,7 +1858,7 @@ class Bars {
   Test() {
     let logs = [];
     let t = '[10:10:10.000] ';
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30,2 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30.2 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
@@ -1851,6 +1870,7 @@ class Bars {
     logs.push(t + '15:1048638C:Tako Yaki:B45:Hypercharge:40000C96:Striking Dummy:28710103:154B:');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Devotion from That Guy for 15.0 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from That Guy for 15.0 Seconds.');
+    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Brotherhood from Other Guy for 15.0 Seconds.');
     let e = { detail: { logs: logs } };
     this.OnLogEvent(e);
   }
