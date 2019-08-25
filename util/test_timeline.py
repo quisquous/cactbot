@@ -1,6 +1,7 @@
 import argparse
 from datetime import datetime
 from pathlib import Path
+import os
 import re
 
 import fflogs
@@ -426,12 +427,23 @@ def main(args):
         run_report(args, timelist)
 
 
-def timeline_file(arg):
+def timeline_file(filename):
     """Defines the timeline file argument type"""
-    path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data' / 'timelines' / (arg + '.txt')
 
+    data_path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data';
+    # Allow for just specifying the base filename, e.g. "o12s.txt" or "o12s"
+    if not os.path.exists(filename):
+        for root, dirs, files in os.walk(data_path):
+          if filename in files:
+            filename = os.path.join(root, filename)
+            break
+          if '%s.txt' % filename in files:
+            filename = os.path.join(root, '%s.txt' % filename)
+            break
+
+    path = Path(filename)
     if not path.exists():
-        raise argparse.ArgumentTypeError("Could not load timeline at " + path)
+        raise argparse.ArgumentTypeError("Could not load timeline: %s" % filename)
     else:
         return path.open()
 
