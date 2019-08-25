@@ -89,8 +89,8 @@ hideall "Earthen Wheels"
 1053.2 "Weight of the Land" sync /:Titan:4108:/
 1061.9 "Dual Earthen Fists" sync /:Titan Maximum:4135:/
 1065.9 "Earthen Anguish" sync /:Titan:4137:/
-1071.8 "Megalith" sync /:Titan Maximum:4138:/
-1088.0 "Tectonic Uplift" sync /:Titan Maximum:4122:/
+1071.8 "Megalith?" sync /:Titan Maximum:4138:/
+1088.0 "Tectonic Uplift" sync /:Titan Maximum:4122:/ window 20,20
 1100.1 "Force of the Land" sync /:Titan:4107:/
 1100.1 "Pulse of the Land" sync /:Titan:4106:/
 1108.2 "Earthen Fury" sync /:Titan Maximum:4124:/
