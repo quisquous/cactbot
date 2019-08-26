@@ -3,6 +3,7 @@ akadaemia_anyder.js
 byakko-ex.js
 general.js
 hades.js
+holminster_switch.js
 innocence.js
 innocence-ex.js
 e1n.js
