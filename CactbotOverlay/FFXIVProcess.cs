@@ -45,10 +45,11 @@ namespace Cactbot {
     // TargetStruct {
     //   0x00 bytes in: EntityStruct* target;
     //   ...
-    //   0x78 bytes in: EntityStruct* focus;
+    //   0x58 bytes in: EntityStruct* mousoverTarget
+    //   0x90 bytes in: EntityStruct* focus;
     // }
     private static int kTargetStructOffsetTarget = 0;
-    private static int kTargetStructOffsetFocus = 0x78;
+    private static int kTargetStructOffsetFocus = 0x90;
 
     // In combat boolean.
     // Variable is set at 83FA587D70534883EC204863C2410FB6D8381C08744E (offset=0)
