@@ -486,7 +486,7 @@ namespace Cactbot {
         data.max_hp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 4);
         data.mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 8);
         data.max_mp = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetHpMpTp + 12);
-        var shieldPercentage = BitConverter.ToInt32(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetShieldPercentage);
+        var shieldPercentage = BitConverter.ToInt16(bytes, kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetShieldPercentage);
         data.shield_value = shieldPercentage * data.max_hp / 100;
 
         if (IsGatherer(data.job)) {
