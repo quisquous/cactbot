@@ -7,6 +7,7 @@ namespace Cactbot {
   public partial class CactbotOverlayConfigPanel : UserControl {
     private CactbotOverlayConfig config;
     private CactbotOverlay overlay;
+    private System.IO.FileSystemWatcher watcher;
 
     public CactbotOverlayConfigPanel(CactbotOverlay overlay) {
       InitializeComponent();
@@ -16,6 +17,7 @@ namespace Cactbot {
 
       SetupControlProperties();
       SetupConfigEventHandlers();
+      SetupFileWatcher();
     }
 
     private void SetupControlProperties() {
@@ -63,6 +65,30 @@ namespace Cactbot {
           this.checkLock.Checked = e.IsLocked;
         });
       };
+    }
+
+    private void SetupFileWatcher()
+    {
+      var path = System.IO.Path.GetDirectoryName(config.Url);
+      path = System.Text.RegularExpressions.Regex.Replace(path, @"file:[\\\/]+", "");
+      if (!System.IO.Directory.Exists(path))
+      {
+        this.overlay.LogError("Directory does not exist!" + path);
+        return;
+      }
+
+      watcher = new System.IO.FileSystemWatcher()
+      {
+        Path = path,
+        NotifyFilter = System.IO.NotifyFilters.LastWrite | System.IO.NotifyFilters.FileName,
+        IncludeSubdirectories = true,
+      };
+
+      watcher.Created += buttonReloadBrowser_Click;
+      watcher.Deleted += buttonReloadBrowser_Click;
+      watcher.Renamed += buttonReloadBrowser_Click;
+      watcher.Changed += buttonReloadBrowser_Click;
+      watcher.EnableRaisingEvents = false;
     }
 
     private void InvokeIfRequired(Action action) {
@@ -119,6 +145,7 @@ namespace Cactbot {
 
     private void textUrl_Leave(object sender, EventArgs e) {
       this.config.Url = textUrl.Text;
+      SetupFileWatcher();
     }
 
     private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -172,6 +199,18 @@ namespace Cactbot {
       } catch (Exception ex) {
         this.overlay.LogError("User Config Directory Uri must be a valid directory.");
         this.overlay.LogError(ex.Message);
+      }
+    }
+
+    private void DevReloader_CheckedChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        this.watcher.EnableRaisingEvents = devReloader.Checked;
+      }
+      catch (Exception ex)
+      {
+        this.overlay.LogError("FileSystemWatcher not set up");
       }
     }
   }
