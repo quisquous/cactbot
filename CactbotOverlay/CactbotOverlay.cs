@@ -70,6 +70,9 @@ namespace Cactbot {
     public delegate void PlayerChangedHandler(JSEvents.PlayerChangedEvent e);
     public event PlayerChangedHandler OnPlayerChanged;
 
+    public delegate void StatusEffectsUpdateHandler(JSEvents.StatusEffectsUpdateEvent e);
+    public event StatusEffectsUpdateHandler OnStatusEffectsUpdate;
+
     public delegate void TargetChangedHandler(JSEvents.TargetChangedEvent e);
     public event TargetChangedHandler OnTargetChanged;
 
@@ -147,6 +150,7 @@ namespace Cactbot {
         OnImportLogsChanged += (e) => DispatchToJS(e);
       }
       OnPlayerChanged += (e) => DispatchToJS(e);
+      OnStatusEffectsUpdate += (e) => DispatchToJS(e);
       OnTargetChanged += (e) => DispatchToJS(e);
       OnFocusChanged += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
@@ -437,6 +441,9 @@ namespace Cactbot {
       FFXIVProcess.EntityData target = ffxiv_.GetTargetData();
       // The |focus| can be null when no focus target is selected.
       FFXIVProcess.EntityData focus = ffxiv_.GetFocusData();
+
+      // onStatusEffectUpdateEvent: Sends event with buff information for player, target and focus on every SendFastRateEvents
+      OnStatusEffectsUpdate(new JSEvents.StatusEffectsUpdateEvent(player,target,focus));
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.

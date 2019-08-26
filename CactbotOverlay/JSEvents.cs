@@ -72,6 +72,18 @@ namespace Cactbot {
       public string EventName() { return "onPartyWipe"; }
     }
 
+    public class StatusEffectsUpdateEvent : JSEvent {
+      public StatusEffectsUpdateEvent(FFXIVProcess.EntityData player, FFXIVProcess.EntityData target, FFXIVProcess.EntityData focus) {
+        playerStatusEffects = player?.statusEffects;
+        targetStatusEffects = target?.statusEffects;
+        focusStatusEffects = focus?.statusEffects;
+      }
+      public FFXIVProcess.StatusEffect[] playerStatusEffects;
+      public FFXIVProcess.StatusEffect[] targetStatusEffects;
+      public FFXIVProcess.StatusEffect[] focusStatusEffects;
+      public string EventName() { return "onStatusEffectsUpdateEvent"; }
+    }
+
     public class PlayerChangedEvent : JSEvent {
       public PlayerChangedEvent(FFXIVProcess.EntityData e) {
         id = e.id;

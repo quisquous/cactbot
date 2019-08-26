@@ -168,7 +168,8 @@ namespace Cactbot {
     // Base offset for the character details below.
     private static int kEntityStructureOffsetCharacterDetails = 0x18A4;
 
-    private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
+    // size 0x1f00 to fit statusEffects, actual size propably 0x2cc8, but 0x1e00 through 0x2cc8 is all zeroed
+    private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x65c; 
     private static int kEntityStructureSizeName = 0x44;
     private static int kEntityStructureOffsetName = 0x30;
     private static int kEntityStructureOffsetId = 0x74;
@@ -181,6 +182,7 @@ namespace Cactbot {
     private static int kEntityStructureOffsetGpCp = 0x12;
     private static int kEntityStructureOffsetJob = 0x38;
     private static int kEntityStructureOffsetLevel = 0x3A;
+    private static int kEntityStructureOffsetStatusEffects = 0xC4;
 
     // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.
@@ -369,6 +371,63 @@ namespace Cactbot {
       return active_process_id == process_.Id;
     }
 
+    public class StatusEffect {
+      private static Dictionary<int, float> maxDurations = new Dictionary<int, float>();
+      public ushort id = 0;
+      public byte stackCount = 0;
+      public float duration = 0;
+      public uint casterId = 0;
+      public float maxDuration = 0;
+
+      public static int offsetId = 0x0;
+      public static int offsetStackCount = 0x2;
+      public static int offsetDuration = 0x4;
+      public static int offsetCasterId = 0x8;
+      public static int structSize = 0xC;
+
+      public StatusEffect() {
+        id = 0;
+        stackCount = 0;
+        duration = 0;
+        casterId = 0;
+        maxDuration = 0;
+      }
+      public StatusEffect(ushort id, byte stackCount, float duration, uint casterId) {
+        // rudimentary max duration
+        var rounded = (int)Math.Ceiling(duration);
+        if (!maxDurations.ContainsKey(id) || rounded > maxDurations[id]) {
+          maxDurations[id] = rounded;
+        }
+        this.id = id;
+        this.stackCount = stackCount;
+        this.duration = duration;
+        this.casterId = casterId;
+        this.maxDuration = maxDurations[id];
+      }
+
+      public override int GetHashCode() {
+        int hash = 17;
+        hash = hash * 327 ^ id.GetHashCode();
+        hash = hash * 327 ^ casterId.GetHashCode();
+        hash = hash * 327 ^ duration.GetHashCode();
+        return hash;
+      }
+
+      public override bool Equals(object obj) {
+          return obj is StatusEffect && (StatusEffect)obj == this;
+      }
+      public static bool operator ==(StatusEffect a, StatusEffect b) {
+        var a_null = a is null;
+        var b_null = b is null;
+        if (a_null && b_null) return true;
+        else if (a_null || b_null) return false;
+        else return a.id == b.id && a.stackCount == b.stackCount && a.duration == b.duration && a.casterId == b.casterId;
+      }
+      public static bool operator !=(StatusEffect a, StatusEffect b) {
+        return !(a == b);
+      }
+    }
+
     public class EntityData {
       public string name;
       public uint id = 0;
@@ -389,6 +448,7 @@ namespace Cactbot {
       public EntityJob job = EntityJob.None;
       public short level = 0;
       public string debug_job;
+      public StatusEffect[] statusEffects = new StatusEffect[60];
 
       public override bool Equals(object obj) {
         return obj is EntityData && (EntityData)obj == this;
@@ -512,6 +572,16 @@ namespace Cactbot {
               data.debug_job += " ";
             data.debug_job += string.Format("{0:x2}", job_bytes[i]);
           }
+        }
+
+        for (int i = 0; i < data.statusEffects.Length; i++) {
+          var currentBase = kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetStatusEffects + i * StatusEffect.structSize;
+
+          var id = BitConverter.ToUInt16(bytes, currentBase + StatusEffect.offsetId);
+          var stackCount = bytes[currentBase + StatusEffect.offsetStackCount];
+          var duration = BitConverter.ToSingle(bytes, currentBase + StatusEffect.offsetDuration);
+          var casterId = BitConverter.ToUInt32(bytes, currentBase + StatusEffect.offsetCasterId);
+          data.statusEffects[i] = new StatusEffect(id, stackCount, duration, casterId);
         }
       }
 
