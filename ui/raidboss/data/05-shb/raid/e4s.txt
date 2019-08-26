@@ -33,7 +33,7 @@ hideall "Earthen Wheels"
 270.5 "Earthen Wheels" sync /:Titan:40E8:/
 277.7 "Pulse of the Land" sync /:Titan:4106:/
 277.7 "Force of the Land" sync /:Titan:4107:/
-286.0 "Magnitude 5.0" sync /:Titan:4121:/
+286.0 "Magnitude 5.0" sync /:Titan:4121:/ window 10,10
 289.1 "Earthen Armor" sync /:Titan:40E9:/
 291.0 "Pulse of the Land" sync /:Titan:4106:/
 307.2 "Crumbling Down" sync /:Titan:410E:/
@@ -74,7 +74,7 @@ hideall "Earthen Wheels"
 702.0 "Earthen Wheels" sync /:Titan:40E8:/
 709.0 "Pulse of the Land" sync /:Titan:4106:/
 709.0 "Force of the Land" sync /:Titan:4107:/
-717.6 "Magnitude 5.0" sync /:Titan:4121:/
+717.6 "Magnitude 5.0" sync /:Titan:4121:/ window 10,10
 720.7 "Earthen Armor" sync /:Titan:40E9:/
 722.6 "Pulse of the Land" sync /:Titan:4106:/
 725.8 "--untargetable--"
@@ -89,8 +89,8 @@ hideall "Earthen Wheels"
 1053.2 "Weight of the Land" sync /:Titan:4108:/
 1061.9 "Dual Earthen Fists" sync /:Titan Maximum:4135:/
 1065.9 "Earthen Anguish" sync /:Titan:4137:/
-1071.8 "Megalith" sync /:Titan Maximum:4138:/
-1088.0 "Tectonic Uplift" sync /:Titan Maximum:4122:/
+1071.8 "Megalith?" sync /:Titan Maximum:4138:/
+1088.0 "Tectonic Uplift" sync /:Titan Maximum:4122:/ window 20,20
 1100.1 "Force of the Land" sync /:Titan:4107:/
 1100.1 "Pulse of the Land" sync /:Titan:4106:/
 1108.2 "Earthen Fury" sync /:Titan Maximum:4124:/
