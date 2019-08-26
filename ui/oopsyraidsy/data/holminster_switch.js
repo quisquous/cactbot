@@ -4,9 +4,9 @@
   zoneRegex: /^Holminster Switch$/,
   damageWarn: {
     'Thumbscrew':'3DC6',
+    'Wooden horse':'3DC7',
     'Light Shot':'3DC8',
     'Heretic\'s Fork':'3DCE',
-    'Wooden horse':'3DC7',
     'Holy Water':'3DD4',
     'Fierce Beating':[
       '3DDD', '3DDE', '3DDF',
