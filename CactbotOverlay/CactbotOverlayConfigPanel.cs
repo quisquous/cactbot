@@ -17,6 +17,7 @@ namespace Cactbot {
 
       SetupControlProperties();
       SetupConfigEventHandlers();
+      SetupFileWatcher();
     }
 
     private void SetupControlProperties() {
@@ -205,7 +206,6 @@ namespace Cactbot {
     {
       try
       {
-        SetupFileWatcher();
         this.watcher.EnableRaisingEvents = checkDevReloader.Checked;
       }
       catch (Exception ex)
