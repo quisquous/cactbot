@@ -3,20 +3,20 @@
 [{
   zoneRegex: /^Holminster Switch$/,
   damageWarn: {
-    'Thumbscrew': '3DC6',
-    'Wooden horse': '3DC7',
-    'Light Shot': '3DC8',
-    'Heretic\'s Fork': '3DCE',
-    'Holy Water': '3DD4',
-    'Fierce Beating': [
-      '3DDD', '3DDE', '3DDF',
-    ],
-    'Cat O\' Nine Tails': '3DE1',
-    'Right Knout': '3DE6',
-    'Left Knout': '3DE7',
+    'Holminster Thumbscrew': '3DC6',
+    'Holminster Wooden horse': '3DC7',
+    'Holminster Light Shot': '3DC8',
+    'Holminster Heretic\'s Fork': '3DCE',
+    'Holminster Holy Water': '3DD4',
+    'Holminster Fierce Beating': '3DDD',
+    'Holminster Fierce Beating': '3DDE',
+    'Holminster Fierce Beating': '3DDF', 
+    'Holminster Cat O\' Nine Tails': '3DE1',
+    'Holminster Right Knout': '3DE6',
+    'Holminster Left Knout': '3DE7',
   },
   damageFail: {
-    'Aethersup': '3DE9',
+    'Holminster Aethersup': '3DE9',
   },
   triggers: [
     {
