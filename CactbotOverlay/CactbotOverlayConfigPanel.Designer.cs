@@ -248,9 +248,9 @@ namespace Cactbot
       // checkDevReloader
       // 
       resources.ApplyResources(this.checkDevReloader, "checkDevReloader");
-      this.checkEnableGlobalHotkey.Name = "checkDevReloader";
-      this.checkEnableGlobalHotkey.UseVisualStyleBackColor = true;
-      this.checkEnableGlobalHotkey.CheckedChanged += new System.EventHandler(this.checkBoxDevReloader_CheckedChanged);
+      this.checkDevReloader.Name = "checkDevReloader";
+      this.checkDevReloader.UseVisualStyleBackColor = true;
+      this.checkDevReloader.CheckedChanged += new System.EventHandler(this.checkBoxDevReloader_CheckedChanged);
       // 
       // CactbotOverlayConfigPanel
       // 
