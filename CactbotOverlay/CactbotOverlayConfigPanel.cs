@@ -69,6 +69,8 @@ namespace Cactbot {
 
     private void SetupFileWatcher()
     {
+      if (this.config.Url == "")
+        return;
       var path = System.IO.Path.GetDirectoryName(config.Url);
       path = System.Text.RegularExpressions.Regex.Replace(path, @"file:[\\\/]+", "");
       if (!System.IO.Directory.Exists(path))
@@ -140,6 +142,7 @@ namespace Cactbot {
       if (ofd.ShowDialog() == DialogResult.OK) {
         this.config.Url = new Uri(ofd.FileName).ToString();
         this.textUrl.Text = this.config.Url;
+        SetupFileWatcher();
       }
     }
 
