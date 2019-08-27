@@ -45,8 +45,8 @@ namespace Cactbot
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       this.buttonSelectUserConfigFile = new System.Windows.Forms.Button();
       this.textUserConfigFile = new System.Windows.Forms.TextBox();
-      this.devReloader = new System.Windows.Forms.CheckBox();
       this.labelDevReloader = new System.Windows.Forms.Label();
+      this.checkDevReloader = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
