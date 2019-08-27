@@ -10,7 +10,7 @@
     'Holminster Holy Water': '3DD4',
     'Holminster Fierce Beating': '3DDD',
     'Holminster Fierce Beating': '3DDE',
-    'Holminster Fierce Beating': '3DDF', 
+    'Holminster Fierce Beating': '3DDF',
     'Holminster Cat O\' Nine Tails': '3DE1',
     'Holminster Right Knout': '3DE6',
     'Holminster Left Knout': '3DE7',
