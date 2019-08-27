@@ -62,7 +62,15 @@ def get_manifest_entries(manifest_filepath):
     Returns:
         A list of properly formatted manifest entry strings.
     """
-    return [str(Path(entry)) for entry in manifest_filepath.read_text().splitlines()]
+    manifest_entries = []
+
+    for entry in manifest_filepath.read_text().splitlines():
+        # Skip empty lines
+        if not entry:
+            continue
+        manifest_entries.append(str(Path(entry)))
+
+    return manifest_entries
 
 
 def get_data_directory_files(root_directory):
@@ -79,12 +87,14 @@ def get_data_directory_files(root_directory):
     """
     data_files = []
 
-    for file in root_directory.glob('**/*.*'):
-        # Filter manifest or README files from the result set
-        if file.stem in ['manifest', 'README']:
-            continue
-        # Match the expected file format listed within the manifest
-        data_files.append(str(file.relative_to(root_directory)))
+    # Manifest files only contain .js or .txt files
+    for extension in ['js', 'txt']:
+        for file in root_directory.glob(f'**/*.{extension}'):
+            # Filter manifest or README files from the result set
+            if not file.stem or file.stem in ['manifest', 'README']:
+                continue
+            # Match the expected file format listed within the manifest
+            data_files.append(str(file.relative_to(root_directory)))
 
     return data_files
 
