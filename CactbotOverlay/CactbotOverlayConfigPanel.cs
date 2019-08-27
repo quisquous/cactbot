@@ -211,7 +211,7 @@ namespace Cactbot {
       catch (Exception ex)
       {
         this.overlay.LogError("FileSystemWatcher not set up");
-        this.overlay.LogErrer(ex.Message);
+        this.overlay.LogError(ex.Message);
       }
     }
   }
