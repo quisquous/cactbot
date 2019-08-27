@@ -62,7 +62,15 @@ def get_manifest_entries(manifest_filepath):
     Returns:
         A list of properly formatted manifest entry strings.
     """
-    return [str(Path(entry)) for entry in manifest_filepath.read_text().splitlines()]
+    manifest_entries = []
+
+    for entry in manifest_filepath.read_text().splitlines():
+        # Skip empty lines
+        if not entry:
+            continue
+        manifest_entries.append(str(Path(entry)))
+
+    return manifest_entries
 
 
 def get_data_directory_files(root_directory):
