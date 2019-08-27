@@ -201,7 +201,7 @@ namespace Cactbot {
       }
     }
 
-    private void checkDevReloader_CheckedChanged(object sender, EventArgs e)
+    private void checkBoxDevReloader_CheckedChanged(object sender, EventArgs e)
     {
       try
       {
@@ -211,6 +211,7 @@ namespace Cactbot {
       catch (Exception ex)
       {
         this.overlay.LogError("FileSystemWatcher not set up");
+        this.overlay.LogErrer(ex.Message);
       }
     }
   }
