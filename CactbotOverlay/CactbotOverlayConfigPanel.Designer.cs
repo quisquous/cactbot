@@ -65,7 +65,7 @@ namespace Cactbot
       this.tableLayoutPanel1.Controls.Add(this.textGlobalHotkey, 1, 7);
       this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
       this.tableLayoutPanel1.Controls.Add(this.checkLock, 1, 2);
-      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 13);
+      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 14);
       this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
       this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
       this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
