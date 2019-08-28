@@ -2,9 +2,7 @@
 
 from pathlib import Path
 import sys
-
-DATA_DIRECTORY = 'data'
-MANIFEST_FILENAME = 'manifest.txt'
+from definitions import CactbotModule, DATA_DIRECTORY, MANIFEST_FILENAME
 
 
 def main():
@@ -19,17 +17,11 @@ def main():
     """
     exit_status = 0
 
-    # TODO: Only goes two directories up -- makes assumptions about project structure
-    project_root_dir = Path(__file__).parent.parent
+    for module in [CactbotModule.OOPSYRAIDSY, CactbotModule.RAIDBOSS]:
+        data_directory = Path(module.directory(), DATA_DIRECTORY)
+        manifest_filepath = Path(data_directory, MANIFEST_FILENAME)
 
-    # Find all manifest files within the project scope
-    for manifest_filepath in Path(project_root_dir).rglob(f'**/{MANIFEST_FILENAME}'):
-        # Specifically target manifest files within their respective data directories
-        data_directory = manifest_filepath.parent
-        if not data_directory.name == DATA_DIRECTORY:
-            continue
-
-        # Extract expected manifest files from manifest
+        # Extract expected manifest entries from manifest
         manifest_entries = get_manifest_entries(manifest_filepath)
 
         # Get actual list of files within current directory
