@@ -2,8 +2,13 @@
 
 from pathlib import Path
 import re
+import subprocess
 import sys
-from definitions import CactbotModule, DATA_DIRECTORY
+from definitions import CactbotModule, DATA_DIRECTORY, PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
+
+TIMELINE_DIRECTORY = 'timeline'
+
+TIMELINE_TEST_DIRECTORY = Path(PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY, TIMELINE_DIRECTORY)
 
 
 def main():
@@ -42,14 +47,18 @@ def main():
 
             # Found an unexpected timelineFile in the trigger file definition
             if match['timelineFile'] != filepath.name:
-                print(f'Error: Trigger file {trigger_filename} has `triggerFile: \'{match[1]}\'`'
-                      f', but was expecting `triggerFile: \'{filepath.name}\'`.')
+                print(f"Error: Trigger file {trigger_filename} has `triggerFile: '{match[1]}'`"
+                      f", but was expecting `triggerFile: '{filepath.name}'`.")
                 exit_status = 1
 
         # Timeline file has no trigger file equivalent
         except FileNotFoundError:
             print(f'Error: Timeline file {filepath} found without matching trigger file.')
             exit_status = 1
+
+        # Run individual timeline tests
+        for test_file in TIMELINE_TEST_DIRECTORY.iterdir():
+            exit_status |= subprocess.call(['node', test_file, filepath])
 
     return exit_status
 
