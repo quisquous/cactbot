@@ -7,6 +7,7 @@ namespace Cactbot {
   public partial class CactbotOverlayConfigPanel : UserControl {
     private CactbotOverlayConfig config;
     private CactbotOverlay overlay;
+    private System.IO.FileSystemWatcher watcher;
 
     public CactbotOverlayConfigPanel(CactbotOverlay overlay) {
       InitializeComponent();
@@ -16,6 +17,7 @@ namespace Cactbot {
 
       SetupControlProperties();
       SetupConfigEventHandlers();
+      SetupFileWatcher();
     }
 
     private void SetupControlProperties() {
@@ -63,6 +65,32 @@ namespace Cactbot {
           this.checkLock.Checked = e.IsLocked;
         });
       };
+    }
+
+    private void SetupFileWatcher()
+    {
+      if (this.config.Url == "")
+        return;
+      var path = System.IO.Path.GetDirectoryName(config.Url);
+      path = System.Text.RegularExpressions.Regex.Replace(path, @"file:[\\\/]+", "");
+      if (!System.IO.Directory.Exists(path))
+      {
+        this.overlay.LogError("Directory does not exist!" + path);
+        return;
+      }
+
+      watcher = new System.IO.FileSystemWatcher()
+      {
+        Path = path,
+        NotifyFilter = System.IO.NotifyFilters.LastWrite | System.IO.NotifyFilters.FileName,
+        IncludeSubdirectories = true,
+      };
+
+      watcher.Created += buttonReloadBrowser_Click;
+      watcher.Deleted += buttonReloadBrowser_Click;
+      watcher.Renamed += buttonReloadBrowser_Click;
+      watcher.Changed += buttonReloadBrowser_Click;
+      watcher.EnableRaisingEvents = false;
     }
 
     private void InvokeIfRequired(Action action) {
@@ -114,11 +142,13 @@ namespace Cactbot {
       if (ofd.ShowDialog() == DialogResult.OK) {
         this.config.Url = new Uri(ofd.FileName).ToString();
         this.textUrl.Text = this.config.Url;
+        SetupFileWatcher();
       }
     }
 
     private void textUrl_Leave(object sender, EventArgs e) {
       this.config.Url = textUrl.Text;
+      SetupFileWatcher();
     }
 
     private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -171,6 +201,19 @@ namespace Cactbot {
         this.textUserConfigFile.Text = this.config.UserConfigFile;
       } catch (Exception ex) {
         this.overlay.LogError("User Config Directory Uri must be a valid directory.");
+        this.overlay.LogError(ex.Message);
+      }
+    }
+
+    private void checkBoxDevReloader_CheckedChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        this.watcher.EnableRaisingEvents = checkDevReloader.Checked;
+      }
+      catch (Exception ex)
+      {
+        this.overlay.LogError("FileSystemWatcher not set up");
         this.overlay.LogError(ex.Message);
       }
     }

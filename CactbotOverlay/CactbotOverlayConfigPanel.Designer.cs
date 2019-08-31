@@ -1,4 +1,4 @@
-﻿namespace Cactbot
+namespace Cactbot
 {
     partial class CactbotOverlayConfigPanel
     {
@@ -45,6 +45,8 @@
       this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
       this.buttonSelectUserConfigFile = new System.Windows.Forms.Button();
       this.textUserConfigFile = new System.Windows.Forms.TextBox();
+      this.labelDevReloader = new System.Windows.Forms.Label();
+      this.checkDevReloader = new System.Windows.Forms.CheckBox();
       this.tableLayoutPanel1.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
@@ -63,7 +65,7 @@
       this.tableLayoutPanel1.Controls.Add(this.textGlobalHotkey, 1, 7);
       this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
       this.tableLayoutPanel1.Controls.Add(this.checkLock, 1, 2);
-      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 13);
+      this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 14);
       this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
       this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 3);
       this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
@@ -74,6 +76,8 @@
       this.tableLayoutPanel1.Controls.Add(this.restartMessageLabel, 1, 10);
       this.tableLayoutPanel1.Controls.Add(this.label1, 0, 12);
       this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 12);
+      this.tableLayoutPanel1.Controls.Add(this.labelDevReloader, 0, 13);
+      this.tableLayoutPanel1.Controls.Add(this.checkDevReloader, 1, 13);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
       this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
       // 
@@ -236,6 +240,18 @@
       this.textUserConfigFile.Name = "textUserConfigFile";
       this.textUserConfigFile.Leave += new System.EventHandler(this.textUserConfigFile_Leave);
       // 
+      // labelDevReloader
+      // 
+      resources.ApplyResources(this.labelDevReloader, "labelDevReloader");
+      this.label1.Name = "labelDevReloader";
+      // 
+      // checkDevReloader
+      // 
+      resources.ApplyResources(this.checkDevReloader, "checkDevReloader");
+      this.checkDevReloader.Name = "checkDevReloader";
+      this.checkDevReloader.UseVisualStyleBackColor = true;
+      this.checkDevReloader.CheckedChanged += new System.EventHandler(this.checkBoxDevReloader_CheckedChanged);
+      // 
       // CactbotOverlayConfigPanel
       // 
       resources.ApplyResources(this, "$this");
@@ -282,5 +298,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button buttonSelectUserConfigFile;
         private System.Windows.Forms.TextBox textUserConfigFile;
+        private System.Windows.Forms.Label labelDevReloader;
+        private System.Windows.Forms.CheckBox checkDevReloader;
     }
 }
