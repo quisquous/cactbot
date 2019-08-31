@@ -10,7 +10,7 @@ document.addEventListener('onInCombatChangedEvent', function(e) {
 
 document.addEventListener('onPlayerChangedEvent', function(e) {
   document.getElementById('id').innerText = e.detail.id.toString(16);
-  document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP;
+  document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
   document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;
   document.getElementById('gp').innerText = e.detail.currentGP + '/' + e.detail.maxGP;
