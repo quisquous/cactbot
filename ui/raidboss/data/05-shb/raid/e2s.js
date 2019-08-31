@@ -347,31 +347,37 @@
       },
     },
     {
-      id: 'E2S Countdown Marker Shadoweye',
+      id: 'E2S Countdown Marker Shadoweye Me',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
       condition: function(data, matches) {
-        return data.spell[matches[1]] == 'eye';
+        return data.spell[matches[1]] == 'eye' && matches[1] == data.me;
       },
+      suppressSeconds: 10,
       delaySeconds: 2,
-      alarmText: function(data, matches) {
-        if (data.me != matches[1]) {
-          return {
-            en: 'Look Away from ' + data.ShortName(matches[1]),
-            de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
-            fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'を見ないで',
-          };
-        }
+      infoText: {
+        en: 'Eye on YOU',
+        de: 'Auge auf DIR',
+        fr: 'Œil sur VOUS',
+        ja: '自分に目',
       },
-      infoText: function(data, matches) {
-        if (data.me == matches[1]) {
-          return {
-            en: 'Eye on YOU',
-            de: 'Auge auf DIR',
-            fr: 'Œil sur VOUS',
-            ja: '自分に目',
-          };
-        }
+    },
+    {
+      id: 'E2S Countdown Marker Shadoweye Other',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      condition: function(data, matches) {
+        return data.spell[matches[1]] == 'eye' && data.spell[data.me] != 'eye';
+      },
+      suppressSeconds: 10,
+      delaySeconds: 2,
+      // Let's just assume these people are stacked.
+      // We could call out both names, but it's probably unnecessary.
+      alertText: function(data, matches) {
+        return {
+          en: 'Look Away from ' + data.ShortName(matches[1]),
+          de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
+          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
+          ja: data.ShortName(matches[1]) + 'を見ないで',
+        };
       },
     },
     {
