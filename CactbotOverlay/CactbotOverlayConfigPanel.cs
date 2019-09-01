@@ -1,4 +1,4 @@
-﻿using RainbowMage.OverlayPlugin;
+using RainbowMage.OverlayPlugin;
 using System;
 using System.Globalization;
 using System.Windows.Forms;
@@ -7,7 +7,7 @@ namespace Cactbot {
   public partial class CactbotOverlayConfigPanel : UserControl {
     private CactbotOverlayConfig config;
     private CactbotOverlay overlay;
-    private System.IO.FileSystemWatcher watcher;
+    private System.IO.FileSystemWatcher[] watchers;
 
     public CactbotOverlayConfigPanel(CactbotOverlay overlay) {
       InitializeComponent();
@@ -69,28 +69,47 @@ namespace Cactbot {
 
     private void SetupFileWatcher()
     {
+      System.Collections.Generic.List<string> pathsList = new System.Collections.Generic.List<string>();
+      
+      // Overlay Dir
       if (this.config.Url == "")
         return;
-      var path = System.IO.Path.GetDirectoryName(config.Url);
-      path = System.Text.RegularExpressions.Regex.Replace(path, @"file:[\\\/]+", "");
-      if (!System.IO.Directory.Exists(path))
-      {
-        this.overlay.LogError("Directory does not exist!" + path);
-        return;
+      var overlayPath = System.IO.Path.GetDirectoryName(config.Url);
+      overlayPath = System.Text.RegularExpressions.Regex.Replace(overlayPath, @"file:[\\\/]+", "");
+      pathsList.Add(overlayPath);
+
+      // User Dir
+      string basePath = System.Text.RegularExpressions.Regex.Match(overlayPath, @"(.*cactbot)").Groups[1].ToString();
+      string userPath = System.IO.Path.Combine(basePath, "user");
+      pathsList.Add(userPath);
+
+      // Resource Dir
+      string resourcePath = System.IO.Path.Combine(basePath, "resources");
+      pathsList.Add(resourcePath);
+
+      string[] paths = pathsList.ToArray();
+      watchers = new System.IO.FileSystemWatcher[paths.Length];
+      for (int i = 0; i < paths.Length; i++) {
+        if (!System.IO.Directory.Exists(paths[i]))
+          {
+            this.overlay.LogError($"Directory {paths[i]}, (index: {i}) does not exist!");
+            continue;
+          }
+        var watcher = new System.IO.FileSystemWatcher()
+        {
+          Path = paths[i],
+          NotifyFilter = System.IO.NotifyFilters.LastWrite | System.IO.NotifyFilters.FileName,
+          IncludeSubdirectories = true,
+        };
+
+        watcher.Created += buttonReloadBrowser_Click;
+        watcher.Deleted += buttonReloadBrowser_Click;
+        watcher.Renamed += buttonReloadBrowser_Click;
+        watcher.Changed += buttonReloadBrowser_Click;
+        watcher.EnableRaisingEvents = false;
+
+        watchers[i] = watcher;
       }
-
-      watcher = new System.IO.FileSystemWatcher()
-      {
-        Path = path,
-        NotifyFilter = System.IO.NotifyFilters.LastWrite | System.IO.NotifyFilters.FileName,
-        IncludeSubdirectories = true,
-      };
-
-      watcher.Created += buttonReloadBrowser_Click;
-      watcher.Deleted += buttonReloadBrowser_Click;
-      watcher.Renamed += buttonReloadBrowser_Click;
-      watcher.Changed += buttonReloadBrowser_Click;
-      watcher.EnableRaisingEvents = false;
     }
 
     private void InvokeIfRequired(Action action) {
@@ -209,7 +228,8 @@ namespace Cactbot {
     {
       try
       {
-        this.watcher.EnableRaisingEvents = checkDevReloader.Checked;
+        foreach (var watcher in watchers)
+          watcher.EnableRaisingEvents = checkDevReloader.Checked;
       }
       catch (Exception ex)
       {
