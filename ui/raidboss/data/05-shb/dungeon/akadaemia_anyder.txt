@@ -58,7 +58,7 @@ hideall "--sync--"
 
 
 ### Marquis Morbol
-# -p 3E14:505 -ii 3E11 3E14
+# -p 3E16:508.5 -ii 3E11 3E14
 # TODO: run his long enough to find a loop @_@
 500.0 "--sync--" sync /00:0839:Phytobiology will be sealed off/ window 500,0
 505.0 "--sync--" sync /:Marquis Morbol:3E14:/ window 505,5
@@ -66,6 +66,9 @@ hideall "--sync--"
 516.1 "Sap Shower" sync /:Marquis Morbol:3E15:/
 524.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
+# extensible tendrils appears to have some variation on start time
+# is this an hp push??
+532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
 537.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 564.7 "Putrid Breath" sync /:Marquis Morbol:3E12:/
 569.0 "Lash" #sync /:Marquis Morbol:3E16:/
@@ -73,6 +76,7 @@ hideall "--sync--"
 581.1 "Blossom" sync /:Marquis Morbol:3E13:/
 589.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
+532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
 603.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 611.4 "Sap Shower" sync /:Marquis Morbol:3E15:/
 630.8 "Putrid Breath" sync /:Marquis Morbol:3E12:/
@@ -81,6 +85,7 @@ hideall "--sync--"
 653.3 "Sap Shower" sync /:Marquis Morbol:3E15:/
 657.1 "Lash" sync /:Marquis Morbol:3E16:/
 
+532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
 665.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 692.8 "Putrid Breath" sync /:Marquis Morbol:3E12:/
 699.2 "Arbor Storm" sync /:Marquis Morbol:3E17:/
