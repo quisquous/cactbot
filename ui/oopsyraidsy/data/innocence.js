@@ -10,7 +10,7 @@
     'Inno Reprobation 1': '3EB6',
     'Inno Reprobation 2': '3EB8',
     'Inno Reprobation 3': '3ECB',
-    'Inno Reprobation 4': '3EC7',
+    'Inno Reprobation 4': '3EB7',
 
     'Inno Soul and Body 1': '3EB1',
     'Inno Soul and Body 2': '3EB2',
