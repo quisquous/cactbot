@@ -63,7 +63,7 @@
     },
     {
       id: 'Dohn Mheg Candy Cane',
-      regex: / 14:2299:Aenc Thon, Lord of the Lingering Gaze starts using Candy Cane on (\y{Name})/,
+      regex: / 14:2299:Aenc Thon, Lord [Oo]f [Tt]he Lingering Gaze starts using Candy Cane on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -83,7 +83,7 @@
     },
     {
       id: 'Dohn Mheg Landsblood',
-      regex: / 14:1E8E:Aenc Thon, Lord of the Lingering Gaze starts using Landsblood/,
+      regex: / 14:1E8E:Aenc Thon, Lord [Oo]f [Tt]he Lingering Gaze starts using Landsblood/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -117,7 +117,7 @@
     },
     {
       id: 'Dohn Mheg Crippling Blow',
-      regex: / 14:35A4:Aenc Thon, Lord of the Lengthsome Gait starts using Crippling Blow on (\y{Name})/,
+      regex: / 14:35A4:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Crippling Blow on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -137,21 +137,21 @@
     },
     {
       id: 'Dohn Mheg Imp Choir',
-      regex: / 14:34F0:Aenc Thon, Lord of the Lengthsome Gait starts using Imp Choir/,
+      regex: / 14:34F0:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Imp Choir/,
       alertText: {
         en: 'Look Away',
       },
     },
     {
       id: 'Dohn Mheg Toad Choir',
-      regex: / 14:34EF:Aenc Thon, Lord of the Lengthsome Gait starts using Toad Choir/,
+      regex: / 14:34EF:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Toad Choir/,
       alertText: {
         en: 'Out of Front',
       },
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
-      regex: / 14:358C:Aenc Thon, Lord of the Lengthsome Gait starts using Virtuosic Capriccio/,
+      regex: / 14:358C:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Virtuosic Capriccio/,
       condition: function(data) {
         return data.role == 'healer';
       },
