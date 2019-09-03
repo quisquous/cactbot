@@ -82,155 +82,156 @@ let Util = {
 };
 
 (function () {
-    let wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(location.href);
-    let ws = null;
-    let queue = [];
-    let rseqCounter = 0;
-    let responsePromises = {};
-    let subscribers = {};
+  let wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(location.href);
+  let ws = null;
+  let queue = [];
+  let rseqCounter = 0;
+  let responsePromises = {};
+  let subscribers = {};
 
-    if (wsUrl) {
-        function connectWs() {
-            ws = new WebSocket(wsUrl[1]);
+  if (wsUrl) {
+    function sendMessage(obj) {
+      if (queue) {
+        queue.push(msg);
+      } else {
+        ws.send(JSON.stringify(obj));
+      }
+    }
 
-            ws.addEventListener('error', (e) => {
-                console.error(e);
-            });
+    function connectWs() {
+      ws = new WebSocket(wsUrl[1]);
 
-            ws.addEventListener('open', () => {
-                console.log('Connected!');
+      ws.addEventListener('error', (e) => {
+        console.error(e);
+      });
 
-                ws.send(JSON.stringify({
-                    call: 'subscribe',
-                    events: Object.keys(subscribers),
-                }));
+      ws.addEventListener('open', () => {
+        console.log('Connected!');
 
-                for (let msg of queue) {
-                    ws.send(JSON.stringify(msg));
-                }
+        let q = queue;
+        queue = null;
 
-                queue = null;
-            });
+        sendMessage({
+          call: 'subscribe',
+          events: Object.keys(subscribers),
+        });
 
-            ws.addEventListener('message', (msg) => {
-                try {
-                    msg = JSON.parse(msg.data);
-                } catch(e) {
-                    console.error('Invalid message received: ', msg);
-                    return;
-                }
+        for (let msg of q) {
+          sendMessage(msg);
+        }
+      });
 
-                if (msg.rseq !== undefined && responsePromises[msg.rseq]) {
-                    responsePromises[msg.rseq](msg);
-                    delete responsePromises[msg.rseq];
-                } else {
-                    processEvent(msg);
-                }
-            });
-
-            ws.addEventListener('close', () => {
-                queue = [];
-
-                console.log('Trying to reconnect...');
-                // Don't spam the server with retries.
-                setTimeout(() => {
-                    connectWs();
-                }, 300);
-            });
+      ws.addEventListener('message', (msg) => {
+        try {
+          msg = JSON.parse(msg.data);
+        } catch(e) {
+          console.error('Invalid message received: ', msg);
+          return;
         }
 
-        connectWs();
+        if (msg.rseq !== undefined && responsePromises[msg.rseq]) {
+          responsePromises[msg.rseq](msg);
+          delete responsePromises[msg.rseq];
+        } else {
+          processEvent(msg);
+        }
+      });
+
+      ws.addEventListener('close', () => {
+        queue = [];
+
+        console.log('Trying to reconnect...');
+        // Don't spam the server with retries.
+        setTimeout(() => {
+          connectWs();
+        }, 300);
+      });
+    }
+
+    connectWs();
+  } else {
+    function sendMessage(obj, cb) {
+      if (queue) {
+        queue.push([obj, cb]);
+      } else {
+        OverlayPluginApi.callHandler(JSON.stringify(obj), cb);
+      }
+    }
+
+    function waitForApi() {
+      if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
+        setTimeout(waitForApi, 300);
+        return;
+      }
+
+      let q = queue;
+      queue = null;
+
+      window.__OverlayCallback = processEvent;
+
+      sendMessage({
+        call: 'subscribe',
+        events: Object.keys(subscribers),
+      }, null);
+
+      for (let [msg, resolve] of q) {
+        sendMessage(msg, resolve);
+      }
+    }
+
+    waitForApi();
+  }
+
+  function processEvent(msg) {
+    if (subscribers[msg.type]) {
+      for (let sub of subscribers[msg.type]) {
+        sub(msg);
+      }
+    } else if (msg.type !== 'CombatData') {
+      console.warn(`Received event ${msg.type} even though we're not subscribed!`);
+    }
+  }
+
+  window.addOverlayListener = (event, cb) => {
+    if (!subscribers[event]) {
+      subscribers[event] = [];
+
+      if (!queue) {
+        sendMessage({
+          call: 'subscribe',
+          events: [event],
+        });
+      }
+    }
+
+    subscribers[event].push(cb);
+  };
+
+  window.removeOverlayListener = (event, cb) => {
+    if (subscribers[event]) {
+      let list = subscribers[event];
+      let pos = list.indexOf(cb);
+
+      if (pos > -1) list.splice(pos, 1);
+    }
+  };
+
+  window.callOverlayHandler = (msg) => {
+    if (ws) {
+      msg.rseq = rseqCounter++;
+      let p = new Promise((resolve, reject) => {
+        responsePromises[msg.rseq] = resolve;
+      });
+
+      sendMessage(msg);
+      return p;
     } else {
-        function waitForApi() {
-            if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
-                setTimeout(waitForApi, 300);
-                return;
-            }
-
-            let q = queue;
-            queue = null;
-
-            window.__OverlayCallback = processEvent;
-
-            OverlayPluginApi.callHandler(JSON.stringify({
-                'call': 'subscribe',
-                'events': Object.keys(subscribers),
-            }), null);
-
-            for (let [msg, resolve] of q) {
-                OverlayPluginApi.callHandler(JSON.stringify(msg), resolve);
-            }
-        }
-
-        waitForApi();
+      return new Promise((resolve) => {
+        sendMessage(msg, (data) => {
+          resolve(data == null ? null : JSON.parse(data))
+        });
+      });
     }
-
-    function processEvent(msg) {
-        if (subscribers[msg.type]) {
-            for (let sub of subscribers[msg.type]) {
-                sub(msg);
-            }
-        } else if (msg.type !== 'CombatData') {
-            console.warn(`Received event ${msg.type} even though we're not subscribed!`);
-        }
-    }
-
-    function sendMessage(msg, cb) {
-        if (ws) {
-            if (queue) {
-                queue.push(msg);
-            } else {
-                ws.send(JSON.stringify(msg));
-            }
-        } else {
-            if (queue) {
-                queue.push([msg, cb]);
-            } else {
-                OverlayPluginApi.callHandler(JSON.stringify(msg), cb);
-            }
-        }
-    }
-
-    window.addOverlayListener = (event, cb) => {
-        if (!subscribers[event]) {
-            subscribers[event] = [];
-
-            if (!queue) {
-                sendMessage({
-                    call: 'subscribe',
-                    events: [event],
-                });
-            }
-        }
-
-        subscribers[event].push(cb);
-    };
-
-    window.removeOverlayListener = (event, cb) => {
-        if (subscribers[event]) {
-            let list = subscribers[event];
-            let pos = list.indexOf(cb);
-
-            if (pos > -1) list.splice(pos, 1);
-        }
-    };
-
-    window.callOverlayHandler = (msg) => {
-        if (ws) {
-            msg.rseq = rseqCounter++;
-            let p = new Promise((resolve, reject) => {
-                responsePromises[msg.rseq] = resolve;
-            });
-
-            sendMessage(msg);
-            return p;
-        } else {
-            return new Promise((resolve) => {
-                sendMessage(msg, (data) => {
-                    resolve(data == null ? null : JSON.parse(data))
-                });
-            });
-        }
-    };
+  };
 })();
 

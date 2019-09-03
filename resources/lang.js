@@ -175,8 +175,6 @@ class CactbotLanguage {
       EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
       EurekaHydatos: /(Eureka Hydatos|Unknown Zone \(33B\))/,
     });
-
-    callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
   }
 
   InitStrings(playerName) {

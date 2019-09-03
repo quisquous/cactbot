@@ -39,11 +39,6 @@ namespace Cactbot {
 
     // When true, the update function should reset notify state back to defaults.
     private bool reset_notify_state_ = false;
-    // Set to true when the constructor is run, to prevent premature navigation before we're able to log.
-    private bool init_ = false;
-
-    // Temporarily hold any navigations that occur during construction
-    private string deferred_navigate_;
 
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
@@ -90,9 +85,6 @@ namespace Cactbot {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
       OnPartyWipe(new JSEvents.PartyWipeEvent());
     }
-
-    public delegate void DataFilesReadHandler(JSEvents.DataFilesRead e);
-    public event DataFilesReadHandler OnDataFilesRead;
 
     public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
         : base(logger) {
@@ -189,7 +181,6 @@ namespace Cactbot {
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
-      OnDataFilesRead += (e) => DispatchToJS(e);
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
@@ -222,7 +213,7 @@ namespace Cactbot {
           System.Windows.Forms.MessageBoxButtons.YesNo);
         if (result == System.Windows.Forms.DialogResult.Yes)
           System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-      } else if (local < remote && false) {
+      } else if (local < remote) {
         Version remote_seen_before = new Version(Config.RemoteVersionSeen);
         Config.RemoteVersionSeen = remote.ToString();
 
@@ -248,8 +239,6 @@ namespace Cactbot {
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
-
-      init_ = true;
     }
 
     public override void Stop() {
@@ -286,13 +275,35 @@ namespace Cactbot {
         notify_state_ = new NotifyState();
       reset_notify_state_ = false;
 
-      // Loading dance: (TODO: @ngld: this needs to be updated)
-      // * wait for !CefBrowser::IsLoading.
-      // * Execute JS in all overlays to wait for DOMContentReady and send back an event.
-      // * When this OverlayMessage comes in, send back an onInitializeOverlay message.
-      // * Overlays should load options from the provider user data dir in that message.
-      // * As DOMContentReady happened, overlays should also construct themselves and attach to the DOM.
-      // * Now, messages can be sent freely and everything is initialized.
+      // Loading dance:
+      // * OverlayPlugin loads addons and initializes event sources.
+      // * OverlayPlugin loads its configuration.
+      // * Event sources are told to load their configuration and start (LoadConfig and Start are called).
+      // * Overlays are initialised and the browser instances are started. At this points the overlays start loading.
+      // * At some point the overlay's JavaScript is executed and OverlayPluginApi is injected. This order isn't
+      //   deterministic and depends on what the ACT process is doing at that point in time. During startup the
+      //   OverlayPluginApi is usually injected after the overlay is done loading while an overlay that's reloaded or
+      //   loaded later on will see the OverlayPluginApi before the page has loaded.
+      // * The overlay JavaScript sets up the initial event handlers and calls the cactbotLoadUser handler through
+      //   getUserConfigLocation. These actions are queued by the JS implementation in common.js until OverlayPluginApi
+      //   (or the WebSocket) is available. Once it is, the event subscriptions and handler calls are transmitted.
+      // * OverlayPlugin stores the event subscriptions and executes the C# handlers which in this case means
+      //   FetchUserFiles is called. That method loads the user files and returns them. The result is now transmitted
+      //   back to the overlay that called the handler and the Promise in JS is resolved with the result.
+      // * getUserConfigLocation processes the received information and calls the passed callback. This constructs the
+      //   overlay specific objects and registers additional event handlers. Finally, the cactbotRequestState handler
+      //   is called.
+      // * OverlayPlugin processes the new event subscriptions and executes the cactbotRequestState handler.
+      // * The next time SendFastRateEvents is called, it resets notify_state_ (since the previous handler set
+      //   reset_notify_state_ to true) which causes it to dispatch all state events again. These events are now
+      //   dispatched to all subscribed overlays. However, this means that overlays can receive state events multiple
+      //   times during startup. If the user has three Cactbot overlays, all of them will call cactbotRequestState and
+      //   thus cause this to happen one to three times depending on their timing. This shouldn't cause any issues but
+      //   it's a waste of CPU cycles.
+      // * Since this only happens during startup, it's probably not worth fixing though. Not sure.
+      // * Some overlays behave slightly different from the above explanation. Raidboss for example loads data files
+      //   in addition to the listed steps. I think it's even loading them twice since raidboss.js loads the data files
+      //   for gTimelineController and popup-text.js requests them again for its own purposes.
      
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
@@ -308,7 +319,7 @@ namespace Cactbot {
 
       // Silently stop sending other messages if the ffxiv process isn't around.
       if (!game_exists) {
-        //return kUberSlowTimerMilli;
+        return kUberSlowTimerMilli;
       }
 
       // onInCombatChangedEvent: Fires when entering or leaving combat.
@@ -725,27 +736,6 @@ namespace Cactbot {
       response["detail"] = result;
       return response;
     }
-
-    // This is an overlayMessage() function call from javascript. We accept a json object of
-    // (command, argument) pairs. Commands are:
-    // - say: The argument is a string which is read as text-to-speech.
-    /*public override void OverlayMessage(string message) {
-      var reader = new JsonTextReader(new StringReader(message));
-      var obj = message_serializer_.Deserialize<Dictionary<string, string>>(reader);
-      if (obj.ContainsKey("say")) {
-        Advanced_Combat_Tracker.ActGlobals.oFormActMain.TTS(obj["say"]);
-      } else if (obj.ContainsKey("getSaveData")) {
-        DispatchToJS(new JSEvents.SendSaveData(Config.OverlayData));
-      } else if (obj.ContainsKey("setSaveData")) {
-        Config.OverlayData = obj["setSaveData"];
-      } else if (obj.ContainsKey("onDOMContentLoaded")) {
-        Dictionary<string, string> local_files;
-        string config_dir;
-        GetUserConfigDirAndFiles(out config_dir, out local_files);
-        DispatchToJS(new JSEvents.OnInitializeOverlay(config_dir, local_files, language_));
-        notify_state_.dom_content_loaded = true;
-      }
-    }*/
 
     // State that is tracked and sent to JS when it changes.
     private class NotifyState {
