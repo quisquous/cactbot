@@ -59,7 +59,6 @@ hideall "--sync--"
 
 ### Marquis Morbol
 # -p 3E16:508.5 -ii 3E11 3E14
-# TODO: run his long enough to find a loop @_@
 500.0 "--sync--" sync /00:0839:Phytobiology will be sealed off/ window 500,0
 505.0 "--sync--" sync /:Marquis Morbol:3E14:/ window 505,5
 508.5 "Lash" sync /:Marquis Morbol:3E16:/
@@ -67,7 +66,6 @@ hideall "--sync--"
 524.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
 # extensible tendrils appears to have some variation on start time
-# is this an hp push??
 532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
 537.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 564.7 "Putrid Breath" sync /:Marquis Morbol:3E12:/
@@ -76,7 +74,7 @@ hideall "--sync--"
 581.1 "Blossom" sync /:Marquis Morbol:3E13:/
 589.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
-532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
+598.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
 603.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 611.4 "Sap Shower" sync /:Marquis Morbol:3E15:/
 630.8 "Putrid Breath" sync /:Marquis Morbol:3E12:/
@@ -85,11 +83,28 @@ hideall "--sync--"
 653.3 "Sap Shower" sync /:Marquis Morbol:3E15:/
 657.1 "Lash" sync /:Marquis Morbol:3E16:/
 
-532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
-665.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
-692.8 "Putrid Breath" sync /:Marquis Morbol:3E12:/
-699.2 "Arbor Storm" sync /:Marquis Morbol:3E17:/
+660.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
+665.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/
+692.6 "Putrid Breath" sync /:Marquis Morbol:3E12:/
+699.0 "Arbor Storm" sync /:Marquis Morbol:3E17:/
+707.6 "Blossom" sync /:Marquis Morbol:3E13:/
+716.1 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
+724.8 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
+729.8 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
+737.9 "Sap Shower" sync /:Marquis Morbol:3E15:/
+757.3 "Putrid Breath" sync /:Marquis Morbol:3E12:/
+760.7 "Lash" sync /:Marquis Morbol:3E16:/
+773.1 "Blossom" sync /:Marquis Morbol:3E13:/ window 50,50 jump 646.6
+779.8 "Sap Shower"
+783.6 "Lash"
+
+786.8 "--sync--"
+791.8 "Extensible Tendrils"
+819.1 "Putrid Breath"
+825.5 "Arbor Storm"
+834.1 "Blossom"
+842.6 "Arbor Storm"
 
 
 ### Quetzalcoatl
