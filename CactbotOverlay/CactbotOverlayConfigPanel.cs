@@ -74,18 +74,26 @@ namespace Cactbot {
       // Overlay Dir
       if (this.config.Url == "")
         return;
+      var overlayFullPath = this.config.Url;
+      overlayFullPath = System.Text.RegularExpressions.Regex.Replace(overlayFullPath, @"file:[\\\/]+", "");
       var overlayPath = System.IO.Path.GetDirectoryName(config.Url);
       overlayPath = System.Text.RegularExpressions.Regex.Replace(overlayPath, @"file:[\\\/]+", "");
-      pathsList.Add(overlayPath);
+      string basePath = System.Text.RegularExpressions.Regex.Match(overlayPath, @"(.*cactbot)").Groups[1].ToString();
+      pathsList.Add(basePath);
 
       // User Dir
-      string basePath = System.Text.RegularExpressions.Regex.Match(overlayPath, @"(.*cactbot)").Groups[1].ToString();
-      string userPath = System.IO.Path.Combine(basePath, "user");
-      pathsList.Add(userPath);
-
-      // Resource Dir
-      string resourcePath = System.IO.Path.Combine(basePath, "resources");
-      pathsList.Add(resourcePath);
+      if (this.config.UserConfigFile != "") {
+        var userPath = System.IO.Path.GetDirectoryName(config.UserConfigFile);
+        userPath = System.Text.RegularExpressions.Regex.Replace(userPath, @"file:[\\\/]+", "");
+        pathList.Add(userPath);
+      }
+      // Path relative to dll
+      // string 
+      
+      // Path from HTML
+      // if (System.IO.File.Exists(overlayFullPath)) {
+      //   var text = System.IO.
+      
 
       string[] paths = pathsList.ToArray();
       watchers = new System.IO.FileSystemWatcher[paths.Length];
