@@ -387,7 +387,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.Medicated,
         loseEffect: gLang.kEffect.Medicated,
         useEffectDuration: true,
-        icon: kIconBuffPotion,
+        icon: '../../resources/icon/status/potion.png',
         borderColor: '#AA41B2',
         sortKey: 0,
         cooldown: 270,
@@ -395,7 +395,7 @@ class BuffTracker {
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
         durationSeconds: 10,
-        icon: kIconBuffPeculiarLight,
+        icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
         cooldown: 60,
@@ -406,7 +406,7 @@ class BuffTracker {
         gainAbility: gLang.kAbility.TrickAttack,
         gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
         durationSeconds: 10,
-        icon: kIconBuffTrickAttack,
+        icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
         sortKey: 1,
@@ -416,7 +416,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.BattleLitany,
         loseEffect: gLang.kEffect.BattleLitany,
         useEffectDuration: true,
-        icon: kIconBuffLitany,
+        icon: '../../resources/icon/status/battle-litany.png',
         // Cyan.
         borderColor: '#099',
         sortKey: 2,
@@ -431,7 +431,7 @@ class BuffTracker {
         gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
         loseEffect: gLang.kEffect.Embolden,
         durationSeconds: 20,
-        icon: kIconBuffEmbolden,
+        icon: '../../resources/icon/status/embolden.png',
         // Lime.
         borderColor: '#57FC4A',
         sortKey: 3,
@@ -441,7 +441,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.Balance,
         loseEffect: gLang.kEffect.Balance,
         useEffectDuration: true,
-        icon: kIconBuffBalance,
+        icon: '../../resources/icon/status/balance.png',
         // Orange.
         borderColor: '#ff9900',
         sortKey: 4,
@@ -450,7 +450,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.Devilment,
         loseEffect: gLang.kEffect.Devilment,
         durationSeconds: 20,
-        icon: kIconBuffDevilment,
+        icon: '../../resources/icon/status/devilment.png',
         // Dark Green.
         borderColor: '#006400',
         sortKey: 5,
@@ -460,7 +460,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.StandardFinish,
         loseEffect: gLang.kEffect.StandardFinish,
         durationSeconds: 60,
-        icon: kIconBuffStandardFinish,
+        icon: '../../resources/icon/status/standard-finish.png',
         // Green.
         borderColor: '#32CD32',
         sortKey: 6,
@@ -469,7 +469,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.TechnicalFinish,
         loseEffect: gLang.kEffect.TechnicalFinish,
         durationSeconds: 20,
-        icon: kIconBuffTechnicalFinish,
+        icon: '../../resources/icon/status/technical-finish.png',
         // Dark Peach.
         borderColor: '#E0757C',
         sortKey: 6,
@@ -478,7 +478,7 @@ class BuffTracker {
       chain: {
         gainAbility: gLang.kAbility.ChainStrategem,
         durationSeconds: 15,
-        icon: kIconBuffChainStratagem,
+        icon: '../../resources/icon/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
         sortKey: 7,
@@ -488,7 +488,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.LeftEye,
         loseEffect: gLang.kEffect.LeftEye,
         useEffectDuration: true,
-        icon: kIconBuffDragonSight,
+        icon: '../../resources/icon/status/dragon-sight.png',
         // Orange.
         borderColor: '#FA8737',
         sortKey: 8,
@@ -498,7 +498,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.RightEye,
         loseEffect: gLang.kEffect.RightEye,
         useEffectDuration: true,
-        icon: kIconBuffDragonSight,
+        icon: '../../resources/icon/status/dragon-sight.png',
         // Orange.
         borderColor: '#FA8737',
         sortKey: 8,
@@ -508,7 +508,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.Brotherhood,
         loseEffect: gLang.kEffect.Brotherhood,
         useEffectDuration: true,
-        icon: kIconBuffBrotherhood,
+        icon: '../../resources/icon/status/brotherhood.png',
         // Dark Orange.
         borderColor: '#994200',
         sortKey: 9,
@@ -518,7 +518,7 @@ class BuffTracker {
         gainEffect: gLang.kEffect.Devotion,
         loseEffect: gLang.kEffect.Devotion,
         useEffectDuration: true,
-        icon: kIconBuffDevotion,
+        icon: '../../resources/icon/status/devotion.png',
         // Yellow.
         borderColor: '#ffbf00',
         sortKey: 10,
