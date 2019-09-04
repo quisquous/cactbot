@@ -476,7 +476,7 @@ class BuffTracker {
         cooldown: 120,
       },
       chain: {
-        gainAbility: gLang.kAbility.ChainStrategem,
+        gainAbility: gLang.kAbility.ChainStratagem,
         durationSeconds: 15,
         icon: kIconBuffChainStratagem,
         // Blue.

@@ -42,7 +42,7 @@ class CactbotLanguage {
       TrickAttack: '8D2',
       Embolden: '1D60',
       Aetherflow: 'A6',
-      ChainStrategem: '1D0C',
+      ChainStratagem: '1D0C',
       Hypercharge: 'B45',
       Adloquium: 'B9',
       RabbitMedium: '8E0',
