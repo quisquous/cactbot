@@ -29,6 +29,8 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSelectUserConfigFile = new System.Windows.Forms.Button();
             this.textUserConfigFile = new System.Windows.Forms.TextBox();
+            this.labelDevReloader = new System.Windows.Forms.Label();
+            this.checkWatchFileChanges = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
@@ -36,7 +38,7 @@
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 13);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 14);
             this.tableLayoutPanel1.Controls.Add(this.dpsUpdateRateLabel, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.dpsUpdateRate, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.logUpdateLabel, 0, 9);
@@ -44,6 +46,8 @@
             this.tableLayoutPanel1.Controls.Add(this.restartMessageLabel, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.labelDevReloader, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.checkWatchFileChanges, 1, 13);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // tableLayoutPanel3
@@ -105,6 +109,18 @@
             this.textUserConfigFile.Name = "textUserConfigFile";
             this.textUserConfigFile.Leave += new System.EventHandler(this.textUserConfigFile_Leave);
             // 
+            // labelDevReloader
+            // 
+            resources.ApplyResources(this.labelDevReloader, "labelDevReloader");
+            this.labelDevReloader.Name = "labelDevReloader";
+            // 
+            // checkWatchFileChanges
+            // 
+            resources.ApplyResources(this.checkWatchFileChanges, "checkWatchFileChanges");
+            this.checkWatchFileChanges.Name = "checkWatchFileChanges";
+            this.checkWatchFileChanges.UseVisualStyleBackColor = true;
+            this.checkWatchFileChanges.CheckedChanged += new System.EventHandler(this.checkWatchFileChanges_CheckedChanged);
+            // 
             // CactbotEventSourceConfigPanel
             // 
             resources.ApplyResources(this, "$this");
@@ -132,5 +148,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button buttonSelectUserConfigFile;
         private System.Windows.Forms.TextBox textUserConfigFile;
+        private System.Windows.Forms.Label labelDevReloader;
+        private System.Windows.Forms.CheckBox checkWatchFileChanges;
     }
 }

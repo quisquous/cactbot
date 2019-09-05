@@ -10,10 +10,14 @@ using Newtonsoft.Json;
 namespace Cactbot {
   [Serializable]
   public class CactbotEventSourceConfig {
+    public event EventHandler WatchFileChangesChanged;
+
     [JsonIgnore]
     public static string CactbotAssemblyUri {
       get {
         var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
+        if (location == "") location = PluginLoader.pluginPath;
+
         if (location != "") {
           return System.IO.Path.GetDirectoryName(location);
         } else
@@ -50,5 +54,18 @@ namespace Cactbot {
     public string RemoteVersionSeen = "0.0";
     
     public string UserConfigFile = "";
+
+    private bool watchFileChanges = false;
+    public bool WatchFileChanges {
+      get {
+        return watchFileChanges;
+      }
+      set {
+        if (watchFileChanges != value) {
+          watchFileChanges = value;
+          WatchFileChangesChanged?.Invoke(this, new EventArgs());
+        }
+      }
+    }
   }
 }

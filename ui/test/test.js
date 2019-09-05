@@ -88,4 +88,12 @@ addOverlayListener('onLogEvent', function(e) {
   }
 });
 
+addOverlayListener('onUserFileChanged', function(e) {
+  console.log(`User file ${e.file} changed!`);
+});
+
+addOverlayListener('FileChanged', function(e) {
+  console.log(`File ${e.file} changed!`);
+});
+
 callOverlayHandler({ call: 'cactbotRequestState' });

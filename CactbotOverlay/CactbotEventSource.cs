@@ -48,6 +48,7 @@ namespace Cactbot {
     private WipeDetector wipe_detector_;
     private string language_ = null;
     private System.Threading.SynchronizationContext main_thread_sync_;
+    private List<FileSystemWatcher> watchers;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
     public event GameExistsHandler OnGameExists;
@@ -94,7 +95,8 @@ namespace Cactbot {
       RegisterEventTypes(new List<string>()
       {
         "onGameExistsEvent", "onGameActiveChangedEvent", "onLogEvent", "onImportLogEvent", "onInCombatChangedEvent",
-        "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent", "onTargetChangedEvent",
+        "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent",
+        "onTargetChangedEvent", "onUserFileChanged",
       });
 
       RegisterEventHandler("cactbotLoadUser", FetchUserFiles);
@@ -133,6 +135,18 @@ namespace Cactbot {
     {
       Config = CactbotEventSourceConfig.LoadConfig(config);
       if (Config.OverlayData == null) Config.OverlayData = new Dictionary<string, string>();
+
+      Config.WatchFileChangesChanged += (o, e) => {
+        if (Config.WatchFileChanges) {
+          StartFileWatcher();
+        } else {
+          StopFileWatcher();
+        }
+      };
+
+      if (Config.WatchFileChanges) {
+        StartFileWatcher();
+      }
     }
 
     public override void Start() {
@@ -731,6 +745,48 @@ namespace Cactbot {
       var response = new JObject();
       response["detail"] = result;
       return response;
+    }
+
+    private void StartFileWatcher() {
+      watchers = new List<FileSystemWatcher>();
+      var paths = new List<string>();
+      
+      paths.Add(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
+      paths.Add(Config.UserConfigFile);
+
+      foreach (var path in paths) {
+        if (path == "" || !Directory.Exists(path)) continue;
+        
+        var watcher = new FileSystemWatcher()
+        {
+          Path = path,
+          NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
+          IncludeSubdirectories = true,
+        };
+
+        // We only care about file changes. New or renamed files don't matter if we don't have a reference to them
+        // and adding a new reference causes an existing file to change.
+        watcher.Changed += (o, e) => {
+          DispatchEvent(JObject.FromObject(new {
+            type = "onUserFileChanged",
+            file = e.FullPath,
+          }));
+        };
+
+        watcher.EnableRaisingEvents = true;
+        watchers.Add(watcher);
+
+        LogInfo("Started watching {0}", path);
+      }
+    }
+
+    private void StopFileWatcher() {
+      foreach (var watcher in watchers) {
+        watcher.EnableRaisingEvents = false;
+        watcher.Dispose();
+      }
+
+      watchers = null;
     }
 
     // State that is tracked and sent to JS when it changes.

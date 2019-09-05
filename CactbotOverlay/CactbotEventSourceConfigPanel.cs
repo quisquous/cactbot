@@ -22,6 +22,7 @@ namespace Cactbot {
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
       this.textUserConfigFile.Text = config.UserConfigFile;
+      this.checkWatchFileChanges.Checked = config.WatchFileChanges;
     }
 
     private void SetupConfigEventHandlers() {
@@ -80,6 +81,11 @@ namespace Cactbot {
         this.source.LogError("User Config Directory Uri must be a valid directory.");
         this.source.LogError(ex.Message);
       }
+    }
+
+    private void checkWatchFileChanges_CheckedChanged(object sender, EventArgs e)
+    {
+      this.config.WatchFileChanges = this.checkWatchFileChanges.Checked;
     }
   }
 }

@@ -11,6 +11,8 @@ namespace Cactbot
 {
     public class PluginLoader : IActPluginV1, IOverlayAddonV2
     {
+        public static string pluginPath = "";
+
         public void DeInitPlugin()
         {
             
@@ -22,6 +24,15 @@ namespace Cactbot
 
             // We don't need a tab here.
             ((TabControl)pluginScreenSpace.Parent).TabPages.Remove(pluginScreenSpace);
+
+            foreach (var plugin in ActGlobals.oFormActMain.ActPlugins)
+            {
+                if (plugin.pluginObj == this)
+                {
+                    pluginPath = plugin.pluginFile.FullName;
+                    break;
+                }
+            }
         }
 
         public void Init()
