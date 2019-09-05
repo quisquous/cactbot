@@ -7,7 +7,6 @@ namespace Cactbot {
   public partial class CactbotOverlayConfigPanel : UserControl {
     private CactbotOverlayConfig config;
     private CactbotOverlay overlay;
-    private System.IO.FileSystemWatcher[] watchers;
 
     public CactbotOverlayConfigPanel(CactbotOverlay overlay) {
       InitializeComponent();
@@ -17,7 +16,6 @@ namespace Cactbot {
 
       SetupControlProperties();
       SetupConfigEventHandlers();
-      SetupFileWatcher();
     }
 
     private void SetupControlProperties() {
@@ -65,59 +63,6 @@ namespace Cactbot {
           this.checkLock.Checked = e.IsLocked;
         });
       };
-    }
-
-    private void SetupFileWatcher()
-    {
-      System.Collections.Generic.List<string> pathsList = new System.Collections.Generic.List<string>();
-      
-      // Overlay Dir
-      if (this.config.Url == "")
-        return;
-      var overlayFullPath = this.config.Url;
-      overlayFullPath = System.Text.RegularExpressions.Regex.Replace(overlayFullPath, @"file:[\\\/]+", "");
-      var overlayPath = System.IO.Path.GetDirectoryName(config.Url);
-      overlayPath = System.Text.RegularExpressions.Regex.Replace(overlayPath, @"file:[\\\/]+", "");
-      string basePath = System.Text.RegularExpressions.Regex.Match(overlayPath, @"(.*cactbot)").Groups[1].ToString();
-      pathsList.Add(basePath);
-
-      // User Dir
-      if (this.config.UserConfigFile != "") {
-        var userPath = System.IO.Path.GetDirectoryName(config.UserConfigFile);
-        userPath = System.Text.RegularExpressions.Regex.Replace(userPath, @"file:[\\\/]+", "");
-        pathList.Add(userPath);
-      }
-      // Path relative to dll
-      // string 
-      
-      // Path from HTML
-      // if (System.IO.File.Exists(overlayFullPath)) {
-      //   var text = System.IO.
-      
-
-      string[] paths = pathsList.ToArray();
-      watchers = new System.IO.FileSystemWatcher[paths.Length];
-      for (int i = 0; i < paths.Length; i++) {
-        if (!System.IO.Directory.Exists(paths[i]))
-          {
-            this.overlay.LogError($"Directory {paths[i]}, (index: {i}) does not exist!");
-            continue;
-          }
-        var watcher = new System.IO.FileSystemWatcher()
-        {
-          Path = paths[i],
-          NotifyFilter = System.IO.NotifyFilters.LastWrite | System.IO.NotifyFilters.FileName,
-          IncludeSubdirectories = true,
-        };
-
-        watcher.Created += buttonReloadBrowser_Click;
-        watcher.Deleted += buttonReloadBrowser_Click;
-        watcher.Renamed += buttonReloadBrowser_Click;
-        watcher.Changed += buttonReloadBrowser_Click;
-        watcher.EnableRaisingEvents = false;
-
-        watchers[i] = watcher;
-      }
     }
 
     private void InvokeIfRequired(Action action) {
@@ -169,13 +114,13 @@ namespace Cactbot {
       if (ofd.ShowDialog() == DialogResult.OK) {
         this.config.Url = new Uri(ofd.FileName).ToString();
         this.textUrl.Text = this.config.Url;
-        SetupFileWatcher();
+        this.overlay.SetupFileWatcher(this.config.Url);
       }
     }
 
     private void textUrl_Leave(object sender, EventArgs e) {
       this.config.Url = textUrl.Text;
-      SetupFileWatcher();
+      this.overlay.SetupFileWatcher(this.config.Url);
     }
 
     private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -236,7 +181,7 @@ namespace Cactbot {
     {
       try
       {
-        foreach (var watcher in watchers)
+        foreach (var watcher in this.overlay.watchers)
           watcher.EnableRaisingEvents = checkDevReloader.Checked;
       }
       catch (Exception ex)

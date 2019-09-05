@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Cactbot {
@@ -33,6 +34,8 @@ namespace Cactbot {
     private List<string> last_log_lines_ = new List<string>(40);
     private List<string> last_import_log_lines_ = new List<string>(40);
 
+    public FileSystemWatcher[] watchers;
+
     // When true, the update function should reset notify state back to defaults.
     private bool reset_notify_state_ = false;
     // When true, check for the latest version on the next Navigate. Used to only check once.
@@ -57,6 +60,7 @@ namespace Cactbot {
     private WipeDetector wipe_detector_;
     private string language_ = null;
     private System.Threading.SynchronizationContext main_thread_sync_;
+  
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
     public event GameExistsHandler OnGameExists;
@@ -107,7 +111,7 @@ namespace Cactbot {
       ffxiv_ = new FFXIVProcess(this);
       fight_tracker_ = new FightTracker(this);
       wipe_detector_ = new WipeDetector(this);
-      dispatch_json_writer_ = new JsonTextWriter(new System.IO.StringWriter(dispatch_string_builder_));
+      dispatch_json_writer_ = new JsonTextWriter(new StringWriter(dispatch_string_builder_));
       dispatch_serializer_ = JsonSerializer.CreateDefault();
       message_serializer_ = JsonSerializer.CreateDefault();
 
@@ -246,6 +250,67 @@ namespace Cactbot {
       base.Navigate(url);
       fast_update_timer_semaphore_.Release();
     }
+ 
+    public void SetupFileWatcher(string url)
+    {
+      if (watchers.Length > 0)
+        foreach(var watcher in watchers)
+          watcher.Dispose();
+      List<string> pathsList = new List<string>();
+      
+      // Overlay Dir
+      if (url == "")
+        return;
+      var overlayFullPath = url;
+      overlayFullPath = Regex.Replace(overlayFullPath, @"file:[\\\/]+", "");
+      var overlayPath = Path.GetDirectoryName(url);
+      overlayPath = Regex.Replace(overlayPath, @"file:[\\\/]+", "");
+      string basePath = Regex.Match(overlayPath, @"(.*cactbot)").Groups[1].ToString();
+      pathsList.Add(basePath);
+
+      // User Dir
+      string userPath;
+      Dictionary<string, string> localUserFiles = new Dictionary<string, string>();
+      GetUserConfigDirAndFiles(out userPath, out localUserFiles);
+      userPath = Regex.Replace(userPath, @"file:[\\\/]+", "");
+      pathsList.Add(userPath);
+
+      // Path from HTML
+      string html = File.ReadAllText(overlayFullPath);
+      // Regex => src="path/to/file.extension" || href="path/to/file.extension" matching the directory
+      var htmlPath = Regex.Match(html, @"(?:src|href)=""(.*)[\\\/].*\..*""");
+      foreach(var match in htmlPath.Groups) {
+        string matchPath = match.ToString();
+        if (matchPath.StartsWith(".."))
+          matchPath = Path.Combine(overlayFullPath, matchPath);
+        if (!pathsList.Contains(matchPath))
+          pathsList.Add(matchPath);
+      }
+
+      string[] paths = pathsList.ToArray();
+      watchers = new FileSystemWatcher[paths.Length];
+      for (int i = 0; i < paths.Length; i++) {
+        if (!Directory.Exists(paths[i]))
+          {
+            LogError($"Directory {paths[i]}, (index: {i}) does not exist!");
+            continue;
+          }
+        var watcher = new FileSystemWatcher()
+        {
+          Path = paths[i],
+          NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
+          IncludeSubdirectories = true,
+        };
+
+        watcher.Created += (o, e) => { Navigate(url); };
+        watcher.Deleted += (o, e) => { Navigate(url); };
+        watcher.Renamed += (o, e) => { Navigate(url); };
+        watcher.Changed += (o, e) => { Navigate(url); };
+        watcher.EnableRaisingEvents = false;
+
+        watchers[i] = watcher;
+      }
+    }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
       log_lines_semaphore_.Wait();
@@ -345,14 +410,14 @@ namespace Cactbot {
         // is relative to the pointed to url and not the local file.
         if (url.StartsWith("file:///")) {
           var html = File.ReadAllText(new Uri(url).LocalPath);
-          var match = System.Text.RegularExpressions.Regex.Match(html, @"<meta http-equiv=""refresh"" content=""0; url=(.*)?""\/?>");
+          var match = Regex.Match(html, @"<meta http-equiv=""refresh"" content=""0; url=(.*)?""\/?>");
           if (match.Groups.Count > 1) {
             url = match.Groups[1].Value;
           }
         }
 
         var web = new System.Net.WebClient();
-        web.Encoding = System.Text.Encoding.UTF8;
+        web.Encoding = Encoding.UTF8;
         System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
 
         var data_file_paths = new List<string>();
