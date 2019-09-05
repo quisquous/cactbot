@@ -88,15 +88,16 @@ let Util = {
   let rseqCounter = 0;
   let responsePromises = {};
   let subscribers = {};
+  let sendMessage = null;
 
   if (wsUrl) {
-    function sendMessage(obj) {
+    sendMessage = (obj) => {
       if (queue) {
         queue.push(msg);
       } else {
         ws.send(JSON.stringify(obj));
       }
-    }
+    };
 
     function connectWs() {
       ws = new WebSocket(wsUrl[1]);
@@ -150,13 +151,13 @@ let Util = {
 
     connectWs();
   } else {
-    function sendMessage(obj, cb) {
+    sendMessage = (obj, cb) => {
       if (queue) {
         queue.push([obj, cb]);
       } else {
         OverlayPluginApi.callHandler(JSON.stringify(obj), cb);
       }
-    }
+    };
 
     function waitForApi() {
       if (!window.OverlayPluginApi || !window.OverlayPluginApi.ready) {
@@ -187,8 +188,6 @@ let Util = {
       for (let sub of subscribers[msg.type]) {
         sub(msg);
       }
-    } else if (msg.type !== 'CombatData') {
-      console.warn(`Received event ${msg.type} even though we're not subscribed!`);
     }
   }
 

@@ -144,8 +144,6 @@ namespace Cactbot {
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
       fast_update_timer_.Elapsed += (o, args) => {
-        // Hold this while we're in here to prevent the Renderer or Browser from disappearing from under us.
-        fast_update_timer_semaphore_.Wait();
         int timer_interval = kSlowTimerMilli;
         try {
           timer_interval = SendFastRateEvents();
@@ -155,9 +153,7 @@ namespace Cactbot {
           LogError("Stack: " + e.StackTrace);
           LogError("Source: " + e.Source);
         }
-        fast_update_timer_semaphore_.Release();
         fast_update_timer_.Interval = timer_interval;
-        fast_update_timer_.Start();
       };
       fast_update_timer_.AutoReset = false;
 

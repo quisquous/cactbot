@@ -88,3 +88,5 @@ addOverlayListener('onLogEvent', function(e) {
     }
   }
 });
+
+callOverlayHandler({ call: 'cactbotRequestState' });
