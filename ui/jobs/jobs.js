@@ -1660,7 +1660,7 @@ class Bars {
           this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
           this.options.BigBuffBorderSize,
           'yellow', 'yellow',
-          kIconBuffFood);
+          '../../resources/icon/status/food.png');
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
