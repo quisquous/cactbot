@@ -29,6 +29,7 @@ namespace Cactbot {
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
       this.textUserConfigFile.Text = config.UserConfigFile;
+      this.checkDevReloader.Checked = config.DevReloaderEnabled;
     }
 
     private void SetupConfigEventHandlers() {
@@ -183,6 +184,7 @@ namespace Cactbot {
       {
         foreach (var watcher in this.overlay.watchers)
           watcher.EnableRaisingEvents = checkDevReloader.Checked;
+        this.config.DevReloaderEnabled = true;
       }
       catch (Exception ex)
       {
