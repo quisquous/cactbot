@@ -80,7 +80,6 @@ addOverlayListener('onLogEvent', function(e) {
     // Match "/echo tts:<stuff>"
     let r = e.detail.logs[i].match('00:0038:tts:(.*)');
     if (r) {
-      // OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify({ 'say': r[1] }));
       callOverlayHandler({
         call: 'cactbotSay',
         text: r[1],

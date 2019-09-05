@@ -51,7 +51,7 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
   addOverlayListener('onLogEvent', function(e) {
     gTimelineController.OnLogEvent(e);
   });
-  
+
   callOverlayHandler({
     call: 'cactbotReadDataFiles',
     source: location.href,

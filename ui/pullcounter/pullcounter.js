@@ -16,7 +16,8 @@ class PullCounter {
       call: 'cactbotLoadData',
       overlay: OverlayPluginApi.overlayName,
     })
-    .then((data) => gPullCounter.SetSaveData(data));
+      .then((data) => gPullCounter.SetSaveData(data));
+
     this.ReloadTriggers();
   }
 

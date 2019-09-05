@@ -81,7 +81,7 @@ let Util = {
   },
 };
 
-(function () {
+(function() {
   let wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(location.href);
   let ws = null;
   let queue = [];
@@ -92,11 +92,10 @@ let Util = {
 
   if (wsUrl) {
     sendMessage = (obj) => {
-      if (queue) {
+      if (queue)
         queue.push(msg);
-      } else {
+      else
         ws.send(JSON.stringify(obj));
-      }
     };
 
     function connectWs() {
@@ -117,15 +116,14 @@ let Util = {
           events: Object.keys(subscribers),
         });
 
-        for (let msg of q) {
+        for (let msg of q)
           sendMessage(msg);
-        }
       });
 
       ws.addEventListener('message', (msg) => {
         try {
           msg = JSON.parse(msg.data);
-        } catch(e) {
+        } catch (e) {
           console.error('Invalid message received: ', msg);
           return;
         }
@@ -152,11 +150,10 @@ let Util = {
     connectWs();
   } else {
     sendMessage = (obj, cb) => {
-      if (queue) {
+      if (queue)
         queue.push([obj, cb]);
-      } else {
+      else
         OverlayPluginApi.callHandler(JSON.stringify(obj), cb);
-      }
     };
 
     function waitForApi() {
@@ -175,9 +172,8 @@ let Util = {
         events: Object.keys(subscribers),
       }, null);
 
-      for (let [msg, resolve] of q) {
+      for (let [msg, resolve] of q)
         sendMessage(msg, resolve);
-      }
     }
 
     waitForApi();
@@ -185,9 +181,8 @@ let Util = {
 
   function processEvent(msg) {
     if (subscribers[msg.type]) {
-      for (let sub of subscribers[msg.type]) {
+      for (let sub of subscribers[msg.type])
         sub(msg);
-      }
     }
   }
 
@@ -216,21 +211,23 @@ let Util = {
   };
 
   window.callOverlayHandler = (msg) => {
+    let p;
+
     if (ws) {
       msg.rseq = rseqCounter++;
-      let p = new Promise((resolve, reject) => {
+      p = new Promise((resolve, reject) => {
         responsePromises[msg.rseq] = resolve;
       });
 
       sendMessage(msg);
-      return p;
     } else {
-      return new Promise((resolve) => {
+      p = new Promise((resolve) => {
         sendMessage(msg, (data) => {
-          resolve(data == null ? null : JSON.parse(data))
+          resolve(data == null ? null : JSON.parse(data));
         });
       });
     }
+
+    return p;
   };
 })();
-
