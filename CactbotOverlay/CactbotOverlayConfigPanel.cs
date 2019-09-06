@@ -115,13 +115,11 @@ namespace Cactbot {
       if (ofd.ShowDialog() == DialogResult.OK) {
         this.config.Url = new Uri(ofd.FileName).ToString();
         this.textUrl.Text = this.config.Url;
-        this.overlay.SetupFileWatcher(this.config.Url);
       }
     }
 
     private void textUrl_Leave(object sender, EventArgs e) {
       this.config.Url = textUrl.Text;
-      this.overlay.SetupFileWatcher(this.config.Url);
     }
 
     private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
@@ -180,17 +178,8 @@ namespace Cactbot {
 
     private void checkBoxDevReloader_CheckedChanged(object sender, EventArgs e)
     {
-      try
-      {
-        foreach (var watcher in this.overlay.watchers)
-          watcher.EnableRaisingEvents = checkDevReloader.Checked;
-        this.config.DevReloaderEnabled = true;
-      }
-      catch (Exception ex)
-      {
-        this.overlay.LogError("FileSystemWatcher not set up");
-        this.overlay.LogError(ex.Message);
-      }
+        this.config.DevReloaderEnabled = checkDevReloader.Checked;
+        this.overlay.EnableWatchers(checkDevReloader.Checked);
     }
   }
 }

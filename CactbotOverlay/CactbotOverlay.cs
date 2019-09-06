@@ -34,7 +34,7 @@ namespace Cactbot {
     private List<string> last_log_lines_ = new List<string>(40);
     private List<string> last_import_log_lines_ = new List<string>(40);
 
-    public FileSystemWatcher[] watchers;
+    private FileSystemWatcher[] watchers;
 
     // When true, the update function should reset notify state back to defaults.
     private bool reset_notify_state_ = false;
@@ -45,6 +45,7 @@ namespace Cactbot {
 
     // Temporarily hold any navigations that occur during construction
     private string deferred_navigate_;
+    private bool watcherState = false;
 
     private StringBuilder dispatch_string_builder_ = new StringBuilder(1000);
     JsonTextWriter dispatch_json_writer_;
@@ -59,7 +60,7 @@ namespace Cactbot {
     private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
     private string language_ = null;
-    private System.Threading.SynchronizationContext main_thread_sync_;
+    private SynchronizationContext main_thread_sync_;
   
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
@@ -104,7 +105,7 @@ namespace Cactbot {
 
     public CactbotOverlay(CactbotOverlayConfig config)
         : base(config, config.Name) {
-      main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
+      main_thread_sync_ = SynchronizationContext.Current;
     }
 
     void Initialize() {
@@ -223,6 +224,7 @@ namespace Cactbot {
       init_ = true;
       if (deferred_navigate_ != null) {
         this.Navigate(deferred_navigate_);
+        this.SetupFileWatcher(deferred_navigate_);
       }
     }
 
@@ -250,17 +252,33 @@ namespace Cactbot {
       base.Navigate(url);
       fast_update_timer_semaphore_.Release();
     }
- 
-    public void SetupFileWatcher(string url)
+
+    public void EnableWatchers(bool check)
     {
-      if (watchers.Length > 0)
-        foreach(var watcher in watchers)
+      if (!init_ || this.watchers == null)
+      {
+        this.watcherState = check;
+        return;
+      }
+      // I doubt that the following code is actually necessary
+      if (this.watchers.Length > 0)
+        foreach (var watcher in this.watchers)
+          watcher.EnableRaisingEvents = check;
+    }
+ 
+    private void SetupFileWatcher(string url)
+    {
+      if (!init_)
+        return;
+      if (this.watchers != null && this.watchers.Length > 0)
+        foreach(var watcher in this.watchers)
           watcher.Dispose();
       List<string> pathsList = new List<string>();
       
       // Overlay Dir
       if (url == "")
         return;
+
       var overlayFullPath = url;
       overlayFullPath = Regex.Replace(overlayFullPath, @"file:[\\\/]+", "");
       var overlayPath = Path.GetDirectoryName(url);
@@ -273,7 +291,8 @@ namespace Cactbot {
       Dictionary<string, string> localUserFiles = new Dictionary<string, string>();
       GetUserConfigDirAndFiles(out userPath, out localUserFiles);
       userPath = Regex.Replace(userPath, @"file:[\\\/]+", "");
-      pathsList.Add(userPath);
+      if(!userPath.Contains(basePath))
+        pathsList.Add(userPath);
 
       // Path from HTML
       string html = File.ReadAllText(overlayFullPath);
@@ -282,8 +301,8 @@ namespace Cactbot {
       foreach(var match in htmlPath.Groups) {
         string matchPath = match.ToString();
         if (matchPath.StartsWith(".."))
-          matchPath = Path.Combine(overlayFullPath, matchPath);
-        if (!pathsList.Contains(matchPath))
+          matchPath = overlayPath + "/" + matchPath;
+        if (!matchPath.Contains(basePath) && Directory.Exists(matchPath) && !pathsList.Contains(matchPath))
           pathsList.Add(matchPath);
       }
 
@@ -306,10 +325,16 @@ namespace Cactbot {
         watcher.Deleted += (o, e) => { Navigate(url); };
         watcher.Renamed += (o, e) => { Navigate(url); };
         watcher.Changed += (o, e) => { Navigate(url); };
-        watcher.EnableRaisingEvents = false;
+        watcher.EnableRaisingEvents = this.watcherState;
 
         watchers[i] = watcher;
       }
+      for (int i = 0; i < paths.Length; i++)
+      {
+        paths[i] = Regex.Replace(paths[i], @"[\\\/]\z", "");
+        paths[i] = Regex.Replace(paths[i], @".*[\\\/]", "");
+      }
+      LogInfo($"Setup file watchers for {paths.Length} directories: {String.Join(", ", paths)}");
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
