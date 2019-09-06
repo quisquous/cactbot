@@ -437,6 +437,15 @@ class BuffTracker {
         sortKey: 3,
         cooldown: 120,
       },
+      arrow: {
+        gainEffect: gLang.kEffect.Arrow,
+        loseEffect: gLang.kEffect.Arrow,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/arrow.png',
+        // Light Blue.
+        borderColor: '#37ccee',
+        sortKey: 4,
+      },
       balance: {
         gainEffect: gLang.kEffect.Balance,
         loseEffect: gLang.kEffect.Balance,
@@ -444,6 +453,42 @@ class BuffTracker {
         icon: '../../resources/icon/status/balance.png',
         // Orange.
         borderColor: '#ff9900',
+        sortKey: 4,
+      },
+      bole: {
+        gainEffect: gLang.kEffect.Bole,
+        loseEffect: gLang.kEffect.Bole,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/bole.png',
+        // Green.
+        borderColor: '#22dd77',
+        sortKey: 4,
+      },
+      ewer: {
+        gainEffect: gLang.kEffect.Ewer,
+        loseEffect: gLang.kEffect.Ewer,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/ewer.png',
+        // Light Blue.
+        borderColor: '#66ccdd',
+        sortKey: 4,
+      },
+      spear: {
+        gainEffect: gLang.kEffect.Spear,
+        loseEffect: gLang.kEffect.Spear,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/spear.png',
+        // Dark Blue.
+        borderColor: '#4477dd',
+        sortKey: 4,
+      },
+      spire: {
+        gainEffect: gLang.kEffect.Spire,
+        loseEffect: gLang.kEffect.Spire,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/spire.png',
+        // Yellow.
+        borderColor: '#ddd044',
         sortKey: 4,
       },
       devilment: {
