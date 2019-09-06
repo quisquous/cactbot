@@ -74,7 +74,7 @@ namespace Cactbot {
 
       string version_string = match.Groups["Version"].Value;
 
-      pattern = @"(?<VersionNumber>(?<Major>[0-9]+)\.(?<Minor>[0-9]+)\.(?<Revision>[0-9+]))";
+      pattern = @"(?<VersionNumber>(?<Major>[0-9]+)\.(?<Minor>[0-9]+)\.(?<Revision>[0-9]+))";
       regex = new Regex(pattern);
       match = regex.Match(version_string);
       if (!match.Success) {
