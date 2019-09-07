@@ -12,6 +12,7 @@ namespace Cactbot {
   class VersionChecker {
     private ILogger logger_ = null;
 
+    public const string kReleaseAPIEndpointUrl = @"https://api.github.com/repos/quisquous/cactbot/releases/latest";
     public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";
     public const string kIssueUrl = "https://github.com/quisquous/cactbot/issues";
 
@@ -52,37 +53,22 @@ namespace Cactbot {
     }
 
     public Version GetRemoteVersion() {
-      string html;
       try {
-        var web = new System.Net.WebClient();
-        System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
-        var page_stream = web.OpenRead(kReleaseUrl);
-        var reader = new System.IO.StreamReader(page_stream);
-        html = reader.ReadToEnd();
+        string json;
+        using (var webClient = new System.Net.WebClient()) {
+          // https://developer.github.com/v3/#user-agent-required
+          webClient.Headers.Add("User-Agent", "Cactbot");
+          using (var reader = new System.IO.StreamReader(webClient.OpenRead(kReleaseAPIEndpointUrl))) {
+            json = reader.ReadToEnd();
+          }
+        }
+        dynamic latestRelease = new System.Web.Script.Serialization.JavaScriptSerializer().DeserializeObject(json);
+
+        return new Version(latestRelease["tag_name"].Replace("v", ""));
       } catch (Exception e) {
         logger_.LogError("Error fetching most recent github release: " + e.Message + "\n" + e.StackTrace);
         return new Version();
       }
-
-      var pattern = @"href=""/quisquous/cactbot/releases/download/v?(?<Version>.*?)/";
-      var regex = new Regex(pattern, RegexOptions.IgnoreCase | RegexOptions.Singleline);
-      var match = regex.Match(html);
-      if (!match.Success) {
-        logger_.LogError("Error parsing most recent github release, no match found. Please report an issue at " + kIssueUrl);
-        return new Version();
-      }
-
-      string version_string = match.Groups["Version"].Value;
-
-      pattern = @"(?<VersionNumber>(?<Major>[0-9]+)\.(?<Minor>[0-9]+)\.(?<Revision>[0-9]+))";
-      regex = new Regex(pattern);
-      match = regex.Match(version_string);
-      if (!match.Success) {
-        logger_.LogError("Error parsing most recent github release, no version number found. Please report an issue at " + kIssueUrl);
-        return new Version();
-      }
-
-      return new Version(int.Parse(match.Groups["Major"].Value), int.Parse(match.Groups["Minor"].Value), int.Parse(match.Groups["Revision"].Value));
     }
   }
 
