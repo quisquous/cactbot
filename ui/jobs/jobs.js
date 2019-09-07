@@ -491,6 +491,24 @@ class BuffTracker {
         borderColor: '#ddd044',
         sortKey: 4,
       },
+      ladyOfCrowns: {
+        gainEffect: gLang.kEffect.LadyOfCrowns,
+        loseEffect: gLang.kEffect.LadyOfCrowns,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/lady-of-crowns.png',
+        // Purple.
+        borderColor: '#9e5599',
+        sortKey: 4,
+      },
+      lordOfCrowns: {
+        gainEffect: gLang.kEffect.LordOfCrowns,
+        loseEffect: gLang.kEffect.LordOfCrowns,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/lord-of-crowns.png',
+        // Dark Red.
+        borderColor: '#9a2222',
+        sortKey: 4,
+      },
       devilment: {
         gainEffect: gLang.kEffect.Devilment,
         loseEffect: gLang.kEffect.Devilment,

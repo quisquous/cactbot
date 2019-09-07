@@ -27,6 +27,8 @@ class CactbotLanguageEn extends CactbotLanguage {
       Ewer: 'The Ewer', // 0x75e
       Spear: 'The Spear', // 0x75d
       Spire: 'The Spire', // 0x75f
+      LadyOfCrowns: 'Lady Of Crowns', // 0x755
+      LordOfCrowns: 'Lord Of Crowns', // 0x754
       Hypercharge: 'Hypercharge', // 0x2b0
       LeftEye: 'Left Eye', // 0x4a0
       RightEye: 'Right Eye', // 0x49f

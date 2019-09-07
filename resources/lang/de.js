@@ -27,6 +27,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Ewer: 'Kraft Des Krugs', // 0x75e
       Spear: 'Kraft Des Speers', // 0x75d
       Spire: 'Kraft Des Turms', // 0x75f
+      LadyOfCrowns: 'Königin Der Kronen', // 0x755
+      LordOfCrowns: 'König Der Kronen', // 0x754
       Hypercharge: 'Hyperladung', // 0x2b0
       LeftEye: 'Linkes Drachenauge', // 0x4a0
       RightEye: 'Rechtes Drachenauge', // 0x49f
