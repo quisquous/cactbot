@@ -21,12 +21,12 @@ class CactbotLanguageDe extends CactbotLanguage {
       Medicated: 'Stärkung', // tbc
       BattleLitany: 'Litanei Der Schlacht', // 0x312
       Embolden: 'Ermutigen', // 0x4d7
-      Arrow: 'Pfeil', // 0x75c
-      Balance: 'Waage', // 0x75a
-      Bole: 'Eiche', // 0x75b
-      Ewer: 'Krug', // 0x75e
-      Spear: 'Speer', // 0x75d
-      Spire: 'Turm', // 0x75f
+      Arrow: 'Kraft Des Pfeils', // 0x75c
+      Balance: 'Kraft Der Waage', // 0x75a
+      Bole: 'Kraft Der Eiche', // 0x75b
+      Ewer: 'Kraft Des Krugs', // 0x75e
+      Spear: 'Kraft Des Speers', // 0x75d
+      Spire: 'Kraft Des Turms', // 0x75f
       Hypercharge: 'Hyperladung', // 0x2b0
       LeftEye: 'Linkes Drachenauge', // 0x4a0
       RightEye: 'Rechtes Drachenauge', // 0x49f
