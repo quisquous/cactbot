@@ -27,6 +27,8 @@ class CactbotLanguageFr extends CactbotLanguage {
       Ewer: 'L\'aiguière', // 0x75e
       Spear: 'L\'épieu', // 0x75d
       Spire: 'La Tour', // 0x75f
+      LadyOfCrowns: 'Reine Des Couronnes', // 0x755
+      LordOfCrowns: 'Roi Des Couronnes', // 0x754
       Hypercharge: 'Hypercharge', // 0x2b0
       LeftEye: 'Œil gauche', // 0x4a0
       RightEye: 'Œil droit', // 0x49f

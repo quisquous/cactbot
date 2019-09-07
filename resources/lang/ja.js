@@ -27,6 +27,8 @@ class CactbotLanguageJa extends CactbotLanguage {
       Ewer: 'サリャクの水瓶', // 0x75e
       Spear: 'ハルオーネの槍', // 0x75d
       Spire: 'ビエルゴの塔', // 0x75f
+      LadyOfCrowns: 'クラウンレディ', // 0x755
+      LordOfCrowns: 'クラウンロード', // 0x754
       Hypercharge: 'ハイパーチャージ', // 0x2b0
       LeftEye: '竜の左眼', // 0x4a0
       RightEye: '竜の右眼', // 0x49f

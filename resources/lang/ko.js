@@ -27,6 +27,8 @@ class CactbotLanguageKo extends CactbotLanguage {
       Ewer: 'FIXME', // 0x75e
       Spear: 'FIXME', // 0x75d
       Spire: 'FIXME', // 0x75f
+      LadyOfCrowns: 'FIXME', // 0x755
+      LordOfCrowns: 'FIXME', // 0x754
       Hypercharge: '과충전', // 0x2b0
       LeftEye: '용의 왼쪽 눈', // 0x4a0
       RightEye: '용의 오른쪽 눈', // 0x49f
