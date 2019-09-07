@@ -741,7 +741,8 @@ class TimelineController {
     this.options = options;
     this.ui = ui;
     this.dataFiles = {};
-    this.timelines = {};
+    // data files not sent yet.
+    this.timelines = null;
   }
 
   SetPopupTextInterface(popupText) {
@@ -785,6 +786,10 @@ class TimelineController {
     this.ui.SetTimeline(this.activeTimeline);
   }
 
+  IsReady() {
+    return this.timelines !== null;
+  }
+
   SetDataFiles(files) {
     this.timelines = {};
     for (let f in files) {
@@ -808,6 +813,10 @@ class TimelineLoader {
         triggers,
         styles
     );
+  }
+
+  IsReady() {
+    return this.timelineController.IsReady();
   }
 
   StopCombat() {

@@ -69,8 +69,7 @@ class PopupText {
   }
 
   ReloadTimelines() {
-    // Datafiles, job, and zone must be loaded.
-    if (!this.triggerSets || !this.me || !this.zoneName)
+    if (!this.triggerSets || !this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
 
     this.Reset();

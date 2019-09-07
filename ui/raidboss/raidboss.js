@@ -55,7 +55,10 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
   callOverlayHandler({
     call: 'cactbotReadDataFiles',
     source: location.href,
-  }).then((e) => gTimelineController.SetDataFiles(e.detail.files));
+  }).then((e) => {
+    gTimelineController.SetDataFiles(e.detail.files);
+    gPopupText.ReloadTimelines();
+  });
 
   gTimelineController = new TimelineController(Options, new TimelineUI(Options));
   gPopupText = new PopupText(Options);
