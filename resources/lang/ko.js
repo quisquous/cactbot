@@ -21,7 +21,12 @@ class CactbotLanguageKo extends CactbotLanguage {
       Medicated: '강화약', // tbc
       BattleLitany: '전투 기도', // 0x312
       Embolden: '성원', // 0x4d7
-      Balance: '아제마의 균형', // 0x53a
+      Arrow: 'FIXME', // 0x75c
+      Balance: '아제마의 균형', // 0x75a
+      Bole: 'FIXME', // 0x75b
+      Ewer: 'FIXME', // 0x75e
+      Spear: 'FIXME', // 0x75d
+      Spire: 'FIXME', // 0x75f
       Hypercharge: '과충전', // 0x2b0
       LeftEye: '용의 왼쪽 눈', // 0x4a0
       RightEye: '용의 오른쪽 눈', // 0x49f
