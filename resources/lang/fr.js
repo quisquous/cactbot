@@ -21,7 +21,12 @@ class CactbotLanguageFr extends CactbotLanguage {
       Medicated: 'Médicamenté', // tbc
       BattleLitany: 'Litanie combattante', // 0x312
       Embolden: 'Enhardissement', // 0x4d7
-      Balance: 'La Balance', // 0x53a
+      Arrow: 'La Flèche', // 0x75c
+      Balance: 'La Balance', // 0x75a
+      Bole: 'Le Tronc', // 0x75b
+      Ewer: 'L\'Aiguière', // 0x75e
+      Spear: 'L\'Épieu', // 0x75d
+      Spire: 'La Tour', // 0x75f
       Hypercharge: 'Hypercharge', // 0x2b0
       LeftEye: 'Œil gauche', // 0x4a0
       RightEye: 'Œil droit', // 0x49f

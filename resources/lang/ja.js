@@ -21,7 +21,12 @@ class CactbotLanguageJa extends CactbotLanguage {
       Medicated: '強化薬', // tbc
       BattleLitany: 'バトルリタニー', // 0x312
       Embolden: 'エンボルデン', // 0x4d7
-      Balance: 'アーゼマの均衡', // 0x53a
+      Arrow: 'オシュオンの矢', // 0x75c
+      Balance: 'アーゼマの均衡', // 0x75a
+      Bole: '世界樹の幹', // 0x75b
+      Ewer: 'サリャクの水瓶', // 0x75e
+      Spear: 'ハルオーネの槍', // 0x75d
+      Spire: 'ビエルゴの塔', // 0x75f
       Hypercharge: 'ハイパーチャージ', // 0x2b0
       LeftEye: '竜の左眼', // 0x4a0
       RightEye: '竜の右眼', // 0x49f

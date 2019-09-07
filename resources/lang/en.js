@@ -21,7 +21,12 @@ class CactbotLanguageEn extends CactbotLanguage {
       Medicated: 'Medicated', // tbc
       BattleLitany: 'Battle Litany', // 0x312
       Embolden: 'Embolden', // 0x4d7
-      Balance: 'The Balance', // 0x53a
+      Arrow: 'The Arrow', // 0x75c
+      Balance: 'The Balance', // 0x75a
+      Bole: 'The Bole', // 0x75b
+      Ewer: 'The Ewer', // 0x75e
+      Spear: 'The Spear', // 0x75d
+      Spire: 'The Spire', // 0x75f
       Hypercharge: 'Hypercharge', // 0x2b0
       LeftEye: 'Left Eye', // 0x4a0
       RightEye: 'Right Eye', // 0x49f
