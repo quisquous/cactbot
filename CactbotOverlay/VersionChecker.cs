@@ -1,6 +1,4 @@
-﻿using Advanced_Combat_Tracker;
-using FFXIV_ACT_Plugin;
-using RainbowMage.OverlayPlugin;
+﻿using RainbowMage.OverlayPlugin;
 using System;
 using System.Text.RegularExpressions;
 

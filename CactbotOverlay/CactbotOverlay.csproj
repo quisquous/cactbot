@@ -56,18 +56,13 @@
     <Reference Include="FFXIV_ACT_Plugin">
       <HintPath>ThirdParty\ACT\FFXIV_ACT_Plugin.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\HtmlRenderer.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>ThirdParty\OverlayPlugin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Common">
       <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.Common.dll</HintPath>
     </Reference>
-    <Reference Include="OverlayPlugin.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OverlayPlugin.Core">
       <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />

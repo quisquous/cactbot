@@ -1,14 +1,11 @@
 ﻿using Advanced_Combat_Tracker;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RainbowMage.OverlayPlugin;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Cactbot {
 
@@ -42,12 +39,10 @@ namespace Cactbot {
 
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
-    private SemaphoreSlim fast_update_timer_semaphore_ = new SemaphoreSlim(1);
     private FFXIVProcess ffxiv_;
     private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
     private string language_ = null;
-    private System.Threading.SynchronizationContext main_thread_sync_;
     private List<FileSystemWatcher> watchers;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
@@ -89,7 +84,6 @@ namespace Cactbot {
 
     public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
         : base(logger) {
-      main_thread_sync_ = System.Windows.Forms.WindowsFormsSynchronizationContext.Current;
       Name = "Cactbot";
 
       RegisterEventTypes(new List<string>()

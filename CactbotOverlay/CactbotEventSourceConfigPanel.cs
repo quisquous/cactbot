@@ -1,5 +1,4 @@
-﻿using RainbowMage.OverlayPlugin;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
 

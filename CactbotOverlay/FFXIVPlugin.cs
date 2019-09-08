@@ -1,6 +1,5 @@
 ﻿using Advanced_Combat_Tracker;
 using System;
-using System.Reflection;
 
 namespace Cactbot {
   public class FFXIVPlugin {

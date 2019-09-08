@@ -1,9 +1,6 @@
 ﻿using RainbowMage.OverlayPlugin;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -19,7 +16,7 @@ namespace Cactbot {
         if (location == "") location = PluginLoader.pluginPath;
 
         if (location != "") {
-          return System.IO.Path.GetDirectoryName(location);
+          return Path.GetDirectoryName(location);
         } else
         {
           return null;
@@ -29,7 +26,7 @@ namespace Cactbot {
 
     [JsonIgnore]
     public static string CactbotDllRelativeUserUri {
-      get { return CactbotAssemblyUri == null ? null : System.IO.Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
+      get { return CactbotAssemblyUri == null ? null : Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
     }
 
     public CactbotEventSourceConfig() {

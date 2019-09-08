@@ -6,9 +6,6 @@ It needs to be installed and enabled in ACT, as per https://github.com/hibiyasle
 
 Copy the following DLLs into this directory:
 
-  HTMLRenderer.dll
   Newtonsoft.Json.dll
-  OverlayPlugin.dll
   OverlayPlugin.Core.dll
   OverlayPlugin.Common.dll
-  Xilium.CefGlue.dll
