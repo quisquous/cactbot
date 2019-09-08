@@ -176,8 +176,7 @@ namespace Cactbot {
       }
     }
 
-    private void checkBoxDevReloader_CheckedChanged(object sender, EventArgs e)
-    {
+    private void checkBoxDevReloader_CheckedChanged(object sender, EventArgs e) {
         this.config.DevReloaderEnabled = checkDevReloader.Checked;
         this.overlay.EnableWatchers(checkDevReloader.Checked);
     }
