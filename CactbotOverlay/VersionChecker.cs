@@ -12,7 +12,7 @@ namespace Cactbot {
   class VersionChecker {
     private ILogger logger_ = null;
 
-    public const string kReleaseAPIEndpointUrl = @"https://api.github.com/repos/quisquous/cactbot/releases/latest";
+    public const string kReleaseApiEndpointUrl = @"https://api.github.com/repos/quisquous/cactbot/releases/latest";
     public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";
     public const string kIssueUrl = "https://github.com/quisquous/cactbot/issues";
 
@@ -55,16 +55,16 @@ namespace Cactbot {
     public Version GetRemoteVersion() {
       try {
         string json;
-        using (var webClient = new System.Net.WebClient()) {
+        using (var web_client = new System.Net.WebClient()) {
           // https://developer.github.com/v3/#user-agent-required
-          webClient.Headers.Add("User-Agent", "Cactbot");
-          using (var reader = new System.IO.StreamReader(webClient.OpenRead(kReleaseAPIEndpointUrl))) {
+          web_client.Headers.Add("User-Agent", "Cactbot");
+          using (var reader = new System.IO.StreamReader(web_client.OpenRead(kReleaseApiEndpointUrl))) {
             json = reader.ReadToEnd();
           }
         }
-        dynamic latestRelease = new System.Web.Script.Serialization.JavaScriptSerializer().DeserializeObject(json);
+        dynamic latest_release = new System.Web.Script.Serialization.JavaScriptSerializer().DeserializeObject(json);
 
-        return new Version(latestRelease["tag_name"].Replace("v", ""));
+        return new Version(latest_release["tag_name"].Replace("v", ""));
       } catch (Exception e) {
         logger_.LogError("Error fetching most recent github release: " + e.Message + "\n" + e.StackTrace);
         return new Version();
