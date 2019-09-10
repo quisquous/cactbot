@@ -17,7 +17,7 @@ def main():
     exit_status = 0
 
     for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob('**/*.js'):
-        exit_status |= subprocess.call(['node', filepath])
+        exit_status |= subprocess.call(['node', str(filepath)])
 
     return exit_status
 

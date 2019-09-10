@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "node_modules/.bin/eslint resources ui user test",
     "lintfix": "node_modules/.bin/eslint --fix resources ui user test",
-    "test": "python3 test/run_tests.py"
+    "test": "python test/run_tests.py"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
