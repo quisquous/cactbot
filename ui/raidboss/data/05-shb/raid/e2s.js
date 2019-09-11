@@ -14,6 +14,9 @@
       beforeSeconds: 9,
       infoText: {
         en: 'Get Puddles',
+        de: 'Flächen nehmen',
+        fr: 'Prenez les rayons',
+        ja: '踏む',
       },
     },
     {
@@ -22,6 +25,9 @@
       beforeSeconds: 5,
       alarmText: {
         en: 'Stack With Partner',
+        de: 'Mit Partner stacken',
+        fr: 'Packez-vous avec votre partenaire',
+        ja: '白黒合わせて',
       },
     },
   ],
