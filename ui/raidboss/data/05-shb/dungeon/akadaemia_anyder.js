@@ -14,6 +14,7 @@
       },
       infoText: {
         en: 'Mini Buster',
+        de: 'Kleiner Tankbuster',
       },
     },
     {
