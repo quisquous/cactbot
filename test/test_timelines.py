@@ -33,7 +33,7 @@ def main():
         # Take the existing .txt file and inspect the corresponding .js file with the same name
         try:
             trigger_filename = filepath.with_suffix('.js')
-            for line in Path(trigger_filename).read_text().splitlines():
+            for line in Path(trigger_filename).read_text(encoding='utf-8').splitlines():
                 match = regex.search(line)
                 if match:
                     break
@@ -58,7 +58,7 @@ def main():
 
         # Run individual timeline tests
         for test_file in TIMELINE_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(['node', test_file, filepath])
+            exit_status |= subprocess.call(['node', str(test_file), str(filepath)])
 
     return exit_status
 
