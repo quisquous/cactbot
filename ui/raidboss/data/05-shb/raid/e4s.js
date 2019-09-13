@@ -506,6 +506,7 @@
         'Bomb Boulder': 'Bomber-Brocken',
       },
       'replaceText': {
+        'Dual Earthen Fists': 'Gaias Hammerfaust',
         'attack': 'Attacke',
         'Weight of the World': 'Schwere der Erde',
         'Weight of the Land': 'Gaias Gewicht',
@@ -536,7 +537,6 @@
         'Earthen Fist': 'Gaias Faust',
         'Earthen Armor': 'Basaltpanzer',
         'Earthen Anguish': 'Gaias Pein',
-        'Dual Earthen Fists': 'Gaias Hammerfaust',
         'Crumbling Down': 'Felsfall',
         'Bury': 'Begraben',
         'Bomb Boulders': 'Tumulus',

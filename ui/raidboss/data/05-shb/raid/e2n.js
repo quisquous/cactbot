@@ -254,9 +254,11 @@
       'locale': 'de',
       'replaceSync': {
         'Engage!': 'Start!',
+        'Voidwalker': 'Nichtswandler',
+        'The Hand of Erebos': 'Arm des Erebos',
       },
       'replaceText': {
-        'Spell-in-Waiting': 'Verzögerung',
+        'Spell-In-Waiting': 'Verzögerung',
         'Shadowflame': 'Schattenflamme',
         'Doomvoid Guillotine': 'Nichtsmarter-Fallbeil',
         'Dark Fire III': 'Dunkel-Feuga',
