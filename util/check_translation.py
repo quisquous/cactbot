@@ -212,12 +212,26 @@ def translate_timeline(line, trans):
     return line
 
 
-def print_timeline(locale, timeline_file, trans):
+def print_timeline(locale, timeline_file, trans, missing_filter):
     if not locale in trans:
         raise Exception('no translation for ' + locale)
     with open(timeline_file) as fp:
         for line in fp.readlines():
-            print(translate_timeline(line.strip(), trans[locale]))
+            filter_print_timeline(translate_timeline(line.strip(), trans[locale]), missing_filter)
+
+
+def filter_print_timeline(text, missing_filter):
+    if missing_filter == "all":
+        if " #MISSINGSYNC" in text or " #MISSINGTEXT" in text:
+            print(text)
+    elif missing_filter == "sync":
+        if " #MISSINGSYNC" in text:
+            print(text)
+    elif missing_filter == "text":
+        if " #MISSINGTEXT" in text:
+            print(text)
+    else:
+        print(text)
 
 
 def main(args):
@@ -245,7 +259,7 @@ def main(args):
             if m:
                 timeline_dir = os.path.dirname(filename)
                 timeline_file = os.path.join(timeline_dir, m.group(1))
-                print_timeline(args.timeline, timeline_file, trans)
+                print_timeline(args.timeline, timeline_file, trans, args.grep_missing)
                 return
         raise Exception('unable to find timelineFile in %s' % args.file)
 
@@ -268,9 +282,10 @@ if __name__ == "__main__":
 
     parser.add_argument('-f', '--file', help="The trigger file name, e.g. o5s.js")
     parser.add_argument('-t', '--timeline', help="If passed, print out the timeline for a locale, e.g. de")
+    parser.add_argument('-gm', '--grep-missing', help="Filters -t for [all] missing elemnts, [text] only #MISSINGTEXT or [sync] only #MISSINGSYNC")
 
     args = parser.parse_args()
-
+    
     if not args.file:
         raise parser.error('Must pass a file.')
     if args.timeline and not args.timeline in languages:
