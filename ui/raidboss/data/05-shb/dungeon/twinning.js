@@ -200,7 +200,7 @@
         'vitalized shabti': 'gestärkter Shabti',
         'vitalized reptoid': 'gestärkter Reptoid',
         'vitalized iksalion': 'gestärkter Iksalion',
-        'the Tycoon': 'Tycoon',
+        'The Tycoon': 'Tycoon',
         'the First Beast': 'das erste Unheil',
         'the Face of the Beast': 'Antlitz[p] des Boten',
         'surplus Kaliya': 'massengefertigter Kaliya',

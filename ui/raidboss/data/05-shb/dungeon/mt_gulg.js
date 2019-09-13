@@ -192,8 +192,8 @@
       regex: /14:3D18:Forgiven Obscenity starts using Divine Diminuendo/,
       regexDe: /14:3D18:Geläuterte Unzucht starts using Dogma Diminuendo/,
       infoText: {
-        en: 'Near Boss',
-        de: 'Nah an den Boss',
+        en: 'max melee range',
+        de: 'Maximale Nahkämpfer Entfernung',
       },
     },
     {

@@ -43,6 +43,8 @@
       id: 'Anyder Puncture',
       regex: / 14:3E04:(?:Cladoselache|Doliodus) starts using Protolithic Puncture on (\y{Name})/,
       regexDe: / 14:3E04:(?:Cladoselache|Doliodus) starts using Paläolithische Punktion on (\y{Name})/,
+      regexFr: / 14:3E04:(?:Cladoselache|Doliodus) starts using Ponction paléolithique on (\y{Name})/,
+      regexJa: / 14:3E04:(?:クラドセラケ|ドリオドゥス) starts using プロトリシックパンクチャー on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -64,6 +66,8 @@
       id: 'Anyder Tidal Guillotine',
       regex: / 14:3E0A:Cladoselache starts using Tidal Guillotine/,
       regexDe: / 14:3E0A:Cladoselache starts using Gezeitenguillotine/,
+      regexFr: / 14:3E0A:Cladoselache starts using Marée-guillotine/,
+      regexJa: / 14:3E0A:クラドセラケ starts using タイダルギロチン/,
       infoText: {
         en: 'Away From Swimming Shark',
         de: 'Weg vom schwimmenden Hai',
@@ -73,6 +77,8 @@
       id: 'Anyder Pelagic Cleaver',
       regex: / 14:3E0B:Doliodus starts using Pelagic Cleaver/,
       regexDe: / 14:3E0B:Doliodus starts using Pelagische Pein/,
+      regexFr: / 14:3E0B:Doliodus starts using Fendoir pélagique/,
+      regexJa: / 14:3E0B:ドリオドゥス starts using ペラジッククリーヴ/,
       infoText: {
         en: 'Sides of Swimming Shark',
         de: 'Zu den Seiten vom schwimmenden Hai',
@@ -82,6 +88,8 @@
       id: 'Anyder Marine Mayhem',
       regex: / 14:3E06:(?:Cladoselache|Doliodus) starts using Marine Mayhem/,
       regexDe: / 14:3E06:(?:Cladoselache|Doliodus) starts using Meereschaos/,
+      regexFr: / 14:3E06:(?:Cladoselache|Doliodus) starts using Mutilation marine/,
+      regexJa: / 14:3E06:(?:クラドセラケ|ドリオドゥス) starts using マリーンメイヘム/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -106,6 +114,8 @@
       id: 'Anyder Arbor Storm',
       regex: / 14:3E17:Marquis Morbol starts using Arbor Storm/,
       regexDe: / 14:3E17:Marquis-Morbol starts using Dornensturm/,
+      regexFr: / 14:3E17:Marquis Morbol starts using Tempête de charmilles/,
+      regexJa: / 14:3E17:Marquis Morbol starts using アーバーストーム/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -119,6 +129,8 @@
       id: 'Anyder Noahionto',
       regex: / 14:430C:Evil Armor starts using Noahionto/,
       regexDe: / 14:430C:Böse Kampfmaschine starts using Noahionto/,
+      regexFr: / 14:430C:Evil Armor starts using Noahionto/,
+      regexJa: / 14:430C:Evil Armor starts using ノアヒオント/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -131,6 +143,8 @@
       id: 'Anyder Shockbolt',
       regex: / 14:3E23:Quetzalcoatl starts using Shockbolt on (\y{Name})/,
       regexDe: / 14:3E23:Quetzalcoatl starts using Blitzbogen on (\y{Name})/,
+      regexFr: / 14:3E23:Quetzalcóatl starts using Arc d'éclair on (\y{Name})/,
+      regexJa: / 14:3E23:ケツァクウァトル starts using ショックボルト on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -152,6 +166,8 @@
       id: 'Anyder Thunderbolt',
       regex: / 14:3E24:Quetzalcoatl starts using Thunderbolt/,
       regexDe: / 14:3E24:Quetzalcoatl starts using Donnerkeil/,
+      regexFr: / 14:3E24:Quetzalcóatl starts using Éclair/,
+      regexJa: / 14:3E24:ケツァクウァトル starts using サンダーボルト/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -165,6 +181,8 @@
       id: 'Anyder Thunderstorm',
       regex: / 14:3E1A:Quetzalcoatl starts using Thunderstorm/,
       regexDe: / 14:3E1A:Quetzalcoatl starts using Gewitter/,
+      regexFr: / 14:3E1A:Quetzalcóatl starts using Feu purificateur/,
+      regexJa: / 14:3E1A:ケツァクウァトル starts using サンダーストーム/,
       delaySeconds: 4.7,
       infoText: {
         en: 'grab orbs',
@@ -176,7 +194,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'marquis morbol': 'Marquis-Morbol',
+        'Marquis Morbol': 'Marquis-Morbol',
         'laboratory tomato': 'Labortomate',
         'laboratory queen': 'Laborkönigin',
         'laboratory onion': 'Laborzwiebel',
@@ -205,6 +223,9 @@
         'Eden Prime': 'Eden Prime',
         'Doliodus': 'Doliodus',
         'Cladoselache': 'Cladoselache',
+        'Ichthyology': 'Ichthyologie',
+        'Phytobiology': 'Phytobiologie',
+        'Phantomology': 'Phantomologie',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -240,7 +261,8 @@
         'Aqua Spear': 'Wasserspeer',
         'Acrid Stream': 'Ätzende Strömung',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
+        'targetable--': 'anvisierbar--',
+        'Carcharian Verve': 'Haifischschwung',
       },
       '~effectNames': {
         'Stun': 'Betäubung',
@@ -250,7 +272,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'marquis morbol': 'marquis morbol',
+        'Marquis Morbol': 'marquis morbol',
         'laboratory tomato': 'spécimen de tomate',
         'laboratory queen': 'spécimen de reine mandragore',
         'laboratory onion': 'spécimen d\'oignon',
@@ -279,6 +301,9 @@
         'Eden Prime': 'Eden Prime',
         'Doliodus': 'Doliodus',
         'Cladoselache': 'Cladoselache',
+        'Ichthyology': 'Département d\'ichtyogénie',
+        'Phytobiology': 'Département de phytogénie',
+        'Phantomology': 'Département de phantasmagénie',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -314,9 +339,10 @@
         'Aqua Spear': 'Épieu aquatique',
         'Acrid Stream': 'Projection âcre',
         '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
+        'targetable--': 'Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
+        'Carcharian Verve': 'Verve carcharienne',
       },
       '~effectNames': {
         'Stun': 'Étourdissement',
@@ -355,6 +381,9 @@
         'Eden Prime': 'Eden Prime',
         'Doliodus': 'ドリオドゥス',
         'Cladoselache': 'クラドセラケ',
+        'Ichthyology': '水棲生物創造場',
+        'Phytobiology': '草木生物創造場',
+        'Phantomology': '幻想生物創造場',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -388,6 +417,7 @@
         'Aquatic Lance': 'アクアランス',
         'Aqua Spear': 'アクアスピア',
         'Acrid Stream': 'アクリッドストリーム',
+        'Carcharian Verve': 'カルカリアンヴァーヴ',
       },
       '~effectNames': {
         'Stun': 'スタン',
