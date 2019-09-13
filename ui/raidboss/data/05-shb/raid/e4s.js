@@ -380,7 +380,7 @@
       },
       alertText: {
         en: 'Weight, Get Out',
-        de: 'Schwere, Raus gehen'
+        de: 'Schwere, Raus gehen',
         fr: 'Poids, éloignez-vous',
       },
     },
