@@ -127,7 +127,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Schwert des Urteils': '',
+        'Sword of Condemnation': 'Schwert des Urteils',
         'Innocence': 'Innozenz',
         'Engage!': 'Start!',
       },
@@ -158,6 +158,19 @@
         'Forgiven shame': 'Geläuterte Schande',
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        'Realmrazer': 'Weltenzerstörer',
+        'Heavenly Host': 'Machtwort',
+        'Daybreak': 'Morgengrauen',
+        'Enthrall': 'Bezaubern',
+        'Sinsphere': 'Sündensphäre',
+        '--center--': '--Mitte--',
+        '--north--': '--Norden--',
+        'Exalted Wing': 'Exaltierte Schwinge',
+        'Exalted Plumes': 'Exaltierte Schwaden',
+        'Soul And Body': 'Seele und Körper',
+        '--add Phase--': '--Add Phase--',
+        '--jump--': '--Sprung--',
+        'Drop Of Light': 'Lichtabfall',
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',

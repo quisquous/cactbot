@@ -345,9 +345,12 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Schwert des Urteils': '',
         'Innocence': 'Innozenz',
         'Engage!': 'Start!',
+        'Nail of Condemnation': 'Nagel des Urteils',
+        'Sword of Condemnation': 'Schwert des Urteils',
+        'Forgiven Venery': 'Geläuterte Wollust',
+        'Forgiven Shame': 'Geläuterte Schande',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -376,6 +379,10 @@
         'Forgiven shame': 'Geläuterte Schande',
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        'Drop Of Light': 'Lichtabfall',
+        'Winged Rep': 'Schwinge des Urteils',
+        'Soul And Body': 'Seele und Körper',
+        '--jump--': '--Sprung--',
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
