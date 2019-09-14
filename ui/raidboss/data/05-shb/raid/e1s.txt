@@ -65,7 +65,7 @@ hideall "--sync--"
 669.2 "Vice And Virtue (T)" sync /:Eden Prime:44EE:/
 676.8 "Spear Of Paradise" sync /:Eden Prime:3D88:/
 678.3 "Heavensunder" sync /:Eden Prime:3D89:/
-688.0 "Vice And Virtue (DPS)" sync /:Eden Prime:44EF:/
+688.0 "Vice And Virtue (D)" sync /:Eden Prime:44EF:/
 690.5 "--sync--" sync /:Eden Prime:4683:/
 700.6 "Delta Attack (Cross)" sync /:Eden Prime:44F4:/
 714.1 "Vice And Virtue (H)" sync /:Eden Prime:44F0:/

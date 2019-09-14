@@ -370,12 +370,12 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'spirit of flame': 'Feuerfee',
+        'Spirit of Flame': 'Feuerfee',
+        'Spirit of Wood': 'Holzfee',
         'Titania': 'Titania',
         'Puck': 'Puck',
         'Peaseblossom': 'Bohnenblüte',
         'Mustardseed': 'Senfsamen',
-        'Innocence': 'Innozenz',
         'Engage!': 'Start!',
       },
       'replaceText': {
@@ -412,6 +412,8 @@
         'Being Mortal': 'Sterblichkeit',
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        '--center--': '--Mitte--',
+        'Love-In-Idleness': 'Liebevoller Müßiggang',
       },
       '~effectNames': {
         'Thorny Vine': 'Dornenranken',

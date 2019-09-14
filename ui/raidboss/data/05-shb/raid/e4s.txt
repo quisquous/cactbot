@@ -99,7 +99,7 @@ hideall "Earthen Wheels"
 1149.2 "Plate Fracture" sync /:Titan:43EA:/
 1162.4 "Plate Fracture" sync /:Titan:43EA:/
 1171.9 "Earthen Fury" sync /:Titan Maximum:4124:/
-1180.7 "Tumult x6" sync /:Titan Maximum:412A:/ duration 6
+1180.7 "Tumult x5" sync /:Titan Maximum:412A:/ duration 6
 1197.4 "Dual Earthen Fists" sync /:Titan Maximum:4135:/
 1201.4 "Earthen Anguish" sync /:Titan:4137:/
 1208.3 "Earthen Fist" sync /:Titan Maximum:(4130|4131|4132|412F):/
@@ -109,7 +109,7 @@ hideall "Earthen Wheels"
 1263.2 "Weight of the World" sync /:Titan Maximum:442B:/
 1275.1 "Force of the Land" sync /:Titan:4107:/
 1283.4 "Earthen Fury" sync /:Titan Maximum:4124:/
-1292.2 "Tumult x6" sync /:Titan Maximum:412A:/ duration 6
+1292.2 "Tumult x5" sync /:Titan Maximum:412A:/ duration 6
 1314.4 "Plate Fracture" sync /:Titan:43EA:/
 1324.0 "Megalith" sync /:Titan Maximum:4138:/
 1337.7 "Plate Fracture" sync /:Titan:43EA:/
@@ -126,7 +126,7 @@ hideall "Earthen Wheels"
 1401.9 "Dual Earthen Fists" sync /:Titan Maximum:4135:/
 1406.0 "Earthen Anguish" sync /:Titan:4137:/
 1414.6 "Voice of the Land" sync /:Titan:4114:/
-1417.4 "Tumult x6" sync /:Titan Maximum:412A:/ duration 6
+1417.4 "Tumult x5" sync /:Titan Maximum:412A:/ duration 6
 1426.9 "Voice of the Land" sync /:Titan:4114:/
 1438.1 "Earthen Fury" sync /:Titan Maximum:413A:/
 1457.3 "Pulse of the Land" sync /:Titan:4106:/
@@ -141,8 +141,8 @@ hideall "Earthen Wheels"
 1523.4 "Force of the Land" sync /:Titan:4107:/
 1534.3 "Earthen Fist" sync /:Titan Maximum:(4130|4131|4132|412F):/
 1543.4 "Voice of the Land" sync /:Titan:4114:/
-1546.2 "Tumult x6" sync /:Titan Maximum:412A:/ duration 6
+1546.2 "Tumult x5" sync /:Titan Maximum:412A:/ duration 6
 1555.6 "Voice of the Land" sync /:Titan:4114:/
-1558.4 "Tumult x6" sync /:Titan Maximum:412A:/ duration 6
+1558.4 "Tumult x5" sync /:Titan Maximum:412A:/ duration 6
 1567.9 "Voice of the Land" sync /:Titan:4114:/
 1581.1 "Earthen Fury Enrage" sync /:Titan Maximum:4140:/

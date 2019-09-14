@@ -424,7 +424,7 @@
         'Engage!': 'Start!',
         'Eden Prime': 'Prim-Eden',
         'Arcane Sphere': 'Arkane Sphäre',
-        'Guardian Of Paradise': 'Hüter von Eden',
+        'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -463,6 +463,9 @@
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
         '--center--': '--mitte--',
+        'Vice And Virtue': 'Laster und Tugend',
+        'Spear Of Paradise': 'Paradiesspeer',
+        '--corner--': '--ecke--',
       },
       '~effectNames': {
         'Slippery Prey': 'Unmarkierbar',

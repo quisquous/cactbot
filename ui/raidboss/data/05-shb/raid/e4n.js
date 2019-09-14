@@ -104,6 +104,7 @@
         'Engage!': 'Start!',
         'Titan': 'Titan',
         'Bomb Boulder': 'Bomber-Brocken',
+        'Massive Boulder': 'Riesiger Felsen',
       },
       'replaceText': {
         'Fault Line': 'Bruchlinie',
@@ -112,8 +113,8 @@
         'Earthen Armor': 'Gaia-Panzer',
         'Fault Zone': 'Bruchzone',
         'Bomb Boulders': 'Tumulus',
-        'Weight of the Land': 'Gaias Gewicht',
-        'Voice of the Land': 'Aufschrei der Erde',
+        'Weight Of The Land': 'Gaias Gewicht',
+        'Voice Of The Land': 'Aufschrei der Erde',
         'Leftward Landslide': 'Linker Bergsturz',
         '--untargetable--': '--nich anvisierbar--',
         'Explosion': 'Explosion',
