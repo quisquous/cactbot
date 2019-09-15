@@ -50,7 +50,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       StoneCurse: 'FIXME',
       Imp: 'FIXME',
       Toad: 'FIXME',
-      FoolsTumble: 'FIXME',
+      FoolsTumble: 'FIXME', // 0x183
 
       // UWU
       Windburn: '열상',

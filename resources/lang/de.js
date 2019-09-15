@@ -50,7 +50,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       StoneCurse: 'Steinfluch',
       Imp: 'Flusskobold',
       Toad: 'Frosch',
-      FoolsTumble: 'Trügerischer Sturz', // 0x387
+      FoolsTumble: 'Trügerischer Sturz', // 0x183
     });
 
     this.kUIStrings = Object.freeze({

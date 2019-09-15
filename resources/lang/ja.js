@@ -50,7 +50,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       StoneCurse: '石化の呪い',
       Imp: 'カッパ',
       Toad: 'トード',
-      FoolsTumble: '墜落幻覚', // 0x387
+      FoolsTumble: '墜落幻覚', // 0x183
 
       // UWU
       Windburn: '裂傷',

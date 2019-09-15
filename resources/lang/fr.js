@@ -50,7 +50,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       StoneCurse: 'Piège de pierre',
       Imp: 'Kappa',
       Toad: 'Crapaud',
-      FoolsTumble: 'Acrophobie illusoire', // 0x387
+      FoolsTumble: 'Acrophobie illusoire', // 0x183
     });
 
     this.kUIStrings = Object.freeze({
