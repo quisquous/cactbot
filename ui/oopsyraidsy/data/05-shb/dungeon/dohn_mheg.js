@@ -22,23 +22,23 @@
   triggers: [
     {
       id: 'Dohn Mheg Imp Choir',
-      regex: / 1A:........:(\y{Name}) gains the effect of Imp/,
-      mistake: function(e, data, matches) {
-        return { type: 'warn', blame: matches[1], text: 'Shouldn\'t have looked!' };
+      gainsEffectRegex: gLang.kEffect.Imp,
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
     {
       id: 'Dohn Mheg Toad Choir',
-      regex: / 1A:........:(\y{Name}) gains the effect of Toad/,
-      mistake: function(e, data, matches) {
-        return { type: 'warn', blame: matches[1], text: 'Ribbit!' };
+      gainsEffectRegex: gLang.kEffect.Toad,
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
     {
       id: 'Dohn Mheg Fool\'s Tumble',
-      regex: / 1A:........:(\y{Name}) gains the effect of Fool's Tumble/,
+      gainsEffectRegex: gLang.kEffect.FoolsTumble,
       mistake: function(e, data, matches) {
-        return { type: 'warn', blame: matches[1], text: 'Fell down' };
+        return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
   ],

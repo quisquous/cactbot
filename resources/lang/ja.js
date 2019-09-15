@@ -48,6 +48,9 @@ class CactbotLanguageJa extends CactbotLanguage {
       Sludge: '汚泥',
       Doom: '死の宣告',
       StoneCurse: '石化の呪い',
+      Imp: 'カッパ',
+      Toad: 'トード',
+      FoolsTumble: '墜落幻覚', // 0x387
 
       // UWU
       Windburn: '裂傷',
