@@ -142,6 +142,9 @@
     {
       id: 'Holminster Taphephobia',
       regex: /1B:........:(\y{Name}):....:....:008B:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       infoText: {
         en: 'Spread',
         fr: 'Dispersez-vous',
