@@ -37,7 +37,7 @@
     },
     {
       id: 'O2S Levitation',
-      regex: /:(\y{Name}) loses the effect of Levitation/,
+      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

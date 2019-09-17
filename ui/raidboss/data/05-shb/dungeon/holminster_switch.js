@@ -42,7 +42,7 @@
       id: 'Holminster Tickler',
       regex: / 14:3DCF:Tesleen, [tT]he Forgiven starts using The Tickler on (\y{Name})/,
       regexDe: / 14:3DCF:Tesleen die Bekehrte starts using Handauflegung on (\y{Name})/,
-      regexFR: / 14:3DCF:Tesleen Pardonnée starts using Chatouillement on (\y{Name})/,
+      regexFr: / 14:3DCF:Tesleen Pardonnée starts using Chatouillement on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

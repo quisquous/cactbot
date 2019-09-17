@@ -8,7 +8,7 @@
       id: 'Temple Port And Star',
       regex: /:1FDC:Arbuda starts using Port And Star/,
       regexDe: /:1FDC:Arbuda starts using Links & Rechts/,
-      regexFR: /:1FDC:Arbuda starts using Gauche Et Droite/,
+      regexFr: /:1FDC:Arbuda starts using Gauche Et Droite/,
       alertText: {
         en: 'front/back are safe',
         de: 'Vorne/Hinten sicher',
