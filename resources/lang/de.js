@@ -48,6 +48,9 @@ class CactbotLanguageDe extends CactbotLanguage {
       Sludge: 'Schlamm',
       Doom: 'Verhängnis',
       StoneCurse: 'Steinfluch',
+      Imp: 'Flusskobold',
+      Toad: 'Frosch',
+      FoolsTumble: 'Trügerischer Sturz', // 0x183
     });
 
     this.kUIStrings = Object.freeze({

@@ -11,9 +11,11 @@
 04-sb/ultimate/unending_coil_ultimate.js
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/amaurot.js
+05-shb/dungeon/dohn_mheg.js
 05-shb/dungeon/holminster_switch.js
 05-shb/dungeon/malikahs_well.js
 05-shb/dungeon/mt_gulg.js
+05-shb/dungeon/qitana_ravel.js
 05-shb/dungeon/twinning.js
 05-shb/raid/e1n.js
 05-shb/raid/e1s.js

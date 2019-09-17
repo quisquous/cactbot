@@ -48,6 +48,9 @@ class CactbotLanguageKo extends CactbotLanguage {
       Sludge: '진흙탕',
       Doom: '죽음의 선고',
       StoneCurse: 'FIXME',
+      Imp: 'FIXME',
+      Toad: 'FIXME',
+      FoolsTumble: 'FIXME', // 0x183
 
       // UWU
       Windburn: '열상',

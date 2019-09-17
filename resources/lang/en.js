@@ -49,6 +49,9 @@ class CactbotLanguageEn extends CactbotLanguage {
       Sludge: 'Sludge',
       Doom: 'Doom',
       StoneCurse: 'Stone Curse',
+      Imp: 'Imp',
+      Toad: 'Toad',
+      FoolsTumble: 'Fool\'s Tumble', // 0x183
 
       // UWU
       Windburn: 'Windburn',
