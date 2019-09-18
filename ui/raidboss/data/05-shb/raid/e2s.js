@@ -157,7 +157,7 @@
       id: 'E2S Empty Hate',
       regex: / 14:3E59:The Hand Of Erebos starts using (?:Empty Hate|)/,
       regexDe: / 14:3E59:Arm Des Erebos starts using (?:Gähnender Abgrund|)/,
-      regexFr: / 14:3E59:Bras D'érèbe starts using (?:Vaine Malice)/,
+      regexFr: / 14:3E59:Bras [dD]'[éÉ]rèbe starts using (?:Vaine Malice)/,
       regexJa: / 14:3E59:エレボスの巨腕 starts using (?:虚ろなる悪意|)/,
       infoText: {
         en: 'Knockback',
@@ -170,7 +170,7 @@
       id: 'E2S Empty Rage',
       regex: / 14:3E6B:The Hand Of Erebos starts using (?:Empty Rage|)/,
       regexDe: / 14:3E6B:Arm Des Erebos starts using (?:Lockende Leere|)/,
-      regexFr: / 14:3E6B:Bras D'érèbe starts using (?:Vaine Cruauté|)/,
+      regexFr: / 14:3E6B:Bras [dD]'[éÉ]rèbe starts using (?:Vaine Cruauté|)/,
       regexJa: / 14:3E6B:エレボスの巨腕 starts using (?:虚ろなる害意|)/,
       alertText: {
         en: 'Away From Hand',
@@ -561,7 +561,7 @@
       infoText: {
         en: 'In, Protean, Sides',
         de: 'Rein, Himmelsrichtungen, Seiten',
-        fr: 'Intérieur, Position, Côtés',
+        fr: 'Sous le boss, Position, Côtés',
         ja: '中 => 散開 => 横',
       },
     },
@@ -574,7 +574,7 @@
       infoText: {
         en: 'Sides, In, Protean',
         de: 'Seiten, Rein, Himmelsrichtungen',
-        fr: 'Côtés, Intérieur, Position',
+        fr: 'Côtés, Sous le boss, Position',
         ja: '横 => 中 => 散開',
       },
     },
@@ -661,6 +661,11 @@
         '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
+        'Slicer/Guillotine': 'Entaille/Guillotine',
+        'Light/Dark Circles': 'Cercle Lumière/Ombre',
+        'Cycle Of': 'Cycle',
+        'Cleaver/Slicer': 'Couperet/Entaille',
+        'Guillotine/Cleaver': 'Guillotine/Couperet',
       },
       '~effectNames': {
         'Stone Curse': 'Piège De Pierre',
