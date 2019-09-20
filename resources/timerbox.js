@@ -212,7 +212,7 @@ class TimerBox extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.duration = 0;
+    this._duration = 0;
     this._connected = false;
   }
 
@@ -353,7 +353,7 @@ class TimerBox extends HTMLElement {
     if (elapsedSec >= this._duration) {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
-      this.duration = 0;
+      this._duration = 0;
       if (this._hideafter > 0)
         this._hide_timer = setTimeout(this.hide(), this._hideafter);
       else if (this._hideafter == 0)
