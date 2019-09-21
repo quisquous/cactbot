@@ -701,6 +701,7 @@ class Bars {
     this.job = '';
     this.hp = 0;
     this.maxHP = 0;
+    this.currentShield = 0;
     this.mp = 0;
     this.prevMP = 0;
     this.maxMP = 0;
@@ -1590,10 +1591,13 @@ class Bars {
     if (!this.o.healthBar) return;
     this.o.healthBar.value = this.hp;
     this.o.healthBar.maxvalue = this.maxHP;
+    this.o.healthBar.extraValue = this.currentShield;
 
-    if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.LowHealthThresholdPercent)
+    let percent = (this.hp + this.currentShield) / this.maxHP;
+
+    if (this.maxHP > 0 && percent < this.options.LowHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.low');
-    else if (this.maxHP > 0 && (this.hp / this.maxHP) < this.options.MidHealthThresholdPercent)
+    else if (this.maxHP > 0 && percent < this.options.MidHealthThresholdPercent)
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color.mid');
     else
       this.o.healthBar.fg = computeBackgroundColorFrom(this.o.healthBar, 'hp-color');
@@ -1792,9 +1796,10 @@ class Bars {
       this.level = e.detail.level;
       update_level = true;
     }
-    if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP) {
+    if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP || e.detail.currentShield != this.currentShield) {
       this.hp = e.detail.currentHP;
       this.maxHP = e.detail.maxHP;
+      this.currentShield = e.detail.currentShield;
       update_hp = true;
 
       if (this.hp == 0)

@@ -2,7 +2,7 @@
 
 class ResourceBar extends HTMLElement {
   static get observedAttributes() {
-    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward'];
+    return ['value', 'maxvalue', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'toward', 'extravalue', 'extracolor'];
   }
 
   // All visual dimensions are scaled by this.
@@ -19,6 +19,13 @@ class ResourceBar extends HTMLElement {
   }
   get bg() {
     return this.getAttribute('bg');
+  }
+
+  set extraColor(c) {
+    this.setAttribute('extraColor', c);
+  }
+  get extraColor() {
+    return this.getAttribute('extraColor');
   }
 
   // Foreground color.
@@ -51,6 +58,15 @@ class ResourceBar extends HTMLElement {
   }
   get value() {
     return this.getAttribute('value');
+  }
+
+  // A value between 0 and |maxvalue|, indicating the amount of "extra"
+  // resource that exists.  Usually used for shields on a health bar.
+  set extraValue(s) {
+    this.setAttribute('extravalue', s);
+  }
+  get extraValue() {
+    return this.getAttribute('extravalue');
   }
 
   // The maximum value where when reached the progress bar will show 100%.
@@ -132,7 +148,7 @@ class ResourceBar extends HTMLElement {
         #bg {
           position: absolute;
         }
-        #fg {
+        #fg, #extra-under, #extra-over {
           opacity: 1.0;
           position: absolute;
           will-change: transform;
@@ -157,7 +173,9 @@ class ResourceBar extends HTMLElement {
       </style>
       <div style="position: relative">
         <div id="bg"></div>
+        <div id="extra-under"></div>
         <div id="fg"></div>
+        <div id="extra-over"></div>
         <div id="righttext" class="text"></div>
         <div id="centertext" class="text"></div>
         <div id="lefttext" class="text"></div>
@@ -167,6 +185,9 @@ class ResourceBar extends HTMLElement {
 
   connectedCallback() {
     this.foregroundElement = this.shadowRoot.getElementById('fg');
+    this.backgroundElement = this.shadowRoot.getElementById('bg');
+    this.extraUnderElement = this.shadowRoot.getElementById('extra-under');
+    this.extraOverElement = this.shadowRoot.getElementById('extra-over');
     this.backgroundElement = this.shadowRoot.getElementById('bg');
     this.leftTextElement = this.shadowRoot.getElementById('lefttext');
     this.centerTextElement = this.shadowRoot.getElementById('centertext');
@@ -185,6 +206,8 @@ class ResourceBar extends HTMLElement {
     this._height = 20;
     this._bg = 'rgba(0, 0, 0, 0.7)';
     this._fg = 'green';
+    this._extra_color = 'yellow';
+    this._extra_value = 0;
     this._scale = 1;
     this._toward_right = true;
     this._style_fill = true;
@@ -194,6 +217,8 @@ class ResourceBar extends HTMLElement {
 
     if (this.value != null) this._value = Math.max(parseFloat(this.value), 0);
     if (this.maxvalue != null) this._maxvalue = Math.max(parseFloat(this.maxvalue), 0);
+    if (this.extraValue != null) this._extra_value = Math.max(0, this.extraValue);
+    if (this.extraColor != null) this._extra_color = this.extraColor;
     if (this.width != null) this._width = Math.max(parseInt(this.width), 1);
     if (this.height != null) this._height = Math.max(parseInt(this.height), 1);
     if (this.bg != null) this._bg = this.bg;
@@ -250,6 +275,11 @@ class ResourceBar extends HTMLElement {
       this._right_text = newValue;
       if (update)
         this.updateText();
+    } else if (name == 'extravalue') {
+      this._extra_value = Math.max(parseInt(newValue), 0);
+    } else if (name == 'extracolor') {
+      this._extra_color = newValue;
+      this.layout();
     }
 
     if (this._connected)
@@ -267,22 +297,39 @@ class ResourceBar extends HTMLElement {
 
     let backgroundStyle = this.backgroundElement.style;
     let foregroundStyle = this.foregroundElement.style;
+    let extraUnderStyle = this.extraUnderElement.style;
+    let extraOverStyle = this.extraOverElement.style;
     let lTextStyle = this.leftTextElement.style;
     let cTextStyle = this.centerTextElement.style;
     let rTextStyle = this.rightTextElement.style;
 
     backgroundStyle.backgroundColor = this._bg;
     foregroundStyle.backgroundColor = this._fg;
+    extraUnderStyle.backgroundColor = this._extra_color;
+    extraOverStyle.backgroundColor = this._extra_color;
 
     backgroundStyle.opacity = this.kBackgroundOpacity;
 
     backgroundStyle.width = this._width * this._scale;
     backgroundStyle.height = this._height * this._scale;
 
-    foregroundStyle.width = (this._width - this.kBorderSize * 2) * this._scale;
-    foregroundStyle.height = (this._height - this.kBorderSize * 2) * this._scale;
-    foregroundStyle.left = this.kBorderSize * this._scale;
-    foregroundStyle.top = this.kBorderSize * this._scale;
+    let updateBar = (style) => {
+      style.width = (this._width - this.kBorderSize * 2) * this._scale;
+      style.height = (this._height - this.kBorderSize * 2) * this._scale;
+      style.left = this.kBorderSize * this._scale;
+      style.top = this.kBorderSize * this._scale;
+      if (this._toward_right)
+        style.transformOrigin = '0% 0%';
+      else
+        style.transformOrigin = '100% 0%';
+    }
+    updateBar(foregroundStyle);
+    updateBar(extraUnderStyle);
+    updateBar(extraOverStyle);
+
+    let halfHeight = (this._height - this.kBorderSize * 2) * this._scale * 0.5;
+    extraOverStyle.height = halfHeight;
+    extraOverStyle.top = halfHeight + (this.kBorderSize * this._scale);
 
     let widthPadding = this.kBorderSize * 4 + this.kTextLeftRightEdgePadding * 2;
     lTextStyle.width = (this._width - widthPadding) * this._scale;
@@ -297,11 +344,6 @@ class ResourceBar extends HTMLElement {
     cTextStyle.left = rTextStyle.left = lTextStyle.left;
     cTextStyle.top = rTextStyle.top = lTextStyle.top;
     cTextStyle.fontSize = rTextStyle.fontSize = lTextStyle.fontSize;
-
-    if (this._toward_right)
-      foregroundStyle.transformOrigin = '0% 0%';
-    else
-      foregroundStyle.transformOrigin = '100% 0%';
   }
 
   updateText() {
@@ -327,29 +369,42 @@ class ResourceBar extends HTMLElement {
     if (!this._style_fill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = 'scale(' + percent + ',1)';
+
+    // Calculate extra bars.
+    let extra_under_percent = Math.min(this._maxvalue - this._value, this._extra_value) / this._maxvalue;
+    let value_width = percent * this.foregroundElement.clientWidth * (this._toward_right ? 1 : -1);
+    this.extraUnderElement.style.transform = 'translate(' + value_width + 'px,0px)' +
+      ' scale(' + extra_under_percent + ',1)';
+
+    let extra_over_percent = Math.max(this._extra_value + this._value - this._maxvalue, 0) / this._maxvalue;
+    this.extraOverElement.style.transform = 'scale(' + extra_over_percent + ',1)';
+
+    // Text.
+    let total_value = this._value + this._extra_value;
+    let total_percent = total_value / this._maxvalue;
     if (this._left_text != '') {
       if (this._left_text == 'value')
-        this.leftTextElement.innerHTML = this._value;
+        this.leftTextElement.innerHTML = total_value;
       else if (this._left_text == 'maxvalue')
-        this.leftTextElement.innerHTML = this._value + ' / ' + this._maxvalue;
+        this.leftTextElement.innerHTML = total_value + ' / ' + this._maxvalue;
       else if (this._left_text == 'percent')
-        this.leftTextElement.innerHTML = parseInt(percent * 100) + ' %';
+        this.leftTextElement.innerHTML = parseInt(total_percent * 100) + ' %';
     }
     if (this._center_text != '') {
       if (this._center_text == 'value')
-        this.centerTextElement.innerHTML = this._value;
+        this.centerTextElement.innerHTML = total_value;
       else if (this._center_text == 'maxvalue')
-        this.centerTextElement.innerHTML = this._value + ' / ' + this._maxvalue;
+        this.centerTextElement.innerHTML = total_value + ' / ' + this._maxvalue;
       else if (this._center_text == 'percent')
-        this.centerTextElement.innerHTML = parseInt(percent * 100) + ' %';
+        this.centerTextElement.innerHTML = parseInt(total_percent * 100) + ' %';
     }
     if (this._right_text != '') {
       if (this._right_text == 'value')
-        this.rightTextElement.innerHTML = this._value;
+        this.rightTextElement.innerHTML = total_value;
       else if (this._right_text == 'maxvalue')
-        this.rightTextElement.innerHTML = this._value + ' / ' + this._maxvalue;
+        this.rightTextElement.innerHTML = total_value + ' / ' + this._maxvalue;
       else if (this._right_text == 'percent')
-        this.rightTextElement.innerHTML = parseInt(percent * 100) + ' %';
+        this.rightTextElement.innerHTML = parseInt(total_percent * 100) + ' %';
     }
   }
 }
