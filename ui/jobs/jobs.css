@@ -179,7 +179,11 @@
   font-size: 16px;
 }
 
-#mnk-boxes .text, #rdm-boxes .text {
+#mnk-boxes .text {
+  top: 7px;
+}
+
+#rdm-boxes .text {
   top: 5px;
 }
 
