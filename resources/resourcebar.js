@@ -322,7 +322,7 @@ class ResourceBar extends HTMLElement {
         style.transformOrigin = '0% 0%';
       else
         style.transformOrigin = '100% 0%';
-    }
+    };
     updateBar(foregroundStyle);
     updateBar(extraUnderStyle);
     updateBar(extraOverStyle);
@@ -371,12 +371,14 @@ class ResourceBar extends HTMLElement {
     this.foregroundElement.style.transform = 'scale(' + percent + ',1)';
 
     // Calculate extra bars.
-    let extra_under_percent = Math.min(this._maxvalue - this._value, this._extra_value) / this._maxvalue;
+    let extra_under_percent =
+      Math.min(this._maxvalue - this._value, this._extra_value) / this._maxvalue;
     let value_width = percent * this.foregroundElement.clientWidth * (this._toward_right ? 1 : -1);
     this.extraUnderElement.style.transform = 'translate(' + value_width + 'px,0px)' +
       ' scale(' + extra_under_percent + ',1)';
 
-    let extra_over_percent = Math.max(this._extra_value + this._value - this._maxvalue, 0) / this._maxvalue;
+    let extra_over_percent =
+      Math.max(this._extra_value + this._value - this._maxvalue, 0) / this._maxvalue;
     this.extraOverElement.style.transform = 'scale(' + extra_over_percent + ',1)';
 
     // Text.

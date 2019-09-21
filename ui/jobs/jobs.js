@@ -1796,7 +1796,8 @@ class Bars {
       this.level = e.detail.level;
       update_level = true;
     }
-    if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP || e.detail.currentShield != this.currentShield) {
+    if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP ||
+      e.detail.currentShield != this.currentShield) {
       this.hp = e.detail.currentHP;
       this.maxHP = e.detail.maxHP;
       this.currentShield = e.detail.currentShield;
