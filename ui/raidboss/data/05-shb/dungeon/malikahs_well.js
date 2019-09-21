@@ -103,8 +103,8 @@
     },
     {
       id: 'Malikah Intestinal Crank',
-      regex: / 14:3CEF:Amphibious Talos starts using Swift Spill/,
-      regexDe: / 14:3CEF:Wasserträger-Talos starts using Schneller Abfluss/,
+      regex: / 14:3CF1:Storge starts using Intestinal Crank/,
+      regexDe: / 14:3CF1:Storge starts using Geweiderupfer/,
       condition: function(data) {
         return data.role == 'healer';
       },
