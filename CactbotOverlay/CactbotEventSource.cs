@@ -143,6 +143,11 @@ namespace Cactbot {
       }
     }
 
+    public override void SaveConfig(IPluginConfig config)
+    {
+      Config.SaveConfig(config);
+    }
+
     public override void Start() {
       ffxiv_ = new FFXIVProcess(this);
       fight_tracker_ = new FightTracker(this);
