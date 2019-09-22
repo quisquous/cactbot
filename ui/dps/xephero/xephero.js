@@ -155,16 +155,16 @@ function onOverlayDataUpdateEvent(e) {
   update(e.detail);
 }
 
-$(document).on('onZoneChangedEvent', function(e) {
-  let currentZone = e.originalEvent.detail.zoneName;
+addOverlayListener('onZoneChangedEvent', function(e) {
+  let currentZone = e.detail.zoneName;
   tracker.onZoneChange(currentZone);
 });
-$(document).on('onLogEvent', function(e) {
-  tracker.onLogEvent(e.originalEvent.detail.logs);
+addOverlayListener('onLogEvent', function(e) {
+  tracker.onLogEvent(e.detail.logs);
 });
-$(document).on('onInCombatChangedEvent', function(e) {
+addOverlayListener('onInCombatChangedEvent', function(e) {
   // Only clear phases when ACT starts a new encounter for consistency.
-  tracker.inCombatChanged(e.originalEvent.detail.inACTCombat);
+  tracker.inCombatChanged(e.detail.inACTCombat);
 });
 
 InitDpsModule('xephero', onOverlayDataUpdateEvent, hideOverlay);

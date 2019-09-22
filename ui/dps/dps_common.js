@@ -21,11 +21,11 @@ let gIgnoreZones = [];
 
 function InitDpsModule(config, updateFunc, hideFunc) {
   UserConfig.getUserConfigLocation(config, function(e) {
-    addOverlayListener('onOverlayDataUpdate', function(e) {
+    addOverlayListener('CombatData', function(e) {
       // DPS numbers in large pvp is not useful and hella noisy.
       if (gIgnoreCurrentZone || gIgnoreCurrentJob)
         return;
-      updateFunc(e);
+      updateFunc({ detail: e });
     });
 
     addOverlayListener('onZoneChangedEvent', function(e) {
