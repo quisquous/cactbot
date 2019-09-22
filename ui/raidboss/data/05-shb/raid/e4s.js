@@ -96,7 +96,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Look for Evil Earth Marker',
-        en: 'Schau nach den Grimm der Erde Marker',
+        de: 'Schau nach den Grimm der Erde Marker',
         fr: 'Repérez une marque de Terre maléfique',
       },
     },
@@ -303,7 +303,7 @@
       },
       infoText: {
         en: 'Big aoe',
-        en: 'Große AoE',
+        de: 'Große AoE',
         fr: 'Gros dégâts de zone',
       },
     },
