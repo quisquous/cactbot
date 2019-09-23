@@ -37,7 +37,7 @@
     {
       id: 'Fractal Big Swing',
       regex: / 14:F87:Minotaur starts using 1111-Tonze Swing/,
-      alertText:  {
+      alertText: {
         en: 'Use a cage',
       },
     },
