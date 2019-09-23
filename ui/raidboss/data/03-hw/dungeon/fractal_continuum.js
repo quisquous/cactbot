@@ -22,7 +22,7 @@
     },
     {
       id: 'Fractal Slash/Swipe',
-      regex: / (14:F81:Minotaur starts using 11-Tonze Swipe|14:F83:Minotaur starts using 10-Tonze Slash)/,
+      regex: / 14:(F81:Minotaur starts using 11-Tonze Swipe|F83:Minotaur starts using 10-Tonze Slash)/,
       infoText: {
         en: 'Out of front',
       },
