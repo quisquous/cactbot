@@ -18,6 +18,7 @@ let gIgnoreCurrentJob = false;
 let gCurrentJob = null;
 let gCurrentZone = null;
 let gIgnoreZones = [];
+let gInCombat = false;
 
 function InitDpsModule(config, updateFunc, hideFunc) {
   UserConfig.getUserConfigLocation(config, function(e) {
@@ -25,6 +26,19 @@ function InitDpsModule(config, updateFunc, hideFunc) {
       // DPS numbers in large pvp is not useful and hella noisy.
       if (gIgnoreCurrentZone || gIgnoreCurrentJob)
         return;
+
+      // When ACT stops, stop updating.  This is mostly to avoid
+      // a spurious update when changing zones which will unhide
+      // the dps overlay.
+      if (!gInCombat)
+        return;
+
+      // Don't bother showing the first "Infinity" dps right as
+      // combat starts.
+      let dps = parseFloat(e.Encounter.encdps);
+      if (dps <= 0 || dps === Infinity)
+        return;
+
       updateFunc({ detail: e });
     });
 
@@ -42,6 +56,10 @@ function InitDpsModule(config, updateFunc, hideFunc) {
           return;
         }
       }
+    });
+
+    addOverlayListener('onInCombatChangedEvent', function(e) {
+      gInCombat = e.detail.inACTCombat;
     });
 
     addOverlayListener('onPlayerChangedEvent', function(e) {
