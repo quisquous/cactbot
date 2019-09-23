@@ -98,7 +98,6 @@ li .dps {
 li .name {
   display: inline-block;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -107,7 +106,7 @@ li .detail {
   vertical-align: top;
   color: #ded7be;
   font-size: 12px;
-  width: calc(100% - 78px);
+  width: calc(100% - 79px);
 }
 
 li .detail .number {
