@@ -40,7 +40,6 @@ namespace Cactbot {
     private System.Timers.Timer fast_update_timer_;
     // Held while the |fast_update_timer_| is running.
     private FFXIVProcess ffxiv_;
-    private FightTracker fight_tracker_;
     private WipeDetector wipe_detector_;
     private string language_ = null;
     private List<FileSystemWatcher> watchers;
@@ -150,7 +149,6 @@ namespace Cactbot {
 
     public override void Start() {
       ffxiv_ = new FFXIVProcess(this);
-      fight_tracker_ = new FightTracker(this);
       wipe_detector_ = new WipeDetector(this);
 
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
@@ -561,7 +559,6 @@ namespace Cactbot {
 
       last_log_lines_ = logs;
       last_import_log_lines_ = import_logs;
-      fight_tracker_.Tick(DateTime.Now);
 
       return game_active ? kFastTimerMilli : kSlowTimerMilli;
     }

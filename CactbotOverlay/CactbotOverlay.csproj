@@ -90,7 +90,6 @@
     <Compile Include="PluginLoader.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="FFXIVProcess.cs" />
-    <Compile Include="FightTracker.cs" />
     <Compile Include="JSEvents.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="OverlayAddonMain.cs" />
