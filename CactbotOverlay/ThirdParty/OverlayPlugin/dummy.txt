@@ -1,11 +1,14 @@
-This directory is for DLLs from hibiyasleep OverlayPlugin.
+This directory is for DLLs from ngld's OverlayPlugin.
 
-Download from: https://github.com/hibiyasleep/OverlayPlugin/releases
+Download from: https://github.com/ngld/OverlayPlugin/releases
 
-It needs to be installed and enabled in ACT, as per https://github.com/hibiyasleep/OverlayPlugin/blob/master/README-en.md
+It needs to be installed and enabled in ACT, as per https://github.com/ngld/OverlayPlugin/blob/master/README-en.md
 
 Copy the following DLLs into this directory:
 
+  HtmlRenderer.dll
   Newtonsoft.Json.dll
-  OverlayPlugin.Core.dll
   OverlayPlugin.Common.dll
+  OverlayPlugin.Core.dll
+  OverlayPlugin.dll
+  websocket-sharp.dll

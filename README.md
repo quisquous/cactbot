@@ -12,7 +12,7 @@
 ## About
 
 cactbot is an ACT overlay that provides raiding tools for [Final Fantasy XIV](http://www.finalfantasyxiv.com/).  This project is an overlay plugin for
-[hibiyasleep's OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin)
+[ngld's OverlayPlugin](https://github.com/ngld/OverlayPlugin)
 which itself is a plugin for
 [Advanced Combat Tracker](http://advancedcombattracker.com/).
 
@@ -62,10 +62,9 @@ Download and add the most recent version of [ravahn's FFXIV ACT plugin](https://
 This is under Plugins -> FFXIV Settings -> Parse Options.
 
 You must have the latest x64 version of the
-[hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest)
-installed and working in ACT.  You must use the [hibiyasleep](https://github.com/hibiyasleep) version of
-OverlayPlugin and not the original RainbowMage version, as cactbot depends
-on several features of that version.
+[ngld OverlayPlugin](https://github.com/ngld/OverlayPlugin/releases/latest)
+installed and working in ACT.  You must use the [ngld](https://github.com/ngld) version of
+OverlayPlugin and not the original RainbowMage version or the hibiyasleep fork.
 
 fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT and OverlayPlugin if you prefer video or would like more instructions on how to set these two tools up properly.
 
@@ -73,40 +72,25 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
 
 1. Find the [latest release](https://github.com/quisquous/cactbot/releases/latest) and download the cactbot-version-number.zip file for that release.  (You likely do *not* want either of the Source zip files.)
 1. Right click on the zip file, go to properties.  In the bottom right corner of the properties menu, click "Unblock", and then "OK" to close the menu.
-1. Unzip the release zip file.  (If there is no **OverlayPlugin\\addons\\CactbotOverlay.dll** file, you downloaded the wrong zip file.)
+1. Unzip the release zip file.  (If there is no **cactbot\\CactbotOverlay.dll** file, you downloaded the wrong zip file.)
 1. Close ACT, if it's still running.
-1. Copy the **OverlayPlugin\\** folder from inside of the unzipped folder into your existing **C:\\...\\Advanced Combat Tracker\\** folder.
-1. If you already have an existing **OverlayPlugin\\** folder, you will be prompted to confirm if you want to merge files with existing files.  Click the `Do this for the next N conflicts` checkbox and then the `Move and Replace` checkbox.  If you end up with an **OverlayPlugin\\OverlayPlugin\\** folder then you have done something wrong.
+1. Copy the **cactbot\\** folder from inside of the unzipped folder anywhere on disk.  Your user folder, aka **%UserProfile%** aka **C:\\Users\\Username** is a great place.  You can also put it in your **C:\\...\\Advanced Combat Tracker\\** folder as well, but will get security prompts whenever you change it.
 
-    The final directory structure should look something like this:
+1. If you already have an existing **cactbot\\** folder in the location you have copied it, you will be prompted to confirm if you want to merge files with existing files.  Click the `Do this for the next N conflicts` checkbox and then the `Move and Replace` checkbox.  If you end up with an **cactbot\\cactbot\\** folder then you have done something wrong.
 
-    ```code
-    - C:\...\Advanced Combat Tracker\
-      - Advanced Combat Tracker.exe
-      - FFXIV_ACT_Plugin.dll
-      - OverlayPlugin\
-         - OverlayPlugin.dll
-         - OverlayPlugin.Common.dll
-         - OverlayPlugin.Core.dll
-         - etc etc OverlayPlugin files
-         - addons\
-            - CactbotOverlay.dll
-         - cactbot\
-            - ui\
-            - resources\
-            - user\
-    ```
+![folder structure](screenshots/install_cactbot_folder.png)
 
-    Note: The cactbot\\ folder does not have to be located inside of the
-    OverlayPlugin directory, but that is where it comes by default as part
-    of a cactbot release zip file.  It can be located anywhere on disk as
-    long as the entire cactbot\\ folder is kept together.
+1. Add **cactbot\\CactbotOverlay.dll** as an ACT plugin.  In the ACT -> Plugins -> Plugin Listing tab, click the `Browse` button and find the **cactbot\\CactbotOverlay.dll** where you saved it on disk in the previous steps.  Then click `Add/Enable Plugin`.
 
-    Note: The OverlayPlugin\\ subdirectory can also be named whatever you like.
+![add plugin](screenshots/install_cactbot_add_plugin.png)
+
+1. Verify your plugins are in the correct order.  The order should be: FFXIV Plugin first, then OverlayPlugin, then cactbot.  It should look like the following:
+
+![plugin order](screenshots/install_cactbot_plugin_order.png)
 
 1. Restart ACT.
-1. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `cactbot` as the type.
-1. In the URL field, browse to an html file to load.
+1. Now add a new overlay in the OverlayPlugin tab in ACT, and choose `MiniParse` as the type.
+1. In the URL field, browse to an html file to load.  You do *not* need to check `This is an overlay that requires ACTWebSocket`.
 
     [ui/test/test.html](ui/test/test.html) is a good place to start to make sure everything is set up properly.
 
@@ -116,23 +100,17 @@ For more instructions about adding and configuring cactbot overlays, see the [Ad
 
 If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
 
-If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin and need to upgrade to the latest x64 full version of the [hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest) instead.
+If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin.  You need to upgrade to the latest x64 full version of the [ngld OverlayPlugin](https://github.com/ngld/OverlayPlugin/releases/latest) instead.
 
-If you get an error on the OverlayPlugin console similar to `Uncaught TypeError: window.OverlayPluginApi.overlayMessage is not a function`, then you are using an earlier version of the OverlayPlugin.  You need to be using the latest x64 full version of the [hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest).
-
-If you get an error in the OverlayPlugin console similar to `Error: (overlay): C:\Program Files (x86)\Advanced Combat Tracker\OverlayPlugin\addons\CactbotOverlay.dll: System.IO.FileNotFoundException: Could not load file or assembly 'Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' or one of its dependencies. The system cannot find the file specified.` then you have likely installed the wrong version of the OverlayPlugin.  Please reinstall the latest x64 full version of the [hibiyasleep OverlayPlugin](https://github.com/hibiyasleep/OverlayPlugin/releases/latest).
+If you get an error on the OverlayPlugin console similar to `Uncaught TypeError: window.OverlayPluginApi.overlayMessage is not a function`, then you are using an earlier version of the hibiyasleep OverlayPlugin.  You need to upgrade to the latest x64 full version of the [ngld OverlayPlugin](https://github.com/ngld/OverlayPlugin/releases/latest) instead.
 
 If you get an error in the OverlayPlugin console similar to `System.MissingMethodException: Method not found: '!!0[] System.Array.Empty()` then you have installed the wrong .NET framework version.  Please install the [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6.1 or above.
 
-If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit-and-td-net-fixing-the-attempt-was-made-to-load-an-assembly-from-a-network-location-problem/) error on starting the OverlayPlugin, such as `An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous version of the .NET Framework.` then this means that you have forgotten to unblock some/all of your DLLs (either hibiyasleep or cactbot).  First, stop ACT.  Then, unblock everything; the easiest way is to unblock the original zip file and re-extract rather than unblocking every file individually.  Finally, restart ACT again.
+If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit-and-td-net-fixing-the-attempt-was-made-to-load-an-assembly-from-a-network-location-problem/) error on starting the OverlayPlugin, such as `An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous version of the .NET Framework.` then this means that you have forgotten to unblock some/all of your DLLs (either OverlayPlugin or cactbot).  First, stop ACT.  Then, unblock everything; the easiest way is to unblock the original zip file and re-extract rather than unblocking every file individually.  Finally, restart ACT again.
 
 If you get an overlay plugin error similar to `Error: (overlay): Exception in SendFastRateEvents: Could not load file or assembly 'FFXIV_ACT_Plugin, Version=(version), Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.` then you likely need to unblock the ffxiv plugin.  See the instructions above for unblocking DLLs.
 
-If you get an ACT dialog that says `Invalid Plugin` and `This assembly does not have a class that implements ACT's plugin interface`, then you are loading the plugin incorrectly.  Cactbot is an overlay and not a direct ACT plugin.  Plugins like **FFXIV_ACT_PLUGIN.dll** and **OverlayPlugin.dll** are ACT plugins and are loaded via ACT -> Plugins -> Plugin Listing -> Add/Enable Plugin.  Cactbot is an overlay plugin.  You load it via going to Plugins -> OverlayPlugin.dll -> New.  See the [adding overlay modules](#adding-overlay-modules) section for more details.
-
 If triggers or pieces of the UI do not work, ensure that "Disable Parsing from Network Data" is **not** checked in the FFXIV plugin settings. Network data is required for accurate trigger timing.
-
-If you are using cactbot for dps parsing and you don't get any data, make sure that the DPS update rate is set to a number higher than zero in your plugin config.  Setting it to 3 is a good default.
 
 ## Building from source
 
@@ -143,7 +121,7 @@ Follow all the steps above for installing cactbot first.
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
 1. Build for "Release" and "x64".
 1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
-1. Copy the plugin to the Advanced Combat Tracker\\OverlayPlugin\\addons\\ directory
+1. Add the built plugin directly as an ACT plugin.  In the ACT -> Plugins -> Plugin Listing tab, click the `Browse` button and find the **bin/x64/Release/CactbotOverlay.dll** where this file was built.  Then click `Add/Enable Plugin`.
 
 ## UI module overview
 
@@ -285,7 +263,7 @@ To add a cactbot module is the same as adding any overlay plugin.
 
     ![overlay plugin tab screenshot](screenshots/OverlayPluginTab.png)
 
-1. Click the "New" button and then select Cactbot in the "Type" dropdown.
+1. Click the "New" button and then select `MiniParse in the "Type" dropdown.
 
     ![new overlay plugin screenshot](screenshots/OverlayPluginNew.png)
 
