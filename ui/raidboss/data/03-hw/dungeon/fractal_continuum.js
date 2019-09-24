@@ -21,8 +21,15 @@
       },
     },
     {
-      id: 'Fractal Slash/Swipe',
-      regex: / 14:(F81:Minotaur starts using 11-Tonze Swipe|F83:Minotaur starts using 10-Tonze Slash)/,
+      id: 'Fractal Slash',
+      regex: / 14:F83:Minotaur starts using 10-Tonze Slash/,
+      infoText: {
+        en: 'Out of front',
+      },
+    },
+    {
+      id: 'Fractal Swipe',
+      regex: / 14:F81:Minotaur starts using 11-Tonze Swipe/,
       infoText: {
         en: 'Out of front',
       },
@@ -43,7 +50,7 @@
     },
     {
       id: 'Fractal Aetherochemical Bomb',
-      regex: / 1A:........:(\y{Name}) gains the effect of Aetherochemical Bomb/,
+      regex: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Aetherochemical Bomb/,
       condition: function(data) {
         return data.CanCleanse;
       },
@@ -53,7 +60,7 @@
     },
     {
       id: 'Fractal Alarums',
-      regex: / 03:........:Added new combatant Clockwork Alarum/,
+      regex: / 03:(\y{ObjectId}):Added new combatant Clockwork Alarum/,
       suppresSeconds: 5,
       infoText: {
         en: 'Kill adds',
@@ -61,7 +68,7 @@
     },
     {
       id: 'Fractal Mines',
-      regex: / Added new combatant Aetherochemical Mine/,
+      regex: / 03:(\y{ObjectId}):Added new combatant Aetherochemical Mine/,
       suppressSeconds: 30,
       alertText: {
         en: 'Avoid mines',
