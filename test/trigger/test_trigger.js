@@ -24,11 +24,11 @@ let testValidTriggerRegexLanguage = function(file, contents) {
 };
 
 let createTriggerRegexString = function(string) {
-  return new RegExp(`(?:regex|triggerRegex)(?:|\w{2}): \/${string}\/`, 'g');
+  return new RegExp(`(?:regex|triggerRegex)(?:|\\w{2}): \/${string}\/`, 'g');
 };
 
 let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
-  let newCombatantRegex = createTriggerRegexString('(?! ?03:).*:Added new combatant .*');
+  let newCombatantRegex = createTriggerRegexString('(?! ?03:)(.*:)?Added new combatant .*');
   let results = contents.match(newCombatantRegex);
   if (results) {
     for (const result of results) // {
@@ -40,7 +40,7 @@ let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
 };
 
 let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
-  let startsUsingRegex = createTriggerRegexString('(?! ?14:).* starts using .*');
+  let startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using .*');
   let results = contents.match(startsUsingRegex);
   if (results) {
     for (const result of results) // {
@@ -52,7 +52,7 @@ let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
 };
 
 let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
-  let gainsEffectRegex = createTriggerRegexString('(?! ?1A:).* gains the effect of .*');
+  let gainsEffectRegex = createTriggerRegexString('(?! ?1A:)(.* )?gains the effect of .*');
   let results = contents.match(gainsEffectRegex);
   if (results) {
     for (const result of results) // {
@@ -64,7 +64,7 @@ let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
 };
 
 let testWellFormedLosesEffectTriggerRegex = function(file, contents) {
-  let losesEffectRegex = createTriggerRegexString('(?! ?1E:).* loses the effect of .*');
+  let losesEffectRegex = createTriggerRegexString('(?! ?1E:)(.* )?loses the effect of .*');
   let results = contents.match(losesEffectRegex);
   if (results) {
     for (const result of results) {

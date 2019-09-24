@@ -779,8 +779,8 @@
     },
     { // Final phase Addle warning when Reprisal is ending.
       id: 'O4S2 Reprisal',
-      regex: /loses the effect of Reprisal from/,
-      regex: /loses the effect of Reflexion from/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Reprisal from/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Reflexion from/,
       condition: function(data) {
         return data.finalphase && data.reprisal;
       },
