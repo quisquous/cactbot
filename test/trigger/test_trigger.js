@@ -43,11 +43,10 @@ let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
   let startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using .*');
   let results = contents.match(startsUsingRegex);
   if (results) {
-    for (const result of results) // {
+    for (const result of results) {
       console.error(`${file}: 'starts using' regex should begin with '14:', found '${result}'`);
-      // TODO: Add me back in
-      // exitCode = 1;
-    // }
+      exitCode = 1;
+    }
   }
 };
 

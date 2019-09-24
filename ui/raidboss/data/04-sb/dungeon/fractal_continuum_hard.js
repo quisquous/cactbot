@@ -5,10 +5,10 @@
   zoneRegex: /^The Fractal Continuum \(Hard\)$/,
   triggers: [
     {
-      id: 'Fractal Swipe',
-      regex: /(?:14:2AE5:Servomechanical Minotaur starts using 16-Tonze Swipe|14:29A2:Biomanufactured Minotaur starts using 11-Tonze Swipe)/,
-      regexDe: /(?:14:2AE5:Servomechanischer Minotaurus starts using 16-Tonzen-Hieb|14:29A2:Biotech-Minotaurus starts using 11-Tonzen-Hieb)/,
-      regexFr: /(?:14:2AE5:Minotaure Servomécanique starts using Fauche De 16 Tonz|14:29A2:Minotaure Biologique starts using Fauche De 11 Tonz)/,
+      id: 'Fractal Swipe Servo',
+      regex: / 14:2AE5:Servomechanical Minotaur starts using 16-Tonze Swipe/,
+      regexDe: / 14:2AE5:Servomechanischer Minotaurus starts using 16-Tonzen-Hieb/,
+      regexFr: / 14:2AE5:Minotaure Servomécanique starts using Fauche De 16 Tonz/,
       infoText: {
         en: 'swipe',
         de: 'Hieb',
@@ -16,10 +16,32 @@
       },
     },
     {
-      id: 'Fractal Swing',
-      regex: /(?:14:2AE4:Servomechanical Minotaur starts using 128-Tonze Swing|14:29A1:Biomanufactured Minotaur starts using 111-Tonze Swing)/,
-      regexDe: /(?:14:2AE4:Servomechanischer Minotaurus starts using 128-Tonzen-Schwung|14:29A1:Biotech-Minotaurus starts using 111-Tonzen-Schwung)/,
-      regexFr: /(?:14:2AE4:Minotaure Servomécanique starts using Swing De 128 Tonz|14:29A1:Minotaure Biologique starts using Swing De 111 Tonz)/,
+      id: 'Fractal Swipe Bio',
+      regex: / 14:29A2:Biomanufactured Minotaur starts using 11-Tonze Swipe/,
+      regexDe: / 14:29A2:Biotech-Minotaurus starts using 11-Tonzen-Hieb/,
+      regexFr: / 14:29A2:Minotaure Biologique starts using Fauche De 11 Tonz/,
+      infoText: {
+        en: 'swipe',
+        de: 'Hieb',
+        fr: 'Fauche',
+      },
+    },
+    {
+      id: 'Fractal Swing Servo',
+      regex: / 14:2AE4:Servomechanical Minotaur starts using 128-Tonze Swing/,
+      regexDe: / 14:2AE4:Servomechanischer Minotaurus starts using 128-Tonzen-Schwung/,
+      regexFr: / 14:2AE4:Minotaure Servomécanique starts using Swing De 128 Tonz/,
+      alertText: {
+        en: 'Swing',
+        de: 'Schwung',
+        fr: 'Swing',
+      },
+    },
+    {
+      id: 'Fractal Swing Bio',
+      regex: / 14:29A1:Biomanufactured Minotaur starts using 111-Tonze Swing/,
+      regexDe: / 14:29A1:Biotech-Minotaurus starts using 111-Tonzen-Schwung/,
+      regexFr: / 14:29A1:Minotaure Biologique starts using Swing De 111 Tonz/,
       alertText: {
         en: 'Swing',
         de: 'Schwung',
@@ -28,9 +50,9 @@
     },
     {
       id: 'Fractal Dragon Voice',
-      regex: /starts using The Dragon's Voice/,
-      regexDe: /starts using Stimme Des Drachen/,
-      regexFr: /starts using Voix Du Dragon/,
+      regex: / 14:861:Servomechanical Chimera starts using The Dragon's Voice/,
+      regexDe: / 14:861:Servomechanischer Chimära starts using Stimme Des Drachen/,
+      regexFr: / 14:861:Chimère Servomécanique starts using Voix Du Dragon/,
       alertText: {
         en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
@@ -44,9 +66,9 @@
     },
     {
       id: 'Fractal Ram Voice',
-      regex: /starts using The Ram's Voice/,
-      regexDe: /starts using Stimme Des Widders/,
-      regexFr: /starts using Voix Du Bélier/,
+      regex: / 14:860:Servomechanical Chimera starts using The Ram's Voice/,
+      regexDe: / 14:861:Servomechanischer Chimära starts using Stimme Des Widders/,
+      regexFr: / 14:861:Chimère Servomécanique starts using Voix Du Bélier/,
       alertText: {
         en: 'Ram\'s Voice',
         de: 'Stimme Des Widders',

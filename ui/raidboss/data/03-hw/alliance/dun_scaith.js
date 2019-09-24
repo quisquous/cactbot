@@ -428,7 +428,7 @@
     },
     {
       id: 'Dun Scaith Hollow Omen',
-      regex: / (?:14:1C22|14:1C23):Diabolos Hollow starts using Hollow Omen/,
+      regex: / 14:(?:1C22|1C23):Diabolos Hollow starts using Hollow Omen/,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';

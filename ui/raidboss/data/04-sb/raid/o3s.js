@@ -7,8 +7,8 @@
   triggers: [
     {
       id: 'O3S Phase Counter',
-      regex: /:Halicarnassus starts using Panel Swap/,
-      regexDe: /:Halikarnassos starts using Neuaufstellung/,
+      regex: / 14:2304:Halicarnassus starts using Panel Swap/,
+      regexDe: / 14:2304:Halikarnassos starts using Neuaufstellung/,
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
@@ -227,8 +227,8 @@
     },
     {
       id: 'O3S Ribbit',
-      regex: /:22F7:Halicarnassus starts using/,
-      regexDe: /:22F7:Halikarnassos starts using/,
+      regex: / 14:22F7:Halicarnassus starts using/,
+      regexDe: / 14:22F7:Halikarnassos starts using/,
       alertText: {
         en: 'Ribbit: Get behind',
         de: 'Quaaak: Hinter sie',
@@ -240,8 +240,8 @@
     },
     {
       id: 'O3S Oink',
-      regex: /:22F9:Halicarnassus starts using/,
-      regexDe: /:22F9:Halikarnassos starts using/,
+      regex: / 14:22F9:Halicarnassus starts using/,
+      regexDe: / 14:22F9:Halikarnassos starts using/,
       infoText: {
         en: 'Oink: Stack',
         de: 'Quiiiek: Stack',
@@ -253,8 +253,8 @@
     },
     {
       id: 'O3S Squelch',
-      regex: /:22F8:Halicarnassus starts using/,
-      regexDe: /:22F8:Halikarnassos starts using/,
+      regex: / 14:22F8:Halicarnassus starts using/,
+      regexDe: / 14:22F8:Halikarnassos starts using/,
       alarmText: {
         en: 'Squelch: Look away',
         de: 'Gurrr: Wegschauen',
@@ -266,8 +266,8 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
-      regex: /:230E:Halicarnassus starts using/,
-      regexDe: /:230E:Halikarnassos starts using/,
+      regex: / 14:230E:Halicarnassus starts using/,
+      regexDe: / 14:230E:Halikarnassos starts using/,
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
@@ -284,8 +284,8 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
-      regex: /:2306:Halicarnassus starts using/,
-      regexDe: /:2306:Halikarnassos starts using/,
+      regex: / 14:2306:Halicarnassus starts using/,
+      regexDe: / 14:2306:Halikarnassos starts using/,
       infoText: {
         en: 'The Queen\'s Waltz: Clock',
         de: 'Tanz der Königin: Uhr',
@@ -297,8 +297,8 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
-      regex: /:230A:Halicarnassus starts using/,
-      regexDe: /:230A:Halikarnassos starts using/,
+      regex: / 14:230A:Halicarnassus starts using/,
+      regexDe: / 14:230A:Halikarnassos starts using/,
       infoText: {
         en: 'The Queen\'s Waltz: Crystal Square',
         de: 'Tanz der Königin: Kristallfeld',
@@ -310,8 +310,8 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
-      regex: /:2308:Halicarnassus starts using/,
-      regexDe: /:2308:Halikarnassos starts using/,
+      regex: / 14:2308:Halicarnassus starts using/,
+      regexDe: / 14:2308:Halikarnassos starts using/,
       infoText: {
         en: 'The Queen\'s Waltz: Tethers',
         de: 'Tanz der Königin: Ranken',

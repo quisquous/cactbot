@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Rab Mateus Aqua Sphere',
-      regex: /:Mateus, The Corrupt starts using Unbind/,
-      regexDe: /:Mateus der Peiniger starts using Loseisen/,
-      regexFr: /:Mateus Le Corrompu starts using Délivrance/,
+      regex: / 14:2633:Mateus, The Corrupt starts using Unbind/,
+      regexDe: / 14:2633:Mateus der Peiniger starts using Loseisen/,
+      regexFr: / 14:2633:Mateus Le Corrompu starts using Délivrance/,
       delaySeconds: 11,
       infoText: {
         en: 'Kill Aqua Spheres',
@@ -75,9 +75,9 @@
     },
     {
       id: 'Rab Mateus Blizzard IV',
-      regex: /:Mateus, The Corrupt starts using Blizzard IV/,
-      regexDe: /:Mateus der Peiniger starts using Eiska/,
-      regexFr: /:Mateus Le Corrompu starts using Giga Glace/,
+      regex: / 14:263D:Mateus, The Corrupt starts using Blizzard IV/,
+      regexDe: / 14:263D:Mateus der Peiniger starts using Eiska/,
+      regexFr: / 14:263D:Mateus Le Corrompu starts using Giga Glace/,
       alertText: {
         en: 'Move To Safe Spot',
         de: 'Zur sicheren Zone',
@@ -91,9 +91,9 @@
     },
     {
       id: 'Rab Hashmal Rock Cutter',
-      regex: /:Hashmal, Bringer Of Order starts using Rock Cutter/,
-      regexDe: /:Hashmallim der Einiger starts using Steinfräse/,
-      regexFr: /:Hashmal Le Grand Ordonnateur starts using Trancheur Rocheux/,
+      regex: / 14:25D7:Hashmal, Bringer Of Order starts using Rock Cutter/,
+      regexDe: / 14:25D7:Hashmallim der Einiger starts using Steinfräse/,
+      regexFr: / 14:25D7:Hashmal Le Grand Ordonnateur starts using Trancheur Rocheux/,
       infoText: {
         en: 'Tank Cleave',
         de: 'Tank Cleave',
@@ -107,9 +107,9 @@
     },
     {
       id: 'Rab Hashmal Earth Hammer',
-      regex: /:Hashmal, Bringer Of Order starts using Earth Hammer/,
-      regexDe: /:Hashmallim der Einiger starts using Erdhammer/,
-      regexFr: /:Hashmal Le Grand Ordonnateur starts using Marteau Tellurique/,
+      regex: / 14:25CB:Hashmal, Bringer Of Order starts using Earth Hammer/,
+      regexDe: / 14:25CB:Hashmallim der Einiger starts using Erdhammer/,
+      regexFr: / 14:25CB:Hashmal Le Grand Ordonnateur starts using Marteau Tellurique/,
       alertText: {
         en: 'Move Away',
         de: 'Weg da',
@@ -123,9 +123,9 @@
     },
     {
       id: 'Rab Hashmal Golems',
-      regex: /:Hashmal, Bringer Of Order starts using Summon/,
-      regexDe: /:Hashmallim der Einiger starts using Beschwörung/,
-      regexFr: /:Hashmal Le Grand Ordonnateur starts using Invocation/,
+      regex: / 14:25D4:Hashmal, Bringer Of Order starts using Summon/,
+      regexDe: / 14:25D4:Hashmallim der Einiger starts using Beschwörung/,
+      regexFr: / 14:25D4:Hashmal Le Grand Ordonnateur starts using Invocation/,
       delaySeconds: 5,
       infoText: {
         en: 'Kill Golems',
@@ -140,9 +140,9 @@
     },
     {
       id: 'Rab Trash Dragon Voice',
-      regex: /:Archaeolion starts using The Dragon's Voice/,
-      regexDe: /:Archaeolöwe starts using Stimme Des Drachen/,
-      regexFr: /:Archéochimère starts using Voix Du Dragon/,
+      regex: / 14:D10:Archaeolion starts using The Dragon's Voice/,
+      regexDe: / 14:D10:Archaeolöwe starts using Stimme Des Drachen/,
+      regexFr: / 14:D10:Archéochimère starts using Voix Du Dragon/,
       alertText: {
         en: 'Dragon Voice: Move In',
         de: 'Stimme Des Drachen: Rein',
@@ -156,9 +156,9 @@
     },
     {
       id: 'Rab Trash Ram Voice',
-      regex: /:Archaeolion starts using The Ram's Voice/,
-      regexDe: /:Archaeolöwe starts using Stimme Des Widders/,
-      regexFr: /:Archéochimère starts using Voix Du Bélier/,
+      regex: / 14:(?:D0F|273B):Archaeolion starts using The Ram's Voice/,
+      regexDe: / 14:(?:D0F|273B):Archaeolöwe starts using Stimme Des Widders/,
+      regexFr: / 14:(?:D0F|273B):Archéochimère starts using Voix Du Bélier/,
       alertText: {
         en: 'Ram Voice: Move Out',
         de: 'Stimme Des Widders: Raus',
@@ -189,9 +189,9 @@
     },
     {
       id: 'Rab Rofocale Trample',
-      regex: /:Rofocale starts using Trample/,
-      regexDe: /:Rofocale starts using Zertrampeln/,
-      regexFr: /:Rofocale starts using Fauchage/,
+      regex: / 14:2676:Rofocale starts using Trample/,
+      regexDe: / 14:2676:Rofocale starts using Zertrampeln/,
+      regexFr: / 14:2676:Rofocale starts using Fauchage/,
       alertText: {
         en: 'Trample',
         de: 'Zertrampeln',

@@ -34,11 +34,11 @@
     },
     {
       id: 'O8S Indolent Will',
-      regex: /Graven Image starts using Indolent Will/,
-      regexDe: /Helige Statue starts using Träger Wille/,
-      regexFr: /Statue Divine starts using Volonté Indolente/,
-      regexJa: /神々の像 starts using 惰眠の神気/,
-      regexKo: /신들의 상 starts using 태만의 신기/,
+      regex: / 14:28E4:Graven Image starts using Indolent Will/,
+      regexDe: / 14:28E4:Helige Statue starts using Träger Wille/,
+      regexFr: / 14:28E4:Statue Divine starts using Volonté Indolente/,
+      regexJa: / 14:28E4:神々の像 starts using 惰眠の神気/,
+      regexKo: / 14:28E4:신들의 상 starts using 태만의 신기/,
       alertText: {
         en: 'Look Away From Statue',
         fr: 'Ne regardez pas la statue',
@@ -122,11 +122,11 @@
     },
     {
       id: 'O8S Pasts Forgotten',
-      regex: /Kefka starts using Pasts Forgotten/,
-      regexDe: /Kefka starts using Vernichtung Der Vergangenheit/,
-      regexFr: /Kefka starts using Ruine Du Passé/,
-      regexJa: /ケフカ starts using 過去の破滅/,
-      regexKo: /케프카 starts using 과거의 파멸/,
+      regex: / 14:28F1:Kefka starts using Pasts Forgotten/,
+      regexDe: / 14:28F1:Kefka starts using Vernichtung Der Vergangenheit/,
+      regexFr: / 14:28F1:Kefka starts using Ruine Du Passé/,
+      regexJa: / 14:28F1:ケフカ starts using 過去の破滅/,
+      regexKo: / 14:28F1:케프카 starts using 과거의 파멸/,
       alertText: {
         en: 'Past: Stack and Stay',
         fr: 'Passé : Stack et ne bougez plus',
@@ -144,11 +144,11 @@
     },
     {
       id: 'O8S Futures Numbered',
-      regex: /Kefka starts using Futures Numbered/,
-      regexDe: /Kefka starts using Vernichtung Der Zukunft/,
-      regexFr: /Kefka starts using Ruine Du Futur/,
-      regexJa: /ケフカ starts using 未来の破滅/,
-      regexKo: /케프카 starts using 미래의 파멸/,
+      regex: / 14:28EF:Kefka starts using Futures Numbered/,
+      regexDe: / 14:28EF:Kefka starts using Vernichtung Der Zukunft/,
+      regexFr: / 14:28EF:Kefka starts using Ruine Du Futur/,
+      regexJa: / 14:28EF:ケフカ starts using 未来の破滅/,
+      regexKo: / 14:28EF:케프카 starts using 미래의 파멸/,
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et traversez',
@@ -165,12 +165,13 @@
       },
     },
     {
+      // TODO: not sure if this cast is 7 or 8.
       id: 'O8S Past\'s End',
-      regex: /Kefka starts using Past's End/,
-      regexDe: /Kefka starts using Ende Der Vergangenheit/,
-      regexFr: /Kefka starts using Fin Du Passé/,
-      regexJa: /ケフカ starts using 過去の終焉/,
-      regexKo: /케프카 starts using 과거의 종언/,
+      regex: / 14:28F[78]:Kefka starts using Past's End/,
+      regexDe: / 14:28F[78]:Kefka starts using Ende Der Vergangenheit/,
+      regexFr: / 14:28F[78]:Kefka starts using Fin Du Passé/,
+      regexJa: / 14:28F[78]:ケフカ starts using 過去の終焉/,
+      regexKo: / 14:28F[78]:케프카 starts using 과거의 종언/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -190,12 +191,13 @@
       },
     },
     {
+      // TODO: not sure if this cast is 4 or 5.
       id: 'O8S Future\'s End',
-      regex: /Kefka starts using Future's End/,
-      regexDe: /Kefka starts using Ende Der Zukunft/,
-      regexFr: /Kefka starts using Fin Du Futur/,
-      regexJa: /ケフカ starts using 未来の終焉/,
-      regexKo: /케프카 starts using 미래의 종언/,
+      regex: / 14:28F[45]:Kefka starts using Future's End/,
+      regexDe: / 14:28F[45]:Kefka starts using Ende Der Zukunft/,
+      regexFr: / 14:28F[45]:Kefka starts using Fin Du Futur/,
+      regexJa: / 14:28F[45]:ケフカ starts using 未来の終焉/,
+      regexKo: / 14:28F[45]:케프카 starts using 미래의 종언/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -216,11 +218,11 @@
     },
     {
       id: 'O8S Pulse Wave You',
-      regex: /Graven Image starts using Pulse Wave on (\y{Name})/,
-      regexDe: /Helige Statue starts using Pulswelle on (\y{Name})/,
-      regexFr: /Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
-      regexJa: /神々の像 starts using 波動弾 on (\y{Name})/,
-      regexKo: /신들의 상 starts using 파동탄 on (\y{Name})/,
+      regex: / 14:28DD:Graven Image starts using Pulse Wave on (\y{Name})/,
+      regexDe: / 14:28DD:Helige Statue starts using Pulswelle on (\y{Name})/,
+      regexFr: / 14:28DD:Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
+      regexJa: / 14:28DD:神々の像 starts using 波動弾 on (\y{Name})/,
+      regexKo: / 14:28DD:신들의 상 starts using 파동탄 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

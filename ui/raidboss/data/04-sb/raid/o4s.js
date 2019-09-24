@@ -17,14 +17,14 @@
   triggers: [
     // Part 1
     { // Phase Tracker: Thunder III not after Decisive Battle.
-      regex: /:23F9:Exdeath starts using/,
+      regex: / 14:23F9:Exdeath starts using/,
       run: function(data) {
         data.thunderCount = (data.thunderCount || 0) + 1;
       },
     },
     { // Fire III not after Decisive Battle.
       id: 'O4S1 Fire III',
-      regex: /:23F5:Exdeath starts using/,
+      regex: / 14:23F5:Exdeath starts using/,
       infoText: {
         en: 'Fire III',
         de: 'Feuga',
@@ -32,7 +32,7 @@
     },
     { // Blizzard III not after Decisive Battle.
       id: 'O4S1 Blizzard III',
-      regex: /:23F7:Exdeath starts using/,
+      regex: / 14:23F7:Exdeath starts using/,
       infoText: {
         en: 'Blizzard III',
         de: 'Eisga',
@@ -40,7 +40,7 @@
     },
     { // Thunder III not after Decisive Battle.
       id: 'O4S1 Thunder III',
-      regex: /:23F9:Exdeath starts using/,
+      regex: / 14:23F9:Exdeath starts using/,
       infoText: function(data) {
         // Tanks/healers always get an alert.
         if (data.role == 'tank' || data.role == 'healer') return false;
@@ -69,7 +69,7 @@
     },
     { // Fire III after Decisive Battle.
       id: 'O4S1 Ultimate Fire III',
-      regex: /:23FB:Exdeath starts using/,
+      regex: / 14:23FB:Exdeath starts using/,
       alarmText: {
         en: 'Fire III: Stop',
         de: 'Feuga: Stehenbleiben',
@@ -81,7 +81,7 @@
     },
     { // Blizzard III after Decisive Battle.
       id: 'O4S1 Ultimate Blizzard III',
-      regex: /:23FC:Exdeath starts using/,
+      regex: / 14:23FC:Exdeath starts using/,
       alertText: {
         en: 'Blizzard III: Keep moving',
         de: 'Eisga: Bewegen',
@@ -93,7 +93,7 @@
     },
     { // Thunder III after Decisive Battle.
       id: 'O4S1 Ultimate Thunder III',
-      regex: /:23FD:Exdeath starts using/,
+      regex: / 14:23FD:Exdeath starts using/,
       alertText: {
         en: 'Thunder III: Get out',
         de: 'Blitzga: Raus da',
@@ -105,7 +105,7 @@
     },
     { // Flare
       id: 'O4S1 Flare',
-      regex: /2401:Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
+      regex: / 14:2401:Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches[1]);
@@ -126,7 +126,7 @@
 
     // Part 2
     { // Phase Tracker: Grand Cross Alpha.
-      regex: /:242B:Neo Exdeath starts using/,
+      regex: / 14:242B:Neo Exdeath starts using/,
       run: function(data) {
         data.phase = 'alpha';
         data.alphaCount = (data.alphaCount || 0) + 1;
@@ -150,14 +150,14 @@
       },
     },
     { // Phase Tracker: Grand Cross Delta.
-      regex: /:242C:Neo Exdeath starts using/,
+      regex: / 14:242C:Neo Exdeath starts using/,
       run: function(data) {
         data.phase = 'delta';
         data.waterHealer = null;
       },
     },
     { // Phase Tracker: Grand Cross Omega.
-      regex: /:242D:Neo Exdeath starts using/,
+      regex: / 14:242D:Neo Exdeath starts using/,
       run: function(data) {
         data.phase = 'omega';
         data.waterHealer = null;
@@ -165,7 +165,7 @@
       },
     },
     { // Phase Tracker: Neverwhere.
-      regex: /:2426:Neo Exdeath starts using/,
+      regex: / 14:2426:Neo Exdeath starts using/,
       run: function(data) {
         data.finalphase = true;
       },
@@ -212,7 +212,7 @@
     },
     { // Inner Flood (move out).
       id: 'O4S2 Flood of Naught: Inside',
-      regex: /:240E:Neo Exdeath starts using/,
+      regex: / 14:240E:Neo Exdeath starts using/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -249,7 +249,7 @@
     },
     { // Outer Flood (move in).
       id: 'O4S2 Flood of Naught: Outside',
-      regex: /:240F:Neo Exdeath starts using/,
+      regex: / 14:240F:Neo Exdeath starts using/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -286,7 +286,7 @@
     },
     { // Purple/Blue Flood.
       id: 'O4S2 Flood of Naught: Colors Purple Blue',
-      regex: /:2411:Neo Exdeath starts using/,
+      regex: / 14:2411:Neo Exdeath starts using/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (!data.shouldDieOnLaser())
@@ -339,7 +339,7 @@
     },
     { // Blue/Purple Flood.
       id: 'O4S2 Flood of Naught: Colors Blue Purple',
-      regex: /:2412:Neo Exdeath starts using/,
+      regex: / 14:2412:Neo Exdeath starts using/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (!data.shouldDieOnLaser())
@@ -391,7 +391,7 @@
       },
     },
     { // Laser counter.
-      regex: /:24(OE|0F|11|12):Neo Exdeath starts using/,
+      regex: / 14:24(OE|0F|11|12):Neo Exdeath starts using/,
       run: function(data, matches) {
         if (data.phase != 'omega')
           return;
@@ -410,7 +410,7 @@
     },
     { // Charge Flood.
       id: 'O4S2 Flood of Naught: Charge',
-      regex: /:2416:Neo Exdeath starts using/,
+      regex: / 14:2416:Neo Exdeath starts using/,
       infoText: function(data) {
         if (data.allaganField) {
           if (data.role == 'tank') {
@@ -442,7 +442,7 @@
     },
     { // Double attack.
       id: 'O4S2 Double Attack',
-      regex: /:241C:Neo Exdeath starts using/,
+      regex: / 14:241C:Neo Exdeath starts using/,
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -462,7 +462,7 @@
     },
     { // Grand Cross Alpha.
       id: 'O4S2 Grand Cross Alpha',
-      regex: /:242B:Neo Exdeath starts using/,
+      regex: / 14:242B:Neo Exdeath starts using/,
       infoText: {
         en: 'Grand Cross Alpha: Go to middle',
         de: 'Supernova Alpha: In die Mitte',
@@ -474,7 +474,7 @@
     },
     { // Grand Cross Delta.
       id: 'O4S2 Grand Cross Delta',
-      regex: /:242C:Neo Exdeath starts using/,
+      regex: / 14:242C:Neo Exdeath starts using/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -514,7 +514,7 @@
     },
     { // Grand Cross Omega.
       id: 'O4S2 Grand Cross Omega',
-      regex: /:242D:Neo Exdeath starts using/,
+      regex: / 14:242D:Neo Exdeath starts using/,
       infoText: {
         en: 'Grand Cross Omega: Go to middle',
         de: 'Supernova Omega: In die Mitte',
@@ -732,7 +732,7 @@
     },
     { // Delta Attack
       id: 'O4S2 Delta Attack',
-      regex: /:241E:Neo Exdeath starts using/,
+      regex: / 14:241E:Neo Exdeath starts using/,
       infoText: {
         en: 'Delta Attack: Stack',
         de: 'Delta Attacke: Stack',
@@ -744,7 +744,7 @@
     },
     { // Almagest
       id: 'O4S2 Almagest',
-      regex: /:2417:Neo Exdeath starts using/,
+      regex: / 14:2417:Neo Exdeath starts using/,
       alertText: function(data) {
         return {
           en: 'Almagest',
@@ -794,7 +794,7 @@
     },
     { // Flare
       id: 'O4S2 Flare',
-      regex: /2401:Neo Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
+      regex: / 14:2401:Neo Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
       infoText: function(data) {
         if (data.flareTargets.indexOf(data.me) < 0) {
           return {

@@ -68,55 +68,55 @@
       },
     },
     {
-      regex: /:26E2:Bahamut Prime starts using Quickmarch Trio/,
-      regexDe: /:26E2:Prim-Bahamut starts using Todesmarsch-Trio/,
-      regexFr: /:26E2:Primo-Bahamut starts using Trio De La Marche Militaire/,
-      regexJa: /:26E2:バハムート・プライム starts using 進軍の三重奏/,
+      regex: / 14:26E2:Bahamut Prime starts using Quickmarch Trio/,
+      regexDe: / 14:26E2:Prim-Bahamut starts using Todesmarsch-Trio/,
+      regexFr: / 14:26E2:Primo-Bahamut starts using Trio De La Marche Militaire/,
+      regexJa: / 14:26E2:バハムート・プライム starts using 進軍の三重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('quickmarch');
       },
     },
     {
-      regex: /:26E3:Bahamut Prime starts using Blackfire Trio/,
-      regexDe: /:26E3:Prim-Bahamut starts using Schwarzfeuer-Trio/,
-      regexFr: /:26E3:Primo-Bahamut starts using Trio Des Flammes Noires/,
-      regexJa: /:26E3:バハムート・プライム starts using 黒炎の三重奏/,
+      regex: / 14:26E3:Bahamut Prime starts using Blackfire Trio/,
+      regexDe: / 14:26E3:Prim-Bahamut starts using Schwarzfeuer-Trio/,
+      regexFr: / 14:26E3:Primo-Bahamut starts using Trio Des Flammes Noires/,
+      regexJa: / 14:26E3:バハムート・プライム starts using 黒炎の三重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('blackfire');
       },
     },
     {
-      regex: /:26E4:Bahamut Prime starts using Fellruin Trio/,
-      regexDe: /:26E4:Prim-Bahamut starts using Untergangs-Trio/,
-      regexFr: /:26E4:Primo-Bahamut starts using Trio Du Désastre/,
-      regexJa: /:26E4:バハムート・プライム starts using 厄災の三重奏/,
+      regex: / 14:26E4:Bahamut Prime starts using Fellruin Trio/,
+      regexDe: / 14:26E4:Prim-Bahamut starts using Untergangs-Trio/,
+      regexFr: / 14:26E4:Primo-Bahamut starts using Trio Du Désastre/,
+      regexJa: / 14:26E4:バハムート・プライム starts using 厄災の三重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('fellruin');
       },
     },
     {
-      regex: /:26E5:Bahamut Prime starts using Heavensfall Trio/,
-      regexDe: /:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
-      regexFr: /:26E5:Primo-Bahamut starts using Trio De L'univers/,
-      regexJa: /:26E5:バハムート・プライム starts using 天地の三重奏/,
+      regex: / 14:26E5:Bahamut Prime starts using Heavensfall Trio/,
+      regexDe: / 14:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
+      regexFr: / 14:26E5:Primo-Bahamut starts using Trio De L'univers/,
+      regexJa: / 14:26E5:バハムート・プライム starts using 天地の三重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('heavensfall');
       },
     },
     {
-      regex: /:26E6:Bahamut Prime starts using Tenstrike Trio/,
-      regexDe: /:26E6:Prim-Bahamut starts using Zehnschlag-Trio/,
-      regexFr: /:26E6:Primo-Bahamut starts using Trio Des Attaques/,
-      regexJa: /:26E6:バハムート・プライム starts using 連撃の三重奏/,
+      regex: / 14:26E6:Bahamut Prime starts using Tenstrike Trio/,
+      regexDe: / 14:26E6:Prim-Bahamut starts using Zehnschlag-Trio/,
+      regexFr: / 14:26E6:Primo-Bahamut starts using Trio Des Attaques/,
+      regexJa: / 14:26E6:バハムート・プライム starts using 連撃の三重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('tenstrike');
       },
     },
     {
-      regex: /:26E7:Bahamut Prime starts using Grand Octet/,
-      regexDe: /:26E7:Prim-Bahamut starts using Großes Oktett/,
-      regexFr: /:26E7:Primo-Bahamut starts using Octuors Des Dragons/,
-      regexJa: /:26E7:バハムート・プライム starts using 群竜の八重奏/,
+      regex: / 14:26E7:Bahamut Prime starts using Grand Octet/,
+      regexDe: / 14:26E7:Prim-Bahamut starts using Großes Oktett/,
+      regexFr: / 14:26E7:Primo-Bahamut starts using Octuors Des Dragons/,
+      regexJa: / 14:26E7:バハムート・プライム starts using 群竜の八重奏/,
       run: function(data) {
         if (data.resetTrio) data.resetTrio('octet');
       },
@@ -138,10 +138,10 @@
     // --- Twintania ---
     {
       id: 'UCU Twisters',
-      regex: /:26AA:Twintania starts using/,
-      regexDe: /:26AA:Twintania starts using/,
-      regexFr: /:26AA:Gémellia starts using/,
-      regexJa: /:26AA:ツインタニア starts using/,
+      regex: / 14:26AA:Twintania starts using/,
+      regexDe: / 14:26AA:Twintania starts using/,
+      regexFr: / 14:26AA:Gémellia starts using/,
+      regexJa: / 14:26AA:ツインタニア starts using/,
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
@@ -157,10 +157,10 @@
     },
     {
       id: 'UCU Death Sentence',
-      regex: /:Twintania readies Death Sentence/,
-      regexDe: /:Twintania readies Todesurteil/,
-      regexFr: /:Gémellia readies Peine De Mort/,
-      regexJa: /:ツインタニア readies デスセンテンス/,
+      regex: / 14:26A9:Twintania starts using Death Sentence/,
+      regexDe: / 14:26A9:Twintania starts using Todesurteil/,
+      regexFr: / 14:26A9:Gémellia starts using Peine De Mort/,
+      regexJa: / 14:26A9:ツインタニア starts using デスセンテンス/,
       alertText: function(data, matches) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -1484,10 +1484,10 @@
     {
       // One time setup.
       id: 'UCU Initial Setup',
-      regex: /:26AA:Twintania starts using/,
-      regexDe: /:26AA:Twintania starts using/,
-      regexFr: /:26AA:Gémellia starts using/,
-      regexJa: /:26AA:ツインタニア starts using/,
+      regex: / 14:26AA:Twintania starts using/,
+      regexDe: / 14:26AA:Twintania starts using/,
+      regexFr: / 14:26AA:Gémellia starts using/,
+      regexJa: / 14:26AA:ツインタニア starts using/,
       suppressSeconds: 99999,
       run: function(data) {
         // TODO: a late white puddle can cause dragons to get seen for the next

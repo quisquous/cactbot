@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Temple Port And Star',
-      regex: /:1FDC:Arbuda starts using Port And Star/,
-      regexDe: /:1FDC:Arbuda starts using Links & Rechts/,
-      regexFr: /:1FDC:Arbuda starts using Gauche Et Droite/,
+      regex: / 14:1FDC:Arbuda starts using Port And Star/,
+      regexDe: / 14:1FDC:Arbuda starts using Links & Rechts/,
+      regexFr: / 14:1FDC:Arbuda starts using Gauche Et Droite/,
       alertText: {
         en: 'front/back are safe',
         de: 'Vorne/Hinten sicher',
@@ -22,9 +22,9 @@
     },
     {
       id: 'Temple Fore And Aft',
-      regex: /:1FDB:Arbuda starts using Fore And Aft/,
-      regexDe: /:1FDB:Arbuda starts using Vor & Zurück/,
-      regexFr: /:1FDB:Arbuda starts using Devant Et Derrière/,
+      regex: / 14:1FDB:Arbuda starts using Fore And Aft/,
+      regexDe: / 14:1FDB:Arbuda starts using Vor & Zurück/,
+      regexFr: / 14:1FDB:Arbuda starts using Devant Et Derrière/,
       alertText: {
         en: 'sides are safe',
         de: 'Seiten sind sicher',
@@ -38,9 +38,9 @@
     },
     {
       id: 'Temple Killer Instinct',
-      regex: /:1FDE:Arbuda starts using Killer Instinct/,
-      regexDe: /:1FDE:Arbuda starts using Vorausahnung/,
-      regexFr: /:1FDE:Arbuda starts using Instinct Meurtrier/,
+      regex: / 14:1FDE:Arbuda starts using Killer Instinct/,
+      regexDe: / 14:1FDE:Arbuda starts using Vorausahnung/,
+      regexFr: / 14:1FDE:Arbuda starts using Instinct Meurtrier/,
       alertText: {
         en: 'watch for safe',
         de: 'nach Sicherheit schauen',

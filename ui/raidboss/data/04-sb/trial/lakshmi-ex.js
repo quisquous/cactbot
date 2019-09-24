@@ -19,7 +19,7 @@
   ],
   triggers: [
     {
-      regex: /:Lakshmi starts using Chanchala/,
+      regex: / 14:2148:Lakshmi starts using Chanchala/,
       run: function(data) {
         data.chanchala = true;
       },
@@ -32,8 +32,8 @@
     },
     {
       id: 'Lakshmi Pull of Light',
-      regex: /:215E:Lakshmi starts using The Pull Of Light on (\y{Name})/,
-      regexDe: /:215E:Lakshmi starts using Strom Des Lichts on (\y{Name})/,
+      regex: / 14:215E:Lakshmi starts using The Pull Of Light on (\y{Name})/,
+      regexDe: / 14:215E:Lakshmi starts using Strom Des Lichts on (\y{Name})/,
       alarmText: function(data, matches) {
         if (data.role != 'tank' && matches[1] == data.me) {
           return {
@@ -67,8 +67,8 @@
     },
     {
       id: 'Lakshmi Divine Denial',
-      regex: /:2149:Lakshmi starts using Divine Denial/,
-      regexDe: /:2149:Lakshmi starts using Göttliche Leugnung/,
+      regex: / 14:2149:Lakshmi starts using Divine Denial/,
+      regexDe: / 14:2149:Lakshmi starts using Göttliche Leugnung/,
       alertText: {
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
@@ -76,8 +76,8 @@
     },
     {
       id: 'Lakshmi Divine Desire',
-      regex: /:214B:Lakshmi starts using Divine Desire/,
-      regexDe: /:214B:Lakshmi starts using Göttliche Lockung/,
+      regex: / 14:214B:Lakshmi starts using Divine Desire/,
+      regexDe: / 14:214B:Lakshmi starts using Göttliche Lockung/,
       alertText: {
         en: 'Vrill + Be Outside',
         de: 'Vril + Außen',
@@ -89,8 +89,8 @@
     },
     {
       id: 'Lakshmi Divine Doubt',
-      regex: /:214A:Lakshmi starts using Divine Doubt/,
-      regexDe: /:214A:Lakshmi starts using Göttliche Bestürzung/,
+      regex: / 14:214A:Lakshmi starts using Divine Doubt/,
+      regexDe: / 14:214A:Lakshmi starts using Göttliche Bestürzung/,
       alertText: {
         en: 'Vrill + Pair Up',
         de: 'Vril + Pärchen bilden',
@@ -148,7 +148,7 @@
     },
     {
       id: 'Lakshmi Stotram',
-      regex: /:2147:Lakshmi starts using Stotram/,
+      regex: / 14:2147:Lakshmi starts using Stotram/,
       alertText: function(data) {
         if (data.chanchala) {
           return {

@@ -5,9 +5,9 @@
   triggers: [
     {
       id: 'Hrodric Tank',
-      regex: /:Hrodric Poisontongue starts using Rusting Claw/,
-      regexDe: /:Hrodric Giftzunge starts using Rostklaue/,
-      regexFr: /:Hrodric Le Médisant starts using Griffes De Ruine/,
+      regex: / 14:2661:Hrodric Poisontongue starts using Rusting Claw/,
+      regexDe: / 14:2661:Hrodric Giftzunge starts using Rostklaue/,
+      regexFr: / 14:2661:Hrodric Le Médisant starts using Griffes De Ruine/,
       infoText: function(data) {
         return data.role != 'tank' ? 'tank cleave' : '';
       },
@@ -22,9 +22,9 @@
     },
     {
       id: 'Hrodric Tail',
-      regex: /:Hrodric Poisontongue starts using Tail Drive/,
-      regexDe: /:Hrodric Giftzunge starts using Schwanzfetzer/,
-      regexFr: /:Hrodric Le Médisant starts using Offensive Caudale/,
+      regex: / 14:2663:Hrodric Poisontongue starts using Tail Drive/,
+      regexDe: / 14:2663:Hrodric Giftzunge starts using Schwanzfetzer/,
+      regexFr: / 14:2663:Hrodric Le Médisant starts using Offensive Caudale/,
       infoText: function(data) {
         return data.role == 'tank' ? 'tail cleave' : '';
       },
@@ -39,9 +39,9 @@
     },
     {
       id: 'Hrodric Eye',
-      regex: /:Hrodric Poisontongue starts using Eye Of The Fire/,
-      regexDe: /:Hrodric Giftzunge starts using Feuerauge/,
-      regexFr: /:Hrodric Le Médisant starts using Œil Des Flammes/,
+      regex: / 14:2665:Hrodric Poisontongue starts using Eye Of The Fire/,
+      regexDe: / 14:2665:Hrodric Giftzunge starts using Feuerauge/,
+      regexFr: / 14:2665:Hrodric Le Médisant starts using Œil Des Flammes/,
       alertText: function(data) {
         return {
           en: 'look away',
@@ -52,9 +52,9 @@
     },
     {
       id: 'Hrodric Words',
-      regex: /:Hrodric Poisontongue starts using Words Of Woe/,
-      regexDe: /:Hrodric Giftzunge starts using Wehklagende Worte/,
-      regexFr: /:Hrodric Le Médisant starts using Mots De Malheur/,
+      regex: / 14:2662:Hrodric Poisontongue starts using Words Of Woe/,
+      regexDe: / 14:2662:Hrodric Giftzunge starts using Wehklagende Worte/,
+      regexFr: / 14:2662:Hrodric Le Médisant starts using Mots De Malheur/,
       infoText: function(data) {
         return {
           en: 'avoid eye lasers',

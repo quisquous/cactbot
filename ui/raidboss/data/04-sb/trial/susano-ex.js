@@ -27,8 +27,8 @@
       // when it disappears.  This is because there are several
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
-      regex: /:Thunderhead starts using The Parting Clouds on Thunderhead\./,
-      regexDe: /:Gewitterkopf starts using Wolkenriss on Gewitterkopf\./,
+      regex: / 14:2041:Thunderhead starts using The Parting Clouds on Thunderhead\./,
+      regexDe: / 14:2041:Gewitterkopf starts using Wolkenriss on Gewitterkopf\./,
       run: function(data) {
         data.cloud = false;
       },
