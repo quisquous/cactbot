@@ -363,7 +363,10 @@ class PopupText {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), (duration.fromTrigger || duration.alarmText) * 1000);
+          window.setTimeout(
+            removeText.bind(that, holder, div),
+            (duration.fromTrigger || duration.alarmText) * 1000
+          );
 
           if (!soundUrl) {
             soundUrl = that.options.AlarmSound;
@@ -380,7 +383,10 @@ class PopupText {
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), (duration.fromTrigger || duration.alertText) * 1000);
+          window.setTimeout(
+            removeText.bind(that, holder, div),
+            (duration.fromTrigger || duration.alertText) * 1000
+          );
 
           if (!soundUrl) {
             soundUrl = that.options.AlertSound;
@@ -397,7 +403,10 @@ class PopupText {
           let holder = that.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), (duration.fromTrigger || duration.infoText) * 1000);
+          window.setTimeout(
+            removeText.bind(that, holder, div),
+            (duration.fromTrigger || duration.infoText) * 1000
+          );
 
           if (!soundUrl) {
             soundUrl = that.options.InfoSound;
