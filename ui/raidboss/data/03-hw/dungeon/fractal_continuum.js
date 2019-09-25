@@ -52,7 +52,7 @@
       id: 'Fractal Aetherochemical Bomb',
       regex: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Aetherochemical Bomb/,
       condition: function(data) {
-        return data.CanCleanse;
+        return data.CanCleanse();
       },
       infoText: {
         en: 'Cleanse bomb',
