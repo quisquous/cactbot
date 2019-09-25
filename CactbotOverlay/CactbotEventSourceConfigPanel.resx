@@ -117,233 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="checkWatchFileChanges.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 101</value>
-  </data>
-  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 496</value>
-  </data>
-  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="dpsUpdateRateLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="dpsUpdateRateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="dpsUpdateRateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="checkWatchFileChanges.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="dpsUpdateRateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="checkWatchFileChanges.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 26</value>
   </data>
-  <data name="dpsUpdateRateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+  <data name="checkWatchFileChanges.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 14</value>
   </data>
-  <data name="dpsUpdateRateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="checkWatchFileChanges.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
   </data>
-  <data name="dpsUpdateRateLabel.Text" xml:space="preserve">
-    <value>Dps update interval seconds (0=never)</value>
+  <data name="&gt;&gt;checkWatchFileChanges.Name" xml:space="preserve">
+    <value>checkWatchFileChanges</value>
   </data>
-  <data name="dpsUpdateRateLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRateLabel.Name" xml:space="preserve">
-    <value>dpsUpdateRateLabel</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRateLabel.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRateLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="dpsUpdateRate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="dpsUpdateRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 1</value>
-  </data>
-  <data name="dpsUpdateRate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="dpsUpdateRate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>357, 20</value>
-  </data>
-  <data name="dpsUpdateRate.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRate.Name" xml:space="preserve">
-    <value>dpsUpdateRate</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRate.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;dpsUpdateRate.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="logUpdateLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="logUpdateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="logUpdateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 22</value>
-  </data>
-  <data name="logUpdateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 20</value>
-  </data>
-  <data name="logUpdateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="logUpdateLabel.Text" xml:space="preserve">
-    <value>Send log updates</value>
-  </data>
-  <data name="logUpdateLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;logUpdateLabel.Name" xml:space="preserve">
-    <value>logUpdateLabel</value>
-  </data>
-  <data name="&gt;&gt;logUpdateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;logUpdateLabel.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;logUpdateLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="logUpdateCheckBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="logUpdateCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="logUpdateCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 25</value>
-  </data>
-  <data name="logUpdateCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 14</value>
-  </data>
-  <data name="logUpdateCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="&gt;&gt;logUpdateCheckBox.Name" xml:space="preserve">
-    <value>logUpdateCheckBox</value>
-  </data>
-  <data name="&gt;&gt;logUpdateCheckBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;checkWatchFileChanges.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;logUpdateCheckBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;checkWatchFileChanges.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;logUpdateCheckBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;checkWatchFileChanges.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="restartMessageLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="restartMessageLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="labelDevReloader.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="restartMessageLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 42</value>
-  </data>
-  <data name="restartMessageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 13</value>
-  </data>
-  <data name="restartMessageLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="restartMessageLabel.Text" xml:space="preserve">
-    <value>※Restart the plugin to apply update rate / hotkey changes</value>
-  </data>
-  <data name="restartMessageLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;restartMessageLabel.Name" xml:space="preserve">
-    <value>restartMessageLabel</value>
-  </data>
-  <data name="&gt;&gt;restartMessageLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;restartMessageLabel.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;restartMessageLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="labelDevReloader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 55</value>
+  <data name="labelDevReloader.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 23</value>
+  <data name="labelDevReloader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+  <data name="labelDevReloader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 20</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Custom User Config Directory</value>
+  <data name="labelDevReloader.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
   </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="labelDevReloader.Text" xml:space="preserve">
+    <value>Reload overlay on file change</value>
+  </data>
+  <data name="labelDevReloader.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="&gt;&gt;labelDevReloader.Name" xml:space="preserve">
+    <value>labelDevReloader</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+  <data name="&gt;&gt;labelDevReloader.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;labelDevReloader.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;labelDevReloader.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
@@ -412,7 +250,7 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 56</value>
+    <value>206, 1</value>
   </data>
   <data name="tableLayoutPanel4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>1, 1, 1, 1</value>
@@ -436,67 +274,82 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="buttonSelectUserConfigFile" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="textUserConfigFile" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,37" /&gt;&lt;Rows Styles="AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="labelDevReloader.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="labelDevReloader.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="label1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="labelDevReloader.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 78</value>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="labelDevReloader.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 20</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 0</value>
   </data>
-  <data name="labelDevReloader.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 23</value>
   </data>
-  <data name="labelDevReloader.Text" xml:space="preserve">
-    <value>Reload overlay on file change</value>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
   </data>
-  <data name="labelDevReloader.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="label1.Text" xml:space="preserve">
+    <value>Custom User Config Directory</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;labelDevReloader.Name" xml:space="preserve">
-    <value>labelDevReloader</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
-  <data name="&gt;&gt;labelDevReloader.Type" xml:space="preserve">
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelDevReloader.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;labelDevReloader.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="checkWatchFileChanges.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="checkWatchFileChanges.Location" type="System.Drawing.Point, System.Drawing">
-    <value>208, 81</value>
+  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 46</value>
   </data>
-  <data name="checkWatchFileChanges.Size" type="System.Drawing.Size, System.Drawing">
-    <value>353, 14</value>
+  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="checkWatchFileChanges.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>353, 551</value>
   </data>
-  <data name="&gt;&gt;checkWatchFileChanges.Name" xml:space="preserve">
-    <value>checkWatchFileChanges</value>
+  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
-  <data name="&gt;&gt;checkWatchFileChanges.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
   </data>
-  <data name="&gt;&gt;checkWatchFileChanges.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;checkWatchFileChanges.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -526,7 +379,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel3" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="dpsUpdateRateLabel" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dpsUpdateRate" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="logUpdateLabel" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="logUpdateCheckBox" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="restartMessageLabel" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel4" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelDevReloader" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkWatchFileChanges" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,205,Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,23,Absolute,20,Absolute,30" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel3" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel4" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="labelDevReloader" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="checkWatchFileChanges" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,205,Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,23,Absolute,20,Absolute,30" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

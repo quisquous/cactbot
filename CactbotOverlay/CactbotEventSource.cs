@@ -178,10 +178,8 @@ namespace Cactbot {
       OnGameExists += (e) => DispatchToJS(e);
       OnGameActiveChanged += (e) => DispatchToJS(e);
       OnZoneChanged += (e) => DispatchToJS(e);
-      if (this.Config.LogUpdatesEnabled) {
-        OnLogsChanged += (e) => DispatchToJS(e);
-        OnImportLogsChanged += (e) => DispatchToJS(e);
-      }
+      OnLogsChanged += (e) => DispatchToJS(e);
+      OnImportLogsChanged += (e) => DispatchToJS(e);
       OnPlayerChanged += (e) => DispatchToJS(e);
       OnTargetChanged += (e) => DispatchToJS(e);
       OnFocusChanged += (e) => DispatchToJS(e);

@@ -39,15 +39,7 @@ namespace Cactbot {
       if (pluginConfig.EventSourceConfigs.ContainsKey("CactbotESConfig")) {
         var obj = pluginConfig.EventSourceConfigs["CactbotESConfig"];
 
-        if (obj.TryGetValue("LogUpdatesEnabled", out JToken value)) {
-          result.LogUpdatesEnabled = value.ToObject<bool>();
-        }
-
-        if (obj.TryGetValue("DpsUpdatesPerSecond", out value)) {
-          result.DpsUpdatesPerSecond = value.ToObject<double>();
-        }
-
-        if (obj.TryGetValue("OverlayData", out value)) {
+        if (obj.TryGetValue("OverlayData", out JToken value)) {
           result.OverlayData = value.ToObject<Dictionary<string, string>>();
         }
 
@@ -70,10 +62,6 @@ namespace Cactbot {
     public void SaveConfig(IPluginConfig pluginConfig) {
       pluginConfig.EventSourceConfigs["CactbotESConfig"] = JObject.FromObject(this);
     }
-    
-    public bool LogUpdatesEnabled = true;
-
-    public double DpsUpdatesPerSecond = 0;
 
     public Dictionary<string, string> OverlayData = null;
     

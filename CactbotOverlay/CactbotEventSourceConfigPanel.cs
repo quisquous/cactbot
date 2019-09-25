@@ -18,8 +18,6 @@ namespace Cactbot {
     }
 
     private void SetupControlProperties() {
-      this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
-      this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
       this.textUserConfigFile.Text = config.UserConfigFile;
       this.checkWatchFileChanges.Checked = config.WatchFileChanges;
     }
@@ -34,23 +32,6 @@ namespace Cactbot {
       } else {
         action();
       }
-    }
-
-    private void dpsUpdateRate_Validating(object sender, System.ComponentModel.CancelEventArgs e) {
-      try {
-        Convert.ToDouble(dpsUpdateRate.Text, CultureInfo.InvariantCulture);
-      } catch {
-        e.Cancel = true;
-        dpsUpdateRate.Select(0, dpsUpdateRate.Text.Length);
-      }
-    }
-
-    private void dpsUpdateRate_Validated(object sender, EventArgs e) {
-      this.config.DpsUpdatesPerSecond = Convert.ToDouble(dpsUpdateRate.Text, CultureInfo.InvariantCulture);
-    }
-
-    private void logUpdateCheckBox_CheckedChanged(object sender, EventArgs e) {
-      this.config.LogUpdatesEnabled = logUpdateCheckBox.Checked;
     }
 
     private void buttonSelectUserConfigFile_Click(object sender, EventArgs e) {
