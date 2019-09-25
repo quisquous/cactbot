@@ -23,8 +23,8 @@ let Options = {
   MaxNumberOfTimerBars: 6,
 
   DisplayAlarmTextForSeconds: 3,
-  DisplayAlertTextForSeconds: 10,
-  DisplayInfoTextForSeconds: 1,
+  DisplayAlertTextForSeconds: 3,
+  DisplayInfoTextForSeconds: 3,
 
   InfoSound: '../../resources/sounds/freesound/percussion_hit.ogg',
   AlertSound: '../../resources/sounds/BigWigs/Alert.ogg',
