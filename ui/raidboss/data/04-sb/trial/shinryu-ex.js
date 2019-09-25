@@ -251,8 +251,8 @@
       },
     },
     { id: 'ShinryuEx Heart',
-      regex: /:Added new combatant The Worm's Heart/,
-      regexDe: /:Added new combatant Shinryus Herz/,
+      regex: / 03:Added new combatant The Worm's Heart/,
+      regexDe: / 03:Added new combatant Shinryus Herz/,
       condition: function(data) {
         // Prevent ugly heart message on wipe.
         return data.phase == 1;

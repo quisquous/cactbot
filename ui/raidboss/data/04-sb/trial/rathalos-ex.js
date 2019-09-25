@@ -59,8 +59,8 @@
     },
     {
       id: 'RathEx Adds',
-      regex: /:Added new combatant Steppe Sheep\./,
-      regexDe: /:Added new combatant Steppnschaf\./,
+      regex: / 03:Added new combatant Steppe Sheep\./,
+      regexDe: / 03:Added new combatant Steppnschaf\./,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';

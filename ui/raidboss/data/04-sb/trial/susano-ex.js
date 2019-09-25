@@ -16,8 +16,8 @@
   ],
   triggers: [
     { // Thundercloud tracker
-      regex: /:Added new combatant Thunderhead\./,
-      regexDe: /:Added new combatant Gewitterwolke\./,
+      regex: / 03:Added new combatant Thunderhead\./,
+      regexDe: / 03:Added new combatant Gewitterwolke\./,
       run: function(data) {
         data.cloud = true;
       },

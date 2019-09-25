@@ -53,9 +53,9 @@
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: /:Added new combatant Chyme Of The Mountain/,
-      regexDe: /:Added new combatant Gebirgsbrei/,
-      regexFr: /:Added new combatant Chyme Des Montagnes/,
+      regex: / 03:Added new combatant Chyme Of The Mountain/,
+      regexDe: / 03:Added new combatant Gebirgsbrei/,
+      regexFr: / 03:Added new combatant Chyme Des Montagnes/,
       alertText: function(data) {
         return {
           en: 'Kill Chyme Add',

@@ -134,11 +134,11 @@
     },
     {
       id: 'O5S Remorse',
-      regex: /Added new combatant Remorse/,
-      regexDe: /Added new combatant Melancholischer Geist/,
-      regexFr: /Added new combatant Fantôme Mélancolique/,
-      regexJa: /Added new combatant 未練のゴースト/,
-      regexKo: /Added new combatant 미련이 남은 유령/,
+      regex: / 03:Added new combatant Remorse/,
+      regexDe: / 03:Added new combatant Melancholischer Geist/,
+      regexFr: / 03:Added new combatant Fantôme Mélancolique/,
+      regexJa: / 03:Added new combatant 未練のゴースト/,
+      regexKo: / 03:Added new combatant 미련이 남은 유령/,
       infoText: function(data) {
         return {
           en: 'Knockback Ghost',

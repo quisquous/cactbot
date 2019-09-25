@@ -31,11 +31,10 @@ let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
   let newCombatantRegex = createTriggerRegexString('(?! ?03:)(.*:)?Added new combatant .*');
   let results = contents.match(newCombatantRegex);
   if (results) {
-    for (const result of results) // {
+    for (const result of results) {
       console.error(`${file}: 'Added new combatant' regex should begin with '03:', found '${result}'`);
-      // TODO: Add me back in
-      // exitCode = 1;
-    // }
+      exitCode = 1;
+    }
   }
 };
 
