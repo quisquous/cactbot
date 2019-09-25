@@ -79,9 +79,9 @@
       },
     },
     {
-      regex: /:Tsukuyomi gains the effect of Full Moon/,
-      regexDe: /:Tsukuyomi gains the effect of Vollmond/,
-      regexFr: /:Tsukuyomi gains the effect of Force De La Pleine Lune/,
+      regex: / 1A:Tsukuyomi gains the effect of Full Moon/,
+      regexDe: / 1A:Tsukuyomi gains the effect of Vollmond/,
+      regexFr: / 1A:Tsukuyomi gains the effect of Force De La Pleine Lune/,
       run: function(data) {
         let moonInOut = {
           en: 'Out',
@@ -92,9 +92,9 @@
       },
     },
     {
-      regex: /:Tsukuyomi gains the effect of New Moon/,
-      regexDe: /:Tsukuyomi gains the effect of Neumond/,
-      regexFr: /:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
+      regex: / 1A:Tsukuyomi gains the effect of New Moon/,
+      regexDe: / 1A:Tsukuyomi gains the effect of Neumond/,
+      regexFr: / 1A:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
       run: function(data) {
         let moonInOut = {
           en: 'In',

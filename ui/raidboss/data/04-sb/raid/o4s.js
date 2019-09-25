@@ -566,8 +566,8 @@
     },
     {
       id: 'O4S2 Acceleration Bomb Delta',
-      regex: /:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'delta';
       },
@@ -582,8 +582,8 @@
     },
     { // Shriek (Omega)
       id: 'O4S2 Omega Shriek',
-      regex: /:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'omega';
       },
@@ -601,16 +601,16 @@
     },
     { // Water Tracking (Delta/Omega)
       id: 'O4S2 Water',
-      regex: /:(\y{Name}) gains the effect of Compressed Water/,
-      regexDe: /:(\y{Name}) gains the effect of Wasserkompression/,
+      regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
       run: function(data, matches) {
         data.waterHealer = matches[1];
       },
     },
     { // Water Me (Delta/Omega)
       id: 'O4S2 Water Me',
-      regex: /:(\y{Name}) gains the effect of Compressed Water/,
-      regex: /:(\y{Name}) gains the effect of Wasserkompression/,
+      regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
+      regex: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -636,8 +636,8 @@
     },
     { // Beyond Death Tank (Delta)
       id: 'O4S2 Beyond Death Delta Tank',
-      regex: /:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role == 'tank';
       },
@@ -663,8 +663,8 @@
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death Delta Initial',
-      regex: /:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role != 'tank';
       },
@@ -679,8 +679,8 @@
     },
     { // Off Balance (Omega)
       id: 'O4S2 Off Balance Omega',
-      regex: /:(\y{Name}) gains the effect of Off-Balance/,
-      regexDe: /:(\y{Name}) gains the effect of Gleichgewichtsverlust/,
+      regex: / 1A:(\y{Name}) gains the effect of Off-Balance/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Gleichgewichtsverlust/,
       condition: function(data, matches) {
         return data.phase == 'omega' && matches[1] == data.me;
       },
@@ -757,39 +757,6 @@
       },
       run: function(data) {
         data.almagestCount = (data.almagestCount || 0) + 1;
-      },
-    },
-    { // Final phase Addle warning when Reprisal is ending.
-      id: 'O4S2 Reprisal',
-      regex: /gains the effect of Reprisal from .*? for (\y{Float}) Seconds/,
-      regex: /gains the effect of Reflexion from .*? for (\y{Float}) Seconds/,
-      durationSeconds: function(data, matches) {
-        return parseFloat(matches[1]);
-      },
-      infoText: {
-        en: 'Reprisal active',
-        de: 'Reflexion aktiv',
-      },
-      condition: function(data) {
-        return data.finalphase && !data.reprisal;
-      },
-      run: function(data) {
-        data.reprisal = true;
-      },
-    },
-    { // Final phase Addle warning when Reprisal is ending.
-      id: 'O4S2 Reprisal',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Reprisal from/,
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Reflexion from/,
-      condition: function(data) {
-        return data.finalphase && data.reprisal;
-      },
-      alertText: {
-        en: 'Reprisal ended',
-        de: 'Reflexion zu Ende',
-      },
-      run: function(data) {
-        data.reprisal = false;
       },
     },
     { // Flare

@@ -245,10 +245,10 @@
     },
     {
       id: 'O9S Entropy Avoid Hit',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'fire';
       },
@@ -302,10 +302,10 @@
     },
     {
       id: 'O9S Dynamic Fluid 1',
-      regex: /:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
-      regexDe: /:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
-      regexFr: /:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
-      regexJa: /:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
+      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
+      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
       condition: function(data) {
         return data.phaseType == 'water';
       },
@@ -321,10 +321,10 @@
     },
     {
       id: 'O9S Dynamic Fluid 2',
-      regex: /:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
-      regexDe: /:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
-      regexFr: /:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
-      regexJa: /:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
+      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
+      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
       condition: function(data) {
         return data.phaseType == 'water';
       },
@@ -340,10 +340,10 @@
     },
     {
       id: 'O9S Dynamic Fluid 3',
-      regex: /:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
-      regexDe: /:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
-      regexFr: /:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
-      regexJa: /:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
+      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
+      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
       condition: function(data) {
         return data.phaseType == 'enrage';
       },
@@ -396,10 +396,10 @@
     },
     {
       id: 'O9S Headwind',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_642|Headwind) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_642|Chaosböen) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_642|Vent du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_642|混沌の風) from  for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Headwind) from  for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Chaosböen) from  for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Vent du chaos) from  for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|混沌の風) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -409,10 +409,10 @@
     },
     {
       id: 'O9S Tailwind',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_643|Tailwind) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_643|Chaossturm) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_643|Vent contraire du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_643|混沌の逆風) from  for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Tailwind) from  for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Chaossturm) from  for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Vent contraire du chaos) from  for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|混沌の逆風) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -461,10 +461,10 @@
     },
     {
       id: 'O9S Accretion',
-      regex: /:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
-      regexDe: /:\y{Name} gains the effect of (?:Unknown_644|Chaossumpf)/,
-      regexFr: /:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
-      regexJa: /:\y{Name} gains the effect of (?:Unknown_644|混沌の泥土)/,
+      regex: / 1A:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
+      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_644|Chaossumpf)/,
+      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
+      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_644|混沌の泥土)/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -488,10 +488,10 @@
     },
     {
       id: 'O9S Primordial Crust',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
       condition: function(data, matches) {
         return data.me == matches[1] && data.phaseType != 'orb';
       },
@@ -509,10 +509,10 @@
     },
     {
       // Primordial Crust Cleanup
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -547,10 +547,10 @@
     },
     {
       id: 'O9S Orb Entropy',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] != data.me && data.phaseType == 'orb';
       },
@@ -574,10 +574,10 @@
     },
     {
       id: 'O9S Orb Dynamic Fluid',
-      regex: /:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
-      regexDe: /:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
-      regexFr: /:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'orb';
       },

@@ -27,7 +27,7 @@
     },
     {
       id: 'O2S Levitation',
-      regex: /:(\y{Name}) gains the effect of Levitation from/,
+      regex: / 1A:(\y{Name}) gains the effect of Levitation from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -102,8 +102,8 @@
     },
     {
       id: 'O2S Elevated',
-      regex: /:(\y{Name}) gains the effect of Elevated from/,
-      regexDe: /:(\y{Name}) gains the effect of Erhöht from/,
+      regex: / 1A:(\y{Name}) gains the effect of Elevated from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Erhöht from/,
       infoText: function(data) {
         if (!data.role.startsWith('dps')) {
           return {
@@ -185,8 +185,8 @@
     },
     {
       id: 'O2S Unstable Gravity',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Unstable Gravity from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unstable Gravity from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
       delaySeconds: 9,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -202,8 +202,8 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Versinkend from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Versinkend from/,
       delaySeconds: 5,
       infoText: function(data) {
         if (data.levitating) {

@@ -201,8 +201,8 @@
     },
     {
       id: 'O3S Left Face',
-      regex: /(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
-      regexDe: /(\y{Name}) gains the effect of (?:Unknown_50F|Links) from/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_50F|Links) from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -214,8 +214,8 @@
     },
     {
       id: 'O3S About Face',
-      regex: /(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
-      regexDe: /(\y{Name}) gains the effect of (?:Unknown_50E|Rückwärts) from/,
+      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
+      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_50E|Rückwärts) from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

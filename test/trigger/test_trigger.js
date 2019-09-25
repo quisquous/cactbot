@@ -51,14 +51,15 @@ let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
 };
 
 let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
-  let gainsEffectRegex = createTriggerRegexString('(?! ?1A:)(.* )?gains the effect of .*');
+  // There are some weird Eureka "gains effect" messages with 00:332e.
+  // But everything else is 1A.
+  let gainsEffectRegex = createTriggerRegexString('(?! ?(?:1A|00:332e):)(.* )?gains the effect of .*');
   let results = contents.match(gainsEffectRegex);
   if (results) {
-    for (const result of results) // {
+    for (const result of results) {
       console.error(`${file}: 'gains the effect of' regex should begin with '1A:', found '${result}'`);
-      // TODO: Add me back in
-      // exitCode = 1;
-    // }
+      exitCode = 1;
+    }
   }
 };
 
