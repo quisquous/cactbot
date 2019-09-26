@@ -2,6 +2,7 @@
 00-misc/test.js
 02-arr/trial/ifrit_nm.js
 02-arr/trial/titan_ex.js
+03-hw/dungeon/fractal_continuum.js
 04-sb/raid/o4s.js
 04-sb/raid/o5s.js
 04-sb/raid/o6s.js
