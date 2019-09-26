@@ -293,10 +293,7 @@ class PopupText {
     let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     let duration = {
-      fromTrigger:
-        'durationSeconds' in trigger
-          ? ValueOrFunction(trigger.durationSeconds)
-          : undefined,
+      fromTrigger: ValueOrFunction(trigger.durationSeconds),
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
       infoText: this.options.DisplayInfoTextForSeconds,
