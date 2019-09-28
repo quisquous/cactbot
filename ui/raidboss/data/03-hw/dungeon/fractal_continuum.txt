@@ -45,7 +45,7 @@ hideall "--start--"
 139.0 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 146.1 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/ jump 97.7
 
-148.4 "Damage Up" sync
+148.4 "Damage Up" sync /:Phantom Ray:F7F:/ jump 100.0
 153.2 "Double Sever 1"
 155.8 "Atmospheric Compression"
 157.4 "Double Sever 2"
