@@ -51,6 +51,18 @@ Options.BarExpiresSoonSeconds = 8;
 Options.MaxNumberOfTimerBars = 6;
 
 
+// Duration in seconds the Alarm should be shown. Trigger specific duration
+// takes priority over this.
+Options.DisplayAlarmTextForSeconds = 3;
+
+// Duration in seconds the Alert should be shown. Trigger specific duration
+// takes priority over this.
+Options.DisplayAlertTextForSeconds = 3;
+
+// Duration in seconds the Info should be shown. Trigger specific duration
+// takes priority over this.
+Options.DisplayInfoTextForSeconds = 3;
+
 // Path to sound played for info-priority text popups, or when "Info" is
 // specified as the sound name.
 Options.InfoSound = '../../resources/sounds/freesound/percussion_hit.ogg';
@@ -249,4 +261,3 @@ Options.PerTriggerOptions = {
     },
   },
 };
-

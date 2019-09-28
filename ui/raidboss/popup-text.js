@@ -292,7 +292,12 @@ class PopupText {
 
     let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
-    let duration = 'durationSeconds' in trigger ? ValueOrFunction(trigger.durationSeconds) : 3;
+    let duration = {
+      fromTrigger: ValueOrFunction(trigger.durationSeconds),
+      alarmText: this.options.DisplayAlarmTextForSeconds,
+      alertText: this.options.DisplayAlertTextForSeconds,
+      infoText: this.options.DisplayInfoTextForSeconds,
+    };
     let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
@@ -355,7 +360,10 @@ class PopupText {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          window.setTimeout(
+              removeText.bind(that, holder, div),
+              (duration.fromTrigger || duration.alarmText) * 1000
+          );
 
           if (!soundUrl) {
             soundUrl = that.options.AlarmSound;
@@ -372,7 +380,10 @@ class PopupText {
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          window.setTimeout(
+              removeText.bind(that, holder, div),
+              (duration.fromTrigger || duration.alertText) * 1000
+          );
 
           if (!soundUrl) {
             soundUrl = that.options.AlertSound;
@@ -389,7 +400,10 @@ class PopupText {
           let holder = that.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
           addText.bind(that)(holder, div);
-          window.setTimeout(removeText.bind(that, holder, div), duration * 1000);
+          window.setTimeout(
+              removeText.bind(that, holder, div),
+              (duration.fromTrigger || duration.infoText) * 1000
+          );
 
           if (!soundUrl) {
             soundUrl = that.options.InfoSound;
