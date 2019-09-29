@@ -22,12 +22,12 @@ hideall "--start--"
 47.7 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 52.5 "Double Sever 1" sync /:Phantom Ray:F7B:/
 56.5 "Double Sever 2" sync /:Phantom Ray:F7C:/
-58.3 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/window 8,10 jump 27.4
+58.3 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/ window 8,10 jump 27.4
 
 72.4 "Rapid Sever" sync /:Phantom Ray:F7A:/ jump 41.5
 78.6 "Atmospheric Displacement"
-83.3 "Double Sever 1" sync
-87.4 "Double Sever 2" sync
+83.3 "Double Sever 1"
+87.4 "Double Sever 2"
 89.2 "Atmospheric Displacement"
 #Phase 2 at < 75% HP
 
@@ -57,7 +57,7 @@ hideall "--start--"
 ###Minotaur
 1000.0 "--start--" sync /:The high-level incubation bay will be sealed off/ window 1999,5
 1000.0 "Start"
-1003.4 "--sync--" /:Minotaur:366:/ window 3.4,0
+1003.4 "--sync--" sync /:Minotaur:366:/ window 3.4,0
 1008.8 "11-Tonze Swipe" sync /:Minotaur:F81:/
 1019.0 "111-Tonze Swing" sync /:Minotaur:F82:/
 1028.2 "Disorienting Groan" sync /:Minotaur:F84:/
@@ -75,7 +75,7 @@ hideall "--start--"
 1086.7 "111-Tonze Swing"
 
 #Second rotation landing spots
-1151.0"--sync--" #landing for correct cage use
+1151.0 "--sync--" #landing for correct cage use
 1167.2 "Feast" sync /:Minotaur:F88:/ window 60,15
 1167.3 "--sync--" #landing for missed cage
 
@@ -90,7 +90,7 @@ hideall "--start--"
 1235.2 "Feast?" sync /:Minotaur:F88:/ window 50,15 jump 1167.2
 1235.3 "1111-Tonze Swing?" sync /:Minotaur:F87:/ window 1,10 jump 1167.3
 
-1247.4 "11-Tonze Swipe" jump 1179.4
+1247.4 "11-Tonze Swipe" sync /:Minotaur:F81:/ jump 1179.4
 1263.6 "111-Tonze Swing"
 
 ###The Curator
@@ -98,7 +98,7 @@ hideall "--start--"
 
 2000 "--start--" sync /:The reality augmentation bay will be sealed off/ window 2000,0
 2000.0 "Start"
-2003.0 "--sync--" /:The Curator:368:/ window 3,2
+2003.0 "--sync--" sync /:The Curator:368:/ window 3,2
 
 2006.2 "Sanctification" sync /:The Curator:F89:/
 2011.4 "Unholy" sync /:The Curator:F8A:/
