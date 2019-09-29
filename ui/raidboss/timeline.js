@@ -72,6 +72,7 @@ class Timeline {
 
     let uniqueid = 1;
     let texts = {};
+    let styles = {};
 
     let lines = text.split('\n');
     for (let i = 0; i < lines.length; ++i) {
@@ -119,6 +120,23 @@ class Timeline {
         continue;
       }
 
+      match = line.match(/^color\s+\"([^"]+)\"\s+(#[a-fA-F0-9]{6})$/);
+      if (match != null) {
+        styles[match[1]] = styles[match[1]] || {};
+        Object.assign(styles[match[1]], {
+          color: match[2],
+        });
+        continue;
+      }
+      match = line.match(/^font\s+\"([^"]+)\"\s+\"([^"]+)\"$/);
+      if (match != null) {
+        styles[match[1]] = styles[match[1]] || {};
+        Object.assign(styles[match[1]], {
+          font: match[2],
+        });
+        continue;
+      }
+
       match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
       if (match == null) {
         this.errors.push({
@@ -143,6 +161,10 @@ class Timeline {
         text: this.GetReplacedText(match[3]),
         activeTime: 0,
       };
+      if (e.name in styles) {
+        e = Object.assign(e, { styles: styles[e.name] });
+      }
+
       if (line) {
         let commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
         if (commandMatch) {
@@ -630,6 +652,11 @@ class TimelineUI {
     bar.lefttext = e.text;
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
+
+    if (e.styles) {
+      if (e.styles.color) bar.color = e.styles.color;
+      if (e.styles.font) bar.font = e.styles.font;
+    }
 
     if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
       bar.fg = this.barColor;
