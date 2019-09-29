@@ -161,9 +161,7 @@ class Timeline {
         text: this.GetReplacedText(match[3]),
         activeTime: 0,
       };
-      if (e.name in styles) {
-        e = Object.assign(e, { styles: styles[e.name] });
-      }
+      if (e.name in styles) e = Object.assign(e, { styles: styles[e.name] });
 
       if (line) {
         let commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
