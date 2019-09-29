@@ -2,7 +2,7 @@
 
 class TimerBar extends HTMLElement {
   static get observedAttributes() {
-    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];
+    return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'color', 'font-family', 'style', 'toward', 'loop'];
   }
 
   // Background color.
@@ -19,6 +19,22 @@ class TimerBar extends HTMLElement {
   }
   get fg() {
     return this.getAttribute('fg');
+  }
+
+  // Text color.
+  set color(c) {
+    this.setAttribute('color', c);
+  }
+  get color() {
+    return this.getAttribute('color');
+  }
+
+  // Text font
+  set font(f) {
+    this.setAttribute('font-family', f);
+  }
+  get font() {
+    return this.getAttribute('font-family');
   }
 
   // The width of the bar.
@@ -159,6 +175,8 @@ class TimerBar extends HTMLElement {
     this._height = '100%';
     this._bg = 'black';
     this._fg = 'yellow';
+    this._color = 'white';
+    this._fontFamily = 'arial';
     this._toward_right = false;
     this._style_fill = false;
     this._left_text = '';
@@ -189,9 +207,9 @@ class TimerBar extends HTMLElement {
         }
         .text {
           position: absolute;
-          font-family: arial;
+          font-family: ${this._fontFamily};
           font-weight: bold;
-          color: white;
+          color: ${this._color};
           text-shadow: -1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black;
           will-change: content;
         }
@@ -270,6 +288,12 @@ class TimerBar extends HTMLElement {
     } else if (name == 'fg') {
       this._fg = newValue;
       this.layout();
+    } else if (name == 'color') {
+      this._color = newValue;
+      this.layout();
+    } else if (name == 'font-family') {
+      this._fontFamily = newValue;
+      this.layout();
     } else if (name == 'style') {
       this._style_fill = newValue == 'fill';
       this.layout();
@@ -315,6 +339,11 @@ class TimerBar extends HTMLElement {
     this.foregroundElement.style.backgroundColor = this._fg;
     this.rootElement.style.width = this._width;
     this.rootElement.style.height = this._height;
+
+    for (let text of [this.leftTextElement, this.centerTextElement, this.rightTextElement]) {
+      text.style.color = this._color;
+      text.style.fontFamily = this._fontFamily;
+    }
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
