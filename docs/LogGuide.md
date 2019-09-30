@@ -861,6 +861,46 @@ There are also a number of examples where tethers are generated in some other wa
 * Suzaku Extreme birbs: who knows
 * player to player tethers (dragonsight, cover, fairy tether)
 
+## 24:LimitBreak
+
+This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party. (Generation is not recorded while at cap.) It starts at 0x0000 at the beginning of the instance (or encounter in the case of a single-encounter instance,) and counts up by 0x00DC (220 decimal) until the limit break is used, or to a max of 0x7530 (30,000 decimal). This rate of increase is constant, but other actions taken can cause extra increments to happen independent of the base increase. (These other increments occur in the same packet as the base rate, but separately.) Each limit break bar is 0x2710 (10,000 decimal) units.
+
+## 25:NetworkEffectResult
+
+This log line appears to be recorded at any time an actor is targeted by a hostile action. It appears that the action must hit and must deal non-zero damage OR must inflict its effect in order to generate this log line. Individual DoT ticks do not appear to generate separate lines.
+
+This line's structure (parsed) is
+`25:Player Object ID:Sequence Number:Current HP:Max HP:Current MP:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:[packet data thereafter]`
+
+A sample line would be
+` 25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:`
+
+## 26:NetworkStatusEffects
+
+For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines. For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove), [1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove), and [25:NetworkEffectResult](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-networkeffectresult).
+
+This line's structure is:
+
+`26:Target Id:Target Name:Job Levels:Current HP:Max Hp:Current Mp:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:<status list; each status is a uint as hex>`
+
+A sample line would be:
+
+`26:12345678:PlayerOne:3C503C1C:24136:24136:9045:10000:4:0:-0.4730835:-158.1598:-23.9:3.110625:03E8:45:0:020130:0:106501CA:0129:4172D113:106501CA:012A:4168C8B4:106501CA:012B:40919168:106501CA:0232:40E00000:E0000000:`
+
+It seems likely that Square implemented this line in order to extend functionality for the `18`, `1A`, and `1E` log lines without breaking previous content.
+
+## 27:NetworkUpdateHP
+
+It's not completely clear what triggers this log line, but it contains basic information comparable to `25` and `26`. It applies to allies and fairies.
+
+This line's structure is:
+
+`27:Target ID:Target Name:Current HP:Max HP:Current MP:Max MP:Current TP:Max TP:position X:position Y:position Z:Facing`
+
+A sample line would be:
+
+`27:12345678:Eos:22851:22851:10000:10000:0:0:12.13086:-169.9398:-23.90031:-2.310888:`
+
 ### FB: Debug
 
 Lines are printed, but with blank data.
