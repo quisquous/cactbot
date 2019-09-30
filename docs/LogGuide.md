@@ -867,7 +867,8 @@ This log line is recorded every server tick where limit break energy is generate
 
 ## 25:NetworkEffectResult
 
-This log line appears to be recorded at any time an actor is targeted by a hostile action. It appears that the action must hit and must deal non-zero damage OR must inflict its effect in order to generate this log line. Individual DoT ticks do not appear to generate separate lines.
+This log line appears to be recorded at any time an actor is targeted by a hostile action.
+It appears that the action must hit and must deal non-zero damage OR must inflict its effect in order to generate this log line. Individual DoT ticks do not appear to generate separate lines.
 
 This line's structure (parsed) is
 `25:Player Object ID:Sequence Number:Current HP:Max HP:Current MP:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:[packet data thereafter]`
@@ -881,17 +882,17 @@ For NPC opponents (and possibly PvP) this log line is generated alongside `18:Ne
 
 This line's structure is:
 
-`26:Target Id:Target Name:Job Levels:Current HP:Max Hp:Current Mp:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:<status list; each status is a uint as hex>`
+`26:Target Id:Target Name:Job Levels:Current HP:Max Hp:Current Mp:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:<status list; format unknown>`
 
 A sample line would be:
 
 `26:12345678:PlayerOne:3C503C1C:24136:24136:9045:10000:4:0:-0.4730835:-158.1598:-23.9:3.110625:03E8:45:0:020130:0:106501CA:0129:4172D113:106501CA:012A:4168C8B4:106501CA:012B:40919168:106501CA:0232:40E00000:E0000000:`
 
-It seems likely that Square implemented this line in order to extend functionality for the `18`, `1A`, and `1E` log lines without breaking previous content.
+It seems likely that this line was added in order to extend functionality for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
 
 ## 27:NetworkUpdateHP
 
-It's not completely clear what triggers this log line, but it contains basic information comparable to `25` and `26`. It applies to allies and fairies.
+It's not completely clear what triggers this log line, but it contains basic information comparable to `25` and `26`. It applies to allies and fairies/pets.
 
 This line's structure is:
 
