@@ -126,7 +126,7 @@
     },
     {
       id: 'Holminster Head Crusher',
-     regex: / 14:3DD7:Philia starts using Head Crusher on (\y{Name})/,
+      regex: / 14:3DD7:Philia starts using Head Crusher on (\y{Name})/,
       regexJa: / 14:3DD7:フィリア starts using ヘッドクラッシャー on (\y{Name})/,
       regexDe: / 14:3DD7:Philia starts using Knochenmalmer on (\y{Name})/,
       regexFr: / 14:3DD7:Philia starts using Écraseur De Tête on (\y{Name})/,
