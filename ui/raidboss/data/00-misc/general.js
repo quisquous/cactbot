@@ -41,6 +41,8 @@
     {
       id: 'General Holmgang',
       regex: /:(\y{Name}):2B:Holmgang:/,
+      regexDe: /:(\y{Name}):2B:Holmgang:/,
+      regexFr: /:(\y{Name}):2B:Holmgang:/,
       regexJa: /:(\y{Name}):2B:ホルムギャング:/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';

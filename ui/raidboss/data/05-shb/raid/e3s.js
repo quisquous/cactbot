@@ -10,6 +10,7 @@
       beforeSeconds: 2,
       infoText: {
         en: 'Line Stack',
+        de: 'In einer Linie sammeln',
         fr: 'Packé en ligne',
         ja: '直線スタック',
       },
@@ -23,6 +24,7 @@
       },
       alertText: {
         en: 'Tank Cleaves, Move Front',
+        de: 'Tank Cleaves, nach vorne bewegen',
         fr: 'Tank cleave, allez devant',
         ja: '拡散くるよ',
       },
@@ -41,6 +43,7 @@
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
         ja: 'AoE',
       },
@@ -57,6 +60,7 @@
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
         ja: 'AoE',
       },
@@ -71,6 +75,7 @@
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
+        de: 'Nach Welle ausschau halten',
         fr: 'Repérez la vague',
         ja: 'タイダルウェーブくるよ',
       },
@@ -87,6 +92,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Knockback',
+        de: 'Knockback',
         fr: 'Poussée',
         ja: 'ノックバック',
       },
@@ -132,6 +138,7 @@
       regexJa: / 14:3FEF:リヴァイアサン starts using アンダーシークエイク/,
       alertText: {
         en: 'Get Middle',
+        de: 'Geh in die Mitte',
         fr: 'Allez au centre',
         ja: '外壊れるよ',
       },
@@ -145,6 +152,7 @@
       regexJa: / 14:3FEE:リヴァイアサン starts using アンダーシークエイク/,
       alarmText: {
         en: 'Go Outside',
+        de: 'Geh nach Ausen',
         fr: 'Allez sur les côtés',
         ja: '中壊れるよ',
       },
@@ -157,6 +165,7 @@
       },
       alarmText: {
         en: 'Flare on YOU',
+        de: 'Flare auf DIR',
         fr: 'Brasier sur VOUS',
         ja: '自分にフレア',
       },
@@ -170,6 +179,7 @@
       regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
       infoText: {
         en: 'Stack, Bait Puddles',
+        de: 'Sammeln, Flächen ködern',
         fr: 'Packé, évitez zone au sol',
         ja: '集合',
       },
@@ -184,6 +194,7 @@
       delaySeconds: 2.9,
       infoText: {
         en: 'Drop Puddles Outside',
+        de: 'Flächen drausen ablegen',
         fr: 'Placez les flaques à l\'extérieur',
         ja: '散開',
       },
@@ -197,6 +208,7 @@
       regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
       infoText: {
         en: 'Stack, Bait Puddles',
+        de: 'Sammeln, Flächen ködern',
         fr: 'Packé, évitez zone au sol',
         ja: '集合',
       },
@@ -213,12 +225,14 @@
         if (data.role == 'tank') {
           return {
             en: 'Flare To Outside Corner',
+            de: 'Flare in die äuseren Ecken',
             fr: 'Brasier dans un coin extérieur',
             ja: '隅にフレア',
           };
         }
         return {
           en: 'Stack Outside, Avoid Flares',
+          de: 'Auserhalb sammeln, Flares vermeiden',
           fr: 'Packé à l\'extérieur, évitez les brasiers',
           ja: '前で集合',
         };
@@ -233,6 +247,7 @@
       regexJa: / 14:3FFE:リヴァイアサン starts using 大時化/,
       infoText: {
         en: 'Panto Puddles x5',
+        de: 'Panto Flächen x5',
         fr: 'Panto x5',
         ja: 'パント5回',
       },
@@ -249,6 +264,7 @@
       },
       alertText: {
         en: 'Puddle Tether on YOU',
+        de: 'Black Smoker Verbindung auf DIR',
         fr: 'Lien sur VOUS',
         ja: '線ついた',
       },
@@ -277,6 +293,7 @@
       },
       infoText: {
         en: 'Pop alternating bubbles',
+        en: 'Flächen abwechselnd nehmen',
         fr: 'Absorbez les bulles en alternance',
         ja: '水出た',
       },
@@ -292,6 +309,7 @@
       },
       alertText: {
         en: 'Initial knockback on YOU',
+        de: 'Initialer Knockback auf DIR',
         fr: 'Pousée initiale sur VOUS',
         ja: '最初のノックバック',
       },
@@ -312,6 +330,7 @@
         if (seconds <= 8) {
           return {
             en: 'Knockback on YOU',
+            de: 'Knockback auf Dir',
             fr: 'Pousée sur VOUS',
             ja: '自分にノックバック',
           };
@@ -324,12 +343,14 @@
         if (seconds <= 21) {
           return {
             en: 'Late First Knockback',
+            de: 'Erster reinigender Knockback',
             fr: 'Poussée tardive 1',
             ja: '遅ノックバック1',
           };
         }
         return {
           en: 'Late Second Knockback',
+          de: 'Zweiter reinigender Knockback',
           fr: 'Poussée tardive 2',
           ja: '遅ノックバック2',
         };
@@ -347,6 +368,7 @@
       },
       infoText: {
         en: 'Defamation',
+        de: 'Defamation',
         fr: 'Médisance',
         ja: '暴風',
       },
@@ -363,6 +385,7 @@
       delaySeconds: 22,
       infoText: {
         en: 'Avoid Knockback, Move to Back',
+        de: 'Vermeide Knockback, dann nach hinten bewegen',
         fr: 'Evitez la pousée, allez à l\'arrière',
         ja: '後ろへ',
       },
@@ -385,6 +408,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Stack',
+        de: 'Sammeln',
         fr: 'Packé',
         ja: 'スタック',
       },
@@ -401,6 +425,7 @@
       delaySeconds: 25,
       infoText: {
         en: 'Move In, Avoid Defamation',
+        en: 'Rein gehen, vermeide Defamation',
         fr: 'Sous le boss, évitez la médisance',
         ja: '前にノックバック',
       },
@@ -416,6 +441,7 @@
       },
       infoText: {
         en: 'Tank Cone',
+        de: 'Tank Kegel',
         fr: 'Cône tank',
         ja: '断絶',
       },
@@ -433,6 +459,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Tank Cone',
+        de: 'Tank Kegel',
         fr: 'Cône tank',
         ja: '断絶',
       },
@@ -457,6 +484,7 @@
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
         en: 'Front left / Back right',
+        de: 'Vorne Links / Hinten Rechts',
         fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
       },
@@ -470,6 +498,7 @@
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
       infoText: {
         en: 'Front right / Back left',
+        de: 'Vorne Rechts / Hinten Links',
         fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
       },
@@ -491,6 +520,7 @@
       delaySeconds: 6.2,
       alertText: {
         en: 'Front left / Back right',
+        de: 'Vorne Links / Hinten Rechts',
         fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
       },
@@ -508,6 +538,7 @@
       delaySeconds: 6.2,
       alertText: {
         en: 'Front right / Back left',
+        de: 'Vorne Rechts / Hinten Links',
         fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
       },

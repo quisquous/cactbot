@@ -7,63 +7,80 @@
     {
       id: 'E1N Eden\'s Gravity',
       regex: / 14:3D94:Eden Prime starts using Eden's Gravity/,
+      regexDe: / 14:3D94:Prim-Eden starts using Eden-Gravitas/,
+      regexJa: / 14:3D94:エデン・プライム starts using エデン・グラビデ/,
       regexFr: / 14:3D94:Primo-Éden starts using Gravité Édénique/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
     {
       id: 'E1N Fragor Maximus',
       regex: / 14:3DA4:Eden Prime starts using Fragor Maximus/,
-      regexFr: / 14:3DA4::Primo-Éden starts using Fragor Maximus/,
+      regexDe: / 14:3DA4:Prim-Eden starts using Fragor Maximus/,
+      regexFr: / 14:3DA4:Primo-Éden starts using Fragor Maximus/,
+      regexJa: / 14:3DA4:エデン・プライム starts using フラゴルマクシマス/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
     {
       id: 'E1N Dimensional Shift',
       regex: / 14:3D9C:Eden Prime starts using Dimensional Shift/,
+      regexDe: / 14:3D9C:Prim-Eden starts using Dimensionsverschiebung/,
+      regexJa: / 14:3D9C:エデン・プライム starts using ディメンションシフト/,
       regexFr: / 14:3D9C:Primo-Éden starts using Translation Dimensionnelle/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
     {
       id: 'E1N Eden\'s Flare',
       regex: / 14:3D97:Eden Prime starts using Eden's Flare/,
+      regexDe: / 14:3D97:Prim-Eden starts using Eden-Flare/,
+      regexJa: / 14:3D97:エデン・プライム starts using エデン・フレア/,
       regexFr: / 14:3D97:Primo-Éden starts using Brasier Édénique/,
       alertText: {
         en: 'Under',
+        de: 'Unter ihn',
         fr: 'Sous le boss',
       },
     },
     {
       id: 'E1N Vice of Vanity You',
       regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Eden Prime:....:....:0011:/,
+      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Eden:....:....:0011:/,
+      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:エデン・プライム:....:....:0011:/,
       regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Éden:....:....:0011:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
       alertText: {
         en: 'Tank Laser on YOU',
+        de: 'Tank Laser auf DIR',
         fr: 'Tank laser sur VOUS',
       },
     },
     {
       id: 'E1N Spear Of Paradise',
-      regex: / 14:3DA1:Eden Prime starts using Spear Of Paradise on (\y{Name})/,
+      regex: / 14:3DA1:Eden Prime starts using Spear of Paradise on (\y{Name})/,
+      regexDe: / 14:3DA1:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
+      regexJa: / 14:3DA1:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
       regexFr: / 14:3DA1:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -99,6 +116,7 @@
       },
       alertText: {
         en: 'Drop Puddle, Run Middle',
+        de: 'Flächen ablegen, danach in die Mitte',
         fr: 'Placez les flaques, courez au centre',
       },
     },
@@ -106,10 +124,13 @@
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
       regex: / 14:3DA3:Eden Prime starts using Pure Light/,
+      regexDe: / 14:3DA3:Prim-Eden starts using Läuterndes Licht/,
+      regexJa: / 14:3DA3:エデン・プライム starts using ピュアライト/,
       regexFr: / 14:3DA3:Primo-Éden starts using Lumière Purificatrice/,
       delaySeconds: 4.5,
       alertText: {
         en: 'Get Behind',
+        de: 'Hinter ihn',
         fr: 'Derrière le boss',
       },
     },

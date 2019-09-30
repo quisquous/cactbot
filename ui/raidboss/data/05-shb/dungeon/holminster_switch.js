@@ -7,6 +7,8 @@
     {
       id: 'Holminster Path of Light',
       regex: / 14:3DC5:Forgiven Dissonance starts using Path Of Light/,
+      regexFr: / 14:3DC5:dissonance pardonnée starts using Voie de lumière/,
+      regexJa: / 14:3DC5:フォーギヴン・ディソナンス starts using 光の波動/,
       regexDe: / 14:3DC5:Geläuterter Widerspruch starts using Pfad Des Lichts/,
       condition: function(data) {
         return data.role == 'healer';
@@ -19,6 +21,7 @@
     {
       id: 'Holminster Pillory',
       regex: / 14:3DC4:Forgiven Dissonance starts using Pillory on (\y{Name})/,
+      regexJa: / 14:3DC4:フォーギヴン・ディソナンス starts using ピロリ― on (\y{Name})/,
       regexDe: / 14:3DC4:Geläuterter Widerspruch starts using Herzreißer on (\y{Name})/,
       regexFr: / 14:3DC4:Dissonance Pardonnée starts using Pilori on (\y{Name})/,
       alertText: function(data, matches) {
@@ -41,6 +44,7 @@
     {
       id: 'Holminster Tickler',
       regex: / 14:3DCF:Tesleen, [tT]he Forgiven starts using The Tickler on (\y{Name})/,
+      regexJa: / 14:3DCF:フォーギヴン・テスリーン starts using ティッカー on (\y{Name})/,
       regexDe: / 14:3DCF:Tesleen die Bekehrte starts using Handauflegung on (\y{Name})/,
       regexFr: / 14:3DCF:Tesleen Pardonnée starts using Chatouillement on (\y{Name})/,
       alertText: function(data, matches) {
@@ -65,6 +69,7 @@
       regex: / 14:3DD0:Tesleen, [tT]he Forgiven starts using Scold's Bridle/,
       regexDe: / 14:3DD0:Tesleen die Bekehrte starts using Schandmal/,
       regexFr: / 14:3DD0:Tesleen Pardonnée starts using Bride-Bavarde/,
+      regexJa: / 14:3DD0:フォーギヴン・テスリーン starts using スコルドブライダル/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -79,6 +84,7 @@
       regex: / 14:3DD5:Tesleen, [tT]he Forgiven starts using Flagellation/,
       regexDe: / 14:3DD5:Tesleen die Bekehrte starts using Grimmige Geißelung/,
       regexFr: / 14:3DD5:Tesleen Pardonnée starts using Flagellation/,
+      regexJa: / 14:3DD5:フォーギヴン・テスリーン starts using フィバードフラジレーション/,
       infoText: {
         en: 'spread',
         de: 'Verteilen',
@@ -87,7 +93,7 @@
     },
     {
       id: 'Holminster Exorcise Stack',
-      regex: /1B:........:(\y{Name}):....:....:003E:/,
+      regex: / 1B:........:(\y{Name}):....:....:003E:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -106,6 +112,7 @@
     {
       id: 'Holminster Scavenger',
       regex: / 14:3DD8:Philia starts using Scavenger's Daughter/,
+      regexJa: / 14:3DD8:フィリア starts using スカベンジャーズドーター/,
       regexDe: / 14:3DD8:Philia starts using Radebrechen/,
       regexFr: / 14:3DD8:Philia starts using Fille Du Boueur/,
       condition: function(data) {
@@ -119,7 +126,8 @@
     },
     {
       id: 'Holminster Head Crusher',
-      regex: / 14:3DD7:Philia starts using Head Crusher on (\y{Name})/,
+     regex: / 14:3DD7:Philia starts using Head Crusher on (\y{Name})/,
+      regexJa: / 14:3DD7:フィリア starts using ヘッドクラッシャー on (\y{Name})/,
       regexDe: / 14:3DD7:Philia starts using Knochenmalmer on (\y{Name})/,
       regexFr: / 14:3DD7:Philia starts using Écraseur De Tête on (\y{Name})/,
       alertText: function(data, matches) {
@@ -141,7 +149,7 @@
     },
     {
       id: 'Holminster Chain Down',
-      regex: /1B:........:(\y{Name}):....:....:005C:/,
+      regex: / 1B:........:(\y{Name}):....:....:005C:/,
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -155,7 +163,7 @@
     },
     {
       id: 'Holminster Taphephobia',
-      regex: /1B:........:(\y{Name}):....:....:008B:/,
+      regex: / 1B:........:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -170,6 +178,7 @@
       regex: / 14:4350:Philia starts using Into The Light/,
       regexDe: / 14:4350:Philia starts using Läuterndes Licht/,
       regexFr: / 14:4350:Philia starts using Dans La Lumière/,
+      regexJa: / 14:4350:フィリア starts using インツーライト/,
       infoText: {
         en: 'Line Stack',
         de: 'Sammeln in einer Linie',
@@ -181,6 +190,7 @@
       regex: / 14:3DE7:Philia starts using Left Knout/,
       regexDe: / 14:3DE7:Philia starts using Linker Staupenschlag/,
       regexFr: / 14:3DE7:Philia starts using Knout Gauche/,
+      regexJa: / 14:3DE7:フィリア starts using レフト・クヌート/,
       alertText: {
         en: 'Right',
         de: 'Rechts',
@@ -192,6 +202,7 @@
       regex: / 14:3DE6:Philia starts using Right Knout/,
       regexDe: / 14:3DE6:Philia starts using Rechter Staupenschlag/,
       regexFr: / 14:3DE6:Philia starts using Knout Droit/,
+      regexJa: / 14:3DE6:フィリア starts using ライト・クヌート/,
       alertText: {
         en: 'Left',
         de: 'Links',

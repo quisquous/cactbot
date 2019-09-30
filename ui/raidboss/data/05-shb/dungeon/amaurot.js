@@ -48,6 +48,8 @@
       id: 'Amaurot Final Sky',
       regex: / 14:3CCB:The First Beast starts using The Final Sky/,
       regexDe: / 14:3CCB:Das erste Unheil starts using Letzter Himmel/,
+      regexFr: / 14:3CCB:annélide de l'apocalypse starts using Étoile de la ruine/,
+      regexJa: / 14:3CCB:ファースト・ビースト starts using 終末の流星/,
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
@@ -116,6 +118,7 @@
       },
       'replaceText': {
         '攻撃': '攻撃',
+        'Adds': 'Adds',
         'The Final Sky': 'Letzter Himmel',
         'The Falling Sky': 'Unheilvoller Himmel',
         'The Burning Sky': 'Brennender Himmel',
