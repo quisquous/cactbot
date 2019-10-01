@@ -110,7 +110,7 @@
           "allowAllPropertiesOnSameLine": true
         }
       ],
-        "no-dupe-keys": [
+      "no-dupe-keys": [
         "error"
       ]
     }
