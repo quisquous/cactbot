@@ -226,12 +226,12 @@ class Timeline {
       }
 
       if (styles) {
-      	for (const style of styles) {
-      		const m = e.name.match(style.regex);
-      		if (!m)
-      			continue;
-      		Object.assign(e, { style: style.style });
-      	}
+        for (const style of styles) {
+          const m = e.name.match(style.regex);
+          if (!m)
+            continue;
+          Object.assign(e, { style: style.style });
+        }
       }
     }
 
@@ -801,7 +801,13 @@ class TimelineLoader {
   }
 
   SetTimelines(timelineFiles, timelines, replacements, triggers, styles) {
-    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles);
+    this.timelineController.SetActiveTimeline(
+      timelineFiles,
+      timelines,
+      replacements,
+      triggers,
+      styles
+    );
   }
 
   StopCombat() {
