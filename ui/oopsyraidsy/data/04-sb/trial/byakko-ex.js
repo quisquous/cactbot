@@ -87,7 +87,8 @@
       mistake: function(e, data) {
         return {
           type: 'warn',
-          blame: e.targetName, text: {
+          blame: e.targetName,
+          text: {
             en: 'bubble collision',
             de: 'Blasen sind zusammengestoßen',
           },

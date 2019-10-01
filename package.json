@@ -96,6 +96,12 @@
       "space-in-parens": [
         "error",
         "never"
+      ],
+      "object-property-newline": [
+        "error",
+	{
+	  "allowAllPropertiesOnSameLine": true
+	}
       ]
     }
   }
