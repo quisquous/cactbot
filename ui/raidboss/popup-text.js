@@ -150,7 +150,13 @@ class PopupText {
       }
     }
 
-    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements, timelineTriggers, timelineStyles);
+    this.timelineLoader.SetTimelines(
+      timelineFiles,
+      timelines,
+      replacements,
+      timelineTriggers,
+      timelineStyles
+    );
   }
 
   OnJobChange(e) {
