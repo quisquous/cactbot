@@ -802,11 +802,11 @@ class TimelineLoader {
 
   SetTimelines(timelineFiles, timelines, replacements, triggers, styles) {
     this.timelineController.SetActiveTimeline(
-      timelineFiles,
-      timelines,
-      replacements,
-      triggers,
-      styles
+        timelineFiles,
+        timelines,
+        replacements,
+        triggers,
+        styles
     );
   }
 
