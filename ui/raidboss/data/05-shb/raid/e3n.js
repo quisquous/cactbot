@@ -7,12 +7,15 @@
     {
       id: 'E3N Tidal Roar',
       regex: / 14:3FC4:Leviathan starts using Tidal Roar/,
+      regexDe: / 14:3FC4:Leviathan starts using Schrei der Gezeiten/,
+      regexJa: / 14:3FC4:リヴァイアサン starts using タイダルロア/,
       regexFr: / 14:3FC4:Léviathan starts using Vague Rugissante/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
@@ -48,50 +51,65 @@
     {
       id: 'E3N Tidal Wave Look',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
+      regexDe: / 14:3FD2:Leviathan starts using Flutwelle/,
+      regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
       regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
+        de: 'Nach der Welle schauen',
         fr: 'Repérez la vague',
       },
     },
     {
       id: 'E3N Tidal Wave Knockback',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
+      regexDe: / 14:3FD2:Leviathan starts using Flutwelle/,
+      regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
       regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
       alertText: {
         en: 'Knockback',
+        de: 'Knockback',
         fr: 'Poussée',
       },
     },
     {
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FD0:Leviathan starts using Undersea Quake/,
+      regexDe: / 14:3FD0:Leviathan starts using Unterwasserbeben/,
+      regexJa: / 14:3FD0:リヴァイアサン starts using アンダーシークエイク/,
       regexFr: / 14:3FD0:Léviathan starts using Séisme Sous-Marin/,
       alertText: {
         en: 'Get Middle',
+        de: 'In die Mitte gehen',
         fr: 'Allez au centre',
       },
     },
     {
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FCF:Leviathan starts using Undersea Quake/,
+      regexDe: / 14:3FCF:Leviathan starts using Unterwasserbeben/,
+      regexJa: / 14:3FCF:リヴァイアサン starts using アンダーシークエイク/,
       regexFr: / 14:3FCF:Léviathan starts using Séisme Sous-Marin/,
       alarmText: {
         en: 'Go To Sides',
+        de: 'Auf die Seiten gehen',
         fr: 'Allez sur les côtés',
       },
     },
     {
       id: 'E3N Maelstrom',
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
+      regexDe: / 14:3FD8:Leviathan starts using Mahlstrom/,
+      regexJa: / 14:3FD8:リヴァイアサン starts using メイルシュトローム/,
       regexFr: / 14:3FD8:Léviathan starts using Maelström/,
       delaySeconds: 8,
       infoText: {
         en: 'Avoid Puddles and Dives',
+        de: 'Flächen und Leviathan ausweichen',
         fr: 'Evitez les flaques et les dives',
       },
     },
@@ -103,18 +121,22 @@
       },
       infoText: {
         en: 'Spread',
+        de: 'Verteilen',
         fr: 'Dispersez-vous',
       },
     },
     {
       id: 'E3N Tsunami',
       regex: / 14:3FD4:Leviathan starts using Tsunami/,
+      regexDe: / 14:3FD4:Leviathan starts using Sturzflut/,
+      regexJa: / 14:3FD4:リヴァイアサン starts using 大海嘯/,
       regexFr: / 14:3FD4:Léviathan starts using Tsunami/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
@@ -126,11 +148,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
@@ -142,11 +166,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Knockback on YOU',
+            de: 'Knockback auf DIR',
             fr: 'Poussée sur VOUS',
           };
         }
         return {
           en: 'Knockback on ' + data.ShortName(matches[1]),
+          de: 'Knockback auf ' + data.ShortName(matches[1]),
           fr: 'Poussée sur ' + data.ShortName(matches[1]),
         };
       },
@@ -159,6 +185,7 @@
       },
       infoText: {
         en: 'Spread',
+        de: 'Verteilen',
         fr: 'Dispersez-vous',
       },
     },
@@ -170,6 +197,7 @@
       },
       infoText: {
         en: 'Donut on YOU',
+        de: 'Donut auf DIR',
         fr: 'Donut sur VOUS',
       },
     },

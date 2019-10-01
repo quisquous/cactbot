@@ -8,6 +8,8 @@
       id: 'Malikah Stone Flail',
       regex: / 14:3CE5:Greater Armadillo starts using Stone Flail on (\y{Name})/,
       regexDe: / 14:3CE5:Riesengürteltier starts using Steindresche on (\y{Name})/,
+      regexFr: / 14:3CE5:grand tatou starts using Fléau rocheux on (\y{Name})/,
+      regexJa: / 14:3CE5:グレーター・アルマジロ starts using ロックフレイル on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -27,7 +29,7 @@
     },
     {
       id: 'Malikah Head Toss Stack',
-      regex: /1B:........:(\y{Name}):....:....:003E:/,
+      regex: / 1B:........:(\y{Name}):....:....:003E:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -45,6 +47,8 @@
       id: 'Malikah Right Round',
       regex: / 14:3CE7:Greater Armadillo starts using Right Round/,
       regexDe: / 14:3CE7:Riesengürteltier starts using Rotation/,
+      regexFr: / 14:3CE7:grand tatou starts using Grande culbute/,
+      regexJa: / 14:3CE7:グレーター・アルマジロ starts using 大回転/,
       infoText: {
         en: 'Melee Knockback',
         de: 'Nahkämpfer Rückstoß',
@@ -54,6 +58,8 @@
       id: 'Malikah Deep Draught',
       regex: / 14:4188:Pack Armadillo starts using Deep Draught/,
       regexDe: / 14:4188:Rudel-Gürteltier starts using Immense Infusion/,
+      regexFr: / 14:4188:tatou grégaire starts using Approvisionnement/,
+      regexJa: / 14:4188:パック・アルマジロ starts using 給水/,
       condition: function(data) {
         return data.CanSilence();
       },
@@ -66,6 +72,8 @@
       id: 'Malikah Efface',
       regex: / 14:3CEB:Amphibious Talos starts using Efface on (\y{Name})/,
       regexDe: / 14:3CEB:Wasserträger-Talos starts using Zerstören on (\y{Name})/,
+      regexFr: / 14:3CEB:talos amphibie starts using Désintégration on (\y{Name})/,
+      regexJa: / 14:3CEB:ハイドロタロース starts using デストロイ on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -87,6 +95,8 @@
       id: 'Malikah High Pressure',
       regex: / 14:3CEC:Amphibious Talos starts using High Pressure/,
       regexDe: / 14:3CEC:Wasserträger-Talos starts using Überdruck/,
+      regexFr: / 14:3CEC:talos amphibie starts using Haute pression/,
+      regexJa: / 14:3CEC:ハイドロタロース starts using ハイプレッシャー/,
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',
@@ -96,6 +106,8 @@
       id: 'Malikah Swift Spill',
       regex: / 14:3CEF:Amphibious Talos starts using Swift Spill/,
       regexDe: / 14:3CEF:Wasserträger-Talos starts using Schneller Abfluss/,
+      regexFr: / 14:3CEF:talos amphibie starts using Déversement/,
+      regexJa: / 14:3CEF:ハイドロタロース starts using 強制放水/,
       infoText: {
         en: 'Get Behind',
         de: 'Hinter ihn',
@@ -105,6 +117,8 @@
       id: 'Malikah Intestinal Crank',
       regex: / 14:3CF1:Storge starts using Intestinal Crank/,
       regexDe: / 14:3CF1:Storge starts using Geweiderupfer/,
+      regexFr: / 14:3CF1:Storgê starts using Manivelle intestinale/,
+      regexJa: / 14:3CF1:ストルゲー starts using インテスティナルクランク/,
       condition: function(data) {
         return data.role == 'healer';
       },

@@ -10,6 +10,8 @@
       id: 'Twinning Main Head',
       regex: / 14:3DBC:Surplus Kaliya starts using Main Head/,
       regexDe: / 14:3DBC:Massengefertigter Kaliya starts using Hauptkopf/,
+      regexFr: / 14:3DBC:Kaliya de surplus starts using Tête principale/,
+      regexJa: / 14:3DBC:量産型カーリア starts using メインヘッド/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -22,6 +24,8 @@
       id: 'Twinning Berserk',
       regex: / 14:3DC0:Vitalized Reptoid starts using Berserk/,
       regexDe: / 14:3DC0:Gestärkter Reptoid starts using Berserker/,
+      regexFr: / 14:3DC0:reptoïde vitalisé starts using Furie/,
+      regexJa: / 14:3DC0:ヴァイタライズ・レプトイド starts using ベルセルク/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -34,6 +38,8 @@
       id: 'Twinning 128 Tonze Swing',
       regex: / 14:3DBA:Servomechanical Minotaur starts using 128-Tonze Swing/,
       regexDe: / 14:3DBA:Servomechanischer Minotaurus starts using 128-Tonzen-Schwung/,
+      regexFr: / 14:3DBA:minotaure servomécanique starts using Swing de 128 tonz/,
+      regexJa: / 14:3DBA:サーヴォ・ミノタウロス starts using 128トンズ・スイング/,
       condition: function(data) {
         return data.CanSilence();
       },
@@ -56,6 +62,8 @@
       id: 'Twinning Beastly Roar',
       regex: / 14:3D64:Alpha Zaghnal starts using Beastly Roar/,
       regexDe: / 14:3D64:Alpha-Zaghnal starts using Bestialisches Brüllen/,
+      regexFr: / 14:3D64:zaghnal alpha starts using Rugissement bestial/,
+      regexJa: / 14:3D64:アルファ・ザグナル starts using ビーストロア/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -69,6 +77,8 @@
       id: 'Twinning Augurium',
       regex: / 14:3D65:Alpha Zaghnal starts using Augurium on (\y{Name})/,
       regexDe: / 14:3D65:Alpha-Zaghnal starts using Schmetterbohrer on (\y{Name})/,
+      regexFr: / 14:3D65:zaghnal alpha starts using Coup de tarière on (\y{Name})/,
+      regexJa: / 14:3D65:アルファ・ザグナル starts using アウガースマッシュ on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -102,6 +112,8 @@
       id: 'Twinning Thunder Beam',
       regex: / 14:3DED:Mithridates starts using Thunder Beam on (\y{Name})/,
       regexDe: / 14:3DED:Mithridates starts using Gewitterstrahl on (\y{Name})/,
+      regexFr: / 14:3DED:Mithridate starts using Rayon de foudre on (\y{Name})/,
+      regexJa: / 14:3DED:ミトリダテス starts using サンダービーム on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -122,6 +134,8 @@
       id: 'Twinning Allagan Thunder',
       regex: / 14:3DEF:Mithridates starts using Allagan Thunder on (\y{Name})/,
       regexDe: / 14:3DEF:Mithridates starts using Allagischer Blitzschlag on (\y{Name})/,
+      regexFr: / 14:3DEF:Mithridate starts using Foudre d'Allag on (\y{Name})/,
+      regexJa: / 14:3DEF:ミトリダテス starts using アラガン・サンダー on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -134,6 +148,8 @@
       id: 'Twinning Magitek Crossray',
       regex: / 14:3DF8:The Tycoon starts using Magitek Crossray/,
       regexDe: / 14:3DF8:Tycoon starts using Magitek-Kreuzlaser/,
+      regexFr: / 14:3DF8:Le Magnat starts using Rayon croisé magitek/,
+      regexJa: / 14:3DF8:タイクーン starts using 魔導クロスレーザー/,
       suppressSeconds: 15,
       infoText: {
         en: 'cardinal lasers',
@@ -144,6 +160,8 @@
       id: 'Twinning Defensive Array',
       regex: / 14:3DF2:The Tycoon starts using Defensive Array/,
       regexDe: / 14:3DF2:Tycoon starts using Magitek-Schutzlaser/,
+      regexFr: / 14:3DF2:Le Magnat starts using Rayon protecteur magitek/,
+      regexJa: / 14:3DF2:タイクーン starts using 魔導プロテクティブレーザー/,
       suppressSeconds: 15,
       infoText: {
         en: 'outer lasers',
@@ -154,6 +172,8 @@
       id: 'Twinning Rail Cannon',
       regex: / 14:3DFB:The Tycoon starts using Rail Cannon on (\y{Name})/,
       regexDe: / 14:3DFB:Tycoon starts using Magnetschienenkanone on (\y{Name})/,
+      regexFr: / 14:3DFB:Le Magnat starts using Canon électrique on (\y{Name})/,
+      regexJa: / 14:3DFB:タイクーン starts using レールキャノン on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -174,6 +194,8 @@
       id: 'Twinning Magicrystal',
       regex: / 14:3E0C:The Tycoon starts using Magicrystal/,
       regexDe: / 14:3E0C:Tycoon starts using Magitek-Kristall/,
+      regexFr: / 14:3E0C:Le Magnat starts using Cristal magitek/,
+      regexJa: / 14:3E0C:タイクーン starts using 魔導クリスタル/,
       alertText: {
         en: 'spread',
         de: 'Verteilen',
@@ -183,6 +205,8 @@
       id: 'Twinning Discharger',
       regex: / 14:3DFC:The Tycoon starts using High-Tension Discharger/,
       regexDe: / 14:3DFC:Tycoon starts using Hochspannungsentlader/,
+      regexFr: / 14:3DFC:Le Magnat starts using Déchargeur haute tension/,
+      regexJa: / 14:3DFC:タイクーン starts using ハイテンション・ディスチャージャー/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -268,6 +292,8 @@
         '128-tonze Swing': '128-Tonzen-Schwung',
         '--untargetable--': '--nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        'Gravity': 'Gravitation',
+        'Crossray': 'Kreuzlaser',
       },
       '~effectNames': {
         'Summon Order II': 'Egi-Attacke II',

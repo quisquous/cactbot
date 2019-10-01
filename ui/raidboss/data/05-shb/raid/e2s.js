@@ -5,7 +5,7 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: /(^Eden's Gate: Descent \(Savage\)$|Unknown Zone \(356\))/,
+  zoneRegex: /^Eden's Gate: Descent \(Savage\)$/,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
     {
@@ -52,10 +52,10 @@
     },
     {
       id: 'E2S Entropy',
-      regex: / 14:3E6F:Voidwalker starts using (?:Entropy|)/,
-      regexDe: / 14:3E6F:Nichtswandler starts using (?:Entropie|)/,
-      regexFr: / 14:3E6F:Marcheuse Du Néant starts using (?:Entropie|)/,
-      regexJa: / 14:3E6F:ヴォイドウォーカー starts using (?:エントロピー|)/,
+      regex: / 14:3E6F:Voidwalker starts using Entropy/,
+      regexDe: / 14:3E6F:Nichtswandler starts using Entropie/,
+      regexFr: / 14:3E6F:Marcheuse Du Néant starts using Entropie/,
+      regexJa: / 14:3E6F:ヴォイドウォーカー starts using エントロピー/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -68,10 +68,10 @@
     },
     {
       id: 'E2S Quietus',
-      regex: / 14:3E71:Voidwalker starts using (?:Quietus|)/,
-      regexDe: / 14:3E71:Nichtswandler starts using (?:Quietus|)/,
-      regexFr: / 14:3E71:Marcheuse Du Néant starts using (?:Quietus|)/,
-      regexJa: / 14:3E71:ヴォイドウォーカー starts using (?:クワイタス|)/,
+      regex: / 14:3E71:Voidwalker starts using Quietus/,
+      regexDe: / 14:3E71:Nichtswandler starts using Quietus/,
+      regexFr: / 14:3E71:Marcheuse Du Néant starts using Quietus/,
+      regexJa: / 14:3E71:ヴォイドウォーカー starts using クワイタス/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -84,10 +84,10 @@
     },
     {
       id: 'E2S Shadowflame Tank',
-      regex: / 14:3E6[12]:Voidwalker starts using (?:Shadowflame|Unknown_3E6[12]) on (\y{Name})/,
-      regexDe: / 14:3E6[12]:Nichtswandler starts using (?:Schattenflamme|Unknown_3E6[12]) on (\y{Name})/,
-      regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using (?:Flamme D'[oO]mbre|Unknown_3E6[12]) on (\y{Name})/,
-      regexJa: / 14:3E6[12]:ヴォイドウォーカー starts using (?:シャドーフレイム|Unknown_3E6[12]) on (\y{Name})/,
+      regex: / 14:3E6[12]:Voidwalker starts using Shadowflame on (\y{Name})/,
+      regexDe: / 14:3E6[12]:Nichtswandler starts using Schattenflamme on (\y{Name})/,
+      regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using Flamme D'[oO]mbre on (\y{Name})/,
+      regexJa: / 14:3E6[12]:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -100,26 +100,26 @@
     },
     {
       id: 'E2S Shadowflame Healer',
-      regex: / 14:3E61:Voidwalker starts using (?:Shadowflame|Unknown_3E6[12])/,
-      regexDe: / 14:3E61:Nichtswandler starts using (?:Schattenflamme|Unknown_3E6[12])/,
-      regexFr: / 14:3E61:Marcheuse Du Néant starts using (?:Flamme D'ombre|Unknown_3E6[12])/,
-      regexJa: / 14:3E61:ヴォイドウォーカー starts using (?:Shadowflame|Unknown_3E6[12])/,
+      regex: / 14:3E61:Voidwalker starts using Shadowflame/,
+      regexDe: / 14:3E61:Nichtswandler starts using Schattenflamme/,
+      regexFr: / 14:3E61:Marcheuse Du Néant starts using Flamme D'ombre/,
+      regexJa: / 14:3E61:ヴォイドウォーカー starts using Shadowflame/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'tank busters',
-        de: 'Tankbuster',
+        de: 'Tank buster',
         fr: 'Tank busters',
         ja: 'タンクバスター',
       },
     },
     {
       id: 'E2S Doomvoid Cleaver',
-      regex: / 14:3E63:Voidwalker starts using (?:Doomvoid Cleaver|)/,
-      regexDe: / 14:3E63:Nichtswandler starts using (?:Nichtsmarter-Schlachter|)/,
-      regexFr: / 14:3E63:Marcheuse Du Néant starts using (?:Couperet Du Néant Ravageur|)/,
-      regexJa: / 14:3E63:ヴォイドウォーカー starts using (?:ドゥームヴォイド・クリーバー|)/,
+      regex: / 14:3E63:Voidwalker starts using Doomvoid Cleaver/,
+      regexDe: / 14:3E63:Nichtswandler starts using Nichtsmarter-Schlachter/,
+      regexFr: / 14:3E63:Marcheuse Du Néant starts using Couperet Du Néant Ravageur/,
+      regexJa: / 14:3E63:ヴォイドウォーカー starts using ドゥームヴォイド・クリーバー/,
       alertText: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
@@ -129,10 +129,10 @@
     },
     {
       id: 'E2S Doomvoid Guillotine',
-      regex: / 14:3E4F:Voidwalker starts using (?:Doomvoid Guillotine|)/,
-      regexDe: / 14:3E4F:Nichtswandler starts using (?:Nichtsmarter-Fallbeil|)/,
-      regexFr: / 14:3E4F:Marcheuse Du Néant starts using (?:Guillotine Du Néant Ravageur|)/,
-      regexJa: / 14:3E4F:ヴォイドウォーカー starts using (?:ドゥームヴォイド・ギロチン|)/,
+      regex: / 14:3E4F:Voidwalker starts using Doomvoid Guillotine/,
+      regexDe: / 14:3E4F:Nichtswandler starts using Nichtsmarter-Fallbeil/,
+      regexFr: / 14:3E4F:Marcheuse Du Néant starts using Guillotine Du Néant Ravageur/,
+      regexJa: / 14:3E4F:ヴォイドウォーカー starts using ドゥームヴォイド・ギロチン/,
       alertText: {
         en: 'Sides',
         de: 'Seiten',
@@ -142,10 +142,10 @@
     },
     {
       id: 'E2S Doomvoid Slicer',
-      regex: / 14:3E50:Voidwalker starts using (:?:Doomvoid Slicer|)/,
-      regexDe: / 14:3E50:Nichtswandler starts using (:?:Nichtsmarter-Sense|)/,
-      regexFr: / 14:3E50:Marcheuse Du Néant starts using (?:Entaille Du Néant Ravageur|)/,
-      regexJa: / 14:3E50:ヴォイドウォーカー starts using (:?:ドゥームヴォイド・スライサー|)/,
+      regex: / 14:3E50:Voidwalker starts using Doomvoid Slicer/,
+      regexDe: / 14:3E50:Nichtswandler starts using Nichtsmarter-Sense/,
+      regexFr: / 14:3E50:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
+      regexJa: / 14:3E50:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
       infoText: {
         en: 'Get Under',
         de: 'Unter den Boss',
@@ -155,10 +155,10 @@
     },
     {
       id: 'E2S Empty Hate',
-      regex: / 14:3E59:The Hand Of Erebos starts using (?:Empty Hate|)/,
-      regexDe: / 14:3E59:Arm Des Erebos starts using (?:Gähnender Abgrund|)/,
-      regexFr: / 14:3E59:Bras [dD]'[éÉ]rèbe starts using (?:Vaine Malice)/,
-      regexJa: / 14:3E59:エレボスの巨腕 starts using (?:虚ろなる悪意|)/,
+      regex: / 14:3E59:The Hand Of Erebos starts using Empty Hate/,
+      regexDe: / 14:3E59:Arm Des Erebos starts using Gähnender Abgrund/,
+      regexFr: / 14:3E59:Bras [dD]'[éÉ]rèbe starts using Vaine Malice/,
+      regexJa: / 14:3E59:エレボスの巨腕 starts using 虚ろなる悪意/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -168,10 +168,10 @@
     },
     {
       id: 'E2S Empty Rage',
-      regex: / 14:3E6B:The Hand Of Erebos starts using (?:Empty Rage|)/,
-      regexDe: / 14:3E6B:Arm Des Erebos starts using (?:Lockende Leere|)/,
-      regexFr: / 14:3E6B:Bras [dD]'[éÉ]rèbe starts using (?:Vaine Cruauté|)/,
-      regexJa: / 14:3E6B:エレボスの巨腕 starts using (?:虚ろなる害意|)/,
+      regex: / 14:3E6B:The Hand Of Erebos starts using Empty Rage/,
+      regexDe: / 14:3E6B:Arm Des Erebos starts using Lockende Leere/,
+      regexFr: / 14:3E6B:Bras [dD]'[éÉ]rèbe starts using Vaine Cruauté/,
+      regexJa: / 14:3E6B:エレボスの巨腕 starts using 虚ろなる害意/,
       alertText: {
         en: 'Away From Hand',
         de: 'Weg von der Hand',
@@ -554,10 +554,10 @@
     {
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
-      regex: / 14:4659:Voidwalker starts using (?:Cycle Of Retribution|)/,
-      regexDe: / 14:4659:Nichtswandler starts using (?:Vergeltendes Chaos|)/,
-      regexFr: / 14:4659:Marcheuse Du Néant starts using (?:Multi-[tT]aillade Vengeresse|)/,
-      regexJa: / 14:4659:ヴォイドウォーカー starts using (?:復讐の連続剣|)/,
+      regex: / 14:4659:Voidwalker starts using Cycle Of Retribution/,
+      regexDe: / 14:4659:Nichtswandler starts using Vergeltendes Chaos/,
+      regexFr: / 14:4659:Marcheuse Du Néant starts using Multi-[tT]aillade Vengeresse/,
+      regexJa: / 14:4659:ヴォイドウォーカー starts using 復讐の連続剣/,
       infoText: {
         en: 'In, Protean, Sides',
         de: 'Rein, Himmelsrichtungen, Seiten',
@@ -567,10 +567,10 @@
     },
     {
       id: 'E2S Cycle of Chaos',
-      regex: / 14:40B9:Voidwalker starts using (?:Cycle Of Chaos|)/,
-      regexDe: / 14:40B9:Nichtswandler starts using (?:Chronisches Chaos|)/,
-      regexFr: / 14:40B9:Marcheuse Du Néant starts using (?:Multi-[tT]aillade Chaotique|)/,
-      regexJa: / 14:40B9:ヴォイドウォーカー starts using (?:混沌の連続剣|)/,
+      regex: / 14:40B9:Voidwalker starts using Cycle Of Chaos/,
+      regexDe: / 14:40B9:Nichtswandler starts using Chronisches Chaos/,
+      regexFr: / 14:40B9:Marcheuse Du Néant starts using Multi-[tT]aillade Chaotique/,
+      regexJa: / 14:40B9:ヴォイドウォーカー starts using 混沌の連続剣/,
       infoText: {
         en: 'Sides, In, Protean',
         de: 'Seiten, Rein, Himmelsrichtungen',

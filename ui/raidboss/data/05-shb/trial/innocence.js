@@ -7,30 +7,42 @@
   triggers: [
     {
       id: 'Inno Realmrazer',
-      regex: /14:3E9A:Innocence starts using Realmrazer/,
+      regex: / 14:3E9A:Innocence starts using Realmrazer/,
+      regexDe: / 14:3E9A:Innozenz starts using Weltenzerstörer/,
+      regexFr: / 14:3E9A:Innocence starts using Raye-royaume/,
+      regexJa: / 14:3E9A:イノセンス starts using レルムレイザー/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         ja: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
     {
       id: 'Inno Enthrall',
-      regex: /14:3E99:Innocence starts using Enthrall/,
+      regex: / 14:3E99:Innocence starts using Enthrall/,
+      regexDe: / 14:3E99:Innozenz starts using Bezaubern/,
+      regexFr: / 14:3E99:Innocence starts using Œil captivant/,
+      regexJa: / 14:3E99:イノセンス starts using インスロール・アイ/,
       alertText: {
         en: 'Look Away, Get Towers',
+        de: 'Weg schauen, Türme nehmen',
       },
     },
     {
       id: 'Inno Reprobation Swords 2',
-      regex: /14:3EDC:Innocence starts using Rightful Reprobation/,
+      regex: / 14:3EDC:Innocence starts using Rightful Reprobation/,
+      regexDe: / 14:3EDC:Innozenz starts using Rechtmäßige Verurteilung/,
+      regexFr: / 14:3EDC:Innocence starts using Réprobation légitime/,
+      regexJa: / 14:3EDC:イノセンス starts using 断罪の旋回/,
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
       infoText: {
         en: 'Swords!',
+        de: 'Schwerter!',
         ja: '剣くるよ',
         fr: 'Epées !',
       },
@@ -38,23 +50,26 @@
 
     {
       id: 'Inno Shadowreaver',
-      regex: /14:3EEA:Innocence starts using Shadowreaver/,
-      regexJa: /14:3EEA:Innocence starts using シャドウリーヴァー/,
-      regexFr: /14:3EEA:Innocence starts using Pilleur/,
+      regex: / 14:3EEA:Innocence starts using Shadowreaver/,
+      regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
+      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
+      regexFr: / 14:3EEA:Innocence starts using Pilleur/,
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         ja: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
     {
       id: 'Inno Righteous Bolt',
-      regex: /14:3EA3:Innocence starts using Righteous Bolt on (\y{Name})/,
-      regexJa: /14:3EA3:イノセンス starts using ジャッジボルト on (\y{Name})/,
-      regexFr: /14:3EA3:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
+      regex: / 14:3EA3:Innocence starts using Righteous Bolt on (\y{Name})/,
+      regexDe: / 14:3EA3:Innozenz starts using Blitz der Gerechtigkeit on (\y{Name})/,
+      regexJa: / 14:3EA3:イノセンス starts using ジャッジボルト on (\y{Name})/,
+      regexFr: / 14:3EA3:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -76,12 +91,14 @@
     },
     {
       id: 'Inno Charge',
-      regex: /14:3EC7:Innocence starts using Beatific Vision/,
-      regexJa: /14:3EC7:イノセンス starts using ビーティフィックビジョン/,
-      regexFr: /14:3EC7:Innocence starts using Vision [bB]éatifique/,
+      regex: / 14:3EC7:Innocence starts using Beatific Vision/,
+      regexDe: / 14:3EC7:Innozenz starts using Seligmachende Schau/,
+      regexJa: / 14:3EC7:イノセンス starts using ビーティフィックビジョン/,
+      regexFr: / 14:3EC7:Innocence starts using Vision [bB]éatifique/,
       alertText: function(data) {
         return {
           en: 'Avoid Charge',
+          de: 'ausweichen',
           ja: '突進避けて',
           fr: 'Evitez les charges',
         };
@@ -89,11 +106,14 @@
     },
     {
       id: 'InnoEx Light Pillar',
-      regex: /15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       infoText: function(data) {
         return {
           en: 'Line Stack',
+          de: 'In einer Linie sammeln',
           ja: 'シェア',
           fr: 'Packez-vous en ligne',
         };
@@ -101,13 +121,14 @@
     },
     {
       id: 'Inno Winged Drop Of Light',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
       alertText: function(data, matches) {
         return {
           en: 'Circle on YOU',
+          de: 'Kreis auf DIR',
           fr: 'Cercle sur vous',
           ja: 'サークルついた',
         };
@@ -116,10 +137,14 @@
     {
       // TODO: is there a left, or do all normal modes rotate right??
       id: 'InnoEx Soul And Body Right',
-      regex: / 14:3EB1:Innocence starts using Soul And Body/,
+      regex: / 14:3EB1:Innocence starts using Soul and Body/,
+      regexDe: / 14:3EB1:Innozenz starts using Seele und Körper/,
+      regexFr: / 14:3EB1:Innocence starts using Âme et corps/,
+      regexJa: / 14:3EB1:イノセンス starts using ソウル・アンド・ボディー/,
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',
+        de: 'Rechts rum rotieren',
       },
     },
   ],

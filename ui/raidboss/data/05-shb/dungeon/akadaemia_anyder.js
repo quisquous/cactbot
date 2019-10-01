@@ -120,7 +120,7 @@
       regex: / 14:3E17:Marquis Morbol starts using Arbor Storm/,
       regexDe: / 14:3E17:Marquis-Morbol starts using Dornensturm/,
       regexFr: / 14:3E17:Marquis Morbol starts using Tempête De Charmilles/,
-      regexJa: / 14:3E17:Marquis Morbol starts using アーバーストーム/,
+      regexJa: / 14:3E17:マーカス・モルボル starts using アーバーストーム/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -135,7 +135,7 @@
       regex: / 14:430C:Evil Armor starts using Noahionto/,
       regexDe: / 14:430C:Böse Kampfmaschine starts using Noahionto/,
       regexFr: / 14:430C:Evil Armor starts using Noahionto/,
-      regexJa: / 14:430C:Evil Armor starts using ノアヒオント/,
+      regexJa: / 14:430C:イビルアーマー starts using ノアヒオント/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },

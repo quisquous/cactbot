@@ -13,7 +13,7 @@
       },
       alertText: {
         en: 'Tank Busters',
-        de: 'Tankbuster',
+        de: 'Tank buster',
         fr: 'Tank busters',
       },
     },

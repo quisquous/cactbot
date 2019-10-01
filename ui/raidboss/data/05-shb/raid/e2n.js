@@ -10,6 +10,7 @@
       beforeSeconds: 9,
       infoText: {
         en: 'Get Puddles',
+        de: 'Flächen nehmen',
         fr: 'Prenez les rayons',
       },
     },
@@ -18,6 +19,8 @@
     {
       id: 'E2N Shadowflame Tank',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on (\y{Name})/,
+      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on (\y{Name})/,
+      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       condition: function(data, matches) {
         return data.role == 'tank';
@@ -31,6 +34,8 @@
     {
       id: 'E2N Shadowflame Healer',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
+      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
+      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       suppressSeconds: 1,
       condition: function(data, matches) {
@@ -38,42 +43,55 @@
       },
       infoText: {
         en: 'tank busters',
+        de: 'tank buster',
         fr: 'Tank busters',
       },
     },
     {
       id: 'E2N Entropy',
       regex: / 14:3E6D:Voidwalker starts using Entropy/,
+      regexDe: / 14:3E6D:Nichtswandler starts using Entropie/,
+      regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
       regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
       condition: function(data, matches) {
         return data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
     {
       id: 'E2N Doomvoid Slicer',
       regex: / 14:3E3C:Voidwalker starts using Doomvoid Slicer/,
+      regexDe: / 14:3E3C:Nichtswandler starts using Nichtsmarter-Sense/,
+      regexJa: / 14:3E3C:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
       regexFr: / 14:3E3C:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
       infoText: {
         en: 'Get Under',
+        de: 'Unter ihn',
         fr: 'Intérieur',
       },
     },
     {
       id: 'E2N Empty Hate',
-      regex: / 14:3E46:The Hand Of Erebos starts using Empty Hate/,
+      regex: / 14:3E46:the Hand of Erebos starts using Empty Hate/,
+      regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
+      regexFr: / 14:3E46:bras d'Érèbe starts using Vaine malice/,
+      regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
       regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
       infoText: {
         en: 'Knockback',
+        de: 'Knockback',
         fr: 'Poussée',
       },
     },
     {
       id: 'E2N Darkfire Counter',
       regex: / 14:3E42:Voidwalker starts using Dark Fire III/,
+      regexDe: / 14:3E42:Nichtswandler starts using Dunkel-Feuga/,
+      regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
       regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
       run: function(data) {
         data.fireCount = data.fireCount || 0;
@@ -88,6 +106,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
         fr: 'Dispersez-vous',
       },
     },
@@ -98,11 +117,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur '+ data.ShortName(matches[1]),
         };
       },
@@ -113,6 +134,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Look Away from ' + data.ShortName(matches[1]),
+          de: 'Schau weg von ' + data.ShortName(matches[1]),
           fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
         };
       },
@@ -133,6 +155,7 @@
       },
       infoText: {
         en: 'Delayed Fire',
+        de: 'Verzögertes Feuer',
         fr: 'Feu retardé',
       },
     },
@@ -146,11 +169,13 @@
         if (data.fireCount == 3) {
           return {
             en: 'Spread (don\'t stack!)',
+            de: 'Verteilen (nicht zusammen stehen)',
             fr: 'Dispersez-vous', // FIXME
           };
         }
         return {
           en: 'Spread',
+          de: 'Verteilen',
           fr: 'Dispersez-vous',
         };
       },
@@ -171,6 +196,7 @@
       },
       infoText: {
         en: 'Delayed Stack',
+        de: 'Verzögertes sammeln',
         fr: 'Package retardé',
       },
     },
@@ -188,11 +214,13 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
@@ -213,6 +241,7 @@
       },
       infoText: {
         en: 'Delayed Shadoweye',
+        de: 'Verzögertes Schattenauge',
         fr: 'Œil de l\'ombre retardé',
       },
     },
@@ -227,6 +256,7 @@
         if (data.me != matches[1]) {
           return {
             en: 'Look Away from ' + data.ShortName(matches[1]),
+            de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
             fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
           };
         }
@@ -235,6 +265,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Eye on YOU',
+            de: 'Auge auf DIR',
             fr: 'Œil de l\'ombre sur VOUS',
           };
         }
