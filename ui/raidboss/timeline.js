@@ -14,7 +14,7 @@ function computeBackgroundColorFrom(element, classList) {
 // This class reads the format of ACT Timeline plugin, described in
 // data/README.txt.
 class Timeline {
-  constructor(text, replacements, triggers, options) {
+  constructor(text, replacements, triggers, styles, options) {
     this.options = options;
     this.replacements = replacements;
 
@@ -34,7 +34,7 @@ class Timeline {
     this.activeEvents = [];
     // Sorted by line.
     this.errors = [];
-    this.LoadFile(text, triggers);
+    this.LoadFile(text, triggers, styles);
     this.Stop();
   }
 
@@ -65,14 +65,13 @@ class Timeline {
     return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
-  LoadFile(text, triggers) {
+  LoadFile(text, triggers, styles) {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
 
     let uniqueid = 1;
     let texts = {};
-    let styles = {};
 
     let lines = text.split('\n');
     for (let i = 0; i < lines.length; ++i) {
@@ -120,23 +119,6 @@ class Timeline {
         continue;
       }
 
-      match = line.match(/^color\s+\"([^"]+)\"\s+(#[a-fA-F0-9]{6})$/);
-      if (match != null) {
-        styles[match[1]] = styles[match[1]] || {};
-        Object.assign(styles[match[1]], {
-          color: match[2],
-        });
-        continue;
-      }
-      match = line.match(/^font\s+\"([^"]+)\"\s+\"([^"]+)\"$/);
-      if (match != null) {
-        styles[match[1]] = styles[match[1]] || {};
-        Object.assign(styles[match[1]], {
-          font: match[2],
-        });
-        continue;
-      }
-
       match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
       if (match == null) {
         this.errors.push({
@@ -161,8 +143,6 @@ class Timeline {
         text: this.GetReplacedText(match[3]),
         activeTime: 0,
       };
-      if (e.name in styles) e = Object.assign(e, { styles: styles[e.name] });
-
       if (line) {
         let commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
         if (commandMatch) {
@@ -243,6 +223,15 @@ class Timeline {
             matches: m,
           });
         }
+      }
+
+      if (styles) {
+      	for (const style of styles) {
+      		const m = e.name.match(style.regex);
+      		if (!m)
+      			continue;
+      		Object.assign(e, { style: style.style });
+      	}
       }
     }
 
@@ -651,9 +640,9 @@ class TimelineUI {
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
 
-    if (e.styles) {
-      if (e.styles.color) bar.color = e.styles.color;
-      if (e.styles.font) bar.font = e.styles.font;
+    if (e.style) {
+      if (e.style.color) bar.color = e.style.color;
+      if (e.style.font) bar.font = e.style.font;
     }
 
     if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
@@ -771,7 +760,7 @@ class TimelineController {
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
   }
 
-  SetActiveTimeline(timelineFiles, timelines, replacements, triggers) {
+  SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
     this.activeTimeline = null;
 
     if (!this.options.TimelineEnabled)
@@ -792,7 +781,7 @@ class TimelineController {
       text = text + '\n' + timelines[i];
 
     if (text)
-      this.activeTimeline = new Timeline(text, replacements, triggers, this.options);
+      this.activeTimeline = new Timeline(text, replacements, triggers, styles, this.options);
     this.ui.SetTimeline(this.activeTimeline);
   }
 
@@ -811,8 +800,8 @@ class TimelineLoader {
     this.timelineController = timelineController;
   }
 
-  SetTimelines(timelineFiles, timelines, replacements, triggers) {
-    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements, triggers);
+  SetTimelines(timelineFiles, timelines, replacements, triggers, styles) {
+    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles);
   }
 
   StopCombat() {
