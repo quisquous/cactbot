@@ -7,7 +7,7 @@
     {
       id: 'Holminster Path of Light',
       regex: / 14:3DC5:Forgiven Dissonance starts using Path Of Light/,
-      regexFr: / 14:3DC5:dissonance pardonnée starts using Voie de lumière/,
+      regexFr: / 14:3DC5:Dissonance Pardonnée starts using Voie [dD]e [lL]umière/,
       regexJa: / 14:3DC5:フォーギヴン・ディソナンス starts using 光の波動/,
       regexDe: / 14:3DC5:Geläuterter Widerspruch starts using Pfad Des Lichts/,
       condition: function(data) {
@@ -16,6 +16,7 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {

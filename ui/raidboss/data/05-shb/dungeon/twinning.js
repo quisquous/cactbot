@@ -10,7 +10,7 @@
       id: 'Twinning Main Head',
       regex: / 14:3DBC:Surplus Kaliya starts using Main Head/,
       regexDe: / 14:3DBC:Massengefertigter Kaliya starts using Hauptkopf/,
-      regexFr: / 14:3DBC:Kaliya de surplus starts using Tête principale/,
+      regexFr: / 14:3DBC:Kaliya [dD]e [sS]urplus starts using Tête [pP]rincipale/,
       regexJa: / 14:3DBC:量産型カーリア starts using メインヘッド/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
@@ -18,13 +18,14 @@
       alertText: {
         en: 'Interrupt Kaliya',
         de: 'Unterbreche Kaliya',
+        fr: 'Interrompez Kaliya',
       },
     },
     {
       id: 'Twinning Berserk',
       regex: / 14:3DC0:Vitalized Reptoid starts using Berserk/,
       regexDe: / 14:3DC0:Gestärkter Reptoid starts using Berserker/,
-      regexFr: / 14:3DC0:reptoïde vitalisé starts using Furie/,
+      regexFr: / 14:3DC0:Reptoïde [vV]italisé starts using Furie/,
       regexJa: / 14:3DC0:ヴァイタライズ・レプトイド starts using ベルセルク/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
@@ -32,13 +33,14 @@
       alertText: {
         en: 'Interrupt Reptoid',
         de: 'Unterbreche Reptoid',
+        fr: 'Interrompez Reptoïde',
       },
     },
     {
       id: 'Twinning 128 Tonze Swing',
       regex: / 14:3DBA:Servomechanical Minotaur starts using 128-Tonze Swing/,
       regexDe: / 14:3DBA:Servomechanischer Minotaurus starts using 128-Tonzen-Schwung/,
-      regexFr: / 14:3DBA:minotaure servomécanique starts using Swing de 128 tonz/,
+      regexFr: / 14:3DBA:Minotaure [sS]ervomécanique starts using Swing [dD]e 128 [tT]onz/,
       regexJa: / 14:3DBA:サーヴォ・ミノタウロス starts using 128トンズ・スイング/,
       condition: function(data) {
         return data.CanSilence();
@@ -46,6 +48,7 @@
       alertText: {
         en: 'Silence Minotaur',
         de: 'Stumme Minotaur',
+        fr: 'Silence sur Minotaure',
       },
     },
     {
@@ -56,13 +59,14 @@
       infoText: {
         en: 'Spread (avoid cages)',
         de: 'Verteilen (Vermeide "Käfige")',
+        fr: 'Dispersez vous (évitez les cages)',
       },
     },
     {
       id: 'Twinning Beastly Roar',
       regex: / 14:3D64:Alpha Zaghnal starts using Beastly Roar/,
       regexDe: / 14:3D64:Alpha-Zaghnal starts using Bestialisches Brüllen/,
-      regexFr: / 14:3D64:zaghnal alpha starts using Rugissement bestial/,
+      regexFr: / 14:3D64:Zaghnal [aA]lpha starts using Rugissement [bB]estial/,
       regexJa: / 14:3D64:アルファ・ザグナル starts using ビーストロア/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
@@ -77,18 +81,20 @@
       id: 'Twinning Augurium',
       regex: / 14:3D65:Alpha Zaghnal starts using Augurium on (\y{Name})/,
       regexDe: / 14:3D65:Alpha-Zaghnal starts using Schmetterbohrer on (\y{Name})/,
-      regexFr: / 14:3D65:zaghnal alpha starts using Coup de tarière on (\y{Name})/,
+      regexFr: / 14:3D65:Zaghnal [aA]lpha starts using Coup [dD]e [tT]arière on (\y{Name})/,
       regexJa: / 14:3D65:アルファ・ザグナル starts using アウガースマッシュ on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Tank cleave on YOU',
             de: 'Tank cleave auf YOU',
+            fr: 'Tank cleave sur VOUS',
           };
         }
         return {
           en: 'Avoid tank cleave',
           de: 'Tank cleave ausweichen',
+          fr: 'Evitez le cleave',
         };
       },
     },
@@ -100,11 +106,13 @@
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -112,19 +120,21 @@
       id: 'Twinning Thunder Beam',
       regex: / 14:3DED:Mithridates starts using Thunder Beam on (\y{Name})/,
       regexDe: / 14:3DED:Mithridates starts using Gewitterstrahl on (\y{Name})/,
-      regexFr: / 14:3DED:Mithridate starts using Rayon de foudre on (\y{Name})/,
+      regexFr: / 14:3DED:Mithridate starts using Rayon [dD]e [fF]oudre on (\y{Name})/,
       regexJa: / 14:3DED:ミトリダテス starts using サンダービーム on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
+            fr: 'Buster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Buster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -134,7 +144,7 @@
       id: 'Twinning Allagan Thunder',
       regex: / 14:3DEF:Mithridates starts using Allagan Thunder on (\y{Name})/,
       regexDe: / 14:3DEF:Mithridates starts using Allagischer Blitzschlag on (\y{Name})/,
-      regexFr: / 14:3DEF:Mithridate starts using Foudre d'Allag on (\y{Name})/,
+      regexFr: / 14:3DEF:Mithridate starts using Foudre [dD]'[aA]llag on (\y{Name})/,
       regexJa: / 14:3DEF:ミトリダテス starts using アラガン・サンダー on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -142,49 +152,54 @@
       infoText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: 'Dispersez-vous',
       },
     },
     {
       id: 'Twinning Magitek Crossray',
       regex: / 14:3DF8:The Tycoon starts using Magitek Crossray/,
       regexDe: / 14:3DF8:Tycoon starts using Magitek-Kreuzlaser/,
-      regexFr: / 14:3DF8:Le Magnat starts using Rayon croisé magitek/,
+      regexFr: / 14:3DF8:Le Magnat starts using Rayon [cC]roisé [mM]agitek/,
       regexJa: / 14:3DF8:タイクーン starts using 魔導クロスレーザー/,
       suppressSeconds: 15,
       infoText: {
         en: 'cardinal lasers',
         de: 'Himmelrichtungs-Lasers',
+        fr: 'Lasers cardinaux',
       },
     },
     {
       id: 'Twinning Defensive Array',
       regex: / 14:3DF2:The Tycoon starts using Defensive Array/,
       regexDe: / 14:3DF2:Tycoon starts using Magitek-Schutzlaser/,
-      regexFr: / 14:3DF2:Le Magnat starts using Rayon protecteur magitek/,
+      regexFr: / 14:3DF2:Le Magnat starts using Rayon [pP]rotecteur [mM]agitek/,
       regexJa: / 14:3DF2:タイクーン starts using 魔導プロテクティブレーザー/,
       suppressSeconds: 15,
       infoText: {
         en: 'outer lasers',
         de: 'Lasers am Rand',
+        fr: 'Lasers extérieurs',
       },
     },
     {
       id: 'Twinning Rail Cannon',
       regex: / 14:3DFB:The Tycoon starts using Rail Cannon on (\y{Name})/,
       regexDe: / 14:3DFB:Tycoon starts using Magnetschienenkanone on (\y{Name})/,
-      regexFr: / 14:3DFB:Le Magnat starts using Canon électrique on (\y{Name})/,
+      regexFr: / 14:3DFB:Le Magnat starts using Canon [éÉ]lectrique on (\y{Name})/,
       regexJa: / 14:3DFB:タイクーン starts using レールキャノン on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Buster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -194,18 +209,19 @@
       id: 'Twinning Magicrystal',
       regex: / 14:3E0C:The Tycoon starts using Magicrystal/,
       regexDe: / 14:3E0C:Tycoon starts using Magitek-Kristall/,
-      regexFr: / 14:3E0C:Le Magnat starts using Cristal magitek/,
+      regexFr: / 14:3E0C:Le Magnat starts using Cristal [mM]agitek/,
       regexJa: / 14:3E0C:タイクーン starts using 魔導クリスタル/,
       alertText: {
         en: 'spread',
         de: 'Verteilen',
+        fr: 'Dispersez-vous',
       },
     },
     {
       id: 'Twinning Discharger',
       regex: / 14:3DFC:The Tycoon starts using High-Tension Discharger/,
       regexDe: / 14:3DFC:Tycoon starts using Hochspannungsentlader/,
-      regexFr: / 14:3DFC:Le Magnat starts using Déchargeur haute tension/,
+      regexFr: / 14:3DFC:Le Magnat starts using Déchargeur [hH]aute [tT]ension/,
       regexJa: / 14:3DFC:タイクーン starts using ハイテンション・ディスチャージャー/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
@@ -304,28 +320,25 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'vitalized shabti': 'chaouabti vitalisé',
-        'vitalized reptoid': 'reptoïde vitalisé',
-        'vitalized iksalion': 'iksalion vitalisé',
+        'vitalized shabti': 'Chaouabti vitalisé',
+        'vitalized reptoid': 'Reptoïde vitalisé',
+        'vitalized iksalion': 'Iksalion vitalisé',
         'The Tycoon': 'Le Magnat',
-        'the First Beast': 'annélide de l\'apocalypse',
-        'the Face of the Beast': 'visages de la Bête',
+        'the First Beast': 'Annélide de l\'apocalypse',
+        'the Face of the Beast': 'Visages de la Bête',
         'surplus Kaliya': 'Kaliya de surplus',
-        'search drone': 'drone de repérage',
-        'ghrah maximization': 'maxi ghrah',
-        'flanborg': 'flanborg',
-        'enforcement droid 209': 'droïde d\'exécution 209',
-        'clockwork ark knight': 'archichevalier mécanique',
-        'beta zaghnal': 'zaghnal bêta',
-        'alpha zaghnal': 'zaghnal alpha',
+        'search drone': 'Drone de repérage',
+        'ghrah maximization': 'Maxi ghrah',
+        'flanborg': 'Flanborg',
+        'enforcement droid 209': 'Droïde d\'exécution 209',
+        'clockwork ark knight': 'Archichevalier mécanique',
+        'beta zaghnal': 'Zaghnal bêta',
+        'alpha zaghnal': 'Zaghnal alpha',
         'Zaghnal': 'Zaghnal',
-        'Voidwalker': 'Voidwalker',
         'Servomechanical Minotaur': 'Minotaure Servomécanique',
         'Mithridates': 'Mithridate',
-        'Mark CXLIV Thermocoil Boilbuster': 'céruthermobouilleur v144',
-        'Leviathan': 'Léviathan',
+        'Mark CXLIV Thermocoil Boilbuster': 'Céruthermobouilleur v144',
         'Engage!': 'À l\'attaque',
-        'Eden Prime': 'Eden Prime',
         'Levinball': 'boule foudroyante',
         'The Cornice': 'Cœur du propulseur dimensionnel',
         'Aetherial Observation': 'Observatoire des flux éthérés',

@@ -18,7 +18,7 @@
       id: 'Hades Ravenous Assault',
       regex: / 14:4158:Hades starts using Ravenous Assault on (\y{Name})/,
       regexDe: / 14:4158:Hades starts using Fegefeuer der Helden on (\y{Name})/,
-      regexFr: / 14:4158:Hadès starts using Assaut acharné on (\y{Name})/,
+      regexFr: / 14:4158:Hadès starts using Assaut [aA]charné on (\y{Name})/,
       regexJa: / 14:4158:ハーデス starts using ラヴェナスアサルト on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -42,6 +42,7 @@
         return {
           en: 'Away From ' + data.ShortName(matches[1]),
           de: 'Weg von ' + data.ShortName(matches[1]),
+          fr: 'Loin de ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -49,55 +50,60 @@
       id: 'Hades Bad Faith Left',
       regex: / 14:4149:Hades starts using Bad Faith/,
       regexDe: / 14:4149:Hades starts using Maske des Grolls/,
-      regexFr: / 14:4149:Hadès starts using Mauvaise foi/,
+      regexFr: / 14:4149:Hadès starts using Mauvaise [fF]oi/,
       regexJa: / 14:4149:ハーデス starts using バッドフェイス/,
       infoText: {
         en: 'Left',
         de: 'Links',
+        fr: 'Gauche',
       },
     },
     {
       id: 'Hades Bad Faith Right',
       regex: / 14:414A:Hades starts using Bad Faith/,
       regexDe: / 14:414A:Hades starts using Maske des Grolls/,
-      regexFr: / 14:414A:Hadès starts using Mauvaise foi/,
+      regexFr: / 14:414A:Hadès starts using Mauvaise [fF]oi/,
       regexJa: / 14:414A:ハーデス starts using バッドフェイス/,
       infoText: {
         en: 'Right',
         de: 'Rechts',
+        fr: 'Droite',
       },
     },
     {
       id: 'Hades Broken Faith',
       regex: / 14:414D:Hades starts using Broken Faith/,
       regexDe: / 14:414D:Hades starts using Maske der Trauer/,
-      regexFr: / 14:414D:Hadès starts using Foi brisée/,
+      regexFr: / 14:414D:Hadès starts using Foi [bB]risée/,
       regexJa: / 14:414D:ハーデス starts using ブロークンフェイス/,
       alertText: {
         en: 'Dodge Giant Circles',
         de: 'Weiche dem großen Kreis aus',
+        fr: 'Evitez les cercles géants',
       },
     },
     {
       id: 'Hades Echo Right',
       regex: / 14:4164:Hades starts using Echo of the Lost/,
       regexDe: / 14:4164:Hades starts using Echo der Verlorenen/,
-      regexFr: / 14:4164:Hadès starts using Écho des disparus/,
+      regexFr: / 14:4164:Hadès starts using Écho [dD]es [dD]isparus/,
       regexJa: / 14:4164:ハーデス starts using エコー・オブ・ザ・ロスト/,
       infoText: {
         en: 'Right',
         de: 'Rechts',
+        fr: 'Gauche',
       },
     },
     {
       id: 'Hades Echo Left',
       regex: / 14:4163:Hades starts using Echo of the Lost/,
       regexDe: / 14:4163:Hades starts using Echo der Verlorenen/,
-      regexFr: / 14:4163:Hadès starts using Écho des disparus/,
+      regexFr: / 14:4163:Hadès starts using Écho [dD]es [dD]isparus/,
       regexJa: / 14:4163:ハーデス starts using エコー・オブ・ザ・ロスト/,
       infoText: {
         en: 'Left',
         de: 'Links',
+        fr: 'Gauche',
       },
     },
     {
@@ -119,7 +125,7 @@
       id: 'Hades Shadow Stream',
       regex: / 14:415C:Hades starts using Shadow Stream/,
       regexDe: / 14:415C:Hades starts using Schattenstrom/,
-      regexFr: / 14:415C:Hadès starts using Flux de Ténèbres/,
+      regexFr: / 14:415C:Hadès starts using Flux [dD]e Ténèbres/,
       regexJa: / 14:415C:ハーデス starts using シャドウストリーム/,
       alertText: {
         en: 'Go Outside',
@@ -132,7 +138,7 @@
       id: 'Hades Purgation',
       regex: / 14:4170:Hades starts using Polydegmon's Purgation/,
       regexDe: / 14:4170:Hades starts using Schlag des Polydegmon/,
-      regexFr: / 14:4170:Hadès starts using Assaut du Polydegmon/,
+      regexFr: / 14:4170:Hadès starts using Assaut [dD]u Polydegmon/,
       regexJa: / 14:4170:ハーデス starts using ポリデグモンストライク/,
       alertText: {
         en: 'Get Middle',
@@ -153,35 +159,38 @@
       infoText: {
         en: 'Cleanse Doom In Circle',
         de: 'Entferne Verhängnis mit den Kreisen',
+        fr: 'Dispell le Glas',
       },
     },
     {
       id: 'Hades Wail of the Lost Right',
       regex: / 14:4166:Hades starts using Wail of the Lost/,
       regexDe: / 14:4166:Hades starts using Wehklagen der Verlorenen/,
-      regexFr: / 14:4166:Hadès starts using Lamentation des disparus/,
+      regexFr: / 14:4166:Hadès starts using Lamentation [dD]es [dD]isparus/,
       regexJa: / 14:4166:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
       infoText: {
         en: 'Right Knockback',
         de: 'Rechter Knockback',
+        fr: 'Poussée à droite',
       },
     },
     {
       id: 'Hades Wail of the Lost Left',
       regex: / 14:4165:Hades starts using Wail of the Lost/,
       regexDe: / 14:4165:Hades starts using Wehklagen der Verlorenen/,
-      regexFr: / 14:4165:Hadès starts using Lamentation des disparus/,
+      regexFr: / 14:4165:Hadès starts using Lamentation [dD]es [dD]isparus/,
       regexJa: / 14:4165:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
       infoText: {
         en: 'Left Knockback',
         de: 'Linker Knockback',
+        fr: 'Poussée à gauche',
       },
     },
     {
       id: 'Hades Dual Strike Healer',
       regex: / 14:4161:Hades starts using Dual Strike/,
       regexDe: / 14:4161:Hades starts using Doppelschlag/,
-      regexFr: / 14:4161:Hadès starts using Frappe redoublée/,
+      regexFr: / 14:4161:Hadès starts using Frappe [rR]edoublée/,
       regexJa: / 14:4161:ハーデス starts using デュアルストライク/,
       condition: function(data, matches) {
         return data.role == 'healer';
@@ -202,6 +211,7 @@
       alertText: {
         en: 'Tank Buster Spread',
         de: 'Tank Buster verteilen',
+        fr: 'Tankbuster, séparez-vous',
       },
     },
     {
@@ -213,6 +223,7 @@
       alertText: {
         en: 'Drop Marker Outside',
         de: 'Marker ausen ablegen',
+        fr: 'Posez la marque à l\'extérieur',
       },
     },
     {
@@ -235,6 +246,7 @@
       infoText: {
         en: 'Kill Jail',
         de: 'Gefängniss zerstören',
+        fr: 'Dégommez la prison',
       },
     },
     {
@@ -246,6 +258,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: 'Dispersez-vous',
       },
     },
     {
@@ -257,6 +270,7 @@
       alertText: {
         en: 'Spread (Don\'t Stack!)',
         de: 'Verteilen (Ohne stacken)',
+        fr: 'Dispersez-vous (non packé)',
       },
     },
     {

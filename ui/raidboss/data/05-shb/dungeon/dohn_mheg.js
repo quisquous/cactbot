@@ -38,7 +38,7 @@
       // TODO: double check this with an import, is there a The??
       regex: / 14:3DAB:Dohnfast [bB]asket starts using Straight Punch/,
       regexDe: / 14:3DAB:Dohn-Blumenkorb starts using Gerade/,
-      regexFr: / 14:3DAB:panier de Dohn Mheg starts using Direct/,
+      regexFr: / 14:3DAB:[Pp]anier [dD]e Dohn Mheg starts using Direct/,
       regexJa: / 14:3DAB:ドォーヌ・バスケット starts using ボーンブレイカー/,
       condition: function(data) {
         return data.CanStun();
@@ -53,7 +53,7 @@
       // TODO: double check this with an import, is there a The??
       regex: / 14:3DAF:Dohnfast Etainmoth starts using Proboscis/,
       regexDe: / 14:3DAF:Dohn-Edianmotte starts using Rüssel/,
-      regexFr: / 14:3DAF:noctuétain de Dohn Mheg starts using Proboscis/,
+      regexFr: / 14:3DAF:[nN]octuétain [dD]e Dohn Mheg starts using Proboscis/,
       regexJa: / 14:3DAF:ドォーヌ・エーディンモス starts using プロボシス/,
       condition: function(data) {
         return data.CanStun();
@@ -68,7 +68,7 @@
       // TODO: double check this with an import, is there a The??
       regex: / 14:3DB5:Dohnfast Kelpie starts using Torpedo/,
       regexDe: / 14:3DB5:Dohn-Kelpie starts using Torpedo/,
-      regexFr: / 14:3DB5:kelpie de Dohn Mheg starts using Ruée aqueuse/,
+      regexFr: / 14:3DB5:[kK]elpie [dD]e Dohn Mheg starts using Ruée aqueuse/,
       regexJa: / 14:3DB5:ドォーヌ・ケルピー starts using トルペド/,
       condition: function(data) {
         return data.CanStun();
@@ -82,7 +82,7 @@
       id: 'Dohn Mheg Candy Cane',
       regex: / 14:2299:Aenc Thon, Lord [Oo]f [Tt]he Lingering Gaze starts using Candy Cane on (\y{Name})/,
       regexDe: / 14:2299:Aenc Thon der Glupschäugige starts using Quietschehammer on (\y{Name})/,
-      regexFr: / 14:2299:Aenc Thon l'envoûtant starts using Canne en sucre d'orge on (\y{Name})/,
+      regexFr: / 14:2299:Aenc Thon [lL]'[eE]nvoûtant starts using Canne [eE]n [sS]ucre [dD]'[oO]rge on (\y{Name})/,
       regexJa: / 14:2299:美眼のインク＝ゾン starts using キャンディケーン on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -105,7 +105,7 @@
       id: 'Dohn Mheg Landsblood',
       regex: / 14:1E8E:Aenc Thon, Lord [Oo]f [Tt]he Lingering Gaze starts using Landsblood/,
       regexDe: / 14:1E8E:Aenc Thon der Glupschäugige starts using Erdblut/,
-      regexFr: / 14:1E8E:Aenc Thon l'envoûtant starts using Pulsation phréatique/,
+      regexFr: / 14:1E8E:Aenc Thon [lL]'[eE]nvoûtant starts using Pulsation [pP]hréatique/,
       regexJa: / 14:1E8E:美眼のインク＝ゾン starts using 水脈乱打/,
       condition: function(data) {
         return data.role == 'healer';
@@ -133,7 +133,7 @@
       id: 'Dohn Mheg Timber',
       regex: / 14:22D3:Griaule starts using Tiiimbeeer/,
       regexDe: / 14:22D3:Griaule starts using Fääällt/,
-      regexFr: / 14:22D3:Griaule starts using Ça tooombe !/,
+      regexFr: / 14:22D3:Griaule starts using Ça [tT]ooombe/,
       regexJa: / 14:22D3:グリオール starts using ティーンバー/,
       condition: function(data) {
         return data.role == 'healer';
@@ -141,6 +141,7 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        fr: 'Dégats de zone',
       },
     },
     {
@@ -170,29 +171,31 @@
       id: 'Dohn Mheg Imp Choir',
       regex: / 14:34F0:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Imp Choir/,
       regexDe: / 14:34F0:Aenc Thon der Langbeinige starts using Koboldchor/,
-      regexFr: / 14:34F0:Aenc Thon le virtuose starts using Mélodie du kappa/,
+      regexFr: / 14:34F0:Aenc Thon [lL]e [Vv]irtuose starts using Mélodie [dD]u [kK]appa/,
       regexJa: / 14:34F0:楽聖のインク＝ゾン starts using カッパの調べ/,
       alertText: {
         en: 'Look Away',
         de: 'Weg schauen',
+        fr: 'Regardez ailleurs',
       },
     },
     {
       id: 'Dohn Mheg Toad Choir',
       regex: / 14:34EF:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Toad Choir/,
       regexDe: / 14:34EF:Aenc Thon der Langbeinige starts using Froschchor/,
-      regexFr: / 14:34EF:Aenc Thon le virtuose starts using Mélodie du crapeau/,
+      regexFr: / 14:34EF:Aenc Thon [lL]e [Vv]irtuose starts using Mélodie [dD]u [cC]rapeau/,
       regexJa: / 14:34EF:楽聖のインク＝ゾン starts using カエルの調べ/,
       alertText: {
         en: 'Out of Front',
         de: 'Weg von vorne',
+        fr: 'Ne restez pas devant',
       },
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
       regex: / 14:358C:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Virtuosic Capriccio/,
       regexDe: / 14:358C:Aenc Thon der Langbeinige starts using Virtuoses Capriccio/,
-      regexFr: / 14:358C:Aenc Thon le virtuose starts using Capriccio effréné/,
+      regexFr: / 14:358C:Aenc Thon [lL]e [Vv]irtuose starts using Capriccio [eE]ffréné/,
       regexJa: / 14:358C:楽聖のインク＝ゾン starts using 苛烈なるカプリッチョ/,
       condition: function(data) {
         return data.role == 'healer';
@@ -200,6 +203,7 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        fr: 'Dégats de zone',
       },
     },
   ],
