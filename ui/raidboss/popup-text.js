@@ -81,6 +81,7 @@ class PopupText {
     let timelines = [];
     let replacements = [];
     let timelineTriggers = [];
+    let timelineStyles = [];
     this.resetWhenOutOfCombat = true;
 
     // Recursively/iteratively process timeline entries for triggers.
@@ -142,12 +143,14 @@ class PopupText {
           Array.prototype.push.apply(replacements, set.timelineReplace);
         if (set.timelineTriggers)
           Array.prototype.push.apply(timelineTriggers, set.timelineTriggers);
+        if (set.timelineStyles)
+          Array.prototype.push.apply(timelineStyles, set.timelineStyles);
         if (set.resetWhenOutOfCombat !== undefined)
           this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
       }
     }
 
-    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements, timelineTriggers);
+    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements, timelineTriggers, timelineStyles);
   }
 
   OnJobChange(e) {
@@ -293,7 +296,10 @@ class PopupText {
     let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
     let duration = {
-      fromTrigger: ValueOrFunction(trigger.durationSeconds),
+      fromTrigger:
+        'durationSeconds' in trigger
+          ? ValueOrFunction(trigger.durationSeconds)
+          : undefined,
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
       infoText: this.options.DisplayInfoTextForSeconds,
