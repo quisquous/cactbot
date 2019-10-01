@@ -67,6 +67,13 @@
         2,
         "always"
       ],
+      "object-curly-newline": [
+        "error",
+        {
+          "multiline": true,
+          "consistent": true
+        }
+      ],
       "require-jsdoc": 0,
       "no-unused-vars": 0,
       "operator-linebreak": 2,

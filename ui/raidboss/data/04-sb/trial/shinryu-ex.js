@@ -5,37 +5,43 @@
   zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
   timelineFile: 'shinryu-ex.txt',
   triggers: [
-    { regex: /Removing combatant Shinryu\.  Max HP: 17167557\./,
+    {
+      regex: /Removing combatant Shinryu\.  Max HP: 17167557\./,
       run: function(data) {
         // Explicitly clear so ugly heart message doesn't appear after wipe.
         delete data.phase;
       },
     },
-    { regex: / 14:25DE:Shinryu starts using Earthen Fury/,
+    {
+      regex: / 14:25DE:Shinryu starts using Earthen Fury/,
       regexDe: / 14:25DE:Shinryu starts using Gaias Zorn/,
       run: function(data) {
         data.phase = 1;
       },
     },
-    { regex: / 14:25E7:Shinryu starts using Dark Matter/,
+    {
+      regex: / 14:25E7:Shinryu starts using Dark Matter/,
       regexDe: / 14:25E7:Shinryu starts using Dunkelmaterie/,
       run: function(data) {
         data.phase = 2;
       },
     },
-    { regex: / 14:25E4:Shinryu starts using Protostar/,
+    {
+      regex: / 14:25E4:Shinryu starts using Protostar/,
       regexDe: / 14:25E4:Shinryu starts using Protostern/,
       run: function(data) {
         data.phase = 3;
       },
     },
-    { regex: / 14:264E:Shinryu starts using Tidal Wave/,
+    {
+      regex: / 14:264E:Shinryu starts using Tidal Wave/,
       regexDe: / 14:264E:Shinryu starts using Flutwelle/,
       run: function(data) {
         data.phase = 4;
       },
     },
-    { id: 'ShinryuEx Akh Morn',
+    {
+      id: 'ShinryuEx Akh Morn',
       regex: / 14:25F3:Shinryu starts using Akh Morn on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -64,7 +70,8 @@
         de: 'akh morn',
       },
     },
-    { id: 'ShinryuEx Diamond Dust',
+    {
+      id: 'ShinryuEx Diamond Dust',
       regex: / 14:25DD:Shinryu starts using Diamond Dust/,
       regexDe: / 14:25DD:Shinryu starts using Diamantenstaub/,
       infoText: {
@@ -76,7 +83,8 @@
         de: 'stopp',
       },
     },
-    { id: 'ShinryuEx Dragonfist',
+    {
+      id: 'ShinryuEx Dragonfist',
       regex: / 14:2611:Shinryu starts using Dragonfist/,
       regexDe: / 14:2611:Shinryu starts using Drachenfaust/,
       infoText: {
@@ -84,7 +92,8 @@
         de: 'Raus aus der Mitte',
       },
     },
-    { id: 'ShinryuEx Hellfire',
+    {
+      id: 'ShinryuEx Hellfire',
       regex: / 14:25DB:Shinryu starts using Hellfire/,
       regexDe: / 14:25DB:Shinryu starts using Höllenfeuer/,
       durationSeconds: 7,
@@ -129,7 +138,8 @@
         };
       },
     },
-    { id: 'ShinryuEx Judgement Bolt',
+    {
+      id: 'ShinryuEx Judgement Bolt',
       regex: / 14:25DC:Shinryu starts using Judgment Bolt/,
       regexDe: / 14:25DC:Shinryu starts using Ionenschlag/,
       durationSeconds: 7,
@@ -138,7 +148,8 @@
         de: 'Raus aus dem Wasser',
       },
     },
-    { id: 'ShinryuEx Levinbolt',
+    {
+      id: 'ShinryuEx Levinbolt',
       regex: / 14:(?:25EA|2720|2725):Right Wing starts using Levinbolt on Right Wing/,
       regexDe: / 14:(?:25EA|2720|2725):Rechter Flügel starts using Keraunisches Feld on Rechter Flügel/,
       durationSeconds: 7,
@@ -167,7 +178,8 @@
         };
       },
     },
-    { id: 'ShinryuEx Levinbolt Phase 3',
+    {
+      id: 'ShinryuEx Levinbolt Phase 3',
       regex: / 14:(?:25EA|2720|2725):Right Wing starts using Levinbolt on Right Wing/,
       regexDe: / 14:(?:25EA|2720|2725):Rechter Flügel starts using Keraunisches Feld on Rechter Flügel/,
       delaySeconds: 9.5,
@@ -188,7 +200,8 @@
         }
       },
     },
-    { id: 'ShinryuEx Icicle Left',
+    {
+      id: 'ShinryuEx Icicle Left',
       regex: /:Icicle Impact:.*:-29\.99:-15:/,
       regexDe: /:Eiszapfen-Schlag:.*:-29\.99:-15:/,
       alarmText: {
@@ -196,7 +209,8 @@
         de: 'Eiszapfen, nach westen',
       },
     },
-    { id: 'ShinryuEx Icicle Right',
+    {
+      id: 'ShinryuEx Icicle Right',
       regex: /:Icicle Impact:.*:-29\.99:-25:/,
       regexDe: /:Eiszapfen-Schlag:.*:-29\.99:-25:/,
       alarmText: {
@@ -204,7 +218,8 @@
         de: 'Eiszapfen, nach Osten',
       },
     },
-    { id: 'ShinryuEx Tidal Wave',
+    {
+      id: 'ShinryuEx Tidal Wave',
       regex: / 14:25DA:Shinryu starts using Tidal Wave/,
       regexDe: / 14:25DA:Shinryu starts using Flutwelle/,
       delaySeconds: 3,
@@ -218,7 +233,8 @@
         de: 'Rückstoß',
       },
     },
-    { id: 'ShinryuEx Final Tidal Wave',
+    {
+      id: 'ShinryuEx Final Tidal Wave',
       regex: / 14:264E:Shinryu starts using Tidal Wave/,
       regexDe: / 14:264E:Shinryu starts using Flutwelle/,
       condition: function(data) {
@@ -237,7 +253,8 @@
         };
       },
     },
-    { id: 'ShinryuEx Tail Slap',
+    {
+      id: 'ShinryuEx Tail Slap',
       regex: / 14:25E2::Tail starts using Tail Slap/,
       regexDe: / 14:25E2:Schwanz starts using Schweifklapser/,
       delaySeconds: 2,
@@ -250,7 +267,8 @@
         de: 'schweif',
       },
     },
-    { id: 'ShinryuEx Heart',
+    {
+      id: 'ShinryuEx Heart',
       regex: / 03:Added new combatant The Worm's Heart/,
       regexDe: / 03:Added new combatant Shinryus Herz/,
       condition: function(data) {
@@ -281,7 +299,8 @@
         de: 'sturzflug',
       },
     },
-    { id: 'ShinryuEx Death Sentence',
+    {
+      id: 'ShinryuEx Death Sentence',
       regex: / 14:260A:Hakkinryu starts using Death Sentence on (\y{Name})/,
       regexDe: / 14:260A:Hakkinryu starts using Todesurteil on (\y{Name})/,
       alertText: function(data, matches) {
@@ -314,7 +333,8 @@
         }
       },
     },
-    { id: 'ShinryuEx Tera Slash',
+    {
+      id: 'ShinryuEx Tera Slash',
       regex: / 14:264B:Shinryu starts using Tera Slash on (\y{Name})/,
       regexDe: / 14:264B:Shinryu starts using Tera-Schlag on (\y{Name})/,
       alertText: function(data, matches) {
@@ -349,7 +369,8 @@
         }
       },
     },
-    { id: 'ShinryuEx Wormwail',
+    {
+      id: 'ShinryuEx Wormwail',
       regex: / 14:2648:Shinryu starts using Wormwail/,
       regexDe: / 14:2648:Shinryu starts using Shinryus Ruf/,
       alertText: {
@@ -361,7 +382,8 @@
         de: 'reingehen',
       },
     },
-    { id: 'ShinryuEx Breath',
+    {
+      id: 'ShinryuEx Breath',
       regex: / 14:264A:Shinryu starts using Benighting Breath/,
       regexDe: / 14:264A:Shinryu starts using Dunkelhauch/,
       alertText: {
@@ -373,7 +395,8 @@
         de: 'klief',
       },
     },
-    { id: 'ShinryuEx Final Left Wing',
+    {
+      id: 'ShinryuEx Final Left Wing',
       regex: / 14:2718:Left Wing starts using Judgment Bolt/,
       regexDe: / 14:2718:Linker Flügel starts using Ionenschlag/,
       condition: function(data) {
@@ -391,7 +414,8 @@
         data.finalWing = true;
       },
     },
-    { id: 'ShinryuEx Final Right Wing',
+    {
+      id: 'ShinryuEx Final Right Wing',
       regex: / 14:2719:Right Wing starts using Hellfire/,
       regexDe: / 14:2719:Rechter Flügel starts using Höllenfeuer/,
       condition: function(data) {
@@ -409,7 +433,8 @@
         data.finalWing = true;
       },
     },
-    { id: 'ShinryuEx Tethers',
+    {
+      id: 'ShinryuEx Tethers',
       regex: /1B:........:(\y{Name}):....:....:0061:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -440,7 +465,8 @@
         };
       },
     },
-    { id: 'ShinryuEx Tail Marker',
+    {
+      id: 'ShinryuEx Tail Marker',
       regex: /1B:........:(\y{Name}):....:....:007E:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -454,7 +480,8 @@
         de: 'schweif marker',
       },
     },
-    { id: 'ShinryuEx Shakers',
+    {
+      id: 'ShinryuEx Shakers',
       regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         data.shakerTargets = data.shakerTargets || [];
@@ -493,7 +520,8 @@
         delete data.shakerTargets;
       },
     },
-    { id: 'ShinryuEx Cocoon Marker',
+    {
+      id: 'ShinryuEx Cocoon Marker',
       regex: /1B:........:(\y{Name}):....:....:0039:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;

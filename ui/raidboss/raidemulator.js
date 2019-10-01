@@ -400,11 +400,13 @@ class LogPlayer {
   }
 
   SendPlayerEvent(name, job, id) {
-    let evt = new CustomEvent('onPlayerChangedEvent', { detail: {
-      id: id,
-      name: name,
-      job: job,
-    } });
+    let evt = new CustomEvent('onPlayerChangedEvent', {
+      detail: {
+        id: id,
+        name: name,
+        job: job,
+      },
+    });
     document.dispatchEvent(evt);
   }
 
