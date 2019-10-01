@@ -168,7 +168,6 @@
         'Dull Pain': 'Dumpfer Schmerz',
         'Earthquake': 'Erdbeben',
         'Easterlies': 'Ostwinde',
-        'Engage!': 'Start!',
         'Featherlance': 'Federlanze',
         'Flash Fire': 'Blitzfeuer',
         'Flash Gale': 'Blitzwind',

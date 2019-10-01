@@ -610,7 +610,7 @@
     { // Water Me (Delta/Omega)
       id: 'O4S2 Water Me',
       regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
-      regex: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

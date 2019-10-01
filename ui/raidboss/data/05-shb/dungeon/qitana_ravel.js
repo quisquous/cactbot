@@ -127,7 +127,7 @@
       },
       infoText: {
         en: 'aoes',
-        en: 'AoEs',
+        de: 'AoEs',
       },
     },
     {

@@ -6,10 +6,10 @@
     'TitaniaEx Wood\'s Embrace': '3D2F',
     // 'TitaniaEx Frost Rune': '3D2B',
     'TitaniaEx Gentle Breeze': '3F82',
-    'TitaniaEx Leafstorm': '3D39',
+    'TitaniaEx Leafstorm 1': '3D39',
     'TitaniaEx Puck\'s Rebuke': '3D43',
     'TitaniaEx Wallop': '3D3B',
-    'TitaniaEx Leafstorm': '3D49',
+    'TitaniaEx Leafstorm 2': '3D49',
   },
   damageFail: {
     'TitaniaEx Phantom Rune 1': '3D4C',

@@ -82,7 +82,6 @@ class CactbotLanguage {
       OffGuard: '2C93',
       SongOfTorment: '2C7A',
       PeculiarLight: '2C9D',
-      Overpower: '29',
       MythrilTempest: '404E',
       Prominence: '4049',
       HolyCircle: '404A',

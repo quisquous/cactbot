@@ -19,7 +19,7 @@
         return {
           en: 'Stack on ' + matches[1],
           de: 'Stack auf ' + matches[1],
-          de: 'Stack sur ' + matches[1],
+          fr: 'Stack sur ' + matches[1],
         };
       },
       tts: {

@@ -7,7 +7,7 @@
     'Gulg Tail Smash': '41AB',
     'Gulg Heavenslash': '41A9',
     'Gulg Typhoon Wing 1': '3D00',
-    'Gulg Typhoon Wing 1': '3D01',
+    'Gulg Typhoon Wing 2': '3D01',
     'Gulg Hurricane Wing': '3D03',
     'Gulg Earth Shaker': '37F5',
     'Gulg Sanctification': '41AE',

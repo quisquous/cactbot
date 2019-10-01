@@ -53,7 +53,6 @@
           text: {
             en: 'bunny',
             de: 'Hase',
-            de: e.abilityName,
             fr: e.abilityName,
             ja: e.abilityName,
           },
@@ -62,14 +61,11 @@
     },
     {
       id: 'General Missed Trick',
-      condition: function(e, data) {
-        return data.IsPlayerId(e.attackerId);
-      },
       damageRegex: gLang.kAbility.TrickAttack,
       condition: function(e) {
         // 2?710?03 == success
         //   710?03 == failure
-        return e.flags.substr(-8, 1) != '2';
+        return data.IsPlayerId(e.attackerId) && e.flags.substr(-8, 1) != '2';
       },
       mistake: function(e, data) {
         return {

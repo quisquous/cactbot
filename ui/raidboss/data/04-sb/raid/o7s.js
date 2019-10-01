@@ -302,7 +302,7 @@
           de: 'Fäule auf ' + data.ShortName(matches[1]),
           fr: 'Pourriture sur ' + data.ShortName(matches[1]),
           ko: '에테르 → ' + data.ShortName(matches[1]),
-          en: 'ロット on ' + data.ShortName(matches[1]),
+          ja: 'ロット on ' + data.ShortName(matches[1]),
         };
       },
       tts: function(data, matches) {
@@ -487,7 +487,6 @@
         'Diffractive Laser': 'Diffraktiver Laser',
         'Diffractive Plasma': 'Diffusionsplasma',
         'Electric Pulse': 'Elektrischer Impuls',
-        'Engage!': 'Start!',
         'Explosion': 'Explosion',
         'Ink': 'Tinte',
         'Light Blast': 'Lichtschwall',
@@ -524,7 +523,6 @@
         'Biblio': 'Bibliotaph',
         'Plane Laser': 'Luftwaffe Add Laser',
         'Virus': 'Virus',
-        'Enrage': 'Finalangriff',
         'Retrieve Ultros': 'Ultros Wiederherstellen',
         'Retrieve Air Force': 'Luftwaffe Wiederherstellen',
       },

@@ -138,7 +138,6 @@
         'Diffractive Laser': 'Diffraktiver Laser',
         'Diffractive Plasma': 'Diffusionsplasma',
         'Electric Pulse': 'Elektrischer Impuls',
-        'Engage!': 'Start!',
         'Explosion': 'Explosion',
         'Ink': 'Tinte',
         'Light Blast': 'Lichtschwall',
@@ -175,7 +174,6 @@
         'Biblio': 'Bibliotaph',
         'Plane Laser': 'Luftwaffe Add Laser',
         'Virus': 'Virus',
-        'Enrage': 'Finalangriff',
         'Burst/Darkness': 'Burst/Dunkelheit',
       },
       '~effectNames': {

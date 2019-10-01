@@ -293,7 +293,7 @@
       },
       infoText: {
         en: 'Pop alternating bubbles',
-        en: 'Flächen abwechselnd nehmen',
+        de: 'Flächen abwechselnd nehmen',
         fr: 'Absorbez les bulles en alternance',
         ja: '水出た',
       },
@@ -425,7 +425,7 @@
       delaySeconds: 25,
       infoText: {
         en: 'Move In, Avoid Defamation',
-        en: 'Rein gehen, vermeide Defamation',
+        de: 'Rein gehen, vermeide Defamation',
         fr: 'Sous le boss, évitez la médisance',
         ja: '前にノックバック',
       },

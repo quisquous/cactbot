@@ -160,7 +160,6 @@
         'Putrid Passenger': 'Fauliger Fahrgast',
         'Wroth Ghost': 'Erzürnter Geist',
         'Remorse': 'Melancholischer Geist',
-        'Agony': 'Reuiger Geist',
         'Malice': 'Bösartiger Geist',
         'Engage!': 'Start!',
       },
@@ -207,7 +206,6 @@
         'Putrid Passenger': 'Passager Putride',
         'Wroth Ghost': 'Fantôme Furieux',
         'Remorse': 'Fantôme Mélancolique',
-        'Agony': 'Fantôme Souffrant',
         'Malice': 'Fantôme Rancunier',
         'Engage!': 'À l\'attaque',
       },
@@ -254,7 +252,6 @@
         'Putrid Passenger': 'ゾンビー・パッセンジャー',
         'Wroth Ghost': 'ロスゴースト',
         'Remorse': '未練のゴースト',
-        'Agony': '苦悶のゴースト',
         'Malice': '怨念のゴースト',
       },
       'replaceText': {
@@ -294,7 +291,6 @@
         'Putrid Passenger': '좀비 승객',
         'Wroth Ghost': '격노하는 유령',
         'Remorse': '미련이 남은 유령',
-        'Agony': '고뇌하는 유령',
         'Malice': '원한 품은 유령',
       },
       'replaceText': {

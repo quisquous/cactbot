@@ -76,7 +76,7 @@
         }
         return {
           en: 'Water Positions',
-          en: 'Wasser Positionen',
+          de: 'Wasser Positionen',
           ja: 'ポジションへ',
           fr: 'Position pour l\'eau',
         };

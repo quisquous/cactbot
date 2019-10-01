@@ -78,7 +78,6 @@
       id: 'E2N Empty Hate',
       regex: / 14:3E46:the Hand of Erebos starts using Empty Hate/,
       regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
-      regexFr: / 14:3E46:bras d'Érèbe starts using Vaine malice/,
       regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
       regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
       infoText: {

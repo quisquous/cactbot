@@ -114,7 +114,7 @@
       regexJa: / 14:3D2A:ティターニア starts using 氷のルーン/,
       infoText: {
         en: 'Get Middle, Shiva Circles',
-        en: 'In die Mitte, Shiva Kreise',
+        de: 'In die Mitte, Shiva Kreise',
         fr: 'Allez au milieu, comme sur Shiva',
       },
     },

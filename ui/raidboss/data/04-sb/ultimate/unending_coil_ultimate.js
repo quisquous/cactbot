@@ -1713,7 +1713,6 @@
 
         'Doom': 'Verhängnis',
         'Thunderstruck': 'Donnerschwinge',
-        'Enrage': 'Finalangriff',
 
         '--push--': '--stoß--',
         'Targeted Fire': 'Feuer auf Ziel',

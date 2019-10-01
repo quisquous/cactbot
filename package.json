@@ -99,9 +99,12 @@
       ],
       "object-property-newline": [
         "error",
-	{
-	  "allowAllPropertiesOnSameLine": true
-	}
+        {
+          "allowAllPropertiesOnSameLine": true
+        }
+      ],
+        "no-dupe-keys": [
+        "error"
       ]
     }
   }

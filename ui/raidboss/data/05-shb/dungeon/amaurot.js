@@ -66,7 +66,7 @@
       },
       infoText: {
         en: 'aoe',
-        en: 'AoE',
+        de: 'AoE',
         fr: 'Dégâts de zone',
       },
     },
