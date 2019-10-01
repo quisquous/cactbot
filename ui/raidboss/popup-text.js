@@ -151,11 +151,11 @@ class PopupText {
     }
 
     this.timelineLoader.SetTimelines(
-      timelineFiles,
-      timelines,
-      replacements,
-      timelineTriggers,
-      timelineStyles
+        timelineFiles,
+        timelines,
+        replacements,
+        timelineTriggers,
+        timelineStyles
     );
   }
 
