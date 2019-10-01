@@ -187,7 +187,7 @@
         'Terminus Flesher': 'Boucher de l\'apocalypse',
         'Terminus Drainer': 'Draineur de l\'apocalypse',
         'Terminus Detonator': 'Détonateur de l\'apocalypse',
-        'Terminus Crier': Crieur de l\'apocalypse',
+        'Terminus Crier': 'Crieur de l\'apocalypse',
         'Terminus Bellwether': 'Sonneur de glas de l\'apocalypse',
         'Terminus Beholder': 'Tyrannœil de l\'apocalypse',
         'Mithridates': 'Mithridate',
