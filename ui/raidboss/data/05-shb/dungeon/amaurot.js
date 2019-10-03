@@ -18,16 +18,19 @@
           return {
             en: 'Drop Meteor West',
             de: 'Meteor im Westen ablegen',
+            fr: 'Poser le météore à l\'ouest',
           };
         } else if (data.meteor == 2) {
           return {
             en: 'Drop Meteor East',
             de: 'Meteor im Osten ablegen',
+            fr: 'Poser le météore à l\'est',
           };
         }
         return {
           en: 'Meteor',
           de: 'Meteor',
+          fr: 'Météore',
         };
       },
     },
@@ -41,6 +44,7 @@
         return {
           en: 'Spread',
           de: 'Verteilen',
+          fr: 'Dispersez-vous',
         };
       },
     },
@@ -48,7 +52,7 @@
       id: 'Amaurot Final Sky',
       regex: / 14:3CCB:The First Beast starts using The Final Sky/,
       regexDe: / 14:3CCB:Das erste Unheil starts using Letzter Himmel/,
-      regexFr: / 14:3CCB:annélide de l'apocalypse starts using Étoile de la ruine/,
+      regexFr: / 14:3CCB:[aA]nnélide [dD]e [lL]'[aA]pocalypse starts using Étoile [dD]e [lL]a [rR]uine/,
       regexJa: / 14:3CCB:ファースト・ビースト starts using 終末の流星/,
       alertText: {
         en: 'Hide Behind Boulder',
@@ -59,7 +63,7 @@
       id: 'Amaurot Shadow Wreck',
       regex: / 14:3CE3:Therion starts using Shadow Wreck/,
       regexDe: / 14:3CE3:Therion starts using Schatten Des Unheils/,
-      regexFr: / 14:3CE3:Mégatherion starts using Calamité sombre/,
+      regexFr: / 14:3CE3:Mégatherion starts using Calamité [sS]ombre/,
       regexJa: / 14:3CE3:メガセリオン starts using シャドウレック/,
       condition: function(data) {
         return data.role == 'healer';
@@ -79,6 +83,7 @@
       alertText: {
         en: 'Get Off',
         de: 'Runter gehen',
+        fr: 'Sur les plateformes extérieures',
       },
     },
   ],
@@ -163,30 +168,28 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'ヴォイドウォーカー': 'ヴォイドウォーカー',
-        'The First Beast': 'annélide de l\'apocalypse',
-        'The Face of the Beast': 'visages de la Bête',
-        'Fallen Star': 'étoile',
-        'Titania': 'Titania',
+        'The First Beast': 'Annélide de l\'apocalypse',
+        'The Face of the Beast': 'Visages de la Bête',
+        'Fallen Star': 'Étoile',
         'Therion': 'Mégatherion',
-        'Terminus Twitcher': 'picoreur de l\'apocalypse',
-        'Terminus Stalker': 'traqueur de l\'apocalypse',
-        'Terminus Sprinter': 'sprinteur de l\'apocalypse',
-        'Terminus Slitherer': 'rampeur de l\'apocalypse',
-        'Terminus Shriver': 'flétrisseur de l\'apocalypse',
-        'Terminus Shadower': 'ombrageur de l\'apocalypse',
-        'Terminus Roiler': 'nébulosité de l\'apocalypse',
-        'Terminus Reaper': 'faucheuse de l\'apocalypse',
-        'Terminus Pursuer': 'poursuivant de l\'apocalypse',
-        'Terminus Lacerator': 'lacérateur de l\'apocalypse',
-        'Terminus Idolizer': 'adorateur de l\'apocalypse',
-        'Terminus Howler': 'hurleur de l\'apocalypse',
-        'Terminus Flesher': 'boucher de l\'apocalypse',
-        'Terminus Drainer': 'draineur de l\'apocalypse',
-        'Terminus Detonator': 'détonateur de l\'apocalypse',
-        'Terminus Crier': 'crieur de l\'apocalypse',
-        'Terminus Bellwether': 'sonneur de glas de l\'apocalypse',
-        'Terminus Beholder': 'tyrannœil de l\'apocalypse',
+        'Terminus Twitcher': 'Picoreur de l\'apocalypse',
+        'Terminus Stalker': 'Traqueur de l\'apocalypse',
+        'Terminus Sprinter': 'Sprinteur de l\'apocalypse',
+        'Terminus Slitherer': 'Rampeur de l\'apocalypse',
+        'Terminus Shriver': 'Flétrisseur de l\'apocalypse',
+        'Terminus Shadower': 'Ombrageur de l\'apocalypse',
+        'Terminus Roiler': 'Nébulosité de l\'apocalypse',
+        'Terminus Reaper': 'Faucheuse de l\'apocalypse',
+        'Terminus Pursuer': 'Poursuivant de l\'apocalypse',
+        'Terminus Lacerator': 'Lacérateur de l\'apocalypse',
+        'Terminus Idolizer': 'Adorateur de l\'apocalypse',
+        'Terminus Howler': 'Hurleur de l\'apocalypse',
+        'Terminus Flesher': 'Boucher de l\'apocalypse',
+        'Terminus Drainer': 'Draineur de l\'apocalypse',
+        'Terminus Detonator': 'Détonateur de l\'apocalypse',
+        'Terminus Crier': 'Crieur de l\'apocalypse',
+        'Terminus Bellwether': 'Sonneur de glas de l\'apocalypse',
+        'Terminus Beholder': 'Tyrannœil de l\'apocalypse',
         'Mithridates': 'Mithridate',
         'Engage!': 'À l\'attaque',
         'The First Doom': 'La première Calamité',
@@ -194,7 +197,6 @@
         'The Third Doom': 'La troisième Calamité',
       },
       'replaceText': {
-        '攻撃': '攻撃',
         'The Final Sky': 'Étoile de la ruine',
         'The Falling Sky': 'Étoile de la calamité',
         'The Burning Sky': 'Étoile du désastre',

@@ -8,7 +8,7 @@
       id: 'Qitana Stonefist',
       regex: / 14:3C89:Lozatl starts using Stonefist on (\y{Name})/,
       regexDe: / 14:3C89:Lozatl starts using Steinfaust on (\y{Name})/,
-      regexFr: / 14:3C89:Lozatl starts using Poing rocheux on (\y{Name})/,
+      regexFr: / 14:3C89:Lozatl starts using Poing [rR]ocheux on (\y{Name})/,
       regexJa: / 14:3C89:ロツァトル starts using 石の拳 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -31,7 +31,7 @@
       id: 'Qitana Scorn',
       regex: / 14:3C8B:Lozatl starts using Lozatl's Scorn/,
       regexDe: / 14:3C8B:Lozatl starts using Lozatls Hohn/,
-      regexFr: / 14:3C8B:Lozatl starts using Injure de Lozatl/,
+      regexFr: / 14:3C8B:Lozatl starts using Injure [dD]e Lozatl/,
       regexJa: / 14:3C8B:ロツァトル starts using ロツァトルの罵声/,
       condition: function(data) {
         return data.role == 'healer';
@@ -39,18 +39,20 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
       id: 'Qitana Eerie Pillar',
       regex: / 14:3C8B:Lozatl starts using Lozatl's Scorn/,
       regexDe: / 14:3C8B:Lozatl starts using Lozatls Hohn/,
-      regexFr: / 14:3C8B:Lozatl starts using Injure de Lozatl/,
+      regexFr: / 14:3C8B:Lozatl starts using Injure [dD]e Lozatl/,
       regexJa: / 14:3C8B:ロツァトル starts using ロツァトルの罵声/,
       delaySeconds: 5,
       infoText: {
         en: 'Look for pillar',
         de: 'Auf die Pfeiler schauen',
+        fr: 'Cherchez les piliers',
       },
     },
     {
@@ -64,6 +66,7 @@
       infoText: {
         en: 'Stay on left flank',
         de: 'Auf seiner linken Seite stehen',
+        fr: 'Restez sur le flanc gauche',
       },
     },
     {
@@ -77,13 +80,14 @@
       infoText: {
         en: 'Stay on right flank',
         de: 'Auf seiner rechten Seite stehen',
+        fr: 'Restez sur le flanc droit',
       },
     },
     {
       id: 'Qitana Ripper Fang',
       regex: / 14:3C91:Batsquatch starts using Ripper Fang on (\y{Name})/,
       regexDe: / 14:3C91:Fledersquatch starts using Fetzzahn on (\y{Name})/,
-      regexFr: / 14:3C91:Batsquatch starts using Croc éventreur on (\y{Name})/,
+      regexFr: / 14:3C91:Batsquatch starts using Croc [éÉ]ventreur on (\y{Name})/,
       regexJa: / 14:3C91:バッツカッチ starts using リッパーファング on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -106,7 +110,7 @@
       id: 'Qitana Soundwave',
       regex: / 14:3C92:Batsquatch starts using Soundwave/,
       regexDe: / 14:3C92:Fledersquatch starts using Schallwelle/,
-      regexFr: / 14:3C92:Batsquatch starts using Onde sonore/,
+      regexFr: / 14:3C92:Batsquatch starts using Onde [sS]onore/,
       regexJa: / 14:3C92:バッツカッチ starts using サウンドウェーブ/,
       condition: function(data) {
         return data.role == 'healer';
@@ -114,13 +118,14 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
       id: 'Qitana Subsonics',
       regex: / 14:3C93:Batsquatch starts using Subsonics/,
       regexDe: / 14:3C93:Fledersquatch starts using Unterschall/,
-      regexFr: / 14:3C93:Batsquatch starts using Attaque subsonique/,
+      regexFr: / 14:3C93:Batsquatch starts using Attaque [sS]ubsonique/,
       regexJa: / 14:3C93:バッツカッチ starts using サブソニクス/,
       condition: function(data) {
         return data.role == 'healer';
@@ -128,6 +133,7 @@
       infoText: {
         en: 'aoes',
         de: 'AoEs',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -165,6 +171,7 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -179,6 +186,7 @@
       alertText: {
         en: 'Run Away From Boss',
         de: 'Renn weg vom Boss',
+        fr: 'Courez loin du boss',
       },
     },
     {
@@ -190,6 +198,7 @@
       alertText: {
         en: 'Drop Poison Outside',
         de: 'Gift am Rand ablegen',
+        fr: 'Posez le poison à l\'extérieur',
       },
     },
     {
@@ -200,11 +209,13 @@
           return {
             en: 'Stack Middle on YOU',
             de: 'In der Mitte auf DIR sammeln',
+            fr: 'Package au milieu sur VOUS',
           };
         }
         return {
           en: 'Stack Middle on ' + data.ShortName(matches[1]),
           de: 'In Der Mitte auf ' + data.ShortName(matches[1]) + ' sammeln',
+          fr: 'Package au milieu sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -217,6 +228,7 @@
       alertText: {
         en: 'Spread to Sides',
         de: 'Auf die Seiten verteilen',
+        fr: 'Dispersez-vous sur les bords',
       },
     },
   ],
