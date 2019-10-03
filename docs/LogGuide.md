@@ -837,7 +837,8 @@ Examples:
 ### 23: NetworkTether
 
 This log line is for tethers between enemies or enemies and players.
-This does not appear to be used for player to player skill tethers like dragonsight or cover. (It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
+This does not appear to be used for player to player skill tethers like dragonsight or cover.
+(It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
 
 Examples:
 ```
@@ -863,12 +864,24 @@ There are also a number of examples where tethers are generated in some other wa
 
 ## 24:LimitBreak
 
-This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party. (Generation is not recorded while at cap.) It starts at 0x0000 at the beginning of the instance (or encounter in the case of a single-encounter instance,) and counts up by 0x00DC (220 decimal) until the limit break is used, or to a max of 0x7530 (30,000 decimal). This rate of increase is constant, but other actions taken can cause extra increments to happen independent of the base increase. (These other increments occur in the same packet as the base rate, but separately.) Each limit break bar is 0x2710 (10,000 decimal) units.
+This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party.
+(Generation is not recorded while at cap.)
+It starts at 0x0000 at the beginning of the instance (or encounter in the caseof a single-encounter instance,)
+and counts up by 0x00DC (220 decimal,) until the limit break is used,
+or the instance's maximum limit value is reached.
+This rate of increase is constant,
+but other actions taken can cause extra increments to happen independent of the base increase.
+(These other increments occur in the same packet as the base rate, but separately.)
+
+Each limit break bar is 0x2710 (10,000 decimal) units.
+Thus, the maximum possible recorded value would be 0x7530.
 
 ## 25:NetworkEffectResult
 
 This log line appears to be recorded at any time an actor is targeted by a hostile action.
-It appears that the action must hit and must deal non-zero damage OR must inflict its effect in order to generate this log line. Individual DoT ticks do not appear to generate separate lines.
+It appears that the action must hit and must deal non-zero damage,
+OR must inflict its effect in order to generate this log line.
+Individual DoT ticks do not appear to generate separate lines.
 
 This line's structure (parsed) is
 `25:Player Object ID:Sequence Number:Current HP:Max HP:Current MP:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:[packet data thereafter]`
@@ -878,7 +891,10 @@ A sample line would be
 
 ## 26:NetworkStatusEffects
 
-For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines. For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove), [1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove), and [25:NetworkEffectResult](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-networkeffectresult).
+For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
+For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
+[1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
+ and [25:NetworkEffectResult](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-networkeffectresult).
 
 This line's structure is:
 
@@ -888,11 +904,14 @@ A sample line would be:
 
 `26:12345678:PlayerOne:3C503C1C:24136:24136:9045:10000:4:0:-0.4730835:-158.1598:-23.9:3.110625:03E8:45:0:020130:0:106501CA:0129:4172D113:106501CA:012A:4168C8B4:106501CA:012B:40919168:106501CA:0232:40E00000:E0000000:`
 
-It seems likely that this line was added in order to extend functionality for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
+It seems likely that this line was added in order to extend functionality
+for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
 
 ## 27:NetworkUpdateHP
 
-It's not completely clear what triggers this log line, but it contains basic information comparable to `25` and `26`. It applies to allies and fairies/pets.
+It's not completely clear what triggers this log line,
+but it contains basic information comparable to `25` and `26`.
+It applies to allies and fairies/pets.
 
 This line's structure is:
 
