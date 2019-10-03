@@ -37,7 +37,7 @@
       //   (4) prey marker (tethered to #3)
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
-      regex: /1B:........:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
@@ -110,7 +110,7 @@
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
-      regex: /1B:........:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
       alertText: function(data) {
         if (data.librarySpellbladePrinted)
           return;

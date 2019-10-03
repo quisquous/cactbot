@@ -102,7 +102,7 @@
     },
     { // Stack marker
       id: 'Lakshmi Pall of Light',
-      regex: /1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: function(data, matches) {
         if (!data.chanchala)
           return;
@@ -160,7 +160,7 @@
     },
     { // Offtank cleave
       id: 'Lakshmi Path of Light',
-      regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -173,7 +173,7 @@
     },
     { // Cross aoe
       id: 'Lakshmi Hand of Grace',
-      regex: /1B:........:(\y{Name}):....:....:006B:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006B:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -186,7 +186,7 @@
     },
     { // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
-      regex: /1B:........:(\y{Name}):....:....:006D:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006D:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -199,7 +199,7 @@
     },
     { // Red marker during add phase
       id: 'Lakshmi Water III',
-      regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

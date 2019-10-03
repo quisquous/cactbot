@@ -104,7 +104,7 @@
     },
     {
       id: 'Orbonne Mustadio Searchlight',
-      regex: / 1B:........:(\y{Name}):....:....:00A4:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A4:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -116,7 +116,7 @@
     },
     {
       id: 'Orbonne Spread Marker',
-      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -165,7 +165,7 @@
     },
     {
       id: 'Orbonne Agrias Vacuum',
-      regex: / 1B:........:(\y{Name}):....:....:00A5:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A5:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -215,7 +215,7 @@
     },
     {
       id: 'Orbonne Agrias Hallowed Bolt',
-      regex: / 1B:........:(\y{Name}):....:....:00A6:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A6:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -390,7 +390,7 @@
     },
     {
       id: 'Orbonne Cid Shadowblade Bubble',
-      regex: / 1B:........:(\y{Name}):....:....:00AA:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AA:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -402,7 +402,7 @@
     },
     {
       id: 'Orbonne Cid Hallowed Bolt',
-      regex: / 1B:........:(\y{Name}):....:....:0017:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -414,7 +414,7 @@
     },
     {
       id: 'Orbonne Cid Crush Weapon',
-      regex: / 1B:........:(\y{Name}):....:....:005C:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -426,7 +426,7 @@
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
-      regex: / 1B:........:\y{Name}:....:....:003E:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
       suppressSeconds: 10,
       infoText: {
         en: 'Stack',
@@ -436,7 +436,7 @@
     },
     {
       id: 'Orbonne Cid Divine Ruination',
-      regex: / 1B:........:(\y{Name}):....:....:006E:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -540,7 +540,7 @@
     },
     {
       id: 'Orbonne Ultima Dark Cannonade',
-      regex: / 1B:........:(\y{Name}):....:....:0037:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0037:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -552,7 +552,7 @@
     },
     {
       id: 'Orbonne Ultima Eruption',
-      regex: / 1B:........:(\y{Name}):....:....:0066:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0066:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -564,7 +564,7 @@
     },
     {
       id: 'Orbonne Ultima Flare IV',
-      regex: / 1B:........:(\y{Name}):....:....:0057:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

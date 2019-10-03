@@ -435,7 +435,7 @@
     },
     {
       id: 'ShinryuEx Tethers',
-      regex: /1B:........:(\y{Name}):....:....:0061:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0061:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -467,7 +467,7 @@
     },
     {
       id: 'ShinryuEx Tail Marker',
-      regex: /1B:........:(\y{Name}):....:....:007E:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:007E:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -482,7 +482,7 @@
     },
     {
       id: 'ShinryuEx Shakers',
-      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         data.shakerTargets = data.shakerTargets || [];
         data.shakerTargets.push(matches[1]);
@@ -522,7 +522,7 @@
     },
     {
       id: 'ShinryuEx Cocoon Marker',
-      regex: /1B:........:(\y{Name}):....:....:0039:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0039:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

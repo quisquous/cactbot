@@ -73,6 +73,17 @@ let testWellFormedLosesEffectTriggerRegex = function(file, contents) {
   }
 };
 
+let testObjectIdRegex = function(file, contents) {
+  let objectIdRegex = createTriggerRegexString('.*:\\.{8}:.*');
+  let results = contents.match(objectIdRegex);
+  if (results) {
+    for (const result of results) {
+      console.error(`${file}: ObjectId should be used in favor of literal '........', found '${result}'`);
+      exitCode = 1;
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -81,6 +92,7 @@ let testTriggerFile = function(file) {
   testWellFormedStartsUsingTriggerRegex(file, contents);
   testWellFormedGainsEffectTriggerRegex(file, contents);
   testWellFormedLosesEffectTriggerRegex(file, contents);
+  testObjectIdRegex(file, contents);
 };
 
 testTriggerFile(inputFilename);

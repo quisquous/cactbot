@@ -32,7 +32,7 @@
     },
     {
       id: 'RathEx Fire Breath',
-      regex: / 1B:........:(\y{Name}):....:....:0081:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0081:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -43,7 +43,7 @@
     },
     {
       id: 'RathEx Fireball',
-      regex: / 1B:........:(\y{Name}):....:....:(?:0084|005D):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(?:0084|005D):0000:0000:0000:/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {

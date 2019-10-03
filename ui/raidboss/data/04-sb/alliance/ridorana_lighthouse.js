@@ -107,7 +107,7 @@
     },
     {
       id: 'Ridorana Famfrit Dark Cannonade',
-      regex: / 1B:........:(\y{Name}):....:....:0037:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0037:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -119,7 +119,7 @@
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
-      regex: / 1B:........:(\y{Name}):....:....:008B:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -271,7 +271,7 @@
     },
     {
       id: 'Ridorana Construct Accelerate Spread',
-      regex: / 1B:........:(\y{Name}):....:....:008A:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -286,7 +286,7 @@
     },
     {
       id: 'Ridorana Construct Accelerate Stack',
-      regex: / 1B:........:(\y{Name}):....:....:0064:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0064:0000:0000:0000:/,
       condition: function(data) {
         return !data.accelerateSpreadOnMe;
       },

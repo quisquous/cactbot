@@ -29,7 +29,7 @@
     },
     {
       id: 'Malikah Head Toss Stack',
-      regex: / 1B:........:(\y{Name}):....:....:003E:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

@@ -21,11 +21,11 @@
   triggers: [
     {
       id: 'E4S Earthen Gauntlets',
-      regex: / 15:........:Titan:40E6:Earthen Gauntlets/,
-      regexCn: / 15:........:泰坦:40E6:Earthen Gauntlets/,
-      regexDe: / 15:........:Titan:40E6:Gaia-Armberge/,
-      regexFr: / 15:........:Titan:40E6:Poing Tellurique/,
-      regexJa: / 15:........:タイタン:40E6:大地の手甲/,
+      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E6:Earthen Gauntlets/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲/,
       run: function(data) {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -33,11 +33,11 @@
     },
     {
       id: 'E4S Earthen Armor',
-      regex: / 15:........:Titan:40E[79]:Earthen Armor/,
-      regexCn: / 15:........:泰坦:40E[79]:Earthen Gauntlets/,
-      regexDe: / 15:........:Titan:40E[79]:Basaltpanzer/,
-      regexFr: / 15:........:Titan:40E[79]:Armure Tellurique/,
-      regexJa: / 15:........:タイタン:40E[79]:大地の鎧/,
+      regex: / 15:\y{ObjectId}:Titan:40E[79]:Earthen Armor/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E[79]:Earthen Gauntlets/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E[79]:Basaltpanzer/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E[79]:Armure Tellurique/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E[79]:大地の鎧/,
       run: function(data) {
         data.phase = 'armor';
         delete data.printedBury;
@@ -143,11 +143,11 @@
     },
     {
       id: 'E4S Massive Landslide - Front',
-      regex: / 15:........:Titan:40E6:Earthen Gauntlets/,
-      regexCn: / 15:........:泰坦:40E6:Earthen Gauntlets/,
-      regexDe: / 15:........:Titan:40E6:Gaia-Armberge/,
-      regexFr: / 15:........:Titan:40E6:Poing Tellurique/,
-      regexJa: / 15:........:タイタン:40E6:大地の手甲/,
+      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E6:Earthen Gauntlets/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲/,
       alertText: {
         en: 'Landslide: In Front',
         de: 'Armberge: Vor ihm',
@@ -156,11 +156,11 @@
     },
     {
       id: 'E4S Massive Landslide - Sides',
-      regex: / 15:........:Titan:4117:Massive Landslide/,
-      regexCn: / 15:........:泰坦:4117:Massive Landslide/,
-      regexDe: / 15:........:Titan:4117:Gigantischer Bergsturz/,
-      regexFr: / 15:........:Titan:4117:Glissement Apocalyptique/,
-      regexJa: / 15:........:タイタン:4117:メガ・ランドスライド/,
+      regex: / 15:\y{ObjectId}:Titan:4117:Massive Landslide/,
+      regexCn: / 15:\y{ObjectId}:泰坦:4117:Massive Landslide/,
+      regexDe: / 15:\y{ObjectId}:Titan:4117:Gigantischer Bergsturz/,
+      regexFr: / 15:\y{ObjectId}:Titan:4117:Glissement Apocalyptique/,
+      regexJa: / 15:\y{ObjectId}:タイタン:4117:メガ・ランドスライド/,
       infoText: {
         en: 'Get to Sides',
         de: 'Zur Seite',

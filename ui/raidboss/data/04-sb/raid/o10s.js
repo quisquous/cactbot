@@ -47,7 +47,7 @@
     },
     {
       id: 'O10S Fire Marker',
-      regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -65,7 +65,7 @@
     },
     {
       id: 'O10S Death From Below',
-      regex: / 1B:........:(\y{Name}):....:....:008F:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008F:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -77,7 +77,7 @@
     },
     {
       id: 'O10S Death From Above',
-      regex: / 1B:........:(\y{Name}):....:....:008E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008E:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

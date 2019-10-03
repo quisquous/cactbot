@@ -191,7 +191,7 @@
     },
     {
       id: 'Qitana Viper Poison',
-      regex: / 1B:........:(\y{Name}):....:....:00AB:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AB:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -203,7 +203,7 @@
     },
     {
       id: 'Qitana Confession of Faith Stack',
-      regex: / 1B:........:(\y{Name}):....:....:003E:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

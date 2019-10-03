@@ -359,7 +359,7 @@
     },
     {
       id: 'O9S Knock Down Marker',
-      regex: / 1B:........:(\y{Name}):....:....:0057:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -523,7 +523,7 @@
     },
     {
       id: 'O9S Earth Stack Marker',
-      regex: / 1B:........:(\y{Name}):....:....:003E:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
       suppressSeconds: 10,
       infoText: function(data) {
         return {
