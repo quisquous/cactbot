@@ -383,7 +383,7 @@ class TimerBar extends HTMLElement {
 
   // Apply all styles from an object where keys are CSS properties
   applyStyles(styles) {
-    const s = Object.keys(styles).map(k => {
+    const s = Object.keys(styles).map((k) => {
       return `${k}:${styles[k]};`;
     }).join('');
 
