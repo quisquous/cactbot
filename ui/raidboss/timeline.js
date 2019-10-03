@@ -640,10 +640,8 @@ class TimelineUI {
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
 
-    if (e.style) {
-      if (e.style.color) bar.color = e.style.color;
-      if (e.style.font) bar.font = e.style.font;
-    }
+    if (e.style)
+      bar.applyStyles(e.style);
 
     if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
       bar.fg = this.barColor;
