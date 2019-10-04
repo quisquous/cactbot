@@ -122,10 +122,10 @@
       },
     },
     {
-      regex: /16:........:Ragnarok:26B8:Heavensfall:........:(\y{Name}):/,
-      regexDe: /16:........:Ragnarök:26B8:Himmelssturz:........:(\y{Name}):/,
-      regexFr: /16:........:Ragnarok:26B8:Destruction Universelle:........:(\y{Name}):/,
-      regexJa: /16:........:ラグナロク:26B8:天地崩壊:........:(\y{Name}):/,
+      regex: /16:\y{ObjectId}:Ragnarok:26B8:Heavensfall:\y{ObjectId}:(\y{Name}):/,
+      regexDe: /16:\y{ObjectId}:Ragnarök:26B8:Himmelssturz:\y{ObjectId}:(\y{Name}):/,
+      regexFr: /16:\y{ObjectId}:Ragnarok:26B8:Destruction Universelle:\y{ObjectId}:(\y{Name}):/,
+      regexJa: /16:\y{ObjectId}:ラグナロク:26B8:天地崩壊:\y{ObjectId}:(\y{Name}):/,
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -184,7 +184,7 @@
     },
     {
       // Hatch Collect
-      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       run: function(data, matches) {
         data.hatch = data.hatch || [];
         data.hatch.push(matches[1]);
@@ -192,7 +192,7 @@
     },
     {
       id: 'UCU Hatch Marker YOU',
-      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -211,7 +211,7 @@
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       delaySeconds: 0.25,
       infoText: function(data, matches) {
         if (!data.hatch)
@@ -230,7 +230,7 @@
     },
     {
       // Hatch Cleanup
-      regex: /1B:........:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -570,10 +570,10 @@
       id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: /:Thunderwing:26C7:.*?:........:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:26C7:.*?:........:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:26C7:.*?:........:(\y{Name}):/,
-      regexJa: /:サンダーウィング:26C7:.*?:........:(\y{Name}):/,
+      regex: /:Thunderwing:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexDe: /:Donnerschwinge:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexFr: /:Aile-de-foudre:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexJa: /:サンダーウィング:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -975,7 +975,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
-      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1006,7 +1006,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
-      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1025,7 +1025,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1035,7 +1035,7 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
-      regex: /1B:........:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1080,7 +1080,7 @@
     },
     {
       id: 'UCU Octet Nael Marker',
-      regex: /1B:........:(\y{Name}):....:....:0077:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0077:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1095,7 +1095,7 @@
     },
     {
       id: 'UCU Octet Dragon Marker',
-      regex: /1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1109,7 +1109,7 @@
     },
     {
       id: 'UCU Octet Baha Marker',
-      regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1124,7 +1124,7 @@
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: /1B:........:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1210,7 +1210,7 @@
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -1229,14 +1229,14 @@
     },
     {
       // Megaflare stack tracking
-      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       run: function(data, matches) {
         data.megaStack.push(matches[1]);
       },
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1283,7 +1283,7 @@
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1306,7 +1306,7 @@
     },
     {
       id: 'UCU Earthshaker Me',
-      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -1325,14 +1325,14 @@
     },
     {
       // Earthshaker tracking
-      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       run: function(data, matches) {
         data.shakers.push(matches[1]);
       },
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)

@@ -274,7 +274,7 @@
     },
     {
       id: 'T9 Dragon Safe Zone',
-      regex: / 1B:........:\y{Name}:....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
@@ -284,7 +284,7 @@
     },
     {
       id: 'T9 Dragon Marker',
-      regex: / 1B:........:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

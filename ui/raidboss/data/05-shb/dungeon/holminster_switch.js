@@ -94,7 +94,7 @@
     },
     {
       id: 'Holminster Exorcise Stack',
-      regex: / 1B:........:(\y{Name}):....:....:003E:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -150,7 +150,7 @@
     },
     {
       id: 'Holminster Chain Down',
-      regex: / 1B:........:(\y{Name}):....:....:005C:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -164,7 +164,7 @@
     },
     {
       id: 'Holminster Taphephobia',
-      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

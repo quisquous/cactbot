@@ -148,7 +148,7 @@
     },
     {
       id: 'BA Art Orb Marker',
-      regex: / 1B:........:(\y{Name}):....:....:005C:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
       condition: function(data) {
         return data.side == 'west';
       },
@@ -170,7 +170,7 @@
     },
     {
       id: 'BA Art Piercing Dark Marker',
-      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.side == 'west' && data.me == matches[1];
       },
@@ -264,7 +264,7 @@
     },
     {
       id: 'BA Owain Piercing Light Marker',
-      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches[1];
       },
@@ -275,7 +275,7 @@
     },
     {
       id: 'BA Owain Dorito Stack',
-      regex: / 1B:........:(\y{Name}):....:....:008B:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches[1];
       },
@@ -386,7 +386,7 @@
     },
     {
       id: 'BA Raiden Lancing Bolt',
-      regex: / 1B:........:(\y{Name}):....:....:008A:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
       condition: function(data, matches) {
         return data.sealed && data.me == matches[1];
       },
@@ -826,7 +826,7 @@
     },
     {
       id: 'BA Ozma Meteor',
-      regex: / 1B:........:(\y{Name}):....:....:0039:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:/,
       condition: function(data, matches) {
         return data.sealed && data.me == matches[1];
       },

@@ -66,7 +66,7 @@
     },
     {
       id: 'O6S Demonic Stone',
-      regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -80,14 +80,14 @@
       },
     },
     {
-      regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       run: function(data, matches) {
         data.lastKiss = matches[1];
       },
     },
     {
       id: 'O6S Last Kiss Marker',
-      regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

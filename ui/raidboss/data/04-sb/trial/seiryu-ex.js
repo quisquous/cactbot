@@ -124,7 +124,7 @@
     },
     {
       id: 'SeiryuEx Ascending Marker Tracking',
-      regex: / 1B:........:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
       condition: function(data) {
         return data.blazing;
       },
@@ -134,7 +134,7 @@
     },
     {
       id: 'SeiryuEx Ascending Marker You',
-      regex: / 1B:........:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.blazing && matches[1] == data.me;
       },
@@ -157,7 +157,7 @@
     },
     {
       id: 'SeiryuEx Ascending Tower You',
-      regex: / 1B:........:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
       condition: function(data, matches) {
         if (!data.blazing || data.markers.length != 4)
           return false;

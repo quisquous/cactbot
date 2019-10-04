@@ -137,7 +137,7 @@
     },
     {
       id: 'O7S Orb Marker',
-      regex: /1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -158,7 +158,7 @@
     },
     {
       id: 'O7S Blue Marker',
-      regex: /1B:........:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me != matches[1])
           return;
@@ -198,7 +198,7 @@
     },
     {
       id: 'O7S Prey',
-      regex: /1B:........:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {

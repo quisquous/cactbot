@@ -75,7 +75,7 @@
     },
     {
       id: 'O5N Diabolic Light',
-      regex: /1B:........:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -87,7 +87,7 @@
     },
     {
       id: 'O5N Diabolic Wind',
-      regex: /1B:........:(\y{Name}):....:....:0046:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

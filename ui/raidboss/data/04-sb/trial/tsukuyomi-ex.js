@@ -132,7 +132,7 @@
     },
     {
       id: 'Tsukuyomi Meteor Marker',
-      regex: / 1B:........:(\y{Name}):....:....:0083:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0083:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -144,7 +144,7 @@
     },
     {
       id: 'Tsukuyomi Lunacy',
-      regex: / 1B:........:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: {
         en: 'Stack',
         de: 'Stack',
@@ -153,7 +153,7 @@
     },
     {
       id: 'Tsukuyomi Hagetsu',
-      regex: / 1B:........:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },

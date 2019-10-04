@@ -705,7 +705,7 @@
     },
     { // Earthshaker
       id: 'O4S2 Earthshaker',
-      regex: /1B:........:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

@@ -54,7 +54,7 @@
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
-      regex: / 1B:........:\y{Name}:....:....:(003[2-5]|005A)/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(003[2-5]|005A)/,
       suppressSeconds: 10,
       infoText: {
         en: 'Spread (avoid cages)',
@@ -100,7 +100,7 @@
     },
     {
       id: 'Twinning Charge Eradicated',
-      regex: / 1B:........:(\y{Name}):....:....:005D/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005D/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -140,7 +140,7 @@
       },
     },
     {
-      // Alternatively, we could use 1B:........:(\y{Name}):....:....:00A0
+      // Alternatively, we could use 1B:\y{ObjectId}:(\y{Name}):....:....:00A0
       id: 'Twinning Allagan Thunder',
       regex: / 14:3DEF:Mithridates starts using Allagan Thunder on (\y{Name})/,
       regexDe: / 14:3DEF:Mithridates starts using Allagischer Blitzschlag on (\y{Name})/,
@@ -205,7 +205,7 @@
       },
     },
     {
-      // An alternative is 1B:........:\y{Name}:....:....:00A9
+      // An alternative is 1B:\y{ObjectId}:\y{Name}:....:....:00A9
       id: 'Twinning Magicrystal',
       regex: / 14:3E0C:The Tycoon starts using Magicrystal/,
       regexDe: / 14:3E0C:Tycoon starts using Magitek-Kristall/,

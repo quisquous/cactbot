@@ -9,7 +9,7 @@
 
     {
       id: 'Dun Scaith Generic Stack-up',
-      regex: / 1B:........:(\y{Name}):....:....:003E/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -34,7 +34,7 @@
     },
     {
       // Currently set up to just notify the healers/Bard to cleanse.
-      // Or use / 16:........:Deathgaze Hollow:1C85:Doomsay:........:(\y{Name})
+      // Or use / 16:\y{ObjectId}:Deathgaze Hollow:1C85:Doomsay:\y{ObjectId}:(\y{Name})
       // This would allow for notifying who needs cleansing directly, but might be spammy
 
       id: 'Dun Scaith Doom',
@@ -58,7 +58,7 @@
     },
     {
       id: 'Dun Scaith Void Sprite',
-      regex: / 03:........:Added new combatant Void Sprite/,
+      regex: / 03:\y{ObjectId}:Added new combatant Void Sprite/,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill sprites',
@@ -66,7 +66,7 @@
     },
     {
       id: 'Dun Scaith Aero 2',
-      regex: / 1B:........:(\y{Name}):....:....:0046/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -99,7 +99,7 @@
 
     {
       id: 'Dun Scaith Scythe Drop',
-      regex: / 1B:........:(\y{Name}):....:....:0017/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017/,
       suppressSeconds: 5,
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
@@ -170,7 +170,7 @@
     },
     {
       id: 'Dun Scaith Debilitator',
-      regex: / 1A:........:\y{Name} gains the effect of (Fire|Water) Resistance Down/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire|Water) Resistance Down/,
       suppressSeconds: 10,
       alertText: function(matches) {
         if (matches[1] == 'Water') {
@@ -210,7 +210,7 @@
     },
     {
       id: 'Dun Scaith Prey Markers',
-      regex: / 1A:........:(\y{Name}) gains the effect of Prey/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Prey/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -248,7 +248,7 @@
       // Triggering off the Bit appearance
       // The cast time on Aetheromodulator is under 3 seconds
       id: 'Dun Scaith Bit Circles',
-      regex: / 03:........:Added new combatant Proto Bit/,
+      regex: / 03:\y{ObjectId}:Added new combatant Proto Bit/,
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid Bit AoEs',
@@ -256,7 +256,7 @@
     },
     {
       id: 'Dun Scaith Aether Collectors',
-      regex: /03:........:Added new combatant Aether Collector/,
+      regex: /03:\y{ObjectId}:Added new combatant Aether Collector/,
       suppressSeconds: 5,
       alertText: {
         en: 'Kill collectors',
@@ -277,7 +277,7 @@
     },
     {
       id: 'Dun Scaith Thirty Thorns',
-      regex: / (1[56]:........:Scathach:1D2B:Thirty Thorns|1[56]:........:Scathach:1D1B:Soar)/,
+      regex: / (1[56]:\y{ObjectId}:Scathach:1D2B:Thirty Thorns|1[56]:\y{ObjectId}:Scathach:1D1B:Soar)/,
       suppressSeconds: 5,
       alertText: {
         en: 'Out of melee',
@@ -312,7 +312,7 @@
     },
     {
       id: 'Dun Scaith Shadow Limb Spawn',
-      regex: / 03:........:Added new combatant Shadow Limb/,
+      regex: / 03:\y{ObjectId}:Added new combatant Shadow Limb/,
       suppressSeconds: 5,
       alertText: {
         en: 'Kill the hands',
@@ -330,7 +330,7 @@
 
     {
       id: 'Dun Scaith Nox Orbs',
-      regex: / 1B:........:(\y{Name}):....:....:005C/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C/,
       suppressSeconds: 5,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -366,7 +366,7 @@
     },
     {
       id: 'Dun Scaith Noctoshield',
-      regex: / 1A:........:Diabolos gains the effect of Noctoshield/,
+      regex: / 1A:\y{ObjectId}:Diabolos gains the effect of Noctoshield/,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -388,7 +388,7 @@
     },
     {
       id: 'Dun Scaith Deathgates',
-      regex: / 03:........:Added new combatant Deathgate/,
+      regex: / 03:\y{ObjectId}:Added new combatant Deathgate/,
       suppressSeconds: 5,
       infoText: {
         en: 'Kill the deathgates',
@@ -414,7 +414,7 @@
     },
     {
       id: 'Dun Scaith Hollow Night',
-      regex: / 1B:........:(\y{Name}):....:....:005B/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005B/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -440,7 +440,7 @@
     {
       // This is the tank version of the stack marker. It has minimal circular bordering
       id: 'Dun Scaith Blindside',
-      regex: / 1B:........:(\y{Name}):....:....:005D/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005D/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -454,7 +454,7 @@
     },
     {
       id: 'Dun Scaith Earth Shaker',
-      regex: /1B:........:(\y{Name}):....:....:0028/,
+      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
