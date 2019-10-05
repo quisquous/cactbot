@@ -652,7 +652,7 @@
       regexDe: / 1B:\y{ObjectId}:Rechter Arm:....:....:009[CD]:0000:0000:0000:/,
       regexFr: / 1B:\y{ObjectId}:Unité Bras Droit:....:....:009[CD]:0000:0000:0000:/,
       regexJa: / 1B:\y{ObjectId}:ライトアームユニット:....:....:009[CD]:0000:0000:0000:/,
-      regexCn: / 1B:\y{ObjectId}:右臂组:....:....:009(?:C|D):0000:0000:0000:/,
+      regexCn: / 1B:\y{ObjectId}:右臂组:....:....:009[CD]:0000:0000:0000:/,
       condition: function(data) {
         return data.numArms == 3;
       },
