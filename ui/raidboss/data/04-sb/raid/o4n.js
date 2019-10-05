@@ -27,7 +27,7 @@
           };
         }
       },
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),

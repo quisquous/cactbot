@@ -111,7 +111,7 @@
       regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Erweckter/,
       regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Marcheur Des Limbes/,
       condition: function(data) {
-        return data.role == 'tank' | data.role == 'healer';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {

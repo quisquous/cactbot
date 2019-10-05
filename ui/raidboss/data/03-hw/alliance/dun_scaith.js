@@ -119,7 +119,7 @@
           };
         }
       },
-      infoText: function(data) {
+      infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),
@@ -404,7 +404,7 @@
           };
         }
       },
-      infoText: function(data) {
+      infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches[1]),

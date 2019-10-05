@@ -99,8 +99,8 @@
           }
         }
         return {
-          en: 'stack on ' + data.holyTargets[i],
-          de: 'stack auf ' + data.holyTargets[i],
+          en: 'stack on ' + data.holyTargets[1],
+          de: 'stack auf ' + data.holyTargets[1],
         };
       },
       run: function(data) {
