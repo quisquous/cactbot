@@ -54,7 +54,7 @@
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(003[2-5]|005A)/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:003[2-5]|005A)/,
       suppressSeconds: 10,
       infoText: {
         en: 'Spread (avoid cages)',
