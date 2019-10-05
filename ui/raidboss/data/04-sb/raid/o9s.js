@@ -2,13 +2,14 @@
 
 /* O9S - Alphascape 1.0 Savage*/
 [{
-  zoneRegex: /^Alphascape V1.0 \(Savage\)$/,
+  zoneRegex: /^(Alphascape V1.0 \(Savage\)|欧米茄零式时空狭缝 \(阿尔法幻境1\))$/,
   timelineFile: 'o9s.txt',
   triggers: [
     // General actions
     {
       id: 'O9S Chaotic Dispersion',
       regex: / 14:3170:Chaos starts using Chaotic Dispersion on (\y{Name})/,
+      regexCn: / 14:3170:卡奥斯 starts using 散布混沌 on (\y{Name})/,
       regexDe: / 14:3170:Chaos starts using Chaos-Dispersion on (\y{Name})/,
       regexFr: / 14:3170:Chaos starts using Dispersion Chaotique on (\y{Name})/,
       regexJa: / 14:3170:カオス starts using カオティックディスパーション on (\y{Name})/,
@@ -18,6 +19,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            cn: '死刑减伤',
           };
         }
         if (data.role == 'tank') {
@@ -26,6 +28,7 @@
             de: 'Tank-Wechsel',
             fr: 'Tank Swap',
             ja: 'スイッチ',
+            cn: '换T',
           };
         }
         if (data.role == 'healer') {
@@ -33,6 +36,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑-> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -43,6 +47,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         } else if (data.role == 'tank') {
           return {
@@ -50,6 +55,7 @@
             de: 'tenk wechsel',
             fr: 'tank swap',
             ja: 'スイッチ',
+            cn: '换T',
           };
         }
       },
@@ -57,6 +63,7 @@
     {
       id: 'O9S Longitudinal Implosion',
       regex: /14:3172:Chaos starts using Longitudinal Implosion/,
+      regexCn: /14:3172:卡奥斯 starts using 经度聚爆/,
       regexDe: /14:3172:Chaos starts using Vertikale Implosion/,
       regexFr: /14:3172:Chaos starts using Implosion Verticale/,
       regexJa: /14:3172:カオス starts using ヴァーティカルインプロージョン/,
@@ -67,6 +74,7 @@
             de: 'Stirb Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
             ja: '縦 -> 横で死ぬ',
+            cn: '死：前后 -> 左右',
           };
         }
       },
@@ -77,6 +85,7 @@
             de: 'Seiten -> Vorne/Hinten',
             fr: 'Côtés puis Devant/Derrière',
             ja: '横 -> 縦',
+            cn: '左右 -> 前后',
           };
         }
       },
@@ -87,6 +96,7 @@
             de: 'hinten dran',
             fr: 'aller derrière',
             ja: '縦から',
+            cn: '前后找死',
           };
         }
         return {
@@ -94,12 +104,14 @@
           de: 'an die Seiten',
           fr: 'aller sur les cotés',
           ja: '横から',
+          cn: '左右闪避',
         };
       },
     },
     {
       id: 'O9S Latitudinal Implosion',
       regex: /14:3173:Chaos starts using Latitudinal Implosion/,
+      regexCn: /14:3173:卡奥斯 starts using 纬度聚爆/,
       regexDe: /14:3173:Chaos starts using Horizontale Implosion/,
       regexFr: /14:3173:Chaos starts using Implosion Horizontale/,
       regexJa: /14:3173:カオス starts using ホリゾンタルインプロージョン/,
@@ -110,6 +122,7 @@
             de: 'Stirb an Seiten -> Vorne/Hinten',
             fr: 'Devant/Derrière puis Côtés',
             ja: '横 -> 縦で死ぬ',
+            cn: '死：左右 -> 前后',
           };
         }
       },
@@ -120,6 +133,7 @@
             de: 'Vorne/Hinten -> Seiten',
             fr: 'Devant/Derrière puis Côtés',
             ja: '縦 -> 横',
+            cn: '前后 -> 左右',
           };
         }
       },
@@ -130,6 +144,7 @@
             de: 'an die Seiten',
             fr: 'aller sur les cotés',
             ja: '横から',
+            cn: '左右找死',
           };
         }
         return {
@@ -137,12 +152,14 @@
           de: 'hinten dran',
           fr: 'aller derrière',
           ja: '縦から',
+          cn: '前后闪避',
         };
       },
     },
     {
       id: 'O9S Damning Edict',
       regex: /14:3171:Chaos starts using Damning Edict/,
+      regexCn: /14:3171:卡奥斯 starts using 诅咒敕令/,
       regexDe: /14:3171:Chaos starts using Verdammendes Edikt/,
       regexFr: /14:3171:Chaos starts using Décret Accablant/,
       regexJa: /14:3171:カオス starts using ダミングイーディクト/,
@@ -152,12 +169,14 @@
           de: 'Hinten dran',
           fr: 'Derrière le boss',
           ja: '背面へ',
+          cn: '来背面',
         };
       },
     },
     {
       id: 'O9S Orbs Fiend',
       regex: /14:317D:Chaos starts using Fiendish Orbs/,
+      regexCn: /14:317D:卡奥斯 starts using 追踪/,
       regexDe: /14:317D:Chaos starts using Höllenkugeln/,
       regexFr: /14:317D:Chaos starts using Ordre De Poursuite/,
       regexJa: /14:317D:カオス starts using 追尾せよ/,
@@ -168,6 +187,7 @@
             de: 'Kugel-Verbindungen',
             fr: 'Récupérez l\'orbe',
             ja: '線出たよ',
+            cn: '接线',
           };
         }
       },
@@ -178,6 +198,7 @@
             de: 'Kugel-Verbindungen',
             fr: 'Récupérez l\'orbe',
             ja: '線出たよ',
+            cn: '坦克接线注意治疗',
           };
         }
       },
@@ -187,6 +208,7 @@
     {
       id: 'O9S Fire Phase Tracking',
       regex: / 14:3186:Chaos starts using Blaze/,
+      regexCn: / 14:3186:卡奥斯 starts using 烈焰/,
       regexDe: / 14:3186:Chaos starts using /,
       regexFr: / 14:3186:Chaos starts using /,
       regexJa: / 14:3186:カオス starts using /,
@@ -198,6 +220,7 @@
     {
       id: 'O9S Entropy Spread',
       regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
+      regexCn: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from  for (\y{Float}) Seconds/,
       regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
       regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
       regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
@@ -221,6 +244,7 @@
             de: 'Verteilen',
             fr: 'Ecartez-vous',
             ja: '散開',
+            cn: '分散',
           };
         } else if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -228,6 +252,7 @@
             de: 'Verteilen und bleiben',
             fr: 'Ecartez-vous et restez',
             ja: '散開して待機',
+            cn: '分散并停留',
           };
         }
         // DPS entropy #2
@@ -236,6 +261,7 @@
           de: 'Stack und Bleiben',
           fr: 'Packez-vous et restez',
           ja: '中央に集合',
+          cn: '中间集合',
         };
       },
       run: function(data) {
@@ -246,6 +272,7 @@
     {
       id: 'O9S Entropy Avoid Hit',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from  for (\y{Float}) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
@@ -267,11 +294,13 @@
         de: 'Zur Mitte',
         fr: 'Allez au centre',
         ja: '中央へ',
+        cn: '中间躲避',
       },
     },
     {
       id: 'O9S Fire Big Bang',
       regex: / 14:3180:Chaos starts using Big Bang /,
+      regexCn: / 14:3180:卡奥斯 starts using 顶起 /,
       regexDe: / 14:3180:Chaos starts using /,
       regexFr: / 14:3180:Chaos starts using /,
       regexJa: / 14:3180:カオス starts using /,
@@ -285,6 +314,7 @@
         de: 'Zur Mitte',
         fr: 'Allez au centre',
         ja: '中央へ',
+        cn: '中间躲避',
       },
     },
 
@@ -292,6 +322,7 @@
     {
       id: 'O9S Water Phase Tracking',
       regex: / 14:3187:Chaos starts using Tsunami /,
+      regexCn: / 14:3187:卡奥斯 starts using 海啸 /,
       regexDe: / 14:3187:Chaos starts using /,
       regexFr: / 14:3187:Chaos starts using /,
       regexJa: / 14:3187:カオス starts using /,
@@ -303,6 +334,7 @@
     {
       id: 'O9S Dynamic Fluid 1',
       regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexCn: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌之水) from/,
       regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
       regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
       regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
@@ -317,11 +349,13 @@
         de: 'Sammeln Donut',
         fr: 'Packez-vous',
         ja: 'スタック',
+        cn: '集合放月环',
       },
     },
     {
       id: 'O9S Dynamic Fluid 2',
       regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexCn: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌之水) from/,
       regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
       regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
       regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
@@ -336,11 +370,13 @@
         de: 'Sammeln Donut',
         fr: 'Packez-vous',
         ja: 'スタック',
+        cn: '集合放月环',
       },
     },
     {
       id: 'O9S Dynamic Fluid 3',
       regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
+      regexCn: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌之水) from/,
       regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
       regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
       regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
@@ -355,6 +391,7 @@
         de: 'Sammeln Donut',
         fr: 'Packez-vous',
         ja: 'スタック',
+        cn: '集合放月环',
       },
     },
     {
@@ -370,6 +407,7 @@
             de: 'Gehe Nord / Süd',
             fr: 'Allez au Nord/Sud',
             ja: 'メテオ捨てて',
+            cn: '远离放点名',
           };
         } else if (data.phaseType == 'wind') {
           return {
@@ -377,6 +415,7 @@
             de: 'Geh nächste Ecke nah am Tornado',
             fr: 'Déposez dans les coins',
             ja: 'メテオ捨てて + ノックバック',
+            cn: '远离放点名 + 冲回人群',
           };
         }
       },
@@ -386,6 +425,7 @@
     {
       id: 'O9S Wind Phase Tracking',
       regex: / 14:3188:Chaos starts using Cyclone /,
+      regexCn: / 14:3188:卡奥斯 starts using 龙卷风 /,
       regexDe: / 14:3188:Chaos starts using /,
       regexFr: / 14:3188:Chaos starts using /,
       regexJa: / 14:3188:カオス starts using /,
@@ -397,6 +437,7 @@
     {
       id: 'O9S Headwind',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Headwind) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|混沌之风) from  for (\y{Float}) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Chaosböen) from  for (\y{Float}) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Vent du chaos) from  for (\y{Float}) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|混沌の風) from  for (\y{Float}) Seconds/,
@@ -410,6 +451,7 @@
     {
       id: 'O9S Tailwind',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Tailwind) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|混沌之逆风) from  for (\y{Float}) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Chaossturm) from  for (\y{Float}) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Vent contraire du chaos) from  for (\y{Float}) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|混沌の逆風) from  for (\y{Float}) Seconds/,
@@ -423,6 +465,7 @@
     {
       id: 'O9S Cyclone Knockback',
       regex: / 14:318F:Chaos starts using Cyclone /,
+      regexCn: / 14:318F:卡奥斯 starts using 龙卷风 /,
       regexDe: / 14:318F:Chaos starts using /,
       regexFr: / 14:318F:Chaos starts using /,
       regexJa: / 14:318F:カオス starts using /,
@@ -432,6 +475,7 @@
             en: 'Back to Tornado',
             de: 'Rücken zum Tornado',
             fr: 'Regardez vers l\'extérieur',
+            cn: '背对龙卷风',
           };
         }
         if (data.wind == 'tail') {
@@ -439,6 +483,7 @@
             en: 'Face the Tornado',
             de: 'Zum Tornado hin',
             fr: 'Regardez la tornade',
+            cn: '面对龙卷风',
           };
         }
       },
@@ -451,6 +496,7 @@
     {
       id: 'O9S Earth Phase Tracking',
       regex: / 14:3189:Chaos starts using Earthquake /,
+      regexCn: / 14:3189:卡奥斯 starts using 地震 /,
       regexDe: / 14:3189:Chaos starts using /,
       regexFr: / 14:3189:Chaos starts using /,
       regexJa: / 14:3189:カオス starts using /,
@@ -462,6 +508,7 @@
     {
       id: 'O9S Accretion',
       regex: / 1A:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
+      regexCn: / 1A:\y{Name} gains the effect of (?:Unknown_644|混沌之泥土)/,
       regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_644|Chaossumpf)/,
       regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
       regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_644|混沌の泥土)/,
@@ -476,6 +523,7 @@
             de: 'Alle vollheilen',
             fr: 'Soignez tout le monde full vie',
             ja: 'HP戻して',
+            cn: '奶满全队',
           };
         }
         return {
@@ -483,12 +531,14 @@
           de: 'Tanks/Heiler vollheilen',
           fr: 'Soignez Heals/Tanks full vie',
           ja: 'HP戻して',
+          cn: '奶满T奶',
         };
       },
     },
     {
       id: 'O9S Primordial Crust',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌之土)/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
@@ -501,6 +551,7 @@
           de: 'An nächster Mechanik tödlichen Schaden nehmen',
           fr: 'Mourrez sur la prochaine mécanique',
           ja: '次のギミックで死んでね',
+          cn: '想办法找死',
         };
       },
       run: function(data, matches) {
@@ -510,6 +561,7 @@
     {
       // Primordial Crust Cleanup
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌之土)/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
@@ -530,6 +582,7 @@
           en: 'Stack with partner',
           de: 'Stacks verteilen',
           fr: 'Packez-vous en binôme',
+          cn: '与伙伴重合',
         };
       },
     },
@@ -538,6 +591,7 @@
     {
       id: 'O9S Orb Phase Tracking',
       regex: / 14:318A:Chaos starts using Bowels Of Agony /,
+      regexCn: / 14:318A:卡奥斯 starts using /,
       regexDe: / 14:318A:Chaos starts using /,
       regexFr: / 14:318A:Chaos starts using /,
       regexJa: / 14:318A:カオス starts using /,
@@ -548,6 +602,7 @@
     {
       id: 'O9S Orb Entropy',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from  for (\y{Float}) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
@@ -565,6 +620,7 @@
             de: 'Rücken zum DPS',
             fr: 'Dos au DPS',
             ja: 'DPSの後ろへ',
+            cn: '背对DPS',
           };
         }
       },
@@ -575,6 +631,7 @@
     {
       id: 'O9S Orb Dynamic Fluid',
       regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|混沌之水) from  for (\y{Float}) Seconds/,
       regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
       regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
       regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
@@ -590,6 +647,7 @@
           de: 'töte deinen DPS',
           fr: 'Tuez les DPS',
           ja: '水当てて',
+          cn: '水环害死DPS',
         };
       },
     },
@@ -598,6 +656,7 @@
     {
       id: 'O9S Enrage Phase Tracking',
       regex: / 14:3186:Chaos starts using Blaze /,
+      regexCn: / 14:3186:卡奥斯 starts using 烈焰 /,
       regexDe: / 14:3186:Chaos starts using /,
       regexFr: / 14:3186:Chaos starts using /,
       regexJa: / 14:3186:カオス starts using /,
@@ -755,6 +814,52 @@
         'Physical Vulnerability Up': '被物理ダメージ増加',
         'Primordial Crust': '混沌の土',
         'Tailwind': '混沌の逆風',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Chaos': '卡奥斯',
+        'Chaosphere': '混沌晶球',
+        'Dark Crystal': '黑水晶',
+        'Dark crystal': '黑水晶',
+        'Engage!': '战斗开始！',
+        'dark crystal': '黑水晶',
+      },
+      'replaceText': {
+        'Big Bang': '顶起',
+        'Blaze': '烈焰',
+        'Bowels of Agony': '深层痛楚',
+        'Chaosphere': '混沌晶球',
+        'Chaotic Dispersion': '散布混沌',
+        'Cyclone': '龙卷风',
+        'Damning Edict': '诅咒敕令',
+        'Earthquake': '地震',
+        'Fiendish Orbs': '追踪',
+        'Knock': '中弹',
+        'Knock Down': '中弹',
+        'Latitudinal Implosion': '纬度聚爆',
+        'Longitudinal Implosion': '经度聚爆',
+        'Orbshadow': '追踪',
+        'Shockwave': '冲击波',
+        'Soul of Chaos': '混沌之魂',
+        'Stray Flames': '混沌之炎',
+        'Stray Spray': '混沌之水',
+        'Tsunami': '海啸',
+        'Umbra Smash': '本影爆碎',
+        'attack': '攻击',
+        'Long/Lat Implosion': '经/纬聚爆',
+        '\\(ALL\\)': '(所有)',
+      },
+      '~effectNames': {
+        'Accretion': '混沌之泥土',
+        'Dynamic Fluid': '混沌之水',
+        'Entropy': '混沌之炎',
+        'Headwind': '混沌之风',
+        'Magic Vulnerability Up': '魔法受伤加重',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Primordial Crust': '混沌之土',
+        'Tailwind': '混沌之逆风',
       },
     },
   ],

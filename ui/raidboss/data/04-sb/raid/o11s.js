@@ -2,12 +2,13 @@
 
 // O11S - Alphascape 3.0 Savage
 [{
-  zoneRegex: /^Alphascape V3.0 \(Savage\)$/,
+  zoneRegex: /^(Alphascape V3.0 \(Savage\)|欧米茄零式时空狭缝 \(阿尔法幻境3\))$/,
   timelineFile: 'o11s.txt',
   triggers: [
     {
       id: 'O11S Mustard Bomb',
       regex: / 14:326D:Omega starts using Mustard Bomb on (\y{Name})/,
+      regexCn: / 14:326D:欧米茄 starts using 芥末爆弹 on (\y{Name})/,
       regexDe: / 14:326D:Omega starts using Senfbombe on (\y{Name})/,
       regexFr: / 14:326D:Oméga starts using Obus D\'ypérite on (\y{Name})/,
       regexJa: / 14:326D:オメガ starts using マスタードボム on (\y{Name})/,
@@ -17,6 +18,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            cn: '死刑',
           };
         }
         if (data.role == 'healer') {
@@ -24,6 +26,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: data.ShortName(matches[1]) + '吃死刑',
           };
         }
       },
@@ -34,6 +37,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         }
       },
@@ -49,6 +53,7 @@
       // will at least say left/right for the second.
       // Starboard/Larboard Cannon cleanup.
       regex: / 14:326[24]:Omega starts using/,
+      regexCn: / 14:326[24]:欧米茄 starts using/,
       regexDe: / 14:326[24]:Omega starts using/,
       regexFr: / 14:326[24]:Oméga starts using/,
       regexJa: / 14:326[24]:オメガ starts using/,
@@ -60,6 +65,7 @@
     {
       id: 'O11S Starboard Cannon 1',
       regex: / 14:326[23]:Omega starts using Starboard Wave Cannon/,
+      regexCn: / 14:326[23]:欧米茄 starts using 右舷齐射·波动炮/,
       regexDe: / 14:326[23]:Omega starts using Steuerbord-Wellenkanone/,
       regexFr: / 14:326[23]:Oméga starts using Canon Plasma Tribord/,
       regexJa: / 14:326[23]:オメガ starts using 右舷斉射・波動砲/,
@@ -71,6 +77,7 @@
         de: 'Links',
         fr: 'Gauche',
         ja: '左',
+        cn: '左',
       },
       run: function(data) {
         data.lastWasStarboard = true;
@@ -79,6 +86,7 @@
     {
       id: 'O11S Larboard Cannon 1',
       regex: / 14:326[45]:Omega starts using Larboard Wave Cannon/,
+      regexCn: / 14:326[45]:欧米茄 starts using 左舷齐射·波动炮/,
       regexDe: / 14:326[45]:Omega starts using Backbord-Wellenkanone/,
       regexFr: / 14:326[45]:Oméga starts using Canon Plasma Bâbord/,
       regexJa: / 14:326[45]:オメガ starts using 左舷斉射・波動砲/,
@@ -90,6 +98,7 @@
         de: 'Rechts',
         fr: 'Droite',
         ja: '右',
+        cn: '右',
       },
       run: function(data) {
         data.lastWasStarboard = false;
@@ -98,6 +107,7 @@
     {
       id: 'O11S Starboard Cannon 2',
       regex: / 14:3263:Omega starts using Starboard Wave Cannon/,
+      regexCn: / 14:3263:欧米茄 starts using 右舷齐射·波动炮/,
       regexDe: / 14:3263:Omega starts using Steuerbord-Wellenkanone/,
       regexFr: / 14:3263:Oméga starts using Canon Plasma Tribord/,
       regexJa: / 14:3263:オメガ starts using 右舷斉射・波動砲/,
@@ -111,6 +121,7 @@
             de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
             ja: '反対へ (左)',
+            cn: '移动 (左)',
           };
         }
         return {
@@ -118,12 +129,14 @@
           de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
           ja: 'そのまま (左)',
+          cn: '不动 (左)',
         };
       },
     },
     {
       id: 'O11S Larboard Cannon 2',
       regex: / 14:3265:Omega starts using Larboard Wave Cannon/,
+      regexCn: / 14:3265:欧米茄 starts using 左舷齐射·波动炮/,
       regexDe: / 14:3265:Omega starts using Backbord-Wellenkanone/,
       regexFr: / 14:3265:Oméga starts using Canon Plasma Bâbord/,
       regexJa: / 14:3265:オメガ starts using 左舷斉射・波動砲/,
@@ -137,6 +150,7 @@
             de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
             ja: 'そのまま (右)',
+            cn: '不动 (右)',
           };
         }
         return {
@@ -144,12 +158,14 @@
           de: 'Bewegen (Rechts)',
           fr: 'Bougez (Droite)',
           ja: '反対へ (右)',
+          cn: '移动 (右)',
         };
       },
     },
     {
       id: 'O11S Starboard Surge 1',
       regex: / 14:3266:Omega starts using Starboard Wave Cannon Surge/,
+      regexCn: / 14:3266:欧米茄 starts using 右舷齐射·零式波动炮/,
       regexDe: / 14:3266:Omega starts using Steuerbord-Nullform-Partikelstrahl/,
       regexFr: / 14:3266:Oméga starts using Canon Plasma Absolu Tribord/,
       regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
@@ -158,11 +174,13 @@
         de: 'Links (dann umgekehrt)',
         fr: 'Gauche (puis Droite)',
         ja: '左 (零式)',
+        cn: '左 (零式)',
       },
     },
     {
       id: 'O11S Larboard Surge 1',
       regex: / 14:3268:Omega starts using Larboard Wave Cannon Surge/,
+      regexCn: / 14:3268:欧米茄 starts using 左舷齐射·零式波动炮/,
       regexDe: / 14:3268:Omega starts using Backbord-Nullform-Partikelstrahl/,
       regexFr: / 14:3268:Oméga starts using Canon Plasma Absolu Bâbord/,
       regexJa: / 14:3268:オメガ starts using 左舷斉射・零式波動砲/,
@@ -171,11 +189,13 @@
         de: 'Rechts (dann umgekehrt)',
         fr: 'Droite (puis Gauche)',
         ja: '右 (零式)',
+        cn: '右 (零式)',
       },
     },
     {
       id: 'O11S Starboard Surge 2',
       regex: / 14:3266:Omega starts using Starboard Wave Cannon Surge/,
+      regexCn: / 14:3266:欧米茄 starts using 右舷齐射·零式波动炮/,
       regexDe: / 14:3266:Omega starts using Steuerbord-Nullform-Partikelstrahl/,
       regexFr: / 14:3266:Oméga starts using Canon Plasma Absolu Tribord/,
       regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
@@ -185,11 +205,13 @@
         de: 'Umgekehrt (Links)',
         fr: 'Côté opposé (Gauche)',
         ja: '反対へ (左)',
+        cn: '对面 (左)',
       },
     },
     {
       id: 'O11S Larboard Surge 2',
       regex: / 14:3268:Omega starts using Larboard Wave Cannon Surge/,
+      regexCn: / 14:3268:Omega starts using 左舷齐射·零式波动炮/,
       regexDe: / 14:3268:Omega starts using Backbord-Nullform-Partikelstrahl/,
       regexFr: / 14:3268:Oméga starts using Canon Plasma Absolu Bâbord/,
       regexJa: / 14:3268:オメガ starts using 左舷斉射・零式波動砲/,
@@ -199,6 +221,7 @@
         de: 'Umgekehrt (Rechts)',
         fr: 'Côté opposé (Droite)',
         ja: '反対へ (右)',
+        cn: '对面 (右)',
       },
     },
   ],
@@ -420,6 +443,73 @@
         'Negative Charge': '磁力【－】',
         'Positive Charge': '磁力【＋】',
         'Stun': 'スタン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Level Checker': '等级检测仪',
+        'Omega': '欧米茄',
+        'rocket punch': '火箭飞拳',
+      },
+      'replaceText': {
+        'Afterburner': '燃烧室排热',
+        'Atomic Ray': '原子射线',
+        'Ballistic Impact': '导弹命中',
+        'Ballistic Missile': '导弹发射',
+        'Blaster': '冲击波',
+        'Charybdis': '大漩涡',
+        'Condensed Wave Cannon Kyrios': '大功率波动炮P',
+        'Delta Attack': '三角攻击',
+        'Diffuse Wave Cannon Kyrios': '扩散波动炮P',
+        'Dual Storage Violation': '清除记忆污染P',
+        'Electric Slide': '欧米茄滑跃',
+        'Engage Ballistics Systems': '射击总控系统启动',
+        'Executable': '运行程序',
+        'Explosion': '爆炸',
+        'Ferrofluid': '磁铁',
+        'Flamethrower': '火炎放射',
+        'Force Quit': '强制结束',
+        'Guided Missile Kyrios': '跟踪导弹P',
+        'Iron Kiss': '钢铁之吻',
+        'Larboard Wave Cannon Surge': '左舷齐射·零式波动炮',
+        'Larboard Wave Cannon': '左舷齐射·波动炮',
+        'Long Needle Kyrios': '大型导弹P',
+        'MRV Missile Kyrios': '多弹头导弹P',
+        'Magnetism': '磁力',
+        'Mustard Bomb': '芥末爆弹',
+        'Pantokrator': '全能之主',
+        'Peripheral Synthesis': '生成外设',
+        'Program Loop': '循环程序',
+        'Reformat': '最优化',
+        'Repel': '相斥',
+        'Reset': '初始化',
+        'Rush': '突进',
+        'Starboard Wave Cannon Surge': '右舷齐射·零式波动炮',
+        'Starboard Wave Cannon': '右舷齐射·波动炮',
+        'Storage Violation': '清除记忆污染S',
+        'Unmitigated Explosion': '大爆炸',
+        'Update Program': '更新循环程序',
+        'Wave Cannon Kyrios': '波动炮P',
+        // FIXME
+        'Starboard/Larboard Cannon': '右/左舷齐射·波动炮',
+        'Starboard/Larboard Surge': '右/左舷齐射·零式波动炮',
+      },
+      '~effectNames': {
+        'Biohacked': '入侵',
+        'Bleeding': '出血',
+        'Blunt Resistance Down': '打击耐性降低',
+        'Burns': '火伤',
+        'Chains of Memory': '连锁遗忘',
+        'Gradual Petrification': '渐渐石化',
+        'HP Penalty': '最大体力减少',
+        'Live Wire': '电气填充',
+        'Looper': '循环程序',
+        'Magic Vulnerability Up': '魔法受伤加重',
+        'Negative Charge': '磁力（-）',
+        'Positive Charge': '磁力（+）',
+        'Stun': '眩晕',
       },
     },
   ],
