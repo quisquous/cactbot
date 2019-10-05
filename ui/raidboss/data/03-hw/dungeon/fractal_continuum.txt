@@ -10,14 +10,14 @@ hideall "--sync--"
 0.0 "--sync--" sync /Exhibit level III will be sealed off/ window 0,1
 10.3 "Rapid Sever" sync /:Phantom Ray:F7A:/ window 15,15
 16.6 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
-21.4 "Double Sever 1" sync /:Phantom Ray:F7B:/
-25.6 "Double Sever 2" sync /:Phantom Ray:F7C:/
+21.4 "Double Sever 1" sync /:Phantom Ray:F7[BC]:/
+25.6 "Double Sever 2" sync /:Phantom Ray:F7[BC]:/
 27.4 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 
 41.5 "Rapid Sever" sync /:Phantom Ray:F7A:/ window 15,15
 47.7 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
-52.5 "Double Sever 1" sync /:Phantom Ray:F7B:/
-56.5 "Double Sever 2" sync /:Phantom Ray:F7C:/
+52.5 "Double Sever 1" sync /:Phantom Ray:F7[BC]:/
+56.5 "Double Sever 2" sync /:Phantom Ray:F7[BC]:/
 58.3 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 
 72.4 "Rapid Sever" sync /:Phantom Ray:F7A:/  window 15,15 jump 41.5
@@ -28,15 +28,15 @@ hideall "--sync--"
 # Phase 2 at < 75% HP
 
 100.0 "Damage Up" sync /:Phantom Ray:F7F:/  window 100,30 #Overclock
-104.8 "Double Sever 1" sync /:Phantom Ray:F7B:/
+104.8 "Double Sever 1" sync /:Phantom Ray:F7[BC]:/
 107.6 "Atmospheric Compression" sync /:Phantom Ray:F80:/
-109.0 "Double Sever 2" sync /:Phantom Ray:F7C:/
+109.0 "Double Sever 2" sync /:Phantom Ray:F7[BC]:/
 111.8 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 118.9 "Rapid Sever" sync /:Phantom Ray:F7A:/
 124.0 "Rapid Sever" sync /:Phantom Ray:F7A:/
 128.2 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
-133.1 "Double Sever 1" sync /:Phantom Ray:F7B:/
-137.3 "Double Sever 2" sync /:Phantom Ray:F7C:/
+133.1 "Double Sever 1" sync /:Phantom Ray:F7[BC]:/
+137.3 "Double Sever 2" sync /:Phantom Ray:F7[BC]:/
 139.0 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 146.1 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 
