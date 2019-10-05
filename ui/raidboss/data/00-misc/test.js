@@ -33,6 +33,15 @@
       ];
     },
   ],
+  timelineStyles: [
+    {
+      regex: /^Death To/,
+      style: {
+        'color': 'red',
+        'font-family': 'Impact',
+      },
+    },
+  ],
   timelineTriggers: [
     {
       id: 'Test Angry Dummy',
