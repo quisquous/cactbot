@@ -8,14 +8,14 @@ hideall "--sync--"
 #-ii F7D -p F7F:100
 
 0.0 "--sync--" sync /Exhibit level III will be sealed off/ window 0,1
-10.3 "Rapid Sever" sync /:Phantom Ray:F7A:/
-16.6 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/ window 5,5
+10.3 "Rapid Sever" sync /:Phantom Ray:F7A:/ window 15,15
+16.6 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 21.4 "Double Sever 1" sync /:Phantom Ray:F7B:/
 25.6 "Double Sever 2" sync /:Phantom Ray:F7C:/
 27.4 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 
-41.5 "Rapid Sever" sync /:Phantom Ray:F7A:/
-47.7 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/ window 5,5
+41.5 "Rapid Sever" sync /:Phantom Ray:F7A:/ window 15,15
+47.7 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
 52.5 "Double Sever 1" sync /:Phantom Ray:F7B:/
 56.5 "Double Sever 2" sync /:Phantom Ray:F7C:/
 58.3 "Atmospheric Displacement" sync /:Phantom Ray:F7E:/
