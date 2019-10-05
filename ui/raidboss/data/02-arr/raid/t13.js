@@ -45,9 +45,9 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches[1] == data.me)
           return;
-          if (data.role == 'healer' || data.job == 'BLU') {}
+        if (data.role == 'healer' || data.job == 'BLU') {
           return {
             en: 'Flatten on ' + data.ShortName(matches[1]),
           };

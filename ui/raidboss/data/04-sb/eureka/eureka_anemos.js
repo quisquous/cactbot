@@ -250,7 +250,7 @@
       regex: / 19:Shadow Wraith was defeated by/,
       regexCn: / 19:暗影幽灵 was defeated by/,
       regexDe: / 19:Schatten-Geist was defeated by/,
-      regexFr: /(Spectre Des Ombres a été vaincu|Vous avez vaincu le spectre des ombres)/,
+      regexFr: /(?:Spectre Des Ombres a été vaincu|Vous avez vaincu le spectre des ombres)/,
       infoText: function(data) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
