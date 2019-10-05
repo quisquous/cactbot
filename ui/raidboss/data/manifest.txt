@@ -32,6 +32,7 @@
 03-hw/alliance/dun_scaith.js
 03-hw/alliance/dun_scaith.txt
 03-hw/dungeon/fractal_continuum.js
+03-hw/dungeon/fractal_continuum.txt
 03-hw/dungeon/sohm_al.js
 03-hw/pvp/shatter.js
 03-hw/raid/a10s.js
