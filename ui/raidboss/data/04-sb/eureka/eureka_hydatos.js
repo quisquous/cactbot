@@ -1,8 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Hydatos|Unknown Zone \(33B\))/,
-  zoneRegexCn: /(丰水之地|Unknown Zone \(33B\))/,
+  zoneRegex: /(Eureka Hydatos|Unknown Zone \(33B\)|丰水之地)/,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
   timelineTriggers: [
