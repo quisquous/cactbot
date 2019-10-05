@@ -17,8 +17,8 @@
   ],
   triggers: [
     { // Phase Tracker: Maniacal Probe.
-      regex: /:235A:Catastrophe starts using/,
-      regexDe: /:235A:Katastroph starts using/,
+      regex: / 14:235A:Catastrophe starts using/,
+      regexDe: / 14:235A:Katastroph starts using/,
       run: function(data) {
         data.probeCount = (data.probeCount || 0) + 1;
         data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
@@ -47,8 +47,8 @@
     },
     {
       id: 'O2S -100Gs',
-      regex: /:235E:Catastrophe starts using/,
-      regexDe: /:235E:Katastroph starts using/,
+      regex: / 14:235E:Catastrophe starts using/,
+      regexDe: / 14:235E:Katastroph starts using/,
       infoText: {
         en: '-100 Gs: Go north/south and look away',
         de: '-100G: Nach Norden/Süden und wegschauen',
@@ -60,8 +60,8 @@
     },
     {
       id: 'O2S Death\'s Gaze',
-      regex: /:236F:Catastrophe starts using/,
-      regexDe: /:236F:Katastroph starts using/,
+      regex: / 14:236F:Catastrophe starts using/,
+      regexDe: / 14:236F:Katastroph starts using/,
       alarmText: {
         en: 'Death\'s Gaze: Look away',
         de: 'Todesblick: Wegschauen',
@@ -73,8 +73,8 @@
     },
     {
       id: 'O2S Earthquake',
-      regex: /:2374:Catastrophe starts using/,
-      regexDe: /:2374:Katastroph starts using/,
+      regex: / 14:2374:Catastrophe starts using/,
+      regexDe: / 14:2374:Katastroph starts using/,
       infoText: function(data) {
         if (data.levitating) {
           return {
@@ -127,8 +127,8 @@
     },
     {
       id: 'O2S Gravitational Wave',
-      regex: /:2372:Catastrophe starts using/,
-      regexDe: /:2372:Katastroph starts using/,
+      regex: / 14:2372:Catastrophe starts using/,
+      regexDe: / 14:2372:Katastroph starts using/,
       infoText: 'Gravitational Wave: AOE damage',
       condition: function(data) {
         return data.role == 'healer';
@@ -140,8 +140,8 @@
     },
     {
       id: 'O2S Maniacal Probe',
-      regex: /:235A:Catastrophe starts using/,
-      regexDe: /:235A:Katastroph starts using/,
+      regex: / 14:235A:Catastrophe starts using/,
+      regexDe: / 14:235A:Katastroph starts using/,
       infoText: function(data) {
         if (!data.myProbe) {
           if (!data.dpsProbe) {

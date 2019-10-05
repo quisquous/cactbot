@@ -200,7 +200,7 @@
     {
       // Handles both 1E52 Aetherochemical Flare and 1D9D Supernova
       id: 'Dun Scaith Proto-Ultima Raid Damage',
-      regex: / 14:(?:1E52|1D9D): Proto Ultima Starts Using/,
+      regex: / 14:(?:1E52|1D9D):Proto Ultima starts using/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -269,7 +269,7 @@
     {
       // The actual attack is 1D20, but the castbar windup is 1D1F
       id: 'Dun Scaith Shadespin',
-      regex: / 14:1D1(E|F):Scathach starts using Shadespin/,
+      regex: / 14:1D1[EF]:Scathach starts using Shadespin/,
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid arm slaps',
@@ -277,7 +277,7 @@
     },
     {
       id: 'Dun Scaith Thirty Thorns',
-      regex: / (1[56]:\y{ObjectId}:Scathach:1D2B:Thirty Thorns|1[56]:\y{ObjectId}:Scathach:1D1B:Soar)/,
+      regex: / 1[56]:\y{ObjectId}:Scathach:1D[12]B:(?:Soar|Thirty Thorns)/,
       suppressSeconds: 5,
       alertText: {
         en: 'Out of melee',
@@ -359,9 +359,9 @@
     },
     {
       id: 'Dun Scaith Nightmare',
-      regex: / 14:(1C0E|1C20):\y{Name} starts using (Nightmare|Hollow Nightmare)/,
+      regex: / 14:(?:1C0E|1C20):\y{Name} starts using (?:Nightmare|Hollow Nightmare)/,
       alertText: {
-        en: ' Look away',
+        en: 'Look away',
       },
     },
     {
@@ -377,7 +377,7 @@
     },
     {
       id: 'Dun Scaith Ruinous Omen',
-      regex: / 14:(?:1C10|1C11):Diabolos starts using Ruinous Omen/,
+      regex: / 14:1C1[01]:Diabolos starts using Ruinous Omen/,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';
@@ -428,7 +428,7 @@
     },
     {
       id: 'Dun Scaith Hollow Omen',
-      regex: / 14:(?:1C22|1C23):Diabolos Hollow starts using Hollow Omen/,
+      regex: / 14:1C2[23]:Diabolos Hollow starts using Hollow Omen/,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';

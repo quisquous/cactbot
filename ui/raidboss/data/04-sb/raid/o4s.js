@@ -391,8 +391,8 @@
       },
     },
     { // Laser counter.
-      regex: / 14:24(OE|0F|11|12):Neo Exdeath starts using/,
-      run: function(data, matches) {
+      regex: / 14:24(?:OE|0F|11|12):Neo Exdeath starts using/,
+      run: function(data) {
         if (data.phase != 'omega')
           return;
 
