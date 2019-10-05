@@ -2,12 +2,13 @@
 
 // Suzaku Extreme
 [{
-  zoneRegex: /^Hells\' Kier \(Extreme\)$/,
+  zoneRegex: /^(Hells\' Kier \(Extreme\)|朱雀诗魂战)$/,
   timelineFile: 'suzaku-ex.txt',
   triggers: [
     {
       id: 'SuzEx Cremate',
       regex: / 14:32D1:Suzaku starts using Cremate on (\y{Name})/,
+      regexCn: / 14:32D1:朱雀 starts using 赤热击 on (\y{Name})/,
       regexDe: / 14:32D1:Suzaku starts using Einäschern on (\y{Name})/,
       regexFr: / 14:32D1:Suzaku starts using Crématorium on (\y{Name})/,
       regexJa: / 14:32D1:朱雀 starts using 赤熱撃 on (\y{Name})/,
@@ -17,6 +18,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            cn: '死刑减伤',
           };
         }
         if (data.role == 'healer') {
@@ -24,6 +26,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -34,6 +37,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         }
       },
@@ -41,6 +45,7 @@
     {
       id: 'SuzEx Phantom Flurry',
       regex: / 14:32DC:Suzaku starts using/,
+      regexCn: / 14:32DC:朱雀 starts using/,
       regexDe: / 14:32DC:Suzaku starts using/,
       regexFr: / 14:32DC:Suzaku starts using/,
       regexJa: / 14:32DC:朱雀 starts using/,
@@ -51,6 +56,7 @@
         en: 'Tank Buster',
         de: 'Tankbuster',
         fr: 'Tankbuster',
+        cn: '死刑',
       },
       tts: function(data, matches) {
         if (matches[1] == data.me) {
@@ -58,6 +64,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            cn: '死刑',
           };
         }
       },
@@ -65,6 +72,7 @@
     {
       id: 'SuzEx Mesmerizing Melody',
       regex: / 14:32DA:Suzaku starts using Mesmerizing Melody/,
+      regexCn: / 14:32DA:朱雀 starts using 引诱旋律/,
       regexDe: / 14:32DA:Suzaku starts using Bezaubernde Melodie/,
       regexFr: / 14:32DA:Suzaku starts using Mélodie Hypnotique/,
       regexJa: / 14:32DA:朱雀 starts using 誘引の旋律/,
@@ -73,6 +81,7 @@
         de: 'Raus da',
         fr: 'Allez au bord extérieur',
         ja: '誘引',
+        cn: '远离',
       },
       tts: {
         ja: '外へ',
@@ -81,6 +90,7 @@
     {
       id: 'SuzEx Ruthless Refrain',
       regex: / 14:32DB:Suzaku starts using Ruthless Refrain/,
+      regexCn: / 14:32DB:朱雀 starts using 拒绝旋律/,
       regexDe: / 14:32DB:Suzaku starts using Rabiater Refrain/,
       regexFr: / 14:32DB:Suzaku starts using Refrain Impitoyable/,
       regexJa: / 14:32DB:朱雀 starts using 拒絶の旋律/,
@@ -89,6 +99,7 @@
         de: 'Rein da',
         fr: 'Allez au bord intérieur',
         ja: '拒絶',
+        cn: '靠近',
       },
       tts: {
         ja: '中へ',
@@ -272,6 +283,65 @@
         'Physical Vulnerability Up': '被物理ダメージ増加',
         'Primary Target': '攻撃目標',
         'Stun': 'スタン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Song of Durance': '牢之诗',
+        'Song of Fire': '燐之诗',
+        'Song of Oblivion': '虚之诗',
+        'Song of Sorrow': '泪之诗',
+        'Scarlet Tail Feather': '朱雀的尾羽',
+        'Scarlet Plume': '朱雀的羽毛',
+        'Scarlet Lady': '火焰鸟',
+        'Suzaku': '朱雀',
+        'Eastern Pyre': '东炎',
+        'Northern Pyre': '北炎',
+        'Southern Pyre': '南炎',
+        'Western Pyre': '西炎',
+        'Rapturous Echo': '愛の音色',
+        'Tenzen': '典膳',
+      },
+      'replaceText': {
+        'Wing And A Prayer': '苏生神通力',
+        'Well Of Flame': '井宿焰',
+        'Southron Star': '星宿波',
+        'Screams Of The Damned': '叫唤地狱',
+        'Scathing Net': '张宿业火',
+        'Scarlet Hymn': '朱红旋律',
+        'Scarlet Fever': '灭尽天火',
+        'Ruthless Refrain': '拒绝旋律',
+        'Rout': '猛进',
+        'Rekindle': '苏生之炎',
+        'Phoenix Down': '苏生之羽',
+        'Phantom Flurry': '鬼宿脚',
+        'Pay the Piper': '傀儡诗',
+        'Pay The Piper': '傀儡诗',
+        'Mesmerizing Melody': '引诱旋律',
+        'Incandescent Interlude': '灼热旋律',
+        'Hotspot': '红莲炎',
+        'Fleeting Summer': '翼宿击',
+        'Eternal Flame': '苏生大火',
+        'Cremate': '赤热击',
+        'Close-Quarter Crescendo': '傀儡旋律',
+        'Burn': '燃烧',
+        '--untargetable--': '--不可选中--',
+        '--targetable--': '--可选中--',
+        'Phantom Half': '半场AOE',
+        'Ruthless/Mesmerizing': '拒绝/引诱',
+      },
+      '~effectNames': {
+        'Stun': '眩晕',
+        'Primary Target': '攻击目标',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Paying the Piper': '强制移动',
+        'Looming Crescendo': '傀儡旋律',
+        'HP Boost': '最大体力增加',
+        'Fire Resistance Down II': '火属性耐性大幅降低',
+        'Damage Up': '伤害提高',
+        'Burns': '火伤',
       },
     },
   ],

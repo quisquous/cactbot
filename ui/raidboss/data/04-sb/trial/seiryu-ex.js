@@ -2,7 +2,7 @@
 
 // Seiryu Extreme
 [{
-  zoneRegex: /^The Wreath Of Snakes \(Extreme\)$/,
+  zoneRegex: /^(The Wreath Of Snakes \(Extreme\)|青龙诗魂战)$/,
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [
     {
@@ -14,6 +14,7 @@
         de: 'mit der Gruppe stacken',
         fr: 'Packé avec votre groupe',
         ja: 'グループ別にスタック',
+        cn: '双组分摊',
       },
     },
     {
@@ -26,6 +27,7 @@
         de: 'Linien-Stack',
         fr: 'Packé en ligne',
         ja: 'スタック',
+        cn: '直线分摊',
       },
     },
     {
@@ -40,6 +42,7 @@
         de: 'Verbindung nehmen und wegdrehen',
         fr: 'Prenez le lien, pointez vers l\'extérieur',
         ja: '線取って外向ける',
+        cn: '接线引导',
       },
     },
   ],
@@ -50,6 +53,7 @@
       regexDe: / 14:37E4:Seiryu starts using Flammende Aramitama/,
       regexFr: / 14:37E4:Seiryû starts using Aramitama Incandescent/,
       regexJa: / 14:37E4:青龍 starts using 荒魂燃焼/,
+      regexCn: / 14:37E4:青龙 starts using 荒魂燃烧/,
       run: function(data) {
         data.blazing = true;
       },
@@ -60,6 +64,7 @@
       regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on (\y{Name})/,
       regexFr: / 14:37D2:Seiryû starts using Katashiro on (\y{Name})/,
       regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on (\y{Name})/,
+      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -67,6 +72,7 @@
             de: 'Tankwechsel',
             fr: 'Tank Swap',
             ja: 'スイッチ',
+            cn: '换T',
           };
         }
         if (data.role == 'tank') {
@@ -75,6 +81,7 @@
             de: 'Tankwechsel, danach Tankbuster',
             fr: 'Swap puis tankbuster',
             ja: 'スイッチ後強攻撃',
+            cn: '换T+死刑',
           };
         }
       },
@@ -85,6 +92,7 @@
       regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on (\y{Name})/,
       regexFr: / 14:37D2:Seiryû starts using Katashiro on (\y{Name})/,
       regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on (\y{Name})/,
+      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on (\y{Name})/,
       condition: function(data) {
         // TODO: it'd be nice to figure out who the tanks are so this
         // could also apply to the person Cursekeeper was on.
@@ -96,6 +104,7 @@
         de: 'Weg von den Tanks',
         fr: 'Ecartez-vous des tanks',
         ja: 'タンクから離れて',
+        cn: '远离坦克',
       },
     },
     {
@@ -104,6 +113,7 @@
       regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
       regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
       regexJa: / 14:3C25:青龍 starts using 登り龍/,
+      regexCn: / 14:3C25:青龙 starts using 升龙/,
       run: function(data) {
         data.markers = [];
       },
@@ -114,12 +124,14 @@
       regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
       regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
       regexJa: / 14:3C25:青龍 starts using 登り龍/,
+      regexCn: / 14:3C25:青龙 starts using 升龙/,
       delaySeconds: 1,
       infoText: {
         en: 'Stack for Puddle AOEs',
         de: 'Stacken (Pfützen)',
         fr: 'Packez-vous pour l\'aoe',
         ja: 'スタック',
+        cn: '集合放置AOE',
       },
     },
     {
@@ -145,6 +157,7 @@
             de: 'Verteilen (nicht in den Turm)',
             fr: 'Ecartez-vous (pas sur la tour)',
             ja: '散開 (DPSが塔)',
+            cn: '分散（DPS踩塔）',
           };
         }
         return {
@@ -152,6 +165,7 @@
           de: 'Verteilen (nicht in den Turm)',
           fr: 'Ecartez-vous (pas sur la tour)',
           ja: '散開 (タンクヒラが塔)',
+          cn: '分散（坦克/治疗踩塔）',
         };
       },
     },
@@ -170,6 +184,7 @@
             de: 'In den Turm',
             fr: 'Sur votre tour',
             ja: '塔 (タンクヒラが塔)',
+            cn: '踩塔（坦克/治疗踩塔）',
           };
         }
         return {
@@ -177,6 +192,7 @@
           de: 'In den Turm',
           fr: 'Sur votre tour',
           ja: '塔 (DPSが塔)',
+          cn: '踩塔（DPS踩塔）',
         };
       },
     },
@@ -185,17 +201,20 @@
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
       regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      regexCn: / 15:\y{ObjectId}:山之式鬼:37E5:压杀掌:/,
       infoText: {
         en: 'East =>',
         de: 'Osten =>',
         fr: 'Est =>',
         ja: '東 =>',
+        cn: '东 =>',
       },
       tts: {
         en: 'East',
         de: 'Osten',
         fr: 'Est',
         ja: 'ひがし',
+        cn: '东 =>',
       },
     },
     {
@@ -203,17 +222,20 @@
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
       regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      regexCn: / 15:\y{ObjectId}:山之式鬼:37E6:压杀掌:/,
       infoText: {
         en: '<= West',
         de: '<= Westen',
         fr: '<= Ouest',
         ja: '<= 西',
+        cn: '<= 西',
       },
       tts: {
         en: 'West',
         de: 'Westen',
         fr: 'Ouest',
         ja: 'にし',
+        cn: '<= 西',
       },
     },
     {
@@ -222,6 +244,7 @@
       regexDe: / 14:37F7:Seiryu starts using Woge der Schlange/,
       regexFr: / 14:37F7:Seiryû starts using Vague De Serpents/,
       regexJa: / 14:37F7:青龍 starts using 蛇崩/,
+      regexCn: / 14:37F7:青龙 starts using 蛇崩/,
       alarmText: function(data) {
         if (data.withForce === undefined) {
           return {
@@ -229,6 +252,7 @@
             de: 'Zu den Schlangen',
             fr: 'Allez vers les serpents',
             ja: '蛇側へ',
+            cn: '靠近蛇蛇',
           };
         }
         return {
@@ -236,6 +260,7 @@
           de: 'Raus aus der Mitte, Zu den Schlangen',
           fr: 'Pas au centre, du côté des serpents',
           ja: '真ん中からずれて蛇向いて',
+          cn: '靠近中心，面向蛇蛇',
         };
       },
       run: function(data) {
@@ -248,6 +273,7 @@
       regexDe: / 14:37F4:Numa no Shiki starts using Steinhaut/,
       regexFr: / 14:37F4:Shiki uligineux starts using Cuirasse/,
       regexJa: / 14:37F4:沼の式鬼 starts using ストンスキン/,
+      regexCn: / 14:37F4:沼之式鬼 starts using 石肤/,
       condition: function(data) {
         return data.CanSilence();
       },
@@ -256,6 +282,7 @@
         de: 'Verstummen',
         fr: 'Silence',
         ja: 'ストンスキン',
+        cn: '沉默石肤',
       },
     },
     {
@@ -264,6 +291,7 @@
       regexDe: / 03:\y{ObjectId}:Added new combatant Ao no Shiki\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Shiki céruléen\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant 蒼の式鬼\./,
+      regexCn: / 03:\y{ObjectId}:Added new combatant 苍之式鬼\./,
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -271,6 +299,7 @@
             de: 'Im Süden stacken',
             fr: 'Packez-vous au sud',
             ja: '南でスタック',
+            cn: '南侧集合',
           };
         }
         return {
@@ -278,6 +307,7 @@
           de: 'Stacken, wenn keine Verbindung',
           fr: 'Packez-vous si pas de lien',
           ja: '線無しはスタック',
+          cn: '未连线则集合',
         };
       },
     },
@@ -289,11 +319,13 @@
       regexDe: / 14:3A01:Seiryu starts using Onmyo-Siegel/,
       regexFr: / 14:3A01:Seiryû starts using Onmyo/,
       regexJa: / 14:3A01:青龍 starts using 陰陽の印/,
+      regexCn: / 14:3A01:青龙 starts using 阴阳之印/,
       infoText: {
         en: 'Out',
         de: 'Raus',
         fr: 'Dehors',
         ja: '外',
+        cn: '远离',
       },
     },
     {
@@ -302,11 +334,13 @@
       regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
+      regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
       infoText: {
         en: 'In, then out',
         de: 'Rein, dann raus',
         fr: 'Dedans, puis dehors',
         ja: '中から外',
+        cn: '先靠近，再远离',
       },
     },
     {
@@ -315,12 +349,14 @@
       regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
       regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
+      regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',
         de: 'Raus',
         fr: 'Dehors',
         ja: '外',
+        cn: '远离',
       },
     },
     {
@@ -329,11 +365,13 @@
       regexDe: / 14:3A03:Seiryu starts using Onmyo-Siegel/,
       regexFr: / 14:3A03:Seiryû starts using Onmyo/,
       regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
+      regexCn: / 14:3A03:青龙 starts using 阴阳之印/,
       infoText: {
         en: 'Out, then in',
         de: 'Raus, dann rein',
         fr: 'Dehors, puis dedans',
         ja: '外から中',
+        cn: '先远离，再靠近',
       },
     },
     {
@@ -342,12 +380,14 @@
       regexDe: / 14:3A03:Seiryu starts using Onmyo-Siegel/,
       regexFr: / 14:3A03:Seiryû starts using Onmyo/,
       regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
+      regexCn: / 14:3A03:青龙 starts using 阴阳之印/,
       delaySeconds: 2.7,
       infoText: {
         en: 'In',
         de: 'Rein',
         fr: 'Dedans',
         ja: '中',
+        cn: '靠近',
       },
     },
     {
@@ -356,12 +396,14 @@
       regexDe: / 14:37CB:Seiryu starts using Erwachen des Drachen/,
       regexFr: / 14:37CB:Seiryû starts using Ascension Draconique/,
       regexJa: / 14:37CB:青龍 starts using 雲蒸龍変/,
+      regexCn: / 14:37CB:青龙 starts using 云蒸龙变/,
       delaySeconds: 28,
       alertText: {
         en: 'Pop Sprint',
         de: 'Sprinten',
         fr: 'Sprintez',
         ja: 'スプリント',
+        cn: '冲冲冲',
       },
     },
   ],
@@ -557,6 +599,69 @@
         'Fetters': '拘束',
         'Magic Vulnerability Up': '被魔法ダメージ増加',
         'Water Resistance Down II': '水属性耐性低下［強］',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Seiryu': '青龙',
+        'Aka-no-shiki': '红之式鬼',
+        'Aka-No-Shiki': '红之式鬼',
+        'Ao-no-shiki': '苍之式鬼',
+        'Ao-No-Shiki': '苍之式鬼',
+        'Blue orochi': '青之大蛇',
+        'Doro-no-shiki': '泥之式鬼',
+        'Iwa-no-shiki': '岩之式鬼',
+        'Numa-no-shiki': '沼之式鬼',
+        'Numa-No-Shiki': '沼之式鬼',
+
+        // FIXME:
+        'Yama-no-shiki': '山之式鬼',
+      },
+      'replaceText': {
+        '100-tonze Swing': '百吨回转',
+        'Blazing Aramitama': '荒魂燃烧',
+        'Blue Bolt': '青突进',
+        'Calamity-blade Sigil': '阴之刀印',
+        'Coursing River': '蛇崩',
+        'Cursekeeper': '咒怨的替身',
+        'Dragon\'s Wake': '云蒸龙变',
+        'Explosion': '爆散',
+        'Fifth Element': '阴阳五行',
+        'Forbidden Arts': '刀禁咒',
+        'Force of Nature': '大压杀',
+        'Fortune-blade Sigil': '阳之刀印',
+        'Great Typhoon': '荒波',
+        'Handprint': '压杀掌',
+        'Infirm Soul': '虚证弹',
+        'Kanabo': '如虎添翼',
+        'Karmic Curse': '诅咒返还',
+        'Kuji-kiri': '九字切',
+        'Onmyo Sigil': '阴阳之印',
+        'Red Rush': '赤突进',
+        'Serpent Ascending': '升龙',
+        'Serpent Descending': '降蛇',
+        'Serpent\'s Fang': '蛇牙',
+        'Serpent-eye Sigil': '蛇眼之印',
+        'Stoneskin': '石肤',
+        'Strength of Spirit': '灵气',
+        'Summon Shiki': '式鬼召唤',
+        'Yama-kagura': '山神乐',
+
+        // FIXME:
+        '--rotate--': '--龙回转--',
+        '--jump--': '--龙大跳--',
+        'In/Out': '靠近远离',
+        'Out/In': '远离靠近',
+      },
+      '~effectNames': {
+        'Being dragged under by the current. Unable to move or execute actions.': '被淹没，无法移动，无法使用技能',
+        'Blunt Resistance Down': '打击耐性降低',
+        'Cursekeeper': '咒怨的替身',
+        'Fetters': '拘束',
+        'Magic Vulnerability Up': '魔法受伤加重',
+        'Water Resistance Down II': '水属性耐性大幅降低',
       },
     },
   ],

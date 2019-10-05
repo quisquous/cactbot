@@ -2,34 +2,39 @@
 
 // Tsukuyomi Extreme
 [{
-  zoneRegex: /^The Minstrel's Ballad: Tsukuyomi's Pain$/,
+  zoneRegex: /^(The Minstrel's Ballad: Tsukuyomi's Pain|月读幽夜歼灭战)$/,
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [
     {
       id: 'Tsukuyomi Nightfall Gun',
       regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
+      regexCn: / 14:2BBC:月读 starts using 深宵换装/,
       regexDe: / 14:2BBC:Tsukuyomi starts using Einbruch Der Dunkelheit/,
       regexFr: / 14:2BBC:Tsukuyomi starts using Jeune Nuit/,
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
         fr: 'Pistolet : Pack',
+        cn: '铳: 集合',
       },
     },
     {
       id: 'Tsukuyomi Nightfall Spear',
       regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
+      regexCn: / 14:2BBD:月读 starts using 深宵换装/,
       regexDe: / 14:2BBD:Tsukuyomi starts using Einbruch Der Dunkelheit/,
       regexFr: / 14:2BBD:Tsukuyomi starts using Jeune Nuit/,
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
         fr: 'Lance : Ecartez-vous',
+        cn: '枪: 分散',
       },
     },
     {
       id: 'Tsukuyomi Torment',
       regex: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
+      regexCn: / 14:(?:2BBB|2EB2):月读 starts using 折磨 on (\y{Name})/,
       regexDe: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Todesqualen on (\y{Name})/,
       regexFr: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
       alarmText: function(data, matches) {
@@ -40,6 +45,7 @@
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
+          cn: '换T！',
         };
       },
       alertText: function(data, matches) {
@@ -48,6 +54,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            cn: '死刑减伤',
           };
         }
         if (data.role == 'healer') {
@@ -55,6 +62,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -66,6 +74,7 @@
           en: 'Get out of front',
           de: 'Weg von vorn',
           fr: 'Ne restez pas devant !',
+          cn: '远离正面',
         };
       },
       tts: function(data, matches) {
@@ -74,12 +83,14 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            cn: '死刑',
           };
         }
       },
     },
     {
       regex: / 1A:Tsukuyomi gains the effect of Full Moon/,
+      regexCn: / 1A:月读 gains the effect of 满月流/,
       regexDe: / 1A:Tsukuyomi gains the effect of Vollmond/,
       regexFr: / 1A:Tsukuyomi gains the effect of Force De La Pleine Lune/,
       run: function(data) {
@@ -87,12 +98,14 @@
           en: 'Out',
           de: 'Raus',
           fr: 'Loin',
+          cn: '远离',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
     },
     {
       regex: / 1A:Tsukuyomi gains the effect of New Moon/,
+      regexCn: / 1A:月读 gains the effect of 新月流/,
       regexDe: / 1A:Tsukuyomi gains the effect of Neumond/,
       regexFr: / 1A:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
       run: function(data) {
@@ -100,6 +113,7 @@
           en: 'In',
           de: 'Rein',
           fr: 'Près',
+          cn: '靠近',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -107,6 +121,7 @@
     {
       id: 'Tsukuyomi Dark Blade',
       regex: / 14:2BDA:Tsukuyomi starts using Dark Blade/,
+      regexCn: / 14:2BDA:月读 starts using 月刀右斩/,
       regexDe: / 14:2BDA:Tsukuyomi starts using Dunkle Klinge/,
       regexFr: / 14:2BDA:Tsukuyomi starts using Lame Ténébreuse/,
       infoText: function(data) {
@@ -114,12 +129,14 @@
           en: 'Left + ' + data.moonInOut,
           fr: 'Gauche + ' + data.moonInOut,
           de: 'Links + ' + data.moonInOut,
+          cn: '左边 + ' + data.moonInOut,
         };
       },
     },
     {
       id: 'Tsukuyomi Bright Blade',
       regex: / 14:2BDB:Tsukuyomi starts using Bright Blade/,
+      regexCn: / 14:2BDB:月读 starts using 月刀左斩/,
       regexDe: / 14:2BDB:Tsukuyomi starts using Helle Klinge/,
       regexFr: / 14:2BDB:Tsukuyomi starts using Lame Blafarde/,
       infoText: function(data) {
@@ -127,6 +144,7 @@
           en: 'Right + ' + data.moonInOut,
           fr: 'Droite + ' + data.moonInOut,
           de: 'Rechts + ' + data.moonInOut,
+          cn: '右边 + ' + data.moonInOut,
         };
       },
     },
@@ -140,6 +158,7 @@
         en: 'Meteor on YOU',
         de: 'Meteor auf DIR',
         fr: 'Météore sur VOUS',
+        cn: '陨石点名',
       },
     },
     {
@@ -149,6 +168,7 @@
         en: 'Stack',
         de: 'Stack',
         fr: 'Pack',
+        cn: '集合',
       },
     },
     {
@@ -161,6 +181,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        cn: '分散',
       },
     },
     {
@@ -169,21 +190,25 @@
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
       regex: /00:0044:[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\./,
+      regexCn: /00:0044:[^:]*:我不能输.*我还没有.*/,
       regexFr: /00:0044:[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\./,
       infoText: {
         en: 'aoe',
         de: 'aoe',
         fr: 'aoe',
+        cn: 'AOE',
       },
       tts: {
         en: 'aoe',
         de: 'a o e',
         fr: 'a o e',
+        cn: 'A O E',
       },
     },
     {
       id: 'Tsukuyomi Supreme Selenomancy',
       regex: /:Tsukuyomi:2EB0:/,
+      regexCn: /:月读:2EB0:/,
       run: function(data) {
         delete data.moonlitCount;
         delete data.moonshadowedCount;
@@ -193,6 +218,7 @@
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 满月下/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
       condition: function(data, matches) {
@@ -213,6 +239,7 @@
     {
       id: 'Tsukuyomi Moonlit Debuff',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 满月下/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
       condition: function(data, matches) {
@@ -222,11 +249,13 @@
         en: 'Move to Black!',
         de: 'In\'s schwarze laufen!',
         fr: 'Bougez en zone noire !',
+        cn: '踩黑色！',
       },
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
       condition: function(data, matches) {
@@ -247,6 +276,7 @@
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
       condition: function(data, matches) {
@@ -256,6 +286,7 @@
         en: 'Move to White!',
         de: 'In\'s weiße laufen!',
         fr: 'Bougez en zone blanche !',
+        cn: '踩白色！',
       },
     },
   ],
@@ -476,6 +507,82 @@
         'Transfiguration': '変身',
         'Veil Of Light': '新月耐性',
         'Veil Of Shadow': '満月耐性',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Tsukuyomi': '月读',
+        'Dancing Fan': '舞扇',
+        'Specter Of The Patriarch': '养父的幻影',
+        'Specter Of The Matriarch': '养母的幻影',
+        'Specter Of The Homeland': '多玛人的幻影',
+        'Specter Of The Empire': '帝国兵的幻影',
+        'Specter Of Asahi': '朝阳的幻影',
+        'Specter': '幻影',
+        'Moonlight': '月光',
+        'Moondust': '月之碎片',
+        'Engage!': '战斗开始！',
+        'Dark Reflection': '芝诺斯的幻影',
+      },
+      'replaceText': {
+        'Zashiki-asobi': '宴会游乐',
+        'Waning/Waxing Grudge': '漆黑/纯白怨念',
+        'Waxing Grudge': '纯白怨念',
+        'Waning Grudge': '漆黑怨念',
+        'Unmoving Troika': '不动三段',
+        'Tsuki-no-Maiogi': '月下舞扇',
+        'Tsuki-no-Kakera': '月之碎片',
+        'Torment Unto Death': '折磨',
+        'Supreme Selenomancy': '极月读',
+        'Steel Of The Underworld': '黄泉之枪',
+        'Reprimand': '责难',
+        'Antitwilight/Perilune': '月下美人/月天心',
+        'Antitwilight': '月下美人',
+        'Perilune': '月天心',
+        'Nightfall': '深宵换装',
+        'Nightbloom': '月下彼岸花',
+        'Moonfall': '碎片散落',
+        'Moonbeam': '月光流转',
+        'Midnight Rain': '月时雨',
+        'Lunar Rays': '残月',
+        'Lunar Halo': '百月光',
+        'Lunacy': '月下缭乱',
+        'Lead Of The Underworld': '黄泉之弹',
+        'Enrage': '战斗开始',
+        'Hagetsu': '破月',
+        'Dispersivity': '剑气波动',
+        'Bright/Dark Blade': '月刀左/右斩',
+        'Dark Blade': '月刀右斩',
+        'Dance Of The Dead': '黄泉之舞',
+        'Crater': '冰轮',
+        'Concentrativity': '压缩剑气',
+        'Bright Blade': '月刀左斩',
+        '--untargetable--': '--不可选中--',
+        '--targetable--': '--可选中--',
+        'Lead/Steel': '弹/枪',
+        'Steel/Lead': '枪/弹',
+        'Homeland adds .E->W.': '家人幻影(东->西)',
+        'Empire adds .SW->NW.': '帝国幻影(西南->西北)',
+        'Moonburst': '碎片爆炸',
+      },
+      '~effectNames': {
+        'Veil Of Shadow': '满月耐性',
+        'Veil Of Light': '新月耐性',
+        'Transfiguration': '变身',
+        'Stun': '眩晕',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Moonshadowed': '新月下',
+        'Moonlit': '满月下',
+        'Magic Vulnerability Up': '魔法受伤加重',
+        'Haunt': '幻影',
+        'Grudge': '怨念',
+        'Down For The Count': '击倒',
+        'Doom': '死亡宣告',
+        'Damage Down': '伤害降低',
+        'Bleeding': '出血',
+        'Full Moon': '满月流',
+        'New Moon': '新月流',
       },
     },
   ],
