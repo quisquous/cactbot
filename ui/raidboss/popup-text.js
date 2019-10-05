@@ -81,6 +81,7 @@ class PopupText {
     let timelines = [];
     let replacements = [];
     let timelineTriggers = [];
+    let timelineStyles = [];
     this.resetWhenOutOfCombat = true;
 
     // Recursively/iteratively process timeline entries for triggers.
@@ -142,12 +143,20 @@ class PopupText {
           Array.prototype.push.apply(replacements, set.timelineReplace);
         if (set.timelineTriggers)
           Array.prototype.push.apply(timelineTriggers, set.timelineTriggers);
+        if (set.timelineStyles)
+          Array.prototype.push.apply(timelineStyles, set.timelineStyles);
         if (set.resetWhenOutOfCombat !== undefined)
           this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
       }
     }
 
-    this.timelineLoader.SetTimelines(timelineFiles, timelines, replacements, timelineTriggers);
+    this.timelineLoader.SetTimelines(
+        timelineFiles,
+        timelines,
+        replacements,
+        timelineTriggers,
+        timelineStyles
+    );
   }
 
   OnJobChange(e) {
