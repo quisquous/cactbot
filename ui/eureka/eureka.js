@@ -8,21 +8,21 @@ let Options = {
   // 20 minutes for Ovni?
   SuppressPopMs: 60 * 20 * 1000,
   FlagTimeoutMs: 90000,
-  ZoneName:{
-    en:{
+  ZoneName: {
+    en: {
       'Eureka Anemos': 'Eureka Anemos',
       'Eureka Pagos': 'Eureka Pagos',
       'Eureka Pyros': 'Eureka Pyros',
       'Eureka Hydatos': 'Eureka Hydatos',
     },
-    cn:{
+    cn: {
       'Eureka Anemos': '常风之地',
       'Eureka Pagos': '恒冰之地',
       'Eureka Pyros': '涌火之地',
       'Eureka Hydatos': '丰水之地',
     },
   },
-  Regex:{
+  Regex: {
     en: {
       'gFlagRegex': Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
@@ -1937,9 +1937,6 @@ let Options = {
   },
 };
 
-// let gFlagRegex = Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/);
-// let gTrackerRegex = Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/);
-// let gImportRegex = Regexes.Parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/);
 let gWeatherIcons = {
   'Gales': '&#x1F300;',
   'Fog': '&#x2601;',
@@ -2053,8 +2050,10 @@ class EurekaTracker {
     this.zoneName = e.detail.zoneName.replace('The Forbidden Land, ', '');
     this.zoneName = this.zoneName.replace('禁地优雷卡 ', '');
     let zones = this.options.ZoneName[this.options.Language] || this.options.ZoneName['en'];
-    for (let zone in zones){
-      this.zoneName = this.zoneName.replace(this.options.ZoneName[this.options.Language][zone], zone);
+    for (let zone in zones) {
+      this.zoneName = this.zoneName.replace(
+          this.options.ZoneName[this.options.Language][zone],
+          zone);
     }
     this.zoneName = this.zoneName.replace('Unknown Zone (33B)', 'Eureka Hydatos');
     this.zoneInfo = this.options.ZoneInfo[this.zoneName];
@@ -2302,16 +2301,14 @@ class EurekaTracker {
       let gRegex = this.options.Regex[this.options.Language] || this.options.Regex['en'];
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
-      if (match){
+      if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
         // console.log("matched gFlagRegex");
-      }
       let gTrackerRegex = gRegex['gTrackerRegex'];
       match = log.match(gTrackerRegex);
-      if (match){
+      if (match)
         this.currentTracker = match[1];
         // console.log("matched gTrackerRegex");
-      }
       let gImportRegex = gRegex['gImportRegex'];
       match = log.match(gImportRegex);
       if (match) {
@@ -2348,7 +2345,7 @@ class EurekaTracker {
     let str = (beforeText + ' ' + afterText).toLowerCase();
 
     let dict = {
-      train: [
+      'train': [
         'train',
         'tren',
         'trian',
@@ -2356,7 +2353,7 @@ class EurekaTracker {
         'choo choo',
         'train location',
       ],
-      fairy: [
+      'fairy': [
         'fairy',
         'elemental',
         'faerie',
@@ -2367,7 +2364,7 @@ class EurekaTracker {
         '冰粉',
         '酸辣粉',
       ],
-      raise: [
+      'raise': [
         'raise',
         'rez',
         'res ',
@@ -2398,14 +2395,13 @@ class EurekaTracker {
       beforeText = simplify;
       afterText = '';
     }
-    
+
     // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/160
     beforeText = beforeText.replace(/[^\x00-\x7F]/g, '').trim();
     afterText = afterText.replace(/[^\x00-\x7F]/g, '').trim();
 
     beforeText = beforeText.replace(/(?: at|@)$/, '');
 
-    
 
     let container = document.getElementById('flag-labels');
     let label = document.createElement('div');
