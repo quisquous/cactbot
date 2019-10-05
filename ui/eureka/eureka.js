@@ -2303,17 +2303,14 @@ class EurekaTracker {
       let match = log.match(gFlagRegex);
       if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
-        // console.log("matched gFlagRegex");
       let gTrackerRegex = gRegex['gTrackerRegex'];
       match = log.match(gTrackerRegex);
       if (match)
         this.currentTracker = match[1];
-        // console.log("matched gTrackerRegex");
       let gImportRegex = gRegex['gImportRegex'];
       match = log.match(gImportRegex);
       if (match) {
         this.ImportFromTracker(match[2]);
-        // console.log("matched gImportRegex");
         continue;
       }
       if (log.indexOf(' 03:') >= 0 || log.indexOf('00:0839:') >= 0) {
