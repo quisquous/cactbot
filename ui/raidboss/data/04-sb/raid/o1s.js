@@ -7,7 +7,7 @@
   triggers: [
     {
       id: 'O1S Blaze',
-      regex: /:1EDD:Alte Roite starts using/,
+      regex: / 14:1EDD:Alte Roite starts using/,
       infoText: {
         en: 'Blaze: Stack up',
         de: 'Flamme: Stacken',
@@ -19,7 +19,7 @@
     },
     {
       id: 'O1S Breath Wing',
-      regex: /:1ED6:Alte Roite starts using/,
+      regex: / 14:1ED6:Alte Roite starts using/,
       infoText: {
         en: 'Breath Wing: Be beside boss',
         de: 'Atemschwinge: Neben Boss gehen',
@@ -31,7 +31,7 @@
     },
     {
       id: 'O1S Clamp',
-      regex: /:1EDE:Alte Roite starts using/,
+      regex: / 14:1EDE:Alte Roite starts using/,
       infoText: {
         en: 'Clamp: Get out of front',
         de: 'Klammer: Vorm Boss weg',
@@ -43,7 +43,7 @@
     },
     {
       id: 'O1S Downburst',
-      regex: /:1ED8:Alte Roite starts using/,
+      regex: / 14:1ED8:Alte Roite starts using/,
       infoText: {
         en: 'Downburst: Knockback',
         de: 'Fallböe: Rückstoß',
@@ -55,7 +55,7 @@
     },
     {
       id: 'O1S Roar',
-      regex: /:1ED4:Alte Roite starts using/,
+      regex: / 14:1ED4:Alte Roite starts using/,
       infoText: {
         en: 'Roar: AOE damage',
         de: 'Brüllen: Flächenschaden',
@@ -70,7 +70,7 @@
     },
     {
       id: 'O1S Charybdis',
-      regex: /:1ED3:Alte Roite starts using/,
+      regex: / 14:1ED3:Alte Roite starts using/,
       infoText: {
         en: 'Charybdis: AOE damage',
         de: 'Charybdis: Flächenschaden',

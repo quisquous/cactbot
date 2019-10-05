@@ -28,7 +28,7 @@ let createTriggerRegexString = function(string) {
 };
 
 let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
-  let newCombatantRegex = createTriggerRegexString('(?! ?03:)(.*:)?Added new combatant .*');
+  let newCombatantRegex = createTriggerRegexString('(?! ?03:)(.*:)?Added new combatant.*');
   let results = contents.match(newCombatantRegex);
   if (results) {
     for (const result of results) {
@@ -39,7 +39,7 @@ let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
 };
 
 let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
-  let startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using .*');
+  let startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using.*');
   let results = contents.match(startsUsingRegex);
   if (results) {
     for (const result of results) {
@@ -52,7 +52,7 @@ let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
 let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
   // There are some weird Eureka "gains effect" messages with 00:332e.
   // But everything else is 1A.
-  let gainsEffectRegex = createTriggerRegexString('(?! ?(?:1A|00:332e):)(.* )?gains the effect of .*');
+  let gainsEffectRegex = createTriggerRegexString('(?! ?(?:1A|00:332e):)(.* )?gains the effect of.*');
   let results = contents.match(gainsEffectRegex);
   if (results) {
     for (const result of results) {
@@ -63,11 +63,23 @@ let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
 };
 
 let testWellFormedLosesEffectTriggerRegex = function(file, contents) {
-  let losesEffectRegex = createTriggerRegexString('(?! ?1E:)(.* )?loses the effect of .*');
+  let losesEffectRegex = createTriggerRegexString('(?! ?1E:)(.* )?loses the effect of.*');
   let results = contents.match(losesEffectRegex);
   if (results) {
     for (const result of results) {
       console.error(`${file}: 'loses the effect of' regex should begin with '1E:', found '${result}'`);
+      exitCode = 1;
+    }
+  }
+};
+
+let testBadCatchAllRegex = function(file, contents) {
+  // Matches 3, 5, 6, 7, or 9 (or more) consecutive '.' operators
+  let badCatchAllRegex = createTriggerRegexString('.*:(\\.{3}(\\.{2,4})?|\\.{9,}):.*');
+  let results = contents.match(badCatchAllRegex);
+  if (results) {
+    for (const result of results) {
+      console.error(`${file}: Invalid number of '.' operators, found '${result}'`);
       exitCode = 1;
     }
   }
@@ -84,6 +96,17 @@ let testObjectIdRegex = function(file, contents) {
   }
 };
 
+let testUnnecessaryGroupRegex = function(file, contents) {
+  let unnecessaryGroupRegex = createTriggerRegexString('.*\\(\\?:.\\|.\\).*');
+  let results = contents.match(unnecessaryGroupRegex);
+  if (results) {
+    for (const result of results) {
+      console.error(`${file}: Match single character from set '[ab]' should be used in favor of group matching '(?:a|b)' for single characters, found '${result}'`);
+      exitCode = 1;
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -92,7 +115,9 @@ let testTriggerFile = function(file) {
   testWellFormedStartsUsingTriggerRegex(file, contents);
   testWellFormedGainsEffectTriggerRegex(file, contents);
   testWellFormedLosesEffectTriggerRegex(file, contents);
+  testBadCatchAllRegex(file, contents);
   testObjectIdRegex(file, contents);
+  testUnnecessaryGroupRegex(file, contents);
 };
 
 testTriggerFile(inputFilename);
