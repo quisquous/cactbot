@@ -381,12 +381,55 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
   return div;
 }
 
+class Buff {
+  constructor(name, info, list, options) {
+    this.name = name;
+    this.info = info;
+    this.list = list;
+    this.options = options;
+    this.aura = null;
+  }
+
+  makeAura(seconds) {
+    let elem = makeAuraTimerIcon(
+        this.name, seconds,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        this.info.text,
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        this.options.BigBuffBorderSize,
+        this.info.borderColor, this.info.borderColor,
+        this.info.icon);
+    this.list.addElement(this.name, elem, this.info.sortKey);
+
+    let clearCallback = () => {
+      this.list.removeElement(this.name);
+    };
+
+    return {
+      elem: elem,
+      clearCallback: clearCallback,
+      timeout: window.setTimeout(clearCallback, seconds * 1000),
+    };
+  }
+
+  onGain(seconds, source) {
+    this.aura = this.makeAura(seconds);
+  }
+
+  onLose() {
+    if (!this.aura)
+      return;
+    this.clearTimeout(this.aura.timeout);
+    this.aura.clearCallback();
+  }
+}
+
 class BuffTracker {
   constructor(options, leftBuffDiv, rightBuffDiv) {
     this.options = options;
     this.leftBuffDiv = leftBuffDiv;
     this.rightBuffDiv = rightBuffDiv;
-    this.activeBuffs = {};
+    this.buffs = {};
 
     this.buffInfo = {
       potion: {
@@ -666,33 +709,24 @@ class BuffTracker {
     if (seconds <= 0)
       return;
 
-    let aura = makeAuraTimerIcon(
-        name, seconds,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        info.text,
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        this.options.BigBuffBorderSize,
-        info.borderColor, info.borderColor,
-        info.icon);
     let list = this.rightBuffDiv;
     if (info.side == 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;
-    list.addElement(name, aura, info.sortKey);
 
-    let key = name + source;
-    this.activeBuffs[key] = this.activeBuffs[key] || {};
-    let state = this.activeBuffs[key];
+    let buff = this.buffs[name];
+    if (!buff) {
+      this.buffs[name] = new Buff(name, info, list, this.options);
+      buff = this.buffs[name];
+    }
 
-    if (state.activeTimeout)
-      window.clearTimeout(state.activeTimeout);
-    state.activeTimeout = window.setTimeout(() => {
-      list.removeElement(name);
-    }, seconds * 1000);
+    buff.onGain(seconds, source);
   }
 
   onLoseBigBuff(name) {
-    this.rightBuffDiv.removeElement(name);
-    this.leftBuffDiv.removeElement(name);
+    let buff = this.buffs[name];
+    if (!buff)
+      return;
+    buff.onLose();
   }
 }
 
