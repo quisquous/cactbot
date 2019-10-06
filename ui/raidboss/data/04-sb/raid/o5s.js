@@ -64,23 +64,19 @@
       regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
       regexJa: /14:28A4:魔列車 starts using 追突/,
       regexKo: /14:28A4:마열차 starts using 추돌/,
-      alertText: function(data) {
-        return {
-          en: 'Go to back',
-          de: 'Nach hinten laufen',
-          fr: 'S\'éloigner',
-          ko: '뒤로 이동',
-          ja: '後ろへ',
-        };
+      alertText: {
+        en: 'Go to back',
+        de: 'Nach hinten laufen',
+        fr: 'S\'éloigner',
+        ko: '뒤로 이동',
+        ja: '後ろへ',
       },
-      tts: function(data) {
-        return {
-          en: 'run away',
-          de: 'ab nach hinten',
-          fr: 'S\'éloigner',
-          ko: '뒤로 이동',
-          ja: '後ろへ',
-        };
+      tts: {
+        en: 'run away',
+        de: 'ab nach hinten',
+        fr: 'S\'éloigner',
+        ko: '뒤로 이동',
+        ja: '後ろへ',
       },
     },
     {
@@ -90,14 +86,12 @@
       regexFr: /14:28B2:Train Fantôme starts using Phare Diabolique/,
       regexJa: /14:28B2:魔列車 starts using 魔界の前照灯/,
       regexKo: /14:28B2:마열차 starts using 마계의 전조등/,
-      alertText: function(data) {
-        return {
-          en: 'Stack middle',
-          de: 'Stack in der Mitte',
-          fr: 'Stack au milieu',
-          ko: '중앙으로 모이기',
-          ja: '中央でスタック',
-        };
+      alertText: {
+        en: 'Stack middle',
+        de: 'Stack in der Mitte',
+        fr: 'Stack au milieu',
+        ko: '중앙으로 모이기',
+        ja: '中央でスタック',
       },
     },
     {
@@ -106,14 +100,12 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Light',
-          de: 'Licht',
-          fr: 'Lumière',
-          ko: '빛장판',
-          ja: 'ライト',
-        };
+      infoText: {
+        en: 'Light',
+        de: 'Licht',
+        fr: 'Lumière',
+        ko: '빛장판',
+        ja: 'ライト',
       },
     },
     {
@@ -122,14 +114,12 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Wind',
-          de: 'Wind',
-          fr: 'Vent',
-          ko: '초록징',
-          ja: '風',
-        };
+      infoText: {
+        en: 'Wind',
+        de: 'Wind',
+        fr: 'Vent',
+        ko: '초록징',
+        ja: '風',
       },
     },
     {
@@ -139,14 +129,12 @@
       regexFr: / 03:Added new combatant Fantôme Mélancolique/,
       regexJa: / 03:Added new combatant 未練のゴースト/,
       regexKo: / 03:Added new combatant 미련이 남은 유령/,
-      infoText: function(data) {
-        return {
-          en: 'Knockback Ghost',
-          de: 'Rückstoß Geist',
-          fr: 'Fantôme soufflant',
-          ko: 'Fantôme soufflant',
-          ja: 'ノックバックゴースト',
-        };
+      infoText: {
+        en: 'Knockback Ghost',
+        de: 'Rückstoß Geist',
+        fr: 'Fantôme soufflant',
+        ko: 'Fantôme soufflant',
+        ja: 'ノックバックゴースト',
       },
     },
   ],

@@ -112,7 +112,7 @@
       regexDe: / 14:4180:Hades starts using Titanomachie/,
       regexFr: / 14:4180:Hadès starts using Titanomachie/,
       regexJa: / 14:4180:ハーデス starts using ティタノマキア/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -192,7 +192,7 @@
       regexDe: / 14:4161:Hades starts using Doppelschlag/,
       regexFr: / 14:4161:Hadès starts using Frappe [rR]edoublée/,
       regexJa: / 14:4161:ハーデス starts using デュアルストライク/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -315,7 +315,7 @@
       id: 'Hades Ancient Cleanup',
       regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
       delaySeconds: 10,
-      run: function(data, matches) {
+      run: function(data) {
         delete data.ancient;
       },
     },

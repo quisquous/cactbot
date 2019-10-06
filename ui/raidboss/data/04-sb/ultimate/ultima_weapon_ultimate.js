@@ -96,7 +96,7 @@
       regexFr: / 03:\y{ObjectId}:Added new combatant Plume Perforante\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant スパイニープルーム/,
       regexKo: / 03:\y{ObjectId}Added new combatant 가시돋힌 깃털/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'tank';
       },
       infoText: {
@@ -209,7 +209,7 @@
         if (data.titanGaols.length == 3)
           data.titanGaols.sort();
       },
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (data.titanGaols.length != 3)
           return;
         let idx = data.titanGaols.indexOf(data.me);
@@ -218,7 +218,7 @@
         // Just return your number.
         return idx + 1;
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.titanGaols.length != 3)
           return;
         // Return all the people in order.

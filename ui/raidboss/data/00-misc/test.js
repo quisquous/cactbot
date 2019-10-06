@@ -48,7 +48,7 @@
       regex: /(Angry Dummy)/,
       regexDe: /(Wütender Dummy)/,
       beforeSeconds: 2,
-      infoText: function(data, matches) {
+      infoText: function(matches) {
         return {
           en: 'Stack for ' + matches[1],
           de: 'Sammeln für ' + matches[1],
@@ -120,12 +120,10 @@
       regex: /:You psych yourself up alongside the striking dummy/,
       regexDe: /:Du willst wahren Kampfgeist in der Trainingspuppe entfachen/,
       regexFr: /:Vous vous motivez devant le mannequin d'entraînement/,
-      alertText: function(data) {
-        return {
-          en: 'PSYCH!!!',
-          de: 'AUF GEHTS!!!',
-          fr: 'MOTIVATION !!!',
-        };
+      alertText: {
+        en: 'PSYCH!!!',
+        de: 'AUF GEHTS!!!',
+        fr: 'MOTIVATION !!!',
       },
       tts: {
         en: 'psych',
@@ -144,12 +142,10 @@
       regexDe: /:Du lachst herzlich mit der Trainingspuppe/,
       regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
       suppressSeconds: 5,
-      alarmText: function(data) {
-        return {
-          en: 'hahahahaha',
-          de: 'hahahahaha',
-          fr: 'Mouahahaha',
-        };
+      alarmText: {
+        en: 'hahahahaha',
+        de: 'hahahahaha',
+        fr: 'Mouahahaha',
       },
       tts: {
         en: 'hahahahaha',

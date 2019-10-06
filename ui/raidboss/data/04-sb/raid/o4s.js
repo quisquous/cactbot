@@ -548,7 +548,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         return parseFloat(matches[2]) - 4;
       }, // 4 second warning.
       alarmText: function(data) {
@@ -587,7 +587,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'omega';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         return parseFloat(matches[2]) - 5;
       },
       alertText: {
@@ -745,11 +745,9 @@
     { // Almagest
       id: 'O4S2 Almagest',
       regex: / 14:2417:Neo Exdeath starts using/,
-      alertText: function(data) {
-        return {
-          en: 'Almagest',
-          de: 'Almagest',
-        };
+      alertText: {
+        en: 'Almagest',
+        de: 'Almagest',
       },
       tts: {
         en: 'almagest',

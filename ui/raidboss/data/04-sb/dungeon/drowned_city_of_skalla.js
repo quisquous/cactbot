@@ -42,12 +42,10 @@
       regex: / 14:2665:Hrodric Poisontongue starts using Eye Of The Fire/,
       regexDe: / 14:2665:Hrodric Giftzunge starts using Feuerauge/,
       regexFr: / 14:2665:Hrodric Le Médisant starts using Œil Des Flammes/,
-      alertText: function(data) {
-        return {
-          en: 'look away',
-          de: 'wegschauen',
-          fr: 'Détournez le regard',
-        };
+      alertText: {
+        en: 'look away',
+        de: 'wegschauen',
+        fr: 'Détournez le regard',
       },
     },
     {
@@ -55,12 +53,10 @@
       regex: / 14:2662:Hrodric Poisontongue starts using Words Of Woe/,
       regexDe: / 14:2662:Hrodric Giftzunge starts using Wehklagende Worte/,
       regexFr: / 14:2662:Hrodric Le Médisant starts using Mots De Malheur/,
-      infoText: function(data) {
-        return {
-          en: 'avoid eye lasers',
-          de: 'Augenlaser ausweichen',
-          fr: 'Evitez les lasers',
-        };
+      infoText: {
+        en: 'avoid eye lasers',
+        de: 'Augenlaser ausweichen',
+        fr: 'Evitez les lasers',
       },
       tts: {
         en: 'eye laser',

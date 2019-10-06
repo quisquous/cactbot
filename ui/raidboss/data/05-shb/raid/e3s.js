@@ -38,7 +38,7 @@
       regexDe: / 14:3FDC:Leviathan starts using Schrei der Gezeiten/,
       regexFr: / 14:3FDC:Léviathan starts using Vague Rugissante/,
       regexJa: / 14:3FDC:リヴァイアサン starts using タイダルロア/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -55,7 +55,7 @@
       regexDe: / 14:3FDE:Leviathan starts using Wütende Flut/,
       regexFr: / 14:3FDE:Léviathan starts using Furie Des Marées/,
       regexJa: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -325,7 +325,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      alertText: function(data, matches) {
+      alertText: function(matches) {
         let seconds = matches[2];
         if (seconds <= 8) {
           return {
@@ -336,7 +336,7 @@
           };
         }
       },
-      infoText: function(data, matches) {
+      infoText: function(matches) {
         let seconds = matches[2];
         if (seconds <= 8)
           return;
@@ -402,7 +402,7 @@
         // Everybody is in first stack, but tanks not in the second.
         return parseFloat(matches[2]) > 15 || data.role != 'tank';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         return parseFloat(matches[2]) - 3;
       },
       suppressSeconds: 1,

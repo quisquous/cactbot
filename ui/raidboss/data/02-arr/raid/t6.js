@@ -69,7 +69,7 @@
     {
       id: 'T6 Flower',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000D:/,
-      alarmText: function(data, matches) {
+      alarmText: function(data) {
         if (data.honey) {
           return {
             en: 'Devour: Get Eaten',

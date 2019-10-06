@@ -353,7 +353,7 @@
       regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Markiert/,
       regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Marquage/,
       regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of マーキング/,
-      condition: function(data, matches) {
+      condition: function(data) {
         if (data.role == 'dps')
           return data.paradise;
         if (data.role == 'tank')

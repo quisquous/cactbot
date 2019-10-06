@@ -95,13 +95,11 @@
       regexDe: / 14:3EC7:Innozenz starts using Seligmachende Schau/,
       regexJa: / 14:3EC7:イノセンス starts using ビーティフィックビジョン/,
       regexFr: / 14:3EC7:Innocence starts using Vision [bB]éatifique/,
-      alertText: function(data) {
-        return {
-          en: 'Avoid Charge',
-          de: 'ausweichen',
-          ja: '突進避けて',
-          fr: 'Evitez les charges',
-        };
+      alertText: {
+        en: 'Avoid Charge',
+        de: 'ausweichen',
+        ja: '突進避けて',
+        fr: 'Evitez les charges',
       },
     },
     {
@@ -110,13 +108,11 @@
       regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      infoText: function(data) {
-        return {
-          en: 'Line Stack',
-          de: 'In einer Linie sammeln',
-          ja: 'シェア',
-          fr: 'Packez-vous en ligne',
-        };
+      infoText: {
+        en: 'Line Stack',
+        de: 'In einer Linie sammeln',
+        ja: 'シェア',
+        fr: 'Packez-vous en ligne',
       },
     },
     {
@@ -125,13 +121,11 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      alertText: function(data, matches) {
-        return {
-          en: 'Circle on YOU',
-          de: 'Kreis auf DIR',
-          fr: 'Cercle sur vous',
-          ja: 'サークルついた',
-        };
+      alertText: {
+        en: 'Circle on YOU',
+        de: 'Kreis auf DIR',
+        fr: 'Cercle sur vous',
+        ja: 'サークルついた',
       },
     },
     {

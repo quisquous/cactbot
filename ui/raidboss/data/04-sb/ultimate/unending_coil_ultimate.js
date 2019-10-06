@@ -161,7 +161,7 @@
       regexDe: / 14:26A9:Twintania starts using Todesurteil/,
       regexFr: / 14:26A9:Gémellia starts using Peine De Mort/,
       regexJa: / 14:26A9:ツインタニア starts using デスセンテンス/,
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Death Sentence',
@@ -171,7 +171,7 @@
           };
         }
       },
-      tts: function(data, matches) {
+      tts: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'buster',
@@ -213,7 +213,7 @@
       id: 'UCU Hatch Callouts',
       regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       delaySeconds: 0.25,
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (!data.hatch)
           return;
         let hatches = data.hatch.map(function(n) {
@@ -243,13 +243,11 @@
       regexFr: /:Gémellia HP at 75%/,
       regexJa: /:ツインタニア HP at 75%/,
       sound: 'Long',
-      infoText: function(data, matches) {
-        return {
-          en: 'Phase 2 Push',
-          fr: 'Phase 2 poussée',
-          de: 'Phase 2 Stoß',
-          ja: 'フェーズ2',
-        };
+      infoText: {
+        en: 'Phase 2 Push',
+        fr: 'Phase 2 poussée',
+        de: 'Phase 2 Stoß',
+        ja: 'フェーズ2',
       },
     },
     {
@@ -259,13 +257,11 @@
       regexFr: /:Gémellia HP at 45%/,
       regexJa: /:ツインタニア HP at 45%/,
       sound: 'Long',
-      infoText: function(data, matches) {
-        return {
-          en: 'Phase 3 Push',
-          fr: 'Phase 3 poussée',
-          de: 'Phase 3 Stoß',
-          ja: 'フェーズ3',
-        };
+      infoText: {
+        en: 'Phase 3 Push',
+        fr: 'Phase 3 poussée',
+        de: 'Phase 3 Stoß',
+        ja: 'フェーズ3',
       },
     },
 
@@ -606,7 +602,7 @@
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
       suppressSeconds: 20,
-      durationSeconds: function(data, matches) {
+      durationSeconds: function(matches) {
         if (parseFloat(matches[2]) <= 6)
           return 3;
 
@@ -615,7 +611,7 @@
 
         return 9;
       },
-      alarmText: function(data, matches) {
+      alarmText: function(matches) {
         if (parseFloat(matches[2]) <= 6) {
           return {
             en: 'Doom #1 on YOU',
@@ -639,7 +635,7 @@
           ja: '自分に三番目死の宣告',
         };
       },
-      tts: function(data, matches) {
+      tts: function(matches) {
         if (parseFloat(matches[2]) <= 6)
           return '1';
 
@@ -655,7 +651,7 @@
       regexDe: /1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
       regexFr: /1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
-      condition: function(data, matches) {
+      condition: function(matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         return matches[2] < 1000;
@@ -894,13 +890,11 @@
           };
         }
       },
-      tts: function(data) {
-        return {
-          en: 'fire in',
-          fr: 'Feu en dedans',
-          de: 'feuer innen',
-          ja: 'ファイアボール密着',
-        };
+      tts: {
+        en: 'fire in',
+        fr: 'Feu en dedans',
+        de: 'feuer innen',
+        ja: 'ファイアボール密着',
       },
       run: function(data) {
         data.naelFireballCount = 4;
@@ -1447,10 +1441,10 @@
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         return 'Akh Morn #' + data.akhMornCount;
       },
-      tts: function(data, matches) {
+      tts: function(data) {
         return 'akh morn ' + data.akhMornCount;
       },
     },
@@ -1464,7 +1458,7 @@
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         return {
           en: 'Exaflare #' + data.exaflareCount,
           fr: 'ExaBrasier #' + data.exaflareCount,
@@ -1472,7 +1466,7 @@
           ja: 'エクサフレア' + data.exaflareCount + '回',
         };
       },
-      tts: function(data, matches) {
+      tts: function(data) {
         return {
           en: 'exaflare ' + data.exaflareCount,
           fr: 'Exabrasier '+ data.exaflareCount,

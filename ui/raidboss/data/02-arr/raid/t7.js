@@ -48,7 +48,7 @@
     {
       id: 'T7 Voice',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Voice from .*for (\y{Float}) Seconds/,
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         return matches[2] - 3;
       },
       condition: function(data, matches) {

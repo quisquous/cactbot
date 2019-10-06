@@ -22,7 +22,7 @@
         return !(data.gigaflare > 1);
       },
       sound: 'Long',
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.gigaflare) {
           return {
             en: 'Stack Center for Dives',

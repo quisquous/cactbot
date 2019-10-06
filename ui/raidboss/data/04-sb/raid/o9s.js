@@ -146,13 +146,11 @@
       regexDe: /14:3171:Chaos starts using Verdammendes Edikt/,
       regexFr: /14:3171:Chaos starts using Décret Accablant/,
       regexJa: /14:3171:カオス starts using ダミングイーディクト/,
-      infoText: function(data) {
-        return {
-          en: 'Get Behind',
-          de: 'Hinten dran',
-          fr: 'Derrière le boss',
-          ja: '背面へ',
-        };
+      infoText: {
+        en: 'Get Behind',
+        de: 'Hinten dran',
+        fr: 'Derrière le boss',
+        ja: '背面へ',
       },
     },
     {
@@ -252,7 +250,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'fire';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
         let seconds = parseFloat(matches[2]);
@@ -495,15 +493,13 @@
       condition: function(data, matches) {
         return data.me == matches[1] && data.phaseType != 'orb';
       },
-      infoText: function(data) {
-        return {
-          en: 'Die on next mechanic',
-          de: 'An nächster Mechanik tödlichen Schaden nehmen',
-          fr: 'Mourrez sur la prochaine mécanique',
-          ja: '次のギミックで死んでね',
-        };
+      infoText: {
+        en: 'Die on next mechanic',
+        de: 'An nächster Mechanik tödlichen Schaden nehmen',
+        fr: 'Mourrez sur la prochaine mécanique',
+        ja: '次のギミックで死んでね',
       },
-      run: function(data, matches) {
+      run: function(data) {
         data.primordialCrust = true;
       },
     },
@@ -517,7 +513,7 @@
         return data.me == matches[1];
       },
       delaySeconds: 30,
-      run: function(data, matches) {
+      run: function(data) {
         delete data.primordialCrust;
       },
     },
@@ -525,12 +521,10 @@
       id: 'O9S Earth Stack Marker',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
       suppressSeconds: 10,
-      infoText: function(data) {
-        return {
-          en: 'Stack with partner',
-          de: 'Stacks verteilen',
-          fr: 'Packez-vous en binôme',
-        };
+      infoText: {
+        en: 'Stack with partner',
+        de: 'Stacks verteilen',
+        fr: 'Packez-vous en binôme',
       },
     },
 
@@ -555,7 +549,7 @@
         return matches[1] != data.me && data.phaseType == 'orb';
       },
       suppressSeconds: 10,
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         return parseFloat(matches[2]) - 3;
       },
       alertText: function(data) {
@@ -581,16 +575,14 @@
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'orb';
       },
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(matches) {
         return parseFloat(matches[2]) - 5;
       },
-      infoText: function(data) {
-        return {
-          en: 'Hit DPS with Water',
-          de: 'töte deinen DPS',
-          fr: 'Tuez les DPS',
-          ja: '水当てて',
-        };
+      infoText: {
+        en: 'Hit DPS with Water',
+        de: 'töte deinen DPS',
+        fr: 'Tuez les DPS',
+        ja: '水当てて',
       },
     },
 

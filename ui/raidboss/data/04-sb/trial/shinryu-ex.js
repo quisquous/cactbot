@@ -240,17 +240,13 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: function(data) {
-        return {
-          en: 'no more heals needed',
-          de: 'keine Heilung mehr nötig',
-        };
+      infoText: {
+        en: 'no more heals needed',
+        de: 'keine Heilung mehr nötig',
       },
-      tts: function(data) {
-        return {
-          en: 'stop healing',
-          de: 'keine Heilung mehr',
-        };
+      tts: {
+        en: 'stop healing',
+        de: 'keine Heilung mehr',
       },
     },
     {

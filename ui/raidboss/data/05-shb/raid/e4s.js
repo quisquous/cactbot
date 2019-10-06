@@ -119,7 +119,7 @@
       regexDe: / 14:4114:Titan starts using Aufschrei der Erde/,
       regexFr: / 14:4114:Titan starts using Hurlement Tellurique/,
       regexJa: / 14:4114:タイタン starts using 大地の叫び/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -486,7 +486,7 @@
       regexDe: / 14:412A:Gigantitan starts using Katastrophales Beben/,
       regexFr: / 14:412A:Maxi Titan starts using Tumulte/,
       regexJa: / 14:412A:マキシタイタン starts using 激震/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {

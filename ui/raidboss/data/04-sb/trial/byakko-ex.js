@@ -46,13 +46,11 @@
       regexDe: / 14:27F4:Byakko starts using Vertikalität/,
       regexFr: / 14:27F4:Byakko starts using Verticalité/,
       regexJa: / 14:27F4:白虎 starts using 旋体脚/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Get Inside',
-          de: 'Reingehen',
-          fr: 'Allez au centre',
-          ja: '密着',
-        };
+      alertText: {
+        en: 'Get Inside',
+        de: 'Reingehen',
+        fr: 'Allez au centre',
+        ja: '密着',
       },
       tts: {
         en: 'inside',
@@ -67,13 +65,11 @@
       regexDe: / 14:27DB:Byakko starts using Vertikalität/,
       regexFr: / 14:27DB:Byakko starts using Verticalité/,
       regexJa: / 14:27DB:白虎 starts using 旋体脚/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Get Behind',
-          de: 'Hinter ihn laufen',
-          fr: 'Allez derrière le boss',
-          ja: '後ろ',
-        };
+      alertText: {
+        en: 'Get Behind',
+        de: 'Hinter ihn laufen',
+        fr: 'Allez derrière le boss',
+        ja: '後ろ',
       },
       tts: {
         en: 'behind',
@@ -88,7 +84,7 @@
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       regexFr: / 14:27DC:Byakko starts using Pulsion De Tempête/,
       regexJa: / 14:27DC:白虎 starts using 風雷波動/,
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.role == 'healer') {
           return {
             en: 'AOE',
@@ -111,13 +107,11 @@
       regexDe: / 14:27DD:Byakko starts using Donnergrollen on Byakko/,
       regexFr: / 14:27DD:Byakko starts using Tonnerre Lointain on Byakko/,
       regexJa: / 14:27DD:白虎 starts using 遠雷 on 白虎/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Distant Clap',
-          de: 'Donnergrollen',
-          fr: 'Tonnerre Lointain',
-          ja: '遠雷',
-        };
+      alertText: {
+        en: 'Distant Clap',
+        de: 'Donnergrollen',
+        fr: 'Tonnerre Lointain',
+        ja: '遠雷',
       },
       tts: {
         en: 'clap',
@@ -208,13 +202,11 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Drop bubble outside',
-          de: 'Blase außen ablegen',
-          fr: 'Déposez à l\'extérieur',
-          ja: '外にマーカーを置く',
-        };
+      infoText: {
+        en: 'Drop bubble outside',
+        de: 'Blase außen ablegen',
+        fr: 'Déposez à l\'extérieur',
+        ja: '外にマーカーを置く',
       },
       tts: {
         en: 'drop outside',
@@ -232,13 +224,11 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Pink bubble',
-          de: 'Pinke Blase',
-          fr: 'Bulle violette',
-          ja: '祟り目',
-        };
+      infoText: {
+        en: 'Pink bubble',
+        de: 'Pinke Blase',
+        fr: 'Bulle violette',
+        ja: '祟り目',
       },
       tts: {
         en: 'bubble',
@@ -253,13 +243,11 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      alarmText: function(data) {
-        return {
-          en: 'Puddles on YOU',
-          de: 'Pfützen auf DIR',
-          fr: 'Mare sur VOUS',
-          ja: '自分に床範囲',
-        };
+      alarmText: {
+        en: 'Puddles on YOU',
+        de: 'Pfützen auf DIR',
+        fr: 'Mare sur VOUS',
+        ja: '自分に床範囲',
       },
       tts: {
         en: 'puddles',
@@ -274,13 +262,11 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Get away',
-          de: 'Weg da',
-          fr: 'Eloignez-vous',
-          ja: '離れる',
-        };
+      infoText: {
+        en: 'Get away',
+        de: 'Weg da',
+        fr: 'Eloignez-vous',
+        ja: '離れる',
       },
       tts: {
         en: 'get away',

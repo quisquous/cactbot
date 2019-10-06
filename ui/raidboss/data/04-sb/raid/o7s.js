@@ -42,7 +42,7 @@
       regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Dadaluma/,
       regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ダダルマー・プログラム/,
       regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 다다루마 프로그램/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
       run: function(data) {
@@ -58,7 +58,7 @@
       regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Bibliotaphe/,
       regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ビブリオタフ・プログラム/,
       regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 비블리오타프 프로그램/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
       run: function(data) {
@@ -87,7 +87,7 @@
       regexFr: / 14:2788:Gardien starts using (Rayon Magitek)/,
       regexJa: / 14:2788:ガーディアン starts using (魔導レーザー)/,
       regexKo: / 14:2788:가디언 starts using (마도 레이저)/,
-      alertText: function(data, matches) {
+      alertText: function(matches) {
         return matches[1];
       },
       tts: {
