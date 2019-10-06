@@ -602,6 +602,14 @@ class BuffTracker {
     for (let i = 0; i < keys.length; ++i) {
       let buff = this.buffInfo[keys[i]];
       buff.name = keys[i];
+
+      let overrides = this.options.PerBuffOptions[buff.name] || {};
+      buff.borderColor = overrides.borderColor || buff.borderColor;
+      buff.icon = overrides.icon || buff.icon;
+      buff.side = overrides.side || buff.side || 'right';
+      buff.sortKey = overrides.sortKey || buff.sortKey;
+      buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
+
       if (buff.gainEffect) {
         if (buff.gainEffect in this.gainEffectMap)
           console.error('Duplicate buff entry: ' + buff.gainEffect);
@@ -654,27 +662,22 @@ class BuffTracker {
     this.onLoseBigBuff(b.name, b);
   }
 
-  onBigBuff(name, seconds, settings, source) {
-    let overrides = this.options.PerBuffOptions[name] || {};
-    let borderColor = overrides.borderColor || settings.borderColor;
-    let icon = overrides.icon || settings.icon;
-    let side = overrides.side || settings.side;
-    let sortKey = overrides.sortKey || settings.sortKey;
-    if (overrides.hide)
+  onBigBuff(name, seconds, info, source) {
+    if (seconds <= 0)
       return;
 
     let aura = makeAuraTimerIcon(
         name, seconds,
         this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        settings.text,
+        info.text,
         this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
         this.options.BigBuffBorderSize,
-        borderColor, borderColor,
-        icon);
+        info.borderColor, info.borderColor,
+        info.icon);
     let list = this.rightBuffDiv;
-    if (side && side == 'left' && this.leftBuffDiv)
+    if (info.side == 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;
-    list.addElement(name, aura, sortKey);
+    list.addElement(name, aura, info.sortKey);
 
     let key = name + source;
     this.activeBuffs[key] = this.activeBuffs[key] || {};
@@ -682,16 +685,12 @@ class BuffTracker {
 
     if (state.activeTimeout)
       window.clearTimeout(state.activeTimeout);
-    if (seconds >= 0) {
-      state.activeTimeout = window.setTimeout((function() {
-        this.rightBuffDiv.removeElement(name);
-        this.leftBuffDiv.removeElement(name);
-      }).bind(this), seconds * 1000);
-    }
+    state.activeTimeout = window.setTimeout(() => {
+      list.removeElement(name);
+    }, seconds * 1000);
   }
 
-  onLoseBigBuff(name, settings) {
-    window.clearTimeout(settings.timeout);
+  onLoseBigBuff(name) {
     this.rightBuffDiv.removeElement(name);
     this.leftBuffDiv.removeElement(name);
   }
