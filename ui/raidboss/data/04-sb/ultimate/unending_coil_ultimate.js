@@ -602,7 +602,7 @@
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
       suppressSeconds: 20,
-      durationSeconds: function(matches) {
+      durationSeconds: function(data, matches) {
         if (parseFloat(matches[2]) <= 6)
           return 3;
 
@@ -611,7 +611,7 @@
 
         return 9;
       },
-      alarmText: function(matches) {
+      alarmText: function(data, matches) {
         if (parseFloat(matches[2]) <= 6) {
           return {
             en: 'Doom #1 on YOU',
@@ -635,7 +635,7 @@
           ja: '自分に三番目死の宣告',
         };
       },
-      tts: function(matches) {
+      tts: function(data, matches) {
         if (parseFloat(matches[2]) <= 6)
           return '1';
 
@@ -651,7 +651,7 @@
       regexDe: /1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
       regexFr: /1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
       regexJa: /1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
-      condition: function(matches) {
+      condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         return matches[2] < 1000;

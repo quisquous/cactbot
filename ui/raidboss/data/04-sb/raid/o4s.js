@@ -548,7 +548,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 4;
       }, // 4 second warning.
       alarmText: function(data) {
@@ -587,7 +587,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'omega';
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 5;
       },
       alertText: {

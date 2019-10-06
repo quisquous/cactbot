@@ -48,7 +48,7 @@
       regex: /(Angry Dummy)/,
       regexDe: /(Wütender Dummy)/,
       beforeSeconds: 2,
-      infoText: function(matches) {
+      infoText: function(data, matches) {
         return {
           en: 'Stack for ' + matches[1],
           de: 'Sammeln für ' + matches[1],

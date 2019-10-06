@@ -39,7 +39,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return matches[2] - 5;
       },
       durationSeconds: 5,
@@ -53,7 +53,7 @@
       condition: function(data, matches) {
         return data.me != matches[1];
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return matches[2] - 5;
       },
       durationSeconds: 5,

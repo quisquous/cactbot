@@ -185,7 +185,7 @@
     { // Churning (dice)
       id: 'SusEx Churning',
       regex: / 1A:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 3;
       },
       alertText: {

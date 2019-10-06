@@ -250,7 +250,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'fire';
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
         let seconds = parseFloat(matches[2]);
@@ -549,7 +549,7 @@
         return matches[1] != data.me && data.phaseType == 'orb';
       },
       suppressSeconds: 10,
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 3;
       },
       alertText: function(data) {
@@ -575,7 +575,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'orb';
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 5;
       },
       infoText: {

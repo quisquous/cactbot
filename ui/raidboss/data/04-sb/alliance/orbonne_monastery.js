@@ -635,7 +635,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 1;
       },
       alertText: {

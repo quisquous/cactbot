@@ -325,7 +325,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      alertText: function(matches) {
+      alertText: function(data, matches) {
         let seconds = matches[2];
         if (seconds <= 8) {
           return {
@@ -336,7 +336,7 @@
           };
         }
       },
-      infoText: function(matches) {
+      infoText: function(data, matches) {
         let seconds = matches[2];
         if (seconds <= 8)
           return;
@@ -402,7 +402,7 @@
         // Everybody is in first stack, but tanks not in the second.
         return parseFloat(matches[2]) > 15 || data.role != 'tank';
       },
-      delaySeconds: function(matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 3;
       },
       suppressSeconds: 1,
