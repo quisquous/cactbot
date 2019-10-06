@@ -23,7 +23,13 @@ let Options = {
 
   JustBuffTracker: false,
 
-  PerBuffOptions: {},
+  PerBuffOptions: {
+    // This is noisy since it's more or less permanently on you.
+    // Players are unlikely to make different decisions based on this.
+    standardFinish: {
+      hide: true,
+    },
+  },
 
   RdmCastTime: 1.94 + 0.5,
   WarGcd: 2.45,
