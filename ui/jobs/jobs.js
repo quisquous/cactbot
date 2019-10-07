@@ -43,6 +43,9 @@ let Options = {
   BigBuffTextHeight: 0,
   BigBuffBorderSize: 1,
 
+  // The minimum time on a cooldown before it is shown.
+  BigBuffShowCooldownSeconds: 20,
+
   FarThresholdOffence: 24,
   DrkLowMPThreshold: 2999,
   DrkMediumMPThreshold: 5999,
@@ -304,40 +307,16 @@ function computeBackgroundColorFrom(element, classList) {
   return color;
 }
 
-function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
-    barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
+function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
+    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
   let div = document.createElement('div');
-
-  if (seconds < 0) {
-    div.style.borderWidth = 1;
-    div.style.borderStyle = 'solid';
-    div.style.borderColor = '#000';
-    div.style.width = iconWidth - borderSize * 2;
-    div.style.height = iconHeight - borderSize * 2;
-    div.style.backgroundColor = borderColor;
-    let inner = document.createElement('div');
-    div.appendChild(inner);
-    inner.style.position = 'relative';
-    inner.style.left = borderSize;
-    inner.style.top = borderSize;
-    inner.style.borderWidth = borderSize;
-    inner.style.borderStyle = 'solid';
-    inner.style.borderColor = '#000';
-    inner.style.width = iconWidth - borderSize * 6;
-    inner.style.height = iconHeight - borderSize * 6;
-    inner.style.backgroundImage = 'url(' + auraIcon + ')';
-    inner.style.backgroundColor = '#888';
-    inner.style.backgroundRepeat = 'no-repeat';
-    inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
-    inner.style.backgroundPosition = 'center';
-    return div;
-  }
-
+  div.style.opacity = opacity;
 
   let icon = document.createElement('timer-icon');
   icon.width = iconWidth;
   icon.height = iconHeight;
   icon.bordersize = borderSize;
+  icon.textcolor = textColor;
   div.appendChild(icon);
 
   let barDiv = document.createElement('div');
@@ -345,10 +324,14 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
   barDiv.style.top = iconHeight;
   div.appendChild(barDiv);
 
-  let bar = document.createElement('timer-bar');
-  bar.width = iconWidth;
-  bar.height = barHeight;
-  barDiv.appendChild(bar);
+  if (seconds >= 0) {
+    let bar = document.createElement('timer-bar');
+    bar.width = iconWidth;
+    bar.height = barHeight;
+    bar.fg = barColor;
+    bar.duration = seconds;
+    barDiv.appendChild(bar);
+  }
 
   if (textHeight > 0) {
     let text = document.createElement('div');
@@ -362,7 +345,7 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
     text.style.top = iconHeight;
     text.style.fontFamily = 'arial';
     text.style.fontWeight = 'bold';
-    text.style.color = 'white';
+    text.style.color = textColor;
     text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
     text.style.paddingBottom = textHeight / 4;
 
@@ -373,54 +356,137 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
   if (iconText)
     icon.text = iconText;
   icon.bordercolor = borderColor;
-  bar.fg = barColor;
   icon.icon = auraIcon;
   icon.duration = seconds;
-  bar.duration = seconds;
 
   return div;
 }
 
+// TODO: consider using real times and not setTimeout times as these can drift.
 class Buff {
   constructor(name, info, list, options) {
     this.name = name;
     this.info = info;
-    this.list = list;
     this.options = options;
-    this.aura = null;
+
+    // TODO: these should be different ui elements.
+    // TODO: or maybe add some buffer between sections?
+    this.activeList = list;
+    this.cooldownList = list;
+    this.readyList = list;
+
+    // tracked auras
+    this.active = null;
+    this.cooldown = {};
+    this.ready = {};
+
+    // Hacky numbers to sort active > ready > cooldowns by adjusting sort keys.
+    this.readySortKeyBase = 1000;
+    this.cooldownSortKeyBase = 2000;
   }
 
-  makeAura(seconds) {
-    let elem = makeAuraTimerIcon(
-        this.name, seconds,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        this.info.text,
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        this.options.BigBuffBorderSize,
-        this.info.borderColor, this.info.borderColor,
-        this.info.icon);
-    this.list.addElement(this.name, elem, this.info.sortKey);
+  addCooldown(source, effectSeconds) {
+    if (!this.info.cooldown)
+      return;
+    if (this.cooldown[source]) {
+      // Unexpected use of the same cooldown by the same name.
+      this.cooldown[source].removeCallback();
+    }
 
-    let clearCallback = () => {
-      this.list.removeElement(this.name);
+    let cooldownKey = 'c:' + this.name + ':' + source;
+
+    let secondsUntilShow = this.info.cooldown - this.options.BigBuffShowCooldownSeconds;
+    secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow), this.info.cooldown);
+    let showSeconds = this.info.cooldown - secondsUntilShow;
+    let addReadyCallback = () => {
+      this.addReady(source);
     };
 
-    return {
-      elem: elem,
-      clearCallback: clearCallback,
-      timeout: window.setTimeout(clearCallback, seconds * 1000),
+    this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
+        secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+  }
+
+  addReady(source) {
+    if (this.ready[source]) {
+      // Unexpected use of the same cooldown by the same name.
+      this.ready[source].removeCallback();
+    }
+
+    // TODO: if multiple sources, put people's names as text?
+    // TODO: we could also count up?
+    let txt = '';
+    let color = this.info.borderColor;
+
+    let readyKey = 'r:' + this.name + ':' + source;
+    this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
+        this.readySortKeyBase, color, txt, 0.6);
+  }
+
+  makeAura(key, list, seconds, secondsUntilShow,
+      adjustSort, textColor, txt, opacity, expireCallback) {
+    let aura = {};
+    aura.removeCallback = () => {
+      list.removeElement(key);
+      if (aura.addTimeout) {
+        window.clearTimeout(aura.addTimeout);
+        aura.addTimeout = null;
+      }
+      if (aura.removeTimeout) {
+        window.clearTimeout(aura.removeTimeout);
+        aura.removeTimeout = null;
+      }
     };
+    aura.addCallback = () => {
+      let elem = makeAuraTimerIcon(
+          key, seconds, opacity,
+          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+          txt,
+          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          textColor,
+          this.options.BigBuffBorderSize,
+          this.info.borderColor, this.info.borderColor,
+          this.info.icon);
+      list.addElement(key, elem, this.info.sortKey + adjustSort);
+      aura.addTimeout = null;
+
+      if (seconds > 0) {
+        aura.removeTimeout = window.setTimeout(() => {
+          aura.removeCallback();
+          if (expireCallback)
+            expireCallback();
+        }, seconds * 1000);
+      }
+    };
+    aura.removeTimeout = null;
+
+    if (secondsUntilShow > 0)
+      aura.addTimeout = window.setTimeout(aura.addCallback, secondsUntilShow * 1000);
+    else
+      aura.addCallback();
+
+
+    return aura;
   }
 
   onGain(seconds, source) {
-    this.aura = this.makeAura(seconds);
+    this.onLose();
+
+    let ready = this.ready[source];
+    if (ready)
+      ready.removeCallback();
+    let cooldown = this.cooldown[source];
+    if (cooldown)
+      cooldown.removeCallback();
+
+    this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
+    this.addCooldown(source, seconds);
   }
 
   onLose() {
-    if (!this.aura)
+    if (!this.active)
       return;
-    this.clearTimeout(this.aura.timeout);
-    this.aura.clearCallback();
+    this.active.removeCallback();
+    this.active = null;
   }
 }
 
@@ -1760,10 +1826,11 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
       let div = makeAuraTimerIcon(
-          'foodbuff', -1,
+          'foodbuff', -1, 1,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           '',
           this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          'white',
           this.options.BigBuffBorderSize,
           'yellow', 'yellow',
           '../../resources/icon/status/food.png');
