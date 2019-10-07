@@ -75,10 +75,8 @@
       id: 'T11 Phase 2',
       regex: /:Kaliya HP at 60%/,
       sound: 'Long',
-      infoText: function(data, matches) {
-        return {
-          en: 'Out of Middle',
-        };
+      infoText: {
+        en: 'Out of Middle',
       },
     },
     {
@@ -95,10 +93,8 @@
       id: 'T11 Phase 3',
       regex: /15:\y{ObjectId}:Kaliya:B78:Emergency Mode/,
       sound: 'Long',
-      infoText: function(data) {
-        return {
-          en: 'Final Phase',
-        };
+      infoText: {
+        en: 'Final Phase',
       },
     },
     {

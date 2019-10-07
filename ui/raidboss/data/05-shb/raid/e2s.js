@@ -56,7 +56,7 @@
       regexDe: / 14:3E6F:Nichtswandler starts using Entropie/,
       regexFr: / 14:3E6F:Marcheuse Du Néant starts using Entropie/,
       regexJa: / 14:3E6F:ヴォイドウォーカー starts using エントロピー/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -72,7 +72,7 @@
       regexDe: / 14:3E71:Nichtswandler starts using Quietus/,
       regexFr: / 14:3E71:Marcheuse Du Néant starts using Quietus/,
       regexJa: / 14:3E71:ヴォイドウォーカー starts using クワイタス/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -104,7 +104,7 @@
       regexDe: / 14:3E61:Nichtswandler starts using Schattenflamme/,
       regexFr: / 14:3E61:Marcheuse Du Néant starts using Flamme D'ombre/,
       regexJa: / 14:3E61:ヴォイドウォーカー starts using Shadowflame/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -292,13 +292,11 @@
       condition: function(data, matches) {
         return data.me == matches[1] && data.spell[data.me] == 'fire';
       },
-      alertText: function(data) {
-        return {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Dispersez-vous',
-          ja: '散開',
-        };
+      alertText: {
+        en: 'Spread',
+        de: 'Verteilen',
+        fr: 'Dispersez-vous',
+        ja: '散開',
       },
     },
     {
@@ -429,13 +427,11 @@
       condition: function(data, matches) {
         return data.me == matches[1] && data.spell[data.me] == 'flare';
       },
-      alertText: function(data) {
-        return {
-          en: 'Flare',
-          de: 'Flare',
-          fr: 'Brasier',
-          ja: 'フレア捨てて',
-        };
+      alertText: {
+        en: 'Flare',
+        de: 'Flare',
+        fr: 'Brasier',
+        ja: 'フレア捨てて',
       },
     },
     {
@@ -447,13 +443,11 @@
         return data.spell[matches[1]] == 'flare' && data.spell[data.me] != 'flare';
       },
       suppressSeconds: 10,
-      infoText: function(data) {
-        return {
-          en: 'Flare aoes',
-          de: 'Flare aoes',
-          fr: 'Dégâts de zone des Brasiers',
-          ja: 'フレア AoE',
-        };
+      infoText: {
+        en: 'Flare aoes',
+        de: 'Flare aoes',
+        fr: 'Dégâts de zone des Brasiers',
+        ja: 'フレア AoE',
       },
     },
     {
@@ -516,13 +510,11 @@
           return false;
         return data.me == matches[1] && data.spell[data.me] == 'wind';
       },
-      alertText: function(data) {
-        return {
-          en: 'Hell Wind: wait for heals',
-          de: 'Höllenwind: Warte auf Heilung',
-          fr: 'Vent infernal : attendez les soins',
-          ja: 'ヘルウィンド: HP戻ってから',
-        };
+      alertText: {
+        en: 'Hell Wind: wait for heals',
+        de: 'Höllenwind: Warte auf Heilung',
+        fr: 'Vent infernal : attendez les soins',
+        ja: 'ヘルウィンド: HP戻ってから',
       },
     },
     {
@@ -534,13 +526,11 @@
         return data.spell[matches[1]] == 'wind';
       },
       suppressSeconds: 10,
-      infoText: function(data) {
-        return {
-          en: 'Heal Hell Wind Targets',
-          de: 'Heile Höllenwind Ziele',
-          fr: 'Soignez les cibles de Vent infernal',
-          ja: 'HP戻して',
-        };
+      infoText: {
+        en: 'Heal Hell Wind Targets',
+        de: 'Heile Höllenwind Ziele',
+        fr: 'Soignez les cibles de Vent infernal',
+        ja: 'HP戻して',
       },
     },
     {

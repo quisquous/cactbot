@@ -329,7 +329,7 @@
       regex: / 14:3758:The Thunder God starts using Crush Armor/,
       regexDe: / 14:3758:Cidolfus starts using Helmspalter/,
       regexFr: / 14:3758:Cid Le Dieu De La Foudre starts using Brèche Insidieuse/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'tank';
       },
       alarmText: {

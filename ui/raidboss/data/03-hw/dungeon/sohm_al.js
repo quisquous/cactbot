@@ -56,12 +56,10 @@
       regex: / 03:Added new combatant Chyme Of The Mountain/,
       regexDe: / 03:Added new combatant Gebirgsbrei/,
       regexFr: / 03:Added new combatant Chyme Des Montagnes/,
-      alertText: function(data) {
-        return {
-          en: 'Kill Chyme Add',
-          de: 'Brei Add töten',
-          fr: 'Tuez l\'add',
-        };
+      alertText: {
+        en: 'Kill Chyme Add',
+        de: 'Brei Add töten',
+        fr: 'Tuez l\'add',
       },
       tts: {
         en: 'kill chyme',

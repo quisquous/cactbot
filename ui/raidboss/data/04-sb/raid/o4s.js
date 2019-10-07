@@ -745,11 +745,9 @@
     { // Almagest
       id: 'O4S2 Almagest',
       regex: / 14:2417:Neo Exdeath starts using/,
-      alertText: function(data) {
-        return {
-          en: 'Almagest',
-          de: 'Almagest',
-        };
+      alertText: {
+        en: 'Almagest',
+        de: 'Almagest',
       },
       tts: {
         en: 'almagest',

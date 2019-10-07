@@ -38,7 +38,7 @@
       regexDe: / 14:3FDC:Leviathan starts using Schrei der Gezeiten/,
       regexFr: / 14:3FDC:Léviathan starts using Vague Rugissante/,
       regexJa: / 14:3FDC:リヴァイアサン starts using タイダルロア/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -55,7 +55,7 @@
       regexDe: / 14:3FDE:Leviathan starts using Wütende Flut/,
       regexFr: / 14:3FDE:Léviathan starts using Furie Des Marées/,
       regexJa: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {

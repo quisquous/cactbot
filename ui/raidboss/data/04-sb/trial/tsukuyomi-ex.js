@@ -68,7 +68,7 @@
           fr: 'Ne restez pas devant !',
         };
       },
-      tts: function(data, matches) {
+      tts: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'buster',

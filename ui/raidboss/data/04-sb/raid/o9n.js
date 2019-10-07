@@ -46,12 +46,10 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alarmText: function(data) {
-        return {
-          en: 'Orb Tethers',
-          de: 'Kugel-Verbindungen',
-          fr: 'Attrapez les orbes',
-        };
+      alarmText: {
+        en: 'Orb Tethers',
+        de: 'Kugel-Verbindungen',
+        fr: 'Attrapez les orbes',
       },
     },
   ],

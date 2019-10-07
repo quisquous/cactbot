@@ -294,7 +294,7 @@
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (data.starbirthActive) {
           return {
             en: 'Circle, Avoid Orbs',

@@ -22,7 +22,7 @@
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on (\y{Name})/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'tank';
       },
       alertText: {
@@ -38,7 +38,7 @@
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       suppressSeconds: 1,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -53,7 +53,7 @@
       regexDe: / 14:3E6D:Nichtswandler starts using Entropie/,
       regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
       regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {

@@ -20,7 +20,7 @@
       id: 'Fractal Sanctification',
       regex: /Sanctification/,
       beforeSeconds: 5,
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave on YOU',

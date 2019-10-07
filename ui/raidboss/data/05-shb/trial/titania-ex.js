@@ -186,7 +186,7 @@
       regexDe: / 14:3D2C:Titania starts using Feenlicht/,
       regexJa: / 14:3D2C:ティターニア starts using 妖精光/,
       regexFr: / 14:3D2C:Titania starts using Lueur Féérique/,
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Tank Buster',
@@ -196,7 +196,7 @@
           };
         }
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.role != 'tank' && data.role != 'healer') {
           return {
             en: 'Tank Cleave',
@@ -383,7 +383,7 @@
       regexDe: / 1[56]:\y{ObjectId}:Titania:3D29:Donnerrune:/,
       regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D29:雷のルーン:/,
       regexFr: / 1[56]:\y{ObjectId}:Titania:3D29:Rune De Foudre:/,
-      preRun: function(data, matches) {
+      preRun: function(data) {
         data.thunderCount = data.thunderCount || 1;
       },
       suppressSeconds: 1,

@@ -132,7 +132,7 @@
       // 1C9F:Aether is the circle AoE, 1CA0:Aetherial Chakram is the donut AoE
       id: 'Dun Scaith Blue Atomos',
       regex: / 14:(\y{AbilityCode}):\y{Name} starts using Juggling Sphere on Wailing Atomos/,
-      alertText: function(matches) {
+      alertText: function(data, matches) {
         if (matches[1] == '1C9F') {
           return {
             en: 'Avoid Untethered Blue',
@@ -148,7 +148,7 @@
     {
       id: 'Dun Scaith Yellow Atomos',
       regex: / 14:(\y{AbilityCode}):\y{Name} starts using Juggling Sphere on Cursing Atomos/,
-      alertText: function(matches) {
+      alertText: function(data, matches) {
         if (matches[1] == '1C9F') {
           return {
             en: 'Avoid Untethered Yellow',
@@ -172,7 +172,7 @@
       id: 'Dun Scaith Debilitator',
       regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire|Water) Resistance Down/,
       suppressSeconds: 10,
-      alertText: function(matches) {
+      alertText: function(data, matches) {
         if (matches[1] == 'Water') {
           return {
             en: 'Change puddles to fire',

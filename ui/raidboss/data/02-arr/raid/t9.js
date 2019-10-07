@@ -227,7 +227,7 @@
     {
       id: 'T9 Tether',
       regex: / 23:\y{ObjectId}:Firehorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      preRun: function(data, matches) {
+      preRun: function(data) {
         data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;
         // Out, In, Out, In

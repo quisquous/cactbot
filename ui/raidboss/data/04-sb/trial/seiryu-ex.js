@@ -158,7 +158,7 @@
     {
       id: 'SeiryuEx Ascending Tower You',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
-      condition: function(data, matches) {
+      condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;
         return data.markers.indexOf(data.me) == -1;
