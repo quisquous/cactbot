@@ -1,4 +1,4 @@
-﻿using Advanced_Combat_Tracker;
+using Advanced_Combat_Tracker;
 using Newtonsoft.Json;
 using RainbowMage.OverlayPlugin;
 using System;
@@ -255,7 +255,7 @@ namespace Cactbot {
 
     public void EnableWatchers(bool check) {
       this.watcher_state = check;
-    foreach (var watcher in this.watchers)
+      foreach (var watcher in this.watchers)
         watcher.EnableRaisingEvents = check;
     }
  
@@ -270,25 +270,17 @@ namespace Cactbot {
       var overlay_full_path = url;
       string base_path = null;
 
-      if (!url.Contains("://quisquous.github.io/cactbot/")) {
+      if (url.ToLower().StartsWith("file:///") {
         // Path of overlay if overlay is not remote!
         overlay_full_path = Regex.Replace(overlay_full_path, @"file:[\\\/]+", "");
         var overlay_path = Path.GetDirectoryName(url);
         overlay_path = Regex.Replace(overlay_path, @"file:[\\\/]+", "");
         base_path = Regex.Match(overlay_path, @"(.*cactbot)").Groups[1].ToString();
-
-        path_list.Add(base_path);
-
-        // Path of HTML resources if overlay is not remote!
-        string html = File.ReadAllText(overlay_full_path);
-        var html_path = Regex.Match(html, @"(?:src|href)=""(.*)[\\\/].*\..*""");
-        foreach(var match in html_path.Groups) {
-          string match_path = match.ToString();
-          if (match_path.StartsWith(".."))
-            match_path = overlay_path + "/" + match_path;
-          if (!match_path.Contains(base_path) && Directory.Exists(match_path) && !path_list.Contains(match_path))
-            path_list.Add(match_path);
-        }
+        
+        if (Directory.Exists(base_path))
+          path_list.Add(base_path);
+        else if (Directory.Exists(overlay_path))
+          path_list.Add(overlay_path);
       }
 
       // User Dir
@@ -296,7 +288,7 @@ namespace Cactbot {
       Dictionary<string, string> local_UserFiles = new Dictionary<string, string>();
       GetUserConfigDirAndFiles(out user_path, out local_UserFiles);
       user_path = Regex.Replace(user_path, @"file:[\\\/]+", "");
-      if(base_path == null || !user_path.Contains(base_path))
+      if (base_path == null || !user_path.Contains(base_path))
         path_list.Add(user_path);
 
       watchers = new FileSystemWatcher[path_list.Count];
@@ -323,7 +315,6 @@ namespace Cactbot {
         path_list[i] = Regex.Replace(path_list[i], @"[\\\/]\z", "");
         path_list[i] = Regex.Replace(path_list[i], @".*[\\\/]", "");
       }
-      LogDebug($"Setup file watchers for {path_list.Count} directories: {String.Join(", ", path_list)}");
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
