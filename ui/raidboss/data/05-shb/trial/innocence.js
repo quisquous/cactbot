@@ -103,7 +103,7 @@
       },
     },
     {
-      id: 'InnoEx Light Pillar',
+      id: 'Inno Light Pillar',
       regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
@@ -130,7 +130,7 @@
     },
     {
       // TODO: is there a left, or do all normal modes rotate right??
-      id: 'InnoEx Soul And Body Right',
+      id: 'Inno Soul And Body Right',
       regex: / 14:3EB1:Innocence starts using Soul and Body/,
       regexDe: / 14:3EB1:Innozenz starts using Seele und Körper/,
       regexFr: / 14:3EB1:Innocence starts using Âme et corps/,

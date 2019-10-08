@@ -169,10 +169,10 @@
     },
     {
       id: 'TitaniaEx Bramble Knockback',
-      regex: / 15:\y{ObjectId}:Puck:3D42:Puck's Rebuke/,
-      regexDe: / 15:\y{ObjectId}:Puck:3D42:Pucks Tadel/,
-      regexJa: / 15:\y{ObjectId}:パック:3D42:パックレビューク/,
-      regexFr: / 15:\y{ObjectId}:Puck:3D42:Réprimande De Puck/,
+      regex: / 15:\y{ObjectId}:Puck:3D42:Puck's Rebuke:/,
+      regexDe: / 15:\y{ObjectId}:Puck:3D42:Pucks Tadel:/,
+      regexJa: / 15:\y{ObjectId}:パック:3D42:パックレビューク:/,
+      regexFr: / 15:\y{ObjectId}:Puck:3D42:Réprimande De Puck:/,
       alertText: {
         en: 'Diagonal Knockback Soon',
         de: 'diagonaler Knockback bald',
@@ -331,10 +331,10 @@
     },
     {
       id: 'TitaniaEx Peasebomb Use',
-      regex: / 1[56]:\y{ObjectId}:Peaseblossom:3D3F:Peasebomb/,
-      regexDe: / 1[56]:\y{ObjectId}:Bohnenblüte:3D3F:Bohnenbombe/,
-      regexJa: / 1[56]:\y{ObjectId}:ピーズブロッサム:3D3F:ビーズボム/,
-      regexFr: / 1[56]:\y{ObjectId}:Fleur-de-pois:3D3F:Haricot Explosif/,
+      regex: / 1[56]:\y{ObjectId}:Peaseblossom:3D3F:Peasebomb:/,
+      regexDe: / 1[56]:\y{ObjectId}:Bohnenblüte:3D3F:Bohnenbombe:/,
+      regexJa: / 1[56]:\y{ObjectId}:ピーズブロッサム:3D3F:ビーズボム:/,
+      regexFr: / 1[56]:\y{ObjectId}:Fleur-de-pois:3D3F:Haricot Explosif:/,
       run: function(data) {
         delete data.bomb;
       },
