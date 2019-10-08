@@ -468,6 +468,18 @@ class Buff {
     return aura;
   }
 
+  clear() {
+    this.onLose();
+
+    let cooldownKeys = Object.keys(this.cooldown);
+    for (let i = 0; i < cooldownKeys.length; ++i)
+      this.cooldown[cooldownKeys[i]].removeCallback();
+
+    let readyKeys = Object.keys(this.ready);
+    for (let i = 0; i < readyKeys.length; ++i)
+      this.ready[readyKeys[i]].removeCallback();
+  }
+
   onGain(seconds, source) {
     this.onLose();
 
@@ -793,6 +805,12 @@ class BuffTracker {
     if (!buff)
       return;
     buff.onLose();
+  }
+
+  clear() {
+    let keys = Object.keys(this.buffs);
+    for (let i = 0; i < keys.length; ++i)
+      this.buffs[keys[i]].clear();
   }
 }
 
@@ -1839,7 +1857,9 @@ class Bars {
   }
 
   OnPartyWipe(e) {
-    // TODO: reset timers etc
+    // TODO: add reset for job-specific ui
+    if (this.buffTracker)
+      this.buffTracker.clear();
   }
 
   OnInCombatChanged(e) {
@@ -1858,6 +1878,8 @@ class Bars {
   OnZoneChanged(e) {
     this.zone = e.detail.zoneName;
     this.UpdateFoodBuff();
+    if (this.buffTracker)
+      this.buffTracker.clear();
   }
 
   SetPullCountdown(seconds) {
