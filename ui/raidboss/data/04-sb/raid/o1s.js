@@ -2,12 +2,15 @@
 
 // O1S - Deltascape 1.0 Savage
 [{
-  zoneRegex: /(Deltascape V1.0 \(Savage\)|Unknown Zone \(2B7\))/,
+  zoneRegex: /Deltascape V1.0 \(Savage\)/,
   timelineFile: 'o1s.txt',
   triggers: [
     {
       id: 'O1S Blaze',
-      regex: / 14:1EDD:Alte Roite starts using/,
+      regex: / 14:1EDD:Alte Roite starts using Blaze/,
+      regexDe: / 14:1EDD:Alte Roite starts using Frost/,
+      regexFr: / 14:1EDD:Alte Roite starts using Givre/,
+      regexJa: / 14:1EDD:アルテ・ロイテ starts using ブレイズ/,
       infoText: {
         en: 'Blaze: Stack up',
         de: 'Flamme: Stacken',
@@ -19,7 +22,10 @@
     },
     {
       id: 'O1S Breath Wing',
-      regex: / 14:1ED6:Alte Roite starts using/,
+      regex: / 14:1ED6:Alte Roite starts using Breath Wing/,
+      regexDe: / 14:1ED6:Alte Roite starts using Atemschwinge/,
+      regexFr: / 14:1ED6:Alte Roite starts using Aile Déferlante/,
+      regexJa: / 14:1ED6:アルテ・ロイテ starts using ブレスウィング/,
       infoText: {
         en: 'Breath Wing: Be beside boss',
         de: 'Atemschwinge: Neben Boss gehen',
@@ -31,7 +37,10 @@
     },
     {
       id: 'O1S Clamp',
-      regex: / 14:1EDE:Alte Roite starts using/,
+      regex: / 14:1EDE:Alte Roite starts using Clamp/,
+      regexDe: / 14:1EDE:Alte Roite starts using Klammer/,
+      regexFr: / 14:1EDE:Alte Roite starts using Pinçage/,
+      regexJa: / 14:1EDE:アルテ・ロイテ starts using クランプ/,
       infoText: {
         en: 'Clamp: Get out of front',
         de: 'Klammer: Vorm Boss weg',
@@ -55,7 +64,10 @@
     },
     {
       id: 'O1S Roar',
-      regex: / 14:1ED4:Alte Roite starts using/,
+      regex: / 14:1ED8:Alte Roite starts using Downburst/,
+      regexDe: / 14:1ED8:Alte Roite starts using Fallböe/,
+      regexFr: / 14:1ED8:Alte Roite starts using Rafale Descendante/,
+      regexJa: / 14:1ED8:アルテ・ロイテ starts using ダウンバースト/,
       infoText: {
         en: 'Roar: AOE damage',
         de: 'Brüllen: Flächenschaden',
@@ -70,7 +82,10 @@
     },
     {
       id: 'O1S Charybdis',
-      regex: / 14:1ED3:Alte Roite starts using/,
+      regex: / 14:1ED4:Alte Roite starts using Roar/,
+      regexDe: / 14:1ED4:Alte Roite starts using Brüllen/,
+      regexFr: / 14:1ED4:Alte Roite starts using Rugissement/,
+      regexJa: / 14:1ED4:アルテ・ロイテ starts using 咆哮/,
       infoText: {
         en: 'Charybdis: AOE damage',
         de: 'Charybdis: Flächenschaden',

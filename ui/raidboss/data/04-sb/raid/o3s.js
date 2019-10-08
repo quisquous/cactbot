@@ -9,6 +9,8 @@
       id: 'O3S Phase Counter',
       regex: / 14:2304:Halicarnassus starts using Panel Swap/,
       regexDe: / 14:2304:Halikarnassos starts using Neuaufstellung/,
+      regexFr: / 14:2304:Halicarnasse starts using Remplacement Des Cases/,
+      regexJa: / 14:2304:ハリカルナッソス starts using パネルシャッフル/,
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
@@ -175,8 +177,10 @@
     },
     {
       id: 'O3S Right Face',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_510|Right Face) from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_510|Rechts) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Right Face from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Rechts from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Virage À Droite from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：右 from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -188,8 +192,10 @@
     },
     {
       id: 'O3S Forward March',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50D|Forward March) from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50D|Vorwärts) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forward March from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Vorwärts from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Avancer from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：前 from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -201,8 +207,10 @@
     },
     {
       id: 'O3S Left Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50F|Left Face) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50F|Links) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Left Face from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Links from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Virage À Gauche from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：左 from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -214,8 +222,10 @@
     },
     {
       id: 'O3S About Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50E|About Face) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_50E|Rückwärts) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of About Face from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Rückwärts from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Reculer from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：後 from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -227,8 +237,10 @@
     },
     {
       id: 'O3S Ribbit',
-      regex: / 14:22F7:Halicarnassus starts using/,
-      regexDe: / 14:22F7:Halikarnassos starts using/,
+      regex: / 14:22F7:Halicarnassus starts using Ribbit/,
+      regexDe: / 14:22F7:Halikarnassos starts using Quaaak/,
+      regexFr: / 14:22F7:Halicarnasse starts using Coâââ/,
+      regexJa: / 14:22F7:ハリカルナッソス starts using クルルルル！/,
       alertText: {
         en: 'Ribbit: Get behind',
         de: 'Quaaak: Hinter sie',
@@ -240,8 +252,10 @@
     },
     {
       id: 'O3S Oink',
-      regex: / 14:22F9:Halicarnassus starts using/,
-      regexDe: / 14:22F9:Halikarnassos starts using/,
+      regex: / 14:22F9:Halicarnassus starts using Oink/,
+      regexDe: / 14:22F9:Halikarnassos starts using Quiiiek/,
+      regexFr: / 14:22F9:Halicarnasse starts using Abracadabri/,
+      regexJa: / 14:22F9:ハリカルナッソス starts using ポルルルル！/,
       infoText: {
         en: 'Oink: Stack',
         de: 'Quiiiek: Stack',
@@ -253,8 +267,10 @@
     },
     {
       id: 'O3S Squelch',
-      regex: / 14:22F8:Halicarnassus starts using/,
-      regexDe: / 14:22F8:Halikarnassos starts using/,
+      regex: / 14:22F8:Halicarnassus starts using Squelch/,
+      regexDe: / 14:22F8:Halikarnassos starts using Gurrr/,
+      regexFr: / 14:22F8:Halicarnasse starts using Abracadabra/,
+      regexJa: / 14:22F8:ハリカルナッソス starts using カルルルル！/,
       alarmText: {
         en: 'Squelch: Look away',
         de: 'Gurrr: Wegschauen',
@@ -266,8 +282,10 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
-      regex: / 14:230E:Halicarnassus starts using/,
-      regexDe: / 14:230E:Halikarnassos starts using/,
+      regex: / 14:230E:Halicarnassus starts using The Queen's Waltz/,
+      regexDe: / 14:230E:Halikarnassos starts using Tanz Der Königin/,
+      regexFr: / 14:230E:Halicarnasse starts using Danse De La Reine/,
+      regexJa: / 14:230E:ハリカルナッソス starts using 女王の舞い/,
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
@@ -284,8 +302,10 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
-      regex: / 14:2306:Halicarnassus starts using/,
-      regexDe: / 14:2306:Halikarnassos starts using/,
+      regex: / 14:2306:Halicarnassus starts using The Queen's Waltz/,
+      regexDe: / 14:2306:Halikarnassos starts using Tanz Der Königin/,
+      regexFr: / 14:2306:Halicarnasse starts using Danse De La Reine/,
+      regexJa: / 14:2306:ハリカルナッソス starts using 女王の舞い/,
       infoText: {
         en: 'The Queen\'s Waltz: Clock',
         de: 'Tanz der Königin: Uhr',
@@ -297,8 +317,10 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
-      regex: / 14:230A:Halicarnassus starts using/,
-      regexDe: / 14:230A:Halikarnassos starts using/,
+      regex: / 14:230A:Halicarnassus starts using The Queen'S Waltz/,
+      regexDe: / 14:230A:Halikarnassos starts using Tanz Der Königin/,
+      regexFr: / 14:230A:Halicarnasse starts using Danse De La Reine/,
+      regexJa: / 14:230A:ハリカルナッソス starts using 女王の舞い/,
       infoText: {
         en: 'The Queen\'s Waltz: Crystal Square',
         de: 'Tanz der Königin: Kristallfeld',
@@ -310,8 +332,10 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
-      regex: / 14:2308:Halicarnassus starts using/,
-      regexDe: / 14:2308:Halikarnassos starts using/,
+      regex: / 14:2308:Halicarnassus starts using The Queen's Waltz/,
+      regexDe: / 14:2308:Halikarnassos starts using Tanz Der Königin/,
+      regexFr: / 14:2308:Halicarnasse starts using Danse De La Reine/,
+      regexJa: / 14:2308:ハリカルナッソス starts using 女王の舞い/,
       infoText: {
         en: 'The Queen\'s Waltz: Tethers',
         de: 'Tanz der Königin: Ranken',
