@@ -391,7 +391,7 @@
       },
     },
     { // Laser counter.
-      regex: / 14:24(?:OE|0F|11|12):Neo Exdeath starts using/,
+      regex: / 14:24(?:0E|0F|11|12):Neo Exdeath starts using/,
       run: function(data) {
         if (data.phase != 'omega')
           return;
@@ -566,8 +566,8 @@
     },
     {
       id: 'O4S2 Acceleration Bomb Delta',
-      regex: / 1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'delta';
       },
@@ -582,8 +582,8 @@
     },
     { // Shriek (Omega)
       id: 'O4S2 Omega Shriek',
-      regex: / 1A:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'omega';
       },
@@ -601,16 +601,16 @@
     },
     { // Water Tracking (Delta/Omega)
       id: 'O4S2 Water',
-      regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Compressed Water/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Wasserkompression/,
       run: function(data, matches) {
         data.waterHealer = matches[1];
       },
     },
     { // Water Me (Delta/Omega)
       id: 'O4S2 Water Me',
-      regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Compressed Water/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Wasserkompression/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -636,8 +636,8 @@
     },
     { // Beyond Death Tank (Delta)
       id: 'O4S2 Beyond Death Delta Tank',
-      regex: / 1A:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role == 'tank';
       },
@@ -663,8 +663,8 @@
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death Delta Initial',
-      regex: / 1A:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role != 'tank';
       },
@@ -679,8 +679,8 @@
     },
     { // Off Balance (Omega)
       id: 'O4S2 Off Balance Omega',
-      regex: / 1A:(\y{Name}) gains the effect of Off-Balance/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Gleichgewichtsverlust/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Off-Balance/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gleichgewichtsverlust/,
       condition: function(data, matches) {
         return data.phase == 'omega' && matches[1] == data.me;
       },

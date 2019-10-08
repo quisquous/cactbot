@@ -27,7 +27,7 @@
     },
     {
       id: 'O2S Levitation',
-      regex: / 1A:(\y{Name}) gains the effect of Levitation from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Levitation from/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -102,8 +102,8 @@
     },
     {
       id: 'O2S Elevated',
-      regex: / 1A:(\y{Name}) gains the effect of Elevated from/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Erhöht from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Elevated from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Erhöht from/,
       infoText: function(data) {
         if (!data.role.startsWith('dps')) {
           return {

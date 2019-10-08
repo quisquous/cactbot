@@ -48,11 +48,11 @@
     },
     {
       id: 'O6S Storms Grip',
-      regex: / 03:Added new combatant The Storm's Grip/,
-      regexDe: / 03:Added new combatant Sturmgebiet/,
-      regexFr: / 03:Added new combatant Zone De Tempête/,
-      regexJa: / 03:Added new combatant 暴風域/,
-      regexKo: / 03:Added new combatant 폭풍 영역/,
+      regex: / 03:\y{ObjectId}:Added new combatant The Storm's Grip/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Sturmgebiet/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Zone De Tempête/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 暴風域/,
+      regexKo: / 03:\y{ObjectId}:Added new combatant 폭풍 영역/,
       condition: function(data) {
         return data.role == 'tank';
       },
