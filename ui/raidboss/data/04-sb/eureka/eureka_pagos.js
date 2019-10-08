@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Pagos|Unknown Zone \(2Fb\))/,
+  zoneRegex: /Eureka Pagos/,
   resetWhenOutOfCombat: false,
   triggers: [
     {
