@@ -70,18 +70,12 @@
     {
       id: 'The Vault Holy Shield Bash',
       regex: /14:101F:Ser Adelphel starts using Holy Shield Bash on (\y{Name})/,
-      condition: function(data, matches) {
-        return data.me != matches[1];
-      },
       alertText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Heal + shield ' + data.shortName(matches[1]),
+            en: 'Heal + shield ' + data.ShortName(matches[1]),
           };
         }
-        return {
-          en: 'Avoid Shield Charge',
-        };
       },
     },
     {
@@ -94,7 +88,7 @@
           };
         }
         return {
-          en: 'Avoid ' + data.shortName(matches[1]),
+          en: 'Avoid ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -143,7 +137,7 @@
         return data.me == matches[1];
       },
       alertText: {
-        en: 'Away from tether partner',
+        en: 'Break chains',
       },
     },
     {

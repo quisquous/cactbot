@@ -176,7 +176,7 @@ hideall "--sync--"
 
 # Intermission at < 60% HP
 
-2200.0 "Unknown_1019" sync /:Ser Charibert:1019:/ window 200,5
+2200.0 "--sync--" sync /:Ser Charibert:1019:/ window 200,5
 2205.1 "--sync--" sync /:Ser Charibert:1018:/
 2207.2 "--sync--" sync /:Ser Charibert:1036:/
 2218.4 "Black Knight's Tour" sync /:Dusk Knight:1039:/
@@ -185,16 +185,15 @@ hideall "--sync--"
 2231.9 "White Knight's Tour" sync /:Dawn Knight:1038:/
 2245.0 "Black Knight's Tour" sync /:Dusk Knight:1039:/
 2245.2 "White Knight's Tour" sync /:Dawn Knight:1038:/
-2250 "--sync--" sync /:Ser Charibert:1037:/ window 50,1 jump 2294.0
-2252.4 "Pure Of Heart?" sync /:Ser Charibert:1037:/
-2254.5 "Sacred Flame Enrage?" sync /:Holy Flame:103C:/
+2254.5 "Sacred Flame Enrage?"
 
-2294.0 "--sync--" # Landing for correct intermission handling
+2294.0 "--sync--" sync /:Ser Charibert:1037:/ window 2294,0
 
-# The party might survive an intermission enrage, so a wide sync here
+# The party might survive an intermission enrage.
+# This wide window on Candle allows for that.
 2300.0 "Altar Candle" sync /:Ser Charibert:1030:/ window 100,20
 2309.0 "Altar Pyre" sync /:Ser Charibert:1035:/
-2316.3 "Kinghts Appear"
+2316.3 "Knights Appear"
 2318.6 "Heavensflame" sync /:Ser Charibert:1031:/
 2322.8 "Holy Chain" sync /:Ser Charibert:1033:/
 2332.0 "Altar Pyre" sync /:Ser Charibert:1035:/
