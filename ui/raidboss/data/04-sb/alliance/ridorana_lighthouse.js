@@ -133,8 +133,8 @@
       id: 'Ridorana Famfrit Dark Rain',
       regex: / 03:\y{ObjectId}:Added new combatant Dark Rain\./,
       regexDe: / 03:\y{ObjectId}:Added new combatant Dunkler Regen\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Trombe D'eau\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 暗雲の雨水/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Trombe D'eau Ténébreuse\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 暗黒の雨水\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Adds',
@@ -238,7 +238,7 @@
       id: 'Ridorana Construct Destroy',
       regex: / 14:(?:2C5A|2C71):Construct 7 starts using Destroy on (\y{Name})/,
       regexDe: / 14:(?:2C5A|2C71):Automat Nr. 7 starts using Zerstören on (\y{Name})/,
-      regexFr: / 14:(?:2C5A|2C71):Automate N°7 starts using Détruire on (\y{Name})/,
+      regexFr: / 14:(?:2C5A|2C71):Bâtisseur N°7 starts using Détruire on (\y{Name})/,
       regexJa: / 14:(?:2C5A|2C71):労働七号 starts using 破壊する on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -307,7 +307,7 @@
       // Accelerate cleanup
       regex: / 14:2C65:Construct 7 starts using Accelerate/,
       regexDe: / 14:2C65:Automat Nr. 7 starts using Beschleunigen/,
-      regexFr: / 14:2C65:Automate N°7 starts using Aplatir/,
+      regexFr: / 14:2C65:Bâtisseur N°7 starts using Aplatir/,
       regexJa: / 14:2C65:労働七号 starts using 突貫する/,
       run: function(data) {
         delete data.accelerateSpreadOnMe;
@@ -317,7 +317,7 @@
       // TODO: need an "always run this trigger when starting zone" option
       regex: / 14:2C6C:Construct 7 starts using Subtract/,
       regexDe: / 14:2C6C:Automat Nr. 7 starts using Subtrahieren/,
-      regexFr: / 14:2C6C:Automate N°7 starts using Soustraire/,
+      regexFr: / 14:2C6C:Bâtisseur N°7 starts using Soustraire/,
       regexJa: / 14:2C6C:労働七号 starts using 減算する/,
       run: function(data) {
         data.mathBaseValue = 0;
@@ -393,7 +393,7 @@
       id: 'Ridorana Construct Divide By Five',
       regex: / 14:2CCD:Construct 7 starts using Divide By Five/,
       regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 5 teilen einzusetzen./,
-      regexFr: / 14:2CCD:Automate N°7 starts using Arithmétique : Multiples De 5/,
+      regexFr: / 14:2CCD:Bâtisseur N°7 starts using Arithmétique : Multiples De 5/,
       regexJa: / 14:2CCD:労働七号 starts using 算術：5倍数/,
       preRun: function(data) {
         data.correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
@@ -406,7 +406,7 @@
       id: 'Ridorana Construct Divide By Four',
       regex: / 14:2CCC:Construct 7 starts using Divide By Four/,
       regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 4 teilen einzusetzen./,
-      regexFr: / 14:2CCC:Automate N°7 starts using Arithmétique : Multiples De 4/,
+      regexFr: / 14:2CCC:Bâtisseur N°7 starts using Arithmétique : Multiples De 4/,
       regexJa: / 14:2CCC:労働七号 starts using 算術：4倍数/,
       preRun: function(data) {
         data.correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
@@ -419,7 +419,7 @@
       id: 'Ridorana Construct Divide By Three',
       regex: / 14:2CCA:Construct 7 starts using Divide By Three/,
       regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 3 teilen einzusetzen./,
-      regexFr: / 14:2CCA:Automate N°7 starts using Arithmétique : Multiples De 3/,
+      regexFr: / 14:2CCA:Bâtisseur N°7 starts using Arithmétique : Multiples De 3/,
       regexJa: / 14:2CCA:労働七号 starts using 算術：3倍数/,
       preRun: function(data) {
         data.correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
@@ -432,7 +432,7 @@
       id: 'Ridorana Construct Indivisible',
       regex: / 14:2CCE:Construct 7 starts using Indivisible/,
       regexDe: / 14:2CCE:Automat Nr. 7 starts using Unteilbar/,
-      regexFr: / 14:2CCE:Automate N°7 starts using Arithmétique : Nombres Premiers/,
+      regexFr: / 14:2CCE:Bâtisseur N°7 starts using Arithmétique : Nombres Premiers/,
       regexJa: / 14:2CCE:労働七号 starts using 算術：素数/,
       preRun: function(data) {
         data.correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
@@ -445,7 +445,7 @@
       id: 'Ridorana Construct Pulverize',
       regex: / 14:2C61:Construct 7 starts using Pulverize/,
       regexDe: / 14:2C61:Automat Nr. 7 starts using Zermahlen/,
-      regexFr: / 14:2C61:Automate N°7 starts using Broyer/,
+      regexFr: / 14:2C61:Bâtisseur N°7 starts using Broyer/,
       regexJa: / 14:2C61:労働七号 starts using 粉砕する/,
       // 16 yalms
       alertText: {
@@ -458,7 +458,7 @@
       id: 'Ridorana Construct Dispose',
       regex: / 14:(?:2C5F|2CE9):Construct 7 starts using Dispose/,
       regexDe: / 14:(?:2C5F|2CE9):Automat Nr. 7 starts using Entsorgen/,
-      regexFr: / 14:(?:2C5F|2CE9):Automate N°7 starts using Annihiler/,
+      regexFr: / 14:(?:2C5F|2CE9):Bâtisseur N°7 starts using Annihiler/,
       regexJa: / 14:(?:2C5F|2CE9):労働七号 starts using 処理する/,
       alertText: {
         en: 'Get Behind',
@@ -597,6 +597,7 @@
       regex: / 03:\y{ObjectId}:Added new combatant Heart Of The Dragon\./,
       regexDe: / 03:\y{ObjectId}:Added new combatant Herz Des Drachen\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Cœur De Yiazmat\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant ヤズマットの心核\./,
       suppressSeconds: 10,
       infoText: {
         en: 'Kill Heart',
