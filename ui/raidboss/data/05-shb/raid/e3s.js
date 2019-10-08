@@ -71,7 +71,7 @@
       regexCn: / 14:3FF1:利维亚桑 starts using Tidal Wave/,
       regexDe: / 14:3FF1:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FF1:Léviathan starts using Raz-De-Marée/,
-      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェーブ/,
+      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェイブ/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -86,7 +86,7 @@
       regexCn: / 14:3FF1:利维亚桑 starts using Tidal Wave/,
       regexDe: / 14:3FF1:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FF1:Léviathan starts using Raz-De-Marée/,
-      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェーブ/,
+      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェイブ/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -470,7 +470,7 @@
       regexCn: / 14:400F:利维亚桑 starts using Refreshing Shower/,
       regexDe: / 14:400F:Leviathan starts using Erwachen der Tiefen/,
       regexFr: / 14:400F:Léviathan starts using Éveil De L'[eE]au/,
-      regexJa: / 14:400F:Leviathan starts using 水の覚醒/,
+      regexJa: / 14:400F:リヴァイアサン starts using 水の覚醒/,
       run: function(data) {
         data.refreshed = true;
       },

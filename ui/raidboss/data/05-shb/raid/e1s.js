@@ -113,7 +113,7 @@
       regex: / 14:3D88:Eden Prime starts using Spear Of Paradise on (\y{Name})/,
       regexDe: / 14:3D88:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
       regexFr: / 14:3D88:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
-      regexJa: / 14:3D88:エデン・プライム starts using Spear Of Paradise on (\y{Name})/,
+      regexJa: / 14:3D88:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;

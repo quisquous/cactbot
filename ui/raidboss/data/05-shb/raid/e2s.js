@@ -37,6 +37,7 @@
       regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
       regexDe: / 1A:\y{ObjectId}:Nichtswandler gains the effect of Verzögerung/,
       regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
+      regexJa: / 1A:\y{ObjectId}:ヴォイドウォーカー gains the effect of ディレイスペル/,
       run: function(data) {
         data.waiting = true;
       },
@@ -46,6 +47,7 @@
       regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
       regexDe: / 1E:\y{ObjectId}:Nichtswandler loses the effect of Verzögerung/,
       regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
+      regexJa: / 1E:\y{ObjectId}:ヴォイドウォーカー loses the effect of ディレイスペル/,
       run: function(data) {
         data.waiting = false;
       },
@@ -103,7 +105,7 @@
       regex: / 14:3E61:Voidwalker starts using Shadowflame/,
       regexDe: / 14:3E61:Nichtswandler starts using Schattenflamme/,
       regexFr: / 14:3E61:Marcheuse Du Néant starts using Flamme D'ombre/,
-      regexJa: / 14:3E61:ヴォイドウォーカー starts using Shadowflame/,
+      regexJa: / 14:3E61:ヴォイドウォーカー starts using シャドーフレイム/,
       condition: function(data) {
         return data.role == 'healer';
       },

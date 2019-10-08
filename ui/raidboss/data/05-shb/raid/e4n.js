@@ -81,7 +81,7 @@
     {
       id: 'E4N Seismic Wave',
       regex: / 14:40F2:massive boulder starts using Crumbling Down/,
-      regexDe: / 14:40F2:riesig[a] Felsen starts using Felsfall/,
+      regexDe: / 14:40F2:Riesiger Felsen starts using Felsfall/,
       regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
       regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
       delaySeconds: 6,
