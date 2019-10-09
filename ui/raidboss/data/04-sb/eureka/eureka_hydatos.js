@@ -600,7 +600,7 @@
     {
       id: 'BA AV Eidos Impact Stream',
       regex: / 14:3788:Absolute Virtue starts using Impact Stream/,
-      regexDe: / 14:3788:Absolut[A] Tugend starts using Durchschlagsstrom/,
+      regexDe: / 14:3788:Absolute Tugend starts using Durchschlagsstrom/,
       regexFr: / 14:3788:Vertu Absolue starts using Courant D'Impact/,
       regexJa: / 14:3788:アブソリュートヴァーチュー starts using インパクトストリーム/,
       condition: function(data) {

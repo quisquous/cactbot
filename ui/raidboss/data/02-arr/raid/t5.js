@@ -48,7 +48,7 @@
     {
       id: 'T5 Liquid Hell',
       regex: / 14:4DB:The Scourge Of Meracydia starts using Liquid Hell/,
-      regexDe: / 14:4DB:Fackel[P] Von Meracydia starts using Höllenschmelze/,
+      regexDe: / 14:4DB:Fackel Von Meracydia starts using Höllenschmelze/,
       regexFr: / 14:4DB:Fléau De Méracydia starts using Enfer Liquide/,
       regexJa: / 14:4DB:メラシディアン・ワイバーン starts using ヘルリキッド/,
       infoText: {

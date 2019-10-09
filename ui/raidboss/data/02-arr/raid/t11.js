@@ -97,7 +97,7 @@
     {
       id: 'T11 Forked Lightning',
       regex: / 15:\y{ObjectId}:Electric Node:B85:Forked Lightning:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Elektrisch[A] Modul:B85:Gabelblitz:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Elektrisches Modul:B85:Gabelblitz:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Module D'Électrochoc:B85:Éclair ramifié:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:雷撃システム:B85:フォークライトニング:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
