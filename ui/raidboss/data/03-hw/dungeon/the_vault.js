@@ -60,6 +60,9 @@
     {
       id: 'The Vault Holiest of Holy',
       regex: / 14:101E:Ser Adelphel starts using Holiest Of Holy/,
+      regexDe: / 14:101E:Adelphel starts using Quell Der Heiligkeit/,
+      regexFr: / 14:101E:Sire Adelphel starts using Saint Des Saints/,
+      regexJa: / 14:101E:聖騎士アデルフェル starts using ホリエストホーリー/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -69,7 +72,10 @@
     },
     {
       id: 'The Vault Holy Shield Bash',
-      regex: /14:101F:Ser Adelphel starts using Holy Shield Bash on (\y{Name})/,
+      regex: / 14:101F:Ser Adelphel starts using Holy Shield Bash on (\y{Name})/,
+      regexDe: / 14:101F:Adelphel starts using Heiliger Schildschlag on (\y{Name})/,
+      regexFr: / 14:101F:Sire Adelphel starts using Coup De Bouclier Saint on (\y{Name})/,
+      regexJa: / 14:101F:聖騎士アデルフェル starts using ホーリーシールドバッシュ on (\y{Name})/,
       alertText: function(data, matches) {
         if (data.role == 'healer') {
           return {
@@ -95,6 +101,9 @@
     {
       id: 'The Vault Black Nebula',
       regex: / 14:1042:Face Of The Hero starts using Black Nebula/,
+      regexDe: / 14:1042:Gesicht Des Helden starts using Schwarze Nebula/,
+      regexFr: / 14:1042:Visage Du Héros starts using Nébuleuse Noire/,
+      regexJa: / 14:1042:フェイス・オブ・ヒーロー starts using ブラックネビュラ/,
       condition: function(data) {
         return data.CanStun();
       },
@@ -104,14 +113,20 @@
     },
     {
       id: 'The Vault Faith Unmoving',
-      regex: /14:1027:Ser Grinnaux starts using Faith Unmoving/,
+      regex: / 14:1027:Ser Grinnaux starts using Faith Unmoving/,
+      regexDe: / 14:1027:Grinnaux starts using Fester Glaube/,
+      regexFr: / 14:1027:Sire Grinnaux starts using Foi Immuable/,
+      regexJa: / 14:1027:聖騎士グリノー starts using フェイスアンムーブ/,
       infoText: {
         en: 'Knockback',
       },
     },
     {
       id: 'The Vault Dimensional Torsion',
-      regex: /23:\y{ObjectId}:Aetherial Tear:\y{ObjectId}:(\y{Name}):....:....:0001/,
+      regex: / 23:\y{ObjectId}:Aetherial Tear:\y{ObjectId}:(\y{Name}):....:....:0001:/,
+      regexDe: / 23:\y{ObjectId}:Ätherspalt:\y{ObjectId}:(\y{Name}):....:....:0001:/,
+      regexFr: / 23:\y{ObjectId}:Déchirure Dimensionnelle:\y{ObjectId}:(\y{Name}):....:....:0001:/,
+      regexJa: / 23:\y{ObjectId}:次元の裂け目:\y{ObjectId}:(\y{Name}):....:....:0001:/,
       suppressSeconds: 5,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -123,6 +138,9 @@
     {
       id: 'The Vault Altar Pyre',
       regex: / 14:1035:Ser Charibert starts using Altar Pyre/,
+      regexDe: / 14:1035:Charibert starts using Scheiterhaufen/,
+      regexFr: / 14:1035:Sire Charibert starts using Bûcher Funéraire/,
+      regexJa: / 14:1035:聖騎士シャリベル starts using アルターパイヤ/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -142,7 +160,10 @@
     },
     {
       id: 'The Vault Knights March',
-      regex: / 03:\y{ObjectId}:Added new combatant (Dawn|Dusk) Knight/,
+      regex: / 03:\y{ObjectId}:Added new combatant (Dawn Knight|Dusk Knight)/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant (Dämmerross|Morgenross)/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant (Cavalier De L'aube|Cavalier Du Crépuscule)/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant (ドーン・オートナイト|ダスク・オートナイト)/,
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',
