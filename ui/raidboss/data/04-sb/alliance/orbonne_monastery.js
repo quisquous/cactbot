@@ -198,9 +198,9 @@
     },
     {
       id: 'Orbonne Agrias Halidom Inside',
-      regex: / 15:\y{ObjectId}:Halidom:3851:[^:]*:\y{ObjectId}:(\y{Name})/,
-      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:[^:]*:\y{ObjectId}:(\y{Name})/,
-      regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:[^:]*:\y{ObjectId}:(\y{Name})/,
+      regex: / 15:\y{ObjectId}:Halidom:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:模造聖域:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
       run: function(data, matches) {
         data.halidom.push(matches[1]);
