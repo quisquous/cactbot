@@ -10,6 +10,7 @@
       regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
       regexDe: / 14:2BBC:Tsukuyomi starts using Einbruch Der Dunkelheit/,
       regexFr: / 14:2BBC:Tsukuyomi starts using Jeune Nuit/,
+      regexJa: / 14:2BBC:ツクヨミ starts using 宵の早替え/,
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
@@ -21,6 +22,7 @@
       regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
       regexDe: / 14:2BBD:Tsukuyomi starts using Einbruch Der Dunkelheit/,
       regexFr: / 14:2BBD:Tsukuyomi starts using Jeune Nuit/,
+      regexJa: / 14:2BBD:ツクヨミ starts using 宵の早替え/,
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
@@ -32,6 +34,7 @@
       regex: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
       regexDe: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Todesqualen on (\y{Name})/,
       regexFr: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
+      regexJa: / 14:(?:2BBB|2EB2):ツクヨミ starts using なぶり殺し on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -79,9 +82,10 @@
       },
     },
     {
-      regex: / 1A:Tsukuyomi gains the effect of Full Moon/,
-      regexDe: / 1A:Tsukuyomi gains the effect of Vollmond/,
-      regexFr: / 1A:Tsukuyomi gains the effect of Force De La Pleine Lune/,
+      regex: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Full Moon/,
+      regexDe: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Vollmond/,
+      regexFr: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Force De La Pleine Lune/,
+      regexJa: / 1A:\y{ObjectId}:ツクヨミ gains the effect of 満月流/,
       run: function(data) {
         let moonInOut = {
           en: 'Out',
@@ -92,9 +96,10 @@
       },
     },
     {
-      regex: / 1A:Tsukuyomi gains the effect of New Moon/,
-      regexDe: / 1A:Tsukuyomi gains the effect of Neumond/,
-      regexFr: / 1A:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
+      regex: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of New Moon/,
+      regexDe: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Neumond/,
+      regexFr: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
+      regexJa: / 1A:\y{ObjectId}:ツクヨミ gains the effect of 新月流/,
       run: function(data) {
         let moonInOut = {
           en: 'In',
@@ -109,6 +114,7 @@
       regex: / 14:2BDA:Tsukuyomi starts using Dark Blade/,
       regexDe: / 14:2BDA:Tsukuyomi starts using Dunkle Klinge/,
       regexFr: / 14:2BDA:Tsukuyomi starts using Lame Ténébreuse/,
+      regexJa: / 14:2BDA:ツクヨミ starts using 月刀右近/,
       infoText: function(data) {
         return {
           en: 'Left + ' + data.moonInOut,
@@ -122,6 +128,7 @@
       regex: / 14:2BDB:Tsukuyomi starts using Bright Blade/,
       regexDe: / 14:2BDB:Tsukuyomi starts using Helle Klinge/,
       regexFr: / 14:2BDB:Tsukuyomi starts using Lame Blafarde/,
+      regexJa: / 14:2BDB:ツクヨミ starts using 月刀左近/,
       infoText: function(data) {
         return {
           en: 'Right + ' + data.moonInOut,
@@ -195,6 +202,7 @@
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 満月下/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -215,6 +223,7 @@
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 満月下/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonlitCount >= 4;
       },
@@ -229,6 +238,7 @@
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -249,6 +259,7 @@
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonshadowedCount >= 4;
       },

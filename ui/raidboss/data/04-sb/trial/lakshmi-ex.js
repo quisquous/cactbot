@@ -20,12 +20,18 @@
   triggers: [
     {
       regex: / 14:2148:Lakshmi starts using Chanchala/,
+      regexDe: / 14:2148:Lakshmi starts using Chanchala/,
+      regexFr: / 14:2148:Lakshmi starts using Chanchala/,
+      regexJa: / 14:2148:ラクシュミ starts using チャンチャラー/,
       run: function(data) {
         data.chanchala = true;
       },
     },
     {
-      regex: /1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
+      regex: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
+      regexDe: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
+      regexFr: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
+      regexJa: / 1E:\y{ObjectId}:ラクシュミ loses the effect of チャンチャラー/,
       run: function(data) {
         data.chanchala = false;
       },
@@ -34,6 +40,8 @@
       id: 'Lakshmi Pull of Light',
       regex: / 14:215E:Lakshmi starts using The Pull Of Light on (\y{Name})/,
       regexDe: / 14:215E:Lakshmi starts using Strom Des Lichts on (\y{Name})/,
+      regexFr: / 14:215E:Lakshmi starts using Flot De Lumière on (\y{Name})/,
+      regexJa: / 14:215E:ラクシュミ starts using 光の奔流 on (\y{Name})/,
       alarmText: function(data, matches) {
         if (data.role != 'tank' && matches[1] == data.me) {
           return {
@@ -69,6 +77,8 @@
       id: 'Lakshmi Divine Denial',
       regex: / 14:2149:Lakshmi starts using Divine Denial/,
       regexDe: / 14:2149:Lakshmi starts using Göttliche Leugnung/,
+      regexFr: / 14:2149:Lakshmi starts using Refus Divin/,
+      regexJa: / 14:2149:ラクシュミ starts using 完全なる拒絶/,
       alertText: {
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
@@ -78,6 +88,8 @@
       id: 'Lakshmi Divine Desire',
       regex: / 14:214B:Lakshmi starts using Divine Desire/,
       regexDe: / 14:214B:Lakshmi starts using Göttliche Lockung/,
+      regexFr: / 14:214B:Lakshmi starts using Désir Divin/,
+      regexJa: / 14:214B:ラクシュミ starts using 完全なる誘引/,
       alertText: {
         en: 'Vrill + Be Outside',
         de: 'Vril + Außen',
@@ -91,6 +103,8 @@
       id: 'Lakshmi Divine Doubt',
       regex: / 14:214A:Lakshmi starts using Divine Doubt/,
       regexDe: / 14:214A:Lakshmi starts using Göttliche Bestürzung/,
+      regexFr: / 14:214A:Lakshmi starts using Doute Divin/,
+      regexJa: / 14:214A:ラクシュミ starts using 完全なる惑乱/,
       alertText: {
         en: 'Vrill + Pair Up',
         de: 'Vril + Pärchen bilden',
@@ -149,6 +163,9 @@
     {
       id: 'Lakshmi Stotram',
       regex: / 14:2147:Lakshmi starts using Stotram/,
+      regexDe: / 14:2147:Lakshmi starts using Stotram/,
+      regexFr: / 14:2147:Lakshmi starts using Stotram/,
+      regexJa: / 14:2147:ラクシュミ starts using ストトラム/,
       alertText: function(data) {
         if (data.chanchala) {
           return {

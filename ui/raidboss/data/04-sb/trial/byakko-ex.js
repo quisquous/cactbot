@@ -169,7 +169,7 @@
       regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:Hakutei starts using 雷轟/,
+      regexJa: / 14:27F9:白帝 starts using 雷轟/,
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -217,10 +217,10 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り目/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り風/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -296,7 +296,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
+      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
@@ -306,7 +306,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
+      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -317,7 +317,7 @@
       regex: / 14:27E2:Byakko starts using Highest Stakes/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
+      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,
