@@ -66,7 +66,7 @@
     {
       id: 'E1S Eden\'s Gravity',
       regex: / 14:3D70:Eden Prime starts using Eden's Gravity/,
-      regexDe: / 14:3D70:Prim-Eden starts using /,
+      regexDe: / 14:3D70:Prim-Eden starts using Eden-Gravitas/,
       regexFr: / 14:3D70:Primo-Éden starts using Gravité Édénique/,
       regexJa: / 14:3D70:エデン・プライム starts using エデン・グラビデ/,
       condition: function(data) {

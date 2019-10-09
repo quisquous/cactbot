@@ -191,7 +191,7 @@
     },
     {
       id: 'BA Art Legendcarver',
-      regex: / 14:3928:Art starts using (?:Legendcarver|Unknown_3928)/,
+      regex: / 14:3928:Art starts using Legendcarver/,
       regexDe: / 14:3928:Art starts using Legendenschnitzer/,
       regexFr: / 14:3928:Art starts using Taillade Spectrale/,
       regexJa: / 14:3928:アルト starts using 妖槍振/,
