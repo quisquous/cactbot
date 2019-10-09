@@ -36,6 +36,9 @@
     {
       id: 'T9 Raven Blight You',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pestschwinge from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bile De Rapace from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 凶鳥毒気 from Nael Deus Darnus for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -50,6 +53,9 @@
     {
       id: 'T9 Raven Blight You',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pestschwinge from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bile De Rapace from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 凶鳥毒気 from Nael Deus Darnus for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -105,6 +111,9 @@
     {
       id: 'T9 Earthshock',
       regex: / 14:7F5:Dalamud Spawn starts using Earthshock/,
+      regexDe: / 14:7F5:Dalamud-Golem starts using Erdschock/,
+      regexFr: / 14:7F5:Golem De Dalamud starts using Secousse Sismique/,
+      regexJa: / 14:7F5:ダラガブゴーレム starts using アースショック/,
       condition: function(data) {
         return data.CanSilence();
       },
@@ -115,6 +124,9 @@
     {
       id: 'T9 Heavensfall',
       regex: / 14:83B:Nael Deus Darnus starts using Heavensfall/,
+      regexDe: / 14:83B:Nael Deus Darnus starts using Himmelssturz/,
+      regexFr: / 14:83B:Nael Deus Darnus starts using Destruction Universelle/,
+      regexJa: / 14:83B:ネール・デウス・ダーナス starts using 天地崩壊/,
       alertText: {
         en: 'Heavensfall',
       },
@@ -122,6 +134,9 @@
     {
       id: 'T9 Garotte Twist Gain',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Garrote Twist/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Leicht Fixierbar/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sangle Accélérée/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拘束加速/,
       condition: function(data, matches) {
         return data.me == matches[1] && !data.garotte;
       },
@@ -135,6 +150,9 @@
     {
       id: 'T9 Ghost Death',
       regex: / 1[56]:\y{ObjectId}:The Ghost of Meracydia:7FA:Neurolink Burst:/,
+      regexDe: / 1[56]:\y{ObjectId}:Geist Von Meracydia:7FA:Neurolink-Bruch:/,
+      regexFr: / 1[56]:\y{ObjectId}:Fantôme Méracydien:7FA:Explosion névralgique:/,
+      regexJa: / 1[56]:\y{ObjectId}:メラシディアン・ゴースト:7FA:ニューロリンク・バースト:/,
       condition: function(data) {
         return data.garotte;
       },
@@ -145,6 +163,9 @@
     {
       id: 'T9 Garotte Twist Lose',
       regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Garrote Twist/,
+      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Leicht Fixierbar/,
+      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Sangle Accélérée/,
+      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 拘束加速/,
       run: function(data) {
         delete data.garotte;
       },
@@ -152,6 +173,9 @@
     {
       id: 'T9 Final Phase',
       regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
+      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
+      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
+      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
       condition: function(data) {
         return !data.seenFinalPhase;
       },
@@ -163,6 +187,9 @@
     {
       id: 'T9 Dragon Locations',
       regex: /03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant (.*)/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant (.*)/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant (.*)/,
       run: function(data, matches) {
         let names = ['Firehorn', 'Iceclaw', 'Thunderwing'];
         let idx = names.indexOf(matches[1]);
@@ -189,6 +216,9 @@
     {
       id: 'T9 Final Phase Reset',
       regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
+      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
+      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
+      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
       run: function(data) {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -214,6 +244,9 @@
     {
       id: 'T9 Dragon Marks',
       regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
+      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
+      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
+      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
       durationSeconds: 12,
       infoText: function(data) {
         return {
@@ -227,6 +260,9 @@
     {
       id: 'T9 Tether',
       regex: / 23:\y{ObjectId}:Firehorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
+      regexDe: / 23:\y{ObjectId}:Feuerhorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
+      regexFr: / 23:\y{ObjectId}:Corne-De-Feu:\y{ObjectId}:(\y{Name}):....:....:0005:/,
+      regexJa: / 23:\y{ObjectId}:ファイアホーン:\y{ObjectId}:(\y{Name}):....:....:0005:/,
       preRun: function(data) {
         data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;

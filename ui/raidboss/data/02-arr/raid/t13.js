@@ -17,6 +17,9 @@
     {
       id: 'T13 Gigaflare Phase Change',
       regex: / 14:BB9:Bahamut Prime starts using Gigaflare/,
+      regexDe: / 14:BB9:Prim-Bahamut starts using Gigaflare/,
+      regexFr: / 14:BB9:Primo-Bahamut starts using Gigabrasier/,
+      regexJa: / 14:BB9:バハムート・プライム starts using ギガフレア/,
       condition: function(data) {
         // Only the first two gigas are phase changes, the rest are in final phase.
         return !(data.gigaflare > 1);
@@ -37,6 +40,9 @@
     {
       id: 'T13 Flatten',
       regex: / 14:BAE:Bahamut Prime starts using Flatten on (\y{Name})\./,
+      regexDe: / 14:BAE:Prim-Bahamut starts using Einebnen on (\y{Name})\./,
+      regexFr: / 14:BAE:Primo-Bahamut starts using Compression on (\y{Name})\./,
+      regexJa: / 14:BAE:バハムート・プライム starts using フラッテン on (\y{Name})\./,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -77,6 +83,9 @@
     {
       id: 'T13 Tempest Wing',
       regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Bahamut Prime:....:....:0004:/,
+      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Bahamut:....:....:0004:/,
+      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Bahamut:....:....:0004:/,
+      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:バハムート・プライム:....:....:0004:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -87,6 +96,9 @@
     {
       id: 'T13 Akh Morn',
       regex: / 14:BC2:Bahamut Prime starts using Akh Morn on (\y{Name})\./,
+      regexDe: / 14:BC2:Prim-Bahamut starts using Akh Morn on (\y{Name})\./,
+      regexFr: / 14:BC2:Primo-Bahamut starts using Akh Morn on (\y{Name})\./,
+      regexJa: / 14:BC2:バハムート・プライム starts using アク・モーン on (\y{Name})\./,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

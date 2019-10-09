@@ -7,6 +7,9 @@
     {
       id: 'T6 Thorn Whip',
       regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
+      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
+      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
+      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
       run: function(data, matches) {
         data.thornMap = data.thornMap || {};
         data.thornMap[matches[1]] = data.thornMap[matches[1]] || [];
@@ -18,6 +21,9 @@
     {
       id: 'T6 Thorn Whip',
       regex: / 1[56]:\y{ObjectId}:Rafflesia:879:Thorn Whip:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 1[56]:\y{ObjectId}:Rafflesia:879:Dornenpeitsche:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 1[56]:\y{ObjectId}:Rafflesia:879:Fouet de ronces:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 1[56]:\y{ObjectId}:ラフレシア:879:ソーンウィップ:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -49,6 +55,9 @@
     {
       id: 'T6 Honey On',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honey-Glazed/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honigsüß/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mielleux/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 蜂蜜/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -59,6 +68,9 @@
     {
       id: 'T6 Honey Off',
       regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honey-Glazed/,
+      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honigsüß/,
+      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Mielleux/,
+      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 蜂蜜/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -103,6 +115,9 @@
     {
       id: 'T6 Blighted',
       regex: / 14:79D:Rafflesia starts using Blighted Bouquet/,
+      regexDe: / 14:79D:Rafflesia starts using Mehltau-Bouquet/,
+      regexFr: / 14:79D:Rafflesia starts using Bouquet Mildiousé/,
+      regexJa: / 14:79D:ラフレシア starts using ブライテッドブーケ/,
       alarmText: {
         en: 'STOP',
       },
@@ -110,6 +125,9 @@
     {
       id: 'T6 Phase 3',
       regex: / 14:79E:Rafflesia starts using Leafstorm/,
+      regexDe: / 14:79E:Rafflesia starts using Blättersturm/,
+      regexFr: / 14:79E:Rafflesia starts using Tempête De Feuilles/,
+      regexJa: / 14:79E:ラフレシア starts using リーフストーム/,
       condition: function(data) {
         return !data.seenLeafstorm;
       },
@@ -121,6 +139,9 @@
     {
       id: 'T6 Swarm',
       regex: / 14:86C:Rafflesia starts using Acid Rain/,
+      regexDe: / 14:86C:Rafflesia starts using Säureregen/,
+      regexFr: / 14:86C:Rafflesia starts using Pluie Acide/,
+      regexJa: / 14:86C:ラフレシア starts using アシッドレイン/,
       infoText: {
         en: 'Stack for Acid',
       },
@@ -128,6 +149,9 @@
     {
       id: 'T6 Swarm',
       regex: / 15:\y{ObjectId}:Rafflesia:7A0:Swarm:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 15:\y{ObjectId}:Rafflesia:7A0:Fähenfurz:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 15:\y{ObjectId}:Rafflesia:7A0:Nuée:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:ラフレシア:7A0:スウォーム:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer' || data.job == 'BLU';
       },
