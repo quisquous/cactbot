@@ -97,20 +97,20 @@
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
-      regex: /1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:/,
-      regexDe: /1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:/,
-      regexFr: /1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:/,
-      regexJa: /1[56]:\y{ObjectId}:(?:ミドガルズオルム|):31B[2345]:/,
+      regex: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Azure Wings:/,
+      regexDe: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Azurschwingen:/,
+      regexFr: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Ailes azur:/,
+      regexJa: / 1[56]:\y{ObjectId}:(?:ミドガルズオルム|):31B[2345]:蒼翼の焔:/,
       run: function(data) {
         delete data.lastSpinWasHorizontal;
       },
     },
     {
       id: 'O10N Horizontal Spin 1',
-      regex: /15:\y{ObjectId}:Midgardsormr:31AC:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31AC:Coil:/,
       regexDe: /15:\y{ObjectId}:Midgardsormr:31AC:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31AC:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31AC:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AC:Charge:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AC:/,
       infoText: {
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder Raus',
@@ -123,9 +123,9 @@
     },
     {
       id: 'O10N Vertical Spin 1',
-      regex: /15:\y{ObjectId}:Midgardsormr:31AD:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31AD:Coil:/,
       regexDe: /15:\y{ObjectId}:Midgardsormr:31AD:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31AD:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AD:Charge:/,
       regexJa: /15:\y{ObjectId}:ミドガルズオルム:31AD:/,
       infoText: {
         en: 'Next Spin: Cardinals or Corners',
@@ -139,9 +139,9 @@
     },
     {
       id: 'O10N Horizontal Spin 2',
-      regex: /15:\y{ObjectId}:Midgardsormr:31AE:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31AE:Azure Wings:/,
       regexDe: /15:\y{ObjectId}:Midgardsormr:31AE:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31AE:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AE:Ailes azur:/,
       regexJa: /15:\y{ObjectId}:ミドガルズオルム:31AE:/,
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
@@ -165,9 +165,9 @@
     },
     {
       id: 'O10N Vertical Spin 2',
-      regex: /15:\y{ObjectId}:Midgardsormr:31B0:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31B0:Stygian Maw:/,
       regexDe: /15:\y{ObjectId}:Midgardsormr:31B0:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31B0:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31B0:Gueule ténébreuse:/,
       regexJa: /15:\y{ObjectId}:ミドガルズオルム:31B0:/,
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;

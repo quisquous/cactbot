@@ -224,9 +224,9 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Versinkend from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Enfoncement from/
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Enfoncement from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 沈下 from/,
       delaySeconds: 5,
       infoText: function(data) {

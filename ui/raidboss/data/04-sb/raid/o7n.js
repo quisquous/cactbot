@@ -10,6 +10,7 @@
       regex: / 14:276B:Guardian starts using Magitek Ray/,
       regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
       regexFr: / 14:276B:Gardien starts using Rayon Magitek/,
+      regexJa: / 14:276B:ガーディアン starts using 魔導レーザー/,
       alertText: {
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
@@ -26,6 +27,7 @@
       regex: / 14:276C:Guardian starts using Arm And Hammer on (\y{Name})/,
       regexDe: / 14:276C:Wächter starts using Arm-Hammer on (\y{Name})/,
       regexFr: / 14:276C:Gardien starts using Marteau Stratégique on (\y{Name})/,
+      regexJa: / 14:276C:ガーディアン starts using アームハンマー on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -57,6 +59,7 @@
       regex: / 14:2766:Guardian starts using Shockwave/,
       regexDe: / 14:2766:Wächter starts using Schockwelle/,
       regexFr: / 14:2766:Gardien starts using Onde De Choc/,
+      regexJa: / 14:2766:ガーディアン starts using 衝撃波/,
       alertText: {
         en: 'Knockback',
         de: 'Rückstoß',
@@ -66,8 +69,9 @@
     {
       id: 'O7N Diffractive Laser',
       regex: / 14:2761:Guardian starts using Diffractive Laser/,
-      regexDe: / 14:2761:Wächter starts using Diffraktiver Laser/,
+      regexDe: / 14:2761:Wächter starts using Diffusionslaser/,
       regexFr: / 14:2761:Gardien starts using Laser Diffracteur/,
+      regexJa: / 14:2761:ガーディアン starts using 拡散レーザー/,
       alertText: {
         en: 'Get Out',
         de: 'Raus da',

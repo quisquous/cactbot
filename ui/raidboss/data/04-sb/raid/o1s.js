@@ -52,7 +52,10 @@
     },
     {
       id: 'O1S Downburst',
-      regex: / 14:1ED8:Alte Roite starts using/,
+      regex: / 14:1ED8:Alte Roite starts using Downburst/,
+      regexDe: / 14:1ED8:Alte Roite starts using Fallböe/,
+      regexFr: / 14:1ED8:Alte Roite starts using Rafale Descendante/,
+      regexJa: / 14:1ED8:アルテ・ロイテ starts using ダウンバースト/,
       infoText: {
         en: 'Downburst: Knockback',
         de: 'Fallböe: Rückstoß',

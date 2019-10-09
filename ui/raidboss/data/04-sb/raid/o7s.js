@@ -82,11 +82,11 @@
 
     {
       id: 'O7S Magitek Ray',
-      regex: / 14:2788:Guardian starts using (Magitek Ray)/,
-      regexDe: / 14:2788:Wächter starts using (Magitek-Laser)/,
-      regexFr: / 14:2788:Gardien starts using (Rayon Magitek)/,
-      regexJa: / 14:2788:ガーディアン starts using (魔導レーザー)/,
-      regexKo: / 14:2788:가디언 starts using (마도 레이저)/,
+      regex: / 14:2788:Guardian starts using Magitek Ray/,
+      regexDe: / 14:2788:Wächter starts using Magitek-Laser/,
+      regexFr: / 14:2788:Gardien starts using Rayon Magitek/,
+      regexJa: / 14:2788:ガーディアン starts using 魔導レーザー/,
+      regexKo: / 14:2788:가디언 starts using 마도 레이저/,
       alertText: function(data, matches) {
         return matches[1];
       },
@@ -353,10 +353,10 @@
       // Skip: 2773
       // Retrieve: 2774
       // Paste: 2776
-      regex: / 14:(?:275C|2773|2774|2776):Guardian starts using/,
-      regexDe: / 14:(?:275C|2773|2774|2776):Wächter starts using/,
-      regexFr: / 14:(?:275C|2773|2774|2776):Gardien starts using/,
-      regexJa: / 14:(?:275C|2773|2774|2776):ガーディアン starts using/,
+      regex: / 14:(?:275C|2773|2774|2776):Guardian starts using (?:Load|Skip Program|Retrieve Program|Paste Program)/,
+      regexDe: / 14:(?:275C|2773|2774|2776):Wächter starts using (?:Laden|Programm überspringen|Programm wiederherstellen|Programm einfügen)/,
+      regexFr: / 14:(?:275C|2773|2774|2776):Gardien starts using (?:Chargement|Saut de programme|Programme précédent|Collage de programme)/,
+      regexJa: / 14:(?:275C|2773|2774|2776):ガーディアン starts using (?:ローディング|スキップ・ローディング|リバース・ローディング|プログラム・ペースト)/,
       regexKo: / 14:(?:275C|2773|2774|2776):가디언 starts using/,
       preRun: function(data) {
         data.loadCount = ++data.loadCount || 1;

@@ -98,10 +98,10 @@
     },
     {
       id: 'O4N Zombie Breath',
-      regex: / 14:240A:Exdeath starts using/,
-      regexDe: / 14:240A:Exdeath starts using/,
-      regexFr: / 14:240A:Exdeath starts using/,
-      regexJa: / 14:240A:エクスデス starts using/,
+      regex: / 14:240A:Exdeath starts using /,
+      regexDe: / 14:240A:Exdeath starts using /,
+      regexFr: / 14:240A:Exdeath starts using /,
+      regexJa: / 14:240A:エクスデス starts using /,
       delaySeconds: 6,
       infoText: {
         en: 'Behind head--Avoid zombie breath',

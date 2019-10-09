@@ -12,10 +12,10 @@
   triggers: [
     {
       regex: /04:\y{ObjectId}:Removing combatant Phantom Train/,
-      regexDe: /04:\y{ObjectId}:Removing combatant Phantomzug/,
-      regexFr: /04:\y{ObjectId}:Removing combatant Train Fantôme/,
-      regexJa: /04:\y{ObjectId}:Removing combatant 魔列車/,
-      regexKo: /04:\y{ObjectId}:Removing combatant 마열차/,
+      regex: / 04:\y{ObjectId}:Removing combatant Phantom Train\./,
+      regexDe: / 04:\y{ObjectId}:Removing combatant Phantomzug\./,
+      regexFr: / 04:\y{ObjectId}:Removing combatant Train Fantôme\./,
+      regexJa: / 04:\y{ObjectId}:Removing combatant 魔列車\./,
       run: function(data) {
         data.StopCombat();
       },

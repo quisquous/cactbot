@@ -103,7 +103,7 @@
       regex: / 14:28E3:Graven Image starts using Ave Maria/,
       regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
       regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
-      regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
+      regexJa: / 14:28E3:神々の像 starts using アヴェ・マリア/,
       regexKo: / 14:28E3:신들의 상 starts using 아베 마리아/,
       alertText: {
         en: 'Look At Statue',

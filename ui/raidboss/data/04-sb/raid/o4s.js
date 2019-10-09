@@ -662,7 +662,7 @@
     },
     { // Shriek (Omega)
       id: 'O4S2 Omega Shriek',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek.*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice from .*? for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声 from .*? for (\y{Float}) Seconds/,
