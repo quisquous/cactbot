@@ -4,7 +4,7 @@
 
 // Rathalos Extreme
 [{
-  zoneRegex: /^(The Great Hunt \(Extreme\)|Unknown Zone \(2Fa\))$/,
+  zoneRegex: /^The Great Hunt \(Extreme\)/,
   triggers: [
     {
       id: 'RathEx Mangle',

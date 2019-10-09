@@ -4,7 +4,7 @@
 
 [{
 
-  zoneRegex: /Deltascape \(V4.0\)/,
+  zoneRegex: /^Deltascape \(V4.0\)$/,
   timelineFile: 'o4n.txt',
   triggers: [
     {
@@ -43,7 +43,7 @@
     },
     {
       id: 'O4N Standard Fire',
-      regex: /14:24BA:Exdeath starts using Fire III on (\y{Name})/,
+      regex: / 14:24BA:Exdeath starts using Fire III on (\y{Name})/,
       regexDe: / 14:24BA:Exdeath starts using Feuga on (\y{Name})/,
       regexFr: / 14:24BA:Exdeath starts using Méga Feu on (\y{Name})/,
       regexJa: / 14:24BA:エクスデス starts using ファイガ on (\y{Name})/,

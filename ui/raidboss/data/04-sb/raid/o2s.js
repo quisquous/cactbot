@@ -2,7 +2,7 @@
 
 // O2S - Deltascape 2.0 Savage
 [{
-  zoneRegex: /Deltascape V2.0 \(Savage\)/,
+  zoneRegex: /^Deltascape V2.0 \(Savage\)$/,
   timelineFile: 'o2s.txt',
   timelineTriggers: [
     {
@@ -42,7 +42,7 @@
     },
     {
       id: 'O2S Levitation',
-      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
       regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
       regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Lévitation/,
       regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of レビテト/,

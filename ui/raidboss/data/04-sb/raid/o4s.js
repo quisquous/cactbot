@@ -2,7 +2,7 @@
 
 // O4S - Deltascape 4.0 Savage
 [{
-  zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
+  zoneRegex: /^(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))$/,
   timelineFile: 'o4s.txt',
   timelineTriggers: [
     {
@@ -600,7 +600,7 @@
     },
     { // Forked Lightning - Don't Stack.
       id: 'O4S2 Forked Lightning',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gabelblitz from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Éclair Ramifié from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of フォークライトニング from/,
@@ -797,7 +797,7 @@
     },
     { // Earthshaker
       id: 'O4S2 Earthshaker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

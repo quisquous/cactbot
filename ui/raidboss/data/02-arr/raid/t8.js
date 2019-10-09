@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /The Second Coil Of Bahamut - Turn \(3\)/,
+  zoneRegex: /^The Second Coil Of Bahamut - Turn \(3\)$/,
   timelineFile: 't8.txt',
   triggers: [
     {
@@ -105,7 +105,7 @@
     },
     {
       id: 'T8 Dreadnaught',
-      regex: /03:\y{ObjectId}:Added new combatant Clockwork Dreadnaught\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Dreadnaught\./,
       regexDe: / 03:\y{ObjectId}:Added new combatant Brummonaut\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Cuirassé Dreadnaught\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant ドレッドノート\./,

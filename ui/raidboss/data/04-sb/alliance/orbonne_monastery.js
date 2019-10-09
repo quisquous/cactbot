@@ -631,9 +631,9 @@
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
-      regex: /14:3895:Ultima, The High Seraph starts using Ultimate Illusion/,
-      regexDe: /14:3895:Cherub Ultima starts using Ultimative Illusion/,
-      regexFr: /14:3895:Ultima La Grande Séraphine starts using Fantaisie Finale/,
+      regex: / 14:3895:Ultima, The High Seraph starts using Ultimate Illusion/,
+      regexDe: / 14:3895:Cherub Ultima starts using Ultimative Illusion/,
+      regexFr: / 14:3895:Ultima La Grande Séraphine starts using Fantaisie Finale/,
       regexJa: / 14:3895:聖天使アルテマ starts using 究極幻想/,
       condition: function(data) {
         return data.role == 'healer';
@@ -664,9 +664,9 @@
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;

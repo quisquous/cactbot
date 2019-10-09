@@ -106,7 +106,7 @@
     },
     {
       id: 'O12N Optimized Meteor',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -118,7 +118,7 @@
     },
     {
       id: 'O12N Stack Spread Markers',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:008B:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:0000:0000:0000:/,
       alertText: function(data, matches) {
         if (data.me != matches[1])
           return;

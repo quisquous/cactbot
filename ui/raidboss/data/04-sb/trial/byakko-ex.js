@@ -198,7 +198,7 @@
     },
     {
       id: 'ByaEx Bubble',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0065:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0065:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -239,7 +239,7 @@
     },
     {
       id: 'ByaEx Puddle Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0004:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0004:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -258,7 +258,7 @@
     },
     {
       id: 'ByaEx G100',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

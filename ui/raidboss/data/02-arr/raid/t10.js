@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /The Final Coil Of Bahamut - Turn \(1\)/,
+  zoneRegex: /^The Final Coil Of Bahamut - Turn \(1\)$/,
   timelineFile: 't10.txt',
   triggers: [
     {
@@ -60,7 +60,7 @@
     },
     {
       id: 'T10 Cyclonic Tether',
-      regex: /23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
+      regex: / 23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
       regexDe: / 23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
       regexFr: / 23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
       regexJa: / 23:\y{ObjectId}:イムドゥグド:\y{ObjectId}:(\y{Name}):....:....:0015:/,

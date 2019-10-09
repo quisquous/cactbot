@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /Eureka Hydatos/,
+  zoneRegex: /^Eureka Hydatos$/,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
   timelineTriggers: [
@@ -49,9 +49,9 @@
   triggers: [
     {
       id: 'Eureka Hydatos Falling Asleep',
-      regex: /00:0039:5 minutes have elapsed since your last activity./,
-      regexDe: /00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
-      regexFr: /00:0039:Votre personnage est inactif depuis 5 minutes/,
+      regex: / 00:0039:5 minutes have elapsed since your last activity./,
+      regexDe: / 00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
+      regexFr: / 00:0039:Votre personnage est inactif depuis 5 minutes/,
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
@@ -60,22 +60,22 @@
     },
     {
       id: 'Eureka Saved By Rememberance',
-      regex: /00:0a39:The memories of heroes past live on again/,
-      regexDe: /00:0a39:Das Vermächtnis vergangener Helden lebt von Neuem auf!/,
+      regex: / 00:0a39:The memories of heroes past live on again/,
+      regexDe: / 00:0a39:Das Vermächtnis vergangener Helden lebt von Neuem auf!/,
       sound: 'Long',
     },
     {
       id: 'BA Seal',
-      regex: /00:0839:.*will be sealed off/,
-      regexDe: /00:0839:.*bis sich der Zugang/,
+      regex: / 00:0839:.*will be sealed off/,
+      regexDe: / 00:0839:.*bis sich der Zugang/,
       run: function(data) {
         data.sealed = true;
       },
     },
     {
       id: 'BA Clear Data',
-      regex: /00:0839:.*is no longer sealed/,
-      regexDe: /00:0839:.*öffnet sich wieder/,
+      regex: / 00:0839:.*is no longer sealed/,
+      regexDe: / 00:0839:.*öffnet sich wieder/,
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -623,8 +623,8 @@
     },
     {
       id: 'BA AV Eidos Relative Virtue Colors',
-      regex: /00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
-      regexDe: /00:332e:Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)/,
+      regex: / 00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
+      regexDe: / 00:332e:Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)/,
       condition: function(data) {
         return data.sealed;
       },

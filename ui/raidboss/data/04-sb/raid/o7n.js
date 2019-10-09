@@ -85,7 +85,7 @@
     },
     {
       id: 'O7N Prey',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {

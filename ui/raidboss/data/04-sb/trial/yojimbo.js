@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /Kugane Ohashi/,
+  zoneRegex: /^Kugane Ohashi$/,
   timelineFile: 'yojimbo.txt',
   triggers: [
     {

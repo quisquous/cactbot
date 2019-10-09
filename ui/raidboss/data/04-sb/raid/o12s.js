@@ -144,7 +144,7 @@
     },
     {
       id: 'O12S Electric Slide Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(009[12345678]):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(009[12345678]):0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -172,7 +172,7 @@
     },
     {
       id: 'O12S MF Stack Marker',
-      regex: /1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
       condition: function(data) {
         return !data.isFinalOmega;
       },
@@ -186,7 +186,7 @@
     },
     {
       id: 'O12S Optimized Meteor',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -299,7 +299,7 @@
     },
     {
       id: 'O12S Target Analysis Target',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -494,7 +494,7 @@
     },
     {
       // Archive All Marker Tracking
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
       condition: function(data) {
         return data.isFinalOmega;
       },
@@ -504,7 +504,7 @@
     },
     {
       id: 'O12S Archive All No Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(?:003E|0060):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(?:003E|0060):0000:0000:0000:/,
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
@@ -526,7 +526,7 @@
     },
     {
       id: 'O12S Archive All Stack Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.isFinalOmega && matches[1] == data.me;
       },
@@ -539,7 +539,7 @@
     },
     {
       id: 'O12S Archive All Spread Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0060:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.isFinalOmega && matches[1] == data.me;
       },

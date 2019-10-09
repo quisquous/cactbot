@@ -2,7 +2,7 @@
 
 // Innocence Extreme
 [{
-  zoneRegex: /The Crown Of The Immaculate \(Extreme\)/,
+  zoneRegex: /^The Crown Of The Immaculate \(Extreme\)$/,
   timelineFile: 'innocence-ex.txt',
   triggers: [
     {

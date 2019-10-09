@@ -2,7 +2,7 @@
 
 // O3S - Deltascape 3.0 Savage
 [{
-  zoneRegex: /(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))/,
+  zoneRegex: /^(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))$/,
   timelineFile: 'o3s.txt',
   triggers: [
     {
@@ -20,8 +20,10 @@
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
       id: 'Spellblade holy counter',
-      regex: /:Halicarnassus:22EF:Spellblade Holy:/,
-      regexDe: /:Halikarnassos:22EF:Magieklinge Sanctus:/,
+      regex: / 15:\y{ObjectId}:Halicarnassus:22EF:Spellblade Holy:/,
+      regexDe: / 15:\y{ObjectId}:Halikarnassos:22EF:Magieklinge Sanctus:/,
+      regexFr: / 15:\y{ObjectId}:Halicarnasse:22EF:Magilame Miracle:/,
+      regexJa: / 15:\y{ObjectId}:ハリカルナッソス:22EF:魔法剣ホーリー:/,
       run: function(data) {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
@@ -39,7 +41,7 @@
       //   (4) prey marker (tethered to #3)
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
@@ -112,7 +114,7 @@
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
       alertText: function(data) {
         if (data.librarySpellbladePrinted)
           return;

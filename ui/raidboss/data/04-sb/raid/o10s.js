@@ -108,7 +108,7 @@
     {
       id: 'O10N Horizontal Spin 1',
       regex: / 15:\y{ObjectId}:Midgardsormr:31AC:Coil:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31AC:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AC:/,
       regexFr: / 15:\y{ObjectId}:Midgardsormr:31AC:Charge:/,
       regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AC:/,
       infoText: {
@@ -124,9 +124,9 @@
     {
       id: 'O10N Vertical Spin 1',
       regex: / 15:\y{ObjectId}:Midgardsormr:31AD:Coil:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31AD:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AD:/,
       regexFr: / 15:\y{ObjectId}:Midgardsormr:31AD:Charge:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31AD:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AD:/,
       infoText: {
         en: 'Next Spin: Cardinals or Corners',
         de: 'Nächste Drehung: Kanten oder Ecken',
@@ -140,9 +140,9 @@
     {
       id: 'O10N Horizontal Spin 2',
       regex: / 15:\y{ObjectId}:Midgardsormr:31AE:Azure Wings:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31AE:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AE:/,
       regexFr: / 15:\y{ObjectId}:Midgardsormr:31AE:Ailes azur:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31AE:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AE:/,
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
@@ -166,9 +166,9 @@
     {
       id: 'O10N Vertical Spin 2',
       regex: / 15:\y{ObjectId}:Midgardsormr:31B0:Stygian Maw:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31B0:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31B0:/,
       regexFr: / 15:\y{ObjectId}:Midgardsormr:31B0:Gueule ténébreuse:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31B0:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31B0:/,
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },

@@ -6,12 +6,11 @@
 //   fr: missing replaceText, triggers
 //   ja: missing replaceText, triggers
 [{
-  zoneRegex: /Sigmascape V1\.0 \(Savage\)/,
+  zoneRegex: /^Sigmascape V1\.0 \(Savage\)$/,
   timelineFile: 'o5s.txt',
   resetWhenOutOfCombat: false,
   triggers: [
     {
-      regex: /04:\y{ObjectId}:Removing combatant Phantom Train/,
       regex: / 04:\y{ObjectId}:Removing combatant Phantom Train\./,
       regexDe: / 04:\y{ObjectId}:Removing combatant Phantomzug\./,
       regexFr: / 04:\y{ObjectId}:Removing combatant Train Fantôme\./,
@@ -22,10 +21,10 @@
     },
     {
       id: 'O5S Doom Strike',
-      regex: /14:28B1:Phantom Train starts using Doom Strike on (\y{Name})/,
-      regexDe: /14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
-      regexFr: /14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
-      regexJa: /14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
+      regex: / 14:28B1:Phantom Train starts using Doom Strike on (\y{Name})/,
+      regexDe: / 14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
+      regexFr: / 14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
+      regexJa: / 14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
       regexKo: /14:28B1:마열차 starts using 마령격 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -59,10 +58,10 @@
     },
     {
       id: 'O5S Head On',
-      regex: /14:28A4:Phantom Train starts using Head On/,
-      regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
-      regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
-      regexJa: /14:28A4:魔列車 starts using 追突/,
+      regex: / 14:28A4:Phantom Train starts using Head On/,
+      regexDe: / 14:28A4:Phantomzug starts using Frontalangriff/,
+      regexFr: / 14:28A4:Train Fantôme starts using Plein Fouet/,
+      regexJa: / 14:28A4:魔列車 starts using 追突/,
       regexKo: /14:28A4:마열차 starts using 추돌/,
       alertText: {
         en: 'Go to back',
@@ -81,10 +80,10 @@
     },
     {
       id: 'O5S Diabolic Headlamp',
-      regex: /14:28B2:Phantom Train starts using Diabolic Headlamp/,
-      regexDe: /14:28B2:Phantomzug starts using Diabolische Leuchte/,
-      regexFr: /14:28B2:Train Fantôme starts using Phare Diabolique/,
-      regexJa: /14:28B2:魔列車 starts using 魔界の前照灯/,
+      regex: / 14:28B2:Phantom Train starts using Diabolic Headlamp/,
+      regexDe: / 14:28B2:Phantomzug starts using Diabolische Leuchte/,
+      regexFr: / 14:28B2:Train Fantôme starts using Phare Diabolique/,
+      regexJa: / 14:28B2:魔列車 starts using 魔界の前照灯/,
       regexKo: /14:28B2:마열차 starts using 마계의 전조등/,
       alertText: {
         en: 'Stack middle',
@@ -96,7 +95,7 @@
     },
     {
       id: 'O5S Diabolic Light',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -110,7 +109,7 @@
     },
     {
       id: 'O5S Diabolic Wind',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /The Second Coil Of Bahamut - Turn \(2\)/,
+  zoneRegex: /^The Second Coil Of Bahamut - Turn \(2\)$/,
   timelineFile: 't7.txt',
   triggers: [
     {
@@ -151,7 +151,7 @@
     },
     {
       id: 'T7 Tail',
-      regex: /14:7B2:Melusine starts using Venomous Tail/,
+      regex: / 14:7B2:Melusine starts using Venomous Tail/,
       regexDe: / 14:7B2:Melusine starts using Venomschweif/,
       regexFr: / 14:7B2:Mélusine starts using Queue Venimeuse/,
       regexJa: / 14:7B2:メリュジーヌ starts using ベノモステール/,

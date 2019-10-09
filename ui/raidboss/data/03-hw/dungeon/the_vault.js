@@ -2,7 +2,7 @@
 
 // The Vault
 [{
-  zoneRegex: /The Vault/,
+  zoneRegex: /^The Vault$/,
   timelineFile: 'the_vault.txt',
   timelineTriggers: [
     {

@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /The Final Coil Of Bahamut - Turn \(2\)/,
+  zoneRegex: /^The Final Coil Of Bahamut - Turn \(2\)$/,
   timelineFile: 't11.txt',
   triggers: [
     {
@@ -186,7 +186,7 @@
     },
     {
       id: 'T11 Tether Cleanup',
-      regex: /16:\y{ObjectId}:Kaliya:B7B:Nanospore Jet:/,
+      regex: / 16:\y{ObjectId}:Kaliya:B7B:Nanospore Jet:/,
       regexDe: / 16:\y{ObjectId}:Kaliya:B7B:Nanosporen-Strahl:/,
       regexFr: / 16:\y{ObjectId}:Kaliya:B7B:Jet de magismoparticules:/,
       regexJa: / 16:\y{ObjectId}:カーリア:B7B:魔科学粒子散布:/,

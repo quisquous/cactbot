@@ -2,7 +2,7 @@
 
 // Titania Extreme
 [{
-  zoneRegex: /The Dancing Plague \(Extreme\)/,
+  zoneRegex: /^The Dancing Plague \(Extreme\)$/,
   timelineFile: 'titania-ex.txt',
   triggers: [
     {
@@ -365,7 +365,7 @@
     },
     {
       id: 'TitaniaEx Thunder Tether',
-      regex: /23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
+      regex: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
       regexDe: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
       regexFr: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
       regexJa: / 23:\y{ObjectId}:ティターニア:\y{ObjectId}:\y{Name}:....:....:0054:/,

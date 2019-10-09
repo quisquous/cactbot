@@ -39,10 +39,10 @@
     },
     {
       id: 'O9N Orbs Fiend',
-      regex: /14:315C:Chaos starts using Fiendish Orbs/,
-      regexDe: /14:315C:Chaos starts using Höllenkugeln/,
-      regexFr: /14:315C:Chaos starts using Ordre De Poursuite/,
-      regexJa: /14:315C:カオス starts using 追尾せよ/,
+      regex: / 14:315C:Chaos starts using Fiendish Orbs/,
+      regexDe: / 14:315C:Chaos starts using Höllenkugeln/,
+      regexFr: / 14:315C:Chaos starts using Ordre De Poursuite/,
+      regexJa: / 14:315C:カオス starts using 追尾せよ/,
       condition: function(data) {
         return data.role == 'tank';
       },

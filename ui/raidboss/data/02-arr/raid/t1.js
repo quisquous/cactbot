@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /The Binding Coil Of Bahamut - Turn \(1\)/,
+  zoneRegex: /^The Binding Coil Of Bahamut - Turn \(1\)$/,
   triggers: [
     {
       id: 'T1 Silence',

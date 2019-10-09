@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /The Final Coil Of Bahamut - Turn \(3\)/,
+  zoneRegex: /^The Final Coil Of Bahamut - Turn \(3\)$/,
   timelineFile: 't12.txt',
   triggers: [
     {

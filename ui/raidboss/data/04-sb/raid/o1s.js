@@ -2,7 +2,7 @@
 
 // O1S - Deltascape 1.0 Savage
 [{
-  zoneRegex: /Deltascape V1.0 \(Savage\)/,
+  zoneRegex: /^Deltascape V1.0 \(Savage\)$/,
   timelineFile: 'o1s.txt',
   triggers: [
     {

@@ -7,9 +7,9 @@
   triggers: [
     {
       id: 'O8N Hyper Drive',
-      regex: /14:292E:Kefka starts using Hyperdrive on (\y{Name})/,
-      regexDe: /14:292E:Kefka starts using Hyperantrieb on (\y{Name})/,
-      regexFr: /14:292E:Kefka starts using Colonne De Feu on (\y{Name})/,
+      regex: / 14:292E:Kefka starts using Hyperdrive on (\y{Name})/,
+      regexDe: / 14:292E:Kefka starts using Hyperantrieb on (\y{Name})/,
+      regexFr: / 14:292E:Kefka starts using Colonne De Feu on (\y{Name})/,
       regexJa: / 14:292E:ケフカ starts using ハイパードライブ on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -39,9 +39,9 @@
     },
     {
       id: 'O8N Shockwave',
-      regex: /14:2927:Graven Image starts using Shockwave/,
-      regexDe: /14:2927:Heilige Statue starts using Schockwelle/,
-      regexFr: /14:2927:Statue Divine starts using Onde De Choc/,
+      regex: / 14:2927:Graven Image starts using Shockwave/,
+      regexDe: / 14:2927:Heilige Statue starts using Schockwelle/,
+      regexFr: / 14:2927:Statue Divine starts using Onde De Choc/,
       regexJa: / 14:2927:神々の像 starts using 衝撃波/,
       delaySeconds: 5,
       alertText: {
@@ -57,9 +57,9 @@
     },
     {
       id: 'O8N Gravitational Wave',
-      regex: /14:2929:Graven Image starts using Gravitational Wave/,
-      regexDe: /14:2929:Heilige Statue starts using Gravitationswelle/,
-      regexFr: /14:2929:Statue Divine starts using Onde Gravitationnelle/,
+      regex: / 14:2929:Graven Image starts using Gravitational Wave/,
+      regexDe: / 14:2929:Heilige Statue starts using Gravitationswelle/,
+      regexFr: / 14:2929:Statue Divine starts using Onde Gravitationnelle/,
       regexJa: / 14:2929:神々の像 starts using 重力波/,
       alertText: {
         en: 'Get Right/East =>',
@@ -74,9 +74,9 @@
     },
     {
       id: 'O8N Intemperate Will',
-      regex: /14:292A:Graven Image starts using Intemperate Will/,
-      regexDe: /14:292A:Heilige Statue starts using Unmäßiger Wille/,
-      regexFr: /14:292A:Statue Divine starts using Volonté Intempérante/,
+      regex: / 14:292A:Graven Image starts using Intemperate Will/,
+      regexDe: / 14:292A:Heilige Statue starts using Unmäßiger Wille/,
+      regexFr: / 14:292A:Statue Divine starts using Volonté Intempérante/,
       regexJa: / 14:292A:神々の像 starts using 撲殺の神気/,
       alertText: {
         en: '<= Get Left/West',
@@ -91,9 +91,9 @@
     },
     {
       id: 'O8N Ave Maria',
-      regex: /14:292B:Graven Image starts using Ave Maria/,
-      regexDe: /14:292B:Heilige Statue starts using Ave Maria/,
-      regexFr: /14:292B:Statue Divine starts using Ave Maria/,
+      regex: / 14:292B:Graven Image starts using Ave Maria/,
+      regexDe: / 14:292B:Heilige Statue starts using Ave Maria/,
+      regexFr: / 14:292B:Statue Divine starts using Ave Maria/,
       regexJa: / 14:292B:神々の像 starts using アヴェ・マリア/,
       alertText: {
         en: 'Look At Statue',
@@ -108,9 +108,9 @@
     },
     {
       id: 'O8N Indolent Will',
-      regex: /14:292C:Graven Image starts using Indolent Will/,
-      regexDe: /14:292C:Heilige Statue starts using Träger Wille/,
-      regexFr: /14:292C:Statue Divine starts using Volonté Indolente/,
+      regex: / 14:292C:Graven Image starts using Indolent Will/,
+      regexDe: / 14:292C:Heilige Statue starts using Träger Wille/,
+      regexFr: / 14:292C:Statue Divine starts using Volonté Indolente/,
       regexJa: / 14:292C:神々の像 starts using 惰眠の神気/,
       alertText: {
         en: 'Look Away From Statue',
@@ -125,9 +125,9 @@
     },
     {
       id: 'O8N Aero Assault',
-      regex: /14:2924:Kefka starts using Aero Assault/,
-      regexDe: /14:2924:Kefka starts using Wallendes Windga/,
-      regexFr: /14:2924:Kefka starts using Méga Vent Véhément/,
+      regex: / 14:2924:Kefka starts using Aero Assault/,
+      regexDe: / 14:2924:Kefka starts using Wallendes Windga/,
+      regexFr: / 14:2924:Kefka starts using Méga Vent Véhément/,
       regexJa: / 14:2924:ケフカ starts using ずんずんエアロガ/,
       infoText: {
         en: 'Knockback on Boss',
@@ -137,7 +137,7 @@
     },
     {
       id: 'O8N Flagrant Fire Single',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -154,7 +154,7 @@
     },
     {
       id: 'O8N Flagrant Fire Stack',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
       alertText: function(data, matches) {
         return 'Stack on ' + data.ShortName(matches[1]);
       },
@@ -166,9 +166,9 @@
     },
     {
       id: 'O8N Thrumming Thunder Real',
-      regex: /14:291D:Kefka starts using Thrumming Thunder/,
-      regexDe: /14:291D:Kefka starts using Brachiales Blitzga/,
-      regexFr: /14:291D:Kefka starts using Méga Foudre Fourmillante/,
+      regex: / 14:291D:Kefka starts using Thrumming Thunder/,
+      regexDe: / 14:291D:Kefka starts using Brachiales Blitzga/,
+      regexFr: / 14:291D:Kefka starts using Méga Foudre Fourmillante/,
       regexJa: / 14:291D:ケフカ starts using もりもりサンダガ/,
       suppressSeconds: 1,
       infoText: {
@@ -184,9 +184,9 @@
     },
     {
       id: 'O8N Thrumming Thunder Fake',
-      regex: /14:291B:Kefka starts using Thrumming Thunder/,
-      regexDe: /14:291B:Kefka starts using Brachiales Blitzga/,
-      regexFr: /14:291B:Kefka starts using Méga Foudre Fourmillante/,
+      regex: / 14:291B:Kefka starts using Thrumming Thunder/,
+      regexDe: / 14:291B:Kefka starts using Brachiales Blitzga/,
+      regexFr: / 14:291B:Kefka starts using Méga Foudre Fourmillante/,
       regexJa: / 14:291B:ケフカ starts using もりもりサンダガ/,
       suppressSeconds: 1,
       infoText: {
@@ -202,9 +202,9 @@
     },
     {
       id: 'O8N Blizzard Fake Donut',
-      regex: /14:2916:Kefka starts using Blizzard Blitz/,
-      regexDe: /14:2916:Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:2916:Kefka starts using Méga Glace Glissante/,
+      regex: / 14:2916:Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:2916:Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:2916:Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:2916:ケフカ starts using ぐるぐるブリザガ/,
       suppressSeconds: 1,
       infoText: {
@@ -220,9 +220,9 @@
     },
     {
       id: 'O8N Blizzard True Donut',
-      regex: /14:2919:Kefka starts using Blizzard Blitz/,
-      regexDe: /14:2919:Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:2919:Kefka starts using Méga Glace Glissante/,
+      regex: / 14:2919:Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:2919:Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:2919:Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:2919:ケフカ starts using ぐるぐるブリザガ/,
       suppressSeconds: 1,
       infoText: {
@@ -238,9 +238,9 @@
     },
     {
       id: 'O8N Blizzard Fake Near',
-      regex: /14:2914:Kefka starts using Blizzard Blitz/,
-      regexDe: /14:2914:Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:2914:Kefka starts using Méga Glace Glissante/,
+      regex: / 14:2914:Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:2914:Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:2914:Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:2914:ケフカ starts using ぐるぐるブリザガ/,
       suppressSeconds: 1,
       infoText: {
@@ -256,9 +256,9 @@
     },
     {
       id: 'O8N Blizzard True Near',
-      regex: /14:2918:Kefka starts using Blizzard Blitz/,
-      regexDe: /14:2918:Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:2918:Kefka starts using Méga Glace Glissante/,
+      regex: / 14:2918:Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:2918:Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:2918:Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:2918:ケフカ starts using ぐるぐるブリザガ/,
       suppressSeconds: 1,
       infoText: {

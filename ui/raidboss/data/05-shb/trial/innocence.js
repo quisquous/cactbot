@@ -2,7 +2,7 @@
 
 // Innocence Normal
 [{
-  zoneRegex: /^The Crown Of The Immaculate #/,
+  zoneRegex: /^The Crown Of The Immaculate$/,
   timelineFile: 'innocence.txt',
   triggers: [
     {

@@ -98,7 +98,7 @@
     },
     { // Red knockback marker indicator
       id: 'SusEx Knockback',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -139,7 +139,7 @@
     },
     { // Levinbolt indicator
       id: 'SusEx Levinbolt',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -170,7 +170,7 @@
     },
     { // Levinbolt indicator debug
       id: 'SusEx Levinbolt Debug',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
       condition: function(data, matches) {
         data.levinbolt = matches[1];
         return (matches[1] != data.me);
@@ -178,7 +178,7 @@
     },
     { // Stunning levinbolt indicator
       id: 'SusEx Levinbolt Stun',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006F:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006F:0000:0000:0000:/,
       infoText: function(data, matches) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.

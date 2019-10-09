@@ -88,9 +88,9 @@
     },
     {
       id: 'Fractal Death Spin',
-      regex: /14:27AE:The Ultima Beast starts using Death Spin/,
-      regexDe: /14:27AE:Ultimative Bestie starts using Strudel Des Todes/,
-      regexFr: /14:27AE:Ultima-monstre starts using Tourbillon Mortel/,
+      regex: / 14:27AE:The Ultima Beast starts using Death Spin/,
+      regexDe: / 14:27AE:Ultimative Bestie starts using Strudel Des Todes/,
+      regexFr: / 14:27AE:Ultima-monstre starts using Tourbillon Mortel/,
       regexJa: / 14:27AE:アルテマビースト starts using デススピン/,
       infoText: {
         en: 'Knockback',
@@ -100,9 +100,9 @@
     },
     {
       id: 'Fractal Aether Bend',
-      regex: /14:27(?:AF|B0):The Ultima Beast starts using Aether Bend/,
-      regexDe: /14:27(?:AF|B0):Ultimative Bestie starts using Ätherbeugung/,
-      regexFr: /14:27(?:AF|B0):Ultima-monstre starts using Diffraction éthérée/,
+      regex: / 14:27(?:AF|B0):The Ultima Beast starts using Aether Bend/,
+      regexDe: / 14:27(?:AF|B0):Ultimative Bestie starts using Ätherbeugung/,
+      regexFr: / 14:27(?:AF|B0):Ultima-monstre starts using Diffraction éthérée/,
       regexJa: / 14:27(?:AF|B0):アルテマビースト starts using エーテルベント/,
       alertText: {
         en: 'Get In',

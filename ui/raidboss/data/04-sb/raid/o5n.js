@@ -18,9 +18,9 @@
 
     {
       id: 'O5N Doom Strike',
-      regex: /14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
-      regexDe: /14:28A3:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
-      regexFr: /14:28A3:Train Fantôme starts using Frappe Létale on (\y{Name})/,
+      regex: / 14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
+      regexDe: / 14:28A3:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
+      regexFr: / 14:28A3:Train Fantôme starts using Frappe Létale on (\y{Name})/,
       regexJa: / 14:28A3:魔列車 starts using 魔霊撃 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -50,9 +50,9 @@
     },
     {
       id: 'O5N Head On',
-      regex: /14:28A4:Phantom Train starts using Head On/,
-      regexDe: /14:28A4:Phantomzug starts using Frontalangriff/,
-      regexFr: /14:28A4:Train Fantôme starts using Plein Fouet/,
+      regex: / 14:28A4:Phantom Train starts using Head On/,
+      regexDe: / 14:28A4:Phantomzug starts using Frontalangriff/,
+      regexFr: / 14:28A4:Train Fantôme starts using Plein Fouet/,
       regexJa: / 14:28A4:魔列車 starts using 追突/,
       alertText: {
         en: 'Go to back',
@@ -67,9 +67,9 @@
     },
     {
       id: 'O5N Diabolic Headlamp',
-      regex: /14:28A6:Phantom Train starts using Diabolic Headlamp/,
-      regexDe: /14:28A6:Phantomzug starts using Diabolische Leuchte/,
-      regexFr: /14:28A6:Train Fantôme starts using Phare Diabolique/,
+      regex: / 14:28A6:Phantom Train starts using Diabolic Headlamp/,
+      regexDe: / 14:28A6:Phantomzug starts using Diabolische Leuchte/,
+      regexFr: / 14:28A6:Train Fantôme starts using Phare Diabolique/,
       regexJa: / 14:28A6:魔列車 starts using 魔界の前照灯/,
       alertText: {
         en: 'Stack middle',
@@ -79,7 +79,7 @@
     },
     {
       id: 'O5N Diabolic Light',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -91,7 +91,7 @@
     },
     {
       id: 'O5N Diabolic Wind',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

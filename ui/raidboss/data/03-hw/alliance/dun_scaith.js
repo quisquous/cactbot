@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /Dun Scaith/,
+  zoneRegex: /^Dun Scaith$/,
   timelineFile: 'dun_scaith.txt',
   triggers: [
     // Basic stack occurs across all encounters except Deathgaze.
@@ -294,7 +294,7 @@
     },
     {
       id: 'Dun Scaith Aether Collectors',
-      regex: /03:\y{ObjectId}:Added new combatant Aether Collector/,
+      regex: / 03:\y{ObjectId}:Added new combatant Aether Collector/,
       regexDe: / 03:\y{ObjectId}:Added new combatant Ätherakkumulator/,
       regexFr: / 03:\y{ObjectId}:Added new combatant Accumulateur D'Éther/,
       regexJa: / 03:\y{ObjectId}:Added new combatant エーテル集積器/,
@@ -530,7 +530,7 @@
     },
     {
       id: 'Dun Scaith Earth Shaker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
