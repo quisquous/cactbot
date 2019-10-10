@@ -233,7 +233,7 @@
       id: 'ShinryuEx Icicle Left',
       regex: / 15:\y{ObjectId}:Icicle:25EF:Icicle Impact:.*:-29.99:-15:/,
       regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-15:/,
-      regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-15:/
+      regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-15:/,
       regexJa: / 15:\y{ObjectId}:アイシクル:25EF:アイシクルインパクト:.*:-29.99:-15:/,
       alarmText: {
         en: 'icicle, lean west',

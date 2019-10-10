@@ -105,10 +105,10 @@
     },
     {
       id: 'O12S Optimized Blade Dance',
-     regex: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Optimized Bladedance/,
-     regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Omega-Schwertertanz/,
-     regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga/,
-     regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using ブレードダンス・オメガ/,
+      regex: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Optimized Bladedance/,
+      regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Omega-Schwertertanz/,
+      regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga/,
+      regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using ブレードダンス・オメガ/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },

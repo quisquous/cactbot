@@ -872,7 +872,6 @@
       id: 'BA Ozma Acceleration Bomb',
       regex: / 16:\y{ObjectId}:Proto Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 16:\y{ObjectId}:Proto-Yadis:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Proto-Yadis:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 16:\y{ObjectId}:Proto-Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 16:\y{ObjectId}:プロトオズマ:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {

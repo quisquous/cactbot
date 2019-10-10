@@ -224,8 +224,8 @@
       // Handles both 1E52 Aetherochemical Flare and 1D9D Supernova
       id: 'Dun Scaith Proto-Ultima Raid Damage',
       regex: / 14:(?:1E52|1D9D):Proto Ultima starts using Aetherochemical Flare/,
-      regexDe: / 14:(?:1E52|1D9D):Proto-Ultima starts using Ätherochemisches Flare/
-      regexFr: / 14:(?:1E52|1D9D):Proto-Ultima starts using Brasier Magismologique/
+      regexDe: / 14:(?:1E52|1D9D):Proto-Ultima starts using Ätherochemisches Flare/,
+      regexFr: / 14:(?:1E52|1D9D):Proto-Ultima starts using Brasier Magismologique/,
       regexJa: / 14:(?:1E52|1D9D):プロトアルテマ starts using 魔科学フレア/,
       condition: function(data) {
         return data.role == 'healer';
@@ -237,8 +237,8 @@
     {
       id: 'Dun Scaith Prey Markers',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Prey/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Markiert/
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marquage/
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Markiert/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marquage/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of マーキング/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
