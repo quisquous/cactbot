@@ -1277,7 +1277,7 @@ class Bars {
       if (oath < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
-      } else if (blood < 100) {
+      } else if (oath < 100) {
         p.classList.remove('low');
         p.classList.add('mid');
       } else {
