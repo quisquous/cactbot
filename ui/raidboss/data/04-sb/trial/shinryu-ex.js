@@ -229,7 +229,6 @@
       },
     },
     {
-      //15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-25:
       id: 'ShinryuEx Icicle Left',
       regex: / 15:\y{ObjectId}:Icicle:25EF:Icicle Impact:.*:-29.99:-15:/,
       regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-15:/,
