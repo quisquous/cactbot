@@ -82,7 +82,7 @@
       id: 'E1S Fragor Maximus',
       regex: / 14:3D8B:Eden Prime starts using Fragor Maximus/,
       regexDe: / 14:3D8B:Prim-Eden starts using Fragor Maximus/,
-      regexFr: / 14:3D8B::Primo-Éden starts using Fragor Maximus/,
+      regexFr: / 14:3D8B:Primo-Éden starts using Fragor Maximus/,
       regexJa: / 14:3D8B:エデン・プライム starts using フラゴルマクシマス/,
       condition: function(data) {
         return data.role == 'healer';
