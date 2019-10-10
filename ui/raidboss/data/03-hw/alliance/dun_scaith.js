@@ -419,7 +419,7 @@
       id: 'Dun Scaith Nightmare',
       regex: / 14:(?:1C0E|1C20):\y{Name} starts using (?:Nightmare|Hollow Nightmare)/,
       regexDe: / 14:(?:1C0E|1C20):\y{Name} starts using (?:Albtraum|Hohler Albtraum)/,
-      regexFr: / 14:(?:1C0E|1C20):\y{Name} starts using (?:Cauchemar|Cauchemar Nihil)/
+      regexFr: / 14:(?:1C0E|1C20):\y{Name} starts using (?:Cauchemar|Cauchemar Nihil)/,
       regexJa: / 14:(?:1C0E|1C20):\y{Name} starts using (?:ナイトメア|ホローナイトメア)/,
       alertText: {
         en: 'Look away',

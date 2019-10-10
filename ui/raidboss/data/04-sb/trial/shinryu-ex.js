@@ -246,7 +246,6 @@
       regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-25:/,
       regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-25:/,
       regexJa: / 15:\y{ObjectId}:アイシクル:25EF:アイシクルインパクト:.*:-29.99:-25:/,
-      regexDe: 
       alarmText: {
         en: 'icicle, lean east',
         de: 'Eiszapfen, nach Osten',
