@@ -160,10 +160,10 @@
     },
     {
       id: 'The Vault Knights March',
-      regex: / 03:\y{ObjectId}:Added new combatant (Dawn Knight|Dusk Knight)/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant (Dämmerross|Morgenross)/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant (Cavalier De L'aube|Cavalier Du Crépuscule)/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant (ドーン・オートナイト|ダスク・オートナイト)/,
+      regex: / 03:\y{ObjectId}:Added new combatant (?:Dawn Knight|Dusk Knight)/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant (?:Dämmerross|Morgenross)/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant (?:Cavalier De L'aube|Cavalier Du Crépuscule)/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant (?:ドーン・オートナイト|ダスク・オートナイト)/,
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',

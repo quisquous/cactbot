@@ -2,7 +2,7 @@
 
 // O3S - Deltascape 3.0 Savage
 [{
-  zoneRegex: /^(Deltascape V3.0 \(Savage\)|Unknown Zone \(2B9\))$/,
+  zoneRegex: /^Deltascape V3.0 \(Savage\)$/,
   timelineFile: 'o3s.txt',
   triggers: [
     {

@@ -87,8 +87,12 @@
       regexFr: / 14:2788:Gardien starts using Rayon Magitek/,
       regexJa: / 14:2788:ガーディアン starts using 魔導レーザー/,
       regexKo: / 14:2788:가디언 starts using 마도 레이저/,
-      alertText: function(data, matches) {
-        return matches[1];
+      alertText: {
+        en: 'Magitek Ray',
+        de: 'Magitek-Laser',
+        fr: 'Rayon Magitek',
+        ko: '마도 레이저',
+        ja: '魔導レーザー',
       },
       tts: {
         en: 'beam',

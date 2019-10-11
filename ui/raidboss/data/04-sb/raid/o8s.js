@@ -60,7 +60,7 @@
       regexDe: / 14:28DF:Helige Statue starts using Unmäßiger Wille/,
       regexFr: / 14:28DF:Statue Divine starts using Volonté Intempérante/,
       regexJa: / 14:28DF:神々の像 starts using 撲殺の神気/,
-      regexKo: /14:28DF:신들의 상 starts using 박살의 신기/,
+      regexKo: / 14:28DF:신들의 상 starts using 박살의 신기/,
       alertText: {
         en: '<= Get Left/West',
         fr: '<= Allez à Gauche/Ouest',
@@ -82,7 +82,7 @@
       regexDe: / 14:28DE:Helige Statue starts using Gravitationswelle/,
       regexFr: / 14:28DE:Statue Divine starts using Onde Gravitationnelle/,
       regexJa: / 14:28DE:神々の像 starts using 重力波/,
-      regexKo: /14:28DE:신들의 상 starts using 중력파/,
+      regexKo: / 14:28DE:신들의 상 starts using 중력파/,
       alertText: {
         en: 'Get Right/East =>',
         fr: 'Allez à Droite/Est =>',
@@ -497,7 +497,7 @@
       regexDe: /1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
       regexFr: /1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
       regexJa: /1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
-      regexKo: /1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
+      regexKo: / 1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -518,7 +518,7 @@
       regexDe: /1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
       regexFr: /1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
       regexJa: /1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
-      regexKo: /1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
+      regexKo: / 1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -539,7 +539,7 @@
       regexDe: / 14:(?:28CD|2B31):Kefka starts using Brachiales Blitzga/,
       regexFr: / 14:(?:28CD|2B31):Kefka starts using Méga Foudre Fourmillante/,
       regexJa: / 14:(?:28CD|2B31):ケフカ starts using もりもりサンダガ/,
-      regexKo: /14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
+      regexKo: / 14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -566,7 +566,7 @@
       regexDe: / 14:(?:28CC|2B30):Kefka starts using Brachiales Blitzga/,
       regexFr: / 14:(?:28CC|2B30):Kefka starts using Méga Foudre Fourmillante/,
       regexJa: / 14:(?:28CC|2B30):ケフカ starts using もりもりサンダガ/,
-      regexKo: /14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
+      regexKo: / 14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -593,7 +593,7 @@
       regexDe: / 14:(?:28C5|2B2B):Kefka starts using Erstarrendes Eisga/,
       regexFr: / 14:(?:28C5|2B2B):Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:(?:28C5|2B2B):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
+      regexKo: / 14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -627,7 +627,7 @@
       regexDe: / 14:(?:28C9|2B2E):Kefka starts using Erstarrendes Eisga/,
       regexFr: / 14:(?:28C9|2B2E):Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:(?:28C9|2B2E):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
+      regexKo: / 14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -661,7 +661,7 @@
       regexDe: / 14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
       regexFr: / 14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
+      regexKo: / 14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -695,7 +695,7 @@
       regexDe: / 14:(?:28C8|2B2D):Kefka starts using Erstarrendes Eisga/,
       regexFr: / 14:(?:28C8|2B2D):Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:(?:28C8|2B2D):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
+      regexKo: / 14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {

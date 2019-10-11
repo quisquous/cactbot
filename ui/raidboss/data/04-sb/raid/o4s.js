@@ -2,7 +2,7 @@
 
 // O4S - Deltascape 4.0 Savage
 [{
-  zoneRegex: /^(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))$/,
+  zoneRegex: /^Deltascape V4.0 \(Savage\)$/,
   timelineFile: 'o4s.txt',
   timelineTriggers: [
     {
