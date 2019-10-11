@@ -361,7 +361,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Stop moving',
-        de: 'Nicht bewegen!'
+        de: 'Nicht bewegen!',
       },
     },
     {
