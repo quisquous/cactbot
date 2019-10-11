@@ -186,6 +186,8 @@ let Util = {
     }
   }
 
+  window.dispatchOverlayEvent = processEvent;
+
   window.addOverlayListener = (event, cb) => {
     if (!subscribers[event]) {
       subscribers[event] = [];

@@ -64,8 +64,10 @@ class PopupText {
   }
 
   OnZoneChange(e) {
-    this.zoneName = e.detail.zoneName;
-    this.ReloadTimelines();
+    if (this.zoneName !== e.detail.zoneName) {
+      this.zoneName = e.detail.zoneName;
+      this.ReloadTimelines();
+    }
   }
 
   ReloadTimelines() {
