@@ -70,7 +70,7 @@
     },
     {
       id: 'O2S Death\'s Gaze',
-      regex: / 14:236F:Catastrophe starts using Death'S Gaze/,
+      regex: / 14:236F:Catastrophe starts using Death's Gaze/,
       regexDe: / 14:236F:Katastroph starts using Todesblick/,
       regexFr: / 14:236F:Catastrophe starts using Œil De La Mort/,
       regexJa: / 14:236F:カタストロフィー starts using 死神の瞳/,

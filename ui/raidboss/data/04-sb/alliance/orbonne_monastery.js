@@ -333,7 +333,7 @@
       regex: / 15:\y{ObjectId}:The Thunder God:3753:Crush Helm:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Cidolfus:3753:Himmelsbombardement:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3753:Bombardement Céleste:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷神シド:3753:星天爆撃打Crush Helm:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:雷神シド:3753:星天爆撃打:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -363,7 +363,7 @@
       regex: / 15:\y{ObjectId}:The Thunder God:3759:Crush Armor:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Cidolfus:3759:Helmspalter:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3759:Brèche Insidieuse:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷神シド:3759:強甲破点突きCrush Armor:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 15:\y{ObjectId}:雷神シド:3759:強甲破点突き:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

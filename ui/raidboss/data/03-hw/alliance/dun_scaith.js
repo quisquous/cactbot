@@ -149,12 +149,12 @@
       regexFr: / 14:1C(9F|A0):\y{Name} starts using Sphère Jongleuse on Gueule Gémissante/,
       regexJa: / 14:1C(9F|A0):\y{Name} starts using ジャグリング・スフィア on 虚声のアトモス/,
       alertText: function(data, matches) {
-        if (matches[1] == '1C9F') {
+        if (matches[1] == '9F') {
           return {
             en: 'Avoid Untethered Blue',
           };
         }
-        if (matches[1] == '1CA0') {
+        if (matches[1] == 'A0') {
           return {
             en: 'Go to Untethered Blue',
           };
@@ -168,12 +168,12 @@
       regexFr: / 14:1C(9F|A0):\y{Name} starts using Sphère Jongleuse on Gueule Maudissante/,
       regexJa: / 14:1C(9F|A0):\y{Name} starts using ジャグリング・スフィア on 怨声のアトモス/,
       alertText: function(data, matches) {
-        if (matches[1] == '1C9F') {
+        if (matches[1] == '9F') {
           return {
             en: 'Avoid Untethered Yellow',
           };
         }
-        if (matches[1] == '1CA0') {
+        if (matches[1] == 'A0') {
           return {
             en: 'Go to Untethered Yellow',
           };
@@ -195,12 +195,12 @@
       regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire Resistance Down|Water Resistance Down)/,
       suppressSeconds: 10,
       alertText: function(data, matches) {
-        if (matches[1] == 'Water') {
+        if (matches[1] == 'Water Resistance Down') {
           return {
             en: 'Change puddles to fire',
           };
         }
-        if (matches[1] == 'Fire') {
+        if (matches[1] == 'Fire Resistance Down') {
           return {
             en: 'Change puddles to water',
           };
@@ -400,10 +400,10 @@
     },
     {
       id: 'Dun Scaith Shadethrust',
-      regex: / 14:(?:1D23|1C1A):(Scathach|Diabolos Hollow) starts using Shadethrust/,
-      regexDe: / 14:(?:1D23|1C1A):(Scathach|Diabolos Hollow) starts using Schattenschub/,
-      regexFr: / 14:(?:1D23|1C1A):(Scathach|Diabolos Hollow) starts using Transpercement Ombral/,
-      regexJa: / 14:(?:1D23|1C1A):(Scathach|Diabolos Hollow) starts using シェードスラスト/,
+      regex: / 14:(?:1D23|1C1A):(?:Scathach|Diabolos Hollow) starts using Shadethrust/,
+      regexDe: / 14:(?:1D23|1C1A):(?:Scathach|Diabolos Hollow) starts using Schattenschub/,
+      regexFr: / 14:(?:1D23|1C1A):(?:Scathach|Diabolos Hollow) starts using Transpercement Ombral/,
+      regexJa: / 14:(?:1D23|1C1A):(?:Scathach|Diabolos Hollow) starts using シェードスラスト/,
       infoText: {
         en: 'Away from front',
       },

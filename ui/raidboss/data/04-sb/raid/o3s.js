@@ -319,7 +319,7 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
-      regex: / 14:230A:Halicarnassus starts using The Queen'S Waltz/,
+      regex: / 14:230A:Halicarnassus starts using The Queen's Waltz/,
       regexDe: / 14:230A:Halikarnassos starts using Tanz Der Königin/,
       regexFr: / 14:230A:Halicarnasse starts using Danse De La Reine/,
       regexJa: / 14:230A:ハリカルナッソス starts using 女王の舞い/,

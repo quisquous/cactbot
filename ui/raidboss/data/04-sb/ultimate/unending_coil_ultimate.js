@@ -11,10 +11,10 @@
   triggers: [
     // --- State ---
     {
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Firescorched/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Feuerhorn/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Corne-de-feu/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of ファイアホーン/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Firescorched/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Feuerhorn/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Corne-de-feu/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ファイアホーン/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -23,10 +23,10 @@
       },
     },
     {
-      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Firescorched/,
-      regexDe: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Feuerhorn/,
-      regexFr: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Corne-de-feu/,
-      regexJa: /1E:\y{ObjectId}:(\y{Name}) loses the effect of ファイアホーン/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Firescorched/,
+      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Feuerhorn/,
+      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Corne-de-feu/,
+      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of ファイアホーン/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -35,10 +35,10 @@
       },
     },
     {
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Icebitten/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Eisklaue/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Griffe-de-glace/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of アイスクロウ/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Icebitten/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eisklaue/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Griffe-de-glace/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of アイスクロウ/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -47,10 +47,10 @@
       },
     },
     {
-      regex: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Icebitten/,
-      regexDe: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Eisklaue/,
-      regexFr: /1E:\y{ObjectId}:(\y{Name}) loses the effect of Griffe-de-glace/,
-      regexJa: /1E:\y{ObjectId}:(\y{Name}) loses the effect of アイスクロウ/,
+      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Icebitten/,
+      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Eisklaue/,
+      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Griffe-de-glace/,
+      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of アイスクロウ/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -59,10 +59,10 @@
       },
     },
     {
-      regex: /1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /1[56]:\y{ObjectId}:Feuerhorn:26C5:Feuerball:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /1[56]:\y{ObjectId}:Corne-de-feu:26C5:Boule De Feu:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /1[56]:\y{ObjectId}:ファイアホーン:26C5:ファイアボール:\y{ObjectId}:(\y{Name}):/,
+      regex: / 1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 1[56]:\y{ObjectId}:Feuerhorn:26C5:Feuerball:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 1[56]:\y{ObjectId}:Corne-de-feu:26C5:Boule De Feu:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 1[56]:\y{ObjectId}:ファイアホーン:26C5:ファイアボール:\y{ObjectId}:(\y{Name}):/,
       run: function(data, matches) {
         data.fireballs[data.naelFireballCount].push(matches[1]);
       },
@@ -122,10 +122,10 @@
       },
     },
     {
-      regex: /16:\y{ObjectId}:Ragnarok:26B8:Heavensfall:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /16:\y{ObjectId}:Ragnarök:26B8:Himmelssturz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /16:\y{ObjectId}:Ragnarok:26B8:Destruction Universelle:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /16:\y{ObjectId}:ラグナロク:26B8:天地崩壊:\y{ObjectId}:(\y{Name}):/,
+      regex: / 16:\y{ObjectId}:Ragnarok:26B8:Heavensfall:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 16:\y{ObjectId}:Ragnarök:26B8:Himmelssturz:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 16:\y{ObjectId}:Ragnarok:26B8:Destruction Universelle:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 16:\y{ObjectId}:ラグナロク:26B8:天地崩壊:\y{ObjectId}:(\y{Name}):/,
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -184,7 +184,7 @@
     },
     {
       // Hatch Collect
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       run: function(data, matches) {
         data.hatch = data.hatch || [];
         data.hatch.push(matches[1]);
@@ -192,7 +192,7 @@
     },
     {
       id: 'UCU Hatch Marker YOU',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -211,7 +211,7 @@
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       delaySeconds: 0.25,
       infoText: function(data) {
         if (!data.hatch)
@@ -230,7 +230,7 @@
     },
     {
       // Hatch Cleanup
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -588,10 +588,10 @@
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexDe: /1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: /1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -647,10 +647,10 @@
     },
     {
       // Doom tracking init.
-      regex: /1A:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexDe: /1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: /1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: /1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -674,10 +674,10 @@
     },
     {
       // Doom tracking cleanup.
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom/,
-      regexDe: /1A:(\y{Name}) gains the effect of Verhängnis/,
-      regexFr: /1A:(\y{Name}) gains the effect of Glas/,
-      regexJa: /1A:(\y{Name}) gains the effect of 死の宣告/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom/,
+      regexDe: / 1A:(\y{Name}) gains the effect of Verhängnis/,
+      regexFr: / 1A:(\y{Name}) gains the effect of Glas/,
+      regexJa: / 1A:(\y{Name}) gains the effect of 死の宣告/,
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
@@ -969,7 +969,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1000,7 +1000,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1019,7 +1019,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1029,7 +1029,7 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1074,7 +1074,7 @@
     },
     {
       id: 'UCU Octet Nael Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0077:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0077:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1089,7 +1089,7 @@
     },
     {
       id: 'UCU Octet Dragon Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1103,7 +1103,7 @@
     },
     {
       id: 'UCU Octet Baha Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1118,7 +1118,7 @@
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1185,10 +1185,10 @@
     },
     {
       id: 'UCU Bahamut Gigaflare',
-      regex: /14:26D6:Bahamut Prime starts using Gigaflare/,
-      regexDe: /14:26D6:Prim-Bahamut starts using Gigaflare/,
-      regexFr: /14:26D6:Primo-Bahamut starts using GigaBrasier/,
-      regexJa: /14:26D6:バハムート・プライム starts using ギガフレア/,
+      regex: / 14:26D6:Bahamut Prime starts using Gigaflare/,
+      regexDe: / 14:26D6:Prim-Bahamut starts using Gigaflare/,
+      regexFr: / 14:26D6:Primo-Bahamut starts using GigaBrasier/,
+      regexJa: / 14:26D6:バハムート・プライム starts using ギガフレア/,
       alertText: {
         en: 'Gigaflare',
         fr: 'GigaBrasier',
@@ -1204,7 +1204,7 @@
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -1223,14 +1223,14 @@
     },
     {
       // Megaflare stack tracking
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       run: function(data, matches) {
         data.megaStack.push(matches[1]);
       },
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1277,7 +1277,7 @@
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1300,7 +1300,7 @@
     },
     {
       id: 'UCU Earthshaker Me',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -1319,14 +1319,14 @@
     },
     {
       // Earthshaker tracking
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       run: function(data, matches) {
         data.shakers.push(matches[1]);
       },
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)
@@ -1450,10 +1450,10 @@
     },
     {
       id: 'UCU Exaflare',
-      regex: /14:26EF:Bahamut Prime starts using Exaflare/,
-      regexDe: /14:26EF:Prim-Bahamut starts using Exaflare/,
-      regexFr: /14:26EF:Primo-Bahamut starts using ExaBrasier/,
-      regexJa: /14:26EF:バハムート・プライム starts using エクサフレア/,
+      regex: / 14:26EF:Bahamut Prime starts using Exaflare/,
+      regexDe: / 14:26EF:Prim-Bahamut starts using Exaflare/,
+      regexFr: / 14:26EF:Primo-Bahamut starts using ExaBrasier/,
+      regexJa: / 14:26EF:バハムート・プライム starts using エクサフレア/,
       preRun: function(data) {
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;

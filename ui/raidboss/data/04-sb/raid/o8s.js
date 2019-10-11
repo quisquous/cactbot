@@ -493,10 +493,10 @@
       // 28CF: damage from mana charge
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
-      regex: /1[56]:\y{ObjectId}:Kefka:28CF:Flagrant Fire:/,
-      regexDe: /1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
-      regexFr: /1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
-      regexJa: /1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
+      regex: / 1[56]:\y{ObjectId}:Kefka:28CF:Flagrant Fire:/,
+      regexDe: / 1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
+      regexFr: / 1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
+      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
       regexKo: / 1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
@@ -514,10 +514,10 @@
       // 28D0: damage from mana charge
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
-      regex: /1[56]:\y{ObjectId}:Kefka:28D0:Flagrant Fire:/,
-      regexDe: /1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
-      regexFr: /1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
-      regexJa: /1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
+      regex: / 1[56]:\y{ObjectId}:Kefka:28D0:Flagrant Fire:/,
+      regexDe: / 1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
+      regexFr: / 1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
+      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
       regexKo: / 1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {

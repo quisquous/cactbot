@@ -19,10 +19,10 @@
   triggers: [
     {
       id: 'O12N Solar Ray',
-      regex: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Solar Ray/,
-      regexDe: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Sonnenstrahl/,
-      regexFr: / 14:(?:330F|3310):(?:Oméga|Oméga-M) starts using Rayon Solaire/,
-      regexJa: / 14:(?:330F|3310):(?:オメガ|オメガM) starts using ソーラレイ/,
+      regex: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Solar Ray on (\y{Name})/,
+      regexDe: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
+      regexFr: / 14:(?:330F|3310):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
+      regexJa: / 14:(?:330F|3310):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -55,10 +55,10 @@
     },
     {
       id: 'O12N Optimized Blade Dance',
-      regex: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Optimized Bladedance/,
-      regexDe: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Omega-Schwertertanz/,
-      regexFr: / 14:(?:3321|3322):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga/,
-      regexJa: / 14:(?:3321|3322):(?:オメガ|オメガM) starts using ブレードダンス・オメガ/,
+      regex: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Optimized Bladedance on (\y{Name})/,
+      regexDe: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Omega-Schwertertanz on (\y{Name})/,
+      regexFr: / 14:(?:3321|3322):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga on (\y{Name})/,
+      regexJa: / 14:(?:3321|3322):(?:オメガ|オメガM) starts using ブレードダンス・オメガ on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },

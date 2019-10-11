@@ -25,7 +25,7 @@
       regexDe: / 14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
       regexFr: / 14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
       regexJa: / 14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
-      regexKo: /14:28B1:마열차 starts using 마령격 on (\y{Name})/,
+      regexKo: / 14:28B1:마열차 starts using 마령격 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -62,7 +62,7 @@
       regexDe: / 14:28A4:Phantomzug starts using Frontalangriff/,
       regexFr: / 14:28A4:Train Fantôme starts using Plein Fouet/,
       regexJa: / 14:28A4:魔列車 starts using 追突/,
-      regexKo: /14:28A4:마열차 starts using 추돌/,
+      regexKo: / 14:28A4:마열차 starts using 추돌/,
       alertText: {
         en: 'Go to back',
         de: 'Nach hinten laufen',
@@ -84,7 +84,7 @@
       regexDe: / 14:28B2:Phantomzug starts using Diabolische Leuchte/,
       regexFr: / 14:28B2:Train Fantôme starts using Phare Diabolique/,
       regexJa: / 14:28B2:魔列車 starts using 魔界の前照灯/,
-      regexKo: /14:28B2:마열차 starts using 마계의 전조등/,
+      regexKo: / 14:28B2:마열차 starts using 마계의 전조등/,
       alertText: {
         en: 'Stack middle',
         de: 'Stack in der Mitte',

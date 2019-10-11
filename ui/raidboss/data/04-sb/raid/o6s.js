@@ -112,7 +112,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Letzter Kuss/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Baiser Fatal/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の口づけ/,
-      regexKo: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 입맞춤/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 입맞춤/,
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
