@@ -150,7 +150,10 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: 'Gravitational Wave: AOE damage',
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+      },
       tts: {
         en: 'wave',
         de: 'welle',

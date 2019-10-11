@@ -355,9 +355,13 @@
       // However, the RP text seems to be the only indicator.
       id: 'Dun Scaith Shadow Links',
       regex: /Shadows gather on the floor/,
+      regexDe: /Schatten sammeln sich auf dem Boden/,
+      regexFr: /Le pouvoir des ombres se concentre sur le sol.../,
+      regexJa: /床に影の力が集束していく/,
       suppressSeconds: 5,
       infoText: {
         en: 'Stop moving',
+        de: 'Nicht bewegen!'
       },
     },
     {
