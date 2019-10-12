@@ -270,8 +270,8 @@
       // https://xivapi.com/NpcYell/6497?pretty=true
       id: 'UCU Nael Quote 1',
       regex: /From on high I descend, the hallowed moon to call/,
-      regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexDe: /Seht, ich steige herab, vom rotglühenden Monde/,
+      regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01/,
       infoText: {
         en: 'Spread => In',
@@ -291,8 +291,8 @@
       // https://xivapi.com/NpcYell/6496?pretty=true
       id: 'UCU Nael Quote 2',
       regex: /From on high I descend, the iron path to walk/,
-      regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexDe: /Seht, ich steige herab, um euch zu beherrschen/,
+      regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01/,
       infoText: {
         en: 'Spread => Out',
@@ -312,8 +312,8 @@
       // https://xivapi.com/NpcYell/6495?pretty=true
       id: 'UCU Nael Quote 3',
       regex: /Take fire, O hallowed moon/,
-      regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexDe: /Flammender Pfad, geschaffen vom roten Mond/,
+      regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexJa: /\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01/,
       infoText: {
         en: 'Stack => In',
@@ -333,8 +333,8 @@
       // https://xivapi.com/NpcYell/6494?pretty=true
       id: 'UCU Nael Quote 4',
       regex: /Blazing path, lead me to iron rule/,
-      regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexDe: /Umloderter Pfad, führe mich zur Herrschaft/,
+      regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexJa: /\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01/,
       infoText: {
         en: 'Stack => Out',
@@ -354,8 +354,8 @@
       // https://xivapi.com/NpcYell/6493?pretty=true
       id: 'UCU Nael Quote 5',
       regex: /O hallowed moon, take fire and scorch my foes/,
-      regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexDe: /O roter Mond! Umlodere meinen Pfad/,
+      regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexJa: /\u6708\u3088\uff01\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01/,
       infoText: {
         en: 'In => Stack',
@@ -375,8 +375,8 @@
       // https://xivapi.com/NpcYell/6492?pretty=true
       id: 'UCU Nael Quote 6',
       regex: /O hallowed moon, shine you the iron path/,
-      regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexDe: /O roter Mond! Führe mich zur Herrschaft/,
+      regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexJa: /\u6708\u3088\uff01\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01/,
       infoText: {
         en: 'In => Out',
@@ -396,8 +396,8 @@
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
       regex: /Fleeting light! 'Neath the red moon, scorch you the earth/,
-      regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
+      regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
       infoText: {
         en: 'Away from Tank => Stack',
@@ -418,8 +418,8 @@
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
       regex: /Fleeting light! Amid a rain of stars, exalt you the red moon/,
-      regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexDe: /Neues Gestirn! Überstrahle jede Sternschnuppe/,
+      regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01/,
       infoText: {
         en: 'Spread => Away from Tank',
@@ -440,8 +440,8 @@
       // https://xivapi.com/NpcYell/6502?pretty=true
       id: 'UCU Nael Quote 9',
       regex: /From on high I descend, the moon and stars to bring/,
-      regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexDe: /Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich/,
+      regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
       durationSeconds: 9,
       infoText: {
@@ -461,8 +461,8 @@
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
       regex: /From hallowed moon I descend, a rain of stars to bring/,
-      regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
       regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
+      regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff0/,
       durationSeconds: 9,
       infoText: {
@@ -482,8 +482,8 @@
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
       regex: /From hallowed moon I bare iron, in my descent to wield/,
-      regexFr: /De la lune je m'arme d'acier et descends/,
       regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
+      regexFr: /De la lune je m'arme d'acier et descends/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\s*\u821e\u3044\u964d\u308a\u3093\uff01/,
       durationSeconds: 9,
       infoText: {
@@ -503,8 +503,8 @@
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
       regex: /From hallowed moon I descend, upon burning earth to tread/,
-      regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexDe: /O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen/,
+      regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01/,
       durationSeconds: 9,
       infoText: {
@@ -524,8 +524,8 @@
       // https://xivapi.com/NpcYell/6504?pretty=true
       id: 'UCU Nael Quote 13',
       regex: /Unbending iron, take fire and descend/,
-      regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexDe: /Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab/,
+      regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexJa: /\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01/,
       durationSeconds: 9,
       infoText: {
@@ -545,8 +545,8 @@
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
       regex: /Unbending iron, descend with fiery edge/,
-      regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
+      regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
       durationSeconds: 9,
       infoText: {
@@ -687,8 +687,8 @@
     {
       id: 'UCU Nael Cleanse Callout',
       regex: /:Fang [Oo]f Light:26CA:/,
-      regexFr: /:Croc de lumière:26CA:/,
       regexDe: /:Lichtklaue:26CA:/,
+      regexFr: /:Croc de lumière:26CA:/,
       regexJa: /:ライトファング:26CA:/,
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
@@ -903,8 +903,8 @@
     {
       // TODO: this should really use the new added combatant line with positions.
       regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
       regexDe: /:(Eisklaue:26C6|Donnerschwinge:26C7|Lichtklaue:26CA|Dunkelschweif:26C9|Feuerhorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
+      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
       regexJa: /:(アイスクロウ:26C6|サンダーウィング:26C7|ライトファング:26CA|ダークテイル:26C9|ファイアホーン:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
       condition: function(data, matches) {
         return !data.seenDragon || !(matches[1] in data.seenDragon);
