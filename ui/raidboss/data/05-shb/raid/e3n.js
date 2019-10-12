@@ -8,8 +8,8 @@
       id: 'E3N Tidal Roar',
       regex: / 14:3FC4:Leviathan starts using Tidal Roar/,
       regexDe: / 14:3FC4:Leviathan starts using Schrei der Gezeiten/,
-      regexJa: / 14:3FC4:リヴァイアサン starts using タイダルロア/,
       regexFr: / 14:3FC4:Léviathan starts using Vague Rugissante/,
+      regexJa: / 14:3FC4:リヴァイアサン starts using タイダルロア/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -52,8 +52,8 @@
       id: 'E3N Tidal Wave Look',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
       regexDe: / 14:3FD2:Leviathan starts using Flutwelle/,
-      regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
       regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
+      regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -65,8 +65,8 @@
       id: 'E3N Tidal Wave Knockback',
       regex: / 14:3FD2:Leviathan starts using Tidal Wave/,
       regexDe: / 14:3FD2:Leviathan starts using Flutwelle/,
-      regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
       regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
+      regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -80,8 +80,8 @@
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FD0:Leviathan starts using Undersea Quake/,
       regexDe: / 14:3FD0:Leviathan starts using Unterwasserbeben/,
-      regexJa: / 14:3FD0:リヴァイアサン starts using アンダーシークエイク/,
       regexFr: / 14:3FD0:Léviathan starts using Séisme Sous-Marin/,
+      regexJa: / 14:3FD0:リヴァイアサン starts using アンダーシークエイク/,
       alertText: {
         en: 'Get Middle',
         de: 'In die Mitte gehen',
@@ -92,8 +92,8 @@
       id: 'E3N Undersea Quake Outside',
       regex: / 14:3FCF:Leviathan starts using Undersea Quake/,
       regexDe: / 14:3FCF:Leviathan starts using Unterwasserbeben/,
-      regexJa: / 14:3FCF:リヴァイアサン starts using アンダーシークエイク/,
       regexFr: / 14:3FCF:Léviathan starts using Séisme Sous-Marin/,
+      regexJa: / 14:3FCF:リヴァイアサン starts using アンダーシークエイク/,
       alarmText: {
         en: 'Go To Sides',
         de: 'Auf die Seiten gehen',
@@ -104,8 +104,8 @@
       id: 'E3N Maelstrom',
       regex: / 14:3FD8:Leviathan starts using Maelstrom/,
       regexDe: / 14:3FD8:Leviathan starts using Mahlstrom/,
-      regexJa: / 14:3FD8:リヴァイアサン starts using メイルシュトローム/,
       regexFr: / 14:3FD8:Léviathan starts using Maelström/,
+      regexJa: / 14:3FD8:リヴァイアサン starts using メイルシュトローム/,
       delaySeconds: 8,
       infoText: {
         en: 'Avoid Puddles and Dives',
@@ -129,8 +129,8 @@
       id: 'E3N Tsunami',
       regex: / 14:3FD4:Leviathan starts using Tsunami/,
       regexDe: / 14:3FD4:Leviathan starts using Sturzflut/,
-      regexJa: / 14:3FD4:リヴァイアサン starts using 大海嘯/,
       regexFr: / 14:3FD4:Léviathan starts using Tsunami/,
+      regexJa: / 14:3FD4:リヴァイアサン starts using 大海嘯/,
       condition: function(data) {
         return data.role == 'healer';
       },

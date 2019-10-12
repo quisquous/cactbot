@@ -183,8 +183,8 @@
     {
       id: 'SeiryuEx Handprint East',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
       regexJa: / 15:\y{ObjectId}:山の式鬼:37E5:圧殺掌:/,
       infoText: {
         en: 'East =>',
@@ -202,8 +202,8 @@
     {
       id: 'SeiryuEx Handprint West',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
       regexJa: / 15:\y{ObjectId}:山の式鬼:37E6:圧殺掌:/,
       infoText: {
         en: '<= West',
