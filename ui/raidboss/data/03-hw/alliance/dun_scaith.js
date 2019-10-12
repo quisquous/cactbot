@@ -190,17 +190,22 @@
         en: 'Avoid puddles',
       },
     },
-    {
+    { // IDs: 471(Fire), 485(Water)
+      // (Feuerresistenz - (stark)|Fire Resistance Down II|Résistance au feu réduite+|火属性耐性低下[強]|Unknown_471)
+      // (Wasserresistenz - (stark)|Water Resistance Down II|Résistance à l'eau réduite+|水属性耐性低下［強］|Unknown_485)
       id: 'Dun Scaith Debilitator',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire Resistance Down|Water Resistance Down)/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire|Water) Resistance Down II/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Feuer|Wasser)resistenz - \(stark\)/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance (Au Feu|À L'Eau) Réduite\+)/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of (火属性耐性低下\[強\]|水属性耐性低下［強］)/,
       suppressSeconds: 10,
       alertText: function(data, matches) {
-        if (matches[1] == 'Water Resistance Down') {
+        if (matches[1] == 'Water' || matches[1] == 'Wasser' || matches[1] == 'Au Feu' || matches[1] == '水属性耐性低下［強］') {
           return {
             en: 'Change puddles to fire',
           };
         }
-        if (matches[1] == 'Fire Resistance Down') {
+        if (matches[1] == 'Fire' || matches[1] == 'Feuer' || matches[1] == 'À L\'Eau' || matches[1] == '火属性耐性低下\[強\]' ) {
           return {
             en: 'Change puddles to water',
           };
