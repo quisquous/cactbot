@@ -10,7 +10,7 @@
       regex: /Atmospheric Displacement/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == healer;
+        return data.role == 'healer';
       },
       infoText: {
         en: 'AoE',
