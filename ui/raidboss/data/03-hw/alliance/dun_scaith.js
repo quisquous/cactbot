@@ -190,24 +190,28 @@
         en: 'Avoid puddles',
       },
     },
-    { // IDs: 471(Fire), 485(Water)
-      id: 'Dun Scaith Debilitator',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire|Water) Resistance Down II/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Feuer|Wasser)resistenz - \(stark\)/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance (Au Feu|À L'Eau) Réduite\+/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of (火属性耐性低下\[強\]|水属性耐性低下［強］)/,
+    {
+      // https://xivapi.com/Status/1137
+      id: 'Dun Scaith Debilitator Fire',
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Fire Resistance Down II/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Feuerresistenz - \(stark\)/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance Au Feu Réduite\+/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 火属性耐性低下.強./,
       suppressSeconds: 10,
-      alertText: function(data, matches) {
-        if (matches[1] == 'Water' || matches[1] == 'Wasser' || matches[1] == 'Au Feu' || matches[1] == '水属性耐性低下［強］') {
-          return {
-            en: 'Change puddles to fire',
-          };
-        }
-        if (matches[1] == 'Fire' || matches[1] == 'Feuer' || matches[1] == 'À L\'Eau' || matches[1] == '火属性耐性低下\[強\]') {
-          return {
-            en: 'Change puddles to water',
-          };
-        }
+      alertText: {
+        en: 'Change puddles to water',
+      },
+    },
+    {
+      // https://xivapi.com/Status/1157
+      id: 'Dun Scaith Debilitator Water',
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Water Resistance Down II/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Wasserresistenz - \(stark\)/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance À L'Eau Réduite\+/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 水属性耐性低下.強./,
+      suppressSeconds: 10,
+      alertText: {
+        en: 'Change puddles to fire',
       },
     },
     // PROTO-ULTIMA
