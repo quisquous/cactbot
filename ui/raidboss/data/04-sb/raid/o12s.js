@@ -69,7 +69,7 @@
       regex: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Solar Ray on (\y{Name})/,
       regexDe: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
       regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
-      regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using ソーラレイ/,
+      regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
