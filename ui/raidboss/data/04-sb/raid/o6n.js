@@ -10,6 +10,7 @@
       regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
       regexDe: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
       regexFr: / 14:282A:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
+      regexJa: / 14:282A:チャダルヌーク・デーモン starts using デモニックシアー on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -38,7 +39,7 @@
     },
     {
       id: 'O6N Meteors',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

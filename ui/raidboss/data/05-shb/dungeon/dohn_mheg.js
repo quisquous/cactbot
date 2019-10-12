@@ -132,7 +132,7 @@
     {
       id: 'Dohn Mheg Timber',
       regex: / 14:22D3:Griaule starts using Tiiimbeeer/,
-      regexDe: / 14:22D3:Griaule starts using Fääällt/,
+      regexDe: / 14:22D3:Griaule starts using Baum Fääällt/,
       regexFr: / 14:22D3:Griaule starts using Ça [tT]ooombe/,
       regexJa: / 14:22D3:グリオール starts using ティーンバー/,
       condition: function(data) {

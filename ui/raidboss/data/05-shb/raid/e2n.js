@@ -18,10 +18,10 @@
   triggers: [
     {
       id: 'E2N Shadowflame Tank',
-      regex: / 14:3E4D:Voidwalker starts using Shadowflame on (\y{Name})/,
-      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on (\y{Name})/,
-      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
-      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
+      regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
+      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
+      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
+      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -36,7 +36,7 @@
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
-      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
+      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer';

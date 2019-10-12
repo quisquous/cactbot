@@ -185,6 +185,7 @@
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
       regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      regexJa: / 15:\y{ObjectId}:山の式鬼:37E5:圧殺掌:/,
       infoText: {
         en: 'East =>',
         de: 'Osten =>',
@@ -203,6 +204,7 @@
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
       regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      regexJa: / 15:\y{ObjectId}:山の式鬼:37E6:圧殺掌:/,
       infoText: {
         en: '<= West',
         de: '<= Westen',
@@ -301,7 +303,7 @@
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
       regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
+      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
       infoText: {
         en: 'In, then out',
         de: 'Rein, dann raus',
@@ -314,7 +316,7 @@
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
       regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
+      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',

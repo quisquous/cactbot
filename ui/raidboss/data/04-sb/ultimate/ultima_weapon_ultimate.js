@@ -44,11 +44,11 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regex: /14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
-      regexDe: /14:2B53:Garuda starts using (?:Unknown_2B53|Wirbelströmung)/,
-      regexFr: /14:2B53:Garuda starts using (?:Unknown_2B53|Sillage)/,
-      regexJa: /14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
-      regexKo: /14:2B53:가루다 starts using (?:Unknown_2B53|반동 기류)/,
+      regex: / 14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
+      regexDe: / 14:2B53:Garuda starts using (?:Unknown_2B53|Wirbelströmung)/,
+      regexFr: / 14:2B53:Garuda starts using (?:Unknown_2B53|Sillage)/,
+      regexJa: / 14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
+      regexKo: / 14:2B53:가루다 starts using (?:Unknown_2B53|반동 기류)/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -109,11 +109,11 @@
     },
     {
       id: 'UWU Ifrit Fetters',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernal Fetters from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernofesseln from/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaînes Infernales from/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 炎獄の鎖 from/,
-      regexKo: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernal Fetters from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernofesseln from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaînes Infernales from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 炎獄の鎖 from/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

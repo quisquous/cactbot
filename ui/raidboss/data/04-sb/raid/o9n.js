@@ -9,7 +9,7 @@
       id: 'O9N Chaotic Dispersion',
       regex: / 14:314F:Chaos starts using Chaotic Dispersion on (\y{Name})/,
       regexDe: / 14:314F:Chaos starts using Chaos-Dispersion on (\y{Name})/,
-      regexFr: / 14:314F:Chaos starts using Dispertion Chaotique on (\y{Name})/,
+      regexFr: / 14:314F:Chaos starts using Dispersion Chaotique on (\y{Name})/,
       regexJa: / 14:314F:カオス starts using カオティックディスパーション on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -39,10 +39,10 @@
     },
     {
       id: 'O9N Orbs Fiend',
-      regex: /14:315C:Chaos starts using Fiendish Orbs/,
-      regexDe: /14:315C:Chaos starts using Höllenkugeln/,
-      regexFr: /14:315C:Chaos starts using Ordre De Poursuite/,
-      regexJa: /14:315C:カオス starts using 追尾せよ/,
+      regex: / 14:315C:Chaos starts using Fiendish Orbs/,
+      regexDe: / 14:315C:Chaos starts using Höllenkugeln/,
+      regexFr: / 14:315C:Chaos starts using Ordre De Poursuite/,
+      regexJa: / 14:315C:カオス starts using 追尾せよ/,
       condition: function(data) {
         return data.role == 'tank';
       },

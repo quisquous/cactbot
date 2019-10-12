@@ -40,10 +40,10 @@
     },
     {
       id: 'SuzEx Phantom Flurry',
-      regex: / 14:32DC:Suzaku starts using/,
-      regexDe: / 14:32DC:Suzaku starts using/,
-      regexFr: / 14:32DC:Suzaku starts using/,
-      regexJa: / 14:32DC:朱雀 starts using/,
+      regex: / 14:32DC:Suzaku starts using Phantom Flurry/,
+      regexDe: / 14:32DC:Suzaku starts using Phantomhast/,
+      regexFr: / 14:32DC:Suzaku starts using Frénésie Spectrale/,
+      regexJa: / 14:32DC:朱雀 starts using 鬼宿脚/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },

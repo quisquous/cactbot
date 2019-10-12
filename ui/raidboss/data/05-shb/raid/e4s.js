@@ -21,11 +21,11 @@
   triggers: [
     {
       id: 'E4S Earthen Gauntlets',
-      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E6:Earthen Gauntlets/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲/,
+      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets:/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E6:Earthen Gauntlets:/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge:/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique:/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲:/,
       run: function(data) {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -33,11 +33,11 @@
     },
     {
       id: 'E4S Earthen Armor',
-      regex: / 15:\y{ObjectId}:Titan:40E[79]:Earthen Armor/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E[79]:Earthen Gauntlets/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E[79]:Basaltpanzer/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E[79]:Armure Tellurique/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E[79]:大地の鎧/,
+      regex: / 15:\y{ObjectId}:Titan:40E[79]:Earthen Armor:/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E[79]:Earthen Gauntlets:/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E[79]:Gaia-Panzer:/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E[79]:Armure Tellurique:/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E[79]:大地の鎧:/,
       run: function(data) {
         data.phase = 'armor';
         delete data.printedBury;
@@ -143,11 +143,11 @@
     },
     {
       id: 'E4S Massive Landslide - Front',
-      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E6:Earthen Gauntlets/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲/,
+      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets:/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E6:Earthen Gauntlets:/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge:/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique:/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲:/,
       alertText: {
         en: 'Landslide: In Front',
         de: 'Armberge: Vor ihm',
@@ -156,11 +156,11 @@
     },
     {
       id: 'E4S Massive Landslide - Sides',
-      regex: / 15:\y{ObjectId}:Titan:4117:Massive Landslide/,
-      regexCn: / 15:\y{ObjectId}:泰坦:4117:Massive Landslide/,
-      regexDe: / 15:\y{ObjectId}:Titan:4117:Gigantischer Bergsturz/,
-      regexFr: / 15:\y{ObjectId}:Titan:4117:Glissement Apocalyptique/,
-      regexJa: / 15:\y{ObjectId}:タイタン:4117:メガ・ランドスライド/,
+      regex: / 15:\y{ObjectId}:Titan:4117:Massive Landslide:/,
+      regexCn: / 15:\y{ObjectId}:泰坦:4117:Massive Landslide:/,
+      regexDe: / 15:\y{ObjectId}:Titan:4117:Gigantischer Bergsturz:/,
+      regexFr: / 15:\y{ObjectId}:Titan:4117:Glissement Apocalyptique:/,
+      regexJa: / 15:\y{ObjectId}:タイタン:4117:メガ・ランドスライド:/,
       infoText: {
         en: 'Get to Sides',
         de: 'Zur Seite',
@@ -254,11 +254,11 @@
     },
     {
       id: 'E4S Fault Line - Sides',
-      regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E8:Earthen Wheels/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪/,
+      regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels:/,
+      regexCn: / 15:\y{ObjectId}:泰坦:40E8:Earthen Wheels:/,
+      regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder:/,
+      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique:/,
+      regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪:/,
       alertText: {
         en: 'Wheels: On Sides',
         de: 'Räder: Zur Seite',
@@ -267,11 +267,11 @@
     },
     {
       id: 'E4S Fault Line - Front',
-      regex: / 16:\y{ObjectId}:Titan:411F:Fault Line/,
-      regexCn: / 16:\y{ObjectId}:泰坦:411F:Fault Line/,
-      regexDe: / 16:\y{ObjectId}:Titan:411F:Bruchlinie/,
-      regexFr: / 16:\y{ObjectId}:Titan:411F:Faille Tectonique/,
-      regexJa: / 16:\y{ObjectId}:タイタン:411F:フォールトゾーン/,
+      regex: / 16:\y{ObjectId}:Titan:411F:Fault Line:/,
+      regexCn: / 16:\y{ObjectId}:泰坦:411F:Fault Line:/,
+      regexDe: / 16:\y{ObjectId}:Titan:411F:Bruchlinie:/,
+      regexFr: / 16:\y{ObjectId}:Titan:411F:Faille Tectonique:/,
+      regexJa: / 16:\y{ObjectId}:タイタン:411F:フォールトゾーン:/,
       infoText: {
         en: 'Tank Charge',
         de: 'Tank wird angefahren',
@@ -365,7 +365,7 @@
       regexCn: / 14:4135:泰坦 Maximum starts using Dual Earthen Fists/,
       regexDe: / 14:4135:Gigantitan starts using Gaias Hammerfaust/,
       regexFr: / 14:4135:Maxi Titan starts using Frappe De La Terre/,
-      regexJa: / 14:4135:マキシタイタン starts using Dual 大地の拳s/,
+      regexJa: / 14:4135:マキシタイタン starts using 大地の両拳/,
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',

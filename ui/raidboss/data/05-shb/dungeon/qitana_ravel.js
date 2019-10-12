@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /[tT]he Qitana Ravel/,
+  zoneRegex: /^[tT]he Qitana Ravel$/,
   timelineFile: 'qitana_ravel.txt',
   triggers: [
     {

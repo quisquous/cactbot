@@ -7,7 +7,7 @@
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -30,7 +30,7 @@
     },
     {
       id: 'Sohm Al Myath Spread',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:00AE:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AE:0000:0000:0000:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -53,9 +53,10 @@
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: / 03:Added new combatant Chyme Of The Mountain/,
-      regexDe: / 03:Added new combatant Gebirgsbrei/,
-      regexFr: / 03:Added new combatant Chyme Des Montagnes/,
+      regex: / 03:\y{ObjectId}:Added new combatant Chyme Of The Mountain/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Gebirgsbrei/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Chyme Des Montagnes/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant キームス・マウンテン/,
       alertText: {
         en: 'Kill Chyme Add',
         de: 'Brei Add töten',
@@ -69,7 +70,7 @@
     },
     {
       id: 'Sohm Al Tioman Meteor',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0007:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0007:0000:0000:0000:/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
