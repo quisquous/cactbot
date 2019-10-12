@@ -386,7 +386,6 @@ Examples:
 ```
 04:10987654:Removing combatant Potato Chippy.  Max HP: 28784. Pos: (-776.6765,152.5261,-671.2197)
 04:40123462:Removing combatant Frozen Void Dragon.  Max HP: 348652. Pos: (-710.7075,49.39039,-646.7071)
-
 ```
 
 ### 05: AddBuff
@@ -428,7 +427,6 @@ Structure:
 Examples:
 ```
 07:DoT tick on Striking Dummy for 509 damage.
-
 ```
 
 ### 08: OutgoingAbility
