@@ -6,7 +6,7 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
+  zoneRegex: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
     // --- State ---

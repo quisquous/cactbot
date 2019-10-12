@@ -2,7 +2,7 @@
 
 // Ultima Weapon Ultimate
 [{
-  zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
+  zoneRegex: /^The Weapon's Refrain \(Ultimate\)$/,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
     {

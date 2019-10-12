@@ -2,7 +2,7 @@
 
 // O5N - Sigmascape 1.0 Normal
 [{
-  zoneRegex: /^(Sigmascape \(V1\.0\)|Sigmascape V1\.0)$/,
+  zoneRegex: /^Sigmascape \(V1\.0\)$/,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,
   triggers: [
