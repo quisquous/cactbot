@@ -249,9 +249,9 @@
     },
     {
       // Cleanup
-      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}/,
-      regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}/,
-      regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}/,
+      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}:/,
+      regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}:/,
+      regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}:/,
       regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
       regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
       delaySeconds: 15,
