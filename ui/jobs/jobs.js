@@ -1814,7 +1814,7 @@ class Bars {
 
   UpdateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
-    if (!this.init || !this.o.leftBuffsList)
+    if (!this.init || !this.o.leftBuffsList || !this.zone)
       return;
 
     let CanShowWellFedWarning = function() {
