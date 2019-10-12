@@ -2,7 +2,7 @@
 
 // O2S - Deltascape 2.0 Savage
 [{
-  zoneRegex: /^Deltascape V2.0 \(Savage\)$/,
+  zoneRegex: /^Deltascape V2\.0 \(Savage\)$/,
   timelineFile: 'o2s.txt',
   timelineTriggers: [
     {

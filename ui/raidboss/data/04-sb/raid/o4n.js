@@ -4,7 +4,7 @@
 
 [{
 
-  zoneRegex: /^Deltascape \(V4.0\)$/,
+  zoneRegex: /^Deltascape \(V4\.0\)$/,
   timelineFile: 'o4n.txt',
   triggers: [
     {
