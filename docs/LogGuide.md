@@ -7,6 +7,10 @@ This guide was last updated for:
 * [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 4.58
 * [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 1.7.2.13
 
+With updates for:
+* [FF14](https://na.finalfantasyxiv.com/lodestone/special/patchnote_log/) Patch 5.08
+* [FFXIV Plugin](https://github.com/ravahn/FFXIV_ACT_Plugin/releases) 2.0.4.0
+
 <!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
 ## TOC
 - [Data Flow](#data-flow)
@@ -391,7 +395,7 @@ This is the memory-parsing equivalent of [1A: NetworkBuff](#1a-networkbuff).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
-`05:[Target Name] gains the effect of [Status Name] from [Source Name]`
+`05:[Target Name] gains the effect of [Status] from [Source Name]`
 
 Examples:
 ```
@@ -405,7 +409,7 @@ This is the memory-parsing equivalent of [1E: NetworkBuffRemove](#1e-networkbuff
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
-`06:[Target Name] loses the effect of [Status Name] from [Source Name]`
+`06:[Target Name] loses the effect of [Status] from [Source Name]`
 
 Examples:
 ```
@@ -419,7 +423,7 @@ This is the memory-parsing equivalent of [18: NetworkDoT](#18-networkdot).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
 Structure:
-`07:[Type] tick on [Target Name] for [Value] damage.`
+`07:[Type Name] tick on [Source Name] for [Value] damage.`
 
 Examples:
 ```
@@ -469,7 +473,7 @@ This is often used for phase change triggers.
 ![include hp screenshot](images/logguide_includehp.png)
 
 Structure:
-`0D:[Target Name] HP at [HP-Percantage]%.`
+`0D:[Target Name] HP at [HP-Value]%.`
 
 Examples:
 ```
@@ -648,7 +652,7 @@ See: [15: NetworkAbility](#15-networkability) for a discussion of the difference
 For abilities with cast bars, this is the log line that specifies that the cast was cancelled either due to movement or an interrupt and it won't go off.
 
 Structure:
-`17:[Source ID]:[Source Name]:[Ability ID]:[Ability Name]Cancelled.`
+`17:[Source ID]:[Source Name]:[Ability ID]:[Ability Name]:Cancelled.`
 
 Examples:
 ```
