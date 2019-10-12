@@ -196,7 +196,7 @@
       id: 'Dun Scaith Debilitator',
       regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Fire|Water) Resistance Down II/,
       regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of (Feuer|Wasser)resistenz - \(stark\)/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance (Au Feu|À L\'Eau) Réduite\+)/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance (Au Feu|À L'Eau) Réduite\+/,
       regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of (火属性耐性低下\[強\]|水属性耐性低下［強］)/,
       suppressSeconds: 10,
       alertText: function(data, matches) {
