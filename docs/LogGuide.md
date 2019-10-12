@@ -56,6 +56,10 @@ This guide was last updated for:
   - [21: Network6D (Actor Control Lines)](#21-network6d-actor-control-lines)
   - [22: NetworkNameToggle](#22-networknametoggle)
   - [23: NetworkTether](#23-networktether)
+  - [24: LimitBreak](#24-limitbreak)
+  - [25: NetworkEffectResult](#25-networkeffectresult)
+  - [26: NetworkStatusEffects](#26-networkstatuseffects)
+  - [27: NetworkUpdateHP](#27-networkupdatehp)
   - [FB: Debug](#fb-debug)
   - [FC: PacketDump](#fc-packetdump)
   - [FD: Version](#fd-version)
@@ -264,6 +268,9 @@ The examples in these sections do not include the time prefix for brevity.
 
 ### 00: LogLine
 
+Structure:
+`00:[Message Type ID]:Message displayed In-Game`
+
 Examples:
 ```
 00:0839:The Right Hand of Bahamut is no longer sealed!
@@ -300,6 +307,9 @@ such as sealing and unsealing of zones, or boss rp text for phase transitions.
 
 This message is sent when first logging in and whenever the zone is changed.
 
+Structure:
+`01:Changed Zone to [Zone Name].`
+
 Examples:
 ```
 01:Changed Zone to The Lavender Beds.
@@ -310,6 +320,10 @@ Examples:
 
 This redundant message follows every [ChangeZone](#01-changezone) message to indicate the name of the player.
 
+Structure:
+`02:Changed primary player to [Player Name].`
+
+Examples
 ```
 02:Changed primary player to Potato Chippy.
 02:Changed primary player to Tini Poutini.
@@ -320,29 +334,32 @@ This redundant message follows every [ChangeZone](#01-changezone) message to ind
 This message is sent when a new object is added to the scene or
 becomes close enough to the player that they can view its actions.
 
+Structure:
+`03:[ObjectId]:Added new combatant [Combatant Name].  Job: [Job-ID] Level: [Level-Value] Max HP: [Max-HP-Value] Max MP: [Max-MP-Value] Pos: ([X-Pos],[Z-Pos],[Y-Pos]).`
+
 Examples:
 ```
-03:Added new combatant Pagos Deepeye.  Job: 0 Level: 70 Max HP: 348652 Max MP: 12000 Pos: (-720.9337,90.80706,-679.6056).
-03:Added new combatant Tater Tot (Jenova).  Job: 28 Level: 70 Max HP: 39835 Max MP: 16461 Pos: (-143.9604,168.5795,-4.999999).
+03:40123456:Added new combatant Pagos Deepeye.  Job: N/A Level: 70 Max HP: 348652 Max MP: 12000 Pos: (-720.9337,90.80706,-679.6056).
+03:10987654:Added new combatant Tater Tot (Jenova).  Job: 28 Level: 70 Max HP: 39835 Max MP: 16461 Pos: (-143.9604,168.5795,-4.999999).
 ```
 
 This combatant may be invisible and fake.  The real ones have more HP.
 For example, at the start of t5 you will see messages like this:
 ```
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (-8.42909,17.4637,50.15326).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 514596 Max MP: 0 Pos: (2.251731,4.753533,50.03756).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant Twintania.  Job: 0 Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (8.960839,18.12193,50.66183).
-03:Added new combatant The Scourge Of Meracydia.  Job: 0 Level: 50 Max HP: 20307 Max MP: 0 Pos: (18.30528,3.778645,50.44044).
+03:40123450:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123451:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123452:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123453:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123454:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123455:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123456:Added new combatant The Scourge Of Meracydia.  Job: N/A Level: 50 Max HP: 20307 Max MP: 0 Pos: (-8.42909,17.4637,50.15326).
+03:40123457:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 514596 Max MP: 0 Pos: (2.251731,4.753533,50.03756).
+03:40123458:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
+03:40123459:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (7.752398,1.972908,50.04842).
+03:40123460:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123461:Added new combatant Twintania.  Job: N/A Level: 50 Max HP: 2778 Max MP: 0 Pos: (-6.27745,-5.304218,50.00586).
+03:40123462:Added new combatant The Scourge Of Meracydia.  Job: N/A Level: 50 Max HP: 20307 Max MP: 0 Pos: (8.960839,18.12193,50.66183).
+03:40123463:Added new combatant The Scourge Of Meracydia.  Job: N/A Level: 50 Max HP: 20307 Max MP: 0 Pos: (18.30528,3.778645,50.44044).
 ```
 
 In heavy zones (e.g. Eureka), combatants may be culled if there are too many
@@ -358,10 +375,13 @@ This message is sent when an object is removed from the scene, either because
 the player has moved too far away from it, it has died, or the player has
 changed zones.
 
+Structure:
+`04:[ObjectId]:Removing combatant [Combatant Name].  Max HP: [Max-HP-Value]. Pos: ([X-Pos],[Z-Pos],[Y-Pos])`
+
 Examples:
 ```
-04:Removing combatant Potato Chippy.  Max HP: 28784. Pos: (-776.6765,152.5261,-671.2197)
-04:Removing combatant Frozen Void Dragon.  Max HP: 348652. Pos: (-710.7075,49.39039,-646.7071)
+04:10987654:Removing combatant Potato Chippy.  Max HP: 28784. Pos: (-776.6765,152.5261,-671.2197)
+04:40123462:Removing combatant Frozen Void Dragon.  Max HP: 348652. Pos: (-710.7075,49.39039,-646.7071)
 
 ```
 
@@ -369,6 +389,9 @@ Examples:
 
 This is the memory-parsing equivalent of [1A: NetworkBuff](#1a-networkbuff).
 Do not write triggers against this as this is only emitted when parsing from memory.
+
+Structure:
+`05:[Target Name] gains the effect of [Status Name] from [Source Name]`
 
 Examples:
 ```
@@ -381,6 +404,9 @@ Examples:
 This is the memory-parsing equivalent of [1E: NetworkBuffRemove](#1e-networkbuffremove).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
+Structure:
+`06:[Target Name] loses the effect of [Status Name] from [Source Name]`
+
 Examples:
 ```
 06:Striking Dummy loses the effect of Reprisal from Tini Poutini.
@@ -392,6 +418,9 @@ Examples:
 This is the memory-parsing equivalent of [18: NetworkDoT](#18-networkdot).
 Do not write triggers against this as this is only emitted when parsing from memory.
 
+Structure:
+`07:[Type] tick on [Target Name] for [Value] damage.`
+
 Examples:
 ```
 07:DoT tick on Striking Dummy for 509 damage.
@@ -402,6 +431,9 @@ Examples:
 
 This is the memory-parsing equivalent of [14: NetworkStartsCasting](#14-networkstartscasting).
 Do not write triggers against this as this is only emitted when parsing from memory.
+
+Structure:
+`08:[Source Name] starts using [Ability Name] on [Target Name].`
 
 Examples:
 ```
@@ -436,6 +468,9 @@ This is often used for phase change triggers.
 
 ![include hp screenshot](images/logguide_includehp.png)
 
+Structure:
+`0D:[Target Name] HP at [HP-Percantage]%.`
+
 Examples:
 ```
 0D:Striking Dummy HP at 96%.
@@ -447,6 +482,9 @@ Examples:
 For abilities with cast bars, this is the log line that specifies that a player or a monster has started casting an ability.
 This precedes a log line of type `15`, `16`, or `17`
 where it uses the ability or is interrupted.
+
+Structure:
+`14:[Source ID]:[Source Name] starts using [Ability Name] on [Target Name].`
 
 Examples:
 ```
@@ -561,7 +599,7 @@ In this case, consider the bytes as ABCD, where C is 0x40.
 The total damage is calculated as D A (B-D) as three bytes together interpreted
 as an integer.
 
-For example, `424E400F` becomes `0F 42 (4E - OF = 3F) => `0F 42 3F` => 999999
+For example, `424E400F` becomes `0F 42 (4E - OF = 3F)` => `0F 42 3F` => 999999
 
 #### Special Case Shifts
 
@@ -609,6 +647,9 @@ See: [15: NetworkAbility](#15-networkability) for a discussion of the difference
 
 For abilities with cast bars, this is the log line that specifies that the cast was cancelled either due to movement or an interrupt and it won't go off.
 
+Structure:
+`17:[Source ID]:[Source Name]:[Ability ID]:[Ability Name]Cancelled.`
+
 Examples:
 ```
 17:105EDD08:Potato Chippy:1D07:Stone IV:Cancelled:
@@ -626,6 +667,9 @@ Instead, if a boss has 20 dots applied to it,
 then it returns the total tick amount for all of these dots.
 Parsers are left to estimate what the individual dot amounts are.
 
+Structure:
+`18:[Type Name] on [Source Name] for [Value] damage.`
+
 Examples:
 ```
 18:DoT Tick on Ovni for 13003 damage.
@@ -639,6 +683,9 @@ Ground effect dots get listed separately.
 
 This message corresponds to an actor being defeated and killed.  This usually comes along with a battle log message such as `You defeat the worm's heart.`
 
+Structure:
+`19:[Target Name] was defeated by [Source Name].`
+
 Examples:
 ```
 19:Tini Poutini was defeated by Ovni.
@@ -649,14 +696,17 @@ Examples:
 
 This message is the "gains effect" message for players and mobs gaining effects whether they are good or bad.
 
+Structure:
+`1A:[ObjectId]:[Target Name] gains the effect of [Status] from [Source Name] for [Float_Value] Seconds`
+
 Exampless:
 ```
-1A:Tini Poutini gains the effect of Sprint from Tini Poutini for 20.00 Seconds.
-1A:Potato Chippy gains the effect of Protect from Tater Tot for 1800.00 Seconds.
-1A:Ovni gains the effect of Aero II from  for 18.00 Seconds.
+1A:105EDD08:Tini Poutini gains the effect of Sprint from Tini Poutini for 20.00 Seconds.
+1A:10660108:Potato Chippy gains the effect of Protect from Tater Tot for 1800.00 Seconds.
+1A:405EFA09:Ovni gains the effect of Aero II from  for 18.00 Seconds.
 ```
 
-The name can be blank here (and there will be two spaces like the above example if that's the case).
+The "Source Name" can be blank here (and there will be two spaces like the above example if that's the case).
 
 This corresponds to game log messages that look like this:
 `00:12af:The worm's heart suffers the effect of Slashing Resistance Down.`
@@ -673,7 +723,7 @@ This matters for cases such as ucob Nael phase doom debuffs.
 ### 1B: NetworkTargetIcon (Head Markers)
 
 Structure:
-`1B:Player ObjectId:Player Name:Unknown1 (4 bytes):Unknown2 (4 bytes):Type (4 bytes):0000:0000:0000`
+`1B:[ObjectId]:[Player Name]:[Unknown1 (4 bytes)]:[Unknown2 (4 bytes)]:[Type (4 bytes)]:0000:0000:0000`
 
 Examples:
 ```
@@ -758,11 +808,14 @@ Unknown?
 This is the paired "end" message to the [1A: NetworkBuff](#1a-networkbuff) "begin" message.
 This message corresponds to the loss of effects (either positive or negative).
 
+Structure:
+`1E:[ObjectId]:[Target Name] loses the effect of [Status] from [Source Name]`
+
 Examples:
 ```
-1E:Tini Poutini loses the effect of Sprint from Tini Poutini.
-1E:Potato Chippy gains the effect of Protect from Tater Tot.
-1E:Ovni gains the effect of Aero II.
+1E:10657868:Tini Poutini loses the effect of Sprint from Tini Poutini.
+1E:10299838:Potato Chippy loses the effect of Protect from Tater Tot.
+1E:40686258:Ovni loses the effect of Aero II.
 ```
 
 ### 1F: NetworkGauge
@@ -792,15 +845,15 @@ Actor control lines are for several miscellaneous zone commands:
 * limit gauge for bosses
 * updates on time remaining (periodically, and after a clear)
 
+Structure:
+`21:ZoneID (4 bytes):Command (4 bytes):Data (4x 4? byte extra data)`
+
 Examples:
 ```
 21:8003753A:40000010:00:00:00:00
 21:80034E52:8000000D:1601:00:00:00
 21:80037543:80000004:257:00:00:00
 ```
-
-Structure:
-`21:ZoneID (4 bytes):Command (4 bytes):Data (4x 4? byte extra data)`
 
 The ZoneID is constant for a particular zone across games,
 but does not necessarily reflect the same ZoneID from the [ChangeZone](#01-changezone) message.
@@ -828,6 +881,9 @@ Still unknown:
 This log message toggles whether the nameplate for a particular entity is visible or not.
 This can help you know when a mob is targetable, for example.
 
+Structure:
+`22:[ObjectId]:[Target Name]:[ObjectId]:[Target Name]:[Display State]`
+
 Examples:
 ```
 22:105E3321:Tini Poutini:105E3321:Tini Poutini:01
@@ -840,15 +896,15 @@ This log line is for tethers between enemies or enemies and players.
 This does not appear to be used for player to player skill tethers like dragonsight or cover.
 (It can be used for enemy-inflicted player to player tethers such as burning chains in Shinryu N/EX.)
 
+Structure:
+`23:[SourceId]:[SourceName]:[TargetId]:[TargetName]:[Unknown1 (4 bytes)]:[Unknown2 (4 bytes)]:[Type (4 bytes)]:[TargetId]:[Unknown3 (4 bytes)]:[Unknown4 (4 bytes)]:`
+
 Examples:
 ```
 23:40015B4E:Weapons Node:40015B4D:Gravity Node:751E:0000:000E:40015B4D:000F:7F4B:
 23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0000:0006:1048638C:000F:7FEF:
 23:40001614:Omega:10686258:Potato Chippy:0023:0000:0054:10686258:000F:0000:
 ```
-
-Structure:
-`23:SourceId:SourceName:TargetId:TargetName:Unknown1 (4 bytes):Unknown2 (4 bytes):Type (4 bytes):TargetId:Unknown3 (4 bytes):Unknown4 (4 bytes):`
 
 The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.
 
@@ -876,6 +932,14 @@ but other actions taken can cause extra increments to happen independent of the 
 Each limit break bar is 0x2710 (10,000 decimal) units.
 Thus, the maximum possible recorded value would be 0x7530.
 
+Structure:
+`24:Limit Break: [Value]`
+
+Examples:
+```
+24:Limit Break: 7530
+```
+
 ## 25:NetworkEffectResult
 
 This log line appears to be recorded at any time an actor is targeted by a hostile action.
@@ -883,12 +947,13 @@ It appears that the action must hit and must deal non-zero damage,
 OR must inflict its effect in order to generate this log line.
 Individual DoT ticks do not appear to generate separate lines.
 
-This line's structure (parsed) is
-`25:Player Object ID:Sequence Number:Current HP:Max HP:Current MP:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:[packet data thereafter]`
+Structure:
+`25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
 
-A sample line would be
-` 25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:`
-
+Examples:
+```
+25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:
+```
 ## 26:NetworkStatusEffects
 
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
@@ -896,14 +961,13 @@ For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github
 [1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
  and [25:NetworkEffectResult](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-networkeffectresult).
 
-This line's structure is:
+Structure:
+`26:[Target Id]:[Target Name]:[Job Levels]:[Current HP]:[Max Hp]:[Current Mp]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:<status list; format unknown>`
 
-`26:Target Id:Target Name:Job Levels:Current HP:Max Hp:Current Mp:Max MP:Current TP:Max TP:Position X:Position Y:Position Z:Facing:<status list; format unknown>`
-
-A sample line would be:
-
-`26:12345678:PlayerOne:3C503C1C:24136:24136:9045:10000:4:0:-0.4730835:-158.1598:-23.9:3.110625:03E8:45:0:020130:0:106501CA:0129:4172D113:106501CA:012A:4168C8B4:106501CA:012B:40919168:106501CA:0232:40E00000:E0000000:`
-
+Examples:
+```
+26:12345678:PlayerOne:3C503C1C:24136:24136:9045:10000:4:0:-0.4730835:-158.1598:-23.9:3.110625:03E8:45:0:020130:0:106501CA:0129:4172D113:106501CA:012A:4168C8B4:106501CA:012B:40919168:106501CA:0232:40E00000:E0000000:
+```
 It seems likely that this line was added in order to extend functionality
 for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
 
@@ -913,13 +977,13 @@ It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
 It applies to allies and fairies/pets.
 
-This line's structure is:
+Structure:
+`27:[Target ID]:[Target Name]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[position X]:[position Y]:[position Z]:[Facing]`
 
-`27:Target ID:Target Name:Current HP:Max HP:Current MP:Max MP:Current TP:Max TP:position X:position Y:position Z:Facing`
-
-A sample line would be:
-
-`27:12345678:Eos:22851:22851:10000:10000:0:0:12.13086:-169.9398:-23.90031:-2.310888:`
+Examples:
+```
+27:12345678:Eos:22851:22851:10000:10000:0:0:12.13086:-169.9398:-23.90031:-2.310888:
+```
 
 ### FB: Debug
 
