@@ -576,6 +576,11 @@ namespace Cactbot {
     }
 
     private Dictionary<string, string> GetDataFiles(string url) {
+      // Uri is not smart enough to strip the query args here, so we'll do it manually?
+      var idx = url.IndexOf('?');
+      if (idx > 0)
+        url = url.Substring(0, idx);
+
       // If file is a remote pointer, load that file explicitly so that the manifest
       // is relative to the pointed to url and not the local file.
       if (url.StartsWith("file:///")) {
