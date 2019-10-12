@@ -44,11 +44,11 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regex: / 14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
-      regexDe: / 14:2B53:Garuda starts using (?:Unknown_2B53|Wirbelströmung)/,
-      regexFr: / 14:2B53:Garuda starts using (?:Unknown_2B53|Sillage)/,
-      regexJa: / 14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
-      regexKo: / 14:2B53:가루다 starts using (?:Unknown_2B53|반동 기류)/,
+      regex: / 14:2B53:Garuda starts using Slipstream/,
+      regexDe: / 14:2B53:Garuda starts using Wirbelströmung/,
+      regexFr: / 14:2B53:Garuda starts using Sillage/,
+      regexJa: / 14:2B53:ガルーダ starts using スリップストリーム/,
+      regexKo: / 14:2B53:가루다 starts using 반동 기류/,
       condition: function(data) {
         return data.role == 'tank';
       },
