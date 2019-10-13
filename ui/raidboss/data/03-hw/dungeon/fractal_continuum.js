@@ -10,7 +10,7 @@
       regex: /Atmospheric Displacement/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == healer;
+        return data.role == 'healer';
       },
       infoText: {
         en: 'AoE',
@@ -47,6 +47,9 @@
     {
       id: 'Fractal Rapid Sever',
       regex: / 14:F7A:Phantom Ray starts using Rapid Sever on (\y{Name})/,
+      regexDe: / 14:F7A:Phantomschimmer starts using Radikale Abtrennung on (\y{Name})/,
+      regexFr: / 14:F7A:Rayon Fantomatique starts using Tranchage Rapide on (\y{Name})/,
+      regexJa: / 14:F7A:ファントムレイ starts using 滅多斬り on (\y{Name})/,
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -63,6 +66,9 @@
     {
       id: 'Fractal Slash',
       regex: / 14:F83:Minotaur starts using 10-Tonze Slash/,
+      regexDe: / 14:F83:Minotaurus starts using 11-Tonzen-Schlag/,
+      regexFr: / 14:F83:Minotaure starts using Taillade De 10 Tonz/,
+      regexJa: / 14:F83:ミノタウロス starts using 10トンズ・スラッシュ/,
       infoText: {
         en: 'Out of front',
       },
@@ -70,6 +76,9 @@
     {
       id: 'Fractal Swipe',
       regex: / 14:F81:Minotaur starts using 11-Tonze Swipe/,
+      regexDe: / 14:F81:Minotaurus starts using 11-Tonzen-Hieb/,
+      regexFr: / 14:F81:Minotaure starts using Fauche De 11 Tonz/,
+      regexJa: / 14:F81:ミノタウロス starts using 11トンズ・スワイプ/,
       infoText: {
         en: 'Out of front',
       },
@@ -77,6 +86,9 @@
     {
       id: 'Fractal Small Swing',
       regex: / 14:F82:Minotaur starts using 111-Tonze Swing/,
+      regexDe: / 14:F82:Minotaurus starts using 111-Tonzen-Schwung/,
+      regexFr: / 14:F82:Minotaure starts using Swing De 111 Tonz/,
+      regexJa: / 14:F82:ミノタウロス starts using 111トンズ・スイング/,
       infoText: {
         en: 'Get out',
       },
@@ -84,6 +96,9 @@
     {
       id: 'Fractal Big Swing',
       regex: / 14:F87:Minotaur starts using 1111-Tonze Swing/,
+      regexDe: / 14:F87:Minotaurus starts using 1111-Tonzen-Schwung/,
+      regexFr: / 14:F87:Minotaure starts using Swing De 1111 Tonz/,
+      regexJa: / 14:F87:ミノタウロス starts using 1111トンズ・スイング/,
       alertText: {
         en: 'Use a cage',
       },
@@ -91,6 +106,9 @@
     {
       id: 'Fractal Aetherochemical Bomb',
       regex: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Aetherochemical Bomb/,
+      regexDe: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Ätherochemischer Sprengkörper/,
+      regexFr: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Magismobombe/,
+      regexJa: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of 魔爆弾/,
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -101,6 +119,9 @@
     {
       id: 'Fractal Alarums',
       regex: / 03:(\y{ObjectId}):Added new combatant Clockwork Alarum/,
+      regexDe: / 03:(\y{ObjectId}):Added new combatant Uhrwerk-Alarm/,
+      regexFr: / 03:(\y{ObjectId}):Added new combatant Alarum Mécanique/,
+      regexJa: / 03:(\y{ObjectId}):Added new combatant アラガンワーク・アラーム/,
       suppressSeconds: 5,
       infoText: {
         en: 'Kill adds',

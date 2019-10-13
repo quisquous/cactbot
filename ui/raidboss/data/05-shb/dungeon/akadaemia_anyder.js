@@ -134,7 +134,7 @@
       id: 'Anyder Noahionto',
       regex: / 14:430C:Evil Armor starts using Noahionto/,
       regexDe: / 14:430C:Böse Kampfmaschine starts using Noahionto/,
-      regexFr: / 14:430C:Evil Armor starts using Noahionto/,
+      regexFr: / 14:430C:Armure Maléfique starts using Noahionto/,
       regexJa: / 14:430C:イビルアーマー starts using ノアヒオント/,
       condition: function(data) {
         return data.CanStun() || data.CanSilence();

@@ -2,7 +2,7 @@
 
 // Innocence Normal
 [{
-  zoneRegex: /^The Crown Of The Immaculate #/,
+  zoneRegex: /^The Crown Of The Immaculate$/,
   timelineFile: 'innocence.txt',
   triggers: [
     {
@@ -52,8 +52,8 @@
       id: 'Inno Shadowreaver',
       regex: / 14:3EEA:Innocence starts using Shadowreaver/,
       regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
-      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
       regexFr: / 14:3EEA:Innocence starts using Pilleur/,
+      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -68,8 +68,8 @@
       id: 'Inno Righteous Bolt',
       regex: / 14:3EA3:Innocence starts using Righteous Bolt on (\y{Name})/,
       regexDe: / 14:3EA3:Innozenz starts using Blitz der Gerechtigkeit on (\y{Name})/,
-      regexJa: / 14:3EA3:イノセンス starts using ジャッジボルト on (\y{Name})/,
       regexFr: / 14:3EA3:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
+      regexJa: / 14:3EA3:イノセンス starts using ジャッジボルト on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -93,8 +93,8 @@
       id: 'Inno Charge',
       regex: / 14:3EC7:Innocence starts using Beatific Vision/,
       regexDe: / 14:3EC7:Innozenz starts using Seligmachende Schau/,
-      regexJa: / 14:3EC7:イノセンス starts using ビーティフィックビジョン/,
       regexFr: / 14:3EC7:Innocence starts using Vision [bB]éatifique/,
+      regexJa: / 14:3EC7:イノセンス starts using ビーティフィックビジョン/,
       alertText: {
         en: 'Avoid Charge',
         de: 'ausweichen',
@@ -103,7 +103,7 @@
       },
     },
     {
-      id: 'InnoEx Light Pillar',
+      id: 'Inno Light Pillar',
       regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
@@ -130,7 +130,7 @@
     },
     {
       // TODO: is there a left, or do all normal modes rotate right??
-      id: 'InnoEx Soul And Body Right',
+      id: 'Inno Soul And Body Right',
       regex: / 14:3EB1:Innocence starts using Soul and Body/,
       regexDe: / 14:3EB1:Innozenz starts using Seele und Körper/,
       regexFr: / 14:3EB1:Innocence starts using Âme et corps/,

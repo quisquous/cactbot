@@ -8,8 +8,8 @@
       id: 'E4N Voice of the Land',
       regex: / 14:40F7:Titan starts using Voice of the Land/,
       regexDe: / 14:40F7:Titan starts using Aufschrei der Erde/,
-      regexJa: / 14:40F7:タイタン starts using 大地の叫び/,
       regexFr: / 14:40F7:Titan starts using Hurlement Tellurique/,
+      regexJa: / 14:40F7:タイタン starts using 大地の叫び/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -23,8 +23,8 @@
       id: 'E4N Earthen Fury',
       regex: / 14:40F8:Titan starts using Earthen Fury/,
       regexDe: / 14:40F8:Titan starts using Gaias Zorn/,
-      regexJa: / 14:40F8:タイタン starts using 大地の怒り/,
       regexFr: / 14:40F8:Titan starts using Fureur Tellurique/,
+      regexJa: / 14:40F8:タイタン starts using 大地の怒り/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -38,8 +38,8 @@
       id: 'E4N Stonecrusher',
       regex: / 14:40F9:Titan starts using Stonecrusher on (\y{Name})/,
       regexDe: / 14:40F9:Titan starts using Felsbrecher on (\y{Name})/,
-      regexJa: / 14:40F9:タイタン starts using ロッククラッシュ on (\y{Name})/,
       regexFr: / 14:40F9:Titan starts using Éruption Tellurique on (\y{Name})/,
+      regexJa: / 14:40F9:タイタン starts using ロッククラッシュ on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -70,8 +70,8 @@
       id: 'E4N Massive Landslide',
       regex: / 14:40FA:Titan starts using Massive Landslide/,
       regexDe: / 14:40FA:Titan starts using Gigantischer Bergsturz/,
-      regexJa: / 14:40FA:タイタン starts using メガ・ランドスライド/,
       regexFr: / 14:40FA:Titan starts using Glissement Apocalyptique/,
+      regexJa: / 14:40FA:タイタン starts using メガ・ランドスライド/,
       alertText: {
         en: 'Stand In Front',
         de: 'Vor ihm stehen',
@@ -81,9 +81,9 @@
     {
       id: 'E4N Seismic Wave',
       regex: / 14:40F2:massive boulder starts using Crumbling Down/,
-      regexDe: / 14:40F2:riesig[a] Felsen starts using Felsfall/,
-      regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
+      regexDe: / 14:40F2:Riesiger Felsen starts using Felsfall/,
       regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
+      regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
       delaySeconds: 6,
       suppressSeconds: 10,
       infoText: {
@@ -96,8 +96,8 @@
       id: 'E4N Geocrush',
       regex: / 14:40F6:Titan starts using Geocrush/,
       regexDe: / 14:40F6:Titan starts using Kraterschlag/,
-      regexJa: / 14:40F6:タイタン starts using ジオクラッシュ/,
       regexFr: / 14:40F6:Titan starts using Broie-Terre/,
+      regexJa: / 14:40F6:タイタン starts using ジオクラッシュ/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -108,8 +108,8 @@
       id: 'E4N Fault Zone',
       regex: / 14:4102:Titan starts using Fault Zone/,
       regexDe: / 14:4102:Titan starts using Bruchzone/,
-      regexJa: / 14:4102:タイタン starts using フォールトゾーン/,
       regexFr: / 14:4102:Titan starts using Faille Tectonique/,
+      regexJa: / 14:4102:タイタン starts using フォールトゾーン/,
       alertText: {
         en: 'Stand On Flank',
         de: 'Auf seiner Flanke stehen',

@@ -6,7 +6,7 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /Sigmascape V4\.0 \(Savage\)/,
+  zoneRegex: /^Sigmascape V4\.0 \(Savage\)$/,
   timelineFile: 'o8s.txt',
   triggers: [
     {
@@ -56,11 +56,11 @@
     },
     {
       id: 'O8S Intemperate Will',
-      regex: /14:28DF:Graven Image starts using Intemperate Will/,
-      regexDe: /14:28DF:Helige Statue starts using Unmäßiger Wille/,
-      regexFr: /14:28DF:Statue Divine starts using Volonté Intempérante/,
-      regexJa: /14:28DF:神々の像 starts using 撲殺の神気/,
-      regexKo: /14:28DF:신들의 상 starts using 박살의 신기/,
+      regex: / 14:28DF:Graven Image starts using Intemperate Will/,
+      regexDe: / 14:28DF:Helige Statue starts using Unmäßiger Wille/,
+      regexFr: / 14:28DF:Statue Divine starts using Volonté Intempérante/,
+      regexJa: / 14:28DF:神々の像 starts using 撲殺の神気/,
+      regexKo: / 14:28DF:신들의 상 starts using 박살의 신기/,
       alertText: {
         en: '<= Get Left/West',
         fr: '<= Allez à Gauche/Ouest',
@@ -78,11 +78,11 @@
     },
     {
       id: 'O8S Gravitational Wave',
-      regex: /14:28DE:Graven Image starts using Gravitational Wave/,
-      regexDe: /14:28DE:Helige Statue starts using Gravitationswelle/,
-      regexFr: /14:28DE:Statue Divine starts using Onde Gravitationnelle/,
-      regexJa: /14:28DE:神々の像 starts using 重力波/,
-      regexKo: /14:28DE:신들의 상 starts using 중력파/,
+      regex: / 14:28DE:Graven Image starts using Gravitational Wave/,
+      regexDe: / 14:28DE:Helige Statue starts using Gravitationswelle/,
+      regexFr: / 14:28DE:Statue Divine starts using Onde Gravitationnelle/,
+      regexJa: / 14:28DE:神々の像 starts using 重力波/,
+      regexKo: / 14:28DE:신들의 상 starts using 중력파/,
       alertText: {
         en: 'Get Right/East =>',
         fr: 'Allez à Droite/Est =>',
@@ -103,7 +103,7 @@
       regex: / 14:28E3:Graven Image starts using Ave Maria/,
       regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
       regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
-      regexJa: / 14:28E3:神々の像 starts using Ave Maria/,
+      regexJa: / 14:28E3:神々の像 starts using アヴェ・マリア/,
       regexKo: / 14:28E3:신들의 상 starts using 아베 마리아/,
       alertText: {
         en: 'Look At Statue',
@@ -493,11 +493,11 @@
       // 28CF: damage from mana charge
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
-      regex: /1[56]:\y{ObjectId}:Kefka:28CF:Flagrant Fire:/,
-      regexDe: /1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
-      regexFr: /1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
-      regexJa: /1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
-      regexKo: /1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
+      regex: / 1[56]:\y{ObjectId}:Kefka:28CF:Flagrant Fire:/,
+      regexDe: / 1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
+      regexFr: / 1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
+      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
+      regexKo: / 1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -514,11 +514,11 @@
       // 28D0: damage from mana charge
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
-      regex: /1[56]:\y{ObjectId}:Kefka:28D0:Flagrant Fire:/,
-      regexDe: /1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
-      regexFr: /1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
-      regexJa: /1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
-      regexKo: /1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
+      regex: / 1[56]:\y{ObjectId}:Kefka:28D0:Flagrant Fire:/,
+      regexDe: / 1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
+      regexFr: / 1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
+      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
+      regexKo: / 1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -535,11 +535,11 @@
       // 28CD: mana charge
       // 2B31: mana release
       id: 'O8S Thrumming Thunder Real',
-      regex: /14:(?:28CD|2B31):Kefka starts using Thrumming Thunder/,
-      regexDe: /14:(?:28CD|2B31):Kefka starts using Brachiales Blitzga/,
-      regexFr: /14:(?:28CD|2B31):Kefka starts using Méga Foudre Fourmillante/,
-      regexJa: /14:(?:28CD|2B31):ケフカ starts using もりもりサンダガ/,
-      regexKo: /14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
+      regex: / 14:(?:28CD|2B31):Kefka starts using Thrumming Thunder/,
+      regexDe: / 14:(?:28CD|2B31):Kefka starts using Brachiales Blitzga/,
+      regexFr: / 14:(?:28CD|2B31):Kefka starts using Méga Foudre Fourmillante/,
+      regexJa: / 14:(?:28CD|2B31):ケフカ starts using もりもりサンダガ/,
+      regexKo: / 14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -562,11 +562,11 @@
       // 28CB, 28CC: mana charge
       // 2B2F, 2B30: mana release
       id: 'O8S Thrumming Thunder Fake',
-      regex: /14:(?:28CC|2B30):Kefka starts using Thrumming Thunder/,
-      regexDe: /14:(?:28CC|2B30):Kefka starts using Brachiales Blitzga/,
-      regexFr: /14:(?:28CC|2B30):Kefka starts using Méga Foudre Fourmillante/,
-      regexJa: /14:(?:28CC|2B30):ケフカ starts using もりもりサンダガ/,
-      regexKo: /14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
+      regex: / 14:(?:28CC|2B30):Kefka starts using Thrumming Thunder/,
+      regexDe: / 14:(?:28CC|2B30):Kefka starts using Brachiales Blitzga/,
+      regexFr: / 14:(?:28CC|2B30):Kefka starts using Méga Foudre Fourmillante/,
+      regexJa: / 14:(?:28CC|2B30):ケフカ starts using もりもりサンダガ/,
+      regexKo: / 14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -589,11 +589,11 @@
       // 28C5, 28C6: mana charge
       // 2B2B, 2B2E: mana release
       id: 'O8S Blizzard Fake Donut',
-      regex: /14:(?:28C5|2B2B):Kefka starts using Blizzard Blitz/,
-      regexDe: /14:(?:28C5|2B2B):Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:(?:28C5|2B2B):Kefka starts using Méga Glace Glissante/,
-      regexJa: /14:(?:28C5|2B2B):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
+      regex: / 14:(?:28C5|2B2B):Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:(?:28C5|2B2B):Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:(?:28C5|2B2B):Kefka starts using Méga Glace Glissante/,
+      regexJa: / 14:(?:28C5|2B2B):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: / 14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -623,11 +623,11 @@
       // 28C9: mana charge
       // 2B2E: mana release
       id: 'O8S Blizzard True Donut',
-      regex: /14:(?:28C9|2B2E):Kefka starts using Blizzard Blitz/,
-      regexDe: /14:(?:28C9|2B2E):Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:(?:28C9|2B2E):Kefka starts using Méga Glace Glissante/,
-      regexJa: /14:(?:28C9|2B2E):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
+      regex: / 14:(?:28C9|2B2E):Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:(?:28C9|2B2E):Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:(?:28C9|2B2E):Kefka starts using Méga Glace Glissante/,
+      regexJa: / 14:(?:28C9|2B2E):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: / 14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -657,11 +657,11 @@
       // 28C3, 28C4: mana charge
       // 2B29, 2B2A: mana release
       id: 'O8S Blizzard Fake Near',
-      regex: /14:(?:28C4|2B2A):Kefka starts using Blizzard Blitz/,
-      regexDe: /14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
-      regexJa: /14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
+      regex: / 14:(?:28C4|2B2A):Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
+      regexJa: / 14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: / 14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -691,11 +691,11 @@
       // 28C8: mana charge
       // 2B2D: mana release
       id: 'O8S Blizzard True Near',
-      regex: /14:(?:28C8|2B2D):Kefka starts using Blizzard Blitz/,
-      regexDe: /14:(?:28C8|2B2D):Kefka starts using Erstarrendes Eisga/,
-      regexFr: /14:(?:28C8|2B2D):Kefka starts using Méga Glace Glissante/,
-      regexJa: /14:(?:28C8|2B2D):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: /14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
+      regex: / 14:(?:28C8|2B2D):Kefka starts using Blizzard Blitz/,
+      regexDe: / 14:(?:28C8|2B2D):Kefka starts using Erstarrendes Eisga/,
+      regexFr: / 14:(?:28C8|2B2D):Kefka starts using Méga Glace Glissante/,
+      regexJa: / 14:(?:28C8|2B2D):ケフカ starts using ぐるぐるブリザガ/,
+      regexKo: / 14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {

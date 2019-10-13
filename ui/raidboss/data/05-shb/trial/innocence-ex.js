@@ -2,15 +2,15 @@
 
 // Innocence Extreme
 [{
-  zoneRegex: /The Crown Of The Immaculate \(Extreme\)/,
+  zoneRegex: /^The Crown Of The Immaculate \(Extreme\)$/,
   timelineFile: 'innocence-ex.txt',
   triggers: [
     {
       id: 'InnoEx Starbirth Count',
       regex: / 14:3EEF:Innocence starts using Starbirth/,
       regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
-      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
       regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
+      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
       run: function(data) {
         data.starbirthCount = data.starbirthCount || 0;
         data.starbirthCount++;
@@ -21,8 +21,8 @@
       id: 'InnoEx Reprobation Swords 2',
       regex: / 14:3EDC:Innocence starts using Rightful Reprobation/,
       regexDe: / 14:3EDC:Innozenz starts using Rechtmäßige Verurteilung/,
-      regexJa: / 14:3EDC:イノセンス starts using 断罪の旋回/,
       regexFr: / 14:3EDC:Innocence starts using Réprobation [lL]égitime/,
+      regexJa: / 14:3EDC:イノセンス starts using 断罪の旋回/,
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
       infoText: {
@@ -36,8 +36,8 @@
       id: 'InnoEx Starbirth Warning',
       regex: / 14:3EEF:Innocence starts using Starbirth/,
       regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
-      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
       regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
+      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
       infoText: function(data) {
         if (data.starbirthCount == 1) {
           return {
@@ -82,8 +82,8 @@
       id: 'InnoEx Shadowreaver',
       regex: / 14:3EEA:Innocence starts using Shadowreaver/,
       regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
-      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
       regexFr: / 14:3EEA:Innocence starts using Pilleur/,
+      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -98,8 +98,8 @@
       id: 'InnoEx Righteous Bolt',
       regex: / 14:3ECD:Innocence starts using Righteous Bolt on (\y{Name})/,
       regexDe: / 14:3ECD:Innozenz starts using Blitz der Gerechtigkeit on (\y{Name})/,
-      regexJa: / 14:3ECD:イノセンス starts using ジャッジボルト on (\y{Name})/,
       regexFr: / 14:3ECD:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
+      regexJa: / 14:3ECD:イノセンス starts using ジャッジボルト on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -134,8 +134,8 @@
       id: 'InnoEx Holy Sword Healer',
       regex: / 14:3EC9:Forgiven Venery starts using Holy Sword/,
       regexDe: / 14:3EC9:Geläuterte Wollust starts using Heiliges Schwert/,
-      regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード/,
       regexFr: / 14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée/,
+      regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -151,8 +151,8 @@
       id: 'InnoEx Holy Sword Me',
       regex: / 14:3EC9:forgiven venery starts using Holy Sword on (\y{Name})/,
       regexDe: / 14:3EC9:Geläuterte Wollust starts using Heiliges Schwert on (\y{Name})/,
-      regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード on (\y{Name})/,
       regexFr: / 14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée on (\y{Name})/,
+      regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -167,8 +167,8 @@
       id: 'InnoEx Charge',
       regex: / 14:3EEE:Innocence starts using Beatific Vision/,
       regexDe: / 14:3EEE:Innozenz starts using Seligmachende Schau/,
-      regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
       regexFr: / 14:3EEE:Innocence starts using Vision [bB]éatifique/,
+      regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
       alertText: function(data) {
         if (data.starbirthActive) {
           return {
@@ -190,8 +190,8 @@
       id: 'InnoEx Starbirth Avoid',
       regex: / 14:3EEF:Innocence starts using Starbirth/,
       regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
-      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
       regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
+      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
       delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
@@ -263,8 +263,8 @@
       id: 'InnoEx Starbirth Explode',
       regex: / 14:3F3E:Innocence starts using Light Pillar/,
       regexDe: / 14:3F3E:Innozenz starts using Lichtsäule/,
-      regexJa: / 14:3F3E:イノセンス starts using ライトピラー/,
       regexFr: / 14:3F3E:Innocence starts using Pilier [dD]e [lL]umière/,
+      regexJa: / 14:3F3E:イノセンス starts using ライトピラー/,
       condition: function(data) {
         return data.lightPillar == 3;
       },
@@ -315,8 +315,8 @@
       id: 'InnoEx God Ray',
       regex: / 14:3EE[456]:Innocence starts using God Ray/,
       regexDe: / 14:3EE[456]:Innozenz starts using Göttlicher Strahl/,
-      regexJa: / 14:3EE[456]:イノセンス starts using ゴッドレイ/,
       regexFr: / 14:3EE[456]:Innocence starts using Rayon Divin/,
+      regexJa: / 14:3EE[456]:イノセンス starts using ゴッドレイ/,
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
@@ -329,8 +329,8 @@
       id: 'InnoEx Starbirth End 1',
       regex: / 14:3EEA:Innocence starts using Shadowreaver/,
       regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
-      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
       regexFr: / 14:3EEA:Innocence starts using Pilleur/,
+      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
       run: function(data) {
         delete data.starbirthActive;
       },
@@ -339,8 +339,8 @@
       id: 'InnoEx Starbirth End 2',
       regex: / 14:3EEE:Innocence starts using Beatific Vision/,
       regexDe: / 14:3EEE:Innozenz starts using Seligmachende Schau/,
-      regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
       regexFr: / 14:3EEE:Innocence starts using Vision [bB]éatifique/,
+      regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
       run: function(data) {
         delete data.starbirthActive;
       },

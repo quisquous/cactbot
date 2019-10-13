@@ -2,7 +2,7 @@
 
 /* O9S - Alphascape 1.0 Savage*/
 [{
-  zoneRegex: /^Alphascape V1.0 \(Savage\)$/,
+  zoneRegex: /^Alphascape V1\.0 \(Savage\)$/,
   timelineFile: 'o9s.txt',
   triggers: [
     // General actions
@@ -56,10 +56,10 @@
     },
     {
       id: 'O9S Longitudinal Implosion',
-      regex: /14:3172:Chaos starts using Longitudinal Implosion/,
-      regexDe: /14:3172:Chaos starts using Vertikale Implosion/,
-      regexFr: /14:3172:Chaos starts using Implosion Verticale/,
-      regexJa: /14:3172:カオス starts using ヴァーティカルインプロージョン/,
+      regex: / 14:3172:Chaos starts using Longitudinal Implosion/,
+      regexDe: / 14:3172:Chaos starts using Vertikale Implosion/,
+      regexFr: / 14:3172:Chaos starts using Implosion Verticale/,
+      regexJa: / 14:3172:カオス starts using ヴァーティカルインプロージョン/,
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
@@ -99,10 +99,10 @@
     },
     {
       id: 'O9S Latitudinal Implosion',
-      regex: /14:3173:Chaos starts using Latitudinal Implosion/,
-      regexDe: /14:3173:Chaos starts using Horizontale Implosion/,
-      regexFr: /14:3173:Chaos starts using Implosion Horizontale/,
-      regexJa: /14:3173:カオス starts using ホリゾンタルインプロージョン/,
+      regex: / 14:3173:Chaos starts using Latitudinal Implosion/,
+      regexDe: / 14:3173:Chaos starts using Horizontale Implosion/,
+      regexFr: / 14:3173:Chaos starts using Implosion Horizontale/,
+      regexJa: / 14:3173:カオス starts using ホリゾンタルインプロージョン/,
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
@@ -142,10 +142,10 @@
     },
     {
       id: 'O9S Damning Edict',
-      regex: /14:3171:Chaos starts using Damning Edict/,
-      regexDe: /14:3171:Chaos starts using Verdammendes Edikt/,
-      regexFr: /14:3171:Chaos starts using Décret Accablant/,
-      regexJa: /14:3171:カオス starts using ダミングイーディクト/,
+      regex: / 14:3171:Chaos starts using Damning Edict/,
+      regexDe: / 14:3171:Chaos starts using Verdammendes Edikt/,
+      regexFr: / 14:3171:Chaos starts using Décret Accablant/,
+      regexJa: / 14:3171:カオス starts using ダミングイーディクト/,
       infoText: {
         en: 'Get Behind',
         de: 'Hinten dran',
@@ -155,10 +155,10 @@
     },
     {
       id: 'O9S Orbs Fiend',
-      regex: /14:317D:Chaos starts using Fiendish Orbs/,
-      regexDe: /14:317D:Chaos starts using Höllenkugeln/,
-      regexFr: /14:317D:Chaos starts using Ordre De Poursuite/,
-      regexJa: /14:317D:カオス starts using 追尾せよ/,
+      regex: / 14:317D:Chaos starts using Fiendish Orbs/,
+      regexDe: / 14:317D:Chaos starts using Höllenkugeln/,
+      regexFr: / 14:317D:Chaos starts using Ordre De Poursuite/,
+      regexJa: / 14:317D:カオス starts using 追尾せよ/,
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -185,9 +185,9 @@
     {
       id: 'O9S Fire Phase Tracking',
       regex: / 14:3186:Chaos starts using Blaze/,
-      regexDe: / 14:3186:Chaos starts using /,
-      regexFr: / 14:3186:Chaos starts using /,
-      regexJa: / 14:3186:カオス starts using /,
+      regexDe: / 14:3186:Chaos starts using Flamme/,
+      regexFr: / 14:3186:Chaos starts using Flammes/,
+      regexJa: / 14:3186:カオス starts using ほのお/,
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'fire';
@@ -195,10 +195,10 @@
     },
     {
       id: 'O9S Entropy Spread',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Entropy from .* for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosflammen from .* for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Flammes du chaos from .* for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の炎 from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -243,10 +243,10 @@
     },
     {
       id: 'O9S Entropy Avoid Hit',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Entropy from .* for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosflammen from .* for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Flammes du chaos from .* for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の炎 from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'fire';
       },
@@ -269,10 +269,10 @@
     },
     {
       id: 'O9S Fire Big Bang',
-      regex: / 14:3180:Chaos starts using Big Bang /,
-      regexDe: / 14:3180:Chaos starts using /,
-      regexFr: / 14:3180:Chaos starts using /,
-      regexJa: / 14:3180:カオス starts using /,
+      regex: / 14:3180:Chaos starts using Big Bang/,
+      regexDe: / 14:3180:Chaos starts using Quantengravitation/,
+      regexFr: / 14:3180:Chaos starts using Saillie/,
+      regexJa: / 14:3180:カオス starts using 突出/,
       // Each big bang has its own cast, so suppress.
       suppressSeconds: 1,
       condition: function(data) {
@@ -289,10 +289,10 @@
     // Water Path
     {
       id: 'O9S Water Phase Tracking',
-      regex: / 14:3187:Chaos starts using Tsunami /,
-      regexDe: / 14:3187:Chaos starts using /,
-      regexFr: / 14:3187:Chaos starts using /,
-      regexJa: / 14:3187:カオス starts using /,
+      regex: / 14:3187:Chaos starts using Tsunami/,
+      regexDe: / 14:3187:Chaos starts using Tsunami/,
+      regexFr: / 14:3187:Chaos starts using Raz-De-Marée/,
+      regexJa: / 14:3187:カオス starts using つなみ/,
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'water';
@@ -300,10 +300,10 @@
     },
     {
       id: 'O9S Dynamic Fluid 1',
-      regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
-      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
-      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
-      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Dynamic Fluid from/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Chaosspritzer from/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux Du Chaos from/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 混沌の水 from/,
       condition: function(data) {
         return data.phaseType == 'water';
       },
@@ -319,10 +319,10 @@
     },
     {
       id: 'O9S Dynamic Fluid 2',
-      regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
-      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
-      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
-      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Dynamic Fluid from/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Chaosspritzer from/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux du chaos from/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 混沌の水 from/,
       condition: function(data) {
         return data.phaseType == 'water';
       },
@@ -338,10 +338,10 @@
     },
     {
       id: 'O9S Dynamic Fluid 3',
-      regex: / 1A:\y{Name} gains the effect of (?:Unknown_641|Dynamic Fluid) from/,
-      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_641|Chaosspritzer) from/,
-      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_641|Eaux du chaos) from/,
-      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_641|混沌の水) from/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Dynamic Fluid from/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Chaosspritzer from/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux du chaos from/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 混沌の水 from/,
       condition: function(data) {
         return data.phaseType == 'enrage';
       },
@@ -383,10 +383,10 @@
     // Wind Path
     {
       id: 'O9S Wind Phase Tracking',
-      regex: / 14:3188:Chaos starts using Cyclone /,
-      regexDe: / 14:3188:Chaos starts using /,
-      regexFr: / 14:3188:Chaos starts using /,
-      regexJa: / 14:3188:カオス starts using /,
+      regex: / 14:3188:Chaos starts using Cyclone/,
+      regexDe: / 14:3188:Chaos starts using Tornado/,
+      regexFr: / 14:3188:Chaos starts using Tornade/,
+      regexJa: / 14:3188:カオス starts using たつまき/,
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'wind';
@@ -394,10 +394,10 @@
     },
     {
       id: 'O9S Headwind',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Headwind) from  for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Chaosböen) from  for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|Vent du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_642|混沌の風) from  for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Headwind from .* for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosböen from .* for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent du chaos from .* for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の風 from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -407,10 +407,10 @@
     },
     {
       id: 'O9S Tailwind',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Tailwind) from  for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Chaossturm) from  for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|Vent contraire du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_643|混沌の逆風) from  for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Tailwind from .* for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaossturm from .* for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent contraire du chaos from .* for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の逆風 from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -420,10 +420,10 @@
     },
     {
       id: 'O9S Cyclone Knockback',
-      regex: / 14:318F:Chaos starts using Cyclone /,
-      regexDe: / 14:318F:Chaos starts using /,
-      regexFr: / 14:318F:Chaos starts using /,
-      regexJa: / 14:318F:カオス starts using /,
+      regex: / 14:318F:Chaos starts using Cyclone/,
+      regexDe: / 14:318F:Chaos starts using Tornado/,
+      regexFr: / 14:318F:Chaos starts using Tornade/,
+      regexJa: / 14:318F:カオス starts using たつまき/,
       alarmText: function(data) {
         if (data.wind == 'head') {
           return {
@@ -448,10 +448,10 @@
     // Earth Path
     {
       id: 'O9S Earth Phase Tracking',
-      regex: / 14:3189:Chaos starts using Earthquake /,
-      regexDe: / 14:3189:Chaos starts using /,
-      regexFr: / 14:3189:Chaos starts using /,
-      regexJa: / 14:3189:カオス starts using /,
+      regex: / 14:3189:Chaos starts using Earthquake/,
+      regexDe: / 14:3189:Chaos starts using Erdbeben/,
+      regexFr: / 14:3189:Chaos starts using Séisme/,
+      regexJa: / 14:3189:カオス starts using じしん/,
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'earth';
@@ -459,10 +459,10 @@
     },
     {
       id: 'O9S Accretion',
-      regex: / 1A:\y{Name} gains the effect of (?:Unknown_644|Accretion)/,
-      regexDe: / 1A:\y{Name} gains the effect of (?:Unknown_644|Chaossumpf)/,
-      regexFr: / 1A:\y{Name} gains the effect of (?:Unknown_644|Bourbier du chaos)/,
-      regexJa: / 1A:\y{Name} gains the effect of (?:Unknown_644|混沌の泥土)/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Accretion/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Chaossumpf/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Bourbier du chaos/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 混沌の泥土/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -486,10 +486,10 @@
     },
     {
       id: 'O9S Primordial Crust',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Primordial Crust/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaoserde/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Terre du chaos/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の土/,
       condition: function(data, matches) {
         return data.me == matches[1] && data.phaseType != 'orb';
       },
@@ -505,10 +505,10 @@
     },
     {
       // Primordial Crust Cleanup
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Primordial Crust)/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Chaoserde)/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|Terre du chaos)/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_645|混沌の土)/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Primordial Crust/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaoserde/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Terre du chaos/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の土/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -531,20 +531,20 @@
     // Orb Phase
     {
       id: 'O9S Orb Phase Tracking',
-      regex: / 14:318A:Chaos starts using Bowels Of Agony /,
-      regexDe: / 14:318A:Chaos starts using /,
-      regexFr: / 14:318A:Chaos starts using /,
-      regexJa: / 14:318A:カオス starts using /,
+      regex: / 14:318A:Chaos starts using Bowels Of Agony/,
+      regexDe: / 14:318A:Chaos starts using Quälende Eingeweide/,
+      regexFr: / 14:318A:Chaos starts using Entrailles De L'Agonie/,
+      regexJa: / 14:318A:カオス starts using バウル・オブ・アゴニー/,
       preRun: function(data) {
         data.phaseType = 'orb';
       },
     },
     {
       id: 'O9S Orb Entropy',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Entropy) from  for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Chaosflammen) from  for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|Flammes du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_640|混沌の炎) from  for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Entropy from .* for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosflammen from .* for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Flammes du chaos from .* for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の炎 from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] != data.me && data.phaseType == 'orb';
       },
@@ -568,10 +568,10 @@
     },
     {
       id: 'O9S Orb Dynamic Fluid',
-      regex: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Dynamic Fluid) from  for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Chaosspritzer) from  for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|Eaux du chaos) from  for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of (?:Unknown_641|混沌の水) from  for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Dynamic Fluid from .* for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosspritzer from .* for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux du chaos from .* for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の水 from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'orb';
       },
@@ -589,10 +589,10 @@
     // Enrage Phase
     {
       id: 'O9S Enrage Phase Tracking',
-      regex: / 14:3186:Chaos starts using Blaze /,
-      regexDe: / 14:3186:Chaos starts using /,
-      regexFr: / 14:3186:Chaos starts using /,
-      regexJa: / 14:3186:カオス starts using /,
+      regex: / 14:3186:Chaos starts using Blaze/,
+      regexDe: / 14:3186:Chaos starts using Flamme/,
+      regexFr: / 14:3186:Chaos starts using Flammes/,
+      regexJa: / 14:3186:カオス starts using ほのお/,
       run: function(data) {
         data.blazeCount = data.blazeCount || 0;
         data.blazeCount++;

@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /[tT]he Qitana Ravel/,
+  zoneRegex: /^The Qitana Ravel$/,
   damageWarn: {
     'Qitana Sun Toss': '3C8A', // Ground AoE, boss one
     'Qitana Ronkan Light 1': '3C8C', // Statue attack, boss one

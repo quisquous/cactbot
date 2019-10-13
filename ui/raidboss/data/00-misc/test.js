@@ -174,8 +174,8 @@
     {
       id: 'Test Lang',
       // In game: /echo cactbot lang
-      regex: /00:0038:cactbot lang/,
-      regexDe: /00:0038:cactbot sprache/,
+      regex: / 00:0038:cactbot lang/,
+      regexDe: / 00:0038:cactbot sprache/,
       infoText: function(data) {
         return {
           en: 'Language: ' + data.lang,

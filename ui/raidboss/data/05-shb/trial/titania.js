@@ -46,7 +46,7 @@
       },
     },
     {
-      id: 'TitaniaEx Mist Failure',
+      id: 'Titania Mist Failure',
       regex: / 03:\y{ObjectId}:Added new combatant Spirit Of Dew\./,
       regexDe: / 03:\y{ObjectId}:Added new combatant Wasserfee\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant esprit des rosées\./,
@@ -181,7 +181,7 @@
       },
     },
     {
-      id: 'TitaniaEx Pucks Breath Markers',
+      id: 'Titania Pucks Breath Markers',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A1:0000:0000:0000:/,
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
@@ -200,10 +200,10 @@
     },
     {
       id: 'Titania Knockback',
-      regex: / 15:\y{ObjectId}:Puck:3D42:Puck's Rebuke/,
-      regexDe: / 15:\y{ObjectId}:Puck:3D42:Pucks Tadel/,
-      regexFr: / 15:\y{ObjectId}:Puck:3D42:Réprimande de Puck/,
-      regexJa: / 15:\y{ObjectId}:パック:3D42:パックレビューク/,
+      regex: / 15:\y{ObjectId}:Puck:3D42:Puck's Rebuke:/,
+      regexDe: / 15:\y{ObjectId}:Puck:3D42:Pucks Tadel:/,
+      regexFr: / 15:\y{ObjectId}:Puck:3D42:Réprimande de Puck:/,
+      regexJa: / 15:\y{ObjectId}:パック:3D42:パックレビューク:/,
       alertText: {
         en: 'Diagonal Knockback Soon',
         de: 'diagonaler Knockback bald',

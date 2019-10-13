@@ -2,7 +2,7 @@
 
 // Innocence Extreme
 [{
-  zoneRegex: /The Crown Of The Immaculate \(Extreme\)/,
+  zoneRegex: /^The Crown Of The Immaculate \(Extreme\)$/,
   damageWarn: {
     'InnoEx Duel Descent': '3ED2',
     'InnoEx Reprobation 1': '3EE0',

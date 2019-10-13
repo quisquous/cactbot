@@ -2,7 +2,7 @@
 
 // O7S - Sigmascape 3.0 Savage
 [{
-  zoneRegex: /Sigmascape V3\.0 \(Savage\)/,
+  zoneRegex: /^Sigmascape V3\.0 \(Savage\)$/,
   triggers: [
     {
       id: 'O7S Missile',

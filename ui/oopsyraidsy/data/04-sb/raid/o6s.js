@@ -2,7 +2,7 @@
 
 // O6S - Sigmascape 2.0 Savage
 [{
-  zoneRegex: /Sigmascape V2\.0 \(Savage\)/,
+  zoneRegex: /^Sigmascape V2\.0 \(Savage\)$/,
   triggers: [
     {
       id: 'O6S Blizzard III',
