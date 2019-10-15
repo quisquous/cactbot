@@ -665,13 +665,23 @@ class BuffTracker {
         sortKey: 6,
         cooldown: 120,
       },
+      battlevoice: {
+        gainEffect: gLang.kEffect.BattleVoice,
+        loseEffect: gLang.kEffect.BattleVoice,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/battlevoice.png',
+        // Red.
+        borderColor: '#D6371E',
+        sortKey: 7,
+        cooldown: 180,
+      },
       chain: {
         gainAbility: gLang.kAbility.ChainStratagem,
         durationSeconds: 15,
         icon: '../../resources/icon/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
-        sortKey: 7,
+        sortKey: 8,
         cooldown: 120,
       },
       lefteye: {
@@ -681,7 +691,7 @@ class BuffTracker {
         icon: '../../resources/icon/status/dragon-sight.png',
         // Orange.
         borderColor: '#FA8737',
-        sortKey: 8,
+        sortKey: 9,
         cooldown: 120,
       },
       righteye: {
@@ -691,7 +701,7 @@ class BuffTracker {
         icon: '../../resources/icon/status/dragon-sight.png',
         // Orange.
         borderColor: '#FA8737',
-        sortKey: 8,
+        sortKey: 10,
         cooldown: 120,
       },
       brotherhood: {
@@ -701,7 +711,7 @@ class BuffTracker {
         icon: '../../resources/icon/status/brotherhood.png',
         // Dark Orange.
         borderColor: '#994200',
-        sortKey: 9,
+        sortKey: 11,
         cooldown: 90,
       },
       devotion: {
@@ -711,7 +721,7 @@ class BuffTracker {
         icon: '../../resources/icon/status/devotion.png',
         // Yellow.
         borderColor: '#ffbf00',
-        sortKey: 10,
+        sortKey: 12,
         cooldown: 180,
       },
     };

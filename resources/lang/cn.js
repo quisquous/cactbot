@@ -42,6 +42,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       TechnicalFinish: 'Technical Finish',
       Thundercloud: 'Thundercloud',
       Firestarter: 'Firestarter',
+      BattleVoice: 'Battle Voice',
 
       Petrification: '石化',
       BeyondDeath: '超越死亡',

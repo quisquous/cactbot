@@ -41,6 +41,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       StandardFinish: 'スタンダードフィニッシュ',
       Thundercloud: 'サンダー系魔法効果アップ',
       Firestarter: 'ファイガ効果アップ',
+      BattleVoice: 'バトルボイス',
 
       Petrification: '石化',
       BeyondDeath: '死の超越',

@@ -41,6 +41,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       StandardFinish: 'Final classique',
       Thundercloud: 'Nuage d\'orage',
       Firestarter: 'Pyromane',
+      BattleVoice: 'Voix de combat',
 
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
