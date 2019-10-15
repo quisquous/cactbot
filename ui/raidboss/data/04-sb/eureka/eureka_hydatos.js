@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Hydatos|Unknown Zone \(33B\)|丰水之地)/,
+  zoneRegex: /(Eureka Hydatos|丰水之地)/,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
   timelineTriggers: [
@@ -58,10 +58,10 @@
   triggers: [
     {
       id: 'Eureka Hydatos Falling Asleep',
-      regex: /00:0039:5 minutes have elapsed since your last activity./,
-      regexCn: /00:0039:已经5分钟没有进行任何操作/,
-      regexDe: /00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
-      regexFr: /00:0039:Votre personnage est inactif depuis 5 minutes/,
+      regex: / 00:0039:5 minutes have elapsed since your last activity./,
+      regexDe: / 00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
+      regexFr: / 00:0039:Votre personnage est inactif depuis 5 minutes/,
+      regexCn: / 00:0039:已经5分钟没有进行任何操作/,
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
@@ -71,25 +71,25 @@
     },
     {
       id: 'Eureka Saved By Rememberance',
-      regex: /00:0a39:The memories of heroes past live on again/,
-      regexCn: /00:0a39:发动了英杰的加护效果，重新苏醒了过来/,
-      regexDe: /00:0a39:Das Vermächtnis vergangener Helden lebt von Neuem auf!/,
+      regex: / 00:0a39:The memories of heroes past live on again/,
+      regexDe: / 00:0a39:Das Vermächtnis vergangener Helden lebt von Neuem auf!/,
+      regexCn: / 00:0a39:发动了英杰的加护效果，重新苏醒了过来/,
       sound: 'Long',
     },
     {
       id: 'BA Seal',
-      regex: /00:0839:.*will be sealed off/,
-      regexCn: /00:0839:距.*被封锁还有/,
-      regexDe: /00:0839:.*bis sich der Zugang/,
+      regex: / 00:0839:.*will be sealed off/,
+      regexDe: / 00:0839:.*bis sich der Zugang/,
+      regexCn: / 00:0839:距.*被封锁还有/,
       run: function(data) {
         data.sealed = true;
       },
     },
     {
       id: 'BA Clear Data',
-      regex: /00:0839:.*is no longer sealed/,
-      regexCn: /00:0839:.*的封锁解除了/,
-      regexDe: /00:0839:.*öffnet sich wieder/,
+      regex: / 00:0839:.*is no longer sealed/,
+      regexDe: / 00:0839:.*öffnet sich wieder/,
+      regexCn: / 00:0839:.*的封锁解除了/,
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -102,7 +102,10 @@
     },
     {
       id: 'BA West Side',
-      regex: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]/,
+      regex: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
+      regexDe: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
+      regexFr: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
+      regexJa: / 15:\y{ObjectId}:アルト:3956:[^:]*:\y{ObjectId}:[^:]:/,
       regexCn: / 15:\y{ObjectId}:亚特:3956:[^:]*:\y{ObjectId}:[^:]/,
       suppressSeconds: 1000,
       run: function(data) {
@@ -111,7 +114,10 @@
     },
     {
       id: 'BA East Side',
-      regex: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]/,
+      regex: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
+      regexDe: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
+      regexFr: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
+      regexJa: / 15:\y{ObjectId}:オーウェン:3957:[^:]*:\y{ObjectId}:[^:]:/,
       regexCn: / 15:\y{ObjectId}:欧文:3957:[^:]*:\y{ObjectId}:[^:]/,
       suppressSeconds: 1000,
       run: function(data) {
@@ -120,9 +126,11 @@
     },
     {
       id: 'BA Art Mythcall',
-      regex: / 14:3927:Art starts using (?:Mythcall|Unknown_3927)/,
-      regexCn: / 14:3927:亚特 starts using (?:幻枪招来|Unknown_3927)/,
-      regexDe: / 14:3927:Art starts using (?:Mythenruf|Unknown_3927)/,
+      regex: / 14:3927:Art starts using Mythcall/,
+      regexDe: / 14:3927:Art starts using Mythenruf/,
+      regexFr: / 14:3927:Art starts using Invitation Fantasmagorique/,
+      regexJa: / 14:3927:アルト starts using 幻槍招来/,
+      regexCn: / 14:3927:亚特 starts using 幻枪招来/,
       condition: function(data) {
         return data.side == 'west';
       },
@@ -132,9 +140,11 @@
     },
     {
       id: 'BA Art Tankbuster',
-      regex: / 14:3934:Art starts using (?:Thricecull|Unknown_3934) on (\y{Name})/,
-      regexCn: / 14:3934:亚特 starts using (?:三连枪|Unknown_3934) on (\y{Name})/,
-      regexDe: / 14:3934:Art starts using (?:Dreifachlanze|Unknown_3934) on (\y{Name})/,
+      regex: / 14:3934:Art starts using Thricecull on (\y{Name})/,
+      regexDe: / 14:3934:Art starts using Dreifachlanze on (\y{Name})/,
+      regexFr: / 14:3934:Art starts using Triple Perforation on (\y{Name})/,
+      regexJa: / 14:3934:アルト starts using 三連槍 on (\y{Name})/,
+      regexCn: / 14:3934:亚特 starts using 三连枪 on (\y{Name})/,
       condition: function(data) {
         return data.side == 'west';
       },
@@ -205,9 +215,11 @@
     },
     {
       id: 'BA Art Legendcarver',
-      regex: / 14:3928:Art starts using (?:Legendcarver|Unknown_3928)/,
-      regexCn: / 14:3928:亚特 starts using (?:妖枪振|Unknown_3928)/,
-      regexDe: / 14:3928:Art starts using (?:Legendenschnitzer|Unknown_3928)/,
+      regex: / 14:3928:Art starts using Legendcarver/,
+      regexDe: / 14:3928:Art starts using Legendenschnitzer/,
+      regexFr: / 14:3928:Art starts using Taillade Spectrale/,
+      regexJa: / 14:3928:アルト starts using 妖槍振/,
+      regexCn: / 14:3928:亚特 starts using 妖枪振/,
       condition: function(data) {
         return data.side == 'west';
       },
@@ -219,9 +231,11 @@
     },
     {
       id: 'BA Art Legendspinner',
-      regex: / 14:3929:Art starts using (?:Legendspinner|Unknown_3929)/,
-      regexCn: / 14:3929:亚特 starts using (?:妖枪振|Unknown_3929)/,
-      regexDe: / 14:3929:Art starts using (?:Legendenspinner|Unknown_3929)/,
+      regex: / 14:3929:Art starts using Legendspinner/,
+      regexDe: / 14:3929:Art starts using Legendenspinner/,
+      regexFr: / 14:3929:Art starts using Spirale Spectrale/,
+      regexJa: / 14:3929:アルト starts using 妖槍旋/,
+      regexCn: / 14:3929:亚特 starts using 妖枪振/,
       condition: function(data) {
         return data.side == 'west';
       },
@@ -233,9 +247,11 @@
     },
     {
       id: 'BA Art Mythcall Legendcarver',
-      regex: / 14:3928:Art starts using (?:Legendcarver|Unknown_3928)/,
-      regexCn: / 14:3928:亚特 starts using (?:妖枪振|Unknown_3928)/,
-      regexDe: / 14:3928:Art starts using (?:Legendenschnitzer|Unknown_3928)/,
+      regex: / 14:3928:Art starts using Legendcarver/,
+      regexDe: / 14:3928:Art starts using Legendenschnitzer/,
+      regexFr: / 14:3928:Art starts using Taillade Spectrale/,
+      regexJa: / 14:3928:アルト starts using 妖槍振/,
+      regexCn: / 14:3928:亚特 starts using 妖枪振/,
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
@@ -248,9 +264,11 @@
     },
     {
       id: 'BA Art Mythcall Legendspinner',
-      regex: / 14:3929:Art starts using (?:Legendspinner|Unknown_3929)/,
-      regexCn: / 14:3929:亚特 starts using (?:妖枪振|Unknown_3929)/,
-      regexDe: / 14:3929:Art starts using (?:Legendenspinner|Unknown_3929)/,
+      regex: / 14:3929:Art starts using Legendspinner/,
+      regexDe: / 14:3929:Art starts using Legendenspinner/,
+      regexFr: / 14:3929:Art starts using Spirale Spectrale/,
+      regexJa: / 14:3929:アルト starts using 妖槍旋/,
+      regexCn: / 14:3929:亚特 starts using 妖枪振/,
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
@@ -263,9 +281,11 @@
     },
     {
       id: 'BA Owain Tankbuster',
-      regex: / 14:3945:Owain starts using (?:Thricecull|Unknown_3945) on (\y{Name})/,
-      regexCn: / 14:3945:欧文 starts using (?:三连枪|Unknown_3945) on (\y{Name})/,
-      regexDe: / 14:3945:Owain starts using (?:Dreifachlanze|Unknown_3945) on (\y{Name})/,
+      regex: / 14:3945:Owain starts using Thricecull on (\y{Name})/,
+      regexDe: / 14:3945:Owain starts using Dreifachlanze on (\y{Name})/,
+      regexFr: / 14:3945:Owain starts using Triple Perforation on (\y{Name})/,
+      regexJa: / 14:3945:オーウェン starts using 三連槍 on (\y{Name})/,
+      regexCn: / 14:3945:欧文 starts using 三连枪 on (\y{Name})/,
       condition: function(data) {
         return data.side == 'west';
       },
@@ -327,7 +347,7 @@
       regex: / 00:0044:[^:]*:Munderg, turn flesh to ash/,
       regexDe: / 00:0044:[^:]*:Munderg, entfessele den Flammeneid/,
       regexCn: / 00:0044:[^:]*:红颈妖枪，点燃一切/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.side == 'east';
       },
       alertText: {
@@ -346,7 +366,7 @@
       regex: / 00:0044:[^:]*:Munderg, turn blood to ice/,
       regexDe: / 00:0044:[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen/,
       regexCn: / 00:0044:[^:]*:红颈妖枪，冻结万物/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.side == 'east';
       },
       alertText: {
@@ -362,7 +382,10 @@
     },
     {
       id: 'BA Owain Ivory Palm',
-      regex: / 16:\y{ObjectId}:Ivory Palm:3941:[^:]*:y{ObjectId}:(\y{Name}):/,
+      regex: / 16:\y{ObjectId}:Ivory Palm:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / 16:\y{ObjectId}:Weiße Hand:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 16:\y{ObjectId}:Paume D'Ivoire:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 16:\y{ObjectId}:白き手:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexCn: / 16:\y{ObjectId}:白手:3941:[^:]*:y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches[1];
@@ -375,9 +398,11 @@
     },
     {
       id: 'BA Owain Pitfall',
-      regex: / 14:394D:Owain starts using (?:Pitfall|Unknown_394D)/,
-      regexCn: / 14:394D:欧文 starts using (?:强袭|Unknown_394D)/,
-      regexDe: / 14:394D:Owain starts using (?:Berstender Boden|Unknown_394D)/,
+      regex: / 14:394D:Owain starts using Pitfall/,
+      regexDe: / 14:394D:Owain starts using Berstender Boden/,
+      regexFr: / 14:394D:Owain starts using Embûche/,
+      regexJa: / 14:394D:オーウェン starts using 強襲/,
+      regexCn: / 14:394D:欧文 starts using 强袭/,
       condition: function(data) {
         return data.side == 'east';
       },
@@ -389,9 +414,11 @@
     },
     {
       id: 'BA Silence Centaur',
-      regex: / 14:3BFE:Arsenal Centaur starts using (?:Berserk|Unknown_3Bfe)/,
-      regexCn: / 14:3BFE:兵武半人马 starts using (?:狂暴|Unknown_3Bfe)/,
-      regexDe: / 14:3BFE:Arsenal-Zentaur starts using (?:Berserker|Unknown_3Bfe)/,
+      regex: / 14:3BFE:Arsenal Centaur starts using Berserk/,
+      regexDe: / 14:3BFE:Arsenal-Zentaur starts using Berserker/,
+      regexFr: / 14:3BFE:Centaure De L'Arsenal starts using Furie/,
+      regexJa: / 14:3BFE:アーセナル・セントール starts using ベルセルク/,
+      regexCn: / 14:3BFE:兵武半人马 starts using 狂暴/,
       condition: function(data) {
         return data.CanSleep();
       },
@@ -403,9 +430,11 @@
     },
     {
       id: 'BA Raiden Tankbuster',
-      regex: / 14:387B:Raiden starts using (?:Shingan|Unknown_387B) on (\y{Name})/,
-      regexCn: / 14:387B:莱丁 starts using (?:真眼击|Unknown_387B) on (\y{Name})/,
-      regexDe: / 14:387B:Raiden starts using (?:Betäubungsschlag|Unknown_387B) on (\y{Name})/,
+      regex: / 14:387B:Raiden starts using Shingan/,
+      regexDe: / 14:387B:Raiden starts using Betäubungsschlag/,
+      regexFr: / 14:387B:Raiden starts using Impact Oculaire/,
+      regexJa: / 14:387B:ライディーン starts using 真眼撃/,
+      regexCn: / 14:387B:莱丁 starts using 真眼击 on (\y{Name})/,
       condition: function(data) {
         return data.sealed;
       },
@@ -452,7 +481,10 @@
     },
     {
       id: 'BA Raiden Ame',
-      regex: / 14:3868:Raiden starts using/,
+      regex: / 14:3868:Raiden starts using Ame-No-Sakahoko/,
+      regexDe: / 14:3868:Raiden starts using Himmelsriposte/,
+      regexFr: / 14:3868:Raiden starts using Ama-No-Sakahoko/,
+      regexJa: / 14:3868:ライディーン starts using 天逆鉾/,
       regexCn: / 14:3868:莱丁 starts using/,
       condition: function(data) {
         return data.sealed;
@@ -465,9 +497,11 @@
     },
     {
       id: 'BA Raiden Whirling',
-      regex: / 14:386A:Raiden starts using (?:Whirling Zantetsuken|Unknown_386A)/,
-      regexCn: / 14:386A:莱丁 starts using (?:旋·斩铁剑|Unknown_386A)/,
-      regexDe: / 14:386A:Raiden starts using (?:Sen-Zantetsuken|Unknown_386A)/,
+      regex: / 14:386A:Raiden starts using Whirling Zantetsuken/,
+      regexDe: / 14:386A:Raiden starts using Sen-Zantetsuken/,
+      regexFr: / 14:386A:Raiden starts using Sen Zantetsuken/,
+      regexJa: / 14:386A:ライディーン starts using 旋・斬鉄剣/,
+      regexCn: / 14:386A:莱丁 starts using 旋·斩铁剑/,
       condition: function(data) {
         return data.sealed;
       },
@@ -479,9 +513,11 @@
     },
     {
       id: 'BA Raiden For Honor',
-      regex: / 14:387C:Raiden starts using (?:For Honor|Unknown_387C)/,
-      regexCn: / 14:387C:莱丁 starts using (?:战死击|Unknown_387C)/,
-      regexDe: / 14:387C:Raiden starts using (?:Hieb der Gefallenen|Unknown_387C)/,
+      regex: / 14:387C:Raiden starts using For Honor/,
+      regexDe: / 14:387C:Raiden starts using Hieb Der Gefallenen/,
+      regexFr: / 14:387C:Raiden starts using Carnage Martial/,
+      regexJa: / 14:387C:ライディーン starts using 戦死撃/,
+      regexCn: / 14:387C:莱丁 starts using 战死击/,
       condition: function(data) {
         return data.sealed;
       },
@@ -493,9 +529,11 @@
     },
     {
       id: 'BA Raiden Lateral 1',
-      regex: / 14:386C:Raiden starts using (?:Lateral Zantetsuken|Unknown_386C) on (\y{Name})/,
-      regexCn: / 14:386C:莱丁 starts using (?:片·斩铁剑|Unknown_386C) on (\y{Name})/,
-      regexDe: / 14:386C:Raiden starts using (?:Kata-Zantetsuken|Unknown_386C) on (\y{Name})/,
+      regex: / 14:386C:Raiden starts using Lateral Zantetsuken/,
+      regexDe: / 14:386C:Raiden starts using Kata-Zantetsuken/,
+      regexFr: / 14:386C:Raiden starts using Hen Zantetsuken/,
+      regexJa: / 14:386C:ライディーン starts using 片・斬鉄剣/,
+      regexCn: / 14:386C:莱丁 starts using 片·斩铁剑/,
       condition: function(data) {
         return data.sealed;
       },
@@ -507,9 +545,11 @@
     },
     {
       id: 'BA Raiden Lateral 2',
-      regex: / 14:386B:Raiden starts using (?:Lateral Zantetsuken|Unknown_386B) on (\y{Name})/,
-      regexCn: / 14:386B:莱丁 starts using (?:片·斩铁剑|Unknown_386B) on (\y{Name})/,
-      regexDe: / 14:386B:Raiden starts using (?:Kata-Zantetsuken|Unknown_386B) on (\y{Name})/,
+      regex: / 14:386B:Raiden starts using Lateral Zantetsuken/,
+      regexDe: / 14:386B:Raiden starts using Kata-Zantetsuken/,
+      regexFr: / 14:386B:Raiden starts using Hen Zantetsuken/,
+      regexJa: / 14:386B:ライディーン starts using 片・斬鉄剣/,
+      regexCn: / 14:386B:莱丁 starts using 片·斩铁剑/,
       condition: function(data) {
         return data.sealed;
       },
@@ -521,9 +561,11 @@
     },
     {
       id: 'BA AV Tankbuster',
-      regex: / 14:379A:Absolute Virtue starts using (?:Auroral Wind|Unknown_379A) on (\y{Name})/,
-      regexCn: / 14:379A:绝对的美德 starts using (?:极光之风|Unknown_379A) on (\y{Name})/,
-      regexDe: / 14:379A:Absolute Tugend starts using (?:Aurorawind|Unknown_379A) on (\y{Name})/,
+      regex: / 14:379A:Absolute Virtue starts using Auroral Wind/,
+      regexDe: / 14:379A:Absolute Tugend starts using Aurorawind/,
+      regexFr: / 14:379A:Vertu Absolue starts using Vent D'Aurore/,
+      regexJa: / 14:379A:アブソリュートヴァーチュー starts using オーロラルウィンド/,
+      regexCn: / 14:379A:绝对的美德 starts using 极光之风/,
       condition: function(data) {
         return data.sealed;
       },
@@ -549,9 +591,11 @@
     },
     {
       id: 'BA AV Eidos Dark Bracelets',
-      regex: /14:3787:Absolute Virtue starts using (?:Eidos|Unknown_3787)/,
-      regexCn: /14:3787:绝对的美德 starts using (?:变异|Unknown_3787)/,
-      regexDe: /14:3787:Absolute Tugend starts using (?:Sarva|Unknown_3787)/,
+      regex: / 14:3787:Absolute Virtue starts using Eidos/,
+      regexDe: / 14:3787:Absolute Tugend starts using Sarva/,
+      regexFr: / 14:3787:Vertu Absolue starts using Sarva/,
+      regexJa: / 14:3787:アブソリュートヴァーチュー starts using 変異/,
+      regexCn: / 14:3787:绝对的美德 starts using 变异/,
       condition: function(data) {
         return data.sealed;
       },
@@ -566,9 +610,11 @@
     },
     {
       id: 'BA AV Eidos Light Bracelets',
-      regex: /14:3786:Absolute Virtue starts using (?:Eidos|Unknown_3786)/,
-      regexCn: /14:3786:绝对的美德 starts using (?:变异|Unknown_3786)/,
-      regexDe: /14:3786:Absolute Tugend starts using (?:Sarva|Unknown_3786)/,
+      regex: / 14:3786:Absolute Virtue starts using Eidos/,
+      regexDe: / 14:3786:Absolute Tugend starts using Sarva/,
+      regexFr: / 14:3786:Vertu Absolue starts using Sarva/,
+      regexJa: / 14:3786:アブソリュートヴァーチュー starts using 変異/,
+      regexCn: /14:3786:绝对的美德 starts using 变异/,
       condition: function(data) {
         return data.sealed;
       },
@@ -583,9 +629,11 @@
     },
     {
       id: 'BA AV Eidos Hostile Aspect',
-      regex: /14:378B:Absolute Virtue starts using (?:Hostile Aspect|Unknown_378B)/,
-      regexCn: /14:378B:绝对的美德 starts using (?:极性波动|Unknown_378B)/,
-      regexDe: /14:378B:Absolute Tugend starts using (?:Polarisierte Welle|Unknown_378B)/,
+      regex: / 14:378B:Absolute Virtue starts using Hostile Aspect/,
+      regexDe: / 14:378B:Absolute Tugend starts using Polarisierte Welle/,
+      regexFr: / 14:378B:Vertu Absolue starts using Onde Polarisée/,
+      regexJa: / 14:378B:アブソリュートヴァーチュー starts using 極性波動/,
+      regexCn: / 14:378B:绝对的美德 starts using 极性波动/,
       condition: function(data) {
         return data.sealed;
       },
@@ -628,9 +676,11 @@
     },
     {
       id: 'BA AV Eidos Impact Stream',
-      regex: /14:3788:Absolute Virtue starts using (?:Impact Stream|Unknown_3788)/,
-      regexCn: /14:3788:绝对的美德 starts using (?:冲击流|Unknown_3788)/,
-      regexDe: /14:3788:Absolute Tugend starts using (?:Durchschlagsstrom|Unknown_3788)/,
+      regex: / 14:3788:Absolute Virtue starts using Impact Stream/,
+      regexDe: / 14:3788:Absolute Tugend starts using Durchschlagsstrom/,
+      regexFr: / 14:3788:Vertu Absolue starts using Courant D'Impact/,
+      regexJa: / 14:3788:アブソリュートヴァーチュー starts using インパクトストリーム/,
+      regexCn: / 14:3788:绝对的美德 starts using 冲击流/,
       condition: function(data) {
         return data.sealed;
       },
@@ -653,9 +703,9 @@
     },
     {
       id: 'BA AV Eidos Relative Virtue Colors',
-      regex: /00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
-      regexCn: /00:332e:相对的美德 gains the effect of (光|暗)之腕/,
-      regexDe: /00:332e:Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)/,
+      regex: / 00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
+      regexDe: / 00:332e:Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)/,
+      regexCn: / 00:332e:相对的美德 gains the effect of (光|暗)之腕/,
       condition: function(data) {
         return data.sealed;
       },
@@ -667,13 +717,15 @@
     },
     {
       id: 'BA AV Triple Impact Stream',
-      regex: /14:3797:Absolute Virtue starts using/,
-      regexCn: /14:3797:绝对的美德 starts using/,
-      regexDe: /14:3797:Absolute Tugend starts using/,
+      regex: / 14:3797:Absolute Virtue starts using Dark Aurora/,
+      regexDe: / 14:3797:Absolute Tugend starts using Düstere Aura/,
+      regexFr: / 14:3797:Vertu Absolue starts using Aurore Sombre/,
+      regexJa: / 14:3797:アブソリュートヴァーチュー starts using ダークオーロラ/,
+      regexCn: / 14:3797:绝对的美德 starts using/,
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (!data.clones)
           return;
         let wrists = data.clones.pop();
@@ -695,9 +747,11 @@
     },
     {
       id: 'BA AV Eidos Turbulent Aether',
-      regex: /15:\y{ObjectId}:Absolute Virtue:3790:/,
-      regexCn: /15:\y{ObjectId}:绝对的美德:3790:/,
-      regexDe: /15:\y{ObjectId}:Absolute Tugend:3790:/,
+      regex: / 15:\y{ObjectId}:Absolute Virtue:3790:Turbulent Aether:/,
+      regexDe: / 15:\y{ObjectId}:Absolute Tugend:3790:Äthersturm:/,
+      regexFr: / 15:\y{ObjectId}:Vertu Absolue:3790:Turbulence éthérée:/,
+      regexJa: / 15:\y{ObjectId}:アブソリュートヴァーチュー:3790:エーテル乱流:/,
+      regexCn: / 15:\y{ObjectId}:绝对的美德:3790:/,
       condition: function(data) {
         return data.sealed;
       },
@@ -709,9 +763,11 @@
     },
     {
       id: 'BA AV Call Wyvern',
-      regex: /15:\y{ObjectId}:Absolute Virtue:3798:/,
-      regexCn: /15:\y{ObjectId}:绝对的美德:3798:/,
-      regexDe: /15:\y{ObjectId}:Absolute Tugend:3798:/,
+      regex: / 15:\y{ObjectId}:Absolute Virtue:3798:Call Wyvern:/,
+      regexDe: / 15:\y{ObjectId}:Absolute Tugend:3798:Wyvernruf:/,
+      regexFr: / 15:\y{ObjectId}:Vertu Absolue:3798:Appel de wyverne:/,
+      regexJa: / 15:\y{ObjectId}:アブソリュートヴァーチュー:3798:コールワイバーン:/,
+      regexCn: / 15:\y{ObjectId}:绝对的美德:3798:/,
       condition: function(data) {
         return data.sealed;
       },
@@ -930,6 +986,8 @@
       regex: / 16:\y{ObjectId}:Proto Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexCn: / 16:\y{ObjectId}:奥兹玛原型:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 16:\y{ObjectId}:Proto-Yadis:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / 16:\y{ObjectId}:Proto-Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / 16:\y{ObjectId}:プロトオズマ:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.sealed && data.me == matches[1];
       },

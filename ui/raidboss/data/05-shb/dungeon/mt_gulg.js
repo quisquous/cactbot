@@ -129,7 +129,7 @@
       regexDe: / 14:3D09:Geläuterte Gereiztheit starts using Heiliger Vers/,
       regexFr: / 14:3D09:Caprice Pardonné starts using Texte [sS]acré/,
       regexJa: / 14:3D09:フォーギヴン・ウィムズィー starts using 聖句/,
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (data.role == 'tank') {
           return {
             en: 'Tank Buster on YOU',
@@ -205,7 +205,7 @@
       regexDe: / 14:3D12:Geläuterte Unzucht starts using Sakrament sforzato/,
       regexFr: / 14:3D12:Obscénité Pardonnée  starts using Sacrement - [sS]forzando/,
       regexJa: / 14:3D12:フォーギヴン・オブセニティー starts using サクラメント・スフォルツァンド/,
-      alertText: function(data) {
+      alertText: function(data, matches) {
         if (data.role == 'tank') {
           return {
             en: 'Tank Buster on YOU',

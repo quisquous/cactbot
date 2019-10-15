@@ -38,7 +38,7 @@
       regexDe: / 14:3FDC:Leviathan starts using Schrei der Gezeiten/,
       regexFr: / 14:3FDC:Léviathan starts using Vague Rugissante/,
       regexJa: / 14:3FDC:リヴァイアサン starts using タイダルロア/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -55,7 +55,7 @@
       regexDe: / 14:3FDE:Leviathan starts using Wütende Flut/,
       regexFr: / 14:3FDE:Léviathan starts using Furie Des Marées/,
       regexJa: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -71,7 +71,7 @@
       regexCn: / 14:3FF1:利维亚桑 starts using Tidal Wave/,
       regexDe: / 14:3FF1:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FF1:Léviathan starts using Raz-De-Marée/,
-      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェーブ/,
+      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェイブ/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -86,7 +86,7 @@
       regexCn: / 14:3FF1:利维亚桑 starts using Tidal Wave/,
       regexDe: / 14:3FF1:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FF1:Léviathan starts using Raz-De-Marée/,
-      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェーブ/,
+      regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェイブ/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -435,7 +435,7 @@
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -451,7 +451,7 @@
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'tank';
       },
@@ -470,7 +470,7 @@
       regexCn: / 14:400F:利维亚桑 starts using Refreshing Shower/,
       regexDe: / 14:400F:Leviathan starts using Erwachen der Tiefen/,
       regexFr: / 14:400F:Léviathan starts using Éveil De L'[eE]au/,
-      regexJa: / 14:400F:Leviathan starts using 水の覚醒/,
+      regexJa: / 14:400F:リヴァイアサン starts using 水の覚醒/,
       run: function(data) {
         data.refreshed = true;
       },

@@ -8,11 +8,11 @@
   triggers: [
     {
       // Track Omega MF vs Final Omega phase.
-      regex: / 14:3357:Omega starts using (?:Ion Efflux|Unknown_3357)/,
-      regexCn: / 14:3357:欧米茄 starts using (?:离子流出|Unknown_3357)/,
-      regexDe: / 14:3357:Omega starts using (?:Ionenstrom|Unknown_3357)/,
-      regexFr: / 14:3357:Oméga starts using (?:Fuite D\'ions|Unknown_3357)/,
-      regexJa: / 14:3357:オメガ starts using (?:イオンエフラクス|Unknown_3357)/,
+      regex: / 14:3357:Omega starts using Ion Efflux/,
+      regexDe: / 14:3357:Omega starts using Ionenstrom/,
+      regexFr: / 14:3357:Oméga starts using Fuite D'Ions/,
+      regexJa: / 14:3357:オメガ starts using イオンエフラクス/,
+      regexCn: / 14:3357:欧米茄 starts using 离子流出/,
       run: function(data) {
         data.isFinalOmega = true;
 
@@ -43,11 +43,11 @@
     },
     {
       id: 'O12S Local Resonance',
-      regex: / 1A:\y{ObjectId}:Omega gains the effect of (?:Local Resonance|Unknown_67E) from/,
-      regexCn: / 1A:欧米茄 gains the effect of (?:共鸣程序：近|Unknown_67E) from/,
-      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of (?:Resonanzprogramm: Nah|Unknown_67E) from/,
-      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of (?:Programme de résonance : proximité|Programme De Résonance : Proximité|Unknown_67E) from/,
-      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of (?:レゾナンスプログラム：ニアー|Unknown_67E) from/,
+      regex: / 1A:\y{ObjectId}:Omega gains the effect of Local Resonance from/,
+      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Nah from/,
+      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Proximité from/,
+      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ニアー from/,
+      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of 共鸣程序：近 from/,
       infoText: {
         en: 'Keep Bosses Apart',
         de: 'Bosse auseinander ziehen',
@@ -58,11 +58,11 @@
     },
     {
       id: 'O12S Remote Resonance',
-      regex: / 1A:\y{ObjectId}:Omega gains the effect of (?:Remote Resonance|Unknown_67F) from/,
-      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of (?:共鸣程序：远|Unknown_67F) from/,
-      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of (?:Resonanzprogramm: Fern|Unknown_67F) from/,
-      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of (?:Programme de résonance : distance|Programme De Résonance : Distance|Unknown_67F) from/,
-      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of (?:レゾナンスプログラム：ファー|Unknown_67F) from/,
+      regex: / 1A:\y{ObjectId}:Omega gains the effect of Remote Resonance from/,
+      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Fern from/,
+      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Distance from/,
+      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ファー from/,
+      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of 共鸣程序：远 from/,
       alertText: {
         en: 'Move Bosses Together',
         de: 'Bosse zusammenziehen',
@@ -73,11 +73,11 @@
     },
     {
       id: 'O12S Solar Ray',
-      regex: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using (?:Unknown_3350|Unknown_3351|Solar Ray) on (\y{Name})/,
-      regexCn: / 14:(?:3350|3351):(?:欧米茄|欧米茄-M) starts using (?:Unknown_3350|Unknown_3351|太阳射线) on (\y{Name})/,
-      regexDe: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using (?:Unknown_3350|Unknown_3351|Sonnenstrahl) on (\y{Name})/,
-      regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using (?:Unknown_3350|Unknown_3351|Rayon solaire|Rayon Solaire) on (\y{Name})/,
-      regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using (?:Unknown_3350|Unknown_3351|ソーラレイ) on (\y{Name})/,
+      regex: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Solar Ray on (\y{Name})/,
+      regexDe: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
+      regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
+      regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
+      regexCn: / 14:(?:3350|3351):(?:欧米茄|欧米茄-M) starts using 太阳射线 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -116,11 +116,11 @@
     },
     {
       id: 'O12S Optimized Blade Dance',
-      regex: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using (?:Unknown_334B|Unknown_334C|Optimized Blade Dance) on (\y{Name})/,
-      regexCn: / 14:(?:334B|334C):(?:欧米茄|欧米茄-M) starts using (?:Unknown_334B|Unknown_334C|欧米茄刀光剑舞) on (\y{Name})/,
-      regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using (?:Unknown_334B|Unknown_334C|Omega-Schwertertanz) on (\y{Name})/,
-      regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using (?:Unknown_334B|Unknown_334C|Danse de la lame Oméga|Danse De La Lame Oméga) on (\y{Name})/,
-      regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using (?:Unknown_334B|Unknown_334C|ブレードダンス・オメガ) on (\y{Name})/,
+      regex: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Optimized Bladedance on (\y{Name})/,
+      regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Omega-Schwertertanz on (\y{Name})/,
+      regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga on (\y{Name})/,
+      regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using ブレードダンス・オメガ on (\y{Name})/,
+      regexCn: / 14:(?:334B|334C):(?:欧米茄|欧米茄-M) starts using 欧米茄刀光剑舞 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -159,7 +159,7 @@
     },
     {
       id: 'O12S Electric Slide Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(009[12345678]):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(009[12345678]):0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -189,7 +189,7 @@
     },
     {
       id: 'O12S MF Stack Marker',
-      regex: /1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
       condition: function(data) {
         return !data.isFinalOmega;
       },
@@ -204,7 +204,7 @@
     },
     {
       id: 'O12S Optimized Meteor',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -218,11 +218,11 @@
     },
     {
       id: 'O12S Packet Filter F',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|Packet Filter F) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|防护程序F) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|Sicherungssystem F) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|Programme protecteur F|Programme Protecteur F) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67D|ガードプログラムF) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter F from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem W from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur F from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムF from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 防护程序F from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -236,11 +236,11 @@
     },
     {
       id: 'O12S Packet Filter M',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|Packet Filter M) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|防护程序M) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|Sicherungssystem M) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|Programme protecteur M|Programme Protecteur M) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_67C|ガードプログラムM) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter M from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem M from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur M from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムM from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 防护程序M from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -254,11 +254,11 @@
     },
     {
       id: 'O12S Diffuse Wave Cannon Sides',
-      regex: / 14:3367:Omega starts using (?:Diffuse Wave Cannon|Unknown_3367)/,
-      regexCn: / 14:3367:欧米茄 starts using (?:扩散波动炮|Unknown_3367)/,
-      regexDe: / 14:3367:Omega starts using (?:Streuende Wellenkanone|Unknown_3367)/,
-      regexFr: / 14:3367:Oméga starts using (?:Canon plasma diffuseur|Canon Plasma Diffuseur|Unknown_3367)/,
-      regexJa: / 14:3367:オメガ starts using (?:拡散波動砲|Unknown_3367)/,
+      regex: / 14:3367:Omega starts using Diffuse Wave Cannon/,
+      regexDe: / 14:3367:Omega starts using Streuende Wellenkanone/,
+      regexFr: / 14:3367:Oméga starts using Canon Plasma Diffuseur/,
+      regexJa: / 14:3367:オメガ starts using 拡散波動砲/,
+      regexCn: / 14:3367:欧米茄 starts using 扩散波动炮/,
       infoText: {
         en: 'Sides',
         de: 'Seiten',
@@ -269,11 +269,11 @@
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
-      regex: / 14:3368:Omega starts using (?:Diffuse Wave Cannon|Unknown_3368)/,
-      regexCn: / 14:3368:欧米茄 starts using (?:扩散波动炮|Unknown_3368)/,
-      regexDe: / 14:3368:Omega starts using (?:Streuende Wellenkanone|Unknown_3368)/,
-      regexFr: / 14:3368:Oméga starts using (?:Canon plasma diffuseur|Canon Plasma Diffuseur|Unknown_3368)/,
-      regexJa: / 14:3368:オメガ starts using (?:拡散波動砲|Unknown_3368)/,
+      regex: / 14:3368:Omega starts using Diffuse Wave Cannon/,
+      regexDe: / 14:3368:Omega starts using Streuende Wellenkanone/,
+      regexFr: / 14:3368:Oméga starts using Canon Plasma Diffuseur/,
+      regexJa: / 14:3368:オメガ starts using 拡散波動砲/,
+      regexCn: / 14:3368:欧米茄 starts using 扩散波动炮/,
       infoText: {
         en: 'Front or Back',
         de: 'Vorn oder Hinten',
@@ -284,11 +284,11 @@
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
-      regex: / 14:3364:Omega starts using (?:Oversampled Wave Cannon|Unknown_3364)/,
-      regexCn: / 14:3364:欧米茄 starts using (?:探测式波动炮|Unknown_3364)/,
-      regexDe: / 14:3364:Omega starts using (?:Fokussierte Wellenkanone|Unknown_3364)/,
-      regexFr: / 14:3364:Oméga starts using (?:Canon plasma chercheur|Canon Plasma Chercheur|Unknown_3364)/,
-      regexJa: / 14:3364:オメガ starts using (?:検知式波動砲|Unknown_3364)/,
+      regex: / 14:3364:Omega starts using Oversampled Wave Cannon/,
+      regexDe: / 14:3364:Omega starts using Fokussierte Wellenkanone/,
+      regexFr: / 14:3364:Oméga starts using Canon Plasma Chercheur/,
+      regexJa: / 14:3364:オメガ starts using 検知式波動砲/,
+      regexCn: / 14:3364:欧米茄 starts using 探测式波动炮/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -308,11 +308,11 @@
     },
     {
       id: 'O12S Oversampled Wave Cannon Left',
-      regex: / 14:3365:Omega starts using (?:Oversampled Wave Cannon|Unknown_3365)/,
-      regexCn: / 14:3365:欧米茄 starts using (?:探测式波动炮|Unknown_3365)/,
-      regexDe: / 14:3365:Omega starts using (?:Fokussierte Wellenkanone|Unknown_3365)/,
-      regexFr: / 14:3365:Oméga starts using (?:Canon plasma chercheur|Canon Plasma Chercheur|Unknown_3365)/,
-      regexJa: / 14:3365:オメガ starts using (?:検知式波動砲|Unknown_3365)/,
+      regex: / 14:3365:Omega starts using Oversampled Wave Cannon/,
+      regexDe: / 14:3365:Omega starts using Fokussierte Wellenkanone/,
+      regexFr: / 14:3365:Oméga starts using Canon Plasma Chercheur/,
+      regexJa: / 14:3365:オメガ starts using 検知式波動砲/,
+      regexCn: / 14:3365:欧米茄 starts using 探测式波动炮/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -332,7 +332,7 @@
     },
     {
       id: 'O12S Target Analysis Target',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -358,11 +358,11 @@
     },
     {
       id: 'O12S Local Tethers',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_688|Local Regression) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_688|回归方程：近) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_688|Regression: Nah) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_688|Bogue intentionnel : proximité|Bogue Intentionnel : Proximité) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_688|エンバグ：ニアー) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Local Regression from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Regression: Nah from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Intentionnel : Proximité from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンバグ：ニアー from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 回归方程：近 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -376,11 +376,11 @@
     },
     {
       id: 'O12S Far Tethers',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_689|Remote Regression) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_689|回归方程：远) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_689|Regression: Fern) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_689|Bogue intentionnel : distance|Bogue Intentionnel : Distance) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_689|エンバグ：ファー) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Remote Regression from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Regression: Fern from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Intentionnel : Distance from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンバグ：ファー from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 回归方程：远 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -394,11 +394,11 @@
     },
     {
       id: 'O12S Defamation',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|严重错误：上溢) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique : boucle|Bogue Critique : Boucle) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Critical Overflow Bug from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Überlauf from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Boucle from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：サークル from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：上溢 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -412,11 +412,11 @@
     },
     {
       id: 'O12S Latent Defect',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_686|Latent Defect) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_686|潜在错误) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_686|Latenter Defekt) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_686|Bogue latent|Bogue Latent) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_686|レイテントバグ) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latent Defect from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latenter Bug from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Latent from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レイテントバグ from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 潜在错误 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -430,11 +430,11 @@
     },
     {
       id: 'O12S Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_682|Critical Underflow Bug) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_682|严重错误：下溢) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_682|Kritischer Bug: Unterlauf) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_682|Bogue critique : dégradation|Bogue Critique : Dégradation) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_682|クリティカルバグ：デグレード) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Critical Underflow Bug from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Unterlauf from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Dégradation from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：デグレード from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：下溢 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -448,11 +448,11 @@
     },
     {
       id: 'O12S Hello World Stack',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_680|Critical Synchronization Bug) from (?:.*) for (.*) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_680|严重错误：同步) from (?:.*) for (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_680|Kritischer Bug: Synchronisierung) from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_680|Bogue critique : partage|Bogue Critique : Partage) from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_680|クリティカルバグ：シェア) from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Critical Synchronization Bug from (?:.*) for (.*) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Synchronisierung from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Partage from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：シェア from (?:.*) for (.*) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：同步 from (?:.*) for (.*) Seconds/,
       delaySeconds: function(data, matches) {
         return matches[1] == data.me ? 0 : 1;
       },
@@ -502,11 +502,11 @@
     },
     {
       id: 'O12S Hello World No Marker',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|Critical Overflow Bug|Unknown_686|Latent Defect|Unknown_680|Critical Synchronization Bug) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|严重错误：上溢|Unknown_686|潜在错误|Unknown_680|严重错误：同步) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|Kritischer Bug: Überlauf|Unknown_686|Latenter Bug|Unknown_680|Kritischer Bug: Synchronisierung) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|Bogue critique : boucle|Bogue Critique : Boucle|Unknown_686|Bogue latent|Bogue Latent|Unknown_680|Bogue critique : partage|Bogue Critique : Partage) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_681|クリティカルバグ：サークル|Unknown_686|レイテントバグ|Unknown_680|クリティカルバグ：シェア) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Critical Overflow Bug|Latent Defect|Critical Synchronization Bug) from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Kritischer Bug: Überlauf|Latenter Bug|Kritischer Bug: Synchronisierung) from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Bogue Critique : Boucle|Bogue Latent|Bogue Critique : Partage) from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:クリティカルバグ：サークル|レイテントバグ|クリティカルバグ：シェア) from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:|严重错误：上溢|潜在错误|严重错误：同步) from/,
       preRun: function(data, matches) {
         data.helloDebuffs[matches[1]] = true;
       },
@@ -529,11 +529,11 @@
     },
     {
       id: 'O12S Hello World Tower Complete',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_687|Cascading Latent Defect) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_687|潜在错误：下溢) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_687|Latenter Bug: Unterlauf) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_687|Bogue latent : dégradation|Bogue Latent : Dégradation) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_687|レイテントバグ：デグレード) from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cascading Latent Defect from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latenter Bug: Unterlauf from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Latent : Dégradation from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レイテントバグ：デグレード from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 潜在错误：下溢 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -547,7 +547,7 @@
     },
     {
       // Archive All Marker Tracking
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
       condition: function(data) {
         return data.isFinalOmega;
       },
@@ -557,12 +557,12 @@
     },
     {
       id: 'O12S Archive All No Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:(?:003E|0060):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(?:003E|0060):0000:0000:0000:/,
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.me in data.archiveMarkers)
           return;
         for (let player in data.archiveMarkers) {
@@ -580,7 +580,7 @@
     },
     {
       id: 'O12S Archive All Stack Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.isFinalOmega && matches[1] == data.me;
       },
@@ -594,7 +594,7 @@
     },
     {
       id: 'O12S Archive All Spread Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0060:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.isFinalOmega && matches[1] == data.me;
       },

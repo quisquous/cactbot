@@ -118,12 +118,13 @@
     },
     {
       id: 'General Walking',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Walking Dead/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Erweckter/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Marcheur Des Limbes/,
-      regexCn: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 死而不僵/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Walking Dead/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Erweckter/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marcheur Des Limbes/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ウォーキングデッド/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死而不僵/,
       condition: function(data) {
-        return data.role == 'tank' | data.role == 'healer';
+        return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {

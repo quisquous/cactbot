@@ -52,11 +52,11 @@
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       // Starboard/Larboard Cannon cleanup.
-      regex: / 14:326[24]:Omega starts using/,
-      regexCn: / 14:326[24]:欧米茄 starts using/,
-      regexDe: / 14:326[24]:Omega starts using/,
-      regexFr: / 14:326[24]:Oméga starts using/,
-      regexJa: / 14:326[24]:オメガ starts using/,
+      regex: / 14:326[24]:Omega starts using Starboard Wave Cannon/,
+      regexDe: / 14:326[24]:Omega starts using Steuerbord-Wellenkanone/,
+      regexFr: / 14:326[24]:Oméga starts using Canon Plasma Tribord/,
+      regexJa: / 14:326[24]:オメガ starts using 右舷斉射・波動砲/,
+      regexCn: / 14:326[24]:欧米茄 starts using 右舷齐射·波动炮/,
       delaySeconds: 15,
       run: function(data) {
         delete data.lastWasStarboard;

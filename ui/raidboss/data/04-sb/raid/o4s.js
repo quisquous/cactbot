@@ -2,7 +2,7 @@
 
 // O4S - Deltascape 4.0 Savage
 [{
-  zoneRegex: /(Deltascape V4.0 \(Savage\)|Unknown Zone \(2Ba\))/,
+  zoneRegex: /^Deltascape V4\.0 \(Savage\)$/,
   timelineFile: 'o4s.txt',
   timelineTriggers: [
     {
@@ -17,14 +17,20 @@
   triggers: [
     // Part 1
     { // Phase Tracker: Thunder III not after Decisive Battle.
-      regex: / 14:23F9:Exdeath starts using/,
+      regex: / 14:23F9:Exdeath starts using Thunder III/,
+      regexDe: / 14:23F9:Exdeath starts using Blitzga/,
+      regexFr: / 14:23F9:Exdeath starts using Méga Foudre/,
+      regexJa: / 14:23F9:エクスデス starts using サンダガ/,
       run: function(data) {
         data.thunderCount = (data.thunderCount || 0) + 1;
       },
     },
     { // Fire III not after Decisive Battle.
       id: 'O4S1 Fire III',
-      regex: / 14:23F5:Exdeath starts using/,
+      regex: / 14:23F5:Exdeath starts using Fire III/,
+      regexDe: / 14:23F5:Exdeath starts using Feuga/,
+      regexFr: / 14:23F5:Exdeath starts using Méga Feu/,
+      regexJa: / 14:23F5:エクスデス starts using ファイガ/,
       infoText: {
         en: 'Fire III',
         de: 'Feuga',
@@ -32,7 +38,10 @@
     },
     { // Blizzard III not after Decisive Battle.
       id: 'O4S1 Blizzard III',
-      regex: / 14:23F7:Exdeath starts using/,
+      regex: / 14:23F7:Exdeath starts using Blizzard III/,
+      regexDe: / 14:23F7:Exdeath starts using Eisga/,
+      regexFr: / 14:23F7:Exdeath starts using Méga Glace/,
+      regexJa: / 14:23F7:エクスデス starts using ブリザガ/,
       infoText: {
         en: 'Blizzard III',
         de: 'Eisga',
@@ -40,7 +49,10 @@
     },
     { // Thunder III not after Decisive Battle.
       id: 'O4S1 Thunder III',
-      regex: / 14:23F9:Exdeath starts using/,
+      regex: / 14:23F9:Exdeath starts using Thunder III/,
+      regexDe: / 14:23F9:Exdeath starts using Blitzga/,
+      regexFr: / 14:23F9:Exdeath starts using Méga Foudre/,
+      regexJa: / 14:23F9:エクスデス starts using サンダガ/,
       infoText: function(data) {
         // Tanks/healers always get an alert.
         if (data.role == 'tank' || data.role == 'healer') return false;
@@ -69,7 +81,10 @@
     },
     { // Fire III after Decisive Battle.
       id: 'O4S1 Ultimate Fire III',
-      regex: / 14:23FB:Exdeath starts using/,
+      regex: / 14:23FB:Exdeath starts using Fire III/,
+      regexDe: / 14:23FB:Exdeath starts using Feuga/,
+      regexFr: / 14:23FB:Exdeath starts using Méga Feu/,
+      regexJa: / 14:23FB:エクスデス starts using ファイガ/,
       alarmText: {
         en: 'Fire III: Stop',
         de: 'Feuga: Stehenbleiben',
@@ -81,7 +96,10 @@
     },
     { // Blizzard III after Decisive Battle.
       id: 'O4S1 Ultimate Blizzard III',
-      regex: / 14:23FC:Exdeath starts using/,
+      regex: / 14:23FC:Exdeath starts using Blizzard III/,
+      regexDe: / 14:23FC:Exdeath starts using Eisga/,
+      regexFr: / 14:23FC:Exdeath starts using Méga Glace/,
+      regexJa: / 14:23FC:エクスデス starts using ブリザガ/,
       alertText: {
         en: 'Blizzard III: Keep moving',
         de: 'Eisga: Bewegen',
@@ -93,7 +111,10 @@
     },
     { // Thunder III after Decisive Battle.
       id: 'O4S1 Ultimate Thunder III',
-      regex: / 14:23FD:Exdeath starts using/,
+      regex: / 14:23FD:Exdeath starts using Thunder III/,
+      regexDe: / 14:23FD:Exdeath starts using Blitzga/,
+      regexFr: / 14:23FD:Exdeath starts using Méga Foudre/,
+      regexJa: / 14:23FD:エクスデス starts using サンダガ/,
       alertText: {
         en: 'Thunder III: Get out',
         de: 'Blitzga: Raus da',
@@ -105,7 +126,10 @@
     },
     { // Flare
       id: 'O4S1 Flare',
-      regex: / 14:2401:Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
+      regex: / 14:2401:Exdeath starts using Flare on (\y{Name})/,
+      regexDe: / 14:2401:Exdeath starts using Flare on (\y{Name})/,
+      regexFr: / 14:2401:Exdeath starts using Brasier on (\y{Name})/,
+      regexJa: / 14:2401:エクスデス starts using フレア on (\y{Name})/,
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches[1]);
@@ -126,7 +150,10 @@
 
     // Part 2
     { // Phase Tracker: Grand Cross Alpha.
-      regex: / 14:242B:Neo Exdeath starts using/,
+      regex: / 14:242B:Neo Exdeath starts using Grand Cross Alpha/,
+      regexDe: / 14:242B:Neo Exdeath starts using Supernova Alpha/,
+      regexFr: / 14:242B:Néo-Exdeath starts using Croix Suprême Alpha/,
+      regexJa: / 14:242B:ネオエクスデス starts using グランドクロス・アルファ/,
       run: function(data) {
         data.phase = 'alpha';
         data.alphaCount = (data.alphaCount || 0) + 1;
@@ -150,14 +177,20 @@
       },
     },
     { // Phase Tracker: Grand Cross Delta.
-      regex: / 14:242C:Neo Exdeath starts using/,
+      regex: / 14:242C:Neo Exdeath starts using Grand Cross Delta/,
+      regexDe: / 14:242C:Neo Exdeath starts using Supernova Delta/,
+      regexFr: / 14:242C:Néo-Exdeath starts using Croix Suprême Delta/,
+      regexJa: / 14:242C:ネオエクスデス starts using グランドクロス・デルタ/,
       run: function(data) {
         data.phase = 'delta';
         data.waterHealer = null;
       },
     },
     { // Phase Tracker: Grand Cross Omega.
-      regex: / 14:242D:Neo Exdeath starts using/,
+      regex: / 14:242D:Neo Exdeath starts using Grand Cross Omega/,
+      regexDe: / 14:242D:Neo Exdeath starts using Supernova Omega/,
+      regexFr: / 14:242D:Néo-Exdeath starts using Croix Suprême Oméga/,
+      regexJa: / 14:242D:ネオエクスデス starts using グランドクロス・オメガ/,
       run: function(data) {
         data.phase = 'omega';
         data.waterHealer = null;
@@ -165,14 +198,19 @@
       },
     },
     { // Phase Tracker: Neverwhere.
-      regex: / 14:2426:Neo Exdeath starts using/,
+      regex: / 14:2426:Neo Exdeath starts using Neverwhere/,
+      regexDe: / 14:2426:Neo Exdeath starts using Nirgendwann/,
+      regexFr: / 14:2426:Néo-Exdeath starts using Anarchie/,
+      regexJa: / 14:2426:ネオエクスデス starts using 法則崩壊/,
       run: function(data) {
         data.finalphase = true;
       },
     },
     { // Wound tracking
-      regex: /:(\y{Name}) (gains|loses) the effect of White Wound/,
-      regexDe: /:(\y{Name}) (gains|loses) the effect of Wunde Des Lebenden/,
+      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of White Wound/,
+      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Wunde Des Lebenden/,
+      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Lésion Du Vivant/,
+      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of 生者の傷/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -181,8 +219,10 @@
       },
     },
     { // Wound tracking
-      regex: /:(\y{Name}) (gains|loses) the effect of Black Wound/,
-      regexDe: /:(\y{Name}) (gains|loses) the effect of Wunde Des Toten/,
+      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Black Wound/,
+      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Wunde Des Toten/,
+      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Lésion Du Défunt/,
+      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of 死者の傷/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -191,8 +231,10 @@
       },
     },
     { // Beyond death tracking
-      regex: /:(\y{Name}) (gains|loses) the effect of Beyond Death/,
-      regexDe: /:(\y{Name}) (gains|loses) the effect of Jenseis Des Jenseits/,
+      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Beyond Death/,
+      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Jenseits Des Jenseits/,
+      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Outre-Mort/,
+      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of 死の超越/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -201,8 +243,10 @@
       },
     },
     { // Allagan field tracking
-      regex: /:(\y{Name}) (gains|loses) the effect of Allagan Field/,
-      regexDe: /:(\y{Name}) (gains|loses) the effect of Allagisches Feld/,
+      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Allagan Field/,
+      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Allagisches Feld/,
+      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Champ Allagois/,
+      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of アラガンフィールド/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -212,7 +256,10 @@
     },
     { // Inner Flood (move out).
       id: 'O4S2 Flood of Naught: Inside',
-      regex: / 14:240E:Neo Exdeath starts using/,
+      regex: / 14:240E:Neo Exdeath starts using Flood Of Naught/,
+      regexDe: / 14:240E:Neo Exdeath starts using Flut Der Leere/,
+      regexFr: / 14:240E:Néo-Exdeath starts using Crue Du Néant/,
+      regexJa: / 14:240E:ネオエクスデス starts using 無の氾濫/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -249,7 +296,10 @@
     },
     { // Outer Flood (move in).
       id: 'O4S2 Flood of Naught: Outside',
-      regex: / 14:240F:Neo Exdeath starts using/,
+      regex: / 14:240F:Neo Exdeath starts using Flood Of Naught/,
+      regexDe: / 14:240F:Neo Exdeath starts using Flut Der Leere/,
+      regexFr: / 14:240F:Néo-Exdeath starts using Crue Du Néant/,
+      regexJa: / 14:240F:ネオエクスデス starts using 無の氾濫/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -286,7 +336,10 @@
     },
     { // Purple/Blue Flood.
       id: 'O4S2 Flood of Naught: Colors Purple Blue',
-      regex: / 14:2411:Neo Exdeath starts using/,
+      regex: / 14:2411:Neo Exdeath starts using Flood Of Naught/,
+      regexDe: / 14:2411:Neo Exdeath starts using Flut Der Leere/,
+      regexFr: / 14:2411:Néo-Exdeath starts using Crue Du Néant/,
+      regexJa: / 14:2411:ネオエクスデス starts using 無の氾濫/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (!data.shouldDieOnLaser())
@@ -339,7 +392,10 @@
     },
     { // Blue/Purple Flood.
       id: 'O4S2 Flood of Naught: Colors Blue Purple',
-      regex: / 14:2412:Neo Exdeath starts using/,
+      regex: / 14:2412:Neo Exdeath starts using Flood Of Naught/,
+      regexDe: / 14:2412:Neo Exdeath starts using Flut Der Leere/,
+      regexFr: / 14:2412:Néo-Exdeath starts using Crue Du Néant/,
+      regexJa: / 14:2412:ネオエクスデス starts using 無の氾濫/,
       durationSeconds: 6,
       alarmText: function(data) {
         if (!data.shouldDieOnLaser())
@@ -391,7 +447,10 @@
       },
     },
     { // Laser counter.
-      regex: / 14:24(?:OE|0F|11|12):Neo Exdeath starts using/,
+      regex: / 14:24(?:0E|0F|11|12):Neo Exdeath starts using Flood Of Naught/,
+      regexDe: / 14:24(?:0E|0F|11|12):Neo Exdeath starts using Flut Der Leere/,
+      regexFr: / 14:24(?:0E|0F|11|12):Néo-Exdeath starts using Crue Du Néant/,
+      regexJa: / 14:24(?:0E|0F|11|12):ネオエクスデス starts using 無の氾濫/,
       run: function(data) {
         if (data.phase != 'omega')
           return;
@@ -410,7 +469,10 @@
     },
     { // Charge Flood.
       id: 'O4S2 Flood of Naught: Charge',
-      regex: / 14:2416:Neo Exdeath starts using/,
+      regex: / 14:2416:Neo Exdeath starts using Flood Of Naught/,
+      regexDe: / 14:2416:Neo Exdeath starts using Flut Der Leere/,
+      regexFr: / 14:2416:Néo-Exdeath starts using Crue Du Néant/,
+      regexJa: / 14:2416:ネオエクスデス starts using 無の氾濫/,
       infoText: function(data) {
         if (data.allaganField) {
           if (data.role == 'tank') {
@@ -442,7 +504,10 @@
     },
     { // Double attack.
       id: 'O4S2 Double Attack',
-      regex: / 14:241C:Neo Exdeath starts using/,
+      regex: / 14:241C:Neo Exdeath starts using Double Attack/,
+      regexDe: / 14:241C:Neo Exdeath starts using Doppelangriff/,
+      regexFr: / 14:241C:Néo-Exdeath starts using Double Attaque/,
+      regexJa: / 14:241C:ネオエクスデス starts using ダブルアタック/,
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -462,7 +527,10 @@
     },
     { // Grand Cross Alpha.
       id: 'O4S2 Grand Cross Alpha',
-      regex: / 14:242B:Neo Exdeath starts using/,
+      regex: / 14:242B:Neo Exdeath starts using Grand Cross Alpha/,
+      regexDe: / 14:242B:Neo Exdeath starts using Supernova Alpha/,
+      regexFr: / 14:242B:Néo-Exdeath starts using Croix Suprême Alpha/,
+      regexJa: / 14:242B:ネオエクスデス starts using グランドクロス・アルファ/,
       infoText: {
         en: 'Grand Cross Alpha: Go to middle',
         de: 'Supernova Alpha: In die Mitte',
@@ -474,7 +542,10 @@
     },
     { // Grand Cross Delta.
       id: 'O4S2 Grand Cross Delta',
-      regex: / 14:242C:Neo Exdeath starts using/,
+      regex: / 14:242C:Neo Exdeath starts using Grand Cross Delta/,
+      regexDe: / 14:242C:Neo Exdeath starts using Supernova Delta/,
+      regexFr: / 14:242C:Néo-Exdeath starts using Croix Suprême Delta/,
+      regexJa: / 14:242C:ネオエクスデス starts using グランドクロス・デルタ/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -514,7 +585,10 @@
     },
     { // Grand Cross Omega.
       id: 'O4S2 Grand Cross Omega',
-      regex: / 14:242D:Neo Exdeath starts using/,
+      regex: / 14:242D:Neo Exdeath starts using Grand Cross Omega/,
+      regexDe: / 14:242D:Neo Exdeath starts using Supernova Omega/,
+      regexFr: / 14:242D:Néo-Exdeath starts using Croix Suprême Oméga/,
+      regexJa: / 14:242D:ネオエクスデス starts using グランドクロス・オメガ/,
       infoText: {
         en: 'Grand Cross Omega: Go to middle',
         de: 'Supernova Omega: In die Mitte',
@@ -526,8 +600,10 @@
     },
     { // Forked Lightning - Don't Stack.
       id: 'O4S2 Forked Lightning',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Gabelblitz from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gabelblitz from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Éclair Ramifié from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of フォークライトニング from/,
       delaySeconds: 1,
       alertText: {
         en: 'Forked Lightning: Don\'t Stack',
@@ -543,8 +619,10 @@
     },
     { // Acceleration Bomb
       id: 'O4S2 Acceleration Bomb',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -566,8 +644,10 @@
     },
     {
       id: 'O4S2 Acceleration Bomb Delta',
-      regex: / 1A:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'delta';
       },
@@ -582,8 +662,10 @@
     },
     { // Shriek (Omega)
       id: 'O4S2 Omega Shriek',
-      regex: / 1A:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'omega';
       },
@@ -601,16 +683,20 @@
     },
     { // Water Tracking (Delta/Omega)
       id: 'O4S2 Water',
-      regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Compressed Water/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Wasserkompression/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Compression Aqueuse/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 水属性圧縮/,
       run: function(data, matches) {
         data.waterHealer = matches[1];
       },
     },
     { // Water Me (Delta/Omega)
       id: 'O4S2 Water Me',
-      regex: / 1A:(\y{Name}) gains the effect of Compressed Water/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Wasserkompression/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Compressed Water/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Wasserkompression/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Compression Aqueuse/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 水属性圧縮/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -636,8 +722,10 @@
     },
     { // Beyond Death Tank (Delta)
       id: 'O4S2 Beyond Death Delta Tank',
-      regex: / 1A:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role == 'tank';
       },
@@ -663,8 +751,10 @@
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death Delta Initial',
-      regex: / 1A:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role != 'tank';
       },
@@ -679,8 +769,10 @@
     },
     { // Off Balance (Omega)
       id: 'O4S2 Off Balance Omega',
-      regex: / 1A:(\y{Name}) gains the effect of Off-Balance/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Gleichgewichtsverlust/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Off-Balance/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gleichgewichtsverlust/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Perte D'Équilibre/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ノックバック確定/,
       condition: function(data, matches) {
         return data.phase == 'omega' && matches[1] == data.me;
       },
@@ -705,7 +797,7 @@
     },
     { // Earthshaker
       id: 'O4S2 Earthshaker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -732,7 +824,10 @@
     },
     { // Delta Attack
       id: 'O4S2 Delta Attack',
-      regex: / 14:241E:Neo Exdeath starts using/,
+      regex: / 14:241E:Neo Exdeath starts using Delta Attack/,
+      regexDe: / 14:241E:Neo Exdeath starts using Delta-Attacke/,
+      regexFr: / 14:241E:Néo-Exdeath starts using Attaque Delta/,
+      regexJa: / 14:241E:ネオエクスデス starts using デルタアタック/,
       infoText: {
         en: 'Delta Attack: Stack',
         de: 'Delta Attacke: Stack',
@@ -744,12 +839,13 @@
     },
     { // Almagest
       id: 'O4S2 Almagest',
-      regex: / 14:2417:Neo Exdeath starts using/,
-      alertText: function(data) {
-        return {
-          en: 'Almagest',
-          de: 'Almagest',
-        };
+      regex: / 14:2417:Neo Exdeath starts using Almagest/,
+      regexDe: / 14:2417:Neo Exdeath starts using Almagest/,
+      regexFr: / 14:2417:Néo-Exdeath starts using Almageste/,
+      regexJa: / 14:2417:ネオエクスデス starts using アルマゲスト/,
+      alertText: {
+        en: 'Almagest',
+        de: 'Almagest',
       },
       tts: {
         en: 'almagest',
@@ -761,7 +857,10 @@
     },
     { // Flare
       id: 'O4S2 Flare',
-      regex: / 14:2401:Neo Exdeath starts using (?:Unknown_2401|Flare) on (\y{Name})/,
+      regex: / 14:2401:Neo Exdeath starts using Flare on (\y{Name})/,
+      regexDe: / 14:2401:Neo Exdeath starts using Flare on (\y{Name})/,
+      regexFr: / 14:2401:Néo-Exdeath starts using Brasier on (\y{Name})/,
+      regexJa: / 14:2401:ネオエクスデス starts using フレア on (\y{Name})/,
       infoText: function(data) {
         if (data.flareTargets.indexOf(data.me) < 0) {
           return {

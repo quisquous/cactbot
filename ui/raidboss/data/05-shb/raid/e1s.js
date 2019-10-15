@@ -66,7 +66,7 @@
     {
       id: 'E1S Eden\'s Gravity',
       regex: / 14:3D70:Eden Prime starts using Eden's Gravity/,
-      regexDe: / 14:3D70:Prim-Eden starts using /,
+      regexDe: / 14:3D70:Prim-Eden starts using Eden-Gravitas/,
       regexFr: / 14:3D70:Primo-Éden starts using Gravité Édénique/,
       regexJa: / 14:3D70:エデン・プライム starts using エデン・グラビデ/,
       condition: function(data) {
@@ -82,7 +82,7 @@
       id: 'E1S Fragor Maximus',
       regex: / 14:3D8B:Eden Prime starts using Fragor Maximus/,
       regexDe: / 14:3D8B:Prim-Eden starts using Fragor Maximus/,
-      regexFr: / 14:3D8B::Primo-Éden starts using Fragor Maximus/,
+      regexFr: / 14:3D8B:Primo-Éden starts using Fragor Maximus/,
       regexJa: / 14:3D8B:エデン・プライム starts using フラゴルマクシマス/,
       condition: function(data) {
         return data.role == 'healer';
@@ -113,7 +113,7 @@
       regex: / 14:3D88:Eden Prime starts using Spear Of Paradise on (\y{Name})/,
       regexDe: / 14:3D88:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
       regexFr: / 14:3D88:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
-      regexJa: / 14:3D88:エデン・プライム starts using Spear Of Paradise on (\y{Name})/,
+      regexJa: / 14:3D88:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -353,7 +353,7 @@
       regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Markiert/,
       regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Marquage/,
       regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of マーキング/,
-      condition: function(data, matches) {
+      condition: function(data) {
         if (data.role == 'dps')
           return data.paradise;
         if (data.role == 'tank')

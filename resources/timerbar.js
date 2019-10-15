@@ -381,6 +381,17 @@ class TimerBar extends HTMLElement {
     }
   }
 
+  // Apply all styles from an object where keys are CSS properties
+  applyStyles(styles) {
+    const s = Object.keys(styles).map((k) => {
+      return `${k}:${styles[k]};`;
+    }).join('');
+
+    this.shadowRoot.getElementById('lefttext').style.cssText += s;
+    this.shadowRoot.getElementById('centertext').style.cssText += s;
+    this.shadowRoot.getElementById('righttext').style.cssText += s;
+  }
+
   setvalue(remainSec) {
     let elapsedSec = Math.max(0, this._duration - remainSec);
     this._start = new Date() - (elapsedSec * 1000);

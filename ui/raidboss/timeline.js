@@ -14,7 +14,7 @@ function computeBackgroundColorFrom(element, classList) {
 // This class reads the format of ACT Timeline plugin, described in
 // data/README.txt.
 class Timeline {
-  constructor(text, replacements, triggers, options) {
+  constructor(text, replacements, triggers, styles, options) {
     this.options = options;
     this.replacements = replacements;
 
@@ -34,7 +34,7 @@ class Timeline {
     this.activeEvents = [];
     // Sorted by line.
     this.errors = [];
-    this.LoadFile(text, triggers);
+    this.LoadFile(text, triggers, styles);
     this.Stop();
   }
 
@@ -65,7 +65,7 @@ class Timeline {
     return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
-  LoadFile(text, triggers) {
+  LoadFile(text, triggers, styles) {
     this.events = [];
     this.syncStarts = [];
     this.syncEnds = [];
@@ -222,6 +222,15 @@ class Timeline {
             trigger: trigger,
             matches: m,
           });
+        }
+      }
+
+      if (styles) {
+        for (const style of styles) {
+          const m = e.name.match(style.regex);
+          if (!m)
+            continue;
+          Object.assign(e, { style: style.style });
         }
       }
     }
@@ -631,6 +640,9 @@ class TimelineUI {
     bar.toward = 'right';
     bar.style = !channeling ? 'fill' : 'empty';
 
+    if (e.style)
+      bar.applyStyles(e.style);
+
     if (!channeling && e.time - fightNow > this.options.BarExpiresSoonSeconds) {
       bar.fg = this.barColor;
       window.setTimeout(
@@ -746,7 +758,7 @@ class TimelineController {
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
   }
 
-  SetActiveTimeline(timelineFiles, timelines, replacements, triggers) {
+  SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
     this.activeTimeline = null;
 
     if (!this.options.TimelineEnabled)
@@ -767,7 +779,7 @@ class TimelineController {
       text = text + '\n' + timelines[i];
 
     if (text)
-      this.activeTimeline = new Timeline(text, replacements, triggers, this.options);
+      this.activeTimeline = new Timeline(text, replacements, triggers, styles, this.options);
     this.ui.SetTimeline(this.activeTimeline);
   }
 
@@ -786,8 +798,14 @@ class TimelineLoader {
     this.timelineController = timelineController;
   }
 
-  SetTimelines(timelineFiles, timelines, replacements, triggers) {
-    this.timelineController.SetActiveTimeline(timelineFiles, timelines, replacements, triggers);
+  SetTimelines(timelineFiles, timelines, replacements, triggers, styles) {
+    this.timelineController.SetActiveTimeline(
+        timelineFiles,
+        timelines,
+        replacements,
+        triggers,
+        styles
+    );
   }
 
   StopCombat() {

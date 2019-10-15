@@ -2,7 +2,7 @@
 
 // Ultima Weapon Ultimate
 [{
-  zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
+  zoneRegex: /^The Weapon's Refrain \(Ultimate\)$/,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
     {
@@ -44,11 +44,11 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regex: /14:2B53:Garuda starts using (?:Unknown_2B53|Slipstream)/,
-      regexDe: /14:2B53:Garuda starts using (?:Unknown_2B53|Wirbelströmung)/,
-      regexFr: /14:2B53:Garuda starts using (?:Unknown_2B53|Sillage)/,
-      regexJa: /14:2B53:ガルーダ starts using (?:Unknown_2B53|スリップストリーム)/,
-      regexKo: /14:2B53:가루다 starts using (?:Unknown_2B53|반동 기류)/,
+      regex: / 14:2B53:Garuda starts using Slipstream/,
+      regexDe: / 14:2B53:Garuda starts using Wirbelströmung/,
+      regexFr: / 14:2B53:Garuda starts using Sillage/,
+      regexJa: / 14:2B53:ガルーダ starts using スリップストリーム/,
+      regexKo: / 14:2B53:가루다 starts using 반동 기류/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -96,7 +96,7 @@
       regexFr: / 03:\y{ObjectId}:Added new combatant Plume Perforante\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant スパイニープルーム/,
       regexKo: / 03:\y{ObjectId}Added new combatant 가시돋힌 깃털/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'tank';
       },
       infoText: {
@@ -109,11 +109,11 @@
     },
     {
       id: 'UWU Ifrit Fetters',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernal Fetters from/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernofesseln from/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaînes Infernales from/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 炎獄の鎖 from/,
-      regexKo: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernal Fetters from/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernofesseln from/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaînes Infernales from/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 炎獄の鎖 from/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -209,7 +209,7 @@
         if (data.titanGaols.length == 3)
           data.titanGaols.sort();
       },
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (data.titanGaols.length != 3)
           return;
         let idx = data.titanGaols.indexOf(data.me);
@@ -218,7 +218,7 @@
         // Just return your number.
         return idx + 1;
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.titanGaols.length != 3)
           return;
         // Return all the people in order.
@@ -249,9 +249,9 @@
     },
     {
       // Cleanup
-      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}/,
-      regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}/,
-      regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}/,
+      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}:/,
+      regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}:/,
+      regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}:/,
       regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
       regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
       delaySeconds: 15,

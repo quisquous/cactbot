@@ -7,9 +7,9 @@
     {
       id: 'Holminster Path of Light',
       regex: / 14:3DC5:Forgiven Dissonance starts using Path Of Light/,
+      regexDe: / 14:3DC5:Geläuterter Widerspruch starts using Pfad Des Lichts/,
       regexFr: / 14:3DC5:Dissonance Pardonnée starts using Voie [dD]e [lL]umière/,
       regexJa: / 14:3DC5:フォーギヴン・ディソナンス starts using 光の波動/,
-      regexDe: / 14:3DC5:Geläuterter Widerspruch starts using Pfad Des Lichts/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -22,9 +22,9 @@
     {
       id: 'Holminster Pillory',
       regex: / 14:3DC4:Forgiven Dissonance starts using Pillory on (\y{Name})/,
-      regexJa: / 14:3DC4:フォーギヴン・ディソナンス starts using ピロリ― on (\y{Name})/,
       regexDe: / 14:3DC4:Geläuterter Widerspruch starts using Herzreißer on (\y{Name})/,
       regexFr: / 14:3DC4:Dissonance Pardonnée starts using Pilori on (\y{Name})/,
+      regexJa: / 14:3DC4:フォーギヴン・ディソナンス starts using ピロリ― on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -45,9 +45,9 @@
     {
       id: 'Holminster Tickler',
       regex: / 14:3DCF:Tesleen, [tT]he Forgiven starts using The Tickler on (\y{Name})/,
-      regexJa: / 14:3DCF:フォーギヴン・テスリーン starts using ティッカー on (\y{Name})/,
       regexDe: / 14:3DCF:Tesleen die Bekehrte starts using Handauflegung on (\y{Name})/,
       regexFr: / 14:3DCF:Tesleen Pardonnée starts using Chatouillement on (\y{Name})/,
+      regexJa: / 14:3DCF:フォーギヴン・テスリーン starts using ティッカー on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -113,9 +113,9 @@
     {
       id: 'Holminster Scavenger',
       regex: / 14:3DD8:Philia starts using Scavenger's Daughter/,
-      regexJa: / 14:3DD8:フィリア starts using スカベンジャーズドーター/,
       regexDe: / 14:3DD8:Philia starts using Radebrechen/,
       regexFr: / 14:3DD8:Philia starts using Fille Du Boueur/,
+      regexJa: / 14:3DD8:フィリア starts using スカベンジャーズドーター/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -128,9 +128,9 @@
     {
       id: 'Holminster Head Crusher',
       regex: / 14:3DD7:Philia starts using Head Crusher on (\y{Name})/,
-      regexJa: / 14:3DD7:フィリア starts using ヘッドクラッシャー on (\y{Name})/,
       regexDe: / 14:3DD7:Philia starts using Knochenmalmer on (\y{Name})/,
       regexFr: / 14:3DD7:Philia starts using Écraseur De Tête on (\y{Name})/,
+      regexJa: / 14:3DD7:フィリア starts using ヘッドクラッシャー on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

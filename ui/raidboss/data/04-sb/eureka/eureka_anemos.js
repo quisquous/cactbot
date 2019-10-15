@@ -6,10 +6,11 @@
   triggers: [
     {
       id: 'Eureka Garm Dragon Voice',
-      regex: /14:2AD5:Void Garm starts using The Dragon's Voice/,
-      regexCn: /14:2AD5:虚无加姆 starts using 雷电咆哮/,
-      regexDe: /14:2AD5:Nichts-Garm starts using Stimme Des Drachen/,
-      regexFr: /14:2AD5:Garm Du Néant starts using Voix Du Dragon/,
+      regex: / 14:2AD5:Void Garm starts using The Dragon's Voice/,
+      regexDe: / 14:2AD5:Nichts-Garm starts using Stimme Des Drachen/,
+      regexFr: / 14:2AD5:Garm Du Néant starts using Voix Du Dragon/,
+      regexJa: / 14:2AD5:ヴォイドガルム starts using 雷電の咆哮/,
+      regexCn: / 14:2AD5:虚无加姆 starts using 雷电咆哮/,
       infoText: {
         en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
@@ -25,10 +26,11 @@
     },
     {
       id: 'Euereka Sabotender Stack Marker',
-      regex: /14:29EB:Sabotender Corrido starts using 100,000 Needles on (\y{Name})/,
-      regexCn: /14:29EB:科里多仙人刺 starts using 十万针刺 on (\y{Name})/,
-      regexDe: /14:29EB:Sabotender Corrido starts using 100\.000 Nadeln on (\y{Name})/,
-      regexFr: /14:29EB:Pampa Corrido starts using 100 000 Aiguilles on (\y{Name})/,
+      regex: / 14:29EB:Sabotender Corrido starts using 100,000 Needles on (\y{Name})/,
+      regexDe: / 14:29EB:Sabotender Corrido starts using 100\.000 Nadeln on (\y{Name})/,
+      regexFr: / 14:29EB:Pampa Corrido starts using 100 000 Aiguilles on (\y{Name})/,
+      regexJa: / 14:29EB:賞金首：サボテンダー・コリード starts using 針十万本 on (\y{Name})/,
+      regexCn: / 14:29EB:科里多仙人刺 starts using 十万针刺 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] != data.me)
           return;
@@ -70,10 +72,11 @@
     },
     {
       id: 'Eureka Poly Swipe',
-      regex: /14:2A71:Polyphemus starts using 100-Tonze Swipe/,
-      regexCn: /14:2A71:波吕斐摩斯 starts using 百吨横扫/,
-      regexDe: /14:2A71:Polyphemus starts using 100-Tonzen-Hieb/,
-      regexFr: /14:2A71:Polyphemus starts using Fauche De 100 Tonz/,
+      regex: / 14:2A71:Polyphemus starts using 100-Tonze Swipe/,
+      regexDe: / 14:2A71:Polyphemus starts using 100-Tonzen-Hieb/,
+      regexFr: / 14:2A71:Polyphemus starts using Fauche De 100 Tonz/,
+      regexJa: / 14:2A71:ポリュペモス starts using 100トンズ・スワイプ/,
+      regexCn: / 14:2A71:波吕斐摩斯 starts using 百吨横扫/,
       infoText: {
         en: 'Swipe',
         de: 'Hieb',
@@ -83,10 +86,11 @@
     },
     {
       id: 'Eureka Poly Swing',
-      regex: /14:2A6E:Polyphemus starts using 10,000-Tonze Swing/,
-      regexCn: /14:2A6E:波吕斐摩斯 starts using 万吨回转/,
-      regexDe: /14:2A6E:Polyphemus starts using 10\.000-Tonzen-Schwung/,
-      regexFr: /14:2A6E:Polyphemus starts using Swing De 10 000 Tonz/,
+      regex: / 14:2A6E:Polyphemus starts using 10,000-Tonze Swing/,
+      regexDe: / 14:2A6E:Polyphemus starts using 10\.000-Tonzen-Schwung/,
+      regexFr: / 14:2A6E:Polyphemus starts using Swing De 10 000 Tonz/,
+      regexJa: / 14:2A6E:ポリュペモス starts using 10000トンズ・スイング/,
+      regexCn: / 14:2A6E:波吕斐摩斯 starts using 万吨回转/,
       alarmText: {
         en: 'GET OUT',
         de: 'RAUS DA',
@@ -96,10 +100,11 @@
     },
     {
       id: 'Eureka Poly Eye',
-      regex: /14:2A73:Polyphemus starts using Eye Of The Beholder/,
-      regexCn: /14:2A73:波吕斐摩斯 starts using 深瞳凝视/,
-      regexDe: /14:2A73:Polyphemus starts using Auge Des Betrachters/,
-      regexFr: /14:2A73:Polyphemus starts using L'œil Du Spectateur on Polyphemus/,
+      regex: / 14:2A73:Polyphemus starts using Eye Of The Beholder/,
+      regexDe: / 14:2A73:Polyphemus starts using Auge Des Betrachters/,
+      regexFr: / 14:2A73:Polyphemus starts using L'œil Du Spectateur/,
+      regexJa: / 14:2A73:ポリュペモス starts using アイ・オブ・ビホルダー/,
+      regexCn: / 14:2A73:波吕斐摩斯 starts using 深瞳凝视/,
       alertText: {
         en: 'Eye Donut',
         de: 'Augendonut',
@@ -109,10 +114,11 @@
     },
     {
       id: 'Eureka Poly Glower',
-      regex: /14:2A72:Polyphemus starts using Glower/,
-      regexCn: /14:2A72:波吕斐摩斯 starts using 怒视/,
-      regexDe: /14:2A72:Polyphemus starts using Finsterer Blick/,
-      regexFr: /14:2A72:Polyphemus starts using Regard Noir/,
+      regex: / 14:2A72:Polyphemus starts using Glower/,
+      regexDe: / 14:2A72:Polyphemus starts using Finsterer Blick/,
+      regexFr: / 14:2A72:Polyphemus starts using Regard Noir/,
+      regexJa: / 14:2A72:ポリュペモス starts using グラワー/,
+      regexCn: / 14:2A72:波吕斐摩斯 starts using 怒视/,
       alertText: {
         en: 'Glower Laser',
         de: 'Blick Laser',
@@ -122,10 +128,11 @@
     },
     {
       id: 'Eureka Caym Eye',
-      regex: /14:2A64:Caym starts using Double Hex Eye/,
-      regexCn: /14:2A64:盖因 starts using 大凶眼/,
-      regexDe: /14:2A64:Caym starts using Doppeltes Hex-Auge/,
-      regexFr: /14:2A64:Caym starts using Double Œil Néfaste/,
+      regex: / 14:2A64:Caym starts using Double Hex Eye/,
+      regexDe: / 14:2A64:Caym starts using Doppeltes Hex-Auge/,
+      regexFr: / 14:2A64:Caym starts using Double Œil Néfaste/,
+      regexJa: / 14:2A64:カイム starts using 大凶眼/,
+      regexCn: / 14:2A64:盖因 starts using 大凶眼/,
       alarmText: {
         en: 'Look Away!',
         de: 'Wegschauen!',
@@ -141,10 +148,11 @@
     },
     {
       id: 'Fafnir Terror',
-      regex: /14:29B7:Fafnir starts using Absolute Terror/,
-      regexCn: /14:29B7:法夫纳 starts using 绝对恐惧/,
-      regexDe: /14:29B7:Fafnir starts using Absoluter Terror/,
-      regexFr: /14:29B7:Fafnir starts using Terreur Absolue/,
+      regex: / 14:29B7:Fafnir starts using Absolute Terror/,
+      regexDe: / 14:29B7:Fafnir starts using Absoluter Terror/,
+      regexFr: / 14:29B7:Fafnir starts using Terreur Absolue/,
+      regexJa: / 14:29B7:ファヴニル starts using アブソルートテラー/,
+      regexCn: / 14:29B7:法夫纳 starts using 绝对恐惧/,
       alarmText: {
         en: 'Look Away!',
         de: 'Wegschauen!',
@@ -160,10 +168,11 @@
     },
     {
       id: 'Eureka Voidscale Ice',
-      regex: /14:29C3:Voidscale starts using Ball Of Ice on (\y{Name})/,
-      regexCn: /14:29C3:虚无鳞龙 starts using (冰球|冻结) on (\y{Name})/,
-      regexDe: /14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
-      regexFr: /14:29C3:Vidécailles starts using Boule De Glace on (\y{Name})/,
+      regex: / 14:29C3:Voidscale starts using Ball Of Ice on (\y{Name})/,
+      regexDe: / 14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
+      regexFr: / 14:29C3:Vidécailles starts using Boule De Glace on (\y{Name})/,
+      regexJa: / 14:29C3:ヴォイドスケイル starts using 氷結球 on (\y{Name})/,
+      regexCn: / 14:29C3:虚无鳞龙 starts using (冰球|冻结) on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -182,10 +191,11 @@
     },
     {
       id: 'Eureka Pazuzu Dread Wind',
-      regex: /14:2899:Pazuzu starts using Dread Wind/,
+      regex: / 14:2899:Pazuzu starts using Dread Wind/,
+      regexDe: / 14:2899:Pazuzu starts using Furchtwind/,
+      regexFr: / 14:2899:Pazuzu starts using Vent D'effroi/,
+      regexJa: / 14:2899:パズズ starts using ドレッドウィンド/,
       regexCn: /14:2899:帕祖祖 starts using 恐慌之风/,
-      regexDe: /14:2899:Pazuzu starts using Furchtwind/,
-      regexFr: /14:2899:Pazuzu starts using Vent D'effroi/,
       alarmText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -195,8 +205,11 @@
     },
     {
       id: 'Eureka Pazuzu Camisado',
-      regex: /14:289F:Pazuzu starts using Camisado on (\y{Name})/,
-      regexCn: /14:289F:帕祖祖 starts using 夜袭 on (\y{Name})/,
+      regex: / 14:289F:Pazuzu starts using Camisado on (\y{Name})/,
+      regexDe: / 14:289F:Pazuzu starts using Camisado on (\y{Name})/,
+      regexFr: / 14:289F:Pazuzu starts using Camisado on (\y{Name})/,
+      regexJa: / 14:289F:パズズ starts using カミサドー on (\y{Name})/,
+      regexCn: / 14:289F:帕祖祖 starts using 夜袭 on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -215,10 +228,11 @@
     },
     {
       id: 'Eureka Pazuzu Cloud of Locust',
-      regex: /14:2897:Pazuzu starts using Cloud Of Locust/,
-      regexCn: /14:2897:帕祖祖 starts using 飞蝗入侵/,
-      regexDe: /14:2897:Pazuzu starts using Heuschreckeninvasion/,
-      regexFr: /14:2897:Pazuzu starts using Invasion De Sauterelles/,
+      regex: / 14:2897:Pazuzu starts using Cloud Of Locust/,
+      regexDe: / 14:2897:Pazuzu starts using Heuschreckeninvasion/,
+      regexFr: / 14:2897:Pazuzu starts using Invasion De Sauterelles/,
+      regexJa: / 14:2897:パズズ starts using ローカストインヴェイジョン/,
+      regexCn: / 14:2897:帕祖祖 starts using 飞蝗入侵/,
       infoText: {
         en: 'Out of melee',
         de: 'Raus aus Nahkampf',
@@ -228,10 +242,11 @@
     },
     {
       id: 'Eureka Pazuzu Plague of Locust',
-      regex: /14:2896:Pazuzu starts using Plague Of Locusts/,
-      regexCn: /14:2896:帕祖祖 starts using 飞蝗疫病/,
-      regexDe: /14:2896:Pazuzu starts using Heuschreckenplage/,
-      regexFr: /14:2896:Pazuzu starts using Nuée De Sauterelles/,
+      regex: / 14:2896:Pazuzu starts using Plague Of Locusts/,
+      regexDe: / 14:2896:Pazuzu starts using Heuschreckenplage/,
+      regexFr: / 14:2896:Pazuzu starts using Nuée De Sauterelles/,
+      regexJa: / 14:2896:パズズ starts using ローカストプレイグ/,
+      regexCn: / 14:2896:帕祖祖 starts using 飞蝗疫病/,
       alarmText: {
         en: 'Plague Donut',
         de: 'Plagen-Donut',
@@ -265,18 +280,21 @@
     },
     {
       id: 'Eureka Pazuzu Pop',
-      regex: /03:\y{ObjectId}:Added new combatant Pazuzu\./,
-      regexCn: /03:\y{ObjectId}:Added new combatant 帕祖祖/,
+      regex: / 03:\y{ObjectId}:Added new combatant Pazuzu\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Pazuzu\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Pazuzu\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant パズズ\./,
+      regexCn: / 03:\y{ObjectId}:Added new combatant 帕祖祖/,
       run: function(data) {
         data.wraithCount = 0;
       },
     },
     {
       id: 'Eureka Falling Asleep',
-      regex: /00:0039:5 minutes have elapsed since your last activity./,
-      regexCn: /00:0039:已经5分钟没有进行任何操作/,
-      regexDe: /00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
-      regexFr: /00:0039:Votre personnage est inactif depuis 5 minutes/,
+      regex: / 00:0039:5 minutes have elapsed since your last activity./,
+      regexDe: / 00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
+      regexFr: / 00:0039:Votre personnage est inactif depuis 5 minutes/,
+      regexCn: / 00:0039:已经5分钟没有进行任何操作/,
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',

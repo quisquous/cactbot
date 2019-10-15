@@ -33,6 +33,15 @@
       ];
     },
   ],
+  timelineStyles: [
+    {
+      regex: /^Death To/,
+      style: {
+        'color': 'red',
+        'font-family': 'Impact',
+      },
+    },
+  ],
   timelineTriggers: [
     {
       id: 'Test Angry Dummy',
@@ -136,13 +145,11 @@
       regexDe: /:Du willst wahren Kampfgeist in der Trainingspuppe entfachen/,
       regexFr: /:Vous vous motivez devant le mannequin d'entraînement/,
       regexCn: /:.*激励木人/,
-      alertText: function(data) {
-        return {
-          en: 'PSYCH!!!',
-          de: 'AUF GEHTS!!!',
-          fr: 'MOTIVATION !!!',
-          cn: '激励！！',
-        };
+      alertText: {
+        en: 'PSYCH!!!',
+        de: 'AUF GEHTS!!!',
+        fr: 'MOTIVATION !!!',
+        cn: '激励！！',
       },
       tts: {
         en: 'psych',
@@ -164,13 +171,11 @@
       regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
       regexCn: /:.*看着木人高声大笑/,
       suppressSeconds: 5,
-      alarmText: function(data) {
-        return {
-          en: 'hahahahaha',
-          de: 'hahahahaha',
-          fr: 'Mouahahaha',
-          cn: '2333333333',
-        };
+      alarmText: {
+        en: 'hahahahaha',
+        de: 'hahahahaha',
+        fr: 'Mouahahaha',
+        cn: '2333333333',
       },
       tts: {
         en: 'hahahahaha',
@@ -203,8 +208,8 @@
     {
       id: 'Test Lang',
       // In game: /echo cactbot lang
-      regex: /00:0038:cactbot lang/,
-      regexDe: /00:0038:cactbot sprache/,
+      regex: / 00:0038:cactbot lang/,
+      regexDe: / 00:0038:cactbot sprache/,
       infoText: function(data) {
         return {
           en: 'Language: ' + data.lang,

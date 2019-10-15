@@ -8,7 +8,7 @@
       id: 'TitanEx Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      alertText: function(data, matches) {
+      alertText: function(data) {
         if (data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'Tankbuster',
@@ -17,7 +17,7 @@
           };
         }
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.role != 'healer' && data.role != 'tank') {
           return {
             en: 'Tank Cleave',
@@ -29,7 +29,7 @@
       id: 'TitanEx Tumult',
       regex: /Tumult/,
       beforeSeconds: 5,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
       infoText: {

@@ -51,14 +51,12 @@
       regexDe: / 14:27F4:Byakko starts using Vertikalität/,
       regexFr: / 14:27F4:Byakko starts using Verticalité/,
       regexJa: / 14:27F4:白虎 starts using 旋体脚/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Get Inside',
-          de: 'Reingehen',
-          fr: 'Allez au centre',
-          ja: '密着',
-          cn: '靠近',
-        };
+      alertText: {
+        en: 'Get Inside',
+        de: 'Reingehen',
+        fr: 'Allez au centre',
+        ja: '密着',
+        cn: '靠近',
       },
       tts: {
         en: 'inside',
@@ -75,14 +73,12 @@
       regexDe: / 14:27DB:Byakko starts using Vertikalität/,
       regexFr: / 14:27DB:Byakko starts using Verticalité/,
       regexJa: / 14:27DB:白虎 starts using 旋体脚/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Get Behind',
-          de: 'Hinter ihn laufen',
-          fr: 'Allez derrière le boss',
-          ja: '後ろ',
-          cn: '背后',
-        };
+      alertText: {
+        en: 'Get Behind',
+        de: 'Hinter ihn laufen',
+        fr: 'Allez derrière le boss',
+        ja: '後ろ',
+        cn: '背后',
       },
       tts: {
         en: 'behind',
@@ -99,7 +95,7 @@
       regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
       regexFr: / 14:27DC:Byakko starts using Pulsion De Tempête/,
       regexJa: / 14:27DC:白虎 starts using 風雷波動/,
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.role == 'healer') {
           return {
             en: 'AOE',
@@ -124,14 +120,12 @@
       regexDe: / 14:27DD:Byakko starts using Donnergrollen on Byakko/,
       regexFr: / 14:27DD:Byakko starts using Tonnerre Lointain on Byakko/,
       regexJa: / 14:27DD:白虎 starts using 遠雷 on 白虎/,
-      alertText: function(data, matches) {
-        return {
-          en: 'Distant Clap',
-          de: 'Donnergrollen',
-          fr: 'Tonnerre Lointain',
-          ja: '遠雷',
-          cn: '远雷',
-        };
+      alertText: {
+        en: 'Distant Clap',
+        de: 'Donnergrollen',
+        fr: 'Tonnerre Lointain',
+        ja: '遠雷',
+        cn: '远雷',
       },
       tts: {
         en: 'clap',
@@ -197,7 +191,7 @@
       regexCn: / 14:27F9:白帝 starts using 雷轰/,
       regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
       regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:Hakutei starts using 雷轟/,
+      regexJa: / 14:27F9:白帝 starts using 雷轟/,
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -228,18 +222,16 @@
     },
     {
       id: 'ByaEx Bubble',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0065:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0065:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Drop bubble outside',
-          de: 'Blase außen ablegen',
-          fr: 'Déposez à l\'extérieur',
-          ja: '外にマーカーを置く',
-          cn: '边缘放点名',
-        };
+      infoText: {
+        en: 'Drop bubble outside',
+        de: 'Blase außen ablegen',
+        fr: 'Déposez à l\'extérieur',
+        ja: '外にマーカーを置く',
+        cn: '边缘放点名',
       },
       tts: {
         en: 'drop outside',
@@ -251,22 +243,20 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
-      regexCn: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 妖风/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り目/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り風/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 妖风/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Pink bubble',
-          de: 'Pinke Blase',
-          fr: 'Bulle violette',
-          ja: '祟り目',
-          cn: '泡泡',
-        };
+      infoText: {
+        en: 'Pink bubble',
+        de: 'Pinke Blase',
+        fr: 'Bulle violette',
+        ja: '祟り目',
+        cn: '泡泡',
       },
       tts: {
         en: 'bubble',
@@ -278,18 +268,16 @@
     },
     {
       id: 'ByaEx Puddle Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0004:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0004:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      alarmText: function(data) {
-        return {
-          en: 'Puddles on YOU',
-          de: 'Pfützen auf DIR',
-          fr: 'Mare sur VOUS',
-          ja: '自分に床範囲',
-          cn: '点名',
-        };
+      alarmText: {
+        en: 'Puddles on YOU',
+        de: 'Pfützen auf DIR',
+        fr: 'Mare sur VOUS',
+        ja: '自分に床範囲',
+        cn: '点名',
       },
       tts: {
         en: 'puddles',
@@ -301,18 +289,16 @@
     },
     {
       id: 'ByaEx G100',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
-      infoText: function(data) {
-        return {
-          en: 'Get away',
-          de: 'Weg da',
-          fr: 'Eloignez-vous',
-          ja: '離れる',
-          cn: '远离',
-        };
+      infoText: {
+        en: 'Get away',
+        de: 'Weg da',
+        fr: 'Eloignez-vous',
+        ja: '離れる',
+        cn: '远离',
       },
       tts: {
         en: 'get away',
@@ -346,7 +332,7 @@
       regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
+      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
@@ -357,7 +343,7 @@
       regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
+      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -369,7 +355,7 @@
       regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
       regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
       regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:Byakko starts using 乾坤一擲/,
+      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,

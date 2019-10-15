@@ -6,7 +6,7 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /Sigmascape V3\.0 \(Savage\)/,
+  zoneRegex: /^Sigmascape V3\.0 \(Savage\)$/,
   timelineFile: 'o7s.txt',
   triggers: [
     // State
@@ -42,7 +42,7 @@
       regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Dadaluma/,
       regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ダダルマー・プログラム/,
       regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 다다루마 프로그램/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
       run: function(data) {
@@ -58,7 +58,7 @@
       regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Bibliotaphe/,
       regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ビブリオタフ・プログラム/,
       regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 비블리오타프 프로그램/,
-      condition: function(data, matches) {
+      condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
       run: function(data) {
@@ -82,13 +82,17 @@
 
     {
       id: 'O7S Magitek Ray',
-      regex: / 14:2788:Guardian starts using (Magitek Ray)/,
-      regexDe: / 14:2788:Wächter starts using (Magitek-Laser)/,
-      regexFr: / 14:2788:Gardien starts using (Rayon Magitek)/,
-      regexJa: / 14:2788:ガーディアン starts using (魔導レーザー)/,
-      regexKo: / 14:2788:가디언 starts using (마도 레이저)/,
-      alertText: function(data, matches) {
-        return matches[1];
+      regex: / 14:2788:Guardian starts using Magitek Ray/,
+      regexDe: / 14:2788:Wächter starts using Magitek-Laser/,
+      regexFr: / 14:2788:Gardien starts using Rayon Magitek/,
+      regexJa: / 14:2788:ガーディアン starts using 魔導レーザー/,
+      regexKo: / 14:2788:가디언 starts using 마도 레이저/,
+      alertText: {
+        en: 'Magitek Ray',
+        de: 'Magitek-Laser',
+        fr: 'Rayon Magitek',
+        ko: '마도 레이저',
+        ja: '魔導レーザー',
       },
       tts: {
         en: 'beam',
@@ -137,7 +141,7 @@
     },
     {
       id: 'O7S Orb Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -158,7 +162,7 @@
     },
     {
       id: 'O7S Blue Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me != matches[1])
           return;
@@ -198,7 +202,7 @@
     },
     {
       id: 'O7S Prey',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -353,10 +357,10 @@
       // Skip: 2773
       // Retrieve: 2774
       // Paste: 2776
-      regex: / 14:(?:275C|2773|2774|2776):Guardian starts using/,
-      regexDe: / 14:(?:275C|2773|2774|2776):Wächter starts using/,
-      regexFr: / 14:(?:275C|2773|2774|2776):Gardien starts using/,
-      regexJa: / 14:(?:275C|2773|2774|2776):ガーディアン starts using/,
+      regex: / 14:(?:275C|2773|2774|2776):Guardian starts using (?:Load|Skip Program|Retrieve Program|Paste Program)/,
+      regexDe: / 14:(?:275C|2773|2774|2776):Wächter starts using (?:Laden|Programm überspringen|Programm wiederherstellen|Programm einfügen)/,
+      regexFr: / 14:(?:275C|2773|2774|2776):Gardien starts using (?:Chargement|Saut de programme|Programme précédent|Collage de programme)/,
+      regexJa: / 14:(?:275C|2773|2774|2776):ガーディアン starts using (?:ローディング|スキップ・ローディング|リバース・ローディング|プログラム・ペースト)/,
       regexKo: / 14:(?:275C|2773|2774|2776):가디언 starts using/,
       preRun: function(data) {
         data.loadCount = ++data.loadCount || 1;

@@ -8,8 +8,8 @@
       id: 'E1N Eden\'s Gravity',
       regex: / 14:3D94:Eden Prime starts using Eden's Gravity/,
       regexDe: / 14:3D94:Prim-Eden starts using Eden-Gravitas/,
-      regexJa: / 14:3D94:エデン・プライム starts using エデン・グラビデ/,
       regexFr: / 14:3D94:Primo-Éden starts using Gravité Édénique/,
+      regexJa: / 14:3D94:エデン・プライム starts using エデン・グラビデ/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -38,8 +38,8 @@
       id: 'E1N Dimensional Shift',
       regex: / 14:3D9C:Eden Prime starts using Dimensional Shift/,
       regexDe: / 14:3D9C:Prim-Eden starts using Dimensionsverschiebung/,
-      regexJa: / 14:3D9C:エデン・プライム starts using ディメンションシフト/,
       regexFr: / 14:3D9C:Primo-Éden starts using Translation Dimensionnelle/,
+      regexJa: / 14:3D9C:エデン・プライム starts using ディメンションシフト/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -53,8 +53,8 @@
       id: 'E1N Eden\'s Flare',
       regex: / 14:3D97:Eden Prime starts using Eden's Flare/,
       regexDe: / 14:3D97:Prim-Eden starts using Eden-Flare/,
-      regexJa: / 14:3D97:エデン・プライム starts using エデン・フレア/,
       regexFr: / 14:3D97:Primo-Éden starts using Brasier Édénique/,
+      regexJa: / 14:3D97:エデン・プライム starts using エデン・フレア/,
       alertText: {
         en: 'Under',
         de: 'Unter ihn',
@@ -65,8 +65,8 @@
       id: 'E1N Vice of Vanity You',
       regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Eden Prime:....:....:0011:/,
       regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Eden:....:....:0011:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:エデン・プライム:....:....:0011:/,
       regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Éden:....:....:0011:/,
+      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:エデン・プライム:....:....:0011:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -80,8 +80,8 @@
       id: 'E1N Spear Of Paradise',
       regex: / 14:3DA1:Eden Prime starts using Spear of Paradise on (\y{Name})/,
       regexDe: / 14:3DA1:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
-      regexJa: / 14:3DA1:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
       regexFr: / 14:3DA1:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
+      regexJa: / 14:3DA1:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -125,8 +125,8 @@
       id: 'E1N Pure Light',
       regex: / 14:3DA3:Eden Prime starts using Pure Light/,
       regexDe: / 14:3DA3:Prim-Eden starts using Läuterndes Licht/,
-      regexJa: / 14:3DA3:エデン・プライム starts using ピュアライト/,
       regexFr: / 14:3DA3:Primo-Éden starts using Lumière Purificatrice/,
+      regexJa: / 14:3DA3:エデン・プライム starts using ピュアライト/,
       delaySeconds: 4.5,
       alertText: {
         en: 'Get Behind',

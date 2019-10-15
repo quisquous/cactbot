@@ -6,7 +6,7 @@
 //   fr: timeline done, triggers incomplete
 //   ja: timeline done, triggers incomplete
 [{
-  zoneRegex: /Sigmascape V2\.0 \(Savage\)/,
+  zoneRegex: /^Sigmascape V2\.0 \(Savage\)$/,
   timelineFile: 'o6s.txt',
   triggers: [
     {
@@ -48,11 +48,11 @@
     },
     {
       id: 'O6S Storms Grip',
-      regex: / 03:Added new combatant The Storm's Grip/,
-      regexDe: / 03:Added new combatant Sturmgebiet/,
-      regexFr: / 03:Added new combatant Zone De Tempête/,
-      regexJa: / 03:Added new combatant 暴風域/,
-      regexKo: / 03:Added new combatant 폭풍 영역/,
+      regex: / 03:\y{ObjectId}:Added new combatant The Storm's Grip/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Sturmgebiet/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Zone De Tempête/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 暴風域/,
+      regexKo: / 03:\y{ObjectId}:Added new combatant 폭풍 영역/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -66,7 +66,7 @@
     },
     {
       id: 'O6S Demonic Stone',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -80,14 +80,14 @@
       },
     },
     {
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       run: function(data, matches) {
         data.lastKiss = matches[1];
       },
     },
     {
       id: 'O6S Last Kiss Marker',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -108,11 +108,11 @@
     },
     {
       id: 'O6S Last Kiss',
-      regex: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Last Kiss/,
-      regexDe: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Letzter Kuss/,
-      regexFr: /1A:\y{ObjectId}:(\y{Name}) gains the effect of Baiser Fatal/,
-      regexJa: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の口づけ/,
-      regexKo: /1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 입맞춤/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Last Kiss/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Letzter Kuss/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Baiser Fatal/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の口づけ/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 입맞춤/,
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.

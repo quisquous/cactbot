@@ -2,7 +2,7 @@
 
 // O10N - Alphascape 2.0
 [{
-  zoneRegex: /^(Alphascape \(V2.0\)|Alphascape V2.0)$/,
+  zoneRegex: /^Alphascape \(V2\.0\)$/,
   timelineFile: 'o10n.txt',
   triggers: [
     {
@@ -11,10 +11,10 @@
       // 31C7 + 31CB = 31CF (horiz + vert = in)
       // 31C8 + 31CB = 31D0 (vert + vert = +)
       id: 'O10N Spin Cleanup',
-      regex: /15:\y{ObjectId}:Midgardsormr:31C[78]:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31C[78]:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31C[78]:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31C[78]:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31C[78]:Coil:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31C[78]:Angriff:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31C[78]:Charge:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31C[78]:/,
       delaySeconds: 10,
       run: function(data) {
         delete data.lastSpinWasHorizontal;
@@ -22,10 +22,10 @@
     },
     {
       id: 'O10N Horizontal Spin 1',
-      regex: /15:\y{ObjectId}:Midgardsormr:31C7:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31C7:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31C7:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31C7:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31C7:Coil:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31C7:Angriff:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31C7:Charge:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31C7:/,
       infoText: {
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder raus',
@@ -37,10 +37,10 @@
     },
     {
       id: 'O10N Vertical Spin 1',
-      regex: /15:\y{ObjectId}:Midgardsormr:31C8:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31C8:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31C8:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31C8:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31C8:Coil:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31C8:Angriff:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31C8:Charge:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31C8:/,
       infoText: {
         en: 'Next Spin: Corners',
         de: 'Nächste Drehung: Ecken',
@@ -52,10 +52,10 @@
     },
     {
       id: 'O10N Horizontal Spin 2',
-      regex: /15:\y{ObjectId}:Midgardsormr:31C9:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31C9:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31C9:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31C9:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31C9:Azure Wings:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31C9:Azurschwingen:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31C9:Ailes azur:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31C9:/,
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
@@ -77,10 +77,10 @@
     },
     {
       id: 'O10N Vertical Spin 2',
-      regex: /15:\y{ObjectId}:Midgardsormr:31CB:/,
-      regexDe: /15:\y{ObjectId}:Midgardsormr:31CB:/,
-      regexFr: /15:\y{ObjectId}:Midgardsormr:31CB:/,
-      regexJa: /15:\y{ObjectId}:ミドガルズオルム:31CB:/,
+      regex: / 15:\y{ObjectId}:Midgardsormr:31CB:Stygian Maw:/,
+      regexDe: / 15:\y{ObjectId}:Midgardsormr:31CB:Stygischer Schlund:/,
+      regexFr: / 15:\y{ObjectId}:Midgardsormr:31CB:Gueule ténébreuse:/,
+      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31CB:/,
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },

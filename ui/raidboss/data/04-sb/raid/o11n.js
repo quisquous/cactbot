@@ -2,7 +2,7 @@
 
 // O11N - Alphascape 3.0
 [{
-  zoneRegex: /^(Alphascape \(V3.0\)|Alphascape V3.0)$/,
+  zoneRegex: /^Alphascape \(V3\.0\)$/,
   timelineFile: 'o11n.txt',
   timelineTriggers: [
     {
@@ -60,10 +60,10 @@
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       // Starboard/Larboard Cannon cleanup.
-      regex: / 14:328[13]:Omega starts using/,
-      regexDe: / 14:328[13]:Omega starts using/,
-      regexFr: / 14:328[13]:Oméga starts using/,
-      regexJa: / 14:328[13]:オメガ starts using/,
+      regex: / 14:328[13]:Omega starts using Starboard Wave Cannon/,
+      regexDe: / 14:328[13]:Omega starts using Steuerbord-Wellenkanone/,
+      regexFr: / 14:328[13]:Oméga starts using Salve De Tribord/,
+      regexJa: / 14:328[13]:オメガ starts using 右舷斉射・波動砲/,
       delaySeconds: 15,
       run: function(data) {
         delete data.lastWasStarboard;

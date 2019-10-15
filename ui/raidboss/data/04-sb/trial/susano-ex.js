@@ -16,8 +16,10 @@
   ],
   triggers: [
     { // Thundercloud tracker
-      regex: / 03:Added new combatant Thunderhead\./,
-      regexDe: / 03:Added new combatant Gewitterwolke\./,
+      regex: / 03:\y{ObjectId}:Added new combatant Thunderhead\./,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Gewitterwolke\./,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Nuage Orageux\./,
+      regexJa: / 03:\y{ObjectId}:Added new combatant 雷雲\./,
       run: function(data) {
         data.cloud = true;
       },
@@ -28,14 +30,18 @@
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
       regex: / 14:2041:Thunderhead starts using The Parting Clouds on Thunderhead\./,
-      regexDe: / 14:2041:Gewitterkopf starts using Wolkenriss on Gewitterkopf\./,
+      regexDe: / 14:2041:Gewitterwolke starts using Wolkenriss on Gewitterwolke\./,
+      regexFr: / 14:2041:Nuage Orageux starts using Dispersion De Nuages on Nuage Orageux\./,
+      regexJa: / 14:2041:雷雲 starts using 雲間放電 on 雷雲\./,
       run: function(data) {
         data.cloud = false;
       },
     },
     { // Churning tracker
-      regex: /1A:\y{ObjectId}:\y{Name} gains the effect of Churning from Susano/,
-      regexDe: /1A:\y{ObjectId}:\y{Name} gains the effect of Schäumend from Susano/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Churning from Susano/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Schäumend from Susano/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Agitation from Susano/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 禍泡 from スサノオ/,
       condition: function(data) {
         return !data.churning;
       },
@@ -47,8 +53,10 @@
       // We could track the number of people with churning here, but
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
-      regex: /1E:\y{ObjectId}:\y{Name} loses the effect of Churning from Susano\./,
-      regexDe: /1E:\y{ObjectId}:\y{Name} loses the effect of Schäumend from Susano\./,
+      regex: / 1E:\y{ObjectId}:\y{Name} loses the effect of Churning from Susano\./,
+      regexDe: / 1E:\y{ObjectId}:\y{Name} loses the effect of Schäumend from Susano\./,
+      regexFr: / 1E:\y{ObjectId}:\y{Name} loses the effect of Agitation from Susano\./,
+      regexJa: / 1E:\y{ObjectId}:\y{Name} loses the effect of 禍泡 from スサノオ\./,
       condition: function(data) {
         return data.churning;
       },
@@ -90,7 +98,7 @@
     },
     { // Red knockback marker indicator
       id: 'SusEx Knockback',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -131,7 +139,7 @@
     },
     { // Levinbolt indicator
       id: 'SusEx Levinbolt',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -162,7 +170,7 @@
     },
     { // Levinbolt indicator debug
       id: 'SusEx Levinbolt Debug',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:0000:0000:0000:/,
       condition: function(data, matches) {
         data.levinbolt = matches[1];
         return (matches[1] != data.me);
@@ -170,7 +178,7 @@
     },
     { // Stunning levinbolt indicator
       id: 'SusEx Levinbolt Stun',
-      regex: /1B:\y{ObjectId}:(\y{Name}):....:....:006F:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006F:0000:0000:0000:/,
       infoText: function(data, matches) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.
@@ -184,7 +192,10 @@
     },
     { // Churning (dice)
       id: 'SusEx Churning',
-      regex: / 1A:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schäumend from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Agitation from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 禍泡 from .*? for (\y{Float}) Seconds/,
       delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 3;
       },

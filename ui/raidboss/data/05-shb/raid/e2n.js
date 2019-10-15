@@ -18,11 +18,11 @@
   triggers: [
     {
       id: 'E2N Shadowflame Tank',
-      regex: / 14:3E4D:Voidwalker starts using Shadowflame on (\y{Name})/,
-      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on (\y{Name})/,
-      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
-      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
-      condition: function(data, matches) {
+      regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
+      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
+      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
+      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
+      condition: function(data) {
         return data.role == 'tank';
       },
       alertText: {
@@ -35,10 +35,10 @@
       id: 'E2N Shadowflame Healer',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
+      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
-      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on (\y{Name})/,
       suppressSeconds: 1,
-      condition: function(data, matches) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -51,9 +51,9 @@
       id: 'E2N Entropy',
       regex: / 14:3E6D:Voidwalker starts using Entropy/,
       regexDe: / 14:3E6D:Nichtswandler starts using Entropie/,
-      regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
       regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
-      condition: function(data, matches) {
+      regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -66,8 +66,8 @@
       id: 'E2N Doomvoid Slicer',
       regex: / 14:3E3C:Voidwalker starts using Doomvoid Slicer/,
       regexDe: / 14:3E3C:Nichtswandler starts using Nichtsmarter-Sense/,
-      regexJa: / 14:3E3C:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
       regexFr: / 14:3E3C:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
+      regexJa: / 14:3E3C:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
       infoText: {
         en: 'Get Under',
         de: 'Unter ihn',
@@ -78,8 +78,8 @@
       id: 'E2N Empty Hate',
       regex: / 14:3E46:the Hand of Erebos starts using Empty Hate/,
       regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
-      regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
       regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
+      regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -90,8 +90,8 @@
       id: 'E2N Darkfire Counter',
       regex: / 14:3E42:Voidwalker starts using Dark Fire III/,
       regexDe: / 14:3E42:Nichtswandler starts using Dunkel-Feuga/,
-      regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
       regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
+      regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
       run: function(data) {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;

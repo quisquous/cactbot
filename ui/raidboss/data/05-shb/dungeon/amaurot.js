@@ -40,12 +40,10 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: function(data) {
-        return {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Dispersez-vous',
-        };
+      infoText: {
+        en: 'Spread',
+        de: 'Verteilen',
+        fr: 'Dispersez-vous',
       },
     },
     {

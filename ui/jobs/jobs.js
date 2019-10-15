@@ -23,7 +23,13 @@ let Options = {
 
   JustBuffTracker: false,
 
-  PerBuffOptions: {},
+  PerBuffOptions: {
+    // This is noisy since it's more or less permanently on you.
+    // Players are unlikely to make different decisions based on this.
+    standardFinish: {
+      hide: true,
+    },
+  },
 
   RdmCastTime: 1.94 + 0.5,
   WarGcd: 2.45,
@@ -36,6 +42,9 @@ let Options = {
   BigBuffBarHeight: 5,
   BigBuffTextHeight: 0,
   BigBuffBorderSize: 1,
+
+  // The minimum time on a cooldown before it is shown.
+  BigBuffShowCooldownSeconds: 20,
 
   FarThresholdOffence: 24,
   DrkLowMPThreshold: 2999,
@@ -298,40 +307,16 @@ function computeBackgroundColorFrom(element, classList) {
   return color;
 }
 
-function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
-    barHeight, textHeight, borderSize, borderColor, barColor, auraIcon) {
+function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
+    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
   let div = document.createElement('div');
-
-  if (seconds < 0) {
-    div.style.borderWidth = 1;
-    div.style.borderStyle = 'solid';
-    div.style.borderColor = '#000';
-    div.style.width = iconWidth - borderSize * 2;
-    div.style.height = iconHeight - borderSize * 2;
-    div.style.backgroundColor = borderColor;
-    let inner = document.createElement('div');
-    div.appendChild(inner);
-    inner.style.position = 'relative';
-    inner.style.left = borderSize;
-    inner.style.top = borderSize;
-    inner.style.borderWidth = borderSize;
-    inner.style.borderStyle = 'solid';
-    inner.style.borderColor = '#000';
-    inner.style.width = iconWidth - borderSize * 6;
-    inner.style.height = iconHeight - borderSize * 6;
-    inner.style.backgroundImage = 'url(' + auraIcon + ')';
-    inner.style.backgroundColor = '#888';
-    inner.style.backgroundRepeat = 'no-repeat';
-    inner.style.backgroundSize = Math.max(iconWidth, iconHeight) - borderSize * 2 + 'px';
-    inner.style.backgroundPosition = 'center';
-    return div;
-  }
-
+  div.style.opacity = opacity;
 
   let icon = document.createElement('timer-icon');
   icon.width = iconWidth;
   icon.height = iconHeight;
   icon.bordersize = borderSize;
+  icon.textcolor = textColor;
   div.appendChild(icon);
 
   let barDiv = document.createElement('div');
@@ -339,10 +324,14 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
   barDiv.style.top = iconHeight;
   div.appendChild(barDiv);
 
-  let bar = document.createElement('timer-bar');
-  bar.width = iconWidth;
-  bar.height = barHeight;
-  barDiv.appendChild(bar);
+  if (seconds >= 0) {
+    let bar = document.createElement('timer-bar');
+    bar.width = iconWidth;
+    bar.height = barHeight;
+    bar.fg = barColor;
+    bar.duration = seconds;
+    barDiv.appendChild(bar);
+  }
 
   if (textHeight > 0) {
     let text = document.createElement('div');
@@ -356,7 +345,7 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
     text.style.top = iconHeight;
     text.style.fontFamily = 'arial';
     text.style.fontWeight = 'bold';
-    text.style.color = 'white';
+    text.style.color = textColor;
     text.style.textShadow = '-1px 0 3px black, 0 1px 3px black, 1px 0 3px black, 0 -1px 3px black';
     text.style.paddingBottom = textHeight / 4;
 
@@ -367,12 +356,150 @@ function makeAuraTimerIcon(name, seconds, iconWidth, iconHeight, iconText,
   if (iconText)
     icon.text = iconText;
   icon.bordercolor = borderColor;
-  bar.fg = barColor;
   icon.icon = auraIcon;
   icon.duration = seconds;
-  bar.duration = seconds;
 
   return div;
+}
+
+// TODO: consider using real times and not setTimeout times as these can drift.
+class Buff {
+  constructor(name, info, list, options) {
+    this.name = name;
+    this.info = info;
+    this.options = options;
+
+    // TODO: these should be different ui elements.
+    // TODO: or maybe add some buffer between sections?
+    this.activeList = list;
+    this.cooldownList = list;
+    this.readyList = list;
+
+    // tracked auras
+    this.active = null;
+    this.cooldown = {};
+    this.ready = {};
+
+    // Hacky numbers to sort active > ready > cooldowns by adjusting sort keys.
+    this.readySortKeyBase = 1000;
+    this.cooldownSortKeyBase = 2000;
+  }
+
+  addCooldown(source, effectSeconds) {
+    if (!this.info.cooldown)
+      return;
+    if (this.cooldown[source]) {
+      // Unexpected use of the same cooldown by the same name.
+      this.cooldown[source].removeCallback();
+    }
+
+    let cooldownKey = 'c:' + this.name + ':' + source;
+
+    let secondsUntilShow = this.info.cooldown - this.options.BigBuffShowCooldownSeconds;
+    secondsUntilShow = Math.min(Math.max(effectSeconds, secondsUntilShow), this.info.cooldown);
+    let showSeconds = this.info.cooldown - secondsUntilShow;
+    let addReadyCallback = () => {
+      this.addReady(source);
+    };
+
+    this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
+        secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+  }
+
+  addReady(source) {
+    if (this.ready[source]) {
+      // Unexpected use of the same cooldown by the same name.
+      this.ready[source].removeCallback();
+    }
+
+    // TODO: if multiple sources, put people's names as text?
+    // TODO: we could also count up?
+    let txt = '';
+    let color = this.info.borderColor;
+
+    let readyKey = 'r:' + this.name + ':' + source;
+    this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
+        this.readySortKeyBase, color, txt, 0.6);
+  }
+
+  makeAura(key, list, seconds, secondsUntilShow,
+      adjustSort, textColor, txt, opacity, expireCallback) {
+    let aura = {};
+    aura.removeCallback = () => {
+      list.removeElement(key);
+      if (aura.addTimeout) {
+        window.clearTimeout(aura.addTimeout);
+        aura.addTimeout = null;
+      }
+      if (aura.removeTimeout) {
+        window.clearTimeout(aura.removeTimeout);
+        aura.removeTimeout = null;
+      }
+    };
+    aura.addCallback = () => {
+      let elem = makeAuraTimerIcon(
+          key, seconds, opacity,
+          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+          txt,
+          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          textColor,
+          this.options.BigBuffBorderSize,
+          this.info.borderColor, this.info.borderColor,
+          this.info.icon);
+      list.addElement(key, elem, this.info.sortKey + adjustSort);
+      aura.addTimeout = null;
+
+      if (seconds > 0) {
+        aura.removeTimeout = window.setTimeout(() => {
+          aura.removeCallback();
+          if (expireCallback)
+            expireCallback();
+        }, seconds * 1000);
+      }
+    };
+    aura.removeTimeout = null;
+
+    if (secondsUntilShow > 0)
+      aura.addTimeout = window.setTimeout(aura.addCallback, secondsUntilShow * 1000);
+    else
+      aura.addCallback();
+
+
+    return aura;
+  }
+
+  clear() {
+    this.onLose();
+
+    let cooldownKeys = Object.keys(this.cooldown);
+    for (let i = 0; i < cooldownKeys.length; ++i)
+      this.cooldown[cooldownKeys[i]].removeCallback();
+
+    let readyKeys = Object.keys(this.ready);
+    for (let i = 0; i < readyKeys.length; ++i)
+      this.ready[readyKeys[i]].removeCallback();
+  }
+
+  onGain(seconds, source) {
+    this.onLose();
+
+    let ready = this.ready[source];
+    if (ready)
+      ready.removeCallback();
+    let cooldown = this.cooldown[source];
+    if (cooldown)
+      cooldown.removeCallback();
+
+    this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
+    this.addCooldown(source, seconds);
+  }
+
+  onLose() {
+    if (!this.active)
+      return;
+    this.active.removeCallback();
+    this.active = null;
+  }
 }
 
 class BuffTracker {
@@ -380,7 +507,7 @@ class BuffTracker {
     this.options = options;
     this.leftBuffDiv = leftBuffDiv;
     this.rightBuffDiv = rightBuffDiv;
-    this.activeBuffs = {};
+    this.buffs = {};
 
     this.buffInfo = {
       potion: {
@@ -596,6 +723,14 @@ class BuffTracker {
     for (let i = 0; i < keys.length; ++i) {
       let buff = this.buffInfo[keys[i]];
       buff.name = keys[i];
+
+      let overrides = this.options.PerBuffOptions[buff.name] || {};
+      buff.borderColor = overrides.borderColor || buff.borderColor;
+      buff.icon = overrides.icon || buff.icon;
+      buff.side = overrides.side || buff.side || 'right';
+      buff.sortKey = overrides.sortKey || buff.sortKey;
+      buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
+
       if (buff.gainEffect) {
         if (buff.gainEffect in this.gainEffectMap)
           console.error('Duplicate buff entry: ' + buff.gainEffect);
@@ -648,46 +783,34 @@ class BuffTracker {
     this.onLoseBigBuff(b.name, b);
   }
 
-  onBigBuff(name, seconds, settings, source) {
-    let overrides = this.options.PerBuffOptions[name] || {};
-    let borderColor = overrides.borderColor || settings.borderColor;
-    let icon = overrides.icon || settings.icon;
-    let side = overrides.side || settings.side;
-    let sortKey = overrides.sortKey || settings.sortKey;
-    if (overrides.hide)
+  onBigBuff(name, seconds, info, source) {
+    if (seconds <= 0)
       return;
 
-    let aura = makeAuraTimerIcon(
-        name, seconds,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        settings.text,
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        this.options.BigBuffBorderSize,
-        borderColor, borderColor,
-        icon);
     let list = this.rightBuffDiv;
-    if (side && side == 'left' && this.leftBuffDiv)
+    if (info.side == 'left' && this.leftBuffDiv)
       list = this.leftBuffDiv;
-    list.addElement(name, aura, sortKey);
 
-    let key = name + source;
-    this.activeBuffs[key] = this.activeBuffs[key] || {};
-    let state = this.activeBuffs[key];
-
-    if (state.activeTimeout)
-      window.clearTimeout(state.activeTimeout);
-    if (seconds >= 0) {
-      state.activeTimeout = window.setTimeout((function() {
-        this.rightBuffDiv.removeElement(name);
-        this.leftBuffDiv.removeElement(name);
-      }).bind(this), seconds * 1000);
+    let buff = this.buffs[name];
+    if (!buff) {
+      this.buffs[name] = new Buff(name, info, list, this.options);
+      buff = this.buffs[name];
     }
+
+    buff.onGain(seconds, source);
   }
 
-  onLoseBigBuff(name, settings) {
-    window.clearTimeout(settings.timeout);
-    this.rightBuffDiv.removeElement(name);
-    this.leftBuffDiv.removeElement(name);
+  onLoseBigBuff(name) {
+    let buff = this.buffs[name];
+    if (!buff)
+      return;
+    buff.onLose();
+  }
+
+  clear() {
+    let keys = Object.keys(this.buffs);
+    for (let i = 0; i < keys.length; ++i)
+      this.buffs[keys[i]].clear();
   }
 }
 
@@ -1154,7 +1277,7 @@ class Bars {
       if (oath < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
-      } else if (blood < 100) {
+      } else if (oath < 100) {
         p.classList.remove('low');
         p.classList.add('mid');
       } else {
@@ -1691,7 +1814,7 @@ class Bars {
 
   UpdateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
-    if (!this.init || !this.o.leftBuffsList)
+    if (!this.init || !this.o.leftBuffsList || !this.zone)
       return;
 
     let CanShowWellFedWarning = function() {
@@ -1721,10 +1844,11 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
       let div = makeAuraTimerIcon(
-          'foodbuff', -1,
+          'foodbuff', -1, 1,
           this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
           '',
           this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          'white',
           this.options.BigBuffBorderSize,
           'yellow', 'yellow',
           '../../resources/icon/status/food.png');
@@ -1733,7 +1857,9 @@ class Bars {
   }
 
   OnPartyWipe(e) {
-    // TODO: reset timers etc
+    // TODO: add reset for job-specific ui
+    if (this.buffTracker)
+      this.buffTracker.clear();
   }
 
   OnInCombatChanged(e) {
@@ -1752,6 +1878,8 @@ class Bars {
   OnZoneChanged(e) {
     this.zone = e.detail.zoneName;
     this.UpdateFoodBuff();
+    if (this.buffTracker)
+      this.buffTracker.clear();
   }
 
   SetPullCountdown(seconds) {

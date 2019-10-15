@@ -172,7 +172,7 @@
     {
       id: 'SeiryuEx Ascending Tower You',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
-      condition: function(data, matches) {
+      condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;
         return data.markers.indexOf(data.me) == -1;
@@ -199,8 +199,9 @@
     {
       id: 'SeiryuEx Handprint East',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
+      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
+      regexJa: / 15:\y{ObjectId}:山の式鬼:37E5:圧殺掌:/,
       regexCn: / 15:\y{ObjectId}:山之式鬼:37E5:压杀掌:/,
       infoText: {
         en: 'East =>',
@@ -220,8 +221,9 @@
     {
       id: 'SeiryuEx Handprint West',
       regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
       regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
+      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
+      regexJa: / 15:\y{ObjectId}:山の式鬼:37E6:圧殺掌:/,
       regexCn: / 15:\y{ObjectId}:山之式鬼:37E6:压杀掌:/,
       infoText: {
         en: '<= West',
@@ -333,7 +335,7 @@
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
       regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
+      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
       regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
       infoText: {
         en: 'In, then out',
@@ -348,7 +350,7 @@
       regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
       regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
       regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using Serpent-Eye Sigil/,
+      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
       regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
       delaySeconds: 2.7,
       infoText: {
