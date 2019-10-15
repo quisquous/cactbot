@@ -495,8 +495,8 @@ class PopupText {
         ttsText = ttsText.replace(/^\s*<[-=]/, '');
         // * arrows in the middle are a sequence, e.g. "in => out => spread"
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
-        let cmd = { 'say': ttsText };
-        OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
+        let cmd = { 'call': 'cactbotSay', 'text': ttsText };
+        window.callOverlayHandler(cmd);
       } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
         audio.volume = soundVol;
