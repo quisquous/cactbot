@@ -2392,13 +2392,7 @@ class EurekaTracker {
       beforeText = simplify;
       afterText = '';
     }
-
-    // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/160
-    beforeText = beforeText.replace(/[^\x00-\x7F]/g, '').trim();
-    afterText = afterText.replace(/[^\x00-\x7F]/g, '').trim();
-
     beforeText = beforeText.replace(/(?: at|@)$/, '');
-
 
     let container = document.getElementById('flag-labels');
     let label = document.createElement('div');
