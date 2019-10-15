@@ -3,7 +3,7 @@
 // O12S - Alphascape 4.0 Savage
 
 [{
-  zoneRegex: /^Alphascape V4\.0 \(Savage\)$/,
+  zoneRegex: /^(Alphascape V4.0 \(Savage\)|欧米茄零式时空狭缝 \(阿尔法幻境4\))$/,
   timelineFile: 'o12s.txt',
   triggers: [
     {
@@ -12,6 +12,7 @@
       regexDe: / 14:3357:Omega starts using Ionenstrom/,
       regexFr: / 14:3357:Oméga starts using Fuite D'Ions/,
       regexJa: / 14:3357:オメガ starts using イオンエフラクス/,
+      regexCn: / 14:3357:欧米茄 starts using 离子流出/,
       run: function(data) {
         data.isFinalOmega = true;
 
@@ -25,6 +26,7 @@
     {
       id: 'O12S Beyond Defense',
       regex: / 1[56]:\y{ObjectId}:Omega-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexCn: / 1[56]:\y{ObjectId}:欧米茄-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 1[56]:\y{ObjectId}:Omega-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 1[56]:\y{ObjectId}:Oméga-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 1[56]:\y{ObjectId}:オメガM:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
@@ -36,6 +38,7 @@
         de: 'Nicht stacken!',
         fr: 'Ne vous packez pas !',
         ja: 'スタックするな！',
+        cn: '分散站位！',
       },
     },
     {
@@ -44,11 +47,13 @@
       regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Nah from/,
       regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Proximité from/,
       regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ニアー from/,
+      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of 共鸣程序：近 from/,
       infoText: {
         en: 'Keep Bosses Apart',
         de: 'Bosse auseinander ziehen',
         fr: 'Séparez les boss',
         ja: 'ボス離して',
+        cn: '拉开Boss',
       },
     },
     {
@@ -57,11 +62,13 @@
       regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Fern from/,
       regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Distance from/,
       regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ファー from/,
+      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of 共鸣程序：远 from/,
       alertText: {
         en: 'Move Bosses Together',
         de: 'Bosse zusammenziehen',
         fr: 'Packez les boss',
         ja: 'ボス重ねて',
+        cn: '拉近Boss',
       },
     },
     {
@@ -70,6 +77,7 @@
       regexDe: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
       regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
       regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
+      regexCn: / 14:(?:3350|3351):(?:欧米茄|欧米茄-M) starts using 太阳射线 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -81,6 +89,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             ja: 'タンクバスター on YOU',
+            cn: '死刑减伤',
           };
         }
         if (data.role == 'healer') {
@@ -89,6 +98,7 @@
             de: 'Tankbuster',
             fr: 'Tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         }
       },
@@ -99,6 +109,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         }
       },
@@ -109,6 +120,7 @@
       regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Omega-Schwertertanz on (\y{Name})/,
       regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga on (\y{Name})/,
       regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using ブレードダンス・オメガ on (\y{Name})/,
+      regexCn: / 14:(?:334B|334C):(?:欧米茄|欧米茄-M) starts using 欧米茄刀光剑舞 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -120,6 +132,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             ja: 'タンクバスター on YOU',
+            cn: '死刑减伤',
           };
         }
         if (data.role == 'healer') {
@@ -128,6 +141,7 @@
             de: 'Tankbuster',
             fr: 'Tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         }
       },
@@ -138,6 +152,7 @@
             de: 'basta',
             fr: 'tankbuster',
             ja: 'バスター',
+            cn: '死刑',
           };
         }
       },
@@ -160,12 +175,14 @@
           de: 'Viereck',
           fr: 'Carré',
           ja: '四角',
+          cn: '四角',
         }[data.lang];
         let triangleName = {
           en: 'Triangle',
           de: 'Dreieck',
           fr: 'Triangle',
           ja: '三角',
+          cn: '三角',
         }[data.lang];
         return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
       },
@@ -182,6 +199,7 @@
         de: 'Stacken',
         fr: 'Packez-vous',
         ja: 'スタック',
+        cn: '集合',
       },
     },
     {
@@ -195,6 +213,7 @@
         de: 'Meteor auf DIR',
         fr: 'Météore sur VOUS',
         ja: 'メテオ on YOU',
+        cn: '陨石点名',
       },
     },
     {
@@ -203,6 +222,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem W from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur F from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムF from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 防护程序F from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -211,6 +231,7 @@
         de: 'Omega-M angreifen',
         fr: 'Attaquez Oméga-M',
         ja: 'Mを攻撃',
+        cn: '攻击欧米茄-M',
       },
     },
     {
@@ -219,6 +240,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem M from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur M from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムM from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 防护程序M from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -227,6 +249,7 @@
         de: 'Omega-W angreifen',
         fr: 'Attaquez Oméga-F',
         ja: 'Fを攻撃',
+        cn: '攻击欧米茄-F',
       },
     },
     {
@@ -235,11 +258,13 @@
       regexDe: / 14:3367:Omega starts using Streuende Wellenkanone/,
       regexFr: / 14:3367:Oméga starts using Canon Plasma Diffuseur/,
       regexJa: / 14:3367:オメガ starts using 拡散波動砲/,
+      regexCn: / 14:3367:欧米茄 starts using 扩散波动炮/,
       infoText: {
         en: 'Sides',
         de: 'Seiten',
         fr: 'Cotés',
         ja: '横',
+        cn: '横',
       },
     },
     {
@@ -248,11 +273,13 @@
       regexDe: / 14:3368:Omega starts using Streuende Wellenkanone/,
       regexFr: / 14:3368:Oméga starts using Canon Plasma Diffuseur/,
       regexJa: / 14:3368:オメガ starts using 拡散波動砲/,
+      regexCn: / 14:3368:欧米茄 starts using 扩散波动炮/,
       infoText: {
         en: 'Front or Back',
         de: 'Vorn oder Hinten',
         fr: 'Devant ou derrière',
         ja: '縦',
+        cn: '竖',
       },
     },
     {
@@ -261,18 +288,21 @@
       regexDe: / 14:3364:Omega starts using Fokussierte Wellenkanone/,
       regexFr: / 14:3364:Oméga starts using Canon Plasma Chercheur/,
       regexJa: / 14:3364:オメガ starts using 検知式波動砲/,
+      regexCn: / 14:3364:欧米茄 starts using 探测式波动炮/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Monitors Left',
             de: 'Monitore Links',
             fr: 'Moniteur Gauche',
+            cn: '探测左边',
           };
         }
         return {
           en: 'Dodge Left',
           de: 'Links ausweichen',
           fr: 'Evitez à gauche',
+          cn: '左侧躲闪',
         };
       },
     },
@@ -282,18 +312,21 @@
       regexDe: / 14:3365:Omega starts using Fokussierte Wellenkanone/,
       regexFr: / 14:3365:Oméga starts using Canon Plasma Chercheur/,
       regexJa: / 14:3365:オメガ starts using 検知式波動砲/,
+      regexCn: / 14:3365:欧米茄 starts using 探测式波动炮/,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Monitors Right',
             de: 'Monitore Rechts',
             fr: 'Moniteur Droite',
+            cn: '探测右边',
           };
         }
         return {
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
           fr: 'Evitez à droite',
+          cn: '右侧躲闪',
         };
       },
     },
@@ -307,6 +340,7 @@
             de: 'Verwundbarkeit auf DIR',
             fr: 'Vulnérabilité sur VOUS',
             ja: '標的 on YOU',
+            cn: '目标识别',
           };
         }
       },
@@ -318,6 +352,7 @@
           de: 'Verwundbarkeit auf ' + data.ShortName(matches[1]),
           fr: 'Vulnérabilité sur ' + data.ShortName(matches[1]),
           ja: '標的 on ' + data.ShortName(matches[1]),
+          cn: '目标识别->' + data.ShortName(matches[1]),
         };
       },
     },
@@ -327,6 +362,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Regression: Nah from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Intentionnel : Proximité from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンバグ：ニアー from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 回归方程：近 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -335,6 +371,7 @@
         de: 'Nahe Verbindungen',
         fr: 'Liens proches',
         ja: 'ニアー',
+        cn: '靠近连线',
       },
     },
     {
@@ -343,6 +380,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Regression: Fern from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Intentionnel : Distance from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンバグ：ファー from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 回归方程：远 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -351,6 +389,7 @@
         de: 'Entfernte Verbindungen',
         fr: 'Liens éloignés',
         ja: 'ファー',
+        cn: '远离连线',
       },
     },
     {
@@ -359,6 +398,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Überlauf from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Boucle from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：サークル from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：上溢 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -367,6 +407,7 @@
         de: 'Urteil auf DIR',
         fr: '#Médisance sur VOUS',
         ja: 'サークルついた',
+        cn: '严重错误：上溢',
       },
     },
     {
@@ -375,6 +416,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latenter Bug from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Latent from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レイテントバグ from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 潜在错误 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -383,6 +425,7 @@
         de: 'Blauer Marker',
         fr: 'Marqueur bleu',
         ja: 'レイテントついた',
+        cn: '蓝点名',
       },
     },
     {
@@ -391,6 +434,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Unterlauf from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Dégradation from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：デグレード from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：下溢 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -399,6 +443,7 @@
         de: 'Fäulnis',
         fr: 'Pourriture',
         ja: 'デグレードついた',
+        cn: '红点名',
       },
     },
     {
@@ -407,6 +452,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Synchronisierung from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Partage from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：シェア from (?:.*) for (.*) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：同步 from (?:.*) for (.*) Seconds/,
       delaySeconds: function(data, matches) {
         return matches[1] == data.me ? 0 : 1;
       },
@@ -422,6 +468,7 @@
             de: 'Kurzer Stack auf YOU',
             fr: 'Marque courte sur VOUS',
             ja: '早シェア on YOU',
+            cn: '短D',
           };
         }
         return {
@@ -429,6 +476,7 @@
           de: 'Langer Stack auf YOU',
           fr: 'Marque longue sur VOUS',
           ja: '遅シェア on YOU',
+          cn: '长D',
         };
       },
       infoText: function(data, matches) {
@@ -446,6 +494,7 @@
             de: 'Kurzer Stack auf ' + data.ShortName(matches[1]),
             fr: 'Marque courte sur ' + data.ShortName(matches[1]),
             ja: '早シェア on ' + data.ShortName(matches[1]),
+            cn: '短D->' + data.ShortName(matches[1]),
           };
         }
         return;
@@ -457,6 +506,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Kritischer Bug: Überlauf|Latenter Bug|Kritischer Bug: Synchronisierung) from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Bogue Critique : Boucle|Bogue Latent|Bogue Critique : Partage) from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:クリティカルバグ：サークル|レイテントバグ|クリティカルバグ：シェア) from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:|严重错误：上溢|潜在错误|严重错误：同步) from/,
       preRun: function(data, matches) {
         data.helloDebuffs[matches[1]] = true;
       },
@@ -473,6 +523,7 @@
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
           ja: '無職',
+          cn: '闲D',
         };
       },
     },
@@ -482,6 +533,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latenter Bug: Unterlauf from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Latent : Dégradation from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レイテントバグ：デグレード from/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 潜在错误：下溢 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -490,6 +542,7 @@
         de: 'Rausgehen für Urteil',
         fr: 'Ecartez-vous pour #médisance',
         ja: 'サークル捨てる',
+        cn: '离开人群传毒',
       },
     },
     {
@@ -520,6 +573,7 @@
             de: 'Stacken auf ' + data.ShortName(player),
             fr: 'Packez-vous sur ' + data.ShortName(player),
             ja: data.ShortName(player) + 'とスタック',
+            cn: '与' + data.ShortName(player) + '集合',
           };
         }
       },
@@ -535,6 +589,7 @@
         de: 'Stacken auf DIR',
         fr: 'Package sur VOUS',
         ja: 'スタック on YOU',
+        cn: '等待队友集合',
       },
     },
     {
@@ -548,26 +603,31 @@
         de: 'Verteilen',
         fr: 'Ecartez-vous',
         ja: '散開',
+        cn: '散开',
       },
     },
     {
       id: 'O12S Archive All Blue Arrow',
       regex: / 1B:\y{ObjectId}:Rear Power Unit:....:....:009D:0000:0000:0000:/,
+      regexCn: / 1B:\y{ObjectId}:尾部组:....:....:009D:0000:0000:0000:/,
       alertText: {
         en: 'Back Left',
         de: 'Hinten Links',
         fr: 'Arrière gauche',
         ja: '左後ろ',
+        cn: '左后',
       },
     },
     {
       id: 'O12S Archive All Red Arrow',
       regex: / 1B:\y{ObjectId}:Rear Power Unit:....:....:009C:0000:0000:0000:/,
+      regexCn: / 1B:\y{ObjectId}:尾部组:....:....:009C:0000:0000:0000:/,
       alertText: {
         en: 'Back Right',
         de: 'Hinten Rechts',
         fr: 'Arrière droite',
         ja: '右後ろ',
+        cn: '右后',
       },
     },
     {
@@ -576,6 +636,7 @@
       regexDe: / 1B:\y{ObjectId}:Rechter Arm:....:....:009(C|D):0000:0000:0000:/,
       regexFr: / 1B:\y{ObjectId}:Unité Bras Droit:....:....:009(C|D):0000:0000:0000:/,
       regexJa: / 1B:\y{ObjectId}:ライトアームユニット:....:....:009(C|D):0000:0000:0000:/,
+      regexCn: / 1B:\y{ObjectId}:右臂组:....:....:009(C|D):0000:0000:0000:/,
       run: function(data, matches) {
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
@@ -591,6 +652,7 @@
       regexDe: / 1B:\y{ObjectId}:Rechter Arm:....:....:009[CD]:0000:0000:0000:/,
       regexFr: / 1B:\y{ObjectId}:Unité Bras Droit:....:....:009[CD]:0000:0000:0000:/,
       regexJa: / 1B:\y{ObjectId}:ライトアームユニット:....:....:009[CD]:0000:0000:0000:/,
+      regexCn: / 1B:\y{ObjectId}:右臂组:....:....:009[CD]:0000:0000:0000:/,
       condition: function(data) {
         return data.numArms == 3;
       },
@@ -617,6 +679,16 @@
             0b100: '南東',
             0b101: undefined,
             0b110: '南西',
+            0b111: '西',
+          },
+          cn: {
+            0b000: '东',
+            0b001: '东北',
+            0b010: undefined,
+            0b011: '西北',
+            0b100: '东南',
+            0b101: undefined,
+            0b110: '西南',
             0b111: '西',
           },
         }[data.lang][v];
@@ -901,6 +973,99 @@
         'Remote Regression': 'エンバグ：ファー',
         'Synchronization Debugger': 'バグフィックス：シェア',
         'Underflow Debugger': 'バグフィックス：デグレード',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Omega-F': '欧米茄F',
+        'Omega-M': '欧米茄M',
+        'Omega': '欧米茄',
+        'optical unit': '视觉组',
+        'left arm unit': '左臂组',
+        'right arm unit': '右臂组',
+        'Optical Unit': '视觉组',
+        'Left Arm Unit': '左臂组',
+        'Right Arm Unit': '右臂组',
+        'Rear Power Unit': '尾部组',
+      },
+      'replaceText': {
+        'Advanced Optical Laser': '光学射线S',
+        'Advanced Suppression': '援护程序S',
+        'Beyond Defense': '盾连击S',
+        'Beyond Strength': '盾连击G',
+        'Cosmo Memory': '宇宙记忆',
+        'Discharger': '能量放出',
+        'Efficient Bladework': '剑击',
+        'Electric Slide': '欧米茄滑跃',
+        'Firewall': '防御程序',
+        'Fundamental Synergy': '协作程序C',
+        'Laser Shower': '激光骤雨',
+        'Operational Synergy': '协作程序W',
+        'Optical Laser': '光学射线F',
+        'Optimized Blade Dance': '欧米茄刀光剑舞',
+        'Optimized Blizzard III': '欧米茄冰封',
+        'Optimized Fire III': '欧米茄烈炎',
+        'Optimized Meteor': '欧米茄陨石流星',
+        'Optimized Sagittarius Arrow': '欧米茄射手天箭',
+        'Pile Pitch': '能量投射',
+        'Resonance': '共鸣',
+        'Solar Ray': '太阳射线',
+        'Subject Simulation F': '变形F',
+        'Subject Simulation M': '变形M',
+        'Superliminal Motion': '剑连击F',
+        'Superliminal Steel': '剑连击B',
+        'Suppression': '援护程序F',
+        'Synthetic Blades': '合成剑',
+        'Synthetic Shield': '合成盾',
+        'Archive All': '全归档',
+        'Archive Peripheral': '手臂归档',
+        'Cascading Latent Defect': '潜在错误：下溢',
+        'Colossal Blow': '巨能爆散',
+        'Critical Error': '严重错误',
+        'Critical Overflow Bug': '严重错误：上溢',
+        'Critical Synchronization Bug': '严重错误：同步',
+        'Critical Underflow Bug': '严重错误：下溢',
+        'Delta Attack': '三角攻击',
+        'Diffuse Wave Cannon': '扩散波动炮',
+        'Floodlight': '泛光灯',
+        'Hello, World': '你好，世界',
+        'Hyper Pulse': '超能脉冲',
+        'Index and Archive Peripheral': '手臂归档X',
+        'Ion Efflux': '离子流出',
+        'Oversampled Wave Cannon': '探测式波动炮',
+        'Patch': '补丁',
+        'Program Omega': '程序·欧米茄',
+        'Rear Lasers': '背环激光',
+        'Savage Wave Cannon': '零式波动炮',
+        'Spotlight': '聚光灯',
+        'Target Analysis': '目标识别',
+        'Wave Cannon': '波动炮',
+        'Wind Blade': '烈风刃',
+        'attack': '攻击',
+      },
+      '~effectNames': {
+        'Infinite Limit': '超越界限',
+        'Local Resonance': '共鸣程序：近',
+        'Magic Vulnerability Up': '魔法受伤加重',
+        'Packet Filter F': '防护程序F',
+        'Packet Filter M': '防护程序M',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Prey': '猎物',
+        'Remote Resonance': '共鸣程序：远',
+        'Cascading Latent Defect': '潜在错误：下溢',
+        'Critical Overflow Bug': '严重错误：上溢',
+        'Critical Synchronization Bug': '严重错误：同步',
+        'Critical Underflow Bug': '严重错误：下溢',
+        'Damage Down': '伤害降低',
+        'Healing Magic Down': '治疗魔法效果降低',
+        'Latent Defect': '潜在错误',
+        'Local Regression': '回归方程：近',
+        'Overflow Debugger': '修复错误：上溢',
+        'Remote Regression': '回归方程：远',
+        'Synchronization Debugger': '修复错误：同步',
+        'Underflow Debugger': '修复错误：下溢',
       },
     },
   ],
