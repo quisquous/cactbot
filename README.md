@@ -98,8 +98,6 @@ For more instructions about adding and configuring cactbot overlays, see the [Ad
 
 ### Potential errors and workarounds
 
-If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the **FFXIV_ACT_Plugin.dll** is in the same directory as **Advanced Combat Tracker.exe**.
-
 If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin.  You need to upgrade to the latest x64 full version of the [ngld OverlayPlugin](https://github.com/ngld/OverlayPlugin/releases/latest) instead.
 
 If you get an error in the OverlayPlugin console similar to `System.MissingMethodException: Method not found: '!!0[] System.Array.Empty()` then you have installed the wrong .NET framework version.  Please install the [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6.1 or above.
