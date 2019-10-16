@@ -14,6 +14,19 @@ class PopupText {
     this.kMaxRowsOfText = 2;
 
     this.Reset();
+
+    addOverlayListener('onPlayerChangedEvent', (e) => {
+      this.OnPlayerChange(e);
+    });
+    addOverlayListener('onZoneChangedEvent', (e) => {
+      this.OnZoneChange(e);
+    });
+    addOverlayListener('onInCombatChangedEvent', (e) => {
+      this.OnInCombatChange(e.detail.inGameCombat);
+    });
+    addOverlayListener('onLogEvent', (e) => {
+      this.OnLog(e);
+    });
   }
 
   SetTimelineLoader(timelineLoader) {
@@ -558,21 +571,3 @@ class PopupTextGenerator {
 }
 
 let gPopupText;
-
-addOverlayListener('onPlayerChangedEvent', function(e) {
-  gPopupText.OnPlayerChange(e);
-});
-addOverlayListener('onZoneChangedEvent', function(e) {
-  gPopupText.OnZoneChange(e);
-});
-addOverlayListener('onInCombatChangedEvent', function(e) {
-  gPopupText.OnInCombatChange(e.detail.inGameCombat);
-});
-addOverlayListener('onLogEvent', function(e) {
-  gPopupText.OnLog(e);
-});
-
-callOverlayHandler({
-  call: 'cactbotReadDataFiles',
-  source: location.href,
-}).then((e) => gPopupText.OnDataFilesRead(e));
