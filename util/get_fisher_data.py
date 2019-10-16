@@ -6,9 +6,11 @@ import os
 import re
 import requests
 import sys
+import argparse
 
 locales = ['de', 'en', 'fr', 'ja']
 tackle_id = 30
+base = 'https://xivapi.com/'
 
 # First argument is the API key
 if len(sys.argv) > 1:
@@ -31,7 +33,6 @@ def cleanup_german(word):
 
 def xivapi(content, filters = {}):
     """Fetches content columns from XIVAPI"""
-    base = 'https://xivapi.com/'
     page = 1
     url = f'{base}{content}'
     by_id = False
@@ -162,7 +163,7 @@ def get_tackle():
     response = xivapi('ItemSearchCategory', {'id': tackle_id, 'columns': ['GameContentLinks.Item.ItemSearchCategory']})
 
     item_ids = response['GameContentLinks']['Item']['ItemSearchCategory']
-    columns = ['ID','Singular_de','Singular_en','Singular_fr','Singular_ja']
+    columns = ['ID'] + [f'Singular_{locale}'for locale in locales]
 
     results = xivapi('Item', {'columns': columns, 'ids': item_ids})
 
@@ -208,22 +209,50 @@ def append_special_place_names(places):
         else:
           places['de'][place] = [places['de'][place], m.group(1)]
 
-# Actual program runs here
-places, fishes, placefish = get_fish_data()
-tackle = get_tackle()
-append_special_place_names(places)
+def get_cn_data():
+    global locales, base
 
-data = {
-    'tackle': tackle,
-    'places': places,
-    'fish': fishes,
-    'placefish': placefish
-}
+    locales = ['chs', 'en']
+    base = "https://cafemaker.wakingsands.com/"
 
-filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
-writer = coinach.CoinachWriter()
-writer.write(
-    filename,
-    os.path.basename(os.path.abspath(__file__)),
-    'gFisherData',
-    data)
+    places, fishes, _ = get_fish_data()
+    tackle = get_tackle()
+
+    return places, fishes, tackle
+
+
+
+if __name__ == "__main__":
+    example_usage = "python3 get_fisher_data.py"
+    parser = argparse.ArgumentParser(
+        description="Generate fisher data from xivapi",
+        epilog=example_usage,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+
+    parser.add_argument('-cn', '--chs', help="If passed, get fisher data from cn xivapi", action='store_true')
+    args = parser.parse_args()
+
+    places, fishes, placefish = get_fish_data()
+    tackle = get_tackle()
+    append_special_place_names(places)
+
+    if args.chs:
+        cn_places, cn_fishes, cn_tackle = get_cn_data()
+        tackle.update({"cn": cn_tackle["chs"]})
+        places.update({"cn": cn_places["chs"]})
+        fishes.update({"cn": cn_fishes["chs"]})
+
+    data = {
+        'tackle': tackle,
+        'places': places,
+        'fish': fishes,
+        'placefish': placefish
+    }
+
+    filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
+    writer = coinach.CoinachWriter()
+    writer.write(
+        filename,
+        os.path.basename(os.path.abspath(__file__)),
+        'gFisherData',
+        data)
