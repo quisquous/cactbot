@@ -371,7 +371,7 @@
     },
     {
       id: 'InnoEx Rood',
-      regex: / 14:3ED3:Innocence starts using Dream of the Rood/,
+      regex: / 14:3ED3:Innocence starts using Dream [Oo]f [Tt]he Rood/,
       regexDe: / 14:3ED3:Innozenz starts using Traum des Kreuzes/,
       regexFr: / 14:3ED3:Innocence starts using Le Rêve de la Croix/,
       regexJa: / 14:3ED3:イノセンス starts using ドリーム・オブ・ザ・ルード/,
@@ -383,7 +383,7 @@
     },
     {
       id: 'InnoEx Rood',
-      regex: / 14:3ED5:Innocence starts using Dream of the Rood/,
+      regex: / 14:3ED5:Innocence starts using Dream [Oo]f [Tt]he Rood/,
       regexDe: / 14:3ED5:Innozenz starts using Traum des Kreuzes/,
       regexFr: / 14:3ED5:Innocence starts using Le Rêve de la Croix/,
       regexJa: / 14:3ED5:イノセンス starts using ドリーム・オブ・ザ・ルード/,

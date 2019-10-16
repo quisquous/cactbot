@@ -78,7 +78,7 @@
     },
     {
       id: 'E1N Spear Of Paradise',
-      regex: / 14:3DA1:Eden Prime starts using Spear of Paradise on (\y{Name})/,
+      regex: / 14:3DA1:Eden Prime starts using Spear [Oo]f Paradise on (\y{Name})/,
       regexDe: / 14:3DA1:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
       regexFr: / 14:3DA1:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
       regexJa: / 14:3DA1:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
