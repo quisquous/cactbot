@@ -142,7 +142,7 @@
     },
     {
       id: 'TitaniaEx Bramble 1',
-      regex: / 14:42D7:Titania starts using Chain of Brambles/,
+      regex: / 14:42D7:Titania starts using Chain Of Brambles/,
       regexDe: / 14:42D7:Titania starts using Dornenfessel/,
       regexFr: / 14:42D7:Titania starts using Chaînes De Ronces/,
       regexJa: / 14:42D7:ティターニア starts using ブランブルチェーン/,
@@ -155,7 +155,7 @@
     },
     {
       id: 'TitaniaEx Bramble 2',
-      regex: / 14:42D7:Titania starts using Chain of Brambles/,
+      regex: / 14:42D7:Titania starts using Chain Of Brambles/,
       regexDe: / 14:42D7:Titania starts using Dornenfessel/,
       regexFr: / 14:42D7:Titania starts using Chaînes De Ronces/,
       regexJa: / 14:42D7:ティターニア starts using ブランブルチェーン/,

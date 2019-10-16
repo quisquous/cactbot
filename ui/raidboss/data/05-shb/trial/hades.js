@@ -95,7 +95,7 @@
     },
     {
       id: 'Hades Echo Right',
-      regex: / 14:4164:Hades starts using Echo of the Lost/,
+      regex: / 14:4164:Hades starts using Echo [Oo]f [Tt]he Lost/,
       regexCn: / 14:4164:哈迪斯 starts using 逝者的回声/,
       regexDe: / 14:4164:Hades starts using Echo der Verlorenen/,
       regexFr: / 14:4164:Hadès starts using Écho [dD]es [dD]isparus/,
@@ -109,7 +109,7 @@
     },
     {
       id: 'Hades Echo Left',
-      regex: / 14:4163:Hades starts using Echo of the Lost/,
+      regex: / 14:4163:Hades starts using Echo [Oo]f [Tt]he Lost/,
       regexCn: / 14:4163:哈迪斯 starts using 逝者的回声/,
       regexDe: / 14:4163:Hades starts using Echo der Verlorenen/,
       regexFr: / 14:4163:Hadès starts using Écho [dD]es [dD]isparus/,
@@ -187,7 +187,7 @@
     },
     {
       id: 'Hades Wail of the Lost Right',
-      regex: / 14:4166:Hades starts using Wail of the Lost/,
+      regex: / 14:4166:Hades starts using Wail [Oo]f [Tt]he Lost/,
       regexCn: / 14:4166:哈迪斯 starts using 逝者的哀嚎/,
       regexDe: / 14:4166:Hades starts using Wehklagen der Verlorenen/,
       regexFr: / 14:4166:Hadès starts using Lamentation [dD]es [dD]isparus/,
@@ -201,7 +201,7 @@
     },
     {
       id: 'Hades Wail of the Lost Left',
-      regex: / 14:4165:Hades starts using Wail of the Lost/,
+      regex: / 14:4165:Hades starts using Wail [Oo]f [Tt]he Lost/,
       regexCn: / 14:4165:哈迪斯 starts using 逝者的哀嚎/,
       regexDe: / 14:4165:Hades starts using Wehklagen der Verlorenen/,
       regexFr: / 14:4165:Hadès starts using Lamentation [dD]es [dD]isparus/,
