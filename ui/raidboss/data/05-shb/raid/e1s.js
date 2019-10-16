@@ -194,8 +194,8 @@
       // 44F0: healer1
       // 3D7D: healer2
       id: 'E1S Vice and Virtue DPS 1',
-      regex: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       run: function(data) {
@@ -224,8 +224,8 @@
     },
     {
       id: 'E1S Vice and Virtue DPS 2',
-      regex: / 14:3D7A:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:3D7A:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:3D7A:Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:3D7A:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D7A:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D7A:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       run: function(data) {
@@ -234,8 +234,8 @@
     },
     {
       id: 'E1S Vice and Virtue Tank 1',
-      regex: / 14:44EE:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:44EE:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:44EE:Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:44EE:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:44EE:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:44EE:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       run: function(data) {
@@ -244,8 +244,8 @@
     },
     {
       id: 'E1S Vice and Virtue Tank 2',
-      regex: / 14:3D78:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:3D78:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:3D78:Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:3D78:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D78:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D78:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       run: function(data) {
@@ -254,8 +254,8 @@
     },
     {
       id: 'E1S Vice and Virtue Healer 1',
-      regex: / 14:44F0:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:44F0:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:44F0:Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:44F0:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:44F0:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:44F0:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       run: function(data) {
@@ -264,8 +264,8 @@
     },
     {
       id: 'E1S Vice and Virtue Healer 2',
-      regex: / 14:3D7D:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:3D7D:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:3D7D:Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:3D7D:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D7D:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D7D:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       run: function(data) {
@@ -286,8 +286,8 @@
     },
     {
       id: 'E1S Vice and Virtue DPS 2',
-      regex: / 14:3D7A:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:3D7A:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:3D7A:Eden Prime starts using Vice [Aa]nd Virtue/,
+      regexDe: / 14:3D7A:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D7A:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D7A:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       alertText: {
@@ -310,8 +310,8 @@
     },
     {
       id: 'E1S Vice and Virtue Tank Stack',
-      regex: / 14:3D78:Eden Prime starts using Vice and Virtue/,
-      regexDe: / 14:3D78:Prim-Eden starts using Laster und Tugend/,
+      regex: / 14:3D78:Eden Prime starts using Vice [Aa]d Virtue/,
+      regexDe: / 14:3D78:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D78:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D78:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
       condition: function(data) {
