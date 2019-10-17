@@ -30,6 +30,7 @@ namespace Cactbot {
       this.textGlobalHotkey.Text = Util.GetHotkeyString(config.GlobalHotkeyModifiers, config.GlobalHotkey);
       this.dpsUpdateRate.Text = Convert.ToString(config.DpsUpdatesPerSecond, CultureInfo.InvariantCulture);
       this.logUpdateCheckBox.Checked = config.LogUpdatesEnabled;
+      this.checkDevReloader.Checked = config.DevReloaderEnabled;
       this.textUserConfigFile.Text = config.UserConfigFile;
     }
 
@@ -209,6 +210,7 @@ namespace Cactbot {
     {
       try
       {
+        this.config.DevReloaderEnabled = checkDevReloader.Checked;
         this.watcher.EnableRaisingEvents = checkDevReloader.Checked;
       }
       catch (Exception ex)

@@ -37,5 +37,6 @@ namespace Cactbot {
     public string RemoteVersionSeen = "0.0";
 
     public string UserConfigFile = "";
+    public bool DevReloaderEnabled = false;
   }
 }
