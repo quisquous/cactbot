@@ -15,9 +15,9 @@ namespace Cactbot {
       this.overlay = overlay;
       this.config = overlay.Config;
 
+      SetupFileWatcher();
       SetupControlProperties();
       SetupConfigEventHandlers();
-      SetupFileWatcher();
     }
 
     private void SetupControlProperties() {
