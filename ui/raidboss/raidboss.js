@@ -57,6 +57,7 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
     source: location.href,
   }).then((e) => {
     gTimelineController.SetDataFiles(e.detail.files);
+    gPopupText.OnDataFilesRead(e);
     gPopupText.ReloadTimelines();
   });
 
