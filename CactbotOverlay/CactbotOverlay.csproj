@@ -53,9 +53,6 @@
     <Reference Include="Advanced Combat Tracker">
       <HintPath>ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
     </Reference>
-    <Reference Include="FFXIV_ACT_Plugin">
-      <HintPath>ThirdParty\ACT\FFXIV_ACT_Plugin.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>ThirdParty\OverlayPlugin\Newtonsoft.Json.dll</HintPath>
     </Reference>
