@@ -589,9 +589,9 @@
     {
       id: 'UCU Nael Your Doom',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -647,10 +647,10 @@
     },
     {
       // Doom tracking init.
-      regex: / 1A:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -675,9 +675,9 @@
     {
       // Doom tracking cleanup.
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom/,
-      regexDe: / 1A:(\y{Name}) gains the effect of Verhängnis/,
-      regexFr: / 1A:(\y{Name}) gains the effect of Glas/,
-      regexJa: / 1A:(\y{Name}) gains the effect of 死の宣告/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告/,
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
