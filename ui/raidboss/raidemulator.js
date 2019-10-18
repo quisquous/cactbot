@@ -378,7 +378,7 @@ class LogCollector {
     if (player.role && player.job)
       this.currentFight.players[player.id] = player;
   }
-};
+}
 
 // Responsible for playing back a fight and emitting events as needed.
 class LogPlayer {
@@ -461,7 +461,7 @@ class LogPlayer {
     this.SendLogEvent(['00:0038:cactbot wipe']);
     this.Reset();
   }
-};
+}
 
 class EmulatorView {
   constructor(
@@ -922,7 +922,7 @@ class EmulatorView {
     for (let i = 0; i < triggers.length; i++)
       triggers[i].style.display = change;
   }
-};
+}
 
 function dateFromLogLine(log) {
   let m = log.match(/\[(\d\d):(\d\d):(\d\d).(\d\d\d)\]/);

@@ -541,7 +541,7 @@ class Timeline {
   SetSyncTime(c) {
     this.syncTimeCallback = c;
   }
-};
+}
 
 class TimelineUI {
   constructor(options) {
@@ -732,7 +732,7 @@ class TimelineUI {
     this.debugFightTimer.elapsed = 0;
     this.debugFightTimer.elapsed = fightNow;
   }
-};
+}
 
 class TimelineController {
   constructor(options, ui) {

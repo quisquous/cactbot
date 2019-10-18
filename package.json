@@ -112,6 +112,9 @@
       ],
       "no-dupe-keys": [
         "error"
+      ],
+      "no-extra-semi": [
+        "error"
       ]
     }
   }

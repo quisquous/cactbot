@@ -193,11 +193,11 @@ class CactbotLanguage {
   // from the game.
   youUseAbilityRegex(ids) {
     return Regexes.Parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.AnyOf(ids) + ':');
-  };
+  }
 
   youStartUsingRegex(ids) {
     return Regexes.Parse(' 14:' + Regexes.AnyOf(ids) + ':' + this.playerName + ' starts using ');
-  };
+  }
 
   youGainEffectRegex() {
     let effects = [];
@@ -206,7 +206,7 @@ class CactbotLanguage {
       effects.push(effect);
     }
     return Regexes.Parse(' 1A:\\y{ObjectId}:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
-  };
+  }
 
   youLoseEffectRegex() {
     let effects = [];
@@ -215,7 +215,7 @@ class CactbotLanguage {
       effects.push(effect);
     }
     return Regexes.Parse(' 1E:\\y{ObjectId}:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\\.');
-  };
+  }
 
   abilityRegex(abilityId, attacker, target, flags) {
     if (!abilityId)
@@ -232,7 +232,7 @@ class CactbotLanguage {
       r += '[^:]*:\\y{ObjectId}:' + target + ':' + flags + ':';
     }
     return Regexes.Parse(r);
-  };
+  }
 
   gainsEffectRegex(effect, target, attacker) {
     if (!target)
@@ -240,7 +240,7 @@ class CactbotLanguage {
     if (!attacker)
       attacker = '[^:]*';
     return Regexes.Parse(' 1A:\\y{ObjectId}:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\\.');
-  };
+  }
 
   losesEffectRegex(effect, target, attacker) {
     if (!target)
@@ -248,8 +248,8 @@ class CactbotLanguage {
     if (!attacker)
       attacker = '[^:]*';
     return Regexes.Parse(' 1E:\\y{ObjectId}:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
-  };
-};
+  }
+}
 
 document.addEventListener('onPlayerChangedEvent', (function(e) {
   if (gLang)
