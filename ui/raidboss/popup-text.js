@@ -516,7 +516,7 @@ class PopupText {
     this.OnZoneChange({ detail: { zoneName: zone } });
     this.OnLog({ detail: { logs: ['abcdefgh', log, 'hgfedcba'] } });
   }
-};
+}
 
 class PopupTextGenerator {
   constructor(popupText) {
