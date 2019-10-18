@@ -105,10 +105,10 @@
     },
     {
       id: 'Fractal Aetherochemical Bomb',
-      regex: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Aetherochemical Bomb/,
-      regexDe: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Ätherochemischer Sprengkörper/,
-      regexFr: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of Magismobombe/,
-      regexJa: / 1A:(\y{ObjectId}):(\y{Name}) gains the effect of 魔爆弾/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Aetherochemical Bomb/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Ätherochemischer Sprengkörper/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Magismobombe/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 魔爆弾/,
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -118,10 +118,10 @@
     },
     {
       id: 'Fractal Alarums',
-      regex: / 03:(\y{ObjectId}):Added new combatant Clockwork Alarum/,
-      regexDe: / 03:(\y{ObjectId}):Added new combatant Uhrwerk-Alarm/,
-      regexFr: / 03:(\y{ObjectId}):Added new combatant Alarum Mécanique/,
-      regexJa: / 03:(\y{ObjectId}):Added new combatant アラガンワーク・アラーム/,
+      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Alarum/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Uhrwerk-Alarm/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant Alarum Mécanique/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant アラガンワーク・アラーム/,
       suppressSeconds: 5,
       infoText: {
         en: 'Kill adds',

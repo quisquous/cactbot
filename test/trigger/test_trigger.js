@@ -28,11 +28,12 @@ let createTriggerRegexString = function(string) {
 };
 
 let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
-  let newCombatantRegex = createTriggerRegexString('(?! ?03:)(.*:)?Added new combatant.*');
+  // Escape the escapes so they can escape the escape in the parsed regex.
+  let newCombatantRegex = createTriggerRegexString('(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*');
   let results = contents.match(newCombatantRegex);
   if (results) {
     for (const result of results) {
-      console.error(`${file}: 'Added new combatant' regex should begin with '03:', found '${result}'`);
+      console.error(`${file}: 'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`);
       exitCode = 1;
     }
   }
@@ -52,22 +53,22 @@ let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
 let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
   // There are some weird Eureka "gains effect" messages with 00:332e.
   // But everything else is 1A.
-  let gainsEffectRegex = createTriggerRegexString('(?! ?(?:1A|00:332e):)(.* )?gains the effect of.*');
+  let gainsEffectRegex = createTriggerRegexString('(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*');
   let results = contents.match(gainsEffectRegex);
   if (results) {
     for (const result of results) {
-      console.error(`${file}: 'gains the effect of' regex should begin with '1A:', found '${result}'`);
+      console.error(`${file}: 'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`);
       exitCode = 1;
     }
   }
 };
 
 let testWellFormedLosesEffectTriggerRegex = function(file, contents) {
-  let losesEffectRegex = createTriggerRegexString('(?! ?1E:)(.* )?loses the effect of.*');
+  let losesEffectRegex = createTriggerRegexString('(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*');
   let results = contents.match(losesEffectRegex);
   if (results) {
     for (const result of results) {
-      console.error(`${file}: 'loses the effect of' regex should begin with '1E:', found '${result}'`);
+      console.error(`${file}: 'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`);
       exitCode = 1;
     }
   }
