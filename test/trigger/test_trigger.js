@@ -108,6 +108,57 @@ let testUnnecessaryGroupRegex = function(file, contents) {
   }
 };
 
+let testInvalidCapturingGroupRegex = function(file, contents) {
+  let json = eval(contents);
+
+  for (let i in json[0].triggers) {
+    let containsMatches = false;
+    let triggerFunctions = [
+      'alarmText',
+      'alertText',
+      'condition',
+      'delaySeconds',
+      'infoText',
+      'preRun',
+      'run',
+      'suppressSeconds',
+      'tts',
+    ];
+
+    for (let j = 0; !containsMatches && j < triggerFunctions.length; j++) {
+      let currentTriggerFunction = json[0].triggers[i][triggerFunctions[j]];
+      if (typeof currentTriggerFunction !== 'undefined' && currentTriggerFunction !== null)
+        containsMatches = currentTriggerFunction.toString().includes('matches');
+    }
+
+    let regexContainsCapturingGroups = /(\((?!\?:).*?\))/.test(json[0].triggers[i].regex);
+    let regexLanguages = [
+      'regexCn',
+      'regexDe',
+      'regexFr',
+      'regexJa',
+      'regexKo',
+    ];
+
+    // Don't assume that just because English doesn't have capturing
+    // groups that all other languages are correct!
+    for (let j = 0; !regexContainsCapturingGroups && j < regexLanguages.length; j++) {
+      let foundCapturingGroups = /([^\\]\((?!\?:).*?\))/.test(json[0].triggers[i][regexLanguages[j]]);
+      if (foundCapturingGroups != regexContainsCapturingGroups)
+        console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${json[0].triggers[i].id}'.`);
+      regexContainsCapturingGroups = foundCapturingGroups;
+    }
+
+    if (regexContainsCapturingGroups) {
+      if (!containsMatches)
+        console.error(`${file}: Found unnecessary regex capturing group for trigger id '${json[0].triggers[i].id}'.`);
+    } else {
+      if (containsMatches)
+        console.error(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${json[0].triggers[i].id}'.`);
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -119,6 +170,7 @@ let testTriggerFile = function(file) {
   testBadCatchAllRegex(file, contents);
   testObjectIdRegex(file, contents);
   testUnnecessaryGroupRegex(file, contents);
+  testInvalidCapturingGroupRegex(file, contents);
 };
 
 testTriggerFile(inputFilename);

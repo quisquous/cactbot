@@ -58,15 +58,11 @@
         fr: 'Tankbuster',
         cn: '死刑',
       },
-      tts: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            cn: '死刑',
-          };
-        }
+      tts: {
+        en: 'buster',
+        de: 'basta',
+        fr: 'tankbuster',
+        cn: '死刑',
       },
     },
     {

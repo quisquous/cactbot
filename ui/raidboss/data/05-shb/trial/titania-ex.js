@@ -329,11 +329,11 @@
     },
     {
       id: 'TitaniaEx Pummel',
-      regex: / 14:3D37:Puck starts using Pummel on (\y{Name})/,
-      regexCn: / 14:3D37:帕克 starts using 殴打 on (\y{Name})/,
-      regexDe: / 14:3D37:Puck starts using Deftige Dachtel on (\y{Name})/,
-      regexFr: / 14:3D37:Puck starts using Torgnole on (\y{Name})/,
-      regexJa: / 14:3D37:パック starts using 殴打 on (\y{Name})/,
+      regex: / 14:3D37:Puck starts using Pummel on \y{Name}/,
+      regexCn: / 14:3D37:帕克 starts using 殴打 on \y{Name}/,
+      regexDe: / 14:3D37:Puck starts using Deftige Dachtel on \y{Name}/,
+      regexFr: / 14:3D37:Puck starts using Torgnole on \y{Name}/,
+      regexJa: / 14:3D37:パック starts using 殴打 on \y{Name}/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -442,9 +442,8 @@
           cn: '雷连线 #' + data.thunderCount,
         };
       },
-      run: function(data, matches) {
+      run: function(data) {
         data.thunderCount++;
-        data.thunderTime = matches[1];
       },
     },
     {

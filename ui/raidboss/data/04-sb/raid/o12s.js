@@ -557,7 +557,7 @@
     },
     {
       id: 'O12S Archive All No Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(?:003E|0060):0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:003E|0060):0000:0000:0000:/,
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;

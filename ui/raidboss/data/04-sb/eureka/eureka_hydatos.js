@@ -430,10 +430,10 @@
     },
     {
       id: 'BA Raiden Tankbuster',
-      regex: / 14:387B:Raiden starts using Shingan/,
-      regexDe: / 14:387B:Raiden starts using Betäubungsschlag/,
-      regexFr: / 14:387B:Raiden starts using Impact Oculaire/,
-      regexJa: / 14:387B:ライディーン starts using 真眼撃/,
+      regex: / 14:387B:Raiden starts using Shingan on (\y{Name})\./,
+      regexDe: / 14:387B:Raiden starts using Betäubungsschlag on (\y{Name})\./,
+      regexFr: / 14:387B:Raiden starts using Impact Oculaire on (\y{Name})\./,
+      regexJa: / 14:387B:ライディーン starts using 真眼撃 on (\y{Name})\./,
       regexCn: / 14:387B:莱丁 starts using 真眼击 on (\y{Name})/,
       condition: function(data) {
         return data.sealed;
@@ -561,10 +561,10 @@
     },
     {
       id: 'BA AV Tankbuster',
-      regex: / 14:379A:Absolute Virtue starts using Auroral Wind/,
-      regexDe: / 14:379A:Absolute Tugend starts using Aurorawind/,
-      regexFr: / 14:379A:Vertu Absolue starts using Vent D'Aurore/,
-      regexJa: / 14:379A:アブソリュートヴァーチュー starts using オーロラルウィンド/,
+      regex: / 14:379A:Absolute Virtue starts using Auroral Wind on (\y{Name})\./,
+      regexDe: / 14:379A:Absolute Tugend starts using Aurorawind on (\y{Name})\./,
+      regexFr: / 14:379A:Vertu Absolue starts using Vent D'Aurore on (\y{Name})\./,
+      regexJa: / 14:379A:アブソリュートヴァーチュー starts using オーロラルウィンド on (\y{Name})\./,
       regexCn: / 14:379A:绝对的美德 starts using 极光之风/,
       condition: function(data) {
         return data.sealed;

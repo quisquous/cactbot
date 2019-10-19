@@ -104,10 +104,10 @@
     },
     {
       id: 'Inno Light Pillar',
-      regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
+      regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
+      regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
+      regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
       infoText: {
         en: 'Line Stack',
         de: 'In einer Linie sammeln',
