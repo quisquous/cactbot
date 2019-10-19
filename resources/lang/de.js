@@ -41,6 +41,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       StandardFinish: 'Einfaches Finale',
       Thundercloud: 'Blitz +',
       Firestarter: 'Feuga +',
+      BattleVoice: 'Ode an die Seele',
 
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',

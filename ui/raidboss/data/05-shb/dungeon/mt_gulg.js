@@ -109,7 +109,7 @@
     },
     {
       id: 'Gulg Sacrament of Penance',
-      regex: / 14:3D0B:Forgiven Whimsy starts using Sacrament of Penance/,
+      regex: / 14:3D0B:Forgiven Whimsy starts using Sacrament [Oo]f Penance/,
       regexDe: / 14:3D0B:Geläuterte Gereiztheit starts using Sakrament der Vergebung/,
       regexFr: / 14:3D0B:Caprice Pardonné starts using Sacrement [dD]e [pP]énitence/,
       regexJa: / 14:3D0B:フォーギヴン・ウィムズィー starts using 恩赦の秘跡/,

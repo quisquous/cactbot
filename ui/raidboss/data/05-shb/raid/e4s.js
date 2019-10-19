@@ -114,7 +114,7 @@
     },
     {
       id: 'E4S Voice of the Land',
-      regex: / 14:4114:Titan starts using Voice of the Land/,
+      regex: / 14:4114:Titan starts using Voice [Oo]f [Tt]he Land/,
       regexCn: / 14:4114:泰坦 starts using Voice of the Land/,
       regexDe: / 14:4114:Titan starts using Aufschrei der Erde/,
       regexFr: / 14:4114:Titan starts using Hurlement Tellurique/,

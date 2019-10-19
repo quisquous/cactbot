@@ -18,18 +18,21 @@ class LogCollector {
       en: / 00:0839:(.*) will be sealed off in /,
       de: Regexes.Parse(/ 00:0839:Noch \y{Float} Sekunden, bis sich (.*) schließt/),
       fr: / 00:0839:Fermeture (.*) dans /,
+      cn: Regexes.Parse(/ 00:0839:距(.*)被封锁还有\y{Float}秒/),
     };
     this.unsealRegexes = {
       ja: / 00:0839:(.*)の封鎖が解かれた……/,
       en: / 00:0839:(.*) is no longer sealed/,
       de: / 00:0839:(?:Der Zugang zu\w* |)(.*) öffnet sich (?:erneut|wieder)/,
       fr: / 00:0839:Ouverture (.*)/,
+      cn: / 00:0839:(.*)的封锁解除了/,
     };
     this.countdownEngageRegexes = {
       ja: / 00:0039:戦闘開始！/,
       en: / 00:0039:Engage!/,
       de: / 00:0039:Start!/,
       fr: / 00:0039:À l'attaque !/,
+      cn: / 00:0039:战斗开始！/,
     };
   }
 

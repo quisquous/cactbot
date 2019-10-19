@@ -221,7 +221,7 @@
     },
     {
       id: 'Qitana Confession of Faith Spread',
-      regex: / 14:3CA1:Eros starts using Confession of Faith/,
+      regex: / 14:3CA1:Eros starts using Confession [Oo]f Faith/,
       regexDe: / 14:3CA1:Eros starts using Glaubensbekenntnis/,
       regexFr: / 14:3CA1:Éros starts using Confession de foi/,
       regexJa: / 14:3CA1:エロース starts using コンフェッション・オブ・フェイス/,

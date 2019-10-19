@@ -6,7 +6,7 @@
   triggers: [
     {
       id: 'E4N Voice of the Land',
-      regex: / 14:40F7:Titan starts using Voice of the Land/,
+      regex: / 14:40F7:Titan starts using Voice [Oo]f [Tt]he Land/,
       regexDe: / 14:40F7:Titan starts using Aufschrei der Erde/,
       regexFr: / 14:40F7:Titan starts using Hurlement Tellurique/,
       regexJa: / 14:40F7:タイタン starts using 大地の叫び/,
