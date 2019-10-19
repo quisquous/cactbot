@@ -38,10 +38,13 @@ var Regexes = {
       Float: '-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?',
     };
 
-    let modifiers = '';
+    // All regexes in cactbot are case insensitive.
+    // This avoids headaches as things like `Vice and Vanity` turns into
+    // `Vice And Vanity`, especially for French and German.  It appears to
+    // have a ~20% regex parsing overhead, but at least they work.
+    let modifiers = 'i';
     if (regexpString instanceof RegExp) {
       modifiers = (regexpString.global ? 'g' : '') +
-                  (regexpString.ignoreCase ? 'i' : '') +
                   (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
