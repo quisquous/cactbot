@@ -272,7 +272,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosflammen from .* for (\y{Float}) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Flammes du chaos from .* for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の炎 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'fire';
       },
@@ -437,7 +437,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosböen from .* for (\y{Float}) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent du chaos from .* for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の風 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_642|混沌之风) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_642|混沌之风) from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -451,7 +451,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaossturm from .* for (\y{Float}) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent contraire du chaos from .* for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の逆風 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_643|混沌之逆风) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_643|混沌之逆风) from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -598,7 +598,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosflammen from .* for (\y{Float}) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Flammes du chaos from .* for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の炎 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_640|混沌之炎) from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] != data.me && data.phaseType == 'orb';
       },
@@ -627,7 +627,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosspritzer from .* for (\y{Float}) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux du chaos from .* for (\y{Float}) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の水 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_641|混沌之水) from  for (\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Unknown_641|混沌之水) from .* for (\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phaseType == 'orb';
       },

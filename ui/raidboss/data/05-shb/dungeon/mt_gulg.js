@@ -203,7 +203,7 @@
       // no target name
       regex: / 14:3D12:Forgiven Obscenity starts using Sacrament Sforzando/,
       regexDe: / 14:3D12:Geläuterte Unzucht starts using Sakrament sforzato/,
-      regexFr: / 14:3D12:Obscénité Pardonnée  starts using Sacrement - [sS]forzando/,
+      regexFr: / 14:3D12:Obscénité Pardonnée starts using Sacrement - [sS]forzando/,
       regexJa: / 14:3D12:フォーギヴン・オブセニティー starts using サクラメント・スフォルツァンド/,
       alertText: function(data, matches) {
         if (data.role == 'tank') {

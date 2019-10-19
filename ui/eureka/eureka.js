@@ -2238,7 +2238,7 @@ class EurekaTracker {
         let openUntil = null;
         if (nm.weather) {
           let weatherStartTime = findNextWeatherNot(nowMs, this.zoneName, nm.weather);
-          respawnIcon = gWeatherIcons[nm.weather]; ;
+          respawnIcon = gWeatherIcons[nm.weather];
           openUntil = weatherStartTime;
         }
         if (nm.time == 'Night') {
