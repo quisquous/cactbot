@@ -565,7 +565,7 @@
       regexDe: / 14:379A:Absolute Tugend starts using Aurorawind on (\y{Name})\./,
       regexFr: / 14:379A:Vertu Absolue starts using Vent D'Aurore on (\y{Name})\./,
       regexJa: / 14:379A:アブソリュートヴァーチュー starts using オーロラルウィンド on (\y{Name})\./,
-      regexCn: / 14:379A:绝对的美德 starts using 极光之风/,
+      regexCn: / 14:379A:绝对的美德 starts using 极光之风 on (\y{Name})\./,
       condition: function(data) {
         return data.sealed;
       },

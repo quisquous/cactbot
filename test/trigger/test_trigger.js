@@ -112,6 +112,8 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
   let json = eval(contents);
 
   for (let i in json[0].triggers) {
+    let currentTrigger = json[0].triggers[i];
+
     let containsMatches = false;
     let triggerFunctions = [
       'alarmText',
@@ -126,12 +128,12 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     ];
 
     for (let j = 0; !containsMatches && j < triggerFunctions.length; j++) {
-      let currentTriggerFunction = json[0].triggers[i][triggerFunctions[j]];
+      let currentTriggerFunction = currentTrigger[triggerFunctions[j]];
       if (typeof currentTriggerFunction !== 'undefined' && currentTriggerFunction !== null)
         containsMatches = currentTriggerFunction.toString().includes('matches');
     }
 
-    let regexContainsCapturingGroups = /(\((?!\?:).*?\))/.test(json[0].triggers[i].regex);
+    let regexContainsCapturingGroups = /(\((?!\?:).*?\))/.test(currentTrigger.regex);
     let regexLanguages = [
       'regexCn',
       'regexDe',
@@ -142,19 +144,24 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
 
     // Don't assume that just because English doesn't have capturing
     // groups that all other languages are correct!
-    for (let j = 0; !regexContainsCapturingGroups && j < regexLanguages.length; j++) {
-      let foundCapturingGroups = /([^\\]\((?!\?:).*?\))/.test(json[0].triggers[i][regexLanguages[j]]);
-      if (foundCapturingGroups != regexContainsCapturingGroups)
-        console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${json[0].triggers[i].id}'.`);
-      regexContainsCapturingGroups = foundCapturingGroups;
+    for (let j = 0; j < regexLanguages.length; j++) {
+      let currentRegex = currentTrigger[regexLanguages[j]];
+      if (typeof currentRegex !== 'undefined') {
+        let foundCapturingGroups = /([^\\]\((?!\?:).*?\))/.test(currentRegex);
+        if (foundCapturingGroups != regexContainsCapturingGroups) {
+          console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
+          break;
+        }
+        regexContainsCapturingGroups = foundCapturingGroups;
+      }
     }
 
     if (regexContainsCapturingGroups) {
       if (!containsMatches)
-        console.error(`${file}: Found unnecessary regex capturing group for trigger id '${json[0].triggers[i].id}'.`);
+        console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
     } else {
       if (containsMatches)
-        console.error(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${json[0].triggers[i].id}'.`);
+        console.error(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`);
     }
   }
 };
