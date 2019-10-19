@@ -36,18 +36,4 @@
     <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>Alarm text</div><div>Alarm text 2</div></span></div>
   </div>
 </body>
-
-<script>
-  function hide(h) {
-    var hideWhenInactive = false;
-    if (h && hideWhenInactive)
-      document.getElementById("container").style.display = "none";
-    else
-      document.getElementById("container").style.display = "block";
-  }
-  addOverlayListener("onGameActiveChangedEvent", function(e) {
-      hide(!e.detail.active);
-  });
-  hide(true);
-</script>
 </html>
