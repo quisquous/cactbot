@@ -21,38 +21,38 @@ class CactbotLanguageCn extends CactbotLanguage {
       Medicated: '强化药', // tbc
       BattleLitany: '战斗连祷', // 0x312
       Embolden: '鼓励', // 0x4d7
-      Arrow: 'The Arrow', // 0x75c
+      Arrow: '放浪神之箭', // 0x75c
       Balance: '太阳神之衡', // 0x53a
-      Bole: 'The Bole', // 0x75b
-      Ewer: 'The Ewer', // 0x75e
-      Spear: 'The Spear', // 0x75d
-      Spire: 'The Spire', // 0x75f
-      LadyOfCrowns: 'Lady Of Crowns', // 0x755
-      LordOfCrowns: 'Lord Of Crowns', // 0x754
+      Bole: '世界树之干', // 0x75b
+      Ewer: '河流神之瓶', // 0x75e
+      Spear: '战争神之枪', // 0x75d
+      Spire: '建筑神之塔', // 0x75f
+      LadyOfCrowns: '王冠之贵妇', // 0x755
+      LordOfCrowns: '王冠之领主', // 0x754
       Hypercharge: '超荷', // 0x2b0
       LeftEye: '巨龙左眼', // 0x4a0
       RightEye: '巨龙右眼', // 0x49f
       Brotherhood: '义结金兰：斗气', // 0x49e
       Devotion: '灵护', // 0x4bd
       FoeRequiem: '魔人的安魂曲', // up 0x8b, down 0x8c
-      LeadenFist: 'Leaden Fist',
-      StormsEye: 'Storm\'s Eye',
-      Devilment: 'Devilment',
-      StandardFinish: 'Standard Finish',
-      TechnicalFinish: 'Technical Finish',
-      Thundercloud: 'Thundercloud',
-      Firestarter: 'Firestarter',
-      BattleVoice: 'Battle Voice',
+      LeadenFist: '连击效果提高',
+      StormsEye: '暴风碎',
+      Devilment: '进攻之探戈',
+      StandardFinish: '标准舞步结束',
+      TechnicalFinish: '技巧舞步结束',
+      Thundercloud: '雷云',
+      Firestarter: '火苗',
+      BattleVoice: '战斗之声',
 
       Petrification: '石化',
       BeyondDeath: '超越死亡',
       Burns: '火伤',
       Sludge: '污泥',
       Doom: '死亡宣告',
-      StoneCurse: 'Stone Curse',
-      Imp: 'Imp',
-      Toad: 'Toad',
-      FoolsTumble: 'Fool\'s Tumble', // 0x183
+      StoneCurse: '石化的诅咒',
+      Imp: '河童',
+      Toad: '蛙变',
+      FoolsTumble: '坠落幻觉', // 0x183
 
       // UWU
       Windburn: '裂伤',
