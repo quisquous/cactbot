@@ -138,7 +138,8 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         containsMatches = currentTriggerFunction.toString().includes('matches');
     }
 
-    let regexContainsCapturingGroups = /(\((?!\?:).*?\))/.test(currentTrigger.regex);
+    let findCapturingGroupRegex = /([^\\]\((?!\?:).*?\))/;
+    let regexContainsCapturingGroups = findCapturingGroupRegex.test(currentTrigger.regex);
     let regexLanguages = [
       'regexCn',
       'regexDe',
@@ -152,7 +153,7 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     for (let j = 0; j < regexLanguages.length; j++) {
       let currentRegex = currentTrigger[regexLanguages[j]];
       if (typeof currentRegex !== 'undefined') {
-        let foundCapturingGroups = /([^\\]\((?!\?:).*?\))/.test(currentRegex);
+        let foundCapturingGroups = findCapturingGroupRegex.test(currentRegex);
         if (foundCapturingGroups != regexContainsCapturingGroups) {
           console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
           break;
