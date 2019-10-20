@@ -228,19 +228,16 @@ if __name__ == "__main__":
         description="Generate fisher data from xivapi",
         epilog=example_usage,
         formatter_class=argparse.RawDescriptionHelpFormatter)
-
-    parser.add_argument('-cn', '--chs', help="If passed, get fisher data from cn xivapi", action='store_true')
     args = parser.parse_args()
 
     places, fishes, placefish = get_fish_data()
     tackle = get_tackle()
     append_special_place_names(places)
 
-    if args.chs:
-        cn_places, cn_fishes, cn_tackle = get_cn_data()
-        tackle.update({"cn": cn_tackle["chs"]})
-        places.update({"cn": cn_places["chs"]})
-        fishes.update({"cn": cn_fishes["chs"]})
+    cn_places, cn_fishes, cn_tackle = get_cn_data()
+    tackle.update({"cn": cn_tackle["chs"]})
+    places.update({"cn": cn_places["chs"]})
+    fishes.update({"cn": cn_fishes["chs"]})
 
     data = {
         'tackle': tackle,
