@@ -570,7 +570,7 @@
     },
     {
       id: 'O9S Earth Stack Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
       suppressSeconds: 10,
       infoText: {
         en: 'Stack with partner',
