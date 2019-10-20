@@ -193,7 +193,7 @@ class TimerIcon extends HTMLElement {
     if (this.bordersize != null) this._color_border_size = Math.max(parseInt(this.bordersize), 0);
     if (this.scale != null) this._scale = Math.max(parseFloat(this.scale), 0.01);
     if (this.hideafter != null && this.hideafter != '') this._hideafter = Math.max(parseFloat(this.hideafter), 0);
-    if (typeof(this.onhide) != null) this._onhide = this.onhide;
+    if (typeof(this.onhide) !== 'undefined') this._onhide = this.onhide;
     if (this.icon != null) this._icon = this.icon;
     if (this.zoom != null) this._zoom = Math.max(parseInt(this.zoom), 0);
     if (this.text != null) this._text = this.text;
