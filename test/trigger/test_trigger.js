@@ -138,8 +138,7 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         containsMatches = currentTriggerFunction.toString().includes('matches');
     }
 
-    let findCapturingGroupRegex = /([^\\]\((?!\?:).*?\))/;
-    let regexContainsCapturingGroups = findCapturingGroupRegex.test(currentTrigger.regex);
+    let captures = new RegExp('(?:' + currentTrigger.regex.toString() + ')?').exec('').length - 1;
     let regexLanguages = [
       'regexCn',
       'regexDe',
@@ -148,21 +147,19 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
       'regexKo',
     ];
 
-    // Don't assume that just because English doesn't have capturing
-    // groups that all other languages are correct!
+    // Check for inconsistencies between languages
     for (let j = 0; j < regexLanguages.length; j++) {
       let currentRegex = currentTrigger[regexLanguages[j]];
       if (typeof currentRegex !== 'undefined') {
-        let foundCapturingGroups = findCapturingGroupRegex.test(currentRegex);
-        if (foundCapturingGroups != regexContainsCapturingGroups) {
+        let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+        if (captures !== currentCaptures) {
           console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
           break;
         }
-        regexContainsCapturingGroups = foundCapturingGroups;
       }
     }
 
-    if (regexContainsCapturingGroups) {
+    if (captures > 0) {
       if (!containsMatches)
         console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
     } else {
