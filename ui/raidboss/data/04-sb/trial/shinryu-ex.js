@@ -6,10 +6,10 @@
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {
-      regex: / 04:\y{ObjectId}:Removing combatant Shinryu\.  Max HP: 17167557\./,
-      regexDe: / 04:\y{ObjectId}:Removing combatant Shinryu\.  Max HP: 17167557\./,
-      regexFr: / 04:\y{ObjectId}:Removing combatant Shinryu\.  Max HP: 17167557\./,
-      regexJa: / 04:\y{ObjectId}:Removing combatant 神龍\.  Max HP: 17167557\./,
+      regex: / 04:\y{ObjectId}:Removing combatant Shinryu\.\s{2}Max HP: 17167557\./,
+      regexDe: / 04:\y{ObjectId}:Removing combatant Shinryu\.\s{2}Max HP: 17167557\./,
+      regexFr: / 04:\y{ObjectId}:Removing combatant Shinryu\.\s{2}Max HP: 17167557\./,
+      regexJa: / 04:\y{ObjectId}:Removing combatant 神龍\.\s{2}Max HP: 17167557\./,
       run: function(data) {
         // Explicitly clear so ugly heart message doesn't appear after wipe.
         delete data.phase;

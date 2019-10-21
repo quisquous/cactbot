@@ -438,7 +438,7 @@ class LogPlayer {
 
     // Walk through all logs that should be emitted since the last tick.
     let logs = [];
-    while (true) {
+    for (;;) {
       let date = dateFromLogLine(this.fight.logs[this.logIdx]);
       if (date) {
         if (date.getTime() > cutOffTimeMs)
@@ -850,7 +850,7 @@ class EmulatorView {
     }
 
     // checking for suppression, first local then global
-    if (typeof suppressed[trigger.id]) {
+    if (typeof suppressed[trigger.id] !== 'undefined') {
       let timestamps = suppressed[trigger.id];
       for (let i in timestamps) {
         if (timestamps[i] > timestamp)
