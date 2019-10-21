@@ -87,7 +87,7 @@
       regexDe: / 14:3D00:Geläuterte Grausamkeit starts using Taifunschwinge/,
       regexFr: / 14:3D00:Cruauté Pardonnée starts using Aile [dD]e [tT]yphon/,
       regexJa: / 14:3D00:フォーギヴン・クルエルティー starts using タイフーンウィング/,
-      supressSeconds: 5,
+      suppressSeconds: 5,
       infoText: {
         en: 'dodge wind cones',
         de: 'Wind-Fächerflächen ausweichen',
@@ -100,7 +100,7 @@
       regexDe: / 14:3D0[12]:Geläuterte Grausamkeit starts using Taifunschwinge/,
       regexFr: / 14:3D0[12]:Cruauté Pardonnée starts using Aile [dD]e [tT]yphon/,
       regexJa: / 14:3D0[12]:フォーギヴン・クルエルティー starts using タイフーンウィング/,
-      supressSeconds: 5,
+      suppressSeconds: 5,
       infoText: {
         en: 'out of melee, dodge cones',
         de: 'Nahkämpfer raus, Wind-Fächerflächen ausweichen',
