@@ -224,7 +224,7 @@
         de: 'Geh in die sichere Ecke',
         ja: '安置へ',
         fr: 'Allez sur le coin sûr',
-        cn: '安全点',
+        cn: '去安全角落',
       },
     },
     {
