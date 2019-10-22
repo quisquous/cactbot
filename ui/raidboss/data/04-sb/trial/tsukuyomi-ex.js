@@ -170,7 +170,7 @@
     },
     {
       id: 'Tsukuyomi Lunacy',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
       alertText: {
         en: 'Stack',
         de: 'Stack',

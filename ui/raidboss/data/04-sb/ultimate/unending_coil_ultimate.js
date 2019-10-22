@@ -211,7 +211,7 @@
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
       delaySeconds: 0.25,
       infoText: function(data) {
         if (!data.hatch)
@@ -230,7 +230,7 @@
     },
     {
       // Hatch Cleanup
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -674,10 +674,10 @@
     },
     {
       // Doom tracking cleanup.
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Verhängnis/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Glas/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死の宣告/,
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
@@ -1019,7 +1019,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
       condition: function(data) {
         return !data.trio;
       },
@@ -1118,7 +1118,7 @@
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0029:0000:0000:0000:/,
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1230,7 +1230,7 @@
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1277,7 +1277,7 @@
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1326,7 +1326,7 @@
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0028:0000:0000:0000:/,
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)
@@ -1433,10 +1433,10 @@
     },
     {
       id: 'UCU Akh Morn',
-      regex: / 14:26EA:Bahamut Prime starts using Akh Morn on (\y{Name})/,
-      regexDe: / 14:26EA:Prim-Bahamut starts using Akh Morn on (\y{Name})/,
-      regexFr: / 14:26EA:Primo-Bahamut starts using Akh Morn on (\y{Name})/,
-      regexJa: / 14:26EA:バハムート・プライム starts using アク・モーン on (\y{Name})/,
+      regex: / 14:26EA:Bahamut Prime starts using Akh Morn on \y{Name}/,
+      regexDe: / 14:26EA:Prim-Bahamut starts using Akh Morn on \y{Name}/,
+      regexFr: / 14:26EA:Primo-Bahamut starts using Akh Morn on \y{Name}/,
+      regexJa: / 14:26EA:バハムート・プライム starts using アク・モーン on \y{Name}/,
       preRun: function(data) {
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;

@@ -87,7 +87,7 @@
       regexDe: / 14:3D00:Geläuterte Grausamkeit starts using Taifunschwinge/,
       regexFr: / 14:3D00:Cruauté Pardonnée starts using Aile [dD]e [tT]yphon/,
       regexJa: / 14:3D00:フォーギヴン・クルエルティー starts using タイフーンウィング/,
-      supressSeconds: 5,
+      suppressSeconds: 5,
       infoText: {
         en: 'dodge wind cones',
         de: 'Wind-Fächerflächen ausweichen',
@@ -100,7 +100,7 @@
       regexDe: / 14:3D0[12]:Geläuterte Grausamkeit starts using Taifunschwinge/,
       regexFr: / 14:3D0[12]:Cruauté Pardonnée starts using Aile [dD]e [tT]yphon/,
       regexJa: / 14:3D0[12]:フォーギヴン・クルエルティー starts using タイフーンウィング/,
-      supressSeconds: 5,
+      suppressSeconds: 5,
       infoText: {
         en: 'out of melee, dodge cones',
         de: 'Nahkämpfer raus, Wind-Fächerflächen ausweichen',
@@ -129,21 +129,13 @@
       regexDe: / 14:3D09:Geläuterte Gereiztheit starts using Heiliger Vers/,
       regexFr: / 14:3D09:Caprice Pardonné starts using Texte [sS]acré/,
       regexJa: / 14:3D09:フォーギヴン・ウィムズィー starts using 聖句/,
-      alertText: function(data, matches) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-          };
-        }
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      alertText: {
+        en: 'tank buster',
+        de: 'Tankbuster',
+        fr: 'Tankbuster',
       },
     },
     {
@@ -205,21 +197,13 @@
       regexDe: / 14:3D12:Geläuterte Unzucht starts using Sakrament sforzato/,
       regexFr: / 14:3D12:Obscénité Pardonnée starts using Sacrement - [sS]forzando/,
       regexJa: / 14:3D12:フォーギヴン・オブセニティー starts using サクラメント・スフォルツァンド/,
-      alertText: function(data, matches) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-          };
-        }
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      alertText: {
+        en: 'tank buster',
+        de: 'Tankbuster',
+        fr: 'Tankbuster',
       },
     },
     {

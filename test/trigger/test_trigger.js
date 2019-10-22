@@ -12,6 +12,33 @@ let exitCode = 0;
 
 let inputFilename = String(process.argv.slice(2));
 
+const triggerFunctions = [
+  'alarmText',
+  'alertText',
+  'condition',
+  'delaySeconds',
+  'disabled',
+  'durationSeconds',
+  'groupTTS',
+  'id',
+  'infoText',
+  'preRun',
+  'run',
+  'sound',
+  'soundVolume',
+  'suppressSeconds',
+  'tts',
+];
+
+const regexLanguages = [
+  'regex',
+  'regexCn',
+  'regexDe',
+  'regexFr',
+  'regexJa',
+  'regexKo',
+];
+
 let testValidTriggerRegexLanguage = function(file, contents) {
   let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja).*?:/g;
   let results = contents.match(unsupportedRegexLanguage);
@@ -108,6 +135,58 @@ let testUnnecessaryGroupRegex = function(file, contents) {
   }
 };
 
+let testInvalidCapturingGroupRegex = function(file, contents) {
+  let json = eval(contents);
+
+  for (let i in json[0].triggers) {
+    let currentTrigger = json[0].triggers[i];
+
+    let containsMatches = false;
+
+    for (let j = 0; !containsMatches && j < triggerFunctions.length; j++) {
+      let currentTriggerFunction = currentTrigger[triggerFunctions[j]];
+      if (typeof currentTriggerFunction !== 'undefined' && currentTriggerFunction !== null)
+        containsMatches = currentTriggerFunction.toString().includes('matches');
+    }
+
+    let captures = -1;
+
+    // Check for inconsistencies between languages
+    for (let j = 0; j < regexLanguages.length; j++) {
+      let currentRegex = currentTrigger[regexLanguages[j]];
+      if (typeof currentRegex !== 'undefined') {
+        let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+        // Ignore first pass
+        if (captures !== -1 && captures !== currentCaptures) {
+          console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
+          break;
+        }
+        captures = Math.max(captures, currentCaptures);
+      }
+    }
+
+    if (captures > 0) {
+      if (!containsMatches)
+        console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
+    } else {
+      if (containsMatches)
+        console.error(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`);
+    }
+  }
+};
+
+let testInvalidTriggerKeys = function(file, contents) {
+  let json = eval(contents);
+
+  for (let i in json[0].triggers) {
+    let currentTrigger = json[0].triggers[i];
+    for (let key in currentTrigger) {
+      if (!triggerFunctions.includes(key) && !regexLanguages.includes(key))
+        console.error(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -119,6 +198,8 @@ let testTriggerFile = function(file) {
   testBadCatchAllRegex(file, contents);
   testObjectIdRegex(file, contents);
   testUnnecessaryGroupRegex(file, contents);
+  testInvalidCapturingGroupRegex(file, contents);
+  testInvalidTriggerKeys(file, contents);
 };
 
 testTriggerFile(inputFilename);

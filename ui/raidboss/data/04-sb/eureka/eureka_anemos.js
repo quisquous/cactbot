@@ -172,7 +172,7 @@
       regexDe: / 14:29C3:Nichtsschuppe starts using Eisball on (\y{Name})/,
       regexFr: / 14:29C3:Vidécailles starts using Boule De Glace on (\y{Name})/,
       regexJa: / 14:29C3:ヴォイドスケイル starts using 氷結球 on (\y{Name})/,
-      regexCn: / 14:29C3:虚无鳞龙 starts using (冰球|冻结) on (\y{Name})/,
+      regexCn: / 14:29C3:虚无鳞龙 starts using (?:冰球|冻结) on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

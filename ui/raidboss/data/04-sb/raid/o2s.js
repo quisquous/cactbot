@@ -116,10 +116,10 @@
     },
     {
       id: 'O2S Elevated',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Elevated from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Erhöht from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Élévation from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 高度固定：高 from/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Elevated from/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Erhöht from/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Élévation from/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 高度固定：高 from/,
       infoText: function(data) {
         if (!data.role.startsWith('dps')) {
           return {

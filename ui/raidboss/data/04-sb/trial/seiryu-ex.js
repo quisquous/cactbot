@@ -88,11 +88,11 @@
     },
     {
       id: 'SeiryuEx Infirm Soul',
-      regex: / 14:37D2:Seiryu starts using Cursekeeper on (\y{Name})/,
-      regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on (\y{Name})/,
-      regexFr: / 14:37D2:Seiryû starts using Katashiro on (\y{Name})/,
-      regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on (\y{Name})/,
-      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on (\y{Name})/,
+      regex: / 14:37D2:Seiryu starts using Cursekeeper on \y{Name}/,
+      regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on \y{Name}/,
+      regexFr: / 14:37D2:Seiryû starts using Katashiro on \y{Name}/,
+      regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on \y{Name}/,
+      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on \y{Name}/,
       condition: function(data) {
         // TODO: it'd be nice to figure out who the tanks are so this
         // could also apply to the person Cursekeeper was on.
@@ -171,7 +171,7 @@
     },
     {
       id: 'SeiryuEx Ascending Tower You',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:00A9:0000:0000:0000:/,
       condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;
