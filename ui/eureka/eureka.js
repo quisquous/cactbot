@@ -2052,7 +2052,7 @@ class EurekaTracker {
     let zones = this.options.ZoneName[this.options.Language] || this.options.ZoneName['en'];
     for (let zone in zones) {
       this.zoneName = this.zoneName.replace(
-          this.options.ZoneName[this.options.Language][zone],
+          zones[zone],
           zone);
     }
     this.zoneName = this.zoneName.replace('Unknown Zone (33B)', 'Eureka Hydatos');
