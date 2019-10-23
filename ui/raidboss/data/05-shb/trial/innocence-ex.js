@@ -224,7 +224,7 @@
         de: 'Geh in die sichere Ecke',
         ja: '安置へ',
         fr: 'Allez sur le coin sûr',
-        cn: '安全点',
+        cn: '去安全角落',
       },
     },
     {
@@ -304,7 +304,7 @@
         en: 'Get to Safe Corner',
         de: 'Geh in die sichere Ecke',
         fr: 'Allez sur le coin sûr',
-        cn: '安全点',
+        cn: '去安全角落',
       },
     },
     {
@@ -395,7 +395,7 @@
       infoText: {
         en: 'Rotate Left',
         de: 'Links rum rotieren',
-        cn: '左侧旋转',
+        cn: '向左旋转',
       },
     },
     {
@@ -409,7 +409,7 @@
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
-        cn: '右侧旋转',
+        cn: '向右旋转',
       },
     },
     {
@@ -423,7 +423,7 @@
       infoText: {
         en: 'Rotate Left',
         de: 'Links rum rotieren',
-        cn: '左侧旋转',
+        cn: '向左旋转',
       },
     },
     {
@@ -437,7 +437,7 @@
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
-        cn: '右侧旋转',
+        cn: '向右旋转',
       },
     },
   ],
@@ -592,6 +592,8 @@
         'Winged Rep Rotate': '风车断罪飞翔',
         'Winged Rep Tethers': '连线断罪飞翔',
         'Winged Reprobation': '断罪飞翔',
+        'Starbirth Avoid': '创星躲避',
+        'Starbirth Explode': '创星爆炸',
         'Starbirth': '创星',
         'Soul [aA]nd Body': '身心',
         'Shadowreaver': '夺影',
@@ -616,7 +618,7 @@
         'Forgiven shame': '得到宽恕的耻辱',
         '--untargetable--': '--无法选中--',
         '--targetable--': '--可选中--',
-        '--jump--': '--跳--',
+        '--jump--': '--BOSS位移--',
       },
       '~effectNames': {
         'Physical Vulnerability Up': '物理受伤加重',
