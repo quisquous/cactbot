@@ -107,6 +107,7 @@ let kEarlyPullText = {
   // FIXME
   fr: 'early pull',
   ja: 'early pull',
+  cn: '抢开',
 };
 
 let kLatePullText = {
@@ -115,6 +116,7 @@ let kLatePullText = {
   // FIXME
   fr: 'late pull',
   ja: 'late pull',
+  cn: '晚开',
 };
 
 // Internal trigger id for early pull
