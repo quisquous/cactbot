@@ -62,7 +62,7 @@
     {
       id: 'General Missed Trick',
       damageRegex: gLang.kAbility.TrickAttack,
-      condition: function(e) {
+      condition: function(e, data) {
         // 2?710?03 == success
         //   710?03 == failure
         return data.IsPlayerId(e.attackerId) && e.flags.substr(-8, 1) != '2';
