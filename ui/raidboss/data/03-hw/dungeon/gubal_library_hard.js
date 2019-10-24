@@ -103,7 +103,7 @@
     {
       id: 'Gubal Hard Seals',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (Moon|Sun)seal/,
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches[1];
       },
       infoText: function(data, matches) {

@@ -66,7 +66,7 @@
       id: 'Gubal Hard Imp Tracking',
       gainsEffectRegex: gLang.kEffect.Imp,
       losesEffectRegex: gLang.kEffect.Imp,
-      run: function (e, data) {
+      run: function(e, data) {
         data.hasImp = data.hasImp || {};
         data.hasImp[e.targetName] = e.gains;
         console.log(data);
