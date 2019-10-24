@@ -33,8 +33,8 @@
 03-hw/alliance/dun_scaith.txt
 03-hw/dungeon/fractal_continuum.js
 03-hw/dungeon/fractal_continuum.txt
-03-hw/dungeon/great_gubal_hard.js
-03-hw/dungeon/great_gubal_hard.txt
+03-hw/dungeon/gubal_library_hard.js
+03-hw/dungeon/gubal_library_hard.txt
 03-hw/dungeon/the_vault.js
 03-hw/dungeon/the_vault.txt
 03-hw/dungeon/sohm_al.js
