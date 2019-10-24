@@ -68,7 +68,7 @@
     },
     {
       id: 'Gubal Hard Ferrofluid Execute',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0030|0031:/,
+      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:0030|0031):/,
       suppressSeconds: 5,
       delaySeconds: 0.5,
       infoText: function(data) {
@@ -177,7 +177,7 @@
       regex: /14:195D:Behemoth Ward starts using Ecliptic Meteor/,
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
       alertText: {
-        en: 'LoS Behemoth with boulder',
+        en: 'Hide behind boulder',
       },
     },
   ],
