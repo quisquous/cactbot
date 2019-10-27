@@ -52,7 +52,7 @@ class Timeline {
         continue;
       let keys = Object.keys(r[replaceKey]);
       for (let j = 0; j < keys.length; ++j)
-        text = text.replace(Regexes.Parse(keys[j]), r[replaceKey][keys[j]]);
+        text = text.replace(Regexes.parse(keys[j]), r[replaceKey][keys[j]]);
     }
     return text;
   }
@@ -154,7 +154,7 @@ class Timeline {
           line = line.replace(commandMatch[1], '').trim();
           let sync = {
             id: uniqueid,
-            regex: Regexes.Parse(this.GetReplacedSync(commandMatch[2])),
+            regex: Regexes.parse(this.GetReplacedSync(commandMatch[2])),
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,

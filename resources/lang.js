@@ -192,11 +192,11 @@ class CactbotLanguage {
   // Also, the networked parse info is given much quicker than the lines
   // from the game.
   youUseAbilityRegex(ids) {
-    return Regexes.Parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.AnyOf(ids) + ':');
+    return Regexes.parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.anyOf(ids) + ':');
   }
 
   youStartUsingRegex(ids) {
-    return Regexes.Parse(' 14:' + Regexes.AnyOf(ids) + ':' + this.playerName + ' starts using ');
+    return Regexes.parse(' 14:' + Regexes.anyOf(ids) + ':' + this.playerName + ' starts using ');
   }
 
   youGainEffectRegex() {
@@ -205,7 +205,7 @@ class CactbotLanguage {
       let effect = arguments[i];
       effects.push(effect);
     }
-    return Regexes.Parse(' 1A:\\y{ObjectId}:' + this.playerName + ' gains the effect of ' + Regexes.AnyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
+    return Regexes.parse(' 1A:\\y{ObjectId}:' + this.playerName + ' gains the effect of ' + Regexes.anyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
   }
 
   youLoseEffectRegex() {
@@ -214,7 +214,7 @@ class CactbotLanguage {
       let effect = arguments[i];
       effects.push(effect);
     }
-    return Regexes.Parse(' 1E:\\y{ObjectId}:' + this.playerName + ' loses the effect of ' + Regexes.AnyOf(effects) + ' from .*\\.');
+    return Regexes.parse(' 1E:\\y{ObjectId}:' + this.playerName + ' loses the effect of ' + Regexes.anyOf(effects) + ' from .*\\.');
   }
 
   abilityRegex(abilityId, attacker, target, flags) {
@@ -231,7 +231,7 @@ class CactbotLanguage {
         flags = '[^:]*';
       r += '[^:]*:\\y{ObjectId}:' + target + ':' + flags + ':';
     }
-    return Regexes.Parse(r);
+    return Regexes.parse(r);
   }
 
   gainsEffectRegex(effect, target, attacker) {
@@ -239,7 +239,7 @@ class CactbotLanguage {
       target = '[^:]*';
     if (!attacker)
       attacker = '[^:]*';
-    return Regexes.Parse(' 1A:\\y{ObjectId}:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\\.');
+    return Regexes.parse(' 1A:\\y{ObjectId}:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\\.');
   }
 
   losesEffectRegex(effect, target, attacker) {
@@ -247,7 +247,7 @@ class CactbotLanguage {
       target = '[^:]*';
     if (!attacker)
       attacker = '[^:]*';
-    return Regexes.Parse(' 1E:\\y{ObjectId}:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
+    return Regexes.parse(' 1E:\\y{ObjectId}:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
   }
 }
 

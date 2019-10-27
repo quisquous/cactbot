@@ -63,7 +63,7 @@ class CactbotLanguageJa extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/戦闘開始まで(\y{Float})秒！/);
+      return Regexes.parse(/戦闘開始まで(\y{Float})秒！/);
     };
     this.countdownEngageRegex = function() {
       return /:戦闘開始！/;

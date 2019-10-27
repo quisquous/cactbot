@@ -64,7 +64,7 @@ class CactbotLanguageCn extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/距离战斗开始还有(\y{Float})秒！/);
+      return Regexes.parse(/距离战斗开始还有(\y{Float})秒！/);
     };
     this.countdownEngageRegex = function() {
       return /:战斗开始！/;
