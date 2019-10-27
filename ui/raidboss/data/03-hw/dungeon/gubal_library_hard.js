@@ -55,39 +55,28 @@
       },
     },
     {
-      // Ferrofluid handling is shamelessly copied from Hades Normal
-      id: 'Gubal Hard Ferrofluid Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(0030|0031):/,
-      run: function(data, matches) {
-        data.fluid = data.fluid || {};
-        if (matches[2] == '0030')
-          data.fluid[matches[1]] = 'positive';
-        if (matches[2] == '0031')
-          data.fluid[matches[1]] = 'negative';
+      id: 'Gubal Hard Ferrofluid',
+      regex: / 1B:(\y{ObjectId}):(\y{Name}):....:....:(0030|0031):/,
+      condition: function(data, matches) {
+        return data.me == matches[2] || matches[1].slice(0,1) == '4';
       },
-    },
-    {
-      id: 'Gubal Hard Ferrofluid Execute',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:0030|0031):/,
-      suppressSeconds: 5,
-      delaySeconds: 0.5,
+      preRun: function(data, matches) {
+        data.markers = data.markers || [];
+        data.markers.push(matches[3]);
+      },
       infoText: function(data) {
-        if (data.fluid[data.me] == data.fluid['Liquid Flame']) {
+        if (data.markers.length == 2) {
+          let sameMarkers = data.markers[0] == data.markers[1];
+          delete data.markers;
+          if (sameMarkers) {
+            return {
+              en: 'Away from boss',
+            };
+          }
           return {
             en: 'Close to boss',
           };
         }
-        return {
-          en: 'Away from boss',
-        };
-      },
-    },
-    {
-      id: 'Gubal Hard Ferrofluid Cleanup',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003[01]:/,
-      delaySeconds: 5,
-      run: function(data) {
-        delete data.fluid;
       },
     },
     {
