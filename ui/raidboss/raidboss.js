@@ -52,6 +52,30 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
     gTimelineController.OnLogEvent(e);
   });
 
+  // Query params override default and user options.
+  // This allows for html files that say "timeline only" or "alerts only".
+  let params = new URLSearchParams(window.location.search);
+  let alerts = params.get('alerts');
+  if (alerts !== null) {
+    let previous = Options.AlertsEnabled;
+    Options.AlertsEnabled = !!parseInt(alerts);
+    if (!previous && Options.AlertsEnabled)
+      console.log('Enabling alerts via query parameter');
+  }
+  let timeline = params.get('timeline');
+  if (timeline !== null) {
+    let previous = Options.TimelineEnabled;
+    Options.TimelineEnabled = !!parseInt(timeline);
+    if (!previous && Options.TimelineEnabled)
+      console.log('Enabling timeline via query parameter');
+  }
+
+  let container = document.getElementById('container');
+  if (!Options.AlertsEnabled)
+    container.classList.add('hide-alerts');
+  if (!Options.TimelineEnabled)
+    container.classList.add('hide-timeline');
+
   callOverlayHandler({
     call: 'cactbotReadDataFiles',
     source: location.href,
@@ -63,7 +87,8 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
 
   gTimelineController = new TimelineController(Options, new TimelineUI(Options));
   gPopupText = new PopupText(Options);
-  // Connect the timelines to the popup text.
-  gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
+  // Connect the timelines to the popup text, if alerts are desired.
+  if (Options.AlertsEnabled)
+    gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
   gPopupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
 });

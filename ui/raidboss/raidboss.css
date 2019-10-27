@@ -4,6 +4,10 @@
   text-align: center;
 }
 
+.hide-alerts #popup-text-container {
+  display: none;
+}
+
 #timeline-container {
   position: absolute;
   top: 0px;
@@ -11,6 +15,10 @@
   width: 220px;
   height: 120px;
   font-size: 14px;
+}
+
+.hide-timeline #timeline-container {
+  display: none;
 }
 
 #timeline-container.lang-fr {

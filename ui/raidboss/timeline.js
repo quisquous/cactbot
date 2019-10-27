@@ -764,9 +764,6 @@ class TimelineController {
   SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
     this.activeTimeline = null;
 
-    if (!this.options.TimelineEnabled)
-      return;
-
     let text = '';
 
     // Get the text from each file in |timelineFiles|.
