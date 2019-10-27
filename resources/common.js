@@ -91,11 +91,11 @@ let Util = {
   let sendMessage = null;
 
   if (wsUrl) {
-    sendMessage = (obj) => {
+    sendMessage = (msg) => {
       if (queue)
         queue.push(msg);
       else
-        ws.send(JSON.stringify(obj));
+        ws.send(JSON.stringify(msg));
     };
 
     let connectWs = function() {
