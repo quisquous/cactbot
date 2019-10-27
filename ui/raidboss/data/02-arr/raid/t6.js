@@ -185,4 +185,75 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Engage!': 'Start!',
+        'Rafflesia': 'Rafflesia',
+        'Scar\'s Edge is no longer sealed': 'Der Zugang zum Narbenrand öffnet sich wieder',
+        'Scar\'s Edge will be sealed off': 'bis sich der Zugang zum Narbenrand schließt',
+      },
+      'replaceText': {
+        'Acid Rain': 'Säureregen',
+        'Blighted Bouquet': 'Mehltau-Bouquet',
+        'Bloody Caress': 'Vampirranke',
+        'Briary Growth': 'Wuchernde Dornen',
+        'Devour': 'Verschlingen',
+        'Floral Trap': 'Saugfalle',
+        'Leafstorm': 'Blättersturm',
+        'Rotten Stench': 'Fauler Gestank',
+        'Spit': 'Ausspeien',
+        'Swarm': 'Fähenfurz',
+        'Thorn Whip': 'Dornenpeitsche',
+        'Viscid Emission': 'Klebsporen',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Engage!': 'À l\'attaque !',
+        'Rafflesia': 'rafflesia',
+        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
+        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Acid Rain': 'Pluie acide',
+        'Blighted Bouquet': 'Bouquet mildiousé',
+        'Bloody Caress': 'Caresse sanglante',
+        'Briary Growth': 'Poussée de tige',
+        'Devour': 'Dévoration',
+        'Floral Trap': 'Piège floral',
+        'Leafstorm': 'Tempête de feuilles',
+        'Rotten Stench': 'Pestilence nauséabonde',
+        'Spit': 'Crachat morbide',
+        'Swarm': 'Nuée',
+        'Thorn Whip': 'Fouet de ronces',
+        'Viscid Emission': 'Émission visqueuse',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Engage!': '戦闘開始！',
+        'Rafflesia': 'ラフレシア',
+        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
+        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Acid Rain': '酸性雨',
+        'Blighted Bouquet': 'ブライテッドブーケ',
+        'Bloody Caress': 'ブラッディカレス',
+        'Briary Growth': 'ブライアリーグロウス',
+        'Devour': '捕食',
+        'Floral Trap': 'フローラルトラップ',
+        'Leafstorm': 'リーフストーム',
+        'Rotten Stench': 'ロトンステンチ',
+        'Spit': '吐出す',
+        'Swarm': 'スウォーム',
+        'Thorn Whip': 'ソーンウィップ',
+        'Viscid Emission': 'ヴィシドエミッション',
+      },
+    },
+  ],
 }];

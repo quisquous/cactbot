@@ -80,4 +80,69 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Engage!': 'Start!',
+        'Imdugud': 'Imdugud',
+        'The Alpha Concourse will be sealed off': 'bis sich der Zugang zur Alpha-Emergenzzone schließt',
+      },
+      'replaceText': {
+        'Crackle Hiss': 'Knisterndes Fauchen',
+        'Critical Rip': 'Kritischer Riss',
+        'Cyclonic Chaos': 'Zyklon-Chaos',
+        'Daughter': 'Tochter', // FIXME
+        'Electric Burst': 'Stromstoß',
+        'Electrocharge': 'Elektro-Ladung',
+        'Heat Lightning': 'Hitzeblitz',
+        'Random + Charge': 'Zufall + Wilde Rage',
+        'Son': 'Sohn',
+        'Spike Flail': 'Dornendresche',
+        'Wild Charge': 'Wilde Rage',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Engage!': 'À l\'attaque !',
+        'Imdugud': 'Imdugud',
+        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Crackle Hiss': 'Crachat crépitant',
+        'Critical Rip': 'Griffure critique',
+        'Cyclonic Chaos': 'Chaos cyclonique',
+        'Daughter': 'Daughter', // FIXME
+        'Electric Burst': 'Salve électrique',
+        'Electrocharge': 'Charge électrique',
+        'Heat Lightning': 'Éclair de chaleur',
+        'Random + Charge': 'Random + Charge', // FIXME
+        'Son': 'Son', // FIXME
+        'Spike Flail': 'Fléau à pointes',
+        'Wild Charge': 'Charge sauvage',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Engage!': '戦闘開始！',
+        'Imdugud': 'イムドゥグド',
+        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Crackle Hiss': 'クラックルヒス',
+        'Critical Rip': 'クリティカルリップ',
+        'Cyclonic Chaos': 'サイクロニックカオス',
+        'Daughter': 'Daughter', // FIXME
+        'Electric Burst': 'エレクトリックバースト',
+        'Electrocharge': 'エレクトロチャージ',
+        'Heat Lightning': 'ヒートライトニング',
+        'Random + Charge': 'Random + Charge', // FIXME
+        'Son': 'Son', // FIXME
+        'Spike Flail': 'スパイクフレイル',
+        'Wild Charge': 'ワイルドチャージ',
+      },
+    },
+  ],
 }];
