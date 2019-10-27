@@ -6,6 +6,7 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
+let Regexes = require('../../resources/regexes.js');
 let fs = require('fs');
 
 let exitCode = 0;
