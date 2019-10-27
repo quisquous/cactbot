@@ -92,7 +92,7 @@
         'Crackle Hiss': 'Knisterndes Fauchen',
         'Critical Rip': 'Kritischer Riss',
         'Cyclonic Chaos': 'Zyklon-Chaos',
-        'Daughter': 'Tochter', // FIXME
+        'Daughter': 'Tochter',
         'Electric Burst': 'Stromstoß',
         'Electrocharge': 'Elektro-Ladung',
         'Heat Lightning': 'Hitzeblitz',
