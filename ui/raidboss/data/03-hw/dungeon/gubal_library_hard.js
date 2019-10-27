@@ -101,20 +101,23 @@
       },
     },
     {
-      id: 'Gubal Hard Seals',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (Moon|Sun)seal/,
+      id: 'Gubal Hard Sunseal',
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sunseal/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: function(data, matches) {
-        if (matches[2] == 'Moon') {
-          return {
-            en: 'Stand in blue',
-          };
-        }
-        return {
-          en: 'Stand in red',
-        };
+      infoText: {
+        en: 'Stand in red',
+      },
+    },
+    {
+      id: 'Gubal Hard Moonseal',
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonseal/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Stand in blue',
       },
     },
     {
@@ -122,14 +125,14 @@
       id: 'Gubal Hard Condensed Libra',
       regex: / 14:198D:Mechanoscribe starts using Condensed Libra on \y{Name}/,
       infoText: function(data) {
-        if (data.CanStun()) {
-          return {
-            en: 'Stun Mechanoscribe',
-          };
-        }
         if (data.CanSilence()) {
           return {
             en: 'Interrupt Mechanoscribe',
+          };
+        }
+        if (data.CanStun()) {
+          return {
+            en: 'Stun Mechanoscribe',
           };
         }
       },
