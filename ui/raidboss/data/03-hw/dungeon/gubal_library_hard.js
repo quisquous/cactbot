@@ -58,7 +58,7 @@
       id: 'Gubal Hard Ferrofluid',
       regex: / 1B:(\y{ObjectId}):(\y{Name}):....:....:(0030|0031):/,
       condition: function(data, matches) {
-        return data.me == matches[2] || matches[1].slice(0,1) == '4';
+        return data.me == matches[2] || matches[1].slice(0, 1) == '4';
       },
       preRun: function(data, matches) {
         data.markers = data.markers || [];
