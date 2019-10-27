@@ -114,4 +114,72 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Allagan Field': 'Allagisches Feld',
+        'Engage!': 'Start!',
+        'The Avatar': 'Avatar',
+        'The central bow is no longer sealed': 'Der Zugang zum Rumpf-Zentralsektor öffnet sich wieder',
+        'The central bow will be sealed off': 'bis sich der Zugang zum Rumpf-Zentralsektor schließt',
+        'XYZ': '',
+      },
+      'replaceText': {
+        'Allagan Field': 'Allagisches Feld',
+        'Atomic Ray': 'Atomstrahlung',
+        'Ballistic Missile': 'Ballistische Rakete',
+        'Brainjack': 'Gehirnwäsche',
+        'Critical Surge': 'Kritischer Schub',
+        'Diffusion Ray': 'Diffusionsstrahl',
+        'Gaseous Bomb': 'Explosives Gasgemisch',
+        'Homing Missile': 'Lenkgeschoss',
+        'Inertia Stream': 'Trägheitsstrom',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Allagan Field': 'Champ allagois',
+        'Engage!': 'À l\'attaque !',
+        'The Avatar': 'bio-tréant',
+        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
+        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
+        'XYZ': '',
+      },
+      'replaceText': {
+        'Allagan Field': 'Champ allagois',
+        'Atomic Ray': 'Rayon atomique',
+        'Ballistic Missile': 'Missiles balistiques',
+        'Brainjack': 'Détournement cérébral',
+        'Critical Surge': 'Trouée critique',
+        'Diffusion Ray': 'Rayon diffuseur',
+        'Gaseous Bomb': 'Bombe gazeuse',
+        'Homing Missile': 'Tête chercheuse',
+        'Inertia Stream': 'Courant apathique',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Allagan Field': 'アラガンフィールド',
+        'Engage!': '戦闘開始！',
+        'The Avatar': 'アバター',
+        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
+        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
+        'XYZ': '',
+      },
+      'replaceText': {
+        'Allagan Field': 'アラガンフィールド',
+        'Atomic Ray': 'アトミックレイ',
+        'Ballistic Missile': 'ミサイル発射',
+        'Brainjack': 'ブレインジャック',
+        'Critical Surge': '臨界突破',
+        'Diffusion Ray': 'ディフュージョンレイ',
+        'Gaseous Bomb': '気化爆弾',
+        'Homing Missile': 'ホーミングミサイル',
+        'Inertia Stream': 'イナーシャストリーム',
+      },
+    },
+  ],
 }];
