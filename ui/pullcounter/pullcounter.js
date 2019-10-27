@@ -11,6 +11,8 @@ class PullCounter {
     this.element = element;
     this.zone = null;
     this.bossStarted = false;
+    this.party = [];
+    this.bosses = [];
 
     callOverlayHandler({
       call: 'cactbotLoadData',
@@ -36,12 +38,15 @@ class PullCounter {
   }
 
   OnLogEvent(e) {
-    if (this.bosses.length == 0 || this.bossStarted)
+    if (this.bossStarted)
       return;
     for (let i = 0; i < e.detail.logs.length; ++i) {
       let log = e.detail.logs[i];
-      if (this.countdownBoss && log.match(gLang.countdownEngageRegex())) {
-        this.OnFightStart(this.countdownBoss);
+      if (log.match(gLang.countdownEngageRegex())) {
+        if (this.countdownBoss)
+          this.OnFightStart(this.countdownBoss);
+        else
+          this.AutoStartBossIfNeeded();
         return;
       }
       for (let b = 0; b < this.bosses.length; ++b) {
@@ -81,12 +86,34 @@ class PullCounter {
   }
 
   OnInCombatChange(e) {
-    if (!e.detail.inGameCombat)
+    if (!e.detail.inGameCombat) {
       this.bossStarted = false;
+      return;
+    }
+    this.AutoStartBossIfNeeded();
+  }
+
+  AutoStartBossIfNeeded() {
+    // Start an implicit boss fight for this zone in parties of 8 people
+    // where no other bosses have been specified.
+    if (this.bosses.length > 0)
+      return;
+    if (this.bossStarted)
+      return;
+    if (this.party.length != 8)
+      return;
+    this.OnFightStart({
+      id: this.zone,
+      countdownStarts: true,
+    });
   }
 
   OnPartyWipe() {
     this.element.classList.add('wipe');
+  }
+
+  OnPartyChange(e) {
+    this.party = e.party;
   }
 
   SetSaveData(data) {
@@ -103,21 +130,11 @@ class PullCounter {
 }
 
 UserConfig.getUserConfigLocation('pullcounter', function() {
-  addOverlayListener('onLogEvent', function(e) {
-    gPullCounter.OnLogEvent(e);
-  });
-
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    gPullCounter.OnZoneChange(e);
-  });
-
-  addOverlayListener('onInCombatChangedEvent', function(e) {
-    gPullCounter.OnInCombatChange(e);
-  });
-
-  addOverlayListener('onPartyWipe', function() {
-    gPullCounter.OnPartyWipe();
-  });
+  addOverlayListener('onLogEvent', (e) => gPullCounter.OnLogEvent(e));
+  addOverlayListener('onZoneChangedEvent', (e) => gPullCounter.OnZoneChange(e));
+  addOverlayListener('onInCombatChangedEvent', (e) => gPullCounter.OnInCombatChange(e));
+  addOverlayListener('onPartyWipe', () => gPullCounter.OnPartyWipe());
+  addOverlayListener('PartyChanged', (e) => gPullCounter.OnPartyChange(e));
 
   gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
 });
