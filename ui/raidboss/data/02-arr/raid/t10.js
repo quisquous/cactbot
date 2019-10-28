@@ -30,7 +30,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Charge on YOU',
-            fr: 'Charge sur VOUS'
+            fr: 'Charge sur VOUS',
           };
         }
       },
