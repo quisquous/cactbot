@@ -13,6 +13,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Stun on ' + data.ShortName(matches[1]),
+          fr: 'Stun sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -27,6 +28,7 @@
           return;
         return {
           en: 'Spread => Stack',
+          fr: 'Ecarté -> Packé',
         };
       },
       run: function(data) {
@@ -45,6 +47,7 @@
           return;
         return {
           en: 'Stack => Spread',
+          fr: 'Packé -> Ecarté',
         };
       },
       run: function(data) {
@@ -63,6 +66,7 @@
           return;
         return {
           en: 'Stack',
+          fr: 'Packé',
         };
       },
       run: function(data) {
@@ -80,6 +84,7 @@
           return;
         return {
           en: 'Spread',
+          fr: 'Ecarté',
         };
       },
       run: function(data) {
@@ -92,6 +97,7 @@
       sound: 'Long',
       infoText: {
         en: 'Out of Middle',
+        fr: 'En dehors du centre',
       },
     },
     {
@@ -105,6 +111,7 @@
       },
       alarmText: {
         en: 'Lightning on YOU',
+        fr: 'Eclair sur VOUS',
       },
     },
     {
@@ -116,6 +123,7 @@
       sound: 'Long',
       infoText: {
         en: 'Final Phase',
+        fr: 'Phase finale',
       },
     },
     {
@@ -159,6 +167,7 @@
           return;
         return {
           en: 'Red Tethers With ' + data.ShortName(partner),
+          fr: 'Liens rouges avec ' + data.ShortName(partner),
         };
       },
     },
@@ -181,6 +190,7 @@
           return;
         return {
           en: 'Blue Tethers With ' + data.ShortName(partner),
+          fr: 'Liens bleus avec ' + data.ShortName(partner),
         };
       },
     },
@@ -225,8 +235,8 @@
       'replaceSync': {
         'Engage!': 'À l\'attaque !',
         'Kaliya': 'Kaliya',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
+        'The Core Override is no longer sealed': 'Ouverture de l\'unité de contrôle du Cœur',
+        'The Core Override will be sealed off': 'Fermeture de l\'unité de contrôle du Cœur',
       },
       'replaceText': {
         'Barofield': 'Barotraumatisme',

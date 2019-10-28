@@ -142,9 +142,9 @@
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
         'Engage!': 'À l\'attaque !',
-        'The Avatar': 'bio-tréant',
-        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
-        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
+        'The Avatar': 'Bio-tréant',
+        'The central bow is no longer sealed': 'Ouverture de l\'axe central', // FIXME
+        'The central bow will be sealed off': 'Fermeture de l\'axe central', // FIXME
         'XYZ': '',
       },
       'replaceText': {
