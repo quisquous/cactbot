@@ -53,6 +53,7 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
     document.getElementById('jobinfo').innerText = '';
 
   document.getElementById('pos').innerText = e.detail.pos.x + ',' + e.detail.pos.y + ',' + e.detail.pos.z;
+  document.getElementById('bait').innerText = e.detail.bait;
 });
 
 document.addEventListener('onTargetChangedEvent', function(e) {
