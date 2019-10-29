@@ -211,7 +211,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Engage!': 'À l\'attaque !',
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
+        'The Right Hand of Bahamut will be sealed off': 'Fermeture de la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },
       'replaceText': {

@@ -29,6 +29,7 @@
         return {
           en: 'Bennu Soon',
           de: 'Bennu Add',
+          fr: 'Bénou bientôt',
         };
       },
     },
@@ -43,6 +44,7 @@
           return {
             en: 'Revelation on YOU',
             de: 'Offenbarung auf DIR',
+            fr: 'Révélationsur VOUS',
           };
         }
       },
@@ -51,6 +53,7 @@
           return {
             en: 'Away from ' + data.ShortName(matches[1]),
             de: 'Weg von ' + data.ShortName(matches[1]),
+            fr: 'Ecartez-vous de ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -64,6 +67,7 @@
       infoText: {
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
+        fr: 'Flamme noire, dispersion',
       },
     },
     {
@@ -75,6 +79,7 @@
       alertText: {
         en: 'Whitefire on YOU',
         de: 'Weißfeuer auf DIR',
+        fr: 'Flamme blanche sur VOUS',
       },
     },
     {
@@ -86,6 +91,7 @@
       alertText: {
         en: 'Bluefire Away',
         de: 'Blaufeuer wegbringen',
+        fr: 'Flame bleue, écartez-vous',
       },
     },
     {
@@ -99,6 +105,7 @@
           return {
             en: 'Chain on YOU',
             de: 'Kette auf DIR',
+            fr: 'Chaine sur VOUS',
           };
         }
       },
@@ -107,6 +114,7 @@
           return {
             en: 'Chain on ' + data.ShortName(matches[1]),
             de: 'Kette auf ' + data.ShortName(matches[1]),
+            fr: 'Chaine sur ' + data.ShortName(matches[1]),
           };
         }
       },

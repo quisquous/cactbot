@@ -187,10 +187,10 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
-        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
+        'Bioweapon Storage is no longer sealed': 'Ouverture de l\Entrepôt d\'armes biologiques',
+        'Bioweapon Storage will be sealed off': 'Fermeture de l\Entrepôt d\'armes biologiques',
         'Engage!': 'À l\'attaque !',
-        'Lamia Prosector': 'lamia dissectrice',
+        'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },
       'replaceText': {
@@ -198,7 +198,7 @@
         'Circle Of Flames': 'Cercle de flammes',
         'Cursed Shriek': 'Cri maudit',
         'Cursed Voice': 'Voix maudite',
-        'Deathdancer': 'Deathdancer', // FIXME
+        'Deathdancer': 'Danseuse de mort',
         'Frenzy': 'Frénésie',
         'Petrifaction': 'Pétrification',
         'Red Lotus Blade': 'Lame lotus rouge',

@@ -20,6 +20,7 @@
       regexJa: / 14:B5F:イムドゥグド starts using ヒートライトニング/,
       alertText: {
         en: 'Spread',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -29,6 +30,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Charge on YOU',
+            fr: 'Charge sur VOUS',
           };
         }
       },
@@ -36,6 +38,7 @@
         if (data.me != matches[1]) {
           return {
             en: 'Charge on ' + data.ShortName(matches[1]),
+            fr: 'Charge sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -47,6 +50,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Prey on YOU',
+            fr: 'Prière sur VOUS',
           };
         }
       },
@@ -54,6 +58,7 @@
         if (data.me != matches[1]) {
           return {
             en: 'Prey on ' + data.ShortName(matches[1]),
+            fr: 'Prière sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -68,6 +73,7 @@
         if (data.me == matches[1]) {
           return {
             en: 'Cyclonic on YOU',
+            fr: 'Chaos cyclonique sur VOUS',
           };
         }
       },
@@ -75,6 +81,7 @@
         if (data.me != matches[1]) {
           return {
             en: 'Cyclonic on ' + data.ShortName(matches[1]),
+            fr: 'Chaos cyclonique sur ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -107,18 +114,18 @@
       'replaceSync': {
         'Engage!': 'À l\'attaque !',
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
+        'The Alpha Concourse will be sealed off': 'Fermeture du secteur des croyants',
       },
       'replaceText': {
         'Crackle Hiss': 'Crachat crépitant',
         'Critical Rip': 'Griffure critique',
         'Cyclonic Chaos': 'Chaos cyclonique',
-        'Daughter': 'Daughter', // FIXME
+        'Daughter': 'Fille',
         'Electric Burst': 'Salve électrique',
         'Electrocharge': 'Charge électrique',
         'Heat Lightning': 'Éclair de chaleur',
-        'Random + Charge': 'Random + Charge', // FIXME
-        'Son': 'Son', // FIXME
+        'Random + Charge': 'Aléatoire + Charge',
+        'Son': 'Fils',
         'Spike Flail': 'Fléau à pointes',
         'Wild Charge': 'Charge sauvage',
       },

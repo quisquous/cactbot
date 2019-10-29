@@ -64,19 +64,19 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Clockwork Bug': 'insecte mécanique',
-        'Clockwork Dreadnaught': 'cuirassé Dreadnaught',
-        'Clockwork Knight': 'chevalier mécanique',
-        'Drive Cylinder': 'cylindre propulseur',
-        'Spinner-rook': 'drone-drille',
+        'Clockwork Bug': 'Insecte mécanique',
+        'Clockwork Dreadnaught': 'Cuirassé Dreadnaught',
+        'Clockwork Knight': 'Chevalier mécanique',
+        'Drive Cylinder': 'Cylindre propulseur',
+        'Spinner-rook': 'Drone-drille',
       },
       'replaceText': {
-        'Bug': 'Bug', // FIXME
-        'Dreadnaught': 'Dreadnaught', // FIXME
+        'Bug': 'Insecte',
+        'Dreadnaught': 'Cuirassé',
         'Emergency Override': 'Annulation d\'urgence',
-        'Knight': 'Knight', // FIXME
-        'Rook': 'Rook', // FIXME
-        'Soldier': 'Soldier', // FIXME
+        'Knight': 'Chevalier',
+        'Rook': 'Drone',
+        'Soldier': 'Soldat',
       },
     },
     {
