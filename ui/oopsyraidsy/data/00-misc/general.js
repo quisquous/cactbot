@@ -59,24 +59,5 @@
         };
       },
     },
-    {
-      id: 'General Missed Trick',
-      damageRegex: gLang.kAbility.TrickAttack,
-      condition: function(e) {
-        // 2?710?03 == success
-        //   710?03 == failure
-        return data.IsPlayerId(e.attackerId) && e.flags.substr(-8, 1) != '2';
-      },
-      mistake: function(e, data) {
-        return {
-          type: 'warn',
-          blame: e.attackerName,
-          text: {
-            en: 'missed trick',
-            de: 'Trickattacke daneben',
-          },
-        };
-      },
-    },
   ],
 }];

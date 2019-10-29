@@ -72,21 +72,21 @@ let kYouLoseEffectRegex = null;
 let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
 
-let kGainSecondsRegex = Regexes.Parse('for (\\y{Float}) Seconds\\.');
+let kGainSecondsRegex = Regexes.parse('for (\\y{Float}) Seconds\\.');
 function gainSecondsFromLog(log) {
   let m = log.match(kGainSecondsRegex);
   if (m)
     return m[1];
   return 0;
 }
-let kGainSourceRegex = Regexes.Parse(' from (\\y{Name}) for');
+let kGainSourceRegex = Regexes.parse(' from (\\y{Name}) for');
 function gainSourceFromLog(log) {
   let m = log.match(kGainSourceRegex);
   if (m)
     return m[1];
   return null;
 }
-let kAbilitySourceRegex = Regexes.Parse(' 1[56]:\\y{ObjectId}:(\\y{Name}):');
+let kAbilitySourceRegex = Regexes.parse(' 1[56]:\\y{ObjectId}:(\\y{Name}):');
 function abilitySourceFromLog(log) {
   let m = log.match(kAbilitySourceRegex);
   if (m)
@@ -233,7 +233,7 @@ function setupComboTracker(callback) {
 }
 
 function setupRegexes() {
-  kWellFedZoneRegex = Regexes.AnyOf(Options.WellFedZones.map(function(x) {
+  kWellFedZoneRegex = Regexes.anyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
 
@@ -521,7 +521,7 @@ class BuffTracker {
       },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
-        durationSeconds: 10,
+        durationSeconds: 15,
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
@@ -532,7 +532,7 @@ class BuffTracker {
         // Trick attack missed appears to be "710?03" but correct is "20710?03".
         gainAbility: gLang.kAbility.TrickAttack,
         gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
-        durationSeconds: 10,
+        durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',

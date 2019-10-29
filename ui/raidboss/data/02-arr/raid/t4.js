@@ -42,4 +42,60 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Clockwork Bug': 'Uhrwerk-Wanze',
+        'Clockwork Dreadnaught': 'Brummonaut',
+        'Clockwork Knight': 'Uhrwerk-Ritter',
+        'Drive Cylinder': 'Antriebszylinder',
+        'Spinner-rook': 'Drehturm',
+      },
+      'replaceText': {
+        'Bug': 'Wanze',
+        'Dreadnaught': 'Brummonaut',
+        'Emergency Override': 'Not-Übersteuerung',
+        'Knight': 'Ritter',
+        'Rook': 'Drehturm',
+        'Soldier': 'Soldat',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Clockwork Bug': 'Insecte mécanique',
+        'Clockwork Dreadnaught': 'Cuirassé Dreadnaught',
+        'Clockwork Knight': 'Chevalier mécanique',
+        'Drive Cylinder': 'Cylindre propulseur',
+        'Spinner-rook': 'Drone-drille',
+      },
+      'replaceText': {
+        'Bug': 'Insecte',
+        'Dreadnaught': 'Cuirassé',
+        'Emergency Override': 'Annulation d\'urgence',
+        'Knight': 'Chevalier',
+        'Rook': 'Drone',
+        'Soldier': 'Soldat',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Clockwork Bug': 'アラガンワーク・バグ',
+        'Clockwork Dreadnaught': 'ドレッドノート',
+        'Clockwork Knight': 'アラガンワーク・ナイト',
+        'Drive Cylinder': '稼働隔壁',
+        'Spinner-rook': 'ルークスピナー',
+      },
+      'replaceText': {
+        'Bug': 'Bug', // FIXME
+        'Dreadnaught': 'Dreadnaught', // FIXME
+        'Emergency Override': 'エマージェンシー・オーバーライド',
+        'Knight': 'Knight', // FIXME
+        'Rook': 'Rook', // FIXME
+        'Soldier': 'Soldier', // FIXME
+      },
+    },
+  ],
 }];

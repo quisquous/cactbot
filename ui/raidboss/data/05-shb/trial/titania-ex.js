@@ -64,7 +64,7 @@
         de: 'Add angreifen',
         ja: '水の精倒して',
         fr: 'Tuez l\'add',
-        cn: '攻击小怪',
+        cn: '击杀小怪',
       },
     },
     {
@@ -112,7 +112,7 @@
             de: 'Sammeln (evtl rotieren?)',
             ja: 'シェア (多分時計回り?)',
             fr: 'Packez-vous (rotation ?)',
-            cn: '集合 (可能旋转?)',
+            cn: '左右集合 (可能旋转?)',
           };
         }
         return {
@@ -120,7 +120,7 @@
           de: 'Sammel-Positionen',
           ja: 'シェア',
           fr: 'Packez-vous',
-          cn: '集合站位',
+          cn: '左右集合',
         };
       },
       run: function(data) {
@@ -654,6 +654,8 @@
         'Puck\'s Rebuke': '帕克的指责',
         'Puck\'s Caprice': '帕克的随想',
         'Puck\'s Breath': '帕克的吐息',
+        'Phantom Rune In': '幻之符文靠近',
+        'Phantom Rune Out': '幻之符文远离',
         'Phantom Rune': '幻之符文',
         'Peasebomb': '豌豆炸弹',
         'Pease': '豌豆爆炸',
@@ -674,7 +676,7 @@
         'Bright Sabbath Enrage': '欢快的安息日 狂暴',
         'Bright Sabbath': '欢快的安息日',
         'Being Mortal': '终有一死',
-        '--center--': '--中场--',
+        '--center--': '--中场集合--',
         '--untargetable--': '--无法选中--',
         '--targetable--': '--可选中--',
       },

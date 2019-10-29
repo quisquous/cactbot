@@ -137,7 +137,7 @@ class PopupText {
               console.error('Trigger ' + trigger.id + ': undefined ' + regexLocale);
               continue;
             }
-            trigger.localRegex = Regexes.Parse(regex);
+            trigger.localRegex = Regexes.parse(regex);
           }
         }
         // Save the triggers from each set that matches.
