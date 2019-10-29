@@ -521,7 +521,7 @@ class BuffTracker {
       },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
-        durationSeconds: 10,
+        durationSeconds: 15,
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
@@ -532,7 +532,7 @@ class BuffTracker {
         // Trick attack missed appears to be "710?03" but correct is "20710?03".
         gainAbility: gLang.kAbility.TrickAttack,
         gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
-        durationSeconds: 10,
+        durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
