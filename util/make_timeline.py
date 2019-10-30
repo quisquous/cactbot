@@ -6,12 +6,12 @@ import fflogs
 import timeline_aggregator
 
 
-def timestamp_type(arg):
-    """Defines the timestamp input format"""
-    if re.match('\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
-        raise argparse.ArgumentTypeError(
-            "Invalid timestamp format. Use the format 12:34:56.789")
-    return arg
+# def timestamp_type(arg):
+#     """Defines the timestamp input format"""
+#     if re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
+#         raise argparse.ArgumentTypeError(
+#             "Invalid timestamp format. Use the format 12:34:56.789")
+#     return arg
 
 
 def parse_time(timestamp):
@@ -25,6 +25,21 @@ def parse_line_time(line):
     time = time.replace(microsecond=int(line[23:29]))
     return time
 
+def is_line_start(line_fields, started):
+    # FIXME: May need localization?
+    if (line_fields[4].endswith('sealed off in 15 seconds!')):
+        return True
+    if line_fields[0] == '36' and line_fields[2] == '0000' and started == False:
+        return True
+    return False
+
+def is_line_end(line_fields):
+    # FIXME: May need localization?
+    if line_fields[4].endswith('no longer sealed!') or line_fields[4] == 'The limit gauge resets!' or line_fields[4].endswith('has ended.'):
+        return True
+    if line_fields[0] == '33'and (line_fields[3] == '40000010' or line_fields[3] == '40000003'):
+        return True
+    return False
 
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
@@ -97,14 +112,28 @@ def parse_file(args):
 
     entries = []
     started = False
-
+    encounter_sets = []
     with args.file as file:
+        # If searching for encounters, divert and find start/end first
+        if args.search_fights:
+            encounter_sets = find_fights_in_file(file)
+            if args.search_fights[0] < 0:
+                for j in range(0, len(encounter_sets)):
+                    encounter_sets[j] = str(j) + '. ' + (" ").join(encounter_sets[j])
+                return encounter_sets
+        # Scan the file until the start timestamp
         for line in file:
-            # Scan the file until the start timestamp
-            if not started and line[14:26] != args.start:
+            start_time = end_time = 0
+            if args.search_fights:
+                start_time = (encounter_sets[args.search_fights[0]][0])
+                end_time = (encounter_sets[args.search_fights[0]][1])
+            else:
+                start_time = args.start
+                end_time = args.end
+            if not started and not (line[14:26] == start_time or line[14:29] == start_time):
                 continue
 
-            if line[14:26] == args.end:
+            if line[14:26] == end_time or line[14:29] == end_time:
                 break
 
             # We're at the start of the encounter now.
@@ -134,9 +163,61 @@ def parse_file(args):
 
     return entries, last_ability_time
 
+def find_fights_in_file(file):
+    e_starts = []
+    encounter_start_staging = 0 # Staged to avoid spurious starts such as limit break usage
+    e_ends = []
+    encounter_in_progress = False
+    current_instance = "none"
+    encounter_sets = []
+    for line in file:
+        # Ignore log lines that aren't game status info
+        if not (line[37:41] == '0839') and not (line[0:2]in ['00','01','33','36']):
+            continue
+        line_fields = line.split('|')
+
+        # Update current instance for returning alongside timestamps
+        # Don't update if we're not entering a combat instance
+        if line_fields[0] == '00' and line_fields[4].endswith('has begun.'):
+            current_instance = line_fields[4].split(' has begun')[0]
+            continue
+        if line_fields[0] == '00' and line_fields[4].endswith('has ended.'):
+            current_instance = None
+            encounter_in_progress = False
+            continue
+        
+        # We don't want to look for encounters outside a combat instance
+        if current_instance == None:
+            continue
+
+        # Build start/end time groupings
+        if is_line_start(line_fields, encounter_in_progress):
+            # This nested IF is messy, but it feels like the clearest way to express this
+            if line_fields[4].endswith('sealed off in 15 seconds!'):
+                encounter_start_staging = [parse_line_time(line), line_fields[4].split(' will be sealed off')[0]]
+            else:
+                encounter_start_staging = [parse_line_time(line), current_instance]
+            encounter_in_progress = True
+            continue
+        # If this fired regardless of an encounter being found, we would end up with phantom encounters.
+        if is_line_end(line_fields) and encounter_in_progress:
+            e_starts.append(encounter_start_staging)
+            e_ends.append(parse_line_time(line))
+            encounter_in_progress = False
+            continue
+        continue
+
+    # Build a list of fight start/end pairs
+    for i in range(0, len(e_ends)):
+        # Ignore fights under 1 minute
+        if (e_ends[i] - e_starts[i][0]).total_seconds() < 60:
+            continue
+        encounter_info = [str((e_starts[i][0]).time()), str(e_ends[i].time()), str(e_starts[i][1])]
+        encounter_sets.append(encounter_info)
+    file.seek(0)
+    return encounter_sets
 
 def main(args):
-    """Starting point for execution with args"""
     timeline_position = 0
     last_ability_time = 0
 
@@ -177,8 +258,10 @@ def main(args):
         ability, time = phase.split(':')
         phases[ability] = float(time)
 
-    # Get the entry list
-    if args.report:
+    # Get the entry list or return fight list
+    if args.search_fights and args.search_fights[0] == -1:
+        return parse_file(args)
+    elif args.report:
         entries, start_time = parse_report(args)
     elif args.file:
         entries, start_time = parse_file(args)
@@ -260,6 +343,9 @@ def main(args):
         last_entry = entry
     return output
 
+
+
+
 if __name__ == "__main__":
     # Set up all of the arguments
     example_usage = """
@@ -284,8 +370,9 @@ if __name__ == "__main__":
     parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
 
     # Log file arguments
-    parser.add_argument('-s', '--start', type=timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', type=timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-s', '--start', help="Timestamp of the start, e.g. '12:34:56.789")
+    parser.add_argument('-e', '--end', help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-lf', '--search_fights', nargs=1, type=int, help="Encounter whose start/stop times should be used, e.g. '1'. -1 to list all.")
 
     # Filtering arguments
     parser.add_argument('-ii', '--ignore-id', nargs='*', default=[], help="Ability IDs to ignore, e.g. 27EF")
@@ -299,9 +386,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Check dependent args
-    if args.file and not (args.start and args.end):
+    if args.search_fights and not args.file:
+        raise parser.error("Automatic encounter listing requires an input file")
+    if args.file and not ((args.start and args.end) or args.search_fights):
         raise parser.error("Log file input requires start and end timestamps")
-
     if args.report and not args.key:
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
 
