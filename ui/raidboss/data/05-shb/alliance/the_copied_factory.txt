@@ -1,0 +1,4 @@
+### The Copied Factory
+
+hideall "--Reset--"
+hideall "--sync--"
