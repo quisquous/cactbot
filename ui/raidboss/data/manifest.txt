@@ -180,6 +180,8 @@
 05-shb/raid/e4s.txt
 05-shb/trial/hades.js
 05-shb/trial/hades.txt
+05-shb/trial/hades-ex.js
+05-shb/trial/hades-ex.txt
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence-ex.txt
 05-shb/trial/innocence.js
