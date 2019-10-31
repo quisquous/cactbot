@@ -76,5 +76,39 @@
         en: 'Knockback',
       },
     },
+    {
+      id: 'Copied Engels Marx Smash Right',
+      regex: / 14:4727:Engels starts using Marx Smash/,
+      alertText: {
+        en: 'Right',
+        de: 'Rechts',
+        fr: 'Droite',
+        cn: '右',
+      },
+    },
+    {
+      id: 'Copied Engels Marx Smash Left',
+      regex: / 14:4726:Engels starts using Marx Smash/,
+      alertText: {
+        en: 'Left',
+        de: 'Links',
+        fr: 'Gauche',
+        cn: '左',
+      },
+    },
+    {
+      id: 'Copied Engels Marx Smash Forward',
+      regex: / 14:472E:Engels starts using Marx Smash/,
+      alertText: {
+        en: 'Front and Middle',
+      },
+    },
+    {
+      id: 'Copied Engels Marx Smash Back',
+      regex: / 14:472E:Engels starts using Marx Smash/,
+      alertText: {
+        en: 'Back and Sides',
+      },
+    },
   ],
 }];
