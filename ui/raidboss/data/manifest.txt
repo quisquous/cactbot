@@ -162,6 +162,8 @@
 05-shb/dungeon/mt_gulg.txt
 05-shb/dungeon/qitana_ravel.js
 05-shb/dungeon/qitana_ravel.txt
+05-shb/dungeon/the_grand_cosmos.js
+05-shb/dungeon/the_grand_cosmos.txt
 05-shb/dungeon/twinning.js
 05-shb/dungeon/twinning.txt
 05-shb/raid/e1n.js
