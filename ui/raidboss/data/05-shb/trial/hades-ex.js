@@ -135,8 +135,7 @@
         en: 'Healer Stacks',
       },
       run: function(data, matches) {
-        data.waterDark = data.waterDark || {};
-        data.waterDark[matches[1]] = 'stack';
+        data.waterDarkMarker = true;
       },
     },
     {
@@ -149,16 +148,16 @@
         en: 'Tank Spread',
       },
       run: function(data, matches) {
-        data.waterDark = data.waterDark || {};
-        data.waterDark[matches[1]] = 'spread';
+        data.waterDarkMarker = true;
       },
     },
     {
       id: 'HadesEx Ancient Water Unmarked',
       regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:0030|0060):/,
+      delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: function(data) {
-        if (data.me in data.waterDark)
+        if (data.waterDarkMarker)
           return;
         return {
           en: 'Healer Stacks',
