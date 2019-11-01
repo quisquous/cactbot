@@ -105,7 +105,7 @@
     },
     {
       id: 'Copied Engels Marx Smash Back',
-      regex: / 14:472E:Engels starts using Marx Smash/,
+      regex: / 14:472A:Engels starts using Marx Smash/,
       alertText: {
         en: 'Back and Sides',
       },
