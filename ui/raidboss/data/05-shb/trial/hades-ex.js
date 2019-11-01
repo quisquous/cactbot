@@ -413,6 +413,13 @@
       },
     },
     {
+      id: 'HadesEx Wail Of The Lost',
+      regex: / 14:47E1:Hades starts using Wail Of The Lost/,
+      infoText: {
+        en: 'Knockback',
+      },
+    },
+    {
       id: 'HadesEx Dark Flame',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0064:/,
       suppressSeconds: 1,
