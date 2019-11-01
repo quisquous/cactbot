@@ -406,8 +406,8 @@
       },
     },
     {
-      id: 'HadesEx Chorus Of The Lost',
-      regex: / 14:47DB:Hades starts using Chorus Of The Lost on Hades\./,
+      id: 'HadesEx Aetherial Gaol',
+      regex: / 03:\y{ObjectId}:Added new combatant Aetherial Gaol\./,
       infoText: {
         en: 'Break Aetherial Gaol',
       },
