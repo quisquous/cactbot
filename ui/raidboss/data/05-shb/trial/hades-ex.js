@@ -415,36 +415,20 @@
     {
       id: 'HadesEx Wail Of The Lost',
       regex: / 14:47E1:Hades starts using Wail Of The Lost/,
-      infoText: {
-        en: 'Knockback',
-      },
-    },
-    {
-      id: 'HadesEx Dark Flame',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0064:/,
-      suppressSeconds: 1,
-      condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
-      },
-      infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+      infoText: function(data) {
+        if (data.role == 'tank') {
           return {
-            en: 'Stack on YOU',
+            en: 'Knockback + Stack With Healer',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Knockback + Stack on YOU',
           };
         }
         return {
-          en: 'Stack With Healer',
+          en: 'Knockback + Ice on YOU',
         };
-      },
-    },
-    {
-      id: 'HadesEx Dark Freeze',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0078:/,
-      condition: function(data, matches) {
-        return data.me == matches[1];
-      },
-      infoText: {
-        en: 'Ice on YOU',
       },
     },
     {
