@@ -105,14 +105,34 @@
         cn: '左',
       },
     },
+    // TODO: call out direction for safe spot
+    {
+      id: 'HadesEx Arcane Control Orbs',
+      regex: / 03:\y{ObjectId}:Added new combatant Arcane Globe\./,
+      suppressSeconds: 2,
+      infoText: {
+        en: 'Go to Safe Spot',
+      },
+    },
+    {
+      id: 'HadesEx Arcane Control Doors',
+      regex: / 03:\y{ObjectId}:Added new combatant Arcane Font\./,
+      suppressSeconds: 2,
+      infoText: {
+        en: 'Hide Behind Door',
+      },
+    },
     {
       id: 'HadesEx Quake III',
       regex: / 14:47B8:Nabriales's Shade starts using Quake III/,
+      delaySeconds: 25,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -134,7 +154,7 @@
       infoText: {
         en: 'Healer Stacks',
       },
-      run: function(data, matches) {
+      run: function(data) {
         data.waterDarkMarker = true;
       },
     },
@@ -147,7 +167,7 @@
       alertText: {
         en: 'Tank Spread',
       },
-      run: function(data, matches) {
+      run: function(data) {
         data.waterDarkMarker = true;
       },
     },
@@ -193,7 +213,18 @@
       },
     },
     {
-      // TODO: maybe this should say "switch" the second time?
+      id: 'HadesEx Annihilation',
+      regex: / 14:47BF:Lahabrea's And Igeyorhm's Shades starts using Annihilation/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
+      },
+    },
+    {
       id: 'HadesEx Burning Brand',
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Burning Brand/,
       condition: function(data, matches) {
@@ -253,7 +284,7 @@
     },
     {
       id: 'HadesEx Doom',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom from (?:.*?) for (?:\y{Float}) Seconds\./,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';
@@ -264,7 +295,8 @@
     },
     {
       id: 'HadesEx Shriek',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Cursed Shriek from (.*?) for (\y{Float}) Seconds\./,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Cursed Shriek from (?:.*?) for (\y{Float}) Seconds\./,
+      suppressSeconds: 2,
       delaySeconds: function(data, matches) {
         return parseFloat(matches[1]) - 2;
       },
@@ -274,20 +306,231 @@
     },
     {
       id: 'HadesEx Beyond Death',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Beyond Death/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from (?:.*?) for (?:\y{Float}) Seconds\./,
       durationSeconds: 8,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       alertText: {
         en: 'Get Killed',
       },
     },
     {
       id: 'HadesEx Ancient Circle',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Ancient Circle from (.*?) for (\y{Float}) Seconds\./,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ancient Circle from (?:.*?) for (\y{Float}) Seconds\./,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[1]) - 5;
+        return parseFloat(matches[2]) - 5;
       },
       infoText: {
         en: 'Donut on YOU',
+      },
+    },
+    {
+      id: 'HadesEx Forked Lightning',
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from (?:.*?) for (\y{Float}) Seconds\./,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: function(data, matches) {
+        return parseFloat(matches[2]) - 2;
+      },
+      alertText: {
+        en: 'Stay Out',
+      },
+    },
+    {
+      id: 'HadesEx Blight',
+      regex: / 14:47CC:Ascian Prime's Shade starts using Blight/,
+      delaySeconds: 12,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe + bleed',
+      },
+    },
+    {
+      id: 'HadesEx Height Of Chaos',
+      regex: / 14:47D1:Ascian Prime's Shade starts using Height Of Chaos on (\y{Name})\./,
+      alertText: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+        return {
+          en: 'Away from ' + data.ShortName(matches[1]),
+        };
+      },
+    },
+    {
+      id: 'HadesEx Megiddo Flame',
+      regex: / 14:47CD:Ascian Prime's Shade starts using Megiddo Flame/,
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Healer Stacks',
+      },
+    },
+    {
+      id: 'HadesEx Shadow Flare',
+      regex: / 14:47D0:Ascian Prime's Shade starts using Shadow Flare/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
+      },
+    },
+    {
+      id: 'HadesEx Captivity',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0078:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alarmText: {
+        en: 'Get Out',
+      },
+    },
+    {
+      id: 'HadesEx Aetherial Gaol',
+      regex: / 03:\y{ObjectId}:Added new combatant Aetherial Gaol\./,
+      infoText: {
+        en: 'Break Aetherial Gaol',
+      },
+    },
+    {
+      id: 'HadesEx Wail Of The Lost',
+      regex: / 14:47E1:Hades starts using Wail Of The Lost/,
+      infoText: function(data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Knockback + Stack With Healer',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Knockback + Stack on YOU',
+          };
+        }
+        return {
+          en: 'Knockback + Ice on YOU',
+        };
+      },
+    },
+    {
+      id: 'HadesEx Nether Blast',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      run: function(data) {
+        data.netherBlast = true;
+      },
+      alertText: {
+        en: 'Puddles on YOU',
+      },
+    },
+    {
+      id: 'HadesEx Bident',
+      regex: / 14:47E3:Hades starts using Bident/,
+      condition: function(data) {
+        return !data.netherBlast;
+      },
+      infoText: {
+        en: 'Healer Stacks',
+      },
+    },
+    {
+      id: 'HadesEx Shadow Stream',
+      regex: / 14:47EA:Hades starts using Shadow Stream/,
+      alertText: {
+        en: 'Go Sides',
+      },
+    },
+    {
+      id: 'HadesEx Polydegmon\'s Purgation',
+      regex: / 14:47EB:Hades starts using Polydegmon's Purgation/,
+      alertText: {
+        en: 'Front and Center',
+      },
+    },
+    {
+      id: 'HadesEx Dark Current',
+      regex: / 14:47F1:Hades starts using Dark Current/,
+      durationSeconds: 10,
+      suppressSeconds: 10,
+      infoText: {
+        en: 'Exoflares',
+      },
+    },
+    {
+      id: 'HadesEx Gigantomachy',
+      regex: / 14:47F3:Hades starts using Gigantomachy/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
+      },
+    },
+    {
+      id: 'HadesEx Quadrastrike 1',
+      regex: / 14:47F4:Hades starts using Quadrastrike/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
+      },
+    },
+    {
+      id: 'HadesEx Quadrastrike 2',
+      regex: / 14:47F6:Hades starts using Quadrastrike/,
+      condition: function(data) {
+        return data.role == 'tank';
+      },
+      alarmText: {
+        en: 'Get Towers',
+        de: 'Türme nehmen',
+        fr: 'Dans les tours',
+      },
+    },
+    { // After tanks take tower damage
+      id: 'HadesEx Quadrastrike 3',
+      regex: / 15:\y{ObjectId}:Hades:47F6:Quadrastrike:/,
+      delaySeconds: 2,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: {
+        en: 'aoe + bleed',
+      },
+    },
+    {
+      id: 'HadesEx Enrage Gigantomachy',
+      regex: / 14:47F9:Hades starts using Gigantomachy/,
+      infoText: {
+        en: 'Enrage',
+        de: 'Finalangriff',
+        fr: 'Enrage',
       },
     },
   ],
