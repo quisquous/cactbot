@@ -148,7 +148,7 @@ hideall "--sync--"
 2564.0 "Art Of The Swell?" sync /:Zenos yae Galvus:2065:/ jump 2600.0
 2564.0 "Art Of The Storm?" sync /:Zenos yae Galvus:2066:/ jump 2500.0
 2566.5 "Vein Splitter"
-2570.0 "Lightless Spark"
+2570.0 "Lightless Spark?"
 2572.7 "Art Of The Sword"
 2581.0 "Unmoving Troika"
 2591.0" Concentrativity"
