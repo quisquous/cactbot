@@ -29,6 +29,7 @@
 05-shb/raid/e3s.js
 05-shb/raid/e4n.js
 05-shb/raid/e4s.js
+05-shb/trial/hades-ex.js
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
