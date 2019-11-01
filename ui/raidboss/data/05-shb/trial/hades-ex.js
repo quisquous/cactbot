@@ -25,7 +25,7 @@
   triggers: [
     {
       id: 'HadesEx Shadow Spread',
-      regex: / 14:47A8:Hades starts using Shadow Spread on Hades\./,
+      regex: / 14:47A8:Hades starts using Shadow Spread/,
       alertText: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
@@ -65,7 +65,7 @@
     },
     {
       id: 'HadesEx Bad Faith Left 1',
-      regex: / 14:47AB:Hades starts using Bad Faith on Hades\./,
+      regex: / 14:47AB:Hades starts using Bad Faith/,
       infoText: {
         en: 'Left',
         de: 'Links',
@@ -75,7 +75,7 @@
     },
     {
       id: 'HadesEx Bad Faith Left 2',
-      regex: / 14:47AB:Hades starts using Bad Faith on Hades\./,
+      regex: / 14:47AB:Hades starts using Bad Faith/,
       delaySeconds: 5,
       infoText: {
         en: 'Then Right',
@@ -86,7 +86,7 @@
     },
     {
       id: 'HadesEx Bad Faith Right 1',
-      regex: / 14:47AC:Hades starts using Bad Faith on Hades\./,
+      regex: / 14:47AC:Hades starts using Bad Faith/,
       infoText: {
         en: 'Right',
         de: 'Rechts',
@@ -96,7 +96,7 @@
     },
     {
       id: 'HadesEx Bad Faith Right 2',
-      regex: / 14:47AC:Hades starts using Bad Faith on Hades\./,
+      regex: / 14:47AC:Hades starts using Bad Faith/,
       delaySeconds: 5,
       infoText: {
         en: 'Then Left',
@@ -124,7 +124,7 @@
     },
     {
       id: 'HadesEx Quake III',
-      regex: / 14:47B8:Nabriales's Shade starts using Quake III on Nabriales's Shade\./,
+      regex: / 14:47B8:Nabriales's Shade starts using Quake III/,
       delaySeconds: 25,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -197,7 +197,7 @@
     },
     {
       id: 'HadesEx Spheres',
-      regex: / 14:47BD:Igeyorhm's Shade starts using Blizzard Sphere on Igeyorhm's Shade\./,
+      regex: / 14:47BD:Igeyorhm's Shade starts using Blizzard Sphere/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -214,7 +214,7 @@
     },
     {
       id: 'HadesEx Annihilation',
-      regex: / 14:47BF:Lahabrea's And Igeyorhm's Shades starts using Annihilation on Lahabrea's And Igeyorhm's Shades\./,
+      regex: / 14:47BF:Lahabrea's And Igeyorhm's Shades starts using Annihilation/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -337,13 +337,13 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 2;
       },
-      infoText: {
+      alertText: {
         en: 'Stay Out',
       },
     },
     {
       id: 'HadesEx Blight',
-      regex: / 14:47CC:Ascian Prime's Shade starts using Blight on Ascian Prime's Shade\./,
+      regex: / 14:47CC:Ascian Prime's Shade starts using Blight/,
       delaySeconds: 12,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -377,7 +377,7 @@
     },
     {
       id: 'HadesEx Megiddo Flame',
-      regex: / 14:47CD:Ascian Prime's Shade starts using Megiddo Flame on Ascian Prime's Shade\./,
+      regex: / 14:47CD:Ascian Prime's Shade starts using Megiddo Flame/,
       suppressSeconds: 1,
       infoText: {
         en: 'Healer Stacks',
@@ -385,7 +385,7 @@
     },
     {
       id: 'HadesEx Shadow Flare',
-      regex: / 14:47D0:Ascian Prime's Shade starts using Shadow Flare on Ascian Prime's Shade\./,
+      regex: / 14:47D0:Ascian Prime's Shade starts using Shadow Flare/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -401,7 +401,7 @@
       condition: function(data, matches) {
         return data.me == matches[1];
       },
-      infoText: {
+      alarmText: {
         en: 'Get Out',
       },
     },
@@ -455,9 +455,9 @@
     },
     {
       id: 'HadesEx Bident',
-      regex: / 14:47E3:Hades starts using Bident on Hades\./,
+      regex: / 14:47E3:Hades starts using Bident/,
       condition: function(data) {
-        return data.netherBlast == false;
+        return !data.netherBlast;
       },
       infoText: {
         en: 'Healer Stacks',
@@ -465,21 +465,21 @@
     },
     {
       id: 'HadesEx Shadow Stream',
-      regex: / 14:47EA:Hades starts using Shadow Stream on Hades\./,
+      regex: / 14:47EA:Hades starts using Shadow Stream/,
       alertText: {
-        en: 'Out Of Middle',
+        en: 'Front and Center',
       },
     },
     {
       id: 'HadesEx Polydegmon\'s Purgation',
-      regex: / 14:47EB:Hades starts using Polydegmon's Purgation on Hades\./,
+      regex: / 14:47EB:Hades starts using Polydegmon's Purgation/,
       alertText: {
         en: 'Stack Middle',
       },
     },
     {
       id: 'HadesEx Dark Current',
-      regex: / 14:47F1:Hades starts using Dark Current on Hades\./,
+      regex: / 14:47F1:Hades starts using Dark Current/,
       durationSeconds: 10,
       suppressSeconds: 10,
       infoText: {
@@ -488,7 +488,7 @@
     },
     {
       id: 'HadesEx Gigantomachy',
-      regex: / 14:47F3:Hades starts using Gigantomachy on Hades\./,
+      regex: / 14:47F3:Hades starts using Gigantomachy/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -500,7 +500,7 @@
     },
     {
       id: 'HadesEx Quadrastrike 1',
-      regex: / 14:47F4:Hades starts using Quadrastrike on Hades\./,
+      regex: / 14:47F4:Hades starts using Quadrastrike/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -512,7 +512,7 @@
     },
     {
       id: 'HadesEx Quadrastrike 2',
-      regex: / 14:47F6:Hades starts using Quadrastrike on Hades\./,
+      regex: / 14:47F6:Hades starts using Quadrastrike/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -535,7 +535,7 @@
     },
     {
       id: 'HadesEx Enrage Gigantomachy',
-      regex: / 14:47F9:Hades starts using Gigantomachy on Hades\./,
+      regex: / 14:47F9:Hades starts using Gigantomachy/,
       infoText: {
         en: 'Enrage',
         de: 'Finalangriff',
