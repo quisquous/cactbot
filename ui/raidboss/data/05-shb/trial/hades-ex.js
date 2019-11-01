@@ -474,14 +474,14 @@
       id: 'HadesEx Shadow Stream',
       regex: / 14:47EA:Hades starts using Shadow Stream/,
       alertText: {
-        en: 'Front and Center',
+        en: 'Go Sides',
       },
     },
     {
       id: 'HadesEx Polydegmon\'s Purgation',
       regex: / 14:47EB:Hades starts using Polydegmon's Purgation/,
       alertText: {
-        en: 'Stack Middle',
+        en: 'Front and Center',
       },
     },
     {
