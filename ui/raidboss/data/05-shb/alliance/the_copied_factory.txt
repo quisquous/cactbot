@@ -4,8 +4,52 @@ hideall "--Reset--"
 hideall "--sync--"
 
 ### Serial-jointed Command Model
-100.0 "--sync--" sync /00:0839:Warehouse A will be sealed off/ window 100,0
+# -ic 2P -ii 4B31 48B3 48B4 48B7 48B6 48CB 48CC 48BA 4B32 48FA 48BC 48BD 48BE 48BF 48C0 48C1 48C2 48C9
 
+100.0 "--sync--" sync /00:0839:Warehouse A will be sealed off/ window 100,0
+108.5 "Systematic Siege" sync /:Serial-jointed Command Model:48B2:/
+122.6 "Clanging Blow" sync /:Serial-jointed Command Model:48CE:/
+134.1 "Energy Bombardment" sync /:Serial-jointed Command Model:48B8:/
+143.3 "Forceful Impact" sync /:Serial-jointed Command Model:48CF:/
+156.1 "Energy Assault" sync /:Serial-jointed Command Model:48B5:/ duration 6.5
+163.2 "--sync--" sync /:Serial-jointed Command Model:4A10:/
+176.0 "Systematic Targeting" sync /:Serial-jointed Command Model:48C4:/
+188.5 "High-Powered Laser" #sync /:Serial-jointed Service Model:48C5:/
+193.8 "Forceful Impact" sync /:Serial-jointed Command Model:48CF:/
+206.7 "Sidestriking Spin" sync /:Serial-jointed Command Model:48CA:/
+220.3 "Systematic Airstrike" sync /:Serial-jointed Command Model:48B9:/ duration 24.8
+234.2 "Clanging Blow" sync /:Serial-jointed Command Model:48CE:/
+259.1 "Systematic Suppression" sync /:Serial-jointed Command Model:48C6:/
+272.0 "High-Caliber Laser" #sync /:Serial-jointed Service Model:48C7:/
+276.0 "High-Caliber Laser" #sync /:Serial-jointed Service Model:48C7:/
+281.9 "Forceful Impact" sync /:Serial-jointed Command Model:48CF:/
+
+292.3 "Systematic Siege" sync /:Serial-jointed Command Model:48B2:/
+303.2 "Energy Bombardment" sync /:Serial-jointed Command Model:48B8:/
+306.8 "Systematic Targeting" sync /:Serial-jointed Command Model:48C4:/
+317.8 "Clanging Blow" sync /:Serial-jointed Command Model:48CE:/
+319.3 "High-Powered Laser" #sync /:Serial-jointed Service Model:48C5:/
+332.1 "Centrifugal Spin" sync /:Serial-jointed Command Model:48C8:/
+343.2 "Forceful Impact" sync /:Serial-jointed Command Model:48CF:/
+352.6 "Systematic Airstrike" sync /:Serial-jointed Command Model:48B9:/ duration 24.8
+371.5 "Shockwave" sync /:Serial-jointed Command Model:48C3:/
+387.9 "Energy Ring" sync /:Serial-jointed Command Model:48BB:/ duration 7.2
+404.9 "Energy Assault" sync /:Serial-jointed Command Model:48B5:/ duration 6.5
+412.1 "--sync--" sync /:Serial-jointed Command Model:4A10:/
+420.7 "Systematic Suppression" sync /:Serial-jointed Command Model:48C6:/
+433.5 "High-Caliber Laser" #sync /:Serial-jointed Service Model:48C7:/
+437.6 "High-Caliber Laser" #sync /:Serial-jointed Service Model:48C7:/
+442.6 "Forceful Impact" sync /:Serial-jointed Command Model:48CF:/
+457.4 "Centrifugal Spin" sync /:Serial-jointed Command Model:48C8:/
+468.5 "Clanging Blow" sync /:Serial-jointed Command Model:48CE:/
+
+478.4 "Systematic Siege" sync /:Serial-jointed Command Model:48B2:/ window 100,100 jump 192.3
+489.3 "Energy Bombardment"
+492.9 "Systematic Targeting"
+503.9 "Clanging Blow"
+505.4 "High-Powered Laser"
+518.2 "Centrifugal Spin"
+529.3 "Forceful Impact"
 
 
 ### Hobbes
