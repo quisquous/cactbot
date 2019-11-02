@@ -239,21 +239,13 @@
     {
       id: 'Copied Engels Precision Guided Missile',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C6:/,
-      infoText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-          };
-        }
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Tank Buster on YOU',
+        de: 'Tankbuster auf DIR',
+        fr: 'Tankbuster sur VOUS',
       },
     },
     {
