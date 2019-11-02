@@ -23,7 +23,7 @@
   ],
   triggers: [
     {
-      id: 'HadesEx Shadow Spread',
+      id: 'HadesEx Shadow Spread 1',
       regex: / 14:47A8:Hades starts using Shadow Spread/,
       regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
       regexFr: / 14:47A8:Hadès starts using Diffusion D'Ombre/,
@@ -33,6 +33,17 @@
         de: 'Himmelsrichtungen',
         fr: 'Position',
         ja: '散開',
+      },
+    },
+    {
+      id: 'HadesEx Shadow Spread 2',
+      regex: / 14:47A8:Hades starts using Shadow Spread/,
+      regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
+      regexFr: / 14:47A8:Hadès starts using Diffusion D'Ombre/,
+      regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
+      delaySeconds: 5.5,
+      alertText: {
+        en: 'Move',
       },
     },
     {
@@ -518,28 +529,46 @@
       },
     },
     {
+      id: 'HadesEx Dark Flame',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0064:/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data) {
+        data.flame = true;
+      },
+      infoText: {
+        en: 'Knockback + Stack on YOU',
+        de: 'Rückstoß + sammeln beim DIR',
+      },
+    },
+    {
+      id: 'HadesEx Dark Freeze',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C1:/,
+      condition: function(data, matches) {
+        return matches[1] == data.me;
+      },
+      run: function(data) {
+        data.freeze = true;
+      },
+      infoText: {
+        en: 'Knockback + Ice on YOU',
+        de: 'Rückstoß + Eis auf DIR',
+      },
+    },
+    {
       id: 'HadesEx Wail Of The Lost',
       regex: / 14:47E1:Hades starts using Wail Of The Lost/,
       regexDe: / 14:47E1:Hades starts using Wehklagen Der Verlorenen/,
       regexFr: / 14:47E1:Hadès starts using Lamentation Des Disparus/,
       regexJa: / 14:47E1:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
       infoText: function(data) {
-        if (data.role == 'tank') {
+        if (!data.flame && !data.freeze) {
           return {
-            en: 'Knockback + Stack With Healer',
-            de: 'Rückstoß + sammeln beim Heiler',
+            en: 'Knockback + Stack With Partner',
+            de: 'Rückstoß + sammeln beim Partner',
           };
         }
-        if (data.role == 'healer') {
-          return {
-            en: 'Knockback + Stack on YOU',
-            de: 'Rückstoß + sammeln beim DIR',
-          };
-        }
-        return {
-          en: 'Knockback + Ice on YOU',
-          de: 'Rückstoß + Eis auf DIR',
-        };
       },
     },
     {
