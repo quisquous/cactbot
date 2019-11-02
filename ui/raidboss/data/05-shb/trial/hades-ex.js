@@ -2,8 +2,7 @@
 
 // Hades Extreme
 
-// TODO: arcane font doors
-// TODO: arcane utterance orbs
+// TODO: call out direction for safe spot
 // TODO: fire/ice tethers (0060|0061)
 
 [{
@@ -123,13 +122,13 @@
         cn: '左',
       },
     },
-    // TODO: call out direction for safe spot
     {
       id: 'HadesEx Arcane Control Orbs',
       regex: / 03:\y{ObjectId}:Added new combatant Arcane Globe\./,
       regexDe: / 03:\y{ObjectId}:Added new combatant Arkane Kugel\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Globe Arcanique\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant 球体魔法陣\./,
+      durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
         en: 'Go to Safe Spot',
@@ -142,6 +141,7 @@
       regexDe: / 03:\y{ObjectId}:Added new combatant Arkaner Körper\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Solide Arcanique\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant 立体魔法陣\./,
+      durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
         en: 'Hide Behind Door',
@@ -598,7 +598,7 @@
       regexDe: / 14:47F1:Hades starts using Dunkel-Strom/,
       regexFr: / 14:47F1:Hadès starts using Flux Sombre/,
       regexJa: / 14:47F1:ハーデス starts using ダークストリーム/,
-      durationSeconds: 10,
+      durationSeconds: 12,
       suppressSeconds: 10,
       infoText: {
         en: 'Exoflares',
@@ -641,13 +641,27 @@
       regexDe: / 14:47F6:Hades starts using Quadraschlag/,
       regexFr: / 14:47F6:Hadès starts using Frappe Quadruplée/,
       regexJa: / 14:47F6:ハーデス starts using クアドラストライク/,
+      suppressSeconds: 2,
       condition: function(data) {
-        return data.role == 'tank';
+        return data.role == 'tank' || data.role == 'healer';
       },
-      alarmText: {
-        en: 'Get Towers',
-        de: 'Türme nehmen',
-        fr: 'Dans les tours',
+      alarmText: function(data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Get Towers',
+            de: 'Türme nehmen',
+            fr: 'Dans les tours',
+          };
+        }
+      },
+      infoText: function(data) {
+        if (data.role == 'healer') {
+          return {
+            en: 'tank busters',
+            de: 'Tank buster',
+            fr: 'Tank busters',
+          };
+        }
       },
     },
     { // After tanks take tower damage
@@ -656,6 +670,7 @@
       regexDe: / 15:\y{ObjectId}:Hades:47F6:Quadraschlag:/,
       regexFr: / 15:\y{ObjectId}:Hadès:47F6:Frappe quadruplée:/,
       regexJa: / 15:\y{ObjectId}:ハーデス:47F6:クアドラストライク:/,
+      suppressSeconds: 2,
       delaySeconds: 2,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
