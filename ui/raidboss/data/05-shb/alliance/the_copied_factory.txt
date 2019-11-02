@@ -220,7 +220,97 @@ hideall "--sync--"
 
 
 ### Engels
+# -ic 2P -p 4727:2015.7 4740:2400 -ii 4751 4752 4729 4728 4753 4738 4735 4737 472F 4730 4731 4732 472B 472C 472D 473B 473D 4734 4758 4745 48FC 474F 4747 474D 4748
+
+# TODO: are the Marx Smashes after the crushers more specific?
+# One log has 472[6,7,7,A] as the four.  Left as all random for now.
+
 2000.0 "--sync--" sync /00:0839:The forward deck will be sealed off/ window 2000,0
+2015.7 "Marx Smash L/R" sync /:Engels:472[67]:/
+2029.6 "Marx Smash R/L" sync /:Engels:472[67]:/
+2044.4 "Precision Guided Missile" sync /:Engels:4754:/
+2055.8 "Incendiary Bombing" sync /:Engels:4739:/
+2070.5 "Guided Missile" sync /:Engels:4735:/ duration 3.4
+2078.8 "Diffuse Laser" sync /:Engels:4755:/
+2097.3 "Marx Smash F/B" sync /:Engels:472[AE]:/
+2115.9 "Marx Smash B/F" sync /:Engels:472[AE]:/
+2135.6 "Energy Barrage" sync /:Engels:473C:/
+2143.4 "Laser Sight" sync /:Engels:473A:/
+2154.1 "Energy Blast" sync /:Engels:473E:/
+2156.7 "Surface Missile" sync /:Engels:4733:/
+2171.6 "Precision Guided Missile" sync /:Engels:4754:/
+2178.0 "Diffuse Laser" sync /:Engels:4755:/
+
+# Appears to be a time-based push and not an hp one.
+2185.8 "--sync--" sync /:Engels:473F:/
+2189.6 "Adds"
+2190.9 "--targetable--"
+# These arm lasers can get desynced.
+2207.1 "Arm Laser" #sync /:Reverse-jointed Goliath:4757:/
+2222.3 "Arm Laser" #sync /:Reverse-jointed Goliath:4757:/
+2237.5 "Arm Laser" #sync /:Reverse-jointed Goliath:4757:/
+2250.9 "Enrage" # 60 seconds ???
+2400.0 "Wide-Angle Diffuse Laser" sync /:Engels:4740:/ window 200,0
+2402.1 "Diffuse Laser" sync /:Engels:4741:/
+2412.2 "--sync--" sync /:Engels:4743:/
+2433.0 "Demolish Structure" sync /:Engels:4744:/
+
+2448.2 "Marx Activation" sync /:Engels:48A8:/
+2466.3 "Marx Thrust" sync /:Marx:4756:/
+2476.3 "Marx Thrust" sync /:Marx:4756:/
+2478.5 "Area Bombardment" sync /:Engels:4750:/
+2486.3 "Marx Thrust" sync /:Marx:4756:/
+2491.1 "Incendiary Bombing" sync /:Engels:4739:/
+2505.1 "Guided Missile" sync /:Engels:4736:/
+2511.4 "Diffuse Laser" sync /:Engels:4755:/
+2529.2 "Incendiary Bombing" sync /:Engels:4739:/
+2533.7 "Marx Smash" sync /:Engels:472E:/
+2553.9 "Incendiary Bombing" sync /:Engels:4739:/
+2558.5 "Marx Smash" sync /:Engels:472A:/
+2572.5 "Incendiary Saturation Bombing" sync /:Engels:474E:/
+
+2584.7 "Marx Crush" sync /:Engels:4746:/
+2586.7 "Crusher Adds"
+2586.8 "Radiate Heat" sync /:Engels:474C:/
+2586.8 "Radiate Heat" sync /:Engels:474C:/
+2593.9 "Radiate Heat" sync /:Engels:474C:/
+2600.0 "Crushing Wheel" sync /:Marx [LR]:474B:/
+2600.7 "Radiate Heat" sync /:Engels:474C:/
+2607.8 "Radiate Heat" sync /:Engels:474C:/
+2614.1 "Crushing Wheel" sync /:Marx [LR]:474B:/
+# guessing here for enrage ???
+2621.8 "Radiate Heat" sync /:Engels:474C:/
+2625.2 "Crushing Wheel Enrage?"  sync /:Marx [LR]:474B:/
+
+2700.0 "--targetable--" sync / 22:........:Engels:........:Engels:01/ window 150,0
+2700.2 "--sync--" sync /:4733:Engels/ window 150,5
+2700.7 "Surface Missile" sync /:Engels:4733:/
+2709.9 "Marx Smash" sync /:Engels:472[67AE]:/
+2719.6 "Surface Missile" sync /:Engels:4733:/
+2728.9 "Marx Smash" sync /:Engels:472[67AE]:/
+2738.0 "Energy Barrage" sync /:Engels:473C:/
+2745.8 "Laser Sight" sync /:Engels:473A:/
+2756.5 "Energy Blast" sync /:Engels:473E:/
+2759.1 "Surface Missile" sync /:Engels:4733:/
+2767.8 "Diffuse Laser" sync /:Engels:4755:/
+2781.6 "Precision Guided Missile" sync /:Engels:4754:/
+2786.0 "Diffuse Laser" sync /:Engels:4755:/
+2807.3 "Surface Missile" sync /:Engels:4733:/
+2816.5 "Marx Smash" sync /:Engels:472[67AE]:/
+2831.7 "Incendiary Bombing" sync /:Engels:4739:/
+2836.5 "Marx Smash" sync /:Engels:472[67AE]:/
+
+# TODO: it is unclear if this is the actual loop.
+# The log needs to be about ~14 min to verify if the
+# crusher phase happens again or if that's a one time thing.
+2850.3 "Marx Activation" sync /:Engels:48A8:/ window 200,200 jump 2448.2
+2868.4 "Marx Thrust"
+2878.4 "Marx Thrust"
+2880.6 "Area Bombardment"
+2888.4 "Marx Thrust"
+2893.2 "Incendiary Bombing"
+2907.2 "Guided Missile"
+
 
 ### 9S
 2500.0 "--sync--" sync /00:0839:The rear deck will be sealed off/ window 2500,0
