@@ -144,13 +144,6 @@
       },
     },
     {
-      id: 'Copied Hobbes Ring Laser',
-      regex: / 14:47FF:Hobbes starts using Ring Laser/,
-      infoText: {
-        en: 'Dodge Ring',
-      },
-    },
-    {
       id: 'Copied Hobbes Laser Sight',
       regex: / 14:4807:Hobbes starts using Laser Sight/,
       alertText: {
@@ -246,7 +239,7 @@
     {
       id: 'Copied Engels Precision Guided Missile',
       regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C6:/,
-      alertText: function(data, matches) {
+      infoText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank Buster on YOU',
