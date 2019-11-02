@@ -6,6 +6,14 @@
   zoneRegex: /^The Copied Factory$/,
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [
+    {
+      id: 'Copied Flight Unit Lightfast',
+      regex: /Lightfast Blade/,
+      beforeSeconds: 8,
+      infoText: {
+        en: 'Be Near Boss',
+      },
+    },
   ],
   triggers: [
     {
@@ -183,6 +191,26 @@
       durationSeconds: 3,
       alertText: {
         en: 'Get On Oil Vats',
+      },
+    },
+    {
+      id: 'Copied Goliath Tank Exploder',
+      regex: / 23:\y{ObjectId}:Medium Exploder:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alertText: {
+        en: 'Exploder on YOU',
+      },
+    },
+    {
+      id: 'Copied Flight Unit 360 Bombing Manuever',
+      regex: / 14:4941:Flight Unit starts using 360-Degree Bombing Maneuver/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+      },
+      infoText: {
+        en: 'aoe',
       },
     },
     {
