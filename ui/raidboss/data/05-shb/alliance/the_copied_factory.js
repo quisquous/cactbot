@@ -18,6 +18,14 @@
         en: 'Be Near Boss',
       },
     },
+    {
+      id: 'Copied Engels Demolish Structure',
+      regex: /Demolish Structure/,
+      beforeSeconds: 15,
+      infoText: {
+        en: 'Move to South Edge',
+      },
+    },
   ],
   triggers: [
     {
@@ -42,6 +50,7 @@
     {
       id: 'Copied Serial High-Caliber Laser',
       regex: / 14:48FA:Serial-Jointed Service Model starts using High-Caliber Laser/,
+      suppressSeconds: 15,
       infoText: {
         en: 'Look for Lasers',
       },
@@ -119,7 +128,7 @@
         data.alliance = data.alliance || 'B';
       },
       alertText: {
-        en: 'Dodge Flamethrowers',
+        en: 'Look Behind For Flamethrowers',
       },
     },
     {
@@ -188,17 +197,17 @@
       suppressSeconds: 15,
       durationSeconds: 3,
       alertText: {
-        en: 'Get Off Oil Vats',
+        en: 'Oil Vats',
       },
     },
     {
       id: 'Copied Hobbes Oil 2',
       regex: / 00:0839:Flammable oil is leaking from the floor\.\.\./,
       suppressSeconds: 15,
-      delaySeconds: 7,
+      delaySeconds: 6,
       durationSeconds: 3,
       alertText: {
-        en: 'Get On Oil Vats',
+        en: 'Oil Vats',
       },
     },
     {
@@ -312,7 +321,7 @@
       id: 'Copied Engels Energy Barrage',
       regex: / 14:473C:Engels starts using Energy Barrage/,
       delaySeconds: 8,
-      alertText: {
+      infoText: {
         en: 'Get Towers',
       },
     },
@@ -347,13 +356,6 @@
       },
     },
     {
-      id: 'Copied Engels Demolish Structure',
-      regex: / 14:4745:Engels starts using Demolish Structure/,
-      infoText: {
-        en: 'Move to South Edge',
-      },
-    },
-    {
       id: 'Copied Engels Incendiary Saturation Bombing',
       regex: / 14:474E:Engels starts using Incendiary Saturation Bombing/,
       alertText: {
@@ -362,10 +364,10 @@
     },
     {
       id: 'Copied Engels Marx Thrust',
-      regex: / 14:48FC:Marx starts using Marx Thrust/,
-      suppressSeconds: 1,
-      alertText: {
-        en: 'Dodge Wall Saws',
+      regex: / 14:48A8:Engels starts using Marx Activation/,
+      delaySeconds: 9,
+      infoText: {
+        en: 'Look For Wall Saws',
       },
     },
     {
@@ -408,7 +410,7 @@
     {
       id: 'Copied 9S Laser Turret',
       regex: / 14:4A74:9S-Operated Walking Fortress starts using Laser Turret/,
-      infoText: {
+      alertText: {
         en: 'Away From Front',
       },
     },
@@ -444,9 +446,10 @@
       },
     },
     {
+      // Use the ability before the adds show up, as looking for the added combatant
+      // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
-      regex: / 03:\y{ObjectId}:Added new combatant Serial-Jointed Service Model\./,
-      suppressSeconds: 2,
+      regex: / 15:\y{ObjectId}:9S-operated Walking Fortress:48EA:/,
       infoText: {
         en: 'Adds',
       },
@@ -471,6 +474,13 @@
       suppressSeconds: 2,
       infoText: {
         en: 'Stack',
+      },
+    },
+    {
+      id: 'Copied 9S Bubble',
+      regex: / 14:48EB:9S-Operated Walking Fortress starts using Total Annihilation Maneuver/,
+      infoText: {
+        en: 'Get in the bubble',
       },
     },
   ],
