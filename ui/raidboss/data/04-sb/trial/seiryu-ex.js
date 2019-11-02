@@ -424,8 +424,6 @@
         'Iwa-no-shiki': 'Iwa no Shiki',
         'Numa-no-shiki': 'Numa no Shiki',
         'Numa-No-Shiki': 'Numa no Shiki',
-
-        // FIXME:
         'Yama-no-shiki': 'Yama no Shiki',
       },
       'replaceText': {
@@ -460,12 +458,10 @@
         'Strength of Spirit': 'Stärke des Geistes',
         'Summon Shiki': 'Shiki-Beschwörung ',
         'Yama-kagura': 'Yamakagura',
-
-        // FIXME:
-        '--rotate--': '--rotate--',
-        '--jump--': '--jump--',
-        'In/Out': 'In/Out',
-        'Out/In': 'Out/In',
+        '--rotate--': '--rotieren--',
+        '--jump--': '--Sprung--',
+        'In/Out': 'Rein/Raus',
+        'Out/In': 'Raus/Rein',
       },
       '~effectNames': {
         'Being dragged under by the current. Unable to move or execute actions.': 'Wie von den Fluten verschluckt. Bewegungsunfähig, Kommandos können nicht ausgeführt werden.',

@@ -704,7 +704,6 @@
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
-
         'Left Arm Unit': 'Linker Arm',
         'Right Arm Unit': 'Rechter Arm',
         'Rear Power Unit': 'Hintere Antriebseinheit',
@@ -741,7 +740,6 @@
         'Suppression': 'Hilfsprogramm F',
         'Synthetic Blades': 'Synthetische Klinge',
         'Synthetic Shield': 'Synthetischer Schild',
-
         'Archive All': 'Alles archivieren',
         'Archive Peripheral': 'Archiv-Peripherie',
         'Cascading Latent Defect': 'Latenter Defekt: Zersetzung',
@@ -775,7 +773,6 @@
         'Physical Vulnerability Up': 'Erhöhte Physische Verwundbarkeit',
         'Prey': 'Markiert',
         'Remote Resonance': 'Resonanzprogramm: Fern',
-
         'Cascading Latent Defect': 'Latenter Bug: Unterlauf',
         'Critical Overflow Bug': 'Kritischer Bug: Überlauf',
         'Critical Synchronization Bug': 'Kritischer Bug: Synchronisierung',
@@ -796,12 +793,9 @@
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'Unité Optique',
-
         'Left Arm Unit': 'Unité Bras Gauche',
         'Right Arm Unit': 'Unité Bras Droit',
-
-        // FIXME
-        'Rear Power Unit': 'Rear Power Unit',
+        'Rear Power Unit': 'Unité Arrière',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -837,7 +831,6 @@
         'Suppression': 'Programme d\'assistance F',
         'Synthetic Blades': 'Lame optionnelle',
         'Synthetic Shield': 'Bouclier optionnel',
-
         'Archive All': 'Archivage intégral',
         'Archive Peripheral': 'Périphérique d\'archivage',
         'Cascading Latent Defect': 'Bogue latent : dégradation',
@@ -871,7 +864,6 @@
         'Physical Vulnerability Up': 'Vulnérabilité Physique Augmentée',
         'Prey': 'Marquage',
         'Remote Resonance': 'Programme de résonance : distance',
-
         'Cascading Latent Defect': 'Bogue latent : dégradation',
         'Critical Overflow Bug': 'Bogue critique : boucle',
         'Critical Synchronization Bug': 'Bogue critique : partage',
@@ -893,10 +885,8 @@
         'Omega-F': 'オメガf',
         'Omega-M': 'オメガm',
         'Optical Unit': 'オプチカルユニット',
-
         'Left Arm Unit': 'レフトアームユニット',
         'Right Arm Unit': 'ライトアームユニット',
-
         'Rear Power Unit': 'リアユニット',
       },
       'replaceText': {
@@ -928,7 +918,6 @@
         'Suppression': '援護プログラムF',
         'Synthetic Blades': 'ブレードオプション',
         'Synthetic Shield': 'シールドオプション',
-
         'Archive All': 'アーカイブオール',
         'Archive Peripheral': 'アーカイブアーム',
         'Cascading Latent Defect': 'レイテンドバグ：デグレード',
@@ -962,7 +951,6 @@
         'Physical Vulnerability Up': '被物理ダメージ増加',
         'Prey': 'マーキング',
         'Remote Resonance': 'レゾナンスプログラム：ファー',
-
         'Cascading Latent Defect': 'レイテントバグ：デグレード',
         'Critical Overflow Bug': 'クリティカルバグ：サークル',
         'Critical Synchronization Bug': 'クリティカルバグ：シェア',

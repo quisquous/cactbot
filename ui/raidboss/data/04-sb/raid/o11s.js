@@ -278,7 +278,6 @@
         'Unmitigated Explosion': 'Detonation',
         'Update Program': 'Programmschleifen-Update',
         'Wave Cannon Kyrios': 'Wellenkanone P',
-
         'Starboard/Larboard Cannon': 'Steuerbord/Backbord',
         'Starboard/Larboard Surge': 'Steuerbord/Backbord',
       },

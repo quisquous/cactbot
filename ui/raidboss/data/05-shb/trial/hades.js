@@ -20,7 +20,7 @@
       regex: / 14:4158:Hades starts using Ravenous Assault on (\y{Name})/,
       regexCn: / 14:4158:哈迪斯 starts using 贪婪突袭 on (\y{Name})/,
       regexDe: / 14:4158:Hades starts using Fegefeuer der Helden on (\y{Name})/,
-      regexFr: / 14:4158:Hadès starts using Assaut [aA]charné on (\y{Name})/,
+      regexFr: / 14:4158:Hadès starts using Assaut Acharné on (\y{Name})/,
       regexJa: / 14:4158:ハーデス starts using ラヴェナスアサルト on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
@@ -56,7 +56,7 @@
       regex: / 14:4149:Hades starts using Bad Faith/,
       regexCn: / 14:4149:哈迪斯 starts using 失信/,
       regexDe: / 14:4149:Hades starts using Maske des Grolls/,
-      regexFr: / 14:4149:Hadès starts using Mauvaise [fF]oi/,
+      regexFr: / 14:4149:Hadès starts using Mauvaise Foi/,
       regexJa: / 14:4149:ハーデス starts using バッドフェイス/,
       infoText: {
         en: 'Left',
@@ -70,7 +70,7 @@
       regex: / 14:414A:Hades starts using Bad Faith/,
       regexCn: / 14:414A:哈迪斯 starts using 失信/,
       regexDe: / 14:414A:Hades starts using Maske des Grolls/,
-      regexFr: / 14:414A:Hadès starts using Mauvaise [fF]oi/,
+      regexFr: / 14:414A:Hadès starts using Mauvaise Foi/,
       regexJa: / 14:414A:ハーデス starts using バッドフェイス/,
       infoText: {
         en: 'Right',
@@ -84,7 +84,7 @@
       regex: / 14:414D:Hades starts using Broken Faith/,
       regexCn: / 14:414D:哈迪斯 starts using 背信/,
       regexDe: / 14:414D:Hades starts using Maske der Trauer/,
-      regexFr: / 14:414D:Hadès starts using Foi [bB]risée/,
+      regexFr: / 14:414D:Hadès starts using Foi Brisée/,
       regexJa: / 14:414D:ハーデス starts using ブロークンフェイス/,
       alertText: {
         en: 'Dodge Giant Circles',
@@ -95,10 +95,10 @@
     },
     {
       id: 'Hades Echo Right',
-      regex: / 14:4164:Hades starts using Echo [Oo]f [Tt]he Lost/,
+      regex: / 14:4164:Hades starts using Echo Of The Lost/,
       regexCn: / 14:4164:哈迪斯 starts using 逝者的回声/,
       regexDe: / 14:4164:Hades starts using Echo der Verlorenen/,
-      regexFr: / 14:4164:Hadès starts using Écho [dD]es [dD]isparus/,
+      regexFr: / 14:4164:Hadès starts using Écho Des Disparus/,
       regexJa: / 14:4164:ハーデス starts using エコー・オブ・ザ・ロスト/,
       infoText: {
         en: 'Right',
@@ -109,10 +109,10 @@
     },
     {
       id: 'Hades Echo Left',
-      regex: / 14:4163:Hades starts using Echo [Oo]f [Tt]he Lost/,
+      regex: / 14:4163:Hades starts using Echo Of The Lost/,
       regexCn: / 14:4163:哈迪斯 starts using 逝者的回声/,
       regexDe: / 14:4163:Hades starts using Echo der Verlorenen/,
-      regexFr: / 14:4163:Hadès starts using Écho [dD]es [dD]isparus/,
+      regexFr: / 14:4163:Hadès starts using Écho Des Disparus/,
       regexJa: / 14:4163:ハーデス starts using エコー・オブ・ザ・ロスト/,
       infoText: {
         en: 'Left',
@@ -143,7 +143,7 @@
       regex: / 14:415C:Hades starts using Shadow Stream/,
       regexCn: / 14:415C:哈迪斯 starts using 暗影流/,
       regexDe: / 14:415C:Hades starts using Schattenstrom/,
-      regexFr: / 14:415C:Hadès starts using Flux [dD]e Ténèbres/,
+      regexFr: / 14:415C:Hadès starts using Flux De Ténèbres/,
       regexJa: / 14:415C:ハーデス starts using シャドウストリーム/,
       alertText: {
         en: 'Go Outside',
@@ -158,7 +158,7 @@
       regex: / 14:4170:Hades starts using Polydegmon's Purgation/,
       regexCn: / 14:4170:哈迪斯 starts using 冥王净化/,
       regexDe: / 14:4170:Hades starts using Schlag des Polydegmon/,
-      regexFr: / 14:4170:Hadès starts using Assaut [dD]u Polydegmon/,
+      regexFr: / 14:4170:Hadès starts using Assaut Du Polydegmon/,
       regexJa: / 14:4170:ハーデス starts using ポリデグモンストライク/,
       alertText: {
         en: 'Get Middle',
@@ -187,10 +187,10 @@
     },
     {
       id: 'Hades Wail of the Lost Right',
-      regex: / 14:4166:Hades starts using Wail [Oo]f [Tt]he Lost/,
+      regex: / 14:4166:Hades starts using Wail Of The Lost/,
       regexCn: / 14:4166:哈迪斯 starts using 逝者的哀嚎/,
       regexDe: / 14:4166:Hades starts using Wehklagen der Verlorenen/,
-      regexFr: / 14:4166:Hadès starts using Lamentation [dD]es [dD]isparus/,
+      regexFr: / 14:4166:Hadès starts using Lamentation Des Disparus/,
       regexJa: / 14:4166:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
       infoText: {
         en: 'Right Knockback',
@@ -201,10 +201,10 @@
     },
     {
       id: 'Hades Wail of the Lost Left',
-      regex: / 14:4165:Hades starts using Wail [Oo]f [Tt]he Lost/,
+      regex: / 14:4165:Hades starts using Wail Of The Lost/,
       regexCn: / 14:4165:哈迪斯 starts using 逝者的哀嚎/,
       regexDe: / 14:4165:Hades starts using Wehklagen der Verlorenen/,
-      regexFr: / 14:4165:Hadès starts using Lamentation [dD]es [dD]isparus/,
+      regexFr: / 14:4165:Hadès starts using Lamentation Des Disparus/,
       regexJa: / 14:4165:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
       infoText: {
         en: 'Left Knockback',
@@ -218,7 +218,7 @@
       regex: / 14:4161:Hades starts using Dual Strike/,
       regexCn: / 14:4161:哈迪斯 starts using 双重强袭/,
       regexDe: / 14:4161:Hades starts using Doppelschlag/,
-      regexFr: / 14:4161:Hadès starts using Frappe [rR]edoublée/,
+      regexFr: / 14:4161:Hadès starts using Frappe Redoublée/,
       regexJa: / 14:4161:ハーデス starts using デュアルストライク/,
       condition: function(data) {
         return data.role == 'healer';
@@ -252,7 +252,7 @@
       },
       alertText: {
         en: 'Drop Marker Outside',
-        de: 'Marker ausen ablegen',
+        de: 'Marker außen ablegen',
         fr: 'Posez la marque à l\'extérieur',
         cn: '外侧放点名',
       },
@@ -265,6 +265,7 @@
       },
       alarmText: {
         en: 'Fetters on YOU',
+        de: 'Fessel auf DIR',
         cn: '锁链点名',
       },
     },
