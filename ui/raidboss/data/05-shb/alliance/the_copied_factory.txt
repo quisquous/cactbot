@@ -191,7 +191,36 @@ hideall "--sync--"
 1459.9 "Wall Mechanic B"
 
 
+### Goliath Tank
+# -ic 2P -p 4932:1509 493D:1800 -ii 4937 4934 4938 4935 4939 4936 493A 4933 470D 4943
+1500.0 "--sync--" sync /00:0839:Warehouse C will be sealed off/ window 1500,0
+1509.0 "Energy Ring" sync /:Goliath Tank:4932:/ duration 15.1
+1516.9 "Exploding Tethers"
+1526.0 "Convenient Self-Destruction" sync /:Medium Exploder:493C:/
+1533.9 "Laser Turret" sync /:Goliath Tank:493B:/
+1547.2 "Energy Ring" sync /:Goliath Tank:4932:/ duration 250 #??
+1561.1 "Exploding Tethers"
+1570.2 "Convenient Self-Destruction" sync /:Medium Exploder:493C:/
+
+1800.0 "--sync--" sync /:Flight Unit:493D:/ window 300,0
+1810.0 "--targetable--"
+1817.2 "--sync--" sync /:Flight Unit:493F:/
+1821.7 "Area Bombing Maneuver" sync /:Flight Unit:4942:/ duration 9.1
+1835.9 "360-Degree Bombing Maneuver" sync /:Flight Unit:4941:/
+1851.3 "Lightfast Blade" sync /:Flight Unit:4940:/
+1857.5 "--sync--" sync /:Flight Unit:493F:/
+1861.8 "Area Bombing Maneuver" sync /:Flight Unit:4942:/ duration 9.1
+1871.1 "Lightfast Blade" sync /:Flight Unit:4940:/
+1873.2 "--sync--" sync /:Flight Unit:493F:/
+1879.7 "Lightfast Blade" sync /:Flight Unit:4940:/
+1888.8 "360-Degree Bombing Maneuver" sync /:Flight Unit:4941:/
+1899.1 "360-Degree Bombing Maneuver" sync /:Flight Unit:4941:/
+1909.6 "--sync--" sync /:Flight Unit:493E:/
+# ???
+
 
 ### Engels
+2000.0 "--sync--" sync /00:0839:The forward deck will be sealed off/ window 2000,0
 
 ### 9S
+2500.0 "--sync--" sync /00:0839:The rear deck will be sealed off/ window 2500,0
