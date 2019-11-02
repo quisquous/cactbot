@@ -230,7 +230,7 @@ hideall "--sync--"
 2029.6 "Marx Smash R/L" sync /:Engels:472[67]:/
 2044.4 "Precision Guided Missile" sync /:Engels:4754:/
 2055.8 "Incendiary Bombing" sync /:Engels:4739:/
-2070.5 "Guided Missile" sync /:Engels:4735:/ duration 3.4
+2070.5 "Guided Missile" sync /:Engels:4736:/ duration 3.4
 2078.8 "Diffuse Laser" sync /:Engels:4755:/
 2097.3 "Marx Smash F/B" sync /:Engels:472[AE]:/
 2115.9 "Marx Smash B/F" sync /:Engels:472[AE]:/
@@ -242,6 +242,7 @@ hideall "--sync--"
 2178.0 "Diffuse Laser" sync /:Engels:4755:/
 
 # Appears to be a time-based push and not an hp one.
+2185.7 "--untargetable--"
 2185.8 "--sync--" sync /:Engels:473F:/
 2189.6 "Adds"
 2190.9 "--targetable--"
@@ -283,49 +284,47 @@ hideall "--sync--"
 2625.2 "Crushing Wheel Enrage?"  sync /:Marx [LR]:474B:/
 
 2700.0 "--targetable--" sync / 22:........:Engels:........:Engels:01/ window 150,0
-2700.2 "--sync--" sync /:4733:Engels/ window 150,5
-2700.7 "Surface Missile" sync /:Engels:4733:/
-2709.9 "Marx Smash" sync /:Engels:472[67AE]:/
-2719.6 "Surface Missile" sync /:Engels:4733:/
-2728.9 "Marx Smash" sync /:Engels:472[67AE]:/
-2738.0 "Energy Barrage" sync /:Engels:473C:/
-2745.8 "Laser Sight" sync /:Engels:473A:/
-2756.5 "Energy Blast" sync /:Engels:473E:/
-2759.1 "Surface Missile" sync /:Engels:4733:/
-2767.8 "Diffuse Laser" sync /:Engels:4755:/
-2781.6 "Precision Guided Missile" sync /:Engels:4754:/
-2786.0 "Diffuse Laser" sync /:Engels:4755:/
-2807.3 "Surface Missile" sync /:Engels:4733:/
-2816.5 "Marx Smash" sync /:Engels:472[67AE]:/
-2831.7 "Incendiary Bombing" sync /:Engels:4739:/
-2836.5 "Marx Smash" sync /:Engels:472[67AE]:/
+2706.2 "--sync--" sync /:4733:Engels/ window 150,5
+2709.7 "Surface Missile" sync /:Engels:4733:/
+2718.9 "Marx Smash" sync /:Engels:472[67AE]:/
+2728.6 "Surface Missile" sync /:Engels:4733:/
+2737.9 "Marx Smash" sync /:Engels:472[67AE]:/
+2747.0 "Energy Barrage" sync /:Engels:473C:/
+2754.8 "Laser Sight" sync /:Engels:473A:/
+2765.5 "Energy Blast" sync /:Engels:473E:/
+2768.1 "Surface Missile" sync /:Engels:4733:/
+2776.8 "Diffuse Laser" sync /:Engels:4755:/
+2790.6 "Precision Guided Missile" sync /:Engels:4754:/
+2795.0 "Diffuse Laser" sync /:Engels:4755:/
+2816.3 "Surface Missile" sync /:Engels:4733:/
+2825.5 "Marx Smash" sync /:Engels:472[67AE]:/
+2840.7 "Incendiary Bombing" sync /:Engels:4739:/
+2845.5 "Marx Smash" sync /:Engels:472[67AE]:/
 
 # TODO: it is unclear if this is the actual loop.
 # The log needs to be about ~14 min to verify if the
 # crusher phase happens again or if that's a one time thing.
-2850.3 "Marx Activation" sync /:Engels:48A8:/ window 200,200 jump 2448.2
-2868.4 "Marx Thrust"
-2878.4 "Marx Thrust"
-2880.6 "Area Bombardment"
-2888.4 "Marx Thrust"
-2893.2 "Incendiary Bombing"
-2907.2 "Guided Missile"
+2859.3 "Marx Activation" sync /:Engels:48A8:/ window 200,200 jump 2448.2
+2877.4 "Marx Thrust"
+2887.4 "Marx Thrust"
+2889.6 "Area Bombardment"
+2897.4 "Marx Thrust"
+2902.2 "Incendiary Bombing"
+2916.2 "Guided Missile"
 
 
 ### 9S
-# -ic 2P -p 48F5:3013.3 48E7:3310 48EB:3510 -ii 49C4 48F9 48F7 48DC 485E 48E3 48E6 48E0 48EC 48A5 48A7 48D6 48E4 4ABE
+# -ic 2P -p 48F5:3013.3 48E7:3310 48EB:3510 -ii 49C4 48F9 48F7 48DC 485E 48E3 48E6 48E0 48EC 48A5 48A7 48D6 4ABE
 3000.0 "--sync--" sync /00:0839:The rear deck will be sealed off/ window 3000,0
 3013.3 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
 3021.5 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
 3030.2 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3034.1 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
-3039.7 "Ballistic Impact" sync /:9S-operated Walking Fortress:4974:/
+3039.7 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
 3049.3 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
 3056.5 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
 3065.7 "Engage Marx Support" sync /:9S-operated Walking Fortress:48D3:/
 3081.9 "Marx Impact" sync /:Marx:48D4:/
-3081.9 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
-3087.5 "Ballistic Impact" sync /:9S-operated Walking Fortress:4974:/
+3087.5 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
 3088.8 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
 3094.7 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
 
@@ -345,32 +344,29 @@ hideall "--sync--"
 3151.7 "--targetable--"
 3152.0 "--sync--" sync /:48F5:9S-operated Walking Fortress/
 3156.0 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3170.6 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:48E1:/
-3170.7 "Ballistic Impact" #sync /:9S-operated Walking Fortress:48E4:/
-3172.7 "Ballistic Impact" #sync /:9S-operated Walking Fortress:48E4:/
+3170.7 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
+3172.7 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
 3178.3 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
 
 # Tank Adds
 3187.6 "Engage Goliath Tank Support" sync /:9S-operated Walking Fortress:48E5:/
 3190.8 "Tank Adds"
-3196.9 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
-3202.5 "Ballistic Impact" sync /:9S-operated Walking Fortress:4974:/
+3196.9 "--sync--" sync /:9S-operated Walking Fortress:48F8:/
+3202.5 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
 3209.2 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
 
-3217.4 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/ window 10,10 jump 3196.9
-3223.0 "Ballistic Impact"
+3217.4 "--sync--" sync /:9S-operated Walking Fortress:48F8:/ window 10,10 jump 3196.9
+3223.0 "Ground-To-Ground Missile"
 3229.7 "Laser Saturation"
 
-3237.9 "Ground-To-Ground Missile"
-3243.5 "Ballistic Impact"
+3243.5 "Ground-To-Ground Missile"
 3250.2 "Laser Saturation"
 
-3258.4 "Ground-To-Ground Missile"
-3264.0 "Ballistic Impact"
+3264.0 "Ground-To-Ground Missile"
 3270.7 "Laser Saturation"
 
 # Tank Explosions
-3300.0 "--sync--" sync /:48E7:9S-operated Walking Fortress:48E7/ window 200,0
+3300.0 "--sync--" sync /:48E7:9S-operated Walking Fortress/ window 200,0
 3310.0 "Hack Goliath Tank" sync /:9S-operated Walking Fortress:48E7:/
 3310.0 "Convenient Self-Destruction" sync /:Goliath Tank:48E8:/
 3313.2 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
@@ -397,10 +393,11 @@ hideall "--sync--"
 3510.0 "Total Annihilation Maneuver" sync /:9S-operated Walking Fortress:48EB:/
 3520.0 "--targetable--"
 3530.1 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3536.3 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
-3541.9 "Ballistic Impact" sync /:9S-operated Walking Fortress:4974:/
+3541.9 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
 3543.2 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3561.9 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:48E2:/
+3562.0 "Anti-Personnel Missile" # sync /:9S-operated Walking Fortress:48E4:/
+3564.0 "Anti-Personnel Missile" # sync /:9S-operated Walking Fortress:48E4:/
+3566.0 "Anti-Personnel Missile" # sync /:9S-operated Walking Fortress:48E4:/
 3573.0 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
 3581.1 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
 
@@ -411,14 +408,11 @@ hideall "--sync--"
 3604.9 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
 3607.4 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
 3611.4 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:4B11:/
-3611.5 "Ballistic Impact" sync /:9S-operated Walking Fortress:48E4:/
 3614.6 "--sync--" sync /:9S-operated Flight Unit:48D8:/
 3616.7 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
 3619.2 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
 3621.7 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
 3627.6 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:4B11:/
-3627.6 "Ballistic Impact" sync /:9S-operated Walking Fortress:48E4:/
-3627.6 "Ballistic Impact" sync /:9S-operated Walking Fortress:48E4:/
 3628.7 "--sync--" sync /:9S-operated Flight Unit:4B17:/
 3630.8 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
 3633.3 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
@@ -433,14 +427,14 @@ hideall "--sync--"
 3675.6 "Marx Impact" sync /:Marx:48D4:/
 3681.6 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
 3693.9 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3700.1 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
-3705.7 "Ballistic Impact" sync /:9S-operated Walking Fortress:4974:/
+3705.7 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
 3706.9 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3724.3 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:48E2:/
+3724.3 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
+3726.3 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
+3728.3 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
 3735.4 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
 3743.5 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
-3749.6 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
-3755.3 "Ballistic Impact" sync /:9S-operated Walking Fortress:4974:/
+3755.3 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
 3756.5 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
 3763.4 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
 3773.5 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
@@ -451,6 +445,5 @@ hideall "--sync--"
 3811.1 "Marx Impact"
 3817.1 "Cannons"
 3829.4 "Neutralization"
-3835.6 "Ground-To-Ground Missile"
-3841.2 "Ballistic Impact"
+3841.2 "Ground-To-Ground Missile"
 3842.4 "Laser Turret"
