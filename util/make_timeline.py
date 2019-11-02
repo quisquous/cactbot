@@ -25,6 +25,12 @@ def parse_line_time(line):
     time = time.replace(microsecond=int(line[23:29]))
     return time
 
+def stringify_time(timestamp):
+    """
+    Parses a datetime object into a string for log comparisons.
+    Trims microseconds to milliseconds."""
+    return timestamp.strftime('%H:%M:%S.%f')[:-3]
+
 def is_line_start(line_fields, started):
     # FIXME: May need localization?
     if (line_fields[4].endswith('sealed off in 15 seconds!')):
@@ -117,10 +123,9 @@ def parse_file(args):
         # If searching for encounters, divert and find start/end first
         if args.search_fights:
             encounter_sets = find_fights_in_file(file)
+            # If all we want to do is list encounters, stop here and give to the user.
             if args.search_fights[0] < 0:
-                for j in range(0, len(encounter_sets)):
-                    encounter_sets[j] = str(j) + '. ' + (" ").join(encounter_sets[j])
-                return encounter_sets
+                return [f'{i}. {encounter_name}' for i, encounter_name in enumerate(encounter_sets)]
         # Scan the file until the start timestamp
         for line in file:
             start_time = end_time = 0
@@ -212,7 +217,7 @@ def find_fights_in_file(file):
         # Ignore fights under 1 minute
         if (e_ends[i] - e_starts[i][0]).total_seconds() < 60:
             continue
-        encounter_info = [str((e_starts[i][0]).time()), str(e_ends[i].time()), str(e_starts[i][1])]
+        encounter_info = [stringify_time((e_starts[i][0])), stringify_time(e_ends[i]), str(e_starts[i][1])]
         encounter_sets.append(encounter_info)
     file.seek(0)
     return encounter_sets
