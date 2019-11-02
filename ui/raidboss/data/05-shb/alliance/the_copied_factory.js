@@ -290,7 +290,7 @@
       id: 'Copied Engels Diffuse Laser',
       regex: / 14:4755:Engels starts using Diffuse Laser/,
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
       infoText: {
         en: 'aoe',
@@ -299,10 +299,13 @@
       },
     },
     {
+      // Technicallly this is Laser Sight 473A, but energy barrage
+      // always precedes it and is an earlier warning.
+      // Also suggest going to the front for towers.
       id: 'Copied Engels Energy Barrage 1',
       regex: / 14:473C:Engels starts using Energy Barrage/,
       infoText: {
-        en: 'Go Sides',
+        en: 'Go Sides (Near Front)',
       },
     },
     {
@@ -337,10 +340,10 @@
     },
     {
       id: 'Copied Engels Reverse-Jointed Goliaths',
-      regex: / 03:\y{ObjectId}:Added new combatant Reverse-Jointed Goliath\./,
-      suppressSeconds: 2,
+      regex: / 15:\y{ObjectId}:Engels:473F:/,
+      durationSeconds: 4,
       infoText: {
-        en: 'Adds',
+        en: 'Adds (Ignore Small)',
       },
     },
     {
