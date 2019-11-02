@@ -4,7 +4,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 ### Serial-jointed Command Model
-# -ic 2P -ii 4B31 48B3 48B4 48B7 48B6 48CB 48CC 48BA 4B32 48FA 48BC 48BD 48BE 48BF 48C0 48C1 48C2 48C9
+# -ic 2P -p 48B2:108.5 -ii 4B31 48B3 48B4 48B7 48B6 48CB 48CC 48BA 4B32 48FA 48BC 48BD 48BE 48BF 48C0 48C1 48C2 48C9
 
 100.0 "--sync--" sync /00:0839:Warehouse A will be sealed off/ window 100,0
 108.5 "Systematic Siege" sync /:Serial-jointed Command Model:48B2:/
@@ -52,7 +52,145 @@ hideall "--sync--"
 529.3 "Forceful Impact"
 
 
+### Trash
+# -ic 2P -ii 491D 491C -p 491B:715.5
+600.0 "--sync--" sync /00:0839:Warehouse B will be sealed off/ window 600,0
+700.0 "--sync--" sync / 22:........:Small Flyer:........:Small Flyer:01/ window 100,0
+715.5 "Frontal Somersault" sync /:Small Biped:491B:/
+721.4 "Frontal Somersault" sync /:Small Biped:491B:/
+725.7 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+732.1 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+738.5 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+740.8 "Frontal Somersault" sync /:Small Biped:491B:/
+746.9 "Frontal Somersault" sync /:Small Biped:491B:/
+751.2 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+757.5 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+763.9 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+770.1 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
+
+
 ### Hobbes
+# -ic 2P -p 4805:913 -ii 481C 4811 4810 49C5 49C6 49C7 4917 490D 480C 4911 4918 490E 4910 4912 490F 4808 4809 4814 4800 4801 4802 4803 4804 4916 47FE 480F 4915
+# Alliance A floor: 4819
+# Alliance B floor: 481A
+# Alliance C floor: 481B
+
+# This is a mess, so has been simplified to just "wall mechanic" and "floor mechanic".
+# You can use the make_timeline parameters above to see the combined set of mechanics.
+
+# Notes for the future:
+# Alliance A's floor mechanic is "Electromagnetic Pulse" on "Floor 1" and "Floor 2"
+# Alliance B's floor mechanic is a single "Unwilling Cargo" on "Floor 1"
+# Alliance C's floor mechanic is "Oil Well" on "Floor 1" and "Floor 2"
+
+# Alliance A always starts with Variable Combat Test (wall-mounted right arm)
+# Alliance B always starts with Fire-Resistance Test (wall-mounted flamethrower)
+# Alliance C always starts with Impact/Towerfall (wall-mounted left arm)
+
+# Everybody will always get each of these mechanics as the first three wall mechanics,
+# however, they may rotate clockwise or counter-clockwise to begin with.
+
+# Just to make this even more worse for timelines, after the first floor mechanic
+# it rotates once more, then maybe changes direction, and rotates again (???)
+# It could also just be random after the floor mechanic?
+
+# This means these options are all valid wall rotations:
+# * Fire->Impact->Variable->(floor)->Variable->Impact->Fire->repeat
+# * Fire->Impact->Variable->(floor)->Impact->Variable->Fire->repeat
+# * Variable->Impact->Fire->(floor)->Impact->Fire->Variable->repeat
+
+# This is why the timeline has "Wall 1 2 3" and "Wall A B C".
+
+# TODO: you could use the initial rp text to figure out which alliance you're in,
+# and then from there also use the second rp text to figure out which of the initial
+# six possibilities you're in, then collapse back to three timelines, and then
+# branch out to six timelines again for the second half, but it'd be, well, a lot.
+
+900.0 "--sync--" sync /00:0839:Quality assurance will be sealed off/ window 900,0
+913.0 "Laser-Resistance Test x3" sync /:Hobbes:4805:/ duration 2.3
+
+924.5 "--sync--" sync /:Hobbes:480A:/
+926.0 "--sync--" sync /:Hobbes:4913:/
+934.0 "Wall Mechanic 1"
+
+969.6 "--sync--" sync /:Hobbes:480A:/
+971.1 "--sync--" sync /:Hobbes:4913:/
+
+979.1 "Wall Mechanic 2"
+
+996.8 "Ring Laser" sync /:Hobbes:47FF:/ duration 8.1
+
+1030.5 "--sync--" sync /:Hobbes:480A:/
+1032.1 "--sync--" sync /:Hobbes:4913:/
+
+1040.1 "Wall Mechanic 3"
+
+1061.3 "Laser Sight" sync /:Hobbes:4807:/
+
+1090.7 "Floor 1" sync /:Hobbes:481B:/
+1097.3 "Floor 2" sync /:Hobbes:481B:/
+
+1114.1 "Laser-Resistance Test x4" sync /:Hobbes:4805:/ duration 3.3
+
+1128.6 "Floor 1" sync /:Hobbes:481B:/
+1130.5 "Short-Range Missile" sync /:Hobbes:4815:/
+1135.2 "Floor 2" sync /:Hobbes:481B:/
+
+1143.7 "--sync--" sync /:Hobbes:480A:/
+1149.2 "--sync--" sync /:Hobbes:4913:/
+1149.6 "Laser Sight" sync /:Hobbes:4807:/
+
+1157.2 "Wall Mechanic A"
+
+1187.9 "Laser-Resistance Test x5" sync /:Hobbes:4805:/ duration 4.3
+
+1200.8 "Ring Laser" sync /:Hobbes:47FF:/ duration 8.1
+1203.4 "Floor 1" sync /:Hobbes:481B:/
+1209.9 "Floor 2" sync /:Hobbes:481B:/
+
+1218.2 "--sync--" sync /:Hobbes:480A:/
+1223.8 "--sync--" sync /:Hobbes:4913:/
+1224.2 "Short-Range Missile" sync /:Hobbes:4815:/
+
+1231.8 "Wall Mechanic B"
+
+1262.6 "Laser-Resistance Test x6" sync /:Hobbes:4805:/ duration 5.3
+
+1279.2 "Floor 1" sync /:Hobbes:481B:/
+1281.2 "Laser Sight" sync /:Hobbes:4807:/
+1285.8 "Floor 2" sync /:Hobbes:481B:/
+
+1294.5 "--sync--" sync /:Hobbes:480A:/
+1300.0 "--sync--" sync /:Hobbes:4913:/
+1301.9 "Ring Laser" sync /:Hobbes:47FF:/ duration 8.1
+
+1308.0 "Wall Mechanic C"
+
+1339.0 "Laser-Resistance Test x6" sync /:Hobbes:4805:/ duration 5.3
+
+1355.7 "Floor 1" sync /:Hobbes:481B:/
+1357.7 "Short-Range Missile" sync /:Hobbes:4815:/
+1362.3 "Floor 2" sync /:Hobbes:481B:/
+
+1370.9 "--sync--" sync /:Hobbes:480A:/
+1376.4 "--sync--" sync /:Hobbes:4913:/
+1376.8 "Laser Sight" sync /:Hobbes:4807:/
+1384.4 "Wall Mechanic A"
+
+1414.9 "Laser-Resistance Test x6" sync /:Hobbes:4805:/ duration 5.3
+
+1429.0 "Ring Laser" sync /:Hobbes:47FF:/ duration 8.1 window 100,100 jump 1200.8
+
+1431.6 "Floor 1"
+1438.1 "Floor 2"
+
+1446.4 "--sync--"
+1452.0 "--sync--"
+1452.4 "Short-Range Missile"
+
+1459.9 "Wall Mechanic B"
+
+
 
 ### Engels
 
