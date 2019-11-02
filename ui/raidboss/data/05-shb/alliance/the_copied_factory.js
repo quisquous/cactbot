@@ -438,6 +438,14 @@
       },
     },
     {
+      id: 'Copied 9S Serial-Jointed Service Models',
+      regex: / 03:\y{ObjectId}:Added new combatant Serial-Jointed Service Model\./,
+      suppressSeconds: 2,
+      infoText: {
+        en: 'Adds',
+      },
+    },
+    {
       id: 'Copied 9S Engage Goliath Tank Support',
       regex: / 14:48E5:9S-Operated Walking Fortress starts using Engage Goliath Tank Support/,
       infoText: {
