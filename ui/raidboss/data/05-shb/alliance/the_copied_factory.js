@@ -1,6 +1,10 @@
 'use strict';
 
 // The Copied Factory
+// TODO: Tell people where to stand for Engels wall saws
+// TODO: Tell people where to stand for 9S overhead saws
+// TODO: Tell people where to go for 9S divebombs
+// TODO: Tell people where to go for 9S tethered tank
 
 [{
   zoneRegex: /^The Copied Factory$/,
@@ -24,6 +28,8 @@
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -92,6 +98,8 @@
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -211,6 +219,8 @@
       },
       infoText: {
         en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -353,6 +363,111 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Dodge Wall Saws',
+      },
+    },
+    {
+      id: 'Copied 9S Neutralization',
+      regex: / 14:48F5:9S-Operated Walking Fortress starts using Neutralization on (\y{Name})\./,
+      condition: function(data, matches) {
+        return data.me == matches[1] || data.role == 'healer';
+      },
+      alertText: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+    },
+    {
+      id: 'Copied 9S Laser Saturation',
+      regex: / 14:48F6:9S-Operated Walking Fortress starts using Laser Saturation/,
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+      },
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
+      },
+    },
+    {
+      id: 'Copied 9S Laser Turret',
+      regex: / 14:4A74:9S-Operated Walking Fortress starts using Laser Turret/,
+      infoText: {
+        en: 'Away From Front',
+      },
+    },
+    {
+      id: 'Copied 9S Ballistic Impact',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alertText: {
+        en: 'Spread',
+      },
+    },
+    {
+      id: 'Copied 9S Laser Fore-Hind Cannons',
+      regex: / 14:48DF:9S-Operated Walking Fortress starts using Fore-Hind Cannons/,
+      infoText: {
+        en: 'Go Sides',
+      },
+    },
+    {
+      id: 'Copied 9S Dual-Flank Cannons',
+      regex: / 14:48DE:9S-Operated Walking Fortress starts using Dual-Flank Cannons/,
+      infoText: {
+        en: 'Go Front / Back',
+      },
+    },
+    {
+      id: 'Copied 9S Engage Marx Support',
+      regex: / 14:48D3:9S-Operated Walking Fortress starts using Engage Marx Support/,
+      alertText: {
+        en: 'Dodge Overhead Saws',
+      },
+    },
+    {
+      id: 'Copied 9S Serial-Jointed Service Models',
+      regex: / 03:\y{ObjectId}:Added new combatant Serial-Jointed Service Model\./,
+      suppressSeconds: 2,
+      infoText: {
+        en: 'Adds',
+      },
+    },
+    {
+      id: 'Copied 9S Engage Goliath Tank Support',
+      regex: / 14:48E5:9S-Operated Walking Fortress starts using Engage Goliath Tank Support/,
+      infoText: {
+        en: 'Adds',
+      },
+    },
+    {
+      id: 'Copied 9S Hack Goliath Tank',
+      regex: / 14:48E7:9S-Operated Walking Fortress starts using Hack Goliath Tank/,
+      alertText: {
+        en: 'Go Behind Untethered Tank',
+      },
+    },
+    {
+      id: 'Copied 9S Shrapnel Impact',
+      regex: / 14:48F3:9S-Operated Walking Fortress starts using Shrapnel Impact/,
+      suppressSeconds: 2,
+      infoText: {
+        en: 'Stack',
       },
     },
   ],
