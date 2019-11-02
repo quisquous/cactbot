@@ -218,11 +218,9 @@
         'Engage!': 'Start!',
         'Susano': 'Susano',
         'Thunderhead': 'Gewitterwolke',
-
-        // FIXME
-        'Let the revels begin': 'Let the revels begin',
-        'How our hearts sing in the chaos': 'How our hearts sing in the chaos',
-        'REJOICE!': 'REJOICE!',
+        'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
+        'How our hearts sing in the chaos': 'Jahaha! Weiter so!',
+        'REJOICE!': 'Uohhh!',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -247,14 +245,12 @@
         'Ukehi': 'Ukehi',
         'Yasakani No Magatama': 'Yasakani No Magatama',
         'Yata No Kagami': 'Yata No Kagami',
-
-        // FIXME
-        'Dark Levin': 'Violett[a] Blitz',
+        'Dark Levin': 'Violetter Blitz',
         'Knockback': 'Rückstoß',
         'Stack': 'Stacken',
-        'cloud': 'cloud',
-        'dice': 'dice',
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add',
+        'cloud': 'Wolke',
+        'dice': 'Würfel (Bombe)',
+        'Ame-No-Murakumo add': 'Ame no Murakumo Add',
       },
       '~effectNames': {
         'Churning': 'Schäumend',
@@ -277,11 +273,9 @@
         'Engage!': 'À l\'attaque',
         'Susano': 'Susano',
         'Thunderhead': 'Nuage Orageux',
-
-        // FIXME
-        'Let the revels begin': 'Let the revels begin',
-        'How our hearts sing in the chaos': 'How our hearts sing in the chaos',
-        'REJOICE!': 'REJOICE!',
+        'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
+        'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
+        'REJOICE!': 'MOUAAAAAAH !',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -308,9 +302,9 @@
         'Ukehi': 'Ukehi',
         'Yasakani No Magatama': 'Yasakani No Magatama',
         'Yata No Kagami': 'Yata No Kagami',
+        'Dark Levin': 'Foudre Violette',
 
         // FIXME
-        'Dark Levin': 'Dark Levin',
         'Knockback': 'Knockback',
         'Stack': 'Stack',
         'cloud': 'cloud',
@@ -338,11 +332,9 @@
         'Engage!': '戦闘開始！',
         'Susano': 'スサノオ',
         'Thunderhead': '雷雲',
-
-        // FIXME
-        'Let the revels begin': 'Let the revels begin',
-        'How our hearts sing in the chaos': 'How our hearts sing in the chaos',
-        'REJOICE!': 'REJOICE!',
+        'Let the revels begin': 'いざ舞え、踊れ！　祭りである！ 神前たれども無礼を許す……武器を取れい！',
+        'How our hearts sing in the chaos': 'カッカッカッ、興が乗ったわ！ アメノムラクモの真なる姿、見せてくれよう！',
+        'REJOICE!': 'フンヌアァァァァ！',
       },
       'replaceText': {
         'Ame No Murakumo': 'アメノムラクモ',
@@ -364,9 +356,9 @@
         'Ukehi': '宇気比',
         'Yasakani No Magatama': 'ヤサカニノマガタマ',
         'Yata No Kagami': 'ヤタノカガミ',
+        'Dark Levin': '紫電',
 
         // FIXME
-        'Dark Levin': 'Dark Levin',
         'Knockback': 'Knockback',
         'Stack': 'Stack',
         'cloud': 'cloud',

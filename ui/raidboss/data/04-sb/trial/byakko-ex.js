@@ -375,10 +375,8 @@
         'Byakko': 'Byakko',
         'Engage!': 'Start!',
         'Hakutei': 'Hakutei',
-
-        // FIXME
-        'There is no turning back!': 'There is no turning back!',
-        'All creation trembles before my might!': 'All creation trembles before my might!',
+        'There is no turning back!': 'Mein Jagdtrieb ist erwacht!',
+        'All creation trembles before my might!': 'Himmel und Erde, erzittert!',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
@@ -407,20 +405,18 @@
         'Unrelenting Anguish': 'Pandämonium',
         'Vacuum Claw': 'Vakuumklaue',
         'White Herald': 'Herbstböe',
-
-        // FIXME
-        'leap north': 'leap north',
-        'Puddle Markers': 'Puddle Markers',
         'Hakutei Add': 'Hakutei Add',
-        'Tiger Cleave': 'Tiger Cleave',
-        'tiger untargetable': 'tiger untargetable',
-        'tiger lands': 'tiger lands',
-        'TP Orbs': 'TP Orbs',
+        'Puddle Markers': 'Flächen Marker',
+        'tiger untargetable': 'Tiger nicht anvisierbar',
+        'tiger lands': 'Tiger landet',
         'Roar Of Thunder': 'Brüllen Des Donners',
-        'Donut AOE': 'Donut AOE',
-        'Line AOE': 'Line AOE',
+        'Tiger Cleave': 'Tiger Cleave',
+        'Donut AOE': 'Donut AoE',
+        'Line AOE': 'Linien AoE',
         'Orb Marker': 'Orb Marker',
-        'leap middle': 'leap middle',
+        'leap north': 'Sprung nach Norden',
+        'TP Orbs': 'TP Orbs',
+        'leap middle': 'Sprung in die Mitte',
       },
       '~effectNames': {
         'Area Of Influence Up': 'Erweiterter Radius',
@@ -441,10 +437,8 @@
         'Byakko': 'Byakko',
         'Engage!': 'À l\'attaque',
         'Hakutei': 'Byakko',
-
-        // FIXME
-        'There is no turning back!': 'There is no turning back!',
-        'All creation trembles before my might!': 'All creation trembles before my might!',
+        'There is no turning back!': 'Grrraaaah ! ... Trop tard pour les regrets !',
+        'All creation trembles before my might!': 'Tremblez devant mon pouvoir !',
       },
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
@@ -509,10 +503,8 @@
         'Byakko': '白虎',
         'Engage!': '戦闘開始！',
         'Hakutei': '白帝',
-
-        // FIXME
-        'There is no turning back!': 'There is no turning back!',
-        'All creation trembles before my might!': 'All creation trembles before my might!',
+        'There is no turning back!': 'オオオオオ……この衝動、もはや止められん！',
+        'All creation trembles before my might!': '震天動地の力を、見せてやろうッ！',
       },
       'replaceText': {
         'Answer On High': '天つ雷',
@@ -542,7 +534,7 @@
         // FIXME
         'leap north': 'leap north',
         'Puddle Markers': 'Puddle Markers',
-        'Hakutei Add': 'Hakutei Add',
+        'Hakutei Add': '白帝 Add',
         'Tiger Cleave': 'Tiger Cleave',
         'tiger untargetable': 'tiger untargetable',
         'tiger lands': 'tiger lands',
