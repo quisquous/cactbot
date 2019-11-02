@@ -1,7 +1,10 @@
 'use strict';
 
 // The Copied Factory
-// TODO: tell people where to go for 9S divebombs?
+// TODO: Tell people where to stand for Engels wall saws
+// TODO: Tell people where to stand for 9S overhead saws
+// TODO: Tell people where to go for 9S divebombs
+// TODO: Tell people where to go for 9S tethered tank
 
 [{
   zoneRegex: /^The Copied Factory$/,
@@ -354,7 +357,7 @@
         en: 'Front and Center',
       },
     },
-    { // TODO: Tell people where to stand?
+    {
       id: 'Copied Engels Marx Thrust',
       regex: / 14:48FC:Marx starts using Marx Thrust/,
       suppressSeconds: 1,
@@ -430,7 +433,7 @@
         en: 'Go Front / Back',
       },
     },
-    { // TODO: Tell people where to stand?
+    {
       id: 'Copied 9S Engage Marx Support',
       regex: / 14:48D3:9S-Operated Walking Fortress starts using Engage Marx Support/,
       alertText: {
@@ -449,14 +452,14 @@
       id: 'Copied 9S Engage Goliath Tank Support',
       regex: / 14:48E5:9S-Operated Walking Fortress starts using Engage Goliath Tank Support/,
       infoText: {
-        en: 'Kill Tanks',
+        en: 'Adds',
       },
     },
     {
       id: 'Copied 9S Hack Goliath Tank',
       regex: / 14:48E7:9S-Operated Walking Fortress starts using Hack Goliath Tank/,
       alertText: {
-        en: 'Go Behind Tank',
+        en: 'Go Behind Untethered Tank',
       },
     },
     {
