@@ -22,6 +22,7 @@
           return;
         return {
           en: 'Be Near Boss',
+          de: 'sei in der Nähe des Bosses',
         };
       },
     },
@@ -31,6 +32,7 @@
       beforeSeconds: 15,
       infoText: {
         en: 'Move to South Edge',
+        de: 'zur südlichen Kante',
       },
     },
   ],
@@ -52,6 +54,7 @@
       regex: / 14:48B5:Serial-Jointed Command Model starts using Energy Assault/,
       alertText: {
         en: 'Get Behind',
+        de: 'Hinter Ihn',
       },
     },
     {
@@ -60,6 +63,7 @@
       suppressSeconds: 15,
       infoText: {
         en: 'Look for Lasers',
+        de: 'Pass auf die Laser auf',
       },
     },
     {
@@ -90,6 +94,7 @@
       regex: / 14:48C8:Serial-Jointed Command Model starts using Centrifugal Spin/,
       alertText: {
         en: 'Go To Sides',
+        de: 'Geh zu den Seiten',
       },
     },
     {
@@ -97,6 +102,7 @@
       regex: / 14:48CA:Serial-Jointed Command Model starts using Sidestriking Spin/,
       alertText: {
         en: 'Go Front/Back',
+        de: 'Geh nach Vorne/ Hinten',
       },
     },
     {
@@ -104,6 +110,7 @@
       regex: / 14:48C3:Serial-Jointed Command Model starts using Shockwave/,
       infoText: {
         en: 'Knockback',
+        de: 'Rückstoß',
       },
     },
     {
@@ -126,6 +133,7 @@
       },
       infoText: {
         en: 'Dodge Moving Circle',
+        de: 'Bewegenden Kreisen ausweichen',
       },
     },
     {
@@ -136,6 +144,7 @@
       },
       alertText: {
         en: 'Look Behind For Flamethrowers',
+        de: 'Flammenwerfer hinter dir',
       },
     },
     {
@@ -147,6 +156,7 @@
       },
       infoText: {
         en: 'Out',
+        de: 'Raus',
       },
     },
     {
@@ -155,6 +165,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Dodge Falling Walls',
+        de: 'Den fallenden Wände asuweichen',
       },
     },
     {
@@ -163,6 +174,7 @@
       delaySeconds: 10,
       alertText: {
         en: 'Spread Tethers',
+        de: 'Verbindungen Verteilen',
       },
     },
     {
@@ -173,6 +185,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -180,6 +193,7 @@
       regex: / 14:4807:Hobbes starts using Laser Sight/,
       alertText: {
         en: 'Stack',
+        de: 'Sammeln',
       },
     },
     {
@@ -189,13 +203,15 @@
       durationSeconds: 10,
       infoText: {
         en: 'Dodge Electric Floor',
+        de: 'Elektrischem Boden ausweichen',
       },
     },
     {
       id: 'Copied Hobbes Conveyer Belts',
       regex: / 00:0839:The conveyer belts whirr to life!/,
       infoText: {
-        en: 'Conveyer Belts',
+        en: 'Conveyor Belts',
+        de: 'Förderbänder',
       },
     },
     {
@@ -205,6 +221,7 @@
       durationSeconds: 3,
       alertText: {
         en: 'Oil Vats',
+        de: 'Ölbehälter',
       },
     },
     {
@@ -215,6 +232,7 @@
       durationSeconds: 3,
       alertText: {
         en: 'Oil Vats',
+        de: 'Ölbehälter',
       },
     },
     {
@@ -225,6 +243,7 @@
       },
       alertText: {
         en: 'Exploder on YOU',
+        de: 'Explosion auf DIR',
       },
     },
     {
@@ -247,6 +266,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -274,6 +294,7 @@
       regex: / 14:472E:Engels starts using Marx Smash/,
       alertText: {
         en: 'Front and Center',
+        de: 'Vorne und Mitte',
       },
     },
     {
@@ -281,6 +302,7 @@
       regex: / 14:472A:Engels starts using Marx Smash/,
       alertText: {
         en: 'Back and Sides',
+        de: 'Hinten und Seiten',
       },
     },
     {
@@ -288,6 +310,7 @@
       regex: / 14:4746:Engels starts using Marx Crush/,
       infoText: {
         en: 'Kill Claws',
+        de: 'Klauen töten',
       },
     },
     {
@@ -322,6 +345,7 @@
       regex: / 14:473C:Engels starts using Energy Barrage/,
       infoText: {
         en: 'Go Sides (Near Front)',
+        de: 'Zu den Seiten (Nahe der Front)',
       },
     },
     {
@@ -330,6 +354,7 @@
       delaySeconds: 8,
       infoText: {
         en: 'Get Towers',
+        de: 'Türme nehmen',
       },
     },
     {
@@ -339,6 +364,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Puddle on YOU',
+            de: 'Fläsche auf dir',
           };
         }
       },
@@ -350,6 +376,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Get Out + Dodge Homing AoE',
+            de: 'Geh Raus + Zielsuch-AoE ausweichen',
           };
         }
       },
@@ -360,6 +387,7 @@
       durationSeconds: 4,
       infoText: {
         en: 'Adds (Ignore Small)',
+        de: 'Adds (kleine ignorieren)',
       },
     },
     {
@@ -367,6 +395,7 @@
       regex: / 14:474E:Engels starts using Incendiary Saturation Bombing/,
       alertText: {
         en: 'Front and Center',
+        de: 'Vorne und Mitte',
       },
     },
     {
@@ -375,6 +404,7 @@
       delaySeconds: 9,
       infoText: {
         en: 'Look For Wall Saws',
+        de: 'Halt nach den kleinen Sägen ausschau',
       },
     },
     {
@@ -419,6 +449,7 @@
       regex: / 14:4A74:9S-Operated Walking Fortress starts using Laser Turret/,
       alertText: {
         en: 'Away From Front',
+        de: 'Weg von Vorne',
       },
     },
     {
@@ -429,6 +460,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -439,6 +471,7 @@
       },
       alertText: {
         en: 'Laser Buster on YOU',
+        de: 'Laser Tankbuster auf DIR',
       },
     },
     {
@@ -446,6 +479,7 @@
       regex: / 14:48DF:9S-Operated Walking Fortress starts using Fore-Hind Cannons/,
       infoText: {
         en: 'Go Sides',
+        de: 'Zu den Seiten',
       },
     },
     {
@@ -453,6 +487,7 @@
       regex: / 14:48DE:9S-Operated Walking Fortress starts using Dual-Flank Cannons/,
       infoText: {
         en: 'Go Front / Back',
+        de: 'Geh nach Vorne / Hinten',
       },
     },
     {
@@ -461,6 +496,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Dodge Overhead Saws',
+        de: 'Sägen über dem Kopf ausweichen',
       },
     },
     {
@@ -470,6 +506,7 @@
       regex: / 15:\y{ObjectId}:9S-operated Walking Fortress:48EA:/,
       infoText: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -477,6 +514,7 @@
       regex: / 14:48E5:9S-Operated Walking Fortress starts using Engage Goliath Tank Support/,
       infoText: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -484,6 +522,7 @@
       regex: / 14:48E7:9S-Operated Walking Fortress starts using Hack Goliath Tank/,
       alertText: {
         en: 'Go Behind Untethered Tank',
+        de: 'Hinter den nicht verbundenen Panzer gehen',
       },
     },
     {
@@ -492,6 +531,7 @@
       suppressSeconds: 2,
       infoText: {
         en: 'Stack',
+        de: 'Sammeln',
       },
     },
     {
@@ -500,6 +540,7 @@
       delaySeconds: 5,
       infoText: {
         en: 'Get in the bubble',
+        de: 'Geh in die Kuppel',
       },
     },
   ],
