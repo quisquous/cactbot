@@ -528,10 +528,8 @@ class BuffTracker {
         cooldown: 60,
       },
       trick: {
-        // The flags encode positional data, but the exact specifics are unclear.
-        // Trick attack missed appears to be "710?03" but correct is "20710?03".
         gainAbility: gLang.kAbility.TrickAttack,
-        gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack, null, null, '2.......'),
+        gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack),
         durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.

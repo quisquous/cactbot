@@ -168,7 +168,9 @@ def main(args):
         'Minfilia',
         'Thancred',
         'Urianger',
-        ''
+        '',
+        '2P',
+        'Crystal Exarch',
     ]
 
     # Format the phase timings

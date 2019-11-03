@@ -695,9 +695,7 @@
         'Tsunami': 'Tsunami',
         'Umbra Smash': 'Schattenschlag',
         'Long/Lat Implosion': 'Horizontale/Vertikale Implosion',
-
-        // FIXME
-        '\\(ALL\\)': '(ALL)',
+        '\\(ALL\\)': '(ALLE)',
       },
       '~effectNames': {
         'Accretion': 'Chaossumpf',
