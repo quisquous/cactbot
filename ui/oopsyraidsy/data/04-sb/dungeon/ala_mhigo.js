@@ -38,8 +38,8 @@
       id: 'Ala Mhigo Unmoving Troika',
       damageRegex: '2060',
       condition: function(e, data) {
-        // Non-tanks shouldn't be hit
-        return data.role != 'tank';
+        // Double taps only
+        return e.type != '15';
       },
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };

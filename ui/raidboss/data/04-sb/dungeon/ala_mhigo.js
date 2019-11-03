@@ -33,7 +33,7 @@
     },
     {
       id: 'Ala Mhigo Mana Burst',
-      regex: / 14:204F:Aulus [mM]al Asina starts using Mana Burst/,
+      regex: / 14:204F:Aulus Mal Asina starts using Mana Burst/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -43,35 +43,35 @@
     },
     {
       id: 'Ala Mhigo Demimagicks',
-      regex: / 14:205D:Aulus [mM]al Asina starts using Demimagicks/,
+      regex: / 14:205D:Aulus Mal Asina starts using Demimagicks/,
       infoText: {
         en: 'Spread',
       },
     },
     {
       id: 'Ala Mhigo Storm',
-      regex: / 14:(?:2066|2587):Zenos [yY]ae Galvus starts using Art Of The Storm/,
+      regex: / 14:(?:2066|2587):Zenos Yae Galvus starts using Art Of The Storm/,
       infoText: {
         en: 'Out of blue circle',
       },
     },
     {
       id: 'Ala Mhigo Swell',
-      regex: / 14:(?:2065|2586):Zenos [yY]ae Galvus starts using Art Of The Swell/,
+      regex: / 14:(?:2065|2586):Zenos Yae Galvus starts using Art Of The Swell/,
       infoText: {
         en: 'Knockback',
       },
     },
     {
       id: 'Ala Mhigo Sword',
-      regex: / 14:(?:2068|2588):Zenos [yY]ae Galvus starts using Art Of The Sword/,
+      regex: / 14:(?:2068|2588):Zenos Yae Galvus starts using Art Of The Sword/,
       alertText: {
         en: 'Protean',
       },
     },
     {
       id: 'Ala Mhigo Lightless Spark',
-      regex: / 23:\y{ObjectId}:Zenos [yY]ae Galvus:\y{ObjectId}:(\y{Name}):....:....:0029:/,
+      regex: / 23:\y{ObjectId}:Zenos Yae Galvus:\y{ObjectId}:(\y{Name}):....:....:0029:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -81,7 +81,7 @@
     },
     {
       id: 'Ala Mhigo Concentrativity',
-      regex: / 14:206D:Zenos [yY]ae Galvus starts using Concentrativity/,
+      regex: / 14:206D:Zenos Yae Galvus starts using Concentrativity/,
       condition: function(data) {
         return data.role == 'healer';
       },
