@@ -18,7 +18,7 @@
         // The third lightfast blade comes very close to second,
         // so suppress its message.
         data.lightfastCount = (data.lightfastCount || 0) + 1;
-        if (data.lightfastCount >= 3)
+        if (data.lightfastCount != 3)
           return;
         return {
           en: 'Be Near Boss',
@@ -432,6 +432,16 @@
       },
     },
     {
+      id: 'Copied 9S Goliath Laser Turret',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A4:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      alertText: {
+        en: 'Laser Buster on YOU',
+      },
+    },
+    {
       id: 'Copied 9S Laser Fore-Hind Cannons',
       regex: / 14:48DF:9S-Operated Walking Fortress starts using Fore-Hind Cannons/,
       infoText: {
@@ -448,6 +458,7 @@
     {
       id: 'Copied 9S Engage Marx Support',
       regex: / 14:48D3:9S-Operated Walking Fortress starts using Engage Marx Support/,
+      delaySeconds: 4,
       alertText: {
         en: 'Dodge Overhead Saws',
       },
@@ -486,6 +497,7 @@
     {
       id: 'Copied 9S Bubble',
       regex: / 14:48EB:9S-Operated Walking Fortress starts using Total Annihilation Maneuver/,
+      delaySeconds: 5,
       infoText: {
         en: 'Get in the bubble',
       },
