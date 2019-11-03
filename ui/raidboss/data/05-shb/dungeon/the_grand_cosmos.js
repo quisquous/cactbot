@@ -87,6 +87,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
+        de: 'Besen ausweichen',
       },
     },
     {
@@ -148,6 +149,7 @@
       regex: / 14:471E:Leannan Sith starts using Gardener's Hymn/,
       infoText: {
         en: 'put seeds on dirt',
+        de: 'Samen auf den nicht bewachsenen Boden legen',
       },
     },
     {
@@ -158,6 +160,7 @@
       },
       infoText: {
         en: 'Stun Hamonth',
+        de: 'Sir Hamonth unterbrechen',
       },
     },
     {
@@ -223,6 +226,7 @@
       delaySeconds: 4,
       infoText: {
         en: 'Dodge Crosses',
+        de: 'Den Kreuzen ausweichen',
       },
     },
     {
@@ -248,6 +252,7 @@
       delaySeconds: 5.5,
       infoText: {
         en: 'Touch Furniture',
+        de: 'Einrichtung berühren',
       },
     },
     {
@@ -266,6 +271,125 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Enslaved Love': 'versklavt[a] Liebhaber',
+        'Leannan Sith': 'Leanan Sidhe',
+        'Lugus': 'Lugus',
+        'Seeker of Solitude': 'Einsiedler',
+        'The Chamber of Celestial Song will be sealed off': 'bis sich der Zugang zu[rm]? den Großen Vergnügungen schließt',
+        'The Font of Quintessence will be sealed off': 'bis sich der Zugang zu[rm]? Broderieparterre schließt',
+        'The Martial Court will be sealed off': 'bis sich der Zugang zu[rm]? Kleine Stufenarkade schließt',
+        'is no longer sealed': 'öffnet sich wieder',
+      },
+      'replaceText': {
+        'Black Flame': 'Finsterer Flammenwind',
+        'Captive Bolt': 'Schmetterklinge',
+        'Culling Blade': 'Schockschnitt',
+        'Dark Pulse': 'Dunkle Welle',
+        'Dark Shock': 'Angriff aus dem Dunkeln',
+        'Dark Well': 'Dunkles Bersten',
+        'Direct Seeding': 'Bedecktbesamung',
+        'Far Wind': 'Heller Sturm',
+        'Fire\'s Domain': 'Heißer Höllensturm',
+        'Fire\'s Ire': 'Holistisches Höllenfeuer',
+        'Gardener\'s Hymn': 'Wiegenlied der Sprösslinge',
+        'Immortal Anathema': 'Ewiger Bannfluch',
+        'Ireful Wind': 'Starke Bö',
+        'Mortal Flame': 'Ewige Flammen',
+        'Ode To Fallen Petals': 'Stimme des Blumensturms',
+        'Ode To Far Winds': 'Stimme des hellen Sturms',
+        'Ode To Lost Love': 'Unerwiderte Liebe',
+        'Otherworldly Heat': 'Sengendes Seelenbrennen',
+        'Plummet': 'Ausloten',
+        'Scorching Left/Right': 'Linker/Rechter Höllenhieb',
+        'Scorching Right': 'Rechter Höllenhieb',
+        'Shadowbolt': 'Schattenramme',
+        'Storm Of Color': 'Frühlingssturm',
+        'Tribulation': 'Schwermütiges Zaudern',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Enslaved Love': 'amour asservi',
+        'Leannan Sith': 'Leannan Sith',
+        'Lugus': 'Lugus',
+        'Seeker of Solitude': 'ermite du palais',
+        'The Chamber of Celestial Song will be sealed off': 'The Chamber of Celestial Song will be sealed off', // FIXME
+        'The Font of Quintessence will be sealed off': 'The Font of Quintessence will be sealed off', // FIXME
+        'The Martial Court will be sealed off': 'The Martial Court will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        'Black Flame': 'Torrent fuligineux',
+        'Captive Bolt': 'Lame pulvérisante',
+        'Culling Blade': 'Lame percutante',
+        'Dark Pulse': 'Déluge noir',
+        'Dark Shock': 'Onde ténébreuse',
+        'Dark Well': 'Déflagration ténébreuse',
+        'Direct Seeding': 'Semis direct',
+        'Far Wind': 'Claire tempête',
+        'Fire\'s Domain': 'Fournaise infernale',
+        'Fire\'s Ire': 'Étincelle infernale',
+        'Gardener\'s Hymn': 'Ballade du bourgeonnement',
+        'Immortal Anathema': 'Anathème immortel',
+        'Ireful Wind': 'Ouragan violent',
+        'Mortal Flame': 'Flamme mortelle',
+        'Ode To Fallen Petals': 'Mélodie florale',
+        'Ode To Far Winds': 'Aria de tempête',
+        'Ode To Lost Love': 'Rhapsodie de l\'amour fou',
+        'Otherworldly Heat': 'Croix de feu',
+        'Plummet': 'Piqué',
+        'Scorching Left/Right': 'Scorching Left/Right', // FIXME
+        'Scorching Right': 'Scrutement dextre',
+        'Shadowbolt': 'Éclair ombreux',
+        'Storm Of Color': 'Orage de printemps',
+        'Tribulation': 'Tribulation',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Enslaved Love': 'エンスレイブド・ラヴ',
+        'Leannan Sith': 'リャナンシー',
+        'Lugus': 'ルゴス',
+        'Seeker of Solitude': '宮殿の隠者',
+        'The Chamber of Celestial Song will be sealed off': 'The Chamber of Celestial Song will be sealed off', // FIXME
+        'The Font of Quintessence will be sealed off': 'The Font of Quintessence will be sealed off', // FIXME
+        'The Martial Court will be sealed off': 'The Martial Court will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        'Black Flame': '黒炎流',
+        'Captive Bolt': '破砕斬',
+        'Culling Blade': '衝撃斬',
+        'Dark Pulse': '黒の波動',
+        'Dark Shock': '黒の衝撃',
+        'Dark Well': '黒の爆砕',
+        'Direct Seeding': 'ダイレクトシーディング',
+        'Far Wind': '晴嵐',
+        'Fire\'s Domain': '炎獄殺',
+        'Fire\'s Ire': '炎獄閃',
+        'Gardener\'s Hymn': '萌芽への謡',
+        'Immortal Anathema': 'イモータルアナテーマ ',
+        'Ireful Wind': '強風',
+        'Mortal Flame': '必滅の炎',
+        'Ode To Fallen Petals': '花嵐の歌声',
+        'Ode To Far Winds': '晴嵐の歌声',
+        'Ode To Lost Love': '狂愛の歌声',
+        'Otherworldly Heat': '鬼炎斬',
+        'Plummet': 'プラメット',
+        'Scorching Left/Right': 'Scorching Left/Right', // FIXME
+        'Scorching Right': '右辺炎獄斬',
+        'Shadowbolt': 'シャドウボルト',
+        'Storm Of Color': '春嵐',
+        'Tribulation': 'トリビュレーション',
       },
     },
   ],
