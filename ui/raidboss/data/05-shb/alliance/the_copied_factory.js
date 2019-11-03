@@ -13,9 +13,16 @@
     {
       id: 'Copied Flight Unit Lightfast',
       regex: /Lightfast Blade/,
-      beforeSeconds: 8,
-      infoText: {
-        en: 'Be Near Boss',
+      beforeSeconds: 15,
+      infoText: function(data) {
+        // The third lightfast blade comes very close to second,
+        // so suppress its message.
+        data.lightfastCount = (data.lightfastCount || 0) + 1;
+        if (data.lightfastCount >= 3)
+          return;
+        return {
+          en: 'Be Near Boss',
+        };
       },
     },
     {
