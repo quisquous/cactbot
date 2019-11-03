@@ -22,6 +22,7 @@
 05-shb/dungeon/malikahs_well.js
 05-shb/dungeon/mt_gulg.js
 05-shb/dungeon/qitana_ravel.js
+05-shb/dungeon/the_grand_cosmos.js
 05-shb/dungeon/twinning.js
 05-shb/raid/e1n.js
 05-shb/raid/e1s.js
