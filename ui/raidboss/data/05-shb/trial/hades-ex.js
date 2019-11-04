@@ -27,7 +27,7 @@
       id: 'HadesEx Shadow Spread 1',
       regex: / 14:47A8:Hades starts using Shadow Spread/,
       regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
-      regexFr: / 14:47A8:Hadès starts using Diffusion D'Ombre/,
+      regexFr: / 14:47A8:Hadès starts using Diffusion D'ombre/,
       regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
       alertText: {
         en: 'Protean',
@@ -40,7 +40,7 @@
       id: 'HadesEx Shadow Spread 2',
       regex: / 14:47A8:Hades starts using Shadow Spread/,
       regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
-      regexFr: / 14:47A8:Hadès starts using Diffusion D'Ombre/,
+      regexFr: / 14:47A8:Hadès starts using Diffusion D'ombre/,
       regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
       delaySeconds: 5.5,
       alertText: {
@@ -104,7 +104,7 @@
       infoText: {
         en: 'Then Right',
         de: 'Dann Rechts',
-        fr: 'Gauche',
+        fr: 'Droite',
         cn: '左',
       },
     },
@@ -183,7 +183,7 @@
       id: 'HadesEx Dark II Tether',
       regex: / 23:\y{ObjectId}:Shadow of the Ancients:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       regexDe: / 23:\y{ObjectId}:Schatten Der Alten:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexFr: / 23:\y{ObjectId}:Spectre D'Ascien:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regexFr: / 23:\y{ObjectId}:Spectre d'Ascien:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       regexJa: / 23:\y{ObjectId}:古代人の影:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -259,7 +259,7 @@
       id: 'HadesEx Spheres',
       regex: / 14:47BD:Igeyorhm's Shade starts using Blizzard Sphere/,
       regexDe: / 14:47BD:Igeyorhms Schatten starts using Eissphäre/,
-      regexFr: / 14:47BD:Spectre D'Igeyorhm starts using Sphère De Glace/,
+      regexFr: / 14:47BD:Spectre D'igeyorhm starts using Sphère De Glace/,
       regexJa: / 14:47BD:イゲオルムの影 starts using ブリザードスフィア/,
       condition: function(data) {
         return data.role == 'tank';
@@ -654,7 +654,7 @@
       id: 'HadesEx Dark Current',
       regex: / 14:47F1:Hades starts using Dark Current/,
       regexDe: / 14:47F1:Hades starts using Dunkel-Strom/,
-      regexFr: / 14:47F1:Hadès starts using Flux Sombre/,
+      regexFr: / 14:47F1:Hadès starts using Flux [Ss]ombre/,
       regexJa: / 14:47F1:ハーデス starts using ダークストリーム/,
       durationSeconds: 12,
       suppressSeconds: 10,
