@@ -33,17 +33,12 @@ def is_line_start(line_fields, started):
     # Zone seal messages are guaranteed to be an encounter start
     if is_zone_seal(line_fields):
         return True
-    # Except in trial instances, the 0000 limit break line indicates a start
-    if is_limit_break_zero(line_fields) and not started:
-        return True
-    return False
+    return is_line_attack(line_fields) and not started
 
 def is_line_end(line_fields):
     if is_zone_unseal(line_fields) or is_limit_reset(line_fields):
         return True
-    if is_encounter_end_code(line_fields):
-        return True
-    return False
+    return is_encounter_end_code(line_fields)
 
 def is_zone_seal(line_fields):
     return line_fields[4].endswith('sealed off in 15 seconds!')
@@ -51,22 +46,23 @@ def is_zone_seal(line_fields):
 def is_zone_unseal(line_fields):
     return line_fields[4].endswith('no longer sealed!')
 
-def is_limit_break_zero(line_fields):
-    return line_fields[0] == '36' and line_fields[2] == '0000'
+def is_line_attack(line_fields):
+    # We want only situations where a friendly attacks an enemy
+    return (line_fields[0] in ('21', '22') and line_fields[6].startswith('4'))
 
 def is_limit_reset(line_fields):
     return line_fields[4] == 'The limit gauge resets!'
 
 def is_instance_begun(line_fields):
-    return line_fields[0] == '00' and line_fields[4].endswith('has begun.')
+    return line_fields[4].endswith('has begun.')
 
 def is_instance_ended(line_fields):
-    return line_fields[0] == '00' and line_fields[4].endswith('has ended.')
+    return line_fields[4].endswith('has ended.')
 
 def is_encounter_end_code(line_fields):
     if not line_fields[0] == '33':
         return False
-    return line_fields[3] == '40000010' or line_fields[3] == '40000003'
+    return line_fields[3] in ('40000010', '40000003')
 
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
@@ -153,6 +149,7 @@ def parse_file(args):
         for line in file:
             start_time = end_time = 0
             if args.search_fights:
+                # Indexing is offset here to allow for 1-based indexing for the user.
                 start_time = (encounter_sets[args.search_fights - 1][0])
                 end_time = (encounter_sets[args.search_fights - 1][1])
             else:
@@ -200,7 +197,7 @@ def find_fights_in_file(file):
     encounter_sets = []
     for line in file:
         # Ignore log lines that aren't game status info
-        if not (line[37:41] == '0839') and not (line[0:2] in ['00', '01', '33', '36']):
+        if not (line[37:41] == '0839' or line[0:2] in ['00', '01', '21', '22', '33']):
             continue
         line_fields = line.split('|')
 
