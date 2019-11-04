@@ -323,47 +323,47 @@ hideall "--sync--"
 ### 9S
 # -ic 2P -p 48F5:3013.3 48E7:3310 48EB:3510 -ii 49C4 48F9 48F7 48DC 485E 48E3 48E6 48E0 48EC 48A5 48A7 48D6 4ABE
 3000.0 "--sync--" sync /00:0839:The rear deck will be sealed off/ window 3000,0
-3013.3 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3021.5 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
-3030.2 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3039.7 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
-3049.3 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3056.5 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3065.7 "Engage Marx Support" sync /:9S-operated Walking Fortress:48D3:/
+3013.3 "Neutralization" sync /:9S-Operated Walking Fortress:48F5:/
+3021.5 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
+3030.2 "Laser Turret" sync /:9S-Operated Walking Fortress:4A74:/
+3039.7 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:4974:/
+3049.3 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3056.5 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3065.7 "Engage Marx Support" sync /:9S-Operated Walking Fortress:48D3:/
 3081.9 "Marx Impact" sync /:Marx:48D4:/
-3087.5 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
-3088.8 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3094.7 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
+3087.5 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:4974:/
+3088.8 "Laser Turret" sync /:9S-Operated Walking Fortress:4A74:/
+3094.7 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
 
 # Dodging Phase
 3108.2 "--untargetable--"
-3108.2 "Undock" sync /:9S-operated Walking Fortress:4B37:/
-3108.5 "--sync--" sync /:9S-operated Flight Unit:4A5D:/
-3123.6 "--sync--" sync /:9S-operated Flight Unit:48D8:/
-3125.7 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
-3128.2 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
-3130.7 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
-3136.7 "--sync--" sync /:9S-operated Flight Unit:4B17:/
-3138.9 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
-3141.4 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
-3143.9 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
-3146.8 "--sync--" sync /:9S-operated Walking Fortress:48DD:/
+3108.2 "Undock" sync /:9S-Operated Walking Fortress:4B37:/
+3108.5 "--sync--" sync /:9S-Operated Flight Unit:4A5D:/
+3123.6 "--sync--" sync /:9S-Operated Flight Unit:48D8:/
+3125.7 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
+3128.2 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
+3130.7 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
+3136.7 "--sync--" sync /:9S-Operated Flight Unit:4B17:/
+3138.9 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
+3141.4 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
+3143.9 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
+3146.8 "--sync--" sync /:9S-Operated Walking Fortress:48DD:/
 
 3151.7 "--targetable--"
-3152.0 "--sync--" sync /:48F5:9S-operated Walking Fortress/
-3156.0 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3170.7 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
-3172.7 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
-3178.3 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
+3152.0 "--sync--" sync /:48F5:9S-Operated Walking Fortress/
+3156.0 "Neutralization" sync /:9S-Operated Walking Fortress:48F5:/
+3170.7 "Anti-Personnel Missile" #sync /:9S-Operated Walking Fortress:48E4:/
+3172.7 "Anti-Personnel Missile" #sync /:9S-Operated Walking Fortress:48E4:/
+3178.3 "Laser Turret" sync /:9S-Operated Walking Fortress:4A74:/
 
 # Tank Adds
-3187.6 "Engage Goliath Tank Support" sync /:9S-operated Walking Fortress:48E5:/
+3187.6 "Engage Goliath Tank Support" sync /:9S-Operated Walking Fortress:48E5:/
 3190.8 "Tank Adds"
-3196.9 "--sync--" sync /:9S-operated Walking Fortress:48F8:/
-3202.5 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
-3209.2 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
+3196.9 "--sync--" sync /:9S-Operated Walking Fortress:48F8:/
+3202.5 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:4974:/
+3209.2 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
 
-3217.4 "--sync--" sync /:9S-operated Walking Fortress:48F8:/ window 10,10 jump 3196.9
+3217.4 "--sync--" sync /:9S-Operated Walking Fortress:48F8:/ window 10,10 jump 3196.9
 3223.0 "Ground-To-Ground Missile"
 3229.7 "Laser Saturation"
 
@@ -374,81 +374,81 @@ hideall "--sync--"
 3270.7 "Laser Saturation"
 
 # Tank Explosions
-3300.0 "--sync--" sync /:48E7:9S-operated Walking Fortress/ window 200,0
-3310.0 "Hack Goliath Tank" sync /:9S-operated Walking Fortress:48E7:/
+3300.0 "--sync--" sync /:48E7:9S-Operated Walking Fortress/ window 200,0
+3310.0 "Hack Goliath Tank" sync /:9S-Operated Walking Fortress:48E7:/
 3310.0 "Convenient Self-Destruction" sync /:Goliath Tank:48E8:/
-3313.2 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
+3313.2 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:48F8:/
 3318.9 "Convenient Self-Destruction" sync /:Goliath Tank:48E9:/
-3325.4 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3336.5 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
-3342.6 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
+3325.4 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3336.5 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
+3342.6 "Neutralization" sync /:9S-Operated Walking Fortress:48F5:/
 
 # Three Adds
 # Adds independently can do Sidestriking or Centrifugal spin.
 3353.5 "--untargetable--"
-3353.6 "--sync--" sync /:9S-operated Walking Fortress:48EA:/
+3353.6 "--sync--" sync /:9S-Operated Walking Fortress:48EA:/
 3360.0 "Serial-Jointed Adds"
 3362.7 "--targetable--"
 3379.8 "Clanging Blow" sync /:Serial-jointed Service Model:48F0:/
-3392.0 "Shrapnel Impact" sync /:9S-operated Walking Fortress:48F3:/
+3392.0 "Shrapnel Impact" sync /:9S-Operated Walking Fortress:48F3:/
 3398.0 "Spin" sync /:Serial-jointed Service Model:4A8[46]:/
 3407.1 "Clanging Blow" sync /:Serial-jointed Service Model:48F0:/
-3421.4 "Shrapnel Impact" sync /:9S-operated Walking Fortress:48F3:/
+3421.4 "Shrapnel Impact" sync /:9S-Operated Walking Fortress:48F3:/
 3422.3 "Spin" sync /:Serial-jointed Service Model:4A8[46]:/
 3432.7 "Enrage?" # 70s ???
 
 3500.0 "--sync--" sync /:48EB:9S-Operated Walking Fortress/ window 300,0
-3510.0 "Total Annihilation Maneuver" sync /:9S-operated Walking Fortress:48EB:/
+3510.0 "Total Annihilation Maneuver" sync /:9S-Operated Walking Fortress:48EB:/
 3520.0 "--targetable--"
-3530.1 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3541.9 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
-3543.2 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3562.0 "Anti-Personnel Missile" # sync /:9S-operated Walking Fortress:48E4:/
-3564.0 "Anti-Personnel Missile" # sync /:9S-operated Walking Fortress:48E4:/
-3566.0 "Anti-Personnel Missile" # sync /:9S-operated Walking Fortress:48E4:/
-3573.0 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3581.1 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
+3530.1 "Neutralization" sync /:9S-Operated Walking Fortress:48F5:/
+3541.9 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:4974:/
+3543.2 "Laser Turret" sync /:9S-Operated Walking Fortress:4A74:/
+3562.0 "Anti-Personnel Missile" # sync /:9S-Operated Walking Fortress:48E4:/
+3564.0 "Anti-Personnel Missile" # sync /:9S-Operated Walking Fortress:48E4:/
+3566.0 "Anti-Personnel Missile" # sync /:9S-Operated Walking Fortress:48E4:/
+3573.0 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3581.1 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
 
 3591.1 "--untargetable--"
-3591.1 "Undock" sync /:9S-operated Walking Fortress:48D5:/
-3600.3 "--sync--" sync /:9S-operated Flight Unit:48D8:/
-3602.4 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
-3604.9 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
-3607.4 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
-3611.4 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:4B11:/
-3614.6 "--sync--" sync /:9S-operated Flight Unit:48D8:/
-3616.7 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
-3619.2 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
-3621.7 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
-3627.6 "Anti-Personnel Missile" sync /:9S-operated Walking Fortress:4B11:/
-3628.7 "--sync--" sync /:9S-operated Flight Unit:4B17:/
-3630.8 "--sync--" sync /:9S-operated Walking Fortress:48D9:/
-3633.3 "--sync--" sync /:9S-operated Walking Fortress:48DA:/
-3635.8 "--sync--" sync /:9S-operated Walking Fortress:48DB:/
-3638.8 "--sync--" sync /:9S-operated Walking Fortress:48DD:/
+3591.1 "Undock" sync /:9S-Operated Walking Fortress:48D5:/
+3600.3 "--sync--" sync /:9S-Operated Flight Unit:48D8:/
+3602.4 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
+3604.9 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
+3607.4 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
+3611.4 "Anti-Personnel Missile" sync /:9S-Operated Walking Fortress:4B11:/
+3614.6 "--sync--" sync /:9S-Operated Flight Unit:48D8:/
+3616.7 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
+3619.2 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
+3621.7 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
+3627.6 "Anti-Personnel Missile" sync /:9S-Operated Walking Fortress:4B11:/
+3628.7 "--sync--" sync /:9S-Operated Flight Unit:4B17:/
+3630.8 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
+3633.3 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
+3635.8 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
+3638.8 "--sync--" sync /:9S-Operated Walking Fortress:48DD:/
 
 3643.8 "--targetable--"
-3643.9 "--sync--" sync /:48F6:9S-operated Walking Fortress/ window 10,10
-3647.9 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
-3659.3 "Engage Marx Support" sync /:9S-operated Walking Fortress:48D3:/
-3674.5 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:48F8:/
+3643.9 "--sync--" sync /:48F6:9S-Operated Walking Fortress/ window 10,10
+3647.9 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
+3659.3 "Engage Marx Support" sync /:9S-Operated Walking Fortress:48D3:/
+3674.5 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:48F8:/
 3675.6 "Marx Impact" sync /:Marx:48D4:/
-3681.6 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3693.9 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3705.7 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
-3706.9 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3724.3 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
-3726.3 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
-3728.3 "Anti-Personnel Missile" #sync /:9S-operated Walking Fortress:48E4:/
-3735.4 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3743.5 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
-3755.3 "Ground-To-Ground Missile" sync /:9S-operated Walking Fortress:4974:/
-3756.5 "Laser Turret" sync /:9S-operated Walking Fortress:4A74:/
-3763.4 "Cannons" sync /:9S-operated Walking Fortress:48D[EF]:/
-3773.5 "Neutralization" sync /:9S-operated Walking Fortress:48F5:/
-3783.6 "Laser Saturation" sync /:9S-operated Walking Fortress:48F6:/
+3681.6 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3693.9 "Neutralization" sync /:9S-Operated Walking Fortress:48F5:/
+3705.7 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:4974:/
+3706.9 "Laser Turret" sync /:9S-Operated Walking Fortress:4A74:/
+3724.3 "Anti-Personnel Missile" #sync /:9S-Operated Walking Fortress:48E4:/
+3726.3 "Anti-Personnel Missile" #sync /:9S-Operated Walking Fortress:48E4:/
+3728.3 "Anti-Personnel Missile" #sync /:9S-Operated Walking Fortress:48E4:/
+3735.4 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3743.5 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
+3755.3 "Ground-To-Ground Missile" sync /:9S-Operated Walking Fortress:4974:/
+3756.5 "Laser Turret" sync /:9S-Operated Walking Fortress:4A74:/
+3763.4 "Cannons" sync /:9S-Operated Walking Fortress:48D[EF]:/
+3773.5 "Neutralization" sync /:9S-Operated Walking Fortress:48F5:/
+3783.6 "Laser Saturation" sync /:9S-Operated Walking Fortress:48F6:/
 
-3794.8 "Engage Marx Support" sync /:9S-operated Walking Fortress:48D3:/ window 100,100 jump 3659.3
+3794.8 "Engage Marx Support" sync /:9S-Operated Walking Fortress:48D3:/ window 100,100 jump 3659.3
 3810.0 "Ground-To-Ground Missile"
 3811.1 "Marx Impact"
 3817.1 "Cannons"

@@ -22,6 +22,7 @@
           return;
         return {
           en: 'Be Near Boss',
+          de: 'sei in der Nähe des Bosses',
         };
       },
     },
@@ -31,6 +32,7 @@
       beforeSeconds: 15,
       infoText: {
         en: 'Move to South Edge',
+        de: 'zur südlichen Kante',
       },
     },
   ],
@@ -52,6 +54,7 @@
       regex: / 14:48B5:Serial-Jointed Command Model starts using Energy Assault/,
       alertText: {
         en: 'Get Behind',
+        de: 'Hinter Ihn',
       },
     },
     {
@@ -60,6 +63,7 @@
       suppressSeconds: 15,
       infoText: {
         en: 'Look for Lasers',
+        de: 'Pass auf die Laser auf',
       },
     },
     {
@@ -90,6 +94,7 @@
       regex: / 14:48C8:Serial-Jointed Command Model starts using Centrifugal Spin/,
       alertText: {
         en: 'Go To Sides',
+        de: 'Geh zu den Seiten',
       },
     },
     {
@@ -97,6 +102,7 @@
       regex: / 14:48CA:Serial-Jointed Command Model starts using Sidestriking Spin/,
       alertText: {
         en: 'Go Front/Back',
+        de: 'Geh nach Vorne/ Hinten',
       },
     },
     {
@@ -104,6 +110,7 @@
       regex: / 14:48C3:Serial-Jointed Command Model starts using Shockwave/,
       infoText: {
         en: 'Knockback',
+        de: 'Rückstoß',
       },
     },
     {
@@ -126,6 +133,7 @@
       },
       infoText: {
         en: 'Dodge Moving Circle',
+        de: 'Bewegenden Kreisen ausweichen',
       },
     },
     {
@@ -136,6 +144,7 @@
       },
       alertText: {
         en: 'Look Behind For Flamethrowers',
+        de: 'Flammenwerfer hinter dir',
       },
     },
     {
@@ -147,6 +156,7 @@
       },
       infoText: {
         en: 'Out',
+        de: 'Raus',
       },
     },
     {
@@ -155,6 +165,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Dodge Falling Walls',
+        de: 'Den fallenden Wände asuweichen',
       },
     },
     {
@@ -163,6 +174,7 @@
       delaySeconds: 10,
       alertText: {
         en: 'Spread Tethers',
+        de: 'Verbindungen Verteilen',
       },
     },
     {
@@ -173,6 +185,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -180,6 +193,7 @@
       regex: / 14:4807:Hobbes starts using Laser Sight/,
       alertText: {
         en: 'Stack',
+        de: 'Sammeln',
       },
     },
     {
@@ -189,13 +203,15 @@
       durationSeconds: 10,
       infoText: {
         en: 'Dodge Electric Floor',
+        de: 'Elektrischem Boden ausweichen',
       },
     },
     {
       id: 'Copied Hobbes Conveyer Belts',
       regex: / 00:0839:The conveyer belts whirr to life!/,
       infoText: {
-        en: 'Conveyer Belts',
+        en: 'Conveyor Belts',
+        de: 'Förderbänder',
       },
     },
     {
@@ -205,6 +221,7 @@
       durationSeconds: 3,
       alertText: {
         en: 'Oil Vats',
+        de: 'Ölbehälter',
       },
     },
     {
@@ -215,6 +232,7 @@
       durationSeconds: 3,
       alertText: {
         en: 'Oil Vats',
+        de: 'Ölbehälter',
       },
     },
     {
@@ -225,6 +243,7 @@
       },
       alertText: {
         en: 'Exploder on YOU',
+        de: 'Explosion auf DIR',
       },
     },
     {
@@ -247,6 +266,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -274,6 +294,7 @@
       regex: / 14:472E:Engels starts using Marx Smash/,
       alertText: {
         en: 'Front and Center',
+        de: 'Vorne und Mitte',
       },
     },
     {
@@ -281,6 +302,7 @@
       regex: / 14:472A:Engels starts using Marx Smash/,
       alertText: {
         en: 'Back and Sides',
+        de: 'Hinten und Seiten',
       },
     },
     {
@@ -288,6 +310,7 @@
       regex: / 14:4746:Engels starts using Marx Crush/,
       infoText: {
         en: 'Kill Claws',
+        de: 'Klauen töten',
       },
     },
     {
@@ -322,6 +345,7 @@
       regex: / 14:473C:Engels starts using Energy Barrage/,
       infoText: {
         en: 'Go Sides (Near Front)',
+        de: 'Zu den Seiten (Nahe der Front)',
       },
     },
     {
@@ -330,6 +354,7 @@
       delaySeconds: 8,
       infoText: {
         en: 'Get Towers',
+        de: 'Türme nehmen',
       },
     },
     {
@@ -339,6 +364,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Puddle on YOU',
+            de: 'Fläsche auf dir',
           };
         }
       },
@@ -350,6 +376,7 @@
         if (matches[1] == data.me) {
           return {
             en: 'Get Out + Dodge Homing AoE',
+            de: 'Geh Raus + Zielsuch-AoE ausweichen',
           };
         }
       },
@@ -360,6 +387,7 @@
       durationSeconds: 4,
       infoText: {
         en: 'Adds (Ignore Small)',
+        de: 'Adds (kleine ignorieren)',
       },
     },
     {
@@ -367,6 +395,7 @@
       regex: / 14:474E:Engels starts using Incendiary Saturation Bombing/,
       alertText: {
         en: 'Front and Center',
+        de: 'Vorne und Mitte',
       },
     },
     {
@@ -375,6 +404,7 @@
       delaySeconds: 9,
       infoText: {
         en: 'Look For Wall Saws',
+        de: 'Halt nach den kleinen Sägen ausschau',
       },
     },
     {
@@ -419,6 +449,7 @@
       regex: / 14:4A74:9S-Operated Walking Fortress starts using Laser Turret/,
       alertText: {
         en: 'Away From Front',
+        de: 'Weg von Vorne',
       },
     },
     {
@@ -429,6 +460,7 @@
       },
       alertText: {
         en: 'Spread',
+        de: 'Verteilen',
       },
     },
     {
@@ -439,6 +471,7 @@
       },
       alertText: {
         en: 'Laser Buster on YOU',
+        de: 'Laser Tankbuster auf DIR',
       },
     },
     {
@@ -446,6 +479,7 @@
       regex: / 14:48DF:9S-Operated Walking Fortress starts using Fore-Hind Cannons/,
       infoText: {
         en: 'Go Sides',
+        de: 'Zu den Seiten',
       },
     },
     {
@@ -453,6 +487,7 @@
       regex: / 14:48DE:9S-Operated Walking Fortress starts using Dual-Flank Cannons/,
       infoText: {
         en: 'Go Front / Back',
+        de: 'Geh nach Vorne / Hinten',
       },
     },
     {
@@ -461,15 +496,17 @@
       delaySeconds: 4,
       alertText: {
         en: 'Dodge Overhead Saws',
+        de: 'Sägen über dem Kopf ausweichen',
       },
     },
     {
       // Use the ability before the adds show up, as looking for the added combatant
       // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
-      regex: / 15:\y{ObjectId}:9S-operated Walking Fortress:48EA:/,
+      regex: / 15:\y{ObjectId}:9S-Operated Walking Fortress:48EA:/,
       infoText: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -477,6 +514,7 @@
       regex: / 14:48E5:9S-Operated Walking Fortress starts using Engage Goliath Tank Support/,
       infoText: {
         en: 'Adds',
+        de: 'Adds',
       },
     },
     {
@@ -484,6 +522,7 @@
       regex: / 14:48E7:9S-Operated Walking Fortress starts using Hack Goliath Tank/,
       alertText: {
         en: 'Go Behind Untethered Tank',
+        de: 'Hinter den nicht verbundenen Panzer gehen',
       },
     },
     {
@@ -492,6 +531,7 @@
       suppressSeconds: 2,
       infoText: {
         en: 'Stack',
+        de: 'Sammeln',
       },
     },
     {
@@ -500,6 +540,282 @@
       delaySeconds: 5,
       infoText: {
         en: 'Get in the bubble',
+        de: 'Geh in die Kuppel',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        '9S-Operated Flight Unit': '9S\' Flugeinheit',
+        '9S-Operated Walking Fortress': '9S\' mehrbeiniger Panzer',
+        'Engels': 'Engels',
+        'Flight Unit': 'Flugeinheit',
+        'Goliath Tank': 'Goliath-Panzer',
+        'Hobbes': 'Hobbes',
+        'Marx': 'Marx',
+        'Marx [LR]': '(Linker|Rechter) Marx',
+        'Medium Exploder': 'mittelgroße Selbstzerstörung',
+        'Multi-leg Medium Model': 'mittelgroßes mehrbeiniges Modell',
+        'Quality assurance will be sealed off': 'bis sich der Zugang zu[rm]? Warenkontrollhalle schließt',
+        'Reverse-jointed Goliath': 'Goliath mit Inversgelenk',
+        'Serial-jointed Command Model': 'Befehlsmodell mit Omnigelenk',
+        'Serial-jointed Service Model': 'Modell mit Omnigelenk',
+        'Small Biped': 'kleiner Zweibeiner',
+        'Small Flyer': 'kleine Flugeinheit',
+        'The forward deck will be sealed off': 'bis sich der Zugang zu[rm]? Vorderen Deck schließt', // FIXME
+        'The rear deck will be sealed off': 'bis sich der Zugang zu[rm]? Hinteren Deck schließt', // FIXME
+        'Warehouse A will be sealed off': 'bis sich der Zugang zu[rm]? Warenlager A schließt',
+        'Warehouse B will be sealed off': 'bis sich der Zugang zu[rm]? Warenlager B schließt',
+        'Warehouse C will be sealed off': 'bis sich der Zugang zu[rm]? Warenlager C schließt',
+        'is no longer sealed': 'öffnet sich wieder',
+      },
+      'replaceText': {
+        '--jump--': '--Sprung--',
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        '360-Degree Bombing Maneuver': 'Offensive: Raketenring',
+        'Adds': 'Adds',
+        'Anti-Personnel Missile': 'Antipersonenrakete',
+        'Area Bombardment': 'Blindraketen',
+        'Area Bombing Maneuver': 'Offensive: Raketensalve',
+        'Arm Laser': 'Armlaser',
+        'Cannons': 'Kanonen',
+        'Clanging Blow': 'Schwerer Angriff',
+        'Convenient Self-Destruction': 'Selbstsprengung',
+        'Crusher Adds': 'Zangenrad Adds',
+        'Crushing Wheel': 'Zangenradoffensive',
+        'Demolish Structure': 'Terraintilgung',
+        'Diffuse Laser': 'Schwerer Diffusionslaser',
+        'Energy Assault': 'Energieschauer',
+        'Energy Barrage': 'Energetisches Sperrfeuer',
+        'Energy Blast': 'Energetische Explosion',
+        'Energy Bombardment': 'Energiemörser',
+        'Energy Ring': 'Omnidirektionalenergie',
+        'Engage Goliath Tank Support': 'Verstärkung: Goliath-Panzer',
+        'Engage Marx Support': 'Verstärkung: Marx',
+        'Enrage': 'Finalangriff',
+        'Exploding Tethers': 'Explodierende Verbindungen',
+        'Floor': 'Boden',
+        'Forceful Impact': 'Heftiges Beben',
+        'Frontal Somersault': 'Sprungoffensive',
+        'Ground-To-Ground Missile': 'Boden-Boden-Rakete',
+        'Guided Missile': 'Lenkraketen',
+        'Hack Goliath Tank': 'Hacken: Goliath-Panzer',
+        'High-Caliber Laser': 'Großkaliberlaser',
+        'High-Frequency Laser': 'Hochfrequenzlaser',
+        'High-Powered Laser': 'Hochleistungslaser',
+        'Incendiary Bombing': 'Brandraketen',
+        'Incendiary Saturation Bombing': 'Streubrandraketen',
+        'Laser Saturation': 'Omnidirektionallaser',
+        'Laser Sight': 'Laserbestrahlung',
+        'Laser Turret': 'Hauptgeschützlaser',
+        'Laser-Resistance Test': 'Laserresistenztest',
+        'Lightfast Blade': 'Lichtklingenschnitt',
+        'Marx Activation': 'Marx-Aktivierung',
+        'Marx Crush': 'Marxsche Offensive',
+        'Marx Impact': 'Marxscher Sturz',
+        'Marx Smash': 'Marxscher Schlag',
+        'Marx Thrust': 'Marxscher Ansturm',
+        'Neutralization': 'Unterwerfung',
+        'Precision Guided Missile': 'Schwere Lenkrakete',
+        'Radiate Heat': 'Thermaloffensive',
+        'Ring Laser': 'Ringlaser',
+        'Shockwave': 'Schockwelle',
+        'Short-Range Missile': 'Kurzstreckenrakete',
+        'Shrapnel Impact': 'Wrackteilregen',
+        'Spin': 'Verwirbeln',
+        'Surface Missile': 'Raketenschlag',
+        'Systematic Airstrike': 'Luftformation',
+        'Systematic Siege': 'Kesselformation',
+        'Systematic Suppression': 'Artillerieformation',
+        'Systematic Targeting': 'Jagdformation',
+        'Total Annihilation Maneuver': 'Offensive: Totale Vernichtung',
+        'Undock': 'Abdocken',
+        'Wall Mechanic': 'Wand Mechanik',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        '9S-operated Flight Unit': '9S : module de vol équipé',
+        '9S-Operated Walking Fortress': '9S : avec multipède esclave',
+        'Engels': 'Engels',
+        'Flight Unit': 'module de vol',
+        'Goliath Tank': 'char Goliath',
+        'Hobbes': 'Hobbes',
+        'Marx': 'Marx',
+        'Marx [LR]': 'Marx [LR]', // FIXME
+        'Medium Exploder': 'unité kamikaze moyenne',
+        'Multi-leg Medium Model': 'multipède moyen',
+        'Quality assurance will be sealed off': 'Quality assurance will be sealed off', // FIXME
+        'Reverse-jointed Goliath': 'Goliath articulations inversées',
+        'Serial-jointed Command Model': 'modèle multiarticulé : commandant',
+        'Serial-jointed Service Model': 'modèle multiarticulé : soldat',
+        'Small Biped': 'petit bipède',
+        'Small Flyer': 'petite unité volante',
+        'The forward deck will be sealed off': 'The forward deck will be sealed off', // FIXME
+        'The rear deck will be sealed off': 'The rear deck will be sealed off', // FIXME
+        'Warehouse A will be sealed off': 'Warehouse A will be sealed off', // FIXME
+        'Warehouse B will be sealed off': 'Warehouse B will be sealed off', // FIXME
+        'Warehouse C will be sealed off': 'Warehouse C will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--jump--': '--jump--', // FIXME
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        '360-Degree Bombing Maneuver': 'Attaque : tir de missiles circulaire',
+        'Adds': 'Adds', // FIXME
+        'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
+        'Area Bombardment': 'Déluge de missiles',
+        'Area Bombing Maneuver': 'Attaque : salve de missiles',
+        'Arm Laser': 'Lasers brachiaux',
+        'Cannons': 'Cannons', // FIXME
+        'Clanging Blow': 'Attaque puissante',
+        'Convenient Self-Destruction': 'Autodestruction',
+        'Crusher Adds': 'Crusher Adds', // FIXME
+        'Crushing Wheel': 'Scie circulaire',
+        'Demolish Structure': 'Démolition de plate-forme',
+        'Diffuse Laser': 'Super laser diffractif',
+        'Energy Assault': 'Tirs en éventail',
+        'Energy Barrage': 'Rideau de balles',
+        'Energy Blast': 'Fission de balle',
+        'Energy Bombardment': 'Tirs courbes',
+        'Energy Ring': 'Tirs multidirectionnels',
+        'Engage Goliath Tank Support': 'Appel de renfort : char Goliath',
+        'Engage Marx Support': 'Appel de renforts : Marx',
+        'Enrage': 'Enrage',
+        'Exploding Tethers': 'Exploding Tethers', // FIXME
+        'Floor': 'Floor', // FIXME
+        'Forceful Impact': 'Forte secousse',
+        'Frontal Somersault': 'Attaque sautée',
+        'Ground-To-Ground Missile': 'Missile sol-sol',
+        'Guided Missile': 'Missile à tête chercheuse',
+        'Hack Goliath Tank': 'Piratage : char Goliath',
+        'High-Caliber Laser': 'Laser à large faisceau',
+        'High-Frequency Laser': 'Laser à haute fréquence',
+        'High-Powered Laser': 'Laser surpuissant',
+        'Incendiary Bombing': 'Missiles incendiaires',
+        'Incendiary Saturation Bombing': 'Salve incendiaire',
+        'Laser Saturation': 'Laser multidirectionnel',
+        'Laser Sight': 'Rayon laser',
+        'Laser Turret': 'Canon laser',
+        'Laser-Resistance Test': 'Test de résistance au laser',
+        'Lightfast Blade': 'Lame éclair',
+        'Marx Activation': 'Activation de Marx',
+        'Marx Crush': 'Pinçage de Marx',
+        'Marx Impact': 'Chute de Marx',
+        'Marx Smash': 'Coup de Marx',
+        'Marx Thrust': 'Charge de Marx',
+        'Neutralization': 'Tir de suppression',
+        'Precision Guided Missile': 'Missile à tête chercheuse ultraprécise',
+        'Radiate Heat': 'Relâchement de chaleur',
+        'Ring Laser': 'Anneau laser',
+        'Shockwave': 'Onde de choc',
+        'Short-Range Missile': 'Missiles à courte portée',
+        'Shrapnel Impact': 'Chute de débris',
+        'Spin': 'Gyrocoup',
+        'Surface Missile': 'Missiles sol-sol',
+        'Systematic Airstrike': 'Formation de bombardement',
+        'Systematic Siege': 'Formation d\'encerclement',
+        'Systematic Suppression': 'Formation de balayage',
+        'Systematic Targeting': 'Formation de tir',
+        'Total Annihilation Maneuver': 'Attaque : bombardement dévastateur',
+        'Undock': 'Désamarrage',
+        'Wall Mechanic': 'Wall Mechanic', // FIXME
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        '9S-operated Flight Unit': '９Ｓ：飛行ユニット装備',
+        '9S-Operated Walking Fortress': '９Ｓ：多脚戦車従属',
+        'Engels': 'エンゲルス',
+        'Flight Unit': '飛行ユニット',
+        'Goliath Tank': '大型戦車',
+        'Hobbes': 'ホッブス',
+        'Marx': 'マルクス',
+        'Marx [LR]': 'Marx [LR]', // FIXME
+        'Medium Exploder': '中型自爆',
+        'Multi-leg Medium Model': '中型多脚',
+        'Quality assurance will be sealed off': 'Quality assurance will be sealed off', // FIXME
+        'Reverse-jointed Goliath': '大型逆関節',
+        'Serial-jointed Command Model': '多関節型：司令機',
+        'Serial-jointed Service Model': '多関節型：兵隊機',
+        'Small Biped': '小型二足',
+        'Small Flyer': '小型飛行体',
+        'The forward deck will be sealed off': 'The forward deck will be sealed off', // FIXME
+        'The rear deck will be sealed off': 'The rear deck will be sealed off', // FIXME
+        'Warehouse A will be sealed off': 'Warehouse A will be sealed off', // FIXME
+        'Warehouse B will be sealed off': 'Warehouse B will be sealed off', // FIXME
+        'Warehouse C will be sealed off': 'Warehouse C will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--jump--': '--jump--', // FIXME
+        '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
+        '360-Degree Bombing Maneuver': '攻撃：ミサイル円射',
+        'Adds': 'Adds', // FIXME
+        'Anti-Personnel Missile': '対人ミサイル乱射',
+        'Area Bombardment': 'ミサイル乱射',
+        'Area Bombing Maneuver': '攻撃：ミサイル斉射',
+        'Arm Laser': '腕部レーザー',
+        'Cannons': 'Cannons', // FIXME
+        'Clanging Blow': '強攻撃',
+        'Convenient Self-Destruction': '自爆攻撃',
+        'Crusher Adds': 'Crusher Adds', // FIXME
+        'Crushing Wheel': '挟撃ホイール',
+        'Demolish Structure': '地形破壊攻撃',
+        'Diffuse Laser': '広拡散レーザー',
+        'Energy Assault': '連続エネルギー弾',
+        'Energy Barrage': 'エネルギー弾幕',
+        'Energy Blast': 'エネルギー炸裂',
+        'Energy Bombardment': '迫撃エネルギー弾',
+        'Energy Ring': '全方位エネルギー弾',
+        'Engage Goliath Tank Support': '支援要請：大型戦車',
+        'Engage Marx Support': '支援要請：マルクス',
+        'Enrage': 'Enrage',
+        'Exploding Tethers': 'Exploding Tethers', // FIXME
+        'Floor': 'Floor', // FIXME
+        'Forceful Impact': '大震動',
+        'Frontal Somersault': 'ジャンプ攻撃',
+        'Ground-To-Ground Missile': '地対地ミサイル',
+        'Guided Missile': '誘導ミサイル',
+        'Hack Goliath Tank': 'ハッキング：大型戦車',
+        'High-Caliber Laser': '大口径レーザー',
+        'High-Frequency Laser': '高周波レーザー',
+        'High-Powered Laser': '高出力レーザー',
+        'Incendiary Bombing': '焼尽ミサイル',
+        'Incendiary Saturation Bombing': '拡散焼尽ミサイル',
+        'Laser Saturation': '全方位レーザー',
+        'Laser Sight': 'レーザー照射',
+        'Laser Turret': '主砲レーザー',
+        'Laser-Resistance Test': '耐レーザー検証',
+        'Lightfast Blade': '光刃斬機',
+        'Marx Activation': 'マルクス起動',
+        'Marx Crush': 'マルクス挟撃',
+        'Marx Impact': 'マルクス落下',
+        'Marx Smash': 'マルクス打撃',
+        'Marx Thrust': 'マルクス突撃',
+        'Neutralization': '制圧射撃',
+        'Precision Guided Missile': '高性能誘導ミサイル',
+        'Radiate Heat': '放熱攻撃',
+        'Ring Laser': 'リングレーザー',
+        'Shockwave': '衝撃波',
+        'Short-Range Missile': '短距離ミサイル',
+        'Shrapnel Impact': '残骸落下',
+        'Spin': 'ぶん回す',
+        'Surface Missile': '対地ミサイル',
+        'Systematic Airstrike': '空爆陣形',
+        'Systematic Siege': '包囲陣形',
+        'Systematic Suppression': '掃射陣形',
+        'Systematic Targeting': '照準陣形',
+        'Total Annihilation Maneuver': '攻撃：殲滅爆撃',
+        'Undock': 'ドッキング解除',
+        'Wall Mechanic': 'Wall Mechanic', // FIXME
       },
     },
   ],
