@@ -48,7 +48,7 @@ def is_zone_unseal(line_fields):
 
 def is_line_attack(line_fields):
     # We want only situations where a friendly attacks an enemy
-    return (line_fields[0] in ('21', '22') and line_fields[6].startswith('4'))
+    return line_fields[0] in ('21', '22') and line_fields[6].startswith('4')
 
 def is_limit_reset(line_fields):
     return line_fields[4] == 'The limit gauge resets!'
@@ -142,7 +142,7 @@ def parse_file(args):
             encounter_sets = find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
             if args.search_fights < 0:
-                return [f'{i + 1}. {e_info[0]} {e_info[1]} {e_info[2]}' for i, e_info in enumerate(encounter_sets)]
+                return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
             elif args.search_fights > len(encounter_sets):
                 raise Exception('Selected fight index not in selected ACT log.')
         # Scan the file until the start timestamp
@@ -197,7 +197,7 @@ def find_fights_in_file(file):
     encounter_sets = []
     for line in file:
         # Ignore log lines that aren't game status info
-        if not (line[37:41] == '0839' or line[0:2] in ['00', '01', '21', '22', '33']):
+        if line[37:41] != '0839' and line[0:2] not in ['00', '01', '21', '22', '33']:
             continue
         line_fields = line.split('|')
 
