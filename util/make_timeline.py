@@ -6,18 +6,16 @@ import fflogs
 import timeline_aggregator
 
 
-# def timestamp_type(arg):
-#     """Defines the timestamp input format"""
-#     if re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
-#         raise argparse.ArgumentTypeError(
-#             "Invalid timestamp format. Use the format 12:34:56.789")
-#     return arg
-
+def timestamp_type(arg):
+    """Defines the timestamp input format"""
+    if arg and re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
+        raise argparse.ArgumentTypeError(
+            "Invalid timestamp format. Use the format 12:34:56.789")
+    return arg
 
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
-
 
 def parse_line_time(line):
     """Parses the line's timestamp into a datetime object"""
@@ -143,12 +141,14 @@ def parse_file(args):
     started = False
     encounter_sets = []
     with args.file as file:
-        # If searching for encounters, divert and find start/end first
+        # If searching for encounters, divert and find start/end first3
         if args.search_fights:
             encounter_sets = find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
             if args.search_fights < 0:
                 return [f'{i + 1}. {e_info[0]} {e_info[1]} {e_info[2]}' for i, e_info in enumerate(encounter_sets)]
+            elif args.search_fights > len(encounter_sets):
+                raise Exception('Selected fight index not in selected ACT log.')
         # Scan the file until the start timestamp
         for line in file:
             start_time = end_time = 0
@@ -399,8 +399,8 @@ if __name__ == "__main__":
     parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
 
     # Log file arguments
-    parser.add_argument('-s', '--start', help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-s', '--start', type=timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
+    parser.add_argument('-e', '--end', type=timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
     parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
 
     # Filtering arguments
