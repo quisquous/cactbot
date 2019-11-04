@@ -338,12 +338,12 @@ hideall "--sync--"
 # Dodging Phase
 3108.2 "--untargetable--"
 3108.2 "Undock" sync /:9S-Operated Walking Fortress:4B37:/
-3108.5 "--sync--" sync /:9S-operated Flight Unit:4A5D:/
-3123.6 "--sync--" sync /:9S-operated Flight Unit:48D8:/
+3108.5 "--sync--" sync /:9S-Operated Flight Unit:4A5D:/
+3123.6 "--sync--" sync /:9S-Operated Flight Unit:48D8:/
 3125.7 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
 3128.2 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
 3130.7 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
-3136.7 "--sync--" sync /:9S-operated Flight Unit:4B17:/
+3136.7 "--sync--" sync /:9S-Operated Flight Unit:4B17:/
 3138.9 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
 3141.4 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
 3143.9 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
@@ -411,17 +411,17 @@ hideall "--sync--"
 
 3591.1 "--untargetable--"
 3591.1 "Undock" sync /:9S-Operated Walking Fortress:48D5:/
-3600.3 "--sync--" sync /:9S-operated Flight Unit:48D8:/
+3600.3 "--sync--" sync /:9S-Operated Flight Unit:48D8:/
 3602.4 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
 3604.9 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
 3607.4 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
 3611.4 "Anti-Personnel Missile" sync /:9S-Operated Walking Fortress:4B11:/
-3614.6 "--sync--" sync /:9S-operated Flight Unit:48D8:/
+3614.6 "--sync--" sync /:9S-Operated Flight Unit:48D8:/
 3616.7 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
 3619.2 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
 3621.7 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/
 3627.6 "Anti-Personnel Missile" sync /:9S-Operated Walking Fortress:4B11:/
-3628.7 "--sync--" sync /:9S-operated Flight Unit:4B17:/
+3628.7 "--sync--" sync /:9S-Operated Flight Unit:4B17:/
 3630.8 "--sync--" sync /:9S-Operated Walking Fortress:48D9:/
 3633.3 "--sync--" sync /:9S-Operated Walking Fortress:48DA:/
 3635.8 "--sync--" sync /:9S-Operated Walking Fortress:48DB:/

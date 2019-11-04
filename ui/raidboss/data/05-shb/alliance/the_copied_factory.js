@@ -503,7 +503,7 @@
       // Use the ability before the adds show up, as looking for the added combatant
       // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
-      regex: / 15:\y{ObjectId}:9S-operated Walking Fortress:48EA:/,
+      regex: / 15:\y{ObjectId}:9S-Operated Walking Fortress:48EA:/,
       infoText: {
         en: 'Adds',
         de: 'Adds',
@@ -548,6 +548,7 @@
     {
       'locale': 'de',
       'replaceSync': {
+        '9S-Operated Flight Unit': '9S\' Flugeinheit',
         '9S-Operated Walking Fortress': '9S\' mehrbeiniger Panzer',
         'Engels': 'Engels',
         'Flight Unit': 'Flugeinheit',
@@ -638,6 +639,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        '9S-operated Flight Unit': '9S : module de vol équipé',
         '9S-Operated Walking Fortress': '9S : avec multipède esclave',
         'Engels': 'Engels',
         'Flight Unit': 'module de vol',
@@ -659,7 +661,6 @@
         'Warehouse B will be sealed off': 'Warehouse B will be sealed off', // FIXME
         'Warehouse C will be sealed off': 'Warehouse C will be sealed off', // FIXME
         'is no longer sealed': 'is no longer sealed', // FIXME
-        'asd': '',
       },
       'replaceText': {
         '--jump--': '--jump--', // FIXME
@@ -724,12 +725,12 @@
         'Total Annihilation Maneuver': 'Attaque : bombardement dévastateur',
         'Undock': 'Désamarrage',
         'Wall Mechanic': 'Wall Mechanic', // FIXME
-        'asd': '',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
+        '9S-operated Flight Unit': '９Ｓ：飛行ユニット装備',
         '9S-Operated Walking Fortress': '９Ｓ：多脚戦車従属',
         'Engels': 'エンゲルス',
         'Flight Unit': '飛行ユニット',
@@ -751,7 +752,6 @@
         'Warehouse B will be sealed off': 'Warehouse B will be sealed off', // FIXME
         'Warehouse C will be sealed off': 'Warehouse C will be sealed off', // FIXME
         'is no longer sealed': 'is no longer sealed', // FIXME
-        'asd': '',
       },
       'replaceText': {
         '--jump--': '--jump--', // FIXME
@@ -816,7 +816,6 @@
         'Total Annihilation Maneuver': '攻撃：殲滅爆撃',
         'Undock': 'ドッキング解除',
         'Wall Mechanic': 'Wall Mechanic', // FIXME
-        'asd': '',
       },
     },
   ],
