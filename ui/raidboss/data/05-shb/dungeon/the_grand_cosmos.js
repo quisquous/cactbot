@@ -268,5 +268,25 @@
         fr: 'Droite',
       },
     },
+    {
+      id: 'Cosmos Fire\'s Domain',
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003[2345]:/,
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      preRun: function(data) {
+        data.firesDomain = (data.firesDomain || 0) + 1;
+      },
+      infoText: function(data) {
+        if (data.firesDomain == 1) {
+          return {
+            en: 'Point Tether Away From Furniture',
+          };
+        }
+        return {
+          en: 'Tether on YOU',
+        };
+      },
+    },
   ],
 }];
