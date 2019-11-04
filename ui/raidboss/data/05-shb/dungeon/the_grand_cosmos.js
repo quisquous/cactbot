@@ -286,10 +286,12 @@
         if (data.firesDomain == 1) {
           return {
             en: 'Point Tether Away From Furniture',
+            de: 'Verbindung weg von der Einrichtung zeigen',
           };
         }
         return {
           en: 'Tether on YOU',
+          de: 'Verbindung auf DIR',
         };
       },
     },
