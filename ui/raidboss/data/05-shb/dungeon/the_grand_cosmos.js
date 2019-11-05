@@ -362,7 +362,7 @@
         'Leannan Sith': 'Leannan Sith',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
-        'is no longer sealed': 'Ouverture de',
+        'is no longer sealed': 'Ouverture ',
         'The Martial Court will be sealed off': 'Fermeture de La Cour martiale',
         'The Font of Quintessence will be sealed off': 'Fermeture de La Source de Quintessence',
         'The Chamber of Celestial Song will be sealed off': 'Fermeture du Chœur céleste',
