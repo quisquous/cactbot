@@ -72,6 +72,8 @@ namespace Cactbot {
     {
       if (this.config.Url == "")
         return;
+      if (!this.config.DevReloaderEnabled)
+        return;
       var path = System.IO.Path.GetDirectoryName(config.Url);
       path = System.Text.RegularExpressions.Regex.Replace(path, @"file:[\\\/]+", "");
       if (!System.IO.Directory.Exists(path))
@@ -211,6 +213,8 @@ namespace Cactbot {
       try
       {
         this.config.DevReloaderEnabled = checkDevReloader.Checked;
+        if (this.watcher == null)
+          SetupFileWatcher();
         this.watcher.EnableRaisingEvents = checkDevReloader.Checked;
       }
       catch (Exception ex)
