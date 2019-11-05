@@ -29,11 +29,6 @@ def stringify_time(timestamp):
     Trims microseconds to milliseconds."""
     return timestamp.strftime('%H:%M:%S.%f')[:-3]
 
-def is_line_start(line_fields, started):
-    # Zone seal messages are guaranteed to be an encounter start
-    if is_zone_seal(line_fields):
-        return True
-    return is_line_attack(line_fields) and not started
 
 def is_line_end(line_fields):
     if is_zone_unseal(line_fields) or is_limit_reset(line_fields):
@@ -216,12 +211,12 @@ def find_fights_in_file(file):
             continue
 
         # Build start/end time groupings
-        if is_line_start(line_fields, encounter_in_progress):
-            # This nested IF is messy, but it feels like the clearest way to express this
-            if is_zone_seal(line_fields):
-                encounter_start_staging = [parse_line_time(line), line_fields[4].split(' will be sealed off')[0]]
-            else:
-                encounter_start_staging = [parse_line_time(line), current_instance]
+        if is_zone_seal(line_fields):
+            encounter_start_staging = [parse_line_time(line), line_fields[4].split(' will be sealed off')[0]]
+            encounter_in_progress = True
+            continue
+        elif not encounter_in_progress and is_line_attack(line_fields):
+            encounter_start_staging = [parse_line_time(line), current_instance]
             encounter_in_progress = True
             continue
         # If this fired regardless of an encounter being found, we would end up with phantom encounters.
