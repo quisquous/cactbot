@@ -50,7 +50,7 @@ namespace Cactbot {
       try {
         if (!String.IsNullOrWhiteSpace(textUserConfigFile.Text)) {
           var path = new Uri(textUserConfigFile.Text);
-          if (!System.IO.Directory.Exists(path.AbsolutePath))
+          if (!System.IO.Directory.Exists(path.LocalPath))
             path = new Uri(path, ".");
           this.config.UserConfigFile = path.AbsoluteUri;
         } else {
