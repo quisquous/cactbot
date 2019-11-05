@@ -9,6 +9,7 @@
     {
       id: 'Cosmos Shadowbolt',
       regex: / 14:4769:Seeker Of Solitude starts using Shadowbolt on (\y{Name})/,
+      regexFr: / 14:4769:Ermite du palais starts using Éclair Ombreux on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -70,6 +71,7 @@
     {
       id: 'Cosmos Immortal Anathema',
       regex: / 14:49A3:Seeker Of Solitude starts using Immortal Anathema/,
+      regexFr: / 14:49A3:Ermite du palais starts using Anathème Immortel/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -84,15 +86,18 @@
     {
       id: 'Cosmos Tribulation',
       regex: / 14:476B:Seeker Of Solitude starts using Tribulation/,
+      regexFr: / 14:476B:Ermite du palais starts using Tribulation/,
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
         de: 'Besen ausweichen',
+        fr: 'Evitez les balais',
       },
     },
     {
       id: 'Cosmos Storm of Color',
       regex: / 14:471B:Leannan Sith starts using Storm Of Color on (\y{Name})/,
+      regexFr: / 14:471B:Leannan Sith starts using Orage De Printemps on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -119,6 +124,7 @@
     {
       id: 'Cosmos Ode To Lost Love',
       regex: / 14:471C:Leannan Sith starts using Ode To Lost Love/,
+      regexFr: / 14:471C:Leannan Sith starts using Rhapsodie De L'amour Fou/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -135,6 +141,7 @@
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
       regex: / 15:\y{ObjectId}:Lover's Ring:368:/,
+      regexFr: / 15:\y{ObjectId}:Bague de l'amoureux:368:/,
       suppressSeconds: 60,
       infoText: {
         en: 'Kill Extra Add',
@@ -147,25 +154,30 @@
     {
       id: 'Cosmos Gardener\'s Hymn',
       regex: / 14:471E:Leannan Sith starts using Gardener's Hymn/,
+      regexFr: / 14:471E:Leannan Sith starts using Ballade Du Bourgeonnement/,
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
+        fr: 'Placez les graines sur la terre',
       },
     },
     {
       id: 'Cosmos Ronkan Cure II',
       regex: / 14:4931:Ser Hamonth starts using Ronkan Cure II/,
+      regexFr: / 14:4931:Ser Hamonth starts using Extra Soin Ronka/,
       condition: function(data) {
         return data.CanStun();
       },
       infoText: {
         en: 'Stun Hamonth',
         de: 'Sir Hamonth unterbrechen',
+        fr: 'Etoudissez Hamonth',
       },
     },
     {
       id: 'Cosmos Captive Bolt',
       regex: / 14:4764:Lugus starts using Captive Bolt on (\y{Name})/,
+      regexFr: / 14:4764:Lugus starts using Lame Pulvérisante on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -192,6 +204,7 @@
     {
       id: 'Cosmos Culling Blade',
       regex: / 14:4765:Lugus starts using Culling Blade/,
+      regexFr: / 14:4765:Lugus starts using Lame Percutante/,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -227,6 +240,7 @@
       infoText: {
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
+        fr: 'Evitez les croix',
       },
     },
     {
@@ -253,11 +267,13 @@
       infoText: {
         en: 'Touch Furniture',
         de: 'Einrichtung berühren',
+        fr: 'Touchez un élément de décor',
       },
     },
     {
       id: 'Cosmos Scorching Left',
       regex: / 14:4763:Lugus starts using Scorching Left/,
+      regexFr: / 14:4763:Lugus starts using Scrutement Senestre/,
       infoText: {
         en: 'Left',
         de: 'Links',
@@ -267,6 +283,7 @@
     {
       id: 'Cosmos Scorching Right',
       regex: / 14:4762:Lugus starts using Scorching Right/,
+      regexFr: / 14:4762:Lugus starts using Scrutement Dextre/,
       infoText: {
         en: 'Right',
         de: 'Rechts',
@@ -287,11 +304,13 @@
           return {
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
+            fr: 'Placez le liens loin des décors',
           };
         }
         return {
           en: 'Tether on YOU',
           de: 'Verbindung auf DIR',
+          fr: 'Lien sur vous',
         };
       },
     },
@@ -339,14 +358,14 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Enslaved Love': 'amour asservi',
+        'Enslaved Love': 'Amour Asservi',
         'Leannan Sith': 'Leannan Sith',
         'Lugus': 'Lugus',
-        'Seeker of Solitude': 'ermite du palais',
-        'The Chamber of Celestial Song will be sealed off': 'The Chamber of Celestial Song will be sealed off', // FIXME
-        'The Font of Quintessence will be sealed off': 'The Font of Quintessence will be sealed off', // FIXME
-        'The Martial Court will be sealed off': 'The Martial Court will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'Seeker of Solitude': 'Ermite du Palais',
+        'is no longer sealed': 'Ouverture de',
+        'The Martial Court will be sealed off': 'Fermeture de La Cour martiale',
+        'The Font of Quintessence will be sealed off': 'Fermeture de La Source de Quintessence',
+        'The Chamber of Celestial Song will be sealed off': 'Fermeture du Chœur céleste',
       },
       'replaceText': {
         'Black Flame': 'Torrent fuligineux',
@@ -368,8 +387,8 @@
         'Ode To Lost Love': 'Rhapsodie de l\'amour fou',
         'Otherworldly Heat': 'Croix de feu',
         'Plummet': 'Piqué',
-        'Scorching Left/Right': 'Scorching Left/Right', // FIXME
-        'Scorching Right': 'Scrutement dextre',
+        'Scorching Left/Right': 'Scrutement Gauche/Droite', // FIXME
+        'Scorching Right': 'Scrutement Gauche',
         'Shadowbolt': 'Éclair ombreux',
         'Storm Of Color': 'Orage de printemps',
         'Tribulation': 'Tribulation',

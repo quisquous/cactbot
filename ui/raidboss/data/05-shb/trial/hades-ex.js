@@ -18,6 +18,7 @@
       },
       infoText: {
         en: 'Comet Towers',
+        fr: 'Tours',
       },
     },
   ],
@@ -26,7 +27,7 @@
       id: 'HadesEx Shadow Spread 1',
       regex: / 14:47A8:Hades starts using Shadow Spread/,
       regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
-      regexFr: / 14:47A8:Hadès starts using Diffusion D'Ombre/,
+      regexFr: / 14:47A8:Hadès starts using Diffusion D'ombre/,
       regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
       alertText: {
         en: 'Protean',
@@ -39,11 +40,12 @@
       id: 'HadesEx Shadow Spread 2',
       regex: / 14:47A8:Hades starts using Shadow Spread/,
       regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
-      regexFr: / 14:47A8:Hadès starts using Diffusion D'Ombre/,
+      regexFr: / 14:47A8:Hadès starts using Diffusion D'ombre/,
       regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
       delaySeconds: 5.5,
       alertText: {
         en: 'Move',
+        fr: 'Esquivez',
       },
     },
     {
@@ -102,7 +104,7 @@
       infoText: {
         en: 'Then Right',
         de: 'Dann Rechts',
-        fr: 'Gauche',
+        fr: 'Droite',
         cn: '左',
       },
     },
@@ -144,6 +146,7 @@
       infoText: {
         en: 'Go to Safe Spot',
         de: 'Geh zur sicheren Stelle',
+        fr: 'Allez dans la zone sûre',
       },
     },
     {
@@ -157,6 +160,7 @@
       infoText: {
         en: 'Hide Behind Door',
         de: 'Hinter der Tür verstecken',
+        fr: 'Cachez-vous derrière le mirroir',
       },
     },
     {
@@ -179,7 +183,7 @@
       id: 'HadesEx Dark II Tether',
       regex: / 23:\y{ObjectId}:Shadow of the Ancients:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       regexDe: / 23:\y{ObjectId}:Schatten Der Alten:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexFr: / 23:\y{ObjectId}:Spectre D'Ascien:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regexFr: / 23:\y{ObjectId}:Spectre d'Ascien:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       regexJa: / 23:\y{ObjectId}:古代人の影:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -187,6 +191,7 @@
       alertText: {
         en: 'Point Tether Out',
         de: 'Verbindung nach draußen richten',
+        fr: 'Liens vers l\'extérieur',
       },
     },
     {
@@ -198,6 +203,7 @@
       infoText: {
         en: 'Healer Stacks',
         de: 'Bei dem Heiler sammeln',
+        fr: 'Package sur les heals',
       },
       run: function(data) {
         data.waterDarkMarker = true;
@@ -212,6 +218,7 @@
       alertText: {
         en: 'Tank Spread',
         de: 'Tanks verteilen',
+        fr: 'Tanks : dispersion',
       },
       run: function(data) {
         data.waterDarkMarker = true;
@@ -228,6 +235,7 @@
         return {
           en: 'Healer Stacks',
           de: 'Bei den Heilern sammeln',
+          fr: 'Package sur les heals',
         };
       },
     },
@@ -244,13 +252,14 @@
       alarmText: {
         en: 'Move Shades Apart',
         de: 'Schatten auseinander ziehen',
+        fr: 'Ecartez les spectres',
       },
     },
     {
       id: 'HadesEx Spheres',
       regex: / 14:47BD:Igeyorhm's Shade starts using Blizzard Sphere/,
       regexDe: / 14:47BD:Igeyorhms Schatten starts using Eissphäre/,
-      regexFr: / 14:47BD:Spectre D'Igeyorhm starts using Sphère De Glace/,
+      regexFr: / 14:47BD:Spectre D'igeyorhm starts using Sphère De Glace/,
       regexJa: / 14:47BD:イゲオルムの影 starts using ブリザードスフィア/,
       condition: function(data) {
         return data.role == 'tank';
@@ -261,6 +270,7 @@
         return {
           en: 'tank swap soon',
           de: 'Gleich: Tank swap',
+          fr: 'Tank swap bientôt',
         };
       },
       run: function(data) {
@@ -294,6 +304,7 @@
       alertText: {
         en: 'Attack Igeyorhm',
         de: 'Igeyorhm angreifen',
+        fr: 'Attaquez Igeyorhm',
       },
       run: function(data) {
         data.brand = 'fire';
@@ -311,6 +322,7 @@
       alertText: {
         en: 'Attack Lahabrea',
         de: 'Lahabrea angreifen',
+        fr: 'Attaquez Lahabrea',
       },
       run: function(data) {
         data.brand = 'ice';
@@ -372,6 +384,7 @@
       alertText: {
         en: 'Heal T/H to Full',
         de: 'Heile T/H voll',
+        fr: 'T/H full vie',
       },
     },
     {
@@ -387,6 +400,7 @@
       alarmText: {
         en: 'Look Away',
         de: 'Weg schauen',
+        fr: 'Regardez vers l\'extérieur',
       },
     },
     {
@@ -402,6 +416,7 @@
       alertText: {
         en: 'Get Killed',
         de: 'Stirb',
+        fr: 'Mourrez',
       },
     },
     {
@@ -419,6 +434,7 @@
       infoText: {
         en: 'Donut on YOU',
         de: 'Donut auf DIR',
+        fr: 'Donut sur VOUS',
       },
     },
     {
@@ -436,6 +452,7 @@
       alertText: {
         en: 'Stay Out',
         de: 'Draußen stehen',
+        fr: 'Restez éloigné',
       },
     },
     {
@@ -451,6 +468,7 @@
       infoText: {
         en: 'aoe + bleed',
         de: 'AoE + Blutung',
+        fr: 'Dégâts de zone + saignement',
       },
     },
     {
@@ -476,6 +494,7 @@
         }
         return {
           en: 'Away from ' + data.ShortName(matches[1]),
+          fr: 'Eloignez-vous de ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -489,6 +508,7 @@
       infoText: {
         en: 'Healer Stacks',
         de: 'Bei den Heilern sammeln',
+        fr: 'Package sur les heals',
       },
     },
     {
@@ -515,6 +535,7 @@
       alarmText: {
         en: 'Get Out',
         de: 'Raus gehen',
+        fr: 'Sortez',
       },
     },
     {
@@ -526,6 +547,7 @@
       infoText: {
         en: 'Break Aetherial Gaol',
         de: 'Zerstöre Ätherkerker',
+        fr: 'Détruisez la Geôle éthérée',
       },
     },
     {
@@ -540,6 +562,7 @@
       infoText: {
         en: 'Knockback + Stack on YOU',
         de: 'Rückstoß + sammeln beim DIR',
+        fr: 'Poussée + package sur VOUS',
       },
     },
     {
@@ -554,6 +577,7 @@
       infoText: {
         en: 'Knockback + Ice on YOU',
         de: 'Rückstoß + Eis auf DIR',
+        fr: 'Poussée + Glace sur VOUS',
       },
     },
     {
@@ -567,6 +591,7 @@
           return {
             en: 'Knockback + Stack With Partner',
             de: 'Rückstoß + sammeln beim Partner',
+            fr: 'Poussée + package avec votre partenaire',
           };
         }
       },
@@ -583,6 +608,7 @@
       alertText: {
         en: 'Puddles on YOU',
         de: 'Fläsche auf YOU',
+        fr: 'Puddle sur VOUS',
       },
     },
     {
@@ -597,6 +623,7 @@
       infoText: {
         en: 'Healer Stacks',
         de: 'Bei dem Heiler sammeln',
+        fr: 'Package sur les heals',
       },
     },
     {
@@ -608,6 +635,7 @@
       alertText: {
         en: 'Go Sides',
         de: 'Zu den Seiten gehen',
+        fr: 'Allez sur les côtés',
       },
     },
     {
@@ -619,19 +647,21 @@
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
+        fr: 'Devant et au centre',
       },
     },
     {
       id: 'HadesEx Dark Current',
       regex: / 14:47F1:Hades starts using Dark Current/,
       regexDe: / 14:47F1:Hades starts using Dunkel-Strom/,
-      regexFr: / 14:47F1:Hadès starts using Flux Sombre/,
+      regexFr: / 14:47F1:Hadès starts using Flux [Ss]ombre/,
       regexJa: / 14:47F1:ハーデス starts using ダークストリーム/,
       durationSeconds: 12,
       suppressSeconds: 10,
       infoText: {
         en: 'Exoflares',
         de: 'Exa-Flares',
+        fr: 'Exaflares',
       },
     },
     {
@@ -707,6 +737,7 @@
       infoText: {
         en: 'aoe + bleed',
         de: 'AoE + Blutung',
+        fr: 'Dégâts de zone + saignement',
       },
     },
     {
@@ -789,16 +820,16 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Arcane Font': 'solide arcanique',
-        'Arcane Globe': 'globe arcanique',
-        'Ascian Prime\'s Shade': 'spectre de Primo-Ascien',
+        'Arcane Font': 'Solide Arcanique',
+        'Arcane Globe': 'Globe Arcanique',
+        'Ascian Prime\'s Shade': 'Spectre de Primo-Ascien',
         'Engage!': 'À l\'attaque !',
         'Hades': 'Hadès',
-        'Igeyorhm\'s Shade': 'spectre d\'Igeyorhm',
-        'Lahabrea\'s Shade': 'spectre de Lahabrea',
-        'Lahabrea\'s and Igeyorhm\'s Shades': 'duo d\'Asciens',
-        'Nabriales\'s Shade': 'spectre de Nabriales',
-        'Shadow of the Ancients': 'spectre d\'Ascien',
+        'Igeyorhm\'s Shade': 'Spectre d\'Igeyorhm',
+        'Lahabrea\'s Shade': 'Spectre de Lahabrea',
+        'Lahabrea\'s and Igeyorhm\'s Shades': 'Duo d\'Asciens',
+        'Nabriales\'s Shade': 'Spectre de Nabriales',
+        'Shadow of the Ancients': 'Spectre d\'Ascien',
       },
       'replaceText': {
         '--sync--': '--Synchronisation--',
