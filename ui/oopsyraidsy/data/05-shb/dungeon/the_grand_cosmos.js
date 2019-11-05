@@ -34,44 +34,51 @@
     {
       id: 'Cosmos Dark Well',
       damageRegex: '476D',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Cosmos Far Wind Spread',
       damageRegex: '4724',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Cosmos Black Flame',
       damageRegex: '475D',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'Cosmos Fire\'s Domain Tether',
+      damageRegex: '475F',
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Cosmos Fire\'s Domain',
       damageRegex: '4760',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },

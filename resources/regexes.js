@@ -44,8 +44,8 @@ var Regexes = {
     // have a ~20% regex parsing overhead, but at least they work.
     let modifiers = 'i';
     if (regexpString instanceof RegExp) {
-      modifiers = (regexpString.global ? 'g' : '') +
-                  (regexpString.multiline ? 'm' : '');
+      modifiers += (regexpString.global ? 'g' : '') +
+                   (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, function(match, group) {
