@@ -657,17 +657,17 @@
         'Marx [LR]': '(Linker|Rechter) Marx',
         'Medium Exploder': 'mittelgroße Selbstzerstörung',
         'Multi-leg Medium Model': 'mittelgroßes mehrbeiniges Modell',
-        'Quality assurance will be sealed off': 'bis sich der Zugang zu[rm]? Warenkontrollhalle schließt',
+        'Quality assurance will be sealed off': 'bis sich die Warenkontrollhalle schließt',
         'Reverse-jointed Goliath': 'Goliath mit Inversgelenk',
         'Serial-jointed Command Model': 'Befehlsmodell mit Omnigelenk',
         'Serial-jointed Service Model': 'Modell mit Omnigelenk',
         'Small Biped': 'kleiner Zweibeiner',
         'Small Flyer': 'kleine Flugeinheit',
-        'The forward deck will be sealed off': 'bis sich der Zugang zu[rm]? Vorderen Deck schließt', // FIXME
-        'The rear deck will be sealed off': 'bis sich der Zugang zu[rm]? Hinteren Deck schließt', // FIXME
-        'Warehouse A will be sealed off': 'bis sich der Zugang zu[rm]? Warenlager A schließt',
-        'Warehouse B will be sealed off': 'bis sich der Zugang zu[rm]? Warenlager B schließt',
-        'Warehouse C will be sealed off': 'bis sich der Zugang zu[rm]? Warenlager C schließt',
+        'The forward deck will be sealed off': 'bis sich das vordere Deck schließt',
+        'The rear deck will be sealed off': 'bis sich das hintere Deck schließt',
+        'Warehouse A will be sealed off': 'bis sich das Warenlager A schließt',
+        'Warehouse B will be sealed off': 'bis sich das Warenlager B schließt',
+        'Warehouse C will be sealed off': 'bis sich das Warenlager C schließt',
         'is no longer sealed': 'öffnet sich wieder',
       },
       'replaceText': {
