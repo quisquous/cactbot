@@ -5,6 +5,7 @@ import os
 import re
 
 import fflogs
+import encounter_finder as e_find
 
 
 def load_timeline(timeline):
@@ -161,35 +162,12 @@ def parse_report(args):
 
     return entries, datetime.fromtimestamp((report_start_time + start_time) / 1000)
 
-
-def parse_time(timestamp):
-    """Parses a timestamp into a datetime object"""
-    return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
-
-
-def parse_event_time(event):
-    """Parses the line's timestamp into a datetime object"""
-    if isinstance(event, str):
-        # TCPDecoder errors have a 251 at the start instead of a single hex byte
-	# But most just have two digits.
-        if event[3] == '|':
-            time = parse_time(event[4:23])
-            time = time.replace(microsecond=int(event[24:30]))
-        else:
-            time = parse_time(event[3:22])
-            time = time.replace(microsecond=int(event[23:29]))
-        return time
-    elif isinstance(event, dict):
-        return event['time']
-
-
 def get_regex(event):
     """Gets the regex for the event for both file and report types"""
     if isinstance(event, str):
         return event
     elif isinstance(event, dict):
         return event['regex']
-
 
 def get_type(event):
     """Gets the line type for both file and report types"""
@@ -284,9 +262,9 @@ def check_event(event, timelist, state):
     if state['timeline_stopped']:
         time_progress_seconds = 0
     else:
-        event_time = parse_event_time(event)
+        event_time = e_find.parse_event_time(event)
         if event_time > state['last_sync_timestamp']:
-             time_progress_delta = parse_event_time(event) - state['last_sync_timestamp']
+             time_progress_delta = e_find.parse_event_time(event) - state['last_sync_timestamp']
              time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
         else:
              # battle logs have out of order parsed times because their
@@ -338,7 +316,7 @@ def check_event(event, timelist, state):
             if state['timeline_stopped']:
                 state['last_jump'] = entry['time']
             state['timeline_stopped'] = False
-            state['last_sync_timestamp'] = parse_event_time(event)
+            state['last_sync_timestamp'] = e_find.parse_event_time(event)
 
             # Jump to new time, stopping if necessary
             if 'jump' in entry:
@@ -359,7 +337,6 @@ def check_event(event, timelist, state):
 
     return state
 
-
 def run_file(args, timelist):
     """Runs a timeline against a specified file"""
     state = {
@@ -373,18 +350,36 @@ def run_file(args, timelist):
     file_started = False
 
     with args.file as file:
+        # If searching for encounters, divert and find start/end first3
+        if args.search_fights:
+            encounter_sets = e_find.find_fights_in_file(file)
+            # If all we want to do is list encounters, stop here and give to the user.
+            if args.search_fights == -1:
+                return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
+            elif args.search_fights > len(encounter_sets) or args.search_fights < -1:
+                raise Exception('Selected fight index not in selected ACT log.')
+        # Scan the file until the start timestamp
+
         for line in file:
+            start_time = end_time = 0
+            if args.search_fights:
+                # Indexing is offset here to allow for 1-based indexing for the user.
+                start_time = (encounter_sets[args.search_fights - 1][0])
+                end_time = (encounter_sets[args.search_fights - 1][1])
+            else:
+                start_time = args.start
+                end_time = args.end
             # Scan the file until the start timestamp
-            if not file_started and line[14:26] != args.start:
+            if not file_started and line[14:26] != start_time:
                 continue
 
-            if line[14:26] == args.end:
+            if line[14:26] == end_time:
                 break
 
             # We're at the start of the encounter now.
             if not file_started:
                 file_started = True
-                state['last_sync_timestamp'] = parse_event_time(line)
+                state['last_sync_timestamp'] = e_find.parse_event_time(line)
 
             state = check_event(line, timelist, state)
     if not file_started:
@@ -416,6 +411,8 @@ def run_report(args, timelist):
 
 
 def main(args):
+    if args.search_fights and args.search_fights == -1:
+        return run_file(args, None)
     # Parse timeline file
     timelist = load_timeline(args.timeline)
 
@@ -430,7 +427,7 @@ def main(args):
 def timeline_file(filename):
     """Defines the timeline file argument type"""
 
-    data_path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data';
+    data_path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data'
     # Allow for just specifying the base filename, e.g. "o12s.txt" or "o12s"
     if not os.path.exists(filename):
         for root, dirs, files in os.walk(data_path):
@@ -450,7 +447,7 @@ def timeline_file(filename):
 
 def timestamp_type(arg):
     """Defines the timestamp input format"""
-    if re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
+    if arg and re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
         raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
     return arg
 
@@ -481,6 +478,7 @@ if __name__ == "__main__":
     # Log file arguments
     parser.add_argument('-s', '--start', type=timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
     parser.add_argument('-e', '--end', type=timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
 
     # Filtering arguments
     parser.add_argument('-t', '--timeline', type=timeline_file, help="The filename of the timeline to test against, e.g. ultima_weapon_ultimate")
@@ -488,11 +486,17 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Check dependent args
-    if args.file and not (args.start and args.end):
+    if args.search_fights and not args.file:
+        raise parser.error("Automatic encounter listing requires an input file")
+
+    if args.file and not ((args.start and args.end) or args.search_fights):
         raise parser.error("Log file input requires start and end timestamps")
 
     if args.report and not args.key:
         raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the Public key")
 
     # Actually call the script
-    main(args)
+    if args.search_fights and args.search_fights == -1:
+        print('\n'.join(main(args)))
+    else:
+        main(args)
