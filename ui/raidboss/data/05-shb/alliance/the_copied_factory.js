@@ -40,6 +40,9 @@
     {
       id: 'Copied Serial Forceful Impact',
       regex: / 14:48CF:Serial-Jointed Command Model starts using Forceful Impact/,
+      regexDe: / 14:48CF:Befehlsmodell Mit Omnigelenk starts using Heftiges Beben/,
+      regexFr: / 14:48CF:Modèle Multiarticulé : Commandant starts using Forte Secousse/,
+      regexJa: / 14:48CF:多関節型：司令機 starts using 大震動/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -52,6 +55,9 @@
     {
       id: 'Copied Serial Energy Assault',
       regex: / 14:48B5:Serial-Jointed Command Model starts using Energy Assault/,
+      regexDe: / 14:48B5:Befehlsmodell Mit Omnigelenk starts using Energieschauer/,
+      regexFr: / 14:48B5:Modèle Multiarticulé : Commandant starts using Tirs En Éventail/,
+      regexJa: / 14:48B5:多関節型：司令機 starts using 連続エネルギー弾/,
       alertText: {
         en: 'Get Behind',
         de: 'Hinter Ihn',
@@ -60,6 +66,9 @@
     {
       id: 'Copied Serial High-Caliber Laser',
       regex: / 14:48FA:Serial-Jointed Service Model starts using High-Caliber Laser/,
+      regexDe: / 14:48FA:Modell Mit Omnigelenk starts using Großkaliberlaser/,
+      regexFr: / 14:48FA:Modèle Multiarticulé : Soldat starts using Laser À Large Faisceau/,
+      regexJa: / 14:48FA:多関節型：兵隊機 starts using 大口径レーザー/,
       suppressSeconds: 15,
       infoText: {
         en: 'Look for Lasers',
@@ -69,6 +78,9 @@
     {
       id: 'Copied Serial Clanging Blow',
       regex: / 14:48CE:Serial-Jointed Command Model starts using Clanging Blow on (\y{Name})\./,
+      regexDe: / 14:48CE:Befehlsmodell Mit Omnigelenk starts using Schwerer Angriff on (\y{Name})\./,
+      regexFr: / 14:48CE:Modèle Multiarticulé : Commandant starts using Attaque Puissante on (\y{Name})\./,
+      regexJa: / 14:48CE:多関節型：司令機 starts using 強攻撃 on (\y{Name})\./,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -92,6 +104,9 @@
     {
       id: 'Copied Serial Centrifugal Spin',
       regex: / 14:48C8:Serial-Jointed Command Model starts using Centrifugal Spin/,
+      regexDe: / 14:48C8:Befehlsmodell Mit Omnigelenk starts using Frontale Rotation/,
+      regexFr: / 14:48C8:Modèle Multiarticulé : Commandant starts using Centre : Attaque Rotative/,
+      regexJa: / 14:48C8:多関節型：司令機 starts using センター：回転攻撃/,
       alertText: {
         en: 'Go To Sides',
         de: 'Geh zu den Seiten',
@@ -100,6 +115,9 @@
     {
       id: 'Copied Serial Centrifugal Spin',
       regex: / 14:48CA:Serial-Jointed Command Model starts using Sidestriking Spin/,
+      regexDe: / 14:48CA:Befehlsmodell Mit Omnigelenk starts using Seitliche Rotation/,
+      regexFr: / 14:48CA:Modèle Multiarticulé : Commandant starts using Côtés : Attaque Rotative/,
+      regexJa: / 14:48CA:多関節型：司令機 starts using サイド：回転攻撃/,
       alertText: {
         en: 'Go Front/Back',
         de: 'Geh nach Vorne/ Hinten',
@@ -108,6 +126,9 @@
     {
       id: 'Copied Serial Shockwave',
       regex: / 14:48C3:Serial-Jointed Command Model starts using Shockwave/,
+      regexDe: / 14:48C3:Befehlsmodell Mit Omnigelenk starts using Schockwelle/,
+      regexFr: / 14:48C3:Modèle Multiarticulé : Commandant starts using Onde De Choc/,
+      regexJa: / 14:48C3:多関節型：司令機 starts using 衝撃波/,
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',
@@ -116,6 +137,9 @@
     {
       id: 'Copied Hobbes Laser-Resistance Test',
       regex: / 14:4805:Hobbes starts using Laser-Resistance Test/,
+      regexDe: / 14:4805:Hobbes starts using Laserresistenztest/,
+      regexFr: / 14:4805:Hobbes starts using Test De Résistance Au Laser/,
+      regexJa: / 14:4805:ホッブス starts using 耐レーザー検証/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -191,6 +215,9 @@
     {
       id: 'Copied Hobbes Laser Sight',
       regex: / 14:4807:Hobbes starts using Laser Sight/,
+      regexDe: / 14:4807:Hobbes starts using Laserbestrahlung/,
+      regexFr: / 14:4807:Hobbes starts using Rayon Laser/,
+      regexJa: / 14:4807:ホッブス starts using レーザー照射/,
       alertText: {
         en: 'Stack',
         de: 'Sammeln',
@@ -238,6 +265,9 @@
     {
       id: 'Copied Goliath Tank Exploder',
       regex: / 23:\y{ObjectId}:Medium Exploder:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regexDe: / 23:\y{ObjectId}:Mittelgroße Selbstzerstörung:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regexFr: / 23:\y{ObjectId}:Unité Kamikaze Moyenne:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regexJa: / 23:\y{ObjectId}:中型自爆:\y{ObjectId}:(\y{Name}):....:....:0011:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -249,6 +279,9 @@
     {
       id: 'Copied Flight Unit 360 Bombing Manuever',
       regex: / 14:4941:Flight Unit starts using 360-Degree Bombing Maneuver/,
+      regexDe: / 14:4941:Flugeinheit starts using Offensive: Raketenring/,
+      regexFr: / 14:4941:Module De Vol starts using Attaque : Tir De Missiles Circulaire/,
+      regexJa: / 14:4941:飛行ユニット starts using 攻撃：ミサイル円射/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -272,6 +305,9 @@
     {
       id: 'Copied Engels Marx Smash Right',
       regex: / 14:4727:Engels starts using Marx Smash/,
+      regexDe: / 14:4727:Engels starts using Marxscher Schlag/,
+      regexFr: / 14:4727:Engels starts using Coup De Marx/,
+      regexJa: / 14:4727:エンゲルス starts using マルクス打撃/,
       alertText: {
         en: 'Right',
         de: 'Rechts',
@@ -282,6 +318,9 @@
     {
       id: 'Copied Engels Marx Smash Left',
       regex: / 14:4726:Engels starts using Marx Smash/,
+      regexDe: / 14:4726:Engels starts using Marxscher Schlag/,
+      regexFr: / 14:4726:Engels starts using Coup De Marx/,
+      regexJa: / 14:4726:エンゲルス starts using マルクス打撃/,
       alertText: {
         en: 'Left',
         de: 'Links',
@@ -292,6 +331,9 @@
     {
       id: 'Copied Engels Marx Smash Forward',
       regex: / 14:472E:Engels starts using Marx Smash/,
+      regexDe: / 14:472E:Engels starts using Marxscher Schlag/,
+      regexFr: / 14:472E:Engels starts using Coup De Marx/,
+      regexJa: / 14:472E:エンゲルス starts using マルクス打撃/,
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
@@ -300,6 +342,9 @@
     {
       id: 'Copied Engels Marx Smash Back',
       regex: / 14:472A:Engels starts using Marx Smash/,
+      regexDe: / 14:472A:Engels starts using Marxscher Schlag/,
+      regexFr: / 14:472A:Engels starts using Coup De Marx/,
+      regexJa: / 14:472A:エンゲルス starts using マルクス打撃/,
       alertText: {
         en: 'Back and Sides',
         de: 'Hinten und Seiten',
@@ -308,6 +353,9 @@
     {
       id: 'Copied Engels Marx Crush',
       regex: / 14:4746:Engels starts using Marx Crush/,
+      regexDe: / 14:4746:Engels starts using Marxsche Offensive/,
+      regexFr: / 14:4746:Engels starts using Pinçage De Marx/,
+      regexJa: / 14:4746:エンゲルス starts using マルクス挟撃/,
       infoText: {
         en: 'Kill Claws',
         de: 'Klauen töten',
@@ -328,6 +376,9 @@
     {
       id: 'Copied Engels Diffuse Laser',
       regex: / 14:4755:Engels starts using Diffuse Laser/,
+      regexDe: / 14:4755:Engels starts using Diffusionslaser/,
+      regexFr: / 14:4755:Engels starts using Laser Diffractif/,
+      regexJa: / 14:4755:エンゲルス starts using 拡散レーザー/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -343,6 +394,9 @@
       // Also suggest going to the front for towers.
       id: 'Copied Engels Energy Barrage 1',
       regex: / 14:473C:Engels starts using Energy Barrage/,
+      regexDe: / 14:473C:Engels starts using Energetisches Sperrfeuer/,
+      regexFr: / 14:473C:Engels starts using Rideau De Balles/,
+      regexJa: / 14:473C:エンゲルス starts using エネルギー弾幕/,
       infoText: {
         en: 'Go Sides (Near Front)',
         de: 'Zu den Seiten (Nahe der Front)',
@@ -351,6 +405,9 @@
     {
       id: 'Copied Engels Energy Barrage',
       regex: / 14:473C:Engels starts using Energy Barrage/,
+      regexDe: / 14:473C:Engels starts using Energetisches Sperrfeuer/,
+      regexFr: / 14:473C:Engels starts using Rideau De Balles/,
+      regexJa: / 14:473C:エンゲルス starts using エネルギー弾幕/,
       delaySeconds: 8,
       infoText: {
         en: 'Get Towers',
@@ -384,6 +441,9 @@
     {
       id: 'Copied Engels Reverse-Jointed Goliaths',
       regex: / 15:\y{ObjectId}:Engels:473F:/,
+      regexDe: / 15:\y{ObjectId}:Engels:473F:/,
+      regexFr: / 15:\y{ObjectId}:Engels:473F:/,
+      regexJa: / 15:\y{ObjectId}:エンゲルス:473F:/,
       durationSeconds: 4,
       infoText: {
         en: 'Adds (Ignore Small)',
@@ -393,6 +453,9 @@
     {
       id: 'Copied Engels Incendiary Saturation Bombing',
       regex: / 14:474E:Engels starts using Incendiary Saturation Bombing/,
+      regexDe: / 14:474E:Engels starts using Streubrandraketen/,
+      regexFr: / 14:474E:Engels starts using Salve Incendiaire/,
+      regexJa: / 14:474E:エンゲルス starts using 拡散焼尽ミサイル/,
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
@@ -401,6 +464,9 @@
     {
       id: 'Copied Engels Marx Thrust',
       regex: / 14:48A8:Engels starts using Marx Activation/,
+      regexDe: / 14:48A8:Engels starts using Marx-Aktivierung/,
+      regexFr: / 14:48A8:Engels starts using Activation De Marx/,
+      regexJa: / 14:48A8:エンゲルス starts using マルクス起動/,
       delaySeconds: 9,
       infoText: {
         en: 'Look For Wall Saws',
@@ -410,6 +476,9 @@
     {
       id: 'Copied 9S Neutralization',
       regex: / 14:48F5:9S-Operated Walking Fortress starts using Neutralization on (\y{Name})\./,
+      regexDe: / 14:48F5:9S' Mehrbeiniger Panzer starts using Unterwerfung on (\y{Name})\./,
+      regexFr: / 14:48F5:9S : Avec Multipède Esclave starts using Tir De Suppression on (\y{Name})\./,
+      regexJa: / 14:48F5:９Ｓ：多脚戦車従属 starts using 制圧射撃 on (\y{Name})\./,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -435,6 +504,9 @@
     {
       id: 'Copied 9S Laser Saturation',
       regex: / 14:48F6:9S-Operated Walking Fortress starts using Laser Saturation/,
+      regexDe: / 14:48F6:9S' Mehrbeiniger Panzer starts using Omnidirektionallaser/,
+      regexFr: / 14:48F6:9S : Avec Multipède Esclave starts using Laser Multidirectionnel/,
+      regexJa: / 14:48F6:９Ｓ：多脚戦車従属 starts using 全方位レーザー/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -447,6 +519,9 @@
     {
       id: 'Copied 9S Laser Turret',
       regex: / 14:4A74:9S-Operated Walking Fortress starts using Laser Turret/,
+      regexDe: / 14:4A74:9S' Mehrbeiniger Panzer starts using Hauptgeschützlaser/,
+      regexFr: / 14:4A74:9S : Avec Multipède Esclave starts using Canons Laser/,
+      regexJa: / 14:4A74:９Ｓ：多脚戦車従属 starts using 主砲レーザー/,
       alertText: {
         en: 'Away From Front',
         de: 'Weg von Vorne',
@@ -477,6 +552,9 @@
     {
       id: 'Copied 9S Laser Fore-Hind Cannons',
       regex: / 14:48DF:9S-Operated Walking Fortress starts using Fore-Hind Cannons/,
+      regexDe: / 14:48DF:9S' Mehrbeiniger Panzer starts using Front-Heck-Salve/,
+      regexFr: / 14:48DF:9S : Avec Multipède Esclave starts using Balayage Avant Arrière/,
+      regexJa: / 14:48DF:９Ｓ：多脚戦車従属 starts using 前後一斉射/,
       infoText: {
         en: 'Go Sides',
         de: 'Zu den Seiten',
@@ -485,6 +563,9 @@
     {
       id: 'Copied 9S Dual-Flank Cannons',
       regex: / 14:48DE:9S-Operated Walking Fortress starts using Dual-Flank Cannons/,
+      regexDe: / 14:48DE:9S' Mehrbeiniger Panzer starts using Flankensalve/,
+      regexFr: / 14:48DE:9S : Avec Multipède Esclave starts using Balayage Latéral/,
+      regexJa: / 14:48DE:９Ｓ：多脚戦車従属 starts using 側面一斉射/,
       infoText: {
         en: 'Go Front / Back',
         de: 'Geh nach Vorne / Hinten',
@@ -493,6 +574,9 @@
     {
       id: 'Copied 9S Engage Marx Support',
       regex: / 14:48D3:9S-Operated Walking Fortress starts using Engage Marx Support/,
+      regexDe: / 14:48D3:9S' Mehrbeiniger Panzer starts using Verstärkung: Marx/,
+      regexFr: / 14:48D3:9S : Avec Multipède Esclave starts using Appel De Renforts : Marx/,
+      regexJa: / 14:48D3:９Ｓ：多脚戦車従属 starts using 支援要請：マルクス/,
       delaySeconds: 4,
       alertText: {
         en: 'Dodge Overhead Saws',
@@ -504,6 +588,9 @@
       // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
       regex: / 15:\y{ObjectId}:9S-Operated Walking Fortress:48EA:/,
+      regexDe: / 15:\y{ObjectId}:9S' Mehrbeiniger Panzer:48EA:/,
+      regexFr: / 15:\y{ObjectId}:9S : Avec Multipède Esclave:48EA:/,
+      regexJa: / 15:\y{ObjectId}:９Ｓ：多脚戦車従属:48EA:/,
       infoText: {
         en: 'Adds',
         de: 'Adds',
@@ -512,6 +599,9 @@
     {
       id: 'Copied 9S Engage Goliath Tank Support',
       regex: / 14:48E5:9S-Operated Walking Fortress starts using Engage Goliath Tank Support/,
+      regexDe: / 14:48E5:9S' Mehrbeiniger Panzer starts using Verstärkung: Goliath-Panzer/,
+      regexFr: / 14:48E5:9S : Avec Multipède Esclave starts using Appel De Renfort : Char Goliath/,
+      regexJa: / 14:48E5:９Ｓ：多脚戦車従属 starts using 支援要請：大型戦車/,
       infoText: {
         en: 'Adds',
         de: 'Adds',
@@ -520,6 +610,9 @@
     {
       id: 'Copied 9S Hack Goliath Tank',
       regex: / 14:48E7:9S-Operated Walking Fortress starts using Hack Goliath Tank/,
+      regexDe: / 14:48E7:9S' Mehrbeiniger Panzer starts using Hacken: Goliath-Panzer/,
+      regexFr: / 14:48E7:9S : Avec Multipède Esclave starts using Piratage : Char Goliath/,
+      regexJa: / 14:48E7:９Ｓ：多脚戦車従属 starts using ハッキング：大型戦車/,
       alertText: {
         en: 'Go Behind Untethered Tank',
         de: 'Hinter den nicht verbundenen Panzer gehen',
@@ -528,6 +621,9 @@
     {
       id: 'Copied 9S Shrapnel Impact',
       regex: / 14:48F3:9S-Operated Walking Fortress starts using Shrapnel Impact/,
+      regexDe: / 14:48F3:9S' Mehrbeiniger Panzer starts using Wrackteilregen/,
+      regexFr: / 14:48F3:9S : Avec Multipède Esclave starts using Chute De Débris/,
+      regexJa: / 14:48F3:９Ｓ：多脚戦車従属 starts using 残骸落下/,
       suppressSeconds: 2,
       infoText: {
         en: 'Stack',
@@ -537,6 +633,9 @@
     {
       id: 'Copied 9S Bubble',
       regex: / 14:48EB:9S-Operated Walking Fortress starts using Total Annihilation Maneuver/,
+      regexDe: / 14:48EB:9S' Mehrbeiniger Panzer starts using Offensive: Totale Vernichtung/,
+      regexFr: / 14:48EB:9S : Avec Multipède Esclave starts using Attaque : Bombardement Dévastateur/,
+      regexJa: / 14:48EB:９Ｓ：多脚戦車従属 starts using 攻撃：殲滅爆撃/,
       delaySeconds: 5,
       infoText: {
         en: 'Get in the bubble',
