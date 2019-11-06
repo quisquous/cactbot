@@ -109,3 +109,15 @@ def find_fights_in_file(file):
         encounter_sets.append(encounter_info)
     file.seek(0)
     return encounter_sets
+
+def choose_fight_times(args, encounters):
+    start_time = end_time = 0
+    if args.search_fights:
+        # Indexing is offset here to allow for 1-based indexing for the user.
+        start_time = (encounters[args.search_fights - 1][0])
+        end_time = (encounters[args.search_fights - 1][1])
+    # In the event the user wishes to enter timestamps manually, we permit that here.
+    else:
+        start_time = args.start
+        end_time = args.end
+    return start_time, end_time

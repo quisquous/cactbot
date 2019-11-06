@@ -87,7 +87,7 @@ def parse_file(args):
     started = False
     encounter_sets = []
     with args.file as file:
-        # If searching for encounters, divert and find start/end first3
+        # If searching for encounters, divert and find start/end first.
         if args.search_fights:
             encounter_sets = e_find.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
@@ -95,20 +95,15 @@ def parse_file(args):
                 return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
             elif args.search_fights > len(encounter_sets):
                 raise Exception('Selected fight index not in selected ACT log.')
+
+        start_time, end_time = e_find.choose_fight_times(args, encounter_sets)
         # Scan the file until the start timestamp
         for line in file:
-            start_time = end_time = 0
-            if args.search_fights:
-                # Indexing is offset here to allow for 1-based indexing for the user.
-                start_time = (encounter_sets[args.search_fights - 1][0])
-                end_time = (encounter_sets[args.search_fights - 1][1])
-            else:
-                start_time = args.start
-                end_time = args.end
-            if not started and start_time not in (line[14:26], line[14:29]):
+
+            if not started and start_time != line[14:26]:
                 continue
 
-            if end_time in (line[14:26], line[14:29]):
+            if end_time == line[14:26]:
                 break
 
             # We're at the start of the encounter now.
@@ -130,6 +125,10 @@ def parse_file(args):
                 'ability_id': line_fields[4],
                 'ability_name': line_fields[5],
             }
+
+            # Unknown abilities should be hidden sync lines by default.
+            if line_fields[5].startswith('Unknown_'):
+                entry['ability_name'] = '--sync--'
 
             entries.append(entry)
 

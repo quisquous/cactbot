@@ -347,7 +347,7 @@ def run_file(args, timelist):
         'branch': 1,
         'timeline_stopped': True
     }
-    file_started = False
+    started = False
 
     with args.file as file:
         # If searching for encounters, divert and find start/end first3
@@ -358,31 +358,25 @@ def run_file(args, timelist):
                 return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
             elif args.search_fights > len(encounter_sets) or args.search_fights < -1:
                 raise Exception('Selected fight index not in selected ACT log.')
-        # Scan the file until the start timestamp
 
+        start_time, end_time = e_find.choose_fight_times(args, encounter_sets)
+        # Scan the file until the start timestamp
         for line in file:
-            start_time = end_time = 0
-            if args.search_fights:
-                # Indexing is offset here to allow for 1-based indexing for the user.
-                start_time = (encounter_sets[args.search_fights - 1][0])
-                end_time = (encounter_sets[args.search_fights - 1][1])
-            else:
-                start_time = args.start
-                end_time = args.end
+
             # Scan the file until the start timestamp
-            if not file_started and line[14:26] != start_time:
+            if not started and line[14:26] != start_time:
                 continue
 
             if line[14:26] == end_time:
                 break
 
             # We're at the start of the encounter now.
-            if not file_started:
-                file_started = True
+            if not started:
+                started = True
                 state['last_sync_timestamp'] = e_find.parse_event_time(line)
 
             state = check_event(line, timelist, state)
-    if not file_started:
+    if not started:
         raise Exception('Fight start not found')
 
 
