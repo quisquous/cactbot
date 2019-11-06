@@ -78,11 +78,11 @@ here's a set of features that will almost always be needed:
 
 ## Trigger Guidelines
 
-As a rule, cactbot defaults to text alarms over sounds and tts,
-as separating visual text for triggers from audio voice comms.
-is easier to process than mixing voice comms and tts in audio.
-This isn't for everybody and tts is an option,
-but text triggers will always be the default.
+As a rule, cactbot defaults to text alarms with a small number of default sounds over custom sounds and tts.
+This is because there is a clearer mental separation between visual text for triggers and audio of voice comms.
+This separation is easier to process than mixing the audio of voice comms and tts together.
+This design choice isn't for everybody, especially those used to tts (which is an option).
+However, text triggers will always be the default.
 Give it a try.
 
 ### Trigger Severity
