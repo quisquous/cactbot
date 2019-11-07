@@ -160,7 +160,7 @@
       id: 'Copied Hobbes Right Arm',
       regex: / 00:0839:The wall-mounted right arm begins to move\.\.\./,
       regexDe: / 00:0839:Der wandmontierte rechte Arm ist aktiv!/,
-      regexFr: / 00:0839:Le bras mural droit s'active !/,
+      regexFr: / 00:0839:Le bras mural droit s'active!/,
       regexJa: / 00:0839:壁面のライトアームが稼働を始めた……！/,
       run: function(data) {
         data.alliance = data.alliance || 'A';
@@ -175,7 +175,7 @@
       id: 'Copied Hobbes Flamethrowers',
       regex: / 00:0839:The wall-mounted flamethrowers activate\./,
       regexDe: / 00:0839:Die wandmontierten Flammenwerfer sind aktiv!/,
-      regexFr: / 00:0839:Les lance-flammes muraux s'activent !/,
+      regexFr: / 00:0839:Les lance-flammes muraux s'activent!/,
       regexJa: / 00:0839:壁面の火炎放射器が稼働を始めた……！/,
       run: function(data) {
         data.alliance = data.alliance || 'B';
@@ -190,7 +190,7 @@
       id: 'Copied Hobbes Left Arm 1',
       regex: / 00:0839:The wall-mounted left arm begins to move\.\.\./,
       regexDe: / 00:0839:Der wandmontierte linke Arm ist aktiv!/,
-      regexFr: / 00:0839:Le bras mural gauche s'active !/,
+      regexFr: / 00:0839:Le bras mural gauche s'active!/,
       regexJa: / 00:0839:壁面のレフトアームが稼働を始めた……！/,
       durationSeconds: 6,
       run: function(data) {
@@ -206,7 +206,7 @@
       id: 'Copied Hobbes Left Arm 2',
       regex: / 00:0839:The wall-mounted left arm begins to move\.\.\./,
       regexDe: / 00:0839:Der wandmontierte linke Arm ist aktiv!/,
-      regexFr: / 00:0839:Le bras mural gauche s'active !/,
+      regexFr: / 00:0839:Le bras mural gauche s'active!/,
       regexJa: / 00:0839:壁面のレフトアームが稼働を始めた……！/,
       delaySeconds: 8,
       alertText: {
@@ -219,7 +219,7 @@
       id: 'Copied Hobbes Left Arm 3',
       regex: / 00:0839:The wall-mounted left arm begins to move\.\.\./,
       regexDe: / 00:0839:Der wandmontierte linke Arm ist aktiv!/,
-      regexFr: / 00:0839:Le bras mural gauche s'active !/,
+      regexFr: / 00:0839:Le bras mural gauche s'active!/,
       regexJa: / 00:0839:壁面のレフトアームが稼働を始めた……！/,
       delaySeconds: 10,
       alertText: {
@@ -256,7 +256,7 @@
       id: 'Copied Hobbes Electric Floor',
       regex: / 00:0839:You hear frenzied movement from machines beneath\.\.\./,
       regexDe: / 00:0839:Die Maschinenwesen zu deinen Füßen bewegen sich!/,
-      regexFr: / 00:0839:Les formes de vie mécaniques sous vos pieds s'activent !/,
+      regexFr: / 00:0839:Les formes de vie mécaniques sous vos pieds s'activent!/,
       regexJa: / 00:0839:床下の機械生命体が怪しく動き始めた……！/,
       suppressSeconds: 15,
       durationSeconds: 10,
@@ -270,7 +270,7 @@
       id: 'Copied Hobbes Conveyer Belts',
       regex: / 00:0839:The conveyer belts whirr to life!/,
       regexDe: / 00:0839:Die Fließbänder sind aktiv!/,
-      regexFr: / 00:0839:Le tapis roulant s'est mis en branle !/,
+      regexFr: / 00:0839:Le tapis roulant s'est mis en branle!/,
       regexJa: / 00:0839:床面のローラーコンベアが稼働を始めた……！/,
       infoText: {
         en: 'Conveyor Belts',
@@ -283,7 +283,7 @@
       id: 'Copied Hobbes Oil 1',
       regex: / 00:0839:Flammable oil is leaking from the floor\.\.\./,
       regexDe: / 00:0839:Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!/,
-      regexFr: / 00:0839:Le sol s'imbibe de liquide inflammable !/,
+      regexFr: / 00:0839:Le sol s'imbibe de liquide inflammable!/,
       regexJa: / 00:0839:床下に可燃性の液体が満ち始めた……！/,
       suppressSeconds: 15,
       durationSeconds: 3,
@@ -297,7 +297,7 @@
       id: 'Copied Hobbes Oil 2',
       regex: / 00:0839:Flammable oil is leaking from the floor\.\.\./,
       regexDe: / 00:0839:Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!/,
-      regexFr: / 00:0839:Le sol s'imbibe de liquide inflammable !/,
+      regexFr: / 00:0839:Le sol s'imbibe de liquide inflammable!/,
       regexJa: / 00:0839:床下に可燃性の液体が満ち始めた……！/,
       suppressSeconds: 15,
       delaySeconds: 6,
