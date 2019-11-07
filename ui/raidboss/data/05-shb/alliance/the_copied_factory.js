@@ -23,6 +23,7 @@
         return {
           en: 'Be Near Boss',
           de: 'sei in der Nähe des Bosses',
+          fr: 'Près du boss',
         };
       },
     },
@@ -33,6 +34,7 @@
       infoText: {
         en: 'Move to South Edge',
         de: 'zur südlichen Kante',
+        fr: 'Allez au Sud',
       },
     },
   ],
@@ -61,6 +63,7 @@
       alertText: {
         en: 'Get Behind',
         de: 'Hinter Ihn',
+        fr: 'Derrière le boss',
       },
     },
     {
@@ -73,6 +76,7 @@
       infoText: {
         en: 'Look for Lasers',
         de: 'Pass auf die Laser auf',
+        fr: 'Attention aux lasers',
       },
     },
     {
@@ -110,6 +114,7 @@
       alertText: {
         en: 'Go To Sides',
         de: 'Geh zu den Seiten',
+        fr: 'Sur les côtés',
       },
     },
     {
@@ -121,6 +126,7 @@
       alertText: {
         en: 'Go Front/Back',
         de: 'Geh nach Vorne/ Hinten',
+        fr: 'Devant/Derrière',
       },
     },
     {
@@ -132,6 +138,7 @@
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',
+        fr: 'Poussée',
       },
     },
     {
@@ -161,6 +168,7 @@
       infoText: {
         en: 'Dodge Moving Circle',
         de: 'Bewegenden Kreisen ausweichen',
+        fr: 'Evitez les cercles mouvants',
       },
     },
     {
@@ -175,6 +183,7 @@
       alertText: {
         en: 'Look Behind For Flamethrowers',
         de: 'Flammenwerfer hinter dir',
+        fr: 'Regardez derrière (lance-flammes)',
       },
     },
     {
@@ -190,6 +199,7 @@
       infoText: {
         en: 'Out',
         de: 'Raus',
+        fr: 'Dehors',
       },
     },
     {
@@ -202,6 +212,7 @@
       alertText: {
         en: 'Dodge Falling Walls',
         de: 'Den fallenden Wände asuweichen',
+        fr: 'Eviter les murs tombants',
       },
     },
     {
@@ -214,6 +225,7 @@
       alertText: {
         en: 'Spread Tethers',
         de: 'Verbindungen Verteilen',
+        fr: 'Ecartez les liens',
       },
     },
     {
@@ -225,6 +237,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: 'Dispertion',
       },
     },
     {
@@ -236,6 +249,7 @@
       alertText: {
         en: 'Stack',
         de: 'Sammeln',
+        fr: 'Package',
       },
     },
     {
@@ -249,6 +263,7 @@
       infoText: {
         en: 'Dodge Electric Floor',
         de: 'Elektrischem Boden ausweichen',
+        fr: 'Evitez le sol électrifié',
       },
     },
     {
@@ -260,6 +275,8 @@
       infoText: {
         en: 'Conveyor Belts',
         de: 'Förderbänder',
+        fr: 'Tapis roulant',
+
       },
     },
     {
@@ -273,6 +290,7 @@
       alertText: {
         en: 'Oil Vats',
         de: 'Ölbehälter',
+        fr: 'Cuves à huile',
       },
     },
     {
@@ -287,6 +305,7 @@
       alertText: {
         en: 'Oil Vats',
         de: 'Ölbehälter',
+        fr: 'Cuves à huile',
       },
     },
     {
@@ -301,6 +320,7 @@
       alertText: {
         en: 'Exploder on YOU',
         de: 'Explosion auf DIR',
+        fr: 'Explosion sur VOUS',
       },
     },
     {
@@ -327,6 +347,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: 'Dispertion',
       },
     },
     {
@@ -364,6 +385,7 @@
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
+        fr: 'Devant et au centre',
       },
     },
     {
@@ -375,6 +397,7 @@
       alertText: {
         en: 'Back and Sides',
         de: 'Hinten und Seiten',
+        fr: 'Arrière et côtés',
       },
     },
     {
@@ -386,6 +409,7 @@
       infoText: {
         en: 'Kill Claws',
         de: 'Klauen töten',
+        fr: 'Tuez les pinces',
       },
     },
     {
@@ -427,6 +451,7 @@
       infoText: {
         en: 'Go Sides (Near Front)',
         de: 'Zu den Seiten (Nahe der Front)',
+        fr: 'Allez sur les côtés (vers l\'avant)',
       },
     },
     {
@@ -439,6 +464,7 @@
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
+        fr: 'Prenez les tours',
       },
     },
     {
@@ -449,6 +475,7 @@
           return {
             en: 'Puddle on YOU',
             de: 'Fläsche auf dir',
+            fr: 'Flaques sur VOUS',
           };
         }
       },
@@ -461,6 +488,7 @@
           return {
             en: 'Get Out + Dodge Homing AoE',
             de: 'Geh Raus + Zielsuch-AoE ausweichen',
+            fr: 'Dehors + Evitez l\'AoE',
           };
         }
       },
@@ -475,6 +503,7 @@
       infoText: {
         en: 'Adds (Ignore Small)',
         de: 'Adds (kleine ignorieren)',
+        fr: 'Adds (ignorez les petits)',
       },
     },
     {
@@ -486,6 +515,7 @@
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
+        fr: 'Devant et au centre',
       },
     },
     {
@@ -498,6 +528,7 @@
       infoText: {
         en: 'Look For Wall Saws',
         de: 'Halt nach den kleinen Sägen ausschau',
+        fr: 'Repérez les scies',
       },
     },
     {
@@ -552,6 +583,7 @@
       alertText: {
         en: 'Away From Front',
         de: 'Weg von Vorne',
+        fr: 'Eloignez vous de l\'avant',
       },
     },
     {
@@ -563,6 +595,7 @@
       alertText: {
         en: 'Spread',
         de: 'Verteilen',
+        fr: 'Dispertion',
       },
     },
     {
@@ -574,6 +607,7 @@
       alertText: {
         en: 'Laser Buster on YOU',
         de: 'Laser Tankbuster auf DIR',
+        fr: 'Laser Tankbuster sur VOUS',
       },
     },
     {
@@ -585,6 +619,7 @@
       infoText: {
         en: 'Go Sides',
         de: 'Zu den Seiten',
+        fr: 'Sur les côtés',
       },
     },
     {
@@ -596,6 +631,7 @@
       infoText: {
         en: 'Go Front / Back',
         de: 'Geh nach Vorne / Hinten',
+        fr: 'Allez devant / derrière',
       },
     },
     {
@@ -608,6 +644,7 @@
       alertText: {
         en: 'Dodge Overhead Saws',
         de: 'Sägen über dem Kopf ausweichen',
+        fr: 'Evitez la scie au-dessus de vous',
       },
     },
     {
@@ -621,6 +658,7 @@
       infoText: {
         en: 'Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
     },
     {
@@ -632,6 +670,7 @@
       infoText: {
         en: 'Adds',
         de: 'Adds',
+        fr: 'Adds',
       },
     },
     {
@@ -643,6 +682,7 @@
       alertText: {
         en: 'Go Behind Untethered Tank',
         de: 'Hinter den nicht verbundenen Panzer gehen',
+        fr: 'Derrière le tank non-lié',
       },
     },
     {
@@ -655,6 +695,7 @@
       infoText: {
         en: 'Stack',
         de: 'Sammeln',
+        fr: 'Package',
       },
     },
     {
@@ -667,6 +708,7 @@
       infoText: {
         en: 'Get in the bubble',
         de: 'Geh in die Kuppel',
+        fr: 'Allez dans les bulles',
       },
     },
   ],
@@ -768,40 +810,40 @@
         '9S-operated Flight Unit': '9S : module de vol équipé',
         '9S-Operated Walking Fortress': '9S : avec multipède esclave',
         'Engels': 'Engels',
-        'Flight Unit': 'module de vol',
-        'Goliath Tank': 'char Goliath',
+        'Flight Unit': 'Module de vol',
+        'Goliath Tank': 'Char Goliath',
         'Hobbes': 'Hobbes',
         'Marx': 'Marx',
-        'Marx [LR]': 'Marx [LR]', // FIXME
-        'Medium Exploder': 'unité kamikaze moyenne',
-        'Multi-leg Medium Model': 'multipède moyen',
-        'Quality assurance will be sealed off': 'Quality assurance will be sealed off', // FIXME
+        'Marx [LR]': 'Marx : (Gauche|Droite)',
+        'Medium Exploder': 'Unité kamikaze moyenne',
+        'Multi-leg Medium Model': 'Multipède moyen',
+        'Quality assurance will be sealed off': 'Fermeture de la salle de test',
         'Reverse-jointed Goliath': 'Goliath articulations inversées',
-        'Serial-jointed Command Model': 'modèle multiarticulé : commandant',
-        'Serial-jointed Service Model': 'modèle multiarticulé : soldat',
-        'Small Biped': 'petit bipède',
-        'Small Flyer': 'petite unité volante',
-        'The forward deck will be sealed off': 'The forward deck will be sealed off', // FIXME
-        'The rear deck will be sealed off': 'The rear deck will be sealed off', // FIXME
-        'Warehouse A will be sealed off': 'Warehouse A will be sealed off', // FIXME
-        'Warehouse B will be sealed off': 'Warehouse B will be sealed off', // FIXME
-        'Warehouse C will be sealed off': 'Warehouse C will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'Serial-jointed Command Model': 'Modèle multiarticulé : commandant',
+        'Serial-jointed Service Model': 'Modèle multiarticulé : soldat',
+        'Small Biped': 'Petit bipède',
+        'Small Flyer': 'Petite unité volante',
+        'The forward deck will be sealed off': 'Fermeture de la plate-forme avant',
+        'The rear deck will be sealed off': 'Fermeture de la plate-forme arrière',
+        'Warehouse A will be sealed off': 'Fermeture de l\'entrepôt A',
+        'Warehouse B will be sealed off': 'Fermeture de l\'entrepôt B',
+        'Warehouse C will be sealed off': 'Fermeture de l\'entrepôt C',
+        'is no longer sealed': 'Ouverture ',
       },
       'replaceText': {
-        '--jump--': '--jump--', // FIXME
+        '--jump--': '--Saut--',
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         '360-Degree Bombing Maneuver': 'Attaque : tir de missiles circulaire',
-        'Adds': 'Adds', // FIXME
+        'Adds': 'Adds',
         'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
         'Area Bombardment': 'Déluge de missiles',
         'Area Bombing Maneuver': 'Attaque : salve de missiles',
         'Arm Laser': 'Lasers brachiaux',
-        'Cannons': 'Cannons', // FIXME
+        'Cannons': 'Canons',
         'Clanging Blow': 'Attaque puissante',
         'Convenient Self-Destruction': 'Autodestruction',
-        'Crusher Adds': 'Crusher Adds', // FIXME
+        'Crusher Adds': 'Broyeurs',
         'Crushing Wheel': 'Scie circulaire',
         'Demolish Structure': 'Démolition de plate-forme',
         'Diffuse Laser': 'Super laser diffractif',
@@ -813,8 +855,8 @@
         'Engage Goliath Tank Support': 'Appel de renfort : char Goliath',
         'Engage Marx Support': 'Appel de renforts : Marx',
         'Enrage': 'Enrage',
-        'Exploding Tethers': 'Exploding Tethers', // FIXME
-        'Floor': 'Floor', // FIXME
+        'Exploding Tethers': 'Liens explosifs',
+        'Floor': 'Sol',
         'Forceful Impact': 'Forte secousse',
         'Frontal Somersault': 'Attaque sautée',
         'Ground-To-Ground Missile': 'Missile sol-sol',
@@ -850,7 +892,7 @@
         'Systematic Targeting': 'Formation de tir',
         'Total Annihilation Maneuver': 'Attaque : bombardement dévastateur',
         'Undock': 'Désamarrage',
-        'Wall Mechanic': 'Wall Mechanic', // FIXME
+        'Wall Mechanic': 'Méchanique du mur',
       },
     },
     {

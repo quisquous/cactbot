@@ -51,7 +51,10 @@ let Options = {
   DrkMediumMPThreshold: 5999,
   PldLowMPThreshold: 3600,
   PldMediumMPThreshold: 9400,
-  BlmLowMPThreshold: 2400,
+  // One more fire IV and then despair.
+  BlmMediumMPThreshold: 3999,
+  // Should cast despair.
+  BlmLowMPThreshold: 2399,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
 };
@@ -1785,6 +1788,7 @@ class Bars {
       mediumMP = this.options.PldMediumMPThreshold;
     } else if (this.job == 'BLM') {
       lowMP = this.options.BlmLowMPThreshold;
+      mediumMP = this.options.BlmMediumMPThreshold;
     }
 
     if (far >= 0 && this.distance > far)
