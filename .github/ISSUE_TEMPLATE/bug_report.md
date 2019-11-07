@@ -1,6 +1,9 @@
 ---
 name: Bug Report 🐛
 about: Something isn't working as expected? Report it here.
+title: ''
+labels: bug
+assignees: ''
 ---
 
 <!--

@@ -1,6 +1,9 @@
 ---
 name: Question ❓
 about: General question about cactbot.
+title: ''
+labels: question
+assignees: ''
 ---
 
 <!--
