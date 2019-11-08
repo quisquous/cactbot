@@ -137,8 +137,10 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'Heal ' + data.shortName(matches[1]) + ' soon',
+      infoText: function(data, matches) {
+        return {
+          en: 'Heal ' + data.shortName(matches[1]) + ' soon',
+        };
       },
     },
     {
