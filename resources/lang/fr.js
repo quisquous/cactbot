@@ -43,6 +43,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Firestarter: 'Pyromane',
       BattleVoice: 'Voix de combat',
 
+      Paralysis: 'Paralysie',
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
       Burns: 'Brûlure',
