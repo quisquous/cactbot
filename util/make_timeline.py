@@ -7,13 +7,6 @@ import timeline_aggregator
 import encounter_finder as e_find
 
 
-def timestamp_type(arg):
-    """Defines the timestamp input format"""
-    if arg and re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
-        raise argparse.ArgumentTypeError(
-            "Invalid timestamp format. Use the format 12:34:56.789")
-    return arg
-
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
 
@@ -292,8 +285,8 @@ if __name__ == "__main__":
     parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
 
     # Log file arguments
-    parser.add_argument('-s', '--start', type=timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', type=timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-s', '--start', type=e_find.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
+    parser.add_argument('-e', '--end', type=e_find.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
     parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
 
     # Filtering arguments

@@ -1,6 +1,14 @@
 """Provides timeline manipulation utilities for make_timeline and test_timeline"""
 
 from datetime import datetime
+import re
+import argparse
+
+def timestamp_type(arg):
+    """Defines the timestamp input format"""
+    if arg and re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
+        raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
+    return arg
 
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
