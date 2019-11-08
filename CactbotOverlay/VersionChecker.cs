@@ -1,6 +1,4 @@
-﻿using Advanced_Combat_Tracker;
-using FFXIV_ACT_Plugin;
-using RainbowMage.OverlayPlugin;
+﻿using RainbowMage.OverlayPlugin;
 using System;
 using System.Text.RegularExpressions;
 
@@ -36,12 +34,31 @@ namespace Cactbot {
       return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).Location;
     }
 
-    public Version GetFFXIVPluginVersion() {
-      return System.Reflection.Assembly.GetAssembly(typeof(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin)).GetName().Version;
+    private Advanced_Combat_Tracker.ActPluginData GetFFXIVPluginData() {
+      foreach (var plugin in Advanced_Combat_Tracker.ActGlobals.oFormActMain.ActPlugins) {
+        var file = plugin.pluginFile.Name;
+        if (file == "FFXIV_ACT_Plugin.dll") {
+          return plugin;
+        }
+      }
+      return null;
     }
 
+    public Version GetFFXIVPluginVersion() {
+      var plugin = GetFFXIVPluginData();
+      if (plugin == null)
+        return new Version();
+      var match = System.Text.RegularExpressions.Regex.Match(plugin.pluginVersion, @"\nFileVersion: ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\n");
+      if (match.Groups.Count > 1) {
+        return new Version(match.Groups[1].Value);
+      }
+      return new Version();    }
+
     public string GetFFXIVPluginLocation() {
-      return System.Reflection.Assembly.GetAssembly(typeof(FFXIV_ACT_Plugin.FFXIV_ACT_Plugin)).Location;
+      var plugin = GetFFXIVPluginData();
+      if (plugin == null)
+        return "(unknown)";
+      return plugin.pluginFile.FullName;
     }
 
     public Version GetACTVersion() {

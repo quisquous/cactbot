@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cactbot</RootNamespace>
     <AssemblyName>CactbotOverlay</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -53,18 +53,8 @@
     <Reference Include="Advanced Combat Tracker">
       <HintPath>ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
     </Reference>
-    <Reference Include="FFXIV_ACT_Plugin">
-      <HintPath>ThirdParty\ACT\FFXIV_ACT_Plugin.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlRenderer, Version=1.0.1.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\HtmlRenderer.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>ThirdParty\OverlayPlugin\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OverlayPlugin">
-      <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Common">
       <HintPath>ThirdParty\OverlayPlugin\OverlayPlugin.Common.dll</HintPath>
@@ -83,24 +73,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xilium.CefGlue, Version=3.2272.2035.0, Culture=neutral, PublicKeyToken=6235298024de30d5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\Xilium.CefGlue.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CactbotOverlay.cs" />
-    <Compile Include="CactbotOverlayConfig.cs" />
-    <Compile Include="CactbotOverlayConfigPanel.cs">
+    <Compile Include="CactbotEventSource.cs" />
+    <Compile Include="CactbotEventSourceConfig.cs" />
+    <Compile Include="CactbotEventSourceConfigPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CactbotOverlayConfigPanel.Designer.cs">
-      <DependentUpon>CactbotOverlayConfigPanel.cs</DependentUpon>
+    <Compile Include="CactbotEventSourceConfigPanel.Designer.cs">
+      <DependentUpon>CactbotEventSourceConfigPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="FFXIVPlugin.cs" />
+    <Compile Include="PluginLoader.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="FFXIVProcess.cs" />
-    <Compile Include="FightTracker.cs" />
     <Compile Include="JSEvents.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="OverlayAddonMain.cs" />
@@ -109,8 +95,8 @@
     <Compile Include="WipeDetector.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CactbotOverlayConfigPanel.resx">
-      <DependentUpon>CactbotOverlayConfigPanel.cs</DependentUpon>
+    <EmbeddedResource Include="CactbotEventSourceConfigPanel.resx">
+      <DependentUpon>CactbotEventSourceConfigPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

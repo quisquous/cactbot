@@ -14,6 +14,19 @@ class PopupText {
     this.kMaxRowsOfText = 2;
 
     this.Reset();
+
+    addOverlayListener('onPlayerChangedEvent', (e) => {
+      this.OnPlayerChange(e);
+    });
+    addOverlayListener('onZoneChangedEvent', (e) => {
+      this.OnZoneChange(e);
+    });
+    addOverlayListener('onInCombatChangedEvent', (e) => {
+      this.OnInCombatChange(e.detail.inGameCombat);
+    });
+    addOverlayListener('onLogEvent', (e) => {
+      this.OnLog(e);
+    });
   }
 
   SetTimelineLoader(timelineLoader) {
@@ -64,13 +77,14 @@ class PopupText {
   }
 
   OnZoneChange(e) {
-    this.zoneName = e.detail.zoneName;
-    this.ReloadTimelines();
+    if (this.zoneName !== e.detail.zoneName) {
+      this.zoneName = e.detail.zoneName;
+      this.ReloadTimelines();
+    }
   }
 
   ReloadTimelines() {
-    // Datafiles, job, and zone must be loaded.
-    if (!this.triggerSets || !this.me || !this.zoneName)
+    if (!this.triggerSets || !this.me || !this.zoneName || !this.timelineLoader.IsReady())
       return;
 
     this.Reset();
@@ -494,8 +508,8 @@ class PopupText {
         ttsText = ttsText.replace(/^\s*<[-=]/, '');
         // * arrows in the middle are a sequence, e.g. "in => out => spread"
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
-        let cmd = { 'say': ttsText };
-        OverlayPluginApi.overlayMessage(OverlayPluginApi.overlayName, JSON.stringify(cmd));
+        let cmd = { 'call': 'cactbotSay', 'text': ttsText };
+        window.callOverlayHandler(cmd);
       } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
         audio.volume = soundVol;
@@ -557,19 +571,3 @@ class PopupTextGenerator {
 }
 
 let gPopupText;
-
-document.addEventListener('onPlayerChangedEvent', function(e) {
-  gPopupText.OnPlayerChange(e);
-});
-document.addEventListener('onZoneChangedEvent', function(e) {
-  gPopupText.OnZoneChange(e);
-});
-document.addEventListener('onInCombatChangedEvent', function(e) {
-  gPopupText.OnInCombatChange(e.detail.inGameCombat);
-});
-document.addEventListener('onLogEvent', function(e) {
-  gPopupText.OnLog(e);
-});
-document.addEventListener('onDataFilesRead', function(e) {
-  gPopupText.OnDataFilesRead(e);
-});

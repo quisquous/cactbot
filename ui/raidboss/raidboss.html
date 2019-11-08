@@ -24,10 +24,10 @@
   <script src="raidboss.js"></script>
 </head>
 <body>
-<div id="container" class="hide"></div>
+<div id="container">
   <div id="timeline-container">
     <div id="timeline-resize-helper" class="resize-helper"></div>
-    <div id="timeline-debug"></div>
+    <div id="timeline-debug" class="just-a-number"></div>
     <widget-list id="timeline"></widget-list>
   </div>
 
@@ -36,19 +36,6 @@
     <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>Alert text</div><div>Alert text 2</div></span></div>
     <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>Alarm text</div><div>Alarm text 2</div></span></div>
   </div>
+</div>
 </body>
-
-<script>
-  function hide(h) {
-    var hideWhenInactive = false;
-    if (h && hideWhenInactive)
-      document.getElementById("container").style.display = "none";
-    else
-      document.getElementById("container").style.display = "block";
-  }
-  document.addEventListener("onGameActiveChangedEvent", function(e) {
-      hide(!e.detail.active);
-  });
-  hide(true);
-</script>
 </html>

@@ -251,7 +251,7 @@ class CactbotLanguage {
   }
 }
 
-document.addEventListener('onPlayerChangedEvent', (function(e) {
+addOverlayListener('onPlayerChangedEvent', (function(e) {
   if (gLang)
     gLang.OnPlayerNameChange(e.detail.name);
 }));

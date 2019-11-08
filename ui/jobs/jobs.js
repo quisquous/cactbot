@@ -2087,25 +2087,25 @@ class Bars {
 
 let gBars;
 
-document.addEventListener('onPlayerChangedEvent', function(e) {
-  gBars.OnPlayerChanged(e);
-});
-document.addEventListener('onTargetChangedEvent', function(e) {
-  gBars.OnTargetChanged(e);
-});
-document.addEventListener('onPartyWipe', function(e) {
-  gBars.OnPartyWipe(e);
-});
-document.addEventListener('onInCombatChangedEvent', function(e) {
-  gBars.OnInCombatChanged(e);
-});
-document.addEventListener('onZoneChangedEvent', function(e) {
-  gBars.OnZoneChanged(e);
-});
-document.addEventListener('onLogEvent', function(e) {
-  gBars.OnLogEvent(e);
-});
-
 UserConfig.getUserConfigLocation('jobs', function() {
+  addOverlayListener('onPlayerChangedEvent', function(e) {
+    gBars.OnPlayerChanged(e);
+  });
+  addOverlayListener('onTargetChangedEvent', function(e) {
+    gBars.OnTargetChanged(e);
+  });
+  addOverlayListener('onPartyWipe', function(e) {
+    gBars.OnPartyWipe(e);
+  });
+  addOverlayListener('onInCombatChangedEvent', function(e) {
+    gBars.OnInCombatChanged(e);
+  });
+  addOverlayListener('onZoneChangedEvent', function(e) {
+    gBars.OnZoneChanged(e);
+  });
+  addOverlayListener('onLogEvent', function(e) {
+    gBars.OnLogEvent(e);
+  });
+
   gBars = new Bars(Options);
 });

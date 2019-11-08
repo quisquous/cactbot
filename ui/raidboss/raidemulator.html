@@ -78,17 +78,4 @@
   </div>
   <div class="emulator-background"></div>
 </body>
-<script>
-  function hide(h) {
-    var hideWhenInactive = false;
-    if (h && hideWhenInactive)
-      document.getElementById("container").style.display = "none";
-    else
-      document.getElementById("container").style.display = "block";
-  }
-  document.addEventListener("onGameActiveChangedEvent", function(e) {
-      hide(!e.detail.active);
-  });
-  hide(true);
-</script>
 </html>
