@@ -30,8 +30,18 @@
   ],
   triggers: [
     {
-      id: 'Temple Electric Burst',
-      regex: / 14:1FD6:Coeurl (?:Sruti|Smriti) starts using Electric Burst/,
+      id: 'Temple Electric Burst Sruti',
+      regex: / 14:1FD6:Coeurl Sruti starts using Electric Burst/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'AoE',
+      },
+    },
+    {
+      id: 'Temple Electric Burst Smriti',
+      regex: / 14:1FD6:Coeurl Smriti starts using Electric Burst/,
       condition: function(data) {
         return data.role == 'healer';
       },
