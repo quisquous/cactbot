@@ -44,6 +44,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       Firestarter: 'Firestarter',
       BattleVoice: 'Battle Voice',
 
+      Paralysis: 'Paralysis',
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',
       Burns: 'Burns',

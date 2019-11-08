@@ -43,6 +43,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       Firestarter: 'FIXME',
       BattleVoice: 'FIXME',
 
+      Paralysis: 'FIXME',
       Petrification: '석화',
       BeyondDeath: '죽음의 초월',
       Burns: '화상',

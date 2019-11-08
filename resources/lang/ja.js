@@ -43,6 +43,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       Firestarter: 'ファイガ効果アップ',
       BattleVoice: 'バトルボイス',
 
+      Paralysis: '麻痺',
       Petrification: '石化',
       BeyondDeath: '死の超越',
       Burns: '火傷',

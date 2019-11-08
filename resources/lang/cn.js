@@ -44,6 +44,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Firestarter: '火苗',
       BattleVoice: '战斗之声',
 
+      Paralysis: 'FIXME',
       Petrification: '石化',
       BeyondDeath: '超越死亡',
       Burns: '火伤',

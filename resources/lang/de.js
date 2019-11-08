@@ -43,6 +43,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Firestarter: 'Feuga +',
       BattleVoice: 'Ode an die Seele',
 
+      Paralysis: 'Paralyse',
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
       Burns: 'Brandwunde',
