@@ -348,9 +348,10 @@ def run_file(args, timelist):
         'timeline_stopped': True
     }
     started = False
+    encounter_sets = []
 
     with args.file as file:
-        # If searching for encounters, divert and find start/end first3
+        # If searching for encounters, divert and find start/end first.
         if args.search_fights:
             encounter_sets = e_find.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
