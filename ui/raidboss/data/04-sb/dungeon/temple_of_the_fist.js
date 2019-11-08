@@ -134,32 +134,18 @@
     {
       id: 'Temple Touch Of Slaughter',
       regex: / 14:1FE6:Ivon Coeurlfist starts using Touch Of Slaughter on (\y{Name})/,
-      alertText: function(data, matches) {
-        if (data.me == matches[1]) {
-          return {
-            en: 'Slaughter on YOU',
-          };
-        } else if (data.role == 'healer') {
-          return {
-            en: 'Heal ' + data.shortName(matches[1]) + ' soon',
-          };
-        }
+      condition: function(data) {
+        return data.role == 'healer';
+      },
+      infoText: {
+        en: 'Heal ' + data.shortName(matches[1]) + ' soon',
       },
     },
     {
       id: 'Temple Coeurl Heads',
-      regex: / 03:\y{ObjectId}:Added new combatant Head Of The Coeurl/,
-      suppressSeconds: 5,
-      infoText: function(data) {
-        // Ivon summons invisible heads when he first appears. This avoids notifying.
-        if (data.firstHeads) {
-          return {
-            en: 'Avoid floating heads',
-          };
-        }
-      },
-      run: function(data) {
-        data.firstHeads = data.firstHeads || true;
+      regex: / 15:\y{ObjectId}:Ivon Coeurlfist:1FE9:Coeurl Whisper:/,
+      infoText: {
+        en: 'Avoid floating heads',
       },
     },
     {
