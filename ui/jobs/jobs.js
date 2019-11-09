@@ -725,6 +725,16 @@ class BuffTracker {
         sortKey: 12,
         cooldown: 180,
       },
+      divination: {
+        gainEffect: gLang.kEffect.Divination,
+        loseEffect: gLang.kEffect.Divination,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/divination.png',
+        // Dark purple.
+        borderColor: '#5C1F58',
+        sortKey: 13,
+        cooldown: 120,
+      },
     };
 
     let keys = Object.keys(this.buffInfo);
