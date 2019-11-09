@@ -26,7 +26,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'PLD')
     document.getElementById('jobinfo').innerText = jobDetail.oath;
   else if (e.detail.job == 'BRD')
-    document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.songMilliseconds;
+    document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.soulGauge + ' | ' + jobDetail.songMilliseconds;
   else if (e.detail.job == 'NIN')
     document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount;
   else if (e.detail.job == 'DRG')
@@ -36,13 +36,15 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'THM')
     document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ')';
   else if (e.detail.job == 'WHM')
-    document.getElementById('jobinfo').innerText = jobDetail.lilies;
+    document.getElementById('jobinfo').innerText = jobDetail.lily_stacks + ' (' + jobDetail.lilyMilliseconds + ') | ' + jobDetail.bloodlily_stacks;
   else if (e.detail.job == 'SMN')
-    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.dreadwyrmStacks + ' | ' + jobDetail.bahamutStacks + ' ( ' + jobDetail.dreadwyrmMilliseconds + ' | ' + jobDetail.bahamutMilliseconds + ' )';
+    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.dreadwyrmStacks + ' | ' + jobDetail.bahamutStance + ' | ' + jobDetail.bahamutSummoned + ' ( ' + jobDetail.stanceMilliseconds + ') | ' + jobDetail.phoenixReady;
   else if (e.detail.job == 'SCH')
-    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.fairyGauge;
+    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.fairyGauge + ' | ' + jobDetail.fairyStatus + ' (' + jobDetail.fairyMilliseconds + ')';
   else if (e.detail.job == 'ACN')
-    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks;
+    document.getElementById('jobinfo').innerText = jobDetail.dreadwyrmStacks;
+  else if (e.detail.job == 'AST')
+    document.getElementById('jobinfo').innerText = jobDetail.heldCard + ' (' + jobDetail.arcanum_1 + ' | ' + jobDetail.arcanum_2 + ' | ' + jobDetail.arcanum_3 + ')';
   else if (e.detail.job == 'MNK')
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' | ' + jobDetail.chakraStacks + ' (' + jobDetail.lightningMilliseconds + ')';
   else if (e.detail.job == 'PGL')
