@@ -293,7 +293,7 @@ function setupRegexes() {
   ]);
 }
 
-let kMeleeWithMpJobs = ['BRD', 'DRK', 'PLD'];
+let kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 function doesJobNeedMPBar(job) {
   return Util.isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
