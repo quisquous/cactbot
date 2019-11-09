@@ -371,150 +371,160 @@ namespace Cactbot {
           send = true;
         }
 
-        if (player.job == FFXIVProcess.EntityJob.RDM) {
-          var job = ffxiv_.GetRedMage();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.rdm)) {
-              notify_state_.rdm = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(job);
-              OnPlayerChanged(e);
+            if (player.job == FFXIVProcess.EntityJob.RDM) {
+               var job = ffxiv_.GetRedMage();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.rdm)) {
+                     notify_state_.rdm = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.WAR) {
+               var job = ffxiv_.GetWarrior();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.war)) {
+                     notify_state_.war = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.DRK) {
+               var job = ffxiv_.GetDarkKnight();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.drk)) {
+                     notify_state_.drk = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.DarkKnightDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.PLD) {
+               var job = ffxiv_.GetPaladin();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.pld)) {
+                     notify_state_.pld = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.PaladinDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.BRD) {
+               var job = ffxiv_.GetBard();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.brd)) {
+                     notify_state_.brd = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.NIN) {
+               var job = ffxiv_.GetNinja();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.nin)) {
+                     notify_state_.nin = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.NinjaDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.DRG) {
+               var job = ffxiv_.GetDragoon();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.drg)) {
+                     notify_state_.drg = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.DragoonDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.BLM || player.job == FFXIVProcess.EntityJob.THM) {
+               var job = ffxiv_.GetBlackMage();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.blm)) {
+                     notify_state_.blm = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.BlackMageDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.WHM) {
+               var job = ffxiv_.GetWhiteMage();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.whm)) {
+                     notify_state_.whm = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.WhiteMageDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.SMN || player.job == FFXIVProcess.EntityJob.ACN) {
+               var job = ffxiv_.GetSummoner();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.smn)) {
+                     notify_state_.smn = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.SummonerDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.SCH) {
+               var job = ffxiv_.GetScholar();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.sch)) {
+                     notify_state_.sch = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.ScholarDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.MNK || player.job == FFXIVProcess.EntityJob.PGL) {
+               var job = ffxiv_.GetMonk();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.mnk)) {
+                     notify_state_.mnk = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.MonkDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.MCH) {
+               var job = ffxiv_.GetMachinist();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.mch)) {
+                     notify_state_.mch = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.MachinistDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.AST) {
+               var job = ffxiv_.GetAstrologian();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.ast)) {
+                     notify_state_.ast = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.AstrologianDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (player.job == FFXIVProcess.EntityJob.SAM) {
+               var job = ffxiv_.GetSamurai();
+               if (job != null) {
+                  if (send || !job.Equals(notify_state_.sam)) {
+                     notify_state_.sam = job;
+                     var e = new JSEvents.PlayerChangedEvent(player);
+                     e.jobDetail = new JSEvents.PlayerChangedEvent.SamuraiDetail(job);
+                     OnPlayerChanged(e);
+                  }
+               }
+            } else if (send) {
+               // No job-specific data.
+               OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
             }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.WAR) {
-          var job = ffxiv_.GetWarrior();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.war)) {
-              notify_state_.war = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.DRK) {
-          var job = ffxiv_.GetDarkKnight();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.drk)) {
-              notify_state_.drk = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.DarkKnightDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.PLD) {
-          var job = ffxiv_.GetPaladin();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.pld)) {
-              notify_state_.pld = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.PaladinDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.BRD) {
-          var job = ffxiv_.GetBard();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.brd)) {
-              notify_state_.brd = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.NIN) {
-          var job = ffxiv_.GetNinja();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.nin)) {
-              notify_state_.nin = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.NinjaDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.DRG) {
-          var job = ffxiv_.GetDragoon();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.drg)) {
-              notify_state_.drg = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.DragoonDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.BLM || player.job == FFXIVProcess.EntityJob.THM) {
-          var job = ffxiv_.GetBlackMage();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.blm)) {
-              notify_state_.blm = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.BlackMageDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.WHM) {
-          var job = ffxiv_.GetWhiteMage();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.whm)) {
-              notify_state_.whm = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.WhiteMageDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.SMN || player.job == FFXIVProcess.EntityJob.SCH || player.job == FFXIVProcess.EntityJob.ACN) {
-          var job = ffxiv_.GetSummonerAndScholar();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.smn_sch)) {
-              notify_state_.smn_sch = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.SummonerAndScholarDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.MNK || player.job == FFXIVProcess.EntityJob.PGL) {
-          var job = ffxiv_.GetMonk();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.mnk)) {
-              notify_state_.mnk = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.MonkDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.MCH) {
-          var job = ffxiv_.GetMachinist();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.mch)) {
-              notify_state_.mch = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.MachinistDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.AST) {
-          var job = ffxiv_.GetAstrologian();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.ast)) {
-              notify_state_.ast = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.AstrologianDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (player.job == FFXIVProcess.EntityJob.SAM) {
-          var job = ffxiv_.GetSamurai();
-          if (job != null) {
-            if (send || !job.Equals(notify_state_.sam)) {
-              notify_state_.sam = job;
-              var e = new JSEvents.PlayerChangedEvent(player);
-              e.jobDetail = new JSEvents.PlayerChangedEvent.SamuraiDetail(job);
-              OnPlayerChanged(e);
-            }
-          }
-        } else if (send) {
-          // No job-specific data.
-          OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
-        }
       }
 
       // onTargetChangedEvent: Fires when current target or their state changes.
@@ -808,7 +818,8 @@ namespace Cactbot {
       public FFXIVProcess.NinjaJobData nin = new FFXIVProcess.NinjaJobData();
       public FFXIVProcess.BlackMageJobData blm = new FFXIVProcess.BlackMageJobData();
       public FFXIVProcess.WhiteMageJobData whm = new FFXIVProcess.WhiteMageJobData();
-      public FFXIVProcess.SummonerAndScholarJobData smn_sch = new FFXIVProcess.SummonerAndScholarJobData();
+      public FFXIVProcess.SummonerJobData smn = new FFXIVProcess.SummonerJobData();
+      public FFXIVProcess.ScholarJobData sch = new FFXIVProcess.ScholarJobData();
       public FFXIVProcess.MonkJobData mnk = new FFXIVProcess.MonkJobData();
       public FFXIVProcess.MachinistJobData mch = new FFXIVProcess.MachinistJobData();
       public FFXIVProcess.AstrologianJobData ast = new FFXIVProcess.AstrologianJobData();
