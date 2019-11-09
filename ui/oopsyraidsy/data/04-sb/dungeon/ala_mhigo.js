@@ -26,44 +26,44 @@
     {
       id: 'Ala Mhigo Demimagicks',
       damageRegex: '205E',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Ala Mhigo Unmoving Troika',
       damageRegex: '2060',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Ala Mhigo Art Of The Sword 1',
       damageRegex: '2069',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Ala Mhigo Art Of The Sword 2',
       damageRegex: '2589',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -72,7 +72,7 @@
       // but normally people get pushed into it.
       id: 'Ala Mhigo Art Of The Swell',
       gainsEffectRegex: gLang.kEffect.DamageDown,
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },

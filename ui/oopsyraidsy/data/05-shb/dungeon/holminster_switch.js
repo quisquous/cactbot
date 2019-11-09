@@ -22,18 +22,18 @@
     {
       id: 'Holminster Flagellation',
       damageRegex: '3DD6',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Holminster Taphephobia',
       damageRegex: '4181',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
