@@ -37,7 +37,7 @@ document.addEventListener('onLogEvent', function(e) {
         let monster = Monsters[name];
         let matchOrNot = (r[1].match(monster['name'][lang] || monster['name']['en']) != null);
         matchOrNot &= (r[0].match(monster['regex'] || '') != null);
-        matchOrNot &= (r[2] >= (monster['hp'] || 0));
+        matchOrNot &= (Number(r[2]) >= (Number(monster['hp']) || 0));
         if (matchOrNot) {
           // console.log(r);
           let mob_name = r[1];
