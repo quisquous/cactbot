@@ -17,10 +17,11 @@
     {
       id: 'Fractal Sanctification', // Instant conal buster, boss 3
       damageRegex: 'F89',
-      condition: function(data) {
-        return data.role != 'tank';
+      condition: function(e) {
+        // Double taps only
+        return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
