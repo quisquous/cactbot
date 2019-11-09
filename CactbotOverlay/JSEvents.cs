@@ -88,6 +88,7 @@ namespace Cactbot {
         currentCP = e.cp;
         maxCP = e.max_cp;
         pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
+        rotation = e.rotation;
         jobDetail = null;
         bait = e.bait;
         debugJob = e.debug_job;
@@ -114,6 +115,7 @@ namespace Cactbot {
       public int currentShield;
 
       public Point3F pos;
+      public float rotation;
       public int bait;
 
       // One of the FooJobDetails structures, depending on the value of |job|.
@@ -279,6 +281,7 @@ namespace Cactbot {
           currentMP = e.mp;
           maxMP = e.max_mp;
           pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
+          rotation = e.rotation;
           distance = e.distance;
         }
       }
@@ -296,6 +299,7 @@ namespace Cactbot {
       public int maxTP = 0;
 
       public Point3F pos;
+      public float rotation;
       public int distance = 0;
     }
 
