@@ -237,6 +237,10 @@ When you cast your line at a fishing hole, this module keeps track of when you r
 
 ![fishing screenshot](screenshots/promo_fishing.png)
 
+Cast times are currently only logged as you fish, so there won't be any data until you've caught each fish. Green bars represent light tugs, yellow is a medium tug and red bars are legendary/heavy tugs.
+
+[See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
+
 ### [dps](ui/dps) meters
 
 cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
