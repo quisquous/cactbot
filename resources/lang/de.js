@@ -42,6 +42,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Thundercloud: 'Blitz +',
       Firestarter: 'Feuga +',
       BattleVoice: 'Ode an die Seele',
+      Divination: 'Weissagung',
 
       Paralysis: 'Paralyse',
       Petrification: 'Stein',

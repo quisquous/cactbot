@@ -43,6 +43,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       Thundercloud: 'Thundercloud',
       Firestarter: 'Firestarter',
       BattleVoice: 'Battle Voice',
+      Divination: 'Divination',
 
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',

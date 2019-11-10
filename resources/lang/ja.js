@@ -42,6 +42,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       Thundercloud: 'サンダー系魔法効果アップ',
       Firestarter: 'ファイガ効果アップ',
       BattleVoice: 'バトルボイス',
+      Divination: 'ディヴィネーション',
 
       Paralysis: '麻痺',
       Petrification: '石化',

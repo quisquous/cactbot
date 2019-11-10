@@ -42,6 +42,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       Thundercloud: 'FIXME',
       Firestarter: 'FIXME',
       BattleVoice: 'FIXME',
+      Divination: 'FIXME',
 
       Paralysis: 'FIXME',
       Petrification: '석화',

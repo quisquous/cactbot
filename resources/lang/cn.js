@@ -43,6 +43,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Thundercloud: '雷云',
       Firestarter: '火苗',
       BattleVoice: '战斗之声',
+      Divination: 'FIXME',
 
       Paralysis: 'FIXME',
       Petrification: '石化',

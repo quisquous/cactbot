@@ -42,6 +42,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Thundercloud: 'Nuage d\'orage',
       Firestarter: 'Pyromane',
       BattleVoice: 'Voix de combat',
+      Divination: 'Divination',
 
       Paralysis: 'Paralysie',
       Petrification: 'Pétrification',
