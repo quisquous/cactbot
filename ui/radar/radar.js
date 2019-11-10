@@ -168,6 +168,6 @@ document.addEventListener('onZoneChangedEvent', function(e) {
   targetMonsters = [];
 });
 
-UserConfig.getUserConfigLocation('radar', function() {
-  // Options = Options; // ?
-});
+// UserConfig.getUserConfigLocation('radar', function() {
+//   Options = Options; // ?
+// });
