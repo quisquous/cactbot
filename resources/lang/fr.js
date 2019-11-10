@@ -43,6 +43,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Firestarter: 'Pyromane',
       BattleVoice: 'Voix de combat',
 
+      Paralysis: 'Paralysie',
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
       Burns: 'Brûlure',
@@ -60,7 +61,7 @@ class CactbotLanguageFr extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/Début du combat dans (\y{Float}) secondes !/);
+      return Regexes.parse(/Début du combat dans (\y{Float}) secondes !/);
     };
     this.countdownEngageRegex = function() {
       return /:À l'attaque !/;

@@ -160,4 +160,75 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Bioweapon Storage is no longer sealed': 'Das Biowaffen-Magazin öffnet sich erneut',
+        'Bioweapon Storage will be sealed off': 'bis sich das Biowaffen-Magazin schließt',
+        'Engage!': 'Start!',
+        'Lamia Prosector': 'Lamia-Prosektorin',
+        'Melusine': 'Melusine',
+      },
+      'replaceText': {
+        'Circle Blade': 'Kreisklinge',
+        'Circle Of Flames': 'Feuerkreis',
+        'Cursed Shriek': 'Schrei der Verwünschung',
+        'Cursed Voice': 'Stimme der Verwünschung',
+        'Deathdancer': 'Todestänzerin',
+        'Frenzy': 'Verve',
+        'Petrifaction': 'Versteinerung',
+        'Red Lotus Blade': 'Rote Lotosklinge',
+        'Sacrifice': 'Opferung',
+        'Tail Slap': 'Schweifklapser',
+        'Venomous Tail': 'Venomschweif',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Bioweapon Storage is no longer sealed': 'Ouverture de l\Entrepôt d\'armes biologiques',
+        'Bioweapon Storage will be sealed off': 'Fermeture de l\Entrepôt d\'armes biologiques',
+        'Engage!': 'À l\'attaque !',
+        'Lamia Prosector': 'Lamia dissectrice',
+        'Melusine': 'Mélusine',
+      },
+      'replaceText': {
+        'Circle Blade': 'Lame circulaire',
+        'Circle Of Flames': 'Cercle de flammes',
+        'Cursed Shriek': 'Cri maudit',
+        'Cursed Voice': 'Voix maudite',
+        'Deathdancer': 'Danseuse de mort',
+        'Frenzy': 'Frénésie',
+        'Petrifaction': 'Pétrification',
+        'Red Lotus Blade': 'Lame lotus rouge',
+        'Sacrifice': 'Sacrifice',
+        'Tail Slap': 'Gifle caudale',
+        'Venomous Tail': 'Queue venimeuse',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
+        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
+        'Engage!': '戦闘開始！',
+        'Lamia Prosector': 'ラミア・プロセクター',
+        'Melusine': 'メリュジーヌ',
+      },
+      'replaceText': {
+        'Circle Blade': 'サークルブレード',
+        'Circle Of Flames': 'サークル・オブ・フレイム',
+        'Cursed Shriek': '呪詛の叫声',
+        'Cursed Voice': '呪詛の声',
+        'Deathdancer': 'Deathdancer', // FIXME
+        'Frenzy': '熱狂',
+        'Petrifaction': 'ペトリファクション',
+        'Red Lotus Blade': 'レッドロータス',
+        'Sacrifice': '生贄',
+        'Tail Slap': 'テールスラップ',
+        'Venomous Tail': 'ベノモステール',
+      },
+    },
+  ],
 }];

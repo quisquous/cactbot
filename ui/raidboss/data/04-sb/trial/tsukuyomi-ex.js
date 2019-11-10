@@ -315,7 +315,6 @@
         'Specter Of The Patriarch': 'Yotsuyus Ziehvater',
         'Specter Of Zenos': 'Zenos',
         'Tsukuyomi': 'Tsukuyomi',
-
         'Moondust': 'Mondfragment',
         'Moonlight': 'Mondlichtkugel',
       },
@@ -350,7 +349,6 @@
         'Waning Grudge': 'Schwindender Groll',
         'Waxing Grudge': 'Wachsender Groll',
         'Zashiki-asobi': 'Zashiki-Asobi',
-
         'Lead/Steel': 'Blei/Stahl',
         'Steel/Lead': 'Stahl/Blei',
         'Homeland adds .E->W.': 'Domaner Adds (O->W)',
@@ -461,10 +459,8 @@
         'Specter Of The Patriarch': '養父の幻影',
         'Specter Of Zenos': 'ゼノスの幻影',
         'Tsukuyomi': 'ツクヨミ',
-
-        // FIXME
-        'Moondust': 'Moondust',
-        'Moonlight': 'Moonlight',
+        'Moondust': '月の欠片',
+        'Moonlight': '月光',
       },
       'replaceText': {
         'Bright Blade': '月刀左近',
@@ -494,14 +490,14 @@
         'Waning Grudge': '黒き怨念',
         'Waxing Grudge': '白き怨念',
         'Zashiki-asobi': '座敷遊び',
+        'Moonburst': '月片爆散',
+        'Antitwilight': '月下美人',
 
         // FIXME
         'Lead/Steel': 'Lead/Steel',
         'Steel/Lead': 'Steel/Lead',
         'Homeland adds .E->W.': 'Homeland adds (E->W)',
         'Empire adds .SW->NW.': 'Empire adds (SW->NW)',
-        'Moonburst': 'Moonburst',
-        'Antitwilight': 'Antitwilight',
       },
       '~effectNames': {
         'Bleeding': 'ペイン',

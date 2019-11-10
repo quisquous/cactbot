@@ -44,6 +44,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Firestarter: '火苗',
       BattleVoice: '战斗之声',
 
+      Paralysis: 'FIXME',
       Petrification: '石化',
       BeyondDeath: '超越死亡',
       Burns: '火伤',
@@ -64,7 +65,7 @@ class CactbotLanguageCn extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/距离战斗开始还有(\y{Float})秒！/);
+      return Regexes.parse(/距离战斗开始还有(\y{Float})秒！/);
     };
     this.countdownEngageRegex = function() {
       return /:战斗开始！/;

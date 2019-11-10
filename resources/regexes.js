@@ -6,11 +6,11 @@
 var Regexes = {
 /* eslint-enable */
   // Convenience for turning multiple args into a unioned regular expression.
-  // AnyOf(x, y, z) or AnyOf([x, y, z]) do the same thing, and return (?:x|y|z).
-  // AnyOf(x) or AnyOf(x) on its own simplifies to just x.
+  // anyOf(x, y, z) or anyOf([x, y, z]) do the same thing, and return (?:x|y|z).
+  // anyOf(x) or anyOf(x) on its own simplifies to just x.
   // args may be strings or RegExp, although any additional markers to RegExp
   // like /insensitive/i are dropped.
-  AnyOf: function() {
+  anyOf: function() {
     let array;
     if (arguments.length == 1) {
       if (!Array.isArray(arguments[0]))
@@ -27,7 +27,7 @@ var Regexes = {
     return str;
   },
 
-  Parse: function(regexpString) {
+  parse: function(regexpString) {
     let kCactbotCategories = {
       TimeStamp: '\[[0-9:.]+\]',
       LogType: '[0-9A-Fa-f]{2}',
@@ -44,14 +44,14 @@ var Regexes = {
     // have a ~20% regex parsing overhead, but at least they work.
     let modifiers = 'i';
     if (regexpString instanceof RegExp) {
-      modifiers = (regexpString.global ? 'g' : '') +
-                  (regexpString.multiline ? 'm' : '');
+      modifiers += (regexpString.global ? 'g' : '') +
+                   (regexpString.multiline ? 'm' : '');
       regexpString = regexpString.source;
     }
     regexpString = regexpString.replace(/\\y\{(.*?)\}/g, function(match, group) {
       return kCactbotCategories[group] || match;
     });
-    return new RegExp(Regexes.WithUnicodeClasses(regexpString), modifiers);
+    return new RegExp(Regexes.withUnicodeClasses(regexpString), modifiers);
   },
 
   /* ! This method is from https://stackoverflow.com/a/8933546
@@ -69,7 +69,7 @@ var Regexes = {
     - Rename method from unicode_hack().
     - Formatting.
   */
-  WithUnicodeClasses: (function() {
+  withUnicodeClasses: (function() {
     /* Regexps to match characters in the BMP according to their Unicode
        category.
        Extracted from running all characters (code units) against Java's

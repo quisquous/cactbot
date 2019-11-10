@@ -3,6 +3,9 @@
 02-arr/trial/ifrit_nm.js
 02-arr/trial/titan_ex.js
 03-hw/dungeon/fractal_continuum.js
+03-hw/dungeon/gubal_library_hard.js
+04-sb/dungeon/ala_mhigo.js
+04-sb/dungeon/temple_of_the_fist.js
 04-sb/raid/o4s.js
 04-sb/raid/o5s.js
 04-sb/raid/o6s.js
@@ -12,6 +15,7 @@
 04-sb/trial/susano-ex.js
 04-sb/ultimate/ultima_weapon_ultimate.js
 04-sb/ultimate/unending_coil_ultimate.js
+05-shb/alliance/the_copied_factory.js
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/amaurot.js
 05-shb/dungeon/dohn_mheg.js
@@ -19,6 +23,7 @@
 05-shb/dungeon/malikahs_well.js
 05-shb/dungeon/mt_gulg.js
 05-shb/dungeon/qitana_ravel.js
+05-shb/dungeon/the_grand_cosmos.js
 05-shb/dungeon/twinning.js
 05-shb/raid/e1n.js
 05-shb/raid/e1s.js
@@ -28,6 +33,7 @@
 05-shb/raid/e3s.js
 05-shb/raid/e4n.js
 05-shb/raid/e4s.js
+05-shb/trial/hades-ex.js
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js

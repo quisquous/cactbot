@@ -24,16 +24,16 @@ let Options = {
   },
   Regex: {
     en: {
-      'gFlagRegex': Regexes.Parse(/00:00..:(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
-      'gTrackerRegex': Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
-      'gImportRegex': Regexes.Parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
-      'gTimeRegex': Regexes.Parse(/(.*) \((\d*)m\)/),
+      'gFlagRegex': Regexes.parse(/00:00..:(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
+      'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
+      'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
-      'gFlagRegex': Regexes.Parse(/00:00..:(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
-      'gTrackerRegex': Regexes.Parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
-      'gImportRegex': Regexes.Parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
-      'gTimeRegex': Regexes.Parse(/(.*) \((\d*)分(钟*)\)/),
+      'gFlagRegex': Regexes.parse(/00:00..:(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
+      'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
+      'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
   },
   ZoneInfo: {
@@ -2016,17 +2016,17 @@ class EurekaTracker {
       nm.timeElement = time;
       let mobName = nm.mobName[this.options.Language];
       if (nm.spawnTrigger && nm.spawnTrigger[this.options.Language])
-        nm.addRegex = Regexes.Parse(nm.spawnTrigger[this.options.Language]);
+        nm.addRegex = Regexes.parse(nm.spawnTrigger[this.options.Language]);
       if (!nm.addRegex)
-        nm.addRegex = Regexes.Parse('03:\\y{ObjectId}:Added new combatant ' + mobName + '\\.');
-      nm.removeRegex = Regexes.Parse('04:\\y{ObjectId}:Removing combatant ' + mobName + '\\.');
+        nm.addRegex = Regexes.parse('03:\\y{ObjectId}:Added new combatant ' + mobName + '\\.');
+      nm.removeRegex = Regexes.parse('04:\\y{ObjectId}:Removing combatant ' + mobName + '\\.');
       nm.respawnTimeMsLocal = undefined;
       nm.respawnTimeMsTracker = undefined;
     }
 
     this.fairy = this.options.ZoneInfo[this.zoneName].fairy;
     let fairyName = this.fairy[this.options.Language];
-    this.fairy.regex = Regexes.Parse('03:\\y{ObjectId}:Added new combatant (' + fairyName + ')\\. .* ' +
+    this.fairy.regex = Regexes.parse('03:\\y{ObjectId}:Added new combatant (' + fairyName + ')\\. .* ' +
                                      'Pos: \\(([^,]+),([^,]+),([^,]+)\\)');
 
     this.playerElement = document.createElement('div');

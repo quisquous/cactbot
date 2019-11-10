@@ -150,7 +150,7 @@ namespace Cactbot {
     //   0xA8 bytes in: float32 pos_y;
     //   0xB0 bytes in: float32 Rotation;
     //   ...
-    //   0x18A4 bytes in:
+    //   0x18B8 bytes in:
     //     0x000 bytes in: int32 hp;
     //     0x004 bytes in: int32 maxhp;
     //     0x008 bytes in: int32 mp;
@@ -160,13 +160,13 @@ namespace Cactbot {
     //     0x016 bytes in: int16 cp;
     //     0x018 bytes in: int16 maxcp;
     //     ...
-    //     0x036 bytes in: EntityJob job;  // 1 byte.
+    //     0x03C bytes in: EntityJob job;  // 1 byte.
     //     ...
-    //     0x038 bytes in: int8 level;
+    //     0x03E bytes in: int8 level;
     // }
 
     // Base offset for the character details below.
-    private static int kEntityStructureOffsetCharacterDetails = 0x18A4;
+    private static int kEntityStructureOffsetCharacterDetails = 0x18B8;
 
     private static int kEntityStructureSize = kEntityStructureOffsetCharacterDetails + 0x300;
     private static int kEntityStructureSizeName = 0x44;
@@ -180,9 +180,9 @@ namespace Cactbot {
         // Character details.
         private static int kEntityStructureOffsetHpMpTp = 0x0;
     private static int kEntityStructureOffsetGpCp = 0x12;
-    private static int kEntityStructureOffsetJob = 0x38;
-    private static int kEntityStructureOffsetLevel = 0x3A;
-    private static int kEntityStructureOffsetShieldPercentage = 0x5c;
+    private static int kEntityStructureOffsetJob = 0x3C;
+    private static int kEntityStructureOffsetLevel = 0x3E;
+    private static int kEntityStructureOffsetShieldPercentage = 0x5F;
 
     // A piece of code that reads the job data.
     // The pointer of interest is the first ???????? in the signature.

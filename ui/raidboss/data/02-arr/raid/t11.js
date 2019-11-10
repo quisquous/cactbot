@@ -13,6 +13,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Stun on ' + data.ShortName(matches[1]),
+          fr: 'Stun sur ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -27,6 +28,7 @@
           return;
         return {
           en: 'Spread => Stack',
+          fr: 'Ecarté -> Packé',
         };
       },
       run: function(data) {
@@ -45,6 +47,7 @@
           return;
         return {
           en: 'Stack => Spread',
+          fr: 'Packé -> Ecarté',
         };
       },
       run: function(data) {
@@ -63,6 +66,7 @@
           return;
         return {
           en: 'Stack',
+          fr: 'Packé',
         };
       },
       run: function(data) {
@@ -80,6 +84,7 @@
           return;
         return {
           en: 'Spread',
+          fr: 'Ecarté',
         };
       },
       run: function(data) {
@@ -92,6 +97,7 @@
       sound: 'Long',
       infoText: {
         en: 'Out of Middle',
+        fr: 'En dehors du centre',
       },
     },
     {
@@ -105,6 +111,7 @@
       },
       alarmText: {
         en: 'Lightning on YOU',
+        fr: 'Eclair sur VOUS',
       },
     },
     {
@@ -116,6 +123,7 @@
       sound: 'Long',
       infoText: {
         en: 'Final Phase',
+        fr: 'Phase finale',
       },
     },
     {
@@ -159,6 +167,7 @@
           return;
         return {
           en: 'Red Tethers With ' + data.ShortName(partner),
+          fr: 'Liens rouges avec ' + data.ShortName(partner),
         };
       },
     },
@@ -181,6 +190,7 @@
           return;
         return {
           en: 'Blue Tethers With ' + data.ShortName(partner),
+          fr: 'Liens bleus avec ' + data.ShortName(partner),
         };
       },
     },
@@ -193,6 +203,77 @@
       run: function(data) {
         delete data.tetherA;
         delete data.tetherB;
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Engage!': 'Start!',
+        'Kaliya': 'Kaliya',
+        'The Core Override is no longer sealed': 'Der Zugang zur Kern-Steuereinheit öffnet sich wieder',
+        'The Core Override will be sealed off': 'bis sich der Zugang zur Kern-Steuereinheit schließt',
+      },
+      'replaceText': {
+        'Barofield': 'Baro-Feld',
+        'Emergency Mode': 'Notprogramm',
+        'Enrage': 'Finalangriff',
+        'Main Head': 'Hauptkopf',
+        'Nanospore Jet': 'Nanosporen-Strahl',
+        'Nerve Cloud': 'Nervenwolke',
+        'Nerve Gas': 'Nervengas',
+        'Resonance': 'Resonanz',
+        'Secondary Head': 'Nebenkopf',
+        'Seed Of The Rivers': 'Samen der Flüsse',
+        'Seed Of The Sea': 'Samen der See',
+        'Stun': 'Betäubung',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Engage!': 'À l\'attaque !',
+        'Kaliya': 'Kaliya',
+        'The Core Override is no longer sealed': 'Ouverture de l\'unité de contrôle du Cœur',
+        'The Core Override will be sealed off': 'Fermeture de l\'unité de contrôle du Cœur',
+      },
+      'replaceText': {
+        'Barofield': 'Barotraumatisme',
+        'Emergency Mode': 'Mode d\'urgence',
+        'Enrage': 'Enrage',
+        'Main Head': 'Tête principale',
+        'Nanospore Jet': 'Jet de magismoparticules',
+        'Nerve Cloud': 'Nuage neurotoxique',
+        'Nerve Gas': 'Gaz neurotoxique',
+        'Resonance': 'Résonance',
+        'Secondary Head': 'Tête secondaire',
+        'Seed Of The Rivers': 'Germe de la rivière',
+        'Seed Of The Sea': 'Germe de la mer',
+        'Stun': 'Étourdissement',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Engage!': '戦闘開始！',
+        'Kaliya': 'カーリア',
+        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
+        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Barofield': 'バロフィールド',
+        'Emergency Mode': 'イマージャンシーモード',
+        'Enrage': 'Enrage',
+        'Main Head': 'メインヘッド',
+        'Nanospore Jet': '魔科学粒子散布',
+        'Nerve Cloud': 'ナーブクラウド',
+        'Nerve Gas': 'ナーブガス',
+        'Resonance': 'レゾナンス',
+        'Secondary Head': 'サブヘッド',
+        'Seed Of The Rivers': 'シード・オブ・リバー',
+        'Seed Of The Sea': 'シード・オブ・シー',
+        'Stun': 'スタン',
       },
     },
   ],

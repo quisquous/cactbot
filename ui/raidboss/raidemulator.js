@@ -14,11 +14,11 @@ class LogCollector {
     this.addFightCallback = addFightCallback;
     this.wait;
     this.sealRegexes = {
-      ja: Regexes.Parse(/ 00:0839:(.*)の封鎖まであと\y{Float}秒/),
+      ja: Regexes.parse(/ 00:0839:(.*)の封鎖まであと\y{Float}秒/),
       en: / 00:0839:(.*) will be sealed off in /,
-      de: Regexes.Parse(/ 00:0839:Noch \y{Float} Sekunden, bis sich (.*) schließt/),
+      de: Regexes.parse(/ 00:0839:Noch \y{Float} Sekunden, bis sich (.*) schließt/),
       fr: / 00:0839:Fermeture (.*) dans /,
-      cn: Regexes.Parse(/ 00:0839:距(.*)被封锁还有\y{Float}秒/),
+      cn: Regexes.parse(/ 00:0839:距(.*)被封锁还有\y{Float}秒/),
     };
     this.unsealRegexes = {
       ja: / 00:0839:(.*)の封鎖が解かれた……/,
@@ -58,7 +58,7 @@ class LogCollector {
 
   AppendImportLogs(logs) {
     // Define now to save time later
-    let playerRegex = Regexes.Parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
+    let playerRegex = Regexes.parse(/ 15:(\y{ObjectId}):(\y{Name}):(\y{AbilityCode}):/);
 
     for (let i = 0; i < logs.length; ++i) {
       let log = logs[i];
@@ -132,7 +132,7 @@ class LogCollector {
     // 00:332e: = Relative Virtue
     // Add more to regex only if needed
     fight.logs = fight.logs.filter(function(line) {
-      return / (?:1[456AB]|23):| 0[134]:| 00:(?:003[89]|0839|0044|332e):| 21:.{8}:/.test(line);
+      return / (?:1[456AB]|23):| 0[134]:| 00:(?:003[89]|0839|0044|332e):| 21:| 22:| 23:/.test(line);
     }).sort();
 
     this.fights.push(fight);

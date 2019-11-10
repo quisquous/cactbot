@@ -44,6 +44,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       Firestarter: 'Firestarter',
       BattleVoice: 'Battle Voice',
 
+      Paralysis: 'Paralysis',
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',
       Burns: 'Burns',
@@ -64,7 +65,7 @@ class CactbotLanguageEn extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/Battle commencing in (\y{Float}) seconds!/);
+      return Regexes.parse(/Battle commencing in (\y{Float}) seconds!/);
     };
     this.countdownEngageRegex = function() {
       return /:Engage!/;

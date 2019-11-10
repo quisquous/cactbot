@@ -903,7 +903,7 @@ class DamageTracker {
       let trigger = {
         id: key,
         damageRegex: id,
-        idRegex: Regexes.Parse('^' + id + '$'),
+        idRegex: Regexes.parse('^' + id + '$'),
         mistake: function(e, data) {
           return { type: type, blame: e.targetName, text: e.abilityName };
         },
@@ -947,15 +947,15 @@ class DamageTracker {
       for (let j = 0; j < set.triggers.length; ++j) {
         let trigger = set.triggers[j];
         if ('regex' in trigger) {
-          trigger.regex = Regexes.Parse(trigger.regex);
+          trigger.regex = Regexes.parse(trigger.regex);
           this.generalTriggers.push(trigger);
         }
         if ('damageRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse('^' + trigger.damageRegex + '$');
+          trigger.idRegex = Regexes.parse('^' + trigger.damageRegex + '$');
           this.damageTriggers.push(trigger);
         }
         if ('abilityRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse('^' + trigger.abilityRegex + '$');
+          trigger.idRegex = Regexes.parse('^' + trigger.abilityRegex + '$');
           this.abilityTriggers.push(trigger);
         }
         if ('gainsEffectRegex' in trigger) {
@@ -967,7 +967,7 @@ class DamageTracker {
           this.effectTriggers.push(trigger);
         }
         if ('healRegex' in trigger) {
-          trigger.idRegex = Regexes.Parse('^' + trigger.healRegex + '$');
+          trigger.idRegex = Regexes.parse('^' + trigger.healRegex + '$');
           this.healTriggers.push(trigger);
         }
       }

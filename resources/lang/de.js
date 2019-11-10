@@ -43,6 +43,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Firestarter: 'Feuga +',
       BattleVoice: 'Ode an die Seele',
 
+      Paralysis: 'Paralyse',
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
       Burns: 'Brandwunde',
@@ -60,7 +61,7 @@ class CactbotLanguageDe extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.Parse(/Noch (\y{Float}) Sekunden bis Kampfbeginn!/);
+      return Regexes.parse(/Noch (\y{Float}) Sekunden bis Kampfbeginn!/);
     };
     this.countdownEngageRegex = function() {
       return /:Start!/;
