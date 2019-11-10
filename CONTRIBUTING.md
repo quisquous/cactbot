@@ -124,12 +124,15 @@ This is especially true for simultaneous alerts.
 Here's some general guidelines for the text in triggers.
 The goal for trigger text is to mimic what a human raidcaller would say.
 It should minimize the amount of that the player has to think to do a mechanic.
+As it's easier to disable triggers than to write triggers,
+cactbot tends to be slightly noisier on average than most people prefer.
 
 * Be concise.  Text should be as short as possible, like lalafells.
 * Tell the player what to do rather than the mechanic name, i.e. prefer `Get Out` vs `Iron Chariot`
 * Have the text be positive, i.e. prefer `Left` vs `Don't Go Right`
 * Don't prescribe a particular strategy, if multiple strategies exist, i.e. Titania Ex tethers or Hello World
 * If multiple strategies exist, tell the player the mechanic (`Jail on YOU`) instead of dictating a strategy.
+* Don't write triggers for obvious ground aoes.
 * As always, be consistent with other triggers.
 
 ## Timeline Guidelines
@@ -141,6 +144,12 @@ It should minimize the amount of that the player has to think to do a mechanic.
 * When using `jump`, prefer to jump to a time that has a timeline entry on it.
 * When adding a loop, add at least 30 seconds of fake abilities, and make sure these abilities line up with where the loop jumps to.
 * As always, be consistent with other timelines.
+
+## Markdown Guidelines
+
+* Improvements and additions to documentation are always welcome.
+* Use [semantic line breaks](https://sembr.org/).
+* As always, be consistent!
 
 ## Roadmap
 
