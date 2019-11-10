@@ -42,11 +42,11 @@
     {
       id: 'Gubal Hard Searing Wind', // Tank cleave, boss 2
       damageRegex: '1944',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only, but tanks are always hit by this
-        return data.role != 'tank' && e.type != '15';
+        e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -69,7 +69,6 @@
       run: function(e, data) {
         data.hasImp = data.hasImp || {};
         data.hasImp[e.targetName] = e.gains;
-        console.log(data);
       },
     },
     {
@@ -79,29 +78,29 @@
       condition: function(e, data) {
         return data.hasImp[e.targetName];
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: 'Shocked Imp' };
       },
     },
     {
       id: 'Gubal Hard Quake',
       damageRegex: '1956',
-      condition: function(e, data) {
+      condition: function(e) {
         // Always hits target, but if correctly resolved will deal 0 damage
         return e.damage > 0;
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
       id: 'Gubal Hard Tornado',
       damageRegex: '195[78]',
-      condition: function(e, data) {
+      condition: function(e) {
         // Always hits target, but if correctly resolved will deal 0 damage
         return e.damage > 0;
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },

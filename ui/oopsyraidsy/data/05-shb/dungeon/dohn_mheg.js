@@ -23,21 +23,21 @@
     {
       id: 'Dohn Mheg Imp Choir',
       gainsEffectRegex: gLang.kEffect.Imp,
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
     {
       id: 'Dohn Mheg Toad Choir',
       gainsEffectRegex: gLang.kEffect.Toad,
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
     {
       id: 'Dohn Mheg Fool\'s Tumble',
       gainsEffectRegex: gLang.kEffect.FoolsTumble,
-      mistake: function(e, data, matches) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },

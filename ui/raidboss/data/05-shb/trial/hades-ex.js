@@ -364,6 +364,9 @@
       regexDe: / (?:14:47C3:Igeyorhms Schatten|14:47C2:Lahabreas Schatten)/,
       regexFr: / (?:14:47C3:Spectre d'Igeyorhm|14:47C2:Spectre De Lahabrea)/,
       regexJa: / (?:14:47C3:イゲオルムの影|14:47C2:ラハブレアの影)/,
+      condition: function(data) {
+        return data.role == 'healer';
+      },
       suppressSeconds: 5,
       alertText: {
         en: 'Tank Busters',

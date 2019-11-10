@@ -25,11 +25,11 @@
       // AoE from the 00AB poison head marker, boss three
       id: 'Qitana Viper Poison 1',
       damageRegex: '3C9D',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -37,7 +37,7 @@
       // Overlapped circles failure on the spread circles version of the mechanic
       id: 'Qitana Confession of Faith 2',
       damageRegex: '3CA3',
-      condition: function(e, data) {
+      condition: function(e) {
         // Double taps only.
         return e.type != '15';
       },

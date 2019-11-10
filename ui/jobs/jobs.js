@@ -51,7 +51,10 @@ let Options = {
   DrkMediumMPThreshold: 5999,
   PldLowMPThreshold: 3600,
   PldMediumMPThreshold: 9400,
-  BlmLowMPThreshold: 2400,
+  // One more fire IV and then despair.
+  BlmMediumMPThreshold: 3999,
+  // Should cast despair.
+  BlmLowMPThreshold: 2399,
   LowHealthThresholdPercent: 0.2,
   MidHealthThresholdPercent: 0.8,
 };
@@ -290,7 +293,7 @@ function setupRegexes() {
   ]);
 }
 
-let kMeleeWithMpJobs = ['BRD', 'DRK', 'PLD'];
+let kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 function doesJobNeedMPBar(job) {
   return Util.isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
@@ -721,6 +724,16 @@ class BuffTracker {
         borderColor: '#ffbf00',
         sortKey: 12,
         cooldown: 180,
+      },
+      divination: {
+        gainEffect: gLang.kEffect.Divination,
+        loseEffect: gLang.kEffect.Divination,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/divination.png',
+        // Dark purple.
+        borderColor: '#5C1F58',
+        sortKey: 13,
+        cooldown: 120,
       },
     };
 
@@ -1785,6 +1798,7 @@ class Bars {
       mediumMP = this.options.PldMediumMPThreshold;
     } else if (this.job == 'BLM') {
       lowMP = this.options.BlmLowMPThreshold;
+      mediumMP = this.options.BlmMediumMPThreshold;
     }
 
     if (far >= 0 && this.distance > far)

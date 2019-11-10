@@ -6,7 +6,7 @@ Each file in this directory should be valid JavaScript and should be listed in *
 
 Each file should look something like this:
 
-```
+```javascript
 [{
   zoneRegex: /match for the zone/,
   triggers: [
@@ -24,6 +24,7 @@ Each file should look something like this:
   ]
 }]
 ```
+
 Each file should evaluate to an array of trigger sets.  A trigger set has a `zoneRegex` that matches against the current zone for whether all of its triggers should be applied.  If the zone matches, then the triggers will be valid in that zone, otherwise ignored.  `triggers` holds an array of triggers in the trigger set.  See below for the
 format of each of individual triggers.
 
@@ -39,7 +40,7 @@ Each trigger is an object with the following fields.  All fields are optional.
 * `gainsEffectRegex`: regex that matches gaining effects by name.
 * `losesEffectRegex`: regex that matches loses any effects by name.
 * `abilityRegex`: regex that matches the ids of any type of ability.
-* `collectSeconds`: float (or function returning float) 
+* `collectSeconds`: float (or function returning float)
 * `delaySeconds`: float (or function returning float) for how long to wait before executing this trigger.  Ignored if `collectSeconds > 0`.
 * `deathReason`: overrides the reason that a player died if the player dies without taking any more damage.  This is for things that kill you without an obvious log line, e.g. forgetting to clear Beyond Death.
 * `mistake`: returns a single mistake or an array of mistakes to add to the live list.  See below for the `mistake` format.
@@ -54,7 +55,8 @@ Each trigger is an object with the following fields.  All fields are optional.
 * `fullText` if it exists will be the entire text of the line, regardless of who is blamed.
 
 This will print ":no_entry_sign: Latke: Dynamo" in the live log.
-```
+
+```javascript
 mistake: function(event, data, matches) {
   return {
     type: 'fail',
@@ -65,7 +67,8 @@ mistake: function(event, data, matches) {
 ```
 
 This will print ":warning: WHOOPS" in the live log, even though a player was blamed.
-```
+
+```javascript
 mistake: function(event, data, matches) {
   return {
     type: 'warn',
@@ -76,11 +79,13 @@ mistake: function(event, data, matches) {
 ```
 
 ### `deathReason` format
+
 * `name` is the full player name to override the next death reason for.
 * `reason` is the string to use.
 
 If this following trigger is used, then if a player dies without taking any other damage, the log would show ":skull: Chippy: Doom Debuff" instead of assigning it to the last damage the player took before this trigger, which might incorrectly look more like ":skull: Chippy: Auto (3034/38471)".
-```
+
+```javascript
 deathReason: function(event, data, matches) {
   return {
     name: event.targetName,
@@ -94,12 +99,15 @@ deathReason: function(event, data, matches) {
 Every function in an oopsy trigger gets three parameters: `event`, `data`, `matches` in that order.
 
 ### Event Fields
+
 Every function specified in a trigger gets an event (or events) object.  This object has different fields depending on which type of regex was used to match the trigger.
 
 #### All Events
+
 * `event.line`: string, representing the entire log line.
 
 #### Effect Events (gainsEffectRegex, losesEffectRegex)
+
 * `event.targetName`: string, the target's full name.
 * `event.effectName`: string, the buff name gained, e.g. 'Beyond Death'.
 * `event.gains`: bool, true if the buff was gained, false if the buff was lost.
@@ -107,6 +115,7 @@ Every function specified in a trigger gets an event (or events) object.  This ob
 * `event.durationSeconds`: float, the duration this buff was gained for.  undefined if the buff was lost.
 
 #### Ability Events (healRegex, damageRegex, abilityRegex)
+
 * `event.type`: hex string of the log line type (e.g. '1B' for head markers).
 * `event.attackerId`: hex string of the attacker's id
 * `event.attackerName`: string, full name of the target.
@@ -132,11 +141,11 @@ Every function specified in a trigger gets an event (or events) object.  This ob
 
 Current hp/mp/tp values are not 100% precise.  ACT polls these values periodically and so it may be out of date by one HoT/DoT tick.  The most important consideration is that damage that does more than current hp may not actually be fatal, and vice versa that damage that does less than current hp may turn out to be fatal.  There's no way to know until the 'was defeated' message shows up two seconds later.
 
-
 ### Single Event Example
 
 In most cases, a single event will be passed to every function.
-```
+
+```javascript
 {
   // 26BB is the ability id for Nael's Iron Chariot.
   damageRegex: '26BB',
@@ -155,7 +164,7 @@ If `collectSeconds` is used, then as soon as the trigger matches any line, it wi
 
 `delaySeconds` is not called when collecting.
 
-```
+```javascript
 {
   // Succor
   healRegex: 'BA',
@@ -172,7 +181,7 @@ If `collectSeconds` is used, then as soon as the trigger matches any line, it wi
 
 `data` is an object that persists for an entire fight and is reset on wipe.  It is passed to every function.
 
-`data` comes preopulated with the following fields:
+`data` comes prepopulated with the following fields:
 
 * `data.me`: string, the player's character name.
 * `data.job`: string, the player's job, e.g. WAR.
@@ -185,7 +194,7 @@ If `collectSeconds` is used, then as soon as the trigger matches any line, it wi
 
 For example, if you want to store a map of which players have doom or not, that could be stored in `data.hasDoom`.  This could then be used across multiple triggers.
 
-```
+```javascript
 {
   // Match both gains and loses in the same trigger.
   gainsEffectRegex: 'Doom',
@@ -199,7 +208,6 @@ For example, if you want to store a map of which players have doom or not, that 
 ### Match Fields
 
 `matches` is literally the regex match object returned from whatever regex this trigger matched.  `matches[0]` is always the full match, with other array entries being any other groups from the regex (if any).  In the case of the single event above, `matches[0] === 'Iron Chariot'`.
-
 
 ## Trigger Field Evaluation Order
 
