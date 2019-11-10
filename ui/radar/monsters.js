@@ -784,4 +784,481 @@ let Monsters = {
     'hp': 10000000,
     'rank': 'S',
   },
+  'Naul': {
+    'name': {
+      'en': 'Naul',
+      'cn': '纳乌尔',
+      'ja': 'ナウル',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Dark Helmet': {
+    'name': {
+      'en': 'Dark Helmet',
+      'cn': '暗盔魔蟹',
+      'ja': 'ダークヘルメット',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Myradrosh': {
+    'name': {
+      'en': 'Myradrosh',
+      'cn': '米腊德罗斯蜂鸟',
+      'ja': 'ミラドロッシュ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Barbastelle': {
+    'name': {
+      'en': 'Barbastelle',
+      'cn': '宽耳凶蝠',
+      'ja': 'バーバステル',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Stinging Sophie': {
+    'name': {
+      'en': 'Stinging Sophie',
+      'cn': '击刺魔蜂索菲',
+      'ja': 'スティンギング・ソフィー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Monarch Ogrefly': {
+    'name': {
+      'en': 'Monarch Ogrefly',
+      'cn': '君王鬼蜻蜓',
+      'ja': 'モナーク・オーガフライ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Skogs Fru': {
+    'name': {
+      'en': 'Skogs Fru',
+      'cn': '花林女郎',
+      'ja': 'スコッグ・フリュー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Ovjang': {
+    'name': {
+      'en': 'Ovjang',
+      'cn': '奥弗杰恩',
+      'ja': 'アヴゼン',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Flame Sergeant Dalvag': {
+    'name': {
+      'en': 'Flame Sergeant Dalvag',
+      'cn': '永恒不灭的菲兰德副耀士',
+      'ja': '不滅のフェランド闘軍曹',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Albin the Ashen': {
+    'name': {
+      'en': 'Albin the Ashen',
+      'cn': '死灰复燃的阿尔宾',
+      'ja': '死灰のアルビン',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Vuokho': {
+    'name': {
+      'en': 'Vuokho',
+      'cn': '巫刻猎鹫',
+      'ja': 'ヴオコー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Leech King': {
+    'name': {
+      'en': 'Leech King',
+      'cn': '水蛭王',
+      'ja': 'リーチキング',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Sewer Syrup': {
+    'name': {
+      'en': 'Sewer Syrup',
+      'cn': '阴沟毒液',
+      'ja': 'スェアーシロップ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Gatling': {
+    'name': {
+      'en': 'Gatling',
+      'cn': '加特林针鼹',
+      'ja': 'ガトリングス',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Bloody Mary': {
+    'name': {
+      'en': 'Bloody Mary',
+      'cn': '血腥玛丽',
+      'ja': 'ブラッディ・マリー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Phecda': {
+    'name': {
+      'en': 'Phecda',
+      'cn': '天玑巨熊',
+      'ja': 'フェクダ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'White Joker': {
+    'name': {
+      'en': 'White Joker',
+      'cn': '白鬼鼠王',
+      'ja': 'ホワイトジョーカー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Alteci': {
+    'name': {
+      'en': 'Alteci',
+      'cn': '阿尔提克',
+      'ja': 'アルティック',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Kreutzet': {
+    'name': {
+      'en': 'Kreutzet',
+      'cn': '克鲁泽',
+      'ja': 'クルーゼ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Squonk': {
+    'name': {
+      'en': 'Squonk',
+      'cn': '斯奎克',
+      'ja': 'スクオンク',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Sanu Vali of Dancing Wings': {
+    'name': {
+      'en': 'Sanu Vali of Dancing Wings',
+      'cn': '飞舞翼 萨努瓦力',
+      'ja': '舞手のサヌバリ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Scitalis': {
+    'name': {
+      'en': 'Scitalis',
+      'cn': '斯奇塔利斯',
+      'ja': 'スキタリス',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'the Scarecrow': {
+    'name': {
+      'en': 'the Scarecrow',
+      'cn': '惊慌稻草龙',
+      'ja': 'スケアクロウ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Gnath cometdrone': {
+    'name': {
+      'en': 'Gnath cometdrone',
+      'cn': '骨颌彗星兵',
+      'ja': 'グナース・コメットドローン',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Thextera': {
+    'name': {
+      'en': 'Thextera',
+      'cn': '提克斯塔',
+      'ja': 'テクスタ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Pterygotus': {
+    'name': {
+      'en': 'Pterygotus',
+      'cn': '翼肢鲎',
+      'ja': 'プテリゴトゥス',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'false gigantopithecus': {
+    'name': {
+      'en': 'false gigantopithecus',
+      'cn': '布拉巨猿',
+      'ja': 'ブラクキ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Lycidas': {
+    'name': {
+      'en': 'Lycidas',
+      'cn': '利西达斯',
+      'ja': 'リュキダス',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Omni': {
+    'name': {
+      'en': 'Omni',
+      'cn': '全能机甲',
+      'ja': 'オムニ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Shadow-dweller Yamini': {
+    'name': {
+      'en': 'Shadow-dweller Yamini',
+      'cn': '影中暗 雅弥尼',
+      'ja': '宵闇のヤミニ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Ouzelum': {
+    'name': {
+      'en': 'Ouzelum',
+      'cn': '奥祖鲁姆',
+      'ja': 'オゼルム',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Gwas-y-neidr': {
+    'name': {
+      'en': 'Gwas-y-neidr',
+      'cn': '蛇仆蚂蜓',
+      'ja': 'グアス・ア・ニードル',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Buccaboo': {
+    'name': {
+      'en': 'Buccaboo',
+      'cn': '布卡卜',
+      'ja': 'ブッカブー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Manes': {
+    'name': {
+      'en': 'Manes',
+      'cn': '玛涅斯',
+      'ja': 'マネス',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Kiwa': {
+    'name': {
+      'en': 'Kiwa',
+      'cn': '奇洼',
+      'ja': 'キワ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Gauki Strongblade': {
+    'name': {
+      'en': 'Gauki Strongblade',
+      'cn': '剑豪 刑具',
+      'ja': '剣豪ガウキ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Guhuo Niao': {
+    'name': {
+      'en': 'Guhuo Niao',
+      'cn': '姑获鸟',
+      'ja': '姑獲鳥',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Deidar': {
+    'name': {
+      'en': 'Deidar',
+      'cn': '大太',
+      'ja': 'デイダラ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Gyorai Quickstrike': {
+    'name': {
+      'en': 'Gyorai Quickstrike',
+      'cn': '闪雷击 鱼雷',
+      'ja': '雷撃のギョライ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Aswang': {
+    'name': {
+      'en': 'Aswang',
+      'cn': '阿苏黄',
+      'ja': 'アスワング',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Kurma': {
+    'name': {
+      'en': 'Kurma',
+      'cn': '俱利摩',
+      'ja': 'クールマ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Mindmaker': {
+    'name': {
+      'en': 'Mindmaker',
+      'cn': '启灵果',
+      'ja': 'マインドメーカー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Pachamama': {
+    'name': {
+      'en': 'Pachamama',
+      'cn': '帕查玛玛',
+      'ja': 'パチャママ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Vulpangue': {
+    'name': {
+      'en': 'Vulpangue',
+      'cn': '狐首虺',
+      'ja': 'ヴルパングエ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Domovoi': {
+    'name': {
+      'en': 'Domovoi',
+      'cn': '杜莫伊',
+      'ja': 'ドモヴォーイ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'La Velue': {
+    'name': {
+      'en': 'La Velue',
+      'cn': '浓毛兽',
+      'ja': 'ラ・ヴェリュ',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Itzpapalotl': {
+    'name': {
+      'en': 'Itzpapalotl',
+      'cn': '伊兹帕帕洛特尔',
+      'ja': 'イツパパロツル',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Coquecigrue': {
+    'name': {
+      'en': 'Coquecigrue',
+      'cn': '三合鸟儿',
+      'ja': 'コクシグルー',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Indomitable': {
+    'name': {
+      'en': 'Indomitable',
+      'cn': '不屈号',
+      'ja': 'インドミタブル',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Worm of the Well': {
+    'name': {
+      'en': 'Worm of the Well',
+      'cn': '大井巨虫',
+      'ja': 'ウェルウォーム',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Juggler Hecatomb': {
+    'name': {
+      'en': 'Juggler Hecatomb',
+      'cn': '残虐杂技师',
+      'ja': 'ジャグラー・ヘカトゥーム',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Deacon': {
+    'name': {
+      'en': 'Deacon',
+      'cn': '助祭大蟹',
+      'ja': 'ディーコン',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
+  'Gilshs Aath Swiftclaw': {
+    'name': {
+      'en': 'Gilshs Aath Swiftclaw',
+      'cn': '徒手抓鱼 基乌嘶·渊斯',
+      'ja': '手掴のギウスィー・アース',
+    },
+    'hp': 100000,
+    'rank': 'B',
+  },
 };
