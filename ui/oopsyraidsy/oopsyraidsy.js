@@ -601,6 +601,9 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+
+    this.partyTracker = new PartyTracker();
+
     this.Reset();
   }
 
@@ -611,6 +614,7 @@ class DamageTracker {
       me: this.me,
       job: this.job,
       role: this.role,
+      party: this.partyTracker,
       inCombat: this.inCombat,
       ShortName: ShortNamify,
       IsPlayerId: IsPlayerId,

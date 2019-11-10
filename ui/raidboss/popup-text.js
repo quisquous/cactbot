@@ -11,6 +11,8 @@ class PopupText {
     this.alertText = document.getElementById('popup-text-alert');
     this.alarmText = document.getElementById('popup-text-alarm');
 
+    this.partyTracker = new PartyTracker();
+
     this.kMaxRowsOfText = 2;
 
     this.Reset();
@@ -213,6 +215,7 @@ class PopupText {
       me: this.me,
       job: this.job,
       role: this.role,
+      party: this.partyTracker,
       lang: locale,
       currentHP: preserveHP,
       ShortName: this.ShortNamify,

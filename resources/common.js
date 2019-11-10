@@ -12,8 +12,54 @@ let kSleepJobs = ['BLM', 'WHM'];
 let kFeintJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL'];
 let kAddleJobs = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'CNJ', 'THM'];
 let kCleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];
+let kAllRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer'];
+
+let kJobEnumToName = {
+  0: 'NONE',
+  1: 'GLA',
+  2: 'PGL',
+  3: 'MRD',
+  4: 'LNC',
+  5: 'ARC',
+  6: 'CNJ',
+  7: 'THM',
+  8: 'CRP',
+  9: 'BSM',
+  10: 'ARM',
+  11: 'GSM',
+  12: 'LTW',
+  13: 'WVR',
+  14: 'ALC',
+  15: 'CUL',
+  16: 'MIN',
+  17: 'BTN',
+  18: 'FSH',
+  19: 'PLD',
+  20: 'MNK',
+  21: 'WAR',
+  22: 'DRG',
+  23: 'BRD',
+  24: 'WHM',
+  25: 'BLM',
+  26: 'ACN',
+  27: 'SMN',
+  28: 'SCH',
+  29: 'ROG',
+  30: 'NIN',
+  31: 'MCH',
+  32: 'DRK',
+  33: 'AST',
+  34: 'SAM',
+  35: 'RDM',
+  36: 'BLU',
+  37: 'GNB',
+  38: 'DNC',
+};
 
 let Util = {
+  jobEnumToJob: function(id) {
+    return kJobEnumToName[id];
+  },
   jobToRole: function(job) {
     let role;
     if (job.search(/^(WAR|DRK|PLD|GNB|MRD|GLA)$/) >= 0) {
