@@ -54,6 +54,7 @@ document.addEventListener('onPlayerChangedEvent', function(e) {
 
   document.getElementById('pos').innerText = e.detail.pos.x + ',' + e.detail.pos.y + ',' + e.detail.pos.z;
   document.getElementById('rotation').innerText = e.detail.rotation;
+  document.getElementById('bait').innerText = e.detail.bait;
 });
 
 document.addEventListener('onTargetChangedEvent', function(e) {
