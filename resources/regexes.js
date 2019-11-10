@@ -31,7 +31,7 @@ var Regexes = {
   },
 
   // fields: name, id, ability, capture
-  ability(f) {
+  ability: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':';
@@ -46,7 +46,7 @@ var Regexes = {
   },
 
   // fields: name, id, ability, target, flags, x, y, z, heading, capture
-  abilityFull(f) {
+  abilityFull: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
@@ -219,7 +219,7 @@ var Regexes = {
     return str;
   },
 
-  parse: function(regexpString) {
+  parse: (regexpString) => {
     let kCactbotCategories = {
       TimeStamp: '^.{14}',
       LogType: '[0-9A-Fa-f]{2}',
