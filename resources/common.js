@@ -1,6 +1,7 @@
 'use strict';
 
 let kCasterJobs = ['BLU', 'RDM', 'BLM', 'WHM', 'SCH', 'SMN', 'ACN', 'AST', 'CNJ', 'THM'];
+let kRangedDpsJobs = ['BRD', 'DNC', 'MCH'];
 let kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
 let kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
 let kCraftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
@@ -85,6 +86,10 @@ let Util = {
 
   isCasterJob: function(job) {
     return kCasterJobs.indexOf(job) >= 0;
+  },
+
+  isRangedDpsJob: function(job) {
+    return kRangedDpsJobs.indexOf(job) >= 0;
   },
 
   isTankJob: function(job) {
