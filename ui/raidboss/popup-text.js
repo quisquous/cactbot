@@ -12,6 +12,9 @@ class PopupText {
     this.alarmText = document.getElementById('popup-text-alarm');
 
     this.partyTracker = new PartyTracker();
+    addOverlayListener('PartyChanged', (e) => {
+      this.partyTracker.onPartyChanged(e);
+    });
 
     this.kMaxRowsOfText = 2;
 

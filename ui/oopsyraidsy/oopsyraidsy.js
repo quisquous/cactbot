@@ -603,6 +603,9 @@ class DamageTracker {
     this.healTriggers = [];
 
     this.partyTracker = new PartyTracker();
+    addOverlayListener('PartyChanged', (e) => {
+      this.partyTracker.onPartyChanged(e);
+    });
 
     this.Reset();
   }
