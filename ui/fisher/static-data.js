@@ -3719,7 +3719,7 @@ let gFisherData = {
         'riesiges Feenmuscheln',
         'riesiger Feenmuscheln',
       ],
-      '26749': 'Bernstein-Angler',
+      '26749': 'Bernsteinangler',
       '27410': 'Kristallprismen-Salmler',
       '27411': 'Selard-Karpfen',
       '27412': [
@@ -4092,6 +4092,81 @@ let gFisherData = {
         'Narrenkrebse',
       ],
       '27515': 'D\u00fcsterrachen',
+      '28065': [
+        'Kristallregent',
+        'Kristallregenten',
+      ],
+      '28066': [
+        'gefl\u00fcgelte Pfefferminz',
+        'gefl\u00fcgelten Pfefferminz',
+        'gefl\u00fcgeltes Pfefferminz',
+        'gefl\u00fcgelter Pfefferminz',
+        'gefl\u00fcgelte Pfefferminze',
+        'gefl\u00fcgelten Pfefferminze',
+        'gefl\u00fcgeltes Pfefferminze',
+        'gefl\u00fcgelter Pfefferminze',
+      ],
+      '28067': [
+        'S\u00fcndenpfuhl',
+        'S\u00fcndenpfuhle',
+      ],
+      '28068': [
+        'Kupferschuppen-Seezunge',
+        'Kupferschuppen-Seezungen',
+      ],
+      '28069': 'Perlen-Sandteufel',
+      '28070': [
+        'Rote D\u00e4mon',
+        'Roten D\u00e4mon',
+        'Rotes D\u00e4mon',
+        'Roter D\u00e4mon',
+        'Rote D\u00e4monen',
+        'Roten D\u00e4monen',
+        'Rotes D\u00e4monen',
+        'Roter D\u00e4monen',
+      ],
+      '28071': [
+        'Gro\u00dfe Eryops',
+        'Gro\u00dfen Eryops',
+        'Gro\u00dfes Eryops',
+        'Gro\u00dfer Eryops',
+        'Gro\u00dfe Eryopse',
+        'Gro\u00dfen Eryopse',
+        'Gro\u00dfes Eryopse',
+        'Gro\u00dfer Eryopse',
+      ],
+      '28072': [
+        'Sternenblitz',
+        'Sternenblitze',
+      ],
+      '28189': [
+        'selardische Tintenf\u00e4sschen',
+        'selardischen Tintenf\u00e4sschen',
+        'selardisches Tintenf\u00e4sschen',
+        'selardischer Tintenf\u00e4sschen',
+      ],
+      '28190': [
+        'Wei\u00df\u00f6lbarsch',
+        'Wei\u00df\u00f6lbarsche',
+      ],
+      '28191': [
+        'Feenbivalvia',
+        'Feenbivalven',
+      ],
+      '28192': [
+        'Araendel',
+        'Araendels',
+      ],
+      '28193': [
+        'kholusische K\u00f6nigskrabbe',
+        'kholusischen K\u00f6nigskrabbe',
+        'kholusisches K\u00f6nigskrabbe',
+        'kholusischer K\u00f6nigskrabbe',
+      ],
+      '28719': [
+        'Miserabelmuschel',
+        'Miserabelmuscheln',
+      ],
     },
     'en': {
       '4776': [
@@ -5820,7 +5895,7 @@ let gFisherData = {
         'guppy',
         'guppies',
       ],
-      '22389': 'Mirage mahi',
+      '22389': 'mirage mahi',
       '22390': [
         'triplespine',
         'triplespines',
@@ -6334,6 +6409,50 @@ let gFisherData = {
       '27515': [
         'predator',
         'predators',
+      ],
+      '28065': [
+        'loose pendant',
+        'loose pendants',
+      ],
+      '28066': [
+        'winged dame',
+        'winged dames',
+      ],
+      '28067': 'the Unforgiven',
+      '28068': 'bronze sole',
+      '28069': [
+        'the Horned King',
+        'the Horned Kings',
+      ],
+      '28070': [
+        'the Sound of Fury',
+        'the Sounds of Fury',
+      ],
+      '28071': [
+        'priest of Yx\'Lokwa',
+        'priests of Yx\'Lokwa',
+      ],
+      '28072': [
+        'starchaser',
+        'starchasers',
+      ],
+      '28189': [
+        'Laxan inkhorn',
+        'Laxan inkhorns',
+      ],
+      '28190': 'White Oil perch',
+      '28191': [
+        'faeshine clam',
+        'faeshine clams',
+      ],
+      '28192': 'Areng dire',
+      '28193': [
+        'Kholusian king crab',
+        'Kholusian king crabs',
+      ],
+      '28719': [
+        'sweetmeat mussel',
+        'sweetmeat mussels',
       ],
     },
     'fr': {
@@ -7103,8 +7222,8 @@ let gFisherData = {
         'gobies de r\u00eave',
       ],
       '7693': [
-        'Sabre de Llymlaen',
-        'Sabres de Llymlaen',
+        'sabre de Llymlaen',
+        'sabres de Llymlaen',
       ],
       '7694': [
         'gobie assassin',
@@ -8954,7 +9073,7 @@ let gFisherData = {
       ],
       '27416': [
         'silure-ogre',
-        'silure-ogres',
+        'silures-ogres',
       ],
       '27417': [
         'couteau de cristal',
@@ -9147,8 +9266,8 @@ let gFisherData = {
         'crabes \u00e0 mitaines d\'Amh Araeng',
       ],
       '27466': [
-        'raie de Nabaath Araeng',
-        'raies de Nabaath Araeng',
+        'raie de Nabaath Areng',
+        'raies de Nabaath Areng',
       ],
       '27467': [
         'l\u00e9zard \u00e0 \u00e9pines',
@@ -9270,7 +9389,7 @@ let gFisherData = {
       ],
       '27498': [
         'araign\u00e9e de mer indigo',
-        'araign\u00e9es de mer indigos',
+        'araign\u00e9es de mer indigo',
       ],
       '27499': [
         '\u00e9caille de Caliban',
@@ -9336,6 +9455,59 @@ let gFisherData = {
       '27515': [
         'poisson pilleur',
         'poissons pilleurs',
+      ],
+      '28065': [
+        'sardine pendantif',
+        'sardines pendantifs',
+      ],
+      '28066': [
+        'poisson-papillon z\u00e9br\u00e9',
+        'poissons-papillons z\u00e9br\u00e9s',
+      ],
+      '28067': [
+        'Impitoyable',
+        'Impitoyables',
+      ],
+      '28068': [
+        'sole cuivr\u00e9e',
+        'soles cuivr\u00e9es',
+      ],
+      '28069': [
+        'm\u00e9rou couronn\u00e9',
+        'm\u00e9rous couronn\u00e9s',
+      ],
+      '28070': [
+        'betta enrag\u00e9',
+        'bettas enrag\u00e9s',
+      ],
+      '28071': [
+        'gardien d\'Yx\'Lokwa',
+        'gardiens d\'Yx\'Lokwa',
+      ],
+      '28072': [
+        'baudroie m\u00e9t\u00e9ore',
+        'baudroies m\u00e9t\u00e9ores',
+      ],
+      '28189': [
+        'bulot de Ganlag',
+        'bulots de Ganlag',
+      ],
+      '28190': [
+        'perche de l\'Huile blanche',
+        'perches de l\'Huile blanche',
+      ],
+      '28191': [
+        'palourde f\u00e9erique',
+        'palourdes f\u00e9eriques',
+      ],
+      '28192': 'Araeng dire',
+      '28193': [
+        'crabe g\u00e9ant de Kholusia',
+        'crabes g\u00e9ants de Kholusia',
+      ],
+      '28719': [
+        'moule marine',
+        'moules marines',
       ],
     },
     'ja': {
@@ -10103,7 +10275,7 @@ let gFisherData = {
       '27470': '\u30b0\u30ec\u30a4\u30b9\u30ad\u30c3\u30d1\u30fc',
       '27471': '\u30d4\u30af\u30b7\u30fc\u30d5\u30a3\u30c3\u30b7\u30e5',
       '27472': '\u30d6\u30e9\u30c3\u30c9\u30a2\u30a4\u30d5\u30ed\u30c3\u30b0',
-      '27473': '\u30c1\u30a7\u30ea\u30fc\u3078\u30ea\u30f3\u30b0',
+      '27473': '\u30c1\u30a7\u30ea\u30fc\u30d8\u30ea\u30f3\u30b0',
       '27474': '\u30a8\u30f3\u30c4\u30e5\u30a4',
       '27475': '\u30ec\u30e2\u30f3\u30d5\u30a3\u30c3\u30b7\u30e5',
       '27476': '\u30b2\u30b3\u30af\u30b8\u30e7\u30a6',
@@ -10146,6 +10318,20 @@ let gFisherData = {
       '27513': '\u30a8\u30c7\u30a3\u30d6\u30eb\u30aa\u30a4\u30b9\u30bf\u30fc',
       '27514': '\u30ec\u30a4\u30f3\u30dc\u30fc\u30b7\u30e5\u30ea\u30f3\u30d7',
       '27515': '\u30d7\u30ec\u30c7\u30bf\u30fc\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '28065': '\u30da\u30f3\u30c0\u30f3\u30c8\u30d8\u30c3\u30c9',
+      '28066': '\u30b0\u30e9\u30f3\u30c9\u30c7\u30a4\u30e0\u30d0\u30bf\u30d5\u30e9\u30a4',
+      '28067': '\u30a2\u30f3\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30af\u30e9\u30d6',
+      '28068': '\u30d6\u30ed\u30f3\u30ba\u30bd\u30fc\u30eb',
+      '28069': '\u30ab\u30f3\u30e0\u30ea\u30ab\u30d6\u30ea',
+      '28070': '\u30d5\u30e5\u30fc\u30ea\u30a3\u30d9\u30bf',
+      '28071': '\u30ed\u30c3\u30af\u30ef\u306e\u885b\u58eb',
+      '28072': '\u30b9\u30bf\u30fc\u30c1\u30a7\u30a4\u30b5\u30fc',
+      '28189': '\u30e9\u30af\u30b5\u30f3\u30a4\u30f3\u30af\u30db\u30fc\u30f3',
+      '28190': '\u30db\u30ef\u30a4\u30c8\u30aa\u30a4\u30eb\u30d1\u30fc\u30c1',
+      '28191': '\u30d5\u30a7\u30a2\u30ea\u30fc\u30af\u30e9\u30e0',
+      '28192': '\u30a2\u30ec\u30f3\u30fb\u30c7\u30eb',
+      '28193': '\u30b3\u30eb\u30b7\u30a2\u30f3\u30ad\u30f3\u30b0\u30af\u30e9\u30d6',
+      '28719': '\u30e0\u30bb\u30eb',
     },
   },
   'placefish': {
@@ -12023,6 +12209,7 @@ let gFisherData = {
       27411,
       27410,
       27418,
+      28065,
     ],
     '3292': [
       26746,
@@ -12044,6 +12231,8 @@ let gFisherData = {
       27429,
       27430,
       27434,
+      28189,
+      28067,
     ],
     '3295': [
       27425,
@@ -12068,6 +12257,7 @@ let gFisherData = {
       27438,
       27440,
       27443,
+      28190,
     ],
     '3299': [
       27438,
@@ -12079,6 +12269,7 @@ let gFisherData = {
       27438,
       27439,
       27445,
+      28068,
     ],
     '3301': [
       27449,
@@ -12087,6 +12278,7 @@ let gFisherData = {
       26747,
       27451,
       27450,
+      28193,
     ],
     '3302': [
       27449,
@@ -12111,6 +12303,7 @@ let gFisherData = {
       27421,
       27423,
       27424,
+      28066,
     ],
     '3305': [
       27458,
@@ -12118,6 +12311,7 @@ let gFisherData = {
       27462,
       27460,
       27461,
+      28069,
     ],
     '3306': [
       27458,
@@ -12125,6 +12319,7 @@ let gFisherData = {
       27463,
       27460,
       27464,
+      28192,
     ],
     '3307': [
       27465,
@@ -12139,6 +12334,7 @@ let gFisherData = {
       27471,
       27475,
       27474,
+      28191,
     ],
     '3309': [
       27470,
@@ -12146,6 +12342,7 @@ let gFisherData = {
       27469,
       27476,
       27477,
+      28070,
     ],
     '3310': [
       27470,
@@ -12184,6 +12381,7 @@ let gFisherData = {
       27484,
       27490,
       27491,
+      28071,
     ],
     '3316': [
       27482,
@@ -12233,6 +12431,7 @@ let gFisherData = {
       27499,
       27500,
       27505,
+      28719,
     ],
     '3323': [
       27497,
@@ -12254,6 +12453,7 @@ let gFisherData = {
       27511,
       27498,
       27512,
+      28072,
     ],
     '3326': [
       27497,
@@ -13406,7 +13606,7 @@ let gFisherData = {
         'am Blutkelch',
       ],
       '3317': [
-        'Lotzaltl',
+        'Lotzatl',
         'am Lotzatl',
       ],
       '3318': [
@@ -13673,7 +13873,7 @@ let gFisherData = {
       '3314': 'Father Collard\'s Failings',
       '3315': 'Lake Tusi Mek\'ta',
       '3316': 'Red Chalice',
-      '3317': 'Rotzatl',
+      '3317': 'Lozatl',
       '3318': 'south Mjrl\'s Regret',
       '3319': 'Woven Oath',
       '3320': 'Flounders\' Floor',
@@ -13911,7 +14111,7 @@ let gFisherData = {
       '3314': 'Eaux grises de la champignonni\u00e8re',
       '3315': 'Lac Tusi Mek\'ta',
       '3316': 'Calice rouge',
-      '3317': 'Rotzatl',
+      '3317': 'Lozatl',
       '3318': 'Aval de la Nostalgie de Mjrl',
       '3319': 'Solide Serment',
       '3320': 'Cellier du Flet',
@@ -14472,6 +14672,9 @@ let gFisherData = {
       '27592': [
         'Salzwasser-Universalk\u00f6der',
       ],
+      '28634': [
+        'Metallspinner',
+      ],
     },
     'en': {
       '2585': 'lugworm',
@@ -14547,6 +14750,7 @@ let gFisherData = {
       '27590': 'squid strip',
       '27591': 'freshwater boilie',
       '27592': 'saltwater boilie',
+      '28634': 'metal spinner',
     },
     'fr': {
       '2585': 'ver de vase',
@@ -14622,6 +14826,7 @@ let gFisherData = {
       '27590': 'tranche de chair de calmar',
       '27591': 'app\u00e2t universel d\'eau douce',
       '27592': 'app\u00e2t universel d\'eau de mer',
+      '28634': 'leurre m\u00e9tallique',
     },
     'ja': {
       '2585': '\u30e9\u30b0\u30ef\u30fc\u30e0',
@@ -14697,6 +14902,7 @@ let gFisherData = {
       '27590': '\u30a4\u30ab\u306e\u5207\u308a\u8eab',
       '27591': '\u6de1\u6c34\u4e07\u80fd\u990c',
       '27592': '\u6d77\u6c34\u4e07\u80fd\u990c',
+      '28634': '\u30e1\u30bf\u30eb\u30b9\u30d4\u30ca\u30fc',
     },
   },
 };
