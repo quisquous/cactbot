@@ -105,8 +105,7 @@
           return {
             en: 'Tank buster on YOU',
           };
-        }
-        else if (data.role == 'healer') {
+        } else if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.shortName(matches[1]),
           };
