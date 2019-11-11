@@ -547,10 +547,13 @@ class TimelineUI {
   constructor(options) {
     this.options = options;
     this.init = false;
+
+    this.InitDebugUI();
   }
 
   Init() {
-    if (this.init) return;
+    if (this.init)
+      return;
     this.init = true;
 
     this.root = document.getElementById('timeline-container');
@@ -571,6 +574,20 @@ class TimelineUI {
     this.timerlist.elementheight = this.barHeight + 2;
     this.timerlist.toward = 'down right';
 
+    this.activeBars = {};
+    this.expireTimers = {};
+  }
+
+  InitDebugUI() {
+    let timelineText = [
+      'These lines are',
+      'debug timeline entries.',
+      'If you lock the overlay,',
+      'they will disappear!',
+      'Real timelines automatically',
+      'appear when supported.',
+    ];
+
     // Helper for positioning/resizing when locked.
     let helper = document.getElementById('timeline-resize-helper');
     for (let i = 0; i < this.options.MaxNumberOfTimerBars; ++i) {
@@ -580,7 +597,10 @@ class TimelineUI {
       helperBar.classList.add('timeline-bar-color');
       if (i < 1)
         helperBar.classList.add('soon');
-      helperBar.innerText = 'Test bar ' + (i + 1);
+      if (i < timelineText.length)
+        helperBar.innerText = timelineText[i];
+      else
+        helperBar.innerText = 'Test bar ' + (i + 1);
       helper.appendChild(helperBar);
       let borderWidth = parseFloat(window.getComputedStyle(helperBar).borderWidth.match(/([0-9.]+)px/)[1]);
       helperBar.style.width = this.barWidth - borderWidth * 2;
@@ -588,9 +608,6 @@ class TimelineUI {
     }
 
     this.debugElement = document.getElementById('timeline-debug');
-
-    this.activeBars = {};
-    this.expireTimers = {};
   }
 
   SetPopupTextInterface(popupText) {
