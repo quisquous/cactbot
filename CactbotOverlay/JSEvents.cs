@@ -138,18 +138,42 @@ namespace Cactbot {
         public int oath;
       }
 
+      public struct GunbreakerDetail {
+        public GunbreakerDetail(FFXIVProcess.GunbreakerJobData d) {
+            cartridges = d.cartridges;
+            continuationMilliseconds = d.continuation_ms;
+            continuationState = d.continuation_state;
+        }
+        public int cartridges;
+        public uint continuationMilliseconds;
+        public int continuationState;
+      }
+
       public struct BardDetail {
         public BardDetail(FFXIVProcess.BardJobData d) {
           songName = d.song_type == FFXIVProcess.BardJobData.Song.None ? "" : d.song_type.ToString();
           songMilliseconds = d.song_ms;
+          soulGauge = d.soul_gauge;
           songProcs = d.song_procs;
         }
         public string songName;
         public uint songMilliseconds;
+        public int soulGauge;
         public int songProcs;
       }
 
-      public struct NinjaDetail {
+      public struct DancerDetail {
+        public DancerDetail(FFXIVProcess.DancerJobData d) {
+               feathers = d.feathers;
+               steps = new[] { d.step1.ToString(), d.step2.ToString(), d.step3.ToString(), d.step4.ToString() };
+               currentStep = d.currentStep;
+        }
+        public int feathers;
+        public string[] steps;
+        public int currentStep;
+      }
+
+         public struct NinjaDetail {
         public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; ninkiAmount = d.ninki_amount; }
         public uint hutonMilliseconds;
         public uint ninkiAmount;
@@ -184,28 +208,47 @@ namespace Cactbot {
       }
 
       public struct WhiteMageDetail {
-        public WhiteMageDetail(FFXIVProcess.WhiteMageJobData d) { lilies = d.lilies; }
-        public int lilies;
+        public WhiteMageDetail(FFXIVProcess.WhiteMageJobData d) { 
+          lilyMilliseconds = d.lilies_ms;
+          lilyStacks = d.lily_stacks;
+          bloodlilyStacks = d.bloodlily_stacks;
+        }
+        public uint lilyMilliseconds;
+        public int lilyStacks;
+        public int bloodlilyStacks;
       }
 
-      public struct SummonerAndScholarDetail {
-        public SummonerAndScholarDetail(FFXIVProcess.SummonerAndScholarJobData d) {
+      public struct SummonerDetail {
+        public SummonerDetail(FFXIVProcess.SummonerJobData d) {
+          stanceMilliseconds = d.stance_ms;
+          bahamutStance = d.bahamut_stance;
+          bahamutSummoned = d.bahamut_summoned;
           aetherflowStacks = d.aetherflow_stacks;
           dreadwyrmStacks = d.dreadwyrm_stacks;
-          bahamutStacks = d.bahamut_stacks;
-          dreadwyrmMilliseconds = d.dreadwyrm_ms;
-          bahamutMilliseconds = d.bahamut_ms;
-          fairyGauge = d.fairy_gauge;
+          phoenixReady = d.phoenix_ready;
         }
-        public int aetherflowStacks;  // Stacks to spend on fester, etc.
-        public int dreadwyrmStacks;  // Stacks to get into dreadwyrm trance.
-        public int bahamutStacks;  // Stacks to summon bahamut.
-        public uint dreadwyrmMilliseconds;  // Time left for dreadwyrm trance.
-        public uint bahamutMilliseconds;  // Time left for bahamut summon.
-        public int fairyGauge;
+        public uint stanceMilliseconds;  // Time left for current stance/summon.
+        public int bahamutStance;  // 5 = Bahamut/Phoenix. Not very useful.
+        public int bahamutSummoned;  // Is Bahamut/Phoenix active?
+        public int aetherflowStacks; // Stacks to spend on Fester, etc.
+        public int dreadwyrmStacks; 
+        public int phoenixReady;  // Is Phoenix ready.
       }
 
-      public struct MonkDetail {
+      public struct ScholarDetail {
+         public ScholarDetail(FFXIVProcess.ScholarJobData d) {
+          aetherflowStacks = d.aetherflow_stacks;
+          fairyGauge = d.fairy_gauge;
+          fairyMilliseconds = d.fairy_ms;
+          fairyStatus = d.fairy_status;
+         }
+         public int aetherflowStacks;  // Stacks to spend on Energy Drain, etc.
+         public int fairyGauge;
+         public uint fairyMilliseconds;  // Time left for Fairy Stance.
+         public int fairyStatus; // 7 - Seraph, 6 - Dissipation.
+      }
+
+         public struct MonkDetail {
         public MonkDetail(FFXIVProcess.MonkJobData d) { lightningMilliseconds = d.lightning_ms; lightningStacks = d.lightning_stacks; chakraStacks = d.chakra_stacks; }
         public uint lightningMilliseconds;
         public int lightningStacks;
@@ -221,12 +264,16 @@ namespace Cactbot {
       }
 
       public struct AstrologianDetail {
-        public AstrologianDetail(FFXIVProcess.AstrologianJobData d) { drawMilliseconds = d.draw_ms; drawnCard = d.drawn_card; spreadCard = d.spread_card; roadCard = d.road_card; arcanumCard = d.arcanum_card; }
-        public uint drawMilliseconds;
-        public int drawnCard;
-        public int spreadCard;
-        public int roadCard;
-        public int arcanumCard;
+        public AstrologianDetail(FFXIVProcess.AstrologianJobData d) { 
+          heldCard = d.held_card.ToString();
+          arcanum1 = d.arcanum_1.ToString();
+          arcanum2 = d.arcanum_2.ToString();
+          arcanum3 = d.arcanum_3.ToString();
+         }
+        public String heldCard;
+        public String arcanum1;
+        public String arcanum2;
+        public String arcanum3;
       }
 
       public struct SamuraiDetail {
