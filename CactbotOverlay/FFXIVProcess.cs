@@ -1130,7 +1130,7 @@ namespace Cactbot {
       public ushort fairy_ms; // Seraph time left ms.
 
       [FieldOffset(0x06)]
-      public byte fairy_status; // 7 - Seraph, 6 - Dissipation, else 0.
+      public byte fairy_status; // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
     };
 
     public class ScholarJobData {
