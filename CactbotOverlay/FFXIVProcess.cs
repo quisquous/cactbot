@@ -891,9 +891,9 @@ namespace Cactbot {
     [StructLayout(LayoutKind.Explicit)]
     public struct NinjaJobMemory {
       [FieldOffset(0x00)]
-      public ushort huton_ms;
+      public uint huton_ms;
 
-      [FieldOffset(0x03)]
+      [FieldOffset(0x04)]
       public byte ninki_amount;
     };
 
