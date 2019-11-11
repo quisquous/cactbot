@@ -138,6 +138,17 @@ namespace Cactbot {
         public int oath;
       }
 
+      public struct GunbreakerDetail {
+        public GunbreakerDetail(FFXIVProcess.GunbreakerJobData d) {
+            cartridges = d.cartridges;
+            continuationMilliseconds = d.continuation_ms;
+            continuationState = d.continuation_state;
+        }
+        public int cartridges;
+        public uint continuationMilliseconds;
+        public int continuationState;
+      }
+
       public struct BardDetail {
         public BardDetail(FFXIVProcess.BardJobData d) {
           songName = d.song_type == FFXIVProcess.BardJobData.Song.None ? "" : d.song_type.ToString();
@@ -151,7 +162,18 @@ namespace Cactbot {
         public int songProcs;
       }
 
-      public struct NinjaDetail {
+      public struct DancerDetail {
+        public DancerDetail(FFXIVProcess.DancerJobData d) {
+               feathers = d.feathers;
+               steps = new[] { d.step1.ToString(), d.step2.ToString(), d.step3.ToString(), d.step4.ToString() };
+               currentStep = d.currentStep;
+        }
+        public int feathers;
+        public string[] steps;
+        public int currentStep;
+      }
+
+         public struct NinjaDetail {
         public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; ninkiAmount = d.ninki_amount; }
         public uint hutonMilliseconds;
         public uint ninkiAmount;
@@ -192,8 +214,8 @@ namespace Cactbot {
           bloodlilyStacks = d.bloodlily_stacks;
         }
         public uint lilyMilliseconds;
-        public int lily_stacks;
-        public int bloodlily_stacks;
+        public int lilyStacks;
+        public int bloodlilyStacks;
       }
 
       public struct SummonerDetail {
@@ -243,15 +265,15 @@ namespace Cactbot {
 
       public struct AstrologianDetail {
         public AstrologianDetail(FFXIVProcess.AstrologianJobData d) { 
-          heldCard = d.held_card;
-          arcanum_1 = d.arcanum_1;
-          arcanum_2 = d.arcanum_2;
-          arcanum_3 = d.arcanum_3;
+          heldCard = d.held_card.ToString();
+          arcanum1 = d.arcanum_1.ToString();
+          arcanum2 = d.arcanum_2.ToString();
+          arcanum3 = d.arcanum_3.ToString();
          }
-        public int heldCard;
-        public int arcanum_1;
-        public int arcanum_2;
-        public int arcanum_3;
+        public String heldCard;
+        public String arcanum1;
+        public String arcanum2;
+        public String arcanum3;
       }
 
       public struct SamuraiDetail {

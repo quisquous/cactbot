@@ -411,6 +411,16 @@ namespace Cactbot {
               OnPlayerChanged(e);
             }
           }
+        } else if (player.job == FFXIVProcess.EntityJob.GNB) {
+          var job = ffxiv_.GetGunbreaker();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.gnb)) {
+              notify_state_.gnb = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.GunbreakerDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
         } else if (player.job == FFXIVProcess.EntityJob.BRD) {
           var job = ffxiv_.GetBard();
           if (job != null) {
@@ -418,6 +428,16 @@ namespace Cactbot {
               notify_state_.brd = job;
               var e = new JSEvents.PlayerChangedEvent(player);
               e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job);
+              OnPlayerChanged(e);
+            }
+          }
+        } else if (player.job == FFXIVProcess.EntityJob.DNC) {
+          var job = ffxiv_.GetDancer();
+          if (job != null) {
+            if (send || !job.Equals(notify_state_.dnc)) {
+              notify_state_.dnc = job;
+              var e = new JSEvents.PlayerChangedEvent(player);
+              e.jobDetail = new JSEvents.PlayerChangedEvent.DancerDetail(job);
               OnPlayerChanged(e);
             }
           }
@@ -504,7 +524,7 @@ namespace Cactbot {
         } else if (player.job == FFXIVProcess.EntityJob.AST) {
           var job = ffxiv_.GetAstrologian();
           if (job != null) {
-            if (send || !job.Equals(notify_state_.ast)) {
+            if (send || !job.Equals(notify_state_.mch)) {
               notify_state_.ast = job;
               var e = new JSEvents.PlayerChangedEvent(player);
               e.jobDetail = new JSEvents.PlayerChangedEvent.AstrologianDetail(job);
@@ -514,7 +534,7 @@ namespace Cactbot {
         } else if (player.job == FFXIVProcess.EntityJob.SAM) {
           var job = ffxiv_.GetSamurai();
           if (job != null) {
-            if (send || !job.Equals(notify_state_.sam)) {
+            if (send || !job.Equals(notify_state_.mch)) {
               notify_state_.sam = job;
               var e = new JSEvents.PlayerChangedEvent(player);
               e.jobDetail = new JSEvents.PlayerChangedEvent.SamuraiDetail(job);
@@ -814,7 +834,9 @@ namespace Cactbot {
       public FFXIVProcess.WarriorJobData war = new FFXIVProcess.WarriorJobData();
       public FFXIVProcess.DarkKnightJobData drk = new FFXIVProcess.DarkKnightJobData();
       public FFXIVProcess.PaladinJobData pld = new FFXIVProcess.PaladinJobData();
+      public FFXIVProcess.GunbreakerJobData gnb = new FFXIVProcess.GunbreakerJobData();
       public FFXIVProcess.BardJobData brd = new FFXIVProcess.BardJobData();
+      public FFXIVProcess.DancerJobData dnc = new FFXIVProcess.DancerJobData();
       public FFXIVProcess.NinjaJobData nin = new FFXIVProcess.NinjaJobData();
       public FFXIVProcess.BlackMageJobData blm = new FFXIVProcess.BlackMageJobData();
       public FFXIVProcess.WhiteMageJobData whm = new FFXIVProcess.WhiteMageJobData();

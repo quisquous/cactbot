@@ -192,33 +192,6 @@ namespace Cactbot {
          }
       };
 
-      // EntityStruct {
-      //   ...
-      //   0x30 bytes in: string name;  // 0x44 bytes.
-      //   ...
-      //   0x74 bytes in: uint32 id;
-      //   ...
-      //   0x8C bytes in: EntityType type;  // 1 byte.
-      //   ...
-      //   0xA0 bytes in: float32 pos_x;
-      //   0xA4 bytes in: float32 pos_z;
-      //   0xA8 bytes in: float32 pos_y;
-      //   ...
-      //   0x18B8 bytes in:
-      //     0x000 bytes in: int32 hp;
-      //     0x004 bytes in: int32 maxhp;
-      //     0x008 bytes in: int32 mp;
-      //     0x00C bytes in: int32 maxmp;
-      //     0x012 bytes in: int16 gp;
-      //     0x014 bytes in: int16 maxgp;
-      //     0x016 bytes in: int16 cp;
-      //     0x018 bytes in: int16 maxcp;
-      //     ...
-      //     0x03C bytes in: EntityJob job;  // 1 byte.
-      //     ...
-      //     0x03E bytes in: int8 level;
-      // }
-
       [StructLayout(LayoutKind.Explicit)]
       public unsafe struct EntityMemory {
          public static int Size => Marshal.SizeOf(typeof(EntityMemory));
@@ -303,92 +276,10 @@ namespace Cactbot {
       // JobDataOuterStruct {
       //   JobDataInnerStruct* inner;  // This points to the address after it currently.
       //   JobDataInnerStruct {
-      //      SomeJobSpecificStruct* struct;  // This is a pointer that changes when you change job, and points to a lot of other pointers.
-      //      union JobSpecificData {
-      //        struct RedMage {
-      //          0x8 bytes in: byte white_mana;
-      //          0x9 bytes in: byte black_mana;
-      //        }
-      //        struct Warrior {
-      //          0x8 bytes in: byte beast;
-      //        }
-      //        struct DarkKnight {
-      //          0x8 bytes in: byte blood;
-      //          0xA bytes in: uint16 darkside_ms;
-      //        }
-      //        struct Paladin {
-      //          0x8 bytes in: byte oath;
-      //        }
-      //
-      //        struct Gunbreaker { //TODO
-      //          0x8 bytes in: byte cartridges;
-      //          0xA bytes in: uint16 unknown; // Notes: Jumps to 15000 (ms?) after using Gnashing Fang, doesn't decrease.
-      //          0xC bytes in: byte continuation_state; // ? Seems to follow Continuation procs.
-      //        }
-      //       
-      //        struct Bard { 
-      //          0x8 bytes in: uint16 song_ms;  // Number of ms left in current song.
-      //          0xA bytes in: byte song_procs_count;
-      //          0xB bytes in: byte soul_gauge;
-      //          0xC bytes in: byte song_id;  // 5 = ballad, 10 = paeon, 15 = minuet.
-      //        }
-      //        struct Dragoon { // needs testing
-      //          0x8 bytes in: uint16 blood_or_life_ms;  // Number of ms left in Blood/Life of the Dragon.
-      //          0xA bytes in: uchar stance;  // 0 = None, 1 = Blood, 2 = Life
-      //          0xB bytes in: uchar eyes_amount;
-      //        }
-      //        struct Ninja {
-      //          0x8 bytes in: uint16 huton_ms;  // Number of ms left in huton.
-      //          0xD bytes in: uchar ninki_amount;
-      //        }
-      //        struct BlackMage {
-      //          0x8 bytes in: uint16 polygot_time_ms;  // Number of ms left before polygot proc.
-      //          0xA bytes in: uint16 umbral_time_ms;  // Number of ms left in umbral fire/ice.
-      //          0xC bytes in: uchar umbral_state;  // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
-      //          0xD bytes in: uchar umbral_hearts_count;
-      //          0xE bytes in: uchar foul_count;
-      //          0xF bytes in: uchar enochian_state;  // Bit 0 = Enochian active. Bit 1 = Polygot active.
-      //        }
-      //        struct WhiteMage {
-      //          0xA bytes in: uint16 lilies_ms; // Number of ms left before lily gain.
-      //          0xC bytes in: byte lily_stacks;
-      //          0xD bytes in: byte bloodlily_stacks;
-      //        }
-      //        struct Summoner { // needs testing
-      //          0x8 bytes in: uint16 stance_ms;  // Dreadwyrm or Bahamut/Phoenix time left in ms.
-      //          0xA bytes in: byte bahamut_stance;  // 5 if Bahamut/Phoenix summoned, else 0.
-      //          0xB bytes in: byte bahamut_summonned; // 1 if Bahamut/Phoenix summoned, else 0.
-      //          0xC bytes in: uchar stacks;  // Bits 3-4: Dreadwyrm. Bit 5: Phoenix ready.
-      //        }
-      //        struct Scholar { // needs testing
-      //          0xA bytes in: uchar aetherflow_stacks;
-      //          0xB bytes in: uchar fairy_gauge;
-      //          0xC bytes in: uint16 fairy_ms; // Seraph time left ms.
-      //          0xE bytes in: uchar fairy_status; // 7 if Seraph is summoned or 6 if dissipation is active, else 0.
-      //        }
-      //        struct Monk {
-      //          0x8 bytes in: uint16 greased_lightning_time_ms;
-      //          0xA bytes in: uchar greased_lightning_stacks;
-      //          0xB bytes in: uchar chakra_stacks;
-      //        }
-      //        struct Machinist {
-      //          0x8 bytes in: uint16 overheat_ms;
-      //          0xA bytes in: uint16 battery_ms;
-      //          0XC bytes in: uchar heat;
-      //          0xD bytes in: uchar battery;
-      //        }
-      //        struct Astrologian { 
-      //          0xC bytes in: byte held_card; // 1 - Balance, 2 - Bole, 3 - Arrow, 4 - Spear, 5 - Ewer, 6 - Spire, else 0.
-      //          0xD bytes in: byte arcanum_1  // Arcanum of first played card.  1 - Solar    - (Balance/Bole).
-      //          0xE bytes in: byte arcanum_2  // Arcanum of second played card. 2 - Lunar    - (Ewer/Arrow).
-      //          0xF bytes in: byte arcanum_3  // Arcanum of third played card.  3 - Celstial - (Spear/Spire).
-      //        }
-      //        struct Samurai {
-      //          0xA bytes in: byte kenki;
-      //          0xB bytes in: byte sen_bits; // 0x1 setsu, 0x2 getsu, 0x4 ka.
-      //        }
+
       private static int kJobDataOuterStructOffset = 0;
       private static int kJobDataInnerStructSize = 8 + 8;
+      private static int kJobDataInnerStructOffset = 8;
       public FFXIVProcess(ILogger logger) { logger_ = logger; }
 
       public bool HasProcess() {
@@ -527,8 +418,7 @@ namespace Cactbot {
 
                byte[] job_bytes = GetJobSpecificData();
                if (job_bytes != null) {
-                  // Start at 8 to skip past the initial pointer.
-                  for (var i = 8; i < job_bytes.Length; ++i) {
+                  for (var i = 0; i < job_bytes.Length; ++i) {
                      if (entity.debug_job != "")
                         entity.debug_job += " ";
                      entity.debug_job += string.Format("{0:x2}", job_bytes[i]);
@@ -595,15 +485,15 @@ namespace Cactbot {
             // The pointer can be null when not logged in.
             return null;
          }
-
-         return Read8(job_inner_ptr, kJobDataInnerStructSize);
+         job_inner_ptr = IntPtr.Add(job_inner_ptr, kJobDataInnerStructOffset);
+         return Read8(job_inner_ptr, kJobDataInnerStructSize - kJobDataInnerStructOffset);
       }
 
       [StructLayout(LayoutKind.Explicit)]
       public struct RedMageJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public byte white;
-         [FieldOffset(0x09)]
+         [FieldOffset(0x01)]
          public byte black;
       };
 
@@ -643,7 +533,7 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct WarriorJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public byte beast;
       };
 
@@ -679,9 +569,9 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct DarkKnightJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public byte blood;
-         [FieldOffset(0x0A)]
+         [FieldOffset(0x02)]
          public ushort darkside_ms;
       };
 
@@ -721,7 +611,7 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct PaladinJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public byte oath;
       };
 
@@ -756,29 +646,67 @@ namespace Cactbot {
       }
 
       [StructLayout(LayoutKind.Explicit)]
-      public struct GunbreakerJobMemory {
-         [FieldOffset(0x08)]
+      public struct GunbreakerJobMemory { // TODO: Needs a lot more research. 
+         [FieldOffset(0x00)]
          public byte cartridges;
+ 
+         [FieldOffset(0x02)]
+         public ushort continuation_ms; // Notes: Jumps to 15000 (ms?) after using Gnashing Fang, doesn't decrease.
 
-         [FieldOffset(0x0A)]
-         public ushort continuation_ms;
-
-         [FieldOffset(0x0C)]
-         public byte continuation_state;
+         [FieldOffset(0x04)]
+         public byte continuation_state; // Seems? to follow Continuation procs.
       };
+
+      public class GunbreakerJobData {
+         public int cartridges = 0;
+         public ushort continuation_ms = 0;
+         public int continuation_state = 0;
+
+         public override bool Equals(object obj) {
+            var o = obj as GunbreakerJobData;
+            return o != null &&
+              cartridges == o.cartridges &&
+              continuation_ms == o.continuation_ms &&
+              continuation_state == o.continuation_state;
+         }
+
+         public override int GetHashCode() {
+            int hash = 17;
+            hash = hash * 31 + cartridges.GetHashCode();
+            hash = hash * 31 + continuation_ms.GetHashCode();
+            hash = hash * 31 + continuation_state.GetHashCode();
+            return hash;
+         }
+      }
+
+      public unsafe GunbreakerJobData GetGunbreaker() {
+            fixed (byte* p = GetJobSpecificData()) {
+               if (p == null)
+                  return null;
+               else {
+                  GunbreakerJobMemory mem = *(GunbreakerJobMemory*)&p[0];
+                  GunbreakerJobData j = new GunbreakerJobData() {
+                     cartridges = mem.cartridges,
+                     continuation_ms = mem.continuation_ms,
+                     continuation_state = mem.continuation_state,
+                  };
+                  return j;
+               }
+            }
+         }
 
       [StructLayout(LayoutKind.Explicit)]
       public struct BardJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public ushort song_ms;
 
-         [FieldOffset(0x0A)]
+         [FieldOffset(0x02)]
          public byte song_procs;
 
-         [FieldOffset(0x0B)]
+         [FieldOffset(0x03)]
          public byte soul_gauge;
 
-         [FieldOffset(0x0C)]
+         [FieldOffset(0x04)]
          public byte song_type;
       };
 
@@ -789,9 +717,9 @@ namespace Cactbot {
 
          public enum Song : byte {
             None = 0,
-            Ballad = 5,  // Mage's Ballad.
-            Paeon = 10,  // Army's Paeon.
-            Minuet = 15,  // The Wanderer's Minuet.
+            Ballad = 5, // Mage's Ballad.
+            Paeon = 10, // Army's Paeon.
+            Minuet = 15, // The Wanderer's Minuet.
          }
          public Song song_type = Song.None;
 
@@ -832,14 +760,90 @@ namespace Cactbot {
       }
 
       [StructLayout(LayoutKind.Explicit)]
+      public unsafe struct DancerJobMemory { // TODO: Needs more research. 
+         [FieldOffset(0x00)]
+         public byte feathers;
+
+         [FieldOffset(0x02)]
+         public byte step1;  // Order of steps in current Standard Step/Technical Step combo.
+
+         [FieldOffset(0x03)]
+         public byte step2;
+
+         [FieldOffset(0x04)]
+         public byte step3;
+
+         [FieldOffset(0x05)]
+         public byte step4;
+
+         [FieldOffset(0x06)]
+         public byte currentStep; // Number of steps executed in current Standard Step/Technical Step combo.
+      };
+
+      public class DancerJobData {
+         public int feathers = 0;
+
+         public enum Step : byte {
+            None = 0,
+            Emboite = 1,
+            Entrechat = 2,
+            Jete = 3,
+            Pirouette = 4,
+         }
+         public Step step1, step2, step3, step4 = Step.None;
+         public int currentStep = 0;
+
+         public override bool Equals(object obj) {
+            var o = obj as DancerJobData;
+            return o != null &&
+               feathers == o.feathers &&
+               step1 == o.step1 &&
+               step2 == o.step2 &&
+               step3 == o.step3 &&
+               step4 == o.step4 &&
+               currentStep == o.currentStep;
+         }
+
+         public override int GetHashCode() {
+            int hash = 17;
+            hash = hash * 31 + feathers.GetHashCode();
+            hash = hash * 31 + step1.GetHashCode();
+            hash = hash * 31 + step2.GetHashCode();
+            hash = hash * 31 + step3.GetHashCode();
+            hash = hash * 31 + step4.GetHashCode();
+            hash = hash * 31 + currentStep.GetHashCode();
+            return hash;
+         }
+      }
+
+      public unsafe DancerJobData GetDancer() {
+         fixed (byte* p = GetJobSpecificData()) {
+            if (p == null)
+               return null;
+            else {
+               DancerJobMemory mem = *(DancerJobMemory*)&p[0];
+               DancerJobData j = new DancerJobData() {
+                  feathers = mem.feathers,
+                  step1 = (DancerJobData.Step)mem.step1,
+                  step2 = (DancerJobData.Step)mem.step2,
+                  step3 = (DancerJobData.Step)mem.step3,
+                  step4 = (DancerJobData.Step)mem.step4,
+                  currentStep = mem.currentStep,
+               };
+               return j;
+            }
+         }
+      }
+
+      [StructLayout(LayoutKind.Explicit)]
       public struct DragoonJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public ushort blood_or_life_ms;
 
-         [FieldOffset(0x0A)]
-         public byte stance;
+         [FieldOffset(0x02)]
+         public byte stance; // 0 = None, 1 = Blood, 2 = Life
 
-         [FieldOffset(0x0B)]
+         [FieldOffset(0x03)]
          public byte eyes_amount;
       };
 
@@ -885,10 +889,10 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct NinjaJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public ushort huton_ms;
 
-         [FieldOffset(0x0A)]
+         [FieldOffset(0x03)]
          public byte ninki_amount;
       };
 
@@ -928,23 +932,23 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct BlackMageJobMemory {
-         [FieldOffset(0x08)]
-         public ushort polyglot_time_ms;
+         [FieldOffset(0x00)]
+         public ushort polyglot_time_ms; // Number of ms left before polygot proc.
 
-         [FieldOffset(0x0A)]
-         public ushort umbral_time_ms;
+         [FieldOffset(0x02)]
+         public ushort umbral_time_ms; // Number of ms left in umbral fire/ice.
 
-         [FieldOffset(0x0C)]
-         public ushort umbral_state;
+         [FieldOffset(0x04)]
+         public ushort umbral_state; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
 
-         [FieldOffset(0x0D)]
+         [FieldOffset(0x05)]
          public byte umbral_hearts_count;
 
-         [FieldOffset(0x0E)]
+         [FieldOffset(0x06)]
          public byte foul_count;
 
-         [FieldOffset(0x0F)]
-         public byte enochian_state;
+         [FieldOffset(0x07)]
+         public byte enochian_state; // Bit 0 = Enochian active. Bit 1 = Polygot active.
       };
 
       public class BlackMageJobData {
@@ -1002,13 +1006,13 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct WhiteMageJobMemory {
-         [FieldOffset(0x0A)]
-         public ushort lilies_ms;
+         [FieldOffset(0x02)]
+         public ushort lilies_ms; // Number of ms left before lily gain.
 
-         [FieldOffset(0x0C)]
+         [FieldOffset(0x04)]
          public byte lily_stacks;
 
-         [FieldOffset(0x0D)]  
+         [FieldOffset(0x05)]  
          public byte bloodlily_stacks;
       };
 
@@ -1052,17 +1056,17 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct SummonerJobMemory {
-         [FieldOffset(0x08)]
-         public ushort stance_ms;
+         [FieldOffset(0x00)]
+         public ushort stance_ms; // Dreadwyrm or Bahamut/Phoenix time left in ms.
 
-         [FieldOffset(0x0A)]
-         public byte bahamut_stance;
+         [FieldOffset(0x02)]
+         public byte bahamut_stance; // 5 if Bahamut/Phoenix summoned, else 0.
 
-         [FieldOffset(0x0B)]
-         public byte bahamut_summoned;
+         [FieldOffset(0x03)]
+         public byte bahamut_summoned; // 1 if Bahamut/Phoenix summoned, else 0.
 
-         [FieldOffset(0x0C)]
-         public byte stacks;
+         [FieldOffset(0x04)]
+         public byte stacks; // Bits 1-2: Aetherflow. Bits 3-4: Dreadwyrm. Bit 5: Phoenix ready.
       };
 
       public class SummonerJobData {
@@ -1105,7 +1109,7 @@ namespace Cactbot {
                   bahamut_stance = mem.bahamut_stance,
                   bahamut_summoned = mem.bahamut_summoned,
                };
-               j.aetherflow_stacks = (mem.stacks >> 0) & 0x3;  // Bottom 2 bits.
+               j.aetherflow_stacks = (mem.stacks >> 0) & 0x3; // Bottom 2 bits.
                j.dreadwyrm_stacks = (mem.stacks >> 2) & 0x3; // Next 2 bits.
                j.phoenix_ready = (mem.stacks >> 4) & 0x3; // Next 2 bits.
                return j;
@@ -1115,17 +1119,17 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct ScholarJobMemory {
-         [FieldOffset(0x0A)]
+         [FieldOffset(0x02)]
          public byte aetherflow_stacks;
 
-         [FieldOffset(0x0B)]
+         [FieldOffset(0x03)]
          public byte fairy_gauge;
 
-         [FieldOffset(0x0C)]
-         public ushort fairy_ms;
+         [FieldOffset(0x04)]
+         public ushort fairy_ms; // Seraph time left ms.
 
-         [FieldOffset(0x0E)]
-         public byte fairy_status;
+         [FieldOffset(0x06)]
+         public byte fairy_status; // 7 - Seraph, 6 - Dissipation, else 0.
       };
 
       public class ScholarJobData {
@@ -1172,13 +1176,13 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct MonkJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public ushort greased_lightning_time_ms;
 
-         [FieldOffset(0x0A)]
+         [FieldOffset(0x02)]
          public byte greased_lightning_stacks;
 
-         [FieldOffset(0x0B)]
+         [FieldOffset(0x03)]
          public byte chakra_stacks;
       };
 
@@ -1222,16 +1226,16 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct MachinistJobMemory {
-         [FieldOffset(0x08)]
+         [FieldOffset(0x00)]
          public ushort overheat_ms;
 
-         [FieldOffset(0x0A)]
+         [FieldOffset(0x02)]
          public ushort battery_ms;
 
-         [FieldOffset(0x0C)]
+         [FieldOffset(0x04)]
          public byte heat;
 
-         [FieldOffset(0x0D)]
+         [FieldOffset(0x05)]
          public byte battery;
       };
 
@@ -1279,24 +1283,38 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct AstrologianJobMemory {
-         [FieldOffset(0x0C)]
+         [FieldOffset(0x04)]
          public byte held_card;
 
-         [FieldOffset(0x0D)]
+         [FieldOffset(0x05)]
          public byte arcanum_1;
 
-         [FieldOffset(0x0E)]
+         [FieldOffset(0x06)]
          public byte arcanum_2;
 
-         [FieldOffset(0x0F)]
+         [FieldOffset(0x07)]
          public byte arcanum_3;
       };
 
       public class AstrologianJobData {
-         public int held_card = 0;
-         public int arcanum_1 = 0;
-         public int arcanum_2 = 0;
-         public int arcanum_3 = 0;
+         public enum Card : byte {
+            None = 0,
+            Balance = 1,
+            Bole = 2,
+            Arrow = 3,
+            Spear = 4,
+            Ewer = 5,
+            Spire = 6,
+         }
+         public Card held_card = Card.None;
+
+         public enum Arcanum : byte {
+            None = 0,
+            Solar = 1, // Balance/Bole
+            Lunar = 2, // Ewer/Arrow
+            Celestial = 3, // Spear/Spire
+         }
+         public Arcanum arcanum_1, arcanum_2, arcanum_3 = Arcanum.None;
 
          public override bool Equals(object obj) {
             var o = obj as AstrologianJobData;
@@ -1324,10 +1342,10 @@ namespace Cactbot {
             else {
                AstrologianJobMemory mem = *(AstrologianJobMemory*)&p[0];
                AstrologianJobData j = new AstrologianJobData() {
-                  held_card = mem.held_card,
-                  arcanum_1 = mem.arcanum_1,
-                  arcanum_2 = mem.arcanum_2,
-                  arcanum_3 = mem.arcanum_3,
+                  held_card = (AstrologianJobData.Card)mem.held_card,
+                  arcanum_1 = (AstrologianJobData.Arcanum)mem.arcanum_1,
+                  arcanum_2 = (AstrologianJobData.Arcanum)mem.arcanum_2,
+                  arcanum_3 = (AstrologianJobData.Arcanum)mem.arcanum_3,
                };
                return j;
             }
@@ -1336,10 +1354,10 @@ namespace Cactbot {
 
       [StructLayout(LayoutKind.Explicit)]
       public struct SamuraiJobMemory {
-         [FieldOffset(0x0C)]
+         [FieldOffset(0x04)]
          public byte kenki;
 
-         [FieldOffset(0x0D)]
+         [FieldOffset(0x05)]
          public byte sen_bits;
       };
 
