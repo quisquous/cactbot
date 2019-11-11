@@ -188,8 +188,8 @@ namespace Cactbot {
       public struct WhiteMageDetail {
         public WhiteMageDetail(FFXIVProcess.WhiteMageJobData d) { 
           lilyMilliseconds = d.lilies_ms;
-          lily_stacks = d.lily_stacks;
-          bloodlily_stacks = d.bloodlily_stacks;
+          lilyStacks = d.lily_stacks;
+          bloodlilyStacks = d.bloodlily_stacks;
         }
         public uint lilyMilliseconds;
         public int lily_stacks;
