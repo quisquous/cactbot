@@ -308,7 +308,7 @@ hideall "--sync--"
 2382.5 "Shadow Flare" sync /:Lahabrea:1381:/
 2388.0 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
 2393.6 "Dark Orb" sync /:Lahabrea:10FC:/
-2398.8 "Sea Of Pitch" sync /:Lahabrea:10FB:/ 20,20
+2398.8 "Sea Of Pitch" sync /:Lahabrea:10FB:/ window 20,20
 2402.4 "End Of Days" sync /:Igeyorhm:10FD:/
 2407.0 "Dark Orb" sync /:Lahabrea:10FC:/
 2414.2 "Dark Fire II" sync /:Lahabrea:10F7:/
