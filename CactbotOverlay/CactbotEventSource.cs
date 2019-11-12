@@ -461,20 +461,16 @@ namespace Cactbot {
                   OnPlayerChanged(e);
                   break;
                 };
-              default: {
-                  if (send) {
-                    // No job-specific data.
-                    OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
-                  }
-                  break;
-                }
             }
           }
+        } else if (send) {
+          // No job-specific data.
+          OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
         }
       }
 
-      // onTargetChangedEvent: Fires when current target or their state changes.
-      if (target != notify_state_.target) {
+          // onTargetChangedEvent: Fires when current target or their state changes.
+          if (target != notify_state_.target) {
         notify_state_.target = target;
         if (target != null)
           OnTargetChanged(new JSEvents.TargetChangedEvent(target));
