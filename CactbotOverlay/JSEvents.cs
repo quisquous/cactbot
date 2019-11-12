@@ -140,7 +140,9 @@ namespace Cactbot {
       }
 
       public struct PaladinDetail {
-        public PaladinDetail(JObject job) { oath = (int)job.GetValue("oath"); }
+        public PaladinDetail(JObject job) {
+          oath = (int)job.GetValue("oath");
+        }
         public int oath;
       }
 
