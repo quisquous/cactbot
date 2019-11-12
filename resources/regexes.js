@@ -12,14 +12,14 @@ let trueIfUndefined = (value) => {
 var Regexes = {
 /* eslint-enable */
 
-  // fields: name, id, ability, target, capture
+  // fields: source, id, ability, target, capture
   startsUsing: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 14:' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
 
-    if (f.name || f.id || f.target || capture)
-      str += Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ' starts using ';
+    if (f.source || f.id || f.target || capture)
+      str += Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ' starts using ';
 
     if (f.ability || f.target || capture)
       str += Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ' on ';
@@ -30,11 +30,11 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: name, id, ability, capture
+  // fields: source, id, ability, capture
   ability: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1[56]:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':';
+      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':';
 
     if (f.id || f.ability || capture)
       str += Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
@@ -45,11 +45,11 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: name, id, ability, target, flags, x, y, z, heading, capture
+  // fields: source, id, ability, target, flags, x, y, z, heading, capture
   abilityFull: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1[56]:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
       Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ':\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':' +
@@ -63,11 +63,11 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: name, id, capture
+  // fields: target, id, capture
   headmarker: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1B:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':....:....:' +
+      Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);
   },
@@ -103,11 +103,11 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: name, effect, source, duration, capture
+  // fields: target, effect, source, duration, capture
   gainsEffect: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1A:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
+      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' gains the effect of ' +
       Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
       ' from ' +
@@ -118,11 +118,11 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: name, effect, source, capture
+  // fields: target, effect, source, capture
   losesEffect: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 1E:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
+      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' loses the effect of ' +
       Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
       ' from ' +
@@ -130,13 +130,13 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: name1, name2, id, capture
+  // fields: source, target, id, capture
   tether: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{TimeStamp} 23:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name1', f.name1, '.*?') +
+      Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
       ':\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'name2', f.name2, '.*?') +
+      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);
