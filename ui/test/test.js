@@ -32,7 +32,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'DNC')
     document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
   else if (e.detail.job == 'NIN')
-    document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount;
+    document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount + ' | ' + jobDetail.hutonCount;
   else if (e.detail.job == 'DRG')
     document.getElementById('jobinfo').innerText = jobDetail.bloodMilliseconds + ' | ' + jobDetail.lifeMilliseconds + ' | ' + jobDetail.eyesAmount;
   else if (e.detail.job == 'BLM')
