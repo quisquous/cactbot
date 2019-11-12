@@ -13,6 +13,7 @@ var Regexes = {
 /* eslint-enable */
 
   // fields: source, id, ability, target, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 14:' +
@@ -31,6 +32,8 @@ var Regexes = {
   },
 
   // fields: source, id, ability, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   ability: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
@@ -46,6 +49,8 @@ var Regexes = {
   },
 
   // fields: source, id, ability, target, flags, x, y, z, heading, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   abilityFull: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
@@ -64,6 +69,7 @@ var Regexes = {
   },
 
   // fields: target, id, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1B:\\y{ObjectId}:' +
@@ -73,6 +79,7 @@ var Regexes = {
   },
 
   // fields: name, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
   addedCombatant: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:\\y{ObjectId}:Added new combatant ' +
@@ -81,6 +88,7 @@ var Regexes = {
   },
 
   // fields: id, name, hp, x, y, z, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
@@ -95,6 +103,7 @@ var Regexes = {
   },
 
   // fields: name, hp, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#04-removecombatant
   removingCombatant: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 04:\\y{ObjectId}:Removing combatant ' +
@@ -104,6 +113,7 @@ var Regexes = {
   },
 
   // fields: target, effect, source, duration, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1A:\\y{ObjectId}:' +
@@ -119,6 +129,7 @@ var Regexes = {
   },
 
   // fields: target, effect, source, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1E:\\y{ObjectId}:' +
@@ -131,6 +142,7 @@ var Regexes = {
   },
 
   // fields: source, target, id, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#23-networktether
   tether: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 23:\\y{ObjectId}:' +
@@ -143,6 +155,7 @@ var Regexes = {
   },
 
   // fields: line, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   echo: (f) => {
     return Regexes.gameLog({
       line: f.line,
@@ -152,6 +165,7 @@ var Regexes = {
   },
 
   // fields: line, name, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   dialog: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
@@ -162,6 +176,7 @@ var Regexes = {
   },
 
   // fields: line, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   message: (f) => {
     return Regexes.gameLog({
       line: f.line,
@@ -171,6 +186,7 @@ var Regexes = {
   },
 
   // fields: code, line, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   gameLog: (f) => {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
