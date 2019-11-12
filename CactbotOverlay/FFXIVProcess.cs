@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
 
@@ -279,7 +280,7 @@ namespace Cactbot {
 
     private static int kJobDataOuterStructOffset = 0;
     private static int kJobDataInnerStructOffset = 8;
-    private static int kJobDataInnerStructSize = 8 - kJobDataInnerStructOffset;
+    private static int kJobDataInnerStructSize = 16 - kJobDataInnerStructOffset;
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
 
     public bool HasProcess() {
@@ -489,6 +490,82 @@ namespace Cactbot {
       return Read8(job_inner_ptr, kJobDataInnerStructSize);
     }
 
+    public unsafe JObject GetJobSpecificData(EntityJob job) {
+      if (!HasProcess() || job_data_outer_addr_ == IntPtr.Zero)
+        return null;
+
+      IntPtr job_inner_ptr = ReadIntPtr(job_data_outer_addr_);
+      if (job_inner_ptr == IntPtr.Zero) {
+        // The pointer can be null when not logged in.
+        return null;
+      }
+      job_inner_ptr = IntPtr.Add(job_inner_ptr, kJobDataInnerStructOffset);
+
+      fixed (byte* p = Read8(job_inner_ptr, kJobDataInnerStructSize)) {
+        if (p == null)
+          return null;
+        else {
+          switch (job) {
+            case EntityJob.RDM: {
+                return JObject.FromObject(*(RedMageJobMemory*)&p[0]);
+              };
+            case EntityJob.WAR: {
+                return JObject.FromObject(*(WarriorJobMemory*)&p[0]);
+              };
+            case EntityJob.DRK: {
+                return JObject.FromObject(*(DarkKnightJobMemory*)&p[0]);
+              };
+            case EntityJob.PLD: {
+                return JObject.FromObject(*(PaladinJobMemory*)&p[0]);
+              };
+            case EntityJob.GNB: {
+                return JObject.FromObject(*(GunbreakerJobMemory*)&p[0]);
+              };
+            case EntityJob.BRD: {
+                return JObject.FromObject(*(BardJobMemory*)&p[0]);
+              }
+            case EntityJob.DNC: {
+                return JObject.FromObject(*(DancerJobMemory*)&p[0]);
+              };
+            case EntityJob.DRG: {
+                return JObject.FromObject(*(DragoonJobMemory*)&p[0]);
+              };
+            case EntityJob.NIN: {
+                return JObject.FromObject(*(NinjaJobMemory*)&p[0]);
+              };
+            case EntityJob.BLM: {
+                return JObject.FromObject(*(BlackMageJobMemory*)&p[0]);
+              };
+            case EntityJob.WHM: {
+                return JObject.FromObject(*(WhiteMageJobMemory*)&p[0]);
+              };
+            case EntityJob.SMN: {
+                return JObject.FromObject(*(SummonerJobMemory*)&p[0]);
+              };
+            case EntityJob.SCH: {
+                return JObject.FromObject(*(ScholarJobMemory*)&p[0]);
+              };
+            case EntityJob.MNK: {
+                return JObject.FromObject(*(MonkJobMemory*)&p[0]);
+              };
+            case EntityJob.MCH: {
+                return JObject.FromObject(*(MachinistJobMemory*)&p[0]);
+              };
+            case EntityJob.AST: {
+                return JObject.FromObject(*(AstrologianJobMemory*)&p[0]);
+              };
+            case EntityJob.SAM: {
+                return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
+              };
+            default: {
+                logger_.LogError("GetJobSpecificData: {0}", job);
+                return null;
+              };
+          }
+        }
+      }
+    }
+
     [StructLayout(LayoutKind.Explicit)]
     public struct RedMageJobMemory {
       [FieldOffset(0x00)]
@@ -498,75 +575,11 @@ namespace Cactbot {
       public byte black;
     };
 
-    public class RedMageJobData {
-      public int white = 0;
-      public int black = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as RedMageJobData;
-        return o != null &&
-          white == o.white &&
-          black == o.black;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + white.GetHashCode();
-        hash = hash * 31 + black.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe RedMageJobData GetRedMage() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          RedMageJobMemory mem = *(RedMageJobMemory*)&p[0];
-          RedMageJobData j = new RedMageJobData() {
-            white = mem.white,
-            black = mem.black,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct WarriorJobMemory {
       [FieldOffset(0x00)]
       public byte beast;
     };
-
-    public class WarriorJobData {
-      public int beast = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as WarriorJobData;
-        return o != null &&
-          beast == o.beast;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + beast.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe WarriorJobData GetWarrior() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          WarriorJobMemory mem = *(WarriorJobMemory*)&p[0];
-          WarriorJobData j = new WarriorJobData() {
-            beast = mem.beast,
-          };
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public struct DarkKnightJobMemory {
@@ -576,75 +589,11 @@ namespace Cactbot {
       public ushort darkside_ms;
     };
 
-    public class DarkKnightJobData {
-      public int blood = 0;
-      public int darkside_ms = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as DarkKnightJobData;
-        return o != null &&
-          blood == o.blood &&
-          darkside_ms == o.darkside_ms;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + blood.GetHashCode();
-        hash = hash * 31 + darkside_ms.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe DarkKnightJobData GetDarkKnight() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          DarkKnightJobMemory mem = *(DarkKnightJobMemory*)&p[0];
-          DarkKnightJobData j = new DarkKnightJobData() {
-            blood = mem.blood,
-            darkside_ms = mem.darkside_ms,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct PaladinJobMemory {
       [FieldOffset(0x00)]
       public byte oath;
     };
-
-    public class PaladinJobData {
-      public int oath = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as PaladinJobData;
-        return o != null &&
-          oath == o.oath;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + oath.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe PaladinJobData GetPaladin() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          PaladinJobMemory mem = *(PaladinJobMemory*)&p[0];
-          PaladinJobData j = new PaladinJobData() {
-            oath = mem.oath,
-          };
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public struct GunbreakerJobMemory { // TODO: Needs a lot more research. 
@@ -658,46 +607,9 @@ namespace Cactbot {
       public byte continuation_state; // Seems? to follow Continuation procs.
     };
 
-    public class GunbreakerJobData {
-      public int cartridges = 0;
-      public ushort continuation_ms = 0;
-      public int continuation_state = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as GunbreakerJobData;
-        return o != null &&
-          cartridges == o.cartridges &&
-          continuation_ms == o.continuation_ms &&
-          continuation_state == o.continuation_state;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + cartridges.GetHashCode();
-        hash = hash * 31 + continuation_ms.GetHashCode();
-        hash = hash * 31 + continuation_state.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe GunbreakerJobData GetGunbreaker() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          GunbreakerJobMemory mem = *(GunbreakerJobMemory*)&p[0];
-          GunbreakerJobData j = new GunbreakerJobData() {
-            cartridges = mem.cartridges,
-            continuation_ms = mem.continuation_ms,
-            continuation_state = mem.continuation_state,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct BardJobMemory {
+
       [FieldOffset(0x00)]
       public ushort song_ms;
 
@@ -710,55 +622,6 @@ namespace Cactbot {
       [FieldOffset(0x04)]
       public byte song_type;
     };
-
-    public class BardJobData {
-      public uint song_ms = 0;
-      public int song_procs = 0;
-      public int soul_gauge = 0;
-
-      public enum Song : byte {
-        None = 0,
-        Ballad = 5, // Mage's Ballad.
-        Paeon = 10, // Army's Paeon.
-        Minuet = 15, // The Wanderer's Minuet.
-      }
-      public Song song_type = Song.None;
-
-      public override bool Equals(object obj) {
-        var o = obj as BardJobData;
-        return o != null &&
-          song_ms == o.song_ms &&
-          song_procs == o.song_procs &&
-          soul_gauge == o.soul_gauge &&
-          song_type == o.song_type;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + song_ms.GetHashCode();
-        hash = hash * 31 + song_procs.GetHashCode();
-        hash = hash * 31 + soul_gauge.GetHashCode();
-        hash = hash * 31 + song_type.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe BardJobData GetBard() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          BardJobMemory mem = *(BardJobMemory*)&p[0];
-          BardJobData j = new BardJobData() {
-            song_ms = mem.song_ms,
-            song_procs = mem.song_procs,
-            soul_gauge = mem.soul_gauge,
-            song_type = (BardJobData.Song)mem.song_type,
-          };
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct DancerJobMemory { // TODO: Needs more research. 
@@ -778,63 +641,8 @@ namespace Cactbot {
       public byte step4;
 
       [FieldOffset(0x06)]
-      public byte currentStep; // Number of steps executed in current Standard Step/Technical Step combo.
+      public byte current_step; // Number of steps executed in current Standard Step/Technical Step combo.
     };
-
-    public class DancerJobData {
-      public int feathers = 0;
-
-      public enum Step : byte {
-        None = 0,
-        Emboite = 1,
-        Entrechat = 2,
-        Jete = 3,
-        Pirouette = 4,
-      }
-      public Step step1, step2, step3, step4 = Step.None;
-      public int currentStep = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as DancerJobData;
-        return o != null &&
-           feathers == o.feathers &&
-           step1 == o.step1 &&
-           step2 == o.step2 &&
-           step3 == o.step3 &&
-           step4 == o.step4 &&
-           currentStep == o.currentStep;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + feathers.GetHashCode();
-        hash = hash * 31 + step1.GetHashCode();
-        hash = hash * 31 + step2.GetHashCode();
-        hash = hash * 31 + step3.GetHashCode();
-        hash = hash * 31 + step4.GetHashCode();
-        hash = hash * 31 + currentStep.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe DancerJobData GetDancer() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          DancerJobMemory mem = *(DancerJobMemory*)&p[0];
-          DancerJobData j = new DancerJobData() {
-            feathers = mem.feathers,
-            step1 = (DancerJobData.Step)mem.step1,
-            step2 = (DancerJobData.Step)mem.step2,
-            step3 = (DancerJobData.Step)mem.step3,
-            step4 = (DancerJobData.Step)mem.step4,
-            currentStep = mem.currentStep,
-          };
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public struct DragoonJobMemory {
@@ -848,46 +656,6 @@ namespace Cactbot {
       public byte eyes_amount;
     };
 
-    public class DragoonJobData {
-      public uint blood_ms = 0;
-      public uint life_ms = 0;
-      public uint eyes_amount = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as DragoonJobData;
-        return o != null &&
-          blood_ms == o.blood_ms &&
-          life_ms == o.life_ms &&
-          eyes_amount == o.eyes_amount;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + blood_ms.GetHashCode();
-        hash = hash * 31 + life_ms.GetHashCode();
-        hash = hash * 31 + eyes_amount.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe DragoonJobData GetDragoon() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          DragoonJobMemory mem = *(DragoonJobMemory*)&p[0];
-          DragoonJobData j = new DragoonJobData();
-          if (mem.stance == 1) {
-            j.blood_ms = mem.blood_or_life_ms;
-          } else if (mem.stance == 2) {
-            j.life_ms = mem.blood_or_life_ms;
-          }
-          j.eyes_amount = mem.eyes_amount;
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct NinjaJobMemory {
       [FieldOffset(0x00)]
@@ -900,54 +668,16 @@ namespace Cactbot {
       public byte huton_count; //TODO: Confirm this.
     };
 
-    public class NinjaJobData {
-      public uint huton_ms = 0;
-      public uint ninki_amount = 0;
-      public uint huton_count = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as NinjaJobData;
-        return o != null &&
-          huton_ms == o.huton_ms &&
-          ninki_amount == o.ninki_amount &&
-          huton_count == o.huton_count;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + huton_ms.GetHashCode();
-        hash = hash * 31 + ninki_amount.GetHashCode();
-        hash = hash * 31 + huton_count.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe NinjaJobData GetNinja() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          NinjaJobMemory mem = *(NinjaJobMemory*)&p[0];
-          NinjaJobData j = new NinjaJobData() {
-            huton_ms = mem.huton_ms,
-            ninki_amount = mem.ninki_amount,
-            huton_count = mem.huton_count,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct BlackMageJobMemory {
       [FieldOffset(0x00)]
-      public ushort polyglot_time_ms; // Number of ms left before polygot proc.
+      public ushort polyglot_time_ms; // Number of ms left before polyglot proc.
 
       [FieldOffset(0x02)]
       public ushort umbral_time_ms; // Number of ms left in umbral fire/ice.
 
       [FieldOffset(0x04)]
-      public ushort umbral_state; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
+      public ushort umbral_stacks; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
 
       [FieldOffset(0x05)]
       public byte umbral_hearts_count;
@@ -958,59 +688,6 @@ namespace Cactbot {
       [FieldOffset(0x07)]
       public byte enochian_state; // Bit 0 = Enochian active. Bit 1 = Polygot active.
     };
-
-    public class BlackMageJobData {
-      public uint polygot_time_ms = 0;
-      public uint umbral_time_ms = 0;
-      public int umbral_stacks = 0;
-      public int umbral_hearts = 0;
-      public int foul_count = 0;
-      public bool enochian_active = false;
-
-      public override bool Equals(Object obj) {
-        var o = obj as BlackMageJobData;
-        return o != null &&
-          polygot_time_ms == o.polygot_time_ms &&
-          umbral_time_ms == o.umbral_time_ms &&
-          umbral_stacks == o.umbral_stacks &&
-          umbral_hearts == o.umbral_hearts &&
-          foul_count == o.foul_count &&
-          enochian_active == o.enochian_active;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + polygot_time_ms.GetHashCode();
-        hash = hash * 31 + umbral_time_ms.GetHashCode();
-        hash = hash * 31 + umbral_stacks.GetHashCode();
-        hash = hash * 31 + umbral_hearts.GetHashCode();
-        hash = hash * 31 + foul_count.GetHashCode();
-        hash = hash * 31 + enochian_active.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe BlackMageJobData GetBlackMage() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          BlackMageJobMemory mem = *(BlackMageJobMemory*)&p[0];
-          BlackMageJobData j = new BlackMageJobData() {
-            umbral_stacks = mem.umbral_state,
-            umbral_hearts = mem.umbral_hearts_count,
-            foul_count = mem.foul_count,
-            enochian_active = (mem.enochian_state & 0xF) == 1,
-          };
-          // Note: When the umbral stacks is 0, the timer may still run though it isn't relevant.
-          if (j.umbral_stacks != 0)
-            j.umbral_time_ms = mem.umbral_time_ms;
-          if (j.enochian_active)
-            j.polygot_time_ms = mem.polyglot_time_ms;
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public struct WhiteMageJobMemory {
@@ -1023,44 +700,6 @@ namespace Cactbot {
       [FieldOffset(0x05)]
       public byte bloodlily_stacks;
     };
-
-    public class WhiteMageJobData {
-      public uint lilies_ms = 0;
-      public int lily_stacks = 0;
-      public int bloodlily_stacks = 0;
-
-      public override bool Equals(Object obj) {
-        var o = obj as WhiteMageJobData;
-        return o != null &&
-          lilies_ms == o.lilies_ms &&
-          lily_stacks == o.lily_stacks &&
-          bloodlily_stacks == o.bloodlily_stacks;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + lilies_ms.GetHashCode();
-        hash = hash * 31 + lily_stacks.GetHashCode();
-        hash = hash * 31 + bloodlily_stacks.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe WhiteMageJobData GetWhiteMage() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          WhiteMageJobMemory mem = *(WhiteMageJobMemory*)&p[0];
-          WhiteMageJobData j = new WhiteMageJobData() {
-            lilies_ms = mem.lilies_ms,
-            lily_stacks = mem.lily_stacks,
-            bloodlily_stacks = mem.bloodlily_stacks,
-          };
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public struct SummonerJobMemory {
@@ -1077,54 +716,6 @@ namespace Cactbot {
       public byte stacks; // Bits 1-2: Aetherflow. Bits 3-4: Dreadwyrm. Bit 5: Phoenix ready.
     };
 
-    public class SummonerJobData {
-      public uint stance_ms = 0;
-      public int bahamut_stance = 0;
-      public int bahamut_summoned = 0;
-      public int aetherflow_stacks = 0;
-      public int dreadwyrm_stacks = 0;
-      public int phoenix_ready = 0;
-
-      public override bool Equals(Object obj) {
-        var o = obj as SummonerJobData;
-        return o != null &&
-          stance_ms == o.stance_ms &&
-          bahamut_stance == o.bahamut_stance &&
-          bahamut_summoned == o.bahamut_summoned &&
-          dreadwyrm_stacks == o.dreadwyrm_stacks &&
-          phoenix_ready == o.phoenix_ready;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + stance_ms.GetHashCode();
-        hash = hash * 31 + bahamut_stance.GetHashCode();
-        hash = hash * 31 + bahamut_summoned.GetHashCode();
-        hash = hash * 31 + dreadwyrm_stacks.GetHashCode();
-        hash = hash * 31 + phoenix_ready.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe SummonerJobData GetSummoner() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          SummonerJobMemory mem = *(SummonerJobMemory*)&p[0];
-          SummonerJobData j = new SummonerJobData() {
-            stance_ms = mem.stance_ms,
-            bahamut_stance = mem.bahamut_stance,
-            bahamut_summoned = mem.bahamut_summoned,
-          };
-          j.aetherflow_stacks = (mem.stacks >> 0) & 0x3; // Bottom 2 bits.
-          j.dreadwyrm_stacks = (mem.stacks >> 2) & 0x3; // Next 2 bits.
-          j.phoenix_ready = (mem.stacks >> 4) & 0x3; // Next 2 bits.
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct ScholarJobMemory {
       [FieldOffset(0x02)]
@@ -1140,48 +731,6 @@ namespace Cactbot {
       public byte fairy_status; // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
     };
 
-    public class ScholarJobData {
-      public int aetherflow_stacks = 0;
-      public int fairy_gauge = 0;
-      public uint fairy_ms = 0;
-      public int fairy_status = 0;
-
-      public override bool Equals(Object obj) {
-        var o = obj as ScholarJobData;
-        return o != null &&
-          aetherflow_stacks == o.aetherflow_stacks &&
-          fairy_gauge == o.fairy_gauge &&
-          fairy_ms == o.fairy_ms &&
-          fairy_status == o.fairy_status;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + aetherflow_stacks.GetHashCode();
-        hash = hash * 31 + fairy_gauge.GetHashCode();
-        hash = hash * 31 + fairy_ms.GetHashCode();
-        hash = hash * 31 + fairy_status.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe ScholarJobData GetScholar() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          ScholarJobMemory mem = *(ScholarJobMemory*)&p[0];
-          ScholarJobData j = new ScholarJobData() {
-            aetherflow_stacks = mem.aetherflow_stacks,
-            fairy_gauge = mem.fairy_gauge,
-            fairy_ms = mem.fairy_ms,
-            fairy_status = mem.fairy_status,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct MonkJobMemory {
       [FieldOffset(0x00)]
@@ -1193,44 +742,6 @@ namespace Cactbot {
       [FieldOffset(0x03)]
       public byte chakra_stacks;
     };
-
-    public class MonkJobData {
-      public uint lightning_ms = 0;
-      public int lightning_stacks = 0;
-      public int chakra_stacks = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as MonkJobData;
-        return o != null &&
-          lightning_ms == o.lightning_ms &&
-          lightning_stacks == o.lightning_stacks &&
-          chakra_stacks == o.chakra_stacks;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + lightning_ms.GetHashCode();
-        hash = hash * 31 + lightning_stacks.GetHashCode();
-        hash = hash * 31 + chakra_stacks.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe MonkJobData GetMonk() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          MonkJobMemory mem = *(MonkJobMemory*)&p[0];
-          MonkJobData j = new MonkJobData() {
-            lightning_ms = mem.greased_lightning_time_ms,
-            lightning_stacks = mem.greased_lightning_stacks,
-            chakra_stacks = mem.chakra_stacks,
-          };
-          return j;
-        }
-      }
-    }
 
     [StructLayout(LayoutKind.Explicit)]
     public struct MachinistJobMemory {
@@ -1247,48 +758,6 @@ namespace Cactbot {
       public byte battery;
     };
 
-    public class MachinistJobData {
-      public int heat = 0;
-      public uint overheat_ms = 0;
-      public int battery = 0;
-      public uint battery_ms = 0;
-
-      public override bool Equals(object obj) {
-        var o = obj as MachinistJobData;
-        return o != null &&
-          heat != o.heat &&
-          overheat_ms != o.overheat_ms &&
-          battery != o.battery_ms &&
-          battery_ms != o.battery_ms;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + heat.GetHashCode();
-        hash = hash * 31 + overheat_ms.GetHashCode();
-        hash = hash * 31 + battery.GetHashCode();
-        hash = hash * 31 + battery_ms.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe MachinistJobData GetMachinist() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          MachinistJobMemory mem = *(MachinistJobMemory*)&p[0];
-          MachinistJobData j = new MachinistJobData() {
-            heat = mem.heat,
-            overheat_ms = mem.overheat_ms,
-            battery = mem.battery,
-            battery_ms = mem.battery_ms,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct AstrologianJobMemory {
       [FieldOffset(0x04)]
@@ -1304,62 +773,6 @@ namespace Cactbot {
       public byte arcanum_3;
     };
 
-    public class AstrologianJobData {
-      public enum Card : byte {
-        None = 0,
-        Balance = 1,
-        Bole = 2,
-        Arrow = 3,
-        Spear = 4,
-        Ewer = 5,
-        Spire = 6,
-      }
-      public Card held_card = Card.None;
-
-      public enum Arcanum : byte {
-        None = 0,
-        Solar = 1, // Balance/Bole
-        Lunar = 2, // Ewer/Arrow
-        Celestial = 3, // Spear/Spire
-      }
-      public Arcanum arcanum_1, arcanum_2, arcanum_3 = Arcanum.None;
-
-      public override bool Equals(object obj) {
-        var o = obj as AstrologianJobData;
-        return o != null &&
-          held_card != o.held_card &&
-          arcanum_1 != o.arcanum_1 &&
-          arcanum_2 != o.arcanum_2 &&
-          arcanum_3 != o.arcanum_3;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + held_card.GetHashCode();
-        hash = hash * 31 + arcanum_1.GetHashCode();
-        hash = hash * 31 + arcanum_2.GetHashCode();
-        hash = hash * 31 + arcanum_3.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe AstrologianJobData GetAstrologian() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          AstrologianJobMemory mem = *(AstrologianJobMemory*)&p[0];
-          AstrologianJobData j = new AstrologianJobData() {
-            held_card = (AstrologianJobData.Card)mem.held_card,
-            arcanum_1 = (AstrologianJobData.Arcanum)mem.arcanum_1,
-            arcanum_2 = (AstrologianJobData.Arcanum)mem.arcanum_2,
-            arcanum_3 = (AstrologianJobData.Arcanum)mem.arcanum_3,
-          };
-          return j;
-        }
-      }
-    }
-
     [StructLayout(LayoutKind.Explicit)]
     public struct SamuraiJobMemory {
       [FieldOffset(0x04)]
@@ -1368,48 +781,6 @@ namespace Cactbot {
       [FieldOffset(0x05)]
       public byte sen_bits;
     };
-
-    public class SamuraiJobData {
-      public int kenki = 0;
-      public bool setsu = false;
-      public bool getsu = false;
-      public bool ka = false;
-
-      public override bool Equals(object obj) {
-        var o = obj as SamuraiJobData;
-        return o != null &&
-          kenki != o.kenki &&
-          setsu != o.setsu &&
-          getsu != o.getsu &&
-          ka != o.ka;
-      }
-
-      public override int GetHashCode() {
-        int hash = 17;
-        hash = hash * 31 + kenki.GetHashCode();
-        hash = hash * 31 + setsu.GetHashCode();
-        hash = hash * 31 + getsu.GetHashCode();
-        hash = hash * 31 + ka.GetHashCode();
-        return hash;
-      }
-    }
-
-    public unsafe SamuraiJobData GetSamurai() {
-      fixed (byte* p = GetJobSpecificData()) {
-        if (p == null)
-          return null;
-        else {
-          SamuraiJobMemory mem = *(SamuraiJobMemory*)&p[0];
-          SamuraiJobData j = new SamuraiJobData() {
-            kenki = mem.kenki,
-          };
-          j.setsu = (mem.sen_bits & 0x1) != 0;
-          j.getsu = (mem.sen_bits & 0x2) != 0;
-          j.ka = (mem.sen_bits & 0x4) != 0;
-          return j;
-        }
-      }
-    }
 
     /// Reads |count| bytes at |addr| in the |process_|. Returns null on error.
     private byte[] Read8(IntPtr addr, int count) {

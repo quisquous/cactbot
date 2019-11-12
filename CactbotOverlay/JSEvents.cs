@@ -117,32 +117,34 @@ namespace Cactbot {
       public object jobDetail;
 
       public struct RedMageDetail {
-        public RedMageDetail(FFXIVProcess.RedMageJobData d) { whiteMana = d.white; blackMana = d.black; }
+        public RedMageDetail(JObject job) {
+          whiteMana = (int)job.GetValue("white");
+          blackMana = (int)job.GetValue("black"); }
         public int whiteMana;
         public int blackMana;
       }
 
       public struct WarriorDetail {
-        public WarriorDetail(FFXIVProcess.WarriorJobData d) { beast = d.beast; }
+        public WarriorDetail(JObject job) { beast = (int)job.GetValue("beast"); }
         public int beast;
       }
 
       public struct DarkKnightDetail {
-        public DarkKnightDetail(FFXIVProcess.DarkKnightJobData d) { blood = d.blood; darksideMilliseconds = d.darkside_ms; }
+        public DarkKnightDetail(JObject job) { blood = (int)job.GetValue("blood"); darksideMilliseconds = (int)job.GetValue("darkside_ms"); }
         public int blood;
         public int darksideMilliseconds;
       }
 
       public struct PaladinDetail {
-        public PaladinDetail(FFXIVProcess.PaladinJobData d) { oath = d.oath; }
+        public PaladinDetail(JObject job) { oath = (int)job.GetValue("oath"); }
         public int oath;
       }
 
       public struct GunbreakerDetail {
-        public GunbreakerDetail(FFXIVProcess.GunbreakerJobData d) {
-            cartridges = d.cartridges;
-            continuationMilliseconds = d.continuation_ms;
-            continuationState = d.continuation_state;
+        public GunbreakerDetail(JObject job) {
+            cartridges = (int)job.GetValue("cartridges");
+            continuationMilliseconds = (uint)job.GetValue("continuation_ms");
+            continuationState = (int)job.GetValue("continuation_state");
         }
         public int cartridges;
         public uint continuationMilliseconds;
@@ -150,11 +152,22 @@ namespace Cactbot {
       }
 
       public struct BardDetail {
-        public BardDetail(FFXIVProcess.BardJobData d) {
-          songName = d.song_type == FFXIVProcess.BardJobData.Song.None ? "" : d.song_type.ToString();
-          songMilliseconds = d.song_ms;
-          soulGauge = d.soul_gauge;
-          songProcs = d.song_procs;
+        public enum Song : byte {
+          None = 0,
+          Ballad = 5, // Mage's Ballad.
+          Paeon = 10, // Army's Paeon.
+          Minuet = 15, // The Wanderer's Minuet.
+        }
+
+        public BardDetail(JObject job) {
+          //Ending a song decrements song_type rather than resetting to 0
+          if (!Enum.IsDefined(typeof(Song), (byte)job.GetValue("song_type")))
+            songName = "None";
+          else
+            songName = ((Song)(byte)job.GetValue("song_type")).ToString();
+          songMilliseconds = (uint)job.GetValue("song_ms");
+          soulGauge = (int)job.GetValue("soul_gauge");
+          songProcs = (int)job.GetValue("song_procs");
         }
         public string songName;
         public uint songMilliseconds;
@@ -163,10 +176,23 @@ namespace Cactbot {
       }
 
       public struct DancerDetail {
-        public DancerDetail(FFXIVProcess.DancerJobData d) {
-               feathers = d.feathers;
-               steps = new[] { d.step1.ToString(), d.step2.ToString(), d.step3.ToString(), d.step4.ToString() };
-               currentStep = d.currentStep;
+        public enum Step : byte {
+          None = 0,
+          Emboite = 1,
+          Entrechat = 2,
+          Jete = 3,
+          Pirouette = 4,
+        }
+
+        public DancerDetail(JObject job) {
+               feathers = (int)job.GetValue("feathers");
+               steps = new[] { 
+                 ((Step)(byte)job.GetValue("step1")).ToString(),
+                 ((Step)(byte)job.GetValue("step2")).ToString(),
+                 ((Step)(byte)job.GetValue("step3")).ToString(),
+                 ((Step)(byte)job.GetValue("step4")).ToString(),
+               };
+               currentStep = (int)job.GetValue("current_step");
         }
         public int feathers;
         public string[] steps;
@@ -174,45 +200,53 @@ namespace Cactbot {
       }
 
          public struct NinjaDetail {
-        public NinjaDetail(FFXIVProcess.NinjaJobData d) { hutonMilliseconds = d.huton_ms; ninkiAmount = d.ninki_amount; hutonCount = d.huton_count; }
+        public NinjaDetail(JObject job) {
+          hutonMilliseconds = (uint)job.GetValue("huton_ms");
+          ninkiAmount = (int)job.GetValue("ninki_amount");
+          hutonCount = (int)job.GetValue("huton_count");
+        }
         public uint hutonMilliseconds;
-        public uint ninkiAmount;
-        public uint hutonCount;
+        public int ninkiAmount;
+        public int hutonCount;
       }
 
       public struct DragoonDetail {
-        public DragoonDetail(FFXIVProcess.DragoonJobData d) {
-          bloodMilliseconds = d.blood_ms;
-          lifeMilliseconds = d.life_ms;
-          eyesAmount = d.eyes_amount;
+        public DragoonDetail(JObject job) {
+          bloodMilliseconds = 0;
+          lifeMilliseconds = 0;
+          if ((int)job.GetValue("stance") == 1)
+            bloodMilliseconds = (uint)job.GetValue("blood_or_life_ms");
+          else if ((int)job.GetValue("stance") == 2)
+            lifeMilliseconds = (uint)job.GetValue("blood_or_life_ms");
+          eyesAmount = (int)job.GetValue("eyes_amount");
         }
         public uint bloodMilliseconds;
         public uint lifeMilliseconds;
-        public uint eyesAmount;
+        public int eyesAmount;
       }
 
       public struct BlackMageDetail {
-        public BlackMageDetail(FFXIVProcess.BlackMageJobData d) {
-          umbralStacks = d.umbral_stacks;
-          umbralMilliseconds = d.umbral_time_ms;
-          umbralHearts = d.umbral_hearts;
-          foulCount = d.foul_count;
-          enochian = d.enochian_active;
-          nextPolygotMilliseconds = d.polygot_time_ms;
+        public BlackMageDetail(JObject job) {
+          nextPolyglotMilliseconds = (uint)job.GetValue("polyglot_time_ms");
+          umbralMilliseconds = (uint)job.GetValue("umbral_time_ms");
+          umbralStacks = (int)job.GetValue("umbral_stacks");
+          umbralHearts = (int)job.GetValue("umbral_hearts_count");
+          foulCount = (int)job.GetValue("foul_count");
+          enochian = ((byte)job.GetValue("enochian_state") & 0xF) == 1;
         }
-        public int umbralStacks;  // Positive = Fire, Negative = Ice.
+        public uint nextPolyglotMilliseconds;
         public uint umbralMilliseconds;
+        public int umbralStacks;  // Positive = Fire, Negative = Ice.
         public int umbralHearts;
         public int foulCount;
         public bool enochian;
-        public uint nextPolygotMilliseconds;
       }
 
       public struct WhiteMageDetail {
-        public WhiteMageDetail(FFXIVProcess.WhiteMageJobData d) { 
-          lilyMilliseconds = d.lilies_ms;
-          lilyStacks = d.lily_stacks;
-          bloodlilyStacks = d.bloodlily_stacks;
+        public WhiteMageDetail(JObject job) { 
+          lilyMilliseconds = (uint)job.GetValue("lilies_ms");
+          lilyStacks = (int)job.GetValue("lily_stacks");
+          bloodlilyStacks = (int)job.GetValue("bloodlily_stacks");
         }
         public uint lilyMilliseconds;
         public int lilyStacks;
@@ -220,13 +254,13 @@ namespace Cactbot {
       }
 
       public struct SummonerDetail {
-        public SummonerDetail(FFXIVProcess.SummonerJobData d) {
-          stanceMilliseconds = d.stance_ms;
-          bahamutStance = d.bahamut_stance;
-          bahamutSummoned = d.bahamut_summoned;
-          aetherflowStacks = d.aetherflow_stacks;
-          dreadwyrmStacks = d.dreadwyrm_stacks;
-          phoenixReady = d.phoenix_ready;
+        public SummonerDetail(JObject job) {
+          stanceMilliseconds = (uint)job.GetValue("stance_ms");
+          bahamutStance = (int)job.GetValue("bahamut_stance");
+          bahamutSummoned = (int)job.GetValue("bahamut_summoned");
+          aetherflowStacks = ((byte)job.GetValue("stacks") >> 0) & 0x3; // Bottom 2 bits.
+          dreadwyrmStacks = ((byte)job.GetValue("stacks") >> 2) & 0x3; // Next 2 bits.
+          phoenixReady = ((byte)job.GetValue("stacks") >> 4) & 0x3; // Next 2 bits.
         }
         public uint stanceMilliseconds;  // Time left for current stance/summon.
         public int bahamutStance;  // 5 = Bahamut/Phoenix. Not very useful.
@@ -237,39 +271,64 @@ namespace Cactbot {
       }
 
       public struct ScholarDetail {
-         public ScholarDetail(FFXIVProcess.ScholarJobData d) {
-          aetherflowStacks = d.aetherflow_stacks;
-          fairyGauge = d.fairy_gauge;
-          fairyMilliseconds = d.fairy_ms;
-          fairyStatus = d.fairy_status;
+         public ScholarDetail(JObject job) {
+           aetherflowStacks = (int)job.GetValue("aetherflow_stacks");
+           fairyGauge = (int)job.GetValue("fairy_gauge");
+           fairyMilliseconds = (uint)job.GetValue("fairy_ms");
+           fairyStatus = (int)job.GetValue("fairy_status");
          }
          public int aetherflowStacks;  // Stacks to spend on Energy Drain, etc.
          public int fairyGauge;
          public uint fairyMilliseconds;  // Time left for Fairy Stance.
-         public int fairyStatus; // 7 - Seraph, 6 - Dissipation.
+         public int fairyStatus;  // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
       }
 
-         public struct MonkDetail {
-        public MonkDetail(FFXIVProcess.MonkJobData d) { lightningMilliseconds = d.lightning_ms; lightningStacks = d.lightning_stacks; chakraStacks = d.chakra_stacks; }
+      public struct MonkDetail {
+        public MonkDetail(JObject job) { 
+          lightningMilliseconds = (uint)job.GetValue("greased_lightning_time_ms");
+          lightningStacks = (int)job.GetValue("greased_lightning_stacks");
+          chakraStacks = (int)job.GetValue("chakra_stacks");
+        }
         public uint lightningMilliseconds;
         public int lightningStacks;
         public int chakraStacks;
       }
 
       public struct MachinistDetail {
-        public MachinistDetail(FFXIVProcess.MachinistJobData d) { heat = d.heat; overheatMilliseconds = d.overheat_ms; battery = d.battery; batteryMilliseconds = d.battery_ms; }
-        public int heat;
+        public MachinistDetail(JObject job) {
+          overheatMilliseconds = (uint)job.GetValue("overheat_ms");
+          batteryMilliseconds = (uint)job.GetValue("battery_ms");
+          heat = (int)job.GetValue("heat");
+          battery = (int)job.GetValue("battery");
+        }
         public uint overheatMilliseconds;
-        public int battery;
         public uint batteryMilliseconds;
+        public int heat;
+        public int battery;
       }
 
       public struct AstrologianDetail {
-        public AstrologianDetail(FFXIVProcess.AstrologianJobData d) { 
-          heldCard = d.held_card.ToString();
-          arcanum1 = d.arcanum_1.ToString();
-          arcanum2 = d.arcanum_2.ToString();
-          arcanum3 = d.arcanum_3.ToString();
+        public enum Card : byte {
+          None = 0,
+          Balance = 1,
+          Bole = 2,
+          Arrow = 3,
+          Spear = 4,
+          Ewer = 5,
+          Spire = 6,
+        }
+
+        public enum Arcanum : byte {
+          None = 0,
+          Solar = 1,      // Balance/Bole
+          Lunar = 2,      // Ewer/Arrow
+          Celestial = 3,  // Spear/Spire
+        }
+        public AstrologianDetail(JObject job) { 
+          heldCard = ((Card)(int)job.GetValue("held_card")).ToString();
+          arcanum1 = ((Arcanum)(int)job.GetValue("arcanum_1")).ToString();
+          arcanum2 = ((Arcanum)(int)job.GetValue("arcanum_2")).ToString();
+          arcanum3 = ((Arcanum)(int)job.GetValue("arcanum_3")).ToString();
          }
         public String heldCard;
         public String arcanum1;
@@ -278,7 +337,13 @@ namespace Cactbot {
       }
 
       public struct SamuraiDetail {
-        public SamuraiDetail(FFXIVProcess.SamuraiJobData d) { kenki = d.kenki; setsu = d.setsu; getsu = d.getsu; ka = d.ka; }
+        public SamuraiDetail(JObject job) {
+          kenki = (int)job.GetValue("kenki");
+          setsu = ((byte)job.GetValue("sen_bits") & 0x1) != 0;
+          getsu = ((byte)job.GetValue("sen_bits") & 0x2) != 0;
+          ka = ((byte)job.GetValue("sen_bits") & 0x4) != 0;
+          ;
+        }
         public int kenki;
         public bool setsu;
         public bool getsu;
