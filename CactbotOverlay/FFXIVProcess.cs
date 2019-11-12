@@ -278,8 +278,8 @@ namespace Cactbot {
     //   JobDataInnerStruct {
 
     private static int kJobDataOuterStructOffset = 0;
-    private static int kJobDataInnerStructSize = 8 + 8;
     private static int kJobDataInnerStructOffset = 8;
+    private static int kJobDataInnerStructSize = 8 - kJobDataInnerStructOffset;
     public FFXIVProcess(ILogger logger) { logger_ = logger; }
 
     public bool HasProcess() {
@@ -486,7 +486,7 @@ namespace Cactbot {
         return null;
       }
       job_inner_ptr = IntPtr.Add(job_inner_ptr, kJobDataInnerStructOffset);
-      return Read8(job_inner_ptr, kJobDataInnerStructSize - kJobDataInnerStructOffset);
+      return Read8(job_inner_ptr, kJobDataInnerStructSize);
     }
 
     [StructLayout(LayoutKind.Explicit)]
@@ -895,23 +895,29 @@ namespace Cactbot {
 
       [FieldOffset(0x04)]
       public byte ninki_amount;
+
+      [FieldOffset(0x06)]
+      public byte huton_count; //TODO: Confirm this.
     };
 
     public class NinjaJobData {
       public uint huton_ms = 0;
       public uint ninki_amount = 0;
+      public uint huton_count = 0;
 
       public override bool Equals(object obj) {
         var o = obj as NinjaJobData;
         return o != null &&
           huton_ms == o.huton_ms &&
-          ninki_amount == o.ninki_amount;
+          ninki_amount == o.ninki_amount &&
+          huton_count == o.huton_count;
       }
 
       public override int GetHashCode() {
         int hash = 17;
         hash = hash * 31 + huton_ms.GetHashCode();
         hash = hash * 31 + ninki_amount.GetHashCode();
+        hash = hash * 31 + huton_count.GetHashCode();
         return hash;
       }
     }
@@ -925,6 +931,7 @@ namespace Cactbot {
           NinjaJobData j = new NinjaJobData() {
             huton_ms = mem.huton_ms,
             ninki_amount = mem.ninki_amount,
+            huton_count = mem.huton_count,
           };
           return j;
         }
