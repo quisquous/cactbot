@@ -210,15 +210,16 @@ def get_tugs(fishes):
         if 'tug' in fish and fish['tug']:
             id = find_fish_by_name(fishes, fish['name'].lower())
             tug = None
+            tug_name = fish['tug'].casefold()
 
-            if fish['tug'] == 'light' or fish['tug'] == 'Light':
+            if tug_name == 'light':
                 tug = 1
-            elif fish['tug'] == 'medium' or fish['tug'] == 'Medium':
+            elif tug_name == 'medium':
                 tug = 2
-            elif fish['tug'] == 'heavy' or fish['tug'] == 'Heavy' or fish['tug'] == 'Legendary':
+            elif tug_name == 'heavy' or tug_name == 'legendary':
                 tug = 3
             else:
-                print("unknown tug type: " + fish['tug'])
+                print("unknown tug type: " + tug_name)
 
             if tug and id:
                 tugs[id] = tug
