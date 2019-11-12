@@ -212,7 +212,7 @@ The set of extensions are:
 * `\y{Name}`: Matches any character or ability name (including empty strings which the FFXIV ACT plugin can generate when unknown).
 * `\y{ObjectId}`: Matches the 8 hex character object id in network log lines.
 * `\y{AbilityCode}`: Matches the FFXIV ACT plugin's format for the number code of a spell or ability.
-* `\y{TimeStamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
+* `\y{Timestamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
 * `\y{LogType}`: Matches the FFXIV ACT plugin's format for the number code describing the type of log event, found near the front of each log event.
 
 See this [cactbot-user git repo](https://github.com/quisquous/cactbot-user) for more examples.

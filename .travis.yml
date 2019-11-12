@@ -3,7 +3,7 @@ matrix:
   include:
   - language: node_js
     node_js:
-      - 8.12.0
+      - 12.13.0
     before_install:
       # alias python3.7.1 to python3
       - pyenv global 3.7.1

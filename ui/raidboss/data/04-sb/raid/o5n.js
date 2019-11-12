@@ -18,12 +18,12 @@
 
     {
       id: 'O5N Doom Strike',
-      regex: / 14:28A3:Phantom Train starts using Doom Strike on (\y{Name})/,
-      regexDe: / 14:28A3:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
-      regexFr: / 14:28A3:Train Fantôme starts using Frappe Létale on (\y{Name})/,
-      regexJa: / 14:28A3:魔列車 starts using 魔霊撃 on (\y{Name})/,
+      regex: Regexes.startsUsing({ name: 'Phantom Train', id: '28A3' }),
+      regexDe: Regexes.startsUsing({ name: 'Phantomzug', id: '28A3' }),
+      regexFr: Regexes.startsUsing({ name: 'Train Fantôme', id: '28A3' }),
+      regexJa: Regexes.startsUsing({ name: '魔列車', id: '28A3' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
@@ -39,7 +39,7 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'tenkbasta',

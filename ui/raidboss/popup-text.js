@@ -259,6 +259,11 @@ class PopupText {
     if ('disabled' in trigger && trigger.disabled)
       return;
 
+    // If using named groups, treat matches.groups as matches
+    // so triggers can do things like matches.target.
+    if (matches.groups)
+      matches = matches.groups;
+
     let now = +new Date();
     if (trigger.id && trigger.id in this.triggerSuppress) {
       if (this.triggerSuppress[trigger.id] > now)
