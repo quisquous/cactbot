@@ -33,7 +33,7 @@ Each pull request should be small and be self-contained in terms of what it is c
 If your change is small, just send a pull request and we can have a conversation there.
 If your change is big, consider having a conversation before you embark on a lot of work.
 
-If you want to make large mechanical changes to parts of the code, 
+If you want to make large mechanical changes to parts of the code,
 for example you're irritated at some style usage and want to make everything consistent,
 it's especially best to put that in a separate pull request.
 
@@ -45,6 +45,7 @@ Pull requests are a collaborative effort!
 The Chromium project has excellent resources on good pull requests and code reviews.
 Some of it doesn't apply, but much of the philosophy does.
 See these links:
+
 * [Respectful Changes](https://chromium.googlesource.com/chromium/src/+/master/docs/cl_respect.md)
 * [Respectful Code Reviews](https://chromium.googlesource.com/chromium/src/+/master/docs/cr_respect.md)
 
@@ -70,6 +71,7 @@ before a pull request.
 
 If you are wondering how to contribute to cactbot,
 here's a set of features that will almost always be needed:
+
 * fixing bugs
 * [issues marked "help wanted"](https://github.com/quisquous/cactbot/issues?utf8=%E2%9C%93&q=label%3A%22help+wanted%22)
 * [adding missing timelines](https://github.com/quisquous/cactbot/issues/414)
@@ -95,7 +97,7 @@ As always, try to be consistent with the surrounding code.
   * you will wipe the raid if you mess this up
   * ideally used on random mechanics (one person gets X)
   * ideally used only once or twice in a raid
- 
+
 * alert (yellow text)
   * you will get killed if you mess this up (or kill others)
   * used for important mechanics
@@ -108,7 +110,7 @@ As always, try to be consistent with the surrounding code.
 
 Another consideration for trigger severity is to make them contextually useful.
 For example, if you may get selected for one of two mechanics,
-it's preferable to have one mechanic be info and the other alert 
+it's preferable to have one mechanic be info and the other alert
 (or one alert and the other alarm)
 so that it is obvious from the noise which mechanic you have.
 

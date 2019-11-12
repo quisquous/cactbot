@@ -2,7 +2,7 @@
 
 ## File Structure
 
-```
+```javascript
 [{
   zoneRegex: /match for the zone/,
   timelineFile: 'filename.txt',
@@ -34,7 +34,8 @@
   ]
 }]
 ```
-# Elements
+
+### Elements
 
 **zoneRegex**
 Largely self-explanatory. For most situations you will want to match the encounter zone as reported by ACT and nothing else.
@@ -59,7 +60,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 
 ## Trigger Structure
 
-```
+```javascript
 {
   id: 'id string',
   regex: /trigger-regex-(with-position-1)(and-position-2)-here/,
@@ -80,7 +81,8 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   disabled: false,
 },
 ```
-# Trigger Elements
+
+### Trigger Elements
 
 **id string**
  An id string for the trigger, used to disable triggers. Every built-in trigger that has a text/sound output should have an id so it can be disabled. User-defined triggers need not have one.
@@ -153,7 +155,7 @@ Trigger elements are evaluated in this order:
 ## Timeline Info
 
 The trigger subfolders may contain timeline text files in the format defined by ACT Timeline plugin, which described in here:
-http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin
+<http://dtguilds.enjin.com/forum/m/37032836/viewthread/26353492-act-timeline-plugin>
 
 Each timeline file Cactbot uses has to be loaded by a relative directory reference from the given [TRIGGER-FILE].js. Typically the filename for the timeline file will match the name of the trigger file, and for specific encounters the filenames should at least loosely match the zone name.
 
