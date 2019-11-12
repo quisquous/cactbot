@@ -624,7 +624,7 @@ namespace Cactbot {
     };
 
     [StructLayout(LayoutKind.Explicit)]
-    public unsafe struct DancerJobMemory { // TODO: Needs more research. 
+    public struct DancerJobMemory { // TODO: Needs more research. 
       [FieldOffset(0x00)]
       public byte feathers;
 

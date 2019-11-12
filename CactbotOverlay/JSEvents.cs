@@ -125,12 +125,16 @@ namespace Cactbot {
       }
 
       public struct WarriorDetail {
-        public WarriorDetail(JObject job) { beast = (int)job.GetValue("beast"); }
+        public WarriorDetail(JObject job) {
+          beast = (int)job.GetValue("beast");
+        }
         public int beast;
       }
 
       public struct DarkKnightDetail {
-        public DarkKnightDetail(JObject job) { blood = (int)job.GetValue("blood"); darksideMilliseconds = (int)job.GetValue("darkside_ms"); }
+        public DarkKnightDetail(JObject job) {
+          blood = (int)job.GetValue("blood");
+          darksideMilliseconds = (int)job.GetValue("darkside_ms"); }
         public int blood;
         public int darksideMilliseconds;
       }
@@ -142,9 +146,9 @@ namespace Cactbot {
 
       public struct GunbreakerDetail {
         public GunbreakerDetail(JObject job) {
-            cartridges = (int)job.GetValue("cartridges");
-            continuationMilliseconds = (uint)job.GetValue("continuation_ms");
-            continuationState = (int)job.GetValue("continuation_state");
+          cartridges = (int)job.GetValue("cartridges");
+          continuationMilliseconds = (uint)job.GetValue("continuation_ms");
+          continuationState = (int)job.GetValue("continuation_state");
         }
         public int cartridges;
         public uint continuationMilliseconds;
@@ -185,14 +189,14 @@ namespace Cactbot {
         }
 
         public DancerDetail(JObject job) {
-               feathers = (int)job.GetValue("feathers");
-               steps = new[] { 
-                 ((Step)(byte)job.GetValue("step1")).ToString(),
-                 ((Step)(byte)job.GetValue("step2")).ToString(),
-                 ((Step)(byte)job.GetValue("step3")).ToString(),
-                 ((Step)(byte)job.GetValue("step4")).ToString(),
-               };
-               currentStep = (int)job.GetValue("current_step");
+          feathers = (int)job.GetValue("feathers");
+          steps = new[] { 
+            ((Step)(byte)job.GetValue("step1")).ToString(),
+            ((Step)(byte)job.GetValue("step2")).ToString(),
+            ((Step)(byte)job.GetValue("step3")).ToString(),
+            ((Step)(byte)job.GetValue("step4")).ToString(),
+          };
+          currentStep = (int)job.GetValue("current_step");
         }
         public int feathers;
         public string[] steps;
