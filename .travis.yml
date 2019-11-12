@@ -17,6 +17,6 @@ matrix:
     python:
       - 3.6
     install:
-      - pip install pylint==2.2.3 requests==2.22.0
+      - pip install pylint==2.2.3 requests==2.22.0 PyYAML==5.1.2
     script:
       - pylint **/*.py --errors-only

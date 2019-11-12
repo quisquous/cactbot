@@ -1,6 +1,7 @@
 import csv
 import coinach
 import json
+import yaml
 from pathlib import Path
 import os
 import re
@@ -11,6 +12,7 @@ import argparse
 locales = ['de', 'en', 'fr', 'ja']
 tackle_id = 30
 base = 'https://xivapi.com/'
+fishTrackerBase = 'https://raw.githubusercontent.com/icykoneko/ff14-fish-tracker-app/master/private/fishData.yaml'
 
 # First argument is the API key
 if len(sys.argv) > 1:
@@ -82,6 +84,16 @@ def xivapi(content, filters = {}):
         results += response['Results']
 
     return results
+
+def fish_tracker():
+    response = requests.get(fishTrackerBase)
+    if response.status_code != 200:
+        print(response.status_code)
+        print(response.headers)
+        print(response.text)
+        exit()
+
+    return yaml.load(response.text, yaml.Loader)
 
 def get_fish_data():
     """Returns dictionaries for places, fish, and place->fish mapping"""
@@ -181,6 +193,39 @@ def get_tackle():
 
     return tackle
 
+def find_fish_by_name(fishes, name):
+    for id, value in fishes['en'].items():
+        if type(value) is list:
+            for actualName in value:
+                if actualName == name:
+                    return id
+        else:
+            if value == name:
+                return id
+
+def get_tugs(fishes):
+    tugs = {}
+    data = fish_tracker()
+    for fish in data:
+        if 'tug' in fish and fish['tug']:
+            id = find_fish_by_name(fishes, fish['name'].lower())
+            tug = None
+            tug_name = fish['tug'].casefold()
+
+            if tug_name == 'light':
+                tug = 1
+            elif tug_name == 'medium':
+                tug = 2
+            elif tug_name == 'heavy' or tug_name == 'legendary':
+                tug = 3
+            else:
+                print("unknown tug type: " + tug_name)
+
+            if tug and id:
+                tugs[id] = tug
+
+    return tugs
+
 def append_special_place_names(places):
     # handle special german casting names
     fishing_places = places['de'].keys()
@@ -232,6 +277,7 @@ if __name__ == "__main__":
 
     places, fishes, placefish = get_fish_data()
     tackle = get_tackle()
+    tugs = get_tugs(fishes)
     append_special_place_names(places)
 
     cn_places, cn_fishes, cn_tackle = get_cn_data()
@@ -243,7 +289,8 @@ if __name__ == "__main__":
         'tackle': tackle,
         'places': places,
         'fish': fishes,
-        'placefish': placefish
+        'placefish': placefish,
+        'tugs': tugs
     }
 
     filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
