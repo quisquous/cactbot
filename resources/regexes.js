@@ -15,7 +15,7 @@ var Regexes = {
   // fields: source, id, ability, target, capture
   startsUsing: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 14:' +
+    let str = '\\y{Timestamp} 14:' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
 
     if (f.source || f.id || f.target || capture)
@@ -33,7 +33,7 @@ var Regexes = {
   // fields: source, id, ability, capture
   ability: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 1[56]:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':';
 
     if (f.id || f.ability || capture)
@@ -48,7 +48,7 @@ var Regexes = {
   // fields: source, id, ability, target, flags, x, y, z, heading, capture
   abilityFull: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 1[56]:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
       Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ':\\y{ObjectId}:' +
@@ -64,9 +64,9 @@ var Regexes = {
   },
 
   // fields: target, id, capture
-  headmarker: (f) => {
+  headMarker: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 1B:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1B:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);
@@ -75,7 +75,7 @@ var Regexes = {
   // fields: name, capture
   addedCombatant: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 03:\\y{ObjectId}:Added new combatant ' +
+    let str = '\\y{Timestamp} 03:\\y{ObjectId}:Added new combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
     return Regexes.parse(str);
   },
@@ -83,7 +83,7 @@ var Regexes = {
   // fields: id, name, hp, x, y, z, capture
   addedCombatantFull: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
+    let str = '\\y{Timestamp} 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
       ':Added new combatant ' + Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
       '.*?Max HP: ' +
       Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
@@ -97,7 +97,7 @@ var Regexes = {
   // fields: name, hp, capture
   removingCombatant: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 04:\\y{ObjectId}:Removing combatant ' +
+    let str = '\\y{Timestamp} 04:\\y{ObjectId}:Removing combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
       '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.';
     return Regexes.parse(str);
@@ -106,7 +106,7 @@ var Regexes = {
   // fields: target, effect, source, duration, capture
   gainsEffect: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 1A:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1A:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' gains the effect of ' +
       Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
@@ -121,7 +121,7 @@ var Regexes = {
   // fields: target, effect, source, capture
   losesEffect: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 1E:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1E:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' loses the effect of ' +
       Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
@@ -133,7 +133,7 @@ var Regexes = {
   // fields: source, target, id, capture
   tether: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 23:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 23:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
       ':\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
@@ -154,7 +154,7 @@ var Regexes = {
   // fields: line, name, capture
   dialog: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 00:' +
+    let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', '0044') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*');
@@ -173,7 +173,7 @@ var Regexes = {
   // fields: code, line, capture
   gameLog: (f) => {
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{TimeStamp} 00:' +
+    let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*');
     return Regexes.parse(str);
@@ -221,7 +221,7 @@ var Regexes = {
 
   parse: (regexpString) => {
     let kCactbotCategories = {
-      TimeStamp: '^.{14}',
+      Timestamp: '^.{14}',
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,4}',
       ObjectId: '[0-9A-F]{8}',
