@@ -83,10 +83,14 @@
       regexJa: / 15:\y{ObjectId}:ハルマキス:10ED:イナーシャストリーム:\y{ObjectId}:(\y{Name}):/,
       condition: function(data) {
         // Tanks technically shouldn't assist with this mechanic
-        // The mechanic target can't do anything about it
-        return data.role != 'tank' && data.me != matches[1];
+        return data.role != 'tank';
       },
       alertText: function(data, matches) {
+        if (data.me == matches[1]) {
+          return {
+            en: 'Laser Stack on YOU',
+          };
+        }
         return {
           en: 'Stack on ' + data.shortName(matches[1]),
           de: 'Stack auf ' + data.shortName(matches[1]),
