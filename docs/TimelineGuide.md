@@ -12,6 +12,7 @@ or triggers that are based on timelines themselves.
 
 <!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
 ## TOC
+
 - [History](#history)
 - [Timeline File Syntax](#timeline-file-syntax)
   - [Comments](#comments)
@@ -38,7 +39,6 @@ or triggers that are based on timelines themselves.
   - [Putting it all together](#putting-it-all-together)
   - [Testing Timelines](#testing-timelines)
   - [Test against other timelines](#test-against-other-timelines)
-
 
 ## History
 
@@ -116,7 +116,7 @@ Instead, alerts based on timelines in cactbot should use [timeline triggers](#ti
 
 ### Examples
 
-```
+```bash
 677.0 "Heavensfall Trio"
 1044 "Enrage" # ???
 35.2 "Flare Breath x3" duration 4
@@ -168,6 +168,7 @@ cactbot adds all of its timeline triggers from the timeline file.
 This is done by adding a `timelineTriggers` section to the triggers file.
 
 Examples:
+
 * [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/alliance/orbonne_monastery.js)
 * [T9](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/02-arr/raid/t9.js)
 * [O12 normal](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/raid/o12n.js)
@@ -231,12 +232,14 @@ In particular, you can't get rp text lines, the text for the zone sealing/unseal
 Once you've run the combat, you'll have generated a couple of [network log files](LogGuide.md#network-log-lines).
 
 If you want to try these examples, here are a couple of files:
+
 1. [CapeWestwind.log](data/CapeWestwind.log)
 1. [CapeWestwind2.log](data/CapeWestwind2.log)
 
 Follow those links, click **Raw**, then right click and **Save As** to save them to disk.
 
 Good guidelines for getting good logs are:
+
 1. run long enough to see the enrage
 1. have enough people to see all the mechanics (e.g. t11 tethers don't appear without two people)
 1. per phase, run long enough to see the mechanics loop
@@ -267,7 +270,8 @@ Timeline files can only be loaded via triggers files,
 so the triggers file is always required.
 
 An initial triggers file should look like the following:
-```
+
+```javascript
 'use strict';
 
 [{
@@ -297,7 +301,8 @@ Once you have a network log file, you need to find the start and the finish.
 ![encounter logs screenshot](images/timelineguide_encounterlogs.png)
 
 For example, in this fight, these are the relevant log lines and times:
-```
+
+```log
 [18:42:23.614] 15:10686258:Potato Chippy:2E:Tomahawk:4000EE16:Rhitahtyn sas Arvina:710003:9450000:1C:2E8000:0:0:0:0:0:0:0:0:0:0:0:0:140279:140279:8010:8010:1000:1000:-707.8608:-822.4221:67.74045:3858:74095:4560:0:1000:1000:-693.7162:-816.4633:65.55687:
 [18:49:22.934] 19:Rhitahtyn Sas Arvina was defeated by Potato Chippy.
 ```
@@ -305,8 +310,9 @@ For example, in this fight, these are the relevant log lines and times:
 (Known bug: sometimes network logs from other people's timezones require converting the time from what the act log lines.  Patches welcome.)
 
 You can then make a timeline from those times by running the following command.
-```
-$ python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
+
+```bash
+python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
 
 0 "Start"
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -433,7 +439,8 @@ You can look at the time and figure out where they go yourself.
 (Patches welcome to add either of these into **make_timeline.py** automatically.)
 
 The relevant lines here are:
-```
+
+```log
 [18:45:27.041] 03:Added new combatant 7Th Cohort Optio.  Job: 0 Level: 49 Max HP: 24057 Max MP: 8010 Pos: (-665.5159,-804.6631,62.33055).
 [18:45:27.041] 03:Added new combatant 7Th Cohort Optio.  Job: 0 Level: 49 Max HP: 24057 Max MP: 8010 Pos: (-665.5013,-807.1013,62.45256).
 [18:42:24.000] 00:0044:Rhitahtyn sas Arvina:I will suffer none to oppose Lord van Baelsar!
@@ -452,7 +459,8 @@ From observation, it looks like there's a number of phase pushes.
 
 Here's what the initial phase looks like, with some extra line breaks
 for clarity.
-```
+
+```bash
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -478,8 +486,9 @@ timeline file, adjusted by any amount, positive or negative.
 (Note: it will not adjust jumps.)
 
 Here's an abbreviated version of the output from running this command:
-```
-$ python util/timeline_adjust.py --file=ui/raidboss/data/timelines/cape_westwind.txt --adjust=27.8
+
+```bash
+python util/timeline_adjust.py --file=ui/raidboss/data/timelines/cape_westwind.txt --adjust=27.8
 
 29.8 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 38.4 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -515,7 +524,8 @@ relative times stay the same.  In both cases when `Gate Of Tartarus`
 occurs, there's a `Shield Skewer` in 5.4 seconds after it.
 
 We'll add the jumps in later.
-```
+
+```bash
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -557,7 +567,8 @@ Here's the new command line we've built up to:
 
 This gets us the following output for phase 2,
 with manually added blank lines to break out the loops.
-```
+
+```bash
 # manually added in
 199.0 "--sync--" sync /00:0044:[^:]*:My shields are impregnable/
 200.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -590,7 +601,7 @@ The loop time is 34.6.  Time to break out **timeline_adjust.py** again.
 Running `python util/timeline_adjust.py --file=ui/raidboss/data/timelines/cape_westwind.txt --adjust=27.8`,
 the relevant output is:
 
-```
+```bash
 234.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 238.9 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 243.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
@@ -613,7 +624,7 @@ from **timeline_adjust.py**.
 
 The current state of our timeline is now:
 
-```
+```bash
 0 "Start"
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -664,7 +675,8 @@ From reading the timeline, there's a random
 "Gate of Tartarus" around the time the adds show up.
 
 This is the original timeline, before any phases were adjusted:
-```
+
+```bash
 175.8 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
 183.5 "Adds"
 ```
@@ -680,7 +692,8 @@ then we can start phase 3 at t=400.
 
 Here's the adjusted output, with the adds manually
 added back in:
-```
+
+```bash
 400.0 "Gate Of Tartarus" sync /:Rhitahtyn sas Arvina:473:/
 403.5 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 
@@ -717,7 +730,7 @@ whether the `Shrapnel Shell` is part of phase 3 or phase 4.
 I know from observation that `Magitek Missiles` is the last phase,
 so because the Shrapnel Shell breaks the pattern let's assume
 it starts phase 4.
-We'll test this later. 
+We'll test this later.
 
 It looks a bit like there's another loop just like phase 2.
 
@@ -731,7 +744,7 @@ It's pretty clear that this loop is also a 36.2 second loop.
 Using **timeline_adjust.py** with a 36.2 adjustment gets
 this output:
 
-```
+```bash
 445.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 449.5 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 454.2 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
@@ -759,7 +772,7 @@ first use of `Magitek Missile` (ability id 478) to be t=610.
 Here's the final command line, including this second phase:
 `python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934 -ii 0A 2CD 2CE 194 14 -p 474:204.3 478:610`
 
-```
+```bash
 # manually added in
 595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
@@ -799,9 +812,9 @@ Here's the final command line, including this second phase:
 
 This sure looks like a 40.2 second loop.
 Using **timeline_adjust.py**, with a 40.2 second adjustment,
-we get the folllowing output:
+we get the following output:
 
-```
+```bash
 650.2 "Magitek Missiles" sync /:Rhitahtyn sas Arvina:478:/
 655.3 "Drill Shot" sync /:Rhitahtyn sas Arvina:475:/
 659.6 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
@@ -813,12 +826,11 @@ we get the folllowing output:
 
 This is a perfect match for the original times, so there's our loop.
 
-
 ### Boilerplate glue
 
 In general, most timelines should include some boilerplate at the top like this:
 
-```
+```bash
 # Cape Westwind
 # -ii 0A 2CD 2CE 194 14 -p 474:204 478:610
 
@@ -850,7 +862,8 @@ If the first boss ability is slow to happen, you should also include the first
 auto so that the timeline starts.
 
 For instances, on o11s, the first two lines are:
-```
+
+```bash
 0.0 "--sync--" sync /:Engage!/ window 0,1
 2.5 "--sync--" sync /:Omega:368:/ window 3,0
 ```
@@ -861,7 +874,7 @@ Here's the phase 1 loop, again.
 We're going to edit this so that whenever we get to 52.2 seconds
 it will jump back to 24.4 seconds seamlessly.
 
-```
+```bash
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -895,7 +908,8 @@ on infrequent or important abilities so that the timeline
 can sync there.
 
 This leaves us with this final version of the initial loop.
-```
+
+```bash
 2.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 10.6 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
 19.0 "Shield Skewer" sync /:Rhitahtyn sas Arvina:471:/
@@ -922,7 +936,8 @@ us with the following timeline.
 
 Because there are so many `Shield Skewer` abilities, any
 loops are on less frequent abilities just to be more careful.
-```
+
+```bash
 # Cape Westwind
 # -ii 0A 2CD 2CE 194 14 -p 474:204 478:610
 
@@ -1039,7 +1054,8 @@ adjusting timelines to be more accurate.
 Here's an example.
 The `-t` parameter here refers to the file name of the timeline you want to test against
 in the **ui/raidboss/data/timelines** folder, minus the .txt extension.
-```
+
+```bash
 $ python util/test_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
 934 -t cape_westwind
 0.000: Matched entry: 2.0 Shield Skewer (+2.000s)
@@ -1143,7 +1159,8 @@ The `Missed sync` lines are the ones to look at more closely.
 These three examples aren't worrisome because they are just the end of the loop
 and we've skipped forward in time to the next phase.
 (Patches welcome to figure out how to not warn on this sort of jump.)
-```
+
+```text
 48.695: Matched entry: 199.0 --sync-- (+150.305s)
     Missed sync: Gate Of Tartarus at 52.2 (last seen at 24.411)
 
@@ -1159,7 +1176,8 @@ and we've skipped forward in time to the next phase.
 ```
 
 However, this looks like a problem:
-```
+
+```text
 620.783: Matched entry: 610.0 Magitek Missiles (-10.783s)
     Missed sync: Shrapnel Shell at 600.0 (last seen at 610.739)
     Missed sync: Firebomb at 604.5 (last seen at 615.247)
@@ -1171,7 +1189,8 @@ Because we added such a large window on `Magitek Missile` the timeline
 resynced (thank goodness), but some of the abilities before that were wrong.
 
 The original timeline is:
-```
+
+```bash
 595.0 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 ```
@@ -1181,13 +1200,14 @@ as the tester output mentioned `(last seen at 610.739)`.
 The fix is to move the rp text sync back in time by that amount.
 The new time will be 595 - 10.7 = 584.3.
 
-```
+```bash
 584.3 "--sync--" sync /00:0044:[^:]*:Your defeat will bring/ window 600,0
 600.0 "Shrapnel Shell" sync /:Rhitahtyn sas Arvina:474:/
 ```
 
 Rerunning the tester (most output omitted)
-```
+
+```bash
 $ python util/test_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
 934 -t cape_westwind
 
@@ -1214,12 +1234,14 @@ Here's an example of running against the **CapeWestwind2.log** file.
 If you run `python util/test_timeline.py -f CapeWestwind2.log -s 13:21:00.688 -e 13:29:36.976 -t cape_westwind` yourself, you can spot at least two problems.
 
 One minor problem is that this boss is inconsistent:
-```
+
+```text
 447.329: Matched entry: 445.0 Shield Skewer (-2.329s)
 443.789: Matched entry: 445.0 Shield Skewer (+1.211s)
 444.792: Matched entry: 445.0 Shield Skewer (+0.208s)
 447.361: Matched entry: 445.0 Shield Skewer (-2.361s)
 ```
+
 This `Shield Skewer` in phase 3 comes at wildly different times.
 However, the abilities before and after seem to be just fine.
 Often if there are inconsistencies like this,
@@ -1227,7 +1249,8 @@ the best thing to do is make sure there are larger windows around surrounding ab
 to make sure that even if one ability is inconsistent the entire timeline doesn't get derailed.
 
 However, one major problem is that there's a missing `Shield Skewer`:
-```
+
+```text
 403.454: Matched entry: 403.5 Shield Skewer (+0.046s)
 407.876: Matched entry: 413.2 Shrapnel Shell (+5.324s)
     Missed sync: Shield Skewer at 408.7 (last seen at 403.454)
@@ -1239,6 +1262,7 @@ And the `Shrapnel Shell` is horribly mistimed here.
 
 What to do in this case is subjective.
 Here are some options:
+
 * get more data, and make a timeline for the most common case
 * leave a comment in the timeline
 * if this is an important ability (e.g. tankbuster) put a question mark on it so players know it's not guaranteed

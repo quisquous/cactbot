@@ -43,6 +43,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Thundercloud: '雷云',
       Firestarter: '火苗',
       BattleVoice: '战斗之声',
+      Divination: 'FIXME',
 
       Paralysis: 'FIXME',
       Petrification: '石化',
@@ -54,6 +55,8 @@ class CactbotLanguageCn extends CactbotLanguage {
       Imp: '河童',
       Toad: '蛙变',
       FoolsTumble: '坠落幻觉', // 0x183
+      Dropsy: 'FIXME',
+      Throttle: 'FIXME',
 
       // UWU
       Windburn: '裂伤',

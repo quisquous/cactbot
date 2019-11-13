@@ -333,39 +333,44 @@ class SeaBase {
         let store = tx.objectStore(_this._storeName);
         let index = store.index('fish');
 
-        _this.queryTug(index, fish).then(function(reelTimes) {
-          if (!reelTimes.length)
-            resolve(0);
-
-          let thresholds = _this.getIQRThresholds(reelTimes);
-
-          let sum = 0;
-          let validValues = 0;
-
-          reelTimes.forEach(function(time) {
-            if (time >= thresholds.low && time <= thresholds.high) {
-              sum += time;
-              validValues++;
-            }
-          });
-
-          let average = sum / validValues;
-          let tug;
-
-          // Small: <8000
-          // Medium: >8000, <10700
-          // Large: >10700
-          // 1 small, 2 medium, 3 large
-          if (average < 8000)
-            tug = 1;
-          else if (average > 10700)
-            tug = 3;
-          else
-            tug = 2;
-
-
+        let tug = gFisherData['tugs'][fish.id];
+        if (tug) {
           resolve(tug);
-        });
+        } else {
+          _this.queryTug(index, fish).then(function(reelTimes) {
+            if (!reelTimes.length)
+              resolve(0);
+
+            let thresholds = _this.getIQRThresholds(reelTimes);
+
+            let sum = 0;
+            let validValues = 0;
+
+            reelTimes.forEach(function(time) {
+              if (time >= thresholds.low && time <= thresholds.high) {
+                sum += time;
+                validValues++;
+              }
+            });
+
+            let average = sum / validValues;
+            let tug;
+
+            // Small: <8000
+            // Medium: >8000, <10700
+            // Large: >10700
+            // 1 small, 2 medium, 3 large
+            if (average < 8000)
+              tug = 1;
+            else if (average > 10700)
+              tug = 3;
+            else
+              tug = 2;
+
+
+            resolve(tug);
+          });
+        }
       });
     });
   }

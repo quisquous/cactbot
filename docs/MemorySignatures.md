@@ -14,6 +14,7 @@ some programming, and have extreme levels of patience.
 
 <!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
 ## TOC
+
 - [Installation](#installation)
 - [Finding New Memory Signatures](#finding-new-memory-signatures)
   - [Connect Cheat Engine to the Game](#connect-cheat-engine-to-the-game)
@@ -29,8 +30,7 @@ some programming, and have extreme levels of patience.
 
 ## Installation
 
-Install the [latest version of Cheat Engine]
-(https://github.com/cheat-engine/cheat-engine/releases/latest).
+Install the [latest version of Cheat Engine](https://github.com/cheat-engine/cheat-engine/releases/latest).
 The installer tries to tack some additional garbage on,
 so be sure to turn this off and don't blindly click next.
 Sorry.  It's gross.
@@ -281,7 +281,7 @@ until we find the line that sets `rcx`.
 You can see that `rcx` gets set on the `mov rcx,[ffxiv_dx11.exe+1AAE118]` line.
 This means that `rcx` is set from whatever is stored in memory at that location.
 
-```
+```assembly
 48 8B 0D 23C14201     - mov rcx,[ffxiv_dx11.exe+1AAE118] { (14116E120) }
 48 85 C9              - test rcx,rcx
 74 B8                 - je ffxiv_dx11.exe+681FB2
@@ -294,7 +294,7 @@ RIP relative addressing means that offsets are relative to the instruction point
 The `RIP` register is the instruction pointer register and contains
 the address of the instruction immediately following this instruction.
 You can find out what this address is by double clicking on the
-next line (the `text rcx,rcx` line). 
+next line (the `text rcx,rcx` line).
 In my case, it says the address is `13FD41FF5`.
 Because we are on a [little endian](https://en.wikipedia.org/wiki/Endianness)
 system, the `23C14201` hex is the 4 byte integer `01 42 C1 23` (bytes reversed).
@@ -339,7 +339,7 @@ so ideally you want to find something that will stand the test of time.
 In this case, let's just start copying bytes out from the bytes column,
 starting with the `mov rcx, ...` line.
 
-```
+```assembly
 48 8B 0D 23C14201     - mov rcx,[ffxiv_dx11.exe+1AAE118] { (14116E120) }
 48 85 C9              - test rcx,rcx
 74 B8                 - je ffxiv_dx11.exe+681FB2
@@ -362,6 +362,7 @@ You can see this [in cactbot itself](https://github.com/quisquous/cactbot/blob/d
 It's important to do a [scan for existing memory signatures](#scan-for-existing-memory-signatures) to make sure that this signature is unique.
 
 Then, in your plugin, the process would be the following.
+
 * search for this signature in memory
 * convert the RIP relative addressing to a real pointer (e.g. `14116E118`)
 * find the pointer at that memory location (e.g. `14116E120`)

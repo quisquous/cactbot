@@ -42,6 +42,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Thundercloud: 'Blitz +',
       Firestarter: 'Feuga +',
       BattleVoice: 'Ode an die Seele',
+      Divination: 'Weissagung',
 
       Paralysis: 'Paralyse',
       Petrification: 'Stein',
@@ -53,6 +54,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Imp: 'Flusskobold',
       Toad: 'Frosch',
       FoolsTumble: 'Trügerischer Sturz', // 0x183
+      Dropsy: 'Wassersucht',
+      Throttle: 'Erstickung',
     });
 
     this.kUIStrings = Object.freeze({

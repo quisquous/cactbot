@@ -18,8 +18,8 @@ class PartyTracker {
     this.alliance = [];
     // name -> role
     this.nameToRole = {};
-    // role -> [names]
-    this.roleToNames = kAllRoles.reduce((obj, role) => {
+    // role -> [names] but only for party
+    this.roleToPartyNames = kAllRoles.reduce((obj, role) => {
       obj[role] = [];
       return obj;
     }, {});
@@ -27,12 +27,13 @@ class PartyTracker {
     for (let i = 0; i < e.party.length; ++i) {
       let p = e.party[i];
       this.allianceNames.push(p.name);
-      if (p.inParty)
-        this.partyNames.push(p.name);
       let jobName = Util.jobEnumToJob(p.job);
       let role = Util.jobToRole(jobName);
       this.nameToRole[p.name] = role;
-      this.roleToNames[role].push(p.name);
+      if (p.inParty) {
+        this.partyNames.push(p.name);
+        this.roleToPartyNames[role].push(p.name);
+      }
     }
   }
 
@@ -46,16 +47,19 @@ class PartyTracker {
     return this.alliance;
   }
 
+  // returns an array of the names of tanks in your immediate party
   get tankNames() {
-    return this.roleToNames['tank'];
+    return this.roleToPartyNames['tank'];
   }
 
+  // returns an array of the names of healers in your immediate party
   get healerNames() {
-    return this.roleToNames['healer'];
+    return this.roleToPartyNames['healer'];
   }
 
+  // returns an array of the names of dps players in your immediate party
   get dpsNames() {
-    return this.roleToNames['dps'];
+    return this.roleToPartyNames['dps'];
   }
 
   // returns true iff the named player in your alliance is a particular role
@@ -92,7 +96,7 @@ class PartyTracker {
   // if named player is not a tank, or there's not exactly two tanks
   // in your immediate party, returns null.
   otherTank(name) {
-    let names = this.roleToNames['tank'];
+    let names = this.roleToPartyNames['tank'];
     if (names.length != 2)
       return null;
     if (names[0] == name)
@@ -104,7 +108,7 @@ class PartyTracker {
 
   // see: otherTank, but for healers.
   otherHealer(name) {
-    let names = this.roleToNames['healer'];
+    let names = this.roleToPartyNames['healer'];
     if (names.length != 2)
       return null;
     if (names[0] == name)

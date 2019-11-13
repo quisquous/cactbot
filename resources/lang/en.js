@@ -43,6 +43,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       Thundercloud: 'Thundercloud',
       Firestarter: 'Firestarter',
       BattleVoice: 'Battle Voice',
+      Divination: 'Divination',
 
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',
@@ -54,6 +55,8 @@ class CactbotLanguageEn extends CactbotLanguage {
       Imp: 'Imp',
       Toad: 'Toad',
       FoolsTumble: 'Fool\'s Tumble', // 0x183
+      Dropsy: 'Dropsy', // 0x121
+      Throttle: 'Throttle', // 0x2bc
 
       // UWU
       Windburn: 'Windburn',

@@ -1504,4 +1504,20 @@ let gWeatherRates = {
       'Termination',
     ],
   },
+  117: {
+    'rates': [
+      50,
+      80,
+      90,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Wind',
+      'Rain',
+      'Gales',
+      'Fog',
+    ],
+  },
 };

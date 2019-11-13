@@ -3,7 +3,7 @@ matrix:
   include:
   - language: node_js
     node_js:
-      - 8.12.0
+      - 12.13.0
     before_install:
       # alias python3.7.1 to python3
       - pyenv global 3.7.1
@@ -17,6 +17,6 @@ matrix:
     python:
       - 3.6
     install:
-      - pip install pylint==2.2.3 requests==2.22.0
+      - pip install pylint==2.2.3 requests==2.22.0 PyYAML==5.1.2
     script:
       - pylint **/*.py --errors-only

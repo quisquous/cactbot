@@ -218,6 +218,7 @@ class CactbotLanguage {
     return Regexes.parse(' 1E:\\y{ObjectId}:' + this.playerName + ' loses the effect of ' + Regexes.anyOf(effects) + ' from .*\\.');
   }
 
+  // TODO: change uses of these to new regexes functions
   abilityRegex(abilityId, attacker, target, flags) {
     if (!abilityId)
       abilityId = '[^:]*';
