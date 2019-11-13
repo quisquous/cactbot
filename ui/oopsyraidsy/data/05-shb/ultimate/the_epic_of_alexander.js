@@ -34,17 +34,6 @@
     },
     {
       id: 'TEA Fluid Swing',
-      damageRegex: '4825',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Fluid Swing',
       damageRegex: '49B0',
       condition: function(e, data) {
         // Double taps only.
