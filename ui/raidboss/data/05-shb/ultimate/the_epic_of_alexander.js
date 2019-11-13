@@ -30,7 +30,7 @@
   triggers: [
     {
       id: 'TEA Cascade',
-      regex: Regexes.startsUsing({ name: 'Living Liquid', id: '4826', capture: false}),
+      regex: Regexes.startsUsing({ name: 'Living Liquid', id: '4826', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -42,14 +42,14 @@
     },
     {
       id: 'TEA Protean Wave',
-      regex: Regexes.startsUsing({ name: 'Living Liquid', id: '4822' , capture: false}),
+      regex: Regexes.startsUsing({ name: 'Living Liquid', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
       },
     },
     {
       id: 'TEA Drainage Tether',
-      regex: Regexes.tether({ source: 'Liquid Rage', id: '0003'}),
+      regex: Regexes.tether({ source: 'Liquid Rage', id: '0003' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -61,7 +61,7 @@
     },
     {
       id: 'TEA Hand of Pain 5',
-      regex: Regexes.startsUsing({ source: 'Living Liquid', id: '482D', capture: false}),
+      regex: Regexes.startsUsing({ source: 'Living Liquid', id: '482D', capture: false }),
       preRun: function(data) {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
