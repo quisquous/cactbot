@@ -1,6 +1,6 @@
 'use strict';
 
-// Hades Ex
+// The Copied Factory
 [{
   zoneRegex: /^The Copied Factory$/,
   damageWarn: {
