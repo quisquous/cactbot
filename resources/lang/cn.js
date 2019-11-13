@@ -55,6 +55,8 @@ class CactbotLanguageCn extends CactbotLanguage {
       Imp: '河童',
       Toad: '蛙变',
       FoolsTumble: '坠落幻觉', // 0x183
+      Dropsy: 'FIXME',
+      Throttle: 'FIXME',
 
       // UWU
       Windburn: '裂伤',

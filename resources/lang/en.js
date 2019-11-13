@@ -55,6 +55,8 @@ class CactbotLanguageEn extends CactbotLanguage {
       Imp: 'Imp',
       Toad: 'Toad',
       FoolsTumble: 'Fool\'s Tumble', // 0x183
+      Dropsy: 'Dropsy', // 0x121
+      Throttle: 'Throttle', // 0x2bc
 
       // UWU
       Windburn: 'Windburn',

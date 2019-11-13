@@ -54,6 +54,8 @@ class CactbotLanguageFr extends CactbotLanguage {
       Imp: 'Kappa',
       Toad: 'Crapaud',
       FoolsTumble: 'Acrophobie illusoire', // 0x183
+      Dropsy: 'Œdème',
+      Throttle: 'Suffocation',
     });
 
     this.kUIStrings = Object.freeze({

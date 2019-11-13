@@ -54,6 +54,8 @@ class CactbotLanguageKo extends CactbotLanguage {
       Imp: 'FIXME',
       Toad: 'FIXME',
       FoolsTumble: 'FIXME', // 0x183
+      Dropsy: 'FIXME',
+      Throttle: 'FIXME',
 
       // UWU
       Windburn: '열상',

@@ -54,6 +54,8 @@ class CactbotLanguageJa extends CactbotLanguage {
       Imp: 'カッパ',
       Toad: 'トード',
       FoolsTumble: '墜落幻覚', // 0x183
+      Dropsy: '水毒',
+      Throttle: '窒息',
 
       // UWU
       Windburn: '裂傷',

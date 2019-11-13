@@ -54,6 +54,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Imp: 'Flusskobold',
       Toad: 'Frosch',
       FoolsTumble: 'Trügerischer Sturz', // 0x183
+      Dropsy: 'Wassersucht',
+      Throttle: 'Erstickung',
     });
 
     this.kUIStrings = Object.freeze({
