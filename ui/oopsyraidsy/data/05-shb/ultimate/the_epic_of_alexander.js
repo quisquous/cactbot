@@ -130,5 +130,31 @@
         return { type: 'fail', name: e.targetName, text: e.abilityName };
       },
     },
+    {
+      id: 'TEA Throttle Tracking',
+      gainsEffectRegex: gLang.kEffect.Throttle,
+      losesEffectRegex: gLang.kEffect.Throttle,
+      run: function(e, data) {
+        data.hasThrottle = data.hasThrottle || {};
+        data.hasThrottle[e.targetName] = e.gains;
+      },
+    },
+    {
+      id: 'TEA Throttle',
+      gainsEffectRegex: gLang.kEffect.Throttle,
+      delaySeconds: function(e) {
+        return e.durationSeconds - 0.5;
+      },
+      deathReason: function(e, data) {
+        if (!data.hasThrottle)
+          return;
+        if (!data.hasThrottle[e.targetName])
+          return;
+        return {
+          name: e.targetName,
+          reason: e.effectName,
+        };
+      },
+    },
   ],
 }];
