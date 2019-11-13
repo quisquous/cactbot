@@ -44,7 +44,7 @@ hideall "Liquid Gaol"
 127.4 "Splash" sync /:Living Liquid:49B2:/ window 3,0
 129.3 "Hand of Pain" sync /:Liquid Hand:482D:/
 134.1 "Fluid Swing" sync /:Living Liquid:49B0:/
-
+142.1 "Cascade (enrage)" sync /:Living Liquid:49B3:/
 
 # Transition
 200.0 "Hawk Blaster" sync /:Liquid Rage:4830:/ window 200,0
