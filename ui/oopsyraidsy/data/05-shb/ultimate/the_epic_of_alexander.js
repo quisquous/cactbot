@@ -120,14 +120,14 @@
       id: 'TEA Drainage',
       damageRegex: '4827',
       condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
+        // TODO: remove this when ngld overlayplugin is the default
+        if (!data.party.partyNames.length)
+          return false;
+
+        return data.IsPlayerId(e.targetId) && !data.party.isTank(e.targetName);
       },
-      collectSeconds: 0.5,
-      mistake: function(e) {
-        if (e.length <= 2)
-          return;
-        // Tanks can invuln and stack this, but it should never hit 3 people.
-        return { type: 'fail', fullText: e[0].abilityName + ' x ' + e.length };
+      mistake: function(e, data) {
+        return { type: 'fail', name: e.targetName, text: e.abilityName };
       },
     },
   ],
