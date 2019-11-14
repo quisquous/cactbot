@@ -129,3 +129,23 @@ def choose_fight_times(args, encounters):
         start_time = args.start
         end_time = args.end
     return start_time, end_time
+
+
+# Timeline test/translate functions
+def clean_and_split_tl_line(line):
+    return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0])
+
+def is_tl_line_begincast(poss_match):
+    return re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', poss_match)
+
+def is_tl_line_buff(poss_match):
+    return re.search(r'1A:.......:(.+) gains the effect of (.+)( from)?', poss_match)
+
+def is_tl_line_cast(poss_match):
+    return re.search(r'^:([^:]+):([0-9A-F\(\)\|]+)', poss_match)
+
+def is_tl_line_log(poss_match):
+    return re.search(r'^\s*00:([0-9]*):(.*$)', poss_match)
+
+def is_tl_line_adds(poss_match):
+    return re.search(r'Added new combatant (.*$)', poss_match)

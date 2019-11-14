@@ -4,7 +4,7 @@ import re
 
 import fflogs
 import timeline_aggregator
-import encounter_finder as e_find
+import encounter_tools as e_tools
 
 
 def parse_report(args):
@@ -82,14 +82,14 @@ def parse_file(args):
     with args.file as file:
         # If searching for encounters, divert and find start/end first.
         if args.search_fights:
-            encounter_sets = e_find.find_fights_in_file(file)
+            encounter_sets = e_tools.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
             if args.search_fights < 0:
                 return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
             elif args.search_fights > len(encounter_sets):
                 raise Exception('Selected fight index not in selected ACT log.')
 
-        start_time, end_time = e_find.choose_fight_times(args, encounter_sets)
+        start_time, end_time = e_tools.choose_fight_times(args, encounter_sets)
         # Scan the file until the start timestamp
         for line in file:
 
@@ -102,7 +102,7 @@ def parse_file(args):
             # We're at the start of the encounter now.
             if not started:
                 started = True
-                last_ability_time = e_find.parse_event_time(line)
+                last_ability_time = e_tools.parse_event_time(line)
 
             # We're looking for enemy casts
             # These lines will start with 21 or 22, and have an NPC ID (400#####)
@@ -113,7 +113,7 @@ def parse_file(args):
             # At this point, we have a combat line for the timeline.
             line_fields = line.split('|')
             entry = {
-                'time': e_find.parse_event_time(line),
+                'time': e_tools.parse_event_time(line),
                 'combatant': line_fields[3],
                 'ability_id': line_fields[4],
                 'ability_name': line_fields[5],
@@ -285,8 +285,8 @@ if __name__ == "__main__":
     parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
 
     # Log file arguments
-    parser.add_argument('-s', '--start', type=e_find.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', type=e_find.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-s', '--start', type=e_tools.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
+    parser.add_argument('-e', '--end', type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
     parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
 
     # Filtering arguments

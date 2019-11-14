@@ -5,7 +5,7 @@ import os
 import re
 
 import fflogs
-import encounter_finder as e_find
+import encounter_tools as e_tools
 
 
 def load_timeline(timeline):
@@ -19,11 +19,9 @@ def load_timeline(timeline):
                 continue
 
             entry = {}
-            # Remove trailing comment, if any
-            clean_line = line.split('#')[0]
-
-            # Split the line into sections
-            match = re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', clean_line)
+            # Remove trailing comment, if any,
+            # then split the line into sections
+            match = e_tools.clean_and_split_tl_line(line)
             if not match:
                 continue
 
@@ -41,28 +39,28 @@ def load_timeline(timeline):
             # Special casing on syncs
             entry['special_type'] = False
 
-            begincast_match = re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', sync_match.group(1))
+            begincast_match = e_tools.is_tl_line_begincast(sync_match.group(1))
             if begincast_match:
                 entry['special_type'] = 'begincast'
                 entry['special_line'] = '20'
                 entry['cast_id'] = begincast_match.group(1)
                 entry['caster_name'] = begincast_match.group(2)
 
-            buff_match = re.search(r'1A:.......:(.+) gains the effect of (.+)( from)?', sync_match.group(1))
+            buff_match = e_tools.is_tl_line_buff(sync_match.group(1))
             if buff_match:
                 entry['special_type'] = 'applydebuff'
                 entry['special_line'] = '26'
                 entry['buff_target'] = buff_match.group(1)
                 entry['buff_name'] = buff_match.group(2)
 
-            log_match = re.search(r'^\s*00:([0-9]*):(.*$)', sync_match.group(1))
+            log_match = e_tools.is_tl_line_log(sync_match.group(1))
             if log_match:
                 entry['special_type'] = 'battlelog'
                 entry['special_line'] = '00'
                 entry['logid'] = log_match.group(1)
                 entry['line'] = log_match.group(2)
 
-            add_match = re.search(r'Added new combatant (.*$)', sync_match.group(1))
+            add_match = e_tools.is_tl_line_adds(sync_match.group(1))
             if add_match:
                 entry['special_type'] = 'addlog'
                 entry['special_line'] = '03'
@@ -262,9 +260,9 @@ def check_event(event, timelist, state):
     if state['timeline_stopped']:
         time_progress_seconds = 0
     else:
-        event_time = e_find.parse_event_time(event)
+        event_time = e_tools.parse_event_time(event)
         if event_time > state['last_sync_timestamp']:
-             time_progress_delta = e_find.parse_event_time(event) - state['last_sync_timestamp']
+             time_progress_delta = e_tools.parse_event_time(event) - state['last_sync_timestamp']
              time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
         else:
              # battle logs have out of order parsed times because their
@@ -316,7 +314,7 @@ def check_event(event, timelist, state):
             if state['timeline_stopped']:
                 state['last_jump'] = entry['time']
             state['timeline_stopped'] = False
-            state['last_sync_timestamp'] = e_find.parse_event_time(event)
+            state['last_sync_timestamp'] = e_tools.parse_event_time(event)
 
             # Jump to new time, stopping if necessary
             if 'jump' in entry:
@@ -353,14 +351,14 @@ def run_file(args, timelist):
     with args.file as file:
         # If searching for encounters, divert and find start/end first.
         if args.search_fights:
-            encounter_sets = e_find.find_fights_in_file(file)
+            encounter_sets = e_tools.find_fights_in_file(file)
             # If all we want to do is list encounters, stop here and give to the user.
             if args.search_fights == -1:
                 return [f'{i + 1}. {" ".join(e_info)}' for i, e_info in enumerate(encounter_sets)]
             elif args.search_fights > len(encounter_sets) or args.search_fights < -1:
                 raise Exception('Selected fight index not in selected ACT log.')
 
-        start_time, end_time = e_find.choose_fight_times(args, encounter_sets)
+        start_time, end_time = e_tools.choose_fight_times(args, encounter_sets)
         # Scan the file until the start timestamp
         for line in file:
 
@@ -374,7 +372,7 @@ def run_file(args, timelist):
             # We're at the start of the encounter now.
             if not started:
                 started = True
-                state['last_sync_timestamp'] = e_find.parse_event_time(line)
+                state['last_sync_timestamp'] = e_tools.parse_event_time(line)
 
             state = check_event(line, timelist, state)
     if not started:
@@ -465,8 +463,8 @@ if __name__ == "__main__":
     parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
 
     # Log file arguments
-    parser.add_argument('-s', '--start', type=e_find.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', type=e_find.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
+    parser.add_argument('-s', '--start', type=e_tools.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
+    parser.add_argument('-e', '--end', type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
     parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
 
     # Filtering arguments
