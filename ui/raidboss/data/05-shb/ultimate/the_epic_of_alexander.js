@@ -382,9 +382,7 @@
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
-      },
+      condition: Conditions.caresAboutAOE(),
       infoText: {
         en: 'aoe',
         de: 'AoE',
@@ -411,9 +409,7 @@
       regexDe: Regexes.tether({ source: 'levitierte Rage', id: '0003' }),
       regexFr: Regexes.tether({ source: 'furie liquide', id: '0003' }),
       regexJa: Regexes.tether({ source: 'リキッドレイジ', id: '0003' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
       alertText: {

@@ -8,6 +8,7 @@
 
 let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
+let Conditions = require('../../resources/conditions.js');
 let fs = require('fs');
 
 let exitCode = 0;
