@@ -866,8 +866,10 @@ class DamageTracker {
       }
       if ('deathReason' in trigger) {
         let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
-        ret.reason = this.Translate(ret.reason);
-        this.AddImpliedDeathReason(ret);
+        if (ret) {
+          ret.reason = this.Translate(ret.reason);
+          this.AddImpliedDeathReason(ret);
+        }
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, eventOrEvents);
