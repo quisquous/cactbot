@@ -34,17 +34,6 @@
     },
     {
       id: 'TEA Fluid Swing',
-      damageRegex: '4825',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Fluid Swing',
       damageRegex: '49B0',
       condition: function(e, data) {
         // Double taps only.
@@ -70,17 +59,11 @@
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
       damageRegex: '482A',
-      condition: function(data) {
-        return !data.seenOutburst;
-      },
-      // TODO: implement suppressSeconds @_@
+      collectSeconds: 0.5,
+      // TODO: implement suppress
       suppressSeconds: 5,
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-      run: function(data) {
-        // Hacky suppress forever code.
-        data.seenOutburst = true;
+        return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
       },
     },
     {
@@ -131,14 +114,40 @@
       id: 'TEA Drainage',
       damageRegex: '4827',
       condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
+        // TODO: remove this when ngld overlayplugin is the default
+        if (!data.party.partyNames.length)
+          return false;
+
+        return data.IsPlayerId(e.targetId) && !data.party.isTank(e.targetName);
       },
-      collectSeconds: 0.5,
-      mistake: function(e) {
-        if (e.length <= 2)
+      mistake: function(e, data) {
+        return { type: 'fail', name: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'TEA Throttle Tracking',
+      gainsEffectRegex: gLang.kEffect.Throttle,
+      losesEffectRegex: gLang.kEffect.Throttle,
+      run: function(e, data) {
+        data.hasThrottle = data.hasThrottle || {};
+        data.hasThrottle[e.targetName] = e.gains;
+      },
+    },
+    {
+      id: 'TEA Throttle',
+      gainsEffectRegex: gLang.kEffect.Throttle,
+      delaySeconds: function(e) {
+        return e.durationSeconds - 0.5;
+      },
+      deathReason: function(e, data) {
+        if (!data.hasThrottle)
           return;
-        // Tanks can invuln and stack this, but it should never hit 3 people.
-        return { type: 'fail', fullText: e[0].abilityName + ' x ' + e.length };
+        if (!data.hasThrottle[e.targetName])
+          return;
+        return {
+          name: e.targetName,
+          reason: e.effectName,
+        };
       },
     },
   ],

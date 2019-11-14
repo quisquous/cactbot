@@ -160,6 +160,7 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         // Ignore first pass
         if (captures !== -1 && captures !== currentCaptures) {
           console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
+          exitCode = 1;
           break;
         }
         captures = Math.max(captures, currentCaptures);
@@ -167,11 +168,15 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     }
 
     if (captures > 0) {
-      if (!containsMatches)
+      if (!containsMatches) {
         console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
+        exitCode = 1;
+      }
     } else {
-      if (containsMatches)
+      if (containsMatches) {
         console.error(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`);
+        exitCode = 1;
+      }
     }
   }
 };
@@ -182,8 +187,10 @@ let testInvalidTriggerKeys = function(file, contents) {
   for (let i in json[0].triggers) {
     let currentTrigger = json[0].triggers[i];
     for (let key in currentTrigger) {
-      if (!triggerFunctions.includes(key) && !regexLanguages.includes(key))
+      if (!triggerFunctions.includes(key) && !regexLanguages.includes(key)) {
         console.error(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
+        exitCode = 1;
+      }
     }
   }
 };

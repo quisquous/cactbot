@@ -98,6 +98,10 @@ let Options = {
     '2B70': 'Landslide',
     '2B71': 'Landslide',
     '2C18': 'Tumult',
+
+    // TEA
+    '4978': 'Attack',
+    '4979': 'Attack',
   },
 };
 
@@ -865,8 +869,10 @@ class DamageTracker {
       }
       if ('deathReason' in trigger) {
         let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
-        ret.reason = this.Translate(ret.reason);
-        this.AddImpliedDeathReason(ret);
+        if (ret) {
+          ret.reason = this.Translate(ret.reason);
+          this.AddImpliedDeathReason(ret);
+        }
       }
       if ('run' in trigger)
         ValueOrFunction(trigger.run, eventOrEvents);
