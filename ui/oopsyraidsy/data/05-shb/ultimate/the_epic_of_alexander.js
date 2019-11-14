@@ -59,17 +59,11 @@
       // first person listed damage-wise, so they are likely the culprit.
       id: 'TEA Outburst',
       damageRegex: '482A',
-      condition: function(data) {
-        return !data.seenOutburst;
-      },
-      // TODO: implement suppressSeconds @_@
+      collectSeconds: 0.5,
+      // TODO: implement suppress
       suppressSeconds: 5,
       mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-      run: function(data) {
-        // Hacky suppress forever code.
-        data.seenOutburst = true;
+        return { type: 'fail', blame: e[0].targetName, text: e[0].abilityName };
       },
     },
     {
