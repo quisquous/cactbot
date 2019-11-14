@@ -2,7 +2,7 @@
 
 class PartyTracker {
   constructor() {
-    this.onPartyChanged([]);
+    this.onPartyChanged({ party: [] });
   }
 
   // Bind this to PartyChanged events.
