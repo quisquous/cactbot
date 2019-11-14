@@ -98,6 +98,10 @@ let Options = {
     '2B70': 'Landslide',
     '2B71': 'Landslide',
     '2C18': 'Tumult',
+
+    // TEA
+    '4978': 'Attack',
+    '4979': 'Attack',
   },
 };
 
