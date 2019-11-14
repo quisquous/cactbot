@@ -366,102 +366,17 @@ namespace Cactbot {
       // onPlayerChangedEvent: Fires when current player data changes.
       if (player != null) {
         bool send = false;
-        if (player != notify_state_.player) {
+        if (!player.Equals(notify_state_.player)) {
           notify_state_.player = player;
           send = true;
         }
         var job = ffxiv_.GetJobSpecificData(player.job);
         if (job != null) {
-          if (send || !job.Equals(notify_state_.jobData)) {
+          if (send || !JObject.DeepEquals(job, notify_state_.jobData)) {
             notify_state_.jobData = job;
             var e = new JSEvents.PlayerChangedEvent(player);
-            switch (player.job) {
-              case FFXIVProcess.EntityJob.RDM: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.RedMageDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                }
-              case FFXIVProcess.EntityJob.WAR: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.WarriorDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                }
-              case FFXIVProcess.EntityJob.DRK: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.DarkKnightDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                }
-              case FFXIVProcess.EntityJob.PLD: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.PaladinDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                }
-              case FFXIVProcess.EntityJob.GNB: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.GunbreakerDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                }
-              case FFXIVProcess.EntityJob.BRD: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.BardDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.DNC: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.DancerDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.DRG: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.DragoonDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.NIN: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.NinjaDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.BLM: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.BlackMageDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.WHM: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.WhiteMageDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.SMN: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.SummonerDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.SCH: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.ScholarDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.MNK: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.MonkDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.MCH: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.MachinistDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.AST: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.AstrologianDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-              case FFXIVProcess.EntityJob.SAM: {
-                  e.jobDetail = new JSEvents.PlayerChangedEvent.SamuraiDetail(job);
-                  OnPlayerChanged(e);
-                  break;
-                };
-            }
+            e.jobDetail = job;
+            OnPlayerChanged(e);
           }
         } else if (send) {
           // No job-specific data.
@@ -469,8 +384,8 @@ namespace Cactbot {
         }
       }
 
-          // onTargetChangedEvent: Fires when current target or their state changes.
-          if (target != notify_state_.target) {
+      // onTargetChangedEvent: Fires when current target or their state changes.
+      if (target != notify_state_.target) {
         notify_state_.target = target;
         if (target != null)
           OnTargetChanged(new JSEvents.TargetChangedEvent(target));

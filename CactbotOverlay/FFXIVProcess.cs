@@ -141,7 +141,6 @@ namespace Cactbot {
 
     [Serializable]
     public class EntityData {
-
       public string name;
       public uint id = 0;
       public EntityType type = EntityType.None;
@@ -164,7 +163,26 @@ namespace Cactbot {
       public int bait = 0;
 
       public override bool Equals(object obj) {
-        return obj is EntityData && (EntityData)obj == this;
+        return obj is EntityData o &&
+          id == o.id &&
+          type == o.type &&
+          distance == o.distance &&
+          pos_x == o.pos_x &&
+          pos_y == o.pos_y &&
+          pos_z == o.pos_z &&
+          hp == o.hp &&
+          max_hp == o.max_hp &&
+          mp == o.mp &&
+          max_mp == o.max_mp &&
+          gp == o.gp &&
+          max_gp == o.max_gp &&
+          cp == o.cp &&
+          max_cp == o.max_cp &&
+          job == o.job &&
+          level == o.level &&
+          debug_job == o.debug_job &&
+          shield_value == o.shield_value &&
+          bait == o.bait;
       }
 
       public override int GetHashCode() {
@@ -417,7 +435,7 @@ namespace Cactbot {
 
           entity.level = mem.charDetails.level;
 
-          byte[] job_bytes = GetJobSpecificData();
+          byte[] job_bytes = GetRawJobSpecificDataBytes();
           if (job_bytes != null) {
             for (var i = 0; i < job_bytes.Length; ++i) {
               if (entity.debug_job != "")
@@ -477,7 +495,7 @@ namespace Cactbot {
       return bytes[0] != 0;
     }
 
-    private byte[] GetJobSpecificData() {
+    private byte[] GetRawJobSpecificDataBytes() {
       if (!HasProcess() || job_data_outer_addr_ == IntPtr.Zero)
         return null;
 
@@ -566,190 +584,277 @@ namespace Cactbot {
       }
     }
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct RedMageJobMemory {
       [FieldOffset(0x00)]
-      public byte white;
+      public byte whiteMana;
 
       [FieldOffset(0x01)]
-      public byte black;
+      public byte blackMana;
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct WarriorJobMemory {
       [FieldOffset(0x00)]
       public byte beast;
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct DarkKnightJobMemory {
       [FieldOffset(0x00)]
       public byte blood;
       [FieldOffset(0x02)]
-      public ushort darkside_ms;
+      public ushort darksideMilliseconds;
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct PaladinJobMemory {
       [FieldOffset(0x00)]
       public byte oath;
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct GunbreakerJobMemory { // TODO: Needs a lot more research. 
       [FieldOffset(0x00)]
       public byte cartridges;
 
       [FieldOffset(0x02)]
-      public ushort continuation_ms; // Notes: Jumps to 15000 (ms?) after using Gnashing Fang, doesn't decrease.
+      public ushort continuationMilliseconds; // Notes: Jumps to 15000 (ms?) after using Gnashing Fang, doesn't decrease.
 
       [FieldOffset(0x04)]
-      public byte continuation_state; // Seems? to follow Continuation procs.
+      public byte continuationState; // Seems? to follow Continuation procs.
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct BardJobMemory {
+      private enum Song : byte {
+        None = 0,
+        Ballad = 5, // Mage's Ballad.
+        Paeon = 10, // Army's Paeon.
+        Minuet = 15, // The Wanderer's Minuet.
+      }
 
       [FieldOffset(0x00)]
-      public ushort song_ms;
+      public ushort songMilliseconds;
 
       [FieldOffset(0x02)]
-      public byte song_procs;
+      public byte songProcs;
 
       [FieldOffset(0x03)]
-      public byte soul_gauge;
+      public byte soulGauge;
 
+      [NonSerialized]
       [FieldOffset(0x04)]
-      public byte song_type;
+      private Song song_type;
+
+      public String songName {
+        get {
+          return !Enum.IsDefined(typeof(Song), song_type) ? "None" : song_type.ToString(); 
+          }
+        }
+
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct DancerJobMemory { // TODO: Needs more research. 
+      private enum Step : byte {
+        None = 0,
+        Emboite = 1,
+        Entrechat = 2,
+        Jete = 3,
+        Pirouette = 4,
+      }
+
       [FieldOffset(0x00)]
       public byte feathers;
 
+      [NonSerialized]
       [FieldOffset(0x02)]
-      public byte step1;  // Order of steps in current Standard Step/Technical Step combo.
+      private Step step1;  // Order of steps in current Standard Step/Technical Step combo.
 
+      [NonSerialized]
       [FieldOffset(0x03)]
-      public byte step2;
+      private Step step2;
 
+      [NonSerialized]
       [FieldOffset(0x04)]
-      public byte step3;
+      private Step step3;
 
+      [NonSerialized]
       [FieldOffset(0x05)]
-      public byte step4;
+      private Step step4;
 
       [FieldOffset(0x06)]
-      public byte current_step; // Number of steps executed in current Standard Step/Technical Step combo.
+      public byte currentStep; // Number of steps executed in current Standard Step/Technical Step combo.
+
+      public string steps {
+        get {
+          string _steps = step1 == Step.None ? "None" : step1.ToString();
+          _steps += step2 != Step.None ? ", " + step2.ToString() : "";
+          _steps += step3 != Step.None ? ", " + step3.ToString() : "";
+          _steps += step4 != Step.None ? ", " + step4.ToString() : "";
+          return _steps;
+        }
+      }
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct DragoonJobMemory {
+      [NonSerialized]
       [FieldOffset(0x00)]
-      public ushort blood_or_life_ms;
+      private ushort blood_or_life_ms;
 
+      [NonSerialized]
       [FieldOffset(0x02)]
-      public byte stance; // 0 = None, 1 = Blood, 2 = Life
+      private byte stance; // 0 = None, 1 = Blood, 2 = Life
 
       [FieldOffset(0x03)]
-      public byte eyes_amount;
+      public byte eyesAmount;
+
+      public uint bloodMilliseconds {
+        get {
+          if (stance == 1)
+            return blood_or_life_ms;
+          else
+            return 0;
+        }
+      }
+      public uint lifeMilliseconds {
+        get {
+          if (stance == 2)
+            return blood_or_life_ms;
+          else
+            return 0;
+        }
+      }
     };
 
+    [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct NinjaJobMemory {
       [FieldOffset(0x00)]
-      public uint huton_ms;
+      public uint hutonMilliseconds;
 
       [FieldOffset(0x04)]
-      public byte ninki_amount;
+      public byte ninkiAmount;
 
-      [FieldOffset(0x06)]
-      public byte huton_count; //TODO: Confirm this.
+      [FieldOffset(0x05)]
+      public byte hutonCount; //TODO: Confirm this.
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct BlackMageJobMemory {
       [FieldOffset(0x00)]
-      public ushort polyglot_time_ms; // Number of ms left before polyglot proc.
+      public ushort nextPolyglotMilliseconds; // Number of ms left before polyglot proc.
 
       [FieldOffset(0x02)]
-      public ushort umbral_time_ms; // Number of ms left in umbral fire/ice.
+      public ushort umbralMilliseconds; // Number of ms left in umbral fire/ice.
 
       [FieldOffset(0x04)]
-      public ushort umbral_stacks; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
+      public ushort umbralStacks; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
 
       [FieldOffset(0x05)]
-      public byte umbral_hearts_count;
+      public byte umbralHearts;
 
       [FieldOffset(0x06)]
-      public byte foul_count;
+      public byte foulCount;
 
+      [NonSerialized]
       [FieldOffset(0x07)]
-      public byte enochian_state; // Bit 0 = Enochian active. Bit 1 = Polygot active.
+      private byte enochian_state; // Bit 0 = Enochian active. Bit 1 = Polygot active.
+
+      public bool enochian {
+        get {
+          return (enochian_state & 0xF) == 1;
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct WhiteMageJobMemory {
       [FieldOffset(0x02)]
-      public ushort lilies_ms; // Number of ms left before lily gain.
+      public ushort lilyMilliseconds; // Number of ms left before lily gain.
 
       [FieldOffset(0x04)]
-      public byte lily_stacks;
+      public byte lilyStacks;
 
       [FieldOffset(0x05)]
-      public byte bloodlily_stacks;
+      public byte bloodlilyStacks;
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct SummonerJobMemory {
       [FieldOffset(0x00)]
-      public ushort stance_ms; // Dreadwyrm or Bahamut/Phoenix time left in ms.
+      public ushort stanceMilliseconds; // Dreadwyrm or Bahamut/Phoenix time left in ms.
 
       [FieldOffset(0x02)]
-      public byte bahamut_stance; // 5 if Bahamut/Phoenix summoned, else 0.
+      public byte bahamutStance; // 5 if Bahamut/Phoenix summoned, else 0.
 
       [FieldOffset(0x03)]
-      public byte bahamut_summoned; // 1 if Bahamut/Phoenix summoned, else 0.
+      public byte bahamutSummoned; // 1 if Bahamut/Phoenix summoned, else 0.
 
+      [NonSerialized]
       [FieldOffset(0x04)]
-      public byte stacks; // Bits 1-2: Aetherflow. Bits 3-4: Dreadwyrm. Bit 5: Phoenix ready.
+      private byte stacks; // Bits 1-2: Aetherflow. Bits 3-4: Dreadwyrm. Bit 5: Phoenix ready.
+
+      public int aetherflowStacks {
+        get {
+          return (stacks >> 0) & 0x3; // Bottom 2 bits.
+        }
+      }
+      public int dreadwyrmStacks {
+        get {
+          return (stacks >> 2) & 0x3; // Bottom 2 bits.
+        }
+      }
+      public bool phoenixReady {
+        get {
+          return ((stacks >> 4) & 0x3) == 1; // Bottom 2 bits.
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct ScholarJobMemory {
       [FieldOffset(0x02)]
-      public byte aetherflow_stacks;
+      public byte aetherflowStacks;
 
       [FieldOffset(0x03)]
-      public byte fairy_gauge;
+      public byte fairyGauge;
 
       [FieldOffset(0x04)]
-      public ushort fairy_ms; // Seraph time left ms.
+      public ushort fairyMilliseconds; // Seraph time left ms.
 
       [FieldOffset(0x06)]
-      public byte fairy_status; // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
+      public byte fairyStatus; // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct MonkJobMemory {
       [FieldOffset(0x00)]
-      public ushort greased_lightning_time_ms;
+      public ushort lightningMilliseconds;
 
       [FieldOffset(0x02)]
-      public byte greased_lightning_stacks;
+      public byte lightningStacks;
 
       [FieldOffset(0x03)]
-      public byte chakra_stacks;
+      public byte chakraStacks;
     };
 
     [StructLayout(LayoutKind.Explicit)]
     public struct MachinistJobMemory {
       [FieldOffset(0x00)]
-      public ushort overheat_ms;
+      public ushort overheatMilliseconds;
 
       [FieldOffset(0x02)]
-      public ushort battery_ms;
+      public ushort batteryMilliseconds;
 
       [FieldOffset(0x04)]
       public byte heat;
@@ -760,17 +865,46 @@ namespace Cactbot {
 
     [StructLayout(LayoutKind.Explicit)]
     public struct AstrologianJobMemory {
+      public enum Card : byte {
+        None = 0,
+        Balance = 1,
+        Bole = 2,
+        Arrow = 3,
+        Spear = 4,
+        Ewer = 5,
+        Spire = 6,
+      }
+
+      public enum Arcanum : byte {
+        None = 0,
+        Solar = 1,
+        Lunar = 2,
+        Celestial = 3,
+      }
+
       [FieldOffset(0x04)]
-      public byte held_card;
+      public Card held_card;
 
+      [NonSerialized]
       [FieldOffset(0x05)]
-      public byte arcanum_1;
+      private Arcanum arcanum_1;
 
-      [FieldOffset(0x06)]
-      public byte arcanum_2;
+      [NonSerialized]
+      [FieldOffset(0x05)]
+      private Arcanum arcanum_2;
 
-      [FieldOffset(0x07)]
-      public byte arcanum_3;
+      [NonSerialized]
+      [FieldOffset(0x05)]
+      private Arcanum arcanum_3;
+
+      public string arcanums {
+        get {
+          string _arcanums = arcanum_1 == Arcanum.None ? "None" : arcanum_1.ToString();
+          _arcanums += arcanum_2 != Arcanum.None ? ", " + arcanum_2.ToString() : "";
+          _arcanums += arcanum_3 != Arcanum.None ? ", " + arcanum_3.ToString() : "";
+          return _arcanums;
+        }
+      }
     };
 
     [StructLayout(LayoutKind.Explicit)]
@@ -778,12 +912,31 @@ namespace Cactbot {
       [FieldOffset(0x04)]
       public byte kenki;
 
+      [NonSerialized]
       [FieldOffset(0x05)]
-      public byte sen_bits;
-    };
+      private byte sen_bits;
 
-    /// Reads |count| bytes at |addr| in the |process_|. Returns null on error.
-    private byte[] Read8(IntPtr addr, int count) {
+      public bool setsu {
+        get {
+          return (sen_bits & 0x1) != 0;
+        }
+      }
+
+      public bool getsu {
+        get {
+          return (sen_bits & 0x2) != 0;
+        }
+      }
+
+      public bool ka {
+        get {
+          return (sen_bits & 0x4) != 0;
+        }
+      }
+    }
+
+      /// Reads |count| bytes at |addr| in the |process_|. Returns null on error.
+      private byte[] Read8(IntPtr addr, int count) {
       int buffer_len = 1 * count;
       var buffer = new byte[buffer_len];
       var bytes_read = IntPtr.Zero;
