@@ -63,7 +63,7 @@
       // TODO: implement suppress
       suppressSeconds: 5,
       mistake: function(e, data) {
-        return { type: 'fail', blame: e[0].targetName, text: e[0].abilityName };
+        return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
       },
     },
     {
