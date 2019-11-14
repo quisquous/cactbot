@@ -47,19 +47,40 @@ hideall "Liquid Gaol"
 142.1 "Cascade Enrage" sync /:Living Liquid:49B3:/
 
 # Transition
-200.0 "Hawk Blaster" sync /:Liquid Rage:4830:/ window 200,0
+200.0 "Hawk Blaster" sync /:(Liquid Rage|Living Liquid):4830:/ window 200,0
 202.2 "Hawk Blaster"
-204.4 "Hawk Blaster"
+204.4 "Hawk Blaster" 
 206.6 "Hawk Blaster"
 207.4 "Alpha Sword" sync /:Cruise Chaser:4834:/
 208.8 "Middle Blaster"
 208.9 "Super Blassty Charge" sync /:Cruise Chaser:4B4F:/
 211.0 "Hawk Blaster"
-212.1 "Alpha Sword" sync /:Cruise Chaser:4834:/
+212.1 "Alpha Sword, 3-4 Outside" sync /:Cruise Chaser:4834:/
 213.2 "Hawk Blaster"
 213.6 "Super Blassty Charge" sync /:Cruise Chaser:4B4F:/
 215.5 "Hawk Blaster"
-216.8 "Alpha Sword" sync /:Cruise Chaser:4834:/
+216.8 "Alpha Sword, 5-6 Outside" sync /:Cruise Chaser:4834:/
 217.7 "Hawk Blaster"
 218.3 "Super Blassty Charge" sync /:Cruise Chaser:4B4F:/
 219.9 "Middle Blaster"
+221.5 "Alpha Sword, 7-8 Chase AoEs" sync /:Cruise Chaser:4834:/
+223.3 "Super Blassty Charge" sync /:Cruise Chaser:4B4F:/
+227.3 "J Kick" sync /:Brute Justice:4854:/
+239.1 "Whirlwind" sync /:Cruise Chaser:49C2:/
+261.5 "Hawk Blaster" sync /:(Liquid Rage|Living Liquid):4830:/
+270.6 "Spin Crusher" sync /:Cruise Chaser:4A72:/
+278.2 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+289.7 "Earth Missile" sync /:(Liquid Rage|Living Liquid):484E:/
+291.7 "Hidden Minefield" sync /:(Liquid Rage|Living Liquid):4851:/
+293.8 "Enumeration" sync /:(Liquid Rage|Living Liquid):4850:/
+298.2 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+302.8 "Drainage" sync /:(Liquid Rage|Living Liquid):4844:/
+310.6 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+317.3 "Limit Cut" sync /:Cruise Chaser:4833:/
+317.9 "--Cruise Chaser Invincible--" duration 6.3
+319.3 "Flamethrower" sync /:Brute Justice:4845:/
+331.2 "Whirlwind" sync /:Cruise Chaser:49C2:/
+340.2 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+358.4 "Propeller Wind" sync /:Cruise Chaser:4832:/
+360.3 "Gavel" sync /:Brute Justice:483C:/
+363.3 "Final Sentence" sync /:You:483D:/
