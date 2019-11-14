@@ -896,7 +896,7 @@ namespace Cactbot {
       [FieldOffset(0x04)]
       public byte ninki_amount;
 
-      [FieldOffset(0x06)]
+      [FieldOffset(0x05)]
       public byte huton_count; //TODO: Confirm this.
     };
 
