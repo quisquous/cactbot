@@ -135,6 +135,9 @@ def choose_fight_times(args, encounters):
 def clean_and_split_tl_line(line):
     return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0])
 
+def is_tl_line_syncmatch(line):
+    return re.search(r'sync /([^/]+)/', line.group('options'))
+
 def is_tl_line_begincast(poss_match):
     return re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', poss_match)
 

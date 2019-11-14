@@ -29,7 +29,7 @@ def load_timeline(timeline):
             entry['label'] = match.group('label')
 
             # Get the sync format into the file format
-            sync_match = re.search(r'sync /([^/]+)/', match.group('options'))
+            sync_match = e_tools.is_tl_line_syncmatch(match)
             if not sync_match:
                 continue
 
