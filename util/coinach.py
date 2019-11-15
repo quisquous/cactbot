@@ -96,7 +96,7 @@ class CoinachReader:
         # Find directory that this export was written to.
         # There's no way to control this.
         m = re.search(
-            r'^Definition version: ([0-9.]*)',
+            r'^Game version: ([0-9.]*)',
             output,
             re.MULTILINE)
         if not m:
