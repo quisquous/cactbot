@@ -271,6 +271,11 @@ document.addEventListener('onZoneChangedEvent', function(e) {
   gRadar.OnZoneChange(e);
 });
 
+document.addEventListener('onInCombatChangedEvent', function(e) {
+  gRadar.OnInCombatChange(e);
+});
+
+
 UserConfig.getUserConfigLocation('radar', function() {
   gRadar = new Radar(document.getElementById('radar-table'));
 });
