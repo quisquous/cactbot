@@ -479,6 +479,7 @@ Lines are printed, but with blank data.  :sob:
 This message is sent whenever your player's stats change and upon entering a new zone/instance. 
 
 Structure:
+
 `0C:Player Stats: JOB:STR:DEX:VIT:INT:MND:PIE:ATTACK POWER:DHIT:CRIT:ATTACK MAGIC POTENCY:HEAL MAGIC POTENCY:DET:SkS:SpS:0:TENACITY`
 
 Example:
