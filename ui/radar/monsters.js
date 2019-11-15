@@ -7,7 +7,6 @@ let Monsters = {
       'cn': '丑男子 沃迦加',
       'ja': '醜男のヴォガージャ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Unktehi': {
@@ -16,7 +15,6 @@ let Monsters = {
       'cn': '乌克提希',
       'ja': 'ウンクテヒ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Hellsclaw': {
@@ -25,7 +23,6 @@ let Monsters = {
       'cn': '魔导地狱爪',
       'ja': '魔導ヘルズクロー',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Nahn': {
@@ -34,7 +31,6 @@ let Monsters = {
       'cn': '纳恩',
       'ja': 'ナン',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Marberry': {
@@ -43,7 +39,6 @@ let Monsters = {
       'cn': '玛贝利',
       'ja': 'マーベリー',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Cornu': {
@@ -52,7 +47,6 @@ let Monsters = {
       'cn': '角祖',
       'ja': 'コンヌ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Forneus': {
@@ -61,7 +55,6 @@ let Monsters = {
       'cn': '弗内乌斯',
       'ja': 'ファルネウス',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Melt': {
@@ -70,7 +63,6 @@ let Monsters = {
       'cn': '千眼凝胶',
       'ja': 'メルティゼリー',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Ghede Ti Malice': {
@@ -79,7 +71,6 @@ let Monsters = {
       'cn': '盖得',
       'ja': 'ゲーデ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Girtab': {
@@ -88,7 +79,6 @@ let Monsters = {
       'cn': '尾宿蛛蝎',
       'ja': 'ギルタブ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Alectryon': {
@@ -97,7 +87,6 @@ let Monsters = {
       'cn': '阿列刻特利昂',
       'ja': 'アレクトリオン',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Sabotender Bailarina': {
@@ -106,7 +95,6 @@ let Monsters = {
       'cn': '花舞仙人刺',
       'ja': 'サボテンダー・バイラリーナ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Maahes': {
@@ -115,7 +103,6 @@ let Monsters = {
       'cn': '玛赫斯',
       'ja': 'マヘス',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Zanig\'oh': {
@@ -124,7 +111,6 @@ let Monsters = {
       'cn': '札尼戈',
       'ja': 'ザニゴ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Dalvag\'s Final Flame': {
@@ -133,7 +119,6 @@ let Monsters = {
       'cn': '菲兰德的遗火',
       'ja': 'ファイナルフレイム',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Marraco': {
@@ -142,7 +127,6 @@ let Monsters = {
       'cn': '马拉克',
       'ja': 'マラク',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Kurrea': {
@@ -151,7 +135,6 @@ let Monsters = {
       'cn': '库雷亚',
       'ja': 'クーレア',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Mirka': {
@@ -160,7 +143,6 @@ let Monsters = {
       'cn': '米勒卡',
       'ja': 'ミルカ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Lyuba': {
@@ -169,7 +151,6 @@ let Monsters = {
       'cn': '卢芭',
       'ja': 'リューバ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Enkelados': {
@@ -178,7 +159,6 @@ let Monsters = {
       'cn': '恩克拉多斯',
       'ja': 'エンケドラス',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Sisiutl': {
@@ -187,7 +167,6 @@ let Monsters = {
       'cn': '西斯尤',
       'ja': 'シシウトゥル',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Bune': {
@@ -196,7 +175,6 @@ let Monsters = {
       'cn': '布涅',
       'ja': 'ブネ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Agathos': {
@@ -205,7 +183,6 @@ let Monsters = {
       'cn': '阿伽托斯',
       'ja': 'アガトス',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Pylraster': {
@@ -214,7 +191,6 @@ let Monsters = {
       'cn': '派拉斯特暴龙',
       'ja': 'パイルラスタ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Lord of the Wyverns': {
@@ -223,7 +199,6 @@ let Monsters = {
       'cn': '双足飞龙之王',
       'ja': 'ワイバーンロード',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Slipkinx Steeljoints': {
@@ -232,7 +207,6 @@ let Monsters = {
       'cn': '机工兵 斯利普金克斯',
       'ja': '機兵のスリップキンクス',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Stolas': {
@@ -241,7 +215,6 @@ let Monsters = {
       'cn': '斯特拉斯',
       'ja': 'ストラス',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Campacti': {
@@ -250,7 +223,6 @@ let Monsters = {
       'cn': '坎帕提',
       'ja': 'キャムパクティ',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'stench blossom': {
@@ -259,7 +231,6 @@ let Monsters = {
       'cn': '恶臭狂花',
       'ja': 'センチブロッサム',
     },
-    'hp': 100000,
     'rank': 'A',
   },
   'Erle': {
@@ -268,7 +239,6 @@ let Monsters = {
       'cn': '女王蜂',
       'ja': 'アール',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Orcus': {
@@ -277,7 +247,6 @@ let Monsters = {
       'cn': '奥迦斯',
       'ja': 'オルクス',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Mahisha': {
@@ -286,7 +255,6 @@ let Monsters = {
       'cn': '马希沙',
       'ja': 'マヒシャ',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Luminare': {
@@ -295,7 +263,6 @@ let Monsters = {
       'cn': '泛光晶体',
       'ja': 'ルミナーレ',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Vochstein': {
@@ -304,7 +271,6 @@ let Monsters = {
       'cn': '弗克施泰因',
       'ja': 'バックスタイン',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Aqrabuamelu': {
@@ -313,7 +279,6 @@ let Monsters = {
       'cn': '熔骨炎蝎',
       'ja': 'アクラブアメル',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Sum': {
@@ -322,7 +287,6 @@ let Monsters = {
       'cn': '硕姆',
       'ja': 'ソム',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Girimekhala': {
@@ -331,7 +295,6 @@ let Monsters = {
       'cn': '基里麦卡拉',
       'ja': 'ギリメカラ',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Funa Yurei': {
@@ -340,7 +303,6 @@ let Monsters = {
       'cn': '船幽灵',
       'ja': '船幽霊',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Oni Yumemi': {
@@ -349,7 +311,6 @@ let Monsters = {
       'cn': '鬼观梦',
       'ja': 'オニユメミ',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Angada': {
@@ -358,7 +319,6 @@ let Monsters = {
       'cn': '安迦达',
       'ja': 'アンガダ',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Gajasura': {
@@ -367,7 +327,6 @@ let Monsters = {
       'cn': '象魔修罗',
       'ja': 'ガジャースラ',
     },
-    'hp': 1000000,
     'rank': 'A',
   },
   'Nuckelavee': {
@@ -376,7 +335,6 @@ let Monsters = {
       'cn': '纳克拉维',
       'ja': 'ナックラヴィー',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Nariphon': {
@@ -385,7 +343,6 @@ let Monsters = {
       'cn': '纳里蓬',
       'ja': 'ナリーポン',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Huracan': {
@@ -394,7 +351,6 @@ let Monsters = {
       'cn': '乌拉坎',
       'ja': 'フラカン',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Li\'l Murderer': {
@@ -403,7 +359,6 @@ let Monsters = {
       'cn': '小小杀手',
       'ja': 'リルマーダー',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Sugaar': {
@@ -412,7 +367,6 @@ let Monsters = {
       'cn': '休格尔',
       'ja': 'シュガール',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Maliktender': {
@@ -421,7 +375,6 @@ let Monsters = {
       'cn': '马利克巨人掌',
       'ja': 'マリクテンダー',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'the mudman': {
@@ -430,7 +383,6 @@ let Monsters = {
       'cn': '泥人',
       'ja': '泥人',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'O Poorest Pauldia': {
@@ -439,7 +391,6 @@ let Monsters = {
       'cn': '保尔迪雅',
       'ja': 'ポールディア',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Grassman': {
@@ -448,7 +399,6 @@ let Monsters = {
       'cn': '格拉斯曼',
       'ja': 'グラスマン',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Supay': {
@@ -457,7 +407,6 @@ let Monsters = {
       'cn': '苏帕伊',
       'ja': 'スペイ',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Rusalka': {
@@ -466,7 +415,6 @@ let Monsters = {
       'cn': '卢莎卡',
       'ja': 'ルサルカ',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Baal': {
@@ -475,7 +423,6 @@ let Monsters = {
       'cn': '巴力',
       'ja': 'バール',
     },
-    'hp': 10000000,
     'rank': 'A',
   },
   'Croque-mitaine': {
@@ -484,7 +431,6 @@ let Monsters = {
       'cn': '护土精灵',
       'ja': 'クロック・ミテーヌ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Croakadile': {
@@ -493,7 +439,6 @@ let Monsters = {
       'cn': '咕尔呱洛斯',
       'ja': 'ケロゲロス',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'the Garlok': {
@@ -502,7 +447,6 @@ let Monsters = {
       'cn': '伽洛克',
       'ja': 'ガーロック',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Bonnacon': {
@@ -511,7 +455,6 @@ let Monsters = {
       'cn': '火愤牛',
       'ja': 'ボナコン',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Nandi': {
@@ -520,7 +463,6 @@ let Monsters = {
       'cn': '南迪',
       'ja': 'ナンディ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Chernobog': {
@@ -529,7 +471,6 @@ let Monsters = {
       'cn': '牛头黑神',
       'ja': 'チェルノボーグ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Laideronnette': {
@@ -538,7 +479,6 @@ let Monsters = {
       'cn': '雷德罗巨蛇',
       'ja': 'レドロネット',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Wulgaru': {
@@ -547,7 +487,6 @@ let Monsters = {
       'cn': '乌尔伽鲁',
       'ja': 'ウルガル',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'mindflayer': {
@@ -556,7 +495,6 @@ let Monsters = {
       'cn': '夺心魔',
       'ja': 'マインドフレア',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Thousand-cast Theda': {
@@ -565,7 +503,6 @@ let Monsters = {
       'cn': '千竿口花希达',
       'ja': 'サウザンドキャスト・セダ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Zona Seeker': {
@@ -574,7 +511,6 @@ let Monsters = {
       'cn': '虚无探索者',
       'ja': 'ゾーナ・シーカー',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Brontes': {
@@ -583,7 +519,6 @@ let Monsters = {
       'cn': '布隆特斯',
       'ja': 'ブロンテス',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Lampalagua': {
@@ -592,7 +527,6 @@ let Monsters = {
       'cn': '巴拉乌尔',
       'ja': 'バルウール',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Nunyunuwi': {
@@ -601,7 +535,6 @@ let Monsters = {
       'cn': '努纽努维',
       'ja': 'ヌニュヌウィ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Minhocao': {
@@ -610,7 +543,6 @@ let Monsters = {
       'cn': '蚓螈巨虫',
       'ja': 'ミニョーカオン',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Safat': {
@@ -619,7 +551,6 @@ let Monsters = {
       'cn': '萨法特',
       'ja': 'サファト',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Agrippa the Mighty': {
@@ -628,7 +559,6 @@ let Monsters = {
       'cn': '阿格里帕',
       'ja': 'アグリッパ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Gandarewa': {
@@ -637,7 +567,6 @@ let Monsters = {
       'cn': '刚德瑞瓦',
       'ja': 'ガンダルヴァ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Senmurv': {
@@ -646,7 +575,6 @@ let Monsters = {
       'cn': '神穆尔鸟',
       'ja': 'セーンムルウ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'the Pale Rider': {
@@ -655,7 +583,6 @@ let Monsters = {
       'cn': '苍白骑士',
       'ja': 'ペイルライダー',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Leucrotta': {
@@ -664,7 +591,6 @@ let Monsters = {
       'cn': '卢克洛塔',
       'ja': 'レウクロッタ',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'kaiser behemoth': {
@@ -673,7 +599,6 @@ let Monsters = {
       'cn': '凯撒贝希摩斯',
       'ja': 'カイザーベヒーモス',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Bird of Paradise': {
@@ -682,7 +607,6 @@ let Monsters = {
       'cn': '极乐鸟',
       'ja': '極楽鳥',
     },
-    'hp': 1000000,
     'rank': 'S',
   },
   'Gamma': {
@@ -691,7 +615,6 @@ let Monsters = {
       'cn': '伽马',
       'ja': 'ガンマ',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Okina': {
@@ -700,7 +623,6 @@ let Monsters = {
       'cn': '巨大鳐',
       'ja': 'オキナ',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Salt and Light': {
@@ -709,7 +631,6 @@ let Monsters = {
       'cn': '盐和光',
       'ja': 'ソルト・アンド・ライト',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Orghana': {
@@ -718,7 +639,6 @@ let Monsters = {
       'cn': '兀鲁忽乃朝鲁',
       'ja': 'オルガナ',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Bone Crawler': {
@@ -727,7 +647,6 @@ let Monsters = {
       'cn': '爬骨怪龙',
       'ja': 'ボーンクローラー',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Udumbara': {
@@ -736,7 +655,6 @@ let Monsters = {
       'cn': '优昙婆罗花',
       'ja': 'ウドンゲ',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Ixtab': {
@@ -745,7 +663,6 @@ let Monsters = {
       'cn': '伊休妲',
       'ja': 'イシュタム',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Gunitt': {
@@ -754,7 +671,6 @@ let Monsters = {
       'cn': '顾尼图',
       'ja': 'グニット',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Aglaope': {
@@ -763,7 +679,6 @@ let Monsters = {
       'cn': '阿格拉俄珀',
       'ja': 'アグラオペ',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'forgiven rebellion': {
@@ -772,7 +687,6 @@ let Monsters = {
       'cn': '得到宽恕的叛乱',
       'ja': 'フォーギヴン・リベリオン',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'forgiven gossip': {
@@ -781,7 +695,6 @@ let Monsters = {
       'cn': '得到宽恕的流言',
       'ja': 'フォーギヴン・ゴシップ',
     },
-    'hp': 10000000,
     'rank': 'S',
   },
   'Naul': {
@@ -790,7 +703,6 @@ let Monsters = {
       'cn': '纳乌尔',
       'ja': 'ナウル',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Dark Helmet': {
@@ -799,7 +711,6 @@ let Monsters = {
       'cn': '暗盔魔蟹',
       'ja': 'ダークヘルメット',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Myradrosh': {
@@ -808,7 +719,6 @@ let Monsters = {
       'cn': '米腊德罗斯蜂鸟',
       'ja': 'ミラドロッシュ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Barbastelle': {
@@ -817,7 +727,6 @@ let Monsters = {
       'cn': '宽耳凶蝠',
       'ja': 'バーバステル',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Stinging Sophie': {
@@ -826,7 +735,6 @@ let Monsters = {
       'cn': '击刺魔蜂索菲',
       'ja': 'スティンギング・ソフィー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Monarch Ogrefly': {
@@ -835,7 +743,6 @@ let Monsters = {
       'cn': '君王鬼蜻蜓',
       'ja': 'モナーク・オーガフライ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Skogs Fru': {
@@ -844,7 +751,6 @@ let Monsters = {
       'cn': '花林女郎',
       'ja': 'スコッグ・フリュー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Ovjang': {
@@ -853,7 +759,6 @@ let Monsters = {
       'cn': '奥弗杰恩',
       'ja': 'アヴゼン',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Flame Sergeant Dalvag': {
@@ -862,7 +767,6 @@ let Monsters = {
       'cn': '永恒不灭的菲兰德副耀士',
       'ja': '不滅のフェランド闘軍曹',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Albin the Ashen': {
@@ -871,7 +775,6 @@ let Monsters = {
       'cn': '死灰复燃的阿尔宾',
       'ja': '死灰のアルビン',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Vuokho': {
@@ -880,7 +783,6 @@ let Monsters = {
       'cn': '巫刻猎鹫',
       'ja': 'ヴオコー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Leech King': {
@@ -889,7 +791,6 @@ let Monsters = {
       'cn': '水蛭王',
       'ja': 'リーチキング',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Sewer Syrup': {
@@ -898,7 +799,6 @@ let Monsters = {
       'cn': '阴沟毒液',
       'ja': 'スェアーシロップ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Gatling': {
@@ -907,7 +807,6 @@ let Monsters = {
       'cn': '加特林针鼹',
       'ja': 'ガトリングス',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Bloody Mary': {
@@ -916,7 +815,6 @@ let Monsters = {
       'cn': '血腥玛丽',
       'ja': 'ブラッディ・マリー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Phecda': {
@@ -925,7 +823,6 @@ let Monsters = {
       'cn': '天玑巨熊',
       'ja': 'フェクダ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'White Joker': {
@@ -934,7 +831,6 @@ let Monsters = {
       'cn': '白鬼鼠王',
       'ja': 'ホワイトジョーカー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Alteci': {
@@ -943,7 +839,6 @@ let Monsters = {
       'cn': '阿尔提克',
       'ja': 'アルティック',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Kreutzet': {
@@ -952,7 +847,6 @@ let Monsters = {
       'cn': '克鲁泽',
       'ja': 'クルーゼ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Squonk': {
@@ -961,7 +855,6 @@ let Monsters = {
       'cn': '斯奎克',
       'ja': 'スクオンク',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Sanu Vali of Dancing Wings': {
@@ -970,7 +863,6 @@ let Monsters = {
       'cn': '飞舞翼 萨努瓦力',
       'ja': '舞手のサヌバリ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Scitalis': {
@@ -979,7 +871,6 @@ let Monsters = {
       'cn': '斯奇塔利斯',
       'ja': 'スキタリス',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'the Scarecrow': {
@@ -988,7 +879,6 @@ let Monsters = {
       'cn': '惊慌稻草龙',
       'ja': 'スケアクロウ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Gnath cometdrone': {
@@ -997,7 +887,6 @@ let Monsters = {
       'cn': '骨颌彗星兵',
       'ja': 'グナース・コメットドローン',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Thextera': {
@@ -1006,7 +895,6 @@ let Monsters = {
       'cn': '提克斯塔',
       'ja': 'テクスタ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Pterygotus': {
@@ -1015,7 +903,6 @@ let Monsters = {
       'cn': '翼肢鲎',
       'ja': 'プテリゴトゥス',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'false gigantopithecus': {
@@ -1024,7 +911,6 @@ let Monsters = {
       'cn': '布拉巨猿',
       'ja': 'ブラクキ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Lycidas': {
@@ -1033,7 +919,6 @@ let Monsters = {
       'cn': '利西达斯',
       'ja': 'リュキダス',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Omni': {
@@ -1042,7 +927,6 @@ let Monsters = {
       'cn': '全能机甲',
       'ja': 'オムニ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Shadow-dweller Yamini': {
@@ -1051,7 +935,6 @@ let Monsters = {
       'cn': '影中暗 雅弥尼',
       'ja': '宵闇のヤミニ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Ouzelum': {
@@ -1060,7 +943,6 @@ let Monsters = {
       'cn': '奥祖鲁姆',
       'ja': 'オゼルム',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Gwas-y-neidr': {
@@ -1069,7 +951,6 @@ let Monsters = {
       'cn': '蛇仆蚂蜓',
       'ja': 'グアス・ア・ニードル',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Buccaboo': {
@@ -1078,7 +959,6 @@ let Monsters = {
       'cn': '布卡卜',
       'ja': 'ブッカブー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Manes': {
@@ -1087,7 +967,6 @@ let Monsters = {
       'cn': '玛涅斯',
       'ja': 'マネス',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Kiwa': {
@@ -1096,7 +975,6 @@ let Monsters = {
       'cn': '奇洼',
       'ja': 'キワ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Gauki Strongblade': {
@@ -1105,7 +983,6 @@ let Monsters = {
       'cn': '剑豪 刑具',
       'ja': '剣豪ガウキ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Guhuo Niao': {
@@ -1114,7 +991,6 @@ let Monsters = {
       'cn': '姑获鸟',
       'ja': '姑獲鳥',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Deidar': {
@@ -1123,7 +999,6 @@ let Monsters = {
       'cn': '大太',
       'ja': 'デイダラ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Gyorai Quickstrike': {
@@ -1132,7 +1007,6 @@ let Monsters = {
       'cn': '闪雷击 鱼雷',
       'ja': '雷撃のギョライ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Aswang': {
@@ -1141,7 +1015,6 @@ let Monsters = {
       'cn': '阿苏黄',
       'ja': 'アスワング',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Kurma': {
@@ -1150,7 +1023,6 @@ let Monsters = {
       'cn': '俱利摩',
       'ja': 'クールマ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Mindmaker': {
@@ -1159,7 +1031,6 @@ let Monsters = {
       'cn': '启灵果',
       'ja': 'マインドメーカー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Pachamama': {
@@ -1168,7 +1039,6 @@ let Monsters = {
       'cn': '帕查玛玛',
       'ja': 'パチャママ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Vulpangue': {
@@ -1177,7 +1047,6 @@ let Monsters = {
       'cn': '狐首虺',
       'ja': 'ヴルパングエ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Domovoi': {
@@ -1186,7 +1055,6 @@ let Monsters = {
       'cn': '杜莫伊',
       'ja': 'ドモヴォーイ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'La Velue': {
@@ -1195,7 +1063,6 @@ let Monsters = {
       'cn': '浓毛兽',
       'ja': 'ラ・ヴェリュ',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Itzpapalotl': {
@@ -1204,7 +1071,6 @@ let Monsters = {
       'cn': '伊兹帕帕洛特尔',
       'ja': 'イツパパロツル',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Coquecigrue': {
@@ -1213,7 +1079,6 @@ let Monsters = {
       'cn': '三合鸟儿',
       'ja': 'コクシグルー',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Indomitable': {
@@ -1222,7 +1087,6 @@ let Monsters = {
       'cn': '不屈号',
       'ja': 'インドミタブル',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Worm of the Well': {
@@ -1231,7 +1095,6 @@ let Monsters = {
       'cn': '大井巨虫',
       'ja': 'ウェルウォーム',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Juggler Hecatomb': {
@@ -1240,7 +1103,6 @@ let Monsters = {
       'cn': '残虐杂技师',
       'ja': 'ジャグラー・ヘカトゥーム',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Deacon': {
@@ -1249,7 +1111,6 @@ let Monsters = {
       'cn': '助祭大蟹',
       'ja': 'ディーコン',
     },
-    'hp': 10000,
     'rank': 'B',
   },
   'Gilshs Aath Swiftclaw': {
@@ -1258,7 +1119,6 @@ let Monsters = {
       'cn': '徒手抓鱼 基乌嘶·渊斯',
       'ja': '手掴のギウスィー・アース',
     },
-    'hp': 10000,
     'rank': 'B',
   },
 };
