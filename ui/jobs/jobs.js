@@ -1720,7 +1720,7 @@ class Bars {
         xenoTimer.innerText = '';
         xenoTimer.parentNode.classList.remove('active');
       } else {
-        xenoTimer.innerText = Math.ceil(jobDetail.nextPolygotMilliseconds / 1000.0);
+        xenoTimer.innerText = Math.ceil(jobDetail.nextPolyglotMilliseconds / 1000.0);
         xenoTimer.parentNode.classList.add('active');
       }
     });
