@@ -758,7 +758,7 @@ namespace Cactbot {
       public ushort umbralMilliseconds; // Number of ms left in umbral fire/ice.
 
       [FieldOffset(0x04)]
-      public ushort umbralStacks; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
+      public sbyte umbralStacks; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
 
       [FieldOffset(0x05)]
       public byte umbralHearts;
