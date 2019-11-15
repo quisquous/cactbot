@@ -105,7 +105,7 @@ hideall "Liquid Gaol"
 425.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:483A:/
 
 ### Transition 2: Cruise Chaser, Brute Justice and Alexander Prime
-500.0 "Temporal Stasis" sync /:Alexander Prime:485A:/  window 500,0
+500.0 "Temporal Stasis" sync /:Alexander Prime:485A:/ window 500,0
 503.1 "Surety and Severity" sync /:Liquid Rage:486[13]:/
 505.1 "Alpha Sword" sync /:Cruise Chaser:486B:/
 505.2 "Flamethrower 1" sync /:Brute Justice:486C:/
