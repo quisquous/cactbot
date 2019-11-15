@@ -890,11 +890,11 @@ namespace Cactbot {
       private Arcanum arcanum_1;
 
       [NonSerialized]
-      [FieldOffset(0x05)]
+      [FieldOffset(0x06)]
       private Arcanum arcanum_2;
 
       [NonSerialized]
-      [FieldOffset(0x05)]
+      [FieldOffset(0x07)]
       private Arcanum arcanum_3;
 
       public string arcanums {
