@@ -476,7 +476,16 @@ Lines are printed, but with blank data.  :sob:
 
 ### 0C: PlayerStats
 
-Lines are printed, but with blank data.
+This message is sent whenever your player's stats change and upon entering a new zone/instance. 
+
+Structure:
+`0C:Player Stats: JOB:STR:DEX:VIT:INT:MND:PIE:ATTACK POWER:DHIT:CRIT:ATTACK MAGIC POTENCY:HEAL MAGIC POTENCY:DET:SkS:SpS:0:TENACITY`
+
+Example:
+
+```log
+0C:Player Stats: 23:305:4240:4405:290:275:340:4240:2694:2795:290:275:2473:578:380:0:380
+```
 
 ### 0D: CombatantHP
 
