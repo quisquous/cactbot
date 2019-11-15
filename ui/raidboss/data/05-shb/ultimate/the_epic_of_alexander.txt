@@ -123,7 +123,7 @@ hideall "Liquid Gaol"
 554.0 "Aetheroplasm" sync /:Plasmasphere:4872:/
 554.9 "Electromagnetic Burst" sync /:Liquid Rage:4874:/
 557.3 "Aetheroplasm" sync /:Plasmasphere:4872:/
-558.9 "Judgement Crystal + True Heart" sync /:Liquid Rage:485C:/ duration 6
+558.9 "Judgment Crystal + True Heart" sync /:Liquid Rage:485C:/ duration 6
 560.2 "Aetheroplasm" sync /:Plasmasphere:4872:/
 570.3 "Flamethrower 1" sync /:Brute Justice:486C:/
 572.5 "Flamethrower 2" sync /:Brute Justice:486C:/
