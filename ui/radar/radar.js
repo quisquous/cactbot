@@ -61,7 +61,7 @@ class Radar {
     this.playerPos = {};
     this.table = element;
     this.options = Options;
-    this.monsters = Object.assign({}, Monsters, Options.CustomMonsters);
+    this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
   }
 
   OnLogEvent(e) {
