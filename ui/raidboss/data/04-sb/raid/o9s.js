@@ -433,11 +433,11 @@
     },
     {
       id: 'O9S Headwind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Headwind from .* for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosböen from .* for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent du chaos from .* for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の風 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌之风 from .* for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Headwind from .* for (?:\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaosböen from .* for (?:\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent du chaos from .* for (?:\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の風 from .* for (?:\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌之风 from .* for (?:\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -447,11 +447,11 @@
     },
     {
       id: 'O9S Tailwind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Tailwind from .* for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaossturm from .* for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent contraire du chaos from .* for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の逆風 from .* for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌之逆风 from .* for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Tailwind from .* for (?:\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaossturm from .* for (?:\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent contraire du chaos from .* for (?:\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌の逆風 from .* for (?:\y{Float}) Seconds/,
+      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 混沌之逆风 from .* for (?:\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

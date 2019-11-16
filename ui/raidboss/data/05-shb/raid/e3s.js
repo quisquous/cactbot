@@ -400,10 +400,10 @@
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
         // Everybody is in first stack, but tanks not in the second.
-        return parseFloat(matches[2]) > 15 || data.role != 'tank';
+        return parseFloat(matches[1]) > 15 || data.role != 'tank';
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 3;
+        return parseFloat(matches[1]) - 3;
       },
       suppressSeconds: 1,
       alertText: {
@@ -432,10 +432,10 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (?:.*) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (?:.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (?:.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (?:.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -448,10 +448,10 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (?:.*) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (?:.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (?:.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (?:.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'tank';
       },

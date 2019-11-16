@@ -189,10 +189,10 @@
     },
     {
       id: 'T9 Dragon Locations',
-      regex: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(\y{Float})\)/,
+      regex: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
       run: function(data, matches) {
         let names = ['Firehorn', 'Iceclaw', 'Thunderwing'];
         let idx = names.indexOf(matches[1]);
