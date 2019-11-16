@@ -90,7 +90,7 @@ hideall "Liquid Gaol"
 354.5 "Propeller Wind" sync /:Cruise Chaser:4832:/
 356.5 "Gavel" sync /:Brute Justice:483C:/
 366.7 "Final Sentence" sync /:You:483D:/
-370.6 "Photon" sync /:Cruise Chaser:4836:/
+366.8 "Photon" sync /:Cruise Chaser:4836:/
 374.8 "Double Rocket Punch" sync /:Brute Justice:4847:/
 382.1 "Super Jump" sync /:Brute Justice:484A:/
 384.4 "Apocalyptic Ray x5" duration 4.4
