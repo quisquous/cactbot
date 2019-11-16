@@ -48,7 +48,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'ACN')
     document.getElementById('jobinfo').innerText = jobDetail.dreadwyrmStacks;
   else if (e.detail.job == 'AST')
-    document.getElementById('jobinfo').innerText = jobDetail.heldCard + ' (' + jobDetail.arcanum1 + ' | ' + jobDetail.arcanum2 + ' | ' + jobDetail.arcanum3 + ')';
+    document.getElementById('jobinfo').innerText = jobDetail.heldCard + ' (' + jobDetail.arcanums + ')';
   else if (e.detail.job == 'MNK')
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' | ' + jobDetail.chakraStacks + ' (' + jobDetail.lightningMilliseconds + ')';
   else if (e.detail.job == 'PGL')

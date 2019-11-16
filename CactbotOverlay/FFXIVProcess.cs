@@ -883,7 +883,7 @@ namespace Cactbot {
       }
 
       [FieldOffset(0x04)]
-      public Card held_card;
+      private Card _heldCard;
 
       [NonSerialized]
       [FieldOffset(0x05)]
@@ -896,6 +896,12 @@ namespace Cactbot {
       [NonSerialized]
       [FieldOffset(0x07)]
       private Arcanum arcanum_3;
+
+      public string heldCard {
+          get {
+            return _heldCard.ToString();
+          }
+        }
 
       public string arcanums {
         get {
