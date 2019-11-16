@@ -27,7 +27,7 @@ hideall "Liquid Gaol"
 71.9 "Protean Wave 2" sync /:Living Liquid:4823:/
 74.9 "Sluice" sync /:Liquid Rage:49B1:/
 75.0 "Protean Wave 3" sync /:Living Liquid:4823:/
-81.1 "Splash x6" sync /:Living Liquid:49B2:/ window 3,0
+81.1 "Splash x6" duration 5.6
 86.6 "Drainage" sync /:Liquid Rage:4827:/
 89.1 "Hand of Pain" sync /:Liquid Hand:482D:/
 91.7 "Cascade" sync /:Living Liquid:4826:/
@@ -41,7 +41,7 @@ hideall "Liquid Gaol"
 115.1 "Rage Wave 2" sync /:Liquid Rage:49B6:/
 119.1 "Pressurize" sync /:Liquid Rage:4829:/
 124.2 "Hand of Prayer/Parting" sync /:Liquid Hand:482[BC]:/
-127.4 "Splash x6" sync /:Living Liquid:49B2:/ window 3,0
+127.4 "Splash x6" duration 5.6
 129.3 "Hand of Pain" sync /:Liquid Hand:482D:/
 134.1 "Fluid Swing" sync /:Living Liquid:49B0:/
 142.1 "Cascade Enrage" sync /:Living Liquid:49B3:/
@@ -94,11 +94,7 @@ hideall "Liquid Gaol"
 370.6 "Photon" sync /:Cruise Chaser:4836:/
 378.7 "Double Rocket Punch" sync /:Brute Justice:4847:/
 386.0 "Super Jump" sync /:Brute Justice:484A:/
-389.0 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-390.1 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-391.2 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-392.3 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-393.4 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
+389.0 "Apocalyptic Ray x5" duration 4.3
 399.0 "Whirlwind" sync /:Cruise Chaser:4B4F:/
 407.1 "Whirlwind" sync /:Cruise Chaser:4B4F:/
 415.7 "Final Sentence" sync /:Brute Justice:4856:/
@@ -109,9 +105,9 @@ hideall "Liquid Gaol"
 503.1 "Surety and Severity" sync /:Liquid Rage:486[13]:/
 505.1 "Alpha Sword" sync /:Cruise Chaser:486B:/
 505.2 "Flamethrower 1" sync /:Brute Justice:486C:/
-506.3 "Alpha Sword" sync /:Cruise Chaser:486B:/
-507.4 "Flamethrower 2" sync /:Brute Justice:486C:/
-507.5 "Alpha Sword" sync /:Cruise Chaser:486B:/
+506.3 "Alpha Sword" #sync /:Cruise Chaser:486B:/
+507.4 "Flamethrower 2" #sync /:Brute Justice:486C:/
+507.5 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 521.8 "Chastenning Heat" sync /:Alexander Prime:4A80:/
 525.0 "Divine Spear 1" sync /:Alexander Prime:4A82:/
 527.1 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
@@ -126,15 +122,15 @@ hideall "Liquid Gaol"
 558.9 "Judgment Crystal + True Heart" sync /:Liquid Rage:485C:/ duration 6
 560.2 "Aetheroplasm" sync /:Plasmasphere:4872:/
 570.3 "Flamethrower 1" sync /:Brute Justice:486C:/
-572.5 "Flamethrower 2" sync /:Brute Justice:486C:/
-574.7 "Flamethrower 3" sync /:Brute Justice:486C:/
+572.5 "Flamethrower 2" #sync /:Brute Justice:486C:/
+574.7 "Flamethrower 3" #sync /:Brute Justice:486C:/
 582.0 "Inception" sync /:Alexander Prime:485E:/
 588.2 "Tetrashatter" sync /:Judgment Crystal:485D:/
 590.1 "Surety, Solidarity and Severity" sync /:Liquid Rage:486[1-3]:/
 590.4 "Sacrament" sync /:Alexander Prime:485F:/
 596.4 "Alpha Sword" sync /:Cruise Chaser:486B:/
-597.5 "Alpha Sword" sync /:Cruise Chaser:486B:/
-598.6 "Alpha Sword" sync /:Cruise Chaser:486B:/
+597.5 "Alpha Sword" #sync /:Cruise Chaser:486B:/
+598.6 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 599.8 "Super Jump" sync /:Brute Justice:484A:/
 612.1 "Chastenning Heat" sync /:Alexander Prime:4A80:/
 617.3 "Divine Spear 1" sync /:Alexander Prime:4A82:/
@@ -150,15 +146,11 @@ hideall "Liquid Gaol"
 652.7 "Super Jump" sync /:Brute Justice:484A:/
 652.8 "Alpha Sword" sync /:Cruise Chaser:4834:/
 654.3 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
-655.9 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-657.0 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-657.2 "Alpha Sword" sync /:Cruise Chaser:4834:/
+655.9 "Apocalyptic Ray x5" duration 4.3
+657.2 "Alpha Sword" #sync /:Cruise Chaser:4834:/
 657.6 "Repentance" sync /:Liquid Rage:4869:/
 657.7 "Confession" sync /:Liquid Rage:486A:/
-658.2 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
 658.8 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
-659.3 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
 660.1 "Sacrament" sync /:Alexander Prime:4857:/
-661.2 "Apocalyptic Ray" sync /:Liquid Rage:484C:/
-662.5 "Alpha Sword" sync /:Cruise Chaser:4834:/
+662.5 "Alpha Sword" #sync /:Cruise Chaser:4834:/
 662.9 "Confession" sync /:Liquid Rage:486A:/
