@@ -146,9 +146,32 @@ hideall "Liquid Gaol"
 652.4 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 653.3 "Apocalyptic Ray x5" duration 5
 655.2 "Alpha Sword" #sync /:Cruise Chaser:4834:/
-655.6 "Repentance" sync /:Liquid Rage:4869:/
-655.7 "Confession" sync /:Liquid Rage:486A:/
+655.6 "Repentance 1" sync /:Liquid Rage:4869:/
 656.7 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 657.9 "Sacrament" sync /:Alexander Prime:4857:/
 659.5 "Alpha Sword" #sync /:Cruise Chaser:4834:/
-659.9 "Confession" sync /:Liquid Rage:486A:/
+659.7 "Repentance 2" sync /:Liquid Rage:4868:/
+660.8 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
+663.6 "Alpha Sword" #sync /:Cruise Chaser:4834:/
+664.0 "Repentance 3" sync /:Liquid Rage:4867:/
+665.1 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
+666.4 "Missile Command" sync /:Brute Justice:484D:/
+670.0 "Incinerating Heat" sync /:Alexander Prime:4A51:/
+674.6 "Enumeration" sync /:Liquid Rage:4850:/
+682.9 "Mega Holy" sync /:Alexander Prime:4A83:/
+690.0 "Mega Holy" sync /:Alexander Prime:4A83:/
+
+### Transition 3: DPS Checks
+699.4 "Summon Alexander" sync /:Alexander Prime:4A55:/
+705.7 "J Waves x12" sync /:Brute Justice:4876:/ duration 36
+731.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:4875:/
+# Estimations
+750.0 "Brute Justice Enrage"
+770.0 "Divine Judgment Enrage" sync /:Alexander Prime:487[9A]:/
+772.0 "Down for the Count" duration 45
+
+### Phase 4: Perfect Alexander
+900.0 "The Final Word" sync /:Perfect Alexander:487D:/ window 900,0
+904.0 "Ordained Stillness" sync /:Perfect Alexander:4(8(7F|8[01])|A60):/
+908.0 "Ordained Motion" sync /:Perfect Alexander:4(A5F|8(7[EF]|80)):/
+912.0 "Optical Sight" #sync /:Perfect Alexander::/
