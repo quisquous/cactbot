@@ -117,7 +117,7 @@ hideall "Liquid Gaol"
 552.4 "Judgment Crystal" sync /:Alexander Prime:485B:/
 556.6 "Aetheroplasm" sync /:Plasmasphere:4872:/
 557.5 "Electromagnetic Burst" sync /:Liquid Rage:4874:/
-558.2 "Judgment Crystal + True Heart" sync /:Liquid Rage:485C:/ duration 6
+558.2 "Judgment Crystal + True Heart" sync /:Liquid Rage:485C:/
 560.8 "Aetheroplasm" sync /:Plasmasphere:4872:/
 569.5 "Flamethrower 1" sync /:Brute Justice:486C:/
 571.7 "Flamethrower 2" #sync /:Brute Justice:486C:/
@@ -163,7 +163,7 @@ hideall "Liquid Gaol"
 
 ### Transition 3: DPS Checks
 699.4 "Summon Alexander" sync /:Alexander Prime:4A55:/
-705.7 "J Storm + Waves x16" sync /:Brute Justice:4876:/ duration 52
+705.7 "J Storm + Waves x16" sync /:Brute Justice:4876:/ duration 50
 731.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:4875:/
 771.9 "Divine Judgment Enrage" sync /:Alexander Prime:4879:/
 787.3 "Divine Judgment" sync /:Alexander:487A:/
