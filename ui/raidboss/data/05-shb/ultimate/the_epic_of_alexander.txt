@@ -163,9 +163,8 @@ hideall "Liquid Gaol"
 
 ### Transition 3: DPS Checks
 699.4 "Summon Alexander" sync /:Alexander Prime:4A55:/
-705.7 "J Storm + Waves x12" sync /:Brute Justice:4876:/ duration 38
+705.7 "J Storm + Waves x16" sync /:Brute Justice:4876:/ duration 52
 731.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:4875:/
-750.0 "Brute Justice Enrage" #Estimated
 771.9 "Divine Judgment Enrage" sync /:Alexander Prime:4879:/
 787.3 "Divine Judgment" sync /:Alexander:487A:/
 772.0 "Down for the Count" duration 66
