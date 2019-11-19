@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Resurrection|伊甸希望乐园 觉醒之章1)$/,
+  zoneRegex: /^(Eden's Gate: Resurrection|伊甸希望乐园 \(觉醒之章1\))$/,
   timelineFile: 'e1n.txt',
   triggers: [
     {

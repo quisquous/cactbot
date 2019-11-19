@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Sepulture|伊甸希望乐园 觉醒之章4)$/,
+  zoneRegex: /^(Eden's Gate: Sepulture|伊甸希望乐园 \(觉醒之章4\))$/,
   timelineFile: 'e4n.txt',
   triggers: [
     {
