@@ -1,12 +1,13 @@
 'use strict';
 
 [{
-  zoneRegex: /^Eden's Gate: Sepulture$/,
+  zoneRegex: /^(Eden's Gate: Sepulture|伊甸希望乐园 觉醒之章4)$/,
   timelineFile: 'e4n.txt',
   triggers: [
     {
       id: 'E4N Voice of the Land',
       regex: / 14:40F7:Titan starts using Voice [Oo]f [Tt]he Land/,
+      regexCn: / 14:40F7:泰坦 starts using 大地之号/,
       regexDe: / 14:40F7:Titan starts using Aufschrei der Erde/,
       regexFr: / 14:40F7:Titan starts using Hurlement Tellurique/,
       regexJa: / 14:40F7:タイタン starts using 大地の叫び/,
@@ -17,11 +18,13 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        cn: 'AOE',
       },
     },
     {
       id: 'E4N Earthen Fury',
       regex: / 14:40F8:Titan starts using Earthen Fury/,
+      regexCn: / 14:40F8:泰坦 starts using 大地之怒/,
       regexDe: / 14:40F8:Titan starts using Gaias Zorn/,
       regexFr: / 14:40F8:Titan starts using Fureur Tellurique/,
       regexJa: / 14:40F8:タイタン starts using 大地の怒り/,
@@ -32,11 +35,13 @@
         en: 'aoe + dot',
         de: 'AoE + DoT',
         fr: 'Dégâts de zone + dot',
+        cn: 'AOE + dot',
       },
     },
     {
       id: 'E4N Stonecrusher',
       regex: / 14:40F9:Titan starts using Stonecrusher on (\y{Name})/,
+      regexCn: / 14:40F9:泰坦 starts using 崩岩 on (\y{Name})/,
       regexDe: / 14:40F9:Titan starts using Felsbrecher on (\y{Name})/,
       regexFr: / 14:40F9:Titan starts using Éruption Tellurique on (\y{Name})/,
       regexJa: / 14:40F9:タイタン starts using ロッククラッシュ on (\y{Name})/,
@@ -46,6 +51,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            cn: '死刑点名',
           };
         }
         if (data.role == 'healer') {
@@ -53,6 +59,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -62,6 +69,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -69,6 +77,7 @@
     {
       id: 'E4N Massive Landslide',
       regex: / 14:40FA:Titan starts using Massive Landslide/,
+      regexCn: / 14:40FA:泰坦 starts using 百万地裂/,
       regexDe: / 14:40FA:Titan starts using Gigantischer Bergsturz/,
       regexFr: / 14:40FA:Titan starts using Glissement Apocalyptique/,
       regexJa: / 14:40FA:タイタン starts using メガ・ランドスライド/,
@@ -81,6 +90,7 @@
     {
       id: 'E4N Seismic Wave',
       regex: / 14:40F2:massive boulder starts using Crumbling Down/,
+      regexCn: / 14:40F2:massive boulder starts using 岩层崩落/,
       regexDe: / 14:40F2:Riesiger Felsen starts using Felsfall/,
       regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
       regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
@@ -95,6 +105,7 @@
     {
       id: 'E4N Geocrush',
       regex: / 14:40F6:Titan starts using Geocrush/,
+      regexCn: / 14:40F6:泰坦 starts using 大地粉碎/,
       regexDe: / 14:40F6:Titan starts using Kraterschlag/,
       regexFr: / 14:40F6:Titan starts using Broie-Terre/,
       regexJa: / 14:40F6:タイタン starts using ジオクラッシュ/,
@@ -107,6 +118,7 @@
     {
       id: 'E4N Fault Zone',
       regex: / 14:4102:Titan starts using Fault Zone/,
+      regexCn: / 14:4102:泰坦 starts using 断裂带/,
       regexDe: / 14:4102:Titan starts using Bruchzone/,
       regexFr: / 14:4102:Titan starts using Faille Tectonique/,
       regexJa: / 14:4102:タイタン starts using フォールトゾーン/,
@@ -240,6 +252,46 @@
         'Brink of Death': '衰弱［強］',
         'Physical Vulnerability Up': '被物理ダメージ増加',
         'Filthy': '汚泥',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Titan': '泰坦',
+        'Bomb Boulder': '爆破岩石',
+        'Massive Boulder': '巨大岩石',
+      },
+      'replaceText': {
+        'Fault Line': '断层线',
+        'Earthen Wheels': '大地之车轮',
+        'Geocrush': '大地粉碎',
+        'Earthen Armor': '大地之铠',
+        'Fault Zone': '断裂带',
+        'Bomb Boulders': '爆破岩石',
+        'Weight [oO]f [tT]he Land': '大地之重',
+        'Voice [oO]f [tT]he Land': '大地之号',
+        'Leftward Landslide': '左侧地裂',
+        'Explosion': '大引爆',
+        'Evil Earth': '邪土',
+        'Aftershock': '余波',
+        'Magnitude 5.0': '震级5.0',
+        'Seismic Wave': '地震波',
+        'Crumbling Down': '岩层崩落',
+        'Earthen Fury': '大地之怒',
+        'Rightward Landslide': '右侧地裂',
+        'Massive Landslide': '百万地裂',
+        'Earthen Gauntlets': '大地之手甲',
+        'Cobalt Bomb': '钴弹',
+        'Bury': '塌方',
+        'Stonecrusher': '崩岩',
+        'Landslide': '地裂',
+      },
+      '~effectNames': {
+        'Dropsy': '水毒',
+        'Brink of Death': '濒死',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Filthy': '污泥',
       },
     },
   ],
