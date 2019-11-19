@@ -85,12 +85,13 @@
         en: 'Stand In Front',
         de: 'Vor ihm stehen',
         fr: 'Se placer devant',
+        cn: '面前躲避',
       },
     },
     {
       id: 'E4N Seismic Wave',
       regex: / 14:40F2:massive boulder starts using Crumbling Down/,
-      regexCn: / 14:40F2:massive boulder starts using 岩层崩落/,
+      regexCn: / 14:40F2:巨大岩石 starts using 岩层崩落/,
       regexDe: / 14:40F2:Riesiger Felsen starts using Felsfall/,
       regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
       regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
@@ -100,6 +101,7 @@
         en: 'Hide Behind Boulder',
         de: 'Hinter Felsen verstecken',
         fr: 'Se cacher derrière le rocher',
+        cn: '躲在石头后',
       },
     },
     {
@@ -113,6 +115,7 @@
         en: 'Knockback',
         de: 'Knockback',
         fr: 'Poussée',
+        cn: '击退',
       },
     },
     {
@@ -126,6 +129,7 @@
         en: 'Stand On Flank',
         de: 'Auf seiner Flanke stehen',
         fr: 'Se placer sur le flanc',
+        cn: '两侧躲避',
       },
     },
   ],
