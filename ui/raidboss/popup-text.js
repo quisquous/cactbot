@@ -278,7 +278,7 @@ class PopupText {
 
     // If using named groups, treat matches.groups as matches
     // so triggers can do things like matches.target.
-    if (matches.groups)
+    if ((matches != undefined) && (matches.groups != undefined))
       matches = matches.groups;
 
     let now = +new Date();

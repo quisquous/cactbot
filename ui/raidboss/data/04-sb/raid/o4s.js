@@ -644,10 +644,10 @@
     },
     {
       id: 'O4S2 Acceleration Bomb Delta',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (?:\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (?:\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (?:\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (?:\y{Float}) Seconds/,
       condition: function(data, matches) {
         return matches[1] == data.me && data.phase == 'delta';
       },
@@ -722,10 +722,10 @@
     },
     { // Beyond Death Tank (Delta)
       id: 'O4S2 Beyond Death Delta Tank',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (?:\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (?:\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from .*? for (?:\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from .*? for (?:\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role == 'tank';
       },
@@ -751,10 +751,10 @@
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death Delta Initial',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from .*? for (\y{Float}) Seconds/,
+      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from .*? for (?:\y{Float}) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from .*? for (?:\y{Float}) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from .*? for (?:\y{Float}) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from .*? for (?:\y{Float}) Seconds/,
       condition: function(data, matches) {
         return data.phase == 'delta' && matches[1] == data.me && data.role != 'tank';
       },
