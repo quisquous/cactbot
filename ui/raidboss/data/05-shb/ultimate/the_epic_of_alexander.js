@@ -115,5 +115,129 @@
         };
       },
     },
+    {
+      id: 'TEA Throttle',
+      regex: Regexes.gainsEffect({ effect: 'Throttle', capture: false}),
+      condition: function(data) {
+        return data.CanCleanse();
+      },
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Cleanse Throttle',
+      },
+    },
+    {
+      id: 'TEA Compressed Water',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Compressed Water', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: 24,
+      alertText: {
+        en: 'Drop Water',
+      },
+    },
+    {
+      id: 'TEA Judgment Nisi A',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi A', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: 32,
+      alarmText: {
+        en: 'Get Blue Nisi',
+      },
+    },
+    {
+      id: 'TEA Judgment Nisi B',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi B', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: 32,
+      alarmText: {
+        en: 'Get Orange Nisi',
+      },
+    },
+    {
+      id: 'TEA Judgment Nisi Γ',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Γ', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: 32,
+      alarmText: {
+        en: 'Get Purple Nisi',
+      },
+    },
+    {
+      id: 'TEA Judgment Nisi Δ',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Δ', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      delaySeconds: 32,
+      alarmText: {
+        en: 'Get Green Nisi',
+      },
+    },
+    {
+      id: 'TEA Restraining Order',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Restraining Order', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Far Tethers',
+        de: 'Entfernte Verbindungen',
+        fr: 'Liens éloignés',
+        ja: 'ファー',
+        cn: '远离连线',
+      },
+    },
+    {
+      id: 'TEA House Arrest',
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'House Arrest', capture: true}),
+      condition: function(data, matches) {
+        return data.me == matches[1];
+      },
+      infoText: {
+        en: 'Close Tethers',
+        de: 'Nahe Verbindungen',
+        fr: 'Liens proches',
+        ja: 'ニアー',
+        cn: '靠近连线',
+      },
+    },
+    {
+      id: 'TEA Chastening Heat',
+      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A80', target: '(\y{Name})', capture: true }),
+      alarmText: function(data, matches) {
+        if (matches[1] == data.me || data.role != 'tank')
+          return;
+
+        return {
+          en: 'Tank Swap!',
+          de: 'Tankwechsel!',
+          fr: 'Tank swap !',
+        };
+      },
+      alertText: function(data, matches) {
+        if (matches[1] == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches[1]),
+            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          };
+        }
+      },
+    },
   ],
 }];
