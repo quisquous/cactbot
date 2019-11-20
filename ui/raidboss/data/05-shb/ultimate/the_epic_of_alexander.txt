@@ -72,8 +72,8 @@ hideall "--sync--"
 241.3 "Judgment Nisi" sync /:Brute Justice:483E:/
 247.4 "Link-Up" sync /:Brute Justice:483F:/
 255.4 "Optical Sight" sync /:Cruise Chaser:482F:/
-256.2 "Chakrams" sync /:Steam Chakram:4855:/
-260.6 "Hawk Blaster" sync /:(Liquid Rage|Living Liquid):4830:/
+256.2 "Chakrams" #sync /:Steam Chakram:4855:/
+260.6 "Hawk Blaster" sync /:(Liquid Rage|Living Liquid):4831:/
 262.5 "Photon" sync /:Cruise Chaser:4836:/
 272.7 "Spin Crusher" sync /:Cruise Chaser:4A72:/
 277.3 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
@@ -88,7 +88,7 @@ hideall "--sync--"
 336.2 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
 354.5 "Propeller Wind" sync /:Cruise Chaser:4832:/
 356.5 "Gavel" sync /:Brute Justice:483C:/
-366.7 "Final Sentence" sync /:You:483D:/
+366.7 "Final Sentence" #sync /:You:483D:/
 366.8 "Photon" sync /:Cruise Chaser:4836:/
 374.8 "Double Rocket Punch" sync /:Brute Justice:4847:/
 382.1 "Super Jump" sync /:Brute Justice:484A:/
@@ -101,34 +101,34 @@ hideall "--sync--"
 ### Transition 2: Cruise Chaser, Brute Justice and Alexander Prime
 500.0 "Temporal Stasis" sync /:Alexander Prime:485A:/ window 500,0
 503.1 "Surety and Severity" sync /:Liquid Rage:486[13]:/
-505.1 "Alpha Sword" sync /:Cruise Chaser:486B:/
+505.1 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 505.2 "Flamethrower 1" #sync /:Brute Justice:486C:/
 506.1 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 507.4 "Flamethrower 2" #sync /:Brute Justice:486C:/
 507.2 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 521.5 "Chastenning Heat" sync /:Alexander Prime:4A80:/
-524.6 "Divine Spear 1" sync /:Alexander Prime:4A82:/
+524.6 "Divine Spear 1" #sync /:Alexander Prime:4A82:/
 526.7 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
 528.8 "Divine Spear 3" #sync /:Alexander Prime:4A82:/
 
 ### Phase 3 Part 1 - Inception Formation
 537.9 "Inception Formation" sync /:Alexander Prime:486F:/
 552.4 "Judgment Crystal" sync /:Alexander Prime:485B:/
-556.6 "Aetheroplasm" sync /:Plasmasphere:4872:/
+556.6 "Aetheroplasm" #sync /:Plasmasphere:4872:/
 558.2 "Judgment Crystal + True Heart" sync /:Liquid Rage:485C:/
-560.8 "Aetheroplasm" sync /:Plasmasphere:4872:/
-569.5 "Flamethrower 1" sync /:Brute Justice:486C:/
+560.8 "Aetheroplasm" #sync /:Plasmasphere:4872:/
+569.5 "Flamethrower 1" #sync /:Brute Justice:486C:/
 571.7 "Flamethrower 2" #sync /:Brute Justice:486C:/
 573.8 "Flamethrower 3" #sync /:Brute Justice:486C:/
 581.0 "Inception" sync /:Alexander Prime:485E:/
 589.1 "Surety, Solidarity and Severity" sync /:Liquid Rage:486[1-3]:/
 589.4 "Sacrament" sync /:Alexander Prime:485F:/
-595.3 "Alpha Sword" sync /:Cruise Chaser:486B:/
+595.3 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 596.4 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 597.5 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 598.3 "Super Jump" sync /:Brute Justice:484A:/
 610.9 "Chastenning Heat" sync /:Alexander Prime:4A80:/
-616.0 "Divine Spear 1" sync /:Alexander Prime:4A82:/
+616.0 "Divine Spear 1" #sync /:Alexander Prime:4A82:/
 618.1 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
 620.2 "Divine Spear 3" #sync /:Alexander Prime:4A82:/
 
@@ -137,9 +137,9 @@ hideall "--sync--"
 637.7 "Limit Cut" sync /:Cruise Chaser:4B0F:/
 640.7 "Link-Up" sync /:Brute Justice:483F:/
 643.7 "Void Of Repentance" sync /:Alexander Prime:4866:/
-649.5 "Chakrams" sync /:Steam Chakram:4855:/
+649.5 "Chakrams" #sync /:Steam Chakram:4855:/
 650.9 "Super Jump" sync /:Brute Justice:484A:/
-650.9 "Alpha Sword" sync /:Cruise Chaser:4834:/
+650.9 "Alpha Sword" #sync /:Cruise Chaser:4834:/
 652.4 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 653.3 "Apocalyptic Ray x5" duration 5
 655.2 "Alpha Sword" #sync /:Cruise Chaser:4834:/
