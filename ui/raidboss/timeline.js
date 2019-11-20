@@ -559,6 +559,8 @@ class TimelineUI {
     this.root = document.getElementById('timeline-container');
     if (Options.Language)
       this.root.classList.add('lang-' + Options.Language);
+    if (Options.Skin)
+      this.root.classList.add('skin-' + Options.Skin);
 
     this.barWidth = window.getComputedStyle(this.root).width;
     let windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
@@ -756,7 +758,8 @@ class TimelineController {
     this.options = options;
     this.ui = ui;
     this.dataFiles = {};
-    this.timelines = {};
+    // data files not sent yet.
+    this.timelines = null;
   }
 
   SetPopupTextInterface(popupText) {
@@ -778,9 +781,6 @@ class TimelineController {
   SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
     this.activeTimeline = null;
 
-    if (!this.options.TimelineEnabled)
-      return;
-
     let text = '';
 
     // Get the text from each file in |timelineFiles|.
@@ -798,6 +798,10 @@ class TimelineController {
     if (text)
       this.activeTimeline = new Timeline(text, replacements, triggers, styles, this.options);
     this.ui.SetTimeline(this.activeTimeline);
+  }
+
+  IsReady() {
+    return this.timelines !== null;
   }
 
   SetDataFiles(files) {
@@ -823,6 +827,10 @@ class TimelineLoader {
         triggers,
         styles
     );
+  }
+
+  IsReady() {
+    return this.timelineController.IsReady();
   }
 
   StopCombat() {

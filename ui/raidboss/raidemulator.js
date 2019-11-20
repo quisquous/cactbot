@@ -393,24 +393,28 @@ class LogPlayer {
   }
 
   SendLogEvent(logs) {
-    let evt = new CustomEvent('onLogEvent', { detail: { logs: logs } });
-    document.dispatchEvent(evt);
+    dispatchOverlayEvent({
+      type: 'onLogEvent',
+      detail: { logs },
+    });
   }
 
   SendZoneEvent(zoneName) {
-    let evt = new CustomEvent('onZoneChangedEvent', { detail: { zoneName: zoneName } });
-    document.dispatchEvent(evt);
+    dispatchOverlayEvent({
+      type: 'onZoneChangedEvent',
+      detail: { zoneName },
+    });
   }
 
   SendPlayerEvent(name, job, id) {
-    let evt = new CustomEvent('onPlayerChangedEvent', {
+    dispatchOverlayEvent({
+      type: 'onPlayerChangedEvent',
       detail: {
         id: id,
         name: name,
         job: job,
       },
     });
-    document.dispatchEvent(evt);
   }
 
   Start(fight) {
@@ -939,7 +943,7 @@ function dateFromLogLine(log) {
 // Only listen to the import log event here and *not* the zone changed event.
 // The log collector figures out the zone from the logs itself, and not through
 // what ACT sends while importing (which races with sending logs).
-document.addEventListener('onImportLogEvent', function(e) {
+addOverlayListener('onImportLogEvent', function(e) {
   gLogCollector.AppendImportLogs(e.detail.logs);
 });
 
@@ -959,9 +963,11 @@ document.addEventListener('DOMContentLoaded', function() {
   );
   gLogCollector = new LogCollector(gEmulatorView.AddFight.bind(gEmulatorView));
 
-  document.addEventListener('onPlayerChangedEvent', function(e) {
+  addOverlayListener('onPlayerChangedEvent', function(e) {
     document.getElementById('player').textContent = e.detail.name;
   });
+
+  callOverlayHandler('cactbotRequestPlayer');
 
   // Timeout is required because the overlay is slower and will break the Zone
   setTimeout(function() {
@@ -995,10 +1001,14 @@ function toggleRunTriggers() {
 function debug(arg) {
   gEmulatorView.logPlayer.SendPlayerEvent('Godbert Manderville', 'GSM', '12345678');
   gEmulatorView.logPlayer.SendZoneEvent('Middle La Noscea');
-  let evt = new CustomEvent('onGameExistsEvent', { detail: { exists: true } });
-  document.dispatchEvent(evt);
-  let evt2 = new CustomEvent('onGameActiveChangedEvent', { detail: { active: true } });
-  dispatchEvent(evt2);
+  dispatchOverlayEvent({
+    type: 'onGameExistsEvent',
+    detail: { exists: true },
+  });
+  dispatchOverlayEvent({
+    type: 'onGameActiveChangedEvent',
+    detail: { active: true },
+  });
 
   if (arg)
     gEmulatorView.logPlayer.SendLogEvent(['00:0038:Engage!']);

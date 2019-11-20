@@ -1,11 +1,8 @@
 ﻿// From https://github.com/RainbowMage/OverlayPlugin/blob/96552e5603d520be6116d52b6d685355dd5e7a24/OverlayPlugin.Core/NativeMethods.cs
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Cactbot {
   public class NativeMethods {
