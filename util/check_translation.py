@@ -141,7 +141,7 @@ def parse_translations(triggers):
                 line = re.sub(r'//.*$', '', line)
                 # fix unquoted/single-quoted Javascript keys and properties <_<
                 line = re.sub(r"^([^:\"\'](?:\s*[^:\"\'])*)(\s*:)", r'"\1"\2', line)
-                line = re.sub(r"^\s*'([^:\"\'](?:\s*[^:])*)'(\s*:)", r'"\1"\2', line)
+                line = re.sub(r"^\s*'([^:\"\'](?:\s*.)*?)'(\s*:)", r'"\1"\2', line)
                 line = re.sub(r"(:\s?)'(.*)',", r'\1"\2",', line)
                 # hackily handle escaped single quotes
                 line = re.sub(r"\\'", "'", line)
@@ -155,7 +155,11 @@ def parse_translations(triggers):
         line = fp.readline()
 
     lines.append(']')
-    ret_list = json.loads(''.join(lines))
+    try:
+        ret_list = json.loads(''.join(lines))
+    except json.decoder.JSONDecodeError as e:
+        print("Error json format:{}".format(''.join(lines)))
+        raise e
 
     ret_dict = {}
     for entry in ret_list:
