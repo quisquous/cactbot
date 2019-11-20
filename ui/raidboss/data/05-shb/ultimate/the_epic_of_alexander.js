@@ -117,7 +117,7 @@
     },
     {
       id: 'TEA Throttle',
-      regex: Regexes.gainsEffect({ effect: 'Throttle', capture: false}),
+      regex: Regexes.gainsEffect({ effect: 'Throttle', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -128,7 +128,7 @@
     },
     {
       id: 'TEA Compressed Water',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Compressed Water', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Compressed Water', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -139,7 +139,7 @@
     },
     {
       id: 'TEA Judgment Nisi A',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi A', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi A', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -150,7 +150,7 @@
     },
     {
       id: 'TEA Judgment Nisi B',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi B', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi B', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -161,7 +161,7 @@
     },
     {
       id: 'TEA Judgment Nisi Γ',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Γ', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Γ', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -172,7 +172,7 @@
     },
     {
       id: 'TEA Judgment Nisi Δ',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Δ', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Δ', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -183,7 +183,7 @@
     },
     {
       id: 'TEA Restraining Order',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Restraining Order', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Restraining Order', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -197,7 +197,7 @@
     },
     {
       id: 'TEA House Arrest',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'House Arrest', capture: true}),
+      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'House Arrest', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
