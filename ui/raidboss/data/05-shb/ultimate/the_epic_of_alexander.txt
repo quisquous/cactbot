@@ -179,14 +179,14 @@ hideall "Liquid Gaol"
 944.7 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
 957.6 "Fate Projection α" sync /:Perfect Alexander:487B:/
 ### Enigma Codex Revealed Events
-966.8 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:4(898|9AA):/
-966.9 "Fate: Obloquy, Solidarity and 2x Severity" sync /:Liquid Rage:4B0E:/
-974.9 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:4(898|9AA):/
+966.8 "Fate: Ordained Motion/Stillness" sync /:Liquid Rage:4B0[DE]:/
+972.7 "Fate: Obloquy, Solidarity and 2x Severity" sync /:Liquid Rage:4BA4:/
+974.9 "Fate: Ordained Motion/Stillness" sync /:Liquid Rage:489[9A]:/
 975.9 "Fate: Sacrament x3" duration 1.5
 982.6 "Fate Calibration α" sync /:Perfect Alexander:487C:/
-989.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49(AC|5F):/
+989.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
 992.8 "Obloquy, Solidarity and 2x Severity" sync  /:Liquid Rage:4860:/
-993.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A(AC|5F):/
+993.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
 993.8 "Sacrament x3" duration 1.5
 
 ### Phase 4 Part 2 - Fate Projection β
