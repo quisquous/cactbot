@@ -116,7 +116,6 @@ hideall "Liquid Gaol"
 537.9 "Inception Formation" sync /:Alexander Prime:486F:/
 552.4 "Judgment Crystal" sync /:Alexander Prime:485B:/
 556.6 "Aetheroplasm" sync /:Plasmasphere:4872:/
-557.5 "Electromagnetic Burst" sync /:Liquid Rage:4874:/
 558.2 "Judgment Crystal + True Heart" sync /:Liquid Rage:485C:/
 560.8 "Aetheroplasm" sync /:Plasmasphere:4872:/
 569.5 "Flamethrower 1" sync /:Brute Justice:486C:/
@@ -169,22 +168,76 @@ hideall "Liquid Gaol"
 787.3 "Divine Judgment" sync /:Alexander:487A:/
 772.0 "Down for the Count" duration 66
 
-### Phase 4: Perfect Alexander
-900.0 "The Final Word" sync /:Perfect Alexander:487D:/ window 900,0
-907.1 "Ordained Motion/Stillness" sync /:Perfect Alexander:4A(5F|60):/
-914.6 "Divine Retribution" sync /:Liquid Rage:4883:/
-917.3 "Ordained Motion/Stillness" sync /:Perfect Alexander:4A(5F|60):/
-924.8 "Divine Retribution" sync /:Liquid Rage:4883:/
-927.5 "Optical Sight 1" sync /:Perfect Alexander:488[AB]:/
-929.6 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
-933.7 "Optical Sight 2" sync /:Perfect Alexander::488[AB]/
-935.8 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
-953.6 "Fate Projection α" sync /:Perfect Alexander:487B:/
-978.7 "Fate Calibration α" sync /:Perfect Alexander:487C:/
-986.9 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
-# Estimations
-994.4 "Divine Retribution"
-995.5 "Defamation"
-996.5 "Surety, Solidarity and Severity"
-997.0 "Sacrament x3" duration 1.5
-1015.0 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
+### Phase 4: Perfect Alexander Part 1 - Fate Projection α
+900.0 "" sync /:Perfect Alexander:4A8B:/ window 900,0
+909.1 "The Final Word" sync /:Perfect Alexander:487D:/
+910.1 "Ordained Motion/Stillness" sync /:Perfect Alexander:487[EF]:/
+916.3 "Ordained Motion/Stillness" sync /:Perfect Alexander:487[EF]:/
+936.5 "Optical Sight 1" sync /:Perfect Alexander:488[AB]:/
+938.6 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
+942.7 "Optical Sight 2" sync /:Perfect Alexander::488[AB]/
+944.7 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
+957.6 "Fate Projection α" sync /:Perfect Alexander:487B:/
+### Enigma Codex Revealed Events
+966.8 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:4(898|9AA):/
+966.9 "Fate: Obloquy, Solidarity and 2x Severity" sync /:Liquid Rage:4B0E:/
+974.9 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:4(898|9AA):/
+975.9 "Fate: Sacrament x3" duration 1.5
+982.6 "Fate Calibration α" sync /:Perfect Alexander:487C:/
+989.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49(AC|5F):/
+992.8 "Obloquy, Solidarity and 2x Severity" sync  /:Liquid Rage:4860:/
+993.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A(AC|5F):/
+993.8 "Sacrament x3" duration 1.5
+
+### Phase 4 Part 2 - Fate Projection β
+1008.0 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
+1011.1 "Ordained Capital Punishment 1" #sync /:Liquid Rage:4893:/
+1012.2 "Ordained Capital Punishment 2" #sync /:Liquid Rage:4893:/
+1013.3 "Ordained Capital Punishment 3" #sync /:Liquid Rage:4893:/
+1017.2 "Ordained Punishment" sync /:Perfect Alexander:4891:/
+1032.3 "Fate Projection β" sync /:Perfect Alexander:4B13:/
+### Enigma Codex Revealed Events
+1047.7 "Fate: Surety and Solidarity" #sync /:Liquid Rage:489C:/
+1050.5 "Fate: J Jump" sync /:Perfect Alexander:489D:/
+1056.0 "Fate: Optical Sight" sync /:Perfect Alexander:48A0:/
+1058.1 "Fate: Individual/Collective Reprobation" sync /:Liquid Rage:48A2:/
+1061.5 "Fate: Radiant Sacrament" sync /:Perfect Alexander:489E:/
+1070.3 "Fate Calibration β" sync /:Perfect Alexander:4B14:/
+1081.5 "Surety and Solidarity" sync /:Liquid Rage:4863:/
+1082.5 "J Jump" sync /:Perfect Alexander:4884:/
+1086.5 "Optical Sight 1" sync /:Perfect Alexander:49AD:/
+1088.6 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
+1093.5 "Radiant Sacrament" sync /:Perfect Alexander:4886:/
+1106.8 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
+1109.9 "Ordained Capital Punishment 1" #sync /:Liquid Rage:4893:/
+1111.0 "Ordained Capital Punishment 2" #sync /:Liquid Rage:4893:/
+1112.1 "Ordained Capital Punishment 3" #sync /:Liquid Rage:4893:/
+
+### Phase 4 Part 3 - Almighty Judgments and Burn
+1126.2 "Almighty Judgment" sync /:Perfect Alexander:488E:/
+1130.8 "Almighty Judgment Reveal x3" duration 6
+1137.4 "Almighty Judgment 1" #sync /:Liquid Rage:4890:/
+1139.4 "Almighty Judgment 2" #sync /:Liquid Rage:4890:/
+1141.4 "Almighty Judgment 3" #sync /:Liquid Rage:4890:/
+1142.5 "Irresistible Grace" sync /:Perfect Alexander:4894:/
+1152.6 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
+1155.7 "Ordained Capital Punishment 1" #sync /:Liquid Rage:4893:/
+1156.8 "Ordained Capital Punishment 2" #sync /:Liquid Rage:4893:/
+1157.9 "Ordained Capital Punishment 3" #sync /:Liquid Rage:4893:/
+1161.8 "Ordained Punishment" sync /:Perfect Alexander:4891:/
+1171.7 "Almighty Judgment" sync /:Perfect Alexander:488E:/
+1176.3 "Almighty Judgment Reveal x3" duration 6
+1182.9 "Almighty Judgment 1" #sync /:Liquid Rage:4890:/
+1184.9 "Almighty Judgment 2" #sync /:Liquid Rage:4890:/
+1186.9 "Almighty Judgment 3" #sync /:Liquid Rage:4890:/
+1187.9 "Irresistible Grace" sync /:Perfect Alexander:4894:/
+1202.8 "Temporal Interference" sync /:Perfect Alexander:4896:/
+1216.4 "7 Players Remaining"
+1221.4 "6 Players Remaining"
+1226.4 "5 Players Remaining"
+1231.5 "4 Players Remaining"
+1236.5 "3 Players Remaining"
+1241.6 "2 Players Remaining"
+1246.6 "1 Players Remaining"
+1247.6 "Temporal Prison Enrage" sync /:Perfect Alexander:4897:/ duration 9
+1249.8 "0 Players Remaining"
