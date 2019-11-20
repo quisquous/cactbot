@@ -892,7 +892,7 @@
         'Systematic Targeting': 'Formation de tir',
         'Total Annihilation Maneuver': 'Attaque : bombardement dévastateur',
         'Undock': 'Désamarrage',
-        'Wall Mechanic': 'Méchanique du mur',
+        'Wall Mechanic': 'Mécanique du mur',
       },
     },
     {
