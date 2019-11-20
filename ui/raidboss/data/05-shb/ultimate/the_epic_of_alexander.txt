@@ -199,13 +199,13 @@ hideall "Liquid Gaol"
 ### Enigma Codex Revealed Events
 1047.7 "Fate: Surety and Solidarity" #sync /:Liquid Rage:489C:/
 1050.5 "Fate: J Jump" sync /:Perfect Alexander:489D:/
-1056.0 "Fate: Optical Sight" sync /:Perfect Alexander:48A0:/
-1058.1 "Fate: Individual/Collective Reprobation" sync /:Liquid Rage:48A2:/
+1056.0 "Fate: Optical Sight" sync /:Perfect Alexander:48A[01]:/
+1058.1 "Fate: Individual/Collective Reprobation" sync /:Liquid Rage:48A[23]:/
 1061.5 "Fate: Radiant Sacrament" sync /:Perfect Alexander:489E:/
 1070.3 "Fate Calibration β" sync /:Perfect Alexander:4B14:/
 1081.5 "Surety and Solidarity" sync /:Liquid Rage:4863:/
 1082.5 "J Jump" sync /:Perfect Alexander:4884:/
-1086.5 "Optical Sight 1" sync /:Perfect Alexander:49AD:/
+1086.5 "Optical Sight 1" sync /:Perfect Alexander:49A[ED]:/
 1088.6 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
 1093.5 "Radiant Sacrament" sync /:Perfect Alexander:4886:/
 1106.8 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
