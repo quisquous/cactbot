@@ -2,7 +2,6 @@
 
 hideall "--Reset--"
 hideall "--sync--"
-hideall "Liquid Gaol"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
@@ -18,8 +17,8 @@ hideall "Liquid Gaol"
 37.8 "Fluid Strike" sync /:Liquid Hand:49B7:/
 38.7 "Rage Wave 2" sync /:Liquid Rage:49B6:/
 39.7 "Exhaust" sync /:Jagd Doll:481E:/
-42.8 "Hand of Pain" sync /:Liquid Hand:482D:/
 43.8 "Embolus" sync /:Liquid Rage:4829:/
+44.1 "Hand of Pain" sync /:Liquid Hand:482D:/
 50.3 "Exhaust" sync /:Jagd Doll:481E:/
 56.7 "Fluid Swing" sync /:Living Liquid:49B0:/
 56.9 "Fluid Strike" sync /:Liquid Hand:49B7:/
@@ -81,7 +80,6 @@ hideall "Liquid Gaol"
 288.6 "Earth Missile" sync /:(Liquid Rage|Living Liquid):484E:/
 290.6 "Hidden Minefield" sync /:(Liquid Rage|Living Liquid):4851:/
 292.7 "Enumeration" sync /:(Liquid Rage|Living Liquid):4850:/
-302.9 "Drainage" #sync /:(Liquid Rage|Living Liquid):4844:/
 306.7 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
 313.5 "Limit Cut" sync /:Cruise Chaser:4833:/
 314.1 "--Cruise Chaser Invincible--" duration 6.3
@@ -123,7 +121,6 @@ hideall "Liquid Gaol"
 571.7 "Flamethrower 2" #sync /:Brute Justice:486C:/
 573.8 "Flamethrower 3" #sync /:Brute Justice:486C:/
 581.0 "Inception" sync /:Alexander Prime:485E:/
-587.2 "Tetrashatter" sync /:Judgment Crystal:485D:/
 589.1 "Surety, Solidarity and Severity" sync /:Liquid Rage:486[1-3]:/
 589.4 "Sacrament" sync /:Alexander Prime:485F:/
 595.3 "Alpha Sword" sync /:Cruise Chaser:486B:/
@@ -165,23 +162,24 @@ hideall "Liquid Gaol"
 699.4 "Summon Alexander" sync /:Alexander Prime:4A55:/
 705.7 "J Storm + Waves x16" sync /:Brute Justice:4876:/ duration 50
 731.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:4875:/
-771.9 "Divine Judgment Enrage" sync /:Alexander Prime:4879:/
+771.9 "Divine Judgment Enrage" sync /:Alexander Prime:4879:/ window 67,5
 787.3 "Divine Judgment" sync /:Alexander:487A:/
 787.4 "Down for the Count" duration 57
 
 ### Phase 4: Perfect Alexander Part 1 - Fate Projection α
-900.0 "" sync /:Perfect Alexander:4A8B:/ window 900,0
+845.4 "--targetable--"
+900.0 "--sync--" sync /:Perfect Alexander:4A8B:/ window 900,0
 909.1 "The Final Word" sync /:Perfect Alexander:487D:/
-910.1 "Ordained Motion/Stillness" sync /:Perfect Alexander:487[EF]:/
-916.3 "Ordained Motion/Stillness" sync /:Perfect Alexander:487[EF]:/
+916.1 "Ordained Motion/Stillness" sync /:Perfect Alexander:487[EF]:/
+926.3 "Ordained Motion/Stillness" sync /:Perfect Alexander:487[EF]:/
 936.5 "Optical Sight 1" sync /:Perfect Alexander:488[AB]:/
 938.6 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
-942.7 "Optical Sight 2" sync /:Perfect Alexander::488[AB]/
+942.7 "Optical Sight 2" sync /:Perfect Alexander:488[AB]:/
 944.7 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
 957.6 "Fate Projection α" sync /:Perfect Alexander:487B:/
 ### Enigma Codex Revealed Events
 966.8 "Fate: Ordained Motion/Stillness" sync /:Liquid Rage:4B0[DE]:/
-972.7 "Fate: Obloquy, Solidarity and 2x Severity" sync /:Liquid Rage:4BA4:/
+972.7 "Fate: Obloquy, Solidarity and 2x Severity" sync /:Liquid Rage:48A4:/
 974.9 "Fate: Ordained Motion/Stillness" sync /:Liquid Rage:489[9A]:/
 975.9 "Fate: Sacrament x3" duration 1.5
 982.6 "Fate Calibration α" sync /:Perfect Alexander:487C:/
@@ -205,7 +203,7 @@ hideall "Liquid Gaol"
 1061.5 "Fate: Radiant Sacrament" sync /:Perfect Alexander:489E:/
 1070.3 "Fate Calibration β" sync /:Perfect Alexander:4B14:/
 1081.5 "Surety and Solidarity" sync /:Liquid Rage:4863:/
-1082.5 "J Jump" sync /:Perfect Alexander:4884:/
+1082.5 "J Jump" sync /:Perfect Alexander:4885:/
 1086.5 "Optical Sight 1" sync /:Perfect Alexander:49A[ED]:/
 1088.6 "Individual/Collective Reprobation" sync /:Liquid Rage:488[CD]:/
 1093.5 "Radiant Sacrament" sync /:Perfect Alexander:4886:/
