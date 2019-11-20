@@ -19,6 +19,7 @@ hideall "Liquid Gaol"
 38.7 "Rage Wave 2" sync /:Liquid Rage:49B6:/
 39.7 "Exhaust" sync /:Jagd Doll:481E:/
 42.8 "Hand of Pain" sync /:Liquid Hand:482D:/
+43.8 "Embolus" sync /:Liquid Rage:4829:/
 50.3 "Exhaust" sync /:Jagd Doll:481E:/
 56.7 "Fluid Swing" sync /:Living Liquid:49B0:/
 56.9 "Fluid Strike" sync /:Liquid Hand:49B7:/
@@ -31,7 +32,7 @@ hideall "Liquid Gaol"
 86.6 "Drainage" sync /:Liquid Rage:4827:/
 89.1 "Hand of Pain" sync /:Liquid Hand:482D:/
 91.7 "Cascade" sync /:Living Liquid:4826:/
-95.9 "Liquid Gaol" sync /:Liquid Rage:4828:/
+95.9 "Throttles" sync /:Liquid Rage:4828:/
 107.0 "Protean Wave 1" sync /:Living Liquid:4822:/
 109.0 "Hand of Pain" sync /:Liquid Hand:482D:/
 109.1 "Protean Wave 2" sync /:Living Liquid:4823:/
@@ -39,7 +40,7 @@ hideall "Liquid Gaol"
 112.1 "Protean Wave 3" sync /:Living Liquid:4823:/
 113.0 "Rage Wave 1" sync /:Liquid Rage:49B5:/
 115.1 "Rage Wave 2" sync /:Liquid Rage:49B6:/
-119.1 "Pressurize" sync /:Liquid Rage:4829:/
+119.1 "Embolus" sync /:Liquid Rage:4829:/
 124.2 "Hand of Prayer/Parting" sync /:Liquid Hand:482[BC]:/
 127.4 "Splash x6" duration 5.6
 129.3 "Hand of Pain" sync /:Liquid Hand:482D:/
