@@ -127,6 +127,26 @@
       },
     },
     {
+      id: 'TEA Limit Cut',
+      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      condition: function(data, matches) {
+        return data.me == matches.target;
+      },
+      alertText: function(data, matches) {
+        let number = {
+          '004F': 1,
+          '0050': 2,
+          '0051': 3,
+          '0052': 4,
+          '0053': 5,
+          '0054': 6,
+          '0055': 7,
+          '0056': 8,
+        }[matches.id];
+        return '' + number;
+      },
+    },
+    {
       id: 'TEA Compressed Water',
       regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Compressed Water', capture: true }),
       condition: function(data, matches) {
