@@ -148,64 +148,81 @@
     },
     {
       id: 'TEA Compressed Water',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Compressed Water', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
-      delaySeconds: 24,
+      delaySeconds: function(data, matches) {
+        // 5 second warning.
+        return parseFloat(matches.duration) - 5;
+      },
       alertText: {
-        en: 'Drop Water',
+        en: 'Drop Water Soon',
+      },
+    },
+    {
+      id: 'TEA Compressed Lightning',
+      regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
+      condition: function(data, matches) {
+        return data.me == matches.target;
+      },
+      delaySeconds: function(data, matches) {
+        // 5 second warning.
+        return parseFloat(matches.duration) - 5;
+      },
+      alertText: {
+        en: 'Drop Lightning Soon',
       },
     },
     {
       id: 'TEA Judgment Nisi A',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi A', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi A' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 32,
       alarmText: {
-        en: 'Get Blue Nisi',
+        en: 'Get Blue α Nisi',
       },
     },
     {
       id: 'TEA Judgment Nisi B',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi B', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 32,
       alarmText: {
-        en: 'Get Orange Nisi',
+        en: 'Get Orange β Nisi',
       },
     },
     {
       id: 'TEA Judgment Nisi Γ',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Γ', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi Γ' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 32,
       alarmText: {
-        en: 'Get Purple Nisi',
+        en: 'Get Purple γ Nisi',
       },
     },
     {
       id: 'TEA Judgment Nisi Δ',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Final Judgment: Decree Nisi Δ', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi Δ' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 32,
       alarmText: {
-        en: 'Get Green Nisi',
+        en: 'Get Green δ Nisi',
       },
     },
     {
       id: 'TEA Restraining Order',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'Restraining Order', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Restraining Order' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Far Tethers',
@@ -217,9 +234,9 @@
     },
     {
       id: 'TEA House Arrest',
-      regex: Regexes.gainsEffect({ target: '(\y{Name})', effect: 'House Arrest', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'House Arrest' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Close Tethers',
@@ -231,9 +248,9 @@
     },
     {
       id: 'TEA Chastening Heat',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A80', target: '(\y{Name})', capture: true }),
+      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
       alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
+        if (matches.target == data.me || data.role != 'tank')
           return;
 
         return {
@@ -243,7 +260,7 @@
         };
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
