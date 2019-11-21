@@ -85,7 +85,7 @@
       regexDe: /:(\y{Name}):3F18:Meteoritenfall:/,
       regexFr: /:(\y{Name}):3F18:Bolide:/,
       regexJa: /:(\y{Name}):3F18:ボーライド:/,
-      regexCn: /:(\y{Name}):3F18:火流星:/,
+      regexCn: /:(\y{Name}):3F18:超火流星:/,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -95,7 +95,7 @@
           de: 'Meteoritenfall: ' + data.ShortName(matches[1]),
           fr: 'Bolide: ' + data.ShortName(matches[1]),
           ja: 'ボーライド: ' + data.ShortName(matches[1]),
-          cn: '火流星: ' + data.ShortName(matches[1]),
+          cn: '超火流星: ' + data.ShortName(matches[1]),
         };
       },
     },
