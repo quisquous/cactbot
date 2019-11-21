@@ -47,7 +47,7 @@ hideall "--sync--"
 142.1 "Cascade Enrage" sync /:Living Liquid:49B3:/
 
 ### Transition 1: Cruise Chaser
-200.0 "Hawk Blaster" sync /:(Liquid Rage|Living Liquid):4830:/ window 200,0
+200.0 "Hawk Blaster" sync /:Cruise Chaser:4830:/ window 200,0
 202.2 "Hawk Blaster"
 204.4 "Hawk Blaster" 
 206.6 "Hawk Blaster"
@@ -67,25 +67,25 @@ hideall "--sync--"
 222.9 "Super Blassty Charge" sync /:Cruise Chaser:4B4F:/
 
 ### Phase 2: Cruise Chaser and Brute Justice
-226.1 "J Kick" sync /:Brute Justice:4854:/
+226.1 "J Kick" sync /:Brute Justice:4854:/ window 250,5
 238.3 "Whirlwind" sync /:Cruise Chaser:49C2:/
 241.3 "Judgment Nisi" sync /:Brute Justice:483E:/
 247.4 "Link-Up" sync /:Brute Justice:483F:/
 255.4 "Optical Sight" sync /:Cruise Chaser:482F:/
 256.2 "Chakrams" #sync /:Steam Chakram:4855:/
-260.6 "Hawk Blaster" sync /:(Liquid Rage|Living Liquid):4831:/
+260.6 "Hawk Blaster" sync /:Cruise Chaser:4831:/
 262.5 "Photon" sync /:Cruise Chaser:4836:/
 272.7 "Spin Crusher" sync /:Cruise Chaser:4A72:/
-277.3 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+277.3 "Water and Thunder" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
 288.6 "Earth Missile" sync /:(Liquid Rage|Living Liquid):484E:/
 290.6 "Hidden Minefield" sync /:(Liquid Rage|Living Liquid):4851:/
 292.7 "Enumeration" sync /:(Liquid Rage|Living Liquid):4850:/
-306.7 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+306.7 "Water and Thunder" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
 313.5 "Limit Cut" sync /:Cruise Chaser:4833:/
 314.1 "--Cruise Chaser Invincible--" duration 6.3
 315.5 "Flamethrower" sync /:Brute Justice:4845:/
 327.6 "Whirlwind" sync /:Cruise Chaser:49C2:/
-336.2 "Crashing/Punishing Wave and Thunders" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
+336.2 "Water and Thunder" sync /:(Liquid Rage|Living Liquid):484[1-3]:/
 354.5 "Propeller Wind" sync /:Cruise Chaser:4832:/
 356.5 "Gavel" sync /:Brute Justice:483C:/
 366.7 "Final Sentence" #sync /:You:483D:/
@@ -106,7 +106,7 @@ hideall "--sync--"
 506.1 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 507.4 "Flamethrower 2" #sync /:Brute Justice:486C:/
 507.2 "Alpha Sword" #sync /:Cruise Chaser:486B:/
-521.5 "Chastenning Heat" sync /:Alexander Prime:4A80:/
+521.5 "Chastening Heat" sync /:Alexander Prime:4A80:/
 524.6 "Divine Spear 1" #sync /:Alexander Prime:4A82:/
 526.7 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
 528.8 "Divine Spear 3" #sync /:Alexander Prime:4A82:/
@@ -127,7 +127,7 @@ hideall "--sync--"
 596.4 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 597.5 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 598.3 "Super Jump" sync /:Brute Justice:484A:/
-610.9 "Chastenning Heat" sync /:Alexander Prime:4A80:/
+610.9 "Chastening Heat" sync /:Alexander Prime:4A80:/
 616.0 "Divine Spear 1" #sync /:Alexander Prime:4A82:/
 618.1 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
 620.2 "Divine Spear 3" #sync /:Alexander Prime:4A82:/
