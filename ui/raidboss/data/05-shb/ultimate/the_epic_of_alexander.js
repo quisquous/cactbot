@@ -54,6 +54,19 @@
         };
       },
     },
+    {
+      id: 'TEA J Kick',
+      regex: /J Kick/,
+      beforeSeconds: 5,
+      condition: function(data) {
+        return data.role == 'healer' || data.role == 'tank';
+      },
+      alertText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
+      },
+    },
   ],
   triggers: [
     {
@@ -148,6 +161,18 @@
         return {
           en: '#' + number,
         };
+      },
+    },
+    {
+      id: 'TEA Whirlwind',
+      regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
+      condition: function(data) {
+        return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
+      },
+      infoText: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
