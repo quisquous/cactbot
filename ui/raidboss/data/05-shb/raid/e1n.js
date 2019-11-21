@@ -1,12 +1,13 @@
 'use strict';
 
 [{
-  zoneRegex: /^Eden's Gate: Resurrection$/,
+  zoneRegex: /^(Eden's Gate: Resurrection|伊甸希望乐园 \(觉醒之章1\))$/,
   timelineFile: 'e1n.txt',
   triggers: [
     {
       id: 'E1N Eden\'s Gravity',
       regex: / 14:3D94:Eden Prime starts using Eden's Gravity/,
+      regexCn: / 14:3D94:至尊伊甸 starts using 伊甸重力/,
       regexDe: / 14:3D94:Prim-Eden starts using Eden-Gravitas/,
       regexFr: / 14:3D94:Primo-Éden starts using Gravité Édénique/,
       regexJa: / 14:3D94:エデン・プライム starts using エデン・グラビデ/,
@@ -17,11 +18,13 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        cn: 'AOE',
       },
     },
     {
       id: 'E1N Fragor Maximus',
       regex: / 14:3DA4:Eden Prime starts using Fragor Maximus/,
+      regexCn: / 14:3DA4:至尊伊甸 starts using 极大爆炸/,
       regexDe: / 14:3DA4:Prim-Eden starts using Fragor Maximus/,
       regexFr: / 14:3DA4:Primo-Éden starts using Fragor Maximus/,
       regexJa: / 14:3DA4:エデン・プライム starts using フラゴルマクシマス/,
@@ -32,11 +35,13 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        cn: 'AOE',
       },
     },
     {
       id: 'E1N Dimensional Shift',
       regex: / 14:3D9C:Eden Prime starts using Dimensional Shift/,
+      regexCn: / 14:3D9C:至尊伊甸 starts using 空间转换/,
       regexDe: / 14:3D9C:Prim-Eden starts using Dimensionsverschiebung/,
       regexFr: / 14:3D9C:Primo-Éden starts using Translation Dimensionnelle/,
       regexJa: / 14:3D9C:エデン・プライム starts using ディメンションシフト/,
@@ -47,11 +52,13 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        cn: 'AOE',
       },
     },
     {
       id: 'E1N Eden\'s Flare',
       regex: / 14:3D97:Eden Prime starts using Eden's Flare/,
+      regexCn: / 14:3D97:至尊伊甸 starts using 伊甸核爆/,
       regexDe: / 14:3D97:Prim-Eden starts using Eden-Flare/,
       regexFr: / 14:3D97:Primo-Éden starts using Brasier Édénique/,
       regexJa: / 14:3D97:エデン・プライム starts using エデン・フレア/,
@@ -59,11 +66,13 @@
         en: 'Under',
         de: 'Unter ihn',
         fr: 'Sous le boss',
+        cn: '脚下',
       },
     },
     {
       id: 'E1N Vice of Vanity You',
       regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Eden Prime:....:....:0011:/,
+      regexCn: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:至尊伊甸:....:....:0011:/,
       regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Eden:....:....:0011:/,
       regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Éden:....:....:0011:/,
       regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:エデン・プライム:....:....:0011:/,
@@ -74,11 +83,13 @@
         en: 'Tank Laser on YOU',
         de: 'Tank Laser auf DIR',
         fr: 'Tank laser sur VOUS',
+        cn: '坦克射线点名',
       },
     },
     {
       id: 'E1N Spear Of Paradise',
       regex: / 14:3DA1:Eden Prime starts using Spear [Oo]f Paradise on (\y{Name})/,
+      regexCn: / 14:3DA1:至尊伊甸 starts using 乐园之枪 on (\y{Name})/,
       regexDe: / 14:3DA1:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
       regexFr: / 14:3DA1:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
       regexJa: / 14:3DA1:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
@@ -88,6 +99,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            cn: '死刑点名',
           };
         }
         if (data.role == 'healer') {
@@ -95,6 +107,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑 -> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -104,6 +117,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            cn: '死刑 -> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -118,12 +132,14 @@
         en: 'Drop Puddle, Run Middle',
         de: 'Flächen ablegen, danach in die Mitte',
         fr: 'Placez les flaques, courez au centre',
+        cn: '放圈，回中央',
       },
     },
     {
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
       regex: / 14:3DA3:Eden Prime starts using Pure Light/,
+      regexCn: / 14:3DA3:至尊伊甸 starts using 净土之光/,
       regexDe: / 14:3DA3:Prim-Eden starts using Läuterndes Licht/,
       regexFr: / 14:3DA3:Primo-Éden starts using Lumière Purificatrice/,
       regexJa: / 14:3DA3:エデン・プライム starts using ピュアライト/,
@@ -132,6 +148,7 @@
         en: 'Get Behind',
         de: 'Hinter ihn',
         fr: 'Derrière le boss',
+        cn: '身后躲避',
       },
     },
   ],
@@ -274,14 +291,43 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Eden Prime': 'Eden Prime',
+        'Eden Prime': '至尊伊甸',
+        'Eden': '伊甸',
+        'Guardian of Paradise': '伊甸守护者',
         'Engage!': '战斗开始！',
       },
       'replaceText': {
         'attack': '攻击',
-        'Unknown Ability': 'Unknown Ability',
+        'Vice [oO]f Apathy': '冷漠之恶',
+        'Vice [aA]nd Virtue': '恶习与美德',
+        'Unto Dust': '归于尘土',
+        'Sunder Pressure': '超重压',
+        'Spear [oO]f Paradise': '乐园之枪',
+        'Pure Light': '净土之光',
+        'Pure Beam': '净土射线',
+        'Primeval Stasis': '原初停滞',
+        'Paradise Lost': '失乐园',
+        'Paradisal Dive': '乐园冲',
+        'Mana Slice': '魔力斩击',
+        'Mana Burst': '魔力爆发',
+        'Heavensunder': '天国分断',
+        'Fragor Maximus': '极大爆炸',
+        'Eternal Breath': '永恒吐息',
+        'Eden\'s Thunder III': '伊甸暴雷',
+        'Eden\'s Gravity': '伊甸重力',
+        'Eden\'s Flare': '伊甸核爆',
+        'Eden\'s Fire III': '伊甸爆炎',
+        'Eden\'s Blizzard III': '伊甸冰封',
+        'Dimensional Shift': '空间转换',
+        'Delta Attack': '三角攻击',
+        '--corner--': '--角落--',
+        '--center--': '--中央--',
+        '--untargetable--': '--无法选中--',
+        '--targetable--': '--可选中--',
       },
       '~effectNames': {
+        'Summon Order': '发动技能待命I',
+        'Heavy': '加重',
         'Fetters': '拘束',
         'Brink of Death': '濒死',
       },

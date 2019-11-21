@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^Eden's Gate: Descent$/,
+  zoneRegex: /^(Eden's Gate: Descent|伊甸希望乐园 \(觉醒之章2\))$/,
   timelineFile: 'e2n.txt',
   timelineTriggers: [
     {
@@ -19,6 +19,7 @@
     {
       id: 'E2N Shadowflame Tank',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
+      regexCn: / 14:3E4D:虚无行者 starts using 暗影炎 on \y{Name}/,
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
@@ -29,11 +30,13 @@
         en: 'Tank Buster on YOU',
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
+        cn: '死刑点名',
       },
     },
     {
       id: 'E2N Shadowflame Healer',
       regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
+      regexCn: / 14:3E4D:虚无行者 starts using 暗影炎 on \y{Name}/,
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
@@ -45,11 +48,13 @@
         en: 'tank busters',
         de: 'tank buster',
         fr: 'Tank busters',
+        cn: '死刑',
       },
     },
     {
       id: 'E2N Entropy',
       regex: / 14:3E6D:Voidwalker starts using Entropy/,
+      regexCn: / 14:3E6D:虚无行者 starts using 熵/,
       regexDe: / 14:3E6D:Nichtswandler starts using Entropie/,
       regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
       regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
@@ -60,11 +65,13 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        cn: 'AOE',
       },
     },
     {
       id: 'E2N Doomvoid Slicer',
       regex: / 14:3E3C:Voidwalker starts using Doomvoid Slicer/,
+      regexCn: / 14:3E3C:虚无行者 starts using 末日虚无切/,
       regexDe: / 14:3E3C:Nichtswandler starts using Nichtsmarter-Sense/,
       regexFr: / 14:3E3C:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
       regexJa: / 14:3E3C:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
@@ -72,11 +79,13 @@
         en: 'Get Under',
         de: 'Unter ihn',
         fr: 'Intérieur',
+        cn: '脚下',
       },
     },
     {
       id: 'E2N Empty Hate',
       regex: / 14:3E46:the Hand of Erebos starts using Empty Hate/,
+      regexCn: / 14:3E46:厄瑞玻斯的巨腕 starts using 空无的恶意/,
       regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
       regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
       regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
@@ -84,11 +93,13 @@
         en: 'Knockback',
         de: 'Knockback',
         fr: 'Poussée',
+        cn: '击退',
       },
     },
     {
       id: 'E2N Darkfire Counter',
       regex: / 14:3E42:Voidwalker starts using Dark Fire III/,
+      regexCn: / 14:3E42:虚无行者 starts using 黑暗爆炎/,
       regexDe: / 14:3E42:Nichtswandler starts using Dunkel-Feuga/,
       regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
       regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
@@ -107,6 +118,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        cn: '分散',
       },
     },
     {
@@ -118,12 +130,14 @@
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
+            cn: '集合',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur '+ data.ShortName(matches[1]),
+          cn: '集合 -> ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -135,6 +149,7 @@
           en: 'Look Away from ' + data.ShortName(matches[1]),
           de: 'Schau weg von ' + data.ShortName(matches[1]),
           fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
+          cn: '背对 ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -156,6 +171,7 @@
         en: 'Delayed Fire',
         de: 'Verzögertes Feuer',
         fr: 'Feu retardé',
+        cn: '延迟火',
       },
     },
     {
@@ -170,12 +186,14 @@
             en: 'Spread (don\'t stack!)',
             de: 'Verteilen (nicht zusammen stehen)',
             fr: 'Dispersez-vous', // FIXME
+            cn: '分散',
           };
         }
         return {
           en: 'Spread',
           de: 'Verteilen',
           fr: 'Dispersez-vous',
+          cn: '分散',
         };
       },
     },
@@ -197,6 +215,7 @@
         en: 'Delayed Stack',
         de: 'Verzögertes sammeln',
         fr: 'Package retardé',
+        cn: '延迟集合',
       },
     },
     {
@@ -215,12 +234,14 @@
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
+            cn: '集合',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
+          cn: '集合 -> ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -242,6 +263,7 @@
         en: 'Delayed Shadoweye',
         de: 'Verzögertes Schattenauge',
         fr: 'Œil de l\'ombre retardé',
+        cn: '延迟石化眼',
       },
     },
     {
@@ -257,6 +279,7 @@
             en: 'Look Away from ' + data.ShortName(matches[1]),
             de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
             fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
+            cn: '背对 ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -266,6 +289,7 @@
             en: 'Eye on YOU',
             de: 'Auge auf DIR',
             fr: 'Œil de l\'ombre sur VOUS',
+            cn: '石化眼点名',
           };
         }
       },
@@ -376,6 +400,37 @@
         'Spell-in-Waiting: Dark Fire III': 'ディレイスペル：ダークファイガ',
         'Brink of Death': '衰弱［強］',
         'Spell-in-Waiting: Unholy Darkness': 'ディレイスペル：ダークホーリー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Voidwalker': '虚无行者',
+        'The Hand of Erebos': '厄瑞玻斯的巨腕',
+      },
+      'replaceText': {
+        'Spell-[iI]n-Waiting': '延迟咏唱',
+        'Shadowflame': '暗影炎',
+        'Doomvoid Guillotine': '末日虚无断',
+        'Dark Fire III': '黑暗爆炎',
+        'attack': '攻击',
+        'Unholy Darkness': '黑暗神圣',
+        'Punishing Ray': '惩戒之光',
+        'Doomvoid Slicer': '末日虚无切',
+        'Empty Hate': '空无的恶意',
+        'Shadoweye': '暗影之眼',
+        'Entropy': '熵',
+      },
+      '~effectNames': {
+        'Spell-in-Waiting: Shadoweye': '延迟咏唱：暗影之眼',
+        'Infirmity': '虚弱',
+        'Petrification': '石化',
+        'Bleeding': '出血',
+        'Diabolic Curse': '虚无的诅咒',
+        'Spell-in-Waiting: Dark Fire III': '延迟咏唱：黑暗爆炎',
+        'Brink of Death': '濒死',
+        'Spell-in-Waiting: Unholy Darkness': '延迟咏唱：黑暗神圣',
       },
     },
   ],
