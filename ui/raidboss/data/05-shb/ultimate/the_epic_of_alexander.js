@@ -132,6 +132,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
+      durationSeconds: 15,
       alertText: function(data, matches) {
         let number = {
           '004F': 1,
@@ -143,11 +144,24 @@
           '0055': 7,
           '0056': 8,
         }[matches.id];
-        return '' + number;
+
+        return {
+          en: '#' + number,
+        };
       },
     },
     {
-      id: 'TEA Compressed Water',
+      id: 'TEA Compressed Water Initial',
+      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
+      condition: function(data, matches) {
+        return data.me == matches.target;
+      },
+      infoText: {
+        en: 'Water on YOU',
+      },
+    },
+    {
+      id: 'TEA Compressed Water Explode',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -161,7 +175,17 @@
       },
     },
     {
-      id: 'TEA Compressed Lightning',
+      id: 'TEA Compressed Lightning Initial',
+      regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
+      condition: function(data, matches) {
+        return data.me == matches.target;
+      },
+      infoText: {
+        en: 'Lightning on YOU',
+      },
+    },
+    {
+      id: 'TEA Compressed Lightning Explode',
       regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -172,6 +196,34 @@
       },
       alertText: {
         en: 'Drop Lightning Soon',
+      },
+    },
+    {
+      id: 'TEA Pass Nisi 1',
+      // 4 seconds after Photon cast starts.
+      regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
+      delaySeconds: 4,
+      alertText: {
+        en: 'Pass Nisi',
+      },
+    },
+    {
+      id: 'TEA Pass Nisi 2',
+      // 1 second after enumeration.
+      // TODO: find a startsUsing instead of matching an action.
+      regex: Regexes.ability({ source: ['Liquid Rage', 'Living Liquid'], id: '4850', capture: false }),
+      delaySeconds: 1,
+      alertText: {
+        en: 'Pass Nisi',
+      },
+    },
+    {
+      id: 'TEA Pass Nisi 3',
+      // 8 seconds after Flamethrower cast starts.
+      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
+      delaySeconds: 8,
+      alertText: {
+        en: 'Pass Nisi',
       },
     },
     {
