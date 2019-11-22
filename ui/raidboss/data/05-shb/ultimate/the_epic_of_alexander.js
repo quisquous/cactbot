@@ -8,6 +8,12 @@
       id: 'TEA Fluid Swing',
       regex: /Fluid Swing/,
       beforeSeconds: 5,
+      // TODO: this is likely calling out twice sometimes because
+      // the timeline resyncs and it becomes 5 seconds before again.
+      // This is probably a problem for all timeline triggers (whoops)
+      // and needs to be fixed more generally rather than adding a
+      // suppression.
+      suppressSeconds: 1,
       preRun: function(data) {
         data.swingCount = (data.swingCount || 0) + 1;
       },
