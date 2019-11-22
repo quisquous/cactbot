@@ -27,9 +27,9 @@
               fr: 'Tank busters',
             };
           }
-          if (data.mainTank) {
+          if (data.liquidTank) {
             return {
-              en: 'Tank Buster on' + data.ShortName(data.mainTank),
+              en: 'Tank Buster on' + data.ShortName(data.liquidTank),
               de: 'Tank buster',
               fr: 'Tank buster',
             };
@@ -42,7 +42,7 @@
         }
 
         if (data.role == 'tank') {
-          if (data.me == data.offTank && multipleSwings || data.me == data.mainTank) {
+          if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank) {
             return {
               en: 'Tank Buster on YOU',
             };
@@ -53,7 +53,7 @@
         let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
         if (data.role == 'healer')
           return;
-        if (data.me == data.offTank && multipleSwings || data.me == data.mainTank)
+        if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
           return;
         return {
           en: 'Tank Cleave',
@@ -64,6 +64,7 @@
       id: 'TEA J Kick',
       regex: /J Kick/,
       beforeSeconds: 5,
+      suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
@@ -73,20 +74,42 @@
         fr: 'Dégâts de zone',
       },
     },
+    {
+      // Note: there's nothing in the log for when the hand turns into an
+      // open palm or a fist, so this just warns when to move and not
+      // where to go based on time.
+      id: 'TEA Hand of Stuff',
+      regex: /Hand of Prayer\/Parting/,
+      beforeSeconds: 5,
+      suppressSeconds: 1,
+      condition: function(data) {
+        return data.role == 'tank';
+      },
+      infoText: {
+        en: 'Move Bosses',
+      },
+    },
   ],
   triggers: [
     {
-      id: 'TEA Main Tank',
+      id: 'TEA Liquid Tank',
       regex: Regexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
       run: function(data, matches) {
-        data.mainTank = matches.target;
+        data.liquidTank = matches.target;
       },
     },
     {
-      id: 'TEA Off Tank',
-      regex: Regexes.abilityFull({ source: 'Living Liquid', id: '4979' }),
+      id: 'TEA Hand Tank',
+      regex: Regexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
       run: function(data, matches) {
-        data.offTank = matches.target;
+        data.handTank = matches.target;
+      },
+    },
+    {
+      id: 'TEA Cruise Chaser Tank',
+      regex: Regexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
+      run: function(data, matches) {
+        data.cruiseTank = matches.target;
       },
     },
     {
@@ -170,6 +193,23 @@
       },
     },
     {
+      id: 'TEA Chakrams Out',
+      // Link Up
+      regex: Regexes.ability({ source: 'Brute Justice', id: '483F' }),
+      alertText: {
+        en: 'Out, Dodge Chakrams',
+      },
+    },
+    {
+      id: 'TEA Chakrams In',
+      // Optical Sight
+      regex: Regexes.ability({ source: 'Cruise Chaser', id: '482F' }),
+      suppressSeconds: 1,
+      alertText: {
+        en: 'Run In',
+      },
+    },
+    {
       id: 'TEA Whirlwind',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
       condition: function(data) {
@@ -242,7 +282,7 @@
       id: 'TEA Pass Nisi 2',
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
-      regex: Regexes.ability({ source: ['Liquid Rage', 'Living Liquid'], id: '4850', capture: false }),
+      regex: Regexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
       delaySeconds: 1,
       alertText: {
         en: 'Pass Nisi',
