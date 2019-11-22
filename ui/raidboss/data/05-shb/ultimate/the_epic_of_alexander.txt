@@ -48,7 +48,7 @@ hideall "--sync--"
 142.1 "Cascade Enrage" sync /:Living Liquid:49B3:/
 
 ### Transition 1: Cruise Chaser
-196.0 "--sync--" sync / 04:........:Removing combatant Liquid Hand\./ window 200,0
+196.0 "--sync--" sync / 04:........:Removing combatant Liquid Hand\./ window 50,0
 200.0 "Hawk Blaster 1" sync /:Cruise Chaser:4830:/ window 200,0
 202.2 "Hawk Blaster 2"
 204.4 "Hawk Blaster 3"
@@ -74,7 +74,7 @@ hideall "--sync--"
 241.3 "Judgment Nisi" sync /:Brute Justice:483E:/
 247.4 "Link-Up" sync /:Brute Justice:483F:/
 255.4 "Optical Sight" sync /:Cruise Chaser:482F:/
-256.2 "Chakrams" #sync /:Steam Chakram:4855:/
+256.2 "Chakrams" sync /:Steam Chakram:4855:/
 260.6 "Hawk Blaster" sync /:Cruise Chaser:4831:/
 262.5 "Photon" sync /:Cruise Chaser:4836:/
 272.7 "Spin Crusher" sync /:Cruise Chaser:4A72:/
