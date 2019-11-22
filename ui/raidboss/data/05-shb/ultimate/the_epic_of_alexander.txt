@@ -1,4 +1,5 @@
 # The Epic of Alexander (Ultimate)
+# -p 49B0:11.4 4830:200 -ii 4978 4979 497B 497A 481E 4B4E 4820
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -14,18 +15,18 @@ hideall "--sync--"
 35.8 "Hand of Prayer/Parting" sync /:Liquid Hand:482[BC]:/
 36.7 "Rage Wave 1" sync /:Liquid Rage:49B5:/
 37.7 "Fluid Swing" sync /:Living Liquid:49B0:/
-37.8 "Fluid Strike" sync /:Liquid Hand:49B7:/
+37.7 "Fluid Strike" #sync /:Liquid Hand:49B7:/
 38.7 "Rage Wave 2" sync /:Liquid Rage:49B6:/
 39.7 "Exhaust" sync /:Jagd Doll:481E:/
-43.8 "Embolus" sync /:Liquid Rage:4829:/
-44.1 "Hand of Pain" sync /:Liquid Hand:482D:/
+41.6 "Embolus" sync /:Liquid Rage:4829:/
+42.8 "Hand of Pain" sync /:Liquid Hand:482D:/
 50.3 "Exhaust" sync /:Jagd Doll:481E:/
 56.7 "Fluid Swing" sync /:Living Liquid:49B0:/
-56.9 "Fluid Strike" sync /:Liquid Hand:49B7:/
+56.7 "Fluid Strike" #sync /:Liquid Hand:49B7:/
 69.8 "Protean Wave 1" sync /:Living Liquid:4822:/
 70.0 "Hand of Pain" sync /:Liquid Hand:482D:/
 71.9 "Protean Wave 2" sync /:Living Liquid:4823:/
-74.9 "Sluice" sync /:Liquid Rage:49B1:/
+74.9 "Sluice" sync /:Living Liquid:49B1:/
 75.0 "Protean Wave 3" sync /:Living Liquid:4823:/
 81.1 "Splash x6" duration 5.6
 86.6 "Drainage" sync /:Liquid Rage:4827:/
@@ -35,7 +36,7 @@ hideall "--sync--"
 107.0 "Protean Wave 1" sync /:Living Liquid:4822:/
 109.0 "Hand of Pain" sync /:Liquid Hand:482D:/
 109.1 "Protean Wave 2" sync /:Living Liquid:4823:/
-112.0 "Sluice" sync /:Liquid Rage:49B1:/
+112.0 "Sluice" sync /:Living Liquid:49B1:/
 112.1 "Protean Wave 3" sync /:Living Liquid:4823:/
 113.0 "Rage Wave 1" sync /:Liquid Rage:49B5:/
 115.1 "Rage Wave 2" sync /:Liquid Rage:49B6:/
