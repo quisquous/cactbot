@@ -195,7 +195,7 @@
     {
       id: 'TEA Chakrams Out',
       // Link Up
-      regex: Regexes.ability({ source: 'Brute Justice', id: '483F' }),
+      regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
       alertText: {
         en: 'Out, Dodge Chakrams',
       },
@@ -203,7 +203,7 @@
     {
       id: 'TEA Chakrams In',
       // Optical Sight
-      regex: Regexes.ability({ source: 'Cruise Chaser', id: '482F' }),
+      regex: Regexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
