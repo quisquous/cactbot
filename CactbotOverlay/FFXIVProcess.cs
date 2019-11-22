@@ -619,15 +619,15 @@ namespace Cactbot {
 
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
-    public struct GunbreakerJobMemory { // TODO: Needs a lot more research. 
+    public struct GunbreakerJobMemory { 
       [FieldOffset(0x00)]
       public byte cartridges;
 
       [FieldOffset(0x02)]
-      public ushort continuationMilliseconds; // Notes: Jumps to 15000 (ms?) after using Gnashing Fang, doesn't decrease.
+      private ushort continuationMilliseconds; // Is 15000 if and only if continuationState is not zero.
 
       [FieldOffset(0x04)]
-      public byte continuationState; // Seems? to follow Continuation procs.
+      public byte continuationState;
     };
 
     [Serializable]
@@ -662,7 +662,7 @@ namespace Cactbot {
     };
 
     [StructLayout(LayoutKind.Explicit)]
-    public struct DancerJobMemory { // TODO: Needs more research. 
+    public struct DancerJobMemory {
       private enum Step : byte {
         None = 0,
         Emboite = 1,
@@ -746,7 +746,7 @@ namespace Cactbot {
       public byte ninkiAmount;
 
       [FieldOffset(0x05)]
-      public byte hutonCount; //TODO: Confirm this.
+      private byte hutonCount; // Why though?
     };
 
     [StructLayout(LayoutKind.Explicit)]

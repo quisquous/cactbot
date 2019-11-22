@@ -372,8 +372,8 @@ namespace Cactbot {
         }
         var job = ffxiv_.GetJobSpecificData(player.job);
         if (job != null) {
-          if (send || !JObject.DeepEquals(job, notify_state_.jobData)) {
-            notify_state_.jobData = job;
+          if (send || !JObject.DeepEquals(job, notify_state_.job_data)) {
+            notify_state_.job_data = job;
             var e = new JSEvents.PlayerChangedEvent(player);
             e.jobDetail = job;
             OnPlayerChanged(e);
@@ -666,7 +666,7 @@ namespace Cactbot {
       public bool? in_game_combat;
       public bool dead = false;
       public string zone_name = null;
-      public JObject jobData = new JObject();
+      public JObject job_data = new JObject();
       public FFXIVProcess.EntityData player = null;
       public FFXIVProcess.EntityData target = null;
       public FFXIVProcess.EntityData focus = null;

@@ -26,13 +26,13 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'PLD')
     document.getElementById('jobinfo').innerText = jobDetail.oath;
   else if (e.detail.job == 'GNB')
-    document.getElementById('jobinfo').innerText = jobDetail.cartridges + ' | (' + jobDetail.continuationMilliseconds + ') | ' + jobDetail.continuationState;
+    document.getElementById('jobinfo').innerText = jobDetail.cartridges + jobDetail.continuationState;
   else if (e.detail.job == 'BRD')
     document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.soulGauge + ' | ' + jobDetail.songMilliseconds;
   else if (e.detail.job == 'DNC')
     document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
   else if (e.detail.job == 'NIN')
-    document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount + ' | ' + jobDetail.hutonCount;
+    document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount;
   else if (e.detail.job == 'DRG')
     document.getElementById('jobinfo').innerText = jobDetail.bloodMilliseconds + ' | ' + jobDetail.lifeMilliseconds + ' | ' + jobDetail.eyesAmount;
   else if (e.detail.job == 'BLM')
