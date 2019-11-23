@@ -192,7 +192,7 @@
         };
       },
     },
-       {
+    {
       id: 'TEA Limit Cut Knockback and Cleaves',
       regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: function(data, matches) {
@@ -211,19 +211,20 @@
           '0055': 18.2,
           '0056': 19.6,
         }[matches.id];
-        
+
         return {
           number,
         };
       },
       alertText: function(data, matches) {
-        if(parseInt(matches.id) & 1 == 1)
+        if (parseInt(matches.id) & 1 == 1) {
           return {
             en: 'Knockback',
             de: 'Knockback',
             fr: 'Poussée',
             cn: '击退',
           };
+        }
         return {
           en: 'Cleave on YOU',
           de: 'Cleave auf DIR',
