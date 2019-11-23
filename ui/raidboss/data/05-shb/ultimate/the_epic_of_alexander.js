@@ -193,6 +193,33 @@
       },
     },
     {
+      id: 'TEA Limit Cut Knockback',
+      regex: Regexes.headMarker({ id: '005[0246]' }),
+      condition: function(data, matches) {
+        return data.me == matches.target;
+      },
+      // The markers take .3 seconds to be on all 8 players
+      // This gives a warning within 5 seconds, so you can hit arm's length.
+      delaySeconds: function(data, matches) {
+        let number = {
+          '0050': 6,
+          '0052': 10.5,
+          '0054': 15,
+          '0056': 19.6,
+        }[matches.id];
+        
+        return {
+          number,
+        };
+      },
+      alertText: {
+        en: 'Knockback',
+        de: 'Knockback',
+        fr: 'Poussée',
+        cn: '击退',
+      },
+    },
+    {
       id: 'TEA Chakrams Out',
       // Link Up
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
