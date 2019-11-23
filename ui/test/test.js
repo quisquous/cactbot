@@ -25,24 +25,30 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
     document.getElementById('jobinfo').innerText = jobDetail.blood + ' | ' + jobDetail.darksideMilliseconds;
   else if (e.detail.job == 'PLD')
     document.getElementById('jobinfo').innerText = jobDetail.oath;
+  else if (e.detail.job == 'GNB')
+    document.getElementById('jobinfo').innerText = jobDetail.cartridges + jobDetail.continuationState;
   else if (e.detail.job == 'BRD')
-    document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.songMilliseconds;
+    document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.soulGauge + ' | ' + jobDetail.songMilliseconds;
+  else if (e.detail.job == 'DNC')
+    document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
   else if (e.detail.job == 'NIN')
     document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount;
   else if (e.detail.job == 'DRG')
     document.getElementById('jobinfo').innerText = jobDetail.bloodMilliseconds + ' | ' + jobDetail.lifeMilliseconds + ' | ' + jobDetail.eyesAmount;
   else if (e.detail.job == 'BLM')
-    document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ') | ' + jobDetail.umbralHearts + ' | ' + jobDetail.foulCount + ' ' + jobDetail.enochian + ' (' + jobDetail.nextPolygotMilliseconds + ')';
+    document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ') | ' + jobDetail.umbralHearts + ' | ' + jobDetail.foulCount + ' ' + jobDetail.enochian + ' (' + jobDetail.nextPolyglotMilliseconds + ')';
   else if (e.detail.job == 'THM')
     document.getElementById('jobinfo').innerText = jobDetail.umbralStacks + ' (' + jobDetail.umbralMilliseconds + ')';
   else if (e.detail.job == 'WHM')
-    document.getElementById('jobinfo').innerText = jobDetail.lilies;
+    document.getElementById('jobinfo').innerText = jobDetail.lilyStacks + ' (' + jobDetail.lilyMilliseconds + ') | ' + jobDetail.bloodlilyStacks;
   else if (e.detail.job == 'SMN')
-    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.dreadwyrmStacks + ' | ' + jobDetail.bahamutStacks + ' ( ' + jobDetail.dreadwyrmMilliseconds + ' | ' + jobDetail.bahamutMilliseconds + ' )';
+    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.dreadwyrmStacks + ' | ' + jobDetail.bahamutStance + ' | ' + jobDetail.bahamutSummoned + ' ( ' + jobDetail.stanceMilliseconds + ') | ' + jobDetail.phoenixReady;
   else if (e.detail.job == 'SCH')
-    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.fairyGauge;
+    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks + ' | ' + jobDetail.fairyGauge + ' | ' + jobDetail.fairyStatus + ' (' + jobDetail.fairyMilliseconds + ')';
   else if (e.detail.job == 'ACN')
-    document.getElementById('jobinfo').innerText = jobDetail.aetherflowStacks;
+    document.getElementById('jobinfo').innerText = jobDetail.dreadwyrmStacks;
+  else if (e.detail.job == 'AST')
+    document.getElementById('jobinfo').innerText = jobDetail.heldCard + ' (' + jobDetail.arcanums + ')';
   else if (e.detail.job == 'MNK')
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' | ' + jobDetail.chakraStacks + ' (' + jobDetail.lightningMilliseconds + ')';
   else if (e.detail.job == 'PGL')
