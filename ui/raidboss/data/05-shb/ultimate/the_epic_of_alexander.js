@@ -193,6 +193,46 @@
       },
     },
     {
+      id: 'TEA Limit Cut Knockback and Cleaves',
+      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      condition: function(data, matches) {
+        return data.me == matches.target;
+      },
+      // The markers take .3 seconds to be on all 8 players
+      // This gives a warning within 5 seconds, so you can hit arm's length.
+      delaySeconds: function(data, matches) {
+        let number = {
+          '004F': 4.5,
+          '0050': 6,
+          '0051': 9.1,
+          '0052': 10.5,
+          '0053': 13.6,
+          '0054': 15,
+          '0055': 18.2,
+          '0056': 19.6,
+        }[matches.id];
+
+        return {
+          number,
+        };
+      },
+      alertText: function(data, matches) {
+        if (parseInt(matches.id, 16) & 1 == 1) {
+          return {
+            en: 'Cleave on YOU',
+            de: 'Cleave auf DIR',
+            fr: 'Cleave sur vous',
+          };
+        }
+        return {
+          en: 'Knockback',
+          de: 'Knockback',
+          fr: 'Poussée',
+          cn: '击退',
+        };
+      },
+    },
+    {
       id: 'TEA Chakrams Out',
       // Link Up
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
