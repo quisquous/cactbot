@@ -562,7 +562,7 @@
         'Wormhole Formation': 'Dimensionsspaltungsformation',
       },
     },
-   {
+    {
       'locale': 'fr',
       'replaceSync': {
         ':Alexander:': ':Alexander:',
