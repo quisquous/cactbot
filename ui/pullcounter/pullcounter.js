@@ -16,9 +16,8 @@ class PullCounter {
 
     callOverlayHandler({
       call: 'cactbotLoadData',
-      overlay: OverlayPluginApi.overlayName,
-    })
-      .then((data) => gPullCounter.SetSaveData(data));
+      overlay: 'pullcounter',
+    }).then((data) => gPullCounter.SetSaveData(data));
 
     this.ReloadTriggers();
   }
@@ -32,7 +31,7 @@ class PullCounter {
 
     callOverlayHandler({
       call: 'cactbotSaveData',
-      overlay: OverlayPluginApi.overlayName,
+      overlay: 'pullcounter',
       data: JSON.stringify(this.pullCounts),
     });
   }
@@ -116,10 +115,10 @@ class PullCounter {
     this.party = e.party;
   }
 
-  SetSaveData(data) {
+  SetSaveData(e) {
     try {
-      if (data)
-        this.pullCounts = JSON.parse(data);
+      if (e.data)
+        this.pullCounts = JSON.parse(e.data);
       else
         this.pullCounts = {};
     } catch (err) {
@@ -130,11 +129,11 @@ class PullCounter {
 }
 
 UserConfig.getUserConfigLocation('pullcounter', function() {
+  gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
+
   addOverlayListener('onLogEvent', (e) => gPullCounter.OnLogEvent(e));
   addOverlayListener('onZoneChangedEvent', (e) => gPullCounter.OnZoneChange(e));
   addOverlayListener('onInCombatChangedEvent', (e) => gPullCounter.OnInCombatChange(e));
   addOverlayListener('onPartyWipe', () => gPullCounter.OnPartyWipe());
   addOverlayListener('PartyChanged', (e) => gPullCounter.OnPartyChange(e));
-
-  gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
 });

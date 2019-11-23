@@ -112,7 +112,9 @@ namespace Cactbot {
       });
       RegisterEventHandler("cactbotLoadData", (msg) => {
         if (Config.OverlayData.ContainsKey(msg["overlay"].ToString())) {
-          return new JValue(Config.OverlayData[msg["overlay"].ToString()]);
+          var ret = new JObject();
+          ret["data"] = Config.OverlayData[msg["overlay"].ToString()];
+          return ret;
         } else {
           return null;
         }
