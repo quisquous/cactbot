@@ -422,7 +422,7 @@
       alarmText: {
         en: 'Get Green δ Nisi',
         ja: '緑取って',
-        de: 'grünenen γ Nisi holen',
+        de: 'grünenen δ Nisi holen',
       },
     },
     {
