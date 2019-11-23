@@ -217,7 +217,7 @@
         };
       },
       alertText: function(data, matches) {
-        if (parseInt(matches.id,16) & 1 == 1) {
+        if (parseInt(matches.id, 16) & 1 == 1) {
           return {
             en: 'Cleave on YOU',
             de: 'Cleave auf DIR',
