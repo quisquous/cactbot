@@ -45,6 +45,7 @@
           if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank) {
             return {
               en: 'Tank Buster on YOU',
+              de: 'Tankbuster auf DIR',
             };
           }
         }
@@ -57,6 +58,7 @@
           return;
         return {
           en: 'Tank Cleave',
+          de: 'Tank Cleave',
         };
       },
     },
@@ -87,6 +89,7 @@
       },
       infoText: {
         en: 'Move Bosses',
+        de: 'Bosse bewegen',
       },
     },
   ],
@@ -129,6 +132,7 @@
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
+        de: 'Proteische Welle',
       },
     },
     {
@@ -141,6 +145,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Drainage tether on YOU',
+        de: 'Entwässerungsverbindung auf DIR',
       },
     },
     {
@@ -154,6 +159,7 @@
           return;
         return {
           en: 'Focus Living Liquid',
+          de: 'belebtes Wasser fokussieren',
         };
       },
     },
@@ -166,6 +172,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Cleanse Throttle',
+        de: 'Erstickung entfernen',
       },
     },
     {
@@ -238,6 +245,7 @@
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
       alertText: {
         en: 'Out, Dodge Chakrams',
+        de: 'Raus, Chakrams ausweichen',
       },
     },
     {
@@ -247,6 +255,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
+        de: 'Rein',
       },
     },
     {
@@ -269,6 +278,7 @@
       },
       infoText: {
         en: 'Water on YOU',
+        de: 'Wasser auf DIR',
       },
     },
     {
@@ -283,6 +293,7 @@
       },
       alertText: {
         en: 'Drop Water Soon',
+        de: 'Gleich Wasser ablegen',
       },
     },
     {
@@ -293,6 +304,7 @@
       },
       infoText: {
         en: 'Lightning on YOU',
+        de: 'Blitz auf DIR',
       },
     },
     {
@@ -307,6 +319,7 @@
       },
       alertText: {
         en: 'Drop Lightning Soon',
+        de: 'Gleich Blitz ablegen',
       },
     },
     {
@@ -316,6 +329,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Pass Nisi',
+        de: 'Nisi weitergeben',
       },
     },
     {
@@ -326,6 +340,7 @@
       delaySeconds: 1,
       alertText: {
         en: 'Pass Nisi',
+        de: 'Nisi weitergeben',
       },
     },
     {
@@ -335,6 +350,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Pass Nisi',
+        de: 'Nisi weitergeben',
       },
     },
     {
@@ -346,6 +362,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Blue α Nisi',
+        de: 'blauen α Nisi holen',
       },
     },
     {
@@ -357,6 +374,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Orange β Nisi',
+        de: 'orangenen β Nisi holen',
       },
     },
     {
@@ -368,6 +386,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Purple γ Nisi',
+        de: 'lilanen γ Nisi holen',
       },
     },
     {
@@ -379,6 +398,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Green δ Nisi',
+        de: 'grünenen γ Nisi holen',
       },
     },
     {
@@ -535,7 +555,7 @@
         'Temporal Prison': 'Zeitzelle',
         'Temporal Stasis': 'Zeitstillstand',
         'The Final Word': 'Strafzumessung',
-        'Throttles': 'Throttles', // FIXME
+        'Throttles': 'Erstickungen',
         'Void Of Repentance': 'Kammer der Buße',
         'Water and Thunder': 'Wasser und Blitz',
         'Whirlwind': 'Wirbelwind',
@@ -636,7 +656,7 @@
         'Temporal Prison': 'Geôle temporelle',
         'Temporal Stasis': 'Stase temporelle',
         'The Final Word': 'Prononcé du jugement',
-        'Throttles': 'Throttles', // FIXME
+        'Throttles': 'Suffocation', // FIXME
         'Void Of Repentance': 'Vide du repentir',
         'Water and Thunder': 'Water and Thunder', // FIXME
         'Whirlwind': 'Tornade',
@@ -737,7 +757,7 @@
         'Temporal Prison': '時の牢獄',
         'Temporal Stasis': '時間停止',
         'The Final Word': '確定判決',
-        'Throttles': 'Throttles', // FIXME
+        'Throttles': '窒息', // FIXME
         'Void Of Repentance': '懺悔の間',
         'Water and Thunder': 'Water and Thunder', // FIXME
         'Whirlwind': '竜巻',
