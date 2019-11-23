@@ -25,6 +25,7 @@
               en: 'Tank Busters',
               de: 'Tank buster',
               fr: 'Tank busters',
+              ja: 'タンクバスター',
             };
           }
           if (data.liquidTank) {
@@ -32,12 +33,14 @@
               en: 'Tank Buster on' + data.ShortName(data.liquidTank),
               de: 'Tank buster',
               fr: 'Tank buster',
+              ja: 'タンクバスター',
             };
           }
           return {
             en: 'Tank Buster',
             de: 'Tank buster',
             fr: 'Tank buster',
+            ja: 'タンクバスター',
           };
         }
 
@@ -45,6 +48,7 @@
           if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank) {
             return {
               en: 'Tank Buster on YOU',
+              ja: '自分にタンクバスター',
               de: 'Tankbuster auf DIR',
             };
           }
@@ -132,6 +136,7 @@
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
+        ja: 'プロティアン',
         de: 'Proteische Welle',
       },
     },
@@ -145,6 +150,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Drainage tether on YOU',
+        ja: '自分にドレナージ',
         de: 'Entwässerungsverbindung auf DIR',
       },
     },
@@ -159,6 +165,7 @@
           return;
         return {
           en: 'Focus Living Liquid',
+          ja: 'リビングリキッドを攻撃',
           de: 'belebtes Wasser fokussieren',
         };
       },
@@ -172,6 +179,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Cleanse Throttle',
+        ja: '窒息',
         de: 'Erstickung entfernen',
       },
     },
@@ -196,6 +204,7 @@
 
         return {
           en: '#' + number,
+          ja: number + '番',
         };
       },
     },
@@ -229,6 +238,7 @@
             en: 'Cleave on YOU',
             de: 'Cleave auf DIR',
             fr: 'Cleave sur vous',
+            ja: '自分にクリーブ',
           };
         }
         return {
@@ -236,6 +246,7 @@
           de: 'Knockback',
           fr: 'Poussée',
           cn: '击退',
+          ja: 'ノックバック',
         };
       },
     },
@@ -245,6 +256,7 @@
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
       alertText: {
         en: 'Out, Dodge Chakrams',
+        ja: '外へ',
         de: 'Raus, Chakrams ausweichen',
       },
     },
@@ -255,6 +267,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
+        ja: '中へ',
         de: 'Rein',
       },
     },
@@ -278,6 +291,7 @@
       },
       infoText: {
         en: 'Water on YOU',
+        ja: '自分に水',
         de: 'Wasser auf DIR',
       },
     },
@@ -293,6 +307,7 @@
       },
       alertText: {
         en: 'Drop Water Soon',
+        ja: '水来るよ',
         de: 'Gleich Wasser ablegen',
       },
     },
@@ -304,6 +319,7 @@
       },
       infoText: {
         en: 'Lightning on YOU',
+        ja: '自分に雷',
         de: 'Blitz auf DIR',
       },
     },
@@ -319,6 +335,7 @@
       },
       alertText: {
         en: 'Drop Lightning Soon',
+        ja: '雷来るよ',
         de: 'Gleich Blitz ablegen',
       },
     },
@@ -329,6 +346,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Pass Nisi',
+        ja: 'ナイサイ渡して',
         de: 'Nisi weitergeben',
       },
     },
@@ -340,6 +358,7 @@
       delaySeconds: 1,
       alertText: {
         en: 'Pass Nisi',
+        ja: 'ナイサイ渡して',
         de: 'Nisi weitergeben',
       },
     },
@@ -350,6 +369,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Pass Nisi',
+        ja: 'ナイサイ渡して',
         de: 'Nisi weitergeben',
       },
     },
@@ -362,6 +382,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Blue α Nisi',
+        ja: '青取って',
         de: 'blauen α Nisi holen',
       },
     },
@@ -374,6 +395,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Orange β Nisi',
+        ja: 'オレンジ取って',
         de: 'orangenen β Nisi holen',
       },
     },
@@ -386,6 +408,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Purple γ Nisi',
+        ja: '紫取って',
         de: 'lilanen γ Nisi holen',
       },
     },
@@ -398,6 +421,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Green δ Nisi',
+        ja: '緑取って',
         de: 'grünenen γ Nisi holen',
       },
     },
@@ -440,6 +464,7 @@
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
+          ja: 'スイッチ',
         };
       },
       alertText: function(data, matches) {
@@ -448,6 +473,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
@@ -455,6 +481,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ja: data.ShortName(matches[1]) + 'にタンクバスター',
           };
         }
       },
