@@ -25,6 +25,7 @@
               en: 'Tank Busters',
               de: 'Tank buster',
               fr: 'Tank busters',
+              ja: 'タンクバスター',
             };
           }
           if (data.liquidTank) {
@@ -32,12 +33,14 @@
               en: 'Tank Buster on' + data.ShortName(data.liquidTank),
               de: 'Tank buster',
               fr: 'Tank buster',
+              ja: 'タンクバスター',
             };
           }
           return {
             en: 'Tank Buster',
             de: 'Tank buster',
             fr: 'Tank buster',
+            ja: 'タンクバスター',
           };
         }
 
@@ -45,6 +48,7 @@
           if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank) {
             return {
               en: 'Tank Buster on YOU',
+              ja: '自分にタンクバスター',
             };
           }
         }
@@ -129,6 +133,7 @@
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
+        ja: 'プロティアン',
       },
     },
     {
@@ -166,6 +171,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Cleanse Throttle',
+        ja: '窒息',
       },
     },
     {
@@ -189,6 +195,7 @@
 
         return {
           en: '#' + number,
+          ja: number + '番',
         };
       },
     },
@@ -222,6 +229,7 @@
             en: 'Cleave on YOU',
             de: 'Cleave auf DIR',
             fr: 'Cleave sur vous',
+            ja: '自分にクリーブ',
           };
         }
         return {
@@ -229,6 +237,7 @@
           de: 'Knockback',
           fr: 'Poussée',
           cn: '击退',
+          ja: 'ノックバック',
         };
       },
     },
@@ -238,6 +247,7 @@
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
       alertText: {
         en: 'Out, Dodge Chakrams',
+        ja: '外へ',
       },
     },
     {
@@ -247,6 +257,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
+        ja: '中へ',
       },
     },
     {
@@ -269,6 +280,7 @@
       },
       infoText: {
         en: 'Water on YOU',
+        ja: '自分に水',
       },
     },
     {
@@ -283,6 +295,7 @@
       },
       alertText: {
         en: 'Drop Water Soon',
+        ja: '水来るよ',
       },
     },
     {
@@ -293,6 +306,7 @@
       },
       infoText: {
         en: 'Lightning on YOU',
+        ja: '自分に雷',
       },
     },
     {
@@ -307,6 +321,7 @@
       },
       alertText: {
         en: 'Drop Lightning Soon',
+        ja: '雷来るよ',
       },
     },
     {
@@ -316,6 +331,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Pass Nisi',
+        ja: 'ナイサイ渡して',
       },
     },
     {
@@ -326,6 +342,7 @@
       delaySeconds: 1,
       alertText: {
         en: 'Pass Nisi',
+        ja: 'ナイサイ渡して',
       },
     },
     {
@@ -335,6 +352,7 @@
       delaySeconds: 8,
       alertText: {
         en: 'Pass Nisi',
+        ja: 'ナイサイ渡して',
       },
     },
     {
@@ -346,6 +364,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Blue α Nisi',
+        ja: '青取って',
       },
     },
     {
@@ -357,6 +376,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Orange β Nisi',
+        ja: 'オレンジ取って',
       },
     },
     {
@@ -368,6 +388,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Purple γ Nisi',
+        ja: '紫取って',
       },
     },
     {
@@ -379,6 +400,7 @@
       delaySeconds: 32,
       alarmText: {
         en: 'Get Green δ Nisi',
+        ja: '緑取って',
       },
     },
     {
@@ -420,6 +442,7 @@
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
+          ja: 'スイッチ',
         };
       },
       alertText: function(data, matches) {
@@ -428,6 +451,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
@@ -435,8 +459,82 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ja: data.ShortName(matches[1]) + 'にタンクバスター',
           };
         }
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Living Liquid': 'リビングリキッド',
+        'Engage!': '戦闘開始！',
+        'Liquid Hand': 'リキッドハンド',
+        'Liquid Rage': 'リキッドレイジ',
+        'Jagd Doll': 'ヤークトドール',
+        'Cruise Chaser': 'クルーズチェイサー',
+        'Brute Justice': 'ブルートジャスティス',
+        'Alexander Prime': 'アレキサンダープライム',
+        'Plasmasphere': 'プラズマスフィア',
+        'Steam Chakram': 'スチームチャクラム',
+        'Alexander': 'アレキサンダー',
+        'Perfect Alexander': 'パーフェクトアレキサンダー',
+      },
+      'replaceText': {
+        'attack': '攻撃',
+        'Fluid Swing': 'フルイドスイング',
+        'Cascade': 'カスケード',
+        'Vice and Virtue': 'ヴァイス・アンド・ヴァーチュー',
+        'Hand of Prayer/Parting': 'ハンド・オブ・プレイヤー/パーティング',
+        'Rage Wave': 'レイジウェイブ',
+        'Fluid Strike': 'フルイドストライク',
+        'Exhaust': 'エグゾースト',
+        'Hand of Pain': 'ハンド・オブ・ペイン',
+        'Protean Wave': 'プロティアンウェイブ',
+        'Sluice': 'スルース',
+        'Splash': 'スプラッシュ',
+        'Drainage': 'ドレナージ',
+        'Liquid Gaol': 'リキッドジェイル',
+        'Pressurize': '水圧充填',
+        'Hawk Blaster': 'ホークブラスター',
+        'Alpha Sword': 'アルファソード',
+        'Middle Blaster': 'ミドルブラスター',
+        'Super Blassty Charge': 'スーパーブラスティ・チャージ',
+        'J Kick': 'ジャスティスキック',
+        'Whirlwind': '竜巻',
+        'Judgment Nisi': 'ジャッジメントナイサイ',
+        'Link-Up': 'システムリンク',
+        'Optical Sight': '照準',
+        'Chakrams': 'チャクラム',
+        'Photon': 'フォトン',
+        'Spin Crusher': 'スピンクラッシャー',
+        'Water and Thunder': '水/雷圧縮',
+        'Earth Missile': 'アースミサイル',
+        'Hidden Minefield': 'ステルス地雷散布',
+        'Enumeration': 'カウント',
+        'Limit Cut': 'リミッターカット',
+        'Flamethrower': '大火炎放射',
+      },
+      '~effectNames': {
+        'Final Judgment: Decree Nisi A': '最後の審判：仮判決α',
+        'Final Judgment: Decree Nisi B': '最後の審判：仮判決β',
+        'Final Judgment: Decree Nisi Γ': '最後の審判：仮判決γ',
+        'Final Judgment: Decree Nisi Δ': '最後の審判：仮判決δ',
+        'Compressed Water': '水属性圧縮',
+        'Compressed Lightning': '雷属性圧縮',
+        'Throttle': '窒息',
+        'House Arrest': '確定判決：接近強制命令',
+        'Restraining Order': '確定判決：接近禁止命令',
+        'Shared Sentence': '確定判決：集団罰',
+        'Final Word: Contact Prohibition': '確定判決：接触禁止命令',
+        'Final Word: Contact Regulation': '確定判決：接触保護命令',
+        'Final Word: Escape Detection': '確定判決：逃亡監察命令',
+        'Final Word: Escape Prohibition': '確定判決：逃亡禁止命令',
+        'Aggravated Assault': '確定判決：加重罰',
+        'Contact Regulation Ordained': '接触保護命令',
+        'Escape Detection Ordained': '逃亡監察命令',
       },
     },
   ],

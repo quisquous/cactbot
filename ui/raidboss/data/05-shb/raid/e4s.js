@@ -15,6 +15,7 @@
         en: 'Tank Busters',
         de: 'Tank buster',
         fr: 'Tank busters',
+        ja: 'タンクバスター',
       },
     },
   ],
@@ -56,6 +57,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンクバスター',
           };
         }
       },
@@ -71,6 +73,7 @@
           en: 'Buster on ' + data.ShortName(matches[1]),
           de: 'Tankbuster auf ' + data.ShortName(matches[1]),
           fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          ja: data.ShortName(matches[1]) + 'にタンクバスター',
         };
       },
     },
@@ -84,6 +87,7 @@
         en: 'Spread Marker',
         de: 'Verteilen-Marker',
         fr: 'Marque de dispersion',
+        ja: '黄色: 散開',
       },
     },
     {
@@ -98,6 +102,7 @@
         en: 'Look for Evil Earth Marker',
         de: 'Schau nach den Grimm der Erde Marker',
         fr: 'Repérez une marque de Terre maléfique',
+        ja: '範囲見て',
       },
     },
     {
@@ -110,6 +115,7 @@
         en: 'Stack Marker',
         de: 'Sammeln-Marker',
         fr: 'Marque de package',
+        ja: '橙色: スタック',
       },
     },
     {
@@ -126,6 +132,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ja: 'AoE',
       },
     },
     {
@@ -139,6 +146,7 @@
         en: 'Knockback',
         de: 'Rückstoß',
         fr: 'Poussée',
+        ja: 'ノックバック',
       },
     },
     {
@@ -152,6 +160,7 @@
         en: 'Landslide: In Front',
         de: 'Armberge: Vor ihm',
         fr: 'Devant',
+        ja: 'ランスラ: 正面へ',
       },
     },
     {
@@ -165,6 +174,7 @@
         en: 'Get to Sides',
         de: 'Zur Seite',
         fr: 'Sur les côtés',
+        ja: '横へ',
       },
     },
     {
@@ -178,6 +188,7 @@
         en: 'Back Corners',
         de: 'Hintere Ecken',
         fr: 'Coins arrière',
+        ja: 'ランスラくるよ',
       },
     },
     {
@@ -190,6 +201,7 @@
         en: 'Bomb on YOU',
         de: 'Bombe auf DIR',
         fr: 'Bombe sur VOUS',
+        ja: 'マーカーついた',
       },
     },
     {
@@ -241,6 +253,7 @@
               en: 'Go Cardinals First',
               de: 'Zuerst zu den Seiten gehen',
               fr: 'Allez aux cardinaux en premier',
+              ja: '十字',
             };
           }
           // Cardinals dropped first.  Corners safe.
@@ -263,6 +276,7 @@
         en: 'Wheels: On Sides',
         de: 'Räder: Zur Seite',
         fr: 'Roues : Sur les côtés',
+        ja: '車輪: 横へ',
       },
     },
     {
@@ -276,6 +290,7 @@
         en: 'Tank Charge',
         de: 'Tank wird angefahren',
         fr: 'Charge tank',
+        ja: 'タンクに突進',
       },
     },
     {
@@ -289,6 +304,7 @@
         en: 'Get Under',
         de: 'Unter ihn',
         fr: 'Sous le boss',
+        ja: '中へ',
       },
     },
     {
@@ -305,6 +321,7 @@
         en: 'Big aoe',
         de: 'Große AoE',
         fr: 'Gros dégâts de zone',
+        ja: '強AoE',
       },
     },
     {
@@ -318,6 +335,7 @@
         en: 'Left, Then Right',
         de: 'Links, dann Rechts',
         fr: 'Gauche puis droite',
+        ja: '左 => 右',
       },
     },
     {
@@ -331,6 +349,7 @@
         en: 'Right, Then Left',
         de: 'Rechts, dann Links',
         fr: 'Droite puis gauche',
+        ja: '右 => 左',
       },
     },
     {
@@ -344,6 +363,7 @@
         en: 'Left, Stay Left',
         de: 'Links, Links bleiben',
         fr: 'Gauche puis restez',
+        ja: 'ずっと左',
       },
     },
     {
@@ -357,6 +377,7 @@
         en: 'Right, Stay Right',
         de: 'Rechts, Rechts bleiben',
         fr: 'Droite puis restez',
+        ja: 'ずっと右',
       },
     },
     {
@@ -370,6 +391,7 @@
         en: 'Knockback',
         de: 'Rückstoß',
         fr: 'Poussée',
+        ja: 'ノックバック',
       },
     },
     {
@@ -380,6 +402,7 @@
       },
       alertText: {
         en: 'Weight, Get Out',
+        ja: '青: 離れて',
         de: 'Schwere, Raus gehen',
         fr: 'Poids, éloignez-vous',
       },
@@ -391,6 +414,7 @@
         if (data.role != 'tank') {
           return {
             en: 'Away from Tanks',
+            ja: 'タンクから離れて',
             de: 'Weg von den Tanks',
             fr: 'Loin des tanks',
           };
@@ -398,12 +422,14 @@
         if (matches[1] == data.me) {
           return {
             en: 'Stack on YOU',
+            ja: '自分にシェア',
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
+          ja: data.ShortName(matches[1]) + 'にシェア',
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
         };
@@ -417,6 +443,7 @@
       },
       alertText: {
         en: 'Gaol on YOU',
+        ja: '自分にジェイル',
         de: 'Gefängnis auf DIR',
         fr: 'Geôle sur VOUS',
       },
@@ -438,6 +465,7 @@
         en: 'GET OFF FRONT RIGHT',
         de: 'VON VORNE RECHTS RUNTER',
         fr: 'PARTEZ DE L\'AVANT DROITE',
+        ja: '右前壊れるよ',
       },
     },
     {
@@ -451,6 +479,7 @@
         en: 'GET OFF BACK RIGHT',
         de: 'VON HINTEN RECHTS RUNTER',
         fr: 'PARTEZ DE L\'ARRIERE DROITE',
+        ja: '右後ろ壊れるよ',
       },
     },
     {
@@ -464,6 +493,7 @@
         en: 'GET OFF BACK LEFT',
         de: 'VON HINTEN LINKS RUNTER',
         fr: 'PARTEZ DE L\'ARRIERE GAUCHE',
+        ja: '左後ろ壊れるよ',
       },
     },
     {
@@ -477,6 +507,7 @@
         en: 'GET OFF FRONT LEFT',
         de: 'VON VORNE LINKS RUNTER',
         fr: 'PARTEZ DE L\'AVANT GAUCHE',
+        ja: '左前壊れるよ',
       },
     },
     {
@@ -491,6 +522,7 @@
       },
       infoText: {
         en: 'aoe',
+        ja: '激震',
         de: 'AoE',
         fr: 'Dégâts de zone',
       },
@@ -625,6 +657,7 @@
         'Granite Gaol': 'グラナイト・ジェイル',
         'Engage!': '戦闘開始！',
         'Bomb Boulder': 'ボムボルダー',
+        'Titan Maximum': 'マキシタイタン',
       },
       'replaceText': {
         'attack': '攻撃',

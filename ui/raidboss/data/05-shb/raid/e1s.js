@@ -76,6 +76,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ja: 'AoE',
       },
     },
     {
@@ -91,6 +92,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ja: 'AoE',
       },
     },
     {
@@ -106,6 +108,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ja: 'AoE',
       },
     },
     {
@@ -122,6 +125,7 @@
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
+          ja: 'タンクスイッチ',
         };
       },
       alertText: function(data, matches) {
@@ -130,6 +134,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
@@ -137,6 +142,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ja: data.ShortName(matches[1]) + 'にタンクバスター',
           };
         }
       },
@@ -151,6 +157,7 @@
         en: 'Under',
         de: 'Unter den Boss',
         fr: 'Sous le boss',
+        ja: '中へ',
       },
     },
     {
@@ -162,6 +169,7 @@
       alertText: {
         en: 'Cross Spread',
         de: 'Verteilen',
+        ja: '散開',
         fr: 'Ecartez-vous en croix',
       },
     },
@@ -176,12 +184,14 @@
           return {
             en: 'Get In, Spread',
             de: 'Rein gehen, verteilen',
+            ja: '中で散開',
             fr: 'Intérieur, écartez-vous',
           };
         }
         return {
           en: 'In, Stack Behind',
           de: 'Rein, hinten stacken',
+          ja: '背面集合',
           fr: 'Intérieur, pack derrière',
         };
       },
@@ -281,6 +291,7 @@
       alertText: {
         en: 'Puddle Spread',
         de: 'Flächen verteilen',
+        ja: '離れて散開',
         fr: 'Ecartez-vous',
       },
     },
@@ -293,6 +304,7 @@
       alertText: {
         en: 'Stack With Partner',
         de: 'Mit Partner stacken',
+        ja: '相方とスタック',
         fr: 'Packez-vous avec votre partenaire',
       },
     },
@@ -306,6 +318,7 @@
         en: 'Tank Laser on YOU',
         de: 'Tank Laser auf DIR',
         fr: 'Tank laser sur VOUS',
+        ja: '自分にレーザー',
       },
     },
     {
@@ -320,6 +333,7 @@
       infoText: {
         en: 'Stack in front of tank',
         de: 'Vorne mit dem Tank stacken',
+        ja: '左右に分かれて内側へ',
         fr: 'Packez-vous devant le tank',
       },
     },
@@ -337,12 +351,14 @@
           return {
             en: 'Pass Prey to DPS',
             de: 'Marker einem DPS geben',
+            ja: 'DPSに移して',
             fr: 'Donnez la marque à un DPS',
           };
         }
         return {
           en: 'Pass Prey to Tank',
           de: 'Marker einem Tank geben',
+          ja: 'タンクに移して',
           fr: 'Donnez la marque à un Tank',
         };
       },
@@ -364,6 +380,7 @@
       alertText: {
         en: 'Take prey from healer',
         de: 'Marker vom Heiler nehmen',
+        ja: 'ヒーラーからマーカー取って',
         fr: 'Prenez la marque du healer',
       },
     },
@@ -380,6 +397,7 @@
       alertText: {
         en: 'Silence Guardian',
         de: 'Stumm auf Hüter ',
+        ja: '沈黙',
         fr: 'Interrompez le gardien',
       },
     },
@@ -393,6 +411,7 @@
         en: 'Get Behind',
         de: 'Hinter den Boss',
         fr: 'Derrière le boss',
+        ja: '背面へ',
       },
     },
     {
@@ -404,6 +423,7 @@
       infoText: {
         en: 'Get Outside Your Orb',
         de: 'Geh zu deinem Orb',
+        ja: 'ピュアレイを外へ誘導',
         fr: 'Allez à l\'extérieur de votre orbe',
       },
     },
