@@ -146,6 +146,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Drainage tether on YOU',
+        ja: '自分にドレナージ',
       },
     },
     {
@@ -159,6 +160,7 @@
           return;
         return {
           en: 'Focus Living Liquid',
+          ja: 'リビングリキッドを攻撃',
         };
       },
     },
