@@ -219,16 +219,16 @@
       alertText: function(data, matches) {
         if (parseInt(matches.id) & 1 == 1) {
           return {
-            en: 'Knockback',
-            de: 'Knockback',
-            fr: 'Poussée',
-            cn: '击退',
+            en: 'Cleave on YOU',
+            de: 'Cleave auf DIR',
+            fr: 'Cleave sur vous',
           };
         }
         return {
-          en: 'Cleave on YOU',
-          de: 'Cleave auf DIR',
-          fr: 'Cleave sur vous',
+          en: 'Knockback',
+          de: 'Knockback',
+          fr: 'Poussée',
+          cn: '击退',
         };
       },
     },
