@@ -14,6 +14,11 @@ let regexCaptureTest = (func, lines) => {
   for (let i = 0; i < lines.length; ++i) {
     let line = lines[i];
 
+    // Undefined params (default capture).
+    let undefinedParamsMatch = line.match(func());
+    assert.isNotNull(undefinedParamsMatch, '' + func() + ' did not match ' + line);
+    assert.notPropertyVal(undefinedParamsMatch, 'groups', undefined);
+
     // Empty params (default capture).
     let emptyParamsMatch = line.match(func({}));
     assert.isNotNull(emptyParamsMatch, '' + func({}) + ' did not match ' + line);

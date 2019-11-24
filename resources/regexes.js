@@ -30,6 +30,8 @@ var Regexes = {
   // fields: source, id, ability, target, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'startsUsing', ['source', 'id', 'ability', 'target', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 14:' +
@@ -51,6 +53,8 @@ var Regexes = {
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   ability: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'ability', ['source', 'id', 'ability', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
@@ -69,6 +73,8 @@ var Regexes = {
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   abilityFull: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'abilityFull',
         ['source', 'id', 'ability', 'target', 'flags', 'x', 'y', 'z', 'heading', 'capture']);
     let capture = trueIfUndefined(f.capture);
@@ -90,6 +96,8 @@ var Regexes = {
   // fields: target, id, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'headMarker', ['target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1B:\\y{ObjectId}:' +
@@ -101,6 +109,8 @@ var Regexes = {
   // fields: name, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
   addedCombatant: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'addedCombatant', ['name', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:\\y{ObjectId}:Added new combatant ' +
@@ -111,6 +121,8 @@ var Regexes = {
   // fields: id, name, hp, x, y, z, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'addedCombatantFull', ['id', 'name', 'hp', 'x', 'y', 'z', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
@@ -127,6 +139,8 @@ var Regexes = {
   // fields: name, hp, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#04-removecombatant
   removingCombatant: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'removingCombatant', ['name', 'hp', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 04:\\y{ObjectId}:Removing combatant ' +
@@ -138,6 +152,8 @@ var Regexes = {
   // fields: target, effect, source, duration, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'gainsEffect', ['target', 'effect', 'source', 'duration', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1A:\\y{ObjectId}:' +
@@ -155,6 +171,8 @@ var Regexes = {
   // fields: target, effect, source, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'losesEffect', ['target', 'effect', 'source', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1E:\\y{ObjectId}:' +
@@ -169,6 +187,8 @@ var Regexes = {
   // fields: source, target, id, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#23-networktether
   tether: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'tether', ['source', 'target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 23:\\y{ObjectId}:' +
@@ -183,6 +203,8 @@ var Regexes = {
   // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   echo: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'echo', ['code', 'line', 'capture']);
     return Regexes.gameLog({
       line: f.line,
@@ -194,6 +216,8 @@ var Regexes = {
   // fields: code, line, name, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   dialog: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'dialog', ['code', 'line', 'name', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
@@ -206,6 +230,8 @@ var Regexes = {
   // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   message: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'message', ['code', 'line', 'capture']);
     return Regexes.gameLog({
       line: f.line,
@@ -217,6 +243,8 @@ var Regexes = {
   // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   gameLog: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
     validateParams(f, 'gameLog', ['code', 'line', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
