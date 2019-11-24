@@ -90,6 +90,6 @@ Options.Triggers = [
         },
       };
     },
-  }
+  },
   // ...more triggers here...
 ];
