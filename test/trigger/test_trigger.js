@@ -185,11 +185,11 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     }
 
     if (captures > 0) {
-      if (!containsMatchesParam) {
-        console.error(`${file}: Missing matches param for '${currentTrigger.id}'.`);
-        exitCode = 1;
-      } else if (!containsMatches) {
+      if (!containsMatches) {
         console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
+        exitCode = 1;
+      } else if (!containsMatchesParam) {
+        console.error(`${file}: Missing matches param for '${currentTrigger.id}'.`);
         exitCode = 1;
       }
     } else {
