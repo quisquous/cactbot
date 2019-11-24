@@ -12,32 +12,34 @@
 // always (or never) want to know about it, rather than hiding the logic inside
 // the tankbuster callback with a "is healer" check.
 
-// TODO: should these functions take named args like regexes for
-// future-proofing?  or is it unlikely that anything will want more than
-// severity in 95% of cases?  or in those cases, we could have like
-// tankbusterNoHealerNotice instead of options?
-//
-// TODO: verify npm run test fails if asserts fail.
-//
-// TODO: using `...{key: value}` will overwrite existing values of key.  ...is
-// this a desired overriding feature? should we probhit this and test?
-//
-// TODO: is it awkward to have the ... construction? would it be better to just
-// have a single trigger field called response that encompases all texts?
-//
-// TODO: add a test calling each of these functions with various sevs, verify
-// that each returns a valid object with some text
+const triggerFunctions = [
+  'alarmText',
+  'alertText',
+  'condition',
+  'delaySeconds',
+  'disabled',
+  'durationSeconds',
+  'groupTTS',
+  'id',
+  'infoText',
+  'preRun',
+  'run',
+  'sound',
+  'soundVolume',
+  'suppressSeconds',
+  'tts',
+];
+
+const severityMap = {
+  'info': 'infoText',
+  'alert': 'alertText',
+  'alarm': 'alarmText',
+};
 
 let getText = (sev) => {
-  let texts = {
-    'info': 'infoText',
-    'alert': 'alertText',
-    'alarm': 'alarmText',
-  };
-  console.assert(text in texts);
-
-  let text = texts[sev];
-  return text;
+  if (!(sev in severityMap))
+    throw new Error(`Invalid severity: ${sev}.`);
+  return severityMap[sev];
 };
 
 let defaultInfoText = (sev) => {
@@ -528,5 +530,10 @@ let Responses = {
   },
 };
 
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Responses;
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    responses: Responses,
+    triggerFunctions: triggerFunctions,
+    severityMap: severityMap,
+  };
+}

@@ -9,30 +9,14 @@
 let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
 let Conditions = require('../../resources/conditions.js');
-let Responses = require('../../resources/responses.js');
+let responseModule = require('../../resources/responses.js');
+let Responses = responseModule.responses;
+let triggerFunctions = responseModule.triggerFunctions;
 let fs = require('fs');
 
 let exitCode = 0;
 
 let inputFilename = String(process.argv.slice(2));
-
-const triggerFunctions = [
-  'alarmText',
-  'alertText',
-  'condition',
-  'delaySeconds',
-  'disabled',
-  'durationSeconds',
-  'groupTTS',
-  'id',
-  'infoText',
-  'preRun',
-  'run',
-  'sound',
-  'soundVolume',
-  'suppressSeconds',
-  'tts',
-];
 
 const regexLanguages = [
   'regex',
