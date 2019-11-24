@@ -25,7 +25,6 @@ Options.MinimumTimeForPullMistake = 0.4;
 // each fight in the files inside of this directory:
 // https://github.com/quisquous/cactbot/tree/master/ui/oopsyraidsy/data/
 Options.DisabledTriggers = {
-  'General Rabbit Medium': true,
   'General Early Pull': true,
   'Test Bootshine': true,
 };
@@ -53,7 +52,9 @@ Options.AbilityIdNameMap['26CA'] = 'White Swirly';
 // https://github.com/quisquous/cactbot/tree/master/ui/oopsyraidsy/data/
 //
 // Here's an example trigger to show a line in the mistake log when
-// you crit adlo yourself in Summerford Farms.
+// you crit adlo yourself in Summerford Farms, and a trigger to show
+// a line in the mistake log when you or a party member casts Rabbit Medium
+// (caused when ninjas mess up their mudras).
 Options.Triggers = [
   {
     zoneRegex: /^Middle La Noscea$/,
@@ -71,5 +72,24 @@ Options.Triggers = [
       },
     ],
   },
+  {
+    id: 'General Rabbit Medium',
+    abilityRegex: gLang.kAbility.RabbitMedium,
+    condition: function(e, data) {
+      return data.IsPlayerId(e.attackerId);
+    },
+    mistake: function(e, data) {
+      return {
+        type: 'warn',
+        blame: e.attackerName,
+        text: {
+          en: 'bunny',
+          de: 'Hase',
+          fr: e.abilityName,
+          ja: e.abilityName,
+        },
+      };
+    },
+  }
   // ...more triggers here...
 ];
