@@ -39,6 +39,6 @@
           return;
         delete data.lostFood[e.targetName];
       },
-    }
+    },
   ],
 }];
