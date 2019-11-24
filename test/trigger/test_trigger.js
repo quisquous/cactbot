@@ -137,6 +137,19 @@ let testUnnecessaryGroupRegex = function(file, contents) {
   }
 };
 
+// https://stackoverflow.com/questions/1007981/
+// Parsing code with regular expressions is always a great idea.
+let getParamNames = function(func) {
+  return func.toString()
+    .replace(/[/][/].*$/mg, '') // strip single-line comments
+    .replace(/\s+/g, '') // strip white space
+    .replace(/[/][*][^/*]*[*][/]/g, '') // strip multi-line comments
+    .replace(/\)(?:{|=>).*$/, '') // remove trailing paren
+    .replace(/^[^(]*[(]/, '') // remove leading paren
+    .replace(/=[^,]+/g, '') // strip any ES6 defaults
+    .split(/,(?![^{]*})/g).filter(Boolean); // split & filter [""]
+};
+
 let testInvalidCapturingGroupRegex = function(file, contents) {
   let json = eval(contents);
 
@@ -144,11 +157,14 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     let currentTrigger = json[0].triggers[i];
 
     let containsMatches = false;
+    let containsMatchesParam = false;
 
-    for (let j = 0; !containsMatches && j < triggerFunctions.length; j++) {
+    for (let j = 0; j < triggerFunctions.length; j++) {
       let currentTriggerFunction = currentTrigger[triggerFunctions[j]];
-      if (typeof currentTriggerFunction !== 'undefined' && currentTriggerFunction !== null)
-        containsMatches = currentTriggerFunction.toString().includes('matches');
+      if (typeof currentTriggerFunction !== 'undefined' && currentTriggerFunction !== null) {
+        containsMatches |= currentTriggerFunction.toString().includes('matches');
+        containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+      }
     }
 
     let captures = -1;
@@ -169,7 +185,10 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     }
 
     if (captures > 0) {
-      if (!containsMatches) {
+      if (!containsMatchesParam) {
+        console.error(`${file}: Missing matches param for '${currentTrigger.id}'.`);
+        exitCode = 1;
+      } else if (!containsMatches) {
         console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
         exitCode = 1;
       }

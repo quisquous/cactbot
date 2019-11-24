@@ -104,7 +104,7 @@
       regexDe: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dunkler Orbis on (\y{Name})/,
       regexFr: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Orbe ténébreux on (\y{Name})/,
       regexJa: /14:10FC:(?:アシエン・イゲオルム|アシエン・ラハブレア) starts using ダークオーブ on (\y{Name})/,
-      infoText: function(data) {
+      infoText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
             en: 'Tank buster on YOU',
