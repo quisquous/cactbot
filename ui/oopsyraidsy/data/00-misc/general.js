@@ -39,25 +39,6 @@
           return;
         delete data.lostFood[e.targetName];
       },
-    },
-    {
-      id: 'General Rabbit Medium',
-      abilityRegex: gLang.kAbility.RabbitMedium,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.attackerId);
-      },
-      mistake: function(e, data) {
-        return {
-          type: 'warn',
-          blame: e.attackerName,
-          text: {
-            en: 'bunny',
-            de: 'Hase',
-            fr: e.abilityName,
-            ja: e.abilityName,
-          },
-        };
-      },
-    },
+    }
   ],
 }];
