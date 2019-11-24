@@ -108,7 +108,7 @@ class Fisher {
         'nocatch': /00:08c3:([\w\s-']+)?(?:\u3044\u3064\u306e\u9593\u306b\u304b\u91e3\u308a\u990c\u3092\u3068\u3089\u308c\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u3044\u3064\u306e\u9593\u306b\u304b.+\u3092\u30ed\u30b9\u30c8\u3057\u3066\u3057\u307e\u3063\u305f\uff01|\u3044\u3064\u306e\u9593\u306b\u304b\u91e3\u308a\u990c\u3092\u3068\u3089\u308c\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u91e3\u308a\u91dd\u306b\u304b\u304b\u3063\u305f\u9b5a\u306b\u9003\u3052\u3089\u308c\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u30e9\u30a4\u30f3\u30d6\u30ec\u30a4\u30af\uff01\uff01|\u4f55\u3082\u304b\u304b\u3089\u306a\u304b\u3063\u305f\u2026\u2026\u3002\n\n\u91e3\u308a\u990c\u304c\u91e3\u308a\u5834\u306b\u3042\u3063\u3066\u306a\u3044\u3088\u3046\u3060\u3002|\u4f55\u3082\u304b\u304b\u3089\u306a\u304b\u3063\u305f\u2026\u2026\u3002|.+\u306f\u91e3\u308a\u3092\u4e2d\u65ad\u3057\u305f\u3002|\u9b5a\u306b\u9003\u3052\u3089\u308c\u3001.+\u3092\u30ed\u30b9\u30c8\u3057\u3066\u3057\u307e\u3063\u305f\u2026\u2026\u3002|\u9b5a\u305f\u3061\u306b\u8b66\u6212\u3055\u308c\u3066\u3057\u307e\u3063\u305f\u3088\u3046\u3060\u2026\u2026|.+\u3092\u91e3\u308a\u4e0a\u3052\u305f\u304c\u3001\u3053\u308c\u4ee5\u4e0a\u6301\u3066\u306a\u3044\u305f\u3081\u30ea\u30ea\u30fc\u30b9\u3057\u305f\u3002)/,
         'mooch': /00:08c3:(?:[\w\s-']+)\u306f\u91e3\u308a\u4e0a\u3052\u305f.+\u3092\u614e\u91cd\u306b\u6295\u3052\u8fbc\u307f\u3001\u6cf3\u304c\u305b\u91e3\u308a\u3092\u8a66\u307f\u305f\u3002/,
         'quit': /00:08c3:(?:[\w\s-']+)?(?:\u306f\u91e3\u308a\u3092\u7d42\u3048\u305f\u3002|\u6226\u95d8\u4e0d\u80fd\u306b\u306a\u3063\u305f\u305f\u3081\u3001\u91e3\u308a\u304c\u4e2d\u65ad\u3055\u308c\u307e\u3057\u305f\u3002|\u306f\u91e3\u308a\u3092\u7d42\u3048\u305f\u3002|\u6575\u304b\u3089\u653b\u6483\u3092\u53d7\u3051\u305f\u305f\u3081\u3001\u91e3\u308a\u304c\u4e2d\u65ad\u3055\u308c\u307e\u3057\u305f\u3002)/,
-          'discovered': /00:08c3:\u91E3\u308A\u624B\u5E33\u306B\u65B0\u3057\u3044\u91E3\u308A\u5834「([\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf]+)」\u306E\u60C5\u5831\u3092\u8A18\u9332\u3057\u305F\uFF01/,
+        'discovered': /00:08c3:\u91E3\u308A\u624B\u5E33\u306B\u65B0\u3057\u3044\u91E3\u308A\u5834「([\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf]+)」\u306E\u60C5\u5831\u3092\u8A18\u9332\u3057\u305F\uFF01/,
       },
       'cn': {
         'undiscovered': /\u672a\u77e5\u9493\u573a/,
@@ -122,7 +122,7 @@ class Fisher {
         'snaggain': /00:08ae:(⇒ )?(?:[\w\s-'\u4e00-\u9fa5·]+)附加了“.*钓组.*”效果。/,
         'snagfade': /00:08b0:(?:[\w\s-'\u4e00-\u9fa5·]+)的“.*钓组.*”状态效果消失了。/,
         'quit': /00:08c3:(?:[\w\s-'\u4e00-\u9fa5·]+)?(?:收回了鱼线。|陷入了战斗不能状态，钓鱼中断。|收回了鱼线。|受到了敌人的攻击，钓鱼中断。)/,
-        'discovered':/00:08c3:将新钓场.*([\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·]+\d*).*记录到了钓鱼笔记中！/,
+        'discovered': /00:08c3:将新钓场.*([\u3000-\u30ff\u3400-\u4dbf\u4e00-\u9faf·]+\d*).*记录到了钓鱼笔记中！/,
       },
     };
 
@@ -203,34 +203,33 @@ class Fisher {
     this.castGet = null;
     this.fishing = true;
 
-    //undiscovered fishing hole
+    // undiscovered fishing hole
     if (this.regex[Options.Language]['undiscovered'].test(place)) {
       // store this for now
       // if we catch anything we'll pull the data then
       // "data on 'x' is added to your fishing log" is printed before the catch
       this.place = place;
       this.ui.setPlace(this.place);
-      //clear previous fish data (if any)
+      // clear previous fish data (if any)
       this.ui.redrawFish({}, {});
 
       this.ui.startFishing();
       return;
-    } else {
-      // Set place, if it's unset
-      if (!this.place || !this.place.id) {
-        this.place = this.seaBase.getPlace(place);
-        // This lookup could fail and, for German,
-        // this.place.name may differ from place
-        // due to differing cast vs location names.
-        if (this.place.id)
-          this.ui.setPlace(this.place.name);
-      }
-      let _this = this;
-
-      this.updateFishData().then(function () {
-        _this.ui.startFishing();
-      });
     }
+    // Set place, if it's unset
+    if (!this.place || !this.place.id) {
+      this.place = this.seaBase.getPlace(place);
+      // This lookup could fail and, for German,
+      // this.place.name may differ from place
+      // due to differing cast vs location names.
+      if (this.place.id)
+        this.ui.setPlace(this.place.name);
+    }
+    let _this = this;
+
+    this.updateFishData().then(function() {
+      _this.ui.startFishing();
+    });
   }
 
   handleBite() {
@@ -312,7 +311,7 @@ class Fisher {
     this.ui.setPlace(null);
     this.element.style.opacity = 0;
   }
-  
+
   handleDiscover(place) {
     this.place = this.seaBase.getPlace(place);
     // This lookup could fail and, for German,
