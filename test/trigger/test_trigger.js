@@ -6,6 +6,7 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
+let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
 let fs = require('fs');
 
@@ -198,16 +199,22 @@ let testInvalidTriggerKeys = function(file, contents) {
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
-  testValidTriggerRegexLanguage(file, contents);
-  testWellFormedNewCombatantTriggerRegex(file, contents);
-  testWellFormedStartsUsingTriggerRegex(file, contents);
-  testWellFormedGainsEffectTriggerRegex(file, contents);
-  testWellFormedLosesEffectTriggerRegex(file, contents);
-  testBadCatchAllRegex(file, contents);
-  testObjectIdRegex(file, contents);
-  testUnnecessaryGroupRegex(file, contents);
-  testInvalidCapturingGroupRegex(file, contents);
-  testInvalidTriggerKeys(file, contents);
+  try {
+    testValidTriggerRegexLanguage(file, contents);
+    testWellFormedNewCombatantTriggerRegex(file, contents);
+    testWellFormedStartsUsingTriggerRegex(file, contents);
+    testWellFormedGainsEffectTriggerRegex(file, contents);
+    testWellFormedLosesEffectTriggerRegex(file, contents);
+    testBadCatchAllRegex(file, contents);
+    testObjectIdRegex(file, contents);
+    testUnnecessaryGroupRegex(file, contents);
+    testInvalidCapturingGroupRegex(file, contents);
+    testInvalidTriggerKeys(file, contents);
+  } catch (e) {
+    console.error(`Trigger error in ${file}.`);
+    console.error(e);
+    exitCode = 1;
+  }
 };
 
 testTriggerFile(inputFilename);

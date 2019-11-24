@@ -18,10 +18,10 @@
 
     {
       id: 'O5N Doom Strike',
-      regex: Regexes.startsUsing({ name: 'Phantom Train', id: '28A3' }),
-      regexDe: Regexes.startsUsing({ name: 'Phantomzug', id: '28A3' }),
-      regexFr: Regexes.startsUsing({ name: 'Train Fantôme', id: '28A3' }),
-      regexJa: Regexes.startsUsing({ name: '魔列車', id: '28A3' }),
+      regex: Regexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
+      regexDe: Regexes.startsUsing({ source: 'Phantomzug', id: '28A3' }),
+      regexFr: Regexes.startsUsing({ source: 'Train Fantôme', id: '28A3' }),
+      regexJa: Regexes.startsUsing({ source: '魔列車', id: '28A3' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {

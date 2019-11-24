@@ -6,6 +6,21 @@ let trueIfUndefined = (value) => {
   return !!value;
 };
 
+let validateParams = (f, funcName, params) => {
+  if (f === null)
+    return;
+  if (typeof f !== 'object')
+    return;
+  let keys = Object.keys(f);
+  for (let k = 0; k < keys.length; ++k) {
+    let key = keys[k];
+    if (params.indexOf(key) < 0) {
+      throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
+          `Valid params: ${JSON.stringify(params)}`);
+    }
+  }
+};
+
 // Node loading shenanigans.  'var' lets other files require() this file inside of
 // Node and put Regexes as a global without conflicting when redefining.
 /* eslint-disable no-var */
@@ -15,6 +30,7 @@ var Regexes = {
   // fields: source, id, ability, target, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (f) => {
+    validateParams(f, 'startsUsing', ['source', 'id', 'ability', 'target', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 14:' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
@@ -35,6 +51,7 @@ var Regexes = {
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   ability: (f) => {
+    validateParams(f, 'ability', ['source', 'id', 'ability', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':';
@@ -52,6 +69,8 @@ var Regexes = {
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   abilityFull: (f) => {
+    validateParams(f, 'abilityFull',
+        ['source', 'id', 'ability', 'target', 'flags', 'x', 'y', 'z', 'heading', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
@@ -71,6 +90,7 @@ var Regexes = {
   // fields: target, id, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (f) => {
+    validateParams(f, 'headMarker', ['target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1B:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':....:....:' +
@@ -81,6 +101,7 @@ var Regexes = {
   // fields: name, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
   addedCombatant: (f) => {
+    validateParams(f, 'addedCombatant', ['name', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:\\y{ObjectId}:Added new combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
@@ -90,6 +111,7 @@ var Regexes = {
   // fields: id, name, hp, x, y, z, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (f) => {
+    validateParams(f, 'addedCombatantFull', ['id', 'name', 'hp', 'x', 'y', 'z', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
       ':Added new combatant ' + Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
@@ -105,6 +127,7 @@ var Regexes = {
   // fields: name, hp, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#04-removecombatant
   removingCombatant: (f) => {
+    validateParams(f, 'removingCombatant', ['name', 'hp', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 04:\\y{ObjectId}:Removing combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
@@ -115,6 +138,7 @@ var Regexes = {
   // fields: target, effect, source, duration, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (f) => {
+    validateParams(f, 'gainsEffect', ['target', 'effect', 'source', 'duration', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1A:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
@@ -131,6 +155,7 @@ var Regexes = {
   // fields: target, effect, source, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (f) => {
+    validateParams(f, 'losesEffect', ['target', 'effect', 'source', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1E:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
@@ -144,6 +169,7 @@ var Regexes = {
   // fields: source, target, id, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#23-networktether
   tether: (f) => {
+    validateParams(f, 'tether', ['source', 'target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 23:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
@@ -154,9 +180,10 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: line, capture
+  // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   echo: (f) => {
+    validateParams(f, 'echo', ['code', 'line', 'capture']);
     return Regexes.gameLog({
       line: f.line,
       capture: f.capture,
@@ -164,9 +191,10 @@ var Regexes = {
     });
   },
 
-  // fields: line, name, capture
+  // fields: code, line, name, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   dialog: (f) => {
+    validateParams(f, 'dialog', ['code', 'line', 'name', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', '0044') + ':' +
@@ -175,9 +203,10 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: line, capture
+  // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   message: (f) => {
+    validateParams(f, 'message', ['code', 'line', 'capture']);
     return Regexes.gameLog({
       line: f.line,
       capture: f.capture,
@@ -188,6 +217,7 @@ var Regexes = {
   // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   gameLog: (f) => {
+    validateParams(f, 'gameLog', ['code', 'line', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
