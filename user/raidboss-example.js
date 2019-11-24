@@ -97,6 +97,9 @@ Options.LongSoundVolume = 1;
 // Volume between 0 and 1 to play the PullSound at.
 Options.PullSoundVolume = 1;
 
+// Remove these /* and */ comment lines to enable the example code below.
+/*
+
 // A set of nicknames to use for players, when trying to shorten names.
 Options.PlayerNicks = {
   'Darkest Edgelord': 'Mary',
@@ -124,7 +127,7 @@ Options.Triggers = [
   // (1) Simple example trigger: show text on screen when you die.
   {
     // Match every zone.
-    zoneRegex: /.*/,
+    zoneRegex: /./,
     triggers: [
       {
         regex: /:You are defeated by/,
@@ -261,3 +264,5 @@ Options.PerTriggerOptions = {
     },
   },
 };
+
+*/
