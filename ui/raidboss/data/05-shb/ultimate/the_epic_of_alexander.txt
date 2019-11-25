@@ -94,13 +94,14 @@ hideall "--sync--"
 374.8 "Double Rocket Punch" sync /:Brute Justice:4847:/
 382.1 "Super Jump" sync /:Brute Justice:484A:/
 384.4 "Apocalyptic Ray x5" duration 4.4
-395.0 "Whirlwind" sync /:Cruise Chaser:4B4F:/
-403.1 "Whirlwind" sync /:Cruise Chaser:4B4F:/
+395.0 "Whirlwind" sync /:Cruise Chaser:49C2:/
+403.1 "Whirlwind" sync /:Cruise Chaser:49C2:/
 413.7 "Final Sentence" sync /:Brute Justice:4856:/
 423.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:483A:/
 
 ### Transition 2: Cruise Chaser, Brute Justice and Alexander Prime
-500.0 "Temporal Stasis" sync /:Alexander Prime:485A:/ window 500,0
+492.0 "--sync--" sync /:485A:Alexander Prime/ window 500,0
+500.0 "Temporal Stasis" sync /:Alexander Prime:485A:/
 503.1 "Surety and Severity" sync /:Alexander Prime:4861:/
 505.1 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 505.2 "Flarethrower 1" #sync /:Brute Justice:486C:/
@@ -115,9 +116,7 @@ hideall "--sync--"
 ### Phase 3 Part 1 - Inception Formation
 537.9 "Inception Formation" sync /:Alexander Prime:486F:/
 552.4 "Judgment Crystal" sync /:Alexander Prime:485B:/
-556.6 "Aetheroplasm" #sync /:Plasmasphere:4872:/
 558.2 "Judgment Crystal + True Heart" sync /:Alexander Prime:485C:/
-560.8 "Aetheroplasm" #sync /:Plasmasphere:4872:/
 569.5 "Flarethrower 1" #sync /:Brute Justice:486C:/
 571.7 "Flarethrower 2" #sync /:Brute Justice:486C:/
 573.8 "Flarethrower 3" #sync /:Brute Justice:486C:/
@@ -140,19 +139,19 @@ hideall "--sync--"
 643.7 "Void Of Repentance" sync /:Alexander Prime:4866:/
 649.5 "Chakrams" #sync /:Steam Chakram:4855:/
 650.9 "Super Jump" sync /:Brute Justice:484A:/
-650.9 "Alpha Sword" #sync /:Cruise Chaser:4834:/
-652.4 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
+650.9 "#1 Alpha Sword" #sync /:Cruise Chaser:4834:/
+652.4 "#2 Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 653.3 "Apocalyptic Ray x5" duration 5
-655.2 "Alpha Sword" #sync /:Cruise Chaser:4834:/
+655.2 "#3 Alpha Sword" #sync /:Cruise Chaser:4834:/
 655.6 "Repentance 1" sync /:Alexander Prime:4869:/
-656.7 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
+656.7 "#4 Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 657.9 "Sacrament" sync /:Alexander Prime:4857:/
-659.5 "Alpha Sword" #sync /:Cruise Chaser:4834:/
+659.5 "#5 Alpha Sword" #sync /:Cruise Chaser:4834:/
 659.7 "Repentance 2" sync /:Alexander Prime:4868:/
-660.8 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
-663.6 "Alpha Sword" #sync /:Cruise Chaser:4834:/
+660.8 "#6 Super Blassty Charge" sync /:Cruise Chaser:49C3:/
+663.6 "#7 Alpha Sword" #sync /:Cruise Chaser:4834:/
 664.0 "Repentance 3" sync /:Alexander Prime:4867:/
-665.1 "Super Blassty Charge" sync /:Cruise Chaser:49C3:/
+665.1 "#8 Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 666.4 "Missile Command" sync /:Brute Justice:484D:/
 670.0 "Incinerating Heat" sync /:Alexander Prime:4A51:/
 674.6 "Enumeration" sync /:Brute Justice:4850:/
@@ -180,12 +179,12 @@ hideall "--sync--"
 957.6 "Fate Projection α" sync /:Perfect Alexander:487B:/
 ### Enigma Codex Revealed Events
 966.8 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:4B0[DE]:/
-972.7 "Fate: Obloquy, Solidarity and 2x Severity" sync /:Perfect Alexander:48A4:/
+972.7 "Fate: Obloquy, Solidarity and 3x Severity" sync /:Perfect Alexander:48A4:/
 974.9 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:489[9A]:/
 975.9 "Fate: Sacrament x3" duration 1.5
 982.6 "Fate Calibration α" sync /:Perfect Alexander:487C:/
 989.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
-992.8 "Obloquy, Solidarity and 2x Severity" sync  /:Perfect Alexander:4861:/
+992.8 "Obloquy, Solidarity and 3x Severity" sync  /:Perfect Alexander:4861:/
 993.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
 993.8 "Sacrament x3" duration 1.5
 
