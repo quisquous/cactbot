@@ -751,6 +751,8 @@ class EmulatorView {
     };
     let logs = this.selectedFight.logs;
     data.ShortName = function(name) {
+      if (!name)
+        return '(undefined)';
       return name.split(/\s/)[0];
     };
     // Reset local Suppression
@@ -787,8 +789,11 @@ class EmulatorView {
           continue;
 
         let matches = log.match(trigger.localRegex);
-        if (matches)
+        if (matches) {
+          if (matches.groups)
+            matches = matches.groups;
           this.RunTriggers(log, trigger, players, role, data, matches);
+        }
       }
     }
   }
