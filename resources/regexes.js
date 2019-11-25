@@ -69,19 +69,33 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: source, id, ability, target, flags, x, y, z, heading, capture
+  // fields: sourceId, source, id, ability, targetId, target, flags, x, y, z, heading, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   abilityFull: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'abilityFull',
-        ['source', 'id', 'ability', 'target', 'flags', 'x', 'y', 'z', 'heading', 'capture']);
+    validateParams(f, 'abilityFull', [
+      'sourceId',
+      'source',
+      'id',
+      'ability',
+      'targetId',
+      'target',
+      'flags',
+      'x',
+      'y',
+      'z',
+      'heading',
+      'capture',
+    ]);
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1[56]:' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
-      Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ':\\y{ObjectId}:' +
+      Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'flags', f.flags, '.*?') + ':' +
       '.*:' +
@@ -184,16 +198,17 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: source, target, id, capture
+  // fields: source, sourceId, target, targetId, id, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#23-networktether
   tether: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'tether', ['source', 'target', 'id', 'capture']);
+    validateParams(f, 'tether', ['source', 'sourceId', 'target', 'targetId', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{Timestamp} 23:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 23:' +
+      Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
-      ':\\y{ObjectId}:' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
