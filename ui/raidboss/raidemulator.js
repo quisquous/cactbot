@@ -132,7 +132,7 @@ class LogCollector {
     // 00:332e: = Relative Virtue
     // Add more to regex only if needed
     fight.logs = fight.logs.filter(function(line) {
-      return / (?:1[456AB]|23):| 0[134]:| 00:(?:003[89]|0839|0044|332e):| 21:| 22:| 23:/.test(line);
+      return / (?:1[456ABE]):| 0[134]:| 00:(?:003[89]|0839|0044|332e):| 2[1236]:/.test(line);
     }).sort();
 
     this.fights.push(fight);
