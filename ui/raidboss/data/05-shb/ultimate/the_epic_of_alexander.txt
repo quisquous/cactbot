@@ -70,6 +70,7 @@ hideall "--sync--"
 
 ### Phase 2: Cruise Chaser and Brute Justice
 226.1 "J Kick" sync /:Brute Justice:4854:/ window 250,5
+229.1 "--targetable--"
 238.3 "Whirlwind" sync /:Cruise Chaser:49C2:/
 241.3 "Judgment Nisi" sync /:Brute Justice:483E:/
 247.4 "Link-Up" sync /:Brute Justice:483F:/
@@ -108,6 +109,7 @@ hideall "--sync--"
 506.1 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 507.4 "Flarethrower 2" #sync /:Brute Justice:486C:/
 507.2 "Alpha Sword" #sync /:Cruise Chaser:486B:/
+511.4 "--targetable--"
 521.5 "Chastening Heat" sync /:Alexander Prime:4A80:/
 524.6 "Divine Spear 1" #sync /:Alexander Prime:4A82:/
 526.7 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
@@ -115,6 +117,7 @@ hideall "--sync--"
 
 ### Phase 3 Part 1 - Inception Formation
 537.9 "Inception Formation" sync /:Alexander Prime:486F:/
+541.0 "--untargetable--"
 552.4 "Judgment Crystal" sync /:Alexander Prime:485B:/
 558.2 "Judgment Crystal + True Heart" sync /:Alexander Prime:485C:/
 569.5 "Flarethrower 1" #sync /:Brute Justice:486C:/
@@ -127,6 +130,7 @@ hideall "--sync--"
 596.4 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 597.5 "Alpha Sword" #sync /:Cruise Chaser:486B:/
 598.3 "Super Jump" sync /:Brute Justice:484A:/
+600.3 "--targetable--"
 610.9 "Chastening Heat" sync /:Alexander Prime:4A80:/
 616.0 "Divine Spear 1" #sync /:Alexander Prime:4A82:/
 618.1 "Divine Spear 2" #sync /:Alexander Prime:4A82:/
@@ -134,6 +138,7 @@ hideall "--sync--"
 
 ### Phase 3 Part 2 - Wormhole Formation
 629.3 "Wormhole Formation" sync /:Alexander Prime:486E:/
+632.3 "--untargetable--"
 637.7 "Limit Cut" sync /:Cruise Chaser:4B0F:/
 640.7 "Link-Up" sync /:Brute Justice:483F:/
 643.7 "Void Of Repentance" sync /:Alexander Prime:4866:/
@@ -154,12 +159,15 @@ hideall "--sync--"
 665.1 "#8 Super Blassty Charge" sync /:Cruise Chaser:49C3:/
 666.4 "Missile Command" sync /:Brute Justice:484D:/
 670.0 "Incinerating Heat" sync /:Alexander Prime:4A51:/
+674.2 "--targetable--"
 674.6 "Enumeration" sync /:Brute Justice:4850:/
 682.9 "Mega Holy" sync /:Alexander Prime:4A83:/
 690.0 "Mega Holy" sync /:Alexander Prime:4A83:/
 
 ### Transition 3: DPS Checks
 699.4 "Summon Alexander" sync /:Alexander Prime:4A55:/
+705.6 "--alex untargetable--"
+706.8 "--adds targetable--"
 705.7 "J Storm + Waves x16" sync /:Brute Justice:4876:/ duration 50
 731.7 "Eternal Darkness Enrage" sync /:Cruise Chaser:4875:/
 771.9 "Divine Judgment Enrage" sync /:Alexander Prime:4879:/ window 67,5
@@ -183,10 +191,12 @@ hideall "--sync--"
 974.9 "Fate: Ordained Motion/Stillness" sync /:Perfect Alexander:489[9A]:/
 975.9 "Fate: Sacrament x3" duration 1.5
 982.6 "Fate Calibration α" sync /:Perfect Alexander:487C:/
+985.6 "--untargetable--"
 989.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
 992.8 "Obloquy, Solidarity and 3x Severity" sync  /:Perfect Alexander:4861:/
 993.8 "Ordained Motion/Stillness" sync /:Perfect Alexander:49A[BC]:/
 993.8 "Sacrament x3" duration 1.5
+998.8 "--targetable--"
 
 ### Phase 4 Part 2 - Fate Projection β
 1008.0 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
@@ -202,11 +212,13 @@ hideall "--sync--"
 1058.1 "Fate: Individual/Collective Reprobation" sync /:Perfect Alexander:48A[23]:/
 1061.5 "Fate: Radiant Sacrament" sync /:Perfect Alexander:489E:/
 1070.3 "Fate Calibration β" sync /:Perfect Alexander:4B14:/
+1073.3 "--untargetable--"
 1081.5 "Surety and Solidarity" sync /:Perfect Alexander:4863:/
 1082.5 "J Jump" sync /:Perfect Alexander:4885:/
 1086.5 "Optical Sight 1" sync /:Perfect Alexander:49A[ED]:/
 1088.6 "Individual/Collective Reprobation" sync /:Perfect Alexander:488[CD]:/
 1093.5 "Radiant Sacrament" sync /:Perfect Alexander:4886:/
+1098.5 "--targetable--"
 1106.8 "Ordained Capital Punishment" sync /:Perfect Alexander:4892:/
 1109.9 "Ordained Capital Punishment 1" #sync /:Perfect Alexander:4893:/
 1111.0 "Ordained Capital Punishment 2" #sync /:Perfect Alexander:4893:/
