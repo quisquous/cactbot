@@ -392,10 +392,10 @@
     },
     {
       id: 'E3S Smothering Waters',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Omen der Ertränkung from (?:.*) (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux Submergeantes from (?:.*) (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没の兆し from (?:.*) (.*) Seconds/,
+      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) for (.*) Seconds/,
+      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Omen der Ertränkung from (?:.*) for (.*) Seconds/,
+      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux Submergeantes from (?:.*) for (.*) Seconds/,
+      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没の兆し from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
