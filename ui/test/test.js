@@ -53,6 +53,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
     document.getElementById('jobinfo').innerText = '';
 
   document.getElementById('pos').innerText = e.detail.pos.x + ',' + e.detail.pos.y + ',' + e.detail.pos.z;
+  document.getElementById('rotation').innerText = e.detail.rotation;
   document.getElementById('bait').innerText = e.detail.bait;
 });
 

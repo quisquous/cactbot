@@ -148,6 +148,7 @@ namespace Cactbot {
     //   0xA0 bytes in: float32 pos_x;
     //   0xA4 bytes in: float32 pos_z;
     //   0xA8 bytes in: float32 pos_y;
+    //   0xB0 bytes in: float32 Rotation;
     //   ...
     //   0x18B8 bytes in:
     //     0x000 bytes in: int32 hp;
@@ -174,6 +175,7 @@ namespace Cactbot {
     private static int kEntityStructureOffsetType = 0x8C;
     private static int kEntityStructureOffsetDistance = 0x92;
     private static int kEntityStructureOffsetPos = 0xA0;
+    private static int kEntityStructureOffsetRotation = 0xB0;
 
     // Character details.
     private static int kEntityStructureOffsetHpMpTp = 0x0;
@@ -377,6 +379,7 @@ namespace Cactbot {
       public float pos_x = 0;
       public float pos_y = 0;
       public float pos_z = 0;
+      public float rotation = 0;
       public int bait = 0;
       public int hp = 0;
       public int max_hp = 0;
@@ -404,6 +407,7 @@ namespace Cactbot {
         hash = hash * 31 + pos_x.GetHashCode();
         hash = hash * 31 + pos_y.GetHashCode();
         hash = hash * 31 + pos_z.GetHashCode();
+        hash = hash * 31 + rotation.GetHashCode();
         hash = hash * 31 + bait.GetHashCode();
         hash = hash * 31 + hp.GetHashCode();
         hash = hash * 31 + max_hp.GetHashCode();
@@ -433,6 +437,7 @@ namespace Cactbot {
           a.pos_x == b.pos_x &&
           a.pos_y == b.pos_y &&
           a.pos_z == b.pos_z &&
+          a.rotation == b.rotation &&
           a.bait == b.bait &&
           a.hp == b.hp &&
           a.max_hp == b.max_hp &&
@@ -478,6 +483,7 @@ namespace Cactbot {
       data.pos_x = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos);
       data.pos_z = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos + 4);
       data.pos_y = BitConverter.ToSingle(bytes, kEntityStructureOffsetPos + 8);
+      data.rotation = BitConverter.ToSingle(bytes, kEntityStructureOffsetRotation);
 
       if (data.type == EntityType.PC || data.type == EntityType.Monster) {
         data.job = (EntityJob)bytes[kEntityStructureOffsetCharacterDetails + kEntityStructureOffsetJob];
