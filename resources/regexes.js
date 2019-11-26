@@ -182,6 +182,57 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // Prefer gainsEffect over this function unless you really need extra data.
+  // fields: targetId, target, x, y, z, heading, data0, data1, data2, data3
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#26-networkstatuseffects
+  statusEffectExplicit: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'statusEffectExplicit', [
+      'targetId',
+      'target',
+      'hp',
+      'maxHp',
+      'x',
+      'y',
+      'z',
+      'heading',
+      'data0',
+      'data1',
+      'data2',
+      'data3',
+      'data4',
+      'data5',
+      'capture',
+    ]);
+    let capture = trueIfUndefined(f.capture);
+
+    let kField = '.*?:';
+
+    let str = '\\y{Timestamp} 26:' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':' +
+      kField + // jobs
+      Regexes.maybeCapture(capture, 'hp', f.hp, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'maxHp', f.maxHp, '\\y{Float}') + ':' +
+      kField + // mp
+      kField + // max mp
+      kField + // tp lol
+      kField + // max tp extra lol
+      // x, y, z heading may be blank
+      Regexes.optional(Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}')) + ':' +
+      Regexes.maybeCapture(capture, 'data0', f.data0, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'data1', f.data1, '.*?') + ':' +
+      // data2, 3, 4 may not exist and the line may terminate.
+      Regexes.optional(Regexes.maybeCapture(capture, 'data2', f.data2, '.*?') + ':') +
+      Regexes.optional(Regexes.maybeCapture(capture, 'data3', f.data3, '.*?') + ':') +
+      Regexes.optional(Regexes.maybeCapture(capture, 'data4', f.data4, '.*?') + ':');
+    return Regexes.parse(str);
+  },
+
   // fields: target, effect, source, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (f) => {
@@ -207,7 +258,7 @@ var Regexes = {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 23:' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') +
+      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ':....:....:' +
@@ -274,6 +325,10 @@ var Regexes = {
       value = defaultValue;
     value = Regexes.anyOf(value);
     return capture ? Regexes.namedCapture(name, value) : value;
+  },
+
+  optional: (str) => {
+    return `(?:${str})?`;
   },
 
   // Creates a named regex capture group named |name| for the match |value|.

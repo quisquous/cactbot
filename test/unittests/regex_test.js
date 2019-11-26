@@ -47,7 +47,9 @@ let regexCaptureTest = (func, lines) => {
       // Because matched values may have special regex
       // characters in it, escape these when specifying.
       let value = captureMatch.groups[key];
-      let escaped = value.replace(/[.*+?^${}()]/g, '\\$&');
+      let escaped = value;
+      if (typeof value !== 'undefined')
+        escaped = escaped.replace(/[.*+?^${}()]/g, '\\$&');
       explicitFields[key] = escaped;
     }
 
@@ -119,6 +121,17 @@ let tests = {
       '[21:58:02.948] 1A:106CBE53:Potato Latke gains the effect of Aetherflow from Potato Latke for 9999.00 Seconds. (2)',
     ];
     regexCaptureTest(Regexes.gainsEffect, lines);
+  },
+  statusEffectExplicit: () => {
+    let lines = [
+      '[23:24:13.184] 26:4000D3EB::00505015:148000:148000:0:0:0:0:117.5402:107.2556:2.384186E-07:-1.963573:03E8:0:0:840893:40800000:E0000000:',
+      '[23:24:15.679] 26:4000D3E6::0050501C:0:148000:0:0:0:0:84.83353:101.1907:-1.105378E-08:2.79271:0:A5:0:',
+      '[23:24:17.192] 26:4000D3E9::0050501B:148000:148000:0:0:0:0:110.3157:104.1553:2.384186E-07:1.182765:03E8:A5:0:',
+      '[23:10:07.264] 26:1067348B:Tini Poutini:50505014:103516:103516:10000:10000:8:0:97.62768:98.15999:-0.0007705679:0.7312062:03E8:88:0:0A0168:41F00000:E0000000:0F016B:41F00000:E0000000:28C20030:4512F71C:1067DE8B:67:0:1067DE8B:6E:411E978E:1067DE8B:0:0:0:0129:41BA4792:106EBC57:04E2:40910E52:1067DE8B:',
+      '[23:10:48.791] 26:4000D27B::00505000:89020:89020:10000:10000:0:0:::::03E8:20:0:08A9:40706245:106D56CD:28C30030:456F9FC0:10683CEE:',
+      '[23:24:15.679] 26:4000D3E6::0050501C:0:148000:0:0:0:0:84.83353:101.1907:-1.105378E-08:2.79271:0:A5:0:',
+    ];
+    regexCaptureTest(Regexes.statusEffectExplicit, lines);
   },
   losesEffect: () => {
     let lines = [
