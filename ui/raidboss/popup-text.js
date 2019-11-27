@@ -235,6 +235,7 @@ class PopupText {
       party: this.partyTracker,
       lang: locale,
       currentHP: preserveHP,
+      options: Options,
       ShortName: this.ShortNamify,
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
