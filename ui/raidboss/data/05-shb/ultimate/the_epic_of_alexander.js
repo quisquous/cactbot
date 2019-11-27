@@ -51,7 +51,7 @@
           }
           if (data.liquidTank) {
             return {
-              en: 'Tank Buster on' + data.ShortName(data.liquidTank),
+              en: 'Tank Buster on ' + data.ShortName(data.liquidTank),
               de: 'Tank buster',
               fr: 'Tank buster',
               ja: 'タンクバスター',
