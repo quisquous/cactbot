@@ -148,6 +148,7 @@ namespace Cactbot {
       public float pos_x = 0;
       public float pos_y = 0;
       public float pos_z = 0;
+      public float rotation = 0;
       public int hp = 0;
       public int max_hp = 0;
       public int mp = 0;
@@ -170,6 +171,7 @@ namespace Cactbot {
           pos_x == o.pos_x &&
           pos_y == o.pos_y &&
           pos_z == o.pos_z &&
+          rotation == o.rotation &&
           hp == o.hp &&
           max_hp == o.max_hp &&
           mp == o.mp &&
@@ -194,6 +196,7 @@ namespace Cactbot {
         hash = hash * 31 + pos_x.GetHashCode();
         hash = hash * 31 + pos_y.GetHashCode();
         hash = hash * 31 + pos_z.GetHashCode();
+        hash = hash * 31 + rotation.GetHashCode();
         hash = hash * 31 + hp.GetHashCode();
         hash = hash * 31 + max_hp.GetHashCode();
         hash = hash * 31 + mp.GetHashCode();
@@ -238,6 +241,9 @@ namespace Cactbot {
 
       [FieldOffset(0xA8)]
       public Single pos_z;
+
+      [FieldOffset(0xB0)]
+      public Single rotation;
 
       [FieldOffset(0x18B8)]
       public CharacterDetails charDetails;
@@ -414,6 +420,7 @@ namespace Cactbot {
           pos_x = mem.pos_x,
           pos_y = mem.pos_y,
           pos_z = mem.pos_z,
+          rotation = mem.rotation,
         };
         if (entity.type == EntityType.PC || entity.type == EntityType.Monster) {
           entity.job = mem.charDetails.job;
