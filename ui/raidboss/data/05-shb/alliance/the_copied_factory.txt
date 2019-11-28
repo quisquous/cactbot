@@ -57,7 +57,7 @@ hideall "--sync--"
 ### Trash
 # -ic 2P -ii 491D 491C -p 491B:715.5
 600.0 "--sync--" sync /00:0839:Warehouse B will be sealed off/ window 600,0
-700.0 "--sync--" sync / 22:........:Small Flyer:........:Small Flyer:01/ window 100,0
+700.0 "--sync--" sync /22:........:Small Flyer:........:Small Flyer:01/ window 100,0
 715.5 "Frontal Somersault" sync /:Small Biped:491B:/
 721.4 "Frontal Somersault" sync /:Small Biped:491B:/
 725.7 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
@@ -290,7 +290,7 @@ hideall "--sync--"
 2621.8 "Radiate Heat" sync /:Engels:474C:/
 2625.2 "Crushing Wheel Enrage?"  sync /:Marx [LR]:474B:/
 
-2700.0 "--targetable--" sync / 22:........:Engels:........:Engels:01/ window 150,0
+2700.0 "--targetable--" sync /22:........:Engels:........:Engels:01/ window 150,0
 2706.2 "--sync--" sync /:4733:Engels/ window 150,5
 2709.7 "Surface Missile" sync /:Engels:4733:/
 2718.9 "Marx Smash" sync /:Engels:472[67AE]:/
