@@ -207,14 +207,23 @@
         data.resetState();
 
         data.nisiNames = {
-          0: 'Blue α',
-          1: 'Orange β',
-          2: 'Purple γ',
-          3: 'Green δ',
-        };
+          en: {
+            0: 'Blue α',
+            1: 'Orange β',
+            2: 'Purple γ',
+            3: 'Green δ',
+          },
+        }[data.lang];
 
         // Convenience function called for third and fourth nisi passes.
         data.namedNisiPass = (data) => {
+          // error?
+          if (!(data.me in data.finalNisiMap)) {
+            return {
+              en: 'Get Final Nisi (?)',
+            };
+          }
+
           if (data.me in data.nisiMap) {
             // If you have nisi, you need to pass it to the person who has that final
             // and who doesn't have nisi.
@@ -289,11 +298,6 @@
       run: function(data) {
         data.phase = 'beta';
         data.resetState();
-
-        data.betaColorEffects = {
-          '840893': 'orange',
-          '850893': 'purple',
-        };
       },
     },
     {
@@ -923,6 +927,7 @@
       // Sacrament cast.
       regex: Regexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
       alertText: function(data) {
+        // TODO: we could probably determine where this is.
         if (data.role == 'tank') {
           return {
             en: 'Bait Jump Opposite Brute?',
@@ -982,6 +987,8 @@
       },
       infoText: function(data, matches) {
         // Initial directions.
+        // TODO: we could figure out which robot was left and right based
+        // on chakrams, and call that out here too instead of just saying "Robot".
         return {
           '004F': {
             en: 'Left To Robot; Look Outside; 3rd Puddle',
@@ -1148,34 +1155,90 @@
       id: 'TEA Fate Tether Bois',
       regex: Regexes.tether({ id: '0062' }),
       run: function(data, matches) {
-        // All the tether bois have no name, so map target id -> player name.
         data.tetherBois = data.tetherBois || {};
         data.tetherBois[matches.targetId] = matches.source;
       },
     },
     {
-      id: 'TEA Alpha Defamation Alex',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A4' }),
+      id: 'TEA Alpha Instructions',
+      regex: Regexes.tether({ id: '0062' }),
+      condition: (data) => data.phase == 'alpha',
+      delaySeconds: 1,
+      suppressSeconds: 10,
       run: function(data, matches) {
-        // This ability has no target, because it is just an AOE.
-        // However! This same phantom Alex is also the Alex who drives by and
-        // kills this clone with the second motion/stillness cast.
-        data.defamationAlexId = matches.sourceId;
+        // Let your actor id memes be dreams.
+        // If you sort the actor ids of the clones, this will tell you what you have.
+        // If anybody is dead, they will fill in from the lowest.
+        let sortedIds = Object.keys(data.tetherBois).sort().reverse();
+        let sortedNames = sortedIds.map((x) => data.tetherBois[x]);
+
+        data.alphaSolidarity = sortedNames[0];
+        data.alphaDefamation = sortedNames[1];
+        data.alphaSeverity = [sortedNames[2], sortedNames[3], sortedNames[4]];
+
+        let kNoDebuff = {
+          en: 'No debuff: shared stack',
+        };
+        let kSeverity = {
+          en: 'Severity: avoid shared stack',
+        };
+
+        let kUnknown;
+        if (sortedNames.length >= 5) {
+          kUnknown = {
+            en: 'No clone: probably no debuff + stack?',
+          };
+        } else {
+          kUnknown = {
+            en: 'No clone: ???',
+          };
+        }
+
+        data.alphaInstructions = {
+          '-1': kUnknown,
+          '0': {
+            en: 'Shared Sentence: stack',
+          },
+          '1': {
+            en: 'Defamation on YOU',
+          },
+          '2': kSeverity,
+          '3': kSeverity,
+          '4': kSeverity,
+          '5': kNoDebuff,
+          '6': kNoDebuff,
+          '7': kNoDebuff,
+        }[sortedNames.indexOf(data.me)];
       },
     },
     {
-      id: 'TEA Alpha Defamation Death',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: ['4899', '489A'] }),
-      condition: function(data, matches) {
-        // If this is the Alex that cast defamation, then this clone is the defamation target.
-        return matches.sourceId == data.defamationAlexId;
+      id: 'TEA Alpha Instructions Callout',
+      regex: Regexes.tether({ id: '0062', capture: false }),
+      condition: (data) => data.phase == 'alpha',
+      suppressSeconds: 10,
+      delaySeconds: 2,
+      durationSeconds: 28,
+      alarmText: function(data) {
+        // Defamation will wipe the group, so gets an alarm.
+        if (data.me == data.alphaDefamation)
+          return data.alphaInstructions;
       },
-      preRun: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        data.alphaDefamation = realTarget;
+      alertText: function(data) {
+        // Folks who need to not stack, get an alert.
+        if (data.me == data.alphaSolidarity)
+          return data.alphaInstructions;
+        if (data.alphaSeverity.includes(data.me))
+          return data.alphaInstructions;
       },
-      alarmText: {
-        en: 'Defamation on YOU',
+      infoText: function(data) {
+        // The other 4 people in the stack group just get info.
+        if (data.me == data.alphaDefamation)
+          return;
+        if (data.me == data.alphaSolidarity)
+          return;
+        if (data.alphaSeverity.includes(data.me))
+          return;
+        return data.alphaInstructions;
       },
     },
     {
@@ -1223,43 +1286,6 @@
       },
     },
     {
-      id: 'TEA Alpha Plaint of Solidarity',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A6' }),
-      condition: (data) => data.phase == 'alpha',
-      durationSeconds: 8,
-      alertText: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        if (data.me == realTarget) {
-          return {
-            en: 'Stack on YOU',
-          };
-        }
-      },
-      run: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        data.alphaStack = realTarget;
-      },
-    },
-    {
-      id: 'TEA Alpha Plaint of Severity',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A5' }),
-      condition: (data) => data.phase == 'alpha',
-      durationSeconds: 8,
-      alertText: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        if (data.me == realTarget) {
-          return {
-            en: 'Avoid Stack',
-          };
-        }
-      },
-      run: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        data.alphaSeverity = data.alphaSeverity || [];
-        data.alphaSeverity.push(realTarget);
-      },
-    },
-    {
       id: 'TEA Alpha Safe Spot',
       // The non-safe alexanders use 489F.
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
@@ -1304,68 +1330,6 @@
       },
     },
     {
-      id: 'TEA Fate Calibration Alpha',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      alertText: function(data) {
-        // These things are definite.
-        if (data.alphaDefamation == data.me) {
-          return {
-            en: 'Defamation on YOU',
-          };
-        }
-        if (data.alphaSeverity.includes(data.me)) {
-          return {
-            en: 'Avoid Stack',
-          };
-        }
-        if (data.me == data.alphaStack) {
-          return {
-            en: 'Stack on YOU',
-          };
-        }
-      },
-      infoText: function(data) {
-        if (data.me == data.alphaDefamation)
-          return;
-        if (data.me == data.alphaStack)
-          return;
-        if (data.alphaSeverity.includes(data.me))
-          return;
-
-        if (data.tetherBois.length == 8) {
-          // Ok, everybody had a tether, so we know for sure what's up.
-          return {
-            en: 'Stack (no debuff)',
-          };
-        }
-
-        // Now we get into the "hope for the best" section.
-        // Maybe somebody was dead and didn't have a clone.
-        // They'll still get a mechanic, so GOOD LUCK.
-        let maybeStack = {
-          en: 'Stack?',
-        }[data.lang];
-        let maybeDefamation = {
-          en: 'Defamation?',
-        }[data.lang];
-        let maybeAvoid = {
-          en: 'Avoid Stack?',
-        }[data.lang];
-
-        let options = [maybeStack];
-        if (!data.alphaDefamation)
-          options.push(maybeDefamation);
-        if (data.alphaSeverity.length != 3)
-          options.push(maybeAvoid);
-
-        // This seems unlikely to be successful, but here's some hopeful information.
-        // GOOD LUCK TEAM T_T
-        return {
-          en: '👀 ' + options.join(', ') + '???',
-        };
-      },
-    },
-    {
       id: 'TEA Alpha Resolve First Motion',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
       // 5 seconds until mechanic
@@ -1398,80 +1362,81 @@
       },
     },
     {
-      id: 'TEA Beta Restraining',
-      regex: Regexes.tether({ id: '001D' }),
+      id: 'TEA Beta Instructions',
+      regex: Regexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'beta',
-      durationSeconds: 8,
-      alertText: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        let realSource = data.tetherBois[matches.sourceId];
-        data.betaFarTether = [realTarget, realSource];
+      suppressSeconds: 10,
+      delaySeconds: 1,
+      run: function(data) {
+        // See notes in TEA Alpha Instructions about what's going on here.
+        let sortedIds = Object.keys(data.tetherBois).sort().reverse();
+        let sortedNames = sortedIds.map((x) => data.tetherBois[x]);
 
-        let isMe = realTarget == data.me || realSource == data.me;
-        if (!isMe)
-          return;
-        return {
-          en: 'Far Tethers',
-          de: 'Entfernte Verbindungen',
-          fr: 'Liens éloignés',
-          ja: 'ファー',
-          cn: '远离连线',
-        };
+        data.betaBait = [sortedNames[0], sortedNames[1]];
+        data.betaJumps = [sortedNames[0], sortedNames[2], sortedNames[6]];
+
+        data.betaInstructions = {
+          // If you don't know, it's probably best for you to pretend like
+          // you're running E->S so that there's a jump there and you
+          // don't kill your friends stacking north.
+          '-1': {
+            en: 'No Clone: maybe purple E->S ???',
+          },
+          '0': {
+            en: 'Purple Bait: bait E',
+          },
+          '1': {
+            en: 'Orange Bait: bait N',
+          },
+          '2': {
+            en: 'Purple, no tether: E->W',
+          },
+          // This person also has the shared sentence.
+          '3': {
+            en: 'Orange, no tether: E->N',
+          },
+          '4': {
+            en: 'Purple, close tether: E->N',
+          },
+          '5': {
+            en: 'Orange, close tether: E->N',
+          },
+          '6': {
+            en: 'Purple, far tether: E->S',
+          },
+          '7': {
+            en: 'Orange, far tether: E->N',
+          },
+        }[sortedNames.indexOf(data.me)];
       },
     },
     {
-      id: 'TEA Beta House Arrest',
+      id: 'TEA Beta Instructions Callout',
+      regex: Regexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'beta',
-      durationSeconds: 8,
-      regex: Regexes.tether({ id: '001C' }),
-      alertText: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        let realSource = data.tetherBois[matches.sourceId];
-        data.betaCloseTether = [realTarget, realSource];
-
-        let isMe = realTarget == data.me || realSource == data.me;
-        if (!isMe)
-          return;
-        return {
-          en: 'Close Tethers',
-          de: 'Nahe Verbindungen',
-          fr: 'Liens proches',
-          ja: 'ニアー',
-          cn: '靠近连线',
-        };
+      suppressSeconds: 10,
+      delaySeconds: 2,
+      durationSeconds: 35,
+      // TODO: this mess would be a nice use for a function that can just return the text type.
+      alarmText: function(data) {
+        // Baiters get an alarm text.
+        if (data.betaBait.includes(data.me))
+          return data.betaInstructions;
       },
-    },
-    {
-      id: 'TEA Beta Colors',
-      // There are a LOT of 26 lines, so cut down on matches some.
-      // Clones get colors when they are alive (hp == maxHp) and they have no name.
-      regex: Regexes.statusEffectExplicit({ target: '', hp: '148000', maxHp: '148000' }),
-      infoText: function(data, matches) {
-        let color = data.betaColorEffects[matches.data3];
-        if (!color)
+      alertText: function(data) {
+        // The west and south jump get an alert text.
+        if (data.betaBait.includes(data.me))
           return;
-        let realTarget = data.tetherBois[matches.targetId];
-        if (realTarget != data.me)
-          return;
-        return {
-          'orange': {
-            en: 'Orange (Attract)',
-          },
-          'purple': {
-            en: 'Purple (Repel)',
-          },
-        }[color];
+        if (data.betaJumps.includes(data.me))
+          return data.betaInstructions;
       },
-      durationSeconds: 10,
-      run: function(data, matches) {
-        let color = data.betaColorEffects[matches.data3];
-        if (!color)
+      infoText: function(data) {
+        // The rest of the group (going north) gets info.
+        if (data.betaBait.includes(data.me))
           return;
-        let realTarget = data.tetherBois[matches.targetId];
-        if (!realTarget)
+        if (data.betaJumps.includes(data.me))
           return;
-        data.betaColors = data.betaColors || {};
-        data.betaColors[realTarget] = color;
+        return data.betaInstructions;
       },
     },
     {
@@ -1508,56 +1473,18 @@
       },
     },
     {
-      id: 'TEA Beta Optical Stack Bait',
       // For reference:
       // Spread (on Alexander) is 48A0.
       // Stack (on Alexander) is 48A1.
       // Spread (per person) is 48A2.
       // Stack (two people) is 48A3.
-      //
-      // The only people alive when 48A2/48A3 go off are the two regulators.
-      // Hence, they are always the baiters.
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A3' }),
-      preRun: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        data.betaStack = data.betaStack || [];
-        data.betaStack.push(realTarget);
-
-        // These two people also are the regulator bait.
-        data.betaBait = data.betaBait || [];
-        data.betaBait.push(realTarget);
-      },
-      alarmText: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        if (realTarget == data.me) {
-          return {
-            en: 'Bait (and Optical Stack)',
-          };
-        }
-      },
-    },
-    {
-      id: 'TEA Beta Optical Spread Bait',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A2' }),
-      preRun: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        data.betaBait = data.betaBait || [];
-        data.betaBait.push(realTarget);
-      },
-      alarmText: function(data, matches) {
-        let realTarget = data.tetherBois[matches.targetId];
-        if (realTarget == data.me) {
-          return {
-            en: 'Bait',
-          };
-        }
-      },
-    },
-    {
       id: 'TEA Beta Optical Spread',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
       infoText: {
         en: 'Optical Spread',
+      },
+      run: function(data) {
+        data.betaIsOpticalStack = false;
       },
     },
     {
@@ -1566,91 +1493,8 @@
       infoText: {
         en: 'Optical Stack',
       },
-    },
-    {
-      id: 'TEA Calibration Beta',
-      // Call this out during the sacrament ability to give lots of time.
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '489E', capture: false }),
-      infoText: function(data) {
-        let kUnknown = {
-          en: 'Beta: ??? (sorry)',
-        };
-        if (!data.betaColors)
-          return kUnknown;
-
-        // You could do this in different ways, but this is how the clones do it,
-        // so...why not make sure that alexanders end up in the same spots???
-        let isBait = data.betaBait.includes(data.me);
-        let isOrange = data.betaColors[data.me] == 'orange';
-        let isPurple = data.betaColors[data.me] == 'purple';
-
-        // TODO: we could maybe do some extra logic here to figure out what you are
-        // if everybody else is known.  If somebody is dead and has a tether, that
-        // tether will not appear on the clones but will exist during the mechanic.
-
-        if (isBait) {
-          if (isOrange) {
-            return {
-              en: 'Orange Bait: stay N',
-            };
-          } else if (isPurple) {
-            return {
-              en: 'Purple Bait: stay E',
-            };
-          }
-          return {
-            en: '??? Bait: Go E or N????',
-          };
-        }
-
-        if (data.betaCloseTether.includes(data.me)) {
-          if (isOrange) {
-            return {
-              en: 'Orange, close tether: E->N',
-            };
-          }
-          if (isPurple) {
-            return {
-              en: 'Purple, close tether: E->N',
-            };
-          }
-          return {
-            en: '???, close tether: E->N',
-          };
-        }
-
-        if (data.betaFarTether.includes(data.me)) {
-          if (isOrange) {
-            return {
-              en: 'Orange, far tether: E->N',
-            };
-          }
-          if (isPurple) {
-            return {
-              en: 'Purple, far tether: E->S',
-            };
-          }
-          return {
-            en: '???, far tether: E-> S? or N?',
-          };
-        }
-
-        if (isOrange) {
-          return {
-            en: 'Orange, no tether: E->N',
-          };
-        }
-        if (isPurple) {
-          if (data.betaFarTether.length == 2) {
-            return {
-              en: 'Purple, no tether: E->W',
-            };
-          }
-          return {
-            en: 'Purple, maybe far tether? E-> W? S?',
-          };
-        }
-        return kUnknown;
+      run: function(data) {
+        data.betaIsOpticalStack = true;
       },
     },
     {
@@ -1658,21 +1502,28 @@
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
       delaySeconds: 12.2,
       alertText: function(data) {
-        if (data.betaStack.length == 0) {
+        if (!data.betaIsOpticalStack) {
           return {
             en: 'Optical Spread',
           };
         }
-        if (data.betaStack.includes(data.me)) {
+        if (data.betaBait.includes(data.me)) {
           return {
             en: 'Optical Stack on YOU',
           };
         }
       },
       infoText: function(data) {
-        if (data.betaStack.length == 0)
+        if (!data.betaIsOpticalStack)
           return;
-        let names = data.betaStack.map((x) => data.ShortName(x)).sort();
+
+        // Error?
+        if (data.betaBait.length == 0) {
+          return {
+            en: 'Optical Stack',
+          };
+        }
+        let names = data.betaBait.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Optical Stack (' + names.join(', ') + ')',
         };
