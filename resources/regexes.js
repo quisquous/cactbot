@@ -321,7 +321,7 @@ var Regexes = {
 
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
   statChange: () => {
-    let str = '\\y{Timestamp} 0C:Player Stats: ' + '\\d+' + ':' + //skip job field
+    let str = '\\y{Timestamp} 0C:Player Stats: ' + '\\d+' + ':' + // skip job field
       Regexes.namedCapture('strength', '\\d+') + ':' +
       Regexes.namedCapture('dexterity', '\\d+') + ':' +
       Regexes.namedCapture('vitality', '\\d+') + ':' +

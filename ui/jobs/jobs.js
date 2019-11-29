@@ -72,75 +72,75 @@ let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
 
 let kStatsRegex = Regexes.statChange();
-//[level][Sub][Div]
-//Source: http://theoryjerks.akhmorning.com/resources/levelmods/
-const kLevelMod = new Array([56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
-                            [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
-                            [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
-                            [100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
-                            [122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
-                            [150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
-                            [181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
-                            [215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
-                            [253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
-                            [302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
-                            [342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
-                            [349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
-                            [355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
-                            [360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
-                            [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
-                            [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]);
+// [level][Sub][Div]
+// Source: http://theoryjerks.akhmorning.com/resources/levelmods/
+const kLevelMod = [[56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
+  [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
+  [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
+  [100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
+  [122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
+  [150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
+  [181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
+  [215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
+  [253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
+  [302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
+  [342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
+  [349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
+  [355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
+  [360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
+  [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
+  [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
 
-//Source: http://theoryjerks.akhmorning.com/guide/speed/
+// Source: http://theoryjerks.akhmorning.com/guide/speed/
 function kCalcGCDFromStat(stat, actiondelay) {
-  //default calculates for a 2.50s recast
+  // default calculates for a 2.50s recast
   actiondelay = actiondelay || 2500;
-  
+
   let kType1Buffs = 0;
-  //TODO: Is there an easy way of tracking Circle of Power?
-  //let kInLeyLines = false;
+  // TODO: Is there an easy way of tracking Circle of Power?
   let kType2Buffs = 0;
   if (gBars.job == 'WHM') {
     kType1Buffs += gBars.presenceOfMind ? 20 : 0;
   } else if (gBars.job == 'SAM') {
-      if (gBars.shifu) {
-        if (gBars.level > 77) {
-          kType1Buffs += 13;
-        } else kType1Buffs += 10;
-      }
+    if (gBars.shifu) {
+      if (gBars.level > 77)
+        kType1Buffs += 13;
+      else kType1Buffs += 10;
+    }
   }
-  
+
   if (gBars.job == 'NIN') {
     kType2Buffs += gBars.huton ? 15 : 0;
   } else if (gBars.job == 'MNK') {
     kType2Buffs += 5 * gBars.lightningStacks;
   } else if (gBars.job == 'BRD') {
     kType2Buffs += 4 * gBars.paeonStacks;
-    switch(gBars.museStacks) {
-      case 1:
-        kType2Buffs += 1;
-        break;
-      case 2:
-        kType2Buffs += 2;
-        break;
-      case 3:
-        kType2Buffs += 4;
-        break;
-      case 4:
-        kType2Buffs += 12;
-        break;
-    } 
+    switch (gBars.museStacks) {
+    case 1:
+      kType2Buffs += 1;
+      break;
+    case 2:
+      kType2Buffs += 2;
+      break;
+    case 3:
+      kType2Buffs += 4;
+      break;
+    case 4:
+      kType2Buffs += 12;
+      break;
+    }
   }
-  //TODO: this probably isn't useful to track
+  // TODO: this probably isn't useful to track
   let kAstralUmbralMod = 100;
-      
-  let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[gBars.level-1][0]) / kLevelMod[gBars.level-1][1])) * actiondelay / 1000;
+
+  let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[gBars.level-1][0]) /
+    kLevelMod[gBars.level-1][1])) * actiondelay / 1000;
   let A = (100 - kType1Buffs) / 100;
-  let B = (100 - kType2Buffs) / 100; 
+  let B = (100 - kType2Buffs) / 100;
   let GCDc = Math.floor(Math.floor((A * B) * GCDms/10) * kAstralUmbralMod / 100);
   return GCDc / 100;
 }
-                                                                     
+
 let kGainSecondsRegex = Regexes.parse('for (\\y{Float}) Seconds\\.');
 function gainSecondsFromLog(log) {
   let m = log.match(kGainSecondsRegex);
@@ -922,12 +922,12 @@ class Bars {
     this.inCombat = false;
     this.combo = 0;
     this.comboTimer = null;
-    
+
     this.skill_speed = 0;
     this.spell_speed = 0;
     this.gcdSkill = () => kCalcGCDFromStat(this.skill_speed);
     this.gcdSpell = () => kCalcGCDFromStat(this.spell_speed);
-    
+
     this.presenceOfMind = 0;
     this.shifu = 0;
     this.huton = 0;
@@ -1245,7 +1245,7 @@ class Bars {
 
   setupWar() {
     let gcd = 2.5;
-    
+
     let textBox = this.addResourceBox({
       classList: ['war-color-beast'],
     });
@@ -1326,10 +1326,10 @@ class Bars {
       if (eyeBox.elapsed > 10)
         eyeBox.duration = 0;
     };
-    
+
     this.statChangeFuncMap['WAR'] = () => {
       eyeBox.valuescale = this.gcdSkill();
-    }
+    };
   }
 
   setupDrk() {
@@ -1370,7 +1370,7 @@ class Bars {
 
   setupPld() {
     let gcd = 2.5;
-    
+
     let textBox = this.addResourceBox({
       classList: ['pld-color-oath'],
     });
@@ -1411,11 +1411,11 @@ class Bars {
         goreBox.duration = 22;
       }
     });
-    
+
     this.statChangeFuncMap['PLD'] = () => {
       goreBox.valuescale = this.gcdSkill();
       goreBox.threshold = this.gcdSkill() * 3 + 0.3;
-    }
+    };
   }
 
   setupBlu() {
@@ -1443,13 +1443,13 @@ class Bars {
       tormentBox.duration = 0;
       tormentBox.duration = 30;
     };
-    
+
     this.statChangeFuncMap['BLU'] = () => {
       offguardBox.valuescale = this.gcdSpell();
       offguardBox.threshold = this.gcdSpell() * 3;
       tormentBox.valuescale = this.gcdSpell();
       tormentBox.threshold = this.gcdSpell() * 3;
-    }
+    };
   }
 
   // TODO: none of this is actually super useful.
@@ -1490,7 +1490,7 @@ class Bars {
       heliosBox.duration = 0;
       heliosBox.duration = 30;
     };
-    
+
     this.statChangeFuncMap['AST'] = () => {
       combustBox.valuescale = this.gcdSpell();
       combustBox.threshold = this.gcdSpell() * 3;
@@ -1498,7 +1498,7 @@ class Bars {
       beneficBox.threshold = this.gcdSpell() * 3;
       heliosBox.valuescale = this.gcdSpell();
       heliosBox.threshold = this.gcdSpell() * 3;
-    }
+    };
   }
 
   setupMnk() {
@@ -1835,71 +1835,68 @@ class Bars {
 
   setupBrd() {
     let ethosStacks = 0;
-    
-    //Bard is complicated
-    //Paeon -> Minuet/Ballad -> muse -> muse ends 
-    //Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
-    //Paeon -> runs out -> ethos -> ethos runs out
-    //Track Paeon Stacks through to next song GCD buff
+
+    // Bard is complicated
+    // Paeon -> Minuet/Ballad -> muse -> muse ends
+    // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
+    // Paeon -> runs out -> ethos -> ethos runs out
+    // Track Paeon Stacks through to next song GCD buff
     this.gainEffectFuncMap[gLang.kEffect.ArmysMuse] = (name, log) => {
-      //We just entered Minuet/Ballad, add muse effect
-      //If we let paeon run out, get the temp stacks from ethos
+      // We just entered Minuet/Ballad, add muse effect
+      // If we let paeon run out, get the temp stacks from ethos
       this.museStacks = ethosStacks ? ethosStacks : this.paeonStacks;
       this.paeonStacks = 0;
     };
     this.loseEffectFuncMap[gLang.kEffect.ArmysMuse] = () => {
-      //Muse effect ends
+      // Muse effect ends
       this.museStacks = 0;
       this.paeonStacks = 0;
-    }
+    };
     this.gainEffectFuncMap[gLang.kEffect.ArmysEthos] = (name, log) => {
-      //Not under muse or paeon, so store the stacks
+      // Not under muse or paeon, so store the stacks
       ethosStacks = this.paeonStacks;
       this.paeonStacks = 0;
     };
     this.loseEffectFuncMap[gLang.kEffect.ArmysEthos] = () => {
-      //Didn't use a song and ethos ran out
+      // Didn't use a song and ethos ran out
       ethosStacks = 0;
       this.museStacks = 0;
       this.paeonStacks = 0;
-    }
-    
+    };
+
     this.jobFuncs.push((jobDetail) => {
-      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs) {
+      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
         this.paeonStacks = jobDetail.songProcs;
-      }
-      //do bard things
     });
   }
-  
+
   setupWhm() {
     this.gainEffectFuncMap[gLang.kEffect.PresenceOfMind] = (name, log) => {
       this.presenceOfMind = 1;
     };
     this.loseEffectFuncMap[gLang.kEffect.PresenceOfMind] = () => {
       this.presenceOfMind = 0;
-    }
+    };
   }
 
   setupNin() {
     this.jobFuncs.push((jobDetail) => {
       if (jobDetail.hutonMilliseconds > 0) {
-        if (this.huton != 1) {
+        if (this.huton != 1)
           this.huton = 1;
-        }
-      } else if (this.huton = 1) {
+      } else if (this.huton == 1) {
         this.huton = 0;
       }
     });
   }
-  
+
   setupSam() {
     this.gainEffectFuncMap[gLang.kEffect.Shifu] = (name, log) => {
       this.shifu = 1;
     };
     this.loseEffectFuncMap[gLang.kEffect.Shifu] = () => {
       this.shifu = 0;
-    }
+    };
   }
 
   OnComboChange(skill) {
