@@ -319,24 +319,50 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // fields: job, strength, dexterity, vitality, intelligence, mind, piety, attack_power,
+  //         direct_hit, critical_hit, attack_magic_potency, heal_magic_potency, determination,
+  //         skill_speed, spell_speed, tenacity, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
-  statChange: () => {
-    let str = '\\y{Timestamp} 0C:Player Stats: ' + '\\d+' + ':' + // skip job field
-      Regexes.namedCapture('strength', '\\d+') + ':' +
-      Regexes.namedCapture('dexterity', '\\d+') + ':' +
-      Regexes.namedCapture('vitality', '\\d+') + ':' +
-      Regexes.namedCapture('intelligence', '\\d+') + ':' +
-      Regexes.namedCapture('mind', '\\d+') + ':' +
-      Regexes.namedCapture('piety', '\\d+') + ':' +
-      Regexes.namedCapture('attack_power', '\\d+') + ':' +
-      Regexes.namedCapture('direct_hit', '\\d+') + ':' +
-      Regexes.namedCapture('critical_hit', '\\d+') + ':' +
-      Regexes.namedCapture('attack_magic_potency', '\\d+') + ':' +
-      Regexes.namedCapture('heal_magic_potency', '\\d+') + ':' +
-      Regexes.namedCapture('determination', '\\d+') + ':' +
-      Regexes.namedCapture('skill_speed', '\\d+') + ':' +
-      Regexes.namedCapture('spell_speed', '\\d+') + ':0:' +
-      Regexes.namedCapture('tenacity', '\\d+');
+  statChange: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'statChange', [
+      'job',
+      'strength',
+      'dexterity',
+      'vitality',
+      'intelligence',
+      'mind',
+      'piety',
+      'attack_power',
+      'direct_hit',
+      'critical_hit',
+      'attack_magic_potency',
+      'heal_magic_potency',
+      'determination',
+      'skill_speed',
+      'spell_speed',
+      'tenacity',
+      'capture',
+    ]);
+    let capture = trueIfUndefined(f.capture);
+    let str = '\\y{Timestamp} 0C:Player Stats: ' +
+      Regexes.maybeCapture(capture, 'job', f.job, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'strength', f.strength, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'dexterity', f.dexterity, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'vitality', f.vitality, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'intelligence', f.intelligence, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'mind', f.mind, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'piety', f.piety, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attack_power', f.attack_power, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'direct_hit', f.direct_hit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'critical_hit', f.critical_hit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attack_magic_potency', f.attack_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'heal_magic_potency', f.heal_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'determination', f.determination, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'skill_speed', f.skill_speed, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'spell_speed', f.spell_speed, '\\d+') + ':0:' +
+      Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+');
     return Regexes.parse(str);
   },
 

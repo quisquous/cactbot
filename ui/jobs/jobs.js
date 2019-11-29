@@ -61,6 +61,7 @@ let kMPUI1Rate = 0.30;
 let kMPUI2Rate = 0.45;
 let kMPUI3Rate = 0.60;
 let kMPTickInterval = 3.0;
+let kUnknownGCD = 2.5;
 
 // Regexes to be filled out once we know the player's name.
 let kComboBreakers = null;
@@ -90,57 +91,6 @@ const kLevelMod = [[56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
   [360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
   [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
   [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
-
-// Source: http://theoryjerks.akhmorning.com/guide/speed/
-function kCalcGCDFromStat(stat, actiondelay) {
-  // default calculates for a 2.50s recast
-  actiondelay = actiondelay || 2500;
-
-  let kType1Buffs = 0;
-  let kType2Buffs = 0;
-  if (gBars.job == 'BLM') {
-    kType1Buffs += gBars.circleOfPower ? 15 : 0;
-  } else if (gBars.job == 'WHM') {
-    kType1Buffs += gBars.presenceOfMind ? 20 : 0;
-  } else if (gBars.job == 'SAM') {
-    if (gBars.shifu) {
-      if (gBars.level > 77)
-        kType1Buffs += 13;
-      else kType1Buffs += 10;
-    }
-  }
-
-  if (gBars.job == 'NIN') {
-    kType2Buffs += gBars.huton ? 15 : 0;
-  } else if (gBars.job == 'MNK') {
-    kType2Buffs += 5 * gBars.lightningStacks;
-  } else if (gBars.job == 'BRD') {
-    kType2Buffs += 4 * gBars.paeonStacks;
-    switch (gBars.museStacks) {
-    case 1:
-      kType2Buffs += 1;
-      break;
-    case 2:
-      kType2Buffs += 2;
-      break;
-    case 3:
-      kType2Buffs += 4;
-      break;
-    case 4:
-      kType2Buffs += 12;
-      break;
-    }
-  }
-  // TODO: this probably isn't useful to track
-  let kAstralUmbralMod = 100;
-
-  let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[gBars.level-1][0]) /
-    kLevelMod[gBars.level-1][1])) * actiondelay / 1000;
-  let A = (100 - kType1Buffs) / 100;
-  let B = (100 - kType2Buffs) / 100;
-  let GCDc = Math.floor(Math.floor((A * B) * GCDms/10) * kAstralUmbralMod / 100);
-  return GCDc / 100;
-}
 
 let kGainSecondsRegex = Regexes.parse('for (\\y{Float}) Seconds\\.');
 function gainSecondsFromLog(log) {
@@ -924,10 +874,10 @@ class Bars {
     this.combo = 0;
     this.comboTimer = null;
 
-    this.skill_speed = 0;
-    this.spell_speed = 0;
-    this.gcdSkill = () => kCalcGCDFromStat(this.skill_speed);
-    this.gcdSpell = () => kCalcGCDFromStat(this.spell_speed);
+    this.skillSpeed = 0;
+    this.spellSpeed = 0;
+    this.gcdSkill = () => this.CalcGCDFromStat(this.skillSpeed);
+    this.gcdSpell = () => this.CalcGCDFromStat(this.spellSpeed);
 
     this.presenceOfMind = 0;
     this.shifu = 0;
@@ -1246,7 +1196,7 @@ class Bars {
   }
 
   setupWar() {
-    let gcd = 2.5;
+    let gcd = kUnknownGCD;
 
     let textBox = this.addResourceBox({
       classList: ['war-color-beast'],
@@ -1371,7 +1321,7 @@ class Bars {
   }
 
   setupPld() {
-    let gcd = 2.5;
+    let gcd = kUnknownGCD;
 
     let textBox = this.addResourceBox({
       classList: ['pld-color-oath'],
@@ -1421,7 +1371,7 @@ class Bars {
   }
 
   setupBlu() {
-    let gcd = 2.5;
+    let gcd = kUnknownGCD;
 
     let offguardBox = this.addProcBox({
       id: 'blu-procs-offguard',
@@ -1456,7 +1406,7 @@ class Bars {
 
   // TODO: none of this is actually super useful.
   setupAst() {
-    let gcd = 2.5;
+    let gcd = kUnknownGCD;
 
     let combustBox = this.addProcBox({
       id: 'ast-procs-combust',
@@ -1909,6 +1859,57 @@ class Bars {
       this.comboFuncs[i](skill);
   }
 
+  // Source: http://theoryjerks.akhmorning.com/guide/speed/
+  CalcGCDFromStat(stat, actiondelay) {
+    // default calculates for a 2.50s recast
+    actiondelay = actiondelay || 2500;
+
+    let type1Buffs = 0;
+    let type2Buffs = 0;
+    if (this.job == 'BLM') {
+      type1Buffs += this.circleOfPower ? 15 : 0;
+    } else if (this.job == 'WHM') {
+      type1Buffs += this.presenceOfMind ? 20 : 0;
+    } else if (this.job == 'SAM') {
+      if (this.shifu) {
+        if (this.level > 77)
+          type1Buffs += 13;
+        else type1Buffs += 10;
+      }
+    }
+
+    if (this.job == 'NIN') {
+      type2Buffs += this.huton ? 15 : 0;
+    } else if (this.job == 'MNK') {
+      type2Buffs += 5 * this.lightningStacks;
+    } else if (this.job == 'BRD') {
+      type2Buffs += 4 * this.paeonStacks;
+      switch (this.museStacks) {
+      case 1:
+        type2Buffs += 1;
+        break;
+      case 2:
+        type2Buffs += 2;
+        break;
+      case 3:
+        type2Buffs += 4;
+        break;
+      case 4:
+        type2Buffs += 12;
+        break;
+      }
+    }
+    // TODO: this probably isn't useful to track
+    let astralUmbralMod = 100;
+
+    let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level - 1][0]) /
+      kLevelMod[this.level - 1][1])) * actiondelay / 1000;
+    let A = (100 - type1Buffs) / 100;
+    let B = (100 - type2Buffs) / 100;
+    let GCDc = Math.floor(Math.floor((A * B) * GCDms / 10) * astralUmbralMod / 100);
+    return GCDc / 100;
+  }
+
   UpdateJobBarGCDs() {
     let f = this.statChangeFuncMap[this.job];
     if (f)
@@ -2219,8 +2220,8 @@ class Bars {
         }
         if (log[16] == 'C') {
           let stats = log.match(kStatsRegex).groups;
-          this.skill_speed = stats.skill_speed;
-          this.spell_speed = stats.spell_speed;
+          this.skillSpeed = stats.skill_speed;
+          this.spellSpeed = stats.spell_speed;
           this.UpdateJobBarGCDs();
           continue;
         }

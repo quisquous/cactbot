@@ -177,6 +177,14 @@ let tests = {
     allLines.push(...messageLines);
     regexCaptureTest(Regexes.gameLog, allLines);
   },
+  statchange: () => {
+    let lines = [
+      '[20:29:29.752] 0C:Player Stats: 23:311:4093:4245:295:280:340:4093:2496:2675:295:280:2334:578:380:0:380',
+      '[12:50:15.438] 0C:Player Stats: 17:311:348:1010:347:315:340:311:380:380:347:315:340:380:380:0:380',
+      '[01:11:57.108] 0C:Player Stats: 23:305:844:793:290:275:340:844:780:755:290:275:340:380:380:0:380',
+    ];
+    regexCaptureTest(Regexes.statChange, lines);
+  },
 };
 
 let keys = Object.keys(tests);
