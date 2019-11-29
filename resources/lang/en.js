@@ -44,6 +44,10 @@ class CactbotLanguageEn extends CactbotLanguage {
       Firestarter: 'Firestarter',
       BattleVoice: 'Battle Voice',
       Divination: 'Divination',
+      ArmysMuse: 'Army\'s Muse',
+      ArmysEthos: 'Army\'s Ethos',
+      PresenceOfMind: 'Presence Of Mind',
+      Shifu: 'Shifu',
 
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',

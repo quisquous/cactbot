@@ -36,6 +36,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       Devotion: '에기의 가호', // 0x4bd
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c
       LeadenFist: 'FIXME',
+      StormsEye: '폭풍의 눈',
       Devilment: 'FIXME',
       TechnicalFinish: 'FIXME',
       StandardFinish: 'FIXME',
@@ -43,6 +44,10 @@ class CactbotLanguageKo extends CactbotLanguage {
       Firestarter: 'FIXME',
       BattleVoice: 'FIXME',
       Divination: 'FIXME',
+      ArmysMuse: 'FIXME',
+      ArmysEthos: 'FIXME',
+      PresenceOfMind: '쾌속의 마법',
+      Shifu: '사풍',
 
       Paralysis: 'FIXME',
       Petrification: '석화',

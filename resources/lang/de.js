@@ -36,6 +36,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Devotion: 'Hingabe', // 0x4bd
       FoeRequiem: 'Requiem Der Feinde', // up 0x8b, down 0x8c
       LeadenFist: 'Verbesserter Schlag auf Schlag',
+      StormsEye: 'Sturmbrecher',
       Devilment: 'Todestango',
       TechnicalFinish: 'Komplexes Finale',
       StandardFinish: 'Einfaches Finale',
@@ -43,6 +44,10 @@ class CactbotLanguageDe extends CactbotLanguage {
       Firestarter: 'Feuga +',
       BattleVoice: 'Ode an die Seele',
       Divination: 'Weissagung',
+      ArmysMuse: 'Gunst des Schlachtensängers',
+      ArmysEthos: 'Beistand des Schlachtensängers',
+      PresenceOfMind: 'Geistesgegenwart',
+      Shifu: 'Shifu',
 
       Paralysis: 'Paralyse',
       Petrification: 'Stein',
