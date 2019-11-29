@@ -1,6 +1,20 @@
 'use strict';
 
-// TODO: exceptionally high hand of pain/parting damage
+// TODO: FIX luminous aetheroplasm warning not working
+// TODO: FIX doll death not working
+// TODO: failing hand of pain/parting (check for high damage?)
+// TODO: make sure everybody takes exactly one protean (rather than watching double hits)
+// TODO: thunder not hitting exactly 2?
+// TODO: person with water/thunder debuff dying
+// TODO: bad nisi pass
+// TODO: failed gavel mechanic
+// TODO: double rocket punch not hitting exactly 2? (or tanks)
+// TODO: standing in sludge puddles before hidden mine?
+// TODO: hidden mine failure?
+// TODO: failures of ordained motion / stillness
+// TODO: failures of plaint of severity (tethers)
+// TODO: failures of plaint of solidarity (shared sentence)
+// TODO: ordained capital punishment hitting non-tanks
 
 [{
   zoneRegex: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
@@ -8,6 +22,17 @@
     'TEA Sluice': '49B1',
     'TEA Protean Wave 1': '4824',
     'TEA Protean Wave 2': '49B5',
+    'TEA Spin Crusher': '4A72',
+    'TEA Sacrament': '485F',
+    'TEA Radiant Sacrament': '4886',
+    'TEA Almighty Judgment': '4890',
+  },
+  damageFail: {
+    'TEA Hawk Blaster': '4830',
+    'TEA Chakram': '4855',
+    'TEA Enumeration': '4850',
+    'TEA Apocalyptic Ray': '484C',
+    'TEA Propeller Wind': '4832',
   },
   triggers: [
     {
@@ -148,6 +173,96 @@
           name: e.targetName,
           reason: e.effectName,
         };
+      },
+    },
+    {
+      id: 'TEA Hidden Mine',
+      damageRegex: '4852',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'TEA Alpha Sword',
+      damageRegex: '486B',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'TEA Flarethrower',
+      damageRegex: '486B',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'TEA Chastening Heat',
+      damageRegex: '4A80',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'TEA Divine Spear',
+      damageRegex: '4A82',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'TEA Ordained Punishment',
+      damageRegex: '4891',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      // Optical Stack
+      id: 'TEA Collective Reprobation',
+      damageRegex: '488C',
+      condition: function(e, data) {
+        // Single Tap
+        return e.type == '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      // Optical Spread
+      id: 'TEA Individual Reprobation',
+      damageRegex: '488C',
+      condition: function(e, data) {
+        // Double taps only.
+        return e.type != '15';
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
   ],
