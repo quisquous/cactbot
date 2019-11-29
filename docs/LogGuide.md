@@ -966,7 +966,7 @@ There are also a number of examples where tethers are generated in some other wa
 * Suzaku Extreme birbs: who knows
 * player to player tethers (dragonsight, cover, fairy tether)
 
-## 24:LimitBreak
+## 24: LimitBreak
 
 This log line is recorded every server tick where limit break energy is generated while in combat in a light or full party.
 (Generation is not recorded while at cap.)
@@ -989,7 +989,7 @@ Examples:
 24:Limit Break: 7530
 ```
 
-## 25:NetworkEffectResult
+## 25: NetworkEffectResult
 
 This log line appears to be recorded at any time an actor is targeted by a hostile action.
 It appears that the action must hit and must deal non-zero damage,
@@ -1005,7 +1005,7 @@ Examples:
 25:12345678:PlayerOne:0000132A:33635:35817:10000:10000:0::0.3841706:-207.8767:2.901163:-3.00212:03E8:2500:0:01:03000000:0:0:E0000000:
 ```
 
-## 26:NetworkStatusEffects
+## 26: NetworkStatusEffects
 
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
 For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
@@ -1024,7 +1024,7 @@ Examples:
 It seems likely that this line was added in order to extend functionality
 for the `18`, `1A`, and `1E` log lines without breaking previous content or plugins.
 
-## 27:NetworkUpdateHP
+## 27: NetworkUpdateHP
 
 It's not completely clear what triggers this log line,
 but it contains basic information comparable to `25` and `26`.
