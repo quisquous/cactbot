@@ -1353,47 +1353,47 @@
         if (data.megaStack.indexOf(data.me) >= 0)
           return;
 
-          if (data.trio == 'blackfire') {
-            return {
-              en: 'Tower, bait hypernova',
-              fr: 'Tour, appâter Supernova',
-              de: 'Turm, Hypernova ködern',
-              ja: 'タワーやスーパーノヴァ',
-              cn: '踩塔, 引导超新星',
-            };
-          }
-          if (!data.lastOctetMarker || data.lastOctetMarker == data.me) {
-            return {
-              en: 'Bait Twin, then tower',
-              fr: 'Appâter Gémellia, puis tour',
-              de: 'Twintania in Turm locken',
-              ja: 'タニアダイブやタワー',
-              cn: '引导双塔, 踩塔',
-            };
-          }
+        if (data.trio == 'blackfire') {
           return {
-            en: 'Get in a far tower',
-            fr: 'Aller dans une tour lointaine',
-            de: 'Geh in entfernten Turm',
-            ja: '遠いタワー',
-            cn: '踩远塔',
+            en: 'Tower, bait hypernova',
+            fr: 'Tour, appâter Supernova',
+            de: 'Turm, Hypernova ködern',
+            ja: 'タワーやスーパーノヴァ',
+            cn: '踩塔, 引导超新星',
           };
-        },
-        tts: function(data) {
-          if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
-            return;
-  
-          if (data.megaStack.indexOf(data.me) == -1) {
-            return {
-              en: 'tower',
-              fr: 'Tour',
-              de: 'Turm',
-              ja: 'タワー',
-              cn: '塔',
-            };
-          }
-        },
+        }
+        if (!data.lastOctetMarker || data.lastOctetMarker == data.me) {
+          return {
+            en: 'Bait Twin, then tower',
+            fr: 'Appâter Gémellia, puis tour',
+            de: 'Twintania in Turm locken',
+            ja: 'タニアダイブやタワー',
+            cn: '引导双塔, 踩塔',
+          };
+        }
+        return {
+          en: 'Get in a far tower',
+          fr: 'Aller dans une tour lointaine',
+          de: 'Geh in entfernten Turm',
+          ja: '遠いタワー',
+          cn: '踩远塔',
+        };
       },
+      tts: function(data) {
+        if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
+          return;
+
+        if (data.megaStack.indexOf(data.me) == -1) {
+          return {
+            en: 'tower',
+            fr: 'Tour',
+            de: 'Turm',
+            ja: 'タワー',
+            cn: '塔',
+          };
+        }
+      },
+    },
     {
       id: 'UCU Megaflare Twin Tower',
       regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
@@ -1560,9 +1560,9 @@
       },
       tts: function(data, matches) {
         return {
-            en: 'morn afah ' + data.ShortName(matches[1]),
-            cn: '无尽顿悟 ' + data.ShortName(matches[1]),
-          };
+          en: 'morn afah ' + data.ShortName(matches[1]),
+          cn: '无尽顿悟 ' + data.ShortName(matches[1]),
+        };
       },
     },
     {
@@ -1578,15 +1578,15 @@
       },
       infoText: function(data, matches) {
         return {
-            en: 'Akh Morn #' + data.akhMornCount,
-            cn: '死亡轮回 #' + data.akhMornCount,
-          };
+          en: 'Akh Morn #' + data.akhMornCount,
+          cn: '死亡轮回 #' + data.akhMornCount,
+        };
       },
       tts: function(data, matches) {
         return {
-            en: 'akh morn ' + data.akhMornCount,
-            cn: '死亡轮回 ' + data.akhMornCount,
-          };
+          en: 'akh morn ' + data.akhMornCount,
+          cn: '死亡轮回 ' + data.akhMornCount,
+        };
       },
     },
     {
@@ -2180,7 +2180,6 @@
         'Nael Dive': '奈尔冲',
         'Bahamut Marker': '巴哈标记',
         'Twin Marker': '双塔标记',
-        'Stack': '集合',
         'Marker': '标记',
         'Towers': '塔',
         'Enrage': '狂暴',
