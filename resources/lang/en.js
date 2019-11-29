@@ -48,6 +48,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       ArmysEthos: 'Army\'s Ethos',
       PresenceOfMind: 'Presence Of Mind',
       Shifu: 'Shifu',
+      CircleOfPower: 'Circle Of Power',
 
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',

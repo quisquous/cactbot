@@ -48,6 +48,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       ArmysEthos: 'FIXME',
       PresenceOfMind: '쾌속의 마법',
       Shifu: '사풍',
+      CircleOfPower: '흑마법 문양: 효과',
 
       Paralysis: 'FIXME',
       Petrification: '석화',

@@ -48,6 +48,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       ArmysEthos: '军神的契约',
       PresenceOfMind: '神速咏唱',
       Shifu: '士风',
+      CircleOfPower: '魔纹环',
 
       Paralysis: 'FIXME',
       Petrification: '石化',

@@ -97,9 +97,10 @@ function kCalcGCDFromStat(stat, actiondelay) {
   actiondelay = actiondelay || 2500;
 
   let kType1Buffs = 0;
-  // TODO: Is there an easy way of tracking Circle of Power?
   let kType2Buffs = 0;
-  if (gBars.job == 'WHM') {
+  if (gBars.job == 'BLM') {
+    kType1Buffs += gBars.circleOfPower ? 15 : 0;
+  } else if (gBars.job == 'WHM') {
     kType1Buffs += gBars.presenceOfMind ? 20 : 0;
   } else if (gBars.job == 'SAM') {
     if (gBars.shifu) {
@@ -934,6 +935,7 @@ class Bars {
     this.lightningStacks = 0;
     this.paeonStacks = 0;
     this.museStacks = 0;
+    this.circleOfPower = 0;
 
     this.comboFuncs = [];
     this.jobFuncs = [];
@@ -1752,6 +1754,9 @@ class Bars {
       fireProc.duration = gainSecondsFromLog(log);
     };
     this.loseEffectFuncMap[gLang.kEffect.Firestarter] = () => fireProc.duration = 0;
+
+    this.gainEffectFuncMap[gLang.kEffect.CircleOfPower] = () => this.circleOfPower = 1;
+    this.loseEffectFuncMap[gLang.kEffect.CircleOfPower] = () => this.circleOfPower = 0;
 
     // It'd be super nice to use grid here.
     // Maybe some day when cactbot uses new cef.

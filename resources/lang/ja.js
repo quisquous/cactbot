@@ -48,6 +48,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       ArmysEthos: '軍神の契約',
       PresenceOfMind: '神速魔',
       Shifu: '士風',
+      CircleOfPower: '黒魔紋：効果',
 
       Paralysis: '麻痺',
       Petrification: '石化',

@@ -48,6 +48,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       ArmysEthos: 'Beistand des Schlachtensängers',
       PresenceOfMind: 'Geistesgegenwart',
       Shifu: 'Shifu',
+      CircleOfPower: 'Ley-Linien',
 
       Paralysis: 'Paralyse',
       Petrification: 'Stein',
