@@ -2,7 +2,7 @@
 
 // Ultima Weapon Ultimate
 [{
-  zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\)|究极神兵绝境战)$/,
+  zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|究极神兵绝境战)$/,
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
     {
