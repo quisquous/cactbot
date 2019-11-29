@@ -1,5 +1,7 @@
 # Checks a trigger file and timeline for translations.
 
+# TODO: this does not handle multi-line regexes.  You have to join them before running this.  <_<
+
 import argparse
 import json
 import os
@@ -58,10 +60,18 @@ def translate_regex(regex, trans):
     # language to show that it's been translated.
 
     did_work = False
-    if line.find('gains the effect') != -1 or line.find('loses the effect') != -1:
+    effectLines = [
+      'gains the effect',
+      'loses the effect',
+      'gainsEffect',
+      'losesEffect',
+    ]
+    for effectLine in effectLines:
+      if line.find(effectLine):
         for old, new in trans['~effectNames'].items():
             did_work = did_work or re.search(old, line)
             line = re.sub(old, new, line)
+        break
     for old, new in trans['replaceText'].items():
         did_work = did_work or re.search(old, line)
         line = re.sub(old, new, line)
@@ -75,9 +85,10 @@ def translate_regex(regex, trans):
 
 def update_triggers(triggers, trans):
     fp = FileLikeArray(triggers)
-    base_regex = r'^\s*regex:\s*/(.*)/,\s*$'
+    base_regex = r'^\s*regex:\s*(.*?),\s*$'
 
     line = fp.readline()
+    accum_line = None
     while line:
         # process trigger block separately
         if line.startswith('  triggers: ['):
@@ -111,7 +122,7 @@ def update_triggers(triggers, trans):
                         if lang in trans:
                             new_regex = translate_regex(found_base.group(1), trans[lang])
                             if new_regex:
-                                new_line = '      regex' + lang.capitalize() + ': /' + new_regex + '/,\n'
+                                new_line = '      regex' + lang.capitalize() + ': ' + new_regex + ',\n'
                                 fp.write(new_line)
 
                     regex_langs = {}
