@@ -5,11 +5,11 @@
 // .. if you want cactbot strat for wormhole.
 //
 // This is more or less the TPS wormhole strat, with
-// the some modifications to require even less thought.
+// some modifications to require less brain.
 // See: https://www.youtube.com/watch?v=ScBsC5sZRwU
 //
 // Changes:
-// There's no "CC" side or "BJ" side.
+// There's no "CC" side or "BJ" side, only left side and right side.
 // Start middle, face north, away from alexander.
 // Odds go left, evens go right.  1+4 go to robots, 2+3 go back, 5+6+7+8 go side of robot.
 // From there, do the same thing you normally would for your number in the TPS strat.
@@ -18,7 +18,6 @@
 // TODO: Future network data mining opportunities.
 // These don't show up in the log (yet??):
 // * inception orb tethers (likely some "new combatant" flag, like suzex birbs?)
-// * defamation on clone during fate alpha
 // * escape/contact regulator/prohibition headmarkers
 
 [{
@@ -1017,70 +1016,12 @@
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
           return false;
-        return data.phase == 'wormhole' && data.limitCutNumber == 4;
+        if (data.phase != 'wormhole')
+          return;
+        return data.limitCutNumber == 2 || data.limitCutNumber == 3;
       },
       infoText: {
         en: 'Move Behind Brute Justice?',
-      },
-    },
-    {
-      id: 'TEA Cactbot Wormhole TPS 56 Move Out',
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '4869', capture: false }),
-      condition: function(data) {
-        if (!data.options.cactbotWormholeStrat)
-          return false;
-        if (data.limitCutNumber != 5 && data.limitCutNumber != 6)
-          return false;
-        return data.phase == 'wormhole';
-      },
-      suppressSeconds: 1,
-      infoText: function(data) {
-        if (data.limitCutNumber == 5) {
-          return {
-            en: 'Cross opposite of puddle for cleave',
-          };
-        }
-        return {
-          en: 'Cross opposite of puddle for charge',
-        };
-      },
-    },
-    {
-      id: 'TEA Cactbot Wormhole TPS 56 Move Back',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '4868', capture: false }),
-      delaySeconds: 0.8,
-      suppressSeconds: 1,
-      condition: function(data) {
-        if (!data.options.cactbotWormholeStrat)
-          return false;
-        if (data.limitCutNumber != 5 && data.limitCutNumber != 6)
-          return false;
-        return data.phase == 'wormhole';
-      },
-      infoText: {
-        en: 'Move back to cardinal',
-      },
-    },
-    {
-      id: 'TEA Cactbot Wormhole 78 Move Out',
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '4868', capture: false }),
-      condition: function(data) {
-        if (!data.options.cactbotWormholeStrat)
-          return false;
-        if (data.limitCutNumber != 7 && data.limitCutNumber != 8)
-          return false;
-        return data.phase == 'wormhole';
-      },
-      suppressSeconds: 1,
-      infoText: function(data) {
-        if (data.limitCutNumber == 7) {
-          return {
-            en: 'Cross opposite of puddle for cleave',
-          };
-        }
-        return {
-          en: 'Cross opposite of puddle for charge',
-        };
       },
     },
     {
@@ -1213,6 +1154,31 @@
       },
     },
     {
+      id: 'TEA Alpha Defamation Alex',
+      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A4' }),
+      run: function(data, matches) {
+        // This ability has no target, because it is just an AOE.
+        // However! This same phantom Alex is also the Alex who drives by and
+        // kills this clone with the second motion/stillness cast.
+        data.defamationAlexId = matches.sourceId;
+      },
+    },
+    {
+      id: 'TEA Alpha Defamation Death',
+      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: ['4899', '489A'] }),
+      condition: function(data, matches) {
+        // If this is the Alex that cast defamation, then this clone is the defamation target.
+        return matches.sourceId == data.defamationAlexId;
+      },
+      preRun: function(data, matches) {
+        let realTarget = data.tetherBois[matches.targetId];
+        data.alphaDefamation = realTarget;
+      },
+      alarmText: {
+        en: 'Defamation on YOU',
+      },
+    },
+    {
       id: 'TEA Alpha Ordained Motion 1',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
       suppressSeconds: 20,
@@ -1236,7 +1202,7 @@
     },
     {
       id: 'TEA Alpha Ordained Motion 2',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '4899', capture: false }),
+      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
       suppressSeconds: 20,
       infoText: {
         en: 'Motion second',
@@ -1247,7 +1213,7 @@
     },
     {
       id: 'TEA Alpha Ordained Stillness 2',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '489A', capture: false }),
+      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
       suppressSeconds: 20,
       infoText: {
         en: 'Stillness second',
@@ -1319,6 +1285,7 @@
 
         // Store in case anybody wants to mark this.
         data.safeAlphaIdx = idx;
+        data.safeAlphaPos = [matches.x, matches.y];
 
         return [
           {
@@ -1339,28 +1306,62 @@
     {
       id: 'TEA Fate Calibration Alpha',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      alarmText: function(data) {
+      alertText: function(data) {
+        // These things are definite.
+        if (data.alphaDefamation == data.me) {
+          return {
+            en: 'Defamation on YOU',
+          };
+        }
+        if (data.alphaSeverity.includes(data.me)) {
+          return {
+            en: 'Avoid Stack',
+          };
+        }
         if (data.me == data.alphaStack) {
           return {
             en: 'Stack on YOU',
           };
         }
       },
-      alertText: function(data) {
-        if (data.alphaSeverity.includes(data.me)) {
-          return {
-            en: 'Avoid Stack',
-          };
-        }
-      },
       infoText: function(data) {
+        if (data.me == data.alphaDefamation)
+          return;
         if (data.me == data.alphaStack)
           return;
         if (data.alphaSeverity.includes(data.me))
           return;
-        // No way to determine defamation vs no buff yet.
+
+        if (data.tetherBois.length == 8) {
+          // Ok, everybody had a tether, so we know for sure what's up.
+          return {
+            en: 'Stack (no debuff)',
+          };
+        }
+
+        // Now we get into the "hope for the best" section.
+        // Maybe somebody was dead and didn't have a clone.
+        // They'll still get a mechanic, so GOOD LUCK.
+        let maybeStack = {
+          en: 'Stack?',
+        }[data.lang];
+        let maybeDefamation = {
+          en: 'Defamation?',
+        }[data.lang];
+        let maybeAvoid = {
+          en: 'Avoid Stack?',
+        }[data.lang];
+
+        let options = [maybeStack];
+        if (!data.alphaDefamation)
+          options.push(maybeDefamation);
+        if (data.alphaSeverity.length != 3)
+          options.push(maybeAvoid);
+
+        // This seems unlikely to be successful, but here's some hopeful information.
+        // GOOD LUCK TEAM T_T
         return {
-          en: '👀 Maybe Defamation OR Maybe Stack??',
+          en: '👀 ' + options.join(', ') + '???',
         };
       },
     },
@@ -1383,8 +1384,8 @@
     {
       id: 'TEA Alpha Resolve Second Motion',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      // 5 seconds until mechanic
-      delaySeconds: 6.2,
+      // ~4 seconds until mechanic (to avoid overlapping with first)
+      delaySeconds: 7.2,
       alertText: function(data) {
         if (data.secondAlphaOrdained == 'motion') {
           return {
@@ -1485,7 +1486,6 @@
         let y = 100 - matches.y;
         // 0 = N, 1 = E, 2 = S, 3 = W
         let idx = Math.round((Math.atan2(x, y) / Math.PI * 2 + 4)) % 4;
-        data.radiantLocation = 'NESW'[idx];
         data.radiantText = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.
@@ -1501,7 +1501,7 @@
           'W': {
             en: 'Sacrament West',
           },
-        }[data.radiantLocation];
+        }[idx];
       },
       infoText: function(data) {
         return data.radiantText;
@@ -1569,24 +1569,37 @@
     },
     {
       id: 'TEA Calibration Beta',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      // Call this out during the sacrament ability to give lots of time.
+      regex: Regexes.ability({ source: 'Perfect Alexander', id: '489E', capture: false }),
       infoText: function(data) {
+        let kUnknown = {
+          en: 'Beta: ??? (sorry)',
+        };
         if (!data.betaColors)
-          return;
+          return kUnknown;
 
         // You could do this in different ways, but this is how the clones do it,
         // so...why not make sure that alexanders end up in the same spots???
         let isBait = data.betaBait.includes(data.me);
         let isOrange = data.betaColors[data.me] == 'orange';
+        let isPurple = data.betaColors[data.me] == 'purple';
+
+        // TODO: we could maybe do some extra logic here to figure out what you are
+        // if everybody else is known.  If somebody is dead and has a tether, that
+        // tether will not appear on the clones but will exist during the mechanic.
 
         if (isBait) {
           if (isOrange) {
             return {
               en: 'Orange Bait: stay N',
             };
+          } else if (isPurple) {
+            return {
+              en: 'Purple Bait: stay E',
+            };
           }
           return {
-            en: 'Purple Bait: stay E',
+            en: '??? Bait: Go E or N????',
           };
         }
 
@@ -1596,8 +1609,13 @@
               en: 'Orange, close tether: E->N',
             };
           }
+          if (isPurple) {
+            return {
+              en: 'Purple, close tether: E->N',
+            };
+          }
           return {
-            en: 'Purple, close tether: E->N',
+            en: '???, close tether: E->N',
           };
         }
 
@@ -1607,8 +1625,13 @@
               en: 'Orange, far tether: E->N',
             };
           }
+          if (isPurple) {
+            return {
+              en: 'Purple, far tether: E->S',
+            };
+          }
           return {
-            en: 'Purple, far tether: E->S',
+            en: '???, far tether: E-> S? or N?',
           };
         }
 
@@ -1617,9 +1640,17 @@
             en: 'Orange, no tether: E->N',
           };
         }
-        return {
-          en: 'Purple, no tether: E->W',
-        };
+        if (isPurple) {
+          if (data.betaFarTether.length == 2) {
+            return {
+              en: 'Purple, no tether: E->W',
+            };
+          }
+          return {
+            en: 'Purple, maybe far tether? E-> W? S?',
+          };
+        }
+        return kUnknown;
       },
     },
     {
@@ -1719,6 +1750,14 @@
 
         // Start on the third trine, then move to the first.
         let threeOne = three + data.trine[0];
+
+        // For parks and other forestry solutions.
+        let locations = {
+          r: [92, 100],
+          g: [100, 100],
+          y: [108, 100],
+        };
+        data.trineLocations = [locations[three], locations[data.trine[0]]];
 
         // Here's the cactbot strategy.  We'll call this the Zed strategy,
         // as all the movement is along these five squares that form a Z.
