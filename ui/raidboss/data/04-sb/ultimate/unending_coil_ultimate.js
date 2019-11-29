@@ -1576,13 +1576,13 @@
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         return {
           en: 'Akh Morn #' + data.akhMornCount,
           cn: '死亡轮回 #' + data.akhMornCount,
         };
       },
-      tts: function(data, matches) {
+      tts: function(data) {
         return {
           en: 'akh morn ' + data.akhMornCount,
           cn: '死亡轮回 ' + data.akhMornCount,
