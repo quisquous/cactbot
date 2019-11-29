@@ -1317,7 +1317,7 @@
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: /1B:........:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
