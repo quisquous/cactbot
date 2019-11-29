@@ -319,6 +319,27 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
+  statChange: () => {
+    let str = '\\y{Timestamp} 0C:Player Stats: ' + '\\d+' + ':' + //skip job field
+      Regexes.namedCapture('strength', '\\d+') + ':' +
+      Regexes.namedCapture('dexterity', '\\d+') + ':' +
+      Regexes.namedCapture('vitality', '\\d+') + ':' +
+      Regexes.namedCapture('intelligence', '\\d+') + ':' +
+      Regexes.namedCapture('mind', '\\d+') + ':' +
+      Regexes.namedCapture('piety', '\\d+') + ':' +
+      Regexes.namedCapture('attack_power', '\\d+') + ':' +
+      Regexes.namedCapture('direct_hit', '\\d+') + ':' +
+      Regexes.namedCapture('critical_hit', '\\d+') + ':' +
+      Regexes.namedCapture('attack_magic_potency', '\\d+') + ':' +
+      Regexes.namedCapture('heal_magic_potency', '\\d+') + ':' +
+      Regexes.namedCapture('determination', '\\d+') + ':' +
+      Regexes.namedCapture('skill_speed', '\\d+') + ':' +
+      Regexes.namedCapture('spell_speed', '\\d+') + ':0:' +
+      Regexes.namedCapture('tenacity', '\\d+');
+    return Regexes.parse(str);
+  },
+
   // Helper function for building named capture group regexes.
   maybeCapture: (capture, name, value, defaultValue) => {
     if (!value)
