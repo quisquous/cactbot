@@ -106,7 +106,6 @@ def update_triggers(triggers, trans):
                 if found_base and line.find('regex') == -1:
                     fp.write(found_base.group(0))
                     for lang in sorted(languages):
-                        print(languages)
                         if lang in regex_langs:
                             fp.write(regex_langs[lang])
                             continue
