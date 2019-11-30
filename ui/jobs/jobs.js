@@ -75,7 +75,8 @@ let kAnybodyAbilityRegex = null;
 let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
 // Source: http://theoryjerks.akhmorning.com/resources/levelmods/
-const kLevelMod = [[56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
+const kLevelMod = [[0, 0],
+  [56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
   [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
   [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
   [100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
@@ -1902,8 +1903,8 @@ class Bars {
     // TODO: this probably isn't useful to track
     let astralUmbralMod = 100;
 
-    let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level - 1][0]) /
-      kLevelMod[this.level - 1][1])) * actiondelay / 1000;
+    let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level][0]) /
+      kLevelMod[this.level][1])) * actiondelay / 1000;
     let A = (100 - type1Buffs) / 100;
     let B = (100 - type2Buffs) / 100;
     let GCDc = Math.floor(Math.floor((A * B) * GCDms / 10) * astralUmbralMod / 100);
@@ -2220,8 +2221,8 @@ class Bars {
         }
         if (log[16] == 'C') {
           let stats = log.match(kStatsRegex).groups;
-          this.skillSpeed = stats.skill_speed;
-          this.spellSpeed = stats.spell_speed;
+          this.skillSpeed = stats.skillSpeed;
+          this.spellSpeed = stats.spellSpeed;
           this.UpdateJobBarGCDs();
           continue;
         }

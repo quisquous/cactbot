@@ -319,9 +319,9 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: job, strength, dexterity, vitality, intelligence, mind, piety, attack_power,
-  //         direct_hit, critical_hit, attack_magic_potency, heal_magic_potency, determination,
-  //         skill_speed, spell_speed, tenacity, capture
+  // fields: job, strength, dexterity, vitality, intelligence, mind, piety, attackPower,
+  //         directHit, criticalHit, attackMagicPotency, healMagicPotency, determination,
+  //         skillSpeed, spellSpeed, tenacity, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
   statChange: (f) => {
     if (typeof f === 'undefined')
@@ -334,14 +334,14 @@ var Regexes = {
       'intelligence',
       'mind',
       'piety',
-      'attack_power',
-      'direct_hit',
-      'critical_hit',
-      'attack_magic_potency',
-      'heal_magic_potency',
+      'attackPower',
+      'directHit',
+      'criticalHit',
+      'attackMagicPotency',
+      'healMagicPotency',
       'determination',
-      'skill_speed',
-      'spell_speed',
+      'skillSpeed',
+      'spellSpeed',
       'tenacity',
       'capture',
     ]);
@@ -354,14 +354,15 @@ var Regexes = {
       Regexes.maybeCapture(capture, 'intelligence', f.intelligence, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'mind', f.mind, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'piety', f.piety, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'attack_power', f.attack_power, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'direct_hit', f.direct_hit, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'critical_hit', f.critical_hit, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'attack_magic_potency', f.attack_magic_potency, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'heal_magic_potency', f.heal_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attackPower', f.attack_power, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'directHit', f.direct_hit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'criticalHit', f.critical_hit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attackMagicPotency', f.attack_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'healMagicPotency', f.heal_magic_potency, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'determination', f.determination, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'skill_speed', f.skill_speed, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'spell_speed', f.spell_speed, '\\d+') + ':0:' +
+      Regexes.maybeCapture(capture, 'skillSpeed', f.skill_speed, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'spellSpeed', f.spell_speed, '\\d+') +
+      ':0:' +
       Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+');
     return Regexes.parse(str);
   },
