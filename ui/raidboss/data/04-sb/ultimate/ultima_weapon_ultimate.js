@@ -22,24 +22,24 @@
   triggers: [
     // Phases
     {
-      regexKo: /:알테마 웨폰:2D4D:/,
       regex: /:The Ultima Weapon:2D4D:/,
       regexCn: /:究极神兵:2D4D:/,
       regexDe: /:Ultima-Waffe:2D4D:/,
       regexFr: /:Ultima Arma:2D4D:/,
       regexJa: /:アルテマウェポン:2D4D:/,
+      regexKo: /:알테마 웨폰:2D4D:/,
       run: function(data) {
         data.phase = 'suppression';
       },
     },
     {
       // Wait after suppression for primal triggers at the end.
-      regexKo: /:알테마 웨폰:2D4D:/,
       regex: /:The Ultima Weapon:2D4D:/,
       regexCn: /:究极神兵:2D4D:/,
       regexDe: /:Ultima-Waffe:2D4D:/,
       regexFr: /:Ultima Arma:2D4D:/,
       regexJa: /:アルテマウェポン:2D4D:/,
+      regexKo: /:알테마 웨폰:2D4D:/,
       delaySeconds: 74,
       run: function(data) {
         data.phase = 'finale';
@@ -47,12 +47,12 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regexKo: / 14:2B53:가루다 starts using 반동 기류/,
       regex: / 14:2B53:Garuda starts using Slipstream/,
       regexCn: / 14:2B53:迦楼罗 starts using 螺旋气流/,
       regexDe: / 14:2B53:Garuda starts using Wirbelströmung/,
       regexFr: / 14:2B53:Garuda starts using Sillage/,
       regexJa: / 14:2B53:ガルーダ starts using スリップストリーム/,
+      regexKo: / 14:2B53:가루다 starts using 반동 기류/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -98,12 +98,12 @@
     },
     {
       id: 'UWU Garuda Spiny Plume',
-      regexKo: / 03:\y{ObjectId}Added new combatant 가시돋힌 깃털/,
       regex: / 03:\y{ObjectId}:Added new combatant Spiny Plume\./,
       regexCn: / 03:\y{ObjectId}:Added new combatant 刺羽\./,
       regexDe: / 03:\y{ObjectId}:Added new combatant Dorniger Federsturm\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Plume Perforante\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant スパイニープルーム/,
+      regexKo: / 03:\y{ObjectId}:Added new combatant 가시돋힌 깃털\./,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -118,12 +118,12 @@
     },
     {
       id: 'UWU Ifrit Fetters',
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
       regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernal Fetters from/,
       regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火狱之锁 from/,
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernofesseln from/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaînes Infernales from/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 炎獄の鎖 from/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -147,12 +147,12 @@
     },
     {
       id: 'UWU Searing Wind',
-      regexKo: / 14:2B5B:이프리트 starts using 작열의 포효 on (\y{Name})/,
       regex: / 14:2B5B:Ifrit starts using Inferno Howl on (\y{Name})/,
       regexCn: / 14:2B5B:伊弗利特 starts using 灼热咆哮 on (\y{Name})/,
       regexDe: / 14:2B5B:Ifrit starts using Brennende Wut on (\y{Name})/,
       regexFr: / 14:2B5B:Ifrit starts using Rugissement Infernal on (\y{Name})/,
       regexJa: / 14:2B5B:イフリート starts using 灼熱の咆吼 on (\y{Name})/,
+      regexKo: / 14:2B5B:이프리트 starts using 작열의 포효 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -187,42 +187,42 @@
     },
     {
       id: 'UWU Garuda Woken',
-      regexKo: / 1A:\y{ObjectId}:가루다 gains the effect of 각성 from/,
       regex: / 1A:\y{ObjectId}:Garuda gains the effect of Woken from/,
       regexCn: / 1A:\y{ObjectId}:迦楼罗 gains the effect of 觉醒 from/,
       regexDe: / 1A:\y{ObjectId}:Garuda gains the effect of Ätherüberladung from/,
       regexFr: / 1A:\y{ObjectId}:Garuda gains the effect of Éveil éthéré from/,
       regexJa: / 1A:\y{ObjectId}:ガルーダ gains the effect of 覚醒 from/,
+      regexKo: / 1A:\y{ObjectId}:가루다 gains the effect of 각성 from/,
       sound: 'Long',
     },
     {
       id: 'UWU Ifrit Woken',
-      regexKo: / 1A:\y{ObjectId}:이프리트 gains the effect of 각성 from/,
       regex: / 1A:\y{ObjectId}:Ifrit gains the effect of Woken from/,
       regexCn: / 1A:\y{ObjectId}:伊弗利特 gains the effect of 觉醒 from/,
       regexDe: / 1A:\y{ObjectId}:Ifrit gains the effect of Ätherüberladung from/,
       regexFr: / 1A:\y{ObjectId}:Ifrit gains the effect of Éveil éthéré from/,
       regexJa: / 1A:\y{ObjectId}:イフリート gains the effect of 覚醒 from/,
+      regexKo: / 1A:\y{ObjectId}:이프리트 gains the effect of 각성 from/,
       sound: 'Long',
     },
     {
       id: 'UWU Titan Woken',
-      regexKo: / 1A:\y{ObjectId}:타이탄 gains the effect of 각성 from/,
       regex: / 1A:\y{ObjectId}:Titan gains the effect of Woken from/,
       regexCn: / 1A:\y{ObjectId}:泰坦 gains the effect of 觉醒 from/,
       regexDe: / 1A:\y{ObjectId}:Titan gains the effect of Ätherüberladung from/,
       regexFr: / 1A:\y{ObjectId}:Titan gains the effect of Éveil éthéré from/,
       regexJa: / 1A:\y{ObjectId}:タイタン gains the effect of 覚醒 from/,
+      regexKo: / 1A:\y{ObjectId}:타이탄 gains the effect of 각성 from/,
       sound: 'Long',
     },
     {
       id: 'UWU Titan Gaols',
-      regexKo: / 15:\y{ObjectId}:(?:가루다|타이탄):2B6[BC]:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
       regex: / 15:\y{ObjectId}:(?:Garuda|Titan):2B6[BC]:Rock Throw:\y{ObjectId}:(\y{Name}):/,
       regexCn: / 15:\y{ObjectId}:(?:迦楼罗|泰坦):2B6[BC]:花岗岩牢狱:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:(?:Garuda|Titan):2B6[BC]:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:(?:GarudaTitan):2B6[BC]:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:(?:ガルーダ|タイタン):2B6[BC]:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:(?:가루다|타이탄):2B6[BC]:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches[1]);
@@ -250,12 +250,12 @@
     {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
-      regexKo: / 15:\y{ObjectId}:화강암 감옥:2B6A:대폭발:\y{ObjectId}:(\y{Name}):/,
       regex: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Burst:\y{ObjectId}:(\y{Name}):/,
       regexCn: / 15:\y{ObjectId}:爆破岩石:2B6A:大爆炸:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Bomber-Brocken:2B6A:Zerschmetterung:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Grosse Explosion:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:ボムボルダー:2B6A:爆発:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:화강암 감옥:2B6A:대폭발:\y{ObjectId}:(\y{Name}):/,
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
@@ -271,12 +271,12 @@
     },
     {
       // Cleanup
-      regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
       regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}:/,
       regexCn: / 15:\y{ObjectId}:(?:迦楼罗:2B6C|泰坦:2B6B):花岗岩牢狱:\y{ObjectId}:\y{Name}:/,
       regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}:/,
       regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}:/,
       regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
+      regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
@@ -284,12 +284,12 @@
     },
     {
       id: 'UWU Suppression Gaol',
-      regexKo: / 15:\y{ObjectId}:타이탄:2B6B:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
       regex: / 15:\y{ObjectId}:Titan:2B6B:Rock Throw:\y{ObjectId}:(\y{Name}):/,
       regexCn: / 15:\y{ObjectId}:泰坦:2B6B:花岗岩牢狱:\y{ObjectId}:(\y{Name}):/,
       regexDe: / 15:\y{ObjectId}:Titan:2B6B:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Titan:2B6B:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:タイタン:2B6B:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:타이탄:2B6B:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.phase == 'suppression' && data.me == matches[1];
       },
@@ -304,12 +304,12 @@
     },
     {
       id: 'UWU Garuda Finale',
-      regexKo: /:알테마 웨폰:2CD3:/,
       regex: /:The Ultima Weapon:2CD3:/,
       regexCn: /:究极神兵:2CD3:/,
       regexDe: /:Ultima-Waffe:2CD3:/,
       regexFr: /:Ultima Arma:2CD3:/,
       regexJa: /:アルテマウェポン:2CD3:/,
+      regexKo: /:알테마 웨폰:2CD3:/,
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -324,12 +324,12 @@
     },
     {
       id: 'UWU Ifrit Finale',
-      regexKo: /:알테마 웨폰:2CD4:/,
       regex: /:The Ultima Weapon:2CD4:/,
       regexCn: /:究极神兵:2CD4:/,
       regexDe: /:Ultima-Waffe:2CD4:/,
       regexFr: /:Ultima Arma:2CD4:/,
       regexJa: /:アルテマウェポン:2CD4:/,
+      regexKo: /:알테마 웨폰:2CD4:/,
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -344,12 +344,12 @@
     },
     {
       id: 'UWU Titan Finale',
-      regexKo: /:알테마 웨폰:2CD5:/,
       regex: /:The Ultima Weapon:2CD5:/,
       regexCn: /:究极神兵:2CD5:/,
       regexDe: /:Ultima-Waffe:2CD5:/,
       regexFr: /:Ultima Arma:2CD5:/,
       regexJa: /:アルテマウェポン:2CD5:/,
+      regexKo: /:알테마 웨폰:2CD5:/,
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -602,7 +602,7 @@
         'Titan': 'タイタン',
         'Ultimaplasm': 'アルテマ爆雷',
         'Bomb Boulder': 'ボムボルダ',
-        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'はじめようぞ、虫ケラ…… わたくしの風でッ！　嵐でッ！　無残に散れッ！',
+        'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'はじめようぞ、虫ケラ…… .わたくしの風でッ！　嵐でッ！　無残に散れッ！',
       },
       'replaceText': {
         'Aerial Blast': 'エリアルブラスト',

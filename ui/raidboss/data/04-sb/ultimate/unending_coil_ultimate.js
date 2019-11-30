@@ -1582,12 +1582,6 @@
           cn: '死亡轮回 #' + data.akhMornCount,
         };
       },
-      tts: function(data) {
-        return {
-          en: 'akh morn ' + data.akhMornCount,
-          cn: '死亡轮回 ' + data.akhMornCount,
-        };
-      },
     },
     {
       id: 'UCU Exaflare',
