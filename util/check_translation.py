@@ -7,13 +7,14 @@ import json
 import os
 import re
 
-languages = ['en', 'de', 'fr', 'ja', 'cn']
+languages = ['en', 'de', 'fr', 'ja', 'cn', 'ko']
 regex_entries = {
     'regexEn': 'en',
     'regexDe': 'de',
     'regexFr': 'fr',
     'regexJa': 'ja',
     'regexCn': 'cn',
+    'regexKo': 'ko',
 }
 
 
