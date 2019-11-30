@@ -36,6 +36,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Devotion: 'Dévouement', // 0x4bd
       FoeRequiem: 'Requiem ennemi', // up 0x8b, down 0x8c
       LeadenFist: 'Poings de plomb',
+      StormsEye: 'Œil de la tempête',
       Devilment: 'Tango endiablé',
       TechnicalFinish: 'Final technique',
       StandardFinish: 'Final classique',
@@ -43,6 +44,11 @@ class CactbotLanguageFr extends CactbotLanguage {
       Firestarter: 'Pyromane',
       BattleVoice: 'Voix de combat',
       Divination: 'Divination',
+      ArmysMuse: 'Bénédiction martiale',
+      ArmysEthos: 'Pacte martial',
+      PresenceOfMind: 'Présence d\'esprit',
+      Shifu: 'Shifû',
+      CircleOfPower: 'Manalignements',
 
       Paralysis: 'Paralysie',
       Petrification: 'Pétrification',

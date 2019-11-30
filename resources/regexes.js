@@ -319,6 +319,54 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // fields: job, strength, dexterity, vitality, intelligence, mind, piety, attackPower,
+  //         directHit, criticalHit, attackMagicPotency, healMagicPotency, determination,
+  //         skillSpeed, spellSpeed, tenacity, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
+  statChange: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'statChange', [
+      'job',
+      'strength',
+      'dexterity',
+      'vitality',
+      'intelligence',
+      'mind',
+      'piety',
+      'attackPower',
+      'directHit',
+      'criticalHit',
+      'attackMagicPotency',
+      'healMagicPotency',
+      'determination',
+      'skillSpeed',
+      'spellSpeed',
+      'tenacity',
+      'capture',
+    ]);
+    let capture = trueIfUndefined(f.capture);
+    let str = '\\y{Timestamp} 0C:Player Stats: ' +
+      Regexes.maybeCapture(capture, 'job', f.job, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'strength', f.strength, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'dexterity', f.dexterity, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'vitality', f.vitality, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'intelligence', f.intelligence, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'mind', f.mind, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'piety', f.piety, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attackPower', f.attack_power, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'directHit', f.direct_hit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'criticalHit', f.critical_hit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attackMagicPotency', f.attack_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'healMagicPotency', f.heal_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'determination', f.determination, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'skillSpeed', f.skill_speed, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'spellSpeed', f.spell_speed, '\\d+') +
+      ':0:' +
+      Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+');
+    return Regexes.parse(str);
+  },
+
   // Helper function for building named capture group regexes.
   maybeCapture: (capture, name, value, defaultValue) => {
     if (!value)

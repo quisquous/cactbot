@@ -31,12 +31,6 @@ let Options = {
     },
   },
 
-  RdmCastTime: 1.94 + 0.5,
-  WarGcd: 2.45,
-  PldGcd: 2.43,
-  AstGcd: 2.39,
-  BluGcd: 2.40,
-
   BigBuffIconWidth: 44,
   BigBuffIconHeight: 32,
   BigBuffBarHeight: 5,
@@ -59,12 +53,15 @@ let Options = {
   MidHealthThresholdPercent: 0.8,
 };
 
+let kMeleeWithMpJobs = ['DRK', 'PLD'];
+
 let kMPNormalRate = 0.06;
 let kMPCombatRate = 0.02;
 let kMPUI1Rate = 0.30;
 let kMPUI2Rate = 0.45;
 let kMPUI3Rate = 0.60;
 let kMPTickInterval = 3.0;
+let kUnknownGCD = 2.5;
 
 // Regexes to be filled out once we know the player's name.
 let kComboBreakers = null;
@@ -74,6 +71,27 @@ let kYouGainEffectRegex = null;
 let kYouLoseEffectRegex = null;
 let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
+
+let kStatsRegex = Regexes.statChange();
+// [level][Sub][Div]
+// Source: http://theoryjerks.akhmorning.com/resources/levelmods/
+const kLevelMod = [[0, 0],
+  [56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
+  [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
+  [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
+  [100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
+  [122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
+  [150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
+  [181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
+  [215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
+  [253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
+  [302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
+  [342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
+  [349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
+  [355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
+  [360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
+  [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
+  [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
 
 let kGainSecondsRegex = Regexes.parse('for (\\y{Float}) Seconds\\.');
 function gainSecondsFromLog(log) {
@@ -292,8 +310,6 @@ function setupRegexes() {
     gLang.kAbility.Confiteor,
   ]);
 }
-
-let kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 function doesJobNeedMPBar(job) {
   return Util.isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
@@ -859,10 +875,24 @@ class Bars {
     this.combo = 0;
     this.comboTimer = null;
 
+    this.skillSpeed = 0;
+    this.spellSpeed = 0;
+    this.gcdSkill = () => this.CalcGCDFromStat(this.skillSpeed);
+    this.gcdSpell = () => this.CalcGCDFromStat(this.spellSpeed);
+
+    this.presenceOfMind = 0;
+    this.shifu = 0;
+    this.huton = 0;
+    this.lightningStacks = 0;
+    this.paeonStacks = 0;
+    this.museStacks = 0;
+    this.circleOfPower = 0;
+
     this.comboFuncs = [];
     this.jobFuncs = [];
     this.gainEffectFuncMap = {};
     this.loseEffectFuncMap = {};
+    this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
   }
 
@@ -871,6 +901,7 @@ class Bars {
     this.jobFuncs = [];
     this.gainEffectFuncMap = {};
     this.loseEffectFuncMap = {};
+    this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
 
     this.gainEffectFuncMap[gLang.kEffect.WellFed] = (name, log) => {
@@ -1054,6 +1085,10 @@ class Bars {
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
       'BLM': this.setupBlm,
+      'BRD': this.setupBrd,
+      'WHM': this.setupWhm,
+      'NIN': this.setupNin,
+      'SAM': this.setupSam,
     };
     if (setup[this.job])
       setup[this.job].bind(this)();
@@ -1162,7 +1197,7 @@ class Bars {
   }
 
   setupWar() {
-    let gcd = this.options.WarGcd;
+    let gcd = kUnknownGCD;
 
     let textBox = this.addResourceBox({
       classList: ['war-color-beast'],
@@ -1226,7 +1261,7 @@ class Bars {
       // The new threshold is "can I finish the current combo and still
       // have time to do a Storm's Eye".
       let oldThreshold = parseFloat(eyeBox.threshold);
-      let newThreshold = (minSkillsUntilEye + 2) * gcd;
+      let newThreshold = (minSkillsUntilEye + 2) * this.gcdSkill();
 
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
@@ -1243,6 +1278,10 @@ class Bars {
       // To fix this, don't "lose" unless it's been going on a bit.
       if (eyeBox.elapsed > 10)
         eyeBox.duration = 0;
+    };
+
+    this.statChangeFuncMap['WAR'] = () => {
+      eyeBox.valuescale = this.gcdSkill();
     };
   }
 
@@ -1283,7 +1322,7 @@ class Bars {
   }
 
   setupPld() {
-    let gcd = this.options.PldGcd;
+    let gcd = kUnknownGCD;
 
     let textBox = this.addResourceBox({
       classList: ['pld-color-oath'],
@@ -1325,10 +1364,15 @@ class Bars {
         goreBox.duration = 22;
       }
     });
+
+    this.statChangeFuncMap['PLD'] = () => {
+      goreBox.valuescale = this.gcdSkill();
+      goreBox.threshold = this.gcdSkill() * 3 + 0.3;
+    };
   }
 
   setupBlu() {
-    let gcd = this.options.BluGcd;
+    let gcd = kUnknownGCD;
 
     let offguardBox = this.addProcBox({
       id: 'blu-procs-offguard',
@@ -1352,11 +1396,18 @@ class Bars {
       tormentBox.duration = 0;
       tormentBox.duration = 30;
     };
+
+    this.statChangeFuncMap['BLU'] = () => {
+      offguardBox.valuescale = this.gcdSpell();
+      offguardBox.threshold = this.gcdSpell() * 3;
+      tormentBox.valuescale = this.gcdSpell();
+      tormentBox.threshold = this.gcdSpell() * 3;
+    };
   }
 
   // TODO: none of this is actually super useful.
   setupAst() {
-    let gcd = this.options.AstGcd;
+    let gcd = kUnknownGCD;
 
     let combustBox = this.addProcBox({
       id: 'ast-procs-combust',
@@ -1392,6 +1443,15 @@ class Bars {
       heliosBox.duration = 0;
       heliosBox.duration = 30;
     };
+
+    this.statChangeFuncMap['AST'] = () => {
+      combustBox.valuescale = this.gcdSpell();
+      combustBox.threshold = this.gcdSpell() * 3;
+      beneficBox.valuescale = this.gcdSpell();
+      beneficBox.threshold = this.gcdSpell() * 3;
+      heliosBox.valuescale = this.gcdSpell();
+      heliosBox.threshold = this.gcdSpell() * 3;
+    };
   }
 
   setupMnk() {
@@ -1424,9 +1484,9 @@ class Bars {
           p.classList.remove('dim');
       }
 
-      let stacks = jobDetail.lightningStacks;
-      lightningTimer.fg = lightningFgColors[stacks];
-      if (stacks == 0) {
+      this.lightningStacks = jobDetail.lightningStacks;
+      lightningTimer.fg = lightningFgColors[this.lightningStacks];
+      if (this.lightningStacks == 0) {
         // Show sad red bar when you've lost all your pancakes.
         lightningTimer.style = 'fill';
         lightningTimer.value = 0;
@@ -1580,17 +1640,17 @@ class Bars {
 
     this.gainEffectFuncMap[gLang.kEffect.VerstoneReady] = (name, log) => {
       whiteProc.duration = 0;
-      whiteProc.duration = gainSecondsFromLog(log) - this.options.RdmCastTime;
+      whiteProc.duration = gainSecondsFromLog(log) - this.gcdSpell();
     };
     this.loseEffectFuncMap[gLang.kEffect.VerstoneReady] = () => whiteProc.duration = 0;
     this.gainEffectFuncMap[gLang.kEffect.VerfireReady] = (name, log) => {
       blackProc.duration = 0;
-      blackProc.duration = gainSecondsFromLog(log) - this.options.RdmCastTime;
+      blackProc.duration = gainSecondsFromLog(log) - this.gcdSpell();
     };
     this.loseEffectFuncMap[gLang.kEffect.VerfireReady] = () => blackProc.duration = 0;
     this.gainEffectFuncMap[gLang.kEffect.Impactful] = (name, log) => {
       impactfulProc.duration = 0;
-      impactfulProc = gainSecondsFromLog(log) - this.options.RdmCastTime;
+      impactfulProc = gainSecondsFromLog(log) - this.gcdSpell();
     };
     this.loseEffectFuncMap[gLang.kEffect.Impactful] = () => impactfulProc.duration = 0;
   }
@@ -1645,6 +1705,9 @@ class Bars {
       fireProc.duration = gainSecondsFromLog(log);
     };
     this.loseEffectFuncMap[gLang.kEffect.Firestarter] = () => fireProc.duration = 0;
+
+    this.gainEffectFuncMap[gLang.kEffect.CircleOfPower] = () => this.circleOfPower = 1;
+    this.loseEffectFuncMap[gLang.kEffect.CircleOfPower] = () => this.circleOfPower = 0;
 
     // It'd be super nice to use grid here.
     // Maybe some day when cactbot uses new cef.
@@ -1726,9 +1789,132 @@ class Bars {
     });
   }
 
+  setupBrd() {
+    let ethosStacks = 0;
+
+    // Bard is complicated
+    // Paeon -> Minuet/Ballad -> muse -> muse ends
+    // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
+    // Paeon -> runs out -> ethos -> ethos runs out
+    // Track Paeon Stacks through to next song GCD buff
+    this.gainEffectFuncMap[gLang.kEffect.ArmysMuse] = (name, log) => {
+      // We just entered Minuet/Ballad, add muse effect
+      // If we let paeon run out, get the temp stacks from ethos
+      this.museStacks = ethosStacks ? ethosStacks : this.paeonStacks;
+      this.paeonStacks = 0;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.ArmysMuse] = () => {
+      // Muse effect ends
+      this.museStacks = 0;
+      this.paeonStacks = 0;
+    };
+    this.gainEffectFuncMap[gLang.kEffect.ArmysEthos] = (name, log) => {
+      // Not under muse or paeon, so store the stacks
+      ethosStacks = this.paeonStacks;
+      this.paeonStacks = 0;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.ArmysEthos] = () => {
+      // Didn't use a song and ethos ran out
+      ethosStacks = 0;
+      this.museStacks = 0;
+      this.paeonStacks = 0;
+    };
+
+    this.jobFuncs.push((jobDetail) => {
+      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
+        this.paeonStacks = jobDetail.songProcs;
+    });
+  }
+
+  setupWhm() {
+    this.gainEffectFuncMap[gLang.kEffect.PresenceOfMind] = (name, log) => {
+      this.presenceOfMind = 1;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.PresenceOfMind] = () => {
+      this.presenceOfMind = 0;
+    };
+  }
+
+  setupNin() {
+    this.jobFuncs.push((jobDetail) => {
+      if (jobDetail.hutonMilliseconds > 0) {
+        if (this.huton != 1)
+          this.huton = 1;
+      } else if (this.huton == 1) {
+        this.huton = 0;
+      }
+    });
+  }
+
+  setupSam() {
+    this.gainEffectFuncMap[gLang.kEffect.Shifu] = (name, log) => {
+      this.shifu = 1;
+    };
+    this.loseEffectFuncMap[gLang.kEffect.Shifu] = () => {
+      this.shifu = 0;
+    };
+  }
+
   OnComboChange(skill) {
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
+  }
+
+  // Source: http://theoryjerks.akhmorning.com/guide/speed/
+  CalcGCDFromStat(stat, actiondelay) {
+    // default calculates for a 2.50s recast
+    actiondelay = actiondelay || 2500;
+
+    let type1Buffs = 0;
+    let type2Buffs = 0;
+    if (this.job == 'BLM') {
+      type1Buffs += this.circleOfPower ? 15 : 0;
+    } else if (this.job == 'WHM') {
+      type1Buffs += this.presenceOfMind ? 20 : 0;
+    } else if (this.job == 'SAM') {
+      if (this.shifu) {
+        if (this.level > 77)
+          type1Buffs += 13;
+        else type1Buffs += 10;
+      }
+    }
+
+    if (this.job == 'NIN') {
+      type2Buffs += this.huton ? 15 : 0;
+    } else if (this.job == 'MNK') {
+      type2Buffs += 5 * this.lightningStacks;
+    } else if (this.job == 'BRD') {
+      type2Buffs += 4 * this.paeonStacks;
+      switch (this.museStacks) {
+      case 1:
+        type2Buffs += 1;
+        break;
+      case 2:
+        type2Buffs += 2;
+        break;
+      case 3:
+        type2Buffs += 4;
+        break;
+      case 4:
+        type2Buffs += 12;
+        break;
+      }
+    }
+    // TODO: this probably isn't useful to track
+    let astralUmbralMod = 100;
+
+    let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level][0]) /
+      kLevelMod[this.level][1])) * actiondelay / 1000;
+    let A = (100 - type1Buffs) / 100;
+    let B = (100 - type2Buffs) / 100;
+    let GCDc = Math.floor(Math.floor((A * B) * GCDms / 10) * astralUmbralMod / 100);
+    return GCDc / 100;
+  }
+
+  UpdateJobBarGCDs() {
+    let f = this.statChangeFuncMap[this.job];
+    if (f)
+      f();
   }
 
   UpdateHealth() {
@@ -2031,6 +2217,13 @@ class Bars {
         }
         if (log.search(/:test:jobs:/) >= 0) {
           this.Test();
+          continue;
+        }
+        if (log[16] == 'C') {
+          let stats = log.match(kStatsRegex).groups;
+          this.skillSpeed = stats.skillSpeed;
+          this.spellSpeed = stats.spellSpeed;
+          this.UpdateJobBarGCDs();
           continue;
         }
       } else if (log[15] == '1') {

@@ -36,6 +36,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       Devotion: 'エギの加護', // 0x4bd
       FoeRequiem: '魔人のレクイエム', // up 0x8b, down 0x8c
       LeadenFist: '連撃効果アップ',
+      StormsEye: 'シュトルムブレハ',
       Devilment: '攻めのタンゴ',
       TechnicalFinish: 'テクニカルフィニッシュ',
       StandardFinish: 'スタンダードフィニッシュ',
@@ -43,6 +44,11 @@ class CactbotLanguageJa extends CactbotLanguage {
       Firestarter: 'ファイガ効果アップ',
       BattleVoice: 'バトルボイス',
       Divination: 'ディヴィネーション',
+      ArmysMuse: '軍神の加護',
+      ArmysEthos: '軍神の契約',
+      PresenceOfMind: '神速魔',
+      Shifu: '士風',
+      CircleOfPower: '黒魔紋：効果',
 
       Paralysis: '麻痺',
       Petrification: '石化',
