@@ -7,8 +7,8 @@
 // If there are errors in this file, they will appear in the OverlayPlugin.dll
 // log window in ACT.
 
-// Monsters located out of this range will be hidden in the overlay and 0 means 
-// never hide monsters. Note that you have to detect the monster first, which 
+// Monsters located out of this range will be hidden in the overlay and 0 means
+// never hide monsters. Note that you have to detect the monster first, which
 // usually needs to be close enough to make ACT "see" the monsters at first.
 Options.DetectionRange = 0;
 
