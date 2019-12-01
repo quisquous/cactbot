@@ -2123,7 +2123,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        '^Alexander$': 'Alexander',
+        '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Prim-Alexander',
         'Brute Justice': 'Brutalus',
         'Cruise Chaser': 'Chaser-Mecha',
@@ -2264,6 +2264,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        '(?<! )Alexander(?! )': 'Alexander', // FIXME
         'Alexander Prime': 'Primo-Alexander',
         'Brute Justice': 'Justicier',
         'Cruise Chaser': 'Croiseur-chasseur',
@@ -2275,7 +2276,6 @@
         'Perfect Alexander': 'Alexander parfait',
         'Plasmasphere': 'sphère de plasma',
         'Steam Chakram': 'chakram de vapeur',
-        '^Alexander$': '^Alexander$', // FIXME
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
@@ -2405,6 +2405,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        '(?<! )Alexander(?! )': 'Alexander', // FIXME
         'Alexander Prime': 'アレキサンダー・プライム',
         'Brute Justice': 'ブルートジャスティス',
         'Cruise Chaser': 'クルーズチェイサー',
@@ -2416,7 +2417,6 @@
         'Perfect Alexander': 'パーフェクト・アレキサンダー',
         'Plasmasphere': 'プラズマスフィア',
         'Steam Chakram': 'スチームチャクラム',
-        '^Alexander$': '^Alexander$', // FIXME
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
