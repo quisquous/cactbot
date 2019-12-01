@@ -1620,19 +1620,19 @@
         return [
           {
             en: '#1 Safe (NW / SE)',
-            de: '#1 Sicher (NW / SE)',
+            de: '#1 Sicher (NW / SO)',
           },
           {
             en: '#2 Safe (NNW / SSE)',
-            de: '#2 Sicher (NNW / SSE)',
+            de: '#2 Sicher (NNW / SSO)',
           },
           {
             en: '#3 Safe (NNE / SSW)',
-            de: '#3 Sicher (NNE / SSW)',
+            de: '#3 Sicher (NNO / SSW)',
           },
           {
             en: '#4 Safe (NE / SW)',
-            de: '#4 Sicher (NE / SW)',
+            de: '#4 Sicher (NO / SW)',
           },
         ][idx];
       },
@@ -1703,7 +1703,7 @@
           },
           '0': {
             en: 'Purple Bait: bait E',
-            de: 'Lila Köder: locke E',
+            de: 'Lila Köder: locke O',
           },
           '1': {
             en: 'Orange Bait: bait N',
