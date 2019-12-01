@@ -64,8 +64,10 @@ class Radar {
     let options = this.options;
     if (monster['rank'] in options.RankOptions) // options overwrite
       options = Object.assign({}, this.options, options.RankOptions[monster['rank']]);
-    if (options.OnlyMobs)
+    if (options.OnlyMobs) {
       matchOrNot &= matches.groups.id.startsWith('4');
+      matchOrNot &= !(log.match(/\(\d{0,5}00000\d{0,5}\)\.$/) === null);
+    }
     if (matchOrNot) {
       let mob_name = matches.groups.name;
       let m = {
@@ -170,7 +172,7 @@ class Radar {
     let lang = this.options.Language;
     for (let i = 0; i < e.detail.logs.length; i++) {
       // add new combatant
-      let matches = e.detail.logs[i].match(Regexes.addedCombatantFull({}));
+      let matches = e.detail.logs[i].match(Regexes.addedCombatantFull());
       if (matches) {
         let monster = this.nameToMonster[matches.groups.name];
         if (monster)
