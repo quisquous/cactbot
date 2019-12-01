@@ -834,21 +834,34 @@ class EmulatorView {
         trigger.preRun(data, matches);
       }
 
+
+      let response = {};
+      if (trigger.response) {
+        let r = trigger.response;
+        response = (typeof r === 'function') ? r(data, matches) : r;
+      }
+
       // popup text
       if (typeof trigger.alarmText === 'function' && trigger.alarmText(data, matches))
         result = trigger.alarmText(data, matches);
       else if (typeof trigger.alarmText === 'object')
         result = trigger.alarmText;
+      else if (response.alarmText)
+        result = response.alarmText;
 
       if (typeof trigger.alertText === 'function' && trigger.alertText(data, matches))
         result = trigger.alertText(data, matches);
       else if (typeof trigger.alertText === 'object')
         result = trigger.alertText;
+      else if (response.alertText)
+        result = response.alertText;
 
       if (typeof trigger.infoText === 'function' && trigger.infoText(data, matches))
         result = trigger.infoText(data, matches);
       else if (typeof trigger.infoText === 'object')
         result = trigger.infoText;
+      else if (response.infoText)
+        result = response.infoText;
 
       // execute run function after text!
       if (typeof trigger.run === 'function') {

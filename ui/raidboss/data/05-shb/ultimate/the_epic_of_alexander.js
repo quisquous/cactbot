@@ -383,13 +383,7 @@
       regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
       condition: Conditions.caresAboutAOE(),
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'TEA Protean Wave',
@@ -589,13 +583,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'TEA Spin Crusher',
