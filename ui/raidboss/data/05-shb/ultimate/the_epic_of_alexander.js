@@ -68,8 +68,8 @@
           if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank) {
             return {
               en: 'Tank Buster on YOU',
-              ja: '自分にタンクバスター',
               de: 'Tankbuster auf DIR',
+              ja: '自分にタンクバスター',
             };
           }
         }
@@ -124,6 +124,7 @@
       beforeSeconds: 3,
       infoText: {
         en: 'Water/Thunder in 3',
+        de: 'Wasser/Blitz in 3',
       },
     },
     {
@@ -135,6 +136,7 @@
       },
       alertText: {
         en: 'Face Brute Towards Water',
+        de: 'Drehe Brute zum Wasser',
       },
     },
     {
@@ -143,6 +145,7 @@
       beforeSeconds: 15,
       infoText: {
         en: 'Hide Behind Ice',
+        de: 'Hinter dem Eis verstecken',
       },
     },
     {
@@ -164,6 +167,7 @@
         if (matches[1] == data.puddle) {
           return {
             en: 'Soak This Puddle (#' + matches[1] + ')',
+            de: 'Fläche nehmen (#' + matches[1] + ')',
           };
         }
       },
@@ -172,6 +176,7 @@
           return;
         return {
           en: 'Puddle #' + matches[1],
+          de: 'Fläche #' + matches[1],
         };
       },
     },
@@ -186,6 +191,7 @@
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Shared Tankbuster',
+            de: 'geteilter Tankbuster',
           };
         }
       },
@@ -216,6 +222,12 @@
             2: 'Purple γ',
             3: 'Green δ',
           },
+          de: {
+            0: 'Blau α',
+            1: 'Orange β',
+            2: 'Lila γ',
+            3: 'Grün δ',
+          },
         }[data.lang];
 
         // Convenience function called for third and fourth nisi passes.
@@ -224,6 +236,7 @@
           if (!(data.me in data.finalNisiMap)) {
             return {
               en: 'Get Final Nisi (?)',
+              de: 'Nehme letzten Nisi (?)',
             };
           }
 
@@ -239,12 +252,15 @@
               // Still give something useful here.
               return {
                 en: 'Pass ' + myNisi + ' Nisi',
+                de: 'Gebe ' + myNisi + ' Nisi',
               };
             }
             // Hopefully there's only one here, but you never know.
             return {
               en: 'Pass ' + data.nisiNames[myNisi] + ' to ' +
                   names.map((x) => data.ShortName(x)).join(', or '),
+              de: 'Gebe ' + data.nisiNames[myNisi] + ' zu ' +
+                  names.map((x) => data.ShortName(x)).join(', oder '),
             };
           }
 
@@ -255,10 +271,11 @@
           if (names.length == 0) {
             return {
               en: 'Get ' + data.nisiNames[myNisi],
+              de: 'Nimm ' + data.nisiNames[myNisi],
             };
           }
           return {
-            en: 'Get ' + data.nisiNames[myNisi] + ' from ' + data.ShortName(names[0]),
+            en: 'Nimm ' + data.nisiNames[myNisi] + ' von ' + data.ShortName(names[0]),
           };
         };
       },
@@ -383,8 +400,8 @@
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
-        ja: 'プロティアン',
         de: 'Proteische Welle',
+        ja: 'プロティアン',
       },
     },
     {
@@ -417,8 +434,8 @@
         if (data.handOfPainCount == 5) {
           return {
             en: 'Focus Living Liquid',
-            ja: 'リビングリキッドを攻撃',
             de: 'belebtes Wasser fokussieren',
+            ja: 'リビングリキッドを攻撃',
           };
         }
       },
@@ -435,8 +452,8 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Cleanse Throttle',
-        ja: '窒息',
         de: 'Erstickung entfernen',
+        ja: '窒息',
       },
     },
     {
@@ -510,23 +527,25 @@
           if (isOddNumber) {
             return {
               en: 'Knockback Cleave; Face Outside',
+              de: 'Rückstoß Cleave; nach Außen schauen',
             };
           }
           return {
             en: 'Knockback Charge; Face Middle',
+            de: 'Rückstoß Charge; zur Mitte schauen',
           };
         }
         if (isOddNumber) {
           return {
             en: 'Knockback Cleave on YOU',
-            de: 'Cleave auf DIR',
+            de: 'Rückstoß Cleave auf DIR',
             fr: 'Cleave sur vous',
             ja: '自分にクリーブ',
           };
         }
         return {
           en: 'Knockback',
-          de: 'Knockback',
+          de: 'Rückstoß',
           fr: 'Poussée',
           cn: '击退',
           ja: 'ノックバック',
@@ -545,8 +564,8 @@
       },
       alertText: {
         en: 'Out, Dodge Chakrams',
-        ja: '外へ',
         de: 'Raus, Chakrams ausweichen',
+        ja: '外へ',
       },
     },
     {
@@ -559,8 +578,8 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
-        ja: '中へ',
         de: 'Rein',
+        ja: '中へ',
       },
     },
     {
@@ -593,6 +612,7 @@
       },
       alertText: {
         en: 'Dodge Spin Crusher',
+        de: 'Rotorbrecher ausweichen',
       },
     },
     {
@@ -603,6 +623,7 @@
       },
       alarmText: {
         en: 'Freeze Tornado',
+        de: 'Tornado einfrieren',
       },
     },
     {
@@ -617,6 +638,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Mines',
+        de: 'Minen',
       },
     },
     {
@@ -627,6 +649,7 @@
       },
       alertText: {
         en: 'Enumeration on YOU',
+        de: 'Enumeration auf DIR',
       },
     },
     {
@@ -642,6 +665,7 @@
         let names = data.enumerations.sort();
         return {
           en: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
+          de: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
@@ -654,6 +678,7 @@
       delaySeconds: 2,
       infoText: {
         en: 'Break Shield From Front',
+        de: 'Schild von Vorne zerstören',
       },
     },
     {
@@ -667,8 +692,8 @@
       },
       infoText: {
         en: 'Water on YOU',
-        ja: '自分に水',
         de: 'Wasser auf DIR',
+        ja: '自分に水',
       },
     },
     {
@@ -689,8 +714,8 @@
           return;
         return {
           en: 'Drop Water Soon',
-          ja: '水来るよ',
           de: 'Gleich Wasser ablegen',
+          ja: '水来るよ',
         };
       },
     },
@@ -705,8 +730,8 @@
       },
       infoText: {
         en: 'Lightning on YOU',
-        ja: '自分に雷',
         de: 'Blitz auf DIR',
+        ja: '自分に雷',
       },
     },
     {
@@ -727,8 +752,8 @@
           return;
         return {
           en: 'Drop Lightning Soon',
-          ja: '雷来るよ',
           de: 'Gleich Blitz ablegen',
+          ja: '雷来るよ',
         };
       },
     },
@@ -743,8 +768,8 @@
       suppressSeconds: 10000,
       alertText: {
         en: 'Pass Nisi',
-        ja: 'ナイサイ渡して',
         de: 'Nisi weitergeben',
+        ja: 'ナイサイ渡して',
       },
     },
     {
@@ -761,8 +786,8 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Pass Nisi',
-        ja: 'ナイサイ渡して',
         de: 'Nisi weitergeben',
+        ja: 'ナイサイ渡して',
       },
     },
     {
@@ -845,6 +870,7 @@
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
         return {
           en: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
+          de: 'Prozesseröffnung: ' + data.nisiNames[num] + ' Nisi',
         };
       },
     },
@@ -868,11 +894,13 @@
         if (data.me == matches.target) {
           return {
             en: 'Shared Tankbuster on YOU',
+            de: 'geteilter Tankbuster auf DIR',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
           return {
-            en: 'Shared Buster on ' + data.ShortName(matches.target),
+            en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
+            de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
           };
         }
       },
@@ -881,6 +909,7 @@
           return;
         return {
           en: 'Bait Super Jump?',
+          de: 'Supersprung anlocken?',
         };
       },
     },
@@ -893,6 +922,7 @@
       condition: (data) => data.phase == 'brute',
       infoText: {
         en: 'avoid ray',
+        de: 'Strahl ausweichen',
       },
     },
     {
@@ -950,6 +980,7 @@
           return;
         return {
           en: 'No Debuff',
+          de: 'Kein Debuff',
         };
       },
     },
@@ -1000,6 +1031,7 @@
       },
       alertText: {
         en: 'Shared Sentence',
+        de: 'Urteil: Kollektivstrafe',
       },
     },
     {
@@ -1013,6 +1045,7 @@
       },
       alarmText: {
         en: 'Thunder',
+        de: 'Blitz',
       },
     },
     {
@@ -1063,6 +1096,7 @@
       },
       alertText: {
         en: 'Crystal on YOU',
+        de: 'Kristall auf DIR',
       },
     },
     {
@@ -1074,6 +1108,7 @@
       suppressSeconds: 100,
       infoText: {
         en: 'Get Away From Crystals',
+        de: 'Geh weg vom Kristall',
       },
     },
     {
@@ -1086,6 +1121,7 @@
       delaySeconds: 1,
       infoText: {
         en: 'Bait Brute\'s Flarethrower',
+        de: 'Locke Brute\'s Großflammenwerfer',
       },
     },
     {
@@ -1111,6 +1147,7 @@
         if (data.role == 'tank') {
           return {
             en: 'Bait Jump Opposite Brute?',
+            de: 'Locke Sprung gegenüber von Brute?',
           };
         }
       },
@@ -1118,6 +1155,7 @@
         if (data.role != 'tank') {
           return {
             en: 'Bait Cruise Chaser Sword?',
+            de: 'Locke Chaser-Mecha Schwert?',
           };
         }
       },
@@ -1132,6 +1170,7 @@
         if (data.options.cactbotWormholeStrat) {
           return {
             en: 'Bait Chakrams mid; Look opposite Alex',
+            de: 'Locke Chakrams mittig; schau weg von Alex',
           };
         }
         return {
@@ -1148,6 +1187,7 @@
       condition: (data) => data.phase == 'wormhole',
       alertText: {
         en: 'Dodge Chakrams',
+        de: 'Chakrams ausweichen',
       },
     },
     {
@@ -1178,27 +1218,35 @@
         return {
           '004F': {
             en: 'Left To Robot; Look Outside; 3rd Puddle',
+            de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
           },
           '0050': {
             en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
+            de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
           },
           '0051': {
             en: 'Back Left Opposite Robot; No Puddle',
+            de: 'Hinten Links gegenüber vom Robot; keine Fläche',
           },
           '0052': {
             en: 'Right To Robot; No puddle',
+            de: 'Rechts vom Robot; keine Fläche',
           },
           '0053': {
             en: 'Left Robot Side -> 1st Puddle',
+            de: 'Linke Robot Seite -> 1. Fläche',
           },
           '0054': {
             en: 'Right Robot Side -> 1st Puddle',
+            de: 'Rechte Robot Seite -> 1. Fläche',
           },
           '0055': {
             en: 'Left Robot Side -> cardinal; 2nd Puddle',
+            de: 'Linke Robot Seite -> cardinal; 2. Fläche',
           },
           '0056': {
             en: 'Right Robot Side -> cardinal; 2nd Puddle',
+            de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
           },
         }[matches.id];
       },
@@ -1218,6 +1266,7 @@
       },
       infoText: {
         en: 'Move Behind Brute Justice?',
+        de: 'Geh hinter Brutalus?',
       },
     },
     {
@@ -1225,6 +1274,7 @@
       regex: Regexes.headMarker({ id: '005D', capture: false }),
       alertText: {
         en: 'Stack Middle',
+        de: 'mittig sammeln',
       },
     },
     {
@@ -1235,6 +1285,7 @@
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
       alertText: {
         en: 'big aoe',
+        de: 'große AoE',
       },
     },
     {
@@ -1246,6 +1297,7 @@
       delaySeconds: 10.4,
       infoText: {
         en: 'Kill Cruise Chaser First',
+        de: 'Chaser-Mecha zuerst besiegen',
       },
     },
     {
@@ -1260,6 +1312,7 @@
       delaySeconds: 6,
       alarmText: {
         en: 'TANK LB!!',
+        de: 'TANK LB!!',
       },
     },
     {
@@ -1287,6 +1340,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
+            de: 'Sammeln auf DIR',
           };
         }
       },
@@ -1296,6 +1350,7 @@
         let names = data.opticalStack.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Optical Stack (' + names.join(', ') + ')',
+          de: 'Optischer Stack (' + names.join(', ') + ')',
         };
       },
     },
@@ -1308,6 +1363,7 @@
       durationSeconds: 4,
       alertText: {
         en: 'Keep Moving',
+        de: 'weiter bewegen',
       },
     },
     {
@@ -1318,6 +1374,7 @@
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
       alarmText: {
         en: 'STOP LITERALLY EVERYTHING',
+        de: 'STOP WIRKLICH ALLES',
       },
     },
     {
@@ -1329,6 +1386,7 @@
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Orange (Attract)',
+        de: 'Orange (Anziehen)',
       },
     },
     {
@@ -1340,9 +1398,11 @@
       condition: (data, matches) => data.me == matches.target,
       alarmText: {
         en: 'Get Away',
+        de: 'Geh Weg',
       },
       infoText: {
         en: 'Orange Bait',
+        de: 'Orange locken',
       },
     },
     {
@@ -1354,6 +1414,7 @@
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Purple (Repel)',
+        de: 'Lila (Abstoßen)',
       },
     },
     {
@@ -1362,9 +1423,11 @@
       condition: (data, matches) => data.me == matches.target,
       alertText: {
         en: 'Be In Back Of Group',
+        de: 'Hinter der Gruppe sein',
       },
       infoText: {
         en: 'Purple Bait',
+        de: 'Lila locken',
       },
     },
     {
@@ -1394,19 +1457,23 @@
 
         let kNoDebuff = {
           en: 'No debuff: shared stack',
+          de: 'Kein debuff: geteilter stack',
         };
         let kSeverity = {
           en: 'Severity: avoid shared stack',
+          de: 'Erschwertes: geteilter stack ausweichen',
         };
 
         let kUnknown;
         if (sortedNames.length >= 5) {
           kUnknown = {
             en: 'No clone: probably no debuff + stack?',
+            de: 'keine Klone: warscheinlich kein debuff + stack?',
           };
         } else {
           kUnknown = {
             en: 'No clone: ???',
+            de: 'keine Klone: ???',
           };
         }
 
@@ -1414,9 +1481,11 @@
           '-1': kUnknown,
           '0': {
             en: 'Shared Sentence: stack',
+            de: 'Urteil Kollektivstrafe: stack',
           },
           '1': {
             en: 'Defamation on YOU',
+            de: 'Ehrenstrafe aud DIR',
           },
           '2': kSeverity,
           '3': kSeverity,
@@ -1466,6 +1535,7 @@
       suppressSeconds: 20,
       infoText: {
         en: 'Motion first',
+        de: 'Bewegungsbefehl zuerst',
       },
       run: function(data) {
         data.firstAlphaOrdained = 'motion';
@@ -1480,6 +1550,7 @@
       suppressSeconds: 20,
       infoText: {
         en: 'Stillness first',
+        de: 'Stillstandsbefehl zuerst',
       },
       run: function(data) {
         data.firstAlphaOrdained = 'stillness';
@@ -1494,6 +1565,7 @@
       suppressSeconds: 20,
       infoText: {
         en: 'Motion second',
+        de: 'Bewegungsbefehl als Zweites',
       },
       run: function(data) {
         data.secondAlphaOrdained = 'motion';
@@ -1508,6 +1580,7 @@
       suppressSeconds: 20,
       infoText: {
         en: 'Stillness second',
+        de: 'Stillstandsbefehl als Zweites',
       },
       run: function(data) {
         data.secondAlphaOrdained = 'stillness';
@@ -1547,15 +1620,19 @@
         return [
           {
             en: '#1 Safe (NW / SE)',
+            de: '#1 Sicher (NW / SE)',
           },
           {
             en: '#2 Safe (NNW / SSE)',
+            de: '#2 Sicher (NNW / SSE)',
           },
           {
             en: '#3 Safe (NNE / SSW)',
+            de: '#3 Sicher (NNE / SSW)',
           },
           {
             en: '#4 Safe (NE / SW)',
+            de: '#4 Sicher (NE / SW)',
           },
         ][idx];
       },
@@ -1572,10 +1649,12 @@
         if (data.firstAlphaOrdained == 'motion') {
           return {
             en: 'Move First',
+            de: 'Zuerst bewegen',
           };
         }
         return {
           en: 'Stillness First',
+          de: 'Zuerst Stillstehen',
         };
       },
     },
@@ -1591,10 +1670,12 @@
         if (data.secondAlphaOrdained == 'motion') {
           return {
             en: 'Keep Moving',
+            de: 'weiter bewegen',
           };
         }
         return {
           en: 'Stop Everything',
+          de: 'Alles stoppen',
         };
       },
     },
@@ -1618,31 +1699,40 @@
           // don't kill your friends stacking north.
           '-1': {
             en: 'No Clone: maybe purple E->S ???',
+            de: 'Keine Klone: vielleicht Lila E->S ???',
           },
           '0': {
             en: 'Purple Bait: bait E',
+            de: 'Lila Köder: locke E',
           },
           '1': {
             en: 'Orange Bait: bait N',
+            de: 'Orange Köder: locke N',
           },
           '2': {
             en: 'Purple, no tether: E->W',
+            de: 'Lila, keine Verbindung: E->W',
           },
           // This person also has the shared sentence.
           '3': {
             en: 'Orange, no tether: E->N',
+            de: 'Orange, keine Verbindung: E->N',
           },
           '4': {
             en: 'Purple, close tether: E->N',
+            de: 'Lila, nahe Verbindungr: E->N',
           },
           '5': {
             en: 'Orange, close tether: E->N',
+            de: 'Orange, nahe Verbindung: E->N',
           },
           '6': {
             en: 'Purple, far tether: E->S',
+            de: 'Lila, entfernte Verbindung: E->S',
           },
           '7': {
             en: 'Orange, far tether: E->N',
+            de: 'Orange, entfernte Verbindung: E->N',
           },
         }[sortedNames.indexOf(data.me)];
       },
@@ -1696,15 +1786,19 @@
           // But, leaving this here in case my math is wrong.
           'N': {
             en: 'Sacrament North',
+            de: 'Sacrement Norden',
           },
           'E': {
             en: 'Sacrament East',
+            de: 'Sacrement Osten',
           },
           'S': {
             en: 'Sacrament South',
+            de: 'Sacrement Süden',
           },
           'W': {
             en: 'Sacrament West',
+            de: 'Sacrement Westen',
           },
         }[idx];
       },
@@ -1725,6 +1819,7 @@
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
       infoText: {
         en: 'Optical Spread',
+        de: 'Visier verteilen',
       },
       run: function(data) {
         data.betaIsOpticalStack = false;
@@ -1738,6 +1833,7 @@
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
       infoText: {
         en: 'Optical Stack',
+        de: 'Visier sammeln',
       },
       run: function(data) {
         data.betaIsOpticalStack = true;
@@ -1754,11 +1850,13 @@
         if (!data.betaIsOpticalStack) {
           return {
             en: 'Optical Spread',
+            de: 'Visier verteilen',
           };
         }
         if (data.betaBait.includes(data.me)) {
           return {
             en: 'Optical Stack on YOU',
+            de: 'Visier sammeln auf DIR',
           };
         }
       },
@@ -1770,11 +1868,13 @@
         if (data.betaBait.length == 0) {
           return {
             en: 'Optical Stack',
+            de: 'Visier sammeln',
           };
         }
         let names = data.betaBait.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Optical Stack (' + names.join(', ') + ')',
+          de: 'Visier sammeln (' + names.join(', ') + ')',
         };
       },
     },
@@ -1799,6 +1899,7 @@
         if (data.role == 'tank' && data.me != matches.target) {
           return {
             en: 'Tank Swap!',
+            de: 'Tank Wechsel!',
           };
         }
       },
@@ -1830,6 +1931,7 @@
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
       alertText: {
         en: 'Stack Middle for Trine',
+        de: 'Mittig sammeln für Trine',
       },
     },
     {
@@ -1912,11 +2014,19 @@
               first: 'Wait Middle, Dodge North',
               second: 'North',
             },
+            de: {
+              first: 'Warte in der Mitte, ausweichen nach Norden',
+              second: 'Norden',
+            },
           },
           'rg': {
             en: {
               first: 'Go 1 North, Dodge South',
               second: 'South',
+            },
+            de: {
+              first: 'Geh nach Norden, ausweichen nach Süden',
+              second: 'Süden',
             },
           },
           'ry': {
@@ -1924,11 +2034,19 @@
               first: 'Go 1 North, Dodge West',
               second: 'West',
             },
+            de: {
+              first: 'Geh nach Norden, ausweichen nach Westen',
+              second: 'Westen',
+            },
           },
           'yr': {
             en: {
               first: 'Go 1 South, Dodge East',
               second: 'East',
+            },
+            de: {
+              first: 'Geh nach Süden, ausweichen nach Osten',
+              second: 'Osten',
             },
           },
           'gy': {
@@ -1936,11 +2054,19 @@
               first: 'Wait Middle, Dodge South',
               second: 'South',
             },
+            de: {
+              first: 'Warte in der Mitte, ausweichen nach Süden',
+              second: 'Süden',
+            },
           },
           'yg': {
             en: {
               first: 'Go 1 South, Dodge North',
               second: 'North',
+            },
+            de: {
+              first: 'Geh nach Süden, ausweichen nach Norden',
+              second: 'Norden',
             },
           },
         }[threeOne][data.lang];
@@ -2012,7 +2138,10 @@
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--Chaser-Mecha unverwundbar--',
+        '--adds targetable--': '--adds anvisierbar--',
+        '--alex untargetable--': '--alex nich anvisierbar--',
         '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
         'Aetheroplasm': 'Ätheroplasma',
         'Almighty Judgment': 'Göttliches Letzturteil',
         'Alpha Sword': 'Alpha-Schwert',
@@ -2135,7 +2264,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        '^Alexander$': 'Alexander',
         'Alexander Prime': 'Primo-Alexander',
         'Brute Justice': 'Justicier',
         'Cruise Chaser': 'Croiseur-chasseur',
@@ -2147,10 +2275,14 @@
         'Perfect Alexander': 'Alexander parfait',
         'Plasmasphere': 'sphère de plasma',
         'Steam Chakram': 'chakram de vapeur',
+        '^Alexander$': '^Alexander$', // FIXME
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
+        '--adds targetable--': '--adds targetable--', // FIXME
+        '--alex untargetable--': '--alex untargetable--', // FIXME
         '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
         'Aetheroplasm': 'Éthéroplasma',
         'Almighty Judgment': 'Sentence divine',
         'Alpha Sword': 'Épée alpha',
@@ -2173,7 +2305,7 @@
         'Fate Calibration': 'Fate Calibration', // FIXME
         'Fate Projection': 'Fate Projection', // FIXME
         'Final Sentence': 'Peine capitale',
-        'Flarethrower': 'Lance-flammes',
+        'Flarethrower': 'Lance-brasiers',
         'Fluid Strike': 'Frappe fluide',
         'Fluid Swing': 'Coup fluide',
         'Gavel': 'Conclusion de procès',
@@ -2225,55 +2357,54 @@
         'Temporal Prison': 'Geôle temporelle',
         'Temporal Stasis': 'Stase temporelle',
         'The Final Word': 'Prononcé du jugement',
-        'Throttles': 'Suffocation', // FIXME
+        'Throttles': 'Throttles', // FIXME
         'Void Of Repentance': 'Vide du repentir',
         'Water and Thunder': 'Water and Thunder', // FIXME
         'Whirlwind': 'Tornade',
         'Wormhole Formation': 'Marche de la fracture dimensionnelle',
       },
       '~effectNames': {
-        'Water Resistance Down II': 'Résistance à L\'eau Réduite+',
-        'Throttle': 'Suffocation',
-        'Temporal Displacement': 'Stase Temporelle',
-        'Summon Order III': 'Actions en attente: 3',
-        'Summon Order': 'Action en attente: 1',
-        'Shared Sentence': 'Jugement: Peine Collective',
-        'Restraining Order': 'Jugement: éloignement',
-        'Physical Vulnerability Up': 'Vulnérabilité Physique Augmentée',
-        'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
-        'Luminous Aetheroplasm': 'Éthéroplasma Lumineux',
-        'Lightning Resistance Down II': 'Résistance à la foudre réduite+',
-        'House Arrest': 'Jugement: Rapprochement',
-        'Heavy': 'Pesanteur',
-        'Fire Resistance Down II': 'Résistance au feu réduite+',
-        'Final Word: Escape Prohibition': 'Jugement: fuite prohibée',
-        'Final Word: Escape Detection': 'Jugement: fuite forcée',
-        'Final Word: Contact Regulation': 'Jugement: contact forcé',
-        'Final Word: Contact Prohibition': 'Jugement: contact prohibé',
-        'Final Judgment: Penalty III': 'Injonction: 3 Altérations',
-        'Final Judgment: Decree Nisi δ': 'Injonction: peine provisoire δ',
-        'Final Judgment: Decree Nisi γ': 'Injonction: peine provisoire γ',
-        'Final Judgment: Decree Nisi β': 'Injonction: peine provisoire β',
-        'Final Judgment: Decree Nisi α': 'Injonction: peine provisoire α',
-        'Final Decree Nisi δ': 'Peine provisoire δ ultime',
-        'Final Decree Nisi γ': 'Peine provisoire γ ultime',
-        'Final Decree Nisi β': 'Peine provisoire β ultime',
-        'Final Decree Nisi α': 'Peine provisoire α ultime',
-        'Escape Detection Ordained': 'Fuite forcée',
-        'Enigma Codex': 'Enigma Codex',
-        'Embolden': 'Enhardissement',
-        'Down for the Count': 'Au tapis',
-        'Devotion': 'Dévouement',
-        'Contact Regulation Ordained': 'Contact forcé',
-        'Compressed Water': 'Compression aqueuse',
+        'Aggravated Assault': 'Jugement: peine sévère',
         'Compressed Lightning': 'Compression électrique',
-        'Aggravated Assault': 'Jugement: Peine Sévère',
+        'Compressed Water': 'Compression aqueuse',
+        'Contact Regulation Ordained': 'Contact forcé',
+        'Devotion': 'Dévouement',
+        'Down for the Count': 'Au tapis',
+        'Embolden': 'Enhardissement',
+        'Enigma Codex': 'Enigma Codex',
+        'Escape Detection Ordained': 'Fuite forcée',
+        'Final Decree Nisi α': 'Peine provisoire α ultime',
+        'Final Decree Nisi β': 'Peine provisoire β ultime',
+        'Final Decree Nisi γ': 'Peine provisoire γ ultime',
+        'Final Decree Nisi δ': 'Peine provisoire δ ultime',
+        'Final Judgment: Decree Nisi α': 'Injonction: peine provisoire α',
+        'Final Judgment: Decree Nisi β': 'Injonction: peine provisoire β',
+        'Final Judgment: Decree Nisi γ': 'Injonction: peine provisoire γ',
+        'Final Judgment: Decree Nisi δ': 'Injonction: peine provisoire δ',
+        'Final Judgment: Penalty III': 'Injonction: 3 altérations',
+        'Final Word: Contact Prohibition': 'Jugement: contact prohibé',
+        'Final Word: Contact Regulation': 'Jugement: contact forcé',
+        'Final Word: Escape Detection': 'Jugement: fuite forcée',
+        'Final Word: Escape Prohibition': 'Jugement: fuite prohibée',
+        'Fire Resistance Down II': 'Résistance au feu réduite+',
+        'Heavy': 'Pesanteur',
+        'House Arrest': 'Jugement: rapprochement',
+        'Lightning Resistance Down II': 'Résistance à la foudre réduite+',
+        'Luminous Aetheroplasm': 'Éthéroplasma lumineux',
+        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
+        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
+        'Restraining Order': 'Jugement: éloignement',
+        'Shared Sentence': 'Jugement: peine collective',
+        'Summon Order': 'Action en attente: 1',
+        'Summon Order III': 'Actions en attente: 3',
+        'Temporal Displacement': 'Stase temporelle',
+        'Throttle': 'Cadence améliorée',
+        'Water Resistance Down II': 'Résistance à l\'eau réduite+',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
-        '^Alexander$': 'アレキサンダー',
         'Alexander Prime': 'アレキサンダー・プライム',
         'Brute Justice': 'ブルートジャスティス',
         'Cruise Chaser': 'クルーズチェイサー',
@@ -2285,10 +2416,14 @@
         'Perfect Alexander': 'パーフェクト・アレキサンダー',
         'Plasmasphere': 'プラズマスフィア',
         'Steam Chakram': 'スチームチャクラム',
+        '^Alexander$': '^Alexander$', // FIXME
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
+        '--adds targetable--': '--adds targetable--', // FIXME
+        '--alex untargetable--': '--alex untargetable--', // FIXME
         '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
         'Aetheroplasm': 'エーテル爆雷',
         'Almighty Judgment': '聖なる大審判',
         'Alpha Sword': 'アルファソード',
@@ -2311,7 +2446,7 @@
         'Fate Calibration': 'Fate Calibration', // FIXME
         'Fate Projection': 'Fate Projection', // FIXME
         'Final Sentence': '死刑判決',
-        'Flarethrower': 'フレイムスロアー',
+        'Flarethrower': '大火炎放射',
         'Fluid Strike': 'フルイドストライク',
         'Fluid Swing': 'フルイドスイング',
         'Gavel': '最後の審判：結審',
@@ -2363,49 +2498,49 @@
         'Temporal Prison': '時の牢獄',
         'Temporal Stasis': '時間停止',
         'The Final Word': '確定判決',
-        'Throttles': '窒息', // FIXME
+        'Throttles': 'Throttles', // FIXME
         'Void Of Repentance': '懺悔の間',
         'Water and Thunder': 'Water and Thunder', // FIXME
         'Whirlwind': '竜巻',
         'Wormhole Formation': '次元断絶のマーチ',
       },
       '~effectNames': {
-        'Water Resistance Down II': '水属性耐性低下［強］',
-        'Throttle': '窒息',
-        'Temporal Displacement': '時間停止',
-        'Summon Order III': 'アクション実行待機III',
-        'Summon Order': 'アクション実行待機I',
-        'Shared Sentence': '確定判決：集団罰',
-        'Restraining Order': '確定判決：接近禁止命令',
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Luminous Aetheroplasm': '光性爆雷',
-        'Lightning Resistance Down II': '雷属性耐性低下［強］',
-        'House Arrest': '確定判決：接近強制命令',
-        'Heavy': 'ヘヴィ',
-        'Fire Resistance Down II': '火属性耐性低下[強]',
-        'Final Word: Escape Prohibition': '確定判決：逃亡禁止命令',
-        'Final Word: Escape Detection': '確定判決：逃亡監察命令',
-        'Final Word: Contact Regulation': '確定判決：接触保護命令',
-        'Final Word: Contact Prohibition': '確定判決：接触禁止命令',
-        'Final Judgment: Penalty III': '最後の審判：デバフ3',
-        'Final Judgment: Decree Nisi δ': '最後の審判：仮判決δ',
-        'Final Judgment: Decree Nisi γ': '最後の審判：仮判決γ',
-        'Final Judgment: Decree Nisi β': '最後の審判：仮判決β',
-        'Final Judgment: Decree Nisi α': '最後の審判：仮判決α',
-        'Final Decree Nisi δ': '最後の仮判決δ',
-        'Final Decree Nisi γ': '最後の仮判決γ',
-        'Final Decree Nisi β': '最後の仮判決β',
-        'Final Decree Nisi α': '最後の仮判決α',
-        'Escape Detection Ordained': '逃亡監察命令',
-        'Enigma Codex': 'エニグマ・コーデックス',
-        'Embolden': 'エンボルデン',
-        'Down for the Count': 'ノックダウン',
-        'Devotion': 'エギの加護',
-        'Contact Regulation Ordained': '接触保護命令',
-        'Compressed Water': '水属性圧縮',
-        'Compressed Lightning': '雷属性圧縮',
         'Aggravated Assault': '確定判決：加重罰',
+        'Compressed Lightning': '雷属性圧縮',
+        'Compressed Water': '水属性圧縮',
+        'Contact Regulation Ordained': '接触保護命令',
+        'Devotion': 'エギの加護',
+        'Down for the Count': 'ノックダウン',
+        'Embolden': 'エンボルデン',
+        'Enigma Codex': 'エニグマ・コーデックス',
+        'Escape Detection Ordained': '逃亡監察命令',
+        'Final Decree Nisi α': '最後の仮判決α',
+        'Final Decree Nisi β': '最後の仮判決β',
+        'Final Decree Nisi γ': '最後の仮判決γ',
+        'Final Decree Nisi δ': '最後の仮判決δ',
+        'Final Judgment: Decree Nisi α': '最後の審判：仮判決α',
+        'Final Judgment: Decree Nisi β': '最後の審判：仮判決β',
+        'Final Judgment: Decree Nisi γ': '最後の審判：仮判決γ',
+        'Final Judgment: Decree Nisi δ': '最後の審判：仮判決δ',
+        'Final Judgment: Penalty III': '最後の審判：デバフ3',
+        'Final Word: Contact Prohibition': '確定判決：接触禁止命令',
+        'Final Word: Contact Regulation': '確定判決：接触保護命令',
+        'Final Word: Escape Detection': '確定判決：逃亡監察命令',
+        'Final Word: Escape Prohibition': '確定判決：逃亡禁止命令',
+        'Fire Resistance Down II': '火属性耐性低下[強]',
+        'Heavy': 'ヘヴィ',
+        'House Arrest': '確定判決：接近強制命令',
+        'Lightning Resistance Down II': '雷属性耐性低下［強］',
+        'Luminous Aetheroplasm': '光性爆雷',
+        'Magic Vulnerability Up': '被魔法ダメージ増加',
+        'Physical Vulnerability Up': '被物理ダメージ増加',
+        'Restraining Order': '確定判決：接近禁止命令',
+        'Shared Sentence': '確定判決：集団罰',
+        'Summon Order': 'アクション実行待機I',
+        'Summon Order III': 'アクション実行待機III',
+        'Temporal Displacement': '時間停止',
+        'Throttle': 'スロットル',
+        'Water Resistance Down II': '水属性耐性低下［強］',
       },
     },
   ],
