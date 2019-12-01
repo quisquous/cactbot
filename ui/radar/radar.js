@@ -56,9 +56,8 @@ class Radar {
     }
   }
 
-  AddMonster(log, monster) {
+  AddMonster(log, monster, matches) {
     let lang = this.lang;
-    let matches = log.match(Regexes.addedCombatantFull());
     let matchOrNot = (matches.groups.name.match(monster['name'][lang] || monster['name']['en']) != null);
     matchOrNot &= (log.match(monster['regex'] || '') != null);
     matchOrNot &= (parseFloat(matches.groups.hp) >= (monster['hp'] || 0));
@@ -118,10 +117,9 @@ class Radar {
     }
   }
 
-  UpdateMonsterPuller(log, monster) {
-    let matches = log.match(Regexes.abilityFull({}));
+  UpdateMonsterPuller(monster, puller) {
     if ((monster['puller'] === null))
-      monster['puller'] = matches.groups.source;
+      monster['puller'] = puller;
   }
 
   UpdateMonsterDom(e, monster) {
@@ -176,14 +174,14 @@ class Radar {
       if (matches) {
         let monster = this.nameToMonster[matches.groups.name];
         if (monster)
-          this.AddMonster(e.detail.logs[i], monster);
+          this.AddMonster(e.detail.logs[i], monster, matches);
       }
       // network ability
       matches = e.detail.logs[i].match(Regexes.abilityFull({}));
       if (matches) {
         let monster = this.targetMonsters[matches.groups.target];
         if (monster)
-          this.UpdateMonsterPuller(e.detail.logs[i], monster);
+          this.UpdateMonsterPuller(monster, matches.groups.source);
       }
       // change instances
       let r = e.detail.logs[i].match(instanceChangedRegex[lang] || instanceChangedRegex['en']);
