@@ -237,10 +237,10 @@ namespace Cactbot {
       public Single pos_x;
 
       [FieldOffset(0xA4)]
-      public Single pos_y;
+      public Single pos_z;
 
       [FieldOffset(0xA8)]
-      public Single pos_z;
+      public Single pos_y;
 
       [FieldOffset(0xB0)]
       public Single rotation;
