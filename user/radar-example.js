@@ -21,7 +21,7 @@ Options.TTS = false;
 // If true, then a pop sound alerts are read aloud (but will be overwrite by TTS).
 Options.PopSoundAlert = true;
 
-// If true, then the earlist puller of mobs will be recorded.
+// If true, then the earliest puller of mobs will be recorded.
 Options.Puller = false;
 
 // You can add your own monster list here.
