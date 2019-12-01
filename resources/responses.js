@@ -4,8 +4,8 @@
 // {
 //   id: 'Some tankbuster',
 //   regex: Regexes.startsUsing({source: 'Ye Olde Bosse', id: '666'}),
-//   condition: Conditions.caresAboutBuster(data),
-//   ...Responses.tankbuster(),
+//   condition: Conditions.caresAboutMagical(data),
+//   response: Responses.tankbuster(),
 // },
 //
 // Note: Breaking out the condition like this lets people override it if they
@@ -23,6 +23,7 @@ const triggerFunctions = [
   'id',
   'infoText',
   'preRun',
+  'response',
   'run',
   'sound',
   'soundVolume',
