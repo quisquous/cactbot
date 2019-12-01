@@ -50,20 +50,20 @@ class Radar {
     this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
     this.lang = this.options.Language || 'en';
     this.nameToMonster = {};
-    for (let i in this.monsters){
+    for (let i in this.monsters) {
       let monster = this.monsters[i];
       this.nameToMonster[monster['name'][this.lang] || monster['name']['en']] = monster;
     }
   }
 
-  AddMonster(log, monster){
+  AddMonster(log, monster) {
     let lang = this.lang;
-    let matches = log.match(Regexes.addedCombatantFull())
+    let matches = log.match(Regexes.addedCombatantFull());
     let matchOrNot = (matches.groups.name.match(monster['name'][lang] || monster['name']['en']) != null);
     matchOrNot &= (log.match(monster['regex'] || '') != null);
     matchOrNot &= (parseFloat(matches.groups.hp) >= (monster['hp'] || 0));
     let options = this.options;
-    if (monster['rank'] in options.RankOptions)  // options overwrite
+    if (monster['rank'] in options.RankOptions) // options overwrite
       options = Object.assign({}, this.options, options.RankOptions[monster['rank']]);
     if (options.OnlyMobs)
       matchOrNot &= matches.groups.id.startsWith('4');
@@ -114,18 +114,17 @@ class Radar {
           audio.volume = options.PopVolume;
           audio.play();
         }
-      } 
+      }
     }
   }
 
-  UpdateMonsterPuller(log, monster){
-    let matches = log.match(Regexes.abilityFull({}))
-    if ((monster['puller'] === null)){
+  UpdateMonsterPuller(log, monster) {
+    let matches = log.match(Regexes.abilityFull({}));
+    if ((monster['puller'] === null))
       monster['puller'] = matches.groups.source;
-    }
   }
 
-  UpdateMonsterDom(e, monster){
+  UpdateMonsterDom(e, monster) {
     let options = this.options;
     if (monster['rank'] in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster['rank']]);
@@ -136,15 +135,14 @@ class Radar {
     let deltaVector = new Point2D(targetVector.x - playerVector.x, targetVector.y - playerVector.y);
     if (tr) {
       tr.childNodes[1].innerHTML = monster['rank'] + '&nbsp;&nbsp;&nbsp;&nbsp;' + monster['name'];
-      if (Math.abs(e.detail.pos.z - monster['pos_z']) > 5){
+      if (Math.abs(e.detail.pos.z - monster['pos_z']) > 5)
         tr.childNodes[1].innerHTML += '&nbsp;&nbsp;' + (e.detail.pos.z < monster['pos_z']? '↑' : '↓');
-      }
       tr.childNodes[1].innerHTML += '<br>' + length(deltaVector).toFixed(2) + 'm';
       if (Date.now() / 1000 <= monster['battle_time'] + 60) {
         tr.childNodes[1].innerHTML += ' ' + (monster['current_hp'] * 100 /
           monster['hp']).toFixed(2) + '%';
       }
-      if (options.Puller){
+      if (options.Puller) {
         if (monster['puller'])
           tr.childNodes[1].innerHTML += '&nbsp;&nbsp;' + monster['puller'];
       }
@@ -163,31 +161,29 @@ class Radar {
     arrow.style.transform='rotate('+angle+'deg)';
   }
 
-  RemoveMonster(mob_name){
-    if (mob_name in this.targetMonsters){
+  RemoveMonster(mob_name) {
+    if (mob_name in this.targetMonsters) {
       this.targetMonsters[mob_name]['dom'].remove();
       delete this.targetMonsters[mob_name];
     }
   }
 
-
   OnLogEvent(e) {
     let lang = this.options.Language;
     for (let i = 0; i < e.detail.logs.length; i++) {
       // add new combatant
-      let matches = e.detail.logs[i].match(Regexes.addedCombatantFull({}))
+      let matches = e.detail.logs[i].match(Regexes.addedCombatantFull({}));
       if (matches) {
         let monster = this.nameToMonster[matches.groups.name];
-        if(monster)
+        if (monster)
           this.AddMonster(e.detail.logs[i], monster);
       }
       // network ability
-      matches = e.detail.logs[i].match(Regexes.abilityFull({}))
+      matches = e.detail.logs[i].match(Regexes.abilityFull({}));
       if (matches) {
         let monster = this.targetMonsters[matches.groups.target];
-        if(monster){
+        if (monster)
           this.UpdateMonsterPuller(e.detail.logs[i], monster);
-        }
       }
       // change instances
       let r = e.detail.logs[i].match(instanceChangedRegex[lang] || instanceChangedRegex['en']);
@@ -195,9 +191,8 @@ class Radar {
         this.ClearTargetMonsters();
       // removing new combatant
       r = e.detail.logs[i].match(/19:(.*) was defeated by/);
-      if (r) {
+      if (r)
         this.RemoveMonster(r[1]);
-      }
     }
   }
 
@@ -205,9 +200,9 @@ class Radar {
     this.playerPos['x'] = e.detail.pos.x;
     this.playerPos['y'] = -e.detail.pos.y;
     let tr;
-    for (let i in this.targetMonsters) {  // loop for all target monsters
+    for (let i in this.targetMonsters) { // loop for all target monsters
       let monster = this.targetMonsters[i];
-      this.UpdateMonsterDom(e, monster)
+      this.UpdateMonsterDom(e, monster);
     }
   }
 
@@ -224,7 +219,6 @@ class Radar {
 }
 
 UserConfig.getUserConfigLocation('radar', function() {
-
   addOverlayListener('onLogEvent', function(e) {
     gRadar.OnLogEvent(e);
   });
@@ -238,5 +232,4 @@ UserConfig.getUserConfigLocation('radar', function() {
   });
 
   gRadar = new Radar(document.getElementById('radar-table'));
-
 });
