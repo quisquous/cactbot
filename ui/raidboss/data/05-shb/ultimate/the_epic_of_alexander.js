@@ -1699,7 +1699,7 @@
           // don't kill your friends stacking north.
           '-1': {
             en: 'No Clone: maybe purple E->S ???',
-            de: 'Keine Klone: vielleicht Lila E->S ???',
+            de: 'Keine Klone: vielleicht Lila O->S ???',
           },
           '0': {
             en: 'Purple Bait: bait E',
@@ -1710,29 +1710,29 @@
             de: 'Orange Köder: locke N',
           },
           '2': {
-            en: 'Purple, no tether: E->W',
-            de: 'Lila, keine Verbindung: E->W',
+            en: 'Purple, no tether: O->W',
+            de: 'Lila, keine Verbindung: O->W',
           },
           // This person also has the shared sentence.
           '3': {
             en: 'Orange, no tether: E->N',
-            de: 'Orange, keine Verbindung: E->N',
+            de: 'Orange, keine Verbindung: O->N',
           },
           '4': {
             en: 'Purple, close tether: E->N',
-            de: 'Lila, nahe Verbindungr: E->N',
+            de: 'Lila, nahe Verbindungr: O->N',
           },
           '5': {
             en: 'Orange, close tether: E->N',
-            de: 'Orange, nahe Verbindung: E->N',
+            de: 'Orange, nahe Verbindung: O->N',
           },
           '6': {
             en: 'Purple, far tether: E->S',
-            de: 'Lila, entfernte Verbindung: E->S',
+            de: 'Lila, entfernte Verbindung: O->S',
           },
           '7': {
             en: 'Orange, far tether: E->N',
-            de: 'Orange, entfernte Verbindung: E->N',
+            de: 'Orange, entfernte Verbindung: O->N',
           },
         }[sortedNames.indexOf(data.me)];
       },
