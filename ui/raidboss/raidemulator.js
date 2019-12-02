@@ -974,7 +974,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('player').textContent = e.detail.name;
   });
 
-  callOverlayHandler('cactbotRequestPlayer');
+  callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 
   // Timeout is required because the overlay is slower and will break the Zone
   setTimeout(function() {
