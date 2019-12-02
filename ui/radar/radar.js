@@ -10,6 +10,7 @@ let Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   PopVolume: 0.5,
   Puller: false,
+  Position: false,
 };
 
 let gRadar;
@@ -39,6 +40,12 @@ function dot(a, b) {
 
 function theta(a, b) {
   return dot(a, b)/(length(a) * length(b));
+}
+
+function posToMap(h) {
+  let Offset = 21.5;
+  let Pitch = 0.02;
+  return (h * Pitch) + Offset;
 }
 
 class Radar {
@@ -146,6 +153,11 @@ class Radar {
       if (options.Puller) {
         if (monster['puller'])
           tr.childNodes[1].innerHTML += '&nbsp;&nbsp;' + monster['puller'];
+      }
+      if (options.Position) {
+        tr.childNodes[1].innerHTML += '<br>X: ' +
+          posToMap(parseFloat(monster['pos_x'])).toFixed(1) + '&nbsp;&nbsp;Y:' +
+          posToMap(parseFloat(monster['pos_y'])).toFixed(1);
       }
     }
     if (options.DetectionRange > 0 && length(deltaVector) > options.DetectionRange)
