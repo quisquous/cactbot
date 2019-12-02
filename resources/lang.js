@@ -4,6 +4,12 @@ let gLang = null;
 
 class CactbotLanguage {
   constructor(lang) {
+    this.InitStrings();
+
+    window.addOverlayListener('onPlayerChangedEvent', (e) => {
+      gLang.OnPlayerNameChange(e.detail.name);
+    });
+
     this.lang = lang;
     this.playerName = null;
     this.kAbility = Object.freeze({
@@ -178,13 +184,12 @@ class CactbotLanguage {
     });
   }
 
-  InitStrings(playerName) {
+  InitStrings() {
     console.error('Derived language class must implement InitStrings');
   }
 
   OnPlayerNameChange(playerName) {
     this.playerName = playerName;
-    this.InitStrings(playerName);
   }
 
   // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
@@ -252,8 +257,3 @@ class CactbotLanguage {
     return Regexes.parse(' 1E:\\y{ObjectId}:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
   }
 }
-
-addOverlayListener('onPlayerChangedEvent', (function(e) {
-  if (gLang)
-    gLang.OnPlayerNameChange(e.detail.name);
-}));

@@ -1,11 +1,11 @@
 'use strict';
 
 class CactbotLanguageCn extends CactbotLanguage {
-  constructor(playerName) {
-    super('cn', playerName);
+  constructor() {
+    super('cn');
   }
 
-  InitStrings(playerName) {
+  InitStrings() {
     this.kEffect = Object.freeze({
       BluntResistDown: '打击耐性降低', // 0x23d, 0x335, 0x3a3
       VerstoneReady: '赤飞石预备', // 0x4d3

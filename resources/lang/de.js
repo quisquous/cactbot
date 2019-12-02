@@ -1,11 +1,11 @@
 'use strict';
 
 class CactbotLanguageDe extends CactbotLanguage {
-  constructor(playerName) {
-    super('de', playerName);
+  constructor() {
+    super('de');
   }
 
-  InitStrings(playerName) {
+  InitStrings() {
     this.kEffect = Object.freeze({
       BluntResistDown: 'Schlagresistenz -', // 0x23d, 0x335, 0x3a3
       VerstoneReady: 'Erzstein-bereit', // 0x4d3
