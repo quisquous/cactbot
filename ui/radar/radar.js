@@ -81,6 +81,7 @@ class Radar {
         'pos_y': matches.groups.y,
         'pos': new Point2D(parseFloat(matches.groups.x), -parseFloat(matches.groups.y)),
         'pos_z': matches.groups.z,
+        'add_time': Date.now(),
         'dom': null,
         'puller': null,
       };
@@ -188,7 +189,7 @@ class Radar {
       // change instances
       let r = e.detail.logs[i].match(instanceChangedRegex[lang] || instanceChangedRegex['en']);
       if (r)
-        this.ClearTargetMonsters();
+        this.ClearTargetMonsters(10); // don't remove mobs lasting less than 10 seconds
       // removing new combatant
       r = e.detail.logs[i].match(/19:(.*) was defeated by/);
       if (r)
@@ -210,10 +211,13 @@ class Radar {
     this.ClearTargetMonsters();
   }
 
-  ClearTargetMonsters() {
+  ClearTargetMonsters(delta_time) {
+    let delta_time_threshold = delta_time || 0;
     for (let i in this.targetMonsters) {
-      this.targetMonsters[i]['dom'].remove();
-      delete this.targetMonsters[i];
+      if ((Date.now() - this.targetMonsters[i]['add_time']) / 1000 > delta_time_threshold) {
+        this.targetMonsters[i]['dom'].remove();
+        delete this.targetMonsters[i];
+      }
     }
   }
 }
