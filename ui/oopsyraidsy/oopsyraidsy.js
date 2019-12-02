@@ -762,19 +762,28 @@ class DamageTracker {
     for (let i = 0; i < this.effectTriggers.length; ++i) {
       let trigger = this.effectTriggers[i];
       let matches;
-      if (trigger.gainRegex)
+      let isGainLine;
+      if (trigger.gainRegex) {
         matches = line.match(trigger.gainRegex);
-      if (!matches && trigger.loseRegex)
+        if (matches)
+          isGainLine = true;
+      }
+      if (!matches && trigger.loseRegex) {
         matches = line.match(trigger.loseRegex);
+        if (matches)
+          isGainLine = false;
+      }
       if (matches == null)
         continue;
+      // TODO: just pass groups on through, and change `attacker` to `source`.
+      let g = matches.groups;
       if (!evt) {
         evt = {
-          targetName: matches[1],
-          effectName: matches[2],
-          attackerName: matches[3],
-          gains: !!matches[4],
-          durationSeconds: matches[4] ? parseFloat(matches[4]) : undefined,
+          targetName: g.target,
+          effectName: g.effect,
+          attackerName: g.source,
+          gains: isGainLine,
+          durationSeconds: g.duration,
         };
       }
       this.OnTrigger(trigger, evt, null);
@@ -970,11 +979,11 @@ class DamageTracker {
           this.abilityTriggers.push(trigger);
         }
         if ('gainsEffectRegex' in trigger) {
-          trigger.gainRegex = gLang.gainsEffectRegex('(' + trigger.gainsEffectRegex + ')', '(\\y{Name})', '(.*?)');
+          trigger.gainRegex = Regexes.gainsEffect({ effect: trigger.gainsEffectRegex });
           this.effectTriggers.push(trigger);
         }
         if ('losesEffectRegex' in trigger) {
-          trigger.loseRegex = gLang.losesEffectRegex('(' + trigger.losesEffectRegex + ')', '(\\y{Name})', '(.*?)');
+          trigger.loseRegex = Regexes.losesEffect({ effect: trigger.losesEffectRegex });
           this.effectTriggers.push(trigger);
         }
         if ('healRegex' in trigger) {
