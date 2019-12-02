@@ -324,8 +324,6 @@ class OopsyLiveList {
 
   AddLine(iconClass, text, time) {
     let maxItems = this.options.NumLiveListItemsInCombat;
-    if (maxItems == 0)
-      return;
 
     let rowDiv;
     if (this.numItems < this.items.length)
