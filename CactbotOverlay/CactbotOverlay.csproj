@@ -91,6 +91,8 @@
     <Compile Include="PluginLoader.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="FFXIVProcess.cs" />
+    <Compile Include="FFXIVProcessCn.cs" />
+    <Compile Include="FFXIVProcessIntl.cs" />
     <Compile Include="JSEvents.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="OverlayAddonMain.cs" />

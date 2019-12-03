@@ -150,9 +150,6 @@ namespace Cactbot {
     }
 
     public override void Start() {
-      ffxiv_ = new FFXIVProcess(this);
-      wipe_detector_ = new WipeDetector(this);
-
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
@@ -172,6 +169,11 @@ namespace Cactbot {
 
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
+
+      if (language_ == "cn")
+        ffxiv_ = new FFXIVProcessCn(this);
+      else ffxiv_ = new FFXIVProcessIntl(this);
+      wipe_detector_ = new WipeDetector(this);
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
