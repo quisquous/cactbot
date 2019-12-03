@@ -1,5 +1,11 @@
 'use strict';
 
+// Because apparently people don't understand uppercase greek letters,
+// only uppercase alphabetic letters.
+function triggerUpperCase(str) {
+  return str.replace(/w/g, (x) => x.toUpperCase());
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -389,7 +395,7 @@ class PopupText {
 
       let alarmText = triggerOptions.AlarmText || trigger.alarmText;
       if (alarmText) {
-        let text = ValueOrFunction(alarmText);
+        let text = triggerUpperCase(ValueOrFunction(alarmText));
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
@@ -409,7 +415,7 @@ class PopupText {
 
       let alertText = triggerOptions.AlertText || trigger.alertText;
       if (alertText) {
-        let text = ValueOrFunction(alertText);
+        let text = triggerUpperCase(ValueOrFunction(alertText));
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
           let holder = that.alertText.getElementsByClassName('holder')[0];
