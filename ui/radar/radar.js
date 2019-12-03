@@ -203,7 +203,7 @@ class Radar {
       if (r)
         this.ClearTargetMonsters(10); // don't remove mobs lasting less than 10 seconds
       // removing new combatant
-      r = e.detail.logs[i].match(/19:(.*) was defeated by/);
+      r = e.detail.logs[i].match(/ 19:(.*) was defeated by/);
       if (r)
         this.RemoveMonster(r[1]);
     }
