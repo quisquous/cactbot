@@ -275,7 +275,8 @@
             };
           }
           return {
-            en: 'Nimm ' + data.nisiNames[myNisi] + ' von ' + data.ShortName(names[0]),
+            en: 'Get ' + data.nisiNames[myNisi] + ' from ' + data.ShortName(names[0]),
+            de: 'Nimm ' + data.nisiNames[myNisi] + ' von ' + data.ShortName(names[0]),
           };
         };
       },
