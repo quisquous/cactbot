@@ -170,9 +170,33 @@ namespace Cactbot {
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
 
-      if (language_ == "cn")
+      var versions = new VersionChecker(this);
+      Version local = versions.GetLocalVersion();
+      Version remote = versions.GetRemoteVersion();
+
+      Version overlay = versions.GetOverlayPluginVersion();
+      Version ffxiv = versions.GetFFXIVPluginVersion();
+      Version act = versions.GetACTVersion();
+
+      // Print out version strings and locations to help users debug.
+      LogInfo("cactbot: {0} {1}", local.ToString(), versions.GetCactbotLocation());
+      LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
+      LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
+      LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
+      if (language_ == null) {
+        LogInfo("Language: {0}", "(unknown)");
+      } else {
+        LogInfo("Language: {0}", language_);
+      }
+
+      // Temporarily target cn if plugin is old v2.0.4.0
+      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
         ffxiv_ = new FFXIVProcessCn(this);
-      else ffxiv_ = new FFXIVProcessIntl(this);
+        LogInfo("Version: cn");
+      } else {
+        ffxiv_ = new FFXIVProcessIntl(this);
+        LogInfo("Version: intl");
+      }
       wipe_detector_ = new WipeDetector(this);
 
       // Incoming events.
@@ -193,25 +217,6 @@ namespace Cactbot {
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
-
-      var versions = new VersionChecker(this);
-      Version local = versions.GetLocalVersion();
-      Version remote = versions.GetRemoteVersion();
-
-      Version overlay = versions.GetOverlayPluginVersion();
-      Version ffxiv = versions.GetFFXIVPluginVersion();
-      Version act = versions.GetACTVersion();
-
-      // Print out version strings and locations to help users debug.
-      LogInfo("cactbot: {0} {1}", local.ToString(), versions.GetCactbotLocation());
-      LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
-      LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
-      LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
-      if (language_ == null) {
-        LogInfo("Language: {0}", "(unknown)");
-      } else {
-        LogInfo("Language: {0}", language_);
-      }
 
       if (remote.Major == 0 && remote.Minor == 0) {
         var result = System.Windows.Forms.MessageBox.Show(
