@@ -534,11 +534,17 @@ namespace Cactbot {
             case EntityJob.RDM: {
                 return JObject.FromObject(*(RedMageJobMemory*)&p[0]);
               };
+            case EntityJob.MRD: {
+                return null;
+              };
             case EntityJob.WAR: {
                 return JObject.FromObject(*(WarriorJobMemory*)&p[0]);
               };
             case EntityJob.DRK: {
                 return JObject.FromObject(*(DarkKnightJobMemory*)&p[0]);
+              };
+            case EntityJob.GLA: {
+                return null;
               };
             case EntityJob.PLD: {
                 return JObject.FromObject(*(PaladinJobMemory*)&p[0]);
@@ -552,23 +558,38 @@ namespace Cactbot {
             case EntityJob.DNC: {
                 return JObject.FromObject(*(DancerJobMemory*)&p[0]);
               };
+            case EntityJob.LNC: {
+                return null;
+              };
             case EntityJob.DRG: {
                 return JObject.FromObject(*(DragoonJobMemory*)&p[0]);
               };
             case EntityJob.NIN: {
                 return JObject.FromObject(*(NinjaJobMemory*)&p[0]);
               };
+            case EntityJob.THM: {
+                return JObject.FromObject(*(ThaumaturgeJobMemory*)&p[0]);
+              }
             case EntityJob.BLM: {
                 return JObject.FromObject(*(BlackMageJobMemory*)&p[0]);
               };
+            case EntityJob.CNJ: {
+                return null;
+              };
             case EntityJob.WHM: {
                 return JObject.FromObject(*(WhiteMageJobMemory*)&p[0]);
+              };
+            case EntityJob.ACN: {
+                return JObject.FromObject(*(ArcanistJobMemory*)&p[0]);
               };
             case EntityJob.SMN: {
                 return JObject.FromObject(*(SummonerJobMemory*)&p[0]);
               };
             case EntityJob.SCH: {
                 return JObject.FromObject(*(ScholarJobMemory*)&p[0]);
+              };
+            case EntityJob.PGL: {
+                return JObject.FromObject(*(PuglistJobMemory*)&p[0]);
               };
             case EntityJob.MNK: {
                 return JObject.FromObject(*(MonkJobMemory*)&p[0]);
@@ -757,6 +778,15 @@ namespace Cactbot {
     };
 
     [StructLayout(LayoutKind.Explicit)]
+    public struct ThaumaturgeJobMemory {
+      [FieldOffset(0x02)]
+      public ushort umbralMilliseconds; // Number of ms left in umbral fire/ice.
+
+      [FieldOffset(0x04)]
+      public sbyte umbralStacks; // Positive = Umbral Fire Stacks, Negative = Umbral Ice Stacks.
+    };
+
+    [StructLayout(LayoutKind.Explicit)]
     public struct BlackMageJobMemory {
       [FieldOffset(0x00)]
       public ushort nextPolyglotMilliseconds; // Number of ms left before polyglot proc.
@@ -796,6 +826,12 @@ namespace Cactbot {
       public byte bloodlilyStacks;
     };
 
+    [StructLayout(LayoutKind.Explicit)]
+    public struct ArcanistJobMemory {
+      [FieldOffset(0x04)]
+      public byte aetherflowStacks;
+    };
+    
     [StructLayout(LayoutKind.Explicit)]
     public struct SummonerJobMemory {
       [FieldOffset(0x00)]
@@ -841,6 +877,15 @@ namespace Cactbot {
 
       [FieldOffset(0x06)]
       public byte fairyStatus; // Varies depending on which fairy was summoned, during Seraph/Dissipation: 6 - Eos, 7 - Selene, else 0.
+    };
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct PuglistJobMemory {
+      [FieldOffset(0x00)]
+      public ushort lightningMilliseconds;
+
+      [FieldOffset(0x02)]
+      public byte lightningStacks;
     };
 
     [StructLayout(LayoutKind.Explicit)]
