@@ -507,6 +507,7 @@
       alertText: function(data) {
         return {
           en: '#' + data.limitCutNumber,
+          de: '#' + data.limitCutNumber,
           ja: data.limitCutNumber + '番',
         };
       },
