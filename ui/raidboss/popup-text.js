@@ -3,7 +3,7 @@
 // Because apparently people don't understand uppercase greek letters,
 // only uppercase alphabetic letters.
 function triggerUpperCase(str) {
-  return str.replace(/w/g, (x) => x.toUpperCase());
+  return str.replace(/\w/g, (x) => x.toUpperCase());
 }
 
 class PopupText {
