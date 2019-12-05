@@ -150,9 +150,6 @@ namespace Cactbot {
     }
 
     public override void Start() {
-      ffxiv_ = new FFXIVProcess(this);
-      wipe_detector_ = new WipeDetector(this);
-
       // Our own timer with a higher frequency than OverlayPlugin since we want to see
       // the effect of log messages quickly.
       fast_update_timer_ = new System.Timers.Timer();
@@ -173,25 +170,6 @@ namespace Cactbot {
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
 
-      // Incoming events.
-      Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
-
-      // Outgoing JS events.
-      OnGameExists += (e) => DispatchToJS(e);
-      OnGameActiveChanged += (e) => DispatchToJS(e);
-      OnZoneChanged += (e) => DispatchToJS(e);
-      OnLogsChanged += (e) => DispatchToJS(e);
-      OnImportLogsChanged += (e) => DispatchToJS(e);
-      OnPlayerChanged += (e) => DispatchToJS(e);
-      OnTargetChanged += (e) => DispatchToJS(e);
-      OnFocusChanged += (e) => DispatchToJS(e);
-      OnInCombatChanged += (e) => DispatchToJS(e);
-      OnPlayerDied += (e) => DispatchToJS(e);
-      OnPartyWipe += (e) => DispatchToJS(e);
-
-      fast_update_timer_.Interval = kFastTimerMilli;
-      fast_update_timer_.Start();
-
       var versions = new VersionChecker(this);
       Version local = versions.GetLocalVersion();
       Version remote = versions.GetRemoteVersion();
@@ -210,6 +188,35 @@ namespace Cactbot {
       } else {
         LogInfo("Language: {0}", language_);
       }
+
+      // Temporarily target cn if plugin is old v2.0.4.0
+      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
+        ffxiv_ = new FFXIVProcessCn(this);
+        LogInfo("Version: cn");
+      } else {
+        ffxiv_ = new FFXIVProcessIntl(this);
+        LogInfo("Version: intl");
+      }
+      wipe_detector_ = new WipeDetector(this);
+
+      // Incoming events.
+      Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
+
+      // Outgoing JS events.
+      OnGameExists += (e) => DispatchToJS(e);
+      OnGameActiveChanged += (e) => DispatchToJS(e);
+      OnZoneChanged += (e) => DispatchToJS(e);
+      OnLogsChanged += (e) => DispatchToJS(e);
+      OnImportLogsChanged += (e) => DispatchToJS(e);
+      OnPlayerChanged += (e) => DispatchToJS(e);
+      OnTargetChanged += (e) => DispatchToJS(e);
+      OnFocusChanged += (e) => DispatchToJS(e);
+      OnInCombatChanged += (e) => DispatchToJS(e);
+      OnPlayerDied += (e) => DispatchToJS(e);
+      OnPartyWipe += (e) => DispatchToJS(e);
+
+      fast_update_timer_.Interval = kFastTimerMilli;
+      fast_update_timer_.Start();
 
       if (remote.Major == 0 && remote.Minor == 0) {
         var result = System.Windows.Forms.MessageBox.Show(
