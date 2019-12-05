@@ -267,6 +267,21 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // 'target' was defeated by 'source'
+  // fields: target, source, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#19-networkdeath
+  wasDefeated: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'wasDefeated', ['target', 'source', 'capture']);
+    let capture = trueIfUndefined(f.capture);
+    let str = '\\y{Timestamp} 19:' +
+      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
+      ' was defeated by ' +
+      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + '\\.';
+    return Regexes.parse(str);
+  },
+
   // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   echo: (f) => {
