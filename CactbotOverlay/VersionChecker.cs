@@ -48,11 +48,8 @@ namespace Cactbot {
       var plugin = GetFFXIVPluginData();
       if (plugin == null)
         return new Version();
-      var match = System.Text.RegularExpressions.Regex.Match(plugin.pluginVersion, @"\nFileVersion: ([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\n");
-      if (match.Groups.Count > 1) {
-        return new Version(match.Groups[1].Value);
-      }
-      return new Version();    }
+      return new Version(System.Diagnostics.FileVersionInfo.GetVersionInfo(plugin.pluginFile.FullName).FileVersion);
+    }
 
     public string GetFFXIVPluginLocation() {
       var plugin = GetFFXIVPluginData();
