@@ -243,10 +243,6 @@ It can be useful to try out to make sure everything is working as expected or to
 
 ![test screenshot](screenshots/test.png)
 
-## Troubleshooting
-
-A general FAQ can be found [here](docs/FAQ-Troubleshooting.md) containing solutions to common Cactbot issues.
-
 ### Adding overlay modules
 
 Here's an example of how to set up the raidboss overlay module.  Adding other modules is exactly the same, except you need to point the URL to a different HTML file for that specific module.
@@ -281,6 +277,10 @@ To add a cactbot module is the same as adding any overlay plugin.
 
 1. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow
 [these instructions](/ui/raidboss/data/00-misc/test.txt).
+
+## Troubleshooting
+
+A general FAQ can be found [here](docs/FAQ-Troubleshooting.md) containing solutions to common Cactbot issues.
 
 ## Cactbot Customization
 
