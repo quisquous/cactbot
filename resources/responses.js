@@ -151,17 +151,20 @@ let Responses = {
           if (target == data.me) {
             return {
               en: 'Tank cleave on YOU',
+              fr: 'Tank cleave sur VOUS',
             };
           }
         } else {
           // targetless tank cleave
           return {
             en: 'Tank cleave',
+            fr: 'Tank cleave',
           };
         }
       }
       return {
         en: 'Avoid tank cleave',
+        fr: 'Evitez le cleave sur le tank',
       };
     };
     return obj;
@@ -171,6 +174,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Mini Buster',
       de: 'Kleiner Tankbuster',
+      fr: 'Mini Buster',
     };
     return obj;
   },
@@ -179,7 +183,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'aoe',
       de: 'AoE',
-      fr: 'Dégâts de zone',
+      fr: 'AoE',
       ja: 'AoE',
       cn: 'AOE',
     };
@@ -438,6 +442,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Kill adds',
+      fr: 'Tuez les adds',
     };
     return obj;
   },
@@ -498,6 +503,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlarmText(sev)] = {
       en: 'Stop Moving!',
+      fr: 'Ne bougez pas !',
     };
     return obj;
   },
@@ -505,6 +511,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlarmText(sev)] = {
       en: 'Stop Everything!',
+      fr: 'Stoppez TOUT !',
     };
     return obj;
   },
@@ -524,7 +531,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Out of melee',
       de: 'Raus aus Nahkampf',
-      fr: 'Eloignez-vous de la mélée',
+      fr: 'Eloignez-vous du CaC',
       cn: '远离近战',
     };
     return obj;
