@@ -2116,13 +2116,14 @@ class Bars {
   }
 
   OnPlayerChanged(e) {
-    let nameChanged = this.me !== e.detail.name;
-
     if (!this.init) {
-      this.me = e.detail.name;
-      setupRegexes(this.me);
       this.combo = setupComboTracker(this.OnComboChange.bind(this));
       this.init = true;
+    }
+
+    if (this.me !== e.detail.name) {
+      this.me = e.detail.name;
+      setupRegexes(this.me);
     }
 
     let updateJob = false;
@@ -2169,16 +2170,13 @@ class Bars {
       this.maxGP = e.detail.maxGP;
       updateGp = true;
     }
-    if (updateJob || nameChanged) {
+    if (updateJob) {
       this.UpdateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this.UpdateOpacity();
-      // Set up the buff tracker afterr the job bars are created.
-      if (nameChanged) {
-        setupRegexes(this.me);
-        this.buffTracker = new BuffTracker(
-            this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
-      }
+      // Set up the buff tracker after the job bars are created.
+      this.buffTracker = new BuffTracker(
+          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
     }
     if (updateHp)
       this.UpdateHealth();
