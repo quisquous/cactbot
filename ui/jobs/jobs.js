@@ -1088,6 +1088,7 @@ class Bars {
       'WHM': this.setupWhm,
       'NIN': this.setupNin,
       'SAM': this.setupSam,
+      'GNB': this.setupGnb,
     };
     if (setup[this.job])
       setup[this.job].bind(this)();
@@ -1852,6 +1853,16 @@ class Bars {
     this.loseEffectFuncMap[gLang.kEffect.Shifu] = () => {
       this.shifu = 0;
     };
+  }
+
+  setupGnb() {
+    let cartridgeBox = this.addResourceBox({
+      classList: ['gnb-color-cartridge'],
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      cartridgeBox.innerText = jobDetail.cartridges;
+    });
   }
 
   OnComboChange(skill) {
