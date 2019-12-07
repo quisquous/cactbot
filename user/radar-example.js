@@ -24,7 +24,7 @@ Options.PopSoundAlert = true;
 // If true, then the earliest puller of mobs will be recorded.
 Options.Puller = false;
 
-// If true, then the position of monster will be shown.
+// If true, then the position of monster will be shown. (Only x and y)
 Options.Position = false;
 
 // You can add your own monster list here.

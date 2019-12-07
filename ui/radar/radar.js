@@ -16,11 +16,11 @@ let Options = {
 let gRadar;
 
 let instanceChangedRegex = {
-  'en': /00:0039:You are now in the instanced area/,
-  'cn': /00:0039:当前所在副本区为/,
-  'de': /00:0039:Du bist nun in dem instanziierten Areal/,
-  'fr': /00:0039:Vous avez été transporté/,
-  'ja': /00:0039:インスタンスエリア/,
+  'en': / 00:0039:You are now in the instanced area/,
+  'cn': / 00:0039:当前所在副本区为/,
+  'de': / 00:0039:Du bist nun in dem instanziierten Areal/,
+  'fr': / 00:0039:Vous avez été transporté/,
+  'ja': / 00:0039:インスタンスエリア/,
 };
 
 class Point2D {
@@ -45,13 +45,14 @@ function theta(a, b) {
 function posToMap(h) {
   let Offset = 21.5;
   let Pitch = 0.02;
-  return (h * Pitch) + Offset;
+  return h * Pitch + Offset;
 }
 
 class Radar {
   constructor(element) {
     this.targetMonsters = {};
     this.playerPos = {};
+    this.playerRotation = 0;
     this.table = element;
     this.options = Options;
     this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
@@ -73,7 +74,7 @@ class Radar {
       options = Object.assign({}, this.options, options.RankOptions[monster['rank']]);
     if (options.OnlyMobs) {
       matchOrNot &= matches.groups.id.startsWith('4');
-      matchOrNot &= !(log.match(/\(\d{0,5}00000\d{0,5}\)\.$/) === null);
+      matchOrNot &= !(typeof matches.groups.npcId === 'undefined');
     }
     if (matchOrNot) {
       let mob_name = matches.groups.name;
@@ -86,7 +87,7 @@ class Radar {
         'battle_time': 0,
         'pos_x': matches.groups.x,
         'pos_y': matches.groups.y,
-        'pos': new Point2D(parseFloat(matches.groups.x), -parseFloat(matches.groups.y)),
+        'pos': new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y)),
         'pos_z': matches.groups.z,
         'add_time': Date.now(),
         'dom': null,
@@ -107,12 +108,12 @@ class Radar {
         th = document.createElement('th');
         th.setAttribute('align', 'left');
         let text = document.createElement('div');
-        text.innerHTML = monster['name'];
         th.appendChild(text);
         tr.appendChild(th);
         this.table.insertBefore(tr, this.table.childNodes[0]);
         m['dom'] = tr;
         this.targetMonsters[mob_name] = m;
+        this.UpdateMonsterDom(m);
         if (options.TTS) {
           callOverlayHandler({
             call: 'cactbotSay',
@@ -132,19 +133,19 @@ class Radar {
       monster['puller'] = puller;
   }
 
-  UpdateMonsterDom(e, monster) {
+  UpdateMonsterDom(monster) {
     let options = this.options;
     if (monster['rank'] in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster['rank']]);
     let tr = monster['dom'];
     // calculate rotation based on facing
-    let playerVector = new Point2D(e.detail.pos.x, -e.detail.pos.y);
+    let playerVector = new Point2D(this.playerPos.x, this.playerPos.y);
     let targetVector = monster['pos'];
     let deltaVector = new Point2D(targetVector.x - playerVector.x, targetVector.y - playerVector.y);
     if (tr) {
       tr.childNodes[1].innerHTML = monster['rank'] + '&nbsp;&nbsp;&nbsp;&nbsp;' + monster['name'];
-      if (Math.abs(e.detail.pos.z - monster['pos_z']) > 5)
-        tr.childNodes[1].innerHTML += '&nbsp;&nbsp;' + (e.detail.pos.z < monster['pos_z']? '↑' : '↓');
+      if (Math.abs(this.playerPos.z - monster['pos_z']) > 5)
+        tr.childNodes[1].innerHTML += '&nbsp;&nbsp;' + (this.playerPos.z < monster['pos_z']? '↑' : '↓');
       tr.childNodes[1].innerHTML += '<br>' + length(deltaVector).toFixed(2) + 'm';
       if (Date.now() / 1000 <= monster['battle_time'] + 60) {
         tr.childNodes[1].innerHTML += ' ' + (monster['current_hp'] * 100 /
@@ -154,21 +155,20 @@ class Radar {
         if (monster['puller'])
           tr.childNodes[1].innerHTML += '&nbsp;&nbsp;' + monster['puller'];
       }
+      // Z position is relative to the map so it's omitted.
       if (options.Position) {
         tr.childNodes[1].innerHTML += '<br>X: ' +
-          posToMap(parseFloat(monster['pos_x'])).toFixed(1) + '&nbsp;&nbsp;Y:' +
-          posToMap(parseFloat(monster['pos_y'])).toFixed(1);
+          posToMap(monster.pos.x).toFixed(1) + '&nbsp;&nbsp;Y:' +
+          posToMap(monster.pos.y).toFixed(1);
       }
     }
     if (options.DetectionRange > 0 && length(deltaVector) > options.DetectionRange)
       monster['dom'].setAttribute('class', 'hide');
     else
       monster['dom'].setAttribute('class', '');
-    let deltaTheta = Math.acos(theta(deltaVector, new Point2D(1, 0)));
-    if (deltaVector.y < 0)
-      deltaTheta = -deltaTheta;
-    deltaTheta += Math.PI - e.detail.rotation;
-    let angle = -deltaTheta*180/Math.PI;
+    let deltaTheta = Math.atan2(deltaVector.y, deltaVector.x);
+    deltaTheta -= Math.PI - this.playerRotation;
+    let angle = deltaTheta * 180 / Math.PI;
     let arrow_id = 'arrow-' + monster['id'];
     let arrow = document.getElementById(arrow_id);
     arrow.style.transform='rotate('+angle+'deg)';
@@ -184,7 +184,7 @@ class Radar {
   OnLogEvent(e) {
     let lang = this.options.Language;
     for (let i = 0; i < e.detail.logs.length; i++) {
-      // add new combatant
+      // added new combatant
       let matches = e.detail.logs[i].match(Regexes.addedCombatantFull());
       if (matches) {
         let monster = this.nameToMonster[matches.groups.name];
@@ -192,31 +192,30 @@ class Radar {
           this.AddMonster(e.detail.logs[i], monster, matches);
       }
       // network ability
-      matches = e.detail.logs[i].match(Regexes.abilityFull({}));
+      matches = e.detail.logs[i].match(Regexes.abilityFull());
       if (matches) {
         let monster = this.targetMonsters[matches.groups.target];
         if (monster)
           this.UpdateMonsterPuller(monster, matches.groups.source);
       }
-      // change instances
+      // change instance
       let r = e.detail.logs[i].match(instanceChangedRegex[lang] || instanceChangedRegex['en']);
       if (r)
         this.ClearTargetMonsters(10); // don't remove mobs lasting less than 10 seconds
-      // removing new combatant
-      r = e.detail.logs[i].match(/ 19:(.*) was defeated by/);
-      if (r)
-        this.RemoveMonster(r[1]);
+      // removing combatant
+      matches = e.detail.logs[i].match(Regexes.wasDefeated());
+      if (matches)
+        this.RemoveMonster(matches.groups.target);
     }
   }
 
   OnPlayerChange(e) {
     this.playerPos['x'] = e.detail.pos.x;
-    this.playerPos['y'] = -e.detail.pos.y;
-    let tr;
-    for (let i in this.targetMonsters) { // loop for all target monsters
-      let monster = this.targetMonsters[i];
-      this.UpdateMonsterDom(e, monster);
-    }
+    this.playerPos['y'] = e.detail.pos.y;
+    this.playerPos['z'] = e.detail.pos.z;
+    this.playerRotation = e.detail.rotation;
+    for (let i in this.targetMonsters)
+      this.UpdateMonsterDom(this.targetMonsters[i]);
   }
 
   OnZoneChange(e) {
