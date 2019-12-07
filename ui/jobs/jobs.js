@@ -2116,14 +2116,15 @@ class Bars {
   }
 
   OnPlayerChanged(e) {
+    if (this.me !== e.detail.name) {
+      this.me = e.detail.name;
+      // setup regexes prior to the combo tracker
+      setupRegexes(this.me);
+    }
+
     if (!this.init) {
       this.combo = setupComboTracker(this.OnComboChange.bind(this));
       this.init = true;
-    }
-
-    if (this.me !== e.detail.name) {
-      this.me = e.detail.name;
-      setupRegexes(this.me);
     }
 
     let updateJob = false;
