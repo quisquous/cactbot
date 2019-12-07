@@ -71,7 +71,7 @@ namespace Cactbot {
       public EntityJob job;
 
       [FieldOffset(0x3E)]
-      public short level;
+      public byte level;
 
       [FieldOffset(0x5F)]
       public short shieldPercentage;
