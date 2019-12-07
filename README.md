@@ -6,6 +6,7 @@
 1. [Installing](#installing)
 1. [Building From Source](#building-from-source)
 1. [UI Module Overview](#ui-module-overview)
+1. [Troubleshooting](#troubleshooting)
 1. [Cactbot Customization](#cactbot-customization)
 1. [Supported Languages](#supported-languages)
 
@@ -95,18 +96,6 @@ fflogs has [a good guide](https://www.fflogs.com/help/start/) to setting up ACT 
     [ui/test/test.html](ui/test/test.html) is a good place to start to make sure everything is set up properly.
 
 For more instructions about adding and configuring cactbot overlays, see the [Adding Overlay Modules](#adding-overlay-modules) section.
-
-### Potential errors and workarounds
-
-If you get an error in the OverlayPlugin console similar to `Exception in SendFastRateEvents: Method not found: 'Void RainbowMage.HtmlRenderer.Renderer.ExecuteScript(System.String)'.` then you are still using the RainbowMage version of OverlayPlugin.  You need to upgrade to the latest x64 full version of the [ngld OverlayPlugin](https://github.com/ngld/OverlayPlugin/releases/latest) instead.
-
-If you get an error in the OverlayPlugin console similar to `System.MissingMethodException: Method not found: '!!0[] System.Array.Empty()` then you have installed the wrong .NET framework version.  Please install the [.NET Framework](https://www.microsoft.com/net/download/framework) version 4.6.1 or above.
-
-If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit-and-td-net-fixing-the-attempt-was-made-to-load-an-assembly-from-a-network-location-problem/) error on starting the OverlayPlugin, such as `An attempt was made to load an assembly from a network location which would have caused the assembly to be sandboxed in previous version of the .NET Framework.` then this means that you have forgotten to unblock some/all of your DLLs (either OverlayPlugin or cactbot).  First, stop ACT.  Then, unblock everything; the easiest way is to unblock the original zip file and re-extract rather than unblocking every file individually.  Finally, restart ACT again.
-
-If you get an overlay plugin error similar to `Error: (overlay): Exception in SendFastRateEvents: Could not load file or assembly 'FFXIV_ACT_Plugin, Version=(version), Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.` then you likely need to unblock the ffxiv plugin.  See the instructions above for unblocking DLLs.
-
-If triggers or pieces of the UI do not work, ensure that "Disable Parsing from Network Data" is **not** checked in the FFXIV plugin settings. Network data is required for accurate trigger timing.
 
 ## Building from source
 
@@ -215,6 +204,8 @@ Cast times are currently only logged as you fish, so there won't be any data unt
 
 [See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
 
+Check [here](docs/FAQ-TroubleShooting.md#fisher-module) for common troubleshooting tips.
+
 ### [dps](ui/dps) meters
 
 cactbot can be used with any dps meter overlay designed for OverlayPlugin's miniparse
@@ -286,6 +277,10 @@ To add a cactbot module is the same as adding any overlay plugin.
 
 1. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow
 [these instructions](/ui/raidboss/data/00-misc/test.txt).
+
+## Troubleshooting
+
+A general FAQ can be found [here](docs/FAQ-Troubleshooting.md) containing solutions to common Cactbot issues.
 
 ## Cactbot Customization
 
