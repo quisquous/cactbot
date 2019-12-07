@@ -1425,7 +1425,7 @@
     },
     {
       id: 'TEA Alpha Instructions',
-      regex: Regexes.tether({ id: '0062' }),
+      regex: Regexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
