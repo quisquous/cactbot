@@ -204,7 +204,7 @@ Cast times are currently only logged as you fish, so there won't be any data unt
 
 [See here](https://www.youtube.com/watch?v=GHgWIA-Zhug) for examples of the different tug types.
 
-Check [here](docs/Fisher-Troubleshooting.md) for common troubleshooting tips.
+Check [here](docs/FAQ-TroubleShooting.md#fisher-module) for common troubleshooting tips.
 
 ### [dps](ui/dps) meters
 
