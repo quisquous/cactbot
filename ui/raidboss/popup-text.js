@@ -3,6 +3,8 @@
 // Because apparently people don't understand uppercase greek letters,
 // only uppercase alphabetic letters.
 function triggerUpperCase(str) {
+  if (!str)
+    return str;
   return str.replace(/\w/g, (x) => x.toUpperCase());
 }
 
