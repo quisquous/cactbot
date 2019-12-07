@@ -19,6 +19,8 @@ namespace Cactbot {
           return "de";
         case 4:
           return "ja";
+        case 5:
+          return "cn";
         default:
           return null;
       }

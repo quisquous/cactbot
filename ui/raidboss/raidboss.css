@@ -59,14 +59,12 @@
   font-size: 170%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
-  text-transform: uppercase;
 }
 .alarm-text {
   color: #f30;
   font-size: 230%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
-  text-transform: uppercase;
 }
 
 .animate-text {

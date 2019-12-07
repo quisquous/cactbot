@@ -149,6 +149,14 @@ let tests = {
     ];
     regexCaptureTest(Regexes.tether, lines);
   },
+  wasDefeated: () => {
+    let lines = [
+      '[19:39:36.673] 19:Tini Poutini was defeated by Ovni.',
+      '[19:39:36.673] 19:The Scourge Of Meracydia was defeated by Unknown.',
+      '[19:39:36.673] 19:Potato Chippy was defeated by Tater Tot.',
+    ];
+    regexCaptureTest(Regexes.wasDefeated, lines);
+  },
   gameLog: () => {
     let echoLines = [
       '[12:18:38.000] 00:0038:cactbot wipe',

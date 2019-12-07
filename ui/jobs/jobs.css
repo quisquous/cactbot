@@ -134,14 +134,14 @@
 }
 
 /* Relative to #bars */
-#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes, #blm-boxes {
+#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes, #blm-boxes, #gnb-boxes {
   display: flex;
   position: absolute;
   left: 202px;
   top: 0px;
 }
 
-#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div, #blm-boxes>div  {
+#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div, #blm-boxes>div, #gnb-boxes>div  {
   display: inline-block;
   margin-left: 4;
   border: 1px solid rgba(0,0,0,0.7);
@@ -152,9 +152,9 @@
   War is pretty short though, so just gets a default value.
 */
 
-#war-boxes>div  {
-  width: 30px;
-  height: 30px;
+#war-boxes>div, #gnb-boxes>div  {
+  width: 29px;
+  height: 29px;
 }
 
 #drk-boxes>div , #pld-boxes>div {
@@ -172,7 +172,7 @@
   height: 30px;
 }
 
-#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text, #blm-boxes .text {
+#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text, #blm-boxes .text, #gnb-boxes .text {
   text-align: center;
   position: relative;
   top: 7px;
@@ -460,4 +460,7 @@
 }
 .blm-xeno-timer.active {
   background-color: rgb(200, 50, 200);
+}
+.gnb-color-cartridge {
+  background-color: rgb(115, 218, 255);
 }

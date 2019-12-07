@@ -284,7 +284,8 @@ To add a cactbot module is the same as adding any overlay plugin.
 
     The "Test bar", "ALARM TEXT", and shaded blue background will disappear once the overlay has been locked.
 
-1. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow [these instructions](ui/raidboss/data/timelines/test.txt).
+1. If you want to test the raidboss plugin, teleport to Summerford Farms, and follow
+[these instructions](/ui/raidboss/data/00-misc/test.txt).
 
 ## Cactbot Customization
 

@@ -4,6 +4,8 @@ let gLang = null;
 
 class CactbotLanguage {
   constructor(lang) {
+    this.InitStrings();
+
     this.lang = lang;
     this.playerName = null;
     this.kAbility = Object.freeze({
@@ -178,82 +180,7 @@ class CactbotLanguage {
     });
   }
 
-  InitStrings(playerName) {
+  InitStrings() {
     console.error('Derived language class must implement InitStrings');
   }
-
-  OnPlayerNameChange(playerName) {
-    this.playerName = playerName;
-    this.InitStrings(playerName);
-  }
-
-  // Due to this bug: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100
-  // We can not look for log messages from FFXIV "You use X" here. Instead we
-  // look for the actual ability usage provided by the XIV plugin.
-  // Also, the networked parse info is given much quicker than the lines
-  // from the game.
-  youUseAbilityRegex(ids) {
-    return Regexes.parse(' 1[56]:\\y{ObjectId}:' + this.playerName + ':' + Regexes.anyOf(ids) + ':');
-  }
-
-  youStartUsingRegex(ids) {
-    return Regexes.parse(' 14:' + Regexes.anyOf(ids) + ':' + this.playerName + ' starts using ');
-  }
-
-  youGainEffectRegex() {
-    let effects = [];
-    for (let i = 0; i < arguments.length; ++i) {
-      let effect = arguments[i];
-      effects.push(effect);
-    }
-    return Regexes.parse(' 1A:\\y{ObjectId}:' + this.playerName + ' gains the effect of ' + Regexes.anyOf(effects) + ' from .* for (\\y{Float}) Seconds\\.');
-  }
-
-  youLoseEffectRegex() {
-    let effects = [];
-    for (let i = 0; i < arguments.length; ++i) {
-      let effect = arguments[i];
-      effects.push(effect);
-    }
-    return Regexes.parse(' 1E:\\y{ObjectId}:' + this.playerName + ' loses the effect of ' + Regexes.anyOf(effects) + ' from .*\\.');
-  }
-
-  // TODO: change uses of these to new regexes functions
-  abilityRegex(abilityId, attacker, target, flags) {
-    if (!abilityId)
-      abilityId = '[^:]*';
-    if (!attacker)
-      attacker = '[^:]*';
-    // type:attackerId:attackerName:abilId:abilName:targetId:targetName:flags:
-    let r = ' 1[56]:\\y{ObjectId}:' + attacker + ':' + abilityId + ':';
-    if (target || flags) {
-      if (!target)
-        target = '[^:]*';
-      if (!flags)
-        flags = '[^:]*';
-      r += '[^:]*:\\y{ObjectId}:' + target + ':' + flags + ':';
-    }
-    return Regexes.parse(r);
-  }
-
-  gainsEffectRegex(effect, target, attacker) {
-    if (!target)
-      target = '[^:]*';
-    if (!attacker)
-      attacker = '[^:]*';
-    return Regexes.parse(' 1A:\\y{ObjectId}:' + target + ' gains the effect of ' + effect + ' from ' + attacker + ' for (\\y{Float}) Seconds\\.');
-  }
-
-  losesEffectRegex(effect, target, attacker) {
-    if (!target)
-      target = '[^:]*';
-    if (!attacker)
-      attacker = '[^:]*';
-    return Regexes.parse(' 1E:\\y{ObjectId}:' + target + ' loses the effect of ' + effect + ' from ' + attacker + '\\.');
-  }
 }
-
-addOverlayListener('onPlayerChangedEvent', (function(e) {
-  if (gLang)
-    gLang.OnPlayerNameChange(e.detail.name);
-}));

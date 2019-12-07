@@ -27,14 +27,6 @@ Options.ShowHPNumber = ['PLD', 'WAR', 'DRK', 'GNB'];
 // List of jobs to show an mp value for.
 Options.ShowMPNumber = ['BLM', 'DRK'];
 
-// Show procs ending this amount early so as to not waste GCDs on
-// no-longer-useful procs.
-// Jolt cast time + 0.5 for my reaction time.
-Options.RdmCastTime = 1.94 + 0.5;
-// GCD on warrior.
-Options.WarGcd = 2.38;
-// GCD on paladin.
-Options.PldGcd = 2.43;
 // The recast time for Aetherflow.
 Options.SmnAetherflowRecast = 60;
 

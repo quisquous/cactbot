@@ -74,6 +74,12 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   alertText: {'Alert Popup'},
   alarmText: {'Alarm Popup'},
   tts: {'TTS text'},
+  response: {
+    infoText: {'Info popup'},
+    alertText: {'Alert Popup'},
+    alarmText: {'Alarm Popup'},
+    tts: {'TTS text'},
+  },
   sound: '',
   soundVolume: 1,
 
@@ -113,6 +119,12 @@ Displays a text popup with Alarm importance when the trigger activates. This is 
 
 **tts**
 An alternative text string for the chosen TTS option to use for callouts. This can be a localized object just like the text popups.
+
+**response**
+A way to return infoText/alertText/alarmText/tts all from a single entrypoint.
+Also used by `resources/responses.js`.
+Response has less priority than an explicity specified text or tts,
+and so can be overridden.
 
 **sound**
 Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'. Paths to sound files are relative to the ui/raidboss/ directory.

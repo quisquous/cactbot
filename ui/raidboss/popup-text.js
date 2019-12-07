@@ -1,5 +1,11 @@
 'use strict';
 
+// Because apparently people don't understand uppercase greek letters,
+// only uppercase alphabetic letters.
+function triggerUpperCase(str) {
+  return str.replace(/\w/g, (x) => x.toUpperCase());
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -303,7 +309,7 @@ class PopupText {
 
     let that = this;
 
-    let ValueOrFunction = (function(f) {
+    let ValueOrFunction = (f) => {
       let result = (typeof(f) == 'function') ? f(this.data, matches) : f;
       // All triggers return either a string directly, or an object
       // whose keys are different locale names.  For simplicity, this is
@@ -318,7 +324,7 @@ class PopupText {
       // For partially localized results where this localization doesn't
       // exist, prefer English over nothing.
       return ValueOrFunction(result['en']);
-    }).bind(this);
+    };
 
     let showText = this.options.TextAlertsEnabled;
     let playSounds = this.options.SoundAlertsEnabled;
@@ -387,9 +393,16 @@ class PopupText {
 
       let defaultTTSText;
 
-      let alarmText = triggerOptions.AlarmText || trigger.alarmText;
+      let response = {};
+      if (trigger.response) {
+        // Can't use ValueOrFunction here as r returns a non-localizable object.
+        let r = trigger.response;
+        response = (typeof(r) == 'function') ? r(this.data, matches) : r;
+      }
+
+      let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;
       if (alarmText) {
-        let text = ValueOrFunction(alarmText);
+        let text = triggerUpperCase(ValueOrFunction(alarmText));
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
           let holder = that.alarmText.getElementsByClassName('holder')[0];
@@ -407,9 +420,9 @@ class PopupText {
         }
       }
 
-      let alertText = triggerOptions.AlertText || trigger.alertText;
+      let alertText = triggerOptions.AlertText || trigger.alertText || response.alertText;
       if (alertText) {
-        let text = ValueOrFunction(alertText);
+        let text = triggerUpperCase(ValueOrFunction(alertText));
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
           let holder = that.alertText.getElementsByClassName('holder')[0];
@@ -427,7 +440,7 @@ class PopupText {
         }
       }
 
-      let infoText = triggerOptions.InfoText || trigger.infoText;
+      let infoText = triggerOptions.InfoText || trigger.infoText || response.infoText;
       if (infoText) {
         let text = ValueOrFunction(infoText);
         defaultTTSText = defaultTTSText || text;
@@ -478,6 +491,8 @@ class PopupText {
           ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
         else if ('groupTTS' in trigger)
           ttsText = ValueOrFunction(trigger.groupTTS);
+        else if ('groupTTS' in response)
+          ttsText = ValueOrFunction(response.groupTTS);
       }
 
       if (!playGroupSpeech || typeof ttsText === 'undefined') {
@@ -485,6 +500,8 @@ class PopupText {
           ttsText = ValueOrFunction(triggerOptions.TTSText);
         else if ('tts' in trigger)
           ttsText = ValueOrFunction(trigger.tts);
+        if ('tts' in response)
+          ttsText = ValueOrFunction(response.TTSText);
         else
           ttsText = defaultTTSText;
       }

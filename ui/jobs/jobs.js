@@ -253,15 +253,15 @@ function setupComboTracker(callback) {
   return comboTracker;
 }
 
-function setupRegexes() {
+function setupRegexes(playerName) {
   kWellFedZoneRegex = Regexes.anyOf(Options.WellFedZones.map(function(x) {
     return gLang.kZone[x];
   }));
 
-  kYouGainEffectRegex = gLang.youGainEffectRegex('(.*)');
-  kYouLoseEffectRegex = gLang.youLoseEffectRegex('(.*)');
-  kYouUseAbilityRegex = gLang.youUseAbilityRegex('(\\y{AbilityCode})');
-  kAnybodyAbilityRegex = gLang.abilityRegex('(\\y{AbilityCode})');
+  kYouGainEffectRegex = Regexes.gainsEffect({ target: playerName });
+  kYouLoseEffectRegex = Regexes.losesEffect({ target: playerName });
+  kYouUseAbilityRegex = Regexes.ability({ source: playerName });
+  kAnybodyAbilityRegex = Regexes.ability();
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -522,8 +522,9 @@ class Buff {
 }
 
 class BuffTracker {
-  constructor(options, leftBuffDiv, rightBuffDiv) {
+  constructor(options, playerName, leftBuffDiv, rightBuffDiv) {
     this.options = options;
+    this.playerName = playerName;
     this.leftBuffDiv = leftBuffDiv;
     this.rightBuffDiv = rightBuffDiv;
     this.buffs = {};
@@ -548,7 +549,7 @@ class BuffTracker {
       },
       trick: {
         gainAbility: gLang.kAbility.TrickAttack,
-        gainRegex: gLang.abilityRegex(gLang.kAbility.TrickAttack),
+        gainRegex: Regexes.ability({ id: gLang.kAbility.TrickAttack }),
         durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
@@ -572,7 +573,7 @@ class BuffTracker {
         // Instead, use somebody using the effect on you:
         //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
         gainAbility: gLang.kAbility.Embolden,
-        gainRegex: gLang.abilityRegex(gLang.kAbility.Embolden, null, gLang.playerName),
+        gainRegex: Regexes.abilityFull({ id: gLang.kAbility.Embolden, target: this.playerName }),
         loseEffect: gLang.kEffect.Embolden,
         durationSeconds: 20,
         icon: '../../resources/icon/status/embolden.png',
@@ -997,8 +998,6 @@ class Bars {
       this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
     }
 
-    this.buffTracker = new BuffTracker(this.options, this.o.leftBuffsList, this.o.rightBuffsList);
-
     if (Util.isCraftingJob(this.job)) {
       this.o.cpContainer = document.createElement('div');
       this.o.cpContainer.id = 'cp-bar';
@@ -1089,6 +1088,7 @@ class Bars {
       'WHM': this.setupWhm,
       'NIN': this.setupNin,
       'SAM': this.setupSam,
+      'GNB': this.setupGnb,
     };
     if (setup[this.job])
       setup[this.job].bind(this)();
@@ -1855,6 +1855,16 @@ class Bars {
     };
   }
 
+  setupGnb() {
+    let cartridgeBox = this.addResourceBox({
+      classList: ['gnb-color-cartridge'],
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      cartridgeBox.innerText = jobDetail.cartridges;
+    });
+  }
+
   OnComboChange(skill) {
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
@@ -1997,13 +2007,13 @@ class Bars {
       this.o.manaBar.fg = computeBackgroundColorFrom(this.o.manaBar, 'mp-color');
   }
 
-  UpdateCP() {
+  updateCp() {
     if (!this.o.cpBar) return;
     this.o.cpBar.value = this.cp;
     this.o.cpBar.maxvalue = this.maxCP;
   }
 
-  UpdateGP() {
+  UpdateGp() {
     if (!this.o.gpBar) return;
     this.o.gpBar.value = this.gp;
     this.o.gpBar.maxvalue = this.maxGP;
@@ -2107,18 +2117,21 @@ class Bars {
 
   OnPlayerChanged(e) {
     if (!this.init) {
-      this.me = e.detail.name;
-      setupRegexes();
       this.combo = setupComboTracker(this.OnComboChange.bind(this));
       this.init = true;
     }
 
-    let update_job = false;
-    let update_hp = false;
-    let update_mp = false;
-    let update_cp = false;
-    let update_gp = false;
-    let update_level = false;
+    if (this.me !== e.detail.name) {
+      this.me = e.detail.name;
+      setupRegexes(this.me);
+    }
+
+    let updateJob = false;
+    let updateHp = false;
+    let updateMp = false;
+    let updateCp = false;
+    let updateGp = false;
+    let updateLevel = false;
     if (e.detail.job != this.job) {
       this.job = e.detail.job;
       // Combos are job specific.
@@ -2126,18 +2139,18 @@ class Bars {
       // Update MP ticker as umbral stacks has changed.
       this.umbralStacks = 0;
       this.UpdateMPTicker();
-      update_job = update_hp = update_mp = update_cp = update_gp = true;
+      updateJob = updateHp = updateMp = updateCp = updateGp = true;
     }
     if (e.detail.level != this.level) {
       this.level = e.detail.level;
-      update_level = true;
+      updateLevel = true;
     }
     if (e.detail.currentHP != this.hp || e.detail.maxHP != this.maxHP ||
       e.detail.currentShield != this.currentShield) {
       this.hp = e.detail.currentHP;
       this.maxHP = e.detail.maxHP;
       this.currentShield = e.detail.currentShield;
-      update_hp = true;
+      updateHp = true;
 
       if (this.hp == 0)
         this.combo.AbortCombo(); // Death resets combos.
@@ -2145,32 +2158,35 @@ class Bars {
     if (e.detail.currentMP != this.mp || e.detail.maxMP != this.maxMP) {
       this.mp = e.detail.currentMP;
       this.maxMP = e.detail.maxMP;
-      update_mp = true;
+      updateMp = true;
     }
     if (e.detail.currentCP != this.cp || e.detail.maxCP != this.maxCP) {
       this.cp = e.detail.currentCP;
       this.maxCP = e.detail.maxCP;
-      update_cp = true;
+      updateCp = true;
     }
     if (e.detail.currentGP != this.gp || e.detail.maxGP != this.maxGP) {
       this.gp = e.detail.currentGP;
       this.maxGP = e.detail.maxGP;
-      update_gp = true;
+      updateGp = true;
     }
-    if (update_job) {
+    if (updateJob) {
       this.UpdateJob();
       // On reload, we need to set the opacity after setting up the job bars.
       this.UpdateOpacity();
+      // Set up the buff tracker after the job bars are created.
+      this.buffTracker = new BuffTracker(
+          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
     }
-    if (update_hp)
+    if (updateHp)
       this.UpdateHealth();
-    if (update_mp)
+    if (updateMp)
       this.UpdateMana();
-    if (update_cp)
-      this.UpdateCP();
-    if (update_gp)
-      this.UpdateGP();
-    if (update_level)
+    if (updateCp)
+      this.updateCp();
+    if (updateGp)
+      this.UpdateGp();
+    if (updateLevel)
       this.UpdateFoodBuff();
 
     if (e.detail.jobDetail) {
@@ -2230,7 +2246,7 @@ class Bars {
         if (log[16] == 'A') {
           let m = log.match(kYouGainEffectRegex);
           if (m) {
-            let name = m[1];
+            let name = m.groups.effect;
             let f = this.gainEffectFuncMap[name];
             if (f)
               f(name, log);
@@ -2239,7 +2255,7 @@ class Bars {
         } else if (log[16] == 'E') {
           let m = log.match(kYouLoseEffectRegex);
           if (m) {
-            let name = m[1];
+            let name = m.groups.effect;
             let f = this.loseEffectFuncMap[name];
             if (f)
               f(name, log);
@@ -2251,7 +2267,7 @@ class Bars {
         if (log[16] == '5' || log[16] == '6') {
           let m = log.match(kYouUseAbilityRegex);
           if (m) {
-            let id = m[1];
+            let id = m.groups.id;
             this.combo.HandleAbility(id);
             let f = this.abilityFuncMap[id];
             if (f)
@@ -2260,7 +2276,7 @@ class Bars {
           } else {
             let m = log.match(kAnybodyAbilityRegex);
             if (m)
-              this.buffTracker.onUseAbility(m[1], log);
+              this.buffTracker.onUseAbility(m.groups.id, log);
           }
         }
       }
@@ -2271,7 +2287,7 @@ class Bars {
     let logs = [];
     let t = '[10:10:10.000] ';
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Medicated from ' + this.me + ' for 30.2 Seconds.');
-    logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Embolden from  for 20 Seconds. (5)');
+    logs.push(t + '15:10000000:Tako Yaki:1D60:Embolden:10000000:' + this.me + ':500020F:4D70000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:42194:42194:10000:10000:0:1000:-655.3301:-838.5481:29.80905:0.523459:00001DE7');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of Battle Litany from  for 25 Seconds.');
     logs.push(t + '1A:10000000:' + this.me + ' gains the effect of The Balance from  for 12 Seconds.');
     logs.push(t + '1A:10000000:Okonomi Yaki gains the effect of Foe Requiem from Okonomi Yaki for 9999.00 Seconds.');

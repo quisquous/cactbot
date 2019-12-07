@@ -117,7 +117,7 @@ class PullCounter {
 
   SetSaveData(e) {
     try {
-      if (e.data)
+      if (e != null && e.data)
         this.pullCounts = JSON.parse(e.data);
       else
         this.pullCounts = {};

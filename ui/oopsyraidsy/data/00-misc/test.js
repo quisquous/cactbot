@@ -77,41 +77,5 @@
         return { type: 'fail', blame: data.me, text: text };
       },
     },
-    {
-      id: 'Test One Ilm Punch',
-      damageRegex: gLang.kAbility.OneIlmPunch,
-      condition: function(e) {
-        return e.targetName == 'Striking Dummy';
-      },
-      mistake: function(e, data) {
-        // Demonstrate returning multiple mistakes.
-        return [
-          {
-            type: 'warn',
-            blame: data.me,
-            text: {
-              en: 'ONE!',
-              de: 'EIN!',
-            },
-          },
-          {
-            type: 'fail',
-            blame: data.me,
-            text: {
-              en: 'ILM!',
-              de: 'ILM!',
-            },
-          },
-          {
-            type: 'potion',
-            blame: data.me,
-            text: {
-              en: 'PUNCH!',
-              de: 'SCHLAG!',
-            },
-          },
-        ];
-      },
-    },
   ],
 }];

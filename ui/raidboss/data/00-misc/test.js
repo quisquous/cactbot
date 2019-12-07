@@ -218,5 +218,17 @@
         };
       },
     },
+    {
+      id: 'Test Response',
+      regex: Regexes.echo({ line: 'cactbot test response', capture: false }),
+      response: function(data) {
+        return {
+          alarmText: '1',
+          alertText: '2',
+          infoText: '3',
+          tts: '4',
+        };
+      },
+    },
   ],
 }];

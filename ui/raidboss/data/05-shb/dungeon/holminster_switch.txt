@@ -112,12 +112,10 @@ hideall "--sync--"
 1244.9 "Head Crusher" sync /:Philia:3DD7:/
 1251.6 "Taphephobia" sync /:Philia:3DE2:/
 
-1253.8 "--sync--" sync /:Philia:3DE4:/ window 30,30 jump 1165.8
-1258.8 "Into The Light"
-1266.5 "Left/Right Knout"
-1273.7 "Right/Left Knout"
-1280.9 "Chain Down"
-1298.3 "Aethersup"
-1313.6 "Scavenger's Daughter"
-1332.9 "Head Crusher"
-1339.6 "Taphephobia"
+1253.8 "--sync--" sync /:Philia:3DE4:/ window 30,30 jump 1097.2
+1258.7 "Into The Light"
+1279.4 "Pendulum Tank"
+1281.6 "Pendulum Center"
+
+1282.0 "--sync--"
+1288.9 "Fierce Beating"

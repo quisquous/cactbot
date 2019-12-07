@@ -26,7 +26,8 @@ hideall "--sync--"
 276.0 "High-Caliber Laser" #sync /:Serial-jointed Service Model:48C7:/
 281.9 "Forceful Impact" sync /:Serial-jointed Command Model:48CF:/
 
-292.3 "Systematic Siege" sync /:Serial-jointed Command Model:48B2:/
+# Maybe an HP push?
+292.3 "Systematic Siege" sync /:Serial-jointed Command Model:48B2:/ window 150,5
 303.2 "Energy Bombardment" sync /:Serial-jointed Command Model:48B8:/
 306.8 "Systematic Targeting" sync /:Serial-jointed Command Model:48C4:/
 317.8 "Clanging Blow" sync /:Serial-jointed Command Model:48CE:/
@@ -58,7 +59,7 @@ hideall "--sync--"
 # -ic 2P -ii 491D 491C -p 491B:715.5
 600.0 "--sync--" sync /00:0839:Warehouse B will be sealed off/ window 600,0
 700.0 "--sync--" sync /22:........:Small Flyer:........:Small Flyer:01/ window 100,0
-715.5 "Frontal Somersault" sync /:Small Biped:491B:/
+715.5 "Frontal Somersault" sync /:Small Biped:491B:/ window 116,2.5
 721.4 "Frontal Somersault" sync /:Small Biped:491B:/
 725.7 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
 732.1 "High-Frequency Laser" sync /:Multi-leg Medium Model:491E:/
