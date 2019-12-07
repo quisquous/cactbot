@@ -20,7 +20,7 @@ let UserConfig = {
       // is remote, local files needed to be read by the plugin and
       // passed to Javascript for Chrome security reasons.
       if (localFiles) {
-        if (jsFile in localFiles)
+        if (jsFile in localFiles) {
           try {
             eval(localFiles[jsFile]);
           } catch (e) {
@@ -28,6 +28,7 @@ let UserConfig = {
             console.log('*** ERROR IN USER FILE ***');
             console.log(e.stack);
           }
+        }
 
         // This is a bit awkward to handle skin settings here, but
         // doing it after user config files and before user css files
