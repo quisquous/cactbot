@@ -563,7 +563,8 @@ namespace Cactbot {
         foreach (string filename in filenames) {
           if (filename.Contains("-example."))
             continue;
-          user_files[Path.GetFileName(filename)] = File.ReadAllText(filename);
+          user_files[Path.GetFileName(filename)] = File.ReadAllText(filename) +
+            $"\n//# sourceURL={filename}";
         }
       } catch (Exception e) {
         LogError("User error file exception: {0}", e.ToString());

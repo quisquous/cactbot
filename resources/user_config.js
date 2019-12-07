@@ -21,7 +21,13 @@ let UserConfig = {
       // passed to Javascript for Chrome security reasons.
       if (localFiles) {
         if (jsFile in localFiles)
-          eval(localFiles[jsFile]);
+          try {
+            eval(localFiles[jsFile]);
+          } catch (e) {
+            // Be very visible for users.
+            console.log('*** ERROR IN USER FILE ***');
+            console.log(e.stack);
+          }
 
         // This is a bit awkward to handle skin settings here, but
         // doing it after user config files and before user css files
