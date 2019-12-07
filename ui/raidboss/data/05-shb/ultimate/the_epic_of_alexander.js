@@ -510,7 +510,7 @@
         return data.me == matches.target;
       },
       // This gives a warning within 5 seconds, so you can hit arm's length.
-      delaySeconds: function(data, matches) {
+      delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
       alertText: function(data, matches) {
@@ -807,7 +807,6 @@
       regexFr: Regexes.losesEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
       regexJa: Regexes.losesEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
-        let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
         data.nisiMap = data.nisiMap || {};
         delete data.nisiMap[matches.target];
       },
@@ -890,7 +889,7 @@
           };
         }
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer')
           return;
         return {
@@ -1330,7 +1329,7 @@
           };
         }
       },
-      infoText: function(data, matches) {
+      infoText: function(data) {
         if (data.opticalStack.length == 1)
           return;
         let names = data.opticalStack.map((x) => data.ShortName(x)).sort();
@@ -1430,7 +1429,7 @@
       condition: (data) => data.phase == 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
-      run: function(data, matches) {
+      run: function(data) {
         // Let your actor id memes be dreams.
         // If you sort the actor ids of the clones, this will tell you what you have.
         // If anybody is dead, they will fill in from the lowest.
