@@ -32,10 +32,10 @@
             en: 'Tank cleave soon!',
           };
         }
+        return {
+          en: 'Avoid tank cleave',
+        };
       },
-      return {
-        en: 'Avoid tank cleave'
-      }
     },
     {
       id: 'O4N Standard Fire',
