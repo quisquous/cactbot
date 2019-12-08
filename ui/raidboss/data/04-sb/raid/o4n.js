@@ -22,24 +22,20 @@
     },
     {
       id: 'O4N Standard Thunder',
-      regex: / 14:24BD:Exdeath starts using Thunder III on (\y{Name})/,
-      regexDe: / 14:24BD:Exdeath starts using Blitzga on (\y{Name})/,
-      regexFr: / 14:24BD:Exdeath starts using Méga Foudre on (\y{Name})/,
-      regexJa: / 14:24BD:エクスデス starts using サンダガ on (\y{Name})/,
-      infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+      regex: / 14:24BD:Exdeath starts using Thunder III/,
+      regexDe: / 14:24BD:Exdeath starts using Blitzga/,
+      regexFr: / 14:24BD:Exdeath starts using Méga Foudre/,
+      regexJa: / 14:24BD:エクスデス starts using サンダガ/,
+      infoText: function(data) {
+        if (data.role == 'tank') {
           return {
-            en: 'Tank buster on YOU',
+            en: 'Tank cleave soon!',
           };
         }
       },
-      alertText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-          };
-        }
-      },
+      return {
+        en: 'Avoid tank cleave'
+      }
     },
     {
       id: 'O4N Standard Fire',
