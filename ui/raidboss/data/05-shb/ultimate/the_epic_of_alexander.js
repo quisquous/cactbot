@@ -6,7 +6,8 @@
 //
 // This is more or less the TPS wormhole strat, with
 // some modifications to require less brain.
-// See: https://www.youtube.com/watch?v=ScBsC5sZRwU
+//
+// Original TPS strat: https://www.youtube.com/watch?v=ScBsC5sZRwU
 //
 // Changes:
 // There's no "CC" side or "BJ" side, only left side and right side.
@@ -14,6 +15,10 @@
 // Odds go left, evens go right.  1+4 go to robots, 2+3 go back, 5+6+7+8 go side of robot.
 // From there, do the same thing you normally would for your number in the TPS strat.
 // This means that sometimes 2 is baiting BJ and sometimes 3, so both need to leave room.
+// All cleaves go through the middle (easy to know where to face for evens if you don't surecast).
+// East/West cardinals always safe after chakrams.
+//
+// Diagram: https://ff14.toolboxgaming.space/?id=17050133675751&preview=1
 
 // TODO: Future network data mining opportunities.
 // These don't show up in the log (yet??):
