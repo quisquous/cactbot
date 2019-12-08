@@ -40,6 +40,10 @@ cactbot provides these modules:
 
 ![fisher screenshot](screenshots/promo_fishing.png)
 
+* radar: hunt mob directions, puller notifications
+
+![radar screenshot](screenshots/promo_radar.png)
+
 * dps: extra features for dps meters
 
 ![xephero screenshot](screenshots/xephero.png)
@@ -191,6 +195,24 @@ copy the list of currently dead NMs, you can paste it in game, e.g.
 If you do not see the emoji, make sure you have installed [this Windows update](https://support.microsoft.com/en-us/help/2729094/an-update-for-the-segoe-ui-symbol-font-in-windows-7-and-in-windows-ser).
 
 ![eureka screenshot](screenshots/promo_eureka.png)
+
+### [radar](ui/radar) module
+
+To use this module, point cactbot at **ui/radar/radar.html**
+
+This module lets you know about nearby hunt mobs (S-rank, A-rank, etc).
+When one pops, it gives you an arrow (based on your character's heading)
+and a distance to the mob.
+
+There are options to show who pulled the mob,
+as well as to configure the display of the radar.
+You can also set up custom options for different ranks
+(e.g. make noises for S rank, but be silent for B ranks),
+or set up custom triggers for any mob name you would like.
+
+See the `cactbot/user/radar-example.js` for more options.
+
+![radar screenshot](screenshots/promo_radar.png)
 
 ### [fisher](ui/fisher) module
 
