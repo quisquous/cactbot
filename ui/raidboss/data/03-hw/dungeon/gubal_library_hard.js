@@ -76,13 +76,13 @@
           delete data.markers;
           if (sameMarkers) {
             return {
-              en: 'Away from boss',
-              fr: 'Eloignez-vous du boss',
+              en: 'Close to boss',
+              fr: 'Près du boss',
             };
           }
           return {
-            en: 'Close to boss',
-            fr: 'Près du boss',
+            en: 'Away from boss',
+            fr: 'Eloignez-vous du boss',
           };
         }
       },
