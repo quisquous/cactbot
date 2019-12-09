@@ -151,6 +151,7 @@ let Responses = {
           if (target == data.me) {
             return {
               en: 'Tank cleave on YOU',
+              de: 'Tank Cleave aud DIR',
               fr: 'Tank cleave sur VOUS',
             };
           }
@@ -158,12 +159,14 @@ let Responses = {
           // targetless tank cleave
           return {
             en: 'Tank cleave',
+            de: 'Tank Cleave',
             fr: 'Tank cleave',
           };
         }
       }
       return {
         en: 'Avoid tank cleave',
+        de: 'Tank Cleave ausweichen',
         fr: 'Evitez le cleave sur le tank',
       };
     };
@@ -250,13 +253,13 @@ let Responses = {
       if (target == data.me) {
         return {
           en: 'Knockback on YOU',
-          de: 'Knockback auf DIR',
+          de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
         };
       }
       return {
         en: 'Knockback on ' + data.ShortName(target),
-        de: 'Knockback auf ' + data.ShortName(target),
+        de: 'Rückstoß auf ' + data.ShortName(target),
         fr: 'Poussée sur ' + data.ShortName(target),
       };
     };
@@ -381,10 +384,10 @@ let Responses = {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: '<= Get Left/West',
-      fr: '<= Allez à Gauche/Ouest',
       de: '<= Nach Links/Westen',
-      ko: '<= 왼쪽이 안전',
+      fr: '<= Allez à Gauche/Ouest',
       ja: '<= 左/西へ',
+      ko: '<= 왼쪽이 안전',
     };
     return obj;
   },
@@ -392,10 +395,10 @@ let Responses = {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Get Right/East =>',
-      fr: 'Allez à Droite/Est =>',
       de: 'Nach Rechts/Osten =>',
-      ko: '오른쪽이 안전 =>',
+      fr: 'Allez à Droite/Est =>',
       ja: '右/東へ =>',
+      ko: '오른쪽이 안전 =>',
     };
     return obj;
   },
@@ -431,7 +434,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Kill Extra Add',
-      de: 'Add angreifen',
+      de: 'Add besiegen',
       ja: '水の精倒して',
       fr: 'Tuez l\'add',
       cn: '击杀小怪',
@@ -442,6 +445,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Kill adds',
+      de: 'Adds besiegen',
       fr: 'Tuez les adds',
     };
     return obj;
@@ -473,7 +477,7 @@ let Responses = {
       if (data.me == target) {
         return {
           en: 'Prey on YOU',
-          de: 'Rakete auf DIR',
+          de: 'Marker auf DIR',
           fr: 'Marquage sur VOUS',
           ko: '빨간징 → 나',
           ja: 'マーカー on YOU',
@@ -481,7 +485,7 @@ let Responses = {
       }
       return {
         en: 'Prey on ' + data.ShortName(target),
-        de: 'Beute auf ' + data.ShortName(target),
+        de: 'Marker auf ' + data.ShortName(target),
         fr: 'Marquage sur ' + data.ShortName(target),
         ko: '빨간징 → ' + data.ShortName(target),
         ja: 'マーカー on ' + data.ShortName(target),
@@ -503,6 +507,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlarmText(sev)] = {
       en: 'Stop Moving!',
+      de: 'Bewegung stoppen!',
       fr: 'Ne bougez pas !',
     };
     return obj;
@@ -511,6 +516,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlarmText(sev)] = {
       en: 'Stop Everything!',
+      de: 'Stoppe Alles!',
       fr: 'Stoppez TOUT !',
     };
     return obj;
