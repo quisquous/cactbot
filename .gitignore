@@ -7,10 +7,9 @@ user/
 
 !user/README.txt
 CactbotOverlay/CactbotOverlay.csproj.user
-CactbotOverlay/ThirdParty/*/*.pdb
-CactbotOverlay/ThirdParty/*/*.dll
-CactbotOverlay/ThirdParty/*/*.exe
-CactbotOverlay/ThirdParty/*/*.xml
+
+!CactbotOverlay/ThirdParty/*/dummy.txt
+CactbotOverlay/ThirdParty/
 publish/
 __pycache__
 node_modules
