@@ -60,6 +60,7 @@ class Radar {
     this.nameToMonster = {};
     for (let i in this.monsters) {
       let monster = this.monsters[i];
+      monster['name'] = monster['name'].toLowerCase();
       this.nameToMonster[monster['name'][this.lang] || monster['name']['en']] = monster;
     }
   }
@@ -70,7 +71,7 @@ class Radar {
     matchOrNot &= (log.match(monster['regex'] || '') != null);
     matchOrNot &= (parseFloat(matches.groups.hp) >= (monster['hp'] || 0));
     let options = this.options;
-    if (monster['rank'] in options.RankOptions) // options overwrite
+    if (monster['rank'] in options.RankOptions) // option overwrite
       options = Object.assign({}, this.options, options.RankOptions[monster['rank']]);
     if (options.OnlyMobs) {
       matchOrNot &= matches.groups.id.startsWith('4');
@@ -112,7 +113,7 @@ class Radar {
         tr.appendChild(th);
         this.table.insertBefore(tr, this.table.childNodes[0]);
         m['dom'] = tr;
-        this.targetMonsters[mob_name] = m;
+        this.targetMonsters[mob_name.toLowerCase()] = m;
         this.UpdateMonsterDom(m);
         if (options.TTS) {
           callOverlayHandler({
@@ -187,14 +188,14 @@ class Radar {
       // added new combatant
       let matches = e.detail.logs[i].match(Regexes.addedCombatantFull());
       if (matches) {
-        let monster = this.nameToMonster[matches.groups.name];
+        let monster = this.nameToMonster[matches.groups.name.toLowerCase()];
         if (monster)
           this.AddMonster(e.detail.logs[i], monster, matches);
       }
       // network ability
       matches = e.detail.logs[i].match(Regexes.abilityFull());
       if (matches) {
-        let monster = this.targetMonsters[matches.groups.target];
+        let monster = this.targetMonsters[matches.groups.target.toLowerCase()];
         if (monster)
           this.UpdateMonsterPuller(monster, matches.groups.source);
       }
@@ -205,7 +206,7 @@ class Radar {
       // removing combatant
       matches = e.detail.logs[i].match(Regexes.wasDefeated());
       if (matches)
-        this.RemoveMonster(matches.groups.target);
+        this.RemoveMonster(matches.groups.target.toLowerCase());
     }
   }
 
