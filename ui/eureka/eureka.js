@@ -2070,6 +2070,7 @@ class EurekaTracker {
       this.InitNMs();
       this.UpdateTimes();
       container.classList.remove('hide');
+      window.clearInterval(this.updateTimesHandle);
       this.updateTimesHandle = window.setInterval((function() {
         this.UpdateTimes();
       }).bind(this), this.options.RefreshRateMs);
