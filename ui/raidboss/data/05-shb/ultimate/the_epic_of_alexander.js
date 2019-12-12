@@ -215,6 +215,7 @@
           this.enumerations = [];
           this.buffMap = {};
           this.tetherBois = {};
+          this.vuln = {};
           delete this.limitCutNumber;
           delete this.limitCutDelay;
         };
@@ -1125,6 +1126,67 @@
       infoText: {
         en: 'Bait Brute\'s Flarethrower',
         de: 'Locke Brute\'s Großflammenwerfer',
+      },
+    },
+    {
+      id: 'TEA Inception Vuln Collection',
+      regex: Regexes.gainsEffect({ effect: 'Physical Vulnerability Up' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Erhöhte Physische Verwundbarkeit' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité physique augmentée' }),
+      regexJa: Regexes.gainsEffect({ effect: '被物理ダメージ増加' }),
+      condition: (data) => data.phase == 'inception',
+      run: function(data, matches) {
+        data.vuln[matches.target] = true;
+      },
+    },
+    {
+      id: 'TEA Inception Alpha Sword',
+      // Sacrament cast.
+      regex: Regexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
+      regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
+      regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
+      regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
+      condition: (data) => data.phase == 'inception',
+      alarmText: function(data) {
+        let numVulns = Object.keys(data.vuln).length;
+        if (data.role == 'tank' && data.vuln[data.me] && numVulns >= 5) {
+          // If you're stacking three people in the shared sentence,
+          // then probably the tank wants to handle jump with cooldowns.
+          // TODO: we could probably determine where this is.
+          return {
+            en: 'Bait Jump With Cooldowns',
+          };
+        }
+      },
+      alertText: function(data) {
+        if (data.vuln[data.me])
+          return;
+
+        let numVulns = Object.keys(data.vuln).length;
+        if (numVulns >= 5) {
+          // In this case, jump was handled above for tanks.
+          return {
+            en: 'Bait Sword',
+            de: 'Locke Chaser-Mecha Schwert',
+          };
+        }
+
+        // Otherwise everybody without a vuln can do anything.
+        return {
+          en: 'Bait Sword or Jump?',
+        };
+      },
+      infoText: function(data) {
+        if (data.vuln[data.me]) {
+          // Tanks covered in the alarmText case above.
+          let numVulns = Object.keys(data.vuln).length;
+          if (data.role == 'tank' && numVulns >= 5)
+            return;
+
+          return {
+            en: 'Vuln: Avoid cleaves and jump',
+          };
+        }
       },
     },
     {
