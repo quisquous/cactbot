@@ -253,14 +253,24 @@
             names = names.filter((x) => data.finalNisiMap[x] == myNisi && x != data.me);
 
             let namesWithoutNisi = names.filter((x) => !(x in data.nisiMap));
+
+            // If somehow it's the case that you've had SUCH a late pass that there
+            // isn't anybody without without nisi, at least use the names of folks who
+            // have the final debuff.
+            if (namesWithoutNisi.length == 0)
+              namesWithoutNisi = names;
+
+            // If somehow still there's nobody, give a message so that it's not silent
+            // but you're probably in trouble.
             if (namesWithoutNisi.length == 0) {
-              // Still give something useful here.
               return {
-                en: 'Pass ' + myNisi + ' Nisi',
-                de: 'Gebe ' + myNisi + ' Nisi',
+                en: 'Pass ' + data.nisiNames[myNisi] + ' Nisi',
+                de: 'Gebe ' + data.nisiNames[myNisi] + ' Nisi',
               };
             }
-            // Hopefully there's only one here, but you never know.
+
+            // The common case.  Hopefully there's only one person in the names list,
+            // but you never know.
             return {
               en: 'Pass ' + data.nisiNames[myNisi] + ' to ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', or '),
