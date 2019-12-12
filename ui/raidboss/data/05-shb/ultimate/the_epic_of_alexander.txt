@@ -1,4 +1,5 @@
 # The Epic of Alexander (Ultimate)
+# https://clees.me/guides/tea/
 # -p 49B0:11.4 4830:200 -ii 4978 4979 497B 497A 481E 4B4E 4820
 
 hideall "--Reset--"
