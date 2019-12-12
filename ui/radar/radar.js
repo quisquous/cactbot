@@ -11,6 +11,8 @@ let Options = {
   PopVolume: 0.5,
   Puller: false,
   Position: false,
+  RankOptions: {},
+  CustomMonsters: {},
 };
 
 let gRadar;
