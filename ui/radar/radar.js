@@ -60,15 +60,14 @@ class Radar {
     this.nameToMonster = {};
     for (let i in this.monsters) {
       let monster = this.monsters[i];
-      monster['name'] = monster['name'].toLowerCase();
-      this.nameToMonster[monster['name'][this.lang] || monster['name']['en']] = monster;
+      let lang = this.lang || 'en';
+      monster.name = monster.name[lang];
+      this.nameToMonster[monster.name.toLowerCase()] = monster;
     }
   }
 
   AddMonster(log, monster, matches) {
-    let lang = this.lang;
-    let matchOrNot = (matches.groups.name.match(monster['name'][lang] || monster['name']['en']) != null);
-    matchOrNot &= (log.match(monster['regex'] || '') != null);
+    let matchOrNot = (log.match(monster['regex'] || '') != null);
     matchOrNot &= (parseFloat(matches.groups.hp) >= (monster['hp'] || 0));
     let options = this.options;
     if (monster['rank'] in options.RankOptions) // option overwrite
