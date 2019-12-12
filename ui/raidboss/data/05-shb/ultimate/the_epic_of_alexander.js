@@ -263,9 +263,9 @@
             // Hopefully there's only one here, but you never know.
             return {
               en: 'Pass ' + data.nisiNames[myNisi] + ' to ' +
-                  names.map((x) => data.ShortName(x)).join(', or '),
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', or '),
               de: 'Gebe ' + data.nisiNames[myNisi] + ' zu ' +
-                  names.map((x) => data.ShortName(x)).join(', oder '),
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder '),
             };
           }
 
