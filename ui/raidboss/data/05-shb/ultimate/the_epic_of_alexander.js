@@ -1125,42 +1125,6 @@
       },
     },
     {
-      id: 'TEA Enigma Codex',
-      regex: Regexes.gainsEffect({ effect: 'Enigma Codex' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Enigma-Kodex' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Enigma Codex' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エニグマ・コーデックス' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      sound: 'Long',
-    },
-    {
-      id: 'TEA Inception Alpha Sword',
-      // Sacrament cast.
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
-      regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
-      regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
-      regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
-      alertText: function(data) {
-        // TODO: we could probably determine where this is.
-        if (data.role == 'tank') {
-          return {
-            en: 'Bait Jump Opposite Brute?',
-            de: 'Locke Sprung gegenüber von Brute?',
-          };
-        }
-      },
-      infoText: function(data) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Bait Cruise Chaser Sword?',
-            de: 'Locke Chaser-Mecha Schwert?',
-          };
-        }
-      },
-    },
-    {
       id: 'TEA Wormhole',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
