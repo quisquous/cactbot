@@ -1039,6 +1039,20 @@
       },
     },
     {
+      id: 'TEA Shared Sentence Inception',
+      regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Collective' }),
+      regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      delaySeconds: 1,
+      condition: (data) => data.phase == 'inception',
+      infoText: function(data, matches) {
+        return {
+          en: 'Shared Sentence on ' + matches.target,
+        };
+      },
+    },
+    {
       id: 'TEA Aggravated Assault',
       regex: Regexes.gainsEffect({ effect: 'Aggravated Assault' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Erschwerte Strafe' }),
