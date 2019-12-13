@@ -974,7 +974,9 @@
       delaySeconds: 0.5,
       suppressSeconds: 1,
       condition: function(data) {
-        return data.phase == 'temporal' || data.phase == 'inception';
+        // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
+        // So consider the "temporal" no debuff to be "brute" no debuff here.
+        return data.phase == 'brute' || data.phase == 'inception';
       },
       infoText: function(data) {
         if (data.me in data.buffMap)
