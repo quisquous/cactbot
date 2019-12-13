@@ -95,7 +95,7 @@ class Radar {
         'dom': null,
         'puller': null,
       };
-      if (!(mob_name in this.targetMonsters)) {
+      if (!this.targetMonsters[mob_name.toLowerCase()]) {
         // add dom
         let arrow_id = 'arrow-' + m['id'];
         let tr = document.createElement('tr');
