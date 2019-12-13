@@ -793,12 +793,13 @@
     },
     {
       id: 'TEA Pass Nisi 3',
-      // 9 seconds after Flarethrower cast starts.
+      // 8 seconds after Flarethrower cast starts.
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
-      delaySeconds: 9,
+      delaySeconds: 8,
+      durationSeconds: 9,
       alertText: function(data) {
         return data.namedNisiPass(data);
       },
