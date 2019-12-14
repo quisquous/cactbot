@@ -40,6 +40,9 @@ Options.BigBuffTextHeight = 0;
 // Size of the big buff icon's colour border.
 Options.BigBuffBorderSize = 1;
 
+// The minimum time on a cooldown before it is shown.
+Options.BigBuffShowCooldownSeconds: 20;
+
 // The distance that offensive spells such as Verareo, Bio, etc are castable.
 Options.FarThresholdOffence = 24;
 // When MP falls below this, the MP bar is highlighted with the .low CSS class
