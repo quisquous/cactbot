@@ -1827,19 +1827,19 @@
         data.radiantText = {
           // North shouldn't be possible.
           // But, leaving this here in case my math is wrong.
-          'N': {
+          0: {
             en: 'Sacrament North',
             de: 'Sacrement Norden',
           },
-          'E': {
+          1: {
             en: 'Sacrament East',
             de: 'Sacrement Osten',
           },
-          'S': {
+          2: {
             en: 'Sacrament South',
             de: 'Sacrement Süden',
           },
-          'W': {
+          3: {
             en: 'Sacrament West',
             de: 'Sacrement Westen',
           },
