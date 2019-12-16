@@ -502,7 +502,7 @@ class PopupText {
           ttsText = ValueOrFunction(triggerOptions.TTSText);
         else if ('tts' in trigger)
           ttsText = ValueOrFunction(trigger.tts);
-        if ('tts' in response)
+        else if ('tts' in response)
           ttsText = ValueOrFunction(response.TTSText);
         else
           ttsText = defaultTTSText;
