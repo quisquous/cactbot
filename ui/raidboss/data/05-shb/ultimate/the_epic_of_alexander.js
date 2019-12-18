@@ -963,6 +963,7 @@
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
+      durationSeconds: 10,
       condition: function(data) {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
@@ -1019,6 +1020,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      durationSeconds: 10,
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1033,7 +1035,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      delaySeconds: 1,
+      delaySeconds: 3,
       condition: (data) => data.phase == 'inception',
       infoText: function(data, matches) {
         return {
@@ -1047,6 +1049,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Erschwerte Strafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Sévère' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：加重罰' }),
+      durationSeconds: 10,
       condition: function(data, matches) {
         return data.me == matches.target;
       },
