@@ -9,6 +9,7 @@
       regex: /:(\y{Name}):1D6D:Provoke:/,
       regexDe: /:(\y{Name}):1D6D:Herausforderung:/,
       regexFr: /:(\y{Name}):1D6D:Provocation:/,
+      regexJa: /:(\y{Name}):1D6D:挑発:/,
       regexCn: /:(\y{Name}):1D6D:挑衅:/,
       condition: function(data) {
         return data.role == 'tank';
@@ -18,6 +19,7 @@
           en: 'Provoke: ' + data.ShortName(matches[1]),
           de: 'Herausforderung: ' + data.ShortName(matches[1]),
           fr: 'Provocation: ' + data.ShortName(matches[1]),
+          ja: '挑発: ' + data.ShortName(matches[1]),
           cn: '挑衅: ' + data.ShortName(matches[1]),
         };
       },
@@ -55,6 +57,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Holmgang: ' + data.ShortName(matches[1]),
+          ja: 'ホルムギャング: ' + data.ShortName(matches[1]),
           cn: '死斗: ' + data.ShortName(matches[1]),
         };
       },
@@ -134,6 +137,7 @@
           en: 'Walking: ' + data.ShortName(matches[1]),
           de: 'Erweckter: ' + data.ShortName(matches[1]),
           fr: 'Marcheur Des Limbes: ' + data.ShortName(matches[1]),
+          ja: 'ウォーキングデッド: ' + data.ShortName(matches[1]),
           cn: '死而不僵: ' + data.ShortName(matches[1]),
         };
       },
@@ -143,6 +147,7 @@
       regex: /:(?:\y{Name} has initiated|You have commenced) a ready check\./,
       regexDe: /:(?:\y{Name} hat|Du hast) eine Bereitschaftsanfrage gestellt\./,
       regexFr: /:Un appel de préparation a été lancé par \y{Name}\./,
+      regexJa: /:(?:\y{Name}が)?レディチェックを開始しました。/,
       regexCn: /:\y{Name}?发起了准备确认/,
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
       soundVolume: 0.6,
