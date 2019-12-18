@@ -298,17 +298,6 @@
       },
     },
     {
-      id: 'TEA Temporal Phase',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '485A', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '485A', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '485A', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '485A', capture: false }),
-      run: function(data) {
-        data.phase = 'temporal';
-        data.resetState();
-      },
-    },
-    {
       id: 'TEA Inception Phase',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
