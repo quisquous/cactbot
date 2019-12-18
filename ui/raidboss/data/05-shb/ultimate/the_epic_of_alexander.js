@@ -1442,7 +1442,7 @@
     },
     {
       id: 'TEA Escape Prohibition',
-      regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Regulation' }),
+      regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Prohibition' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: contact forcé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
@@ -1453,8 +1453,8 @@
       },
     },
     {
-      id: 'TEA Escape Regulation',
-      regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Regulation' }),
+      id: 'TEA Escape Detection',
+      regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Detection' }),
       condition: (data, matches) => data.me == matches.target,
       alertText: {
         en: 'Be In Back Of Group',
