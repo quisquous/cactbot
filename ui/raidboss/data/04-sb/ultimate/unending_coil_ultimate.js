@@ -1053,7 +1053,7 @@
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
-      durationSeconds: 12,
+      durationSeconds: 20,
       infoText: function(data) {
         data.calledNaelDragons = true;
         return {
