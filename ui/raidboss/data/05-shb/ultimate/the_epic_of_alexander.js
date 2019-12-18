@@ -1432,20 +1432,16 @@
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
       condition: (data, matches) => data.me == matches.target,
       alarmText: {
-        en: 'Get Away',
-        de: 'Geh Weg',
-      },
-      infoText: {
-        en: 'Orange Bait',
-        de: 'Orange locken',
+        en: 'Orange Bait: Get Away',
+        de: 'Orange locken: Geh Weg',
       },
     },
     {
       id: 'TEA Escape Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Prohibition' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: contact forcé' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtverbot' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement: fuite prohibée' }),
+      regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡禁止命令' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Purple (Repel)',
@@ -1455,14 +1451,13 @@
     {
       id: 'TEA Escape Detection',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Detection' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtbeobachtung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement: fuite forcée' }),
+      regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡監察命令' }),
       condition: (data, matches) => data.me == matches.target,
       alertText: {
-        en: 'Be In Back Of Group',
-        de: 'Hinter der Gruppe sein',
-      },
-      infoText: {
-        en: 'Purple Bait',
-        de: 'Lila locken',
+        en: 'Purple Bait: Be In Back Of Group',
+        de: 'Lila locken: Hinter der Gruppe sein',
       },
     },
     {
