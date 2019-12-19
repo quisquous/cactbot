@@ -136,6 +136,7 @@
       id: 'TEA Flarethrower',
       regex: /Flarethrower/,
       beforeSeconds: 8,
+      suppressSeconds: 300,
       condition: function(data) {
         return data.me == data.bruteTank && data.phase == 'brute';
       },
