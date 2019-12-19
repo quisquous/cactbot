@@ -25,6 +25,17 @@
       },
     },
     {
+      id: 'General Frog Legs',
+      regex: /:(\y{Name}):1D71:Frog Legs:/,
+      condition: function(data) {
+        return data.role == 'dps';
+      },
+      infoText: function(data, matches) {
+        return {
+          en: 'Frog Legs: ' + data.ShortName(matches[1]),
+        };
+      },
+    },
       id: 'General Shirk',
       regex: /:(\y{Name}):1D71:Shirk:/,
       regexDe: /:(\y{Name}):1D71:Geteiltes Leid:/,
