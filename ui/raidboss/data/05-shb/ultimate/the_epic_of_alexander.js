@@ -1222,18 +1222,6 @@
       },
     },
     {
-      id: 'TEA Wormhole Link Up',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '483F', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
-      condition: (data) => data.phase == 'wormhole',
-      alertText: {
-        en: 'Dodge Chakrams',
-        de: 'Chakrams ausweichen',
-      },
-    },
-    {
       id: 'TEA Cactbot Wormhole Strat',
       regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: function(data, matches) {
