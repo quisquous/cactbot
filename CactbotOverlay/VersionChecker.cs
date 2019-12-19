@@ -1,5 +1,6 @@
 ﻿using RainbowMage.OverlayPlugin;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace Cactbot {
@@ -22,8 +23,44 @@ namespace Cactbot {
       return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
     }
 
-    public string GetCactbotLocation() {
-      return System.Reflection.Assembly.GetExecutingAssembly().Location;
+    private Advanced_Combat_Tracker.ActPluginData GetPluginData(string pluginName) {
+      foreach (var plugin in Advanced_Combat_Tracker.ActGlobals.oFormActMain.ActPlugins) {
+        if (!plugin.cbEnabled.Checked)
+          continue;
+        if (plugin.pluginFile.Name == pluginName)
+          return plugin;
+      }
+      return null;
+    }
+
+    private Advanced_Combat_Tracker.ActPluginData GetCactbotPluginData() {
+      return GetPluginData("CactbotOverlay.dll");
+    }
+
+    public string GetCactbotPluginLocation() {
+      var data = GetCactbotPluginData();
+      if (data == null)
+        return "";
+      return data.pluginFile.FullName;
+    }
+
+    public string GetCactbotDirectory() {
+      var pluginLocation = GetCactbotPluginLocation();
+      if (pluginLocation == "")
+        return "";
+      var dllDir = Path.GetFullPath(Path.GetDirectoryName(new Uri(pluginLocation).LocalPath));
+
+      // A file likely to only exist from the root of a cactbot directory.
+      var checkFile = "ui/raidboss/raidboss.html";
+
+      if (File.Exists(Path.Combine(dllDir, checkFile)))
+        return dllDir;
+
+      var buildDir = Path.GetFullPath(Path.Combine(dllDir, "../../../"));
+      if (File.Exists(Path.Combine(buildDir, checkFile)))
+        return buildDir;
+
+      return "";
     }
 
     public Version GetOverlayPluginVersion() {
@@ -31,17 +68,14 @@ namespace Cactbot {
     }
 
     public string GetOverlayPluginLocation() {
-      return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).Location;
+      var data = GetPluginData("OverlayPlugin.dll");
+      if (data == null)
+        return "";
+      return data.pluginFile.FullName;
     }
 
     private Advanced_Combat_Tracker.ActPluginData GetFFXIVPluginData() {
-      foreach (var plugin in Advanced_Combat_Tracker.ActGlobals.oFormActMain.ActPlugins) {
-        var file = plugin.pluginFile.Name;
-        if (file == "FFXIV_ACT_Plugin.dll") {
-          return plugin;
-        }
-      }
-      return null;
+      return GetPluginData("FFXIV_ACT_Plugin.dll");
     }
 
     public Version GetFFXIVPluginVersion() {

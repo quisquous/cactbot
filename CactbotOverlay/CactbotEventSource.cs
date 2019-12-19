@@ -179,7 +179,7 @@ namespace Cactbot {
       Version act = versions.GetACTVersion();
 
       // Print out version strings and locations to help users debug.
-      LogInfo("cactbot: {0} {1}", local.ToString(), versions.GetCactbotLocation());
+      LogInfo("cactbot: {0} {1} (dir: {2})", local.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
       LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
       LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
       LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
