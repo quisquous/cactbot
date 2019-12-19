@@ -26,7 +26,7 @@
     },
     {
       id: 'General Frog Legs',
-      regex: /:(\y{Name}):1D71:Frog Legs:/,
+      regex: /:(\y{Name}):4783:Frog Legs:/,
       condition: function(data) {
         return data.role == 'dps';
       },
