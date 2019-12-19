@@ -184,6 +184,14 @@
           de: 'Fläche #' + matches[1],
         };
       },
+      tts: function(data, matches) {
+        if (matches[1] == data.puddle) {
+          return {
+            en: 'Soak This Puddle',
+            de: 'Fläche nehmen',
+          };
+        }
+      },
     },
     {
       // Shared magic tankbuster windup to non-capital Ordained Punishment.
