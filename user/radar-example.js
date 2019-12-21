@@ -12,9 +12,6 @@
 // usually needs to be close enough to make ACT "see" the monsters at first.
 Options.DetectionRange = 0;
 
-// If true, only monsters will be detected (filter out players).
-Options.OnlyMobs = true;
-
 // If true, then text-to-speech alerts are read aloud.
 Options.TTS = false;
 
@@ -28,7 +25,6 @@ Options.Puller = false;
 Options.Position = false;
 
 // You can add your own monster list here.
-// Note: you need to turn Options.OnlyMobs off if you want to detect players.
 Options.CustomMonsters = {
   // 'Any': {
   //   'name': {  // monster names
@@ -46,10 +42,12 @@ Options.RankOptions = {
   // 'S': {
   //   DetectionRange: 100,
   //   TTS: true,
+  //   Type: 'mob',  // can be 'mob' or 'any'
   // },
-  // 'B': {
+  // 'Custom': {
   //   DetectionRange: 500,
   //   TTS: false,
   //   PopSoundAlert: true,
-  // }
+  //   Type: 'any',
+  // },
 };

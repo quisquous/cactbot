@@ -2,16 +2,30 @@
 
 let Options = {
   Language: 'en',
-  UpdateMonsterPos: false,
   DetectionRange: 0,
-  OnlyMobs: true,
   TTS: false,
   PopSoundAlert: true,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   PopVolume: 0.5,
   Puller: false,
   Position: false,
-  RankOptions: {},
+  RankOptions: {
+    'S': {
+      Type: 'mob',
+    },
+    'SS+': {
+      Type: 'mob',
+    },
+    'SS-': {
+      Type: 'mob',
+    },
+    'A': {
+      Type: 'mob',
+    },
+    'B': {
+      Type: 'mob',
+    },
+  },
   CustomMonsters: {},
 };
 
@@ -70,7 +84,7 @@ class Radar {
     // option overwrite
     if (monster.rank in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster.rank]);
-    if (options.OnlyMobs) {
+    if (options.Type === 'mob') {
       if (!matches.groups.id.startsWith('4'))
         return;
       if (typeof matches.groups.npcId === 'undefined')
