@@ -7,8 +7,8 @@ let Options = {
   PopSoundAlert: true,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   PopVolume: 0.5,
-  Puller: false,
-  Position: false,
+  Puller: true,
+  Position: true,
   RankOptions: {
     'S': {
       Type: 'mob',
@@ -24,6 +24,7 @@ let Options = {
     },
     'B': {
       Type: 'mob',
+      PopSoundAlert: false,
     },
   },
   CustomMonsters: {},

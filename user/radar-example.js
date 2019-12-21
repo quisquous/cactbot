@@ -19,10 +19,10 @@ Options.TTS = false;
 Options.PopSoundAlert = true;
 
 // If true, then the earliest puller of mobs will be recorded.
-Options.Puller = false;
+Options.Puller = true;
 
 // If true, then the position of monster will be shown. (Only x and y)
-Options.Position = false;
+Options.Position = true;
 
 // You can add your own monster list here.
 Options.CustomMonsters = {
