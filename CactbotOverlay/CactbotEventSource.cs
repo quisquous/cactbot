@@ -189,10 +189,12 @@ namespace Cactbot {
         LogInfo("Language: {0}", language_);
       }
 
-      // Temporarily target cn if plugin is old v2.0.4.0
-      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
+      if (language_ == "cn") {
         ffxiv_ = new FFXIVProcessCn(this);
         LogInfo("Version: cn");
+      } else if (language_ == "ko") {
+        ffxiv_ = new FFXIVProcessKo(this);
+        LogInfo("Version: ko");
       } else {
         ffxiv_ = new FFXIVProcessIntl(this);
         LogInfo("Version: intl");
