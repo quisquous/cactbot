@@ -126,8 +126,12 @@ class Radar {
   }
 
   UpdateMonsterPuller(monster, puller) {
-    if (monster.puller === null)
-      monster.puller = puller;
+    if (!this.options.Puller)
+      return;
+    if (monster.puller !== null)
+      return;
+    monster.puller = puller;
+    console.log('Pull: ' + puller + ' => ' + monster.name);
   }
 
   UpdateMonsterDom(monster) {
