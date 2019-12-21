@@ -142,7 +142,7 @@ def is_tl_line_begincast(poss_match):
     return re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', poss_match)
 
 def is_tl_line_buff(poss_match):
-    return re.search(r'1A:.......:(.+) gains the effect of (.+)( from)?', poss_match)
+    return re.search(r'1A:........:(.+) gains the effect of (.+)( from)?', poss_match)
 
 def is_tl_line_cast(poss_match):
     return re.search(r'^:([^:]+):([0-9A-F\(\)\|]+)', poss_match)
