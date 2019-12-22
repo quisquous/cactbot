@@ -81,27 +81,28 @@ def find_timeline_translatables(args):
                     # Here and for begincast we convert the hex ability ID to decimal,
                     # since that's what XIVAPI expects. We then convert back to string
                     # to avoid later complications.
-                if not (str(int(cast_match[2], base=16)) in translatables['action_ids']):
+                if not str(int(cast_match[2], base=16)) in translatables['action_ids']:
                     translatables['action_ids'].append(str(int(cast_match[2], base=16)))
-                if not (cast_match[1] in translatables['bnpcname']):
+                if not cast_match[1] in translatables['bnpcname']:
                     translatables['bnpcname'].append(cast_match[1])
                 continue
 
             begincast_match = e_tools.is_tl_line_begincast(sync_match.group(0).split('/')[1])
             if begincast_match and not re.search(r'\(.+\|.+\)', begincast_match.group(0)):
-                if not (begincast_match.group(1) in translatables['action_ids']):
+                if not begincast_match.group(1) in translatables['action_ids']:
                     translatables['action_ids'].append(str(int(begincast_match.group(1), base=16)))
-                if not (begincast_match.group(2) in translatables['bnpcname']):
+                if not begincast_match.group(2) in translatables['bnpcname']:
                     translatables['bnpcname'].append(begincast_match.group(2))
                 continue
-            
-            # FIXME: The is_tl_line_buff() helper regex is currently bugged, and will NOT correctly return the buff/debuff.
+
+            # FIXME: The is_tl_line_buff() helper regex is currently bugged,
+            # and will NOT correctly return the buff/debuff.
             # The second capture group will eat the source/caster name up with the buff.
             # This line split  nonsense is to work around that
             buff_match = e_tools.is_tl_line_buff(sync_match.group(0))
             if buff_match:
                 buff_match = buff_match.group(2).split(' from')[0]
-                if not (buff_match in ['status']):
+                if not buff_match in ['status']:
                     translatables['status'].append(buff_match)
                 continue
 
@@ -109,14 +110,13 @@ def find_timeline_translatables(args):
             # FIXME: Add other log line possibilities here if necessary.
             log_match = e_tools.is_tl_line_log(sync_match.group(1))
             if log_match and 'will be sealed off' in log_match.group(2):
-                if not (log_match.group(2).split(' will be')[0] in translatables['PlaceName']):
+                if not log_match.group(2).split(' will be')[0] in translatables['PlaceName']:
                     translatables['PlaceName'].append(log_match.group(2).split(' will be')[0])
 
             add_match = e_tools.is_tl_line_adds(sync_match.group(1))
             if add_match:
-                if not (add_match.group(1) in translatables['bnpcname']):
+                if not add_match.group(1) in translatables['bnpcname']:
                     translatables['bnpcname'].append(add_match.group(1))
-    print(translatables)
     return translatables
 
 def compile_and_send(translatables):
@@ -159,7 +159,7 @@ def compile_and_send(translatables):
             # TODO: Allow for users to include their XIVAPI developer key to increase this limit.
             if requestcount % 11 is 0:
                 time.sleep(1)
-            req_payload = {'string': item, 'indexes': element, 'columns':columns,  'string_algo':'match'}
+            req_payload = {'string': item, 'indexes': element, 'columns':columns, 'string_algo':'match'}
             search_req_results = requests.get('https://xivapi.com/search', params=req_payload).json()['Results']
             if len(search_req_results) is 0:
                 continue
@@ -241,7 +241,7 @@ def build_mapping(translations, ignore_list=[]):
                     # raise Exception('Conflict on %s: "%s" and "%s"' % (default_name, existing_name, name))
                     pass
             else:
-                if default_name and name :
+                if default_name and name:
                     replace[lang][default_name] = name
     return replace
 
@@ -365,7 +365,7 @@ def main(args):
     output = {'timelineReplace': timeline_replace}
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=False)
     output_str = format_output_str(output_str)
-    
+
     # Write that out to the user.
     if args.output_file:
         with open(args.output_file, 'w', encoding='utf-8') as fp:
