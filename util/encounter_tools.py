@@ -132,8 +132,11 @@ def choose_fight_times(args, encounters):
 
 
 # Timeline test/translate functions
-def clean_and_split_tl_line(line):
-    return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0])
+def clean_and_split_tl_line(line, split):
+    to_parse = line
+    if split:
+        to_parse = line.split('#')[0]
+    return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', to_parse)
 
 def is_tl_line_syncmatch(line):
     return re.search(r'sync /([^/]+)/', line.group('options'))

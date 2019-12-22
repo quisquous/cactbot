@@ -21,7 +21,7 @@ def load_timeline(timeline):
             entry = {}
             # Remove trailing comment, if any,
             # then split the line into sections
-            match = e_tools.clean_and_split_tl_line(line)
+            match = e_tools.clean_and_split_tl_line(line, True)
             if not match:
                 continue
 
@@ -424,12 +424,12 @@ def timeline_file(filename):
     # Allow for just specifying the base filename, e.g. "o12s.txt" or "o12s"
     if not os.path.exists(filename):
         for root, dirs, files in os.walk(data_path):
-          if filename in files:
-            filename = os.path.join(root, filename)
-            break
-          if '%s.txt' % filename in files:
-            filename = os.path.join(root, '%s.txt' % filename)
-            break
+            if filename in files:
+                filename = os.path.join(root, filename)
+                break
+            if '%s.txt' % filename in files:
+                filename = os.path.join(root, '%s.txt' % filename)
+                break
 
     path = Path(filename)
     if not path.exists():

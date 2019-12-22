@@ -5,15 +5,15 @@ from collections import defaultdict
 import json
 import re
 import sys
-import encounter_tools as e_tools
-import requests
 import time
-
+import requests
 import fflogs
+import encounter_tools as e_tools
+
 
 # 'en' here is 'www' which we consider the "base" and do automatically.
 # 'cn' exists on fflogs but does not have proper translations, sorry.
-languages = ['en', 'de', 'fr', 'ja', 'cn']
+fflogs_languages = ['en', 'de', 'fr', 'ja', 'cn']
 prefixes = {
     'en': 'www',
     'de': 'de',
@@ -43,7 +43,7 @@ def find_timeline_translatables(args):
     translatables = defaultdict(dict)
     # These keys do double duty as the indices for XIVAPI's search function.
     for element in ['action_ids', 'status', 'bnpcname', 'PlaceName']:
-        translatables[element] = []   
+        translatables[element] = []
 
     with args.timeline as file:
         for line in file:
@@ -52,7 +52,7 @@ def find_timeline_translatables(args):
                 continue
 
             # Boil each remaining line down to its sync regexes
-            cleaned_line = re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line)
+            cleaned_line = e_tools.clean_and_split_tl_line(line, False)
 
             # If for some reason the line doesn't clean up properly, just skip it.
             if cleaned_line is None:
@@ -278,6 +278,7 @@ def main(args):
         languages = xiv_langs
 
     else:
+        languages = fflogs_languages
         # Get overall reports and enemies.
         enemies = defaultdict(dict)
         options = {
