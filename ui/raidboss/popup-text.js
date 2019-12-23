@@ -194,20 +194,21 @@ class PopupText {
   }
 
   OnInCombatChange(inCombat) {
+    if (this.inCombat == inCombat)
+      return;
+
     if (inCombat || this.resetWhenOutOfCombat)
       this.SetInCombat(inCombat);
   }
 
   SetInCombat(inCombat) {
+    if (this.inCombat == inCombat)
+      return;
+
     // Stop timers when stopping combat to stop any active timers that
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
-    if (!inCombat)
-      this.timelineLoader.StopCombat();
-
-    if (this.inCombat == inCombat)
-      return;
     this.inCombat = inCombat;
     if (!this.inCombat) {
       this.StopTimers();
