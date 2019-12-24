@@ -33,14 +33,19 @@ namespace Cactbot {
     public CactbotEventSourceConfig() {
     }
 
-    public static CactbotEventSourceConfig LoadConfig(IPluginConfig pluginConfig) {
+    public static CactbotEventSourceConfig LoadConfig(IPluginConfig pluginConfig, RainbowMage.OverlayPlugin.ILogger logger) {
       var result = new CactbotEventSourceConfig();
 
       if (pluginConfig.EventSourceConfigs.ContainsKey("CactbotESConfig")) {
         var obj = pluginConfig.EventSourceConfigs["CactbotESConfig"];
 
+        // TODO: add try/catch here
         if (obj.TryGetValue("OverlayData", out JToken value)) {
-          result.OverlayData = value.ToObject<Dictionary<string, JToken>>();
+          try {
+            result.OverlayData = value.ToObject<Dictionary<string, JToken>>();
+          } catch (Exception e) {
+            logger.Log(LogLevel.Error, "Failed to load OverlayData setting: {0}", e.ToString());
+          }
         }
 
         if (obj.TryGetValue("RemoteVersionSeen", out value)) {
@@ -52,7 +57,11 @@ namespace Cactbot {
         }
 
         if (obj.TryGetValue("WatchFileChanges", out value)) {
-          result.WatchFileChanges = value.ToObject<bool>();
+          try {
+            result.WatchFileChanges = value.ToObject<bool>();
+          } catch (Exception e) {
+            logger.Log(LogLevel.Error, "Failed to load WatchFileChanges setting: {0}", e.ToString());
+          }
         }
       }
 

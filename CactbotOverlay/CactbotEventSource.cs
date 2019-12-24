@@ -9,6 +9,7 @@ using System.Threading;
 
 namespace Cactbot {
 
+  // TODO: remove this in favor of the rainbowmage ilogger
   public interface ILogger {
     void LogDebug(string format, params object[] args);
     void LogError(string format, params object[] args);
@@ -128,7 +129,7 @@ namespace Cactbot {
 
     public override void LoadConfig(IPluginConfig config)
     {
-      Config = CactbotEventSourceConfig.LoadConfig(config);
+      Config = CactbotEventSourceConfig.LoadConfig(config, logger);
       if (Config.OverlayData == null)
         Config.OverlayData = new Dictionary<string, JToken>();
 
