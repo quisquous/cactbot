@@ -59,7 +59,7 @@
     {
       id: 'E2S Entropy',
       regex: / 14:3E6F:Voidwalker starts using Entropy/,
-      regexCn: / 14:3E6F:虚无行者 starts using 混沌之炎/,
+      regexCn: / 14:3E6F:虚无行者 starts using 熵/,
       regexDe: / 14:3E6F:Nichtswandler starts using Entropie/,
       regexFr: / 14:3E6F:Marcheuse Du Néant starts using Entropie/,
       regexJa: / 14:3E6F:ヴォイドウォーカー starts using エントロピー/,
@@ -780,7 +780,7 @@
         'Punishing Ray': '惩戒之光',
         'Hell Wind': '地狱之风',
         'Flare': '核爆',
-        'Entropy': '混沌之炎',
+        'Entropy': '熵',
         'Empty Rage': '空无的恶念',
         'Empty Hate': '空无的恶意',
         'Slicer/Guillotine': '虚无切/虚无断',
