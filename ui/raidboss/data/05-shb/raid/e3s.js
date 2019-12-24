@@ -759,7 +759,6 @@
       },
       'replaceText': {
         'Undersea Quake': '海底地震',
-        'Tsunami': '大海啸',
         'Tidal Wave': '巨浪',
         'Tidal Roar': '怒潮咆哮',
         'Tidal Rage': '怒潮肆虐',
@@ -775,6 +774,7 @@
         'Spilling Wave': '崩碎波',
         'Smothering Tsunami': '溺没大海啸',
         'Scouring Tsunami': '暴风大海啸',
+        'Tsunami': '大海啸',
         'Roiling Pulse': '剧烈波动',
         'Rip Current': '裂流',
         'Refreshing Shower': '水之觉醒',

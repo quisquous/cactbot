@@ -769,6 +769,7 @@
         'Megalith': '巨石',
         'Massive Landslide': '百万地裂',
         'Magnitude 5.0': '震级5.0',
+        'Right/Left Landslide': '右/左地裂',
         'Landslide': '地裂',
         'Geocrush': '大地粉碎',
         'Force of the Land': '大地之轰',

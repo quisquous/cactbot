@@ -679,7 +679,6 @@
         'Guardian of Paradise': '伊甸守护者',
       },
       'replaceText': {
-        'attack': '攻击',
         'Vice [oO]f Vanity': '虚荣之恶',
         'Vice of Thievery': '盗窃之恶',
         'Vice of Sloth': '怠惰之恶',
@@ -715,7 +714,10 @@
         'Eden\'s Fire III': '伊甸爆炎',
         'Eden\'s Blizzard III': '伊甸冰封',
         'Dimensional Shift': '空间转换',
+        'Delta Attack (Cross)': '三角攻击(角落)',
+        'Delta Attack (Donut)': '三角攻击(月环)',
         'Delta Attack': '三角攻击',
+        'attack': '攻击',
         '--corner--': '--角落--',
         '--center--': '--中央--',
         '--untargetable--': '--无法选中--',
