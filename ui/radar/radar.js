@@ -1,14 +1,7 @@
 'use strict';
 
 let Options = {
-  Language: 'en',
-  DetectionRange: 0,
-  TTS: false,
-  PopSoundAlert: true,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
-  PopVolume: 0.5,
-  Puller: true,
-  Position: true,
   RankOptions: {
     'S': {
       Type: 'mob',
