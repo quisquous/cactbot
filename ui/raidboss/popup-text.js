@@ -539,7 +539,16 @@ class PopupText {
         ttsText = ttsText.replace(/[-=]>\s*$/, '');
         ttsText = ttsText.replace(/^\s*<[-=]/, '');
         // * arrows in the middle are a sequence, e.g. "in => out => spread"
-        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
+        let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+        let arrowReplacement = {
+          en: ' then ',
+          cn: ' ', // FIXME
+          de: ' dann ',
+          fr: ' ', // FIXME
+          ja: ' ', // FIXME
+          ko: ' ', // FIXME
+        };
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
         let cmd = { 'call': 'cactbotSay', 'text': ttsText };
         window.callOverlayHandler(cmd);
       } else if (soundUrl && playSounds) {
