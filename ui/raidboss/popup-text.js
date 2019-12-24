@@ -300,6 +300,7 @@ class PopupText {
     }
 
     let triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
+    let triggerAutoConfig = trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {};
 
     let condition = triggerOptions.Condition || trigger.condition;
     if (condition) {
@@ -346,6 +347,19 @@ class PopupText {
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
 
+    // FIXME: this is quite gross that PerTriggerOptions does not use the same fields as
+    // options.  Ideally we should smush everything down into a single trigger object.
+    // Auto config here has a separate property mostly as a convenience to users who
+    // most likely will redefine it, clobbering settings from the config tool.
+    // Ideally, these would be the same.
+    if (triggerAutoConfig) {
+      if ('SpokenAlertsEnabled' in triggerAutoConfig)
+        playSpeech = triggerAutoConfig.SpokenAlertsEnabled;
+      if ('SoundAlertsEnabled' in triggerAutoConfig)
+        playSounds = triggerAutoConfig.SoundAlertsEnabled;
+      if ('TextAlertsEnabled' in triggerAutoConfig)
+        showText = triggerAutoConfig.TextAlertsEnabled;
+    }
 
     if (triggerOptions) {
       if ('GroupSpeechAlert' in triggerOptions)

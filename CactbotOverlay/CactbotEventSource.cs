@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Cactbot {
 
@@ -139,6 +140,23 @@ namespace Cactbot {
           return null;
         }
       });
+      RegisterEventHandler("cactbotChooseDirectory", (msg) => {
+        var ret = new JObject();
+        string data = (string)ActGlobals.oFormActMain.Invoke((ChooseDirectoryDelegate)ChooseDirectory);
+        if (data != null)
+          ret["data"] = data;
+        return ret;
+      });
+    }
+
+    private delegate string ChooseDirectoryDelegate();
+
+    private string ChooseDirectory() {
+      FolderBrowserDialog dialog = new FolderBrowserDialog();
+      DialogResult result = dialog.ShowDialog(ActGlobals.oFormActMain);
+      if (result != DialogResult.OK)
+        return null;
+      return dialog.SelectedPath;
     }
 
     public override System.Windows.Forms.Control CreateConfigControl()
@@ -346,7 +364,7 @@ namespace Cactbot {
       // * Some overlays behave slightly different from the above explanation. Raidboss for example loads data files
       //   in addition to the listed steps. I think it's even loading them twice since raidboss.js loads the data files
       //   for gTimelineController and popup-text.js requests them again for its own purposes.
-     
+
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
         notify_state_.game_exists = game_exists;
@@ -672,7 +690,7 @@ namespace Cactbot {
 
         if (!Directory.Exists(watchDir))
           continue;
-        
+
         var watcher = new FileSystemWatcher()
         {
           Path = watchDir,
