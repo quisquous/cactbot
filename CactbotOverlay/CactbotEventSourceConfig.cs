@@ -40,7 +40,7 @@ namespace Cactbot {
         var obj = pluginConfig.EventSourceConfigs["CactbotESConfig"];
 
         if (obj.TryGetValue("OverlayData", out JToken value)) {
-          result.OverlayData = value.ToObject<Dictionary<string, string>>();
+          result.OverlayData = value.ToObject<Dictionary<string, JToken>>();
         }
 
         if (obj.TryGetValue("RemoteVersionSeen", out value)) {
@@ -63,7 +63,7 @@ namespace Cactbot {
       pluginConfig.EventSourceConfigs["CactbotESConfig"] = JObject.FromObject(this);
     }
 
-    public Dictionary<string, string> OverlayData = null;
+    public Dictionary<string, JToken> OverlayData = null;
     
     public string RemoteVersionSeen = "0.0";
     

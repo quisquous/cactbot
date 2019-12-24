@@ -107,7 +107,7 @@ namespace Cactbot {
         return null;
       });
       RegisterEventHandler("cactbotSaveData", (msg) => {
-        Config.OverlayData[msg["overlay"].ToString()] = msg["data"].ToString();
+        Config.OverlayData[msg["overlay"].ToString()] = msg["data"];
         return null;
       });
       RegisterEventHandler("cactbotLoadData", (msg) => {
@@ -129,7 +129,8 @@ namespace Cactbot {
     public override void LoadConfig(IPluginConfig config)
     {
       Config = CactbotEventSourceConfig.LoadConfig(config);
-      if (Config.OverlayData == null) Config.OverlayData = new Dictionary<string, string>();
+      if (Config.OverlayData == null)
+        Config.OverlayData = new Dictionary<string, JToken>();
 
       Config.WatchFileChangesChanged += (o, e) => {
         if (Config.WatchFileChanges) {
