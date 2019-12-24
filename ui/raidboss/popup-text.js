@@ -544,7 +544,7 @@ class PopupText {
           en: ' then ',
           cn: ' ', // FIXME
           de: ' dann ',
-          fr: ' ', // FIXME
+          fr: ' puis ',
           ja: ' ', // FIXME
           ko: ' ', // FIXME
         };
