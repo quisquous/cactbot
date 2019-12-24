@@ -116,6 +116,9 @@
         "error",
         "never"
       ]
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
     }
   },
   "dependencies": {
