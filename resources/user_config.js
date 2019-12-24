@@ -5,6 +5,9 @@ let UserConfig = {
     window.addOverlayListener('onUserFileChanged', () => {
       window.location.reload();
     });
+    window.addOverlayListener('onForceReload', () => {
+      window.location.reload();
+    });
 
     callOverlayHandler({
       call: 'cactbotLoadUser',

@@ -46,6 +46,9 @@ namespace Cactbot {
     private string ffxiv_plugin_region_ = null;
     private List<FileSystemWatcher> watchers;
 
+    public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
+    public event ForceReloadHandler OnForceReload;
+
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
     public event GameExistsHandler OnGameExists;
 
@@ -89,11 +92,26 @@ namespace Cactbot {
 
       RegisterEventTypes(new List<string>()
       {
-        "onGameExistsEvent", "onGameActiveChangedEvent", "onLogEvent", "onImportLogEvent", "onInCombatChangedEvent",
-        "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent",
-        "onTargetChangedEvent", "onUserFileChanged",
+        "onForceReload",
+        "onGameExistsEvent",
+        "onGameActiveChangedEvent",
+        "onLogEvent",
+        "onImportLogEvent",
+        "onInCombatChangedEvent",
+        "onZoneChangedEvent",
+        "onPlayerDied",
+        "onPartyWipe",
+        "onPlayerChangedEvent",
+        "onFocusChangedEvent",
+        "onTargetChangedEvent",
+        "onUserFileChanged",
       });
 
+      // Broadcast onConfigChanged when a cactbotNotifyConfigChanged message occurs.
+      RegisterEventHandler("cactbotReloadOverlays", (msg) => {
+        OnForceReload(new JSEvents.ForceReloadEvent());
+        return null;
+      });
       RegisterEventHandler("cactbotLoadUser", FetchUserFiles);
       RegisterEventHandler("cactbotReadDataFiles", FetchDataFiles);
       RegisterEventHandler("cactbotRequestPlayerUpdate", (msg) => {
@@ -212,6 +230,7 @@ namespace Cactbot {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
 
       // Outgoing JS events.
+      OnForceReload += (e) => DispatchToJS(e);
       OnGameExists += (e) => DispatchToJS(e);
       OnGameActiveChanged += (e) => DispatchToJS(e);
       OnZoneChanged += (e) => DispatchToJS(e);
