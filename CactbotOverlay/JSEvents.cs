@@ -119,32 +119,6 @@ namespace Cactbot {
       public object jobDetail;
     }
 
-    public class TargetCastingEvent : JSEvent {
-      public TargetCastingEvent(int id, double progress, double length) {
-        castId = id;
-        timeProgress = progress;
-        castLength = length;
-      }
-      public string EventName() { return "onTargetCastingEvent"; }
-
-      public int castId = 0;
-      public double timeProgress = 0;
-      public double castLength = 0;
-    }
-
-    public class FocusCastingEvent : JSEvent {
-      public FocusCastingEvent(int id, double progress, double length) {
-        castId = id;
-        timeProgress = progress;
-        castLength = length;
-      }
-      public string EventName() { return "onFocusCastingEvent"; }
-
-      public int castId = 0;
-      public double timeProgress = 0;
-      public double castLength = 0;
-    }
-
     public abstract class EntityChangedEvent {
       public EntityChangedEvent(FFXIVProcess.EntityData e) {
         if (e != null) {
@@ -185,80 +159,6 @@ namespace Cactbot {
     public class FocusChangedEvent : EntityChangedEvent, JSEvent {
       public FocusChangedEvent(FFXIVProcess.EntityData e) : base(e) { }
       public string EventName() { return "onFocusChangedEvent"; }
-    }
-
-    public struct DPSDetail {
-      public Dictionary<string, string> Encounter;
-      [JsonConverter(typeof(CombatantConverter))]
-      public List<Dictionary<string, string>> Combatant;
-
-      public class CombatantConverter : JsonConverter {
-        public override bool CanConvert(Type t) {
-          return (t == typeof(List<Dictionary<string, string>>));
-        }
-        public override bool CanRead { get { return false; } }
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
-          // Not used, we only serialize.
-          throw new NotImplementedException();
-        }
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
-          var combatant_list = (List<Dictionary<string, string>>)value;
-
-          // Sort by encdps descending.  OverlayPlugin has options for different ways to sort, but
-          // html can do this itself if it wants something different.  This is what most folks expect.
-          const string kSortKey = "encdps";
-          combatant_list.Sort((x, y) => {
-            if (x.ContainsKey(kSortKey) && y.ContainsKey(kSortKey)) {
-              double x_value, y_value;
-              if (double.TryParse(x[kSortKey], out x_value) && double.TryParse(y[kSortKey], out y_value)) {
-                return y_value.CompareTo(x_value);
-              }
-            }
-            return 0;
-          });
-
-          // DPS overlays expect a "sorted dictionary" of combatants, so we build the dictionary ourselves in
-          // order.
-          var o = new JObject();
-          foreach (var c in combatant_list)
-            o.Add(c["name"], JObject.FromObject(c, serializer));
-          o.WriteTo(writer);
-        }
-      }
-    }
-
-    [JsonConverter(typeof(DPSOverlayUpdateEventConverter))]
-    public class DPSOverlayUpdateEvent : JSEvent {
-      public DPSOverlayUpdateEvent(Dictionary<string, string> encounter, List<Dictionary<string, string>> combatant) {
-        this.dps.Encounter = encounter;
-        this.dps.Combatant = combatant;
-      }
-      public string EventName() { return "onOverlayDataUpdate"; }
-
-      public DPSDetail dps;
-
-      // The DPSOverlayUpdateEvent expects the members of DPSDetail to be top level
-      // members of the event instead.
-      public class DPSOverlayUpdateEventConverter : JsonConverter {
-        public override bool CanConvert(Type t) {
-          return (t == typeof(DPSOverlayUpdateEvent));
-        }
-        public override bool CanRead { get { return false; } }
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
-          // Not used, we only serialize.
-          throw new NotImplementedException();
-        }
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
-          var detail = (DPSOverlayUpdateEvent)value;
-
-          var dps = JObject.FromObject(detail.dps, serializer);
-
-          var o = new JObject();
-          o.Add("Encounter", dps["Encounter"]);
-          o.Add("Combatant", dps["Combatant"]);
-          o.WriteTo(writer);
-        }
-      }
     }
 
     public class SendSaveData : JSEvent {
