@@ -329,7 +329,7 @@
     {
       id: 'E4S Earthen Fury',
       regex: / 14:4124:Titan Maximum starts using Earthen Fury/,
-      regexCn: / 14:4124:泰坦 Maximum starts using 大地之怒/,
+      regexCn: / 14:4124:极大泰坦 starts using 大地之怒/,
       regexDe: / 14:4124:Gigantitan starts using Gaias Zorn/,
       regexFr: / 14:4124:Maxi Titan starts using Fureur Tellurique/,
       regexJa: / 14:4124:マキシタイタン starts using 大地の怒り/,
@@ -347,7 +347,7 @@
     {
       id: 'E4S Earthen Fist - Left/Right',
       regex: / 14:412F:Titan Maximum starts using Earthen Fist/,
-      regexCn: / 14:412F:泰坦 Maximum starts using 大地之拳/,
+      regexCn: / 14:412F:极大泰坦 starts using 大地之拳/,
       regexDe: / 14:412F:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:412F:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:412F:マキシタイタン starts using 大地の拳/,
@@ -362,7 +362,7 @@
     {
       id: 'E4S Earthen Fist - Right/Left',
       regex: / 14:4130:Titan Maximum starts using Earthen Fist/,
-      regexCn: / 14:4130:泰坦 Maximum starts using 大地之拳/,
+      regexCn: / 14:4130:极大泰坦 starts using 大地之拳/,
       regexDe: / 14:4130:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:4130:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:4130:マキシタイタン starts using 大地の拳/,
@@ -377,7 +377,7 @@
     {
       id: 'E4S Earthen Fist - 2x Left',
       regex: / 14:4131:Titan Maximum starts using Earthen Fist/,
-      regexCn: / 14:4131:泰坦 Maximum starts using 大地之拳/,
+      regexCn: / 14:4131:极大泰坦 starts using 大地之拳/,
       regexDe: / 14:4131:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:4131:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:4131:マキシタイタン starts using 大地の拳/,
@@ -392,7 +392,7 @@
     {
       id: 'E4S Earthen Fist - 2x Right',
       regex: / 14:4132:Titan Maximum starts using Earthen Fist/,
-      regexCn: / 14:4132:泰坦 Maximum starts using 大地之拳/,
+      regexCn: / 14:4132:极大泰坦 starts using 大地之拳/,
       regexDe: / 14:4132:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:4132:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:4132:マキシタイタン starts using 大地の拳/,
@@ -407,7 +407,7 @@
     {
       id: 'E4S Dual Earthen Fists',
       regex: / 14:4135:Titan Maximum starts using Dual Earthen Fists/,
-      regexCn: / 14:4135:泰坦 Maximum starts using 大地之双拳/,
+      regexCn: / 14:4135:极大泰坦 starts using 大地之双拳/,
       regexDe: / 14:4135:Gigantitan starts using Gaias Hammerfaust/,
       regexFr: / 14:4135:Maxi Titan starts using Frappe De La Terre/,
       regexJa: / 14:4135:マキシタイタン starts using 大地の両拳/,
@@ -487,7 +487,7 @@
       // keep track of which it has seen.
       id: 'E4S Plate Fracture - Front Right',
       regex: / 14:4125:Titan Maximum starts using Plate Fracture/,
-      regexCn: / 14:4125:泰坦 Maximum starts using 岩盘粉碎/,
+      regexCn: / 14:4125:极大泰坦 starts using 岩盘粉碎/,
       regexDe: / 14:4125:Gigantitan starts using Felsberster/,
       regexFr: / 14:4125:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4125:マキシタイタン starts using ロックフラクチャー/,
@@ -502,7 +502,7 @@
     {
       id: 'E4S Plate Fracture - Back Right',
       regex: / 14:4126:Titan Maximum starts using Plate Fracture/,
-      regexCn: / 14:4126:泰坦 Maximum starts using 岩盘粉碎/,
+      regexCn: / 14:4126:极大泰坦 starts using 岩盘粉碎/,
       regexDe: / 14:4126:Gigantitan starts using Felsberster/,
       regexFr: / 14:4126:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4126:マキシタイタン starts using ロックフラクチャー/,
@@ -517,7 +517,7 @@
     {
       id: 'E4S Plate Fracture - Back Left',
       regex: / 14:4127:Titan Maximum starts using Plate Fracture/,
-      regexCn: / 14:4127:泰坦 Maximum starts using 岩盘粉碎/,
+      regexCn: / 14:4127:极大泰坦 starts using 岩盘粉碎/,
       regexDe: / 14:4127:Gigantitan starts using Felsberster/,
       regexFr: / 14:4127:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4127:マキシタイタン starts using ロックフラクチャー/,
@@ -532,7 +532,7 @@
     {
       id: 'E4S Plate Fracture - Front Left',
       regex: / 14:4128:Titan Maximum starts using Plate Fracture/,
-      regexCn: / 14:4128:泰坦 Maximum starts using 岩盘粉碎/,
+      regexCn: / 14:4128:极大泰坦 starts using 岩盘粉碎/,
       regexDe: / 14:4128:Gigantitan starts using Felsberster/,
       regexFr: / 14:4128:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4128:マキシタイタン starts using ロックフラクチャー/,
@@ -547,7 +547,7 @@
     {
       id: 'E4S Tumult',
       regex: / 14:412A:Titan Maximum starts using Tumult/,
-      regexCn: / 14:412A:泰坦 Maximum starts using 怒震/,
+      regexCn: / 14:412A:极大泰坦 starts using 怒震/,
       regexDe: / 14:412A:Gigantitan starts using Katastrophales Beben/,
       regexFr: / 14:412A:Maxi Titan starts using Tumulte/,
       regexJa: / 14:412A:マキシタイタン starts using 激震/,
@@ -745,6 +745,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
+        'Titan Maximum': '极大泰坦',
         'Titan': '泰坦',
         'Granite Gaol': '花岗石牢',
         'Engage!': '战斗开始！',
