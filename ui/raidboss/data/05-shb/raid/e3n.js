@@ -421,7 +421,7 @@
         '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
-        'Dropsy': 'dropsy',
+        'Dropsy': '물독',
         'Splashing Waters': '강풍의 징조',
         'Swirling Waters': '소용돌이의 징조',
         'Smothering Waters': '익몰의 징조',
