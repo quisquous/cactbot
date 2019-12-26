@@ -33,6 +33,7 @@ class LogCollector {
       de: / 00:0039:Start!/,
       fr: / 00:0039:À l'attaque !/,
       cn: / 00:0039:战斗开始！/,
+      ko: / 00:0039:전투 시작!/,
     };
   }
 
