@@ -63,9 +63,33 @@ The primary rule for pull request style is to be consistent with the surrounding
 If you have strong feelings about style and want to add more linting or more rules,
 this is highly encouraged but you should likely have a conversation about these rules first.
 
-Lots of people get hassled by the continuous integration bot,
-so you may want to run `npm run test` and `npm run lint` or `npm run lintfix` locally
-before a pull request.
+### Build Problems
+
+cactbot has a number of strict linting rules
+in order to make code be consistent and to make code review be an easier process.
+
+Before sending your pull request,
+you want to run `npm run test` and `npm run lint` locally to catch any errors.
+Running `npm run lintfix` will fix many of them automatically
+and will help you not get hassled by the continuous integration travis bot.
+
+When a build fails,
+you will get a red X by a commit in your pull request.
+It's a little bit confusing to find these errors,
+as you have to navigate through several pages to find them.
+Click the details link after the
+"Travis CI - Pull Request Failing after 45s — Build Failed"
+text to get to the details page.
+From there, scroll to the "Jobs and Stages" section.
+Click on any jobs with an X by them,
+and this will bring you to a page with the actual errors on them.
+If you search for the word "error" in that page,
+it will bring you to the problems themselves.
+
+cactbot files should all be in UTF-8.
+If you get a BOM error,
+this is likely because your editor has saved a file with a different unicode encoding.
+For an example of how to remove this, see: https://notepadunix2dos.info/removebom.html
 
 ## Desired Features
 
