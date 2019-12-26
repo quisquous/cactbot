@@ -77,10 +77,7 @@ namespace Cactbot {
     }
 
     private Advanced_Combat_Tracker.ActPluginData GetFFXIVPluginData() {
-      if (language_ == "ko")
-        return GetPluginData("FFXIV_ACT_Plugin_Korean.dll");
-      else
-        return GetPluginData("FFXIV_ACT_Plugin.dll");
+        return GetPluginData("FFXIV_ACT_Plugin_Korean.dll") ?? GetPluginData("FFXIV_ACT_Plugin.dll");
     }
 
     public Version GetFFXIVPluginVersion() {
