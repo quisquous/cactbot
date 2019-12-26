@@ -38,6 +38,7 @@ let instanceChangedRegex = {
   'de': / 00:0039:Du bist nun in dem instanziierten Areal/,
   'fr': / 00:0039:Vous avez été transporté/,
   'ja': / 00:0039:インスタンスエリア/,
+  'ko': / 00:0039:인스턴스 지역/,
 };
 
 class Point2D {
