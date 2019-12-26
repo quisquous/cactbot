@@ -56,12 +56,12 @@ class CactbotLanguageKo extends CactbotLanguage {
       Burns: '화상',
       Sludge: '진흙탕',
       Doom: '죽음의 선고',
-      StoneCurse: 'FIXME',
-      Imp: 'FIXME',
-      Toad: 'FIXME',
-      FoolsTumble: 'FIXME', // 0x183
-      Dropsy: 'FIXME',
-      Throttle: 'FIXME',
+      StoneCurse: '석화의 저주',
+      Imp: '물요정',
+      Toad: '두꺼비',
+      FoolsTumble: '추락 환각', // 0x183
+      Dropsy: '물독',
+      Throttle: '질식',
 
       // UWU
       Windburn: '열상',
