@@ -16,9 +16,8 @@ namespace Cactbot {
     public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";
     public const string kIssueUrl = "https://github.com/quisquous/cactbot/issues";
 
-    public VersionChecker(ILogger logger, string lang) {
+    public VersionChecker(ILogger logger) {
       logger_ = logger;
-      language_ = lang;
     }
 
     public Version GetLocalVersion() {
