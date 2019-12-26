@@ -781,6 +781,7 @@
         'Hell Wind': '地狱之风',
         'Flare': '核爆',
         'Entropy': '熵',
+        'Empty Hate/Rage': '空无的恶意/恶念',
         'Empty Rage': '空无的恶念',
         'Empty Hate': '空无的恶意',
         'Slicer/Guillotine': '虚无切/虚无断',

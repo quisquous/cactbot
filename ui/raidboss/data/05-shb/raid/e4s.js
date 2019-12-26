@@ -779,6 +779,7 @@
         'Evil Earth': '邪土',
         'Earthen Wheels': '大地之车轮',
         'Earthen Gauntlets': '大地之手甲',
+        'Earthen Fury Enrage': '大地之怒 狂暴',
         'Earthen Fury': '大地之怒',
         'Dual Earthen Fists': '大地之双拳',
         'Earthen Fist': '大地之拳',
