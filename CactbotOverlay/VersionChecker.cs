@@ -10,7 +10,6 @@ namespace Cactbot {
   // https://github.com/anoyetta/ACT.SpecialSpellTimer/blob/master/ACT.SpecialSpellTimer.Core/UpdateChecker.cs
   class VersionChecker {
     private ILogger logger_ = null;
-    private string language_ = "";
 
     public const string kReleaseApiEndpointUrl = @"https://api.github.com/repos/quisquous/cactbot/releases/latest";
     public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";

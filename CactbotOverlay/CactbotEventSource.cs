@@ -194,13 +194,14 @@ namespace Cactbot {
         LogInfo("Language: {0}", language_);
       }
 
-      // Temporarily target cn if plugin is old v2.0.4.0
-      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
-        ffxiv_ = new FFXIVProcessCn(this);
-        LogInfo("Version: cn");
-      } else if (ffxiv_plugin_region_ == "ko") {
+      if (ffxiv_plugin_region_ == "ko") {
         ffxiv_ = new FFXIVProcessKo(this);
         LogInfo("Version: ko");
+      }
+      // Temporarily target cn if plugin is old v2.0.4.0
+      else if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
+        ffxiv_ = new FFXIVProcessCn(this);
+        LogInfo("Version: cn");
       } else {
         ffxiv_ = new FFXIVProcessIntl(this);
         LogInfo("Version: intl");
