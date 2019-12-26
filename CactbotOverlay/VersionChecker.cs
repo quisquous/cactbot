@@ -10,13 +10,15 @@ namespace Cactbot {
   // https://github.com/anoyetta/ACT.SpecialSpellTimer/blob/master/ACT.SpecialSpellTimer.Core/UpdateChecker.cs
   class VersionChecker {
     private ILogger logger_ = null;
+    private string language_ = "";
 
     public const string kReleaseApiEndpointUrl = @"https://api.github.com/repos/quisquous/cactbot/releases/latest";
     public const string kReleaseUrl = "https://github.com/quisquous/cactbot/releases/latest";
     public const string kIssueUrl = "https://github.com/quisquous/cactbot/issues";
 
-    public VersionChecker(ILogger logger) {
+    public VersionChecker(ILogger logger, string lang) {
       logger_ = logger;
+      language_ = lang;
     }
 
     public Version GetLocalVersion() {
@@ -75,7 +77,10 @@ namespace Cactbot {
     }
 
     private Advanced_Combat_Tracker.ActPluginData GetFFXIVPluginData() {
-      return GetPluginData("FFXIV_ACT_Plugin.dll");
+      if (language_ == "ko")
+        return GetPluginData("FFXIV_ACT_Plugin_Korean.dll");
+      else
+        return GetPluginData("FFXIV_ACT_Plugin.dll");
     }
 
     public Version GetFFXIVPluginVersion() {

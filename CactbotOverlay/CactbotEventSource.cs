@@ -172,7 +172,7 @@ namespace Cactbot {
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
 
-      var versions = new VersionChecker(this);
+      var versions = new VersionChecker(this, language_);
       Version local = versions.GetLocalVersion();
       Version remote = versions.GetRemoteVersion();
 
