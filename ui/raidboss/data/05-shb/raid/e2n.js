@@ -12,6 +12,7 @@
         en: 'Get Puddles',
         de: 'Flächen nehmen',
         fr: 'Prenez les rayons',
+        cn: '踩圈',
       },
     },
   ],
