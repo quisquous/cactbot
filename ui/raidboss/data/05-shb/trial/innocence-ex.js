@@ -2,7 +2,7 @@
 
 // Innocence Extreme
 [{
-  zoneRegex: /^(The Crown Of The Immaculate \(Extreme\)|无瑕灵君歼殛战)$/,
+  zoneRegex: /^(The Crown Of The Immaculate \(Extreme\)|无瑕灵君歼殛战|극 이노센스 토벌전)$/,
   timelineFile: 'innocence-ex.txt',
   triggers: [
     {
@@ -12,6 +12,7 @@
       regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
       regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
       regexJa: / 14:3EEF:イノセンス starts using スターバース/,
+      regexKo: / 14:3EEF:이노센스 starts using 별 생성/,
       run: function(data) {
         data.starbirthCount = data.starbirthCount || 0;
         data.starbirthCount++;
@@ -25,6 +26,7 @@
       regexDe: / 14:3EDC:Innozenz starts using Rechtmäßige Verurteilung/,
       regexFr: / 14:3EDC:Innocence starts using Réprobation [lL]égitime/,
       regexJa: / 14:3EDC:イノセンス starts using 断罪の旋回/,
+      regexKo: / 14:3EDC:이노센스 starts using 단죄의 선회/,
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
       infoText: {
@@ -33,6 +35,7 @@
         ja: '剣くるよ',
         fr: 'Epées !',
         cn: '剑!',
+        ko: '검!',
       },
     },
     {
@@ -42,6 +45,7 @@
       regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
       regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
       regexJa: / 14:3EEF:イノセンス starts using スターバース/,
+      regexKo: / 14:3EEF:이노센스 starts using 별 생성/,
       infoText: function(data) {
         if (data.starbirthCount == 1) {
           return {
@@ -50,6 +54,7 @@
             ja: 'スターバース: 角へ',
             fr: 'Accouchement Stellaire : Coin',
             cn: '创星：角落躲避',
+            ko: '별생성: 구석으로',
           };
         } else if (data.starbirthCount == 2 || data.starbirthCount == 5) {
           return {
@@ -58,6 +63,7 @@
             ja: 'スターバース: 玉のない隅へ',
             fr: 'Accouchement Stellaire : Evitez + Charge',
             cn: '创星：躲避 + 冲锋',
+            ko: '별 생성: 피하기 + 돌진',
           };
         } else if (data.starbirthCount == 3) {
           return {
@@ -66,6 +72,7 @@
             ja: 'スターバース: 爆発',
             fr: 'Accouchement Stellaire : Explosion',
             cn: '创星：爆炸',
+            ko: '별 생성: 폭발',
           };
         } else if (data.starbirthCount == 4) {
           return {
@@ -74,6 +81,7 @@
             ja: 'スターバース: 突進',
             fr: 'Accouchement Stellaire : Charge',
             cn: '创星：冲锋',
+            ko: '별 생성: 돌진',
           };
         } else if (data.starbirthCount == 6) {
           return {
@@ -82,6 +90,7 @@
             ja: 'スターバース: 時間切れ',
             fr: 'Accouchement Stellaire : Enrage',
             cn: '创星：狂暴',
+            ko: '별 생성: 전멸기',
           };
         }
         // No text for the second enrage one.
@@ -94,6 +103,7 @@
       regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
       regexFr: / 14:3EEA:Innocence starts using Pilleur/,
       regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
+      regexKo: / 14:3EEA:이노센스 starts using 그림자 강탈/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -103,6 +113,7 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '광딜',
       },
     },
     {
@@ -112,6 +123,7 @@
       regexDe: / 14:3ECD:Innozenz starts using Blitz der Gerechtigkeit on (\y{Name})/,
       regexFr: / 14:3ECD:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
       regexJa: / 14:3ECD:イノセンス starts using ジャッジボルト on (\y{Name})/,
+      regexKo: / 14:3ECD:이노센스 starts using 심판자의 번개 on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -122,6 +134,7 @@
           fr: 'Tank swap !',
           ja: 'スイッチ',
           cn: '换T！',
+          ko: '탱 교대!',
         };
       },
       alertText: function(data, matches) {
@@ -132,6 +145,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 -> YOU',
           };
         }
         if (data.role == 'healer') {
@@ -141,6 +155,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'にタンクバスター',
             cn: '死刑 -> ' + data.ShortName(matches[1]),
+            ko: '탱버 -> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -152,6 +167,7 @@
       regexDe: / 14:3EC9:Geläuterte Wollust starts using Heiliges Schwert/,
       regexFr: / 14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée/,
       regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード/,
+      regexKo: / 14:3EC9:면죄된 정욕 starts using 성스러운 검/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -162,6 +178,7 @@
         ja: 'タンクバスター',
         fr: 'Tankbusters',
         cn: '死刑',
+        ko: '탱버',
       },
     },
     {
@@ -171,6 +188,7 @@
       regexDe: / 14:3EC9:Geläuterte Wollust starts using Heiliges Schwert on (\y{Name})/,
       regexFr: / 14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée on (\y{Name})/,
       regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード on (\y{Name})/,
+      regexKo: / 14:3EC9:면죄된 정욕 starts using 성스러운 on (\y{Name})/,
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -180,6 +198,7 @@
         fr: 'Tankbuster sur VOUS',
         ja: '自分にタンクバスター',
         cn: '死刑点名',
+        ko: '탱버 -> YOU',
       },
     },
     {
@@ -189,6 +208,7 @@
       regexDe: / 14:3EEE:Innozenz starts using Seligmachende Schau/,
       regexFr: / 14:3EEE:Innocence starts using Vision [bB]éatifique/,
       regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
+      regexKo: / 14:3EEE:이노센스 starts using 지복직관/,
       alertText: function(data) {
         if (data.starbirthActive) {
           return {
@@ -197,6 +217,7 @@
             ja: '玉と突進避けて',
             fr: 'Evitez les charges et orbes',
             cn: '躲避冲锋与晶石',
+            ko: '돌진이랑 구슬 폭발을 피하세요',
           };
         }
         return {
@@ -205,6 +226,7 @@
           ja: '突進避けて',
           fr: 'Evitez les charges',
           cn: '躲避冲锋',
+          ko: '돌진을 피하세요',
         };
       },
     },
@@ -215,6 +237,7 @@
       regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
       regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
       regexJa: / 14:3EEF:イノセンス starts using スターバース/,
+      regexKo: / 14:3EEF:이노센스 starts using 별 생성/,
       delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
@@ -225,6 +248,7 @@
         ja: '安置へ',
         fr: 'Allez sur le coin sûr',
         cn: '去安全角落',
+        ko: '안전한 코너로 이동',
       },
     },
     {
@@ -234,6 +258,7 @@
       regexDe: / 15:\y{ObjectId}:Innozenz:42B0:/,
       regexFr: / 15:\y{ObjectId}:Innocence:42B0:/,
       regexJa: / 15:\y{ObjectId}:イノセンス:42B0:/,
+      regexKo: / 15:\y{ObjectId}:이노센스:42B0:/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -243,6 +268,7 @@
         ja: '雑魚のタゲ取って',
         fr: 'Attrapez les adds en Est/Ouest',
         cn: '接小怪仇恨',
+        ko: '동/서 쫄 잡으세요',
       },
     },
     {
@@ -252,6 +278,7 @@
       regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regexKo: / 15:\y{ObjectId}:이노센스:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
       preRun: function(data) {
         data.lightPillar = data.lightPillar || 0;
         data.lightPillar++;
@@ -267,6 +294,7 @@
             ja: '後ろの玉に当てて',
             fr: 'Visez l\'orbe arrière avec la ligne',
             cn: '分摊瞄准后方晶石',
+            ko: '멀리 있는 구슬 하나 맞추세요',
           };
         }
         return {
@@ -275,6 +303,7 @@
           ja: '玉に当てるな',
           fr: 'Evitez l\'orbe avec la ligne',
           cn: '躲开晶石与直线',
+          ko: '쉐어징이 구슬에 맞지 않게 하세요',
         };
       },
       infoText: function(data, matches) {
@@ -286,6 +315,7 @@
           ja: 'シェア',
           fr: 'Packez-vous en ligne',
           cn: '直线分摊',
+          ko: '쉐어징 모이세요',
         };
       },
     },
@@ -296,6 +326,7 @@
       regexDe: / 14:3F3E:Innozenz starts using Lichtsäule/,
       regexFr: / 14:3F3E:Innocence starts using Pilier [dD]e [lL]umière/,
       regexJa: / 14:3F3E:イノセンス starts using ライトピラー/,
+      regexKo: / 14:3F3E:이노센스 starts using 빛의 기둥/,
       condition: function(data) {
         return data.lightPillar == 3;
       },
@@ -305,6 +336,7 @@
         de: 'Geh in die sichere Ecke',
         fr: 'Allez sur le coin sûr',
         cn: '去安全角落',
+        ko: '안전한 코너로 이동하세요',
       },
     },
     {
@@ -319,6 +351,7 @@
         fr: 'Lien sur VOUS',
         ja: '線ついた',
         cn: '连线点名',
+        ko: '징 대상자 지정됨',
       },
     },
     {
@@ -335,6 +368,7 @@
             fr: 'Cercle, Evitez orbes',
             ja: 'オーブに当てないで',
             cn: '圆圈点名，远离晶石',
+            ko: '원형 징, 구슬 피하세요',
           };
         }
         return {
@@ -343,6 +377,7 @@
           fr: 'Cercle sur vous',
           ja: 'サークルついた',
           cn: '圆圈点名',
+          ko: '원형 징 대상자 지정됨',
         };
       },
     },
@@ -353,6 +388,7 @@
       regexDe: / 14:3EE[456]:Innozenz starts using Göttlicher Strahl/,
       regexFr: / 14:3EE[456]:Innocence starts using Rayon Divin/,
       regexJa: / 14:3EE[456]:イノセンス starts using ゴッドレイ/,
+      regexKo: / 14:3EE[456]:이노센스 starts using 신의 광선/,
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
@@ -360,6 +396,7 @@
         fr: 'Evitez l\'épée puis le rayon',
         ja: '剣避けてからピザカット',
         cn: '躲避剑与激光',
+        ko: '칼 먼저 피하고 장판 피하세요',
       },
     },
     {
@@ -369,6 +406,7 @@
       regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
       regexFr: / 14:3EEA:Innocence starts using Pilleur/,
       regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
+      regexKo: / 14:3EEA:이노센스 starts using 그림자 광탈/,
       run: function(data) {
         delete data.starbirthActive;
       },
@@ -380,6 +418,7 @@
       regexDe: / 14:3EEE:Innozenz starts using Seligmachende Schau/,
       regexFr: / 14:3EEE:Innocence starts using Vision [bB]éatifique/,
       regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
+      regexKo: / 14:3EEE:이노센스 starts using 지복직관/,
       run: function(data) {
         delete data.starbirthActive;
       },
@@ -391,11 +430,13 @@
       regexDe: / 14:3ED7:Innozenz starts using Seele und Körper/,
       regexFr: / 14:3ED7:Innocence starts using Âme et corps/,
       regexJa: / 14:3ED7:イノセンス starts using ソウル・アンド・ボディー/,
+      regexKo: / 14:3ED7:이노센스 starts using 영혼과 육신/,
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Left',
         de: 'Links rum rotieren',
         cn: '向左旋转',
+        ko: '왼쪽으로 도세요',
       },
     },
     {
@@ -405,11 +446,13 @@
       regexDe: / 14:3ED9:Innozenz starts using Seele und Körper/,
       regexFr: / 14:3ED9:Innocence starts using Âme et corps/,
       regexJa: / 14:3ED9:イノセンス starts using ソウル・アンド・ボディー/,
+      regexKo: / 14:3ED9:이노센스 starts using 영혼과 육신/,
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
         cn: '向右旋转',
+        ko: '오른쪽으로 도세요',
       },
     },
     {
@@ -419,11 +462,13 @@
       regexDe: / 14:3ED3:Innozenz starts using Traum des Kreuzes/,
       regexFr: / 14:3ED3:Innocence starts using Le Rêve de la Croix/,
       regexJa: / 14:3ED3:イノセンス starts using ドリーム・オブ・ザ・ルード/,
+      regexKo: / 14:3ED3:이노센스 starts using 수난의 꿈/,
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Left',
         de: 'Links rum rotieren',
         cn: '向左旋转',
+        ko: '왼쪽으로 도세요',
       },
     },
     {
@@ -433,11 +478,13 @@
       regexDe: / 14:3ED5:Innozenz starts using Traum des Kreuzes/,
       regexFr: / 14:3ED5:Innocence starts using Le Rêve de la Croix/,
       regexJa: / 14:3ED5:イノセンス starts using ドリーム・オブ・ザ・ルード/,
+      regexKo: / 14:3ED5:이노센스 starts using 수난의 꿈/,
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
         cn: '向右旋转',
+        ko: '오른쪽으로 도세요',
       },
     },
   ],
@@ -625,6 +672,54 @@
         'Lightning Resistance Down II': '雷属性耐性大幅降低',
         'Embolden': '鼓励',
         'Damage Down': '伤害降低',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Innocence': '이노센스',
+        'Engage!': '전투 시작!',
+        'Nail of Condemnation': '단죄의 말뚝',
+        'Sword of Condemnation': '단죄의 검',
+        'Forgiven Venery': '면죄된 정욕',
+        'Forgiven Shame': '면죄된 수치',
+      },
+      'replaceText': {
+        'attack': '공격',
+        'Winged Reprobation': '단죄의 비상',
+        'Winged Rep Trident': '단죄의 비상 직선장판',
+        'Winged Rep Rotate': '단죄의 비상 회전',
+        'Winged Rep Tethers': '단죄의 비상 줄연결',
+        'Starbirth': '별 생성',
+        'Soul and Body': '영혼과 육신',
+        'Shadowreaver': '그림자 강탈',
+        'Scold\'s Bridle': '입막음 굴레',
+        'Rightful Reprobation': '단죄의 선회',
+        'Righteous Bolt': '심판자의 번개',
+        'Reprobation': '선회',
+        'Light Pillar': '빛의 기둥',
+        'Holy Trinity': '성 삼위일체',
+        'Holy Sword': '성스러운 검',
+        'Guiding Light': '인도하는 빛',
+        'God Ray': '신의 광선',
+        'Flaming Sword': '회전 화염검',
+        'Explosion': '폭발',
+        'Duel Descent': '이단 낙하',
+        'Drop of Light': '빛내림',
+        'Dream of the Rood': '수난의 꿈',
+        'Beatific Vision': '지복직관',
+        'Forgiven venery': '면죄된 정욕',
+        'Forgiven shame': '면죄된 수치',
+        'Enrage': '전멸기',
+        '--untargetable--': '--타겟 불가능--',
+        '--targetable--': '--타겟 가능--',
+        '--jump--': '--보스이동--',
+      },
+      '~effectNames': {
+        'Physical Vulnerability Up': '물리 피해량 증가',
+        'Lightning Resistance Down II': '번개 저항 저하［강］',
+        'Embolden': '격려',
+        'Damage Down': '주는 피해량 감소',
       },
     },
   ],
