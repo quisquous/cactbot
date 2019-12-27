@@ -5,7 +5,7 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: /^Eden's Gate: Descent \(Savage\)$/,
+  zoneRegex: /^(Eden's Gate: Descent \(Savage\)|伊甸零式希望乐园 \(觉醒之章2\))$/,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
     {
@@ -17,6 +17,7 @@
         de: 'Flächen nehmen',
         fr: 'Prenez les rayons',
         ja: '踏む',
+        cn: '踩圈',
       },
     },
     {
@@ -28,6 +29,7 @@
         de: 'Mit Partner stacken',
         fr: 'Packez-vous avec votre partenaire',
         ja: '白黒合わせて',
+        cn: '黑白配',
       },
     },
   ],
@@ -35,6 +37,7 @@
     {
       id: 'E2S Spell In Waiting Gain',
       regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
+      regexCn: / 1A:\y{ObjectId}:虚无行者 gains the effect of 延迟咏唱/,
       regexDe: / 1A:\y{ObjectId}:Nichtswandler gains the effect of Verzögerung/,
       regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
       regexJa: / 1A:\y{ObjectId}:ヴォイドウォーカー gains the effect of ディレイスペル/,
@@ -45,6 +48,7 @@
     {
       id: 'E2S Spell In Waiting Lose',
       regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
+      regexCn: / 1E:\y{ObjectId}:虚无行者 loses the effect of 延迟咏唱/,
       regexDe: / 1E:\y{ObjectId}:Nichtswandler loses the effect of Verzögerung/,
       regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
       regexJa: / 1E:\y{ObjectId}:ヴォイドウォーカー loses the effect of ディレイスペル/,
@@ -55,6 +59,7 @@
     {
       id: 'E2S Entropy',
       regex: / 14:3E6F:Voidwalker starts using Entropy/,
+      regexCn: / 14:3E6F:虚无行者 starts using 熵/,
       regexDe: / 14:3E6F:Nichtswandler starts using Entropie/,
       regexFr: / 14:3E6F:Marcheuse Du Néant starts using Entropie/,
       regexJa: / 14:3E6F:ヴォイドウォーカー starts using エントロピー/,
@@ -66,11 +71,13 @@
         de: 'aoe',
         fr: 'Dégâts de zone',
         ja: 'aoe',
+        cn: 'AOE',
       },
     },
     {
       id: 'E2S Quietus',
       regex: / 14:3E71:Voidwalker starts using Quietus/,
+      regexCn: / 14:3E71:虚无行者 starts using 寂灭/,
       regexDe: / 14:3E71:Nichtswandler starts using Quietus/,
       regexFr: / 14:3E71:Marcheuse Du Néant starts using Quietus/,
       regexJa: / 14:3E71:ヴォイドウォーカー starts using クワイタス/,
@@ -82,11 +89,13 @@
         de: 'aoe',
         fr: 'Dégâts de zone',
         ja: 'aoe',
+        cn: 'AOE',
       },
     },
     {
       id: 'E2S Shadowflame Tank',
       regex: / 14:3E6[12]:Voidwalker starts using Shadowflame on (\y{Name})/,
+      regexCn: / 14:3E6[12]:虚无行者 starts using 暗影炎 on (\y{Name})/,
       regexDe: / 14:3E6[12]:Nichtswandler starts using Schattenflamme on (\y{Name})/,
       regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using Flamme D'[oO]mbre on (\y{Name})/,
       regexJa: / 14:3E6[12]:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
@@ -98,11 +107,13 @@
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
         ja: '自分にタンクバスター',
+        cn: '死刑点名',
       },
     },
     {
       id: 'E2S Shadowflame Healer',
       regex: / 14:3E61:Voidwalker starts using Shadowflame/,
+      regexCn: / 14:3E61:虚无行者 starts using 暗影炎/,
       regexDe: / 14:3E61:Nichtswandler starts using Schattenflamme/,
       regexFr: / 14:3E61:Marcheuse Du Néant starts using Flamme D'ombre/,
       regexJa: / 14:3E61:ヴォイドウォーカー starts using シャドーフレイム/,
@@ -114,11 +125,13 @@
         de: 'Tank buster',
         fr: 'Tank busters',
         ja: 'タンクバスター',
+        cn: '死刑',
       },
     },
     {
       id: 'E2S Doomvoid Cleaver',
       regex: / 14:3E63:Voidwalker starts using Doomvoid Cleaver/,
+      regexCn: / 14:3E63:虚无行者 starts using 末日虚无劈/,
       regexDe: / 14:3E63:Nichtswandler starts using Nichtsmarter-Schlachter/,
       regexFr: / 14:3E63:Marcheuse Du Néant starts using Couperet Du Néant Ravageur/,
       regexJa: / 14:3E63:ヴォイドウォーカー starts using ドゥームヴォイド・クリーバー/,
@@ -127,11 +140,13 @@
         de: 'Himmelsrichtungen',
         fr: 'Position',
         ja: '散開',
+        cn: '分散站位',
       },
     },
     {
       id: 'E2S Doomvoid Guillotine',
       regex: / 14:3E4F:Voidwalker starts using Doomvoid Guillotine/,
+      regexCn: / 14:3E4F:虚无行者 starts using 末日虚无断/,
       regexDe: / 14:3E4F:Nichtswandler starts using Nichtsmarter-Fallbeil/,
       regexFr: / 14:3E4F:Marcheuse Du Néant starts using Guillotine Du Néant Ravageur/,
       regexJa: / 14:3E4F:ヴォイドウォーカー starts using ドゥームヴォイド・ギロチン/,
@@ -140,11 +155,13 @@
         de: 'Seiten',
         fr: 'Côtés',
         ja: '横へ',
+        cn: '两侧',
       },
     },
     {
       id: 'E2S Doomvoid Slicer',
       regex: / 14:3E50:Voidwalker starts using Doomvoid Slicer/,
+      regexCn: / 14:3E50:虚无行者 starts using 末日虚无切/,
       regexDe: / 14:3E50:Nichtswandler starts using Nichtsmarter-Sense/,
       regexFr: / 14:3E50:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
       regexJa: / 14:3E50:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
@@ -153,11 +170,13 @@
         de: 'Unter den Boss',
         fr: 'Sous le boss',
         ja: '中へ',
+        cn: '脚下',
       },
     },
     {
       id: 'E2S Empty Hate',
       regex: / 14:3E59:The Hand Of Erebos starts using Empty Hate/,
+      regexCn: / 14:3E59:厄瑞玻斯的巨腕 starts using 空无的恶意/,
       regexDe: / 14:3E59:Arm Des Erebos starts using Gähnender Abgrund/,
       regexFr: / 14:3E59:Bras [dD]'[éÉ]rèbe starts using Vaine Malice/,
       regexJa: / 14:3E59:エレボスの巨腕 starts using 虚ろなる悪意/,
@@ -166,11 +185,13 @@
         de: 'Knockback',
         fr: 'Poussée',
         ja: 'ノックバック',
+        cn: '击退',
       },
     },
     {
       id: 'E2S Empty Rage',
       regex: / 14:3E6B:The Hand Of Erebos starts using Empty Rage/,
+      regexCn: / 14:3E6B:厄瑞玻斯的巨腕 starts using 空无的恶念/,
       regexDe: / 14:3E6B:Arm Des Erebos starts using Lockende Leere/,
       regexFr: / 14:3E6B:Bras [dD]'[éÉ]rèbe starts using Vaine Cruauté/,
       regexJa: / 14:3E6B:エレボスの巨腕 starts using 虚ろなる害意/,
@@ -179,6 +200,7 @@
         de: 'Weg von der Hand',
         fr: 'Eloignez-vous de la main',
         ja: '手から離れて',
+        cn: '远离手',
       },
     },
     {
@@ -194,6 +216,7 @@
             de: 'Auf DIR stacken',
             fr: 'Package sur VOUS',
             ja: '自分にスタック',
+            cn: '集合',
           };
         }
         return {
@@ -201,6 +224,7 @@
           de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にスタック',
+          cn: data.ShortName(matches[1]) + ' 处集合',
         };
       },
     },
@@ -226,6 +250,7 @@
         de: 'Verzögertes stacken',
         fr: 'Package retardé',
         ja: 'スタック(ディレイ)',
+        cn: '延迟集合',
       },
     },
     {
@@ -241,6 +266,7 @@
             de: 'Auf DIR stacken',
             fr: 'Package sur VOUS',
             ja: '自分にスタック',
+            cn: '集合',
           };
         }
         return {
@@ -248,6 +274,7 @@
           de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にスタック',
+          cn: data.ShortName(matches[1]) + ' 处集合',
         };
       },
     },
@@ -262,6 +289,7 @@
         de: 'Verteilen',
         fr: 'Dispersez-vous',
         ja: '散開',
+        cn: '散开',
       },
     },
     {
@@ -286,6 +314,7 @@
         de: 'Verzögertes Feuer',
         fr: 'Feu retardé',
         ja: 'マーカーついた(ディレイ)',
+        cn: '延迟火',
       },
     },
     {
@@ -299,6 +328,7 @@
         de: 'Verteilen',
         fr: 'Dispersez-vous',
         ja: '散開',
+        cn: '散开',
       },
     },
     {
@@ -314,6 +344,7 @@
             de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
             fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'を見ないで',
+            cn: '背对 ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -324,6 +355,7 @@
             de: 'Auge auf DIR',
             fr: 'Œil de l\'ombre sur VOUS',
             ja: '自分に目',
+            cn: '石化眼点名',
           };
         }
       },
@@ -350,6 +382,7 @@
         de: 'Verzögertes Schattenauge',
         fr: 'Œil de l\'ombre retardé',
         ja: 'シャドウアイ(ディレイ)',
+        cn: '延迟石化眼',
       },
     },
     {
@@ -365,6 +398,7 @@
         de: 'Auge auf DIR',
         fr: 'Œil sur VOUS',
         ja: '自分に目',
+        cn: '石化眼点名',
       },
     },
     {
@@ -383,6 +417,7 @@
           de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
           fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'を見ないで',
+          cn: '背对 ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -397,6 +432,7 @@
         de: 'Flare',
         fr: 'Brasier',
         ja: 'フレア捨てて',
+        cn: '核爆',
       },
     },
     {
@@ -421,6 +457,7 @@
         de: 'Verzögerte Flare',
         fr: 'Brasier retardé',
         ja: 'フレア(ディレイ)',
+        cn: '延迟核爆',
       },
     },
     {
@@ -434,6 +471,7 @@
         de: 'Flare',
         fr: 'Brasier',
         ja: 'フレア捨てて',
+        cn: '核爆',
       },
     },
     {
@@ -450,6 +488,7 @@
         de: 'Flare aoes',
         fr: 'Dégâts de zone des Brasiers',
         ja: 'フレア AoE',
+        cn: '核爆AOE',
       },
     },
     {
@@ -464,6 +503,7 @@
         de: 'Höllenwind: Raus gehen',
         fr: 'Vent infernal : Sortez',
         ja: 'ヘルウィンド: HP1になるよ',
+        cn: '地狱之风：远离',
       },
       run: function(data) {
         data.hellWind = true;
@@ -502,6 +542,7 @@
         de: 'Verzögerte Höllenwind',
         fr: 'Vent infernal retardé',
         ja: 'ヘルウィンド(ディレイ)',
+        cn: '延迟地狱之风',
       },
     },
     {
@@ -517,6 +558,7 @@
         de: 'Höllenwind: Warte auf Heilung',
         fr: 'Vent infernal : attendez les soins',
         ja: 'ヘルウィンド: HP戻ってから',
+        cn: '地狱之风：等奶',
       },
     },
     {
@@ -533,6 +575,7 @@
         de: 'Heile Höllenwind Ziele',
         fr: 'Soignez les cibles de Vent infernal',
         ja: 'HP戻して',
+        cn: '奶地狱之风目标',
       },
     },
     {
@@ -547,6 +590,7 @@
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
       regex: / 14:4659:Voidwalker starts using Cycle Of Retribution/,
+      regexCn: / 14:4659:虚无行者 starts using 复仇连续剑/,
       regexDe: / 14:4659:Nichtswandler starts using Vergeltendes Chaos/,
       regexFr: / 14:4659:Marcheuse Du Néant starts using Multi-[tT]aillade Vengeresse/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using 復讐の連続剣/,
@@ -555,11 +599,13 @@
         de: 'Rein, Himmelsrichtungen, Seiten',
         fr: 'Sous le boss, Position, Côtés',
         ja: '中 => 散開 => 横',
+        cn: '脚下 => 站位 => 两侧',
       },
     },
     {
       id: 'E2S Cycle of Chaos',
       regex: / 14:40B9:Voidwalker starts using Cycle Of Chaos/,
+      regexCn: / 14:40B9:虚无行者 starts using 混沌连续剑/,
       regexDe: / 14:40B9:Nichtswandler starts using Chronisches Chaos/,
       regexFr: / 14:40B9:Marcheuse Du Néant starts using Multi-[tT]aillade Chaotique/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using 混沌の連続剣/,
@@ -568,6 +614,7 @@
         de: 'Seiten, Rein, Himmelsrichtungen',
         fr: 'Côtés, Sous le boss, Position',
         ja: '横 => 中 => 散開',
+        cn: '两侧 => 脚下 => 站位',
       },
     },
   ],
@@ -719,11 +766,35 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Voidwalker': 'Voidwalker',
+        'The Hand Of Erebos': '厄瑞玻斯的巨腕',
+        'Voidwalker': '虚无行者',
         'Engage!': '战斗开始！',
       },
       'replaceText': {
-        'Unknown Ability': 'Unknown Ability',
+        'attack': '攻击',
+        'Unholy Darkness': '黑暗神圣',
+        'Spell-In-Waiting': '延迟咏唱',
+        'Shadowflame': '暗影炎',
+        'Shadoweye': '暗影之眼',
+        'Quietus': '寂灭',
+        'Punishing Ray': '惩戒之光',
+        'Hell Wind': '地狱之风',
+        'Flare': '核爆',
+        'Entropy': '熵',
+        'Empty Hate/Rage': '空无的恶意/恶念',
+        'Empty Rage': '空无的恶念',
+        'Empty Hate': '空无的恶意',
+        'Slicer/Guillotine': '虚无切/虚无断',
+        'Cleaver/Slicer?': '虚无劈/虚无切?',
+        'Guillotine/Cleaver?': '虚无断/虚无劈?',
+        'Light/Dark Circles': '黑白圈',
+        'Doomvoid Slicer': '末日虚无切',
+        'Doomvoid Guillotine': '末日虚无断',
+        'Doomvoid Cleaver': '末日虚无劈',
+        'Dark Fire III': '黑暗爆炎',
+        'Cycle [oO]f Retribution': '复仇连续剑',
+        'Cycle [oO]f Chaos': '混沌连续剑',
+        'Cycle Of ?': '??连续剑',
       },
       '~effectNames': {
         'Stone Curse': '石化的诅咒',
