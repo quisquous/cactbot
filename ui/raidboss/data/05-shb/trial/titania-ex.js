@@ -12,7 +12,7 @@
       regexDe: / 14:3D4B:Titania starts using Leuchtender Sabbat/,
       regexFr: / 14:3D4B:Titania starts using Sabbat En Plein Jour/,
       regexJa: / 14:3D4B:ティターニア starts using ブライトサバト/,
-      regexKoKo: / 14:3D4B:티타니아 starts using 빛나는 안식/,
+      regexKo: / 14:3D4B:티타니아 starts using 빛나는 안식/,
       condition: function(data) {
         return data.role == 'healer';
       },
