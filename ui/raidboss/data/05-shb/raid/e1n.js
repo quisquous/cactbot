@@ -359,7 +359,7 @@
       },
       'replaceText': {
         'attack': '공격',
-	'Spear of Paradise': '낙원의 창',
+	'Spear [oO]f Paradise': '낙원의 창',
         'Vice [oO]f Apathy': '냉담의 악덕',
         'Vice [aA]nd Virtue': '선과 악',
         'Unto Dust': '폭렬',
