@@ -359,8 +359,8 @@
         'Engage!': '전투 시작!',
       },
       'replaceText': {
-        'attack': '공격',
-	'Spear [oO]f Paradise': '낙원의 창',
+        'attack': '공격', 
+        'Vice [oO]f Vanity': '허영의 악덕',
         'Vice [oO]f Apathy': '냉담의 악덕',
         'Vice [aA]nd Virtue': '선과 악',
         'Unto Dust': '폭렬',
