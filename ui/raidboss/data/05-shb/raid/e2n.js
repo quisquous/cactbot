@@ -98,7 +98,7 @@
       regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
       regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
       regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
-      regexJa: / 14:3E46:에레보스의 팔 starts using 공허한 악의/,
+      regexKo: / 14:3E46:에레보스의 팔 starts using 공허한 악의/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -114,7 +114,7 @@
       regexDe: / 14:3E42:Nichtswandler starts using Dunkel-Feuga/,
       regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
       regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
-      regexJa: / 14:3E42:보이드워커 starts using 다크 파이가/,
+      regexKo: / 14:3E42:보이드워커 starts using 다크 파이가/,
       run: function(data) {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;
@@ -151,7 +151,7 @@
           en: 'Stack on ' + data.ShortName(matches[1]),
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur '+ data.ShortName(matches[1]),
-          cn: '집합 -> ' + data.ShortName(matches[1]),
+          ko: '집합 -> ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -187,7 +187,7 @@
         de: 'Verzögertes Feuer',
         fr: 'Feu retardé',
         cn: '延迟火',
-        cn: '지연술:파이어',
+        ko: '지연술:파이어',
       },
     },
     {
