@@ -315,6 +315,7 @@
       },
       'replaceText': {
         'attack': '攻击',
+        'Vice [oO]f Vanity': '虚荣之恶',
         'Vice [oO]f Apathy': '冷漠之恶',
         'Vice [aA]nd Virtue': '恶习与美德',
         'Unto Dust': '归于尘土',
