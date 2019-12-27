@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 // Innocence Extreme
 [{
@@ -35,7 +35,7 @@
         ja: '剣くるよ',
         fr: 'Epées !',
         cn: '剑!',
-        en: '검!',
+        ko: '검!',
       },
     },
     {
@@ -303,7 +303,7 @@
           ja: '玉に当てるな',
           fr: 'Evitez l\'orbe avec la ligne',
           cn: '躲开晶石与直线',
-          en: '쉐어징이 구슬에 맞지 않게 하세요',
+          ko: '쉐어징이 구슬에 맞지 않게 하세요',
         };
       },
       infoText: function(data, matches) {
@@ -716,7 +716,7 @@
         '--jump--': '--보스이동--',
       },
       '~effectNames': {
-        'Physical Vulnerability Up': '물리 피해 증가',
+        'Physical Vulnerability Up': '물리 피해량 증가',
         'Lightning Resistance Down II': '번개 저항 저하［강］',
         'Embolden': '격려',
         'Damage Down': '주는 피해량 감소',
