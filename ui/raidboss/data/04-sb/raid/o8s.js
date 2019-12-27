@@ -6,7 +6,7 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /^Sigmascape V4\.0 \(Savage\)$/,
+  zoneRegex: /^(Sigmascape V4\.0 \(Savage\)|차원의 틈 오메가: 시그마편\(영웅\) \(4\))$/,
   timelineFile: 'o8s.txt',
   triggers: [
     {
@@ -661,7 +661,7 @@
       regexDe: / 14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
       regexFr: / 14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
       regexJa: / 14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
+      regexKo: / 14:(?:28C4|2B2A):케프카 starts using 빙글빙글 블리자가/,
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -966,6 +966,7 @@
         'Ultima Upsurge': '두근두근 알테마',
         'Vitrophyre': '암석탄',
         'Wave Cannon': '파동포',
+        'soak': '흡수',
 
         'All Things Ending': '소멸의 발차기',
         'Blizzard III': '블리자가',
@@ -984,8 +985,8 @@
         'The Path Of Light': '빛의 파동',
         'Thunder III': '선더가',
         'Trine': '트라인',
-        'Ultima': '알테마',
         'Ultimate Embrace': '종말의 포옹',
+        'Ultima': '알테마',
         'Wings Of Destruction': '파괴의 날개',
       },
     },
