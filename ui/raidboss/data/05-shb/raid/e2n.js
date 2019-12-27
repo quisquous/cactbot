@@ -151,6 +151,7 @@
           en: 'Stack on ' + data.ShortName(matches[1]),
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur '+ data.ShortName(matches[1]),
+          cn: '集合 -> ' + data.ShortName(matches[1]),
           ko: '집합 -> ' + data.ShortName(matches[1]),
         };
       },
