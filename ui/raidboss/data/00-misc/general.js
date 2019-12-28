@@ -140,7 +140,7 @@
       regexFr: Regexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\.', capture: false }),
       regexJa: Regexes.gameLog({ line: '(?:\y{Name}が)?レディチェックを開始しました。', capture: false }),
       regexCn: Regexes.gameLog({ line: '\y{Name}?发起了准备确认', capture: false }),
-      regexKo: Regexes.gameLog({ line: '(?:\y{Name} 님이 )?준비 확인을 시작(했습|합)니다\.', capture: false }),
+      regexKo: Regexes.gameLog({ line: '(\y{Name} 님이 )?준비 확인을 시작(했습|합)니다\.', capture: false }),
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
       soundVolume: 0.6,
     },
