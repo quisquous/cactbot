@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Middle La Noscea|中拉诺西亚)$/,
+  zoneRegex: /^(Middle La Noscea|中拉诺西亚|중부 라노시아)$/,
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that
@@ -48,18 +48,21 @@
       regex: /(Angry Dummy)/,
       regexDe: /(Wütender Dummy)/,
       regexCn: /愤怒的木人/,
+      regexKo: /화난 나무인형/,
       beforeSeconds: 2,
       infoText: function(data, matches) {
         return {
           en: 'Stack for ' + matches[1],
           de: 'Sammeln für ' + matches[1],
           cn: '木人处集合',
+          ko: matches[1] + '에 집합',
         };
       },
       tts: {
         en: 'Stack',
         de: 'Sammeln',
         cn: '集合',
+        ko: '집합',
       },
     },
   ],
@@ -82,6 +85,25 @@
         'You bow courteously to the striking dummy': 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
         'test sync': 'test sync',
         'Engage!': 'Start!',
+      },
+    },    {
+      locale: 'ko',
+      replaceText: {
+        'Final Sting': '마지막 벌침',
+        'Almagest': '알마게스트',
+        'Angry Dummy': '화난 나무인형',
+        'Long Castbar': '긴 시전바',
+        'Dummy Stands Still': '나무인형이 아직 살아있다',
+        'Death': '데스',
+        'Super Tankbuster': '초강력 탱크버스터',
+        'Pentacle Sac': 'Pentacle Sac',
+        'Engage': '시작',
+      },
+      replaceSync: {
+        'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
+        'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
+        'test sync': '테스트 싱크',
+        'Engage!': '전투 시작!',
       },
     },
     {
@@ -127,6 +149,7 @@
       regexDe: /:Du stupst die Trainingspuppe an/,
       regexFr: /:Vous touchez légèrement le mannequin d'entraînement du doigt/,
       regexCn: /:.*用手指戳向木人/,
+      regexKo: /:.*나무인형을 쿡쿡 찌릅니다/,
       preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
       },
@@ -136,6 +159,7 @@
           de: 'stups #' + data.pokes,
           fr: 'Touché #' + data.pokes,
           cn: '戳 #' + data.pokes,
+          ko: data.pokes + '번 찌름',
         };
       },
     },
@@ -145,23 +169,27 @@
       regexDe: /:Du willst wahren Kampfgeist in der Trainingspuppe entfachen/,
       regexFr: /:Vous vous motivez devant le mannequin d'entraînement/,
       regexCn: /:.*激励木人/,
+      regexKo: /:.*나무인형에게 힘을 불어넣습니다/,
       alertText: {
         en: 'PSYCH!!!',
         de: 'AUF GEHTS!!!',
         fr: 'MOTIVATION !!!',
         cn: '激励！！',
+        ko: '힘내라!!',
       },
       tts: {
         en: 'psych',
         de: 'auf gehts',
         fr: 'Motivation',
         cn: '激励',
+        ko: '힘내라!',
       },
       groupTTS: {
         en: 'group psych',
         de: 'Gruppen auf gehts',
         fr: 'group motivation',
         cn: '组激励',
+        ko: '단체 격려',
       },
     },
     {
@@ -170,24 +198,28 @@
       regexDe: /:Du lachst herzlich mit der Trainingspuppe/,
       regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
       regexCn: /:.*看着木人高声大笑/,
+      regexKo: /:.*나무인형을 보고 폭소를 터뜨립니다/,
       suppressSeconds: 5,
       alarmText: {
         en: 'hahahahaha',
         de: 'hahahahaha',
         fr: 'Mouahahaha',
         cn: '2333333333',
+        ko: '푸하하하하핳',
       },
       tts: {
         en: 'hahahahaha',
         de: 'hahahahaha',
         fr: 'Haha mort de rire',
         cn: '哈哈哈哈哈哈',
+        ko: '푸하하하하핳',
       },
       groupTTS: {
         en: 'group laugh',
         de: 'Gruppenlache',
         fr: 'group motivation',
         cn: '组哈哈',
+        ko: '단체 웃음',
       },
     },
     {
@@ -196,6 +228,7 @@
       regexDe: /:Du klatschst begeistert Beifall für die Trainingspuppe/,
       regexFr: /:Vous applaudissez le mannequin d'entraînement/,
       regexCn: /:.*向木人送上掌声/,
+      regexKo: /:.*나무인형에게 박수를 보냅니다/,
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
       tts: {
@@ -203,6 +236,7 @@
         de: 'klatschen',
         fr: 'Bravo, vive la France',
         cn: '鼓掌',
+        ko: '박수 짝짝짝',
       },
     },
     {
@@ -210,11 +244,13 @@
       // In game: /echo cactbot lang
       regex: / 00:0038:cactbot lang/,
       regexDe: / 00:0038:cactbot sprache/,
+      regexKo: / 00:0038:cactbot 언어/,
       infoText: function(data) {
         return {
           en: 'Language: ' + data.lang,
           de: 'Sprache: ' + data.lang,
           cn: '语言: ' + data.lang,
+          ko: '언어: ' + data.lang,
         };
       },
     },

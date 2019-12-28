@@ -18,6 +18,7 @@
           fr: 'Provocation: ' + name,
           ja: '挑発: ' + name,
           cn: '挑衅: ' + name,
+          ko: '도발: ' + name,
         };
       },
     },
@@ -35,6 +36,7 @@
           fr: 'Dérobade: ' + name,
           ja: 'シャーク: ' + name,
           cn: '退避: ' + name,
+          ko: '기피: ' + name,
         };
       },
     },
@@ -50,6 +52,7 @@
           en: 'Holmgang: ' + name,
           ja: 'ホルムギャング: ' + name,
           cn: '死斗: ' + name,
+          ko: '일대일 결투: ' + name,
         };
       },
     },
@@ -67,6 +70,7 @@
           fr: 'Invincible: ' + name,
           ja: 'インビンシブル: ' + name,
           cn: '神圣领域: ' + name,
+          ko: '천하무적: ' + name,
         };
       },
     },
@@ -84,6 +88,7 @@
           fr: 'Bolide: ' + name,
           ja: 'ボーライド: ' + name,
           cn: '超火流星: ' + name,
+          ko: '폭발 유성: ' + name,
         };
       },
     },
@@ -101,6 +106,7 @@
           fr: 'Mort-vivant: ' + name,
           ja: 'リビングデッド: ' + name,
           cn: '行尸走肉: ' + name,
+          ko: '산송장: ' + name,
         };
       },
     },
@@ -111,6 +117,7 @@
       regexFr: Regexes.gainsEffect({ effect: 'Marcheur Des Limbes' }),
       regexJa: Regexes.gainsEffect({ effect: 'ウォーキングデッド' }),
       regexCn: Regexes.gainsEffect({ effect: '死而不僵' }),
+      regexKo: Regexes.gainsEffect({ effect: '움직이는 시체' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -122,6 +129,7 @@
           fr: 'Marcheur Des Limbes: ' + name,
           ja: 'ウォーキングデッド: ' + name,
           cn: '死而不僵: ' + name,
+          ko: '움직이는 시체: ' + name,
         };
       },
     },
@@ -132,6 +140,7 @@
       regexFr: Regexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\.', capture: false }),
       regexJa: Regexes.gameLog({ line: '(?:\y{Name}が)?レディチェックを開始しました。', capture: false }),
       regexCn: Regexes.gameLog({ line: '\y{Name}?发起了准备确认', capture: false }),
+      regexKo: Regexes.gameLog({ line: '(?:\y{Name} 님이 )?준비 확인을 시작(했습|합)니다\.', capture: false }),
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
       soundVolume: 0.6,
     },
