@@ -405,9 +405,10 @@ class PopupText {
 
       let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;
       if (alarmText) {
-        let text = triggerUpperCase(ValueOrFunction(alarmText));
+        let text = ValueOrFunction(alarmText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
+          text = triggerUpperCase(text);
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
@@ -425,9 +426,10 @@ class PopupText {
 
       let alertText = triggerOptions.AlertText || trigger.alertText || response.alertText;
       if (alertText) {
-        let text = triggerUpperCase(ValueOrFunction(alertText));
+        let text = ValueOrFunction(alertText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
+          text = triggerUpperCase(text);
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
