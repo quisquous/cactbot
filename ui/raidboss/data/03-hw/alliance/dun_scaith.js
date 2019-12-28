@@ -194,7 +194,7 @@
       // https://xivapi.com/Status/1137
       id: 'Dun Scaith Debilitator Fire',
       regex: Regexes.gainsEffect({ effect: 'Fire Resistance Down Ii', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Feuerresistenz - \(Stark\)', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Feuerresistenz - \\(Stark\\)', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Résistance Au Feu Réduite+', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '火属性耐性低下[強]', capture: false }),
       regexCn: Regexes.gainsEffect({ effect: '火属性耐性大幅降低', capture: false }),
@@ -208,7 +208,7 @@
       // https://xivapi.com/Status/1157
       id: 'Dun Scaith Debilitator Water',
       regex: Regexes.gainsEffect({ effect: 'Water Resistance Down Ii', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - \(Stark\)', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - \\(Stark\\)', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Résistance À L\'Eau Réduite+', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '水属性耐性低下［強］', capture: false }),
       regexCn: Regexes.gainsEffect({ effect: '水属性耐性大幅降低', capture: false }),
