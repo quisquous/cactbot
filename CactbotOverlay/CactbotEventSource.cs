@@ -606,7 +606,7 @@ namespace Cactbot {
         if (local_files == null) {
           // Second try a user directory relative to the dll.
           try {
-            config_dir = Path.GetFullPath((new VersionChecker(this)).GetCactbotDirectory());
+            config_dir = Path.GetFullPath((new VersionChecker(this)).GetCactbotDirectory() + "\\user");
             local_files = GetLocalUserFiles(config_dir);
           } catch (Exception e) {
             // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
