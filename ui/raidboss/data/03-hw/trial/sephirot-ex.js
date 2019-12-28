@@ -5,4 +5,4 @@
   timelineFile: 'sephirot-ex.txt',
   triggers: [
   ],
-}];
+}]

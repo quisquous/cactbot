@@ -100,10 +100,10 @@
     },
     {
       id: 'Facility Dark Orb',
-      regex: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dark Orb on (\y{Name})/,
-      regexDe: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dunkler Orbis on (\y{Name})/,
-      regexFr: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Orbe ténébreux on (\y{Name})/,
-      regexJa: /14:10FC:(?:アシエン・イゲオルム|アシエン・ラハブレア) starts using ダークオーブ on (\y{Name})/,
+      regex: / 14:10FC:(?:Igeyorhm|Lahabrea) starts using Dark Orb on (\y{Name})/,
+      regexDe: / 14:10FC:(?:Igeyorhm|Lahabrea) starts using Dunkler Orbis on (\y{Name})/,
+      regexFr: / 14:10FC:(?:Igeyorhm|Lahabrea) starts using Orbe ténébreux on (\y{Name})/,
+      regexJa: / 14:10FC:(?:アシエン・イゲオルム|アシエン・ラハブレア) starts using ダークオーブ on (\y{Name})/,
       infoText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -160,9 +160,9 @@
     {
       id: 'Facility Chaosphere',
       regex: / 03:\y{ObjectId}:Added new combatant Chaosphere/,
-      regexDe: /03:\y{ObjectId}:Added new combatant Chaossphäre/,
-      regexFr: /03:\y{ObjectId}:Added new combatant sphère de chaos/,
-      regexJa: /03:\y{ObjectId}:Added new combatant カオススフィア/,
+      regexDe: / 03:\y{ObjectId}:Added new combatant Chaossphäre/,
+      regexFr: / 03:\y{ObjectId}:Added new combatant sphère de chaos/,
+      regexJa: / 03:\y{ObjectId}:Added new combatant カオススフィア/,
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid your orb--pop others\'',

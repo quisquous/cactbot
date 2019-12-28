@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Shatter Big Ice',
-      regex: /The icebound tomelith A([1-4]) activates and begins to emit heat/,
-      regexDe: /Vereister Echolith A([1-4]) activates and begins to emit heat/,
-      regexFr: /Mémolithe Congelé A([1-4]) activates and begins to emit heat/,
+      regex: / The icebound tomelith A([1-4]) activates and begins to emit heat/,
+      regexDe: / Vereister Echolith A([1-4]) activates and begins to emit heat/,
+      regexFr: / Mémolithe Congelé A([1-4]) activates and begins to emit heat/,
       preRun: function(data, matches) {
         data.iceDir = undefined;
         let ice_lang = {
