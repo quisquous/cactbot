@@ -193,10 +193,12 @@
     {
       // https://xivapi.com/Status/1137
       id: 'Dun Scaith Debilitator Fire',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Fire Resistance Down II/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Feuerresistenz - \(stark\)/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance Au Feu Réduite\+/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 火属性耐性低下.強./,
+      regex: Regexes.gainsEffect({ effect: 'Fire Resistance Down Ii', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Feuerresistenz - (Stark)', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Résistance Au Feu Réduite+', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '火属性耐性低下[強]', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '火属性耐性大幅降低', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '불속성 저항 감소[강]', capture: false }),
       suppressSeconds: 10,
       alertText: {
         en: 'Change puddles to water',
@@ -205,10 +207,12 @@
     {
       // https://xivapi.com/Status/1157
       id: 'Dun Scaith Debilitator Water',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Water Resistance Down II/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Wasserresistenz - \(stark\)/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Résistance À L'Eau Réduite\+/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 水属性耐性低下.強./,
+      regex: Regexes.gainsEffect({ effect: 'Water Resistance Down Ii', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - (Stark)', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Résistance À L\'Eau Réduite+', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '水属性耐性低下［強］', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性耐性大幅降低', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 저항 감소[강]', capture: false }),
       suppressSeconds: 10,
       alertText: {
         en: 'Change puddles to fire',
@@ -243,10 +247,12 @@
     },
     {
       id: 'Dun Scaith Prey Markers',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Prey/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Markiert/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marquage/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of マーキング/,
+      regex: Regexes.gainsEffect({ effect: 'Prey', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '표식', capture: false }),
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -438,10 +444,12 @@
     },
     {
       id: 'Dun Scaith Noctoshield',
-      regex: / 1A:\y{ObjectId}:Diabolos gains the effect of Noctoshield/,
-      regexDe: / 1A:\y{ObjectId}:Diabolos gains the effect of Nachtschild/,
-      regexFr: / 1A:\y{ObjectId}:Diabolos gains the effect of Nocto-Bouclier/,
-      regexJa: / 1A:\y{ObjectId}:ディアボロス gains the effect of ノクトシールド/,
+      regex: Regexes.gainsEffect({ effect: 'Noctoshield', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Nachtschild', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Nocto-Bouclier', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'ノクトシールド', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '夜障', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '밤의 방패', capture: false }),
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
