@@ -86,7 +86,8 @@
         'test sync': 'test sync',
         'Engage!': 'Start!',
       },
-    },    {
+    },
+    {
       locale: 'ko',
       replaceText: {
         'Final Sting': '마지막 벌침',
