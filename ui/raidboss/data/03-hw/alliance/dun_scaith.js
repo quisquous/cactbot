@@ -194,7 +194,7 @@
       // https://xivapi.com/Status/1137
       id: 'Dun Scaith Debilitator Fire',
       regex: Regexes.gainsEffect({ effect: 'Fire Resistance Down Ii', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Feuerresistenz - (Stark)', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Feuerresistenz - \(Stark\)', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Résistance Au Feu Réduite+', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '火属性耐性低下[強]', capture: false }),
       regexCn: Regexes.gainsEffect({ effect: '火属性耐性大幅降低', capture: false }),
@@ -208,7 +208,7 @@
       // https://xivapi.com/Status/1157
       id: 'Dun Scaith Debilitator Water',
       regex: Regexes.gainsEffect({ effect: 'Water Resistance Down Ii', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - (Stark)', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - \(Stark\)', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Résistance À L\'Eau Réduite+', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '水属性耐性低下［強］', capture: false }),
       regexCn: Regexes.gainsEffect({ effect: '水属性耐性大幅降低', capture: false }),
@@ -247,12 +247,12 @@
     },
     {
       id: 'Dun Scaith Prey Markers',
-      regex: Regexes.gainsEffect({ effect: 'Prey', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '표식', capture: false }),
+      regex: Regexes.gainsEffect({ effect: 'Prey', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '표식', capture: true }),
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
