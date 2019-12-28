@@ -59,10 +59,12 @@
     },
     {
       id: 'T7 Voice',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Voice from .* for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Stimme Der Verwünschung from .* for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Voix Du Maléfice from .* for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の声 from .* for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Voice', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Stimme Der Verwünschung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Voix Du Maléfice', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の声', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之声', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 목소리', capture: true }),
       delaySeconds: function(data, matches) {
         return matches[2] - 3;
       },
@@ -75,10 +77,12 @@
     },
     {
       id: 'T7 Shriek',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침', capture: true }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
@@ -97,10 +101,12 @@
     },
     {
       id: 'T7 Shriek Reminder',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침', capture: true }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
@@ -116,17 +122,17 @@
     },
     {
       id: 'T7 Phase 2',
-      regex: /:Melusine HP at 79%/,
+      regex: / :Melusine HP at 79%/,
       sound: 'Long',
     },
     {
       id: 'T7 Phase 3',
-      regex: /:Melusine HP at 59%/,
+      regex: / :Melusine HP at 59%/,
       sound: 'Long',
     },
     {
       id: 'T7 Phase 4',
-      regex: /:Melusine HP at 34%/,
+      regex: / :Melusine HP at 34%/,
       sound: 'Long',
     },
     {
@@ -232,3 +238,6 @@
     },
   ],
 }];
+
+
+

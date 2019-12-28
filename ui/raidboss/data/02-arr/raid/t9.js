@@ -35,10 +35,12 @@
   triggers: [
     {
       id: 'T9 Raven Blight You',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pestschwinge from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bile De Rapace from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 凶鳥毒気 from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Raven Blight', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '흉조의 독', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -52,10 +54,12 @@
     },
     {
       id: 'T9 Raven Blight You',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pestschwinge from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bile De Rapace from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 凶鳥毒気 from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Raven Blight', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '흉조의 독', capture: true }),
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -105,7 +109,7 @@
     },
     {
       id: 'T9 Phase 2',
-      regex: /:Nael deus Darnus HP at 64%/,
+      regex: / :Nael deus Darnus HP at 64%/,
       sound: 'Long',
     },
     {
@@ -133,10 +137,12 @@
     },
     {
       id: 'T9 Garotte Twist Gain',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Garrote Twist/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Leicht Fixierbar/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sangle Accélérée/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拘束加速/,
+      regex: Regexes.gainsEffect({ effect: 'Garrote Twist', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Leicht Fixierbar', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Sangle Accélérée', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '拘束加速', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '拘束加速', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '구속 가속', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1] && !data.garotte;
       },
@@ -291,10 +297,10 @@
       id: 'T9 Thunder',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: /:Thunderwing:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /:サンダーウィング:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: / :Thunderwing:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexDe: / :Donnerschwinge:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexFr: / :Aile-de-foudre:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexJa: / :サンダーウィング:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -488,3 +494,6 @@
     },
   ],
 }];
+
+
+

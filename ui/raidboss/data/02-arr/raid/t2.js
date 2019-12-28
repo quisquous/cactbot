@@ -29,10 +29,12 @@
     },
     {
       id: 'T2 Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Allagan Rot/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Allagische Fäulnis/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture Allagoise/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of アラガンロット/,
+      regex: Regexes.gainsEffect({ effect: 'Allagan Rot', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Allagische Fäulnis', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Allagoise', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'アラガンロット', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '亚拉戈古病毒', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '알라그 부패', capture: true }),
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -50,10 +52,12 @@
     },
     {
       id: 'T2 Pass Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Allagan Rot/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Allagische Fäulnis/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture Allagoise/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of アラガンロット/,
+      regex: Regexes.gainsEffect({ effect: 'Allagan Rot', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Allagische Fäulnis', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Allagoise', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'アラガンロット', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '亚拉戈古病毒', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '알라그 부패', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },

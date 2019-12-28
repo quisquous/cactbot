@@ -57,7 +57,7 @@
     },
     {
       id: 'T5 Phase 2',
-      regex: /:Twintania HP at 85%/,
+      regex: / :Twintania HP at 85%/,
       sound: 'Long',
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       id: 'T5 Phase 3',
-      regex: /:Twintania HP at 55%/,
+      regex: / :Twintania HP at 55%/,
       sound: 'Long',
     },
     {
@@ -158,7 +158,7 @@
     },
     {
       id: 'T5 Phase 4',
-      regex: /:Twintania HP at 29%/,
+      regex: / :Twintania HP at 29%/,
       sound: 'Long',
     },
     {
@@ -255,3 +255,6 @@
     },
   ],
 }];
+
+
+

@@ -54,10 +54,12 @@
     },
     {
       id: 'T6 Honey On',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honey-Glazed/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honigsüß/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mielleux/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 蜂蜜/,
+      regex: Regexes.gainsEffect({ effect: 'Honey-Glazed', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Honigsüß', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Mielleux', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '蜂蜜', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '蜂蜜', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '벌꿀', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -257,3 +259,6 @@
     },
   ],
 }];
+
+
+

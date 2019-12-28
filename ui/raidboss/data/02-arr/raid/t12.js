@@ -96,10 +96,12 @@
     },
     {
       id: 'T12 Chain',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chain Of Purgatory/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kette Der Purgation/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Souffle Du Purgatoire/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 誘爆/,
+      regex: Regexes.gainsEffect({ effect: 'Chain Of Purgatory', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Kette Der Purgation', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Souffle Du Purgatoire', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '誘爆', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '引爆', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '유폭', capture: true }),
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -198,3 +200,6 @@
     },
   ],
 }];
+
+
+
