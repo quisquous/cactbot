@@ -92,12 +92,12 @@
       },
     },
     {
-      regex: Regexes.gainsEffect({ effect: 'Full Moon', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Vollmond', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Force De La Pleine Lune', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '満月流', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '满月流', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '보름달', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Full Moon', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Vollmond', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Force De La Pleine Lune', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ツクヨミ', effect: '満月流', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '月读', effect: '满月流', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '츠쿠요미', effect: '보름달', capture: false }),
       run: function(data) {
         let moonInOut = {
           en: 'Out',
@@ -109,12 +109,12 @@
       },
     },
     {
-      regex: Regexes.gainsEffect({ effect: 'New Moon', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Neumond', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Force De La Nouvelle Lune', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '新月流', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '新月流', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '그믐달', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'New Moon', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Neumond', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Force De La Nouvelle Lune', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ツクヨミ', effect: '新月流', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '月读', effect: '新月流', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '츠쿠요미', effect: '그믐달', capture: false }),
       run: function(data) {
         let moonInOut = {
           en: 'In',

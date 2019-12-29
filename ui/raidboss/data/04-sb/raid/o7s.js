@@ -38,12 +38,12 @@
       },
     },
     {
-      regex: Regexes.gainsEffect({ effect: 'Dadaluma Simulation', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Dadarma-Kampfprogramm', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Dadaluma', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'ダダルマー・プログラム', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '达达鲁玛模拟程序', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '다다루마 프로그램', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Dadaluma Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Dadarma-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Dadaluma', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ダダルマー・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '达达鲁玛模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '다다루마 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -55,12 +55,12 @@
       },
     },
     {
-      regex: Regexes.gainsEffect({ effect: 'Bibliotaph Simulation', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Bibliotaph-Kampfprogramm', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Bibliotaphe', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'ビブリオタフ・プログラム', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '永世珍本模拟程序', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '비블리오타프 프로그램', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Bibliotaph Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Bibliotaph-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Bibliotaphe', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ビブリオタフ・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '永世珍本模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '비블리오타프 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -72,18 +72,16 @@
       },
     },
     {
-      regex: Regexes.gainsEffect({ effect: 'Virus', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Virus', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Virus', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'ウィルス・プログラム', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '病毒模拟程序', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '바이러스 프로그램', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Virus', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Virus', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Virus', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ウィルス・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '病毒模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '바이러스 프로그램', capture: false }),
       run: function(data) {
         data.seenVirus = true;
       },
     },
-
-
     {
       id: 'O7S Magitek Ray',
       regex: / 14:2788:Guardian starts using Magitek Ray/,

@@ -55,11 +55,11 @@
     },
     {
       id: 'E1S Paradise Regained',
-      regex: Regexes.gainsEffect({ effect: 'Paradise Regained', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wiedergewonnenes Paradies', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Paradis Retrouvé', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'パラダイスリゲイン', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '复乐园', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Eden Prime', effect: 'Paradise Regained', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Prim-Eden', effect: 'Wiedergewonnenes Paradies', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Primo-Éden', effect: 'Paradis Retrouvé', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'エデン・プライム', effect: 'パラダイスリゲイン', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '至尊伊甸', effect: '复乐园', capture: false }),
       run: function(data) {
         data.paradise = true;
       },

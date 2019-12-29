@@ -559,7 +559,7 @@
       regexFr: Regexes.gainsEffect({ effect: 'Charge Négative' }),
       regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【－】' }),
       regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 负极' }),
-      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴[-]' }),
+      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴\\[-\\]' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -571,12 +571,12 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
-      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis \+' }),
+      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis \\+' }),
       regexDe: Regexes.gainsEffect({ effect: 'Positives Magnetfeld' }),
       regexFr: Regexes.gainsEffect({ effect: 'Charge positive' }),
       regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【＋】' }),
       regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 正极' }),
-      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴[\+]' }),
+      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴\\[\\+\\]' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
