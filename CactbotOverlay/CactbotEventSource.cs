@@ -606,7 +606,7 @@ namespace Cactbot {
         if (local_files == null) {
           // Second try a user directory relative to the dll.
           try {
-            config_dir = Path.GetFullPath(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
+            config_dir = Path.GetFullPath((new VersionChecker(this)).GetCactbotDirectory() + "\\user");
             local_files = GetLocalUserFiles(config_dir);
           } catch (Exception e) {
             // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
@@ -636,15 +636,27 @@ namespace Cactbot {
       watchers = new List<FileSystemWatcher>();
       var paths = new List<string>();
       
-      paths.Add(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
+      paths.Add((new VersionChecker(this)).GetCactbotDirectory());
       paths.Add(Config.UserConfigFile);
 
       foreach (var path in paths) {
-        if (path == "" || !Directory.Exists(path)) continue;
+        if (path == "" || path == null)
+          continue;
+
+        var watchDir = "";
+        try {
+          // Get canonical url for paths so that Directory.Exists will work properly.
+          watchDir = Path.GetFullPath(Path.GetDirectoryName(new Uri(path).LocalPath));
+        } catch {
+          continue;
+        }
+
+        if (!Directory.Exists(watchDir))
+          continue;
         
         var watcher = new FileSystemWatcher()
         {
-          Path = path,
+          Path = watchDir,
           NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
           IncludeSubdirectories = true,
         };
@@ -661,7 +673,7 @@ namespace Cactbot {
         watcher.EnableRaisingEvents = true;
         watchers.Add(watcher);
 
-        LogInfo("Started watching {0}", path);
+        LogInfo("Started watching {0}", watchDir);
       }
     }
 

@@ -27,8 +27,8 @@ class CactbotLanguageKo extends CactbotLanguage {
       Ewer: '살리아크의 물병', // 0x75e
       Spear: '할로네의 창', // 0x75d
       Spire: '비레고의 탑', // 0x75f
-      LadyOfCrowns: '점지: 여왕의 날개', // 0x755
-      LordOfCrowns: '점지: 왕의 검', // 0x754
+      LadyOfCrowns: '여왕의 날개', // 0x755
+      LordOfCrowns: '왕의 검', // 0x754
       Hypercharge: '과충전', // 0x2b0
       LeftEye: '용의 왼쪽 눈', // 0x4a0
       RightEye: '용의 오른쪽 눈', // 0x49f
@@ -80,13 +80,13 @@ class CactbotLanguageKo extends CactbotLanguage {
       return /:전투 시작!/;
     };
     this.countdownCancelRegex = function() {
-      return / 님이 초읽기를 취소했습니다./;
+      return / 님이 초읽기를 취소했습니다\./;
     };
     this.areaSealRegex = function() {
-      return /:(\y{Float})초 후에 (.*)(이|가) 봉쇄됩니다./;
+      return /:(\y{Float})초 후에 (.*)(이|가) 봉쇄됩니다\./;
     };
     this.areaUnsealRegex = function() {
-      return /:(.*)의 봉쇄가 해제되었습니다./;
+      return /:(.*)의 봉쇄가 해제되었습니다\./;
     };
   }
 }

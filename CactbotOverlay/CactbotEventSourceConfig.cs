@@ -25,11 +25,6 @@ namespace Cactbot {
       }
     }
 
-    [JsonIgnore]
-    public static string CactbotDllRelativeUserUri {
-      get { return CactbotAssemblyUri == null ? null : Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
-    }
-
     public CactbotEventSourceConfig() {
     }
 
