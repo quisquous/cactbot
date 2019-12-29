@@ -444,12 +444,12 @@
     },
     {
       id: 'Dun Scaith Noctoshield',
-      regex: Regexes.gainsEffect({ effect: 'Noctoshield', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Nachtschild', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Nocto-Bouclier', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'ノクトシールド', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '夜障', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '밤의 방패', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Diabolos', effect: 'Noctoshield', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Diabolos', effect: 'Nachtschild', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Diabolos', effect: 'Nocto-Bouclier', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ディアボロス', effect: 'ノクトシールド', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '迪亚波罗斯', effect: '夜障', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '디아볼로스', effect: '밤의 방패', capture: false }),
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
