@@ -11,11 +11,12 @@
   triggers: [
     // State
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Aether Rot from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ätherfäule from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エーテルロット from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 에테르 부패 from/,
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -37,11 +38,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Dadaluma Simulation/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Dadarma-Kampfprogramm/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Dadaluma/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ダダルマー・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 다다루마 프로그램/,
+      regex: Regexes.gainsEffect({ effect: 'Dadaluma Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Dadarma-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Dadaluma', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'ダダルマー・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '达达鲁玛模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '다다루마 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -53,11 +55,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Bibliotaph Simulation/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Bibliotaph-Kampfprogramm/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Bibliotaphe/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ビブリオタフ・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 비블리오타프 프로그램/,
+      regex: Regexes.gainsEffect({ effect: 'Bibliotaph Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Bibliotaph-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Bibliotaphe', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'ビブリオタフ・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '永世珍本模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '비블리오타프 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -69,11 +72,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Virus/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Virus/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Virus/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ウィルス・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 바이러스 프로그램/,
+      regex: Regexes.gainsEffect({ effect: 'Virus', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Virus', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Virus', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'ウィルス・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '病毒模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '바이러스 프로그램', capture: false }),
       run: function(data) {
         data.seenVirus = true;
       },
@@ -236,11 +240,12 @@
     },
     {
       id: 'O7S Searing Wind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Searing Wind/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gluthitze/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Fournaise/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 灼熱/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 작열/,
+      regex: Regexes.gainsEffect({ effect: 'Searing Wind', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gluthitze', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Fournaise', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '灼熱', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '灼热', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '작열', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -261,11 +266,12 @@
     },
     {
       id: 'O7S Abandonment',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Abandonment/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verlassen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Isolement/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 孤独感/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 고독감/,
+      regex: Regexes.gainsEffect({ effect: 'Abandonment', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verlassen', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Isolement', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '孤独感', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '孤独感', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '고독감', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -286,11 +292,12 @@
     },
     {
       id: 'O7S Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Aether Rot from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ätherfäule from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エーテルロット from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 에테르 부패 from/,
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패', capture: true }),
       infoText: function(data, matches) {
         if (data.me == matches[1]) {
           return {

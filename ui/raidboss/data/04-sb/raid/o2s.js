@@ -29,10 +29,12 @@
     },
     {
       id: 'O2S Levitation',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Levitation from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Levitation from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Lévitation from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レビテト from/,
+      regex: Regexes.gainsEffect({ effect: 'Levitation', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Levitation', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Lévitation', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'レビテト', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '浮空', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '레비테트', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -116,10 +118,12 @@
     },
     {
       id: 'O2S Elevated',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Elevated from/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Erhöht from/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Élévation from/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 高度固定：高 from/,
+      regex: Regexes.gainsEffect({ effect: 'Elevated', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Erhöht', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Élévation', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '高度固定：高', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '固定高位', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '고도 고정: 위', capture: false }),
       infoText: function(data) {
         if (!data.role.startsWith('dps')) {
           return {
@@ -208,10 +212,12 @@
     },
     {
       id: 'O2S Unstable Gravity',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unstable Gravity from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gravité Instable from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of グラビティバースト from/,
+      regex: Regexes.gainsEffect({ effect: 'Unstable Gravity', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schwerkraftschwankung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Gravité Instable', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'グラビティバースト', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '重力爆发', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '중력 폭발', capture: true }),
       delaySeconds: 9,
       condition: function(data, matches) {
         return matches[1] == data.me;
@@ -227,10 +233,12 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Versinkend from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Enfoncement from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 沈下 from/,
+      regex: Regexes.gainsEffect({ effect: '6 Fulms Under', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Versinkend', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '沈下', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '下陷', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '침하', capture: false }),
       delaySeconds: 5,
       infoText: function(data) {
         if (data.levitating) {

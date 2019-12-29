@@ -179,10 +179,12 @@
     },
     {
       id: 'O3S Right Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Right Face from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Rechts from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Virage À Droite from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：右 from/,
+      regex: Regexes.gainsEffect({ effect: 'Right Face', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rechts', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Droite', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：右', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：右', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 우', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -194,10 +196,12 @@
     },
     {
       id: 'O3S Forward March',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forward March from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Vorwärts from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Avancer from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：前 from/,
+      regex: Regexes.gainsEffect({ effect: 'Forward March', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Vorwärts', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Avancer', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：前', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：前', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 전', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -209,10 +213,12 @@
     },
     {
       id: 'O3S Left Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Left Face from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Links from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Virage À Gauche from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：左 from/,
+      regex: Regexes.gainsEffect({ effect: 'Left Face', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Links', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Gauche', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：左', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：左', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 좌', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -224,10 +230,12 @@
     },
     {
       id: 'O3S About Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of About Face from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Rückwärts from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Reculer from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：後 from/,
+      regex: Regexes.gainsEffect({ effect: 'About Face', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rückwärts', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Reculer', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：後', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：后', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 후', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

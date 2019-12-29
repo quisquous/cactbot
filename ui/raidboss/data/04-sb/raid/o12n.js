@@ -91,10 +91,12 @@
     },
     {
       id: 'O12N Local Resonance',
-      regex: / 1A:\y{ObjectId}:Omega gains the effect of Local Resonance from/,
-      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Nah from/,
-      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Proximité from/,
-      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ニアー from/,
+      regex: Regexes.gainsEffect({ effect: 'Local Resonance', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Resonanzprogramm: Nah', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme De Résonance: Proximité', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'レゾナンスプログラム：ニアー', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '共鸣程序：近', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '공명 프로그램: 근거리', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -140,10 +142,12 @@
     },
     {
       id: 'O12N Packet Filter F',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter F from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem W from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur F from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムF from/,
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter F', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序F', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -155,10 +159,12 @@
     },
     {
       id: 'O12N Packet Filter M',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter M from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem M from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur M from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムM from/,
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter M', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序M', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },

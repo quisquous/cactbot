@@ -108,11 +108,12 @@
     },
     {
       id: 'O6S Last Kiss',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Last Kiss/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Letzter Kuss/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Baiser Fatal/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の口づけ/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 입맞춤/,
+      regex: Regexes.gainsEffect({ effect: 'Last Kiss', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Letzter Kuss', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Baiser Fatal', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '死の口づけ', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡之吻', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 입맞춤', capture: true }),
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
