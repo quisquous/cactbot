@@ -7,7 +7,7 @@ UserConfig.registerOptions('radar', {
       name: {
         en: 'Minimum distance to detect mobs (yalms)',
         fr: 'Distance minimale pour détection des mobs (yalms)',
-        cn: '探测目标的最小距离（米）',
+        cn: '探测目标最小距离（米）',
       },
       type: 'float',
       default: 0,
