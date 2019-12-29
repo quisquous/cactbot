@@ -48,6 +48,7 @@ let UserConfig = {
       if (localFiles) {
         if (jsFile in localFiles) {
           try {
+            console.log('local user file: ' + basePath + '\\' + jsFile);
             eval(localFiles[jsFile]);
           } catch (e) {
             // Be very visible for users.
@@ -62,6 +63,7 @@ let UserConfig = {
         this.handleSkin(Options.Skin);
 
         if (cssFile in localFiles) {
+          console.log('local user file: ' + basePath + '\\' + cssFile);
           let userCssText = document.createElement('style');
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
@@ -69,12 +71,16 @@ let UserConfig = {
       } else if (basePath) {
         if (basePath.slice(-1) != '/')
           basePath += '/';
-        this.appendJSLink(basePath + jsFile);
+        let jsUrl = basePath + jsFile;
+        console.log('remote user file: ' + jsUrl);
+        this.appendJSLink(jsUrl);
 
         // See note above in localFiles case about skin load ordering.
         this.handleSkin(Options.Skin);
 
-        this.appendCSSLink(basePath + cssFile);
+        let cssUrl = basePath + cssFile;
+        console.log('remote user file: ' + cssUrl);
+        this.appendCSSLink(cssUrl);
       }
 
       // Post this callback so that the js and css can be executed first.
