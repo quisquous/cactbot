@@ -91,12 +91,12 @@
     },
     {
       id: 'O12N Local Resonance',
-      regex: Regexes.gainsEffect({ effect: 'Local Resonance', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Resonanzprogramm: Nah', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme De Résonance: Proximité', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'レゾナンスプログラム：ニアー', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '共鸣程序：近', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '공명 프로그램: 근거리', capture: false }),
+      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Local Resonance', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Nah', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Proximité', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ニアー', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：近', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 근거리', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
