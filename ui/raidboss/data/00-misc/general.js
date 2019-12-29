@@ -169,7 +169,7 @@
       },
     },
     {
-      id: 'General Ready check',
+      id: 'General Ready Check',
       regex: Regexes.gameLog({ line: '(?:\y{Name} has initiated|You have commenced) a ready check\.', capture: false }),
       regexDe: Regexes.gameLog({ line: '(?:\y{Name} hat|Du hast) eine Bereitschaftsanfrage gestellt\.', capture: false }),
       regexFr: Regexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\.', capture: false }),
