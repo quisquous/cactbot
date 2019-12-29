@@ -54,14 +54,14 @@
     },
     {
       id: 'T6 Honey On',
-      regex: Regexes.gainsEffect({ effect: 'Honey-Glazed', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Honigsüß', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Mielleux', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '蜂蜜', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '蜂蜜', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '벌꿀', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Honey-Glazed' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Honigsüß' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Mielleux' }),
+      regexJa: Regexes.gainsEffect({ effect: '蜂蜜' }),
+      regexCn: Regexes.gainsEffect({ effect: '蜂蜜' }),
+      regexKo: Regexes.gainsEffect({ effect: '벌꿀' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.honey = true;

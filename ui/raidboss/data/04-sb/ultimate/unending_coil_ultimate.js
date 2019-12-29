@@ -11,14 +11,14 @@
   triggers: [
     // --- State ---
     {
-      regex: Regexes.gainsEffect({ effect: 'Firescorched', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'ファイアホーン', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '火角', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '화염뿔', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Firescorched' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ファイアホーン' }),
+      regexCn: Regexes.gainsEffect({ effect: '火角' }),
+      regexKo: Regexes.gainsEffect({ effect: '화염뿔' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.fireDebuff = true;
@@ -38,14 +38,14 @@
       },
     },
     {
-      regex: Regexes.gainsEffect({ effect: 'Icebitten', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Eisklaue', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'アイスクロウ', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '冰爪', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '얼음발톱', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Icebitten' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Eisklaue' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace' }),
+      regexJa: Regexes.gainsEffect({ effect: 'アイスクロウ' }),
+      regexCn: Regexes.gainsEffect({ effect: '冰爪' }),
+      regexKo: Regexes.gainsEffect({ effect: '얼음발톱' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.iceDebuff = true;
@@ -660,33 +660,33 @@
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Doom' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         if (matches[2] > 1000)
           return false;
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
       suppressSeconds: 20,
       durationSeconds: function(data, matches) {
-        if (parseFloat(matches[2]) <= 6)
+        if (parseFloat(matches.duration) <= 6)
           return 3;
 
-        if (parseFloat(matches[2]) <= 10)
+        if (parseFloat(matches.duration) <= 10)
           return 6;
 
         return 9;
       },
       alarmText: function(data, matches) {
-        if (parseFloat(matches[2]) <= 6) {
+        if (parseFloat(matches.duration) <= 6) {
           return {
             en: 'Doom #1 on YOU',
             fr: 'Glas #1 sur VOUS',
@@ -695,7 +695,7 @@
             cn: '死宣一号点名',
           };
         }
-        if (parseFloat(matches[2]) <= 10) {
+        if (parseFloat(matches.duration) <= 10) {
           return {
             en: 'Doom #2 on YOU',
             fr: 'Glas #2 sur VOUS',
@@ -713,10 +713,10 @@
         };
       },
       tts: function(data, matches) {
-        if (parseFloat(matches[2]) <= 6)
+        if (parseFloat(matches.duration) <= 6)
           return '1';
 
-        if (parseFloat(matches[2]) <= 10)
+        if (parseFloat(matches.duration) <= 10)
           return '2';
 
         return '3';
@@ -724,23 +724,23 @@
     },
     {
       // Doom tracking init.
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Doom' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
-        return matches[2] < 1000;
+        return matches.duration < 1000;
       },
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         let order = null;
-        if (parseFloat(matches[2]) < 9)
+        if (parseFloat(matches.duration) < 9)
           order = 0;
-        else if (parseFloat(matches[2]) < 14)
+        else if (parseFloat(matches.duration) < 14)
           order = 1;
         else
           order = 2;
@@ -748,7 +748,7 @@
         // FIXME: temporary workaround for multiple gains effects messages.
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
         if (order !== null && data.dooms[order] === null)
-          data.dooms[order] = matches[1];
+          data.dooms[order] = matches.target;
       },
     },
     {

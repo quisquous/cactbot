@@ -600,19 +600,19 @@
     },
     { // Forked Lightning - Don't Stack.
       id: 'O4S2 Forked Lightning',
-      regex: Regexes.gainsEffect({ effect: 'Forked Lightning', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '叉形闪电', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '갈래 번개', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
+      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
+      regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
+      regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
       delaySeconds: 1,
       alertText: {
         en: 'Forked Lightning: Don\'t Stack',
         de: 'Gabelblitz: Nicht stacken',
       },
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       tts: {
         en: 'lightning get out',
@@ -621,17 +621,17 @@
     },
     { // Acceleration Bomb
       id: 'O4S2 Acceleration Bomb',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
+      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
+      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
+      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 4;
+        return parseFloat(matches.duration) - 4;
       }, // 4 second warning.
       alarmText: function(data) {
         if (data.phase == 'omega') {
@@ -648,14 +648,14 @@
     },
     {
       id: 'O4S2 Acceleration Bomb Delta',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
+      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
+      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
+      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
       condition: function(data, matches) {
-        return matches[1] == data.me && data.phase == 'delta';
+        return matches.target == data.me && data.phase == 'delta';
       },
       infoText: {
         en: 'Acceleration Bomb',
@@ -668,17 +668,17 @@
     },
     { // Shriek (Omega)
       id: 'O4S2 Omega Shriek',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       condition: function(data, matches) {
-        return matches[1] == data.me && data.phase == 'omega';
+        return matches.target == data.me && data.phase == 'omega';
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 5;
+        return parseFloat(matches.duration) - 5;
       },
       alertText: {
         en: 'shriek: get mid, look away',
@@ -691,26 +691,26 @@
     },
     { // Water Tracking (Delta/Omega)
       id: 'O4S2 Water',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
+      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       run: function(data, matches) {
-        data.waterHealer = matches[1];
+        data.waterHealer = matches.target;
       },
     },
     { // Water Me (Delta/Omega)
       id: 'O4S2 Water Me',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
+      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: function(data) {
         // Not clear where to tell the healer where to go on delta
@@ -734,14 +734,14 @@
     },
     { // Beyond Death Tank (Delta)
       id: 'O4S2 Beyond Death Delta Tank',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
+      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
       condition: function(data, matches) {
-        return data.phase == 'delta' && matches[1] == data.me && data.role == 'tank';
+        return data.phase == 'delta' && matches.target == data.me && data.role == 'tank';
       },
       delaySeconds: 0.5,
       infoText: function(data) {
@@ -765,14 +765,14 @@
     },
     { // Beyond Death (Delta)
       id: 'O4S2 Beyond Death Delta Initial',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
+      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
       condition: function(data, matches) {
-        return data.phase == 'delta' && matches[1] == data.me && data.role != 'tank';
+        return data.phase == 'delta' && matches.target == data.me && data.role != 'tank';
       },
       infoText: {
         en: 'Beyond Death',
@@ -785,14 +785,14 @@
     },
     { // Off Balance (Omega)
       id: 'O4S2 Off Balance Omega',
-      regex: Regexes.gainsEffect({ effect: 'Off-Balance', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gleichgewichtsverlust', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Perte D\'Équilibre', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'ノックバック確定', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '弱不禁风', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '밀쳐내기 확정', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Off-Balance' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gleichgewichtsverlust' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Perte D\'Équilibre' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ノックバック確定' }),
+      regexCn: Regexes.gainsEffect({ effect: '弱不禁风' }),
+      regexKo: Regexes.gainsEffect({ effect: '밀쳐내기 확정' }),
       condition: function(data, matches) {
-        return data.phase == 'omega' && matches[1] == data.me;
+        return data.phase == 'omega' && matches.target == data.me;
       },
       delaySeconds: 0.5,
       infoText: function(data) {

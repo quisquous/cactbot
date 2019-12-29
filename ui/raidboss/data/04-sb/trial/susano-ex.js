@@ -201,14 +201,14 @@
       regexCn: Regexes.gainsEffect({ effect: '祸泡', capture: true }),
       regexKo: Regexes.gainsEffect({ effect: '재앙거품', capture: true }),
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 3;
+        return parseFloat(matches.duration) - 3;
       },
       alertText: {
         en: 'Stop',
         de: 'Stopp',
       },
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
     },
   ],

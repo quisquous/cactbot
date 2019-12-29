@@ -35,17 +35,17 @@
   triggers: [
     {
       id: 'T9 Raven Blight You',
-      regex: Regexes.gainsEffect({ effect: 'Raven Blight', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '흉조의 독', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
+      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気' }),
+      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气' }),
+      regexKo: Regexes.gainsEffect({ effect: '흉조의 독' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: function(data, matches) {
-        return matches[2] - 5;
+        return matches.duration - 5;
       },
       durationSeconds: 5,
       alarmText: {
@@ -54,22 +54,22 @@
     },
     {
       id: 'T9 Raven Blight You',
-      regex: Regexes.gainsEffect({ effect: 'Raven Blight', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '흉조의 독', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
+      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気' }),
+      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气' }),
+      regexKo: Regexes.gainsEffect({ effect: '흉조의 독' }),
       condition: function(data, matches) {
-        return data.me != matches[1];
+        return data.me != matches.target;
       },
       delaySeconds: function(data, matches) {
-        return matches[2] - 5;
+        return matches.duration - 5;
       },
       durationSeconds: 5,
       infoText: function(data, matches) {
         return {
-          en: 'Blight on ' + data.ShortName(matches[1]),
+          en: 'Blight on ' + data.ShortName(matches.target),
         };
       },
     },
@@ -109,7 +109,7 @@
     },
     {
       id: 'T9 Phase 2',
-      regex: / :Nael deus Darnus HP at 64%/,
+      regex: /:Nael deus Darnus HP at 64%/,
       sound: 'Long',
     },
     {
@@ -137,14 +137,14 @@
     },
     {
       id: 'T9 Garotte Twist Gain',
-      regex: Regexes.gainsEffect({ effect: 'Garrote Twist', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Leicht Fixierbar', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Sangle Accélérée', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '拘束加速', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '拘束加速', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '구속 가속', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Garrote Twist' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Leicht Fixierbar' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Sangle Accélérée' }),
+      regexJa: Regexes.gainsEffect({ effect: '拘束加速' }),
+      regexCn: Regexes.gainsEffect({ effect: '拘束加速' }),
+      regexKo: Regexes.gainsEffect({ effect: '구속 가속' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && !data.garotte;
+        return data.me == matches.target && !data.garotte;
       },
       infoText: {
         en: 'Garotte on YOU',
@@ -297,10 +297,10 @@
       id: 'T9 Thunder',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: / :Thunderwing:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / :Donnerschwinge:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / :Aile-de-foudre:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / :サンダーウィング:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: /:Thunderwing:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexDe: /:Donnerschwinge:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexFr: /:Aile-de-foudre:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regexJa: /:サンダーウィング:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },

@@ -216,14 +216,14 @@
     },
     {
       id: 'O9S Entropy Spread',
-      regex: Regexes.gainsEffect({ effect: 'Entropy', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の炎', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之炎', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Entropy' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の炎' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之炎' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       preRun: function(data) {
         data.entropyCount = data.entropyCount || 0;
@@ -232,8 +232,8 @@
       delaySeconds: function(data, matches) {
         // Warn dps earlier to stack.
         if (data.role != 'tank' && data.role != 'healer' && data.entropyCount == 2)
-          return parseFloat(matches[2]) - 12;
-        return parseFloat(matches[2]) - 5;
+          return parseFloat(matches.duration) - 12;
+        return parseFloat(matches.duration) - 5;
       },
       alertText: function(data) {
         if (data.phaseType == 'enrage' || data.phaseType == 'orb' || data.entropyCount == 1) {
@@ -269,19 +269,19 @@
     },
     {
       id: 'O9S Entropy Avoid Hit',
-      regex: Regexes.gainsEffect({ effect: 'Entropy', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の炎', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之炎', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Entropy' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の炎' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之炎' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불' }),
       condition: function(data, matches) {
-        return matches[1] == data.me && data.phaseType == 'fire';
+        return matches.target == data.me && data.phaseType == 'fire';
       },
       delaySeconds: function(data, matches) {
         // Folks get either the 24 second or the 10 second.
         // So, delay for the opposite minus 5.
-        let seconds = parseFloat(matches[2]);
+        let seconds = parseFloat(matches.duration);
         // Got 24 seconds (dps)
         if (seconds > 11)
           return 5;
@@ -438,14 +438,14 @@
     },
     {
       id: 'O9S Headwind',
-      regex: Regexes.gainsEffect({ effect: 'Headwind', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosböen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vent Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の風', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之风', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 바람', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Headwind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaosböen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vent Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の風' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之风' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 바람' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.wind = 'head';
@@ -453,14 +453,14 @@
     },
     {
       id: 'O9S Tailwind',
-      regex: Regexes.gainsEffect({ effect: 'Tailwind', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaossturm', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vent Contraire Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の逆風', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之逆风', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 역풍', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Tailwind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaossturm' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vent Contraire Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の逆風' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之逆风' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 역풍' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.wind = 'tail';
@@ -542,14 +542,14 @@
     },
     {
       id: 'O9S Primordial Crust',
-      regex: Regexes.gainsEffect({ effect: 'Primordial Crust', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaoserde', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の土', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之土', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Primordial Crust' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaoserde' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の土' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之土' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.phaseType != 'orb';
+        return data.me == matches.target && data.phaseType != 'orb';
       },
       infoText: {
         en: 'Die on next mechanic',
@@ -564,12 +564,12 @@
     },
     {
       // Primordial Crust Cleanup
-      regex: Regexes.gainsEffect({ effect: 'Primordial Crust', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaoserde', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の土', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之土', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Primordial Crust' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaoserde' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の土' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之土' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙' }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -604,18 +604,18 @@
     },
     {
       id: 'O9S Orb Entropy',
-      regex: Regexes.gainsEffect({ effect: 'Entropy', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の炎', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之炎', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Entropy' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の炎' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之炎' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불' }),
       condition: function(data, matches) {
-        return matches[1] != data.me && data.phaseType == 'orb';
+        return matches.target != data.me && data.phaseType == 'orb';
       },
       suppressSeconds: 10,
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 3;
+        return parseFloat(matches.duration) - 3;
       },
       alertText: function(data) {
         if (data.head == 'wind') {
@@ -634,17 +634,17 @@
     },
     {
       id: 'O9S Orb Dynamic Fluid',
-      regex: Regexes.gainsEffect({ effect: 'Dynamic Fluid', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosspritzer', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Du Chaos', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の水', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之水', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 물', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Dynamic Fluid' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Chaosspritzer' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Du Chaos' }),
+      regexJa: Regexes.gainsEffect({ effect: '混沌の水' }),
+      regexCn: Regexes.gainsEffect({ effect: '混沌之水' }),
+      regexKo: Regexes.gainsEffect({ effect: '혼돈의 물' }),
       condition: function(data, matches) {
-        return matches[1] == data.me && data.phaseType == 'orb';
+        return matches.target == data.me && data.phaseType == 'orb';
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 5;
+        return parseFloat(matches.duration) - 5;
       },
       infoText: {
         en: 'Hit DPS with Water',

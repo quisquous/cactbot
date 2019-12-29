@@ -170,14 +170,14 @@
     },
     {
       id: 'Hades Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Doom' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Cleanse Doom In Circle',

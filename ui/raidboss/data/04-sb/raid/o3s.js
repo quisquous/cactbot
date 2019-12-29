@@ -179,14 +179,14 @@
     },
     {
       id: 'O3S Right Face',
-      regex: Regexes.gainsEffect({ effect: 'Right Face', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rechts', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Droite', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：右', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：右', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 우', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Right Face' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rechts' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Droite' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：右' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：右' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 우' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -196,14 +196,14 @@
     },
     {
       id: 'O3S Forward March',
-      regex: Regexes.gainsEffect({ effect: 'Forward March', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Vorwärts', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Avancer', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：前', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：前', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 전', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Forward March' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Vorwärts' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Avancer' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：前' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：前' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 전' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -213,14 +213,14 @@
     },
     {
       id: 'O3S Left Face',
-      regex: Regexes.gainsEffect({ effect: 'Left Face', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Links', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Gauche', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：左', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：左', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 좌', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Left Face' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Links' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Gauche' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：左' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：左' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 좌' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -230,14 +230,14 @@
     },
     {
       id: 'O3S About Face',
-      regex: Regexes.gainsEffect({ effect: 'About Face', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rückwärts', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Reculer', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：後', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：后', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 후', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'About Face' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rückwärts' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Reculer' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：後' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：后' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 후' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {

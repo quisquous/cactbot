@@ -664,17 +664,17 @@
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
+      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
+      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
+      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 1;
+        return parseFloat(matches.duration) - 1;
       },
       alertText: {
         en: 'stop',

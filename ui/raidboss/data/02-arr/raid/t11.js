@@ -93,7 +93,7 @@
     },
     {
       id: 'T11 Phase 2',
-      regex: / :Kaliya HP at 60%/,
+      regex: /:Kaliya HP at 60%/,
       sound: 'Long',
       infoText: {
         en: 'Out of Middle',

@@ -294,12 +294,12 @@
     },
     {
       id: 'HadesEx Burning Brand',
-      regex: Regexes.gainsEffect({ effect: 'Burning Brand', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '火の烙印', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Burning Brand' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu' }),
+      regexJa: Regexes.gainsEffect({ effect: '火の烙印' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Attack Igeyorhm',
@@ -312,12 +312,12 @@
     },
     {
       id: 'HadesEx Freezing Brand',
-      regex: Regexes.gainsEffect({ effect: 'Freezing Brand', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '氷の烙印', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Freezing Brand' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace' }),
+      regexJa: Regexes.gainsEffect({ effect: '氷の烙印' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Attack Lahabrea',
@@ -394,15 +394,15 @@
     },
     {
       id: 'HadesEx Shriek',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       suppressSeconds: 2,
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[1]) - 2;
+        return parseFloat(matches.duration) - 2;
       },
       alarmText: {
         en: 'Look Away',
@@ -412,15 +412,15 @@
     },
     {
       id: 'HadesEx Beyond Death',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
+      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
       durationSeconds: 8,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Get Killed',
@@ -430,15 +430,15 @@
     },
     {
       id: 'HadesEx Ancient Circle',
-      regex: Regexes.gainsEffect({ effect: 'Ancient Circle', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Ancient Circle' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 5;
+        return parseFloat(matches.duration) - 5;
       },
       infoText: {
         en: 'Donut on YOU',
@@ -448,17 +448,17 @@
     },
     {
       id: 'HadesEx Forked Lightning',
-      regex: Regexes.gainsEffect({ effect: 'Forked Lightning', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '叉形闪电', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '갈래 번개', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
+      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
+      regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
+      regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 2;
+        return parseFloat(matches.duration) - 2;
       },
       alertText: {
         en: 'Stay Out',

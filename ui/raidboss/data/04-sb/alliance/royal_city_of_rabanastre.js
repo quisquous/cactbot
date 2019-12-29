@@ -24,14 +24,14 @@
     },
     {
       id: 'Rab Mateus Breathless Gain',
-      regex: Regexes.gainsEffect({ effect: 'Breathless', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Atemnot', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Suffocation', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '呼吸困難', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '呼吸困难', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '호흡곤란', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Breathless' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Atemnot' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Suffocation' }),
+      regexJa: Regexes.gainsEffect({ effect: '呼吸困難' }),
+      regexCn: Regexes.gainsEffect({ effect: '呼吸困难' }),
+      regexKo: Regexes.gainsEffect({ effect: '호흡곤란' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         if (data.breathless >= 7) {

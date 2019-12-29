@@ -62,7 +62,7 @@
     },
     {
       id: 'Gubal Hard Ferrofluid',
-      regex: / 1B:(\y{ObjectId}):(\y{Name}):....:....:(0030|0031): /,
+      regex: / 1B:(\y{ObjectId}):(\y{Name}):....:....:(0030|0031):/,
       condition: function(data, matches) {
         return data.me == matches[2] || matches[1].slice(0, 1) == '4';
       },
@@ -101,14 +101,14 @@
     },
     {
       id: 'Gubal Hard Sunseal',
-      regex: Regexes.gainsEffect({ effect: 'Sunseal', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sonnensiegel', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque Solaire', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '太陽の刻印', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '太阳刻印', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '태양의 각인', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Sunseal' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sonnensiegel' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque Solaire' }),
+      regexJa: Regexes.gainsEffect({ effect: '太陽の刻印' }),
+      regexCn: Regexes.gainsEffect({ effect: '太阳刻印' }),
+      regexKo: Regexes.gainsEffect({ effect: '태양의 각인' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in red',
@@ -117,14 +117,14 @@
     },
     {
       id: 'Gubal Hard Moonseal',
-      regex: Regexes.gainsEffect({ effect: 'Moonseal', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondsiegel', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque Lunaire', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '月の刻印', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '月亮刻印', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '달의 각인', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Moonseal' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondsiegel' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque Lunaire' }),
+      regexJa: Regexes.gainsEffect({ effect: '月の刻印' }),
+      regexCn: Regexes.gainsEffect({ effect: '月亮刻印' }),
+      regexKo: Regexes.gainsEffect({ effect: '달의 각인' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in blue',
@@ -180,8 +180,8 @@
     },
     {
       id: 'Gubal Hard Properties of Thunder',
-      regex: / 14:195A:Strix starts using On The Properties Of Thunder III/,
-      regexFr: / 14:195A:Strix starts using Des propriétés de Méga Foudre/,
+      regex: /14:195A:Strix starts using On The Properties Of Thunder III/,
+      regexFr: /14:195A:Strix starts using Des propriétés de Méga Foudre/,
       infoText: {
         en: 'Spread',
         fr: 'Dispersez-vous',

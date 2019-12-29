@@ -320,13 +320,13 @@
     },
     {
       id: 'E3S Surging Waters',
-      regex: Regexes.gainsEffect({ effect: 'Surging Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Erdrückung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Écrasantes', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '強圧の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '强压之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Surging Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Erdrückung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Écrasantes' }),
+      regexJa: Regexes.gainsEffect({ effect: '強圧の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '强压之兆' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Initial knockback on YOU',
@@ -340,16 +340,16 @@
       // TODO probably need to call out knockbacks later
       // TODO maybe tell other people about stacking for knockbacks
       id: 'E3S Sundering Waters',
-      regex: Regexes.gainsEffect({ effect: 'Sundering Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Zerstörung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Fracturantes', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '断絶の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '断绝之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Sundering Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Zerstörung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Fracturantes' }),
+      regexJa: Regexes.gainsEffect({ effect: '断絶の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '断绝之兆' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: function(data, matches) {
-        let seconds = matches[2];
+        let seconds = matches.duration;
         if (seconds <= 8) {
           return {
             en: 'Knockback on YOU',
@@ -361,7 +361,7 @@
         }
       },
       infoText: function(data, matches) {
-        let seconds = matches[2];
+        let seconds = matches.duration;
         if (seconds <= 8)
           return;
         if (seconds <= 21) {
@@ -385,13 +385,13 @@
     {
       // 29 seconds
       id: 'E3S Scouring Waters',
-      regex: Regexes.gainsEffect({ effect: 'Scouring Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '暴风之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
+      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '暴风之兆' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Defamation',
@@ -403,13 +403,13 @@
     },
     {
       id: 'E3S Scouring Waters',
-      regex: Regexes.gainsEffect({ effect: 'Scouring Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '暴风之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
+      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '暴风之兆' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 22,
       infoText: {
@@ -422,19 +422,19 @@
     },
     {
       id: 'E3S Smothering Waters',
-      regex: Regexes.gainsEffect({ effect: 'Smothering Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Ertränkung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Submergeantes', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '溺没の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '溺没之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Smothering Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Ertränkung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Submergeantes' }),
+      regexJa: Regexes.gainsEffect({ effect: '溺没の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '溺没之兆' }),
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
         // Everybody is in first stack, but tanks not in the second.
-        return parseFloat(matches[1]) > 15 || data.role != 'tank';
+        return parseFloat(matches.duration) > 15 || data.role != 'tank';
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[1]) - 3;
+        return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 1,
       alertText: {
@@ -447,13 +447,13 @@
     },
     {
       id: 'E3S Scouring Waters',
-      regex: Regexes.gainsEffect({ effect: 'Scouring Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '暴风之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
+      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '暴风之兆' }),
       condition: function(data, matches) {
-        return data.me != matches[1];
+        return data.me != matches.target;
       },
       delaySeconds: 25,
       infoText: {
@@ -466,13 +466,13 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '扩散之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes' }),
+      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '扩散之兆' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Tank Cone',
@@ -484,13 +484,13 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '扩散之兆', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes' }),
+      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し' }),
+      regexCn: Regexes.gainsEffect({ effect: '扩散之兆' }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'tank';
+        return data.me == matches.target || data.role == 'tank';
       },
       delaySeconds: 13,
       suppressSeconds: 1,

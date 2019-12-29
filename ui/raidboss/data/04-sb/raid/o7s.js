@@ -11,14 +11,14 @@
   triggers: [
     // State
     {
-      regex: Regexes.gainsEffect({ effect: 'Aether Rot', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '以太病毒', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '에테르 부패', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.rot = true;
@@ -240,14 +240,14 @@
     },
     {
       id: 'O7S Searing Wind',
-      regex: Regexes.gainsEffect({ effect: 'Searing Wind', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gluthitze', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Fournaise', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '灼熱', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '灼热', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '작열', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Searing Wind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gluthitze' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Fournaise' }),
+      regexJa: Regexes.gainsEffect({ effect: '灼熱' }),
+      regexCn: Regexes.gainsEffect({ effect: '灼热' }),
+      regexKo: Regexes.gainsEffect({ effect: '작열' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Searing Wind: go outside',
@@ -266,14 +266,14 @@
     },
     {
       id: 'O7S Abandonment',
-      regex: Regexes.gainsEffect({ effect: 'Abandonment', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verlassen', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Isolement', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '孤独感', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '孤独感', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '고독감', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Abandonment' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verlassen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Isolement' }),
+      regexJa: Regexes.gainsEffect({ effect: '孤独感' }),
+      regexCn: Regexes.gainsEffect({ effect: '孤独感' }),
+      regexKo: Regexes.gainsEffect({ effect: '고독감' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Abandonment: stay middle',
@@ -292,14 +292,14 @@
     },
     {
       id: 'O7S Rot',
-      regex: Regexes.gainsEffect({ effect: 'Aether Rot', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '以太病毒', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '에테르 부패', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Rot on you',
             de: 'Fäule auf DIR',
@@ -309,15 +309,15 @@
           };
         }
         return {
-          en: 'Rot on ' + data.ShortName(matches[1]),
-          de: 'Fäule auf ' + data.ShortName(matches[1]),
-          fr: 'Pourriture sur ' + data.ShortName(matches[1]),
-          ko: '에테르 → ' + data.ShortName(matches[1]),
-          ja: 'ロット on ' + data.ShortName(matches[1]),
+          en: 'Rot on ' + data.ShortName(matches.target),
+          de: 'Fäule auf ' + data.ShortName(matches.target),
+          fr: 'Pourriture sur ' + data.ShortName(matches.target),
+          ko: '에테르 → ' + data.ShortName(matches.target),
+          ja: 'ロット on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
 
         return {

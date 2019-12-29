@@ -29,21 +29,21 @@
     },
     {
       id: 'T2 Rot',
-      regex: Regexes.gainsEffect({ effect: 'Allagan Rot', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Allagische Fäulnis', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Allagoise', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'アラガンロット', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '亚拉戈古病毒', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '알라그 부패', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Allagan Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Allagische Fäulnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Allagoise' }),
+      regexJa: Regexes.gainsEffect({ effect: 'アラガンロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '亚拉戈古病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '알라그 부패' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Rot on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
             en: 'Rot on ' + data.ShortName(matches[1]),
           };
@@ -52,14 +52,14 @@
     },
     {
       id: 'T2 Pass Rot',
-      regex: Regexes.gainsEffect({ effect: 'Allagan Rot', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Allagische Fäulnis', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Allagoise', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'アラガンロット', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '亚拉戈古病毒', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '알라그 부패', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Allagan Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Allagische Fäulnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Allagoise' }),
+      regexJa: Regexes.gainsEffect({ effect: 'アラガンロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '亚拉戈古病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '알라그 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       preRun: function(data) {
         data.rot = true;

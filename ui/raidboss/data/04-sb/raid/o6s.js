@@ -108,16 +108,16 @@
     },
     {
       id: 'O6S Last Kiss',
-      regex: Regexes.gainsEffect({ effect: 'Last Kiss', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Letzter Kuss', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Baiser Fatal', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の口づけ', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡之吻', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 입맞춤', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Last Kiss' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Letzter Kuss' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Baiser Fatal' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の口づけ' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡之吻' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 입맞춤' }),
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
-        return data.me == matches[1] && data.lastKiss != data.me;
+        return data.me == matches.target && data.lastKiss != data.me;
       },
       alarmText: {
         en: 'Last Kiss on YOU',

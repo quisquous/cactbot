@@ -118,14 +118,14 @@
     },
     {
       id: 'UWU Ifrit Fetters',
-      regex: Regexes.gainsEffect({ effect: 'Infernal Fetters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Infernofesseln', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Chaînes Infernales', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '炎獄の鎖', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '火狱之锁', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '염옥의 사슬', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Infernal Fetters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Infernofesseln' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Chaînes Infernales' }),
+      regexJa: Regexes.gainsEffect({ effect: '炎獄の鎖' }),
+      regexCn: Regexes.gainsEffect({ effect: '火狱之锁' }),
+      regexKo: Regexes.gainsEffect({ effect: '염옥의 사슬' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       suppressSeconds: 45,
       infoText: {

@@ -247,14 +247,14 @@
     },
     {
       id: 'Dun Scaith Prey Markers',
-      regex: Regexes.gainsEffect({ effect: 'Prey', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '표식', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Prey' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage' }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング' }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物' }),
+      regexKo: Regexes.gainsEffect({ effect: '표식' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Prey--Avoid party and keep moving',
           };

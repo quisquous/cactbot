@@ -29,14 +29,14 @@
     },
     {
       id: 'O2S Levitation',
-      regex: Regexes.gainsEffect({ effect: 'Levitation', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Levitation', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Lévitation', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'レビテト', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '浮空', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '레비테트', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Levitation' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Levitation' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Lévitation' }),
+      regexJa: Regexes.gainsEffect({ effect: 'レビテト' }),
+      regexCn: Regexes.gainsEffect({ effect: '浮空' }),
+      regexKo: Regexes.gainsEffect({ effect: '레비테트' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.levitating = true;
@@ -212,15 +212,15 @@
     },
     {
       id: 'O2S Unstable Gravity',
-      regex: Regexes.gainsEffect({ effect: 'Unstable Gravity', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schwerkraftschwankung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Gravité Instable', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'グラビティバースト', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '重力爆发', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '중력 폭발', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Unstable Gravity' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schwerkraftschwankung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Gravité Instable' }),
+      regexJa: Regexes.gainsEffect({ effect: 'グラビティバースト' }),
+      regexCn: Regexes.gainsEffect({ effect: '重力爆发' }),
+      regexKo: Regexes.gainsEffect({ effect: '중력 폭발' }),
       delaySeconds: 9,
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'Unstable Gravity: Elevate and outside stack',
@@ -233,12 +233,12 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: Regexes.gainsEffect({ effect: '6 Fulms Under', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Versinkend', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '沈下', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '下陷', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '침하', capture: true }),
+      regex: Regexes.gainsEffect({ effect: '6 Fulms Under' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Versinkend' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement' }),
+      regexJa: Regexes.gainsEffect({ effect: '沈下' }),
+      regexCn: Regexes.gainsEffect({ effect: '下陷' }),
+      regexKo: Regexes.gainsEffect({ effect: '침하' }),
       delaySeconds: 5,
       infoText: function(data) {
         if (data.levitating) {
@@ -257,7 +257,7 @@
         }
       },
       condition: function(data, matches) {
-        return !data.under && matches[1] == data.me;
+        return !data.under && matches.target == data.me;
       },
       tts: {
         en: 'float',

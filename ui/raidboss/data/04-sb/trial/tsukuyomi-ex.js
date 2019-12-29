@@ -226,14 +226,14 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
-      regex: Regexes.gainsEffect({ effect: 'Moonlit', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschein', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '満月下', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '满月下', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '보름달빛', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Moonlit' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschein' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune' }),
+      regexJa: Regexes.gainsEffect({ effect: '満月下' }),
+      regexCn: Regexes.gainsEffect({ effect: '满月下' }),
+      regexKo: Regexes.gainsEffect({ effect: '보름달빛' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
@@ -249,14 +249,14 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
-      regex: Regexes.gainsEffect({ effect: 'Moonlit', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschein', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '満月下', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '满月下', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '보름달빛', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Moonlit' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschein' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune' }),
+      regexJa: Regexes.gainsEffect({ effect: '満月下' }),
+      regexCn: Regexes.gainsEffect({ effect: '满月下' }),
+      regexKo: Regexes.gainsEffect({ effect: '보름달빛' }),
       condition: function(data, matches) {
-        return matches[1] == data.me && data.moonlitCount >= 4;
+        return matches.target == data.me && data.moonlitCount >= 4;
       },
       infoText: {
         en: 'Move to Black!',
@@ -267,14 +267,14 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
-      regex: Regexes.gainsEffect({ effect: 'Moonshadowed', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '新月下', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '新月下', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '그믐달빛', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Moonshadowed' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune' }),
+      regexJa: Regexes.gainsEffect({ effect: '新月下' }),
+      regexCn: Regexes.gainsEffect({ effect: '新月下' }),
+      regexKo: Regexes.gainsEffect({ effect: '그믐달빛' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       preRun: function(data) {
         // init at 3 so we can start at 4 stacks to give the initial instruction to move
@@ -290,14 +290,14 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
-      regex: Regexes.gainsEffect({ effect: 'Moonshadowed', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '新月下', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '新月下', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '그믐달빛', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Moonshadowed' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune' }),
+      regexJa: Regexes.gainsEffect({ effect: '新月下' }),
+      regexCn: Regexes.gainsEffect({ effect: '新月下' }),
+      regexKo: Regexes.gainsEffect({ effect: '그믐달빛' }),
       condition: function(data, matches) {
-        return matches[1] == data.me && data.moonshadowedCount >= 4;
+        return matches.target == data.me && data.moonshadowedCount >= 4;
       },
       infoText: {
         en: 'Move to White!',

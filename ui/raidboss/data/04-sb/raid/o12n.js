@@ -142,14 +142,14 @@
     },
     {
       id: 'O12N Packet Filter F',
-      regex: Regexes.gainsEffect({ effect: 'Packet Filter F', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '防护程序F', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter F' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF' }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序F' }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Attack Omega-M',
@@ -159,14 +159,14 @@
     },
     {
       id: 'O12N Packet Filter M',
-      regex: Regexes.gainsEffect({ effect: 'Packet Filter M', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '防护程序M', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter M' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM' }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序M' }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Attack Omega-F',

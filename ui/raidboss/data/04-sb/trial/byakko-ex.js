@@ -243,14 +243,14 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: Regexes.gainsEffect({ effect: 'Ominous Wind', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Unheilvoller Wind', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vent Mauvais', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '祟り風', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '妖风', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '불길한 바람', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Ominous Wind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Unheilvoller Wind' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vent Mauvais' }),
+      regexJa: Regexes.gainsEffect({ effect: '祟り風' }),
+      regexCn: Regexes.gainsEffect({ effect: '妖风' }),
+      regexKo: Regexes.gainsEffect({ effect: '불길한 바람' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Pink bubble',

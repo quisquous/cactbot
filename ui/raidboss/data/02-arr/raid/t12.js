@@ -96,14 +96,14 @@
     },
     {
       id: 'T12 Chain',
-      regex: Regexes.gainsEffect({ effect: 'Chain Of Purgatory', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Kette Der Purgation', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Souffle Du Purgatoire', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '誘爆', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '引爆', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '유폭', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Chain Of Purgatory' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Kette Der Purgation' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Souffle Du Purgatoire' }),
+      regexJa: Regexes.gainsEffect({ effect: '誘爆' }),
+      regexCn: Regexes.gainsEffect({ effect: '引爆' }),
+      regexKo: Regexes.gainsEffect({ effect: '유폭' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Chain on YOU',
             de: 'Kette auf DIR',
@@ -112,7 +112,7 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
             en: 'Chain on ' + data.ShortName(matches[1]),
             de: 'Kette auf ' + data.ShortName(matches[1]),
