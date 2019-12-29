@@ -359,7 +359,7 @@
         'Engage!': '전투 시작!',
       },
       'replaceText': {
-        'attack': '공격', 
+        'attack': '공격',
         'Vice [oO]f Vanity': '허영의 악덕',
         'Vice [oO]f Apathy': '냉담의 악덕',
         'Vice [aA]nd Virtue': '선과 악',
@@ -394,6 +394,6 @@
         'Fetters': 'Fetters',
         'Brink of Death': 'Brink of Death',
       },
-	  },
+    },
   ],
 }];
