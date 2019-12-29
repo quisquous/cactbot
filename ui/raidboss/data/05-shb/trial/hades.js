@@ -191,14 +191,14 @@
     },
     {
       id: 'Hades Doom',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死亡宣告/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 선고/,
+      regex: Regexes.gainsEffect({ effect: 'Doom' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Cleanse Doom In Circle',

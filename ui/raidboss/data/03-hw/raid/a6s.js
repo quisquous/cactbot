@@ -7,6 +7,11 @@
     {
       id: 'A6S Magic Vulnerability Gain',
       regex: Regexes.gainsEffect({ effect: 'Magic Vulnerability Up' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Erhöhte Magie-Verwundbarkeit' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité Magique Augmentée' }),
+      regexJa: Regexes.gainsEffect({ effect: '被魔法ダメージ増加' }),
+      regexCn: Regexes.gainsEffect({ effect: '魔法受伤加重' }),
+      regexKo: Regexes.gainsEffect({ effect: '받는 마법 피해량 증가' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -115,6 +120,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Biomathematik-Ebene 1' }),
       regexFr: Regexes.gainsEffect({ effect: 'Calcul de dénivelé 1' }),
       regexJa: Regexes.gainsEffect({ effect: '算術：ハイト1' }),
+      regexCn: Regexes.gainsEffect({ effect: '算术：高度1' }),
+      regexKo: Regexes.gainsEffect({ effect: '산술: 고도 1' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -128,6 +135,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Biomathematik-Ebene 2' }),
       regexFr: Regexes.gainsEffect({ effect: 'Calcul de dénivelé 2' }),
       regexJa: Regexes.gainsEffect({ effect: '算術：ハイト2' }),
+      regexCn: Regexes.gainsEffect({ effect: '算术：高度2' }),
+      regexKo: Regexes.gainsEffect({ effect: '산술: 고도 2' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -168,6 +177,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -183,6 +194,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -202,6 +215,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -217,6 +232,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },

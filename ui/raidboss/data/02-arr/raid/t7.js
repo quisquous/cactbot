@@ -59,15 +59,17 @@
     },
     {
       id: 'T7 Voice',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Voice from .* for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Stimme Der Verwünschung from .* for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Voix Du Maléfice from .* for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の声 from .* for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Voice' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Stimme Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Voix Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之声' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 목소리' }),
       delaySeconds: function(data, matches) {
-        return matches[2] - 3;
+        return matches.duration - 3;
       },
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Voice Soon',
@@ -75,36 +77,40 @@
     },
     {
       id: 'T7 Shriek',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Shriek on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Shriek on ' + data.ShortName(matches[1]),
+            en: 'Shriek on ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T7 Shriek Reminder',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Shriek Soon',
           };

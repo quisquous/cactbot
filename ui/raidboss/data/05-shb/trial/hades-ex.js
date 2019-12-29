@@ -294,12 +294,12 @@
     },
     {
       id: 'HadesEx Burning Brand',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Burning Brand/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandmal Des Feuers/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marque De Feu/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火の烙印/,
+      regex: Regexes.gainsEffect({ effect: 'Burning Brand' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu' }),
+      regexJa: Regexes.gainsEffect({ effect: '火の烙印' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Attack Igeyorhm',
@@ -312,12 +312,12 @@
     },
     {
       id: 'HadesEx Freezing Brand',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Freezing Brand/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandmal Des Eises/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marque De Glace/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 氷の烙印/,
+      regex: Regexes.gainsEffect({ effect: 'Freezing Brand' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace' }),
+      regexJa: Regexes.gainsEffect({ effect: '氷の烙印' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Attack Lahabrea',
@@ -376,10 +376,12 @@
     },
     {
       id: 'HadesEx Doom',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Verhängnis from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Glas from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死の宣告 from (?:.*?) for (?:\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';
@@ -392,13 +394,15 @@
     },
     {
       id: 'HadesEx Shriek',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Cursed Shriek from (?:.*?) for (\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Schrei Der Verwünschung from (?:.*?) for (\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Cri Du Maléfice from (?:.*?) for (\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 呪詛の叫声 from (?:.*?) for (\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       suppressSeconds: 2,
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[1]) - 2;
+        return parseFloat(matches.duration) - 2;
       },
       alarmText: {
         en: 'Look Away',
@@ -408,13 +412,15 @@
     },
     {
       id: 'HadesEx Beyond Death',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from (?:.*?) for (?:\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
+      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
       durationSeconds: 8,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Get Killed',
@@ -424,15 +430,15 @@
     },
     {
       id: 'HadesEx Ancient Circle',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ancient Circle from (?:.*?) for (\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Orbis Antiquus from (?:.*?) for (\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cercle Ancien from (?:.*?) for (\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンシェントリング from (?:.*?) for (\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Ancient Circle' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 5;
+        return parseFloat(matches.duration) - 5;
       },
       infoText: {
         en: 'Donut on YOU',
@@ -442,15 +448,17 @@
     },
     {
       id: 'HadesEx Forked Lightning',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from (?:.*?) for (\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gabelblitz from (?:.*?) for (\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Éclair Ramifié from (?:.*?) for (\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of フォークライトニング from (?:.*?) for (\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
+      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
+      regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
+      regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: function(data, matches) {
-        return parseFloat(matches[2]) - 2;
+        return parseFloat(matches.duration) - 2;
       },
       alertText: {
         en: 'Stay Out',

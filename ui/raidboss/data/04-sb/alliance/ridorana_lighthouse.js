@@ -196,12 +196,14 @@
     },
     {
       id: 'Ridorana Belias Hand of Time',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Burns from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandwunde from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brûlure from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火傷 from/,
+      regex: Regexes.gainsEffect({ effect: 'Burns' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandwunde' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Brûlure' }),
+      regexJa: Regexes.gainsEffect({ effect: '火傷' }),
+      regexCn: Regexes.gainsEffect({ effect: '火伤' }),
+      regexKo: Regexes.gainsEffect({ effect: '화상' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alertText: {
         en: 'Stretch Tether Outside',
@@ -359,12 +361,14 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Hp Penalty/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Malus De PV\+/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
+      regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
+      regexJa: Regexes.gainsEffect({ effect: '最大Ｈｐダウン' }),
+      regexCn: Regexes.gainsEffect({ effect: '最大体力减少' }),
+      regexKo: Regexes.gainsEffect({ effect: '최대 Hp 감소' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       preRun: function(data) {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
@@ -376,12 +380,14 @@
       // trigger happens.  However, by t=1 second in testing, standing a circle
       // will apply.  So, hope for the best by testing at t=0.5 as well, but not
       // overwriting any results from t=0 if that was valid.
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Hp Penalty/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Malus De Pv\+/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
+      regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
+      regexJa: Regexes.gainsEffect({ effect: '最大Ｈｐダウン' }),
+      regexCn: Regexes.gainsEffect({ effect: '最大体力减少' }),
+      regexKo: Regexes.gainsEffect({ effect: '최대 Hp 감소' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       delaySeconds: 0.5,
       preRun: function(data) {
@@ -468,12 +474,14 @@
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (?:\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (?:\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (?:\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (?:\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
+      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
+      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
+      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       delaySeconds: 2,
       alarmText: {
@@ -546,12 +554,14 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Magnetic Lysis - from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Charge Négative from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
+      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis -' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Negatives Magnetfeld' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Charge Négative' }),
+      regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【－】' }),
+      regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 负极' }),
+      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴\\[-\\]' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       infoText: {
         en: 'Move to Postive',
@@ -561,12 +571,14 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Magnetic Lysis \+ from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Positives Magnetfeld from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Charge Positive from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
+      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis \\+' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Positives Magnetfeld' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Charge positive' }),
+      regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【＋】' }),
+      regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 正极' }),
+      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴\\[\\+\\]' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       infoText: {
         en: 'Move to Negative',

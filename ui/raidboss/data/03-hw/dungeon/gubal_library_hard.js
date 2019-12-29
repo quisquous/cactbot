@@ -101,9 +101,14 @@
     },
     {
       id: 'Gubal Hard Sunseal',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sunseal/,
+      regex: Regexes.gainsEffect({ effect: 'Sunseal' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sonnensiegel' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque Solaire' }),
+      regexJa: Regexes.gainsEffect({ effect: '太陽の刻印' }),
+      regexCn: Regexes.gainsEffect({ effect: '太阳刻印' }),
+      regexKo: Regexes.gainsEffect({ effect: '태양의 각인' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in red',
@@ -112,9 +117,14 @@
     },
     {
       id: 'Gubal Hard Moonseal',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonseal/,
+      regex: Regexes.gainsEffect({ effect: 'Moonseal' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondsiegel' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque Lunaire' }),
+      regexJa: Regexes.gainsEffect({ effect: '月の刻印' }),
+      regexCn: Regexes.gainsEffect({ effect: '月亮刻印' }),
+      regexKo: Regexes.gainsEffect({ effect: '달의 각인' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in blue',
@@ -191,8 +201,8 @@
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',
-      regex: /14:195D:Behemoth Ward starts using Ecliptic Meteor/,
-      regexFr: /14:195D:Béhémoth [Cc]onjuré starts using Météore [éÉ]cliptique/,
+      regex: / 14:195D:Behemoth Ward starts using Ecliptic Meteor/,
+      regexFr: / 14:195D:Béhémoth [Cc]onjuré starts using Météore [éÉ]cliptique/,
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
       alertText: {
         en: 'Hide behind boulder',
