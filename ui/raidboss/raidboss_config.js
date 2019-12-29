@@ -70,44 +70,44 @@ let kDirectoryToCategory = {
 let kTriggerOptions = {
   default: {
     label: {
-      en: 'âœ” Defaults',
-      fr: 'âœ” Défaut',
-      cn: 'âœ” 默认',
+      en: '✔ Defaults',
+      fr: '✔ Défaut',
+      cn: '✔ 默认',
     },
   },
   textAndSound: {
     label: {
-      en: 'ðŸ†™ðŸ”Š Text and Sound',
-      fr: 'ðŸ†™ðŸ”Š Textes et sons',
-      cn: 'ðŸ†™ðŸ”Š 文字和语音',
+      en: '🆙🔊 Text and Sound',
+      fr: '🆙🔊 Textes et sons',
+      cn: '🆙🔊 文字和语音',
     },
   },
   ttsAndText: {
     label: {
-      en: 'ðŸ†™ðŸ’¬ Text and TTS',
-      fr: 'ðŸ†™ðŸ’¬ Textes et TTS',
-      cn: 'ðŸ†™ðŸ’¬ 文字和TTS',
+      en: '🆙💬 Text and TTS',
+      fr: '🆙💬 Textes et TTS',
+      cn: '🆙💬 文字和TTS',
     },
   },
   ttsOnly: {
     label: {
-      en: 'ðŸ’¬ TTS Only',
-      fr: 'ðŸ’¬ TTS Seulement',
-      cn: 'ðŸ’¬ 只使用TTS',
+      en: '💬 TTS Only',
+      fr: '💬 TTS Seulement',
+      cn: '💬 只使用TTS',
     },
   },
   textOnly: {
     label: {
-      en: 'ðŸ†™ Text Only',
-      fr: 'ðŸ†™ Texte seulement',
-      cn: 'ðŸ†™ 只使用文字',
+      en: '🆙 Text Only',
+      fr: '🆙 Texte seulement',
+      cn: '🆙 只使用文字',
     },
   },
   disabled: {
     label: {
-      en: 'âŒ Disabled',
-      fr: 'âŒ Désactivé',
-      cn: 'âŒ 禁用',
+      en: '❌ Disabled',
+      fr: '❌ Désactivé',
+      cn: '❌ 禁用',
     },
   },
 };
@@ -711,22 +711,22 @@ UserConfig.registerOptions('raidboss', {
       type: 'select',
       options: {
         en: {
-          'ðŸ†™ðŸ”Š Text and Sound': 'textAndSound',
-          'ðŸ†™ðŸ’¬ Text and TTS': 'ttsAndText',
-          'ðŸ’¬ TTS Only': 'ttsOnly',
-          'ðŸ†™ Text Only': 'textOnly',
+          '🆙🔊 Text and Sound': 'textAndSound',
+          '🆙💬 Text and TTS': 'ttsAndText',
+          '💬 TTS Only': 'ttsOnly',
+          '🆙 Text Only': 'textOnly',
         },
         fr: {
-          'ðŸ†™ðŸ”Š Texte et son': 'textAndSound',
-          'ðŸ†™ðŸ’¬ Texte et TTS': 'ttsAndText',
-          'ðŸ’¬ TTS seulement': 'ttsOnly',
-          'ðŸ†™ Text seulement': 'textOnly',
+          '🆙🔊 Texte et son': 'textAndSound',
+          '🆙💬 Texte et TTS': 'ttsAndText',
+          '💬 TTS seulement': 'ttsOnly',
+          '🆙 Text seulement': 'textOnly',
         },
         cn: {
-          'ðŸ†™ðŸ”Š 文字和声音': 'textAndSound',
-          'ðŸ†™ðŸ’¬ 文字和TTS': 'ttsAndText',
-          'ðŸ’¬ 只使用TTS': 'ttsOnly',
-          'ðŸ†™ 只使用文字': 'textOnly',
+          '🆙🔊 文字和声音': 'textAndSound',
+          '🆙💬 文字和TTS': 'ttsAndText',
+          '💬 只使用TTS': 'ttsOnly',
+          '🆙 只使用文字': 'textOnly',
         },
       },
       default: 'textAndSound',
