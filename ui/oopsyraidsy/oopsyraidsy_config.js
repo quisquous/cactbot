@@ -8,7 +8,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'Enable debug mode',
         fr: 'Activer le mode debug',
-        cn: '启用Debug模式',
+        cn: '启用调试模式',
       },
       type: 'checkbox',
       debugOnly: true,
