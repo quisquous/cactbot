@@ -7,24 +7,28 @@ let gConfig = null;
 let kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
   fr: 'Afin d\'appliquer les modifications, il faut recharger l\'overlay cacbot.',
+  cn: '要应用配置更改，请重新加载cactbot悬浮窗。',
 };
 
 // Text in the butter bar reload button.
 let kReloadButtonText = {
   en: 'Reload',
   fr: 'Recharger',
+  cn: '重新加载',
 };
 
 // Text on the directory choosing button.
 let kDirectoryChooseButtonText = {
   en: 'Choose Directory',
   fr: 'Choix du répertoire',
+  cn: '选择目录',
 };
 
 // What to show when a directory hasn't been chosen.
 let kDirectoryDefaultText = {
   en: '(Default)',
   fr: '(Défaut)',
+  cn: '(默认)',
 };
 
 class CactbotConfigurator {
