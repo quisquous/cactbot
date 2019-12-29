@@ -7,7 +7,9 @@
     {
       id: 'General Provoke',
       regex: Regexes.ability({ id: '1D6D' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank';
       },
       infoText: function(data, matches) {
@@ -26,6 +28,11 @@
       id: 'General Frog Legs',
       regex: Regexes.ability({ id: '4783' }),
       suppressSeconds: 0.5,
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
+        return data.role == 'tank' || data.job == 'BLU';
+      },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
         return {
@@ -41,7 +48,9 @@
     {
       id: 'General Shirk',
       regex: Regexes.ability({ id: '1D71' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank';
       },
       infoText: function(data, matches) {
@@ -59,7 +68,9 @@
     {
       id: 'General Holmgang',
       regex: Regexes.ability({ id: '2B' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
@@ -75,7 +86,9 @@
     {
       id: 'General Hallowed',
       regex: Regexes.ability({ id: '1E' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
@@ -93,7 +106,9 @@
     {
       id: 'General Superbolide',
       regex: Regexes.ability({ id: '3F18' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
@@ -111,7 +126,9 @@
     {
       id: 'General Living',
       regex: Regexes.ability({ id: 'E36' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
@@ -134,7 +151,9 @@
       regexJa: Regexes.gainsEffect({ effect: 'ウォーキングデッド' }),
       regexCn: Regexes.gainsEffect({ effect: '死而不僵' }),
       regexKo: Regexes.gainsEffect({ effect: '움직이는 시체' }),
-      condition: function(data) {
+      condition: function(data, matches) {
+        if (matches.source !== data.me && !data.party.inAlliance(matches.source))
+          return false;
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: function(data, matches) {
