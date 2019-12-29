@@ -6,21 +6,25 @@ let gConfig = null;
 // Text in the butter bar, to prompt the user to reload after a config change.
 let kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
+  fr: 'Afin d\'appliquer les modifications, il faut recharger l\'overlay cacbot.',
 };
 
 // Text in the butter bar reload button.
 let kReloadButtonText = {
   en: 'Reload',
+  fr: 'Recharger',
 };
 
 // Text on the directory choosing button.
 let kDirectoryChooseButtonText = {
   en: 'Choose Directory',
+  fr: 'Choix du répertoire',
 };
 
 // What to show when a directory hasn't been chosen.
 let kDirectoryDefaultText = {
   en: '(Default)',
+  fr: '(Défaut)',
 };
 
 class CactbotConfigurator {

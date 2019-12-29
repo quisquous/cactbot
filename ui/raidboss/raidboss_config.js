@@ -3,42 +3,54 @@
 let kPrefixToCategory = {
   '00-misc': {
     en: 'General Triggers',
+    fr: 'GÈnÈral',
   },
   '02-arr': {
     en: 'A Realm Reborn (ARR 2.x)',
+    fr: 'A Realm Reborn (ARR 2.x)',
   },
   '03-hw': {
     en: 'Heavensward (HW 3.x)',
+    fr: 'Heavensward (HW 3.x)',
   },
   '04-sb': {
     en: 'Stormblood (SB 4.x)',
+    fr: 'Stormblood (SB 4.x)',
   },
   '05-shb': {
     en: 'Shadowbringers (ShB 5.x)',
+    fr: 'Shadowbringers (ShB 5.x)',
   },
 };
 
 let kDirectoryToCategory = {
   alliance: {
     en: 'Alliance Raid',
+    fr: 'Raid en Alliance',
   },
   dungeon: {
     en: 'Dungeon',
+    fr: 'Donjon',
   },
   eureka: {
     en: 'Eureka',
+    fr: 'Eureka',
   },
   raid: {
     en: 'Raid',
+    fr: 'Raid',
   },
   pvp: {
     en: 'PVP',
+    fr: 'PvP',
   },
   trial: {
     en: 'Trial',
+    fr: 'DÈfi',
   },
   ultimate: {
     en: 'Ultimate',
+    fr: 'Ultimate',
   },
 };
 
@@ -47,31 +59,37 @@ let kTriggerOptions = {
   default: {
     label: {
       en: '‚úî Defaults',
+      fr: '‚úî DÈfaut',
     },
   },
   textAndSound: {
     label: {
       en: 'üÜôüîä Text and Sound',
+      fr: 'üÜôüîä Textes et sons',
     },
   },
   ttsAndText: {
     label: {
       en: 'üÜôüí¨ Text and TTS',
+      fr: 'üÜôüí¨ Textes et TTS',
     },
   },
   ttsOnly: {
     label: {
       en: 'üí¨ TTS Only',
+      fr: 'üí¨ TTS Seulement',
     },
   },
   textOnly: {
     label: {
       en: 'üÜô Text Only',
+      fr: 'üÜô Texte seulement',
     },
   },
   disabled: {
     label: {
       en: '‚ùå Disabled',
+      fr: '‚ùå DÈsactivÈ',
     },
   },
 };
@@ -80,6 +98,7 @@ let kDetailKeys = {
   'triggerRegex': {
     label: {
       en: 'regex',
+      fr: 'regex',
     },
     cls: 'regex-text',
     debugOnly: true,
@@ -87,6 +106,7 @@ let kDetailKeys = {
   'timelineRegex': {
     label: {
       en: 'timeline',
+      fr: 'timeline',
     },
     cls: 'regex-text',
     debugOnly: true,
@@ -94,6 +114,7 @@ let kDetailKeys = {
   'condition': {
     label: {
       en: 'condition',
+      fr: 'condition',
     },
     cls: 'condition-text',
     debugOnly: true,
@@ -101,6 +122,7 @@ let kDetailKeys = {
   'preRun': {
     label: {
       en: 'preRun',
+      fr: 'preRun',
     },
     cls: 'prerun-text',
     debugOnly: true,
@@ -108,36 +130,42 @@ let kDetailKeys = {
   'alarmText': {
     label: {
       en: 'alarm',
+      fr: 'alarme',
     },
     cls: 'alarm-text',
   },
   'alertText': {
     label: {
       en: 'alert',
+      fr: 'alerte',
     },
     cls: 'alert-text',
   },
   'infoText': {
     label: {
       en: 'info',
+      fr: 'info',
     },
     cls: 'info-text',
   },
   'tts': {
     label: {
       en: 'tts',
+      fr: 'tts',
     },
     cls: 'tts-text',
   },
   'sound': {
     label: {
       en: 'sound',
+      fr: 'son',
     },
     cls: 'sound-text',
   },
   'run': {
     label: {
       en: 'run',
+      fr: 'run',
     },
     cls: 'run-text',
     debugOnly: true,
@@ -639,6 +667,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'Debug',
       name: {
         en: 'Enable debug mode',
+        fr: 'Activer le mode debug',
       },
       type: 'checkbox',
       debugOnly: true,
@@ -647,6 +676,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'DefaultAlertOutput',
       name: {
         en: 'Default alert output',
+        fr: 'Alertes par dÈfaut',
       },
       type: 'select',
       options: {
@@ -656,6 +686,12 @@ UserConfig.registerOptions('raidboss', {
           'üí¨ TTS Only': 'ttsOnly',
           'üÜô Text Only': 'textOnly',
         },
+        fr: {
+          'üÜôüîä Texte et son': 'textAndSound',
+          'üÜôüí¨ Texte et TTS': 'ttsAndText',
+          'üí¨ TTS seulement': 'ttsOnly',
+          'üÜô Text seulement': 'textOnly',
+        },
       },
       default: 'textAndSound',
       setterFunc: setOptionsFromOutputValue,
@@ -664,6 +700,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'AlertsLanguage',
       name: {
         en: 'Alerts language',
+        fr: 'Langue des alertes',
       },
       type: 'select',
       options: {
@@ -675,6 +712,15 @@ UserConfig.registerOptions('raidboss', {
           'French (fr)': 'fr',
           'Japanese (ja)': 'ja',
           'Korean (ko)': 'ko',
+        },
+        fr: {
+          'Utiliser la langue du Plugin FFXIV': 'default',
+          'Anglais (en)': 'en',
+          'Chinois (cn)': 'cn',
+          'Allemand (de)': 'de',
+          'FranÁais (fr)': 'fr',
+          'Japonais (ja)': 'ja',
+          'CorÈen (ko)': 'ko',
         },
       },
       default: 'Use FFXIV Plugin Language',
@@ -689,11 +735,16 @@ UserConfig.registerOptions('raidboss', {
       id: 'Skin',
       name: {
         en: 'Raidboss Skin',
+        fr: 'Raidboss Skin',
       },
       type: 'select',
       options: {
         en: {
           'Default': 'default',
+          'lippe': 'lippe',
+        },
+        fr: {
+          'DÈfaut': 'default',
           'lippe': 'lippe',
         },
       },
@@ -703,6 +754,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'TimelineEnabled',
       name: {
         en: 'Timeline enabled',
+        fr: 'Timeline activÈe',
       },
       type: 'checkbox',
       default: true,
@@ -711,6 +763,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'AlertsEnabled',
       name: {
         en: 'Alerts enabled',
+        fr: 'Alertes activÈes',
       },
       type: 'checkbox',
       default: true,
@@ -719,6 +772,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'ShowTimerBarsAtSeconds',
       name: {
         en: 'Timer bar show window (seconds)',
+        fr: 'Affichage fenÍtre ligne de temps (secondes)',
       },
       type: 'float',
       default: 30,
@@ -727,6 +781,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'KeepExpiredTimerBarsForSeconds',
       name: {
         en: 'Keep expired timer bar (seconds)',
+        fr: 'Garder les lignes de temps expirÈes (secondes)',
       },
       type: 'float',
       default: 0.7,
@@ -735,6 +790,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'BarExpiresSoonSeconds',
       name: {
         en: 'Time to recolor timer as expiring soon (seconds)',
+        fr: 'DurÈe de recolorisation du timer avant expiration (secondes)',
       },
       type: 'integer',
       default: 6,
@@ -743,6 +799,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'MaxNumberOfTimerBars',
       name: {
         en: 'Max number of timer bars',
+        fr: 'Nombre max de lignes de temps',
       },
       type: 'integer',
       default: 6,
@@ -751,6 +808,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'DisplayAlarmTextForSeconds',
       name: {
         en: 'Alarm text display duration (seconds)',
+        fr: 'DurÈe d\'affichage du texte d\'alarme (secondes)',
       },
       type: 'float',
       default: 3,
@@ -759,6 +817,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'DisplayAlertTextForSeconds',
       name: {
         en: 'Alert text display duration (seconds)',
+        fr: 'DurÈe d\'affichage du texte d\'alerte (secondes)',
       },
       type: 'float',
       default: 3,
@@ -767,6 +826,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'DisplayInfoTextForSeconds',
       name: {
         en: 'Info text display duration (seconds)',
+        fr: 'DurÈe d\'affichage du texte d\'information (secondes)',
       },
       type: 'float',
       default: 3,
@@ -775,6 +835,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'AlarmSoundVolume',
       name: {
         en: 'Alarm sound volume (0-1)',
+        fr: 'Volume des alarmes (0-1)',
       },
       type: 'float',
       default: 1,
@@ -783,6 +844,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'AlertSoundVolume',
       name: {
         en: 'Alert sound volume (0-1)',
+        fr: 'Volume des alertes (0-1)',
       },
       type: 'float',
       default: 1,
@@ -791,6 +853,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'InfoSoundVolume',
       name: {
         en: 'Info sound volume (0-1)',
+        fr: 'Volume des infos (0-1)',
       },
       type: 'float',
       default: 1,
@@ -799,6 +862,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'LongSoundVolume',
       name: {
         en: 'Long sound volume (0-1)',
+        fr: 'Volume des sons longs (0-1)',
       },
       type: 'float',
       default: 1,
@@ -807,6 +871,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'PullSoundVolume',
       name: {
         en: 'Pull sound volume (0-1)',
+        fr: 'Volume du son de pull (0-1)',
       },
       type: 'float',
       default: 1,

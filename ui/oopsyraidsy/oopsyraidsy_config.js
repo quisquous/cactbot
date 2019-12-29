@@ -7,6 +7,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'Debug',
       name: {
         en: 'Enable debug mode',
+        fr: 'Activer le mode debug',
       },
       type: 'checkbox',
       debugOnly: true,
@@ -15,6 +16,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'NumLiveListItemsInCombat',
       name: {
         en: 'Number of mistakes to show in combat',
+        fr: 'Nombre de fautes à afficher en combat',
       },
       type: 'integer',
       default: 5,
@@ -23,6 +25,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'MinimumTimeForPullMistake',
       name: {
         en: 'Minimum time to show early pull (seconds)',
+        fr: 'Durée minimale pour afficher l\'early pull (secondes)',
       },
       type: 'float',
       default: 0.4,
