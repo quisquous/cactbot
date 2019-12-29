@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Pyros|涌火之地)/,
+  zoneRegex: {
+    en: /Eureka Pyros/,
+    cn: /涌火之地/,
+  },
   resetWhenOutOfCombat: false,
   triggers: [
     {

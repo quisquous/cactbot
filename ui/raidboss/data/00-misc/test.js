@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Middle La Noscea|中拉诺西亚|중부 라노시아)$/,
+  zoneRegex: {
+    en: /^Middle La Noscea$/,
+    cn: /^中拉诺西亚$/,
+    ko: /^중부 라노시아$/,
+  },
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that

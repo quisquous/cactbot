@@ -130,7 +130,30 @@ class PopupText {
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
-      if (this.zoneName.search(set.zoneRegex) >= 0) {
+
+      // zoneRegex can be either a regular expression
+      let zoneRegex = set.zoneRegex;
+      if (typeof zoneRegex !== 'object') {
+        console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
+        continue;
+      } else if (!(zoneRegex instanceof RegExp)) {
+        let locale = this.options.Language || 'en';
+        if (locale in zoneRegex) {
+          zoneRegex = zoneRegex[locale];
+        } else if ('en' in zoneRegex) {
+          zoneRegex = zoneRegex['en'];
+        } else {
+          console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        }
+
+        if (!(zoneRegex instanceof RegExp)) {
+          console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        }
+      }
+
+      if (this.zoneName.search(zoneRegex) >= 0) {
         if (this.options.Debug)
           console.log('Loading ' + set.filename);
         // Adjust triggers for the locale.

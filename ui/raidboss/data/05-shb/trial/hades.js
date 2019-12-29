@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^(The Dying Gasp|哈迪斯歼灭战|하데스 토벌전)$/,
+  zoneRegex: {
+    en: /^The Dying Gasp$/,
+    cn: /^哈迪斯歼灭战$/,
+    ko: /^하데스 토벌전$/,
+  },
   timelineFile: 'hades.txt',
   triggers: [
     {

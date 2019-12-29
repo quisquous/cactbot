@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Anemos|常风之地)/,
+  zoneRegex: {
+    en: /Eureka Anemos/,
+    cn: /常风之地/,
+  },
   resetWhenOutOfCombat: false,
   triggers: [
     {

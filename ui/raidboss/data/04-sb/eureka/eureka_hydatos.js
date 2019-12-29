@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Hydatos|丰水之地)/,
+  zoneRegex: {
+    en: /Eureka Hydatos/,
+    cn: /丰水之地/,
+  },
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
   timelineTriggers: [

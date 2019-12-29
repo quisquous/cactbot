@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Inundation \(Savage\)|伊甸零式希望乐园 \(觉醒之章3\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Inundation \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章3\)$/,
+  },
   timelineFile: 'e3s.txt',
   timelineTriggers: [
     {

@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Sepulture \(Savage\)|伊甸零式希望乐园 \(觉醒之章4\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Sepulture \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章4\)$/,
+  },
   timelineFile: 'e4s.txt',
   timelineTriggers: [
     {

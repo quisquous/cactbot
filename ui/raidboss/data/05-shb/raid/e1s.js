@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Resurrection \(Savage\)|伊甸零式希望乐园 \(觉醒之章1\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Resurrection \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章1\)$/,
+  },
   timelineFile: 'e1s.txt',
   timeline: [
     function(data) {

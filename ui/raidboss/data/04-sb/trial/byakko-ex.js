@@ -2,7 +2,10 @@
 
 // Byakko Extreme
 [{
-  zoneRegex: /^(The Jade Stoa \(Extreme\)|白虎诗魂战)$/,
+  zoneRegex: {
+    en: /^The Jade Stoa \(Extreme\)$/,
+    cn: /^白虎诗魂战$/,
+  },
   timelineFile: 'byakko-ex.txt',
   triggers: [
     {

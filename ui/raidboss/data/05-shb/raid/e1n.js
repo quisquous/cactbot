@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Resurrection|伊甸希望乐园 \(觉醒之章1\)|희망의 낙원 에덴: 각성편 \(1\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Resurrection$/,
+    cn: /^伊甸希望乐园 \(觉醒之章1\)$/,
+    ko: /^희망의 낙원 에덴: 각성편 \(1\)$/,
+  },
   timelineFile: 'e1n.txt',
   triggers: [
     {

@@ -2,7 +2,11 @@
 
 // Innocence Extreme
 [{
-  zoneRegex: /^(The Crown Of The Immaculate \(Extreme\)|无瑕灵君歼殛战|극 이노센스 토벌전)$/,
+  zoneRegex: {
+    en: /^The Crown Of The Immaculate \(Extreme\)$/,
+    cn: /^无瑕灵君歼殛战$/,
+    ko: /^극 이노센스 토벌전$/,
+  },
   timelineFile: 'innocence-ex.txt',
   triggers: [
     {

@@ -2,7 +2,10 @@
 
 // Tsukuyomi Extreme
 [{
-  zoneRegex: /^(The Minstrel's Ballad: Tsukuyomi's Pain|月读幽夜歼灭战)$/,
+  zoneRegex: {
+    en: /^The Minstrel's Ballad: Tsukuyomi's Pain$/,
+    cn: /^月读幽夜歼灭战$/,
+  },
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [
     {

@@ -1,12 +1,11 @@
 'use strict';
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
-// localization:
-//   de: partial timeline, partial triggers
-//   fr: partial timeline, partial triggers
-//   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /^(The Unending Coil Of Bahamut \(Ultimate\)|巴哈姆特绝境战)$/,
+  zoneRegex: {
+    en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
+    cn: /^巴哈姆特绝境战$/,
+  },
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
     // --- State ---
