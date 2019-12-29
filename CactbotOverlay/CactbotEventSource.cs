@@ -130,6 +130,7 @@ namespace Cactbot {
       });
       RegisterEventHandler("cactbotSaveData", (msg) => {
         Config.OverlayData[msg["overlay"].ToString()] = msg["data"];
+        Config.OnUpdateConfig();
         return null;
       });
       RegisterEventHandler("cactbotLoadData", (msg) => {
