@@ -3,23 +3,28 @@
 let kPrefixToCategory = {
   '00-misc': {
     en: 'General Triggers',
-    fr: 'G�n�ral',
+    fr: 'Général',
+    cn: '通用',
   },
   '02-arr': {
     en: 'A Realm Reborn (ARR 2.x)',
     fr: 'A Realm Reborn (ARR 2.x)',
+    cn: '重生之境（2.X）',
   },
   '03-hw': {
     en: 'Heavensward (HW 3.x)',
     fr: 'Heavensward (HW 3.x)',
+    cn: '苍穹之禁城（3.X）',
   },
   '04-sb': {
     en: 'Stormblood (SB 4.x)',
     fr: 'Stormblood (SB 4.x)',
+    cn: '红莲之狂潮（4.X）',
   },
   '05-shb': {
     en: 'Shadowbringers (ShB 5.x)',
     fr: 'Shadowbringers (ShB 5.x)',
+    cn: '暗影之逆焰（5.X）',
   },
 };
 
@@ -27,30 +32,37 @@ let kDirectoryToCategory = {
   alliance: {
     en: 'Alliance Raid',
     fr: 'Raid en Alliance',
+    cn: '团队任务',
   },
   dungeon: {
     en: 'Dungeon',
     fr: 'Donjon',
+    cn: '迷宫挑战',
   },
   eureka: {
     en: 'Eureka',
     fr: 'Eureka',
+    cn: '禁地优雷卡',
   },
   raid: {
     en: 'Raid',
     fr: 'Raid',
+    cn: '大型任务',
   },
   pvp: {
     en: 'PVP',
     fr: 'PvP',
+    cn: 'PVP',
   },
   trial: {
     en: 'Trial',
-    fr: 'D�fi',
+    fr: 'Défi',
+    cn: '讨伐歼灭战',
   },
   ultimate: {
     en: 'Ultimate',
     fr: 'Ultimate',
+    cn: '绝境战',
   },
 };
 
@@ -58,38 +70,44 @@ let kDirectoryToCategory = {
 let kTriggerOptions = {
   default: {
     label: {
-      en: '✔ Defaults',
-      fr: '✔ D�faut',
+      en: 'âœ” Defaults',
+      fr: 'âœ” Défaut',
+      cn: 'âœ” 默认',
     },
   },
   textAndSound: {
     label: {
-      en: '🆙🔊 Text and Sound',
-      fr: '🆙🔊 Textes et sons',
+      en: 'ðŸ†™ðŸ”Š Text and Sound',
+      fr: 'ðŸ†™ðŸ”Š Textes et sons',
+      cn: 'ðŸ†™ðŸ”Š 文字和语音',
     },
   },
   ttsAndText: {
     label: {
-      en: '🆙💬 Text and TTS',
-      fr: '🆙💬 Textes et TTS',
+      en: 'ðŸ†™ðŸ’¬ Text and TTS',
+      fr: 'ðŸ†™ðŸ’¬ Textes et TTS',
+      cn: 'ðŸ†™ðŸ’¬ 文字和TTS',
     },
   },
   ttsOnly: {
     label: {
-      en: '💬 TTS Only',
-      fr: '💬 TTS Seulement',
+      en: 'ðŸ’¬ TTS Only',
+      fr: 'ðŸ’¬ TTS Seulement',
+      cn: 'ðŸ’¬ 只使用TTS',
     },
   },
   textOnly: {
     label: {
-      en: '🆙 Text Only',
-      fr: '🆙 Texte seulement',
+      en: 'ðŸ†™ Text Only',
+      fr: 'ðŸ†™ Texte seulement',
+      cn: 'ðŸ†™ 只使用文字',
     },
   },
   disabled: {
     label: {
-      en: '❌ Disabled',
-      fr: '❌ D�sactiv�',
+      en: 'âŒ Disabled',
+      fr: 'âŒ Désactivé',
+      cn: 'âŒ 禁用',
     },
   },
 };
@@ -99,6 +117,7 @@ let kDetailKeys = {
     label: {
       en: 'regex',
       fr: 'regex',
+      cn: '正则表达式',
     },
     cls: 'regex-text',
     debugOnly: true,
@@ -107,6 +126,7 @@ let kDetailKeys = {
     label: {
       en: 'timeline',
       fr: 'timeline',
+      cn: '时间轴',
     },
     cls: 'regex-text',
     debugOnly: true,
@@ -115,6 +135,7 @@ let kDetailKeys = {
     label: {
       en: 'condition',
       fr: 'condition',
+      cn: '条件',
     },
     cls: 'condition-text',
     debugOnly: true,
@@ -123,6 +144,7 @@ let kDetailKeys = {
     label: {
       en: 'preRun',
       fr: 'preRun',
+      cn: '预运行',
     },
     cls: 'prerun-text',
     debugOnly: true,
@@ -131,6 +153,7 @@ let kDetailKeys = {
     label: {
       en: 'alarm',
       fr: 'alarme',
+      cn: '警报',
     },
     cls: 'alarm-text',
   },
@@ -138,6 +161,7 @@ let kDetailKeys = {
     label: {
       en: 'alert',
       fr: 'alerte',
+      cn: '警告',
     },
     cls: 'alert-text',
   },
@@ -145,6 +169,7 @@ let kDetailKeys = {
     label: {
       en: 'info',
       fr: 'info',
+      cn: '信息',
     },
     cls: 'info-text',
   },
@@ -152,6 +177,7 @@ let kDetailKeys = {
     label: {
       en: 'tts',
       fr: 'tts',
+      cn: 'tts',
     },
     cls: 'tts-text',
   },
@@ -159,6 +185,7 @@ let kDetailKeys = {
     label: {
       en: 'sound',
       fr: 'son',
+      cn: '声音',
     },
     cls: 'sound-text',
   },
@@ -166,6 +193,7 @@ let kDetailKeys = {
     label: {
       en: 'run',
       fr: 'run',
+      cn: '运行',
     },
     cls: 'run-text',
     debugOnly: true,
@@ -668,6 +696,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Enable debug mode',
         fr: 'Activer le mode debug',
+        cn: '启用调试模式',
       },
       type: 'checkbox',
       debugOnly: true,
@@ -676,21 +705,28 @@ UserConfig.registerOptions('raidboss', {
       id: 'DefaultAlertOutput',
       name: {
         en: 'Default alert output',
-        fr: 'Alertes par d�faut',
+        fr: 'Alertes par défaut',
+        cn: '默认警报输出',
       },
       type: 'select',
       options: {
         en: {
-          '🆙🔊 Text and Sound': 'textAndSound',
-          '🆙💬 Text and TTS': 'ttsAndText',
-          '💬 TTS Only': 'ttsOnly',
-          '🆙 Text Only': 'textOnly',
+          'ðŸ†™ðŸ”Š Text and Sound': 'textAndSound',
+          'ðŸ†™ðŸ’¬ Text and TTS': 'ttsAndText',
+          'ðŸ’¬ TTS Only': 'ttsOnly',
+          'ðŸ†™ Text Only': 'textOnly',
         },
         fr: {
-          '🆙🔊 Texte et son': 'textAndSound',
-          '🆙💬 Texte et TTS': 'ttsAndText',
-          '💬 TTS seulement': 'ttsOnly',
-          '🆙 Text seulement': 'textOnly',
+          'ðŸ†™ðŸ”Š Texte et son': 'textAndSound',
+          'ðŸ†™ðŸ’¬ Texte et TTS': 'ttsAndText',
+          'ðŸ’¬ TTS seulement': 'ttsOnly',
+          'ðŸ†™ Text seulement': 'textOnly',
+        },
+        cn: {
+          'ðŸ†™ðŸ”Š 文字和声音': 'textAndSound',
+          'ðŸ†™ðŸ’¬ 文字和TTS': 'ttsAndText',
+          'ðŸ’¬ 只使用TTS': 'ttsOnly',
+          'ðŸ†™ 只使用文字': 'textOnly',
         },
       },
       default: 'textAndSound',
@@ -701,6 +737,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alerts language',
         fr: 'Langue des alertes',
+        cn: '警报语言',
       },
       type: 'select',
       options: {
@@ -718,9 +755,18 @@ UserConfig.registerOptions('raidboss', {
           'Anglais (en)': 'en',
           'Chinois (cn)': 'cn',
           'Allemand (de)': 'de',
-          'Fran�ais (fr)': 'fr',
+          'Français (fr)': 'fr',
           'Japonais (ja)': 'ja',
-          'Cor�en (ko)': 'ko',
+          'Coréen (ko)': 'ko',
+        },
+        en: {
+          '使用最终幻想XIV解析插件设置的语言': 'default',
+          '英语 (en)': 'en',
+          '汉语 (cn)': 'cn',
+          '德语 (de)': 'de',
+          '法语 (fr)': 'fr',
+          '日语 (ja)': 'ja',
+          '朝鲜语 (ko)': 'ko',
         },
       },
       default: 'Use FFXIV Plugin Language',
@@ -736,6 +782,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Raidboss Skin',
         fr: 'Raidboss Skin',
+        cn: 'Raidboss皮肤',
       },
       type: 'select',
       options: {
@@ -744,7 +791,11 @@ UserConfig.registerOptions('raidboss', {
           'lippe': 'lippe',
         },
         fr: {
-          'D�faut': 'default',
+          'Défaut': 'default',
+          'lippe': 'lippe',
+        },
+        cn: {
+          '默认': 'default',
           'lippe': 'lippe',
         },
       },
@@ -754,7 +805,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'TimelineEnabled',
       name: {
         en: 'Timeline enabled',
-        fr: 'Timeline activ�e',
+        fr: 'Timeline activée',
+        cn: '时间轴已启用',
       },
       type: 'checkbox',
       default: true,
@@ -763,7 +815,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'AlertsEnabled',
       name: {
         en: 'Alerts enabled',
-        fr: 'Alertes activ�es',
+        fr: 'Alertes activées',
+        cn: '警报已启用',
       },
       type: 'checkbox',
       default: true,
@@ -772,7 +825,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'ShowTimerBarsAtSeconds',
       name: {
         en: 'Timer bar show window (seconds)',
-        fr: 'Affichage fen�tre ligne de temps (secondes)',
+        fr: 'Affichage fenêtre ligne de temps (secondes)',
+        cn: '计时条显示时间（秒）',
       },
       type: 'float',
       default: 30,
@@ -781,7 +835,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'KeepExpiredTimerBarsForSeconds',
       name: {
         en: 'Keep expired timer bar (seconds)',
-        fr: 'Garder les lignes de temps expir�es (secondes)',
+        fr: 'Garder les lignes de temps expirées (secondes)',
+        cn: '保留过期计时条时间（秒）',
       },
       type: 'float',
       default: 0.7,
@@ -790,7 +845,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'BarExpiresSoonSeconds',
       name: {
         en: 'Time to recolor timer as expiring soon (seconds)',
-        fr: 'Dur�e de recolorisation du timer avant expiration (secondes)',
+        fr: 'Durée de recolorisation du timer avant expiration (secondes)',
+        cn: '计时条即将过期重新着色时间（秒）',
       },
       type: 'integer',
       default: 6,
@@ -800,6 +856,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Max number of timer bars',
         fr: 'Nombre max de lignes de temps',
+        cn: '计时条最大数量',
       },
       type: 'integer',
       default: 6,
@@ -808,7 +865,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'DisplayAlarmTextForSeconds',
       name: {
         en: 'Alarm text display duration (seconds)',
-        fr: 'Dur�e d\'affichage du texte d\'alarme (secondes)',
+        fr: 'Durée d\'affichage du texte d\'alarme (secondes)',
+        cn: '警报文字显示持续时间（秒）',
       },
       type: 'float',
       default: 3,
@@ -817,7 +875,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'DisplayAlertTextForSeconds',
       name: {
         en: 'Alert text display duration (seconds)',
-        fr: 'Dur�e d\'affichage du texte d\'alerte (secondes)',
+        fr: 'Durée d\'affichage du texte d\'alerte (secondes)',
+        cn: '警告文字显示持续时间（秒）',
       },
       type: 'float',
       default: 3,
@@ -826,7 +885,8 @@ UserConfig.registerOptions('raidboss', {
       id: 'DisplayInfoTextForSeconds',
       name: {
         en: 'Info text display duration (seconds)',
-        fr: 'Dur�e d\'affichage du texte d\'information (secondes)',
+        fr: 'Durée d\'affichage du texte d\'information (secondes)',
+        cn: '信息文字显示持续时间（秒）',
       },
       type: 'float',
       default: 3,
@@ -836,6 +896,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alarm sound volume (0-1)',
         fr: 'Volume des alarmes (0-1)',
+        cn: '警报声音音量（0-1）',
       },
       type: 'float',
       default: 1,
@@ -845,6 +906,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alert sound volume (0-1)',
         fr: 'Volume des alertes (0-1)',
+        cn: '警告声音音量（0-1）',
       },
       type: 'float',
       default: 1,
@@ -854,6 +916,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Info sound volume (0-1)',
         fr: 'Volume des infos (0-1)',
+        cn: '信息声音音量（0-1）',
       },
       type: 'float',
       default: 1,
@@ -863,6 +926,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Long sound volume (0-1)',
         fr: 'Volume des sons longs (0-1)',
+        cn: '长声音音量（0-1）',
       },
       type: 'float',
       default: 1,
@@ -872,6 +936,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Pull sound volume (0-1)',
         fr: 'Volume du son de pull (0-1)',
+        cn: '开怪声音音量（0-1）',
       },
       type: 'float',
       default: 1,
