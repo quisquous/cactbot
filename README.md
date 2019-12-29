@@ -253,6 +253,12 @@ This is primarily for folks who stream a lot and want to review video footage.
 Having a number on screen makes it easy to scrub through video and find
 particular pulls to review.
 
+In most cases, you can reset the count for the current boss/zone by typing
+`/echo pullcounter reset`.
+You can also edit the counts directly in your
+`%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
+file.
+
 ![pull counter screenshot](screenshots/pullcounter.png)
 
 ### [test](ui/test) module
