@@ -8,6 +8,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'Enable debug mode',
         fr: 'Activer le mode debug',
+        cn: '启用Debug模式',
       },
       type: 'checkbox',
       debugOnly: true,
@@ -17,6 +18,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'Number of mistakes to show in combat',
         fr: 'Nombre de fautes à afficher en combat',
+        cn: '战斗中显示的错误数量',
       },
       type: 'integer',
       default: 5,
@@ -26,6 +28,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'Minimum time to show early pull (seconds)',
         fr: 'Durée minimale pour afficher l\'early pull (secondes)',
+        cn: '显示提前开怪的最小时间（秒）',
       },
       type: 'float',
       default: 0.4,
