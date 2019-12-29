@@ -233,12 +233,12 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: Regexes.gainsEffect({ effect: '6 Fulms Under', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Versinkend', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '沈下', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '下陷', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '침하', capture: false }),
+      regex: Regexes.gainsEffect({ effect: '6 Fulms Under', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Versinkend', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '沈下', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '下陷', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '침하', capture: true }),
       delaySeconds: 5,
       infoText: function(data) {
         if (data.levitating) {

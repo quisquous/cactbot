@@ -187,12 +187,12 @@
     },
     {
       id: 'UWU Garuda Woken',
-      regex: Regexes.gainsEffect({ effect: 'Woken', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Ätherüberladung', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éveil Éthéré', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '覚醒', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '觉醒', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '각성', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Woken', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherüberladung', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Éveil Éthéré', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '覚醒', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '觉醒', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '각성', capture: false }),
       sound: 'Long',
     },
     {

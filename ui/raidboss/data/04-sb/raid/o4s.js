@@ -600,12 +600,12 @@
     },
     { // Forked Lightning - Don't Stack.
       id: 'O4S2 Forked Lightning',
-      regex: Regexes.gainsEffect({ effect: 'Forked Lightning', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '叉形闪电', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '갈래 번개', capture: false }),
+      regex: Regexes.gainsEffect({ effect: 'Forked Lightning', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '叉形闪电', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '갈래 번개', capture: true }),
       delaySeconds: 1,
       alertText: {
         en: 'Forked Lightning: Don\'t Stack',

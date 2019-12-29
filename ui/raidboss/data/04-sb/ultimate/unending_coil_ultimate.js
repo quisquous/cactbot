@@ -753,12 +753,12 @@
     },
     {
       // Doom tracking cleanup.
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
