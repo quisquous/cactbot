@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Resurrection|伊甸希望乐园 \(觉醒之章1\))$/,
+  zoneRegex: /^(Eden's Gate: Resurrection|伊甸希望乐园 \(觉醒之章1\)|희망의 낙원 에덴: 각성편 \(1\))$/,
   timelineFile: 'e1n.txt',
   triggers: [
     {
@@ -11,6 +11,7 @@
       regexDe: / 14:3D94:Prim-Eden starts using Eden-Gravitas/,
       regexFr: / 14:3D94:Primo-Éden starts using Gravité Édénique/,
       regexJa: / 14:3D94:エデン・プライム starts using エデン・グラビデ/,
+      regexKo: / 14:3D94:에덴 프라임 starts using 에덴 그라비데/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -19,6 +20,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -28,6 +30,7 @@
       regexDe: / 14:3DA4:Prim-Eden starts using Fragor Maximus/,
       regexFr: / 14:3DA4:Primo-Éden starts using Fragor Maximus/,
       regexJa: / 14:3DA4:エデン・プライム starts using フラゴルマクシマス/,
+      regexKo: / 14:3DA4:에덴 프라임 starts using 우주 탄생/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -36,6 +39,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -45,6 +49,7 @@
       regexDe: / 14:3D9C:Prim-Eden starts using Dimensionsverschiebung/,
       regexFr: / 14:3D9C:Primo-Éden starts using Translation Dimensionnelle/,
       regexJa: / 14:3D9C:エデン・プライム starts using ディメンションシフト/,
+      regexKo: / 14:3D9C:에덴 프라임 starts using 차원 전환/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -53,6 +58,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -62,11 +68,13 @@
       regexDe: / 14:3D97:Prim-Eden starts using Eden-Flare/,
       regexFr: / 14:3D97:Primo-Éden starts using Brasier Édénique/,
       regexJa: / 14:3D97:エデン・プライム starts using エデン・フレア/,
+      regexKo: / 14:3D97:에덴 프라임 starts using 에덴 플레어/,
       alertText: {
         en: 'Under',
         de: 'Unter ihn',
         fr: 'Sous le boss',
         cn: '脚下',
+        ko: '보스안으로',
       },
     },
     {
@@ -76,6 +84,7 @@
       regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Eden:....:....:0011:/,
       regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Éden:....:....:0011:/,
       regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:エデン・プライム:....:....:0011:/,
+      regexKo: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:에덴 프라임:....:....:0011:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -84,6 +93,7 @@
         de: 'Tank Laser auf DIR',
         fr: 'Tank laser sur VOUS',
         cn: '坦克射线点名',
+        ko: '탱크 레이저 on YOU',
       },
     },
     {
@@ -93,6 +103,7 @@
       regexDe: / 14:3DA1:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
       regexFr: / 14:3DA1:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
       regexJa: / 14:3DA1:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
+      regexKo: / 14:3DA1:에덴 프라임 starts using 낙원의 창 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -100,6 +111,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱크버스터 on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -108,6 +120,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 -> ' + data.ShortName(matches[1]),
+            ko: '탱버 -> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -118,6 +131,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 -> ' + data.ShortName(matches[1]),
+            ko: '탱버 -> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -133,6 +147,7 @@
         de: 'Flächen ablegen, danach in die Mitte',
         fr: 'Placez les flaques, courez au centre',
         cn: '放圈，回中央',
+        ko: '장판 깔고 중앙으로',
       },
     },
     {
@@ -143,12 +158,14 @@
       regexDe: / 14:3DA3:Prim-Eden starts using Läuterndes Licht/,
       regexFr: / 14:3DA3:Primo-Éden starts using Lumière Purificatrice/,
       regexJa: / 14:3DA3:エデン・プライム starts using ピュアライト/,
+      regexKo: / 14:3DA3:에덴 프라임 starts using 완전한 빛/,
       delaySeconds: 4.5,
       alertText: {
         en: 'Get Behind',
         de: 'Hinter ihn',
         fr: 'Derrière le boss',
         cn: '身后躲避',
+        ko: '뒤로',
       },
     },
   ],
@@ -331,6 +348,51 @@
         'Heavy': '加重',
         'Fetters': '拘束',
         'Brink of Death': '濒死',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Eden Prime': '에덴 프라임',
+        'Eden': '에덴',
+        'Guardian of Paradise': '에덴의 수호자',
+        'Engage!': '전투 시작!',
+      },
+      'replaceText': {
+        'attack': '공격',
+        'Vice [oO]f Vanity': '허영의 악덕',
+        'Vice [oO]f Apathy': '냉담의 악덕',
+        'Vice [aA]nd Virtue': '선과 악',
+        'Unto Dust': '폭렬',
+        'Sunder Pressure': '중압',
+        'Spear [oO]f Paradise': '낙원의 창',
+        'Pure Light': '완전한 빛',
+        'Pure Beam': '완전한 광선',
+        'Primeval Stasis': '태초의 안정',
+        'Paradise Lost': '실낙원',
+        'Paradisal Dive': '낙원 강하',
+        'Mana Slice': '마나 베기',
+        'Mana Burst': '마나 폭발',
+        'Heavensunder': '천국의 낙뢰',
+        'Fragor Maximus': '우주 탄생',
+        'Eternal Breath': '영원의 숨결',
+        'Eden\'s Thunder III': '에덴 선더가',
+        'Eden\'s Gravity': '에덴 그라비데',
+        'Eden\'s Flare': '에덴 플레어',
+        'Eden\'s Fire III': '에덴 파이가',
+        'Eden\'s Blizzard III': '에덴 블리자가',
+        'Dimensional Shift': '차원 전환',
+        'Delta Attack': '델타 공격',
+        '--corner--': '--모서리--',
+        '--center--': '--중앙--',
+        '--untargetable--': '--타겟불가능--',
+        '--targetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Summon Order': 'Summon Order',
+        'Heavy': 'Heavy',
+        'Fetters': 'Fetters',
+        'Brink of Death': 'Brink of Death',
       },
     },
   ],

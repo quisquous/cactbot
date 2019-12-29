@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(The Dying Gasp|哈迪斯歼灭战)$/,
+  zoneRegex: /^(The Dying Gasp|哈迪斯歼灭战|하데스 토벌전)$/,
   timelineFile: 'hades.txt',
   triggers: [
     {
@@ -11,6 +11,7 @@
       regexDe: / 14:4180:Hades starts using Titanomachie/,
       regexFr: / 14:4180:Hadès starts using Titanomachie/,
       regexJa: / 14:4180:ハーデス starts using ティタノマキア/,
+      regexKo: / 14:4180:하데스 starts using 티타노마키아/,
       run: function(data) {
         data.neoHades = true;
       },
@@ -22,6 +23,7 @@
       regexDe: / 14:4158:Hades starts using Fegefeuer der Helden on (\y{Name})/,
       regexFr: / 14:4158:Hadès starts using Assaut Acharné on (\y{Name})/,
       regexJa: / 14:4158:ハーデス starts using ラヴェナスアサルト on (\y{Name})/,
+      regexKo: / 14:4158:하데스 starts using 탐욕스러운 공격 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -29,6 +31,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑',
+            ko: '탱크버스터 -> YOU',
           };
         }
         if (data.role == 'healer') {
@@ -37,6 +40,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 ->' + data.ShortName(matches[1]),
+            ko: '탱버 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -48,6 +52,7 @@
           de: 'Weg von ' + data.ShortName(matches[1]),
           fr: 'Loin de ' + data.ShortName(matches[1]),
           cn: '远离 ' + data.ShortName(matches[1]),
+          ko: data.ShortName(matches[1]) + ' 한테서 피하세요',
         };
       },
     },
@@ -58,11 +63,13 @@
       regexDe: / 14:4149:Hades starts using Maske des Grolls/,
       regexFr: / 14:4149:Hadès starts using Mauvaise Foi/,
       regexJa: / 14:4149:ハーデス starts using バッドフェイス/,
+      regexKo: / 14:4149:하데스 starts using 불신/,
       infoText: {
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
         cn: '左',
+        ko: '왼쪽',
       },
     },
     {
@@ -72,11 +79,13 @@
       regexDe: / 14:414A:Hades starts using Maske des Grolls/,
       regexFr: / 14:414A:Hadès starts using Mauvaise Foi/,
       regexJa: / 14:414A:ハーデス starts using バッドフェイス/,
+      regexKo: / 14:414A:하데스 starts using 불신/,
       infoText: {
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
         cn: '右',
+        ko: '오른쪽',
       },
     },
     {
@@ -86,11 +95,13 @@
       regexDe: / 14:414D:Hades starts using Maske der Trauer/,
       regexFr: / 14:414D:Hadès starts using Foi Brisée/,
       regexJa: / 14:414D:ハーデス starts using ブロークンフェイス/,
+      regexKo: / 14:414D:하데스 starts using 배신/,
       alertText: {
         en: 'Dodge Giant Circles',
         de: 'Weiche dem großen Kreis aus',
         fr: 'Evitez les cercles géants',
         cn: '躲避大圈',
+        ko: '대형장판피하기',
       },
     },
     {
@@ -100,11 +111,13 @@
       regexDe: / 14:4164:Hades starts using Echo der Verlorenen/,
       regexFr: / 14:4164:Hadès starts using Écho Des Disparus/,
       regexJa: / 14:4164:ハーデス starts using エコー・オブ・ザ・ロスト/,
+      regexKo: / 14:4164:하데스 starts using 상실의 메아리/,
       infoText: {
         en: 'Right',
         de: 'Rechts',
         fr: 'Gauche',
         cn: '右',
+        ko: '오른쪽',
       },
     },
     {
@@ -114,11 +127,13 @@
       regexDe: / 14:4163:Hades starts using Echo der Verlorenen/,
       regexFr: / 14:4163:Hadès starts using Écho Des Disparus/,
       regexJa: / 14:4163:ハーデス starts using エコー・オブ・ザ・ロスト/,
+      regexKo: / 14:4163:하데스 starts using 상실의 메아리/,
       infoText: {
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
         cn: '左',
+        ko: '왼쪽',
       },
     },
     {
@@ -128,6 +143,7 @@
       regexDe: / 14:4180:Hades starts using Titanomachie/,
       regexFr: / 14:4180:Hadès starts using Titanomachie/,
       regexJa: / 14:4180:ハーデス starts using ティタノマキア/,
+      regexKo: / 14:4180:하데스 starts using 티타노마키아/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -136,6 +152,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '광역',
       },
     },
     {
@@ -145,12 +162,14 @@
       regexDe: / 14:415C:Hades starts using Schattenstrom/,
       regexFr: / 14:415C:Hadès starts using Flux De Ténèbres/,
       regexJa: / 14:415C:ハーデス starts using シャドウストリーム/,
+      regexKo: / 14:415C:하데스 starts using 그림자 급류/,
       alertText: {
         en: 'Go Outside',
         de: 'Raus gehen',
         fr: 'Allez sur les côtés',
         ja: '中壊れるよ',
         cn: '两侧躲避',
+        ko: '밖으로',
       },
     },
     {
@@ -160,12 +179,14 @@
       regexDe: / 14:4170:Hades starts using Schlag des Polydegmon/,
       regexFr: / 14:4170:Hadès starts using Assaut Du Polydegmon/,
       regexJa: / 14:4170:ハーデス starts using ポリデグモンストライク/,
+      regexKo: / 14:4170:하데스 starts using 폴리데그몬/,
       alertText: {
         en: 'Get Middle',
         de: 'In die Mitte gehen',
         fr: 'Allez au centre',
         ja: '外壊れるよ',
         cn: '中间躲避',
+        ko: '중앙으로',
       },
     },
     {
@@ -175,6 +196,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 죽음의 선고/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -183,6 +205,7 @@
         de: 'Entferne Verhängnis mit den Kreisen',
         fr: 'Dispell le Glas',
         cn: '踩光圈',
+        ko: '모든 장판을 밟으세요',
       },
     },
     {
@@ -192,11 +215,13 @@
       regexDe: / 14:4166:Hades starts using Wehklagen der Verlorenen/,
       regexFr: / 14:4166:Hadès starts using Lamentation Des Disparus/,
       regexJa: / 14:4166:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
+      regexKo: / 14:4166:하데스 starts using 상실의 통곡/,
       infoText: {
         en: 'Right Knockback',
         de: 'Rechter Knockback',
         fr: 'Poussée à droite',
         cn: '右侧击退',
+        ko: '오른쪽 넉백',
       },
     },
     {
@@ -206,11 +231,13 @@
       regexDe: / 14:4165:Hades starts using Wehklagen der Verlorenen/,
       regexFr: / 14:4165:Hadès starts using Lamentation Des Disparus/,
       regexJa: / 14:4165:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
+      regexKo: / 14:4165:하데스 starts using 상실의 통곡/,
       infoText: {
         en: 'Left Knockback',
         de: 'Linker Knockback',
         fr: 'Poussée à gauche',
         cn: '左侧击退',
+        ko: '왼쪽 넉백',
       },
     },
     {
@@ -220,6 +247,7 @@
       regexDe: / 14:4161:Hades starts using Doppelschlag/,
       regexFr: / 14:4161:Hadès starts using Frappe Redoublée/,
       regexJa: / 14:4161:ハーデス starts using デュアルストライク/,
+      regexKo: / 14:4161:하데스 starts using 이중 타격/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -229,6 +257,7 @@
         fr: 'Tank busters',
         ja: 'タンクバスター',
         cn: '坦克死刑',
+        ko: '탱크버스터',
       },
     },
     {
@@ -242,6 +271,7 @@
         de: 'Tank Buster verteilen',
         fr: 'Tankbuster, séparez-vous',
         cn: '坦克死刑分散',
+        ko: '탱버 산개',
       },
     },
     {
@@ -255,6 +285,7 @@
         de: 'Marker außen ablegen',
         fr: 'Posez la marque à l\'extérieur',
         cn: '外侧放点名',
+        ko: '외곽으로',
       },
     },
     {
@@ -267,6 +298,7 @@
         en: 'Fetters on YOU',
         de: 'Fessel auf DIR',
         cn: '锁链点名',
+        ko: '선대상자 -> YOU',
       },
     },
     {
@@ -276,12 +308,14 @@
       regexDe: / 15:\y{ObjectId}:Hades:417F:/,
       regexFr: / 15:\y{ObjectId}:Hadès:417F:/,
       regexJa: / 15:\y{ObjectId}:ハーデス:417F:/,
+      regexKo: / 15:\y{ObjectId}:하데스:417F:/,
       delaySeconds: 2,
       infoText: {
         en: 'Kill Jail',
         de: 'Gefängniss zerstören',
         fr: 'Dégommez la prison',
         cn: '攻击牢狱',
+        ko: '감옥',
       },
     },
     {
@@ -295,6 +329,7 @@
         de: 'Verteilen',
         fr: 'Dispersez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -308,6 +343,7 @@
         de: 'Verteilen (Ohne stacken)',
         fr: 'Dispersez-vous (non packé)',
         cn: '分散（不要重合!）',
+        ko: '산개（모이지마세요!）',
       },
     },
     {
@@ -321,6 +357,7 @@
         de: 'Sammeln auf DIR',
         fr: 'Package sur VOUS',
         cn: '点名集合',
+        ko: '쉐어징 -> YOU',
       },
     },
     {
@@ -347,6 +384,7 @@
           de: 'Sammeln auf ' + data.ShortName(name),
           fr: 'Package sur ' + data.ShortName(name),
           cn: '靠近 ' + data.ShortName(name) + ' 集合',
+          ko: '쉐어징대상자 -> ' + data.ShortName(name),
         };
       },
     },
@@ -440,6 +478,47 @@
         '--untargetable--': '--不可选中--',
         '--fetters--': '--锁链--',
         'Wail Of The Lost': '逝者的哀嚎',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hades': '하데스',
+        'Engage!': '전투 시작!',
+        'Shadow .f .he Ancients': '고대인의 그림자',
+      },
+      'replaceText': {
+        'Adds': '쫄',
+        'Gaol Add': '감옥',
+        'Ancient Aero': '에인션트 에어로',
+        'Ancient Dark IV': '에인션트 다쟈',
+        'Ancient Darkness': '에인션트 다크',
+        'Ancient Water III': '에인션트 워터가',
+        'Bad Faith': '불신',
+        'Black Cauldron': '검은 도가니',
+        'Broken Faith': '배신',
+        'Captivity': '감금',
+        'Chorus Of The Lost': '상실의 합창',
+        'Dark Eruption': '황천의 불기둥',
+        'Doom': '죽음의 선고',
+        'Double': '이중 공격',
+        'Dual Strike': '이중 타격',
+        'Echo Of The Lost': '상실의 메아리',
+        'Enrage': '전멸기',
+        'Hellborn Yawp': '지옥의 아우성',
+        'Life In Captivity': '감금된 삶',
+        'Nether Blast': '지옥 강풍',
+        'Polydegmon\'s Purgation': '폴리데그몬',
+        'Ravenous Assault': '탐욕스러운 공격',
+        'Shadow Spread': '그림자 전개',
+        'Shadow Stream': '그림자 급류',
+        'Stream/Purgation?': '그림자 급류/전개',
+        '--targetable--': '--공격가능--',
+        'The Dark Devours': '어둠의 침식',
+        'Titanomachy': '티타노마키아',
+        '--untargetable--': '--공격불가능--',
+        '--fetters--': '--줄--',
+        'Wail Of The Lost': '상실의 통곡',
       },
     },
   ],
