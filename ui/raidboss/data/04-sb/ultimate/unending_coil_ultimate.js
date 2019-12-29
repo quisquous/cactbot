@@ -11,11 +11,12 @@
   triggers: [
     // --- State ---
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Firescorched/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火角/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Feuerhorn/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Corne-de-feu/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ファイアホーン/,
+      regex: Regexes.gainsEffect({ effect: 'Firescorched', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'ファイアホーン', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '火角', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '화염뿔', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -37,11 +38,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Icebitten/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 冰爪/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eisklaue/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Griffe-de-glace/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of アイスクロウ/,
+      regex: Regexes.gainsEffect({ effect: 'Icebitten', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Eisklaue', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'アイスクロウ', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '冰爪', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '얼음발톱', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -658,11 +660,12 @@
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死亡宣告 from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -721,11 +724,12 @@
     },
     {
       // Doom tracking init.
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死亡宣告 from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -749,11 +753,12 @@
     },
     {
       // Doom tracking cleanup.
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom/,
-      regexCn: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死亡宣告/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Verhängnis/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Glas/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死の宣告/,
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
