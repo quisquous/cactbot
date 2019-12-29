@@ -759,7 +759,7 @@ UserConfig.registerOptions('raidboss', {
           'Japonais (ja)': 'ja',
           'Coréen (ko)': 'ko',
         },
-        en: {
+        cn: {
           '使用最终幻想XIV解析插件设置的语言': 'default',
           '英语 (en)': 'en',
           '汉语 (cn)': 'cn',
