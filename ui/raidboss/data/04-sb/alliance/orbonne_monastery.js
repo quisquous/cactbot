@@ -664,10 +664,12 @@
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe à Accélération from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },

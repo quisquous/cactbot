@@ -196,10 +196,12 @@
     },
     {
       id: 'Ridorana Belias Hand of Time',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Burns from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandwunde from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brûlure from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火傷 from/,
+      regex: Regexes.gainsEffect({ effect: 'Burns', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandwunde', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Brûlure', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '火傷', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '火伤', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '화상', capture: true }),
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -359,10 +361,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Hp Penalty/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Malus De PV\+/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
+      regex: Regexes.gainsEffect({ effect: 'Hp Penalty', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '最大Ｈｐダウン', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '最大体力减少', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '최대 Hp 감소', capture: true }),
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -376,10 +380,12 @@
       // trigger happens.  However, by t=1 second in testing, standing a circle
       // will apply.  So, hope for the best by testing at t=0.5 as well, but not
       // overwriting any results from t=0 if that was valid.
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Hp Penalty/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of LP-Malus/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Malus De Pv\+/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 最大ＨＰ低下\[強\]/,
+      regex: Regexes.gainsEffect({ effect: 'Hp Penalty', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '最大Ｈｐダウン', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '最大体力减少', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '최대 Hp 감소', capture: true }),
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -468,10 +474,12 @@
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Acceleration Bomb from .*? for (?:\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beschleunigungsbombe from .*? for (?:\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bombe À Accélération from .*? for (?:\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 加速度爆弾 from .*? for (?:\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -546,10 +554,12 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Magnetic Lysis - from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Negatives Magnetfeld from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Charge Négative from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 磁場崩壊【－】 from/,
+      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis -', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Negatives Magnetfeld', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Charge Négative', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【－】', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 负极', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴[-]', capture: true }),
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
@@ -561,10 +571,12 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Positive',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Magnetic Lysis \+ from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Positives Magnetfeld from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Charge Positive from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 磁場崩壊【＋】 from/,
+      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis \+', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Positives Magnetfeld', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Charge positive', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【＋】', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 正极', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴[\+]', capture: true }),
       condition: function(data, matches) {
         return (matches[1] == data.me);
       },
