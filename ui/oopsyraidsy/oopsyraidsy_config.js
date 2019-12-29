@@ -28,7 +28,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       name: {
         en: 'Minimum time to show early pull (seconds)',
         fr: 'Durée minimale pour afficher l\'early pull (secondes)',
-        cn: '显示提前开怪的最小时间（秒）',
+        cn: '显示提前开怪最小时间（秒）',
       },
       type: 'float',
       default: 0.4,
