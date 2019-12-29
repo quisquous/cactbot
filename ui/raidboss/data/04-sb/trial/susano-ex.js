@@ -38,10 +38,12 @@
       },
     },
     { // Churning tracker
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Churning from Susano/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Schäumend from Susano/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Agitation from Susano/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 禍泡 from スサノオ/,
+      regex: Regexes.gainsEffect({ effect: 'Churning', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Agitation', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '禍泡', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '祸泡', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '재앙거품', capture: false }),
       condition: function(data) {
         return !data.churning;
       },
@@ -192,10 +194,12 @@
     },
     { // Churning (dice)
       id: 'SusEx Churning',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Churning from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schäumend from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Agitation from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 禍泡 from .*? for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Churning', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Agitation', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '禍泡', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '祸泡', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '재앙거품', capture: true }),
       delaySeconds: function(data, matches) {
         return parseFloat(matches[2]) - 3;
       },

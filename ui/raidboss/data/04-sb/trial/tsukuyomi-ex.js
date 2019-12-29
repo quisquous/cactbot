@@ -92,11 +92,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Full Moon/,
-      regexDe: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Vollmond/,
-      regexFr: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Force De La Pleine Lune/,
-      regexJa: / 1A:\y{ObjectId}:ツクヨミ gains the effect of 満月流/,
-      regexCn: / 1A:\y{ObjectId}:月读 gains the effect of 满月流/,
+      regex: Regexes.gainsEffect({ effect: 'Full Moon', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Vollmond', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Force De La Pleine Lune', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '満月流', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '满月流', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '보름달', capture: false }),
       run: function(data) {
         let moonInOut = {
           en: 'Out',
@@ -108,11 +109,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of New Moon/,
-      regexDe: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Neumond/,
-      regexFr: / 1A:\y{ObjectId}:Tsukuyomi gains the effect of Force De La Nouvelle Lune/,
-      regexJa: / 1A:\y{ObjectId}:ツクヨミ gains the effect of 新月流/,
-      regexCn: / 1A:\y{ObjectId}:月读 gains the effect of 新月流/,
+      regex: Regexes.gainsEffect({ effect: 'New Moon', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Neumond', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Force De La Nouvelle Lune', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '新月流', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '新月流', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '그믐달', capture: false }),
       run: function(data) {
         let moonInOut = {
           en: 'In',
@@ -224,11 +226,12 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 满月下/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 満月下/,
+      regex: Regexes.gainsEffect({ effect: 'Moonlit', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschein', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '満月下', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '满月下', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '보름달빛', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -246,11 +249,12 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonlit/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 满月下/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschein/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pleine Lune/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 満月下/,
+      regex: Regexes.gainsEffect({ effect: 'Moonlit', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschein', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '満月下', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '满月下', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '보름달빛', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonlitCount >= 4;
       },
@@ -263,11 +267,12 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
+      regex: Regexes.gainsEffect({ effect: 'Moonshadowed', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '新月下', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '新月下', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '그믐달빛', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me;
       },
@@ -285,11 +290,12 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Moonshadowed/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mondschatten/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Nouvelle Lune/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 新月下/,
+      regex: Regexes.gainsEffect({ effect: 'Moonshadowed', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '新月下', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '新月下', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '그믐달빛', capture: true }),
       condition: function(data, matches) {
         return matches[1] == data.me && data.moonshadowedCount >= 4;
       },
