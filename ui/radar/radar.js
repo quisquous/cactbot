@@ -171,9 +171,10 @@ class Radar {
       }
     }
     if (options.DetectionRange > 0 && deltaVector.length() > options.DetectionRange)
-      monster.dom.setAttribute('class', 'hide');
+      monster.dom.classList.add('hide');
     else
-      monster.dom.setAttribute('class', '');
+      monster.dom.classList.remove('hide');
+
     let deltaTheta = Math.atan2(deltaVector.y, deltaVector.x);
     deltaTheta -= Math.PI - this.playerRotation;
     let angle = deltaTheta * 180 / Math.PI;
