@@ -36,11 +36,11 @@
   triggers: [
     {
       id: 'E2S Spell In Waiting Gain',
-      regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
-      regexCn: / 1A:\y{ObjectId}:虚无行者 gains the effect of 延迟咏唱/,
-      regexDe: / 1A:\y{ObjectId}:Nichtswandler gains the effect of Verzögerung/,
-      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
-      regexJa: / 1A:\y{ObjectId}:ヴォイドウォーカー gains the effect of ディレイスペル/,
+      regex: Regexes.gainsEffect({ effect: 'Spell-In-Waiting', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verzögerung', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Déphasage Incantatoire', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'ディレイスペル', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '延迟咏唱', capture: false }),
       run: function(data) {
         data.waiting = true;
       },

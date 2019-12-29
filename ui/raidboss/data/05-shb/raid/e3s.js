@@ -320,11 +320,11 @@
     },
     {
       id: 'E3S Surging Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Surging Waters/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 强压之兆/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Erdrückung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Écrasantes/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 強圧の兆し/,
+      regex: Regexes.gainsEffect({ effect: 'Surging Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Erdrückung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Écrasantes', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '強圧の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '强压之兆', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -340,11 +340,11 @@
       // TODO probably need to call out knockbacks later
       // TODO maybe tell other people about stacking for knockbacks
       id: 'E3S Sundering Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sundering Waters from (?:.*) for (.*) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断绝之兆 from (?:.*) for (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Zerstörung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Fracturantes from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Sundering Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Zerstörung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Fracturantes', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '断絶の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '断绝之兆', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -385,11 +385,11 @@
     {
       // 29 seconds
       id: 'E3S Scouring Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴风之兆/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
+      regex: Regexes.gainsEffect({ effect: 'Scouring Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '暴风之兆', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -403,11 +403,11 @@
     },
     {
       id: 'E3S Scouring Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴风之兆/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
+      regex: Regexes.gainsEffect({ effect: 'Scouring Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '暴风之兆', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -422,11 +422,11 @@
     },
     {
       id: 'E3S Smothering Waters',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Smothering Waters from (?:.*) for (.*) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没之兆 from (?:.*) for (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Omen der Ertränkung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux Submergeantes from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没の兆し from (?:.*) for (.*) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Smothering Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Ertränkung', capture: true })
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Submergeantes', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '溺没の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '溺没之兆', capture: true }),
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
@@ -447,11 +447,11 @@
     },
     {
       id: 'E3S Scouring Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Scouring Waters/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴风之兆/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
+      regex: Regexes.gainsEffect({ effect: 'Scouring Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '暴风之兆', capture: true }),
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -466,11 +466,11 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (?:.*) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 扩散之兆 from (?:.*) for (?:.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (?:.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (?:.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (?:.*) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '扩散之兆', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -484,11 +484,11 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sweeping Waters from (?:.*) for (?:.*) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 扩散之兆 from (?:.*) for (?:.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (?:.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (?:.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (?:.*) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '扩散之兆', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'tank';
       },

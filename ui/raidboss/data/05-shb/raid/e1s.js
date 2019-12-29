@@ -55,11 +55,11 @@
     },
     {
       id: 'E1S Paradise Regained',
-      regex: / 1A:\y{ObjectId}:Eden Prime gains the effect of Paradise Regained/,
-      regexCn: / 1A:\y{ObjectId}:至尊伊甸 gains the effect of 复乐园/,
-      regexDe: / 1A:\y{ObjectId}:Prim-Eden gains the effect of Wiedergewonnenes Paradies/,
-      regexFr: / 1A:\y{ObjectId}:Primo-Éden gains the effect of Paradis [rR]etrouvé/,
-      regexJa: / 1A:\y{ObjectId}:エデン・プライム gains the effect of パラダイスリゲイン/,
+      regex: Regexes.gainsEffect({ effect: 'Paradise Regained', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wiedergewonnenes Paradies', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Paradis Retrouvé', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'パラダイスリゲイン', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '复乐园', capture: false }),
       run: function(data) {
         data.paradise = true;
       },
@@ -380,11 +380,12 @@
     },
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Prey/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 猎物/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Markiert/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marquage/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of マーキング/,
+      regex: Regexes.gainsEffect({ effect: 'Prey', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '표식', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -409,11 +410,12 @@
     },
     {
       id: 'E1S Vice and Virtue Healer Mark Not You',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Prey/,
-      regexCn: / 1A:\y{ObjectId}:\y{Name} gains the effect of 猎物/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Markiert/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Marquage/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of マーキング/,
+      regex: Regexes.gainsEffect({ effect: 'Prey', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '표식', capture: false }),
       condition: function(data) {
         if (data.role == 'dps')
           return data.paradise;
