@@ -1,27 +1,14 @@
 'use strict';
 
-// Each option here can be changed in user/jobs.js with a line such as
-// Options.ShowRdmProcs = false
-// or
-// Options.JustBuffTracker: true
 // See user/jobs-example.js for documentation.
 let Options = {
-  Language: 'en',
-
-  LowerOpacityOutOfCombat: true,
-  OpacityOutOfCombat: 0.5,
-
-  HideWellFedAboveSeconds: 15 * 60,
   WellFedZones: ['O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU', 'E1S', 'E2S', 'E3S', 'E4S'],
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
   ShowMPTicker: ['BLM'],
-  ShowMPTickerOutOfCombat: false,
 
   MaxLevel: 80,
-
-  JustBuffTracker: false,
 
   PerBuffOptions: {
     // This is noisy since it's more or less permanently on you.
@@ -30,15 +17,6 @@ let Options = {
       hide: true,
     },
   },
-
-  BigBuffIconWidth: 44,
-  BigBuffIconHeight: 32,
-  BigBuffBarHeight: 5,
-  BigBuffTextHeight: 0,
-  BigBuffBorderSize: 1,
-
-  // The minimum time on a cooldown before it is shown.
-  BigBuffShowCooldownSeconds: 20,
 
   FarThresholdOffence: 24,
   DrkLowMPThreshold: 2999,
@@ -49,8 +27,6 @@ let Options = {
   BlmMediumMPThreshold: 3999,
   // Should cast despair.
   BlmLowMPThreshold: 2399,
-  LowHealthThresholdPercent: 0.2,
-  MidHealthThresholdPercent: 0.8,
 };
 
 let kMeleeWithMpJobs = ['DRK', 'PLD'];

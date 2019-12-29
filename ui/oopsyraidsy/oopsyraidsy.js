@@ -1,10 +1,6 @@
 'use strict';
 
 let Options = {
-  Debug: false,
-  Language: 'en',
-  NumLiveListItemsInCombat: 5,
-  MinimumTimeForPullMistake: 0.4,
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},

@@ -1,13 +1,9 @@
 'use strict';
 
 let Options = {
-  Language: 'en',
-  RefreshRateMs: 1000,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
-  PopVolume: 1.0,
   // 20 minutes for Ovni?
   SuppressPopMs: 60 * 20 * 1000,
-  FlagTimeoutMs: 90000,
   ZoneName: {
     en: {
       'Eureka Anemos': 'Eureka Anemos',

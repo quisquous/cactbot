@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
+  // TODO: replace these all with just JObjects instead of explicit classes.
   public interface JSEvent {
     string EventName();
   };
@@ -16,6 +17,10 @@ namespace Cactbot {
       public float x = 0;
       public float y = 0;
       public float z = 0;
+    }
+
+    public class ForceReloadEvent: JSEvent {
+      public string EventName() { return "onForceReload"; }
     }
 
     public class GameExistsEvent : JSEvent {
