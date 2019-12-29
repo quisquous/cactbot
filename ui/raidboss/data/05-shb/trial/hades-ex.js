@@ -294,10 +294,10 @@
     },
     {
       id: 'HadesEx Burning Brand',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Burning Brand/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandmal Des Feuers/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marque De Feu/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火の烙印/,
+      regex: Regexes.gainsEffect({ effect: 'Burning Brand', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '火の烙印', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -312,10 +312,10 @@
     },
     {
       id: 'HadesEx Freezing Brand',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Freezing Brand/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Brandmal Des Eises/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marque De Glace/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 氷の烙印/,
+      regex: Regexes.gainsEffect({ effect: 'Freezing Brand', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '氷の烙印', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -376,10 +376,12 @@
     },
     {
       id: 'HadesEx Doom',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Verhängnis from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Glas from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死の宣告 from (?:.*?) for (?:\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';
@@ -392,10 +394,12 @@
     },
     {
       id: 'HadesEx Shriek',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Cursed Shriek from (?:.*?) for (\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Schrei Der Verwünschung from (?:.*?) for (\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Cri Du Maléfice from (?:.*?) for (\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 呪詛の叫声 from (?:.*?) for (\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침', capture: true }),
       suppressSeconds: 2,
       delaySeconds: function(data, matches) {
         return parseFloat(matches[1]) - 2;
@@ -408,10 +412,12 @@
     },
     {
       id: 'HadesEx Beyond Death',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Beyond Death from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Jenseits Des Jenseits from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Outre-Mort from (?:.*?) for (?:\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の超越 from (?:.*?) for (?:\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Beyond Death', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '死の超越', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '超越死亡', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음 초월', capture: true }),
       durationSeconds: 8,
       condition: function(data, matches) {
         return data.me == matches[1];
@@ -424,10 +430,10 @@
     },
     {
       id: 'HadesEx Ancient Circle',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ancient Circle from (?:.*?) for (\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Orbis Antiquus from (?:.*?) for (\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cercle Ancien from (?:.*?) for (\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンシェントリング from (?:.*?) for (\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Ancient Circle', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -442,10 +448,12 @@
     },
     {
       id: 'HadesEx Forked Lightning',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forked Lightning from (?:.*?) for (\y{Float}) Seconds\./,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gabelblitz from (?:.*?) for (\y{Float}) Seconds\./,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Éclair Ramifié from (?:.*?) for (\y{Float}) Seconds\./,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of フォークライトニング from (?:.*?) for (\y{Float}) Seconds\./,
+      regex: Regexes.gainsEffect({ effect: 'Forked Lightning', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '叉形闪电', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '갈래 번개', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },

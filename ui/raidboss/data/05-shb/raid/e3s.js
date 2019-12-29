@@ -423,7 +423,7 @@
     {
       id: 'E3S Smothering Waters',
       regex: Regexes.gainsEffect({ effect: 'Smothering Waters', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Ertränkung', capture: true })
+      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Ertränkung', capture: true }),
       regexFr: Regexes.gainsEffect({ effect: 'Eaux Submergeantes', capture: true }),
       regexJa: Regexes.gainsEffect({ effect: '溺没の兆し', capture: true }),
       regexCn: Regexes.gainsEffect({ effect: '溺没之兆', capture: true }),

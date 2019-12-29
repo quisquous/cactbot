@@ -170,11 +170,12 @@
     },
     {
       id: 'Hades Doom',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死亡宣告/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告/,
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: true }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: true }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: true }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: true }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: true }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: true }),
       condition: function(data, matches) {
         return data.me == matches[1];
       },
