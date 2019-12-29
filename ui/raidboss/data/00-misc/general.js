@@ -23,6 +23,22 @@
       },
     },
     {
+      id: 'General Frog Legs',
+      regex: Regexes.ability({ id: '4783' }),
+      suppressSeconds: 0.5,
+      infoText: function(data, matches) {
+        let name = data.ShortName(matches.source);
+        return {
+          en: 'Provoke: ' + name,
+          de: 'Herausforderung: ' + name,
+          fr: 'Provocation: ' + name,
+          ja: '挑発: ' + name,
+          cn: '挑衅: ' + name,
+          ko: '도발: ' + name,
+        };
+      },
+    },
+    {
       id: 'General Shirk',
       regex: Regexes.ability({ id: '1D71' }),
       condition: function(data) {
