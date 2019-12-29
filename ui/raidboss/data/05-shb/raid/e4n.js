@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Sepulture|伊甸希望乐园 \(觉醒之章4\))$/,
+  zoneRegex: /^(Eden's Gate: Sepulture|伊甸希望乐园 \(觉醒之章4\)|희망의 낙원 에덴: 각성편 \(4\))$/,
   timelineFile: 'e4n.txt',
   triggers: [
     {
@@ -11,6 +11,7 @@
       regexDe: / 14:40F7:Titan starts using Aufschrei der Erde/,
       regexFr: / 14:40F7:Titan starts using Hurlement Tellurique/,
       regexJa: / 14:40F7:タイタン starts using 大地の叫び/,
+      regexKo: / 14:40F7:타이탄 starts using 대지의 외침/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -19,6 +20,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -28,6 +30,7 @@
       regexDe: / 14:40F8:Titan starts using Gaias Zorn/,
       regexFr: / 14:40F8:Titan starts using Fureur Tellurique/,
       regexJa: / 14:40F8:タイタン starts using 大地の怒り/,
+      regexKo: / 14:40F8:타이탄 starts using 대지의 분노/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -36,6 +39,7 @@
         de: 'AoE + DoT',
         fr: 'Dégâts de zone + dot',
         cn: 'AOE + dot',
+        ko: 'AOE + 도트뎀',
       },
     },
     {
@@ -45,6 +49,7 @@
       regexDe: / 14:40F9:Titan starts using Felsbrecher on (\y{Name})/,
       regexFr: / 14:40F9:Titan starts using Éruption Tellurique on (\y{Name})/,
       regexJa: / 14:40F9:タイタン starts using ロッククラッシュ on (\y{Name})/,
+      regexKo: / 14:40F9:타이탄 starts using 암석 붕괴 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -52,6 +57,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱크버스터 on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -60,6 +66,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 ->' + data.ShortName(matches[1]),
+            ko: '탱버 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -70,6 +77,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 ->' + data.ShortName(matches[1]),
+            ko: '탱버 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -81,11 +89,13 @@
       regexDe: / 14:40FA:Titan starts using Gigantischer Bergsturz/,
       regexFr: / 14:40FA:Titan starts using Glissement Apocalyptique/,
       regexJa: / 14:40FA:タイタン starts using メガ・ランドスライド/,
+      regexKo: / 14:40FA:타이탄 starts using 대규모 산사태/,
       alertText: {
         en: 'Stand In Front',
         de: 'Vor ihm stehen',
         fr: 'Se placer devant',
         cn: '面前躲避',
+        ko: '정면이 안전지대',
       },
     },
     {
@@ -95,6 +105,7 @@
       regexDe: / 14:40F2:Riesiger Felsen starts using Felsfall/,
       regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
       regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
+      regexKo: / 14:40F2:거대 바위 starts using 암반 낙하/,
       delaySeconds: 6,
       suppressSeconds: 10,
       infoText: {
@@ -102,6 +113,7 @@
         de: 'Hinter Felsen verstecken',
         fr: 'Se cacher derrière le rocher',
         cn: '躲在石头后',
+        ko: '돌 뒤에 숨기',
       },
     },
     {
@@ -111,11 +123,13 @@
       regexDe: / 14:40F6:Titan starts using Kraterschlag/,
       regexFr: / 14:40F6:Titan starts using Broie-Terre/,
       regexJa: / 14:40F6:タイタン starts using ジオクラッシュ/,
+      regexKo: / 14:40F6:타이탄 starts using 대지 붕괴/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
         fr: 'Poussée',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -125,11 +139,13 @@
       regexDe: / 14:4102:Titan starts using Bruchzone/,
       regexFr: / 14:4102:Titan starts using Faille Tectonique/,
       regexJa: / 14:4102:タイタン starts using フォールトゾーン/,
+      regexKo: / 14:4102:타이탄 starts using 단층대/,
       alertText: {
         en: 'Stand On Flank',
         de: 'Auf seiner Flanke stehen',
         fr: 'Se placer sur le flanc',
         cn: '两侧躲避',
+        ko: '넓은쪽 옆면이 안전지대',
       },
     },
   ],
@@ -296,6 +312,46 @@
         'Brink of Death': '濒死',
         'Physical Vulnerability Up': '物理受伤加重',
         'Filthy': '污泥',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Titan': '타이탄',
+        'Bomb Boulder': '바위폭탄',
+        'Massive Boulder': '거대 바위',
+      },
+      'replaceText': {
+        'Fault Line': '단층선',
+        'Earthen Wheels': '대지의 바퀴',
+        'Geocrush': '대지 붕괴',
+        'Earthen Armor': '대지의 갑옷',
+        'Fault Zone': '단층대',
+        'Bomb Boulders': '바위폭탄',
+        'Weight [oO]f [tT]he Land': '대지의 무게',
+        'Voice [oO]f [tT]he Land': '대지의 외침',
+        'Leftward Landslide': '좌측 산사태',
+        'Explosion': '폭산',
+        'Evil Earth': '사악한 대지',
+        'Aftershock': '여파',
+        'Magnitude 5.0': '진도 5.0',
+        'Seismic Wave': '지진파',
+        'Crumbling Down': '암반 낙하',
+        'Earthen Fury': '대지의 분노',
+        'Rightward Landslide': '우측 산사태',
+        'Massive Landslide': '대규모 산사태',
+        'Earthen Gauntlets': '대지의 완갑',
+        'Cobalt Bomb': '코발트 폭탄',
+        'Bury': '충격',
+        'Stonecrusher': '암석 붕괴',
+        'Landslide': '산사태',
+      },
+      '~effectNames': {
+        'Dropsy': '물독',
+        'Brink of Death': '쇠약강',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Filthy': '진흙탕',
       },
     },
   ],

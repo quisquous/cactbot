@@ -1,14 +1,7 @@
 'use strict';
 
 let Options = {
-  Language: 'en',
-  DetectionRange: 0,
-  TTS: false,
-  PopSoundAlert: true,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
-  PopVolume: 0.5,
-  Puller: true,
-  Position: true,
   RankOptions: {
     'S': {
       Type: 'mob',
@@ -38,6 +31,7 @@ let instanceChangedRegex = {
   'de': / 00:0039:Du bist nun in dem instanziierten Areal/,
   'fr': / 00:0039:Vous avez été transporté/,
   'ja': / 00:0039:インスタンスエリア/,
+  'ko': / 00:0039:인스턴스 지역/,
 };
 
 class Point2D {
