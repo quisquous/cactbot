@@ -5,4 +5,4 @@
   timelineFile: 'ravana-ex.txt',
   triggers: [
   ],
-}]
+}];

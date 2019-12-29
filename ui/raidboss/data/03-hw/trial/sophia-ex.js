@@ -5,4 +5,4 @@
   timelineFile: 'sophia-ex.txt',
   triggers: [
   ],
-}]
+}];
