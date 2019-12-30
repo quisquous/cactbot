@@ -8,7 +8,7 @@ let kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
   fr: 'Afin d\'appliquer les modifications, il faut recharger l\'overlay cacbot.',
   cn: '要应用配置更改，请重新加载cactbot悬浮窗。',
-  ko: '변경사항을 적용하려면, 오버레이를 새로고침 하십시오.'
+  ko: '변경사항을 적용하려면, 오버레이를 새로고침 하십시오.',
 };
 
 // Text in the butter bar reload button.
