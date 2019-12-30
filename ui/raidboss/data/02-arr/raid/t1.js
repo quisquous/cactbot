@@ -69,7 +69,7 @@
     },
     {
       id: 'T1 Slime Timer First',
-      regex: Regexes.gameLog({ line: '00:0839:The Allagan megastructure will be sealed off', capture: false }),
+      regex: Regexes.message({ line: 'The Allagan megastructure will be sealed off', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {
