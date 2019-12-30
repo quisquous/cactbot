@@ -76,16 +76,21 @@ html {
 }
 
 .overlay-header::before {
-  content: '\1F53D ';
+  content: '';
+  box-sizing: border-box;
   margin-right: 5px;
-
-  /* specify an explicit height because these two characters have different sizes */
-  height: 28px;
-  width: 15px;
+  width: 10px;
+  height: 10px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid black;
 }
 
 .collapsed .overlay-header::before {
-  content: '\25B6 ';
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid black;
+  border-right: none;
 }
 
 .overlay-options {
@@ -126,16 +131,21 @@ html {
 }
 
 .trigger-expansion-header::before {
+  content: '';
+  box-sizing: border-box;
   margin-right: 5px;
-  content: '\1F53D ';
-
-  /* specify an explicit height because these two characters have different sizes */
-  width: 16px;
-  height: 21px;
+  width: 6px;
+  height: 6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid black;
 }
 
 .collapsed .trigger-expansion-header::before {
-  content: '\25B6 ';
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid black;
+  border-right: none;
 }
 
 .trigger-file-container {
@@ -155,16 +165,21 @@ html {
 }
 
 .trigger-file-header::before {
-  content: '\1F53D ';
+  content: '';
+  box-sizing: border-box;
   margin-right: 5px;
-
-  /* specify an explicit height because these two characters have different sizes */
-  width: 16px;
-  height: 21px;
+  width: 6px;
+  height: 6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid black;
 }
 
 .collapsed .trigger-file-header::before {
-  content: '\25B6 ';
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid black;
+  border-right: none;
 }
 
 .trigger-file-header-part {
