@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Eden's Gate: Sepulture \(Savage\)$/,
     cn: /^伊甸零式希望乐园 \(觉醒之章4\)$/,
+    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(4\)$/,
   },
   timelineFile: 'e4s.txt',
   timelineTriggers: [
@@ -20,6 +21,7 @@
         fr: 'Tank busters',
         ja: 'タンクバスター',
         cn: '坦克死刑',
+        ko: '탱버',
       },
     },
   ],
@@ -31,6 +33,7 @@
       regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge:/,
       regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique:/,
       regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲:/,
+      regexKo: / 15:\y{ObjectId}:타이탄:40E6:대지의 완갑:/,
       run: function(data) {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -43,6 +46,7 @@
       regexDe: / 15:\y{ObjectId}:Titan:40E[79]:Gaia-Panzer:/,
       regexFr: / 15:\y{ObjectId}:Titan:40E[79]:Armure Tellurique:/,
       regexJa: / 15:\y{ObjectId}:タイタン:40E[79]:大地の鎧:/,
+      regexKo: / 15:\y{ObjectId}:타이탄:40E[79]:대지의 갑옷:/,
       run: function(data) {
         data.phase = 'armor';
         delete data.printedBury;
@@ -55,6 +59,7 @@
       regexDe: / 14:4116:Titan starts using Felsbrecher on (\y{Name})/,
       regexFr: / 14:4116:Titan starts using Éruption Tellurique on (\y{Name})/,
       regexJa: / 14:4116:タイタン starts using ロッククラッシュ on (\y{Name})/,
+      regexKo: / 14:4116:타이탄 starts using 암석 붕괴 on (\y{Name})/,
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -63,6 +68,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -80,6 +86,7 @@
           fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にタンクバスター',
           cn: '死刑点 ' + data.ShortName(matches[1]),
+          ko: '"' + data.ShortName(matches[1]) + '" 탱버',
         };
       },
     },
@@ -95,6 +102,7 @@
         fr: 'Marque de dispersion',
         ja: '黄色: 散開',
         cn: '黄色：散开',
+        ko: '징: 산개',
       },
     },
     {
@@ -104,6 +112,7 @@
       regexDe: / 14:410C:Titan starts using Grimm der Erde/,
       regexFr: / 14:410C:Titan starts using Terre Maléfique/,
       regexJa: / 14:410C:タイタン starts using イビルアース/,
+      regexKo: / 14:410C:타이탄 starts using 사악한 대지/,
       suppressSeconds: 1,
       infoText: {
         en: 'Look for Evil Earth Marker',
@@ -111,6 +120,7 @@
         fr: 'Repérez une marque de Terre maléfique',
         ja: '範囲見て',
         cn: '观察地板',
+        ko: '사악한 대지 패턴 확인',
       },
     },
     {
@@ -125,6 +135,7 @@
         fr: 'Marque de package',
         ja: '橙色: スタック',
         cn: '橙色：集合',
+        ko: '모이기 징',
       },
     },
     {
@@ -134,6 +145,7 @@
       regexDe: / 14:4114:Titan starts using Aufschrei der Erde/,
       regexFr: / 14:4114:Titan starts using Hurlement Tellurique/,
       regexJa: / 14:4114:タイタン starts using 大地の叫び/,
+      regexKo: / 14:4114:타이탄 starts using 대지의 외침/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -143,6 +155,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -152,12 +165,14 @@
       regexDe: / 14:4113:Titan starts using Kraterschlag/,
       regexFr: / 14:4113:Titan starts using Broie-Terre/,
       regexJa: / 14:4113:タイタン starts using ジオクラッシュ/,
+      regexKo: / 14:4113:타이탄 starts using 대지 붕괴/,
       alertText: {
         en: 'Knockback',
         de: 'Rückstoß',
         fr: 'Poussée',
         ja: 'ノックバック',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -167,12 +182,14 @@
       regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge:/,
       regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique:/,
       regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲:/,
+      regexKo: / 15:\y{ObjectId}:타이탄:40E6:대지의 완갑:/,
       alertText: {
         en: 'Landslide: In Front',
         de: 'Armberge: Vor ihm',
         fr: 'Devant',
         ja: 'ランスラ: 正面へ',
         cn: '面前躲避',
+        ko: '완갑: 정면',
       },
     },
     {
@@ -182,12 +199,14 @@
       regexDe: / 15:\y{ObjectId}:Titan:4117:Gigantischer Bergsturz:/,
       regexFr: / 15:\y{ObjectId}:Titan:4117:Glissement Apocalyptique:/,
       regexJa: / 15:\y{ObjectId}:タイタン:4117:メガ・ランドスライド:/,
+      regexKo: / 15:\y{ObjectId}:타이탄:4117:대규모 산사태:/,
       infoText: {
         en: 'Get to Sides',
         de: 'Zur Seite',
         fr: 'Sur les côtés',
         ja: '横へ',
         cn: '两侧躲避',
+        ko: '양옆으로',
       },
     },
     {
@@ -197,12 +216,14 @@
       regexDe: / 14:411A:Titan starts using Bergsturz/,
       regexFr: / 14:411A:Titan starts using Glissement De Terrain/,
       regexJa: / 14:411A:タイタン starts using ランドスライド/,
+      regexKo: / 14:411A:타이탄 starts using 산사태/,
       alertText: {
         en: 'Back Corners',
         de: 'Hintere Ecken',
         fr: 'Coins arrière',
         ja: 'ランスラくるよ',
         cn: '后方角落',
+        ko: '뒤쪽 구석으로',
       },
     },
     {
@@ -217,6 +238,7 @@
         fr: 'Bombe sur VOUS',
         ja: 'マーカーついた',
         cn: '炸弹点名',
+        ko: '거리감쇠 징 대상자',
       },
     },
     {
@@ -228,6 +250,7 @@
       regexDe: / 1[56]:\y{ObjectId}:Bomber-Brocken:4142:Begraben:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
       regexFr: / 1[56]:\y{ObjectId}:Bombo Rocher:4142:Ensevelissement:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
       regexJa: / 1[56]:\y{ObjectId}:ボムボルダー:4142:衝撃:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
+      regexKo: / 1[56]:\y{ObjectId}:바위폭탄:4142:충격:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
       condition: function(data) {
         return !data.printedBury;
       },
@@ -245,6 +268,7 @@
               de: 'Im Osten vestecken',
               fr: 'Cachez-vous derrière à l\'est',
               cn: '右边躲避',
+              ko: '동쪽으로',
             };
           } else if (x > 105) {
             data.printedBury = true;
@@ -253,6 +277,7 @@
               de: 'Im Westen vestecken',
               fr: 'Cachez-vous derrière à l\'ouest',
               cn: '左边躲避',
+              ko: '서쪽으로',
             };
           }
         } else if (data.phase == 'landslide') {
@@ -272,6 +297,7 @@
               fr: 'Allez aux cardinaux en premier',
               ja: '十字',
               cn: '十字',
+              ko: '먼저 측면으로 이동',
             };
           }
           // Cardinals dropped first.  Corners safe.
@@ -280,6 +306,7 @@
             de: 'Zuerst in die Ecken gehen',
             fr: 'Allez dans les coins en premier',
             cn: '先去角落',
+            ko: '먼저 코너로 이동',
           };
         }
       },
@@ -291,12 +318,14 @@
       regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder:/,
       regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique:/,
       regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪:/,
+      regexKo: / 15:\y{ObjectId}:타이탄:40E8:대지의 바퀴:/,
       alertText: {
         en: 'Wheels: On Sides',
         de: 'Räder: Zur Seite',
         fr: 'Roues : Sur les côtés',
         ja: '車輪: 横へ',
         cn: '车轮：两侧',
+        ko: '바퀴: 옆으로',
       },
     },
     {
@@ -306,12 +335,14 @@
       regexDe: / 16:\y{ObjectId}:Titan:411F:Bruchlinie:/,
       regexFr: / 16:\y{ObjectId}:Titan:411F:Faille Tectonique:/,
       regexJa: / 16:\y{ObjectId}:タイタン:411F:フォールトゾーン:/,
+      regexKo: / 16:\y{ObjectId}:타이탄:411F:단층선:/,
       infoText: {
         en: 'Tank Charge',
         de: 'Tank wird angefahren',
         fr: 'Charge tank',
         ja: 'タンクに突進',
         cn: '坦克冲锋',
+        ko: '탱 돌진',
       },
     },
     {
@@ -321,12 +352,14 @@
       regexDe: / 14:4121:Titan starts using Magnitude 5.0/,
       regexFr: / 14:4121:Titan starts using Magnitude 5/,
       regexJa: / 14:4121:タイタン starts using マグニチュード5.0/,
+      regexKo: / 14:4121:타이탄 starts using 진도 5.0/,
       alertText: {
         en: 'Get Under',
         de: 'Unter ihn',
         fr: 'Sous le boss',
         ja: '中へ',
         cn: '脚下集合',
+        ko: '보스 아래로',
       },
     },
     {
@@ -336,6 +369,7 @@
       regexDe: / 14:4124:Gigantitan starts using Gaias Zorn/,
       regexFr: / 14:4124:Maxi Titan starts using Fureur Tellurique/,
       regexJa: / 14:4124:マキシタイタン starts using 大地の怒り/,
+      regexKo: / 14:4124:타이탄 Maximum starts using 대지의 분노/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -345,6 +379,7 @@
         fr: 'Gros dégâts de zone',
         ja: '強AoE',
         cn: '大AOE',
+        ko: '강한 전체 공격',
       },
     },
     {
@@ -354,12 +389,14 @@
       regexDe: / 14:412F:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:412F:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:412F:マキシタイタン starts using 大地の拳/,
+      regexKo: / 14:412F:타이탄 Maximum starts using 대지의 주먹/, // 한자 번역 - 아래도
       infoText: {
         en: 'Left, Then Right',
         de: 'Links, dann Rechts',
         fr: 'Gauche puis droite',
         ja: '左 => 右',
         cn: '左 => 右',
+        ko: '왼쪽 => 오른쪽',
       },
     },
     {
@@ -369,12 +406,14 @@
       regexDe: / 14:4130:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:4130:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:4130:マキシタイタン starts using 大地の拳/,
+      regexKo: / 14:4130:타이탄 Maximum starts using 대지의 주먹/,
       infoText: {
         en: 'Right, Then Left',
         de: 'Rechts, dann Links',
         fr: 'Droite puis gauche',
         ja: '右 => 左',
         cn: '右 => 左',
+        ko: '오른쪽 => 왼쪽',
       },
     },
     {
@@ -384,12 +423,14 @@
       regexDe: / 14:4131:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:4131:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:4131:マキシタイタン starts using 大地の拳/,
+      regexKo: / 14:4131:타이탄 Maximum starts using 대지의 주먹/,
       infoText: {
         en: 'Left, Stay Left',
         de: 'Links, Links bleiben',
         fr: 'Gauche puis restez',
         ja: 'ずっと左',
         cn: '一直在左',
+        ko: ' 왼쪽 => 왼쪽',
       },
     },
     {
@@ -399,12 +440,14 @@
       regexDe: / 14:4132:Gigantitan starts using Gaias Faust/,
       regexFr: / 14:4132:Maxi Titan starts using Poing De La Terre/,
       regexJa: / 14:4132:マキシタイタン starts using 大地の拳/,
+      regexKo: / 14:4132:타이탄 Maximum starts using 대지의 주먹/,
       infoText: {
         en: 'Right, Stay Right',
         de: 'Rechts, Rechts bleiben',
         fr: 'Droite puis restez',
         ja: 'ずっと右',
         cn: '一直在右',
+        ko: '오른쪽 => 오른쪽',
       },
     },
     {
@@ -414,12 +457,14 @@
       regexDe: / 14:4135:Gigantitan starts using Gaias Hammerfaust/,
       regexFr: / 14:4135:Maxi Titan starts using Frappe De La Terre/,
       regexJa: / 14:4135:マキシタイタン starts using 大地の両拳/,
+      regexKo: / 14:4135:타이탄 Maximum starts using Dual Earthen Fists/,
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',
         fr: 'Poussée',
         ja: 'ノックバック',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -434,6 +479,7 @@
         de: 'Schwere, Raus gehen',
         fr: 'Poids, éloignez-vous',
         cn: '蓝色：离开人群',
+        ko: '파랑징, 피하기',
       },
     },
     {
@@ -447,6 +493,7 @@
             de: 'Weg von den Tanks',
             fr: 'Loin des tanks',
             cn: '远离坦克',
+            ko: '탱커에서 멀어지기',
           };
         }
         if (matches[1] == data.me) {
@@ -456,6 +503,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合分摊',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -464,6 +512,7 @@
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           cn: '集合 ->' + data.ShortName(matches[1]),
+          ko: '"' + data.ShortName(matches[1]) + '" 쉐어징',
         };
       },
     },
@@ -479,6 +528,7 @@
         de: 'Gefängnis auf DIR',
         fr: 'Geôle sur VOUS',
         cn: '石牢点名',
+        ko: '화강암 감옥 대상',
       },
     },
     {
@@ -494,12 +544,14 @@
       regexDe: / 14:4125:Gigantitan starts using Felsberster/,
       regexFr: / 14:4125:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4125:マキシタイタン starts using ロックフラクチャー/,
+      regexKo: / 14:4125:타이탄 Maximum starts using Plate Fracture/, // 타이탄 Maximum 번역 필요 - 아래도
       infoText: {
         en: 'GET OFF FRONT RIGHT',
         de: 'VON VORNE RECHTS RUNTER',
         fr: 'PARTEZ DE L\'AVANT DROITE',
         ja: '右前壊れるよ',
         cn: '破坏右前',
+        ko: '앞 오른쪽 피하기',
       },
     },
     {
@@ -509,12 +561,14 @@
       regexDe: / 14:4126:Gigantitan starts using Felsberster/,
       regexFr: / 14:4126:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4126:マキシタイタン starts using ロックフラクチャー/,
+      regexKo: / 14:4126:타이탄 Maximum starts using Plate Fracture/,
       infoText: {
         en: 'GET OFF BACK RIGHT',
         de: 'VON HINTEN RECHTS RUNTER',
         fr: 'PARTEZ DE L\'ARRIERE DROITE',
         ja: '右後ろ壊れるよ',
         cn: '破坏右后',
+        ko: '뒤 오른쪽 피하기',
       },
     },
     {
@@ -524,12 +578,14 @@
       regexDe: / 14:4127:Gigantitan starts using Felsberster/,
       regexFr: / 14:4127:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4127:マキシタイタン starts using ロックフラクチャー/,
+      regexKo: / 14:4127:타이탄 Maximum starts using Plate Fracture/,
       infoText: {
         en: 'GET OFF BACK LEFT',
         de: 'VON HINTEN LINKS RUNTER',
         fr: 'PARTEZ DE L\'ARRIERE GAUCHE',
         ja: '左後ろ壊れるよ',
         cn: '破坏左后',
+        ko: '뒤 왼쪽 피하기',
       },
     },
     {
@@ -539,12 +595,14 @@
       regexDe: / 14:4128:Gigantitan starts using Felsberster/,
       regexFr: / 14:4128:Maxi Titan starts using Fracture Rocheuse/,
       regexJa: / 14:4128:マキシタイタン starts using ロックフラクチャー/,
+      regexKo: / 14:4128:타이탄 Maximum starts using Plate Fracture/,
       infoText: {
         en: 'GET OFF FRONT LEFT',
         de: 'VON VORNE LINKS RUNTER',
         fr: 'PARTEZ DE L\'AVANT GAUCHE',
         ja: '左前壊れるよ',
         cn: '破坏左前',
+        ko: '앞 왼쪽 피하기',
       },
     },
     {
@@ -554,6 +612,7 @@
       regexDe: / 14:412A:Gigantitan starts using Katastrophales Beben/,
       regexFr: / 14:412A:Maxi Titan starts using Tumulte/,
       regexJa: / 14:412A:マキシタイタン starts using 激震/,
+      regexKo: / 14:412A:타이탄 Maximum starts using 격진/, // 한자 번역 - 아래도
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -563,6 +622,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격 5회',
       },
     },
   ],
@@ -805,6 +865,64 @@
         'Fetters': '拘束',
         'Devotion': '灵护',
         'Damage Down': '伤害降低',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Titan': '타이탄',
+        'Granite Gaol': '화강암 감옥',
+        'Engage!': '전투 시작!',
+        'Bomb Boulder': '바위폭탄',
+      },
+      'replaceText': {
+        'Dual Earthen Fists': 'Dual Earthen Fists',
+        'attack': '공격',
+        'Weight of the World': 'Weight of the World',
+        'Weight of the Land': '대지의 무게',
+        'Voice of the Land': '대지의 외침',
+        'Tumult': '격진',
+        'Tectonic Uplift': 'Tectonic Uplift',
+        'Stonecrusher': '암석 붕괴',
+        'Seismic Wave': '지진파',
+        'Rock Throw': 'Rock Throw',
+        'Rightward Landslide': '우측 산사태',
+        'Pulse of the Land': 'Pulse of the Land',
+        'Plate Fracture': 'Plate Fracture',
+        'Orogenesis': 'Orogenesis',
+        'Megalith': 'Megalith',
+        'Massive Landslide': '대규모 산사태',
+        'Magnitude 5.0': '진도 5.0',
+        'Landslide': '산사태',
+        'Geocrush': '대지 붕괴',
+        'Force of the Land': 'Force of the Land',
+        'Fault Line': '단층선',
+        'Explosion': '폭산',
+        'Evil Earth': '사악한 대지',
+        'Enrage': '전멸기',
+        'Earthen Wheels': '대지의 바퀴',
+        'Earthen Gauntlets': '대지의 완갑',
+        'Earthen Fury': '대지의 분노',
+        'Earthen Fist': '대지의 주먹',
+        'Earthen Armor': '대지의 갑옷',
+        'Earthen Anguish': 'Earthen Anguish',
+        'Crumbling Down': '암반 낙하',
+        'Bury': '충격',
+        'Bomb Boulders': '바위폭탄',
+        'Aftershock': '여파',
+        '--untargetable--': '--타겟불가능--',
+        '--targetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Summon Order III': '기술 실행 대기 3',
+        'Summon Order': '기술 실행 대기 1',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Healing Magic Down': '회복마법 효과 감소',
+        'Filthy': '진흙탕',
+        'Fetters': '구속',
+        'Devotion': '에기의 가호',
+        'Damage Down': '주는 피해량 감소',
       },
     },
   ],
