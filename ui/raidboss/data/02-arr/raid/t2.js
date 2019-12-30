@@ -4,28 +4,18 @@
   zoneRegex: /^The Binding Coil Of Bahamut - Turn \(2\)$/,
   triggers: [
     {
-      id: 'T2 Silence',
-      regex: / 14:4C0:.* starts using High Voltage/,
-      regexDe: / 14:4C0:.* starts using Hochstrom/,
-      regexFr: / 14:4C0:.* starts using Haute Tension/,
-      regexJa: / 14:4C0:.* starts using 高圧電流/,
+      id: 'T2 High Voltage',
+      regex: Regexes.startsUsing({ id: '4C0', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
-      infoText: {
-        en: 'Silence',
-      },
+      response: Responses.silence(),
     },
     {
       id: 'T2 Ballast',
-      regex: / 14:4C5:.* starts using Ballast/,
-      regexDe: / 14:4C5:.* starts using Ballast/,
-      regexFr: / 14:4C5:.* starts using Lest/,
-      regexJa: / 14:4C5:.* starts using バラスト/,
+      regex: Regexes.startsUsing({ id: '4C5', capture: false }),
       suppressSeconds: 3,
-      alertText: {
-        en: 'Get Behind',
-      },
+      response: Responses.getBehind(),
     },
     {
       id: 'T2 Rot',
@@ -45,7 +35,7 @@
       infoText: function(data, matches) {
         if (data.me != matches.target) {
           return {
-            en: 'Rot on ' + data.ShortName(matches[1]),
+            en: 'Rot on ' + data.ShortName(matches.target),
           };
         }
       },
@@ -75,12 +65,14 @@
     },
     {
       id: 'T2 Lost Rot',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Allagan Rot/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Allagische Fäulnis/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Pourriture Allagoise/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of アラガンロット/,
+      regex: Regexes.losesEffect({ effect: 'Allagan Rot' }),
+      regexDe: Regexes.losesEffect({ effect: 'Allagische Fäulnis' }),
+      regexFr: Regexes.losesEffect({ effect: 'Pourriture Allagoise' }),
+      regexJa: Regexes.losesEffect({ effect: 'アラガンロット' }),
+      regexCn: Regexes.losesEffect({ effect: '亚拉戈古病毒' }),
+      regexKo: Regexes.losesEffect({ effect: '알라그 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         delete data.rot;

@@ -4,35 +4,35 @@
   zoneRegex: /^The Binding Coil Of Bahamut - Turn \(1\)$/,
   triggers: [
     {
-      id: 'T1 Silence',
-      regex: / 14:5A7:Ads starts using High Voltage/,
-      regexDe: / 14:5A7:Abwehrsystem starts using Hochstrom/,
-      regexFr: / 14:5A7:Sphère De Contrôle starts using Haute Tension/,
-      regexJa: / 14:5A7:制御システム starts using 高圧電流/,
+      id: 'T1 High Voltage',
+      regex: Regexes.startsUsing({ source: 'Ads', id: '5A7', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Abwehrsystem', id: '5A7', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Sphère De Contrôle', id: '5A7', capture: false }),
+      regexJa: Regexes.startsUsing({ source: '制御システム', id: '5A7', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence',
-      },
+      response: Responses.silence(),
     },
     {
+      // Indiscriminate Hood Swing
       id: 'T1 Initiated',
-      regex: / 15:\y{ObjectId}:Caduceus:4B8:Hood Swing:/,
-      regexDe: / 15:\y{ObjectId}:Caduceus:4B8:Kapuzenschwung:/,
-      regexFr: / 15:\y{ObjectId}:Caducée:4B8:Coup de capot:/,
-      regexJa: / 15:\y{ObjectId}:カドゥケウス:4B8:フードスイング:/,
+      regex: Regexes.ability({ source: 'Caduceus', id: '4B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Caducée', id: '4B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8', capture: false }),
       run: function(data) {
         data.started = true;
       },
     },
     {
-      regex: / 1[56]:\y{ObjectId}:Caduceus:4BA:Regorge:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Caduceus:4BA:Auswürgen:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Caducée:4BA:Vomissure:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:カドゥケウス:4BA:リゴージ:\y{ObjectId}:(\y{Name}):/,
+      id: 'T1 Regorge',
+      regex: Regexes.ability({ source: 'Caduceus', id: '4BA' }),
+      regexDe: Regexes.ability({ source: 'Caduceus', id: '4BA' }),
+      regexFr: Regexes.ability({ source: 'Caducée', id: '4BA' }),
+      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4BA' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Spit on YOU',
@@ -40,10 +40,10 @@
     },
     {
       id: 'T1 Split',
-      regex: / 03:\y{ObjectId}:Added new combatant Caduceus\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Caduceus\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Caducée\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant カドゥケウス\./,
+      regex: Regexes.addedCombatant({ name: 'Caduceus', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Caduceus', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Caducée', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'カドゥケウス', capture: false }),
       suppressSeconds: 5,
       condition: function(data) {
         return data.started;
@@ -54,12 +54,12 @@
     },
     {
       id: 'T1 Hood Swing',
-      regex: / 1[56]:\y{ObjectId}:Caduceus:4B8:Hood Swing:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Caduceus:4B8:Kapuzenschwung:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Caducée:4B8:Coup de capot:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:カドゥケウス:4B8:フードスイング:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Caduceus', id: '4B8' }),
+      regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8' }),
+      regexFr: Regexes.ability({ source: 'Caducée', id: '4B8' }),
+      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 8,
       suppressSeconds: 5,
@@ -69,7 +69,7 @@
     },
     {
       id: 'T1 Slime Timer First',
-      regex: / 00:0839:The Allagan megastructure will be sealed off/,
+      regex: Regexes.gameLog({ line: '00:0839:The Allagan megastructure will be sealed off', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {
@@ -78,10 +78,10 @@
     },
     {
       id: 'T1 Slime Timer',
-      regex: / 03:\y{ObjectId}:Added new combatant Dark Matter Slime\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Dunkelmaterien-Schleim\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Gluant De Matière Sombre\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ダークマター・スライム\./,
+      regex: Regexes.addedCombatant({ name: 'Dark Matter Slime', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Dunkelmaterien-Schleim', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Gluant De Matière Sombre', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ダークマター・スライム', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {

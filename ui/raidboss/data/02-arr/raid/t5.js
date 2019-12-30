@@ -6,36 +6,21 @@
   triggers: [
     {
       id: 'T5 Death Sentence',
-      regex: / 14:5B2:Twintania starts using Death Sentence on (\y{Name})\./,
-      regexDe: / 14:5B2:Twintania starts using Todesurteil on (\y{Name})\./,
-      regexFr: / 14:5B2:Gémellia starts using Peine De Mort on (\y{Name})\./,
-      regexJa: / 14:5B2:ツインタニア starts using デスセンテンス on (\y{Name})\./,
+      regex: Regexes.startsUsing({ source: 'Twintania', id: '5B2' }),
+      regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2' }),
+      regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2' }),
+      regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer' || data.job == 'BLU';
+        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches[1] != data.me) {
-          return {
-            en: 'Tank Buster on ' + data.ShortName(matches[1]),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'T5 Death Sentence Warning',
-      regex: / 14:5B2:Twintania starts using Death Sentence/,
-      regexDe: / 14:5B2:Twintania starts using Todesurteil/,
-      regexFr: / 14:5B2:Gémellia starts using Peine De Mort/,
-      regexJa: / 14:5B2:ツインタニア starts using デスセンテンス/,
+      regex: Regexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
       },
@@ -47,12 +32,12 @@
     },
     {
       id: 'T5 Liquid Hell',
-      regex: / 14:4DB:The Scourge Of Meracydia starts using Liquid Hell/,
-      regexDe: / 14:4DB:Fackel Von Meracydia starts using Höllenschmelze/,
-      regexFr: / 14:4DB:Fléau De Méracydia starts using Enfer Liquide/,
-      regexJa: / 14:4DB:メラシディアン・ワイバーン starts using ヘルリキッド/,
+      regex: Regexes.startsUsing({ source: 'The Scourge Of Meracydia', id: '4DB', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Fackel Von Meracydia', id: '4DB', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Fléau De Méracydia', id: '4DB', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
       infoText: {
-        en: 'Fireball',
+        en: 'Liquid Hell',
       },
     },
     {
@@ -62,42 +47,42 @@
     },
     {
       id: 'T5 Fireball',
-      regex: / 15:\y{ObjectId}:Twintania:5AC:Fireball:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Twintania:5AC:Feuerball:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Gémellia:5AC:Boule de feu:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ツインタニア:5AC:ファイアボール:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Twintania', id: '5AC' }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '5AC' }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '5AC' }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AC' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Fireball on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Fireball on ' + data.ShortName(matches[1]),
+            en: 'Fireball on ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
-      id: 'T5 Conflag',
-      regex: / 15:\y{ObjectId}:Twintania:5AB:Firestorm:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Twintania:5AB:Feuersturm:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Gémellia:5AB:Tempête de feu:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ツインタニア:5AB:ファイアストーム:\y{ObjectId}:(\y{Name}):/,
+      id: 'T5 Conflagration',
+      regex: Regexes.ability({ source: 'Twintania', id: '5AB' }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '5AB' }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '5AB' }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AB' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Conflag on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Conflag on ' + data.ShortName(matches[1]),
+            en: 'Conflag on ' + data.ShortName(matches.target),
           };
         }
       },
@@ -109,20 +94,20 @@
     },
     {
       id: 'T5 Divebomb',
-      regex: / 15:\y{ObjectId}:Twintania:5B0:Divebomb:/,
-      regexDe: / 15:\y{ObjectId}:Twintania:5B0:Sturzbombe:/,
-      regexFr: / 15:\y{ObjectId}:Gémellia:5B0:Bombe plongeante:/,
-      regexJa: / 15:\y{ObjectId}:ツインタニア:5B0:ダイブボム:/,
+      regex: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
       alertText: {
         en: 'DIVEBOMB',
       },
     },
     {
       id: 'T5 Divebomb Set Two',
-      regex: / 15:\y{ObjectId}:Twintania:5B0:Divebomb:/,
-      regexDe: / 15:\y{ObjectId}:Twintania:5B0:Sturzbombe:/,
-      regexFr: / 15:\y{ObjectId}:Gémellia:5B0:Bombe plongeante:/,
-      regexJa: / 15:\y{ObjectId}:ツインタニア:5B0:ダイブボム:/,
+      regex: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
       infoText: {
@@ -130,28 +115,29 @@
       },
     },
     {
+      // Unwoven Will
       id: 'T5 Dreadknight',
-      regex: / 15:\y{ObjectId}:Twintania:4E3:Unwoven Will:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Twintania:4E3:Entwobener Wille:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Gémellia:4E3:Volonté dispersée:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ツインタニア:4E3:アンウォーヴェンウィル:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Twintania', id: '4E3' }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '4E3' }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '4E3' }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '4E3' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Knight on YOU',
           };
         }
         return {
-          en: 'Knight on ' + data.ShortName(matches[1]),
+          en: 'Knight on ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'T5 Twister',
-      regex: / 14:4E1:Twintania starts using Twister/,
-      regexDe: / 14:4E1:Twintania starts using Wirbelsturm/,
-      regexFr: / 14:4E1:Gémellia starts using Tornade/,
-      regexJa: / 14:4E1:ツインタニア starts using ツイスター/,
+      regex: Regexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '4E1', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
       alertText: {
         en: 'Twister!',
       },
@@ -163,21 +149,21 @@
     },
     {
       id: 'T5 Hatch',
-      regex: / 15:\y{ObjectId}:Twintania:5AD:Hatch:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Twintania:5AD:Austritt:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Gémellia:5AD:Éclosion:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ツインタニア:5AD:魔力爆散:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Twintania', id: '5AD' }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '5AD' }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '5AD' }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AD' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Hatch on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Hatch on ' + data.ShortName(matches[1]),
+            en: 'Hatch on ' + data.ShortName(matches.target),
           };
         }
       },
