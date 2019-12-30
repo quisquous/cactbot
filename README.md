@@ -133,7 +133,7 @@ plugin, [documented here](http://dtguilds.enjin.com/forum/m/37032836/viewthread/
 with [some extensions](ui/raidboss/data/README.txt).
 
 There are three levels of text alerts, in order of escalating importance: `info`, `alert`, and `alarm`.
-Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  [Text-to-speech can be configured](docs/AdvancedCactbot.md#text-to-speech) if you prefer that over on screen text.
+Text messages will be in one of these, and more important levels are larger and more eye grabbing colors.  Text-to-speech can be configured if you prefer that over on screen text.
 
 Timeline files are found in [ui/raidboss/data/timelines](ui/raidboss/data/timelines). Triggers
 for text and sound alerts are found in [ui/raidboss/data/triggers](ui/raidboss/data/triggers).
@@ -295,7 +295,7 @@ To add a cactbot module is the same as adding any overlay plugin.
 
     ![raidboss plugin sizing](screenshots/OverlayPluginRaidbossSizing.png)
 
-1. Uncheck the **Enable Clickthru** box on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](docs/AdvancedCactbot.md#configuring-ui-modules) if you want even more control.  It should look something like this:
+1. Uncheck the **Enable Clickthru** box on the config panel.  Then, in FFXIV, click and drag the lower right corner of the raidboss overlay to resize it.  Click and drag anywhere else on the raidboss overlay to move it.  This will make it look a lot better.  You can [configure this with CSS](docs/AdvancedCactbot.md#user-folder-config-overrides) if you want even more control.  It should look something like this:
 
     ![raidboss plugin final](screenshots/OverlayPluginRaidbossFinalSize.png)
 
@@ -312,7 +312,7 @@ A general FAQ can be found [here](docs/FAQ-Troubleshooting.md) containing soluti
 
 ## Cactbot Customization
 
-See [this documentation](docs/AdvancedCactbot.md#configuring-ui-modules) for more details.
+See [this documentation](docs/AdvancedCactbot.md#user-folder-config-overrides) for more details.
 
 ## Supported Languages
 

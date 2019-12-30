@@ -1,32 +1,52 @@
 # Advanced Cactbot Usage
 
-1. [Configuring UI Modules](#configuring-ui-modules)
+1. [User Folder Config Overrides](#user-folder-config-overrides)
     1. [User Directory](#user-directory)
     1. [Customizing Appearance](#customizing-appearance)
     1. [Customizing Behavior](#customizing-behavior)
     1. [Per Trigger Options](#per-trigger-options)
-    1. [Text To Speech](#text-to-speech)
     1. [Adding Custom Triggers](#adding-custom-triggers)
     1. [Regular Expression Extensions](#regular-expression-extensions)
 1. [Writing a cactbot UI Module](#writing-a-cactbot-ui-module)
 
-## Configuring UI modules
+## User Folder Config Overrides
 
-The general philosophy of cactbot is that future updates of cactbot will update files inside
-the ui directory, and any user configuration should go in files in the user directory.  This
-will prevent your changes from being clobbered during future cactbot updates.
+Many settings of cactbot can be changed from inside of ACT,
+using the config tool.
+This can be found by going to
+Plugins -> OverlayPlugin.dll -> Cactbot Event Source,
+and then clicking on options there.
 
-All cactbot UI modules can load user settings from the [user/](user/) directory. The user/
-directory already includes some example configuration files, which you can rename and use.
+These options are stored in your
+`%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
+file.
+
+WARNING: files inside of your user directory will silently overwrite settings
+that were set from the config tool inside of ACT.
+This can be confusing,
+so it's generally preferable to let the config tool set everything you can,
+and only use user files in order to set things that the config tool does not
+provide access to.
+
+The general philosophy of cactbot is that
+future updates of cactbot will update files inside the ui directory,
+and any user configuration should go in files in the user directory.
+This will prevent your changes from being clobbered during future cactbot updates.
+
+All cactbot UI modules can load user settings from the [user/](user/) directory.
+The user/ directory already includes some example configuration files,
+which you can rename and use.
 For example the **user/raidboss-example.js** can be renamed to **user/raidboss.js**
 and edited to change the behavior of the **raidboss** module.
 
-If you want to do it yourself, then create a **user/\<name\>.css** or a **user/\<name\>.js**
-file, where **\<name\>** is the name of the UI module, such as [raidboss](ui/raidboss) or
-[jobs](ui/jobs).
+If you want to do it yourself,
+then create a **user/\<name\>.css** or a **user/\<name\>.js** file,
+where **\<name\>** is the name of the UI module,
+such as [raidboss](ui/raidboss) or [jobs](ui/jobs).
 
-After making any changes to these files, pressing the "Reload overlay" button for the
-appropriate cactbot in ACT's OverlayPlugin settings will apply the changes.
+After making any changes to these files,
+pressing the "Reload overlay" button
+for the appropriate cactbot in ACT's OverlayPlugin settings will apply the changes.
 
 ### User Directory
 
@@ -134,24 +154,6 @@ The fields that are valid on PerTriggerOptions are the following:
 * `VolumeOverride`: function, 0-1 value for how loud to play the sound at
 
 All of the functions in the above list override the previous values if they exist.  So, if the trigger has an `alertText` entry and the option specifies an `AlertText` (even if empty), then it will not play.  This is what the example does for twisters above.
-
-### Text To Speech
-
-If you dislike the built-in sound info, alert, and alarm noises that cactbot uses by default and would
-prefer to use text to speech (tts), you can set a global option by including this line
-in your **user/raidboss.js** file:
-
-```javascript
-// Including this line will make any trigger with text to speech use that instead of other
-// noises.
-Options.SpokenAlertsEnabled = true;
-
-// If you don't like the on screen text, you can turn that off with this line too:
-Options.TextAlertsEnabled = false;
-```
-
-See [this options documentation](user/raidboss-example.js) for a full list of options and
-how to configure text, sound, and tts options on a per trigger basis.
 
 ### Adding Custom Triggers
 
