@@ -5,7 +5,7 @@ html {
 }
 
 #container {
-  font-family: "Meiryo", Tahoma;
+  font-family: "Meiryo", Tahoma, sans-serif;
   font-size: 12px;
   color: rgb(232, 255, 254);
   background-color: rgba(0, 0, 0, 0.3);
@@ -38,9 +38,6 @@ ul {
 
 .combatants {
   padding: 0 6px 6px;
-}
-
-.header {
 }
 
 .encounter-header {
@@ -128,9 +125,6 @@ ul {
   border-radius: 6px;
 }
 
-.duration {
-}
-
 li {
   position: relative;
   margin: 0;
@@ -197,6 +191,10 @@ li:last-child {
 
   /* border-radius: 6px 2px 2px 6px; */
   transition: width 0.4s ease-in-out;
+}
+
+.inactive .bar {
+  background-color: #d8dadb;
 }
 
 .show-job-colors .pgl .bar,
@@ -298,10 +296,6 @@ li:last-child {
   padding-left: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.inactive .bar {
-  background-color: #d8dadb;
 }
 
 .arrow {

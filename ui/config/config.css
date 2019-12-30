@@ -7,7 +7,7 @@ html {
   height: 100%;
   overflow-y: scroll;
   background-color: white;
-  font-family: Helvetica;
+  font-family: Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 300;
 }
@@ -75,10 +75,6 @@ html {
   align-items: center;
 }
 
-.collapsed .overlay-header::before {
-  content: '\25B6 ';
-}
-
 .overlay-header::before {
   content: '\1F53D ';
   margin-right: 5px;
@@ -86,6 +82,10 @@ html {
   /* specify an explicit height because these two characters have different sizes */
   height: 28px;
   width: 15px;
+}
+
+.collapsed .overlay-header::before {
+  content: '\25B6 ';
 }
 
 .overlay-options {
@@ -125,10 +125,6 @@ html {
   align-items: center;
 }
 
-.collapsed .trigger-expansion-header::before {
-  content: '\25B6 ';
-}
-
 .trigger-expansion-header::before {
   margin-right: 5px;
   content: '\1F53D ';
@@ -136,6 +132,10 @@ html {
   /* specify an explicit height because these two characters have different sizes */
   width: 16px;
   height: 21px;
+}
+
+.collapsed .trigger-expansion-header::before {
+  content: '\25B6 ';
 }
 
 .trigger-file-container {
@@ -154,10 +154,6 @@ html {
   align-items: center;
 }
 
-.collapsed .trigger-file-header::before {
-  content: '\25B6 ';
-}
-
 .trigger-file-header::before {
   content: '\1F53D ';
   margin-right: 5px;
@@ -165,6 +161,10 @@ html {
   /* specify an explicit height because these two characters have different sizes */
   width: 16px;
   height: 21px;
+}
+
+.collapsed .trigger-file-header::before {
+  content: '\25B6 ';
 }
 
 .trigger-file-header-part {
@@ -177,10 +177,6 @@ html {
   margin: 12px;
   grid-template-columns: repeat(1, auto 1fr);
   grid-gap: 20px;
-}
-
-.trigger {
-
 }
 
 .trigger.disabled {
@@ -219,6 +215,7 @@ html {
 }
 
 .regex-text {
+  color: black;
 }
 
 .sound-text {

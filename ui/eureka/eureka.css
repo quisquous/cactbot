@@ -15,28 +15,28 @@
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(950%/13);
+  padding-bottom: calc(950% / 13);
 }
 
 .aspect-ratio-pagos {
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(950%/15);
+  padding-bottom: calc(950% / 15);
 }
 
 .aspect-ratio-pyros {
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(1450%/13.5);
+  padding-bottom: calc(1450% / 13.5);
 }
 
 .aspect-ratio-hydatos {
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(800%/15);
+  padding-bottom: calc(800% / 15);
 }
 
 .inner-container {
@@ -51,9 +51,6 @@
   width: 100%;
   height: 100%;
   opacity: 0.5;
-}
-
-#nm-labels {
 }
 
 .flag {
@@ -77,6 +74,19 @@
   position: absolute;
   font-size: 12px;
   transform: translate(-50%, -40%);
+}
+
+.nm-name {
+  display: block;
+  text-align: center;
+  min-width: 100px;
+}
+
+.nm-time {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  min-width: 100px;
 }
 
 .nm-down .nm-name {
@@ -111,23 +121,6 @@
 
 .nm-pop .nm-icon {
   display: none;
-}
-
-.nm-icon {
-
-}
-
-.nm-name {
-  display: block;
-  text-align: center;
-  min-width: 100px;
-}
-
-.nm-time {
-  display: block;
-  text-align: center;
-  font-size: 10px;
-  min-width: 100px;
 }
 
 .player {

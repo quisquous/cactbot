@@ -38,19 +38,6 @@
   left: -40px;
 }
 
-.justbuffs #right-side-icons {
-  position: fixed;
-  left: 0;
-}
-
-.justbuffs #pull-bar {
-  display: none;
-}
-
-.justbuffs #bars {
-  display: none;
-}
-
 /* Relative to #bars */
 #pull-bar,
 #hp-bar,
@@ -69,6 +56,19 @@
   top: 0;
   height: 18px;
   font-size: 12px;
+}
+
+.justbuffs #right-side-icons {
+  position: fixed;
+  left: 0;
+}
+
+.justbuffs #pull-bar {
+  display: none;
+}
+
+.justbuffs #bars {
+  display: none;
 }
 
 #mp-bar,
@@ -358,6 +358,7 @@
 
   /* fix this hack by using better layout primitives */
   left: -242px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .bar-border-color {
@@ -562,10 +563,6 @@
 
 .blm-color-fire {
   background-color: rgb(217, 51, 0);
-}
-
-.blm-umbral-timer {
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .blm-umbral-timer.fire {
