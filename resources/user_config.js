@@ -45,13 +45,17 @@ let UserConfig = {
           this.optionTemplates[overlayName],
       );
 
+      // If the overlay has a "Debug" setting, set to true via the config tool,
+      // then also print out user files that have been loaded.
+      let printUserFile = Options.Debug ? (x) => console.log(x) : (x) => {};
+
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
       // passed to Javascript for Chrome security reasons.
       if (localFiles) {
         if (jsFile in localFiles) {
           try {
-            console.log('local user file: ' + basePath + '\\' + jsFile);
+            printUserFile('local user file: ' + basePath + '\\' + jsFile);
             eval(localFiles[jsFile]);
           } catch (e) {
             // Be very visible for users.
@@ -66,7 +70,7 @@ let UserConfig = {
         this.handleSkin(Options.Skin);
 
         if (cssFile in localFiles) {
-          console.log('local user file: ' + basePath + '\\' + cssFile);
+          printUserFile('local user file: ' + basePath + '\\' + cssFile);
           let userCssText = document.createElement('style');
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
@@ -75,14 +79,14 @@ let UserConfig = {
         if (basePath.slice(-1) != '/')
           basePath += '/';
         let jsUrl = basePath + jsFile;
-        console.log('remote user file: ' + jsUrl);
+        printUserFile('remote user file: ' + jsUrl);
         this.appendJSLink(jsUrl);
 
         // See note above in localFiles case about skin load ordering.
         this.handleSkin(Options.Skin);
 
         let cssUrl = basePath + cssFile;
-        console.log('remote user file: ' + cssUrl);
+        printUserFile('remote user file: ' + cssUrl);
         this.appendCSSLink(cssUrl);
       }
 
