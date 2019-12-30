@@ -581,7 +581,7 @@ class PopupText {
         let lang = this.options.AlertsLanguage || this.options.Language || 'en';
         let arrowReplacement = {
           en: ' then ',
-          cn: ' ', // FIXME
+          cn: ' 然后 ',
           de: ' dann ',
           fr: ' puis ',
           ja: ' ', // FIXME

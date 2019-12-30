@@ -17,7 +17,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Lower ui opacity when out of combat',
         fr: 'Diminiuer l\'opacité de l\'UI si hors combat',
-        cn: '仅显示团辅监控',
+        cn: '非战斗状态时使UI透明化',
       },
       type: 'checkbox',
       default: true,
