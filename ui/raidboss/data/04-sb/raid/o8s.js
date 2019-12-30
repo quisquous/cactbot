@@ -6,7 +6,10 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /^(Sigmascape V4\.0 \(Savage\)|차원의 틈 오메가: 시그마편\(영웅\) \(4\))$/,
+  zoneRegex: {
+    en: /^Sigmascape V4\.0 \(Savage\)$/,
+    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(4\)$/,
+  },
   timelineFile: 'o8s.txt',
   triggers: [
     {
