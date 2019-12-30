@@ -585,7 +585,7 @@ class PopupText {
           de: ' dann ',
           fr: ' puis ',
           ja: ' ', // FIXME
-          ko: ' ', // FIXME
+          ko: ' 그리고 ',
         };
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
         let cmd = { 'call': 'cactbotSay', 'text': ttsText };
