@@ -790,7 +790,7 @@ UserConfig.registerOptions('raidboss', {
         de: {
           'Benutze FFXIV Plugin Sprache': 'default',
           'Englisch (en)': 'en',
-          'Chinese (cn)': 'cn',
+          'Chinesisch (cn)': 'cn',
           'Deutsch (de)': 'de',
           'Französisch (fr)': 'fr',
           'Japanisch (ja)': 'ja',
