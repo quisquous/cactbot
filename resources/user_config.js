@@ -35,12 +35,15 @@ let UserConfig = {
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
-      this.savedConfig = (await readOptions).data;
-      this.processOptions(
-          Options,
-          this.savedConfig[overlayName],
-          this.optionTemplates[overlayName],
-      );
+      let userOptions = await readOptions;
+      if (userOptions) {
+        this.savedConfig = userOptions.data;
+        this.processOptions(
+            Options,
+            this.savedConfig[overlayName],
+            this.optionTemplates[overlayName],
+        );
+      }
 
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
