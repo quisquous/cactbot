@@ -154,8 +154,12 @@ class PopupText {
       }
 
       if (this.zoneName.search(zoneRegex) >= 0) {
-        if (this.options.Debug)
-          console.log('Loading ' + set.filename);
+        if (this.options.Debug) {
+          if (set.filename)
+            console.log('Loading ' + set.filename);
+          else
+            console.log('Loading user triggers for zone');
+        }
         // Adjust triggers for the locale.
         if (set.triggers) {
           for (let j = 0; j < set.triggers.length; ++j) {
