@@ -6,6 +6,7 @@ let gConfig = null;
 // Text in the butter bar, to prompt the user to reload after a config change.
 let kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
+  de: 'Um die Änderungen zu aktivieren, aktualisiere bitte die Cacbot Overlays.',
   fr: 'Afin d\'appliquer les modifications, il faut recharger l\'overlay cacbot.',
   cn: '要应用配置更改，请重新加载cactbot悬浮窗。',
 };
@@ -13,6 +14,7 @@ let kReloadText = {
 // Text in the butter bar reload button.
 let kReloadButtonText = {
   en: 'Reload',
+  de: 'Aktualisieren',
   fr: 'Recharger',
   cn: '重新加载',
 };
@@ -20,6 +22,7 @@ let kReloadButtonText = {
 // Text on the directory choosing button.
 let kDirectoryChooseButtonText = {
   en: 'Choose Directory',
+  de: 'Wähle ein Verzeichnis',
   fr: 'Choix du répertoire',
   cn: '选择目录',
 };
@@ -27,6 +30,7 @@ let kDirectoryChooseButtonText = {
 // What to show when a directory hasn't been chosen.
 let kDirectoryDefaultText = {
   en: '(Default)',
+  de: '(Standard)',
   fr: '(Défaut)',
   cn: '(默认)',
 };
