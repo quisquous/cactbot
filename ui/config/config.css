@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
 }
 
@@ -6,7 +7,6 @@ html {
   height: 100%;
   overflow-y: scroll;
   background-color: white;
-
   font-family: Helvetica;
   font-size: 14px;
   font-weight: 300;
@@ -27,8 +27,8 @@ html {
 
 #butter-bar {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   padding-left: 12px;
   padding-right: 12px;
   width: calc(100% - 24px);
@@ -36,12 +36,10 @@ html {
   height: 50px;
   background-color: #fff37b;
   overflow: hidden;
-
   display: grid;
   grid-template-columns: repeat(1, auto auto);
   grid-gap: 12px;
 }
-
 
 .reload-text {
   align-self: center;
@@ -58,7 +56,7 @@ html {
   margin-bottom: 20px;
 }
 
-.collapsed  > div:not(:first-child) {
+.collapsed > div:not(:first-child) {
   display: none;
 }
 
@@ -77,13 +75,14 @@ html {
   align-items: center;
 }
 
-.collapsed .overlay-header:before {
+.collapsed .overlay-header::before {
   content: '\25B6 ';
 }
 
-.overlay-header:before {
+.overlay-header::before {
   content: '\1F53D ';
   margin-right: 5px;
+
   /* specify an explicit height because these two characters have different sizes */
   height: 28px;
   width: 15px;
@@ -91,7 +90,7 @@ html {
 
 .overlay-options {
   display: grid;
-  margin: 12px 0px 12px 12px;
+  margin: 12px 0 12px 12px;
   margin-left: 20px;
   grid-template-columns: repeat(1, auto 1fr);
   grid-gap: 12px;
@@ -126,20 +125,21 @@ html {
   align-items: center;
 }
 
-.collapsed .trigger-expansion-header:before {
+.collapsed .trigger-expansion-header::before {
   content: '\25B6 ';
 }
 
-.trigger-expansion-header:before {
+.trigger-expansion-header::before {
   margin-right: 5px;
   content: '\1F53D ';
+
   /* specify an explicit height because these two characters have different sizes */
   width: 16px;
   height: 21px;
 }
 
 .trigger-file-container {
-  margin: 12px 0px 12px 12px;
+  margin: 12px 0 12px 12px;
   grid-column-end: span 2;
 }
 
@@ -148,20 +148,20 @@ html {
   padding: 8px;
   border: 1px solid black;
   cursor: pointer;
-
   display: grid;
   grid-template-columns: repeat(1, auto auto 1fr auto);
   justify-items: right;
   align-items: center;
 }
 
-.collapsed .trigger-file-header:before {
+.collapsed .trigger-file-header::before {
   content: '\25B6 ';
 }
 
-.trigger-file-header:before {
+.trigger-file-header::before {
   content: '\1F53D ';
   margin-right: 5px;
+
   /* specify an explicit height because these two characters have different sizes */
   width: 16px;
   height: 21px;
