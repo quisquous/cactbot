@@ -108,6 +108,7 @@ let kEarlyPullText = {
   fr: 'early pull',
   ja: 'early pull',
   cn: '抢开',
+  ko: '풀링 빠름',
 };
 
 let kLatePullText = {
@@ -117,6 +118,7 @@ let kLatePullText = {
   fr: 'late pull',
   ja: 'late pull',
   cn: '晚开',
+  ko: '풀링 늦음',
 };
 
 // Internal trigger id for early pull
