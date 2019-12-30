@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Resurrection \(Savage\)|伊甸零式希望乐园 \(觉醒之章1\))$/,
+  zoneRegex: /^(Eden's Gate: Resurrection \(Savage\)|伊甸零式希望乐园 \(觉醒之章1\)|희망의 낙원 에덴: 각성편\(영웅\) \(1\))$/,
   timelineFile: 'e1s.txt',
   timeline: [
     function(data) {
@@ -46,6 +46,7 @@
       regexDe: / 14:3D70:Prim-Eden starts using Eden-Gravitas/,
       regexFr: / 14:3D70:Primo-Éden starts using Gravité Édénique/,
       regexJa: / 14:3D70:エデン・プライム starts using エデン・グラビデ/,
+      regexKo: / 14:3D70:에덴 프라임 starts using 에덴 그라비데/,
       run: function(data) {
         if (!data.viceCount) {
           data.viceCount = 1;
@@ -60,6 +61,7 @@
       regexDe: / 1A:\y{ObjectId}:Prim-Eden gains the effect of Wiedergewonnenes Paradies/,
       regexFr: / 1A:\y{ObjectId}:Primo-Éden gains the effect of Paradis [rR]etrouvé/,
       regexJa: / 1A:\y{ObjectId}:エデン・プライム gains the effect of パラダイスリゲイン/,
+      regexKo: / 1A:\y{ObjectId}:에덴 프라임 gains the effect of Paradise Regained/,
       run: function(data) {
         data.paradise = true;
       },
@@ -71,6 +73,7 @@
       regexDe: / 1E:\y{ObjectId}:Prim-Eden loses the effect of Wiedergewonnenes Paradies/,
       regexFr: / 1E:\y{ObjectId}:Primo-Éden loses the effect of Paradis [rR]etrouvé/,
       regexJa: / 1E:\y{ObjectId}:エデン・プライム loses the effect of パラダイスリゲイン/,
+      regexKo: / 1E:\y{ObjectId}:에덴 프라임 loses the effect of Paradise Regained/,
       run: function(data) {
         data.paradise = false;
       },
@@ -82,6 +85,7 @@
       regexDe: / 14:3D70:Prim-Eden starts using Eden-Gravitas/,
       regexFr: / 14:3D70:Primo-Éden starts using Gravité Édénique/,
       regexJa: / 14:3D70:エデン・プライム starts using エデン・グラビデ/,
+      regexKo: / 14:3D70:에덴 프라임 starts using 에덴 그라비데/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -91,6 +95,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -100,6 +105,7 @@
       regexDe: / 14:3D8B:Prim-Eden starts using Fragor Maximus/,
       regexFr: / 14:3D8B:Primo-Éden starts using Fragor Maximus/,
       regexJa: / 14:3D8B:エデン・プライム starts using フラゴルマクシマス/,
+      regexKo: / 14:3D8B:에덴 프라임 starts using 우주 탄생/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -109,6 +115,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -118,6 +125,7 @@
       regexDe: / 14:3D7F:Prim-Eden starts using Dimensionsverschiebung/,
       regexFr: / 14:3D7F:Primo-Éden starts using Translation Dimensionnelle/,
       regexJa: / 14:3D7F:エデン・プライム starts using ディメンションシフト/,
+      regexKo: / 14:3D7F:에덴 프라임 starts using 차원 전환/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -127,6 +135,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -136,6 +145,7 @@
       regexDe: / 14:3D88:Prim-Eden starts using Paradiesspeer on (\y{Name})/,
       regexFr: / 14:3D88:Primo-Éden starts using Lance [Dd]u [Pp]aradis on (\y{Name})/,
       regexJa: / 14:3D88:エデン・プライム starts using スピア・オブ・パラダイス on (\y{Name})/,
+      regexKo: / 14:3D88:에덴 프라임 starts using 낙원의 창 on (\y{Name})/,
       alarmText: function(data, matches) {
         if (matches[1] == data.me || data.role != 'tank')
           return;
@@ -146,6 +156,7 @@
           fr: 'Tank swap !',
           ja: 'タンクスイッチ',
           cn: '换T！',
+          ko: '탱 교대',
         };
       },
       alertText: function(data, matches) {
@@ -156,6 +167,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -165,6 +177,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'にタンクバスター',
             cn: '死刑点 ' + data.ShortName(matches[1]),
+            ko: '"' + data.ShortName(matches[1]) + '" 탱버',
           };
         }
       },
@@ -176,12 +189,14 @@
       regexDe: / 14:3D73:Prim-Eden starts using Eden-Flare/,
       regexFr: / 14:3D73:Primo-Éden starts using Brasier Édénique/,
       regexJa: / 14:3D73:エデン・プライム starts using エデン・フレア/,
+      regexKo: / 14:3D73:에덴 프라임 starts using 에덴 플레어/,
       alertText: {
         en: 'Under',
         de: 'Unter den Boss',
         fr: 'Sous le boss',
         ja: '中へ',
         cn: '脚下',
+        ko: '보스 아래',
       },
     },
     {
@@ -191,12 +206,14 @@
       regexDe: / 14:44F4:Prim-Eden starts using Delta-Attacke/,
       regexFr: / 14:44F4:Primo-Éden starts using Attaque Delta/,
       regexJa: / 14:44F4:エデン・プライム starts using デルタアタック/,
+      regexKo: / 14:44F4:에덴 프라임 starts using 델타 공격/,
       alertText: {
         en: 'Cross Spread',
         de: 'Verteilen',
         ja: '散開',
         fr: 'Ecartez-vous en croix',
         cn: '四角躲避',
+        ko: '산개',
       },
     },
     {
@@ -206,6 +223,7 @@
       regexDe: / 14:44F8:Prim-Eden starts using Delta-Attacke/,
       regexFr: / 14:44F8:Primo-Éden starts using Attaque Delta/,
       regexJa: / 14:44F8:エデン・プライム starts using デルタアタック/,
+      regexKo: / 14:44F8:에덴 프라임 starts using 델타 공격/,
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -214,6 +232,7 @@
             ja: '中で散開',
             fr: 'Intérieur, écartez-vous',
             cn: '中间散开',
+            ko: '보스 가까이 탱끼리 같이',
           };
         }
         return {
@@ -222,6 +241,7 @@
           ja: '背面集合',
           fr: 'Intérieur, pack derrière',
           cn: '背面集合',
+          ko: '보스 가까이, 뒤쪽',
         };
       },
     },
@@ -238,6 +258,7 @@
       regexDe: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:(?:44EF|3D7A|44EE|3D78|44F0|3D7D):에덴 프라임 starts using 선과 악/,
       run: function(data) {
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
         data.viceCount++;
@@ -269,6 +290,7 @@
       regexDe: / 14:3D7A:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D7A:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D7A:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:3D7A:에덴 프라임 starts using 선과 악/,
       run: function(data) {
         data.vice = 'dps';
       },
@@ -280,6 +302,7 @@
       regexDe: / 14:44EE:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:44EE:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:44EE:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:44EE:에덴 프라임 starts using 선과 악/,
       run: function(data) {
         data.vice = 'healer';
       },
@@ -291,6 +314,7 @@
       regexDe: / 14:3D78:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D78:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D78:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:3D78:에덴 프라임 starts using 선과 악/,
       run: function(data) {
         data.vice = 'dps';
       },
@@ -302,6 +326,7 @@
       regexDe: / 14:44F0:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:44F0:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:44F0:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:44F0:에덴 프라임 starts using 선과 악/,
       run: function(data) {
         data.vice = 'tank';
       },
@@ -313,6 +338,7 @@
       regexDe: / 14:3D7D:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D7D:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D7D:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:3D7D:에덴 프라임 starts using 선과 악/,
       run: function(data) {
         data.vice = 'tank';
       },
@@ -329,6 +355,7 @@
         ja: '離れて散開',
         fr: 'Ecartez-vous',
         cn: '分散放圈',
+        ko: '장판 유도 산개',
       },
     },
     {
@@ -338,12 +365,14 @@
       regexDe: / 14:3D7A:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D7A:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D7A:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:3D7A:에덴 프라임 starts using 선과 악/,
       alertText: {
         en: 'Stack With Partner',
         de: 'Mit Partner stacken',
         ja: '相方とスタック',
         fr: 'Packez-vous avec votre partenaire',
         cn: '与搭档集合',
+        ko: '쉐어뎀 파트너랑 모이기',
       },
     },
     {
@@ -358,6 +387,7 @@
         fr: 'Tank laser sur VOUS',
         ja: '自分にレーザー',
         cn: '坦克射线',
+        ko: '탱 레이저 대상자',
       },
     },
     {
@@ -367,6 +397,7 @@
       regexDe: / 14:3D78:Prim-Eden starts using Laster [Uu]nd Tugend/,
       regexFr: / 14:3D78:Primo-Éden starts using Vice [eE]t [vV]ertu/,
       regexJa: / 14:3D78:エデン・プライム starts using ヴァイス・アンド・ヴァーチュー/,
+      regexKo: / 14:3D78:에덴 프라임 starts using 선과 악/,
       condition: function(data) {
         return data.role != 'tank';
       },
@@ -376,6 +407,7 @@
         ja: '左右に分かれて内側へ',
         fr: 'Packez-vous devant le tank',
         cn: 'T前集合',
+        ko: '좌우 탱커 앞 산개',
       },
     },
     {
@@ -385,6 +417,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Markiert/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marquage/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of マーキング/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 표식/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -396,6 +429,7 @@
             ja: 'DPSに移して',
             fr: 'Donnez la marque à un DPS',
             cn: '传毒DPS',
+            ko: '딜러한테 표식 넘기기',
           };
         }
         return {
@@ -404,6 +438,7 @@
           ja: 'タンクに移して',
           fr: 'Donnez la marque à un Tank',
           cn: '传毒坦克',
+          ko: '탱커한테 표식 넘기기',
         };
       },
     },
@@ -414,6 +449,7 @@
       regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Markiert/,
       regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Marquage/,
       regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of マーキング/,
+      regexKo: / 1A:\y{ObjectId}:\y{Name} gains the effect of 표식/,
       condition: function(data) {
         if (data.role == 'dps')
           return data.paradise;
@@ -428,6 +464,7 @@
         ja: 'ヒーラーからマーカー取って',
         fr: 'Prenez la marque du healer',
         cn: '从奶妈拿毒',
+        ko: '힐러한테서 표식 받기',
       },
     },
     {
@@ -437,6 +474,7 @@
       regexDe: / 14:3D8D:Hüter von Eden starts using Mana-Verstärker/,
       regexFr: / 14:3D8D:Gardien du Jardin starts using Amplificateur [dD]e [mM]ana/,
       regexJa: / 14:3D8D:エデン・ガーデナー starts using マナブースター/,
+      regexKo: / 14:3D8D:Guardian Of Paradise starts using 마나 부스터/, // 기존 번역 참고 번역
       condition: function(data) {
         return data.CanSilence();
       },
@@ -447,6 +485,7 @@
         ja: '沈黙',
         fr: 'Interrompez le gardien',
         cn: '沉默小怪',
+        ko: '쫄 침묵',
       },
     },
     {
@@ -456,12 +495,14 @@
       regexDe: / 14:3D8A:Prim-Eden starts using Läuterndes Licht/,
       regexFr: / 14:3D8A:Primo-Éden starts using Lumière [pP]urificatrice/,
       regexJa: / 14:3D8A:エデン・プライム starts using ピュアライト/,
+      regexKo: / 14:3D8A:에덴 프라임 starts using 완전한 빛/,
       alertText: {
         en: 'Get Behind',
         de: 'Hinter den Boss',
         fr: 'Derrière le boss',
         ja: '背面へ',
         cn: '背面',
+        ko: '보스 뒤로',
       },
     },
     {
@@ -471,12 +512,14 @@
       regexDe: / 14:3D80:Prim-Eden starts using Läuternder Strahl/,
       regexFr: / 14:3D80:Primo-Éden starts using Rayon [pP]urificateur/,
       regexJa: / 14:3D80:エデン・プライム starts using ピュアレイ/,
+      regexKo: / 14:3D80:에덴 프라임 starts using 완전한 광선/,
       infoText: {
         en: 'Get Outside Your Orb',
         de: 'Geh zu deinem Orb',
         ja: 'ピュアレイを外へ誘導',
         fr: 'Allez à l\'extérieur de votre orbe',
         cn: '球外站位',
+        ko: '본인 레이저 바깥으로 유도',
       },
     },
     {
@@ -486,11 +529,13 @@
       regexDe: / 14:3D82:Prim-Eden starts using Läuternder Strahl/,
       regexFr: / 14:3D82:Primo-Éden starts using Rayon [pP]urificateur/,
       regexJa: / 14:3D82:エデン・プライム starts using ピュアレイ/,
+      regexKo: / 14:3D82:에덴 프라임 starts using 완전한 광선/,
       infoText: {
         en: 'Bait Orb Lasers Outside',
         de: 'Laser nach drausen ködern',
         fr: 'Placez les lasers à l\'extérieur',
         cn: '外侧吃激光',
+        ko: '원/힐 레이저 바깥으로 유도',
       },
     },
   ],
@@ -733,6 +778,64 @@
         'Lightning Resistance Down II': '雷属性耐性大幅降低',
         'Healing Magic Down': '治疗魔法效果降低',
         'Bleeding': '出血',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Eden Prime': '에덴 프라임',
+        'Arcane Sphere': '입체 마법진',
+        'Guardian of Paradise': '에덴의 수호자',
+      },
+      'replaceText': {
+        'attack': '공격',
+        'Vice of Vanity': '허영의 악덕',
+        'Vice of Thievery': 'Vice of Thievery',
+        'Vice of Sloth': 'Vice of Sloth',
+        'Vice of Pride': 'Vice of Pride',
+        'Vice of Greed': 'Vice of Greed',
+        'Vice of Apathy': '냉담의 악덕',
+        'Vice and Virtue': '선과 악',
+        'Spear of Paradise': '낙원의 창',
+        'Regained Thunder III': 'Regained 선더가',
+        'Regained Fire III': 'Regained 파이가',
+        'Regained Blizzard III': 'Regained 블리자가',
+        'Pure Light': '완전한 빛',
+        'Pure Beam': '완전한 광선',
+        'Primeval Stasis': '태초의 안정',
+        'Paradise Regained': 'Paradise Regained',
+        'Paradise Lost': '실낙원',
+        'Paradisal Dive': '낙원 강하',
+        'Mana Slice': '마나 베기',
+        'Mana Burst': '마나 폭발',
+        'Mana Boost': '마나 부스터',
+        'Heavensunder': '천국의 낙뢰',
+        'Fragor Maximus': '우주 탄생',
+        'Eternal Breath': '영원의 숨결',
+        'Enrage': '전멸기',
+        'Eden\'s Thunder III': '에덴 선더가',
+        'Eden\'s Gravity': '에덴 그라비데',
+        'Eden\'s Flare': '에덴 플레어',
+        'Eden\'s Fire III': '에덴 파이가',
+        'Eden\'s Blizzard III': '에덴 블리자가',
+        'Dimensional Shift': '차원 전환',
+        'Delta Attack': '델타 공격',
+        '--corner--': '--모서리--',
+        '--center--': '--중앙--',
+        '--untargetable--': '--타겟불가능--',
+        '--targetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Slippery Prey': '표식 대상 제외',
+        'Prey': '표식',
+        'Poison': '독',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Lightning Resistance Down II': '번개속성 저항 감소[강]',
+        'Healing Magic Down': '회복마법 효과 감소',
+        'Fetters': '구속',
+        'Bleeding': '고통',
       },
     },
   ],

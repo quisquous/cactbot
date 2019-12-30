@@ -5,7 +5,7 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: /^(Eden's Gate: Descent \(Savage\)|伊甸零式希望乐园 \(觉醒之章2\))$/,
+  zoneRegex: /^(Eden's Gate: Descent \(Savage\)|伊甸零式希望乐园 \(觉醒之章2\)|희망의 낙원 에덴: 각성편\(영웅\) \(2\))$/,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
     {
@@ -18,6 +18,7 @@
         fr: 'Prenez les rayons',
         ja: '踏む',
         cn: '踩圈',
+        ko: '바닥 징 밟기',
       },
     },
     {
@@ -30,6 +31,7 @@
         fr: 'Packez-vous avec votre partenaire',
         ja: '白黒合わせて',
         cn: '黑白配',
+        ko: '흑백 파트너랑 모이기',
       },
     },
   ],
@@ -41,6 +43,7 @@
       regexDe: / 1A:\y{ObjectId}:Nichtswandler gains the effect of Verzögerung/,
       regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
       regexJa: / 1A:\y{ObjectId}:ヴォイドウォーカー gains the effect of ディレイスペル/,
+      regexKo: / 1A:\y{ObjectId}:보이드워커 gains the effect of 지연술/,
       run: function(data) {
         data.waiting = true;
       },
@@ -52,6 +55,7 @@
       regexDe: / 1E:\y{ObjectId}:Nichtswandler loses the effect of Verzögerung/,
       regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
       regexJa: / 1E:\y{ObjectId}:ヴォイドウォーカー loses the effect of ディレイスペル/,
+      regexKo: / 1E:\y{ObjectId}:보이드워커 loses the effect of 지연술/,
       run: function(data) {
         data.waiting = false;
       },
@@ -63,6 +67,7 @@
       regexDe: / 14:3E6F:Nichtswandler starts using Entropie/,
       regexFr: / 14:3E6F:Marcheuse Du Néant starts using Entropie/,
       regexJa: / 14:3E6F:ヴォイドウォーカー starts using エントロピー/,
+      regexKo: / 14:3E6F:보이드워커 starts using 엔트로피/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -72,6 +77,7 @@
         fr: 'Dégâts de zone',
         ja: 'aoe',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -81,6 +87,7 @@
       regexDe: / 14:3E71:Nichtswandler starts using Quietus/,
       regexFr: / 14:3E71:Marcheuse Du Néant starts using Quietus/,
       regexJa: / 14:3E71:ヴォイドウォーカー starts using クワイタス/,
+      regexKo: / 14:3E71:보이드워커 starts using Quietus/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -90,6 +97,7 @@
         fr: 'Dégâts de zone',
         ja: 'aoe',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -99,6 +107,7 @@
       regexDe: / 14:3E6[12]:Nichtswandler starts using Schattenflamme on (\y{Name})/,
       regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using Flamme D'[oO]mbre on (\y{Name})/,
       regexJa: / 14:3E6[12]:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
+      regexKo: / 14:3E6[12]:보이드워커 starts using 그림자 불꽃 on (\y{Name})/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -108,6 +117,7 @@
         fr: 'Tankbuster sur VOUS',
         ja: '自分にタンクバスター',
         cn: '死刑点名',
+        ko: '탱버 대상자',
       },
     },
     {
@@ -117,6 +127,7 @@
       regexDe: / 14:3E61:Nichtswandler starts using Schattenflamme/,
       regexFr: / 14:3E61:Marcheuse Du Néant starts using Flamme D'ombre/,
       regexJa: / 14:3E61:ヴォイドウォーカー starts using シャドーフレイム/,
+      regexKo: / 14:3E61:보이드워커 starts using 그림자 불꽃/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -126,6 +137,7 @@
         fr: 'Tank busters',
         ja: 'タンクバスター',
         cn: '死刑',
+        ko: '탱버',
       },
     },
     {
@@ -135,12 +147,14 @@
       regexDe: / 14:3E63:Nichtswandler starts using Nichtsmarter-Schlachter/,
       regexFr: / 14:3E63:Marcheuse Du Néant starts using Couperet Du Néant Ravageur/,
       regexJa: / 14:3E63:ヴォイドウォーカー starts using ドゥームヴォイド・クリーバー/,
+      regexKo: / 14:3E63:보이드워커 starts using Doomvoid Cleaver/,
       alertText: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
         fr: 'Position',
         ja: '散開',
         cn: '分散站位',
+        ko: '정해진 위치로 산개',
       },
     },
     {
@@ -150,12 +164,14 @@
       regexDe: / 14:3E4F:Nichtswandler starts using Nichtsmarter-Fallbeil/,
       regexFr: / 14:3E4F:Marcheuse Du Néant starts using Guillotine Du Néant Ravageur/,
       regexJa: / 14:3E4F:ヴォイドウォーカー starts using ドゥームヴォイド・ギロチン/,
+      regexKo: / 14:3E4F:보이드워커 starts using 파멸의 보이드 절단/,
       alertText: {
         en: 'Sides',
         de: 'Seiten',
         fr: 'Côtés',
         ja: '横へ',
         cn: '两侧',
+        ko: '보스 측면으로 이동',
       },
     },
     {
@@ -165,12 +181,14 @@
       regexDe: / 14:3E50:Nichtswandler starts using Nichtsmarter-Sense/,
       regexFr: / 14:3E50:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
       regexJa: / 14:3E50:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
+      regexKo: / 14:3E50:보이드워커 starts using 파멸의 보이드 베기/,
       infoText: {
         en: 'Get Under',
         de: 'Unter den Boss',
         fr: 'Sous le boss',
         ja: '中へ',
         cn: '脚下',
+        ko: '보스 아래로',
       },
     },
     {
@@ -180,12 +198,14 @@
       regexDe: / 14:3E59:Arm Des Erebos starts using Gähnender Abgrund/,
       regexFr: / 14:3E59:Bras [dD]'[éÉ]rèbe starts using Vaine Malice/,
       regexJa: / 14:3E59:エレボスの巨腕 starts using 虚ろなる悪意/,
+      regexKo: / 14:3E59:에레보스의 팔 starts using 공허한 악의/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
         fr: 'Poussée',
         ja: 'ノックバック',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -195,12 +215,14 @@
       regexDe: / 14:3E6B:Arm Des Erebos starts using Lockende Leere/,
       regexFr: / 14:3E6B:Bras [dD]'[éÉ]rèbe starts using Vaine Cruauté/,
       regexJa: / 14:3E6B:エレボスの巨腕 starts using 虚ろなる害意/,
+      regexKo: / 14:3E6B:에레보스의 팔 starts using Empty Rage/,
       alertText: {
         en: 'Away From Hand',
         de: 'Weg von der Hand',
         fr: 'Eloignez-vous de la main',
         ja: '手から離れて',
         cn: '远离手',
+        ko: '팔에서 멀어지기',
       },
     },
     {
@@ -217,6 +239,7 @@
             fr: 'Package sur VOUS',
             ja: '自分にスタック',
             cn: '集合',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -225,6 +248,7 @@
           fr: 'Package sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にスタック',
           cn: data.ShortName(matches[1]) + ' 处集合',
+          ko: '"' + data.ShortName(matches[1]) + '"에게 모이세요',
         };
       },
     },
@@ -251,6 +275,7 @@
         fr: 'Package retardé',
         ja: 'スタック(ディレイ)',
         cn: '延迟集合',
+        ko: '지연술 쉐어징',
       },
     },
     {
@@ -267,6 +292,7 @@
             fr: 'Package sur VOUS',
             ja: '自分にスタック',
             cn: '集合',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -275,6 +301,7 @@
           fr: 'Package sur ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'にスタック',
           cn: data.ShortName(matches[1]) + ' 处集合',
+          ko: '"' + data.ShortName(matches[1]) + '"에게 모이세요',
         };
       },
     },
@@ -290,6 +317,7 @@
         fr: 'Dispersez-vous',
         ja: '散開',
         cn: '散开',
+        ko: '산개',
       },
     },
     {
@@ -315,6 +343,7 @@
         fr: 'Feu retardé',
         ja: 'マーカーついた(ディレイ)',
         cn: '延迟火',
+        ko: '지연술 원형징',
       },
     },
     {
@@ -329,6 +358,7 @@
         fr: 'Dispersez-vous',
         ja: '散開',
         cn: '散开',
+        ko: '산개',
       },
     },
     {
@@ -345,6 +375,7 @@
             fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
             ja: data.ShortName(matches[1]) + 'を見ないで',
             cn: '背对 ' + data.ShortName(matches[1]),
+            ko: '"' + data.ShortName(matches[1]) + '" 바라보지 마세요',
           };
         }
       },
@@ -356,6 +387,7 @@
             fr: 'Œil de l\'ombre sur VOUS',
             ja: '自分に目',
             cn: '石化眼点名',
+            ko: '눈징 대상자',
           };
         }
       },
@@ -383,6 +415,7 @@
         fr: 'Œil de l\'ombre retardé',
         ja: 'シャドウアイ(ディレイ)',
         cn: '延迟石化眼',
+        ko: '지연술 눈징',
       },
     },
     {
@@ -399,6 +432,7 @@
         fr: 'Œil sur VOUS',
         ja: '自分に目',
         cn: '石化眼点名',
+        ko: '눈징 대상자',
       },
     },
     {
@@ -418,6 +452,7 @@
           fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
           ja: data.ShortName(matches[1]) + 'を見ないで',
           cn: '背对 ' + data.ShortName(matches[1]),
+          ko: '"' + data.ShortName(matches[1]) + '" 바라보지 말기',
         };
       },
     },
@@ -433,6 +468,7 @@
         fr: 'Brasier',
         ja: 'フレア捨てて',
         cn: '核爆',
+        ko: '플레어',
       },
     },
     {
@@ -458,6 +494,7 @@
         fr: 'Brasier retardé',
         ja: 'フレア(ディレイ)',
         cn: '延迟核爆',
+        ko: '지연술 플레어',
       },
     },
     {
@@ -472,6 +509,7 @@
         fr: 'Brasier',
         ja: 'フレア捨てて',
         cn: '核爆',
+        ko: '플레어',
       },
     },
     {
@@ -489,6 +527,7 @@
         fr: 'Dégâts de zone des Brasiers',
         ja: 'フレア AoE',
         cn: '核爆AOE',
+        ko: '플레어 aoes',
       },
     },
     {
@@ -504,6 +543,7 @@
         fr: 'Vent infernal : Sortez',
         ja: 'ヘルウィンド: HP1になるよ',
         cn: '地狱之风：远离',
+        ko: '홍옥징: 힐 받고 들어가기',
       },
       run: function(data) {
         data.hellWind = true;
@@ -543,6 +583,7 @@
         fr: 'Vent infernal retardé',
         ja: 'ヘルウィンド(ディレイ)',
         cn: '延迟地狱之风',
+        ko: '지연술 홍옥징',
       },
     },
     {
@@ -559,6 +600,7 @@
         fr: 'Vent infernal : attendez les soins',
         ja: 'ヘルウィンド: HP戻ってから',
         cn: '地狱之风：等奶',
+        ko: '홍옥징: 힐 기다리기',
       },
     },
     {
@@ -576,6 +618,7 @@
         fr: 'Soignez les cibles de Vent infernal',
         ja: 'HP戻して',
         cn: '奶地狱之风目标',
+        ko: '홍옥징 대상자 힐',
       },
     },
     {
@@ -594,12 +637,14 @@
       regexDe: / 14:4659:Nichtswandler starts using Vergeltendes Chaos/,
       regexFr: / 14:4659:Marcheuse Du Néant starts using Multi-[tT]aillade Vengeresse/,
       regexJa: / 14:4659:ヴォイドウォーカー starts using 復讐の連続剣/,
+      regexKo: / 14:4659:보이드워커 starts using 복수의 연속검/, // 한자 번역
       infoText: {
         en: 'In, Protean, Sides',
         de: 'Rein, Himmelsrichtungen, Seiten',
         fr: 'Sous le boss, Position, Côtés',
         ja: '中 => 散開 => 横',
         cn: '脚下 => 站位 => 两侧',
+        ko: '중앙 => 산개 => 측면',
       },
     },
     {
@@ -609,12 +654,14 @@
       regexDe: / 14:40B9:Nichtswandler starts using Chronisches Chaos/,
       regexFr: / 14:40B9:Marcheuse Du Néant starts using Multi-[tT]aillade Chaotique/,
       regexJa: / 14:40B9:ヴォイドウォーカー starts using 混沌の連続剣/,
+      regexKo: / 14:40B9:보이드워커 starts using 혼돈의 연속검/, // 한자 번역
       infoText: {
         en: 'Sides, In, Protean',
         de: 'Seiten, Rein, Himmelsrichtungen',
         fr: 'Côtés, Sous le boss, Position',
         ja: '横 => 中 => 散開',
         cn: '两侧 => 脚下 => 站位',
+        ko: '측면 => 중앙 => 산개',
       },
     },
   ],
@@ -802,6 +849,55 @@
         'Infirmity': '虚弱',
         'Diabolic Curse': '虚无的诅咒',
         'Bleeding': '出血',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Voidwalker': '보이드워커',
+        'Engage!': '전투 시작!',
+      },
+      'replaceText': {
+        'attack': '공격',
+        'Unholy Darkness': '다크 홀리',
+        'Spell-In-Waiting': '지연술',
+        'Shadowflame': '그림자 불꽃',
+        'Shadoweye': '그림자 시선',
+        'Quietus': 'Quietus',
+        'Punishing Ray': '응징의 빛줄기',
+        'Hell Wind': '황천의 바람',
+        'Flare': '플레어',
+        'Entropy': '엔트로피',
+        'Enrage': '전멸기',
+        'Empty Rage': 'Empty Rage',
+        'Empty Hate': '공허한 악의',
+        'Doomvoid Slicer': '파멸의 보이드 베기',
+        'Doomvoid Guillotine': '파멸의 보이드 절단',
+        'Doomvoid Cleaver': 'Doomvoid Cleaver',
+        'Dark Fire III': '다크 파이가',
+        'Cycle of Retribution': '복수의 연속검',
+        'Cycle of Chaos': '혼돈의 연속검',
+        'Light/Dark Circles': '빛/어둠 징',
+        'Cleaver/Slicer': 'Cleaver/베기',
+        'Slicer/Guillotine': '베기/절단',
+        'Guillotine/Cleaver': '절단/Cleaver',
+        'Cycle Of ?': '? 연속검',
+        '--untargetable--': '--타겟불가능--',
+        '--targetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Stone Curse': '석화의 저주',
+        'Spell-In-Waiting: Unholy Darkness': '지연술: 다크 홀리',
+        'Spell-In-Waiting: Shadoweye': '지연술: 그림자 시선',
+        'Spell-In-Waiting: Hell Wind': '지연술: 황천의 바람',
+        'Spell-In-Waiting: Flare': '지연술: 플레어',
+        'Spell-In-Waiting: Dark Fire III': '지연술: 다크 파이가',
+        'Prey': '표식',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Infirmity': '허약',
+        'Diabolic Curse': '죽음의 선고',
+        'Damage Down': '주는 피해량 감소',
+        'Bleeding': '고통',
       },
     },
   ],

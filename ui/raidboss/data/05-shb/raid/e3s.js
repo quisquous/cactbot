@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Inundation \(Savage\)|伊甸零式希望乐园 \(觉醒之章3\))$/,
+  zoneRegex: /^(Eden's Gate: Inundation \(Savage\)|伊甸零式希望乐园 \(觉醒之章3\)|희망의 낙원 에덴: 각성편\(영웅\) \(3\))$/,
   timelineFile: 'e3s.txt',
   timelineTriggers: [
     {
@@ -14,6 +14,7 @@
         fr: 'Packé en ligne',
         ja: '直線スタック',
         cn: '直线分摊',
+        ko: '쉐어징 모이기',
       },
     },
     {
@@ -29,6 +30,7 @@
         fr: 'Tank cleave, allez devant',
         ja: '拡散くるよ',
         cn: '坦克放陨石，向前集合',
+        ko: '탱버, 앞으로 이동',
       },
     },
   ],
@@ -40,6 +42,7 @@
       regexDe: / 14:3FDC:Leviathan starts using Schrei der Gezeiten/,
       regexFr: / 14:3FDC:Léviathan starts using Vague Rugissante/,
       regexJa: / 14:3FDC:リヴァイアサン starts using タイダルロア/,
+      regexKo: / 14:3FDC:리바이어선 starts using 바다의 포효/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -49,6 +52,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -58,6 +62,7 @@
       regexDe: / 14:3FDE:Leviathan starts using Wütende Flut/,
       regexFr: / 14:3FDE:Léviathan starts using Furie Des Marées/,
       regexJa: / 14:3FDE:リヴァイアサン starts using タイダルレイジ/,
+      regexKo: / 14:3FDE:리바이어선 starts using 바다의 분노/, // 일어 번역 - 아래도
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -67,6 +72,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -76,6 +82,7 @@
       regexDe: / 14:3FF1:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FF1:Léviathan starts using Raz-De-Marée/,
       regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェイブ/,
+      regexKo: / 14:3FF1:리바이어선 starts using 해일/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -83,6 +90,7 @@
         fr: 'Repérez la vague',
         ja: 'タイダルウェーブくるよ',
         cn: '看浪',
+        ko: '해일 바라보기',
       },
     },
     {
@@ -92,6 +100,7 @@
       regexDe: / 14:3FF1:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FF1:Léviathan starts using Raz-De-Marée/,
       regexJa: / 14:3FF1:リヴァイアサン starts using タイダルウェイブ/,
+      regexKo: / 14:3FF1:리바이어선 starts using 해일/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -101,6 +110,7 @@
         fr: 'Poussée',
         ja: 'ノックバック',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -115,6 +125,7 @@
             fr: 'Tank swap !',
             ja: 'スイッチ',
             cn: '换T！',
+            ko: '탱 교대!',
           };
         }
       },
@@ -126,6 +137,7 @@
             fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -134,6 +146,7 @@
             fr: 'Tank busters',
             ja: 'タンクバスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -145,12 +158,14 @@
       regexDe: / 14:3FEF:Leviathan starts using Unterwasserbeben/,
       regexFr: / 14:3FEF:Léviathan starts using Séisme Sous-Marin/,
       regexJa: / 14:3FEF:リヴァイアサン starts using アンダーシークエイク/,
+      regexKo: / 14:3FEF:리바이어선 starts using 해저 지진/,
       alertText: {
         en: 'Get Middle',
         de: 'Geh in die Mitte',
         fr: 'Allez au centre',
         ja: '外壊れるよ',
         cn: '中间',
+        ko: '가운데로',
       },
     },
     {
@@ -160,12 +175,14 @@
       regexDe: / 14:3FEE:Leviathan starts using Unterwasserbeben/,
       regexFr: / 14:3FEE:Léviathan starts using Séisme Sous-Marin/,
       regexJa: / 14:3FEE:リヴァイアサン starts using アンダーシークエイク/,
+      regexKo: / 14:3FEE:리바이어선 starts using 해저 지진/,
       alarmText: {
         en: 'Go Outside',
         de: 'Geh nach Ausen',
         fr: 'Allez sur les côtés',
         ja: '中壊れるよ',
         cn: '两侧',
+        ko: '양옆으로',
       },
     },
     {
@@ -180,6 +197,7 @@
         fr: 'Brasier sur VOUS',
         ja: '自分にフレア',
         cn: '核爆点名',
+        ko: '플레어 대상자',
       },
     },
     {
@@ -189,12 +207,14 @@
       regexDe: / 14:3FE2:Leviathan starts using Tosende Wogen/,
       regexFr: / 14:3FE2:Léviathan starts using Pulsation Sauvage/,
       regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
+      regexKo: / 14:3FE2:리바이어선 starts using 맹렬한 파동/,
       infoText: {
         en: 'Stack, Bait Puddles',
         de: 'Sammeln, Flächen ködern',
         fr: 'Packé, évitez zone au sol',
         ja: '集合',
         cn: '集合',
+        ko: '모이기',
       },
     },
     {
@@ -204,6 +224,7 @@
       regexDe: / 14:3FE2:Leviathan starts using Tosende Wogen/,
       regexFr: / 14:3FE2:Léviathan starts using Pulsation Sauvage/,
       regexJa: / 14:3FE2:リヴァイアサン starts using 猛烈なる波動/,
+      regexKo: / 14:3FE2:리바이어선 starts using 맹렬한 파동/,
       delaySeconds: 2.9,
       infoText: {
         en: 'Drop Puddles Outside',
@@ -211,6 +232,7 @@
         fr: 'Placez les flaques à l\'extérieur',
         ja: '散開',
         cn: '散开',
+        ko: '산개',
       },
     },
     {
@@ -220,12 +242,14 @@
       regexDe: / 14:3FE4:Leviathan starts using Wüstende Wogen/,
       regexFr: / 14:3FE4:Léviathan starts using Pulsation Ravageuse/,
       regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
+      regexKo: / 14:3FE4:리바이어선 starts using 가열의 파동/, // 일어 번역 - 아래도
       infoText: {
         en: 'Stack, Bait Puddles',
         de: 'Sammeln, Flächen ködern',
         fr: 'Packé, évitez zone au sol',
         ja: '集合',
         cn: '集合',
+        ko: '모이기',
       },
     },
     {
@@ -235,6 +259,7 @@
       regexDe: / 14:3FE4:Leviathan starts using Wüstende Wogen/,
       regexFr: / 14:3FE4:Léviathan starts using Pulsation Ravageuse/,
       regexJa: / 14:3FE4:リヴァイアサン starts using 苛烈なる波動/,
+      regexKo: / 14:3FE4:리바이어선 starts using 가열의 파동/,
       delaySeconds: 2.9,
       infoText: function(data) {
         if (data.role == 'tank') {
@@ -244,6 +269,7 @@
             fr: 'Brasier dans un coin extérieur',
             ja: '隅にフレア',
             cn: '外侧角落放核爆',
+            ko: '플레어 양옆 뒤로 유도',
           };
         }
         return {
@@ -252,6 +278,7 @@
           fr: 'Packé à l\'extérieur, évitez les brasiers',
           ja: '前で集合',
           cn: '外侧集合躲避核爆',
+          ko: '양옆 앞으로 모이고, 플레어 피하기',
         };
       },
     },
@@ -262,12 +289,14 @@
       regexDe: / 14:3FFE:Leviathan starts using Stürmische See/,
       regexFr: / 14:3FFE:Léviathan starts using Mer Déchaînée/,
       regexJa: / 14:3FFE:リヴァイアサン starts using 大時化/,
+      regexKo: / 14:3FFE:리바이어선 starts using Stormy Horizon/,
       infoText: {
         en: 'Panto Puddles x5',
         de: 'Panto Flächen x5',
         fr: 'Panto x5',
         ja: 'パント5回',
         cn: '处理水圈 x5',
+        ko: '발밑장판 5회',
       },
     },
     {
@@ -277,6 +306,7 @@
       regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Leviathan:....:....:005A:/,
       regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Léviathan:....:....:005A:/,
       regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:リヴァイアサン:....:....:005A:/,
+      regexKo: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:리바이어선:....:....:005A:/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -286,6 +316,7 @@
         fr: 'Lien sur VOUS',
         ja: '線ついた',
         cn: '水圈连线',
+        ko: '선 대상자',
       },
     },
     {
@@ -295,6 +326,7 @@
       regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Leviathan:....:....:005A:/,
       regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Léviathan:....:....:005A:/,
       regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:リヴァイアサン:....:....:005A:/,
+      regexKo: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:리바이어선:....:....:005A:/,
       run: function(data, matches) {
         data.vent = data.vent || [];
         data.vent.push(matches[1]);
@@ -307,6 +339,7 @@
       regexDe: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Leviathan:....:....:005A:/,
       regexFr: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Léviathan:....:....:005A:/,
       regexJa: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:リヴァイアサン:....:....:005A:/,
+      regexKo: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:리바이어선:....:....:005A:/,
       condition: function(data) {
         return data.vent.length == 2 && data.vent.indexOf(data.me) == -1 && data.role != 'tank';
       },
@@ -316,6 +349,7 @@
         fr: 'Absorbez les bulles en alternance',
         ja: '水出た',
         cn: '交替踩圈',
+        ko: '물장판 밟기',
       },
     },
     {
@@ -325,6 +359,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Erdrückung/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Écrasantes/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 強圧の兆し/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 강압의 징조/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -334,6 +369,7 @@
         fr: 'Pousée initiale sur VOUS',
         ja: '最初のノックバック',
         cn: '初始击退点名',
+        ko: '첫 넉백 대상자',
       },
     },
     {
@@ -345,6 +381,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Zerstörung from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Fracturantes from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 断絶の兆し from (?:.*) for (.*) Seconds/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 단절의 징조 from (?:.*) for (.*) Seconds/, // 일어 번역 - 아래도
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -357,6 +394,7 @@
             fr: 'Pousée sur VOUS',
             ja: '自分にノックバック',
             cn: '击退点名',
+            ko: '넉백 대상자',
           };
         }
       },
@@ -371,6 +409,7 @@
             fr: 'Poussée tardive 1',
             ja: '遅ノックバック1',
             cn: '迟击退点名 #1',
+            ko: '늦은 넉백 대상자 1',
           };
         }
         return {
@@ -379,6 +418,7 @@
           fr: 'Poussée tardive 2',
           ja: '遅ノックバック2',
           cn: '迟击退点名 #2',
+          ko: '늦은 넉백 대상자 2',
         };
       },
     },
@@ -390,6 +430,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 폭풍의 징조/, // 일어 번역 - 아래도
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -399,6 +440,7 @@
         fr: 'Médisance',
         ja: '暴風',
         cn: '暴风',
+        ko: '폭풍 대상자',
       },
     },
     {
@@ -408,6 +450,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 폭풍의 징조/,
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -418,6 +461,7 @@
         fr: 'Evitez la pousée, allez à l\'arrière',
         ja: '後ろへ',
         cn: '后方放大圈',
+        ko: '넉백 피하고, 뒤로 이동',
       },
     },
     {
@@ -427,6 +471,7 @@
       regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Omen der Ertränkung from (?:.*) for (.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Eaux Submergeantes from (?:.*) for (.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 溺没の兆し from (?:.*) for (.*) Seconds/,
+      regexKo: / 1A:\y{ObjectId}:\y{Name} gains the effect of 익몰의 징조 from (?:.*) for (.*) Seconds/,
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
@@ -443,6 +488,7 @@
         fr: 'Packé',
         ja: 'スタック',
         cn: '集合',
+        ko: '모이기',
       },
     },
     {
@@ -452,6 +498,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Böen/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Dévastatrices/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 暴風の兆し/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 폭풍의 징조/,
       condition: function(data, matches) {
         return data.me != matches[1];
       },
@@ -462,6 +509,7 @@
         fr: 'Sous le boss, évitez la médisance',
         ja: '前にノックバック',
         cn: '靠近躲避',
+        ko: '안으로 이동, 폭풍 피하기',
       },
     },
     {
@@ -471,6 +519,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (?:.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (?:.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (?:.*) Seconds/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 확산의 징조 from (?:.*) for (?:.*) Seconds/, // 일어 번역 - 아래도
       condition: function(data, matches) {
         return data.me == matches[1];
       },
@@ -480,6 +529,7 @@
         fr: 'Cône tank',
         ja: '断絶',
         cn: '坦克三角',
+        ko: '탱 삼각형', // 적당한 번역 필요
       },
     },
     {
@@ -489,6 +539,7 @@
       regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Omen der Auflösung from (?:.*) for (?:.*) Seconds/,
       regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eaux Pulvérisantes from (?:.*) for (?:.*) Seconds/,
       regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拡散の兆し from (?:.*) for (?:.*) Seconds/,
+      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 확산의 징조 from (?:.*) for (?:.*) Seconds/,
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'tank';
       },
@@ -500,6 +551,7 @@
         fr: 'Cône tank',
         ja: '断絶',
         cn: '坦克三角',
+        ko: '탱 삼각형', // 적당한 번역 필요
       },
     },
     {
@@ -509,6 +561,7 @@
       regexDe: / 14:400F:Leviathan starts using Erwachen der Tiefen/,
       regexFr: / 14:400F:Léviathan starts using Éveil De L'[eE]au/,
       regexJa: / 14:400F:リヴァイアサン starts using 水の覚醒/,
+      regexKo: / 14:400F:리바이어선 starts using 물의 각성/, // 한자 번역
       run: function(data) {
         data.refreshed = true;
       },
@@ -520,12 +573,14 @@
       regexDe: / 14:3FEB:Leviathan starts using Unstete Gezeiten/,
       regexFr: / 14:3FEB:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
+      regexKo: / 14:3FEB:리바이어선 starts using 순간 해류/,
       infoText: {
         en: 'Front left / Back right',
         de: 'Vorne Links / Hinten Rechts',
         fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
         cn: '前左 / 后右',
+        ko: '왼쪽 앞 / 오른쪽 뒤',
       },
     },
     {
@@ -535,12 +590,14 @@
       regexDe: / 14:3FEA:Leviathan starts using Unstete Gezeiten/,
       regexFr: / 14:3FEA:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
+      regexKo: / 14:3FEA:리바이어선 starts using 순간 해류/,
       infoText: {
         en: 'Front right / Back left',
         de: 'Vorne Rechts / Hinten Links',
         fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
         cn: '前右 / 后左',
+        ko: '왼쪽 뒤 / 오픈쪽 앞',
       },
     },
     {
@@ -554,6 +611,7 @@
       regexDe: / 14:3FEA:Leviathan starts using Unstete Gezeiten/,
       regexFr: / 14:3FEA:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEA:リヴァイアサン starts using テンポラリーカレント/,
+      regexKo: / 14:3FEA:리바이어선 starts using 순간 해류/,
       condition: function(data) {
         return data.refreshed;
       },
@@ -564,6 +622,7 @@
         fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
         cn: '前左 / 后右',
+        ko: '왼쪽 앞 / 오른쪽 뒤',
       },
     },
     {
@@ -573,6 +632,7 @@
       regexDe: / 14:3FEB:Leviathan starts using Unstete Gezeiten/,
       regexFr: / 14:3FEB:Léviathan starts using Courant Évanescent/,
       regexJa: / 14:3FEB:リヴァイアサン starts using テンポラリーカレント/,
+      regexKo: / 14:3FEB:리바이어선 starts using 순간 해류/,
       condition: function(data) {
         return data.refreshed;
       },
@@ -583,6 +643,7 @@
         fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
         cn: '前右 / 后左',
+        ko: '왼쪽 뒤 / 오른쪽 앞',
       },
     },
   ],
@@ -802,6 +863,60 @@
         'Scouring Waters': '暴风之兆',
         'Magic Vulnerability Up': '魔法受伤加重',
         'Heavy': '加重',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Leviathan': '리바이어선',
+        'Engage!': '전투 시작!',
+      },
+      'replaceText': {
+        'Undersea Quake': '해저 지진',
+        'Tsunami': '대해일',
+        'Tidal Wave': '해일',
+        'Tidal Roar': '바다의 포효',
+        'Tidal Rage': '바다의 분노',
+        'The Storm': '전멸기 / 혼돈의 파동',
+        'The Calm': '침몰의 파동', // 일어 번역
+        'Temporary Current': '순간 해류',
+        'Swirling Tsunami': '와동의 대해일',
+        'Sweeping Tsunami': 'Sweeping Tsunami',
+        'Surging Tsunami': '강압의 대해일',
+        'Sundering Tsunami': 'Sundering Tsunami',
+        'Stormy Horizon': 'Stormy Horizon',
+        'Spinning Dive': '고속 돌진',
+        'Spilling Wave': 'Spilling Wave',
+        'Smothering Tsunami': '익몰의 대해일',
+        'Scouring Tsunami': 'Scouring Tsunami',
+        'Roiling Pulse': '가열의 파동',
+        'Rip Current': '이안류',
+        'Refreshing Shower': 'Refreshing Shower',
+        'Plunging Wave': 'Plunging Wave',
+        'Monster Wave': '마물의 물결',
+        'Maelstrom': '대격동',
+        'Killer Wave': '치명적인 물결',
+        'Hydrothermal Vent': 'Hydrothermal Vent',
+        'Hot Water': 'Hot Water',
+        'Freak Wave': '기괴한 물결',
+        'Enrage': '전멸기',
+        'Drenching Pulse': '맹렬한 파동',
+        'Breaking Wave': 'Breaking Wave',
+        'Black Smokers': 'Black Smokers',
+        'Backbreaking Wave': 'Backbreaking Wave',
+        '--untargetable--': '--타겟불가능--',
+        '--targetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Swirling Waters': '소용돌이의 징조',
+        'Sweeping Waters': '확산의 징조',
+        'Surging Waters': '강압의 징조',
+        'Sundering Waters': '단절의 징조',
+        'Splashing Waters': '강풍의 징조',
+        'Smothering Waters': '익몰의 징조',
+        'Scouring Waters': '폭풍의 징조',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Heavy': '과중력',
       },
     },
   ],
