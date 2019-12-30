@@ -7,6 +7,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'Debug',
       name: {
         en: 'Enable debug mode',
+        de: 'Aktiviere Debugmodus',
         fr: 'Activer le mode debug',
         cn: '启用调试模式',
         ko: '디버그 모드 활성화',
@@ -18,6 +19,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'NumLiveListItemsInCombat',
       name: {
         en: 'Number of mistakes to show in combat',
+        de: 'Anzahl der Fehler, die während des Kampfes angezeigt werden',
         fr: 'Nombre de fautes à afficher en combat',
         cn: '战斗中显示的错误数量',
         ko: '전투 중 표시할 실수들의 개수',
@@ -29,6 +31,7 @@ UserConfig.registerOptions('oopsyraidsy', {
       id: 'MinimumTimeForPullMistake',
       name: {
         en: 'Minimum time to show early pull (seconds)',
+        de: 'Minimum Zeit in der Early-Pulls angezeigt werden (in Sekunden)',
         fr: 'Durée minimale pour afficher l\'early pull (secondes)',
         cn: '显示提前开怪最小时间（秒）',
         ko: '풀링이 빠르다고 표시 할 최소 시간 (초)',
