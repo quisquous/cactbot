@@ -6,12 +6,12 @@
   triggers: [
     {
       id: 'T4 Gravity Thrust',
-      regex: / 14:4D4:Spinner-Rook starts using Gravity Thrust on (\y{Name})\./,
-      regexDe: / 14:4D4:Drehturm starts using Gravitationsschlag on (\y{Name})\./,
-      regexFr: / 14:4D4:Drone-Drille starts using Percée Gravitationnelle on (\y{Name})\./,
-      regexJa: / 14:4D4:ルークスピナー starts using グラビデカノン on (\y{Name})\./,
+      regex: Regexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
+      regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
+      regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D4' }),
+      regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'LOS Thrust',
@@ -19,12 +19,12 @@
     },
     {
       id: 'T4 Pox',
-      regex: / 14:4D5:Spinner-Rook starts using Pox on (\y{Name})\./,
-      regexDe: / 14:4D5:Drehturm starts using Pocken on (\y{Name})\./,
-      regexFr: / 14:4D5:Drone-Drille starts using Vérole on (\y{Name})\./,
-      regexJa: / 14:4D5:ルークスピナー starts using ポックス on (\y{Name})\./,
+      regex: Regexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
+      regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
+      regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D5' }),
+      regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'LOS Pox',
@@ -32,10 +32,10 @@
     },
     {
       id: 'T4 Reminder',
-      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Knight\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Uhrwerk-Ritter\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Chevalier Mécanique\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant アラガンワーク・ナイト\./,
+      regex: Regexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Chevalier Mécanique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'アラガンワーク・ナイト', capture: false }),
       suppressSeconds: 100000,
       infoText: {
         en: 'Magic on Soldier, Physical on Knights',
