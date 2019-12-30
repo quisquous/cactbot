@@ -312,7 +312,42 @@ A general FAQ can be found [here](docs/FAQ-Troubleshooting.md) containing soluti
 
 ## Cactbot Customization
 
-See [this documentation](docs/AdvancedCactbot.md#user-folder-config-overrides) for more details.
+Most common cactbot configuration can be done via the control panel,
+inside of ACT.
+
+![config panel](screenshots/config_panel.png)
+
+This can be found by going to
+Plugins -> OverlayPlugin.dll -> Cactbot Event Source,
+and then clicking on options there.
+
+In particular,
+if you want to use text to speech for raidboss alerts,
+you can change the "Default alert output" to be
+"TTS Only" or "Text and TTS".
+You can also change this on a per trigger basis.
+
+Or, if for some reason (???) you don't want the ready check sound alert,
+you can disable this via the same options panel.
+Go to Raidboss -> General Triggers -> General -> General Ready Check,
+and set it to `Disabled` instead of `Defaults`.
+
+These options are stored in your
+`%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
+file.
+It is not recommended to edit this file directly,
+as it must be [strict json](https://jsonlint.com/)
+and ACT might fail to load if the file is written incorrectly.
+
+It is recommended that you do most of your configuration via this control panel
+rather than with user files.
+Files in `cactbot/user/` are more powerful
+and can override anything from the control panel.
+However, this can also be confusing when the control panel doesn't adjust something
+properly that a `cactbot/user/` file is overriding silently.
+
+See [this documentation](docs/AdvancedCactbot.md#user-folder-config-overrides)
+for more details about user javascript and css files.
 
 ## Supported Languages
 
