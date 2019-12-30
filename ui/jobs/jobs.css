@@ -38,9 +38,29 @@
   left: -40px;
 }
 
+/* Relative to #bars */
+#pull-bar,
+#hp-bar,
+#mp-bar,
+#mp-tick,
+#cp-bar,
+#gp-bar {
+  width: 202px;
+  height: 7px;
+  margin-top: 1px;
+}
+
+#pull-bar {
+  position: absolute;
+  left: 100px;
+  top: 0;
+  height: 18px;
+  font-size: 12px;
+}
+
 .justbuffs #right-side-icons {
   position: fixed;
-  left: 0px;
+  left: 0;
 }
 
 .justbuffs #pull-bar {
@@ -51,42 +71,38 @@
   display: none;
 }
 
-/* Relative to #bars */
-#pull-bar, #hp-bar, #mp-bar, #mp-tick, #cp-bar, #gp-bar {
-  width: 202px;
-  height: 7px;
+#mp-bar,
+#rdm-bar,
+#mnk-bar {
   margin-top: 1px;
 }
 
-#pull-bar {
-  position: absolute;
-  left: 100px;
-  top: 0px;
-  height: 18px;
-  font-size: 12px;
-}
-
-#mp-bar, #rdm-bar, #mnk-bar {
-  margin-top: 1px;
-}
 #hp-bar.show-number {
   height: 32px;
 }
+
 #mp-bar.show-number {
   height: 18px;
 }
+
 #cp-bar {
   height: 18px;
 }
+
 #gp-bar {
   height: 18px;
 }
+
 .mnk #hp-bar {
   height: 10px;
 }
-.drk #hp-bar, .pld #hp-bar, .blu #hp-bar {
+
+.drk #hp-bar,
+.pld #hp-bar,
+.blu #hp-bar {
   height: 18px;
 }
+
 .blm #mp-bar {
   height: 24px;
 }
@@ -117,7 +133,8 @@
 }
 
 /* Relative to #rdm-bar */
-#rdm-white-bar, #rdm-black-bar {
+#rdm-white-bar,
+#rdm-black-bar {
   display: block;
   position: relative;
   margin: -1px -1px -2px -1px;
@@ -125,7 +142,8 @@
   height: calc(100% - 4px);
 }
 
-#mnk-timers-lightning, #mnk-timers-combo {
+#mnk-timers-lightning,
+#mnk-timers-combo {
   display: block;
   position: relative;
   width: 100%;
@@ -134,17 +152,29 @@
 }
 
 /* Relative to #bars */
-#rdm-boxes, #war-boxes, #mnk-boxes, #pld-boxes, #drk-boxes, #blm-boxes, #gnb-boxes {
+#rdm-boxes,
+#war-boxes,
+#mnk-boxes,
+#pld-boxes,
+#drk-boxes,
+#blm-boxes,
+#gnb-boxes {
   display: flex;
   position: absolute;
   left: 202px;
-  top: 0px;
+  top: 0;
 }
 
-#rdm-boxes>div, #war-boxes>div, #mnk-boxes>div, #pld-boxes>div, #drk-boxes>div, #blm-boxes>div, #gnb-boxes>div  {
+#rdm-boxes > div,
+#war-boxes > div,
+#mnk-boxes > div,
+#pld-boxes > div,
+#drk-boxes > div,
+#blm-boxes > div,
+#gnb-boxes > div {
   display: inline-block;
   margin-left: 4;
-  border: 1px solid rgba(0,0,0,0.7);
+  border: 1px solid rgba(0, 0, 0, 0.7);
 }
 
 /*
@@ -152,27 +182,35 @@
   War is pretty short though, so just gets a default value.
 */
 
-#war-boxes>div, #gnb-boxes>div  {
+#war-boxes > div,
+#gnb-boxes > div {
   width: 29px;
   height: 29px;
 }
 
-#drk-boxes>div , #pld-boxes>div {
+#drk-boxes > div,
+#pld-boxes > div {
   width: 35px;
   height: 35px;
 }
 
-#rdm-boxes>div {
+#rdm-boxes > div {
   width: 28px;
   height: 28px;
 }
 
-#mnk-boxes>div {
+#mnk-boxes > div {
   width: 30px;
   height: 30px;
 }
 
-#rdm-boxes .text, #war-boxes .text, #mnk-boxes .text, #pld-boxes .text, #drk-boxes .text, #blm-boxes .text, #gnb-boxes .text {
+#rdm-boxes .text,
+#war-boxes .text,
+#mnk-boxes .text,
+#pld-boxes .text,
+#drk-boxes .text,
+#blm-boxes .text,
+#gnb-boxes .text {
   text-align: center;
   position: relative;
   top: 7px;
@@ -187,15 +225,17 @@
   top: 5px;
 }
 
-#drk-boxes .text, #pld-boxes .text {
+#drk-boxes .text,
+#pld-boxes .text {
   top: 6px;
   font-size: 20px;
 }
 
-#blm-boxes > div{
+#blm-boxes > div {
   width: 30px;
   height: 30px;
 }
+
 #blm-boxes .text {
   top: 6px;
 }
@@ -210,18 +250,21 @@
 #rdm-procs {
   position: absolute;
   top: 146px;
-  left: 0px;
+  left: 0;
 }
+
 #rdm-procs-white {
   position: relative;
   display: inline-block;
   left: 10px;
 }
+
 #rdm-procs-black {
   position: relative;
   display: inline-block;
   left: calc(152px / 2);
 }
+
 #rdm-procs-impact {
   position: relative;
   display: inline-block;
@@ -229,23 +272,39 @@
 }
 
 /* Relative to #bars */
-#war-procs, #pld-procs, #mnk-procs, #ast-procs, #blu-procs, #drk-procs, #blm-procs {
+#war-procs,
+#pld-procs,
+#mnk-procs,
+#ast-procs,
+#blu-procs,
+#drk-procs,
+#blm-procs {
   position: absolute;
   top: 146px;
   left: 10px;
 }
 
-#mnk-procs-dragonkick, #ast-procs-combust, #blu-procs-offguard, #blm-procs-fire{
+#mnk-procs-dragonkick,
+#ast-procs-combust,
+#blu-procs-offguard,
+#blm-procs-fire {
   position: relative;
   display: inline-block;
-  left: 0px;
+  left: 0;
 }
-#mnk-procs-twinsnakes, #ast-procs-benefic, #blu-procs-torment, #blm-dot-thunder  {
+
+#mnk-procs-twinsnakes,
+#ast-procs-benefic,
+#blu-procs-torment,
+#blm-dot-thunder {
   position: relative;
   display: inline-block;
   left: calc(142px / 2);
 }
-#mnk-procs-demolish, #ast-procs-helios, #blm-procs-thunder {
+
+#mnk-procs-demolish,
+#ast-procs-helios,
+#blm-procs-thunder {
   position: relative;
   display: inline-block;
   left: 142px;
@@ -257,10 +316,12 @@
   width: 202px;
   height: 12px;
 }
+
 #blm-stacks-xeno {
   width: 50%;
   height: 100%;
 }
+
 #blm-stacks-xeno > div {
   background-color: rgba(66, 19, 128, 0.2);
   margin-left: 2px;
@@ -269,13 +330,16 @@
   width: calc(50% - 4px);
   height: 100%;
 }
+
 #blm-stacks-xeno > div.active {
   background-color: rgb(200, 50, 200);
 }
+
 #blm-stacks-heart {
   width: 50%;
   height: 100%;
 }
+
 #blm-stacks-heart > div {
   background-color: rgba(174, 227, 235, 0.2);
   margin-right: 2px;
@@ -284,183 +348,239 @@
   width: calc(33% - 4px);
   height: 100%;
 }
+
 #blm-stacks-heart > div.active {
   background-color: rgb(174, 227, 235);
 }
+
 .blm-umbral-timer {
   position: absolute;
+
   /* fix this hack by using better layout primitives */
   left: -242px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .bar-border-color {
   background-color: rgb(30, 30, 30);
 }
+
 .hp-color {
   background-color: rgb(59, 133, 4);
 }
+
 .hp-color.low {
   background-color: rgb(190, 43, 30);
 }
+
 .hp-color.mid {
   background-color: rgb(127, 185, 29);
 }
+
 .mp-color {
   background-color: rgb(188, 55, 147);
 }
+
 .mp-color.far {
   background-color: rgb(215, 120, 0);
 }
+
 .mp-color.low {
   background-color: rgb(210, 20, 65);
 }
+
 .mp-color.medium {
   background-color: rgb(65, 0, 200);
 }
+
 .mp-tick-color {
   background-color: rgb(133, 192, 231);
 }
+
 .mp-tick-color.ice {
   background-color: rgb(30, 80, 245);
 }
+
 .mp-tick-color.fire {
   background-color: rgb(229, 56, 53);
 }
+
 .cp-color {
   background-color: rgb(75, 135, 230);
 }
+
 .gp-color {
   background-color: rgb(20, 50, 20);
 }
+
 .rdm-color-white-mana {
   background-color: rgb(220, 220, 240);
 }
+
 .rdm-color-black-mana {
   background-color: rgb(47, 176, 208);
 }
+
 .rdm-color-impact {
   background-color: rgb(242, 114, 147);
 }
+
 .rdm-color-white-mana.dim {
   background-color: rgb(100, 100, 100);
 }
+
 .rdm-color-black-mana.dim {
   background-color: rgb(13, 76, 80);
 }
+
 .war-color-beast {
   background-color: rgb(230, 20, 20);
 }
+
 .war-color-beast.low {
   background-color: rgb(255, 235, 153);
 }
+
 .war-color-beast.mid {
   background-color: rgb(255, 153, 0);
 }
+
 .war-color-eye {
   background-color: rgb(60, 100, 210);
 }
+
 .pld-color-oath {
   background-color: rgb(255, 210, 45);
 }
+
 .pld-color-oath.mid {
   background-color: rgb(255, 255, 100);
 }
+
 .pld-color-oath.low {
   background-color: rgb(255, 255, 200);
 }
+
 .drk-color-blood {
   background-color: rgb(255, 0, 10);
 }
+
 .drk-color-blood.low {
   background-color: rgb(60, 0, 10);
 }
+
 .drk-color-blood.mid {
   background-color: rgb(200, 0, 10);
 }
+
 .drk-color-darkside {
   background-color: rgb(129, 33, 138);
 }
+
 .pld-color-gore {
   background-color: rgb(255, 135, 35);
 }
+
 .smn-color-ruin {
   background-color: rgb(150, 233, 140);
 }
+
 .smn-color-aetherflow {
   background-color: rgb(255, 96, 207);
 }
+
 .mnk-color-chakra {
   background-color: rgb(230, 20, 20);
 }
+
 .mnk-color-chakra.dim {
   background-color: rgba(244, 194, 66, 0.3);
 }
+
 .mnk-color-lightning-0 {
   background-color: rgb(210, 25, 25);
 }
+
 .mnk-color-lightning-1 {
   background-color: rgb(250, 150, 30);
 }
+
 .mnk-color-lightning-2 {
   background-color: rgb(20, 100, 66);
 }
+
 .mnk-color-lightning-3 {
   background-color: rgb(20, 131, 175);
 }
+
 .mnk-color-form {
   background-color: rgb(180, 200, 220);
 }
+
 .mnk-color-pb {
   background-color: rgb(200, 130, 0);
 }
+
 .mnk-color-dragonkick {
   background-color: rgb(200, 130, 0);
 }
+
 .mnk-color-twinsnakes {
   background-color: rgb(215, 80, 70);
 }
+
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
 }
+
 .ast-color-combust {
   background-color: rgb(120, 170, 250);
 }
+
 .ast-color-benefic {
   background-color: rgb(62, 224, 170);
 }
+
 .ast-color-helios {
   background-color: rgb(175, 235, 215);
 }
+
 .blu-color-offguard {
   background-color: rgb(210, 255, 196);
 }
+
 .blu-color-torment {
   background-color: rgb(168, 65, 45);
 }
+
 .blm-color-dot {
   background-color: rgb(110, 186, 245);
 }
+
 .blm-color-thunder {
   background-color: rgb(64, 65, 163);
 }
+
 .blm-color-fire {
   background-color: rgb(217, 51, 0);
 }
-.blm-umbral-timer {
-  background-color: rgba(0, 0, 0, 0.3);
-}
+
 .blm-umbral-timer.fire {
   background-color: rgb(229, 56, 53);
 }
+
 .blm-umbral-timer.ice {
   background-color: rgb(30, 80, 245);
 }
+
 .blm-xeno-timer {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
 .blm-xeno-timer.active {
   background-color: rgb(200, 50, 200);
 }
+
 .gnb-color-cartridge {
   background-color: rgb(115, 218, 255);
 }

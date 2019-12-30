@@ -2,7 +2,10 @@
 
 // Seiryu Extreme
 [{
-  zoneRegex: /^(The Wreath Of Snakes \(Extreme\)|青龙诗魂战)$/,
+  zoneRegex: {
+    en: /^The Wreath Of Snakes \(Extreme\)$/,
+    cn: /^青龙诗魂战$/,
+  },
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [
     {

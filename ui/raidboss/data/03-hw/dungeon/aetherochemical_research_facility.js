@@ -159,7 +159,7 @@
     },
     {
       id: 'Facility Chaosphere',
-      regex: / 03:\y{ObjectId}:Added new combatant Chaosphere/,
+      regex: /03:\y{ObjectId}:Added new combatant Chaosphere/,
       regexDe: /03:\y{ObjectId}:Added new combatant Chaossphäre/,
       regexFr: /03:\y{ObjectId}:Added new combatant sphère de chaos/,
       regexJa: /03:\y{ObjectId}:Added new combatant カオススフィア/,

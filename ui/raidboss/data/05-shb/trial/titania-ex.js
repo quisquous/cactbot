@@ -2,7 +2,11 @@
 
 // Titania Extreme
 [{
-  zoneRegex: /^(The Dancing Plague \(Extreme\)|缇坦妮雅歼殛战|극 티타니아 토벌전)$/,
+  zoneRegex: {
+    en: /^The Dancing Plague \(Extreme\)$/,
+    cn: /^缇坦妮雅歼殛战$/,
+    ko: /^극 티타니아 토벌전$/,
+  },
   timelineFile: 'titania-ex.txt',
   triggers: [
     {

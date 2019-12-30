@@ -2,7 +2,10 @@
 
 // Byakko Extreme
 [{
-  zoneRegex: /^(The Jade Stoa \(Extreme\)|白虎诗魂战)$/,
+  zoneRegex: {
+    en: /^The Jade Stoa \(Extreme\)$/,
+    cn: /^白虎诗魂战$/,
+  },
   timelineFile: 'byakko-ex.txt',
   triggers: [
     {
@@ -243,13 +246,14 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り風/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 妖风/,
+      regex: Regexes.gainsEffect({ effect: 'Ominous Wind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Unheilvoller Wind' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vent Mauvais' }),
+      regexJa: Regexes.gainsEffect({ effect: '祟り風' }),
+      regexCn: Regexes.gainsEffect({ effect: '妖风' }),
+      regexKo: Regexes.gainsEffect({ effect: '불길한 바람' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Pink bubble',

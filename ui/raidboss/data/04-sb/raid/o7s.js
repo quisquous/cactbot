@@ -11,13 +11,14 @@
   triggers: [
     // State
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Aether Rot from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ätherfäule from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エーテルロット from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 에테르 부패 from/,
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.rot = true;
@@ -37,11 +38,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Dadaluma Simulation/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Dadarma-Kampfprogramm/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Dadaluma/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ダダルマー・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 다다루마 프로그램/,
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Dadaluma Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Dadarma-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Dadaluma', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ダダルマー・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '达达鲁玛模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '다다루마 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -53,11 +55,12 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Bibliotaph Simulation/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Bibliotaph-Kampfprogramm/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Bibliotaphe/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ビブリオタフ・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 비블리오타프 프로그램/,
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Bibliotaph Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Bibliotaph-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Bibliotaphe', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ビブリオタフ・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '永世珍本模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '비블리오타프 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -69,17 +72,16 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Virus/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Virus/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Virus/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ウィルス・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 바이러스 프로그램/,
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Virus', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Virus', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Virus', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ウィルス・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '病毒模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '바이러스 프로그램', capture: false }),
       run: function(data) {
         data.seenVirus = true;
       },
     },
-
-
     {
       id: 'O7S Magitek Ray',
       regex: / 14:2788:Guardian starts using Magitek Ray/,
@@ -236,13 +238,14 @@
     },
     {
       id: 'O7S Searing Wind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Searing Wind/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gluthitze/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Fournaise/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 灼熱/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 작열/,
+      regex: Regexes.gainsEffect({ effect: 'Searing Wind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gluthitze' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Fournaise' }),
+      regexJa: Regexes.gainsEffect({ effect: '灼熱' }),
+      regexCn: Regexes.gainsEffect({ effect: '灼热' }),
+      regexKo: Regexes.gainsEffect({ effect: '작열' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Searing Wind: go outside',
@@ -261,13 +264,14 @@
     },
     {
       id: 'O7S Abandonment',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Abandonment/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verlassen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Isolement/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 孤独感/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 고독감/,
+      regex: Regexes.gainsEffect({ effect: 'Abandonment' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verlassen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Isolement' }),
+      regexJa: Regexes.gainsEffect({ effect: '孤独感' }),
+      regexCn: Regexes.gainsEffect({ effect: '孤独感' }),
+      regexKo: Regexes.gainsEffect({ effect: '고독감' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Abandonment: stay middle',
@@ -286,13 +290,14 @@
     },
     {
       id: 'O7S Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Aether Rot from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ätherfäule from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エーテルロット from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 에테르 부패 from/,
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Rot on you',
             de: 'Fäule auf DIR',
@@ -302,15 +307,15 @@
           };
         }
         return {
-          en: 'Rot on ' + data.ShortName(matches[1]),
-          de: 'Fäule auf ' + data.ShortName(matches[1]),
-          fr: 'Pourriture sur ' + data.ShortName(matches[1]),
-          ko: '에테르 → ' + data.ShortName(matches[1]),
-          ja: 'ロット on ' + data.ShortName(matches[1]),
+          en: 'Rot on ' + data.ShortName(matches.target),
+          de: 'Fäule auf ' + data.ShortName(matches.target),
+          fr: 'Pourriture sur ' + data.ShortName(matches.target),
+          ko: '에테르 → ' + data.ShortName(matches.target),
+          ja: 'ロット on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
 
         return {

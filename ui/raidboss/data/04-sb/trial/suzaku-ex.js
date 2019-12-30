@@ -2,7 +2,10 @@
 
 // Suzaku Extreme
 [{
-  zoneRegex: /^(Hells\' Kier \(Extreme\)|朱雀诗魂战)$/,
+  zoneRegex: {
+    en: /^Hells\' Kier \(Extreme\)$/,
+    cn: /^朱雀诗魂战$/,
+  },
   timelineFile: 'suzaku-ex.txt',
   triggers: [
     {

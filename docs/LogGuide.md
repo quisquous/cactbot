@@ -869,9 +869,37 @@ Examples:
 1F:10686258:Potato Chippy:C863AC19:1000332:D0DF8C00:7FC0
 ```
 
-This data is all raw and job specific.  Pull requests welcome to explain this better.
+Each of the values after the name represents the memory for the job gauge, 
+interpreted as a 4 byte integer.
+To get back to the original memory, zero pad out to 4 bytes,
+and then reverse the bytes (because little endian).
 
-Unfortunately, network data about other player's gauge is not sent and so you are unable to see these abilities.
+For example, take this line:
+`1F:10686258:Tini Poutini:C8000019:FD32:D0DF8C00:7FC0`
+
+Zero extended:
+`:C8000019:0000FD32:D0DF8C00:`
+
+Reversed:
+`19 00 00 C8 32 FD 00 00 00 8C DF D0`
+
+The first byte is always the job.
+The remaining bytes are a copy of the job gauge memory.
+
+This job is `0x19` (or black mage).
+Interpreting these [values](https://github.com/goaaats/Dalamud/blob/4ad5bee0c62128315b0a247466d28f42264c3069/Dalamud/Game/ClientState/Structs/JobGauge/BLMGauge.cs) means:
+  * `short TimeUntilNextPolyglot` = 0x0000 = 0
+  * `short ElementTimeRemaining` = 0x32C8 = 13000ms
+  * `byte ElementStance` = 0xFD = -3 (three stacks of ice)
+  * `byte NumUmbralHearts` = 0x00 = 0
+  * `byte EnoState` = 0x00 = 0 (no enochian)
+
+There are a number of references for job gauge memory:
+  1) [cactbot FFXIVProcess code](https://github.com/quisquous/cactbot/blob/a4d27eca3628d397cb9f5638fad97191566ed5a1/CactbotOverlay/FFXIVProcessIntl.cs#L267)
+  1) [Dalamud code](https://github.com/goaaats/Dalamud/blob/4ad5bee0c62128315b0a247466d28f42264c3069/Dalamud/Game/ClientState/Structs/JobGauge/NINGauge.cs#L15)
+
+Unfortunately, network data about other player's gauge is not sent.
+You are unable to see the abilities of other players, only your own.
 (This is probably by design to cut down on the amount of network data sent.)
 
 ### 20: NetworkWorld

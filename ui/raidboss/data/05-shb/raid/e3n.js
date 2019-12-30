@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Inundation|伊甸希望乐园 \(觉醒之章3\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Inundation$/,
+    cn: /^伊甸希望乐园 \(觉醒之章3\)$/,
+    ko: /^희망의 낙원 에덴: 각성편 \(3\)$/,
+  },
   timelineFile: 'e3n.txt',
   triggers: [
     {
@@ -11,6 +15,7 @@
       regexDe: / 14:3FC4:Leviathan starts using Schrei der Gezeiten/,
       regexFr: / 14:3FC4:Léviathan starts using Vague Rugissante/,
       regexJa: / 14:3FC4:リヴァイアサン starts using タイダルロア/,
+      regexKo: / 14:3FC4:리바이어선 starts using 바다의 포효/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -19,6 +24,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -31,6 +37,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱크버스터 on YOU',
           };
         }
         if (data.role == 'healer') {
@@ -39,6 +46,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 ->' + data.ShortName(matches[1]),
+            ko: '탱버 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -49,6 +57,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
             cn: '死刑 ->' + data.ShortName(matches[1]),
+            ko: '탱버 ->' + data.ShortName(matches[1]),
           };
         }
       },
@@ -60,12 +69,14 @@
       regexDe: / 14:3FD2:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
       regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
+      regexKo: / 14:3FD2:리바이어선 starts using 해일/,
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
         de: 'Nach der Welle schauen',
         fr: 'Repérez la vague',
         cn: '看浪',
+        ko: '해일 좌우 보세요',
       },
     },
     {
@@ -75,6 +86,7 @@
       regexDe: / 14:3FD2:Leviathan starts using Flutwelle/,
       regexFr: / 14:3FD2:Léviathan starts using Raz-De-Marée/,
       regexJa: / 14:3FD2:リヴァイアサン starts using タイダルウェイブ/,
+      regexKo: / 14:3FD2:리바이어선 starts using 해일/,
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -83,6 +95,7 @@
         de: 'Knockback',
         fr: 'Poussée',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -97,6 +110,7 @@
         de: 'In die Mitte gehen',
         fr: 'Allez au centre',
         cn: '中间',
+        ko: '중앙으로',
       },
     },
     {
@@ -111,6 +125,7 @@
         de: 'Auf die Seiten gehen',
         fr: 'Allez sur les côtés',
         cn: '两侧',
+        ko: '좌우 외곽으로',
       },
     },
     {
@@ -120,12 +135,14 @@
       regexDe: / 14:3FD8:Leviathan starts using Mahlstrom/,
       regexFr: / 14:3FD8:Léviathan starts using Maelström/,
       regexJa: / 14:3FD8:リヴァイアサン starts using メイルシュトローム/,
+      regexKo: / 14:3FD8:리바이어선 starts using 대격동/,
       delaySeconds: 8,
       infoText: {
         en: 'Avoid Puddles and Dives',
         de: 'Flächen und Leviathan ausweichen',
         fr: 'Evitez les flaques et les dives',
         cn: '躲圈闪避',
+        ko: 'Avoid Puddles and Dives',
       },
     },
     {
@@ -139,6 +156,7 @@
         de: 'Verteilen',
         fr: 'Dispersez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -148,6 +166,7 @@
       regexDe: / 14:3FD4:Leviathan starts using Sturzflut/,
       regexFr: / 14:3FD4:Léviathan starts using Tsunami/,
       regexJa: / 14:3FD4:リヴァイアサン starts using 大海嘯/,
+      regexKo: / 14:3FD4:리바이어선 starts using 대해일/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -156,6 +175,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -169,6 +189,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合',
+            ko: '집합 on YOU',
           };
         }
         return {
@@ -176,6 +197,7 @@
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           cn: '集合 ->' + data.ShortName(matches[1]),
+          ko: '집합 ->' + data.ShortName(matches[1]),
         };
       },
     },
@@ -189,6 +211,7 @@
             de: 'Knockback auf DIR',
             fr: 'Poussée sur VOUS',
             cn: '击退点名',
+            ko: '넉백대상자입니다',
           };
         }
         return {
@@ -196,6 +219,7 @@
           de: 'Knockback auf ' + data.ShortName(matches[1]),
           fr: 'Poussée sur ' + data.ShortName(matches[1]),
           cn: '击退 ->' + data.ShortName(matches[1]),
+          ko: '넉백 ->' + data.ShortName(matches[1]),
         };
       },
     },
@@ -210,6 +234,7 @@
         de: 'Verteilen',
         fr: 'Dispersez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -223,6 +248,7 @@
         de: 'Donut auf DIR',
         fr: 'Donut sur VOUS',
         cn: '月环点名',
+        ko: '도넛장판 on YOU',
       },
     },
   ],
@@ -369,6 +395,41 @@
         'Swirling Waters': '涡动之兆',
         'Smothering Waters': '溺没之兆',
         'Surging Waters': '强压之兆',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Leviathan': '리바이어선',
+      },
+      'replaceText': {
+        'Freak Wave': '기괴한 물결',
+        'Killer Wave': '치명적인 물결',
+        'Maelstrom': '대격동',
+        'Monster Wave': '마물의 물결',
+        'Tidal Roar': '바다의 포효',
+        'Smothering Tsunami': '익몰의 대해일',
+        'Splashing Tsunami': '강풍의 대해일',
+        'Undersea Quake': '해저 지진',
+        'Swirling Tsunami': '와동의 대해일',
+        'Tidal Wave': '해일',
+        'Tsunami': '대해일',
+        'Spinning Dive': '고속 돌진',
+        'Rip Current': '이안류',
+        'Temporary Current': '순간 해류',
+        'Crashing Pulse': '격렬한 파동',
+        'Drenching Pulse': '맹렬한 파동',
+        'Surging Tsunami': '강압의 대해일',
+        '--untargetable--': '--타겟불가능--',
+        '--targetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Dropsy': '물독',
+        'Splashing Waters': '강풍의 징조',
+        'Swirling Waters': '소용돌이의 징조',
+        'Smothering Waters': '익몰의 징조',
+        'Surging Waters': '강압의 징조',
       },
     },
   ],

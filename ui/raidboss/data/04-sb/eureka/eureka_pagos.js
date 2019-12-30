@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /(Eureka Pagos|恒冰之地)/,
+  zoneRegex: {
+    en: /Eureka Pagos/,
+    cn: /恒冰之地/,
+  },
   resetWhenOutOfCombat: false,
   triggers: [
     {

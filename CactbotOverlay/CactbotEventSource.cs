@@ -1,11 +1,13 @@
 ﻿using Advanced_Combat_Tracker;
 using Newtonsoft.Json.Linq;
+using RainbowMage.HtmlRenderer;
 using RainbowMage.OverlayPlugin;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Cactbot {
 
@@ -45,6 +47,9 @@ namespace Cactbot {
     private string language_ = null;
     private string ffxiv_plugin_region_ = null;
     private List<FileSystemWatcher> watchers;
+
+    public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
+    public event ForceReloadHandler OnForceReload;
 
     public delegate void GameExistsHandler(JSEvents.GameExistsEvent e);
     public event GameExistsHandler OnGameExists;
@@ -89,11 +94,26 @@ namespace Cactbot {
 
       RegisterEventTypes(new List<string>()
       {
-        "onGameExistsEvent", "onGameActiveChangedEvent", "onLogEvent", "onImportLogEvent", "onInCombatChangedEvent",
-        "onZoneChangedEvent", "onPlayerDied", "onPartyWipe", "onPlayerChangedEvent", "onFocusChangedEvent",
-        "onTargetChangedEvent", "onUserFileChanged",
+        "onForceReload",
+        "onGameExistsEvent",
+        "onGameActiveChangedEvent",
+        "onLogEvent",
+        "onImportLogEvent",
+        "onInCombatChangedEvent",
+        "onZoneChangedEvent",
+        "onPlayerDied",
+        "onPartyWipe",
+        "onPlayerChangedEvent",
+        "onFocusChangedEvent",
+        "onTargetChangedEvent",
+        "onUserFileChanged",
       });
 
+      // Broadcast onConfigChanged when a cactbotNotifyConfigChanged message occurs.
+      RegisterEventHandler("cactbotReloadOverlays", (msg) => {
+        OnForceReload(new JSEvents.ForceReloadEvent());
+        return null;
+      });
       RegisterEventHandler("cactbotLoadUser", FetchUserFiles);
       RegisterEventHandler("cactbotReadDataFiles", FetchDataFiles);
       RegisterEventHandler("cactbotRequestPlayerUpdate", (msg) => {
@@ -110,6 +130,7 @@ namespace Cactbot {
       });
       RegisterEventHandler("cactbotSaveData", (msg) => {
         Config.OverlayData[msg["overlay"].ToString()] = msg["data"];
+        Config.OnUpdateConfig();
         return null;
       });
       RegisterEventHandler("cactbotLoadData", (msg) => {
@@ -121,11 +142,42 @@ namespace Cactbot {
           return null;
         }
       });
+      RegisterEventHandler("cactbotChooseDirectory", (msg) => {
+        var ret = new JObject();
+        string data = (string)ActGlobals.oFormActMain.Invoke((ChooseDirectoryDelegate)ChooseDirectory);
+        if (data != null)
+          ret["data"] = data;
+        return ret;
+      });
+    }
+
+    private delegate string ChooseDirectoryDelegate();
+
+    private string ChooseDirectory() {
+      FolderBrowserDialog dialog = new FolderBrowserDialog();
+      DialogResult result = dialog.ShowDialog(ActGlobals.oFormActMain);
+      if (result != DialogResult.OK)
+        return null;
+      return dialog.SelectedPath;
     }
 
     public override System.Windows.Forms.Control CreateConfigControl()
     {
-      return new CactbotEventSourceConfigPanel(this);
+      var control = new OverlayControl();
+      var initDone = false;
+
+      var configFile = "ui/config/config.html";
+      var dir = new VersionChecker(this).GetCactbotDirectory();
+      var url = Path.GetFullPath(Path.Combine(dir, configFile));
+
+      control.VisibleChanged += (o, e) => {
+        if (initDone)
+          return;
+        initDone = true;
+        control.Init(url);
+        MinimalApi.AttachTo(control.Renderer);
+      };
+      return control;
     }
 
     public override void LoadConfig(IPluginConfig config)
@@ -212,6 +264,7 @@ namespace Cactbot {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
 
       // Outgoing JS events.
+      OnForceReload += (e) => DispatchToJS(e);
       OnGameExists += (e) => DispatchToJS(e);
       OnGameActiveChanged += (e) => DispatchToJS(e);
       OnZoneChanged += (e) => DispatchToJS(e);
@@ -327,7 +380,7 @@ namespace Cactbot {
       // * Some overlays behave slightly different from the above explanation. Raidboss for example loads data files
       //   in addition to the listed steps. I think it's even loading them twice since raidboss.js loads the data files
       //   for gTimelineController and popup-text.js requests them again for its own purposes.
-     
+
       bool game_exists = ffxiv_.FindProcess();
       if (game_exists != notify_state_.game_exists) {
         notify_state_.game_exists = game_exists;
@@ -606,7 +659,7 @@ namespace Cactbot {
         if (local_files == null) {
           // Second try a user directory relative to the dll.
           try {
-            config_dir = Path.GetFullPath(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
+            config_dir = Path.GetFullPath((new VersionChecker(this)).GetCactbotDirectory() + "\\user");
             local_files = GetLocalUserFiles(config_dir);
           } catch (Exception e) {
             // Accessing CactbotEventSourceConfig.CactbotDllRelativeUserUri can throw an exception so don't.
@@ -636,15 +689,27 @@ namespace Cactbot {
       watchers = new List<FileSystemWatcher>();
       var paths = new List<string>();
       
-      paths.Add(CactbotEventSourceConfig.CactbotDllRelativeUserUri);
+      paths.Add((new VersionChecker(this)).GetCactbotDirectory());
       paths.Add(Config.UserConfigFile);
 
       foreach (var path in paths) {
-        if (path == "" || !Directory.Exists(path)) continue;
-        
+        if (path == "" || path == null)
+          continue;
+
+        var watchDir = "";
+        try {
+          // Get canonical url for paths so that Directory.Exists will work properly.
+          watchDir = Path.GetFullPath(Path.GetDirectoryName(new Uri(path).LocalPath));
+        } catch {
+          continue;
+        }
+
+        if (!Directory.Exists(watchDir))
+          continue;
+
         var watcher = new FileSystemWatcher()
         {
-          Path = path,
+          Path = watchDir,
           NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
           IncludeSubdirectories = true,
         };
@@ -661,7 +726,7 @@ namespace Cactbot {
         watcher.EnableRaisingEvents = true;
         watchers.Add(watcher);
 
-        LogInfo("Started watching {0}", path);
+        LogInfo("Started watching {0}", watchDir);
       }
     }
 

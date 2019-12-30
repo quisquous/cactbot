@@ -25,11 +25,6 @@ namespace Cactbot {
       }
     }
 
-    [JsonIgnore]
-    public static string CactbotDllRelativeUserUri {
-      get { return CactbotAssemblyUri == null ? null : Path.Combine(CactbotAssemblyUri, "../cactbot/user/"); }
-    }
-
     public CactbotEventSourceConfig() {
     }
 
@@ -51,18 +46,6 @@ namespace Cactbot {
         if (obj.TryGetValue("RemoteVersionSeen", out value)) {
           result.RemoteVersionSeen = value.ToString();
         }
-
-        if (obj.TryGetValue("UserConfigFile", out value)) {
-          result.UserConfigFile = value.ToString();
-        }
-
-        if (obj.TryGetValue("WatchFileChanges", out value)) {
-          try {
-            result.WatchFileChanges = value.ToObject<bool>();
-          } catch (Exception e) {
-            logger.Log(LogLevel.Error, "Failed to load WatchFileChanges setting: {0}", e.ToString());
-          }
-        }
       }
 
       return result;
@@ -72,21 +55,51 @@ namespace Cactbot {
       pluginConfig.EventSourceConfigs["CactbotESConfig"] = JObject.FromObject(this);
     }
 
+    public void OnUpdateConfig() {
+      var currentValue = WatchFileChanges;
+      if (watchFileChanges != currentValue)
+        WatchFileChangesChanged?.Invoke(this, new EventArgs());
+        watchFileChanges = currentValue;
+    }
+
     public Dictionary<string, JToken> OverlayData = null;
     
     public string RemoteVersionSeen = "0.0";
     
-    public string UserConfigFile = "";
+    [JsonIgnore]
+    public string UserConfigFile {
+      get {
+        var options = OverlayData["options"];
+        if (options == null)
+          return null;
+        var general = options["general"];
+        if (general == null)
+          return null;
+        var dir = general["CactbotUserDirectory"];
+        if (dir == null)
+          return null;
+        return dir.ToString();
+      }
+    }
 
+    [JsonIgnore]
     private bool watchFileChanges = false;
+    [JsonIgnore]
     public bool WatchFileChanges {
       get {
-        return watchFileChanges;
-      }
-      set {
-        if (watchFileChanges != value) {
-          watchFileChanges = value;
-          WatchFileChangesChanged?.Invoke(this, new EventArgs());
+        var options = OverlayData["options"];
+        if (options == null)
+          return false;
+        var general = options["general"];
+        if (general == null)
+          return false;
+        var dir = general["ReloadOnFileChange"];
+        if (dir == null)
+          return false;
+        try {
+          return dir.ToObject<bool>();
+        } catch {
+          return false;
         }
       }
     }

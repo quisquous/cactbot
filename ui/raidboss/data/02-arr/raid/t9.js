@@ -35,15 +35,17 @@
   triggers: [
     {
       id: 'T9 Raven Blight You',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pestschwinge from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bile De Rapace from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 凶鳥毒気 from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
+      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気' }),
+      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气' }),
+      regexKo: Regexes.gainsEffect({ effect: '흉조의 독' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: function(data, matches) {
-        return matches[2] - 5;
+        return matches.duration - 5;
       },
       durationSeconds: 5,
       alarmText: {
@@ -52,20 +54,22 @@
     },
     {
       id: 'T9 Raven Blight You',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Raven Blight from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pestschwinge from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bile De Rapace from Nael Deus Darnus for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 凶鳥毒気 from Nael Deus Darnus for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
+      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気' }),
+      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气' }),
+      regexKo: Regexes.gainsEffect({ effect: '흉조의 독' }),
       condition: function(data, matches) {
-        return data.me != matches[1];
+        return data.me != matches.target;
       },
       delaySeconds: function(data, matches) {
-        return matches[2] - 5;
+        return matches.duration - 5;
       },
       durationSeconds: 5,
       infoText: function(data, matches) {
         return {
-          en: 'Blight on ' + data.ShortName(matches[1]),
+          en: 'Blight on ' + data.ShortName(matches.target),
         };
       },
     },
@@ -133,12 +137,14 @@
     },
     {
       id: 'T9 Garotte Twist Gain',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Garrote Twist/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Leicht Fixierbar/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sangle Accélérée/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 拘束加速/,
+      regex: Regexes.gainsEffect({ effect: 'Garrote Twist' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Leicht Fixierbar' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Sangle Accélérée' }),
+      regexJa: Regexes.gainsEffect({ effect: '拘束加速' }),
+      regexCn: Regexes.gainsEffect({ effect: '拘束加速' }),
+      regexKo: Regexes.gainsEffect({ effect: '구속 가속' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && !data.garotte;
+        return data.me == matches.target && !data.garotte;
       },
       infoText: {
         en: 'Garotte on YOU',

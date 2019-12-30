@@ -10,8 +10,8 @@
 
 #timeline-container {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 220px;
   height: 120px;
   font-size: 14px;
@@ -35,17 +35,19 @@
   width: 100%;
   top: 155px;
 }
+
 /* Relative to popup-text-container */
 #popup-text-alert {
   position: absolute;
   width: 100%;
   top: 90px;
 }
+
 /* Relative to popup-text-container */
 #popup-text-alarm {
   position: absolute;
   width: 100%;
-  top: 0px;
+  top: 0;
 }
 
 .info-text {
@@ -54,12 +56,14 @@
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
 }
+
 .alert-text {
   color: #fb0;
   font-size: 170%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
 }
+
 .alarm-text {
   color: #f30;
   font-size: 230%;
@@ -73,15 +77,16 @@
 }
 
 @keyframes zoom-in-out {
-  0% { transform: scale(1.0); }
+  0% { transform: scale(1); }
   50% { transform: scale(1.5); }
-  100% { transform: scale(1.0); }
+  100% { transform: scale(1); }
 }
 
 /* Show only when unlocked for move/resize. */
 .resize-helper {
   display: none;
 }
+
 .resizeHandle .resize-helper {
   display: inline-block;
 }
@@ -90,6 +95,7 @@
 #timeline-resize-helper {
   width: 100%;
 }
+
 #timeline-resize-helper .resize-helper-bar {
   border: 1px solid black;
   margin-bottom: 2;
@@ -100,12 +106,13 @@
 .timeline-bar-color {
   background-color: #88f;
 }
+
 .timeline-bar-color.soon {
   background-color: #f88;
 }
 
 #timeline-debug {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: calc(100%);
 }

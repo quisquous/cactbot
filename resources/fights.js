@@ -96,7 +96,7 @@ let gBossFightTriggers = [
   },
   {
     id: 'UwU',
-    zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|Unknown Zone \(309\))$/,
+    zoneRegex: /^The Weapon's Refrain \(Ultimate\)$/,
     startRegex: /:Garuda:2B53:/,
     countdownStarts: true,
   },

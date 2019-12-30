@@ -5,7 +5,11 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: /^(Eden's Gate: Descent \(Savage\)|伊甸零式希望乐园 \(觉醒之章2\)|희망의 낙원 에덴: 각성편\(영웅\) \(2\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Descent \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章2\)$/,
+    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(2\)$/,
+  },
   timelineFile: 'e2s.txt',
   timelineTriggers: [
     {
@@ -38,12 +42,12 @@
   triggers: [
     {
       id: 'E2S Spell In Waiting Gain',
-      regex: / 1A:\y{ObjectId}:Voidwalker gains the effect of Spell-In-Waiting/,
-      regexCn: / 1A:\y{ObjectId}:虚无行者 gains the effect of 延迟咏唱/,
-      regexDe: / 1A:\y{ObjectId}:Nichtswandler gains the effect of Verzögerung/,
-      regexFr: / 1A:\y{ObjectId}:Marcheuse Du Néant gains the effect of Déphasage Incantatoire/,
-      regexJa: / 1A:\y{ObjectId}:ヴォイドウォーカー gains the effect of ディレイスペル/,
-      regexKo: / 1A:\y{ObjectId}:보이드워커 gains the effect of 지연술/,
+      regex: Regexes.gainsEffect({ target: 'Voidwalker', effect: 'Spell-In-Waiting', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Nichtswandler', effect: 'Verzögerung', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'marcheuse du néant', effect: 'Déphasage Incantatoire', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ヴォイドウォーカー', effect: 'ディレイスペル', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '虚无行者', effect: '延迟咏唱', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '보이드워커', effect: '지연술', capture: false }),
       run: function(data) {
         data.waiting = true;
       },

@@ -130,7 +130,30 @@ class PopupText {
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
-      if (this.zoneName.search(set.zoneRegex) >= 0) {
+
+      // zoneRegex can be either a regular expression
+      let zoneRegex = set.zoneRegex;
+      if (typeof zoneRegex !== 'object') {
+        console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
+        continue;
+      } else if (!(zoneRegex instanceof RegExp)) {
+        let locale = this.options.Language || 'en';
+        if (locale in zoneRegex) {
+          zoneRegex = zoneRegex[locale];
+        } else if ('en' in zoneRegex) {
+          zoneRegex = zoneRegex['en'];
+        } else {
+          console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        }
+
+        if (!(zoneRegex instanceof RegExp)) {
+          console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        }
+      }
+
+      if (this.zoneName.search(zoneRegex) >= 0) {
         if (this.options.Debug)
           console.log('Loading ' + set.filename);
         // Adjust triggers for the locale.
@@ -300,6 +323,7 @@ class PopupText {
     }
 
     let triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
+    let triggerAutoConfig = trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {};
 
     let condition = triggerOptions.Condition || trigger.condition;
     if (condition) {
@@ -346,6 +370,19 @@ class PopupText {
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
 
+    // FIXME: this is quite gross that PerTriggerOptions does not use the same fields as
+    // options.  Ideally we should smush everything down into a single trigger object.
+    // Auto config here has a separate property mostly as a convenience to users who
+    // most likely will redefine it, clobbering settings from the config tool.
+    // Ideally, these would be the same.
+    if (triggerAutoConfig) {
+      if ('SpokenAlertsEnabled' in triggerAutoConfig)
+        playSpeech = triggerAutoConfig.SpokenAlertsEnabled;
+      if ('SoundAlertsEnabled' in triggerAutoConfig)
+        playSounds = triggerAutoConfig.SoundAlertsEnabled;
+      if ('TextAlertsEnabled' in triggerAutoConfig)
+        showText = triggerAutoConfig.TextAlertsEnabled;
+    }
 
     if (triggerOptions) {
       if ('GroupSpeechAlert' in triggerOptions)
@@ -405,9 +442,10 @@ class PopupText {
 
       let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;
       if (alarmText) {
-        let text = triggerUpperCase(ValueOrFunction(alarmText));
+        let text = ValueOrFunction(alarmText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
+          text = triggerUpperCase(text);
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
@@ -425,9 +463,10 @@ class PopupText {
 
       let alertText = triggerOptions.AlertText || trigger.alertText || response.alertText;
       if (alertText) {
-        let text = triggerUpperCase(ValueOrFunction(alertText));
+        let text = ValueOrFunction(alertText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
+          text = triggerUpperCase(text);
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);

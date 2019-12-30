@@ -9,7 +9,10 @@
 
 // O10S - Alphascape 2.0 Savage
 [{
-  zoneRegex: /^(Alphascape V2.0 \(Savage\)|欧米茄零式时空狭缝 \(阿尔法幻境2\))$/,
+  zoneRegex: {
+    en: /^Alphascape V2.0 \(Savage\)$/,
+    cn: /^欧米茄零式时空狭缝 \(阿尔法幻境2\)$/,
+  },
   timelineFile: 'o10s.txt',
   triggers: [
     {

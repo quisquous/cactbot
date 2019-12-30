@@ -58,13 +58,13 @@ var Regexes = {
     validateParams(f, 'ability', ['source', 'id', 'ability', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':';
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':';
 
     if (f.id || f.ability || capture)
       str += Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
 
     if (f.ability || capture)
-      str += Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ':';
+      str += Regexes.maybeCapture(capture, 'ability', f.ability, '[^:]*?') + ':';
 
     return Regexes.parse(str);
   },
@@ -92,12 +92,12 @@ var Regexes = {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':' +
-      Regexes.maybeCapture(capture, 'ability', f.ability, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'ability', f.ability, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':' +
-      Regexes.maybeCapture(capture, 'flags', f.flags, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flags', f.flags, '[^:]*?') + ':' +
       '.*:' +
       Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ':' +
@@ -115,7 +115,7 @@ var Regexes = {
     validateParams(f, 'headMarker', ['target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1B:\\y{ObjectId}:' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':....:....:' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);
   },
@@ -212,7 +212,7 @@ var Regexes = {
 
     let str = '\\y{Timestamp} 26:' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
       kField + // jobs
       Regexes.maybeCapture(capture, 'hp', f.hp, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'maxHp', f.maxHp, '\\y{Float}') + ':' +
@@ -225,12 +225,12 @@ var Regexes = {
       Regexes.optional(Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}')) + ':' +
       Regexes.optional(Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}')) + ':' +
       Regexes.optional(Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}')) + ':' +
-      Regexes.maybeCapture(capture, 'data0', f.data0, '.*?') + ':' +
-      Regexes.maybeCapture(capture, 'data1', f.data1, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'data0', f.data0, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'data1', f.data1, '[^:]*?') + ':' +
       // data2, 3, 4 may not exist and the line may terminate.
-      Regexes.optional(Regexes.maybeCapture(capture, 'data2', f.data2, '.*?') + ':') +
-      Regexes.optional(Regexes.maybeCapture(capture, 'data3', f.data3, '.*?') + ':') +
-      Regexes.optional(Regexes.maybeCapture(capture, 'data4', f.data4, '.*?') + ':');
+      Regexes.optional(Regexes.maybeCapture(capture, 'data2', f.data2, '[^:]*?') + ':') +
+      Regexes.optional(Regexes.maybeCapture(capture, 'data3', f.data3, '[^:]*?') + ':') +
+      Regexes.optional(Regexes.maybeCapture(capture, 'data4', f.data4, '[^:]*?') + ':');
     return Regexes.parse(str);
   },
 
@@ -259,9 +259,9 @@ var Regexes = {
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 23:' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'source', f.source, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
-      Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
+      Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') +
       ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);

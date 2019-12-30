@@ -2,7 +2,10 @@
 
 // Ultima Weapon Ultimate
 [{
-  zoneRegex: /^(The Weapon's Refrain \(Ultimate\)|究极神兵绝境战)$/,
+  zoneRegex: {
+    en: /^The Weapon's Refrain \(Ultimate\)$/,
+    cn: /^究极神兵绝境战$/,
+  },
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [
     {
@@ -118,14 +121,14 @@
     },
     {
       id: 'UWU Ifrit Fetters',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernal Fetters from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火狱之锁 from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Infernofesseln from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Chaînes Infernales from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 炎獄の鎖 from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 염옥의 사슬 from/,
+      regex: Regexes.gainsEffect({ effect: 'Infernal Fetters' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Infernofesseln' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Chaînes Infernales' }),
+      regexJa: Regexes.gainsEffect({ effect: '炎獄の鎖' }),
+      regexCn: Regexes.gainsEffect({ effect: '火狱之锁' }),
+      regexKo: Regexes.gainsEffect({ effect: '염옥의 사슬' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       suppressSeconds: 45,
       infoText: {
@@ -187,32 +190,32 @@
     },
     {
       id: 'UWU Garuda Woken',
-      regex: / 1A:\y{ObjectId}:Garuda gains the effect of Woken from/,
-      regexCn: / 1A:\y{ObjectId}:迦楼罗 gains the effect of 觉醒 from/,
-      regexDe: / 1A:\y{ObjectId}:Garuda gains the effect of Ätherüberladung from/,
-      regexFr: / 1A:\y{ObjectId}:Garuda gains the effect of Éveil éthéré from/,
-      regexJa: / 1A:\y{ObjectId}:ガルーダ gains the effect of 覚醒 from/,
-      regexKo: / 1A:\y{ObjectId}:가루다 gains the effect of 각성 from/,
+      regex: Regexes.gainsEffect({ target: 'Garuda', effect: 'Woken', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Garuda', effect: 'Ätherüberladung', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Garuda', effect: 'Éveil Éthéré', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガルーダ', effect: '覚醒', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '迦楼罗', effect: '觉醒', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가루다', effect: '각성', capture: false }),
       sound: 'Long',
     },
     {
       id: 'UWU Ifrit Woken',
-      regex: / 1A:\y{ObjectId}:Ifrit gains the effect of Woken from/,
-      regexCn: / 1A:\y{ObjectId}:伊弗利特 gains the effect of 觉醒 from/,
-      regexDe: / 1A:\y{ObjectId}:Ifrit gains the effect of Ätherüberladung from/,
-      regexFr: / 1A:\y{ObjectId}:Ifrit gains the effect of Éveil éthéré from/,
-      regexJa: / 1A:\y{ObjectId}:イフリート gains the effect of 覚醒 from/,
-      regexKo: / 1A:\y{ObjectId}:이프리트 gains the effect of 각성 from/,
+      regex: Regexes.gainsEffect({ target: 'Ifrit', effect: 'Woken', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Ifrit', effect: 'Ätherüberladung', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Ifrit', effect: 'Éveil Éthéré', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'イフリート', effect: '覚醒', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '伊弗利特', effect: '觉醒', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '이프리트', effect: '각성', capture: false }),
       sound: 'Long',
     },
     {
       id: 'UWU Titan Woken',
-      regex: / 1A:\y{ObjectId}:Titan gains the effect of Woken from/,
-      regexCn: / 1A:\y{ObjectId}:泰坦 gains the effect of 觉醒 from/,
-      regexDe: / 1A:\y{ObjectId}:Titan gains the effect of Ätherüberladung from/,
-      regexFr: / 1A:\y{ObjectId}:Titan gains the effect of Éveil éthéré from/,
-      regexJa: / 1A:\y{ObjectId}:タイタン gains the effect of 覚醒 from/,
-      regexKo: / 1A:\y{ObjectId}:타이탄 gains the effect of 각성 from/,
+      regex: Regexes.gainsEffect({ target: 'Titan', effect: 'Woken', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Titan', effect: 'Ätherüberladung', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Titan', effect: 'Éveil Éthéré', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'タイタン', effect: '覚醒', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '泰坦', effect: '觉醒', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '타이탄', effect: '각성', capture: false }),
       sound: 'Long',
     },
     {

@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Descent|伊甸希望乐园 \(觉醒之章2\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Descent$/,
+    cn: /^伊甸希望乐园 \(觉醒之章2\)$/,
+    ko: /^희망의 낙원 에덴: 각성편 \(2\)$/,
+  },
   timelineFile: 'e2n.txt',
   timelineTriggers: [
     {
@@ -13,6 +17,7 @@
         de: 'Flächen nehmen',
         fr: 'Prenez les rayons',
         cn: '踩圈',
+        ko: '장판 밟기',
       },
     },
   ],
@@ -24,6 +29,7 @@
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
+      regexKo: / 14:3E4D:보이드워커 starts using 그림자 불꽃 on \y{Name}/,
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -32,6 +38,7 @@
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
         cn: '死刑点名',
+        ko: '탱크버스터 on YOU',
       },
     },
     {
@@ -41,6 +48,7 @@
       regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
       regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
       regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
+      regexKo: / 14:3E4D:보이드워커 starts using 그림자 불꽃 on \y{Name}/,
       suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer';
@@ -50,6 +58,7 @@
         de: 'tank buster',
         fr: 'Tank busters',
         cn: '死刑',
+        ko: '탱버',
       },
     },
     {
@@ -59,6 +68,7 @@
       regexDe: / 14:3E6D:Nichtswandler starts using Entropie/,
       regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
       regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
+      regexKo: / 14:3E6D:보이드워커 starts using 엔트로피/,
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -67,6 +77,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: 'AOE',
       },
     },
     {
@@ -76,11 +87,13 @@
       regexDe: / 14:3E3C:Nichtswandler starts using Nichtsmarter-Sense/,
       regexFr: / 14:3E3C:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
       regexJa: / 14:3E3C:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
+      regexKo: / 14:3E3C:보이드워커 starts using 파멸의 보이드 베기/,
       infoText: {
         en: 'Get Under',
         de: 'Unter ihn',
         fr: 'Intérieur',
         cn: '脚下',
+        ko: '안으로',
       },
     },
     {
@@ -90,11 +103,13 @@
       regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
       regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
       regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
+      regexKo: / 14:3E46:에레보스의 팔 starts using 공허한 악의/,
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
         fr: 'Poussée',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -104,6 +119,7 @@
       regexDe: / 14:3E42:Nichtswandler starts using Dunkel-Feuga/,
       regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
       regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
+      regexKo: / 14:3E42:보이드워커 starts using 다크 파이가/,
       run: function(data) {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;
@@ -120,6 +136,7 @@
         de: 'Verteilen',
         fr: 'Dispersez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -132,6 +149,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合',
+            ko: '집합 -> YOU',
           };
         }
         return {
@@ -139,6 +157,7 @@
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur '+ data.ShortName(matches[1]),
           cn: '集合 -> ' + data.ShortName(matches[1]),
+          ko: '집합 -> ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -151,6 +170,7 @@
           de: 'Schau weg von ' + data.ShortName(matches[1]),
           fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
           cn: '背对 ' + data.ShortName(matches[1]),
+          ko: '보지마세요 -> ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -173,6 +193,7 @@
         de: 'Verzögertes Feuer',
         fr: 'Feu retardé',
         cn: '延迟火',
+        ko: '지연술:파이어',
       },
     },
     {
@@ -188,6 +209,7 @@
             de: 'Verteilen (nicht zusammen stehen)',
             fr: 'Dispersez-vous', // FIXME
             cn: '分散',
+            ko: '산개 (모이지말것)',
           };
         }
         return {
@@ -195,6 +217,7 @@
           de: 'Verteilen',
           fr: 'Dispersez-vous',
           cn: '分散',
+          ko: '산개',
         };
       },
     },
@@ -217,6 +240,7 @@
         de: 'Verzögertes sammeln',
         fr: 'Package retardé',
         cn: '延迟集合',
+        ko: '지연술:쉐어징',
       },
     },
     {
@@ -236,6 +260,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合',
+            ko: '집합 on YOU',
           };
         }
         return {
@@ -243,6 +268,7 @@
           de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches[1]),
           cn: '集合 -> ' + data.ShortName(matches[1]),
+          ko: '집합 -> ' + data.ShortName(matches[1]),
         };
       },
     },
@@ -265,6 +291,7 @@
         de: 'Verzögertes Schattenauge',
         fr: 'Œil de l\'ombre retardé',
         cn: '延迟石化眼',
+        ko: '지연술:그림자시선',
       },
     },
     {
@@ -281,6 +308,7 @@
             de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
             fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
             cn: '背对 ' + data.ShortName(matches[1]),
+            ko: '보지마 -> ' + data.ShortName(matches[1]),
           };
         }
       },
@@ -291,6 +319,7 @@
             de: 'Auge auf DIR',
             fr: 'Œil de l\'ombre sur VOUS',
             cn: '石化眼点名',
+            ko: '시선 대상자 -> YOU',
           };
         }
       },
@@ -432,6 +461,37 @@
         'Spell-in-Waiting: Dark Fire III': '延迟咏唱：黑暗爆炎',
         'Brink of Death': '濒死',
         'Spell-in-Waiting: Unholy Darkness': '延迟咏唱：黑暗神圣',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Voidwalker': '보이드워커',
+        'The Hand of Erebos': '에레보스의 팔',
+      },
+      'replaceText': {
+        'Spell-[iI]n-Waiting': '지연술',
+        'Shadowflame': '그림자 불꽃',
+        'Doomvoid Guillotine': '파멸의 보이드 절단',
+        'Dark Fire III': '다크 파이가',
+        'attack': '공격',
+        'Unholy Darkness': '다크 홀리',
+        'Punishing Ray': '응징의 빛줄기',
+        'Doomvoid Slicer': '파멸의 보이드 베기',
+        'Empty Hate': '공허한 악의',
+        'Shadoweye': '그림자 시선',
+        'Entropy': '엔트로피',
+      },
+      '~effectNames': {
+        'Spell-in-Waiting: Shadoweye': '지연술:그림자 시선',
+        'Infirmity': '虚弱',
+        'Petrification': '석화',
+        'Bleeding': '출혈',
+        'Diabolic Curse': '디아볼릭 커스',
+        'Spell-in-Waiting: Dark Fire III': '지연술: 다크 파이가',
+        'Brink of Death': '브링크 오브 데스',
+        'Spell-in-Waiting: Unholy Darkness': '지연술: 다크 홀리',
       },
     },
   ],

@@ -3,7 +3,10 @@
 // O12S - Alphascape 4.0 Savage
 
 [{
-  zoneRegex: /^(Alphascape V4.0 \(Savage\)|欧米茄零式时空狭缝 \(阿尔法幻境4\))$/,
+  zoneRegex: {
+    en: /^Alphascape V4.0 \(Savage\)$/,
+    cn: /^欧米茄零式时空狭缝 \(阿尔法幻境4\)$/,
+  },
   timelineFile: 'o12s.txt',
   triggers: [
     {
@@ -43,11 +46,12 @@
     },
     {
       id: 'O12S Local Resonance',
-      regex: / 1A:\y{ObjectId}:Omega gains the effect of Local Resonance from/,
-      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Nah from/,
-      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Proximité from/,
-      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ニアー from/,
-      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of 共鸣程序：近 from/,
+      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Local Resonance', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Nah', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Proximité', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ニアー', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：近', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 근거리', capture: false }),
       infoText: {
         en: 'Keep Bosses Apart',
         de: 'Bosse auseinander ziehen',
@@ -58,11 +62,12 @@
     },
     {
       id: 'O12S Remote Resonance',
-      regex: / 1A:\y{ObjectId}:Omega gains the effect of Remote Resonance from/,
-      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Fern from/,
-      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Distance from/,
-      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ファー from/,
-      regexCn: / 1A:\y{ObjectId}:欧米茄 gains the effect of 共鸣程序：远 from/,
+      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Remote Resonance', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Fern', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Distance', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ファー', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：远', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 원거리', capture: false }),
       alertText: {
         en: 'Move Bosses Together',
         de: 'Bosse zusammenziehen',
@@ -218,13 +223,14 @@
     },
     {
       id: 'O12S Packet Filter F',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter F from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem W from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur F from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムF from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 防护程序F from/,
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter F' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF' }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序F' }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Attack Omega-M',
@@ -236,13 +242,14 @@
     },
     {
       id: 'O12S Packet Filter M',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter M from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem M from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur M from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムM from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 防护程序M from/,
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter M' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM' }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序M' }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Attack Omega-F',
@@ -358,13 +365,14 @@
     },
     {
       id: 'O12S Local Tethers',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Local Regression from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Regression: Nah from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Intentionnel : Proximité from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンバグ：ニアー from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 回归方程：近 from/,
+      regex: Regexes.gainsEffect({ effect: 'Local Regression' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Regression: Nah' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Intentionnel: Proximité' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エンバグ：ニアー' }),
+      regexCn: Regexes.gainsEffect({ effect: '回归方程：近' }),
+      regexKo: Regexes.gainsEffect({ effect: '연쇄 오류: 근거리' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Close Tethers',
@@ -376,13 +384,14 @@
     },
     {
       id: 'O12S Far Tethers',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Remote Regression from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Regression: Fern from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Intentionnel : Distance from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エンバグ：ファー from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 回归方程：远 from/,
+      regex: Regexes.gainsEffect({ effect: 'Remote Regression' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Regression: Fern' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Intentionnel: Distance' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エンバグ：ファー' }),
+      regexCn: Regexes.gainsEffect({ effect: '回归方程：远' }),
+      regexKo: Regexes.gainsEffect({ effect: '연쇄 오류: 원거리' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Far Tethers',
@@ -394,13 +403,14 @@
     },
     {
       id: 'O12S Defamation',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Critical Overflow Bug from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Überlauf from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Boucle from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：サークル from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：上溢 from/,
+      regex: Regexes.gainsEffect({ effect: 'Critical Overflow Bug' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Kritischer Bug: Überlauf' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Critique: Boucle' }),
+      regexJa: Regexes.gainsEffect({ effect: 'クリティカルバグ：サークル' }),
+      regexCn: Regexes.gainsEffect({ effect: '严重错误：上溢' }),
+      regexKo: Regexes.gainsEffect({ effect: '치명적 오류: 광역' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Defamation on YOU',
@@ -412,13 +422,14 @@
     },
     {
       id: 'O12S Latent Defect',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latent Defect from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latenter Bug from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Latent from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レイテントバグ from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 潜在错误 from/,
+      regex: Regexes.gainsEffect({ effect: 'Latent Defect' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Latenter Bug' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Latent' }),
+      regexJa: Regexes.gainsEffect({ effect: 'レイテントバグ' }),
+      regexCn: Regexes.gainsEffect({ effect: '潜在错误' }),
+      regexKo: Regexes.gainsEffect({ effect: '잠재적 오류' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Blue Marker',
@@ -430,13 +441,14 @@
     },
     {
       id: 'O12S Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Critical Underflow Bug from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Unterlauf from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Dégradation from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：デグレード from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：下溢 from/,
+      regex: Regexes.gainsEffect({ effect: 'Critical Underflow Bug' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Kritischer Bug: Unterlauf' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Critique: Dégradation' }),
+      regexJa: Regexes.gainsEffect({ effect: 'クリティカルバグ：デグレード' }),
+      regexCn: Regexes.gainsEffect({ effect: '严重错误：下溢' }),
+      regexKo: Regexes.gainsEffect({ effect: '치명적 오류: 전이' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Rot',
@@ -448,17 +460,18 @@
     },
     {
       id: 'O12S Hello World Stack',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Critical Synchronization Bug from (?:.*) for (.*) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Kritischer Bug: Synchronisierung from (?:.*) for (.*) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Critique : Partage from (?:.*) for (.*) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of クリティカルバグ：シェア from (?:.*) for (.*) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 严重错误：同步 from (?:.*) for (.*) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Critical Synchronization Bug' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Kritischer Bug: Synchronisierung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Critique: Partage' }),
+      regexJa: Regexes.gainsEffect({ effect: 'クリティカルバグ：シェア' }),
+      regexCn: Regexes.gainsEffect({ effect: '严重错误：同步' }),
+      regexKo: Regexes.gainsEffect({ effect: '치명적 오류: 분배' }),
       delaySeconds: function(data, matches) {
-        return matches[1] == data.me ? 0 : 1;
+        return matches.target == data.me ? 0 : 1;
       },
       alertText: function(data, matches) {
-        let t = parseFloat(matches[2]);
-        if (data.me != matches[1])
+        let t = parseFloat(matches.duration);
+        if (data.me != matches.target)
           return;
         if (!(t > 0))
           return;
@@ -480,8 +493,8 @@
         };
       },
       infoText: function(data, matches) {
-        let t = parseFloat(matches[2]);
-        if (data.me == matches[1])
+        let t = parseFloat(matches.duration);
+        if (data.me == matches.target)
           return;
         if (!data.dpsShortStack)
           return;
@@ -490,11 +503,11 @@
         if (t <= 8) {
           data.dpsShortStack = false;
           return {
-            en: 'Short Stack on ' + data.ShortName(matches[1]),
-            de: 'Kurzer Stack auf ' + data.ShortName(matches[1]),
-            fr: 'Marque courte sur ' + data.ShortName(matches[1]),
-            ja: '早シェア on ' + data.ShortName(matches[1]),
-            cn: '短D->' + data.ShortName(matches[1]),
+            en: 'Short Stack on ' + data.ShortName(matches.target),
+            de: 'Kurzer Stack auf ' + data.ShortName(matches.target),
+            fr: 'Marque courte sur ' + data.ShortName(matches.target),
+            ja: '早シェア on ' + data.ShortName(matches.target),
+            cn: '短D->' + data.ShortName(matches.target),
           };
         }
         return;
@@ -502,13 +515,14 @@
     },
     {
       id: 'O12S Hello World No Marker',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Critical Overflow Bug|Latent Defect|Critical Synchronization Bug) from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Kritischer Bug: Überlauf|Latenter Bug|Kritischer Bug: Synchronisierung) from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:Bogue Critique : Boucle|Bogue Latent|Bogue Critique : Partage) from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:クリティカルバグ：サークル|レイテントバグ|クリティカルバグ：シェア) from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of (?:|严重错误：上溢|潜在错误|严重错误：同步) from/,
+      regex: Regexes.gainsEffect({ effect: '(?:Critical Overflow Bug|Latent Defect|Critical Synchronization Bug)' }),
+      regexDe: Regexes.gainsEffect({ effect: '(?:Kritischer Bug: Überlauf|Latenter Bug|Kritischer Bug: Synchronisierung)' }),
+      regexFr: Regexes.gainsEffect({ effect: '(?:Bogue Critique: Boucle|Bogue Latent|Bogue Critique: Partage)' }),
+      regexJa: Regexes.gainsEffect({ effect: '(?:クリティカルバグ：サークル|レイテントバグ|クリティカルバグ：シェア)' }),
+      regexCn: Regexes.gainsEffect({ effect: '(?:严重错误：上溢|潜在错误|严重错误：同步)' }),
+      regexKo: Regexes.gainsEffect({ effect: '(?:치명적 오류: 광역|잠재적 오류|치명적 오류: 분배)' }),
       preRun: function(data, matches) {
-        data.helloDebuffs[matches[1]] = true;
+        data.helloDebuffs[matches.target] = true;
       },
       alertText: function(data) {
         // 1 Defamation (T), 3 Blue Markers (T/H/D), 2 Stack Markers (D/D) = 6
@@ -529,13 +543,14 @@
     },
     {
       id: 'O12S Hello World Tower Complete',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cascading Latent Defect from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Latenter Bug: Unterlauf from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Bogue Latent : Dégradation from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レイテントバグ：デグレード from/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 潜在错误：下溢 from/,
+      regex: Regexes.gainsEffect({ effect: 'Cascading Latent Defect' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Latenter Bug: Unterlauf' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Bogue Latent: Dégradation' }),
+      regexJa: Regexes.gainsEffect({ effect: 'レイテントバグ：デグレード' }),
+      regexCn: Regexes.gainsEffect({ effect: '潜在错误：下溢' }),
+      regexKo: Regexes.gainsEffect({ effect: '잠재적 오류: 전이' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Move out for Defamation',

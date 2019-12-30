@@ -1420,6 +1420,10 @@
         en: 'Orange (Attract)',
         de: 'Orange (Anziehen)',
       },
+      tts: {
+        en: 'Orange',
+        de: 'Orange',
+      },
     },
     {
       id: 'TEA Contact Regulation',
@@ -1443,6 +1447,10 @@
       infoText: {
         en: 'Purple (Repel)',
         de: 'Lila (Abstoßen)',
+      },
+      tts: {
+        en: 'Purple',
+        de: 'Lila',
       },
     },
     {

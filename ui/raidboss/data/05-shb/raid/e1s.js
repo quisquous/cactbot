@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^(Eden's Gate: Resurrection \(Savage\)|伊甸零式希望乐园 \(觉醒之章1\)|희망의 낙원 에덴: 각성편\(영웅\) \(1\))$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Resurrection \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章1\)$/,
+    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(1\)$/,
+  },
   timelineFile: 'e1s.txt',
   timeline: [
     function(data) {
@@ -56,12 +60,12 @@
     },
     {
       id: 'E1S Paradise Regained',
-      regex: / 1A:\y{ObjectId}:Eden Prime gains the effect of Paradise Regained/,
-      regexCn: / 1A:\y{ObjectId}:至尊伊甸 gains the effect of 复乐园/,
-      regexDe: / 1A:\y{ObjectId}:Prim-Eden gains the effect of Wiedergewonnenes Paradies/,
-      regexFr: / 1A:\y{ObjectId}:Primo-Éden gains the effect of Paradis [rR]etrouvé/,
-      regexJa: / 1A:\y{ObjectId}:エデン・プライム gains the effect of パラダイスリゲイン/,
-      regexKo: / 1A:\y{ObjectId}:에덴 프라임 gains the effect of Paradise Regained/,
+      regex: Regexes.gainsEffect({ target: 'Eden Prime', effect: 'Paradise Regained', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Prim-Eden', effect: 'Wiedergewonnenes Paradies', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Primo-Éden', effect: 'Paradis Retrouvé', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'エデン・プライム', effect: 'パラダイスリゲイン', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '至尊伊甸', effect: '复乐园', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '에덴 프라임', effect: 'Paradise Regained', capture: false }),
       run: function(data) {
         data.paradise = true;
       },
@@ -412,14 +416,14 @@
     },
     {
       id: 'E1S Vice and Virtue Healer Mark YOU',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Prey/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 猎物/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Markiert/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Marquage/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of マーキング/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 표식/,
+      regex: Regexes.gainsEffect({ effect: 'Prey' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage' }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング' }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物' }),
+      regexKo: Regexes.gainsEffect({ effect: '표식' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         if (data.paradise) {
@@ -444,12 +448,12 @@
     },
     {
       id: 'E1S Vice and Virtue Healer Mark Not You',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Prey/,
-      regexCn: / 1A:\y{ObjectId}:\y{Name} gains the effect of 猎物/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Markiert/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Marquage/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of マーキング/,
-      regexKo: / 1A:\y{ObjectId}:\y{Name} gains the effect of 표식/,
+      regex: Regexes.gainsEffect({ effect: 'Prey', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Markiert', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marquage', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: 'マーキング', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '猎物', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '표식', capture: false }),
       condition: function(data) {
         if (data.role == 'dps')
           return data.paradise;
