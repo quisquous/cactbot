@@ -69,8 +69,7 @@ namespace Cactbot {
     [JsonIgnore]
     public string UserConfigFile {
       get {
-        var options = OverlayData["options"];
-        if (options == null)
+        if (!OverlayData.TryGetValue("options", out JToken options))
           return null;
         var general = options["general"];
         if (general == null)
@@ -87,8 +86,7 @@ namespace Cactbot {
     [JsonIgnore]
     public bool WatchFileChanges {
       get {
-        var options = OverlayData["options"];
-        if (options == null)
+        if (!OverlayData.TryGetValue("options", out JToken options))
           return false;
         var general = options["general"];
         if (general == null)

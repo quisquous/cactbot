@@ -35,7 +35,10 @@ let UserConfig = {
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
-      this.savedConfig = (await readOptions).data;
+      // processOptions needs to be called whether or not there are
+      // any userOptions saved, as it sets up the defaults.
+      let userOptions = await readOptions || {};
+      this.savedConfig = userOptions.data || {};
       this.processOptions(
           Options,
           this.savedConfig[overlayName],
