@@ -11,6 +11,7 @@ matrix:
       - npm install
     script:
       - npm run lint
+      - npm run stylelint
       - npm test
 
   - language: python
