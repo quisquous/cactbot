@@ -2,17 +2,47 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
+
+  // Wrap Process so that Process.Handle can be overridden with a more restricted handle.
+  public class LimitedProcess {
+    private Process process;
+
+    public LimitedProcess(Process process) {
+      this.process = process;
+      if (process == null || process.HasExited)
+        return;
+      Handle = NativeMethods.OpenProcess(NativeMethods.ProcessAccessFlags.VirtualMemoryRead, false, process.Id);
+    }
+    ~LimitedProcess() {
+      if (Handle == IntPtr.Zero)
+        return;
+      NativeMethods.CloseHandle(Handle);
+    }
+
+    public IntPtr Handle { get; } = IntPtr.Zero;
+
+    public bool HasExited {
+      get { return process.HasExited; }
+    }
+
+    public int Id {
+      get { return process.Id; }
+    }
+
+    public ProcessModule MainModule {
+      get { return process.MainModule; }
+    }
+  }
 
   // Exposes the FFXIV game directly. Call FindProcess() regularly to update
   // memory addresses when FFXIV is run or closed.
   public abstract class FFXIVProcess {
     internal ILogger logger_ = null;
     bool showed_dx9_error_ = false;
-    private Process process_ = null;
+    private LimitedProcess process_ = null;
     internal IntPtr player_ptr_addr_ = IntPtr.Zero;
     internal IntPtr target_ptr_addr_ = IntPtr.Zero;
     internal IntPtr focus_ptr_addr_ = IntPtr.Zero;
@@ -257,7 +287,7 @@ namespace Cactbot {
         target_ptr_addr_ = IntPtr.Zero;
         focus_ptr_addr_ = IntPtr.Zero;
         job_data_outer_addr_ = IntPtr.Zero;
-        process_ = found_process;
+        process_ = new LimitedProcess(found_process);
 
         if (process_ != null) {
           List<IntPtr> p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
