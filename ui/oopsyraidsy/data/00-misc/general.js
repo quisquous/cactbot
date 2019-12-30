@@ -28,6 +28,7 @@
           text: {
             en: 'lost food buff',
             de: 'Nahrungsbuff verloren',
+            ko: '음식 버프 해제',
           },
         };
       },
