@@ -41,7 +41,7 @@ let UserConfig = {
       this.savedConfig = userOptions.data || {};
       this.processOptions(
           Options,
-          this.savedConfig[overlayName],
+          this.savedConfig[overlayName] || {},
           this.optionTemplates[overlayName],
       );
 
@@ -131,11 +131,6 @@ let UserConfig = {
     document.getElementsByTagName('head')[0].appendChild(userCSS);
   },
   processOptions: function(options, savedConfig, template) {
-    // If for some reason this overlay has no options saved yet,
-    // then there will be nothing in the config.
-    if (!savedConfig)
-      return;
-
     // Take options from the template, find them in savedConfig,
     // and apply them to options. This also handles setting
     // defaults for anything in the template, even if it does not
