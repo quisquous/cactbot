@@ -6,12 +6,21 @@ let UserConfig = {
   registerOptions: function(overlayName, optionTemplates) {
     this.optionTemplates[overlayName] = optionTemplates;
   },
+
   getUserConfigLocation: function(overlayName, callback) {
-    window.addOverlayListener('onUserFileChanged', () => {
+    let currentlyReloading = false;
+    let reloadOnce = () => {
+      if (currentlyReloading)
+        return;
+      currentlyReloading = true;
       window.location.reload();
+    };
+
+    window.addOverlayListener('onUserFileChanged', () => {
+      reloadOnce();
     });
     window.addOverlayListener('onForceReload', () => {
-      window.location.reload();
+      reloadOnce();
     });
 
     let readOptions = callOverlayHandler({
