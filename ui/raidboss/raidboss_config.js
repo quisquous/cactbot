@@ -861,7 +861,7 @@ UserConfig.registerOptions('raidboss', {
           '한국어 (ko)': 'ko',
         },
       },
-      default: 'Use FFXIV Plugin Language',
+      default: 'default',
       debug: true,
       setterFunc: (options, value) => {
         if (value === 'default')
