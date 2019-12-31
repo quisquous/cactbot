@@ -2,21 +2,9 @@
 
 // Rename this file to `jobs.js` and edit it to change the jobs ui.
 
-// The language that you play FFXIV in.
-Options.Language = 'en';
-
-// If true, the bars are all made translucent when out of combat.
-Options.LowerOpacityOutOfCombat = true;
-
-// The opacity (in the range 0 to 1) of the UI when out of combat.
-// Lower is more translucent.  0 is invisible.  1 is fully opaque.
-Options.OpacityOutOfCombat = 0.5;
-
-// The number of seconds before food expires to start showing the food
-// buff warning.
-Options.HideWellFedAboveSeconds = 15 * 60;
 // Zones to show food buff warning, when at max level.
 Options.WellFedZoneRegex = /^(Unknown Zone \([0-9A-Fa-f]+\)|Deltascape.*(Ultimate|Savage).*|.* Coil Of Bahamut.*(Ultimate|Savage).*)|Alexander.*(Ultimate|Savage).*$/;
+
 // The food buff warning is shown when you're below this level.
 // Update this when new expansion happens.
 Options.MaxLevel = 80;
@@ -30,19 +18,6 @@ Options.ShowMPNumber = ['BLM', 'DRK'];
 // The recast time for Aetherflow.
 Options.SmnAetherflowRecast = 60;
 
-// Size of big buff icons.
-Options.BigBuffIconWidth = 44;
-Options.BigBuffIconHeight = 32;
-// Height of the timer bar for big buff icons.
-Options.BigBuffBarHeight = 5;
-// If non-zero, the size of the text showing the big buff icon's name.
-Options.BigBuffTextHeight = 0;
-// Size of the big buff icon's colour border.
-Options.BigBuffBorderSize = 1;
-
-// The minimum time on a cooldown before it is shown.
-Options.BigBuffShowCooldownSeconds = 20;
-
 // The distance that offensive spells such as Verareo, Bio, etc are castable.
 Options.FarThresholdOffence = 24;
 // When MP falls below this, the MP bar is highlighted with the .low CSS class
@@ -54,23 +29,6 @@ Options.PldLowMPThreshold = 2880;
 // When MP falls below this, the MP bar is highlighted with the .low CSS class
 // on black mage.
 Options.BlmLowMPThreshold = 2400;
-
-// When TP falls below this, the TP bar is highlighted with the .low CSS class.
-Options.TPInvigorateThreshold = 600;
-// When health falls below this, the health bar is highlighted with the
-// .low CSS class.
-Options.LowHealthThresholdPercent = 0.2;
-// When health falls below this, the health bar is highlighted with the
-// .mid CSS class.
-Options.MidHealthThresholdPercent = 0.8;
-
-
-// This option, if set to true, makes the jobs module only show buffs, and
-// hides bars and procs.  This is for folks who prefer to use the in game
-// hp/mp/tp bars and jobs gauges.  Using this option also removes the left
-// side of the buff bar (see PerBuffOptions for details), and any buff that
-// would have been on the left is now sorted as if it were on the right.
-Options.JustBuffTracker = false;
 
 // Overrides for all of the "big buffs" that appear to the left or right
 // of the hp/mp bars.  This is stuff like trick/embolden/devotion/etc.

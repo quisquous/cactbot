@@ -7,23 +7,6 @@
 // If there are errors in this file, they will appear in the OverlayPlugin.dll
 // log window in ACT.
 
-// Monsters located out of this range will be hidden in the overlay and 0 means
-// never hide monsters. Note that you have to detect the monster first, which
-// usually needs to be close enough to make ACT "see" the monsters at first.
-Options.DetectionRange = 0;
-
-// If true, then text-to-speech alerts are read aloud.
-Options.TTS = false;
-
-// If true, then a pop sound alerts are read aloud (but will be overwrite by TTS).
-Options.PopSoundAlert = true;
-
-// If true, then the earliest puller of mobs will be recorded.
-Options.Puller = true;
-
-// If true, then the position of monster will be shown. (Only x and y)
-Options.Position = true;
-
 // You can add your own monster list here.
 Options.CustomMonsters = {
   // 'Any': {
