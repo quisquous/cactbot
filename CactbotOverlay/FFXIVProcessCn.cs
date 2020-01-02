@@ -219,6 +219,9 @@ namespace Cactbot {
             case EntityJob.DRG: {
                 return JObject.FromObject(*(DragoonJobMemory*)&p[0]);
               };
+            case EntityJob.ROG: {
+                return null;
+              };
             case EntityJob.NIN: {
                 return JObject.FromObject(*(NinjaJobMemory*)&p[0]);
               };
