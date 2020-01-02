@@ -13,6 +13,7 @@ If you get an error that it can't find **FFXIV_ACT_Plugin.dll**, make sure the *
 You can install **FFXIV_ACT_Plugin.dll** from the ACT Startup Wizard.
 
 ## Problems during Cactbot installation
+
 If you get an error in the OverlayPlugin console similar to `Error: JS Handler call failed: System.Exception: Tried to call missing handler "cactbotLoadUser"!` then you are still using the hibiyasleep version of OverlayPlugin and need to upgrade to the latest version of the ngld [OverlayPlugin](https://github.com/ngld/OverlayPlugin/releases/latest) instead.
 
 If you get an error in the OverlayPlugin console similar to `Error: LoadAddons: Cactbot.PluginLoader: RainbowMage.OverlayPlugin.TinyIoCResolutionException: Unable to resolve type: Cactbot.CactbotEventSource` then you have likely installed the `CactbotOverlay.dll` into the `OverlayPlugin/addons` folder.  Please move the Cactbot files to their own seperate folder, as described in the [Installing Cactbot](https://github.com/quisquous/cactbot#installing-cactbot) instructions.
@@ -33,16 +34,17 @@ If you are using cactbot for dps parsing and you don't get any data, make sure t
 
 ### I can't see the overlay
 
-The overlay is hidden by default until you cast your line at a fishing hole. 
+The overlay is hidden by default until you cast your line at a fishing hole.
 
 ### It doesn't show up when fishing
 
 If the overlay doesn't register your casting/catches/reeling in your rod there are a few options you need to check:
+
 - **Ingame chat log filter**
 
 ![image](https://user-images.githubusercontent.com/12807478/68880497-47da3300-0703-11ea-9cf2-2d785656bb04.png)
 
-You need to have at least one chat log set to show `Own Gathering Messages` You can find this option in 
+You need to have at least one chat log set to show `Own Gathering Messages` You can find this option in
 `Character Configuration` -> `Log Window Settings` -> `Log Filters 1/2/3/4` -> `Announcements`
 
 - **ACT FFXIV Plugin options**
@@ -53,17 +55,17 @@ You must have the `Hide Chat Log (for privacy)` option disabled.
 
 - **fisher.js language setting**
 If your game has a text language setting other than english you will need to open /ui/fisher/fisher.js and change the language option to your chosen language:
-   - `en` - English
-   - `de` - German
-   - `fr` - French
-   - `jp` - Japanese
-   - `cn` - Chinese
+  - `en` - English
+  - `de` - German
+  - `fr` - French
+  - `jp` - Japanese
+  - `cn` - Chinese
 
 Korean is not supported at this time.
 You will need to restart ACT for this setting to take effect.
 
 ### Other Issues
-If your issue isn't listed here you can open an issue [here](https://github.com/quisquous/cactbot/issues) and we will try and help you.
 
+If your issue isn't listed here you can open an issue [here](https://github.com/quisquous/cactbot/issues) and we will try and help you.
 
 Last updated: 06/12/2019
