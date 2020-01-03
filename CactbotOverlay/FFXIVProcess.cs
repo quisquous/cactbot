@@ -8,7 +8,7 @@ namespace Cactbot {
 
   // Wrap Process so that Process.Handle can be overridden with a more restricted handle.
   public class LimitedProcess {
-    private Process process;
+    public Process process;
 
     public LimitedProcess(Process process) {
       this.process = process;
@@ -29,7 +29,11 @@ namespace Cactbot {
     }
 
     public int Id {
-      get { return process.Id; }
+      get {
+        if (process != null)
+          return process.Id;
+        return 0;
+      }
     }
 
     public ProcessModule MainModule {
@@ -267,7 +271,7 @@ namespace Cactbot {
     public bool HasProcess() {
       // If FindProcess failed, return false. But also return false if
       // FindProcess succeeded but the process has since exited.
-      return process_ != null && !process_.HasExited;
+      return process_ != null && process_.process != null && !process_.HasExited;
     }
 
     public bool FindProcess() {
@@ -280,8 +284,8 @@ namespace Cactbot {
                                select x).FirstOrDefault<Process>();
       if (found_process != null && found_process.HasExited)
         found_process = null;
-      bool changed_existance = (process_ == null) != (found_process == null);
-      bool changed_pid = process_ != null && found_process != null && process_.Id != found_process.Id;
+      bool changed_existance = (process_ == null) != (found_process == null) || (process_ != null && process_.process == null) != (found_process == null);
+      bool changed_pid = process_ != null && process_.process == null && found_process != null && process_.Id != found_process.Id;
       if (changed_existance || changed_pid) {
         player_ptr_addr_ = IntPtr.Zero;
         target_ptr_addr_ = IntPtr.Zero;
@@ -289,7 +293,7 @@ namespace Cactbot {
         job_data_outer_addr_ = IntPtr.Zero;
         process_ = new LimitedProcess(found_process);
 
-        if (process_ != null) {
+        if (process_ != null && process_.process != null) {
           List<IntPtr> p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
           if (p.Count != 1) {
             logger_.LogError("Charmap signature found " + p.Count + " matches");
@@ -337,7 +341,7 @@ namespace Cactbot {
         }
       }
 
-      if (process_ == null && !showed_dx9_error_) {
+      if (process_ != null && process_.process != null && !showed_dx9_error_) {
         int found_32bit = (from x in Process.GetProcessesByName("ffxiv")
                            where !x.HasExited && x.MainModule != null && x.MainModule.ModuleName == "ffxiv.exe"
                            select x).Count();
@@ -347,7 +351,7 @@ namespace Cactbot {
         }
       }
 
-      return process_ != null;
+      return (process_ != null && process_.process != null);
     }
 
     public bool IsActive() {
