@@ -78,13 +78,6 @@ namespace Cactbot {
         return GetPluginData("FFXIV_ACT_Plugin_Korean.dll") ?? GetPluginData("FFXIV_ACT_Plugin.dll");
     }
 
-    public string GetFFXIVPluginRegion() {
-      var plugin = GetFFXIVPluginData();
-      if (plugin == null)
-        return "";
-      return plugin.pluginFile.ToString().Contains("Korean") ? "ko" : "intl";
-    }
-
     public Version GetFFXIVPluginVersion() {
       var plugin = GetFFXIVPluginData();
       if (plugin == null)
