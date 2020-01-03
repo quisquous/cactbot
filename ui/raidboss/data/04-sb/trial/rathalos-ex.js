@@ -4,7 +4,10 @@
 
 // Rathalos Extreme
 [{
-  zoneRegex: /^The Great Hunt \(Extreme\)$/,
+  zoneRegex: {
+    en: /^The Great Hunt \(Extreme\)$/,
+    ko: /^극 리오레우스 수렵전$/,
+  },
   triggers: [
     {
       id: 'RathEx Mangle',
@@ -12,9 +15,11 @@
       regexDe: / 14:(?:2853|2863):Rathalos starts using Zerfleischen/,
       regexFr: / 14:(?:2853|2863):Rathalos starts using Broyage/,
       regexJa: / 14:(?:2853|2863):リオレウス starts using アギト/,
+      regexKo: / 14:(?:2853|2863):리오레우스 starts using 으깨기/,
       infoText: {
         en: 'Mangle',
         de: 'Biss und Schweifhieb',
+        ko: '으깨기',
       },
     },
     {
@@ -23,9 +28,11 @@
       regexDe: / 14:(?:2856|2861):Rathalos starts using Stürmen/,
       regexFr: / 14:(?:2856|2861):Rathalos starts using Ruée/,
       regexJa: / 14:(?:2856|2861):リオレウス starts using 突進/,
+      regexKo: / 14:(?:2856|2861):리오레우스 starts using 돌진/,
       alertText: {
         en: 'Rush',
         de: 'Stürmen',
+        ko: '돌진',
       },
     },
     {
@@ -34,9 +41,11 @@
       regexDe: / 14:(?:2859|285B):Rathalos starts using Flammenrückstoß/,
       regexFr: / 14:(?:2859|285B):Rathalos starts using Bond Enflammé/,
       regexJa: / 14:(?:2859|285B):リオレウス starts using フレイムリコイル/,
+      regexKo: / 14:(?:2859|285B):리오레우스 starts using 반동 화염/,
       alarmText: {
         en: 'Flaming Recoil',
         de: 'Flammenschlag vorne',
+        ko: '반동 화염',
       },
     },
     {
@@ -48,6 +57,7 @@
       infoText: {
         en: 'Fire Breath on YOU',
         de: 'Feueratem auf DIR',
+        ko: '화염 숨결 대상자',
       },
     },
     {
@@ -58,11 +68,13 @@
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
+            ko: '쉐어징 대상자',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches[1]),
           de: 'Stack auf ' + data.ShortName(matches[1]),
+          ko: '쉐어징 "' + data.ShortName(matches[1]) + '"',
         };
       },
     },
@@ -72,6 +84,7 @@
       regexDe: / 03:\y{ObjectId}:Added new combatant Steppenschaf\./,
       regexFr: / 03:\y{ObjectId}:Added new combatant Mouton De La Steppe\./,
       regexJa: / 03:\y{ObjectId}:Added new combatant ステップ・シープ\./,
+      regexKo: / 03:\y{ObjectId}:Added new combatant 초원 양\./,
       suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';
@@ -79,6 +92,7 @@
       infoText: {
         en: 'Adds',
         de: 'Adds',
+        ko: '쫄',
       },
     },
   ],
