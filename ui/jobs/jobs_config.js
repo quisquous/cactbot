@@ -44,7 +44,7 @@ UserConfig.registerOptions('jobs', {
         en: 'Hide cheese icon when food > time (in seconds)',
         de: 'Verstecke das Käse Icon wenn Bufffood > Zeit (in Sekunden)',
         fr: 'Masquer l\'icône quand Repu > durée (en secondes)',
-        cn: '当食物时间大于多少时隐藏奶酪图标（以秒为单位）',
+        cn: '当食物时间大于_时隐藏奶酪图标（秒）',
         ko: '남은 식사 효과 시간이 이 시간보다 길면, 치즈 아이콘 숨김 (단위: 초)',
       },
       type: 'integer',
