@@ -69,7 +69,7 @@ class CactbotLanguageKo extends CactbotLanguage {
 
     this.kUIStrings = Object.freeze({
       // jobs: text on the pull countdown.
-      Pull: 'Pull',
+      Pull: '풀링',
     });
 
     // TODO: Countdowns
