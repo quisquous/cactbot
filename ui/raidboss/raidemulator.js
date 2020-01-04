@@ -738,11 +738,11 @@ class EmulatorView {
   AnalyzeFight(role) {
     let triggers = gPopupText.triggers;
     // This needs to match the data construction from popup.
-    // TODO: add partyTracker here.
     let data = {
       lang: gPopupText.data.lang,
       currentHP: 0,
       options: gPopupText.options,
+      party: new PartyTracker(),
       StopCombat: () => {},
       ParseLocaleFloat: parseFloat,
       CanStun: () => Util.canStun(this.job),
