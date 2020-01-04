@@ -287,7 +287,7 @@ namespace Cactbot {
         target_ptr_addr_ = IntPtr.Zero;
         focus_ptr_addr_ = IntPtr.Zero;
         job_data_outer_addr_ = IntPtr.Zero;
-        process_ = new LimitedProcess(found_process);
+        process_ = found_process != null ? new LimitedProcess(found_process) : null;
 
         if (process_ != null) {
           List<IntPtr> p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
