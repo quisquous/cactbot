@@ -56,6 +56,7 @@
             de: 'Hase',
             fr: e.abilityName,
             ja: e.abilityName,
+            ko: '토끼',
           },
         };
       },
