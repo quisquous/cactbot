@@ -247,7 +247,7 @@ let gMonster = {
   'Dalvag\'s Final Flame': {
     'name': {
       'cn': '\u83f2\u5170\u5fb7\u7684\u9057\u706b',
-      'de': 'Letzt[a] Flamme[p] Dalvags',
+      'de': 'Letzte Flamme Dalvags',
       'en': 'Dalvag\'s Final Flame',
       'fr': 'derni\u00e8re flamme de Dalvag',
       'ja': '\u30d5\u30a1\u30a4\u30ca\u30eb\u30d5\u30ec\u30a4\u30e0',
@@ -547,7 +547,7 @@ let gMonster = {
   'Juggler Hecatomb': {
     'name': {
       'cn': '\u6b8b\u8650\u6742\u6280\u5e08',
-      'de': 'Gaukler[p] Hecatomb',
+      'de': 'Gaukler Hecatomb',
       'en': 'Juggler Hecatomb',
       'fr': 'Jongleur h\u00e9catombe',
       'ja': '\u30b8\u30e3\u30b0\u30e9\u30fc\u30fb\u30d8\u30ab\u30c8\u30a5\u30fc\u30e0',
@@ -647,7 +647,7 @@ let gMonster = {
   'Li\'l Murderer': {
     'name': {
       'cn': '\u5c0f\u5c0f\u6740\u624b',
-      'de': 'Klein[a] M\u00f6rder',
+      'de': 'Kleiner M\u00f6rder',
       'en': 'Li\'l Murderer',
       'fr': 'Tra\u00eetre',
       'ja': '\u30ea\u30eb\u30de\u30fc\u30c0\u30fc',
@@ -877,7 +877,7 @@ let gMonster = {
   'O Poorest Pauldia': {
     'name': {
       'cn': '\u4fdd\u5c14\u8fea\u96c5',
-      'de': 'gepeinigt[a] Pauldia',
+      'de': 'gepeinigter Pauldia',
       'en': 'O Poorest Pauldia',
       'fr': 'Pauldia',
       'ja': '\u30dd\u30fc\u30eb\u30c7\u30a3\u30a2',
@@ -1037,7 +1037,7 @@ let gMonster = {
   'Sanu Vali of Dancing Wings': {
     'name': {
       'cn': '\u98de\u821e\u7ffc \u8428\u52aa\u74e6\u529b',
-      'de': 'Sanu Vali [t] Tanzend[a] Schwinge',
+      'de': 'Sanu Vali die Tanzende Schwinge',
       'en': 'Sanu Vali of Dancing Wings',
       'fr': 'Sanu Vali',
       'ja': '\u821e\u624b\u306e\u30b5\u30cc\u30d0\u30ea',
@@ -1127,7 +1127,7 @@ let gMonster = {
   'Stinging Sophie': {
     'name': {
       'cn': '\u51fb\u523a\u9b54\u8702\u7d22\u83f2',
-      'de': 'Stinkig[a] Sophie',
+      'de': 'Stinkige Sophie',
       'en': 'Stinging Sophie',
       'fr': 'Sophie la dardante',
       'ja': '\u30b9\u30c6\u30a3\u30f3\u30ae\u30f3\u30b0\u30fb\u30bd\u30d5\u30a3\u30fc',
@@ -1275,7 +1275,7 @@ let gMonster = {
   'White Joker': {
     'name': {
       'cn': '\u767d\u9b3c\u9f20\u738b',
-      'de': 'Wei\u00df[a] Joker',
+      'de': 'Wei\u00dfer Joker',
       'en': 'White Joker',
       'fr': 'joker blanc',
       'ja': '\u30db\u30ef\u30a4\u30c8\u30b8\u30e7\u30fc\u30ab\u30fc',
@@ -1285,7 +1285,7 @@ let gMonster = {
   'Worm of the Well': {
     'name': {
       'cn': '\u5927\u4e95\u5de8\u866b',
-      'de': 'Wurm[p] des Brunnens',
+      'de': 'Wurm des Brunnens',
       'en': 'Worm of the Well',
       'fr': 'Verpuy',
       'ja': '\u30a6\u30a7\u30eb\u30a6\u30a9\u30fc\u30e0',
@@ -1335,7 +1335,7 @@ let gMonster = {
   'forgiven gossip': {
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u6d41\u8a00',
-      'de': 'gel\u00e4utert[a] L\u00e4sterei',
+      'de': 'Gel\u00e4uterte L\u00e4sterei',
       'en': 'forgiven gossip',
       'fr': 'm\u00e9disance pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30b4\u30b7\u30c3\u30d7',
@@ -1344,7 +1344,7 @@ let gMonster = {
   },
   'forgiven pedantry': {
     'name': {
-      'de': 'gel\u00e4utert[a] Pedanterie',
+      'de': 'Gel\u00e4uterte Pedanterie',
       'en': 'forgiven pedantry',
       'fr': 'p\u00e9danterie pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30da\u30c0\u30f3\u30c8\u30ea\u30fc',
@@ -1354,7 +1354,7 @@ let gMonster = {
   'forgiven rebellion': {
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u53db\u4e71',
-      'de': 'gel\u00e4utert[a] Rebellion',
+      'de': 'Gel\u00e4uterte Rebellion',
       'en': 'forgiven rebellion',
       'fr': 'r\u00e9bellion pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30ea\u30d9\u30ea\u30aa\u30f3',
@@ -1404,7 +1404,7 @@ let gMonster = {
   'the Pale Rider': {
     'name': {
       'cn': '\u82cd\u767d\u9a91\u58eb',
-      'de': 'Bleich[a] Reiter',
+      'de': 'Bleicher Reiter',
       'en': 'the Pale Rider',
       'fr': 'Cavalier p\u00e2le',
       'ja': '\u30da\u30a4\u30eb\u30e9\u30a4\u30c0\u30fc',
