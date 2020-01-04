@@ -45,7 +45,6 @@ namespace Cactbot {
     private FFXIVProcess ffxiv_;
     private WipeDetector wipe_detector_;
     private string language_ = null;
-    private string ffxiv_plugin_region_ = null;
     private List<FileSystemWatcher> watchers;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
@@ -233,8 +232,6 @@ namespace Cactbot {
       Version ffxiv = versions.GetFFXIVPluginVersion();
       Version act = versions.GetACTVersion();
 
-      ffxiv_plugin_region_ = versions.GetFFXIVPluginRegion();
-
       // Print out version strings and locations to help users debug.
       LogInfo("cactbot: {0} {1} (dir: {2})", local.ToString(), versions.GetCactbotPluginLocation(), versions.GetCactbotDirectory());
       LogInfo("OverlayPlugin: {0} {1}", overlay.ToString(), versions.GetOverlayPluginLocation());
@@ -246,14 +243,13 @@ namespace Cactbot {
         LogInfo("Language: {0}", language_);
       }
 
-      if (ffxiv_plugin_region_ == "ko") {
-        ffxiv_ = new FFXIVProcessKo(this);
-        LogInfo("Version: ko");
-      }
       // Temporarily target cn if plugin is old v2.0.4.0
-      else if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
+      if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
         ffxiv_ = new FFXIVProcessCn(this);
         LogInfo("Version: cn");
+      } else if (language_ == "ko") {
+        ffxiv_ = new FFXIVProcessKo(this);
+        LogInfo("Version: ko");
       } else {
         ffxiv_ = new FFXIVProcessIntl(this);
         LogInfo("Version: intl");
