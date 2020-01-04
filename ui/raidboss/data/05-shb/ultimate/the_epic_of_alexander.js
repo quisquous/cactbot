@@ -1568,10 +1568,14 @@
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
       suppressSeconds: 20,
-      infoText: {
-        en: 'Motion first',
-        de: 'Bewegungsbefehl zuerst',
+      durationSeconds: 8,
+      preRun: function(data) {
+        data.firstAlphaOrdainedText = {
+          en: 'Motion first',
+          de: 'Bewegungsbefehl zuerst',
+        };
       },
+      infoText: (data) => data.firstAlphaOrdainedText,
       run: function(data) {
         data.firstAlphaOrdained = 'motion';
       },
@@ -1583,10 +1587,14 @@
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
       suppressSeconds: 20,
-      infoText: {
-        en: 'Stillness first',
-        de: 'Stillstandsbefehl zuerst',
+      durationSeconds: 8,
+      preRun: function(data) {
+        data.firstAlphaOrdainedText = {
+          en: 'Stillness first',
+          de: 'Stillstandsbefehl zuerst',
+        };
       },
+      infoText: (data) => data.firstAlphaOrdainedText,
       run: function(data) {
         data.firstAlphaOrdained = 'stillness';
       },
@@ -1598,10 +1606,23 @@
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
       suppressSeconds: 20,
-      infoText: {
-        en: 'Motion second',
-        de: 'Bewegungsbefehl als Zweites',
+      durationSeconds: 15,
+      preRun: function(data) {
+        data.secondAlphaOrdainedText = {
+          en: 'Motion second',
+          de: 'Bewegungsbefehl als Zweites',
+        };
       },
+      infoText: function(data) {
+        let first = data.firstAlphaOrdainedText[data.lang];
+        let second = data.secondAlphaOrdainedText[data.lang];
+        // For languages that haven't been translated, just return the second text.
+        if (!first || !second)
+          return data.secondAlphaOrdainedText;
+
+        return first + ', ' + second;
+      },
+      tts: (data) => data.secondAlphaOrdainedText,
       run: function(data) {
         data.secondAlphaOrdained = 'motion';
       },
@@ -1613,10 +1634,23 @@
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
       suppressSeconds: 20,
-      infoText: {
-        en: 'Stillness second',
-        de: 'Stillstandsbefehl als Zweites',
+      durationSeconds: 15,
+      preRun: function(data) {
+        data.secondAlphaOrdainedText = {
+          en: 'Stillness second',
+          de: 'Stillstandsbefehl als Zweites',
+        };
       },
+      infoText: function(data) {
+        let first = data.firstAlphaOrdainedText[data.lang];
+        let second = data.secondAlphaOrdainedText[data.lang];
+        // For languages that haven't been translated, just return the second text.
+        if (!first || !second)
+          return data.secondAlphaOrdainedText;
+
+        return first + ', ' + second;
+      },
+      tts: (data) => data.secondAlphaOrdainedText,
       run: function(data) {
         data.secondAlphaOrdained = 'stillness';
       },
