@@ -1502,7 +1502,7 @@
         let kUnknown;
         if (sortedNames.length >= 5) {
           kUnknown = {
-            en: 'No clone: probably no debuff + stack?',
+            en: 'No clone: probably stack?',
             de: 'keine Klone: warscheinlich kein debuff + stack?',
           };
         } else {
@@ -1664,6 +1664,10 @@
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
       durationSeconds: 10,
       infoText: function(data, matches) {
+        // TODO: this is overly complicated.
+        // Alexanders always appear in the same spots and it's always
+        // the second or third Alexander that is the safe spot.
+
         // Alexanders from left to right are:
         // 0: 78.28883, 91.00694 (~-67 degrees from north)
         // 1: 91.00694, 78.28883 (~-22 degrees from north)
@@ -1686,24 +1690,33 @@
         data.safeAlphaIdx = idx;
         data.safeAlphaPos = [matches.x, matches.y];
 
+        // Unknown idx?
+        if (idx != 1 && idx != 2)
+          return;
+
+        if (data.me == data.alphaDefamation) {
+          return [
+            {
+              en: 'Defamation: front left',
+              de: 'Ehrenstrafe: vorne links',
+            },
+            {
+              en: 'Defamation: front right',
+              de: 'Ehrenstrafe: vorne rechts',
+            },
+          ][idx - 1];
+        }
+
         return [
           {
-            en: '#1 Safe (NW / SE)',
-            de: '#1 Sicher (NW / SO)',
+            en: 'Party: back right',
+            de: 'Gruppe: hinten rechts',
           },
           {
-            en: '#2 Safe (NNW / SSE)',
-            de: '#2 Sicher (NNW / SSO)',
+            en: 'Party: back left',
+            de: 'Gruppe: hinten links',
           },
-          {
-            en: '#3 Safe (NNE / SSW)',
-            de: '#3 Sicher (NNO / SSW)',
-          },
-          {
-            en: '#4 Safe (NE / SW)',
-            de: '#4 Sicher (NO / SW)',
-          },
-        ][idx];
+        ][idx - 1];
       },
     },
     {
