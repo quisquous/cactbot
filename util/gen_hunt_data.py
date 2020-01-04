@@ -1,17 +1,17 @@
 import csv
-import coinach
 import os
 from collections import defaultdict
+import coinach
 
 _OUTPUT_FILE = 'hunt.js'
 
 
-def update_german(str):
-    str = str.replace('[p]', '')
-    str = str.replace('[t]', '(?:der|die|das)')
-    str = str.replace('[a]', '(?:e|er|es|en)')
-    str = str.replace('[A]', '(?:e|er|es|en)')
-    return str
+def update_german(string):
+    string = string.replace('[p]', '')
+    string = string.replace('[t]', '(?:der|die|das)')
+    string = string.replace('[a]', '(?:e|er|es|en)')
+    string = string.replace('[A]', '(?:e|er|es|en)')
+    return string
 
 
 def parse_data(csvfile, lang='en'):
@@ -49,25 +49,25 @@ def parse_data(csvfile, lang='en'):
     return monsters
 
 
-def update(reader, writer):
+def update(reader):
     languages = ['en', 'de', 'fr', 'ja']
     monsters = defaultdict(lambda: {'name':{}, 'rank':''})
     for locale in languages:
         exd = reader.exd('NotoriousMonster', lang=locale)
         data = parse_data(exd, lang=locale)
-        for m in data.keys():
-            monsters[m]['name'].update(data[m]['name'])
-            monsters[m]['rank'] = data[m]['rank']
+        for key in data:
+            monsters[key]['name'].update(data[key]['name'])
+            monsters[key]['rank'] = data[key]['rank']
     return monsters
 
 
 def get_from_coinach():
-    reader = coinach.CoinachReader(verbose=True)
-    writer = coinach.CoinachWriter(verbose=True)
-    monsters = update(reader, writer)
+    reader = coinach.CoinachReader()
+    writer = coinach.CoinachWriter()
+    monsters = update(reader)
     all_monsters = {}
-    for (k, v) in monsters.items():
-        all_monsters[v['name']['en']] = v
+    for (_, info) in monsters.items():
+        all_monsters[info['name']['en']] = info
     writer.write(
         os.path.join('resources', _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
