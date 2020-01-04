@@ -6,6 +6,14 @@ from collections import defaultdict
 _OUTPUT_FILE = 'hunt.js'
 
 
+def update_german(str):
+    str = str.replace('[p]', '')
+    str = str.replace('[t]', '(?:der|die|das)')
+    str = str.replace('[a]', '(?:e|er|es|en)')
+    str = str.replace('[A]', '(?:e|er|es|en)')
+    return str
+
+
 def parse_data(csvfile, lang='en'):
     monsters = {}
     reader = csv.reader(csvfile)
@@ -27,9 +35,14 @@ def parse_data(csvfile, lang='en'):
             rank = 'A'
         else:
             rank = 'B'
+
+        name = m_name
+        if lang == 'de':
+            name = update_german(name)
+
         monsters[m_id] = {
             'name': {
-                lang: m_name,
+                lang: name,
             },
             'rank': rank,
         }
