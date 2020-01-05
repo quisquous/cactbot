@@ -88,6 +88,7 @@
         return {
           en: 'Tank Cleave',
           de: 'Tank Cleave',
+          ja: 'タンククリーブ',
         };
       },
     },
@@ -105,6 +106,7 @@
       infoText: {
         en: 'Move Bosses',
         de: 'Bosse bewegen',
+        ja: 'ボス動かして',
       },
     },
     {
@@ -130,6 +132,7 @@
       infoText: {
         en: 'Water/Thunder in 3',
         de: 'Wasser/Blitz in 3',
+        ja: '水/雷まで3秒',
       },
     },
     {
@@ -143,6 +146,7 @@
       alertText: {
         en: 'Face Brute Towards Water',
         de: 'Drehe Brute zum Wasser',
+        ja: 'ジャスを竜巻に向ける',
       },
     },
     {
@@ -152,6 +156,7 @@
       infoText: {
         en: 'Hide Behind Ice',
         de: 'Hinter dem Eis verstecken',
+        ja: '氷の後ろへ',
       },
     },
     {
@@ -174,6 +179,7 @@
           return {
             en: 'Soak This Puddle (#' + matches[1] + ')',
             de: 'Fläche nehmen (#' + matches[1] + ')',
+            ja: '懺悔踏む (#' + matches[1] + ')',
           };
         }
       },
@@ -183,6 +189,7 @@
         return {
           en: 'Puddle #' + matches[1],
           de: 'Fläche #' + matches[1],
+          ja: '懺悔 #' + matches[1],
         };
       },
       tts: function(data, matches) {
@@ -190,6 +197,7 @@
           return {
             en: 'Soak This Puddle',
             de: 'Fläche nehmen',
+            ja: '沼踏んで',
           };
         }
       },
@@ -206,6 +214,7 @@
           return {
             en: 'Shared Tankbuster',
             de: 'geteilter Tankbuster',
+            ja: 'タンクシェア',
           };
         }
       },
@@ -243,6 +252,12 @@
             2: 'Lila γ',
             3: 'Grün δ',
           },
+          ja: {
+            0: '青 α',
+            1: 'オレンジ β',
+            2: '紫 γ',
+            3: '緑 δ',
+          },
         }[data.lang];
 
         // Convenience function called for third and fourth nisi passes.
@@ -252,6 +267,7 @@
             return {
               en: 'Get Final Nisi (?)',
               de: 'Nehme letzten Nisi (?)',
+              ja: '最後のナイサイを取得 (?)',
             };
           }
 
@@ -276,6 +292,7 @@
               return {
                 en: 'Pass ' + data.nisiNames[myNisi] + ' Nisi',
                 de: 'Gebe ' + data.nisiNames[myNisi] + ' Nisi',
+                ja: data.nisiNames[myNisi] + ' を渡す',
               };
             }
 
@@ -286,6 +303,8 @@
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', or '),
               de: 'Gebe ' + data.nisiNames[myNisi] + ' zu ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder '),
+              ja: data.nisiNames[myNisi] + ' を ' +
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder ') + ' に渡す',
             };
           }
 
@@ -297,11 +316,13 @@
             return {
               en: 'Get ' + data.nisiNames[myNisi],
               de: 'Nimm ' + data.nisiNames[myNisi],
+              ja: data.nisiNames[myNisi] + ' を取る',
             };
           }
           return {
             en: 'Get ' + data.nisiNames[myNisi] + ' from ' + data.ShortName(names[0]),
             de: 'Nimm ' + data.nisiNames[myNisi] + ' von ' + data.ShortName(names[0]),
+            ja: data.ShortName(names[0]) + ' から ' + data.nisiNames[myNisi] + ' を取る',
           };
         };
       },
@@ -534,11 +555,13 @@
             return {
               en: 'Knockback Cleave; Face Outside',
               de: 'Rückstoß Cleave; nach Außen schauen',
+              ja: 'ノックバック ソード; 外向く',
             };
           }
           return {
             en: 'Knockback Charge; Face Middle',
             de: 'Rückstoß Charge; zur Mitte schauen',
+            ja: 'ノックバック チャージ; 中央向く',
           };
         }
         if (isOddNumber) {
@@ -613,6 +636,7 @@
       alertText: {
         en: 'Dodge Spin Crusher',
         de: 'Rotorbrecher ausweichen',
+        ja: 'スピンクラッシャー避けて',
       },
     },
     {
@@ -624,6 +648,7 @@
       alarmText: {
         en: 'Freeze Tornado',
         de: 'Tornado einfrieren',
+        ja: '竜巻凍らせる',
       },
     },
     {
@@ -639,6 +664,7 @@
       infoText: {
         en: 'Mines',
         de: 'Minen',
+        ja: '地雷',
       },
     },
     {
@@ -650,6 +676,7 @@
       alertText: {
         en: 'Enumeration on YOU',
         de: 'Enumeration auf DIR',
+        ja: '自分にカウント',
       },
     },
     {
@@ -666,6 +693,7 @@
         return {
           en: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
           de: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
+          ja: 'カウント: ' + names.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
@@ -679,6 +707,7 @@
       infoText: {
         en: 'Break Shield From Front',
         de: 'Schild von Vorne zerstören',
+        ja: '正面からシールド壊して',
       },
     },
     {
@@ -871,6 +900,7 @@
         return {
           en: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
           de: 'Prozesseröffnung: ' + data.nisiNames[num] + ' Nisi',
+          ja: '最終: ' + data.nisiNames[num],
         };
       },
     },
@@ -895,12 +925,14 @@
           return {
             en: 'Shared Tankbuster on YOU',
             de: 'geteilter Tankbuster auf DIR',
+            ja: '自分にタンクシェア',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
             de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + ' にタンクシェア',
           };
         }
       },
@@ -910,6 +942,7 @@
         return {
           en: 'Bait Super Jump?',
           de: 'Supersprung anlocken?',
+          ja: 'スパジャン誘導',
         };
       },
     },
@@ -923,6 +956,7 @@
       infoText: {
         en: 'avoid ray',
         de: 'Strahl ausweichen',
+        ja: 'アポカリ避けて',
       },
     },
     {
@@ -984,6 +1018,7 @@
         return {
           en: 'No Debuff',
           de: 'Kein Debuff',
+          ja: 'デバフ無し',
         };
       },
     },
@@ -1036,6 +1071,7 @@
       alertText: {
         en: 'Shared Sentence',
         de: 'Urteil: Kollektivstrafe',
+        ja: '集団罰',
       },
     },
     {
@@ -1049,6 +1085,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Shared Sentence on ' + matches.target,
+          ja: matches.target + ' に集団罰',
         };
       },
     },
@@ -1065,6 +1102,7 @@
       alarmText: {
         en: 'Thunder',
         de: 'Blitz',
+        ja: '加重罰',
       },
     },
     {
@@ -1116,6 +1154,7 @@
       alertText: {
         en: 'Crystal on YOU',
         de: 'Kristall auf DIR',
+        ja: '自分に結晶',
       },
     },
     {
@@ -1128,6 +1167,7 @@
       infoText: {
         en: 'Get Away From Crystals',
         de: 'Geh weg vom Kristall',
+        ja: '結晶から離れて',
       },
     },
     {
@@ -1141,6 +1181,7 @@
       infoText: {
         en: 'Bait Brute\'s Flarethrower',
         de: 'Locke Brute\'s Großflammenwerfer',
+        ja: '火炎放射を誘導',
       },
     },
     {
@@ -1170,6 +1211,7 @@
           // TODO: we could probably determine where this is.
           return {
             en: 'Bait Jump With Cooldowns',
+            ja: 'スパジャン誘導',
           };
         }
       },
@@ -1183,12 +1225,14 @@
           return {
             en: 'Bait Sword',
             de: 'Locke Chaser-Mecha Schwert',
+            ja: 'ソード誘導',
           };
         }
 
         // Otherwise everybody without a vuln can do anything.
         return {
           en: 'Bait Sword or Jump?',
+          ja: 'ソードかジャンプ誘導?',
         };
       },
       infoText: function(data) {
@@ -1200,6 +1244,7 @@
 
           return {
             en: 'Vuln: Avoid cleaves and jump',
+            ja: '被ダメ増加',
           };
         }
       },
@@ -1215,10 +1260,12 @@
           return {
             en: 'Bait Chakrams mid; Look opposite Alex',
             de: 'Locke Chakrams mittig; schau weg von Alex',
+            ja: '中央にチャクラム誘導; アレキの反対見て',
           };
         }
         return {
           en: 'Bait Chakrams',
+          ja: 'チャクラム誘導',
         };
       },
     },
@@ -1251,34 +1298,42 @@
           '004F': {
             en: 'Left To Robot; Look Outside; 3rd Puddle',
             de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
+            ja: '右上 外向き 懺悔3回目',
           },
           '0050': {
             en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
             de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
+            ja: '左下 内向き 懺悔3回目',
           },
           '0051': {
             en: 'Back Left Opposite Robot; No Puddle',
             de: 'Hinten Links gegenüber vom Robot; keine Fläche',
+            ja: '左上',
           },
           '0052': {
             en: 'Right To Robot; No puddle',
             de: 'Rechts vom Robot; keine Fläche',
+            ja: '右下',
           },
           '0053': {
             en: 'Left Robot Side -> 1st Puddle',
             de: 'Linke Robot Seite -> 1. Fläche',
+            ja: '右ちょい上 懺悔1回目',
           },
           '0054': {
             en: 'Right Robot Side -> 1st Puddle',
             de: 'Rechte Robot Seite -> 1. Fläche',
+            ja: '左ちょい上 懺悔1回目',
           },
           '0055': {
             en: 'Left Robot Side -> cardinal; 2nd Puddle',
             de: 'Linke Robot Seite -> cardinal; 2. Fläche',
+            ja: '右ちょい上 懺悔2回目',
           },
           '0056': {
             en: 'Right Robot Side -> cardinal; 2nd Puddle',
             de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
+            ja: '左ちょい上 懺悔2回目',
           },
         }[matches.id];
       },
@@ -1299,6 +1354,7 @@
       infoText: {
         en: 'Move Behind Brute Justice?',
         de: 'Geh hinter Brutalus?',
+        ja: 'ジャスティスの背面へ',
       },
     },
     {
@@ -1307,6 +1363,7 @@
       alertText: {
         en: 'Stack Middle',
         de: 'mittig sammeln',
+        ja: '中央へ',
       },
     },
     {
@@ -1330,6 +1387,7 @@
       infoText: {
         en: 'Kill Cruise Chaser First',
         de: 'Chaser-Mecha zuerst besiegen',
+        ja: 'チェイサーから倒す',
       },
     },
     {
@@ -1345,6 +1403,7 @@
       alarmText: {
         en: 'TANK LB!!',
         de: 'TANK LB!!',
+        ja: 'タンクLB!!',
       },
     },
     {
@@ -1373,6 +1432,7 @@
           return {
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
+            ja: '自分にシェア',
           };
         }
       },
@@ -1383,6 +1443,7 @@
         return {
           en: 'Optical Stack (' + names.join(', ') + ')',
           de: 'Optischer Stack (' + names.join(', ') + ')',
+          ja: 'シェア (' + names.join(', ') + ')',
         };
       },
     },
@@ -1396,6 +1457,7 @@
       alertText: {
         en: 'Keep Moving',
         de: 'weiter bewegen',
+        ja: '動く',
       },
     },
     {
@@ -1407,6 +1469,7 @@
       alarmText: {
         en: 'STOP LITERALLY EVERYTHING',
         de: 'STOP WIRKLICH ALLES',
+        ja: '止まる',
       },
     },
     {
@@ -1419,10 +1482,12 @@
       infoText: {
         en: 'Orange (Attract)',
         de: 'Orange (Anziehen)',
+        ja: '接触禁止',
       },
       tts: {
         en: 'Orange',
         de: 'Orange',
+        ja: '接触禁止',
       },
     },
     {
@@ -1435,6 +1500,7 @@
       alarmText: {
         en: 'Orange Bait: Get Away',
         de: 'Orange locken: Geh Weg',
+        ja: '接触保護',
       },
     },
     {
@@ -1447,10 +1513,12 @@
       infoText: {
         en: 'Purple (Repel)',
         de: 'Lila (Abstoßen)',
+        ja: '逃亡禁止',
       },
       tts: {
         en: 'Purple',
         de: 'Lila',
+        ja: '逃亡禁止',
       },
     },
     {
@@ -1463,6 +1531,7 @@
       alertText: {
         en: 'Purple Bait: Be In Back Of Group',
         de: 'Lila locken: Hinter der Gruppe sein',
+        ja: '逃亡監察',
       },
     },
     {
@@ -1493,10 +1562,12 @@
         let kNoDebuff = {
           en: 'No debuff: shared stack',
           de: 'Kein debuff: geteilter stack',
+          ja: 'デバフ無し',
         };
         let kSeverity = {
           en: 'Severity: avoid shared stack',
           de: 'Erschwertes: geteilter stack ausweichen',
+          ja: '加重罰',
         };
 
         let kUnknown;
@@ -1504,11 +1575,13 @@
           kUnknown = {
             en: 'No clone: probably stack?',
             de: 'keine Klone: warscheinlich kein debuff + stack?',
+            ja: 'クローン無し: 多分シェア?',
           };
         } else {
           kUnknown = {
             en: 'No clone: ???',
             de: 'keine Klone: ???',
+            ja: 'クローン無し: ???',
           };
         }
 
@@ -1517,10 +1590,12 @@
           '0': {
             en: 'Shared Sentence: stack',
             de: 'Urteil Kollektivstrafe: stack',
+            ja: '集団罰: ',
           },
           '1': {
             en: 'Defamation on YOU',
             de: 'Ehrenstrafe aud DIR',
+            ja: '名誉罰',
           },
           '2': kSeverity,
           '3': kSeverity,
@@ -1573,6 +1648,7 @@
         data.firstAlphaOrdainedText = {
           en: 'Motion first',
           de: 'Bewegungsbefehl zuerst',
+          ja: '最初は動く',
         };
       },
       infoText: (data) => data.firstAlphaOrdainedText,
@@ -1592,6 +1668,7 @@
         data.firstAlphaOrdainedText = {
           en: 'Stillness first',
           de: 'Stillstandsbefehl zuerst',
+          ja: '最初は止まる',
         };
       },
       infoText: (data) => data.firstAlphaOrdainedText,
@@ -1611,6 +1688,7 @@
         data.secondAlphaOrdainedText = {
           en: 'Motion second',
           de: 'Bewegungsbefehl als Zweites',
+          ja: '最後は動く',
         };
       },
       infoText: function(data) {
@@ -1639,6 +1717,7 @@
         data.secondAlphaOrdainedText = {
           en: 'Stillness second',
           de: 'Stillstandsbefehl als Zweites',
+          ja: '最後は止まる',
         };
       },
       infoText: function(data) {
@@ -1699,10 +1778,12 @@
             {
               en: 'Defamation: front left',
               de: 'Ehrenstrafe: vorne links',
+              ja: '名誉: 左前',
             },
             {
               en: 'Defamation: front right',
               de: 'Ehrenstrafe: vorne rechts',
+              ja: '名誉: 右前',
             },
           ][idx - 1];
         }
@@ -1711,10 +1792,12 @@
           {
             en: 'Party: back right',
             de: 'Gruppe: hinten rechts',
+            ja: '右後ろ',
           },
           {
             en: 'Party: back left',
             de: 'Gruppe: hinten links',
+            ja: '左後ろ',
           },
         ][idx - 1];
       },
@@ -1732,11 +1815,13 @@
           return {
             en: 'Move First',
             de: 'Zuerst bewegen',
+            ja: '最初は動く',
           };
         }
         return {
           en: 'Stillness First',
           de: 'Zuerst Stillstehen',
+          ja: '最初は止まる',
         };
       },
     },
@@ -1753,11 +1838,13 @@
           return {
             en: 'Keep Moving',
             de: 'weiter bewegen',
+            ja: '最後は動く',
           };
         }
         return {
           en: 'Stop Everything',
           de: 'Alles stoppen',
+          ja: '最後は止まる',
         };
       },
     },
@@ -1782,39 +1869,48 @@
           '-1': {
             en: 'No Clone: maybe purple E->S ???',
             de: 'Keine Klone: vielleicht Lila O->S ???',
+            ja: 'クローン無し: 多分東から南???',
           },
           '0': {
             en: 'Purple Bait: bait E',
             de: 'Lila Köder: locke O',
+            ja: '逃亡監察: 東へ',
           },
           '1': {
             en: 'Orange Bait: bait N',
             de: 'Orange Köder: locke N',
+            ja: '接触保護: 北へ',
           },
           '2': {
             en: 'Purple, no tether: E->W',
             de: 'Lila, keine Verbindung: O->W',
+            ja: '接触禁止, 線無し: 東から西へ',
           },
           // This person also has the shared sentence.
           '3': {
             en: 'Orange, no tether: E->N',
             de: 'Orange, keine Verbindung: O->N',
+            ja: '接触禁止, 線無し: 東から北へ',
           },
           '4': {
             en: 'Purple, close tether: E->N',
             de: 'Lila, nahe Verbindungr: O->N',
+            ja: '逃亡禁止, 接近強制: 東から北へ',
           },
           '5': {
             en: 'Orange, close tether: E->N',
             de: 'Orange, nahe Verbindung: O->N',
+            ja: '接触禁止, 接近強制: 東から北へ',
           },
           '6': {
             en: 'Purple, far tether: E->S',
             de: 'Lila, entfernte Verbindung: O->S',
+            ja: '逃亡禁止, 接近禁止: 東から南へ',
           },
           '7': {
             en: 'Orange, far tether: E->N',
             de: 'Orange, entfernte Verbindung: O->N',
+            ja: '接触禁止, 接近禁止: 東から北へ',
           },
         }[sortedNames.indexOf(data.me)];
       },
@@ -1869,18 +1965,22 @@
           0: {
             en: 'Sacrament North',
             de: 'Sacrement Norden',
+            ja: '拝火は北',
           },
           1: {
             en: 'Sacrament East',
             de: 'Sacrement Osten',
+            ja: '拝火は東',
           },
           2: {
             en: 'Sacrament South',
             de: 'Sacrement Süden',
+            ja: '拝火は南',
           },
           3: {
             en: 'Sacrament West',
             de: 'Sacrement Westen',
+            ja: '拝火は西',
           },
         }[idx];
       },
@@ -1902,6 +2002,7 @@
       infoText: {
         en: 'Optical Spread',
         de: 'Visier verteilen',
+        ja: '散開',
       },
       run: function(data) {
         data.betaIsOpticalStack = false;
@@ -1916,6 +2017,7 @@
       infoText: {
         en: 'Optical Stack',
         de: 'Visier sammeln',
+        ja: 'シェア',
       },
       run: function(data) {
         data.betaIsOpticalStack = true;
@@ -1933,12 +2035,14 @@
           return {
             en: 'Optical Spread',
             de: 'Visier verteilen',
+            ja: '散開',
           };
         }
         if (data.betaBait.includes(data.me)) {
           return {
             en: 'Optical Stack on YOU',
             de: 'Visier sammeln auf DIR',
+            ja: '自分にシェア',
           };
         }
       },
@@ -2014,6 +2118,7 @@
       alertText: {
         en: 'Stack Middle for Trine',
         de: 'Mittig sammeln für Trine',
+        ja: '大審判来るよ',
       },
     },
     {
@@ -2100,6 +2205,10 @@
               first: 'Warte in der Mitte, ausweichen nach Norden',
               second: 'Norden',
             },
+            ja: {
+              first: '中央から北へ',
+              second: '北へ',
+            },
           },
           'rg': {
             en: {
@@ -2109,6 +2218,10 @@
             de: {
               first: 'Geh nach Norden, ausweichen nach Süden',
               second: 'Süden',
+            },
+            ja: {
+              first: '北から中央へ',
+              second: '中央へ',
             },
           },
           'ry': {
@@ -2120,6 +2233,10 @@
               first: 'Geh nach Norden, ausweichen nach Westen',
               second: 'Westen',
             },
+            ja: {
+              first: '北から西へ',
+              second: '西へ',
+            },
           },
           'yr': {
             en: {
@@ -2129,6 +2246,10 @@
             de: {
               first: 'Geh nach Süden, ausweichen nach Osten',
               second: 'Osten',
+            },
+            ja: {
+              first: '南から東へ',
+              second: '東へ',
             },
           },
           'gy': {
@@ -2140,6 +2261,10 @@
               first: 'Warte in der Mitte, ausweichen nach Süden',
               second: 'Süden',
             },
+            ja: {
+              first: '中央から南へ',
+              second: '南へ',
+            },
           },
           'yg': {
             en: {
@@ -2149,6 +2274,10 @@
             de: {
               first: 'Geh nach Süden, ausweichen nach Norden',
               second: 'Norden',
+            },
+            ja: {
+              first: '南から北へ',
+              second: '北へ',
             },
           },
         }[threeOne][data.lang];
@@ -2193,6 +2322,7 @@
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
           cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          ja: data.ShortName(matches.target) + ' にシェア',
         };
       },
       run: function(data) {
