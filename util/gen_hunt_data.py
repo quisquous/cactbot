@@ -4,11 +4,19 @@ import os
 import io
 import coinach
 
+# Path to FFXIV installation (None == Default location)
+_FFXIV_GAME_PATH = None
+# Path to SaintCoinach.cmd (None == Default location)
+_SAINT_CONAINCH_CMD_PATH = None
+# Path to CACTBOT (None == Default location)
+_CACTBOT_PATH = None
+
 _OUTPUT_FILE = 'hunt.js'
 
 _BASE_GITHUB = 'https://raw.githubusercontent.com/'
 _CN_GITHUB = 'thewakingsands/ffxiv-datamining-cn/master/'
 _KO_GITHUB = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/'
+
 
 def update_german(list, search, replace):
     output = []
@@ -96,7 +104,7 @@ def update_raw_csv(monsters, url, locale):
 
 
 def get_from_coinach():
-    reader = coinach.CoinachReader()
+    reader = coinach.CoinachReader(coinach_path=_SAINT_CONAINCH_CMD_PATH, ffxiv_path=_FFXIV_GAME_PATH)
     monsters = {}
     update_coinach(monsters, reader)
     update_raw_csv(monsters, _BASE_GITHUB + _CN_GITHUB, 'cn')
@@ -106,7 +114,7 @@ def get_from_coinach():
     for (_, info) in monsters.items():
         all_monsters[info['name']['en']] = info
 
-    writer = coinach.CoinachWriter()
+    writer = coinach.CoinachWriter(cactbot_path=_CACTBOT_PATH)
     writer.write(
         os.path.join('resources', _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
