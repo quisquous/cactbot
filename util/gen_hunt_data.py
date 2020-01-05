@@ -10,12 +10,15 @@ _BASE_GITHUB = 'https://raw.githubusercontent.com/'
 _CN_GITHUB = 'thewakingsands/ffxiv-datamining-cn/master/'
 _KO_GITHUB = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/'
 
-def update_german(string):
-    string = string.replace('[p]', '')
-    string = string.replace('[t]', '(?:der|die|das)')
-    string = string.replace('[a]', '(?:e|er|es|en)')
-    string = string.replace('[A]', '(?:e|er|es|en)')
-    return string
+def update_german(list, search, replace):
+    output = []
+    for name in list:
+        if not search in name:
+            output.append(name)
+            continue
+        for repl in replace:
+            output.append(name.replace(search, repl))
+    return output
 
 
 def parse_data(monsters, csvfile, lang='en', name_map=None):
@@ -38,7 +41,12 @@ def parse_data(monsters, csvfile, lang='en', name_map=None):
             continue
 
         if lang == 'de':
-            name = update_german(name)
+            name = [name.replace('[p]', '')]
+            name = update_german(name, '[t]', ['der', 'die', 'das'])
+            name = update_german(name, '[a]', ['e', 'er', 'es'])
+            name = update_german(name, '[A]', ['e', 'er', 'es'])
+            if len(name) == 1:
+                name = name[0]
 
         # SaintCoinach prefaces ids with a comment
         # Other dumps just have the int.

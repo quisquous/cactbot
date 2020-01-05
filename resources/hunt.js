@@ -271,7 +271,11 @@ let gMonster = {
   'Dalvag\'s Final Flame': {
     'name': {
       'cn': '\u83f2\u5170\u5fb7\u7684\u9057\u706b',
-      'de': 'Letzt(?:e|er|es|en) Flamme Dalvags',
+      'de': [
+        'Letzte Flamme Dalvags',
+        'Letzter Flamme Dalvags',
+        'Letztes Flamme Dalvags',
+      ],
       'en': 'Dalvag\'s Final Flame',
       'fr': 'derni\u00e8re flamme de Dalvag',
       'ja': '\u30d5\u30a1\u30a4\u30ca\u30eb\u30d5\u30ec\u30a4\u30e0',
@@ -711,7 +715,11 @@ let gMonster = {
   'Li\'l Murderer': {
     'name': {
       'cn': '\u5c0f\u5c0f\u6740\u624b',
-      'de': 'Klein(?:e|er|es|en) M\u00f6rder',
+      'de': [
+        'Kleine M\u00f6rder',
+        'Kleiner M\u00f6rder',
+        'Kleines M\u00f6rder',
+      ],
       'en': 'Li\'l Murderer',
       'fr': 'Tra\u00eetre',
       'ja': '\u30ea\u30eb\u30de\u30fc\u30c0\u30fc',
@@ -964,7 +972,11 @@ let gMonster = {
   'O Poorest Pauldia': {
     'name': {
       'cn': '\u4fdd\u5c14\u8fea\u96c5',
-      'de': 'gepeinigt(?:e|er|es|en) Pauldia',
+      'de': [
+        'gepeinigte Pauldia',
+        'gepeinigter Pauldia',
+        'gepeinigtes Pauldia',
+      ],
       'en': 'O Poorest Pauldia',
       'fr': 'Pauldia',
       'ja': '\u30dd\u30fc\u30eb\u30c7\u30a3\u30a2',
@@ -1140,7 +1152,17 @@ let gMonster = {
   'Sanu Vali of Dancing Wings': {
     'name': {
       'cn': '\u98de\u821e\u7ffc \u8428\u52aa\u74e6\u529b',
-      'de': 'Sanu Vali (?:der|die|das) Tanzend(?:e|er|es|en) Schwinge',
+      'de': [
+        'Sanu Vali der Tanzende Schwinge',
+        'Sanu Vali der Tanzender Schwinge',
+        'Sanu Vali der Tanzendes Schwinge',
+        'Sanu Vali die Tanzende Schwinge',
+        'Sanu Vali die Tanzender Schwinge',
+        'Sanu Vali die Tanzendes Schwinge',
+        'Sanu Vali das Tanzende Schwinge',
+        'Sanu Vali das Tanzender Schwinge',
+        'Sanu Vali das Tanzendes Schwinge',
+      ],
       'en': 'Sanu Vali of Dancing Wings',
       'fr': 'Sanu Vali',
       'ja': '\u821e\u624b\u306e\u30b5\u30cc\u30d0\u30ea',
@@ -1239,7 +1261,11 @@ let gMonster = {
   'Stinging Sophie': {
     'name': {
       'cn': '\u51fb\u523a\u9b54\u8702\u7d22\u83f2',
-      'de': 'Stinkig(?:e|er|es|en) Sophie',
+      'de': [
+        'Stinkige Sophie',
+        'Stinkiger Sophie',
+        'Stinkiges Sophie',
+      ],
       'en': 'Stinging Sophie',
       'fr': 'Sophie la dardante',
       'ja': '\u30b9\u30c6\u30a3\u30f3\u30ae\u30f3\u30b0\u30fb\u30bd\u30d5\u30a3\u30fc',
@@ -1402,7 +1428,11 @@ let gMonster = {
   'White Joker': {
     'name': {
       'cn': '\u767d\u9b3c\u9f20\u738b',
-      'de': 'Wei\u00df(?:e|er|es|en) Joker',
+      'de': [
+        'Wei\u00dfe Joker',
+        'Wei\u00dfer Joker',
+        'Wei\u00dfes Joker',
+      ],
       'en': 'White Joker',
       'fr': 'joker blanc',
       'ja': '\u30db\u30ef\u30a4\u30c8\u30b8\u30e7\u30fc\u30ab\u30fc',
@@ -1468,7 +1498,11 @@ let gMonster = {
   'forgiven gossip': {
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u6d41\u8a00',
-      'de': 'gel\u00e4utert(?:e|er|es|en) L\u00e4sterei',
+      'de': [
+        'gel\u00e4uterte L\u00e4sterei',
+        'gel\u00e4uterter L\u00e4sterei',
+        'gel\u00e4utertes L\u00e4sterei',
+      ],
       'en': 'forgiven gossip',
       'fr': 'm\u00e9disance pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30b4\u30b7\u30c3\u30d7',
@@ -1479,7 +1513,11 @@ let gMonster = {
   'forgiven pedantry': {
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u70ab\u5b66',
-      'de': 'gel\u00e4utert(?:e|er|es|en) Pedanterie',
+      'de': [
+        'gel\u00e4uterte Pedanterie',
+        'gel\u00e4uterter Pedanterie',
+        'gel\u00e4utertes Pedanterie',
+      ],
       'en': 'forgiven pedantry',
       'fr': 'p\u00e9danterie pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30da\u30c0\u30f3\u30c8\u30ea\u30fc',
@@ -1489,7 +1527,11 @@ let gMonster = {
   'forgiven rebellion': {
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u53db\u4e71',
-      'de': 'gel\u00e4utert(?:e|er|es|en) Rebellion',
+      'de': [
+        'gel\u00e4uterte Rebellion',
+        'gel\u00e4uterter Rebellion',
+        'gel\u00e4utertes Rebellion',
+      ],
       'en': 'forgiven rebellion',
       'fr': 'r\u00e9bellion pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30ea\u30d9\u30ea\u30aa\u30f3',
@@ -1544,7 +1586,11 @@ let gMonster = {
   'the Pale Rider': {
     'name': {
       'cn': '\u82cd\u767d\u9a91\u58eb',
-      'de': 'Bleich(?:e|er|es|en) Reiter',
+      'de': [
+        'Bleiche Reiter',
+        'Bleicher Reiter',
+        'Bleiches Reiter',
+      ],
       'en': 'the Pale Rider',
       'fr': 'Cavalier p\u00e2le',
       'ja': '\u30da\u30a4\u30eb\u30e9\u30a4\u30c0\u30fc',
