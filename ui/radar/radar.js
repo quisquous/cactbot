@@ -94,8 +94,12 @@ class Radar {
     }
 
     let mobKey = matches.groups.name.toLowerCase();
-    if (mobKey in this.targetMonsters)
+    if (mobKey in this.targetMonsters) {
+      // Update monster position
+      this.targetMonsters[mobKey].pos = new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y));
+      this.targetMonsters[mobKey].posZ = matches.groups.z;
       return;
+    }
 
     // add dom
     let arrowId = 'arrow-' + matches.groups.id;
