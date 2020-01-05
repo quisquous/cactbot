@@ -1,10 +1,14 @@
 import csv
+import urllib.request
 import os
-from collections import defaultdict
+import io
 import coinach
 
 _OUTPUT_FILE = 'hunt.js'
 
+_BASE_GITHUB = 'https://raw.githubusercontent.com/'
+_CN_GITHUB = 'thewakingsands/ffxiv-datamining-cn/master/'
+_KO_GITHUB = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/'
 
 def update_german(string):
     string = string.replace('[p]', '')
@@ -14,60 +18,87 @@ def update_german(string):
     return string
 
 
-def parse_data(csvfile, lang='en'):
-    monsters = {}
+def parse_data(monsters, csvfile, lang='en', name_map=None):
     reader = csv.reader(csvfile)
     # skip the first three header lines
     next(reader)
     next(reader)
     next(reader)
     for row in reader:
-        m_id, m_base, m_rank, m_name = row[:-1]
-        if not m_name:
+        nm_id, base, rank_id, name_id = row[:-1]
+        if not name_id:
             continue
-        if m_base == 'BNpcBase#10422':
+
+        if name_map is None:
+            name = name_id
+        else:
+            name = name_map[name_id]
+
+        if not name:
+            continue
+
+        if lang == 'de':
+            name = update_german(name)
+
+        # SaintCoinach prefaces ids with a comment
+        # Other dumps just have the int.
+        base = base.replace('BNpcBase#', '')
+
+        if base == '10422':
             rank = 'SS+'
-        elif m_base == 'BNpcBase#10755':
+        elif base == '10755':
             rank = 'SS-'
-        elif m_rank == '3':
+        elif rank_id == '3':
             rank = 'S'
-        elif m_rank == '2':
+        elif rank_id == '2':
             rank = 'A'
         else:
             rank = 'B'
 
-        name = m_name
-        if lang == 'de':
-            name = update_german(name)
+        if nm_id in monsters:
+            assert monsters[nm_id]['rank'] == rank
+        else:
+            monsters[nm_id] = {'rank': rank, 'name': {}}
 
-        monsters[m_id] = {
-            'name': {
-                lang: name,
-            },
-            'rank': rank,
-        }
-    return monsters
+        monsters[nm_id]['name'][lang] = name
 
 
-def update(reader):
+def update_coinach(monsters, reader):
     languages = ['en', 'de', 'fr', 'ja']
-    monsters = defaultdict(lambda: {'name':{}, 'rank':''})
     for locale in languages:
         exd = reader.exd('NotoriousMonster', lang=locale)
-        data = parse_data(exd, lang=locale)
-        for key in data:
-            monsters[key]['name'].update(data[key]['name'])
-            monsters[key]['rank'] = data[key]['rank']
+        parse_data(monsters, exd, lang=locale, name_map=None)
     return monsters
+
+
+def process_npc_names(csvfile):
+    data = {}
+    reader = csv.reader(csvfile)
+    for row in reader:
+        data[row[0]] = row[1]
+    return data
+
+
+def update_raw_csv(monsters, url, locale):
+    with urllib.request.urlopen(url + 'NotoriousMonster.csv') as nm_response:
+        with urllib.request.urlopen(url + 'BNpcName.csv') as names_response:
+            notorious = io.StringIO(nm_response.read().decode('utf-8'))
+            names = io.StringIO(names_response.read().decode('utf-8'))
+            parse_data(monsters, notorious, locale, process_npc_names(names))
 
 
 def get_from_coinach():
     reader = coinach.CoinachReader()
-    writer = coinach.CoinachWriter()
-    monsters = update(reader)
+    monsters = {}
+    update_coinach(monsters, reader)
+    update_raw_csv(monsters, _BASE_GITHUB + _CN_GITHUB, 'cn')
+    update_raw_csv(monsters, _BASE_GITHUB + _KO_GITHUB, 'ko')
+
     all_monsters = {}
     for (_, info) in monsters.items():
         all_monsters[info['name']['en']] = info
+
+    writer = coinach.CoinachWriter()
     writer.write(
         os.path.join('resources', _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
