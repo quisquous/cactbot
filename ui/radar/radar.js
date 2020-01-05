@@ -65,7 +65,14 @@ class Radar {
       let monster = this.monsters[i];
       let lang = this.lang || 'en';
       monster.name = monster.name[lang] || monster.name['en'];
-      this.nameToMonster[monster.name.toLowerCase()] = monster;
+
+      // Names are either strings or arrays of strings.
+      if (typeof monster.name === 'string') {
+        this.nameToMonster[monster.name.toLowerCase()] = monster;
+      } else {
+        for (let i = 0; i < monster.name.length; ++i)
+          this.nameToMonster[monster.name[i].toLowerCase()] = monster;
+      }
     }
   }
 
