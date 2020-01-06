@@ -89,7 +89,7 @@ it will bring you to the problems themselves.
 cactbot files should all be in UTF-8.
 If you get a BOM error,
 this is likely because your editor has saved a file with a different unicode encoding.
-For an example of how to remove this, see: https://notepadunix2dos.info/removebom.html
+For an example of how to remove this, see: <https://notepadunix2dos.info/removebom.html>
 
 ## Desired Features
 

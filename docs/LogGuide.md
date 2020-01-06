@@ -77,6 +77,8 @@ With updates for:
 ## Data Flow
 
 ![Alt text](https://g.gravizo.com/source/data_flow?https%3A%2F%2Fraw.githubusercontent.com%2Fquisquous%2Fcactbot%2Fmaster%2Fdocs%2FLogGuide.md)
+
+<!-- markdownlint-disable MD033 -->
 <details>
 <summary></summary>
 data_flow
@@ -98,6 +100,7 @@ data_flow
   }
 data_flow
 </details>
+<!-- markdownlint-enable MD033 -->
 
 ### Viewing logs after a fight
 
@@ -476,7 +479,7 @@ Lines are printed, but with blank data.  :sob:
 
 ### 0C: PlayerStats
 
-This message is sent whenever your player's stats change and upon entering a new zone/instance. 
+This message is sent whenever your player's stats change and upon entering a new zone/instance.
 
 Structure:
 
@@ -869,7 +872,7 @@ Examples:
 1F:10686258:Potato Chippy:C863AC19:1000332:D0DF8C00:7FC0
 ```
 
-Each of the values after the name represents the memory for the job gauge, 
+Each of the values after the name represents the memory for the job gauge,
 interpreted as a 4 byte integer.
 To get back to the original memory, zero pad out to 4 bytes,
 and then reverse the bytes (because little endian).
@@ -888,13 +891,15 @@ The remaining bytes are a copy of the job gauge memory.
 
 This job is `0x19` (or black mage).
 Interpreting these [values](https://github.com/goaaats/Dalamud/blob/4ad5bee0c62128315b0a247466d28f42264c3069/Dalamud/Game/ClientState/Structs/JobGauge/BLMGauge.cs) means:
-  * `short TimeUntilNextPolyglot` = 0x0000 = 0
-  * `short ElementTimeRemaining` = 0x32C8 = 13000ms
-  * `byte ElementStance` = 0xFD = -3 (three stacks of ice)
-  * `byte NumUmbralHearts` = 0x00 = 0
-  * `byte EnoState` = 0x00 = 0 (no enochian)
+
+* `short TimeUntilNextPolyglot` = 0x0000 = 0
+* `short ElementTimeRemaining` = 0x32C8 = 13000ms
+* `byte ElementStance` = 0xFD = -3 (three stacks of ice)
+* `byte NumUmbralHearts` = 0x00 = 0
+* `byte EnoState` = 0x00 = 0 (no enochian)
 
 There are a number of references for job gauge memory:
+
   1) [cactbot FFXIVProcess code](https://github.com/quisquous/cactbot/blob/a4d27eca3628d397cb9f5638fad97191566ed5a1/CactbotOverlay/FFXIVProcessIntl.cs#L267)
   1) [Dalamud code](https://github.com/goaaats/Dalamud/blob/4ad5bee0c62128315b0a247466d28f42264c3069/Dalamud/Game/ClientState/Structs/JobGauge/NINGauge.cs#L15)
 
