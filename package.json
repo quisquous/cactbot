@@ -129,5 +129,8 @@
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
+  },
+  "dependencies": {
+    "markdownlint": "^0.18.0"
   }
 }
