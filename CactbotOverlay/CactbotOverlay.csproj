@@ -95,7 +95,6 @@
     <Compile Include="FFXIVProcessIntl.cs" />
     <Compile Include="JSEvents.cs" />
     <Compile Include="NativeMethods.cs" />
-    <Compile Include="OverlayAddonMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WipeDetector.cs" />
   </ItemGroup>
