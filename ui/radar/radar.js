@@ -119,54 +119,64 @@ class Radar {
 
     let mobKey = matches.groups.name.toLowerCase();
     if (mobKey in this.targetMonsters) {
-      // Update monster position
-      this.targetMonsters[mobKey].pos =
+      // Get positions
+      let playerPos = new Point2D(this.playerPos.x, this.playerPos.y);
+      let curPos = this.targetMonsters[mobKey].pos;
+      let newPos =
         new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y));
-      this.targetMonsters[mobKey].posZ = matches.groups.z;
-      return;
-    }
 
-    // add dom
-    let arrowId = 'arrow-' + matches.groups.id;
-    let tr = document.createElement('tr');
-    let th = document.createElement('th');
-    let img = document.createElement('img');
-    img.setAttribute('id', arrowId);
-    img.setAttribute('src', 'arrow.png');
-    img.setAttribute('class', 'radar-image-40');
-    th.appendChild(img);
-    th.setAttribute('style', 'max-width: 100px');
-    tr.appendChild(th);
-    th = document.createElement('th');
-    th.setAttribute('align', 'left');
-    th.appendChild(document.createElement('div'));
-    tr.appendChild(th);
-    this.table.insertBefore(tr, this.table.childNodes[0]);
+      // Caalculate distances
+      let curDistance = playerPos.distance(curPos);
+      let newDistance = playerPos.distance(newPos);
 
-    let m = {
-      'id': matches.groups.id,
-      'name': matches.groups.name,
-      'rank': monster.rank || '',
-      'hp': parseFloat(matches.groups.hp),
-      'currentHp': parseFloat(matches.groups.hp),
-      'battleTime': 0,
-      'pos': new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y)),
-      'posZ': matches.groups.z,
-      'addTime': Date.now(),
-      'dom': tr,
-      'puller': null,
-    };
-    this.targetMonsters[mobKey] = m;
-    this.UpdateMonsterDom(m);
-    if (options.TTS) {
-      callOverlayHandler({
-        call: 'cactbotSay',
-        text: m.rank + ' ' + m.name,
-      });
-    } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
-      let audio = new Audio(options.PopSound);
-      audio.volume = options.PopVolume;
-      audio.play();
+      // Update position only if its closer than the current one
+      if (newDistance < curDistance) {
+        this.targetMonsters[mobKey].pos = newPos;
+        this.targetMonsters[mobKey].posZ = matches.groups.z;
+
+        // Update DOM
+        this.UpdateMonsterDom(this.targetMonsters[mobKey]);
+
+        // Play sound only if its far enough
+        if (curPos.distance(newPos) >= 100) {
+          PlaySound(this.targetMonsters[mobKey], options);
+        }
+      }
+    } else {
+      // Add DOM
+      let arrowId = 'arrow-' + matches.groups.id;
+      let tr = document.createElement('tr');
+      let th = document.createElement('th');
+      let img = document.createElement('img');
+      img.setAttribute('id', arrowId);
+      img.setAttribute('src', 'arrow.png');
+      img.setAttribute('class', 'radar-image-40');
+      th.appendChild(img);
+      th.setAttribute('style', 'max-width: 100px');
+      tr.appendChild(th);
+      th = document.createElement('th');
+      th.setAttribute('align', 'left');
+      th.appendChild(document.createElement('div'));
+      tr.appendChild(th);
+      this.table.insertBefore(tr, this.table.childNodes[0]);
+
+      let m = {
+        'id': matches.groups.id,
+        'name': matches.groups.name,
+        'rank': monster.rank || '',
+        'hp': parseFloat(matches.groups.hp),
+        'currentHp': parseFloat(matches.groups.hp),
+        'battleTime': 0,
+        'pos': new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y)),
+        'posZ': matches.groups.z,
+        'addTime': Date.now(),
+        'dom': tr,
+        'puller': null,
+      };
+      this.targetMonsters[mobKey] = m;
+      this.UpdateMonsterDom(m);
+
+      PlaySound(this.targetMonsters[mobKey], options);
     }
   }
 
