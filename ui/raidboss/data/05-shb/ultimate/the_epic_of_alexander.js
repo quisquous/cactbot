@@ -304,7 +304,7 @@
               de: 'Gebe ' + data.nisiNames[myNisi] + ' zu ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder '),
               ja: data.nisiNames[myNisi] + ' を ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder ') + ' に渡す',
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', か ') + ' に渡す',
             };
           }
 
