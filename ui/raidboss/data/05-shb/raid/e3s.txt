@@ -20,7 +20,7 @@ hideall "--sync--"
 69.7 "Freak Wave" sync /:Leviathan:3FE6:/
 73.7 "Temporary Current" sync /:Leviathan:(3FEB|3FEA):/
 87.9 "Maelstrom" sync /:Leviathan:3FFA:/
-90.0  "--untargetable--"
+90.0 "--untargetable--"
 99.3 "Spinning Dive 1" #sync /:Leviathan:3FFD:/
 101.3 "Spinning Dive 2" #sync /:Leviathan:3FFD:/
 106.0 "--targetable--"
