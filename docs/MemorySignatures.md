@@ -12,21 +12,20 @@ This guide shows how to use Cheat Engine to find such memory signatures.
 It's probably helpful if you know some basic assembly language,
 some programming, and have extreme levels of patience.
 
-<!-- manually generated via https://imthenachoman.github.io/nGitHubTOC/ -->
-## TOC
+## Table of Contents
 
-- [Installation](#installation)
-- [Finding New Memory Signatures](#finding-new-memory-signatures)
-  - [Connect Cheat Engine to the Game](#connect-cheat-engine-to-the-game)
-  - [Initial Memory Search](#initial-memory-search)
-  - [Repeated Scans](#repeated-scans)
-  - [Browsing Memory](#browsing-memory)
-  - [Approach 1: Finding Writers](#approach-1-finding-writers)
-  - [Approach 2: Tracing](#approach-2-tracing)
-  - [Approach 3: Finding Readers](#approach-3-finding-readers)
-  - [Assembly Code and Pointers](#assembly-code-and-pointers)
-  - [Extracting a Signature From Assembly](#extracting-a-signature-from-assembly)
-- [Scan For Existing Memory Signatures](#scan-for-existing-memory-signatures)
+* [Installation](#installation)
+* [Finding New Memory Signatures](#finding-new-memory-signatures)
+  * [Connect Cheat Engine to the Game](#connect-cheat-engine-to-the-game)
+  * [Initial Memory Search](#initial-memory-search)
+  * [Repeated Scans](#repeated-scans)
+  * [Browsing Memory](#browsing-memory)
+  * [Approach 1: Finding Writers](#approach-1-finding-writers)
+  * [Approach 2: Tracing](#approach-2-tracing)
+  * [Approach 3: Finding Readers](#approach-3-finding-readers)
+  * [Assembly Code and Pointers](#assembly-code-and-pointers)
+  * [Extracting a Signature From Assembly](#extracting-a-signature-from-assembly)
+* [Scan For Existing Memory Signatures](#scan-for-existing-memory-signatures)
 
 ## Installation
 

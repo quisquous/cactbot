@@ -9,12 +9,14 @@
     "lint": "node_modules/.bin/eslint resources ui user test",
     "lintfix": "node_modules/.bin/eslint --fix resources ui user test",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css",
+    "markdownlint": "node_modules/.bin/markdownlint **/*.md --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
     "test": "python test/run_tests.py"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
+    "markdownlint-cli": "^0.20.0",
     "stylelint": "^12.0.1",
     "stylelint-config-standard": "^19.0.0"
   },
@@ -127,5 +129,8 @@
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
+  },
+  "dependencies": {
+    "markdownlint": "^0.18.0"
   }
 }

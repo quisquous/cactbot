@@ -12,6 +12,7 @@ matrix:
     script:
       - npm run lint
       - npm run stylelint
+      - npm run markdownlint
       - npm test
 
   - language: python
