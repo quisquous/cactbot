@@ -40,8 +40,19 @@ class Point2D {
     this.y = y;
   }
 
+  // Calculates vector length (magnitude)
   length() {
     return Math.sqrt((this.x) * (this.x) + (this.y) * (this.y));
+  }
+
+  // Calculate delta vector
+  delta(target) {
+    return new Point2D(target.x - this.x, target.y - this.y);
+  }
+
+  // Calculate distance between 2 points
+  distance(target) {
+    return this.delta(target).length();
   }
 }
 
