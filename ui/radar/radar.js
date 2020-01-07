@@ -62,6 +62,19 @@ function posToMap(h) {
   return h * pitch + offset;
 }
 
+function PlaySound(monster, options) {
+  if (options.TTS) {
+    callOverlayHandler({
+      call: 'cactbotSay',
+      text: m.rank + ' ' + m.name,
+    });
+  } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
+    let audio = new Audio(options.PopSound);
+    audio.volume = options.PopVolume;
+    audio.play();
+  }
+}
+
 class Radar {
   constructor(element) {
     this.targetMonsters = {};
