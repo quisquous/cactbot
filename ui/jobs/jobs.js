@@ -1764,11 +1764,10 @@ class Bars {
         xenoTimer.innerText = Math.ceil(nextPoly / 1000.0);
         xp.classList.add('active');
 
-        if (fouls === 2 && nextPoly < 5000) {
+        if (fouls === 2 && nextPoly < 5000)
           xp.classList.add('pulse');
-        } else {
+        else
           xp.classList.remove('pulse');
-        }
       }
     });
   }
