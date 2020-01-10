@@ -168,12 +168,14 @@
     },
     {
       id: 'T9 Garotte Twist Lose',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Garrote Twist/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Leicht Fixierbar/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Sangle Accélérée/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 拘束加速/,
+      regex: Regexes.losesEffect({ effect: 'Garrote Twist' }),
+      regexDe: Regexes.losesEffect({ effect: 'Leicht Fixierbar' }),
+      regexFr: Regexes.losesEffect({ effect: 'Sangle Accélérée' }),
+      regexJa: Regexes.losesEffect({ effect: '拘束加速' }),
+      regexCn: Regexes.losesEffect({ effect: '拘束加速' }),
+      regexKo: Regexes.losesEffect({ effect: '구속 가속' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.garotte;
+        return data.me == matches.target && data.garotte;
       },
       run: function(data) {
         delete data.garotte;
