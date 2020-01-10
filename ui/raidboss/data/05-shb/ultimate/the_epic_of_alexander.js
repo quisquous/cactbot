@@ -451,6 +451,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Erstickung', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Suffocation', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '窒息', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '窒息', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '질식', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -687,6 +689,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -702,6 +706,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -725,6 +731,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -740,6 +748,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
+      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -809,6 +819,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
       regexFr: Regexes.gainsEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
       regexJa: Regexes.gainsEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexKo: Regexes.gainsEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
         data.nisiMap = data.nisiMap || {};
@@ -821,6 +833,8 @@
       regexDe: Regexes.losesEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
       regexFr: Regexes.losesEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
       regexJa: Regexes.losesEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.losesEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexKo: Regexes.losesEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         data.nisiMap = data.nisiMap || {};
         delete data.nisiMap[matches.target];
@@ -839,6 +853,12 @@
       }),
       regexJa: Regexes.gainsEffect({
         effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])',
+      }),
+      regexCn: Regexes.gainsEffect({
+        effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])',
+      }),
+      regexKo: Regexes.gainsEffect({
+        effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])',
       }),
       run: function(data, matches) {
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
@@ -859,6 +879,12 @@
       }),
       regexJa: Regexes.gainsEffect({
         effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])',
+      }),
+      regexCn: Regexes.gainsEffect({
+        effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])',
+      }),
+      regexKo: Regexes.gainsEffect({
+        effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])',
       }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -970,6 +996,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: éloignement', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       durationSeconds: 10,
@@ -993,6 +1021,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: éloignement' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1011,6 +1041,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Freiheitsstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Rapprochement' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近強制命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：强制接近命令' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 강제접근 명령' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1029,6 +1061,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       durationSeconds: 10,
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1044,6 +1078,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       delaySeconds: 3,
       condition: (data) => data.phase == 'inception',
       infoText: function(data, matches) {
@@ -1058,6 +1094,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Erschwerte Strafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement: Peine Sévère' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：加重罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：加重罪' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 가중형' }),
       durationSeconds: 10,
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1149,6 +1187,8 @@
       regexDe: Regexes.gainsEffect({ effect: 'Erhöhte Physische Verwundbarkeit' }),
       regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité physique augmentée' }),
       regexJa: Regexes.gainsEffect({ effect: '被物理ダメージ増加' }),
+      regexCn: Regexes.gainsEffect({ effect: '物理受伤加重' }),
+      regexKo: Regexes.gainsEffect({ effect: '받는 물리 피해량 증가' }),
       condition: (data) => data.phase == 'inception',
       run: function(data, matches) {
         data.vuln[matches.target] = true;
