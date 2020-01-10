@@ -22,6 +22,11 @@
     {
       id: 'A6S Magic Vulnerability Loss',
       regex: Regexes.losesEffect({ effect: 'Magic Vulnerability Up' }),
+      regexDe: Regexes.losesEffect({ effect: 'Erhöhte Magie-Verwundbarkeit' }),
+      regexFr: Regexes.losesEffect({ effect: 'Vulnérabilité Magique Augmentée' }),
+      regexJa: Regexes.losesEffect({ effect: '被魔法ダメージ増加' }),
+      regexCn: Regexes.losesEffect({ effect: '魔法受伤加重' }),
+      regexKo: Regexes.losesEffect({ effect: '받는 마법 피해량 증가' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
