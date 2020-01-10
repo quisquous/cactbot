@@ -17,10 +17,12 @@
     },
     {
       id: 'T12 Bennu',
-      regex: / 03:\y{ObjectId}:Added new combatant Bennu\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Bennu\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Bénou\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ベンヌ\./,
+      regex: Regexes.addedCombatant({ name: 'Bennu', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Bennu', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Bénou', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ベンヌ', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '贝努鸟', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '벤누', capture: false }),
       delaySeconds: 55,
       durationSeconds: 4.5,
       infoText: function(data) {

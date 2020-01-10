@@ -36,6 +36,8 @@
       regexDe: Regexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Chevalier Mécanique', capture: false }),
       regexJa: Regexes.addedCombatant({ name: 'アラガンワーク・ナイト', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
       infoText: {
         en: 'Magic on Soldier, Physical on Knights',
