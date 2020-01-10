@@ -283,11 +283,12 @@
     },
     {
       id: 'Eureka Pazuzu Pop',
-      regex: / 03:\y{ObjectId}:Added new combatant Pazuzu\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Pazuzu\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Pazuzu\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant パズズ\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 帕祖祖/,
+      regex: Regexes.addedCombatant({ name: 'Pazuzu', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Pazuzu', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Pazuzu', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'パズズ', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '帕祖祖', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '파주주', capture: false }),
       run: function(data) {
         data.wraithCount = 0;
       },

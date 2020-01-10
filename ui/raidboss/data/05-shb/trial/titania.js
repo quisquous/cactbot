@@ -47,10 +47,12 @@
     },
     {
       id: 'Titania Mist Failure',
-      regex: / 03:\y{ObjectId}:Added new combatant Spirit Of Dew\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Wasserfee\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant esprit des rosées\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 水の精\./,
+      regex: Regexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Wasserfee', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Esprit Des Rosées', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '水の精', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '水精', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '물의 정령', capture: false }),
       infoText: {
         en: 'Kill Extra Add',
         de: 'Adds angreifen',
