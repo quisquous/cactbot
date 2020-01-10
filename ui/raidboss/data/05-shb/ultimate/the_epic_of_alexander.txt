@@ -224,6 +224,7 @@ hideall "--sync--"
 1109.9 "Ordained Capital Punishment 1" #sync /:Perfect Alexander:4893:/
 1111.0 "Ordained Capital Punishment 2" #sync /:Perfect Alexander:4893:/
 1112.1 "Ordained Capital Punishment 3" #sync /:Perfect Alexander:4893:/
+1116.0 "Ordained Punishment" sync /:Perfect Alexander:4891:/
 
 ### Phase 4 Part 3 - Almighty Judgments and Burn
 1126.2 "Almighty Judgment" sync /:Perfect Alexander:488E:/
