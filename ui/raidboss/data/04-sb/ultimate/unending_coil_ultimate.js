@@ -24,13 +24,14 @@
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Firescorched/,
-      regexCn: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 火角/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Feuerhorn/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Corne-de-feu/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of ファイアホーン/,
+      regex: Regexes.losesEffect({ effect: 'Firescorched' }),
+      regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
+      regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
+      regexJa: Regexes.losesEffect({ effect: 'ファイアホーン' }),
+      regexCn: Regexes.losesEffect({ effect: '火角' }),
+      regexKo: Regexes.losesEffect({ effect: '화염뿔' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.fireDebuff = false;
@@ -51,13 +52,14 @@
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Icebitten/,
-      regexCn: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 冰爪/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Eisklaue/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Griffe-de-glace/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of アイスクロウ/,
+      regex: Regexes.losesEffect({ effect: 'Icebitten' }),
+      regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
+      regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
+      regexJa: Regexes.losesEffect({ effect: 'アイスクロウ' }),
+      regexCn: Regexes.losesEffect({ effect: '冰爪' }),
+      regexKo: Regexes.losesEffect({ effect: '얼음발톱' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target
       },
       run: function(data) {
         data.iceDebuff = false;

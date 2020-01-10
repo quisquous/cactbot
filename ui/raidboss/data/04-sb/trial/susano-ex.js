@@ -55,10 +55,12 @@
       // We could track the number of people with churning here, but
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
-      regex: / 1E:\y{ObjectId}:\y{Name} loses the effect of Churning from Susano\./,
-      regexDe: / 1E:\y{ObjectId}:\y{Name} loses the effect of Schäumend from Susano\./,
-      regexFr: / 1E:\y{ObjectId}:\y{Name} loses the effect of Agitation from Susano\./,
-      regexJa: / 1E:\y{ObjectId}:\y{Name} loses the effect of 禍泡 from スサノオ\./,
+      regex: Regexes.losesEffect({ effect: 'Churning', capture: false }),
+      regexDe: Regexes.losesEffect({ effect: 'Schäumend', capture: false }),
+      regexFr: Regexes.losesEffect({ effect: 'Agitation', capture: false }),
+      regexJa: Regexes.losesEffect({ effect: '禍泡', capture: false }),
+      regexCn: Regexes.losesEffect({ effect: '祸泡', capture: false }),
+      regexKo: Regexes.losesEffect({ effect: '재앙거품', capture: false }),
       condition: function(data) {
         return data.churning;
       },

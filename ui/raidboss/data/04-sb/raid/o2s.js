@@ -44,12 +44,14 @@
     },
     {
       id: 'O2S Levitation',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Lévitation/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of レビテト/,
+      regex: Regexes.losesEffect({ effect: 'Levitation' }),
+      regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
+      regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
+      regexJa: Regexes.losesEffect({ effect: 'レビテト' }),
+      regexCn: Regexes.losesEffect({ effect: '浮空' }),
+      regexKo: Regexes.losesEffect({ effect: '레비테트' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.levitating = false;
@@ -269,12 +271,14 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 6 Fulms Under from/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Versinkend from/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Enfoncement from/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 沈下 from/,
+      regex: Regexes.losesEffect({ effect: '6 Fulms Under' }),
+      regexDe: Regexes.losesEffect({ effect: 'Versinkend' }),
+      regexFr: Regexes.losesEffect({ effect: 'Enfoncement' }),
+      regexJa: Regexes.losesEffect({ effect: '沈下' }),
+      regexCn: Regexes.losesEffect({ effect: '下陷' }),
+      regexKo: Regexes.losesEffect({ effect: '침하' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.under = false;
