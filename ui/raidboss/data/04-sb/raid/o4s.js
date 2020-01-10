@@ -787,7 +787,7 @@
       id: 'O4S2 Off Balance Omega',
       regex: Regexes.gainsEffect({ effect: 'Off-Balance' }),
       regexDe: Regexes.gainsEffect({ effect: 'Gleichgewichtsverlust' }),
-      regexFr: Regexes.gainsEffect({ effect: "Perte D\\'Équilibre" }),
+      regexFr: Regexes.gainsEffect({ effect: 'Perte D\'Équilibre' }),
       regexJa: Regexes.gainsEffect({ effect: 'ノックバック確定' }),
       regexCn: Regexes.gainsEffect({ effect: '弱不禁风' }),
       regexKo: Regexes.gainsEffect({ effect: '밀쳐내기 확정' }),

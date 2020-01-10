@@ -209,7 +209,7 @@
       id: 'Dun Scaith Debilitator Water',
       regex: Regexes.gainsEffect({ effect: 'Water Resistance Down Ii', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - \\(Stark\\)', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: "Résistance À L\\'Eau Réduite\\+", capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Résistance À L\'Eau Réduite\\+', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '水属性耐性低下［強］', capture: false }),
       regexCn: Regexes.gainsEffect({ effect: '水属性耐性大幅降低', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '물속성 저항 감소\\[강\\]', capture: false }),
