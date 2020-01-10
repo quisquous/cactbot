@@ -53,10 +53,12 @@
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: / 03:\y{ObjectId}:Added new combatant Chyme Of The Mountain/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Gebirgsbrei/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Chyme Des Montagnes/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant キームス・マウンテン/,
+      regex: Regexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '圣山之糜', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '산의 유미즙', capture: false }),
       alertText: {
         en: 'Kill Chyme Add',
         de: 'Brei Add töten',

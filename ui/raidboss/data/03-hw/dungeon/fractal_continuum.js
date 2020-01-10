@@ -120,10 +120,12 @@
     },
     {
       id: 'Fractal Alarums',
-      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Alarum/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Uhrwerk-Alarm/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Alarum Mécanique/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant アラガンワーク・アラーム/,
+      regex: Regexes.addedCombatant({ name: 'Clockwork Alarum', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Uhrwerk-Alarm', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Alarum Mécanique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'アラガンワーク・アラーム', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '发条报警虫', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '알라그 태엽경보장치', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Kill adds',
