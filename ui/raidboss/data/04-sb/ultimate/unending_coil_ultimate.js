@@ -59,7 +59,7 @@
       regexCn: Regexes.losesEffect({ effect: '冰爪' }),
       regexKo: Regexes.losesEffect({ effect: '얼음발톱' }),
       condition: function(data, matches) {
-        return data.me == matches.target
+        return data.me == matches.target;
       },
       run: function(data) {
         data.iceDebuff = false;
