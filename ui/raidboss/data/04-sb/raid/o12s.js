@@ -572,7 +572,7 @@
     },
     {
       id: 'O12S Archive All No Marker',
-      regex: Regexes.headMarker({ id: ['003E', '0060'] }),
+      regex: Regexes.headMarker({ id: ['003E', '0060'], capture: false }),
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;

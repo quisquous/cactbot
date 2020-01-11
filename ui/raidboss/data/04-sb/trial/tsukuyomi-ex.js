@@ -175,7 +175,7 @@
     },
     {
       id: 'Tsukuyomi Lunacy',
-      regex: Regexes.headMarker({ id: '003E' }),
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       alertText: {
         en: 'Stack',
         de: 'Stack',
