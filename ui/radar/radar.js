@@ -23,6 +23,12 @@ let Options = {
   CustomMonsters: {},
 };
 
+// Minimum distance a mob with the same name needs to be away from the old
+// location before a sound is played and it is treated as a new mob.
+// TODO: probably all mobs should be tracked with ids to avoid this.
+// TODO: this would also let us handle mobs with the same name better.
+let kMinDistanceBeforeSound = 100;
+
 let gRadar;
 
 let instanceChangedRegex = {
@@ -62,19 +68,6 @@ function posToMap(h) {
   return h * pitch + offset;
 }
 
-function PlaySound(monster, options) {
-  if (options.TTS) {
-    callOverlayHandler({
-      call: 'cactbotSay',
-      text: m.rank + ' ' + m.name,
-    });
-  } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
-    let audio = new Audio(options.PopSound);
-    audio.volume = options.PopVolume;
-    audio.play();
-  }
-}
-
 class Radar {
   constructor(element) {
     this.targetMonsters = {};
@@ -100,6 +93,19 @@ class Radar {
     }
   }
 
+  PlaySound(monster) {
+    if (this.options.TTS) {
+      callOverlayHandler({
+        call: 'cactbotSay',
+        text: m.rank + ' ' + m.name,
+      });
+    } else if (this.options.PopSoundAlert && this.options.PopSound && this.options.PopVolume) {
+      let audio = new Audio(this.options.PopSound);
+      audio.volume = this.options.PopVolume;
+      audio.play();
+    }
+  }
+
   AddMonster(log, monster, matches) {
     if (monster.regex && !log.match(monster.regex))
       return;
@@ -121,16 +127,16 @@ class Radar {
     if (mobKey in this.targetMonsters) {
       // Get positions
       let playerPos = new Point2D(this.playerPos.x, this.playerPos.y);
-      let curPos = this.targetMonsters[mobKey].pos;
+      let oldPos = this.targetMonsters[mobKey].pos;
       let newPos =
         new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y));
 
-      // Caalculate distances
-      let curDistance = playerPos.distance(curPos);
+      // Calculate distances
+      let oldDistance = playerPos.distance(oldPos);
       let newDistance = playerPos.distance(newPos);
 
       // Update position only if its closer than the current one
-      if (newDistance < curDistance) {
+      if (newDistance < oldDistance) {
         this.targetMonsters[mobKey].pos = newPos;
         this.targetMonsters[mobKey].posZ = matches.groups.z;
 
@@ -138,8 +144,8 @@ class Radar {
         this.UpdateMonsterDom(this.targetMonsters[mobKey]);
 
         // Play sound only if its far enough
-        if (curPos.distance(newPos) >= 100)
-          PlaySound(this.targetMonsters[mobKey], options);
+        if (oldPos.distance(newPos) >= kMinDistanceBeforeSound)
+          this.PlaySound(this.targetMonsters[mobKey]);
       }
     } else {
       // Add DOM
@@ -175,7 +181,7 @@ class Radar {
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
 
-      PlaySound(this.targetMonsters[mobKey], options);
+      this.PlaySound(this.targetMonsters[mobKey]);
     }
   }
 
