@@ -105,12 +105,12 @@
     },
     {
       id: 'BA West Side',
-      regex: Regexes.ability({ id: '3956', source: 'Art', target: [^:]+, capture: false }),
-      regexDe: Regexes.ability({ id: '3956', source: 'Art', target: [^:]+, capture: false }),
-      regexFr: Regexes.ability({ id: '3956', source: 'Art', target: [^:]+, capture: false }),
-      regexJa: Regexes.ability({ id: '3956', source: 'アルト', target: [^:]+, capture: false }),
-      regexCn: Regexes.ability({ id: '3956', source: '亚特', target: [^:]+, capture: false }),
-      regexKo: Regexes.ability({ id: '3956', source: '아르트', target: [^:]+, capture: false }),
+      regex: Regexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      regexDe: Regexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      regexFr: Regexes.ability({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      regexJa: Regexes.ability({ id: '3956', source: 'アルト', target: '[^:]+', capture: false }),
+      regexCn: Regexes.ability({ id: '3956', source: '亚特', target: '[^:]+', capture: false }),
+      regexKo: Regexes.ability({ id: '3956', source: '아르트', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'west';
@@ -118,12 +118,12 @@
     },
     {
       id: 'BA East Side',
-      regex: Regexes.ability({ id: '3957', source: 'Owain', target: [^:]+, capture: false }),
-      regexDe: Regexes.ability({ id: '3957', source: 'Owain', target: [^:]+, capture: false }),
-      regexFr: Regexes.ability({ id: '3957', source: 'Owain', target: [^:]+, capture: false }),
-      regexJa: Regexes.ability({ id: '3957', source: 'オーウェン', target: [^:]+, capture: false }),
-      regexCn: Regexes.ability({ id: '3957', source: '欧文', target: [^:]+, capture: false }),
-      regexKo: Regexes.ability({ id: '3957', source: '오와인', target: [^:]+, capture: false }),
+      regex: Regexes.ability({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      regexDe: Regexes.ability({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      regexFr: Regexes.ability({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      regexJa: Regexes.ability({ id: '3957', source: 'オーウェン', target: '[^:]+', capture: false }),
+      regexCn: Regexes.ability({ id: '3957', source: '欧文', target: '[^:]+', capture: false }),
+      regexKo: Regexes.ability({ id: '3957', source: '오와인', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'east';
