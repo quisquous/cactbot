@@ -387,13 +387,14 @@
     },
     {
       id: 'BA Owain Ivory Palm',
-      regex: / 16:\y{ObjectId}:Ivory Palm:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Weiße Hand:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Paume D'Ivoire:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:白き手:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:白手:3941:[^:]*:y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3941', source: 'Ivory Palm' }),
+      regexDe: Regexes.ability({ id: '3941', source: 'Weiß(?:e|er|es|en) Hand' }),
+      regexFr: Regexes.ability({ id: '3941', source: 'Paume D\'Ivoire' }),
+      regexJa: Regexes.ability({ id: '3941', source: '白き手' }),
+      regexCn: Regexes.ability({ id: '3941', source: '白手' }),
+      regexKo: Regexes.ability({ id: '3941', source: '하얀 손' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches[1];
+        return data.side == 'east' && data.me == matches.target;
       },
       alarmText: {
         en: 'Dorito Stack',
@@ -990,13 +991,14 @@
     },
     {
       id: 'BA Ozma Acceleration Bomb',
-      regex: / 16:\y{ObjectId}:Proto Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:奥兹玛原型:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Proto-Yadis:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Proto-Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:プロトオズマ:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '37AA', source: 'Proto Ozma' }),
+      regexDe: Regexes.ability({ id: '37AA', source: 'Proto-Yadis' }),
+      regexFr: Regexes.ability({ id: '37AA', source: 'Proto-Ozma' }),
+      regexJa: Regexes.ability({ id: '37AA', source: 'プロトオズマ' }),
+      regexCn: Regexes.ability({ id: '37AA', source: '奥兹玛原型' }),
+      regexKo: Regexes.ability({ id: '37AA', source: '프로토 오즈마' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches[1];
+        return data.sealed && data.me == matches.target;
       },
       alarmText: {
         en: 'Stop Soon',

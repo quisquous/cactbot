@@ -214,10 +214,12 @@
     },
     {
       id: 'T11 Tether Cleanup',
-      regex: / 16:\y{ObjectId}:Kaliya:B7B:Nanospore Jet:/,
-      regexDe: / 16:\y{ObjectId}:Kaliya:B7B:Nanosporen-Strahl:/,
-      regexFr: / 16:\y{ObjectId}:Kaliya:B7B:Jet de magismoparticules:/,
-      regexJa: / 16:\y{ObjectId}:カーリア:B7B:魔科学粒子散布:/,
+      regex: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B7B', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B7B', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B7B', source: '칼리야', capture: false }),
       run: function(data) {
         delete data.tetherA;
         delete data.tetherB;
