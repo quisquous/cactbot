@@ -337,10 +337,12 @@
     },
     {
       id: 'Dun Scaith Thirty Thorns',
-      regex: / 1[56]:\y{ObjectId}:Scathach:1D[12]B:(?:Soar|Thirty Thorns):/,
-      regexDe: / 1[56]:\y{ObjectId}:Scathach:1D[12]B:(?:Auffliegen|Dreißig Dornen):/,
-      regexFr: / 1[56]:\y{ObjectId}:Scáthach:1D[12]B:(?:Ascension|Trente Èpines):/,
-      regexJa: / 1[56]:\y{ObjectId}:スカアハ:1D[12]B:(?:飛翔|サーティー・ソーンズ):/,
+      regex: Regexes.ability({ id: '1D[12]B', source: 'Scathach', capture: false }),
+      regexDe: Regexes.ability({ id: '1D[12]B', source: 'Scathach', capture: false }),
+      regexFr: Regexes.ability({ id: '1D[12]B', source: 'Scáthach', capture: false }),
+      regexJa: Regexes.ability({ id: '1D[12]B', source: 'スカアハ', capture: false }),
+      regexCn: Regexes.ability({ id: '1D[12]B', source: '斯卡哈', capture: false }),
+      regexKo: Regexes.ability({ id: '1D[12]B', source: '스카하크', capture: false }),
       suppressSeconds: 5,
       alertText: {
         en: 'Out of melee',
