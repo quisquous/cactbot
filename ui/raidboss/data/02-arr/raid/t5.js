@@ -10,6 +10,8 @@
       regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2' }),
       regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2' }),
       regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
+      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
+      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
@@ -21,6 +23,8 @@
       regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
       },
@@ -36,6 +40,8 @@
       regexDe: Regexes.startsUsing({ source: 'Fackel Von Meracydia', id: '4DB', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Fléau De Méracydia', id: '4DB', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
       infoText: {
         en: 'Liquid Hell',
       },
@@ -148,6 +154,8 @@
       regexDe: Regexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '4E1', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
       alertText: {
         en: 'Twister!',
       },
