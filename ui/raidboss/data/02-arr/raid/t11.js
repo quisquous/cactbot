@@ -6,10 +6,6 @@
   triggers: [
     {
       id: 'T11 Secondary Head',
-      regex: / 15:\y{ObjectId}:Kaliya:B73:Secondary Head:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B73:Nebenkopf:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B73:Tête secondaire:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B73:サブヘッド:\y{ObjectId}:(\y{Name}):/,
       regex: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
       regexDe: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
       regexFr: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
