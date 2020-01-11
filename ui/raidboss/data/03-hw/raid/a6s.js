@@ -87,6 +87,11 @@
     {
       id: 'A6S Single Buster',
       regex: Regexes.ability({ source: 'Brawler', id: '1602' }),
+      regexDe: Regexes.ability({ source: 'Blechbrecher', id: '1602' }),
+      regexFr: Regexes.ability({ source: 'Bagarreur', id: '1602' }),
+      regexJa: Regexes.ability({ source: 'ブロウラー', id: '1602' }),
+      regexCn: Regexes.ability({ source: '争斗者', id: '1602' }),
+      regexKo: Regexes.ability({ source: '폭격자', id: '1602' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -95,6 +100,11 @@
     {
       id: 'A6S Double Buster',
       regex: Regexes.ability({ source: 'Brawler', id: '1603', capture: false }),
+      regexDe: Regexes.ability({ source: 'Blechbrecher', id: '1603', capture: false }),
+      regexFr: Regexes.ability({ source: 'Bagarreur', id: '1603', capture: false }),
+      regexJa: Regexes.ability({ source: 'ブロウラー', id: '1603', capture: false }),
+      regexCn: Regexes.ability({ source: '争斗者', id: '1603', capture: false }),
+      regexKo: Regexes.ability({ source: '폭격자', id: '1603', capture: false }),
       infoText: {
         en: 'Double Buster: Group Soak',
       },
@@ -102,6 +112,11 @@
     {
       id: 'A6S Rocket Drill',
       regex: Regexes.ability({ source: 'Brawler', id: '1604' }),
+      regexDe: Regexes.ability({ source: 'Blechbrecher', id: '1604' }),
+      regexFr: Regexes.ability({ source: 'Bagarreur', id: '1604' }),
+      regexJa: Regexes.ability({ source: 'ブロウラー', id: '1604' }),
+      regexCn: Regexes.ability({ source: '争斗者', id: '1604' }),
+      regexKo: Regexes.ability({ source: '폭격자', id: '1604' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -112,6 +127,11 @@
     {
       id: 'A6S Double Drill Crush',
       regex: Regexes.ability({ source: 'Brawler', id: '1605', capture: false }),
+      regexDe: Regexes.ability({ source: 'Blechbrecher', id: '1605', capture: false }),
+      regexFr: Regexes.ability({ source: 'Bagarreur', id: '1605', capture: false }),
+      regexJa: Regexes.ability({ source: 'ブロウラー', id: '1605', capture: false }),
+      regexCn: Regexes.ability({ source: '争斗者', id: '1605', capture: false }),
+      regexKo: Regexes.ability({ source: '폭격자', id: '1605', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
