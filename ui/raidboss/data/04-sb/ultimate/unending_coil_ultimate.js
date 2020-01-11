@@ -136,17 +136,18 @@
       },
     },
     {
-      regex: / 16:\y{ObjectId}:Ragnarok:26B8:Heavensfall:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:诸神黄昏:26B8:天崩地裂:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Ragnarök:26B8:Himmelssturz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Ragnarok:26B8:Destruction Universelle:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:ラグナロク:26B8:天地崩壊:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      regexDe: Regexes.ability({ id: '26B8', source: 'Ragnarök' }),
+      regexFr: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      regexJa: Regexes.ability({ id: '26B8', source: 'ラグナロク' }),
+      regexCn: Regexes.ability({ id: '26B8', source: '诸神黄昏' }),
+      regexKo: Regexes.ability({ id: '26B8', source: '라그나로크' }),
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
         // people by the time you get to octet.
         data.partyList = data.partyList || {};
-        data.partyList[matches[1]] = true;
+        data.partyList[matches.target] = true;
       },
     },
 

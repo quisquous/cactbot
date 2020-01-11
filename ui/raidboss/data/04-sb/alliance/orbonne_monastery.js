@@ -388,10 +388,12 @@
     },
     {
       id: 'Orbonne Cid Cleansing Strike',
-      regex: / 16:\y{ObjectId}:The Thunder God:3751:Cleansing Strike:/,
-      regexDe: / 16:\y{ObjectId}:Cidolfus:3751:Säuberungsschlag:/,
-      regexFr: / 16:\y{ObjectId}:Cid Le Dieu De La Foudre:3751:Impact Purifiant:/,
-      regexJa: / 16:\y{ObjectId}:雷神シド:3751:乱命割殺打:/,
+      regex: Regexes.ability({ id: '3751', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.ability({ id: '3751', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.ability({ id: '3751', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.ability({ id: '3751', source: '雷神シド', capture: false }),
+      regexCn: Regexes.ability({ id: '3751', source: '雷神西德', capture: false }),
+      regexKo: Regexes.ability({ id: '3751', source: '뇌신 시드', capture: false }),
       suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'healer';
