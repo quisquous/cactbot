@@ -155,7 +155,12 @@
     },
     {
       id: 'Temple Coeurl Heads',
-      regex: / 15:\y{ObjectId}:Ivon Coeurlfist:1FE9:Coeurl Whisper:/,
+      regex: Regexes.ability({ id: '1FE9', source: 'Ivon Coeurlfist', capture: false }),
+      regexDe: Regexes.ability({ id: '1FE9', source: 'Ivon Coeurlfaust', capture: false }),
+      regexFr: Regexes.ability({ id: '1FE9', source: 'Ivon Le Coeurl', capture: false }),
+      regexJa: Regexes.ability({ id: '1FE9', source: '双豹のイヴォン', capture: false }),
+      regexCn: Regexes.ability({ id: '1FE9', source: '双豹伊沃恩', capture: false }),
+      regexKo: Regexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Avoid floating heads',
       },

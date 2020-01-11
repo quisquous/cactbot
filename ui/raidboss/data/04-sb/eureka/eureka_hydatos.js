@@ -105,11 +105,12 @@
     },
     {
       id: 'BA West Side',
-      regex: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexDe: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexFr: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexJa: / 15:\y{ObjectId}:アルト:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexCn: / 15:\y{ObjectId}:亚特:3956:[^:]*:\y{ObjectId}:[^:]/,
+      regex: Regexes.ability({ id: '3956', source: 'Art', capture: false }),
+      regexDe: Regexes.ability({ id: '3956', source: 'Art', capture: false }),
+      regexFr: Regexes.ability({ id: '3956', source: 'Art', capture: false }),
+      regexJa: Regexes.ability({ id: '3956', source: 'アルト', capture: false }),
+      regexCn: Regexes.ability({ id: '3956', source: '亚特', capture: false }),
+      regexKo: Regexes.ability({ id: '3956', source: '아르트', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'west';
@@ -117,11 +118,12 @@
     },
     {
       id: 'BA East Side',
-      regex: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexDe: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexFr: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexJa: / 15:\y{ObjectId}:オーウェン:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexCn: / 15:\y{ObjectId}:欧文:3957:[^:]*:\y{ObjectId}:[^:]/,
+      regex: Regexes.ability({ id: '3957', source: 'Owain', capture: false }),
+      regexDe: Regexes.ability({ id: '3957', source: 'Owain', capture: false }),
+      regexFr: Regexes.ability({ id: '3957', source: 'Owain', capture: false }),
+      regexJa: Regexes.ability({ id: '3957', source: 'オーウェン', capture: false }),
+      regexCn: Regexes.ability({ id: '3957', source: '欧文', capture: false }),
+      regexKo: Regexes.ability({ id: '3957', source: '오와인', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'east';
@@ -750,11 +752,12 @@
     },
     {
       id: 'BA AV Eidos Turbulent Aether',
-      regex: / 15:\y{ObjectId}:Absolute Virtue:3790:Turbulent Aether:/,
-      regexDe: / 15:\y{ObjectId}:Absolute Tugend:3790:Äthersturm:/,
-      regexFr: / 15:\y{ObjectId}:Vertu Absolue:3790:Turbulence éthérée:/,
-      regexJa: / 15:\y{ObjectId}:アブソリュートヴァーチュー:3790:エーテル乱流:/,
-      regexCn: / 15:\y{ObjectId}:绝对的美德:3790:/,
+      regex: Regexes.ability({ id: '3790', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.ability({ id: '3790', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.ability({ id: '3790', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.ability({ id: '3790', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.ability({ id: '3790', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.ability({ id: '3790', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -766,11 +769,12 @@
     },
     {
       id: 'BA AV Call Wyvern',
-      regex: / 15:\y{ObjectId}:Absolute Virtue:3798:Call Wyvern:/,
-      regexDe: / 15:\y{ObjectId}:Absolute Tugend:3798:Wyvernruf:/,
-      regexFr: / 15:\y{ObjectId}:Vertu Absolue:3798:Appel de wyverne:/,
-      regexJa: / 15:\y{ObjectId}:アブソリュートヴァーチュー:3798:コールワイバーン:/,
-      regexCn: / 15:\y{ObjectId}:绝对的美德:3798:/,
+      regex: Regexes.ability({ id: '3798', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.ability({ id: '3798', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.ability({ id: '3798', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.ability({ id: '3798', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.ability({ id: '3798', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.ability({ id: '3798', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },

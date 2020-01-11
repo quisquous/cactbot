@@ -220,15 +220,15 @@
     },
     {
       id: 'UWU Titan Gaols',
-      regex: / 15:\y{ObjectId}:(?:Garuda|Titan):2B6[BC]:Rock Throw:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:(?:迦楼罗|泰坦):2B6[BC]:花岗岩牢狱:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:(?:Garuda|Titan):2B6[BC]:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:(?:GarudaTitan):2B6[BC]:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:(?:ガルーダ|タイタン):2B6[BC]:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:(?:가루다|타이탄):2B6[BC]:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '2B6B', source: ['Garuda', 'Titan'] }),
+      regexDe: Regexes.ability({ id: '2B6B', source: ['Garuda', 'Titan'] }),
+      regexFr: Regexes.ability({ id: '2B6B', source: ['Garuda', 'Titan'] }),
+      regexJa: Regexes.ability({ id: '2B6B', source: ['ガルーダ', 'タイタン'] }),
+      regexCn: Regexes.ability({ id: '2B6B', source: ['迦楼罗', '泰坦'] }),
+      regexKo: Regexes.ability({ id: '2B6B', source: ['가루다', '타이탄'] }),
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
-        data.titanGaols.push(matches[1]);
+        data.titanGaols.push(matches.target);
         if (data.titanGaols.length == 3)
           data.titanGaols.sort();
       },
@@ -253,33 +253,33 @@
     {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
-      regex: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Burst:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:爆破岩石:2B6A:大爆炸:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Bomber-Brocken:2B6A:Zerschmetterung:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Grosse Explosion:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ボムボルダー:2B6A:爆発:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:화강암 감옥:2B6A:대폭발:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
+      regexDe: Regexes.ability({ id: '2B6A', source: 'Bomber-Brocken' }),
+      regexFr: Regexes.ability({ id: '2B6A', source: 'Bombo Rocher' }),
+      regexJa: Regexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
+      regexCn: Regexes.ability({ id: '2B6A', source: '爆破岩石' }),
+      regexKo: Regexes.ability({ id: '2B6A', source: '바위폭탄' }),
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
         if (data.titanGaols.indexOf(matches[1]) < 0)
           return;
         return {
-          en: data.ShortName(matches[1]) + ' died',
-          de: data.ShortName(matches[1]) + ' gestorben',
-          ko: data.ShortName(matches[1]) + ' 죽음',
-          cn: data.ShortName(matches[1]) + ' 死亡',
+          en: data.ShortName(matches.target) + ' died',
+          de: data.ShortName(matches.target) + ' gestorben',
+          ko: data.ShortName(matches.target) + ' 죽음',
+          cn: data.ShortName(matches.target) + ' 死亡',
         };
       },
     },
     {
       // Cleanup
-      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}:/,
-      regexCn: / 15:\y{ObjectId}:(?:迦楼罗:2B6C|泰坦:2B6B):花岗岩牢狱:\y{ObjectId}:\y{Name}:/,
-      regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}:/,
-      regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}:/,
-      regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
-      regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'], capture: false }),
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'], capture: false }),
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'], capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
@@ -287,14 +287,14 @@
     },
     {
       id: 'UWU Suppression Gaol',
-      regex: / 15:\y{ObjectId}:Titan:2B6B:Rock Throw:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:泰坦:2B6B:花岗岩牢狱:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Titan:2B6B:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Titan:2B6B:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:タイタン:2B6B:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:타이탄:2B6B:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '2B6B', source: 'Titan' }),
+      regexDe: Regexes.ability({ id: '2B6B', source: 'Titan' }),
+      regexFr: Regexes.ability({ id: '2B6B', source: 'Titan' }),
+      regexJa: Regexes.ability({ id: '2B6B', source: 'タイタン' }),
+      regexCn: Regexes.ability({ id: '2B6B', source: '泰坦' }),
+      regexKo: Regexes.ability({ id: '2B6B', source: '타이탄' }),
       condition: function(data, matches) {
-        return data.phase == 'suppression' && data.me == matches[1];
+        return data.phase == 'suppression' && data.me == matches.target;
       },
       alarmText: {
         en: 'Gaol on YOU',

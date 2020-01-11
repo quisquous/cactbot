@@ -198,20 +198,24 @@
     },
     {
       id: 'Orbonne Agrias Halidom Inside',
-      regex: / 15:\y{ObjectId}:Halidom:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:模造聖域:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3851', source: 'Halidom' }),
+      regexDe: Regexes.ability({ id: '3851', source: 'Falsch(?:e|er|es|en) Heiligtum' }),
+      regexFr: Regexes.ability({ id: '3851', source: 'Faux Sanctuaire' }),
+      regexJa: Regexes.ability({ id: '3851', source: '模造聖域' }),
+      regexCn: Regexes.ability({ id: '3851', source: '仿制圣域' }),
+      regexKo: Regexes.ability({ id: '3851', source: '모조 성역' }),
       run: function(data, matches) {
-        data.halidom.push(matches[1]);
+        data.halidom.push(matches.target);
       },
     },
     {
       id: 'Orbonne Agrias Halidom Outside',
-      regex: / 15:\y{ObjectId}:Halidom:3851:/,
-      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:/,
-      regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:/,
-      regexJa: / 15:\y{ObjectId}:模造聖域:3851:/,
+      regex: Regexes.ability({ id: '3851', source: 'Halidom', capture: false }),
+      regexDe: Regexes.ability({ id: '3851', source: 'Falsch(?:e|er|es|en) Heiligtum', capture: false }),
+      regexFr: Regexes.ability({ id: '3851', source: 'Faux Sanctuaire', capture: false }),
+      regexJa: Regexes.ability({ id: '3851', source: '模造聖域', capture: false }),
+      regexCn: Regexes.ability({ id: '3851', source: '仿制圣域', capture: false }),
+      regexKo: Regexes.ability({ id: '3851', source: '모조 성역', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: function(data) {
@@ -238,10 +242,12 @@
     },
     {
       id: 'Orbonne Agrias Adds Phase',
-      regex: / 15:\y{ObjectId}:Agrias:385D:/,
-      regexDe: / 15:\y{ObjectId}:Agrias:385D:/,
-      regexFr: / 15:\y{ObjectId}:Agrias:385D:/,
-      regexJa: / 15:\y{ObjectId}:聖騎士アグリアス:385D:/,
+      regex: Regexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      regexDe: Regexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      regexFr: Regexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      regexJa: Regexes.ability({ id: '385D', source: '聖騎士アグリアス', capture: false }),
+      regexCn: Regexes.ability({ id: '385D', source: '圣骑士阿格莉亚丝', capture: false }),
+      regexKo: Regexes.ability({ id: '385D', source: '성기사 아그리아스', capture: false }),
       alertText: {
         en: 'Get Shield',
         de: 'Schild nehmen',
@@ -332,12 +338,14 @@
     },
     {
       id: 'Orbonne Cid Crush Helm Tank',
-      regex: / 15:\y{ObjectId}:The Thunder God:3753:Crush Helm:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Cidolfus:3753:Himmelsbombardement:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3753:Bombardement Céleste:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷神シド:3753:星天爆撃打:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3753', source: 'The Thunder God' }),
+      regexDe: Regexes.ability({ id: '3753', source: 'Cidolfus' }),
+      regexFr: Regexes.ability({ id: '3753', source: 'Cid Le Dieu De La Foudre' }),
+      regexJa: Regexes.ability({ id: '3753', source: '雷神シド' }),
+      regexCn: Regexes.ability({ id: '3753', source: '雷神西德' }),
+      regexKo: Regexes.ability({ id: '3753', source: '뇌신 시드' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Tank Buster on YOU',
@@ -362,12 +370,14 @@
     },
     {
       id: 'Orbonne Cid Crush Armor',
-      regex: / 15:\y{ObjectId}:The Thunder God:3759:Crush Armor:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Cidolfus:3759:Helmspalter:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3759:Brèche Insidieuse:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷神シド:3759:強甲破点突き:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3759', source: 'The Thunder God' }),
+      regexDe: Regexes.ability({ id: '3759', source: 'Cidolfus' }),
+      regexFr: Regexes.ability({ id: '3759', source: 'Cid Le Dieu De La Foudre' }),
+      regexJa: Regexes.ability({ id: '3759', source: '雷神シド' }),
+      regexCn: Regexes.ability({ id: '3759', source: '雷神西德' }),
+      regexKo: Regexes.ability({ id: '3759', source: '뇌신 시드' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Give Tether Away',
@@ -649,10 +659,12 @@
     {
       id: 'Orbonne Ultima Ultimate Illusion',
       // Yes, this is lower case "the High Seraph".
-      regex: / 15:\y{ObjectId}:Ultima, the High Seraph:3895:Ultimate Illusion:/,
-      regexDe: / 15:\y{ObjectId}:Cherub Ultima:3895:Ultimative Illusion:/,
-      regexFr: / 15:\y{ObjectId}:Ultima La Grande Séraphine:3895:Fantaisie Finale:/,
-      regexJa: / 15:\y{ObjectId}:聖天使アルテマ:3895:究極幻想:/,
+      regex: Regexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
+      regexDe: Regexes.ability({ id: '3895', source: 'Cherub Ultima', capture: false }),
+      regexFr: Regexes.ability({ id: '3895', source: 'Ultima La Grande Séraphine', capture: false }),
+      regexJa: Regexes.ability({ id: '3895', source: '聖天使アルテマ', capture: false }),
+      regexCn: Regexes.ability({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
+      regexKo: Regexes.ability({ id: '3895', source: '성천사 알테마', capture: false }),
       condition: function(data) {
         return data.role != 'healer';
       },

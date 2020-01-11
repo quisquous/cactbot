@@ -118,11 +118,12 @@
     },
     {
       id: 'O10N Horizontal Spin 1',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31AC:Coil:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AC:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AC:Charge:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AC:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31AC:/,
+      regex: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
       infoText: {
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder Raus',
@@ -136,11 +137,12 @@
     },
     {
       id: 'O10N Vertical Spin 1',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31AD:Coil:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AD:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AD:Charge:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AD:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31AD:/,
+      regex: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
       infoText: {
         en: 'Next Spin: Cardinals or Corners',
         de: 'Nächste Drehung: Kanten oder Ecken',
@@ -154,11 +156,12 @@
     },
     {
       id: 'O10N Horizontal Spin 2',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31AE:Azure Wings:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AE:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AE:Ailes azur:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AE:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31AE:/,
+      regex: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31AE', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31AE', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31AE', source: '미드가르드오름', capture: false }),
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
@@ -183,11 +186,12 @@
     },
     {
       id: 'O10N Vertical Spin 2',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31B0:Stygian Maw:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31B0:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31B0:Gueule ténébreuse:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31B0:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31B0:/,
+      regex: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31B0', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31B0', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31B0', source: '미드가르드오름', capture: false }),
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
