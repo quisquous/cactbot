@@ -220,12 +220,12 @@
     },
     {
       id: 'UWU Titan Gaols',
-      regex: Regexes.ability({ id: '2B6B', source: ['Garuda', 'Titan'] }),
-      regexDe: Regexes.ability({ id: '2B6B', source: ['Garuda', 'Titan'] }),
-      regexFr: Regexes.ability({ id: '2B6B', source: ['Garuda', 'Titan'] }),
-      regexJa: Regexes.ability({ id: '2B6B', source: ['ガルーダ', 'タイタン'] }),
-      regexCn: Regexes.ability({ id: '2B6B', source: ['迦楼罗', '泰坦'] }),
-      regexKo: Regexes.ability({ id: '2B6B', source: ['가루다', '타이탄'] }),
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      regexFr: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      regexJa: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'] }),
+      regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
+      regexKo: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches.target);

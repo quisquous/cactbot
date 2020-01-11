@@ -658,7 +658,6 @@
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion',
-      // Yes, this is lower case "the High Seraph".
       regex: Regexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
       regexDe: Regexes.ability({ id: '3895', source: 'Cherub Ultima', capture: false }),
       regexFr: Regexes.ability({ id: '3895', source: 'Ultima La Grande Séraphine', capture: false }),
