@@ -6,12 +6,12 @@
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {
-      regex: Regexes.removingCombatant({ name: 'Shinryu' }),
-      regexDe: Regexes.removingCombatant({ name: 'Shinryu' }),
-      regexFr: Regexes.removingCombatant({ name: 'Shinryu' }),
-      regexJa: Regexes.removingCombatant({ name: '神龍' }),
-      regexCn: Regexes.removingCombatant({ name: '神龙' }),
-      regexKo: Regexes.removingCombatant({ name: '신룡' }),
+      regex: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      regexDe: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      regexFr: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      regexJa: Regexes.removingCombatant({ name: '神龍', capture: false }),
+      regexCn: Regexes.removingCombatant({ name: '神龙', capture: false }),
+      regexKo: Regexes.removingCombatant({ name: '신룡', capture: false }),
       run: function(data) {
         // Explicitly clear so ugly heart message doesn't appear after wipe.
         delete data.phase;
