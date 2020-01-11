@@ -35,9 +35,9 @@
     },
     {
       id: 'Cosmos Dark Pulse',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
@@ -47,18 +47,18 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          cn: '靠近 ' + data.ShortName(matches[1]) + '集合',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
         };
       },
     },
     {
       id: 'Cosmos Dark Well Far Winds',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:/,
+      regex: Regexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -218,9 +218,9 @@
     },
     {
       id: 'Cosmos Black Flame 1',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0019:/,
+      regex: Regexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -232,9 +232,9 @@
     },
     {
       id: 'Cosmos Black Flame 2',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0019:/,
+      regex: Regexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 4,
       infoText: {
@@ -245,9 +245,9 @@
     },
     {
       id: 'Cosmos Mortal Flame 1',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C3:/,
+      regex: Regexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -259,9 +259,9 @@
     },
     {
       id: 'Cosmos Mortal Flame 2',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C3:/,
+      regex: Regexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 5.5,
       infoText: {
@@ -292,9 +292,9 @@
     },
     {
       id: 'Cosmos Fire\'s Domain',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003[2345]:/,
+      regex: Regexes.headMarker({ id: '003[2345]' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       preRun: function(data) {
         data.firesDomain = (data.firesDomain || 0) + 1;

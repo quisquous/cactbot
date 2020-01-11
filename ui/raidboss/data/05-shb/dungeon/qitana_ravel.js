@@ -191,9 +191,9 @@
     },
     {
       id: 'Qitana Viper Poison',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AB:/,
+      regex: Regexes.headMarker({ id: '00AB' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Drop Poison Outside',
@@ -203,9 +203,9 @@
     },
     {
       id: 'Qitana Confession of Faith Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack Middle on YOU',
             de: 'In der Mitte auf DIR sammeln',
@@ -213,9 +213,9 @@
           };
         }
         return {
-          en: 'Stack Middle on ' + data.ShortName(matches[1]),
-          de: 'In Der Mitte auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package au milieu sur ' + data.ShortName(matches[1]),
+          en: 'Stack Middle on ' + data.ShortName(matches.target),
+          de: 'In Der Mitte auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package au milieu sur ' + data.ShortName(matches.target),
         };
       },
     },

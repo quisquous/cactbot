@@ -142,9 +142,9 @@
     },
     {
       id: 'E1N Vice of Apathy Mark',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001C:/,
+      regex: Regexes.headMarker({ id: '001C' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Drop Puddle, Run Middle',

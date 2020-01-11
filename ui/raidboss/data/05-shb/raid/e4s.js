@@ -92,9 +92,9 @@
     },
     {
       id: 'E4S Pulse of the Land',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B9:/,
+      regex: Regexes.headMarker({ id: '00B9' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Spread Marker',
@@ -125,9 +125,9 @@
     },
     {
       id: 'E4S Force of the Land',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00BA:/,
+      regex: Regexes.headMarker({ id: '00BA' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Stack Marker',
@@ -228,9 +228,9 @@
     },
     {
       id: 'E4S Crumbling Down',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Bomb on YOU',
@@ -469,9 +469,9 @@
     },
     {
       id: 'E4S Weight of the World',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00BB:/,
+      regex: Regexes.headMarker({ id: '00BB' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Weight, Get Out',
@@ -484,7 +484,7 @@
     },
     {
       id: 'E4S Megalith',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005D:/,
+      regex: Regexes.headMarker({ id: '005D' }),
       alertText: function(data, matches) {
         if (data.role != 'tank') {
           return {
@@ -496,7 +496,7 @@
             ko: '탱커에서 멀어지기',
           };
         }
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             ja: '自分にシェア',
@@ -507,20 +507,20 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'にシェア',
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          cn: '集合 ->' + data.ShortName(matches[1]),
-          ko: '"' + data.ShortName(matches[1]) + '" 쉐어징',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にシェア',
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '集合 ->' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
     },
     {
       id: 'E4S Granite Gaol',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00BF:/,
+      regex: Regexes.headMarker({ id: '00BF' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Gaol on YOU',

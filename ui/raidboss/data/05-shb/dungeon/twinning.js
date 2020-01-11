@@ -54,7 +54,7 @@
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:003[2-5]|005A)/,
+      regex: Regexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Spread (avoid cages)',
@@ -100,9 +100,9 @@
     },
     {
       id: 'Twinning Charge Eradicated',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005D/,
+      regex: Regexes.headMarker({ id: '005D' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
@@ -110,9 +110,9 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
         };
       },
     },

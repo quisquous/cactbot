@@ -29,9 +29,9 @@
     },
     {
       id: 'E3N Rip Current',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -42,22 +42,22 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑 ->' + data.ShortName(matches[1]),
-            ko: '탱버 ->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑 ->' + data.ShortName(matches.target),
+            ko: '탱버 ->' + data.ShortName(matches.target),
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me && data.role == 'tank') {
+        if (matches.target != data.me && data.role == 'tank') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑 ->' + data.ShortName(matches[1]),
-            ko: '탱버 ->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑 ->' + data.ShortName(matches.target),
+            ko: '탱버 ->' + data.ShortName(matches.target),
           };
         }
       },
@@ -147,9 +147,9 @@
     },
     {
       id: 'E3N Drenching Pulse Spread',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -181,9 +181,9 @@
     {
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
@@ -193,19 +193,19 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          cn: '集合 ->' + data.ShortName(matches[1]),
-          ko: '집합 ->' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '集合 ->' + data.ShortName(matches.target),
+          ko: '집합 ->' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'E3N Surging Waters Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AD:/,
+      regex: Regexes.headMarker({ id: '00AD' }),
       infoText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Knockback on YOU',
             de: 'Knockback auf DIR',
@@ -215,19 +215,19 @@
           };
         }
         return {
-          en: 'Knockback on ' + data.ShortName(matches[1]),
-          de: 'Knockback auf ' + data.ShortName(matches[1]),
-          fr: 'Poussée sur ' + data.ShortName(matches[1]),
-          cn: '击退 ->' + data.ShortName(matches[1]),
-          ko: '넉백 ->' + data.ShortName(matches[1]),
+          en: 'Knockback on ' + data.ShortName(matches.target),
+          de: 'Knockback auf ' + data.ShortName(matches.target),
+          fr: 'Poussée sur ' + data.ShortName(matches.target),
+          cn: '击退 ->' + data.ShortName(matches.target),
+          ko: '넉백 ->' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'E3N Splashing Waters Spread',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0082:/,
+      regex: Regexes.headMarker({ id: '0082' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -239,9 +239,9 @@
     },
     {
       id: 'E3N Swirling Waters Donut',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0099:/,
+      regex: Regexes.headMarker({ id: '0099' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Donut on YOU',

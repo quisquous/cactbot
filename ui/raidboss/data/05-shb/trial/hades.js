@@ -266,9 +266,9 @@
     },
     {
       id: 'Hades Dual Strike',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:/,
+      regex: Regexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.neoHades && data.me == matches[1];
+        return data.neoHades && data.me == matches.target;
       },
       alertText: {
         en: 'Tank Buster Spread',
@@ -280,9 +280,9 @@
     },
     {
       id: 'Hades Hellborn Yawp',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Drop Marker Outside',
@@ -294,9 +294,9 @@
     },
     {
       id: 'Hades Fetters',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0078:/,
+      regex: Regexes.headMarker({ id: '0078' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Fetters on YOU',
@@ -324,9 +324,9 @@
     },
     {
       id: 'Hades Nether Blast / Dark Eruption',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Spread',
@@ -338,9 +338,9 @@
     },
     {
       id: 'Hades Ancient Darkness',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:/,
+      regex: Regexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return !data.neoHades && data.me == matches[1];
+        return !data.neoHades && data.me == matches.target;
       },
       alertText: {
         en: 'Spread (Don\'t Stack!)',
@@ -352,9 +352,9 @@
     },
     {
       id: 'Hades Ancient Water III',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Stack on YOU',
@@ -366,18 +366,18 @@
     },
     {
       id: 'Hades Ancient Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(0060|003E):/,
+      regex: Regexes.headMarker({ id: ['0060', '003E'] }),
       condition: function(data) {
         return !data.neoHades;
       },
       run: function(data, matches) {
         data.ancient = data.ancient || {};
-        data.ancient[matches[1]] = matches[2];
+        data.ancient[matches.target] = matches.id;
       },
     },
     {
       id: 'Hades Ancient No Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 0.5,
       infoText: function(data) {
         if (data.ancient[data.me])
@@ -394,7 +394,7 @@
     },
     {
       id: 'Hades Ancient Cleanup',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.ancient;
