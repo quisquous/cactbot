@@ -82,7 +82,7 @@
     },
     {
       id: 'T6 Flower',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000D:/,
+      regex: Regexes.headMarker({ id: '000D' }),
       alarmText: function(data) {
         if (data.honey) {
           return {
@@ -94,14 +94,14 @@
         if (data.honey)
           return;
 
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Devour: Jump In New Thorns',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.honey || data.me == matches[1])
+        if (data.honey || data.me == matches.target)
           return;
 
         return {
@@ -174,15 +174,15 @@
     },
     {
       id: 'T6 Rotten Stench',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Share Laser (on YOU)',
           };
         }
         return {
-          en: 'Share Laser (on ' + data.ShortName(matches[1]) + ')',
+          en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
         };
       },
     },

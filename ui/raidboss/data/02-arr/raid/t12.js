@@ -72,9 +72,9 @@
     },
     {
       id: 'T12 Whitefire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0020:/,
+      regex: Regexes.headMarker({ id: '0020' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Whitefire on YOU',
@@ -84,9 +84,9 @@
     },
     {
       id: 'T12 Bluefire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0021:/,
+      regex: Regexes.headMarker({ id: '0021' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Bluefire Away',

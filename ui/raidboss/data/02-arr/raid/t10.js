@@ -25,7 +25,7 @@
     },
     {
       id: 'T10 Wild Charge',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001F:/,
+      regex: Regexes.headMarker({ id: '001F' }),
       alarmText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -35,7 +35,7 @@
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
             en: 'Charge on ' + data.ShortName(matches[1]),
             fr: 'Charge sur ' + data.ShortName(matches[1]),
@@ -45,9 +45,9 @@
     },
     {
       id: 'T10 Prey',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Prey on YOU',
             fr: 'Prière sur VOUS',
