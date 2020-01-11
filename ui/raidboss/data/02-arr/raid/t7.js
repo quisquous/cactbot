@@ -34,12 +34,14 @@
     },
     {
       id: 'T7 Tail Slap',
-      regex: / 1[56]:\y{ObjectId}:Melusine:7A8:Tail Slap:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Melusine:7A8:Schweifklapser:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Mélusine:7A8:Gifle caudale:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:メリュジーヌ:7A8:テールスラップ:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '7A8', source: 'Melusine' }),
+      regexDe: Regexes.ability({ id: '7A8', source: 'Melusine' }),
+      regexFr: Regexes.ability({ id: '7A8', source: 'Mélusine' }),
+      regexJa: Regexes.ability({ id: '7A8', source: 'メリュジーヌ' }),
+      regexCn: Regexes.ability({ id: '7A8', source: '美瑠姬奴' }),
+      regexKo: Regexes.ability({ id: '7A8', source: '멜뤼진' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.job == 'BLU';
+        return data.me == matches.target && data.job == 'BLU';
       },
       delaySeconds: 6,
       suppressSeconds: 5,

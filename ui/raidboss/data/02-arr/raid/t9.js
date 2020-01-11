@@ -155,10 +155,12 @@
     },
     {
       id: 'T9 Ghost Death',
-      regex: / 1[56]:\y{ObjectId}:The Ghost of Meracydia:7FA:Neurolink Burst:/,
-      regexDe: / 1[56]:\y{ObjectId}:Geist Von Meracydia:7FA:Neurolink-Bruch:/,
-      regexFr: / 1[56]:\y{ObjectId}:Fantôme Méracydien:7FA:Explosion névralgique:/,
-      regexJa: / 1[56]:\y{ObjectId}:メラシディアン・ゴースト:7FA:ニューロリンク・バースト:/,
+      regex: Regexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
+      regexDe: Regexes.ability({ id: '7FA', source: 'Geist Von Meracydia', capture: false }),
+      regexFr: Regexes.ability({ id: '7FA', source: 'Fantôme Méracydien', capture: false }),
+      regexJa: Regexes.ability({ id: '7FA', source: 'メラシディアン・ゴースト', capture: false }),
+      regexCn: Regexes.ability({ id: '7FA', source: '美拉西迪亚幽龙', capture: false }),
+      regexKo: Regexes.ability({ id: '7FA', source: '메라시디아의 유령', capture: false }),
       condition: function(data) {
         return data.garotte;
       },

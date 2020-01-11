@@ -57,10 +57,12 @@
     },
     {
       id: 'T11 Seed River Second',
-      regex: / 1[56]:\y{ObjectId}:Kaliya:B76:Seed Of The Rivers:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kaliya:B76:Samen der Flüsse:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kaliya:B76:Germe de la rivière:/,
-      regexJa: / 1[56]:\y{ObjectId}:カーリア:B76:シード・オブ・リバー:/,
+      regex: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B76', source: '칼리야', capture: false }),
       infoText: function(data) {
         if (!data.firstSeed)
           return;
@@ -75,10 +77,12 @@
     },
     {
       id: 'T11 Seed Sea Second',
-      regex: / 1[56]:\y{ObjectId}:Kaliya:B77:Seed Of The Sea:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kaliya:B77:Samen der See:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kaliya:B77:Germe de la mer:/,
-      regexJa: / 1[56]:\y{ObjectId}:カーリア:B77:シード・オブ・シー:/,
+      regex: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B77', source: '칼리야', capture: false }),
       infoText: function(data) {
         if (!data.firstSeed)
           return;

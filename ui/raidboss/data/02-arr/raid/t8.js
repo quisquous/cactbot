@@ -30,22 +30,24 @@
     },
     {
       id: 'T8 Landmine Explosion',
-      regex: / 1[56]:(\y{ObjectId}):Allagan Mine:7D1:Triggered Landmine:/,
-      regexDe: / 1[56]:(\y{ObjectId}):Allagische Mine:7D1:Landmine:/,
-      regexFr: / 1[56]:(\y{ObjectId}):Mine Allagoise:7D1:Explosion de mine:/,
-      regexJa: / 1[56]:(\y{ObjectId}):アラガンマイン:7D1:地雷爆発:/,
+      regex: Regexes.ability({ id: '7D1', source: 'Allagan Mine' }),
+      regexDe: Regexes.ability({ id: '7D1', source: 'Allagisch(?:e|er|es|en) Mine' }),
+      regexFr: Regexes.ability({ id: '7D1', source: 'Mine Allagoise' }),
+      regexJa: Regexes.ability({ id: '7D1', source: 'アラガンマイン' }),
+      regexCn: Regexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
+      regexKo: Regexes.ability({ id: '7D1', source: '알라그 지뢰' }),
       infoText: function(data, matches) {
-        if (matches[1] in data.landmines)
+        if (matches.target in data.landmines)
           return;
         return (Object.keys(data.landmines).length + 1) + ' / 3';
       },
       tts: function(data, matches) {
-        if (matches[1] in data.landmines)
+        if (matches.target in data.landmines)
           return;
         return (Object.keys(data.landmines).length + 1);
       },
       run: function(data, matches) {
-        data.landmines[matches[1]] = true;
+        data.landmines[matches.target] = true;
       },
     },
     {
