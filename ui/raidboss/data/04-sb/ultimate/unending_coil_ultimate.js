@@ -579,7 +579,7 @@
       tts: {
         en: 'in then spread then stack',
         fr: 'Dedans, puis se dispercer, puis se rassembler',
-        de: 'rein dann raus dann stek',
+        de: 'rein dann verteilen dann stek',
         ja: '密着や散開や頭割り',
         cn: '靠近后分散最后集合',
       },
@@ -603,7 +603,7 @@
       tts: {
         en: 'out then stack then spread',
         fr: 'Dehors, puis se rassembler, puis se dispercer',
-        de: 'rein dann raus dann verteilen',
+        de: 'raus dann stek dann verteilen',
         ja: '離れるや頭割りや散開',
         cn: '远离后集合最后分散',
       },
@@ -612,7 +612,7 @@
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
       regex: /Unbending iron, descend with fiery edge/,
-      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
+      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfad/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
       regexCn: /\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01/,
@@ -627,7 +627,7 @@
       tts: {
         en: 'out then spread then stack',
         fr: 'Dehors, puis se dispercer, puis se rassembler',
-        de: 'Raus dann rein dann stek',
+        de: 'Raus dann verteilen dann stek',
         ja: '離れるや散開や頭割り',
         cn: '远离后分散最后集合',
       },
