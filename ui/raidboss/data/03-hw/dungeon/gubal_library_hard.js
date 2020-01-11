@@ -89,10 +89,14 @@
     },
     {
       id: 'Gubal Hard Slosh',
-      regex: / 23:\y{ObjectId}:Liquid Flame:\y{ObjectId}:(\y{Name}):....:....:0039/,
-      regexFr: / 23:\y{ObjectId}:Flamme Liquide:\y{ObjectId}:(\y{Name}):....:....:0039/,
+      regex: Regexes.tether({ id: '0039', source: 'Liquid Flame' }),
+      regexDe: Regexes.tether({ id: '0039', source: 'Flüssig(?:e|er|es|en) Flamme' }),
+      regexFr: Regexes.tether({ id: '0039', source: 'Flamme Liquide' }),
+      regexJa: Regexes.tether({ id: '0039', source: 'リクイドフレイム' }),
+      regexCn: Regexes.tether({ id: '0039', source: '液态火焰' }),
+      regexKo: Regexes.tether({ id: '0039', source: '액체 불꽃' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Away from boss',
