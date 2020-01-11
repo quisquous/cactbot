@@ -206,52 +206,116 @@
         data.finalphase = true;
       },
     },
-    { // Wound tracking
-      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of White Wound/,
-      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Wunde Des Lebenden/,
-      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Lésion Du Vivant/,
-      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of 生者の傷/,
+    { // White Wound tracking true
+      regex: Regexes.gainsEffect({ effect: 'White Wound' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wunde Des Lebenden' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Lésion Du Vivant' }),
+      regexJa: Regexes.gainsEffect({ effect: '生者の傷' }),
+      regexCn: Regexes.gainsEffect({ effect: '生者之伤' }),
+      regexKo: Regexes.gainsEffect({ effect: '산 자의 상처' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data, matches) {
-        data.whiteWound = matches[2] == 'gains';
+        data.whiteWound = true;
       },
     },
-    { // Wound tracking
-      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Black Wound/,
-      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Wunde Des Toten/,
-      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Lésion Du Défunt/,
-      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of 死者の傷/,
+    { // White Wound tracking false
+      regex: Regexes.losesEffect({ effect: 'White Wound' }),
+      regexDe: Regexes.losesEffect({ effect: 'Wunde Des Lebenden' }),
+      regexFr: Regexes.losesEffect({ effect: 'Lésion Du Vivant' }),
+      regexJa: Regexes.losesEffect({ effect: '生者の傷' }),
+      regexCn: Regexes.losesEffect({ effect: '生者之伤' }),
+      regexKo: Regexes.losesEffect({ effect: '산 자의 상처' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data, matches) {
-        data.blackWound = matches[2] == 'gains';
+        data.whiteWound = false;
       },
     },
-    { // Beyond death tracking
-      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Beyond Death/,
-      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Jenseits Des Jenseits/,
-      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Outre-Mort/,
-      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of 死の超越/,
+    { // Black Wound tracking true
+      regex: Regexes.gainsEffect({ effect: 'Black Wound' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Wunde Des Toten' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Lésion Du Défunt' }),
+      regexJa: Regexes.gainsEffect({ effect: '死者の傷' }),
+      regexCn: Regexes.gainsEffect({ effect: '死者之伤' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽은 자의 상처' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data, matches) {
-        data.beyondDeath = matches[2] == 'gains';
+        data.blackWound = true;
       },
     },
-    { // Allagan field tracking
-      regex: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Allagan Field/,
-      regexDe: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Allagisches Feld/,
-      regexFr: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of Champ Allagois/,
-      regexJa: / 1[EA]:\y{ObjectId}:(\y{Name}) (gains|loses) the effect of アラガンフィールド/,
+    { // Black Wound tracking false
+      regex: Regexes.losesEffect({ effect: 'Black Wound' }),
+      regexDe: Regexes.losesEffect({ effect: 'Wunde Des Toten' }),
+      regexFr: Regexes.losesEffect({ effect: 'Lésion Du Défunt' }),
+      regexJa: Regexes.losesEffect({ effect: '死者の傷' }),
+      regexCn: Regexes.losesEffect({ effect: '死者之伤' }),
+      regexKo: Regexes.losesEffect({ effect: '죽은 자의 상처' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data, matches) {
-        data.allaganField = matches[2] == 'gains';
+        data.blackWound = false;
+      },
+    },
+    { // Beyond death tracking true
+      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
+      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
+      condition: function(data, matches) {
+        return matches.target == data.me;
+      },
+      run: function(data, matches) {
+        data.beyondDeath = true;
+      },
+    },
+    { // Beyond death tracking false
+      regex: Regexes.losesEffect({ effect: 'Beyond Death' }),
+      regexDe: Regexes.losesEffect({ effect: 'Jenseits Des Jenseits' }),
+      regexFr: Regexes.losesEffect({ effect: 'Outre-Mort' }),
+      regexJa: Regexes.losesEffect({ effect: '死の超越' }),
+      regexCn: Regexes.losesEffect({ effect: '超越死亡' }),
+      regexKo: Regexes.losesEffect({ effect: '죽음 초월' }),
+      condition: function(data, matches) {
+        return matches.target == data.me;
+      },
+      run: function(data, matches) {
+        data.beyondDeath = false;
+      },
+    },
+    { // Allagan field tracking true
+      regex: Regexes.gainsEffect({ effect: 'Allagan Field' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Allagisches Feld' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Champ Allagois' }),
+      regexJa: Regexes.gainsEffect({ effect: 'アラガンフィールド' }),
+      regexCn: Regexes.gainsEffect({ effect: '亚拉戈领域' }),
+      regexKo: Regexes.gainsEffect({ effect: '알라그 필드' }),
+      condition: function(data, matches) {
+        return matches.target == data.me;
+      },
+      run: function(data, matches) {
+        data.allaganField = true;
+      },
+    },
+    { // Allagan field tracking false
+      regex: Regexes.losesEffect({ effect: 'Allagan Field' }),
+      regexDe: Regexes.losesEffect({ effect: 'Allagisches Feld' }),
+      regexFr: Regexes.losesEffect({ effect: 'Champ Allagois' }),
+      regexJa: Regexes.losesEffect({ effect: 'アラガンフィールド' }),
+      regexCn: Regexes.losesEffect({ effect: '亚拉戈领域' }),
+      regexKo: Regexes.losesEffect({ effect: '알라그 필드' }),
+      condition: function(data, matches) {
+        return matches.target == data.me;
+      },
+      run: function(data, matches) {
+        data.allaganField = false;
       },
     },
     { // Inner Flood (move out).
