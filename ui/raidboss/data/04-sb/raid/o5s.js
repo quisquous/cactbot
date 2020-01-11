@@ -11,12 +11,12 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
-      regex: Regexes.removingCombatant({ name: 'Phantom Train' })
-      regexDe: Regexes.removingCombatant({ name: 'Phantomzug' })
-      regexFr: Regexes.removingCombatant({ name: 'Train Fantôme' })
-      regexJa: Regexes.removingCombatant({ name: '魔列車' })
-      regexCn: Regexes.removingCombatant({ name: '魔列车' })
-      regexKo: Regexes.removingCombatant({ name: '마열차' })
+      regex: Regexes.removingCombatant({ name: 'Phantom Train' }),
+      regexDe: Regexes.removingCombatant({ name: 'Phantomzug' }),
+      regexFr: Regexes.removingCombatant({ name: 'Train Fantôme' }),
+      regexJa: Regexes.removingCombatant({ name: '魔列車' }),
+      regexCn: Regexes.removingCombatant({ name: '魔列车' }),
+      regexKo: Regexes.removingCombatant({ name: '마열차' }),
       run: function(data) {
         data.StopCombat();
       },
