@@ -4,8 +4,8 @@
 
 #bars {
   position: relative;
-  top: 20px;  /* Space for pull counter */
-  left: 100px;  /* Space for some left buffs */
+  top: 20px; /* Space for pull counter */
+  left: 100px; /* Space for some left buffs */
 }
 
 .big-buff {
@@ -111,7 +111,7 @@
 #rdm-bar {
   position: relative;
   border: 1px solid black;
-  width: 200px;  /* 202 minus borders */
+  width: 200px; /* 202 minus borders */
   height: calc(8px * 2 - 4px);
   background: rgba(30, 30, 30, 0.7);
 }
@@ -579,6 +579,29 @@
 
 .blm-xeno-timer.active {
   background-color: rgb(200, 50, 200);
+}
+
+/* Pulse effect for xeno overwrite */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(200, 50, 200, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(200, 50, 200, 0);
+  }
+}
+
+.blm-xeno-timer.pulse {
+  box-shadow: 0 0 0 0 rgba(200, 50, 200, 1);
+  animation: pulse 1s infinite;
 }
 
 .gnb-color-cartridge {

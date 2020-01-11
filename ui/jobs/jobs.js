@@ -1755,12 +1755,19 @@ class Bars {
         p.classList.add('ice');
       }
 
+      let xp = xenoTimer.parentNode;
       if (!jobDetail.enochian) {
         xenoTimer.innerText = '';
-        xenoTimer.parentNode.classList.remove('active');
+        xp.classList.remove('active', 'pulse');
       } else {
-        xenoTimer.innerText = Math.ceil(jobDetail.nextPolyglotMilliseconds / 1000.0);
-        xenoTimer.parentNode.classList.add('active');
+        let nextPoly = jobDetail.nextPolyglotMilliseconds;
+        xenoTimer.innerText = Math.ceil(nextPoly / 1000.0);
+        xp.classList.add('active');
+
+        if (fouls === 2 && nextPoly < 5000)
+          xp.classList.add('pulse');
+        else
+          xp.classList.remove('pulse');
       }
     });
   }
