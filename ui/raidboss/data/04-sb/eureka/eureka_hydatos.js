@@ -182,12 +182,12 @@
     },
     {
       id: 'BA Art Orb Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
+      regex: Regexes.headMarker({ id: '005C' }),
       condition: function(data) {
         return data.side == 'west';
       },
       alarmText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
         return {
           en: 'Orb on YOU',
@@ -195,7 +195,7 @@
         };
       },
       alertText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches.target)
           return;
         return {
           en: 'Away From Orb Marker',
@@ -206,9 +206,9 @@
     },
     {
       id: 'BA Art Piercing Dark Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'west' && data.me == matches[1];
+        return data.side == 'west' && data.me == matches.target;
       },
       alertText: {
         en: 'Spread Marker',
@@ -323,9 +323,9 @@
     },
     {
       id: 'BA Owain Piercing Light Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches[1];
+        return data.side == 'east' && data.me == matches.target;
       },
       infoText: {
         en: 'Spread Marker',
@@ -335,9 +335,9 @@
     },
     {
       id: 'BA Owain Dorito Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches[1];
+        return data.side == 'east' && data.me == matches.target;
       },
       alarmText: {
         en: 'Dorito Stack',
@@ -472,9 +472,9 @@
     },
     {
       id: 'BA Raiden Lancing Bolt',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches[1];
+        return data.sealed && data.me == matches.target;
       },
       alarmText: {
         en: 'Spread',
@@ -1002,9 +1002,9 @@
     },
     {
       id: 'BA Ozma Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:/,
+      regex: Regexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches[1];
+        return data.sealed && data.me == matches.target;
       },
       alarmText: {
         en: 'Meteor on YOU',

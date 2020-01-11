@@ -137,9 +137,9 @@
     },
     {
       id: 'O8N Flagrant Fire Single',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'fire on YOU',
@@ -154,9 +154,9 @@
     },
     {
       id: 'O8N Flagrant Fire Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        return 'Stack on ' + data.ShortName(matches[1]);
+        return 'Stack on ' + data.ShortName(matches.target);
       },
       tts: {
         en: 'stack',

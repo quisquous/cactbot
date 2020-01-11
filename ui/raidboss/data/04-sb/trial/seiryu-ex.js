@@ -139,19 +139,19 @@
     },
     {
       id: 'SeiryuEx Ascending Marker Tracking',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data) {
         return data.blazing;
       },
       run: function(data, matches) {
-        data.markers.push(matches[1]);
+        data.markers.push(matches.target);
       },
     },
     {
       id: 'SeiryuEx Ascending Marker You',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data, matches) {
-        return data.blazing && matches[1] == data.me;
+        return data.blazing && matches.target == data.me;
       },
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
@@ -174,7 +174,7 @@
     },
     {
       id: 'SeiryuEx Ascending Tower You',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9', capture: false }),
       condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;

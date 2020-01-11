@@ -162,9 +162,9 @@
     },
     {
       id: 'Tsukuyomi Meteor Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0083:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0083' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alarmText: {
         en: 'Meteor on YOU',
@@ -175,7 +175,7 @@
     },
     {
       id: 'Tsukuyomi Lunacy',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: {
         en: 'Stack',
         de: 'Stack',
@@ -185,9 +185,9 @@
     },
     {
       id: 'Tsukuyomi Hagetsu',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alertText: {
         en: 'Spread',

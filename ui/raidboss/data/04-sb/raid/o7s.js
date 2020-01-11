@@ -143,9 +143,9 @@
     },
     {
       id: 'O7S Orb Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Orb Marker',
@@ -164,11 +164,10 @@
     },
     {
       id: 'O7S Blue Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       alarmText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
-
         return {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
@@ -178,21 +177,19 @@
         };
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches.target)
           return;
-
         return {
-          en: 'Blue Marker on ' + data.ShortName(matches[1]),
-          de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
-          fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
-          ko: '파란징 → ' + data.ShortName(matches[1]),
-          ja: '青玉 on ' + data.ShortName(matches[1]),
+          en: 'Blue Marker on ' + data.ShortName(matches.target),
+          de: 'Aura-Kanone auf ' + data.ShortName(matches.target),
+          fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
+          ko: '파란징 → ' + data.ShortName(matches.target),
+          ja: '青玉 on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
-
         return {
           en: 'blue marker',
           de: 'aura-kanone',
@@ -204,9 +201,9 @@
     },
     {
       id: 'O7S Prey',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Prey on YOU',
             de: 'Rakete auf DIR',
@@ -216,17 +213,16 @@
           };
         }
         return {
-          en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Beute auf ' + data.ShortName(matches[1]),
-          fr: 'Marquage sur ' + data.ShortName(matches[1]),
-          ko: '빨간징 → ' + data.ShortName(matches[1]),
-          ja: 'マーカー on ' + data.ShortName(matches[1]),
+          en: 'Prey on ' + data.ShortName(matches.target),
+          de: 'Beute auf ' + data.ShortName(matches.target),
+          fr: 'Marquage sur ' + data.ShortName(matches.target),
+          ko: '빨간징 → ' + data.ShortName(matches.target),
+          ja: 'マーカー on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
-
         return {
           en: 'prey',
           de: 'beute',

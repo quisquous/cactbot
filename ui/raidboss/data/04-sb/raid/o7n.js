@@ -85,9 +85,9 @@
     },
     {
       id: 'O7N Prey',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Prey on YOU',
             de: 'Beute auf DIR',
@@ -95,13 +95,13 @@
           };
         }
         return {
-          en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Beute auf ' + data.ShortName(matches[1]),
-          fr: 'Marquage sur ' + data.ShortName(matches[1]),
+          en: 'Prey on ' + data.ShortName(matches.target),
+          de: 'Beute auf ' + data.ShortName(matches.target),
+          fr: 'Marquage sur ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'prey',
             de: 'beute',

@@ -54,9 +54,9 @@
     },
     {
       id: 'O10S Fire Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Fire Marker on YOU',
             de: 'Feuer Marker auf DIR',
@@ -67,15 +67,15 @@
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1])
-          return 'Fire on ' + data.ShortName(matches[1]);
+        if (data.me != matches.target)
+          return 'Fire on ' + data.ShortName(matches.target);
       },
     },
     {
       id: 'O10S Death From Below',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008F:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008F' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Death From Below',
@@ -86,9 +86,9 @@
     },
     {
       id: 'O10S Death From Above',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Death From Above',

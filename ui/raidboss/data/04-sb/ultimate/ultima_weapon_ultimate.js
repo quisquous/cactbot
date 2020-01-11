@@ -70,9 +70,9 @@
     },
     {
       id: 'UWU Garuda Mistral Song Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0010:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0010' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Mistral on YOU',
@@ -85,7 +85,7 @@
     },
     {
       id: 'UWU Garuda Mistral Song Tank',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0010:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0010', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -178,7 +178,7 @@
     },
     {
       id: 'UWU Ifrit Flaming Crush',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0075:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0075', capture: false }),
       alertText: {
         en: 'Stack',
         de: 'Stack',

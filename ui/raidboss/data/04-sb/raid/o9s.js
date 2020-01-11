@@ -203,7 +203,6 @@
         }
       },
     },
-
     // Fire Path
     {
       id: 'O9S Fire Phase Tracking',
@@ -319,7 +318,6 @@
         cn: '中间躲避',
       },
     },
-
     // Water Path
     {
       id: 'O9S Water Phase Tracking',
@@ -401,9 +399,9 @@
     },
     {
       id: 'O9S Knock Down Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: function(data) {
         if (data.phaseType == 'water') {
@@ -425,7 +423,6 @@
         }
       },
     },
-
     // Wind Path
     {
       id: 'O9S Wind Phase Tracking',
@@ -498,7 +495,6 @@
         delete data.wind;
       },
     },
-
     // Earth Path
     {
       id: 'O9S Earth Phase Tracking',
@@ -583,7 +579,7 @@
     },
     {
       id: 'O9S Earth Stack Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Stack with partner',

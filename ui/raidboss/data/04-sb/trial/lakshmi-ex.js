@@ -116,12 +116,12 @@
     },
     { // Stack marker
       id: 'Lakshmi Pall of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
         if (!data.chanchala)
           return;
 
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Vrill + Stack on YOU',
             de: 'Vril + Stack auf DIR',
@@ -136,7 +136,7 @@
         if (data.chanchala)
           return;
 
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
@@ -177,9 +177,9 @@
     },
     { // Offtank cleave
       id: 'Lakshmi Path of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: function(data) {
         return {
@@ -190,9 +190,9 @@
     },
     { // Cross aoe
       id: 'Lakshmi Hand of Grace',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006B:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '006B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         return {
@@ -203,9 +203,9 @@
     },
     { // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006D:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '006D' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         return {
@@ -216,9 +216,9 @@
     },
     { // Red marker during add phase
       id: 'Lakshmi Water III',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Move Away',

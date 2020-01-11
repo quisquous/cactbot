@@ -41,11 +41,10 @@
       //   (4) prey marker (tethered to #3)
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0064', '0065'] }),
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
-
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
@@ -84,7 +83,7 @@
           return false;
 
         data.holyTargets = data.holyTargets || [];
-        data.holyTargets.push(matches[1]);
+        data.holyTargets.push(matches.target);
         return data.holyTargets.length == 4;
       },
       tts: function(data) {
@@ -114,7 +113,7 @@
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0064', '0065'] }),
       alertText: function(data) {
         if (data.librarySpellbladePrinted)
           return;
@@ -142,15 +141,15 @@
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
       delaySeconds: function(data, matches) {
-        return matches[1] == data.me ? 0 : 0.5;
+        return matches.target == data.me ? 0 : 0.5;
       },
       condition: function(data, matches) {
         // This is only for library phase.
         if (data.phase != 3)
           return false;
 
-        if (matches[1] == data.me)
-          data.librarySpellbladeMe = matches[2];
+        if (matches.target == data.me)
+          data.librarySpellbladeMe = matches.id;
 
         return true;
       },

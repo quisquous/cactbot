@@ -125,9 +125,9 @@
     },
     {
       id: 'O4N Flare',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Flare on YOU',
@@ -135,15 +135,15 @@
     },
     {
       id: 'O4N Holy',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },

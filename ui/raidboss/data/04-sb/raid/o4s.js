@@ -815,9 +815,9 @@
     },
     { // Earthshaker
       id: 'O4S2 Earthshaker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: function(data) {
         if (data.role != 'tank') {
