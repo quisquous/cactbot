@@ -160,10 +160,12 @@
     },
     {
       id: 'The Vault Knights March',
-      regex: / 03:\y{ObjectId}:Added new combatant (?:Dawn Knight|Dusk Knight)/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant (?:Dämmerross|Morgenross)/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant (?:Cavalier De L'aube|Cavalier Du Crépuscule)/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant (?:ドーン・オートナイト|ダスク・オートナイト)/,
+      regex: Regexes.addedCombatant({ name: ['Dawn Knight', 'Dusk Knight'], capture: false }),
+      regexDe: Regexes.addedCombatant({ name: ['Dämmerross', 'Morgenross'], capture: false }),
+      regexFr: Regexes.addedCombatant({ name: ['Cavalier De L\'Aube', 'Cavalier Du Crépuscule'], capture: false }),
+      regexJa: Regexes.addedCombatant({ name: ['ドーン・オートナイト', 'ダスク・オートナイト'], capture: false }),
+      regexCn: Regexes.addedCombatant({ name: ['拂晓骑士', '黄昏骑士'], capture: false }),
+      regexKo: Regexes.addedCombatant({ name: ['여명의 자동기사', '황혼의 자동기사'], capture: false }),
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',

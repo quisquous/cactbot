@@ -159,10 +159,12 @@
     },
     {
       id: 'Facility Chaosphere',
-      regex: /03:\y{ObjectId}:Added new combatant Chaosphere/,
-      regexDe: /03:\y{ObjectId}:Added new combatant Chaossphäre/,
-      regexFr: /03:\y{ObjectId}:Added new combatant sphère de chaos/,
-      regexJa: /03:\y{ObjectId}:Added new combatant カオススフィア/,
+      regex: Regexes.addedCombatant({ name: 'Chaosphere', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Chaossphäre', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Sphère De Chaos', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'カオススフィア', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '混沌晶球', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '혼돈의 구체', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid your orb--pop others\'',

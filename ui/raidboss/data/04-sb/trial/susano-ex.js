@@ -16,10 +16,12 @@
   ],
   triggers: [
     { // Thundercloud tracker
-      regex: / 03:\y{ObjectId}:Added new combatant Thunderhead\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Gewitterwolke\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Nuage Orageux\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 雷雲\./,
+      regex: Regexes.addedCombatant({ name: 'Thunderhead', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '雷雲', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '雷云', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '번개구름', capture: false }),
       run: function(data) {
         data.cloud = true;
       },

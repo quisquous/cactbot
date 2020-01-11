@@ -137,10 +137,10 @@
     },
     {
       id: 'HadesEx Arcane Control Orbs',
-      regex: / 03:\y{ObjectId}:Added new combatant Arcane Globe\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Arkane Kugel\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Globe Arcanique\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 球体魔法陣\./,
+      regex: Regexes.addedCombatant({ name: 'Arcane Globe', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Kugel', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Globe Arcanique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '球体魔法陣', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
@@ -151,10 +151,10 @@
     },
     {
       id: 'HadesEx Arcane Control Doors',
-      regex: / 03:\y{ObjectId}:Added new combatant Arcane Font\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Arkaner Körper\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Solide Arcanique\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 立体魔法陣\./,
+      regex: Regexes.addedCombatant({ name: 'Arcane Font', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Körper', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Solide Arcanique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '立体魔法陣', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
@@ -551,10 +551,12 @@
     },
     {
       id: 'HadesEx Aetherial Gaol',
-      regex: / 03:\y{ObjectId}:Added new combatant Aetherial Gaol\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Ätherkerker\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Geôle Éthérée\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant エーテリアル・ジェイル\./,
+      regex: Regexes.addedCombatant({ name: 'Aetherial Gaol', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Ätherkerker', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Geôle Éthérée', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'エーテリアル・ジェイル', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '以太牢狱', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '에테르 감옥', capture: false }),
       infoText: {
         en: 'Break Aetherial Gaol',
         de: 'Zerstöre Ätherkerker',

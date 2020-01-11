@@ -123,11 +123,12 @@
     },
     {
       id: 'O5S Remorse',
-      regex: / 03:\y{ObjectId}:Added new combatant Remorse/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Melancholischer Geist/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Fantôme Mélancolique/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 未練のゴースト/,
-      regexKo: / 03:\y{ObjectId}:Added new combatant 미련이 남은 유령/,
+      regex: Regexes.addedCombatant({ name: 'Remorse', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Melancholisch(?:e|er|es|en) Geist', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Fantôme Mélancolique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '未練のゴースト', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '留恋幽灵', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '미련이 남은 유령', capture: false }),
       infoText: {
         en: 'Knockback Ghost',
         de: 'Rückstoß Geist',

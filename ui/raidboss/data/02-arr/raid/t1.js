@@ -44,6 +44,8 @@
       regexDe: Regexes.addedCombatant({ name: 'Caduceus', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Caducée', capture: false }),
       regexJa: Regexes.addedCombatant({ name: 'カドゥケウス', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '神杖巨蛇', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '카두케우스', capture: false }),
       suppressSeconds: 5,
       condition: function(data) {
         return data.started;
@@ -82,6 +84,8 @@
       regexDe: Regexes.addedCombatant({ name: 'Dunkelmaterien-Schleim', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Gluant De Matière Sombre', capture: false }),
       regexJa: Regexes.addedCombatant({ name: 'ダークマター・スライム', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '暗物质粘液怪', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '암흑물질 슬라임', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {

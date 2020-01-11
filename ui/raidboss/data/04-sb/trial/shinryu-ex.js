@@ -303,10 +303,12 @@
     },
     {
       id: 'ShinryuEx Heart',
-      regex: / 03:\y{ObjectId}:Added new combatant The Worm's Heart/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Shinryus Herz/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Cœur Du Dragon/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 神龍の心核/,
+      regex: Regexes.addedCombatant({ name: 'The Worm\'s Heart', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Shinryus Herz', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Cœur Du Dragon', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '神龍の心核', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '神龙的核心', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '신룡의 심핵', capture: false }),
       condition: function(data) {
         // Prevent ugly heart message on wipe.
         return data.phase == 1;

@@ -49,10 +49,12 @@
     },
     {
       id: 'T7 Renaud',
-      regex: / 03:\y{ObjectId}:Added new combatant Renaud\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Renaud\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Renaud\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ルノー\./,
+      regex: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ルノー', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '雷诺', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '르노', capture: false }),
       infoText: {
         en: 'Renaud Add',
       },

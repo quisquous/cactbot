@@ -197,18 +197,20 @@
     },
     {
       id: 'T9 Dragon Locations',
-      regex: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
+      regex: Regexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
+      regexDe: Regexes.addedCombatantFull({ name: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'] }),
+      regexFr: Regexes.addedCombatantFull({ name: ['corne-de-feu', 'griffe-de-glace ', 'aile-de-foudre'] }),
+      regexJa: Regexes.addedCombatantFull({ name: ['ファイアホーン', 'アイスクロウ', 'サンダーウィング'] }),
+      regexCn: Regexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
+      regexKo: Regexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),
       run: function(data, matches) {
         let names = ['Firehorn', 'Iceclaw', 'Thunderwing'];
-        let idx = names.indexOf(matches[1]);
+        let idx = names.indexOf(matches.name);
         if (idx == -1)
           return;
 
-        let x = parseFloat(matches[2]);
-        let y = parseFloat(matches[3]);
+        let x = parseFloat(matches.x);
+        let y = parseFloat(matches.y);
 
         // Most dragons are out on a circle of radius=~28.
         // Ignore spurious dragons like "Pos: (0.000919255,0.006120025,2.384186E-07)"

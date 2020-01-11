@@ -263,10 +263,12 @@
     },
     {
       id: 'Orbonne Agrias Extra Adds',
-      regex: / 03:\y{ObjectId}:Added new combatant Emblazoned Shield\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Geschmückter Schild\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Pavois Miroitant\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 光輝の大盾\./,
+      regex: Regexes.addedCombatant({ name: 'Emblazoned Shield', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Geschmückt(?:e|er|es|en) Schild', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Pavois Miroitant', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '光輝の大盾', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '光辉的大盾', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '찬란한 방패', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Kill shields with sword',

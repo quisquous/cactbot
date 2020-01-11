@@ -105,10 +105,12 @@
     },
     {
       id: 'T8 Dreadnaught',
-      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Dreadnaught\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Brummonaut\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Cuirassé Dreadnaught\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ドレッドノート\./,
+      regex: Regexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Brummonaut', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Cuirassé Dreadnaught', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ドレッドノート', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '恐慌装甲', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '드레드노트', capture: false }),
       infoText: {
         en: 'Dreadnaught Add',
       },

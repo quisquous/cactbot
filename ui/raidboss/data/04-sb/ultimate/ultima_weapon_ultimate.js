@@ -101,12 +101,12 @@
     },
     {
       id: 'UWU Garuda Spiny Plume',
-      regex: / 03:\y{ObjectId}:Added new combatant Spiny Plume\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 刺羽\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Dorniger Federsturm\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Plume Perforante\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant スパイニープルーム/,
-      regexKo: / 03:\y{ObjectId}:Added new combatant 가시돋힌 깃털\./,
+      regex: Regexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Dornig(?:e|er|es|en) Federsturm', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Plume Perforante', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'スパイニープルーム', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '刺羽', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },

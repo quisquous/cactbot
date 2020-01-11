@@ -292,11 +292,12 @@
     },
     {
       id: 'SeiryuEx Stack',
-      regex: / 03:\y{ObjectId}:Added new combatant Ao-No-Shiki\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Ao no Shiki\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Shiki céruléen\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 蒼の式鬼\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 苍之式鬼\./,
+      regex: Regexes.addedCombatant({ name: 'Ao-No-Shiki', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Ao No Shiki', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Shiki Céruléen', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '蒼の式鬼', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '苍之式鬼', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
