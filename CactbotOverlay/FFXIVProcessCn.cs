@@ -87,9 +87,12 @@ namespace Cactbot {
       fixed (byte* p = source) {
         EntityMemory mem = *(EntityMemory*)&p[0];
 
+        // dump '\0' string terminators
+        var memoryName = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0];
+        var capitalizedName = FFXIV_ACT_Plugin.Common.StringHelper.ToProperCase(memoryName);
+
         EntityData entity = new EntityData() {
-          //dump '\0' string terminators
-          name = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0],
+          name = capitalizedName,
           id = mem.id,
           type = mem.type,
           distance = mem.distance,
