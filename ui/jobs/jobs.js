@@ -519,7 +519,7 @@ class BuffTracker {
         gainAbility: gLang.kAbility.PeculiarLight,
         durationSeconds: {
           'en': 15,
-          'ko': 15,
+          'ko': 10,
         },
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
