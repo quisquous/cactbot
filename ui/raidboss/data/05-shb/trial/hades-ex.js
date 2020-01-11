@@ -243,10 +243,10 @@
     },
     {
       id: 'HadesEx Shades Too Close',
-      regex: Regexes.tether({ id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'] }),
-      regexDe: Regexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'] }),
-      regexFr: Regexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'] }),
-      regexJa: Regexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'] }),
+      regex: Regexes.tether({ id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      regexDe: Regexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
+      regexFr: Regexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
+      regexJa: Regexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'tank';
