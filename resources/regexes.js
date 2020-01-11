@@ -107,14 +107,15 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: target, id, capture
+  // fields: targetId, target, id, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'headMarker', ['target', 'id', 'capture']);
+    validateParams(f, 'headMarker', ['targetId', 'target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{Timestamp} 1B:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1B:' +
+      Regexes.maybeCapture(capture, 'targetId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);
