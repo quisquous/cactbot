@@ -330,12 +330,12 @@
     },
     {
       id: 'E4S Fault Line - Front',
-      regex: / 16:\y{ObjectId}:Titan:411F:Fault Line:/,
-      regexCn: / 16:\y{ObjectId}:泰坦:411F:断裂带:/,
-      regexDe: / 16:\y{ObjectId}:Titan:411F:Bruchlinie:/,
-      regexFr: / 16:\y{ObjectId}:Titan:411F:Faille Tectonique:/,
-      regexJa: / 16:\y{ObjectId}:タイタン:411F:フォールトゾーン:/,
-      regexKo: / 16:\y{ObjectId}:타이탄:411F:단층선:/,
+      regex: Regexes.ability({ id: '411F', source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: '411F', source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: '411F', source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: '411F', source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: '411F', source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: '411F', source: '타이탄', capture: false }),
       infoText: {
         en: 'Tank Charge',
         de: 'Tank wird angefahren',
