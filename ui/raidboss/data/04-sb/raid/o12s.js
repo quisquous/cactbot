@@ -28,13 +28,14 @@
     },
     {
       id: 'O12S Beyond Defense',
-      regex: / 1[56]:\y{ObjectId}:Omega-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 1[56]:\y{ObjectId}:欧米茄-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Omega-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Oméga-M:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:オメガM:332C:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '332C', source: 'Omega-M' }),
+      regexDe: Regexes.ability({ id: '332C', source: 'Omega-M' }),
+      regexFr: Regexes.ability({ id: '332C', source: 'Oméga-M' }),
+      regexJa: Regexes.ability({ id: '332C', source: 'オメガM' }),
+      regexCn: Regexes.ability({ id: '332C', source: '欧米茄M' }),
+      regexKo: Regexes.ability({ id: '332C', source: '오메가 M' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Don\'t Stack!',
