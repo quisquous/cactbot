@@ -67,12 +67,14 @@
     },
     {
       id: 'Rab Mateus Breathless Lose',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Breathless from/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Atemnot from/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Suffocation from/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 呼吸困難 from/,
+      regex: Regexes.losesEffect({ effect: 'Breathless' }),
+      regexDe: Regexes.losesEffect({ effect: 'Atemnot' }),
+      regexFr: Regexes.losesEffect({ effect: 'Suffocation' }),
+      regexJa: Regexes.losesEffect({ effect: '呼吸困難' }),
+      regexCn: Regexes.losesEffect({ effect: '呼吸困难' }),
+      regexKo: Regexes.losesEffect({ effect: '호흡곤란' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.breathless = 0;

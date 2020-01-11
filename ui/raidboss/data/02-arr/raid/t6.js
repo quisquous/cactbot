@@ -69,12 +69,14 @@
     },
     {
       id: 'T6 Honey Off',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honey-Glazed/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honigsüß/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Mielleux/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 蜂蜜/,
+      regex: Regexes.losesEffect({ effect: 'Honey-Glazed' }),
+      regexDe: Regexes.losesEffect({ effect: 'Honigsüß' }),
+      regexFr: Regexes.losesEffect({ effect: 'Mielleux' }),
+      regexJa: Regexes.losesEffect({ effect: '蜂蜜' }),
+      regexCn: Regexes.losesEffect({ effect: '蜂蜜' }),
+      regexKo: Regexes.losesEffect({ effect: '벌꿀' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         delete data.honey;

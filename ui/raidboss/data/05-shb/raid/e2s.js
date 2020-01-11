@@ -54,12 +54,12 @@
     },
     {
       id: 'E2S Spell In Waiting Lose',
-      regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
-      regexCn: / 1E:\y{ObjectId}:虚无行者 loses the effect of 延迟咏唱/,
-      regexDe: / 1E:\y{ObjectId}:Nichtswandler loses the effect of Verzögerung/,
-      regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
-      regexJa: / 1E:\y{ObjectId}:ヴォイドウォーカー loses the effect of ディレイスペル/,
-      regexKo: / 1E:\y{ObjectId}:보이드워커 loses the effect of 지연술/,
+      regex: Regexes.losesEffect({ target: 'Voidwalker', effect: 'Spell-In-Waiting', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Nichtswandler', effect: 'Verzögerung', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'marcheuse du néant', effect: 'Déphasage Incantatoire', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'ヴォイドウォーカー', effect: 'ディレイスペル', capture: false }),
+      regexCn: Regexes.losesEffect({ target: '虚无行者', effect: '延迟咏唱', capture: false }),
+      regexKo: Regexes.losesEffect({ target: '보이드워커', effect: '지연술', capture: false }),
       run: function(data) {
         data.waiting = false;
       },

@@ -28,10 +28,12 @@
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
-      regexDe: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
-      regexFr: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
-      regexJa: / 1E:\y{ObjectId}:ラクシュミ loses the effect of チャンチャラー/,
+      regex: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'ラクシュミ', effect: 'チャンチャラー', capture: false }),
+      regexCn: Regexes.losesEffect({ target: '吉祥天女', effect: '反复无常', capture: false }),
+      regexKo: Regexes.losesEffect({ target: '락슈미', effect: '찬찰라', capture: false }),
       run: function(data) {
         data.chanchala = false;
       },

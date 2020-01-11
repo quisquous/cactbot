@@ -72,12 +72,12 @@
     },
     {
       id: 'E1S Paradise Regained But Lost',
-      regex: / 1E:\y{ObjectId}:Eden Prime loses the effect of Paradise Regained/,
-      regexCn: / 1E:\y{ObjectId}:至尊伊甸 loses the effect of 复乐园/,
-      regexDe: / 1E:\y{ObjectId}:Prim-Eden loses the effect of Wiedergewonnenes Paradies/,
-      regexFr: / 1E:\y{ObjectId}:Primo-Éden loses the effect of Paradis [rR]etrouvé/,
-      regexJa: / 1E:\y{ObjectId}:エデン・プライム loses the effect of パラダイスリゲイン/,
-      regexKo: / 1E:\y{ObjectId}:에덴 프라임 loses the effect of Paradise Regained/,
+      regex: Regexes.losesEffect({ target: 'Eden Prime', effect: 'Paradise Regained', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Prim-Eden', effect: 'Wiedergewonnenes Paradies', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'Primo-Éden', effect: 'Paradis Retrouvé', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'エデン・プライム', effect: 'パラダイスリゲイン', capture: false }),
+      regexCn: Regexes.losesEffect({ target: '至尊伊甸', effect: '复乐园', capture: false }),
+      regexKo: Regexes.losesEffect({ target: '에덴 프라임', effect: 'Paradise Regained', capture: false }),
       run: function(data) {
         data.paradise = false;
       },

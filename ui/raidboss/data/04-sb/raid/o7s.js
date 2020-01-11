@@ -25,13 +25,14 @@
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Aether Rot from/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Ätherfäule from/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Pourriture éthéréenne from/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of エーテルロット from/,
-      regexKo: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 에테르 부패 from/,
+      regex: Regexes.losesEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.losesEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.losesEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.losesEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.losesEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.losesEffect({ effect: '에테르 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.rot = false;
