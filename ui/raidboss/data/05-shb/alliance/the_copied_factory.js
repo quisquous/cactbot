@@ -495,10 +495,10 @@
     },
     {
       id: 'Copied Engels Reverse-Jointed Goliaths',
-      regex: / 15:\y{ObjectId}:Engels:473F:/,
-      regexDe: / 15:\y{ObjectId}:Engels:473F:/,
-      regexFr: / 15:\y{ObjectId}:Engels:473F:/,
-      regexJa: / 15:\y{ObjectId}:エンゲルス:473F:/,
+      regex: Regexes.ability({ id: '473F', source: 'Engels', capture: false }),
+      regexDe: Regexes.ability({ id: '473F', source: 'Engels', capture: false }),
+      regexFr: Regexes.ability({ id: '473F', source: 'Engels', capture: false }),
+      regexJa: Regexes.ability({ id: '473F', source: 'エンゲルス', capture: false }),
       durationSeconds: 4,
       infoText: {
         en: 'Adds (Ignore Small)',
@@ -651,10 +651,10 @@
       // Use the ability before the adds show up, as looking for the added combatant
       // also triggers on the first boss.
       id: 'Copied 9S Serial-Jointed Service Models',
-      regex: / 15:\y{ObjectId}:9S-Operated Walking Fortress:48EA:/,
-      regexDe: / 15:\y{ObjectId}:9S' Mehrbeiniger Panzer:48EA:/,
-      regexFr: / 15:\y{ObjectId}:9S : Avec Multipède Esclave:48EA:/,
-      regexJa: / 15:\y{ObjectId}:９Ｓ：多脚戦車従属:48EA:/,
+      regex: Regexes.ability({ id: '48EA', source: '9S-Operated Walking Fortress', capture: false }),
+      regexDe: Regexes.ability({ id: '48EA', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
+      regexFr: Regexes.ability({ id: '48EA', source: '9S : Avec Multipède Esclave', capture: false }),
+      regexJa: Regexes.ability({ id: '48EA', source: '９Ｓ：多脚戦車従属', capture: false }),
       infoText: {
         en: 'Adds',
         de: 'Adds',

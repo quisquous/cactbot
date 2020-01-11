@@ -377,6 +377,8 @@
       regexDe: Regexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
       regexFr: Regexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
       regexJa: Regexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
+      regexCn: Regexes.abilityFull({ source: '有生命活水', id: '4978' }),
+      regexKo: Regexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
       run: function(data, matches) {
         data.liquidTank = matches.target;
       },
@@ -397,6 +399,8 @@
       regexDe: Regexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
       regexFr: Regexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
       regexJa: Regexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
+      regexCn: Regexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
+      regexKo: Regexes.abilityFull({ source: '순항추격기', id: '497A' }),
       run: function(data, matches) {
         data.cruiseTank = matches.target;
       },
@@ -407,6 +411,8 @@
       regexDe: Regexes.abilityFull({ source: 'Brutalus', id: '497B' }),
       regexFr: Regexes.abilityFull({ source: 'Justicier', id: '497B' }),
       regexJa: Regexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
+      regexCn: Regexes.abilityFull({ source: '残暴正义号', id: '497B' }),
+      regexKo: Regexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
       run: function(data, matches) {
         data.bruteTank = matches.target;
       },
@@ -590,6 +596,8 @@
       regexDe: Regexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '483F', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
+      regexKo: Regexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: function(data) {
         return data.phase == 'brute';
       },
@@ -606,6 +614,8 @@
       regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
       regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '482F', capture: false }),
       regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
+      regexKo: Regexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
@@ -659,6 +669,8 @@
       regexDe: Regexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '4851', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
+      regexKo: Regexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -705,6 +717,8 @@
       regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
       regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
       regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
+      regexKo: Regexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
       infoText: {
         en: 'Break Shield From Front',
@@ -819,6 +833,8 @@
       regexDe: Regexes.ability({ source: 'Brutalus', id: '4850', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '4850', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
+      regexKo: Regexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
       condition: (data) => data.phase == 'brute',
       delaySeconds: 1,
@@ -978,6 +994,8 @@
       regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
+      regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase == 'brute',
       infoText: {
         en: 'avoid ray',
@@ -1201,6 +1219,8 @@
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
+      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
       infoText: {
         en: 'Get Away From Crystals',
@@ -1214,6 +1234,8 @@
       regexDe: Regexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
       regexFr: Regexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
       regexJa: Regexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
+      regexCn: Regexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
+      regexKo: Regexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       suppressSeconds: 100,
       delaySeconds: 1,
       infoText: {
@@ -1242,6 +1264,8 @@
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
+      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase == 'inception',
       alarmText: function(data) {
         let numVulns = Object.keys(data.vuln).length;
@@ -1295,6 +1319,8 @@
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
+      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: function(data) {
         if (data.options.cactbotWormholeStrat) {
           return {
@@ -1384,6 +1410,8 @@
       regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
+      regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1436,6 +1464,8 @@
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
+      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },

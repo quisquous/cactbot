@@ -307,12 +307,12 @@
     },
     {
       id: 'Hades Gaol',
-      regex: / 15:\y{ObjectId}:Hades:417F:/,
-      regexCn: / 15:\y{ObjectId}:哈迪斯:417F:/,
-      regexDe: / 15:\y{ObjectId}:Hades:417F:/,
-      regexFr: / 15:\y{ObjectId}:Hadès:417F:/,
-      regexJa: / 15:\y{ObjectId}:ハーデス:417F:/,
-      regexKo: / 15:\y{ObjectId}:하데스:417F:/,
+      regex: Regexes.ability({ id: '417F', source: 'Hades', capture: false }),
+      regexDe: Regexes.ability({ id: '417F', source: 'Hades', capture: false }),
+      regexFr: Regexes.ability({ id: '417F', source: 'Hadès', capture: false }),
+      regexJa: Regexes.ability({ id: '417F', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.ability({ id: '417F', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.ability({ id: '417F', source: '하데스', capture: false }),
       delaySeconds: 2,
       infoText: {
         en: 'Kill Jail',

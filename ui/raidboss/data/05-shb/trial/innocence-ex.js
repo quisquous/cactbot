@@ -257,12 +257,12 @@
     },
     {
       id: 'InnoEx Adds',
-      regex: / 15:\y{ObjectId}:Innocence:42B0:/,
-      regexCn: / 15:\y{ObjectId}:无瑕灵君:42B0:/,
-      regexDe: / 15:\y{ObjectId}:Innozenz:42B0:/,
-      regexFr: / 15:\y{ObjectId}:Innocence:42B0:/,
-      regexJa: / 15:\y{ObjectId}:イノセンス:42B0:/,
-      regexKo: / 15:\y{ObjectId}:이노센스:42B0:/,
+      regex: Regexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
+      regexDe: Regexes.ability({ id: '42B0', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
+      regexJa: Regexes.ability({ id: '42B0', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.ability({ id: '42B0', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.ability({ id: '42B0', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -277,18 +277,18 @@
     },
     {
       id: 'InnoEx Light Pillar',
-      regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:无瑕灵君:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:이노센스:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '38FC', source: 'Innocence' }),
+      regexDe: Regexes.ability({ id: '38FC', source: 'Innozenz' }),
+      regexFr: Regexes.ability({ id: '38FC', source: 'Innocence' }),
+      regexJa: Regexes.ability({ id: '38FC', source: 'イノセンス' }),
+      regexCn: Regexes.ability({ id: '38FC', source: '无瑕灵君' }),
+      regexKo: Regexes.ability({ id: '38FC', source: '이노센스' }),
       preRun: function(data) {
         data.lightPillar = data.lightPillar || 0;
         data.lightPillar++;
       },
       alarmText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
 
         if (data.lightPillar == 3) {
@@ -311,7 +311,7 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         return {
           en: 'Line Stack',

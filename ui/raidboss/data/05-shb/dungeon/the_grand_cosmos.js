@@ -140,8 +140,10 @@
       // Can't use added combatant here as all these adds exist.
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
-      regex: / 15:\y{ObjectId}:Lover's Ring:368:/,
-      regexFr: / 15:\y{ObjectId}:Bague de l'amoureux:368:/,
+      regex: Regexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
+      regexDe: Regexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
+      regexFr: Regexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
+      regexJa: Regexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
       suppressSeconds: 60,
       infoText: {
         en: 'Kill Extra Add',

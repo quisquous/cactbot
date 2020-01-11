@@ -740,10 +740,12 @@
     },
     { // After tanks take tower damage
       id: 'HadesEx Quadrastrike 3',
-      regex: / 15:\y{ObjectId}:Hades:47F6:Quadrastrike:/,
-      regexDe: / 15:\y{ObjectId}:Hades:47F6:Quadraschlag:/,
-      regexFr: / 15:\y{ObjectId}:Hadès:47F6:Frappe quadruplée:/,
-      regexJa: / 15:\y{ObjectId}:ハーデス:47F6:クアドラストライク:/,
+      regex: Regexes.ability({ id: '47F6', source: 'Hades', capture: false }),
+      regexDe: Regexes.ability({ id: '47F6', source: 'Hades', capture: false }),
+      regexFr: Regexes.ability({ id: '47F6', source: 'Hadès', capture: false }),
+      regexJa: Regexes.ability({ id: '47F6', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.ability({ id: '47F6', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.ability({ id: '47F6', source: '하데스', capture: false }),
       suppressSeconds: 2,
       delaySeconds: 2,
       condition: function(data) {
