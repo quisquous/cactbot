@@ -335,9 +335,9 @@
     },
     {
       id: 'TitaniaEx Uplift Markers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -396,9 +396,9 @@
     },
     {
       id: 'TitaniaEx Peasebomb',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00BD:/,
+      regex: Regexes.headMarker({ id: '008D' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -427,10 +427,10 @@
     },
     {
       id: 'TitaniaEx Adds Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A1:/,
+      regex: Regexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
@@ -445,11 +445,11 @@
           return;
 
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          cn: '靠近 ' + data.ShortName(matches[1]) + '集合',
-          ko: '"' + data.ShortName(matches[1]) + '"에게 모이기',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
         };
       },
     },

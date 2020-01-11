@@ -117,9 +117,9 @@
     },
     {
       id: 'Inno Winged Drop Of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Circle on YOU',

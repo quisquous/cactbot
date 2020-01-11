@@ -349,9 +349,9 @@
     },
     {
       id: 'E1S Vice and Virtue DPS 1',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AE:/,
+      regex: Regexes.headMarker({ id: '00AE' }),
       condition: function(data, matches) {
-        return !data.paradise && data.vice == 'dps' && data.me == matches[1];
+        return !data.paradise && data.vice == 'dps' && data.me == matches.target;
       },
       alertText: {
         en: 'Puddle Spread',
@@ -381,9 +381,9 @@
     },
     {
       id: 'E1S Vice and Virtue Tank Mark',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AE:/,
+      regex: Regexes.headMarker({ id: '00AE' }),
       condition: function(data, matches) {
-        return data.vice == 'tank' && data.me == matches[1];
+        return data.vice == 'tank' && data.me == matches.target;
       },
       infoText: {
         en: 'Tank Laser on YOU',

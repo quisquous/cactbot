@@ -225,9 +225,9 @@
     },
     {
       id: 'ByaEx Bubble',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0065:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0065' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Drop bubble outside',
@@ -272,9 +272,9 @@
     },
     {
       id: 'ByaEx Puddle Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0004:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0004' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'Puddles on YOU',
@@ -293,9 +293,9 @@
     },
     {
       id: 'ByaEx G100',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Get away',

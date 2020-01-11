@@ -75,9 +75,9 @@
     },
     {
       id: 'T9 Meteor Stream',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000[7A9]:/,
+      regex: Regexes.headMarker({ id: '000[7A9]' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Meteor on YOU',
@@ -85,9 +85,9 @@
     },
     {
       id: 'T9 Meteor Stream',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0008:/,
+      regex: Regexes.headMarker({ id: '0008' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread (Meteor Stream)',
@@ -95,15 +95,15 @@
     },
     {
       id: 'T9 Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000F:/,
+      regex: Regexes.headMarker({ id: '000F' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Thermo on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
@@ -325,7 +325,7 @@
     },
     {
       id: 'T9 Dragon Safe Zone',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014', capture: false }),
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
@@ -335,13 +335,13 @@
     },
     {
       id: 'T9 Dragon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
@@ -354,7 +354,7 @@
       },
       tts: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],

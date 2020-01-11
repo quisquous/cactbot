@@ -31,9 +31,9 @@
   triggers: [
     {
       id: 'Anyder Aquatic Lance',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0087:/,
+      regex: Regexes.headMarker({ id: '0087' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'puddle on you',
@@ -105,9 +105,9 @@
     },
     {
       id: 'Anyder Sap Shower',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0078:/,
+      regex: Regexes.headMarker({ id: '0078' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',

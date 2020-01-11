@@ -107,9 +107,9 @@
     },
     {
       id: 'Ridorana Famfrit Dark Cannonade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0037:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0037' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alertText: {
         en: 'Dorito Stack',
@@ -119,9 +119,9 @@
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alertText: {
         en: 'Spread',
@@ -277,9 +277,9 @@
     },
     {
       id: 'Ridorana Construct Accelerate Spread',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       preRun: function(data) {
         data.accelerateSpreadOnMe = true;
@@ -292,15 +292,15 @@
     },
     {
       id: 'Ridorana Construct Accelerate Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0064:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0064' }),
       condition: function(data) {
         return !data.accelerateSpreadOnMe;
       },
       infoText: function(data, matches) {
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Stack auf ' + data.ShortName(matches[1]),
-          fr: 'Stack sur ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Stack auf ' + data.ShortName(matches.target),
+          fr: 'Stack sur ' + data.ShortName(matches.target),
         };
       },
       tts: {

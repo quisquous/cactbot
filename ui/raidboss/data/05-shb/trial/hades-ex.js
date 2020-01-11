@@ -198,9 +198,9 @@
     },
     {
       id: 'HadesEx Ancient Water 3',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Healer Stacks',
@@ -213,9 +213,9 @@
     },
     {
       id: 'HadesEx Ancient Darkness',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:/,
+      regex: Regexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Tank Spread',
@@ -228,7 +228,7 @@
     },
     {
       id: 'HadesEx Ancient Water Unmarked',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:0030|0060):/,
+      regex: Regexes.headMarker({ id: ['0030', '0060'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: function(data) {
@@ -541,9 +541,9 @@
     },
     {
       id: 'HadesEx Captivity',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0078:/,
+      regex: Regexes.headMarker({ id: '0078' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Get Out',
@@ -567,9 +567,9 @@
     },
     {
       id: 'HadesEx Dark Flame',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0064:/,
+      regex: Regexes.headMarker({ id: '0064' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.flame = true;
@@ -582,9 +582,9 @@
     },
     {
       id: 'HadesEx Dark Freeze',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C1:/,
+      regex: Regexes.headMarker({ id: '00C1' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.freeze = true;
@@ -613,9 +613,9 @@
     },
     {
       id: 'HadesEx Nether Blast',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.netherBlast = true;

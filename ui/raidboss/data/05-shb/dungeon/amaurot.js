@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Amaurot Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:/,
+      regex: Regexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       preRun: function(data) {
         data.meteor = (data.meteor || 0) + 1;
@@ -36,9 +36,9 @@
     },
     {
       id: 'Amaurot Spread',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',

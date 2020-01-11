@@ -205,17 +205,17 @@
     },
     {
       // Hatch Collect
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076' }),
       run: function(data, matches) {
         data.hatch = data.hatch || [];
-        data.hatch.push(matches[1]);
+        data.hatch.push(matches.target);
       },
     },
     {
       id: 'UCU Hatch Marker YOU',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Hatch on YOU',
@@ -234,7 +234,7 @@
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 0.25,
       infoText: function(data) {
         if (!data.hatch)
@@ -254,7 +254,7 @@
     },
     {
       // Hatch Cleanup
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -1073,13 +1073,13 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
@@ -1093,7 +1093,7 @@
       },
       tts: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
@@ -1106,27 +1106,27 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
       infoText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         let num = data.naelDiveMarkerCount + 1;
         return {
-          en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
-          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
-          de: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
-          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches[1]),
-          cn: '冲 #' + num + ': ' + data.ShortName(matches[1]),
+          en: 'Dive #' + num + ': ' + data.ShortName(matches.target),
+          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches.target),
+          de: 'Sturz #' + num + ' : ' + data.ShortName(matches.target),
+          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches.target),
+          cn: '冲 #' + num + ': ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014', capture: false }),
       condition: function(data) {
         return !data.trio;
       },
@@ -1136,13 +1136,13 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       run: function(data, matches) {
         data.octetMarker = data.octetMarker || [];
-        data.octetMarker.push(matches[1]);
+        data.octetMarker.push(matches.target);
         if (data.octetMarker.length != 7)
           return;
 
@@ -1181,53 +1181,53 @@
     },
     {
       id: 'UCU Octet Nael Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0077:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0077' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (nael)',
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
-          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (ネール)',
-          cn: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (奈尔)',
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target) + ' (nael)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (ネール)',
+          cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (奈尔)',
         };
       },
     },
     {
       id: 'UCU Octet Dragon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]),
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target),
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target),
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Octet Baha Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0029' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (baha)',
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
-          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (バハ)',
-          cn: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (巴哈)',
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target) + ' (baha)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (バハ)',
+          cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (巴哈)',
         };
       },
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0029:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0029', capture: false }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1323,9 +1323,9 @@
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Megaflare Stack',
@@ -1344,14 +1344,14 @@
     },
     {
       // Megaflare stack tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       run: function(data, matches) {
-        data.megaStack.push(matches[1]);
+        data.megaStack.push(matches.target);
       },
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027', capture: false }),
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1402,7 +1402,7 @@
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1427,9 +1427,9 @@
     },
     {
       id: 'UCU Earthshaker Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Earthshaker on YOU',
@@ -1448,14 +1448,14 @@
     },
     {
       // Earthshaker tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       run: function(data, matches) {
-        data.shakers.push(matches[1]);
+        data.shakers.push(matches.target);
       },
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028', capture: false }),
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)

@@ -110,9 +110,9 @@
     },
     {
       id: 'Orbonne Mustadio Searchlight',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A4:/,
+      regex: Regexes.headMarker({ id: '00A4' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Searchlight on YOU',
@@ -122,9 +122,9 @@
     },
     {
       id: 'Orbonne Spread Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread Marker',
@@ -173,9 +173,9 @@
     },
     {
       id: 'Orbonne Agrias Vacuum',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A5:/,
+      regex: Regexes.headMarker({ id: '00A5' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.agriasGhostCleanse = true;
@@ -226,9 +226,9 @@
     },
     {
       id: 'Orbonne Agrias Hallowed Bolt',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A6:/,
+      regex: Regexes.headMarker({ id: '00A6' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Go To Center',
@@ -416,9 +416,9 @@
     },
     {
       id: 'Orbonne Cid Shadowblade Bubble',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AA:/,
+      regex: Regexes.headMarker({ id: '00AA' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Drop Bubble In Back',
@@ -428,9 +428,9 @@
     },
     {
       id: 'Orbonne Cid Hallowed Bolt',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Bolt on YOU',
@@ -440,9 +440,9 @@
     },
     {
       id: 'Orbonne Cid Crush Weapon',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
+      regex: Regexes.headMarker({ id: '005C' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'GTFO',
@@ -452,7 +452,7 @@
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Stack',
@@ -462,9 +462,9 @@
     },
     {
       id: 'Orbonne Cid Divine Ruination',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:/,
+      regex: Regexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Point Line Outside',
@@ -573,9 +573,9 @@
     },
     {
       id: 'Orbonne Ultima Dark Cannonade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0037:/,
+      regex: Regexes.headMarker({ id: '0037' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Dorito Stack',
@@ -585,9 +585,9 @@
     },
     {
       id: 'Orbonne Ultima Eruption',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0066:/,
+      regex: Regexes.headMarker({ id: '0066' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Eruption on YOU',
@@ -597,9 +597,9 @@
     },
     {
       id: 'Orbonne Ultima Flare IV',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'GTFO',

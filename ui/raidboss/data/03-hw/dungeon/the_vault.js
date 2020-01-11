@@ -86,15 +86,15 @@
     },
     {
       id: 'The Vault Execution',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0020/,
+      regex: Regexes.headMarker({ id: '0020' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Spread marker on YOU',
           };
         }
         return {
-          en: 'Avoid ' + data.ShortName(matches[1]),
+          en: 'Avoid ' + data.ShortName(matches.target),
         };
       },
     },
@@ -152,9 +152,9 @@
     },
     {
       id: 'The Vault Holy Chains',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0061/,
+      regex: Regexes.headMarker({ id: '0061' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Break chains',

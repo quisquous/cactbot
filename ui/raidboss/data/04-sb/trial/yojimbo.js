@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Yojimbo Giga Jump',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Run Marker Away',
@@ -17,9 +17,9 @@
     },
     {
       id: 'Yojimbo Dorito',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0037:/,
+      regex: Regexes.headMarker({ id: '0037' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Dorito Stack',
@@ -29,9 +29,9 @@
     },
     {
       id: 'Yojimbo Gekko',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0090:/,
+      regex: Regexes.headMarker({ id: '0090' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Gekko Marker',
@@ -40,9 +40,9 @@
     },
     {
       id: 'Yojimbo Enchain',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0005:/,
+      regex: Regexes.headMarker({ id: '0005' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'GTFO',

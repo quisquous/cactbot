@@ -185,9 +185,9 @@
     },
     {
       id: 'Rab Rofocale Chariot',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Move In (Chariot)',
@@ -230,9 +230,9 @@
     },
     {
       id: 'Rab Argath Command Scatter',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:007B:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '007B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         if (data.maskValue) {
@@ -251,9 +251,9 @@
     },
     {
       id: 'Rab Argath Command Turn',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:007C:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '007C' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         if (data.maskValue) {

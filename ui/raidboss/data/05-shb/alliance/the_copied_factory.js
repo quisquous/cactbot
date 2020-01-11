@@ -230,9 +230,9 @@
     },
     {
       id: 'Copied Hobbes Short Missile',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C4:/,
+      regex: Regexes.headMarker({ id: '00C4' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Spread',
@@ -340,9 +340,9 @@
     },
     {
       id: 'Copied Flight Unit Ballistic Impact',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Spread',
@@ -414,9 +414,9 @@
     },
     {
       id: 'Copied Engels Precision Guided Missile',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C6:/,
+      regex: Regexes.headMarker({ id: '00C6' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Tank Buster on YOU',
@@ -469,9 +469,9 @@
     },
     {
       id: 'Copied Engels Incendiary Bombing',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Puddle on YOU',
             de: 'Fläsche auf dir',
@@ -482,9 +482,9 @@
     },
     {
       id: 'Copied Engels Guided Missile',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C5:/,
+      regex: Regexes.headMarker({ id: '00C5' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Get Out + Dodge Homing AoE',
             de: 'Geh Raus + Zielsuch-AoE ausweichen',
@@ -588,9 +588,9 @@
     },
     {
       id: 'Copied 9S Ballistic Impact',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Spread',
@@ -600,9 +600,9 @@
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A4:/,
+      regex: Regexes.headMarker({ id: '00A4' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Laser Buster on YOU',

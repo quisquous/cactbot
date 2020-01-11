@@ -94,9 +94,9 @@
     },
     {
       id: 'Holminster Exorcise Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
@@ -104,9 +104,9 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -150,23 +150,23 @@
     },
     {
       id: 'Holminster Chain Down',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
+      regex: Regexes.headMarker({ id: '005C' }),
       condition: function(data, matches) {
-        return data.me != matches[1];
+        return data.me != matches.target;
       },
       infoText: function(data, matches) {
         return {
-          en: 'Break chain on ' + data.ShortName(matches[1]),
-          de: 'Kette von ' + data.ShortName(matches[1]) + ' brechen',
-          fr: 'Cassez les chaînes de ' + data.ShortName(matches[1]),
+          en: 'Break chain on ' + data.ShortName(matches.target),
+          de: 'Kette von ' + data.ShortName(matches.target) + ' brechen',
+          fr: 'Cassez les chaînes de ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'Holminster Taphephobia',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',

@@ -50,9 +50,9 @@
     },
     {
       id: 'RathEx Fire Breath',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0081:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0081' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Fire Breath on YOU',
@@ -62,9 +62,9 @@
     },
     {
       id: 'RathEx Fireball',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(?:0084|005D):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0084', '005D'] }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
@@ -72,9 +72,9 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Stack auf ' + data.ShortName(matches[1]),
-          ko: '쉐어징 "' + data.ShortName(matches[1]) + '"',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Stack auf ' + data.ShortName(matches.target),
+          ko: '쉐어징 "' + data.ShortName(matches.target) + '"',
         };
       },
     },

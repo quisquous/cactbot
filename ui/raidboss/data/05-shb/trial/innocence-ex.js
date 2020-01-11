@@ -345,9 +345,9 @@
     },
     {
       id: 'InnoEx Winged Reprobation Tether',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AC:/,
+      regex: Regexes.headMarker({ id: '00AC' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Tether on YOU',
@@ -360,9 +360,9 @@
     },
     {
       id: 'InnoEx Winged Drop Of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: function(data) {
         if (data.starbirthActive) {

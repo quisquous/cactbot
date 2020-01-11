@@ -164,12 +164,12 @@
     },
     {
       id: 'O12S Electric Slide Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(009[12345678]):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '009[12345678]' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: function(data, matches) {
-        let num = parseInt(matches[2]);
+        let num = parseInt(matches.id);
         let isTriangle = num >= 95;
         num -= 90;
         if (isTriangle)
@@ -194,7 +194,7 @@
     },
     {
       id: 'O12S MF Stack Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       condition: function(data) {
         return !data.isFinalOmega;
       },
@@ -209,9 +209,9 @@
     },
     {
       id: 'O12S Optimized Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Meteor on YOU',
@@ -339,9 +339,9 @@
     },
     {
       id: 'O12S Target Analysis Target',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Vuln on YOU',
             de: 'Verwundbarkeit auf DIR',
@@ -352,14 +352,14 @@
         }
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1] || data.role != 'tank')
+        if (data.me == matches.target || data.role != 'tank')
           return;
         return {
-          en: 'Vuln on ' + data.ShortName(matches[1]),
-          de: 'Verwundbarkeit auf ' + data.ShortName(matches[1]),
-          fr: 'Vulnérabilité sur ' + data.ShortName(matches[1]),
-          ja: '標的 on ' + data.ShortName(matches[1]),
-          cn: '目标识别->' + data.ShortName(matches[1]),
+          en: 'Vuln on ' + data.ShortName(matches.target),
+          de: 'Verwundbarkeit auf ' + data.ShortName(matches.target),
+          fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
+          ja: '標的 on ' + data.ShortName(matches.target),
+          cn: '目标识别->' + data.ShortName(matches.target),
         };
       },
     },
@@ -562,17 +562,17 @@
     },
     {
       // Archive All Marker Tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(003E|0060):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['003E', '0060'] }),
       condition: function(data) {
         return data.isFinalOmega;
       },
       run: function(data, matches) {
-        data.archiveMarkers[matches[1]] = matches[2];
+        data.archiveMarkers[matches.target] = matches.id;
       },
     },
     {
       id: 'O12S Archive All No Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:(?:003E|0060):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['003E', '0060'], capture: false }),
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
@@ -595,9 +595,9 @@
     },
     {
       id: 'O12S Archive All Stack Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
-        return data.isFinalOmega && matches[1] == data.me;
+        return data.isFinalOmega && matches.target == data.me;
       },
       infoText: {
         en: 'Stack on YOU',
@@ -609,9 +609,9 @@
     },
     {
       id: 'O12S Archive All Spread Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.isFinalOmega && matches[1] == data.me;
+        return data.isFinalOmega && matches.target == data.me;
       },
       infoText: {
         en: 'Spread',
@@ -623,8 +623,12 @@
     },
     {
       id: 'O12S Archive All Blue Arrow',
-      regex: / 1B:\y{ObjectId}:Rear Power Unit:....:....:009D:0000:0000:0000:/,
-      regexCn: / 1B:\y{ObjectId}:尾部组:....:....:009D:0000:0000:0000:/,
+      regex: Regexes.headMarker({ target: 'Rear Power Unit', id: '009D', capture: false }),
+      regexDe: Regexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009D', capture: false }),
+      regexFr: Regexes.headMarker({ target: 'unité arrière', id: '009D', capture: false }),
+      regexJa: Regexes.headMarker({ target: 'リアユニット', id: '009D', capture: false }),
+      regexCn: Regexes.headMarker({ target: '尾部组', id: '009D', capture: false }),
+      regexKo: Regexes.headMarker({ target: '후면 유닛', id: '009D', capture: false }),
       alertText: {
         en: 'Back Left',
         de: 'Hinten Links',
@@ -635,8 +639,12 @@
     },
     {
       id: 'O12S Archive All Red Arrow',
-      regex: / 1B:\y{ObjectId}:Rear Power Unit:....:....:009C:0000:0000:0000:/,
-      regexCn: / 1B:\y{ObjectId}:尾部组:....:....:009C:0000:0000:0000:/,
+      regex: Regexes.headMarker({ target: 'Rear Power Unit', id: '009C', capture: false }),
+      regexDe: Regexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009C', capture: false }),
+      regexFr: Regexes.headMarker({ target: 'unité arrière', id: '009C', capture: false }),
+      regexJa: Regexes.headMarker({ target: 'リアユニット', id: '009C', capture: false }),
+      regexCn: Regexes.headMarker({ target: '尾部组', id: '009C', capture: false }),
+      regexKo: Regexes.headMarker({ target: '후면 유닛', id: '009C', capture: false }),
       alertText: {
         en: 'Back Right',
         de: 'Hinten Rechts',
@@ -647,27 +655,29 @@
     },
     {
       // Archive Peripheral Tracking.
-      regex: / 1B:\y{ObjectId}:Right Arm Unit:....:....:009(C|D):0000:0000:0000:/,
-      regexDe: / 1B:\y{ObjectId}:Rechter Arm:....:....:009(C|D):0000:0000:0000:/,
-      regexFr: / 1B:\y{ObjectId}:Unité Bras Droit:....:....:009(C|D):0000:0000:0000:/,
-      regexJa: / 1B:\y{ObjectId}:ライトアームユニット:....:....:009(C|D):0000:0000:0000:/,
-      regexCn: / 1B:\y{ObjectId}:右臂组:....:....:009(C|D):0000:0000:0000:/,
+      regex: Regexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'] }),
+      regexDe: Regexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'] }),
+      regexFr: Regexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'] }),
+      regexJa: Regexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'] }),
+      regexCn: Regexes.headMarker({ target: '右臂组', id: ['009C', '009D'] }),
+      regexKo: Regexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'] }),
       run: function(data, matches) {
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
         data.armValue *= 2;
-        if (matches[1] == 'D')
+        if (matches.id == '009D')
           data.armValue += 1;
         data.numArms++;
       },
     },
     {
       id: 'O12S Archive Peripheral',
-      regex: / 1B:\y{ObjectId}:Right Arm Unit:....:....:009[CD]:0000:0000:0000:/,
-      regexDe: / 1B:\y{ObjectId}:Rechter Arm:....:....:009[CD]:0000:0000:0000:/,
-      regexFr: / 1B:\y{ObjectId}:Unité Bras Droit:....:....:009[CD]:0000:0000:0000:/,
-      regexJa: / 1B:\y{ObjectId}:ライトアームユニット:....:....:009[CD]:0000:0000:0000:/,
-      regexCn: / 1B:\y{ObjectId}:右臂组:....:....:009[CD]:0000:0000:0000:/,
+      regex: Regexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'], capture: false }),
+      regexDe: Regexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'], capture: false }),
+      regexFr: Regexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'], capture: false }),
+      regexJa: Regexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'], capture: false }),
+      regexCn: Regexes.headMarker({ target: '右臂组', id: ['009C', '009D'], capture: false }),
+      regexKo: Regexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
       condition: function(data) {
         return data.numArms == 3;
       },

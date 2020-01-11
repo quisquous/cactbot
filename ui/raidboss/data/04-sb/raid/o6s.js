@@ -67,9 +67,9 @@
     },
     {
       id: 'O6S Demonic Stone',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0001' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Demonic Stone on YOU',
             de: 'Dämonischer Stein auf DIR',
@@ -81,16 +81,16 @@
       },
     },
     {
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       run: function(data, matches) {
-        data.lastKiss = matches[1];
+        data.lastKiss = matches.target;
       },
     },
     {
       id: 'O6S Last Kiss Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Last Kiss on YOU',

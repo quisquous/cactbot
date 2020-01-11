@@ -489,9 +489,9 @@
     },
     {
       id: 'ShinryuEx Tethers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0061:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0061' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       delaySeconds: 3.8,
       infoText: function(data) {
@@ -521,9 +521,9 @@
     },
     {
       id: 'ShinryuEx Tail Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:007E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '007E' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'tail marker on you',
@@ -536,10 +536,10 @@
     },
     {
       id: 'ShinryuEx Shakers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         data.shakerTargets = data.shakerTargets || [];
-        data.shakerTargets.push(matches[1]);
+        data.shakerTargets.push(matches.target);
         return data.shakerTargets.length == 2;
       },
       alarmText: function(data) {
@@ -576,9 +576,9 @@
     },
     {
       id: 'ShinryuEx Cocoon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'spread out',

@@ -160,9 +160,9 @@
     },
     {
       id: 'Titania Uplift Markers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -172,9 +172,9 @@
     },
     {
       id: 'Titania Peasebomb Markers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008D:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00BD' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -184,9 +184,9 @@
     },
     {
       id: 'Titania Pucks Breath Markers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A1:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A1' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
@@ -194,9 +194,9 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Packez-vous sur' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Packez-vous sur' + data.ShortName(matches.target),
         };
       },
     },

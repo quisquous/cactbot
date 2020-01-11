@@ -231,12 +231,12 @@
     },
     {
       id: 'E2S Unholy Darkness No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data) {
         return !data.waiting;
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
@@ -247,31 +247,31 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'にスタック',
-          cn: data.ShortName(matches[1]) + ' 处集合',
-          ko: '"' + data.ShortName(matches[1]) + '"에게 모이세요',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' stacken',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にスタック',
+          cn: data.ShortName(matches.target) + ' 处集合',
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이세요',
         };
       },
     },
     {
       id: 'E2S Unholy Darkness Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'stack';
+        data.spell[matches.target] = 'stack';
       },
     },
     {
       id: 'E2S Unholy Darkness Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Stack',
@@ -284,12 +284,12 @@
     },
     {
       id: 'E2S Countdown Marker Unholy Darkness',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return !data.hellWind && data.spell[matches[1]] == 'stack';
+        return !data.hellWind && data.spell[matches.target] == 'stack';
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
@@ -300,20 +300,20 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'にスタック',
-          cn: data.ShortName(matches[1]) + ' 处集合',
-          ko: '"' + data.ShortName(matches[1]) + '"에게 모이세요',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' stacken',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にスタック',
+          cn: data.ShortName(matches.target) + ' 处集合',
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이세요',
         };
       },
     },
     {
       id: 'E2S Dark Fire No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:004C:/,
+      regex: Regexes.headMarker({ id: '004C' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       alertText: {
         en: 'Spread',
@@ -326,20 +326,20 @@
     },
     {
       id: 'E2S Dark Fire Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:004C:/,
+      regex: Regexes.headMarker({ id: '004C' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'fire';
+        data.spell[matches.target] = 'fire';
       },
     },
     {
       id: 'E2S Dark Fire Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:004C:/,
+      regex: Regexes.headMarker({ id: '004C' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Fire',
@@ -352,9 +352,9 @@
     },
     {
       id: 'E2S Countdown Marker Fire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.spell[data.me] == 'fire';
+        return data.me == matches.target && data.spell[data.me] == 'fire';
       },
       alertText: {
         en: 'Spread',
@@ -367,24 +367,24 @@
     },
     {
       id: 'E2S Shadoweye No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B3:/,
+      regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return !data.waiting;
       },
       alertText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Look Away from ' + data.ShortName(matches[1]),
-            de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
-            fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'を見ないで',
-            cn: '背对 ' + data.ShortName(matches[1]),
-            ko: '"' + data.ShortName(matches[1]) + '" 바라보지 마세요',
+            en: 'Look Away from ' + data.ShortName(matches.target),
+            de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
+            fr: 'Ne regardez pas '+ data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'を見ないで',
+            cn: '背对 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 바라보지 마세요',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Eye on YOU',
             de: 'Auge auf DIR',
@@ -398,20 +398,20 @@
     },
     {
       id: 'E2S Shadoweye Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B3:/,
+      regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'eye';
+        data.spell[matches.target] = 'eye';
       },
     },
     {
       id: 'E2S Shadoweye Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B3:/,
+      regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Shadoweye',
@@ -424,9 +424,9 @@
     },
     {
       id: 'E2S Countdown Marker Shadoweye Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches[1]] == 'eye' && matches[1] == data.me;
+        return data.spell[matches.target] == 'eye' && matches.target == data.me;
       },
       suppressSeconds: 10,
       delaySeconds: 2,
@@ -441,9 +441,9 @@
     },
     {
       id: 'E2S Countdown Marker Shadoweye Other',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches[1]] == 'eye' && data.spell[data.me] != 'eye';
+        return data.spell[matches.target] == 'eye' && data.spell[data.me] != 'eye';
       },
       suppressSeconds: 10,
       delaySeconds: 2,
@@ -451,20 +451,20 @@
       // We could call out both names, but it's probably unnecessary.
       alertText: function(data, matches) {
         return {
-          en: 'Look Away from ' + data.ShortName(matches[1]),
-          de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
-          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'を見ないで',
-          cn: '背对 ' + data.ShortName(matches[1]),
-          ko: '"' + data.ShortName(matches[1]) + '" 바라보지 말기',
+          en: 'Look Away from ' + data.ShortName(matches.target),
+          de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
+          fr: 'Ne regardez pas ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'を見ないで',
+          cn: '背对 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 바라보지 말기',
         };
       },
     },
     {
       id: 'E2S Flare No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       alertText: {
         en: 'Flare',
@@ -477,20 +477,20 @@
     },
     {
       id: 'E2S Flare Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'flare';
+        data.spell[matches.target] = 'flare';
       },
     },
     {
       id: 'E2S Flare Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Flare',
@@ -503,9 +503,9 @@
     },
     {
       id: 'E2S Countdown Marker Flare',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.spell[data.me] == 'flare';
+        return data.me == matches.target && data.spell[data.me] == 'flare';
       },
       alertText: {
         en: 'Flare',
@@ -518,11 +518,11 @@
     },
     {
       id: 'E2S Countdown Marker Flare Healer',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         if (data.role != 'healer')
           return;
-        return data.spell[matches[1]] == 'flare' && data.spell[data.me] != 'flare';
+        return data.spell[matches.target] == 'flare' && data.spell[data.me] != 'flare';
       },
       suppressSeconds: 10,
       infoText: {
@@ -536,9 +536,9 @@
     },
     {
       id: 'E2S Hell Wind No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       // The "no waiting" version comes paired with a stack.
       alarmText: {
@@ -555,9 +555,9 @@
     },
     {
       id: 'E2S Hell Wind Cleanup',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       delaySeconds: 15,
       run: function(data) {
@@ -566,20 +566,20 @@
     },
     {
       id: 'E2S Hell Wind Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'wind';
+        data.spell[matches.target] = 'wind';
       },
     },
     {
       id: 'E2S Hell Wind Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Hell Wind',
@@ -592,11 +592,11 @@
     },
     {
       id: 'E2S Countdown Marker Hell Wind',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         if (data.role == 'healer')
           return false;
-        return data.me == matches[1] && data.spell[data.me] == 'wind';
+        return data.me == matches.target && data.spell[data.me] == 'wind';
       },
       alertText: {
         en: 'Hell Wind: wait for heals',
@@ -609,11 +609,11 @@
     },
     {
       id: 'E2S Countdown Marker Hell Wind Healer',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         if (data.role != 'healer')
           return;
-        return data.spell[matches[1]] == 'wind';
+        return data.spell[matches.target] == 'wind';
       },
       suppressSeconds: 10,
       infoText: {
@@ -627,10 +627,10 @@
     },
     {
       id: 'E2S Countdown Marker Cleanup',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
       run: function(data, matches) {
-        delete data.spell[matches[1]];
+        delete data.spell[matches.target];
       },
     },
     {

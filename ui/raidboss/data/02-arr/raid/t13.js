@@ -66,9 +66,9 @@
     },
     {
       id: 'T13 Megaflare Share',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Megaflare Stack',
@@ -77,9 +77,9 @@
     },
     {
       id: 'T13 Earthshaker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Earthshaker on YOU',

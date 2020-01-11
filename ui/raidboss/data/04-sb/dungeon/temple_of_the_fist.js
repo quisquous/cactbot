@@ -67,9 +67,9 @@
     },
     {
       id: 'Temple Moonseal',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0059:/,
+      regex: Regexes.headMarker({ id: '0059' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in blue',
@@ -77,9 +77,9 @@
     },
     {
       id: 'Temple Sunseal',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0058:/,
+      regex: Regexes.headMarker({ id: '0058' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in red',

@@ -6,15 +6,15 @@
   triggers: [
     {
       id: 'T8 Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regex: Regexes.headMarker({ id: '0011' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Laser Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
