@@ -28,12 +28,12 @@
   triggers: [
     {
       id: 'E4S Earthen Gauntlets',
-      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets:/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E6:大地之手甲:/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge:/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique:/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲:/,
-      regexKo: / 15:\y{ObjectId}:타이탄:40E6:대지의 완갑:/,
+      regex: Regexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: '40E6', source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: '40E6', source: '타이탄', capture: false }),
       run: function(data) {
         data.phase = 'landslide';
         delete data.printedBury;
@@ -41,12 +41,12 @@
     },
     {
       id: 'E4S Earthen Armor',
-      regex: / 15:\y{ObjectId}:Titan:40E[79]:Earthen Armor:/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E[79]:大地之铠:/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E[79]:Gaia-Panzer:/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E[79]:Armure Tellurique:/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E[79]:大地の鎧:/,
-      regexKo: / 15:\y{ObjectId}:타이탄:40E[79]:대지의 갑옷:/,
+      regex: Regexes.ability({ id: '40E7', source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: '40E7', source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: '40E7', source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: '40E7', source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: '40E7', source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: '40E7', source: '타이탄', capture: false }),
       run: function(data) {
         data.phase = 'armor';
         delete data.printedBury;
@@ -177,12 +177,12 @@
     },
     {
       id: 'E4S Massive Landslide - Front',
-      regex: / 15:\y{ObjectId}:Titan:40E6:Earthen Gauntlets:/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E6:大地之手甲:/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E6:Gaia-Armberge:/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E6:Poing Tellurique:/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E6:大地の手甲:/,
-      regexKo: / 15:\y{ObjectId}:타이탄:40E6:대지의 완갑:/,
+      regex: Regexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: '40E6', source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: '40E6', source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: '40E6', source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: '40E6', source: '타이탄', capture: false }),
       alertText: {
         en: 'Landslide: In Front',
         de: 'Armberge: Vor ihm',
@@ -194,12 +194,12 @@
     },
     {
       id: 'E4S Massive Landslide - Sides',
-      regex: / 15:\y{ObjectId}:Titan:4117:Massive Landslide:/,
-      regexCn: / 15:\y{ObjectId}:泰坦:4117:百万地裂:/,
-      regexDe: / 15:\y{ObjectId}:Titan:4117:Gigantischer Bergsturz:/,
-      regexFr: / 15:\y{ObjectId}:Titan:4117:Glissement Apocalyptique:/,
-      regexJa: / 15:\y{ObjectId}:タイタン:4117:メガ・ランドスライド:/,
-      regexKo: / 15:\y{ObjectId}:타이탄:4117:대규모 산사태:/,
+      regex: Regexes.ability({ id: '4117', source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: '4117', source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: '4117', source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: '4117', source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: '4117', source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: '4117', source: '타이탄', capture: false }),
       infoText: {
         en: 'Get to Sides',
         de: 'Zur Seite',
@@ -313,12 +313,12 @@
     },
     {
       id: 'E4S Fault Line - Sides',
-      regex: / 15:\y{ObjectId}:Titan:40E8:Earthen Wheels:/,
-      regexCn: / 15:\y{ObjectId}:泰坦:40E8:大地之车轮:/,
-      regexDe: / 15:\y{ObjectId}:Titan:40E8:Gaia-Räder:/,
-      regexFr: / 15:\y{ObjectId}:Titan:40E8:Pas Tellurique:/,
-      regexJa: / 15:\y{ObjectId}:タイタン:40E8:大地の車輪:/,
-      regexKo: / 15:\y{ObjectId}:타이탄:40E8:대지의 바퀴:/,
+      regex: Regexes.ability({ id: '40E8', source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: '40E8', source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: '40E8', source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: '40E8', source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: '40E8', source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: '40E8', source: '타이탄', capture: false }),
       alertText: {
         en: 'Wheels: On Sides',
         de: 'Räder: Zur Seite',

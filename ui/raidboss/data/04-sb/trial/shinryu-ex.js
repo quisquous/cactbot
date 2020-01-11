@@ -232,10 +232,12 @@
     },
     {
       id: 'ShinryuEx Icicle Left',
-      regex: / 15:\y{ObjectId}:Icicle:25EF:Icicle Impact:.*:-29.99:-15:/,
-      regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-15:/,
-      regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-15:/,
-      regexJa: / 15:\y{ObjectId}:アイシクル:25EF:アイシクルインパクト:.*:-29.99:-15:/,
+      regex: Regexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-15', capture: false }),
+      regexDe: Regexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-15', capture: false }),
+      regexFr: Regexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-15', capture: false }),
+      regexJa: Regexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
+      regexCn: Regexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
+      regexKo: Regexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
       alarmText: {
         en: 'icicle, lean west',
         de: 'Eiszapfen, nach westen',
@@ -243,10 +245,12 @@
     },
     {
       id: 'ShinryuEx Icicle Right',
-      regex: / 15:\y{ObjectId}:Icicle:25EF:Icicle Impact:.*:-29.99:-25:/,
-      regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-25:/,
-      regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-25:/,
-      regexJa: / 15:\y{ObjectId}:アイシクル:25EF:アイシクルインパクト:.*:-29.99:-25:/,
+      regex: Regexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-25', capture: false }),
+      regexDe: Regexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-25', capture: false }),
+      regexFr: Regexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-25', capture: false }),
+      regexJa: Regexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
+      regexCn: Regexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
+      regexKo: Regexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
       alarmText: {
         en: 'icicle, lean east',
         de: 'Eiszapfen, nach Osten',

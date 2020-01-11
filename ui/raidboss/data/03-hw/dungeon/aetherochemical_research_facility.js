@@ -77,24 +77,26 @@
     },
     {
       id: 'Facility Inertia Stream',
-      regex: / 15:\y{ObjectId}:Harmachis:10ED:Inertia Stream:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Harmachis:10ED:Trägheitsstrom:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Horamakhet:10ED:Courant indolent:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ハルマキス:10ED:イナーシャストリーム:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '10ED', source: 'Harmachis' }),
+      regexDe: Regexes.ability({ id: '10ED', source: 'Harmachis' }),
+      regexFr: Regexes.ability({ id: '10ED', source: 'Horemakhet' }),
+      regexJa: Regexes.ability({ id: '10ED', source: 'ハルマキス' }),
+      regexCn: Regexes.ability({ id: '10ED', source: '赫鲁玛奇斯' }),
+      regexKo: Regexes.ability({ id: '10ED', source: '하르마키스' }),
       condition: function(data) {
         // Tanks technically shouldn't assist with this mechanic
         return data.role != 'tank';
       },
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Laser Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.shortName(matches[1]),
-          de: 'Stack auf ' + data.shortName(matches[1]),
-          fr: 'Stack sur ' + data.shortName(matches[1]),
+          en: 'Stack on ' + data.shortName(matches.target),
+          de: 'Stack auf ' + data.shortName(matches.target),
+          fr: 'Stack sur ' + data.shortName(matches.target),
         };
       },
     },

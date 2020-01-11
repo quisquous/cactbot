@@ -6,23 +6,27 @@
   triggers: [
     {
       id: 'T11 Secondary Head',
-      regex: / 15:\y{ObjectId}:Kaliya:B73:Secondary Head:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B73:Nebenkopf:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B73:Tête secondaire:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B73:サブヘッド:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
+      regexDe: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
+      regexFr: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
+      regexJa: Regexes.ability({ source: 'カーリア', id: 'B73' }),
+      regexCn: Regexes.ability({ source: '卡利亚', id: 'B73' }),
+      regexKo: Regexes.ability({ source: '칼리야', id: 'B73' }),
       alertText: function(data, matches) {
         return {
-          en: 'Stun on ' + data.ShortName(matches[1]),
-          fr: 'Stun sur ' + data.ShortName(matches[1]),
+          en: 'Stun on ' + data.ShortName(matches.target),
+          fr: 'Stun sur ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'T11 Seed River First',
-      regex: / 15:\y{ObjectId}:Kaliya:B74:/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B74:/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B74:/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B74:/,
+      regex: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      regexDe: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      regexFr: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      regexJa: Regexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
+      regexCn: Regexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
+      regexKo: Regexes.ability({ source: '칼리야', id: 'B74', capture: false }),
       alertText: function(data) {
         if (data.firstSeed)
           return;
@@ -38,10 +42,12 @@
     },
     {
       id: 'T11 Seed Sea First',
-      regex: / 15:\y{ObjectId}:Kaliya:B75:/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B75:/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B75:/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B75:/,
+      regex: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B75', source: '칼리야', capture: false }),
       alertText: function(data) {
         if (data.firstSeed)
           return;
@@ -102,12 +108,14 @@
     },
     {
       id: 'T11 Forked Lightning',
-      regex: / 15:\y{ObjectId}:Electric Node:B85:Forked Lightning:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Elektrisches Modul:B85:Gabelblitz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Module D'Électrochoc:B85:Éclair ramifié:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷撃システム:B85:フォークライトニング:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: 'B85', source: 'Electric Node' }),
+      regexDe: Regexes.ability({ id: 'B85', source: 'Elektrisch(?:e|er|es|en) Modul' }),
+      regexFr: Regexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
+      regexJa: Regexes.ability({ id: 'B85', source: '雷撃システム' }),
+      regexCn: Regexes.ability({ id: 'B85', source: '雷击系统' }),
+      regexKo: Regexes.ability({ id: 'B85', source: '뇌격 시스템' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'Lightning on YOU',
@@ -116,10 +124,12 @@
     },
     {
       id: 'T11 Phase 3',
-      regex: / 15:\y{ObjectId}:Kaliya:B78:Emergency Mode:/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B78:Notprogramm:/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B78:Mode d'urgence:/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B78:イマージャンシーモード:/,
+      regex: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B78', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B78', source: '칼리야', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Final Phase',

@@ -20,10 +20,12 @@
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
       id: 'Spellblade holy counter',
-      regex: / 15:\y{ObjectId}:Halicarnassus:22EF:Spellblade Holy:/,
-      regexDe: / 15:\y{ObjectId}:Halikarnassos:22EF:Magieklinge Sanctus:/,
-      regexFr: / 15:\y{ObjectId}:Halicarnasse:22EF:Magilame Miracle:/,
-      regexJa: / 15:\y{ObjectId}:ハリカルナッソス:22EF:魔法剣ホーリー:/,
+      regex: Regexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.ability({ id: '22EF', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.ability({ id: '22EF', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.ability({ id: '22EF', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.ability({ id: '22EF', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.ability({ id: '22EF', source: '할리카르나소스', capture: false }),
       run: function(data) {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.

@@ -21,6 +21,8 @@
       regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8', capture: false }),
       regexFr: Regexes.ability({ source: 'Caducée', id: '4B8', capture: false }),
       regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8', capture: false }),
+      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4B8', capture: false }),
+      regexKo: Regexes.ability({ source: '카두케우스', id: '4B8', capture: false }),
       run: function(data) {
         data.started = true;
       },
@@ -31,6 +33,8 @@
       regexDe: Regexes.ability({ source: 'Caduceus', id: '4BA' }),
       regexFr: Regexes.ability({ source: 'Caducée', id: '4BA' }),
       regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4BA' }),
+      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4BA' }),
+      regexKo: Regexes.ability({ source: '카두케우스', id: '4BA' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -60,6 +64,8 @@
       regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8' }),
       regexFr: Regexes.ability({ source: 'Caducée', id: '4B8' }),
       regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8' }),
+      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4B8' }),
+      regexKo: Regexes.ability({ source: '카두케우스', id: '4B8' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },

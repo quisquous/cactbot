@@ -6,10 +6,12 @@
   triggers: [
     {
       id: 'T12 Phase 3',
-      regex: / 15:\y{ObjectId}:Phoenix:B96:/,
-      regexDe: / 15:\y{ObjectId}:Phönix:B96:/,
-      regexFr: / 15:\y{ObjectId}:Phénix:B96:/,
-      regexJa: / 15:\y{ObjectId}:フェニックス:B96:/,
+      regex: Regexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
+      regexDe: Regexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
+      regexFr: Regexes.ability({ id: 'B96', source: 'Phénix', capture: false }),
+      regexJa: Regexes.ability({ id: 'B96', source: 'フェニックス', capture: false }),
+      regexCn: Regexes.ability({ id: 'B96', source: '不死鸟', capture: false }),
+      regexKo: Regexes.ability({ id: 'B96', source: '피닉스', capture: false }),
       sound: 'Long',
       run: function(data) {
         data.phase = 3;

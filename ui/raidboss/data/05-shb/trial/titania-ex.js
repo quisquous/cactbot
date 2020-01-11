@@ -215,12 +215,12 @@
     },
     {
       id: 'TitaniaEx Bramble Knockback',
-      regex: / 15:\y{ObjectId}:Puck:3D42:Puck's Rebuke:/,
-      regexCn: / 15:\y{ObjectId}:帕克:3D42:帕克的指责:/,
-      regexDe: / 15:\y{ObjectId}:Puck:3D42:Pucks Tadel:/,
-      regexFr: / 15:\y{ObjectId}:Puck:3D42:Réprimande De Puck:/,
-      regexJa: / 15:\y{ObjectId}:パック:3D42:パックレビューク:/,
-      regexKo: / 15:\y{ObjectId}:요정의 권속:3D42:요정의 꾸지람:/,
+      regex: Regexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      regexDe: Regexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      regexFr: Regexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      regexJa: Regexes.ability({ id: '3D42', source: 'パック', capture: false }),
+      regexCn: Regexes.ability({ id: '3D42', source: '帕克', capture: false }),
+      regexKo: Regexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
       alertText: {
         en: 'Diagonal Knockback Soon',
         de: 'diagonaler Knockback bald',
