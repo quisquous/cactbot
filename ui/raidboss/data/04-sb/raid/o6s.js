@@ -48,7 +48,7 @@
     },
     {
       id: 'O6S Storms Grip',
-      regex: Regexes.addedCombatant({ name: 'The Storm\'S Grip', capture: false }),
+      regex: Regexes.addedCombatant({ name: 'The Storm\'s Grip', capture: false }),
       regexDe: Regexes.addedCombatant({ name: 'Sturmgebiet', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Zone De Tempête', capture: false }),
       regexJa: Regexes.addedCombatant({ name: '暴風域', capture: false }),

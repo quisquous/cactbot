@@ -303,7 +303,7 @@
     },
     {
       id: 'ShinryuEx Heart',
-      regex: Regexes.addedCombatant({ name: 'The Worm\'S Heart', capture: false }),
+      regex: Regexes.addedCombatant({ name: 'The Worm\'s Heart', capture: false }),
       regexDe: Regexes.addedCombatant({ name: 'Shinryus Herz', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Cœur Du Dragon', capture: false }),
       regexJa: Regexes.addedCombatant({ name: '神龍の心核', capture: false }),
