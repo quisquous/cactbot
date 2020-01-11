@@ -136,7 +136,7 @@
       regexKo: Regexes.tether({ id: '001C', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherA = data.tetherA || [];
-        data.tetherA.push(matches.target);
+        data.tetherA.push(matches.source);
       },
     },
     {
@@ -149,7 +149,7 @@
       regexKo: Regexes.tether({ id: '001D', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherB = data.tetherB || [];
-        data.tetherB.push(matches.target);
+        data.tetherB.push(matches.source);
       },
     },
     {

@@ -95,7 +95,7 @@
       regexCn: Regexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
       regexKo: Regexes.tether({ id: '0004', target: '바하무트 프라임' }),
       condition: function(data, matches) {
-        return data.me == matches.target;
+        return data.me == matches.source;
       },
       infoText: {
         en: 'Tempest Tether on YOU',
