@@ -3,6 +3,7 @@ import urllib.request
 import os
 import io
 import coinach
+import argparse
 
 _OUTPUT_FILE = 'hunt.js'
 
@@ -10,10 +11,11 @@ _BASE_GITHUB = 'https://raw.githubusercontent.com/'
 _CN_GITHUB = 'thewakingsands/ffxiv-datamining-cn/master/'
 _KO_GITHUB = 'Ra-Workspace/ffxiv-datamining-ko/master/csv/'
 
+
 def update_german(list, search, replace):
     output = []
     for name in list:
-        if not search in name:
+        if search not in name:
             output.append(name)
             continue
         for repl in replace:
@@ -95,8 +97,8 @@ def update_raw_csv(monsters, url, locale):
             parse_data(monsters, notorious, locale, process_npc_names(names))
 
 
-def get_from_coinach():
-    reader = coinach.CoinachReader()
+def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
+    reader = coinach.CoinachReader(coinach_path=_saint_conainch_cmd_path, ffxiv_path=_ffxiv_game_path)
     monsters = {}
     update_coinach(monsters, reader)
     update_raw_csv(monsters, _BASE_GITHUB + _CN_GITHUB, 'cn')
@@ -106,13 +108,27 @@ def get_from_coinach():
     for (_, info) in monsters.items():
         all_monsters[info['name']['en']] = info
 
-    writer = coinach.CoinachWriter()
+    writer = coinach.CoinachWriter(cactbot_path=_cactbot_path)
     writer.write(
         os.path.join('resources', _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
         'gMonster',
         all_monsters)
 
+    print(f"File '{_OUTPUT_FILE}' successfully created.")
+
 
 if __name__ == '__main__':
-    get_from_coinach()
+    example_usage = r"python .\gen_hunt_data.py -fp 'E:\FINAL FANTASY XIV - A Realm Reborn' -scp 'F:\SaintCoinach\SaintCoinach.Cmd\bin\Release' -cp 'F:\cactbot'"
+
+    parser = argparse.ArgumentParser(
+        description="Creates hunt.js for the Radar overlay",
+        epilog=example_usage,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+
+    parser.add_argument('-fp', '--ffxiv-path', help="Path to FFXIV installation (None == Default location)")
+    parser.add_argument('-scp', '--saint-coinach-cmd-path', help="Path to SaintCoinach.cmd (None == Default location)")
+    parser.add_argument('-cp', '--cactbot-path', help="Path to CACTBOT (None == Default location)")
+
+    args = parser.parse_args()
+    get_from_coinach(args.ffxiv_path, args.saint_coinach_cmd_path, args.cactbot_path)

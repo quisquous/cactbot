@@ -137,7 +137,7 @@ class CoinachWriter:
         p = os.path.abspath(__file__)
         while True:
             p, tail = os.path.split(p)
-            if tail == 'cactbot':
+            if 'cactbot' in tail:
                 p = os.path.join(p, tail)
                 if self.verbose:
                     print('cactbot: %s' % p)
