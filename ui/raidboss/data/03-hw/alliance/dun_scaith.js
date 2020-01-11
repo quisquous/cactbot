@@ -7,15 +7,15 @@
     // Basic stack occurs across all encounters except Deathgaze.
     {
       id: 'Dun Scaith Generic Stack-up',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
@@ -73,9 +73,9 @@
     },
     {
       id: 'Dun Scaith Aero 2',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046/,
+      regex: Regexes.headMarker({ id: '0046' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Drop Tornado outside',
@@ -109,10 +109,10 @@
     // FERDIAD
     {
       id: 'Dun Scaith Scythe Drop',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017/,
+      regex: Regexes.headMarker({ id: '0017' }),
       suppressSeconds: 5,
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Drop scythe outside',
           };
@@ -401,10 +401,10 @@
     // These triggers are common to both Scathach and Diabolos
     {
       id: 'Dun Scaith Nox Orbs',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C/,
+      regex: Regexes.headMarker({ id: '005C' }),
       suppressSeconds: 5,
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Take orb outside',
           };
@@ -506,15 +506,15 @@
     },
     {
       id: 'Dun Scaith Hollow Night',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005B/,
+      regex: Regexes.headMarker({ id: '005B' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Gaze stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]) + ' and look away',
+          en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
         };
       },
     },
@@ -535,23 +535,23 @@
     {
       // This is the tank version of the stack marker. It has minimal circular bordering
       id: 'Dun Scaith Blindside',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005D/,
+      regex: Regexes.headMarker({ id: '005D' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'Dun Scaith Earth Shaker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Earth Shaker on YOU',
