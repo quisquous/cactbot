@@ -27,7 +27,7 @@
       id: 'T10 Wild Charge',
       regex: Regexes.headMarker({ id: '001F' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Charge on YOU',
             fr: 'Charge sur VOUS',
@@ -37,8 +37,8 @@
       infoText: function(data, matches) {
         if (data.me != matches.target) {
           return {
-            en: 'Charge on ' + data.ShortName(matches[1]),
-            fr: 'Charge sur ' + data.ShortName(matches[1]),
+            en: 'Charge on ' + data.ShortName(matches.target),
+            fr: 'Charge sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -55,10 +55,10 @@
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Prey on ' + data.ShortName(matches[1]),
-            fr: 'Prière sur ' + data.ShortName(matches[1]),
+            en: 'Prey on ' + data.ShortName(matches.target),
+            fr: 'Prière sur ' + data.ShortName(matches.target),
           };
         }
       },

@@ -131,7 +131,7 @@
         };
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches.target)
           return;
         return {
           en: 'Stack',
