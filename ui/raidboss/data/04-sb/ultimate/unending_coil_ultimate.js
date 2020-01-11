@@ -66,13 +66,14 @@
       },
     },
     {
-      regex: / 1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 1[56]:\y{ObjectId}:火角:26C5:火球:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Feuerhorn:26C5:Feuerball:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Corne-de-feu:26C5:Boule De Feu:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:ファイアホーン:26C5:ファイアボール:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '26C5', source: 'Firehorn' }),
+      regexDe: Regexes.ability({ id: '26C5', source: 'Feuerhorn' }),
+      regexFr: Regexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
+      regexJa: Regexes.ability({ id: '26C5', source: 'ファイアホーン' }),
+      regexCn: Regexes.ability({ id: '26C5', source: '火角' }),
+      regexKo: Regexes.ability({ id: '26C5', source: '화염뿔' }),
       run: function(data, matches) {
-        data.fireballs[data.naelFireballCount].push(matches[1]);
+        data.fireballs[data.naelFireballCount].push(matches.target);
       },
     },
     {

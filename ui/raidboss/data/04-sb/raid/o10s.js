@@ -107,11 +107,12 @@
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
-      regex: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Azure Wings:/,
-      regexDe: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Azurschwingen:/,
-      regexFr: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Ailes azur:/,
-      regexJa: / 1[56]:\y{ObjectId}:(?:ミドガルズオルム|):31B[2345]:蒼翼の焔:/,
-      regexCn: / 1[56]:\y{ObjectId}:(?:尘世幻龙|):31B[2345]:/,
+      regex: Regexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      regexDe: Regexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      regexFr: Regexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      regexJa: Regexes.ability({ id: '31B[2345]', source: ['ミドガルズオルム', ''], capture: false }),
+      regexCn: Regexes.ability({ id: '31B[2345]', source: ['尘世幻龙', ''], capture: false }),
+      regexKo: Regexes.ability({ id: '31B[2345]', source: ['미드가르드오름', ''], capture: false }),
       run: function(data) {
         delete data.lastSpinWasHorizontal;
       },

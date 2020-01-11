@@ -22,12 +22,14 @@
     },
     {
       id: 'T6 Thorn Whip',
-      regex: / 1[56]:\y{ObjectId}:Rafflesia:879:Thorn Whip:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Rafflesia:879:Dornenpeitsche:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Rafflesia:879:Fouet de ronces:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:ラフレシア:879:ソーンウィップ:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '879', source: 'Rafflesia' }),
+      regexDe: Regexes.ability({ id: '879', source: 'Rafflesia' }),
+      regexFr: Regexes.ability({ id: '879', source: 'Rafflesia' }),
+      regexJa: Regexes.ability({ id: '879', source: 'ラフレシア' }),
+      regexCn: Regexes.ability({ id: '879', source: '大王花' }),
+      regexKo: Regexes.ability({ id: '879', source: '라플레시아' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         let partners = data.thornMap[data.me];
