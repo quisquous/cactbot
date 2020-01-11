@@ -154,24 +154,26 @@
     },
     {
       id: 'T6 Swarm',
-      regex: / 15:\y{ObjectId}:Rafflesia:7A0:Swarm:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Rafflesia:7A0:Fähenfurz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Rafflesia:7A0:Nuée:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ラフレシア:7A0:スウォーム:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      regexDe: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      regexFr: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      regexJa: Regexes.ability({ id: '7A0', source: 'ラフレシア' }),
+      regexCn: Regexes.ability({ id: '7A0', source: '大王花' }),
+      regexKo: Regexes.ability({ id: '7A0', source: '라플레시아' }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer' || data.job == 'BLU';
+        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Swarm on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
-            en: 'Swarm on ' + data.ShortName(matches[1]),
+            en: 'Swarm on ' + data.ShortName(matches.target),
           };
         }
       },

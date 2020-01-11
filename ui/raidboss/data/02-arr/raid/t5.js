@@ -51,6 +51,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5AC' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5AC' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AC' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AC' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AC' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -72,6 +74,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5AB' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5AB' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AB' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AB' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AB' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -98,6 +102,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       alertText: {
         en: 'DIVEBOMB',
       },
@@ -108,6 +114,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
       infoText: {
@@ -121,6 +129,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '4E3' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '4E3' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '4E3' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '4E3' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '4E3' }),
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -153,6 +163,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5AD' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5AD' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AD' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AD' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AD' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
