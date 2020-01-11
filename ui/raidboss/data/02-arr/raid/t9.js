@@ -268,10 +268,12 @@
     },
     {
       id: 'T9 Tether',
-      regex: / 23:\y{ObjectId}:Firehorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      regexDe: / 23:\y{ObjectId}:Feuerhorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      regexFr: / 23:\y{ObjectId}:Corne-De-Feu:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      regexJa: / 23:\y{ObjectId}:ファイアホーン:\y{ObjectId}:(\y{Name}):....:....:0005:/,
+      regex: Regexes.tether({ id: '0005', source: 'Firehorn' }),
+      regexDe: Regexes.tether({ id: '0005', source: 'Feuerhorn' }),
+      regexFr: Regexes.tether({ id: '0005', source: 'Corne-De-Feu' }),
+      regexJa: Regexes.tether({ id: '0005', source: 'ファイアホーン' }),
+      regexCn: Regexes.tether({ id: '0005', source: '火角' }),
+      regexKo: Regexes.tether({ id: '0005', source: '화염뿔' }),
       preRun: function(data) {
         data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;
@@ -279,16 +281,16 @@
         data.tetherDir = data.tetherCount % 2 ? 'Fire Out' : 'Fire In';
       },
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: data.tetherDir + ' (on YOU)',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: data.tetherDir + ' (on ' + data.ShortName(matches[1]) + ')',
+            en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
           };
         }
       },

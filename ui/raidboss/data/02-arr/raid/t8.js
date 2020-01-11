@@ -50,14 +50,16 @@
     },
     {
       id: 'T8 Homing Missile Warning',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:The Avatar:....:....:0005:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Avatar:....:....:0005:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Bio-Tréant:....:....:0005:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:アバター:....:....:0005:/,
+      regex: Regexes.tether({ id: '0005', target: 'The Avatar' }),
+      regexDe: Regexes.tether({ id: '0005', target: 'Avatar' }),
+      regexFr: Regexes.tether({ id: '0005', target: 'Bio-Tréant' }),
+      regexJa: Regexes.tether({ id: '0005', target: 'アバター' }),
+      regexCn: Regexes.tether({ id: '0005', target: '降世化身' }),
+      regexKo: Regexes.tether({ id: '0005', target: '아바타' }),
       suppressSeconds: 6,
       infoText: function(data, matches) {
         return {
-          en: 'Missile Tether (on ' + data.ShortName(matches[1]) + ')',
+          en: 'Missile Tether (on ' + data.ShortName(matches.source) + ')',
         };
       },
     },
