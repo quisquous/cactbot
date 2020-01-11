@@ -176,12 +176,14 @@
     },
     {
       id: 'Qitana Hound Tether',
-      regex: / 23:\y{ObjectId}:Eros:\y{ObjectId}:(\y{Name}):....:....:0039:/,
-      regexDe: / 23:\y{ObjectId}:Eros:\y{ObjectId}:(\y{Name}):....:....:0039:/,
-      regexFr: / 23:\y{ObjectId}:Éros:\y{ObjectId}:(\y{Name}):....:....:0039:/,
-      regexJa: / 23:\y{ObjectId}:エロース:\y{ObjectId}:(\y{Name}):....:....:0039:/,
+      regex: Regexes.tether({ id: '0039', source: 'Eros' }),
+      regexDe: Regexes.tether({ id: '0039', source: 'Eros' }),
+      regexFr: Regexes.tether({ id: '0039', source: 'Éros' }),
+      regexJa: Regexes.tether({ id: '0039', source: 'エロース' }),
+      regexCn: Regexes.tether({ id: '0039', source: '艾洛斯' }),
+      regexKo: Regexes.tether({ id: '0039', source: '에로스' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Run Away From Boss',

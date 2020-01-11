@@ -455,12 +455,12 @@
     },
     {
       id: 'TitaniaEx Thunder Tether',
-      regex: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexCn: / 23:\y{ObjectId}:缇坦妮雅:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexDe: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexFr: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexJa: / 23:\y{ObjectId}:ティターニア:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexKo: / 23:\y{ObjectId}:티타니아:\y{ObjectId}:\y{Name}:....:....:0054:/,
+      regex: Regexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      regexDe: Regexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      regexFr: Regexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      regexJa: Regexes.tether({ id: '0054', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.tether({ id: '0054', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.tether({ id: '0054', source: '티타니아', capture: false }),
       suppressSeconds: 60,
       alertText: {
         en: 'Initial Thunder Tether',
