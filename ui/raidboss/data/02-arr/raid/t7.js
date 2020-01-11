@@ -6,10 +6,12 @@
   triggers: [
     {
       id: 'T7 Ram',
-      regex: / 14:860:Proto-Chimera starts using The Ram's Voice/,
-      regexDe: / 14:860:Proto-Chimära starts using Stimme Des Widders/,
-      regexFr: / 14:860:Protochimère starts using Voix Du Bélier/,
-      regexJa: / 14:860:プロトキマイラ starts using 氷結の咆哮/,
+      regex: Regexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '860', source: 'Proto-Chimära', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '860', source: 'Protochimère', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
       condition: function(data) {
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
@@ -20,10 +22,12 @@
     },
     {
       id: 'T7 Dragon',
-      regex: / 14:861:Proto-Chimera starts using The Dragon's Voice/,
-      regexDe: / 14:861:Proto-Chimära starts using Stimme Des Drachen/,
-      regexFr: / 14:861:Protochimère starts using Voix Du Dragon/,
-      regexJa: / 14:861:プロトキマイラ starts using 雷電の咆哮/,
+      regex: Regexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '861', source: 'Proto-Chimära', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '861', source: 'Protochimère', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '861', source: 'プロトキマイラ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '861', source: '原型奇美拉', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '861', source: '프로토 키마이라', capture: false }),
       condition: function(data) {
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
@@ -139,30 +143,36 @@
     },
     {
       id: 'T7 Petrifaction 1',
-      regex: / 14:7BB:Lamia Prosector starts using Petrifaction/,
-      regexDe: / 14:7BB:Lamia-Prosektorin starts using Versteinerung/,
-      regexFr: / 14:7BB:Lamia Dissectrice starts using Pétrification/,
-      regexJa: / 14:7BB:ラミア・プロセクター starts using ペトリファクション/,
+      regex: Regexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7BB', source: 'Lamia-Prosektorin', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7BB', source: 'Lamia Dissectrice', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7BB', source: 'ラミア・プロセクター', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7BB', source: '拉米亚解剖女王', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7BB', source: '라미아 시체해부자', capture: false }),
       alertText: {
         en: 'Look Away!',
       },
     },
     {
       id: 'T7 Petrifaction 2',
-      regex: / 14:7B1:Melusine starts using Petrifaction/,
-      regexDe: / 14:7B1:Melusine starts using Versteinerung/,
-      regexFr: / 14:7B1:Mélusine starts using Pétrification/,
-      regexJa: / 14:7B1:メリュジーヌ starts using ペトリファクション/,
+      regex: Regexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7B1', source: 'Mélusine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7B1', source: 'メリュジーヌ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7B1', source: '美瑠姬奴', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7B1', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Look Away!',
       },
     },
     {
       id: 'T7 Tail',
-      regex: / 14:7B2:Melusine starts using Venomous Tail/,
-      regexDe: / 14:7B2:Melusine starts using Venomschweif/,
-      regexFr: / 14:7B2:Mélusine starts using Queue Venimeuse/,
-      regexJa: / 14:7B2:メリュジーヌ starts using ベノモステール/,
+      regex: Regexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7B2', source: 'Mélusine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7B2', source: 'メリュジーヌ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7B2', source: '美瑠姬奴', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Venomous Tail',
       },

@@ -10,6 +10,8 @@
       regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
       regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D4' }),
       regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
+      regexCn: Regexes.startsUsing({ source: '转盘堡', id: '4D4' }),
+      regexKo: Regexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -23,6 +25,8 @@
       regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
       regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D5' }),
       regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
+      regexCn: Regexes.startsUsing({ source: '转盘堡', id: '4D5' }),
+      regexKo: Regexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },

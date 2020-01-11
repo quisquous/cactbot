@@ -65,42 +65,46 @@
     },
     {
       id: 'T8 Brainjack',
-      regex: / 14:7C3:The Avatar starts using Brainjack on (\y{Name})\./,
-      regexDe: / 14:7C3:Avatar starts using Gehirnwäsche on (\y{Name})\./,
-      regexFr: / 14:7C3:Bio-Tréant starts using Détournement Cérébral on (\y{Name})\./,
-      regexJa: / 14:7C3:アバター starts using ブレインジャック on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
+      regexDe: Regexes.startsUsing({ id: '7C3', source: 'Avatar' }),
+      regexFr: Regexes.startsUsing({ id: '7C3', source: 'Bio-Tréant' }),
+      regexJa: Regexes.startsUsing({ id: '7C3', source: 'アバター' }),
+      regexCn: Regexes.startsUsing({ id: '7C3', source: '降世化身' }),
+      regexKo: Regexes.startsUsing({ id: '7C3', source: '아바타' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Brainjack on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Brainjack on ' + data.ShortName(matches[1]),
+            en: 'Brainjack on ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T8 Allagan Field',
-      regex: / 14:7C4:The Avatar starts using Allagan Field on (\y{Name})\./,
-      regexDe: / 14:7C4:Avatar starts using Allagisches Feld on (\y{Name})\./,
-      regexFr: / 14:7C4:Bio-Tréant starts using Champ Allagois on (\y{Name})\./,
-      regexJa: / 14:7C4:アバター starts using アラガンフィールド on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
+      regexDe: Regexes.startsUsing({ id: '7C4', source: 'Avatar' }),
+      regexFr: Regexes.startsUsing({ id: '7C4', source: 'Bio-Tréant' }),
+      regexJa: Regexes.startsUsing({ id: '7C4', source: 'アバター' }),
+      regexCn: Regexes.startsUsing({ id: '7C4', source: '降世化身' }),
+      regexKo: Regexes.startsUsing({ id: '7C4', source: '아바타' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Allagan Field on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Allagan Field on ' + data.ShortName(matches[1]),
+            en: 'Allagan Field on ' + data.ShortName(matches.target),
           };
         }
       },

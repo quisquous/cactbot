@@ -114,10 +114,12 @@
     },
     {
       id: 'T9 Earthshock',
-      regex: / 14:7F5:Dalamud Spawn starts using Earthshock/,
-      regexDe: / 14:7F5:Dalamud-Golem starts using Erdschock/,
-      regexFr: / 14:7F5:Golem De Dalamud starts using Secousse Sismique/,
-      regexJa: / 14:7F5:ダラガブゴーレム starts using アースショック/,
+      regex: Regexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7F5', source: 'Dalamud-Golem', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7F5', source: 'Golem De Dalamud', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7F5', source: 'ダラガブゴーレム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7F5', source: '卫月巨像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7F5', source: '달라가브 골렘', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -127,10 +129,12 @@
     },
     {
       id: 'T9 Heavensfall',
-      regex: / 14:83B:Nael Deus Darnus starts using Heavensfall/,
-      regexDe: / 14:83B:Nael Deus Darnus starts using Himmelssturz/,
-      regexFr: / 14:83B:Nael Deus Darnus starts using Destruction Universelle/,
-      regexJa: / 14:83B:ネール・デウス・ダーナス starts using 天地崩壊/,
+      regex: Regexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '83B', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '83B', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
       alertText: {
         en: 'Heavensfall',
       },
@@ -183,10 +187,12 @@
     },
     {
       id: 'T9 Final Phase',
-      regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
-      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
-      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
-      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
+      regex: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       condition: function(data) {
         return !data.seenFinalPhase;
       },
@@ -228,10 +234,12 @@
     },
     {
       id: 'T9 Final Phase Reset',
-      regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
-      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
-      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
-      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
+      regex: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       run: function(data) {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -256,10 +264,12 @@
     },
     {
       id: 'T9 Dragon Marks',
-      regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
-      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
-      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
-      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
+      regex: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
       infoText: function(data) {
         return {
