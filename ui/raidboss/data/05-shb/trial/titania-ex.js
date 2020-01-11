@@ -300,12 +300,12 @@
     },
     {
       id: 'TitaniaEx Frost Rune 3',
-      regex: / 1[56]:\y{ObjectId}:Titania:3D2B:Frost Rune:/,
-      regexCn: / 1[56]:\y{ObjectId}:缇坦妮雅:3D2B:冰之符文:/,
-      regexDe: / 1[56]:\y{ObjectId}:Titania:3D2B:Frostrune:/,
-      regexFr: / 1[56]:\y{ObjectId}:Titania:3D2B:Rune De Gel:/,
-      regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D2B:氷のルーン:/,
-      regexKo: / 1[56]:\y{ObjectId}:티타니아:3D2B:얼음의 룬:/,
+      regex: Regexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
+      regexDe: Regexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
+      regexFr: Regexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
+      regexJa: Regexes.ability({ id: '3D2B', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.ability({ id: '3D2B', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.ability({ id: '3D2B', source: '티타니아', capture: false }),
       suppressSeconds: 60,
       infoText: {
         en: 'Run In',
@@ -415,12 +415,12 @@
     },
     {
       id: 'TitaniaEx Peasebomb Use',
-      regex: / 1[56]:\y{ObjectId}:Peaseblossom:3D3F:Peasebomb:/,
-      regexCn: / 1[56]:\y{ObjectId}:豌豆花:3D3F:豌豆炸弹:/,
-      regexDe: / 1[56]:\y{ObjectId}:Bohnenblüte:3D3F:Bohnenbombe:/,
-      regexFr: / 1[56]:\y{ObjectId}:Fleur-de-pois:3D3F:Haricot Explosif:/,
-      regexJa: / 1[56]:\y{ObjectId}:ピーズブロッサム:3D3F:ビーズボム:/,
-      regexKo: / 1[56]:\y{ObjectId}:콩나무:3D3F:콩폭탄:/,
+      regex: Regexes.ability({ id: '3D3F', source: 'Peaseblossom', capture: false }),
+      regexDe: Regexes.ability({ id: '3D3F', source: 'Bohnenblüte', capture: false }),
+      regexFr: Regexes.ability({ id: '3D3F', source: 'Fleur-De-Pois', capture: false }),
+      regexJa: Regexes.ability({ id: '3D3F', source: 'ピーズブロッサム', capture: false }),
+      regexCn: Regexes.ability({ id: '3D3F', source: '豌豆花', capture: false }),
+      regexKo: Regexes.ability({ id: '3D3F', source: '콩나무', capture: false }),
       run: function(data) {
         delete data.bomb;
       },
@@ -473,12 +473,12 @@
     },
     {
       id: 'TitaniaEx Thunder Rune',
-      regex: / 1[56]:\y{ObjectId}:Titania:3D29:Thunder Rune:/,
-      regexCn: / 1[56]:\y{ObjectId}:缇坦妮雅:3D29:雷之符文:/,
-      regexDe: / 1[56]:\y{ObjectId}:Titania:3D29:Donnerrune:/,
-      regexFr: / 1[56]:\y{ObjectId}:Titania:3D29:Rune De Foudre:/,
-      regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D29:雷のルーン:/,
-      regexKo: / 1[56]:\y{ObjectId}:티타니아:3D29:번개의 룬:/,
+      regex: Regexes.ability({ id: '3D29', source: 'Titania', capture: false }),
+      regexDe: Regexes.ability({ id: '3D29', source: 'Titania', capture: false }),
+      regexFr: Regexes.ability({ id: '3D29', source: 'Titania', capture: false }),
+      regexJa: Regexes.ability({ id: '3D29', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.ability({ id: '3D29', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.ability({ id: '3D29', source: '티타니아', capture: false }),
       preRun: function(data) {
         data.thunderCount = data.thunderCount || 1;
       },

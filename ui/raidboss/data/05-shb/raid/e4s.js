@@ -245,19 +245,19 @@
       // Bomb positions are all x = (86 west, 100 mid, 114 east), y = (86, 100, 114).
       // Note: as these may hit multiple people, there may be multiple lines for the same bomb.
       id: 'E4S Bury Directions',
-      regex: / 1[56]:\y{ObjectId}:Bomb Boulder:4142:Bury:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexCn: / 1[56]:\y{ObjectId}:爆破岩石:4142:塌方:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexDe: / 1[56]:\y{ObjectId}:Bomber-Brocken:4142:Begraben:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexFr: / 1[56]:\y{ObjectId}:Bombo Rocher:4142:Ensevelissement:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexJa: / 1[56]:\y{ObjectId}:ボムボルダー:4142:衝撃:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexKo: / 1[56]:\y{ObjectId}:바위폭탄:4142:충격:.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
+      regex: Regexes.abilityFull({ id: '4142', source: 'Bomb Boulder' }),
+      regexDe: Regexes.abilityFull({ id: '4142', source: 'Bomber-Brocken' }),
+      regexFr: Regexes.abilityFull({ id: '4142', source: 'Bombo Rocher' }),
+      regexJa: Regexes.abilityFull({ id: '4142', source: 'ボムボルダー' }),
+      regexCn: Regexes.abilityFull({ id: '4142', source: '爆破岩石' }),
+      regexKo: Regexes.abilityFull({ id: '4142', source: '바위폭탄' }),
       condition: function(data) {
         return !data.printedBury;
       },
       durationSeconds: 7,
       alertText: function(data, matches) {
-        let x = matches[1];
-        let y = matches[2];
+        let x = matches.x;
+        let y = matches.y;
 
         if (data.phase == 'armor') {
           // Three line bombs (middle, e/w, w/e), with seismic wave.

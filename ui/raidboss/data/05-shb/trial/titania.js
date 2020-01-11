@@ -135,10 +135,12 @@
     },
     {
       id: 'Titania Frost Rune 3',
-      regex: / 1[56]:\y{ObjectId}:Titania:3D4E:Frost Rune:/,
-      regexDe: / 1[56]:\y{ObjectId}:Titania:3D4E:Frostrune:/,
-      regexFr: / 1[56]:\y{ObjectId}:Titania:3D4E:Rune de gel:/,
-      regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D4E:氷のルーン:/,
+      regex: Regexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
+      regexDe: Regexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
+      regexFr: Regexes.ability({ id: '3D4E', source: 'Titania', capture: false }),
+      regexJa: Regexes.ability({ id: '3D4E', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.ability({ id: '3D4E', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.ability({ id: '3D4E', source: '티타니아', capture: false }),
       suppressSeconds: 60,
       infoText: {
         en: 'Run In',
@@ -214,10 +216,12 @@
     },
     {
       id: 'Titania Mini Add Phase',
-      regex: / 1[56]:\y{ObjectId}:Titania:3D31:/,
-      regexDe: / 1[56]:\y{ObjectId}:Titania:3D31:/,
-      regexFr: / 1[56]:\y{ObjectId}:Titania:3D31:/,
-      regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D31:/,
+      regex: Regexes.ability({ id: '3D31', source: 'Titania', capture: false }),
+      regexDe: Regexes.ability({ id: '3D31', source: 'Titania', capture: false }),
+      regexFr: Regexes.ability({ id: '3D31', source: 'Titania', capture: false }),
+      regexJa: Regexes.ability({ id: '3D31', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.ability({ id: '3D31', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.ability({ id: '3D31', source: '티타니아', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
