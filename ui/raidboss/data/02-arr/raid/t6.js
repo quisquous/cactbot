@@ -6,16 +6,18 @@
   triggers: [
     {
       id: 'T6 Thorn Whip',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
+      regex: Regexes.tether({ id: '0012' }),
+      regexDe: Regexes.tether({ id: '0012' }),
+      regexFr: Regexes.tether({ id: '0012' }),
+      regexJa: Regexes.tether({ id: '0012' }),
+      regexCn: Regexes.tether({ id: '0012' }),
+      regexKo: Regexes.tether({ id: '0012' }),
       run: function(data, matches) {
         data.thornMap = data.thornMap || {};
-        data.thornMap[matches[1]] = data.thornMap[matches[1]] || [];
-        data.thornMap[matches[1]].push(matches[2]);
-        data.thornMap[matches[2]] = data.thornMap[matches[2]] || [];
-        data.thornMap[matches[2]].push(matches[1]);
+        data.thornMap[matches.source] = data.thornMap[matches.source] || [];
+        data.thornMap[matches.source].push(matches.target);
+        data.thornMap[matches.target] = data.thornMap[matches.target] || [];
+        data.thornMap[matches.target].push(matches.source);
       },
     },
     {

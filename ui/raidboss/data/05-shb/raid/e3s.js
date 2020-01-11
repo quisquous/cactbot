@@ -305,14 +305,14 @@
     },
     {
       id: 'E3S Hydrothermal Vent Tether',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Leviathan:....:....:005A:/,
-      regexCn: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:利维亚桑:....:....:005A:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Leviathan:....:....:005A:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Léviathan:....:....:005A:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:リヴァイアサン:....:....:005A:/,
-      regexKo: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:리바이어선:....:....:005A:/,
+      regex: Regexes.tether({ id: '005A', target: 'Leviathan' }),
+      regexDe: Regexes.tether({ id: '005A', target: 'Leviathan' }),
+      regexFr: Regexes.tether({ id: '005A', target: 'Léviathan' }),
+      regexJa: Regexes.tether({ id: '005A', target: 'リヴァイアサン' }),
+      regexCn: Regexes.tether({ id: '005A', target: '利维亚桑' }),
+      regexKo: Regexes.tether({ id: '005A', target: '리바이어선' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.source;
       },
       alertText: {
         en: 'Puddle Tether on YOU',
@@ -325,25 +325,25 @@
     },
     {
       id: 'E3S Hydrothermal Vent Collect',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Leviathan:....:....:005A:/,
-      regexCn: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:利维亚桑:....:....:005A:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Leviathan:....:....:005A:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Léviathan:....:....:005A:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:リヴァイアサン:....:....:005A:/,
-      regexKo: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:리바이어선:....:....:005A:/,
+      regex: Regexes.tether({ id: '005A', target: 'Leviathan' }),
+      regexDe: Regexes.tether({ id: '005A', target: 'Leviathan' }),
+      regexFr: Regexes.tether({ id: '005A', target: 'Léviathan' }),
+      regexJa: Regexes.tether({ id: '005A', target: 'リヴァイアサン' }),
+      regexCn: Regexes.tether({ id: '005A', target: '利维亚桑' }),
+      regexKo: Regexes.tether({ id: '005A', target: '리바이어선' }),
       run: function(data, matches) {
         data.vent = data.vent || [];
-        data.vent.push(matches[1]);
+        data.vent.push(matches.source);
       },
     },
     {
       id: 'E3S Hydrothermal Vent Collect',
-      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Leviathan:....:....:005A:/,
-      regexCn: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:利维亚桑:....:....:005A:/,
-      regexDe: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Leviathan:....:....:005A:/,
-      regexFr: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Léviathan:....:....:005A:/,
-      regexJa: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:リヴァイアサン:....:....:005A:/,
-      regexKo: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:리바이어선:....:....:005A:/,
+      regex: Regexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
+      regexDe: Regexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
+      regexFr: Regexes.tether({ id: '005A', target: 'Léviathan', capture: false }),
+      regexJa: Regexes.tether({ id: '005A', target: 'リヴァイアサン', capture: false }),
+      regexCn: Regexes.tether({ id: '005A', target: '利维亚桑', capture: false }),
+      regexKo: Regexes.tether({ id: '005A', target: '리바이어선', capture: false }),
       condition: function(data) {
         return data.vent.length == 2 && data.vent.indexOf(data.me) == -1 && data.role != 'tank';
       },

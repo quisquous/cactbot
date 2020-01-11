@@ -65,12 +65,14 @@
     },
     {
       id: 'T10 Cyclonic Tether',
-      regex: / 23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
-      regexDe: / 23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
-      regexFr: / 23:\y{ObjectId}:Imdugud:\y{ObjectId}:(\y{Name}):....:....:0015:/,
-      regexJa: / 23:\y{ObjectId}:イムドゥグド:\y{ObjectId}:(\y{Name}):....:....:0015:/,
+      regex: Regexes.tether({ id: '0015', source: 'Imdugud' }),
+      regexDe: Regexes.tether({ id: '0015', source: 'Imdugud' }),
+      regexFr: Regexes.tether({ id: '0015', source: 'Imdugud' }),
+      regexJa: Regexes.tether({ id: '0015', source: 'イムドゥグド' }),
+      regexCn: Regexes.tether({ id: '0015', source: '伊姆都古德' }),
+      regexKo: Regexes.tether({ id: '0015', source: '임두구드' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Cyclonic on YOU',
             fr: 'Chaos cyclonique sur VOUS',
@@ -78,10 +80,10 @@
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Cyclonic on ' + data.ShortName(matches[1]),
-            fr: 'Chaos cyclonique sur ' + data.ShortName(matches[1]),
+            en: 'Cyclonic on ' + data.ShortName(matches.target),
+            fr: 'Chaos cyclonique sur ' + data.ShortName(matches.target),
           };
         }
       },

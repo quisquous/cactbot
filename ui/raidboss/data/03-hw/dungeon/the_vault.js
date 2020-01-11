@@ -123,13 +123,15 @@
     },
     {
       id: 'The Vault Dimensional Torsion',
-      regex: / 23:\y{ObjectId}:Aetherial Tear:\y{ObjectId}:(\y{Name}):....:....:0001:/,
-      regexDe: / 23:\y{ObjectId}:Ätherspalt:\y{ObjectId}:(\y{Name}):....:....:0001:/,
-      regexFr: / 23:\y{ObjectId}:Déchirure Dimensionnelle:\y{ObjectId}:(\y{Name}):....:....:0001:/,
-      regexJa: / 23:\y{ObjectId}:次元の裂け目:\y{ObjectId}:(\y{Name}):....:....:0001:/,
+      regex: Regexes.tether({ id: '0001', source: 'Aetherial Tear' }),
+      regexDe: Regexes.tether({ id: '0001', source: 'Ätherspalt' }),
+      regexFr: Regexes.tether({ id: '0001', source: 'Déchirure Dimensionnelle' }),
+      regexJa: Regexes.tether({ id: '0001', source: '次元の裂け目' }),
+      regexCn: Regexes.tether({ id: '0001', source: '次元裂缝' }),
+      regexKo: Regexes.tether({ id: '0001', source: '차원의 틈새' }),
       suppressSeconds: 5,
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Away from rifts',

@@ -128,32 +128,38 @@
     },
     {
       id: 'T11 Tether Accumulate A',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:カーリア:....:....:001C:/,
+      regex: Regexes.tether({ id: '001C', target: 'Kaliya' }),
+      regexDe: Regexes.tether({ id: '001C', target: 'Kaliya' }),
+      regexFr: Regexes.tether({ id: '001C', target: 'Kaliya' }),
+      regexJa: Regexes.tether({ id: '001C', target: 'カーリア' }),
+      regexCn: Regexes.tether({ id: '001C', target: '卡利亚' }),
+      regexKo: Regexes.tether({ id: '001C', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherA = data.tetherA || [];
-        data.tetherA.push(matches[1]);
+        data.tetherA.push(matches.source);
       },
     },
     {
       id: 'T11 Tether Accumulate B',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:カーリア:....:....:001D:/,
+      regex: Regexes.tether({ id: '001D', target: 'Kaliya' }),
+      regexDe: Regexes.tether({ id: '001D', target: 'Kaliya' }),
+      regexFr: Regexes.tether({ id: '001D', target: 'Kaliya' }),
+      regexJa: Regexes.tether({ id: '001D', target: 'カーリア' }),
+      regexCn: Regexes.tether({ id: '001D', target: '卡利亚' }),
+      regexKo: Regexes.tether({ id: '001D', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherB = data.tetherB || [];
-        data.tetherB.push(matches[1]);
+        data.tetherB.push(matches.source);
       },
     },
     {
       id: 'T11 Tether A',
-      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexDe: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexFr: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexJa: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:カーリア:....:....:001C:/,
+      regex: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      regexDe: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      regexFr: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      regexJa: Regexes.tether({ id: '001C', target: 'カーリア', capture: false }),
+      regexCn: Regexes.tether({ id: '001C', target: '卡利亚', capture: false }),
+      regexKo: Regexes.tether({ id: '001C', target: '칼리야', capture: false }),
       condition: function(data) {
         return data.tetherA.length == 2;
       },
@@ -173,10 +179,12 @@
     },
     {
       id: 'T11 Tether B',
-      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexDe: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexFr: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexJa: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:カーリア:....:....:001D:/,
+      regex: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      regexDe: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      regexFr: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      regexJa: Regexes.tether({ id: '001D', target: 'カーリア', capture: false }),
+      regexCn: Regexes.tether({ id: '001D', target: '卡利亚', capture: false }),
+      regexKo: Regexes.tether({ id: '001D', target: '칼리야', capture: false }),
       condition: function(data) {
         return data.tetherB.length == 2;
       },

@@ -88,12 +88,14 @@
     },
     {
       id: 'T13 Tempest Wing',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Bahamut Prime:....:....:0004:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Bahamut:....:....:0004:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Bahamut:....:....:0004:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:バハムート・プライム:....:....:0004:/,
+      regex: Regexes.tether({ id: '0004', target: 'Bahamut Prime' }),
+      regexDe: Regexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
+      regexFr: Regexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
+      regexJa: Regexes.tether({ id: '0004', target: 'バハムート・プライム' }),
+      regexCn: Regexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
+      regexKo: Regexes.tether({ id: '0004', target: '바하무트 프라임' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.source;
       },
       infoText: {
         en: 'Tempest Tether on YOU',

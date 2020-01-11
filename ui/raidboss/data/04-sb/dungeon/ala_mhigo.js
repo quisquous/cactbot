@@ -71,9 +71,14 @@
     },
     {
       id: 'Ala Mhigo Lightless Spark',
-      regex: / 23:\y{ObjectId}:Zenos Yae Galvus:\y{ObjectId}:(\y{Name}):....:....:0029:/,
+      regex: Regexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      regexDe: Regexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      regexFr: Regexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      regexJa: Regexes.tether({ id: '0029', source: 'ゼノス・イェー・ガルヴァス' }),
+      regexCn: Regexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
+      regexKo: Regexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Face tether out',

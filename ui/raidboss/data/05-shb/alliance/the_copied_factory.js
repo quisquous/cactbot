@@ -310,12 +310,12 @@
     },
     {
       id: 'Copied Goliath Tank Exploder',
-      regex: / 23:\y{ObjectId}:Medium Exploder:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexDe: / 23:\y{ObjectId}:Mittelgroße Selbstzerstörung:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexFr: / 23:\y{ObjectId}:Unité Kamikaze Moyenne:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexJa: / 23:\y{ObjectId}:中型自爆:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regex: Regexes.tether({ id: '0011', source: 'Medium Exploder' }),
+      regexDe: Regexes.tether({ id: '0011', source: 'Mittelgroß(?:e|er|es|en) Selbstzerstörung' }),
+      regexFr: Regexes.tether({ id: '0011', source: 'Unité Kamikaze Moyenne' }),
+      regexJa: Regexes.tether({ id: '0011', source: '中型自爆' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Exploder on YOU',

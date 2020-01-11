@@ -181,12 +181,14 @@
     },
     {
       id: 'HadesEx Dark II Tether',
-      regex: / 23:\y{ObjectId}:Shadow of the Ancients:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexDe: / 23:\y{ObjectId}:Schatten Der Alten:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexFr: / 23:\y{ObjectId}:Spectre d'Ascien:\y{ObjectId}:(\y{Name}):....:....:0011:/,
-      regexJa: / 23:\y{ObjectId}:古代人の影:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regex: Regexes.tether({ id: '0011', source: 'Shadow Of The Ancients' }),
+      regexDe: Regexes.tether({ id: '0011', source: 'Schatten Der Alten' }),
+      regexFr: Regexes.tether({ id: '0011', source: 'Spectre D\'Ascien' }),
+      regexJa: Regexes.tether({ id: '0011', source: '古代人の影' }),
+      regexCn: Regexes.tether({ id: '0011', source: '古代人之影' }),
+      regexKo: Regexes.tether({ id: '0011', source: '고대인의 그림자' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Point Tether Out',
@@ -241,10 +243,10 @@
     },
     {
       id: 'HadesEx Shades Too Close',
-      regex: / 23:\y{ObjectId}:(?:Igeyorhm's Shade|Lahabrea's Shade):\y{ObjectId}:(?:Igeyorhm's Shade|Lahabrea's Shade):....:....:000E:/,
-      regexDe: / 23:\y{ObjectId}:(?:Igeyorhms Schatten|Lahabreas Schatten):\y{Objectid}:(?:Igeyorhms Schatten|Lahabreas Schatten):....:....:000E:/,
-      regexFr: / 23:\y{ObjectId}:(?:Spectre d'Igeyorhm|Spectre De Lahabrea):\y{Objectid}:(?:Spectre d'Igeyorhm|Spectre De Lahabrea):....:....:000E:/,
-      regexJa: / 23:\y{ObjectId}:(?:イゲオルムの影|ラハブレアの影):\y{Objectid}:(?:イゲオルムの影|ラハブレアの影):....:....:000E:/,
+      regex: Regexes.tether({ id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      regexDe: Regexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
+      regexFr: Regexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
+      regexJa: Regexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'tank';

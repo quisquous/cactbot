@@ -83,14 +83,14 @@
     },
     {
       id: 'E1N Vice of Vanity You',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Eden Prime:....:....:0011:/,
-      regexCn: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:至尊伊甸:....:....:0011:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Eden:....:....:0011:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Éden:....:....:0011:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:エデン・プライム:....:....:0011:/,
-      regexKo: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:에덴 프라임:....:....:0011:/,
+      regex: Regexes.tether({ id: '0011', target: 'Eden Prime' }),
+      regexDe: Regexes.tether({ id: '0011', target: 'Prim-Eden' }),
+      regexFr: Regexes.tether({ id: '0011', target: 'Primo-Éden' }),
+      regexJa: Regexes.tether({ id: '0011', target: 'エデン・プライム' }),
+      regexCn: Regexes.tether({ id: '0011', target: '至尊伊甸' }),
+      regexKo: Regexes.tether({ id: '0011', target: '에덴 프라임' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.source;
       },
       alertText: {
         en: 'Tank Laser on YOU',
