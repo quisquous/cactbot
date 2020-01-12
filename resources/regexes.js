@@ -283,6 +283,20 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // fields: name, hp, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0d-combatanthp
+  hasHP: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'hasHP', ['name', 'hp', 'capture']);
+    let capture = trueIfUndefined(f.capture);
+    let str = '\\y{Timestamp} 0D:' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
+      ' HP at ' +
+      Regexes.maybeCapture(capture, 'hp', f.hp, '\\d+') + '%';
+    return Regexes.parse(str);
+  },
+
   // fields: code, line, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
   echo: (f) => {
