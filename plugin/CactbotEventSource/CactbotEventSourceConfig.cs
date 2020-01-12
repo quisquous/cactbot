@@ -27,8 +27,9 @@ namespace Cactbot {
           }
         }
 
-        if (obj.TryGetValue("RemoteVersionSeen", out value)) {
-          result.RemoteVersionSeen = value.ToString();
+        if (obj.TryGetValue("LastUpdateCheck", out value)) {
+          var date = DateTime.Parse(value.ToString(), System.Globalization.CultureInfo.InvariantCulture);
+          result.LastUpdateCheck = date;
         }
       }
 
@@ -48,7 +49,7 @@ namespace Cactbot {
 
     public Dictionary<string, JToken> OverlayData = null;
     
-    public string RemoteVersionSeen = "0.0";
+    public DateTime LastUpdateCheck;
     
     [JsonIgnore]
     public string UserConfigFile {
