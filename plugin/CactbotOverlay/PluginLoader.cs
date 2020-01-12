@@ -11,7 +11,7 @@ namespace Cactbot
     public class PluginLoader : IActPluginV1, IOverlayAddonV2
     {
         private static AssemblyResolver asmResolver;
-        private static Version kMinOverlayPluginVersion = new Version(0, 12, 2);
+        private static Version kMinOverlayPluginVersion = new Version(0, 13, 0);
 
         public void DeInitPlugin()
         {
