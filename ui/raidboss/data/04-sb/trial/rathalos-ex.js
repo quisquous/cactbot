@@ -11,11 +11,12 @@
   triggers: [
     {
       id: 'RathEx Mangle',
-      regex: / 14:(?:2853|2863):Rathalos starts using Mangle/,
-      regexDe: / 14:(?:2853|2863):Rathalos starts using Zerfleischen/,
-      regexFr: / 14:(?:2853|2863):Rathalos starts using Broyage/,
-      regexJa: / 14:(?:2853|2863):リオレウス starts using アギト/,
-      regexKo: / 14:(?:2853|2863):리오레우스 starts using 으깨기/,
+      regex: Regexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2853', '2863'], source: 'Rathalos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2853', '2863'], source: 'リオレウス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2853', '2863'], source: '火龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2853', '2863'], source: '리오레우스', capture: false }),
       infoText: {
         en: 'Mangle',
         de: 'Biss und Schweifhieb',
@@ -24,11 +25,12 @@
     },
     {
       id: 'RathEx Rush',
-      regex: / 14:(?:2856|2861):Rathalos starts using Rush/,
-      regexDe: / 14:(?:2856|2861):Rathalos starts using Stürmen/,
-      regexFr: / 14:(?:2856|2861):Rathalos starts using Ruée/,
-      regexJa: / 14:(?:2856|2861):リオレウス starts using 突進/,
-      regexKo: / 14:(?:2856|2861):리오레우스 starts using 돌진/,
+      regex: Regexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2856', '2861'], source: 'Rathalos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2856', '2861'], source: 'リオレウス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2856', '2861'], source: '火龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2856', '2861'], source: '리오레우스', capture: false }),
       alertText: {
         en: 'Rush',
         de: 'Stürmen',
@@ -37,11 +39,12 @@
     },
     {
       id: 'RathEx Flaming Recoil',
-      regex: / 14:(?:2859|285B):Rathalos starts using Flaming Recoil/,
-      regexDe: / 14:(?:2859|285B):Rathalos starts using Flammenrückstoß/,
-      regexFr: / 14:(?:2859|285B):Rathalos starts using Bond Enflammé/,
-      regexJa: / 14:(?:2859|285B):リオレウス starts using フレイムリコイル/,
-      regexKo: / 14:(?:2859|285B):리오레우스 starts using 반동 화염/,
+      regex: Regexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2859', '285B'], source: 'Rathalos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2859', '285B'], source: 'リオレウス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2859', '285B'], source: '火龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2859', '285B'], source: '리오레우스', capture: false }),
       alarmText: {
         en: 'Flaming Recoil',
         de: 'Flammenschlag vorne',
