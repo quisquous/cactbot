@@ -75,7 +75,7 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Tank buster on ' +data.shortName(matches.target),
+            en: 'Tank buster on ' + data.shortName(matches.target),
           };
         }
       },

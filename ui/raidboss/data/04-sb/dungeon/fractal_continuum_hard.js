@@ -114,12 +114,12 @@
     },
     {
       id: 'Fractal Aether Bend',
-      regex: Regexes.startsUsing({ id: ['AF', 'B0'], source: 'The Ultima Beast', capture: false }),
-      regexDe: Regexes.startsUsing({ id: ['AF', 'B0'], source: 'Ultimativ(?:e|er|es|en) Bestie', capture: false }),
-      regexFr: Regexes.startsUsing({ id: ['AF', 'B0'], source: 'Ultima-Monstre', capture: false }),
-      regexJa: Regexes.startsUsing({ id: ['AF', 'B0'], source: 'アルテマビースト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: ['AF', 'B0'], source: '究极神兽', capture: false }),
-      regexKo: Regexes.startsUsing({ id: ['AF', 'B0'], source: '알테마 비스트', capture: false }),
+      regex: Regexes.startsUsing({ id: ['27AF', '27B0'], source: 'The Ultima Beast', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['27AF', '27B0'], source: 'Ultimativ(?:e|er|es|en) Bestie', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['27AF', '27B0'], source: 'Ultima-Monstre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['27AF', '27B0'], source: 'アルテマビースト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['27AF', '27B0'], source: '究极神兽', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['27AF', '27B0'], source: '알테마 비스트', capture: false }),
       alertText: {
         en: 'Get In',
         de: 'Reingehen',
