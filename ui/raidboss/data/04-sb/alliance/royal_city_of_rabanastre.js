@@ -229,17 +229,23 @@
       },
     },
     {
-      regex: /:Argath Thadalfus:261A:Mask Of Truth:/,
-      regexDe: /:Argath Thadalfus:261A:Maske Der Wahrheit:/,
-      regexFr: /:Argath Thadalfus:261A:Masque De La Vérité:/,
+      regex: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      regexDe: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      regexFr: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      regexJa: Regexes.ability({ source: '冷血剣アルガス', id: '261A', capture: false }),
+      regexCn: Regexes.ability({ source: '冷血剑阿加斯', id: '261A', capture: false }),
+      regexKo: Regexes.ability({ source: '냉혈검 아르가스', id: '261A', capture: false }),
       run: function(data) {
         data.maskValue = true;
       },
     },
     {
-      regex: /:Argath Thadalfus:2619:Mask Of Lies:/,
-      regexDe: /:Argath Thadalfus:2619:Maske Der Lüge:/,
-      regexFr: /:Argath Thadalfus:2619:Masque Du Mensonge:/,
+      regex: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      regexDe: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      regexFr: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      regexJa: Regexes.ability({ source: '冷血剣アルガス', id: '2619', capture: false }),
+      regexCn: Regexes.ability({ source: '冷血剑阿加斯', id: '2619', capture: false }),
+      regexKo: Regexes.ability({ source: '냉혈검 아르가스', id: '2619', capture: false }),
       run: function(data) {
         data.maskValue = false;
       },

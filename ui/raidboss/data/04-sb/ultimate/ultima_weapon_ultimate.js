@@ -25,24 +25,24 @@
   triggers: [
     // Phases
     {
-      regex: /:The Ultima Weapon:2D4D:/,
-      regexCn: /:究极神兵:2D4D:/,
-      regexDe: /:Ultima-Waffe:2D4D:/,
-      regexFr: /:Ultima Arma:2D4D:/,
-      regexJa: /:アルテマウェポン:2D4D:/,
-      regexKo: /:알테마 웨폰:2D4D:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       run: function(data) {
         data.phase = 'suppression';
       },
     },
     {
       // Wait after suppression for primal triggers at the end.
-      regex: /:The Ultima Weapon:2D4D:/,
-      regexCn: /:究极神兵:2D4D:/,
-      regexDe: /:Ultima-Waffe:2D4D:/,
-      regexFr: /:Ultima Arma:2D4D:/,
-      regexJa: /:アルテマウェポン:2D4D:/,
-      regexKo: /:알테마 웨폰:2D4D:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       delaySeconds: 74,
       run: function(data) {
         data.phase = 'finale';
@@ -307,12 +307,12 @@
     },
     {
       id: 'UWU Garuda Finale',
-      regex: /:The Ultima Weapon:2CD3:/,
-      regexCn: /:究极神兵:2CD3:/,
-      regexDe: /:Ultima-Waffe:2CD3:/,
-      regexFr: /:Ultima Arma:2CD3:/,
-      regexJa: /:アルテマウェポン:2CD3:/,
-      regexKo: /:알테마 웨폰:2CD3:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD3', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD3', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD3', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -327,12 +327,12 @@
     },
     {
       id: 'UWU Ifrit Finale',
-      regex: /:The Ultima Weapon:2CD4:/,
-      regexCn: /:究极神兵:2CD4:/,
-      regexDe: /:Ultima-Waffe:2CD4:/,
-      regexFr: /:Ultima Arma:2CD4:/,
-      regexJa: /:アルテマウェポン:2CD4:/,
-      regexKo: /:알테마 웨폰:2CD4:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD4', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD4', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD4', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -347,12 +347,12 @@
     },
     {
       id: 'UWU Titan Finale',
-      regex: /:The Ultima Weapon:2CD5:/,
-      regexCn: /:究极神兵:2CD5:/,
-      regexDe: /:Ultima-Waffe:2CD5:/,
-      regexFr: /:Ultima Arma:2CD5:/,
-      regexJa: /:アルテマウェポン:2CD5:/,
-      regexKo: /:알테마 웨폰:2CD5:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD5', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD5', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD5', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },

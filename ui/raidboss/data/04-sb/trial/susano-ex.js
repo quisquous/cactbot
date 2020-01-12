@@ -74,8 +74,12 @@
     },
     {
       id: 'SusEx Tankbuster',
-      regex: /:Susano readies Stormsplitter\./,
-      regexDe: /:Susano readies Sturmspalter\./,
+      regex: Regexes.ability({ source: 'Susano', id: '2033', capture: false }),
+      regexDe: Regexes.ability({ source: 'Susano', id: '2033', capture: false }),
+      regexFr: Regexes.ability({ source: 'Susano', id: '2033', capture: false }),
+      regexJa: Regexes.ability({ source: 'スサノオ', id: '2033', capture: false }),
+      regexCn: Regexes.ability({ source: '须佐之男', id: '2033', capture: false }),
+      regexKo: Regexes.ability({ source: '스사노오', id: '2033', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank') {
           return {

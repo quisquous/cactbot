@@ -318,14 +318,14 @@
     },
     {
       id: 'T9 Thunder',
-      // Note: The 0A event happens before 'gains the effect' and 'starts
-      // casting on' only includes one person.
-      regex: /:Thunderwing:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /:サンダーウィング:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Thunderwing', id: '7FD' }),
+      regexDe: Regexes.ability({ source: 'Donnerschwinge', id: '7FD' }),
+      regexFr: Regexes.ability({ source: 'Aile-De-Foudre', id: '7FD' }),
+      regexJa: Regexes.ability({ source: 'サンダーウィング', id: '7FD' }),
+      regexCn: Regexes.ability({ source: '雷翼', id: '7FD' }),
+      regexKo: Regexes.ability({ source: '번개날개', id: '7FD' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Thunder on YOU',
