@@ -48,7 +48,12 @@
     },
     {
       id: 'T5 Phase 2',
-      regex: /:Twintania HP at 85%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '85', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '85', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '85', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '85', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '85', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '85', capture: false }),
       sound: 'Long',
     },
     {
@@ -99,7 +104,12 @@
     },
     {
       id: 'T5 Phase 3',
-      regex: /:Twintania HP at 55%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '55', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '55', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '55', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '55', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '55', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '55', capture: false }),
       sound: 'Long',
     },
     {
@@ -162,7 +172,12 @@
     },
     {
       id: 'T5 Phase 4',
-      regex: /:Twintania HP at 29%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '29', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '29', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '29', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '29', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '29', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '29', capture: false }),
       sound: 'Long',
     },
     {

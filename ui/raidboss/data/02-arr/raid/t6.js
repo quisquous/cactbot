@@ -117,7 +117,12 @@
     },
     {
       id: 'T6 Phase 2',
-      regex: / 0D:Rafflesia HP at 70%/,
+      regex: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ラフレシア', hp: '70', capture: false }),
+      regexCn: Regexes.hasHP({ name: '大王花', hp: '70', capture: false }),
+      regexKo: Regexes.hasHP({ name: '라플레시아', hp: '70', capture: false }),
       sound: 'Long',
     },
     {

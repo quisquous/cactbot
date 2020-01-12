@@ -109,7 +109,12 @@
     },
     {
       id: 'T9 Phase 2',
-      regex: /:Nael deus Darnus HP at 64%/,
+      regex: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ネール・デウス・ダーナス', hp: '64', capture: false }),
+      regexCn: Regexes.hasHP({ name: '奈尔·神·达纳斯', hp: '64', capture: false }),
+      regexKo: Regexes.hasHP({ name: '넬 데우스 다르누스', hp: '64', capture: false }),
       sound: 'Long',
     },
     {
