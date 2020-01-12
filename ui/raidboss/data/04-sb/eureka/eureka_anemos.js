@@ -265,10 +265,12 @@
     },
     {
       id: 'Eureka Wraith Count',
-      regex: / 19:Shadow Wraith was defeated by/,
-      regexCn: / 19:暗影幽灵 was defeated by/,
-      regexDe: / 19:Schatten-Geist was defeated by/,
-      regexFr: /(?:Spectre Des Ombres a été vaincu|Vous avez vaincu le spectre des ombres)/,
+      regex: Regexes.wasDefeated({ target: 'Shadow Wraith', capture: false }),
+      regexDe: Regexes.wasDefeated({ target: 'Schatten-Geist', capture: false }),
+      regexFr: Regexes.wasDefeated({ target: 'Spectre Des Ombres', capture: false }),
+      regexJa: Regexes.wasDefeated({ target: 'シャドウ・レイス', capture: false }),
+      regexCn: Regexes.wasDefeated({ target: '暗影幽灵', capture: false }),
+      regexKo: Regexes.wasDefeated({ target: '그림자 망령', capture: false }),
       infoText: function(data) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
