@@ -91,6 +91,8 @@ namespace Cactbot {
         : base(logger) {
       Name = "Cactbot";
 
+      RegisterPresets();
+
       RegisterEventTypes(new List<string>()
       {
         "onForceReload",
@@ -703,6 +705,51 @@ namespace Cactbot {
       }
 
       watchers = null;
+    }
+
+    struct OverlayPreset : IOverlayPreset {
+      public string Name { get; set; }
+      public string Type { get { return "MiniParse"; } }
+      public string Url { get; set; }
+      public int[] Size { get; set; }
+      public bool Locked { get; set; }
+      public List<string> Supports { get { return new List<string>{"modern"}; } }
+    }
+
+    private void RegisterPreset(string name, int width, int height) {
+      var path = new VersionChecker(this).GetCactbotDirectory();
+      string lc = name.ToLowerInvariant();
+      Registry.RegisterOverlayPreset(new OverlayPreset{
+        Name = $"Cactbot {name}",
+        Url = Path.Combine(path, "ui", lc, $"{lc}.html"),
+        Size = new int[] { width, height },
+        Locked = false,
+      });
+    }
+
+    private void RegisterDpsPreset(string name, string file, int width, int height) {
+      var path = new VersionChecker(this).GetCactbotDirectory();
+      string lc = name.ToLowerInvariant();
+      Registry.RegisterOverlayPreset(new OverlayPreset{
+        Name = $"Cactbot DPS {name}",
+        Url = Path.Combine(path, "ui", "dps", lc, $"{file}.html"),
+        Size = new int[] { width, height },
+        Locked = false,
+      });
+    }
+
+    private void RegisterPresets() {
+      RegisterPreset("Raidboss", width:1100, height:300);
+      RegisterPreset("Jobs", width:700, height:700);
+      RegisterPreset("Eureka", width:400, height:400);
+      RegisterPreset("Fisher", width:500, height:500);
+      RegisterPreset("OopsyRaidsy", width:400, height:400);
+      RegisterPreset("PullCounter", width:200, height:200);
+      RegisterPreset("Radar", width:300, height:400);
+      RegisterPreset("Test", width:300, height:300);
+      // FIXME: these should be consistently named.
+      RegisterDpsPreset("Xephero", "xephero-cactbot", width:600, height:400);
+      RegisterDpsPreset("Rdmty", "dps", width:600, height:400);
     }
 
     // State that is tracked and sent to JS when it changes.
