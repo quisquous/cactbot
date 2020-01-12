@@ -790,7 +790,7 @@ class BuffTracker {
     if (b.gainRegex && !log.match(b.gainRegex))
       return;
 
-    let seconds = b.durationSeconds[gLang.lang] || b.durationSeconds['en'];
+    let seconds = b.durationSeconds;
     let source = abilitySourceFromLog(log);
     this.onBigBuff(b.name, seconds, b, source);
   }
@@ -803,7 +803,7 @@ class BuffTracker {
     if (b.useEffectDuration)
       seconds = gainSecondsFromLog(log);
     else if ('durationSeconds' in b)
-      seconds = b.durationSeconds[gLang.lang] || b.durationSeconds['en'];
+      seconds = b.durationSeconds;
 
     let source = gainSourceFromLog(log);
     this.onBigBuff(b.name, seconds, b, source);
