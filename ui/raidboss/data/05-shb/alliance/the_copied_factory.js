@@ -56,9 +56,9 @@
     },
     {
       id: 'Copied Serial Energy Assault',
-      regex: Regexes.startsUsing({ id: '48B5', source: 'Serial-Jointed Command Model', capture: fa
-      regexDe: Regexes.startsUsing({ id: '48B5', source: 'Befehlsmodell Mit Omnigelenk', capture:
-      regexFr: Regexes.startsUsing({ id: '48B5', source: 'Modèle Multiarticulé : Commandant', capt
+      regex: Regexes.startsUsing({ id: '48B5', source: 'Serial-Jointed Command Model', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '48B5', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '48B5', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48B5', source: '多関節型：司令機', capture: false }),
       alertText: {
         en: 'Get Behind',
