@@ -18,12 +18,14 @@
   triggers: [
     {
       id: 'Ridorana Famfrit Tide Pode',
-      regex: / 14:2C3E:Famfrit, The Darkening Cloud starts using Tide Pod on (\y{Name})/,
-      regexDe: / 14:2C3E:Dunkelfürst Famfrit starts using Gezeitenschlag on (\y{Name})/,
-      regexFr: / 14:2C3E:Famfrit Le Nuage Ténébreux starts using Frappe Aqueuse on (\y{Name})/,
-      regexJa: / 14:2C3E:暗黒の雲ファムフリート starts using 水流弾 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2C3E', source: 'Famfrit, The Darkening Cloud' }),
+      regexDe: Regexes.startsUsing({ id: '2C3E', source: 'Dunkelfürst Famfrit' }),
+      regexFr: Regexes.startsUsing({ id: '2C3E', source: 'Famfrit Le Nuage Ténébreux' }),
+      regexJa: Regexes.startsUsing({ id: '2C3E', source: '暗黒の雲ファムフリート' }),
+      regexCn: Regexes.startsUsing({ id: '2C3E', source: '暗黑之云法姆弗里特' }),
+      regexKo: Regexes.startsUsing({ id: '2C3E', source: '암흑의 구름 팜프리트' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -32,17 +34,17 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer')
+        if (matches.target == data.me || data.role != 'healer')
           return;
 
         return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          en: 'Buster on ' + data.ShortName(matches.target),
+          de: 'Tankbuster auf ' + data.ShortName(matches.target),
+          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -53,10 +55,12 @@
     },
     {
       id: 'Ridorana Famfrit Tsunami',
-      regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
-      regexDe: / 14:2C50:Dunkelfürst Famfrit starts using Sturzflut/,
-      regexFr: / 14:2C50:Famfrit Le Nuage Ténébreux starts using Tsunami/,
-      regexJa: / 14:2C50:暗黒の雲ファムフリート starts using 大海嘯/,
+      regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C50', source: '暗黒の雲ファムフリート', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 4.5,
       alertText: {
         en: 'Look for Tsunami',
@@ -71,10 +75,12 @@
     },
     {
       id: 'Ridorana Famfrit Tsunami',
-      regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
-      regexDe: / 14:2C50:Dunkelfürst Famfrit starts using Sturzflut/,
-      regexFr: / 14:2C50:Famfrit Le Nuage Ténébreux starts using Tsunami/,
-      regexJa: / 14:2C50:暗黒の雲ファムフリート starts using 大海嘯/,
+      regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C50', source: '暗黒の雲ファムフリート', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 16.5,
       alertText: {
         en: 'Look for Tsunami',
@@ -89,10 +95,12 @@
     },
     {
       id: 'Ridorana Famfrit Tsunami',
-      regex: / 14:2C50:Famfrit, The Darkening Cloud starts using Tsunami/,
-      regexDe: / 14:2C50:Dunkelfürst Famfrit starts using Sturzflut/,
-      regexFr: / 14:2C50:Famfrit Le Nuage Ténébreux starts using Tsunami/,
-      regexJa: / 14:2C50:暗黒の雲ファムフリート starts using 大海嘯/,
+      regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C50', source: '暗黒の雲ファムフリート', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C50', source: '暗黑之云法姆弗里特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C50', source: '암흑의 구름 팜프리트', capture: false }),
       delaySeconds: 28.5,
       alertText: {
         en: 'Look for Tsunami',
@@ -151,12 +159,14 @@
     },
     {
       id: 'Ridorana Belias Fire',
-      regex: / 14:2CDB:Belias, The Gigas starts using Fire on (\y{Name})/,
-      regexDe: / 14:2CDB:Dämonid Belias starts using Feuer on (\y{Name})/,
-      regexFr: / 14:2CDB:Bélias Le Titan starts using Feu on (\y{Name})/,
-      regexJa: / 14:2CDB:魔人ベリアス starts using ファイア on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2CDB', source: 'Belias, The Gigas' }),
+      regexDe: Regexes.startsUsing({ id: '2CDB', source: 'Dämonid Belias' }),
+      regexFr: Regexes.startsUsing({ id: '2CDB', source: 'Bélias Le Titan' }),
+      regexJa: Regexes.startsUsing({ id: '2CDB', source: '魔人ベリアス' }),
+      regexCn: Regexes.startsUsing({ id: '2CDB', source: '魔人贝利亚斯' }),
+      regexKo: Regexes.startsUsing({ id: '2CDB', source: '마인 벨리아스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -165,17 +175,17 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer')
+        if (matches.target == data.me || data.role != 'healer')
           return;
 
         return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          en: 'Buster on ' + data.ShortName(matches.target),
+          de: 'Tankbuster auf ' + data.ShortName(matches.target),
+          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -186,10 +196,12 @@
     },
     {
       id: 'Ridorana Belias Time Eruption',
-      regex: / 14:2CDE:Belias, The Gigas starts using Time Eruption/,
-      regexDe: / 14:2CDE:Dämonid Belias starts using Zeiteruption/,
-      regexFr: / 14:2CDE:Bélias Le Titan starts using Éruption À Retardement/,
-      regexJa: / 14:2CDE:魔人ベリアス starts using タイムエラプション/,
+      regex: Regexes.startsUsing({ id: '2CDE', source: 'Belias, The Gigas', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2CDE', source: 'Dämonid Belias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2CDE', source: 'Bélias Le Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2CDE', source: '魔人ベリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2CDE', source: '魔人贝利亚斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2CDE', source: '마인 벨리아스', capture: false }),
       infoText: {
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
@@ -215,10 +227,12 @@
     },
     {
       id: 'Ridorana Belias Time Bomb',
-      regex: / 14:2CE6:Belias, The Gigas starts using Time Bomb/,
-      regexDe: / 14:2CE6:Dämonid Belias starts using Zeitbombe/,
-      regexFr: / 14:2CE6:Bélias Le Titan starts using Bombe À Retardement/,
-      regexJa: / 14:2CE6:魔人ベリアス starts using タイムボム/,
+      regex: Regexes.startsUsing({ id: '2CE6', source: 'Belias, The Gigas', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2CE6', source: 'Dämonid Belias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2CE6', source: 'Bélias Le Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2CE6', source: '魔人ベリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2CE6', source: '魔人贝利亚斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2CE6', source: '마인 벨리아스', capture: false }),
       infoText: {
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
@@ -242,12 +256,14 @@
     },
     {
       id: 'Ridorana Construct Destroy',
-      regex: / 14:(?:2C5A|2C71):Construct 7 starts using Destroy on (\y{Name})/,
-      regexDe: / 14:(?:2C5A|2C71):Automat Nr. 7 starts using Zerstören on (\y{Name})/,
-      regexFr: / 14:(?:2C5A|2C71):Bâtisseur N°7 starts using Détruire on (\y{Name})/,
-      regexJa: / 14:(?:2C5A|2C71):労働七号 starts using 破壊する on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['2C5A', '2C71'], source: 'Construct 7' }),
+      regexDe: Regexes.startsUsing({ id: ['2C5A', '2C71'], source: 'Automat Nr\\. 7' }),
+      regexFr: Regexes.startsUsing({ id: ['2C5A', '2C71'], source: 'Bâtisseur N°7' }),
+      regexJa: Regexes.startsUsing({ id: ['2C5A', '2C71'], source: '労働七号' }),
+      regexCn: Regexes.startsUsing({ id: ['2C5A', '2C71'], source: '劳动七号' }),
+      regexKo: Regexes.startsUsing({ id: ['2C5A', '2C71'], source: '노동 7호' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -256,17 +272,17 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer')
+        if (matches.target == data.me || data.role != 'healer')
           return;
 
         return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          en: 'Buster on ' + data.ShortName(matches.target),
+          de: 'Tankbuster auf ' + data.ShortName(matches.target),
+          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -311,20 +327,24 @@
     },
     {
       // Accelerate cleanup
-      regex: / 14:2C65:Construct 7 starts using Accelerate/,
-      regexDe: / 14:2C65:Automat Nr. 7 starts using Beschleunigen/,
-      regexFr: / 14:2C65:Bâtisseur N°7 starts using Aplatir/,
-      regexJa: / 14:2C65:労働七号 starts using 突貫する/,
+      regex: Regexes.startsUsing({ id: '2C65', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C65', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C65', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C65', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C65', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C65', source: '노동 7호', capture: false }),
       run: function(data) {
         delete data.accelerateSpreadOnMe;
       },
     },
     {
       // TODO: need an "always run this trigger when starting zone" option
-      regex: / 14:2C6C:Construct 7 starts using Subtract/,
-      regexDe: / 14:2C6C:Automat Nr. 7 starts using Subtrahieren/,
-      regexFr: / 14:2C6C:Bâtisseur N°7 starts using Soustraire/,
-      regexJa: / 14:2C6C:労働七号 starts using 減算する/,
+      regex: Regexes.startsUsing({ id: '2C6C', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C6C', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C6C', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C6C', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C6C', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C6C', source: '노동 7호', capture: false }),
       run: function(data) {
         data.mathBaseValue = 0;
         data.mathDirection = function() {
@@ -401,10 +421,12 @@
     },
     {
       id: 'Ridorana Construct Divide By Five',
-      regex: / 14:2CCD:Construct 7 starts using Divide By Five/,
-      regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 5 teilen einzusetzen./,
-      regexFr: / 14:2CCD:Bâtisseur N°7 starts using Arithmétique : Multiples De 5/,
-      regexJa: / 14:2CCD:労働七号 starts using 算術：5倍数/,
+      regex: Regexes.startsUsing({ id: '2CCD', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2CCD', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2CCD', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2CCD', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2CCD', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2CCD', source: '노동 7호', capture: false }),
       preRun: function(data) {
         data.correctMath = [-1, 4, 3, 2, 1, 0, 4, 3, 2, 1];
       },
@@ -414,10 +436,12 @@
     },
     {
       id: 'Ridorana Construct Divide By Four',
-      regex: / 14:2CCC:Construct 7 starts using Divide By Four/,
-      regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 4 teilen einzusetzen./,
-      regexFr: / 14:2CCC:Bâtisseur N°7 starts using Arithmétique : Multiples De 4/,
-      regexJa: / 14:2CCC:労働七号 starts using 算術：4倍数/,
+      regex: Regexes.startsUsing({ id: '2CCC', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2CCC', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2CCC', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2CCC', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2CCC', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2CCC', source: '노동 7호', capture: false }),
       preRun: function(data) {
         data.correctMath = [-1, 3, 2, 1, 0, 3, 2, 1, 0, 3];
       },
@@ -427,10 +451,12 @@
     },
     {
       id: 'Ridorana Construct Divide By Three',
-      regex: / 14:2CCA:Construct 7 starts using Divide By Three/,
-      regexDe: / Der Automat Nr. 7 beginnt, Arithmetik: Durch 3 teilen einzusetzen./,
-      regexFr: / 14:2CCA:Bâtisseur N°7 starts using Arithmétique : Multiples De 3/,
-      regexJa: / 14:2CCA:労働七号 starts using 算術：3倍数/,
+      regex: Regexes.startsUsing({ id: '2CCA', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2CCA', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2CCA', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2CCA', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2CCA', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2CCA', source: '노동 7호', capture: false }),
       preRun: function(data) {
         data.correctMath = [-1, 2, 1, 0, 2, 1, 0, 2, 1, 0];
       },
@@ -440,10 +466,12 @@
     },
     {
       id: 'Ridorana Construct Indivisible',
-      regex: / 14:2CCE:Construct 7 starts using Indivisible/,
-      regexDe: / 14:2CCE:Automat Nr. 7 starts using Unteilbar/,
-      regexFr: / 14:2CCE:Bâtisseur N°7 starts using Arithmétique : Nombres Premiers/,
-      regexJa: / 14:2CCE:労働七号 starts using 算術：素数/,
+      regex: Regexes.startsUsing({ id: '2CCE', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2CCE', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2CCE', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2CCE', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2CCE', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2CCE', source: '노동 7호', capture: false }),
       preRun: function(data) {
         data.correctMath = [-1, 1, 0, 0, 1, 0, 1, 0, 3, 2];
       },
@@ -453,10 +481,12 @@
     },
     {
       id: 'Ridorana Construct Pulverize',
-      regex: / 14:2C61:Construct 7 starts using Pulverize/,
-      regexDe: / 14:2C61:Automat Nr. 7 starts using Zermahlen/,
-      regexFr: / 14:2C61:Bâtisseur N°7 starts using Broyer/,
-      regexJa: / 14:2C61:労働七号 starts using 粉砕する/,
+      regex: Regexes.startsUsing({ id: '2C61', source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C61', source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C61', source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C61', source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C61', source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C61', source: '노동 7호', capture: false }),
       // 16 yalms
       alertText: {
         en: 'Get Out',
@@ -466,10 +496,12 @@
     },
     {
       id: 'Ridorana Construct Dispose',
-      regex: / 14:(?:2C5F|2CE9):Construct 7 starts using Dispose/,
-      regexDe: / 14:(?:2C5F|2CE9):Automat Nr. 7 starts using Entsorgen/,
-      regexFr: / 14:(?:2C5F|2CE9):Bâtisseur N°7 starts using Annihiler/,
-      regexJa: / 14:(?:2C5F|2CE9):労働七号 starts using 処理する/,
+      regex: Regexes.startsUsing({ id: ['2C5F', '2CE9'], source: 'Construct 7', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2C5F', '2CE9'], source: 'Automat Nr\\. 7', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2C5F', '2CE9'], source: 'Bâtisseur N°7', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2C5F', '2CE9'], source: '労働七号', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2C5F', '2CE9'], source: '劳动七号', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2C5F', '2CE9'], source: '노동 7호', capture: false }),
       alertText: {
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
@@ -496,12 +528,14 @@
     },
     {
       id: 'Ridorana Yiazmat Rake Buster',
-      regex: / 14:2D4E:Yiazmat starts using Rake on (\y{Name})/,
-      regexDe: / 14:2D4E:Yiasmat starts using Prankenhieb on (\y{Name})/,
-      regexFr: / 14:2D4E:Yiazmat starts using Griffes on (\y{Name})/,
-      regexJa: / 14:2D4E:鬼龍ヤズマット starts using ひっかき on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2D4E', source: 'Yiazmat' }),
+      regexDe: Regexes.startsUsing({ id: '2D4E', source: 'Yiasmat' }),
+      regexFr: Regexes.startsUsing({ id: '2D4E', source: 'Yiazmat' }),
+      regexJa: Regexes.startsUsing({ id: '2D4E', source: '鬼龍ヤズマット' }),
+      regexCn: Regexes.startsUsing({ id: '2D4E', source: '鬼龙雅兹玛特' }),
+      regexKo: Regexes.startsUsing({ id: '2D4E', source: '귀룡 야즈마트' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -510,17 +544,17 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'healer')
+        if (matches.target == data.me || data.role != 'healer')
           return;
 
         return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          en: 'Buster on ' + data.ShortName(matches.target),
+          de: 'Tankbuster auf ' + data.ShortName(matches.target),
+          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -531,10 +565,12 @@
     },
     {
       id: 'Ridorana Yiazmat Rake Charge',
-      regex: / 14:2E32:Yiazmat starts using Rake/,
-      regexDe: / 14:2E32:Yiasmat starts using Prankenhieb/,
-      regexFr: / 14:2E32:Yiazmat starts using Griffes/,
-      regexJa: / 14:2E32:鬼龍ヤズマット starts using ひっかき/,
+      regex: Regexes.startsUsing({ id: '2E32', source: 'Yiazmat', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2E32', source: 'Yiasmat', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2E32', source: 'Yiazmat', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2E32', source: '鬼龍ヤズマット', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2E32', source: '鬼龙雅兹玛特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2E32', source: '귀룡 야즈마트', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -546,10 +582,12 @@
     },
     {
       id: 'Ridorana Yiazmat White Breath',
-      regex: / 14:2C31:Yiazmat starts using White Breath/,
-      regexDe: / 14:2C31:Yiasmat starts using Kalkatem/,
-      regexFr: / 14:2C31:Yiazmat starts using Souffle Blanc/,
-      regexJa: / 14:2C31:鬼龍ヤズマット starts using ホワイトブレス/,
+      regex: Regexes.startsUsing({ id: '2C31', source: 'Yiazmat', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2C31', source: 'Yiasmat', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2C31', source: 'Yiazmat', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2C31', source: '鬼龍ヤズマット', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2C31', source: '鬼龙雅兹玛特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2C31', source: '귀룡 야즈마트', capture: false }),
       alertText: {
         en: 'Get Under',
         de: 'Reingehen',
