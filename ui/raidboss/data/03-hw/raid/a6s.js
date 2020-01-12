@@ -37,6 +37,11 @@
     {
       id: 'A6S Mind Blast',
       regex: Regexes.startsUsing({ source: 'Blaster', id: '15F3', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Blaster', id: '15F3', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Fracasseur', id: '15F3', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ブラスター', id: '15F3', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '爆破者', id: '15F3', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '폭파자', id: '15F3', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -45,6 +50,11 @@
     {
       id: 'A6S Hidden Minefield',
       regex: Regexes.startsUsing({ source: 'Blaster', id: '15F7', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Blaster', id: '15F7', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Fracasseur', id: '15F7', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ブラスター', id: '15F7', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '爆破者', id: '15F7', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '폭파자', id: '15F7', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank' && !data.magicVulnerability) {
           return {
@@ -59,6 +69,11 @@
     {
       id: 'A6S Supercharge',
       regex: Regexes.startsUsing({ source: 'Blaster Mirage', id: '15FB', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Blaster-Replikant', id: '15FB', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '15FB', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FB', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '爆破者幻象', id: '15FB', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '폭파자의 환영', id: '15FB', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Dodge Mirage Charge',
@@ -67,6 +82,11 @@
     {
       id: 'A6S Blinder',
       regex: Regexes.startsUsing({ source: 'Blaster Mirage', id: '15FC' }),
+      regexDe: Regexes.startsUsing({ source: 'Blaster-Replikant', id: '15FC' }),
+      regexFr: Regexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '15FC' }),
+      regexJa: Regexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FC' }),
+      regexCn: Regexes.startsUsing({ source: '爆破者幻象', id: '15FC' }),
+      regexKo: Regexes.startsUsing({ source: '폭파자의 환영', id: '15FC' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -77,6 +97,11 @@
     {
       id: 'A6S Power Tackle',
       regex: Regexes.startsUsing({ source: 'Blaster Mirage', id: '15FD' }),
+      regexDe: Regexes.startsUsing({ source: 'Blaster-Replikant', id: '15FD' }),
+      regexFr: Regexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '15FD' }),
+      regexJa: Regexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '15FD' }),
+      regexCn: Regexes.startsUsing({ source: '爆破者幻象', id: '15FD' }),
+      regexKo: Regexes.startsUsing({ source: '폭파자의 환영', id: '15FD' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -172,16 +197,31 @@
     {
       id: 'A6S Bio-arithmeticks',
       regex: Regexes.startsUsing({ source: 'Swindler', id: '1610', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Schwindler', id: '1610', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arnaqueur', id: '1610', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'スウィンドラー', id: '1610', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '欺诈者', id: '1610', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '조작자', id: '1610', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'A6S Super Cyclone',
       regex: Regexes.startsUsing({ source: 'Vortexer', id: '1627', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Wirbler', id: '1627', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Tourbillonneur', id: '1627', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ボルテッカー', id: '1627', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '环旋者', id: '1627', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '교반자', id: '1627', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'A6S Ultra Flash',
       regex: Regexes.startsUsing({ source: 'Vortexer', id: '161A', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Wirbler', id: '161A', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Tourbillonneur', id: '161A', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ボルテッカー', id: '161A', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '环旋者', id: '161A', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '교반자', id: '161A', capture: false }),
       alertText: {
         en: 'Hide Behind Tornado',
       },

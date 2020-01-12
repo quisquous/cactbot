@@ -59,10 +59,12 @@
   triggers: [
     {
       id: 'The Vault Holiest of Holy',
-      regex: / 14:101E:Ser Adelphel starts using Holiest Of Holy/,
-      regexDe: / 14:101E:Adelphel starts using Quell Der Heiligkeit/,
-      regexFr: / 14:101E:Sire Adelphel starts using Saint Des Saints/,
-      regexJa: / 14:101E:聖騎士アデルフェル starts using ホリエストホーリー/,
+      regex: Regexes.startsUsing({ id: '101E', source: 'Ser Adelphel', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '101E', source: 'Adelphel', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '101E', source: 'Sire Adelphel', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '101E', source: '聖騎士アデルフェル', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '101E', source: '圣骑士阿代尔斐尔', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '101E', source: '성기사 아델펠', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -72,14 +74,16 @@
     },
     {
       id: 'The Vault Holy Shield Bash',
-      regex: / 14:101F:Ser Adelphel starts using Holy Shield Bash on (\y{Name})/,
-      regexDe: / 14:101F:Adelphel starts using Heiliger Schildschlag on (\y{Name})/,
-      regexFr: / 14:101F:Sire Adelphel starts using Coup De Bouclier Saint on (\y{Name})/,
-      regexJa: / 14:101F:聖騎士アデルフェル starts using ホーリーシールドバッシュ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '101F', source: 'Ser Adelphel' }),
+      regexDe: Regexes.startsUsing({ id: '101F', source: 'Adelphel' }),
+      regexFr: Regexes.startsUsing({ id: '101F', source: 'Sire Adelphel' }),
+      regexJa: Regexes.startsUsing({ id: '101F', source: '聖騎士アデルフェル' }),
+      regexCn: Regexes.startsUsing({ id: '101F', source: '圣骑士阿代尔斐尔' }),
+      regexKo: Regexes.startsUsing({ id: '101F', source: '성기사 아델펠' }),
       alertText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Heal + shield ' + data.ShortName(matches[1]),
+            en: 'Heal + shield ' + data.ShortName(matches.target),
           };
         }
       },
@@ -100,10 +104,12 @@
     },
     {
       id: 'The Vault Black Nebula',
-      regex: / 14:1042:Face Of The Hero starts using Black Nebula/,
-      regexDe: / 14:1042:Gesicht Des Helden starts using Schwarze Nebula/,
-      regexFr: / 14:1042:Visage Du Héros starts using Nébuleuse Noire/,
-      regexJa: / 14:1042:フェイス・オブ・ヒーロー starts using ブラックネビュラ/,
+      regex: Regexes.startsUsing({ id: '1042', source: 'Face Of The Hero', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1042', source: 'Gesicht Des Helden', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1042', source: 'Visage Du Héros', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1042', source: 'フェイス・オブ・ヒーロー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1042', source: '英雄之相', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1042', source: '영웅의 형상', capture: false }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -113,10 +119,12 @@
     },
     {
       id: 'The Vault Faith Unmoving',
-      regex: / 14:1027:Ser Grinnaux starts using Faith Unmoving/,
-      regexDe: / 14:1027:Grinnaux starts using Fester Glaube/,
-      regexFr: / 14:1027:Sire Grinnaux starts using Foi Immuable/,
-      regexJa: / 14:1027:聖騎士グリノー starts using フェイスアンムーブ/,
+      regex: Regexes.startsUsing({ id: '1027', source: 'Ser Grinnaux', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1027', source: 'Grinnaux', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1027', source: 'Sire Grinnaux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1027', source: '聖騎士グリノー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1027', source: '圣骑士格里诺', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1027', source: '성기사 그리노', capture: false }),
       infoText: {
         en: 'Knockback',
       },
@@ -139,10 +147,12 @@
     },
     {
       id: 'The Vault Altar Pyre',
-      regex: / 14:1035:Ser Charibert starts using Altar Pyre/,
-      regexDe: / 14:1035:Charibert starts using Scheiterhaufen/,
-      regexFr: / 14:1035:Sire Charibert starts using Bûcher Funéraire/,
-      regexJa: / 14:1035:聖騎士シャリベル starts using アルターパイヤ/,
+      regex: Regexes.startsUsing({ id: '1035', source: 'Ser Charibert', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1035', source: 'Charibert', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1035', source: 'Sire Charibert', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1035', source: '聖騎士シャリベル', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1035', source: '圣骑士沙里贝尔', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1035', source: '성기사 샤리베르', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
