@@ -787,9 +787,12 @@
     },
     {
       id: 'BA Ozma Sphere Form',
-      regex: /:Proto Ozma:(?:37B3|37A5|379F):/,
-      regexCn: /:奥兹玛原型:(?:37B3|37A5|379F):/,
-      regexDe: /:Proto-Yadis:(?:37B3|37A5|379F):/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -817,9 +820,12 @@
     // FIXME: need callouts for knockback, and maybe "holy soon"?
     {
       id: 'BA Ozma Pyramid Form',
-      regex: /:Proto Ozma:37A4:/,
-      regexCn: /:奥兹玛原型:37A4:/,
-      regexDe: /:Proto-Yadis:37A4:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -831,9 +837,12 @@
     },
     {
       id: 'BA Ozma Pyramid Form 2',
-      regex: /:Proto Ozma:37A4:/,
-      regexCn: /:奥兹玛原型:37A4:/,
-      regexDe: /:Proto-Yadis:37A4:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
       delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
@@ -846,9 +855,12 @@
     },
     {
       id: 'BA Ozma Star Form',
-      regex: /:Proto Ozma:37B2:/,
-      regexCn: /:奥兹玛原型:37B2:/,
-      regexDe: /:Proto-Yadis:37B2:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -860,9 +872,12 @@
     },
     {
       id: 'BA Ozma Star Form 2',
-      regex: /:Proto Ozma:37B2:/,
-      regexCn: /:奥兹玛原型:37B2:/,
-      regexDe: /:Proto-Yadis:37B2:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
       delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
@@ -886,9 +901,12 @@
     },
     {
       id: 'BA Ozma Cube Form',
-      regex: /:Proto Ozma:379E:/,
-      regexCn: /:奥兹玛原型:379E:/,
-      regexDe: /:Proto-Yadis:379E:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -900,9 +918,12 @@
     },
     {
       id: 'BA Ozma Cube Form 2',
-      regex: /:Proto Ozma:379E:/,
-      regexCn: /:奥兹玛原型:379E:/,
-      regexDe: /:Proto-Yadis:379E:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
       delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
@@ -930,9 +951,12 @@
     },
     {
       id: 'BA Ozma Pyramid Shade',
-      regex: /:(?:Ozmashade|Shadow):37A4:/,
-      regexCn: /:(?:奥兹玛之影|奥兹玛原型之影):37A4:/,
-      regexDe: /:Yadis-Schatten:37A4:/,
+      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false }),
+      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37A4', capture: false }),
+      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37A4', capture: false }),
+      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37A4', capture: false }),
+      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37A4', capture: false }),
+      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -945,9 +969,12 @@
     },
     {
       id: 'BA Ozma Star Shade',
-      regex: /:(?:Ozmashade|Shadow):37B2:/,
-      regexCn: /:(?:奥兹玛之影|奥兹玛原型之影):37B2:/,
-      regexDe: /:Yadis-Schatten:37B2:/,
+      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false }),
+      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37B2', capture: false }),
+      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37B2', capture: false }),
+      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37B2', capture: false }),
+      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37B2', capture: false }),
+      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -960,9 +987,12 @@
     },
     {
       id: 'BA Ozma Cube Shade',
-      regex: /:(?:Ozmashade|Shadow):379E:/,
-      regexCn: /:(?:奥兹玛之影|奥兹玛原型之影):379E:/,
-      regexDe: /:Yadis-Schatten:379E:/,
+      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '379E', capture: false }),
+      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '379E', capture: false }),
+      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '379E', capture: false }),
+      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '379E', capture: false }),
+      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '379E', capture: false }),
+      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -975,9 +1005,12 @@
     },
     {
       id: 'BA Ozma Adds',
-      regex: /:Cloudlarker:37B0:/,
-      regexCn: /:翻云狮鹫:37B0:/,
-      regexDe: /:Wolkenlauerer:37B0:/,
+      regex: Regexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
+      regexDe: Regexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Rôdeur Des Nuages', id: '37B0', capture: false }),
+      regexJa: Regexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
+      regexCn: Regexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
+      regexKo: Regexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
       delaySeconds: 2,
       condition: function(data) {
         return data.sealed;

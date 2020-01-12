@@ -219,8 +219,12 @@
     },
     {
       id: 'Tsukuyomi Supreme Selenomancy',
-      regex: /:Tsukuyomi:2EB0:/,
-      regexCn: /:月读:2EB0:/,
+      regex: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      regexDe: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツクヨミ', id: '2EB0', capture: false }),
+      regexCn: Regexes.ability({ source: '月读', id: '2EB0', capture: false }),
+      regexKo: Regexes.ability({ source: '츠쿠요미', id: '2EB0', capture: false }),
       run: function(data) {
         delete data.moonlitCount;
         delete data.moonshadowedCount;

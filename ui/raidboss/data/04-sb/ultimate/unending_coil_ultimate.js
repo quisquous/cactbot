@@ -638,13 +638,14 @@
       id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: /:Thunderwing:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexCn: /:雷翼:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /:サンダーウィング:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Thunderwing', id: '26C7' }),
+      regexDe: Regexes.ability({ source: 'Donnerschwinge', id: '26C7' }),
+      regexFr: Regexes.ability({ source: 'Aile-De-Foudre', id: '26C7' }),
+      regexJa: Regexes.ability({ source: 'サンダーウィング', id: '26C7' }),
+      regexCn: Regexes.ability({ source: '雷翼', id: '26C7' }),
+      regexKo: Regexes.ability({ source: '번개날개', id: '26C7' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Thunder on YOU',
@@ -770,11 +771,12 @@
     },
     {
       id: 'UCU Nael Cleanse Callout',
-      regex: /:Fang [Oo]f Light:26CA:/,
-      regexDe: /:Lichtklaue:26CA:/,
-      regexFr: /:Croc de lumière:26CA:/,
-      regexJa: /:ライトファング:26CA:/,
-      regexCn: /:光牙:26CA:/,
+      regex: Regexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
+      regexDe: Regexes.ability({ source: 'Lichtklaue', id: '26CA', capture: false }),
+      regexFr: Regexes.ability({ source: 'Croc De Lumière', id: '26CA', capture: false }),
+      regexJa: Regexes.ability({ source: 'ライトファング', id: '26CA', capture: false }),
+      regexCn: Regexes.ability({ source: '光牙', id: '26CA', capture: false }),
+      regexKo: Regexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
         let name;
@@ -794,11 +796,12 @@
     },
     {
       id: 'UCU Nael Fireball 1',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: {
@@ -821,11 +824,12 @@
     },
     {
       id: 'UCU Nael Fireball 2',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 51,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -880,11 +884,12 @@
     },
     {
       id: 'UCU Nael Fireball 3',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 77,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -951,11 +956,12 @@
     },
     {
       id: 'UCU Nael Fireball 4',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 98,
       suppressSeconds: 99999,
       preRun: function(data) {
@@ -1005,21 +1011,22 @@
     },
     {
       // TODO: this should really use the new added combatant line with positions.
-      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexCn: /:(冰爪:26C6|雷翼:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|火角:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexDe: /:(Eisklaue:26C6|Donnerschwinge:26C7|Lichtklaue:26CA|Dunkelschweif:26C9|Feuerhorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexJa: /:(アイスクロウ:26C6|サンダーウィング:26C7|ライトファング:26CA|ダークテイル:26C9|ファイアホーン:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
+      regex: Regexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexDe: Regexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexFr: Regexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexJa: Regexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexCn: Regexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexKo: Regexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       condition: function(data, matches) {
-        return !data.seenDragon || !(matches[1] in data.seenDragon);
+        return !data.seenDragon || !(matches.source in data.seenDragon);
       },
       run: function(data, matches) {
         // seenDragon[dragon name] => boolean
         data.seenDragon = data.seenDragon || [];
-        data.seenDragon[matches[1]] = true;
+        data.seenDragon[matches.source] = true;
 
-        let x = parseFloat(matches[2]);
-        let y = parseFloat(matches[3]);
+        let x = parseFloat(matches.x);
+        let y = parseFloat(matches.y);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7
@@ -1053,11 +1060,12 @@
     },
     {
       id: 'UCU Nael Dragon Placement',
-      regex: /:Iceclaw:26C6/,
-      regexCn: /:冰爪:26C6/,
-      regexDe: /:Eisklaue:26C6/,
-      regexFr: /:Griffe-de-glace:26C6/,
-      regexJa: /:アイスクロウ:26C6/,
+      regex: Regexes.ability({ source: 'Iceclaw', id: '26C6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisklaue', id: '26C6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Griffe-De-Glace', id: '26C6', capture: false }),
+      regexJa: Regexes.ability({ source: 'アイスクロウ', id: '26C6', capture: false }),
+      regexCn: Regexes.ability({ source: '冰爪', id: '26C6', capture: false }),
+      regexKo: Regexes.ability({ source: '얼음발톱', id: '26C6', capture: false }),
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
@@ -1281,11 +1289,12 @@
     },
     {
       id: 'UCU Twister Dives',
-      regex: /:Twintania:26B2:Twisting Dive:/,
-      regexCn: /:双塔尼亚:26B2:旋风冲:/,
-      regexDe: /:Twintania:26B2:Spiralschwinge:/,
-      regexFr: /:Gémellia:26B2:Plongeon-trombe:/,
-      regexJa: /:ツインタニア:26B2:ツイスターダイブ:/,
+      regex: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '26B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
