@@ -24,12 +24,12 @@
   triggers: [
     {
       id: 'E2N Shadowflame Tank',
-      regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
-      regexCn: / 14:3E4D:虚无行者 starts using 暗影炎 on \y{Name}/,
-      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
-      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
-      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
-      regexKo: / 14:3E4D:보이드워커 starts using 그림자 불꽃 on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -43,12 +43,12 @@
     },
     {
       id: 'E2N Shadowflame Healer',
-      regex: / 14:3E4D:Voidwalker starts using Shadowflame on \y{Name}/,
-      regexCn: / 14:3E4D:虚无行者 starts using 暗影炎 on \y{Name}/,
-      regexDe: / 14:3E4D:Nichtswandler starts using Schattenflamme on \y{Name}/,
-      regexFr: / 14:3E4D:Marcheuse Du Néant starts using Flamme D'ombre on \y{Name}/,
-      regexJa: / 14:3E4D:ヴォイドウォーカー starts using シャドーフレイム on \y{Name}/,
-      regexKo: / 14:3E4D:보이드워커 starts using 그림자 불꽃 on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
       suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer';
@@ -63,12 +63,12 @@
     },
     {
       id: 'E2N Entropy',
-      regex: / 14:3E6D:Voidwalker starts using Entropy/,
-      regexCn: / 14:3E6D:虚无行者 starts using 熵/,
-      regexDe: / 14:3E6D:Nichtswandler starts using Entropie/,
-      regexFr: / 14:3E6D:Marcheuse Du Néant starts using Entropie/,
-      regexJa: / 14:3E6D:ヴォイドウォーカー starts using エントロピー/,
-      regexKo: / 14:3E6D:보이드워커 starts using 엔트로피/,
+      regex: Regexes.startsUsing({ id: '3E6D', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E6D', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E6D', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E6D', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E6D', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E6D', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -82,12 +82,12 @@
     },
     {
       id: 'E2N Doomvoid Slicer',
-      regex: / 14:3E3C:Voidwalker starts using Doomvoid Slicer/,
-      regexCn: / 14:3E3C:虚无行者 starts using 末日虚无切/,
-      regexDe: / 14:3E3C:Nichtswandler starts using Nichtsmarter-Sense/,
-      regexFr: / 14:3E3C:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
-      regexJa: / 14:3E3C:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
-      regexKo: / 14:3E3C:보이드워커 starts using 파멸의 보이드 베기/,
+      regex: Regexes.startsUsing({ id: '3E3C', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E3C', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E3C', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E3C', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E3C', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E3C', source: '보이드워커', capture: false }),
       infoText: {
         en: 'Get Under',
         de: 'Unter ihn',
@@ -98,12 +98,12 @@
     },
     {
       id: 'E2N Empty Hate',
-      regex: / 14:3E46:the Hand of Erebos starts using Empty Hate/,
-      regexCn: / 14:3E46:厄瑞玻斯的巨腕 starts using 空无的恶意/,
-      regexDe: / 14:3E46:Arm Des Erebos starts using Gähnender Abgrund/,
-      regexFr: / 14:3E46:Bras D'érèbe starts using Vaine Malice/,
-      regexJa: / 14:3E46:エレボスの巨腕 starts using 虚ろなる悪意/,
-      regexKo: / 14:3E46:에레보스의 팔 starts using 공허한 악의/,
+      regex: Regexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E46', source: 'Arm Des Erebos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E46', source: 'Bras D\'Érèbe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E46', source: 'エレボスの巨腕', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E46', source: '厄瑞玻斯的巨腕', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E46', source: '에레보스의 팔', capture: false }),
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -114,12 +114,12 @@
     },
     {
       id: 'E2N Darkfire Counter',
-      regex: / 14:3E42:Voidwalker starts using Dark Fire III/,
-      regexCn: / 14:3E42:虚无行者 starts using 黑暗爆炎/,
-      regexDe: / 14:3E42:Nichtswandler starts using Dunkel-Feuga/,
-      regexFr: / 14:3E42:Marcheuse Du Néant starts using Méga Feu Ténébreux/,
-      regexJa: / 14:3E42:ヴォイドウォーカー starts using ダークファイガ/,
-      regexKo: / 14:3E42:보이드워커 starts using 다크 파이가/,
+      regex: Regexes.startsUsing({ id: '3E42', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E42', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E42', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E42', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E42', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E42', source: '보이드워커', capture: false }),
       run: function(data) {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;
