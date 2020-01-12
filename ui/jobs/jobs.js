@@ -761,6 +761,25 @@ class BuffTracker {
         this.gainAbilityMap[buff.gainAbility] = buff;
       }
     }
+
+    const v5_08 = {
+      trick: {
+        durationSeconds: 10,
+      },
+      peculiar: {
+        durationSeconds: 10,
+      },
+    };
+
+    let buffOverrides = {
+      ko: v5_08,
+      cn: v5_08,
+    };
+
+    for (let key in buffOverrides[this.options.Language]) {
+      for (let key2 in buffOverrides[this.options.Language][key])
+        this.buffInfo[key][key2] = buffOverrides[this.options.Language][key][key2];
+    }
   }
 
   onUseAbility(id, log) {
