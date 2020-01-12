@@ -7,10 +7,12 @@
   triggers: [
     {
       id: 'Titania Bright Sabbath',
-      regex: / 14:3D5C:Titania starts using Bright Sabbath/,
-      regexDe: / 14:3D5C:Titania starts using Leuchtender Sabbat/,
-      regexFr: / 14:3D5C:Titania starts using Sabbat en plein jour/,
-      regexJa: / 14:3D5C:ティターニア starts using ブライトサバト/,
+      regex: Regexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D5C', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D5C', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D5C', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D5C', source: '티타니아', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -23,10 +25,12 @@
     },
     {
       id: 'Titania Phantom Out',
-      regex: / 14:3D5D:Titania starts using Phantom Rune/,
-      regexDe: / 14:3D5D:Titania starts using Phantomrune/,
-      regexFr: / 14:3D5D:Titania starts using Rune d'illusion/,
-      regexJa: / 14:3D5D:ティターニア starts using 幻のルーン/,
+      regex: Regexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D5D', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D5D', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D5D', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D5D', source: '티타니아', capture: false }),
       alertText: {
         en: 'Out',
         de: 'Raus',
@@ -35,10 +39,12 @@
     },
     {
       id: 'Titania Phantom In',
-      regex: / 14:3D5E:Titania starts using Phantom Rune/,
-      regexDe: / 14:3D5E:Titania starts using Phantomrune/,
-      regexFr: / 14:3D5E:Titania starts using Rune d'illusion/,
-      regexJa: / 14:3D5E:ティターニア starts using 幻のルーン/,
+      regex: Regexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D5E', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D5E', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D5E', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D5E', source: '티타니아', capture: false }),
       alertText: {
         en: 'In',
         de: 'Rein',
@@ -60,10 +66,12 @@
     },
     {
       id: 'Titania Mist',
-      regex: / 14:3D45:Titania starts using Mist Rune/,
-      regexDe: / 14:3D45:Titania starts using Nebelrune/,
-      regexFr: / 14:3D45:Titania starts using Rune d'eau/,
-      regexJa: / 14:3D45:ティターニア starts using 水のルーン/,
+      regex: Regexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
       infoText: {
         en: 'Water Positions',
         de: 'Wasser Positionen',
@@ -72,10 +80,12 @@
     },
     {
       id: 'Titania Flame',
-      regex: / 14:3D47:Titania starts using Flame Rune/,
-      regexDe: / 14:3D47:Titania starts using Flammenrune/,
-      regexFr: / 14:3D47:Titania starts using Rune de feu/,
-      regexJa: / 14:3D47:ティターニア starts using 火のルーン/,
+      regex: Regexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D47', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D47', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       delaySeconds: 6,
       alertText: {
         en: 'Stack In Puddles',
@@ -85,12 +95,14 @@
     },
     {
       id: 'Titania Divination',
-      regex: / 14:3D5B:Titania starts using Divination Rune on (\y{Name})/,
-      regexDe: / 14:3D5B:Titania starts using Prophezeiungsrune on (\y{Name})/,
-      regexFr: / 14:3D5B:Titania starts using Rune de malice on (\y{Name})/,
-      regexJa: / 14:3D5B:ティターニア starts using 魔のルーン on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3D5B', source: 'Titania' }),
+      regexDe: Regexes.startsUsing({ id: '3D5B', source: 'Titania' }),
+      regexFr: Regexes.startsUsing({ id: '3D5B', source: 'Titania' }),
+      regexJa: Regexes.startsUsing({ id: '3D5B', source: 'ティターニア' }),
+      regexCn: Regexes.startsUsing({ id: '3D5B', source: '缇坦妮雅' }),
+      regexKo: Regexes.startsUsing({ id: '3D5B', source: '티타니아' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Cleave on YOU',
             de: 'Tank Cleave auf DIR',
@@ -99,21 +111,23 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
-            en: 'Tank Cleave on ' + data.ShortName(matches[1]),
-            fr: 'Tank cleave sur ' + data.ShortName(matches[1]),
-            de: 'Tank Cleave auf ' + data.ShortName(matches[1]),
+            en: 'Tank Cleave on ' + data.ShortName(matches.target),
+            fr: 'Tank cleave sur ' + data.ShortName(matches.target),
+            de: 'Tank Cleave auf ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Titania Frost Rune 1',
-      regex: / 14:3D2A:Titania starts using Frost Rune/,
-      regexDe: / 14:3D2A:Titania starts using Frostrune/,
-      regexFr: / 14:3D2A:Titania starts using Rune de gel/,
-      regexJa: / 14:3D2A:ティターニア starts using 氷のルーン/,
+      regex: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       infoText: {
         en: 'Get Middle, Shiva Circles',
         de: 'In die Mitte, Shiva Kreise',
@@ -122,10 +136,12 @@
     },
     {
       id: 'Titania Frost Rune 2',
-      regex: / 14:3D2A:Titania starts using Frost Rune/,
-      regexDe: / 14:3D2A:Titania starts using Frostrune/,
-      regexFr: / 14:3D2A:Titania starts using Rune de gel/,
-      regexJa: / 14:3D2A:ティターニア starts using 氷のルーン/,
+      regex: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       delaySeconds: 6.5,
       infoText: {
         en: 'Run Out',
@@ -150,10 +166,12 @@
     },
     {
       id: 'Titania Growth Rune',
-      regex: / 14:3D2E:Titania starts using Growth Rune/,
-      regexDe: / 14:3D2E:Titania starts using Wachstumsrune/,
-      regexFr: / 14:3D2E:Titania starts using Rune de racine/,
-      regexJa: / 14:3D2E:ティターニア starts using 根のルーン/,
+      regex: Regexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
       infoText: {
         en: 'Avoid Roots',
         de: 'Ranken vermeiden',

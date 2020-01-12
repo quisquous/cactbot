@@ -8,10 +8,12 @@
   triggers: [
     {
       id: 'Cosmos Shadowbolt',
-      regex: / 14:4769:Seeker Of Solitude starts using Shadowbolt on (\y{Name})/,
-      regexFr: / 14:4769:Ermite du palais starts using Éclair Ombreux on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
+      regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
+      regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
+      regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -24,11 +26,11 @@
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
           };
         }
       },
@@ -70,8 +72,10 @@
     },
     {
       id: 'Cosmos Immortal Anathema',
-      regex: / 14:49A3:Seeker Of Solitude starts using Immortal Anathema/,
-      regexFr: / 14:49A3:Ermite du palais starts using Anathème Immortel/,
+      regex: Regexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -85,8 +89,10 @@
     },
     {
       id: 'Cosmos Tribulation',
-      regex: / 14:476B:Seeker Of Solitude starts using Tribulation/,
-      regexFr: / 14:476B:Ermite du palais starts using Tribulation/,
+      regex: Regexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
@@ -96,10 +102,12 @@
     },
     {
       id: 'Cosmos Storm of Color',
-      regex: / 14:471B:Leannan Sith starts using Storm Of Color on (\y{Name})/,
-      regexFr: / 14:471B:Leannan Sith starts using Orage De Printemps on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      regexDe: Regexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
+      regexFr: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      regexJa: Regexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -112,19 +120,21 @@
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Cosmos Ode To Lost Love',
-      regex: / 14:471C:Leannan Sith starts using Ode To Lost Love/,
-      regexFr: / 14:471C:Leannan Sith starts using Rhapsodie De L'amour Fou/,
+      regex: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -155,8 +165,10 @@
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
-      regex: / 14:471E:Leannan Sith starts using Gardener's Hymn/,
-      regexFr: / 14:471E:Leannan Sith starts using Ballade Du Bourgeonnement/,
+      regex: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
@@ -165,8 +177,10 @@
     },
     {
       id: 'Cosmos Ronkan Cure II',
-      regex: / 14:4931:Ser Hamonth starts using Ronkan Cure II/,
-      regexFr: / 14:4931:Ser Hamonth starts using Extra Soin Ronka/,
+      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス', capture: false }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -178,10 +192,12 @@
     },
     {
       id: 'Cosmos Captive Bolt',
-      regex: / 14:4764:Lugus starts using Captive Bolt on (\y{Name})/,
-      regexFr: / 14:4764:Lugus starts using Lame Pulvérisante on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      regexDe: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -194,19 +210,21 @@
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Cosmos Culling Blade',
-      regex: / 14:4765:Lugus starts using Culling Blade/,
-      regexFr: / 14:4765:Lugus starts using Lame Percutante/,
+      regex: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -274,8 +292,10 @@
     },
     {
       id: 'Cosmos Scorching Left',
-      regex: / 14:4763:Lugus starts using Scorching Left/,
-      regexFr: / 14:4763:Lugus starts using Scrutement Senestre/,
+      regex: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
       infoText: {
         en: 'Left',
         de: 'Links',
@@ -284,8 +304,10 @@
     },
     {
       id: 'Cosmos Scorching Right',
-      regex: / 14:4762:Lugus starts using Scorching Right/,
-      regexFr: / 14:4762:Lugus starts using Scrutement Dextre/,
+      regex: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
       infoText: {
         en: 'Right',
         de: 'Rechts',

@@ -10,12 +10,12 @@
   triggers: [
     {
       id: 'E4N Voice of the Land',
-      regex: / 14:40F7:Titan starts using Voice [Oo]f [Tt]he Land/,
-      regexCn: / 14:40F7:泰坦 starts using 大地之号/,
-      regexDe: / 14:40F7:Titan starts using Aufschrei der Erde/,
-      regexFr: / 14:40F7:Titan starts using Hurlement Tellurique/,
-      regexJa: / 14:40F7:タイタン starts using 大地の叫び/,
-      regexKo: / 14:40F7:타이탄 starts using 대지의 외침/,
+      regex: Regexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '40F7', source: 'Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '40F7', source: 'タイタン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '40F7', source: '泰坦', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '40F7', source: '타이탄', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -29,12 +29,12 @@
     },
     {
       id: 'E4N Earthen Fury',
-      regex: / 14:40F8:Titan starts using Earthen Fury/,
-      regexCn: / 14:40F8:泰坦 starts using 大地之怒/,
-      regexDe: / 14:40F8:Titan starts using Gaias Zorn/,
-      regexFr: / 14:40F8:Titan starts using Fureur Tellurique/,
-      regexJa: / 14:40F8:タイタン starts using 大地の怒り/,
-      regexKo: / 14:40F8:타이탄 starts using 대지의 분노/,
+      regex: Regexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '40F8', source: 'Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '40F8', source: 'タイタン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '40F8', source: '泰坦', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '40F8', source: '타이탄', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -48,14 +48,14 @@
     },
     {
       id: 'E4N Stonecrusher',
-      regex: / 14:40F9:Titan starts using Stonecrusher on (\y{Name})/,
-      regexCn: / 14:40F9:泰坦 starts using 崩岩 on (\y{Name})/,
-      regexDe: / 14:40F9:Titan starts using Felsbrecher on (\y{Name})/,
-      regexFr: / 14:40F9:Titan starts using Éruption Tellurique on (\y{Name})/,
-      regexJa: / 14:40F9:タイタン starts using ロッククラッシュ on (\y{Name})/,
-      regexKo: / 14:40F9:타이탄 starts using 암석 붕괴 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '40F9', source: 'Titan' }),
+      regexDe: Regexes.startsUsing({ id: '40F9', source: 'Titan' }),
+      regexFr: Regexes.startsUsing({ id: '40F9', source: 'Titan' }),
+      regexJa: Regexes.startsUsing({ id: '40F9', source: 'タイタン' }),
+      regexCn: Regexes.startsUsing({ id: '40F9', source: '泰坦' }),
+      regexKo: Regexes.startsUsing({ id: '40F9', source: '타이탄' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -66,34 +66,34 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑 ->' + data.ShortName(matches[1]),
-            ko: '탱버 ->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑 ->' + data.ShortName(matches.target),
+            ko: '탱버 ->' + data.ShortName(matches.target),
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me && data.role == 'tank') {
+        if (matches.target != data.me && data.role == 'tank') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑 ->' + data.ShortName(matches[1]),
-            ko: '탱버 ->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑 ->' + data.ShortName(matches.target),
+            ko: '탱버 ->' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'E4N Massive Landslide',
-      regex: / 14:40FA:Titan starts using Massive Landslide/,
-      regexCn: / 14:40FA:泰坦 starts using 百万地裂/,
-      regexDe: / 14:40FA:Titan starts using Gigantischer Bergsturz/,
-      regexFr: / 14:40FA:Titan starts using Glissement Apocalyptique/,
-      regexJa: / 14:40FA:タイタン starts using メガ・ランドスライド/,
-      regexKo: / 14:40FA:타이탄 starts using 대규모 산사태/,
+      regex: Regexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '40FA', source: 'Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '40FA', source: 'タイタン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '40FA', source: '泰坦', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '40FA', source: '타이탄', capture: false }),
       alertText: {
         en: 'Stand In Front',
         de: 'Vor ihm stehen',
@@ -104,12 +104,12 @@
     },
     {
       id: 'E4N Seismic Wave',
-      regex: / 14:40F2:massive boulder starts using Crumbling Down/,
-      regexCn: / 14:40F2:巨大岩石 starts using 岩层崩落/,
-      regexDe: / 14:40F2:Riesiger Felsen starts using Felsfall/,
-      regexFr: / 14:40F2:Monolithe Géant starts using Chute De Monolithes/,
-      regexJa: / 14:40F2:ジャイアントボルダー starts using 岩盤崩落/,
-      regexKo: / 14:40F2:거대 바위 starts using 암반 낙하/,
+      regex: Regexes.startsUsing({ id: '40F2', source: 'Massive Boulder', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '40F2', source: 'Riesig(?:e|er|es|en) Felsen', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '40F2', source: 'Monolithe Géant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '40F2', source: 'ジャイアントボルダー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '40F2', source: '巨大岩石', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '40F2', source: '거대 바위', capture: false }),
       delaySeconds: 6,
       suppressSeconds: 10,
       infoText: {
@@ -122,12 +122,12 @@
     },
     {
       id: 'E4N Geocrush',
-      regex: / 14:40F6:Titan starts using Geocrush/,
-      regexCn: / 14:40F6:泰坦 starts using 大地粉碎/,
-      regexDe: / 14:40F6:Titan starts using Kraterschlag/,
-      regexFr: / 14:40F6:Titan starts using Broie-Terre/,
-      regexJa: / 14:40F6:タイタン starts using ジオクラッシュ/,
-      regexKo: / 14:40F6:타이탄 starts using 대지 붕괴/,
+      regex: Regexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '40F6', source: 'Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '40F6', source: 'タイタン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '40F6', source: '泰坦', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '40F6', source: '타이탄', capture: false }),
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -138,12 +138,12 @@
     },
     {
       id: 'E4N Fault Zone',
-      regex: / 14:4102:Titan starts using Fault Zone/,
-      regexCn: / 14:4102:泰坦 starts using 断裂带/,
-      regexDe: / 14:4102:Titan starts using Bruchzone/,
-      regexFr: / 14:4102:Titan starts using Faille Tectonique/,
-      regexJa: / 14:4102:タイタン starts using フォールトゾーン/,
-      regexKo: / 14:4102:타이탄 starts using 단층대/,
+      regex: Regexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4102', source: 'Titan', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4102', source: 'タイタン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4102', source: '泰坦', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4102', source: '타이탄', capture: false }),
       alertText: {
         en: 'Stand On Flank',
         de: 'Auf seiner Flanke stehen',
