@@ -20,12 +20,14 @@
   triggers: [
     {
       id: 'O11N Mustard Bomb',
-      regex: / 14:3287:Omega starts using Mustard Bomb on (\y{Name})/,
-      regexDe: / 14:3287:Omega starts using Senfbombe on (\y{Name})/,
-      regexFr: / 14:3287:Oméga starts using Obus D\'ypérite on (\y{Name})/,
-      regexJa: / 14:3287:オメガ starts using マスタードボム on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3287', source: 'Omega' }),
+      regexDe: Regexes.startsUsing({ id: '3287', source: 'Omega' }),
+      regexFr: Regexes.startsUsing({ id: '3287', source: 'Oméga' }),
+      regexJa: Regexes.startsUsing({ id: '3287', source: 'オメガ' }),
+      regexCn: Regexes.startsUsing({ id: '3287', source: '欧米茄' }),
+      regexKo: Regexes.startsUsing({ id: '3287', source: '오메가' }),
       alarmText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -34,14 +36,14 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -60,10 +62,12 @@
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       // Starboard/Larboard Cannon cleanup.
-      regex: / 14:328[13]:Omega starts using Starboard Wave Cannon/,
-      regexDe: / 14:328[13]:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:328[13]:Oméga starts using Salve De Tribord/,
-      regexJa: / 14:328[13]:オメガ starts using 右舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '328[13]', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '328[13]', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '328[13]', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '328[13]', source: '오메가', capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.lastWasStarboard;
@@ -71,10 +75,12 @@
     },
     {
       id: 'O11N Starboard Cannon 1',
-      regex: / 14:328[12]:Omega starts using Starboard Wave Cannon/,
-      regexDe: / 14:328[12]:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:328[12]:Oméga starts using Salve De Tribord/,
-      regexJa: / 14:328[12]:オメガ starts using 右舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '328[12]', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '328[12]', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '328[12]', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '328[12]', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
@@ -89,10 +95,12 @@
     },
     {
       id: 'O11N Larboard Cannon 1',
-      regex: / 14:328[34]:Omega starts using Larboard Wave Cannon/,
-      regexDe: / 14:328[34]:Omega starts using Backbord-Wellenkanone/,
-      regexFr: / 14:328[34]:Oméga starts using Salve De Bâbord/,
-      regexJa: / 14:328[34]:オメガ starts using 左舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '328[34]', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '328[34]', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '328[34]', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '328[34]', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
@@ -107,10 +115,12 @@
     },
     {
       id: 'O11N Starboard Cannon 2',
-      regex: / 14:3282:Omega starts using Starboard Wave Cannon/,
-      regexDe: / 14:3282:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:3282:Oméga starts using Salve De Tribord/,
-      regexJa: / 14:3282:オメガ starts using 右舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3282', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3282', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3282', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3282', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
@@ -131,10 +141,12 @@
     },
     {
       id: 'O11N Larboard Cannon 2',
-      regex: / 14:3284:Omega starts using Larboard Wave Cannon/,
-      regexDe: / 14:3284:Omega starts using Backbord-Wellenkanone/,
-      regexFr: / 14:3284:Oméga starts using Salve De Bâbord/,
-      regexJa: / 14:3284:オメガ starts using 左舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3284', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3284', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3284', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3284', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },

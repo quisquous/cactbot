@@ -31,10 +31,12 @@
       // when it disappears.  This is because there are several
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
-      regex: / 14:2041:Thunderhead starts using The Parting Clouds on Thunderhead\./,
-      regexDe: / 14:2041:Gewitterwolke starts using Wolkenriss on Gewitterwolke\./,
-      regexFr: / 14:2041:Nuage Orageux starts using Dispersion De Nuages on Nuage Orageux\./,
-      regexJa: / 14:2041:雷雲 starts using 雲間放電 on 雷雲\./,
+      regex: Regexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2041', source: '雷雲', target: '雷雲', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2041', source: '雷云', target: '雷云', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2041', source: '번개구름', target: '번개구름', capture: false }),
       run: function(data) {
         data.cloud = false;
       },

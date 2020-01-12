@@ -50,12 +50,12 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regex: / 14:2B53:Garuda starts using Slipstream/,
-      regexCn: / 14:2B53:迦楼罗 starts using 螺旋气流/,
-      regexDe: / 14:2B53:Garuda starts using Wirbelströmung/,
-      regexFr: / 14:2B53:Garuda starts using Sillage/,
-      regexJa: / 14:2B53:ガルーダ starts using スリップストリーム/,
-      regexKo: / 14:2B53:가루다 starts using 반동 기류/,
+      regex: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2B53', source: 'ガルーダ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -150,14 +150,14 @@
     },
     {
       id: 'UWU Searing Wind',
-      regex: / 14:2B5B:Ifrit starts using Inferno Howl on (\y{Name})/,
-      regexCn: / 14:2B5B:伊弗利特 starts using 灼热咆哮 on (\y{Name})/,
-      regexDe: / 14:2B5B:Ifrit starts using Brennende Wut on (\y{Name})/,
-      regexFr: / 14:2B5B:Ifrit starts using Rugissement Infernal on (\y{Name})/,
-      regexJa: / 14:2B5B:イフリート starts using 灼熱の咆吼 on (\y{Name})/,
-      regexKo: / 14:2B5B:이프리트 starts using 작열의 포효 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      regexDe: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      regexFr: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      regexJa: Regexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
+      regexCn: Regexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
+      regexKo: Regexes.startsUsing({ id: '2B5B', source: '이프리트' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Searing Wind on YOU',
@@ -262,7 +262,7 @@
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
-        if (data.titanGaols.indexOf(matches[1]) < 0)
+        if (data.titanGaols.indexOf(matches.target) < 0)
           return;
         return {
           en: data.ShortName(matches.target) + ' died',

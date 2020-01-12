@@ -11,11 +11,12 @@
   triggers: [
     {
       // Track Omega MF vs Final Omega phase.
-      regex: / 14:3357:Omega starts using Ion Efflux/,
-      regexDe: / 14:3357:Omega starts using Ionenstrom/,
-      regexFr: / 14:3357:Oméga starts using Fuite D'Ions/,
-      regexJa: / 14:3357:オメガ starts using イオンエフラクス/,
-      regexCn: / 14:3357:欧米茄 starts using 离子流出/,
+      regex: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3357', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3357', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3357', source: '오메가', capture: false }),
       run: function(data) {
         data.isFinalOmega = true;
 
@@ -79,11 +80,12 @@
     },
     {
       id: 'O12S Solar Ray',
-      regex: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Solar Ray on (\y{Name})/,
-      regexDe: / 14:(?:3350|3351):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
-      regexFr: / 14:(?:3350|3351):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
-      regexJa: / 14:(?:3350|3351):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
-      regexCn: / 14:(?:3350|3351):(?:欧米茄|欧米茄-M) starts using 太阳射线 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
+      regexDe: Regexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
+      regexFr: Regexes.startsUsing({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'] }),
+      regexJa: Regexes.startsUsing({ id: ['3350', '3351'], source: ['オメガ', 'オメガM'] }),
+      regexCn: Regexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
+      regexKo: Regexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -122,11 +124,12 @@
     },
     {
       id: 'O12S Optimized Blade Dance',
-      regex: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Optimized Bladedance on (\y{Name})/,
-      regexDe: / 14:(?:334B|334C):(?:Omega|Omega-M) starts using Omega-Schwertertanz on (\y{Name})/,
-      regexFr: / 14:(?:334B|334C):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga on (\y{Name})/,
-      regexJa: / 14:(?:334B|334C):(?:オメガ|オメガM) starts using ブレードダンス・オメガ on (\y{Name})/,
-      regexCn: / 14:(?:334B|334C):(?:欧米茄|欧米茄-M) starts using 欧米茄刀光剑舞 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
+      regexDe: Regexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
+      regexFr: Regexes.startsUsing({ id: ['334B', '334C'], source: ['Oméga', 'Oméga-M'] }),
+      regexJa: Regexes.startsUsing({ id: ['334B', '334C'], source: ['オメガ', 'オメガM'] }),
+      regexCn: Regexes.startsUsing({ id: ['334B', '334C'], source: ['欧米茄', '欧米茄M'] }),
+      regexKo: Regexes.startsUsing({ id: ['334B', '334C'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
         return data.me == matches[1] || data.role == 'healer';
       },
@@ -262,11 +265,12 @@
     },
     {
       id: 'O12S Diffuse Wave Cannon Sides',
-      regex: / 14:3367:Omega starts using Diffuse Wave Cannon/,
-      regexDe: / 14:3367:Omega starts using Streuende Wellenkanone/,
-      regexFr: / 14:3367:Oméga starts using Canon Plasma Diffuseur/,
-      regexJa: / 14:3367:オメガ starts using 拡散波動砲/,
-      regexCn: / 14:3367:欧米茄 starts using 扩散波动炮/,
+      regex: Regexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3367', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3367', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3367', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3367', source: '오메가', capture: false }),
       infoText: {
         en: 'Sides',
         de: 'Seiten',
@@ -277,11 +281,12 @@
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
-      regex: / 14:3368:Omega starts using Diffuse Wave Cannon/,
-      regexDe: / 14:3368:Omega starts using Streuende Wellenkanone/,
-      regexFr: / 14:3368:Oméga starts using Canon Plasma Diffuseur/,
-      regexJa: / 14:3368:オメガ starts using 拡散波動砲/,
-      regexCn: / 14:3368:欧米茄 starts using 扩散波动炮/,
+      regex: Regexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3368', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3368', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3368', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3368', source: '오메가', capture: false }),
       infoText: {
         en: 'Front or Back',
         de: 'Vorn oder Hinten',
@@ -292,11 +297,12 @@
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
-      regex: / 14:3364:Omega starts using Oversampled Wave Cannon/,
-      regexDe: / 14:3364:Omega starts using Fokussierte Wellenkanone/,
-      regexFr: / 14:3364:Oméga starts using Canon Plasma Chercheur/,
-      regexJa: / 14:3364:オメガ starts using 検知式波動砲/,
-      regexCn: / 14:3364:欧米茄 starts using 探测式波动炮/,
+      regex: Regexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3364', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3364', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3364', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3364', source: '오메가', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -316,11 +322,12 @@
     },
     {
       id: 'O12S Oversampled Wave Cannon Left',
-      regex: / 14:3365:Omega starts using Oversampled Wave Cannon/,
-      regexDe: / 14:3365:Omega starts using Fokussierte Wellenkanone/,
-      regexFr: / 14:3365:Oméga starts using Canon Plasma Chercheur/,
-      regexJa: / 14:3365:オメガ starts using 検知式波動砲/,
-      regexCn: / 14:3365:欧米茄 starts using 探测式波动炮/,
+      regex: Regexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3365', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3365', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3365', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3365', source: '오메가', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {

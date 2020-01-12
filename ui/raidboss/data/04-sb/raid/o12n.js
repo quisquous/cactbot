@@ -19,16 +19,18 @@
   triggers: [
     {
       id: 'O12N Solar Ray',
-      regex: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Solar Ray on (\y{Name})/,
-      regexDe: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
-      regexFr: / 14:(?:330F|3310):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
-      regexJa: / 14:(?:330F|3310):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
+      regexDe: Regexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
+      regexFr: Regexes.startsUsing({ id: ['330F', '3310'], source: ['Oméga', 'Oméga-M'] }),
+      regexJa: Regexes.startsUsing({ id: ['330F', '3310'], source: ['オメガ', 'オメガM'] }),
+      regexCn: Regexes.startsUsing({ id: ['330F', '3310'], source: ['欧米茄', '欧米茄M'] }),
+      regexKo: Regexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer';
+        return data.me == matches.target || data.role == 'healer';
       },
       suppressSeconds: 1,
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -44,7 +46,7 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -55,16 +57,18 @@
     },
     {
       id: 'O12N Optimized Blade Dance',
-      regex: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Optimized Bladedance on (\y{Name})/,
-      regexDe: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Omega-Schwertertanz on (\y{Name})/,
-      regexFr: / 14:(?:3321|3322):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga on (\y{Name})/,
-      regexJa: / 14:(?:3321|3322):(?:オメガ|オメガM) starts using ブレードダンス・オメガ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
+      regexDe: Regexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
+      regexFr: Regexes.startsUsing({ id: ['3321', '3322'], source: ['Oméga', 'Oméga-M'] }),
+      regexJa: Regexes.startsUsing({ id: ['3321', '3322'], source: ['オメガ', 'オメガM'] }),
+      regexCn: Regexes.startsUsing({ id: ['3321', '3322'], source: ['欧米茄', '欧米茄M'] }),
+      regexKo: Regexes.startsUsing({ id: ['3321', '3322'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer';
+        return data.me == matches.target || data.role == 'healer';
       },
       suppressSeconds: 1,
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -80,7 +84,7 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',

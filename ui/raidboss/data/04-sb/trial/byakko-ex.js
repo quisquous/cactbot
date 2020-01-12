@@ -10,13 +10,14 @@
   triggers: [
     {
       id: 'ByaEx Heavenly Strike',
-      regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
-      regexCn: / 14:27DA:白虎 starts using 天雷掌 on (\y{Name})/,
-      regexDe: / 14:27DA:Byakko starts using Himmlischer Schlag on (\y{Name})/,
-      regexFr: / 14:27DA:Byakko starts using Frappe Céleste on (\y{Name})/,
-      regexJa: / 14:27DA:白虎 starts using 天雷掌 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      regexDe: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      regexFr: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      regexJa: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
+      regexCn: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
+      regexKo: Regexes.startsUsing({ id: '27DA', source: '백호' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -27,16 +28,16 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: 'タンク即死級に' + data.ShortName(matches[1]),
-            cn: '死刑->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: 'タンク即死級に' + data.ShortName(matches.target),
+            cn: '死刑->' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -49,11 +50,12 @@
     },
     {
       id: 'ByaEx Flying Donut',
-      regex: / 14:27F4:Byakko starts using Sweep The Leg/,
-      regexCn: / 14:27F4:白虎 starts using 旋体脚/,
-      regexDe: / 14:27F4:Byakko starts using Vertikalität/,
-      regexFr: / 14:27F4:Byakko starts using Verticalité/,
-      regexJa: / 14:27F4:白虎 starts using 旋体脚/,
+      regex: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27F4', source: '백호', capture: false }),
       alertText: {
         en: 'Get Inside',
         de: 'Reingehen',
@@ -71,11 +73,12 @@
     },
     {
       id: 'ByaEx Sweep The Leg',
-      regex: / 14:27DB:Byakko starts using Sweep The Leg/,
-      regexCn: / 14:27DB:白虎 starts using 旋体脚/,
-      regexDe: / 14:27DB:Byakko starts using Vertikalität/,
-      regexFr: / 14:27DB:Byakko starts using Verticalité/,
-      regexJa: / 14:27DB:白虎 starts using 旋体脚/,
+      regex: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27DB', source: '백호', capture: false }),
       alertText: {
         en: 'Get Behind',
         de: 'Hinter ihn laufen',
@@ -93,11 +96,12 @@
     },
     {
       id: 'ByaEx Storm Pulse',
-      regex: / 14:27DC:Byakko starts using Storm Pulse/,
-      regexCn: / 14:27DC:白虎 starts using 风雷波动/,
-      regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
-      regexFr: / 14:27DC:Byakko starts using Pulsion De Tempête/,
-      regexJa: / 14:27DC:白虎 starts using 風雷波動/,
+      regex: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27DC', source: '백호', capture: false }),
       infoText: function(data) {
         if (data.role == 'healer') {
           return {
@@ -118,11 +122,12 @@
     },
     {
       id: 'ByaEx Distant Clap',
-      regex: / 14:27DD:Byakko starts using Distant Clap on Byakko/,
-      regexCn: / 14:27DD:白虎 starts using 远雷 on 白虎/,
-      regexDe: / 14:27DD:Byakko starts using Donnergrollen on Byakko/,
-      regexFr: / 14:27DD:Byakko starts using Tonnerre Lointain on Byakko/,
-      regexJa: / 14:27DD:白虎 starts using 遠雷 on 白虎/,
+      regex: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
       alertText: {
         en: 'Distant Clap',
         de: 'Donnergrollen',
@@ -140,13 +145,14 @@
     },
     {
       id: 'ByaEx State Of Shock Tank 1',
-      regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
-      regexCn: / 14:27E0:白虎 starts using 咒缚雷 on (\y{Name})/,
-      regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
-      regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
-      regexJa: / 14:27E0:白虎 starts using 呪縛雷 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexDe: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexFr: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'tank' && matches[1] != data.me;
+        return data.role == 'tank' && matches.target != data.me;
       },
       alertText: {
         en: 'Provoke Boss',
@@ -165,14 +171,15 @@
     },
     {
       id: 'ByaEx State Of Shock Tank 2',
-      regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
-      regexCn: / 14:27E0:白虎 starts using 咒缚雷 on (\y{Name})/,
-      regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
-      regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
-      regexJa: / 14:27E0:白虎 starts using 呪縛雷 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexDe: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexFr: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
       delaySeconds: 12,
       condition: function(data, matches) {
-        return data.role == 'tank' && matches[1] == data.me;
+        return data.role == 'tank' && matches.target == data.me;
       },
       alertText: {
         en: 'Provoke Boss',
@@ -190,11 +197,12 @@
       },
     },
     {
-      regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
-      regexCn: / 14:27F9:白帝 starts using 雷轰/,
-      regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
-      regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:白帝 starts using 雷轟/,
+      regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -202,11 +210,12 @@
     },
     {
       id: 'ByaEx Roar of Thunder',
-      regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
-      regexCn: / 14:27F9:白帝 starts using 雷轰/,
-      regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
-      regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:白帝 starts using 雷轟/,
+      regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
       alarmText: function(data) {
         if (data.roarCount != 2)
@@ -332,22 +341,24 @@
       },
     },
     {
-      regex: / 14:27E2:Byakko starts using Highest Stakes/,
-      regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
-      regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
-      regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
+      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
       },
     },
     {
-      regex: / 14:27E2:Byakko starts using Highest Stakes/,
-      regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
-      regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
-      regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
+      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -355,11 +366,12 @@
     },
     {
       id: 'ByaEx Highest Stakes',
-      regex: / 14:27E2:Byakko starts using Highest Stakes/,
-      regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
-      regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
-      regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
+      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,

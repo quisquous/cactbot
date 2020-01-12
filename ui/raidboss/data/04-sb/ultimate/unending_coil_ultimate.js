@@ -77,61 +77,67 @@
       },
     },
     {
-      regex: / 14:26E2:Bahamut Prime starts using Quickmarch Trio/,
-      regexCn: / 14:26E2:至尊巴哈姆特 starts using 进军的三重奏/,
-      regexDe: / 14:26E2:Prim-Bahamut starts using Todesmarsch-Trio/,
-      regexFr: / 14:26E2:Primo-Bahamut starts using Trio De La Marche Militaire/,
-      regexJa: / 14:26E2:バハムート・プライム starts using 進軍の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('quickmarch');
       },
     },
     {
-      regex: / 14:26E3:Bahamut Prime starts using Blackfire Trio/,
-      regexCn: / 14:26E3:至尊巴哈姆特 starts using 黑炎的三重奏/,
-      regexDe: / 14:26E3:Prim-Bahamut starts using Schwarzfeuer-Trio/,
-      regexFr: / 14:26E3:Primo-Bahamut starts using Trio Des Flammes Noires/,
-      regexJa: / 14:26E3:バハムート・プライム starts using 黒炎の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('blackfire');
       },
     },
     {
-      regex: / 14:26E4:Bahamut Prime starts using Fellruin Trio/,
-      regexCn: / 14:26E4:至尊巴哈姆特 starts using 灾厄的三重奏/,
-      regexDe: / 14:26E4:Prim-Bahamut starts using Untergangs-Trio/,
-      regexFr: / 14:26E4:Primo-Bahamut starts using Trio Du Désastre/,
-      regexJa: / 14:26E4:バハムート・プライム starts using 厄災の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('fellruin');
       },
     },
     {
-      regex: / 14:26E5:Bahamut Prime starts using Heavensfall Trio/,
-      regexCn: / 14:26E5:至尊巴哈姆特 starts using 天地的三重奏/,
-      regexDe: / 14:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
-      regexFr: / 14:26E5:Primo-Bahamut starts using Trio De L'univers/,
-      regexJa: / 14:26E5:バハムート・プライム starts using 天地の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('heavensfall');
       },
     },
     {
-      regex: / 14:26E6:Bahamut Prime starts using Tenstrike Trio/,
-      regexCn: / 14:26E6:至尊巴哈姆特 starts using 连击的三重奏/,
-      regexDe: / 14:26E6:Prim-Bahamut starts using Zehnschlag-Trio/,
-      regexFr: / 14:26E6:Primo-Bahamut starts using Trio Des Attaques/,
-      regexJa: / 14:26E6:バハムート・プライム starts using 連撃の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('tenstrike');
       },
     },
     {
-      regex: / 14:26E7:Bahamut Prime starts using Grand Octet/,
-      regexCn: / 14:26E7:至尊巴哈姆特 starts using 群龙的八重奏/,
-      regexDe: / 14:26E7:Prim-Bahamut starts using Großes Oktett/,
-      regexFr: / 14:26E7:Primo-Bahamut starts using Octuors Des Dragons/,
-      regexJa: / 14:26E7:バハムート・プライム starts using 群竜の八重奏/,
+      regex: Regexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('octet');
       },
@@ -155,11 +161,12 @@
     // --- Twintania ---
     {
       id: 'UCU Twisters',
-      regex: / 14:26AA:Twintania starts using/,
-      regexCn: / 14:26AA:双塔尼亚 starts using/,
-      regexDe: / 14:26AA:Twintania starts using/,
-      regexFr: / 14:26AA:Gémellia starts using/,
-      regexJa: / 14:26AA:ツインタニア starts using/,
+      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
@@ -177,11 +184,12 @@
     },
     {
       id: 'UCU Death Sentence',
-      regex: / 14:26A9:Twintania starts using Death Sentence/,
-      regexCn: / 14:26A9:双塔尼亚 starts using 死刑/,
-      regexDe: / 14:26A9:Twintania starts using Todesurteil/,
-      regexFr: / 14:26A9:Gémellia starts using Peine De Mort/,
-      regexJa: / 14:26A9:ツインタニア starts using デスセンテンス/,
+      regex: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26A9', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -1303,11 +1311,12 @@
     },
     {
       id: 'UCU Bahamut Gigaflare',
-      regex: / 14:26D6:Bahamut Prime starts using Gigaflare/,
-      regexCn: / 14:26D6:至尊巴哈姆特 starts using 十亿核爆/,
-      regexDe: / 14:26D6:Prim-Bahamut starts using Gigaflare/,
-      regexFr: / 14:26D6:Primo-Bahamut starts using GigaBrasier/,
-      regexJa: / 14:26D6:バハムート・プライム starts using ギガフレア/,
+      regex: Regexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26D6', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26D6', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26D6', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26D6', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26D6', source: '바하무트 프라임', capture: false }),
       alertText: {
         en: 'Gigaflare',
         fr: 'GigaBrasier',
@@ -1544,18 +1553,19 @@
     },
     {
       id: 'UCU Morn Afah',
-      regex: / 14:26EC:Bahamut Prime starts using Morn Afah on (\y{Name})/,
-      regexCn: / 14:26EC:至尊巴哈姆特 starts using 无尽顿悟 on (\y{Name})/,
-      regexDe: / 14:26EC:Prim-Bahamut starts using Morn Afah on (\y{Name})/,
-      regexFr: / 14:26EC:Primo-Bahamut starts using Morn Afah on (\y{Name})/,
-      regexJa: / 14:26EC:バハムート・プライム starts using モーン・アファー on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
+      regexDe: Regexes.startsUsing({ id: '26EC', source: 'Prim-Bahamut' }),
+      regexFr: Regexes.startsUsing({ id: '26EC', source: 'Primo-Bahamut' }),
+      regexJa: Regexes.startsUsing({ id: '26EC', source: 'バハムート・プライム' }),
+      regexCn: Regexes.startsUsing({ id: '26EC', source: '至尊巴哈姆特' }),
+      regexKo: Regexes.startsUsing({ id: '26EC', source: '바하무트 프라임' }),
       preRun: function(data) {
         data.mornAfahCount = data.mornAfahCount || 0;
         data.mornAfahCount++;
       },
       alertText: function(data, matches) {
         let str = 'Morn Afah #' + data.mornAfahCount;
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
@@ -1564,22 +1574,23 @@
             cn: '无尽顿悟 #' + data.mornAfahCount,
           };
         }
-        return str + ' (' + data.ShortName(matches[1]) + ')';
+        return str + ' (' + data.ShortName(matches.target) + ')';
       },
       tts: function(data, matches) {
         return {
-          en: 'morn afah ' + data.ShortName(matches[1]),
-          cn: '无尽顿悟 ' + data.ShortName(matches[1]),
+          en: 'morn afah ' + data.ShortName(matches.target),
+          cn: '无尽顿悟 ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Akh Morn',
-      regex: / 14:26EA:Bahamut Prime starts using Akh Morn on \y{Name}/,
-      regexCn: / 14:26EA:至尊巴哈姆特 starts using 死亡轮回 on \y{Name}/,
-      regexDe: / 14:26EA:Prim-Bahamut starts using Akh Morn on \y{Name}/,
-      regexFr: / 14:26EA:Primo-Bahamut starts using Akh Morn on \y{Name}/,
-      regexJa: / 14:26EA:バハムート・プライム starts using アク・モーン on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26EA', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26EA', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26EA', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26EA', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26EA', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
@@ -1593,11 +1604,12 @@
     },
     {
       id: 'UCU Exaflare',
-      regex: / 14:26EF:Bahamut Prime starts using Exaflare/,
-      regexCn: / 14:26EF:至尊巴哈姆特 starts using 百京核爆/,
-      regexDe: / 14:26EF:Prim-Bahamut starts using Exaflare/,
-      regexFr: / 14:26EF:Primo-Bahamut starts using ExaBrasier/,
-      regexJa: / 14:26EF:バハムート・プライム starts using エクサフレア/,
+      regex: Regexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26EF', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26EF', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26EF', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26EF', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26EF', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;
@@ -1624,11 +1636,12 @@
     {
       // One time setup.
       id: 'UCU Initial Setup',
-      regex: / 14:26AA:Twintania starts using/,
-      regexCn: / 14:26AA:双塔尼亚 starts using/,
-      regexDe: / 14:26AA:Twintania starts using/,
-      regexFr: / 14:26AA:Gémellia starts using/,
-      regexJa: / 14:26AA:ツインタニア starts using/,
+      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       suppressSeconds: 99999,
       run: function(data) {
         // TODO: a late white puddle can cause dragons to get seen for the next
