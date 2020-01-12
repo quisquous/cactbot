@@ -227,6 +227,8 @@
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: function(data) {
         data.phase = 'brute';
         data.resetState = function() {
@@ -333,6 +335,8 @@
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
       run: function(data) {
         data.phase = 'inception';
         data.resetState();
@@ -344,6 +348,8 @@
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
       run: function(data) {
         data.phase = 'wormhole';
         data.resetState();
@@ -423,6 +429,8 @@
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -432,6 +440,8 @@
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
         de: 'Proteische Welle',
@@ -629,6 +639,8 @@
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -640,6 +652,8 @@
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4A72', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: function(data) {
@@ -817,6 +831,8 @@
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4836', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4836', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
       alertText: {
@@ -852,6 +868,8 @@
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
       alertText: function(data) {
@@ -952,6 +970,8 @@
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
       run: function(data) {
         data.seenGavel = true;
       },
@@ -962,6 +982,8 @@
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4847' }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4847' }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4847' }),
+      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -1167,6 +1189,8 @@
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -1440,6 +1464,8 @@
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
       alertText: {
         en: 'big aoe',
         de: 'große AoE',
@@ -1451,6 +1477,8 @@
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
       infoText: {
         en: 'Kill Cruise Chaser First',
