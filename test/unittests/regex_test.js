@@ -167,6 +167,14 @@ let tests = {
     ];
     regexCaptureTest(Regexes.wasDefeated, lines);
   },
+  hasHP: () => {
+    let lines = [
+      '[21:14:50.793] 0D:Tini Poutini HP at 96%.',
+      '[21:16:25.491] 0D:Potato Chippy HP at 64%.',
+      '[00:17:27.689] 0D:French Fry HP at 100%.',
+    ];
+    regexCaptureTest(Regexes.hasHP, lines);
+  },
   gameLog: () => {
     let echoLines = [
       '[12:18:38.000] 00:0038:cactbot wipe',
