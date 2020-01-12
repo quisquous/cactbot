@@ -517,10 +517,7 @@ class BuffTracker {
       },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
-        durationSeconds: {
-          'en': 15,
-          'ko': 10,
-        },
+        durationSeconds: 15,
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
         sortKey: 1,
@@ -529,10 +526,7 @@ class BuffTracker {
       trick: {
         gainAbility: gLang.kAbility.TrickAttack,
         gainRegex: Regexes.ability({ id: gLang.kAbility.TrickAttack }),
-        durationSeconds: {
-          'en': 15,
-          'ko': 10,
-        },
+        durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
         borderColor: '#FC4AE6',
@@ -557,10 +551,7 @@ class BuffTracker {
         gainAbility: gLang.kAbility.Embolden,
         gainRegex: Regexes.abilityFull({ id: gLang.kAbility.Embolden, target: this.playerName }),
         loseEffect: gLang.kEffect.Embolden,
-        durationSeconds: {
-          'en': 20,
-          'ko': 20,
-        },
+        durationSeconds: 20,
         icon: '../../resources/icon/status/embolden.png',
         // Lime.
         borderColor: '#57FC4A',
@@ -642,10 +633,7 @@ class BuffTracker {
       devilment: {
         gainEffect: gLang.kEffect.Devilment,
         loseEffect: gLang.kEffect.Devilment,
-        durationSeconds: {
-          'en': 20,
-          'ko': 20,
-        },
+        durationSeconds: 20,
         icon: '../../resources/icon/status/devilment.png',
         // Dark Green.
         borderColor: '#006400',
@@ -655,10 +643,7 @@ class BuffTracker {
       standardFinish: {
         gainEffect: gLang.kEffect.StandardFinish,
         loseEffect: gLang.kEffect.StandardFinish,
-        durationSeconds: {
-          'en': 60,
-          'ko': 60,
-        },
+        durationSeconds: 60,
         icon: '../../resources/icon/status/standard-finish.png',
         // Green.
         borderColor: '#32CD32',
@@ -667,10 +652,7 @@ class BuffTracker {
       technicalFinish: {
         gainEffect: gLang.kEffect.TechnicalFinish,
         loseEffect: gLang.kEffect.TechnicalFinish,
-        durationSeconds: {
-          'en': 20,
-          'ko': 20,
-        },
+        durationSeconds: 20,
         icon: '../../resources/icon/status/technical-finish.png',
         // Dark Peach.
         borderColor: '#E0757C',
@@ -689,10 +671,7 @@ class BuffTracker {
       },
       chain: {
         gainAbility: gLang.kAbility.ChainStratagem,
-        durationSeconds: {
-          'en': 15,
-          'ko': 15,
-        },
+        durationSeconds: 15,
         icon: '../../resources/icon/status/chain-stratagem.png',
         // Blue.
         borderColor: '#4674E5',
@@ -781,6 +760,25 @@ class BuffTracker {
           console.error('Duplicate buff entry: ' + buff.gainAbility);
         this.gainAbilityMap[buff.gainAbility] = buff;
       }
+    }
+
+    const v5_08 = {
+      trick: {
+        durationSeconds: 10,
+      },
+      peculiar: {
+        durationSeconds: 10,
+      },
+    }
+
+    let buffOverrides = {
+      ko: v5_08,
+      cn: v5_08,
+    };
+
+    for (let key in buffOverrides[lang]) {
+      for (let key2 in buffOverrides[lang][key])
+        buffInfo[key][key2] = buffOverrides[lang][key][key2];
     }
   }
 
