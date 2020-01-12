@@ -10,7 +10,8 @@ namespace Cactbot
 {
     public class PluginLoader : IActPluginV1, IOverlayAddonV2
     {
-        static AssemblyResolver asmResolver;
+        private static AssemblyResolver asmResolver;
+        private static Version kMinOverlayPluginVersion = new Version(0, 12, 2);
 
         public void DeInitPlugin()
         {
@@ -27,6 +28,11 @@ namespace Cactbot
 
             // We don't need a tab here.
             ((TabControl)pluginScreenSpace.Parent).TabPages.Remove(pluginScreenSpace);
+
+            if (GetOverlayPluginVersion() < kMinOverlayPluginVersion) {
+                throw new Exception($"Cactbot requires OverlayPlugin {GetOverlayPluginVersion().ToString()}, " +
+                    $"found {kMinOverlayPluginVersion.ToString()}");
+            }
         }
 
         public void Init()
@@ -45,6 +51,10 @@ namespace Cactbot
             {
                 throw new Exception("Could not find ourselves in the plugin list!");
             }
+        }
+
+        private Version GetOverlayPluginVersion() {
+            return System.Reflection.Assembly.GetAssembly(typeof(IOverlay)).GetName().Version;
         }
     }
 }
