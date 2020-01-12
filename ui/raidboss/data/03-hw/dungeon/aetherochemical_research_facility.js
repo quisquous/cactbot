@@ -65,10 +65,12 @@
   triggers: [
     {
       id: 'Facility Petrifaction',
-      regex: / 14:10EB:Harmachis starts using Petrifaction/,
-      regexDe: / 14:10EB:Harmachis starts using Versteinerung/,
-      regexFr: / 14:10EB:Horamakhet starts using Pétrification/,
-      regexJa: / 14:10EB:ハルマキス starts using ペトリファクション/,
+      regex: Regexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '10EB', source: 'Horemakhet', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '10EB', source: 'ハルマキス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '10EB', source: '赫鲁玛奇斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '10EB', source: '하르마키스', capture: false }),
       infoText: {
         en: 'Look away',
         de: 'Wegschauen!',
@@ -102,10 +104,12 @@
     },
     {
       id: 'Facility Dark Orb',
-      regex: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dark Orb on (\y{Name})/,
-      regexDe: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dunkler Orbis on (\y{Name})/,
-      regexFr: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Orbe ténébreux on (\y{Name})/,
-      regexJa: /14:10FC:(?:アシエン・イゲオルム|アシエン・ラハブレア) starts using ダークオーブ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      regexDe: Regexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      regexFr: Regexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      regexJa: Regexes.startsUsing({ id: '10FC', source: ['アシエン・イゲオルム', 'アシエン・ラハブレア'] }),
+      regexCn: Regexes.startsUsing({ id: '10FC', source: ['以格约姆', '拉哈布雷亚'] }),
+      regexKo: Regexes.startsUsing({ id: '10FC', source: ['아씨엔 이게요름', '아씨엔 라하브레아'] }),
       infoText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -120,10 +124,12 @@
     },
     {
       id: 'Facility Shadow Flare',
-      regex: / 14:1109:Ascian Prime starts using Shadow Flare/,
-      regexDe: / 14:1109:Prim-Ascian starts using Schattenflamme/,
-      regexFr: / 14:1109:Primo-Ascien starts using Éruption ténébreuse/,
-      regexJa: / 14:1109:アシエン・プライム starts using シャドウフレア/,
+      regex: Regexes.startsUsing({ id: '1109', source: 'Ascian Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1109', source: 'Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1109', source: 'Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -134,10 +140,12 @@
     },
     {
       id: 'Facility Annihilation',
-      regex: / 14:110A:Ascian Prime starts using Annihilation/,
-      regexDe: / 14:110A:Prim-Ascian starts using Annihilation/,
-      regexFr: / 14:110A:Primo-Ascien starts using Annihilation/,
-      regexJa: / 14:110A:アシエン・プライム starts using アナイアレイション/,
+      regex: Regexes.startsUsing({ id: '110A', source: 'Ascian Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '110A', source: 'Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '110A', source: 'Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -148,10 +156,12 @@
     },
     {
       id: 'Facility Universal Manipulation',
-      regex: / 14:1105:Ascian Prime starts using Universal Manipulation/,
-      regexDe: / 14:1105:Prim-Ascian starts using Umwertung aller Werte/,
-      regexFr: / 14:1105:Primo-Ascien starts using Manipulation universelle/,
-      regexJa: / 14:1105:アシエン・プライム starts using 法則改変/,
+      regex: Regexes.startsUsing({ id: '1105', source: 'Ascian Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1105', source: 'Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1105', source: 'Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1105', source: 'アシエン・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1105', source: '至尊无影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1105', source: '아씨엔 프라임', capture: false }),
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
       delaySeconds: 4,
