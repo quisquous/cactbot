@@ -25,10 +25,12 @@
   triggers: [
     {
       id: 'HadesEx Shadow Spread 1',
-      regex: / 14:47A8:Hades starts using Shadow Spread/,
-      regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
-      regexFr: / 14:47A8:Hadès starts using Diffusion D'ombre/,
-      regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
+      regex: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47A8', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       alertText: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
@@ -38,10 +40,12 @@
     },
     {
       id: 'HadesEx Shadow Spread 2',
-      regex: / 14:47A8:Hades starts using Shadow Spread/,
-      regexDe: / 14:47A8:Hades starts using Dunkle Schatten/,
-      regexFr: / 14:47A8:Hadès starts using Diffusion D'ombre/,
-      regexJa: / 14:47A8:ハーデス starts using シャドウスプレッド/,
+      regex: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47A8', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       delaySeconds: 5.5,
       alertText: {
         en: 'Move',
@@ -50,12 +54,14 @@
     },
     {
       id: 'HadesEx Ravenous Assault',
-      regex: / 14:47A6:Hades starts using Ravenous Assault on (\y{Name})\./,
-      regexDe: / 14:47A6:Hades starts using Fegefeuer Der Helden on (\y{Name})\./,
-      regexFr: / 14:47A6:Hadès starts using Assaut Acharné on (\y{Name})\./,
-      regexJa: / 14:47A6:ハーデス starts using ラヴェナスアサルト on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '47A6', source: 'Hades' }),
+      regexDe: Regexes.startsUsing({ id: '47A6', source: 'Hades' }),
+      regexFr: Regexes.startsUsing({ id: '47A6', source: 'Hadès' }),
+      regexJa: Regexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
+      regexCn: Regexes.startsUsing({ id: '47A6', source: '哈迪斯' }),
+      regexKo: Regexes.startsUsing({ id: '47A6', source: '하데스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -64,29 +70,31 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
+        if (matches.target == data.me || data.role != 'tank')
           return;
 
         return {
-          en: 'Buster on ' + data.ShortName(matches[1]),
-          de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-          fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+          en: 'Buster on ' + data.ShortName(matches.target),
+          de: 'Tankbuster auf ' + data.ShortName(matches.target),
+          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'HadesEx Bad Faith Left 1',
-      regex: / 14:47AB:Hades starts using Bad Faith/,
-      regexDe: / 14:47AB:Hades starts using Maske Des Grolls/,
-      regexFr: / 14:47AB:Hadès starts using Mauvaise Foi/,
-      regexJa: / 14:47AB:ハーデス starts using バッドフェイス/,
+      regex: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47AB', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
       infoText: {
         en: 'Left',
         de: 'Links',
@@ -96,10 +104,12 @@
     },
     {
       id: 'HadesEx Bad Faith Left 2',
-      regex: / 14:47AB:Hades starts using Bad Faith/,
-      regexDe: / 14:47AB:Hades starts using Maske Des Grolls/,
-      regexFr: / 14:47AB:Hadès starts using Mauvaise Foi/,
-      regexJa: / 14:47AB:ハーデス starts using バッドフェイス/,
+      regex: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47AB', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Then Right',
@@ -110,10 +120,12 @@
     },
     {
       id: 'HadesEx Bad Faith Right 1',
-      regex: / 14:47AC:Hades starts using Bad Faith/,
-      regexDe: / 14:47AC:Hades starts using Maske Des Grolls/,
-      regexFr: / 14:47AC:Hadès starts using Mauvaise Foi/,
-      regexJa: / 14:47AC:ハーデス starts using バッドフェイス/,
+      regex: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47AC', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
       infoText: {
         en: 'Right',
         de: 'Rechts',
@@ -123,10 +135,12 @@
     },
     {
       id: 'HadesEx Bad Faith Right 2',
-      regex: / 14:47AC:Hades starts using Bad Faith/,
-      regexDe: / 14:47AC:Hades starts using Maske Des Grolls/,
-      regexFr: / 14:47AC:Hadès starts using Mauvaise Foi/,
-      regexJa: / 14:47AC:ハーデス starts using バッドフェイス/,
+      regex: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47AC', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Then Left',
@@ -165,10 +179,10 @@
     },
     {
       id: 'HadesEx Quake III',
-      regex: / 14:47B8:Nabriales's Shade starts using Quake III/,
-      regexDe: / 14:47B8:Nabriales' Schatten starts using Seisga/,
-      regexFr: / 14:47B8:Spectre De Nabriales starts using Méga Séisme/,
-      regexJa: / 14:47B8:ナプリアレスの影 starts using クエイガ/,
+      regex: Regexes.startsUsing({ id: '47B8', source: 'Nabriales\'s Shade', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47B8', source: 'Nabriales\' Schatten', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
       delaySeconds: 25,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -259,10 +273,10 @@
     },
     {
       id: 'HadesEx Spheres',
-      regex: / 14:47BD:Igeyorhm's Shade starts using Blizzard Sphere/,
-      regexDe: / 14:47BD:Igeyorhms Schatten starts using Eissphäre/,
-      regexFr: / 14:47BD:Spectre D'igeyorhm starts using Sphère De Glace/,
-      regexJa: / 14:47BD:イゲオルムの影 starts using ブリザードスフィア/,
+      regex: Regexes.startsUsing({ id: '47BD', source: 'Igeyorhm\'s Shade', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47BD', source: 'Igeyorhms Schatten', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -281,10 +295,10 @@
     },
     {
       id: 'HadesEx Annihilation',
-      regex: / 14:47BF:Lahabrea's And Igeyorhm's Shades starts using Annihilation/,
-      regexDe: / 14:47BF:Lahabrea Und Igeyorhm starts using Annihilation/,
-      regexFr: / 14:47BF:Duo D'Asciens starts using Annihilation/,
-      regexJa: / 14:47BF:ラハブレアとイゲオルム starts using アナイアレイション/,
+      regex: Regexes.startsUsing({ id: '47BF', source: 'Lahabrea\'s And Igeyorhm\'s Shades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47BF', source: 'Lahabrea Und Igeyorhm', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -332,12 +346,12 @@
     },
     {
       id: 'HadesEx Blizzard IV',
-      regex: / 14:47C3:Igeyorhm's Shade starts using Blizzard IV on (\y{Name})\./,
-      regexDe: / 14:47C3:Igeyorhms Schatten starts using Eiska on (\y{Name})\./,
-      regexFr: / 14:47C3:Spectre D'Igeyorhm starts using Giga Glace on (\y{Name})\./,
-      regexJa: / 14:47C3:イゲオルムの影 starts using ブリザジャ on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '47C3', source: 'Igeyorhm\'s Shade' }),
+      regexDe: Regexes.startsUsing({ id: '47C3', source: 'Igeyorhms Schatten' }),
+      regexFr: Regexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
+      regexJa: Regexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Tank Buster on YOU',
@@ -347,12 +361,12 @@
     },
     {
       id: 'HadesEx Fire IV',
-      regex: / 14:47C2:Lahabrea's Shade starts using Fire IV on (\y{Name})\./,
-      regexDe: / 14:47C2:Lahabreas Schatten starts using Feuka on (\y{Name})\./,
-      regexFr: / 14:47C2:Spectre De Lahabrea starts using Giga Feu on (\y{Name})\./,
-      regexJa: / 14:47C2:ラハブレアの影 starts using ファイジャ on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '47C2', source: 'Lahabrea\'s Shade' }),
+      regexDe: Regexes.startsUsing({ id: '47C2', source: 'Lahabreas Schatten' }),
+      regexFr: Regexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
+      regexJa: Regexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Tank Buster on YOU',
@@ -362,10 +376,10 @@
     },
     {
       id: 'HadesEx Healers Blizzard/Fire IV',
-      regex: / (?:14:47C3:Igeyorhm's Shade|14:47C2:Lahabrea's Shade)/,
-      regexDe: / (?:14:47C3:Igeyorhms Schatten|14:47C2:Lahabreas Schatten)/,
-      regexFr: / (?:14:47C3:Spectre d'Igeyorhm|14:47C2:Spectre De Lahabrea)/,
-      regexJa: / (?:14:47C3:イゲオルムの影|14:47C2:ラハブレアの影)/,
+      regex: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -470,10 +484,10 @@
     },
     {
       id: 'HadesEx Blight',
-      regex: / 14:47CC:Ascian Prime's Shade starts using Blight/,
-      regexDe: / 14:47CC:Schatten Des Prim-Ascian starts using Pesthauch/,
-      regexFr: / 14:47CC:Spectre De Primo-Ascien starts using Supplice/,
-      regexJa: / 14:47CC:アシエン・プライムの影 starts using クラウダ/,
+      regex: Regexes.startsUsing({ id: '47CC', source: 'Ascian Prime\'s Shade', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47CC', source: 'Schatten Des Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
       delaySeconds: 12,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -486,12 +500,12 @@
     },
     {
       id: 'HadesEx Height Of Chaos',
-      regex: / 14:47D1:Ascian Prime's Shade starts using Height Of Chaos on (\y{Name})\./,
-      regexDe: / 14:47D1:Schatten Des Prim-Ascian starts using Klimax Des Chaos on (\y{Name})\./,
-      regexFr: / 14:47D1:Spectre De Primo-Ascien starts using Apogée Du Chaos on (\y{Name})\./,
-      regexJa: / 14:47D1:アシエン・プライムの影 starts using ハイト・オブ・カオス on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '47D1', source: 'Ascian Prime\'s Shade' }),
+      regexDe: Regexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
+      regexFr: Regexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
+      regexJa: Regexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -500,23 +514,23 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
         return {
-          en: 'Away from ' + data.ShortName(matches[1]),
-          fr: 'Eloignez-vous de ' + data.ShortName(matches[1]),
+          en: 'Away from ' + data.ShortName(matches.target),
+          fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'HadesEx Megiddo Flame',
-      regex: / 14:47CD:Ascian Prime's Shade starts using Megiddo Flame/,
-      regexDe: / 14:47CD:Schatten Des Prim-Ascian starts using Megiddoflamme/,
-      regexFr: / 14:47CD:Spectre De Primo-Ascien starts using Flamme De Megiddo/,
-      regexJa: / 14:47CD:アシエン・プライムの影 starts using メギドフレイム/,
+      regex: Regexes.startsUsing({ id: '47CD', source: 'Ascian Prime\'s Shade', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47CD', source: 'Schatten Des Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47CD', source: 'Spectre De Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47CD', source: 'アシエン・プライムの影', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Healer Stacks',
@@ -526,10 +540,10 @@
     },
     {
       id: 'HadesEx Shadow Flare',
-      regex: / 14:47D0:Ascian Prime's Shade starts using Shadow Flare/,
-      regexDe: / 14:47D0:Schatten Des Prim-Ascian starts using Schattenflamme/,
-      regexFr: / 14:47D0:Spectre De Primo-Ascien starts using Éruption Ténébreuse/,
-      regexJa: / 14:47D0:アシエン・プライムの影 starts using シャドウフレア/,
+      regex: Regexes.startsUsing({ id: '47D0', source: 'Ascian Prime\'s Shade', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47D0', source: 'Schatten Des Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -597,10 +611,12 @@
     },
     {
       id: 'HadesEx Wail Of The Lost',
-      regex: / 14:47E1:Hades starts using Wail Of The Lost/,
-      regexDe: / 14:47E1:Hades starts using Wehklagen Der Verlorenen/,
-      regexFr: / 14:47E1:Hadès starts using Lamentation Des Disparus/,
-      regexJa: / 14:47E1:ハーデス starts using ウエイル・オブ・ザ・ロスト/,
+      regex: Regexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47E1', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47E1', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47E1', source: '하데스', capture: false }),
       infoText: function(data) {
         if (!data.flame && !data.freeze) {
           return {
@@ -628,10 +644,12 @@
     },
     {
       id: 'HadesEx Bident',
-      regex: / 14:47E3:Hades starts using Bident/,
-      regexDe: / 14:47E3:Hades starts using Zweizack/,
-      regexFr: / 14:47E3:Hadès starts using Bident/,
-      regexJa: / 14:47E3:ハーデス starts using バイデント/,
+      regex: Regexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47E3', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47E3', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47E3', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47E3', source: '하데스', capture: false }),
       condition: function(data) {
         return !data.netherBlast;
       },
@@ -643,10 +661,12 @@
     },
     {
       id: 'HadesEx Shadow Stream',
-      regex: / 14:47EA:Hades starts using Shadow Stream/,
-      regexDe: / 14:47EA:Hades starts using Schattenstrom/,
-      regexFr: / 14:47EA:Hadès starts using Flux De Ténèbres/,
-      regexJa: / 14:47EA:ハーデス starts using シャドウストリーム/,
+      regex: Regexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47EA', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47EA', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47EA', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47EA', source: '하데스', capture: false }),
       alertText: {
         en: 'Go Sides',
         de: 'Zu den Seiten gehen',
@@ -655,10 +675,12 @@
     },
     {
       id: 'HadesEx Polydegmon\'s Purgation',
-      regex: / 14:47EB:Hades starts using Polydegmon's Purgation/,
-      regexDe: / 14:47EB:Hades starts using Schlag Des Polydegmon/,
-      regexFr: / 14:47EB:Hadès starts using Assaut Du Polydegmon/,
-      regexJa: / 14:47EB:ハーデス starts using ポリデグモンストライク/,
+      regex: Regexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47EB', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47EB', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47EB', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47EB', source: '하데스', capture: false }),
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
@@ -667,10 +689,12 @@
     },
     {
       id: 'HadesEx Dark Current',
-      regex: / 14:47F1:Hades starts using Dark Current/,
-      regexDe: / 14:47F1:Hades starts using Dunkel-Strom/,
-      regexFr: / 14:47F1:Hadès starts using Flux [Ss]ombre/,
-      regexJa: / 14:47F1:ハーデス starts using ダークストリーム/,
+      regex: Regexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47F1', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47F1', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47F1', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47F1', source: '하데스', capture: false }),
       durationSeconds: 12,
       suppressSeconds: 10,
       infoText: {
@@ -681,10 +705,12 @@
     },
     {
       id: 'HadesEx Gigantomachy',
-      regex: / 14:47F3:Hades starts using Gigantomachy/,
-      regexDe: / 14:47F3:Hades starts using Gigantomachie/,
-      regexFr: / 14:47F3:Hadès starts using Gigantomachie/,
-      regexJa: / 14:47F3:ハーデス starts using ギガントマキア/,
+      regex: Regexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47F3', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47F3', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47F3', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47F3', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -696,10 +722,12 @@
     },
     {
       id: 'HadesEx Quadrastrike 1',
-      regex: / 14:47F4:Hades starts using Quadrastrike/,
-      regexDe: / 14:47F4:Hades starts using Quadraschlag/,
-      regexFr: / 14:47F4:Hadès starts using Frappe Quadruplée/,
-      regexJa: / 14:47F4:ハーデス starts using クアドラストライク/,
+      regex: Regexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47F4', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47F4', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47F4', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47F4', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -711,10 +739,12 @@
     },
     {
       id: 'HadesEx Quadrastrike 2',
-      regex: / 14:47F6:Hades starts using Quadrastrike/,
-      regexDe: / 14:47F6:Hades starts using Quadraschlag/,
-      regexFr: / 14:47F6:Hadès starts using Frappe Quadruplée/,
-      regexJa: / 14:47F6:ハーデス starts using クアドラストライク/,
+      regex: Regexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47F6', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47F6', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47F6', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47F6', source: '하데스', capture: false }),
       suppressSeconds: 2,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -759,10 +789,12 @@
     },
     {
       id: 'HadesEx Enrage Gigantomachy',
-      regex: / 14:47F9:Hades starts using Gigantomachy/,
-      regexDe: / 14:47F9:Hades starts using Gigantomachie/,
-      regexFr: / 14:47F9:Hadès starts using Gigantomachie/,
-      regexJa: / 14:47F9:ハーデス starts using ギガントマキア/,
+      regex: Regexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '47F9', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '47F9', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47F9', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47F9', source: '하데스', capture: false }),
       infoText: {
         en: 'Enrage',
         de: 'Finalangriff',
