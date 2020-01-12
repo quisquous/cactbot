@@ -9,22 +9,6 @@ namespace Cactbot {
   [Serializable]
   public class CactbotEventSourceConfig {
     public event EventHandler WatchFileChangesChanged;
-
-    [JsonIgnore]
-    public static string CactbotAssemblyUri {
-      get {
-        var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
-        if (location == "") location = PluginLoader.pluginPath;
-
-        if (location != "") {
-          return Path.GetDirectoryName(location);
-        } else
-        {
-          return null;
-        }
-      }
-    }
-
     public CactbotEventSourceConfig() {
     }
 

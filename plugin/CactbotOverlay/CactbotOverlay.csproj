@@ -87,20 +87,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CactbotEventSource.cs" />
-    <Compile Include="CactbotEventSourceConfig.cs" />
-    <Compile Include="FFXIVPlugin.cs" />
     <Compile Include="PluginLoader.cs" />
-    <Compile Include="VersionChecker.cs" />
-    <Compile Include="FFXIVProcess.cs" />
-    <Compile Include="FFXIVProcessCn.cs" />
-    <Compile Include="FFXIVProcessKo.cs" />
-    <Compile Include="FFXIVProcessIntl.cs" />
-    <Compile Include="JSEvents.cs" />
-    <Compile Include="NativeMethods.cs" />
     <Compile Include="OverlayAddonMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WipeDetector.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CactbotEventSource\CactbotEventSource.csproj">
+      <Project>{9eb3ba4d-b285-4445-b88b-2fb59b8bb321}</Project>
+      <Name>CactbotEventSource</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
