@@ -225,8 +225,7 @@ namespace Cactbot {
       language_ = plugin_helper.GetLocaleString();
 
       var versions = new VersionChecker(this);
-      Version local = versions.GetLocalVersion();
-      Version remote = versions.GetRemoteVersion();
+      Version local = versions.GetCactbotVersion();
 
       Version overlay = versions.GetOverlayPluginVersion();
       Version ffxiv = versions.GetFFXIVPluginVersion();
@@ -276,41 +275,12 @@ namespace Cactbot {
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
 
-      if (remote.Major == 0 && remote.Minor == 0) {
-        var result = System.Windows.Forms.MessageBox.Show(
-          "Github error while checking Cactbot version. " +
-          "Your current version is " + local + ".\n\n" +
-          "Manually check for newer version now?",
-          "Cactbot Manual Check",
-          System.Windows.Forms.MessageBoxButtons.YesNo);
-        if (result == System.Windows.Forms.DialogResult.Yes)
-          System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-      } else if (local < remote) {
-        Version remote_seen_before = new Version(Config.RemoteVersionSeen);
-        Config.RemoteVersionSeen = remote.ToString();
-
-        string update_message = "There is a new version of Cactbot is available at: \n" +
-          VersionChecker.kReleaseUrl + " \n\n" +
-          "New version " + remote + " \n" +
-          "Current version " + local;
-        if (remote == remote_seen_before) {
-          LogError(update_message);
-        } else {
-          var result = System.Windows.Forms.MessageBox.Show(
-            update_message + "\n\n" +
-            "Get it now?",
-            "Cactbot update available",
-            System.Windows.Forms.MessageBoxButtons.YesNo);
-          if (result == System.Windows.Forms.DialogResult.Yes)
-            System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-        }
-        Config.RemoteVersionSeen = remote.ToString();
-      }
-
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
+
+      versions.DoUpdateCheck(Config);
     }
 
     public override void Stop() {
