@@ -769,7 +769,7 @@ class BuffTracker {
       peculiar: {
         durationSeconds: 10,
       },
-    }
+    };
 
     let buffOverrides = {
       ko: v5_08,
