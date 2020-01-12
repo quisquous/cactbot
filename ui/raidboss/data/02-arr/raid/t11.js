@@ -103,7 +103,12 @@
     },
     {
       id: 'T11 Phase 2',
-      regex: /:Kaliya HP at 60%/,
+      regex: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'カーリア', hp: '60', capture: false }),
+      regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
+      regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Out of Middle',
