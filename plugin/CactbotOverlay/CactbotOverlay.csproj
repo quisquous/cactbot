@@ -55,24 +55,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Advanced Combat Tracker">
-      <HintPath>ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
+      <HintPath>..\ThirdParty\ACT\Advanced Combat Tracker.exe</HintPath>
     </Reference>
     <Reference Include="FFXIV_ACT_Plugin.Common">
-      <HintPath>ThirdParty\ACT\SDK\FFXIV_ACT_Plugin.Common.dll</HintPath>
+      <HintPath>..\ThirdParty\ACT\SDK\FFXIV_ACT_Plugin.Common.dll</HintPath>
     </Reference>
     <Reference Include="HtmlRenderer, Version=0.11.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\libs\HtmlRenderer.dll</HintPath>
+      <HintPath>..\ThirdParty\OverlayPlugin\libs\HtmlRenderer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>ThirdParty\OverlayPlugin\libs\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\ThirdParty\OverlayPlugin\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Common">
-      <HintPath>ThirdParty\OverlayPlugin\libs\OverlayPlugin.Common.dll</HintPath>
+      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Common.dll</HintPath>
     </Reference>
     <Reference Include="OverlayPlugin.Core, Version=0.11.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ThirdParty\OverlayPlugin\libs\OverlayPlugin.Core.dll</HintPath>
+      <HintPath>..\ThirdParty\OverlayPlugin\libs\OverlayPlugin.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

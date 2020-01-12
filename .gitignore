@@ -8,8 +8,8 @@ user/
 !user/README.txt
 plugin/**/*.csproj.user
 
-!plugin/CactbotOverlay/ThirdParty/*/dummy.txt
-plugin/CactbotOverlay/ThirdParty/
+!plugin/ThirdParty/*/dummy.txt
+plugin/ThirdParty/
 publish/
 __pycache__
 node_modules
