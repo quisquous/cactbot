@@ -7,12 +7,14 @@
   triggers: [
     {
       id: 'O9N Chaotic Dispersion',
-      regex: / 14:314F:Chaos starts using Chaotic Dispersion on (\y{Name})/,
-      regexDe: / 14:314F:Chaos starts using Chaos-Dispersion on (\y{Name})/,
-      regexFr: / 14:314F:Chaos starts using Dispersion Chaotique on (\y{Name})/,
-      regexJa: / 14:314F:カオス starts using カオティックディスパーション on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '314F', source: 'Chaos' }),
+      regexDe: Regexes.startsUsing({ id: '314F', source: 'Chaos' }),
+      regexFr: Regexes.startsUsing({ id: '314F', source: 'Chaos' }),
+      regexJa: Regexes.startsUsing({ id: '314F', source: 'カオス' }),
+      regexCn: Regexes.startsUsing({ id: '314F', source: '卡奥斯' }),
+      regexKo: Regexes.startsUsing({ id: '314F', source: '카오스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -21,14 +23,14 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -39,10 +41,12 @@
     },
     {
       id: 'O9N Orbs Fiend',
-      regex: / 14:315C:Chaos starts using Fiendish Orbs/,
-      regexDe: / 14:315C:Chaos starts using Höllenkugeln/,
-      regexFr: / 14:315C:Chaos starts using Ordre De Poursuite/,
-      regexJa: / 14:315C:カオス starts using 追尾せよ/,
+      regex: Regexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '315C', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '315C', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '315C', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '315C', source: '카오스', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },

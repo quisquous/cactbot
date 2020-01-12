@@ -11,11 +11,12 @@
   triggers: [
     {
       id: 'O6S Demonic Shear',
-      regex: / 14:2829:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
-      regexDe: / 14:2829:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
-      regexFr: / 14:2829:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
-      regexJa: / 14:2829:チャダルヌーク・デーモン starts using デモニックシアー on (\y{Name})/,
-      regexKo: / 14:2829:차다르누크 악령 starts using 악령의 참격 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
+      regexDe: Regexes.startsUsing({ id: '2829', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
+      regexFr: Regexes.startsUsing({ id: '2829', source: 'Démon Chadarnouk' }),
+      regexJa: Regexes.startsUsing({ id: '2829', source: 'チャダルヌーク・デーモン' }),
+      regexCn: Regexes.startsUsing({ id: '2829', source: '恶魔查达奴克' }),
+      regexKo: Regexes.startsUsing({ id: '2829', source: '차다르누크 악령' }),
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {

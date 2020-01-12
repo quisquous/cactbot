@@ -17,13 +17,14 @@
   triggers: [
     {
       id: 'O10S Tail End',
-      regex: / 14:31AA:Midgardsormr starts using Tail End on (\y{Name})/,
-      regexCn: / 14:31AA:尘世幻龙 starts using 煞尾 on (\y{Name})/,
-      regexDe: / 14:31AA:Midgardsormr starts using Schweifspitze on (\y{Name})/,
-      regexFr: / 14:31AA:Midgardsormr starts using Pointe De Queue on (\y{Name})/,
-      regexJa: / 14:31AA:ミドガルズオルム starts using テイルエンド on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      regexDe: Regexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      regexFr: Regexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      regexJa: Regexes.startsUsing({ id: '31AA', source: 'ミドガルズオルム' }),
+      regexCn: Regexes.startsUsing({ id: '31AA', source: '尘世幻龙' }),
+      regexKo: Regexes.startsUsing({ id: '31AA', source: '미드가르드오름' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -33,15 +34,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: data.ShortName(matches[1]) + '吃死刑',
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: data.ShortName(matches.target) + '吃死刑',
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
