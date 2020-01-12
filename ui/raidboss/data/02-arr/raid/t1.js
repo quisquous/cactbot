@@ -9,6 +9,8 @@
       regexDe: Regexes.startsUsing({ source: 'Abwehrsystem', id: '5A7', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Sphère De Contrôle', id: '5A7', capture: false }),
       regexJa: Regexes.startsUsing({ source: '制御システム', id: '5A7', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '自卫系统', id: '5A7', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '제어 시스템', id: '5A7', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
