@@ -740,7 +740,7 @@ namespace Cactbot {
 
     private void RegisterPresets() {
       RegisterPreset("Raidboss", width:1100, height:300);
-      RegisterPreset("Jobs", width:700, height:700);
+      RegisterPreset("Jobs", width:600, height:300);
       RegisterPreset("Eureka", width:400, height:400);
       RegisterPreset("Fisher", width:500, height:500);
       RegisterPreset("OopsyRaidsy", width:400, height:400);
