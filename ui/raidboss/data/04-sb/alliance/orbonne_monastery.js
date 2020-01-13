@@ -37,10 +37,12 @@
   triggers: [
     {
       id: 'Orbonne Harpy Devitalize',
-      regex: / 14:3778:Harpy starts using Devitalize/,
-      regexDe: / 14:3778:Harpyie starts using Schwächung/,
-      regexFr: / 14:3778:Harpie starts using Dévitalisation/,
-      regexJa: / 14:3778:ハーピー starts using デヴァイタライズ/,
+      regex: Regexes.startsUsing({ id: '3778', source: 'Harpy', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3778', source: 'Harpyie', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3778', source: 'Harpie', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3778', source: 'ハーピー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3778', source: '哈比鸟', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3778', source: '하피', capture: false }),
       suppressSeconds: 10,
       alertText: {
         en: 'Look Away',
@@ -50,10 +52,12 @@
     },
     {
       id: 'Orbonne Mustadio Right Handgonne',
-      regex: / 14:373E:Mustadio starts using Right Handgonne/,
-      regexDe: / 14:373E:Mustadio starts using Rechte Donnerbüchse/,
-      regexFr: / 14:373E:Mustadio starts using Mitraillage Droite/,
-      regexJa: / 14:373E:機工士ムスタディオ starts using 右舷掃射/,
+      regex: Regexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '373E', source: 'Mustadio', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '373E', source: '機工士ムスタディオ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '373E', source: '机工士姆斯塔迪奥', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '373E', source: '기공사 무스타디오', capture: false }),
       infoText: {
         en: 'Left',
         de: 'Links',
@@ -62,10 +66,12 @@
     },
     {
       id: 'Orbonne Mustadio Left Handgonne',
-      regex: / 14:373F:Mustadio starts using Left Handgonne/,
-      regexDe: / 14:373F:Mustadio starts using Linke Donnerbüchse/,
-      regexFr: / 14:373F:Mustadio starts using Mitraillage Gauche/,
-      regexJa: / 14:373F:機工士ムスタディオ starts using 左舷掃射/,
+      regex: Regexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '373F', source: 'Mustadio', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '373F', source: '機工士ムスタディオ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '373F', source: '机工士姆斯塔迪奥', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '373F', source: '기공사 무스타디오', capture: false }),
       infoText: {
         en: 'Right',
         de: 'Rechts',
@@ -74,10 +80,12 @@
     },
     {
       id: 'Orbonne Mustadio Last Testament',
-      regex: / 14:3737:Mustadio starts using Last Testament/,
-      regexDe: / 14:3737:Mustadio starts using Letztes Vermächtnis/,
-      regexFr: / 14:3737:Mustadio starts using Dernier Testament/,
-      regexJa: / 14:3737:機工士ムスタディオ starts using ファイナルテスタメント/,
+      regex: Regexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3737', source: 'Mustadio', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3737', source: '機工士ムスタディオ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3737', source: '机工士姆斯塔迪奥', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3737', source: '기공사 무스타디오', capture: false }),
       alertText: {
         en: 'Point opening at Mustadio',
         fr: 'Orientez l\'ouverture vers le boss',
@@ -85,12 +93,14 @@
     },
     {
       id: 'Orbonne Mustadio Arm Shot',
-      regex: / 14:3739:Mustadio starts using Arm Shot on (\y{Name})/,
-      regexDe: / 14:3739:Mustadio starts using Armschuss on (\y{Name})/,
-      regexFr: / 14:3739:Mustadio starts using Visée Des Bras on (\y{Name})/,
-      regexJa: / 14:3739:機工士ムスタディオ starts using 腕を狙う on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3739', source: 'Mustadio' }),
+      regexDe: Regexes.startsUsing({ id: '3739', source: 'Mustadio' }),
+      regexFr: Regexes.startsUsing({ id: '3739', source: 'Mustadio' }),
+      regexJa: Regexes.startsUsing({ id: '3739', source: '機工士ムスタディオ' }),
+      regexCn: Regexes.startsUsing({ id: '3739', source: '机工士姆斯塔迪奥' }),
+      regexKo: Regexes.startsUsing({ id: '3739', source: '기공사 무스타디오' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -99,20 +109,20 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me && data.role == 'healer') {
+        if (matches.target != data.me && data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Orbonne Mustadio Searchlight',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A4:/,
+      regex: Regexes.headMarker({ id: '00A4' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Searchlight on YOU',
@@ -122,9 +132,9 @@
     },
     {
       id: 'Orbonne Spread Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread Marker',
@@ -134,12 +144,14 @@
     },
     {
       id: 'Orbonne Agrias Thunder Slash',
-      regex: / 14:3866:Agrias starts using Thunder Slash on (\y{Name})/,
-      regexDe: / 14:3866:Agrias starts using Donnerhieb on (\y{Name})/,
-      regexFr: / 14:3866:Agrias starts using Foudrolle on (\y{Name})/,
-      regexJa: / 14:3866:聖騎士アグリアス starts using 雷鳴剣 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3866', source: 'Agrias' }),
+      regexDe: Regexes.startsUsing({ id: '3866', source: 'Agrias' }),
+      regexFr: Regexes.startsUsing({ id: '3866', source: 'Agrias' }),
+      regexJa: Regexes.startsUsing({ id: '3866', source: '聖騎士アグリアス' }),
+      regexCn: Regexes.startsUsing({ id: '3866', source: '圣骑士阿格莉亚丝' }),
+      regexKo: Regexes.startsUsing({ id: '3866', source: '성기사 아그리아스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Cleave on YOU',
             de: 'Tankbuster auf DIR',
@@ -148,7 +160,7 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
             en: 'Tank Cleave',
             de: 'Tank Cleave',
@@ -159,10 +171,12 @@
     },
     {
       id: 'Orbonne Agrias Cleansing Strike',
-      regex: / 14:3854:Agrias starts using Cleansing Strike/,
-      regexDe: / 14:3854:Agrias starts using Säuberungsschlag/,
-      regexFr: / 14:3854:Agrias starts using Impact Purifiant/,
-      regexJa: / 14:3854:聖騎士アグリアス starts using 乱命割殺打/,
+      regex: Regexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3854', source: 'Agrias', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3854', source: '聖騎士アグリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3854', source: '圣骑士阿格莉亚丝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3854', source: '성기사 아그리아스', capture: false }),
       preRun: function(data) {
         data.halidom = [];
       },
@@ -173,9 +187,9 @@
     },
     {
       id: 'Orbonne Agrias Vacuum',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A5:/,
+      regex: Regexes.headMarker({ id: '00A5' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.agriasGhostCleanse = true;
@@ -183,10 +197,12 @@
     },
     {
       id: 'Orbonne Agrias Consecration',
-      regex: / 14:3850:Agrias starts using Consecration/,
-      regexDe: / 14:3850:Agrias starts using Konsekration/,
-      regexFr: / 14:3850:Agrias starts using Joug Sanctifié/,
-      regexJa: / 14:3850:聖騎士アグリアス starts using 聖域束縛式/,
+      regex: Regexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3850', source: 'Agrias', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3850', source: '聖騎士アグリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3850', source: '圣骑士阿格莉亚丝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3850', source: '성기사 아그리아스', capture: false }),
       condition: function(data) {
         return !data.agriasGhostCleanse;
       },
@@ -198,20 +214,24 @@
     },
     {
       id: 'Orbonne Agrias Halidom Inside',
-      regex: / 15:\y{ObjectId}:Halidom:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:模造聖域:3851:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3851', source: 'Halidom' }),
+      regexDe: Regexes.ability({ id: '3851', source: 'Falsch(?:e|er|es|en) Heiligtum' }),
+      regexFr: Regexes.ability({ id: '3851', source: 'Faux Sanctuaire' }),
+      regexJa: Regexes.ability({ id: '3851', source: '模造聖域' }),
+      regexCn: Regexes.ability({ id: '3851', source: '仿制圣域' }),
+      regexKo: Regexes.ability({ id: '3851', source: '모조 성역' }),
       run: function(data, matches) {
-        data.halidom.push(matches[1]);
+        data.halidom.push(matches.target);
       },
     },
     {
       id: 'Orbonne Agrias Halidom Outside',
-      regex: / 15:\y{ObjectId}:Halidom:3851:/,
-      regexDe: / 15:\y{ObjectId}:Falsches Heiligtum:3851:/,
-      regexFr: / 15:\y{ObjectId}:Faux Sanctuaire:3851:/,
-      regexJa: / 15:\y{ObjectId}:模造聖域:3851:/,
+      regex: Regexes.ability({ id: '3851', source: 'Halidom', capture: false }),
+      regexDe: Regexes.ability({ id: '3851', source: 'Falsch(?:e|er|es|en) Heiligtum', capture: false }),
+      regexFr: Regexes.ability({ id: '3851', source: 'Faux Sanctuaire', capture: false }),
+      regexJa: Regexes.ability({ id: '3851', source: '模造聖域', capture: false }),
+      regexCn: Regexes.ability({ id: '3851', source: '仿制圣域', capture: false }),
+      regexKo: Regexes.ability({ id: '3851', source: '모조 성역', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: function(data) {
@@ -226,9 +246,9 @@
     },
     {
       id: 'Orbonne Agrias Hallowed Bolt',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A6:/,
+      regex: Regexes.headMarker({ id: '00A6' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Go To Center',
@@ -238,10 +258,12 @@
     },
     {
       id: 'Orbonne Agrias Adds Phase',
-      regex: / 15:\y{ObjectId}:Agrias:385D:/,
-      regexDe: / 15:\y{ObjectId}:Agrias:385D:/,
-      regexFr: / 15:\y{ObjectId}:Agrias:385D:/,
-      regexJa: / 15:\y{ObjectId}:聖騎士アグリアス:385D:/,
+      regex: Regexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      regexDe: Regexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      regexFr: Regexes.ability({ id: '385D', source: 'Agrias', capture: false }),
+      regexJa: Regexes.ability({ id: '385D', source: '聖騎士アグリアス', capture: false }),
+      regexCn: Regexes.ability({ id: '385D', source: '圣骑士阿格莉亚丝', capture: false }),
+      regexKo: Regexes.ability({ id: '385D', source: '성기사 아그리아스', capture: false }),
       alertText: {
         en: 'Get Shield',
         de: 'Schild nehmen',
@@ -250,10 +272,12 @@
     },
     {
       id: 'Orbonne Agrias Mortal Blow',
-      regex: / 14:385E:Sword Knight starts using Mortal Blow/,
-      regexDe: / 14:385E:Schwertritter starts using Tödlicher Hieb/,
-      regexFr: / 14:385E:Chevalier à l'épée starts using Frappe Brutale/,
-      regexJa: / 14:385E:剣の騎士 starts using 強打/,
+      regex: Regexes.startsUsing({ id: '385E', source: 'Sword Knight', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '385E', source: 'Schwertritter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '385E', source: 'Chevalier À L\'Épée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '385E', source: '剣の騎士', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '385E', source: '剑之骑士', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '385E', source: '검의 기사', capture: false }),
       suppressSeconds: 5,
       alertText: {
         en: 'Use Shield, Face Knights',
@@ -263,10 +287,12 @@
     },
     {
       id: 'Orbonne Agrias Extra Adds',
-      regex: / 03:\y{ObjectId}:Added new combatant Emblazoned Shield\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Geschmückter Schild\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Pavois Miroitant\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 光輝の大盾\./,
+      regex: Regexes.addedCombatant({ name: 'Emblazoned Shield', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Geschmückt(?:e|er|es|en) Schild', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Pavois Miroitant', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '光輝の大盾', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '光辉的大盾', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '찬란한 방패', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Kill shields with sword',
@@ -276,10 +302,12 @@
     },
     {
       id: 'Orbonne Agrias Judgment Blade',
-      regex: / 14:3857:Agrias starts using Judgment Blade/,
-      regexDe: / 14:3857:Agrias starts using Klinge des Urteils/,
-      regexFr: / 14:3857:Agrias starts using Lame Du Jugement/,
-      regexJa: / 14:3857:聖騎士アグリアス starts using 不動無明剣/,
+      regex: Regexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3857', source: 'Agrias', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3857', source: '聖騎士アグリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3857', source: '圣骑士阿格莉亚丝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3857', source: '성기사 아그리아스', capture: false }),
       infoText: {
         en: 'Use shield, face boss',
         de: 'Schild benutzen, Boss anschauen',
@@ -288,10 +316,12 @@
     },
     {
       id: 'Orbonne Agrias Divine Ruination',
-      regex: / 14:3858:Agrias starts using Divine Ruination/,
-      regexDe: / 14:3858:Agrias starts using Göttliche Zerstörung/,
-      regexFr: / 14:3858:Agrias starts using Ire Céleste/,
-      regexJa: / 14:3858:聖騎士アグリアス starts using 聖光爆裂破/,
+      regex: Regexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3858', source: 'Agrias', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3858', source: '聖騎士アグリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3858', source: '圣骑士阿格莉亚丝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3858', source: '성기사 아그리아스', capture: false }),
       infoText: {
         en: 'Use shield if tethered',
         de: 'Schild benutzen, wenn verbunden',
@@ -300,10 +330,12 @@
     },
     {
       id: 'Orbonne Cid Crush Helm Healer',
-      regex: / 14:3752:The Thunder God starts using Crush Helm/,
-      regexDe: / 14:3752:Cidolfus starts using Himmelsbombardement/,
-      regexFr: / 14:3752:Cid Le Dieu De La Foudre starts using Bombardement Céleste/,
-      regexJa: / 14:3752:雷神シド starts using 星天爆撃打/,
+      regex: Regexes.startsUsing({ id: '3752', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3752', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3752', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -315,10 +347,12 @@
     },
     {
       id: 'Orbonne Cid Crush Helm Feint',
-      regex: / 14:3752:The Thunder God starts using Crush Helm/,
-      regexDe: / 14:3752:Cidolfus starts using Himmelsbombardement/,
-      regexFr: / 14:3752:Cid Le Dieu De La Foudre starts using Bombardement Céleste/,
-      regexJa: / 14:3752:雷神シド starts using 星天爆撃打/,
+      regex: Regexes.startsUsing({ id: '3752', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3752', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3752', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
       condition: function(data) {
         return data.canFeint();
       },
@@ -330,12 +364,14 @@
     },
     {
       id: 'Orbonne Cid Crush Helm Tank',
-      regex: / 15:\y{ObjectId}:The Thunder God:3753:Crush Helm:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Cidolfus:3753:Himmelsbombardement:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3753:Bombardement Céleste:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷神シド:3753:星天爆撃打:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3753', source: 'The Thunder God' }),
+      regexDe: Regexes.ability({ id: '3753', source: 'Cidolfus' }),
+      regexFr: Regexes.ability({ id: '3753', source: 'Cid Le Dieu De La Foudre' }),
+      regexJa: Regexes.ability({ id: '3753', source: '雷神シド' }),
+      regexCn: Regexes.ability({ id: '3753', source: '雷神西德' }),
+      regexKo: Regexes.ability({ id: '3753', source: '뇌신 시드' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Tank Buster on YOU',
@@ -345,10 +381,12 @@
     },
     {
       id: 'Orbonne Cid Crush Armor Tank',
-      regex: / 14:3758:The Thunder God starts using Crush Armor/,
-      regexDe: / 14:3758:Cidolfus starts using Helmspalter/,
-      regexFr: / 14:3758:Cid Le Dieu De La Foudre starts using Brèche Insidieuse/,
-      regexJa: / 14:3758:雷神シド starts using 強甲破点突き/,
+      regex: Regexes.startsUsing({ id: '3758', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3758', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3758', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3758', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3758', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3758', source: '뇌신 시드', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -360,12 +398,14 @@
     },
     {
       id: 'Orbonne Cid Crush Armor',
-      regex: / 15:\y{ObjectId}:The Thunder God:3759:Crush Armor:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Cidolfus:3759:Helmspalter:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Cid Le Dieu De La Foudre:3759:Brèche Insidieuse:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷神シド:3759:強甲破点突き:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3759', source: 'The Thunder God' }),
+      regexDe: Regexes.ability({ id: '3759', source: 'Cidolfus' }),
+      regexFr: Regexes.ability({ id: '3759', source: 'Cid Le Dieu De La Foudre' }),
+      regexJa: Regexes.ability({ id: '3759', source: '雷神シド' }),
+      regexCn: Regexes.ability({ id: '3759', source: '雷神西德' }),
+      regexKo: Regexes.ability({ id: '3759', source: '뇌신 시드' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Give Tether Away',
@@ -375,10 +415,12 @@
     },
     {
       id: 'Orbonne Cid Crush Accessory',
-      regex: / 14:375A:The Thunder God starts using Crush Accessory/,
-      regexDe: / 14:375A:Cidolfus starts using Hagelkörner/,
-      regexFr: / 14:375A:Cid Le Dieu De La Foudre starts using Grêlons Fracassants/,
-      regexJa: / 14:375A:雷神シド starts using 咬撃氷狼破/,
+      regex: Regexes.startsUsing({ id: '375A', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '375A', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '375A', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '375A', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '375A', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '375A', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Kill Icewolf Adds',
         fr: 'Tuez les Grêlons de glace',
@@ -386,10 +428,12 @@
     },
     {
       id: 'Orbonne Cid Cleansing Strike',
-      regex: / 16:\y{ObjectId}:The Thunder God:3751:Cleansing Strike:/,
-      regexDe: / 16:\y{ObjectId}:Cidolfus:3751:Säuberungsschlag:/,
-      regexFr: / 16:\y{ObjectId}:Cid Le Dieu De La Foudre:3751:Impact Purifiant:/,
-      regexJa: / 16:\y{ObjectId}:雷神シド:3751:乱命割殺打:/,
+      regex: Regexes.ability({ id: '3751', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.ability({ id: '3751', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.ability({ id: '3751', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.ability({ id: '3751', source: '雷神シド', capture: false }),
+      regexCn: Regexes.ability({ id: '3751', source: '雷神西德', capture: false }),
+      regexKo: Regexes.ability({ id: '3751', source: '뇌신 시드', capture: false }),
       suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'healer';
@@ -402,10 +446,12 @@
     },
     {
       id: 'Orbonne Cid Shadowblade Bubble',
-      regex: / 14:3761:The Thunder God starts using Duskblade/,
-      regexDe: / 14:3761:Cidolfus starts using Dämmerklinge/,
-      regexFr: / 14:3761:Cid Le Dieu De La Foudre starts using Lame sombre/,
-      regexJa: / 14:3761:雷神シド starts using 暗の剣/,
+      regex: Regexes.startsUsing({ id: '3761', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3761', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3761', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3761', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3761', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3761', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Stand on Pads',
         de: 'Auf Felder stellen',
@@ -414,9 +460,9 @@
     },
     {
       id: 'Orbonne Cid Shadowblade Bubble',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AA:/,
+      regex: Regexes.headMarker({ id: '00AA' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Drop Bubble In Back',
@@ -426,9 +472,9 @@
     },
     {
       id: 'Orbonne Cid Hallowed Bolt',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Bolt on YOU',
@@ -438,9 +484,9 @@
     },
     {
       id: 'Orbonne Cid Crush Weapon',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
+      regex: Regexes.headMarker({ id: '005C' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'GTFO',
@@ -450,7 +496,7 @@
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Stack',
@@ -460,9 +506,9 @@
     },
     {
       id: 'Orbonne Cid Divine Ruination',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006E:/,
+      regex: Regexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Point Line Outside',
@@ -472,10 +518,12 @@
     },
     {
       id: 'Orbonne Cid Holy Sword In',
-      regex: / 14:3750:The Thunder God starts using T.G. Holy Sword/,
-      regexDe: / 14:3750:Cidolfus starts using Heiliges Schwert Des Donnergottes/,
-      regexFr: / 14:3750:Cid Le Dieu De La Foudre starts using Épée Sacrée Du Dieu De La Foudre/,
-      regexJa: / 14:3750:雷神シド starts using 雷神式聖剣技/,
+      regex: Regexes.startsUsing({ id: '3750', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3750', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3750', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3750', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3750', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3750', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Get In',
         de: 'Rein da',
@@ -484,10 +532,12 @@
     },
     {
       id: 'Orbonne Cid Holy Sword Out',
-      regex: / 14:374F:The Thunder God starts using T.G. Holy Sword/,
-      regexDe: / 14:374F:Cidolfus starts using Heiliges Schwert Des Donnergottes/,
-      regexFr: / 14:374F:Cid Le Dieu De La Foudre starts using Épée Sacrée Du Dieu De La Foudre/,
-      regexJa: / 14:374F:雷神シド starts using 雷神式聖剣技/,
+      regex: Regexes.startsUsing({ id: '374F', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '374F', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '374F', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '374F', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '374F', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '374F', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -496,10 +546,12 @@
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Left',
-      regex: / 14:3749:The Thunder God starts using T.G. Holy Sword/,
-      regexDe: / 14:3749:Cidolfus starts using Heiliges Schwert Des Donnergottes/,
-      regexFr: / 14:3749:Cid Le Dieu De La Foudre starts using Épée Sacrée Du Dieu De La Foudre/,
-      regexJa: / 14:3749:雷神シド starts using 雷神式聖剣技/,
+      regex: Regexes.startsUsing({ id: '3749', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3749', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3749', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3749', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3749', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3749', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Left',
         de: 'Links',
@@ -508,10 +560,12 @@
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Right',
-      regex: / 14:374A:The Thunder God starts using T.G. Holy Sword/,
-      regexDe: / 14:374A:Cidolfus starts using Heiliges Schwert Des Donnergottes/,
-      regexFr: / 14:374A:Cid Le Dieu De La Foudre starts using Épée Sacrée Du Dieu De La Foudre/,
-      regexJa: / 14:374A:雷神シド starts using 雷神式聖剣技/,
+      regex: Regexes.startsUsing({ id: '374A', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '374A', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '374A', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '374A', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '374A', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '374A', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Right',
         de: 'Rechts',
@@ -520,10 +574,12 @@
     },
     {
       id: 'Orbonne Cid Holy Sword Three 1',
-      regex: / 14:374C:The Thunder God starts using T.G. Holy Sword/,
-      regexDe: / 14:374C:Cidolfus starts using Heiliges Schwert Des Donnergottes/,
-      regexFr: / 14:374C:Cid Le Dieu De La Foudre starts using Épée Sacrée Du Dieu De La Foudre/,
-      regexJa: / 14:374C:雷神シド starts using 雷神式聖剣技/,
+      regex: Regexes.startsUsing({ id: '374C', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '374C', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '374C', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '374C', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '374C', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '374C', source: '뇌신 시드', capture: false }),
       alertText: {
         // e.g. E / NE / NW platforms
         en: 'Rotate right',
@@ -533,10 +589,12 @@
     },
     {
       id: 'Orbonne Cid Holy Sword Three 2',
-      regex: / 14:374D:The Thunder God starts using T.G. Holy Sword/,
-      regexDe: / 14:374D:Cidolfus starts using Heiliges Schwert Des Donnergottes/,
-      regexFr: / 14:374D:Cid Le Dieu De La Foudre starts using Épée Sacrée Du Dieu De La Foudre/,
-      regexJa: / 14:374D:雷神シド starts using 雷神式聖剣技/,
+      regex: Regexes.startsUsing({ id: '374D', source: 'The Thunder God', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '374D', source: 'Cidolfus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '374D', source: 'Cid Le Dieu De La Foudre', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '374D', source: '雷神シド', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '374D', source: '雷神西德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '374D', source: '뇌신 시드', capture: false }),
       alertText: {
         // NW / NE / E platforms
         en: 'Rotate left',
@@ -546,12 +604,14 @@
     },
     {
       id: 'Orbonne Ultima Redemption',
-      regex: / 14:38AA:Ultima, The High Seraph starts using Redemption on (\y{Name})/,
-      regexDe: / 14:38AA:Cherub Ultima starts using Zerstörung on (\y{Name})/,
-      regexFr: / 14:38AA:Ultima La Grande Séraphine starts using Destruction on (\y{Name})/,
-      regexJa: / 14:38AA:聖天使アルテマ starts using 破壊 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '38AA', source: 'Ultima, The High Seraph' }),
+      regexDe: Regexes.startsUsing({ id: '38AA', source: 'Cherub Ultima' }),
+      regexFr: Regexes.startsUsing({ id: '38AA', source: 'Ultima La Grande Séraphine' }),
+      regexJa: Regexes.startsUsing({ id: '38AA', source: '聖天使アルテマ' }),
+      regexCn: Regexes.startsUsing({ id: '38AA', source: '圣天使阿尔蒂玛' }),
+      regexKo: Regexes.startsUsing({ id: '38AA', source: '성천사 알테마' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -560,20 +620,20 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me && data.role == 'healer') {
+        if (matches.target != data.me && data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Orbonne Ultima Dark Cannonade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0037:/,
+      regex: Regexes.headMarker({ id: '0037' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Dorito Stack',
@@ -583,9 +643,9 @@
     },
     {
       id: 'Orbonne Ultima Eruption',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0066:/,
+      regex: Regexes.headMarker({ id: '0066' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Eruption on YOU',
@@ -595,9 +655,9 @@
     },
     {
       id: 'Orbonne Ultima Flare IV',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'GTFO',
@@ -607,10 +667,12 @@
     },
     {
       id: 'Orbonne Ultima Time Eruption',
-      regex: / 14:38CF:Demi-Belias starts using Time Eruption/,
-      regexDe: / 14:38CF:Demi-Belias starts using Zeiteruption/,
-      regexFr: / 14:38CF:Demi-Belias starts using Éruption À Retardement/,
-      regexJa: / 14:38CF:デミ・ベリアス starts using タイムエラプション/,
+      regex: Regexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '38CF', source: 'Demi-Belias', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '38CF', source: 'デミ・ベリアス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '38CF', source: '亚灵贝利亚斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '38CF', source: '데미벨리아스', capture: false }),
       infoText: {
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
@@ -619,10 +681,12 @@
     },
     {
       id: 'Orbonne Ultima Extreme Edge',
-      regex: / 14:38DA:Demi-Hashmal starts using Extreme Edge/,
-      regexDe: / 14:38DA:Demi-Hashmallim starts using Extremkante/,
-      regexFr: / 14:38DA:Demi-Hashmal starts using Taille Suprême/,
-      regexJa: / 14:38DA:デミ・ハシュマリム starts using ブーストエッジ/,
+      regex: Regexes.startsUsing({ id: '38DA', source: 'Demi-Hashmal', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '38DA', source: 'Demi-Hashmallim', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '38DA', source: 'Demi-Hashmal', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '38DA', source: 'デミ・ハシュマリム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '38DA', source: '亚灵哈修马利姆', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '38DA', source: '데미하쉬말림', capture: false }),
       alertText: {
         en: 'Look for Hashmal dash',
         de: 'Nach Hashmal-Dash ausschau halten',
@@ -631,10 +695,12 @@
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion Healer',
-      regex: / 14:3895:Ultima, The High Seraph starts using Ultimate Illusion/,
-      regexDe: / 14:3895:Cherub Ultima starts using Ultimative Illusion/,
-      regexFr: / 14:3895:Ultima La Grande Séraphine starts using Fantaisie Finale/,
-      regexJa: / 14:3895:聖天使アルテマ starts using 究極幻想/,
+      regex: Regexes.startsUsing({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3895', source: 'Cherub Ultima', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3895', source: 'Ultima La Grande Séraphine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3895', source: '聖天使アルテマ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3895', source: '성천사 알테마', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -646,11 +712,12 @@
     },
     {
       id: 'Orbonne Ultima Ultimate Illusion',
-      // Yes, this is lower case "the High Seraph".
-      regex: / 15:\y{ObjectId}:Ultima, the High Seraph:3895:Ultimate Illusion:/,
-      regexDe: / 15:\y{ObjectId}:Cherub Ultima:3895:Ultimative Illusion:/,
-      regexFr: / 15:\y{ObjectId}:Ultima La Grande Séraphine:3895:Fantaisie Finale:/,
-      regexJa: / 15:\y{ObjectId}:聖天使アルテマ:3895:究極幻想:/,
+      regex: Regexes.ability({ id: '3895', source: 'Ultima, The High Seraph', capture: false }),
+      regexDe: Regexes.ability({ id: '3895', source: 'Cherub Ultima', capture: false }),
+      regexFr: Regexes.ability({ id: '3895', source: 'Ultima La Grande Séraphine', capture: false }),
+      regexJa: Regexes.ability({ id: '3895', source: '聖天使アルテマ', capture: false }),
+      regexCn: Regexes.ability({ id: '3895', source: '圣天使阿尔蒂玛', capture: false }),
+      regexKo: Regexes.ability({ id: '3895', source: '성천사 알테마', capture: false }),
       condition: function(data) {
         return data.role != 'healer';
       },

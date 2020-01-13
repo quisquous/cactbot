@@ -24,13 +24,14 @@
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Firescorched/,
-      regexCn: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 火角/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Feuerhorn/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Corne-de-feu/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of ファイアホーン/,
+      regex: Regexes.losesEffect({ effect: 'Firescorched' }),
+      regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
+      regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
+      regexJa: Regexes.losesEffect({ effect: 'ファイアホーン' }),
+      regexCn: Regexes.losesEffect({ effect: '火角' }),
+      regexKo: Regexes.losesEffect({ effect: '화염뿔' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.fireDebuff = false;
@@ -51,111 +52,121 @@
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Icebitten/,
-      regexCn: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 冰爪/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Eisklaue/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Griffe-de-glace/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of アイスクロウ/,
+      regex: Regexes.losesEffect({ effect: 'Icebitten' }),
+      regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
+      regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
+      regexJa: Regexes.losesEffect({ effect: 'アイスクロウ' }),
+      regexCn: Regexes.losesEffect({ effect: '冰爪' }),
+      regexKo: Regexes.losesEffect({ effect: '얼음발톱' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.iceDebuff = false;
       },
     },
     {
-      regex: / 1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 1[56]:\y{ObjectId}:火角:26C5:火球:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Feuerhorn:26C5:Feuerball:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Corne-de-feu:26C5:Boule De Feu:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:ファイアホーン:26C5:ファイアボール:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '26C5', source: 'Firehorn' }),
+      regexDe: Regexes.ability({ id: '26C5', source: 'Feuerhorn' }),
+      regexFr: Regexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
+      regexJa: Regexes.ability({ id: '26C5', source: 'ファイアホーン' }),
+      regexCn: Regexes.ability({ id: '26C5', source: '火角' }),
+      regexKo: Regexes.ability({ id: '26C5', source: '화염뿔' }),
       run: function(data, matches) {
-        data.fireballs[data.naelFireballCount].push(matches[1]);
+        data.fireballs[data.naelFireballCount].push(matches.target);
       },
     },
     {
-      regex: / 14:26E2:Bahamut Prime starts using Quickmarch Trio/,
-      regexCn: / 14:26E2:至尊巴哈姆特 starts using 进军的三重奏/,
-      regexDe: / 14:26E2:Prim-Bahamut starts using Todesmarsch-Trio/,
-      regexFr: / 14:26E2:Primo-Bahamut starts using Trio De La Marche Militaire/,
-      regexJa: / 14:26E2:バハムート・プライム starts using 進軍の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('quickmarch');
       },
     },
     {
-      regex: / 14:26E3:Bahamut Prime starts using Blackfire Trio/,
-      regexCn: / 14:26E3:至尊巴哈姆特 starts using 黑炎的三重奏/,
-      regexDe: / 14:26E3:Prim-Bahamut starts using Schwarzfeuer-Trio/,
-      regexFr: / 14:26E3:Primo-Bahamut starts using Trio Des Flammes Noires/,
-      regexJa: / 14:26E3:バハムート・プライム starts using 黒炎の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('blackfire');
       },
     },
     {
-      regex: / 14:26E4:Bahamut Prime starts using Fellruin Trio/,
-      regexCn: / 14:26E4:至尊巴哈姆特 starts using 灾厄的三重奏/,
-      regexDe: / 14:26E4:Prim-Bahamut starts using Untergangs-Trio/,
-      regexFr: / 14:26E4:Primo-Bahamut starts using Trio Du Désastre/,
-      regexJa: / 14:26E4:バハムート・プライム starts using 厄災の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('fellruin');
       },
     },
     {
-      regex: / 14:26E5:Bahamut Prime starts using Heavensfall Trio/,
-      regexCn: / 14:26E5:至尊巴哈姆特 starts using 天地的三重奏/,
-      regexDe: / 14:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
-      regexFr: / 14:26E5:Primo-Bahamut starts using Trio De L'univers/,
-      regexJa: / 14:26E5:バハムート・プライム starts using 天地の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('heavensfall');
       },
     },
     {
-      regex: / 14:26E6:Bahamut Prime starts using Tenstrike Trio/,
-      regexCn: / 14:26E6:至尊巴哈姆特 starts using 连击的三重奏/,
-      regexDe: / 14:26E6:Prim-Bahamut starts using Zehnschlag-Trio/,
-      regexFr: / 14:26E6:Primo-Bahamut starts using Trio Des Attaques/,
-      regexJa: / 14:26E6:バハムート・プライム starts using 連撃の三重奏/,
+      regex: Regexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('tenstrike');
       },
     },
     {
-      regex: / 14:26E7:Bahamut Prime starts using Grand Octet/,
-      regexCn: / 14:26E7:至尊巴哈姆特 starts using 群龙的八重奏/,
-      regexDe: / 14:26E7:Prim-Bahamut starts using Großes Oktett/,
-      regexFr: / 14:26E7:Primo-Bahamut starts using Octuors Des Dragons/,
-      regexJa: / 14:26E7:バハムート・プライム starts using 群竜の八重奏/,
+      regex: Regexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('octet');
       },
     },
     {
-      regex: / 16:\y{ObjectId}:Ragnarok:26B8:Heavensfall:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:诸神黄昏:26B8:天崩地裂:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Ragnarök:26B8:Himmelssturz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Ragnarok:26B8:Destruction Universelle:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:ラグナロク:26B8:天地崩壊:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      regexDe: Regexes.ability({ id: '26B8', source: 'Ragnarök' }),
+      regexFr: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      regexJa: Regexes.ability({ id: '26B8', source: 'ラグナロク' }),
+      regexCn: Regexes.ability({ id: '26B8', source: '诸神黄昏' }),
+      regexKo: Regexes.ability({ id: '26B8', source: '라그나로크' }),
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
         // people by the time you get to octet.
         data.partyList = data.partyList || {};
-        data.partyList[matches[1]] = true;
+        data.partyList[matches.target] = true;
       },
     },
 
     // --- Twintania ---
     {
       id: 'UCU Twisters',
-      regex: / 14:26AA:Twintania starts using/,
-      regexCn: / 14:26AA:双塔尼亚 starts using/,
-      regexDe: / 14:26AA:Twintania starts using/,
-      regexFr: / 14:26AA:Gémellia starts using/,
-      regexJa: / 14:26AA:ツインタニア starts using/,
+      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
@@ -173,11 +184,12 @@
     },
     {
       id: 'UCU Death Sentence',
-      regex: / 14:26A9:Twintania starts using Death Sentence/,
-      regexCn: / 14:26A9:双塔尼亚 starts using 死刑/,
-      regexDe: / 14:26A9:Twintania starts using Todesurteil/,
-      regexFr: / 14:26A9:Gémellia starts using Peine De Mort/,
-      regexJa: / 14:26A9:ツインタニア starts using デスセンテンス/,
+      regex: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26A9', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -203,17 +215,17 @@
     },
     {
       // Hatch Collect
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076' }),
       run: function(data, matches) {
         data.hatch = data.hatch || [];
-        data.hatch.push(matches[1]);
+        data.hatch.push(matches.target);
       },
     },
     {
       id: 'UCU Hatch Marker YOU',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Hatch on YOU',
@@ -232,7 +244,7 @@
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 0.25,
       infoText: function(data) {
         if (!data.hatch)
@@ -252,7 +264,7 @@
     },
     {
       // Hatch Cleanup
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -260,11 +272,12 @@
     },
     {
       id: 'UCU Twintania P2',
-      regex: /:Twintania HP at 75%/,
-      regexCn: /:双塔尼亚 HP at 75%/,
-      regexDe: /:Twintania HP at 75%/,
-      regexFr: /:Gémellia HP at 75%/,
-      regexJa: /:ツインタニア HP at 75%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '75', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '75', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '75', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '75', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '75', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '75', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Phase 2 Push',
@@ -276,11 +289,12 @@
     },
     {
       id: 'UCU Twintania P3',
-      regex: /:Twintania HP at 45%/,
-      regexCn: /:双塔尼亚 HP at 45%/,
-      regexDe: /:Twintania HP at 45%/,
-      regexFr: /:Gémellia HP at 45%/,
-      regexJa: /:ツインタニア HP at 45%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '45', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '45', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '45', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '45', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '45', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '45', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Phase 3 Push',
@@ -577,7 +591,7 @@
       tts: {
         en: 'in then spread then stack',
         fr: 'Dedans, puis se dispercer, puis se rassembler',
-        de: 'rein dann raus dann stek',
+        de: 'rein dann verteilen dann stek',
         ja: '密着や散開や頭割り',
         cn: '靠近后分散最后集合',
       },
@@ -601,7 +615,7 @@
       tts: {
         en: 'out then stack then spread',
         fr: 'Dehors, puis se rassembler, puis se dispercer',
-        de: 'rein dann raus dann verteilen',
+        de: 'raus dann stek dann verteilen',
         ja: '離れるや頭割りや散開',
         cn: '远离后集合最后分散',
       },
@@ -610,7 +624,7 @@
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
       regex: /Unbending iron, descend with fiery edge/,
-      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
+      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfad/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
       regexCn: /\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01/,
@@ -625,7 +639,7 @@
       tts: {
         en: 'out then spread then stack',
         fr: 'Dehors, puis se dispercer, puis se rassembler',
-        de: 'Raus dann rein dann stek',
+        de: 'Raus dann verteilen dann stek',
         ja: '離れるや散開や頭割り',
         cn: '远离后分散最后集合',
       },
@@ -634,13 +648,14 @@
       id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: /:Thunderwing:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexCn: /:雷翼:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /:サンダーウィング:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Thunderwing', id: '26C7' }),
+      regexDe: Regexes.ability({ source: 'Donnerschwinge', id: '26C7' }),
+      regexFr: Regexes.ability({ source: 'Aile-De-Foudre', id: '26C7' }),
+      regexJa: Regexes.ability({ source: 'サンダーウィング', id: '26C7' }),
+      regexCn: Regexes.ability({ source: '雷翼', id: '26C7' }),
+      regexKo: Regexes.ability({ source: '번개날개', id: '26C7' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Thunder on YOU',
@@ -766,11 +781,12 @@
     },
     {
       id: 'UCU Nael Cleanse Callout',
-      regex: /:Fang [Oo]f Light:26CA:/,
-      regexDe: /:Lichtklaue:26CA:/,
-      regexFr: /:Croc de lumière:26CA:/,
-      regexJa: /:ライトファング:26CA:/,
-      regexCn: /:光牙:26CA:/,
+      regex: Regexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
+      regexDe: Regexes.ability({ source: 'Lichtklaue', id: '26CA', capture: false }),
+      regexFr: Regexes.ability({ source: 'Croc De Lumière', id: '26CA', capture: false }),
+      regexJa: Regexes.ability({ source: 'ライトファング', id: '26CA', capture: false }),
+      regexCn: Regexes.ability({ source: '光牙', id: '26CA', capture: false }),
+      regexKo: Regexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
         let name;
@@ -790,11 +806,12 @@
     },
     {
       id: 'UCU Nael Fireball 1',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: {
@@ -817,11 +834,12 @@
     },
     {
       id: 'UCU Nael Fireball 2',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 51,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -876,11 +894,12 @@
     },
     {
       id: 'UCU Nael Fireball 3',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 77,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -947,11 +966,12 @@
     },
     {
       id: 'UCU Nael Fireball 4',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 98,
       suppressSeconds: 99999,
       preRun: function(data) {
@@ -1001,21 +1021,22 @@
     },
     {
       // TODO: this should really use the new added combatant line with positions.
-      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexCn: /:(冰爪:26C6|雷翼:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|火角:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexDe: /:(Eisklaue:26C6|Donnerschwinge:26C7|Lichtklaue:26CA|Dunkelschweif:26C9|Feuerhorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexJa: /:(アイスクロウ:26C6|サンダーウィング:26C7|ライトファング:26CA|ダークテイル:26C9|ファイアホーン:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
+      regex: Regexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexDe: Regexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexFr: Regexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexJa: Regexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexCn: Regexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexKo: Regexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       condition: function(data, matches) {
-        return !data.seenDragon || !(matches[1] in data.seenDragon);
+        return !data.seenDragon || !(matches.source in data.seenDragon);
       },
       run: function(data, matches) {
         // seenDragon[dragon name] => boolean
         data.seenDragon = data.seenDragon || [];
-        data.seenDragon[matches[1]] = true;
+        data.seenDragon[matches.source] = true;
 
-        let x = parseFloat(matches[2]);
-        let y = parseFloat(matches[3]);
+        let x = parseFloat(matches.x);
+        let y = parseFloat(matches.y);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7
@@ -1049,11 +1070,12 @@
     },
     {
       id: 'UCU Nael Dragon Placement',
-      regex: /:Iceclaw:26C6/,
-      regexCn: /:冰爪:26C6/,
-      regexDe: /:Eisklaue:26C6/,
-      regexFr: /:Griffe-de-glace:26C6/,
-      regexJa: /:アイスクロウ:26C6/,
+      regex: Regexes.ability({ source: 'Iceclaw', id: '26C6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisklaue', id: '26C6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Griffe-De-Glace', id: '26C6', capture: false }),
+      regexJa: Regexes.ability({ source: 'アイスクロウ', id: '26C6', capture: false }),
+      regexCn: Regexes.ability({ source: '冰爪', id: '26C6', capture: false }),
+      regexKo: Regexes.ability({ source: '얼음발톱', id: '26C6', capture: false }),
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
@@ -1071,13 +1093,13 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
@@ -1091,7 +1113,7 @@
       },
       tts: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
@@ -1104,27 +1126,27 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
       infoText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         let num = data.naelDiveMarkerCount + 1;
         return {
-          en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
-          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
-          de: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
-          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches[1]),
-          cn: '冲 #' + num + ': ' + data.ShortName(matches[1]),
+          en: 'Dive #' + num + ': ' + data.ShortName(matches.target),
+          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches.target),
+          de: 'Sturz #' + num + ' : ' + data.ShortName(matches.target),
+          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches.target),
+          cn: '冲 #' + num + ': ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014', capture: false }),
       condition: function(data) {
         return !data.trio;
       },
@@ -1134,13 +1156,13 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       run: function(data, matches) {
         data.octetMarker = data.octetMarker || [];
-        data.octetMarker.push(matches[1]);
+        data.octetMarker.push(matches.target);
         if (data.octetMarker.length != 7)
           return;
 
@@ -1179,53 +1201,53 @@
     },
     {
       id: 'UCU Octet Nael Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0077:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0077' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (nael)',
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
-          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (ネール)',
-          cn: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (奈尔)',
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target) + ' (nael)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (ネール)',
+          cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (奈尔)',
         };
       },
     },
     {
       id: 'UCU Octet Dragon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]),
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target),
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target),
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Octet Baha Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0029' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (baha)',
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
-          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (バハ)',
-          cn: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (巴哈)',
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target) + ' (baha)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (バハ)',
+          cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (巴哈)',
         };
       },
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0029:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0029', capture: false }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1277,11 +1299,12 @@
     },
     {
       id: 'UCU Twister Dives',
-      regex: /:Twintania:26B2:Twisting Dive:/,
-      regexCn: /:双塔尼亚:26B2:旋风冲:/,
-      regexDe: /:Twintania:26B2:Spiralschwinge:/,
-      regexFr: /:Gémellia:26B2:Plongeon-trombe:/,
-      regexJa: /:ツインタニア:26B2:ツイスターダイブ:/,
+      regex: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '26B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
@@ -1299,11 +1322,12 @@
     },
     {
       id: 'UCU Bahamut Gigaflare',
-      regex: / 14:26D6:Bahamut Prime starts using Gigaflare/,
-      regexCn: / 14:26D6:至尊巴哈姆特 starts using 十亿核爆/,
-      regexDe: / 14:26D6:Prim-Bahamut starts using Gigaflare/,
-      regexFr: / 14:26D6:Primo-Bahamut starts using GigaBrasier/,
-      regexJa: / 14:26D6:バハムート・プライム starts using ギガフレア/,
+      regex: Regexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26D6', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26D6', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26D6', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26D6', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26D6', source: '바하무트 프라임', capture: false }),
       alertText: {
         en: 'Gigaflare',
         fr: 'GigaBrasier',
@@ -1321,9 +1345,9 @@
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Megaflare Stack',
@@ -1342,14 +1366,14 @@
     },
     {
       // Megaflare stack tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       run: function(data, matches) {
-        data.megaStack.push(matches[1]);
+        data.megaStack.push(matches.target);
       },
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027', capture: false }),
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1400,7 +1424,7 @@
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1425,9 +1449,9 @@
     },
     {
       id: 'UCU Earthshaker Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Earthshaker on YOU',
@@ -1446,14 +1470,14 @@
     },
     {
       // Earthshaker tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       run: function(data, matches) {
-        data.shakers.push(matches[1]);
+        data.shakers.push(matches.target);
       },
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028', capture: false }),
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)
@@ -1540,18 +1564,19 @@
     },
     {
       id: 'UCU Morn Afah',
-      regex: / 14:26EC:Bahamut Prime starts using Morn Afah on (\y{Name})/,
-      regexCn: / 14:26EC:至尊巴哈姆特 starts using 无尽顿悟 on (\y{Name})/,
-      regexDe: / 14:26EC:Prim-Bahamut starts using Morn Afah on (\y{Name})/,
-      regexFr: / 14:26EC:Primo-Bahamut starts using Morn Afah on (\y{Name})/,
-      regexJa: / 14:26EC:バハムート・プライム starts using モーン・アファー on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
+      regexDe: Regexes.startsUsing({ id: '26EC', source: 'Prim-Bahamut' }),
+      regexFr: Regexes.startsUsing({ id: '26EC', source: 'Primo-Bahamut' }),
+      regexJa: Regexes.startsUsing({ id: '26EC', source: 'バハムート・プライム' }),
+      regexCn: Regexes.startsUsing({ id: '26EC', source: '至尊巴哈姆特' }),
+      regexKo: Regexes.startsUsing({ id: '26EC', source: '바하무트 프라임' }),
       preRun: function(data) {
         data.mornAfahCount = data.mornAfahCount || 0;
         data.mornAfahCount++;
       },
       alertText: function(data, matches) {
         let str = 'Morn Afah #' + data.mornAfahCount;
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
@@ -1560,22 +1585,23 @@
             cn: '无尽顿悟 #' + data.mornAfahCount,
           };
         }
-        return str + ' (' + data.ShortName(matches[1]) + ')';
+        return str + ' (' + data.ShortName(matches.target) + ')';
       },
       tts: function(data, matches) {
         return {
-          en: 'morn afah ' + data.ShortName(matches[1]),
-          cn: '无尽顿悟 ' + data.ShortName(matches[1]),
+          en: 'morn afah ' + data.ShortName(matches.target),
+          cn: '无尽顿悟 ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Akh Morn',
-      regex: / 14:26EA:Bahamut Prime starts using Akh Morn on \y{Name}/,
-      regexCn: / 14:26EA:至尊巴哈姆特 starts using 死亡轮回 on \y{Name}/,
-      regexDe: / 14:26EA:Prim-Bahamut starts using Akh Morn on \y{Name}/,
-      regexFr: / 14:26EA:Primo-Bahamut starts using Akh Morn on \y{Name}/,
-      regexJa: / 14:26EA:バハムート・プライム starts using アク・モーン on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26EA', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26EA', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26EA', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26EA', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26EA', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
@@ -1589,11 +1615,12 @@
     },
     {
       id: 'UCU Exaflare',
-      regex: / 14:26EF:Bahamut Prime starts using Exaflare/,
-      regexCn: / 14:26EF:至尊巴哈姆特 starts using 百京核爆/,
-      regexDe: / 14:26EF:Prim-Bahamut starts using Exaflare/,
-      regexFr: / 14:26EF:Primo-Bahamut starts using ExaBrasier/,
-      regexJa: / 14:26EF:バハムート・プライム starts using エクサフレア/,
+      regex: Regexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26EF', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26EF', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26EF', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26EF', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26EF', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;
@@ -1620,11 +1647,12 @@
     {
       // One time setup.
       id: 'UCU Initial Setup',
-      regex: / 14:26AA:Twintania starts using/,
-      regexCn: / 14:26AA:双塔尼亚 starts using/,
-      regexDe: / 14:26AA:Twintania starts using/,
-      regexFr: / 14:26AA:Gémellia starts using/,
-      regexJa: / 14:26AA:ツインタニア starts using/,
+      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       suppressSeconds: 99999,
       run: function(data) {
         // TODO: a late white puddle can cause dragons to get seen for the next

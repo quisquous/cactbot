@@ -11,23 +11,26 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
-      regex: / 04:\y{ObjectId}:Removing combatant Phantom Train\./,
-      regexDe: / 04:\y{ObjectId}:Removing combatant Phantomzug\./,
-      regexFr: / 04:\y{ObjectId}:Removing combatant Train Fantôme\./,
-      regexJa: / 04:\y{ObjectId}:Removing combatant 魔列車\./,
+      regex: Regexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      regexDe: Regexes.removingCombatant({ name: 'Phantomzug', capture: false }),
+      regexFr: Regexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.removingCombatant({ name: '魔列車', capture: false }),
+      regexCn: Regexes.removingCombatant({ name: '魔列车', capture: false }),
+      regexKo: Regexes.removingCombatant({ name: '마열차', capture: false }),
       run: function(data) {
         data.StopCombat();
       },
     },
     {
       id: 'O5S Doom Strike',
-      regex: / 14:28B1:Phantom Train starts using Doom Strike on (\y{Name})/,
-      regexDe: / 14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
-      regexFr: / 14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
-      regexJa: / 14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
-      regexKo: / 14:28B1:마열차 starts using 마령격 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28B1', source: 'Phantom Train' }),
+      regexDe: Regexes.startsUsing({ id: '28B1', source: 'Phantomzug' }),
+      regexFr: Regexes.startsUsing({ id: '28B1', source: 'Train Fantôme' }),
+      regexJa: Regexes.startsUsing({ id: '28B1', source: '魔列車' }),
+      regexCn: Regexes.startsUsing({ id: '28B1', source: '魔列车' }),
+      regexKo: Regexes.startsUsing({ id: '28B1', source: '마열차' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
@@ -37,15 +40,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: '탱버 → ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Buster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: '탱버 → ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -58,11 +61,12 @@
     },
     {
       id: 'O5S Head On',
-      regex: / 14:28A4:Phantom Train starts using Head On/,
-      regexDe: / 14:28A4:Phantomzug starts using Frontalangriff/,
-      regexFr: / 14:28A4:Train Fantôme starts using Plein Fouet/,
-      regexJa: / 14:28A4:魔列車 starts using 追突/,
-      regexKo: / 14:28A4:마열차 starts using 추돌/,
+      regex: Regexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28A4', source: '魔列車', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28A4', source: '魔列车', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28A4', source: '마열차', capture: false }),
       alertText: {
         en: 'Go to back',
         de: 'Nach hinten laufen',
@@ -80,11 +84,12 @@
     },
     {
       id: 'O5S Diabolic Headlamp',
-      regex: / 14:28B2:Phantom Train starts using Diabolic Headlamp/,
-      regexDe: / 14:28B2:Phantomzug starts using Diabolische Leuchte/,
-      regexFr: / 14:28B2:Train Fantôme starts using Phare Diabolique/,
-      regexJa: / 14:28B2:魔列車 starts using 魔界の前照灯/,
-      regexKo: / 14:28B2:마열차 starts using 마계의 전조등/,
+      regex: Regexes.startsUsing({ id: '28B2', source: 'Phantom Train', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28B2', source: 'Phantomzug', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28B2', source: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28B2', source: '魔列車', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28B2', source: '魔列车', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28B2', source: '마열차', capture: false }),
       alertText: {
         en: 'Stack middle',
         de: 'Stack in der Mitte',
@@ -95,9 +100,9 @@
     },
     {
       id: 'O5S Diabolic Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0001' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Light',
@@ -109,9 +114,9 @@
     },
     {
       id: 'O5S Diabolic Wind',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0046' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Wind',
@@ -123,11 +128,12 @@
     },
     {
       id: 'O5S Remorse',
-      regex: / 03:\y{ObjectId}:Added new combatant Remorse/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Melancholischer Geist/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Fantôme Mélancolique/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 未練のゴースト/,
-      regexKo: / 03:\y{ObjectId}:Added new combatant 미련이 남은 유령/,
+      regex: Regexes.addedCombatant({ name: 'Remorse', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Melancholisch(?:e|er|es|en) Geist', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Fantôme Mélancolique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '未練のゴースト', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '留恋幽灵', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '미련이 남은 유령', capture: false }),
       infoText: {
         en: 'Knockback Ghost',
         de: 'Rückstoß Geist',

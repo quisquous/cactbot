@@ -10,6 +10,8 @@
       regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2' }),
       regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2' }),
       regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
+      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
+      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
@@ -21,6 +23,8 @@
       regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
       },
@@ -36,13 +40,20 @@
       regexDe: Regexes.startsUsing({ source: 'Fackel Von Meracydia', id: '4DB', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Fléau De Méracydia', id: '4DB', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
       infoText: {
         en: 'Liquid Hell',
       },
     },
     {
       id: 'T5 Phase 2',
-      regex: /:Twintania HP at 85%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '85', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '85', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '85', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '85', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '85', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '85', capture: false }),
       sound: 'Long',
     },
     {
@@ -51,6 +62,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5AC' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5AC' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AC' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AC' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AC' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -72,6 +85,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5AB' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5AB' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AB' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AB' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AB' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -89,7 +104,12 @@
     },
     {
       id: 'T5 Phase 3',
-      regex: /:Twintania HP at 55%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '55', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '55', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '55', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '55', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '55', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '55', capture: false }),
       sound: 'Long',
     },
     {
@@ -98,6 +118,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       alertText: {
         en: 'DIVEBOMB',
       },
@@ -108,6 +130,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
       infoText: {
@@ -121,6 +145,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '4E3' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '4E3' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '4E3' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '4E3' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '4E3' }),
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -138,13 +164,20 @@
       regexDe: Regexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '4E1', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
       alertText: {
         en: 'Twister!',
       },
     },
     {
       id: 'T5 Phase 4',
-      regex: /:Twintania HP at 29%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '29', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '29', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '29', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '29', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '29', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '29', capture: false }),
       sound: 'Long',
     },
     {
@@ -153,6 +186,8 @@
       regexDe: Regexes.ability({ source: 'Twintania', id: '5AD' }),
       regexFr: Regexes.ability({ source: 'Gémellia', id: '5AD' }),
       regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AD' }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AD' }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AD' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {

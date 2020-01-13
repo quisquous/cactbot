@@ -6,15 +6,15 @@
   triggers: [
     {
       id: 'T8 Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regex: Regexes.headMarker({ id: '0011' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Laser Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
@@ -30,85 +30,95 @@
     },
     {
       id: 'T8 Landmine Explosion',
-      regex: / 1[56]:(\y{ObjectId}):Allagan Mine:7D1:Triggered Landmine:/,
-      regexDe: / 1[56]:(\y{ObjectId}):Allagische Mine:7D1:Landmine:/,
-      regexFr: / 1[56]:(\y{ObjectId}):Mine Allagoise:7D1:Explosion de mine:/,
-      regexJa: / 1[56]:(\y{ObjectId}):アラガンマイン:7D1:地雷爆発:/,
+      regex: Regexes.ability({ id: '7D1', source: 'Allagan Mine' }),
+      regexDe: Regexes.ability({ id: '7D1', source: 'Allagisch(?:e|er|es|en) Mine' }),
+      regexFr: Regexes.ability({ id: '7D1', source: 'Mine Allagoise' }),
+      regexJa: Regexes.ability({ id: '7D1', source: 'アラガンマイン' }),
+      regexCn: Regexes.ability({ id: '7D1', source: '亚拉戈机雷' }),
+      regexKo: Regexes.ability({ id: '7D1', source: '알라그 지뢰' }),
       infoText: function(data, matches) {
-        if (matches[1] in data.landmines)
+        if (matches.target in data.landmines)
           return;
         return (Object.keys(data.landmines).length + 1) + ' / 3';
       },
       tts: function(data, matches) {
-        if (matches[1] in data.landmines)
+        if (matches.target in data.landmines)
           return;
         return (Object.keys(data.landmines).length + 1);
       },
       run: function(data, matches) {
-        data.landmines[matches[1]] = true;
+        data.landmines[matches.target] = true;
       },
     },
     {
       id: 'T8 Homing Missile Warning',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:The Avatar:....:....:0005:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Avatar:....:....:0005:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Bio-Tréant:....:....:0005:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:アバター:....:....:0005:/,
+      regex: Regexes.tether({ id: '0005', target: 'The Avatar' }),
+      regexDe: Regexes.tether({ id: '0005', target: 'Avatar' }),
+      regexFr: Regexes.tether({ id: '0005', target: 'Bio-Tréant' }),
+      regexJa: Regexes.tether({ id: '0005', target: 'アバター' }),
+      regexCn: Regexes.tether({ id: '0005', target: '降世化身' }),
+      regexKo: Regexes.tether({ id: '0005', target: '아바타' }),
       suppressSeconds: 6,
       infoText: function(data, matches) {
         return {
-          en: 'Missile Tether (on ' + data.ShortName(matches[1]) + ')',
+          en: 'Missile Tether (on ' + data.ShortName(matches.source) + ')',
         };
       },
     },
     {
       id: 'T8 Brainjack',
-      regex: / 14:7C3:The Avatar starts using Brainjack on (\y{Name})\./,
-      regexDe: / 14:7C3:Avatar starts using Gehirnwäsche on (\y{Name})\./,
-      regexFr: / 14:7C3:Bio-Tréant starts using Détournement Cérébral on (\y{Name})\./,
-      regexJa: / 14:7C3:アバター starts using ブレインジャック on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '7C3', source: 'The Avatar' }),
+      regexDe: Regexes.startsUsing({ id: '7C3', source: 'Avatar' }),
+      regexFr: Regexes.startsUsing({ id: '7C3', source: 'Bio-Tréant' }),
+      regexJa: Regexes.startsUsing({ id: '7C3', source: 'アバター' }),
+      regexCn: Regexes.startsUsing({ id: '7C3', source: '降世化身' }),
+      regexKo: Regexes.startsUsing({ id: '7C3', source: '아바타' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Brainjack on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Brainjack on ' + data.ShortName(matches[1]),
+            en: 'Brainjack on ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T8 Allagan Field',
-      regex: / 14:7C4:The Avatar starts using Allagan Field on (\y{Name})\./,
-      regexDe: / 14:7C4:Avatar starts using Allagisches Feld on (\y{Name})\./,
-      regexFr: / 14:7C4:Bio-Tréant starts using Champ Allagois on (\y{Name})\./,
-      regexJa: / 14:7C4:アバター starts using アラガンフィールド on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '7C4', source: 'The Avatar' }),
+      regexDe: Regexes.startsUsing({ id: '7C4', source: 'Avatar' }),
+      regexFr: Regexes.startsUsing({ id: '7C4', source: 'Bio-Tréant' }),
+      regexJa: Regexes.startsUsing({ id: '7C4', source: 'アバター' }),
+      regexCn: Regexes.startsUsing({ id: '7C4', source: '降世化身' }),
+      regexKo: Regexes.startsUsing({ id: '7C4', source: '아바타' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Allagan Field on YOU',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Allagan Field on ' + data.ShortName(matches[1]),
+            en: 'Allagan Field on ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T8 Dreadnaught',
-      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Dreadnaught\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Brummonaut\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Cuirassé Dreadnaught\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ドレッドノート\./,
+      regex: Regexes.addedCombatant({ name: 'Clockwork Dreadnaught', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Brummonaut', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Cuirassé Dreadnaught', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ドレッドノート', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '恐慌装甲', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '드레드노트', capture: false }),
       infoText: {
         en: 'Dreadnaught Add',
       },

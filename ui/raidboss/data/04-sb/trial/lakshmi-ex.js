@@ -19,31 +19,37 @@
   ],
   triggers: [
     {
-      regex: / 14:2148:Lakshmi starts using Chanchala/,
-      regexDe: / 14:2148:Lakshmi starts using Chanchala/,
-      regexFr: / 14:2148:Lakshmi starts using Chanchala/,
-      regexJa: / 14:2148:ラクシュミ starts using チャンチャラー/,
+      regex: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2148', source: 'ラクシュミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2148', source: '吉祥天女', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2148', source: '락슈미', capture: false }),
       run: function(data) {
         data.chanchala = true;
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
-      regexDe: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
-      regexFr: / 1E:\y{ObjectId}:Lakshmi loses the effect of Chanchala/,
-      regexJa: / 1E:\y{ObjectId}:ラクシュミ loses the effect of チャンチャラー/,
+      regex: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'ラクシュミ', effect: 'チャンチャラー', capture: false }),
+      regexCn: Regexes.losesEffect({ target: '吉祥天女', effect: '反复无常', capture: false }),
+      regexKo: Regexes.losesEffect({ target: '락슈미', effect: '찬찰라', capture: false }),
       run: function(data) {
         data.chanchala = false;
       },
     },
     {
       id: 'Lakshmi Pull of Light',
-      regex: / 14:215E:Lakshmi starts using The Pull Of Light on (\y{Name})/,
-      regexDe: / 14:215E:Lakshmi starts using Strom Des Lichts on (\y{Name})/,
-      regexFr: / 14:215E:Lakshmi starts using Flot De Lumière on (\y{Name})/,
-      regexJa: / 14:215E:ラクシュミ starts using 光の奔流 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      regexDe: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      regexFr: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      regexJa: Regexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
+      regexCn: Regexes.startsUsing({ id: '215E', source: '吉祥天女' }),
+      regexKo: Regexes.startsUsing({ id: '215E', source: '락슈미' }),
       alarmText: function(data, matches) {
-        if (data.role != 'tank' && matches[1] == data.me) {
+        if (data.role != 'tank' && matches.target == data.me) {
           return {
             en: 'Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -51,16 +57,16 @@
         }
       },
       alertText: function(data, matches) {
-        if (data.role == 'tank' && matches[1] == data.me) {
+        if (data.role == 'tank' && matches.target == data.me) {
           return {
             en: 'Buster on YOU',
             de: 'Tankbuster auf DIR',
           };
         }
-        if (data.role == 'healer' && matches[1] != data.me) {
+        if (data.role == 'healer' && matches.target != data.me) {
           return {
-            en: 'Buster on ' + matches[1],
-            de: 'Tankbuster auf ' + matches[1],
+            en: 'Buster on ' + matches.target,
+            de: 'Tankbuster auf ' + matches.target,
           };
         }
       },
@@ -75,10 +81,12 @@
     },
     {
       id: 'Lakshmi Divine Denial',
-      regex: / 14:2149:Lakshmi starts using Divine Denial/,
-      regexDe: / 14:2149:Lakshmi starts using Göttliche Leugnung/,
-      regexFr: / 14:2149:Lakshmi starts using Refus Divin/,
-      regexJa: / 14:2149:ラクシュミ starts using 完全なる拒絶/,
+      regex: Regexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2149', source: 'Lakshmi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2149', source: 'ラクシュミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2149', source: '吉祥天女', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2149', source: '락슈미', capture: false }),
       alertText: {
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
@@ -86,10 +94,12 @@
     },
     {
       id: 'Lakshmi Divine Desire',
-      regex: / 14:214B:Lakshmi starts using Divine Desire/,
-      regexDe: / 14:214B:Lakshmi starts using Göttliche Lockung/,
-      regexFr: / 14:214B:Lakshmi starts using Désir Divin/,
-      regexJa: / 14:214B:ラクシュミ starts using 完全なる誘引/,
+      regex: Regexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '214B', source: 'Lakshmi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '214B', source: 'ラクシュミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '214B', source: '吉祥天女', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '214B', source: '락슈미', capture: false }),
       alertText: {
         en: 'Vrill + Be Outside',
         de: 'Vril + Außen',
@@ -101,10 +111,12 @@
     },
     {
       id: 'Lakshmi Divine Doubt',
-      regex: / 14:214A:Lakshmi starts using Divine Doubt/,
-      regexDe: / 14:214A:Lakshmi starts using Göttliche Bestürzung/,
-      regexFr: / 14:214A:Lakshmi starts using Doute Divin/,
-      regexJa: / 14:214A:ラクシュミ starts using 完全なる惑乱/,
+      regex: Regexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '214A', source: 'Lakshmi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '214A', source: 'ラクシュミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '214A', source: '吉祥天女', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '214A', source: '락슈미', capture: false }),
       alertText: {
         en: 'Vrill + Pair Up',
         de: 'Vril + Pärchen bilden',
@@ -116,12 +128,12 @@
     },
     { // Stack marker
       id: 'Lakshmi Pall of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
         if (!data.chanchala)
           return;
 
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Vrill + Stack on YOU',
             de: 'Vril + Stack auf DIR',
@@ -136,7 +148,7 @@
         if (data.chanchala)
           return;
 
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
@@ -162,10 +174,12 @@
     },
     {
       id: 'Lakshmi Stotram',
-      regex: / 14:2147:Lakshmi starts using Stotram/,
-      regexDe: / 14:2147:Lakshmi starts using Stotram/,
-      regexFr: / 14:2147:Lakshmi starts using Stotram/,
-      regexJa: / 14:2147:ラクシュミ starts using ストトラム/,
+      regex: Regexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2147', source: 'Lakshmi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2147', source: 'ラクシュミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2147', source: '吉祥天女', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2147', source: '락슈미', capture: false }),
       alertText: function(data) {
         if (data.chanchala) {
           return {
@@ -177,9 +191,9 @@
     },
     { // Offtank cleave
       id: 'Lakshmi Path of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: function(data) {
         return {
@@ -190,9 +204,9 @@
     },
     { // Cross aoe
       id: 'Lakshmi Hand of Grace',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006B:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '006B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         return {
@@ -203,9 +217,9 @@
     },
     { // Flower marker (healers)
       id: 'Lakshmi Hand of Beauty',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006D:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '006D' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         return {
@@ -216,9 +230,9 @@
     },
     { // Red marker during add phase
       id: 'Lakshmi Water III',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Move Away',

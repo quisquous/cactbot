@@ -17,10 +17,12 @@
   ],
   triggers: [
     { // Phase Tracker: Maniacal Probe.
-      regex: / 14:235A:Catastrophe starts using Maniacal Probe/,
-      regexDe: / 14:235A:Katastroph starts using Tentakeltanz/,
-      regexFr: / 14:235A:Catastrophe starts using Farandole De Tentacules/,
-      regexJa: / 14:235A:カタストロフィー starts using 触手乱舞/,
+      regex: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       run: function(data) {
         data.probeCount = (data.probeCount || 0) + 1;
         data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
@@ -44,12 +46,14 @@
     },
     {
       id: 'O2S Levitation',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Lévitation/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of レビテト/,
+      regex: Regexes.losesEffect({ effect: 'Levitation' }),
+      regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
+      regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
+      regexJa: Regexes.losesEffect({ effect: 'レビテト' }),
+      regexCn: Regexes.losesEffect({ effect: '浮空' }),
+      regexKo: Regexes.losesEffect({ effect: '레비테트' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.levitating = false;
@@ -57,10 +61,12 @@
     },
     {
       id: 'O2S -100Gs',
-      regex: / 14:235E:Catastrophe starts using -100 Gs/,
-      regexDe: / 14:235E:Katastroph starts using Minus 100 G/,
-      regexFr: / 14:235E:Catastrophe starts using Gravité -100/,
-      regexJa: / 14:235E:カタストロフィー starts using 重力マイナス100/,
+      regex: Regexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '235E', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
       infoText: {
         en: '-100 Gs: Go north/south and look away',
         de: '-100G: Nach Norden/Süden und wegschauen',
@@ -72,10 +78,12 @@
     },
     {
       id: 'O2S Death\'s Gaze',
-      regex: / 14:236F:Catastrophe starts using Death's Gaze/,
-      regexDe: / 14:236F:Katastroph starts using Todesblick/,
-      regexFr: / 14:236F:Catastrophe starts using Œil De La Mort/,
-      regexJa: / 14:236F:カタストロフィー starts using 死神の瞳/,
+      regex: Regexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '236F', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '236F', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '236F', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '236F', source: '카타스트로피', capture: false }),
       alarmText: {
         en: 'Death\'s Gaze: Look away',
         de: 'Todesblick: Wegschauen',
@@ -87,10 +95,12 @@
     },
     {
       id: 'O2S Earthquake',
-      regex: / 14:2374:Catastrophe starts using Earthquake/,
-      regexDe: / 14:2374:Katastroph starts using Erdbeben/,
-      regexFr: / 14:2374:Catastrophe starts using Grand Séisme/,
-      regexJa: / 14:2374:カタストロフィー starts using 大地震/,
+      regex: Regexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2374', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2374', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2374', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
       infoText: function(data) {
         if (data.levitating) {
           return {
@@ -147,10 +157,12 @@
     },
     {
       id: 'O2S Gravitational Wave',
-      regex: / 14:2372:Catastrophe starts using Gravitational Wave/,
-      regexDe: / 14:2372:Katastroph starts using Gravitationswelle/,
-      regexFr: / 14:2372:Catastrophe starts using Onde Gravitationnelle/,
-      regexJa: / 14:2372:カタストロフィー starts using 重力波/,
+      regex: Regexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2372', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2372', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2372', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2372', source: '카타스트로피', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -165,10 +177,12 @@
     },
     {
       id: 'O2S Maniacal Probe',
-      regex: / 14:235A:Catastrophe starts using Maniacal Probe/,
-      regexDe: / 14:235A:Katastroph starts using Tentakeltanz/,
-      regexFr: / 14:235A:Catastrophe starts using Farandole De Tentacules/,
-      regexJa: / 14:235A:カタストロフィー starts using 触手乱舞/,
+      regex: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       infoText: function(data) {
         if (!data.myProbe) {
           if (!data.dpsProbe) {
@@ -269,12 +283,14 @@
     },
     {
       id: 'O2S 6 Fulms Under',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 6 Fulms Under from/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Versinkend from/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Enfoncement from/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 沈下 from/,
+      regex: Regexes.losesEffect({ effect: '6 Fulms Under' }),
+      regexDe: Regexes.losesEffect({ effect: 'Versinkend' }),
+      regexFr: Regexes.losesEffect({ effect: 'Enfoncement' }),
+      regexJa: Regexes.losesEffect({ effect: '沈下' }),
+      regexCn: Regexes.losesEffect({ effect: '下陷' }),
+      regexKo: Regexes.losesEffect({ effect: '침하' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.under = false;

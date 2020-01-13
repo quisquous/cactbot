@@ -7,9 +7,9 @@
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
@@ -17,9 +17,9 @@
           };
         }
         return {
-          en: 'Stack on ' + matches[1],
-          de: 'Stack auf ' + matches[1],
-          fr: 'Stack sur ' + matches[1],
+          en: 'Stack on ' + matches.target,
+          de: 'Stack auf ' + matches.target,
+          fr: 'Stack sur ' + matches.target,
         };
       },
       tts: {
@@ -30,9 +30,9 @@
     },
     {
       id: 'Sohm Al Myath Spread',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AE:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00AE' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Move away from others',
             de: 'Weg von den anderen',
@@ -40,9 +40,9 @@
           };
         }
         return {
-          en: 'Move away from ' + matches[1],
-          de: 'Weg von ' + matches[1],
-          fr: 'Eloignez-vous de ' + matches[1],
+          en: 'Move away from ' + matches.target,
+          de: 'Weg von ' + matches.target,
+          fr: 'Eloignez-vous de ' + matches.target,
         };
       },
       tts: {
@@ -53,10 +53,12 @@
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: / 03:\y{ObjectId}:Added new combatant Chyme Of The Mountain/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Gebirgsbrei/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Chyme Des Montagnes/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant キームス・マウンテン/,
+      regex: Regexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '圣山之糜', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '산의 유미즙', capture: false }),
       alertText: {
         en: 'Kill Chyme Add',
         de: 'Brei Add töten',
@@ -70,9 +72,9 @@
     },
     {
       id: 'Sohm Al Tioman Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0007:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0007' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'place meteor on edge',
             de: 'Meteor an Kante ablegen',
@@ -81,7 +83,7 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'meteor',
             de: 'meteor',

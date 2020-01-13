@@ -23,6 +23,12 @@ let Options = {
   CustomMonsters: {},
 };
 
+// Minimum distance a mob with the same name needs to be away from the old
+// location before a sound is played and it is treated as a new mob.
+// TODO: probably all mobs should be tracked with ids to avoid this.
+// TODO: this would also let us handle mobs with the same name better.
+let kMinDistanceBeforeSound = 100;
+
 let gRadar;
 
 let instanceChangedRegex = {
@@ -40,8 +46,19 @@ class Point2D {
     this.y = y;
   }
 
+  // Calculates vector length (magnitude)
   length() {
     return Math.sqrt((this.x) * (this.x) + (this.y) * (this.y));
+  }
+
+  // Calculate delta vector
+  delta(target) {
+    return new Point2D(target.x - this.x, target.y - this.y);
+  }
+
+  // Calculate distance between 2 points
+  distance(target) {
+    return this.delta(target).length();
   }
 }
 
@@ -76,6 +93,19 @@ class Radar {
     }
   }
 
+  PlaySound(monster) {
+    if (this.options.TTS) {
+      callOverlayHandler({
+        call: 'cactbotSay',
+        text: m.rank + ' ' + m.name,
+      });
+    } else if (this.options.PopSoundAlert && this.options.PopSound && this.options.PopVolume) {
+      let audio = new Audio(this.options.PopSound);
+      audio.volume = this.options.PopVolume;
+      audio.play();
+    }
+  }
+
   AddMonster(log, monster, matches) {
     if (monster.regex && !log.match(monster.regex))
       return;
@@ -94,50 +124,64 @@ class Radar {
     }
 
     let mobKey = matches.groups.name.toLowerCase();
-    if (mobKey in this.targetMonsters)
-      return;
+    if (mobKey in this.targetMonsters) {
+      // Get positions
+      let playerPos = new Point2D(this.playerPos.x, this.playerPos.y);
+      let oldPos = this.targetMonsters[mobKey].pos;
+      let newPos =
+        new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y));
 
-    // add dom
-    let arrowId = 'arrow-' + matches.groups.id;
-    let tr = document.createElement('tr');
-    let th = document.createElement('th');
-    let img = document.createElement('img');
-    img.setAttribute('id', arrowId);
-    img.setAttribute('src', 'arrow.png');
-    img.setAttribute('class', 'radar-image-40');
-    th.appendChild(img);
-    th.setAttribute('style', 'max-width: 100px');
-    tr.appendChild(th);
-    th = document.createElement('th');
-    th.setAttribute('align', 'left');
-    th.appendChild(document.createElement('div'));
-    tr.appendChild(th);
-    this.table.insertBefore(tr, this.table.childNodes[0]);
+      // Calculate distances
+      let oldDistance = playerPos.distance(oldPos);
+      let newDistance = playerPos.distance(newPos);
 
-    let m = {
-      'id': matches.groups.id,
-      'name': matches.groups.name,
-      'rank': monster.rank || '',
-      'hp': parseFloat(matches.groups.hp),
-      'currentHp': parseFloat(matches.groups.hp),
-      'battleTime': 0,
-      'pos': new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y)),
-      'posZ': matches.groups.z,
-      'addTime': Date.now(),
-      'dom': tr,
-      'puller': null,
-    };
-    this.targetMonsters[mobKey] = m;
-    this.UpdateMonsterDom(m);
-    if (options.TTS) {
-      callOverlayHandler({
-        call: 'cactbotSay',
-        text: m.rank + ' ' + m.name,
-      });
-    } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
-      let audio = new Audio(options.PopSound);
-      audio.volume = options.PopVolume;
-      audio.play();
+      // Update position only if its closer than the current one
+      if (newDistance < oldDistance) {
+        this.targetMonsters[mobKey].pos = newPos;
+        this.targetMonsters[mobKey].posZ = matches.groups.z;
+
+        // Update DOM
+        this.UpdateMonsterDom(this.targetMonsters[mobKey]);
+
+        // Play sound only if its far enough
+        if (oldPos.distance(newPos) >= kMinDistanceBeforeSound)
+          this.PlaySound(this.targetMonsters[mobKey]);
+      }
+    } else {
+      // Add DOM
+      let arrowId = 'arrow-' + matches.groups.id;
+      let tr = document.createElement('tr');
+      let th = document.createElement('th');
+      let img = document.createElement('img');
+      img.setAttribute('id', arrowId);
+      img.setAttribute('src', 'arrow.png');
+      img.setAttribute('class', 'radar-image-40');
+      th.appendChild(img);
+      th.setAttribute('style', 'max-width: 100px');
+      tr.appendChild(th);
+      th = document.createElement('th');
+      th.setAttribute('align', 'left');
+      th.appendChild(document.createElement('div'));
+      tr.appendChild(th);
+      this.table.insertBefore(tr, this.table.childNodes[0]);
+
+      let m = {
+        'id': matches.groups.id,
+        'name': matches.groups.name,
+        'rank': monster.rank || '',
+        'hp': parseFloat(matches.groups.hp),
+        'currentHp': parseFloat(matches.groups.hp),
+        'battleTime': 0,
+        'pos': new Point2D(parseFloat(matches.groups.x), parseFloat(matches.groups.y)),
+        'posZ': matches.groups.z,
+        'addTime': Date.now(),
+        'dom': tr,
+        'puller': null,
+      };
+      this.targetMonsters[mobKey] = m;
+      this.UpdateMonsterDom(m);
+
+      this.PlaySound(this.targetMonsters[mobKey]);
     }
   }
 
@@ -147,6 +191,7 @@ class Radar {
     if (monster.puller !== null)
       return;
     monster.puller = puller;
+    this.UpdateMonsterDom(monster);
     console.log('Pull: ' + puller + ' => ' + monster.name);
   }
 

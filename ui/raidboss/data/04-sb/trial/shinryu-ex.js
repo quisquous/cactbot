@@ -6,72 +6,84 @@
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {
-      regex: / 04:\y{ObjectId}:Removing combatant Shinryu\.\s{2}Max HP: 17167557\./,
-      regexDe: / 04:\y{ObjectId}:Removing combatant Shinryu\.\s{2}Max HP: 17167557\./,
-      regexFr: / 04:\y{ObjectId}:Removing combatant Shinryu\.\s{2}Max HP: 17167557\./,
-      regexJa: / 04:\y{ObjectId}:Removing combatant 神龍\.\s{2}Max HP: 17167557\./,
+      regex: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      regexDe: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      regexFr: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
+      regexJa: Regexes.removingCombatant({ name: '神龍', capture: false }),
+      regexCn: Regexes.removingCombatant({ name: '神龙', capture: false }),
+      regexKo: Regexes.removingCombatant({ name: '신룡', capture: false }),
       run: function(data) {
         // Explicitly clear so ugly heart message doesn't appear after wipe.
         delete data.phase;
       },
     },
     {
-      regex: / 14:25DE:Shinryu starts using Earthen Fury/,
-      regexDe: / 14:25DE:Shinryu starts using Gaias Zorn/,
-      regexFr: / 14:25DE:Shinryu starts using Fureur Tellurique/,
-      regexJa: / 14:25DE:神龍 starts using 大地の怒り/,
+      regex: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25DE', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25DE', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25DE', source: '신룡', capture: false }),
       run: function(data) {
         data.phase = 1;
       },
     },
     {
-      regex: / 14:25E7:Shinryu starts using Dark Matter/,
-      regexDe: / 14:25E7:Shinryu starts using Dunkelmaterie/,
-      regexFr: / 14:25E7:Shinryu starts using Matière Sombre/,
-      regexJa: / 14:25E7:神龍 starts using ダークマター/,
+      regex: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25E7', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25E7', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25E7', source: '신룡', capture: false }),
       run: function(data) {
         data.phase = 2;
       },
     },
     {
-      regex: / 14:25E4:Shinryu starts using Protostar/,
-      regexDe: / 14:25E4:Shinryu starts using Protostern/,
-      regexFr: / 14:25E4:Shinryu starts using Proto-Étoile/,
-      regexJa: / 14:25E4:神龍 starts using プロトスター/,
+      regex: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25E4', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25E4', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25E4', source: '신룡', capture: false }),
       run: function(data) {
         data.phase = 3;
       },
     },
     {
-      regex: / 14:264E:Shinryu starts using Tidal Wave/,
-      regexDe: / 14:264E:Shinryu starts using Flutwelle/,
-      regexFr: / 14:264E:Shinryu starts using Raz-De-Marée/,
-      regexJa: / 14:264E:神龍 starts using タイダルウェイブ/,
+      regex: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '264E', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
       run: function(data) {
         data.phase = 4;
       },
     },
     {
       id: 'ShinryuEx Akh Morn',
-      regex: / 14:25F3:Shinryu starts using Akh Morn on (\y{Name})/,
-      regexDe: / 14:25F3:Shinryu starts using Akh Morn on (\y{Name})/,
-      regexFr: / 14:25F3:Shinryu starts using Akh Morn on (\y{Name})/,
-      regexJa: / 14:25F3:神龍 starts using アク・モーン on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
+      regexDe: Regexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
+      regexFr: Regexes.startsUsing({ id: '25F3', source: 'Shinryu' }),
+      regexJa: Regexes.startsUsing({ id: '25F3', source: '神龍' }),
+      regexCn: Regexes.startsUsing({ id: '25F3', source: '神龙' }),
+      regexKo: Regexes.startsUsing({ id: '25F3', source: '신룡' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
           };
         } else if (data.role == 'tank') {
           return {
-            en: 'Akh Morn on ' + matches[1],
-            de: 'Akh Morn auf ' + matches[1],
+            en: 'Akh Morn on ' + matches.target,
+            de: 'Akh Morn auf ' + matches.target,
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank')
+        if (matches.target == data.me || data.role == 'tank')
           return;
 
         return {
@@ -86,10 +98,12 @@
     },
     {
       id: 'ShinryuEx Diamond Dust',
-      regex: / 14:25DD:Shinryu starts using Diamond Dust/,
-      regexDe: / 14:25DD:Shinryu starts using Diamantenstaub/,
-      regexFr: / 14:25DD:Shinryu starts using Poussière De Diamant/,
-      regexJa: / 14:25DD:神龍 starts using ダイアモンドダスト/,
+      regex: Regexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25DD', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25DD', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25DD', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25DD', source: '신룡', capture: false }),
       infoText: {
         en: 'Ice: Stack and Stop',
         de: 'Eis: Stack und Stehenbleiben',
@@ -101,10 +115,12 @@
     },
     {
       id: 'ShinryuEx Dragonfist',
-      regex: / 14:2611:Shinryu starts using Dragonfist/,
-      regexDe: / 14:2611:Shinryu starts using Drachenfaust/,
-      regexFr: / 14:2611:Shinryu starts using Poing Dragon/,
-      regexJa: / 14:2611:神龍 starts using 龍掌/,
+      regex: Regexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2611', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2611', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2611', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2611', source: '신룡', capture: false }),
       infoText: {
         en: 'Out of middle',
         de: 'Raus aus der Mitte',
@@ -112,10 +128,12 @@
     },
     {
       id: 'ShinryuEx Hellfire',
-      regex: / 14:25DB:Shinryu starts using Hellfire/,
-      regexDe: / 14:25DB:Shinryu starts using Höllenfeuer/,
-      regexFr: / 14:25DB:Shinryu starts using Flammes De L'Enfer/,
-      regexJa: / 14:25DB:神龍 starts using 地獄の火炎/,
+      regex: Regexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25DB', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25DB', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25DB', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25DB', source: '신룡', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'Get in water',
@@ -130,10 +148,12 @@
       // TODO: the original trigger didn't differentiate the two ability ids.
       // Probably the phase conditional could get removed if it did.
       id: 'ShinryuEx Hypernova',
-      regex: / 14:(?:271F|25E8):Right Wing starts using Hypernova/,
-      regexDe: / 14:(?:271F|25E8):Rechter Flügel starts using Supernova/,
-      regexFr: / 14:(?:271F|25E8):Aile Droite starts using Hypernova/,
-      regexJa: / 14:(?:271F|25E8):ライトウィング starts using スーパーノヴァ/,
+      regex: Regexes.startsUsing({ id: ['271F', '25E8'], source: 'Right Wing', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['271F', '25E8'], source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['271F', '25E8'], source: 'Aile Droite', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['271F', '25E8'], source: 'ライトウィング', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['271F', '25E8'], source: '右翼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['271F', '25E8'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: function(data) {
         if (data.phase == 3) {
@@ -162,10 +182,12 @@
     },
     {
       id: 'ShinryuEx Judgement Bolt',
-      regex: / 14:25DC:Shinryu starts using Judgment Bolt/,
-      regexDe: / 14:25DC:Shinryu starts using Ionenschlag/,
-      regexFr: / 14:25DC:Shinryu starts using Éclair Du Jugement/,
-      regexJa: / 14:25DC:神龍 starts using 裁きの雷/,
+      regex: Regexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25DC', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25DC', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25DC', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25DC', source: '신룡', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'out of water',
@@ -174,10 +196,12 @@
     },
     {
       id: 'ShinryuEx Levinbolt',
-      regex: / 14:(?:25EA|2720|2725):Right Wing starts using Levinbolt on Right Wing/,
-      regexDe: / 14:(?:25EA|2720|2725):Rechter Flügel starts using Keraunisches Feld on Rechter Flügel/,
-      regexFr: / 14:(?:25EA|2720|2725):Aile Droite starts using Fulguration on Aile Droite/,
-      regexJa: / 14:(?:25EA|2720|2725):ライトウィング starts using 稲妻 on ライトウィング/,
+      regex: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Aile Droite', target: 'Aile Droite', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'ライトウィング', target: 'ライトウィング', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: function(data) {
         if (data.phase == 3) {
@@ -206,10 +230,12 @@
     },
     {
       id: 'ShinryuEx Levinbolt Phase 3',
-      regex: / 14:(?:25EA|2720|2725):Right Wing starts using Levinbolt on Right Wing/,
-      regexDe: / 14:(?:25EA|2720|2725):Rechter Flügel starts using Keraunisches Feld on Rechter Flügel/,
-      regexFr: / 14:(?:25EA|2720|2725):Aile Droite starts using Fulguration on Aile Droite/,
-      regexJa: / 14:(?:25EA|2720|2725):ライトウィング starts using 稲妻 on ライトウィング/,
+      regex: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Right Wing', target: 'Right Wing', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'Aile Droite', target: 'Aile Droite', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: 'ライトウィング', target: 'ライトウィング', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '右翼', target: '右翼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['25EA', '2720', '2725'], source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       delaySeconds: 9.5,
       alarmText: function(data) {
         if (data.phase == 3) {
@@ -230,10 +256,12 @@
     },
     {
       id: 'ShinryuEx Icicle Left',
-      regex: / 15:\y{ObjectId}:Icicle:25EF:Icicle Impact:.*:-29.99:-15:/,
-      regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-15:/,
-      regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-15:/,
-      regexJa: / 15:\y{ObjectId}:アイシクル:25EF:アイシクルインパクト:.*:-29.99:-15:/,
+      regex: Regexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-15', capture: false }),
+      regexDe: Regexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-15', capture: false }),
+      regexFr: Regexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-15', capture: false }),
+      regexJa: Regexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-15', capture: false }),
+      regexCn: Regexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-15', capture: false }),
+      regexKo: Regexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-15', capture: false }),
       alarmText: {
         en: 'icicle, lean west',
         de: 'Eiszapfen, nach westen',
@@ -241,10 +269,12 @@
     },
     {
       id: 'ShinryuEx Icicle Right',
-      regex: / 15:\y{ObjectId}:Icicle:25EF:Icicle Impact:.*:-29.99:-25:/,
-      regexDe: / 15:\y{ObjectId}:Eiszapfen:25EF:Eiszapfen-Schlag:.*:-29.99:-25:/,
-      regexFr: / 15:\y{ObjectId}:Stalactite:25EF:Impact de stalactite:.*:-29.99:-25:/,
-      regexJa: / 15:\y{ObjectId}:アイシクル:25EF:アイシクルインパクト:.*:-29.99:-25:/,
+      regex: Regexes.abilityFull({ id: '25EF', source: 'Icicle', x: '-29\\.99', y: '-25', capture: false }),
+      regexDe: Regexes.abilityFull({ id: '25EF', source: 'Eiszapfen', x: '-29\\.99', y: '-25', capture: false }),
+      regexFr: Regexes.abilityFull({ id: '25EF', source: 'Stalactite', x: '-29\\.99', y: '-25', capture: false }),
+      regexJa: Regexes.abilityFull({ id: '25EF', source: 'アイシクル', x: '-29\\.99', y: '-25', capture: false }),
+      regexCn: Regexes.abilityFull({ id: '25EF', source: '冰柱', x: '-29\\.99', y: '-25', capture: false }),
+      regexKo: Regexes.abilityFull({ id: '25EF', source: '고드름', x: '-29\\.99', y: '-25', capture: false }),
       alarmText: {
         en: 'icicle, lean east',
         de: 'Eiszapfen, nach Osten',
@@ -252,10 +282,12 @@
     },
     {
       id: 'ShinryuEx Tidal Wave',
-      regex: / 14:25DA:Shinryu starts using Tidal Wave/,
-      regexDe: / 14:25DA:Shinryu starts using Flutwelle/,
-      regexFr: / 14:25DA:Shinryu starts using Raz-De-Marée/,
-      regexJa: / 14:25DA:神龍 starts using タイダルウェイブ/,
+      regex: Regexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25DA', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25DA', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25DA', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25DA', source: '신룡', capture: false }),
       delaySeconds: 3,
       durationSeconds: 5,
       infoText: {
@@ -269,10 +301,12 @@
     },
     {
       id: 'ShinryuEx Final Tidal Wave',
-      regex: / 14:264E:Shinryu starts using Tidal Wave/,
-      regexDe: / 14:264E:Shinryu starts using Flutwelle/,
-      regexFr: / 14:264E:Shinryu starts using Raz-De-Marée/,
-      regexJa: / 14:264E:神龍 starts using タイダルウェイブ/,
+      regex: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '264E', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '264E', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '264E', source: '신룡', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -287,10 +321,12 @@
     },
     {
       id: 'ShinryuEx Tail Slap',
-      regex: / 14:25E2:Tail starts using Tail Slap/,
-      regexDe: / 14:25E2:Schwanz starts using Schweifklapser/,
-      regexFr: / 14:25E2:Queue starts using Gifle Caudale/,
-      regexJa: / 14:25E2:神龍の尾 starts using テールスラップ/,
+      regex: Regexes.startsUsing({ id: '25E2', source: 'Tail', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25E2', source: 'Schwanz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '25E2', source: 'Queue', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '25E2', source: '神龍の尾', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '25E2', source: '龙尾', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '25E2', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
       infoText: {
         en: 'Tail: Switch targets',
@@ -303,10 +339,12 @@
     },
     {
       id: 'ShinryuEx Heart',
-      regex: / 03:\y{ObjectId}:Added new combatant The Worm's Heart/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Shinryus Herz/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Cœur Du Dragon/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 神龍の心核/,
+      regex: Regexes.addedCombatant({ name: 'The Worm\'s Heart', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Shinryus Herz', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Cœur Du Dragon', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '神龍の心核', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '神龙的核心', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '신룡의 심핵', capture: false }),
       condition: function(data) {
         // Prevent ugly heart message on wipe.
         return data.phase == 1;
@@ -324,10 +362,12 @@
     {
       // TODO: can't find the id of this, so using all of them.
       id: 'ShinryuEx Divebomb',
-      regex: / 14:(?:1FA8|1FF4|2603):Shinryu starts using Gyre Charge/,
-      regexDe: / 14:(?:1FA8|1FF4|2603):Shinryu starts using Wirbel-Aufladung/,
-      regexFr: / 14:(?:1FA8|1FF4|2603):Shinryu starts using Gyrocharge/,
-      regexJa: / 14:(?:1FA8|1FF4|2603):神龍 starts using ジャイヤチャージ/,
+      regex: Regexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['1FA8', '1FF4', '2603'], source: '신룡', capture: false }),
       alarmText: {
         en: 'avoid divebomb',
         de: 'Divebomb ausweichen',
@@ -339,28 +379,30 @@
     },
     {
       id: 'ShinryuEx Death Sentence',
-      regex: / 14:260A:Hakkinryu starts using Death Sentence on (\y{Name})/,
-      regexDe: / 14:260A:Hakkinryu starts using Todesurteil on (\y{Name})/,
-      regexFr: / 14:260A:Hakkinryu starts using Peine De Mort on (\y{Name})/,
-      regexJa: / 14:260A:白金龍 starts using デスセンテンス on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
+      regexDe: Regexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
+      regexFr: Regexes.startsUsing({ id: '260A', source: 'Hakkinryu' }),
+      regexJa: Regexes.startsUsing({ id: '260A', source: '白金龍' }),
+      regexCn: Regexes.startsUsing({ id: '260A', source: '白金龙' }),
+      regexKo: Regexes.startsUsing({ id: '260A', source: '백금룡' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Death Sentence on YOU',
             de: 'Todesurteil auf DIR',
           };
         } else if (data.role == 'healer') {
           return {
-            en: 'Death Sentence on ' + matches[1],
-            de: 'Todesurteil auf ' + matches[1],
+            en: 'Death Sentence on ' + matches.target,
+            de: 'Todesurteil auf ' + matches.target,
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me && data.role == 'tank') {
+        if (matches.target != data.me && data.role == 'tank') {
           return {
-            en: 'Death Sentence on ' + matches[1],
-            de: 'Todesurteil auf ' + matches[1],
+            en: 'Death Sentence on ' + matches.target,
+            de: 'Todesurteil auf ' + matches.target,
           };
         }
       },
@@ -375,12 +417,14 @@
     },
     {
       id: 'ShinryuEx Tera Slash',
-      regex: / 14:264B:Shinryu starts using Tera Slash on (\y{Name})/,
-      regexDe: / 14:264B:Shinryu starts using Tera-Schlag on (\y{Name})/,
-      regexFr: / 14:264B:Shinryu starts using Térataillade on (\y{Name})/,
-      regexJa: / 14:264B:神龍 starts using テラスラッシュ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '264B', source: 'Shinryu' }),
+      regexDe: Regexes.startsUsing({ id: '264B', source: 'Shinryu' }),
+      regexFr: Regexes.startsUsing({ id: '264B', source: 'Shinryu' }),
+      regexJa: Regexes.startsUsing({ id: '264B', source: '神龍' }),
+      regexCn: Regexes.startsUsing({ id: '264B', source: '神龙' }),
+      regexKo: Regexes.startsUsing({ id: '264B', source: '신룡' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -392,13 +436,13 @@
           };
         } else if (data.role == 'healer') {
           return {
-            en: 'Tank Buster on ' + matches[1],
-            de: 'Tankbuster auf ' + matches[1],
+            en: 'Tank Buster on ' + matches.target,
+            de: 'Tankbuster auf ' + matches.target,
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer') {
+        if (matches.target == data.me || data.role == 'healer') {
           return {
             en: 'Tank Buster',
             de: 'Tenkbasta',
@@ -413,10 +457,12 @@
     },
     {
       id: 'ShinryuEx Wormwail',
-      regex: / 14:2648:Shinryu starts using Wormwail/,
-      regexDe: / 14:2648:Shinryu starts using Shinryus Ruf/,
-      regexFr: / 14:2648:Shinryu starts using Gémissement Draconique/,
-      regexJa: / 14:2648:神龍 starts using 神龍の咆哮/,
+      regex: Regexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2648', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2648', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2648', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2648', source: '신룡', capture: false }),
       alertText: {
         en: 'be inside hitbox',
         de: 'In seine Hitbox',
@@ -428,10 +474,12 @@
     },
     {
       id: 'ShinryuEx Breath',
-      regex: / 14:264A:Shinryu starts using Benighting Breath/,
-      regexDe: / 14:264A:Shinryu starts using Dunkelhauch/,
-      regexFr: / 14:264A:Shinryu starts using Souffle Enténébrant/,
-      regexJa: / 14:264A:神龍 starts using ダークネスブレス/,
+      regex: Regexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '264A', source: '神龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '264A', source: '神龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '264A', source: '신룡', capture: false }),
       alertText: {
         en: 'front cleave',
         de: 'Frontalcleave',
@@ -443,10 +491,12 @@
     },
     {
       id: 'ShinryuEx Final Left Wing',
-      regex: / 14:2718:Left Wing starts using Judgment Bolt/,
-      regexDe: / 14:2718:Linker Flügel starts using Ionenschlag/,
-      regexFr: / 14:2718:Aile Gauche starts using Éclair Du Jugement/,
-      regexJa: / 14:2718:レフトウィング starts using 裁きの雷/,
+      regex: Regexes.startsUsing({ id: '2718', source: 'Left Wing', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2718', source: 'Link(?:e|er|es|en) Schwinge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2718', source: 'Aile Gauche', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2718', source: 'レフトウィング', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2718', source: '左翼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2718', source: '왼쪽 날개', capture: false }),
       condition: function(data) {
         return !data.finalWing;
       },
@@ -464,10 +514,12 @@
     },
     {
       id: 'ShinryuEx Final Right Wing',
-      regex: / 14:2719:Right Wing starts using Hellfire/,
-      regexDe: / 14:2719:Rechter Flügel starts using Höllenfeuer/,
-      regexFr: / 14:2719:Aile Droite starts using Flammes De L'Enfer/,
-      regexJa: / 14:2719:ライトウィング starts using 地獄の火炎/,
+      regex: Regexes.startsUsing({ id: '2719', source: 'Right Wing', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2719', source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2719', source: 'Aile Droite', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2719', source: 'ライトウィング', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2719', source: '右翼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2719', source: '오른쪽 날개', capture: false }),
       condition: function(data) {
         return !data.finalWing;
       },
@@ -485,9 +537,9 @@
     },
     {
       id: 'ShinryuEx Tethers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0061:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0061' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       delaySeconds: 3.8,
       infoText: function(data) {
@@ -517,9 +569,9 @@
     },
     {
       id: 'ShinryuEx Tail Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:007E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '007E' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'tail marker on you',
@@ -532,10 +584,10 @@
     },
     {
       id: 'ShinryuEx Shakers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         data.shakerTargets = data.shakerTargets || [];
-        data.shakerTargets.push(matches[1]);
+        data.shakerTargets.push(matches.target);
         return data.shakerTargets.length == 2;
       },
       alarmText: function(data) {
@@ -572,9 +624,9 @@
     },
     {
       id: 'ShinryuEx Cocoon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'spread out',

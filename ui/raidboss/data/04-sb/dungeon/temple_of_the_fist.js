@@ -31,7 +31,12 @@
   triggers: [
     {
       id: 'Temple Electric Burst Sruti',
-      regex: / 14:1FD6:Coeurl Sruti starts using Electric Burst/,
+      regex: Regexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FD6', source: 'Coeurl Sruti', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FD6', source: 'クァール・シュルティ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FD6', source: '凶豹所闻', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FD6', source: '커얼 슈루티', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -41,7 +46,12 @@
     },
     {
       id: 'Temple Electric Burst Smriti',
-      regex: / 14:1FD6:Coeurl Smriti starts using Electric Burst/,
+      regex: Regexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FD6', source: 'Coeurl Smriti', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FD6', source: 'クァール・スムリティ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FD6', source: '凶豹所忆', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FD6', source: '커얼 스므리티', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -51,25 +61,30 @@
     },
     {
       id: 'Temple Fourfold Shear',
-      regex: / 14:1FD9:Arbuda starts using Fourfold Shear on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
+      regexDe: Regexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
+      regexFr: Regexes.startsUsing({ id: '1FD9', source: 'Arbuda' }),
+      regexJa: Regexes.startsUsing({ id: '1FD9', source: 'アブダ' }),
+      regexCn: Regexes.startsUsing({ id: '1FD9', source: '额部陀' }),
+      regexKo: Regexes.startsUsing({ id: '1FD9', source: '아부다' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Tank buster on YOU',
           };
         }
         if (data.role == 'healer') {
           return {
-            en: 'Tank buster on ' +data.shortName(matches[1]),
+            en: 'Tank buster on ' + data.shortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Temple Moonseal',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0059:/,
+      regex: Regexes.headMarker({ id: '0059' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in blue',
@@ -77,9 +92,9 @@
     },
     {
       id: 'Temple Sunseal',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0058:/,
+      regex: Regexes.headMarker({ id: '0058' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Stand in red',
@@ -87,10 +102,12 @@
     },
     {
       id: 'Temple Port And Star',
-      regex: / 14:1FDC:Arbuda starts using Port And Star/,
-      regexDe: / 14:1FDC:Arbuda starts using Links & Rechts/,
-      regexFr: / 14:1FDC:Arbuda starts using Gauche Et Droite/,
-      regexJa: / 14:1FDC:アブダ starts using 左右双斬/,
+      regex: Regexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FDC', source: 'Arbuda', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FDC', source: 'アブダ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FDC', source: '额部陀', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FDC', source: '아부다', capture: false }),
       alertText: {
         en: 'front/back are safe',
         de: 'Vorne/Hinten sicher',
@@ -104,10 +121,12 @@
     },
     {
       id: 'Temple Fore And Aft',
-      regex: / 14:1FDB:Arbuda starts using Fore And Aft/,
-      regexDe: / 14:1FDB:Arbuda starts using Vor & Zurück/,
-      regexFr: / 14:1FDB:Arbuda starts using Devant Et Derrière/,
-      regexJa: / 14:1FDB:アブダ starts using 前後双斬/,
+      regex: Regexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FDB', source: 'Arbuda', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FDB', source: 'アブダ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FDB', source: '额部陀', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FDB', source: '아부다', capture: false }),
       alertText: {
         en: 'sides are safe',
         de: 'Seiten sind sicher',
@@ -121,10 +140,12 @@
     },
     {
       id: 'Temple Killer Instinct',
-      regex: / 14:1FDE:Arbuda starts using Killer Instinct/,
-      regexDe: / 14:1FDE:Arbuda starts using Vorausahnung/,
-      regexFr: / 14:1FDE:Arbuda starts using Instinct Meurtrier/,
-      regexJa: / 14:1FDE:アブダ starts using 見切り/,
+      regex: Regexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FDE', source: 'Arbuda', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FDE', source: 'アブダ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FDE', source: '额部陀', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FDE', source: '아부다', capture: false }),
       alertText: {
         en: 'watch for safe',
         de: 'nach Sicherheit schauen',
@@ -133,7 +154,12 @@
     },
     {
       id: 'Temple Spirit Wave',
-      regex: / 14:1FE7:Ivon Coeurlfist starts using Spirit Wave/,
+      regex: Regexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfist', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FE7', source: 'Ivon Coeurlfaust', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FE7', source: 'Ivon Le Coeurl', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FE7', source: '双豹のイヴォン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FE7', source: '双豹伊沃恩', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FE7', source: '쌍표범 이본', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -143,41 +169,61 @@
     },
     {
       id: 'Temple Touch Of Slaughter',
-      regex: / 14:1FE6:Ivon Coeurlfist starts using Touch Of Slaughter on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfist' }),
+      regexDe: Regexes.startsUsing({ id: '1FE6', source: 'Ivon Coeurlfaust' }),
+      regexFr: Regexes.startsUsing({ id: '1FE6', source: 'Ivon Le Coeurl' }),
+      regexJa: Regexes.startsUsing({ id: '1FE6', source: '双豹のイヴォン' }),
+      regexCn: Regexes.startsUsing({ id: '1FE6', source: '双豹伊沃恩' }),
+      regexKo: Regexes.startsUsing({ id: '1FE6', source: '쌍표범 이본' }),
       condition: function(data) {
         return data.role == 'healer';
       },
       infoText: function(data, matches) {
         return {
-          en: 'Heal ' + data.shortName(matches[1]) + ' soon',
+          en: 'Heal ' + data.shortName(matches.target) + ' soon',
         };
       },
     },
     {
       id: 'Temple Coeurl Heads',
-      regex: / 15:\y{ObjectId}:Ivon Coeurlfist:1FE9:Coeurl Whisper:/,
+      regex: Regexes.ability({ id: '1FE9', source: 'Ivon Coeurlfist', capture: false }),
+      regexDe: Regexes.ability({ id: '1FE9', source: 'Ivon Coeurlfaust', capture: false }),
+      regexFr: Regexes.ability({ id: '1FE9', source: 'Ivon Le Coeurl', capture: false }),
+      regexJa: Regexes.ability({ id: '1FE9', source: '双豹のイヴォン', capture: false }),
+      regexCn: Regexes.ability({ id: '1FE9', source: '双豹伊沃恩', capture: false }),
+      regexKo: Regexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Avoid floating heads',
       },
     },
     {
       id: 'Temple Rhalgr\'s Piece',
-      regex: / 14:1FED:Ivon Coeurlfist starts using Rhalgr's Piece/,
+      regex: Regexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfist', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1FED', source: 'Ivon Coeurlfaust', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1FED', source: 'Ivon Le Coeurl', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1FED', source: '双豹のイヴォン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1FED', source: '双豹伊沃恩', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1FED', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Away from marker',
       },
     },
     {
       id: 'Temple Rose Of Destruction',
-      regex: / 14:1FEE:Ivon Coeurlfist starts using The Rose Of Destruction on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfist' }),
+      regexDe: Regexes.startsUsing({ id: '1FEE', source: 'Ivon Coeurlfaust' }),
+      regexFr: Regexes.startsUsing({ id: '1FEE', source: 'Ivon Le Coeurl' }),
+      regexJa: Regexes.startsUsing({ id: '1FEE', source: '双豹のイヴォン' }),
+      regexCn: Regexes.startsUsing({ id: '1FEE', source: '双豹伊沃恩' }),
+      regexKo: Regexes.startsUsing({ id: '1FEE', source: '쌍표범 이본' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack marker on YOU',
           };
         }
         return {
-          en: 'Stack on ' +data.shortName(matches[1]),
+          en: 'Stack on ' +data.shortName(matches.target),
         };
       },
     },

@@ -31,9 +31,9 @@
   triggers: [
     {
       id: 'Anyder Aquatic Lance',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0087:/,
+      regex: Regexes.headMarker({ id: '0087' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'puddle on you',
@@ -43,12 +43,14 @@
     },
     {
       id: 'Anyder Puncture',
-      regex: / 14:3E04:(?:Cladoselache|Doliodus) starts using Protolithic Puncture on (\y{Name})/,
-      regexDe: / 14:3E04:(?:Cladoselache|Doliodus) starts using Paläolithische Punktion on (\y{Name})/,
-      regexFr: / 14:3E04:(?:Cladoselache|Doliodus) starts using Ponction Paléolithique on (\y{Name})/,
-      regexJa: / 14:3E04:(?:クラドセラケ|ドリオドゥス) starts using プロトリシックパンクチャー on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
+      regexDe: Regexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
+      regexFr: Regexes.startsUsing({ id: '3E04', source: ['Cladoselache', 'Doliodus'] }),
+      regexJa: Regexes.startsUsing({ id: '3E04', source: ['クラドセラケ', 'ドリオドゥス'] }),
+      regexCn: Regexes.startsUsing({ id: '3E04', source: ['裂口鲨', '原祖鲨'] }),
+      regexKo: Regexes.startsUsing({ id: '3E04', source: ['클라도셀라케', '돌리오두스'] }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -57,19 +59,21 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Anyder Tidal Guillotine',
-      regex: / 14:3E0A:Cladoselache starts using Tidal Guillotine/,
-      regexDe: / 14:3E0A:Cladoselache starts using Gezeitenguillotine/,
-      regexFr: / 14:3E0A:Cladoselache starts using Marée-[gG]uillotine/,
-      regexJa: / 14:3E0A:クラドセラケ starts using タイダルギロチン/,
+      regex: Regexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E0A', source: 'Cladoselache', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E0A', source: 'クラドセラケ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E0A', source: '裂口鲨', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E0A', source: '클라도셀라케', capture: false }),
       infoText: {
         en: 'Away From Swimming Shark',
         de: 'Weg vom schwimmenden Hai',
@@ -78,10 +82,12 @@
     },
     {
       id: 'Anyder Pelagic Cleaver',
-      regex: / 14:3E0B:Doliodus starts using Pelagic Cleaver/,
-      regexDe: / 14:3E0B:Doliodus starts using Pelagische Pein/,
-      regexFr: / 14:3E0B:Doliodus starts using Fendoir [pP]élagique/,
-      regexJa: / 14:3E0B:ドリオドゥス starts using ペラジッククリーヴ/,
+      regex: Regexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E0B', source: 'Doliodus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E0B', source: 'ドリオドゥス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E0B', source: '原祖鲨', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E0B', source: '돌리오두스', capture: false }),
       infoText: {
         en: 'Sides of Swimming Shark',
         de: 'Zu den Seiten vom schwimmenden Hai',
@@ -90,10 +96,12 @@
     },
     {
       id: 'Anyder Marine Mayhem',
-      regex: / 14:3E06:(?:Cladoselache|Doliodus) starts using Marine Mayhem/,
-      regexDe: / 14:3E06:(?:Cladoselache|Doliodus) starts using Meereschaos/,
-      regexFr: / 14:3E06:(?:Cladoselache|Doliodus) starts using Mutilation [mM]arine/,
-      regexJa: / 14:3E06:(?:クラドセラケ|ドリオドゥス) starts using マリーンメイヘム/,
+      regex: Regexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E06', source: ['Cladoselache', 'Doliodus'], capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E06', source: ['クラドセラケ', 'ドリオドゥス'], capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E06', source: ['裂口鲨', '原祖鲨'], capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E06', source: ['클라도셀라케', '돌리오두스'], capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -105,9 +113,9 @@
     },
     {
       id: 'Anyder Sap Shower',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0078:/,
+      regex: Regexes.headMarker({ id: '0078' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -117,10 +125,12 @@
     },
     {
       id: 'Anyder Arbor Storm',
-      regex: / 14:3E17:Marquis Morbol starts using Arbor Storm/,
-      regexDe: / 14:3E17:Marquis-Morbol starts using Dornensturm/,
-      regexFr: / 14:3E17:Marquis Morbol starts using Tempête De Charmilles/,
-      regexJa: / 14:3E17:マーカス・モルボル starts using アーバーストーム/,
+      regex: Regexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E17', source: 'Marquis-Morbol', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E17', source: 'Marquis Morbol', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E17', source: 'マーカス・モルボル', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E17', source: '侯爵魔界花', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E17', source: '몰볼 후작', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -132,10 +142,12 @@
     },
     {
       id: 'Anyder Noahionto',
-      regex: / 14:430C:Evil Armor starts using Noahionto/,
-      regexDe: / 14:430C:Böse Kampfmaschine starts using Noahionto/,
-      regexFr: / 14:430C:Armure Maléfique starts using Noahionto/,
-      regexJa: / 14:430C:イビルアーマー starts using ノアヒオント/,
+      regex: Regexes.startsUsing({ id: '430C', source: 'Evil Armor', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '430C', source: 'Bös(?:e|er|es|en) Kampfmaschine', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '430C', source: 'Armure Maléfique', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '430C', source: 'イビルアーマー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '430C', source: '恶魔装甲', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '430C', source: '사악한 갑옷', capture: false }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -147,12 +159,14 @@
     },
     {
       id: 'Anyder Shockbolt',
-      regex: / 14:3E23:Quetzalcoatl starts using Shockbolt on (\y{Name})/,
-      regexDe: / 14:3E23:Quetzalcoatl starts using Blitzbogen on (\y{Name})/,
-      regexFr: / 14:3E23:Quetzalcóatl starts using Arc D'éclair on (\y{Name})/,
-      regexJa: / 14:3E23:ケツァクウァトル starts using ショックボルト on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
+      regexDe: Regexes.startsUsing({ id: '3E23', source: 'Quetzalcoatl' }),
+      regexFr: Regexes.startsUsing({ id: '3E23', source: 'Quetzalcóatl' }),
+      regexJa: Regexes.startsUsing({ id: '3E23', source: 'ケツァクウァトル' }),
+      regexCn: Regexes.startsUsing({ id: '3E23', source: '克察尔科亚特尔' }),
+      regexKo: Regexes.startsUsing({ id: '3E23', source: '케찰코아틀' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -161,19 +175,21 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Anyder Thunderbolt',
-      regex: / 14:3E24:Quetzalcoatl starts using Thunderbolt/,
-      regexDe: / 14:3E24:Quetzalcoatl starts using Donnerkeil/,
-      regexFr: / 14:3E24:Quetzalcóatl starts using Éclair/,
-      regexJa: / 14:3E24:ケツァクウァトル starts using サンダーボルト/,
+      regex: Regexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E24', source: 'Quetzalcoatl', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E24', source: 'Quetzalcóatl', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E24', source: 'ケツァクウァトル', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E24', source: '克察尔科亚特尔', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E24', source: '케찰코아틀', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -185,10 +201,12 @@
     },
     {
       id: 'Anyder Thunderstorm',
-      regex: / 14:3E1A:Quetzalcoatl starts using Thunderstorm/,
-      regexDe: / 14:3E1A:Quetzalcoatl starts using Gewitter/,
-      regexFr: / 14:3E1A:Quetzalcóatl starts using Feu Purificateur/,
-      regexJa: / 14:3E1A:ケツァクウァトル starts using サンダーストーム/,
+      regex: Regexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E1A', source: 'Quetzalcoatl', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E1A', source: 'Quetzalcóatl', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E1A', source: 'ケツァクウァトル', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E1A', source: '克察尔科亚特尔', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E1A', source: '케찰코아틀', capture: false }),
       delaySeconds: 4.7,
       infoText: {
         en: 'grab orbs',

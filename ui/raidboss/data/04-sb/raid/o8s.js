@@ -14,11 +14,12 @@
   triggers: [
     {
       id: 'O8S Shockwave',
-      regex: / 14:28DB:Graven Image starts using Shockwave/,
-      regexDe: / 14:28DB:Helige Statue starts using Schockwelle/,
-      regexFr: / 14:28DB:Statue Divine starts using Onde De Choc/,
-      regexJa: / 14:28DB:神々の像 starts using 衝撃波/,
-      regexKo: / 14:28DB:신들의 상 starts using 충격파/,
+      regex: Regexes.startsUsing({ id: '28DB', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28DB', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28DB', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28DB', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28DB', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28DB', source: '신들의 상', capture: false }),
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
@@ -37,11 +38,12 @@
     },
     {
       id: 'O8S Indolent Will',
-      regex: / 14:28E4:Graven Image starts using Indolent Will/,
-      regexDe: / 14:28E4:Helige Statue starts using Träger Wille/,
-      regexFr: / 14:28E4:Statue Divine starts using Volonté Indolente/,
-      regexJa: / 14:28E4:神々の像 starts using 惰眠の神気/,
-      regexKo: / 14:28E4:신들의 상 starts using 태만의 신기/,
+      regex: Regexes.startsUsing({ id: '28E4', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28E4', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28E4', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28E4', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28E4', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28E4', source: '신들의 상', capture: false }),
       alertText: {
         en: 'Look Away From Statue',
         fr: 'Ne regardez pas la statue',
@@ -59,11 +61,12 @@
     },
     {
       id: 'O8S Intemperate Will',
-      regex: / 14:28DF:Graven Image starts using Intemperate Will/,
-      regexDe: / 14:28DF:Helige Statue starts using Unmäßiger Wille/,
-      regexFr: / 14:28DF:Statue Divine starts using Volonté Intempérante/,
-      regexJa: / 14:28DF:神々の像 starts using 撲殺の神気/,
-      regexKo: / 14:28DF:신들의 상 starts using 박살의 신기/,
+      regex: Regexes.startsUsing({ id: '28DF', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28DF', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28DF', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28DF', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28DF', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28DF', source: '신들의 상', capture: false }),
       alertText: {
         en: '<= Get Left/West',
         fr: '<= Allez à Gauche/Ouest',
@@ -81,11 +84,12 @@
     },
     {
       id: 'O8S Gravitational Wave',
-      regex: / 14:28DE:Graven Image starts using Gravitational Wave/,
-      regexDe: / 14:28DE:Helige Statue starts using Gravitationswelle/,
-      regexFr: / 14:28DE:Statue Divine starts using Onde Gravitationnelle/,
-      regexJa: / 14:28DE:神々の像 starts using 重力波/,
-      regexKo: / 14:28DE:신들의 상 starts using 중력파/,
+      regex: Regexes.startsUsing({ id: '28DE', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28DE', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28DE', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28DE', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28DE', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28DE', source: '신들의 상', capture: false }),
       alertText: {
         en: 'Get Right/East =>',
         fr: 'Allez à Droite/Est =>',
@@ -103,11 +107,12 @@
     },
     {
       id: 'O8S Ave Maria',
-      regex: / 14:28E3:Graven Image starts using Ave Maria/,
-      regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
-      regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
-      regexJa: / 14:28E3:神々の像 starts using アヴェ・マリア/,
-      regexKo: / 14:28E3:신들의 상 starts using 아베 마리아/,
+      regex: Regexes.startsUsing({ id: '28E3', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28E3', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28E3', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28E3', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28E3', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28E3', source: '신들의 상', capture: false }),
       alertText: {
         en: 'Look At Statue',
         fr: 'Regardez la statue',
@@ -125,11 +130,12 @@
     },
     {
       id: 'O8S Pasts Forgotten',
-      regex: / 14:28F1:Kefka starts using Pasts Forgotten/,
-      regexDe: / 14:28F1:Kefka starts using Vernichtung Der Vergangenheit/,
-      regexFr: / 14:28F1:Kefka starts using Ruine Du Passé/,
-      regexJa: / 14:28F1:ケフカ starts using 過去の破滅/,
-      regexKo: / 14:28F1:케프카 starts using 과거의 파멸/,
+      regex: Regexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F1', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F1', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F1', source: '케프카', capture: false }),
       alertText: {
         en: 'Past: Stack and Stay',
         fr: 'Passé : Stack et ne bougez plus',
@@ -147,11 +153,12 @@
     },
     {
       id: 'O8S Futures Numbered',
-      regex: / 14:28EF:Kefka starts using Futures Numbered/,
-      regexDe: / 14:28EF:Kefka starts using Vernichtung Der Zukunft/,
-      regexFr: / 14:28EF:Kefka starts using Ruine Du Futur/,
-      regexJa: / 14:28EF:ケフカ starts using 未来の破滅/,
-      regexKo: / 14:28EF:케프카 starts using 미래의 파멸/,
+      regex: Regexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28EF', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28EF', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28EF', source: '케프카', capture: false }),
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et traversez',
@@ -170,11 +177,12 @@
     {
       // TODO: not sure if this cast is 7 or 8.
       id: 'O8S Past\'s End',
-      regex: / 14:28F[78]:Kefka starts using Past's End/,
-      regexDe: / 14:28F[78]:Kefka starts using Ende Der Vergangenheit/,
-      regexFr: / 14:28F[78]:Kefka starts using Fin Du Passé/,
-      regexJa: / 14:28F[78]:ケフカ starts using 過去の終焉/,
-      regexKo: / 14:28F[78]:케프카 starts using 과거의 종언/,
+      regex: Regexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F[78]', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -196,11 +204,12 @@
     {
       // TODO: not sure if this cast is 4 or 5.
       id: 'O8S Future\'s End',
-      regex: / 14:28F[45]:Kefka starts using Future's End/,
-      regexDe: / 14:28F[45]:Kefka starts using Ende Der Zukunft/,
-      regexFr: / 14:28F[45]:Kefka starts using Fin Du Futur/,
-      regexJa: / 14:28F[45]:ケフカ starts using 未来の終焉/,
-      regexKo: / 14:28F[45]:케프카 starts using 미래의 종언/,
+      regex: Regexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F[45]', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -221,13 +230,14 @@
     },
     {
       id: 'O8S Pulse Wave You',
-      regex: / 14:28DD:Graven Image starts using Pulse Wave on (\y{Name})/,
-      regexDe: / 14:28DD:Helige Statue starts using Pulswelle on (\y{Name})/,
-      regexFr: / 14:28DD:Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
-      regexJa: / 14:28DD:神々の像 starts using 波動弾 on (\y{Name})/,
-      regexKo: / 14:28DD:신들의 상 starts using 파동탄 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28DD', source: 'Graven Image' }),
+      regexDe: Regexes.startsUsing({ id: '28DD', source: 'Heilig(?:e|er|es|en) Statue' }),
+      regexFr: Regexes.startsUsing({ id: '28DD', source: 'Statue Divine' }),
+      regexJa: Regexes.startsUsing({ id: '28DD', source: '神々の像' }),
+      regexCn: Regexes.startsUsing({ id: '28DD', source: '众神之像' }),
+      regexKo: Regexes.startsUsing({ id: '28DD', source: '신들의 상' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Knockback on YOU',
@@ -246,11 +256,12 @@
     },
     {
       id: 'O8S Wings of Destruction',
-      regex: / 14:2900:Kefka starts using Wings Of Destruction/,
-      regexDe: / 14:2900:Kefka starts using Vernichtungsschwinge/,
-      regexFr: / 14:2900:Kefka starts using Aile De La Destruction/,
-      regexJa: / 14:2900:ケフカ starts using 破壊の翼/,
-      regexKo: / 14:2900:케프카 starts using 파괴의 날개/,
+      regex: Regexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2900', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -294,11 +305,12 @@
     },
     {
       id: 'O8S Single Wing of Destruction',
-      regex: / 14:28F[EF]:Kefka starts using Wings Of Destruction/,
-      regexDe: / 14:28F[EF]:Kefka starts using Vernichtungsschwinge/,
-      regexFr: / 14:28F[EF]:Kefka starts using Aile De La Destruction/,
-      regexJa: / 14:28F[EF]:ケフカ starts using 破壊の翼/,
-      regexKo: / 14:28F[EF]:케프카 starts using 파괴의 날개/,
+      regex: Regexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F[EF]', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F[EF]', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F[EF]', source: '케프카', capture: false }),
       infoText: {
         en: 'Single Wing',
         fr: 'Aile unique',
@@ -309,13 +321,14 @@
     },
     {
       id: 'O8S Ultimate Embrace',
-      regex: / 14:2910:Kefka starts using Ultimate Embrace on (\y{Name})/,
-      regexDe: / 14:2910:Kefka starts using Ultima-Umarmung on (\y{Name})/,
-      regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
-      regexJa: / 14:2910:ケフカ starts using 終末の双腕 on (\y{Name})/,
-      regexKo: / 14:2910:케프카 starts using 종말의 포옹 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      regexDe: Regexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      regexFr: Regexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      regexJa: Regexes.startsUsing({ id: '2910', source: 'ケフカ' }),
+      regexCn: Regexes.startsUsing({ id: '2910', source: '凯夫卡' }),
+      regexKo: Regexes.startsUsing({ id: '2910', source: '케프카' }),
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
 
         return {
@@ -327,21 +340,21 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
 
         if (data.role == 'healer' || data.role == 'tank') {
           return {
-            en: 'Embrace on ' + data.ShortName(matches[1]),
-            fr: 'Étreinte sur ' + data.ShortName(matches[1]),
-            de: 'Umarmung auf ' + data.ShortName(matches[1]),
-            ko: '종말의 포옹 → ' + data.ShortName(matches[1]),
-            ja: '双腕 on ' + data.ShortName(matches[1]),
+            en: 'Embrace on ' + data.ShortName(matches.target),
+            fr: 'Étreinte sur ' + data.ShortName(matches.target),
+            de: 'Umarmung auf ' + data.ShortName(matches.target),
+            ko: '종말의 포옹 → ' + data.ShortName(matches.target),
+            ja: '双腕 on ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank') {
+        if (matches.target == data.me || data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'embrace',
             fr: 'Étreinte',
@@ -355,13 +368,14 @@
     {
       // 28E8: clown hyperdrive, 2912: god hyperdrive
       id: 'O8S Hyperdrive',
-      regex: / 14:(?:28E8|2912):Kefka starts using Hyperdrive on (\y{Name})/,
-      regexDe: / 14:(?:28E8|2912):Kefka starts using Hyperantrieb on (\y{Name})/,
-      regexFr: / 14:(?:28E8|2912):Kefka starts using Colonne De Feu on (\y{Name})/,
-      regexJa: / 14:(?:28E8|2912):ケフカ starts using ハイパードライブ on (\y{Name})/,
-      regexKo: / 14:(?:28E8|2912):케프카 starts using 하이퍼드라이브 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      regexDe: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      regexFr: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      regexJa: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'ケフカ' }),
+      regexCn: Regexes.startsUsing({ id: ['28E8', '2912'], source: '凯夫卡' }),
+      regexKo: Regexes.startsUsing({ id: ['28E8', '2912'], source: '케프카' }),
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
 
         return {
@@ -373,21 +387,21 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
 
         if (data.role == 'healer' || data.role == 'tank') {
           return {
-            en: 'Hyperdrive on ' + data.ShortName(matches[1]),
-            fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
-            de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
-            ko: '하이퍼드라이브 → ' + data.ShortName(matches[1]),
-            ja: 'ハイパードライブ on ' + data.ShortName(matches[1]),
+            en: 'Hyperdrive on ' + data.ShortName(matches.target),
+            fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
+            de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
+            ko: '하이퍼드라이브 → ' + data.ShortName(matches.target),
+            ja: 'ハイパードライブ on ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank') {
+        if (matches.target == data.me || data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'hyperdrive',
             fr: 'Colonne de feu',
@@ -400,13 +414,14 @@
     },
     {
       id: 'O8S Indulgent Will',
-      regex: / 14:28E5:Graven Image starts using Indulgent Will on (\y{Name})/,
-      regexDe: / 14:28E5:Helige Statue starts using Nachsichtiger Wille on (\y{Name})/,
-      regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
-      regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
-      regexKo: / 14:28E5:신들의 상 starts using 성모의 신기 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28E5', source: 'Graven Image' }),
+      regexDe: Regexes.startsUsing({ id: '28E5', source: 'Heilig(?:e|er|es|en) Statue' }),
+      regexFr: Regexes.startsUsing({ id: '28E5', source: 'Statue Divine' }),
+      regexJa: Regexes.startsUsing({ id: '28E5', source: '神々の像' }),
+      regexCn: Regexes.startsUsing({ id: '28E5', source: '众神之像' }),
+      regexKo: Regexes.startsUsing({ id: '28E5', source: '신들의 상' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Confusion: Go Outside',
@@ -425,13 +440,14 @@
     },
     {
       id: 'O8S Idyllic Will',
-      regex: / 14:28E6:Graven Image starts using Idyllic Will on (\y{Name})/,
-      regexDe: / 14:28E6:Helige Statue starts using Idyllischer Wille on (\y{Name})/,
-      regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
-      regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
-      regexKo: / 14:28E6:신들의 상 starts using 수마의 신기 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28E6', source: 'Graven Image' }),
+      regexDe: Regexes.startsUsing({ id: '28E6', source: 'Heilig(?:e|er|es|en) Statue' }),
+      regexFr: Regexes.startsUsing({ id: '28E6', source: 'Statue Divine' }),
+      regexJa: Regexes.startsUsing({ id: '28E6', source: '神々の像' }),
+      regexCn: Regexes.startsUsing({ id: '28E6', source: '众神之像' }),
+      regexKo: Regexes.startsUsing({ id: '28E6', source: '신들의 상' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Sleep: Go Inside',
@@ -450,11 +466,12 @@
     },
     {
       id: 'O8S Mana Charge',
-      regex: / 14:28D1:Kefka starts using Mana Charge/,
-      regexDe: / 14:28D1:Kefka starts using Mana-Aufladung/,
-      regexFr: / 14:28D1:Kefka starts using Concentration De Mana/,
-      regexJa: / 14:28D1:ケフカ starts using マジックチャージ/,
-      regexKo: / 14:28D1:케프카 starts using 마력 충전/,
+      regex: Regexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28D1', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28D1', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28D1', source: '케프카', capture: false }),
       run: function(data) {
         delete data.lastFire;
         delete data.lastThunder;
@@ -465,11 +482,12 @@
     },
     {
       id: 'O8S Mana Release',
-      regex: / 14:28D2:Kefka starts using Mana Release/,
-      regexDe: / 14:28D2:Kefka starts using Mana-Entladung/,
-      regexFr: / 14:28D2:Kefka starts using Décharge De Mana/,
-      regexJa: / 14:28D2:ケフカ starts using マジックアウト/,
-      regexKo: / 14:28D2:케프카 starts using 마력 방출/,
+      regex: Regexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28D2', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28D2', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28D2', source: '케프카', capture: false }),
       preRun: function(data) {
         if (data.lastFire) {
           data.manaReleaseText = data.lastFire;
@@ -496,11 +514,12 @@
       // 28CF: damage from mana charge
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
-      regex: / 1[56]:\y{ObjectId}:Kefka:28CF:Flagrant Fire:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
-      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
-      regexKo: / 1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
+      regex: Regexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
+      regexDe: Regexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
+      regexFr: Regexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
+      regexJa: Regexes.ability({ id: '28CF', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.ability({ id: '28CF', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.ability({ id: '28CF', source: '케프카', capture: false }),
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -517,11 +536,12 @@
       // 28D0: damage from mana charge
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
-      regex: / 1[56]:\y{ObjectId}:Kefka:28D0:Flagrant Fire:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
-      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
-      regexKo: / 1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
+      regex: Regexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
+      regexDe: Regexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
+      regexFr: Regexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
+      regexJa: Regexes.ability({ id: '28D0', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.ability({ id: '28D0', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.ability({ id: '28D0', source: '케프카', capture: false }),
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -538,11 +558,12 @@
       // 28CD: mana charge
       // 2B31: mana release
       id: 'O8S Thrumming Thunder Real',
-      regex: / 14:(?:28CD|2B31):Kefka starts using Thrumming Thunder/,
-      regexDe: / 14:(?:28CD|2B31):Kefka starts using Brachiales Blitzga/,
-      regexFr: / 14:(?:28CD|2B31):Kefka starts using Méga Foudre Fourmillante/,
-      regexJa: / 14:(?:28CD|2B31):ケフカ starts using もりもりサンダガ/,
-      regexKo: / 14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
+      regex: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28CD', '2B31'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28CD', '2B31'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -565,11 +586,12 @@
       // 28CB, 28CC: mana charge
       // 2B2F, 2B30: mana release
       id: 'O8S Thrumming Thunder Fake',
-      regex: / 14:(?:28CC|2B30):Kefka starts using Thrumming Thunder/,
-      regexDe: / 14:(?:28CC|2B30):Kefka starts using Brachiales Blitzga/,
-      regexFr: / 14:(?:28CC|2B30):Kefka starts using Méga Foudre Fourmillante/,
-      regexJa: / 14:(?:28CC|2B30):ケフカ starts using もりもりサンダガ/,
-      regexKo: / 14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
+      regex: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28CC', '2B30'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28CC', '2B30'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -592,11 +614,12 @@
       // 28C5, 28C6: mana charge
       // 2B2B, 2B2E: mana release
       id: 'O8S Blizzard Fake Donut',
-      regex: / 14:(?:28C5|2B2B):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C5|2B2B):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C5|2B2B):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C5|2B2B):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -626,11 +649,12 @@
       // 28C9: mana charge
       // 2B2E: mana release
       id: 'O8S Blizzard True Donut',
-      regex: / 14:(?:28C9|2B2E):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C9|2B2E):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C9|2B2E):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C9|2B2E):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -660,11 +684,12 @@
       // 28C3, 28C4: mana charge
       // 2B29, 2B2A: mana release
       id: 'O8S Blizzard Fake Near',
-      regex: / 14:(?:28C4|2B2A):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C4|2B2A):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -694,11 +719,12 @@
       // 28C8: mana charge
       // 2B2D: mana release
       id: 'O8S Blizzard True Near',
-      regex: / 14:(?:28C8|2B2D):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C8|2B2D):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C8|2B2D):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C8|2B2D):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {

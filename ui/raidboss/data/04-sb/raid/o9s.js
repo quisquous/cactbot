@@ -11,13 +11,14 @@
     // General actions
     {
       id: 'O9S Chaotic Dispersion',
-      regex: / 14:3170:Chaos starts using Chaotic Dispersion on (\y{Name})/,
-      regexCn: / 14:3170:卡奥斯 starts using 散布混沌 on (\y{Name})/,
-      regexDe: / 14:3170:Chaos starts using Chaos-Dispersion on (\y{Name})/,
-      regexFr: / 14:3170:Chaos starts using Dispersion Chaotique on (\y{Name})/,
-      regexJa: / 14:3170:カオス starts using カオティックディスパーション on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3170', source: 'Chaos' }),
+      regexDe: Regexes.startsUsing({ id: '3170', source: 'Chaos' }),
+      regexFr: Regexes.startsUsing({ id: '3170', source: 'Chaos' }),
+      regexJa: Regexes.startsUsing({ id: '3170', source: 'カオス' }),
+      regexCn: Regexes.startsUsing({ id: '3170', source: '卡奥斯' }),
+      regexKo: Regexes.startsUsing({ id: '3170', source: '카오스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -36,15 +37,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑-> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑-> ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -65,11 +66,12 @@
     },
     {
       id: 'O9S Longitudinal Implosion',
-      regex: / 14:3172:Chaos starts using Longitudinal Implosion/,
-      regexDe: / 14:3172:Chaos starts using Vertikale Implosion/,
-      regexFr: / 14:3172:Chaos starts using Implosion Verticale/,
-      regexJa: / 14:3172:カオス starts using ヴァーティカルインプロージョン/,
-      regexCn: / 14:3172:卡奥斯 starts using 经度聚爆/,
+      regex: Regexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3172', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3172', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
@@ -113,11 +115,12 @@
     },
     {
       id: 'O9S Latitudinal Implosion',
-      regex: / 14:3173:Chaos starts using Latitudinal Implosion/,
-      regexDe: / 14:3173:Chaos starts using Horizontale Implosion/,
-      regexFr: / 14:3173:Chaos starts using Implosion Horizontale/,
-      regexJa: / 14:3173:カオス starts using ホリゾンタルインプロージョン/,
-      regexCn: / 14:3173:卡奥斯 starts using 纬度聚爆/,
+      regex: Regexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3173', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3173', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
@@ -161,11 +164,12 @@
     },
     {
       id: 'O9S Damning Edict',
-      regex: / 14:3171:Chaos starts using Damning Edict/,
-      regexDe: / 14:3171:Chaos starts using Verdammendes Edikt/,
-      regexFr: / 14:3171:Chaos starts using Décret Accablant/,
-      regexJa: / 14:3171:カオス starts using ダミングイーディクト/,
-      regexCn: / 14:3171:卡奥斯 starts using 诅咒敕令/,
+      regex: Regexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3171', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3171', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3171', source: '카오스', capture: false }),
       infoText: {
         en: 'Get Behind',
         de: 'Hinten dran',
@@ -175,11 +179,12 @@
     },
     {
       id: 'O9S Orbs Fiend',
-      regex: / 14:317D:Chaos starts using Fiendish Orbs/,
-      regexDe: / 14:317D:Chaos starts using Höllenkugeln/,
-      regexFr: / 14:317D:Chaos starts using Ordre De Poursuite/,
-      regexJa: / 14:317D:カオス starts using 追尾せよ/,
-      regexCn: / 14:317D:卡奥斯 starts using 追踪/,
+      regex: Regexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '317D', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -203,15 +208,15 @@
         }
       },
     },
-
     // Fire Path
     {
       id: 'O9S Fire Phase Tracking',
-      regex: / 14:3186:Chaos starts using Blaze/,
-      regexDe: / 14:3186:Chaos starts using Flamme/,
-      regexFr: / 14:3186:Chaos starts using Flammes/,
-      regexJa: / 14:3186:カオス starts using ほのお/,
-      regexCn: / 14:3186:卡奥斯 starts using 烈焰/,
+      regex: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'fire';
@@ -301,11 +306,12 @@
     },
     {
       id: 'O9S Fire Big Bang',
-      regex: / 14:3180:Chaos starts using Big Bang/,
-      regexDe: / 14:3180:Chaos starts using Quantengravitation/,
-      regexFr: / 14:3180:Chaos starts using Saillie/,
-      regexJa: / 14:3180:カオス starts using 突出/,
-      regexCn: / 14:3180:卡奥斯 starts using 顶起 /,
+      regex: Regexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3180', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
       // Each big bang has its own cast, so suppress.
       suppressSeconds: 1,
       condition: function(data) {
@@ -319,15 +325,15 @@
         cn: '中间躲避',
       },
     },
-
     // Water Path
     {
       id: 'O9S Water Phase Tracking',
-      regex: / 14:3187:Chaos starts using Tsunami/,
-      regexDe: / 14:3187:Chaos starts using Tsunami/,
-      regexFr: / 14:3187:Chaos starts using Raz-De-Marée/,
-      regexJa: / 14:3187:カオス starts using つなみ/,
-      regexCn: / 14:3187:卡奥斯 starts using 海啸 /,
+      regex: Regexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3187', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3187', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3187', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'water';
@@ -401,9 +407,9 @@
     },
     {
       id: 'O9S Knock Down Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: function(data) {
         if (data.phaseType == 'water') {
@@ -425,15 +431,15 @@
         }
       },
     },
-
     // Wind Path
     {
       id: 'O9S Wind Phase Tracking',
-      regex: / 14:3188:Chaos starts using Cyclone/,
-      regexDe: / 14:3188:Chaos starts using Tornado/,
-      regexFr: / 14:3188:Chaos starts using Tornade/,
-      regexJa: / 14:3188:カオス starts using たつまき/,
-      regexCn: / 14:3188:卡奥斯 starts using 龙卷风 /,
+      regex: Regexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3188', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3188', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3188', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'wind';
@@ -471,11 +477,12 @@
     },
     {
       id: 'O9S Cyclone Knockback',
-      regex: / 14:318F:Chaos starts using Cyclone/,
-      regexDe: / 14:318F:Chaos starts using Tornado/,
-      regexFr: / 14:318F:Chaos starts using Tornade/,
-      regexJa: / 14:318F:カオス starts using たつまき/,
-      regexCn: / 14:318F:卡奥斯 starts using 龙卷风/,
+      regex: Regexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '318F', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
       alarmText: function(data) {
         if (data.wind == 'head') {
           return {
@@ -498,15 +505,15 @@
         delete data.wind;
       },
     },
-
     // Earth Path
     {
       id: 'O9S Earth Phase Tracking',
-      regex: / 14:3189:Chaos starts using Earthquake/,
-      regexDe: / 14:3189:Chaos starts using Erdbeben/,
-      regexFr: / 14:3189:Chaos starts using Séisme/,
-      regexJa: / 14:3189:カオス starts using じしん/,
-      regexCn: / 14:3189:卡奥斯 starts using 地震/,
+      regex: Regexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3189', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3189', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3189', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'earth';
@@ -574,7 +581,7 @@
       regexCn: Regexes.gainsEffect({ effect: '混沌之土' }),
       regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 30,
       run: function(data) {
@@ -583,7 +590,7 @@
     },
     {
       id: 'O9S Earth Stack Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Stack with partner',
@@ -596,11 +603,12 @@
     // Orb Phase
     {
       id: 'O9S Orb Phase Tracking',
-      regex: / 14:318A:Chaos starts using Bowels Of Agony/,
-      regexDe: / 14:318A:Chaos starts using Quälende Eingeweide/,
-      regexFr: / 14:318A:Chaos starts using Entrailles De L'Agonie/,
-      regexJa: / 14:318A:カオス starts using バウル・オブ・アゴニー/,
-      regexCn: / 14:318A:卡奥斯 starts using /,
+      regex: Regexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '318A', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '318A', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '318A', source: '카오스', capture: false }),
       preRun: function(data) {
         data.phaseType = 'orb';
       },
@@ -661,11 +669,12 @@
     // Enrage Phase
     {
       id: 'O9S Enrage Phase Tracking',
-      regex: / 14:3186:Chaos starts using Blaze/,
-      regexDe: / 14:3186:Chaos starts using Flamme/,
-      regexFr: / 14:3186:Chaos starts using Flammes/,
-      regexJa: / 14:3186:カオス starts using ほのお/,
-      regexCn: / 14:3186:卡奥斯 starts using 烈焰/,
+      regex: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: function(data) {
         data.blazeCount = data.blazeCount || 0;
         data.blazeCount++;

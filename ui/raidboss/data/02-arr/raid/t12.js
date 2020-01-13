@@ -6,10 +6,12 @@
   triggers: [
     {
       id: 'T12 Phase 3',
-      regex: / 15:\y{ObjectId}:Phoenix:B96:/,
-      regexDe: / 15:\y{ObjectId}:Phönix:B96:/,
-      regexFr: / 15:\y{ObjectId}:Phénix:B96:/,
-      regexJa: / 15:\y{ObjectId}:フェニックス:B96:/,
+      regex: Regexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
+      regexDe: Regexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
+      regexFr: Regexes.ability({ id: 'B96', source: 'Phénix', capture: false }),
+      regexJa: Regexes.ability({ id: 'B96', source: 'フェニックス', capture: false }),
+      regexCn: Regexes.ability({ id: 'B96', source: '不死鸟', capture: false }),
+      regexKo: Regexes.ability({ id: 'B96', source: '피닉스', capture: false }),
       sound: 'Long',
       run: function(data) {
         data.phase = 3;
@@ -17,10 +19,12 @@
     },
     {
       id: 'T12 Bennu',
-      regex: / 03:\y{ObjectId}:Added new combatant Bennu\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Bennu\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Bénou\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ベンヌ\./,
+      regex: Regexes.addedCombatant({ name: 'Bennu', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Bennu', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Bénou', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ベンヌ', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '贝努鸟', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '벤누', capture: false }),
       delaySeconds: 55,
       durationSeconds: 4.5,
       infoText: function(data) {
@@ -35,12 +39,14 @@
     },
     {
       id: 'T12 Revelation',
-      regex: / 14:B87:Phoenix starts using Revelation on (\y{Name})\./,
-      regexDe: / 14:B87:Phönix starts using Offenbarung on (\y{Name})\./,
-      regexFr: / 14:B87:Phénix starts using Révélation on (\y{Name})\./,
-      regexJa: / 14:B87:フェニックス starts using リヴァレーション on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: 'B87', source: 'Phoenix' }),
+      regexDe: Regexes.startsUsing({ id: 'B87', source: 'Phönix' }),
+      regexFr: Regexes.startsUsing({ id: 'B87', source: 'Phénix' }),
+      regexJa: Regexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
+      regexCn: Regexes.startsUsing({ id: 'B87', source: '不死鸟' }),
+      regexKo: Regexes.startsUsing({ id: 'B87', source: '피닉스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Revelation on YOU',
             de: 'Offenbarung auf DIR',
@@ -49,21 +55,23 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
-            en: 'Away from ' + data.ShortName(matches[1]),
-            de: 'Weg von ' + data.ShortName(matches[1]),
-            fr: 'Ecartez-vous de ' + data.ShortName(matches[1]),
+            en: 'Away from ' + data.ShortName(matches.target),
+            de: 'Weg von ' + data.ShortName(matches.target),
+            fr: 'Ecartez-vous de ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T12 Blackfire',
-      regex: / 14:B8C:Phoenix starts using Blackfire/,
-      regexDe: / 14:B8C:Phönix starts using Schwarzfeuer/,
-      regexFr: / 14:B8C:Phénix starts using Flamme Noire/,
-      regexJa: / 14:B8C:フェニックス starts using 漆黒の炎/,
+      regex: Regexes.startsUsing({ id: 'B8C', source: 'Phoenix', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'B8C', source: 'Phönix', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'B8C', source: 'Phénix', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
       infoText: {
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
@@ -72,9 +80,9 @@
     },
     {
       id: 'T12 Whitefire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0020:/,
+      regex: Regexes.headMarker({ id: '0020' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Whitefire on YOU',
@@ -84,9 +92,9 @@
     },
     {
       id: 'T12 Bluefire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0021:/,
+      regex: Regexes.headMarker({ id: '0021' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Bluefire Away',

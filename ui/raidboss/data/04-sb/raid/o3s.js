@@ -7,10 +7,12 @@
   triggers: [
     {
       id: 'O3S Phase Counter',
-      regex: / 14:2304:Halicarnassus starts using Panel Swap/,
-      regexDe: / 14:2304:Halikarnassos starts using Neuaufstellung/,
-      regexFr: / 14:2304:Halicarnasse starts using Remplacement Des Cases/,
-      regexJa: / 14:2304:ハリカルナッソス starts using パネルシャッフル/,
+      regex: Regexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
@@ -20,10 +22,12 @@
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
       id: 'Spellblade holy counter',
-      regex: / 15:\y{ObjectId}:Halicarnassus:22EF:Spellblade Holy:/,
-      regexDe: / 15:\y{ObjectId}:Halikarnassos:22EF:Magieklinge Sanctus:/,
-      regexFr: / 15:\y{ObjectId}:Halicarnasse:22EF:Magilame Miracle:/,
-      regexJa: / 15:\y{ObjectId}:ハリカルナッソス:22EF:魔法剣ホーリー:/,
+      regex: Regexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.ability({ id: '22EF', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.ability({ id: '22EF', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.ability({ id: '22EF', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.ability({ id: '22EF', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.ability({ id: '22EF', source: '할리카르나소스', capture: false }),
       run: function(data) {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
@@ -41,11 +45,10 @@
       //   (4) prey marker (tethered to #3)
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0064', '0065'] }),
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
-
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
@@ -84,7 +87,7 @@
           return false;
 
         data.holyTargets = data.holyTargets || [];
-        data.holyTargets.push(matches[1]);
+        data.holyTargets.push(matches.target);
         return data.holyTargets.length == 4;
       },
       tts: function(data) {
@@ -114,7 +117,7 @@
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0064', '0065'] }),
       alertText: function(data) {
         if (data.librarySpellbladePrinted)
           return;
@@ -142,15 +145,15 @@
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
       delaySeconds: function(data, matches) {
-        return matches[1] == data.me ? 0 : 0.5;
+        return matches.target == data.me ? 0 : 0.5;
       },
       condition: function(data, matches) {
         // This is only for library phase.
         if (data.phase != 3)
           return false;
 
-        if (matches[1] == data.me)
-          data.librarySpellbladeMe = matches[2];
+        if (matches.target == data.me)
+          data.librarySpellbladeMe = matches.id;
 
         return true;
       },
@@ -247,10 +250,12 @@
     },
     {
       id: 'O3S Ribbit',
-      regex: / 14:22F7:Halicarnassus starts using Ribbit/,
-      regexDe: / 14:22F7:Halikarnassos starts using Quaaak/,
-      regexFr: / 14:22F7:Halicarnasse starts using Coâââ/,
-      regexJa: / 14:22F7:ハリカルナッソス starts using クルルルル！/,
+      regex: Regexes.startsUsing({ id: '22F7', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22F7', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22F7', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22F7', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22F7', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22F7', source: '할리카르나소스', capture: false }),
       alertText: {
         en: 'Ribbit: Get behind',
         de: 'Quaaak: Hinter sie',
@@ -262,10 +267,12 @@
     },
     {
       id: 'O3S Oink',
-      regex: / 14:22F9:Halicarnassus starts using Oink/,
-      regexDe: / 14:22F9:Halikarnassos starts using Quiiiek/,
-      regexFr: / 14:22F9:Halicarnasse starts using Abracadabri/,
-      regexJa: / 14:22F9:ハリカルナッソス starts using ポルルルル！/,
+      regex: Regexes.startsUsing({ id: '22F9', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22F9', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22F9', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22F9', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22F9', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22F9', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'Oink: Stack',
         de: 'Quiiiek: Stack',
@@ -277,10 +284,12 @@
     },
     {
       id: 'O3S Squelch',
-      regex: / 14:22F8:Halicarnassus starts using Squelch/,
-      regexDe: / 14:22F8:Halikarnassos starts using Gurrr/,
-      regexFr: / 14:22F8:Halicarnasse starts using Abracadabra/,
-      regexJa: / 14:22F8:ハリカルナッソス starts using カルルルル！/,
+      regex: Regexes.startsUsing({ id: '22F8', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22F8', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22F8', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22F8', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22F8', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22F8', source: '할리카르나소스', capture: false }),
       alarmText: {
         en: 'Squelch: Look away',
         de: 'Gurrr: Wegschauen',
@@ -292,10 +301,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
-      regex: / 14:230E:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:230E:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:230E:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:230E:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '230E', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '230E', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '230E', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '230E', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '230E', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '230E', source: '할리카르나소스', capture: false }),
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
@@ -312,10 +323,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
-      regex: / 14:2306:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:2306:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:2306:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:2306:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '2306', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2306', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2306', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2306', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'The Queen\'s Waltz: Clock',
         de: 'Tanz der Königin: Uhr',
@@ -327,10 +340,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
-      regex: / 14:230A:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:230A:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:230A:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:230A:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '230A', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '230A', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '230A', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'The Queen\'s Waltz: Crystal Square',
         de: 'Tanz der Königin: Kristallfeld',
@@ -342,10 +357,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
-      regex: / 14:2308:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:2308:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:2308:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:2308:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '2308', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2308', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2308', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2308', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'The Queen\'s Waltz: Tethers',
         de: 'Tanz der Königin: Ranken',

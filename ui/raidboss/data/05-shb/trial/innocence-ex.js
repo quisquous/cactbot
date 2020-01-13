@@ -11,12 +11,12 @@
   triggers: [
     {
       id: 'InnoEx Starbirth Count',
-      regex: / 14:3EEF:Innocence starts using Starbirth/,
-      regexCn: / 14:3EEF:无瑕灵君 starts using 创星/,
-      regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
-      regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
-      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
-      regexKo: / 14:3EEF:이노센스 starts using 별 생성/,
+      regex: Regexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEF', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEF', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       run: function(data) {
         data.starbirthCount = data.starbirthCount || 0;
         data.starbirthCount++;
@@ -25,12 +25,12 @@
     },
     {
       id: 'InnoEx Reprobation Swords 2',
-      regex: / 14:3EDC:Innocence starts using Rightful Reprobation/,
-      regexCn: / 14:3EDC:无瑕灵君 starts using 断罪回旋/,
-      regexDe: / 14:3EDC:Innozenz starts using Rechtmäßige Verurteilung/,
-      regexFr: / 14:3EDC:Innocence starts using Réprobation [lL]égitime/,
-      regexJa: / 14:3EDC:イノセンス starts using 断罪の旋回/,
-      regexKo: / 14:3EDC:이노센스 starts using 단죄의 선회/,
+      regex: Regexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EDC', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EDC', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
       infoText: {
@@ -44,12 +44,12 @@
     },
     {
       id: 'InnoEx Starbirth Warning',
-      regex: / 14:3EEF:Innocence starts using Starbirth/,
-      regexCn: / 14:3EEF:无瑕灵君 starts using 创星/,
-      regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
-      regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
-      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
-      regexKo: / 14:3EEF:이노센스 starts using 별 생성/,
+      regex: Regexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEF', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEF', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       infoText: function(data) {
         if (data.starbirthCount == 1) {
           return {
@@ -102,12 +102,12 @@
     },
     {
       id: 'InnoEx Shadowreaver',
-      regex: / 14:3EEA:Innocence starts using Shadowreaver/,
-      regexCn: / 14:3EEA:无瑕灵君 starts using 夺影/,
-      regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
-      regexFr: / 14:3EEA:Innocence starts using Pilleur/,
-      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
-      regexKo: / 14:3EEA:이노센스 starts using 그림자 강탈/,
+      regex: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -122,14 +122,14 @@
     },
     {
       id: 'InnoEx Righteous Bolt',
-      regex: / 14:3ECD:Innocence starts using Righteous Bolt on (\y{Name})/,
-      regexCn: / 14:3ECD:无瑕灵君 starts using 裁决之雷 on (\y{Name})/,
-      regexDe: / 14:3ECD:Innozenz starts using Blitz der Gerechtigkeit on (\y{Name})/,
-      regexFr: / 14:3ECD:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
-      regexJa: / 14:3ECD:イノセンス starts using ジャッジボルト on (\y{Name})/,
-      regexKo: / 14:3ECD:이노센스 starts using 심판자의 번개 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3ECD', source: 'Innocence' }),
+      regexDe: Regexes.startsUsing({ id: '3ECD', source: 'Innozenz' }),
+      regexFr: Regexes.startsUsing({ id: '3ECD', source: 'Innocence' }),
+      regexJa: Regexes.startsUsing({ id: '3ECD', source: 'イノセンス' }),
+      regexCn: Regexes.startsUsing({ id: '3ECD', source: '无瑕灵君' }),
+      regexKo: Regexes.startsUsing({ id: '3ECD', source: '이노센스' }),
       alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
+        if (matches.target == data.me || data.role != 'tank')
           return;
 
         return {
@@ -142,7 +142,7 @@
         };
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -154,24 +154,24 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
-            ko: '탱버 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '탱버 -> ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'InnoEx Holy Sword Healer',
-      regex: / 14:3EC9:Forgiven Venery starts using Holy Sword/,
-      regexCn: / 14:3EC9:得到宽恕的情欲 starts using 神圣剑/,
-      regexDe: / 14:3EC9:Geläuterte Wollust starts using Heiliges Schwert/,
-      regexFr: / 14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée/,
-      regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード/,
-      regexKo: / 14:3EC9:면죄된 정욕 starts using 성스러운 검/,
+      regex: Regexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EC9', source: 'Geläutert(?:e|er|es|en) Wollust', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EC9', source: 'Débauche Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EC9', source: '면죄된 정욕', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -187,14 +187,14 @@
     },
     {
       id: 'InnoEx Holy Sword Me',
-      regex: / 14:3EC9:forgiven venery starts using Holy Sword on (\y{Name})/,
-      regexCn: / 14:3EC9:得到宽恕的情欲 starts using 神圣剑 on (\y{Name})/,
-      regexDe: / 14:3EC9:Geläuterte Wollust starts using Heiliges Schwert on (\y{Name})/,
-      regexFr: / 14:3EC9:Débauche Pardonnée starts using Épée [sS]acrée on (\y{Name})/,
-      regexJa: / 14:3EC9:フォーギヴン・ヴェナリー starts using ホーリーソード on (\y{Name})/,
-      regexKo: / 14:3EC9:면죄된 정욕 starts using 성스러운 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery' }),
+      regexDe: Regexes.startsUsing({ id: '3EC9', source: 'Geläutert(?:e|er|es|en) Wollust' }),
+      regexFr: Regexes.startsUsing({ id: '3EC9', source: 'Débauche Pardonnée' }),
+      regexJa: Regexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー' }),
+      regexCn: Regexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲' }),
+      regexKo: Regexes.startsUsing({ id: '3EC9', source: '면죄된 정욕' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Tank Buster on YOU',
@@ -207,12 +207,12 @@
     },
     {
       id: 'InnoEx Charge',
-      regex: / 14:3EEE:Innocence starts using Beatific Vision/,
-      regexCn: / 14:3EEE:无瑕灵君 starts using 荣福直观/,
-      regexDe: / 14:3EEE:Innozenz starts using Seligmachende Schau/,
-      regexFr: / 14:3EEE:Innocence starts using Vision [bB]éatifique/,
-      regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
-      regexKo: / 14:3EEE:이노센스 starts using 지복직관/,
+      regex: Regexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEE', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEE', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEE', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEE', source: '이노센스', capture: false }),
       alertText: function(data) {
         if (data.starbirthActive) {
           return {
@@ -236,12 +236,12 @@
     },
     {
       id: 'InnoEx Starbirth Avoid',
-      regex: / 14:3EEF:Innocence starts using Starbirth/,
-      regexCn: / 14:3EEF:无瑕灵君 starts using 创星/,
-      regexDe: / 14:3EEF:Innozenz starts using Sternengeburt/,
-      regexFr: / 14:3EEF:Innocence starts using Accouchement [sS]tellaire/,
-      regexJa: / 14:3EEF:イノセンス starts using スターバース/,
-      regexKo: / 14:3EEF:이노센스 starts using 별 생성/,
+      regex: Regexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEF', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEF', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEF', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
       delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
@@ -257,12 +257,12 @@
     },
     {
       id: 'InnoEx Adds',
-      regex: / 15:\y{ObjectId}:Innocence:42B0:/,
-      regexCn: / 15:\y{ObjectId}:无瑕灵君:42B0:/,
-      regexDe: / 15:\y{ObjectId}:Innozenz:42B0:/,
-      regexFr: / 15:\y{ObjectId}:Innocence:42B0:/,
-      regexJa: / 15:\y{ObjectId}:イノセンス:42B0:/,
-      regexKo: / 15:\y{ObjectId}:이노센스:42B0:/,
+      regex: Regexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
+      regexDe: Regexes.ability({ id: '42B0', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.ability({ id: '42B0', source: 'Innocence', capture: false }),
+      regexJa: Regexes.ability({ id: '42B0', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.ability({ id: '42B0', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.ability({ id: '42B0', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -277,18 +277,18 @@
     },
     {
       id: 'InnoEx Light Pillar',
-      regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:无瑕灵君:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:이노센스:38FC:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '38FC', source: 'Innocence' }),
+      regexDe: Regexes.ability({ id: '38FC', source: 'Innozenz' }),
+      regexFr: Regexes.ability({ id: '38FC', source: 'Innocence' }),
+      regexJa: Regexes.ability({ id: '38FC', source: 'イノセンス' }),
+      regexCn: Regexes.ability({ id: '38FC', source: '无瑕灵君' }),
+      regexKo: Regexes.ability({ id: '38FC', source: '이노센스' }),
       preRun: function(data) {
         data.lightPillar = data.lightPillar || 0;
         data.lightPillar++;
       },
       alarmText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
 
         if (data.lightPillar == 3) {
@@ -311,7 +311,7 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         return {
           en: 'Line Stack',
@@ -325,12 +325,12 @@
     },
     {
       id: 'InnoEx Starbirth Explode',
-      regex: / 14:3F3E:Innocence starts using Light Pillar/,
-      regexCn: / 14:3F3E:无瑕灵君 starts using 光明柱/,
-      regexDe: / 14:3F3E:Innozenz starts using Lichtsäule/,
-      regexFr: / 14:3F3E:Innocence starts using Pilier [dD]e [lL]umière/,
-      regexJa: / 14:3F3E:イノセンス starts using ライトピラー/,
-      regexKo: / 14:3F3E:이노센스 starts using 빛의 기둥/,
+      regex: Regexes.startsUsing({ id: '3F3E', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3F3E', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3F3E', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3F3E', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3F3E', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3F3E', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.lightPillar == 3;
       },
@@ -345,9 +345,9 @@
     },
     {
       id: 'InnoEx Winged Reprobation Tether',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00AC:/,
+      regex: Regexes.headMarker({ id: '00AC' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Tether on YOU',
@@ -360,9 +360,9 @@
     },
     {
       id: 'InnoEx Winged Drop Of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: function(data) {
         if (data.starbirthActive) {
@@ -387,12 +387,12 @@
     },
     {
       id: 'InnoEx God Ray',
-      regex: / 14:3EE[456]:Innocence starts using God Ray/,
-      regexCn: / 14:3EE[456]:无瑕灵君 starts using 神光/,
-      regexDe: / 14:3EE[456]:Innozenz starts using Göttlicher Strahl/,
-      regexFr: / 14:3EE[456]:Innocence starts using Rayon Divin/,
-      regexJa: / 14:3EE[456]:イノセンス starts using ゴッドレイ/,
-      regexKo: / 14:3EE[456]:이노센스 starts using 신의 광선/,
+      regex: Regexes.startsUsing({ id: '3EE[456]', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EE[456]', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EE[456]', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EE[456]', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EE[456]', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EE[456]', source: '이노센스', capture: false }),
       suppressSeconds: 15,
       infoText: {
         en: 'Avoid Swords then Ray',
@@ -405,36 +405,36 @@
     },
     {
       id: 'InnoEx Starbirth End 1',
-      regex: / 14:3EEA:Innocence starts using Shadowreaver/,
-      regexCn: / 14:3EEA:无瑕灵君 starts using 夺影/,
-      regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
-      regexFr: / 14:3EEA:Innocence starts using Pilleur/,
-      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
-      regexKo: / 14:3EEA:이노센스 starts using 그림자 광탈/,
+      regex: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
       run: function(data) {
         delete data.starbirthActive;
       },
     },
     {
       id: 'InnoEx Starbirth End 2',
-      regex: / 14:3EEE:Innocence starts using Beatific Vision/,
-      regexCn: / 14:3EEE:无瑕灵君 starts using 荣福直观/,
-      regexDe: / 14:3EEE:Innozenz starts using Seligmachende Schau/,
-      regexFr: / 14:3EEE:Innocence starts using Vision [bB]éatifique/,
-      regexJa: / 14:3EEE:イノセンス starts using ビーティフィックビジョン/,
-      regexKo: / 14:3EEE:이노센스 starts using 지복직관/,
+      regex: Regexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEE', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEE', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEE', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEE', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEE', source: '이노센스', capture: false }),
       run: function(data) {
         delete data.starbirthActive;
       },
     },
     {
       id: 'InnoEx Soul And Body Left',
-      regex: / 14:3ED7:Innocence starts using Soul and Body/,
-      regexCn: / 14:3ED7:无瑕灵君 starts using 身心/,
-      regexDe: / 14:3ED7:Innozenz starts using Seele und Körper/,
-      regexFr: / 14:3ED7:Innocence starts using Âme et corps/,
-      regexJa: / 14:3ED7:イノセンス starts using ソウル・アンド・ボディー/,
-      regexKo: / 14:3ED7:이노센스 starts using 영혼과 육신/,
+      regex: Regexes.startsUsing({ id: '3ED7', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3ED7', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3ED7', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3ED7', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3ED7', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3ED7', source: '이노센스', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Left',
@@ -445,12 +445,12 @@
     },
     {
       id: 'InnoEx Soul And Body Right',
-      regex: / 14:3ED9:Innocence starts using Soul and Body/,
-      regexCn: / 14:3ED9:无瑕灵君 starts using 身心/,
-      regexDe: / 14:3ED9:Innozenz starts using Seele und Körper/,
-      regexFr: / 14:3ED9:Innocence starts using Âme et corps/,
-      regexJa: / 14:3ED9:イノセンス starts using ソウル・アンド・ボディー/,
-      regexKo: / 14:3ED9:이노센스 starts using 영혼과 육신/,
+      regex: Regexes.startsUsing({ id: '3ED9', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3ED9', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3ED9', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3ED9', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3ED9', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3ED9', source: '이노센스', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',
@@ -461,12 +461,12 @@
     },
     {
       id: 'InnoEx Rood',
-      regex: / 14:3ED3:Innocence starts using Dream [Oo]f [Tt]he Rood/,
-      regexCn: / 14:3ED3:无瑕灵君 starts using 十字架之梦/,
-      regexDe: / 14:3ED3:Innozenz starts using Traum des Kreuzes/,
-      regexFr: / 14:3ED3:Innocence starts using Le Rêve de la Croix/,
-      regexJa: / 14:3ED3:イノセンス starts using ドリーム・オブ・ザ・ルード/,
-      regexKo: / 14:3ED3:이노센스 starts using 수난의 꿈/,
+      regex: Regexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3ED3', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3ED3', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3ED3', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3ED3', source: '이노센스', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Left',
@@ -477,12 +477,12 @@
     },
     {
       id: 'InnoEx Rood',
-      regex: / 14:3ED5:Innocence starts using Dream [Oo]f [Tt]he Rood/,
-      regexCn: / 14:3ED5:无瑕灵君 starts using 十字架之梦/,
-      regexDe: / 14:3ED5:Innozenz starts using Traum des Kreuzes/,
-      regexFr: / 14:3ED5:Innocence starts using Le Rêve de la Croix/,
-      regexJa: / 14:3ED5:イノセンス starts using ドリーム・オブ・ザ・ルード/,
-      regexKo: / 14:3ED5:이노센스 starts using 수난의 꿈/,
+      regex: Regexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3ED5', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3ED5', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3ED5', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3ED5', source: '이노센스', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',

@@ -7,10 +7,12 @@
   triggers: [
     {
       id: 'O7N Magitek Ray',
-      regex: / 14:276B:Guardian starts using Magitek Ray/,
-      regexDe: / 14:276B:Wächter starts using Magitek-Laser/,
-      regexFr: / 14:276B:Gardien starts using Rayon Magitek/,
-      regexJa: / 14:276B:ガーディアン starts using 魔導レーザー/,
+      regex: Regexes.startsUsing({ id: '276B', source: 'Guardian', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '276B', source: 'Wächter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '276B', source: 'Gardien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '276B', source: 'ガーディアン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '276B', source: '守护者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '276B', source: '가디언', capture: false }),
       alertText: {
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
@@ -24,12 +26,14 @@
     },
     {
       id: 'O7N Arm And Hammer',
-      regex: / 14:276C:Guardian starts using Arm And Hammer on (\y{Name})/,
-      regexDe: / 14:276C:Wächter starts using Arm-Hammer on (\y{Name})/,
-      regexFr: / 14:276C:Gardien starts using Marteau Stratégique on (\y{Name})/,
-      regexJa: / 14:276C:ガーディアン starts using アームハンマー on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '276C', source: 'Guardian' }),
+      regexDe: Regexes.startsUsing({ id: '276C', source: 'Wächter' }),
+      regexFr: Regexes.startsUsing({ id: '276C', source: 'Gardien' }),
+      regexJa: Regexes.startsUsing({ id: '276C', source: 'ガーディアン' }),
+      regexCn: Regexes.startsUsing({ id: '276C', source: '守护者' }),
+      regexKo: Regexes.startsUsing({ id: '276C', source: '가디언' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -38,14 +42,14 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Buster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -56,10 +60,12 @@
     },
     {
       id: 'O7N Shockwave',
-      regex: / 14:2766:Guardian starts using Shockwave/,
-      regexDe: / 14:2766:Wächter starts using Schockwelle/,
-      regexFr: / 14:2766:Gardien starts using Onde De Choc/,
-      regexJa: / 14:2766:ガーディアン starts using 衝撃波/,
+      regex: Regexes.startsUsing({ id: '2766', source: 'Guardian', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2766', source: 'Wächter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2766', source: 'Gardien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2766', source: 'ガーディアン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2766', source: '守护者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2766', source: '가디언', capture: false }),
       alertText: {
         en: 'Knockback',
         de: 'Rückstoß',
@@ -68,10 +74,12 @@
     },
     {
       id: 'O7N Diffractive Laser',
-      regex: / 14:2761:Guardian starts using Diffractive Laser/,
-      regexDe: / 14:2761:Wächter starts using Diffusionslaser/,
-      regexFr: / 14:2761:Gardien starts using Laser Diffracteur/,
-      regexJa: / 14:2761:ガーディアン starts using 拡散レーザー/,
+      regex: Regexes.startsUsing({ id: '2761', source: 'Guardian', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2761', source: 'Wächter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2761', source: 'Gardien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2761', source: 'ガーディアン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2761', source: '守护者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2761', source: '가디언', capture: false }),
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -85,9 +93,9 @@
     },
     {
       id: 'O7N Prey',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Prey on YOU',
             de: 'Beute auf DIR',
@@ -95,13 +103,13 @@
           };
         }
         return {
-          en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Beute auf ' + data.ShortName(matches[1]),
-          fr: 'Marquage sur ' + data.ShortName(matches[1]),
+          en: 'Prey on ' + data.ShortName(matches.target),
+          de: 'Beute auf ' + data.ShortName(matches.target),
+          fr: 'Marquage sur ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'prey',
             de: 'beute',

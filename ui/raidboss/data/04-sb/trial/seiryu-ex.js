@@ -52,24 +52,26 @@
   triggers: [
     {
       id: 'SeiryuEx Aramitama Tracking',
-      regex: / 14:37E4:Seiryu starts using Blazing Aramitama/,
-      regexDe: / 14:37E4:Seiryu starts using Flammende Aramitama/,
-      regexFr: / 14:37E4:Seiryû starts using Aramitama Incandescent/,
-      regexJa: / 14:37E4:青龍 starts using 荒魂燃焼/,
-      regexCn: / 14:37E4:青龙 starts using 荒魂燃烧/,
+      regex: Regexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37E4', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37E4', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37E4', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37E4', source: '청룡', capture: false }),
       run: function(data) {
         data.blazing = true;
       },
     },
     {
       id: 'SeiryuEx Cursekeeper',
-      regex: / 14:37D2:Seiryu starts using Cursekeeper on (\y{Name})/,
-      regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on (\y{Name})/,
-      regexFr: / 14:37D2:Seiryû starts using Katashiro on (\y{Name})/,
-      regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on (\y{Name})/,
-      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
+      regexDe: Regexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
+      regexFr: Regexes.startsUsing({ id: '37D2', source: 'Seiryû' }),
+      regexJa: Regexes.startsUsing({ id: '37D2', source: '青龍' }),
+      regexCn: Regexes.startsUsing({ id: '37D2', source: '青龙' }),
+      regexKo: Regexes.startsUsing({ id: '37D2', source: '청룡' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Swap',
             de: 'Tankwechsel',
@@ -91,11 +93,12 @@
     },
     {
       id: 'SeiryuEx Infirm Soul',
-      regex: / 14:37D2:Seiryu starts using Cursekeeper on \y{Name}/,
-      regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on \y{Name}/,
-      regexFr: / 14:37D2:Seiryû starts using Katashiro on \y{Name}/,
-      regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on \y{Name}/,
-      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37D2', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37D2', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37D2', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37D2', source: '청룡', capture: false }),
       condition: function(data) {
         // TODO: it'd be nice to figure out who the tanks are so this
         // could also apply to the person Cursekeeper was on.
@@ -112,22 +115,24 @@
     },
     {
       id: 'SeiryuEx Ascending Tracking',
-      regex: / 14:3C25:Seiryu starts using Serpent Ascending/,
-      regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
-      regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
-      regexJa: / 14:3C25:青龍 starts using 登り龍/,
-      regexCn: / 14:3C25:青龙 starts using 升龙/,
+      regex: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3C25', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       run: function(data) {
         data.markers = [];
       },
     },
     {
       id: 'SeiryuEx Ascending Stack',
-      regex: / 14:3C25:Seiryu starts using Serpent Ascending/,
-      regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
-      regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
-      regexJa: / 14:3C25:青龍 starts using 登り龍/,
-      regexCn: / 14:3C25:青龙 starts using 升龙/,
+      regex: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3C25', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       delaySeconds: 1,
       infoText: {
         en: 'Stack for Puddle AOEs',
@@ -139,19 +144,19 @@
     },
     {
       id: 'SeiryuEx Ascending Marker Tracking',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data) {
         return data.blazing;
       },
       run: function(data, matches) {
-        data.markers.push(matches[1]);
+        data.markers.push(matches.target);
       },
     },
     {
       id: 'SeiryuEx Ascending Marker You',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data, matches) {
-        return data.blazing && matches[1] == data.me;
+        return data.blazing && matches.target == data.me;
       },
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
@@ -174,7 +179,7 @@
     },
     {
       id: 'SeiryuEx Ascending Tower You',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9', capture: false }),
       condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;
@@ -201,11 +206,12 @@
     },
     {
       id: 'SeiryuEx Handprint East',
-      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
-      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
-      regexJa: / 15:\y{ObjectId}:山の式鬼:37E5:圧殺掌:/,
-      regexCn: / 15:\y{ObjectId}:山之式鬼:37E5:压杀掌:/,
+      regex: Regexes.ability({ id: '37E5', source: 'Yama-No-Shiki', capture: false }),
+      regexDe: Regexes.ability({ id: '37E5', source: 'Yama No Shiki', capture: false }),
+      regexFr: Regexes.ability({ id: '37E5', source: 'Shiki Montagneux', capture: false }),
+      regexJa: Regexes.ability({ id: '37E5', source: '山の式鬼', capture: false }),
+      regexCn: Regexes.ability({ id: '37E5', source: '山之式鬼', capture: false }),
+      regexKo: Regexes.ability({ id: '37E5', source: '산 사역귀', capture: false }),
       infoText: {
         en: 'East =>',
         de: 'Osten =>',
@@ -223,11 +229,12 @@
     },
     {
       id: 'SeiryuEx Handprint West',
-      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
-      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
-      regexJa: / 15:\y{ObjectId}:山の式鬼:37E6:圧殺掌:/,
-      regexCn: / 15:\y{ObjectId}:山之式鬼:37E6:压杀掌:/,
+      regex: Regexes.ability({ id: '37E6', source: 'Yama-No-Shiki', capture: false }),
+      regexDe: Regexes.ability({ id: '37E6', source: 'Yama No Shiki', capture: false }),
+      regexFr: Regexes.ability({ id: '37E6', source: 'Shiki Montagneux', capture: false }),
+      regexJa: Regexes.ability({ id: '37E6', source: '山の式鬼', capture: false }),
+      regexCn: Regexes.ability({ id: '37E6', source: '山之式鬼', capture: false }),
+      regexKo: Regexes.ability({ id: '37E6', source: '산 사역귀', capture: false }),
       infoText: {
         en: '<= West',
         de: '<= Westen',
@@ -245,11 +252,12 @@
     },
     {
       id: 'SeiryuEx Find Sneks',
-      regex: / 14:37F7:Seiryu starts using Coursing River/,
-      regexDe: / 14:37F7:Seiryu starts using Woge der Schlange/,
-      regexFr: / 14:37F7:Seiryû starts using Vague De Serpents/,
-      regexJa: / 14:37F7:青龍 starts using 蛇崩/,
-      regexCn: / 14:37F7:青龙 starts using 蛇崩/,
+      regex: Regexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37F7', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37F7', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37F7', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37F7', source: '청룡', capture: false }),
       alarmText: function(data) {
         if (data.withForce === undefined) {
           return {
@@ -274,11 +282,12 @@
     },
     {
       id: 'SeiryuEx Silence',
-      regex: / 14:37F4:Numa-No-Shiki starts using Stoneskin/,
-      regexDe: / 14:37F4:Numa no Shiki starts using Steinhaut/,
-      regexFr: / 14:37F4:Shiki uligineux starts using Cuirasse/,
-      regexJa: / 14:37F4:沼の式鬼 starts using ストンスキン/,
-      regexCn: / 14:37F4:沼之式鬼 starts using 石肤/,
+      regex: Regexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37F4', source: 'Numa No Shiki', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37F4', source: '沼の式鬼', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37F4', source: '沼之式鬼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37F4', source: '늪 사역귀', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -292,11 +301,12 @@
     },
     {
       id: 'SeiryuEx Stack',
-      regex: / 03:\y{ObjectId}:Added new combatant Ao-No-Shiki\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Ao no Shiki\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Shiki céruléen\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 蒼の式鬼\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 苍之式鬼\./,
+      regex: Regexes.addedCombatant({ name: 'Ao-No-Shiki', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Ao No Shiki', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Shiki Céruléen', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '蒼の式鬼', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '苍之式鬼', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -320,11 +330,12 @@
       // This comes a good bit after the symbol on screen,
       // but it's still 2.5s of warning if you've fallen asleep.
       id: 'SeiryuEx Sigil Single Out',
-      regex: / 14:3A01:Seiryu starts using Onmyo Sigil/,
-      regexDe: / 14:3A01:Seiryu starts using Onmyo-Siegel/,
-      regexFr: / 14:3A01:Seiryû starts using Onmyo/,
-      regexJa: / 14:3A01:青龍 starts using 陰陽の印/,
-      regexCn: / 14:3A01:青龙 starts using 阴阳之印/,
+      regex: Regexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A01', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A01', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A01', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A01', source: '청룡', capture: false }),
       infoText: {
         en: 'Out',
         de: 'Raus',
@@ -335,11 +346,12 @@
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
-      regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
-      regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
-      regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
+      regex: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
       infoText: {
         en: 'In, then out',
         de: 'Rein, dann raus',
@@ -350,11 +362,12 @@
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
-      regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
-      regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
-      regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
+      regex: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',
@@ -366,11 +379,12 @@
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
-      regex: / 14:3A03:Seiryu starts using Onmyo Sigil/,
-      regexDe: / 14:3A03:Seiryu starts using Onmyo-Siegel/,
-      regexFr: / 14:3A03:Seiryû starts using Onmyo/,
-      regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
-      regexCn: / 14:3A03:青龙 starts using 阴阳之印/,
+      regex: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       infoText: {
         en: 'Out, then in',
         de: 'Raus, dann rein',
@@ -381,11 +395,12 @@
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
-      regex: / 14:3A03:Seiryu starts using Onmyo Sigil/,
-      regexDe: / 14:3A03:Seiryu starts using Onmyo-Siegel/,
-      regexFr: / 14:3A03:Seiryû starts using Onmyo/,
-      regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
-      regexCn: / 14:3A03:青龙 starts using 阴阳之印/,
+      regex: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       delaySeconds: 2.7,
       infoText: {
         en: 'In',
@@ -397,11 +412,12 @@
     },
     {
       id: 'SeiryuEx Swim Lessons',
-      regex: / 14:37CB:Seiryu starts using Dragon's Wake/,
-      regexDe: / 14:37CB:Seiryu starts using Erwachen des Drachen/,
-      regexFr: / 14:37CB:Seiryû starts using Ascension Draconique/,
-      regexJa: / 14:37CB:青龍 starts using 雲蒸龍変/,
-      regexCn: / 14:37CB:青龙 starts using 云蒸龙变/,
+      regex: Regexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37CB', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37CB', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37CB', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37CB', source: '청룡', capture: false }),
       delaySeconds: 28,
       alertText: {
         en: 'Pop Sprint',

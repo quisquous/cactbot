@@ -21,10 +21,12 @@
     {
       id: 'Dohn Mheg Watering Wheel',
       // TODO: double check this with an import, is there a The??
-      regex: / 14:3DAA:Dohnfast Fuath starts using Watering Wheel/,
-      regexDe: / 14:3DAA:Dohn-Fuath starts using Wasserrad/,
-      regexFr: / 14:3DAA:Fuath de Dohn Mheg starts using Arrosage/,
-      regexJa: / 14:3DAA:ドォーヌ・フーア starts using 水やり/,
+      regex: Regexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3DAA', source: '禁园水妖', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3DAA', source: '도느 푸아', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -36,10 +38,12 @@
     {
       id: 'Dohn Mheg Straight Punch',
       // TODO: double check this with an import, is there a The??
-      regex: / 14:3DAB:Dohnfast [bB]asket starts using Straight Punch/,
-      regexDe: / 14:3DAB:Dohn-Blumenkorb starts using Gerade/,
-      regexFr: / 14:3DAB:[Pp]anier [dD]e Dohn Mheg starts using Direct/,
-      regexJa: / 14:3DAB:ドォーヌ・バスケット starts using ボーンブレイカー/,
+      regex: Regexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3DAB', source: '禁园篮筐', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3DAB', source: '도느 바구니', capture: false }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -51,10 +55,12 @@
     {
       id: 'Dohn Mheg Proboscis',
       // TODO: double check this with an import, is there a The??
-      regex: / 14:3DAF:Dohnfast Etainmoth starts using Proboscis/,
-      regexDe: / 14:3DAF:Dohn-Edianmotte starts using Rüssel/,
-      regexFr: / 14:3DAF:[nN]octuétain [dD]e Dohn Mheg starts using Proboscis/,
-      regexJa: / 14:3DAF:ドォーヌ・エーディンモス starts using プロボシス/,
+      regex: Regexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3DAF', source: '도느 에다인나방', capture: false }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -66,10 +72,12 @@
     {
       id: 'Dohn Mheg Torpedo',
       // TODO: double check this with an import, is there a The??
-      regex: / 14:3DB5:Dohnfast Kelpie starts using Torpedo/,
-      regexDe: / 14:3DB5:Dohn-Kelpie starts using Torpedo/,
-      regexFr: / 14:3DB5:[kK]elpie [dD]e Dohn Mheg starts using Ruée aqueuse/,
-      regexJa: / 14:3DB5:ドォーヌ・ケルピー starts using トルペド/,
+      regex: Regexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3DB5', source: '禁园凯尔派', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3DB5', source: '도느 켈피', capture: false }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -80,10 +88,12 @@
     },
     {
       id: 'Dohn Mheg Candy Cane',
-      regex: / 14:2299:Aenc Thon, Lord [Oo]f [Tt]he Lingering Gaze starts using Candy Cane on (\y{Name})/,
-      regexDe: / 14:2299:Aenc Thon der Glupschäugige starts using Quietschehammer on (\y{Name})/,
-      regexFr: / 14:2299:Aenc Thon [lL]'[eE]nvoûtant starts using Canne [eE]n [sS]ucre [dD]'[oO]rge on (\y{Name})/,
-      regexJa: / 14:2299:美眼のインク＝ゾン starts using キャンディケーン on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2299', source: 'Aenc Thon, Lord Of The Lingering Gaze' }),
+      regexDe: Regexes.startsUsing({ id: '2299', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)' }),
+      regexFr: Regexes.startsUsing({ id: '2299', source: 'Aenc Thon L\'Envoûtant' }),
+      regexJa: Regexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
+      regexCn: Regexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
+      regexKo: Regexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -103,10 +113,12 @@
     },
     {
       id: 'Dohn Mheg Landsblood',
-      regex: / 14:1E8E:Aenc Thon, Lord [Oo]f [Tt]he Lingering Gaze starts using Landsblood/,
-      regexDe: / 14:1E8E:Aenc Thon der Glupschäugige starts using Erdblut/,
-      regexFr: / 14:1E8E:Aenc Thon [lL]'[eE]nvoûtant starts using Pulsation [pP]hréatique/,
-      regexJa: / 14:1E8E:美眼のインク＝ゾン starts using 水脈乱打/,
+      regex: Regexes.startsUsing({ id: '1E8E', source: 'Aenc Thon, Lord Of The Lingering Gaze', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1E8E', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1E8E', source: 'Aenc Thon L\'Envoûtant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1E8E', source: '美眼のインク＝ゾン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1E8E', source: '美眼 因克·佐恩', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1E8E', source: '눈이 예쁜 잉크 돈', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -117,24 +129,26 @@
     },
     {
       id: 'Dohn Mheg Leap Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'Dohn Mheg Timber',
-      regex: / 14:22D3:Griaule starts using Tiiimbeeer/,
-      regexDe: / 14:22D3:Griaule starts using Baum Fääällt/,
-      regexFr: / 14:22D3:Griaule starts using Ça [tT]ooombe/,
-      regexJa: / 14:22D3:グリオール starts using ティーンバー/,
+      regex: Regexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22D3', source: 'グリオール', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22D3', source: '格里奥勒', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22D3', source: '그리올', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -146,10 +160,12 @@
     },
     {
       id: 'Dohn Mheg Crippling Blow',
-      regex: / 14:35A4:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Crippling Blow on (\y{Name})/,
-      regexDe: / 14:35A4:Aenc Thon der Langbeinige starts using Verkrüppelnder Schlag on (\y{Name})/,
-      regexFr: / 14:35A4:Aenc Thon le virtuose starts using Coup handicapant on (\y{Name})/,
-      regexJa: / 14:35A4:楽聖のインク＝ゾン starts using 痛打 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '35A4', source: 'Aenc Thon, Lord Of The Lengthsome Gait' }),
+      regexDe: Regexes.startsUsing({ id: '35A4', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)' }),
+      regexFr: Regexes.startsUsing({ id: '35A4', source: 'Aenc Thon Le Virtuose' }),
+      regexJa: Regexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
+      regexCn: Regexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
+      regexKo: Regexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
       alertText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -169,10 +185,12 @@
     },
     {
       id: 'Dohn Mheg Imp Choir',
-      regex: / 14:34F0:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Imp Choir/,
-      regexDe: / 14:34F0:Aenc Thon der Langbeinige starts using Koboldchor/,
-      regexFr: / 14:34F0:Aenc Thon [lL]e [Vv]irtuose starts using Mélodie [dD]u [kK]appa/,
-      regexJa: / 14:34F0:楽聖のインク＝ゾン starts using カッパの調べ/,
+      regex: Regexes.startsUsing({ id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '34F0', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '34F0', source: 'Aenc Thon Le Virtuose', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
       alertText: {
         en: 'Look Away',
         de: 'Weg schauen',
@@ -181,10 +199,12 @@
     },
     {
       id: 'Dohn Mheg Toad Choir',
-      regex: / 14:34EF:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Toad Choir/,
-      regexDe: / 14:34EF:Aenc Thon der Langbeinige starts using Froschchor/,
-      regexFr: / 14:34EF:Aenc Thon [lL]e [Vv]irtuose starts using Mélodie [dD]u [cC]rapeau/,
-      regexJa: / 14:34EF:楽聖のインク＝ゾン starts using カエルの調べ/,
+      regex: Regexes.startsUsing({ id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '34EF', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '34EF', source: 'Aenc Thon Le Virtuose', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '34EF', source: '楽聖のインク＝ゾン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '34EF', source: '乐圣 因克·佐恩', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '34EF', source: '대음악가 잉크 돈', capture: false }),
       alertText: {
         en: 'Out of Front',
         de: 'Weg von vorne',
@@ -193,10 +213,12 @@
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
-      regex: / 14:358C:Aenc Thon, Lord [Oo]f [Tt]he Lengthsome Gait starts using Virtuosic Capriccio/,
-      regexDe: / 14:358C:Aenc Thon der Langbeinige starts using Virtuoses Capriccio/,
-      regexFr: / 14:358C:Aenc Thon [lL]e [Vv]irtuose starts using Capriccio [eE]ffréné/,
-      regexJa: / 14:358C:楽聖のインク＝ゾン starts using 苛烈なるカプリッチョ/,
+      regex: Regexes.startsUsing({ id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '358C', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '358C', source: 'Aenc Thon Le Virtuose', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '358C', source: '楽聖のインク＝ゾン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '358C', source: '乐圣 因克·佐恩', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '358C', source: '대음악가 잉크 돈', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },

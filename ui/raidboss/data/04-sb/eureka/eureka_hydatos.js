@@ -105,11 +105,12 @@
     },
     {
       id: 'BA West Side',
-      regex: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexDe: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexFr: / 15:\y{ObjectId}:Art:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexJa: / 15:\y{ObjectId}:アルト:3956:[^:]*:\y{ObjectId}:[^:]:/,
-      regexCn: / 15:\y{ObjectId}:亚特:3956:[^:]*:\y{ObjectId}:[^:]/,
+      regex: Regexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      regexDe: Regexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      regexFr: Regexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      regexJa: Regexes.abilityFull({ id: '3956', source: 'アルト', target: '[^:]+', capture: false }),
+      regexCn: Regexes.abilityFull({ id: '3956', source: '亚特', target: '[^:]+', capture: false }),
+      regexKo: Regexes.abilityFull({ id: '3956', source: '아르트', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'west';
@@ -117,11 +118,12 @@
     },
     {
       id: 'BA East Side',
-      regex: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexDe: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexFr: / 15:\y{ObjectId}:Owain:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexJa: / 15:\y{ObjectId}:オーウェン:3957:[^:]*:\y{ObjectId}:[^:]:/,
-      regexCn: / 15:\y{ObjectId}:欧文:3957:[^:]*:\y{ObjectId}:[^:]/,
+      regex: Regexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      regexDe: Regexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      regexFr: Regexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      regexJa: Regexes.abilityFull({ id: '3957', source: 'オーウェン', target: '[^:]+', capture: false }),
+      regexCn: Regexes.abilityFull({ id: '3957', source: '欧文', target: '[^:]+', capture: false }),
+      regexKo: Regexes.abilityFull({ id: '3957', source: '오와인', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'east';
@@ -129,11 +131,12 @@
     },
     {
       id: 'BA Art Mythcall',
-      regex: / 14:3927:Art starts using Mythcall/,
-      regexDe: / 14:3927:Art starts using Mythenruf/,
-      regexFr: / 14:3927:Art starts using Invitation Fantasmagorique/,
-      regexJa: / 14:3927:アルト starts using 幻槍招来/,
-      regexCn: / 14:3927:亚特 starts using 幻枪招来/,
+      regex: Regexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3927', source: 'アルト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -143,16 +146,17 @@
     },
     {
       id: 'BA Art Tankbuster',
-      regex: / 14:3934:Art starts using Thricecull on (\y{Name})/,
-      regexDe: / 14:3934:Art starts using Dreifachlanze on (\y{Name})/,
-      regexFr: / 14:3934:Art starts using Triple Perforation on (\y{Name})/,
-      regexJa: / 14:3934:アルト starts using 三連槍 on (\y{Name})/,
-      regexCn: / 14:3934:亚特 starts using 三连枪 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3934', source: 'Art' }),
+      regexDe: Regexes.startsUsing({ id: '3934', source: 'Art' }),
+      regexFr: Regexes.startsUsing({ id: '3934', source: 'Art' }),
+      regexJa: Regexes.startsUsing({ id: '3934', source: 'アルト' }),
+      regexCn: Regexes.startsUsing({ id: '3934', source: '亚特' }),
+      regexKo: Regexes.startsUsing({ id: '3934', source: '아르트' }),
       condition: function(data) {
         return data.side == 'west';
       },
       alarmText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -162,15 +166,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑打' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑打' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -182,12 +186,12 @@
     },
     {
       id: 'BA Art Orb Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:005C:/,
+      regex: Regexes.headMarker({ id: '005C' }),
       condition: function(data) {
         return data.side == 'west';
       },
       alarmText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
         return {
           en: 'Orb on YOU',
@@ -195,7 +199,7 @@
         };
       },
       alertText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches.target)
           return;
         return {
           en: 'Away From Orb Marker',
@@ -206,9 +210,9 @@
     },
     {
       id: 'BA Art Piercing Dark Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'west' && data.me == matches[1];
+        return data.side == 'west' && data.me == matches.target;
       },
       alertText: {
         en: 'Spread Marker',
@@ -218,11 +222,12 @@
     },
     {
       id: 'BA Art Legendcarver',
-      regex: / 14:3928:Art starts using Legendcarver/,
-      regexDe: / 14:3928:Art starts using Legendenschnitzer/,
-      regexFr: / 14:3928:Art starts using Taillade Spectrale/,
-      regexJa: / 14:3928:アルト starts using 妖槍振/,
-      regexCn: / 14:3928:亚特 starts using 妖枪振/,
+      regex: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -234,11 +239,12 @@
     },
     {
       id: 'BA Art Legendspinner',
-      regex: / 14:3929:Art starts using Legendspinner/,
-      regexDe: / 14:3929:Art starts using Legendenspinner/,
-      regexFr: / 14:3929:Art starts using Spirale Spectrale/,
-      regexJa: / 14:3929:アルト starts using 妖槍旋/,
-      regexCn: / 14:3929:亚特 starts using 妖枪振/,
+      regex: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -250,11 +256,12 @@
     },
     {
       id: 'BA Art Mythcall Legendcarver',
-      regex: / 14:3928:Art starts using Legendcarver/,
-      regexDe: / 14:3928:Art starts using Legendenschnitzer/,
-      regexFr: / 14:3928:Art starts using Taillade Spectrale/,
-      regexJa: / 14:3928:アルト starts using 妖槍振/,
-      regexCn: / 14:3928:亚特 starts using 妖枪振/,
+      regex: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
@@ -267,11 +274,12 @@
     },
     {
       id: 'BA Art Mythcall Legendspinner',
-      regex: / 14:3929:Art starts using Legendspinner/,
-      regexDe: / 14:3929:Art starts using Legendenspinner/,
-      regexFr: / 14:3929:Art starts using Spirale Spectrale/,
-      regexJa: / 14:3929:アルト starts using 妖槍旋/,
-      regexCn: / 14:3929:亚特 starts using 妖枪振/,
+      regex: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
@@ -284,16 +292,17 @@
     },
     {
       id: 'BA Owain Tankbuster',
-      regex: / 14:3945:Owain starts using Thricecull on (\y{Name})/,
-      regexDe: / 14:3945:Owain starts using Dreifachlanze on (\y{Name})/,
-      regexFr: / 14:3945:Owain starts using Triple Perforation on (\y{Name})/,
-      regexJa: / 14:3945:オーウェン starts using 三連槍 on (\y{Name})/,
-      regexCn: / 14:3945:欧文 starts using 三连枪 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3945', source: 'Owain' }),
+      regexDe: Regexes.startsUsing({ id: '3945', source: 'Owain' }),
+      regexFr: Regexes.startsUsing({ id: '3945', source: 'Owain' }),
+      regexJa: Regexes.startsUsing({ id: '3945', source: 'オーウェン' }),
+      regexCn: Regexes.startsUsing({ id: '3945', source: '欧文' }),
+      regexKo: Regexes.startsUsing({ id: '3945', source: '오와인' }),
       condition: function(data) {
         return data.side == 'west';
       },
       alarmText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -303,15 +312,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑打 ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑打 ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -323,9 +332,9 @@
     },
     {
       id: 'BA Owain Piercing Light Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches[1];
+        return data.side == 'east' && data.me == matches.target;
       },
       infoText: {
         en: 'Spread Marker',
@@ -335,9 +344,9 @@
     },
     {
       id: 'BA Owain Dorito Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches[1];
+        return data.side == 'east' && data.me == matches.target;
       },
       alarmText: {
         en: 'Dorito Stack',
@@ -385,13 +394,14 @@
     },
     {
       id: 'BA Owain Ivory Palm',
-      regex: / 16:\y{ObjectId}:Ivory Palm:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Weiße Hand:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Paume D'Ivoire:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:白き手:3941:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:白手:3941:[^:]*:y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '3941', source: 'Ivory Palm' }),
+      regexDe: Regexes.ability({ id: '3941', source: 'Weiß(?:e|er|es|en) Hand' }),
+      regexFr: Regexes.ability({ id: '3941', source: 'Paume D\'Ivoire' }),
+      regexJa: Regexes.ability({ id: '3941', source: '白き手' }),
+      regexCn: Regexes.ability({ id: '3941', source: '白手' }),
+      regexKo: Regexes.ability({ id: '3941', source: '하얀 손' }),
       condition: function(data, matches) {
-        return data.side == 'east' && data.me == matches[1];
+        return data.side == 'east' && data.me == matches.target;
       },
       alarmText: {
         en: 'Dorito Stack',
@@ -401,11 +411,12 @@
     },
     {
       id: 'BA Owain Pitfall',
-      regex: / 14:394D:Owain starts using Pitfall/,
-      regexDe: / 14:394D:Owain starts using Berstender Boden/,
-      regexFr: / 14:394D:Owain starts using Embûche/,
-      regexJa: / 14:394D:オーウェン starts using 強襲/,
-      regexCn: / 14:394D:欧文 starts using 强袭/,
+      regex: Regexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '394D', source: 'オーウェン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '394D', source: '欧文', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '394D', source: '오와인', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -417,11 +428,12 @@
     },
     {
       id: 'BA Silence Centaur',
-      regex: / 14:3BFE:Arsenal Centaur starts using Berserk/,
-      regexDe: / 14:3BFE:Arsenal-Zentaur starts using Berserker/,
-      regexFr: / 14:3BFE:Centaure De L'Arsenal starts using Furie/,
-      regexJa: / 14:3BFE:アーセナル・セントール starts using ベルセルク/,
-      regexCn: / 14:3BFE:兵武半人马 starts using 狂暴/,
+      regex: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal Centaur', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal-Zentaur', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3BFE', source: 'Centaure De L\'Arsenal', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3BFE', source: 'アーセナル・セントール', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3BFE', source: '兵武半人马', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3BFE', source: '무기고 켄타우로스', capture: false }),
       condition: function(data) {
         return data.CanSleep();
       },
@@ -433,16 +445,17 @@
     },
     {
       id: 'BA Raiden Tankbuster',
-      regex: / 14:387B:Raiden starts using Shingan on (\y{Name})\./,
-      regexDe: / 14:387B:Raiden starts using Betäubungsschlag on (\y{Name})\./,
-      regexFr: / 14:387B:Raiden starts using Impact Oculaire on (\y{Name})\./,
-      regexJa: / 14:387B:ライディーン starts using 真眼撃 on (\y{Name})\./,
-      regexCn: / 14:387B:莱丁 starts using 真眼击 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      regexDe: Regexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      regexFr: Regexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      regexJa: Regexes.startsUsing({ id: '387B', source: 'ライディーン' }),
+      regexCn: Regexes.startsUsing({ id: '387B', source: '莱丁' }),
+      regexKo: Regexes.startsUsing({ id: '387B', source: '라이딘' }),
       condition: function(data) {
         return data.sealed;
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -452,15 +465,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑打' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑打' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -472,9 +485,9 @@
     },
     {
       id: 'BA Raiden Lancing Bolt',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches[1];
+        return data.sealed && data.me == matches.target;
       },
       alarmText: {
         en: 'Spread',
@@ -484,11 +497,12 @@
     },
     {
       id: 'BA Raiden Ame',
-      regex: / 14:3868:Raiden starts using Ame-No-Sakahoko/,
-      regexDe: / 14:3868:Raiden starts using Himmelsriposte/,
-      regexFr: / 14:3868:Raiden starts using Ama-No-Sakahoko/,
-      regexJa: / 14:3868:ライディーン starts using 天逆鉾/,
-      regexCn: / 14:3868:莱丁 starts using/,
+      regex: Regexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3868', source: 'ライディーン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3868', source: '莱丁', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3868', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -500,11 +514,12 @@
     },
     {
       id: 'BA Raiden Whirling',
-      regex: / 14:386A:Raiden starts using Whirling Zantetsuken/,
-      regexDe: / 14:386A:Raiden starts using Sen-Zantetsuken/,
-      regexFr: / 14:386A:Raiden starts using Sen Zantetsuken/,
-      regexJa: / 14:386A:ライディーン starts using 旋・斬鉄剣/,
-      regexCn: / 14:386A:莱丁 starts using 旋·斩铁剑/,
+      regex: Regexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '386A', source: 'ライディーン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '386A', source: '莱丁', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '386A', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -516,11 +531,12 @@
     },
     {
       id: 'BA Raiden For Honor',
-      regex: / 14:387C:Raiden starts using For Honor/,
-      regexDe: / 14:387C:Raiden starts using Hieb Der Gefallenen/,
-      regexFr: / 14:387C:Raiden starts using Carnage Martial/,
-      regexJa: / 14:387C:ライディーン starts using 戦死撃/,
-      regexCn: / 14:387C:莱丁 starts using 战死击/,
+      regex: Regexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '387C', source: 'ライディーン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '387C', source: '莱丁', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '387C', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -532,11 +548,12 @@
     },
     {
       id: 'BA Raiden Lateral 1',
-      regex: / 14:386C:Raiden starts using Lateral Zantetsuken/,
-      regexDe: / 14:386C:Raiden starts using Kata-Zantetsuken/,
-      regexFr: / 14:386C:Raiden starts using Hen Zantetsuken/,
-      regexJa: / 14:386C:ライディーン starts using 片・斬鉄剣/,
-      regexCn: / 14:386C:莱丁 starts using 片·斩铁剑/,
+      regex: Regexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '386C', source: 'ライディーン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '386C', source: '莱丁', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '386C', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -548,11 +565,12 @@
     },
     {
       id: 'BA Raiden Lateral 2',
-      regex: / 14:386B:Raiden starts using Lateral Zantetsuken/,
-      regexDe: / 14:386B:Raiden starts using Kata-Zantetsuken/,
-      regexFr: / 14:386B:Raiden starts using Hen Zantetsuken/,
-      regexJa: / 14:386B:ライディーン starts using 片・斬鉄剣/,
-      regexCn: / 14:386B:莱丁 starts using 片·斩铁剑/,
+      regex: Regexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '386B', source: 'ライディーン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '386B', source: '莱丁', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '386B', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -564,16 +582,17 @@
     },
     {
       id: 'BA AV Tankbuster',
-      regex: / 14:379A:Absolute Virtue starts using Auroral Wind on (\y{Name})\./,
-      regexDe: / 14:379A:Absolute Tugend starts using Aurorawind on (\y{Name})\./,
-      regexFr: / 14:379A:Vertu Absolue starts using Vent D'Aurore on (\y{Name})\./,
-      regexJa: / 14:379A:アブソリュートヴァーチュー starts using オーロラルウィンド on (\y{Name})\./,
-      regexCn: / 14:379A:绝对的美德 starts using 极光之风 on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: '379A', source: 'Absolute Virtue' }),
+      regexDe: Regexes.startsUsing({ id: '379A', source: 'Absolut(?:e|er|es|en) Tugend' }),
+      regexFr: Regexes.startsUsing({ id: '379A', source: 'Vertu Absolue' }),
+      regexJa: Regexes.startsUsing({ id: '379A', source: 'アブソリュートヴァーチュー' }),
+      regexCn: Regexes.startsUsing({ id: '379A', source: '绝对的美德' }),
+      regexKo: Regexes.startsUsing({ id: '379A', source: '절대미덕' }),
       condition: function(data) {
         return data.sealed;
       },
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         return {
           en: 'Tank Buster on YOU',
@@ -583,22 +602,23 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         return {
-          en: 'Away from ' + data.ShortName(matches[1]),
-          de: 'Weg von ' + data.ShortName(matches[1]),
-          cn: '远离' + data.ShortName(matches[1]),
+          en: 'Away from ' + data.ShortName(matches.target),
+          de: 'Weg von ' + data.ShortName(matches.target),
+          cn: '远离' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'BA AV Eidos Dark Bracelets',
-      regex: / 14:3787:Absolute Virtue starts using Eidos/,
-      regexDe: / 14:3787:Absolute Tugend starts using Sarva/,
-      regexFr: / 14:3787:Vertu Absolue starts using Sarva/,
-      regexJa: / 14:3787:アブソリュートヴァーチュー starts using 変異/,
-      regexCn: / 14:3787:绝对的美德 starts using 变异/,
+      regex: Regexes.startsUsing({ id: '3787', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3787', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3787', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3787', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3787', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3787', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -613,11 +633,12 @@
     },
     {
       id: 'BA AV Eidos Light Bracelets',
-      regex: / 14:3786:Absolute Virtue starts using Eidos/,
-      regexDe: / 14:3786:Absolute Tugend starts using Sarva/,
-      regexFr: / 14:3786:Vertu Absolue starts using Sarva/,
-      regexJa: / 14:3786:アブソリュートヴァーチュー starts using 変異/,
-      regexCn: /14:3786:绝对的美德 starts using 变异/,
+      regex: Regexes.startsUsing({ id: '3786', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3786', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3786', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3786', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3786', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3786', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -632,11 +653,12 @@
     },
     {
       id: 'BA AV Eidos Hostile Aspect',
-      regex: / 14:378B:Absolute Virtue starts using Hostile Aspect/,
-      regexDe: / 14:378B:Absolute Tugend starts using Polarisierte Welle/,
-      regexFr: / 14:378B:Vertu Absolue starts using Onde Polarisée/,
-      regexJa: / 14:378B:アブソリュートヴァーチュー starts using 極性波動/,
-      regexCn: / 14:378B:绝对的美德 starts using 极性波动/,
+      regex: Regexes.startsUsing({ id: '378B', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '378B', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '378B', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '378B', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '378B', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '378B', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -679,11 +701,12 @@
     },
     {
       id: 'BA AV Eidos Impact Stream',
-      regex: / 14:3788:Absolute Virtue starts using Impact Stream/,
-      regexDe: / 14:3788:Absolute Tugend starts using Durchschlagsstrom/,
-      regexFr: / 14:3788:Vertu Absolue starts using Courant D'Impact/,
-      regexJa: / 14:3788:アブソリュートヴァーチュー starts using インパクトストリーム/,
-      regexCn: / 14:3788:绝对的美德 starts using 冲击流/,
+      regex: Regexes.startsUsing({ id: '3788', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3788', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3788', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3788', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3788', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3788', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -720,11 +743,12 @@
     },
     {
       id: 'BA AV Triple Impact Stream',
-      regex: / 14:3797:Absolute Virtue starts using Dark Aurora/,
-      regexDe: / 14:3797:Absolute Tugend starts using Düstere Aura/,
-      regexFr: / 14:3797:Vertu Absolue starts using Aurore Sombre/,
-      regexJa: / 14:3797:アブソリュートヴァーチュー starts using ダークオーロラ/,
-      regexCn: / 14:3797:绝对的美德 starts using/,
+      regex: Regexes.startsUsing({ id: '3797', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3797', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3797', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3797', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3797', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3797', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -750,11 +774,12 @@
     },
     {
       id: 'BA AV Eidos Turbulent Aether',
-      regex: / 15:\y{ObjectId}:Absolute Virtue:3790:Turbulent Aether:/,
-      regexDe: / 15:\y{ObjectId}:Absolute Tugend:3790:Äthersturm:/,
-      regexFr: / 15:\y{ObjectId}:Vertu Absolue:3790:Turbulence éthérée:/,
-      regexJa: / 15:\y{ObjectId}:アブソリュートヴァーチュー:3790:エーテル乱流:/,
-      regexCn: / 15:\y{ObjectId}:绝对的美德:3790:/,
+      regex: Regexes.ability({ id: '3790', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.ability({ id: '3790', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.ability({ id: '3790', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.ability({ id: '3790', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.ability({ id: '3790', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.ability({ id: '3790', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -766,11 +791,12 @@
     },
     {
       id: 'BA AV Call Wyvern',
-      regex: / 15:\y{ObjectId}:Absolute Virtue:3798:Call Wyvern:/,
-      regexDe: / 15:\y{ObjectId}:Absolute Tugend:3798:Wyvernruf:/,
-      regexFr: / 15:\y{ObjectId}:Vertu Absolue:3798:Appel de wyverne:/,
-      regexJa: / 15:\y{ObjectId}:アブソリュートヴァーチュー:3798:コールワイバーン:/,
-      regexCn: / 15:\y{ObjectId}:绝对的美德:3798:/,
+      regex: Regexes.ability({ id: '3798', source: 'Absolute Virtue', capture: false }),
+      regexDe: Regexes.ability({ id: '3798', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      regexFr: Regexes.ability({ id: '3798', source: 'Vertu Absolue', capture: false }),
+      regexJa: Regexes.ability({ id: '3798', source: 'アブソリュートヴァーチュー', capture: false }),
+      regexCn: Regexes.ability({ id: '3798', source: '绝对的美德', capture: false }),
+      regexKo: Regexes.ability({ id: '3798', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -782,9 +808,12 @@
     },
     {
       id: 'BA Ozma Sphere Form',
-      regex: /:Proto Ozma:(?:37B3|37A5|379F):/,
-      regexCn: /:奥兹玛原型:(?:37B3|37A5|379F):/,
-      regexDe: /:Proto-Yadis:(?:37B3|37A5|379F):/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: ['37B3', '37A5', '379F'], capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -812,9 +841,12 @@
     // FIXME: need callouts for knockback, and maybe "holy soon"?
     {
       id: 'BA Ozma Pyramid Form',
-      regex: /:Proto Ozma:37A4:/,
-      regexCn: /:奥兹玛原型:37A4:/,
-      regexDe: /:Proto-Yadis:37A4:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -826,9 +858,12 @@
     },
     {
       id: 'BA Ozma Pyramid Form 2',
-      regex: /:Proto Ozma:37A4:/,
-      regexCn: /:奥兹玛原型:37A4:/,
-      regexDe: /:Proto-Yadis:37A4:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
       delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
@@ -841,9 +876,12 @@
     },
     {
       id: 'BA Ozma Star Form',
-      regex: /:Proto Ozma:37B2:/,
-      regexCn: /:奥兹玛原型:37B2:/,
-      regexDe: /:Proto-Yadis:37B2:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -855,9 +893,12 @@
     },
     {
       id: 'BA Ozma Star Form 2',
-      regex: /:Proto Ozma:37B2:/,
-      regexCn: /:奥兹玛原型:37B2:/,
-      regexDe: /:Proto-Yadis:37B2:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
       delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
@@ -881,9 +922,12 @@
     },
     {
       id: 'BA Ozma Cube Form',
-      regex: /:Proto Ozma:379E:/,
-      regexCn: /:奥兹玛原型:379E:/,
-      regexDe: /:Proto-Yadis:379E:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -895,9 +939,12 @@
     },
     {
       id: 'BA Ozma Cube Form 2',
-      regex: /:Proto Ozma:379E:/,
-      regexCn: /:奥兹玛原型:379E:/,
-      regexDe: /:Proto-Yadis:379E:/,
+      regex: Regexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
+      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
+      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
+      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
       delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
@@ -925,9 +972,12 @@
     },
     {
       id: 'BA Ozma Pyramid Shade',
-      regex: /:(?:Ozmashade|Shadow):37A4:/,
-      regexCn: /:(?:奥兹玛之影|奥兹玛原型之影):37A4:/,
-      regexDe: /:Yadis-Schatten:37A4:/,
+      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false }),
+      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37A4', capture: false }),
+      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37A4', capture: false }),
+      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37A4', capture: false }),
+      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37A4', capture: false }),
+      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -940,9 +990,12 @@
     },
     {
       id: 'BA Ozma Star Shade',
-      regex: /:(?:Ozmashade|Shadow):37B2:/,
-      regexCn: /:(?:奥兹玛之影|奥兹玛原型之影):37B2:/,
-      regexDe: /:Yadis-Schatten:37B2:/,
+      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false }),
+      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37B2', capture: false }),
+      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37B2', capture: false }),
+      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37B2', capture: false }),
+      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37B2', capture: false }),
+      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -955,9 +1008,12 @@
     },
     {
       id: 'BA Ozma Cube Shade',
-      regex: /:(?:Ozmashade|Shadow):379E:/,
-      regexCn: /:(?:奥兹玛之影|奥兹玛原型之影):379E:/,
-      regexDe: /:Yadis-Schatten:379E:/,
+      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '379E', capture: false }),
+      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '379E', capture: false }),
+      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '379E', capture: false }),
+      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '379E', capture: false }),
+      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '379E', capture: false }),
+      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -970,9 +1026,12 @@
     },
     {
       id: 'BA Ozma Adds',
-      regex: /:Cloudlarker:37B0:/,
-      regexCn: /:翻云狮鹫:37B0:/,
-      regexDe: /:Wolkenlauerer:37B0:/,
+      regex: Regexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
+      regexDe: Regexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Rôdeur Des Nuages', id: '37B0', capture: false }),
+      regexJa: Regexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
+      regexCn: Regexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
+      regexKo: Regexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
       delaySeconds: 2,
       condition: function(data) {
         return data.sealed;
@@ -986,13 +1045,14 @@
     },
     {
       id: 'BA Ozma Acceleration Bomb',
-      regex: / 16:\y{ObjectId}:Proto Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:奥兹玛原型:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Proto-Yadis:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Proto-Ozma:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:プロトオズマ:37AA:[^:]*:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '37AA', source: 'Proto Ozma' }),
+      regexDe: Regexes.ability({ id: '37AA', source: 'Proto-Yadis' }),
+      regexFr: Regexes.ability({ id: '37AA', source: 'Proto-Ozma' }),
+      regexJa: Regexes.ability({ id: '37AA', source: 'プロトオズマ' }),
+      regexCn: Regexes.ability({ id: '37AA', source: '奥兹玛原型' }),
+      regexKo: Regexes.ability({ id: '37AA', source: '프로토 오즈마' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches[1];
+        return data.sealed && data.me == matches.target;
       },
       alarmText: {
         en: 'Stop Soon',
@@ -1002,9 +1062,9 @@
     },
     {
       id: 'BA Ozma Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:/,
+      regex: Regexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return data.sealed && data.me == matches[1];
+        return data.sealed && data.me == matches.target;
       },
       alarmText: {
         en: 'Meteor on YOU',

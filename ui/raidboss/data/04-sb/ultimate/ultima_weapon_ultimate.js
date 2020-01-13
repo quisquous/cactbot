@@ -25,24 +25,24 @@
   triggers: [
     // Phases
     {
-      regex: /:The Ultima Weapon:2D4D:/,
-      regexCn: /:究极神兵:2D4D:/,
-      regexDe: /:Ultima-Waffe:2D4D:/,
-      regexFr: /:Ultima Arma:2D4D:/,
-      regexJa: /:アルテマウェポン:2D4D:/,
-      regexKo: /:알테마 웨폰:2D4D:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       run: function(data) {
         data.phase = 'suppression';
       },
     },
     {
       // Wait after suppression for primal triggers at the end.
-      regex: /:The Ultima Weapon:2D4D:/,
-      regexCn: /:究极神兵:2D4D:/,
-      regexDe: /:Ultima-Waffe:2D4D:/,
-      regexFr: /:Ultima Arma:2D4D:/,
-      regexJa: /:アルテマウェポン:2D4D:/,
-      regexKo: /:알테마 웨폰:2D4D:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       delaySeconds: 74,
       run: function(data) {
         data.phase = 'finale';
@@ -50,12 +50,12 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regex: / 14:2B53:Garuda starts using Slipstream/,
-      regexCn: / 14:2B53:迦楼罗 starts using 螺旋气流/,
-      regexDe: / 14:2B53:Garuda starts using Wirbelströmung/,
-      regexFr: / 14:2B53:Garuda starts using Sillage/,
-      regexJa: / 14:2B53:ガルーダ starts using スリップストリーム/,
-      regexKo: / 14:2B53:가루다 starts using 반동 기류/,
+      regex: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2B53', source: 'ガルーダ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -70,9 +70,9 @@
     },
     {
       id: 'UWU Garuda Mistral Song Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0010:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0010' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Mistral on YOU',
@@ -85,7 +85,7 @@
     },
     {
       id: 'UWU Garuda Mistral Song Tank',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0010:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0010', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -101,12 +101,12 @@
     },
     {
       id: 'UWU Garuda Spiny Plume',
-      regex: / 03:\y{ObjectId}:Added new combatant Spiny Plume\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 刺羽\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Dorniger Federsturm\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Plume Perforante\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant スパイニープルーム/,
-      regexKo: / 03:\y{ObjectId}:Added new combatant 가시돋힌 깃털\./,
+      regex: Regexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Dornig(?:e|er|es|en) Federsturm', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Plume Perforante', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'スパイニープルーム', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '刺羽', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -150,14 +150,14 @@
     },
     {
       id: 'UWU Searing Wind',
-      regex: / 14:2B5B:Ifrit starts using Inferno Howl on (\y{Name})/,
-      regexCn: / 14:2B5B:伊弗利特 starts using 灼热咆哮 on (\y{Name})/,
-      regexDe: / 14:2B5B:Ifrit starts using Brennende Wut on (\y{Name})/,
-      regexFr: / 14:2B5B:Ifrit starts using Rugissement Infernal on (\y{Name})/,
-      regexJa: / 14:2B5B:イフリート starts using 灼熱の咆吼 on (\y{Name})/,
-      regexKo: / 14:2B5B:이프리트 starts using 작열의 포효 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      regexDe: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      regexFr: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      regexJa: Regexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
+      regexCn: Regexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
+      regexKo: Regexes.startsUsing({ id: '2B5B', source: '이프리트' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Searing Wind on YOU',
@@ -178,7 +178,7 @@
     },
     {
       id: 'UWU Ifrit Flaming Crush',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0075:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0075', capture: false }),
       alertText: {
         en: 'Stack',
         de: 'Stack',
@@ -220,15 +220,15 @@
     },
     {
       id: 'UWU Titan Gaols',
-      regex: / 15:\y{ObjectId}:(?:Garuda|Titan):2B6[BC]:Rock Throw:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:(?:迦楼罗|泰坦):2B6[BC]:花岗岩牢狱:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:(?:Garuda|Titan):2B6[BC]:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:(?:GarudaTitan):2B6[BC]:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:(?:ガルーダ|タイタン):2B6[BC]:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:(?:가루다|타이탄):2B6[BC]:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      regexFr: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      regexJa: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'] }),
+      regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
+      regexKo: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
-        data.titanGaols.push(matches[1]);
+        data.titanGaols.push(matches.target);
         if (data.titanGaols.length == 3)
           data.titanGaols.sort();
       },
@@ -253,33 +253,33 @@
     {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
-      regex: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Burst:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:爆破岩石:2B6A:大爆炸:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Bomber-Brocken:2B6A:Zerschmetterung:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Bomb Boulder:2B6A:Grosse Explosion:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ボムボルダー:2B6A:爆発:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:화강암 감옥:2B6A:대폭발:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
+      regexDe: Regexes.ability({ id: '2B6A', source: 'Bomber-Brocken' }),
+      regexFr: Regexes.ability({ id: '2B6A', source: 'Bombo Rocher' }),
+      regexJa: Regexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
+      regexCn: Regexes.ability({ id: '2B6A', source: '爆破岩石' }),
+      regexKo: Regexes.ability({ id: '2B6A', source: '바위폭탄' }),
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
-        if (data.titanGaols.indexOf(matches[1]) < 0)
+        if (data.titanGaols.indexOf(matches.target) < 0)
           return;
         return {
-          en: data.ShortName(matches[1]) + ' died',
-          de: data.ShortName(matches[1]) + ' gestorben',
-          ko: data.ShortName(matches[1]) + ' 죽음',
-          cn: data.ShortName(matches[1]) + ' 死亡',
+          en: data.ShortName(matches.target) + ' died',
+          de: data.ShortName(matches.target) + ' gestorben',
+          ko: data.ShortName(matches.target) + ' 죽음',
+          cn: data.ShortName(matches.target) + ' 死亡',
         };
       },
     },
     {
       // Cleanup
-      regex: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Rock Throw:\y{ObjectId}:\y{Name}:/,
-      regexCn: / 15:\y{ObjectId}:(?:迦楼罗:2B6C|泰坦:2B6B):花岗岩牢狱:\y{ObjectId}:\y{Name}:/,
-      regexDe: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Granitgefängnis:\y{ObjectId}:\y{Name}:/,
-      regexFr: / 15:\y{ObjectId}:(?:Garuda:2B6C|Titan:2B6B):Jeté De Rocs:\y{ObjectId}:\y{Name}:/,
-      regexJa: / 15:\y{ObjectId}:(?:ガルーダ:2B6C|タイタン:2B6B):グラナイト・ジェイル:\y{ObjectId}:\y{Name}:/,
-      regexKo: / 15:\y{ObjectId}:(?:가루다:2B6C|타이탄:2B6B):화강암 감옥:\y{ObjectId}:\y{Name}:/,
+      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'], capture: false }),
+      regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      regexFr: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      regexJa: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'], capture: false }),
+      regexKo: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'], capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
@@ -287,14 +287,14 @@
     },
     {
       id: 'UWU Suppression Gaol',
-      regex: / 15:\y{ObjectId}:Titan:2B6B:Rock Throw:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 15:\y{ObjectId}:泰坦:2B6B:花岗岩牢狱:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Titan:2B6B:Granitgefängnis:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Titan:2B6B:Jeté De Rocs:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:タイタン:2B6B:グラナイト・ジェイル:\y{ObjectId}:(\y{Name}):/,
-      regexKo: / 15:\y{ObjectId}:타이탄:2B6B:화강암 감옥:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '2B6B', source: 'Titan' }),
+      regexDe: Regexes.ability({ id: '2B6B', source: 'Titan' }),
+      regexFr: Regexes.ability({ id: '2B6B', source: 'Titan' }),
+      regexJa: Regexes.ability({ id: '2B6B', source: 'タイタン' }),
+      regexCn: Regexes.ability({ id: '2B6B', source: '泰坦' }),
+      regexKo: Regexes.ability({ id: '2B6B', source: '타이탄' }),
       condition: function(data, matches) {
-        return data.phase == 'suppression' && data.me == matches[1];
+        return data.phase == 'suppression' && data.me == matches.target;
       },
       alarmText: {
         en: 'Gaol on YOU',
@@ -307,12 +307,12 @@
     },
     {
       id: 'UWU Garuda Finale',
-      regex: /:The Ultima Weapon:2CD3:/,
-      regexCn: /:究极神兵:2CD3:/,
-      regexDe: /:Ultima-Waffe:2CD3:/,
-      regexFr: /:Ultima Arma:2CD3:/,
-      regexJa: /:アルテマウェポン:2CD3:/,
-      regexKo: /:알테마 웨폰:2CD3:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD3', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD3', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD3', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -327,12 +327,12 @@
     },
     {
       id: 'UWU Ifrit Finale',
-      regex: /:The Ultima Weapon:2CD4:/,
-      regexCn: /:究极神兵:2CD4:/,
-      regexDe: /:Ultima-Waffe:2CD4:/,
-      regexFr: /:Ultima Arma:2CD4:/,
-      regexJa: /:アルテマウェポン:2CD4:/,
-      regexKo: /:알테마 웨폰:2CD4:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD4', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD4', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD4', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -347,12 +347,12 @@
     },
     {
       id: 'UWU Titan Finale',
-      regex: /:The Ultima Weapon:2CD5:/,
-      regexCn: /:究极神兵:2CD5:/,
-      regexDe: /:Ultima-Waffe:2CD5:/,
-      regexFr: /:Ultima Arma:2CD5:/,
-      regexJa: /:アルテマウェポン:2CD5:/,
-      regexKo: /:알테마 웨폰:2CD5:/,
+      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD5', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD5', capture: false }),
+      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD5', capture: false }),
+      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
+      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },

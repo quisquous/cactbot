@@ -21,9 +21,38 @@ body {
   margin-top: auto;
 }
 
+li .name {
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .number {
   margin-left: 3px;
   margin-right: 3px;
+}
+
+.title {
+  display: flex;
+  flex-direction: row;
+}
+
+.title .name {
+  order: 1;
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+.title .misses {
+  flex-shrink: 0;
+  order: 2;
+  align-self: flex-end;
+}
+
+.title .number {
+  flex-shrink: 0;
+  order: 3;
+  align-self: flex-end;
 }
 
 .phase {
@@ -83,12 +112,6 @@ li .dps {
   width: 80px;
   text-align: right;
   font-size: 19px;
-}
-
-li .name {
-  display: inline-block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 li .detail {

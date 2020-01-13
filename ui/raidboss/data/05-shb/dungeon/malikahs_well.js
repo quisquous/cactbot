@@ -6,12 +6,14 @@
   triggers: [
     {
       id: 'Malikah Stone Flail',
-      regex: / 14:3CE5:Greater Armadillo starts using Stone Flail on (\y{Name})/,
-      regexDe: / 14:3CE5:Riesengürteltier starts using Steindresche on (\y{Name})/,
-      regexFr: / 14:3CE5:Grand [tT]atou starts using Fléau [rR]ocheux on (\y{Name})/,
-      regexJa: / 14:3CE5:グレーター・アルマジロ starts using ロックフレイル on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3CE5', source: 'Greater Armadillo' }),
+      regexDe: Regexes.startsUsing({ id: '3CE5', source: 'Riesengürteltier' }),
+      regexFr: Regexes.startsUsing({ id: '3CE5', source: 'Grand Tatou' }),
+      regexJa: Regexes.startsUsing({ id: '3CE5', source: 'グレーター・アルマジロ' }),
+      regexCn: Regexes.startsUsing({ id: '3CE5', source: '大犰狳' }),
+      regexKo: Regexes.startsUsing({ id: '3CE5', source: '거대 아르마딜로' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -20,35 +22,37 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Malikah Head Toss Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
         };
       },
     },
     {
       id: 'Malikah Right Round',
-      regex: / 14:3CE7:Greater Armadillo starts using Right Round/,
-      regexDe: / 14:3CE7:Riesengürteltier starts using Rotation/,
-      regexFr: / 14:3CE7:Grand [tT]atou starts using Grande [cC]ulbute/,
-      regexJa: / 14:3CE7:グレーター・アルマジロ starts using 大回転/,
+      regex: Regexes.startsUsing({ id: '3CE7', source: 'Greater Armadillo', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CE7', source: 'Riesengürteltier', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CE7', source: 'Grand Tatou', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CE7', source: 'グレーター・アルマジロ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CE7', source: '大犰狳', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CE7', source: '거대 아르마딜로', capture: false }),
       infoText: {
         en: 'Melee Knockback',
         de: 'Nahkämpfer Rückstoß',
@@ -56,10 +60,12 @@
     },
     {
       id: 'Malikah Deep Draught',
-      regex: / 14:4188:Pack Armadillo starts using Deep Draught/,
-      regexDe: / 14:4188:Rudel-Gürteltier starts using Immense Infusion/,
-      regexFr: / 14:4188:Tatou [gG]régaire starts using Approvisionnement/,
-      regexJa: / 14:4188:パック・アルマジロ starts using 給水/,
+      regex: Regexes.startsUsing({ id: '4188', source: 'Pack Armadillo', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4188', source: 'Tatou Grégaire', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4188', source: 'パック・アルマジロ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4188', source: '群落犰狳', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4188', source: '무리 아르마딜로', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -71,12 +77,14 @@
     },
     {
       id: 'Malikah Efface',
-      regex: / 14:3CEB:Amphibious Talos starts using Efface on (\y{Name})/,
-      regexDe: / 14:3CEB:Wasserträger-Talos starts using Zerstören on (\y{Name})/,
-      regexFr: / 14:3CEB:Talos [aA]mphibie starts using Désintégration on (\y{Name})/,
-      regexJa: / 14:3CEB:ハイドロタロース starts using デストロイ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3CEB', source: 'Amphibious Talos' }),
+      regexDe: Regexes.startsUsing({ id: '3CEB', source: 'Wasserträger-Talos' }),
+      regexFr: Regexes.startsUsing({ id: '3CEB', source: 'Talos Amphibie' }),
+      regexJa: Regexes.startsUsing({ id: '3CEB', source: 'ハイドロタロース' }),
+      regexCn: Regexes.startsUsing({ id: '3CEB', source: '水陆两用塔罗斯' }),
+      regexKo: Regexes.startsUsing({ id: '3CEB', source: '수력 탈로스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -85,19 +93,21 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Malikah High Pressure',
-      regex: / 14:3CEC:Amphibious Talos starts using High Pressure/,
-      regexDe: / 14:3CEC:Wasserträger-Talos starts using Überdruck/,
-      regexFr: / 14:3CEC:Talos [aA]mphibie starts using Haute [pP]ression/,
-      regexJa: / 14:3CEC:ハイドロタロース starts using ハイプレッシャー/,
+      regex: Regexes.startsUsing({ id: '3CEC', source: 'Amphibious Talos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CEC', source: 'Wasserträger-Talos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CEC', source: 'Talos Amphibie', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CEC', source: 'ハイドロタロース', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CEC', source: '水陆两用塔罗斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CEC', source: '수력 탈로스', capture: false }),
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',
@@ -105,10 +115,12 @@
     },
     {
       id: 'Malikah Swift Spill',
-      regex: / 14:3CEF:Amphibious Talos starts using Swift Spill/,
-      regexDe: / 14:3CEF:Wasserträger-Talos starts using Schneller Abfluss/,
-      regexFr: / 14:3CEF:Talos [aA]mphibie starts using Déversement/,
-      regexJa: / 14:3CEF:ハイドロタロース starts using 強制放水/,
+      regex: Regexes.startsUsing({ id: '3CEF', source: 'Amphibious Talos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CEF', source: 'Wasserträger-Talos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CEF', source: 'Talos Amphibie', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CEF', source: 'ハイドロタロース', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CEF', source: '水陆两用塔罗斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CEF', source: '수력 탈로스', capture: false }),
       infoText: {
         en: 'Get Behind',
         de: 'Hinter ihn',
@@ -116,10 +128,12 @@
     },
     {
       id: 'Malikah Intestinal Crank',
-      regex: / 14:3CF1:Storge starts using Intestinal Crank/,
-      regexDe: / 14:3CF1:Storge starts using Geweiderupfer/,
-      regexFr: / 14:3CF1:Storgê starts using Manivelle [iI]ntestinale/,
-      regexJa: / 14:3CF1:ストルゲー starts using インテスティナルクランク/,
+      regex: Regexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CF1', source: 'Storge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CF1', source: 'Storgê', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CF1', source: 'ストルゲー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CF1', source: '斯托尔戈', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CF1', source: '스토르게', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },

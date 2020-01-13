@@ -11,13 +11,14 @@
   triggers: [
     {
       id: 'O6S Demonic Shear',
-      regex: / 14:2829:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
-      regexDe: / 14:2829:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
-      regexFr: / 14:2829:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
-      regexJa: / 14:2829:チャダルヌーク・デーモン starts using デモニックシアー on (\y{Name})/,
-      regexKo: / 14:2829:차다르누크 악령 starts using 악령의 참격 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
+      regexDe: Regexes.startsUsing({ id: '2829', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
+      regexFr: Regexes.startsUsing({ id: '2829', source: 'Démon Chadarnouk' }),
+      regexJa: Regexes.startsUsing({ id: '2829', source: 'チャダルヌーク・デーモン' }),
+      regexCn: Regexes.startsUsing({ id: '2829', source: '恶魔查达奴克' }),
+      regexKo: Regexes.startsUsing({ id: '2829', source: '차다르누크 악령' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
@@ -27,15 +28,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur '+data.ShortName(matches[1]),
-            ko: '탱버 → '+data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Buster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur '+data.ShortName(matches.target),
+            ko: '탱버 → '+data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'tenkbasta',
@@ -48,11 +49,12 @@
     },
     {
       id: 'O6S Storms Grip',
-      regex: / 03:\y{ObjectId}:Added new combatant The Storm's Grip/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Sturmgebiet/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Zone De Tempête/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 暴風域/,
-      regexKo: / 03:\y{ObjectId}:Added new combatant 폭풍 영역/,
+      regex: Regexes.addedCombatant({ name: 'The Storm\'s Grip', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Sturmgebiet', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Zone De Tempête', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '暴風域', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '暴风领域', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '폭풍 영역', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -66,9 +68,9 @@
     },
     {
       id: 'O6S Demonic Stone',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0001' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Demonic Stone on YOU',
             de: 'Dämonischer Stein auf DIR',
@@ -80,16 +82,16 @@
       },
     },
     {
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       run: function(data, matches) {
-        data.lastKiss = matches[1];
+        data.lastKiss = matches.target;
       },
     },
     {
       id: 'O6S Last Kiss Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Last Kiss on YOU',

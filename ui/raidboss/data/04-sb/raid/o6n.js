@@ -7,12 +7,14 @@
   triggers: [
     {
       id: 'O6N Demonic Shear',
-      regex: / 14:282A:Demon Chadarnook starts using Demonic Shear on (\y{Name})/,
-      regexDe: / 14:282A:Gefallener Chadarnook starts using Dämonische Schere on (\y{Name})/,
-      regexFr: / 14:282A:Démon Chadarnouk starts using Cisailles Démoniaques on (\y{Name})/,
-      regexJa: / 14:282A:チャダルヌーク・デーモン starts using デモニックシアー on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
+      regexDe: Regexes.startsUsing({ id: '282A', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
+      regexFr: Regexes.startsUsing({ id: '282A', source: 'Démon Chadarnouk' }),
+      regexJa: Regexes.startsUsing({ id: '282A', source: 'チャダルヌーク・デーモン' }),
+      regexCn: Regexes.startsUsing({ id: '282A', source: '恶魔查达奴克' }),
+      regexKo: Regexes.startsUsing({ id: '282A', source: '차다르누크 악령' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -21,14 +23,14 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
-            fr: 'Buster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Buster auf ' + data.ShortName(matches.target),
+            fr: 'Buster sur ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -39,9 +41,9 @@
     },
     {
       id: 'O6N Meteors',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0001' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Drop AOEs Away',

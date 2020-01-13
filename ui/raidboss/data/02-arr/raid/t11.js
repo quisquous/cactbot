@@ -6,23 +6,27 @@
   triggers: [
     {
       id: 'T11 Secondary Head',
-      regex: / 15:\y{ObjectId}:Kaliya:B73:Secondary Head:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B73:Nebenkopf:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B73:Tête secondaire:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B73:サブヘッド:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
+      regexDe: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
+      regexFr: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
+      regexJa: Regexes.ability({ source: 'カーリア', id: 'B73' }),
+      regexCn: Regexes.ability({ source: '卡利亚', id: 'B73' }),
+      regexKo: Regexes.ability({ source: '칼리야', id: 'B73' }),
       alertText: function(data, matches) {
         return {
-          en: 'Stun on ' + data.ShortName(matches[1]),
-          fr: 'Stun sur ' + data.ShortName(matches[1]),
+          en: 'Stun on ' + data.ShortName(matches.target),
+          fr: 'Stun sur ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'T11 Seed River First',
-      regex: / 15:\y{ObjectId}:Kaliya:B74:/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B74:/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B74:/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B74:/,
+      regex: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      regexDe: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      regexFr: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      regexJa: Regexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
+      regexCn: Regexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
+      regexKo: Regexes.ability({ source: '칼리야', id: 'B74', capture: false }),
       alertText: function(data) {
         if (data.firstSeed)
           return;
@@ -38,10 +42,12 @@
     },
     {
       id: 'T11 Seed Sea First',
-      regex: / 15:\y{ObjectId}:Kaliya:B75:/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B75:/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B75:/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B75:/,
+      regex: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B75', source: '칼리야', capture: false }),
       alertText: function(data) {
         if (data.firstSeed)
           return;
@@ -57,10 +63,12 @@
     },
     {
       id: 'T11 Seed River Second',
-      regex: / 1[56]:\y{ObjectId}:Kaliya:B76:Seed Of The Rivers:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kaliya:B76:Samen der Flüsse:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kaliya:B76:Germe de la rivière:/,
-      regexJa: / 1[56]:\y{ObjectId}:カーリア:B76:シード・オブ・リバー:/,
+      regex: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B76', source: '칼리야', capture: false }),
       infoText: function(data) {
         if (!data.firstSeed)
           return;
@@ -75,10 +83,12 @@
     },
     {
       id: 'T11 Seed Sea Second',
-      regex: / 1[56]:\y{ObjectId}:Kaliya:B77:Seed Of The Sea:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kaliya:B77:Samen der See:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kaliya:B77:Germe de la mer:/,
-      regexJa: / 1[56]:\y{ObjectId}:カーリア:B77:シード・オブ・シー:/,
+      regex: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B77', source: '칼리야', capture: false }),
       infoText: function(data) {
         if (!data.firstSeed)
           return;
@@ -93,7 +103,12 @@
     },
     {
       id: 'T11 Phase 2',
-      regex: /:Kaliya HP at 60%/,
+      regex: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Kaliya', hp: '60', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'カーリア', hp: '60', capture: false }),
+      regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
+      regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Out of Middle',
@@ -102,12 +117,14 @@
     },
     {
       id: 'T11 Forked Lightning',
-      regex: / 15:\y{ObjectId}:Electric Node:B85:Forked Lightning:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Elektrisches Modul:B85:Gabelblitz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Module D'Électrochoc:B85:Éclair ramifié:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:雷撃システム:B85:フォークライトニング:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: 'B85', source: 'Electric Node' }),
+      regexDe: Regexes.ability({ id: 'B85', source: 'Elektrisch(?:e|er|es|en) Modul' }),
+      regexFr: Regexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
+      regexJa: Regexes.ability({ id: 'B85', source: '雷撃システム' }),
+      regexCn: Regexes.ability({ id: 'B85', source: '雷击系统' }),
+      regexKo: Regexes.ability({ id: 'B85', source: '뇌격 시스템' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'Lightning on YOU',
@@ -116,10 +133,12 @@
     },
     {
       id: 'T11 Phase 3',
-      regex: / 15:\y{ObjectId}:Kaliya:B78:Emergency Mode:/,
-      regexDe: / 15:\y{ObjectId}:Kaliya:B78:Notprogramm:/,
-      regexFr: / 15:\y{ObjectId}:Kaliya:B78:Mode d'urgence:/,
-      regexJa: / 15:\y{ObjectId}:カーリア:B78:イマージャンシーモード:/,
+      regex: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B78', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B78', source: '칼리야', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Final Phase',
@@ -128,32 +147,38 @@
     },
     {
       id: 'T11 Tether Accumulate A',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:カーリア:....:....:001C:/,
+      regex: Regexes.tether({ id: '001C', target: 'Kaliya' }),
+      regexDe: Regexes.tether({ id: '001C', target: 'Kaliya' }),
+      regexFr: Regexes.tether({ id: '001C', target: 'Kaliya' }),
+      regexJa: Regexes.tether({ id: '001C', target: 'カーリア' }),
+      regexCn: Regexes.tether({ id: '001C', target: '卡利亚' }),
+      regexKo: Regexes.tether({ id: '001C', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherA = data.tetherA || [];
-        data.tetherA.push(matches[1]);
+        data.tetherA.push(matches.source);
       },
     },
     {
       id: 'T11 Tether Accumulate B',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:カーリア:....:....:001D:/,
+      regex: Regexes.tether({ id: '001D', target: 'Kaliya' }),
+      regexDe: Regexes.tether({ id: '001D', target: 'Kaliya' }),
+      regexFr: Regexes.tether({ id: '001D', target: 'Kaliya' }),
+      regexJa: Regexes.tether({ id: '001D', target: 'カーリア' }),
+      regexCn: Regexes.tether({ id: '001D', target: '卡利亚' }),
+      regexKo: Regexes.tether({ id: '001D', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherB = data.tetherB || [];
-        data.tetherB.push(matches[1]);
+        data.tetherB.push(matches.source);
       },
     },
     {
       id: 'T11 Tether A',
-      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexDe: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexFr: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001C:/,
-      regexJa: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:カーリア:....:....:001C:/,
+      regex: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      regexDe: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      regexFr: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      regexJa: Regexes.tether({ id: '001C', target: 'カーリア', capture: false }),
+      regexCn: Regexes.tether({ id: '001C', target: '卡利亚', capture: false }),
+      regexKo: Regexes.tether({ id: '001C', target: '칼리야', capture: false }),
       condition: function(data) {
         return data.tetherA.length == 2;
       },
@@ -173,10 +198,12 @@
     },
     {
       id: 'T11 Tether B',
-      regex: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexDe: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexFr: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:Kaliya:....:....:001D:/,
-      regexJa: / 23:\y{ObjectId}:\y{Name}:\y{ObjectId}:カーリア:....:....:001D:/,
+      regex: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      regexDe: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      regexFr: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      regexJa: Regexes.tether({ id: '001D', target: 'カーリア', capture: false }),
+      regexCn: Regexes.tether({ id: '001D', target: '卡利亚', capture: false }),
+      regexKo: Regexes.tether({ id: '001D', target: '칼리야', capture: false }),
       condition: function(data) {
         return data.tetherB.length == 2;
       },
@@ -196,10 +223,12 @@
     },
     {
       id: 'T11 Tether Cleanup',
-      regex: / 16:\y{ObjectId}:Kaliya:B7B:Nanospore Jet:/,
-      regexDe: / 16:\y{ObjectId}:Kaliya:B7B:Nanosporen-Strahl:/,
-      regexFr: / 16:\y{ObjectId}:Kaliya:B7B:Jet de magismoparticules:/,
-      regexJa: / 16:\y{ObjectId}:カーリア:B7B:魔科学粒子散布:/,
+      regex: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      regexDe: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      regexFr: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      regexJa: Regexes.ability({ id: 'B7B', source: 'カーリア', capture: false }),
+      regexCn: Regexes.ability({ id: 'B7B', source: '卡利亚', capture: false }),
+      regexKo: Regexes.ability({ id: 'B7B', source: '칼리야', capture: false }),
       run: function(data) {
         delete data.tetherA;
         delete data.tetherB;

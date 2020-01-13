@@ -7,10 +7,12 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
-      regex: / 04:\y{ObjectId}:Removing combatant Phantom Train\./,
-      regexDe: / 04:\y{ObjectId}:Removing combatant Phantomzug\./,
-      regexFr: / 04:\y{ObjectId}:Removing combatant Train Fantôme\./,
-      regexJa: / 04:\y{ObjectId}:Removing combatant 魔列車\./,
+      regex: Regexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      regexDe: Regexes.removingCombatant({ name: 'Phantomzug', capture: false }),
+      regexFr: Regexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.removingCombatant({ name: '魔列車', capture: false }),
+      regexCn: Regexes.removingCombatant({ name: '魔列车', capture: false }),
+      regexKo: Regexes.removingCombatant({ name: '마열차', capture: false }),
       run: function(data) {
         data.StopCombat();
       },
@@ -22,6 +24,8 @@
       regexDe: Regexes.startsUsing({ source: 'Phantomzug', id: '28A3' }),
       regexFr: Regexes.startsUsing({ source: 'Train Fantôme', id: '28A3' }),
       regexJa: Regexes.startsUsing({ source: '魔列車', id: '28A3' }),
+      regexCn: Regexes.startsUsing({ source: '魔列车', id: '28A3' }),
+      regexKo: Regexes.startsUsing({ source: '마열차', id: '28A3' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -50,10 +54,12 @@
     },
     {
       id: 'O5N Head On',
-      regex: / 14:28A4:Phantom Train starts using Head On/,
-      regexDe: / 14:28A4:Phantomzug starts using Frontalangriff/,
-      regexFr: / 14:28A4:Train Fantôme starts using Plein Fouet/,
-      regexJa: / 14:28A4:魔列車 starts using 追突/,
+      regex: Regexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28A4', source: '魔列車', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28A4', source: '魔列车', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28A4', source: '마열차', capture: false }),
       alertText: {
         en: 'Go to back',
         de: 'Nach hinten laufen',
@@ -67,10 +73,12 @@
     },
     {
       id: 'O5N Diabolic Headlamp',
-      regex: / 14:28A6:Phantom Train starts using Diabolic Headlamp/,
-      regexDe: / 14:28A6:Phantomzug starts using Diabolische Leuchte/,
-      regexFr: / 14:28A6:Train Fantôme starts using Phare Diabolique/,
-      regexJa: / 14:28A6:魔列車 starts using 魔界の前照灯/,
+      regex: Regexes.startsUsing({ id: '28A6', source: 'Phantom Train', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28A6', source: 'Phantomzug', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28A6', source: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28A6', source: '魔列車', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28A6', source: '魔列车', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28A6', source: '마열차', capture: false }),
       alertText: {
         en: 'Stack middle',
         de: 'Stack in der Mitte',
@@ -79,9 +87,9 @@
     },
     {
       id: 'O5N Diabolic Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0001' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Light',
@@ -91,9 +99,9 @@
     },
     {
       id: 'O5N Diabolic Wind',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0046' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Wind',

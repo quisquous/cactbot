@@ -10,11 +10,12 @@
   triggers: [
     {
       id: 'Tsukuyomi Nightfall Gun',
-      regex: / 14:2BBC:Tsukuyomi starts using Nightfall/,
-      regexCn: / 14:2BBC:月读 starts using 深宵换装/,
-      regexDe: / 14:2BBC:Tsukuyomi starts using Einbruch Der Dunkelheit/,
-      regexFr: / 14:2BBC:Tsukuyomi starts using Jeune Nuit/,
-      regexJa: / 14:2BBC:ツクヨミ starts using 宵の早替え/,
+      regex: Regexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2BBC', source: 'ツクヨミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2BBC', source: '月读', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2BBC', source: '츠쿠요미', capture: false }),
       alertText: {
         en: 'Gun: Stack',
         de: 'Pistole: Stack',
@@ -24,11 +25,12 @@
     },
     {
       id: 'Tsukuyomi Nightfall Spear',
-      regex: / 14:2BBD:Tsukuyomi starts using Nightfall/,
-      regexCn: / 14:2BBD:月读 starts using 深宵换装/,
-      regexDe: / 14:2BBD:Tsukuyomi starts using Einbruch Der Dunkelheit/,
-      regexFr: / 14:2BBD:Tsukuyomi starts using Jeune Nuit/,
-      regexJa: / 14:2BBD:ツクヨミ starts using 宵の早替え/,
+      regex: Regexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2BBD', source: 'ツクヨミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2BBD', source: '月读', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2BBD', source: '츠쿠요미', capture: false }),
       alertText: {
         en: 'Spear: Spread',
         de: 'Speer: Verteilen',
@@ -38,13 +40,14 @@
     },
     {
       id: 'Tsukuyomi Torment',
-      regex: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Torment Unto Death on (\y{Name})/,
-      regexCn: / 14:(?:2BBB|2EB2):月读 starts using 折磨 on (\y{Name})/,
-      regexDe: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Todesqualen on (\y{Name})/,
-      regexFr: / 14:(?:2BBB|2EB2):Tsukuyomi starts using Brimade Meurtrière on (\y{Name})/,
-      regexJa: / 14:(?:2BBB|2EB2):ツクヨミ starts using なぶり殺し on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      regexDe: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      regexFr: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      regexJa: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'ツクヨミ' }),
+      regexCn: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
+      regexKo: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
       alarmText: function(data, matches) {
-        if (matches[1] == data.me || data.role != 'tank')
+        if (matches.target == data.me || data.role != 'tank')
           return;
 
         return {
@@ -55,7 +58,7 @@
         };
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -65,15 +68,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑->' + data.ShortName(matches.target),
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'tank' || data.role == 'healer')
+        if (matches.target == data.me || data.role == 'tank' || data.role == 'healer')
           return;
 
         return {
@@ -130,11 +133,12 @@
     },
     {
       id: 'Tsukuyomi Dark Blade',
-      regex: / 14:2BDA:Tsukuyomi starts using Dark Blade/,
-      regexCn: / 14:2BDA:月读 starts using 月刀右斩/,
-      regexDe: / 14:2BDA:Tsukuyomi starts using Dunkle Klinge/,
-      regexFr: / 14:2BDA:Tsukuyomi starts using Lame Ténébreuse/,
-      regexJa: / 14:2BDA:ツクヨミ starts using 月刀右近/,
+      regex: Regexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
       infoText: function(data) {
         return {
           en: 'Left + ' + data.moonInOut,
@@ -146,11 +150,12 @@
     },
     {
       id: 'Tsukuyomi Bright Blade',
-      regex: / 14:2BDB:Tsukuyomi starts using Bright Blade/,
-      regexCn: / 14:2BDB:月读 starts using 月刀左斩/,
-      regexDe: / 14:2BDB:Tsukuyomi starts using Helle Klinge/,
-      regexFr: / 14:2BDB:Tsukuyomi starts using Lame Blafarde/,
-      regexJa: / 14:2BDB:ツクヨミ starts using 月刀左近/,
+      regex: Regexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
       infoText: function(data) {
         return {
           en: 'Right + ' + data.moonInOut,
@@ -162,9 +167,9 @@
     },
     {
       id: 'Tsukuyomi Meteor Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0083:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0083' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alarmText: {
         en: 'Meteor on YOU',
@@ -175,7 +180,7 @@
     },
     {
       id: 'Tsukuyomi Lunacy',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:003E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       alertText: {
         en: 'Stack',
         de: 'Stack',
@@ -185,9 +190,9 @@
     },
     {
       id: 'Tsukuyomi Hagetsu',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return (matches[1] == data.me);
+        return (matches.target == data.me);
       },
       alertText: {
         en: 'Spread',
@@ -219,8 +224,12 @@
     },
     {
       id: 'Tsukuyomi Supreme Selenomancy',
-      regex: /:Tsukuyomi:2EB0:/,
-      regexCn: /:月读:2EB0:/,
+      regex: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      regexDe: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツクヨミ', id: '2EB0', capture: false }),
+      regexCn: Regexes.ability({ source: '月读', id: '2EB0', capture: false }),
+      regexKo: Regexes.ability({ source: '츠쿠요미', id: '2EB0', capture: false }),
       run: function(data) {
         delete data.moonlitCount;
         delete data.moonshadowedCount;

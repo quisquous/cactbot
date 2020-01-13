@@ -105,8 +105,8 @@ For more instructions about adding and configuring cactbot overlays, see the [Ad
 
 Follow all the steps above for installing cactbot first.
 
-1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/OverlayPlugin](CactbotOverlay/ThirdParty/OverlayPlugin).
-1. Follow the instructions in the **dummy.txt** file in [CactbotOverlay/ThirdParty/ACT](CactbotOverlay/ThirdParty/ACT).
+1. Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/OverlayPlugin](plugin/CactbotOverlay/ThirdParty/OverlayPlugin).
+1. Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/ACT](plugin/CactbotOverlay/ThirdParty/ACT).
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
 1. Build for "Release" and "x64".
 1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.

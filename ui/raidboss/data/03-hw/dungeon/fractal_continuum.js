@@ -46,59 +46,69 @@
   triggers: [
     {
       id: 'Fractal Rapid Sever',
-      regex: / 14:F7A:Phantom Ray starts using Rapid Sever on (\y{Name})/,
-      regexDe: / 14:F7A:Phantomschimmer starts using Radikale Abtrennung on (\y{Name})/,
-      regexFr: / 14:F7A:Rayon Fantomatique starts using Tranchage Rapide on (\y{Name})/,
-      regexJa: / 14:F7A:ファントムレイ starts using 滅多斬り on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: 'F7A', source: 'Phantom Ray' }),
+      regexDe: Regexes.startsUsing({ id: 'F7A', source: 'Phantomschimmer' }),
+      regexFr: Regexes.startsUsing({ id: 'F7A', source: 'Rayon Fantomatique' }),
+      regexJa: Regexes.startsUsing({ id: 'F7A', source: 'ファントムレイ' }),
+      regexCn: Regexes.startsUsing({ id: 'F7A', source: '幻影光' }),
+      regexKo: Regexes.startsUsing({ id: 'F7A', source: '환영 광선' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Tank buster on YOU',
           };
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.shortName(matches[1]),
+            en: 'Buster on ' + data.shortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Fractal Slash',
-      regex: / 14:F83:Minotaur starts using 10-Tonze Slash/,
-      regexDe: / 14:F83:Minotaurus starts using 11-Tonzen-Schlag/,
-      regexFr: / 14:F83:Minotaure starts using Taillade De 10 Tonz/,
-      regexJa: / 14:F83:ミノタウロス starts using 10トンズ・スラッシュ/,
+      regex: Regexes.startsUsing({ id: 'F83', source: 'Minotaur', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'F83', source: 'Minotaurus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'F83', source: 'Minotaure', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'F83', source: 'ミノタウロス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'F83', source: '弥诺陶洛斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'F83', source: '미노타우로스', capture: false }),
       infoText: {
         en: 'Out of front',
       },
     },
     {
       id: 'Fractal Swipe',
-      regex: / 14:F81:Minotaur starts using 11-Tonze Swipe/,
-      regexDe: / 14:F81:Minotaurus starts using 11-Tonzen-Hieb/,
-      regexFr: / 14:F81:Minotaure starts using Fauche De 11 Tonz/,
-      regexJa: / 14:F81:ミノタウロス starts using 11トンズ・スワイプ/,
+      regex: Regexes.startsUsing({ id: 'F81', source: 'Minotaur', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'F81', source: 'Minotaurus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'F81', source: 'Minotaure', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'F81', source: 'ミノタウロス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'F81', source: '弥诺陶洛斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'F81', source: '미노타우로스', capture: false }),
       infoText: {
         en: 'Out of front',
       },
     },
     {
       id: 'Fractal Small Swing',
-      regex: / 14:F82:Minotaur starts using 111-Tonze Swing/,
-      regexDe: / 14:F82:Minotaurus starts using 111-Tonzen-Schwung/,
-      regexFr: / 14:F82:Minotaure starts using Swing De 111 Tonz/,
-      regexJa: / 14:F82:ミノタウロス starts using 111トンズ・スイング/,
+      regex: Regexes.startsUsing({ id: 'F82', source: 'Minotaur', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'F82', source: 'Minotaurus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'F82', source: 'Minotaure', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'F82', source: 'ミノタウロス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'F82', source: '弥诺陶洛斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'F82', source: '미노타우로스', capture: false }),
       infoText: {
         en: 'Get out',
       },
     },
     {
       id: 'Fractal Big Swing',
-      regex: / 14:F87:Minotaur starts using 1111-Tonze Swing/,
-      regexDe: / 14:F87:Minotaurus starts using 1111-Tonzen-Schwung/,
-      regexFr: / 14:F87:Minotaure starts using Swing De 1111 Tonz/,
-      regexJa: / 14:F87:ミノタウロス starts using 1111トンズ・スイング/,
+      regex: Regexes.startsUsing({ id: 'F87', source: 'Minotaur', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'F87', source: 'Minotaurus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'F87', source: 'Minotaure', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'F87', source: 'ミノタウロス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'F87', source: '弥诺陶洛斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'F87', source: '미노타우로스', capture: false }),
       alertText: {
         en: 'Use a cage',
       },
@@ -120,10 +130,12 @@
     },
     {
       id: 'Fractal Alarums',
-      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Alarum/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Uhrwerk-Alarm/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Alarum Mécanique/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant アラガンワーク・アラーム/,
+      regex: Regexes.addedCombatant({ name: 'Clockwork Alarum', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Uhrwerk-Alarm', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Alarum Mécanique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'アラガンワーク・アラーム', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '发条报警虫', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '알라그 태엽경보장치', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Kill adds',

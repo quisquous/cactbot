@@ -6,10 +6,12 @@
   triggers: [
     {
       id: 'Gulg Punitive Light',
-      regex: / 14:41AF:Forgiven Prejudice starts using Punitive Light/,
-      regexDe: / 14:41AF:Geläuterte Voreingenommenheit starts using Strafendes Licht/,
-      regexFr: / 14:41AF:Préjugé Pardonné starts using Lumière [pP]unitive/,
-      regexJa: / 14:41AF:フォーギヴン・プレジュディス starts using ピューニティブライト/,
+      regex: Regexes.startsUsing({ id: '41AF', source: 'Forgiven Prejudice', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '41AF', source: 'Geläutert(?:e|er|es|en) Voreingenommenheit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '41AF', source: 'Préjugé Pardonné', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '41AF', source: 'フォーギヴン・プレジュディス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '41AF', source: '得到宽恕的偏见', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '41AF', source: '면죄된 편견', capture: false }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -21,10 +23,12 @@
     },
     {
       id: 'Gulg Tail Smash',
-      regex: / 14:41AB:Forgiven Ambition starts using Tail Smash/,
-      regexDe: / 14:41AB:Geläuterte Begierde starts using Schweifschlag/,
-      regexFr: / 14:41AB:Ambition Pardonnée starts using Queue [fF]racassante/,
-      regexJa: / 14:41AB:フォーギヴン・アンビション starts using テールスマッシュ/,
+      regex: Regexes.startsUsing({ id: '41AB', source: 'Forgiven Ambition', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '41AB', source: 'Geläutert(?:e|er|es|en) Begierde', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '41AB', source: 'Ambition Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '41AB', source: 'フォーギヴン・アンビション', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '41AB', source: '得到宽恕的奢望', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '41AB', source: '면죄된 야망', capture: false }),
       infoText: {
         en: 'Ambition Tail Smash',
         de: 'Begierde Schweifschlag',
@@ -33,12 +37,14 @@
     },
     {
       id: 'Gulg Rake',
-      regex: / 14:3CFB:Forgiven Cruelty starts using Rake on (\y{Name})/,
-      regexDe: / 14:3CFB:Geläutert Grausamkeit starts using Prankenhieb on (\y{Name})/,
-      regexFr: / 14:3CFB:Cruauté Pardonnée starts using Griffes on (\y{Name})/,
-      regexJa: / 14:3CFB:フォーギヴン・クルエルティー starts using ひっかき on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3CFB', source: 'Forgiven Cruelty' }),
+      regexDe: Regexes.startsUsing({ id: '3CFB', source: 'Geläutert(?:e|er|es|en) Grausamkeit' }),
+      regexFr: Regexes.startsUsing({ id: '3CFB', source: 'Cruauté Pardonnée' }),
+      regexJa: Regexes.startsUsing({ id: '3CFB', source: 'フォーギヴン・クルエルティー' }),
+      regexCn: Regexes.startsUsing({ id: '3CFB', source: '得到宽恕的残忍' }),
+      regexKo: Regexes.startsUsing({ id: '3CFB', source: '면죄된 잔혹' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -47,19 +53,21 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'Gulg Lumen Infinitum',
-      regex: / 14:41B2:Forgiven Cruelty starts using Lumen Infinitum/,
-      regexDe: / 14:41B2:Geläuterte Grausamkeit starts using Lumen Infinitem/,
-      regexFr: / 14:41B2:Cruauté Pardonnée starts using Lumen [iI]nfinitum/,
-      regexJa: / 14:41B2:フォーギヴン・クルエルティー starts using ルーメンインフィニーテム/,
+      regex: Regexes.startsUsing({ id: '41B2', source: 'Forgiven Cruelty', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '41B2', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '41B2', source: 'Cruauté Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '41B2', source: 'フォーギヴン・クルエルティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '41B2', source: '得到宽恕的残忍', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '41B2', source: '면죄된 잔혹', capture: false }),
       alertText: {
         en: 'Frontal Laser',
         de: 'Frontaler Laser',
@@ -68,10 +76,12 @@
     },
     {
       id: 'Gulg Cyclone Wing',
-      regex: / 14:3CFC:Forgiven Cruelty starts using Cyclone Wing/,
-      regexDe: / 14:3CFC:Geläuterte Grausamkeit starts using Zyklonschwinge/,
-      regexFr: / 14:3CFC:Cruauté Pardonnée starts using Aile [dD]e [cC]yclone/,
-      regexJa: / 14:3CFC:フォーギヴン・クルエルティー starts using サイクロンウィング/,
+      regex: Regexes.startsUsing({ id: '3CFC', source: 'Forgiven Cruelty', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CFC', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CFC', source: 'Cruauté Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CFC', source: 'フォーギヴン・クルエルティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CFC', source: '得到宽恕的残忍', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CFC', source: '면죄된 잔혹', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -83,10 +93,12 @@
     },
     {
       id: 'Gulg Typhoon Wing 1',
-      regex: / 14:3D00:Forgiven Cruelty starts using Typhoon Wing/,
-      regexDe: / 14:3D00:Geläuterte Grausamkeit starts using Taifunschwinge/,
-      regexFr: / 14:3D00:Cruauté Pardonnée starts using Aile [dD]e [tT]yphon/,
-      regexJa: / 14:3D00:フォーギヴン・クルエルティー starts using タイフーンウィング/,
+      regex: Regexes.startsUsing({ id: '3D00', source: 'Forgiven Cruelty', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D00', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D00', source: 'Cruauté Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D00', source: 'フォーギヴン・クルエルティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D00', source: '得到宽恕的残忍', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D00', source: '면죄된 잔혹', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'dodge wind cones',
@@ -96,10 +108,12 @@
     },
     {
       id: 'Gulg Typhoon Wing 2',
-      regex: / 14:3D0[12]:Forgiven Cruelty starts using Typhoon Wing/,
-      regexDe: / 14:3D0[12]:Geläuterte Grausamkeit starts using Taifunschwinge/,
-      regexFr: / 14:3D0[12]:Cruauté Pardonnée starts using Aile [dD]e [tT]yphon/,
-      regexJa: / 14:3D0[12]:フォーギヴン・クルエルティー starts using タイフーンウィング/,
+      regex: Regexes.startsUsing({ id: '3D0[12]', source: 'Forgiven Cruelty', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D0[12]', source: 'Geläutert(?:e|er|es|en) Grausamkeit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D0[12]', source: 'Cruauté Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D0[12]', source: 'フォーギヴン・クルエルティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D0[12]', source: '得到宽恕的残忍', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D0[12]', source: '면죄된 잔혹', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'out of melee, dodge cones',
@@ -109,10 +123,12 @@
     },
     {
       id: 'Gulg Sacrament of Penance',
-      regex: / 14:3D0B:Forgiven Whimsy starts using Sacrament [Oo]f Penance/,
-      regexDe: / 14:3D0B:Geläuterte Gereiztheit starts using Sakrament der Vergebung/,
-      regexFr: / 14:3D0B:Caprice Pardonné starts using Sacrement [dD]e [pP]énitence/,
-      regexJa: / 14:3D0B:フォーギヴン・ウィムズィー starts using 恩赦の秘跡/,
+      regex: Regexes.startsUsing({ id: '3D0B', source: 'Forgiven Whimsy', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D0B', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D0B', source: 'Caprice Pardonné', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D0B', source: 'フォーギヴン・ウィムズィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D0B', source: '得到宽恕的无常', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D0B', source: '면죄된 변덕', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -125,10 +141,12 @@
     {
       id: 'Gulg Catechism',
       // no target name
-      regex: / 14:3D09:Forgiven Whimsy starts using Catechism/,
-      regexDe: / 14:3D09:Geläuterte Gereiztheit starts using Heiliger Vers/,
-      regexFr: / 14:3D09:Caprice Pardonné starts using Texte [sS]acré/,
-      regexJa: / 14:3D09:フォーギヴン・ウィムズィー starts using 聖句/,
+      regex: Regexes.startsUsing({ id: '3D09', source: 'Forgiven Whimsy', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D09', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D09', source: 'Caprice Pardonné', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D09', source: 'フォーギヴン・ウィムズィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D09', source: '得到宽恕的无常', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D09', source: '면죄된 변덕', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -140,11 +158,12 @@
     },
     {
       id: 'Gulg Judgment Day',
-      regex: / 14:3D0F:Forgiven Whimsy starts using Judgment Day/,
-      regexDe: / 14:3D0F:Geläuterte Gereiztheit starts using Gnädiges Urteil/,
-      regexFr: / 14:3D0F:Caprice Pardonné starts using Condamnation [sS]acramentelle/,
-      regexJa: / 14:3D0F:フォーギヴン・ウィムズィー starts using 断罪礼儀/,
-
+      regex: Regexes.startsUsing({ id: '3D0F', source: 'Forgiven Whimsy', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D0F', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D0F', source: 'Caprice Pardonné', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D0F', source: 'フォーギヴン・ウィムズィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D0F', source: '得到宽恕的无常', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D0F', source: '면죄된 변덕', capture: false }),
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
@@ -153,10 +172,12 @@
     },
     {
       id: 'Gulg Left Palm',
-      regex: / 14:3F7A:Forgiven Revelry starts using Left Palm/,
-      regexDe: / 14:3F7A:Geläuterte Prasserei starts using Linke Handfläche/,
-      regexFr: / 14:3F7A:Orgie Pardonnée starts using Main [gG]auche [éÉ]tincelante/,
-      regexJa: / 14:3F7A:フォーギヴン・レヴェルリー starts using 輝く左手/,
+      regex: Regexes.startsUsing({ id: '3F7A', source: 'Forgiven Revelry', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3F7A', source: 'Geläutert(?:e|er|es|en) Prasserei', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3F7A', source: 'Orgie Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3F7A', source: 'フォーギヴン・レヴェルリー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3F7A', source: '得到宽恕的放纵', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3F7A', source: '면죄된 환락', capture: false }),
       infoText: {
         en: 'Left',
         de: 'Links',
@@ -165,10 +186,12 @@
     },
     {
       id: 'Gulg Right Palm',
-      regex: / 14:3F78:Forgiven Revelry starts using Right Palm/,
-      regexDe: / 14:3F78:Geläuterte Prasserei starts using Rechte Handfläche/,
-      regexFr: / 14:3F78:Orgie Pardonnée starts using Main [dD]roite [éÉ]tincelante/,
-      regexJa: / 14:3F78:フォーギヴン・レヴェルリー starts using 輝く右手/,
+      regex: Regexes.startsUsing({ id: '3F78', source: 'Forgiven Revelry', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3F78', source: 'Geläutert(?:e|er|es|en) Prasserei', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3F78', source: 'Orgie Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3F78', source: 'フォーギヴン・レヴェルリー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3F78', source: '得到宽恕的放纵', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3F78', source: '면죄된 환락', capture: false }),
       infoText: {
         en: 'Right',
         de: 'Rechts',
@@ -177,10 +200,12 @@
     },
     {
       id: 'Gulg Orison Fortissimo',
-      regex: / 14:3D14:Forgiven Obscenity starts using Orison Fortissimo/,
-      regexDe: / 14:3D14:Geläuterte Unzucht starts using Fürbitte fortissimo/,
-      regexFr: / 14:3D14:Obscénité Pardonnée starts using Horizon - [fF]ortissimo/,
-      regexJa: / 14:3D14:フォーギヴン・オブセニティー starts using オリゾン・フォルティッシモ/,
+      regex: Regexes.startsUsing({ id: '3D14', source: 'Forgiven Obscenity', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D14', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D14', source: 'Obscénité Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D14', source: 'フォーギヴン・オブセニティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D14', source: '得到宽恕的猥亵', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D14', source: '면죄된 외설', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -193,10 +218,12 @@
     {
       id: 'Gulg Sforzando',
       // no target name
-      regex: / 14:3D12:Forgiven Obscenity starts using Sacrament Sforzando/,
-      regexDe: / 14:3D12:Geläuterte Unzucht starts using Sakrament sforzato/,
-      regexFr: / 14:3D12:Obscénité Pardonnée starts using Sacrement - [sS]forzando/,
-      regexJa: / 14:3D12:フォーギヴン・オブセニティー starts using サクラメント・スフォルツァンド/,
+      regex: Regexes.startsUsing({ id: '3D12', source: 'Forgiven Obscenity', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D12', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D12', source: 'Obscénité Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D12', source: 'フォーギヴン・オブセニティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D12', source: '得到宽恕的猥亵', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D12', source: '면죄된 외설', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -208,10 +235,12 @@
     },
     {
       id: 'Gulg Divine Diminuendo',
-      regex: / 14:3D18:Forgiven Obscenity starts using Divine Diminuendo/,
-      regexDe: / 14:3D18:Geläuterte Unzucht starts using Dogma diminuendo/,
-      regexFr: / 14:3D18:Obscénité Pardonnée starts using Divin - [dD]iminuendo/,
-      regexJa: / 14:3D18:フォーギヴン・オブセニティー starts using ディヴァイン・ディミヌエンド/,
+      regex: Regexes.startsUsing({ id: '3D18', source: 'Forgiven Obscenity', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D18', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D18', source: 'Obscénité Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D18', source: 'フォーギヴン・オブセニティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D18', source: '得到宽恕的猥亵', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D18', source: '면죄된 외설', capture: false }),
       infoText: {
         en: 'max melee range',
         de: 'Maximale Nahkämpfer Entfernung',
@@ -220,10 +249,12 @@
     },
     {
       id: 'Gulg Conviction Marcato',
-      regex: / 14:3D1A:Forgiven Obscenity starts using Conviction Marcato/,
-      regexDe: / 14:3D1A:Geläuterte Unzucht starts using Mette marcato/,
-      regexFr: / 14:3D1A:Obscénité Pardonnée starts using Conviction - [mM]arcato/,
-      regexJa: / 14:3D1A:フォーギヴン・オブセニティー starts using コンヴィクション・マルカート/,
+      regex: Regexes.startsUsing({ id: '3D1A', source: 'Forgiven Obscenity', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D1A', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D1A', source: 'Obscénité Pardonnée', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D1A', source: 'フォーギヴン・オブセニティー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D1A', source: '得到宽恕的猥亵', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D1A', source: '면죄된 외설', capture: false }),
       infoText: {
         en: 'Behind Boss',
         de: 'Hinter den Boss',

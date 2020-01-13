@@ -23,7 +23,12 @@
   triggers: [
     {
       id: 'Ala Mhigo Electromagnetic Field',
-      regex: / 14:204D:Magitek Scorpion starts using Electromagnetic Field/,
+      regex: Regexes.startsUsing({ id: '204D', source: 'Magitek Scorpion', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '204D', source: 'Wachskorpion', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '204D', source: 'Scorpion Magitek', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '204D', source: 'ガードスコーピオン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '204D', source: '守卫机蝎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '204D', source: '경비 전갈', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -33,7 +38,12 @@
     },
     {
       id: 'Ala Mhigo Mana Burst',
-      regex: / 14:204F:Aulus Mal Asina starts using Mana Burst/,
+      regex: Regexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '204F', source: 'Aulus Mal Asina', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '204F', source: 'アウルス・マル・アシナ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '204F', source: '奥卢斯·玛尔·亚希纳', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '204F', source: '아울루스 말 아시나', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -43,37 +53,62 @@
     },
     {
       id: 'Ala Mhigo Demimagicks',
-      regex: / 14:205D:Aulus Mal Asina starts using Demimagicks/,
+      regex: Regexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '205D', source: 'アウルス・マル・アシナ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '205D', source: '奥卢斯·玛尔·亚希纳', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '205D', source: '아울루스 말 아시나', capture: false }),
       infoText: {
         en: 'Spread',
       },
     },
     {
       id: 'Ala Mhigo Storm',
-      regex: / 14:(?:2066|2587):Zenos Yae Galvus starts using Art Of The Storm/,
+      regex: Regexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2066', '2587'], source: 'Zenos Yae Galvus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2066', '2587'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2066', '2587'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2066', '2587'], source: '제노스 예 갈부스', capture: false }),
       infoText: {
         en: 'Out of blue circle',
       },
     },
     {
       id: 'Ala Mhigo Swell',
-      regex: / 14:(?:2065|2586):Zenos Yae Galvus starts using Art Of The Swell/,
+      regex: Regexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2065', '2586'], source: 'Zenos Yae Galvus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2065', '2586'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2065', '2586'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2065', '2586'], source: '제노스 예 갈부스', capture: false }),
       infoText: {
         en: 'Knockback',
       },
     },
     {
       id: 'Ala Mhigo Sword',
-      regex: / 14:(?:2068|2588):Zenos Yae Galvus starts using Art Of The Sword/,
+      regex: Regexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['2068', '2588'], source: 'Zenos Yae Galvus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['2068', '2588'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['2068', '2588'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['2068', '2588'], source: '제노스 예 갈부스', capture: false }),
       alertText: {
         en: 'Protean',
       },
     },
     {
       id: 'Ala Mhigo Lightless Spark',
-      regex: / 23:\y{ObjectId}:Zenos Yae Galvus:\y{ObjectId}:(\y{Name}):....:....:0029:/,
+      regex: Regexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      regexDe: Regexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      regexFr: Regexes.tether({ id: '0029', source: 'Zenos Yae Galvus' }),
+      regexJa: Regexes.tether({ id: '0029', source: 'ゼノス・イェー・ガルヴァス' }),
+      regexCn: Regexes.tether({ id: '0029', source: '芝诺斯·耶·加尔乌斯' }),
+      regexKo: Regexes.tether({ id: '0029', source: '제노스 예 갈부스' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Face tether out',
@@ -81,7 +116,12 @@
     },
     {
       id: 'Ala Mhigo Concentrativity',
-      regex: / 14:206D:Zenos Yae Galvus starts using Concentrativity/,
+      regex: Regexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '206D', source: 'Zenos Yae Galvus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '206D', source: 'ゼノス・イェー・ガルヴァス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '206D', source: '芝诺斯·耶·加尔乌斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '206D', source: '제노스 예 갈부스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },

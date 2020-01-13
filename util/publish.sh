@@ -6,6 +6,7 @@ rm -rf $OUT
 mkdir -p $OUT
 
 cp -r $BIN/CactbotOverlay.dll $OUT/
+cp -r $BIN/CactbotEventSource.dll $OUT/
 cp -r $BASE/ui/ $OUT/
 cp -r $BASE/resources/ $OUT/
 cp $BASE/*.md $OUT/

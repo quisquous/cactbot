@@ -54,24 +54,24 @@
     },
     {
       id: 'E2S Spell In Waiting Lose',
-      regex: / 1E:\y{ObjectId}:Voidwalker loses the effect of Spell-In-Waiting/,
-      regexCn: / 1E:\y{ObjectId}:虚无行者 loses the effect of 延迟咏唱/,
-      regexDe: / 1E:\y{ObjectId}:Nichtswandler loses the effect of Verzögerung/,
-      regexFr: / 1E:\y{ObjectId}:Marcheuse Du Néant loses the effect of Déphasage Incantatoire/,
-      regexJa: / 1E:\y{ObjectId}:ヴォイドウォーカー loses the effect of ディレイスペル/,
-      regexKo: / 1E:\y{ObjectId}:보이드워커 loses the effect of 지연술/,
+      regex: Regexes.losesEffect({ target: 'Voidwalker', effect: 'Spell-In-Waiting', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Nichtswandler', effect: 'Verzögerung', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'marcheuse du néant', effect: 'Déphasage Incantatoire', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'ヴォイドウォーカー', effect: 'ディレイスペル', capture: false }),
+      regexCn: Regexes.losesEffect({ target: '虚无行者', effect: '延迟咏唱', capture: false }),
+      regexKo: Regexes.losesEffect({ target: '보이드워커', effect: '지연술', capture: false }),
       run: function(data) {
         data.waiting = false;
       },
     },
     {
       id: 'E2S Entropy',
-      regex: / 14:3E6F:Voidwalker starts using Entropy/,
-      regexCn: / 14:3E6F:虚无行者 starts using 熵/,
-      regexDe: / 14:3E6F:Nichtswandler starts using Entropie/,
-      regexFr: / 14:3E6F:Marcheuse Du Néant starts using Entropie/,
-      regexJa: / 14:3E6F:ヴォイドウォーカー starts using エントロピー/,
-      regexKo: / 14:3E6F:보이드워커 starts using 엔트로피/,
+      regex: Regexes.startsUsing({ id: '3E6F', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E6F', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E6F', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E6F', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E6F', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E6F', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -86,12 +86,12 @@
     },
     {
       id: 'E2S Quietus',
-      regex: / 14:3E71:Voidwalker starts using Quietus/,
-      regexCn: / 14:3E71:虚无行者 starts using 寂灭/,
-      regexDe: / 14:3E71:Nichtswandler starts using Quietus/,
-      regexFr: / 14:3E71:Marcheuse Du Néant starts using Quietus/,
-      regexJa: / 14:3E71:ヴォイドウォーカー starts using クワイタス/,
-      regexKo: / 14:3E71:보이드워커 starts using Quietus/,
+      regex: Regexes.startsUsing({ id: '3E71', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E71', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E71', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E71', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E71', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E71', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -106,14 +106,14 @@
     },
     {
       id: 'E2S Shadowflame Tank',
-      regex: / 14:3E6[12]:Voidwalker starts using Shadowflame on (\y{Name})/,
-      regexCn: / 14:3E6[12]:虚无行者 starts using 暗影炎 on (\y{Name})/,
-      regexDe: / 14:3E6[12]:Nichtswandler starts using Schattenflamme on (\y{Name})/,
-      regexFr: / 14:3E6[12]:Marcheuse Du Néant starts using Flamme D'[oO]mbre on (\y{Name})/,
-      regexJa: / 14:3E6[12]:ヴォイドウォーカー starts using シャドーフレイム on (\y{Name})/,
-      regexKo: / 14:3E6[12]:보이드워커 starts using 그림자 불꽃 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3E6[12]', source: 'Voidwalker' }),
+      regexDe: Regexes.startsUsing({ id: '3E6[12]', source: 'Nichtswandler' }),
+      regexFr: Regexes.startsUsing({ id: '3E6[12]', source: 'Marcheuse Du Néant' }),
+      regexJa: Regexes.startsUsing({ id: '3E6[12]', source: 'ヴォイドウォーカー' }),
+      regexCn: Regexes.startsUsing({ id: '3E6[12]', source: '虚无行者' }),
+      regexKo: Regexes.startsUsing({ id: '3E6[12]', source: '보이드워커' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Tank Buster on YOU',
@@ -126,12 +126,12 @@
     },
     {
       id: 'E2S Shadowflame Healer',
-      regex: / 14:3E61:Voidwalker starts using Shadowflame/,
-      regexCn: / 14:3E61:虚无行者 starts using 暗影炎/,
-      regexDe: / 14:3E61:Nichtswandler starts using Schattenflamme/,
-      regexFr: / 14:3E61:Marcheuse Du Néant starts using Flamme D'ombre/,
-      regexJa: / 14:3E61:ヴォイドウォーカー starts using シャドーフレイム/,
-      regexKo: / 14:3E61:보이드워커 starts using 그림자 불꽃/,
+      regex: Regexes.startsUsing({ id: '3E61', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E61', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E61', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E61', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E61', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E61', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -146,12 +146,12 @@
     },
     {
       id: 'E2S Doomvoid Cleaver',
-      regex: / 14:3E63:Voidwalker starts using Doomvoid Cleaver/,
-      regexCn: / 14:3E63:虚无行者 starts using 末日虚无劈/,
-      regexDe: / 14:3E63:Nichtswandler starts using Nichtsmarter-Schlachter/,
-      regexFr: / 14:3E63:Marcheuse Du Néant starts using Couperet Du Néant Ravageur/,
-      regexJa: / 14:3E63:ヴォイドウォーカー starts using ドゥームヴォイド・クリーバー/,
-      regexKo: / 14:3E63:보이드워커 starts using Doomvoid Cleaver/,
+      regex: Regexes.startsUsing({ id: '3E63', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E63', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E63', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E63', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E63', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E63', source: '보이드워커', capture: false }),
       alertText: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
@@ -163,12 +163,12 @@
     },
     {
       id: 'E2S Doomvoid Guillotine',
-      regex: / 14:3E4F:Voidwalker starts using Doomvoid Guillotine/,
-      regexCn: / 14:3E4F:虚无行者 starts using 末日虚无断/,
-      regexDe: / 14:3E4F:Nichtswandler starts using Nichtsmarter-Fallbeil/,
-      regexFr: / 14:3E4F:Marcheuse Du Néant starts using Guillotine Du Néant Ravageur/,
-      regexJa: / 14:3E4F:ヴォイドウォーカー starts using ドゥームヴォイド・ギロチン/,
-      regexKo: / 14:3E4F:보이드워커 starts using 파멸의 보이드 절단/,
+      regex: Regexes.startsUsing({ id: '3E4F', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E4F', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E4F', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E4F', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E4F', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E4F', source: '보이드워커', capture: false }),
       alertText: {
         en: 'Sides',
         de: 'Seiten',
@@ -180,12 +180,12 @@
     },
     {
       id: 'E2S Doomvoid Slicer',
-      regex: / 14:3E50:Voidwalker starts using Doomvoid Slicer/,
-      regexCn: / 14:3E50:虚无行者 starts using 末日虚无切/,
-      regexDe: / 14:3E50:Nichtswandler starts using Nichtsmarter-Sense/,
-      regexFr: / 14:3E50:Marcheuse Du Néant starts using Entaille Du Néant Ravageur/,
-      regexJa: / 14:3E50:ヴォイドウォーカー starts using ドゥームヴォイド・スライサー/,
-      regexKo: / 14:3E50:보이드워커 starts using 파멸의 보이드 베기/,
+      regex: Regexes.startsUsing({ id: '3E50', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E50', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E50', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E50', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E50', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E50', source: '보이드워커', capture: false }),
       infoText: {
         en: 'Get Under',
         de: 'Unter den Boss',
@@ -197,12 +197,12 @@
     },
     {
       id: 'E2S Empty Hate',
-      regex: / 14:3E59:The Hand Of Erebos starts using Empty Hate/,
-      regexCn: / 14:3E59:厄瑞玻斯的巨腕 starts using 空无的恶意/,
-      regexDe: / 14:3E59:Arm Des Erebos starts using Gähnender Abgrund/,
-      regexFr: / 14:3E59:Bras [dD]'[éÉ]rèbe starts using Vaine Malice/,
-      regexJa: / 14:3E59:エレボスの巨腕 starts using 虚ろなる悪意/,
-      regexKo: / 14:3E59:에레보스의 팔 starts using 공허한 악의/,
+      regex: Regexes.startsUsing({ id: '3E59', source: 'The Hand Of Erebos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E59', source: 'Arm Des Erebos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E59', source: 'Bras D\'Érèbe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E59', source: 'エレボスの巨腕', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E59', source: '厄瑞玻斯的巨腕', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E59', source: '에레보스의 팔', capture: false }),
       infoText: {
         en: 'Knockback',
         de: 'Knockback',
@@ -214,12 +214,12 @@
     },
     {
       id: 'E2S Empty Rage',
-      regex: / 14:3E6B:The Hand Of Erebos starts using Empty Rage/,
-      regexCn: / 14:3E6B:厄瑞玻斯的巨腕 starts using 空无的恶念/,
-      regexDe: / 14:3E6B:Arm Des Erebos starts using Lockende Leere/,
-      regexFr: / 14:3E6B:Bras [dD]'[éÉ]rèbe starts using Vaine Cruauté/,
-      regexJa: / 14:3E6B:エレボスの巨腕 starts using 虚ろなる害意/,
-      regexKo: / 14:3E6B:에레보스의 팔 starts using Empty Rage/,
+      regex: Regexes.startsUsing({ id: '3E6B', source: 'The Hand Of Erebos', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E6B', source: 'Arm Des Erebos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E6B', source: 'Bras D\'Érèbe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E6B', source: 'エレボスの巨腕', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E6B', source: '厄瑞玻斯的巨腕', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E6B', source: '에레보스의 팔', capture: false }),
       alertText: {
         en: 'Away From Hand',
         de: 'Weg von der Hand',
@@ -231,12 +231,12 @@
     },
     {
       id: 'E2S Unholy Darkness No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data) {
         return !data.waiting;
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
@@ -247,31 +247,31 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'にスタック',
-          cn: data.ShortName(matches[1]) + ' 处集合',
-          ko: '"' + data.ShortName(matches[1]) + '"에게 모이세요',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' stacken',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にスタック',
+          cn: data.ShortName(matches.target) + ' 处集合',
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이세요',
         };
       },
     },
     {
       id: 'E2S Unholy Darkness Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'stack';
+        data.spell[matches.target] = 'stack';
       },
     },
     {
       id: 'E2S Unholy Darkness Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Stack',
@@ -284,12 +284,12 @@
     },
     {
       id: 'E2S Countdown Marker Unholy Darkness',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return !data.hellWind && data.spell[matches[1]] == 'stack';
+        return !data.hellWind && data.spell[matches.target] == 'stack';
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
@@ -300,20 +300,20 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' stacken',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'にスタック',
-          cn: data.ShortName(matches[1]) + ' 处集合',
-          ko: '"' + data.ShortName(matches[1]) + '"에게 모이세요',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' stacken',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にスタック',
+          cn: data.ShortName(matches.target) + ' 处集合',
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이세요',
         };
       },
     },
     {
       id: 'E2S Dark Fire No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:004C:/,
+      regex: Regexes.headMarker({ id: '004C' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       alertText: {
         en: 'Spread',
@@ -326,20 +326,20 @@
     },
     {
       id: 'E2S Dark Fire Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:004C:/,
+      regex: Regexes.headMarker({ id: '004C' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'fire';
+        data.spell[matches.target] = 'fire';
       },
     },
     {
       id: 'E2S Dark Fire Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:004C:/,
+      regex: Regexes.headMarker({ id: '004C' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Fire',
@@ -352,9 +352,9 @@
     },
     {
       id: 'E2S Countdown Marker Fire',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.spell[data.me] == 'fire';
+        return data.me == matches.target && data.spell[data.me] == 'fire';
       },
       alertText: {
         en: 'Spread',
@@ -367,24 +367,24 @@
     },
     {
       id: 'E2S Shadoweye No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B3:/,
+      regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return !data.waiting;
       },
       alertText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Look Away from ' + data.ShortName(matches[1]),
-            de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
-            fr: 'Ne regardez pas '+ data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'を見ないで',
-            cn: '背对 ' + data.ShortName(matches[1]),
-            ko: '"' + data.ShortName(matches[1]) + '" 바라보지 마세요',
+            en: 'Look Away from ' + data.ShortName(matches.target),
+            de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
+            fr: 'Ne regardez pas '+ data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'を見ないで',
+            cn: '背对 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 바라보지 마세요',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Eye on YOU',
             de: 'Auge auf DIR',
@@ -398,20 +398,20 @@
     },
     {
       id: 'E2S Shadoweye Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B3:/,
+      regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'eye';
+        data.spell[matches.target] = 'eye';
       },
     },
     {
       id: 'E2S Shadoweye Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B3:/,
+      regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Shadoweye',
@@ -424,9 +424,9 @@
     },
     {
       id: 'E2S Countdown Marker Shadoweye Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches[1]] == 'eye' && matches[1] == data.me;
+        return data.spell[matches.target] == 'eye' && matches.target == data.me;
       },
       suppressSeconds: 10,
       delaySeconds: 2,
@@ -441,9 +441,9 @@
     },
     {
       id: 'E2S Countdown Marker Shadoweye Other',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.spell[matches[1]] == 'eye' && data.spell[data.me] != 'eye';
+        return data.spell[matches.target] == 'eye' && data.spell[data.me] != 'eye';
       },
       suppressSeconds: 10,
       delaySeconds: 2,
@@ -451,20 +451,20 @@
       // We could call out both names, but it's probably unnecessary.
       alertText: function(data, matches) {
         return {
-          en: 'Look Away from ' + data.ShortName(matches[1]),
-          de: 'Von ' + data.ShortName(matches[1]) + ' weg schauen',
-          fr: 'Ne regardez pas ' + data.ShortName(matches[1]),
-          ja: data.ShortName(matches[1]) + 'を見ないで',
-          cn: '背对 ' + data.ShortName(matches[1]),
-          ko: '"' + data.ShortName(matches[1]) + '" 바라보지 말기',
+          en: 'Look Away from ' + data.ShortName(matches.target),
+          de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
+          fr: 'Ne regardez pas ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'を見ないで',
+          cn: '背对 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 바라보지 말기',
         };
       },
     },
     {
       id: 'E2S Flare No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       alertText: {
         en: 'Flare',
@@ -477,20 +477,20 @@
     },
     {
       id: 'E2S Flare Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'flare';
+        data.spell[matches.target] = 'flare';
       },
     },
     {
       id: 'E2S Flare Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Flare',
@@ -503,9 +503,9 @@
     },
     {
       id: 'E2S Countdown Marker Flare',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.spell[data.me] == 'flare';
+        return data.me == matches.target && data.spell[data.me] == 'flare';
       },
       alertText: {
         en: 'Flare',
@@ -518,11 +518,11 @@
     },
     {
       id: 'E2S Countdown Marker Flare Healer',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         if (data.role != 'healer')
           return;
-        return data.spell[matches[1]] == 'flare' && data.spell[data.me] != 'flare';
+        return data.spell[matches.target] == 'flare' && data.spell[data.me] != 'flare';
       },
       suppressSeconds: 10,
       infoText: {
@@ -536,9 +536,9 @@
     },
     {
       id: 'E2S Hell Wind No Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       // The "no waiting" version comes paired with a stack.
       alarmText: {
@@ -555,9 +555,9 @@
     },
     {
       id: 'E2S Hell Wind Cleanup',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
-        return !data.waiting && data.me == matches[1];
+        return !data.waiting && data.me == matches.target;
       },
       delaySeconds: 15,
       run: function(data) {
@@ -566,20 +566,20 @@
     },
     {
       id: 'E2S Hell Wind Collect',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data) {
         return data.waiting;
       },
       run: function(data, matches) {
         data.spell = data.spell || {};
-        data.spell[matches[1]] = 'wind';
+        data.spell[matches.target] = 'wind';
       },
     },
     {
       id: 'E2S Hell Wind Waiting',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
-        return data.waiting && data.me == matches[1];
+        return data.waiting && data.me == matches.target;
       },
       infoText: {
         en: 'Delayed Hell Wind',
@@ -592,11 +592,11 @@
     },
     {
       id: 'E2S Countdown Marker Hell Wind',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         if (data.role == 'healer')
           return false;
-        return data.me == matches[1] && data.spell[data.me] == 'wind';
+        return data.me == matches.target && data.spell[data.me] == 'wind';
       },
       alertText: {
         en: 'Hell Wind: wait for heals',
@@ -609,11 +609,11 @@
     },
     {
       id: 'E2S Countdown Marker Hell Wind Healer',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         if (data.role != 'healer')
           return;
-        return data.spell[matches[1]] == 'wind';
+        return data.spell[matches.target] == 'wind';
       },
       suppressSeconds: 10,
       infoText: {
@@ -627,21 +627,21 @@
     },
     {
       id: 'E2S Countdown Marker Cleanup',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00B8:/,
+      regex: Regexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
       run: function(data, matches) {
-        delete data.spell[matches[1]];
+        delete data.spell[matches.target];
       },
     },
     {
       // TODO: add callouts for each of these
       id: 'E2S Cycle of Retribution',
-      regex: / 14:4659:Voidwalker starts using Cycle Of Retribution/,
-      regexCn: / 14:4659:虚无行者 starts using 复仇连续剑/,
-      regexDe: / 14:4659:Nichtswandler starts using Vergeltendes Chaos/,
-      regexFr: / 14:4659:Marcheuse Du Néant starts using Multi-[tT]aillade Vengeresse/,
-      regexJa: / 14:4659:ヴォイドウォーカー starts using 復讐の連続剣/,
-      regexKo: / 14:4659:보이드워커 starts using 복수의 연속검/, // 한자 번역
+      regex: Regexes.startsUsing({ id: '4659', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4659', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4659', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4659', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4659', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4659', source: '보이드워커', capture: false }),
       infoText: {
         en: 'In, Protean, Sides',
         de: 'Rein, Himmelsrichtungen, Seiten',
@@ -653,12 +653,12 @@
     },
     {
       id: 'E2S Cycle of Chaos',
-      regex: / 14:40B9:Voidwalker starts using Cycle Of Chaos/,
-      regexCn: / 14:40B9:虚无行者 starts using 混沌连续剑/,
-      regexDe: / 14:40B9:Nichtswandler starts using Chronisches Chaos/,
-      regexFr: / 14:40B9:Marcheuse Du Néant starts using Multi-[tT]aillade Chaotique/,
-      regexJa: / 14:40B9:ヴォイドウォーカー starts using 混沌の連続剣/,
-      regexKo: / 14:40B9:보이드워커 starts using 혼돈의 연속검/, // 한자 번역
+      regex: Regexes.startsUsing({ id: '40B9', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '40B9', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '40B9', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '40B9', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '40B9', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '40B9', source: '보이드워커', capture: false }),
       infoText: {
         en: 'Sides, In, Protean',
         de: 'Seiten, Rein, Himmelsrichtungen',

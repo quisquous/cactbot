@@ -91,6 +91,8 @@ namespace Cactbot {
         : base(logger) {
       Name = "Cactbot";
 
+      RegisterPresets();
+
       RegisterEventTypes(new List<string>()
       {
         "onForceReload",
@@ -225,8 +227,7 @@ namespace Cactbot {
       language_ = plugin_helper.GetLocaleString();
 
       var versions = new VersionChecker(this);
-      Version local = versions.GetLocalVersion();
-      Version remote = versions.GetRemoteVersion();
+      Version local = versions.GetCactbotVersion();
 
       Version overlay = versions.GetOverlayPluginVersion();
       Version ffxiv = versions.GetFFXIVPluginVersion();
@@ -276,41 +277,12 @@ namespace Cactbot {
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
 
-      if (remote.Major == 0 && remote.Minor == 0) {
-        var result = System.Windows.Forms.MessageBox.Show(
-          "Github error while checking Cactbot version. " +
-          "Your current version is " + local + ".\n\n" +
-          "Manually check for newer version now?",
-          "Cactbot Manual Check",
-          System.Windows.Forms.MessageBoxButtons.YesNo);
-        if (result == System.Windows.Forms.DialogResult.Yes)
-          System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-      } else if (local < remote) {
-        Version remote_seen_before = new Version(Config.RemoteVersionSeen);
-        Config.RemoteVersionSeen = remote.ToString();
-
-        string update_message = "There is a new version of Cactbot is available at: \n" +
-          VersionChecker.kReleaseUrl + " \n\n" +
-          "New version " + remote + " \n" +
-          "Current version " + local;
-        if (remote == remote_seen_before) {
-          LogError(update_message);
-        } else {
-          var result = System.Windows.Forms.MessageBox.Show(
-            update_message + "\n\n" +
-            "Get it now?",
-            "Cactbot update available",
-            System.Windows.Forms.MessageBoxButtons.YesNo);
-          if (result == System.Windows.Forms.DialogResult.Yes)
-            System.Diagnostics.Process.Start(VersionChecker.kReleaseUrl);
-        }
-        Config.RemoteVersionSeen = remote.ToString();
-      }
-
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
       if (int.Parse(net_version[0]) < kRequiredNETVersionMajor || int.Parse(net_version[1]) < kRequiredNETVersionMinor)
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
+
+      versions.DoUpdateCheck(Config);
     }
 
     public override void Stop() {
@@ -733,6 +705,51 @@ namespace Cactbot {
       }
 
       watchers = null;
+    }
+
+    struct OverlayPreset : IOverlayPreset {
+      public string Name { get; set; }
+      public string Type { get { return "MiniParse"; } }
+      public string Url { get; set; }
+      public int[] Size { get; set; }
+      public bool Locked { get; set; }
+      public List<string> Supports { get { return new List<string>{"modern"}; } }
+    }
+
+    private void RegisterPreset(string name, int width, int height) {
+      var path = new VersionChecker(this).GetCactbotDirectory();
+      string lc = name.ToLowerInvariant();
+      Registry.RegisterOverlayPreset(new OverlayPreset{
+        Name = $"Cactbot {name}",
+        Url = Path.Combine(path, "ui", lc, $"{lc}.html"),
+        Size = new int[] { width, height },
+        Locked = false,
+      });
+    }
+
+    private void RegisterDpsPreset(string name, string file, int width, int height) {
+      var path = new VersionChecker(this).GetCactbotDirectory();
+      string lc = name.ToLowerInvariant();
+      Registry.RegisterOverlayPreset(new OverlayPreset{
+        Name = $"Cactbot DPS {name}",
+        Url = Path.Combine(path, "ui", "dps", lc, $"{file}.html"),
+        Size = new int[] { width, height },
+        Locked = false,
+      });
+    }
+
+    private void RegisterPresets() {
+      RegisterPreset("Raidboss", width:1100, height:300);
+      RegisterPreset("Jobs", width:600, height:300);
+      RegisterPreset("Eureka", width:400, height:400);
+      RegisterPreset("Fisher", width:500, height:500);
+      RegisterPreset("OopsyRaidsy", width:400, height:400);
+      RegisterPreset("PullCounter", width:200, height:200);
+      RegisterPreset("Radar", width:300, height:400);
+      RegisterPreset("Test", width:300, height:300);
+      // FIXME: these should be consistently named.
+      RegisterDpsPreset("Xephero", "xephero-cactbot", width:600, height:400);
+      RegisterDpsPreset("Rdmty", "dps", width:600, height:400);
     }
 
     // State that is tracked and sent to JS when it changes.

@@ -3,12 +3,12 @@ using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
-  public class FFXIVProcessKo : FFXIVProcess {
+  public class FFXIVProcessCn : FFXIVProcess {
     //
-    // for FFXIV KO version: 5.01
+    // for FFXIV CN version: 5.01
     //
-    // Latest KO version can be found at:
-    // https://www.ff14.co.kr/news/notice?category=3
+    // Latest CN version can be found at:
+    // http://ff.sdo.com/web8/index.html#/patchnote
     //
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
@@ -81,15 +81,18 @@ namespace Cactbot {
       [FieldOffset(0x5C)]
       public short shieldPercentage;
     }
-    public FFXIVProcessKo(ILogger logger) : base(logger) { }
+    public FFXIVProcessCn(ILogger logger) : base(logger) { }
 
     public unsafe override EntityData GetEntityDataFromByteArray(byte[] source) {
       fixed (byte* p = source) {
         EntityMemory mem = *(EntityMemory*)&p[0];
 
+        // dump '\0' string terminators
+        var memoryName = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0];
+        var capitalizedName = FFXIV_ACT_Plugin.Common.StringHelper.ToProperCase(memoryName);
+
         EntityData entity = new EntityData() {
-          //dump '\0' string terminators
-          name = System.Text.Encoding.UTF8.GetString(mem.Name, EntityMemory.nameBytes).Split(new[] { '\0' }, 2)[0],
+          name = capitalizedName,
           id = mem.id,
           type = mem.type,
           distance = mem.distance,

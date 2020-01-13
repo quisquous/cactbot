@@ -10,6 +10,7 @@ addOverlayListener('onInCombatChangedEvent', function(e) {
 
 addOverlayListener('onPlayerChangedEvent', function(e) {
   document.getElementById('id').innerText = e.detail.id.toString(16);
+  document.getElementById('name').innerText = e.detail.name;
   document.getElementById('hp').innerText = e.detail.currentHP + '/' + e.detail.maxHP + ' (' + e.detail.currentShield + ')';
   document.getElementById('mp').innerText = e.detail.currentMP + '/' + e.detail.maxMP;
   document.getElementById('cp').innerText = e.detail.currentCP + '/' + e.detail.maxCP;

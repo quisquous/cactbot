@@ -10,13 +10,14 @@
   triggers: [
     {
       id: 'SuzEx Cremate',
-      regex: / 14:32D1:Suzaku starts using Cremate on (\y{Name})/,
-      regexCn: / 14:32D1:朱雀 starts using 赤热击 on (\y{Name})/,
-      regexDe: / 14:32D1:Suzaku starts using Einäschern on (\y{Name})/,
-      regexFr: / 14:32D1:Suzaku starts using Crématorium on (\y{Name})/,
-      regexJa: / 14:32D1:朱雀 starts using 赤熱撃 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      regexDe: Regexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      regexFr: Regexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      regexJa: Regexes.startsUsing({ id: '32D1', source: '朱雀' }),
+      regexCn: Regexes.startsUsing({ id: '32D1', source: '朱雀' }),
+      regexKo: Regexes.startsUsing({ id: '32D1', source: '주작' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -26,15 +27,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: '死刑->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑->' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -47,11 +48,12 @@
     },
     {
       id: 'SuzEx Phantom Flurry',
-      regex: / 14:32DC:Suzaku starts using Phantom Flurry/,
-      regexDe: / 14:32DC:Suzaku starts using Phantomhast/,
-      regexFr: / 14:32DC:Suzaku starts using Frénésie Spectrale/,
-      regexJa: / 14:32DC:朱雀 starts using 鬼宿脚/,
-      regexCn: / 14:32DC:朱雀 starts using/,
+      regex: Regexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -70,11 +72,12 @@
     },
     {
       id: 'SuzEx Mesmerizing Melody',
-      regex: / 14:32DA:Suzaku starts using Mesmerizing Melody/,
-      regexCn: / 14:32DA:朱雀 starts using 引诱旋律/,
-      regexDe: / 14:32DA:Suzaku starts using Bezaubernde Melodie/,
-      regexFr: / 14:32DA:Suzaku starts using Mélodie Hypnotique/,
-      regexJa: / 14:32DA:朱雀 starts using 誘引の旋律/,
+      regex: Regexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '32DA', source: '주작', capture: false }),
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -88,11 +91,12 @@
     },
     {
       id: 'SuzEx Ruthless Refrain',
-      regex: / 14:32DB:Suzaku starts using Ruthless Refrain/,
-      regexCn: / 14:32DB:朱雀 starts using 拒绝旋律/,
-      regexDe: / 14:32DB:Suzaku starts using Rabiater Refrain/,
-      regexFr: / 14:32DB:Suzaku starts using Refrain Impitoyable/,
-      regexJa: / 14:32DB:朱雀 starts using 拒絶の旋律/,
+      regex: Regexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '32DB', source: '주작', capture: false }),
       alertText: {
         en: 'Get In',
         de: 'Rein da',

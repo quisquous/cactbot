@@ -50,8 +50,12 @@
   triggers: [
     {
       id: 'Gubal Hard Bibliocide',
-      regex: / 14:1945:Liquid Flame starts using Bibliocide/,
-      regexFr: / 14:1945:Flamme Liquide starts using Bibliocide/,
+      regex: Regexes.startsUsing({ id: '1945', source: 'Liquid Flame', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1945', source: 'flüssig(?:e|er|es|en) Flamme', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1945', source: 'Flamme Liquide', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -62,13 +66,13 @@
     },
     {
       id: 'Gubal Hard Ferrofluid',
-      regex: / 1B:(\y{ObjectId}):(\y{Name}):....:....:(0030|0031):/,
+      regex: Regexes.headMarker({ id: ['0030', '0031'] }),
       condition: function(data, matches) {
-        return data.me == matches[2] || matches[1].slice(0, 1) == '4';
+        return data.me == matches.target || matches.targetId.slice(0, 1) == '4';
       },
       preRun: function(data, matches) {
         data.markers = data.markers || [];
-        data.markers.push(matches[3]);
+        data.markers.push(matches.id);
       },
       infoText: function(data) {
         if (data.markers.length == 2) {
@@ -89,10 +93,14 @@
     },
     {
       id: 'Gubal Hard Slosh',
-      regex: / 23:\y{ObjectId}:Liquid Flame:\y{ObjectId}:(\y{Name}):....:....:0039/,
-      regexFr: / 23:\y{ObjectId}:Flamme Liquide:\y{ObjectId}:(\y{Name}):....:....:0039/,
+      regex: Regexes.tether({ id: '0039', source: 'Liquid Flame' }),
+      regexDe: Regexes.tether({ id: '0039', source: 'Flüssig(?:e|er|es|en) Flamme' }),
+      regexFr: Regexes.tether({ id: '0039', source: 'Flamme Liquide' }),
+      regexJa: Regexes.tether({ id: '0039', source: 'リクイドフレイム' }),
+      regexCn: Regexes.tether({ id: '0039', source: '液态火焰' }),
+      regexKo: Regexes.tether({ id: '0039', source: '액체 불꽃' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Away from boss',
@@ -134,8 +142,12 @@
     {
       // This inflicts a vulnerability stack on the tank if not interrupted
       id: 'Gubal Hard Condensed Libra',
-      regex: / 14:198D:Mechanoscribe starts using Condensed Libra on \y{Name}/,
-      regexFr: / 14:198D:Mécano-scribe starts using Acuité [cC]oncentrée on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '198D', source: 'Mechanoscribe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '198D', source: 'Mechanoscholar', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '198D', source: 'Mécano-Scribe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
       infoText: function(data) {
         if (data.CanSilence()) {
           return {
@@ -153,8 +165,12 @@
     },
     {
       id: 'Gubal Hard Properties of Quakes',
-      regex: / 14:1956:Strix starts using On The Properties Of Quakes/,
-      regexFr: / 14:1956:Strix starts using Des propriétés de Méga Séisme/,
+      regex: Regexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Stand in light circle',
         fr: 'Restez dans le cercle blanc',
@@ -162,8 +178,12 @@
     },
     {
       id: 'Gubal Hard Properties of Tornadoes',
-      regex: / 14:1957:Strix starts using On The Properties Of Tornados/,
-      regexFr: / 14:1957:Strix starts using Des propriétés de Tornade/,
+      regex: Regexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Stand in dark circle',
         fr: 'Restez dans le cercle noir',
@@ -171,8 +191,12 @@
     },
     {
       id: 'Gubal Hard Properties of Imps',
-      regex: / 14:1959:Strix starts using On The Properties Of Imps/,
-      regexFr: / 14:1959:Strix starts using Des propriétés de Coup du kappa/,
+      regex: Regexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Cleanse in green circle',
         fr: 'Nettoyez dans le cercle vert',
@@ -180,8 +204,12 @@
     },
     {
       id: 'Gubal Hard Properties of Thunder',
-      regex: /14:195A:Strix starts using On The Properties Of Thunder III/,
-      regexFr: /14:195A:Strix starts using Des propriétés de Méga Foudre/,
+      regex: Regexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '195A', source: 'ストリックス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '195A', source: '博学林鸮', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '195A', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Spread',
         fr: 'Dispersez-vous',
@@ -189,8 +217,12 @@
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
-      regex: / 14:1955:Strix starts using On The Properties Of Darkness II/,
-      regexFr: / 14:1955:Strix starts using Des propriétés d\'Extra Obscurité/,
+      regex: Regexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -201,8 +233,12 @@
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',
-      regex: / 14:195D:Behemoth Ward starts using Ecliptic Meteor/,
-      regexFr: / 14:195D:Béhémoth [Cc]onjuré starts using Météore [éÉ]cliptique/,
+      regex: Regexes.startsUsing({ id: '195D', source: 'Behemoth Ward', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '195D', source: 'Buch-Behemoth', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '195D', source: 'Béhémoth Conjuré', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '195D', source: 'ベヒーモス・ワード', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
       alertText: {
         en: 'Hide behind boulder',

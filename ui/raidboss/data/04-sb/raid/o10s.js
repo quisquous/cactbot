@@ -17,13 +17,14 @@
   triggers: [
     {
       id: 'O10S Tail End',
-      regex: / 14:31AA:Midgardsormr starts using Tail End on (\y{Name})/,
-      regexCn: / 14:31AA:尘世幻龙 starts using 煞尾 on (\y{Name})/,
-      regexDe: / 14:31AA:Midgardsormr starts using Schweifspitze on (\y{Name})/,
-      regexFr: / 14:31AA:Midgardsormr starts using Pointe De Queue on (\y{Name})/,
-      regexJa: / 14:31AA:ミドガルズオルム starts using テイルエンド on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      regexDe: Regexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      regexFr: Regexes.startsUsing({ id: '31AA', source: 'Midgardsormr' }),
+      regexJa: Regexes.startsUsing({ id: '31AA', source: 'ミドガルズオルム' }),
+      regexCn: Regexes.startsUsing({ id: '31AA', source: '尘世幻龙' }),
+      regexKo: Regexes.startsUsing({ id: '31AA', source: '미드가르드오름' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -33,15 +34,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: data.ShortName(matches[1]) + '吃死刑',
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: data.ShortName(matches.target) + '吃死刑',
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -54,9 +55,9 @@
     },
     {
       id: 'O10S Fire Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Fire Marker on YOU',
             de: 'Feuer Marker auf DIR',
@@ -67,15 +68,15 @@
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1])
-          return 'Fire on ' + data.ShortName(matches[1]);
+        if (data.me != matches.target)
+          return 'Fire on ' + data.ShortName(matches.target);
       },
     },
     {
       id: 'O10S Death From Below',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008F:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008F' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Death From Below',
@@ -86,9 +87,9 @@
     },
     {
       id: 'O10S Death From Above',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008E' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Death From Above',
@@ -107,22 +108,24 @@
       // 16 if it doesn't hit anybody, 15 if it does.
       // Also, some log lines are inconsistent here and don't always list
       // Midgardsormr's name and are sometimes blank.
-      regex: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Azure Wings:/,
-      regexDe: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Azurschwingen:/,
-      regexFr: / 1[56]:\y{ObjectId}:(?:Midgardsormr|):31B[2345]:Ailes azur:/,
-      regexJa: / 1[56]:\y{ObjectId}:(?:ミドガルズオルム|):31B[2345]:蒼翼の焔:/,
-      regexCn: / 1[56]:\y{ObjectId}:(?:尘世幻龙|):31B[2345]:/,
+      regex: Regexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      regexDe: Regexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      regexFr: Regexes.ability({ id: '31B[2345]', source: ['Midgardsormr', ''], capture: false }),
+      regexJa: Regexes.ability({ id: '31B[2345]', source: ['ミドガルズオルム', ''], capture: false }),
+      regexCn: Regexes.ability({ id: '31B[2345]', source: ['尘世幻龙', ''], capture: false }),
+      regexKo: Regexes.ability({ id: '31B[2345]', source: ['미드가르드오름', ''], capture: false }),
       run: function(data) {
         delete data.lastSpinWasHorizontal;
       },
     },
     {
       id: 'O10N Horizontal Spin 1',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31AC:Coil:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AC:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AC:Charge:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AC:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31AC:/,
+      regex: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31AC', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31AC', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31AC', source: '미드가르드오름', capture: false }),
       infoText: {
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder Raus',
@@ -136,11 +139,12 @@
     },
     {
       id: 'O10N Vertical Spin 1',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31AD:Coil:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AD:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AD:Charge:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AD:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31AD:/,
+      regex: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31AD', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31AD', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31AD', source: '미드가르드오름', capture: false }),
       infoText: {
         en: 'Next Spin: Cardinals or Corners',
         de: 'Nächste Drehung: Kanten oder Ecken',
@@ -154,11 +158,12 @@
     },
     {
       id: 'O10N Horizontal Spin 2',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31AE:Azure Wings:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31AE:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31AE:Ailes azur:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31AE:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31AE:/,
+      regex: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31AE', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31AE', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31AE', source: '미드가르드오름', capture: false }),
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
@@ -183,11 +188,12 @@
     },
     {
       id: 'O10N Vertical Spin 2',
-      regex: / 15:\y{ObjectId}:Midgardsormr:31B0:Stygian Maw:/,
-      regexDe: / 15:\y{ObjectId}:Midgardsormr:31B0:/,
-      regexFr: / 15:\y{ObjectId}:Midgardsormr:31B0:Gueule ténébreuse:/,
-      regexJa: / 15:\y{ObjectId}:ミドガルズオルム:31B0:/,
-      regexCn: / 15:\y{ObjectId}:尘世幻龙:31B0:/,
+      regex: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      regexDe: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      regexFr: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
+      regexJa: Regexes.ability({ id: '31B0', source: 'ミドガルズオルム', capture: false }),
+      regexCn: Regexes.ability({ id: '31B0', source: '尘世幻龙', capture: false }),
+      regexKo: Regexes.ability({ id: '31B0', source: '미드가르드오름', capture: false }),
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },

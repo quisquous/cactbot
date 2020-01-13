@@ -10,13 +10,14 @@
   triggers: [
     {
       id: 'O11S Mustard Bomb',
-      regex: / 14:326D:Omega starts using Mustard Bomb on (\y{Name})/,
-      regexCn: / 14:326D:欧米茄 starts using 芥末爆弹 on (\y{Name})/,
-      regexDe: / 14:326D:Omega starts using Senfbombe on (\y{Name})/,
-      regexFr: / 14:326D:Oméga starts using Obus D\'ypérite on (\y{Name})/,
-      regexJa: / 14:326D:オメガ starts using マスタードボム on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '326D', source: 'Omega' }),
+      regexDe: Regexes.startsUsing({ id: '326D', source: 'Omega' }),
+      regexFr: Regexes.startsUsing({ id: '326D', source: 'Oméga' }),
+      regexJa: Regexes.startsUsing({ id: '326D', source: 'オメガ' }),
+      regexCn: Regexes.startsUsing({ id: '326D', source: '欧米茄' }),
+      regexKo: Regexes.startsUsing({ id: '326D', source: '오메가' }),
       alarmText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -26,15 +27,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            cn: data.ShortName(matches[1]) + '吃死刑',
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: data.ShortName(matches.target) + '吃死刑',
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -55,11 +56,12 @@
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       // Starboard/Larboard Cannon cleanup.
-      regex: / 14:326[24]:Omega starts using Starboard Wave Cannon/,
-      regexDe: / 14:326[24]:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:326[24]:Oméga starts using Canon Plasma Tribord/,
-      regexJa: / 14:326[24]:オメガ starts using 右舷斉射・波動砲/,
-      regexCn: / 14:326[24]:欧米茄 starts using 右舷齐射·波动炮/,
+      regex: Regexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '326[24]', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '326[24]', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '326[24]', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '326[24]', source: '오메가', capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.lastWasStarboard;
@@ -67,11 +69,12 @@
     },
     {
       id: 'O11S Starboard Cannon 1',
-      regex: / 14:326[23]:Omega starts using Starboard Wave Cannon/,
-      regexCn: / 14:326[23]:欧米茄 starts using 右舷齐射·波动炮/,
-      regexDe: / 14:326[23]:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:326[23]:Oméga starts using Canon Plasma Tribord/,
-      regexJa: / 14:326[23]:オメガ starts using 右舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '326[23]', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '326[23]', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '326[23]', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '326[23]', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '326[23]', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
@@ -88,11 +91,12 @@
     },
     {
       id: 'O11S Larboard Cannon 1',
-      regex: / 14:326[45]:Omega starts using Larboard Wave Cannon/,
-      regexCn: / 14:326[45]:欧米茄 starts using 左舷齐射·波动炮/,
-      regexDe: / 14:326[45]:Omega starts using Backbord-Wellenkanone/,
-      regexFr: / 14:326[45]:Oméga starts using Canon Plasma Bâbord/,
-      regexJa: / 14:326[45]:オメガ starts using 左舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '326[45]', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '326[45]', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '326[45]', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '326[45]', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '326[45]', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
@@ -109,11 +113,12 @@
     },
     {
       id: 'O11S Starboard Cannon 2',
-      regex: / 14:3263:Omega starts using Starboard Wave Cannon/,
-      regexCn: / 14:3263:欧米茄 starts using 右舷齐射·波动炮/,
-      regexDe: / 14:3263:Omega starts using Steuerbord-Wellenkanone/,
-      regexFr: / 14:3263:Oméga starts using Canon Plasma Tribord/,
-      regexJa: / 14:3263:オメガ starts using 右舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3263', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3263', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3263', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3263', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3263', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
@@ -138,11 +143,12 @@
     },
     {
       id: 'O11S Larboard Cannon 2',
-      regex: / 14:3265:Omega starts using Larboard Wave Cannon/,
-      regexCn: / 14:3265:欧米茄 starts using 左舷齐射·波动炮/,
-      regexDe: / 14:3265:Omega starts using Backbord-Wellenkanone/,
-      regexFr: / 14:3265:Oméga starts using Canon Plasma Bâbord/,
-      regexJa: / 14:3265:オメガ starts using 左舷斉射・波動砲/,
+      regex: Regexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3265', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3265', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3265', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3265', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3265', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
@@ -167,11 +173,12 @@
     },
     {
       id: 'O11S Starboard Surge 1',
-      regex: / 14:3266:Omega starts using Starboard Wave Cannon Surge/,
-      regexCn: / 14:3266:欧米茄 starts using 右舷齐射·零式波动炮/,
-      regexDe: / 14:3266:Omega starts using Steuerbord-Nullform-Partikelstrahl/,
-      regexFr: / 14:3266:Oméga starts using Canon Plasma Absolu Tribord/,
-      regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
+      regex: Regexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3266', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3266', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
       alertText: {
         en: 'Left (then opposite)',
         de: 'Links (dann umgekehrt)',
@@ -182,11 +189,12 @@
     },
     {
       id: 'O11S Larboard Surge 1',
-      regex: / 14:3268:Omega starts using Larboard Wave Cannon Surge/,
-      regexCn: / 14:3268:欧米茄 starts using 左舷齐射·零式波动炮/,
-      regexDe: / 14:3268:Omega starts using Backbord-Nullform-Partikelstrahl/,
-      regexFr: / 14:3268:Oméga starts using Canon Plasma Absolu Bâbord/,
-      regexJa: / 14:3268:オメガ starts using 左舷斉射・零式波動砲/,
+      regex: Regexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3268', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3268', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
       alertText: {
         en: 'Right (then opposite)',
         de: 'Rechts (dann umgekehrt)',
@@ -197,11 +205,12 @@
     },
     {
       id: 'O11S Starboard Surge 2',
-      regex: / 14:3266:Omega starts using Starboard Wave Cannon Surge/,
-      regexCn: / 14:3266:欧米茄 starts using 右舷齐射·零式波动炮/,
-      regexDe: / 14:3266:Omega starts using Steuerbord-Nullform-Partikelstrahl/,
-      regexFr: / 14:3266:Oméga starts using Canon Plasma Absolu Tribord/,
-      regexJa: / 14:3266:オメガ starts using 右舷斉射・零式波動砲/,
+      regex: Regexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3266', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3266', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3266', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
       delaySeconds: 4,
       alertText: {
         en: 'Opposite (Left)',
@@ -213,11 +222,12 @@
     },
     {
       id: 'O11S Larboard Surge 2',
-      regex: / 14:3268:Omega starts using Larboard Wave Cannon Surge/,
-      regexCn: / 14:3268:Omega starts using 左舷齐射·零式波动炮/,
-      regexDe: / 14:3268:Omega starts using Backbord-Nullform-Partikelstrahl/,
-      regexFr: / 14:3268:Oméga starts using Canon Plasma Absolu Bâbord/,
-      regexJa: / 14:3268:オメガ starts using 左舷斉射・零式波動砲/,
+      regex: Regexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3268', source: 'Omega', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3268', source: 'Oméga', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3268', source: 'オメガ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
       delaySeconds: 4,
       alertText: {
         en: 'Opposite (Right)',

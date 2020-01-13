@@ -65,10 +65,12 @@
   triggers: [
     {
       id: 'Facility Petrifaction',
-      regex: / 14:10EB:Harmachis starts using Petrifaction/,
-      regexDe: / 14:10EB:Harmachis starts using Versteinerung/,
-      regexFr: / 14:10EB:Horamakhet starts using Pétrification/,
-      regexJa: / 14:10EB:ハルマキス starts using ペトリファクション/,
+      regex: Regexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '10EB', source: 'Harmachis', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '10EB', source: 'Horemakhet', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '10EB', source: 'ハルマキス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '10EB', source: '赫鲁玛奇斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '10EB', source: '하르마키스', capture: false }),
       infoText: {
         en: 'Look away',
         de: 'Wegschauen!',
@@ -77,33 +79,37 @@
     },
     {
       id: 'Facility Inertia Stream',
-      regex: / 15:\y{ObjectId}:Harmachis:10ED:Inertia Stream:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Harmachis:10ED:Trägheitsstrom:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Horamakhet:10ED:Courant indolent:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ハルマキス:10ED:イナーシャストリーム:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '10ED', source: 'Harmachis' }),
+      regexDe: Regexes.ability({ id: '10ED', source: 'Harmachis' }),
+      regexFr: Regexes.ability({ id: '10ED', source: 'Horemakhet' }),
+      regexJa: Regexes.ability({ id: '10ED', source: 'ハルマキス' }),
+      regexCn: Regexes.ability({ id: '10ED', source: '赫鲁玛奇斯' }),
+      regexKo: Regexes.ability({ id: '10ED', source: '하르마키스' }),
       condition: function(data) {
         // Tanks technically shouldn't assist with this mechanic
         return data.role != 'tank';
       },
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Laser Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.shortName(matches[1]),
-          de: 'Stack auf ' + data.shortName(matches[1]),
-          fr: 'Stack sur ' + data.shortName(matches[1]),
+          en: 'Stack on ' + data.shortName(matches.target),
+          de: 'Stack auf ' + data.shortName(matches.target),
+          fr: 'Stack sur ' + data.shortName(matches.target),
         };
       },
     },
     {
       id: 'Facility Dark Orb',
-      regex: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dark Orb on (\y{Name})/,
-      regexDe: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Dunkler Orbis on (\y{Name})/,
-      regexFr: /14:10FC:(?:Igeyorhm|Lahabrea) starts using Orbe ténébreux on (\y{Name})/,
-      regexJa: /14:10FC:(?:アシエン・イゲオルム|アシエン・ラハブレア) starts using ダークオーブ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      regexDe: Regexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      regexFr: Regexes.startsUsing({ id: '10FC', source: ['Igeyorhm', 'Lahabrea'] }),
+      regexJa: Regexes.startsUsing({ id: '10FC', source: ['アシエン・イゲオルム', 'アシエン・ラハブレア'] }),
+      regexCn: Regexes.startsUsing({ id: '10FC', source: ['以格约姆', '拉哈布雷亚'] }),
+      regexKo: Regexes.startsUsing({ id: '10FC', source: ['아씨엔 이게요름', '아씨엔 라하브레아'] }),
       infoText: function(data, matches) {
         if (matches[1] == data.me) {
           return {
@@ -118,10 +124,12 @@
     },
     {
       id: 'Facility Shadow Flare',
-      regex: / 14:1109:Ascian Prime starts using Shadow Flare/,
-      regexDe: / 14:1109:Prim-Ascian starts using Schattenflamme/,
-      regexFr: / 14:1109:Primo-Ascien starts using Éruption ténébreuse/,
-      regexJa: / 14:1109:アシエン・プライム starts using シャドウフレア/,
+      regex: Regexes.startsUsing({ id: '1109', source: 'Ascian Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1109', source: 'Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1109', source: 'Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1109', source: 'アシエン・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1109', source: '至尊无影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1109', source: '아씨엔 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -132,10 +140,12 @@
     },
     {
       id: 'Facility Annihilation',
-      regex: / 14:110A:Ascian Prime starts using Annihilation/,
-      regexDe: / 14:110A:Prim-Ascian starts using Annihilation/,
-      regexFr: / 14:110A:Primo-Ascien starts using Annihilation/,
-      regexJa: / 14:110A:アシエン・プライム starts using アナイアレイション/,
+      regex: Regexes.startsUsing({ id: '110A', source: 'Ascian Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '110A', source: 'Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '110A', source: 'Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '110A', source: 'アシエン・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '110A', source: '至尊无影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '110A', source: '아씨엔 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -146,10 +156,12 @@
     },
     {
       id: 'Facility Universal Manipulation',
-      regex: / 14:1105:Ascian Prime starts using Universal Manipulation/,
-      regexDe: / 14:1105:Prim-Ascian starts using Umwertung aller Werte/,
-      regexFr: / 14:1105:Primo-Ascien starts using Manipulation universelle/,
-      regexJa: / 14:1105:アシエン・プライム starts using 法則改変/,
+      regex: Regexes.startsUsing({ id: '1105', source: 'Ascian Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '1105', source: 'Prim-Ascian', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '1105', source: 'Primo-Ascien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '1105', source: 'アシエン・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '1105', source: '至尊无影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '1105', source: '아씨엔 프라임', capture: false }),
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
       delaySeconds: 4,
@@ -159,10 +171,12 @@
     },
     {
       id: 'Facility Chaosphere',
-      regex: /03:\y{ObjectId}:Added new combatant Chaosphere/,
-      regexDe: /03:\y{ObjectId}:Added new combatant Chaossphäre/,
-      regexFr: /03:\y{ObjectId}:Added new combatant sphère de chaos/,
-      regexJa: /03:\y{ObjectId}:Added new combatant カオススフィア/,
+      regex: Regexes.addedCombatant({ name: 'Chaosphere', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Chaossphäre', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Sphère De Chaos', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'カオススフィア', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '混沌晶球', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '혼돈의 구체', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid your orb--pop others\'',

@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Amaurot Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0039:/,
+      regex: Regexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       preRun: function(data) {
         data.meteor = (data.meteor || 0) + 1;
@@ -36,9 +36,9 @@
     },
     {
       id: 'Amaurot Spread',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -48,10 +48,12 @@
     },
     {
       id: 'Amaurot Final Sky',
-      regex: / 14:3CCB:The First Beast starts using The Final Sky/,
-      regexDe: / 14:3CCB:Das erste Unheil starts using Letzter Himmel/,
-      regexFr: / 14:3CCB:[aA]nnélide [dD]e [lL]'[aA]pocalypse starts using Étoile [dD]e [lL]a [rR]uine/,
-      regexJa: / 14:3CCB:ファースト・ビースト starts using 終末の流星/,
+      regex: Regexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CCB', source: '(?:der|die|das) Erst(?:e|er|es|en) Unheil', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CCB', source: 'Annélide De L\'Apocalypse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
@@ -59,10 +61,12 @@
     },
     {
       id: 'Amaurot Shadow Wreck',
-      regex: / 14:3CE3:Therion starts using Shadow Wreck/,
-      regexDe: / 14:3CE3:Therion starts using Schatten Des Unheils/,
-      regexFr: / 14:3CE3:Mégatherion starts using Calamité [sS]ombre/,
-      regexJa: / 14:3CE3:メガセリオン starts using シャドウレック/,
+      regex: Regexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CE3', source: 'Mégatherion', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CE3', source: 'メガセリオン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -74,10 +78,12 @@
     },
     {
       id: 'Amaurot Apokalypsis',
-      regex: / 14:3CD7:Therion starts using Apokalypsis/,
-      regexDe: / 14:3CD7:Therion starts using Apokalypse/,
-      regexFr: / 14:3CD7:Mégatherion starts using Apokalypsis/,
-      regexJa: / 14:3CD7:メガセリオン starts using アポカリュプシス/,
+      regex: Regexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3CD7', source: 'Mégatherion', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
       alertText: {
         en: 'Get Off',
         de: 'Runter gehen',

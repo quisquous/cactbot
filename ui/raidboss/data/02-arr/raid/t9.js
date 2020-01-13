@@ -75,9 +75,9 @@
     },
     {
       id: 'T9 Meteor Stream',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000[7A9]:/,
+      regex: Regexes.headMarker({ id: '000[7A9]' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Meteor on YOU',
@@ -85,9 +85,9 @@
     },
     {
       id: 'T9 Meteor Stream',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0008:/,
+      regex: Regexes.headMarker({ id: '0008' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread (Meteor Stream)',
@@ -95,29 +95,36 @@
     },
     {
       id: 'T9 Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000F:/,
+      regex: Regexes.headMarker({ id: '000F' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Thermo on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'T9 Phase 2',
-      regex: /:Nael deus Darnus HP at 64%/,
+      regex: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Nael Deus Darnus', hp: '64', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ネール・デウス・ダーナス', hp: '64', capture: false }),
+      regexCn: Regexes.hasHP({ name: '奈尔·神·达纳斯', hp: '64', capture: false }),
+      regexKo: Regexes.hasHP({ name: '넬 데우스 다르누스', hp: '64', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T9 Earthshock',
-      regex: / 14:7F5:Dalamud Spawn starts using Earthshock/,
-      regexDe: / 14:7F5:Dalamud-Golem starts using Erdschock/,
-      regexFr: / 14:7F5:Golem De Dalamud starts using Secousse Sismique/,
-      regexJa: / 14:7F5:ダラガブゴーレム starts using アースショック/,
+      regex: Regexes.startsUsing({ id: '7F5', source: 'Dalamud Spawn', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7F5', source: 'Dalamud-Golem', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7F5', source: 'Golem De Dalamud', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7F5', source: 'ダラガブゴーレム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7F5', source: '卫月巨像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7F5', source: '달라가브 골렘', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -127,10 +134,12 @@
     },
     {
       id: 'T9 Heavensfall',
-      regex: / 14:83B:Nael Deus Darnus starts using Heavensfall/,
-      regexDe: / 14:83B:Nael Deus Darnus starts using Himmelssturz/,
-      regexFr: / 14:83B:Nael Deus Darnus starts using Destruction Universelle/,
-      regexJa: / 14:83B:ネール・デウス・ダーナス starts using 天地崩壊/,
+      regex: Regexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '83B', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '83B', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '83B', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
       alertText: {
         en: 'Heavensfall',
       },
@@ -155,10 +164,12 @@
     },
     {
       id: 'T9 Ghost Death',
-      regex: / 1[56]:\y{ObjectId}:The Ghost of Meracydia:7FA:Neurolink Burst:/,
-      regexDe: / 1[56]:\y{ObjectId}:Geist Von Meracydia:7FA:Neurolink-Bruch:/,
-      regexFr: / 1[56]:\y{ObjectId}:Fantôme Méracydien:7FA:Explosion névralgique:/,
-      regexJa: / 1[56]:\y{ObjectId}:メラシディアン・ゴースト:7FA:ニューロリンク・バースト:/,
+      regex: Regexes.ability({ id: '7FA', source: 'The Ghost Of Meracydia', capture: false }),
+      regexDe: Regexes.ability({ id: '7FA', source: 'Geist Von Meracydia', capture: false }),
+      regexFr: Regexes.ability({ id: '7FA', source: 'Fantôme Méracydien', capture: false }),
+      regexJa: Regexes.ability({ id: '7FA', source: 'メラシディアン・ゴースト', capture: false }),
+      regexCn: Regexes.ability({ id: '7FA', source: '美拉西迪亚幽龙', capture: false }),
+      regexKo: Regexes.ability({ id: '7FA', source: '메라시디아의 유령', capture: false }),
       condition: function(data) {
         return data.garotte;
       },
@@ -168,12 +179,14 @@
     },
     {
       id: 'T9 Garotte Twist Lose',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Garrote Twist/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Leicht Fixierbar/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Sangle Accélérée/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 拘束加速/,
+      regex: Regexes.losesEffect({ effect: 'Garrote Twist' }),
+      regexDe: Regexes.losesEffect({ effect: 'Leicht Fixierbar' }),
+      regexFr: Regexes.losesEffect({ effect: 'Sangle Accélérée' }),
+      regexJa: Regexes.losesEffect({ effect: '拘束加速' }),
+      regexCn: Regexes.losesEffect({ effect: '拘束加速' }),
+      regexKo: Regexes.losesEffect({ effect: '구속 가속' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.garotte;
+        return data.me == matches.target && data.garotte;
       },
       run: function(data) {
         delete data.garotte;
@@ -181,10 +194,12 @@
     },
     {
       id: 'T9 Final Phase',
-      regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
-      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
-      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
-      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
+      regex: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       condition: function(data) {
         return !data.seenFinalPhase;
       },
@@ -195,18 +210,20 @@
     },
     {
       id: 'T9 Dragon Locations',
-      regex: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant (.*)\..*Pos: \((\y{Float}),(\y{Float}),(?:\y{Float})\)/,
+      regex: Regexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
+      regexDe: Regexes.addedCombatantFull({ name: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'] }),
+      regexFr: Regexes.addedCombatantFull({ name: ['corne-de-feu', 'griffe-de-glace ', 'aile-de-foudre'] }),
+      regexJa: Regexes.addedCombatantFull({ name: ['ファイアホーン', 'アイスクロウ', 'サンダーウィング'] }),
+      regexCn: Regexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
+      regexKo: Regexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),
       run: function(data, matches) {
         let names = ['Firehorn', 'Iceclaw', 'Thunderwing'];
-        let idx = names.indexOf(matches[1]);
+        let idx = names.indexOf(matches.name);
         if (idx == -1)
           return;
 
-        let x = parseFloat(matches[2]);
-        let y = parseFloat(matches[3]);
+        let x = parseFloat(matches.x);
+        let y = parseFloat(matches.y);
 
         // Most dragons are out on a circle of radius=~28.
         // Ignore spurious dragons like "Pos: (0.000919255,0.006120025,2.384186E-07)"
@@ -224,10 +241,12 @@
     },
     {
       id: 'T9 Final Phase Reset',
-      regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
-      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
-      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
-      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
+      regex: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       run: function(data) {
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
@@ -252,10 +271,12 @@
     },
     {
       id: 'T9 Dragon Marks',
-      regex: / 14:7E6:Nael Deus Darnus starts using Bahamut's Favor/,
-      regexDe: / 14:7E6:Nael Deus Darnus starts using Bahamuts Segen/,
-      regexFr: / 14:7E6:Nael Deus Darnus starts using Auspice Du Dragon/,
-      regexJa: / 14:7E6:ネール・デウス・ダーナス starts using 龍神の加護/,
+      regex: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7E6', source: 'Nael Deus Darnus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7E6', source: 'ネール・デウス・ダーナス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7E6', source: '奈尔·神·达纳斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7E6', source: '넬 데우스 다르누스', capture: false }),
       durationSeconds: 12,
       infoText: function(data) {
         return {
@@ -268,10 +289,12 @@
     },
     {
       id: 'T9 Tether',
-      regex: / 23:\y{ObjectId}:Firehorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      regexDe: / 23:\y{ObjectId}:Feuerhorn:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      regexFr: / 23:\y{ObjectId}:Corne-De-Feu:\y{ObjectId}:(\y{Name}):....:....:0005:/,
-      regexJa: / 23:\y{ObjectId}:ファイアホーン:\y{ObjectId}:(\y{Name}):....:....:0005:/,
+      regex: Regexes.tether({ id: '0005', source: 'Firehorn' }),
+      regexDe: Regexes.tether({ id: '0005', source: 'Feuerhorn' }),
+      regexFr: Regexes.tether({ id: '0005', source: 'Corne-De-Feu' }),
+      regexJa: Regexes.tether({ id: '0005', source: 'ファイアホーン' }),
+      regexCn: Regexes.tether({ id: '0005', source: '火角' }),
+      regexKo: Regexes.tether({ id: '0005', source: '화염뿔' }),
       preRun: function(data) {
         data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;
@@ -279,30 +302,30 @@
         data.tetherDir = data.tetherCount % 2 ? 'Fire Out' : 'Fire In';
       },
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: data.tetherDir + ' (on YOU)',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: data.tetherDir + ' (on ' + data.ShortName(matches[1]) + ')',
+            en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
           };
         }
       },
     },
     {
       id: 'T9 Thunder',
-      // Note: The 0A event happens before 'gains the effect' and 'starts
-      // casting on' only includes one person.
-      regex: /:Thunderwing:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /:サンダーウィング:7FD:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Thunderwing', id: '7FD' }),
+      regexDe: Regexes.ability({ source: 'Donnerschwinge', id: '7FD' }),
+      regexFr: Regexes.ability({ source: 'Aile-De-Foudre', id: '7FD' }),
+      regexJa: Regexes.ability({ source: 'サンダーウィング', id: '7FD' }),
+      regexCn: Regexes.ability({ source: '雷翼', id: '7FD' }),
+      regexKo: Regexes.ability({ source: '번개날개', id: '7FD' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Thunder on YOU',
@@ -319,7 +342,7 @@
     },
     {
       id: 'T9 Dragon Safe Zone',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014', capture: false }),
       delaySeconds: 3,
       durationSeconds: 6,
       suppressSeconds: 20,
@@ -329,13 +352,13 @@
     },
     {
       id: 'T9 Dragon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
@@ -348,7 +371,7 @@
       },
       tts: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],

@@ -9,22 +9,6 @@ namespace Cactbot {
   [Serializable]
   public class CactbotEventSourceConfig {
     public event EventHandler WatchFileChangesChanged;
-
-    [JsonIgnore]
-    public static string CactbotAssemblyUri {
-      get {
-        var location = System.Reflection.Assembly.GetExecutingAssembly().Location;
-        if (location == "") location = PluginLoader.pluginPath;
-
-        if (location != "") {
-          return Path.GetDirectoryName(location);
-        } else
-        {
-          return null;
-        }
-      }
-    }
-
     public CactbotEventSourceConfig() {
     }
 
@@ -34,7 +18,6 @@ namespace Cactbot {
       if (pluginConfig.EventSourceConfigs.ContainsKey("CactbotESConfig")) {
         var obj = pluginConfig.EventSourceConfigs["CactbotESConfig"];
 
-        // TODO: add try/catch here
         if (obj.TryGetValue("OverlayData", out JToken value)) {
           try {
             result.OverlayData = value.ToObject<Dictionary<string, JToken>>();
@@ -43,8 +26,12 @@ namespace Cactbot {
           }
         }
 
-        if (obj.TryGetValue("RemoteVersionSeen", out value)) {
-          result.RemoteVersionSeen = value.ToString();
+        if (obj.TryGetValue("LastUpdateCheck", out value)) {
+          try {
+            result.LastUpdateCheck = value.ToObject<DateTime>();
+          } catch (Exception e) {
+            logger.Log(LogLevel.Error, "Failed to load LastUpdateCheck setting: {0}", e.ToString());
+          }
         }
       }
 
@@ -64,7 +51,7 @@ namespace Cactbot {
 
     public Dictionary<string, JToken> OverlayData = null;
     
-    public string RemoteVersionSeen = "0.0";
+    public DateTime LastUpdateCheck;
     
     [JsonIgnore]
     public string UserConfigFile {
