@@ -30,8 +30,8 @@ namespace Cactbot
             ((TabControl)pluginScreenSpace.Parent).TabPages.Remove(pluginScreenSpace);
 
             if (GetOverlayPluginVersion() < kMinOverlayPluginVersion) {
-                throw new Exception($"Cactbot requires OverlayPlugin {GetOverlayPluginVersion().ToString()}, " +
-                    $"found {kMinOverlayPluginVersion.ToString()}");
+                throw new Exception($"Cactbot requires OverlayPlugin {kMinOverlayPluginVersion.ToString()}, " +
+                    $"found {GetOverlayPluginVersion().ToString()}");
             }
         }
 
