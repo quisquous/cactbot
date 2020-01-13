@@ -18,7 +18,6 @@ namespace Cactbot {
       if (pluginConfig.EventSourceConfigs.ContainsKey("CactbotESConfig")) {
         var obj = pluginConfig.EventSourceConfigs["CactbotESConfig"];
 
-        // TODO: add try/catch here
         if (obj.TryGetValue("OverlayData", out JToken value)) {
           try {
             result.OverlayData = value.ToObject<Dictionary<string, JToken>>();
@@ -28,8 +27,11 @@ namespace Cactbot {
         }
 
         if (obj.TryGetValue("LastUpdateCheck", out value)) {
-          var date = DateTime.Parse(value.ToString(), System.Globalization.CultureInfo.InvariantCulture);
-          result.LastUpdateCheck = date;
+          try {
+            result.LastUpdateCheck = value.ToObject<DateTime>();
+          } catch (Exception e) {
+            logger.Log(LogLevel.Error, "Failed to load LastUpdateCheck setting: {0}", e.ToString());
+          }
         }
       }
 
