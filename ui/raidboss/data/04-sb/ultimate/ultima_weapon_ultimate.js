@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Weapon's Refrain \(Ultimate\)$/,
     cn: /^究极神兵绝境战$/,
+    ko: /^절 알테마 웨폰 파괴작전$/,
   },
   timelineFile: 'ultima_weapon_ultimate.txt',
   timelineTriggers: [

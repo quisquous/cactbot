@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
     cn: /^巴哈姆特绝境战$/,
+    ko: /^절 바하무트 토벌전$/,
   },
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
