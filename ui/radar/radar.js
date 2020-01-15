@@ -146,7 +146,7 @@ class Radar {
 
         // Play sound only if its far enough
         if (oldPos.distance(newPos) >= kMinDistanceBeforeSound)
-          PlaySound(this.targetMonsters[mobKey]);
+          PlaySound(this.targetMonsters[mobKey], options);
       }
     } else {
       // Add DOM
@@ -182,7 +182,7 @@ class Radar {
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
 
-      PlaySound(this.targetMonsters[mobKey]);
+      PlaySound(this.targetMonsters[mobKey], options);
     }
   }
 
