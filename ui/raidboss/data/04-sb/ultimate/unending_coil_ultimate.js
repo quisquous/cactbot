@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
     cn: /^巴哈姆特绝境战$/,
+    ko: /^절 바하무트 토벌전$/,
   },
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
@@ -173,6 +174,7 @@
         de: 'Wirbelstürme',
         ja: '大竜巻',
         cn: '大龙卷',
+        ko: '회오리',
       },
       tts: {
         en: 'twisters',
@@ -180,6 +182,7 @@
         de: 'Wirbelstürme',
         ja: '大竜巻',
         cn: '大龙卷',
+        ko: '회오리',
       },
     },
     {
@@ -198,6 +201,7 @@
             de: 'Todesurteil',
             ja: 'デスセンテンス',
             cn: '死刑',
+            ko: '사형 선고',
           };
         }
       },
@@ -209,6 +213,7 @@
             de: 'basta',
             ja: 'タンク即死級',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -233,6 +238,7 @@
         de: 'Ausbrüten auf DIR',
         ja: '自分に魔力爆散',
         cn: '点名魔力爆散',
+        ko: '나에게 마력연성',
       },
       tts: {
         en: 'hatch',
@@ -240,6 +246,7 @@
         de: 'ausbrüten',
         ja: '魔力爆散',
         cn: '魔力爆散',
+        ko: '마력연성',
       },
     },
     {
@@ -259,6 +266,7 @@
           de: 'Ausbrüten: ' + hatches,
           ja: '魔力爆散' + hatches,
           cn: '魔力爆散' + hatches,
+          ko: '마력연성: ' + hatches,
         };
       },
     },
@@ -285,6 +293,7 @@
         de: 'Phase 2 Stoß',
         ja: 'フェーズ2',
         cn: 'P2准备',
+        ko: '트윈 페이즈2',
       },
     },
     {
@@ -302,6 +311,7 @@
         de: 'Phase 3 Stoß',
         ja: 'フェーズ3',
         cn: 'P3准备',
+        ko: '트윈 페이즈3',
       },
     },
 
@@ -314,12 +324,14 @@
       regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5bf9\u6708\u957f\u5578\uff01/,
+      regexKo: /흉조가 내려와 달을 올려다보리라!/,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
         de: 'Verteilen => Rein',
         ja: '散開 => 密着',
         cn: '分散 => 靠近',
+        ko: '산개 => 안으로',
       },
       durationSeconds: 6,
       tts: {
@@ -328,6 +340,7 @@
         de: 'verteilen, dann rein',
         ja: '散開や密着',
         cn: '分散后靠近',
+        ko: '산개 다음 안으로',
       },
     },
     {
@@ -338,12 +351,14 @@
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01/,
+      regexKo: /흉조가 내려와 강철의 패도를 걸으리라!/,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
         de: 'Verteilen => Raus',
         ja: '散開 => 離れる',
         cn: '分散 => 远离',
+        ko: '산개 => 밖으로',
       },
       durationSeconds: 6,
       tts: {
@@ -352,6 +367,7 @@
         de: 'verteilen, dann raus',
         ja: '散開や離れる',
         cn: '分散后远离',
+        ko: '산개 다음 밖으로',
       },
     },
     {
@@ -362,12 +378,14 @@
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexJa: /\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01/,
       regexCn: /\u70bd\u70ed\u71c3\u70e7\uff01\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01/,
+      regexKo: /붉게 타오른 달의 축복을!/,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
         de: 'Stack => Rein',
         ja: '頭割り => 密着',
         cn: '集合 => 靠近',
+        ko: '쉐어 => 안으로',
       },
       durationSeconds: 6,
       tts: {
@@ -376,6 +394,7 @@
         de: 'stek dann rein',
         ja: '頭割りや密着',
         cn: '集合后靠近',
+        ko: '쉐어 다음 안으로',
       },
     },
     {
@@ -386,12 +405,14 @@
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexJa: /\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01/,
       regexCn: /\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\s*\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01/,
+      regexKo: /붉게 타오른 길을 강철의 패도로 만들겠노라!/,
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
         de: 'Stack => Raus',
         ja: '頭割り => 離れる',
         cn: '集合 => 远离',
+        ko: '쉐어 => 밖으로',
       },
       durationSeconds: 6,
       tts: {
@@ -400,6 +421,7 @@
         de: 'stek dann raus',
         ja: '頭割りや離れる',
         cn: '集合后远离',
+        ko: '쉐어 다음 안으로',
       },
     },
     {
@@ -410,12 +432,14 @@
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexJa: /\u6708\u3088\uff01\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01/,
       regexCn: /\u6708\u5149\u554a\uff01\s*\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01/,
+      regexKo: /달이여! 붉게 타올라 신의 적을 태워버려라!/,
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
         de: 'Rein => Stack',
         ja: '密着 => 頭割り',
         cn: '靠近 => 集合',
+        ko: '안으로 => 쉐어',
       },
       durationSeconds: 6,
       tts: {
@@ -424,6 +448,7 @@
         de: 'rein dann stek',
         ja: '密着や頭割り',
         cn: '靠近后集合',
+        ko: '안으로 다음 쉐어',
       },
     },
     {
@@ -434,12 +459,14 @@
       regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexJa: /\u6708\u3088\uff01\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01/,
       regexCn: /\u6708\u5149\u554a\uff01\s*\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01/,
+      regexKo: /달이여! 강철의 패도를 비춰라!/,
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
         de: 'Rein => Raus',
         ja: '密着 => 離れる',
         cn: '靠近 => 远离',
+        ko: '안으로 => 밖으로',
       },
       durationSeconds: 6,
       tts: {
@@ -448,6 +475,7 @@
         de: 'rein dann raus',
         ja: '密着や離れる',
         cn: '靠近后远离',
+        ko: '안으로 다음 밖으로',
       },
     },
     {
@@ -458,12 +486,14 @@
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
       regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01/,
+      regexKo: /초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!/,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
         de: 'Weg vom Tank => Stack',
         ja: 'タンクから離れる => 頭割り',
         cn: '远离坦克 => 集合',
+        ko: '탱커 피하기 => 쉐어',
       },
       durationSeconds: 6,
       delaySeconds: 4,
@@ -473,6 +503,7 @@
         de: 'weck vom tenk dann stek',
         ja: 'タンクから離れるや頭割り',
         cn: '远离坦克后集合',
+        ko: '탱커 피하기 다음 쉐어',
       },
     },
     {
@@ -483,12 +514,14 @@
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01/,
       regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01/,
+      regexKo: /초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!/,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
         de: 'Verteilen => Weg vom Tank',
         ja: '散開 => タンクから離れる',
         cn: '分散 => 远离坦克',
+        ko: '산개 => 탱커 피하기',
       },
       durationSeconds: 6,
       delaySeconds: 4,
@@ -498,6 +531,7 @@
         de: 'verteilen dann weck vom tenk',
         ja: '散開やタンクから離れる',
         cn: '分散后远离坦克',
+        ko: '산개 다음 탱커 피하기',
       },
     },
     {
@@ -508,6 +542,7 @@
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01/,
+      regexKo: /흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -515,6 +550,7 @@
         de: 'Verteilen => Rein',
         ja: '散開 => 密着',
         cn: '分散 => 靠近',
+        ko: '산개 => 안으로',
       },
       tts: {
         en: 'spread then in',
@@ -522,6 +558,7 @@
         de: 'verteilen dann rein',
         ja: '散開や密着',
         cn: '分散后靠近',
+        ko: '산개 다음 안으로',
       },
     },
     {
@@ -530,8 +567,9 @@
       regex: /From hallowed moon I descend, a rain of stars to bring/,
       regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
-      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff0/,
+      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
       regexCn: /\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01/,
+      regexKo: /달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -539,6 +577,7 @@
         de: 'Rein => Verteilen',
         ja: '密着 => 散開',
         cn: '靠近 => 分散',
+        ko: '안으로 => 산개',
       },
       tts: {
         en: 'in then spread',
@@ -546,6 +585,7 @@
         de: 'rein dann verteilen',
         ja: '密着や散開',
         cn: '靠近后分散',
+        ko: '안으로 다음 산개',
       },
     },
     {
@@ -556,6 +596,7 @@
       regexFr: /De la lune je m'arme d'acier et descends/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\s*\u821e\u3044\u964d\u308a\u3093\uff01/,
       regexCn: /\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01/,
+      regexKo: /달로부터 강철의 패도를 거쳐 흉조가 내려오리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
@@ -563,6 +604,7 @@
         de: 'Rein => Raus => Verteilen',
         ja: '密着 => 離れる => 散開',
         cn: '靠近 => 远离 => 分散',
+        ko: '안으로 => 밖으로 => 산개',
       },
       tts: {
         en: 'in then out then spread',
@@ -570,6 +612,7 @@
         de: 'rein dann raus dann verteilen',
         ja: '密着や離れるや散開',
         cn: '靠近后远离最后分散',
+        ko: '안으로 다음 밖으로 다음 산개',
       },
     },
     {
@@ -580,6 +623,7 @@
       regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01/,
       regexCn: /\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01/,
+      regexKo: /달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -587,6 +631,7 @@
         de: 'Rein => Verteilen => Stack',
         ja: '密着 => 散開 => 頭割り',
         cn: '靠近 => 分散 => 集合',
+        ko: '안으로 => 산개 => 쉐어',
       },
       tts: {
         en: 'in then spread then stack',
@@ -594,6 +639,7 @@
         de: 'rein dann verteilen dann stek',
         ja: '密着や散開や頭割り',
         cn: '靠近后分散最后集合',
+        ko: '안으로 다음 산개 다음 쉐어',
       },
     },
     {
@@ -604,6 +650,7 @@
       regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexJa: /\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01/,
       regexCn: /\u94a2\u94c1\u71c3\u70e7\u5427\uff01\s*\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01/,
+      regexKo: /강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
@@ -611,6 +658,7 @@
         de: 'Raus => Stack => Verteilen',
         ja: '離れる => 頭割り => 散開',
         cn: '远离 => 集合 => 分散',
+        ko: '밖으로 => 쉐어 => 산개',
       },
       tts: {
         en: 'out then stack then spread',
@@ -618,6 +666,7 @@
         de: 'raus dann stek dann verteilen',
         ja: '離れるや頭割りや散開',
         cn: '远离后集合最后分散',
+        ko: '밖으로 다음 쉐어 다음 산개',
       },
     },
     {
@@ -628,6 +677,7 @@
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
       regexCn: /\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01/,
+      regexKo: /강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
@@ -635,6 +685,7 @@
         de: 'Raus => Verteilen => Stack',
         ja: '離れる => 散開 => 頭割り',
         cn: '远离 => 分散 => 集合',
+        ko: '밖으로 => 산개 => 쉐어',
       },
       tts: {
         en: 'out then spread then stack',
@@ -642,6 +693,7 @@
         de: 'Raus dann verteilen dann stek',
         ja: '離れるや散開や頭割り',
         cn: '远离后分散最后集合',
+        ko: '밖으로 다음 산개 다음 쉐어',
       },
     },
     {
@@ -663,6 +715,7 @@
         de: 'Blitz auf DIR',
         ja: '自分にサンダー',
         cn: '雷点名',
+        ko: '나에게 번개',
       },
       tts: {
         en: 'thunder',
@@ -670,6 +723,7 @@
         de: 'blitz',
         ja: 'サンダー',
         cn: '雷点名',
+        ko: '번개',
       },
     },
     {
@@ -707,6 +761,7 @@
             de: 'Verhängnis #1 auf DIR',
             ja: '自分に一番目死の宣告',
             cn: '死宣一号点名',
+            ko: '죽음의 선고 1번',
           };
         }
         if (parseFloat(matches.duration) <= 10) {
@@ -716,6 +771,7 @@
             de: 'Verhängnis #2 auf DIR',
             ja: '自分に二番目死の宣告',
             cn: '死宣二号点名',
+            ko: '죽음의 선고 2번',
           };
         }
         return {
@@ -724,6 +780,7 @@
           de: 'Verhängnis #3 auf DIR',
           ja: '自分に三番目死の宣告',
           cn: '死宣三号点名',
+          ko: '죽음의 선고 3번',
         };
       },
       tts: function(data, matches) {
@@ -800,6 +857,7 @@
             de: 'Medica #' + data.doomCount + ': ' + data.ShortName(name),
             ja: '解除に番目' + data.doomCount + ': ' + data.ShortName(name),
             cn: '解除死宣 #' + data.doomCount + ': ' + data.ShortName(name),
+            ko: '선고 해제 ' + data.doomCount + ': ' + data.ShortName(name),
           };
         }
       },
@@ -820,6 +878,7 @@
         de: 'Feuer INNEN',
         ja: 'ファイアボールは密着',
         cn: '火进',
+        ko: '불 같이맞기',
       },
       tts: {
         en: 'fire in',
@@ -827,6 +886,7 @@
         de: 'Feuer innen',
         ja: 'ファイアボール密着',
         cn: '火进',
+        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 1;
@@ -850,6 +910,7 @@
             de: 'Feuer AUßEN',
             ja: 'ファイアボールは離れる',
             cn: '火出',
+            ko: '불 대상자 밖으로',
           };
         }
       },
@@ -866,6 +927,7 @@
             de: 'Feuer AUßEN: Drin sein',
             ja: 'ファイアボールは離れる: 自分に密着',
             cn: '火出，踩火',
+            ko: '불 대상자 밖으로: 나는 같이 맞기',
           };
         }
       },
@@ -877,6 +939,7 @@
             de: 'feuer außen; mitgehen',
             ja: 'ファイアボール離れる: 自分に密着',
             cn: '火出，分摊',
+            ko: '밖에서 불 같이 맞기',
           };
         }
         return {
@@ -885,6 +948,7 @@
           de: 'feuer außen',
           ja: 'ファイアボール離れる',
           cn: '火出',
+          ko: '불 대상자 밖으로',
         };
       },
 
@@ -927,6 +991,7 @@
           de: 'Feuer INNEN',
           ja: 'ファイアボールは密着',
           cn: '火进',
+          ko: '불 같이맞기',
         };
       },
       alertText: function(data) {
@@ -939,6 +1004,7 @@
             de: 'Feuer INNEN: AUSWEICHEN!',
             ja: 'ファイアボールは密着: 自分に離れる',
             cn: '火进：躲避！',
+            ko: '불 같이맞기: 나는 피하기',
           };
         }
       },
@@ -950,6 +1016,7 @@
             de: 'feuer innen ausweichen',
             ja: 'ファイアボール密着: 自分に離れる',
             cn: '躲避火进',
+            ko: '불 같이맞으면 안됨',
           };
         }
         return {
@@ -958,6 +1025,7 @@
           de: 'feuer innen',
           ja: 'ファイアボール密着',
           cn: '火进',
+          ko: '불 같이맞기',
         };
       },
       run: function(data) {
@@ -991,6 +1059,7 @@
             de: 'Feuer INNEN',
             ja: 'ファイアボール密着',
             cn: '火进',
+            ko: '불 같이맞기',
           };
         }
       },
@@ -1005,6 +1074,7 @@
             de: 'Feuer INNEN: AUSWEICHEN!',
             ja: 'ファイアボールは密着: 自分に離れる',
             cn: '火进：躲避！',
+            ko: '불 같이맞기: 나는 피하기',
           };
         }
       },
@@ -1014,6 +1084,7 @@
         de: 'feuer innen',
         ja: 'ファイアボール密着',
         cn: '火进',
+        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 4;
@@ -1055,6 +1126,8 @@
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
         else if (data.lang == 'de')
           dir_names = ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'];
+        else if (data.lang == 'ko')
+          dir_names = ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'];
         else
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
         data.naelMarks = output.marks.map(function(i) {
@@ -1088,6 +1161,7 @@
           de: 'Markierungen : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (GROß)' : ''),
           ja: 'マーカー: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (広)' : ''),
           cn: '标记: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (大)' : ''),
+          ko: '징: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (넓음)' : ''),
         };
       },
     },
@@ -1109,6 +1183,7 @@
           de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
           ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
           cn: '冲向' + marker + ' (剩余 ' + dir + '秒)',
+          ko: marker + '로 이동' + ' (그리고 ' + dir + '로)',
         };
       },
       tts: function(data, matches) {
@@ -1121,6 +1196,7 @@
           de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
           cn: '前往 ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          ko: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '로 이동',
         };
       },
     },
@@ -1141,6 +1217,7 @@
           de: 'Sturz #' + num + ' : ' + data.ShortName(matches.target),
           ja: 'ダイブ' + num + '番目:' + data.ShortName(matches.target),
           cn: '冲 #' + num + ': ' + data.ShortName(matches.target),
+          ko: '카탈 ' + num + ': ' + data.ShortName(matches.target),
         };
       },
     },
@@ -1212,6 +1289,7 @@
           de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
           ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (ネール)',
           cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (奈尔)',
+          ko: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (넬)',
         };
       },
     },
@@ -1226,6 +1304,7 @@
           en: data.octetMarker.length + ': ' + data.ShortName(matches.target),
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target),
           de: data.octetMarker.length + ': ' + data.ShortName(matches.target),
+          ko: data.octetMarker.length + ': ' + data.ShortName(matches.target),
         };
       },
     },
@@ -1242,6 +1321,7 @@
           de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
           ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (バハ)',
           cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (巴哈)',
+          ko: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (바하)',
         };
       },
     },
@@ -1260,6 +1340,7 @@
             de: 'DU stackst für Twintania',
             ja: '自分にタニアには頭割り',
             cn: '双塔集合',
+            ko: '내가 트윈징 대상자',
           };
         }
       },
@@ -1271,6 +1352,7 @@
             de: '8: ??? (Twintania)',
             ja: '8: ??? (ツインタニア)',
             cn: '8: ??? (双塔)',
+            ko: '8: ??? (트윈타니아)',
           };
         }
         // If this person is not alive, then everybody should stack,
@@ -1282,6 +1364,7 @@
             de: '8: ' + data.ShortName(data.lastOctetMarker) + ' (Twintania)',
             ja: '8: ' + data.ShortName(data.lastOctetMarker) + ' (ツインタニア)',
             cn: '8: ' + data.ShortName(data.lastOctetMarker) + ' (双塔)',
+            ko: '8: ' + data.ShortName(data.lastOctetMarker) + ' (트윈타니아)',
           };
         }
       },
@@ -1293,6 +1376,7 @@
             de: 'stek für twintania',
             ja: '頭割り',
             cn: '双塔集合',
+            ko: '트윈타니아 옆에 서기',
           };
         }
       },
@@ -1311,6 +1395,7 @@
         de: 'Wirbelstürme',
         ja: 'ツイスター',
         cn: '旋风冲',
+        ko: '회오리',
       },
       tts: {
         en: 'twisters',
@@ -1318,6 +1403,7 @@
         de: 'Wirbelstürme',
         ja: 'ツイスター',
         cn: '旋风冲',
+        ko: '회오리',
       },
     },
     {
@@ -1334,6 +1420,7 @@
         de: 'Gigaflare',
         ja: 'ギガフレア',
         cn: '十亿核爆',
+        ko: '기가플레어',
       },
       tts: {
         en: 'gigaflare',
@@ -1341,6 +1428,7 @@
         de: 'Gigafleer',
         ja: 'ギガフレア',
         cn: '十亿核爆',
+        ko: '기가플레어',
       },
     },
     {
@@ -1355,6 +1443,7 @@
         de: 'Megaflare Stack',
         ja: 'メガフレア頭割り',
         cn: '百万核爆集合',
+        ko: '기가플레어 쉐어',
       },
       tts: {
         en: 'stack',
@@ -1362,6 +1451,7 @@
         de: 'stek',
         ja: '頭割り',
         cn: '集合',
+        ko: '쉐어',
       },
     },
     {
@@ -1388,6 +1478,7 @@
             de: 'Turm, Hypernova ködern',
             ja: 'タワーやスーパーノヴァ',
             cn: '踩塔, 引导超新星',
+            ko: '초신성 피하고 기둥 밟기',
           };
         }
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me) {
@@ -1397,6 +1488,7 @@
             de: 'Twintania in Turm locken',
             ja: 'タニアダイブやタワー',
             cn: '引导双塔, 踩塔',
+            ko: '트윈타니아 유도 후 기둥 밟기',
           };
         }
         return {
@@ -1405,6 +1497,7 @@
           de: 'Geh in entfernten Turm',
           ja: '遠いタワー',
           cn: '踩远塔',
+          ko: '기둥 밟기',
         };
       },
       tts: function(data) {
@@ -1418,6 +1511,7 @@
             de: 'Turm',
             ja: 'タワー',
             cn: '塔',
+            ko: '기둥',
           };
         }
       },
@@ -1438,11 +1532,13 @@
           return {
             en: twin + ' (twin) has megaflare',
             cn: twin + ' (双塔) 带百万核爆',
+            ko: twin + ' (트윈 징 대상자) => 쉐어',
           };
         }
         return {
           en: twin + ' (twin) needs tower',
           cn: twin + ' (双塔) 需要踩塔',
+          ko: twin + ' (트윈 징 대상자) => 기둥',
         };
       },
       tts: null,
@@ -1459,6 +1555,7 @@
         de: 'Erdstoß auf Dir',
         ja: '自分にアースシェイカー',
         cn: '地震点名',
+        ko: '나에게 어스징',
       },
       tts: {
         en: 'shaker',
@@ -1466,6 +1563,7 @@
         de: 'Erdstoß',
         ja: 'アースシェイカー',
         cn: '地震',
+        ko: '어스',
       },
     },
     {
@@ -1489,6 +1587,7 @@
               de: 'Verbindung holen',
               ja: 'テンペストウィング線',
               cn: '接线',
+              ko: '줄 가로채기',
             };
           }
         }
@@ -1505,6 +1604,7 @@
               de: 'Kein Erdstoß; im süden sammeln',
               ja: 'シェイカーない；頭割りで南',
               cn: '不地震，南侧集合',
+              ko: '징 없음, 모여서 쉐어',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1516,6 +1616,7 @@
                 de: 'In Sicherheit steken',
                 ja: '頭割りで安全',
                 cn: '安全点集合',
+                ko: '안전장소에 모이기',
               };
             }
           }
@@ -1532,6 +1633,7 @@
               de: 'Verbindung',
               ja: '線',
               cn: '线',
+              ko: '줄',
             };
           }
           if (data.shakers.indexOf(data.me) == -1) {
@@ -1541,6 +1643,7 @@
               de: 'stek im süden',
               ja: '頭割りで南',
               cn: '南侧集合',
+              ko: '모여서 쉐어',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1552,6 +1655,7 @@
                 de: 'in sicherheit',
                 ja: '安全',
                 cn: '安全点',
+                ko: '안전장소로',
               };
             }
           }
@@ -1583,14 +1687,23 @@
             de: str + ' (DU)',
             ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (自分)',
             cn: '无尽顿悟 #' + data.mornAfahCount,
+            ko: '몬 아파 ' + data.mornAfahCount + ' (나에게)',
           };
         }
-        return str + ' (' + data.ShortName(matches.target) + ')';
+        return {
+          en: str + ' (' + data.ShortName(matches.target) + ')',
+          fr: str + ' (' + data.ShortName(matches.target) + ')',
+          de: str + ' (' + data.ShortName(matches.target) + ')',
+          ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (' + data.ShortName(matches.target) + ')',
+          cn: '无尽顿悟 #' + data.mornAfahCount,
+          ko: '몬 아파 ' + data.mornAfahCount + ' (' + data.ShortName(matches.target) + ')',
+        };
       },
       tts: function(data, matches) {
         return {
           en: 'morn afah ' + data.ShortName(matches.target),
           cn: '无尽顿悟 ' + data.ShortName(matches.target),
+          ko: '몬 아파 ' + data.mornAfahCount,
         };
       },
     },
@@ -1610,6 +1723,7 @@
         return {
           en: 'Akh Morn #' + data.akhMornCount,
           cn: '死亡轮回 #' + data.akhMornCount,
+          ko: '아크 몬 ' + data.akhMornCount,
         };
       },
     },
@@ -1631,7 +1745,8 @@
           fr: 'ExaBrasier #' + data.exaflareCount,
           de: 'Exaflare #' + data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount + '回',
-          cn: '百京核爆 #' + data.akhMornCount,
+          cn: '百京核爆 #' + data.exaflareCount,
+          ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
       tts: function(data) {
@@ -1640,7 +1755,8 @@
           fr: 'Exabrasier '+ data.exaflareCount,
           de: 'Exafleer '+ data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount,
-          cn: '百京核爆 ' + data.akhMornCount,
+          cn: '百京核爆 ' + data.exaflareCount,
+          ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
     },
@@ -2224,6 +2340,114 @@
         'Earth Resistance Down II': '土属性耐性大幅降低',
         'Down for the Count': '击倒',
         'Doom': '死亡宣告',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bahamut Prime': '바하무트 프라임',
+        'Engage!': '전투 시작!',
+        'Firehorn': '화염뿔',
+        'Iceclaw': '얼음발톱',
+        'Nael Deus Darnus': '넬 데우스 다르누스',
+        'Nael Geminus': '넬 게미누스',
+        'Oviform': '마력 압축체',
+        'Ragnarok': '라그나로크',
+        'Thunderwing': '번개날개',
+        'Twintania': '트윈타니아',
+        'Tail of Darkness': '어둠의 꼬리',
+        'Fang of Light': '빛의 송곳니',
+      },
+      'replaceText': {
+        'Aetheric Profusion': '에테르 홍수',
+        'Akh Morn': '아크 몬',
+        'Bahamut\'s Claw': '바하무트의 발톱',
+        'Bahamut\'s Favor': '용신의 가호',
+        'Blackfire Trio': '흑염의 3중주',
+        'Calamitous Blaze': '재앙의 화염',
+        'Calamitous Flame': '재앙의 불꽃',
+        'Cauterize': '인두질',
+        'Chain Lightning': '번개 사슬',
+        'Dalamud Dive': '달라가브 강하',
+        'Death Sentence': '사형 선고',
+        'Deathstorm': '죽음의 폭풍',
+        'Divebomb': '급강하 폭격',
+        'Earth Shaker': '요동치는 대지',
+        'Exaflare': '엑사플레어',
+        'Fellruin Trio': '재앙의 3중주',
+        'Fireball': '화염구',
+        'Fireball Soak': '화염구 쉐어',
+        'Flames Of Rebirth': '윤회의 불꽃',
+        'Flare Breath': '타오르는 숨결',
+        'Flatten': '짓뭉개기',
+        'Generate': '마력 연성',
+        'Gigaflare': '기가플레어',
+        'Grand Octet': '용들의 8중주',
+        'Hatch': '마력 방출',
+        'Heavensfall(?! )': '천지붕괴',
+        'Heavensfall Trio': '천지의 3중주',
+        'Hypernova': '초신성',
+        'Iceball': '얼음구',
+        'Iron Chariot': '강철 전차',
+        'Liquid Hell': '지옥의 늪',
+        'Lunar Dive': '달 강하',
+        'Lunar Dynamo': '달의 원동력',
+        'Megaflare': '메가플레어',
+        'Megaflare Dive': '메가플레어 다이브',
+        'Meteor Stream': '유성 폭풍',
+        'Morn Afah': '몬 아파',
+        'Morn Afah Enrage': '몬 아파 전멸기',
+        'Plummet': '곤두박질',
+        'Plummet/Claw': '곤두박질/발톱',
+        'Quickmarch Trio': '진군의 3중주',
+        'Raven Dive': '흉조의 강하',
+        'Ravensbeak': '흉조의 부리',
+        'Sentence/Ravensbeak': '사형선고/흉조의 부리',
+        'Seventh Umbral Era': '제7재해',
+        'Tempest Wing': '폭풍우 날개',
+        'Tenstrike Trio': '연격의 3중주',
+        'Teraflare': '테라플레어',
+        'Thermionic Beam': '열전자 광선',
+        'Thermionic Burst': '열전자 폭발',
+        'Twister': '회오리',
+        'Twisting Dive': '회오리 강하',
+        'White Fury': '넬의 분노',
+        'Wings of Salvation': '구원의 날개',
+
+        'Targeted Fire': '랜덤대상 지옥의 늪',
+        'Thunderstruck': '번개날개',
+        'Doom': '죽음의 선고',
+        'Random Combo Attack': '랜덤 넬 대사',
+        'Dive Dynamo Combo': '넬 대사:다이브/산개',
+        'Dynamo + Beam/Chariot': '다이나모 + 빔/강철전차',
+        'Dive + Dynamo/Chariot': '다이브 + 다이나모/강철전차',
+        'Thermionic + Dynamo/Chariot': '빔 + 다이나모/강철전차',
+        'Meteor/Dive or Dive/Beam': '유성+다이브/다이브+빔',
+        'Triple Nael Quote': '3중 넬 대사',
+        'Stack': '쉐어',
+        'Markers appear': '징 나타남',
+        'Nael Marker': '넬 징',
+        'Nael Dive': '넬 강하',
+        'Bahamut Marker': '바하무트 징',
+        'Twin Marker': '트윈 징',
+        'Marker': '징',
+        'Towers': '기둥',
+        'Enrage': '전멸기',
+        'Pepperoni': '장판',
+      },
+      '~effectNames': {
+        'Doom': '죽음의 선고',
+        'Down For The Count': '넉다운',
+        'Earth Resistance Down II': '땅속성 저항 감소[강]',
+        'Firescorched': '화염뿔',
+        'Icebitten': '얼음발톱',
+        'Lohs Daih': '로스 다이',
+        'Mana Hypersensitivity': '마력 과민증',
+        'Neurolink': '구속 장치',
+        'Phoenix\'s Blessing': '피닉스의 가호',
+        'Piercing Resistance Down II': '찌르기 저항 감소[강]',
+        'Slashing Resistance Down II': '베기 저항 감소[강]',
+        'Thunderstruck': '번개날개',
       },
     },
   ],
