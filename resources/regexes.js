@@ -49,22 +49,25 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: source, id, ability, capture
+  // fields: source, id, ability, target, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
   ability: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'ability', ['source', 'id', 'ability', 'capture']);
+    validateParams(f, 'ability', ['source', 'id', 'ability', 'target', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':';
 
-    if (f.id || f.ability || capture)
+    if (f.id || f.ability || f.target || capture)
       str += Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
 
-    if (f.ability || capture)
+    if (f.ability || f.target || capture)
       str += Regexes.maybeCapture(capture, 'ability', f.ability, '[^:]*?') + ':';
+
+    if (f.target || capture)
+      str += '\\y{ObjectId}:' + Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':';
 
     return Regexes.parse(str);
   },
