@@ -145,7 +145,7 @@ def parse_report(args):
             'time': datetime.fromtimestamp((report_start_time + event['timestamp']) / 1000),
             'ability_id': hex(event['ability']['guid'])[2:].upper(),
             'ability_name': event['ability']['name'],
-            'type': event['type']
+            'type': event['type'],
         }
 
         # In the applydebuff case, the source is -1 (environment) and we want the target instead
@@ -160,12 +160,14 @@ def parse_report(args):
 
     return entries, datetime.fromtimestamp((report_start_time + start_time) / 1000)
 
+
 def get_regex(event):
     """Gets the regex for the event for both file and report types"""
     if isinstance(event, str):
         return event
     elif isinstance(event, dict):
         return event['regex']
+
 
 def get_type(event):
     """Gets the line type for both file and report types"""
@@ -335,6 +337,7 @@ def check_event(event, timelist, state):
 
     return state
 
+
 def run_file(args, timelist):
     """Runs a timeline against a specified file"""
     state = {
@@ -343,7 +346,7 @@ def run_file(args, timelist):
         'last_sync_position': 0,
         'last_jump': 0,
         'branch': 1,
-        'timeline_stopped': True
+        'timeline_stopped': True,
     }
     started = False
     encounter_sets = []
@@ -396,7 +399,7 @@ def run_report(args, timelist):
         'last_sync_timestamp': start_time,
         'last_jump': 0,
         'branch': 1,
-        'timeline_stopped': False
+        'timeline_stopped': False,
     }
 
     for event in events:
@@ -423,7 +426,7 @@ def timeline_file(filename):
     data_path = Path(__file__).resolve().parent.parent / 'ui' / 'raidboss' / 'data'
     # Allow for just specifying the base filename, e.g. "o12s.txt" or "o12s"
     if not os.path.exists(filename):
-        for root, dirs, files in os.walk(data_path):
+        for root, _, files in os.walk(data_path):
           if filename in files:
             filename = os.path.join(root, filename)
             break
@@ -436,7 +439,6 @@ def timeline_file(filename):
         raise argparse.ArgumentTypeError("Could not load timeline: %s" % filename)
     else:
         return path.open()
-
 
 
 if __name__ == "__main__":
