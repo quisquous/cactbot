@@ -64,7 +64,6 @@ def parse_data(csvfile):
     return all_rates
 
 
-
 def update(reader, writer):
     data = reader.exd('TerritoryType')
     all_rates = parse_data(data)

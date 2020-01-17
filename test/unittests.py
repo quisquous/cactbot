@@ -3,7 +3,7 @@
 from pathlib import Path
 import subprocess
 import sys
-from definitions import  PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
+from definitions import PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
 
 UNITTEST_DIRECTORY = 'unittests'
 

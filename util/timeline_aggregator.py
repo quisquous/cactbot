@@ -68,6 +68,7 @@ def create_averaging_function(threshold):
     of similar event times.
     """
     key = None
+
     def averaging_function(event_time):
         """Averages event time values based on a threshold.
 
@@ -80,6 +81,7 @@ def create_averaging_function(threshold):
         elif event_time >= key:
             key = event_time + threshold
         return key
+
     return averaging_function
 
 
@@ -95,15 +97,15 @@ def average_similar_events(values, threshold):
     return list(round(mean(group), 1) for _, group in grouped_values)
 
 
-class TimelineAggregator():
+class TimelineAggregator:
     """Aggregates timelines and averages their event times.
 
     Takes an input of N timelines and attempts to smooth their event times to
     find the line of best fit when determining when events occur.
     """
+
     def __init__(self, timelines):
         self.timelines = timelines
-
 
     def aggregate(self, averaging_threshold=2.0):
         """Aggregates timelines and returns a list of their events.

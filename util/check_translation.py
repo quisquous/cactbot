@@ -47,7 +47,7 @@ class FileLikeArray:
 
 
 def base_triggers_path():
-    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/');
+    return os.path.join(os.path.dirname(__file__), '../ui/raidboss/data/')
 
 
 def construct_relative_triggers_path(filename):
@@ -123,7 +123,7 @@ def update_triggers(triggers, trans):
                         if lang in trans:
                             new_regex = translate_regex(found_base.group(1), trans[lang])
                             if new_regex:
-                                new_line = '      regex' + lang.capitalize() + ': ' + new_regex + ',\n'
+                                new_line = f'      regex{lang.capitalize()}: {new_regex},\n'
                                 fp.write(new_line)
 
                     regex_langs = {}

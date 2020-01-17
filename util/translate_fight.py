@@ -98,14 +98,14 @@ def build_mapping(translations, ignore_list=[]):
                     # raise Exception('Conflict on %s: "%s" and "%s"' % (default_name, existing_name, name))
                     pass
             else:
-                if default_name and name :
+                if default_name and name:
                     replace[lang][default_name] = name
     return replace
 
 
 def format_output_str(output_str):
     output_str = output_str.replace("'", "\\'")
-    output_str = output_str.replace("\"","'")
+    output_str = output_str.replace("\"", "'")
     output_str = output_str.replace("'timelineReplace'", "timelineReplace")
     regex = re.compile(r"]$", re.M)
     output_str = regex.sub("],", output_str)

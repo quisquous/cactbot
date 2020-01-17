@@ -20,6 +20,7 @@ if len(sys.argv) > 1:
 else:
     xivapi_key = False
 
+
 def cleanup_german(word):
     word = word.replace('[A]', 'er')
     word = word.replace('[p]', '')
@@ -31,9 +32,10 @@ def cleanup_german(word):
     # [a] is complicated, and can mean different things in different contexts.
     # Just cover all our bases here.
     endings = ['e', 'en', 'es', 'er']
-    return list(map(lambda x : word.replace('[a]', x), endings))
+    return list(map(lambda x: word.replace('[a]', x), endings))
 
-def xivapi(content, filters = {}):
+
+def xivapi(content, filters={}):
     """Fetches content columns from XIVAPI"""
     page = 1
     url = f'{base}{content}'
@@ -70,7 +72,7 @@ def xivapi(content, filters = {}):
         results = response
 
     # Loop requests until the page is over
-    while (not by_id and response['Pagination']['Page'] != response['Pagination']['PageTotal']):
+    while not by_id and response['Pagination']['Page'] != response['Pagination']['PageTotal']:
         page += 1
         response = requests.get(f'{url}&page={page}')
         if response.status_code != 200:
@@ -85,6 +87,7 @@ def xivapi(content, filters = {}):
 
     return results
 
+
 def fish_tracker():
     response = requests.get(fishTrackerBase)
     if response.status_code != 200:
@@ -94,6 +97,7 @@ def fish_tracker():
         exit()
 
     return yaml.load(response.text, yaml.Loader)
+
 
 def get_fish_data():
     """Returns dictionaries for places, fish, and place->fish mapping"""
@@ -170,12 +174,13 @@ def get_fish_data():
 
     return places, fishes, placefish
 
+
 def get_tackle():
     # Also get fishing tackle
     response = xivapi('ItemSearchCategory', {'id': tackle_id, 'columns': ['GameContentLinks.Item.ItemSearchCategory']})
 
     item_ids = response['GameContentLinks']['Item']['ItemSearchCategory']
-    columns = ['ID'] + [f'Singular_{locale}'for locale in locales]
+    columns = ['ID'] + [f'Singular_{locale}' for locale in locales]
 
     results = xivapi('Item', {'columns': columns, 'ids': item_ids})
 
@@ -193,6 +198,7 @@ def get_tackle():
 
     return tackle
 
+
 def find_fish_by_name(fishes, name):
     for id, value in fishes['en'].items():
         if type(value) is list:
@@ -202,6 +208,7 @@ def find_fish_by_name(fishes, name):
         else:
             if value == name:
                 return id
+
 
 def get_tugs(fishes):
     tugs = {}
@@ -225,6 +232,7 @@ def get_tugs(fishes):
                 tugs[id] = tug
 
     return tugs
+
 
 def append_special_place_names(places):
     # handle special german casting names
@@ -253,6 +261,7 @@ def append_special_place_names(places):
           places['de'][place].append(m.group(1))
         else:
           places['de'][place] = [places['de'][place], m.group(1)]
+
 
 def get_cn_data():
     global locales, base
@@ -290,7 +299,7 @@ if __name__ == "__main__":
         'places': places,
         'fish': fishes,
         'placefish': placefish,
-        'tugs': tugs
+        'tugs': tugs,
     }
 
     filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'

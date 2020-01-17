@@ -130,6 +130,7 @@ def parse_file(args):
 
     return entries, last_ability_time
 
+
 def main(args):
     timeline_position = 0
     last_ability_time = 0
@@ -223,11 +224,11 @@ def main(args):
 
         # Round up to the tenth of second
         if last_time_diff_us > 60000:
-            last_time_diff_sec += .1
+            last_time_diff_sec += 0.1
 
         # Round up with a note about exceptional drift
         elif last_time_diff_us > 50000:
-            last_time_diff_sec += .1
+            last_time_diff_sec += 0.1
             drift = -100000 + last_time_diff_us
 
         # Round down with a note about exceptional drift
@@ -257,8 +258,6 @@ def main(args):
         # Save the entry til the next line for filtering
         last_entry = entry
     return output
-
-
 
 
 if __name__ == "__main__":

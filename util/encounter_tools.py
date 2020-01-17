@@ -4,15 +4,18 @@ from datetime import datetime
 import re
 import argparse
 
+
 def timestamp_type(arg):
     """Defines the timestamp input format"""
     if arg and re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
         raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
     return arg
 
+
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
     return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
+
 
 def parse_event_time(event):
     """Parses the line's timestamp into a datetime object"""
@@ -29,44 +32,54 @@ def parse_event_time(event):
     elif isinstance(event, dict):
         return event['time']
 
+
 def str_time(timestamp):
     """
     Parses a datetime object into a string for log comparisons.
     Trims microseconds to milliseconds."""
     return timestamp.strftime('%H:%M:%S.%f')[:-3]
 
+
 def is_line_end(line_fields):
     if is_zone_unseal(line_fields) or is_limit_reset(line_fields):
         return True
     return is_encounter_end_code(line_fields)
 
+
 def is_zone_seal(line_fields):
     return line_fields[4].endswith('sealed off in 15 seconds!')
 
+
 def is_zone_unseal(line_fields):
     return line_fields[4].endswith('no longer sealed!')
+
 
 def is_line_attack(line_fields):
     # We want only situations where a friendly attacks an enemy
     return line_fields[0] in ('21', '22') and line_fields[6].startswith('4')
 
+
 def is_limit_reset(line_fields):
     return line_fields[4] == 'The limit gauge resets!'
+
 
 def is_instance_begun(line_fields):
     return line_fields[4].endswith('has begun.')
 
+
 def is_instance_ended(line_fields):
     return line_fields[4].endswith('has ended.')
+
 
 def is_encounter_end_code(line_fields):
     if not line_fields[0] == '33':
         return False
     return line_fields[3] in ('40000010', '40000003')
 
+
 def find_fights_in_file(file):
     e_starts = []
-    encounter_start_staging = 0 # Staged to avoid spurious starts such as limit break usage
+    encounter_start_staging = 0  # Staged to avoid spurious starts such as limit break usage
     e_ends = []
     encounter_in_progress = False
     current_instance = None
@@ -118,12 +131,13 @@ def find_fights_in_file(file):
     file.seek(0)
     return encounter_sets
 
+
 def choose_fight_times(args, encounters):
     start_time = end_time = 0
     if args.search_fights:
         # Indexing is offset here to allow for 1-based indexing for the user.
-        start_time = (encounters[args.search_fights - 1][0])
-        end_time = (encounters[args.search_fights - 1][1])
+        start_time = encounters[args.search_fights - 1][0]
+        end_time = encounters[args.search_fights - 1][1]
     # In the event the user wishes to enter timestamps manually, we permit that here.
     else:
         start_time = args.start
@@ -135,20 +149,26 @@ def choose_fight_times(args, encounters):
 def clean_and_split_tl_line(line):
     return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0])
 
+
 def is_tl_line_syncmatch(line):
     return re.search(r'sync /([^/]+)/', line.group('options'))
+
 
 def is_tl_line_begincast(poss_match):
     return re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', poss_match)
 
+
 def is_tl_line_buff(poss_match):
     return re.search(r'1A:.......:(.+) gains the effect of (.+)( from)?', poss_match)
+
 
 def is_tl_line_cast(poss_match):
     return re.search(r'^:([^:]+):([0-9A-F\(\)\|]+)', poss_match)
 
+
 def is_tl_line_log(poss_match):
     return re.search(r'^\s*00:([0-9]*):(.*$)', poss_match)
+
 
 def is_tl_line_adds(poss_match):
     return re.search(r'Added new combatant (.*$)', poss_match)
