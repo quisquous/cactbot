@@ -150,7 +150,7 @@ def parse_translations(triggers):
                 line = line.strip()
 
                 # remove comments (assume no comments in strings)
-                line = re.sub(r'//.*$', '', line)
+                line = re.sub(r'\s?//.*$', '', line)
                 # fix unquoted/single-quoted Javascript keys and properties <_<
                 line = re.sub(r"^([^:\"\'](?:\s*[^:\"\'])*)(\s*:)", r'"\1"\2', line)
                 line = re.sub(r"^\s*'([^:\"\'](?:\s*.)*?)'(\s*:)", r'"\1"\2', line)
@@ -301,7 +301,7 @@ if __name__ == "__main__":
     parser.add_argument('-gm', '--grep-missing', help="Filters -t for [all] missing elemnts, [text] only #MISSINGTEXT or [sync] only #MISSINGSYNC")
 
     args = parser.parse_args()
-    
+
     if not args.file:
         raise parser.error('Must pass a file.')
     if args.timeline and not args.timeline in languages:
