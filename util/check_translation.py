@@ -221,6 +221,8 @@ def translate_timeline(line, trans):
     for old, new in trans['replaceSync'].items():
         did_work = did_work or re.search(old, text)
         text = re.sub(old, new, text)
+    # escape \d in timeline *.txt files to avoid KeyError/ re.error: bad escape \d
+    text = text.replace("\d", "\\\d")
     line = replace_sync_re.sub('sync /%s/' % text, line)
     if not did_work:
         line = line + ' #MISSINGSYNC'
