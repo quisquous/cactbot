@@ -150,7 +150,7 @@ def parse_translations(triggers):
                 line = line.strip()
 
                 # remove comments (assume no comments in strings)
-                line = re.sub(r'\s?//.*$', '', line)
+                line = re.sub(r'\s*//.*$', '', line)
                 # fix unquoted/single-quoted Javascript keys and properties <_<
                 line = re.sub(r"^([^:\"\'](?:\s*[^:\"\'])*)(\s*:)", r'"\1"\2', line)
                 line = re.sub(r"^\s*'([^:\"\'](?:\s*.)*?)'(\s*:)", r'"\1"\2', line)
