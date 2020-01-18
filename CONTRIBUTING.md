@@ -22,7 +22,7 @@ The code of conduct for cactbot can be found here:
 
 Please file all issues with cactbot on github,
 via this url:
-[https://github.com/quisquous/cactbot/issues/new](https://github.com/quisquous/cactbot/issues/new)
+<https://github.com/quisquous/cactbot/issues/new/choose>
 
 ## Pull Requests
 
