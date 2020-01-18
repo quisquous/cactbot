@@ -1071,5 +1071,15 @@ UserConfig.registerOptions('raidboss', {
       type: 'float',
       default: 1,
     },
+    {
+      id: 'cactbotWormholeStrat',
+      // TODO: maybe need some way to group these kinds of
+      // options if we end up having a lot?
+      name: {
+        en: 'Alex Ultimate: enable cactbot Wormhole strat',
+      },
+      type: 'checkbox',
+      default: false,
+    },
   ],
 });
