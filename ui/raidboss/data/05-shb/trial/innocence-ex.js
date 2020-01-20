@@ -39,7 +39,7 @@
         ja: '剣くるよ',
         fr: 'Epées !',
         cn: '剑!',
-        ko: '검!',
+        ko: '검 돌아옴!',
       },
     },
     {
@@ -67,7 +67,7 @@
             ja: 'スターバース: 玉のない隅へ',
             fr: 'Accouchement Stellaire : Evitez + Charge',
             cn: '创星：躲避 + 冲锋',
-            ko: '별 생성: 피하기 + 돌진',
+            ko: '별 생성: 별 피해서 징 맞기 + 돌진',
           };
         } else if (data.starbirthCount == 3) {
           return {
@@ -76,7 +76,7 @@
             ja: 'スターバース: 爆発',
             fr: 'Accouchement Stellaire : Explosion',
             cn: '创星：爆炸',
-            ko: '별 생성: 폭발',
+            ko: '별 생성: 별 터뜨리기',
           };
         } else if (data.starbirthCount == 4) {
           return {
@@ -149,7 +149,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
-            ko: '탱버 -> YOU',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -202,7 +202,7 @@
         fr: 'Tankbuster sur VOUS',
         ja: '自分にタンクバスター',
         cn: '死刑点名',
-        ko: '탱버 -> YOU',
+        ko: '나에게 탱버',
       },
     },
     {
@@ -252,7 +252,7 @@
         ja: '安置へ',
         fr: 'Allez sur le coin sûr',
         cn: '去安全角落',
-        ko: '안전한 코너로 이동',
+        ko: '안전한 구석으로 이동',
       },
     },
     {
@@ -340,7 +340,7 @@
         de: 'Geh in die sichere Ecke',
         fr: 'Allez sur le coin sûr',
         cn: '去安全角落',
-        ko: '안전한 코너로 이동하세요',
+        ko: '안전한 구석으로 이동하세요',
       },
     },
     {
@@ -355,7 +355,7 @@
         fr: 'Lien sur VOUS',
         ja: '線ついた',
         cn: '连线点名',
-        ko: '징 대상자 지정됨',
+        ko: '선 대상자 지정됨',
       },
     },
     {
@@ -695,7 +695,9 @@
         'Winged Rep Rotate': '단죄의 비상 회전',
         'Winged Rep Tethers': '단죄의 비상 줄연결',
         'Starbirth': '별 생성',
-        'Soul and Body': '영혼과 육신',
+        'Starbirth Avoid': '별 생성 + 별 피해서 징 맞기',
+        'Starbirth Explode': '별 생성 + 별 터뜨리기',
+        'Soul And Body': '영혼과 육신',
         'Shadowreaver': '그림자 강탈',
         'Scold\'s Bridle': '입막음 굴레',
         'Rightful Reprobation': '단죄의 선회',
@@ -720,9 +722,9 @@
         '--jump--': '--보스이동--',
       },
       '~effectNames': {
-        'Physical Vulnerability Up': '물리 피해량 증가',
-        'Lightning Resistance Down II': '번개 저항 저하［강］',
-        'Embolden': '격려',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Lightning Resistance Down II': '번개속성 저항 감소[강]',
+        'Embolden': '성원',
         'Damage Down': '주는 피해량 감소',
       },
     },

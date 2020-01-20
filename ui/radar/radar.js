@@ -68,6 +68,20 @@ function posToMap(h) {
   return h * pitch + offset;
 }
 
+
+function PlaySound(monster, options) {
+  if (options.TTS) {
+    callOverlayHandler({
+      call: 'cactbotSay',
+      text: monster.rank + ' ' + monster.name,
+    });
+  } else if (options.PopSoundAlert && options.PopSound && options.PopVolume) {
+    let audio = new Audio(options.PopSound);
+    audio.volume = options.PopVolume;
+    audio.play();
+  }
+}
+
 class Radar {
   constructor(element) {
     this.targetMonsters = {};
@@ -90,19 +104,6 @@ class Radar {
         for (let i = 0; i < monster.name.length; ++i)
           this.nameToMonster[monster.name[i].toLowerCase()] = monster;
       }
-    }
-  }
-
-  PlaySound(monster) {
-    if (this.options.TTS) {
-      callOverlayHandler({
-        call: 'cactbotSay',
-        text: m.rank + ' ' + m.name,
-      });
-    } else if (this.options.PopSoundAlert && this.options.PopSound && this.options.PopVolume) {
-      let audio = new Audio(this.options.PopSound);
-      audio.volume = this.options.PopVolume;
-      audio.play();
     }
   }
 
@@ -145,7 +146,7 @@ class Radar {
 
         // Play sound only if its far enough
         if (oldPos.distance(newPos) >= kMinDistanceBeforeSound)
-          this.PlaySound(this.targetMonsters[mobKey]);
+          PlaySound(this.targetMonsters[mobKey], options);
       }
     } else {
       // Add DOM
@@ -181,7 +182,7 @@ class Radar {
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
 
-      this.PlaySound(this.targetMonsters[mobKey]);
+      PlaySound(this.targetMonsters[mobKey], options);
     }
   }
 

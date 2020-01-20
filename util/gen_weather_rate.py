@@ -22,7 +22,7 @@ def parse_data(csvfile):
             if not weather_name:
                 break
             weathers.append(weather_name)
-            sum += int(row[i+1])
+            sum += int(row[i + 1])
             rates.append(sum)
         # add leading zeroes so they sort properly.
         all_rates["%04d" % int(row[0])] = {

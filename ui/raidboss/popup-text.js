@@ -8,6 +8,18 @@ function triggerUpperCase(str) {
   return str.replace(/\w/g, (x) => x.toUpperCase());
 }
 
+function onTriggerException(trigger, e) {
+  let str = 'Error in trigger: ' + (trigger.id ? trigger.id : '[unknown trigger id]');
+
+  if (trigger.filename)
+    str += ' (' + trigger.filename + ')';
+  console.error(str);
+
+  let lines = e.stack.split('\n');
+  for (let i = 0; i < lines.length; ++i)
+    console.error(lines[i]);
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -167,6 +179,7 @@ class PopupText {
             // time later.  This will clobber each time we
             // load this, but that's ok.
             let trigger = set.triggers[j];
+            trigger.filename = set.filename;
 
             if (!trigger.regex)
               console.error('Trigger ' + trigger.id + ': has no regex property specified');
@@ -308,6 +321,14 @@ class PopupText {
   }
 
   OnTrigger(trigger, matches) {
+    try {
+      this.OnTriggerInternal(trigger, matches);
+    } catch (e) {
+      onTriggerException(trigger, e);
+    }
+  }
+
+  OnTriggerInternal(trigger, matches) {
     if (!this.options.AlertsEnabled)
       return;
     if ('disabled' in trigger && trigger.disabled)
@@ -603,10 +624,20 @@ class PopupText {
       if ('run' in trigger)
         trigger.run(that.data, matches);
     };
-    if (!delay)
+
+    // Run immediately?
+    if (!delay) {
       f();
-    else
-      this.timers.push(window.setTimeout(f, delay * 1000));
+      return;
+    }
+
+    this.timers.push(window.setTimeout(() => {
+      try {
+        f();
+      } catch (e) {
+        onTriggerException(trigger, e);
+      }
+    }, delay * 1000));
   }
 
   Test(zone, log) {
