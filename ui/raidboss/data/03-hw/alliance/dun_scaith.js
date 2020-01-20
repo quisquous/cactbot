@@ -407,10 +407,10 @@
       // Ordinarily we wouldn't use a game log line for this.
       // However, the RP text seems to be the only indicator.
       id: 'Dun Scaith Shadow Links',
-      regex: / 00:0839:Shadows gather on the floor\./,
-      regexDe: / 00:0839:Schatten sammeln sich auf dem Boden/,
-      regexFr: / 00:0839:Le pouvoir des ombres se concentre sur le sol.../,
-      regexJa: / 00:0839:床に影の力が集束していく/,
+      regex: Regexes.message({ line: 'Shadows gather on the floor', capture: false }),
+      regexDe: Regexes.message({ line: 'Schatten sammeln sich auf dem Boden', capture: false }),
+      regexFr: Regexes.message({ line: 'Le pouvoir des ombres se concentre sur le sol', capture: false }),
+      regexJa: Regexes.message({ line: '床に影の力が集束していく', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Stop moving',

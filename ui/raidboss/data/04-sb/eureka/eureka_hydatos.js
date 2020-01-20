@@ -61,10 +61,10 @@
   triggers: [
     {
       id: 'Eureka Hydatos Falling Asleep',
-      regex: / 00:0039:5 minutes have elapsed since your last activity./,
-      regexDe: / 00:0039:Seit deiner letzten Aktivität sind 5 Minuten vergangen./,
-      regexFr: / 00:0039:Votre personnage est inactif depuis 5 minutes/,
-      regexCn: / 00:0039:已经5分钟没有进行任何操作/,
+      regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity.', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes', capture: false }),
+      regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作', capture: false }),
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
@@ -74,25 +74,25 @@
     },
     {
       id: 'Eureka Saved By Rememberance',
-      regex: / 00:0a39:The memories of heroes past live on again/,
-      regexDe: / 00:0a39:Das Vermächtnis vergangener Helden lebt von Neuem auf!/,
-      regexCn: / 00:0a39:发动了英杰的加护效果，重新苏醒了过来/,
+      regex: Regexes.gameLog({ line: 'The memories of heroes past live on again', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf', capture: false }),
+      regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来', capture: false }),
       sound: 'Long',
     },
     {
       id: 'BA Seal',
-      regex: / 00:0839:.*will be sealed off/,
-      regexDe: / 00:0839:.*bis sich der Zugang/,
-      regexCn: / 00:0839:距.*被封锁还有/,
+      regex: Regexes.message({ line: '.*will be sealed off', capture: false }),
+      regexDe: Regexes.message({ line: '.*bis sich der Zugang', capture: false }),
+      regexCn: Regexes.message({ line: '距.*被封锁还有', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
     },
     {
       id: 'BA Clear Data',
-      regex: / 00:0839:.*is no longer sealed/,
-      regexDe: / 00:0839:.*öffnet sich wieder/,
-      regexCn: / 00:0839:.*的封锁解除了/,
+      regex: Regexes.message({ line: '.*is no longer sealed', capture: false }),
+      regexDe: Regexes.message({ line: '.*öffnet sich wieder', capture: false }),
+      regexCn: Regexes.message({ line: '.*的封锁解除了', capture: false }),
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -356,9 +356,9 @@
     },
     {
       id: 'BA Owain Fire Element',
-      regex: / 00:0044:[^:]*:Munderg, turn flesh to ash/,
-      regexDe: / 00:0044:[^:]*:Munderg, entfessele den Flammeneid/,
-      regexCn: / 00:0044:[^:]*:红颈妖枪，点燃一切/,
+      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -375,9 +375,9 @@
     },
     {
       id: 'BA Owain Ice Element',
-      regex: / 00:0044:[^:]*:Munderg, turn blood to ice/,
-      regexDe: / 00:0044:[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen/,
-      regexCn: / 00:0044:[^:]*:红颈妖枪，冻结万物/,
+      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -728,10 +728,11 @@
       },
     },
     {
+      // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Colors',
-      regex: / 00:332e:Relative Virtue gains the effect of (Astral|Umbral) Essence/,
-      regexDe: / 00:332e:Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)/,
-      regexCn: / 00:332e:相对的美德 gains the effect of (光|暗)之腕/,
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of (Astral|Umbral) Essence', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of (光|暗)之腕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
