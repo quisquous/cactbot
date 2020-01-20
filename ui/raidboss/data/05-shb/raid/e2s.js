@@ -547,7 +547,7 @@
         fr: 'Vent infernal : Sortez',
         ja: 'ヘルウィンド: HP1になるよ',
         cn: '地狱之风：远离',
-        ko: '홍옥징: 힐 받고 들어가기',
+        ko: '홍옥징 대상자',
       },
       run: function(data) {
         data.hellWind = true;
@@ -604,7 +604,7 @@
         fr: 'Vent infernal : attendez les soins',
         ja: 'ヘルウィンド: HP戻ってから',
         cn: '地狱之风：等奶',
-        ko: '홍옥징: 힐 기다리기',
+        ko: '힐 받고 들어가기',
       },
     },
     {

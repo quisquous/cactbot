@@ -236,7 +236,7 @@
             ja: '中で散開',
             fr: 'Intérieur, écartez-vous',
             cn: '中间散开',
-            ko: '보스 가까이 탱끼리 같이',
+            ko: '보스 가까이 탱 약산개',
           };
         }
         return {
