@@ -165,12 +165,12 @@
       regexCn: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '虚声的阿托莫斯' }),
       regexKo: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '허성의 아토모스' }),
       alertText: function(data, matches) {
-        if (matches.target == '1C9F') {
+        if (matches.id == '1C9F') {
           return {
             en: 'Avoid Untethered Blue',
           };
         }
-        if (matches.target == '1CA0') {
+        if (matches.id == '1CA0') {
           return {
             en: 'Go to Untethered Blue',
           };
@@ -186,12 +186,12 @@
       regexCn: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '怨声的阿托莫斯' }),
       regexKo: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '원성의 아토모스' }),
       alertText: function(data, matches) {
-        if (matches.target == '1C9F') {
+        if (matches.id == '1C9F') {
           return {
             en: 'Avoid Untethered Yellow',
           };
         }
-        if (matches.target == '1CA0') {
+        if (matches.id == '1CA0') {
           return {
             en: 'Go to Untethered Yellow',
           };
