@@ -62,17 +62,17 @@ def translate_regex(regex, trans):
 
     did_work = False
     effectLines = [
-      'gains the effect',
-      'loses the effect',
-      'gainsEffect',
-      'losesEffect',
+        'gains the effect',
+        'loses the effect',
+        'gainsEffect',
+        'losesEffect',
     ]
     for effectLine in effectLines:
-      if line.find(effectLine):
-        for old, new in trans['~effectNames'].items():
-            did_work = did_work or re.search(old, line)
-            line = re.sub(old, new, line)
-        break
+        if line.find(effectLine):
+            for old, new in trans['~effectNames'].items():
+                did_work = did_work or re.search(old, line)
+                line = re.sub(old, new, line)
+            break
     for old, new in trans['replaceText'].items():
         did_work = did_work or re.search(old, line)
         line = re.sub(old, new, line)
@@ -264,9 +264,9 @@ def main(args):
     # Allow for just specifying the base filename, e.g. "o12s.js"
     if not os.path.exists(filename):
         for root, dirs, files in os.walk(base_triggers_path()):
-          if filename in files:
-            filename = os.path.join(root, filename)
-            break
+            if filename in files:
+                filename = os.path.join(root, filename)
+                break
     if not os.path.exists(filename):
         raise FileNotFoundError('Could not find file "%s"' % filename)
 
@@ -300,11 +300,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Rewrites the translation of a trigger/timeline file",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
     parser.add_argument('-f', '--file', help="The trigger file name, e.g. o5s.js")
-    parser.add_argument('-t', '--timeline', help="If passed, print out the timeline for a locale, e.g. de")
-    parser.add_argument('-gm', '--grep-missing', help="Filters -t for [all] missing elemnts, [text] only #MISSINGTEXT or [sync] only #MISSINGSYNC")
+    parser.add_argument(
+        '-t', '--timeline', help="If passed, print out the timeline for a locale, e.g. de"
+    )
+    parser.add_argument(
+        '-gm',
+        '--grep-missing',
+        help="Filters -t for [all] missing elements, [text] only #MISSINGTEXT or [sync] only #MISSINGSYNC",
+    )
 
     args = parser.parse_args()
 

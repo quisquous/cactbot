@@ -58,11 +58,7 @@ class CoinachReader:
         cmd_list = [
             os.path.join(self.coinach_path, _COINACH_EXE),
         ]
-        args = [
-            self.ffxiv_path,
-            'lang %s' % lang,
-            '%s %s' % (coinach_cmd, table)
-        ]
+        args = [self.ffxiv_path, 'lang %s' % lang, '%s %s' % (coinach_cmd, table)]
 
         cmd_list.extend(map(lambda x: '"%s"' % x, args))
         cmd = ' '.join(cmd_list)
@@ -75,17 +71,11 @@ class CoinachReader:
         # This will throw an exception if stuff is VERY wrong
         # however, return code is still 0 even if all exports fail.
         # Also, it seems to need to be run from the SaintCoinach directory.
-        raw_output = subprocess.check_output(
-            cmd,
-            cwd=self.coinach_path,
-        )
+        raw_output = subprocess.check_output(cmd, cwd=self.coinach_path,)
         output = raw_output.decode('utf8')
 
         # Manually check output for errors.
-        m = re.search(
-            r'^([0-9])* files exported, ([0-9])* failed',
-            output,
-            re.MULTILINE)
+        m = re.search(r'^([0-9])* files exported, ([0-9])* failed', output, re.MULTILINE)
         if not m:
             raise CoinachError('Unknown output', cmd, output)
         if m.group(1) == '0':
@@ -95,18 +85,11 @@ class CoinachReader:
 
         # Find directory that this export was written to.
         # There's no way to control this.
-        m = re.search(
-            r'^Definition version: ([0-9.]*)',
-            output,
-            re.MULTILINE)
+        m = re.search(r'^Definition version: ([0-9.]*)', output, re.MULTILINE)
         if not m:
             raise CoinachError('Unknown output', cmd, output)
 
-        csv_filename = os.path.join(
-            self.coinach_path,
-            m.group(1),
-            coinach_cmd,
-            '%s.csv' % table)
+        csv_filename = os.path.join(self.coinach_path, m.group(1), coinach_cmd, '%s.csv' % table)
 
         if self.verbose:
             print('output: \n%s' % output)

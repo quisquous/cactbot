@@ -98,7 +98,9 @@ def update_raw_csv(monsters, url, locale):
 
 
 def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
-    reader = coinach.CoinachReader(coinach_path=_saint_conainch_cmd_path, ffxiv_path=_ffxiv_game_path)
+    reader = coinach.CoinachReader(
+        coinach_path=_saint_conainch_cmd_path, ffxiv_path=_ffxiv_game_path
+    )
     monsters = {}
     update_coinach(monsters, reader)
     update_raw_csv(monsters, _BASE_GITHUB + _CN_GITHUB, 'cn')
@@ -113,7 +115,8 @@ def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
         os.path.join('resources', _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
         'gMonster',
-        all_monsters)
+        all_monsters,
+    )
 
     print(f"File '{_OUTPUT_FILE}' successfully created.")
 
@@ -124,10 +127,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description="Creates hunt.js for the Radar overlay",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
-    parser.add_argument('-fp', '--ffxiv-path', help="Path to FFXIV installation (None == Default location)")
-    parser.add_argument('-scp', '--saint-coinach-cmd-path', help="Path to SaintCoinach.cmd (None == Default location)")
+    parser.add_argument(
+        '-fp', '--ffxiv-path', help="Path to FFXIV installation (None == Default location)"
+    )
+    parser.add_argument(
+        '-scp',
+        '--saint-coinach-cmd-path',
+        help="Path to SaintCoinach.cmd (None == Default location)",
+    )
     parser.add_argument('-cp', '--cactbot-path', help="Path to CACTBOT (None == Default location)")
 
     args = parser.parse_args()

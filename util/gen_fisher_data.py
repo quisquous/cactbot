@@ -12,7 +12,9 @@ import argparse
 locales = ['de', 'en', 'fr', 'ja']
 tackle_id = 30
 base = 'https://xivapi.com/'
-fishTrackerBase = 'https://raw.githubusercontent.com/icykoneko/ff14-fish-tracker-app/master/private/fishData.yaml'
+fishTrackerBase = (
+    'https://raw.githubusercontent.com/icykoneko/ff14-fish-tracker-app/master/private/fishData.yaml'
+)
 
 # First argument is the API key
 if len(sys.argv) > 1:
@@ -27,7 +29,7 @@ def cleanup_german(word):
     word = word.replace('[t]', 'der')
 
     if word.find('[a]') == -1:
-      return [word]
+        return [word]
 
     # [a] is complicated, and can mean different things in different contexts.
     # Just cover all our bases here.
@@ -133,7 +135,10 @@ def get_fish_data():
         for locale in locales:
             # Occasionally, PlaceName data will have null or empty strings in the NameNoArticle field
             # In these instances, I believe it simply defaults to the Name attribute
-            name = result['PlaceName'][f'NameNoArticle_{locale}'] or result['PlaceName'][f'Name_{locale}']
+            name = (
+                result['PlaceName'][f'NameNoArticle_{locale}']
+                or result['PlaceName'][f'Name_{locale}']
+            )
             place_id = result['PlaceName']['ID']
             places[locale][place_id] = name
 
@@ -158,7 +163,7 @@ def get_fish_data():
                 flist = [x for idx, x in enumerate(flist) if idx == flist.index(x) and x]
                 # delistify if only one element
                 if len(flist) == 1:
-                  flist = flist[0]
+                    flist = flist[0]
 
                 fishes[locale][fish['ID']] = flist
 
@@ -166,9 +171,8 @@ def get_fish_data():
                 id_list.append(fish['ID'])
 
             # Set IDs to the place ID if it's new or bigger
-            if (
-                    (place_id not in placefish and len(id_list)) or
-                    (place_id in placefish and len(id_list) > len(placefish[place_id]))
+            if (place_id not in placefish and len(id_list)) or (
+                place_id in placefish and len(id_list) > len(placefish[place_id])
             ):
                 placefish[place_id] = id_list
 
@@ -177,7 +181,10 @@ def get_fish_data():
 
 def get_tackle():
     # Also get fishing tackle
-    response = xivapi('ItemSearchCategory', {'id': tackle_id, 'columns': ['GameContentLinks.Item.ItemSearchCategory']})
+    response = xivapi(
+        'ItemSearchCategory',
+        {'id': tackle_id, 'columns': ['GameContentLinks.Item.ItemSearchCategory']},
+    )
 
     item_ids = response['GameContentLinks']['Item']['ItemSearchCategory']
     columns = ['ID'] + [f'Singular_{locale}' for locale in locales]
@@ -258,9 +265,9 @@ def append_special_place_names(places):
             continue
 
         if isinstance(places['de'][place], list):
-          places['de'][place].append(m.group(1))
+            places['de'][place].append(m.group(1))
         else:
-          places['de'][place] = [places['de'][place], m.group(1)]
+            places['de'][place] = [places['de'][place], m.group(1)]
 
 
 def get_cn_data():
@@ -275,13 +282,13 @@ def get_cn_data():
     return places, fishes, tackle
 
 
-
 if __name__ == "__main__":
     example_usage = "python3 get_fisher_data.py"
     parser = argparse.ArgumentParser(
         description="Generate fisher data from xivapi",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
     args = parser.parse_args()
 
     places, fishes, placefish = get_fish_data()
@@ -304,8 +311,4 @@ if __name__ == "__main__":
 
     filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
     writer = coinach.CoinachWriter()
-    writer.write(
-        filename,
-        os.path.basename(os.path.abspath(__file__)),
-        'gFisherData',
-        data)
+    writer.write(filename, os.path.basename(os.path.abspath(__file__)), 'gFisherData', data)

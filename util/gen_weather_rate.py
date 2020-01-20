@@ -39,7 +39,8 @@ def update(reader, writer):
         os.path.join('resources', _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
         'gWeatherRates',
-        all_rates)
+        all_rates,
+    )
 
 
 if __name__ == "__main__":

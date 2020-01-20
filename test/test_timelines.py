@@ -40,15 +40,19 @@ def main():
 
             # No timelineFile attribute found within trigger file
             if not match:
-                print(f'Error: Trigger file {trigger_filename} has no timelineFile '
-                      f'attribute defined.')
+                print(
+                    f'Error: Trigger file {trigger_filename} has no timelineFile attribute '
+                    f'defined.'
+                )
                 exit_status = 1
                 continue
 
             # Found an unexpected timelineFile in the trigger file definition
             if match['timelineFile'] != filepath.name:
-                print(f"Error: Trigger file {trigger_filename} has `triggerFile: '{match[1]}'`"
-                      f", but was expecting `triggerFile: '{filepath.name}'`.")
+                print(
+                    f"Error: Trigger file {trigger_filename} has `triggerFile: '{match[1]}'`, but "
+                    f"was expecting `triggerFile: '{filepath.name}'`."
+                )
                 exit_status = 1
 
         # Timeline file has no trigger file equivalent
