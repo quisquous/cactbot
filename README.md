@@ -105,12 +105,12 @@ For more instructions about adding and configuring cactbot overlays, see the [Ad
 
 Follow all the steps above for installing cactbot first.
 
-#Precondition:
+# Precondition:
 1. `curl` MUST be installed (this is used to download dependencies)
 
-#Steps
+# Steps
 1. Execute the `./tools/fetch_deps.py` script
-2. If the script throws an error, do following:
+- If the script throws an error, do following:
 2. Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/OverlayPlugin](plugin/ThirdParty/OverlayPlugin).
 2. Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/ACT](plugin/ThirdParty/ACT).
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
