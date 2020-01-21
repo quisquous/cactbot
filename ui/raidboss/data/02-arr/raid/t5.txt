@@ -38,7 +38,7 @@ hideall "--sync--"
 400.0 "Divebomb" sync /:Twintania:5B0:/ window 400,0
 407.9 "Divebomb" sync /:Twintania:5B0:/
 415.6 "Divebomb" sync /:Twintania:5B0:/
-419.6 "1x Ascelpius add"
+419.6 "1x Asclepius add"
 419.6 "2x Hygieia adds"
 465.3 "Divebomb" sync /:Twintania:5B0:/ window 30,5
 473.0 "Divebomb" sync /:Twintania:5B0:/

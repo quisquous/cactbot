@@ -209,7 +209,8 @@
       'locale': 'de',
       'replaceSync': {
         'Engage!': 'Start!',
-        'The Right Hand of Bahamut will be sealed off': 'bis sich der Zugang zur Rechten Hand von Bahamut schließt',
+        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
+        'The Right Hand of Bahamut will be sealed off': 'bis sich der Zugang zu[rm]? Rechte Hand von Bahamut schließt',
         'Twintania': 'Twintania',
       },
       'replaceText': {
@@ -231,7 +232,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque!',
+        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
         'The Right Hand of Bahamut will be sealed off': 'Fermeture de la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },
@@ -255,6 +257,7 @@
       'locale': 'ja',
       'replaceSync': {
         'Engage!': '戦闘開始！',
+        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
         'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': 'ツインタニア',
       },
@@ -272,6 +275,54 @@
         'Plummet': 'プラメット',
         'Twister': '大竜巻',
         'Unwoven Will': 'アンウォーヴェンウィル',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
+        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
+        'Twintania': '双塔尼亚',
+      },
+      'replaceText': {
+        '--targetable--': '--targetable--', // FIXME
+        'Aetheric Profusion': '以太失控',
+        'Asclepius': '阿斯克勒庇俄斯',
+        'Death Sentence': '死刑',
+        'Divebomb': '爆破俯冲',
+        'Fireball': '火球',
+        'Firestorm': '火焰风暴',
+        'Hatch': '魔力爆散',
+        'Hygieia': '许癸厄亚',
+        'Liquid Hell': '液体地狱',
+        'Plummet': '垂直下落',
+        'Twister': '大龙卷',
+        'Unwoven Will': '破愿',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
+        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
+        'Twintania': '트윈타니아',
+      },
+      'replaceText': {
+        '--targetable--': '--targetable--', // FIXME
+        'Aetheric Profusion': '에테르 홍수',
+        'Asclepius': '아스클레피오스',
+        'Death Sentence': '사형 선고',
+        'Divebomb': '급강하 폭격',
+        'Fireball': '화염구',
+        'Firestorm': '불보라',
+        'Hatch': '마력 방출',
+        'Hygieia': '히기에이아',
+        'Liquid Hell': '지옥의 늪',
+        'Plummet': '곤두박질',
+        'Twister': '대회오리',
+        'Unwoven Will': '짓밟힌 의지',
       },
     },
   ],
