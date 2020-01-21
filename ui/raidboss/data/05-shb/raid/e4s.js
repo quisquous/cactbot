@@ -41,12 +41,12 @@
     },
     {
       id: 'E4S Earthen Armor',
-      regex: Regexes.ability({ id: '40E7', source: 'Titan', capture: false }),
-      regexDe: Regexes.ability({ id: '40E7', source: 'Titan', capture: false }),
-      regexFr: Regexes.ability({ id: '40E7', source: 'Titan', capture: false }),
-      regexJa: Regexes.ability({ id: '40E7', source: 'タイタン', capture: false }),
-      regexCn: Regexes.ability({ id: '40E7', source: '泰坦', capture: false }),
-      regexKo: Regexes.ability({ id: '40E7', source: '타이탄', capture: false }),
+      regex: Regexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
+      regexDe: Regexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
+      regexFr: Regexes.ability({ id: ['40E7', '40E9'], source: 'Titan', capture: false }),
+      regexJa: Regexes.ability({ id: ['40E7', '40E9'], source: 'タイタン', capture: false }),
+      regexCn: Regexes.ability({ id: ['40E7', '40E9'], source: '泰坦', capture: false }),
+      regexKo: Regexes.ability({ id: ['40E7', '40E9'], source: '타이탄', capture: false }),
       run: function(data) {
         data.phase = 'armor';
         delete data.printedBury;

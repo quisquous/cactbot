@@ -20,7 +20,7 @@
     },
     {
       id: 'T8 Landmine Start',
-      regex: / 00:0839:Landmines have been scattered/,
+      regex: Regexes.message({ line: 'Landmines have been scattered', capture: false }),
       alertText: {
         en: 'Explode Landmines',
       },

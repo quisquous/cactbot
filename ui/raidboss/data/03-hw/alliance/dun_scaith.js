@@ -165,12 +165,12 @@
       regexCn: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '虚声的阿托莫斯' }),
       regexKo: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '허성의 아토모스' }),
       alertText: function(data, matches) {
-        if (matches.target == '1C9F') {
+        if (matches.id == '1C9F') {
           return {
             en: 'Avoid Untethered Blue',
           };
         }
-        if (matches.target == '1CA0') {
+        if (matches.id == '1CA0') {
           return {
             en: 'Go to Untethered Blue',
           };
@@ -186,12 +186,12 @@
       regexCn: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '怨声的阿托莫斯' }),
       regexKo: Regexes.startsUsing({ id: ['1C9F', '1CA0'], target: '원성의 아토모스' }),
       alertText: function(data, matches) {
-        if (matches.target == '1C9F') {
+        if (matches.id == '1C9F') {
           return {
             en: 'Avoid Untethered Yellow',
           };
         }
-        if (matches.target == '1CA0') {
+        if (matches.id == '1CA0') {
           return {
             en: 'Go to Untethered Yellow',
           };
@@ -407,10 +407,10 @@
       // Ordinarily we wouldn't use a game log line for this.
       // However, the RP text seems to be the only indicator.
       id: 'Dun Scaith Shadow Links',
-      regex: / 00:0839:Shadows gather on the floor\./,
-      regexDe: / 00:0839:Schatten sammeln sich auf dem Boden/,
-      regexFr: / 00:0839:Le pouvoir des ombres se concentre sur le sol.../,
-      regexJa: / 00:0839:床に影の力が集束していく/,
+      regex: Regexes.message({ line: 'Shadows gather on the floor', capture: false }),
+      regexDe: Regexes.message({ line: 'Schatten sammeln sich auf dem Boden', capture: false }),
+      regexFr: Regexes.message({ line: 'Le pouvoir des ombres se concentre sur le sol', capture: false }),
+      regexJa: Regexes.message({ line: '床に影の力が集束していく', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Stop moving',

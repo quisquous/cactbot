@@ -150,6 +150,9 @@
   triggers: [
     {
       id: 'Test Poke',
+      // TODO: change this to Regexes
+      // e.g. "00:001d:\y{Name}:You poke the striking dummy."
+      // Are other emotes on the same id?
       regex: /:You poke the striking dummy/,
       regexDe: /:Du stupst die Trainingspuppe an/,
       regexFr: /:Vous touchez légèrement le mannequin d'entraînement du doigt/,
@@ -247,9 +250,9 @@
     {
       id: 'Test Lang',
       // In game: /echo cactbot lang
-      regex: / 00:0038:cactbot lang/,
-      regexDe: / 00:0038:cactbot sprache/,
-      regexKo: / 00:0038:cactbot 언어/,
+      regex: Regexes.echo({ line: 'cactbot lang', capture: false }),
+      regexDe: Regexes.echo({ line: 'cactbot sprache', capture: false }),
+      regexKo: Regexes.echo({ line: 'cactbot 언어', capture: false }),
       infoText: function(data) {
         return {
           en: 'Language: ' + data.lang,
