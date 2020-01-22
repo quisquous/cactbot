@@ -111,8 +111,9 @@ Follow all the steps above for installing cactbot first.
 ##### Steps
 1. Execute the `./tools/fetch_deps.py` script
   - In case of an error do following:
-  - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/OverlayPlugin](plugin/ThirdParty/OverlayPlugin).
   - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/ACT](plugin/ThirdParty/ACT).
+  - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/FFXIV_ACT](plugin/ThirdParty/FFXIV_ACT).
+  - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/OverlayPlugin](plugin/ThirdParty/OverlayPlugin).
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
 1. Build for "Release" and "x64".
 1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
