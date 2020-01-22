@@ -8,6 +8,10 @@ import tarfile
 import zipfile
 import time
 
+########################################################################################################
+## The original script was created by ngld in https://github.com/ngld/OverlayPlugin/tree/master/tools ##
+########################################################################################################
+
 
 def find_basedir():
     base = os.path.abspath(os.path.dirname(__file__))
