@@ -1,1 +1,7 @@
-Put your Advanced Combat Tracker.exe and FFXIV_ACT_Plugin.dll here for building.
+Please download the latest Zipfile from https://github.com/EQAditu/AdvancedCombatTracker/releases/download/
+Extract the Advanced Combat Tracker.exe
+
+ACT
+|- Advanced Combat Tracker.exe
+|- dummy.txt
+

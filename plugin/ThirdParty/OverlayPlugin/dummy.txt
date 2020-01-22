@@ -1,16 +1,13 @@
-This directory is for DLLs from ngld's OverlayPlugin.
+Please download the latest Zipfile from https://github.com/ngld/OverlayPlugin/releases/download/
+Extract the "libs" folder as well as the OverlayPlugin.dll
 
-Download from: https://github.com/ngld/OverlayPlugin/releases
+OverlayPlugin
+|- libs
+|  |- HtmlRenderer.dll
+|  |- Newtonsoft.Json.dll
+|  |- OverlayPlugin.Common.dll
+|  |- OverlayPlugin.Core.dll
+|  |- OverlayPlugin.dll
+|- dummy.txt
+|- OverlayPlugin.dll
 
-It needs to be installed and enabled in ACT, as per https://github.com/ngld/OverlayPlugin/blob/master/README-en.md
-
-Copy the output from a release into this directory.
-It should look something like:
-
-  OverlayPlugin.dll
-  libs/
-      HtmlRenderer.dll
-      Newtonsoft.Json.dll
-      OverlayPlugin.Common.dll
-      OverlayPlugin.Core.dll
-      OverlayPlugin.dll
