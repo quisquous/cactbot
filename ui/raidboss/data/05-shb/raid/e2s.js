@@ -531,7 +531,7 @@
         fr: 'Dégâts de zone des Brasiers',
         ja: 'フレア AoE',
         cn: '核爆AOE',
-        ko: '플레어 aoes',
+        ko: '플레어 터짐',
       },
     },
     {

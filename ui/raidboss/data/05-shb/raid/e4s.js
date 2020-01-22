@@ -135,7 +135,7 @@
         fr: 'Marque de package',
         ja: '橙色: スタック',
         cn: '橙色：集合',
-        ko: '쉐어징',
+        ko: '징: 쉐어',
       },
     },
     {
@@ -306,7 +306,7 @@
             de: 'Zuerst in die Ecken gehen',
             fr: 'Allez dans les coins en premier',
             cn: '先去角落',
-            ko: '먼저 코너로 이동',
+            ko: '먼저 구석으로 이동',
           };
         }
       },
@@ -342,7 +342,7 @@
         fr: 'Charge tank',
         ja: 'タンクに突進',
         cn: '坦克冲锋',
-        ko: '탱 돌진',
+        ko: '탱커를 향해 돌진',
       },
     },
     {
@@ -430,7 +430,7 @@
         fr: 'Gauche puis restez',
         ja: 'ずっと左',
         cn: '一直在左',
-        ko: ' 왼쪽 => 왼쪽',
+        ko: '왼쪽 => 왼쪽',
       },
     },
     {
@@ -911,6 +911,7 @@
         'Crumbling Down': '암반 낙하',
         'Bury': '충격',
         'Bomb Boulders': '바위폭탄',
+        'Earthen Wheels/Gauntlets': '대지의 바퀴/완갑',
         'Aftershock': '여파',
         '--untargetable--': '--타겟불가능--',
         '--targetable--': '--타겟가능--',
