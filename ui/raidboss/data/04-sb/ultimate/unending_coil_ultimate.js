@@ -2035,7 +2035,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Fang of Light': 'croc de lumière',
         'Firehorn': 'corne-de-feu',
         'Iceclaw': 'griffe-de-glace',
@@ -2070,7 +2070,7 @@
         'Doom': 'Glas',
         'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
         'Earth Shaker': 'Secousse',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Enrage': 'Enrage',
         'Exaflare': 'ExaBrasier',
         'Fellruin Trio': 'Trio du désastre',

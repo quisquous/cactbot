@@ -316,7 +316,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Augmented Rocket Punch': 'astéropoing renforcé',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Level Checker': 'vérifiniveau',
         'Omega': 'Oméga',
         'Rocket Punch': 'Astéropoing',

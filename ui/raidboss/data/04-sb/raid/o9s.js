@@ -737,7 +737,7 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Sphère de chaos',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'dark crystal': 'cristal noir',
       },
       'replaceText': {

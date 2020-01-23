@@ -821,7 +821,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Left Arm Unit': 'unité bras gauche',
         'Omega': 'Oméga',
         'Omega-F': 'Oméga-F',

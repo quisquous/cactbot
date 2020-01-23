@@ -93,7 +93,7 @@
       'replaceSync': {
         'Electrogenetic Force': 'Force électrogénétique',
         'Embodiment': 'double de Gilgamesh',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Gilgamesh': 'Gilgamesh',
         'Inoshikacho': 'Ino-shika-cho',
         'Yojimbo': 'Yojimbo',

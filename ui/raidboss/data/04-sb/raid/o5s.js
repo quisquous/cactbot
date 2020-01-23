@@ -192,7 +192,7 @@
       'replaceSync': {
         'Agony': 'Fantôme Souffrant',
         'Doom Chimney': 'cheminée maléfique',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Malice': 'Malveillance',
         'Phantom Train': 'train fantôme',
         'Putrid Passenger': 'passager putride',
@@ -214,7 +214,7 @@
         'Diabolic Wind': 'Vent diabolique',
         'Doom Strike': 'Frappe létale',
         'Encumber': 'Encombrement',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Enrage': 'Enrage',
         'Ghosts spawn': 'Pop des Fantômes',
         'Head On': 'Plein fouet',

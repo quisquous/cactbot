@@ -234,7 +234,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Omega': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',

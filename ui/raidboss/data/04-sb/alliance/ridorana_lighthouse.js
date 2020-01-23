@@ -804,7 +804,7 @@
         'Construct 7.1': 'Bâtisseur n°7 amélioré',
         'Dark Rain': 'Trombe d\'eau',
         'Echoes from Time\'s Garden will be sealed off': 'Fermeture du Jardin d\'un autre temps dans',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Famfrit, The Darkening Cloud': 'Famfrit le Nuage Ténébreux',
         'Gigas': 'serviteur de Bélias',
         'Heart of the Dragon': 'cœur de Yiazmat',

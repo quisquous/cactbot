@@ -240,7 +240,7 @@
         'Diffractive Laser': 'Laser diffracteur',
         'Diffractive Plasma': 'Plasma diffracteur',
         'Electric Pulse': 'Impulsion électrique',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Ink': 'Encre',

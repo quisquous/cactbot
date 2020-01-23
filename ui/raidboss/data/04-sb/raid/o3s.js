@@ -459,7 +459,7 @@
       'replaceSync': {
         'Ancient Tome': 'volume ancien',
         'Apanda': 'apanda',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Great Dragon': 'dragon suprême',
         'Halicarnassus': 'Halicarnasse',
         'Soul Reaper': 'faucheur d\'âmes',

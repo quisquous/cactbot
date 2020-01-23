@@ -229,7 +229,7 @@
         'Dull Pain': 'Douleur sourde',
         'Earthquake': 'Grand séisme',
         'Easterlies': 'Rafale Ultim',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Enrage': 'Enrage',
         'Featherlance': 'Lance de plume',
         'Flash Fire': 'Flammes subites',

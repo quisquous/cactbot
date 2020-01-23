@@ -395,7 +395,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Dancing Fan': 'maiôgi',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Moondust': 'fragment de lune',
         'Moonlight': 'Clair de lune',
         'Specter': 'spector',

@@ -838,7 +838,7 @@
         'Blizzard III': 'Méga Glace',
         'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
         'Celestriad': 'Tristella',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',

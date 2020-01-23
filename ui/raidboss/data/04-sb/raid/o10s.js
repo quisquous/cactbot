@@ -281,7 +281,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Ancient Dragon': 'dragon ancien',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Immortal Key': 'clef immortelle',
         'Midgardsormr': 'Midgardsormr',
       },

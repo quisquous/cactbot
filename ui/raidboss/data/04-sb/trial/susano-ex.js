@@ -285,7 +285,7 @@
         'Ama-No-Iwato': 'ama no iwato',
         'Ame-No-Murakumo': 'Ame no Murakumo',
         'Dark Levin': 'foudre violette',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
         'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
         'REJOICE!': 'MOUAAAAAAH !',

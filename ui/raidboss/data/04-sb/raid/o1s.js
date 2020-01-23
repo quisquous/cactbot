@@ -178,7 +178,7 @@
         'Alte Roite': 'Alte Roite',
         'Alte Roite starts using The Classical Elements': 'Alte Roite starts using The Classical Elements', // FIXME
         'Black Hole': 'Trou noir',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Exdeath': 'Exdeath',
         'Removing combatant Alte Roite': 'Removing combatant Alte Roite', // FIXME
         'Wyrm Tail': 'Queue du dragon ancestral',

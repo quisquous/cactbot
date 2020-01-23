@@ -245,7 +245,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Augmented Rocket Punch': 'astéropoing renforcé',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Engaging Delta Attack protocol': 'Nécessité d\'utiliser l\'attaque Delta',
         'Level Checker': 'vérifiniveau',
         'Omega': 'Oméga',
