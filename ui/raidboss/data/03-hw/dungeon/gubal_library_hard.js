@@ -250,116 +250,226 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'Behemoth Ward': 'Buch-Behemoth',
         'Demon of the Tome': 'Bücherdämon',
-        'Liquid Flame': 'flüssig[a] Flamme',
-        // Strix is the same for DE
-
-        'The Hall of Magicks': 'Halle der Magie',
+        'Liquid Flame': 'flüssig(?:e|er|es|en) Flamme',
+        'Meteor': 'Meteo',
+        'Middle Shelf Tome': 'Pappband',
+        'Strix': 'Strix',
         'The Astrology and Astromancy Camera': 'Astrologisches und Astronomisches Gewölbe',
+        'The Hall of Magicks': 'Halle der Magie',
         'The Rare Tomes Room': 'Abteilung für seltene Schriften',
+        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
+        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
+        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
+        'Top Shelf Tome': 'Prachtband',
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Triclip': 'Dreischnitt',
-        'Folio': 'Foliant',
-        'Book Drop': 'Publizieren',
-        'Issue': 'Publizieren',
-        'Frightful Roar': 'Furchtbares Brüllen',
-        'Discontinue': 'Druck einstellen',
-
-        'Searing Wind': 'Versengen',
         'Bibliocide': 'Bibliozid',
-        'Sea Of Flames': 'Flammenmeer',
-        'Slosh': 'Durchbläuen',
-        'Seal Of Night And Day': 'Siegel',
-        'Magnetism': 'Magnetismus',
-        'Repel': 'Abstoßung',
-
+        'Book Drop': 'Book Drop', // FIXME
         'Check Out': 'Anthologie',
-        'Properties Of Darkness (buster)': 'Theorie der Dunkelung',
-        'Properties Of Quakes': 'Theorie des Seisga',
-        'Properties Of Darkness II': 'Theorie der Dunkelung II',
-        'Properties Of Tornados': 'Theorie des Tornado',
-        'Properties Of Imps': 'Über Flusskobolde',
-        'Properties Of Thunder III': 'Theorie des Blitzga',
-        'Meteor Impact': 'Meteoreinschlag',
+        'Discontinue': 'Druck einstellen',
         'Ecliptic Meteor': 'Ekliptik-Meteor',
+        'Folio': 'Foliant',
+        'Form Shift': 'Formwechsel',
+        'Frightful Roar': 'Furchtbares Brüllen',
+        'Hand/Tornado': 'Hand/Tornado',
+        'Issue': 'Publizieren',
+        'Magnetism': 'Magnetismus',
+        'Meteor Impact': 'Meteoreinschlag',
+        'Properties Of Darkness': 'Theorie der Dunkelung',
+        'Properties Of Imps': 'Über Flusskobolde',
+        'Properties Of Quakes': 'Theorie des Seisga',
+        'Properties Of Thunder III': 'Theorie des Blitzga',
+        'Properties Of Tornados': 'Theorie des Tornado',
+        'Quakes/Tornados': 'Seisga/Tornados',
+        'Repel': 'Abstoßung',
+        'Sea Of Flames': 'Flammenmeer',
+        'Seal Of Night And Day': 'Siegel',
+        'Searing Wind': 'Versengen',
+        'Slosh': 'Durchbläuen',
+        'Triclip': 'Dreischnitt',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
+        'Behemoth Ward': 'béhémoth conjuré',
         'Demon of the Tome': 'Démon du Tome',
-        'Liquid Flame': 'Flamme Liquide',
-        // Strix is the same for FR
-
-        'The Hall of Magicks will be sealed off': 'Fermeture du Puits des magies',
-        'The Astrology and Astromancy Camera will be sealed off': 'Fermeture du Dôme d\'astrologie et d\'astromancie',
-        'The Rare Tomes Room will be sealed off': 'Fermeture du Dôme des manuscrits rares',
-        'is no longer sealed': 'Ouverture',
+        'Liquid Flame': 'flamme liquide',
+        'Meteor': 'Météore',
+        'Middle Shelf Tome': 'livre broché',
+        'Strix': 'Strix',
+        'The Astrology and Astromancy Camera': 'Dôme d\'astrologie et d\'astromancie',
+        'The Hall of Magicks': 'Puits des magies',
+        'The Rare Tomes Room': 'Dôme des manuscrits rares',
+        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
+        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
+        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
+        'Top Shelf Tome': 'livre relié',
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        // Triclip is the same for FR
-        'Folio': 'Réimpression',
-        'Book Drop': 'Publication',
-        'Issue': 'Publication',
-        'Frightful Roar': 'Rugissement effroyable',
-        'Discontinue': 'Arrêt de publication',
-
-        'Searing Wind': 'Carbonisation',
-        // Bibliocide is the same for FR
-        'Sea Of Flames': 'Mer de flammes',
-        'Slosh': 'Ruée',
-        'Seal Of Night And Day': 'Gravure',
-        'Magnetism': 'Magnétisme',
-        'Repel': 'Répulsion',
-
+        'Bibliocide': 'Bibliocide',
+        'Book Drop': 'Book Drop', // FIXME
         'Check Out': 'Anthologie',
-        'Properties Of Darkness (buster)': 'Des propriétés d\'Obscurité',
-        'Properties Of Quakes': 'Des propriétés de Méga Séisme',
-        'Properties Of Darkness II': 'Des propriétés d\'Extra Obscurité',
-        'Properties Of Tornados': 'Des propriétés de Tornade',
-        'Properties Of Imps': 'Des propriétés de Coup du kappa',
-        'Properties Of Thunder III': 'Des propriétés de Méga Foudre',
-        'Meteor Impact': 'Impact de météore',
+        'Discontinue': 'Arrêt de publication',
         'Ecliptic Meteor': 'Météore écliptique',
+        'Folio': 'Réimpression',
+        'Form Shift': 'Glissement de posture',
+        'Frightful Roar': 'Rugissement effroyable',
+        'Hand/Tornado': 'Hand/Tornado', // FIXME
+        'Issue': 'Publication',
+        'Magnetism': 'Magnétisme',
+        'Meteor Impact': 'Impact de météore',
+        'Properties Of Darkness': 'Des propriétés d\'Obscurité',
+        'Properties Of Imps': 'Des propriétés de Coup du kappa',
+        'Properties Of Quakes': 'Des propriétés de Méga Séisme',
+        'Properties Of Thunder III': 'Des propriétés de Méga Foudre',
+        'Properties Of Tornados': 'Des propriétés de Tornade',
+        'Quakes/Tornados': 'Quakes/Tornados', // FIXME
+        'Repel': 'Répulsion',
+        'Sea Of Flames': 'Mer de flammes',
+        'Seal Of Night And Day': 'Gravure',
+        'Searing Wind': 'Carbonisation',
+        'Slosh': 'Ruée',
+        'Triclip': 'Triclip',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
+        'Behemoth Ward': 'ベヒーモス・ワード',
         'Demon of the Tome': 'デモン・オブ・トーム',
         'Liquid Flame': 'リクイドフレイム',
+        'Meteor': 'メテオ',
+        'Middle Shelf Tome': '並製本',
         'Strix': 'ストリックス',
-
-        'The Hall of Magicks': '魔書の翼廊',
         'The Astrology and Astromancy Camera': '占星学研究室',
+        'The Hall of Magicks': '魔書の翼廊',
         'The Rare Tomes Room': '思想稀覯書庫',
+        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
+        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
+        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
+        'Top Shelf Tome': '上製本',
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Triclip': 'トライクリップ',
-        'Folio': '重版',
-        'Book Drop': '刊行',
-        'Issue': '刊行',
-        'Frightful Roar': 'フライトフルロア',
-        'Discontinue': '廃刊',
-
-        'Searing Wind': '熱風',
         'Bibliocide': '火炎',
-        'Sea Of Flames': 'シー・オブ・フレイム',
-        'Slosh': '突進',
-        'Seal Of Night And Day': '刻印',
-        'Magnetism': '磁力',
-        'Repel': '反発',
-
+        'Book Drop': 'Book Drop', // FIXME
         'Check Out': '選書',
-        'Properties Of Darkness (buster)': 'ダークの章',
-        'Properties Of Quakes': 'クエイガの章',
-        'Properties Of Darkness II': 'ダークラの章',
-        'Properties Of Tornados': 'トルネドの章',
-        'Properties Of Imps': 'カッパの章',
-        'Properties Of Thunder III': 'サンダガの章',
-        'Meteor Impact': 'メテオインパクト',
+        'Discontinue': '廃刊',
         'Ecliptic Meteor': 'エクリプスメテオ',
+        'Folio': '重版',
+        'Form Shift': '演武',
+        'Frightful Roar': 'フライトフルロア',
+        'Hand/Tornado': 'Hand/Tornado', // FIXME
+        'Issue': '刊行',
+        'Magnetism': '磁力',
+        'Meteor Impact': 'メテオインパクト',
+        'Properties Of Darkness': 'ダークの章',
+        'Properties Of Imps': 'カッパの章',
+        'Properties Of Quakes': 'クエイガの章',
+        'Properties Of Thunder III': 'サンダガの章',
+        'Properties Of Tornados': 'トルネドの章',
+        'Quakes/Tornados': 'Quakes/Tornados', // FIXME
+        'Repel': '反発',
+        'Sea Of Flames': 'シー・オブ・フレイム',
+        'Seal Of Night And Day': '刻印',
+        'Searing Wind': '熱風',
+        'Slosh': '突進',
+        'Triclip': 'トライクリップ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Behemoth Ward': '贝希摩斯护卫',
+        'Demon of the Tome': '书中恶魔',
+        'Liquid Flame': '液态火焰',
+        'Meteor': '陨石',
+        'Middle Shelf Tome': '平装本',
+        'Strix': '博学林鸮',
+        'The Astrology and Astromancy Camera': '占星学研究室',
+        'The Hall of Magicks': '魔书翼廊',
+        'The Rare Tomes Room': '思想珍秘书库',
+        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
+        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
+        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
+        'Top Shelf Tome': '精装本',
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        'Bibliocide': '焚书',
+        'Book Drop': 'Book Drop', // FIXME
+        'Check Out': '选集',
+        'Discontinue': '停刊',
+        'Ecliptic Meteor': '黄道陨石',
+        'Folio': '再版',
+        'Form Shift': '演武',
+        'Frightful Roar': '骇人嚎叫',
+        'Hand/Tornado': 'Hand/Tornado', // FIXME
+        'Issue': '发行',
+        'Magnetism': '磁力',
+        'Meteor Impact': '陨石冲击',
+        'Properties Of Darkness': '黑暗之章',
+        'Properties Of Imps': '河童之章',
+        'Properties Of Quakes': '爆震之章',
+        'Properties Of Thunder III': '暴雷之章',
+        'Properties Of Tornados': '龙卷之章',
+        'Quakes/Tornados': 'Quakes/Tornados', // FIXME
+        'Repel': '相斥',
+        'Sea Of Flames': '', // FIXME
+        'Seal Of Night And Day': '刻印',
+        'Searing Wind': '热风',
+        'Slosh': '突进',
+        'Triclip': '三连爪',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Behemoth Ward': '고서의 베히모스',
+        'Demon of the Tome': '고서의 악마',
+        'Liquid Flame': '액체 불꽃',
+        'Meteor': '메테오',
+        'Middle Shelf Tome': '문고본',
+        'Strix': '스트릭스',
+        'The Astrology and Astromancy Camera': '점성학 연구실',
+        'The Hall of Magicks': '악마서 복도',
+        'The Rare Tomes Room': '사상희귀서고',
+        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
+        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
+        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
+        'Top Shelf Tome': '양장본',
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        'Bibliocide': '화염',
+        'Book Drop': 'Book Drop', // FIXME
+        'Check Out': '도서 선정',
+        'Discontinue': '폐간',
+        'Ecliptic Meteor': '황도 메테오',
+        'Folio': '증쇄',
+        'Form Shift': '연무',
+        'Frightful Roar': '끔찍한 포효',
+        'Hand/Tornado': 'Hand/Tornado', // FIXME
+        'Issue': '간행',
+        'Magnetism': '자력',
+        'Meteor Impact': '운석 낙하',
+        'Properties Of Darkness': '다크의 장',
+        'Properties Of Imps': '물요정의 장',
+        'Properties Of Quakes': '퀘이가의 장',
+        'Properties Of Thunder III': '선더가의 장',
+        'Properties Of Tornados': '토네이도의 장',
+        'Quakes/Tornados': 'Quakes/Tornados', // FIXME
+        'Repel': '반발',
+        'Sea Of Flames': '', // FIXME
+        'Seal Of Night And Day': '각인',
+        'Searing Wind': '열풍',
+        'Slosh': '돌진',
+        'Triclip': '삼단베기',
       },
     },
   ],
