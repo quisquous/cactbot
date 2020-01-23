@@ -9,19 +9,19 @@
 12.7 "Earthquake" sync /:Catastrophe starts using Earthquake/ window 13,5
 25.2 "100 Gs" # blue floaties
 29.6 "Antilight (center)" duration 17
-49.3 "Grav Wave"
+49.3 "Gravitational Wave"
 59.2 "Double Stack"
 73.4 "Paranormal Wave"
-75.7 "Grav Distortion"
+75.7 "Gravitational Distortion"
 78.4 "Paranormal Wave"
 87.4 "Evilsphere"
 95.4 "Paranormal Wave"
 107.0 "Probes (T/H)" # appearing
 110.7 "Death's Gaze" duration 6
 117.7 "Epicenter" sync /:Catastrophe starts using Epicenter/ window 5,5
-129.2 "Grav Wave"
+129.2 "Gravitational Wave"
 137.2 "100 Gs" # blue floaties
-145.2 "Grav Wave"
+145.2 "Gravitational Wave"
 150.4 "Paranormal Wave"
 159.2 "Double Stack"
 175.4 "Paranormal Wave"
@@ -33,8 +33,8 @@
 211.4 "Death's Gaze" duration 6
 227.3 "100 Gs" # blue floaties
 231.2 "Antilight (center)" duration 17
-237.7 "Unstable Grav (T/H)"
-241.6 "Grav Wave"
+237.7 "Unstable Gravity (T/H)"
+241.6 "Gravitational Wave"
 253.7 "Long Drop"
 264.7 "100 Gs" # blue floaties
 268.7 "Antilight" duration 17
@@ -65,8 +65,8 @@
 470.6 "100 Gs" # blue floaties
 480.7 "Long Drop"
 482.9 "Death's Gaze" duration 6
-493.6 "Grav Distortion"
-495.6 "Grav Wave"
+493.6 "Gravitational Distortion"
+495.6 "Gravitational Wave"
 498.6 "Paranormal Wave"
 502.6 "Antilight" duration 17
 513.9 "100 Gs" # blue floaties
@@ -77,13 +77,13 @@
 
 ### NOTE: times past here haven't been adjusted from video.
 
-554.9 "Grav Distortion"
+554.9 "Gravitational Distortion"
 562.9 "Antilight" duration 17
 572.9 "100 Gs" # blue floaties
 577.9 "Earthquake"
-587.9 "Grav Wave"
+587.9 "Gravitational Wave"
 592.9 "Antilight" duration 17
 602.9 "100 Gs" # blue floaties
 607.9 "Earthquake"
-614.9 "Grav Wave (Enrage)"
+614.9 "Gravitational Wave (Enrage)"
 627.9 "Enrage"

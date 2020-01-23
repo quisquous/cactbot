@@ -96,8 +96,8 @@ hideall "--sync--"
 2000.0 "--sync--" sync /Guidance will be sealed off/ window 2000,10
 2010.9 "Spirit Wave" sync /:Ivon Coeurlfist:1FE7:/
 2018.6 "Hurricane Kick" sync /:Ivon Coeurlfist:1FE5:/
-2026.7 "Touch Of Slaughter" sync /:Ivon Coeurlfist:1FE6:/
-2030.9 "Couerl Whisper" sync /:Ivon Coeurlfist:1FE9:/
+2026.7 "Touch of Slaughter" sync /:Ivon Coeurlfist:1FE6:/
+2030.9 "Coeurl Whisper" sync /:Ivon Coeurlfist:1FE9:/
 2042.0 "Silent Roar" sync /:Ivon Coeurlfist:1FEB:/
 2062.0 "Rhalgr's Piece" sync /:Ivon Coeurlfist:1FED:/
 2069.1 "The Rose Of Destruction" sync /:Ivon Coeurlfist:1FEE:/ window 20,20
@@ -109,29 +109,29 @@ hideall "--sync--"
 2114.6 "Impact" sync /:Ivon Coeurlfist:1FF1:/ window 120,20
 
 2125.3 "Spirit Wave" sync /:Ivon Coeurlfist:1FE7:/
-2127.5 "Couerl Whisper" sync /:Ivon Coeurlfist:1FE9:/
+2127.5 "Coeurl Whisper" sync /:Ivon Coeurlfist:1FE9:/
 2137.4 "Rhalgr's Piece" sync /:Ivon Coeurlfist:1FED:/
 2142.8 "Silent Roar" sync /:Ivon Coeurlfist:1FEB:/
-2156.9 "Touch Of Slaughter" sync /:Ivon Coeurlfist:1FE6:/ window 30,30
+2156.9 "Touch of Slaughter" sync /:Ivon Coeurlfist:1FE6:/ window 30,30
 2161.6 "Hurricane Kick" sync /:Ivon Coeurlfist:1FE5:/
 2175.8 "Spirit Wave" sync /:Ivon Coeurlfist:1FE7:/
-2178.0 "Couerl Whisper" sync /:Ivon Coeurlfist:1FE9:/
+2178.0 "Coeurl Whisper" sync /:Ivon Coeurlfist:1FE9:/
 2187.2 "The Rose Of Destruction" sync /:Ivon Coeurlfist:1FEE:/
 2192.3 "Silent Roar" sync /:Ivon Coeurlfist:1FEB:/
 
 2210.5 "Spirit Wave" sync /:Ivon Coeurlfist:1FE7:/ window 30,30
-2212.7 "Couerl Whisper" sync /:Ivon Coeurlfist:1FE9:/
+2212.7 "Coeurl Whisper" sync /:Ivon Coeurlfist:1FE9:/
 2222.6 "Rhalgr's Piece" sync /:Ivon Coeurlfist:1FED:/
 2228.0 "Silent Roar" sync /:Ivon Coeurlfist:1FEB:/
-2242.1 "Touch Of Slaughter" sync /:Ivon Coeurlfist:1FE6:/ window 30,30
+2242.1 "Touch of Slaughter" sync /:Ivon Coeurlfist:1FE6:/ window 30,30
 2246.8 "Hurricane Kick" sync /:Ivon Coeurlfist:1FE5:/
 2261.0 "Spirit Wave" sync /:Ivon Coeurlfist:1FE7:/
-2263.2 "Couerl Whisper" sync /:Ivon Coeurlfist:1FE9:/
+2263.2 "Coeurl Whisper" sync /:Ivon Coeurlfist:1FE9:/
 2272.4 "The Rose Of Destruction" sync /:Ivon Coeurlfist:1FEE:/
 2277.5 "Silent Roar" sync /:Ivon Coeurlfist:1FEB:/ jump 2192.3
 
 2295.7 "Spirit Wave"
-2297.9 "Couerl Whisper"
+2297.9 "Coeurl Whisper"
 2307.8 "Rhalgr's Piece"
 2313.2 "Silent Roar"
-2327.3 "Touch Of Slaughter"
+2327.3 "Touch of Slaughter"

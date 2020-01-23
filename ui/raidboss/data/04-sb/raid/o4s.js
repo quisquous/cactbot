@@ -1035,27 +1035,61 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Black Hole': 'Schwarz[a] Loch',
+        'Black Hole': 'Schwarzes Loch',
         'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
+        'uses Almagest': 'uses Almagest', // FIXME
+        'uses Dualcast': 'uses Dualcast', // FIXME
+        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
+        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
+        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
+        '--Boss Targetable--': '--Boss Targetable--', // FIXME
+        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
+        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
+        'Aero III': 'Windga',
+        'Almagest': 'Almagest',
         'Black Hole': 'Schwarzes Loch',
         'Black Spark': 'Schwarzer Funke',
         'Blizzard III': 'Eisga',
+        'Charge': 'Sturm',
+        'Charybdis': 'Charybdis',
         'Clearout': 'Kreisfeger',
         'Collision': 'Aufprall',
+        'Cursed Shriek': 'Schrei der Verwünschung',
+        'Delta Attack': 'Delta-Attacke',
         'Doom': 'Verhängnis',
+        'Double Attack': 'Doppelangriff',
+        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
+        'Dualcast': 'Doppelzauber',
+        'Earth Shaker': 'Erdstoß',
+        'Emptiness': 'Tobende Leere',
         'Enrage': 'Finalangriff',
+        'Final Battle': 'Final Battle', // FIXME
         'Fire III': 'Feuga',
         'Flare': 'Flare',
+        'Flood of Naught': 'Flut der Leere',
+        'Forked Lightning': 'Gabelblitz',
+        'Frenzied Fist': 'Rasende Faust',
+        'Frenzied Sphere': 'Rasender Orbis',
+        'Grand Cross Alpha': 'Supernova Alpha',
+        'Grand Cross Delta': 'Supernova Delta',
+        'Grand Cross Omega': 'Supernova Omega',
+        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': 'Sanctus',
-        'Meteor': 'Meteor',
+        'Knockback': 'Knockback', // FIXME
+        'Light and Darkness': 'Licht und Dunkelheit',
+        'Meteor': 'Meteo',
+        'Neverwhere': 'Nirgendwann',
+        'Random Elemental': 'Random Elemental', // FIXME
         'The Decisive Battle': 'Entscheidungsschlacht',
         'Thunder III': 'Blitzga',
         'Vacuum Wave': 'Vakuumwelle',
+        'Water': 'Aqua',
+        'White Hole': 'Weißes Loch',
         'Zombie Breath': 'Zombie-Atem',
       },
       '~effectNames': {
@@ -1063,44 +1097,76 @@
         'Doom': 'Verhängnis',
         'Lightning Resistance Down': 'Blitzresistenz -',
         'Paralysis': 'Paralyse',
-        'Pyretic': 'Pyretisch',
+        'Pyretic': 'Hitze',
         'Zombification': 'Zombie',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Black Hole': 'Trou Noir',
-        'Engage!': 'À l\'attaque',
+        'Black Hole': 'Trou noir',
+        'Engage!': 'À l\'attaque!',
         'Exdeath': 'Exdeath',
+        'uses Almagest': 'uses Almagest', // FIXME
+        'uses Dualcast': 'uses Dualcast', // FIXME
+        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
+        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
+        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
+        '--Boss Targetable--': '--Boss Targetable--', // FIXME
+        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
+        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
-        'Black Hole': 'Trou Noir',
-        'Black Spark': 'Étincelle Noire',
+        'Aero III': 'Méga Vent',
+        'Almagest': 'Almageste',
+        'Black Hole': 'Trou noir',
+        'Black Spark': 'Étincelle noire',
         'Blizzard III': 'Méga Glace',
+        'Charge': 'Charge',
+        'Charybdis': 'Charybde',
         'Clearout': 'Fauchage',
         'Collision': 'Impact',
+        'Cursed Shriek': 'Cri maudit',
+        'Delta Attack': 'Attaque Delta',
         'Doom': 'Glas',
+        'Double Attack': 'Double attaque',
+        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
+        'Dualcast': 'Chaîne de sorts',
+        'Earth Shaker': 'Secousse',
+        'Emptiness': 'Désolation du néant',
         'Enrage': 'Enrage',
+        'Final Battle': 'Final Battle', // FIXME
         'Fire III': 'Méga Feu',
         'Flare': 'Brasier',
+        'Flood of Naught': 'Crue du néant',
+        'Forked Lightning': 'Éclair ramifié',
+        'Frenzied Fist': 'Poing de la démence',
+        'Frenzied Sphere': 'Démence terminale',
+        'Grand Cross Alpha': 'Croix suprême alpha',
+        'Grand Cross Delta': 'Croix suprême delta',
+        'Grand Cross Omega': 'Croix suprême oméga',
+        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': 'Miracle',
+        'Knockback': 'Knockback', // FIXME
+        'Light and Darkness': 'Clair-obscur',
         'Meteor': 'Météore',
-        'The Decisive Battle': 'Combat Décisif',
+        'Neverwhere': 'Anarchie',
+        'Random Elemental': 'Random Elemental', // FIXME
+        'The Decisive Battle': 'Combat décisif',
         'Thunder III': 'Méga Foudre',
-        'Vacuum Wave': 'Vacuum',
-        'Zombie Breath': 'Haleine Zombie',
+        'Vacuum Wave': 'Vague de vide',
+        'Water': 'Eau',
+        'White Hole': 'Trou blanc',
+        'Zombie Breath': 'Haleine zombie',
       },
       '~effectNames': {
         'Deep Freeze': 'Congélation',
         'Doom': 'Glas',
-        'Lightning Resistance Down': 'Résistance à La Foudre Réduite',
+        'Lightning Resistance Down': 'Résistance à la foudre réduite',
         'Paralysis': 'Paralysie',
-        'Pyretic': 'Chaleur',
+        'Pyretic': 'Ardeur',
         'Zombification': 'Zombification',
       },
     },
@@ -1110,21 +1176,58 @@
         'Black Hole': 'ブラックホール',
         'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
+        'uses Almagest': 'uses Almagest', // FIXME
+        'uses Dualcast': 'uses Dualcast', // FIXME
+        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
+        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
+        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
+        '--Boss Targetable--': '--Boss Targetable--', // FIXME
+        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
+        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
+        '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
+        'Aero III': 'エアロガ',
+        'Almagest': 'アルマゲスト',
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',
         'Blizzard III': 'ブリザガ',
+        'Charge': 'チャージ',
+        'Charybdis': 'ミールストーム',
         'Clearout': 'なぎ払い',
         'Collision': '衝撃',
+        'Cursed Shriek': '呪詛の叫声',
+        'Delta Attack': 'デルタアタック',
         'Doom': '死の宣告',
+        'Double Attack': 'ダブルアタック',
+        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
+        'Dualcast': '連続魔',
+        'Earth Shaker': 'アースシェイカー',
+        'Emptiness': '無の暴走',
+        'Enrage': 'Enrage',
+        'Final Battle': 'Final Battle', // FIXME
         'Fire III': 'ファイガ',
         'Flare': 'フレア',
+        'Flood of Naught': '無の氾濫',
+        'Forked Lightning': 'フォークライトニング',
+        'Frenzied Fist': '狂乱の拳',
+        'Frenzied Sphere': '狂乱の極地',
+        'Grand Cross Alpha': 'グランドクロス・アルファ',
+        'Grand Cross Delta': 'グランドクロス・デルタ',
+        'Grand Cross Omega': 'グランドクロス・オメガ',
+        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': 'ホーリー',
+        'Knockback': 'Knockback', // FIXME
+        'Light and Darkness': 'ライト・アンド・ダークネス',
         'Meteor': 'メテオ',
+        'Neverwhere': '法則崩壊',
+        'Random Elemental': 'Random Elemental', // FIXME
         'The Decisive Battle': '決戦',
         'Thunder III': 'サンダガ',
         'Vacuum Wave': '真空波',
+        'Water': 'ウォータ',
+        'White Hole': 'ホワイトホール',
         'Zombie Breath': 'ゾンビブレス',
       },
       '~effectNames': {
@@ -1134,6 +1237,144 @@
         'Paralysis': '麻痺',
         'Pyretic': 'ヒート',
         'Zombification': 'ゾンビー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Black Hole': '黑洞',
+        'Engage!': '战斗开始！',
+        'Exdeath': '艾克斯迪司',
+        'uses Almagest': 'uses Almagest', // FIXME
+        'uses Dualcast': 'uses Dualcast', // FIXME
+        'uses Emptiness': 'uses Emptiness', // FIXME
+      },
+      'replaceText': {
+        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
+        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
+        '--Boss Targetable--': '--Boss Targetable--', // FIXME
+        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
+        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Aero III': '暴风',
+        'Almagest': '至高无上',
+        'Black Hole': '黑洞',
+        'Black Spark': '黑洞',
+        'Blizzard III': '冰封',
+        'Charge': '刺冲',
+        'Charybdis': '大漩涡',
+        'Clearout': '横扫',
+        'Collision': '冲击',
+        'Cursed Shriek': '诅咒之嚎',
+        'Delta Attack': '三角攻击',
+        'Doom': '死亡宣告',
+        'Double Attack': '双重攻击',
+        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
+        'Dualcast': '连续咏唱',
+        'Earth Shaker': '大地摇动',
+        'Emptiness': '无之失控',
+        'Enrage': 'Enrage', // FIXME
+        'Final Battle': 'Final Battle', // FIXME
+        'Fire III': '爆炎',
+        'Flare': '核爆',
+        'Flood of Naught': '无之泛滥',
+        'Forked Lightning': '', // FIXME
+        'Frenzied Fist': '狂乱之拳',
+        'Frenzied Sphere': '狂乱领域',
+        'Grand Cross Alpha': '大十字·阿尔法',
+        'Grand Cross Delta': '大十字·德尔塔',
+        'Grand Cross Omega': '大十字·欧米茄',
+        'HP Down Debuff': 'HP Down Debuff', // FIXME
+        'Holy': '神圣',
+        'Knockback': 'Knockback', // FIXME
+        'Light and Darkness': '光与暗',
+        'Meteor': '陨石',
+        'Neverwhere': '规律崩坏',
+        'Random Elemental': 'Random Elemental', // FIXME
+        'The Decisive Battle': '决战',
+        'Thunder III': '暴雷',
+        'Vacuum Wave': '真空波',
+        'Water': '流水',
+        'White Hole': '白洞',
+        'Zombie Breath': '死亡吐息',
+      },
+      '~effectNames': {
+        'Deep Freeze': '冻结',
+        'Doom': '死亡宣告',
+        'Lightning Resistance Down': '雷属性耐性降低',
+        'Paralysis': '麻痹',
+        'Pyretic': '', // FIXME
+        'Zombification': '僵尸',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Black Hole': '블랙홀',
+        'Engage!': '전투 시작!',
+        'Exdeath': '엑스데스',
+        'uses Almagest': 'uses Almagest', // FIXME
+        'uses Dualcast': 'uses Dualcast', // FIXME
+        'uses Emptiness': 'uses Emptiness', // FIXME
+      },
+      'replaceText': {
+        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
+        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
+        '--Boss Targetable--': '--Boss Targetable--', // FIXME
+        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
+        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Aero III': '에어로가',
+        'Almagest': '알마게스트',
+        'Black Hole': '블랙홀',
+        'Black Spark': '검은 불꽃',
+        'Blizzard III': '블리자가',
+        'Charge': '돌격',
+        'Charybdis': '대소용돌이',
+        'Clearout': '휩쓸기',
+        'Collision': '충격',
+        'Cursed Shriek': '저주의 외침',
+        'Delta Attack': '델타 공격',
+        'Doom': '죽음의 선고',
+        'Double Attack': '이중 공격',
+        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
+        'Dualcast': '연속 마법',
+        'Earth Shaker': '요동치는 대지',
+        'Emptiness': '무의 폭주',
+        'Enrage': 'Enrage', // FIXME
+        'Final Battle': 'Final Battle', // FIXME
+        'Fire III': '파이가',
+        'Flare': '플레어',
+        'Flood of Naught': '무의 범람',
+        'Forked Lightning': '', // FIXME
+        'Frenzied Fist': '광란의 주먹',
+        'Frenzied Sphere': '광란의 극지',
+        'Grand Cross Alpha': '그랜드크로스: 알파',
+        'Grand Cross Delta': '그랜드크로스: 델타',
+        'Grand Cross Omega': '그랜드크로스: 오메가',
+        'HP Down Debuff': 'HP Down Debuff', // FIXME
+        'Holy': '홀리',
+        'Knockback': 'Knockback', // FIXME
+        'Light and Darkness': '빛과 어둠',
+        'Meteor': '메테오',
+        'Neverwhere': '법칙 붕괴',
+        'Random Elemental': 'Random Elemental', // FIXME
+        'The Decisive Battle': '결전',
+        'Thunder III': '선더가',
+        'Vacuum Wave': '진공파',
+        'Water': '워터',
+        'White Hole': '화이트홀',
+        'Zombie Breath': '좀비 숨결',
+      },
+      '~effectNames': {
+        'Deep Freeze': '빙결',
+        'Doom': '죽음의 선고',
+        'Lightning Resistance Down': '번개속성 저항 감소',
+        'Paralysis': '마비',
+        'Pyretic': '', // FIXME
+        'Zombification': '좀비',
       },
     },
   ],

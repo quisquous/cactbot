@@ -232,134 +232,191 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Coeurl Sruti': 'Coeurl Sruti',
-        'Coeurl Smriti': 'Coeurl Smriti',
         'Arbuda': 'Arbuda',
+        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
+        'Coeurl Smriti': 'Coeurl Smriti',
+        'Coeurl Sruti': 'Coeurl Sruti',
+        'Guidance will be sealed off': 'bis sich der Zugang zu[rm]? Unterweisung schließt',
+        'Harmony will be sealed off': 'bis sich der Zugang zu[rm]? Harmonie schließt',
         'Ivon Coeurlfist': 'Ivon Coeurlfaust',
+        'Tourmaline Pond will be sealed off': 'bis sich der Zugang zu[rm]? Turmalinteich schließt',
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
+        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        'Basic Instinct': 'Kampfinstinkt',
+        'Cardinal Shift': 'Großrotation',
+        'Coeurl Whisper': 'Coeurl-Flüstern',
+        'Electric Burst': 'Stromstoß',
+        'Fourfold Shear': 'Vierschere',
+        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Furious Fists': 'Todeskralle',
+        'Heat Lightning': 'Hitzeblitz',
+        'Hellseal': 'Höllensiegel',
+        'Hurricane Kick': 'Hurrikan-Tritt',
+        'Impact': 'Impakt',
+        'Killer Instinct': 'Vorausahnung',
         'Pounce': 'Raubtiertatze',
         'Radial Blaster': 'Radial-Blaster',
-        'Wide Blaster': 'Weitwinkel-Blaster',
-        'Electric Burst': 'Stromstoß',
-        'Heat Lightning': 'Hitzeblitz',
-        'Basic Instinct': 'Kampfinstinkt',
-
-        'Cardinal Shift': 'Großrotation',
-        'Fourfold Shear': 'Vierschere',
-        'Killer Instinct': 'Vorausahnung',
-        'Hellseal': 'Höllensiegel',
-        'Tapas': 'Kasteiung',
-
-        'Spirit Wave': 'Mentale Welle',
-        'Hurricane Kick': 'Hurrikan-Tritt',
-        'Touch of Slaughter': 'Hauch des Gemetzels',
-        'Coeurl Whisper': 'Coeurl-Flüstern',
+        'Rhalgr\'s Piece': 'Gewalt des Zerstörers',
         'Silent Roar': 'Stilles Brüllen',
-        'Rhalgr\'s Piece': 'Gewalt Des Zerstörers',
+        'Spirit Wave': 'Mentale Welle',
+        'Tapas': 'Kasteiung',
         'The Rose Of Destruction': 'Zermalmender Geist',
-        'Furious Fists': 'Todeskralle',
-        'Impact': 'Einschlag',
+        'Touch of Slaughter': 'Hauch des Gemetzels',
+        'Wide Blaster': 'Weitwinkel-Blaster',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Coeurl Sruti': 'Coeurl Sruti',
-        'Coeurl Smriti': 'Coeurl Smriti',
         'Arbuda': 'Arbuda',
-        'Ivon Coeurlfist': 'Ivon Le Coeurl',
+        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
+        'Coeurl Smriti': 'coeurl smriti',
+        'Coeurl Sruti': 'coeurl sruti',
+        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
+        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
+        'Ivon Coeurlfist': 'Ivon le Coeurl',
+        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Pounce': 'Attaque Subite',
-        'Radial Blaster': 'Fulguration Radiale',
-        'Wide Blaster': 'Fulguration Large',
-        'Basic Instinct': 'Instinct Profond',
-        'Electric Burst': 'Salve électrique',
-        'Heat Lightning': 'Éclair De Chaleur',
-
-        'Cardinal Shift': 'Rotation Cardinale',
-        'Fourfold Shear': 'Quadruple Cisaille',
-        'Killer Instinct': 'Instinct Meurtrier',
-        'Hellseal': 'Sceau Infernal',
-        'Tapas': 'Tapas',
-
-        'Spirit Wave': 'Onde Spirituelle',
-        'Hurricane Kick': 'Coup De Pied Ouragan',
-        'Touch of Slaughter': 'Toucher massacreur',
+        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        'Basic Instinct': 'Instinct profond',
+        'Cardinal Shift': 'Rotation cardinale',
         'Coeurl Whisper': 'Murmure du Coeurl',
-        'Silent Roar': 'Hurlement Silencieux',
-        'Rhalgr\'s Piece': 'Force De Rhalgr',
-        'The Rose Of Destruction': 'Rose de la destruction',
-        'Furious Fists': 'Poings Furieux',
+        'Electric Burst': 'Salve électrique',
+        'Fourfold Shear': 'Quadruple cisaille',
+        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Furious Fists': 'Poings furieux',
+        'Heat Lightning': 'Éclair de chaleur',
+        'Hellseal': 'Sceau infernal',
+        'Hurricane Kick': 'Coup de pied ouragan',
         'Impact': 'Impact',
+        'Killer Instinct': 'Instinct meurtrier',
+        'Pounce': 'Attaque subite',
+        'Radial Blaster': 'Fulguration radiale',
+        'Rhalgr\'s Piece': 'Force de Rhalgr',
+        'Silent Roar': 'Hurlement silencieux',
+        'Spirit Wave': 'Onde spirituelle',
+        'Tapas': 'Tapas',
+        'The Rose Of Destruction': 'Rose de la destruction',
+        'Touch of Slaughter': 'Toucher massacreur',
+        'Wide Blaster': 'Fulguration large',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
-        'Coeurl Sruti': 'クァール・シュルティ',
-        'Coeurl Smriti': 'クァール・スムリティ',
         'Arbuda': 'アブダ',
+        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
+        'Coeurl Smriti': 'クァール・スムリティ',
+        'Coeurl Sruti': 'クァール・シュルティ',
+        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
+        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '双豹のイヴォン',
+        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
+        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        'Basic Instinct': '闘争本能',
+        'Cardinal Shift': '四剣大回転',
+        'Coeurl Whisper': '双豹招来',
+        'Electric Burst': 'エレクトリックバースト',
+        'Fourfold Shear': '四連双斬',
+        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Furious Fists': '双豹蒼連撃',
+        'Heat Lightning': 'ヒートライトニング',
+        'Hellseal': '試練の刻印',
+        'Hurricane Kick': '霊魂旋風脚',
+        'Impact': 'インパクト',
+        'Killer Instinct': '見切り',
         'Pounce': 'パウンス',
         'Radial Blaster': 'ラディアルブラスター',
-        'Wide Blaster': 'ワイドブラスター',
-        'Basic Instinct': '闘争本能',
-        'Electric Burst': 'エレクトリックバースト',
-        'Heat Lightning': 'ヒートライトニング',
-
-        'Cardinal Shift': '四剣大回転',
-        'Fourfold Shear': '四連双斬',
-        'Killer Instinct': '見切り',
-        'Hellseal': '試練の刻印',
-        'Tapas': '苦苔',
-
-        'Spirit Wave': '真霊波',
-        'Hurricane Kick': '霊魂旋風脚',
-        'Touch of Slaughter': '霊魂秘孔拳',
-        'Coeurl Whisper': '双豹招来',
-        'Silent Roar': '双豹撃',
         'Rhalgr\'s Piece': '壊神拳',
+        'Silent Roar': '双豹撃',
+        'Spirit Wave': '真霊波',
+        'Tapas': '苦行',
         'The Rose Of Destruction': '闘霊弾',
-        'Furious Fists': '双豹蒼連撃',
-        'Impact': 'ラールガーズインパクト',
+        'Touch of Slaughter': '霊魂秘孔拳',
+        'Wide Blaster': 'ワイドブラスター',
       },
     },
     {
       'locale': 'cn',
       'replaceSync': {
-        'Coeurl Sruti': '凶豹所闻',
-        'Coeurl Smriti': '凶豹所忆',
         'Arbuda': '额部陀',
+        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
+        'Coeurl Smriti': '凶豹所忆',
+        'Coeurl Sruti': '凶豹所闻',
+        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
+        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '双豹伊沃恩',
+        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
+        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        'Basic Instinct': '斗争本能',
+        'Cardinal Shift': '四剑大回旋',
+        'Coeurl Whisper': '双豹招来',
+        'Electric Burst': '电光爆发',
+        'Fourfold Shear': '四连双斩',
+        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Furious Fists': '双豹苍连击',
+        'Heat Lightning': '惊电',
+        'Hellseal': '试炼刻印',
+        'Hurricane Kick': '灵魂旋风脚',
+        'Impact': '冲击',
+        'Killer Instinct': '预判',
         'Pounce': '爪袭',
         'Radial Blaster': '放射冲击波',
-        'Wide Blaster': '广域冲击波',
-        'Basic Instinct': '斗争本能',
-        'Electric Burst': '电光爆发',
-        'Heat Lightning': '惊电',
-
-        'Cardinal Shift': '四剑大回旋',
-        'Fourfold Shear': '四连双斩',
-        'Killer Instinct': '预判',
-        'Hellseal': '试炼刻印',
-        'Tapas': '苦苔',
-
-        'Spirit Wave': '真灵波',
-        'Hurricane Kick': '灵魂旋风脚',
-        'Touch of Slaughter': '灵魂秘孔拳',
-        'Coeurl Whisper': '双豹招来',
-        'Silent Roar': '双豹击',
         'Rhalgr\'s Piece': '破坏神拳',
-        // FIXME This didn't show up when using translate_fight
-        'The Rose Of Destruction': 'The Rose Of Destruction',
-        'Furious Fists': '双豹苍连击',
-        'Impact': '拉尔戈冲击',
+        'Silent Roar': '双豹击',
+        'Spirit Wave': '真灵波',
+        'Tapas': '苦行',
+        'The Rose Of Destruction': '斗灵弹',
+        'Touch of Slaughter': '灵魂秘孔拳',
+        'Wide Blaster': '广域冲击波',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Arbuda': '아부다',
+        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
+        'Coeurl Smriti': '커얼 스므리티',
+        'Coeurl Sruti': '커얼 슈루티',
+        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
+        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
+        'Ivon Coeurlfist': '쌍표범 이본',
+        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        'Basic Instinct': '투쟁 본능',
+        'Cardinal Shift': '사중 대회전',
+        'Coeurl Whisper': '쌍표범 소환',
+        'Electric Burst': '전하 폭발',
+        'Fourfold Shear': '사연속 베기',
+        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Furious Fists': '쌍표창연격',
+        'Heat Lightning': '뜨거운 번개',
+        'Hellseal': '시련의 각인',
+        'Hurricane Kick': '영혼의 선풍각',
+        'Impact': '임팩트',
+        'Killer Instinct': '간파',
+        'Pounce': '덮치기',
+        'Radial Blaster': '방사형 블래스터',
+        'Rhalgr\'s Piece': '파신권',
+        'Silent Roar': '쌍표격',
+        'Spirit Wave': '진령파',
+        'Tapas': '고행',
+        'The Rose Of Destruction': '투령탄',
+        'Touch of Slaughter': '영혼의 혈도 찌르기',
+        'Wide Blaster': '광범위 블래스터',
       },
     },
   ],

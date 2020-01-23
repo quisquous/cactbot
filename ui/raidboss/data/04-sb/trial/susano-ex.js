@@ -226,31 +226,36 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Ama-No-Iwato': 'Ama No Iwato',
-        'Ame-No-Murakumo': 'Ame No Murakumo',
-        'Dark Levin': 'Violett[a] Blitz',
+        'Ama-No-Iwato': 'Ama no Iwato',
+        'Ame-No-Murakumo': 'Ame no Murakumo',
+        'Dark Levin': 'violett(?:e|er|es|en) Blitz',
         'Engage!': 'Start!',
-        'Susano': 'Susano',
-        'Thunderhead': 'Gewitterwolke',
-        'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
         'How our hearts sing in the chaos': 'Jahaha! Weiter so!',
+        'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
         'REJOICE!': 'Uohhh!',
+        'Susano': 'Susano',
+        'Thunderhead': 'Donnerhall',
       },
       'replaceText': {
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Ame No Murakumo': 'Ame No Murakumo',
+        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Schwere Attacke',
         'Brightstorm': 'Heller Sturm',
         'Churn': 'Schaum',
         'Churning Deep': 'Schäumen',
+        'Dark Levin': 'violett(?:e|er|es|en) Blitz',
         'Electrocution': 'Stromschlag',
         'Enrage': 'Finalangriff',
+        'Knockback': 'Rückstoß',
         'Levinbolt': 'Keraunisches Feld',
+        'Phase': 'Phase',
         'Rasen Kaikyo': 'Rasen Kaikyo',
         'Seasplitter': 'Seespalter',
         'Sheer Force': 'Schwertgewalt',
         'Shock': 'Entladung',
+        'Stack': 'Sammeln',
         'Stormsplitter': 'Sturmspalter',
         'The Altered Gate': 'Gewendetes Tor',
         'The Hidden Gate': 'Verschwundenes Tor',
@@ -259,17 +264,13 @@
         'Ukehi': 'Ukehi',
         'Yasakani No Magatama': 'Yasakani No Magatama',
         'Yata No Kagami': 'Yata No Kagami',
-        'Dark Levin': 'Violetter Blitz',
-        'Knockback': 'Rückstoß',
-        'Stack': 'Stacken',
         'cloud': 'Wolke',
         'dice': 'Würfel (Bombe)',
-        'Ame-No-Murakumo add': 'Ame no Murakumo Add',
       },
       '~effectNames': {
         'Churning': 'Schäumend',
         'Clashing': 'Gekreuzte Klingen',
-        'Fetters': 'Granitgefängnis',
+        'Fetters': 'Fesselung',
         'Flesh Wound': 'Fleischwunde',
         'Lightning Resistance Down': 'Blitzresistenz -',
         'Paralysis': 'Paralyse',
@@ -281,59 +282,56 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Ama-No-Iwato': 'Ama No Iwato',
-        'Ame-No-Murakumo': 'Ame No Murakumo',
-        'Dark Levin': 'Foudre Violette',
-        'Engage!': 'À l\'attaque',
-        'Susano': 'Susano',
-        'Thunderhead': 'Nuage Orageux',
-        'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
+        'Ama-No-Iwato': 'ama no iwato',
+        'Ame-No-Murakumo': 'Ame no Murakumo',
+        'Dark Levin': 'foudre violette',
+        'Engage!': 'À l\'attaque!',
         'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
+        'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
         'REJOICE!': 'MOUAAAAAAH !',
+        'Susano': 'Susano',
+        'Thunderhead': 'Pointe d\'éclair',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Ame No Murakumo': 'Ame No Murakumo',
+        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Assaut',
-        'Brightstorm': 'Claire Tempête',
+        'Brightstorm': 'Claire tempête',
         'Churn': 'Agitation',
-        'Churning Deep': 'Agitation Profonde',
+        'Churning Deep': 'Agitation profonde',
+        'Dark Levin': 'foudre violette',
         'Electrocution': 'Électrocution',
         'Enrage': 'Enrage',
+        'Knockback': 'Knockback', // FIXME
         'Levinbolt': 'Fulguration',
+        'Phase': 'Phase', // FIXME
         'Rasen Kaikyo': 'Rasen Kaikyo',
-        'Seasplitter': 'Fendeur De Mers',
-        'Sheer Force': 'Force Pure',
+        'Seasplitter': 'Fendeur de mers',
+        'Sheer Force': 'Force pure',
         'Shock': 'Décharge électrostatique',
-        'Stormsplitter': 'Fendeur De Tempêtes',
-        'The Altered Gate': 'Porte Altérée',
-        'The Hidden Gate': 'Porte Cachée',
-        'The Parting Clouds': 'Dispersion De Nuages',
-        'The Sealed Gate': 'Porte Scellée',
+        'Stack': 'Stack', // FIXME
+        'Stormsplitter': 'Fendeur de tempêtes',
+        'The Altered Gate': 'Porte altérée',
+        'The Hidden Gate': 'Porte cachée',
+        'The Parting Clouds': 'Dispersion de nuages',
+        'The Sealed Gate': 'Porte scellée',
         'Ukehi': 'Ukehi',
         'Yasakani No Magatama': 'Yasakani No Magatama',
         'Yata No Kagami': 'Yata No Kagami',
-        'Dark Levin': 'Foudre Violette',
-
-        // FIXME
-        'Knockback': 'Knockback',
-        'Stack': 'Stack',
-        'cloud': 'cloud',
-        'dice': 'dice',
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add',
+        'cloud': 'cloud', // FIXME
+        'dice': 'dice', // FIXME
       },
       '~effectNames': {
         'Churning': 'Agitation',
-        'Clashing': 'Duel D\'armes',
+        'Clashing': 'Duel d\'armes',
         'Fetters': 'Attache',
-        'Flesh Wound': 'Blessure Physique',
-        'Lightning Resistance Down': 'Résistance à La Foudre Réduite',
+        'Flesh Wound': 'Blessure physique',
+        'Lightning Resistance Down': 'Résistance à la foudre réduite',
         'Paralysis': 'Paralysie',
         'Sinking': 'Enfoncement',
-        'Slashing Resistance Down II': 'Résistance Au Tranchant Réduite+',
+        'Slashing Resistance Down II': 'Résistance au tranchant réduite+',
         'Stun': 'Étourdissement',
       },
     },
@@ -344,24 +342,32 @@
         'Ame-No-Murakumo': 'アメノムラクモ',
         'Dark Levin': '紫電',
         'Engage!': '戦闘開始！',
-        'Susano': 'スサノオ',
-        'Thunderhead': '雷雲',
-        'Let the revels begin': 'いざ舞え、踊れ！　祭りである！ 神前たれども無礼を許す……武器を取れい！',
         'How our hearts sing in the chaos': 'カッカッカッ、興が乗ったわ！ アメノムラクモの真なる姿、見せてくれよう！',
+        'Let the revels begin': 'いざ舞え、踊れ！　祭りである！ 神前たれども無礼を許す……武器を取れい！',
         'REJOICE!': 'フンヌアァァァァ！',
+        'Susano': 'スサノオ',
+        'Thunderhead': 'サンダーヘッド',
       },
       'replaceText': {
+        '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
         'Ame No Murakumo': 'アメノムラクモ',
+        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '強撃',
         'Brightstorm': '晴嵐',
         'Churn': '禍泡付着',
         'Churning Deep': '禍泡',
+        'Dark Levin': '紫電',
         'Electrocution': '感電',
+        'Enrage': 'Enrage',
+        'Knockback': 'Knockback', // FIXME
         'Levinbolt': '稲妻',
+        'Phase': 'Phase', // FIXME
         'Rasen Kaikyo': '螺旋海峡',
         'Seasplitter': '海割り',
         'Sheer Force': '剣圧',
         'Shock': '放電',
+        'Stack': 'Stack', // FIXME
         'Stormsplitter': '海嵐斬',
         'The Altered Gate': '岩戸返し',
         'The Hidden Gate': '岩戸隠れ',
@@ -370,14 +376,8 @@
         'Ukehi': '宇気比',
         'Yasakani No Magatama': 'ヤサカニノマガタマ',
         'Yata No Kagami': 'ヤタノカガミ',
-        'Dark Levin': '紫電',
-
-        // FIXME
-        'Knockback': 'Knockback',
-        'Stack': 'Stack',
-        'cloud': 'cloud',
-        'dice': 'dice',
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add',
+        'cloud': 'cloud', // FIXME
+        'dice': 'dice', // FIXME
       },
       '~effectNames': {
         'Churning': '禍泡',
@@ -389,6 +389,118 @@
         'Sinking': '埋没',
         'Slashing Resistance Down II': '斬属性耐性低下［強］',
         'Stun': 'スタン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Ama-No-Iwato': '天之岩户',
+        'Ame-No-Murakumo': '天之丛云',
+        'Dark Levin': '紫电',
+        'Engage!': '战斗开始！',
+        'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
+        'Let the revels begin': 'Let the revels begin', // FIXME
+        'REJOICE!': 'REJOICE!', // FIXME
+        'Susano': '须佐之男',
+        'Thunderhead': '雷暴云砧',
+      },
+      'replaceText': {
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Ame No Murakumo': 'Ame No Murakumo', // FIXME
+        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
+        'Assail': '强击',
+        'Brightstorm': '晴空风暴',
+        'Churn': '祸泡附身',
+        'Churning Deep': '祸泡',
+        'Dark Levin': '紫电',
+        'Electrocution': '感电',
+        'Enrage': 'Enrage', // FIXME
+        'Knockback': 'Knockback', // FIXME
+        'Levinbolt': '闪电',
+        'Phase': 'Phase', // FIXME
+        'Rasen Kaikyo': '螺旋海峡',
+        'Seasplitter': '断海',
+        'Sheer Force': '剑压',
+        'Shock': '放电',
+        'Stack': 'Stack', // FIXME
+        'Stormsplitter': '破浪斩',
+        'The Altered Gate': '岩户返',
+        'The Hidden Gate': '岩户隐',
+        'The Parting Clouds': '云间放电',
+        'The Sealed Gate': '岩户闭合',
+        'Ukehi': '祈请',
+        'Yasakani No Magatama': 'Yasakani No Magatama', // FIXME
+        'Yata No Kagami': 'Yata No Kagami', // FIXME
+        'cloud': 'cloud', // FIXME
+        'dice': 'dice', // FIXME
+      },
+      '~effectNames': {
+        'Churning': '祸泡',
+        'Clashing': '拼刀',
+        'Fetters': '拘束',
+        'Flesh Wound': '切伤',
+        'Lightning Resistance Down': '雷属性耐性降低',
+        'Paralysis': '麻痹',
+        'Sinking': '下沉',
+        'Slashing Resistance Down II': '斩击耐性大幅降低',
+        'Stun': '眩晕',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ama-No-Iwato': '신의 바위',
+        'Ame-No-Murakumo': '아메노무라쿠모',
+        'Dark Levin': '번갯불',
+        'Engage!': '전투 시작!',
+        'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
+        'Let the revels begin': 'Let the revels begin', // FIXME
+        'REJOICE!': 'REJOICE!', // FIXME
+        'Susano': '스사노오',
+        'Thunderhead': '번개 머리',
+      },
+      'replaceText': {
+        '--targetable--': '--대상 지정 가능--',
+        '--untargetable--': '--대상 지정 불가--',
+        'Ame No Murakumo': 'Ame No Murakumo', // FIXME
+        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
+        'Assail': '강력 공격',
+        'Brightstorm': '산바람',
+        'Churn': '재앙거품 부착',
+        'Churning Deep': '재앙거품',
+        'Dark Levin': '번갯불',
+        'Electrocution': '감전',
+        'Enrage': '전멸기',
+        'Knockback': 'Knockback', // FIXME
+        'Levinbolt': '우레',
+        'Phase': 'Phase', // FIXME
+        'Rasen Kaikyo': '나선 해협',
+        'Seasplitter': '바다 가르기',
+        'Sheer Force': '검압',
+        'Shock': '방전',
+        'Stack': 'Stack', // FIXME
+        'Stormsplitter': '해풍참',
+        'The Altered Gate': '바위 뒤섞기',
+        'The Hidden Gate': '바위 숨기기',
+        'The Parting Clouds': '구름 방전',
+        'The Sealed Gate': '바위 조이기',
+        'Ukehi': '내기 선언',
+        'Yasakani No Magatama': 'Yasakani No Magatama', // FIXME
+        'Yata No Kagami': 'Yata No Kagami', // FIXME
+        'cloud': 'cloud', // FIXME
+        'dice': 'dice', // FIXME
+      },
+      '~effectNames': {
+        'Churning': '재앙거품',
+        'Clashing': '칼 막기',
+        'Fetters': '구속',
+        'Flesh Wound': '', // FIXME
+        'Lightning Resistance Down': '번개속성 저항 감소',
+        'Paralysis': '마비',
+        'Sinking': '침몰',
+        'Slashing Resistance Down II': '베기 저항 감소[강]',
+        'Stun': '기절',
       },
     },
   ],
