@@ -10,10 +10,10 @@ deps = {
         'hash': ['sha256', 'adf13a38d0938ce90f8e674f8365b227d933b91636ddf72b26c85702f6e3b808'],
     },
     'FFXIV_ACT': {
-        'url': 'https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.0.4.9.zip',
+        'url': 'https://github.com/ravahn/FFXIV_ACT_Plugin/raw/master/Releases/FFXIV_ACT_Plugin_SDK_2.0.5.0.zip',
         'dest': 'plugin/ThirdParty/FFXIV_ACT',
         'strip': 0,
-        'hash': ['sha256', 'a11fe8dfc1516fc67a2ac57baa1962969d1247842ff16c27034a86cc16e4cff0'],
+        'hash': ['sha256', 'd9d1e94eb358b964da5cf91698963f9040abee990ccee581e3e3c0b69f838b87'],
     },
     'OverlayPlugin': {
         'url': 'https://github.com/ngld/OverlayPlugin/releases/download/v0.13.2/OverlayPlugin-0.13.2.zip',
