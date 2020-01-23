@@ -159,7 +159,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Phoenix-Egi': 'Phénix-Egi',
         'Phoenix': 'Phénix',
       },

@@ -262,7 +262,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Kaliya': 'Kaliya',
         'The Core Override is no longer sealed': 'Ouverture de l\'unité de contrôle du Cœur',
         'The Core Override will be sealed off': 'Fermeture de l\'unité de contrôle du Cœur',

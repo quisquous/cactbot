@@ -432,7 +432,7 @@
       'replaceSync': {
         'Astral Debris': 'Débris astral',
         'Dalamud Fragment': 'Débris de Dalamud',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Firehorn': 'Corne-de-feu',
         'Iceclaw': 'Griffe-de-glace',
         'Nael Geminus': 'Nael Geminus',

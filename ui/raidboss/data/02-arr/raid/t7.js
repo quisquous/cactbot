@@ -224,7 +224,7 @@
       'replaceSync': {
         'Bioweapon Storage is no longer sealed': 'Ouverture de l\'Entrepôt d\'armes biologiques',
         'Bioweapon Storage will be sealed off': 'Fermeture de l\'Entrepôt d\'armes biologiques',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },

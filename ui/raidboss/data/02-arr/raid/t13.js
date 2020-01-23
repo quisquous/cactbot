@@ -170,7 +170,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'The Storm of Meracydia': 'Tempête de Méracydia',
       },
       'replaceText': {

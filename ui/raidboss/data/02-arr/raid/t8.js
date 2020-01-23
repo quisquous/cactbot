@@ -150,7 +150,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'The Avatar': 'Bio-tréant',
         'The central bow is no longer sealed': 'Ouverture de l\'axe central',
         'The central bow will be sealed off': 'Fermeture de l\'axe central',

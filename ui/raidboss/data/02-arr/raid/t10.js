@@ -118,7 +118,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Imdugud': 'Imdugud',
         'The Alpha Concourse will be sealed off': 'Fermeture du secteur des croyants',
       },

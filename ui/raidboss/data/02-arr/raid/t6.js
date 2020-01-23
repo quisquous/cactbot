@@ -233,7 +233,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Rafflesia': 'Rafflesia',
         'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
         'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',
