@@ -91,7 +91,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Granite Gaoler': 'geôlier de granite',
         'Titan': 'Titan',
       },

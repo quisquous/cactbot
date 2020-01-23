@@ -58,7 +58,7 @@
       'locale': 'fr',
       'replaceSync': {
         '--sync--': '--Synchronisation--',
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'Ifrit': 'Ifrit',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME

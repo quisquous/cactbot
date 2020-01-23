@@ -27,7 +27,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque!',
+        'Engage!': 'À l\'attaque !',
         'My shields are impregnable': 'Mes boucliers sont impénétrables',
         'Rhitahtyn sas Arvina': 'Rhitahtyn sas Arvina',
         'Your defeat will bring': 'Avec ta défaite, le général',
