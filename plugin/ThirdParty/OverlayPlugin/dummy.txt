@@ -1,4 +1,4 @@
-Please download the latest Zipfile from https://github.com/ngld/OverlayPlugin/releases/download/
+Please download the latest Zip file from https://github.com/ngld/OverlayPlugin/releases/download/
 Extract the "libs" folder as well as the OverlayPlugin.dll
 
 OverlayPlugin

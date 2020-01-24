@@ -1,7 +1,7 @@
-Please download the latest SDK Zipfile from https://github.com/ravahn/FFXIV_ACT_Plugin/ (make sure the file says SDK in its name)
+Please download the latest SDK Zip file from https://github.com/ravahn/FFXIV_ACT_Plugin/ (make sure the file says SDK in its name)
 Extract the "SDK" folder as well as the FFXIV_ACT_Plugin.dll
 
-OverlayPlugin
+FFXIV_ACT
 |- SDK
 |  |- FFXIV_ACT_Plugin.Common.dll
 |  |- FFXIV_ACT_Plugin.Config.dll

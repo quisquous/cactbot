@@ -19,7 +19,7 @@ def find_basedir():
 
     print(base)
 
-    while not os.path.isfile(os.path.join(base, "tools", 'DEPS.py')):
+    while not os.path.isfile(os.path.join(base, "util", 'DEPS.py')):
         base = os.path.dirname(base)
         if not os.path.isdir(base):
             return False
@@ -54,14 +54,14 @@ def main(update_hashes=False):
         print('ERROR: tools/DEPS.py not found!')
         sys.exit(1)
 
-    deps_path = os.path.join(base, "tools", 'DEPS.py')
+    deps_path = os.path.join(base, "util", 'DEPS.py')
     with open(deps_path, 'r') as stream:
         exec(stream.read(), scope)
 
     deps = scope.get('deps', {})
     cache = {}
-    cache_path = os.path.join(base, "tools", 'DEPS.cache')
-    dl_path = os.path.join(base, "tools", '.deps_dl')
+    cache_path = os.path.join(base, "util", 'DEPS.cache')
+    dl_path = os.path.join(base, "util", '.deps_dl')
 
     if os.path.isfile(cache_path):
         with open(cache_path, 'r') as stream:
