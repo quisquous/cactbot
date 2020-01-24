@@ -31,6 +31,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Out of death circle',
+        fr: 'Sortez du cercle de mort',
       },
     },
     {
@@ -49,6 +50,7 @@
       },
       alertText: {
         en: 'Cleanse Doom soon!',
+        fr: 'Guerrissez Glas bientot',
       },
     },
     {
@@ -64,6 +66,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Knockback soon--Get in front of ice pillar',
+        fr: 'Poussée bientot - Placez-vous devant les pilliers de glace',
       },
     },
     {
@@ -77,6 +80,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Kill sprites',
+        fr: 'Tuez les adds',
       },
     },
     {
@@ -87,6 +91,7 @@
       },
       infoText: {
         en: 'Drop Tornado outside',
+        fr: 'Déposez les tornades à l\'extérieur',
       },
     },
     {
@@ -103,6 +108,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Knockback from center',
+        fr: 'Poussée depuis le centre',
       },
     },
     {
@@ -116,6 +122,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Avoid death squares',
+        fr: 'Evitez les carrés mortels',
       },
     },
     // FERDIAD
@@ -127,6 +134,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Drop scythe outside',
+            fr: 'Posez à l\'extérieur',
           };
         }
       },
@@ -143,6 +151,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Tank buster on YOU',
+            fr: 'Tankbuster sur VOUS',
           };
         }
       },
@@ -150,6 +159,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -168,11 +178,13 @@
         if (matches.id == '1C9F') {
           return {
             en: 'Avoid Untethered Blue',
+            fr: 'Evitez Gueule bleue non-liée',
           };
         }
         if (matches.id == '1CA0') {
           return {
             en: 'Go to Untethered Blue',
+            fr: 'Allez vers la Gueule bleue non-liée',
           };
         }
       },
@@ -189,11 +201,13 @@
         if (matches.id == '1C9F') {
           return {
             en: 'Avoid Untethered Yellow',
+            fr: 'Evitez Gueule jaune non-liée',
           };
         }
         if (matches.id == '1CA0') {
           return {
             en: 'Go to Untethered Yellow',
+            fr: 'Allez vers la Gueule jaune non-liée',
           };
         }
       },
@@ -208,6 +222,7 @@
       regexKo: Regexes.startsUsing({ id: '1CAA', source: '공허의 페르디아', capture: false }),
       infoText: {
         en: 'Avoid puddles',
+        fr: 'Evitez les zones au sol',
       },
     },
     {
@@ -222,6 +237,7 @@
       suppressSeconds: 10,
       alertText: {
         en: 'Change puddles to water',
+        fr: 'Changez en eau',
       },
     },
     {
@@ -236,6 +252,7 @@
       suppressSeconds: 10,
       alertText: {
         en: 'Change puddles to fire',
+        fr: 'Changez en feu',
       },
     },
     // PROTO-ULTIMA
@@ -251,6 +268,7 @@
       regexKo: Regexes.startsUsing({ id: '1D96', source: '프로토 알테마', capture: false }),
       infoText: {
         en: 'Dodge trident laser',
+        fr: 'Evitez le laser',
       },
     },
     {
@@ -267,6 +285,7 @@
       },
       alertText: {
         en: 'Raid Damage',
+        fr: 'Raid buster',
       },
     },
     {
@@ -281,6 +300,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Prey--Avoid party and keep moving',
+            fr: 'Marquage - Evitez les autres et bougez',
           };
         }
       },
@@ -301,10 +321,12 @@
         if (data.flareStarCount == 1) {
           return {
             en: 'Out of center--Wait for outer ring then keep going',
+            fr: 'Loin du centre - Attendez l\'anneau extérieur et continuez',
           };
         }
         return {
           en: 'Avoid flares--Wait for outer ring then keep going',
+          fr: 'Evitez les explosions - Attendez l\'anneau extérieur et continuez',
         };
       },
     },
@@ -318,6 +340,7 @@
       regexKo: Regexes.startsUsing({ id: '1DAB', source: '프로토 알테마', capture: false }),
       alertText: {
         en: 'Avoid line AoE',
+        fr: 'Evitez l\'AoE en ligne',
       },
     },
     {
@@ -333,6 +356,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid Bit AoEs',
+        fr: 'Evitez les AoE des forets',
       },
     },
     {
@@ -346,6 +370,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Kill collectors',
+        fr: 'Détruisez les accumulateurs',
       },
     },
     // SCATHACH
@@ -361,6 +386,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid arm slaps',
+        fr: 'Evitez les bras',
       },
     },
     {
@@ -374,6 +400,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Out of melee',
+        fr: 'Sortez du CaC',
       },
     },
     {
@@ -386,6 +413,7 @@
       regexKo: Regexes.startsUsing({ id: '1D2F', source: '스카하크', capture: false }),
       infoText: {
         en: 'Avoid line AoEs',
+        fr: 'Evitez les AoE en ligne',
       },
     },
     {
@@ -401,6 +429,7 @@
       },
       alertText: {
         en: 'Raid damage',
+        fr: 'Raid buster',
       },
     },
     {
@@ -415,6 +444,7 @@
       infoText: {
         en: 'Stop moving',
         de: 'Nicht bewegen!',
+        fr: 'Ne bougez plus !',
       },
     },
     {
@@ -428,6 +458,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Kill the hands',
+        fr: 'Tuez les mains',
       },
     },
     {
@@ -440,6 +471,7 @@
       regexKo: Regexes.startsUsing({ id: '1CD1', source: '콘라', capture: false }),
       alertText: {
         en: 'Avoid AoE, Kill Connla',
+        fr: 'Evitez les AoE, tuez Connla',
       },
     },
     // These triggers are common to both Scathach and Diabolos
@@ -451,6 +483,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Take orb outside',
+            fr: 'Prenez l\'orb à l\'extérieur',
           };
         }
       },
@@ -465,6 +498,7 @@
       regexKo: Regexes.startsUsing({ id: ['1D23', '1C1A'], source: ['스카하크', '공허의 디아볼로스'], capture: false }),
       infoText: {
         en: 'Away from front',
+        fr: 'Ne restez pas devant',
       },
     },
     // DIABOLOS
@@ -478,6 +512,7 @@
       regexKo: Regexes.startsUsing({ id: '1C12', source: '디아볼로스', capture: false }),
       infoText: {
         en: 'Get in',
+        fr: 'Allez au CaC',
       },
     },
     {
@@ -490,6 +525,7 @@
       regexKo: Regexes.startsUsing({ id: ['1C0E', '1C20'], capture: false }),
       alertText: {
         en: 'Look away',
+        fr: 'Regardez ailleurs',
       },
     },
     {
@@ -506,6 +542,7 @@
       },
       alertText: {
         en: 'Boss hitting hard--Shield/Mitigate',
+        fr: 'Le boss frappe fort - Bouclier/Mitigation',
       },
     },
     {
@@ -522,6 +559,7 @@
       },
       alertText: {
         en: 'Raid damage incoming',
+        fr: 'Dommages de raid en approche',
       },
     },
     {
@@ -535,6 +573,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Kill the deathgates',
+        fr: 'Détruisez les portes de mort',
       },
     },
     {
@@ -549,6 +588,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Tank buster on YOU',
+            fr: 'Tank buster sur VOUS',
           };
         }
       },
@@ -556,6 +596,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -567,10 +608,12 @@
         if (matches.target == data.me) {
           return {
             en: 'Gaze stack on YOU',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
+          fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
         };
       },
     },
@@ -588,6 +631,7 @@
       },
       alertText: {
         en: 'Extreme raid damage!',
+        fr: 'Dommages de raid extrêmes !',
       },
     },
     {
@@ -598,10 +642,12 @@
         if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
+            fr: 'Package sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          fr: 'Package sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -613,6 +659,7 @@
       },
       alertText: {
         en: 'Earth Shaker on YOU',
+        fr: 'Marque de terre sur VOUS',
       },
     },
   ],
