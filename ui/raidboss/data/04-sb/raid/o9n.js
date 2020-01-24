@@ -81,7 +81,7 @@
         'Enrage': 'Finalangriff',
         'Fiendish Orbs': 'Höllenkugeln',
         'Knock Down': 'Niederschmettern',
-        'Knock': 'Einschlag',
+        'Knock(?! )': 'Einschlag',
         'Latitudinal Implosion': 'Horizontale Implosion',
         'Long/Lat Implosion': 'Horizontale/Vertikale Implosion',
         'Longitudinal Implosion': 'Vertikale Implosion',
@@ -130,7 +130,7 @@
         'Enrage': 'Enrage',
         'Fiendish Orbs': 'Ordre de poursuite',
         'Knock Down': 'Ordre d\'impact',
-        'Knock': 'Impact',
+        'Knock(?! )': 'Impact',
         'Latitudinal Implosion': 'Implosion horizontale',
         'Long/Lat Implosion': 'Implosion Hz/Vert',
         'Longitudinal Implosion': 'Implosion verticale',
@@ -179,7 +179,7 @@
         'Enrage': 'Enrage',
         'Fiendish Orbs': '追尾せよ',
         'Knock Down': '着弾せよ',
-        'Knock': '着弾',
+        'Knock(?! )': '着弾',
         'Latitudinal Implosion': 'ホリゾンタルインプロージョン',
         'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
         'Longitudinal Implosion': 'ヴァーティカルインプロージョン',
@@ -228,7 +228,7 @@
         'Enrage': 'Enrage', // FIXME
         'Fiendish Orbs': '追踪',
         'Knock Down': '中弹',
-        'Knock': 'Knock', // FIXME
+        'Knock(?! )': 'Knock', // FIXME
         'Latitudinal Implosion': '纬度聚爆',
         'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
         'Longitudinal Implosion': '经度聚爆',
@@ -277,7 +277,7 @@
         'Enrage': 'Enrage', // FIXME
         'Fiendish Orbs': '추격하라',
         'Knock Down': '착탄하라',
-        'Knock': 'Knock', // FIXME
+        'Knock(?! )': 'Knock', // FIXME
         'Latitudinal Implosion': '가로 내파',
         'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
         'Longitudinal Implosion': '세로 내파',

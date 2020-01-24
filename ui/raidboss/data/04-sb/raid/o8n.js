@@ -343,7 +343,7 @@
         'Light Of Judgment': 'Licht des Urteils',
         'Mana Charge': 'Mana-Aufladung',
         'Mana Release': 'Mana-Entladung',
-        'Meteor': 'Meteo',
+        'Meteor': 'Meteor',
         'Pasts Forgotten': 'Vernichtung der Vergangenheit',
         'Pulse Wave': 'Pulswelle',
         'Revolting Ruin': 'Revoltierendes Ruinga',

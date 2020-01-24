@@ -331,7 +331,6 @@
         'Paranormal Wave': 'Paranormale Welle',
         'Probes': 'Probes', // FIXME
         'Tremblor': 'Erschütterung',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Unstable Gravity': 'Schwerkraftschwankung',
         'Weighted Wing': 'Schwere Schwinge',
       },
@@ -378,7 +377,6 @@
         'Paranormal Wave': 'Onde maudite',
         'Probes': 'Probes', // FIXME
         'Tremblor': 'Tremblement de terre',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Unstable Gravity': 'Gravité instable',
         'Weighted Wing': 'Ailes antigravitationnelles',
       },
@@ -425,7 +423,6 @@
         'Paranormal Wave': '呪詛波',
         'Probes': 'Probes', // FIXME
         'Tremblor': '地震',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Unstable Gravity': 'グラビティバースト',
         'Weighted Wing': 'グラビティウィング',
       },
@@ -472,7 +469,6 @@
         'Paranormal Wave': '诅咒波',
         'Probes': 'Probes', // FIXME
         'Tremblor': '地震',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Unstable Gravity': '重力爆发',
         'Weighted Wing': '重力之翼',
       },
@@ -519,7 +515,6 @@
         'Paranormal Wave': '저주 파동',
         'Probes': 'Probes', // FIXME
         'Tremblor': '지진',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Unstable Gravity': '중력 폭발',
         'Weighted Wing': '중력 날개',
       },

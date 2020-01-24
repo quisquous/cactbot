@@ -795,7 +795,7 @@
         'Light Of Judgment': 'Licht des Urteils',
         'Mana Charge': 'Mana-Aufladung',
         'Mana Release': 'Mana-Entladung',
-        'Meteor': 'Meteo',
+        'Meteor': 'Meteor',
         'Past/Future': 'Vergangenheit/Zukunft',
         'Past/Future End': 'Vergangenheit/Zukunft Ende',
         'Pasts Forgotten': 'Vernichtung der Vergangenheit',

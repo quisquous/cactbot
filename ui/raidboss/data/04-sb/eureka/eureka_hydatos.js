@@ -1091,7 +1091,6 @@
         'Proto Ozma': 'Proto-Yadis',
         'Raiden': 'Raiden',
         'Relative Virtue': 'Relativ(?:e|er|es|en) Tugend',
-        'Removing combatant Proto Ozma': 'Removing combatant Proto Ozma', // FIXME
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
@@ -1186,7 +1185,6 @@
         'Proto Ozma': 'Proto-Ozma',
         'Raiden': 'Raiden',
         'Relative Virtue': 'Vertu relative',
-        'Removing combatant Proto Ozma': 'Removing combatant Proto Ozma', // FIXME
         'Shadow': 'ombre de Proto-Ozma',
         'Streak Lightning': 'Éclair chargeant',
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
@@ -1281,7 +1279,6 @@
         'Proto Ozma': 'プロトオズマ',
         'Raiden': 'ライディーン',
         'Relative Virtue': 'レラティブヴァーチュー',
-        'Removing combatant Proto Ozma': 'Removing combatant Proto Ozma', // FIXME
         'Shadow': 'プロトオズマの影',
         'Streak Lightning': 'ストリークライトニング',
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
@@ -1376,7 +1373,6 @@
         'Proto Ozma': '奥兹玛原型',
         'Raiden': '莱丁',
         'Relative Virtue': '相对的美德',
-        'Removing combatant Proto Ozma': 'Removing combatant Proto Ozma', // FIXME
         'Shadow': '奥兹玛原型之影',
         'Streak Lightning': '强袭雷光',
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
@@ -1471,7 +1467,6 @@
         'Proto Ozma': '프로토 오즈마',
         'Raiden': '라이딘',
         'Relative Virtue': '상대미덕',
-        'Removing combatant Proto Ozma': 'Removing combatant Proto Ozma', // FIXME
         'Shadow': '프로토 오즈마의 그림자',
         'Streak Lightning': '연쇄 번개',
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME

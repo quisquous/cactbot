@@ -123,7 +123,6 @@
         'Black Hole': 'Schwarzes Loch',
         'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
-        'Removing combatant Alte Roite': 'Removing combatant Alte Roite', // FIXME
         'Wyrm Tail': 'Antiker Drachenschweif',
       },
       'replaceText': {
@@ -180,7 +179,6 @@
         'Black Hole': 'Trou noir',
         'Engage!': 'À l\'attaque !',
         'Exdeath': 'Exdeath',
-        'Removing combatant Alte Roite': 'Removing combatant Alte Roite', // FIXME
         'Wyrm Tail': 'Queue du dragon ancestral',
       },
       'replaceText': {
@@ -237,7 +235,6 @@
         'Black Hole': 'ブラックホール',
         'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
-        'Removing combatant Alte Roite': 'Removing combatant Alte Roite', // FIXME
         'Wyrm Tail': '太古の龍尾',
       },
       'replaceText': {
@@ -294,7 +291,6 @@
         'Black Hole': '黑洞',
         'Engage!': '战斗开始！',
         'Exdeath': '艾克斯迪司',
-        'Removing combatant Alte Roite': 'Removing combatant Alte Roite', // FIXME
         'Wyrm Tail': '太古龙尾',
       },
       'replaceText': {
@@ -351,7 +347,6 @@
         'Black Hole': '블랙홀',
         'Engage!': '전투 시작!',
         'Exdeath': '엑스데스',
-        'Removing combatant Alte Roite': 'Removing combatant Alte Roite', // FIXME
         'Wyrm Tail': '태고의 용 꼬리',
       },
       'replaceText': {

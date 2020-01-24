@@ -493,7 +493,7 @@
         'Chain Cannon': 'Kettenkanone',
         'Chakra Burst': 'Chakra-Ausbruch',
         'Copy Program': 'Programm kopieren',
-        'Copy': 'Kopieren',
+        'Copy(?! )': 'Kopieren',
         'Dada': 'Dadarma',
         'Demon Simulation': 'Dämonensimulation',
         'Diffractive Laser': 'Diffraktiver Laser',
@@ -508,24 +508,24 @@
         'Load': 'Laden',
         'Magitek Ray': 'Magitek-Laser',
         'Magnetism/Repel': 'Magnetismus',
-        'Magnetism': 'Magnetismus',
+        'Magnetism(?!\/)': 'Magnetismus',
         'Main Cannon': 'Hauptkanone',
         'Missile Simulation': 'Raketensimulation',
         'Missile': 'Rakete',
         'Paste Program': 'Programm einfügen',
-        'Paste': 'Einfügen',
+        'Paste(?! )': 'Einfügen',
         'Plane Laser': 'Luftwaffe Add Laser',
         'Prey': 'Beute',
         'Radar': 'Radar',
-        'Repel': 'Abstoßung',
+        '(?=\/)Repel': 'Abstoßung',
         'Retrieve Air Force': 'Luftwaffe Wiederherstellen',
         'Retrieve Program': 'Programm wiederherstellen',
         'Retrieve Ultros': 'Ultros Wiederherstellen',
         'Run Program': 'Programm starten',
-        'Run': 'Start',
+        'Run(?! )': 'Start',
         'Shockwave': 'Schockwelle',
         'Skip Program': 'Programm überspringen',
-        'Skip': 'Überspringen',
+        'Skip(?! )': 'Überspringen',
         'Stoneskin': 'Steinhaut',
         'Temporary Misdirection': 'Plötzliche Panik',
         'Tentacle': 'Tentakel',
@@ -580,7 +580,7 @@
         'Chain Cannon': 'Canon automatique',
         'Chakra Burst': 'Explosion d\'aura',
         'Copy Program': 'Copie de programme',
-        'Copy': 'Copie',
+        'Copy(?! )': 'Copie',
         'Dada': 'Dadaluma',
         'Demon Simulation': 'Chargement : démon',
         'Diffractive Laser': 'Laser diffracteur',
@@ -595,24 +595,24 @@
         'Load': 'Chargement',
         'Magitek Ray': 'Rayon magitek',
         'Magnetism/Repel': 'Magnétisme/Répulsion',
-        'Magnetism': 'Magnétisme',
+        'Magnetism(?!\/)': 'Magnétisme',
         'Main Cannon': 'Canon principal',
         'Missile Simulation': 'Chargement : missiles',
         'Missile': 'Missile',
         'Paste Program': 'Collage de programme',
-        'Paste': 'Collage',
+        'Paste(?! )': 'Collage',
         'Plane Laser': 'Laser force aérienne',
         'Prey': 'Proie',
         'Radar': 'Radar',
-        'Repel': 'Répulsion',
+        '(?=\/)Repel': 'Répulsion',
         'Retrieve Air Force': 'Programme Précédent Force Aérienne',
         'Retrieve Program': 'Programme précédent',
         'Retrieve Ultros': 'Programme Précédent Orthros',
         'Run Program': 'Programme de matérialisation',
-        'Run': 'Programme',
+        'Run(?! )': 'Programme',
         'Shockwave': 'Onde de choc',
         'Skip Program': 'Saut de programme',
-        'Skip': 'Saut De Programme',
+        'Skip(?! )': 'Saut De Programme',
         'Stoneskin': 'Cuirasse',
         'Temporary Misdirection': 'Démence',
         'Tentacle': 'Tentacule',
@@ -667,7 +667,7 @@
         'Chain Cannon': 'チェーンガン',
         'Chakra Burst': 'チャクラバースト',
         'Copy Program': 'プログラム・コピー',
-        'Copy': 'Copy', // FIXME
+        'Copy(?! )': 'Copy', // FIXME
         'Dada': 'Dada', // FIXME
         'Demon Simulation': 'ローディング：デーモン',
         'Diffractive Laser': '拡散レーザー',
@@ -682,24 +682,24 @@
         'Load': 'ローディング',
         'Magitek Ray': '魔導レーザー',
         'Magnetism/Repel': 'Magnetism/Repel', // FIXME
-        'Magnetism': '磁力',
+        'Magnetism(?!\/)': '磁力',
         'Main Cannon': 'メインカノン',
         'Missile Simulation': 'ローディング：ミサイル',
         'Missile': 'ミサイル',
         'Paste Program': 'プログラム・ペースト',
-        'Paste': 'Paste', // FIXME
+        'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
-        'Repel': '反発',
+        '(?=\/)Repel': '反発',
         'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': 'リバース・ローディング',
         'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '実体化プログラム',
-        'Run': 'Run', // FIXME
+        'Run(?! )': 'Run', // FIXME
         'Shockwave': '衝撃波',
         'Skip Program': 'スキップ・ローディング',
-        'Skip': 'Skip', // FIXME
+        'Skip(?! )': 'Skip', // FIXME
         'Stoneskin': 'ストンスキン',
         'Temporary Misdirection': '心神喪失',
         'Tentacle': 'たこあし',
@@ -754,7 +754,7 @@
         'Chain Cannon': '链式机关炮',
         'Chakra Burst': '脉轮爆发',
         'Copy Program': '复制程序',
-        'Copy': 'Copy', // FIXME
+        'Copy(?! )': 'Copy', // FIXME
         'Dada': 'Dada', // FIXME
         'Demon Simulation': '加载恶魔模拟程序',
         'Diffractive Laser': '扩散射线',
@@ -769,24 +769,24 @@
         'Load': '加载',
         'Magitek Ray': '魔导激光',
         'Magnetism/Repel': 'Magnetism/Repel', // FIXME
-        'Magnetism': '磁力',
+        'Magnetism(?!\/)': '磁力',
         'Main Cannon': '主加农炮',
         'Missile Simulation': '加载导弹模拟程序',
         'Missile': '导弹',
         'Paste Program': '粘贴程序',
-        'Paste': 'Paste', // FIXME
+        'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
-        'Repel': '相斥',
+        '(?=\/)Repel': '相斥',
         'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': '反向加载',
         'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '实体化程序',
-        'Run': 'Run', // FIXME
+        'Run(?! )': 'Run', // FIXME
         'Shockwave': '冲击波',
         'Skip Program': '跳跃加载',
-        'Skip': 'Skip', // FIXME
+        'Skip(?! )': 'Skip', // FIXME
         'Stoneskin': '石肤',
         'Temporary Misdirection': '精神失常',
         'Tentacle': '腕足',
@@ -841,7 +841,7 @@
         'Chain Cannon': '기관총',
         'Chakra Burst': '차크라 폭발',
         'Copy Program': '프로그램 복사',
-        'Copy': '복사',
+        'Copy(?! )': '복사',
         'Dada': '다다',
         'Demon Simulation': '불러오기: 악마',
         'Diffractive Laser': '확산 레이저',
@@ -856,24 +856,24 @@
         'Load': '불러오기',
         'Magitek Ray': '마도 레이저',
         'Magnetism/Repel': '자력/반발',
-        'Magnetism': '자력',
+        'Magnetism(?!\/)': '자력',
         'Main Cannon': '주포',
         'Missile Simulation': '불러오기: 미사일',
         'Missile': '미사일',
         'Paste Program': '프로그램 붙여넣기',
-        'Paste': '붙여넣기',
+        'Paste(?! )': '붙여넣기',
         'Plane Laser': '에어포스 레이저',
         'Prey': 'プレイ',
         'Radar': '레이더',
-        'Repel': '반발',
+        '(?=\/)Repel': '반발',
         'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': '역순 불러오기',
         'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '실체화 프로그램',
-        'Run': '실체화',
+        'Run(?! )': '실체화',
         'Shockwave': '충격파',
         'Skip Program': '건너뛰기',
-        'Skip': '건너뛰기',
+        'Skip(?! )': '건너뛰기',
         'Stoneskin': '스톤스킨',
         'Temporary Misdirection': '심신상실',
         'Tentacle': '문어발',

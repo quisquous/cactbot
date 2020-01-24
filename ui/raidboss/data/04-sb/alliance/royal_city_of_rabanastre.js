@@ -297,7 +297,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Added new combatant Archaeodemon': 'Added new combatant Archaeodemon', // FIXME
+        'Archaeodemon': 'Archaeodemon', // FIXME
         'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
         'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
         'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
@@ -316,10 +316,8 @@
         'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
         'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
         'Mateus, the Corrupt': 'Mateus (?:der|die|das) Peiniger',
-        'Removing combatant Argath Thadalfus': 'Removing combatant Argath Thadalfus', // FIXME
-        'Removing combatant Hashmal, Bringer Of Order': 'Removing combatant Hashmal, Bringer Of Order', // FIXME
-        'Removing combatant Mateus, The Corrupt': 'Removing combatant Mateus, The Corrupt', // FIXME
-        'Removing combatant Rofocale': 'Removing combatant Rofocale', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
+        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
         'Rofocale': 'Rofocale',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -388,7 +386,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Added new combatant Archaeodemon': 'Added new combatant Archaeodemon', // FIXME
+        'Archaeodemon': 'Archaeodemon', // FIXME
         'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
         'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
         'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
@@ -407,10 +405,10 @@
         'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
         'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
         'Mateus, the Corrupt': 'Mateus le Corrompu',
-        'Removing combatant Argath Thadalfus': 'Removing combatant Argath Thadalfus', // FIXME
-        'Removing combatant Hashmal, Bringer Of Order': 'Removing combatant Hashmal, Bringer Of Order', // FIXME
-        'Removing combatant Mateus, The Corrupt': 'Removing combatant Mateus, The Corrupt', // FIXME
-        'Removing combatant Rofocale': 'Removing combatant Rofocale', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
+        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
+        'Rofocale': 'Rofocale', // FIXME
         'Rofocale': 'Rofocale le Roi centaure',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -479,7 +477,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Added new combatant Archaeodemon': 'Added new combatant Archaeodemon', // FIXME
+        'Archaeodemon': 'Archaeodemon', // FIXME
         'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
         'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
         'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
@@ -498,10 +496,10 @@
         'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
         'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
         'Mateus, the Corrupt': '背徳の皇帝マティウス',
-        'Removing combatant Argath Thadalfus': 'Removing combatant Argath Thadalfus', // FIXME
-        'Removing combatant Hashmal, Bringer Of Order': 'Removing combatant Hashmal, Bringer Of Order', // FIXME
-        'Removing combatant Mateus, The Corrupt': 'Removing combatant Mateus, The Corrupt', // FIXME
-        'Removing combatant Rofocale': 'Removing combatant Rofocale', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
+        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
+        'Rofocale': 'Rofocale', // FIXME
         'Rofocale': '人馬王ロフォカレ',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -570,7 +568,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Added new combatant Archaeodemon': 'Added new combatant Archaeodemon', // FIXME
+        'Archaeodemon': 'Archaeodemon', // FIXME
         'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
         'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
         'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
@@ -589,10 +587,10 @@
         'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
         'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
         'Mateus, the Corrupt': '背德皇帝马提乌斯',
-        'Removing combatant Argath Thadalfus': 'Removing combatant Argath Thadalfus', // FIXME
-        'Removing combatant Hashmal, Bringer Of Order': 'Removing combatant Hashmal, Bringer Of Order', // FIXME
-        'Removing combatant Mateus, The Corrupt': 'Removing combatant Mateus, The Corrupt', // FIXME
-        'Removing combatant Rofocale': 'Removing combatant Rofocale', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
+        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
+        'Rofocale': 'Rofocale', // FIXME
         'Rofocale': '人马王洛弗卡勒',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -661,7 +659,7 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Added new combatant Archaeodemon': 'Added new combatant Archaeodemon', // FIXME
+        'Archaeodemon': 'Archaeodemon', // FIXME
         'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
         'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
         'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
@@ -680,10 +678,10 @@
         'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
         'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
         'Mateus, the Corrupt': '배덕의 황제 마티우스',
-        'Removing combatant Argath Thadalfus': 'Removing combatant Argath Thadalfus', // FIXME
-        'Removing combatant Hashmal, Bringer Of Order': 'Removing combatant Hashmal, Bringer Of Order', // FIXME
-        'Removing combatant Mateus, The Corrupt': 'Removing combatant Mateus, The Corrupt', // FIXME
-        'Removing combatant Rofocale': 'Removing combatant Rofocale', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
+        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
+        'Rofocale': 'Rofocale', // FIXME
         'Rofocale': '인마왕 로포칼레',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
