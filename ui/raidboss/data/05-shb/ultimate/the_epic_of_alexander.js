@@ -273,7 +273,6 @@
             2: 'Violet γ',
             3: 'Vert δ',
           },
-
         }[data.lang];
 
         // Convenience function called for third and fourth nisi passes.
