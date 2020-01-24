@@ -157,5 +157,47 @@
         'Wild Charge': 'ワイルドチャージ',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Imdugud': '伊姆都古德',
+        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Crackle Hiss': '雷光电闪',
+        'Critical Rip': '暴击撕裂',
+        'Cyclonic Chaos': '龙卷雷暴',
+        'Daughter': 'Daughter', // FIXME
+        'Electric Burst': '电光爆发',
+        'Electrocharge': '蓄电',
+        'Heat Lightning': '惊电',
+        'Random + Charge': 'Random + Charge', // FIXME
+        'Son': 'Son', // FIXME
+        'Spike Flail': '刃尾横扫',
+        'Wild Charge': '狂野冲锋',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Imdugud': '임두구드',
+        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Crackle Hiss': '파직파직 번개',
+        'Critical Rip': '찢어가르기',
+        'Cyclonic Chaos': '휘몰아치는 혼돈',
+        'Daughter': 'Daughter', // FIXME
+        'Electric Burst': '전하 폭발',
+        'Electrocharge': '전하 충전',
+        'Heat Lightning': '뜨거운 번개',
+        'Random + Charge': 'Random + Charge', // FIXME
+        'Son': 'Son', // FIXME
+        'Spike Flail': '가시 매타작',
+        'Wild Charge': '야성의 돌진',
+      },
+    },
   ],
 }];

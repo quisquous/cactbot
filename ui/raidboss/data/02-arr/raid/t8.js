@@ -133,7 +133,6 @@
         'The Avatar': 'Avatar',
         'The central bow is no longer sealed': 'Der Zugang zum Rumpf-Zentralsektor öffnet sich wieder',
         'The central bow will be sealed off': 'bis sich der Zugang zum Rumpf-Zentralsektor schließt',
-        'XYZ': '',
       },
       'replaceText': {
         'Allagan Field': 'Allagisches Feld',
@@ -153,9 +152,8 @@
         'Allagan Field': 'Champ allagois',
         'Engage!': 'À l\'attaque !',
         'The Avatar': 'Bio-tréant',
-        'The central bow is no longer sealed': 'Ouverture de l\'axe central', // FIXME
-        'The central bow will be sealed off': 'Fermeture de l\'axe central', // FIXME
-        'XYZ': '',
+        'The central bow is no longer sealed': 'Ouverture de l\'axe central',
+        'The central bow will be sealed off': 'Fermeture de l\'axe central',
       },
       'replaceText': {
         'Allagan Field': 'Champ allagois',
@@ -177,7 +175,6 @@
         'The Avatar': 'アバター',
         'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
         'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
-        'XYZ': '',
       },
       'replaceText': {
         'Allagan Field': 'アラガンフィールド',
@@ -189,6 +186,48 @@
         'Gaseous Bomb': '気化爆弾',
         'Homing Missile': 'ホーミングミサイル',
         'Inertia Stream': 'イナーシャストリーム',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Allagan Field': '亚拉戈领域',
+        'Engage!': '战斗开始！',
+        'The Avatar': '降世化身',
+        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
+        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Allagan Field': '亚拉戈领域',
+        'Atomic Ray': '原子射线',
+        'Ballistic Missile': '导弹发射',
+        'Brainjack': '洗脑',
+        'Critical Surge': '临界突破',
+        'Diffusion Ray': '扩散射线',
+        'Gaseous Bomb': '气化炸弹',
+        'Homing Missile': '自控导弹',
+        'Inertia Stream': '惰性流',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Allagan Field': '알라그 필드',
+        'Engage!': '전투 시작!',
+        'The Avatar': '아바타',
+        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
+        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Allagan Field': '알라그 필드',
+        'Atomic Ray': '원자 파동',
+        'Ballistic Missile': '미사일 발사',
+        'Brainjack': '두뇌 장악',
+        'Critical Surge': '임계 돌파',
+        'Diffusion Ray': '확산 광선',
+        'Gaseous Bomb': '기화 폭탄',
+        'Homing Missile': '유도 미사일',
+        'Inertia Stream': '관성 기류',
       },
     },
   ],

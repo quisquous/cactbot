@@ -222,8 +222,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Ouverture de l\Entrepôt d\'armes biologiques',
-        'Bioweapon Storage will be sealed off': 'Fermeture de l\Entrepôt d\'armes biologiques',
+        'Bioweapon Storage is no longer sealed': 'Ouverture de l\'Entrepôt d\'armes biologiques',
+        'Bioweapon Storage will be sealed off': 'Fermeture de l\'Entrepôt d\'armes biologiques',
         'Engage!': 'À l\'attaque !',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
@@ -256,13 +256,59 @@
         'Circle Of Flames': 'サークル・オブ・フレイム',
         'Cursed Shriek': '呪詛の叫声',
         'Cursed Voice': '呪詛の声',
-        'Deathdancer': 'Deathdancer', // FIXME
+        'Deathdancer': 'デスダンサー',
         'Frenzy': '熱狂',
         'Petrifaction': 'ペトリファクション',
         'Red Lotus Blade': 'レッドロータス',
         'Sacrifice': '生贄',
         'Tail Slap': 'テールスラップ',
         'Venomous Tail': 'ベノモステール',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
+        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
+        'Engage!': '战斗开始！',
+        'Lamia Prosector': '拉米亚解剖女王',
+        'Melusine': '美瑠姬奴',
+      },
+      'replaceText': {
+        'Circle Blade': '回旋斩',
+        'Circle Of Flames': '地层断裂',
+        'Cursed Shriek': '诅咒之嚎',
+        'Cursed Voice': '诅咒之声',
+        'Deathdancer': '死亡舞师',
+        'Frenzy': '狂热',
+        'Petrifaction': '石化',
+        'Red Lotus Blade': '红莲',
+        'Sacrifice': '献祭',
+        'Tail Slap': '尾部猛击',
+        'Venomous Tail': '猛毒之尾',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
+        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
+        'Engage!': '전투 시작!',
+        'Lamia Prosector': '라미아 시체해부자',
+        'Melusine': '멜뤼진',
+      },
+      'replaceText': {
+        'Circle Blade': '회전 베기',
+        'Circle Of Flames': '화염의 원',
+        'Cursed Shriek': '저주의 외침',
+        'Cursed Voice': '저주의 목소리',
+        'Deathdancer': '죽음무용수',
+        'Frenzy': '열광',
+        'Petrifaction': '석화',
+        'Red Lotus Blade': '홍련의 칼날',
+        'Sacrifice': '제물',
+        'Tail Slap': '꼬리치기',
+        'Venomous Tail': '맹독 꼬리',
       },
     },
   ],

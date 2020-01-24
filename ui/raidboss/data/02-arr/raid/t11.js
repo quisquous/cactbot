@@ -305,5 +305,51 @@
         'Stun': 'スタン',
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Kaliya': '卡利亚',
+        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
+        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Barofield': '气压领域',
+        'Emergency Mode': '紧急模式',
+        'Enrage': 'Enrage', // FIXME
+        'Main Head': '主首',
+        'Nanospore Jet': '魔科学粒子散布',
+        'Nerve Cloud': '神经云',
+        'Nerve Gas': '神经毒气',
+        'Resonance': '共鸣',
+        'Secondary Head': '侧首',
+        'Seed Of The Rivers': '江河之种',
+        'Seed Of The Sea': '海洋之种',
+        'Stun': '眩晕',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Kaliya': '칼리야',
+        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
+        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Barofield': '압력 필드',
+        'Emergency Mode': '비상 모드',
+        'Enrage': 'Enrage', // FIXME
+        'Main Head': '가운뎃머리',
+        'Nanospore Jet': '마과학 입자 살포',
+        'Nerve Cloud': '신경 구름',
+        'Nerve Gas': '신경 가스',
+        'Resonance': '공명',
+        'Secondary Head': '옆 머리',
+        'Seed Of The Rivers': '강의 원천',
+        'Seed Of The Sea': '바다의 원천',
+        'Stun': '기절',
+      },
+    },
   ],
 }];
