@@ -65,7 +65,7 @@
       regexFr: Regexes.gainsEffect({ target: 'Primo-Éden', effect: 'Paradis Retrouvé', capture: false }),
       regexJa: Regexes.gainsEffect({ target: 'エデン・プライム', effect: 'パラダイスリゲイン', capture: false }),
       regexCn: Regexes.gainsEffect({ target: '至尊伊甸', effect: '复乐园', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '에덴 프라임', effect: 'Paradise Regained', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '에덴 프라임', effect: '복낙원', capture: false }),
       run: function(data) {
         data.paradise = true;
       },
@@ -77,7 +77,7 @@
       regexFr: Regexes.losesEffect({ target: 'Primo-Éden', effect: 'Paradis Retrouvé', capture: false }),
       regexJa: Regexes.losesEffect({ target: 'エデン・プライム', effect: 'パラダイスリゲイン', capture: false }),
       regexCn: Regexes.losesEffect({ target: '至尊伊甸', effect: '复乐园', capture: false }),
-      regexKo: Regexes.losesEffect({ target: '에덴 프라임', effect: 'Paradise Regained', capture: false }),
+      regexKo: Regexes.losesEffect({ target: '에덴 프라임', effect: '복낙원', capture: false }),
       run: function(data) {
         data.paradise = false;
       },
@@ -236,7 +236,7 @@
             ja: '中で散開',
             fr: 'Intérieur, écartez-vous',
             cn: '中间散开',
-            ko: '보스 가까이 탱끼리 같이',
+            ko: '보스 가까이 탱 약산개',
           };
         }
         return {
@@ -795,25 +795,25 @@
       'replaceText': {
         'attack': '공격',
         'Vice of Vanity': '허영의 악덕',
-        'Vice of Thievery': 'Vice of Thievery',
-        'Vice of Sloth': 'Vice of Sloth',
-        'Vice of Pride': 'Vice of Pride',
-        'Vice of Greed': 'Vice of Greed',
+        'Vice of Thievery': '도둑질의 악덕',
+        'Vice of Sloth': '나태의 악덕',
+        'Vice of Pride': '교만의 악덕',
+        'Vice of Greed': '탐욕의 악덕',
         'Vice of Apathy': '냉담의 악덕',
         'Vice and Virtue': '선과 악',
         'Spear of Paradise': '낙원의 창',
-        'Regained Thunder III': 'Regained 선더가',
-        'Regained Fire III': 'Regained 파이가',
-        'Regained Blizzard III': 'Regained 블리자가',
+        'Regained Thunder III': '되찾은 선더가',
+        'Regained Fire III': '되찾은 파이가',
+        'Regained Blizzard III': '되찾은 블리자가',
         'Pure Light': '완전한 빛',
         'Pure Beam': '완전한 광선',
         'Primeval Stasis': '태초의 안정',
-        'Paradise Regained': 'Paradise Regained',
+        'Paradise Regained': '복낙원',
         'Paradise Lost': '실낙원',
         'Paradisal Dive': '낙원 강하',
         'Mana Slice': '마나 베기',
         'Mana Burst': '마나 폭발',
-        'Mana Boost': '마나 부스터',
+        'Mana Boost': '마나 강화',
         'Heavensunder': '천국의 낙뢰',
         'Fragor Maximus': '우주 탄생',
         'Eternal Breath': '영원의 숨결',

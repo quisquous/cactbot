@@ -1077,6 +1077,7 @@ UserConfig.registerOptions('raidboss', {
       // options if we end up having a lot?
       name: {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
+        ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
       },
       type: 'checkbox',
       default: false,
