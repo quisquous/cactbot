@@ -24,7 +24,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: 'AOE',
+        ko: '광역공격',
       },
     },
     {
@@ -37,7 +37,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
-            ko: '탱크버스터 on YOU',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -76,7 +76,7 @@
         de: 'Nach der Welle schauen',
         fr: 'Repérez la vague',
         cn: '看浪',
-        ko: '해일 좌우 보세요',
+        ko: '해일 위치 확인',
       },
     },
     {
@@ -177,7 +177,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: 'AOE',
+        ko: '광역공격',
       },
     },
     {
@@ -191,7 +191,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合',
-            ko: '집합 on YOU',
+            ko: '나에게 쉐어',
           };
         }
         return {
@@ -199,7 +199,7 @@
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
           cn: '集合 ->' + data.ShortName(matches.target),
-          ko: '집합 ->' + data.ShortName(matches.target),
+          ko: '쉐어 ->' + data.ShortName(matches.target),
         };
       },
     },
@@ -213,7 +213,7 @@
             de: 'Knockback auf DIR',
             fr: 'Poussée sur VOUS',
             cn: '击退点名',
-            ko: '넉백대상자입니다',
+            ko: '나에게 넉백징',
           };
         }
         return {
@@ -250,7 +250,7 @@
         de: 'Donut auf DIR',
         fr: 'Donut sur VOUS',
         cn: '月环点名',
-        ko: '도넛장판 on YOU',
+        ko: '나에게 도넛장판',
       },
     },
   ],
