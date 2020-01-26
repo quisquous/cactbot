@@ -379,7 +379,6 @@
         'Mateus, The Corrupt': 'Mateus le Corrompu',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
-        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
         'Rofocale': 'Rofocale le Roi centaure',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -455,7 +454,6 @@
         'Mateus, The Corrupt': '背徳の皇帝マティウス',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
-        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
         'Rofocale': '人馬王ロフォカレ',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -531,7 +529,6 @@
         'Mateus, The Corrupt': '背德皇帝马提乌斯',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
-        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
         'Rofocale': '人马王洛弗卡勒',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -607,7 +604,6 @@
         'Mateus, The Corrupt': '배덕의 황제 마티우스',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
-        'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
         'Rofocale': '인마왕 로포칼레',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
