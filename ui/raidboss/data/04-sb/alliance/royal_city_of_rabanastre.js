@@ -298,24 +298,10 @@
       'locale': 'de',
       'replaceSync': {
         'Archaeodemon': 'Archaeodemon', // FIXME
-        'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
-        'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
-        'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
-        'Argath Thadalfus starts using Fire IV': 'Argath Thadalfus starts using Fire IV', // FIXME
-        'Argath Thadalfus starts using Gnawing Dread': 'Argath Thadalfus starts using Gnawing Dread', // FIXME
-        'Argath Thadalfus starts using Judgment Blade': 'Argath Thadalfus starts using Judgment Blade', // FIXME
-        'Argath Thadalfus starts using Royal Blood': 'Argath Thadalfus starts using Royal Blood', // FIXME
-        'Argath Thadalfus starts using Trepidation': 'Argath Thadalfus starts using Trepidation', // FIXME
         'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
         'Frostwave': 'Polarlanze',
-        'Hashmal, Bringer Of Order starts using Control Tower on Hashmal': 'Hashmal, Bringer Of Order starts using Control Tower on Hashmal', // FIXME
-        'Hashmal, Bringer Of Order starts using Extreme Edge': 'Hashmal, Bringer Of Order starts using Extreme Edge', // FIXME
-        'Hashmal, Bringer Of Order starts using Landwaster': 'Hashmal, Bringer Of Order starts using Landwaster', // FIXME
-        'Hashmal, Bringer Of Order starts using Summon': 'Hashmal, Bringer Of Order starts using Summon', // FIXME
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
-        'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
-        'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
-        'Mateus, the Corrupt': 'Mateus (?:der|die|das) Peiniger',
+        'Mateus, The Corrupt': 'Mateus (?:der|die|das) Peiniger',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
         'Rofocale': 'Rofocale',
@@ -387,24 +373,10 @@
       'locale': 'fr',
       'replaceSync': {
         'Archaeodemon': 'Archaeodemon', // FIXME
-        'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
-        'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
-        'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
-        'Argath Thadalfus starts using Fire IV': 'Argath Thadalfus starts using Fire IV', // FIXME
-        'Argath Thadalfus starts using Gnawing Dread': 'Argath Thadalfus starts using Gnawing Dread', // FIXME
-        'Argath Thadalfus starts using Judgment Blade': 'Argath Thadalfus starts using Judgment Blade', // FIXME
-        'Argath Thadalfus starts using Royal Blood': 'Argath Thadalfus starts using Royal Blood', // FIXME
-        'Argath Thadalfus starts using Trepidation': 'Argath Thadalfus starts using Trepidation', // FIXME
         'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
         'Frostwave': 'Vague réfrigérante',
-        'Hashmal, Bringer Of Order starts using Control Tower on Hashmal': 'Hashmal, Bringer Of Order starts using Control Tower on Hashmal', // FIXME
-        'Hashmal, Bringer Of Order starts using Extreme Edge': 'Hashmal, Bringer Of Order starts using Extreme Edge', // FIXME
-        'Hashmal, Bringer Of Order starts using Landwaster': 'Hashmal, Bringer Of Order starts using Landwaster', // FIXME
-        'Hashmal, Bringer Of Order starts using Summon': 'Hashmal, Bringer Of Order starts using Summon', // FIXME
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
-        'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
-        'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
-        'Mateus, the Corrupt': 'Mateus le Corrompu',
+        'Mateus, The Corrupt': 'Mateus le Corrompu',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
         'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
@@ -477,24 +449,10 @@
       'locale': 'ja',
       'replaceSync': {
         'Archaeodemon': 'Archaeodemon', // FIXME
-        'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
-        'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
-        'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
-        'Argath Thadalfus starts using Fire IV': 'Argath Thadalfus starts using Fire IV', // FIXME
-        'Argath Thadalfus starts using Gnawing Dread': 'Argath Thadalfus starts using Gnawing Dread', // FIXME
-        'Argath Thadalfus starts using Judgment Blade': 'Argath Thadalfus starts using Judgment Blade', // FIXME
-        'Argath Thadalfus starts using Royal Blood': 'Argath Thadalfus starts using Royal Blood', // FIXME
-        'Argath Thadalfus starts using Trepidation': 'Argath Thadalfus starts using Trepidation', // FIXME
         'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
         'Frostwave': '凍てつく波動',
-        'Hashmal, Bringer Of Order starts using Control Tower on Hashmal': 'Hashmal, Bringer Of Order starts using Control Tower on Hashmal', // FIXME
-        'Hashmal, Bringer Of Order starts using Extreme Edge': 'Hashmal, Bringer Of Order starts using Extreme Edge', // FIXME
-        'Hashmal, Bringer Of Order starts using Landwaster': 'Hashmal, Bringer Of Order starts using Landwaster', // FIXME
-        'Hashmal, Bringer Of Order starts using Summon': 'Hashmal, Bringer Of Order starts using Summon', // FIXME
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
-        'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
-        'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
-        'Mateus, the Corrupt': '背徳の皇帝マティウス',
+        'Mateus, The Corrupt': '背徳の皇帝マティウス',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
         'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
@@ -567,24 +525,10 @@
       'locale': 'cn',
       'replaceSync': {
         'Archaeodemon': 'Archaeodemon', // FIXME
-        'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
-        'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
-        'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
-        'Argath Thadalfus starts using Fire IV': 'Argath Thadalfus starts using Fire IV', // FIXME
-        'Argath Thadalfus starts using Gnawing Dread': 'Argath Thadalfus starts using Gnawing Dread', // FIXME
-        'Argath Thadalfus starts using Judgment Blade': 'Argath Thadalfus starts using Judgment Blade', // FIXME
-        'Argath Thadalfus starts using Royal Blood': 'Argath Thadalfus starts using Royal Blood', // FIXME
-        'Argath Thadalfus starts using Trepidation': 'Argath Thadalfus starts using Trepidation', // FIXME
         'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
         'Frostwave': '寒冰波动',
-        'Hashmal, Bringer Of Order starts using Control Tower on Hashmal': 'Hashmal, Bringer Of Order starts using Control Tower on Hashmal', // FIXME
-        'Hashmal, Bringer Of Order starts using Extreme Edge': 'Hashmal, Bringer Of Order starts using Extreme Edge', // FIXME
-        'Hashmal, Bringer Of Order starts using Landwaster': 'Hashmal, Bringer Of Order starts using Landwaster', // FIXME
-        'Hashmal, Bringer Of Order starts using Summon': 'Hashmal, Bringer Of Order starts using Summon', // FIXME
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
-        'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
-        'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
-        'Mateus, the Corrupt': '背德皇帝马提乌斯',
+        'Mateus, The Corrupt': '背德皇帝马提乌斯',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
         'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
@@ -657,24 +601,10 @@
       'locale': 'ko',
       'replaceSync': {
         'Archaeodemon': 'Archaeodemon', // FIXME
-        'Argath Thadalfus starts using Crippling Blow': 'Argath Thadalfus starts using Crippling Blow', // FIXME
-        'Argath Thadalfus starts using Dark Ultima': 'Argath Thadalfus starts using Dark Ultima', // FIXME
-        'Argath Thadalfus starts using Empty Soul': 'Argath Thadalfus starts using Empty Soul', // FIXME
-        'Argath Thadalfus starts using Fire IV': 'Argath Thadalfus starts using Fire IV', // FIXME
-        'Argath Thadalfus starts using Gnawing Dread': 'Argath Thadalfus starts using Gnawing Dread', // FIXME
-        'Argath Thadalfus starts using Judgment Blade': 'Argath Thadalfus starts using Judgment Blade', // FIXME
-        'Argath Thadalfus starts using Royal Blood': 'Argath Thadalfus starts using Royal Blood', // FIXME
-        'Argath Thadalfus starts using Trepidation': 'Argath Thadalfus starts using Trepidation', // FIXME
         'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
         'Frostwave': '얼어붙은 파동',
-        'Hashmal, Bringer Of Order starts using Control Tower on Hashmal': 'Hashmal, Bringer Of Order starts using Control Tower on Hashmal', // FIXME
-        'Hashmal, Bringer Of Order starts using Extreme Edge': 'Hashmal, Bringer Of Order starts using Extreme Edge', // FIXME
-        'Hashmal, Bringer Of Order starts using Landwaster': 'Hashmal, Bringer Of Order starts using Landwaster', // FIXME
-        'Hashmal, Bringer Of Order starts using Summon': 'Hashmal, Bringer Of Order starts using Summon', // FIXME
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
-        'Mateus, The Corrupt starts using Rebind': 'Mateus, The Corrupt starts using Rebind', // FIXME
-        'Mateus, The Corrupt starts using Unbind': 'Mateus, The Corrupt starts using Unbind', // FIXME
-        'Mateus, the Corrupt': '배덕의 황제 마티우스',
+        'Mateus, The Corrupt': '배덕의 황제 마티우스',
         'Argath Thadalfus': 'Argath Thadalfus', // FIXME
         'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
         'Mateus, The Corrupt': 'Mateus, The Corrupt', // FIXME
