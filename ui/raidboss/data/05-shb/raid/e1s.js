@@ -200,7 +200,7 @@
         fr: 'Sous le boss',
         ja: '中へ',
         cn: '脚下',
-        ko: '보스 아래',
+        ko: '보스 아래로',
       },
     },
     {
@@ -245,7 +245,7 @@
           ja: '背面集合',
           fr: 'Intérieur, pack derrière',
           cn: '背面集合',
-          ko: '보스 가까이, 뒤쪽',
+          ko: '보스 가까이, 뒤에서 쉐어',
         };
       },
     },
@@ -793,7 +793,6 @@
         'Guardian of Paradise': '에덴의 수호자',
       },
       'replaceText': {
-        'attack': '공격',
         'Vice of Vanity': '허영의 악덕',
         'Vice of Thievery': '도둑질의 악덕',
         'Vice of Sloth': '나태의 악덕',
@@ -825,10 +824,15 @@
         'Eden\'s Blizzard III': '에덴 블리자가',
         'Dimensional Shift': '차원 전환',
         'Delta Attack': '델타 공격',
-        '--corner--': '--모서리--',
+        '--corner--': '--구석--',
         '--center--': '--중앙--',
         '--untargetable--': '--타겟불가능--',
         '--targetable--': '--타겟가능--',
+        '(T)': '(탱)',
+        '(D)': '(딜)',
+        '(H)': '(힐)',
+        '(Cross)': '(십자)',
+        '(Donut)': '(도넛)',
       },
       '~effectNames': {
         'Slippery Prey': '표식 대상 제외',
