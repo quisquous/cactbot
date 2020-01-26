@@ -543,7 +543,15 @@ class MistakeCollector {
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnFullMistakeText('wipe', null, 'Party Wipe');
+    const wipeLang = {
+      en: 'Party Wipe',
+      de: 'Party Wipe',
+      fr: 'Party Wipe',
+      ja: 'Party Wipe',
+      cn: 'Party Wipe',
+      ko: '파티 전멸',
+    };
+    this.OnFullMistakeText('wipe', null, wipeLang[this.options.Language || 'en']);
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
