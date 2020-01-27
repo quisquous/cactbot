@@ -1060,6 +1060,7 @@
         en: 'avoid ray',
         de: 'Strahl ausweichen',
         ja: 'アポカリ避けて',
+        fr: 'Evitez le rayon',
       },
     },
     {
@@ -1183,6 +1184,7 @@
         en: 'Shared Sentence',
         de: 'Urteil: Kollektivstrafe',
         ja: '集団罰',
+        fr: 'Peine collective',
       },
     },
     {
@@ -1218,6 +1220,7 @@
         en: 'Thunder',
         de: 'Blitz',
         ja: '加重罰',
+        fr: 'Peine Sévère',
       },
     },
     {
@@ -1541,6 +1544,7 @@
         en: 'TANK LB!!',
         de: 'TANK LB!!',
         ja: 'タンクLB!!',
+        fr: 'TANK LB!!',
       },
     },
     {
@@ -1570,6 +1574,7 @@
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
             ja: '自分にシェア',
+            fr: 'Stack sur VOUS',
           };
         }
       },
@@ -1581,6 +1586,7 @@
           en: 'Optical Stack (' + names.join(', ') + ')',
           de: 'Optischer Stack (' + names.join(', ') + ')',
           ja: 'シェア (' + names.join(', ') + ')',
+          fr: 'Stack Optical (' + names.join(', ') + ')',
         };
       },
     },
@@ -1595,6 +1601,7 @@
         en: 'Keep Moving',
         de: 'weiter bewegen',
         ja: '動く',
+        fr: 'Bougez',
       },
     },
     {
@@ -1607,6 +1614,7 @@
         en: 'STOP LITERALLY EVERYTHING',
         de: 'STOP WIRKLICH ALLES',
         ja: '止まる',
+        fr: 'ARRÊTEZ TOUT',
       },
     },
     {
@@ -1620,11 +1628,13 @@
         en: 'Orange (Attract)',
         de: 'Orange (Anziehen)',
         ja: '接触禁止',
+        fr: 'Orange (Attraction)',
       },
       tts: {
         en: 'Orange',
         de: 'Orange',
         ja: '接触禁止',
+        fr: 'Orange',
       },
     },
     {
@@ -1638,6 +1648,7 @@
         en: 'Orange Bait: Get Away',
         de: 'Orange locken: Geh Weg',
         ja: '接触保護',
+        fr: 'Appât Orange: Eloignez-vous',
       },
     },
     {
@@ -1651,11 +1662,13 @@
         en: 'Purple (Repel)',
         de: 'Lila (Abstoßen)',
         ja: '逃亡禁止',
+        fr: 'Violet (Répulsion)',
       },
       tts: {
         en: 'Purple',
         de: 'Lila',
         ja: '逃亡禁止',
+        fr: 'Violet',
       },
     },
     {
@@ -1669,6 +1682,7 @@
         en: 'Purple Bait: Be In Back Of Group',
         de: 'Lila locken: Hinter der Gruppe sein',
         ja: '逃亡監察',
+        fr: 'Appât Violet: Placez-vous derrière le groupe',
       },
     },
     {
@@ -1700,11 +1714,13 @@
           en: 'No debuff: shared stack',
           de: 'Kein debuff: geteilter stack',
           ja: 'デバフ無し',
+          fr: 'Aucun debuff: stack partagé',
         };
         let kSeverity = {
           en: 'Severity: avoid shared stack',
           de: 'Erschwertes: geteilter stack ausweichen',
           ja: '加重罰',
+          fr: 'Sévérité: éloignez-vous du stack',
         };
 
         let kUnknown;
@@ -1713,12 +1729,14 @@
             en: 'No clone: probably stack?',
             de: 'keine Klone: warscheinlich kein debuff + stack?',
             ja: 'クローン無し: 多分シェア?',
+            fr: 'Pas de clone: stack?',
           };
         } else {
           kUnknown = {
             en: 'No clone: ???',
             de: 'keine Klone: ???',
             ja: 'クローン無し: ???',
+            fr: 'Pas de clone: ???',
           };
         }
 
@@ -1728,6 +1746,7 @@
             en: 'Shared Sentence: stack',
             de: 'Urteil Kollektivstrafe: stack',
             ja: '集団罰: ',
+            fr: 'Peine collective: stack',
           },
           '1': {
             en: 'Defamation on YOU',
@@ -1786,6 +1805,7 @@
           en: 'Motion first',
           de: 'Bewegungsbefehl zuerst',
           ja: '最初は動く',
+          fr: 'Mouvement en premier',
         };
       },
       infoText: (data) => data.firstAlphaOrdainedText,
@@ -1806,6 +1826,7 @@
           en: 'Stillness first',
           de: 'Stillstandsbefehl zuerst',
           ja: '最初は止まる',
+          fr: 'Immobilité en premier',
         };
       },
       infoText: (data) => data.firstAlphaOrdainedText,
@@ -1826,6 +1847,7 @@
           en: 'Motion second',
           de: 'Bewegungsbefehl als Zweites',
           ja: '最後は動く',
+          fr: 'Mouvement en deuxième',
         };
       },
       infoText: function(data) {
@@ -1855,6 +1877,7 @@
           en: 'Stillness second',
           de: 'Stillstandsbefehl als Zweites',
           ja: '最後は止まる',
+          fr: 'Immobilité en deuxième',
         };
       },
       infoText: function(data) {
@@ -1930,11 +1953,13 @@
             en: 'Party: back right',
             de: 'Gruppe: hinten rechts',
             ja: '右後ろ',
+            en: 'Groupe: arrière droite',
           },
           {
             en: 'Party: back left',
             de: 'Gruppe: hinten links',
             ja: '左後ろ',
+            fr: 'Groupe: arrière gauche',
           },
         ][idx - 1];
       },
@@ -1953,12 +1978,14 @@
             en: 'Move First',
             de: 'Zuerst bewegen',
             ja: '最初は動く',
+            fr: 'Bougez en premier',
           };
         }
         return {
           en: 'Stillness First',
           de: 'Zuerst Stillstehen',
           ja: '最初は止まる',
+          fr: 'Restez immobile en premier',
         };
       },
     },
@@ -1976,12 +2003,14 @@
             en: 'Keep Moving',
             de: 'weiter bewegen',
             ja: '最後は動く',
+            fr: 'Continuez à bouger',
           };
         }
         return {
           en: 'Stop Everything',
           de: 'Alles stoppen',
           ja: '最後は止まる',
+          fr: 'Arrêtez tout',
         };
       },
     },
@@ -2007,47 +2036,56 @@
             en: 'No Clone: maybe purple E->S ???',
             de: 'Keine Klone: vielleicht Lila O->S ???',
             ja: 'クローン無し: 多分東から南???',
+            fr: 'Pas de Clone: peut-être E->S ???',
           },
           '0': {
             en: 'Purple Bait: bait E',
             de: 'Lila Köder: locke O',
             ja: '逃亡監察: 東へ',
+            fr: 'Appât Violet: placez-vous E',
           },
           '1': {
             en: 'Orange Bait: bait N',
             de: 'Orange Köder: locke N',
             ja: '接触保護: 北へ',
+            fr: 'Appât Orange: placez-vous N',
           },
           '2': {
             en: 'Purple, no tether: E->W',
             de: 'Lila, keine Verbindung: O->W',
             ja: '接触禁止, 線無し: 東から西へ',
+            fr: 'Violet, pas de lien: E->N',
           },
           // This person also has the shared sentence.
           '3': {
             en: 'Orange, no tether: E->N',
             de: 'Orange, keine Verbindung: O->N',
             ja: '接触禁止, 線無し: 東から北へ',
+            fr: 'Orange, pas de lien: E->N',
           },
           '4': {
             en: 'Purple, close tether: E->N',
             de: 'Lila, nahe Verbindungr: O->N',
             ja: '逃亡禁止, 接近強制: 東から北へ',
+            fr: 'Violet, lien rapproché: E->N',
           },
           '5': {
             en: 'Orange, close tether: E->N',
             de: 'Orange, nahe Verbindung: O->N',
             ja: '接触禁止, 接近強制: 東から北へ',
+            fr: 'Orange, lien rapproché: E->N',
           },
           '6': {
             en: 'Purple, far tether: E->S',
             de: 'Lila, entfernte Verbindung: O->S',
             ja: '逃亡禁止, 接近禁止: 東から南へ',
+            fr: 'Violet, lien éloigné: E->S',
           },
           '7': {
             en: 'Orange, far tether: E->N',
             de: 'Orange, entfernte Verbindung: O->N',
             ja: '接触禁止, 接近禁止: 東から北へ',
+            fr: 'Orange, lien éloigné: E->N',
           },
         }[sortedNames.indexOf(data.me)];
       },
@@ -2103,21 +2141,25 @@
             en: 'Sacrament North',
             de: 'Sacrement Norden',
             ja: '拝火は北',
+            fr: 'Sacrement Nord',
           },
           1: {
             en: 'Sacrament East',
             de: 'Sacrement Osten',
             ja: '拝火は東',
+            fr: 'Sacrement Est',
           },
           2: {
             en: 'Sacrament South',
             de: 'Sacrement Süden',
             ja: '拝火は南',
+            fr: 'Sacrement Sud',
           },
           3: {
             en: 'Sacrament West',
             de: 'Sacrement Westen',
             ja: '拝火は西',
+            fr: 'Sacrement Ouest',
           },
         }[idx];
       },
