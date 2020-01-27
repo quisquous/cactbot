@@ -75,7 +75,7 @@
               en: 'Tank Buster on YOU',
               de: 'Tankbuster auf DIR',
               ja: '自分にタンクバスター',
-              fr: 'Tank buster sur TOI',
+              fr: 'Tank buster sur VOUS',
             };
           }
         }
@@ -221,7 +221,7 @@
             en: 'Shared Tankbuster',
             de: 'geteilter Tankbuster',
             ja: 'タンクシェア',
-            en: 'Tankbuster partagé',
+            fr: 'Tankbuster partagé',
           };
         }
       },
@@ -608,7 +608,7 @@
           return {
             en: 'Knockback Cleave on YOU',
             de: 'Rückstoß Cleave auf DIR',
-            fr: 'Cleave sur TOI',
+            fr: 'Cleave sur VOUS',
             ja: '自分にクリーブ',
           };
         }
@@ -783,7 +783,7 @@
         en: 'Water on YOU',
         de: 'Wasser auf DIR',
         ja: '自分に水',
-        fr: 'Eau sur TOI',
+        fr: 'Eau sur VOUS',
       },
     },
     {
@@ -827,7 +827,7 @@
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
         ja: '自分に雷',
-        fr: 'Foudre sur TOI',
+        fr: 'Foudre sur VOUS',
       },
     },
     {
@@ -1025,7 +1025,7 @@
             en: 'Shared Tankbuster on YOU',
             de: 'geteilter Tankbuster auf DIR',
             ja: '自分にタンクシェア',
-            fr: 'Tankbuster partagé sur TOI',
+            fr: 'Tankbuster partagé sur vous',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
@@ -1272,6 +1272,7 @@
         en: 'Crystal on YOU',
         de: 'Kristall auf DIR',
         ja: '自分に結晶',
+        fr: 'Cristal sur VOUS',
       },
     },
     {
@@ -1287,6 +1288,7 @@
         en: 'Get Away From Crystals',
         de: 'Geh weg vom Kristall',
         ja: '結晶から離れて',
+        fr: 'Eloignez-vous des Cristaux',
       },
     },
     {
