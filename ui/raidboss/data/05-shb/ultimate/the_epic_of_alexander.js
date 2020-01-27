@@ -1511,6 +1511,7 @@
       alertText: {
         en: 'big aoe',
         de: 'große AoE',
+        fr: 'Grosse AoE',
       },
     },
     {
@@ -1526,6 +1527,7 @@
         en: 'Kill Cruise Chaser First',
         de: 'Chaser-Mecha zuerst besiegen',
         ja: 'チェイサーから倒す',
+        fr: 'Tuez Croiseur-chasseur en premier',
       },
     },
     {
@@ -1953,7 +1955,7 @@
             en: 'Party: back right',
             de: 'Gruppe: hinten rechts',
             ja: '右後ろ',
-            en: 'Groupe: arrière droite',
+            fr: 'Groupe: arrière droite',
           },
           {
             en: 'Party: back left',
