@@ -32,6 +32,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Death Sentence Soon',
+        fr: 'Sentence de mort bientôt',
       },
     },
     {
@@ -44,6 +45,7 @@
       regexKo: Regexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
       infoText: {
         en: 'Liquid Hell',
+        fr: 'Enfer liquide',
       },
     },
     {
@@ -68,6 +70,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Fireball on YOU',
+            fr: 'Boule de feu sur VOUS',
           };
         }
       },
@@ -75,6 +78,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Fireball on ' + data.ShortName(matches.target),
+            fr: 'Boule de feu sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -91,6 +95,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Conflag on YOU',
+            fr: 'Incendie sur VOUS',
           };
         }
       },
@@ -98,6 +103,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Conflag on ' + data.ShortName(matches.target),
+            fr: 'Incendie sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -122,6 +128,7 @@
       regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       alertText: {
         en: 'DIVEBOMB',
+        fr: 'BOMBE PLONGEANTE',
       },
     },
     {
@@ -136,6 +143,7 @@
       suppressSeconds: 5000,
       infoText: {
         en: 'Divebombs Soon',
+        fr: 'Bombe plongeante bientôt',
       },
     },
     {
@@ -151,10 +159,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Knight on YOU',
+            fr: 'Chevalier sur VOUS',
           };
         }
         return {
           en: 'Knight on ' + data.ShortName(matches.target),
+          fr: 'Chevalier sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -168,6 +178,7 @@
       regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
       alertText: {
         en: 'Twister!',
+        fr: 'Grande tornade !',
       },
     },
     {
@@ -192,6 +203,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Hatch on YOU',
+            fr: 'Eclosion sur VOUS',
           };
         }
       },
@@ -199,6 +211,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Hatch on ' + data.ShortName(matches.target),
+            fr: 'Eclosion sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -233,7 +246,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Engage!': 'À l\'attaque !',
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
+        'The Right Hand of Bahamut is no longer sealed': 'Ouverture de la Serre droite de Bahamut',
         'The Right Hand of Bahamut will be sealed off': 'Fermeture de la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },

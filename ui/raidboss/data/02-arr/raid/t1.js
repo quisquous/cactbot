@@ -42,6 +42,7 @@
       },
       alertText: {
         en: 'Spit on YOU',
+        fr: 'Crachat sur VOUS',
       },
     },
     {
@@ -58,6 +59,7 @@
       },
       alertText: {
         en: 'Split',
+        fr: 'Séparation',
       },
     },
     {
@@ -84,6 +86,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Slime Soon',
+        fr: 'Slime bientôt',
       },
     },
     {
@@ -98,6 +101,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Slime Soon',
+        fr: 'Slime bientôt',
       },
     },
   ],

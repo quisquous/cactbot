@@ -50,7 +50,7 @@
           return {
             en: 'Revelation on YOU',
             de: 'Offenbarung auf DIR',
-            fr: 'Révélationsur VOUS',
+            fr: 'Révélation sur VOUS',
           };
         }
       },
@@ -159,7 +159,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Phoenix-Egi': 'Phénix-Egi',
         'Phoenix': 'Phénix',
       },

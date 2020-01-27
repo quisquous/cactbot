@@ -29,6 +29,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Rot on YOU',
+            fr: 'Pourriture sur VOUS',
           };
         }
       },
@@ -36,6 +37,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Rot on ' + data.ShortName(matches.target),
+            fr: 'Pourriture sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -60,6 +62,7 @@
           return;
         return {
           en: 'Pass Rot',
+          fr: 'Passez la pourriture',
         };
       },
     },

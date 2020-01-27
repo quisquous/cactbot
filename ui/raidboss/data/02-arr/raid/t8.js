@@ -11,10 +11,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Laser Stack on YOU',
+            fr: 'Package laser sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          fr: 'Package sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -23,6 +25,7 @@
       regex: Regexes.message({ line: 'Landmines have been scattered', capture: false }),
       alertText: {
         en: 'Explode Landmines',
+        fr: 'Explosion mines',
       },
       run: function(data) {
         data.landmines = {};
@@ -62,6 +65,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Missile Tether (on ' + data.ShortName(matches.source) + ')',
+          fr: 'Lien missile sur ' + data.ShortName(matches.source),
         };
       },
     },
@@ -77,6 +81,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Brainjack on YOU',
+            fr: 'Détournement cérébral sur VOUS',
           };
         }
       },
@@ -84,6 +89,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Brainjack on ' + data.ShortName(matches.target),
+            fr: 'Détournement cérébral sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -100,6 +106,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Allagan Field on YOU',
+            fr: 'Champ allagois sur VOUS',
           };
         }
       },
@@ -107,6 +114,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Allagan Field on ' + data.ShortName(matches.target),
+            fr: 'Champ allagois sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -121,6 +129,7 @@
       regexKo: Regexes.addedCombatant({ name: '드레드노트', capture: false }),
       infoText: {
         en: 'Dreadnaught Add',
+        fr: 'Add cuirassé',
       },
     },
   ],
@@ -150,7 +159,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'The Avatar': 'Bio-tréant',
         'The central bow is no longer sealed': 'Ouverture de l\'axe central',
         'The central bow will be sealed off': 'Fermeture de l\'axe central',
