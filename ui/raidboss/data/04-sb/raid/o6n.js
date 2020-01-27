@@ -148,7 +148,7 @@
         'Dull Pain': 'Douleur sourde',
         'Earthquake': 'Grand séisme',
         'Easterlies': 'Easterlies', // FIXME
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Enrage': 'Enrage',
         'Featherlance': 'Lance de plume',
         'Flash Fire': 'Flammes subites',

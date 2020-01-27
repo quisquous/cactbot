@@ -348,7 +348,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Fleshy Member': 'tentacule',
       },
       'replaceText': {

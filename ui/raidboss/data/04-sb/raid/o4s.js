@@ -1105,7 +1105,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Black Hole': 'Trou noir',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
         'uses Almagest': 'uses Almagest', // FIXME
         'uses Dualcast': 'uses Dualcast', // FIXME

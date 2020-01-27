@@ -723,7 +723,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Cocoon': 'cocon de lumière',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Ginryu': 'ginryu',
         'Hakkinryu': 'hakkinryu',
         'Left Wing': 'aile gauche',

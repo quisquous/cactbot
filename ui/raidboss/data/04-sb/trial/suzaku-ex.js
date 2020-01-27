@@ -175,7 +175,7 @@
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'flamme orientale',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Northern Pyre': 'flamme boréale',
         'Rapturous Echo': 'chant d\'amour',
         'Scarlet Lady': 'oiseau de feu',

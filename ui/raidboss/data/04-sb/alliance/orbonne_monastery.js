@@ -907,7 +907,7 @@
         'Dominion': 'Dominion',
         'Early Turret': 'tourelle archaïque',
         'Emblazoned Shield': 'pavois miroitant',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Ephemeral Knight': 'chevalier évanescent',
         'Halidom': 'faux sanctuaire',
         'Harpy': 'harpie',

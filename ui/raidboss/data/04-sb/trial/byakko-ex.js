@@ -452,7 +452,7 @@
         'Aratama Force': 'aramitama',
         'Aratama Soul': 'Aramitama',
         'Byakko': 'Byakko',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Hakutei': 'Hakutei',
         'There is no turning back!': 'Grrraaaah ! ... Trop tard pour les regrets !',
       },

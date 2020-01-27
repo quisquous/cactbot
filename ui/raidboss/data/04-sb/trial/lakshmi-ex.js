@@ -295,7 +295,7 @@
         'Dreaming Brahmin': 'brahmin rêveuse',
         'Dreaming Kshatriya': 'kshatriya rêveuse',
         'Dreaming Shudra': 'shudra rêveuse',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {

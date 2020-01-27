@@ -297,13 +297,13 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Archaeodemon': 'Archaeodemon', // FIXME
-        'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
+        'Archaeodemon': 'Archaeodämon',
+        'command tower': 'Kommandoturm',
         'Frostwave': 'Polarlanze',
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
         'Mateus, The Corrupt': 'Mateus (?:der|die|das) Peiniger',
-        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
-        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus',
+        'Hashmal, Bringer Of Order': 'Hashmallim der Einiger',
         'Rofocale': 'Rofocale',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -372,13 +372,13 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Archaeodemon': 'Archaeodemon', // FIXME
-        'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
+        'Archaeodemon': 'archéodémon',
+        'command tower': 'tour de commandement',
         'Frostwave': 'Vague réfrigérante',
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
         'Mateus, The Corrupt': 'Mateus le Corrompu',
-        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
-        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Argath Thadalfus': 'Argath Thadalfus',
+        'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
         'Rofocale': 'Rofocale le Roi centaure',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -447,13 +447,13 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Archaeodemon': 'Archaeodemon', // FIXME
-        'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
+        'Archaeodemon': 'アルケオデーモン',
+        'command tower': '支配の塔',
         'Frostwave': '凍てつく波動',
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
         'Mateus, The Corrupt': '背徳の皇帝マティウス',
-        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
-        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Argath Thadalfus': '冷血剣アルガス',
+        'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
         'Rofocale': '人馬王ロフォカレ',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -522,13 +522,13 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Archaeodemon': 'Archaeodemon', // FIXME
-        'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
+        'Archaeodemon': '古恶魔',
+        'command tower': '支配之塔',
         'Frostwave': '寒冰波动',
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
         'Mateus, The Corrupt': '背德皇帝马提乌斯',
-        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
-        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Argath Thadalfus': '冷血剑阿加斯',
+        'Hashmal, Bringer Of Order': '统治者哈修马利姆',
         'Rofocale': '人马王洛弗卡勒',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
@@ -597,13 +597,13 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Archaeodemon': 'Archaeodemon', // FIXME
-        'Command Tower starts using Command Tower': 'Command Tower starts using Command Tower', // FIXME
+        'Archaeodemon': '원시 악마',
+        'command tower': '지배의 탑',
         'Frostwave': '얼어붙은 파동',
         'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
         'Mateus, The Corrupt': '배덕의 황제 마티우스',
-        'Argath Thadalfus': 'Argath Thadalfus', // FIXME
-        'Hashmal, Bringer Of Order': 'Hashmal, Bringer Of Order', // FIXME
+        'Argath Thadalfus': '냉혈검 아르가스',
+        'Hashmal, Bringer Of Order': '통제자 하쉬말림',
         'Rofocale': '인마왕 로포칼레',
         'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
         'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME

@@ -495,7 +495,7 @@
         'Ao-no-shiki': 'shiki céruléen',
         'Blue Orochi': 'orochi azur',
         'Doro-no-shiki': 'shiki fangeux',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Iwa-no-shiki': 'shiki rocailleux',
         'Numa-no-shiki': 'shiki uligineux',
         'Seiryu': 'Seiryû',

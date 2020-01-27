@@ -384,9 +384,6 @@
         'Halicarnassus': 'Halikarnassos',
         'Soul Reaper': 'Seelenschnitter',
         'White Flame': 'weiß(?:e|er|es|en) Flamme',
-        'casts Haste III': 'casts Haste III', // FIXME
-        'uses Critical Hit': 'uses Critical Hit', // FIXME
-        'uses Panel Swap': 'uses Panel Swap', // FIXME
       },
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
@@ -459,14 +456,11 @@
       'replaceSync': {
         'Ancient Tome': 'volume ancien',
         'Apanda': 'apanda',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Great Dragon': 'dragon suprême',
         'Halicarnassus': 'Halicarnasse',
         'Soul Reaper': 'faucheur d\'âmes',
         'White Flame': 'flamme blanche',
-        'casts Haste III': 'casts Haste III', // FIXME
-        'uses Critical Hit': 'uses Critical Hit', // FIXME
-        'uses Panel Swap': 'uses Panel Swap', // FIXME
       },
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
@@ -544,9 +538,6 @@
         'Halicarnassus': 'ハリカルナッソス',
         'Soul Reaper': 'ソウルリーパー',
         'White Flame': 'ホワイトフレイム',
-        'casts Haste III': 'casts Haste III', // FIXME
-        'uses Critical Hit': 'uses Critical Hit', // FIXME
-        'uses Panel Swap': 'uses Panel Swap', // FIXME
       },
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
@@ -624,9 +615,6 @@
         'Halicarnassus': '哈利卡纳苏斯',
         'Soul Reaper': '灵魂收割者',
         'White Flame': '白焰',
-        'casts Haste III': 'casts Haste III', // FIXME
-        'uses Critical Hit': 'uses Critical Hit', // FIXME
-        'uses Panel Swap': 'uses Panel Swap', // FIXME
       },
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
@@ -704,9 +692,6 @@
         'Halicarnassus': '할리카르나소스',
         'Soul Reaper': '영혼 수확자',
         'White Flame': '하얀 불꽃',
-        'casts Haste III': 'casts Haste III', // FIXME
-        'uses Critical Hit': 'uses Critical Hit', // FIXME
-        'uses Panel Swap': 'uses Panel Swap', // FIXME
       },
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME

@@ -481,7 +481,7 @@
         'Aetheroplasm': 'Éthéroplasma',
         'Bomb Boulder': 'bombo rocher',
         'Chirada': 'Chirada',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Garuda': 'Garuda',
         'Granite Gaol': 'geôle de granite',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Je vais vous écorcher avec mes bourrasques',

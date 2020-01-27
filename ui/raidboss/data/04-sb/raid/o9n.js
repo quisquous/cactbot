@@ -112,7 +112,7 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Sphère de chaos',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'YOU DARE!': '... Mon cristal !? Impossible !',
         'dark crystal': 'cristal noir',
       },
