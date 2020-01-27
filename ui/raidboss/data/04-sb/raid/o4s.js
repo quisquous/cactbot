@@ -1038,9 +1038,6 @@
         'Black Hole': 'Schwarzes Loch',
         'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
-        'uses Almagest': 'uses Almagest', // FIXME
-        'uses Dualcast': 'uses Dualcast', // FIXME
-        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
@@ -1107,9 +1104,6 @@
         'Black Hole': 'Trou noir',
         'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
-        'uses Almagest': 'uses Almagest', // FIXME
-        'uses Dualcast': 'uses Dualcast', // FIXME
-        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
@@ -1176,9 +1170,6 @@
         'Black Hole': 'ブラックホール',
         'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
-        'uses Almagest': 'uses Almagest', // FIXME
-        'uses Dualcast': 'uses Dualcast', // FIXME
-        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
@@ -1245,9 +1236,6 @@
         'Black Hole': '黑洞',
         'Engage!': '战斗开始！',
         'Exdeath': '艾克斯迪司',
-        'uses Almagest': 'uses Almagest', // FIXME
-        'uses Dualcast': 'uses Dualcast', // FIXME
-        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
@@ -1314,9 +1302,6 @@
         'Black Hole': '블랙홀',
         'Engage!': '전투 시작!',
         'Exdeath': '엑스데스',
-        'uses Almagest': 'uses Almagest', // FIXME
-        'uses Dualcast': 'uses Dualcast', // FIXME
-        'uses Emptiness': 'uses Emptiness', // FIXME
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
