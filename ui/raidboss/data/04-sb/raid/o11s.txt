@@ -39,7 +39,7 @@ hideall "--sync--"
 185.0 "Force Quit Enrage"
 
 ### Phase 3
-300.0 "--sync--" sync /14:325B:Omega starts using/ window 200,200
+300.0 "--sync--" sync /14:325B:Omega/ window 200,200
 310.0 "Delta Attack" sync /:Omega:325B:/ window 200,200
 330.1 "Ballistic Missile" sync /:Omega:325F:/
 337.2 "Flamethrower" sync /:Omega:325C:/

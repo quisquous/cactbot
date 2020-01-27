@@ -11,7 +11,7 @@ hideall "Alluring Arm"
 
 ### Adds
 0.0 "Start" sync /:Engage!/ window 0,1
-1.0 "--sync--" sync /:2146:Dreaming Kshatriya starts using Vril/ window 1,10
+1.0 "--sync--" sync /:2146:Dreaming Kshatriya/ window 1,10
 15.5 "Inner Demons" # end of castbar
 15.5 "Stotram" # end of castbar
 # infinite loop
@@ -19,7 +19,7 @@ hideall "Alluring Arm"
 
 ### Warmup
 # first auto comes out before rp text.
-100.0 "--sync--" sync / 15:........:Lakshmi:2157:/ window 100,0
+100.0 "--sync--" sync /:Lakshmi:2157:/ window 100,0
 111.0 "Hand Of Grace" duration 11.5 # hat -> disappearing
 114.0 "The Pull Of Light" # end of castbar
 125.7 "Stotram" # end of castbar
@@ -33,7 +33,7 @@ hideall "Alluring Arm"
 188.2 "The Pull Of Light" # end of castbar
 
 ### Chanchala #1
-194.0 "--sync--" sync /14:2148:Lakshmi starts using/ window 20,20
+194.0 "--sync--" sync /:2148:Lakshmi/ window 20,20
 196.5 "Chanchala" # end of castbar
 210.2 "Divine Denial" # end of castbar
 221.2 "Hand Of Beauty" duration 11.5 # hat -> disappearing
@@ -57,7 +57,7 @@ hideall "Alluring Arm"
 421.0 "/dance"
 
 ### Chanchala #2
-441.5 "--sync--" sync /14:2148:Lakshmi starts using/ window 20,20
+441.5 "--sync--" sync /:2148:Lakshmi/ window 20,20
 444.2 "Chanchala" # end of castbar
 459.5 "Divine Doubt" # end of castbar
 470.5 "The Path Of Light" duration 5.5 # hat -> cleave
@@ -74,7 +74,7 @@ hideall "Alluring Arm"
 570.5 "Stotram" # end of castbar
 
 ### Chanchala #3
-579.0 "--sync--" sync /14:2148:Lakshmi starts using/ window 20,20
+579.0 "--sync--" sync /:2148:Lakshmi/ window 20,20
 581.7 "Chanchala" # end of castbar
 596.7 "Divine Doubt" # end of castbar
 612.2 "The Pall Of Light" # end of castbar

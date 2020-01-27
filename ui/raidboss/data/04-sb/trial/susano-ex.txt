@@ -62,7 +62,7 @@
 423.7 "Ukehi (2)"
 426 "Ukehi (3)"
 
-431.5 "The Hidden Gate" sync /:Susano:2034:The Hidden Gate:/ window 5,5
+431.5 "The Hidden Gate" sync /:Susano:2034:/ window 5,5
 442 "The Sealed Gate" duration 15
 444.5 "Rasen Kaikyo" duration 3
 449.5 "Stormsplitter" duration 5.5
@@ -119,7 +119,7 @@
 652.7 "Ukehi (2)"
 654.5 "Ukehi (3)"
 
-661 "The Hidden Gate" sync /:Susano:2034:The Hidden Gate:/ window 100,0 jump 431.5
+661 "The Hidden Gate" sync /:Susano:2034:/ window 100,0 jump 431.5
 671.5 "The Sealed Gate" duration 15
 674 "Rasen Kaikyo" duration 3
 679 "Stormsplitter" duration 5.5

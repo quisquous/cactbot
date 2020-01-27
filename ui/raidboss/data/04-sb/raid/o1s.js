@@ -119,7 +119,6 @@
       'locale': 'de',
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
-        'Alte Roite starts using The Classical Elements': 'Alte Roite starts using The Classical Elements', // FIXME
         'Black Hole': 'Schwarzes Loch',
         'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
@@ -175,7 +174,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
-        'Alte Roite starts using The Classical Elements': 'Alte Roite starts using The Classical Elements', // FIXME
         'Black Hole': 'Trou noir',
         'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
@@ -231,7 +229,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Alte Roite': 'アルテ・ロイテ',
-        'Alte Roite starts using The Classical Elements': 'Alte Roite starts using The Classical Elements', // FIXME
         'Black Hole': 'ブラックホール',
         'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
@@ -287,7 +284,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Alte Roite': '老者',
-        'Alte Roite starts using The Classical Elements': 'Alte Roite starts using The Classical Elements', // FIXME
         'Black Hole': '黑洞',
         'Engage!': '战斗开始！',
         'Exdeath': '艾克斯迪司',
@@ -343,7 +339,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Alte Roite': '알테 로이테',
-        'Alte Roite starts using The Classical Elements': 'Alte Roite starts using The Classical Elements', // FIXME
         'Black Hole': '블랙홀',
         'Engage!': '전투 시작!',
         'Exdeath': '엑스데스',
