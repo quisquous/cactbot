@@ -2054,7 +2054,7 @@
             en: 'Purple, no tether: E->W',
             de: 'Lila, keine Verbindung: O->W',
             ja: '接触禁止, 線無し: 東から西へ',
-            fr: 'Violet, pas de lien: E->N',
+            fr: 'Violet, pas de lien: E->O',
           },
           // This person also has the shared sentence.
           '3': {
