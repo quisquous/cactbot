@@ -195,7 +195,7 @@
           en: 'Puddle #' + matches[1],
           de: 'Fläche #' + matches[1],
           ja: '懺悔 #' + matches[1],
-          fr: 'Flaque #' + matches[1], 
+          fr: 'Flaque #' + matches[1],
         };
       },
       tts: function(data, matches) {
