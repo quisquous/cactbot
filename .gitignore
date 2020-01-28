@@ -19,4 +19,4 @@ package-lock.json
 *.iml
 *.swp
 .DS_Store
-util/DEPS.cache
+tools/DEPS.cache
