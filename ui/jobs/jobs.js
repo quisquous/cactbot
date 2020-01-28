@@ -990,7 +990,7 @@ class Bars {
       this.o.leftBuffsList.rowcolsize = 7;
       this.o.leftBuffsList.maxnumber = 7;
       this.o.leftBuffsList.toward = 'left down';
-      this.o.rightBuffsList.elementwidth = parseInt(this.options.BigBuffIconWidth) + 2;
+      this.o.leftBuffsList.elementwidth = parseInt(this.options.BigBuffIconWidth) + 2;
     }
 
     if (Util.isCraftingJob(this.job)) {
