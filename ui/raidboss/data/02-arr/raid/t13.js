@@ -170,7 +170,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'The Storm of Meracydia': 'Tempête de Méracydia',
       },
       'replaceText': {
@@ -185,7 +185,7 @@
         'Flatten': 'Aplatissement',
         'Gigaflare': 'GigaBrasier',
         'Gust Add': 'Add Bourrasque',
-        'MF Pepperoni': 'MF Pepperoni', // FIXME
+        'MF Pepperoni': 'MF Pepperoni',
         'MF Share': 'MégaBrasier Partage',
         'MF Spread': 'MégaBrasier Dispersion',
         'MF Tower': 'MégaBrasier Tour',

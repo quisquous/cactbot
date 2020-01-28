@@ -10,6 +10,7 @@
       beforeSeconds: 3.5,
       infoText: {
         en: 'Get Out',
+        fr: 'A l\'extérieur',
       },
     },
     {
@@ -18,6 +19,7 @@
       beforeSeconds: 3.5,
       infoText: {
         en: 'Get In',
+        fr: 'A l\'intérieur',
       },
     },
     {
@@ -26,6 +28,7 @@
       beforeSeconds: 0.5,
       infoText: {
         en: 'Kill Nail',
+        fr: 'Détruisez le clou',
       },
     },
   ],
@@ -58,20 +61,20 @@
       'locale': 'fr',
       'replaceSync': {
         '--sync--': '--Synchronisation--',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Ifrit': 'Ifrit',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        '(inner)': '(inner)', // FIXME
-        '(outer)': '(outer)', // FIXME
+        '(inner)': '(intérieur)',
+        '(outer)': '(extérieur)',
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Eruption': 'Éruption',
         'Hellfire': 'Flammes de l\'enfer',
         'Incinerate': 'Incinération',
-        'Nail Add': 'Nail Add', // FIXME
+        'Nail Add': 'Add : Clou',
         'Radiant Plume': 'Panache radiant',
         'Vulcan Burst': 'Explosion volcanique',
       },

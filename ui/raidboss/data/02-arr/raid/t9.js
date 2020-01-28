@@ -13,6 +13,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Tankbuster',
+        fr: 'TankBuster',
       },
     },
     {
@@ -21,6 +22,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Dive on Main Tank',
+        fr: 'Plongeon sur le main tank',
       },
     },
     {
@@ -29,6 +31,7 @@
       beforeSeconds: 4,
       infoText: {
         en: 'Bait Super Novas Outside',
+        fr: 'Attirer super novas à l\'extérieur',
       },
     },
   ],
@@ -50,6 +53,7 @@
       durationSeconds: 5,
       alarmText: {
         en: 'Blight on YOU',
+        fr: 'Bile sur VOUS',
       },
     },
     {
@@ -70,6 +74,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Blight on ' + data.ShortName(matches.target),
+          fr: 'Bile sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -81,6 +86,7 @@
       },
       alertText: {
         en: 'Meteor on YOU',
+        fr: 'Météore sur VOUS',
       },
     },
     {
@@ -91,6 +97,7 @@
       },
       infoText: {
         en: 'Spread (Meteor Stream)',
+        fr: 'Ecartez-vous (météore)',
       },
     },
     {
@@ -100,10 +107,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Thermo on YOU',
+            fr: 'Thermo sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          fr: 'Package sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -130,6 +139,7 @@
       },
       alertText: {
         en: 'Silence Blue Golem',
+        fr: 'Silence le Golem bleu',
       },
     },
     {
@@ -142,6 +152,7 @@
       regexKo: Regexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
       alertText: {
         en: 'Heavensfall',
+        fr: 'Chutes du ciel',
       },
     },
     {
@@ -157,6 +168,7 @@
       },
       infoText: {
         en: 'Garotte on YOU',
+        fr: 'Sangle sur VOUS',
       },
       run: function(data) {
         data.garotte = true;
@@ -175,6 +187,7 @@
       },
       alarmText: {
         en: 'Cleanse Garotte',
+        fr: 'Guerrisez Sangle',
       },
     },
     {
@@ -305,6 +318,7 @@
         if (data.me == matches.target) {
           return {
             en: data.tetherDir + ' (on YOU)',
+            fr: data.tetherDir + ' (sur VOUS)',
           };
         }
       },
@@ -312,6 +326,7 @@
         if (data.me != matches.target) {
           return {
             en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
+            fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
           };
         }
       },
@@ -432,7 +447,7 @@
       'replaceSync': {
         'Astral Debris': 'Débris astral',
         'Dalamud Fragment': 'Débris de Dalamud',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Firehorn': 'Corne-de-feu',
         'Iceclaw': 'Griffe-de-glace',
         'Nael Geminus': 'Nael Geminus',

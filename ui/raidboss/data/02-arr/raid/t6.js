@@ -36,20 +36,24 @@
         if (!partners) {
           return {
             en: 'Thorns on YOU',
+            fr: 'Ronces sur VOUS',
           };
         }
         if (partners.length == 1) {
           return {
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ')',
+            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ')',
           };
         }
         if (partners.length == 2) {
           return {
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
+            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
           };
         }
         return {
           en: 'Thorns (' + partners.length + ' people)',
+          fr: 'Ronces (' + partners.length + ' personne)',
         };
       },
       run: function(data) {
@@ -93,6 +97,7 @@
         if (data.honey) {
           return {
             en: 'Devour: Get Eaten',
+            fr: 'Dévoration : Faites vous manger',
           };
         }
       },
@@ -103,6 +108,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Devour: Jump In New Thorns',
+            fr: 'Dévoration : Sautez dans les ronces',
           };
         }
       },
@@ -112,6 +118,7 @@
 
         return {
           en: 'Avoid Devour',
+          fr: 'Evitez dévoration',
         };
       },
     },
@@ -135,6 +142,7 @@
       regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
       alarmText: {
         en: 'STOP',
+        fr: 'STOP',
       },
     },
     {
@@ -163,6 +171,7 @@
       regexKo: Regexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
       infoText: {
         en: 'Stack for Acid',
+        fr: 'Packez vous pour Acide',
       },
     },
     {
@@ -180,6 +189,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Swarm on YOU',
+            fr: 'Nuée sur VOUS',
           };
         }
       },
@@ -187,6 +197,7 @@
         if (matches.target != data.me) {
           return {
             en: 'Swarm on ' + data.ShortName(matches.target),
+            fr: 'Nuée sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -198,10 +209,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Share Laser (on YOU)',
+            fr: 'Partage de laser (sur VOUS)',
           };
         }
         return {
           en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
+          fr: 'Partage de laser (sur ' + data.ShortName(matches.target) + ')',
         };
       },
     },
@@ -233,7 +246,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Rafflesia': 'Rafflesia',
         'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
         'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',

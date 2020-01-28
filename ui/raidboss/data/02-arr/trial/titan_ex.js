@@ -21,6 +21,7 @@
         if (data.role != 'healer' && data.role != 'tank') {
           return {
             en: 'Tank Cleave',
+            fr: 'Cleave sur le tank',
           };
         }
       },
@@ -34,6 +35,7 @@
       },
       infoText: {
         en: 'aoe',
+        fr: 'Dégats de zone',
       },
     },
     {
@@ -42,6 +44,7 @@
       beforeSeconds: 1,
       infoText: {
         en: 'Gaoler Adds',
+        fr: 'Adds geôlier',
       },
     },
     {
@@ -50,6 +53,7 @@
       beforeSeconds: 4,
       infoText: {
         en: 'Double Weight',
+        fr: 'Double poids',
       },
     },
   ],
@@ -92,22 +96,22 @@
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
         'Engage!': 'À l\'attaque !',
-        'Granite Gaoler': 'geôlier de granite',
+        'Granite Gaoler': 'Geôlier de granite',
         'Titan': 'Titan',
       },
       'replaceText': {
-        '(all)': '(all)', // FIXME
-        '(clock)': '(clock)', // FIXME
-        '(one side)': '(one side)', // FIXME
+        '(all)': '(tous)',
+        '(clock)': '(horloge)',
+        '(one side)': '(un côté)',
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Burst': 'Explosion',
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
         'Enrage': 'Enrage',
-        'Gaoler Adds': 'Gaoler Adds', // FIXME
-        'Gaoler Landslide': 'Gaoler Landslide', // FIXME
-        'Gaoler Tumult': 'Gaoler Tumult', // FIXME
+        'Gaoler Adds': 'Adds geôlier',
+        'Gaoler Landslide': 'Geôlier glissement',
+        'Gaoler Tumult': 'Geôlier tumulte',
         'Geocrush': 'Broie-terre',
         'Landslide': 'Glissement de terrain',
         'Mountain Buster': 'Casse-montagnes',

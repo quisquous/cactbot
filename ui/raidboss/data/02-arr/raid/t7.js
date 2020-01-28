@@ -18,6 +18,7 @@
       },
       infoText: {
         en: 'Silence Ram\'s Voice',
+        fr: 'Silence Voix du bélier',
       },
     },
     {
@@ -34,6 +35,7 @@
       },
       infoText: {
         en: 'Silence Dragon\'s Voice',
+        fr: 'Silence Voix du dragon',
       },
     },
     {
@@ -51,6 +53,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Tail Slap in 10',
+        fr: 'Gifle caudale dans 10',
       },
     },
     {
@@ -63,6 +66,7 @@
       regexKo: Regexes.addedCombatant({ name: '르노', capture: false }),
       infoText: {
         en: 'Renaud Add',
+        fr: 'Add Renaud',
       },
     },
     {
@@ -81,6 +85,7 @@
       },
       alertText: {
         en: 'Voice Soon',
+        fr: 'Voix bientôt',
       },
     },
     {
@@ -96,6 +101,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Shriek on YOU',
+            fr: 'Cri sur VOUS',
           };
         }
       },
@@ -103,6 +109,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Shriek on ' + data.ShortName(matches.target),
+            fr: 'Cri sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -121,10 +128,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Shriek Soon',
+            fr: 'Cri bientôt',
           };
         }
         return {
           en: 'Dodge Shriek',
+          fr: 'Esquivez le cri',
         };
       },
     },
@@ -168,6 +177,7 @@
       regexKo: Regexes.startsUsing({ id: '7BB', source: '라미아 시체해부자', capture: false }),
       alertText: {
         en: 'Look Away!',
+        fr: 'Regardez ailleurs !',
       },
     },
     {
@@ -180,6 +190,7 @@
       regexKo: Regexes.startsUsing({ id: '7B1', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Look Away!',
+        fr: 'Regardez ailleurs !',
       },
     },
     {
@@ -192,6 +203,7 @@
       regexKo: Regexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Venomous Tail',
+        fr: 'Queue venimeuse',
       },
     },
   ],
@@ -224,7 +236,7 @@
       'replaceSync': {
         'Bioweapon Storage is no longer sealed': 'Ouverture de l\'Entrepôt d\'armes biologiques',
         'Bioweapon Storage will be sealed off': 'Fermeture de l\'Entrepôt d\'armes biologiques',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },
