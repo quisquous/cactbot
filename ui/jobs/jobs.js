@@ -968,7 +968,7 @@ class Bars {
     this.o.rightBuffsList.rowcolsize = 7;
     this.o.rightBuffsList.maxnumber = 7;
     this.o.rightBuffsList.toward = 'right down';
-    this.o.rightBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
+    this.o.rightBuffsList.elementwidth = parseInt(this.options.BigBuffIconWidth) + 2;
 
     if (this.options.JustBuffTracker) {
       // Just alias these two together so the rest of the code doesn't have
@@ -990,7 +990,7 @@ class Bars {
       this.o.leftBuffsList.rowcolsize = 7;
       this.o.leftBuffsList.maxnumber = 7;
       this.o.leftBuffsList.toward = 'left down';
-      this.o.leftBuffsList.elementwidth = this.options.BigBuffIconWidth + 2;
+      this.o.rightBuffsList.elementwidth = parseInt(this.options.BigBuffIconWidth) + 2;
     }
 
     if (Util.isCraftingJob(this.job)) {
