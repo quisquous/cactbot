@@ -946,7 +946,7 @@
         effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])',
       }),
       regexFr: Regexes.gainsEffect({
-        effect: 'Injonction: peine provisoire (?<sym>[ΑΒΓΔαβγδ])',
+        effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])',
       }),
       regexJa: Regexes.gainsEffect({
         effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])',
@@ -972,7 +972,7 @@
         effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])',
       }),
       regexFr: Regexes.gainsEffect({
-        effect: 'Injonction: peine provisoire (?<sym>[ΑΒΓΔαβγδ])',
+        effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])',
       }),
       regexJa: Regexes.gainsEffect({
         effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])',
@@ -1623,7 +1623,7 @@
       id: 'TEA Contact Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Prohibition' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontaktverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: contact prohibé' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact prohibé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触禁止命令' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
@@ -1643,7 +1643,7 @@
       id: 'TEA Contact Regulation',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Regulation' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: contact forcé' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact forcé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
       condition: (data, matches) => data.me == matches.target,
       alarmText: {
@@ -1657,7 +1657,7 @@
       id: 'TEA Escape Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Prohibition' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: fuite prohibée' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite prohibée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡禁止命令' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
@@ -1677,7 +1677,7 @@
       id: 'TEA Escape Detection',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Detection' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtbeobachtung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: fuite forcée' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite forcée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡監察命令' }),
       condition: (data, matches) => data.me == matches.target,
       alertText: {
