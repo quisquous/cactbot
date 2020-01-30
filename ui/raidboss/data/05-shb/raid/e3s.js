@@ -56,7 +56,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
-        ko: '전체 공격',
+        ko: '전체공격',
       },
     },
     {
@@ -76,7 +76,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
-        ko: '전체 공격',
+        ko: '전체공격',
       },
     },
     {
@@ -320,7 +320,7 @@
         fr: 'Lien sur VOUS',
         ja: '線ついた',
         cn: '水圈连线',
-        ko: '선 대상자',
+        ko: '나에게 선연결',
       },
     },
     {

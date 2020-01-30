@@ -77,7 +77,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: '광역공격',
+        ko: '전체공격',
       },
     },
     {
