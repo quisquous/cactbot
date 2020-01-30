@@ -155,7 +155,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
-        ko: '전체 공격',
+        ko: '전체공격',
       },
     },
     {
@@ -379,7 +379,7 @@
         fr: 'Gros dégâts de zone',
         ja: '強AoE',
         cn: '大AOE',
-        ko: '강한 전체 공격',
+        ko: '강한 전체공격',
       },
     },
     {
@@ -622,7 +622,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: '전체 공격 5회',
+        ko: '전체공격 5회',
       },
     },
   ],

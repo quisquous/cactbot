@@ -99,7 +99,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
-        ko: '전체 공격',
+        ko: '전체공격',
       },
     },
     {
@@ -119,7 +119,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
-        ko: '전체 공격',
+        ko: '전체공격',
       },
     },
     {
@@ -139,7 +139,7 @@
         fr: 'Dégâts de zone',
         ja: 'AoE',
         cn: 'AOE',
-        ko: '전체 공격',
+        ko: '전체공격',
       },
     },
     {

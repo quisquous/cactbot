@@ -24,7 +24,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: '광역공격',
+        ko: '전체공격',
       },
     },
     {
@@ -43,7 +43,7 @@
         de: 'AoE + DoT',
         fr: 'Dégâts de zone + dot',
         cn: 'AOE + dot',
-        ko: '광역공격 + 도트뎀',
+        ko: '전체공격 + 도트뎀',
       },
     },
     {
