@@ -3,7 +3,10 @@
 // The Twinning
 
 [{
-  zoneRegex: /^The Twinning$/,
+  zoneRegex: {
+    en: /^The Twinning$/,
+    ko: /^쌍둥이 시르쿠스$/,
+  },
   timelineFile: 'twinning.txt',
   triggers: [
     {
@@ -21,6 +24,7 @@
         en: 'Interrupt Kaliya',
         de: 'Unterbreche Kaliya',
         fr: 'Interrompez Kaliya',
+        ko: '양산형 칼리아 기술 시전 중단',
       },
     },
     {
@@ -38,6 +42,7 @@
         en: 'Interrupt Reptoid',
         de: 'Unterbreche Reptoid',
         fr: 'Interrompez Reptoïde',
+        ko: '활성된 파충류 기술 시전 중단',
       },
     },
     {
@@ -55,6 +60,7 @@
         en: 'Silence Minotaur',
         de: 'Stumme Minotaur',
         fr: 'Silence sur Minotaure',
+        ko: '자동제어 미노타우로스 침묵',
       },
     },
     {
@@ -66,6 +72,7 @@
         en: 'Spread (avoid cages)',
         de: 'Verteilen (Vermeide "Käfige")',
         fr: 'Dispersez vous (évitez les cages)',
+        ko: '산개 (몬스터 우리 피하기)',
       },
     },
     {
@@ -83,6 +90,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -99,12 +107,14 @@
             en: 'Tank cleave on YOU',
             de: 'Tank cleave auf YOU',
             fr: 'Tank cleave sur VOUS',
+            ko: '나에게 탱버',
           };
         }
         return {
           en: 'Avoid tank cleave',
           de: 'Tank cleave ausweichen',
           fr: 'Evitez le cleave',
+          ko: '탱버 피하기',
         };
       },
     },
@@ -117,12 +127,14 @@
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
             fr: 'Package sur VOUS',
+            ko: '나에게 쉐어징',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
         };
       },
     },
@@ -140,6 +152,7 @@
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
             fr: 'Buster sur VOUS',
+            ko: '나에게 버스터',
           };
         }
         if (data.role == 'healer') {
@@ -147,6 +160,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Buster auf ' + data.ShortName(matches.target),
             fr: 'Buster sur ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '"에게 버스터',
           };
         }
       },
@@ -167,6 +181,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -182,6 +197,7 @@
         en: 'cardinal lasers',
         de: 'Himmelrichtungs-Lasers',
         fr: 'Lasers cardinaux',
+        ko: '십자 레이저',
       },
     },
     {
@@ -197,6 +213,7 @@
         en: 'outer lasers',
         de: 'Lasers am Rand',
         fr: 'Lasers extérieurs',
+        ko: '바깥 레이저',
       },
     },
     {
@@ -213,6 +230,7 @@
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 버스터',
           };
         }
         if (data.role == 'healer') {
@@ -220,6 +238,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Buster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '"에게 버스터',
           };
         }
       },
@@ -237,6 +256,7 @@
         en: 'spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -254,6 +274,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
   ],
@@ -276,13 +297,10 @@
         'beta zaghnal': 'Beta-Zaghnal',
         'alpha zaghnal': 'Alpha-Zaghnal',
         'Zaghnal': 'Zaghnal',
-        'Voidwalker': 'Voidwalker',
         'Servomechanical Minotaur': 'Servomechanischer Minotaurus',
         'Mithridates': 'Mithridates',
         'Mark CXLIV Thermocoil Boilbuster': 'Magitek-Kessel Typ CXLIV',
-        'Leviathan': 'Leviathan',
         'Engage!': 'Start!',
-        'Eden Prime': 'Eden Prime',
         'Levinball': 'Donnerkugel',
         'The Cornice': 'Schnittstelle',
         'Aetherial Observation': 'Ätherobservationsdeck',
@@ -293,7 +311,6 @@
         'attack': 'Attacke',
         'Wind Spout': 'Windstreich',
         'Vorpal Blade': 'Vorpalklinge',
-        'Unknown Ability': 'Unknown Ability',
         'Thunder Beam': 'Gewitterstrahl',
         'Thrown Flames': 'Napalm',
         'Temporal Paradox': 'Zeitparadox',
@@ -373,7 +390,6 @@
         'attack': 'Attaque',
         'Wind Spout': 'Jet de vent',
         'Vorpal Blade': 'Lame vorpale',
-        'Unknown Ability': 'Unknown Ability',
         'Thunder Beam': 'Rayon de foudre',
         'Thrown Flames': 'Napalm',
         'Temporal Paradox': 'Paradoxe temporel',
@@ -439,13 +455,10 @@
         'beta zaghnal': 'ベータ・ザグナル',
         'alpha zaghnal': 'アルファ・ザグナル',
         'Zaghnal': '賞金首：ザグナル',
-        'Voidwalker': 'Voidwalker',
         'Servomechanical Minotaur': 'サーヴォ・ミノタウロス',
         'Mithridates': 'ミトリダテス',
         'Mark CXLIV Thermocoil Boilbuster': 'シュワシュワケトルCXLIV世',
-        'Leviathan': 'リヴァイアサン',
         'Engage!': '戦闘開始！',
-        'Eden Prime': 'Eden Prime',
         'Levinball': '雷弾',
         'The Cornice': '次元潜行装置中枢',
         'Aetherial Observation': 'エーテル観測台',
@@ -456,7 +469,6 @@
         'attack': '攻撃',
         'Wind Spout': 'ウィンドスパウト',
         'Vorpal Blade': 'ボーパルブレード',
-        'Unknown Ability': 'Unknown Ability',
         'Thunder Beam': 'サンダービーム',
         'Thrown Flames': 'ナパーム',
         'Temporal Paradox': 'タイムパラドックス',
@@ -503,11 +515,9 @@
       'locale': 'cn',
       'replaceSync': {
         'Zaghnal': '悬赏魔物：扎戈斧龙',
-        'Voidwalker': 'Voidwalker',
         'Servomechanical Minotaur': '自控化弥诺陶洛斯',
         'Leviathan': '利维亚桑',
         'Engage!': '战斗开始！',
-        'Eden Prime': 'Eden Prime',
       },
       'replaceText': {
         'attack': '攻击',
@@ -516,6 +526,85 @@
       },
       '~effectNames': {
         'Burns': '火伤',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'vitalized shabti': '활성된 샤브티',
+        'vitalized reptoid': '활성된 파충류',
+        'vitalized iksalion': ' 활성된 이크살리온',
+        'The Tycoon': '타이쿤',
+        'the First Beast': '최초의 야수',
+        'the Face of the Beast': '야수의 얼굴',
+        'surplus Kaliya': '양산형 칼리아',
+        'search drone': '무인 탐사기',
+        'ghrah maximization': '최대화 고라호',
+        'flanborg': '플란보르그',
+        'enforcement droid 209': '집행자 드로이드 209',
+        'clockwork ark knight': '알라그 방주 기사',
+        'beta zaghnal': '베타 자그날',
+        'alpha zaghnal': '알파 자그날',
+        'Zaghnal': '자그날',
+        'Servomechanical Minotaur': '자동제어 미노타우로스',
+        'Mithridates': '미트리다테스',
+        'Mark CXLIV Thermocoil Boilbuster': '마도 주전자 보글보글 CXLIV세',
+        'Levinball': '뇌탄',
+        'Cladoselache': '클라도셀라케',
+        'Engage!': '전투 시작!',
+        'The Cornice': '개조 작업 거점',
+        'Aetherial Observation': '에테르 관측대',
+        'Repurposing': '차원 잠행 장치 중추',
+      },
+      'replaceText': {
+        'attack': '공격',
+        'Wind Spout': '바람 분출',
+        'Vorpal Blade': '치명적인 칼날',
+        'Thunder Beam': '번개 광선',
+        'Thrown Flames': '네이팜',
+        'Temporal Paradox': '시간 역설',
+        'Temporal Flow': '시간 해동',
+        'Sideswipe': '측면 후려치기',
+        'Shock': '전격',
+        'Shattered Crystal': '크리스탈 파열',
+        'Rail Cannon': '전자기포',
+        'Pounce Errant': 'XXX 덮치기',
+        'Pounce': '덮치기',
+        'Nerve Gas': '신경 가스',
+        'Main Head': '가운뎃머리',
+        'Magitek Ray': '마도 레이저',
+        'Magitek Crossray': '마도 십자 레이저',
+        'Magicrystal': '마도 크리스탈',
+        'Luminous Laceration': '빛의 열상',
+        'Laserblade': '레이저 칼날',
+        'High-Tension Discharger': '고압 전류 방출',
+        'High Gravity': '고중력',
+        'Heave': '권력자의 한마디',
+        'Forlorn Impact': '쓸쓸한 충격',
+        'Enrage': '전멸기',
+        'Electric Discharge': '전류 방출',
+        'Defensive Array': '마도 방어 레이저',
+        'Charge Eradicated': '박멸',
+        'Berserk': '광포',
+        'Beastly Roar': '야수의 포효',
+        'Beast Rampant': '두발걷기',
+        'Beast Passant': '네발걷기',
+        'Auto-cannons': '자동 대포',
+        'Augurium': '공격 조짐',
+        'Artificial Gravity': '인공 중력',
+        'Allagan Thunder': '알라그 선더',
+        'Aetherochemical Amplification': '마과학 레이저',
+        '32-tonze Swipe': '32톤즈 후려치기',
+        '128-tonze Swing': '128톤즈 휘두르기',
+        '--untargetable--': '--타겟 불가능--',
+        '--targetable--': '--타겟 가능--',
+        'Gravity': '그라비데',
+        'Crossray': '십자 레이저',
+      },
+      '~effectNames': {
+        'Summon Order II': '기술 실행 대기 2',
+        'Summon Order': '기술 실행 대기 1',
+        'Burns': '화상',
       },
     },
   ],

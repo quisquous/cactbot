@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Amaurot$/,
+  zoneRegex: {
+    en: /^Amaurot$/,
+    ko: /^아모로트$/,
+  },
   timelineFile: 'amaurot.txt',
   triggers: [
     {
@@ -19,18 +22,21 @@
             en: 'Drop Meteor West',
             de: 'Meteor im Westen ablegen',
             fr: 'Poser le météore à l\'ouest',
+            ko: '메테오 서쪽으로 빼기',
           };
         } else if (data.meteor == 2) {
           return {
             en: 'Drop Meteor East',
             de: 'Meteor im Osten ablegen',
             fr: 'Poser le météore à l\'est',
+            ko: '메테오 동쪽으로 빼기',
           };
         }
         return {
           en: 'Meteor',
           de: 'Meteor',
           fr: 'Météore',
+          ko: '메테오',
         };
       },
     },
@@ -44,6 +50,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -57,6 +64,7 @@
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
+        ko: '돌덩이 뒤에 숨기',
       },
     },
     {
@@ -74,6 +82,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -88,6 +97,7 @@
         en: 'Get Off',
         de: 'Runter gehen',
         fr: 'Sur les plateformes extérieures',
+        ko: '피하기',
       },
     },
   ],
@@ -95,11 +105,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'ヴォイドウォーカー': 'ヴォイドウォーカー',
         'The First Beast': 'das erste Unheil',
         'The Face of the Beast': 'Antlitz des Boten',
         'Fallen Star': 'Komet',
-        'Titania': 'Titania',
         'Therion': 'Therion',
         'Terminus Twitcher': 'Terminus-Zerrer',
         'Terminus Stalker': 'Terminus-Schleicher',
@@ -126,7 +134,6 @@
         'The Third Doom': 'Drittes Unheil',
       },
       'replaceText': {
-        '攻撃': '攻撃',
         'Adds': 'Adds',
         'The Final Sky': 'Letzter Himmel',
         'The Falling Sky': 'Unheilvoller Himmel',
@@ -135,7 +142,6 @@
         'attack': 'Attacke',
         'Whack': 'Wildes Schlagen',
         'Venomous Breath': 'Giftatem',
-        'Unknown Ability': 'Unknown Ability',
         'Turnabout': 'Umdrehung',
         'Towerfall': 'Turmsturz',
         'Therion Charge': 'Therions Rage',
@@ -208,7 +214,6 @@
         'attack': 'Attaque',
         'Whack': 'Tannée',
         'Venomous Breath': 'Souffle venimeux',
-        'Unknown Ability': 'Unknown Ability',
         'Turnabout': 'Rotation',
         'Towerfall': 'Écroulement',
         'Therion Charge': 'Charge de therion',
@@ -247,11 +252,9 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'ヴォイドウォーカー': 'ヴォイドウォーカー',
         'The First Beast': 'ファースト・ビースト',
         'The Face of the Beast': 'フェイス・オブ・ビースト',
         'Fallen Star': '流星',
-        'Titania': 'ティターニア',
         'Therion': 'メガセリオン',
         'Terminus Twitcher': 'ターミナス・ツイッチャー',
         'Terminus Stalker': 'ターミナス・ストーカー',
@@ -278,7 +281,6 @@
         'The Third Doom': '第三の災い',
       },
       'replaceText': {
-        '攻撃': '攻撃',
         'The Final Sky': '終末の流星',
         'The Falling Sky': '厄災の流星',
         'The Burning Sky': '変災の流星',
@@ -286,7 +288,6 @@
         'attack': '攻撃',
         'Whack': '乱打',
         'Venomous Breath': 'ベノムブレス',
-        'Unknown Ability': 'Unknown Ability',
         'Turnabout': '旋回',
         'Towerfall': '倒壊',
         'Therion Charge': 'セリオンチャージ',
@@ -325,11 +326,83 @@
       },
       'replaceText': {
         'attack': '攻击',
-        'Unknown Ability': 'Unknown Ability',
       },
       '~effectNames': {
         'Healing Magic Down': '治疗魔法效果降低',
         'Fire Resistance Down': '火属性耐性降低',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'The First Beast': '최초의 야수',
+        'The Face of the Beast': '야수의 얼굴',
+        'Fallen Star': '별똥별',
+        'Therion': '메가테리온',
+        'Terminus Twitcher': '종말의 경련자',
+        'Terminus Stalker': '종말의 추적자',
+        'Terminus Sprinter': '종말의 질주자',
+        'Terminus Slitherer': '종말의 활주자',
+        'Terminus Shriver': '종말의 고해자',
+        'Terminus Shadower': '종말의 미행자',
+        'Terminus Roiler': '종말의 교란자',
+        'Terminus Reaper': '종말의 수확자',
+        'Terminus Pursuer': '종말의 추격자',
+        'Terminus Lacerator': '종말의 난도자',
+        'Terminus Idolizer': '종말의 숭배자',
+        'Terminus Howler': '종말의 절규자',
+        'Terminus Flesher': '종말의 도살자',
+        'Terminus Drainer': '종말의 소모자',
+        'Terminus Detonator': '종말의 기폭자',
+        'Terminus Crier': '종말의 포고자',
+        'Terminus Bellwether': '종말의 선도자',
+        'Terminus Beholder': '종말의 주시자',
+        'Mithridates': '미트리다테스',
+        'Engage!': '전투 시작!',
+        'The First Doom': '이것이 첫 번째 재앙이다',
+        'The Second Doom': '이것이 두 번째 재앙이다',
+        'The Third Doom': '이것이 세 번째 재앙이다',
+      },
+      'replaceText': {
+        'attack': '공격',
+        'Adds': '쫄들',
+        'The Final Sky': '종말의 유성',
+        'The Falling Sky': '재앙의 유성',
+        'The Burning Sky': '변재의 유성',
+        'The Black Death': '검은 죽음의 숨결',
+        'Whack': '마구 치기',
+        'Venomous Breath': '독 숨결',
+        'Turnabout': '선회',
+        'Towerfall': '무너지는 탑',
+        'Therion Charge': '테리온 돌격',
+        'Sickly Inferno': '혼탁한 대화염',
+        'Sickly Flame': '혼탁한 화염',
+        'Shrill Shriek': '절규',
+        'Shadow Wreck': '그림자 파멸',
+        'Self-destruct': '자폭',
+        'Misfortune': '불운',
+        'Meteor Rain': '유성군',
+        'Malevolence': '사악한 공격',
+        'Ill Will': '악의',
+        'Force of Loathing': '증오의 파동',
+        'Enrage': '전멸기',
+        'Earthquake': '지진',
+        'Disquieting Gleam': '불온한 빛',
+        'Deathly Ray': '죽음 광선',
+        'Deadly Tentacles': '치명적인 촉수',
+        'Damning Ray': '파멸의 광선',
+        'Cosmic Shrapnel': '산산조각',
+        'Cosmic Kiss': '착탄',
+        'Comet': '혜성',
+        'Burst': '대폭발',
+        'Apokalypsis': '묵시록',
+        'Aetherspike': '에테르 강타',
+        '--untargetable--': '타겟 불가능',
+        '--targetable--': '타겟 가능',
+      },
+      '~effectNames': {
+        'Healing Magic Down': '회복마법 효과 감소',
+        'Fire Resistance Down': '불속성 저항 감소',
       },
     },
   ],
