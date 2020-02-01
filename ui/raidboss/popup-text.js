@@ -430,7 +430,7 @@ class PopupText {
       playSpeech = false;
       playGroupSpeech = false;
       playSounds = false;
-    }    
+    }
 
     let f = () => {
       let addText = (container, e) => {
