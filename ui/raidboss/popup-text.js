@@ -20,16 +20,6 @@ function onTriggerException(trigger, e) {
     console.error(lines[i]);
 }
 
-let params = new URLSearchParams(window.location.search);
-let muteSounds = false;
-let muteTTS = false;
-let sounds = params.get('sounds');
-if (sounds !== null)
-  muteSounds = !parseInt(sounds);
-let tts = params.get('tts');
-if (tts !== null)
-  muteTTS = !parseInt(tts);
-
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -436,6 +426,11 @@ class PopupText {
       playSounds = false;
       showText = false;
     }
+    if (!this.options.audioAllowed) {
+      playSpeech = false;
+      playGroupSpeech = false;
+      playSounds = false;
+    }    
 
     let f = () => {
       let addText = (container, e) => {
@@ -603,7 +598,7 @@ class PopupText {
       // of infoText triggers without tts entries by turning
       // on (speech=true, text=true, sound=true) but this will
       // not cause tts to play over top of sounds or noises.
-      if (!muteTTS && ttsText && playSpeech) {
+      if (ttsText && playSpeech) {
         // Heuristics for auto tts.
         // * Remove a bunch of chars.
         ttsText = ttsText.replace(/[#!]/, '');
@@ -625,7 +620,7 @@ class PopupText {
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
         let cmd = { 'call': 'cactbotSay', 'text': ttsText };
         window.callOverlayHandler(cmd);
-      } else if (!muteSounds && soundUrl && playSounds) {
+      } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
         audio.volume = soundVol;
         audio.play();
