@@ -24,13 +24,11 @@ let params = new URLSearchParams(window.location.search);
 let muteSounds = false;
 let muteTTS = false;
 let sounds = params.get('sounds');
-if (sounds !== null) {
+if (sounds !== null)
   muteSounds = !parseInt(sounds);
-}
-let tts = params.get('tts');  
-if (tts !== null) {
+let tts = params.get('tts');
+if (tts !== null)
   muteTTS = !parseInt(tts);
-}
 
 class PopupText {
   constructor(options) {
