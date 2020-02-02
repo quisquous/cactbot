@@ -63,12 +63,18 @@ let tests = {
         },
       ];
 
+      // Extract all texts and syncs from parsed timeline, and find unique ones.
+      for (let testCase of testCases) {
+        testCase.items = [];
+        for (let testItem of testCase.list)
+          testCase.items.push(testCase.extract(testItem));
+        testCase.items = new Set(testCase.items);
+      }
+
       // For both texts and syncs...
       for (let testCase of testCases) {
-        // For every event the timeline knows about...
-        for (let testItem of testCase.list) {
-          let orig = testCase.extract(testItem);
-
+        // For every unique replaceable text or sync the timeline knows about...
+        for (let orig of testCase.items) {
           // For every translation for that timeline...
           for (let regex in testCase.replace) {
             let replaced = orig.replace(Regexes.parse(regex), testCase.replace[regex]);
