@@ -781,7 +781,7 @@
         'The Realm of the Machinists will be sealed off': '.*Reich der Maschinisten schließt',
         'The Realm of the Templars will be sealed off': '.*Reich der Tempelritter schließt',
         'The Realm of the Thunder God will be sealed off': '.*Reich des Donnergottes schließt',
-        'The Thunder God': 'Cidolfus',
+        '(?<! )The Thunder God': 'Cidolfus',
         'The lifeless alley will be sealed off': '.*Leblosen Pfad schließt',
         'Ultima, the High Seraph': 'Cherub Ultima',
       },
@@ -812,9 +812,9 @@
         'Demi-Aries': 'Demi-Aries',
         'Demi-Leo': 'Demi-Leo',
         'Demi-Virgo Feet': 'Demi-Virgo Füße',
-        'Demi-Virgo Line': 'Demi-Virgo Linie',
+        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Linie',
         'Demi-Virgo Line/Tether': 'Demi-Virgo Linie/Verbindung',
-        'Demi-Virgo Tether': 'Demi-Virgo Verbindung',
+        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Verbindung',
         'Demi-Virgo Tether/Feet': 'Demi-Virgo Verbindung/Füße',
         'Devitalize': 'Schwächung',
         'Divine Light': 'Göttliches Licht',
@@ -826,7 +826,7 @@
         'Embrace': 'Attacke',
         'Energy Burst': 'Energiestoß',
         'Enrage': 'Finalangriff',
-        'Eruption': 'Eruption',
+        '(?<![\\w| ])Eruption': 'Eruption',
         'Extreme Edge': 'Extremkante',
         'Flare IV': 'Giga-Flare',
         'Grand Cross': 'Supernova',
@@ -867,7 +867,7 @@
         'Time Eruption': 'Zeiteruption',
         'Towerfall': 'Turmsturz',
         'Ultimate Illusion': 'Ultimative Illusion',
-        'attack': 'Attacke',
+        'attack(?!\\w)': 'Attacke',
         'crystal stun': 'crystal stun', // FIXME
         'ghost stun': 'ghost stun', // FIXME
       },
@@ -923,7 +923,7 @@
         'The Realm of the Machinists will be sealed off': 'Fermeture du cloître de l\'ingénieur',
         'The Realm of the Templars will be sealed off': 'Fermeture du cloître de la chevalière sacrée',
         'The Realm of the Thunder God will be sealed off': 'Fermeture du cloître du Dieu de la Foudre',
-        'The Thunder God': 'Cid le Dieu de la Foudre',
+        '(?<! )The Thunder God': 'Cid le Dieu de la Foudre',
         'The lifeless alley will be sealed off': 'Fermeture des corridors silencieux',
         'Ultima, the High Seraph': 'Ultima la Grande Séraphine',
       },
@@ -954,9 +954,9 @@
         'Demi-Aries': 'Demi-Bélier',
         'Demi-Leo': 'Demi-Lion',
         'Demi-Virgo Feet': 'Demi-Virge Pieds',
-        'Demi-Virgo Line': 'Demi-Virge Ligne',
+        'Demi-Virgo Line(?!\/)': 'Demi-Virge Ligne',
         'Demi-Virgo Line/Tether': 'Demi-Vierge Ligne/Lien',
-        'Demi-Virgo Tether': 'Demi-Vierge Liens',
+        'Demi-Virgo Tether(?!\/)': 'Demi-Vierge Liens',
         'Demi-Virgo Tether/Feet': 'Demi-Vierge Lien/Pieds',
         'Devitalize': 'Dévitalisation',
         'Divine Light': 'Onde de lumière évanescente',
@@ -968,7 +968,7 @@
         'Embrace': 'Attaque',
         'Energy Burst': 'Éruption d\'énergie',
         'Enrage': 'Enrage',
-        'Eruption': 'Éruption',
+        '(?<![\\w| ])Eruption': 'Éruption',
         'Extreme Edge': 'Taille suprême',
         'Flare IV': 'Giga Brasier',
         'Grand Cross': 'Croix suprême',
@@ -1009,7 +1009,7 @@
         'Time Eruption': 'Éruption à retardement',
         'Towerfall': 'Écroulement',
         'Ultimate Illusion': 'Fantaisie finale',
-        'attack': 'Attaque',
+        'attack(?!\\w)': 'Attaque',
         'crystal stun': 'crystal stun', // FIXME
         'ghost stun': 'ghost stun', // FIXME
       },
@@ -1065,7 +1065,7 @@
         'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off', // FIXME
         'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off', // FIXME
         'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off', // FIXME
-        'The Thunder God': '雷神シド',
+        '(?<! )The Thunder God': '雷神シド',
         'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off', // FIXME
         'Ultima, the High Seraph': '聖天使アルテマ',
       },
@@ -1096,9 +1096,9 @@
         'Demi-Aries': 'デミ・アリエス',
         'Demi-Leo': 'デミ・レオ',
         'Demi-Virgo Feet': 'Demi-Virgo Feet', // FIXME
-        'Demi-Virgo Line': 'Demi-Virgo Line', // FIXME
+        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Line', // FIXME
         'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether', // FIXME
-        'Demi-Virgo Tether': 'Demi-Virgo Tether', // FIXME
+        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Tether', // FIXME
         'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet', // FIXME
         'Devitalize': 'デヴァイタライズ',
         'Divine Light': '幻光波',
@@ -1110,7 +1110,7 @@
         'Embrace': '攻撃',
         'Energy Burst': 'エネルギーバースト',
         'Enrage': 'Enrage',
-        'Eruption': 'エラプション',
+        '(?<![\\w| ])Eruption': 'エラプション',
         'Extreme Edge': 'ブーストエッジ',
         'Flare IV': 'フレアジャ',
         'Grand Cross': 'グランドクロス',
@@ -1151,7 +1151,7 @@
         'Time Eruption': 'タイムエラプション',
         'Towerfall': '倒壊',
         'Ultimate Illusion': '究極幻想',
-        'attack': '攻撃',
+        'attack(?!\\w)': '攻撃',
         'crystal stun': 'crystal stun', // FIXME
         'ghost stun': 'ghost stun', // FIXME
       },
@@ -1207,7 +1207,7 @@
         'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off', // FIXME
         'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off', // FIXME
         'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off', // FIXME
-        'The Thunder God': '雷神西德',
+        '(?<! )The Thunder God': '雷神西德',
         'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off', // FIXME
         'Ultima, the High Seraph': '圣天使阿尔蒂玛',
       },
@@ -1238,9 +1238,9 @@
         'Demi-Aries': '亚灵白羊座',
         'Demi-Leo': '亚灵狮子座',
         'Demi-Virgo Feet': 'Demi-Virgo Feet', // FIXME
-        'Demi-Virgo Line': 'Demi-Virgo Line', // FIXME
+        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Line', // FIXME
         'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether', // FIXME
-        'Demi-Virgo Tether': 'Demi-Virgo Tether', // FIXME
+        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Tether', // FIXME
         'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet', // FIXME
         'Devitalize': '夺命',
         'Divine Light': '幻光波',
@@ -1252,7 +1252,7 @@
         'Embrace': '攻击',
         'Energy Burst': '能量爆发',
         'Enrage': 'Enrage', // FIXME
-        'Eruption': '地火喷发',
+        '(?<![\\w| ])Eruption': '地火喷发',
         'Extreme Edge': '加速刃',
         'Flare IV': '核轰',
         'Grand Cross': '大十字',
@@ -1293,7 +1293,7 @@
         'Time Eruption': '时空地火喷发',
         'Towerfall': '崩塌',
         'Ultimate Illusion': '究极幻想',
-        'attack': '攻击',
+        'attack(?!\\w)': '攻击',
         'crystal stun': 'crystal stun', // FIXME
         'ghost stun': 'ghost stun', // FIXME
       },
@@ -1349,7 +1349,7 @@
         'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off', // FIXME
         'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off', // FIXME
         'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off', // FIXME
-        'The Thunder God': '뇌신 시드',
+        '(?<! )The Thunder God': '뇌신 시드',
         'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off', // FIXME
         'Ultima, the High Seraph': '성천사 알테마',
       },
@@ -1380,9 +1380,9 @@
         'Demi-Aries': '데미아리에스',
         'Demi-Leo': '데미레오',
         'Demi-Virgo Feet': 'Demi-Virgo Feet', // FIXME
-        'Demi-Virgo Line': 'Demi-Virgo Line', // FIXME
+        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Line', // FIXME
         'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether', // FIXME
-        'Demi-Virgo Tether': 'Demi-Virgo Tether', // FIXME
+        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Tether', // FIXME
         'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet', // FIXME
         'Devitalize': '활력 강탈',
         'Divine Light': '환광파',
@@ -1394,7 +1394,7 @@
         'Embrace': '공격',
         'Energy Burst': '에너지 폭발',
         'Enrage': '전멸기',
-        'Eruption': '용암 분출',
+        '(?<![\\w| ])Eruption': '용암 분출',
         'Extreme Edge': '돌격하는 칼날',
         'Flare IV': '플레어쟈',
         'Grand Cross': '그랜드크로스',
@@ -1435,7 +1435,7 @@
         'Time Eruption': '시간의 불기둥',
         'Towerfall': '무너지는 탑',
         'Ultimate Illusion': '궁극의 환상',
-        'attack': '공격',
+        'attack(?!\\w)': '공격',
         'crystal stun': 'crystal stun', // FIXME
         'ghost stun': 'ghost stun', // FIXME
       },

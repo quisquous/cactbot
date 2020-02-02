@@ -143,9 +143,8 @@
         'Frost Breath': 'Frostiger Atem',
         'Horrid Roar': 'Entsetzliches Brüllen',
         'Hot Tail': 'Schwelender Schweif',
-        'In': 'Rein',
+        'In/Out': 'Rein/Raus',
         'Northern Cross': 'Kreuz des Nordens',
-        'Out': 'Raus',
         'Position': 'Position',
         'Protostar': 'Protostern',
         'Rime Wreath': 'Frostkalter Reif',
@@ -202,9 +201,8 @@
         'Frost Breath': 'Souffle glacé',
         'Horrid Roar': 'Rugissement horrible',
         'Hot Tail': 'Queue calorifique',
-        'In': 'Dedans',
+        'In/Out': 'Dedans/Dehors',
         'Northern Cross': 'Croix du nord',
-        'Out': 'Dehors',
         'Position': 'Position', // FIXME
         'Protostar': 'Proto-étoile',
         'Rime Wreath': 'Enveloppe de givre',
@@ -261,9 +259,8 @@
         'Frost Breath': 'フロストブレス',
         'Horrid Roar': 'ホリッドロア',
         'Hot Tail': 'ヒートテイル',
-        'In': 'In', // FIXME
+        'In/Out': 'In/Out', // FIXME
         'Northern Cross': 'ノーザンクロス',
-        'Out': 'Out', // FIXME
         'Position': 'Position', // FIXME
         'Protostar': 'プロトスター',
         'Rime Wreath': 'ライムリリース',
@@ -320,9 +317,8 @@
         'Frost Breath': '寒霜吐息',
         'Horrid Roar': '恐惧咆哮',
         'Hot Tail': '燃烧之尾',
-        'In': 'In', // FIXME
+        'In/Out': 'In/Out', // FIXME
         'Northern Cross': '北十字星',
-        'Out': 'Out', // FIXME
         'Position': 'Position', // FIXME
         'Protostar': '原恒星',
         'Rime Wreath': '白霜环绕',
@@ -379,9 +375,8 @@
         'Frost Breath': '서리 숨결',
         'Horrid Roar': '소름끼치는 포효',
         'Hot Tail': '뜨거운 꼬리',
-        'In': 'In', // FIXME
+        'In/Out': 'In/Out', // FIXME
         'Northern Cross': '북십자성',
-        'Out': 'Out', // FIXME
         'Position': 'Position', // FIXME
         'Protostar': '원시별',
         'Rime Wreath': '분노의 서릿발',

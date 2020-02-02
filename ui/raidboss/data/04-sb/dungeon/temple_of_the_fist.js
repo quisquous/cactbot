@@ -233,7 +233,6 @@
       'locale': 'de',
       'replaceSync': {
         'Arbuda': 'Arbuda',
-        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
         'Coeurl Smriti': 'Coeurl Smriti',
         'Coeurl Sruti': 'Coeurl Sruti',
         'Guidance will be sealed off': 'bis sich der Zugang zu[rm]? Unterweisung schließt',
@@ -271,7 +270,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Arbuda': 'Arbuda',
-        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
         'Coeurl Smriti': 'coeurl smriti',
         'Coeurl Sruti': 'coeurl sruti',
         'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
@@ -309,7 +307,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Arbuda': 'アブダ',
-        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
         'Coeurl Smriti': 'クァール・スムリティ',
         'Coeurl Sruti': 'クァール・シュルティ',
         'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
@@ -347,7 +344,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Arbuda': '额部陀',
-        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
         'Coeurl Smriti': '凶豹所忆',
         'Coeurl Sruti': '凶豹所闻',
         'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
@@ -385,7 +381,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Arbuda': '아부다',
-        'Coeurl (Sruti|Smriti)': 'Coeurl (Sruti|Smriti)', // FIXME
         'Coeurl Smriti': '커얼 스므리티',
         'Coeurl Sruti': '커얼 슈루티',
         'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME

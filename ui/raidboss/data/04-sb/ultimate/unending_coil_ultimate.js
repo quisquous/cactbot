@@ -1964,7 +1964,7 @@
         'Enrage': 'Finalangriff',
         'Exaflare': 'Exaflare',
         'Fellruin Trio': 'Untergangs-Trio',
-        'Fireball': 'Feuerball',
+        'Fireball(?! )': 'Feuerball',
         'Fireball Soak': 'Feuerball aufsaugen',
         'Flames Of Rebirth': 'Flammen der Wiedergeburt',
         'Flare Breath': 'Flare-Atem',
@@ -1981,7 +1981,7 @@
         'Liquid Hell': 'Höllenschmelze',
         'Lunar Dive': 'Lunarer Sturz',
         'Lunar Dynamo': 'Lunarer Dynamo',
-        'Marker': 'Marker',
+        '(?<! )Marker(?!\\w)': 'Marker',
         'Markers appear': 'Marker escheinen',
         'Megaflare': 'Megaflare',
         'Megaflare Dive': 'Megaflare-Sturz',
@@ -1991,12 +1991,12 @@
         'Nael Dive': 'Nael Sturzflug',
         'Nael Marker': 'Nael Marker',
         'Pepperoni': 'Pepperoni', // FIXME
-        'Plummet': 'Herabstürzen',
+        'Plummet(?!\/)': 'Herabstürzen',
         'Plummet/Claw': 'Herabstürzen/Klaue',
         'Quickmarch Trio': 'Todesmarsch-Trio',
         'Random Combo Attack': 'Zufälliger Komboangriff',
         'Raven Dive': 'Bahamuts Schwinge',
-        'Ravensbeak': 'Bradamante',
+        '(?<!\/)Ravensbeak': 'Bradamante',
         'Sentence/Ravensbeak': 'Urteil/Bradamante',
         'Seventh Umbral Era': 'Siebte Ära des Schattens',
         'Stack': 'Sammeln',
@@ -2074,7 +2074,7 @@
         'Enrage': 'Enrage',
         'Exaflare': 'ExaBrasier',
         'Fellruin Trio': 'Trio du désastre',
-        'Fireball': 'Boule de feu',
+        'Fireball(?! )': 'Boule de feu',
         'Fireball Soak': 'Absorption Boule De Feu',
         'Flames Of Rebirth': 'Feu résurrecteur',
         'Flare Breath': 'Souffle brasier',
@@ -2091,7 +2091,7 @@
         'Liquid Hell': 'Enfer liquide',
         'Lunar Dive': 'Plongeon lunaire',
         'Lunar Dynamo': 'Dynamo lunaire',
-        'Marker': 'Marqueur',
+        '(?<! )Marker(?!\\w)': 'Marqueur',
         'Markers appear': 'Apparition des marqueurs',
         'Megaflare': 'MégaBrasier',
         'Megaflare Dive': 'Plongeon MégaBrasier',
@@ -2101,12 +2101,12 @@
         'Nael Dive': 'Plongeon de Nael',
         'Nael Marker': 'Marqueur de Nael',
         'Pepperoni': 'Pepperoni', // FIXME
-        'Plummet': 'Piqué',
+        'Plummet(?!\/)': 'Piqué',
         'Plummet/Claw': 'Piqué/Griffe',
         'Quickmarch Trio': 'Trio de la marche militaire',
         'Random Combo Attack': 'Attaque combo aléatoire',
         'Raven Dive': 'Fonte du rapace',
-        'Ravensbeak': 'Bec du rapace',
+        '(?<!\/)Ravensbeak': 'Bec du rapace',
         'Sentence/Ravensbeak': 'Peine De Mort/Bec Du Rapace',
         'Seventh Umbral Era': '7e fléau',
         'Stack': 'Se rassembler',
@@ -2184,7 +2184,7 @@
         'Enrage': 'Enrage',
         'Exaflare': 'エクサフレア',
         'Fellruin Trio': '厄災の三重奏',
-        'Fireball': 'ファイアボール',
+        'Fireball(?! )': 'ファイアボール',
         'Fireball Soak': 'Fireball Soak', // FIXME
         'Flames Of Rebirth': '転生の炎',
         'Flare Breath': 'フレアブレス',
@@ -2201,7 +2201,7 @@
         'Liquid Hell': 'ヘルリキッド',
         'Lunar Dive': 'ルナダイブ',
         'Lunar Dynamo': 'ルナダイナモ',
-        'Marker': 'Marker', // FIXME
+        '(?<! )Marker(?!\\w)': 'Marker', // FIXME
         'Markers appear': 'Markers appear', // FIXME
         'Megaflare': 'メガフレア',
         'Megaflare Dive': 'メガフレアダイブ',
@@ -2211,12 +2211,12 @@
         'Nael Dive': 'Nael Dive', // FIXME
         'Nael Marker': 'Nael Marker', // FIXME
         'Pepperoni': 'Pepperoni', // FIXME
-        'Plummet': 'プラメット',
+        'Plummet(?!\/)': 'プラメット',
         'Plummet/Claw': 'Plummet/Claw', // FIXME
         'Quickmarch Trio': '進軍の三重奏',
         'Random Combo Attack': 'Random Combo Attack', // FIXME
         'Raven Dive': 'レイヴンダイブ',
-        'Ravensbeak': 'レイヴェンズビーク',
+        '(?<!\/)Ravensbeak': 'レイヴェンズビーク',
         'Sentence/Ravensbeak': 'Sentence/Ravensbeak', // FIXME
         'Seventh Umbral Era': '第七霊災',
         'Stack': 'Stack', // FIXME
@@ -2294,7 +2294,7 @@
         'Enrage': '战斗开始',
         'Exaflare': '百京核爆',
         'Fellruin Trio': '灾厄的三重奏',
-        'Fireball': '火球',
+        'Fireball(?! )': '火球',
         'Fireball Soak': '火球分摊',
         'Flames Of Rebirth': '转生之炎',
         'Flare Breath': '核爆吐息',
@@ -2311,7 +2311,7 @@
         'Liquid Hell': '液体地狱',
         'Lunar Dive': '月流冲',
         'Lunar Dynamo': '月流电圈',
-        'Marker': '标记',
+        '(?<! )Marker(?!\\w)': '标记',
         'Markers appear': '标记出现',
         'Megaflare': '百万核爆',
         'Megaflare Dive': '百万核爆冲',
@@ -2321,12 +2321,12 @@
         'Nael Dive': '奈尔冲',
         'Nael Marker': '奈尔标记',
         'Pepperoni': '大圈',
-        'Plummet': '垂直下落',
+        'Plummet(?!\/)': '垂直下落',
         'Plummet/Claw': '垂直下落/爪',
         'Quickmarch Trio': '进军的三重奏',
         'Random Combo Attack': '随机连招',
         'Raven Dive': '凶鸟冲',
-        'Ravensbeak': '凶鸟尖喙',
+        '(?<!\/)Ravensbeak': '凶鸟尖喙',
         'Sentence/Ravensbeak': '死刑/凶鸟尖喙',
         'Seventh Umbral Era': '第七灵灾',
         'Stack': '集合',
@@ -2404,7 +2404,7 @@
         'Enrage': '전멸기',
         'Exaflare': '엑사플레어',
         'Fellruin Trio': '재앙의 3중주',
-        'Fireball': '화염구',
+        'Fireball(?! )': '화염구',
         'Fireball Soak': 'Fireball Soak', // FIXME
         'Flames Of Rebirth': '윤회의 불꽃',
         'Flare Breath': '타오르는 숨결',
@@ -2421,7 +2421,7 @@
         'Liquid Hell': '지옥의 늪',
         'Lunar Dive': '달 강하',
         'Lunar Dynamo': '달의 원동력',
-        'Marker': 'Marker', // FIXME
+        '(?<! )Marker(?!\\w)': 'Marker', // FIXME
         'Markers appear': 'Markers appear', // FIXME
         'Megaflare': '메가플레어',
         'Megaflare Dive': '메가플레어 다이브',
@@ -2431,12 +2431,12 @@
         'Nael Dive': 'Nael Dive', // FIXME
         'Nael Marker': 'Nael Marker', // FIXME
         'Pepperoni': 'Pepperoni', // FIXME
-        'Plummet': '곤두박질',
+        'Plummet(?!\/)': '곤두박질',
         'Plummet/Claw': 'Plummet/Claw', // FIXME
         'Quickmarch Trio': '진군의 3중주',
         'Random Combo Attack': 'Random Combo Attack', // FIXME
         'Raven Dive': '흉조의 강하',
-        'Ravensbeak': '흉조의 부리',
+        '(?<!\/)Ravensbeak': '흉조의 부리',
         'Sentence/Ravensbeak': 'Sentence/Ravensbeak', // FIXME
         'Seventh Umbral Era': '제7재해',
         'Stack': 'Stack', // FIXME

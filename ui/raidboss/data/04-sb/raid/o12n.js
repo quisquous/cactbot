@@ -185,7 +185,7 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Engage!': 'Start!',
-        'Omega': 'Omega',
+        'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
@@ -235,7 +235,7 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Engage!': 'À l\'attaque',
-        'Omega': 'Oméga',
+        'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
@@ -285,7 +285,7 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Engage!': '戦闘開始！',
-        'Omega': 'オメガ',
+        'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
@@ -335,7 +335,7 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Engage!': '战斗开始！',
-        'Omega': '欧米茄',
+        'Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',
         'Optical Unit': '视觉组',
@@ -385,7 +385,7 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Engage!': '전투 시작!',
-        'Omega': '오메가',
+        'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',
         'Optical Unit': '광학 유닛',

@@ -161,16 +161,16 @@
         'Load': 'Laden',
         'Magitek Ray': 'Magitek-Laser',
         'Magnetism/Repel': 'Magnetismus',
-        'Magnetism(?!\/)': 'Magnetismus',
+        'Magnetism': 'Magnetismus',
         'Main Cannon': 'Hauptkanone',
         'Missile Simulation': 'Raketensimulation',
-        'Missile': 'Rakete',
+        'Missile(?![ |\\w])': 'Rakete',
         'Paste Program': 'Programm einfügen',
         'Paste(?! )': 'Einfügen',
         'Plane Laser': 'Luftwaffe Add Laser',
         'Prey': 'Beute',
         'Radar': 'Radar',
-        '(?=\/)Repel': 'Abstoßung',
+        'Repel': 'Abstoßung',
         'Retrieve Program': 'Programm wiederherstellen',
         'Run Program': 'Programm starten',
         'Run(?! )': 'Start',
@@ -183,7 +183,7 @@
         'Tentacle(?! )': 'Tentakel',
         'The Heat': 'Heißluft',
         'Viral Weapon': 'Panikvirus',
-        'Virus': 'Virus',
+        '(?<!\\w)Virus': 'Virus',
         'Wallop': 'Tentakelklatsche',
       },
       '~effectNames': {
@@ -205,7 +205,7 @@
         'Stun': 'Betäubung',
         'Temporary Misdirection': 'Plötzliche Panik',
         'Ultros Simulation': 'Ultros-Kampfprogramm',
-        'Virus': 'Virus',
+        '(?<!\\w)Virus': 'Virus',
       },
     },
     {
@@ -249,16 +249,16 @@
         'Load': 'Chargement',
         'Magitek Ray': 'Rayon magitek',
         'Magnetism/Repel': 'Magnetism/Repel', // FIXME
-        'Magnetism(?!\/)': 'Magnétisme',
+        'Magnetism': 'Magnétisme',
         'Main Cannon': 'Canon principal',
         'Missile Simulation': 'Chargement : missiles',
-        'Missile': 'Missile',
+        'Missile(?![ |\\w])': 'Missile',
         'Paste Program': 'Collage de programme',
         'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Laser d\'avion',
         'Prey': 'Proie',
         'Radar': 'Radar', // FIXME
-        '(?=\/)Repel': 'Répulsion',
+        'Repel': 'Répulsion',
         'Retrieve Program': 'Programme précédent',
         'Run Program': 'Programme de matérialisation',
         'Run(?! )': 'Run', // FIXME
@@ -271,7 +271,7 @@
         'Tentacle(?! )': 'Tentacule',
         'The Heat': 'Carbonisation',
         'Viral Weapon': 'Arme virologique',
-        'Virus': 'Virus',
+        '(?<!\\w)Virus': 'Virus',
         'Wallop': 'Taloche tentaculaire',
       },
       '~effectNames': {
@@ -293,7 +293,7 @@
         'Stun': 'Étourdissement',
         'Temporary Misdirection': 'Démence',
         'Ultros Simulation': 'Programme Orthros',
-        'Virus': 'Virus',
+        '(?<!\\w)Virus': 'Virus',
       },
     },
     {
@@ -337,16 +337,16 @@
         'Load': 'ローディング',
         'Magitek Ray': '魔導レーザー',
         'Magnetism/Repel': 'Magnetism/Repel', // FIXME
-        'Magnetism(?!\/)': '磁力',
+        'Magnetism': '磁力',
         'Main Cannon': 'メインカノン',
         'Missile Simulation': 'ローディング：ミサイル',
-        'Missile': 'ミサイル',
+        'Missile(?![ |\\w])': 'ミサイル',
         'Paste Program': 'プログラム・ペースト',
         'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
-        '(?=\/)Repel': '反発',
+        'Repel': '反発',
         'Retrieve Program': 'リバース・ローディング',
         'Run Program': '実体化プログラム',
         'Run(?! )': 'Run', // FIXME
@@ -359,7 +359,7 @@
         'Tentacle(?! )': 'Tentacle(?! )', // FIXME
         'The Heat': '熱風',
         'Viral Weapon': 'ウィルス兵器',
-        'Virus': 'ウイルス',
+        '(?<!\\w)Virus': 'ウイルス',
         'Wallop': '叩きつけ',
       },
       '~effectNames': {
@@ -381,7 +381,7 @@
         'Stun': 'スタン',
         'Temporary Misdirection': '心神喪失',
         'Ultros Simulation': 'オルトロス・プログラム',
-        'Virus': 'ウイルス',
+        '(?<!\\w)Virus': 'ウイルス',
       },
     },
     {
@@ -425,16 +425,16 @@
         'Load': '加载',
         'Magitek Ray': '魔导激光',
         'Magnetism/Repel': 'Magnetism/Repel', // FIXME
-        'Magnetism(?!\/)': '磁力',
+        'Magnetism': '磁力',
         'Main Cannon': '主加农炮',
         'Missile Simulation': '加载导弹模拟程序',
-        'Missile': '导弹',
+        'Missile(?![ |\\w])': '导弹',
         'Paste Program': '粘贴程序',
         'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
-        '(?=\/)Repel': '相斥',
+        'Repel': '相斥',
         'Retrieve Program': '反向加载',
         'Run Program': '实体化程序',
         'Run(?! )': 'Run', // FIXME
@@ -447,7 +447,7 @@
         'Tentacle(?! )': 'Tentacle(?! )', // FIXME
         'The Heat': '热风',
         'Viral Weapon': '病毒兵器',
-        'Virus': '病毒',
+        '(?<!\\w)Virus': '病毒',
         'Wallop': '敲击',
       },
       '~effectNames': {
@@ -469,7 +469,7 @@
         'Stun': '眩晕',
         'Temporary Misdirection': '精神失常',
         'Ultros Simulation': '奥尔特罗斯模拟程序',
-        'Virus': '病毒',
+        '(?<!\\w)Virus': '病毒',
       },
     },
     {
@@ -513,16 +513,16 @@
         'Load': '불러오기',
         'Magitek Ray': '마도 레이저',
         'Magnetism/Repel': 'Magnetism/Repel', // FIXME
-        'Magnetism(?!\/)': '자력',
+        'Magnetism': '자력',
         'Main Cannon': '주포',
         'Missile Simulation': '불러오기: 미사일',
-        'Missile': '미사일',
+        'Missile(?![ |\\w])': '미사일',
         'Paste Program': '프로그램 붙여넣기',
         'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
-        '(?=\/)Repel': '반발',
+        'Repel': '반발',
         'Retrieve Program': '역순 불러오기',
         'Run Program': '실체화 프로그램',
         'Run(?! )': 'Run', // FIXME
@@ -535,7 +535,7 @@
         'Tentacle(?! )': 'Tentacle(?! )', // FIXME
         'The Heat': '열풍',
         'Viral Weapon': '바이러스 병기',
-        'Virus': '바이러스',
+        '(?<!\\w)Virus': '바이러스',
         'Wallop': '매질',
       },
       '~effectNames': {
@@ -557,7 +557,7 @@
         'Stun': '기절',
         'Temporary Misdirection': '심신상실',
         'Ultros Simulation': '오르트로스 프로그램',
-        'Virus': '바이러스',
+        '(?<!\\w)Virus': '바이러스',
       },
     },
   ],

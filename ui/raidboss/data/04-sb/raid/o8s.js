@@ -796,7 +796,7 @@
         'Mana Charge': 'Mana-Aufladung',
         'Mana Release': 'Mana-Entladung',
         'Meteor': 'Meteor',
-        'Past/Future': 'Vergangenheit/Zukunft',
+        'Past/Future(?! )': 'Vergangenheit/Zukunft',
         'Past/Future End': 'Vergangenheit/Zukunft Ende',
         'Pasts Forgotten': 'Vernichtung der Vergangenheit',
         'Pulse Wave': 'Pulswelle',
@@ -814,7 +814,7 @@
         'Trine': 'Trine',
         'Ultima Upsurge': 'Ultima-Wallung',
         'Ultimate Embrace': 'Ultima-Umarmung',
-        'Ultima': 'Ultima',
+        'Ultima(?![ |\\w])': 'Ultima',
         'Vitrophyre': 'Vitrophyr',
         'Wave Cannon': 'Wellenkanone',
         'Wings Of Destruction': 'Vernichtungsschwinge',
@@ -865,7 +865,7 @@
         'Mana Charge': 'Concentration de mana',
         'Mana Release': 'Décharge de mana',
         'Meteor': 'Météore',
-        'Past/Future': 'Passé/Futur',
+        'Past/Future(?! )': 'Passé/Futur',
         'Past/Future End': 'Passé/Fin du futur',
         'Pasts Forgotten': 'Ruine du passé',
         'Pulse Wave': 'Pulsation spirituelle',
@@ -883,7 +883,7 @@
         'Trine': 'Trine',
         'Ultima Upsurge': 'Ultima ulcérante',
         'Ultimate Embrace': 'Étreinte fatidique',
-        'Ultima': 'Ultima',
+        'Ultima(?![ |\\w])': 'Ultima',
         'Vitrophyre': 'Vitrophyre',
         'Wave Cannon': 'Canon plasma',
         'Wings Of Destruction': 'Aile de la destruction',
@@ -934,7 +934,7 @@
         'Mana Charge': 'マジックチャージ',
         'Mana Release': 'マジックアウト',
         'Meteor': 'メテオ',
-        'Past/Future': 'Past/Future', // FIXME
+        'Past/Future(?! )': 'Past/Future', // FIXME
         'Past/Future End': 'Past/Future End', // FIXME
         'Pasts Forgotten': '過去の破滅',
         'Pulse Wave': '波動弾',
@@ -952,7 +952,7 @@
         'Trine': 'トライン',
         'Ultima Upsurge': 'どきどきアルテマ',
         'Ultimate Embrace': '終末の双腕',
-        'Ultima': 'アルテマ',
+        'Ultima(?![ |\\w])': 'アルテマ',
         'Vitrophyre': '岩石弾',
         'Wave Cannon': '波動砲',
         'Wings Of Destruction': '破壊の翼',
@@ -1003,7 +1003,7 @@
         'Mana Charge': '魔法储存',
         'Mana Release': '魔法放出',
         'Meteor': '陨石',
-        'Past/Future': 'Past/Future', // FIXME
+        'Past/Future(?! )': 'Past/Future', // FIXME
         'Past/Future End': 'Past/Future End', // FIXME
         'Pasts Forgotten': '过去破灭',
         'Pulse Wave': '波动弹',
@@ -1021,7 +1021,7 @@
         'Trine': '异三角',
         'Ultima Upsurge': '扑腾腾究极',
         'Ultimate Embrace': '终末双腕',
-        'Ultima': '究极',
+        'Ultima(?![ |\\w])': '究极',
         'Vitrophyre': '岩石弹',
         'Wave Cannon': '波动炮',
         'Wings Of Destruction': '破坏之翼',
@@ -1072,7 +1072,7 @@
         'Mana Charge': '마력 충전',
         'Mana Release': '마력 방출',
         'Meteor': '메테오',
-        'Past/Future': 'Past/Future', // FIXME
+        'Past/Future(?! )': 'Past/Future', // FIXME
         'Past/Future End': 'Past/Future End', // FIXME
         'Pasts Forgotten': '과거의 파멸',
         'Pulse Wave': '파동탄',
@@ -1090,7 +1090,7 @@
         'Trine': '트라인',
         'Ultima Upsurge': '두근두근 알테마',
         'Ultimate Embrace': '종말의 포옹',
-        'Ultima': '알테마',
+        'Ultima(?![ |\\w])': '알테마',
         'Vitrophyre': '암석탄',
         'Wave Cannon': '파동포',
         'Wings Of Destruction': '파괴의 날개',
