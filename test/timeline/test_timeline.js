@@ -44,6 +44,7 @@ let tests = {
     for (let trans of translations) {
       let locale = trans.locale;
       if (!locale) {
+        // TODO: maybe this needs to be in the triggers test instead
         errorFunc(triggersFile + ': missing locale in translation block');
         continue;
       }
@@ -51,25 +52,15 @@ let tests = {
       let testCases = [
         {
           type: 'replaceSync',
-          list: timeline.syncStarts,
-          extract: (testItem) => testItem.regex.source,
+          items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
           replace: trans.replaceSync,
         },
         {
           type: 'replaceText',
-          list: timeline.events,
-          extract: (testItem) => testItem.text,
+          items: new Set(timeline.events.map((x) => x.text)),
           replace: trans.replaceText,
         },
       ];
-
-      // Extract all texts and syncs from parsed timeline, and find unique ones.
-      for (let testCase of testCases) {
-        testCase.items = [];
-        for (let testItem of testCase.list)
-          testCase.items.push(testCase.extract(testItem));
-        testCase.items = new Set(testCase.items);
-      }
 
       // For both texts and syncs...
       for (let testCase of testCases) {
@@ -137,6 +128,61 @@ let tests = {
               errorFunc(`${triggersFile}:locale ${locale}: post-translation collision on ${testCase.type} '${orig}' for '${regex}' => '${testCase.replace[regex]}', then '${otherRegex}'`);
             }
           }
+        }
+      }
+    }
+  },
+  missingTranslationTest: () => {
+    let translations = triggers.timelineReplace;
+    if (!translations)
+      return;
+
+    for (let trans of translations) {
+      let locale = trans.locale;
+      if (!locale)
+        continue;
+
+      let testCases = [
+        {
+          type: 'replaceSync',
+          items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
+          replace: trans.replaceSync,
+        },
+        {
+          type: 'replaceText',
+          items: new Set(timeline.events.map((x) => x.text)),
+          replace: trans.replaceText,
+        },
+      ];
+
+      let ignore = [
+        '--Reset--',
+        '--sync--',
+        'Start',
+        '^ ?21:',
+        '^ ?1B:',
+      ].map((x) => Regexes.parse(x));
+      let isIgnored = (x) => {
+        for (let ig of ignore) {
+          if (x.match(ig))
+            return true;
+        }
+        return false;
+      };
+
+      for (let testCase of testCases) {
+        for (let item of testCase.items) {
+          if (isIgnored(item))
+            continue;
+          let matched = false;
+          for (let regex in testCase.replace) {
+            if (item.match(Regexes.parse(regex))) {
+              matched = true;
+              break;
+            }
+          }
+          if (!matched)
+            errorFunc(`${triggersFile}:locale ${locale}:no translation for ${testCase.type} '${item}'`);
         }
       }
     }
