@@ -3,7 +3,10 @@
 // The Twinning
 
 [{
-  zoneRegex: /^The Twinning$/,
+  zoneRegex: {
+    en: /^The Twinning$/,
+    ko: /^쌍둥이 시르쿠스$/,
+  },
   timelineFile: 'twinning.txt',
   triggers: [
     {
@@ -21,6 +24,7 @@
         en: 'Interrupt Kaliya',
         de: 'Unterbreche Kaliya',
         fr: 'Interrompez Kaliya',
+        ko: '방해하기 → 양산형 칼리아',
       },
     },
     {
@@ -38,6 +42,7 @@
         en: 'Interrupt Reptoid',
         de: 'Unterbreche Reptoid',
         fr: 'Interrompez Reptoïde',
+        ko: '방해하기 → 활성된 파충류',
       },
     },
     {
@@ -55,6 +60,7 @@
         en: 'Silence Minotaur',
         de: 'Stumme Minotaur',
         fr: 'Silence sur Minotaure',
+        ko: '방해하기 → 자동제어 미노타우로스',
       },
     },
     {
@@ -66,6 +72,7 @@
         en: 'Spread (avoid cages)',
         de: 'Verteilen (Vermeide "Käfige")',
         fr: 'Dispersez vous (évitez les cages)',
+        ko: '산개 (바깥쪽 배양기에 닿지 않도록)',
       },
     },
     {
@@ -83,6 +90,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -99,12 +107,14 @@
             en: 'Tank cleave on YOU',
             de: 'Tank cleave auf YOU',
             fr: 'Tank cleave sur VOUS',
+            ko: '나에게 범위 공격',
           };
         }
         return {
           en: 'Avoid tank cleave',
           de: 'Tank cleave ausweichen',
           fr: 'Evitez le cleave',
+          ko: '탱크 쪽 범위 공격 피하기',
         };
       },
     },
@@ -117,12 +127,14 @@
             en: 'Stack on YOU',
             de: 'Auf DIR stacken',
             fr: 'Package sur VOUS',
+            ko: '나에게 모이기',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '에게 모이기',
         };
       },
     },
@@ -140,6 +152,7 @@
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
             fr: 'Buster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -147,6 +160,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Buster auf ' + data.ShortName(matches.target),
             fr: 'Buster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -167,6 +181,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -182,6 +197,7 @@
         en: 'cardinal lasers',
         de: 'Himmelrichtungs-Lasers',
         fr: 'Lasers cardinaux',
+        ko: '보스 측면 레이저',
       },
     },
     {
@@ -197,6 +213,7 @@
         en: 'outer lasers',
         de: 'Lasers am Rand',
         fr: 'Lasers extérieurs',
+        ko: '외곽 레이저',
       },
     },
     {
@@ -213,6 +230,7 @@
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -220,6 +238,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Buster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -237,6 +256,7 @@
         en: 'spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -254,6 +274,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
   ],

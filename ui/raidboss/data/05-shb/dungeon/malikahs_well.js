@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Malikah's Well$/,
+  zoneRegex: {
+    en: /^Malikah's Well$/,
+    ko: /^말리카 큰우물$/,
+  },
   timelineFile: 'malikahs_well.txt',
   triggers: [
     {
@@ -18,6 +21,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -25,6 +29,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -37,11 +42,13 @@
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
+            ko: '나에게 모이기',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          ko: data.ShortName(matches.target) + '에게 모이기',
         };
       },
     },
@@ -56,6 +63,7 @@
       infoText: {
         en: 'Melee Knockback',
         de: 'Nahkämpfer Rückstoß',
+        ko: '근거리 넉백',
       },
     },
     {
@@ -73,6 +81,7 @@
         en: 'Silence Add',
         de: 'Add stummen',
         fr: 'Silence Add',
+        ko: '방해하기 → 추가 쫄',
       },
     },
     {
@@ -89,6 +98,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -96,6 +106,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -111,6 +122,7 @@
       infoText: {
         en: 'Knockback',
         de: 'Rückstoß',
+        ko: '넉백',
       },
     },
     {
@@ -124,6 +136,7 @@
       infoText: {
         en: 'Get Behind',
         de: 'Hinter ihn',
+        ko: '보스 뒷쪽으로',
       },
     },
     {
@@ -141,6 +154,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
   ],

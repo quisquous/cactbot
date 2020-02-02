@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^[tT]he Qitana Ravel$/,
+  zoneRegex: {
+    en: /^[tT]he Qitana Ravel$/,
+    ko: /^키타나 신굴$/,
+  },
   timelineFile: 'qitana_ravel.txt',
   triggers: [
     {
@@ -18,6 +21,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -25,6 +29,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -44,6 +49,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -59,6 +65,7 @@
         en: 'Look for pillar',
         de: 'Auf die Pfeiler schauen',
         fr: 'Cherchez les piliers',
+        ko: '빛나는 기둥 찾기',
       },
     },
     {
@@ -75,6 +82,7 @@
         en: 'Stay on left flank',
         de: 'Auf seiner linken Seite stehen',
         fr: 'Restez sur le flanc gauche',
+        ko: '왼쪽 측면으로',
       },
     },
     {
@@ -91,6 +99,7 @@
         en: 'Stay on right flank',
         de: 'Auf seiner rechten Seite stehen',
         fr: 'Restez sur le flanc droit',
+        ko: '오른쪽 측면으로',
       },
     },
     {
@@ -107,6 +116,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -114,6 +124,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -133,6 +144,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -150,6 +162,7 @@
         en: 'aoes',
         de: 'AoEs',
         fr: 'Dégâts de zone',
+        ko: '연속 전체 공격',
       },
     },
     {
@@ -166,6 +179,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -173,6 +187,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -192,6 +207,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -209,6 +225,7 @@
         en: 'Run Away From Boss',
         de: 'Renn weg vom Boss',
         fr: 'Courez loin du boss',
+        ko: '보스와 거리 벌리기',
       },
     },
     {
@@ -221,6 +238,7 @@
         en: 'Drop Poison Outside',
         de: 'Gift am Rand ablegen',
         fr: 'Posez le poison à l\'extérieur',
+        ko: '독 장판을 바깥 쪽에 버리기',
       },
     },
     {
@@ -232,12 +250,14 @@
             en: 'Stack Middle on YOU',
             de: 'In der Mitte auf DIR sammeln',
             fr: 'Package au milieu sur VOUS',
+            ko: '보스 정면에서 모이기',
           };
         }
         return {
           en: 'Stack Middle on ' + data.ShortName(matches.target),
           de: 'In Der Mitte auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package au milieu sur ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '에게 모이기',
         };
       },
     },
@@ -253,6 +273,7 @@
         en: 'Spread to Sides',
         de: 'Auf die Seiten verteilen',
         fr: 'Dispersez-vous sur les bords',
+        ko: '좌우 측면으로 산개',
       },
     },
   ],
