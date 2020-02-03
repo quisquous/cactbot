@@ -1751,7 +1751,7 @@
         de: 'Orange locken: Geh Weg',
         ja: '接触保護',
         fr: 'Appât Orange: Eloignez-vous',
-        ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기'
+        ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
       },
     },
     {
@@ -1828,7 +1828,7 @@
           de: 'Erschwertes: geteilter stack ausweichen',
           ja: '加重罰',
           fr: 'Sévérité: éloignez-vous du stack',
-          ko: '가중형; 왼쪽/가중형끼리 모이기'
+          ko: '가중형; 왼쪽/가중형끼리 모이기',
         };
 
         let kUnknown;
@@ -2536,8 +2536,8 @@
               second: '北へ',
             },
             ko: {
-                first: '가운데서 북쪽으로',
-                second: '북쪽으로',
+              first: '가운데서 북쪽으로',
+              second: '북쪽으로',
             },
           },
           'rg': {
@@ -2554,8 +2554,8 @@
               second: '中央へ',
             },
             ko: {
-                first: '북쪽에서 가운데로',
-                second: '가운데로',
+              first: '북쪽에서 가운데로',
+              second: '가운데로',
             },
           },
           'ry': {
@@ -2572,8 +2572,8 @@
               second: '西へ',
             },
             ko: {
-                first: '북쪽에서 서쪽으로',
-                second: '서쪽으로',
+              first: '북쪽에서 서쪽으로',
+              second: '서쪽으로',
             },
           },
           'yr': {
@@ -2590,8 +2590,8 @@
               second: '東へ',
             },
             ko: {
-                first: '남쪽에서 동쪽으로',
-                second: '동쪽으로',
+              first: '남쪽에서 동쪽으로',
+              second: '동쪽으로',
             },
           },
           'gy': {
@@ -2608,8 +2608,8 @@
               second: '南へ',
             },
             ko: {
-                first: '가운데서 남쪽으로',
-                second: '남쪽으로',
+              first: '가운데서 남쪽으로',
+              second: '남쪽으로',
             },
           },
           'yg': {
@@ -2626,8 +2626,8 @@
               second: '北へ',
             },
             ko: {
-                first: '남쪽에서 북쪽으로',
-                second: '북쪽으로',
+              first: '남쪽에서 북쪽으로',
+              second: '북쪽으로',
             },
           },
         }[threeOne][data.lang];

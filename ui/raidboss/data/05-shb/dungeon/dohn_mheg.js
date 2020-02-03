@@ -194,7 +194,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱크버스터',            	
+            ko: data.ShortName(matches[1]) + '에게 탱크버스터',
           };
         }
       },
