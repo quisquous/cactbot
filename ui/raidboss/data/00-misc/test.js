@@ -113,6 +113,7 @@
     },
     {
       locale: 'fr',
+      missingTranslations: true,
       replaceText: {
         'Final Sting': 'Dard final',
         'Almagest': 'Almageste',
@@ -129,6 +130,7 @@
     },
     {
       locale: 'cn',
+      missingTranslations: true,
       replaceText: {
         'Final Sting': '终极针',
         'Almagest': '至高无上',

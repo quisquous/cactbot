@@ -413,8 +413,8 @@
         'Umbral Debris': 'Schattengestein',
       },
       'replaceText': {
-        '(In)': '(Rein)',
-        '(Out)': '(Raus)',
+        '\\(In\\)': '(Rein)',
+        '\\(Out\\)': '(Raus)',
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Bahamut\'s Claw': 'Klauen Bahamuts',
@@ -432,7 +432,7 @@
         'Iron Chariot': 'Eiserner Streitwagen',
         'Lunar Dynamo': 'Lunarer Dynamo',
         'Megaflare': 'Megaflare',
-        'Meteor': 'Meteor',
+        '(?<! )Meteor(?! Stream)': 'Meteor',
         'Meteor Stream': 'Meteorflug',
         'Raven Dive': 'Bahamuts Schwinge',
         'Ravensbeak': 'Bradamante',
@@ -457,8 +457,8 @@
         'Umbral Debris': 'Débris ombral',
       },
       'replaceText': {
-        '(In)': '(Dedans)',
-        '(Out)': '(Dehors)',
+        '\\(In\\)': '(Dedans)',
+        '\\(Out\\)': '(Dehors)',
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Bahamut\'s Claw': 'Griffe de Bahamut',
@@ -476,7 +476,7 @@
         'Iron Chariot': 'Char de fer',
         'Lunar Dynamo': 'Dynamo lunaire',
         'Megaflare': 'MégaBrasier',
-        'Meteor': 'Météore',
+        '(?<! )Meteor(?! Stream)': 'Météore',
         'Meteor Stream': 'Rayon météore',
         'Raven Dive': 'Fonte du rapace',
         'Ravensbeak': 'Bec du rapace',
@@ -501,8 +501,8 @@
         'Umbral Debris': 'アンブラルデブリ',
       },
       'replaceText': {
-        '(In)': '(In)',
-        '(Out)': '(Out)',
+        '\\(In\\)': '(In)',
+        '\\(Out\\)': '(Out)',
         '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Bahamut\'s Claw': 'バハムートクロウ',
@@ -520,7 +520,7 @@
         'Iron Chariot': 'アイアンチャリオット',
         'Lunar Dynamo': 'ルナダイナモ',
         'Megaflare': 'メガフレア',
-        'Meteor': 'メテオ',
+        '(?<! )Meteor(?! Stream)': 'メテオ',
         'Meteor Stream': 'メテオストリーム',
         'Raven Dive': 'レイヴンダイブ',
         'Ravensbeak': 'レイヴェンズビーク',
@@ -545,8 +545,8 @@
         'Umbral Debris': '灵极岩屑',
       },
       'replaceText': {
-        '(In)': '(In)', // FIXME
-        '(Out)': '(Out)', // FIXME
+        '\\(In\\)': '(In)', // FIXME
+        '\\(Out\\)': '(Out)', // FIXME
         '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '巴哈姆特之爪',
@@ -564,7 +564,7 @@
         'Iron Chariot': '钢铁战车',
         'Lunar Dynamo': '月流电圈',
         'Megaflare': '百万核爆',
-        'Meteor': '陨石',
+        '(?<! )Meteor(?! Stream)': '陨石',
         'Meteor Stream': '陨石流',
         'Raven Dive': '凶鸟冲',
         'Ravensbeak': '凶鸟尖喙',
@@ -589,8 +589,8 @@
         'Umbral Debris': '저승의 잔해',
       },
       'replaceText': {
-        '(In)': '(In)', // FIXME
-        '(Out)': '(Out)', // FIXME
+        '\\(In\\)': '(In)', // FIXME
+        '\\(Out\\)': '(Out)', // FIXME
         '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '바하무트의 발톱',
@@ -608,7 +608,7 @@
         'Iron Chariot': '강철 전차',
         'Lunar Dynamo': '달의 원동력',
         'Megaflare': '메가플레어',
-        'Meteor': '메테오',
+        '(?<! )Meteor(?! Stream)': '메테오',
         'Meteor Stream': '유성 폭풍',
         'Raven Dive': '흉조의 강하',
         'Ravensbeak': '흉조의 부리',
