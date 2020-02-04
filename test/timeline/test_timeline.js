@@ -36,7 +36,7 @@ let tests = {
       errorFunc(timelineFile + ':' + e.lineNumber + ': ' + e.error + ': ' + e.line);
   },
 
-  translationTest: () => {
+  translationConflictTest: () => {
     let translations = triggers.timelineReplace;
     if (!translations)
       return;
@@ -48,6 +48,8 @@ let tests = {
         errorFunc(triggersFile + ': missing locale in translation block');
         continue;
       }
+
+      // Note: even if translations are missing, they should not have conflicts.
 
       let testCases = [
         {
@@ -140,6 +142,9 @@ let tests = {
     for (let trans of translations) {
       let locale = trans.locale;
       if (!locale)
+        continue;
+
+      if (trans.missingTranslations)
         continue;
 
       let testCases = [
