@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Mt\. Gulg$/,
+  zoneRegex: {
+    en: /^Mt\. Gulg$/,
+    ko: /^굴그 화산$/,
+  },
   timelineFile: 'mt_gulg.txt',
   triggers: [
     {
@@ -19,6 +22,7 @@
         en: 'Interrupt Prejudice',
         de: 'Unterbreche Voreingenommenheit',
         fr: 'Interrompez Préjugé Pardonnée',
+        ko: '방해하기 → 면죄된 편견',
       },
     },
     {
@@ -33,6 +37,7 @@
         en: 'Ambition Tail Smash',
         de: 'Begierde Schweifschlag',
         fr: 'Evitez la queue',
+        ko: '면죄된 야망의 꼬리 휘두르기 주의',
       },
     },
     {
@@ -49,6 +54,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -56,6 +62,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -72,6 +79,7 @@
         en: 'Frontal Laser',
         de: 'Frontaler Laser',
         fr: 'Laser frontal',
+        ko: '정면 레이저 공격',
       },
     },
     {
@@ -89,6 +97,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -104,6 +113,7 @@
         en: 'dodge wind cones',
         de: 'Wind-Fächerflächen ausweichen',
         fr: 'Evitez les cônes de vent',
+        ko: '바람 속성 범위 공격 피하기',
       },
     },
     {
@@ -119,6 +129,7 @@
         en: 'out of melee, dodge cones',
         de: 'Nahkämpfer raus, Wind-Fächerflächen ausweichen',
         fr: 'Distants, évitez les cônes',
+        ko: '보스로 부터 떨어지기 / 범위 공격 피하기',
       },
     },
     {
@@ -136,6 +147,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -154,6 +166,7 @@
         en: 'tank buster',
         de: 'Tankbuster',
         fr: 'Tankbuster',
+        ko: '탱크버스터',
       },
     },
     {
@@ -168,6 +181,7 @@
         en: 'Get Towers',
         de: 'Türme nehmen',
         fr: 'Dans les tours',
+        ko: '탑 장판 들어가기',
       },
     },
     {
@@ -182,6 +196,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
+        ko: '왼쪽',
       },
     },
     {
@@ -196,6 +211,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
+        ko: '오른쪽',
       },
     },
     {
@@ -213,6 +229,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -231,6 +248,7 @@
         en: 'tank buster',
         de: 'Tankbuster',
         fr: 'Tankbuster',
+        ko: '탱크버스터',
       },
     },
     {
@@ -245,6 +263,7 @@
         en: 'max melee range',
         de: 'Maximale Nahkämpfer Entfernung',
         fr: 'Limite de zone CaC',
+        ko: '칼 끝 공격 범위 만큼 떨어지기',
       },
     },
     {
@@ -259,6 +278,7 @@
         en: 'Behind Boss',
         de: 'Hinter den Boss',
         fr: 'Derrière le boss',
+        ko: '보스 측후로 피하기',
       },
     },
   ],

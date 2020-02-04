@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Amaurot$/,
+  zoneRegex: {
+    en: /^Amaurot$/,
+    ko: /^아모로트$/,
+  },
   timelineFile: 'amaurot.txt',
   triggers: [
     {
@@ -19,18 +22,21 @@
             en: 'Drop Meteor West',
             de: 'Meteor im Westen ablegen',
             fr: 'Poser le météore à l\'ouest',
+            ko: '메테오를 서쪽에 버리기',
           };
         } else if (data.meteor == 2) {
           return {
             en: 'Drop Meteor East',
             de: 'Meteor im Osten ablegen',
             fr: 'Poser le météore à l\'est',
+            ko: '메테오를 동쪽에 버리기',
           };
         }
         return {
           en: 'Meteor',
           de: 'Meteor',
           fr: 'Météore',
+          ko: '메테오',
         };
       },
     },
@@ -44,6 +50,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -57,6 +64,7 @@
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
+        ko: '바위 뒤로 피하기',
       },
     },
     {
@@ -74,6 +82,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -88,6 +97,7 @@
         en: 'Get Off',
         de: 'Runter gehen',
         fr: 'Sur les plateformes extérieures',
+        ko: '바깥으로 피하기',
       },
     },
   ],
