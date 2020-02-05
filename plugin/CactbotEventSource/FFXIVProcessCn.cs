@@ -41,7 +41,7 @@ namespace Cactbot {
       [FieldOffset(0xB0)]
       public Single rotation;
 
-      [FieldOffset(0x18A4)]
+      [FieldOffset(0x18B8)]
       public CharacterDetails charDetails;
     }
 
@@ -72,13 +72,13 @@ namespace Cactbot {
       [FieldOffset(0x18)]
       public short max_cp;
 
-      [FieldOffset(0x38)]
+      [FieldOffset(0x3C)]
       public EntityJob job;
 
-      [FieldOffset(0x3A)]
+      [FieldOffset(0x3E)]
       public byte level;
 
-      [FieldOffset(0x5C)]
+      [FieldOffset(0x5F)]
       public short shieldPercentage;
     }
     public FFXIVProcessCn(ILogger logger) : base(logger) { }
