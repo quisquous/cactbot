@@ -208,7 +208,7 @@
             fr: 'Récupérez l\'orbe',
             ja: '線出たよ',
             cn: '接线',
-            ko: 'Orb Tethers',
+            ko: '구슬 연결',
           };
         }
       },
@@ -220,7 +220,7 @@
             fr: 'Récupérez l\'orbe',
             ja: '線出たよ',
             cn: '坦克接线注意治疗',
-            ko: 'Orb Tethers',
+            ko: '구슬 연결',
           };
         }
       },
@@ -517,7 +517,7 @@
             de: 'Rücken zum Tornado',
             fr: 'Regardez vers l\'extérieur',
             cn: '背对龙卷风',
-            ko: 'Back to Tornado',
+            ko: '토네이도 뒤돌기',
           };
         }
         if (data.wind == 'tail') {
@@ -669,7 +669,7 @@
             fr: 'Dos au DPS',
             ja: 'DPSの後ろへ',
             cn: '背对DPS',
-            ko: 'Back to DPS',
+            ko: '딜러한테서 뒤돌기',
           };
         }
       },
