@@ -24,7 +24,7 @@
         en: 'Interrupt Kaliya',
         de: 'Unterbreche Kaliya',
         fr: 'Interrompez Kaliya',
-        ko: '양산형 칼리아 기술 시전 중단',
+        ko: '양산형 칼리아 기술 시전 끊기',
       },
     },
     {
@@ -42,7 +42,7 @@
         en: 'Interrupt Reptoid',
         de: 'Unterbreche Reptoid',
         fr: 'Interrompez Reptoïde',
-        ko: '활성된 파충류 기술 시전 중단',
+        ko: '활성된 파충류 기술 시전 끊기',
       },
     },
     {

@@ -168,7 +168,7 @@
         en: 'Interrupt Evil Armor',
         de: 'Unterbreche Böse Kampfmaschine',
         fr: 'Interrompez l\'armure maléfique',
-        ko: '사악한 갑옷 기술 시전 중단',
+        ko: '사악한 갑옷 기술 시전 끊기',
       },
     },
     {
