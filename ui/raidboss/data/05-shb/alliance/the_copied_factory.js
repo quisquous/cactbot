@@ -1162,7 +1162,6 @@
         'Marx Smash F/B': '麦喀士打击前/后',
         'Marx Smash B/F': '麦喀士打击后/前',
         'Marx Smash': '麦喀士打击',
-        'Marx Smash': '麦喀士打击',
         'Marx Thrust': '麦喀士突击',
         'Neutralization': '压制射击',
         'Radiate Heat': '放热攻击',

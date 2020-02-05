@@ -16,7 +16,7 @@
       id: 'HadesEx Comet',
       regex: /Comet 1/,
       beforeSeconds: 5,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank';
       },
       infoText: {
@@ -66,7 +66,7 @@
       regexFr: Regexes.startsUsing({ id: '47A6', source: 'Hadès' }),
       regexJa: Regexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
       regexKo: Regexes.startsUsing({ id: '47A6', source: '하데스' }),
-      alertText: function (data, matches) {
+      alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
@@ -84,7 +84,7 @@
           };
         }
       },
-      infoText: function (data, matches) {
+      infoText: function(data, matches) {
         if (matches.target == data.me || data.role != 'tank')
           return;
 
@@ -197,7 +197,7 @@
       regexFr: Regexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
       delaySeconds: 25,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
@@ -215,7 +215,7 @@
       regexFr: Regexes.tether({ id: '0011', source: 'Spectre D\'Ascien' }),
       regexJa: Regexes.tether({ id: '0011', source: '古代人の影' }),
       regexKo: Regexes.tether({ id: '0011', source: '고대인의 그림자' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -228,7 +228,7 @@
     {
       id: 'HadesEx Ancient Water 3',
       regex: Regexes.headMarker({ id: '003E' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       infoText: {
@@ -237,14 +237,14 @@
         fr: 'Package sur les heals',
         cn: '治疗集合',
       },
-      run: function (data) {
+      run: function(data) {
         data.waterDarkMarker = true;
       },
     },
     {
       id: 'HadesEx Ancient Darkness',
       regex: Regexes.headMarker({ id: '0060' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -253,7 +253,7 @@
         fr: 'Tanks : dispersion',
         cn: '坦克散开',
       },
-      run: function (data) {
+      run: function(data) {
         data.waterDarkMarker = true;
       },
     },
@@ -262,7 +262,7 @@
       regex: Regexes.headMarker({ id: ['0030', '0060'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function (data) {
+      infoText: function(data) {
         if (data.waterDarkMarker)
           return;
         return {
@@ -281,7 +281,7 @@
       regexFr: Regexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
       regexJa: Regexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       suppressSeconds: 10,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank';
       },
       alarmText: {
@@ -298,10 +298,10 @@
       regexDe: Regexes.startsUsing({ id: '47BD', source: 'Igeyorhms Schatten', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: function (data) {
+      infoText: function(data) {
         if (!data.sphereCount)
           return;
         return {
@@ -311,7 +311,7 @@
           cn: '坦克即将换T',
         };
       },
-      run: function (data) {
+      run: function(data) {
         data.sphereCount = (data.sphereCount || 0) + 1;
       },
     },
@@ -322,7 +322,7 @@
       regexDe: Regexes.startsUsing({ id: '47BF', source: 'Lahabrea Und Igeyorhm', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
@@ -339,7 +339,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers' }),
       regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu' }),
       regexJa: Regexes.gainsEffect({ effect: '火の烙印' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -348,7 +348,7 @@
         fr: 'Attaquez Igeyorhm',
         cn: '攻击以格约姆',
       },
-      run: function (data) {
+      run: function(data) {
         data.brand = 'fire';
       },
     },
@@ -359,7 +359,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises' }),
       regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace' }),
       regexJa: Regexes.gainsEffect({ effect: '氷の烙印' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -368,7 +368,7 @@
         fr: 'Attaquez Lahabrea',
         cn: '攻击拉哈布雷亚',
       },
-      run: function (data) {
+      run: function(data) {
         data.brand = 'ice';
       },
     },
@@ -379,7 +379,7 @@
       regexDe: Regexes.startsUsing({ id: '47C3', source: 'Igeyorhms Schatten' }),
       regexFr: Regexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
       regexJa: Regexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -396,7 +396,7 @@
       regexDe: Regexes.startsUsing({ id: '47C2', source: 'Lahabreas Schatten' }),
       regexFr: Regexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
       regexJa: Regexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -413,7 +413,7 @@
       regexDe: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
       regexFr: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
       regexJa: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       suppressSeconds: 5,
@@ -433,7 +433,7 @@
       regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
       suppressSeconds: 5,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       alertText: {
@@ -452,7 +452,7 @@
       regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
       regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       suppressSeconds: 2,
-      delaySeconds: function (data, matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
       alarmText: {
@@ -471,7 +471,7 @@
       regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
       regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
       durationSeconds: 8,
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alertText: {
@@ -488,10 +488,10 @@
       regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus' }),
       regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien' }),
       regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
-      delaySeconds: function (data, matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
       infoText: {
@@ -509,10 +509,10 @@
       regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
       regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
       regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
-      delaySeconds: function (data, matches) {
+      delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
       alertText: {
@@ -530,7 +530,7 @@
       regexFr: Regexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
       delaySeconds: 12,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
@@ -547,7 +547,7 @@
       regexDe: Regexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
       regexFr: Regexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
       regexJa: Regexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
-      alertText: function (data, matches) {
+      alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
@@ -593,7 +593,7 @@
       regexDe: Regexes.startsUsing({ id: '47D0', source: 'Schatten Des Prim-Ascian', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
@@ -606,7 +606,7 @@
     {
       id: 'HadesEx Captivity',
       regex: Regexes.headMarker({ id: '0078' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
       alarmText: {
@@ -634,10 +634,10 @@
     {
       id: 'HadesEx Dark Flame',
       regex: Regexes.headMarker({ id: '0064' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return matches.target == data.me;
       },
-      run: function (data) {
+      run: function(data) {
         data.flame = true;
       },
       infoText: {
@@ -650,10 +650,10 @@
     {
       id: 'HadesEx Dark Freeze',
       regex: Regexes.headMarker({ id: '00C1' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return matches.target == data.me;
       },
-      run: function (data) {
+      run: function(data) {
         data.freeze = true;
       },
       infoText: {
@@ -671,7 +671,7 @@
       regexFr: Regexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47E1', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47E1', source: '하데스', capture: false }),
-      infoText: function (data) {
+      infoText: function(data) {
         if (!data.flame && !data.freeze) {
           return {
             en: 'Knockback + Stack With Partner',
@@ -685,10 +685,10 @@
     {
       id: 'HadesEx Nether Blast',
       regex: Regexes.headMarker({ id: '008B' }),
-      condition: function (data, matches) {
+      condition: function(data, matches) {
         return data.me == matches.target;
       },
-      run: function (data) {
+      run: function(data) {
         data.netherBlast = true;
       },
       alertText: {
@@ -706,7 +706,7 @@
       regexFr: Regexes.startsUsing({ id: '47E3', source: 'Hadès', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47E3', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47E3', source: '하데스', capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return !data.netherBlast;
       },
       infoText: {
@@ -771,7 +771,7 @@
       regexFr: Regexes.startsUsing({ id: '47F3', source: 'Hadès', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47F3', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47F3', source: '하데스', capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
@@ -789,7 +789,7 @@
       regexFr: Regexes.startsUsing({ id: '47F4', source: 'Hadès', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47F4', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47F4', source: '하데스', capture: false }),
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
@@ -808,10 +808,10 @@
       regexJa: Regexes.startsUsing({ id: '47F6', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47F6', source: '하데스', capture: false }),
       suppressSeconds: 2,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alarmText: function (data) {
+      alarmText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Get Towers',
@@ -821,7 +821,7 @@
           };
         }
       },
-      infoText: function (data) {
+      infoText: function(data) {
         if (data.role == 'healer') {
           return {
             en: 'tank busters',
@@ -842,7 +842,7 @@
       regexKo: Regexes.ability({ id: '47F6', source: '하데스', capture: false }),
       suppressSeconds: 2,
       delaySeconds: 2,
-      condition: function (data) {
+      condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
       infoText: {
@@ -1097,7 +1097,7 @@
         'Dark Flame': '暗黑之炎',
         'Dark Freeze': '黑暗玄冰',
         'Dark II': '昏暗',
-        'Dark Seal': '黑暗咒印',   
+        'Dark Seal': '黑暗咒印',
         'Death Shriek': '死亡尖叫',
         'Fire IV': '炽炎',
         'Fire Sphere': '火炎球',
