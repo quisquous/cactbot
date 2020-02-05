@@ -300,7 +300,9 @@
         'Archaeodemon': 'Archaeodämon',
         'command tower': 'Kommandoturm',
         'Frostwave': 'Polarlanze',
-        'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
+        'I am Revelation': 'Seht die Offenbarung',
+        'I am the truth from which you run': 'Die Maske zeigt euch die Macht des wahren Gottes! Fügt euch der Offenbarung!',
+        'I am the lies upon which you sup': 'Die Maske zeigt euch die Macht des falschen Gottes! Fügt euch der Offenbarung!',
         'Mateus, The Corrupt': 'Mateus (?:der|die|das) Peiniger',
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmallim der Einiger',
@@ -375,7 +377,9 @@
         'Archaeodemon': 'archéodémon',
         'command tower': 'tour de commandement',
         'Frostwave': 'Vague réfrigérante',
-        'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
         'Mateus, The Corrupt': 'Mateus le Corrompu',
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
@@ -450,7 +454,9 @@
         'Archaeodemon': 'アルケオデーモン',
         'command tower': '支配の塔',
         'Frostwave': '凍てつく波動',
-        'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
         'Mateus, The Corrupt': '背徳の皇帝マティウス',
         'Argath Thadalfus': '冷血剣アルガス',
         'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
@@ -525,7 +531,9 @@
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
         'Frostwave': '寒冰波动',
-        'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
         'Mateus, The Corrupt': '背德皇帝马提乌斯',
         'Argath Thadalfus': '冷血剑阿加斯',
         'Hashmal, Bringer Of Order': '统治者哈修马利姆',
@@ -600,7 +608,9 @@
         'Archaeodemon': '원시 악마',
         'command tower': '지배의 탑',
         'Frostwave': '얼어붙은 파동',
-        'I am (?:Revelation|the truth from which you run|the lies upon which you sup)': 'I am (?:Revelation|the truth from which you run|the lies upon which you sup)', // FIXME
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
         'Mateus, The Corrupt': '배덕의 황제 마티우스',
         'Argath Thadalfus': '냉혈검 아르가스',
         'Hashmal, Bringer Of Order': '통제자 하쉬말림',

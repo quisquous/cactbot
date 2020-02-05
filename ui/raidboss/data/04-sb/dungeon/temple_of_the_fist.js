@@ -248,7 +248,7 @@
         'Coeurl Whisper': 'Coeurl-Flüstern',
         'Electric Burst': 'Stromstoß',
         'Fourfold Shear': 'Vierschere',
-        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': 'Todeskralle',
         'Heat Lightning': 'Hitzeblitz',
         'Hellseal': 'Höllensiegel',
@@ -285,7 +285,7 @@
         'Coeurl Whisper': 'Murmure du Coeurl',
         'Electric Burst': 'Salve électrique',
         'Fourfold Shear': 'Quadruple cisaille',
-        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': 'Poings furieux',
         'Heat Lightning': 'Éclair de chaleur',
         'Hellseal': 'Sceau infernal',
@@ -322,7 +322,7 @@
         'Coeurl Whisper': '双豹招来',
         'Electric Burst': 'エレクトリックバースト',
         'Fourfold Shear': '四連双斬',
-        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': '双豹蒼連撃',
         'Heat Lightning': 'ヒートライトニング',
         'Hellseal': '試練の刻印',
@@ -359,7 +359,7 @@
         'Coeurl Whisper': '双豹招来',
         'Electric Burst': '电光爆发',
         'Fourfold Shear': '四连双斩',
-        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': '双豹苍连击',
         'Heat Lightning': '惊电',
         'Hellseal': '试炼刻印',
@@ -396,7 +396,7 @@
         'Coeurl Whisper': '쌍표범 소환',
         'Electric Burst': '전하 폭발',
         'Fourfold Shear': '사연속 베기',
-        'Front/Back?Sides?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': '쌍표창연격',
         'Heat Lightning': '뜨거운 번개',
         'Hellseal': '시련의 각인',

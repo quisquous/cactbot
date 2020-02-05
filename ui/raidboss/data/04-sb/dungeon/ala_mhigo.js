@@ -162,8 +162,9 @@
         'Order To Charge': 'Angriffsbefehl',
         'Order To Fire': 'Feuerbefehl',
         'Storm, Swell, Sword': 'Wind, Sturm, Schwert',
-        'Storm?/Swell?': 'Wind?/Sturm?',
-        'Storm?/Swell?/Sword?': 'Wind?/Sturm?/Schwert?',
+        'Storm\\?/Swell\\?(?!/Sword)': 'Wind?/Sturm?',
+        'Storm\\?/Swell\\?/Sword\\?': 'Wind?/Sturm?/Schwert?',
+        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': 'Schweiflaser',
         'Target Search': 'Zielsucher',
         'Unknown_206E': 'Unknown_206E', // FIXME
@@ -202,8 +203,9 @@
         'Order To Charge': 'Ordre d\'attaquer',
         'Order To Fire': 'Ordre d\'attaquer',
         'Storm, Swell, Sword': 'Tempête, orage, épée',
-        'Storm?/Swell?': 'Tempête?/orage?',
-        'Storm?/Swell?/Sword?': 'Tempête?/orage?/épée?',
+        'Storm\\?/Swell\\?(?!/Sword)': 'Tempête?/orage?',
+        'Storm\\?/Swell\\?/Sword\\?': 'Tempête?/orage?/épée?',
+        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': 'Laser caudal',
         'Target Search': 'Recherche de cible',
         'Unknown_206E': 'Unknown_206E', // FIXME
@@ -242,8 +244,9 @@
         'Order To Charge': '出撃命令',
         'Order To Fire': '攻撃命令',
         'Storm, Swell, Sword': '秘剣風雷妖',
-        'Storm?/Swell?': 'Storm?/Swell?', // FIXME
-        'Storm?/Swell?/Sword?': 'Storm?/Swell?/Sword?', // FIXME
+        'Storm\\?/Swell\\?(?!/Sword)': 'Storm?/Swell?', // FIXME
+        'Storm\\?/Swell\\?/Sword\\?': 'Storm?/Swell?/Sword?', // FIXME
+        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': 'テイルレーザー',
         'Target Search': 'ターゲット・サーチ',
         'Unknown_206E': 'Unknown_206E', // FIXME
@@ -282,8 +285,9 @@
         'Order To Charge': '出击命令',
         'Order To Fire': '攻击命令',
         'Storm, Swell, Sword': '秘剑风雷妖',
-        'Storm?/Swell?': 'Storm?/Swell?', // FIXME
-        'Storm?/Swell?/Sword?': 'Storm?/Swell?/Sword?', // FIXME
+        'Storm\\?/Swell\\?(?!/Sword)': 'Storm?/Swell?', // FIXME
+        'Storm\\?/Swell\\?/Sword\\?': 'Storm?/Swell?/Sword?', // FIXME
+        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': '尾部射线',
         'Target Search': '寻找目标',
         'Unknown_206E': 'Unknown_206E', // FIXME
@@ -322,8 +326,9 @@
         'Order To Charge': '출격 명령',
         'Order To Fire': '공격 명령',
         'Storm, Swell, Sword': '비검 풍뇌요',
-        'Storm?/Swell?': 'Storm?/Swell?', // FIXME
-        'Storm?/Swell?/Sword?': 'Storm?/Swell?/Sword?', // FIXME
+        'Storm\\?/Swell\\?(?!/Sword)': 'Storm?/Swell?', // FIXME
+        'Storm\\?/Swell\\?/Sword\\?': 'Storm?/Swell?/Sword?', // FIXME
+        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': '꼬리 레이저',
         'Target Search': '대상 찾기',
         'Unknown_206E': 'Unknown_206E', // FIXME

@@ -251,6 +251,7 @@
         'Horrid Roar': 'Entsetzliches Brüllen',
         'Hot Tail': 'Schwelender Schweif',
         'In/Out': 'Rein/Raus',
+        '(?<!/)Out': 'Raus',
         'Northern Cross': 'Kreuz des Nordens',
         'Position': 'Position',
         'Protostar': 'Protostern',
@@ -309,6 +310,7 @@
         'Horrid Roar': 'Rugissement horrible',
         'Hot Tail': 'Queue calorifique',
         'In/Out': 'Dedans/Dehors',
+        '(?<!/)Out': 'Dehors',
         'Northern Cross': 'Croix du nord',
         'Position': 'Position', // FIXME
         'Protostar': 'Proto-étoile',
@@ -367,6 +369,7 @@
         'Horrid Roar': 'ホリッドロア',
         'Hot Tail': 'ヒートテイル',
         'In/Out': 'In/Out', // FIXME
+        '(?<!/)Out': 'Out', // FIXME
         'Northern Cross': 'ノーザンクロス',
         'Position': 'Position', // FIXME
         'Protostar': 'プロトスター',
@@ -425,6 +428,7 @@
         'Horrid Roar': '恐惧咆哮',
         'Hot Tail': '燃烧之尾',
         'In/Out': 'In/Out', // FIXME
+        '(?<!/)Out': 'Out', // FIXME
         'Northern Cross': '北十字星',
         'Position': 'Position', // FIXME
         'Protostar': '原恒星',
@@ -483,6 +487,7 @@
         'Horrid Roar': '소름끼치는 포효',
         'Hot Tail': '뜨거운 꼬리',
         'In/Out': 'In/Out', // FIXME
+        '(?<!/)Out': 'Out', // FIXME
         'Northern Cross': '북십자성',
         'Position': 'Position', // FIXME
         'Protostar': '원시별',

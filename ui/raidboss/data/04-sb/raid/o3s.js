@@ -388,7 +388,7 @@
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
-        '--Ninjas + Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
@@ -465,7 +465,7 @@
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
-        '--Ninjas + Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
@@ -542,7 +542,7 @@
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
-        '--Ninjas + Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
         '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
@@ -619,7 +619,7 @@
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
-        '--Ninjas + Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
         '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
@@ -696,7 +696,7 @@
       'replaceText': {
         '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
-        '--Ninjas + Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
         '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME

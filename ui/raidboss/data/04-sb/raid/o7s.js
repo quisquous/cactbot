@@ -493,7 +493,7 @@
         'Chain Cannon': 'Kettenkanone',
         'Chakra Burst': 'Chakra-Ausbruch',
         'Copy Program': 'Programm kopieren',
-        'Copy(?! )': 'Kopieren',
+        'Copy(?! Program)': 'Kopieren',
         'Dada': 'Dadarma',
         'Demon Simulation': 'Dämonensimulation',
         'Diffractive Laser': 'Diffraktiver Laser',
@@ -512,7 +512,7 @@
         'Missile Simulation': 'Raketensimulation',
         'Missile(?![ |\\w])': 'Rakete',
         'Paste Program': 'Programm einfügen',
-        'Paste(?! )': 'Einfügen',
+        'Paste(?! Program)': 'Einfügen',
         'Plane Laser': 'Luftwaffe Add Laser',
         'Prey': 'Beute',
         'Radar': 'Radar',
@@ -521,10 +521,10 @@
         'Retrieve Program': 'Programm wiederherstellen',
         'Retrieve Ultros': 'Ultros Wiederherstellen',
         'Run Program': 'Programm starten',
-        'Run(?! )': 'Start',
+        'Run(?! Program)': 'Start',
         'Shockwave': 'Schockwelle',
         'Skip Program': 'Programm überspringen',
-        'Skip(?! )': 'Überspringen',
+        'Skip(?! Program)': 'Überspringen',
         '(?<! )Stoneskin': 'Steinhaut',
         'Temporary Misdirection': 'Plötzliche Panik',
         'Tentacle(?! )': 'Tentakel',
@@ -579,7 +579,7 @@
         'Chain Cannon': 'Canon automatique',
         'Chakra Burst': 'Explosion d\'aura',
         'Copy Program': 'Copie de programme',
-        'Copy(?! )': 'Copie',
+        'Copy(?! Program)': 'Copie',
         'Dada': 'Dadaluma',
         'Demon Simulation': 'Chargement : démon',
         'Diffractive Laser': 'Laser diffracteur',
@@ -598,7 +598,7 @@
         'Missile Simulation': 'Chargement : missiles',
         'Missile(?![ |\\w])': 'Missile',
         'Paste Program': 'Collage de programme',
-        'Paste(?! )': 'Collage',
+        'Paste(?! Program)': 'Collage',
         'Plane Laser': 'Laser force aérienne',
         'Prey': 'Proie',
         'Radar': 'Radar',
@@ -607,10 +607,10 @@
         'Retrieve Program': 'Programme précédent',
         'Retrieve Ultros': 'Programme Précédent Orthros',
         'Run Program': 'Programme de matérialisation',
-        'Run(?! )': 'Programme',
+        'Run(?! Program)': 'Programme',
         'Shockwave': 'Onde de choc',
         'Skip Program': 'Saut de programme',
-        'Skip(?! )': 'Saut De Programme',
+        'Skip(?! Program)': 'Saut De Programme',
         '(?<! )Stoneskin': 'Cuirasse',
         'Temporary Misdirection': 'Démence',
         'Tentacle(?! )': 'Tentacule',
@@ -665,7 +665,7 @@
         'Chain Cannon': 'チェーンガン',
         'Chakra Burst': 'チャクラバースト',
         'Copy Program': 'プログラム・コピー',
-        'Copy(?! )': 'Copy', // FIXME
+        'Copy(?! Program)': 'Copy', // FIXME
         'Dada': 'Dada', // FIXME
         'Demon Simulation': 'ローディング：デーモン',
         'Diffractive Laser': '拡散レーザー',
@@ -684,7 +684,7 @@
         'Missile Simulation': 'ローディング：ミサイル',
         'Missile(?![ |\\w])': 'ミサイル',
         'Paste Program': 'プログラム・ペースト',
-        'Paste(?! )': 'Paste', // FIXME
+        'Paste(?! Program)': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
@@ -693,10 +693,10 @@
         'Retrieve Program': 'リバース・ローディング',
         'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '実体化プログラム',
-        'Run(?! )': 'Run', // FIXME
+        'Run(?! Program)': 'Run', // FIXME
         'Shockwave': '衝撃波',
         'Skip Program': 'スキップ・ローディング',
-        'Skip(?! )': 'Skip', // FIXME
+        'Skip(?! Program)': 'Skip', // FIXME
         '(?<! )Stoneskin': 'ストンスキン',
         'Temporary Misdirection': '心神喪失',
         'Tentacle(?! )': 'たこあし',
@@ -751,7 +751,7 @@
         'Chain Cannon': '链式机关炮',
         'Chakra Burst': '脉轮爆发',
         'Copy Program': '复制程序',
-        'Copy(?! )': 'Copy', // FIXME
+        'Copy(?! Program)': 'Copy', // FIXME
         'Dada': 'Dada', // FIXME
         'Demon Simulation': '加载恶魔模拟程序',
         'Diffractive Laser': '扩散射线',
@@ -770,7 +770,7 @@
         'Missile Simulation': '加载导弹模拟程序',
         'Missile(?![ |\\w])': '导弹',
         'Paste Program': '粘贴程序',
-        'Paste(?! )': 'Paste', // FIXME
+        'Paste(?! Program)': 'Paste', // FIXME
         'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
         'Radar': 'Radar', // FIXME
@@ -779,10 +779,10 @@
         'Retrieve Program': '反向加载',
         'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '实体化程序',
-        'Run(?! )': 'Run', // FIXME
+        'Run(?! Program)': 'Run', // FIXME
         'Shockwave': '冲击波',
         'Skip Program': '跳跃加载',
-        'Skip(?! )': 'Skip', // FIXME
+        'Skip(?! Program)': 'Skip', // FIXME
         '(?<! )Stoneskin': '石肤',
         'Temporary Misdirection': '精神失常',
         'Tentacle(?! )': '腕足',
@@ -837,7 +837,7 @@
         'Chain Cannon': '기관총',
         'Chakra Burst': '차크라 폭발',
         'Copy Program': '프로그램 복사',
-        'Copy(?! )': '복사',
+        'Copy(?! Program)': '복사',
         'Dada': '다다',
         'Demon Simulation': '불러오기: 악마',
         'Diffractive Laser': '확산 레이저',
@@ -856,7 +856,7 @@
         'Missile Simulation': '불러오기: 미사일',
         'Missile(?![ |\\w])': '미사일',
         'Paste Program': '프로그램 붙여넣기',
-        'Paste(?! )': '붙여넣기',
+        'Paste(?! Program)': '붙여넣기',
         'Plane Laser': '에어포스 레이저',
         'Prey': 'プレイ',
         'Radar': '레이더',
@@ -865,10 +865,10 @@
         'Retrieve Program': '역순 불러오기',
         'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '실체화 프로그램',
-        'Run(?! )': '실체화',
+        'Run(?! Program)': '실체화',
         'Shockwave': '충격파',
         'Skip Program': '건너뛰기',
-        'Skip(?! )': '건너뛰기',
+        'Skip(?! Program)': '건너뛰기',
         '(?<! )Stoneskin': '스톤스킨',
         'Temporary Misdirection': '심신상실',
         'Tentacle(?! )': '문어발',

@@ -767,7 +767,7 @@
         'All Things Ending': 'Ende aller Dinge',
         'Blizzard Blitz': 'Erstarrendes Eisga',
         'Blizzard III': 'Eisga',
-        'Blizzard+Thunder': 'Eis+Blitz',
+        'Blizzard\\+Thunder': 'Eis+Blitz',
         'Celestriad': 'Dreigestirn',
         'Engage!': 'Start!',
         'Enrage': 'Finalangriff',
@@ -836,7 +836,7 @@
         'All Things Ending': 'Fin de toutes choses',
         'Blizzard Blitz': 'Méga Glace glissante',
         'Blizzard III': 'Méga Glace',
-        'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
+        'Blizzard\\+Thunder': 'Méga Glace + Méga Foudre',
         'Celestriad': 'Tristella',
         'Engage!': 'À l\'attaque',
         'Enrage': 'Enrage',
@@ -905,7 +905,7 @@
         'All Things Ending': '消滅の脚',
         'Blizzard Blitz': 'ぐるぐるブリザガ',
         'Blizzard III': 'ブリザガ',
-        'Blizzard+Thunder': 'Blizzard+Thunder', // FIXME
+        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': 'スリースターズ',
         'Engage!': '戦闘開始！',
         'Enrage': 'Enrage',
@@ -974,7 +974,7 @@
         'All Things Ending': '消灭之脚',
         'Blizzard Blitz': '滴溜溜冰封',
         'Blizzard III': '冰封',
-        'Blizzard+Thunder': 'Blizzard+Thunder', // FIXME
+        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': '三星',
         'Engage!': '战斗开始！',
         'Enrage': 'Enrage', // FIXME
@@ -1043,7 +1043,7 @@
         'All Things Ending': '소멸의 발차기',
         'Blizzard Blitz': '빙글빙글 블리자가',
         'Blizzard III': '블리자가',
-        'Blizzard+Thunder': 'Blizzard+Thunder', // FIXME
+        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': '세 개의 별',
         'Engage!': '전투 시작!',
         'Enrage': 'Enrage', // FIXME

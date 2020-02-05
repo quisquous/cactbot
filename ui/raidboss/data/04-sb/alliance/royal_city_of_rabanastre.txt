@@ -5,10 +5,10 @@ hideall "--reset--"
 hideall "--sync--"
 hideall "--start--"
 
-0 "--reset--" sync /:Removing combatant Mateus, The Corrupt\.  Max HP: \d{8}./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Hashmal, Bringer Of Order.  Max HP: \d{8}./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Rofocale\.  Max HP: \d{8}./ window 10000 jump 0
-0 "--reset--" sync /:Removing combatant Argath Thadalfus\.  Max HP: \d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Mateus, The Corrupt\.  Max HP: \\d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Hashmal, Bringer Of Order.  Max HP: \\d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Rofocale\.  Max HP: \\d{8}./ window 10000 jump 0
+0 "--reset--" sync /:Removing combatant Argath Thadalfus\.  Max HP: \\d{8}./ window 10000 jump 0
 
 
 ### Mateus
