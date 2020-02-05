@@ -33,7 +33,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: data.ShortName(matches.target) + '吃死刑',
-            ko: '"' + data.ShortName(matches.target) + "' 탱버",
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },

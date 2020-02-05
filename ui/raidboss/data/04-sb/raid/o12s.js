@@ -391,7 +391,7 @@
           fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
           ja: '標的 on ' + data.ShortName(matches.target),
           cn: '目标识别->' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + "' 표적식별",
+          ko: '"' + data.ShortName(matches.target) + '" 표적식별',
         };
       },
     },
@@ -663,7 +663,7 @@
         fr: 'Ecartez-vous',
         ja: '散開',
         cn: '散开',
-       en: '산개',
+        ko: '산개',
       },
     },
     {
