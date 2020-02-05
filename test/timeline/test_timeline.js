@@ -167,6 +167,7 @@ let tests = {
         '^ ?21:',
         '^ ?1B:',
         '^::\\y{AbilityCode}:$',
+        '^\\.\\*$',
       ].map((x) => Regexes.parse(x));
       let isIgnored = (x) => {
         for (let ig of ignore) {
