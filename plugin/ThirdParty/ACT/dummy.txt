@@ -1,6 +1,8 @@
 Please download the latest Zip file from https://github.com/EQAditu/AdvancedCombatTracker/releases/download/
 Extract the Advanced Combat Tracker.exe
 
+The folder should look something like this (keep in mind files can change with updates in the future):
+
 ACT
 |- Advanced Combat Tracker.exe
 |- dummy.txt

@@ -1,13 +1,19 @@
 Please download the latest Zip file from https://github.com/ngld/OverlayPlugin/releases/download/
 Extract the "libs" folder as well as the OverlayPlugin.dll
 
+The folder should look something like this (keep in mind files can change with updates in the future):
+
 OverlayPlugin
 |- libs
 |  |- HtmlRenderer.dll
+|  |- Markdig.Signed.dll
 |  |- Newtonsoft.Json.dll
 |  |- OverlayPlugin.Common.dll
 |  |- OverlayPlugin.Core.dll
-|  |- OverlayPlugin.dll
+|  |- OverlayPlugin.Updater.dll
+|  |- SharpCompress.dll
+|  |- System.ValueTuple.dll
+|  |- websocket-sharp.dll
 |- dummy.txt
 |- OverlayPlugin.dll
 
