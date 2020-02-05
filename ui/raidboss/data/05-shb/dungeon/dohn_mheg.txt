@@ -76,7 +76,7 @@ hideall "--sync--"
 
 ### Aenc Thon, Lord of the Lengthsome Gate
 # -p 35A4:1011 34D2:1300 -ii 34EC 3681 3396
-1000.0 "--sync--" sync /00:0839:The throne room will be sealed off/ window 1000,0
+1000.0 "--sync--" sync /00:0839:The Throne Room will be sealed off/ window 1000,0
 
 1011.0 "Crippling Blow" sync /:Aenc Thon, Lord of the Lengthsome Gait:35A4:/ window 1011,5
 1018.2 "Virtuosic Capriccio" sync /:Aenc Thon, Lord of the Lengthsome Gait:358C:/

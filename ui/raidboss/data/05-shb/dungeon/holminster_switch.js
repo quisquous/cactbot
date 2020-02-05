@@ -39,7 +39,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -47,7 +47,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -66,7 +66,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -74,7 +74,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -121,14 +121,14 @@
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
-            ko: '나에게 모이기',
+            ko: '나에게 쉐어징',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 모이기',
+          ko: data.ShortName(matches.target) + '에게 쉐어징',
         };
       },
     },
@@ -164,7 +164,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -172,7 +172,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -217,7 +217,7 @@
         en: 'Line Stack',
         de: 'Sammeln in einer Linie',
         fr: 'Packez-vous en ligne',
-        ko: '한 줄로 함께 처리',
+        ko: '직선 쉐어',
       },
     },
     {
@@ -232,7 +232,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite ',
-        ko: '오른쪽',
+        ko: '오른쪽으로',
       },
     },
     {
@@ -247,7 +247,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
-        ko: '왼쪽',
+        ko: '왼쪽으로',
       },
     },
   ],
@@ -255,12 +255,13 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'The Wound': 'Lavendellichtung',
+        '00:0839:The Wound will be sealed off': 'Sekunden bis sich der Zugang zu Lavendellichtung schließt',
         'Forgiven Dissonance': 'Geläuterter Widerspruch',
-        'The Auction': 'Viehmarkt',
+        '00:0839:The Auction will be sealed off': 'Sekunden bis sich der Zugang zu Viehmarkt schließt',
         'Tesleen, the Forgiven': 'Tesleen die Bekehrte',
-        'The manor': 'Garten des Herrenhauses',
+        '00:0839:The manor house courtyard will be sealed off': 'Sekunden bis sich der Zugang zu Garten des Herrenhauses schließt',
         'Philia': 'Philia',
+        'is no longer sealed': 'öffnet sich erneut',
       },
       'replaceText': {
         'Aethersup': 'Ätherfresser',
@@ -291,9 +292,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'The Wound will be sealed off': 'Fermeture de La Talure',
-        'The Auction will be sealed off': 'Fermeture de la place du Cheptel',
-        'The manor house will be sealed off': 'Fermeture de l\'esplanade du Manoir',
+        '00:0839:The Wound will be sealed off': 'Fermeture de La Talure',
+        '00:0839:The Auction will be sealed off': 'Fermeture de la place du Cheptel',
+        '00:0839:The manor house courtyard will be sealed off': 'Fermeture de l\'esplanade du Manoir',
         'is no longer sealed': 'Ouverture de',
         'Tesleen, the Forgiven': 'Tesleen pardonnée',
       },
@@ -328,6 +329,44 @@
         'Head Crusher': 'Ecraseur de tête',
         'Fierce Beating': 'Raclée brutale',
         'Taphephobia': 'Taphophobie',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '00:0839:The Wound will be sealed off': '초 후에 검보라 틈이 봉쇄됩니다',
+        '00:0839:The Auction will be sealed off': '초 후에 가축 시장이 봉쇄됩니다',
+        '00:0839:The manor house courtyard will be sealed off': '초 후에 저택 앞뜰이 봉쇄됩니다',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
+        'Forgiven Dissonance': '면죄된 불화',
+        'Tesleen, the Forgiven': '면죄된 테슬린',
+        'Philia': '필리아',
+      },
+      'replaceText': {
+        'The Path Of Light': '빛의 파동',
+        'Brazen Bull': '빛올가미',
+        'Gibbet Cage': '교형틀',
+        'Thumbscrew': '손가락 으깨기',
+        'Heretic\'s Fork': '이단자의 창',
+        'Light Shot': '빛 발사',
+        'Wooden Horse': '삼각목마',
+        'Pillory': '항쇄',
+        'The Tickler': '심장 찌르기',
+        'Scold\'s Bridle': '입막음 굴레',
+        'Fevered Flagellation': '불타는 채찍질',
+        'Exorcise': '구마 의식',
+        'Holy Water': '성수',
+        'Into The Light': '빛 속으로',
+        'Pendulum Tank': '진자 (탱커)',
+        'Pendulum Center': '진자 (중앙)',
+        'Left/Right Knout': '왼쪽/오른쪽 잡아채기',
+        'Right/Left Knout': '오른쪽/왼쪽 잡아채기',
+        'Chain Down': '사슬 구속',
+        'Aethersup': '에테르 섭취',
+        'Scavenger\'s Daughter': '쇠고랑',
+        'Head Crusher': '머리 부수기',
+        'Fierce Beating': '공포의 매질',
+        'Taphephobia': '공포의 생매장',
       },
     },
   ],

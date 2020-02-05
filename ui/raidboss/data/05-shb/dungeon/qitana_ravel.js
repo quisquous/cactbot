@@ -21,7 +21,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -29,7 +29,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -65,7 +65,7 @@
         en: 'Look for pillar',
         de: 'Auf die Pfeiler schauen',
         fr: 'Cherchez les piliers',
-        ko: '빛나는 기둥 찾기',
+        ko: '빛나는 기둥 위치확인',
       },
     },
     {
@@ -82,7 +82,7 @@
         en: 'Stay on left flank',
         de: 'Auf seiner linken Seite stehen',
         fr: 'Restez sur le flanc gauche',
-        ko: '왼쪽 측면으로',
+        ko: '보스 왼쪽 측면으로',
       },
     },
     {
@@ -99,7 +99,7 @@
         en: 'Stay on right flank',
         de: 'Auf seiner rechten Seite stehen',
         fr: 'Restez sur le flanc droit',
-        ko: '오른쪽 측면으로',
+        ko: '보스 오른쪽 측면으로',
       },
     },
     {
@@ -116,7 +116,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -124,7 +124,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -179,7 +179,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -187,7 +187,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -250,14 +250,14 @@
             en: 'Stack Middle on YOU',
             de: 'In der Mitte auf DIR sammeln',
             fr: 'Package au milieu sur VOUS',
-            ko: '보스 정면에서 모이기',
+            ko: '보스 정면에서 쉐어',
           };
         }
         return {
           en: 'Stack Middle on ' + data.ShortName(matches.target),
           de: 'In Der Mitte auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package au milieu sur ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 모이기',
+          ko: data.ShortName(matches.target) + '에게 쉐어징',
         };
       },
     },
@@ -284,9 +284,10 @@
         'Batsquatch': 'Fledersquatch',
         'Eros': 'Eros',
         'Lozatl': 'Lozatl',
-        'The Divine Threshold': 'Götterpforte',
-        'Shadowed Hollow': 'Bildnishalle',
-        'The Song of Ox\'Gatorl': 'Altar des Ox\'Gatorl',
+        '00:0839:The Divine Threshold will be sealed off': 'Sekunden bis sich der Zugang zu Götterpforte schließt',
+        '00:0839:Shadowed Hollow will be sealed off': 'Sekunden bis sich der Zugang zu Bildnishalle schließt',
+        '00:0839:The Song of Ox\'Gatorl will be sealed off': 'Sekunden bis sich der Zugang zu Altar des Ox\'Gatorl schließt',
+        'is no longer sealed': 'öffnet sich erneut',
       },
       'replaceText': {
         'Confession Of Faith': 'Glaubensbekenntnis',
@@ -307,6 +308,38 @@
         'Sun Toss': 'Projektion',
         'Towerfall': 'Turmsturz',
         'Viper Poison': 'Viperngift',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Batsquatch': '배츠콰치',
+        'Eros': '에로스',
+        'Lozatl': '로차틀',
+        '00:0839:The Divine Threshold will be sealed off': '초 후에 신에게 가는 문이 봉쇄됩니다',
+        '00:0839:Shadowed Hollow will be sealed off': '초 후에 신 그림자 공터가 봉쇄됩니다',
+        '00:0839:The Song of Ox\'Gatorl will be sealed off': '초 후에 가톨 신의 제단이 봉쇄됩니다',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
+      },
+      'replaceText': {
+        'Confession Of Faith': '신앙 고백',
+        'Glossolalia': '방언',
+        'Heat Up': '적열화',
+        'Heaving Breath': '내쉬는 숨결',
+        'Hound Out Of Heaven': '천상의 돌진',
+        'Inhale': '흡인',
+        'Jump': '점프',
+        'Lozatl\'s Fury': '로차틀의 분노',
+        'Lozatl\'s Scorn': '로차틀의 고성',
+        'Rend': '잡아찢기',
+        'Ripper Fang': '톱송곳니',
+        'Ronkan Light': '롱카의 빛',
+        'Soundwave': '소리의 파동',
+        'Stonefist': '돌주먹',
+        'Subsonics': '아음속',
+        'Sun Toss': '투사',
+        'Towerfall': '무너지는 탑',
+        'Viper Poison': '독사 독',
       },
     },
   ],

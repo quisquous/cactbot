@@ -17,7 +17,7 @@
       infoText: {
         en: 'Mini Buster',
         de: 'Kleiner TankbBuster',
-        ko: '탱크버스터',
+        ko: '탱버',
       },
     },
   ],
@@ -37,7 +37,7 @@
       alertText: {
         en: 'Silence Fuath',
         de: 'Stumme Dohn-Fuath',
-        ko: '방해하기 → 도느 푸아',
+        ko: '도느 푸아 기술 시전 끊기',
       },
     },
     {
@@ -55,7 +55,7 @@
       infoText: {
         en: 'Stun Basket',
         de: 'Unterbreche Dohn-Blumenkorb',
-        ko: '기절 → 도느 바구니',
+        ko: '도느 바구니 기절시키기',
       },
     },
     {
@@ -73,7 +73,7 @@
       infoText: {
         en: 'Stun Moth',
         de: 'Unterbreche Dohn-Edianmotte',
-        ko: '기절 → 도느 에다인나방',
+        ko: '도느 에다인나방 기절시키기',
       },
     },
     {
@@ -108,7 +108,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -116,7 +116,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱크버스터',
+            ko: data.ShortName(matches[1]) + '에게 탱버',
           };
         }
       },
@@ -145,12 +145,12 @@
         if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
-            ko: '나에게 모이기',
+            ko: '나에게 쉐어징',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 모이기',
+          ko: data.ShortName(matches.target) + '에게 쉐어징',
         };
       },
     },
@@ -186,7 +186,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -194,7 +194,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱크버스터',
+            ko: data.ShortName(matches[1]) + '에게 탱버',
           };
         }
       },
@@ -211,7 +211,7 @@
         en: 'Look Away',
         de: 'Weg schauen',
         fr: 'Regardez ailleurs',
-        ko: '쳐다 보지 않기!',
+        ko: '뒤돌기',
       },
     },
     {
@@ -226,7 +226,7 @@
         en: 'Out of Front',
         de: 'Weg von vorne',
         fr: 'Ne restez pas devant',
-        ko: '정면 회피!',
+        ko: '보스 앞 피하기',
       },
     },
     {
@@ -252,12 +252,13 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Teag Gye': 'Taeg Gye',
+        '00:0839:Teag Gye will be sealed off': 'Sekunden bis sich der Zugang zu Taeg Gye schließt',
+        '00:0839:The Atelier will be sealed off': 'Sekunden bis sich der Zugang zu Griaules Revier schließt',
+        '00:0839:The Throne Room will be sealed off': 'Sekunden bis sich der Zugang zu Garten des Kronsaal schließt',
+        'is no longer sealed': 'öffnet sich erneut',
         'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon der Glupschäugige',
-        'The Atelier': 'Griaules Revier',
         'Griaule': 'Griaule',
         'Painted Sapling': 'Griaules Sämling',
-        'The throne room': 'Kronsaal',
         'Aenc Thon, Lord of the Lengthsome Gait': 'Aenc Thon der Langbeinige',
         'Shade of Fear': 'Schatten der Angst',
       },
@@ -285,6 +286,45 @@
         'Changeling\'s Fantasia': 'Wechselbalg-Fantasie',
         'Virtuosic Capriccio': 'Virtuoses Capriccio',
         'Rake': 'Prankenhieb',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '00:0839:Teag Gye will be sealed off': '초 후에 선잠의 샘이 봉쇄됩니다',
+        '00:0839:The Atelier will be sealed off': '초 후에 그리올의 침상이 봉쇄됩니다',
+        '00:0839:The Throne Room will be sealed off': '초 후에 왕관의 방이 봉쇄됩니다',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
+        'Aenc Thon, Lord of the Lingering Gaze': '눈이 예쁜 잉크 돈',
+        'Griaule': '그리올',
+        'Painted Sapling': '그리올 묘목',
+        'Aenc Thon, Lord of the Lengthsome Gait': '대음악가 잉크 돈',
+        'Shade of Fear': '공포의 환영',
+      },
+      'replaceText': {
+        'Swinge': '징벌',
+        'Fodder': '양분 소환',
+        'Tiiimbeeer': '쓰러진다아아',
+        'Feeding Time': '양분 헌상',
+        'Coiling Ivy': '휘감는 덩굴',
+        'Crippling Blow': '통타',
+        'Imp Choir': '물요정의 음률',
+        'Corrosive Bile': '부식성 담즙',
+        'Geyser': '분출',
+        '--stun--': '--기절--',
+        'Hydrofall': '물 쏟기',
+        'Laughing Leap': '달려들기',
+        'Landsblood': '수맥 난타',
+        'Candy Cane': '막대사탕',
+        'Funambulist\'s Fantasia': '외나무다리 환상곡',
+        'Enrage': '전멸기',
+        'Malaise': '벌레독',
+        'Bile Bombardment': '벌레독 살포',
+        'Flailing Tentacles': '꿈틀대는 촉수',
+        'Toad Choir': '개구리의 음률',
+        'Changeling\'s Fantasia': '자기 변이 환상곡',
+        'Virtuosic Capriccio': '가열찬 광상곡',
+        'Rake': '할퀴기',
       },
     },
   ],
