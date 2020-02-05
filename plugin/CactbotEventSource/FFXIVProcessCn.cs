@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 namespace Cactbot {
   public class FFXIVProcessCn : FFXIVProcess {
     //
-    // for FFXIV CN version: 5.01
+    // for FFXIV CN version: 5.1
     //
     // Latest CN version can be found at:
     // http://ff.sdo.com/web8/index.html#/patchnote
