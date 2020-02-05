@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape V1\.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(阿尔法幻境1\)$/,
+    ko: /^차원의 틈 오메가: 알파편\(영웅\) \(1\)$/,
   },
   timelineFile: 'o9s.txt',
   triggers: [
@@ -24,6 +25,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑减伤',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'tank') {
@@ -33,6 +35,7 @@
             fr: 'Tank Swap',
             ja: 'スイッチ',
             cn: '换T',
+            ko: '탱 교대',
           };
         }
         if (data.role == 'healer') {
@@ -41,6 +44,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑-> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + ' 탱버',
           };
         }
       },
@@ -52,6 +56,7 @@
             fr: 'tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         } else if (data.role == 'tank') {
           return {
@@ -60,6 +65,7 @@
             fr: 'tank swap',
             ja: 'スイッチ',
             cn: '换T',
+            ko: '탱 교대',
           };
         }
       },
@@ -80,6 +86,7 @@
             fr: 'Devant/Derrière puis Côtés',
             ja: '縦 -> 横で死ぬ',
             cn: '死：前后 -> 左右',
+            ko: '앞뒤 -> 양옆 (디버프)',
           };
         }
       },
@@ -91,6 +98,7 @@
             fr: 'Côtés puis Devant/Derrière',
             ja: '横 -> 縦',
             cn: '左右 -> 前后',
+            ko: '양옆 -> 앞뒤',
           };
         }
       },
@@ -102,6 +110,7 @@
             fr: 'aller derrière',
             ja: '縦から',
             cn: '前后找死',
+            ko: '뒤에서 맞기 (디버프)',
           };
         }
         return {
@@ -110,6 +119,7 @@
           fr: 'aller sur les cotés',
           ja: '横から',
           cn: '左右闪避',
+          ko: '양옆으로',
         };
       },
     },
@@ -129,6 +139,7 @@
             fr: 'Devant/Derrière puis Côtés',
             ja: '横 -> 縦で死ぬ',
             cn: '死：左右 -> 前后',
+            ko: '양옆 -> 앞뒤 (디버프)',
           };
         }
       },
@@ -140,6 +151,7 @@
             fr: 'Devant/Derrière puis Côtés',
             ja: '縦 -> 横',
             cn: '前后 -> 左右',
+            ko: '앞뒤 -> 양옆',
           };
         }
       },
@@ -151,6 +163,7 @@
             fr: 'aller sur les cotés',
             ja: '横から',
             cn: '左右找死',
+            ko: '양옆 (디버프)',
           };
         }
         return {
@@ -159,6 +172,7 @@
           fr: 'aller derrière',
           ja: '縦から',
           cn: '前后闪避',
+          ko: '뒤로 이동',
         };
       },
     },
@@ -175,6 +189,7 @@
         de: 'Hinten dran',
         fr: 'Derrière le boss',
         ja: '背面へ',
+        ko: '뒤로 이동',
       },
     },
     {
@@ -193,6 +208,7 @@
             fr: 'Récupérez l\'orbe',
             ja: '線出たよ',
             cn: '接线',
+            ko: 'Orb Tethers',
           };
         }
       },
@@ -204,6 +220,7 @@
             fr: 'Récupérez l\'orbe',
             ja: '線出たよ',
             cn: '坦克接线注意治疗',
+            ko: 'Orb Tethers',
           };
         }
       },
@@ -251,6 +268,7 @@
             fr: 'Ecartez-vous',
             ja: '散開',
             cn: '分散',
+            ko: '산개',
           };
         } else if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -259,6 +277,7 @@
             fr: 'Ecartez-vous et restez',
             ja: '散開して待機',
             cn: '分散并停留',
+            ko: '산개하고 가만히',
           };
         }
         // DPS entropy #2
@@ -268,6 +287,7 @@
           fr: 'Packez-vous et restez',
           ja: '中央に集合',
           cn: '中间集合',
+          ko: '산개하고 바깥에 있기',
         };
       },
       run: function(data) {
@@ -302,6 +322,7 @@
         fr: 'Allez au centre',
         ja: '中央へ',
         cn: '中间躲避',
+        ko: '중앙으로 모이기',
       },
     },
     {
@@ -323,6 +344,7 @@
         fr: 'Allez au centre',
         ja: '中央へ',
         cn: '中间躲避',
+        ko: '중앙으로 모이기',
       },
     },
     // Water Path
@@ -359,6 +381,7 @@
         fr: 'Packez-vous',
         ja: 'スタック',
         cn: '集合放月环',
+        ko: '도넛 쉐어',
       },
     },
     {
@@ -381,6 +404,7 @@
         fr: 'Packez-vous',
         ja: 'スタック',
         cn: '集合放月环',
+        ko: '도넛 쉐어',
       },
     },
     {
@@ -403,6 +427,7 @@
         fr: 'Packez-vous',
         ja: 'スタック',
         cn: '集合放月环',
+        ko: '도넛 쉐어',
       },
     },
     {
@@ -419,6 +444,7 @@
             fr: 'Allez au Nord/Sud',
             ja: 'メテオ捨てて',
             cn: '远离放点名',
+            ko: '바깥으로 빼기',
           };
         } else if (data.phaseType == 'wind') {
           return {
@@ -427,6 +453,7 @@
             fr: 'Déposez dans les coins',
             ja: 'メテオ捨てて + ノックバック',
             cn: '远离放点名 + 冲回人群',
+            ko: '바깥으로 빼기 + 넉백',
           };
         }
       },
@@ -490,6 +517,7 @@
             de: 'Rücken zum Tornado',
             fr: 'Regardez vers l\'extérieur',
             cn: '背对龙卷风',
+            ko: 'Back to Tornado',
           };
         }
         if (data.wind == 'tail') {
@@ -498,6 +526,7 @@
             de: 'Zum Tornado hin',
             fr: 'Regardez la tornade',
             cn: '面对龙卷风',
+            ko: '토네이도 바라보기',
           };
         }
       },
@@ -539,6 +568,7 @@
             fr: 'Soignez tout le monde full vie',
             ja: 'HP戻して',
             cn: '奶满全队',
+            ko: '전원 체력 풀피로',
           };
         }
         return {
@@ -547,6 +577,7 @@
           fr: 'Soignez Heals/Tanks full vie',
           ja: 'HP戻して',
           cn: '奶满T奶',
+          ko: '탱/힐 체력 풀피로',
         };
       },
     },
@@ -567,6 +598,7 @@
         fr: 'Mourrez sur la prochaine mécanique',
         ja: '次のギミックで死んでね',
         cn: '想办法找死',
+        ko: '다음 기믹에 맞기 (디버프)',
       },
       run: function(data) {
         data.primordialCrust = true;
@@ -597,6 +629,7 @@
         de: 'Stacks verteilen',
         fr: 'Packez-vous en binôme',
         cn: '与伙伴重合',
+        ko: '파트너랑 모이기',
       },
     },
 
@@ -636,6 +669,7 @@
             fr: 'Dos au DPS',
             ja: 'DPSの後ろへ',
             cn: '背对DPS',
+            ko: 'Back to DPS',
           };
         }
       },
@@ -663,6 +697,7 @@
         fr: 'Tuez les DPS',
         ja: '水当てて',
         cn: '水环害死DPS',
+        ko: '딜러 물 맞기',
       },
     },
 
@@ -873,6 +908,54 @@
         'Physical Vulnerability Up': '物理受伤加重',
         'Primordial Crust': '混沌之土',
         'Tailwind': '混沌之逆风',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Chaos': '카오스',
+        'Chaosphere': '혼돈의 구체',
+        'Engage!': '전투 시작!',
+        'dark crystal': '흑수정',
+      },
+      'replaceText': {
+        'Big Bang': '돌출하라',
+        'Blaze': '화염',
+        'Bowels of Agony': '고통의 심핵',
+        'Chaosphere': '혼돈의 구체',
+        'Chaotic Dispersion': '혼돈 유포',
+        'Cyclone': '회오리',
+        'Damning Edict': '파멸 포고',
+        'Earthquake': '지진',
+        'Enrage': '전멸기',
+        'Fiendish Orbs': '추격하라',
+        'Knock Down': '착탄하라',
+        'Knock': '착탄',
+        'Latitudinal Implosion': '가로 내파',
+        'Longitudinal Implosion': '세로 내파',
+        'Orbshadow': '추격',
+        'Shockwave': '충격파',
+        'Soul of Chaos': '혼돈의 영혼',
+        'Stray Earth': '혼돈의 흙',
+        'Stray Flames': '혼돈의 불',
+        'Stray Gusts': '혼돈의 바람',
+        'Stray Spray': '혼돈의 물',
+        'Tsunami': '해일',
+        'Umbra Smash': '그림자 타격',
+        'Long/Lat Implosion': '가로/세로 내파',
+        '\\(ALL\\)': '(모두)',
+        '--targetable--': '--타겟가능--',
+        '--untargetable--': '--타겟불가능--',
+      },
+      '~effectNames': {
+        'Accretion': '혼돈의 진흙',
+        'Dynamic Fluid': '혼돈의 물',
+        'Entropy': '혼돈의 불',
+        'Headwind': '혼돈의 바람',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Primordial Crust': '혼돈의 흙',
+        'Tailwind': '바람몰이',
       },
     },
   ],
