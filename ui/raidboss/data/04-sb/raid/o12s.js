@@ -412,7 +412,7 @@
         fr: 'Liens proches',
         ja: 'ニアー',
         cn: '靠近连线',
-        ko: '근거리 줄',
+        ko: '가까이 붙는 줄',
       },
     },
     {
@@ -432,7 +432,7 @@
         fr: 'Liens éloignés',
         ja: 'ファー',
         cn: '远离连线',
-        ko: '원거리 줄',
+        ko: '멀리 떨어지는 줄',
       },
     },
     {
@@ -1197,8 +1197,8 @@
         'Ion Efflux': '이온 유출',
         'Oversampled Wave Cannon': '감지식 파동포',
         'Patch': '연쇄 오류',
-        'Program Omega': 'Programm Omega',
-        'Rear Lasers': 'Hintere Laser',
+        'Program Omega': '프로그램: 오메가',
+        'Rear Lasers': '후면 레이저',
         'Savage Wave Cannon': '프로그램: 오메가',
         'Spotlight': '집중 조명',
         'Target Analysis': '표적 식별',
