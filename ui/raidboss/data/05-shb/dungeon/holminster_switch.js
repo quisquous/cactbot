@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Holminster Switch$/,
+  zoneRegex: {
+    en: /^Holminster Switch$/,
+    ko: /^홀민스터$/,
+  },
   timelineFile: 'holminster_switch.txt',
   triggers: [
     {
@@ -19,6 +22,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -35,6 +39,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -42,6 +47,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -60,6 +66,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -67,6 +74,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -86,6 +94,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -100,6 +109,7 @@
         en: 'spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -111,12 +121,14 @@
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
+            ko: '나에게 모이기',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '에게 모이기',
         };
       },
     },
@@ -135,6 +147,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -151,6 +164,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -158,6 +172,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -173,6 +188,7 @@
           en: 'Break chain on ' + data.ShortName(matches.target),
           de: 'Kette von ' + data.ShortName(matches.target) + ' brechen',
           fr: 'Cassez les chaînes de ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '의 사슬 부수기',
         };
       },
     },
@@ -186,6 +202,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez-vous',
+        ko: '산개',
       },
     },
     {
@@ -200,6 +217,7 @@
         en: 'Line Stack',
         de: 'Sammeln in einer Linie',
         fr: 'Packez-vous en ligne',
+        ko: '한 줄로 함께 처리',
       },
     },
     {
@@ -214,6 +232,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite ',
+        ko: '오른쪽',
       },
     },
     {
@@ -228,6 +247,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
+        ko: '왼쪽',
       },
     },
   ],

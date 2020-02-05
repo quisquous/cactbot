@@ -24,7 +24,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: 'AOE',
+        ko: '전체공격',
       },
     },
     {
@@ -43,7 +43,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: 'AOE',
+        ko: '전체공격',
       },
     },
     {
@@ -62,7 +62,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: 'AOE',
+        ko: '전체공격',
       },
     },
     {
@@ -78,7 +78,7 @@
         de: 'Unter ihn',
         fr: 'Sous le boss',
         cn: '脚下',
-        ko: '보스안으로',
+        ko: '보스밑으로',
       },
     },
     {
@@ -97,7 +97,7 @@
         de: 'Tank Laser auf DIR',
         fr: 'Tank laser sur VOUS',
         cn: '坦克射线点名',
-        ko: '탱크 레이저 on YOU',
+        ko: '나에게 탱커 빔',
       },
     },
     {
@@ -115,7 +115,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
-            ko: '탱크버스터 on YOU',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -169,7 +169,7 @@
         de: 'Hinter ihn',
         fr: 'Derrière le boss',
         cn: '身后躲避',
-        ko: '뒤로',
+        ko: '보스뒤로',
       },
     },
   ],
@@ -363,7 +363,6 @@
         'Engage!': '전투 시작!',
       },
       'replaceText': {
-        'attack': '공격',
         'Vice [oO]f Vanity': '허영의 악덕',
         'Vice [oO]f Apathy': '냉담의 악덕',
         'Vice [aA]nd Virtue': '선과 악',

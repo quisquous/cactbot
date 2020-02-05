@@ -426,6 +426,11 @@ class PopupText {
       playSounds = false;
       showText = false;
     }
+    if (!this.options.audioAllowed) {
+      playSpeech = false;
+      playGroupSpeech = false;
+      playSounds = false;
+    }
 
     let f = () => {
       let addText = (container, e) => {

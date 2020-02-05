@@ -36,20 +36,24 @@
         if (!partners) {
           return {
             en: 'Thorns on YOU',
+            fr: 'Ronces sur VOUS',
           };
         }
         if (partners.length == 1) {
           return {
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ')',
+            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ')',
           };
         }
         if (partners.length == 2) {
           return {
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
+            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
           };
         }
         return {
           en: 'Thorns (' + partners.length + ' people)',
+          fr: 'Ronces (' + partners.length + ' personne)',
         };
       },
       run: function(data) {
@@ -93,6 +97,7 @@
         if (data.honey) {
           return {
             en: 'Devour: Get Eaten',
+            fr: 'Dévoration : Faites vous manger',
           };
         }
       },
@@ -103,6 +108,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Devour: Jump In New Thorns',
+            fr: 'Dévoration : Sautez dans les ronces',
           };
         }
       },
@@ -112,6 +118,7 @@
 
         return {
           en: 'Avoid Devour',
+          fr: 'Evitez dévoration',
         };
       },
     },
@@ -135,6 +142,7 @@
       regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
       alarmText: {
         en: 'STOP',
+        fr: 'STOP',
       },
     },
     {
@@ -163,6 +171,7 @@
       regexKo: Regexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
       infoText: {
         en: 'Stack for Acid',
+        fr: 'Packez vous pour Acide',
       },
     },
     {
@@ -180,6 +189,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Swarm on YOU',
+            fr: 'Nuée sur VOUS',
           };
         }
       },
@@ -187,6 +197,7 @@
         if (matches.target != data.me) {
           return {
             en: 'Swarm on ' + data.ShortName(matches.target),
+            fr: 'Nuée sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -198,10 +209,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Share Laser (on YOU)',
+            fr: 'Partage de laser (sur VOUS)',
           };
         }
         return {
           en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
+          fr: 'Partage de laser (sur ' + data.ShortName(matches.target) + ')',
         };
       },
     },
@@ -233,7 +246,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Rafflesia': 'Rafflesia',
         'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
         'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',
@@ -274,6 +287,52 @@
         'Swarm': 'スウォーム',
         'Thorn Whip': 'ソーンウィップ',
         'Viscid Emission': 'ヴィシドエミッション',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Engage!': '战斗开始！',
+        'Rafflesia': '大王花',
+        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
+        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Acid Rain': '酸雨',
+        'Blighted Bouquet': '凋零的花香',
+        'Bloody Caress': '血腥的爱抚',
+        'Briary Growth': '荆棘丛生',
+        'Devour': '捕食',
+        'Floral Trap': '鲜花陷阱',
+        'Leafstorm': '绿叶风暴',
+        'Rotten Stench': '腐烂恶臭',
+        'Spit': '呕吐',
+        'Swarm': '招蜂香气',
+        'Thorn Whip': '荆棘鞭',
+        'Viscid Emission': '胶质排放物',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Rafflesia': '라플레시아',
+        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
+        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
+      },
+      'replaceText': {
+        'Acid Rain': '산성비',
+        'Blighted Bouquet': '시든 꽃다발',
+        'Bloody Caress': '피의 애무',
+        'Briary Growth': '자라는 가시나무',
+        'Devour': '포식',
+        'Floral Trap': '향기의 덫',
+        'Leafstorm': '잎사귀 폭풍',
+        'Rotten Stench': '썩은 냄새',
+        'Spit': '뱉기',
+        'Swarm': '벌레 떼',
+        'Thorn Whip': '가시채찍',
+        'Viscid Emission': '점액 배출',
       },
     },
   ],

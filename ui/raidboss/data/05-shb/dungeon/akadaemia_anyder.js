@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Akadaemia Anyder$/,
+  zoneRegex: {
+    en: /^Akadaemia Anyder$/,
+    ko: /^애나이더 아카데미아$/,
+  },
   timelineFile: 'akadaemia_anyder.txt',
   timelineTriggers: [
     {
@@ -15,6 +18,7 @@
       infoText: {
         en: 'Mini Buster',
         de: 'Kleiner Tankbuster',
+        ko: '탱크버스터',
       },
     },
     {
@@ -25,6 +29,7 @@
         en: 'Out of Front',
         de: 'Weg von Vorne',
         fr: 'Ne restez pas devant',
+        ko: '정면 회피',
       },
     },
   ],
@@ -39,6 +44,7 @@
         en: 'puddle on you',
         de: 'Fläche auf DIR',
         fr: 'Flaque sur VOUS',
+        ko: '나에게 장판',
       },
     },
     {
@@ -55,6 +61,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -62,6 +69,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -78,6 +86,7 @@
         en: 'Away From Swimming Shark',
         de: 'Weg vom schwimmenden Hai',
         fr: 'Ecartez-vous requin dans l\'eau',
+        ko: '물 속 상어에게서 멀리 떨어지기',
       },
     },
     {
@@ -92,6 +101,7 @@
         en: 'Sides of Swimming Shark',
         de: 'Zu den Seiten vom schwimmenden Hai',
         fr: 'Allez sur les côtés',
+        ko: '물 속 상어의 옆쪽으로 피하기',
       },
     },
     {
@@ -109,6 +119,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -121,6 +132,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Dispersez vous',
+        ko: '산개',
       },
     },
     {
@@ -138,6 +150,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -155,6 +168,7 @@
         en: 'Interrupt Evil Armor',
         de: 'Unterbreche Böse Kampfmaschine',
         fr: 'Interrompez l\'armure maléfique',
+        ko: '방해하기 → 사악한 갑옷',
       },
     },
     {
@@ -171,6 +185,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -178,6 +193,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -197,6 +213,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégâts de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -212,6 +229,7 @@
         en: 'grab orbs',
         de: 'Orbs nehmen',
         fr: 'Prenez les orbes',
+        ko: '구슬 줍기',
       },
     },
   ],
