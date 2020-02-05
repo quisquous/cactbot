@@ -29,6 +29,12 @@
   width: 300px;
 }
 
+#timeline-container.lang-ko {
+  font-size: 15px;
+  width: 250px;
+  height: 140px;
+}
+
 /* Relative to popup-text-container */
 #popup-text-info {
   position: absolute;
