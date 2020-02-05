@@ -31,19 +31,19 @@ hideall "--sync--"
 123.9 "Radial Blaster"
 
 # Phase change after one dies
-150.0 "Basic Instinct" sync /:Coeurl (Sruti|Smriti):1FD5:/ window 150,10
+150.0 "Basic Instinct" sync /:(Coeurl Sruti|Coeurl Smriti):1FD5:/ window 150,10
 
-156.2 "Electric Burst" sync /:Coeurl (Sruti|Smriti):1FD6:/
-160.3 "Pounce" sync /:Coeurl (Sruti|Smriti):1FD1:/
+156.2 "Electric Burst" sync /:(Coeurl Sruti|Coeurl Smriti):1FD6:/
+160.3 "Pounce" sync /:(Coeurl Sruti|Coeurl Smriti):1FD1:/
 167.8 "Heat Lightning" sync /:Coeurl Sruti:1FD7:/
-175.2 "Radial/Wide Blaster" sync /:Coeurl (Sruti|Smriti):1FD[34]:/
-180.4 "Pounce" sync /:Coeurl (Sruti|Smriti):1FD1:/
+175.2 "Radial/Wide Blaster" sync /:(Coeurl Sruti|Coeurl Smriti):1FD[34]:/
+180.4 "Pounce" sync /:(Coeurl Sruti|Coeurl Smriti):1FD1:/
 
-191.6 "Electric Burst" sync /:Coeurl (Sruti|Smriti):1FD6:/ window 20,20
-195.7 "Pounce" sync /:Coeurl (Sruti|Smriti):1FD1:/
-203.2 "Heat Lightning" sync /:Coeurl (Sruti|Smriti):1FD7:/
-210.6 "Radial/Wide Blaster" sync /:Coeurl (Sruti|Smriti):1FD[34]:/
-215.8 "Pounce" sync /:Coeurl (Sruti|Smriti):1FD1:/ jump 180.4
+191.6 "Electric Burst" sync /:(Coeurl Sruti|Coeurl Smriti):1FD6:/ window 20,20
+195.7 "Pounce" sync /:(Coeurl Sruti|Coeurl Smriti):1FD1:/
+203.2 "Heat Lightning" sync /:(Coeurl Sruti|Coeurl Smriti):1FD7:/
+210.6 "Radial/Wide Blaster" sync /:(Coeurl Sruti|Coeurl Smriti):1FD[34]:/
+215.8 "Pounce" sync /:(Coeurl Sruti|Coeurl Smriti):1FD1:/ jump 180.4
 
 227.0 "Electric Burst"
 231.1 "Pounce"

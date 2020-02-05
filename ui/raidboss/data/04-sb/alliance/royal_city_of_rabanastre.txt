@@ -158,7 +158,7 @@ hideall "--start--"
 3048.5 "Fire IV" # end of cast
 3057.0 "Crippling Blow" # end of cast
 3059.0 "Meteors/Judgment Blade" # lol randomness
-3060.0 "--sync--" sync /:0044:[^:]*:I am (?:Revelation|the truth from which you run|the lies upon which you sup)/ window 20,20 jump 3160
+3060.0 "--sync--" sync /:0044:[^:]*:(?:I am Revelation|I am the truth from which you run|I am the lies upon which you sup)/ window 20,20 jump 3160
 3063.5 "--sync--" sync /:2622:Argath Thadalfus/ window 60,0 jump 3263.5
 # => jump to judgment blade or trepidation
 
@@ -221,7 +221,7 @@ hideall "--start--"
 
 
 ## Phase 3: Putt Putt (percentage push to this phase, 45%?)
-3900.0 "--sync--" sync /00:0044:[^:]*:I am (?:Revelation|the truth from which you run|the lies upon which you sup)/ window 250,10
+3900.0 "--sync--" sync /00:0044:[^:]*:(?:I am Revelation|I am the truth from which you run|I am the lies upon which you sup)/ window 250,10
 3903.0 "--face--"
 3910.5 "Judgment"
 3921.5 "--face--"
@@ -296,7 +296,7 @@ hideall "--start--"
 4852.0 "Crippling Blow"
 
 # => loop back and jump to start of Phase 3
-4859.0 "--sync--" sync /00:0044:[^:]*:I am (?:Revelation|the truth from which you run|the lies upon which you sup)/ window 40,40 jump 3900
+4859.0 "--sync--" sync /00:0044:[^:]*:(?:I am Revelation|I am the truth from which you run|I am the lies upon which you sup)/ window 40,40 jump 3900
 4862.0 "--face--"
 4869.5 "Judgment"
 4880.5 "--face--"
