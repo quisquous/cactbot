@@ -8,7 +8,7 @@
 [{
   zoneRegex: {
     en: /^The Minstrel's Ballad: Hades's Elegy$/,
-    cn: /^哈迪斯孤念歼灭战^/,
+    cn: /^哈迪斯孤念歼灭战$/,
   },
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [
