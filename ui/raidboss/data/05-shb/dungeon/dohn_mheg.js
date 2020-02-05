@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Dohn Mheg$/,
+  zoneRegex: {
+    en: /^Dohn Mheg$/,
+    ko: /^도느 메그$/,
+  },
   timelineFile: 'dohn_mheg.txt',
   timelineTriggers: [
     {
@@ -14,6 +17,7 @@
       infoText: {
         en: 'Mini Buster',
         de: 'Kleiner TankbBuster',
+        ko: '탱크버스터',
       },
     },
   ],
@@ -33,6 +37,7 @@
       alertText: {
         en: 'Silence Fuath',
         de: 'Stumme Dohn-Fuath',
+        ko: '방해하기 → 도느 푸아',
       },
     },
     {
@@ -50,6 +55,7 @@
       infoText: {
         en: 'Stun Basket',
         de: 'Unterbreche Dohn-Blumenkorb',
+        ko: '기절 → 도느 바구니',
       },
     },
     {
@@ -67,6 +73,7 @@
       infoText: {
         en: 'Stun Moth',
         de: 'Unterbreche Dohn-Edianmotte',
+        ko: '기절 → 도느 에다인나방',
       },
     },
     {
@@ -84,6 +91,7 @@
       infoText: {
         en: 'Stun Kelpie',
         de: 'Unterbreche Dohn-Kelpie',
+        ko: '기절 → 도느 켈피',
       },
     },
     {
@@ -100,6 +108,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -107,6 +116,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ko: data.ShortName(matches[1]) + '에게 탱크버스터',
           };
         }
       },
@@ -125,6 +135,7 @@
       infoText: {
         en: 'aoe',
         de: 'AoE',
+        ko: '전체 공격',
       },
     },
     {
@@ -134,10 +145,12 @@
         if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
+            ko: '나에게 모이기',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '에게 모이기',
         };
       },
     },
@@ -156,6 +169,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégats de zone',
+        ko: '전체 공격',
       },
     },
     {
@@ -172,6 +186,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
@@ -179,6 +194,7 @@
             en: 'Buster on ' + data.ShortName(matches[1]),
             de: 'Tankbuster auf ' + data.ShortName(matches[1]),
             fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
+            ko: data.ShortName(matches[1]) + '에게 탱크버스터',
           };
         }
       },
@@ -195,6 +211,7 @@
         en: 'Look Away',
         de: 'Weg schauen',
         fr: 'Regardez ailleurs',
+        ko: '쳐다 보지 않기!',
       },
     },
     {
@@ -209,6 +226,7 @@
         en: 'Out of Front',
         de: 'Weg von vorne',
         fr: 'Ne restez pas devant',
+        ko: '정면 회피!',
       },
     },
     {
@@ -226,6 +244,7 @@
         en: 'aoe',
         de: 'AoE',
         fr: 'Dégats de zone',
+        ko: '전체 공격',
       },
     },
   ],

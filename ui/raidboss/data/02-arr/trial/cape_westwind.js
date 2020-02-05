@@ -8,6 +8,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': 'Start!',
         'My shields are impregnable': 'Spür das Schild des Kaisers',
@@ -26,6 +27,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': 'À l\'attaque !',
         'My shields are impregnable': 'Mes boucliers sont impénétrables',
@@ -44,6 +46,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '戦闘開始！',
         'My shields are impregnable': '反逆者は、我が盾',
@@ -62,6 +65,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '战斗开始！',
         'My shields are impregnable': '在我的冥狱枪盾面前',
@@ -80,6 +84,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '전투 시작!',
         'My shields are impregnable': '반역자여, 나의 방패',

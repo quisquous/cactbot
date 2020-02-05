@@ -133,10 +133,11 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': 'Start!',
         'Phoenix-Egi': 'Phönix-Egi',
-        'Phoenix': 'Phönix',
+        'Phoenix(?!-)': 'Phönix',
       },
       'replaceText': {
         'Bennu Add': 'Bennu Add',
@@ -146,10 +147,9 @@
         'Flames Of Rebirth': 'Flammen der Wiedergeburt',
         'Flames Of Unforgiveness': 'Zeichen der Läuterung',
         'Fountain Of Fire': 'Quell des Feuers',
-        'Fountain': 'Quell des Feuers',
-        'Rebirth': 'Wiedergeburt',
+        '(?<! )Rebirth': 'Wiedergeburt',
         'Redfire Plume': 'Rotfeuer-Feder',
-        'Redfire': 'Rotfeuer',
+        'Redfire(?! )': 'Rotfeuer',
         'Revelation': 'Offenbarung',
         'Scorched Pinion': 'Versengte Schwinge',
         'Summon': 'Beschwörung',
@@ -158,10 +158,11 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': 'À l\'attaque',
         'Phoenix-Egi': 'Phénix-Egi',
-        'Phoenix': 'Phénix',
+        'Phoenix(?!-)': 'Phénix',
       },
       'replaceText': {
         'Bennu Add': 'Bénou Add',
@@ -171,10 +172,9 @@
         'Flames Of Rebirth': 'Feu résurrecteur',
         'Flames Of Unforgiveness': 'Flammes du purgatoire',
         'Fountain Of Fire': 'Flamme de la vie',
-        'Fountain': 'Flamme de la vie',
-        'Rebirth': 'Résurrection',
+        '(?<! )Rebirth': 'Résurrection',
         'Redfire Plume': 'Panache rouge',
-        'Redfire': 'Flambée rouge',
+        'Redfire(?! )': 'Flambée rouge',
         'Revelation': 'Révélation',
         'Scorched Pinion': 'Aile embrasante',
         'Summon': 'Invocation',
@@ -183,10 +183,11 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '戦闘開始！',
         'Phoenix-Egi': 'フェニックス・エギ',
-        'Phoenix': 'フェニックス',
+        'Phoenix(?!-)': 'フェニックス',
       },
       'replaceText': {
         'Bennu Add': 'ベンヌ Add',
@@ -196,10 +197,9 @@
         'Flames Of Rebirth': '転生の炎',
         'Flames Of Unforgiveness': '煉獄の爆炎',
         'Fountain Of Fire': '霊泉の炎',
-        'Fountain': '霊泉の炎',
-        'Rebirth': '新生',
+        '(?<! )Rebirth': '新生',
         'Redfire Plume': '赤熱の炎柱',
-        'Redfire': '紅蓮の炎',
+        'Redfire(?! )': '紅蓮の炎',
         'Revelation': 'リヴァレーション',
         'Scorched Pinion': '炎の翼',
         'Summon': '召喚',
@@ -208,9 +208,10 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '战斗开始！',
-        'Phoenix': '不死鸟',
+        'Phoenix(?!-)': '不死鸟',
         'Phoenix-Egi': '不死鸟之灵',
       },
       'replaceText': {
@@ -221,10 +222,9 @@
         'Flames Of Rebirth': '转生之炎',
         'Flames Of Unforgiveness': '炼狱之燎火',
         'Fountain Of Fire': '灵泉之炎',
-        'Fountain': '灵泉之炎',
-        'Rebirth': '重生',
+        '(?<! )Rebirth': '重生',
         'Redfire Plume': '赤红之炎柱',
-        'Redfire': '红莲之炎',
+        'Redfire(?! )': '红莲之炎',
         'Revelation': '天启',
         'Scorched Pinion': '炎之翼',
         'Summon': '召唤',
@@ -233,9 +233,10 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '전투 시작!',
-        'Phoenix': '피닉스',
+        'Phoenix(?!-)': '피닉스',
         'Phoenix-Egi': '피닉스 에기',
       },
       'replaceText': {
@@ -246,10 +247,9 @@
         'Flames Of Rebirth': '윤회의 불꽃',
         'Flames Of Unforgiveness': '연옥의 폭염',
         'Fountain Of Fire': '영검의 불꽃',
-        'Fountain': '영검의 불꽃',
-        'Rebirth': '소생',
+        '(?<! )Rebirth': '소생',
         'Redfire Plume': '작열 불기둥',
-        'Redfire': '홍련의 불꽃',
+        'Redfire(?! )': '홍련의 불꽃',
         'Revelation': '계시',
         'Scorched Pinion': '타오르는 날개',
         'Summon': '소환',

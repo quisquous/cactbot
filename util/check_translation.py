@@ -214,6 +214,7 @@ def translate_timeline(line, trans):
 
     did_work = False
     replace_sync_re = re.compile(r'sync /([^/]*)/')
+    escape_backslash_re = re.compile(r'(?<!\\)\\(?!\\)')
     m = replace_sync_re.search(line)
     if not m:
         return line
@@ -221,6 +222,11 @@ def translate_timeline(line, trans):
     for old, new in trans['replaceSync'].items():
         did_work = did_work or re.search(old, text)
         text = re.sub(old, new, text)
+        # Double escape any escaped characters that will break the
+        # regex below.  The regex substitution will turn the
+        # double backslashes back into single backslashes.
+        # Not doing this causes a "bad escape" in the re engine.
+        text = escape_backslash_re.sub(r'\\\\', text)
     line = replace_sync_re.sub('sync /%s/' % text, line)
     if not did_work:
         line = line + ' #MISSINGSYNC'

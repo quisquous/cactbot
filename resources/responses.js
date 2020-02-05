@@ -73,7 +73,7 @@ let Responses = {
           en: 'Tank Buster',
           de: 'Tankbuster',
           fr: 'Tankbuster',
-          ko: '탱크버스터',
+          ko: '탱버',
         };
       }
       let target = getTarget(matches);
@@ -84,7 +84,7 @@ let Responses = {
           fr: 'Tankbuster sur VOUS',
           ja: '自分にタンクバスター',
           cn: '死刑点名',
-          ko: '나에게 탱크버스터',
+          ko: '나에게 탱버',
         };
       }
       return {
@@ -109,7 +109,7 @@ let Responses = {
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
           cn: '换T！',
-          ko: '탱 교대!',
+          ko: '탱 교대',
         };
       }
     };
@@ -122,7 +122,7 @@ let Responses = {
           fr: 'Tankbuster sur VOUS',
           ja: '自分にタンクバスター',
           cn: '死刑点名',
-          ko: '나에게 탱크버스터',
+          ko: '나에게 탱버',
         };
       }
       return {
@@ -159,7 +159,7 @@ let Responses = {
               en: 'Tank cleave on YOU',
               de: 'Tank Cleave aud DIR',
               fr: 'Tank cleave sur VOUS',
-              ko: '나에게 광역 탱크버스터',
+              ko: '나에게 광역 탱버',
             };
           }
         } else {
@@ -168,7 +168,7 @@ let Responses = {
             en: 'Tank cleave',
             de: 'Tank Cleave',
             fr: 'Tank cleave',
-            ko: '광역 탱크버스터',
+            ko: '광역 탱버',
           };
         }
       }
@@ -176,7 +176,7 @@ let Responses = {
         en: 'Avoid tank cleave',
         de: 'Tank Cleave ausweichen',
         fr: 'Evitez le cleave sur le tank',
-        ko: '광역 탱크버스터 피하기',
+        ko: '광역 탱버 피하기',
       };
     };
     return obj;
@@ -187,7 +187,7 @@ let Responses = {
       en: 'Mini Buster',
       de: 'Kleiner Tankbuster',
       fr: 'Mini Buster',
-      ko: '약한 탱크버스터',
+      ko: '약한 탱버',
     };
     return obj;
   },
@@ -199,7 +199,7 @@ let Responses = {
       fr: 'AoE',
       ja: 'AoE',
       cn: 'AOE',
-      ko: '광역공격',
+      ko: '전체공격',
     };
     return obj;
   },

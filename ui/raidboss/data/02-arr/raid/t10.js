@@ -109,7 +109,7 @@
         'Electric Burst': 'Stromstoß',
         'Electrocharge': 'Elektro-Ladung',
         'Heat Lightning': 'Hitzeblitz',
-        'Random + Charge': 'Zufall + Wilde Rage',
+        'Random \\+ Charge': 'Zufall + Wilde Rage',
         'Son': 'Sohn',
         'Spike Flail': 'Dornendresche',
         'Wild Charge': 'Wilde Rage',
@@ -130,7 +130,7 @@
         'Electric Burst': 'Salve électrique',
         'Electrocharge': 'Charge électrique',
         'Heat Lightning': 'Éclair de chaleur',
-        'Random + Charge': 'Aléatoire + Charge',
+        'Random \\+ Charge': 'Aléatoire + Charge',
         'Son': 'Fils',
         'Spike Flail': 'Fléau à pointes',
         'Wild Charge': 'Charge sauvage',
@@ -151,7 +151,7 @@
         'Electric Burst': 'エレクトリックバースト',
         'Electrocharge': 'エレクトロチャージ',
         'Heat Lightning': 'ヒートライトニング',
-        'Random + Charge': 'Random + Charge', // FIXME
+        'Random \\+ Charge': 'Random + Charge', // FIXME
         'Son': 'Son', // FIXME
         'Spike Flail': 'スパイクフレイル',
         'Wild Charge': 'ワイルドチャージ',
@@ -172,7 +172,7 @@
         'Electric Burst': '电光爆发',
         'Electrocharge': '蓄电',
         'Heat Lightning': '惊电',
-        'Random + Charge': 'Random + Charge', // FIXME
+        'Random \\+ Charge': 'Random + Charge', // FIXME
         'Son': 'Son', // FIXME
         'Spike Flail': '刃尾横扫',
         'Wild Charge': '狂野冲锋',
@@ -193,7 +193,7 @@
         'Electric Burst': '전하 폭발',
         'Electrocharge': '전하 충전',
         'Heat Lightning': '뜨거운 번개',
-        'Random + Charge': 'Random + Charge', // FIXME
+        'Random \\+ Charge': 'Random + Charge', // FIXME
         'Son': 'Son', // FIXME
         'Spike Flail': '가시 매타작',
         'Wild Charge': '야성의 돌진',

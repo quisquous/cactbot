@@ -64,7 +64,7 @@
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
-        ko: '돌덩이 뒤에 숨기',
+        ko: '바위 뒤에 숨기',
       },
     },
     {
@@ -97,7 +97,7 @@
         en: 'Get Off',
         de: 'Runter gehen',
         fr: 'Sur les plateformes extérieures',
-        ko: '피하기',
+        ko: '바깥으로 피하기',
       },
     },
   ],

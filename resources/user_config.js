@@ -166,6 +166,10 @@ let UserConfig = {
       // Option template ids are identical to field names on Options.
       if (opt.setterFunc)
         opt.setterFunc(options, value);
+      else if (opt.type === 'integer')
+        options[opt.id] = parseInt(value);
+      else if (opt.type === 'float')
+        options[opt.id] = parseFloat(value);
       else
         options[opt.id] = value;
     }

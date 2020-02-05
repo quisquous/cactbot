@@ -107,7 +107,7 @@
             en: 'Tank cleave on YOU',
             de: 'Tank cleave auf YOU',
             fr: 'Tank cleave sur VOUS',
-            ko: '나에게 탱버',
+            ko: '나에게 범위 탱버',
           };
         }
         return {
@@ -152,7 +152,7 @@
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
             fr: 'Buster sur VOUS',
-            ko: '나에게 버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -160,7 +160,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Buster auf ' + data.ShortName(matches.target),
             fr: 'Buster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"에게 버스터',
+            ko: '"' + data.ShortName(matches.target) + '"에게 탱버',
           };
         }
       },
@@ -213,7 +213,7 @@
         en: 'outer lasers',
         de: 'Lasers am Rand',
         fr: 'Lasers extérieurs',
-        ko: '바깥 레이저',
+        ko: '외곽 레이저',
       },
     },
     {
@@ -230,7 +230,7 @@
             en: 'Buster on YOU',
             de: 'Buster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -238,7 +238,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Buster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"에게 버스터',
+            ko: '"' + data.ShortName(matches.target) + '"에게 탱버',
           };
         }
       },
