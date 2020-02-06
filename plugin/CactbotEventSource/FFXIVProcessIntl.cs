@@ -187,17 +187,11 @@ namespace Cactbot {
             case EntityJob.RDM: {
                 return JObject.FromObject(*(RedMageJobMemory*)&p[0]);
               };
-            case EntityJob.MRD: {
-                return null;
-              };
             case EntityJob.WAR: {
                 return JObject.FromObject(*(WarriorJobMemory*)&p[0]);
               };
             case EntityJob.DRK: {
                 return JObject.FromObject(*(DarkKnightJobMemory*)&p[0]);
-              };
-            case EntityJob.GLA: {
-                return null;
               };
             case EntityJob.PLD: {
                 return JObject.FromObject(*(PaladinJobMemory*)&p[0]);
@@ -211,14 +205,8 @@ namespace Cactbot {
             case EntityJob.DNC: {
                 return JObject.FromObject(*(DancerJobMemory*)&p[0]);
               };
-            case EntityJob.LNC: {
-                return null;
-              };
             case EntityJob.DRG: {
                 return JObject.FromObject(*(DragoonJobMemory*)&p[0]);
-              };
-            case EntityJob.ROG: {
-                return null;
               };
             case EntityJob.NIN: {
                 return JObject.FromObject(*(NinjaJobMemory*)&p[0]);
@@ -228,9 +216,6 @@ namespace Cactbot {
               }
             case EntityJob.BLM: {
                 return JObject.FromObject(*(BlackMageJobMemory*)&p[0]);
-              };
-            case EntityJob.CNJ: {
-                return null;
               };
             case EntityJob.WHM: {
                 return JObject.FromObject(*(WhiteMageJobMemory*)&p[0]);
@@ -259,11 +244,8 @@ namespace Cactbot {
             case EntityJob.SAM: {
                 return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
               };
-            default: {
-                logger_.LogError("GetJobSpecificData: {0}", job);
-                return null;
-              };
           }
+          return null;
         }
       }
     }
