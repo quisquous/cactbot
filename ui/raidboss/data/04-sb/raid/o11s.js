@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape V3.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(阿尔法幻境3\)$/,
+    ko: /^차원의 틈 오메가: 알파편\(영웅\) \(3\)$/,
   },
   timelineFile: 'o11s.txt',
   triggers: [
@@ -23,6 +24,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -31,6 +33,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: data.ShortName(matches.target) + '吃死刑',
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -42,6 +45,7 @@
             fr: 'tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -84,6 +88,7 @@
         fr: 'Gauche',
         ja: '左',
         cn: '左',
+        ko: '왼쪽으로',
       },
       run: function(data) {
         data.lastWasStarboard = true;
@@ -106,6 +111,7 @@
         fr: 'Droite',
         ja: '右',
         cn: '右',
+        ko: '오른쪽으로',
       },
       run: function(data) {
         data.lastWasStarboard = false;
@@ -130,6 +136,7 @@
             fr: 'Bougez (Gauche)',
             ja: '反対へ (左)',
             cn: '移动 (左)',
+            ko: '오른쪽으로',
           };
         }
         return {
@@ -138,6 +145,7 @@
           fr: 'Restez ici (Gauche)',
           ja: 'そのまま (左)',
           cn: '不动 (左)',
+          ko: '대기 (오른쪽)',
         };
       },
     },
@@ -160,6 +168,7 @@
             fr: 'Restez ici (Droite)',
             ja: 'そのまま (右)',
             cn: '不动 (右)',
+            ko: '대기 (왼쪽)',
           };
         }
         return {
@@ -168,6 +177,7 @@
           fr: 'Bougez (Droite)',
           ja: '反対へ (右)',
           cn: '移动 (右)',
+          ko: '왼쪽으로',
         };
       },
     },
@@ -185,6 +195,7 @@
         fr: 'Gauche (puis Droite)',
         ja: '左 (零式)',
         cn: '左 (零式)',
+        ko: '왼쪽으로 (바로 반대로)',
       },
     },
     {
@@ -201,6 +212,7 @@
         fr: 'Droite (puis Gauche)',
         ja: '右 (零式)',
         cn: '右 (零式)',
+        ko: '오른쪽으로 (바로 반대로)',
       },
     },
     {
@@ -218,6 +230,7 @@
         fr: 'Côté opposé (Gauche)',
         ja: '反対へ (左)',
         cn: '对面 (左)',
+        ko: '오른쪽으로',
       },
     },
     {
@@ -235,6 +248,7 @@
         fr: 'Côté opposé (Droite)',
         ja: '反対へ (右)',
         cn: '对面 (右)',
+        ko: '왼쪽으로',
       },
     },
   ],
@@ -522,6 +536,79 @@
         'Negative Charge': '磁力（-）',
         'Positive Charge': '磁力（+）',
         'Stun': '眩晕',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Level Checker': '레벨 측정기',
+        'Omega': '오메가',
+        'Augmented Rocket Punch': '강화형 로켓 주먹',
+        'Rocket Punch': '로켓 주먹',
+      },
+      'replaceText': {
+        'Afterburner': '재연소 장치',
+        'Atomic Ray': '원자 파동',
+        'Ballistic Impact': '미사일 착탄',
+        'Ballistic Missile': '미사일 발사',
+        'Blaster': '블래스터',
+        'Charybdis': '대소용돌이',
+        'Condensed Wave Cannon Kyrios': '고출력 파동포 P',
+        'Delta Attack': '델타 공격',
+        'Diffuse Wave Cannon Kyrios': '확산 파동포 P',
+        'Dual Storage Violation': '기억 오염 제거 P',
+        'Electric Slide': '오메가 슬라이드',
+        'Engage Ballistics Systems': '사격 통제 시스템 기동',
+        'Enrage': 'Finalangriff',
+        'Executable': '프로그램 실행',
+        'Explosion': '폭발',
+        'Ferrofluid': '자석',
+        'Flamethrower': '화염방사',
+        'Force Quit': '강제 종료',
+        'Guided Missile Kyrios': '유도 미사일 P',
+        'Iron Kiss': '착탄',
+        'Larboard Wave Cannon': '좌현 사격: 파동포',
+        'Larboard Wave Cannon Surge': '좌현 사격: 0식 파동포',
+        'Long Needle Kyrios': '대형 미사일 P',
+        'Loop': '순환',
+        'MRV Missile Kyrios': '다탄두 미사일 P',
+        'Magnetism': '자력',
+        'Mustard Bomb': '겨자 폭탄',
+        'Pantokrator': '전지전능',
+        'Peripheral Synthesis': '출력',
+        'Program Loop': '순환 프로그램',
+        'Reformat': '최적화',
+        'Repel': '반발',
+        'Reset': '초기화',
+        'Rush': '돌진',
+        'Starboard Wave Cannon': '우현 사격: 파동포',
+        'Starboard Wave Cannon Surge': '우현 사격: 0식 파동포',
+        'Storage Violation': '기억 오염 제거 S',
+        'Unmitigated Explosion': '대폭발',
+        'Update Program': '프로그램 업데이트',
+        'Wave Cannon Kyrios': '파동포 P',
+        'Starboard/Larboard Cannon': '좌/우현 파동포',
+        'Starboard/Larboard Surge': '좌/우현 0식 파동포',
+        '--targetable--': '--타겟불가능--',
+        '--untargetable--': '--타겟가능--',
+      },
+      '~effectNames': {
+        'Biohacked': '해킹',
+        'Bleeding': '고통',
+        'Blunt Resistance Down': '타격 저항 감소',
+        'Burns': '화상',
+        'Chains of Memory': '연쇄 망각',
+        'Doom': '죽음의 선고',
+        'Gradual Petrification': '서서히 석화',
+        'HP Penalty': '최대 HP 감소',
+        'Kill Command': '순환',
+        'Live Wire': '번개 충전',
+        'Looper': '순환 프로그램',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Negative Charge': '자력[-]',
+        'Positive Charge': '자력[+]',
+        'Stun': '기절',
       },
     },
   ],

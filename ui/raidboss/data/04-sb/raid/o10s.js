@@ -12,6 +12,7 @@
   zoneRegex: {
     en: /^Alphascape V2.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(阿尔法幻境2\)$/,
+    ko: /^차원의 틈 오메가: 알파편\(영웅\) \(2\)$/,
   },
   timelineFile: 'o10s.txt',
   triggers: [
@@ -30,6 +31,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑减伤',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -38,6 +40,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: data.ShortName(matches.target) + '吃死刑',
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -49,6 +52,7 @@
             fr: 'tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -64,6 +68,7 @@
             fr: 'Feu sur VOUS',
             ja: 'マーカー on YOU',
             cn: '火点名',
+            ko: '불징 대상자',
           };
         }
       },
@@ -83,6 +88,7 @@
         de: 'Tod von unten',
         fr: 'Désastre terrestre',
         cn: '地之灾厄',
+        ko: '디버프 확인',
       },
     },
     {
@@ -96,6 +102,7 @@
         de: 'Tod von oben',
         fr: 'Désastre Céleste',
         cn: '天之灾厄',
+        ko: '디버프 확인',
       },
     },
     {
@@ -132,6 +139,7 @@
         fr: 'Tour suivant : Dedans/Dehors',
         ja: '中か外',
         cn: '下一转：靠近或远离',
+        ko: '안쪽 / 바깥쪽',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -151,6 +159,7 @@
         fr: 'Tour suivant : Cardinaux ou Coins',
         ja: '角かマーカー',
         cn: '下一转：靠边火角落',
+        ko: '십자 / 대각선',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -175,6 +184,7 @@
             fr: 'Sortez !',
             ja: '外へ',
             cn: '远离',
+            ko: '밖으로',
           };
         }
         return {
@@ -183,6 +193,7 @@
           fr: 'Allez sur les cardinaux',
           ja: 'マーカーへ',
           cn: '靠边',
+          ko: '십자 산개',
         };
       },
     },
@@ -205,6 +216,7 @@
             fr: 'Sous le boss !',
             ja: '中へ',
             cn: '靠近',
+            ko: '안으로',
           };
         }
         return {
@@ -213,6 +225,7 @@
           fr: 'Allez dans les coins',
           ja: '角へ',
           cn: '角落',
+          ko: '구석 산개',
         };
       },
     },
@@ -470,6 +483,67 @@
         'Landborne': '地之力',
         'Skyborne': '天之力',
         'Thin Ice': '冰面',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Midgardsormr': '미드가르드오름',
+        'Ancient Dragon': '고룡',
+        'Immortal Key': '용의 말뚝',
+      },
+      'replaceText': {
+        'Akh Morn': '아크 몬',
+        'Akh Rhai': '아크 라이',
+        'Azure Wings': '창익의 불꽃',
+        'Bloodied Maw': '홍아의 불꽃',
+        'Cauterize': '인두질',
+        'Crimson Breath': '진홍빛 숨결',
+        'Crimson Wings': '홍익의 불꽃',
+        'Dark Wave': '어둠의 파동',
+        'Dry Ice': '지면 동결',
+        'Earth Shaker': '요동치는 대지',
+        'Enrage': 'Enrage',
+        'Exaflare': '엑사플레어',
+        'Flame Blast': '화염 작렬',
+        'Frost Breath': '서리 숨결',
+        'Horrid Roar': '소름끼치는 포효',
+        'Hot Tail': '뜨거운 꼬리',
+        'Northern Cross': '북십자성',
+        'Protostar': '원시별',
+        'Rime Wreath': '분노의 서릿발',
+        'Stygian Maw': '흑아의 불꽃',
+        'Tail End': '꼬리 쓸기',
+        'Thunderstorm': '번개 폭풍',
+        'Time Immemorial': '천지개벽',
+        'Touchdown': '착지',
+        'attack': '공격',
+        'Flip': '앞회전',
+        'Spin': '마구 돌리기',
+        'Cardinals': '맵 측면',
+        'Corners': '구석',
+        'In': '안',
+        'Out': '밖',
+        'Flip/Spin': '앞회전/옆회전',
+        'In/Out': '안/밖',
+        'Corners/Cardinals': '구석/측면',
+        'Shaker/Thunder': '어스/번개',
+        ' ready': ' 준비 완료',
+        'Signal': '신호',
+        'Position': '위치',
+        '--targetable--': '--타겟가능--',
+        '--untargetable--': '--타겟불가능--',
+      },
+      '~effectNames': {
+        'Arcane Bulwark': '마법 장벽',
+        'Crumbling Bulwark': '마법 장벽 붕괴',
+        'Death from Above': '하늘의 재앙',
+        'Death from Below': '땅의 재앙',
+        'Defenseless': '마법 장벽 불가',
+        'Landborne': '땅의 힘',
+        'Skyborne': '하늘의 힘',
+        'Thin Ice': '얼음 바닥',
       },
     },
   ],

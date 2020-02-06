@@ -6,6 +6,7 @@
   zoneRegex: {
     en: /^Alphascape V4.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(阿尔法幻境4\)$/,
+    ko: /^차원의 틈 오메가: 알파편\(영웅\) \(4\)$/,
   },
   timelineFile: 'o12s.txt',
   triggers: [
@@ -44,6 +45,7 @@
         fr: 'Ne vous packez pas !',
         ja: 'スタックするな！',
         cn: '分散站位！',
+        ko: '쉐어 맞지 말것',
       },
     },
     {
@@ -60,6 +62,7 @@
         fr: 'Séparez les boss',
         ja: 'ボス離して',
         cn: '拉开Boss',
+        ko: '보스 떨어뜨리기',
       },
     },
     {
@@ -76,6 +79,7 @@
         fr: 'Packez les boss',
         ja: 'ボス重ねて',
         cn: '拉近Boss',
+        ko: '보스 붙이기',
       },
     },
     {
@@ -98,6 +102,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: 'タンクバスター on YOU',
             cn: '死刑减伤',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -107,6 +112,7 @@
             fr: 'Tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -118,6 +124,7 @@
             fr: 'tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -142,6 +149,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: 'タンクバスター on YOU',
             cn: '死刑减伤',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -151,6 +159,7 @@
             fr: 'Tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -162,6 +171,7 @@
             fr: 'tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -185,6 +195,7 @@
           fr: 'Carré',
           ja: '四角',
           cn: '四角',
+          ko: '짝수',
         }[data.lang];
         let triangleName = {
           en: 'Triangle',
@@ -192,6 +203,7 @@
           fr: 'Triangle',
           ja: '三角',
           cn: '三角',
+          ko: '홀수',
         }[data.lang];
         return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
       },
@@ -209,6 +221,7 @@
         fr: 'Packez-vous',
         ja: 'スタック',
         cn: '集合',
+        ko: '쉐어',
       },
     },
     {
@@ -223,6 +236,7 @@
         fr: 'Météore sur VOUS',
         ja: 'メテオ on YOU',
         cn: '陨石点名',
+        ko: '메테오 대상자',
       },
     },
     {
@@ -242,6 +256,7 @@
         fr: 'Attaquez Oméga-M',
         ja: 'Mを攻撃',
         cn: '攻击欧米茄-M',
+        ko: '오메가 M 공격',
       },
     },
     {
@@ -261,6 +276,7 @@
         fr: 'Attaquez Oméga-F',
         ja: 'Fを攻撃',
         cn: '攻击欧米茄-F',
+        ko: '오메가 F 공격',
       },
     },
     {
@@ -277,6 +293,7 @@
         fr: 'Cotés',
         ja: '横',
         cn: '横',
+        ko: '옆으로',
       },
     },
     {
@@ -293,6 +310,7 @@
         fr: 'Devant ou derrière',
         ja: '縦',
         cn: '竖',
+        ko: '앞뒤로',
       },
     },
     {
@@ -310,6 +328,7 @@
             de: 'Monitore Links',
             fr: 'Moniteur Gauche',
             cn: '探测左边',
+            ko: '모니터 왼쪽',
           };
         }
         return {
@@ -317,6 +336,7 @@
           de: 'Links ausweichen',
           fr: 'Evitez à gauche',
           cn: '左侧躲闪',
+          ko: '오른쪽으로',
         };
       },
     },
@@ -335,6 +355,7 @@
             de: 'Monitore Rechts',
             fr: 'Moniteur Droite',
             cn: '探测右边',
+            ko: '모니터 오른쪽',
           };
         }
         return {
@@ -342,6 +363,7 @@
           de: 'Rechts ausweichen',
           fr: 'Evitez à droite',
           cn: '右侧躲闪',
+          ko: '왼쪽으로',
         };
       },
     },
@@ -356,6 +378,7 @@
             fr: 'Vulnérabilité sur VOUS',
             ja: '標的 on YOU',
             cn: '目标识别',
+            ko: '표적식별 대상자',
           };
         }
       },
@@ -368,6 +391,7 @@
           fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
           ja: '標的 on ' + data.ShortName(matches.target),
           cn: '目标识别->' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 표적식별',
         };
       },
     },
@@ -388,6 +412,7 @@
         fr: 'Liens proches',
         ja: 'ニアー',
         cn: '靠近连线',
+        ko: '가까이 붙는 줄',
       },
     },
     {
@@ -407,6 +432,7 @@
         fr: 'Liens éloignés',
         ja: 'ファー',
         cn: '远离连线',
+        ko: '멀리 떨어지는 줄',
       },
     },
     {
@@ -426,6 +452,7 @@
         fr: '#Médisance sur VOUS',
         ja: 'サークルついた',
         cn: '严重错误：上溢',
+        ko: '치명적오류:광역 8초',
       },
     },
     {
@@ -445,6 +472,7 @@
         fr: 'Marqueur bleu',
         ja: 'レイテントついた',
         cn: '蓝点名',
+        ko: '잠재적오류 10초',
       },
     },
     {
@@ -464,6 +492,7 @@
         fr: 'Pourriture',
         ja: 'デグレードついた',
         cn: '红点名',
+        ko: '치명적오류:전이 14초',
       },
     },
     {
@@ -490,6 +519,7 @@
             fr: 'Marque courte sur VOUS',
             ja: '早シェア on YOU',
             cn: '短D',
+            ko: '8초 치명적오류:분배(쉐어)',
           };
         }
         return {
@@ -498,6 +528,7 @@
           fr: 'Marque longue sur VOUS',
           ja: '遅シェア on YOU',
           cn: '长D',
+          ko: '13초 치명적오류:분배(쉐어)',
         };
       },
       infoText: function(data, matches) {
@@ -516,6 +547,7 @@
             fr: 'Marque courte sur ' + data.ShortName(matches.target),
             ja: '早シェア on ' + data.ShortName(matches.target),
             cn: '短D->' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 쉐어',
           };
         }
         return;
@@ -546,6 +578,7 @@
           fr: 'Aucun marqueur',
           ja: '無職',
           cn: '闲D',
+          ko: '무징 대상자',
         };
       },
     },
@@ -566,6 +599,7 @@
         fr: 'Ecartez-vous pour #médisance',
         ja: 'サークル捨てる',
         cn: '离开人群传毒',
+        ko: '잠재적 오류: 전이',
       },
     },
     {
@@ -597,6 +631,7 @@
             fr: 'Packez-vous sur ' + data.ShortName(player),
             ja: data.ShortName(player) + 'とスタック',
             cn: '与' + data.ShortName(player) + '集合',
+            ko: '"' + data.ShortName(player) + '" 쉐어',
           };
         }
       },
@@ -613,6 +648,7 @@
         fr: 'Package sur VOUS',
         ja: 'スタック on YOU',
         cn: '等待队友集合',
+        ko: '쉐어징 대상자',
       },
     },
     {
@@ -627,6 +663,7 @@
         fr: 'Ecartez-vous',
         ja: '散開',
         cn: '散开',
+        ko: '산개',
       },
     },
     {
@@ -643,6 +680,7 @@
         fr: 'Arrière gauche',
         ja: '左後ろ',
         cn: '左后',
+        ko: '좌측 후방',
       },
     },
     {
@@ -659,6 +697,7 @@
         fr: 'Arrière droite',
         ja: '右後ろ',
         cn: '右后',
+        ko: '우측 후방',
       },
     },
     {
@@ -723,6 +762,16 @@
             0b101: undefined,
             0b110: '西南',
             0b111: '西',
+          },
+          ko: {
+            0b000: '동쪽(3시)',
+            0b001: '북동쪽(1시)',
+            0b010: undefined,
+            0b011: '북서쪽(11시)',
+            0b100: '남동쪽(5시)',
+            0b101: undefined,
+            0b110: '남서쪽(7시)',
+            0b111: '서쪽(9시)',
           },
         }[data.lang][v];
       },
@@ -1087,6 +1136,95 @@
         'Remote Regression': '回归方程：远',
         'Synchronization Debugger': '修复错误：同步',
         'Underflow Debugger': '修复错误：下溢',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Engage!': '전투 시작!',
+        'Omega': '오메가',
+        'Omega-F': '오메가 F',
+        'Omega-M': '오메가 M',
+        'Optical Unit': '광학 유닛',
+        'Left Arm Unit': '왼팔 유닛',
+        'Right Arm Unit': '오른팔 유닛',
+        'Rear Power Unit': '후면 유닛',
+      },
+      'replaceText': {
+        'Advanced Optical Laser': '광학 레이저 S',
+        'Advanced Suppression': '지원 프로그램 S',
+        'Beyond Defense': '방패 연격 S',
+        'Beyond Strength': '방패 연격 G',
+        'Cosmo Memory': '세계의 기억',
+        'Discharger': '방출',
+        'Efficient Bladework': '검격',
+        'Electric Slide': '오메가 슬라이드',
+        'Enrage': 'Finalangriff',
+        'Firewall': '방어 프로그램',
+        'Fundamental Synergy': '연계 프로그램 C',
+        'Laser Shower': '레이저 세례',
+        'Operational Synergy': '연계 프로그램 W',
+        'Optical Laser': '광학 레이저 F',
+        'Optimized Blade Dance': '쾌검난무: 오메가',
+        'Optimized Blizzard III': '블리자가: 오메가',
+        'Optimized Fire III': '파이라: 오메가',
+        'Optimized Meteor': '메테오 : 오메가',
+        'Optimized Sagittarius Arrow': '궁수자리 화살: 오메가',
+        'Pile Pitch': '에너지 투사',
+        'Resonance': '공명',
+        'Solar Ray': '태양 광선',
+        'Subject Simulation F': '형태 변경 F',
+        'Subject Simulation M': '형태 변경 M',
+        'Superliminal Motion': '칼날 연격 F',
+        'Superliminal Steel': '칼날 연격 B',
+        'Suppression': '지원 프로그램 F',
+        'Synthetic Blades': '칼날 장착',
+        'Synthetic Shield': '방패 장착',
+        'Archive All': '전체 기록 보존',
+        'Archive Peripheral': '기록 보존 장치',
+        'Cascading Latent Defect': '잠재적 오류: 전이',
+        'Colossal Blow': '광역 폭파',
+        'Critical Error': '치명적인 오류',
+        'Critical Overflow Bug': '치명적 오류: 광역',
+        'Critical Synchronization Bug': '치명적 오류: 분배',
+        'Critical Underflow Bug': '치명적 오류: 전이',
+        'Delta Attack': '델타 공격',
+        'Diffuse Wave Cannon': '확산 파동포',
+        'Floodlight': '투광 조명',
+        'Hello, World': '헬로 월드',
+        'Hyper Pulse': '초파동 광선',
+        'Index and Archive Peripheral': '기록 보존 장치 X',
+        'Ion Efflux': '이온 유출',
+        'Oversampled Wave Cannon': '감지식 파동포',
+        'Patch': '연쇄 오류',
+        'Program Omega': '프로그램: 오메가',
+        'Rear Lasers': '후면 레이저',
+        'Savage Wave Cannon': '프로그램: 오메가',
+        'Spotlight': '집중 조명',
+        'Target Analysis': '표적 식별',
+        'Wave Cannon': '파동포',
+        '--targetable--': '--타겟가능--',
+        '--untargetable--': '--타겟불가능--',
+      },
+      '~effectNames': {
+        'Infinite Limit': '한계 초월',
+        'Local Resonance': '공명 프로그램: 근거리',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Packet Filter F': '방어 프로그램 F',
+        'Packet Filter M': '방어 프로그램 M',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Prey': '표식',
+        'Remote Resonance': '공명 프로그램: 원거리',
+        'Cascading Latent Defect': '잠재적 오류: 전이',
+        'Critical Overflow Bug': '치명적 오류: 광역',
+        'Critical Synchronization Bug': '치명적 오류: 분배',
+        'Critical Underflow Bug': '치명적 오류: 전이',
+        'Latent Defect': '잠재적 오류',
+        'Local Regression': '연쇄 오류: 근거리',
+        'Overflow Debugger': '오류 수정: 광역',
+        'Remote Regression': '연쇄 오류: 원거리',
+        'Synchronization Debugger': '오류 수정: 분배',
+        'Underflow Debugger': '오류 수정: 전이',
       },
     },
   ],
