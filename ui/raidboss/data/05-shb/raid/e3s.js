@@ -584,7 +584,7 @@
         fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
         cn: '前左 / 后右',
-        ko: '앞 왼쪽 / 뒤 오른쪽',
+        ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
       },
     },
     {
@@ -601,7 +601,7 @@
         fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
         cn: '前右 / 后左',
-        ko: '앞 오른쪽 / 뒤 왼쪽',
+        ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
       },
     },
     {
@@ -626,7 +626,7 @@
         fr: 'Avant gauche / Arrière droite',
         ja: '左前 / 右後ろ',
         cn: '前左 / 后右',
-        ko: '앞 왼쪽 / 뒤 오른쪽',
+        ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
       },
     },
     {
@@ -647,7 +647,7 @@
         fr: 'Avant droit / Arrière gauche',
         ja: '右前 / 左後ろ',
         cn: '前右 / 后左',
-        ko: '앞 오른쪽 / 뒤 왼쪽',
+        ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
       },
     },
   ],

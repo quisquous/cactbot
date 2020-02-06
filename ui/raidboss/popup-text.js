@@ -604,6 +604,8 @@ class PopupText {
         ttsText = ttsText.replace(/[#!]/, '');
         // * slashes between mechanics
         ttsText = ttsText.replace('/', ' ');
+        // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
+        ttsText = ttsText.replace('[↖-↙]', '');
         // * arrows at the front or the end are directions, e.g. "east =>"
         ttsText = ttsText.replace(/[-=]>\s*$/, '');
         ttsText = ttsText.replace(/^\s*<[-=]/, '');
