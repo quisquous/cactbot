@@ -516,7 +516,7 @@ class BuffTracker {
         cooldown: 270,
       },
       peculiar: {
-        gainAbility: gLang.kAbility.PeculiarLight,
+        useAbility: gLang.kAbility.PeculiarLight,
         durationSeconds: 15,
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
@@ -524,7 +524,7 @@ class BuffTracker {
         cooldown: 60,
       },
       trick: {
-        gainAbility: gLang.kAbility.TrickAttack,
+        useAbility: gLang.kAbility.TrickAttack,
         gainRegex: Regexes.ability({ id: gLang.kAbility.TrickAttack }),
         durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
@@ -548,7 +548,7 @@ class BuffTracker {
         // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
         // Instead, use somebody using the effect on you:
         //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-        gainAbility: gLang.kAbility.Embolden,
+        useAbility: gLang.kAbility.Embolden,
         gainRegex: Regexes.abilityFull({ id: gLang.kAbility.Embolden, target: this.playerName }),
         loseEffect: gLang.kEffect.Embolden,
         durationSeconds: 20,
@@ -670,7 +670,7 @@ class BuffTracker {
         cooldown: 180,
       },
       chain: {
-        gainAbility: gLang.kAbility.ChainStratagem,
+        useAbility: gLang.kAbility.ChainStratagem,
         durationSeconds: 15,
         icon: '../../resources/icon/status/chain-stratagem.png',
         // Blue.
@@ -733,7 +733,7 @@ class BuffTracker {
     let keys = Object.keys(this.buffInfo);
     this.gainEffectMap = {};
     this.loseEffectMap = {};
-    this.gainAbilityMap = {};
+    this.useAbilityMap = {};
     for (let i = 0; i < keys.length; ++i) {
       let buff = this.buffInfo[keys[i]];
       buff.name = keys[i];
@@ -755,10 +755,10 @@ class BuffTracker {
           console.error('Duplicate buff entry: ' + buff.loseEffect);
         this.loseEffectMap[buff.loseEffect] = buff;
       }
-      if (buff.gainAbility) {
-        if (buff.gainAbility in this.gainAbilityMap)
-          console.error('Duplicate buff entry: ' + buff.gainAbility);
-        this.gainAbilityMap[buff.gainAbility] = buff;
+      if (buff.useAbility) {
+        if (buff.useAbility in this.useAbilityMap)
+          console.error('Duplicate buff entry: ' + buff.useAbility);
+        this.useAbilityMap[buff.useAbility] = buff;
       }
     }
 
@@ -783,7 +783,7 @@ class BuffTracker {
   }
 
   onUseAbility(id, log) {
-    let b = this.gainAbilityMap[id];
+    let b = this.useAbilityMap[id];
     if (!b)
       return;
 
