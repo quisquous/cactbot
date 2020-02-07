@@ -397,8 +397,8 @@
         'Burst': '대폭발',
         'Apokalypsis': '묵시록',
         'Aetherspike': '에테르 강타',
-        '--untargetable--': '타겟 불가능',
-        '--targetable--': '타겟 가능',
+        '--untargetable--': '--타겟 불가능--',
+        '--targetable--': '--타겟 가능--',
       },
       '~effectNames': {
         'Healing Magic Down': '회복마법 효과 감소',
