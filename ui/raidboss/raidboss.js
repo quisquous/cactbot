@@ -48,7 +48,6 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
   if (audio !== null) {
     let previous = Options.audioAllowed;
     Options.audioAllowed = !!parseInt(audio);
-    console.log('audioAllowed = ' + Options.audioAllowed);
     if (!previous && Options.audioAllowed)
       console.log('Enabling audio via query parameter');
   }
