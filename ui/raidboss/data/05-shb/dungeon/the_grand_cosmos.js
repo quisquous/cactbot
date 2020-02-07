@@ -20,6 +20,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -31,6 +32,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -46,6 +48,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             cn: '集合点名',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -53,6 +56,7 @@
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
           cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
     },
@@ -68,6 +72,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -85,6 +90,7 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -98,6 +104,7 @@
         en: 'Avoid Brooms',
         de: 'Besen ausweichen',
         fr: 'Evitez les balais',
+        ko: '빗자루 피하기',
       },
     },
     {
@@ -114,6 +121,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -125,6 +133,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -144,6 +153,7 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -161,6 +171,7 @@
         ja: '水の精倒して',
         fr: 'Tuez l\'add',
         cn: '击杀小怪',
+        ko: '쫄 처리',
       },
     },
     {
@@ -173,6 +184,7 @@
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
         fr: 'Placez les graines sur la terre',
+        ko: '씨앗 흙 위에 놓기',
       },
     },
     {
@@ -188,6 +200,7 @@
         en: 'Stun Hamonth',
         de: 'Sir Hamonth unterbrechen',
         fr: 'Etoudissez Hamonth',
+        ko: 'Hamonth 기절시키기',
       },
     },
     {
@@ -204,6 +217,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -215,6 +229,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -234,6 +249,7 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -248,6 +264,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -261,6 +278,7 @@
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
         fr: 'Evitez les croix',
+        ko: '십자 장판 서로 산개',
       },
     },
     {
@@ -275,6 +293,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -288,6 +307,7 @@
         en: 'Touch Furniture',
         de: 'Einrichtung berühren',
         fr: 'Touchez un élément de décor',
+        ko: '가구에 불 옮기기',
       },
     },
     {
@@ -300,6 +320,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
+        ko: '왼쪽',
       },
     },
     {
@@ -312,6 +333,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
+        ko: '오른쪽',
       },
     },
     {
@@ -329,12 +351,14 @@
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
+            ko: '십자 장판 징: 가구에 닿지 말기',
           };
         }
         return {
           en: 'Tether on YOU',
           de: 'Verbindung auf DIR',
           fr: 'Lien sur vous',
+          ko: '징 대상자',
         };
       },
     },
