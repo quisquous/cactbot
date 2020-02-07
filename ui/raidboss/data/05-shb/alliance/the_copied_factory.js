@@ -10,6 +10,7 @@
   zoneRegex: {
     en: /^The Copied Factory$/,
     cn: /^复制工厂废墟$/,
+    ko: /\(700\)/,
   },
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [

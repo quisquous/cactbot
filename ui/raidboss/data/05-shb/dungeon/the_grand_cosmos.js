@@ -3,7 +3,10 @@
 // The Grand Cosmos
 
 [{
-  zoneRegex: /^The Grand Cosmos$/,
+  zoneRegex: {
+    en: /^The Grand Cosmos$/,
+    ko: /\(692\)/,
+  },
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
     {
