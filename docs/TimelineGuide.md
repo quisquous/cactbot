@@ -230,11 +230,6 @@ In particular, you can't get rp text lines, the text for the zone sealing/unseal
 
 Once you've run the combat, you'll have generated a couple of [network log files](LogGuide.md#network-log-lines).
 
-If you want to try these examples, here are a couple of files:
-
-1. [CapeWestwind.log](data/CapeWestwind.log)
-1. [CapeWestwind2.log](data/CapeWestwind2.log)
-
 Follow those links, click **Raw**, then right click and **Save As** to save them to disk.
 
 Good guidelines for getting good logs are:
@@ -302,7 +297,7 @@ Once you have a network log file, you need to find the start and the finish.
 For example, in this fight, these are the relevant log lines and times:
 
 ```log
-[18:42:23.614] 15:10686258:Potato Chippy:2E:Tomahawk:4000EE16:Rhitahtyn sas Arvina:710003:9450000:1C:2E8000:0:0:0:0:0:0:0:0:0:0:0:0:140279:140279:8010:8010:1000:1000:-707.8608:-822.4221:67.74045:3858:74095:4560:0:1000:1000:-693.7162:-816.4633:65.55687:
+[18:42:23.614] 15:105E5703:Potato Chippy:2E:Tomahawk:4000EE16:Rhitahtyn sas Arvina:710003:9450000:1C:2E8000:0:0:0:0:0:0:0:0:0:0:0:0:140279:140279:8010:8010:1000:1000:-707.8608:-822.4221:67.74045:3858:74095:4560:0:1000:1000:-693.7162:-816.4633:65.55687:
 [18:49:22.934] 19:Rhitahtyn Sas Arvina was defeated by Potato Chippy.
 ```
 
