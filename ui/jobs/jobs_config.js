@@ -15,6 +15,14 @@ UserConfig.registerOptions('jobs', {
       default: false,
     },
     {
+      id: 'HideDefensiveBuffs',
+      name: {
+        en: 'Hide defensive party buffs (reprisal, addle, shield samba, etc)',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
       id: 'LowerOpacityOutOfCombat',
       name: {
         en: 'Lower ui opacity when out of combat',

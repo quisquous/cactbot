@@ -50,6 +50,13 @@ class CactbotLanguageEn extends CactbotLanguage {
       Shifu: 'Shifu',
       CircleOfPower: 'Circle Of Power',
 
+      Troubadour: 'Troubadour',
+      ShieldSamba: 'Shield Samba',
+      Tactician: 'Tactician',
+      Reprisal: 'Reprisal',
+      Addle: 'Addle',
+      Feint: 'Feint',
+
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',

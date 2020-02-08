@@ -728,6 +728,66 @@ class BuffTracker {
         sortKey: 13,
         cooldown: 120,
       },
+      troubadour: {
+        useAbility: gLang.kAbility.Troubadour,
+        durationSeconds: 15,
+        icon: '../../resources/icon/status/troubadour.png',
+        // Light Green.
+        borderColor: '#81bc83',
+        sortKey: 30,
+        cooldown: 120,
+        defensive: true,
+      },
+      shieldSamba: {
+        useAbility: gLang.kAbility.ShieldSamba,
+        durationSeconds: 15,
+        icon: '../../resources/icon/status/shield-samba.png',
+        // Red.
+        borderColor: '#ce3816',
+        sortKey: 31,
+        cooldown: 120,
+        defensive: true,
+      },
+      tactician: {
+        useAbility: gLang.kAbility.Tactician,
+        durationSeconds: 15,
+        icon: '../../resources/icon/status/tactician.png',
+        // Yellow.
+        borderColor: '#aea64d',
+        sortKey: 32,
+        cooldown: 120,
+        defensive: true,
+      },
+      reprisal: {
+        useAbility: gLang.kAbility.Reprisal,
+        durationSeconds: 10,
+        icon: '../../resources/icon/status/reprisal.png',
+        // Pink.
+        borderColor: '#923386',
+        sortKey: 33,
+        cooldown: 60,
+        defensive: true,
+      }
+      addle: {
+        useAbility: gLang.kAbility.Addle,
+        durationSeconds: 10,
+        icon: '../../resources/icon/status/addle.png',
+        // Dark Purple.
+        borderColor: '#5e027a',
+        sortKey: 34,
+        cooldown: 90,
+        defensive: true,
+      },
+      feint: {
+        useAbility: gLang.kAbility.Feint,
+        durationSeconds: 10,
+        icon: '../../resources/icon/status/feint.png',
+        // Red.
+        borderColor: '#bd1e12',
+        sortKey: 35,
+        cooldown: 90,
+        defensive: true,
+      }
     };
 
     let keys = Object.keys(this.buffInfo);
@@ -744,6 +804,10 @@ class BuffTracker {
       buff.side = overrides.side || buff.side || 'right';
       buff.sortKey = overrides.sortKey || buff.sortKey;
       buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
+
+      if (buff.defensive && this.options.HideDefensiveBuffs) {
+        buff.hide = true;
+      }
 
       if (buff.gainEffect) {
         if (buff.gainEffect in this.gainEffectMap)
