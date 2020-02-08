@@ -2382,7 +2382,7 @@
         '--targetable--': '--타겟 가능--',
         'Aetheric Profusion': '에테르 홍수',
         'Akh Morn': '아크 몬',
-        'Bahamut Marker': 'Bahamut Marker', // FIXME
+        'Bahamut Marker': '마하무트 마커',
         'Bahamut\'s Claw': '바하무트의 발톱',
         'Bahamut\'s Favor': '용신의 가호',
         'Blackfire Trio': '흑염의 3중주',
@@ -2392,11 +2392,12 @@
         'Chain Lightning': '번개 사슬',
         'Dalamud Dive': '달라가브 강하',
         'Deathstorm': '죽음의 폭풍',
-        'Dive . Dynamo/Chariot': 'Dive . Dynamo/Chariot', // FIXME
-        'Dive Dynamo Combo': 'Dive Dynamo Combo', // FIXME
+        'Death Sentence': '사형 선고',
+        'Dive . Dynamo/Chariot': '강하 . 원동력/전차',
+        'Dive Dynamo Combo': '강하 원동력 콤보',
         'Divebomb': '급강하 폭격',
         'Doom': '죽음의 선고',
-        'Dynamo . Beam/Chariot': 'Dynamo . Beam/Chariot', // FIXME
+        'Dynamo . Beam/Chariot': '원동력 . 광선/전차',
         'Earth Shaker': '요동치는 대지',
         'Engage!': '전투 시작!',
         'Enrage': '전멸기',
@@ -2412,43 +2413,43 @@
         'Grand Octet': '용들의 8중주',
         'Hatch': '마력 방출',
         'Heavensfall Trio': '천지의 3중주',
-        'Heavensfall(?! )': 'Heavensfall(?! )', // FIXME
+        'Heavensfall(?! )': '천지 (?! )',
         'Hypernova': '초신성',
         'Iceball': '얼음구',
         'Iron Chariot': '강철 전차',
         'Liquid Hell': '지옥의 늪',
         'Lunar Dive': '달 강하',
         'Lunar Dynamo': '달의 원동력',
-        '(?<! )Marker(?!\\w)': 'Marker', // FIXME
-        'Markers appear': 'Markers appear', // FIXME
+        '(?<! )Marker(?!\\w)': '마커',
+        'Markers appear': '마커 표시',
         'Megaflare': '메가플레어',
         'Megaflare Dive': '메가플레어 다이브',
         'Meteor Stream': '유성 폭풍',
-        'Meteor/Dive or Dive/Beam': 'Meteor/Dive or Dive/Beam', // FIXME
+        'Meteor/Dive or Dive/Beam': '유성/강하 or 강하/광선',
         'Morn Afah': '몬 아파',
-        'Nael Dive': 'Nael Dive', // FIXME
-        'Nael Marker': 'Nael Marker', // FIXME
-        'Pepperoni': 'Pepperoni', // FIXME
+        'Nael Dive': '넬 낙하',
+        'Nael Marker': '넬 마커',
+        'Pepperoni': '페퍼로니',
         'Plummet(?!\/)': '곤두박질',
-        'Plummet/Claw': 'Plummet/Claw', // FIXME
+        'Plummet/Claw': '곤두박질/발톱',
         'Quickmarch Trio': '진군의 3중주',
-        'Random Combo Attack': 'Random Combo Attack', // FIXME
+        'Random Combo Attack': '랜덤 콤보 공격',
         'Raven Dive': '흉조의 강하',
         '(?<!\/)Ravensbeak': '흉조의 부리',
         'Sentence/Ravensbeak': '사형선고/흉조의 부리',
         'Seventh Umbral Era': '제7재해',
-        'Stack': 'Stack', // FIXME
-        'Targeted Fire': 'Targeted Fire', // FIXME
+        'Stack': '모이기',
+        'Targeted Fire': '대상자 화염구',
         'Tempest Wing': '폭풍우 날개',
         'Tenstrike Trio': '연격의 3중주',
         'Teraflare': '테라플레어',
-        'Thermionic . Dynamo/Chariot': 'Thermionic . Dynamo/Chariot', // FIXME
+        'Thermionic . Dynamo/Chariot': '열전자 . 원동력/전차',
         'Thermionic Beam': '열전자 광선',
         'Thermionic Burst': '열전자 폭발',
         'Thunderstruck': '번개날개',
-        'Towers': 'Towers', // FIXME
-        'Triple Nael Quote': 'Triple Nael Quote', // FIXME
-        'Twin Marker': 'Twin Marker', // FIXME
+        'Towers': '기둥',
+        'Triple Nael Quote': '넬 3회 대사',
+        'Twin Marker': '트윈 마커',
         'Twister': '회오리',
         'Twisting Dive': '회오리 강하',
         'White Fury': '넬의 분노',
