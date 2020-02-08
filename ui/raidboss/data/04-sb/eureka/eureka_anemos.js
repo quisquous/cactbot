@@ -322,36 +322,4 @@
       },
     },
   ],
-  timelineReplace: [
-    {
-      'locale': 'cn',
-      'replaceSync': {
-        'Void Garm': '虚无加姆',
-        'Sabotender Corrido': '科里多仙人刺',
-        'Polyphemus': '波吕斐摩斯',
-        'Caym': '盖因',
-        'Fafnir': '法夫纳',
-        'Voidscale': '虚无鳞龙',
-        'Pazuzu': '帕祖祖',
-        'Shadow Wraith': '暗影幽灵',
-      },
-      'replaceText': {
-        'Plague Of Locusts': '飞蝗疫病',
-        'The Dragon\'s Voice': '雷电咆哮',
-        '100,000 Needles': '十万针刺',
-        '100-Tonze Swipe': '百吨横扫',
-        '10,000-Tonze Swing': '万吨回转',
-        'Eye Of The Beholder': '深瞳凝视',
-        'Glower': '怒视',
-        'Double Hex Eye': '大凶眼',
-        'Absolute Terror': '绝对恐惧',
-        'Ball Of Ice': '冻结',
-        'Dread Wind': '恐慌之风',
-        'Cloud Of Locust': '飞蝗入侵',
-        'Cloud Of Locusts': '飞蝗入侵',
-      },
-      '~effectNames': {
-      },
-    },
-  ],
 }];

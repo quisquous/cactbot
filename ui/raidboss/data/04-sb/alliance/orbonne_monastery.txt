@@ -301,7 +301,7 @@ hideall "--sync--"
 6004.0 "--sync--" sync /:38C2:Ultima, the High Seraph/ window 1000,0
 6007.0 "Demi-Virgo Line" sync /:Ultima, the High Seraph:38C2:/
 6016.0 "East/West March" sync /:Ultima, the High Seraph:38A[01]:/
-6018.0 "Ray Of Light" sync /:Dominion:38B7:/
+6018.0 "Ray of Light" sync /:Dominion:38B7:/
 6026.4 "Redemption" sync /:Ultima, the High Seraph:38AA:/
 6035.5 "Grand Cross" sync /:Ultima, the High Seraph:38C8:/ duration 15.5
 6043.4 "East/West March" sync /:Ultima, the High Seraph:38A[01]:/
@@ -332,7 +332,7 @@ hideall "--sync--"
 
 6253.6 "Demi-Virgo Line" sync /:Ultima, the High Seraph:38C2:/
 6262.5 "East/West March" sync /:Ultima, the High Seraph:38A[01]:/
-6264.7 "Ray Of Light" sync /:Dominion:38B7:/
+6264.7 "Ray of Light" sync /:Dominion:38B7:/
 6271.1 "Redemption" sync /:Ultima, the High Seraph:38AA:/
 6272.5 "Holy IV" sync /:Ultima, the High Seraph:389B:/
 
@@ -354,7 +354,7 @@ hideall "--sync--"
 6503.0 "Demi-Virgo Line/Tether" sync /:Ultima, the High Seraph:38C2:/ window 8,8
 6509.1 "Redemption" sync /:Ultima, the High Seraph:38AA:/
 6510.4 "Holy IV" sync /:Ultima, the High Seraph:389B:/
-6513.9 "Ray Of Light" sync /:Dominion:38B7:/ # drift -0.044
+6513.9 "Ray of Light" sync /:Dominion:38B7:/ # drift -0.044
 
 6516.3 "Demi-Virgo Tether/Feet" sync /:Ultima, the High Seraph:38C2:/ window 8,8
 6518.8 "Holy IV" sync /:Ultima, the High Seraph:389B:/
@@ -366,7 +366,7 @@ hideall "--sync--"
 6540.0 "Demi-Virgo Line/Tether" sync /:Ultima, the High Seraph:38C2:/ window 20,20 jump 6503
 6546.1 "Redemption"
 6547.4 "Holy IV"
-6550.9 "Ray Of Light"
+6550.9 "Ray of Light"
 
 6553.3 "Demi-Virgo Tether/Feet"
 6555.8 "Holy IV"

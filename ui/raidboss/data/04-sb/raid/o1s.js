@@ -118,28 +118,47 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Black Hole': 'Schwarz[a] Loch',
+        'Alte Roite': 'Alte Roite',
+        'Black Hole': 'Schwarzes Loch',
         'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
+        'Wyrm Tail': 'Antiker Drachenschweif',
       },
       'replaceText': {
+        '(safe)': '(safe)', // FIXME
+        '(spread)': '(spread)', // FIXME
+        '(stack)': '(stack)', // FIXME
         '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Black Hole': 'Schwarzes Loch',
         'Black Spark': 'Schwarzer Funke',
+        'Blaze': 'Flamme',
         'Blizzard III': 'Eisga',
+        'Breath Wing': 'Atemschwinge',
+        'Charybdis': 'Charybdis',
+        'Clamp': 'Klammer',
+        'Classical': 'Classical', // FIXME
         'Clearout': 'Kreisfeger',
         'Collision': 'Aufprall',
         'Doom': 'Verhängnis',
+        'Downburst': 'Fallböe',
         'Enrage': 'Finalangriff',
         'Fire III': 'Feuga',
         'Flare': 'Flare',
         'Holy': 'Sanctus',
-        'Meteor': 'Meteor',
+        'Inner Fireballs': 'Inner Fireballs', // FIXME
+        'Levinbolt': 'Keraunisches Feld',
+        'Meteor': 'Meteo',
+        'Outer Fireballs': 'Outer Fireballs', // FIXME
+        'Roar': 'Brüllen',
+        'Teleport': 'Teleport',
         'The Decisive Battle': 'Entscheidungsschlacht',
+        'Thin Ice': 'Glatteis',
         'Thunder III': 'Blitzga',
-        'Unknown Ability': 'Unknown Ability',
+        'Twin Bolt': 'Zwillingsschlag',
+        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': 'Vakuumwelle',
+        'Wyrm Tail': 'Antiker Drachenschweif',
         'Zombie Breath': 'Zombie-Atem',
       },
       '~effectNames': {
@@ -148,69 +167,108 @@
         'Doom': 'Verhängnis',
         'Lightning Resistance Down': 'Blitzresistenz -',
         'Paralysis': 'Paralyse',
-        'Pyretic': 'Pyretisch',
+        'Pyretic': 'Hitze',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Black Hole': 'Trou Noir',
+        'Alte Roite': 'Alte Roite',
+        'Black Hole': 'Trou noir',
         'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
+        'Wyrm Tail': 'Queue du dragon ancestral',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
+        '(safe)': '(safe)', // FIXME
+        '(spread)': '(spread)', // FIXME
+        '(stack)': '(stack)', // FIXME
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
-        'Black Hole': 'Trou Noir',
-        'Black Spark': 'Étincelle Noire',
+        'Black Hole': 'Trou noir',
+        'Black Spark': 'Étincelle noire',
+        'Blaze': 'Fournaise',
         'Blizzard III': 'Méga Glace',
+        'Breath Wing': 'Aile déferlante',
+        'Charybdis': 'Charybde',
+        'Clamp': 'Pinçage',
+        'Classical': 'Classical', // FIXME
         'Clearout': 'Fauchage',
         'Collision': 'Impact',
         'Doom': 'Glas',
+        'Downburst': 'Rafale descendante',
         'Enrage': 'Enrage',
         'Fire III': 'Méga Feu',
         'Flare': 'Brasier',
         'Holy': 'Miracle',
+        'Inner Fireballs': 'Inner Fireballs', // FIXME
+        'Levinbolt': 'Fulguration',
         'Meteor': 'Météore',
-        'The Decisive Battle': 'Combat Décisif',
+        'Outer Fireballs': 'Outer Fireballs', // FIXME
+        'Roar': 'Rugissement',
+        'Teleport': 'Téléportation',
+        'The Decisive Battle': 'Combat décisif',
+        'Thin Ice': 'Verglas',
         'Thunder III': 'Méga Foudre',
-        'Unknown Ability': 'Unknown Ability',
-        'Vacuum Wave': 'Vacuum',
-        'Zombie Breath': 'Haleine Zombie',
+        'Twin Bolt': 'Éclairs jumeaux',
+        'Unknown Ability': 'Unknown Ability', // FIXME
+        'Vacuum Wave': 'Vague de vide',
+        'Wyrm Tail': 'Queue du dragon ancestral',
+        'Zombie Breath': 'Haleine zombie',
       },
       '~effectNames': {
-        'Bleeding': 'Saignant',
+        'Bleeding': 'Saignement',
         'Deep Freeze': 'Congélation',
         'Doom': 'Glas',
-        'Lightning Resistance Down': 'Résistance à La Foudre Réduite',
+        'Lightning Resistance Down': 'Résistance à la foudre réduite',
         'Paralysis': 'Paralysie',
-        'Pyretic': 'Chaleur',
+        'Pyretic': 'Ardeur',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
+        'Alte Roite': 'アルテ・ロイテ',
         'Black Hole': 'ブラックホール',
         'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
+        'Wyrm Tail': '太古の龍尾',
       },
       'replaceText': {
+        '(safe)': '(safe)', // FIXME
+        '(spread)': '(spread)', // FIXME
+        '(stack)': '(stack)', // FIXME
+        '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',
+        'Blaze': '火炎',
         'Blizzard III': 'ブリザガ',
+        'Breath Wing': 'ブレスウィング',
+        'Charybdis': 'ミールストーム',
+        'Clamp': 'クランプ',
+        'Classical': 'Classical', // FIXME
         'Clearout': 'なぎ払い',
         'Collision': '衝撃',
         'Doom': '死の宣告',
+        'Downburst': 'ダウンバースト',
+        'Enrage': 'Enrage',
         'Fire III': 'ファイガ',
         'Flare': 'フレア',
         'Holy': 'ホーリー',
+        'Inner Fireballs': 'Inner Fireballs', // FIXME
+        'Levinbolt': '稲妻',
         'Meteor': 'メテオ',
+        'Outer Fireballs': 'Outer Fireballs', // FIXME
+        'Roar': '咆哮',
+        'Teleport': 'テレポ',
         'The Decisive Battle': '決戦',
+        'Thin Ice': '氷床',
         'Thunder III': 'サンダガ',
-        'Unknown Ability': 'Unknown Ability',
+        'Twin Bolt': 'ツインボルト',
+        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': '真空波',
+        'Wyrm Tail': '太古の龍尾',
         'Zombie Breath': 'ゾンビブレス',
       },
       '~effectNames': {
@@ -220,6 +278,116 @@
         'Lightning Resistance Down': '雷属性耐性低下',
         'Paralysis': '麻痺',
         'Pyretic': 'ヒート',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Alte Roite': '老者',
+        'Black Hole': '黑洞',
+        'Engage!': '战斗开始！',
+        'Exdeath': '艾克斯迪司',
+        'Wyrm Tail': '太古龙尾',
+      },
+      'replaceText': {
+        '(safe)': '(safe)', // FIXME
+        '(spread)': '(spread)', // FIXME
+        '(stack)': '(stack)', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Black Hole': '黑洞',
+        'Black Spark': '黑洞',
+        'Blaze': '炎爆',
+        'Blizzard III': '冰封',
+        'Breath Wing': '风息之翼',
+        'Charybdis': '大漩涡',
+        'Clamp': '压迫',
+        'Classical': 'Classical', // FIXME
+        'Clearout': '横扫',
+        'Collision': '冲击',
+        'Doom': '死亡宣告',
+        'Downburst': '下行突风',
+        'Enrage': 'Enrage', // FIXME
+        'Fire III': '爆炎',
+        'Flare': '核爆',
+        'Holy': '神圣',
+        'Inner Fireballs': 'Inner Fireballs', // FIXME
+        'Levinbolt': '闪电',
+        'Meteor': '陨石',
+        'Outer Fireballs': 'Outer Fireballs', // FIXME
+        'Roar': '咆啸',
+        'Teleport': '传送',
+        'The Decisive Battle': '决战',
+        'Thin Ice': '冰面',
+        'Thunder III': '暴雷',
+        'Twin Bolt': '双重落雷',
+        'Unknown Ability': 'Unknown Ability', // FIXME
+        'Vacuum Wave': '真空波',
+        'Wyrm Tail': '太古龙尾',
+        'Zombie Breath': '死亡吐息',
+      },
+      '~effectNames': {
+        'Bleeding': '出血',
+        'Deep Freeze': '冻结',
+        'Doom': '死亡宣告',
+        'Lightning Resistance Down': '雷属性耐性降低',
+        'Paralysis': '麻痹',
+        'Pyretic': '', // FIXME
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Alte Roite': '알테 로이테',
+        'Black Hole': '블랙홀',
+        'Engage!': '전투 시작!',
+        'Exdeath': '엑스데스',
+        'Wyrm Tail': '태고의 용 꼬리',
+      },
+      'replaceText': {
+        '(safe)': '(safe)', // FIXME
+        '(spread)': '(spread)', // FIXME
+        '(stack)': '(stack)', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Black Hole': '블랙홀',
+        'Black Spark': '검은 불꽃',
+        'Blaze': '화염',
+        'Blizzard III': '블리자가',
+        'Breath Wing': '날개바람',
+        'Charybdis': '대소용돌이',
+        'Clamp': '압박',
+        'Classical': 'Classical', // FIXME
+        'Clearout': '휩쓸기',
+        'Collision': '충격',
+        'Doom': '죽음의 선고',
+        'Downburst': '하강 기류',
+        'Enrage': 'Enrage', // FIXME
+        'Fire III': '파이가',
+        'Flare': '플레어',
+        'Holy': '홀리',
+        'Inner Fireballs': 'Inner Fireballs', // FIXME
+        'Levinbolt': '우레',
+        'Meteor': '메테오',
+        'Outer Fireballs': 'Outer Fireballs', // FIXME
+        'Roar': '포효',
+        'Teleport': '텔레포',
+        'The Decisive Battle': '결전',
+        'Thin Ice': '얼음 바닥',
+        'Thunder III': '선더가',
+        'Twin Bolt': '이중 낙뢰',
+        'Unknown Ability': 'Unknown Ability', // FIXME
+        'Vacuum Wave': '진공파',
+        'Wyrm Tail': '태고의 용 꼬리',
+        'Zombie Breath': '좀비 숨결',
+      },
+      '~effectNames': {
+        'Bleeding': '고통',
+        'Deep Freeze': '빙결',
+        'Doom': '죽음의 선고',
+        'Lightning Resistance Down': '번개속성 저항 감소',
+        'Paralysis': '마비',
+        'Pyretic': '', // FIXME
       },
     },
   ],

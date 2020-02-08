@@ -4,8 +4,8 @@
 # Last Updated: 07/31/2017
 
 #############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
+########CUSTOMIZE your timeline. Remove the hashtag from
+########the beginning of the following lines to prevent
 ########them from appearing on your timeline.
 
 #hideall "--Reset--"
@@ -68,7 +68,7 @@
 
 ########Phase 1
 0	"Start" sync /:Engage!/ window 0,1
-10	"Critical Hit"	sync /uses Critical Hit/ window 10,10	#Tank buster
+10	"Critical Hit"	sync /:Halicarnassus:22EB:/ window 10,10	#Tank buster
 19	"Spellblade Holy"	duration 6 #4 players spread/stack
 37	"Queen's Waltz (Clock)"	#Spread around boss
 41	"Haste"
@@ -79,7 +79,7 @@
 72	"The Game"	#Stand on role tiles
 
 ########Phase 2
-81	"Panel Swap"	sync /uses Panel Swap/ window 30	#Arena changes
+81	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30	#Arena changes
 90	"Queen's Waltz (Tethers)"	#Applies thorny tethers
 93	"Tethers"	#Run from partner Healer/Tank always tethered to a DPS. Never Healer-Healer, tank-tank, tank-healer, dps-dps.
 95	"Fire"	#Spellblade Fire III
@@ -98,7 +98,7 @@
 167	"Dimensional Wave"	#AoE
 
 ########Phase 3
-174	"Panel Swap"	sync /uses Panel Swap/ window 30	#Arena changes
+174	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30	#Arena changes
 180	"Place Token"	#spawns add
 181	"--Great Dragon Spawns--"	#Spawns add
 191	"Queen's Waltz (Crystals)"	#AoE + Stand on blue tiles
@@ -113,7 +113,7 @@
 253	"Dimensional Wave"	#AoE
 
 ########Phase 4
-260	"Panel Swap"	sync /uses Panel Swap/ window 30	#Arena changes
+260	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30	#Arena changes
 267	"Queen's Waltz (Books)"	#Spread, one person per tile (Folio)
 274	"Oink"	#Stack with another player
 279	"Place Token (Apanda)"	#Spawns add
@@ -129,7 +129,7 @@
 347	"Dimensional Wave"	#AoE
 
 ########Phase 5
-355	"Panel Swap"	sync /uses Panel Swap/ window 30
+355	"Panel Swap"	sync /:Halicarnassus:2304:/ window 30
 360	"The Playing Field"
 371	"Tanks Morph"	#Ribbit, Squelch, or Oink
 377	"Healers Morph"	#Ribbit, Squelch, or Oink
@@ -149,7 +149,7 @@
 500	"Dimensional Wave"	#AoE
 510	"Place Token (Ninjas/Giant)"	#Spawns ninja adds + iron giant
 511	"--Ninjas + Giant Spawn--"
-520	"Haste III"	sync /casts Haste III/ window 100
+520	"Haste III"	sync /:22F5:Halicarnassus/ window 100
 524	"Dimensional Wave"	#AoE
 530	"Dimensional Wave"	#AoE
 535	"Dimensional Wave"	#AoE

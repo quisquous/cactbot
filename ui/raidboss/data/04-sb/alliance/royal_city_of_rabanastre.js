@@ -293,4 +293,391 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Archaeodemon': 'Archaeodämon',
+        'command tower': 'Kommandoturm',
+        'Frostwave': 'Polarlanze',
+        'I am Revelation': 'Seht die Offenbarung',
+        'I am the truth from which you run': 'Die Maske zeigt euch die Macht des wahren Gottes! Fügt euch der Offenbarung!',
+        'I am the lies upon which you sup': 'Die Maske zeigt euch die Macht des falschen Gottes! Fügt euch der Offenbarung!',
+        'Mateus, The Corrupt': 'Mateus (?:der|die|das) Peiniger',
+        'Argath Thadalfus': 'Argath Thadalfus',
+        'Hashmal, Bringer Of Order': 'Hashmallim der Einiger',
+        'Rofocale': 'Rofocale',
+        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
+        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
+        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
+        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
+        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+      },
+      'replaceText': {
+        '--enrage--': '--enrage--', // FIXME
+        '--face--': '--face--', // FIXME
+        '--ice disappears--': '--ice disappears--', // FIXME
+        '--invulnerable--': '--invulnerable--', // FIXME
+        '--knockback--': '--knockback--', // FIXME
+        '--lock out--': '--lock out--', // FIXME
+        '--meteors--': '--meteors--', // FIXME
+        '--reset--': '--reset--', // FIXME
+        '--start--': '--start--', // FIXME
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
+        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
+        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
+        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
+        'Blizzard IV': 'Eiska',
+        'Chariot': 'Streitwagen',
+        'Coldblood': 'Kaltblut',
+        'Command Tower': 'Turmkommando',
+        'Control Tower': 'Turmkontrolle',
+        'Crippling Blow': 'Verkrüppelnder Schlag',
+        'Crush Helm': 'Himmelsbombardement',
+        'Crush Weapon': 'Jenseitsschrei',
+        'Cry of Victory': 'Kampfruf',
+        'Dark Geas': 'Dunkles Gelöbnis',
+        'Earth Hammer': 'Erdhammer',
+        'Embrace': 'Attacke',
+        'Extreme Edge': 'Extremkante',
+        'Fire IV': 'Feuka',
+        'Frog Phase': 'Frog Phase', // FIXME
+        'Frostwave': 'Polarlanze',
+        'Gnawing Dread': 'Nagende Angst',
+        'Golem Adds': 'Golem Adds', // FIXME
+        'Heavenly Subjugation': 'Himmelsgewalt',
+        'Hole In One': 'Hole In One', // FIXME
+        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Judgment': 'Aburteilung',
+        'Landwaster': 'Landverwüster',
+        'Line AOEs': 'Line AOEs', // FIXME
+        'Maverick': 'Einzelgänger',
+        'Pomp and Circumstance': 'Pauken und Trompeten',
+        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
+        'Quake IV': 'Seiska',
+        'Rock Cutter': 'Steinfräse',
+        'Royal Blood': 'Blaues Blut',
+        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
+        'Shades Appear': 'Shades Appear', // FIXME
+        'Shard Adds': 'Shard Adds', // FIXME
+        'Soulfix': 'Seelenspießer',
+        'Stack Damage': 'Stack Damage', // FIXME
+        'Submission Tower': 'Turmdivision',
+        'Trample': 'Mariden-Stampfer',
+        'Trepidation': 'Beklemmung',
+        'Unbind': 'Loseisen',
+        'Unrelenting': 'Unerbittliche Klinge',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Archaeodemon': 'archéodémon',
+        'command tower': 'tour de commandement',
+        'Frostwave': 'Vague réfrigérante',
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
+        'Mateus, The Corrupt': 'Mateus le Corrompu',
+        'Argath Thadalfus': 'Argath Thadalfus',
+        'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
+        'Rofocale': 'Rofocale le Roi centaure',
+        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
+        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
+        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
+        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
+        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+      },
+      'replaceText': {
+        '--enrage--': '--enrage--', // FIXME
+        '--face--': '--face--', // FIXME
+        '--ice disappears--': '--ice disappears--', // FIXME
+        '--invulnerable--': '--invulnerable--', // FIXME
+        '--knockback--': '--knockback--', // FIXME
+        '--lock out--': '--lock out--', // FIXME
+        '--meteors--': '--meteors--', // FIXME
+        '--reset--': '--reset--', // FIXME
+        '--start--': '--start--', // FIXME
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
+        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
+        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
+        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
+        'Blizzard IV': 'Giga Glace',
+        'Chariot': 'Charge centaure',
+        'Coldblood': 'Sang-froid',
+        'Command Tower': 'Tour de commandement',
+        'Control Tower': 'Tour de contrôle',
+        'Crippling Blow': 'Coup handicapant',
+        'Crush Helm': 'Bombardement céleste',
+        'Crush Weapon': 'Cri de l\'au-delà',
+        'Cry of Victory': 'Cri de triomphe',
+        'Dark Geas': 'Invocation ténébreuse',
+        'Earth Hammer': 'Marteau tellurique',
+        'Embrace': 'Attaque',
+        'Extreme Edge': 'Taille suprême',
+        'Fire IV': 'Giga Feu',
+        'Frog Phase': 'Frog Phase', // FIXME
+        'Frostwave': 'Vague réfrigérante',
+        'Gnawing Dread': 'Peur calamiteuse',
+        'Golem Adds': 'Golem Adds', // FIXME
+        'Heavenly Subjugation': 'Marche triomphale',
+        'Hole In One': 'Hole In One', // FIXME
+        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Judgment': 'Jugement',
+        'Landwaster': 'Dislocation terrestre',
+        'Line AOEs': 'Line AOEs', // FIXME
+        'Maverick': 'Franc-tireur',
+        'Pomp and Circumstance': 'La pompe et l’attirail',
+        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
+        'Quake IV': 'Giga Séisme',
+        'Rock Cutter': 'Trancheur rocheux',
+        'Royal Blood': 'Sang royal',
+        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
+        'Shades Appear': 'Shades Appear', // FIXME
+        'Shard Adds': 'Shard Adds', // FIXME
+        'Soulfix': 'Fixage d\'âme',
+        'Stack Damage': 'Stack Damage', // FIXME
+        'Submission Tower': 'Tour de soumission',
+        'Trample': 'Martèlement pachydermique',
+        'Trepidation': 'Trépidation',
+        'Unbind': 'Délivrance',
+        'Unrelenting': 'Déferlement',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Archaeodemon': 'アルケオデーモン',
+        'command tower': '支配の塔',
+        'Frostwave': '凍てつく波動',
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
+        'Mateus, The Corrupt': '背徳の皇帝マティウス',
+        'Argath Thadalfus': '冷血剣アルガス',
+        'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
+        'Rofocale': '人馬王ロフォカレ',
+        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
+        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
+        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
+        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
+        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+      },
+      'replaceText': {
+        '--enrage--': '--enrage--', // FIXME
+        '--face--': '--face--', // FIXME
+        '--ice disappears--': '--ice disappears--', // FIXME
+        '--invulnerable--': '--invulnerable--', // FIXME
+        '--knockback--': '--knockback--', // FIXME
+        '--lock out--': '--lock out--', // FIXME
+        '--meteors--': '--meteors--', // FIXME
+        '--reset--': '--reset--', // FIXME
+        '--start--': '--start--', // FIXME
+        '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
+        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
+        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
+        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
+        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
+        'Blizzard IV': 'ブリザジャ',
+        'Chariot': '人馬戦車',
+        'Coldblood': '冷血乱舞',
+        'Command Tower': '支配の塔',
+        'Control Tower': '統制の塔',
+        'Crippling Blow': '痛打',
+        'Crush Helm': '星天爆撃打',
+        'Crush Weapon': '冥界恐叫打',
+        'Cry of Victory': '鬨の声',
+        'Dark Geas': '暗黒魔法陣',
+        'Earth Hammer': '大地のハンマー',
+        'Embrace': '攻撃',
+        'Extreme Edge': 'ブーストエッジ',
+        'Fire IV': 'ファイジャ',
+        'Frog Phase': 'Frog Phase', // FIXME
+        'Frostwave': '凍てつく波動',
+        'Gnawing Dread': '喪失の恐怖',
+        'Golem Adds': 'Golem Adds', // FIXME
+        'Heavenly Subjugation': '天将覇道撃',
+        'Hole In One': 'Hole In One', // FIXME
+        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Judgment': 'ジャッジメント',
+        'Landwaster': 'ランドワスター',
+        'Line AOEs': 'Line AOEs', // FIXME
+        'Maverick': '独立独行',
+        'Pomp and Circumstance': '威風堂々',
+        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
+        'Quake IV': 'クエイジャ',
+        'Rock Cutter': 'ロックカッター',
+        'Royal Blood': '高貴なる血脈',
+        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
+        'Shades Appear': 'Shades Appear', // FIXME
+        'Shard Adds': 'Shard Adds', // FIXME
+        'Soulfix': '呪槍串刺',
+        'Stack Damage': 'Stack Damage', // FIXME
+        'Submission Tower': '服従の塔',
+        'Trample': '踏みつけ',
+        'Trepidation': '狐鶏鼠',
+        'Unbind': '拘束解放',
+        'Unrelenting': '千手無双剣',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Archaeodemon': '古恶魔',
+        'command tower': '支配之塔',
+        'Frostwave': '寒冰波动',
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
+        'Mateus, The Corrupt': '背德皇帝马提乌斯',
+        'Argath Thadalfus': '冷血剑阿加斯',
+        'Hashmal, Bringer Of Order': '统治者哈修马利姆',
+        'Rofocale': '人马王洛弗卡勒',
+        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
+        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
+        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
+        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
+        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+      },
+      'replaceText': {
+        '--enrage--': '--enrage--', // FIXME
+        '--face--': '--face--', // FIXME
+        '--ice disappears--': '--ice disappears--', // FIXME
+        '--invulnerable--': '--invulnerable--', // FIXME
+        '--knockback--': '--knockback--', // FIXME
+        '--lock out--': '--lock out--', // FIXME
+        '--meteors--': '--meteors--', // FIXME
+        '--reset--': '--reset--', // FIXME
+        '--start--': '--start--', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
+        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
+        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
+        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
+        'Blizzard IV': '冰澈',
+        'Chariot': '人马战车',
+        'Coldblood': '冷血乱舞',
+        'Command Tower': '支配之塔',
+        'Control Tower': '统治之塔',
+        'Crippling Blow': '痛击',
+        'Crush Helm': '星天爆击打',
+        'Crush Weapon': '冥界恐叫打',
+        'Cry of Victory': '战吼',
+        'Dark Geas': '暗黑魔法阵',
+        'Earth Hammer': '大地之锤',
+        'Embrace': '攻击',
+        'Extreme Edge': '加速刃',
+        'Fire IV': '炽炎',
+        'Frog Phase': 'Frog Phase', // FIXME
+        'Frostwave': '寒冰波动',
+        'Gnawing Dread': '丧失之痛',
+        'Golem Adds': 'Golem Adds', // FIXME
+        'Heavenly Subjugation': '天将霸道击',
+        'Hole In One': 'Hole In One', // FIXME
+        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Judgment': '制裁',
+        'Landwaster': '地动',
+        'Line AOEs': 'Line AOEs', // FIXME
+        'Maverick': '特立独行',
+        'Pomp and Circumstance': '威风凛凛',
+        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
+        'Quake IV': '激震',
+        'Rock Cutter': '石刃',
+        'Royal Blood': '高贵血脉',
+        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
+        'Shades Appear': 'Shades Appear', // FIXME
+        'Shard Adds': 'Shard Adds', // FIXME
+        'Soulfix': '咒枪穿刺',
+        'Stack Damage': 'Stack Damage', // FIXME
+        'Submission Tower': '服从之塔',
+        'Trample': '踩踏',
+        'Trepidation': '狐鸡鼠',
+        'Unbind': '拘束解放',
+        'Unrelenting': '千手无双剑',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Archaeodemon': '원시 악마',
+        'command tower': '지배의 탑',
+        'Frostwave': '얼어붙은 파동',
+        'I am Revelation': 'I am Revelation', // FIXME
+        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
+        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
+        'Mateus, The Corrupt': '배덕의 황제 마티우스',
+        'Argath Thadalfus': '냉혈검 아르가스',
+        'Hashmal, Bringer Of Order': '통제자 하쉬말림',
+        'Rofocale': '인마왕 로포칼레',
+        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
+        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
+        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
+        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
+        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+      },
+      'replaceText': {
+        '--enrage--': '--enrage--', // FIXME
+        '--face--': '--face--', // FIXME
+        '--ice disappears--': '--ice disappears--', // FIXME
+        '--invulnerable--': '--invulnerable--', // FIXME
+        '--knockback--': '--knockback--', // FIXME
+        '--lock out--': '--lock out--', // FIXME
+        '--meteors--': '--meteors--', // FIXME
+        '--reset--': '--reset--', // FIXME
+        '--start--': '--start--', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
+        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
+        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
+        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
+        'Blizzard IV': '블리자쟈',
+        'Chariot': '인마전차',
+        'Coldblood': '냉혈난무',
+        'Command Tower': '지배의 탑',
+        'Control Tower': '통제의 탑',
+        'Crippling Blow': '통타',
+        'Crush Helm': '성천폭격타',
+        'Crush Weapon': '명계공규타',
+        'Cry of Victory': '승리의 함성',
+        'Dark Geas': '암흑 마법진',
+        'Earth Hammer': '대지의 망치',
+        'Embrace': '공격',
+        'Extreme Edge': '돌격하는 칼날',
+        'Fire IV': '파이쟈',
+        'Frog Phase': 'Frog Phase', // FIXME
+        'Frostwave': '얼어붙은 파동',
+        'Gnawing Dread': '상실의 공포',
+        'Golem Adds': 'Golem Adds', // FIXME
+        'Heavenly Subjugation': '천장패도격',
+        'Hole In One': 'Hole In One', // FIXME
+        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Judgment': '심판의 날',
+        'Landwaster': '대지 황폐화',
+        'Line AOEs': 'Line AOEs', // FIXME
+        'Maverick': '독립독행',
+        'Pomp and Circumstance': '위풍당당',
+        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
+        'Quake IV': '퀘이쟈',
+        'Rock Cutter': '바위 가르기',
+        'Royal Blood': '고귀한 혈통',
+        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
+        'Shades Appear': 'Shades Appear', // FIXME
+        'Shard Adds': 'Shard Adds', // FIXME
+        'Soulfix': '저주창 내리꽂기',
+        'Stack Damage': 'Stack Damage', // FIXME
+        'Submission Tower': '복종의 탑',
+        'Trample': '짓밟기',
+        'Trepidation': '여우 닭 쥐',
+        'Unbind': '구속 해방',
+        'Unrelenting': '천수무쌍검',
+      },
+    },
+  ],
 }];

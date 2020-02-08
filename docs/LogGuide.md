@@ -176,7 +176,7 @@ and are (mostly) not raw network data.
 Here are some example network log lines:
 
 ```log
-21|2019-05-31T21:14:56.8980000-07:00|10686258|Tini Poutini|DF9|Fire IV|40002F21|Zombie Brobinyak|150003|3B9D4002|1C|DF98000|0|0|0|0|0|0|0|0|0|0|0|0|104815|348652|12000|12000|1000|1000|-767.7882|156.939|-672.0446|26285|28784|13920|15480|1000|1000|-771.8156|157.1111|-671.3281||8eaa0245ad01981b69fc1af04ea8f9a1
+21|2019-05-31T21:14:56.8980000-07:00|10532971|Tini Poutini|DF9|Fire IV|40002F21|Zombie Brobinyak|150003|3B9D4002|1C|DF98000|0|0|0|0|0|0|0|0|0|0|0|0|104815|348652|12000|12000|1000|1000|-767.7882|156.939|-672.0446|26285|28784|13920|15480|1000|1000|-771.8156|157.1111|-671.3281||8eaa0245ad01981b69fc1af04ea8f9a1
 30|2019-05-31T20:02:41.4560000-07:00|6b4|Boost|0.00|1069C23F|Potato Chippy|1069C23F|Potato Chippy|00|3394|3394||4f7b1fa11ec7a2746a8c46379481267c
 20|2019-05-31T20:02:41.4660000-07:00|105E3321|Tater Tot|2C9D|Peculiar Light|105E3321|Tater Tot||c375d8a2d1cf48efceccb136584ed250
 ```
@@ -210,7 +210,7 @@ The log line type is in hex.
 Here is an example:
 
 ```log
-[21:16:44.288] 15:10686258:Potato Chippy:9C:Scathe:40001299:Striking Dummy:750003:90D0000:1C:9C8000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0:0:1000:1000:-653.9767:-807.7275:31.99997:26945:28784:6720:15480:1000:1000:-631.5208:-818.5244:31.95173:
+[21:16:44.288] 15:10532971:Potato Chippy:9C:Scathe:40001299:Striking Dummy:750003:90D0000:1C:9C8000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0:0:1000:1000:-653.9767:-807.7275:31.99997:26945:28784:6720:15480:1000:1000:-631.5208:-818.5244:31.95173:
 ```
 
 ### Game Log Lines
@@ -233,7 +233,7 @@ This could be the player, Bahamut, Eos, a Striking Dummy.
 Object ids are 4 byte identifiers used for all types of objects.
 
 Player ids always start with the byte `10`,
-e.g. `1069C23F` or `10686258`.
+e.g. `1069C23F` or `10532971`.
 
 Enemy and pet ids always start with the byte `40`,
 e.g. `4000A848` or `4000A962`.
@@ -470,7 +470,7 @@ Do not write triggers against this as this is only emitted when parsing from mem
 Examples:
 
 ```log
-0A:10686258:Potato Chippy:17:Circle Of Scorn:40001299:Striking Dummy:710003:6850000:ef010f:f80000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0
+0A:10532971:Potato Chippy:17:Circle Of Scorn:40001299:Striking Dummy:710003:6850000:ef010f:f80000:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0
 ```
 
 ### 0B: PartyList
@@ -543,12 +543,12 @@ If your trigger includes the message type, it is usually best to write your rege
 Ground AOEs that don't hit anybody are type `16`.
 
 Example:
-`15:10686258:Tini Poutini:07:Attack:40001299:Striking Dummy:710003:9420000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0:0:1000:1000:-653.9767:-807.7275:31.99997:66480:74095:4560:4560:1000:1000:-653.0394:-807.9677:31.99997:`
+`15:10532971:Tini Poutini:07:Attack:40001299:Striking Dummy:710003:9420000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2778:2778:0:0:1000:1000:-653.9767:-807.7275:31.99997:66480:74095:4560:4560:1000:1000:-653.0394:-807.9677:31.99997:`
 
 Index | Example | Explanation
 --- | --- | ---
 0 | 15 | type id (in hex)
-1 | 10686258 | caster object id
+1 | 10532971 | caster object id
 2 | Tini Poutini | caster name
 3 | 07 | ability id
 4 | Attack | ability name
@@ -770,7 +770,7 @@ Structure:
 Examples:
 
 ```log
-1B:10686258:Tini Poutini:0000:0000:0027:0000:0000:0000:
+1B:10532971:Tini Poutini:0000:0000:0027:0000:0000:0000:
 1B:106F0213:Potato Chippy:0000:0EE3:0061:0000:0000:0000:
 ```
 
@@ -868,8 +868,8 @@ Info about the current player's job gauge.
 Examples:
 
 ```log
-1F:10686258:Tini Poutini:C8000019:FD32:D0DF8C00:7FC0
-1F:10686258:Potato Chippy:C863AC19:1000332:D0DF8C00:7FC0
+1F:10532971:Tini Poutini:C8000019:FD32:D0DF8C00:7FC0
+1F:10532971:Potato Chippy:C863AC19:1000332:D0DF8C00:7FC0
 ```
 
 Each of the values after the name represents the memory for the job gauge,
@@ -878,7 +878,7 @@ To get back to the original memory, zero pad out to 4 bytes,
 and then reverse the bytes (because little endian).
 
 For example, take this line:
-`1F:10686258:Tini Poutini:C8000019:FD32:D0DF8C00:7FC0`
+`1F:10532971:Tini Poutini:C8000019:FD32:D0DF8C00:7FC0`
 
 Zero extended:
 `:C8000019:0000FD32:D0DF8C00:`
@@ -983,7 +983,7 @@ Examples:
 ```log
 23:40015B4E:Weapons Node:40015B4D:Gravity Node:751E:0000:000E:40015B4D:000F:7F4B:
 23:4000E84B:Zu Cockerel:1048638C:Tini Poutini:0000:0000:0006:1048638C:000F:7FEF:
-23:40001614:Omega:10686258:Potato Chippy:0023:0000:0054:10686258:000F:0000:
+23:40001614:Omega:10532971:Potato Chippy:0023:0000:0054:10532971:000F:0000:
 ```
 
 The type of tether in the above three lines are `000E`, `0006`, and `0054` respectively.

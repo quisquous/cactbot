@@ -12,7 +12,7 @@
 14.8 "Twin Bolt" duration 5
 
 # spread: knockback => in => spread+lightning
-28.7 "Classical (spread)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+28.7 "Classical (spread)" sync /:1EDC:Alte Roite/ window 10,10
 51.2 "Thin Ice"
 52.2 "Downburst"
 56 "Outer Fireballs"
@@ -38,7 +38,7 @@
 
 ###### 2nd Classical Elements
 # safe: knockback safe spot => spread+lightning
-188.1 "Classical (safe)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+188.1 "Classical (safe)" sync /:1EDC:Alte Roite/ window 10,10
 213.2 "Downburst"
 213.6 "Thin Ice"
 215.6 "Outer Fireballs"
@@ -69,7 +69,7 @@
 
 ###### 3rd Classical Elements
 # stack: knockback => in => blaze stack
-343.6 "Classical (stack)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+343.6 "Classical (stack)" sync /:1EDC:Alte Roite/ window 10,10
 369.9 "Outer Fireballs"
 370.0 "Thin Ice"
 370.4 "Downburst"
@@ -88,7 +88,7 @@
 
 ##### 4th Classical Elements
 # spread: knockback => in => spread+lightning
-453.0 "Classical (spread)" sync /:Alte Roite starts using The Classical Elements/ window 10,10
+453.0 "Classical (spread)" sync /:1EDC:Alte Roite/ window 10,10
 469.0 "Thin Ice"
 470.0 "Downburst"
 475.0 "Outer Fireballs"
