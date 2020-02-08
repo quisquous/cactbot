@@ -159,7 +159,7 @@
         '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '11-Tonzen-Schlag',
         '11-Tonze Swipe': '11-Tonzen-Hieb',
-        '111-Tonze Swing': '111-Tonzen-Schwung',
+        '(?<!1)111-Tonze Swing': '111-Tonzen-Schwung',
         '1111-Tonze Swing': '1111-Tonzen-Schwung',
         'Aetherochemical Explosive': 'Ätherochemisches Explosivum',
         'Aetherochemical Mine': 'Ätherochemische Mine',
@@ -192,7 +192,7 @@
         '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': 'Taillade de 10 tonz',
         '11-Tonze Swipe': 'Fauche de 11 tonz',
-        '111-Tonze Swing': 'Swing de 111 tonz',
+        '(?<!1)111-Tonze Swing': 'Swing de 111 tonz',
         '1111-Tonze Swing': 'Swing de 1111 tonz',
         'Aetherochemical Explosive': 'Bombe magismologique',
         'Aetherochemical Mine': 'Mine magismologique',
@@ -225,7 +225,7 @@
         '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '10トンズ・スラッシュ',
         '11-Tonze Swipe': '11トンズ・スワイプ',
-        '111-Tonze Swing': '111トンズ・スイング',
+        '(?<!1)111-Tonze Swing': '111トンズ・スイング',
         '1111-Tonze Swing': '1111トンズ・スイング',
         'Aetherochemical Explosive': '魔科学爆弾',
         'Aetherochemical Mine': '魔科学地雷',
@@ -258,7 +258,7 @@
         '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '十吨挥打',
         '11-Tonze Swipe': '十一吨横扫',
-        '111-Tonze Swing': '百十一吨回转',
+        '(?<!1)111-Tonze Swing': '百十一吨回转',
         '1111-Tonze Swing': '千百十一吨回转',
         'Aetherochemical Explosive': '魔科学炸弹',
         'Aetherochemical Mine': '魔科学地雷',
@@ -291,7 +291,7 @@
         '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '10톤즈 베기',
         '11-Tonze Swipe': '11톤즈 후려치기',
-        '111-Tonze Swing': '111톤즈 휘두르기',
+        '(?<!1)111-Tonze Swing': '111톤즈 휘두르기',
         '1111-Tonze Swing': '1111톤즈 휘두르기',
         'Aetherochemical Explosive': '마과학 폭탄',
         'Aetherochemical Mine': '마과학 지뢰',

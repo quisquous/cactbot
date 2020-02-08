@@ -195,7 +195,8 @@
         'Harmachis': 'Harmachis',
         'Igeyorhm': 'Igeyorhm',
         'Lahabrea': 'Lahabrea',
-        'Magitek Turret ': 'Magitek-Geschütz ',
+        'Magitek Turret I': 'Magitek-Geschütz I',
+        'Magitek Turret II': 'Magitek-Geschütz II',
         'Neurolink Nacelle': 'Neurolink-Zelle',
         'Regula van Hydrus': 'Regula van Hydrus',
         'is no longer sealed': 'is no longer sealed', // FIXME
@@ -250,7 +251,8 @@
         'Harmachis': 'Horemakhet',
         'Igeyorhm': 'Igeyorhm',
         'Lahabrea': 'Lahabrea',
-        'Magitek Turret ': 'tourelle magitek TM-',
+        'Magitek Turret I': 'tourelle magitek TM-I',
+        'Magitek Turret II': 'tourelle magitek TM-II',
         'Neurolink Nacelle': 'Nacelle neurolien',
         'Regula van Hydrus': 'Regula van Hydrus',
         'is no longer sealed': 'is no longer sealed', // FIXME
@@ -305,7 +307,8 @@
         'Harmachis': 'ハルマキス',
         'Igeyorhm': 'アシエン・イゲオルム',
         'Lahabrea': 'アシエン・ラハブレア',
-        'Magitek Turret ': '魔導タレット',
+        'Magitek Turret I': '魔導タレットI',
+        'Magitek Turret II': '魔導タレットII',
         'Neurolink Nacelle': 'ニューロリンク・ナセル',
         'Regula van Hydrus': 'レグラ・ヴァン・ヒュドルス',
         'is no longer sealed': 'is no longer sealed', // FIXME
@@ -360,7 +363,8 @@
         'Harmachis': '赫鲁玛奇斯',
         'Igeyorhm': '以格约姆',
         'Lahabrea': '拉哈布雷亚',
-        'Magitek Turret ': '魔导炮塔',
+        'Magitek Turret I': '魔导炮塔I',
+        'Magitek Turret II': '魔导炮塔II',
         'Neurolink Nacelle': '拘束仓',
         'Regula van Hydrus': '雷古拉·范·休著斯',
         'is no longer sealed': 'is no longer sealed', // FIXME
@@ -415,7 +419,8 @@
         'Harmachis': '하르마키스',
         'Igeyorhm': '아씨엔 이게요름',
         'Lahabrea': '아씨엔 라하브레아',
-        'Magitek Turret ': '마도 포탑 ',
+        'Magitek Turret I': '마도 포탑 I',
+        'Magitek Turret II': '마도 포탑 II',
         'Neurolink Nacelle': '신경연결기관',
         'Regula van Hydrus': '레굴라 반 히드루스',
         'is no longer sealed': 'is no longer sealed', // FIXME

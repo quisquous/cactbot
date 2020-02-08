@@ -78,7 +78,7 @@ hideall "--sync--"
 360.0 "--sync--" sync /:Regula van Hydrus:10DF:/
 361.3 "Aetherochemical Grenado" sync /:Magitek Turret II:10E2:/
 365.0 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
-368.0 "Self-detonate?" sync /:Magitek Turret (I|II):10E3:/
+368.0 "Self-detonate?" sync /:(Magitek Turret I|Magitek Turret II):10E3:/
 368.7 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 372.5 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 373.7 "--sync--" sync /:Regula van Hydrus:10DF:/

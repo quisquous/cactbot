@@ -40,7 +40,7 @@
         'Dragonfly Avatar': 'Libellen-Inkarnation',
         'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': 'Lachende Rose',
-        'Liberation': 'Befreiung',
+        '(?<! )Liberation': 'Befreiung',
         'Orbs': 'Orbs', // FIXME
         'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': 'Säulen des Himmels',
@@ -87,7 +87,7 @@
         'Dragonfly Avatar': 'Incarnation de la libellule',
         'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': 'Rose rieuse',
-        'Liberation': 'Libération',
+        '(?<! )Liberation': 'Libération',
         'Orbs': 'Orbs', // FIXME
         'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': 'Piliers du ciel',
@@ -134,7 +134,7 @@
         'Dragonfly Avatar': '武辺の化身',
         'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': '月気弾',
-        'Liberation': '光焔【破】',
+        '(?<! )Liberation': '光焔【破】',
         'Orbs': 'Orbs', // FIXME
         'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': '衝天撃',
@@ -181,7 +181,7 @@
         'Dragonfly Avatar': '武毅化身',
         'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': '月气弹',
-        'Liberation': '光焰【破】',
+        '(?<! )Liberation': '光焰【破】',
         'Orbs': 'Orbs', // FIXME
         'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': '冲天击',
@@ -228,7 +228,7 @@
         'Dragonfly Avatar': '무도의 화신',
         'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': '월기탄',
-        'Liberation': '광염: 전개',
+        '(?<! )Liberation': '광염: 전개',
         'Orbs': 'Orbs', // FIXME
         'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': '충천격',

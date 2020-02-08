@@ -37,8 +37,8 @@
         'Scale Tethers': 'Scale Tethers', // FIXME
         'Scales of Wisdom': 'Scales of Wisdom', // FIXME
         'Shadows Spawn': 'Shadows Spawn', // FIXME
-        'Thunder': 'Blitz',
-        'Thunder II': 'Blitzra',
+        'Thunder(?! )': 'Blitz',
+        'Thunder II(?!I)': 'Blitzra',
         'Thunder III': 'Blitzga',
         'Tilt': 'Tilt', // FIXME
       },
@@ -74,8 +74,8 @@
         'Scale Tethers': 'Scale Tethers', // FIXME
         'Scales of Wisdom': 'Scales of Wisdom', // FIXME
         'Shadows Spawn': 'Shadows Spawn', // FIXME
-        'Thunder': 'Foudre',
-        'Thunder II': 'Extra Foudre',
+        'Thunder(?! )': 'Foudre',
+        'Thunder II(?!I)': 'Extra Foudre',
         'Thunder III': 'Méga Foudre',
         'Tilt': 'Tilt', // FIXME
       },
@@ -111,8 +111,8 @@
         'Scale Tethers': 'Scale Tethers', // FIXME
         'Scales of Wisdom': 'Scales of Wisdom', // FIXME
         'Shadows Spawn': 'Shadows Spawn', // FIXME
-        'Thunder': 'サンダー',
-        'Thunder II': 'サンダラ',
+        'Thunder(?! )': 'サンダー',
+        'Thunder II(?!I)': 'サンダラ',
         'Thunder III': 'サンダガ',
         'Tilt': 'Tilt', // FIXME
       },
@@ -148,8 +148,8 @@
         'Scale Tethers': 'Scale Tethers', // FIXME
         'Scales of Wisdom': 'Scales of Wisdom', // FIXME
         'Shadows Spawn': 'Shadows Spawn', // FIXME
-        'Thunder': '闪雷',
-        'Thunder II': '震雷',
+        'Thunder(?! )': '闪雷',
+        'Thunder II(?!I)': '震雷',
         'Thunder III': '暴雷',
         'Tilt': 'Tilt', // FIXME
       },
@@ -185,8 +185,8 @@
         'Scale Tethers': 'Scale Tethers', // FIXME
         'Scales of Wisdom': 'Scales of Wisdom', // FIXME
         'Shadows Spawn': 'Shadows Spawn', // FIXME
-        'Thunder': '선더',
-        'Thunder II': '선더라',
+        'Thunder(?! )': '선더',
+        'Thunder II(?!I)': '선더라',
         'Thunder III': '선더가',
         'Tilt': 'Tilt', // FIXME
       },
