@@ -770,7 +770,7 @@ class BuffTracker {
         sortKey: 33,
         cooldown: 60,
         defensive: true,
-      }
+      },
       addle: {
         useAbility: gLang.kAbility.Addle,
         durationSeconds: 10,
@@ -790,7 +790,7 @@ class BuffTracker {
         sortKey: 35,
         cooldown: 90,
         defensive: true,
-      }
+      },
     };
 
     let keys = Object.keys(this.buffInfo);
@@ -808,9 +808,8 @@ class BuffTracker {
       buff.sortKey = overrides.sortKey || buff.sortKey;
       buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
 
-      if (buff.defensive && this.options.HideDefensiveBuffs) {
+      if (buff.defensive && this.options.HideDefensiveBuffs)
         buff.hide = true;
-      }
 
       if (buff.gainEffect) {
         if (buff.gainEffect in this.gainEffectMap)
