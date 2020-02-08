@@ -1032,7 +1032,7 @@
       'replaceSync': {
         'Graven Image': '신들의 상',
         'Kefka': '케프카',
-        'Light Of Consecration': '정화의 빛',
+        'Light Of Consecration': '성결의 빛',
         'The Mad Head': '광인의 머리',
         'The limit gauge resets!': '리미트 게이지가 초기화되었습니다…….',
       },

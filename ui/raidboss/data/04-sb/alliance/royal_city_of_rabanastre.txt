@@ -41,7 +41,7 @@ hideall "--start--"
 1078.0 "Earth Hammer" duration 13.5 # start of cast -> damage
 1100.0 "Quake IV" # end of cast
 1109.0 "Rock Cutter" # end of cast
-1112.5 "--sync--" sync /:266E:command tower/ window 100,100
+1112.5 "--sync--" sync /:266E:Command Tower/ window 100,100
 1115.3 "Command Tower" # end of cast
 1116.5 "--knockback--"
 1118.5 "Command Tower Add"

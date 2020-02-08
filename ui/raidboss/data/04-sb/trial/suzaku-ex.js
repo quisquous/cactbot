@@ -198,7 +198,7 @@
         'Enrage': 'Enrage',
         'Eternal Flame': 'Flamme éternelle',
         'Fleeting Summer': 'Ailes vermillon',
-        'Hotspot': 'Flamme vermillon',
+        'Hotspot': 'Couleurs',
         'Incandescent Interlude': 'Mélopée incandescente',
         'Mesmerizing Melody': 'Mélodie hypnotique',
         'Pay The Piper': 'Poème fantoche',
@@ -207,7 +207,7 @@
         'Phantom Half': 'Frénésie - Moitié de plateau',
         'Phoenix Down': 'Queue de phénix',
         'Rekindle': 'Ravivement',
-        'Rout': 'Charge pachydermique',
+        'Rout': 'Irruption',
         'Ruthless Refrain': 'Refrain impitoyable',
         'Ruthless/Mesmerizing': 'Ruthless/Mesmerizing', // FIXME
         'Scarlet Fever': 'Fièvre écarlate',

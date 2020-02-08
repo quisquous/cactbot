@@ -448,7 +448,7 @@
         'Zashiki-asobi': 'Zashiki asobi',
       },
       '~effectNames': {
-        'Bleeding': 'Saignement',
+        'Bleeding': 'Saignant',
         'Damage Down': 'Malus de dégâts',
         'Doom': 'Glas',
         'Down For The Count': 'Au tapis',

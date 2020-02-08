@@ -818,7 +818,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Chaos': '混沌',
+        'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
         'Engage!': '戦闘開始！',
         'dark crystal': '黒水晶',
@@ -827,13 +827,13 @@
         '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Big Bang': '突出',
-        'Blaze': '火炎',
+        'Blaze': 'ほのお',
         'Bowels of Agony': 'バウル・オブ・アゴニー',
         'Chaosphere': 'カオススフィア',
         'Chaotic Dispersion': 'カオティックディスパーション',
         'Cyclone': 'たつまき',
         'Damning Edict': 'ダミングイーディクト',
-        'Earthquake': '大地震',
+        'Earthquake': 'じしん',
         'Enrage': 'Enrage',
         'Fiendish Orbs': '追尾せよ',
         'Knock Down': '着弾せよ',
@@ -866,7 +866,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Chaos': '混沌',
+        'Chaos': '卡奥斯',
         'Chaosphere': '混沌晶球',
         'Engage!': '战斗开始！',
         'dark crystal': '黑水晶',
@@ -875,19 +875,19 @@
         '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Big Bang': '돌출',
-        'Blaze': '炎爆',
+        'Blaze': '烈焰',
         'Bowels of Agony': '深层痛楚',
         'Chaosphere': '混沌晶球',
         'Chaotic Dispersion': '散布混沌',
         'Cyclone': '龙卷风',
         'Damning Edict': '诅咒敕令',
-        'Earthquake': '大地震',
+        'Earthquake': '地震',
         'Enrage': 'Enrage', // FIXME
         'Fiendish Orbs': '追踪',
         'Knock Down': '中弹',
         'Knock(?! )': 'Knock', // FIXME
         'Latitudinal Implosion': '纬度聚爆',
-        'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
+        'Long/Lat Implosion': '经/纬聚爆', // FIXME
         'Longitudinal Implosion': '经度聚爆',
         'Orbshadow': '追踪',
         'Shockwave': '冲击波',

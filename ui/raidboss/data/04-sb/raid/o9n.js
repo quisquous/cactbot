@@ -159,7 +159,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Chaos': '混沌',
+        'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
         'Engage!': '戦闘開始！',
         'YOU DARE!': 'YOU DARE!', // FIXME
@@ -169,13 +169,13 @@
         '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Big Bang': '突出',
-        'Blaze': '火炎',
+        'Blaze': 'ほのお',
         'Bowels of Agony': 'バウル・オブ・アゴニー',
         'Chaosphere': 'カオススフィア',
         'Chaotic Dispersion': 'カオティックディスパーション',
         'Cyclone': 'たつまき',
         'Damning Edict': 'ダミングイーディクト',
-        'Earthquake': '大地震',
+        'Earthquake': 'じしん',
         'Enrage': 'Enrage',
         'Fiendish Orbs': '追尾せよ',
         'Knock Down': '着弾せよ',
